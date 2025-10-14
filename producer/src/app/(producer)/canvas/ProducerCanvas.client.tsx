@@ -15,7 +15,34 @@ import {
 import { Controls } from '@reactflow/controls';
 import { Background } from '@reactflow/background';
 
-import 'reactflow/dist/style.css';
+// Additional styles for React Flow (injected via globals.css)
+const reactFlowStyles = `
+  .react-flow__node {
+    min-width: 150px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 8px;
+  }
+  .react-flow__node.selected {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px #3b82f6;
+  }
+  .react-flow__edge-path {
+    stroke: #6b7280;
+    stroke-width: 2;
+  }
+  .react-flow__controls {
+    bottom: 20px;
+    left: 20px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+  .react-flow__viewport {
+    background: #f9fafb;
+  }
+`;
 
 import {
   SourceDocNode,
@@ -174,11 +201,30 @@ function ProducerCanvasComponent() {
 
   const onRunPipeline = useCallback(async () => {
     // TODO: Implement pipeline execution
-    console.log('Running pipeline...');
+    console.log('Running pipeline...', { nodes: nodes.length, edges: edges.length });
+  }, [nodes, edges]);
+
+  // Debug logging
+  useEffect(() => {
+    console.log('ProducerCanvasComponent mounted');
+    console.log('Node types available:', Object.keys(nodeTypes));
+    console.log('Initial nodes:', initialNodes.length);
+    console.log('Initial edges:', initialEdges.length);
+    console.log('React Flow version check');
+
+    // Check if React Flow is working
+    setTimeout(() => {
+      console.log('DOM after mount:', document.querySelector('.react-flow__viewport'));
+    }, 100);
   }, []);
 
   return (
-    <>
+    <div className="h-full w-full relative">
+      {/* Debug info */}
+      <div className="absolute top-2 left-2 bg-yellow-200 p-2 rounded text-xs z-50">
+        Debug: React Flow loaded, nodes: {nodes.length}, edges: {edges.length}
+      </div>
+
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -195,6 +241,9 @@ function ProducerCanvasComponent() {
       {/* Panel outside ReactFlow */}
       <div className="absolute top-4 left-4 bg-white p-4 rounded-lg shadow-lg z-10">
         <h2 className="text-lg font-semibold mb-2">Ghost Hacker Producer</h2>
+        <p className="text-sm text-gray-600 mb-2">
+          Nodes: {nodes.length} | Edges: {edges.length}
+        </p>
         <button
           onClick={onRunPipeline}
           type="button"
@@ -203,18 +252,81 @@ function ProducerCanvasComponent() {
           Run Pipeline
         </button>
       </div>
-    </>
+    </div>
   );
 }
 
 export default function ProducerCanvas() {
   useEffect(() => {
-    const container = document.getElementById('react-flow-container');
-    if (container) {
-      const root = createRoot(container);
-      root.render(<ProducerCanvasComponent />);
-      return () => root.unmount();
+    console.log('ProducerCanvas useEffect running');
+
+    // Inject React Flow styles
+    const styleElement = document.createElement('style');
+    styleElement.textContent = reactFlowStyles;
+    document.head.appendChild(styleElement);
+
+    // Function to mount the component
+    const mountComponent = () => {
+      const container = document.getElementById('react-flow-container');
+      console.log('Container found:', !!container, container?.className);
+
+      if (container) {
+        console.log('Mounting React Flow component');
+        try {
+          // Clear any existing content
+          container.innerHTML = '';
+
+          // Add a test element first
+          const testDiv = document.createElement('div');
+          testDiv.textContent = 'React Flow Test';
+          testDiv.style.cssText = 'position: absolute; top: 10px; right: 10px; background: red; color: white; padding: 5px; z-index: 1000;';
+          container.appendChild(testDiv);
+
+          const root = createRoot(container);
+          root.render(<ProducerCanvasComponent />);
+          console.log('Component mounted successfully');
+
+          return () => {
+            console.log('Unmounting React Flow component');
+            root.unmount();
+            if (document.head.contains(styleElement)) {
+              document.head.removeChild(styleElement);
+            }
+          };
+        } catch (error) {
+          console.error('Error mounting component:', error);
+          if (document.head.contains(styleElement)) {
+            document.head.removeChild(styleElement);
+          }
+        }
+      }
+      return null;
+    };
+
+    // Try to mount immediately
+    let cleanup = mountComponent();
+
+    // Also try mounting after a short delay in case the DOM isn't ready yet
+    if (!cleanup) {
+      console.log('Scheduling delayed mount');
+      const timeoutId = setTimeout(() => {
+        cleanup = mountComponent();
+        if (!cleanup) {
+          console.error('Failed to mount component after delay');
+        }
+      }, 100);
+
+      return () => {
+        console.log('Cleaning up ProducerCanvas');
+        clearTimeout(timeoutId);
+        if (cleanup) cleanup();
+        if (document.head.contains(styleElement)) {
+          document.head.removeChild(styleElement);
+        }
+      };
     }
+
+    return cleanup;
   }, []);
 
   return null;
