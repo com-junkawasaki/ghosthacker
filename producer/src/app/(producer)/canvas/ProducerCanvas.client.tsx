@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { ReactFlow, addEdge, useNodesState, useEdgesState } from '@reactflow/core';
-import type { Node as RFNode, Edge as RFEdge } from '@reactflow/core';
+import type { Node as RFNode, Edge as RFEdge, Connection } from '@reactflow/core';
 import { Controls } from '@reactflow/controls';
 import { Background } from '@reactflow/background';
 import { createTRPCClient, httpBatchLink } from '@trpc/client';
@@ -87,7 +87,7 @@ const nodeTypes = {
 };
 
 // Initial nodes for the pipeline
-const initialNodes = [
+const initialNodes: RFNode<NodeData>[] = [
   {
     id: 'source-1',
     type: 'sourceDoc',
@@ -266,7 +266,7 @@ const initialNodes = [
 ];
 
 // Initial edges for the pipeline
-const initialEdges: Edge[] = [
+const initialEdges: RFEdge[] = [
   { id: 'source-to-prompt', source: 'source-1', target: 'prompt-1' },
   { id: 'protagonist-to-prompt', source: 'protagonist-1', target: 'prompt-1' },
   { id: 'backstory-to-prompt', source: 'backstory-1', target: 'prompt-1' },

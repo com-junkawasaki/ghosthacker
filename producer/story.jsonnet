@@ -8,6 +8,8 @@
       id: 'lore-protagonist',
       type: 'Protagonist',
       label: 'Protagonist',
+      // UI integration
+      ui: { route: '/canvas/lore/protagonist' },
       config: {
         name: 'Akito',
         role: 'Hacker',
@@ -21,6 +23,8 @@
       id: 'lore-backstory',
       type: 'Backstory',
       label: 'Backstory',
+      // UI integration
+      ui: { route: '/canvas/lore/backstory' },
       config: {
         origin: 'Tokyo underground',
         motivation: 'Find lost sister',
@@ -34,6 +38,8 @@
       id: 'lore-world',
       type: 'World',
       label: 'World',
+      // UI integration
+      ui: { route: '/canvas/lore/world' },
       config: {
         setting: 'Near-future Tokyo',
         era: '2042',
@@ -46,6 +52,8 @@
       id: 'source-ep1',
       type: 'SourceDoc',
       label: 'Episode 1 Source',
+      // UI integration
+      ui: { route: '/canvas/source-ep1' },
       config: {
         episodeId: 'ja_Episode_01_Masterpiece',
         sourcePath: '../250806/episodes/ja_Episode_01_Masterpiece.md',
@@ -59,6 +67,8 @@
       type: 'Prompt',
       label: 'Story Prompt',
       dependsOn: ['source-ep1', 'lore-protagonist', 'lore-backstory', 'lore-world'],
+      // UI integration
+      ui: { route: '/canvas/prompt-story' },
       config: {
         promptType: 'story',
         style: 'atmospheric',
@@ -73,6 +83,8 @@
       type: 'Writer',
       label: 'Content Writer',
       dependsOn: ['prompt-story'],
+      // UI integration
+      ui: { route: '/canvas/writer-content' },
       config: {
         model: 'gpt-4o-mini',
         maxTokens: 2000,
@@ -87,6 +99,8 @@
       type: 'ImageGen',
       label: 'Scene Images',
       dependsOn: ['writer-content', 'lore-world'],
+      // UI integration
+      ui: { route: '/canvas/image-gen' },
       config: {
         model: 'flux-1.1-pro',
         style: 'atmospheric-horror',
@@ -101,6 +115,8 @@
       type: 'WebtoonPanelGen',
       label: 'Panel Generator',
       dependsOn: ['image-gen'],
+      // UI integration
+      ui: { route: '/canvas/webtoon-panel-gen' },
       config: {
         panelCount: 8,
         style: 'vertical-scroll',
@@ -115,6 +131,8 @@
       type: 'WebtoonLayout',
       label: 'Layout Designer',
       dependsOn: ['webtoon-panel-gen'],
+      // UI integration
+      ui: { route: '/canvas/webtoon-layout' },
       config: {
         layoutStyle: 'korean-style',
         textPosition: 'overlay',
@@ -129,6 +147,8 @@
       type: 'WebtoonExport',
       label: 'Webtoon Export',
       dependsOn: ['webtoon-layout'],
+      // UI integration
+      ui: { route: '/canvas/webtoon-export' },
       config: {
         format: 'webp-sequence',
         platform: 'webtoon',
@@ -143,6 +163,8 @@
       type: 'TTS',
       label: 'Narration TTS',
       dependsOn: ['writer-content'],
+      // UI integration
+      ui: { route: '/canvas/tts-narration' },
       config: {
         voice: 'alloy',
         speed: 1.0,
@@ -157,6 +179,8 @@
       type: 'VideoGen',
       label: 'Video Generation',
       dependsOn: ['image-gen', 'tts-narration', 'writer-content'],
+      // UI integration
+      ui: { route: '/canvas/video-gen' },
       config: {
         preferredRenderer: 'sora',
         resolution: '1080p',
@@ -171,6 +195,8 @@
       type: 'Render',
       label: 'Video Render',
       dependsOn: ['video-gen'],
+      // UI integration
+      ui: { route: '/canvas/render-video' },
       config: {
         renderer: 'ffmpeg',
         format: 'mp4',
@@ -185,6 +211,8 @@
       type: 'ExportWattpad',
       label: 'Wattpad Package',
       dependsOn: ['writer-content', 'image-gen'],
+      // UI integration
+      ui: { route: '/canvas/export-wattpad' },
       config: {
         format: 'markdown',
         includeImages: true,
@@ -199,6 +227,8 @@
       type: 'PublishYouTube',
       label: 'YouTube Upload',
       dependsOn: ['render-video'],
+      // UI integration
+      ui: { route: '/canvas/publish-youtube' },
       config: {
         privacy: 'unlisted',
         title: 'Ghost Hacker - Episode 1',
@@ -263,6 +293,16 @@
     metrics: ['execution_time', 'success_rate', 'resource_usage'],
     logs: ['node_start', 'node_complete', 'node_error'],
     traces: ['pipeline_execution', 'node_execution'],
+  },
+
+  // Storage boundary (Neo4j)
+  storage: {
+    type: 'neo4j',
+    nodeLabel: 'PipelineNode',
+    idProp: 'id',
+    typeProp: 'type',
+    labelProp: 'label',
+    configProp: 'config',
   },
 
   // Output specifications
