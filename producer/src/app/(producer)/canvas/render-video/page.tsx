@@ -1,5 +1,6 @@
 import Link from "next/link";
 import NodePanel from "@/components/NodePanel";
+import NodeConfigForm from "@/components/NodeConfigForm.client";
 
 // Merkle DAG Node: render-video (type: Render)
 export default function RenderVideoPage() {
@@ -18,6 +19,12 @@ export default function RenderVideoPage() {
         dependsOn={["video-gen"]}
         outputs={["rendered_video", "thumbnails"]}
         config={{ renderer: "ffmpeg", format: "mp4", quality: "high" }}
+      />
+
+      <NodeConfigForm
+        nodeId="render-video"
+        nodeType="Render"
+        defaultValues={{ renderer: "ffmpeg", format: "mp4", quality: "high" }}
       />
     </div>
   );

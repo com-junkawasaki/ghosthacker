@@ -1,5 +1,6 @@
 import Link from "next/link";
 import NodePanel from "@/components/NodePanel";
+import NodeConfigForm from "@/components/NodeConfigForm.client";
 
 // Merkle DAG Node: lore-world (type: World)
 export default function LoreWorldPage() {
@@ -17,6 +18,12 @@ export default function LoreWorldPage() {
         label="World"
         outputs={["setting", "era", "rules"]}
         config={{ setting: "Near-future Tokyo", era: "2042", rules: "Ghost-net protocols" }}
+      />
+
+      <NodeConfigForm
+        nodeId="lore-world"
+        nodeType="World"
+        defaultValues={{ setting: "Near-future Tokyo", era: "2042", rules: "Ghost-net protocols" }}
       />
     </div>
   );

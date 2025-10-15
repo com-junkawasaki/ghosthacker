@@ -1,5 +1,6 @@
 import Link from "next/link";
 import NodePanel from "@/components/NodePanel";
+import NodeConfigForm from "@/components/NodeConfigForm.client";
 
 // Merkle DAG Node: webtoon-layout (type: WebtoonLayout)
 export default function WebtoonLayoutPage() {
@@ -18,6 +19,12 @@ export default function WebtoonLayoutPage() {
         dependsOn={["webtoon-panel-gen"]}
         outputs={["layout", "layoutData"]}
         config={{ layoutStyle: "korean-style", textPosition: "overlay", readingDirection: "vertical" }}
+      />
+
+      <NodeConfigForm
+        nodeId="webtoon-layout"
+        nodeType="WebtoonLayout"
+        defaultValues={{ layoutStyle: "korean-style", textPosition: "overlay", readingDirection: "vertical" }}
       />
     </div>
   );

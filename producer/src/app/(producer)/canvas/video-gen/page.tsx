@@ -1,5 +1,6 @@
 import Link from "next/link";
 import NodePanel from "@/components/NodePanel";
+import NodeConfigForm from "@/components/NodeConfigForm.client";
 
 // Merkle DAG Node: video-gen (type: VideoGen)
 export default function VideoGenPage() {
@@ -18,6 +19,12 @@ export default function VideoGenPage() {
         dependsOn={["image-gen", "tts-narration", "writer-content"]}
         outputs={["video", "script"]}
         config={{ preferredRenderer: "sora", resolution: "1080p", duration: 300 }}
+      />
+
+      <NodeConfigForm
+        nodeId="video-gen"
+        nodeType="VideoGen"
+        defaultValues={{ preferredRenderer: "sora", resolution: "1080p", duration: 300 }}
       />
     </div>
   );

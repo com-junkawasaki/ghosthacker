@@ -1,5 +1,6 @@
 import Link from "next/link";
 import NodePanel from "@/components/NodePanel";
+import NodeConfigForm from "@/components/NodeConfigForm.client";
 
 // Merkle DAG Node: export-wattpad (type: ExportWattpad)
 export default function ExportWattpadPage() {
@@ -18,6 +19,12 @@ export default function ExportWattpadPage() {
         dependsOn={["writer-content", "image-gen"]}
         outputs={["wattpad_package", "download_url"]}
         config={{ format: "markdown", includeImages: true, includeMetadata: true }}
+      />
+
+      <NodeConfigForm
+        nodeId="export-wattpad"
+        nodeType="ExportWattpad"
+        defaultValues={{ format: "markdown", includeImages: true, includeMetadata: true }}
       />
     </div>
   );

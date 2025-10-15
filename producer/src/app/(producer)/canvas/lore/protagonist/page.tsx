@@ -1,5 +1,6 @@
 import Link from "next/link";
 import NodePanel from "@/components/NodePanel";
+import NodeConfigForm from "@/components/NodeConfigForm.client";
 
 // Merkle DAG Node: lore-protagonist (type: Protagonist)
 export default function LoreProtagonistPage() {
@@ -17,6 +18,12 @@ export default function LoreProtagonistPage() {
         label="Protagonist"
         outputs={["name", "role", "traits"]}
         config={{ name: "Akito", role: "Hacker", traits: "Stoic, Empathic" }}
+      />
+
+      <NodeConfigForm
+        nodeId="lore-protagonist"
+        nodeType="Protagonist"
+        defaultValues={{ name: "Akito", role: "Hacker", traits: "Stoic, Empathic" }}
       />
     </div>
   );

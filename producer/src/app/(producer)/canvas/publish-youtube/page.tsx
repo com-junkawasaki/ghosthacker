@@ -1,5 +1,6 @@
 import Link from "next/link";
 import NodePanel from "@/components/NodePanel";
+import NodeConfigForm from "@/components/NodeConfigForm.client";
 
 // Merkle DAG Node: publish-youtube (type: PublishYouTube)
 export default function PublishYouTubePage() {
@@ -18,6 +19,12 @@ export default function PublishYouTubePage() {
         dependsOn={["render-video"]}
         outputs={["youtube_id", "upload_url"]}
         config={{ privacy: "unlisted", title: "Ghost Hacker - Episode 1", description: "Atmospheric ghost story adaptation", tags: ["ghost", "horror", "supernatural"] }}
+      />
+
+      <NodeConfigForm
+        nodeId="publish-youtube"
+        nodeType="PublishYouTube"
+        defaultValues={{ privacy: "unlisted", title: "Ghost Hacker - Episode 1", description: "Atmospheric ghost story adaptation", tags: ["ghost", "horror", "supernatural"] }}
       />
     </div>
   );

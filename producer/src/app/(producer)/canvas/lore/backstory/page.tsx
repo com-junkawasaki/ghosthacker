@@ -1,5 +1,6 @@
 import Link from "next/link";
 import NodePanel from "@/components/NodePanel";
+import NodeConfigForm from "@/components/NodeConfigForm.client";
 
 // Merkle DAG Node: lore-backstory (type: Backstory)
 export default function LoreBackstoryPage() {
@@ -17,6 +18,12 @@ export default function LoreBackstoryPage() {
         label="Backstory"
         outputs={["origin", "motivation", "conflict"]}
         config={{ origin: "Tokyo underground", motivation: "Find lost sister", conflict: "Corporate AI" }}
+      />
+
+      <NodeConfigForm
+        nodeId="lore-backstory"
+        nodeType="Backstory"
+        defaultValues={{ origin: "Tokyo underground", motivation: "Find lost sister", conflict: "Corporate AI" }}
       />
     </div>
   );
