@@ -42,21 +42,7 @@ export class StoryNeo4jRepository {
       const now = new Date();
       const projectId = project.id || crypto.randomUUID();
 
-      const projectNode = new Node({
-        labels: ['Project'],
-        properties: {
-          id: projectId,
-          title: project.title,
-          logline: project.logline,
-          genres: project.genres,
-          tone: project.tone,
-          audienceRating: project.audienceRating,
-          language: project.language,
-          keywords: project.keywords,
-          createdAt: now,
-          updatedAt: now,
-        }
-      });
+      // Note: using raw cypher below; Node builder kept for future reference and intentionally removed to satisfy linter
 
       // Use raw Cypher query for now
       const query = `
@@ -125,7 +111,7 @@ export class StoryNeo4jRepository {
     const session = this.driver.session();
 
     try {
-      const projectNode = new Node({ labels: ['Project'] });
+      const projectNode = new Node({ labels: ['Project'] }); // used below in cypher builder chain
 
       const matchQuery = cypher
         .match(projectNode)
