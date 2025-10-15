@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { loadProject, loadNarrative, loadStyles, loadPlatforms } from './actions';
+import { loadProject, loadNarrative, loadStyles, loadPlatforms, seedCanvas } from './actions';
 import { deriveCanvasConfig } from '@/lib/mapping';
 
 type Project = { title: string; logline: string; genres: string[]; tone: string; keywords?: string[] } | null;
@@ -52,7 +52,12 @@ export default function PreviewPanel() {
 
       <div className="rounded border border-gray-200 p-3 bg-white">
         <div className="text-xs text-gray-500 mb-2">Canvas preview (nodes/edges)</div>
-        <div>Nodes: {canvas.nodes.length} / Edges: {canvas.edges.length}</div>
+        <div className="flex items-center justify-between">
+          <div>Nodes: {canvas.nodes.length} / Edges: {canvas.edges.length}</div>
+          <form action={async () => { await seedCanvas(); }}>
+            <button type="submit" className="px-3 py-1.5 bg-gray-900 text-white rounded-md hover:bg-black">Seed Canvas</button>
+          </form>
+        </div>
       </div>
     </div>
   );

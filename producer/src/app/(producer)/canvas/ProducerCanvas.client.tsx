@@ -1,17 +1,8 @@
 'use client';
 
-import React, { useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
-import {
-  ReactFlow,
-  Edge,
-  addEdge,
-  Connection,
-  useNodesState,
-  useEdgesState,
-  NodeTypes,
-  Node as FlowNode,
-} from '@reactflow/core';
+import { ReactFlow, addEdge, useNodesState, useEdgesState } from '@reactflow/core';
 import { Controls } from '@reactflow/controls';
 import { Background } from '@reactflow/background';
 
@@ -66,11 +57,11 @@ import {
   WebtoonExport,
   ExportWattpadNode,
   PublishYouTubeNode,
-  NodeData,
 } from '@/pipeline/node-types';
+// Saved canvas hydration will be added via API route later
 
 // Define node types for React Flow
-const nodeTypes: NodeTypes = {
+const nodeTypes = {
   sourceDoc: SourceDocNode,
   prompt: PromptNode,
   writer: WriterNode,
@@ -86,7 +77,7 @@ const nodeTypes: NodeTypes = {
 };
 
 // Initial nodes for the pipeline
-const initialNodes: FlowNode<NodeData>[] = [
+const initialNodes = [
   {
     id: 'source-1',
     type: 'sourceDoc',
@@ -258,7 +249,7 @@ function ProducerCanvasComponent() {
     console.log('Running pipeline...', { nodes: nodes.length, edges: edges.length });
   }, [nodes, edges]);
 
-  // Debug logging
+  // Load saved canvas config if present
   useEffect(() => {
     console.log('ProducerCanvasComponent mounted');
     console.log('Node types available:', Object.keys(nodeTypes));
@@ -270,6 +261,7 @@ function ProducerCanvasComponent() {
     setTimeout(() => {
       console.log('DOM after mount:', document.querySelector('.react-flow__viewport'));
     }, 100);
+    // reserved for future hydration
   }, []);
 
   return (

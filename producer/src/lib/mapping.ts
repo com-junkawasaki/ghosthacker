@@ -24,18 +24,22 @@ export function deriveCanvasConfig(opts: {
 }): CanvasConfig {
   const nodes: CanvasNodeConfig[] = [];
 
-  nodes.push({ id: 'source-1', type: 'sourceDoc', label: opts.project?.title ?? 'Project' });
-  nodes.push({ id: 'prompt-1', type: 'prompt', label: 'Story Prompt' });
-  nodes.push({ id: 'writer-1', type: 'writer', label: 'AI Writer' });
-  nodes.push({ id: 'image-gen-1', type: 'imageGen', label: 'Image Generation', data: { palette: opts.styles?.visual?.palette } });
-  nodes.push({ id: 'webtoon-panel-gen-1', type: 'webtoonPanelGen', label: 'Panel Generator', data: { panels: opts.platforms?.webtoon?.episodePanels ?? 40 } });
-  nodes.push({ id: 'webtoon-layout-1', type: 'webtoonLayout', label: 'Layout Designer' });
-  nodes.push({ id: 'webtoon-export-1', type: 'webtoonExport', label: 'Webtoon Export' });
-  nodes.push({ id: 'video-gen-1', type: 'videoGen', label: 'Video Generation', data: { duration: opts.platforms?.youtube?.targetDurationSec ?? 300, aspect: opts.platforms?.youtube?.aspectRatio ?? '9:16', voice: opts.styles?.audio?.voice } });
-  nodes.push({ id: 'tts-1', type: 'tts', label: 'Text-to-Speech', data: { voice: opts.styles?.audio?.voice } });
-  nodes.push({ id: 'render-1', type: 'render', label: 'Video Render' });
-  nodes.push({ id: 'wattpad-1', type: 'exportWattpad', label: 'Wattpad Export', data: { chapters: opts.platforms?.wattpad?.chapterCount ?? 10 } });
-  nodes.push({ id: 'youtube-1', type: 'publishYouTube', label: 'YouTube Upload' });
+  const add = (id: string, type: string, label: string, extra?: Record<string, unknown>) => {
+    nodes.push({ id, type, label, data: { id, type, label, ...(extra ?? {}) } });
+  };
+
+  add('source-1', 'sourceDoc', opts.project?.title ?? 'Project');
+  add('prompt-1', 'prompt', 'Story Prompt');
+  add('writer-1', 'writer', 'AI Writer');
+  add('image-gen-1', 'imageGen', 'Image Generation', { palette: opts.styles?.visual?.palette });
+  add('webtoon-panel-gen-1', 'webtoonPanelGen', 'Panel Generator', { panelCount: opts.platforms?.webtoon?.episodePanels ?? 40 });
+  add('webtoon-layout-1', 'webtoonLayout', 'Layout Designer');
+  add('webtoon-export-1', 'webtoonExport', 'Webtoon Export');
+  add('video-gen-1', 'videoGen', 'Video Generation', { duration: opts.platforms?.youtube?.targetDurationSec ?? 300, aspect: opts.platforms?.youtube?.aspectRatio ?? '9:16', voice: opts.styles?.audio?.voice });
+  add('tts-1', 'tts', 'Text-to-Speech', { voice: opts.styles?.audio?.voice });
+  add('render-1', 'render', 'Video Render');
+  add('wattpad-1', 'exportWattpad', 'Wattpad Export', { chapters: opts.platforms?.wattpad?.chapterCount ?? 10 });
+  add('youtube-1', 'publishYouTube', 'YouTube Upload');
 
   const edges = [
     { id: 'e1', source: 'source-1', target: 'prompt-1' },

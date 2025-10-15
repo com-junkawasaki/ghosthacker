@@ -290,6 +290,48 @@ export class StoryNeo4jRepository {
       await session.close();
     }
   }
+
+  // Save canvas config JSON and link to project
+  async saveCanvas(projectId: string, config: { nodes: unknown[]; edges: unknown[] }) {
+    const session = this.driver.session();
+    try {
+      const now = new Date().toISOString();
+      const query = `
+        MATCH (p:Project {id: $projectId})
+        MERGE (c:Canvas {id: $id})
+        ON CREATE SET c += { config: $config, createdAt: $now, updatedAt: $now }
+        ON MATCH SET c += { config: $config, updatedAt: $now }
+        MERGE (p)-[:HAS_CANVAS]->(c)
+        RETURN c
+      `;
+      const params = {
+        projectId,
+        id: `${projectId}-canvas`,
+        config,
+        now,
+      };
+      const result = await session.run(query, params);
+      return result.records[0]?.get('c').properties ?? null;
+    } finally {
+      await session.close();
+    }
+  }
+
+  async getCanvas(projectId: string): Promise<{ nodes: unknown[]; edges: unknown[] } | null> {
+    const session = this.driver.session();
+    try {
+      const query = `
+        MATCH (p:Project {id: $projectId})-[:HAS_CANVAS]->(c:Canvas)
+        RETURN c
+      `;
+      const result = await session.run(query, { projectId });
+      if (result.records.length === 0) return null;
+      const props = result.records[0].get('c').properties;
+      return props.config as { nodes: unknown[]; edges: unknown[] };
+    } finally {
+      await session.close();
+    }
+  }
 }
 
 // Singleton instance

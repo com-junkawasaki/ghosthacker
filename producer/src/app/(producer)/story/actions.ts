@@ -2,6 +2,7 @@
 // Merkle DAG: story.actions -> validates inputs -> persists to neo4j -> seeds pipeline later
 import { safeParse } from 'valibot';
 import { ProjectSchema, NarrativeSchema, CharacterSchema, VisualStyleSchema, AudioStyleSchema, WattpadExtSchema, WebtoonExtSchema, YouTubeExtSchema } from '@/types/story';
+import { deriveCanvasConfig } from '@/lib/mapping';
 import { storyRepository } from '@/lib/story-neo4j';
 
 // Default project ID for this session (in production, this would be user-specific)
@@ -256,6 +257,29 @@ export async function loadPlatforms(): Promise<PlatformsInput | null> {
   } catch (error) {
     console.error('Failed to load platforms:', error);
     return null;
+  }
+}
+
+// Seed canvas by deriving config from saved data and persisting to Neo4j
+export async function seedCanvas(): Promise<ServerActionResult<{ nodes: unknown[]; edges: unknown[] }>> {
+  try {
+    const [project, narrative, styles, platforms] = await Promise.all([
+      storyRepository.getProject(DEFAULT_PROJECT_ID),
+      storyRepository.getNarrative(DEFAULT_PROJECT_ID),
+      storyRepository.getStyles(DEFAULT_PROJECT_ID),
+      storyRepository.getPlatforms(DEFAULT_PROJECT_ID),
+    ]);
+    const config = deriveCanvasConfig({
+      project: project ? { title: project.title } : undefined,
+      narrative: narrative ? { beats: narrative.beats } : undefined,
+      styles: styles ? { visual: styles.visual, audio: styles.audio } : undefined,
+      platforms: platforms ?? undefined,
+    });
+    await storyRepository.saveCanvas(DEFAULT_PROJECT_ID, config);
+    return { ok: true, value: config };
+  } catch (error) {
+    console.error('Failed to seed canvas:', error);
+    return { ok: false, faults: [{ code: 'database_error', message: 'Failed to seed canvas' }] };
   }
 }
 

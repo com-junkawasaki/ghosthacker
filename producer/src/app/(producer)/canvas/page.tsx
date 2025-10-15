@@ -1,6 +1,8 @@
 // RSC shell for Producer Canvas
 import ProducerCanvas from '@/app/(producer)/canvas/ProducerCanvas.client';
+// Canvas data is loaded client-side for now
 export default function ProducerCanvasPage() {
+  // In a real app we would make this async and fetch server-side. For dev, we render the container and let client mount.
   return (
     <div className="h-screen w-full bg-gray-100">
       <div className="h-full w-full relative">
