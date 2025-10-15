@@ -207,4 +207,56 @@ export async function loadNarrative(): Promise<NarrativeInput | null> {
   }
 }
 
+export async function loadStyles(): Promise<StylesInput | null> {
+  try {
+    const s = await storyRepository.getStyles(DEFAULT_PROJECT_ID);
+    if (!s) return null;
+    return {
+      visual: {
+        artStyle: s.visual.artStyle as StylesInput['visual']['artStyle'],
+        palette: s.visual.palette as StylesInput['visual']['palette'],
+        nsfwAllowed: false,
+      },
+      audio: {
+        voice: s.audio.voice as StylesInput['audio']['voice'],
+        tempo: s.audio.tempo as StylesInput['audio']['tempo'],
+        musicMood: s.audio.musicMood as StylesInput['audio']['musicMood'],
+      },
+    };
+  } catch (error) {
+    console.error('Failed to load styles:', error);
+    return null;
+  }
+}
+
+export async function loadPlatforms(): Promise<PlatformsInput | null> {
+  try {
+    const pl = await storyRepository.getPlatforms(DEFAULT_PROJECT_ID);
+    if (!pl) return null;
+    return {
+      wattpad: {
+        chapterCount: pl.wattpad.chapterCount,
+        includeImages: pl.wattpad.includeImages,
+        chapterLengthWords: pl.wattpad.chapterLengthWords as [number, number] | undefined,
+        imageFrequency: pl.wattpad.imageFrequency as PlatformsInput['wattpad']['imageFrequency'],
+      },
+      webtoon: {
+        episodePanels: pl.webtoon.episodePanels,
+        bubbleDensity: pl.webtoon.bubbleDensity as PlatformsInput['webtoon']['bubbleDensity'],
+        readingPace: pl.webtoon.readingPace as PlatformsInput['webtoon']['readingPace'],
+        soundEffects: pl.webtoon.soundEffects,
+      },
+      youtube: {
+        targetDurationSec: pl.youtube.targetDurationSec,
+        aspectRatio: pl.youtube.aspectRatio as PlatformsInput['youtube']['aspectRatio'],
+        captions: pl.youtube.captions,
+        brollRatio: pl.youtube.brollRatio,
+      },
+    };
+  } catch (error) {
+    console.error('Failed to load platforms:', error);
+    return null;
+  }
+}
+
 

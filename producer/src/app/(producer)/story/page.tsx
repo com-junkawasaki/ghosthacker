@@ -4,6 +4,7 @@ import NarrativeForm from "./NarrativeForm.client";
 import CharactersForm from "./CharactersForm.client";
 import StyleForm from "./StyleForm.client";
 import PlatformsForm from "./PlatformsForm.client";
+import PreviewPanel from "./PreviewPanel.client";
 
 export default function StoryPipelinePage() {
   return (
@@ -40,6 +41,11 @@ export default function StoryPipelinePage() {
       <div className="mt-6 rounded-lg border border-gray-200 p-4 bg-white">
         <div className="text-sm font-medium text-gray-900 mb-3">Platforms</div>
         <PlatformsForm />
+      </div>
+
+      <div className="mt-6 rounded-lg border border-gray-200 p-4 bg-white">
+        <div className="text-sm font-medium text-gray-900 mb-3">Preview</div>
+        <PreviewPanel />
       </div>
     </div>
   );
