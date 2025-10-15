@@ -25,7 +25,7 @@ export default function ProducerLayout({
             <div className="mb-2 text-xs uppercase tracking-wide text-gray-500">Generation</div>
             <ul className="space-y-1">
               <li>
-                <span className="block rounded px-2 py-1.5 text-gray-400 cursor-not-allowed">Story</span>
+                <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/story">Story</Link>
               </li>
               <li>
                 <span className="block rounded px-2 py-1.5 text-gray-400 cursor-not-allowed">Images</span>
