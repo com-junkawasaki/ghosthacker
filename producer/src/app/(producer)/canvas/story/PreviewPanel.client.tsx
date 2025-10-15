@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { loadProject, loadNarrative, loadStyles, loadPlatforms } from './actions';
 import { createTRPCClient, httpBatchLink } from '@trpc/client';
+import superjson from 'superjson';
 import type { AppRouter } from '@/server/routers';
 import { deriveCanvasConfig } from '@/lib/mapping';
 
@@ -57,7 +58,7 @@ export default function PreviewPanel() {
         <div className="flex items-center justify-between">
           <div>Nodes: {canvas.nodes.length} / Edges: {canvas.edges.length}</div>
           <form action={async () => {
-            const client = createTRPCClient<AppRouter>({ links: [httpBatchLink({ url: '/api/trpc' })] });
+            const client = createTRPCClient<AppRouter>({ links: [httpBatchLink({ url: '/api/trpc', transformer: superjson })] });
             await client.canvas.seed.mutate();
           }}>
             <button type="submit" className="px-3 py-1.5 bg-gray-900 text-white rounded-md hover:bg-black">Seed Canvas</button>

@@ -17,7 +17,7 @@ export default function PlatformsForm() {
   const idYtCap = useId();
   const [wattpad, setWattpad] = useState({ chapterCount: 10, includeImages: true, chapterLengthWords: [800, 1500] as [number, number], imageFrequency: 'inline-1' as 'none'|'cover'|'inline-1'|'inline-3' });
   const [webtoon, setWebtoon] = useState<{ episodePanels: number; bubbleDensity: 'low'|'medium'|'high'; readingPace: 'slow'|'standard'|'fast'; soundEffects: boolean }>({ episodePanels: 40, bubbleDensity: 'medium', readingPace: 'standard', soundEffects: true });
-  const [youtube, setYoutube] = useState({ targetDurationSec: 300, aspectRatio: '9:16' as const, captions: true, brollRatio: 0.3 });
+  const [youtube, setYoutube] = useState<{ targetDurationSec: number; aspectRatio: '9:16'|'16:9'; captions: boolean; brollRatio: number }>({ targetDurationSec: 300, aspectRatio: '9:16', captions: true, brollRatio: 0.3 });
   const [message, setMessage] = useState<string | null>(null);
   const [errors, setErrors] = useState<string[] | null>(null);
   const [submitting, setSubmitting] = useState(false);
