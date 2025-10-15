@@ -52,6 +52,9 @@ import {
   VideoGenNode,
   TTSNode,
   RenderNode,
+  WebtoonPanelGen,
+  WebtoonLayout,
+  WebtoonExport,
   ExportWattpadNode,
   PublishYouTubeNode,
   NodeData,
@@ -63,6 +66,9 @@ const nodeTypes: NodeTypes = {
   prompt: PromptNode,
   writer: WriterNode,
   imageGen: ImageGenNode,
+  webtoonPanelGen: WebtoonPanelGen,
+  webtoonLayout: WebtoonLayout,
+  webtoonExport: WebtoonExport,
   videoGen: VideoGenNode,
   tts: TTSNode,
   render: RenderNode,
@@ -119,6 +125,42 @@ const initialNodes: FlowNode<NodeData>[] = [
     },
   },
   {
+    id: 'webtoon-panel-gen-1',
+    type: 'webtoonPanelGen',
+    position: { x: 900, y: 50 },
+    data: {
+      id: 'webtoon-panel-gen-1',
+      type: 'webtoonPanelGen',
+      label: 'Panel Generator',
+      status: 'idle',
+      config: { panelCount: 8 },
+    },
+  },
+  {
+    id: 'webtoon-layout-1',
+    type: 'webtoonLayout',
+    position: { x: 1100, y: 50 },
+    data: {
+      id: 'webtoon-layout-1',
+      type: 'webtoonLayout',
+      label: 'Layout Designer',
+      status: 'idle',
+      config: { layoutStyle: 'korean-style' },
+    },
+  },
+  {
+    id: 'webtoon-export-1',
+    type: 'webtoonExport',
+    position: { x: 1300, y: 50 },
+    data: {
+      id: 'webtoon-export-1',
+      type: 'webtoonExport',
+      label: 'Webtoon Export',
+      status: 'idle',
+      config: { format: 'webp-sequence' },
+    },
+  },
+  {
     id: 'video-gen-1',
     type: 'videoGen',
     position: { x: 900, y: 100 },
@@ -156,7 +198,7 @@ const initialNodes: FlowNode<NodeData>[] = [
   {
     id: 'wattpad-1',
     type: 'exportWattpad',
-    position: { x: 1300, y: 50 },
+    position: { x: 1500, y: 50 },
     data: {
       id: 'wattpad-1',
       type: 'exportWattpad',
@@ -167,7 +209,7 @@ const initialNodes: FlowNode<NodeData>[] = [
   {
     id: 'youtube-1',
     type: 'publishYouTube',
-    position: { x: 1300, y: 150 },
+    position: { x: 1500, y: 150 },
     data: {
       id: 'youtube-1',
       type: 'publishYouTube',
@@ -183,6 +225,9 @@ const initialEdges: Edge[] = [
   { id: 'prompt-to-writer', source: 'prompt-1', target: 'writer-1' },
   { id: 'writer-to-image', source: 'writer-1', target: 'image-gen-1' },
   { id: 'writer-to-tts', source: 'writer-1', target: 'tts-1' },
+  { id: 'image-to-webtoon-panel', source: 'image-gen-1', target: 'webtoon-panel-gen-1' },
+  { id: 'webtoon-panel-to-layout', source: 'webtoon-panel-gen-1', target: 'webtoon-layout-1' },
+  { id: 'webtoon-layout-to-export', source: 'webtoon-layout-1', target: 'webtoon-export-1' },
   { id: 'image-to-video', source: 'image-gen-1', target: 'video-gen-1' },
   { id: 'tts-to-video', source: 'tts-1', target: 'video-gen-1' },
   { id: 'video-to-render', source: 'video-gen-1', target: 'render-1' },
@@ -260,7 +305,13 @@ export default function ProducerCanvas() {
   useEffect(() => {
     console.log('ProducerCanvas useEffect running');
 
-    // Inject React Flow styles
+    // Load React Flow CSS from CDN
+    const linkElement = document.createElement('link');
+    linkElement.rel = 'stylesheet';
+    linkElement.href = 'https://unpkg.com/@reactflow/core@11.11.4/dist/style.css';
+    document.head.appendChild(linkElement);
+
+    // Inject additional React Flow styles
     const styleElement = document.createElement('style');
     styleElement.textContent = reactFlowStyles;
     document.head.appendChild(styleElement);
@@ -289,12 +340,18 @@ export default function ProducerCanvas() {
           return () => {
             console.log('Unmounting React Flow component');
             root.unmount();
+            if (document.head.contains(linkElement)) {
+              document.head.removeChild(linkElement);
+            }
             if (document.head.contains(styleElement)) {
               document.head.removeChild(styleElement);
             }
           };
         } catch (error) {
           console.error('Error mounting component:', error);
+          if (document.head.contains(linkElement)) {
+            document.head.removeChild(linkElement);
+          }
           if (document.head.contains(styleElement)) {
             document.head.removeChild(styleElement);
           }
@@ -320,6 +377,9 @@ export default function ProducerCanvas() {
         console.log('Cleaning up ProducerCanvas');
         clearTimeout(timeoutId);
         if (cleanup) cleanup();
+        if (document.head.contains(linkElement)) {
+          document.head.removeChild(linkElement);
+        }
         if (document.head.contains(styleElement)) {
           document.head.removeChild(styleElement);
         }

@@ -57,6 +57,48 @@
       outputs: ['images', 'prompts'],
     },
 
+    // Webtoon Panel Generation Node
+    {
+      id: 'webtoon-panel-gen',
+      type: 'WebtoonPanelGen',
+      label: 'Panel Generator',
+      dependsOn: ['image-gen'],
+      config: {
+        panelCount: 8,
+        style: 'vertical-scroll',
+        aspectRatio: '9:16',
+      },
+      outputs: ['panels', 'panelData'],
+    },
+
+    // Webtoon Layout Node
+    {
+      id: 'webtoon-layout',
+      type: 'WebtoonLayout',
+      label: 'Layout Designer',
+      dependsOn: ['webtoon-panel-gen'],
+      config: {
+        layoutStyle: 'korean-style',
+        textPosition: 'overlay',
+        readingDirection: 'vertical',
+      },
+      outputs: ['layout', 'layoutData'],
+    },
+
+    // Webtoon Export Node
+    {
+      id: 'webtoon-export',
+      type: 'WebtoonExport',
+      label: 'Webtoon Export',
+      dependsOn: ['webtoon-layout'],
+      config: {
+        format: 'webp-sequence',
+        platform: 'webtoon',
+        quality: 'high',
+      },
+      outputs: ['episode', 'assets', 'download_url'],
+    },
+
     // Text-to-Speech Node (parallel with Image Gen)
     {
       id: 'tts-narration',
@@ -135,6 +177,9 @@
     'prompt-story',
     'writer-content',
     ['image-gen', 'tts-narration'], // Parallel execution
+    'webtoon-panel-gen',
+    'webtoon-layout',
+    'webtoon-export',
     'video-gen',
     'render-video',
     ['export-wattpad', 'publish-youtube'], // Parallel execution
@@ -146,6 +191,9 @@
     Prompt: { cpu: 0.1, memory: '256MB', timeout: '2m' },
     Writer: { cpu: 1, memory: '1GB', timeout: '10m' },
     ImageGen: { cpu: 2, memory: '2GB', timeout: '15m' },
+    WebtoonPanelGen: { cpu: 2, memory: '2GB', timeout: '12m' },
+    WebtoonLayout: { cpu: 1, memory: '1GB', timeout: '8m' },
+    WebtoonExport: { cpu: 1, memory: '512MB', timeout: '5m' },
     TTS: { cpu: 1, memory: '512MB', timeout: '8m' },
     VideoGen: { cpu: 4, memory: '8GB', timeout: '30m' },
     Render: { cpu: 2, memory: '4GB', timeout: '20m' },
@@ -158,6 +206,9 @@
     requiredOutputs: {
       'writer-content': ['script'],
       'image-gen': ['images'],
+      'webtoon-panel-gen': ['panels'],
+      'webtoon-layout': ['layout'],
+      'webtoon-export': ['episode'],
       'video-gen': ['video'],
       'export-wattpad': ['wattpad_package'],
     },
@@ -174,6 +225,12 @@
 
   // Output specifications
   outputs: {
+    webtoon: {
+      format: 'webp-sequence',
+      platform: 'webtoon',
+      aspectRatio: '9:16',
+      episodeLength: '40-60 panels',
+    },
     wattpad: {
       format: 'zip',
       contents: ['story.md', 'images/', 'manifest.json'],

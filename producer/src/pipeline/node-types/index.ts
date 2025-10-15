@@ -6,6 +6,9 @@ export { ImageGenNode } from './ImageGenNode';
 export { VideoGenNode } from './VideoGenNode';
 export { TTSNode } from './TTSNode';
 export { RenderNode } from './RenderNode';
+export { WebtoonPanelGen } from './WebtoonPanelGen';
+export { WebtoonLayout } from './WebtoonLayout';
+export { WebtoonExport } from './WebtoonExport';
 export { ExportWattpadNode } from './ExportWattpadNode';
 export { PublishYouTubeNode } from './PublishYouTubeNode';
 
