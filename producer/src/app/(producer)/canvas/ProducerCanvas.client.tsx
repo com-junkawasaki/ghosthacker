@@ -303,7 +303,7 @@ function ProducerCanvasComponent() {
 
 export default function ProducerCanvas() {
   useEffect(() => {
-    console.log('ProducerCanvas useEffect running');
+    console.log('ProducerCanvas useEffect running - STEP 2');
 
     // Load React Flow CSS from CDN
     const linkElement = document.createElement('link');
@@ -318,7 +318,7 @@ export default function ProducerCanvas() {
 
     // Function to mount the component
     const mountComponent = () => {
-      const container = document.getElementById('react-flow-container');
+      const container = document.querySelector('[data-canvas-container="react-flow"]') as HTMLElement | null;
       console.log('Container found:', !!container, container?.className);
 
       if (container) {
@@ -329,13 +329,13 @@ export default function ProducerCanvas() {
 
           // Add a test element first
           const testDiv = document.createElement('div');
-          testDiv.textContent = 'React Flow Test';
-          testDiv.style.cssText = 'position: absolute; top: 10px; right: 10px; background: red; color: white; padding: 5px; z-index: 1000;';
+          testDiv.textContent = 'React Flow Loading...';
+          testDiv.style.cssText = 'position: absolute; top: 10px; right: 10px; background: blue; color: white; padding: 5px; z-index: 1000;';
           container.appendChild(testDiv);
 
           const root = createRoot(container);
           root.render(<ProducerCanvasComponent />);
-          console.log('Component mounted successfully');
+          console.log('React Flow component mounted successfully');
 
           return () => {
             console.log('Unmounting React Flow component');
@@ -348,7 +348,13 @@ export default function ProducerCanvas() {
             }
           };
         } catch (error) {
-          console.error('Error mounting component:', error);
+          console.error('Error mounting React Flow component:', error);
+          // Fallback to simple test
+          const testDiv = document.createElement('div');
+          testDiv.textContent = 'React Flow Error - Using Fallback';
+          testDiv.style.cssText = 'position: absolute; top: 50px; left: 50px; background: red; color: white; padding: 10px; z-index: 1000; font-size: 18px;';
+          container.appendChild(testDiv);
+          
           if (document.head.contains(linkElement)) {
             document.head.removeChild(linkElement);
           }
