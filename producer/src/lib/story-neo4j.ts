@@ -90,6 +90,60 @@ export class StoryNeo4jRepository {
     }
   }
 
+  // Save styles and link to project
+  async saveStyles(
+    projectId: string,
+    styles: {
+      visual: { artStyle: string; palette: string; nsfwAllowed: boolean };
+      audio: { voice: string; tempo: string; musicMood: string };
+    }
+  ) {
+    const session = this.driver.session();
+    try {
+      const now = new Date().toISOString();
+      const query = `
+        MATCH (p:Project {id: $projectId})
+        MERGE (s:Styles {id: $id})
+        ON CREATE SET s += { visual: $visual, audio: $audio, createdAt: $now, updatedAt: $now }
+        ON MATCH SET  s += { visual: $visual, audio: $audio, updatedAt: $now }
+        MERGE (p)-[:HAS_STYLES]->(s)
+        RETURN s
+      `;
+      const params = {
+        projectId,
+        id: `${projectId}-styles`,
+        visual: styles.visual,
+        audio: styles.audio,
+        now,
+      };
+      const result = await session.run(query, params);
+      return result.records[0]?.get('s').properties ?? null;
+    } finally {
+      await session.close();
+    }
+  }
+
+  async getStyles(projectId: string): Promise<{
+    visual: { artStyle: string; palette: string; nsfwAllowed: boolean };
+    audio: { voice: string; tempo: string; musicMood: string };
+  } | null> {
+    const session = this.driver.session();
+    try {
+      const query = `
+        MATCH (p:Project {id: $projectId})-[:HAS_STYLES]->(s:Styles)
+        RETURN s
+      `;
+      const result = await session.run(query, { projectId });
+      if (result.records.length === 0) return null;
+      return result.records[0].get('s').properties as {
+        visual: { artStyle: string; palette: string; nsfwAllowed: boolean };
+        audio: { voice: string; tempo: string; musicMood: string };
+      };
+    } finally {
+      await session.close();
+    }
+  }
+
   // Get project by ID
   async getProject(id: string): Promise<ProjectNode | null> {
     const session = this.driver.session();
