@@ -40,6 +40,9 @@ export default function ProducerLayout({
                 <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas/image-gen">Image Gen</Link>
               </li>
               <li>
+                <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas/tts-narration">TTS</Link>
+              </li>
+              <li>
                 <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas/webtoon-panel-gen">Webtoon: Panels</Link>
               </li>
               <li>

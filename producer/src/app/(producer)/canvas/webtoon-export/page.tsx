@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NodePanel from "@/components/NodePanel";
 
 // Merkle DAG Node: webtoon-export (type: WebtoonExport)
 export default function WebtoonExportPage() {
@@ -9,6 +10,15 @@ export default function WebtoonExportPage() {
       </div>
       <h1 className="text-2xl font-semibold text-gray-900">Webtoon: Export</h1>
       <p className="text-gray-700 mt-2">Export episode assets for Webtoon.</p>
+
+      <NodePanel
+        nodeId="webtoon-export"
+        nodeType="WebtoonExport"
+        label="Webtoon Export"
+        dependsOn={["webtoon-layout"]}
+        outputs={["episode", "assets", "download_url"]}
+        config={{ format: "webp-sequence", platform: "webtoon", quality: "high" }}
+      />
     </div>
   );
 }

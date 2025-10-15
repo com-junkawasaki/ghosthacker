@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NodePanel from "@/components/NodePanel";
 
 // Merkle DAG Node: image-gen (type: ImageGen)
 export default function ImageGenPage() {
@@ -9,6 +10,15 @@ export default function ImageGenPage() {
       </div>
       <h1 className="text-2xl font-semibold text-gray-900">Image Generation</h1>
       <p className="text-gray-700 mt-2">Generate scene images based on writer output and world.</p>
+
+      <NodePanel
+        nodeId="image-gen"
+        nodeType="ImageGen"
+        label="Scene Images"
+        dependsOn={["writer-content", "lore-world"]}
+        outputs={["images", "prompts"]}
+        config={{ model: "flux-1.1-pro", style: "atmospheric-horror", count: 5 }}
+      />
     </div>
   );
 }

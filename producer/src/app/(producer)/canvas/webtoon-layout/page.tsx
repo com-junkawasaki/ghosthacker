@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NodePanel from "@/components/NodePanel";
 
 // Merkle DAG Node: webtoon-layout (type: WebtoonLayout)
 export default function WebtoonLayoutPage() {
@@ -9,6 +10,15 @@ export default function WebtoonLayoutPage() {
       </div>
       <h1 className="text-2xl font-semibold text-gray-900">Webtoon: Layout</h1>
       <p className="text-gray-700 mt-2">Design panel layout and text overlay.</p>
+
+      <NodePanel
+        nodeId="webtoon-layout"
+        nodeType="WebtoonLayout"
+        label="Layout Designer"
+        dependsOn={["webtoon-panel-gen"]}
+        outputs={["layout", "layoutData"]}
+        config={{ layoutStyle: "korean-style", textPosition: "overlay", readingDirection: "vertical" }}
+      />
     </div>
   );
 }

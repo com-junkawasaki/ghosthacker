@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NodePanel from "@/components/NodePanel";
 
 // Merkle DAG Node: source-ep1 (type: SourceDoc)
 export default function SourceEp1Page() {
@@ -9,6 +10,14 @@ export default function SourceEp1Page() {
       </div>
       <h1 className="text-2xl font-semibold text-gray-900">Source: Episode 1</h1>
       <p className="text-gray-700 mt-2">Source document configuration and inputs.</p>
+
+      <NodePanel
+        nodeId="source-ep1"
+        nodeType="SourceDoc"
+        label="Episode 1 Source"
+        outputs={["draft"]}
+        config={{ episodeId: "ja_Episode_01_Masterpiece", sourcePath: "../250806/episodes/ja_Episode_01_Masterpiece.md" }}
+      />
     </div>
   );
 }

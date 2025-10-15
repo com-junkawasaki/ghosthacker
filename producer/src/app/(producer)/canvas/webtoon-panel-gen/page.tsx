@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NodePanel from "@/components/NodePanel";
 
 // Merkle DAG Node: webtoon-panel-gen (type: WebtoonPanelGen)
 export default function WebtoonPanelGenPage() {
@@ -9,6 +10,15 @@ export default function WebtoonPanelGenPage() {
       </div>
       <h1 className="text-2xl font-semibold text-gray-900">Webtoon: Panel Generator</h1>
       <p className="text-gray-700 mt-2">Generate panels from images.</p>
+
+      <NodePanel
+        nodeId="webtoon-panel-gen"
+        nodeType="WebtoonPanelGen"
+        label="Panel Generator"
+        dependsOn={["image-gen"]}
+        outputs={["panels", "panelData"]}
+        config={{ panelCount: 8, style: "vertical-scroll", aspectRatio: "9:16" }}
+      />
     </div>
   );
 }

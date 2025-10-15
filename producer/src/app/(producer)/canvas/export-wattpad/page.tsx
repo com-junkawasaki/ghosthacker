@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NodePanel from "@/components/NodePanel";
 
 // Merkle DAG Node: export-wattpad (type: ExportWattpad)
 export default function ExportWattpadPage() {
@@ -9,6 +10,15 @@ export default function ExportWattpadPage() {
       </div>
       <h1 className="text-2xl font-semibold text-gray-900">Export: Wattpad</h1>
       <p className="text-gray-700 mt-2">Package story and images for Wattpad.</p>
+
+      <NodePanel
+        nodeId="export-wattpad"
+        nodeType="ExportWattpad"
+        label="Wattpad Package"
+        dependsOn={["writer-content", "image-gen"]}
+        outputs={["wattpad_package", "download_url"]}
+        config={{ format: "markdown", includeImages: true, includeMetadata: true }}
+      />
     </div>
   );
 }

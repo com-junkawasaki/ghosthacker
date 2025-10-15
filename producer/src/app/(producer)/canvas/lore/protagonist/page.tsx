@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NodePanel from "@/components/NodePanel";
 
 // Merkle DAG Node: lore-protagonist (type: Protagonist)
 export default function LoreProtagonistPage() {
@@ -9,6 +10,14 @@ export default function LoreProtagonistPage() {
       </div>
       <h1 className="text-2xl font-semibold text-gray-900">Lore: Protagonist</h1>
       <p className="text-gray-700 mt-2">Define protagonist name, role, and traits.</p>
+
+      <NodePanel
+        nodeId="lore-protagonist"
+        nodeType="Protagonist"
+        label="Protagonist"
+        outputs={["name", "role", "traits"]}
+        config={{ name: "Akito", role: "Hacker", traits: "Stoic, Empathic" }}
+      />
     </div>
   );
 }

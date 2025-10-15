@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NodePanel from "@/components/NodePanel";
 
 // Merkle DAG Node: publish-youtube (type: PublishYouTube)
 export default function PublishYouTubePage() {
@@ -9,6 +10,15 @@ export default function PublishYouTubePage() {
       </div>
       <h1 className="text-2xl font-semibold text-gray-900">Publish: YouTube</h1>
       <p className="text-gray-700 mt-2">Upload rendered video to YouTube with metadata.</p>
+
+      <NodePanel
+        nodeId="publish-youtube"
+        nodeType="PublishYouTube"
+        label="YouTube Upload"
+        dependsOn={["render-video"]}
+        outputs={["youtube_id", "upload_url"]}
+        config={{ privacy: "unlisted", title: "Ghost Hacker - Episode 1", description: "Atmospheric ghost story adaptation", tags: ["ghost", "horror", "supernatural"] }}
+      />
     </div>
   );
 }
