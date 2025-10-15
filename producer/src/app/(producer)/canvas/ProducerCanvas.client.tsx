@@ -1,7 +1,7 @@
 'use client';
 
-import { useCallback, useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
+import { useCallback, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { ReactFlow, addEdge, useNodesState, useEdgesState } from '@reactflow/core';
 import type { Node as RFNode, Edge as RFEdge } from '@reactflow/core';
 import { Controls } from '@reactflow/controls';
@@ -378,8 +378,10 @@ function ProducerCanvasComponent() {
 }
 
 export default function ProducerCanvas() {
+  const [containerEl, setContainerEl] = useState<HTMLElement | null>(null);
+
   useEffect(() => {
-    console.log('ProducerCanvas useEffect running - STEP 2');
+    console.log('ProducerCanvas useEffect running - portal setup');
 
     // Load React Flow CSS from CDN
     const linkElement = document.createElement('link');
@@ -392,92 +394,21 @@ export default function ProducerCanvas() {
     styleElement.textContent = reactFlowStyles;
     document.head.appendChild(styleElement);
 
-    // Function to mount the component
-    const mountComponent = () => {
-      const container = document.querySelector('[data-canvas-container="react-flow"]') as HTMLElement | null;
-      console.log('Container found:', !!container, container?.className);
+    const el = document.querySelector('[data-canvas-container="react-flow"]') as HTMLElement | null;
+    console.log('Container found for portal:', !!el, el?.className);
+    setContainerEl(el);
 
-      if (container) {
-        console.log('Mounting React Flow component');
-        try {
-          // Clear any existing content
-          container.innerHTML = '';
-
-          // Add a test element first
-          const testDiv = document.createElement('div');
-          testDiv.textContent = 'React Flow Loading...';
-          testDiv.style.cssText = 'position: absolute; top: 10px; right: 10px; background: blue; color: white; padding: 5px; z-index: 1000;';
-          container.appendChild(testDiv);
-
-          const root = createRoot(container);
-          root.render(<ProducerCanvasComponent />);
-
-          // hydrate from tRPC
-          const client = createTRPCClient<AppRouter>({
-            links: [httpBatchLink({ url: '/api/trpc' })],
-          });
-          client.canvas.getCanvas.query().then((cfg) => {
-            console.log('Loaded canvas from server:', cfg);
-          }).catch((err) => console.error('getCanvas error', err));
-          console.log('React Flow component mounted successfully');
-
-          return () => {
-            console.log('Unmounting React Flow component');
-            root.unmount();
-            if (document.head.contains(linkElement)) {
-              document.head.removeChild(linkElement);
-            }
-            if (document.head.contains(styleElement)) {
-              document.head.removeChild(styleElement);
-            }
-          };
-        } catch (error) {
-          console.error('Error mounting React Flow component:', error);
-          // Fallback to simple test
-          const testDiv = document.createElement('div');
-          testDiv.textContent = 'React Flow Error - Using Fallback';
-          testDiv.style.cssText = 'position: absolute; top: 50px; left: 50px; background: red; color: white; padding: 10px; z-index: 1000; font-size: 18px;';
-          container.appendChild(testDiv);
-          
-          if (document.head.contains(linkElement)) {
-            document.head.removeChild(linkElement);
-          }
-          if (document.head.contains(styleElement)) {
-            document.head.removeChild(styleElement);
-          }
-        }
+    return () => {
+      console.log('Cleaning up ProducerCanvas (styles only)');
+      if (document.head.contains(linkElement)) {
+        document.head.removeChild(linkElement);
       }
-      return null;
+      if (document.head.contains(styleElement)) {
+        document.head.removeChild(styleElement);
+      }
     };
-
-    // Try to mount immediately
-    let cleanup = mountComponent();
-
-    // Also try mounting after a short delay in case the DOM isn't ready yet
-    if (!cleanup) {
-      console.log('Scheduling delayed mount');
-      const timeoutId = setTimeout(() => {
-        cleanup = mountComponent();
-        if (!cleanup) {
-          console.error('Failed to mount component after delay');
-        }
-      }, 100);
-
-      return () => {
-        console.log('Cleaning up ProducerCanvas');
-        clearTimeout(timeoutId);
-        if (cleanup) cleanup();
-        if (document.head.contains(linkElement)) {
-          document.head.removeChild(linkElement);
-        }
-        if (document.head.contains(styleElement)) {
-          document.head.removeChild(styleElement);
-        }
-      };
-    }
-
-    return cleanup;
   }, []);
 
-  return null;
+  if (!containerEl) return null;
+  return createPortal(<ProducerCanvasComponent />, containerEl);
 }

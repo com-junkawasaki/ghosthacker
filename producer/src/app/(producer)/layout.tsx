@@ -18,6 +18,48 @@ export default function ProducerLayout({
               <li>
                 <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas">Canvas</Link>
               </li>
+              <li>
+                <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas/source-ep1">Source</Link>
+              </li>
+              <li>
+                <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas/lore/protagonist">Lore: Protagonist</Link>
+              </li>
+              <li>
+                <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas/lore/backstory">Lore: Backstory</Link>
+              </li>
+              <li>
+                <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas/lore/world">Lore: World</Link>
+              </li>
+              <li>
+                <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas/prompt-story">Prompt</Link>
+              </li>
+              <li>
+                <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas/writer-content">Writer</Link>
+              </li>
+              <li>
+                <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas/image-gen">Image Gen</Link>
+              </li>
+              <li>
+                <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas/webtoon-panel-gen">Webtoon: Panels</Link>
+              </li>
+              <li>
+                <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas/webtoon-layout">Webtoon: Layout</Link>
+              </li>
+              <li>
+                <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas/webtoon-export">Webtoon: Export</Link>
+              </li>
+              <li>
+                <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas/video-gen">Video Gen</Link>
+              </li>
+              <li>
+                <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas/render-video">Render</Link>
+              </li>
+              <li>
+                <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas/export-wattpad">Export: Wattpad</Link>
+              </li>
+              <li>
+                <Link className="block rounded px-2 py-1.5 hover:bg-gray-100" href="/canvas/publish-youtube">Publish: YouTube</Link>
+              </li>
             </ul>
           </div>
 
