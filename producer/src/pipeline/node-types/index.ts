@@ -11,6 +11,9 @@ export { WebtoonLayout } from './WebtoonLayout';
 export { WebtoonExport } from './WebtoonExport';
 export { ExportWattpadNode } from './ExportWattpadNode';
 export { PublishYouTubeNode } from './PublishYouTubeNode';
+export { ProtagonistNode } from './ProtagonistNode';
+export { BackstoryNode } from './BackstoryNode';
+export { WorldNode } from './WorldNode';
 
 // Node data types
 export type NodeData = {

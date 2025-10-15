@@ -3,6 +3,7 @@
 import { useCallback, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ReactFlow, addEdge, useNodesState, useEdgesState } from '@reactflow/core';
+import type { Node as RFNode, Edge as RFEdge } from '@reactflow/core';
 import { Controls } from '@reactflow/controls';
 import { Background } from '@reactflow/background';
 import { createTRPCClient, httpBatchLink } from '@trpc/client';
@@ -59,7 +60,11 @@ import {
   WebtoonExport,
   ExportWattpadNode,
   PublishYouTubeNode,
+  ProtagonistNode,
+  BackstoryNode,
+  WorldNode,
 } from '@/pipeline/node-types';
+import type { NodeData } from '@/pipeline/node-types';
 // Saved canvas hydration will be added via API route later
 
 // Define node types for React Flow
@@ -76,6 +81,9 @@ const nodeTypes = {
   render: RenderNode,
   exportWattpad: ExportWattpadNode,
   publishYouTube: PublishYouTubeNode,
+  protagonist: ProtagonistNode,
+  backstory: BackstoryNode,
+  world: WorldNode,
 };
 
 // Initial nodes for the pipeline
@@ -90,6 +98,42 @@ const initialNodes = [
       label: 'Episode 1',
       status: 'idle',
       config: { episodeId: 'ep1' },
+    },
+  },
+  {
+    id: 'protagonist-1',
+    type: 'protagonist',
+    position: { x: 100, y: 260 },
+    data: {
+      id: 'protagonist-1',
+      type: 'protagonist',
+      label: 'Protagonist',
+      status: 'idle',
+      config: { name: 'Akito', role: 'Hacker', traits: 'Stoic, Empathic' },
+    },
+  },
+  {
+    id: 'backstory-1',
+    type: 'backstory',
+    position: { x: 300, y: 260 },
+    data: {
+      id: 'backstory-1',
+      type: 'backstory',
+      label: 'Backstory',
+      status: 'idle',
+      config: { origin: 'Tokyo underground', motivation: 'Find lost sister', conflict: 'Corporate AI' },
+    },
+  },
+  {
+    id: 'world-1',
+    type: 'world',
+    position: { x: 100, y: 360 },
+    data: {
+      id: 'world-1',
+      type: 'world',
+      label: 'World',
+      status: 'idle',
+      config: { setting: 'Near-future Tokyo', era: '2042', rules: 'Ghost-net protocols' },
     },
   },
   {
@@ -224,8 +268,12 @@ const initialNodes = [
 // Initial edges for the pipeline
 const initialEdges: Edge[] = [
   { id: 'source-to-prompt', source: 'source-1', target: 'prompt-1' },
+  { id: 'protagonist-to-prompt', source: 'protagonist-1', target: 'prompt-1' },
+  { id: 'backstory-to-prompt', source: 'backstory-1', target: 'prompt-1' },
+  { id: 'world-to-prompt', source: 'world-1', target: 'prompt-1' },
   { id: 'prompt-to-writer', source: 'prompt-1', target: 'writer-1' },
   { id: 'writer-to-image', source: 'writer-1', target: 'image-gen-1' },
+  { id: 'world-to-image', source: 'world-1', target: 'image-gen-1' },
   { id: 'writer-to-tts', source: 'writer-1', target: 'tts-1' },
   { id: 'image-to-webtoon-panel', source: 'image-gen-1', target: 'webtoon-panel-gen-1' },
   { id: 'webtoon-panel-to-layout', source: 'webtoon-panel-gen-1', target: 'webtoon-layout-1' },
@@ -238,7 +286,7 @@ const initialEdges: Edge[] = [
 ];
 
 function ProducerCanvasComponent() {
-  const [nodes, , onNodesChange] = useNodesState(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
   const onConnect = useCallback(
@@ -251,7 +299,7 @@ function ProducerCanvasComponent() {
     console.log('Running pipeline...', { nodes: nodes.length, edges: edges.length });
   }, [nodes, edges]);
 
-  // Load saved canvas config if present
+  // Load saved canvas config via tRPC and apply to React Flow
   useEffect(() => {
     console.log('ProducerCanvasComponent mounted');
     console.log('Node types available:', Object.keys(nodeTypes));
@@ -263,8 +311,33 @@ function ProducerCanvasComponent() {
     setTimeout(() => {
       console.log('DOM after mount:', document.querySelector('.react-flow__viewport'));
     }, 100);
-    // reserved for future hydration
-  }, []);
+    const client = createTRPCClient<AppRouter>({ links: [httpBatchLink({ url: '/api/trpc' })] });
+    client.canvas.getCanvas.query()
+      .then((cfg) => {
+        if (!cfg) return;
+        console.log('Hydrating canvas with server config');
+        const computedNodes: RFNode<NodeData>[] = (cfg.nodes as { id?: string; type?: string; label?: string; data?: unknown }[]).map((n, idx) => ({
+          id: n.id ?? String(idx + 1),
+          type: n.type ?? 'sourceDoc',
+          position: { x: 100 + (idx % 6) * 220, y: 60 + Math.floor(idx / 6) * 180 },
+          data: {
+            id: n.id ?? String(idx + 1),
+            type: n.type ?? 'unknown',
+            label: n.label ?? n.type ?? 'Node',
+            status: 'idle',
+            config: n.data ?? {},
+          },
+        }));
+        const computedEdges: RFEdge[] = (cfg.edges as { id?: string; source: string; target: string }[]).map((e, i) => ({
+          id: e.id ?? `e-${i}`,
+          source: e.source,
+          target: e.target,
+        }));
+        setNodes(computedNodes);
+        setEdges(computedEdges);
+      })
+      .catch((err) => console.error('getCanvas error', err));
+  }, [setNodes, setEdges]);
 
   return (
     <div className="h-full w-full relative">

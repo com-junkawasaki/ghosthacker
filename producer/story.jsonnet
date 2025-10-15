@@ -3,6 +3,44 @@
   // Merkle DAG: pipeline nodes -> dependencies -> execution order
 
   pipeline: [
+    // Lore: Protagonist Node
+    {
+      id: 'lore-protagonist',
+      type: 'Protagonist',
+      label: 'Protagonist',
+      config: {
+        name: 'Akito',
+        role: 'Hacker',
+        traits: 'Stoic, Empathic',
+      },
+      outputs: ['name', 'role', 'traits'],
+    },
+
+    // Lore: Backstory Node
+    {
+      id: 'lore-backstory',
+      type: 'Backstory',
+      label: 'Backstory',
+      config: {
+        origin: 'Tokyo underground',
+        motivation: 'Find lost sister',
+        conflict: 'Corporate AI',
+      },
+      outputs: ['origin', 'motivation', 'conflict'],
+    },
+
+    // Lore: World Node
+    {
+      id: 'lore-world',
+      type: 'World',
+      label: 'World',
+      config: {
+        setting: 'Near-future Tokyo',
+        era: '2042',
+        rules: 'Ghost-net protocols',
+      },
+      outputs: ['setting', 'era', 'rules'],
+    },
     // Source Document Node
     {
       id: 'source-ep1',
@@ -20,7 +58,7 @@
       id: 'prompt-story',
       type: 'Prompt',
       label: 'Story Prompt',
-      dependsOn: ['source-ep1'],
+      dependsOn: ['source-ep1', 'lore-protagonist', 'lore-backstory', 'lore-world'],
       config: {
         promptType: 'story',
         style: 'atmospheric',
@@ -48,7 +86,7 @@
       id: 'image-gen',
       type: 'ImageGen',
       label: 'Scene Images',
-      dependsOn: ['writer-content'],
+      dependsOn: ['writer-content', 'lore-world'],
       config: {
         model: 'flux-1.1-pro',
         style: 'atmospheric-horror',
@@ -174,6 +212,7 @@
   // Execution topology (topological sort order)
   executionOrder: [
     'source-ep1',
+    ['lore-protagonist', 'lore-backstory', 'lore-world'],
     'prompt-story',
     'writer-content',
     ['image-gen', 'tts-narration'], // Parallel execution
@@ -190,6 +229,9 @@
     SourceDoc: { cpu: 0.1, memory: '128MB', timeout: '5m' },
     Prompt: { cpu: 0.1, memory: '256MB', timeout: '2m' },
     Writer: { cpu: 1, memory: '1GB', timeout: '10m' },
+    Protagonist: { cpu: 0.05, memory: '64MB', timeout: '1m' },
+    Backstory: { cpu: 0.05, memory: '64MB', timeout: '1m' },
+    World: { cpu: 0.05, memory: '64MB', timeout: '1m' },
     ImageGen: { cpu: 2, memory: '2GB', timeout: '15m' },
     WebtoonPanelGen: { cpu: 2, memory: '2GB', timeout: '12m' },
     WebtoonLayout: { cpu: 1, memory: '1GB', timeout: '8m' },
