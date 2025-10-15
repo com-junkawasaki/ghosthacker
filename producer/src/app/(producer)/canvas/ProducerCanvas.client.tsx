@@ -7,6 +7,7 @@ import type { Node as RFNode, Edge as RFEdge, Connection } from '@reactflow/core
 import { Controls } from '@reactflow/controls';
 import { Background } from '@reactflow/background';
 import { createTRPCClient, httpBatchLink } from '@trpc/client';
+import superjson from 'superjson';
 import type { AppRouter } from '@/server/routers';
 
 // Additional styles for React Flow (injected via globals.css)
@@ -86,8 +87,9 @@ const nodeTypes = {
   world: WorldNode,
 };
 
-// Initial nodes for the pipeline
+// Initial nodes for the pipeline (ordered by pipeline flow)
 const initialNodes: RFNode<NodeData>[] = [
+  // Source and Lore (input phase)
   {
     id: 'source-1',
     type: 'sourceDoc',
@@ -136,6 +138,7 @@ const initialNodes: RFNode<NodeData>[] = [
       config: { setting: 'Near-future Tokyo', era: '2042', rules: 'Ghost-net protocols' },
     },
   },
+  // Content Generation (processing phase)
   {
     id: 'prompt-1',
     type: 'prompt',
@@ -171,6 +174,18 @@ const initialNodes: RFNode<NodeData>[] = [
     },
   },
   {
+    id: 'tts-1',
+    type: 'tts',
+    position: { x: 700, y: 150 },
+    data: {
+      id: 'tts-1',
+      type: 'tts',
+      label: 'Text-to-Speech',
+      status: 'idle',
+    },
+  },
+  // Webtoon Pipeline
+  {
     id: 'webtoon-panel-gen-1',
     type: 'webtoonPanelGen',
     position: { x: 900, y: 50 },
@@ -194,18 +209,7 @@ const initialNodes: RFNode<NodeData>[] = [
       config: { layoutStyle: 'korean-style' },
     },
   },
-  {
-    id: 'webtoon-export-1',
-    type: 'webtoonExport',
-    position: { x: 1300, y: 50 },
-    data: {
-      id: 'webtoon-export-1',
-      type: 'webtoonExport',
-      label: 'Webtoon Export',
-      status: 'idle',
-      config: { format: 'webp-sequence' },
-    },
-  },
+  // Video Pipeline
   {
     id: 'video-gen-1',
     type: 'videoGen',
@@ -216,17 +220,6 @@ const initialNodes: RFNode<NodeData>[] = [
       label: 'Video Generation',
       status: 'idle',
       config: { preferredRenderer: 'sora' },
-    },
-  },
-  {
-    id: 'tts-1',
-    type: 'tts',
-    position: { x: 700, y: 150 },
-    data: {
-      id: 'tts-1',
-      type: 'tts',
-      label: 'Text-to-Speech',
-      status: 'idle',
     },
   },
   {
@@ -241,15 +234,28 @@ const initialNodes: RFNode<NodeData>[] = [
       config: { renderer: 'ffmpeg' },
     },
   },
+  // Publishing Phase (wattpad first as requested)
   {
     id: 'wattpad-1',
     type: 'exportWattpad',
-    position: { x: 1500, y: 50 },
+    position: { x: 1300, y: 50 },
     data: {
       id: 'wattpad-1',
       type: 'exportWattpad',
       label: 'Wattpad Export',
       status: 'idle',
+    },
+  },
+  {
+    id: 'webtoon-export-1',
+    type: 'webtoonExport',
+    position: { x: 1500, y: 50 },
+    data: {
+      id: 'webtoon-export-1',
+      type: 'webtoonExport',
+      label: 'Webtoon Export',
+      status: 'idle',
+      config: { format: 'webp-sequence' },
     },
   },
   {
@@ -320,7 +326,7 @@ function ProducerCanvasComponent() {
     }
   }, []);
 
-  const onNodeClick = useCallback((_, node: RFNode<NodeData>) => {
+  const onNodeClick = useCallback((_evt: unknown, node: RFNode<NodeData>) => {
     const href = routeForNodeType(node.type);
     if (href) window.location.assign(href);
   }, [routeForNodeType]);
@@ -337,7 +343,7 @@ function ProducerCanvasComponent() {
     setTimeout(() => {
       console.log('DOM after mount:', document.querySelector('.react-flow__viewport'));
     }, 100);
-    const client = createTRPCClient<AppRouter>({ links: [httpBatchLink({ url: '/api/trpc' })] });
+    const client = createTRPCClient<AppRouter>({ links: [httpBatchLink({ url: '/api/trpc', transformer: superjson })] });
     client.canvas.getCanvas.query()
       .then((cfg) => {
         if (!cfg) return;
@@ -351,7 +357,7 @@ function ProducerCanvasComponent() {
             type: n.type ?? 'unknown',
             label: n.label ?? n.type ?? 'Node',
             status: 'idle',
-            config: n.data ?? {},
+            config: (n.data ?? {}) as Record<string, string | number | boolean | null>,
           },
         }));
         const computedEdges: RFEdge[] = (cfg.edges as { id?: string; source: string; target: string }[]).map((e, i) => ({
@@ -385,7 +391,13 @@ function ProducerCanvasComponent() {
       };
       const canvasType = nodeTypeMap[detail.nodeType];
       if (!canvasType) return;
-      setNodes((prev) => prev.map((n) => n.type === canvasType ? { ...n, data: { ...n.data, config: detail.config } } : n));
+      setNodes((prev) => prev.map((n) => n.type === canvasType ? {
+        ...n,
+        data: {
+          ...n.data,
+          config: detail.config as Record<string, string | number | boolean | null>,
+        },
+      } : n));
     };
     window.addEventListener('node-config-saved', onSaved);
     return () => window.removeEventListener('node-config-saved', onSaved);

@@ -25,7 +25,7 @@ export async function submitOverview(input: ProjectInput): Promise<ServerActionR
   const result = safeParse(ProjectSchema, input);
   if (!result.success) {
     const faults = result.issues.map((i) => ({
-      code: i.code ?? 'validation_error',
+      code: 'validation_error',
       message: i.message ?? 'Invalid value',
       path: i.path?.map((p) => String(p.key)),
     }));
@@ -65,7 +65,7 @@ export async function submitNarrative(input: NarrativeInput): Promise<ServerActi
   const result = safeParse(NarrativeSchema, input);
   if (!result.success) {
     const faults = result.issues.map((i) => ({
-      code: i.code ?? 'validation_error',
+      code: 'validation_error',
       message: i.message ?? 'Invalid value',
       path: i.path?.map((p) => String(p.key)),
     }));
@@ -104,7 +104,7 @@ export async function submitCharacters(input: CharacterInput[]): Promise<ServerA
     const result = safeParse(CharacterSchema, ch);
     if (!result.success) {
       const faults = result.issues.map((i) => ({
-        code: i.code ?? 'validation_error',
+        code: 'validation_error',
         message: i.message ?? 'Invalid value',
         path: i.path?.map((p) => String(p.key)),
       }));
@@ -124,7 +124,7 @@ export async function submitStyles(input: StylesInput): Promise<ServerActionResu
   const audio = safeParse(AudioStyleSchema, input.audio);
   if (!visual.success || !audio.success) {
     const faults = [...(visual.success?[]:visual.issues), ...(audio.success?[]:audio.issues)].map(i=>({
-      code: i.code ?? 'validation_error',
+      code: 'validation_error',
       message: i.message ?? 'Invalid value',
       path: i.path?.map(p=>String(p.key)),
     }));
@@ -154,7 +154,7 @@ export async function submitPlatforms(input: PlatformsInput): Promise<ServerActi
       ...(w.success?[]:w.issues),
       ...(wb.success?[]:wb.issues),
       ...(yt.success?[]:yt.issues),
-    ].map(i=>({ code: i.code ?? 'validation_error', message: i.message ?? 'Invalid value', path: i.path?.map(p=>String(p.key)) }));
+    ].map(i=>({ code: 'validation_error', message: i.message ?? 'Invalid value', path: i.path?.map(p=>String(p.key)) }));
     return { ok: false, faults };
   }
   try {
@@ -195,10 +195,10 @@ export async function loadNarrative(): Promise<NarrativeInput | null> {
     return {
       synopsis: narrative.synopsis,
       structure: narrative.structure as NarrativeInput['structure'],
-      beats: narrative.beats.map(beat => ({
+      beats: (narrative.beats ?? []).map(beat => ({
         id: beat.id,
         label: beat.label,
-        purpose: beat.purpose as NarrativeInput['beats'][0]['purpose'],
+        purpose: beat.purpose as 'setup' | 'conflict' | 'climax',
         targetLength: beat.targetLength,
       })),
     };

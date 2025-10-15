@@ -15,8 +15,8 @@ export default function PlatformsForm() {
   const idYtDuration = useId();
   const idYtAspect = useId();
   const idYtCap = useId();
-  const [wattpad, setWattpad] = useState({ chapterCount: 10, includeImages: true, chapterLengthWords: [800, 1500] as [number, number], imageFrequency: 'inline-1' as const });
-  const [webtoon, setWebtoon] = useState({ episodePanels: 40, bubbleDensity: 'medium' as const, readingPace: 'standard' as const, soundEffects: true });
+  const [wattpad, setWattpad] = useState({ chapterCount: 10, includeImages: true, chapterLengthWords: [800, 1500] as [number, number], imageFrequency: 'inline-1' as 'none'|'cover'|'inline-1'|'inline-3' });
+  const [webtoon, setWebtoon] = useState<{ episodePanels: number; bubbleDensity: 'low'|'medium'|'high'; readingPace: 'slow'|'standard'|'fast'; soundEffects: boolean }>({ episodePanels: 40, bubbleDensity: 'medium', readingPace: 'standard', soundEffects: true });
   const [youtube, setYoutube] = useState({ targetDurationSec: 300, aspectRatio: '9:16' as const, captions: true, brollRatio: 0.3 });
   const [message, setMessage] = useState<string | null>(null);
   const [errors, setErrors] = useState<string[] | null>(null);
@@ -44,7 +44,7 @@ export default function PlatformsForm() {
           </div>
           <div className="mt-2">
             <label htmlFor={idWpInclude} className="block text-[15px] leading-5 font-medium text-gray-900 dark:text-gray-100">Images</label>
-            <select value={wattpad.imageFrequency} onChange={e=>setWattpad({...wattpad, imageFrequency:e.target.value as 'none'|'cover'|'inline-1'|'inline-3'})} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 pr-9 text-[16px] leading-[44px] text-gray-900 shadow-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500">
+            <select value={wattpad.imageFrequency} onChange={e=>setWattpad({...wattpad, imageFrequency: (e.target.value as 'none'|'cover'|'inline-1'|'inline-3')})} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 pr-9 text-[16px] leading-[44px] text-gray-900 shadow-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500">
               <option value="none">none</option>
               <option value="cover">cover</option>
               <option value="inline-1">inline-1</option>
