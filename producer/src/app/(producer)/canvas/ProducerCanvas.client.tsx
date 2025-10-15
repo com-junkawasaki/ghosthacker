@@ -5,6 +5,8 @@ import { createRoot } from 'react-dom/client';
 import { ReactFlow, addEdge, useNodesState, useEdgesState } from '@reactflow/core';
 import { Controls } from '@reactflow/controls';
 import { Background } from '@reactflow/background';
+import { createTRPCClient, httpBatchLink } from '@trpc/client';
+import type { AppRouter } from '@/server/routers';
 
 // Additional styles for React Flow (injected via globals.css)
 const reactFlowStyles = `
@@ -336,6 +338,14 @@ export default function ProducerCanvas() {
 
           const root = createRoot(container);
           root.render(<ProducerCanvasComponent />);
+
+          // hydrate from tRPC
+          const client = createTRPCClient<AppRouter>({
+            links: [httpBatchLink({ url: '/api/trpc' })],
+          });
+          client.canvas.getCanvas.query().then((cfg) => {
+            console.log('Loaded canvas from server:', cfg);
+          }).catch((err) => console.error('getCanvas error', err));
           console.log('React Flow component mounted successfully');
 
           return () => {

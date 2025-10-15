@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { loadProject, loadNarrative, loadStyles, loadPlatforms, seedCanvas } from './actions';
+import { loadProject, loadNarrative, loadStyles, loadPlatforms } from './actions';
+import { createTRPCClient, httpBatchLink } from '@trpc/client';
+import type { AppRouter } from '@/server/routers';
 import { deriveCanvasConfig } from '@/lib/mapping';
 
 type Project = { title: string; logline: string; genres: string[]; tone: string; keywords?: string[] } | null;
@@ -54,7 +56,10 @@ export default function PreviewPanel() {
         <div className="text-xs text-gray-500 mb-2">Canvas preview (nodes/edges)</div>
         <div className="flex items-center justify-between">
           <div>Nodes: {canvas.nodes.length} / Edges: {canvas.edges.length}</div>
-          <form action={async () => { await seedCanvas(); }}>
+          <form action={async () => {
+            const client = createTRPCClient<AppRouter>({ links: [httpBatchLink({ url: '/api/trpc' })] });
+            await client.canvas.seed.mutate();
+          }}>
             <button type="submit" className="px-3 py-1.5 bg-gray-900 text-white rounded-md hover:bg-black">Seed Canvas</button>
           </form>
         </div>
