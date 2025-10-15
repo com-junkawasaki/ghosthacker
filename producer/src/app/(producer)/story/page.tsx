@@ -1,5 +1,7 @@
 import Link from "next/link";
 import StoryOverviewForm from "./StoryOverviewForm.client";
+import NarrativeForm from "./NarrativeForm.client";
+import CharactersForm from "./CharactersForm.client";
 
 export default function StoryPipelinePage() {
   return (
@@ -16,6 +18,16 @@ export default function StoryPipelinePage() {
           <p className="text-sm text-gray-700 mb-3">まずはキャンバスで全体フローを確認できます。</p>
           <Link className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" href="/canvas">Open Canvas →</Link>
         </div>
+      </div>
+
+      <div className="mt-6 rounded-lg border border-gray-200 p-4 bg-white">
+        <div className="text-sm font-medium text-gray-900 mb-3">Narrative</div>
+        <NarrativeForm />
+      </div>
+
+      <div className="mt-6 rounded-lg border border-gray-200 p-4 bg-white">
+        <div className="text-sm font-medium text-gray-900 mb-3">Characters</div>
+        <CharactersForm />
       </div>
     </div>
   );

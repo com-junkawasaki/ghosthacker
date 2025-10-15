@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@neo4j/cypher-builder':
+        specifier: ^2.8.1
+        version: 2.8.1
       '@opentelemetry/api':
         specifier: ^1.9.0
         version: 1.9.0
@@ -34,7 +37,7 @@ importers:
         version: 2.2.14(@types/react@19.2.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@t3-oss/env-nextjs':
         specifier: ^0.13.8
-        version: 0.13.8(typescript@5.9.3)(valibot@1.1.0(typescript@5.9.3))
+        version: 0.13.8(typescript@5.9.3)(valibot@1.1.0(typescript@5.9.3))(zod@4.1.12)
       nanoid:
         specifier: ^5.1.6
         version: 5.1.6
@@ -46,7 +49,7 @@ importers:
         version: 15.5.5(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       openai:
         specifier: ^6.3.0
-        version: 6.3.0
+        version: 6.3.0(zod@4.1.12)
       react:
         specifier: 19.1.0
         version: 19.1.0
@@ -59,6 +62,9 @@ importers:
       valibot:
         specifier: ^1.1.0
         version: 1.1.0(typescript@5.9.3)
+      zod:
+        specifier: ^4.1.12
+        version: 4.1.12
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3
@@ -317,6 +323,10 @@ packages:
 
   '@napi-rs/wasm-runtime@0.2.12':
     resolution: {integrity: sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ==}
+
+  '@neo4j/cypher-builder@2.8.1':
+    resolution: {integrity: sha512-gKbA24SO+H56PmGNbIshrd/lNMk/1kWBNWpxHQjpKxdMgXyH5c1xjaPuQxjxYW9/0ca5IRz/9wZEvP4YSD+w9w==}
+    engines: {node: '>=16.0.0'}
 
   '@next/env@15.5.5':
     resolution: {integrity: sha512-2Zhvss36s/yL+YSxD5ZL5dz5pI6ki1OLxYlh6O77VJ68sBnlUrl5YqhBgCy7FkdMsp9RBeGFwpuDCdpJOqdKeQ==}
@@ -2828,6 +2838,9 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
+  zod@4.1.12:
+    resolution: {integrity: sha512-JInaHOamG8pt5+Ey8kGmdcAcg3OL9reK8ltczgHTAwNhMys/6ThXHityHxVV2p3fkw/c+MAvBHFVYHFZDmjMCQ==}
+
   zustand@4.5.7:
     resolution: {integrity: sha512-CHOUy7mu3lbD6o6LJLfllpjkzhHXSBlX8B9+qPddUsIfeF5S/UZ5q0kmCsnRqT1UHFQZchNFDDzMbQsuesHWlw==}
     engines: {node: '>=12.7.0'}
@@ -3052,6 +3065,8 @@ snapshots:
       '@emnapi/runtime': 1.5.0
       '@tybys/wasm-util': 0.10.1
     optional: true
+
+  '@neo4j/cypher-builder@2.8.1': {}
 
   '@next/env@15.5.5': {}
 
@@ -3854,17 +3869,19 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@t3-oss/env-core@0.13.8(typescript@5.9.3)(valibot@1.1.0(typescript@5.9.3))':
+  '@t3-oss/env-core@0.13.8(typescript@5.9.3)(valibot@1.1.0(typescript@5.9.3))(zod@4.1.12)':
     optionalDependencies:
       typescript: 5.9.3
       valibot: 1.1.0(typescript@5.9.3)
+      zod: 4.1.12
 
-  '@t3-oss/env-nextjs@0.13.8(typescript@5.9.3)(valibot@1.1.0(typescript@5.9.3))':
+  '@t3-oss/env-nextjs@0.13.8(typescript@5.9.3)(valibot@1.1.0(typescript@5.9.3))(zod@4.1.12)':
     dependencies:
-      '@t3-oss/env-core': 0.13.8(typescript@5.9.3)(valibot@1.1.0(typescript@5.9.3))
+      '@t3-oss/env-core': 0.13.8(typescript@5.9.3)(valibot@1.1.0(typescript@5.9.3))(zod@4.1.12)
     optionalDependencies:
       typescript: 5.9.3
       valibot: 1.1.0(typescript@5.9.3)
+      zod: 4.1.12
 
   '@tybys/wasm-util@0.10.1':
     dependencies:
@@ -5397,7 +5414,9 @@ snapshots:
       define-properties: 1.2.1
       es-object-atoms: 1.1.1
 
-  openai@6.3.0: {}
+  openai@6.3.0(zod@4.1.12):
+    optionalDependencies:
+      zod: 4.1.12
 
   optionator@0.9.4:
     dependencies:
@@ -6080,6 +6099,8 @@ snapshots:
       yargs-parser: 21.1.1
 
   yocto-queue@0.1.0: {}
+
+  zod@4.1.12: {}
 
   zustand@4.5.7(@types/react@19.2.2)(react@19.1.0):
     dependencies:

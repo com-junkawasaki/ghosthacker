@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useId } from 'react';
-import { submitOverview } from './actions';
+import { useState, useId, useEffect } from 'react';
+import { submitOverview, loadProject } from './actions';
 
 const GENRES = ['horror','mystery','thriller','romance','sci-fi','fantasy'] as const;
 const TONES = ['atmospheric','comedic','dark','hopeful'] as const;
@@ -19,6 +19,31 @@ export default function StoryOverviewForm() {
   const [message, setMessage] = useState<string | null>(null);
   const [errors, setErrors] = useState<string[] | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  // Load existing data on mount
+  useEffect(() => {
+    console.log('StoryOverviewForm: Loading data...');
+    const loadData = async () => {
+      try {
+        console.log('StoryOverviewForm: Calling loadProject...');
+        const project = await loadProject();
+        console.log('StoryOverviewForm: Loaded project:', project);
+        if (project) {
+          setTitle(project.title);
+          setLogline(project.logline);
+          setGenres(project.genres);
+          setTone(project.tone);
+          setKeywords(project.keywords?.join(', ') || '');
+        }
+      } catch (error) {
+        console.error('Failed to load project data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadData();
+  }, []);
 
   const toggleGenre = (g: string) => {
     setGenres((prev) => prev.includes(g) ? prev.filter(x => x !== g) : [...prev, g]);
@@ -77,7 +102,9 @@ export default function StoryOverviewForm() {
       {errors && <div className="text-red-700 bg-red-50 border border-red-200 rounded p-2 space-y-1">{errors.map((e)=>(<div key={e}>{e}</div>))}</div>}
 
       <div className="pt-2">
-        <button disabled={submitting} type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-70">{submitting? 'Saving...':'Save Overview'}</button>
+        <button disabled={submitting || loading} type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-70">
+          {loading ? 'Loading...' : submitting ? 'Saving...' : 'Save Overview'}
+        </button>
       </div>
     </form>
   );

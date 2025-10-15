@@ -1,7 +1,11 @@
 "use server";
-// Merkle DAG: story.actions -> validates inputs -> seeds pipeline later
+// Merkle DAG: story.actions -> validates inputs -> persists to neo4j -> seeds pipeline later
 import { safeParse } from 'valibot';
-import { ProjectSchema } from '@/types/story';
+import { ProjectSchema, NarrativeSchema, CharacterSchema, VisualStyleSchema, AudioStyleSchema } from '@/types/story';
+import { storyRepository } from '@/lib/story-neo4j';
+
+// Default project ID for this session (in production, this would be user-specific)
+const DEFAULT_PROJECT_ID = 'ghost-hacker-project';
 
 export type ServerActionResult<T> = { ok: true; value: T } | { ok: false; faults: { code: string; message: string; path?: string[] }[] };
 
@@ -27,8 +31,155 @@ export async function submitOverview(input: ProjectInput): Promise<ServerActionR
     return { ok: false, faults };
   }
 
-  // TODO: persist StoryBrief draft (e.g., database or KV). For now, echo back.
+  try {
+    // Persist to Neo4j
+    await storyRepository.saveProject({
+      id: DEFAULT_PROJECT_ID,
+      title: input.title,
+      logline: input.logline,
+      genres: input.genres,
+      tone: input.tone,
+      audienceRating: input.audienceRating,
+      language: input.language,
+      keywords: input.keywords || [],
+    });
+
+    return { ok: true, value: input };
+  } catch (error) {
+    console.error('Failed to save project:', error);
+    return {
+      ok: false,
+      faults: [{ code: 'database_error', message: 'Failed to save project to database' }]
+    };
+  }
+}
+
+export type NarrativeInput = {
+  synopsis: string;
+  structure: '3-act' | '4-act' | '8-sequence' | 'webtoon-episodic';
+  beats?: { id: string; label: string; purpose: 'setup' | 'conflict' | 'climax'; targetLength: number }[];
+};
+
+export async function submitNarrative(input: NarrativeInput): Promise<ServerActionResult<NarrativeInput>> {
+  const result = safeParse(NarrativeSchema, input);
+  if (!result.success) {
+    const faults = result.issues.map((i) => ({
+      code: i.code ?? 'validation_error',
+      message: i.message ?? 'Invalid value',
+      path: i.path?.map((p) => String(p.key)),
+    }));
+    return { ok: false, faults };
+  }
+
+  try {
+    // Persist to Neo4j, linked to the default project
+    await storyRepository.saveNarrative(DEFAULT_PROJECT_ID, {
+      synopsis: input.synopsis,
+      structure: input.structure,
+      beats: input.beats || [],
+    });
+
+    return { ok: true, value: input };
+  } catch (error) {
+    console.error('Failed to save narrative:', error);
+    return {
+      ok: false,
+      faults: [{ code: 'database_error', message: 'Failed to save narrative to database' }]
+    };
+  }
+}
+
+export type CharacterInput = {
+  name: string;
+  role: 'protagonist' | 'antagonist' | 'support';
+  motivation?: string;
+  conflict?: string;
+  voice?: string;
+};
+
+export async function submitCharacters(input: CharacterInput[]): Promise<ServerActionResult<CharacterInput[]>> {
+  // Validate each character
+  for (const ch of input) {
+    const result = safeParse(CharacterSchema, ch);
+    if (!result.success) {
+      const faults = result.issues.map((i) => ({
+        code: i.code ?? 'validation_error',
+        message: i.message ?? 'Invalid value',
+        path: i.path?.map((p) => String(p.key)),
+      }));
+      return { ok: false, faults };
+    }
+  }
   return { ok: true, value: input };
+}
+
+export type StylesInput = {
+  visual: { artStyle: 'anime'|'semi-realistic'|'painterly'|'minimal'; palette: 'cool'|'warm'|'monochrome'|'high-contrast'; nsfwAllowed: false };
+  audio: { voice: 'alloy'|'verse'|'aria'; tempo: 'calm'|'neutral'|'fast'; musicMood: 'eerie'|'tense'|'melancholic'|'uplifting' };
+};
+
+export async function submitStyles(input: StylesInput): Promise<ServerActionResult<StylesInput>> {
+  const visual = safeParse(VisualStyleSchema, input.visual);
+  const audio = safeParse(AudioStyleSchema, input.audio);
+  if (!visual.success || !audio.success) {
+    const faults = [...(visual.success?[]:visual.issues), ...(audio.success?[]:audio.issues)].map(i=>({
+      code: i.code ?? 'validation_error',
+      message: i.message ?? 'Invalid value',
+      path: i.path?.map(p=>String(p.key)),
+    }));
+    return { ok: false, faults };
+  }
+  try {
+    await storyRepository.saveStyles(DEFAULT_PROJECT_ID, { visual: input.visual, audio: input.audio });
+    return { ok: true, value: input };
+  } catch (error) {
+    console.error('Failed to save styles:', error);
+    return { ok: false, faults: [{ code: 'database_error', message: 'Failed to save styles to database' }] };
+  }
+}
+
+// Data loading functions
+export async function loadProject(): Promise<ProjectInput | null> {
+  try {
+    console.log('Loading project with ID:', DEFAULT_PROJECT_ID);
+    const project = await storyRepository.getProject(DEFAULT_PROJECT_ID);
+    console.log('Loaded project:', project);
+    if (!project) return null;
+
+    return {
+      title: project.title,
+      logline: project.logline,
+      genres: project.genres as ProjectInput['genres'],
+      tone: project.tone as ProjectInput['tone'],
+      audienceRating: 'PG-13',
+      language: 'en',
+      keywords: project.keywords,
+    };
+  } catch (error) {
+    console.error('Failed to load project:', error);
+    return null;
+  }
+}
+
+export async function loadNarrative(): Promise<NarrativeInput | null> {
+  try {
+    const narrative = await storyRepository.getNarrative(DEFAULT_PROJECT_ID);
+    if (!narrative) return null;
+
+    return {
+      synopsis: narrative.synopsis,
+      structure: narrative.structure as NarrativeInput['structure'],
+      beats: narrative.beats.map(beat => ({
+        id: beat.id,
+        label: beat.label,
+        purpose: beat.purpose as NarrativeInput['beats'][0]['purpose'],
+        targetLength: beat.targetLength,
+      })),
+    };
+  } catch (error) {
+    console.error('Failed to load narrative:', error);
+    return null;
+  }
 }
 
 

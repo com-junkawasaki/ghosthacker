@@ -1,13 +1,16 @@
 import * as neo4j from 'neo4j-driver';
-import { env } from '@/env.mjs';
 
 let driver: neo4j.Driver | null = null;
 
 export function getNeo4jDriver(): neo4j.Driver {
   if (!driver) {
+    const uri = process.env.NEO4J_URI || 'neo4j://localhost:7687';
+    const user = process.env.NEO4J_USER || 'neo4j';
+    const password = process.env.NEO4J_PASSWORD || 'password';
+
     driver = neo4j.driver(
-      env.NEO4J_URI,
-      neo4j.auth.basic(env.NEO4J_USER, env.NEO4J_PASSWORD),
+      uri,
+      neo4j.auth.basic(user, password),
       {
         // Enable logging for debugging
         logging: {
