@@ -61,12 +61,12 @@ export default function NarrativeForm() {
   return (
     <form onSubmit={onSubmit} className="space-y-5">
       <div>
-        <label htmlFor={idSynopsis} className="form-label">Synopsis</label>
-        <textarea id={idSynopsis} value={synopsis} onChange={e=>setSynopsis(e.target.value)} rows={6} className="form-textarea" placeholder="High-level story synopsis" />
+        <label htmlFor={idSynopsis} className="block text-[15px] leading-5 font-medium text-gray-900 dark:text-gray-100">Synopsis</label>
+        <textarea id={idSynopsis} value={synopsis} onChange={e=>setSynopsis(e.target.value)} rows={6} className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-[16px] leading-6 text-gray-900 placeholder-gray-500 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 dark:placeholder-gray-400" placeholder="High-level story synopsis" />
       </div>
       <div>
-        <label htmlFor={idStructure} className="form-label">Structure</label>
-        <select id={idStructure} value={structure} onChange={e=>setStructure(e.target.value as (typeof STRUCTURES)[number])} className="form-select">
+        <label htmlFor={idStructure} className="block text-[15px] leading-5 font-medium text-gray-900 dark:text-gray-100">Structure</label>
+        <select id={idStructure} value={structure} onChange={e=>setStructure(e.target.value as (typeof STRUCTURES)[number])} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 pr-9 text-[16px] leading-[44px] text-gray-900 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700">
           {STRUCTURES.map(s => <option key={s} value={s}>{s}</option>)}
         </select>
       </div>
@@ -78,13 +78,13 @@ export default function NarrativeForm() {
         <div className="space-y-2">
           {beats.map(b => (
             <div key={b.id} className="grid grid-cols-[1fr_140px_140px_40px] gap-2 items-center">
-              <input value={b.label} onChange={e=>updateBeat(b.id,{label:e.target.value})} className="form-input" placeholder="Beat label" />
-              <select value={b.purpose} onChange={e=>updateBeat(b.id,{purpose:e.target.value as 'setup'|'conflict'|'climax'})} className="form-select">
+              <input value={b.label} onChange={e=>updateBeat(b.id,{label:e.target.value})} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 text-[16px] leading-[44px] text-gray-900 placeholder-gray-500 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 dark:placeholder-gray-400" placeholder="Beat label" />
+              <select value={b.purpose} onChange={e=>updateBeat(b.id,{purpose:e.target.value as 'setup'|'conflict'|'climax'})} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 pr-9 text-[16px] leading-[44px] text-gray-900 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700">
                 <option value="setup">setup</option>
                 <option value="conflict">conflict</option>
                 <option value="climax">climax</option>
               </select>
-              <input type="number" value={b.targetLength} onChange={e=>updateBeat(b.id,{targetLength:Number(e.target.value)})} className="form-input" min={20} max={1500} />
+              <input type="number" value={b.targetLength} onChange={e=>updateBeat(b.id,{targetLength:Number(e.target.value)})} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 text-[16px] leading-[44px] text-gray-900 placeholder-gray-500 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 dark:placeholder-gray-400" min={20} max={1500} />
               <button type="button" onClick={()=>removeBeat(b.id)} className="text-red-600 hover:underline">×</button>
             </div>
           ))}

@@ -69,35 +69,35 @@ export default function StoryOverviewForm() {
   return (
     <form onSubmit={onSubmit} className="space-y-5">
       <div>
-        <label htmlFor={idTitle} className="form-label">Title</label>
-        <input id={idTitle} value={title} onChange={e=>setTitle(e.target.value)} className="form-input" placeholder="Project title"/>
+        <label htmlFor={idTitle} className="block text-[15px] leading-5 font-medium text-gray-900 dark:text-gray-100">Title</label>
+        <input id={idTitle} value={title} onChange={e=>setTitle(e.target.value)} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 text-[16px] leading-[44px] text-gray-900 placeholder-gray-500 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 dark:placeholder-gray-400" placeholder="Project title"/>
       </div>
       <div>
-        <label htmlFor={idLogline} className="form-label">Logline</label>
-        <input id={idLogline} value={logline} onChange={e=>setLogline(e.target.value)} className="form-input" placeholder="One-sentence hook"/>
+        <label htmlFor={idLogline} className="block text-[15px] leading-5 font-medium text-gray-900 dark:text-gray-100">Logline</label>
+        <input id={idLogline} value={logline} onChange={e=>setLogline(e.target.value)} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 text-[16px] leading-[44px] text-gray-900 placeholder-gray-500 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 dark:placeholder-gray-400" placeholder="One-sentence hook"/>
       </div>
       <div>
-        <div className="form-label mb-1">Genres</div>
+        <div className="block text-[15px] leading-5 font-medium text-gray-900 dark:text-gray-100 mb-1">Genres</div>
         <div className="flex flex-wrap gap-2">
           {GENRES.map(g => (
             <button
               key={g}
               type="button"
               onClick={()=>toggleGenre(g)}
-              className={`chip ${genres.includes(g) ? 'chip--selected' : ''}`}
+              className={`${genres.includes(g) ? 'bg-blue-600 text-white border-blue-600 shadow' : 'border-gray-300 text-gray-800 hover:bg-gray-100 active:bg-gray-200 dark:text-gray-100 dark:border-gray-700 dark:hover:bg-gray-800'} px-3 py-1.5 rounded-full border text-[15px] leading-6`}
             >{g}</button>
           ))}
         </div>
       </div>
       <div>
-        <label htmlFor={idTone} className="form-label">Tone</label>
-        <select id={idTone} value={tone} onChange={e=>setTone(e.target.value as (typeof TONES)[number])} className="form-select">
+        <label htmlFor={idTone} className="block text-[15px] leading-5 font-medium text-gray-900 dark:text-gray-100">Tone</label>
+        <select id={idTone} value={tone} onChange={e=>setTone(e.target.value as (typeof TONES)[number])} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 pr-9 text-[16px] leading-[44px] text-gray-900 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700">
           {TONES.map(t => <option key={t} value={t}>{t}</option>)}
         </select>
       </div>
       <div>
-        <label htmlFor={idKeywords} className="form-label">Keywords (comma separated)</label>
-        <input id={idKeywords} value={keywords} onChange={e=>setKeywords(e.target.value)} className="form-input" placeholder="ghost, alley, rain"/>
+        <label htmlFor={idKeywords} className="block text-[15px] leading-5 font-medium text-gray-900 dark:text-gray-100">Keywords (comma separated)</label>
+        <input id={idKeywords} value={keywords} onChange={e=>setKeywords(e.target.value)} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 text-[16px] leading-[44px] text-gray-900 placeholder-gray-500 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 dark:placeholder-gray-400" placeholder="ghost, alley, rain"/>
       </div>
 
       {message && <div className="text-green-700 bg-green-50 border border-green-200 rounded-xl p-3">{message}</div>}

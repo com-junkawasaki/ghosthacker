@@ -18,28 +18,28 @@ function CharacterRow({
   const idCon = useId();
   const idVoice = useId();
   return (
-    <div className="grid grid-cols-1 md:grid-cols-[1fr_180px] gap-3 border border-gray-200 rounded-md p-3 bg-white">
+    <div className="grid grid-cols-1 md:grid-cols-[1fr_180px] gap-3 border border-gray-200 rounded-xl p-3 bg-white">
       <div className="space-y-2">
         <div>
-          <label htmlFor={idName} className="block text-xs font-medium text-gray-700">Name</label>
-          <input id={idName} value={c.name} onChange={e=>onUpdate(c.id,{name:e.target.value})} className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2" />
+          <label htmlFor={idName} className="block text-[15px] leading-5 font-medium text-gray-900 dark:text-gray-100">Name</label>
+          <input id={idName} value={c.name} onChange={e=>onUpdate(c.id,{name:e.target.value})} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 text-[16px] leading-[44px] text-gray-900 shadow-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
-          <label htmlFor={idMot} className="block text-xs font-medium text-gray-700">Motivation</label>
-          <input id={idMot} value={c.motivation ?? ''} onChange={e=>onUpdate(c.id,{motivation:e.target.value})} className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2" />
+          <label htmlFor={idMot} className="block text-[15px] leading-5 font-medium text-gray-900 dark:text-gray-100">Motivation</label>
+          <input id={idMot} value={c.motivation ?? ''} onChange={e=>onUpdate(c.id,{motivation:e.target.value})} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 text-[16px] leading-[44px] text-gray-900 shadow-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
-          <label htmlFor={idCon} className="block text-xs font-medium text-gray-700">Conflict</label>
-          <input id={idCon} value={c.conflict ?? ''} onChange={e=>onUpdate(c.id,{conflict:e.target.value})} className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2" />
+          <label htmlFor={idCon} className="block text-[15px] leading-5 font-medium text-gray-900 dark:text-gray-100">Conflict</label>
+          <input id={idCon} value={c.conflict ?? ''} onChange={e=>onUpdate(c.id,{conflict:e.target.value})} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 text-[16px] leading-[44px] text-gray-900 shadow-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
-          <label htmlFor={idVoice} className="block text-xs font-medium text-gray-700">Voice (style)</label>
-          <input id={idVoice} value={c.voice ?? ''} onChange={e=>onUpdate(c.id,{voice:e.target.value})} className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2" />
+          <label htmlFor={idVoice} className="block text-[15px] leading-5 font-medium text-gray-900 dark:text-gray-100">Voice (style)</label>
+          <input id={idVoice} value={c.voice ?? ''} onChange={e=>onUpdate(c.id,{voice:e.target.value})} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 text-[16px] leading-[44px] text-gray-900 shadow-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500" />
         </div>
       </div>
       <div>
-        <label htmlFor={idRole} className="block text-xs font-medium text-gray-700">Role</label>
-        <select id={idRole} value={c.role} onChange={e=>onUpdate(c.id,{role:e.target.value as Role})} className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2">
+        <label htmlFor={idRole} className="block text-[15px] leading-5 font-medium text-gray-900 dark:text-gray-100">Role</label>
+        <select id={idRole} value={c.role} onChange={e=>onUpdate(c.id,{role:e.target.value as Role})} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 pr-9 text-[16px] leading-[44px] text-gray-900 shadow-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500">
           <option value="protagonist">protagonist</option>
           <option value="antagonist">antagonist</option>
           <option value="support">support</option>
