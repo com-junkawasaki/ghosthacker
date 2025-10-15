@@ -1,9 +1,11 @@
 import Link from "next/link";
 import NodePanel from "@/components/NodePanel";
 import NodeConfigForm from "@/components/NodeConfigForm.client";
+import { loadNodeConfig } from "../actions";
 
 // Merkle DAG Node: source-ep1 (type: SourceDoc)
-export default function SourceEp1Page() {
+export default async function SourceEp1Page() {
+  const { config } = await loadNodeConfig({ nodeId: "source-ep1", nodeType: "SourceDoc", fallback: { episodeId: "ja_Episode_01_Masterpiece", sourcePath: "../250806/episodes/ja_Episode_01_Masterpiece.md" } });
   return (
     <div className="h-full w-full p-6">
       <div className="mb-4">
@@ -17,13 +19,13 @@ export default function SourceEp1Page() {
         nodeType="SourceDoc"
         label="Episode 1 Source"
         outputs={["draft"]}
-        config={{ episodeId: "ja_Episode_01_Masterpiece", sourcePath: "../250806/episodes/ja_Episode_01_Masterpiece.md" }}
+        config={config}
       />
 
       <NodeConfigForm
         nodeId="source-ep1"
         nodeType="SourceDoc"
-        defaultValues={{ episodeId: "ja_Episode_01_Masterpiece", sourcePath: "../250806/episodes/ja_Episode_01_Masterpiece.md" }}
+        defaultValues={config}
       />
     </div>
   );

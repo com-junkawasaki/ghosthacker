@@ -299,6 +299,32 @@ function ProducerCanvasComponent() {
     console.log('Running pipeline...', { nodes: nodes.length, edges: edges.length });
   }, [nodes, edges]);
 
+  const routeForNodeType = useCallback((type?: string): string | null => {
+    switch (type) {
+      case 'sourceDoc': return '/canvas/source-ep1';
+      case 'protagonist': return '/canvas/lore/protagonist';
+      case 'backstory': return '/canvas/lore/backstory';
+      case 'world': return '/canvas/lore/world';
+      case 'prompt': return '/canvas/prompt-story';
+      case 'writer': return '/canvas/writer-content';
+      case 'imageGen': return '/canvas/image-gen';
+      case 'tts': return '/canvas/tts-narration';
+      case 'webtoonPanelGen': return '/canvas/webtoon-panel-gen';
+      case 'webtoonLayout': return '/canvas/webtoon-layout';
+      case 'webtoonExport': return '/canvas/webtoon-export';
+      case 'videoGen': return '/canvas/video-gen';
+      case 'render': return '/canvas/render-video';
+      case 'exportWattpad': return '/canvas/export-wattpad';
+      case 'publishYouTube': return '/canvas/publish-youtube';
+      default: return null;
+    }
+  }, []);
+
+  const onNodeClick = useCallback((_, node: RFNode<NodeData>) => {
+    const href = routeForNodeType(node.type);
+    if (href) window.location.assign(href);
+  }, [routeForNodeType]);
+
   // Load saved canvas config via tRPC and apply to React Flow
   useEffect(() => {
     console.log('ProducerCanvasComponent mounted');
@@ -337,6 +363,32 @@ function ProducerCanvasComponent() {
         setEdges(computedEdges);
       })
       .catch((err) => console.error('getCanvas error', err));
+    // Listen for config save events to update node data in place
+    const onSaved = (e: Event) => {
+      const detail = (e as CustomEvent).detail as { nodeId: string; nodeType: string; config: Record<string, unknown> };
+      const nodeTypeMap: Record<string, string> = {
+        SourceDoc: 'sourceDoc',
+        Protagonist: 'protagonist',
+        Backstory: 'backstory',
+        World: 'world',
+        Prompt: 'prompt',
+        Writer: 'writer',
+        ImageGen: 'imageGen',
+        WebtoonPanelGen: 'webtoonPanelGen',
+        WebtoonLayout: 'webtoonLayout',
+        WebtoonExport: 'webtoonExport',
+        TTS: 'tts',
+        VideoGen: 'videoGen',
+        Render: 'render',
+        ExportWattpad: 'exportWattpad',
+        PublishYouTube: 'publishYouTube',
+      };
+      const canvasType = nodeTypeMap[detail.nodeType];
+      if (!canvasType) return;
+      setNodes((prev) => prev.map((n) => n.type === canvasType ? { ...n, data: { ...n.data, config: detail.config } } : n));
+    };
+    window.addEventListener('node-config-saved', onSaved);
+    return () => window.removeEventListener('node-config-saved', onSaved);
   }, [setNodes, setEdges]);
 
   return (
@@ -351,6 +403,7 @@ function ProducerCanvasComponent() {
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
+        onNodeClick={onNodeClick}
         onConnect={onConnect}
         nodeTypes={nodeTypes}
         fitView
