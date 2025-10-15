@@ -1,7 +1,7 @@
 "use server";
 // Merkle DAG: story.actions -> validates inputs -> persists to neo4j -> seeds pipeline later
 import { safeParse } from 'valibot';
-import { ProjectSchema, NarrativeSchema, CharacterSchema, VisualStyleSchema, AudioStyleSchema } from '@/types/story';
+import { ProjectSchema, NarrativeSchema, CharacterSchema, VisualStyleSchema, AudioStyleSchema, WattpadExtSchema, WebtoonExtSchema, YouTubeExtSchema } from '@/types/story';
 import { storyRepository } from '@/lib/story-neo4j';
 
 // Default project ID for this session (in production, this would be user-specific)
@@ -138,12 +138,37 @@ export async function submitStyles(input: StylesInput): Promise<ServerActionResu
   }
 }
 
+export type PlatformsInput = {
+  wattpad: { chapterCount: number; includeImages: boolean; chapterLengthWords?: [number, number]; imageFrequency: 'none'|'cover'|'inline-1'|'inline-3' };
+  webtoon: { episodePanels: number; bubbleDensity: 'low'|'medium'|'high'; readingPace: 'slow'|'standard'|'fast'; soundEffects: boolean };
+  youtube: { targetDurationSec: number; aspectRatio: '9:16'|'16:9'; captions: boolean; brollRatio: number };
+};
+
+export async function submitPlatforms(input: PlatformsInput): Promise<ServerActionResult<PlatformsInput>> {
+  const w = safeParse(WattpadExtSchema, input.wattpad);
+  const wb = safeParse(WebtoonExtSchema, input.webtoon);
+  const yt = safeParse(YouTubeExtSchema, input.youtube);
+  if (!w.success || !wb.success || !yt.success) {
+    const faults = [
+      ...(w.success?[]:w.issues),
+      ...(wb.success?[]:wb.issues),
+      ...(yt.success?[]:yt.issues),
+    ].map(i=>({ code: i.code ?? 'validation_error', message: i.message ?? 'Invalid value', path: i.path?.map(p=>String(p.key)) }));
+    return { ok: false, faults };
+  }
+  try {
+    await storyRepository.savePlatforms(DEFAULT_PROJECT_ID, input);
+    return { ok: true, value: input };
+  } catch (error) {
+    console.error('Failed to save platforms:', error);
+    return { ok: false, faults: [{ code: 'database_error', message: 'Failed to save platforms to database' }] };
+  }
+}
+
 // Data loading functions
 export async function loadProject(): Promise<ProjectInput | null> {
   try {
-    console.log('Loading project with ID:', DEFAULT_PROJECT_ID);
     const project = await storyRepository.getProject(DEFAULT_PROJECT_ID);
-    console.log('Loaded project:', project);
     if (!project) return null;
 
     return {

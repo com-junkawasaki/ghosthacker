@@ -23,12 +23,9 @@ export default function StoryOverviewForm() {
 
   // Load existing data on mount
   useEffect(() => {
-    console.log('StoryOverviewForm: Loading data...');
     const loadData = async () => {
       try {
-        console.log('StoryOverviewForm: Calling loadProject...');
         const project = await loadProject();
-        console.log('StoryOverviewForm: Loaded project:', project);
         if (project) {
           setTitle(project.title);
           setLogline(project.logline);

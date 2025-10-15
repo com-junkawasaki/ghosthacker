@@ -1,5 +1,4 @@
 import { getNeo4jDriver } from './neo4j';
-import { cypher, Node, Relationship } from '@neo4j/cypher-builder';
 
 // Merkle DAG: story-neo4j -> neo4j-driver -> cypher-builder
 // Story data persistence layer using Neo4j graph database
@@ -44,7 +43,6 @@ export class StoryNeo4jRepository {
 
       // Note: using raw cypher below; Node builder kept for future reference and intentionally removed to satisfy linter
 
-      // Use raw Cypher query for now
       const query = `
         MERGE (p:Project {id: $id})
         SET p += {
@@ -60,20 +58,6 @@ export class StoryNeo4jRepository {
         }
         RETURN p
       `;
-
-      console.log('Raw Cypher query:', query);
-      console.log('Raw Cypher params:', {
-        id: projectId,
-        title: project.title,
-        logline: project.logline,
-        genres: project.genres,
-        tone: project.tone,
-        audienceRating: project.audienceRating,
-        language: project.language,
-        keywords: project.keywords,
-        createdAt: now.toISOString(),
-        updatedAt: now.toISOString(),
-      });
 
       const result = await session.run(query, {
         id: projectId,
@@ -111,21 +95,19 @@ export class StoryNeo4jRepository {
     const session = this.driver.session();
 
     try {
-      const projectNode = new Node({ labels: ['Project'] }); // used below in cypher builder chain
+      const query = `
+        MATCH (p:Project {id: $id})
+        RETURN p
+      `;
 
-      const matchQuery = cypher
-        .match(projectNode)
-        .where(projectNode, { id })
-        .returning(projectNode);
-
-      const result = await session.run(matchQuery.build(), matchQuery.getParams());
+      const result = await session.run(query, { id });
 
       if (result.records.length === 0) {
         return null;
       }
 
       const record = result.records[0];
-      const props = record.get('project').properties;
+      const props = record.get('p').properties;
 
       return {
         id: props.id,
@@ -152,45 +134,45 @@ export class StoryNeo4jRepository {
       const now = new Date();
       const narrativeId = narrative.id || crypto.randomUUID();
 
-      const projectNode = new Node({ labels: ['Project'] });
-      const narrativeNode = new Node({
-        labels: ['Narrative'],
-        properties: {
-          id: narrativeId,
-          synopsis: narrative.synopsis,
-          structure: narrative.structure,
-          beats: narrative.beats,
-          createdAt: now,
-          updatedAt: now,
+      const query = `
+        MATCH (p:Project {id: $projectId})
+        MERGE (n:Narrative {id: $narrativeId})
+        ON CREATE SET n += {
+          synopsis: $synopsis,
+          structure: $structure,
+          beats: $beats,
+          createdAt: $now,
+          updatedAt: $now
         }
+        ON MATCH SET n += {
+          synopsis: $synopsis,
+          structure: $structure,
+          beats: $beats,
+          updatedAt: $now
+        }
+        MERGE (p)-[:HAS_NARRATIVE]->(n)
+        RETURN n
+      `;
+
+      const result = await session.run(query, {
+        projectId,
+        narrativeId,
+        synopsis: narrative.synopsis,
+        structure: narrative.structure,
+        beats: narrative.beats,
+        now: now.toISOString(),
       });
 
-      // Relationship: Project -> HAS_NARRATIVE -> Narrative
-      const hasNarrativeRel = new Relationship({
-        source: projectNode,
-        target: narrativeNode,
-        type: 'HAS_NARRATIVE',
-      });
-
-      const mergeQuery = cypher
-        .match(projectNode)
-        .where(projectNode, { id: projectId })
-        .merge([hasNarrativeRel])
-        .set({
-          updatedAt: now,
-        })
-        .returning(narrativeNode);
-
-      const result = await session.run(mergeQuery.build(), mergeQuery.getParams());
       const record = result.records[0];
+      const props = record.get('n').properties;
 
       return {
-        id: record.get('narrative').properties.id,
-        synopsis: record.get('narrative').properties.synopsis,
-        structure: record.get('narrative').properties.structure,
-        beats: record.get('narrative').properties.beats,
-        createdAt: new Date(record.get('narrative').properties.createdAt),
-        updatedAt: new Date(record.get('narrative').properties.updatedAt),
+        id: props.id,
+        synopsis: props.synopsis,
+        structure: props.structure,
+        beats: props.beats,
+        createdAt: new Date(props.createdAt),
+        updatedAt: new Date(props.updatedAt),
       };
     } finally {
       await session.close();
@@ -202,27 +184,19 @@ export class StoryNeo4jRepository {
     const session = this.driver.session();
 
     try {
-      const projectNode = new Node({ labels: ['Project'] });
-      const narrativeNode = new Node({ labels: ['Narrative'] });
-      const hasNarrativeRel = new Relationship({
-        source: projectNode,
-        target: narrativeNode,
-        type: 'HAS_NARRATIVE',
-      });
+      const query = `
+        MATCH (p:Project {id: $projectId})-[:HAS_NARRATIVE]->(n:Narrative)
+        RETURN n
+      `;
 
-      const matchQuery = cypher
-        .match([projectNode, hasNarrativeRel, narrativeNode])
-        .where(projectNode, { id: projectId })
-        .returning(narrativeNode);
-
-      const result = await session.run(matchQuery.build(), matchQuery.getParams());
+      const result = await session.run(query, { projectId });
 
       if (result.records.length === 0) {
         return null;
       }
 
       const record = result.records[0];
-      const props = record.get('narrative').properties;
+      const props = record.get('n').properties;
 
       return {
         id: props.id,
@@ -242,17 +216,16 @@ export class StoryNeo4jRepository {
     const session = this.driver.session();
 
     try {
-      const projectNode = new Node({ labels: ['Project'] });
+      const query = `
+        MATCH (p:Project)
+        RETURN p
+        ORDER BY p.updatedAt DESC
+      `;
 
-      const matchQuery = cypher
-        .match(projectNode)
-        .returning(projectNode)
-        .orderBy([cypher.desc(projectNode.property('updatedAt'))]);
-
-      const result = await session.run(matchQuery.build(), matchQuery.getParams());
+      const result = await session.run(query);
 
       return result.records.map(record => {
-        const props = record.get('project').properties;
+        const props = record.get('p').properties;
         return {
           id: props.id,
           title: props.title,
@@ -266,6 +239,53 @@ export class StoryNeo4jRepository {
           updatedAt: new Date(props.updatedAt),
         };
       });
+    } finally {
+      await session.close();
+    }
+  }
+
+  // Save platforms and link to project
+  async savePlatforms(projectId: string, data: {
+    wattpad: { chapterCount: number; includeImages: boolean; chapterLengthWords?: [number, number]; imageFrequency: string };
+    webtoon: { episodePanels: number; bubbleDensity: string; readingPace: string; soundEffects: boolean };
+    youtube: { targetDurationSec: number; aspectRatio: string; captions: boolean; brollRatio: number };
+  }) {
+    const session = this.driver.session();
+    try {
+      const now = new Date().toISOString();
+      const query = `
+        MATCH (p:Project {id: $projectId})
+        MERGE (pl:Platforms {id: $id})
+        ON CREATE SET pl += { wattpad: $wattpad, webtoon: $webtoon, youtube: $youtube, createdAt: $now, updatedAt: $now }
+        ON MATCH SET pl += { wattpad: $wattpad, webtoon: $webtoon, youtube: $youtube, updatedAt: $now }
+        MERGE (p)-[:HAS_PLATFORMS]->(pl)
+        RETURN pl
+      `;
+      const params = {
+        projectId,
+        id: `${projectId}-platforms`,
+        wattpad: data.wattpad,
+        webtoon: data.webtoon,
+        youtube: data.youtube,
+        now,
+      };
+      const result = await session.run(query, params);
+      return result.records[0]?.get('pl').properties ?? null;
+    } finally {
+      await session.close();
+    }
+  }
+
+  async getPlatforms(projectId: string) {
+    const session = this.driver.session();
+    try {
+      const query = `
+        MATCH (p:Project {id: $projectId})-[:HAS_PLATFORMS]->(pl:Platforms)
+        RETURN pl
+      `;
+      const result = await session.run(query, { projectId });
+      if (result.records.length === 0) return null;
+      return result.records[0].get('pl').properties;
     } finally {
       await session.close();
     }
