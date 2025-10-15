@@ -19,29 +19,38 @@ import { Background } from '@reactflow/background';
 const reactFlowStyles = `
   .react-flow__node {
     min-width: 150px;
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 6px;
-    padding: 8px;
+    background: #ffffff;
+    border: 1px solid #d1d5db; /* stronger border */
+    border-radius: 8px;
+    padding: 10px;
+    color: #111827; /* high-contrast text */
+    font-size: 14px; /* base font size */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
   }
   .react-flow__node.selected {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 2px #3b82f6;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37,99,235,0.4);
   }
   .react-flow__edge-path {
-    stroke: #6b7280;
-    stroke-width: 2;
+    stroke: #374151; /* darker edges */
+    stroke-width: 2.25;
   }
   .react-flow__controls {
     bottom: 20px;
     left: 20px;
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 6px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
   }
   .react-flow__viewport {
-    background: #f9fafb;
+    background: #f9fafb; /* subtle canvas */
   }
+  /* bump small Tailwind text utilities inside nodes for readability */
+  .react-flow__node .text-xs { font-size: 12px !important; color: #111827 !important; }
+  .react-flow__node .text-sm { font-size: 14px !important; color: #111827 !important; }
+  .react-flow__node .text-gray-500 { color: #374151 !important; }
+  .react-flow__node .text-gray-600 { color: #1f2937 !important; }
+  .react-flow__node .font-medium { font-weight: 600; }
 `;
 
 import {
@@ -284,15 +293,15 @@ function ProducerCanvasComponent() {
       </ReactFlow>
 
       {/* Panel outside ReactFlow */}
-      <div className="absolute top-4 left-4 bg-white p-4 rounded-lg shadow-lg z-10">
-        <h2 className="text-lg font-semibold mb-2">Ghost Hacker Producer</h2>
-        <p className="text-sm text-gray-600 mb-2">
+      <div className="absolute top-4 left-4 bg-white/95 backdrop-blur p-4 rounded-xl shadow-xl border border-gray-200 z-10">
+        <h2 className="text-xl font-semibold mb-2 text-gray-900">Ghost Hacker Producer</h2>
+        <p className="text-base text-gray-800 mb-3">
           Nodes: {nodes.length} | Edges: {edges.length}
         </p>
         <button
           onClick={onRunPipeline}
           type="button"
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
         >
           Run Pipeline
         </button>
