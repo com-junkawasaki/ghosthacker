@@ -40,12 +40,34 @@ async function main() {
             for (const vertex of characterData['@graph']) {
                 const id = vertex['@id'];
                 const type = vertex['@type'];
+                const props = { ...vertex };
+                delete props[`${GHOSTHACKER_ONTOLOGY_PREFIX}:has_ghost`]; // Remove relationship object before import
+
                 const query = `
                     MERGE (n { \`@id\`: $id })
                     SET n += $props
                     SET n :\`${type}\`
                 `;
-                await session.run(query, { id, props: vertex });
+                await session.run(query, { id, props });
+            }
+        }
+    }
+
+    // Post-processing for relationships
+    if (fs.existsSync(characterJsonldPath)) {
+        const characterContent = fs.readFileSync(characterJsonldPath, 'utf-8');
+        const characterData = JSON.parse(characterContent);
+        if (characterData['@graph']) {
+            for (const vertex of characterData['@graph']) {
+                if (vertex[`${GHOSTHACKER_ONTOLOGY_PREFIX}:has_ghost`]) {
+                    const sourceId = vertex['@id'];
+                    const targetId = vertex[`${GHOSTHACKER_ONTOLOGY_PREFIX}:has_ghost`]['@id'];
+                    const query = `
+                        MATCH (a { \`@id\`: $sourceId }), (b { \`@id\`: $targetId })
+                        MERGE (a)-[:HAS_GHOST]->(b)
+                    `;
+                    await session.run(query, { sourceId, targetId });
+                }
             }
         }
     }

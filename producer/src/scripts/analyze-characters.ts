@@ -51,23 +51,33 @@ async function main() {
             const content = fs.readFileSync(filePath, 'utf-8');
             const sections = parseMarkdownSections(content);
             
-            if (mdFile.includes('akito.md') || mdFile.includes('character.md')) { // Generic character info
+            if (mdFile.endsWith('akito.md') || mdFile.endsWith('character.md') || mdFile.endsWith('kaede.md') || mdFile.endsWith('ren.md') || mdFile.endsWith('tamaki.md') || mdFile.endsWith('aoi.md') || mdFile.endsWith('elias.md') || mdFile.endsWith('hibiki.md') || mdFile.endsWith('nee-chan.md')) { // Generic character info
                  const nameMatch = content.match(/^#\s*(.*)/);
                  if(nameMatch) characterNode[`${SCHEMA_ORG_PREFIX}:name`] = nameMatch[1].trim();
                  Object.assign(characterNode, sections);
 
-            } else if (mdFile.includes('ghost.md')) {
-                const ghostNameMatch = content.match(/^#\s*Ghost:\s*(.*)/);
+            } else if (mdFile.endsWith('ghost.md')) {
+                const ghostNameMatch = content.match(/^#\s*Ghost:\s*(.*)/) ?? content.match(/^#\s*(.*)/);
                 const ghostName = ghostNameMatch ? ghostNameMatch[1].trim() : `ghost-of-${charDir}`;
-                characterNode[`${GHOSTHACKER_ONTOLOGY_PREFIX}:has_ghost`] = {
-                    '@id': `${GHOSTHACKER_ONTOLOGY_PREFIX}:character-${ghostName.toLowerCase().replace(/\s/g, '-')}`,
+                const ghostId = `${GHOSTHACKER_ONTOLOGY_PREFIX}:character-${ghostName.toLowerCase().replace(/\s/g, '-')}`;
+                
+                characterNode[`${GHOSTHACKER_ONTOLOGY_PREFIX}:has_ghost`] = { '@id': ghostId };
+
+                characterGraph.push({
+                    '@id': ghostId,
                     '@type': `${GHOSTHACKER_ONTOLOGY_PREFIX}:Character`,
                     [`${SCHEMA_ORG_PREFIX}:name`]: ghostName,
                     ...sections,
-                };
+                });
 
-            } else if (mdFile.includes('portrait.md')) {
-                characterNode[`${GHOSTHACKER_ONTOLOGY_PREFIX}:portraitPrompt`] = sections;
+            } else if (mdFile.endsWith('portrait.md')) {
+                // This creates a nested object, which Neo4j doesn't like.
+                // I'll flatten it by prefixing the keys.
+                const flattened_sections = Object.entries(sections).reduce((acc, [key, value]) => {
+                    acc[`portrait_${key}`] = value;
+                    return acc;
+                }, {} as Record<string, any>);
+                Object.assign(characterNode, flattened_sections);
             }
         }
         characterGraph.push(characterNode);
