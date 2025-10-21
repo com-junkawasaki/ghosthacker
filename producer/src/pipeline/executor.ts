@@ -13,7 +13,13 @@ const handlers: Record<string, (n: Node, inputs: Record<string, unknown>, ctx: R
   Backstory: async (n, _, ctx) => ctx.upsertBackstory(n),
   World: async (n, _, ctx) => ctx.upsertWorld(n),
   Prompt: async (n, inputs, ctx) => ctx.composePrompt(n, inputs),
-  Writer: async (n, inputs, ctx) => providers.text.generate(n, await ctx.buildTextContext(n, inputs)),
+  Writer: async (n, inputs, ctx) => {
+    const promptInput = inputs[Object.keys(inputs)[0]] as { prompt: string };
+    if (!promptInput || !promptInput.prompt) {
+      throw new Error("Prompt not found in inputs for Writer node");
+    }
+    return providers.text.generate(n, promptInput.prompt, await ctx.buildTextContext(n, inputs));
+  },
   ImageGen: async (n, inputs, ctx) => providers.image.generate(n, await ctx.buildImageContext(n, inputs)),
   WebtoonPanelGen: async (n, inputs, ctx) => providers.panel.generate(n, await ctx.buildPanelContext(n, inputs)),
   WebtoonLayout: async (n, inputs, ctx) => providers.layout.generate(n, await ctx.buildLayoutContext(n, inputs)),

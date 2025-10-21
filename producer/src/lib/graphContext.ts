@@ -1,5 +1,7 @@
 import { getNeo4jDriver } from "@/infra/neo4j/client";
 import { Node } from "@reactflow/core";
+import fs from "fs";
+import path from "path";
 
 type GenericNode = Node;
 
@@ -73,12 +75,43 @@ export function createGraphContext() {
         await session.close();
       }
     },
-    async loadSource(_n: GenericNode) {
-      const draft = { ok: true };
-      return { draft };
+    async loadSource(n: GenericNode) {
+      const sourcePath = n.data?.config?.sourcePath as string;
+      if (!sourcePath) return { draft: "// Source path not configured" };
+
+      try {
+        const fullPath = path.resolve(process.cwd(), '..', sourcePath);
+        const content = fs.readFileSync(fullPath, 'utf-8');
+        return { draft: content };
+      } catch (error) {
+        console.error(`Failed to load source file: ${sourcePath}`, error);
+        return { draft: `// Failed to load: ${sourcePath}` };
+      }
     },
     async composePrompt(n: GenericNode, inputs: Record<string, unknown>) {
-      const prompt = { type: n.type, style: n.data?.config?.style ?? "atmospheric", inputs };
+      // Combine inputs from dependency nodes into a structured prompt context
+      const sourceDrafts = Object.values(inputs).map(i => (i as any)?.draft).filter(Boolean);
+      const characters = Object.values(inputs).map(i => (i as any)?.name).filter(Boolean);
+      
+      const promptContext = {
+        style: n.data?.config?.style ?? "atmospheric",
+        inputs: {
+          sources: sourceDrafts,
+          characters: characters,
+          backstory: (inputs as any).backstory,
+          world: (inputs as any).world,
+        }
+      };
+
+      const prompt = `
+        Based on the following context, generate a story.
+        Style: ${promptContext.style}
+        Characters: ${promptContext.inputs.characters.join(', ')}
+        World: ${JSON.stringify(promptContext.inputs.world, null, 2)}
+        ---
+        ${sourceDrafts.join('\n\n')}
+      `;
+
       return { prompt };
     },
   };
