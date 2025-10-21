@@ -21,4 +21,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.dark .bg-white {
+    background-color: #1a1a1a;
+}
+.dark .text-gray-900 {
+    color: #f5f5f5;
+}
+.dark .border-gray-300 {
+    border-color: #4a4a4a;
+}
+.dark .text-gray-500 {
+    color: #a0a0a0;
+}
+
 /* stylelint-enable */

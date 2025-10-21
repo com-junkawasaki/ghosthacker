@@ -308,7 +308,7 @@ function ProducerCanvasComponent() {
   const onRunPipeline = useCallback(async () => {
     setRunStatus('running');
     try {
-      await trpcClient.pipeline.run.mutate();
+      await trpcClient.pipeline.run.mutate({ nodes, edges });
       // refresh canvas config after run
       const cfg = await trpcClient.canvas.getCanvas.query();
       if (cfg) {
@@ -339,7 +339,7 @@ function ProducerCanvasComponent() {
     } finally {
       setTimeout(() => setRunStatus('idle'), 2500);
     }
-  }, [setNodes, setEdges]);
+  }, [nodes, edges, setNodes, setEdges]);
 
   const routeForNodeType = useCallback((type?: string): string | null => {
     switch (type) {

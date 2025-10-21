@@ -172,7 +172,7 @@ export class StoryNeo4jRepository {
     const session = this.driver.session();
     try {
       const q = `
-        MATCH (:Project {id: $projectId})-[:HAS_EPISODE]->(e:Episode)
+        MATCH (:Project {id: $projectId})-[:HAS_EPISODE]->(e:\`gh:Episode\`)
         RETURN e ORDER BY e.episodeId ASC
       `;
       const res = await session.run(q, { projectId });
@@ -240,11 +240,11 @@ export class StoryNeo4jRepository {
   async getCharacters(projectId: string): Promise<CharacterItem[]> {
     const session = this.driver.session();
     try {
-      const q = `MATCH (:Project {id: $projectId})-[:HAS_CHARACTER]->(c:Character) RETURN c ORDER BY c.name ASC`;
+      const q = `MATCH (:Project {id: $projectId})-[:HAS_CHARACTER]->(c:\`gh:Character\`) RETURN c ORDER BY c.name ASC`;
       const res = await session.run(q, { projectId });
       return res.records.map(r => {
         const c = r.get('c').properties as any;
-        return { name: c.name as string, role: c.role as CharacterItem['role'], motivation: c.motivation ?? undefined, conflict: c.conflict ?? undefined, voice: c.voice ?? undefined };
+        return { name: c['schema:name'] as string, role: c['gh:role'] as CharacterItem['role'], motivation: c['gh:motivation'] ?? undefined, conflict: c['gh:conflict'] ?? undefined, voice: c['gh:voice'] ?? undefined };
       });
     } finally {
       await session.close();
@@ -254,11 +254,11 @@ export class StoryNeo4jRepository {
   async getBackstories(projectId: string): Promise<BackstoryItem[]> {
     const session = this.driver.session();
     try {
-      const q = `MATCH (:Project {id: $projectId})-[:HAS_BACKSTORY]->(b:Backstory) RETURN b ORDER BY b.updatedAt DESC`;
+      const q = `MATCH (:Project {id: $projectId})-[:HAS_BACKSTORY]->(b:\`gh:Backstory\`) RETURN b ORDER BY b.updatedAt DESC`;
       const res = await session.run(q, { projectId });
       return res.records.map(r => {
         const b = r.get('b').properties as any;
-        return { origin: b.origin as string, motivation: b.motivation ?? undefined, conflict: b.conflict ?? undefined };
+        return { origin: b['gh:origin'] as string, motivation: b['gh:motivation'] ?? undefined, conflict: b['gh:conflict'] ?? undefined };
       });
     } finally {
       await session.close();

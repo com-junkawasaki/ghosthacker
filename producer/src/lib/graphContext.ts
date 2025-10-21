@@ -1,6 +1,7 @@
 import { getNeo4jDriver } from "@/infra/neo4j/client";
+import { Node } from "@reactflow/core";
 
-type GenericNode = { id: string; type: string; label?: string; config?: Record<string, unknown> };
+type GenericNode = Node;
 
 export function createGraphContext() {
   const driver = getNeo4jDriver();
@@ -10,7 +11,8 @@ export function createGraphContext() {
     try {
       const cypher = `MATCH (c:Character {name: $name}) RETURN c LIMIT 1`;
       const r = await session.run(cypher, { name });
-      return r.records[0]?.toObject() ?? null;
+      const record = r.records[0]?.get("c");
+      return record ? record.properties : null;
     } finally {
       await session.close();
     }
@@ -18,26 +20,27 @@ export function createGraphContext() {
 
   return {
     // Context builders for RAG/prompts per modality
-    async buildTextContext(_n: GenericNode) { return { lore: await fetchCharacterBundle("Akito") }; },
-    async buildImageContext(_n: GenericNode) { return { style: "atmospheric-horror" }; },
-    async buildAudioContext(_n: GenericNode) { return { voice: "alloy" }; },
-    async buildVideoContext(_n: GenericNode) { return { duration: 300, aspect: "9:16" }; },
-    async buildPanelContext(_n: GenericNode) { return {}; },
-    async buildLayoutContext(_n: GenericNode) { return {}; },
-    async buildWebtoonExportContext(_n: GenericNode) { return {}; },
-    async buildRenderContext(_n: GenericNode) { return {}; },
-    async buildWattpadContext(_n: GenericNode) { return { includeImages: true }; },
-    async buildYouTubeContext(_n: GenericNode) { return { privacy: "unlisted" }; },
+    async buildTextContext(_n: GenericNode, _inputs: Record<string, unknown>) { return { lore: await fetchCharacterBundle("Akito") }; },
+    async buildImageContext(_n: GenericNode, _inputs: Record<string, unknown>) { return { style: "atmospheric-horror" }; },
+    async buildAudioContext(_n: GenericNode, _inputs: Record<string, unknown>) { return { voice: "alloy" }; },
+    async buildVideoContext(_n: GenericNode, _inputs: Record<string, unknown>) { return { duration: 300, aspect: "9:16" }; },
+    async buildPanelContext(_n: GenericNode, _inputs: Record<string, unknown>) { return {}; },
+    async buildLayoutContext(_n: GenericNode, _inputs: Record<string, unknown>) { return {}; },
+    async buildWebtoonExportContext(_n: GenericNode, _inputs: Record<string, unknown>) { return {}; },
+    async buildRenderContext(_n: GenericNode, _inputs: Record<string, unknown>) { return {}; },
+    async buildWattpadContext(_n: GenericNode, _inputs: Record<string, unknown>) { return { includeImages: true }; },
+    async buildYouTubeContext(_n: GenericNode, _inputs: Record<string, unknown>) { return { privacy: "unlisted" }; },
 
     // Node persistence/derivation placeholders
     async upsertCharacter(n: GenericNode) {
       const session = driver.session();
       try {
         const id = n.id;
-        const name = (n.config?.["name"] as string) ?? "Akito";
+        const name = (n.data?.config?.name as string) ?? "Akito";
         const q = `MERGE (c:Character {id: $id}) SET c.name = $name, c.updatedAt = datetime() RETURN c`;
         const r = await session.run(q, { id, name });
-        return { name: r.records[0]?.get("c").properties.name };
+        const record = r.records[0]?.get("c");
+        return { name: record ? record.properties.name : 'unknown' };
       } finally {
         await session.close();
       }
@@ -46,9 +49,9 @@ export function createGraphContext() {
       const session = driver.session();
       try {
         const id = n.id;
-        const origin = (n.config?.["origin"] as string) ?? "";
-        const motivation = (n.config?.["motivation"] as string) ?? "";
-        const conflict = (n.config?.["conflict"] as string) ?? "";
+        const origin = (n.data?.config?.origin as string) ?? "";
+        const motivation = (n.data?.config?.motivation as string) ?? "";
+        const conflict = (n.data?.config?.conflict as string) ?? "";
         const q = `MERGE (b:Backstory {id: $id}) SET b += { origin: $origin, motivation: $motivation, conflict: $conflict, updatedAt: datetime() } RETURN b`;
         await session.run(q, { id, origin, motivation, conflict });
         return { origin, motivation, conflict };
@@ -60,9 +63,9 @@ export function createGraphContext() {
       const session = driver.session();
       try {
         const id = n.id;
-        const setting = (n.config?.["setting"] as string) ?? "Near-future Tokyo";
-        const era = (n.config?.["era"] as string) ?? "2042";
-        const rules = (n.config?.["rules"] as string) ?? "Ghost-net protocols";
+        const setting = (n.data?.config?.setting as string) ?? "Near-future Tokyo";
+        const era = (n.data?.config?.era as string) ?? "2042";
+        const rules = (n.data?.config?.rules as string) ?? "Ghost-net protocols";
         const q = `MERGE (w:World {id: $id}) SET w += { setting: $setting, era: $era, rules: $rules, updatedAt: datetime() } RETURN w`;
         await session.run(q, { id, setting, era, rules });
         return { setting, era, rules };
@@ -70,12 +73,12 @@ export function createGraphContext() {
         await session.close();
       }
     },
-    async loadSource(n: GenericNode) {
+    async loadSource(_n: GenericNode) {
       const draft = { ok: true };
       return { draft };
     },
-    async composePrompt(n: GenericNode) {
-      const prompt = { type: n.type, style: n.config?.["style"] ?? "atmospheric" };
+    async composePrompt(n: GenericNode, inputs: Record<string, unknown>) {
+      const prompt = { type: n.type, style: n.data?.config?.style ?? "atmospheric", inputs };
       return { prompt };
     },
   };

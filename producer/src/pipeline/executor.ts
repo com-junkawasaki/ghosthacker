@@ -3,43 +3,52 @@ import { createGraphContext } from "@/lib/graphContext";
 import { withNodeSpan } from "@/observability/otel";
 import { providers } from "@/lib/ai/providers";
 import { ensureOutputs } from "@/schemas/nodes";
-import type { GenericNode, StoryTopology } from "./types";
 import { saveArtifact } from "@/infra/neo4j/artifactsRepo";
+import { buildExecutionPlan } from "./buildTopology";
+import type { Node, Edge } from "@reactflow/core";
 
-// topology is injected by caller; loader resides in API layer
-
-const handlers: Record<string, (n: GenericNode, ctx: ReturnType<typeof createGraphContext>) => Promise<Record<string, unknown>>> = {
-  SourceDoc: async (n, ctx) => ctx.loadSource(n),
-  Protagonist: async (n, ctx) => ctx.upsertCharacter(n),
-  Backstory: async (n, ctx) => ctx.upsertBackstory(n),
-  World: async (n, ctx) => ctx.upsertWorld(n),
-  Prompt: async (n, ctx) => ctx.composePrompt(n),
-  Writer: async (n, ctx) => providers.text.generate(n, await ctx.buildTextContext(n)),
-  ImageGen: async (n, ctx) => providers.image.generate(n, await ctx.buildImageContext(n)),
-  WebtoonPanelGen: async (n, ctx) => providers.panel.generate(n, await ctx.buildPanelContext(n)),
-  WebtoonLayout: async (n, ctx) => providers.layout.generate(n, await ctx.buildLayoutContext(n)),
-  WebtoonExport: async (n, ctx) => providers.export.webtoon(n, await ctx.buildWebtoonExportContext(n)),
-  TTS: async (n, ctx) => providers.audio.generate(n, await ctx.buildAudioContext(n)),
-  VideoGen: async (n, ctx) => providers.video.generate(n, await ctx.buildVideoContext(n)),
-  Render: async (n, ctx) => providers.video.render(n, await ctx.buildRenderContext(n)),
-  ExportWattpad: async (n, ctx) => providers.export.wattpad(n, await ctx.buildWattpadContext(n)),
-  PublishYouTube: async (n, ctx) => providers.publish.youtube(n, await ctx.buildYouTubeContext(n)),
+const handlers: Record<string, (n: Node, inputs: Record<string, unknown>, ctx: ReturnType<typeof createGraphContext>) => Promise<Record<string, unknown>>> = {
+  SourceDoc: async (n, _, ctx) => ctx.loadSource(n),
+  Protagonist: async (n, _, ctx) => ctx.upsertCharacter(n),
+  Backstory: async (n, _, ctx) => ctx.upsertBackstory(n),
+  World: async (n, _, ctx) => ctx.upsertWorld(n),
+  Prompt: async (n, inputs, ctx) => ctx.composePrompt(n, inputs),
+  Writer: async (n, inputs, ctx) => providers.text.generate(n, await ctx.buildTextContext(n, inputs)),
+  ImageGen: async (n, inputs, ctx) => providers.image.generate(n, await ctx.buildImageContext(n, inputs)),
+  WebtoonPanelGen: async (n, inputs, ctx) => providers.panel.generate(n, await ctx.buildPanelContext(n, inputs)),
+  WebtoonLayout: async (n, inputs, ctx) => providers.layout.generate(n, await ctx.buildLayoutContext(n, inputs)),
+  WebtoonExport: async (n, inputs, ctx) => providers.export.webtoon(n, await ctx.buildWebtoonExportContext(n, inputs)),
+  TTS: async (n, inputs, ctx) => providers.audio.generate(n, await ctx.buildAudioContext(n, inputs)),
+  VideoGen: async (n, inputs, ctx) => providers.video.generate(n, await ctx.buildVideoContext(n, inputs)),
+  Render: async (n, inputs, ctx) => providers.video.render(n, await ctx.buildRenderContext(n, inputs)),
+  ExportWattpad: async (n, inputs, ctx) => providers.export.wattpad(n, await ctx.buildWattpadContext(n, inputs)),
+  PublishYouTube: async (n, inputs, ctx) => providers.publish.youtube(n, await ctx.buildYouTubeContext(n, inputs)),
 };
 
-export async function runPipeline(topology: StoryTopology): Promise<void> {
+export async function runPipeline(nodes: Node[], edges: Edge[]): Promise<void> {
   void env; // ensure env tree-shaken correctness
   const ctx = createGraphContext();
+  const { executionOrder, dependencies } = buildExecutionPlan(nodes, edges);
+  const artifacts = new Map<string, unknown>();
+  const nodeMap = new Map(nodes.map(n => [n.id, n]));
 
-  for (const step of topology.executionOrder) {
-    const nodeIds = Array.isArray(step) ? step : [step];
+  for (const level of executionOrder) {
     await Promise.all(
-      nodeIds.map(async (id) => {
-        const node = topology.pipeline.find((n) => n.id === id);
-        if (!node) throw new Error(`Node not found: ${id}`);
-        return withNodeSpan(node, async () => {
-          const out = await handlers[node.type](node, ctx);
-          ensureOutputs(node.type, out);
-          await saveArtifact({ nodeId: node.id, nodeType: node.type, label: node.label, payload: out });
+      level.map(async (id) => {
+        const node = nodeMap.get(id);
+        if (!node || !node.type) throw new Error(`Node not found or has no type: ${id}`);
+        
+        const nodeDependencies = dependencies.get(id) ?? [];
+        const inputs = nodeDependencies.reduce((acc, depId) => {
+            acc[depId] = artifacts.get(depId);
+            return acc;
+        }, {} as Record<string, unknown>);
+
+        return withNodeSpan({id: node.id, type: node.type }, async () => {
+          const out = await handlers[node.type!](node, inputs, ctx);
+          ensureOutputs(node.type!, out);
+          artifacts.set(id, out);
+          await saveArtifact({ nodeId: node.id, nodeType: node.type!, label: node.data.label, payload: out });
           return out;
         });
       })

@@ -5,8 +5,9 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 export const providers = {
   text: {
     async generate(n: unknown, ctx?: unknown) {
+      const node = n as { data?: { config?: unknown } };
       const system = "You are a world-consistent writer. Use given lore and constraints.";
-      const user = JSON.stringify({ prompt: (n as any)?.config, context: ctx });
+      const user = JSON.stringify({ prompt: node?.data?.config, context: ctx });
       const r = await openai.chat.completions.create({
         model: "gpt-4o-mini",
         messages: [
