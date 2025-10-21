@@ -47,6 +47,27 @@
       },
       outputs: ['setting', 'era', 'rules'],
     },
+    
+    // Narrative Structure Node
+    {
+      id: 'narrative-structure',
+      type: 'Narrative',
+      label: 'Narrative Structure',
+      // UI integration
+      ui: { route: '/canvas/story' },
+      config: {
+        synopsis: 'A ghost hacker helps clients integrate their digital ghosts, blending episodic healing with a larger mystery surrounding the Tree of Life.',
+        // ARIA-style atmosphere + Kimetsu-no-Yaiba-style episodic catharsis
+        structure: 'Hybrid: Linear Episodic + Archipelago Arc',
+        beats: [
+          { id: 'beat-01', label: 'Session Start', purpose: 'setup', targetLength: 200 },
+          { id: 'beat-02', label: 'Ghost Encounter', purpose: 'conflict', targetLength: 800 },
+          { id: 'beat-03', label: 'Integration & Catharsis', purpose: 'climax', targetLength: 400 },
+        ],
+      },
+      outputs: ['synopsis', 'structure', 'beats'],
+    },
+
     // Source Document Node
     {
       id: 'source-ep1',
@@ -66,7 +87,7 @@
       id: 'prompt-story',
       type: 'Prompt',
       label: 'Story Prompt',
-      dependsOn: ['source-ep1', 'lore-protagonist', 'lore-backstory', 'lore-world'],
+      dependsOn: ['source-ep1', 'lore-protagonist', 'lore-backstory', 'lore-world', 'narrative-structure'],
       // UI integration
       ui: { route: '/canvas/prompt-story' },
       config: {
@@ -242,7 +263,7 @@
   // Execution topology (topological sort order)
   executionOrder: [
     'source-ep1',
-    ['lore-protagonist', 'lore-backstory', 'lore-world'],
+    ['lore-protagonist', 'lore-backstory', 'lore-world', 'narrative-structure'],
     'prompt-story',
     'writer-content',
     ['image-gen', 'tts-narration'], // Parallel execution
