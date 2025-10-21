@@ -1,3 +1,18 @@
+const required: Record<string, string[]> = {
+  Writer: ["script"],
+  ImageGen: ["images"],
+  WebtoonPanelGen: ["panels"],
+  WebtoonLayout: ["layout"],
+  WebtoonExport: ["episode"],
+  VideoGen: ["video"],
+  ExportWattpad: ["wattpad_package"],
+};
+
+export function ensureOutputs(nodeType: string, out: Record<string, unknown>) {
+  const keys = required[nodeType] ?? [];
+  for (const k of keys) if (!(k in out)) throw new Error(`Missing output "${k}" for ${nodeType}`);
+}
+
 import { object, string, number, boolean, array } from 'valibot';
 
 // Merkle DAG: Node type -> validation schema mapping
