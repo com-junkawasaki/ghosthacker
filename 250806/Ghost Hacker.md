@@ -1,8 +1,5 @@
 Ghost Hacker
 
-んー ちゃん
-N-Chan.
-
 本名は tamaki 
 主人公は21歳前後、大学生、女の子
 東京
@@ -10,6 +7,7 @@ N-Chan.
 2065
 
 情報生命体が「Ghost」と認められている。
+
 Ghostが可視化されGhost同士がやりとりもしている。
 
 Ghostは機械に宿るため

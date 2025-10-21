@@ -295,6 +295,36 @@ export async function loadPlatforms(): Promise<PlatformsInput | null> {
   }
 }
 
+export async function loadEpisodes(): Promise<{ episodeId: string; sourcePath: string }[]> {
+  try {
+    const eps = await storyRepository.getEpisodes(DEFAULT_PROJECT_ID);
+    return (eps ?? []).map(e => ({ episodeId: e.episodeId, sourcePath: e.sourcePath }));
+  } catch (error) {
+    console.error('Failed to load episodes:', error);
+    return [];
+  }
+}
+
+export async function loadBackstories(): Promise<{ origin: string; motivation?: string; conflict?: string; characterName?: string }[]> {
+  try {
+    const bs = await storyRepository.getBackstories(DEFAULT_PROJECT_ID);
+    return bs ?? [];
+  } catch (error) {
+    console.error('Failed to load backstories:', error);
+    return [];
+  }
+}
+
+export async function loadCharacters(): Promise<{ name: string; role: 'protagonist'|'antagonist'|'support'; motivation?: string; conflict?: string; voice?: string }[]> {
+  try {
+    const cs = await storyRepository.getCharacters(DEFAULT_PROJECT_ID);
+    return cs ?? [];
+  } catch (error) {
+    console.error('Failed to load characters:', error);
+    return [];
+  }
+}
+
 // Seed canvas by deriving config from saved data and persisting to Neo4j
 export async function seedCanvas(): Promise<ServerActionResult<{ nodes: unknown[]; edges: unknown[] }>> {
   try {

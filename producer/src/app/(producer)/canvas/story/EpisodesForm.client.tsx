@@ -1,8 +1,8 @@
 'use client';
 
-import { useId, useState } from 'react';
+import { useId, useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
-import { submitEpisodes } from './actions';
+import { submitEpisodes, loadEpisodes } from './actions';
 
 type Episode = { id: string; episodeId: string; sourcePath: string };
 
@@ -31,6 +31,12 @@ export default function EpisodesForm() {
   const [message, setMessage] = useState<string | null>(null);
   const [errors, setErrors] = useState<string[] | null>(null);
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    loadEpisodes().then(eps => {
+      if (eps.length > 0) setList(eps.map(e => ({ id: nanoid(6), ...e })));
+    }).catch(()=>{});
+  }, []);
 
   const add = () => setList(prev => [...prev, { id: nanoid(6), episodeId: '', sourcePath: '' }]);
   const remove = (id: string) => setList(prev => prev.filter(e => e.id !== id));

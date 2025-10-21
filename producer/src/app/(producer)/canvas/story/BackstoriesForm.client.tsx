@@ -1,8 +1,8 @@
 'use client';
 
-import { useId, useState } from 'react';
+import { useId, useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
-import { submitBackstories } from './actions';
+import { submitBackstories, loadBackstories } from './actions';
 
 type Backstory = { id: string; origin: string; motivation?: string; conflict?: string; characterName?: string };
 
@@ -41,6 +41,12 @@ export default function BackstoriesForm() {
   const [message, setMessage] = useState<string | null>(null);
   const [errors, setErrors] = useState<string[] | null>(null);
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    loadBackstories().then(bs => {
+      if (bs.length > 0) setList(bs.map(b => ({ id: nanoid(6), ...b })));
+    }).catch(()=>{});
+  }, []);
 
   const add = () => setList(prev => [...prev, { id: nanoid(6), origin: '' }]);
   const remove = (id: string) => setList(prev => prev.filter(b => b.id !== id));

@@ -1,8 +1,8 @@
 'use client';
 
-import { useId, useState } from 'react';
+import { useId, useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
-import { submitCharacters } from './actions';
+import { submitCharacters, loadCharacters } from './actions';
 
 type Role = 'protagonist' | 'antagonist' | 'support';
 type Character = { id: string; name: string; role: Role; motivation?: string; conflict?: string; voice?: string };
@@ -57,6 +57,12 @@ export default function CharactersForm() {
   const [message, setMessage] = useState<string | null>(null);
   const [errors, setErrors] = useState<string[] | null>(null);
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    loadCharacters().then(cs => {
+      if (cs.length > 0) setList(cs.map(c => ({ id: nanoid(6), ...c })));
+    }).catch(()=>{});
+  }, []);
 
   const add = () => setList(prev => [...prev, { id: nanoid(6), name: '', role: 'support' }]);
   const remove = (id: string) => setList(prev => prev.filter(c => c.id !== id));
