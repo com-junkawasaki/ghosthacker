@@ -1,6 +1,179 @@
 
-Tree Of Life
+# Ghost Hacker Producer Pipeline
 
- 教育・子育て支援向けに「スピリチュアル・エンジニアリング実践ワークブック」を設計
+AI駆動型コンテンツ生成システムで、Ghost Hackerストーリーを多様なフォーマット（Webtoon、Wattpad、YouTube動画）で生成します。
 
+## 概要
+
+Ghost Hackerは、2065年の水の都・東京を舞台に、情報生命体（Ghost）と人間の絆を描いた物語です。このProducer Pipelineは、Neo4jベースのストーリーグラフから始まり、AI生成コンテンツを通じて複数のメディアフォーマットでストーリーを展開します。
+
+## アーキテクチャ
+
+Merkle DAGベースのトポロジカル実行パイプライン：
+
+```
+Story Graph (Neo4j) → Lore Generation → Prompt Composition → AI Writer
+                      ↓
+               ┌──────┴──────┐
+               │             │
+         Image Gen      TTS Narration
+               │             │
+               ↓             ↓
+         Webtoon Panels      │
+               ↓             │
+         Webtoon Layout      │
+               ↓             │
+         Webtoon Export      │
+               ↓             │
+         Video Generation    │
+               ↓             │
+         Video Render ───────┘
+               ↓
+         ┌─────┴─────┐
+         │           │
+    Wattpad Export   YouTube Upload
+```
+
+## 特徴
+
+- **マルチフォーマット出力**: Webtoon、Wattpad小説、YouTube動画
+- **並行処理**: 画像生成とTTSを並行実行で効率化
+- **品質保証**: トポロジカルソートによる依存関係管理
+- **拡張性**: Neo4jベースのストーリーグラフで容易な拡張
+
+## 技術スタック
+
+- **Frontend**: Next.js 14, React 18, TypeScript
+- **Backend**: Node.js, Neo4j, @neo4j/cypher-builder
+- **AI**: GPT-4, Flux 1.1 Pro, Sora
+- **Styling**: Tailwind CSS, shadcn/ui
+- **State**: Zustand, React Flow (for pipeline visualization)
+- **Build**: pnpm, tsup
+
+## プロジェクト構造
+
+```
+├── producer/              # Next.jsアプリケーション (メイン)
+│   ├── src/
+│   │   ├── app/(producer)/canvas/  # PipelineノードごとのUIページ
+│   │   │   ├── story/              # ストーリー設定フォーム
+│   │   │   ├── lore/               # キャラクター/世界観設定
+│   │   │   ├── prompt-story/       # AIプロンプト生成
+│   │   │   ├── writer-content/     # コンテンツ書き込み
+│   │   │   ├── image-gen/          # 画像生成
+│   │   │   ├── webtoon-*/          # Webtoon生成パイプライン
+│   │   │   ├── tts-narration/      # 音声合成
+│   │   │   ├── video-gen/          # 動画生成
+│   │   │   ├── export-wattpad/     # Wattpad出力
+│   │   │   └── publish-youtube/    # YouTube公開
+│   │   ├── components/             # Reactコンポーネント
+│   │   ├── lib/                    # ユーティリティ
+│   │   │   ├── ai/                 # AIプロバイダー
+│   │   │   ├── story-neo4j.ts      # Neo4jクライアント
+│   │   │   └── videoRenderer.ts    # 動画レンダラー
+│   │   ├── ontology/               # JSON-LDスキーマ定義
+│   │   ├── pipeline/               # パイプライン実行エンジン
+│   │   │   ├── node-types/         # 各ノードの実装
+│   │   │   ├── executor.ts         # パイプライン実行器
+│   │   │   └── buildTopology.ts    # トポロジー構築
+│   │   ├── scripts/                # データ処理スクリプト
+│   │   │   ├── create-project.ts   # プロジェクト生成
+│   │   │   ├── import-episode-graph.ts # エピソードインポート
+│   │   │   └── generate-episode-jsonld.ts # JSON-LD生成
+│   │   ├── server/routers/         # tRPC APIルーター
+│   │   └── observability/          # 監視・計測
+│   └── story.jsonnet               # Pipelineトポロジー定義 (Merkle DAG)
+├── 251022/                # 統合ナレッジベース (JSON-LD)
+│   └── ghost-hacker.jsonld # RDF/JS準拠の統合データ
+├── 250806/                # ストーリー資産・設定
+│   ├── episodes/           # エピソード原稿
+│   ├── character/          # キャラクター設定
+│   ├── setting/            # 世界設定
+│   └── drawstyle.md        # 作画スタイルガイド
+├── 250805_gemini/         # キャラクター設計・世界構築
+├── 250501/                # 原作ストーリードラフト
+└── docker-compose.yml      # 開発環境構成
+```
+
+## クイックスタート
+
+### 環境構築
+
+```bash
+cd producer
+pnpm install
+pnpm dev
+```
+
+### データインポート
+
+ストーリー素材をNeo4jにインポート：
+
+```bash
+# キャラクター・世界設定のインポート
+pnpm import:lore
+
+# キャラクター分析
+pnpm analyze:characters
+
+# エピソードグラフのインポート
+pnpm import:episode
+
+# エピソードJSON-LD生成
+pnpm generate:episode-jsonld
+
+# 一括分析・インポート
+pnpm analyze-and-import
+```
+
+## Pipeline実行順序
+
+1. **ストーリーグラフ取得** (Neo4j)
+2. **Lore生成** (キャラクター設定、世界観、ナラティブ構造)
+3. **プロンプト生成** (AI向け指示生成)
+4. **コンテンツ書き込み** (GPT-4)
+5. **メディア生成** (画像+TTS並行処理)
+6. **フォーマット変換** (Webtoonレイアウト、動画合成)
+7. **出力パッケージング** (各プラットフォーム向け)
+
+## ロードマップ
+
+### Phase 1: Core Pipeline (Current)
+- [x] Story graph integration (Neo4j)
+- [x] Basic lore generation
+- [x] AI content writing
+- [x] Image generation (Flux)
+- [x] Webtoon panel layout
+- [x] TTS narration
+- [ ] Video generation (Sora)
+- [ ] Multi-platform export
+
+### Phase 2: Enhanced Features
+- [ ] Interactive story branching
+- [ ] Real-time pipeline monitoring
+- [ ] Quality assurance automation
+- [ ] Multi-language support
+- [ ] Collaborative editing
+
+### Phase 3: Production Scale
+- [ ] Distributed pipeline execution
+- [ ] Advanced AI model integration
+- [ ] Analytics & optimization
+- [ ] API commercialization
+
+## 貢献
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## ライセンス
+
+MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+*Ghost Hacker: Healing connections in a disconnected world*
  

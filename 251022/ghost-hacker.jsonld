@@ -1,0 +1,269 @@
+{
+  "@context": {
+    "@base": "https://ghosthacker.example.com/",
+    "@vocab": "https://schema.org/",
+    "gh": "https://ghosthacker.example.com/vocab#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "dc": "http://purl.org/dc/terms/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+
+    "CreativeWork": "https://schema.org/CreativeWork",
+    "Person": "https://schema.org/Person",
+    "Organization": "https://schema.org/Organization",
+    "Place": "https://schema.org/Place",
+    "Intangible": "https://schema.org/Intangible",
+
+    "name": {"@id": "https://schema.org/name", "@type": "xsd:string"},
+    "description": {"@id": "https://schema.org/description", "@type": "xsd:string"},
+    "age": {"@id": "https://schema.org/age", "@type": "xsd:integer"},
+    "occupation": {"@id": "https://schema.org/occupation", "@type": "xsd:string"},
+    "hasOccupation": {"@id": "https://schema.org/hasOccupation"},
+    "knows": {"@id": "https://schema.org/knows"},
+    "worksFor": {"@id": "https://schema.org/worksFor"},
+    "founder": {"@id": "https://schema.org/founder"},
+    "parent": {"@id": "https://schema.org/parent"},
+    "spouse": {"@id": "https://schema.org/spouse"},
+    "sibling": {"@id": "https://schema.org/sibling"},
+    "colleague": {"@id": "https://schema.org/colleague"},
+
+    "gh:ghost": {"@type": "@id"},
+    "gh:ghostType": {"@type": "xsd:string"},
+    "gh:hackingSkill": {"@type": "xsd:string"},
+    "gh:master": {"@type": "@id"},
+    "gh:createdBy": {"@type": "@id"},
+    "gh:year": {"@type": "xsd:gYear"},
+    "gh:theme": {"@type": "xsd:string"},
+    "gh:writingStyle": {"@type": "xsd:string"},
+    "gh:artStyle": {"@type": "xsd:string"},
+    "gh:soundtrack": {"@type": "@id"},
+    "gh:technology": {"@type": "@id"},
+    "gh:certification": {"@type": "@id"},
+    "gh:companyType": {"@type": "xsd:string"},
+    "gh:location": {"@type": "@id"},
+    "gh:hasCharacter": {"@type": "@id"},
+    "gh:hasSetting": {"@type": "@id"},
+    "gh:hasTechnology": {"@type": "@id"},
+    "gh:hasCompany": {"@type": "@id"}
+  },
+  "@graph": [
+    {
+      "@id": "project:ghost-hacker",
+      "@type": "CreativeWork",
+      "name": "Ghost Hacker",
+      "description": "A story about healing connections in a disconnected world through ghost hacking technology",
+      "gh:theme": "Healing connections in a disconnected world",
+      "gh:writingStyle": "一人称現在形の口語的・会話的文体 (Wattpad風)",
+      "gh:year": 2065,
+      "gh:artStyle": "天野こずえ、田村由美風のminimalist yet detailed portrait、ダイナミック線描、多様パース、コントラスト設計",
+      "gh:hasCharacter": [
+        {"@id": "character:tamaki"},
+        {"@id": "character:nee-chan"},
+        {"@id": "character:kaede"},
+        {"@id": "character:aoi"},
+        {"@id": "character:ren"},
+        {"@id": "character:akito"},
+        {"@id": "character:hibiki"},
+        {"@id": "character:elias"},
+        {"@id": "character:logos"}
+      ],
+      "gh:hasSetting": [
+        {"@id": "setting:tokyo"},
+        {"@id": "setting:ghost-concept"}
+      ],
+      "gh:hasTechnology": [
+        {"@id": "tech:ghost-hacking"},
+        {"@id": "tech:tree-of-life-exam"}
+      ],
+      "gh:hasCompany": [
+        {"@id": "company:rens-office"},
+        {"@id": "company:gedatsu"},
+        {"@id": "company:ai-company"},
+        {"@id": "company:gb-inc"}
+      ],
+      "gh:soundtrack": [
+        {"@id": "sound:choro-club"},
+        {"@id": "sound:freetempo"}
+      ]
+    },
+    {
+      "@id": "character:tamaki",
+      "@type": "Person",
+      "name": "Tamaki",
+      "description": "21歳前後、大学生、女の子。日本人とオランダ人のハーフ。イメージカラーは薄い紫。渋谷に集う同世代のようにハイブランドの服を自分流に着こなすファッションセンスを持つ。",
+      "age": 21,
+      "occupation": "University Student / Ghost Hacker",
+      "gh:ghost": {"@id": "character:nee-chan"},
+      "worksFor": {"@id": "company:rens-office"},
+      "parent": [{"@id": "character:ren"}, {"@id": "character:akito"}],
+      "knows": [
+        {"@id": "character:kaede"},
+        {"@id": "character:aoi"},
+        {"@id": "character:nee-chan"}
+      ]
+    },
+    {
+      "@id": "character:nee-chan",
+      "@type": ["Person", "gh:Ghost"],
+      "name": "Nee-Chan",
+      "description": "TamakiのパートナーGhost。天才プログラマーAkitoが作り上げた究極のGhost。情報空間では人気のヴァーチャルアバターとしても活動し、その収益でTamakiの生活を支える。フォトニクス計算によるヨタバイト級の計算量を持つ。",
+      "gh:ghostType": "Artificial Intelligence",
+      "gh:master": {"@id": "character:tamaki"},
+      "gh:createdBy": {"@id": "character:akito"}
+    },
+    {
+      "@id": "character:kaede",
+      "@type": "Person",
+      "name": "Kaede",
+      "description": "頼れる先輩Ghost Hacker。階級が高く、Renの後見を任されている。",
+      "occupation": "Senior Ghost Hacker",
+      "worksFor": {"@id": "company:rens-office"},
+      "knows": [
+        {"@id": "character:tamaki"},
+        {"@id": "character:aoi"},
+        {"@id": "character:ren"}
+      ]
+    },
+    {
+      "@id": "character:aoi",
+      "@type": "Person",
+      "name": "Aoi",
+      "description": "純朴で可愛い青年。駆け出しのGhost Hacker。",
+      "occupation": "Junior Ghost Hacker",
+      "worksFor": {"@id": "company:rens-office"},
+      "knows": [
+        {"@id": "character:tamaki"},
+        {"@id": "character:kaede"}
+      ]
+    },
+    {
+      "@id": "character:ren",
+      "@type": ["Person", "gh:Ghost"],
+      "name": "Ren",
+      "description": "Tamakiの父親であり、事務所の創設者。表向きは故人だが、実際は情報生命体(Ghost)として存在し、システムに溶け込んでいる。",
+      "occupation": "Founder / Information Lifeform",
+      "founder": {"@id": "company:rens-office"},
+      "parent": {"@id": "character:tamaki"},
+      "knows": [
+        {"@id": "character:akito"},
+        {"@id": "character:kaede"}
+      ]
+    },
+    {
+      "@id": "character:akito",
+      "@type": "Person",
+      "name": "Akito",
+      "description": "天才プログラマー。Nee-Chanを作成した人物。",
+      "occupation": "Genius Programmer",
+      "parent": {"@id": "character:tamaki"},
+      "knows": {"@id": "character:ren"}
+    },
+    {
+      "@id": "character:hibiki",
+      "@type": "Person",
+      "name": "Hibiki",
+      "description": "音楽スペシャリスト。空間周波数を調整し、ハッカーとGhostの精神を安定させる。",
+      "occupation": "Music Specialist"
+    },
+    {
+      "@id": "character:elias",
+      "@type": "Person",
+      "name": "Elias",
+      "description": "天才物理学者。神のシステムを論理で解体しようとするが、孤独のバグに苦しむ。",
+      "occupation": "Physicist",
+      "gh:ghost": {"@id": "character:logos"}
+    },
+    {
+      "@id": "character:logos",
+      "@type": ["Person", "gh:Ghost"],
+      "name": "Logos",
+      "description": "EliasのGhost。梟をモチーフとする。",
+      "gh:ghostType": "Human-derived",
+      "gh:master": {"@id": "character:elias"}
+    },
+    {
+      "@id": "setting:tokyo",
+      "@type": "Place",
+      "name": "Tokyo (水の都)",
+      "description": "運河と川が縦横に走る水の街。沖縄の海のように澄んだ青い水。未来の東京で、ガラス張りの超高層ビルが立ち並ぶ。",
+      "gh:year": 2065
+    },
+    {
+      "@id": "setting:ghost-concept",
+      "@type": "Intangible",
+      "name": "Ghost Concept",
+      "description": "情報のみで構成される生命体。人間の思考・感情から生まれ、死者の残留思念、または人工的に作成されたAIを含む。人間には基本的に一人のGhostがつき、主人はMasterと呼ばれる。",
+      "gh:ghostType": ["Human-derived", "Artificial Intelligence", "Alien"]
+    },
+    {
+      "@id": "tech:ghost-hacking",
+      "@type": "Intangible",
+      "name": "Ghost Hacking",
+      "description": "Ghostの情報構造（心）に干渉し、内面的な葛藤（結び目）を解消する行為。ハッカーは自身の生命エネルギー（光子）を使ってGhostの意識と同期し、精神的な空間にダイブする。",
+      "gh:certification": {"@id": "tech:tree-of-life-exam"}
+    },
+    {
+      "@id": "tech:tree-of-life-exam",
+      "@type": "Intangible",
+      "name": "TOL (Tree of Life) Certification",
+      "description": "Ghost Hackerの国家資格試験。2回の試験があり、非常に難しい。合格しないと職業につけない。"
+    },
+    {
+      "@id": "company:rens-office",
+      "@type": "Organization",
+      "name": "Ren's Office",
+      "description": "Renが創設した小さな事務所。Tamakiたちが働くGhost Hacking会社。",
+      "founder": {"@id": "character:ren"},
+      "gh:companyType": "Ghost Hacking Firm"
+    },
+    {
+      "@id": "company:gedatsu",
+      "@type": "Organization",
+      "name": "Gedatsu",
+      "description": "仏教の解脱概念に着想を得たGhost Hacking会社。",
+      "gh:companyType": "Ghost Hacking Competitor"
+    },
+    {
+      "@id": "company:ai-company",
+      "@type": "Organization",
+      "name": "Ai",
+      "description": "愛の概念に焦点を当てたGhost Hacking会社。",
+      "gh:companyType": "Ghost Hacking Competitor"
+    },
+    {
+      "@id": "company:gb-inc",
+      "@type": "Organization",
+      "name": "GB Inc. (Good and Bad)",
+      "description": "問題を引き起こすことで知られるGhost Hacking会社。",
+      "gh:companyType": "Ghost Hacking Competitor"
+    },
+    {
+      "@id": "sound:choro-club",
+      "@type": "Intangible",
+      "name": "Choro Club",
+      "description": "Ghost Hackerプロジェクトのサウンドトラックアーティスト"
+    },
+    {
+      "@id": "sound:freetempo",
+      "@type": "Intangible",
+      "name": "Freetempo",
+      "description": "Ghost Hackerプロジェクトのサウンドトラックアーティスト"
+    },
+    {
+      "@id": "style:writing",
+      "@type": "Intangible",
+      "name": "Writing Style",
+      "description": "Wattpadで最も支持される文体。一人称視点、現在形時制、口語的・会話的トーン。",
+      "gh:writingStyle": "一人称現在形の口語的・会話的文体"
+    },
+    {
+      "@id": "style:art",
+      "@type": "Intangible",
+      "name": "Art Style",
+      "description": "天野こずえ・田村由美風。minimalist yet detailed portrait。ダイナミック線描、多様パース、コントラスト設計。静かな身体言語で感情表現。",
+      "gh:artStyle": "天野こずえ、田村由美風のminimalist yet detailed portrait"
+    }
+  ]
+}
