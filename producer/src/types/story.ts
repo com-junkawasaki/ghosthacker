@@ -7,7 +7,18 @@ export type Result<T> = { ok: true; value: T } | { ok: false; faults: Fault[] };
 
 export type Genre = 'horror' | 'mystery' | 'thriller' | 'romance' | 'sci-fi' | 'fantasy';
 export type Tone = 'atmospheric' | 'comedic' | 'dark' | 'hopeful';
-export type Structure = '3-act' | '4-act' | '8-sequence' | 'webtoon-episodic';
+export type Structure =
+  | '3-act'
+  | '4-act'
+  | '8-sequence'
+  | 'webtoon-episodic'
+  | 'Episodic Arc Structure'
+  | 'Linear Static Episodic'
+  | 'Complete Episodic Independence'
+  | 'Hybrid Gag/Serious'
+  | 'Growth Arc Chain'
+  | 'Archipelago Arc Chain + Meta-Mystery'
+  | 'Hybrid: Linear Episodic + Archipelago Arc';
 export type Role = 'protagonist' | 'antagonist' | 'support';
 
 export const ProjectSchema = object({
@@ -29,7 +40,19 @@ export const BeatSchema = object({
 
 export const NarrativeSchema = object({
   synopsis: pipe(string(), minLength(1), maxLength(1200 * 6)), // rough char cap
-  structure: picklist(['3-act', '4-act', '8-sequence', 'webtoon-episodic'] as const),
+  structure: picklist([
+    '3-act',
+    '4-act',
+    '8-sequence',
+    'webtoon-episodic',
+    'Episodic Arc Structure',
+    'Linear Static Episodic',
+    'Complete Episodic Independence',
+    'Hybrid Gag/Serious',
+    'Growth Arc Chain',
+    'Archipelago Arc Chain + Meta-Mystery',
+    'Hybrid: Linear Episodic + Archipelago Arc',
+  ] as const),
   beats: optional(array(BeatSchema), []),
 });
 

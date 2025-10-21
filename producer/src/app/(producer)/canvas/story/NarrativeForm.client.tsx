@@ -4,7 +4,19 @@ import { useId, useMemo, useState, useEffect } from 'react';
 import { submitNarrative, loadNarrative } from './actions';
 import { nanoid } from 'nanoid';
 
-const STRUCTURES = ['3-act','4-act','8-sequence','webtoon-episodic'] as const;
+const STRUCTURES = [
+  "3-act",
+  "4-act",
+  "8-sequence",
+  "webtoon-episodic",
+  "Episodic Arc Structure", // ジャンプ漫画の基本構成
+  "Linear Static Episodic", // ARIA型
+  "Complete Episodic Independence", // こち亀型
+  "Hybrid Gag/Serious", // 銀魂型
+  "Growth Arc Chain", // NARUTO型
+  "Archipelago Arc Chain + Meta-Mystery", // ONE PIECE型
+  "Hybrid: Linear Episodic + Archipelago Arc", // 提案ハイブリッド型
+] as const;
 
 type Beat = { id: string; label: string; purpose: 'setup'|'conflict'|'climax'; targetLength: number };
 

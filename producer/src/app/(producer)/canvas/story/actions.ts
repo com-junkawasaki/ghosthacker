@@ -57,7 +57,18 @@ export async function submitOverview(input: ProjectInput): Promise<ServerActionR
 
 export type NarrativeInput = {
   synopsis: string;
-  structure: '3-act' | '4-act' | '8-sequence' | 'webtoon-episodic';
+  structure:
+    | '3-act'
+    | '4-act'
+    | '8-sequence'
+    | 'webtoon-episodic'
+    | 'Episodic Arc Structure'
+    | 'Linear Static Episodic'
+    | 'Complete Episodic Independence'
+    | 'Hybrid Gag/Serious'
+    | 'Growth Arc Chain'
+    | 'Archipelago Arc Chain + Meta-Mystery'
+    | 'Hybrid: Linear Episodic + Archipelago Arc';
   beats?: { id: string; label: string; purpose: 'setup' | 'conflict' | 'climax'; targetLength: number }[];
 };
 
