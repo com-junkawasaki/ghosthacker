@@ -12,6 +12,27 @@ const BeatSchema = z.object({
   targetLength: z.number(),
 });
 
+const MediaObjectSchema = z.object({
+  "@type": z.union([
+    z.literal("schema:TextDigitalDocument"),
+    z.literal("schema:ImageObject"),
+    z.literal("schema:VideoObject"),
+    z.literal("schema:AudioObject"),
+  ]),
+  "schema:contentUrl": z.string(),
+  "schema:name": z.string().optional(),
+  "schema:description": z.string().optional(),
+});
+
+const EpisodeInputSchema = z.object({
+  "@id": z.string(),
+  "@type": z.literal("gh:Episode"),
+  "schema:name": z.string(),
+  "schema:episodeNumber": z.string(),
+  "gh:hasPart": z.array(MediaObjectSchema).optional(),
+});
+
+
 export const storyRouter = router({
   submitOverview: publicProcedure
     .input(z.object({
@@ -121,10 +142,7 @@ export const storyRouter = router({
       }
     }),
   submitEpisodes: publicProcedure
-    .input(z.array(z.object({
-      episodeId: z.string(),
-      sourcePath: z.string(),
-    })))
+    .input(z.array(EpisodeInputSchema))
     .mutation(async ({ input }) => {
       try {
         await storyRepository.saveEpisodes(PROJECT_ID, input);

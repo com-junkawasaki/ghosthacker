@@ -11,7 +11,19 @@ export type Character = {
 	conflict?: string;
 	voice?: string;
 };
-export type Episode = { episodeId: string; sourcePath: string };
+export type MediaObject = {
+  "@type": | "schema:TextDigitalDocument" | "schema:ImageObject" | "schema:VideoObject" | "schema:AudioObject";
+  "schema:contentUrl": string;
+  "schema:name"?: string;
+  "schema:description"?: string;
+};
+
+export type Episode = {
+  "@id": string;
+  "schema:name": string;
+  "schema:episodeNumber": string;
+  "gh:hasPart"?: MediaObject[];
+};
 
 export const STRUCTURES = [
 	"3-act",

@@ -1,6 +1,6 @@
 import { getNeo4jDriver } from '../infra/neo4j/client';
 import * as Cypher from '@neo4j/cypher-builder';
-import { STRUCTURES, TONES, ART_STYLES, PALETTES, VOICES, TEMPOS, MUSIC } from '@/app/(producer)/canvas/story/types';
+import type { STRUCTURES, TONES, ART_STYLES, PALETTES, VOICES, TEMPOS, MUSIC } from '@/app/(producer)/canvas/story/types';
 
 // Merkle DAG: story-neo4j -> neo4j-driver -> cypher-builder
 // Story data persistence layer using Neo4j graph database
@@ -32,12 +32,27 @@ export interface NarrativeNode {
   updatedAt: Date;
 }
 
+export type MediaObject = {
+  "@type": | "schema:TextDigitalDocument" | "schema:ImageObject" | "schema:VideoObject" | "schema:AudioObject";
+  "schema:contentUrl": string;
+  "schema:name"?: string;
+  "schema:description"?: string;
+};
+
 export interface EpisodeNode {
-  id: string;
-  episodeId: string;
-  sourcePath: string;
+  id: string; // maps to @id
+  name: string;
+  episodeNumber: string;
+  hasPart?: MediaObject[];
   createdAt: Date;
   updatedAt: Date;
+}
+
+export type EpisodeInput = {
+  "@id": string;
+  "schema:name": string;
+  "schema:episodeNumber": string;
+  "gh:hasPart"?: MediaObject[];
 }
 
 export interface CharacterItem {
@@ -149,7 +164,7 @@ export class StoryNeo4jRepository {
   }
 
   // Episodes: save list and link to project
-  async saveEpisodes(projectId: string, episodes: { episodeId: string; sourcePath: string }[]) {
+  async saveEpisodes(projectId: string, episodes: EpisodeInput[]) {
     const session = this.driver.session();
     try {
       const now = new Date().toISOString();
@@ -157,12 +172,30 @@ export class StoryNeo4jRepository {
         const q = `
           MATCH (p:Project {id: $projectId})
           MERGE (e:Episode {id: $id})
-          ON CREATE SET e += { episodeId: $episodeId, sourcePath: $sourcePath, createdAt: $now, updatedAt: $now }
-          ON MATCH SET  e += { episodeId: $episodeId, sourcePath: $sourcePath, updatedAt: $now }
+          ON CREATE SET e += { 
+            \`schema:name\`: $name, 
+            \`schema:episodeNumber\`: $episodeNumber, 
+            \`gh:hasPart\`: $hasPart, 
+            createdAt: $now, 
+            updatedAt: $now 
+          }
+          ON MATCH SET  e += { 
+            \`schema:name\`: $name, 
+            \`schema:episodeNumber\`: $episodeNumber, 
+            \`gh:hasPart\`: $hasPart, 
+            updatedAt: $now 
+          }
           MERGE (p)-[:HAS_EPISODE]->(e)
           RETURN e
         `;
-        await session.run(q, { projectId, id: `${projectId}:${ep.episodeId}`, episodeId: ep.episodeId, sourcePath: ep.sourcePath, now });
+        await session.run(q, { 
+          projectId, 
+          id: ep['@id'], 
+          name: ep['schema:name'], 
+          episodeNumber: ep['schema:episodeNumber'], 
+          hasPart: ep['gh:hasPart'] ? JSON.stringify(ep['gh:hasPart']) : null, 
+          now 
+        });
       }
       return { ok: true as const };
     } finally {
@@ -181,15 +214,22 @@ export class StoryNeo4jRepository {
           .related(new Cypher.Relationship())
           .to(episode, {labels: ["gh:Episode"]})
       )
-      .return([episode, 'e'])
-      .orderBy([episode.property("episodeId"), "ASC"]);
+      .return(episode)
+      .orderBy([episode.property("schema:episodeNumber"), "ASC"]);
 
       const { cypher, params } = matchQuery.build();
       const res = await session.run(cypher, params);
 
       return res.records.map(r => {
-        const e = r.get("e").properties;
-        return { id: e.id, episodeId: e.episodeId, sourcePath: e.sourcePath, createdAt: new Date(e.createdAt), updatedAt: new Date(e.updatedAt) } as EpisodeNode;
+        const e = r.get("episode").properties;
+        return { 
+          id: e.id, 
+          name: e['schema:name'], 
+          episodeNumber: e['schema:episodeNumber'], 
+          hasPart: e['gh:hasPart'] ? JSON.parse(e['gh:hasPart']) : [], 
+          createdAt: new Date(e.createdAt), 
+          updatedAt: new Date(e.updatedAt) 
+        } as EpisodeNode;
       });
     } finally {
       await session.close();

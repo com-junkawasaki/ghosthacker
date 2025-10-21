@@ -1,4 +1,4 @@
-import { Type, Static } from '@sinclair/typebox';
+import { Type, type Static } from '@sinclair/typebox';
 
 const IRI = Type.String({ format: 'uri', $id: 'iri' });
 
@@ -59,13 +59,30 @@ export const ProjectSchema = Type.Intersect([
 ]);
 export type Project = Static<typeof ProjectSchema>;
 
+export const MediaObjectSchema = Type.Object({
+	"@type": Type.Union([
+		Type.Literal(`${SchemaOrg}TextDigitalDocument`),
+		Type.Literal(`${SchemaOrg}ImageObject`),
+		Type.Literal(`${SchemaOrg}VideoObject`),
+		Type.Literal(`${SchemaOrg}AudioObject`),
+	]),
+	[`${SchemaOrg}contentUrl`]: Type.String({ description: "メディアファイルのパス" }),
+	[`${SchemaOrg}name`]: Type.Optional(Type.String({ description: "メディア名" })),
+	[`${SchemaOrg}description`]: Type.Optional(Type.String()),
+});
+export type MediaObject = Static<typeof MediaObjectSchema>;
+
 export const EpisodeSchema = Type.Intersect([
-    BaseSchema,
-    Type.Object({
-        '@type': EpisodeType,
-        [`${SchemaOrg}name`]: Type.String(),
-        [`${GHOntology}has_act`]: Type.Optional(Type.Array(Type.Object({ '@id': IRI }))),
-    }),
+	BaseSchema,
+	Type.Object({
+		"@type": EpisodeType,
+		[`${SchemaOrg}name`]: Type.String(),
+		[`${SchemaOrg}episodeNumber`]: Type.String(),
+		[`${GHOntology}has_act`]: Type.Optional(
+			Type.Array(Type.Object({ "@id": IRI })),
+		),
+		[`${GHOntology}hasPart`]: Type.Optional(Type.Array(MediaObjectSchema)),
+	}),
 ]);
 export type Episode = Static<typeof EpisodeSchema>;
 
