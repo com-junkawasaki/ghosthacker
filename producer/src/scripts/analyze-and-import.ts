@@ -22,7 +22,7 @@ function extractValue(value: { value: unknown }[]): unknown {
  *  `  - **Role**: Antagonist`
  */
 function parseMarkdown(content: string): Record<string, unknown> {
-  const data: Record<string, Record<string, unknown>> = {};
+  const data: Record<string, Record<string, unknown> | string> = {};
   const lines = content.split('\n');
   let currentSection: string | null = null;
   let currentSubSection: string | null = null;
@@ -45,7 +45,7 @@ function parseMarkdown(content: string): Record<string, unknown> {
         if(currentSubSection) {
             ((data[currentSection] as Record<string, unknown>)[currentSubSection] as Record<string, unknown>)[key] = value;
         } else {
-            data[currentSection][key] = value;
+            (data[currentSection] as Record<string, unknown>)[key] = value;
         }
     } else if(currentSection) {
         if(typeof data[currentSection] === 'string') {

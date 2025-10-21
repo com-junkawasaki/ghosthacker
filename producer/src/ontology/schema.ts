@@ -16,6 +16,11 @@ const EventType = Type.Literal(`${GHOntology}Event`);
 const ConceptType = Type.Literal(`${GHOntology}Concept`);
 
 
+export const GenericNodeSchema = Type.Object({
+  '@id': IRI,
+  '@type': Type.String(),
+});
+
 export const BaseSchema = Type.Object({
   '@id': IRI,
 });

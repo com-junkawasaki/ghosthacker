@@ -20,7 +20,7 @@ export const canvasRouter = router({
       project: p ? { title: p.title } : undefined,
       narrative: n ? { beats: n.beats } : undefined,
       styles: s ? { visual: s.visual, audio: s.audio } : undefined,
-      platforms: (eps ?? []).map(e => ({ episodeId: e.episodeId, sourcePath: e.sourcePath })),
+      episodes: (eps ?? []).map(e => ({ episodeId: e.episodeId, sourcePath: e.sourcePath })),
     });
   }),
   getStoryGraph: publicProcedure.query(async () => {
