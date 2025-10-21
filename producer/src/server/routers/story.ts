@@ -26,7 +26,6 @@ const MediaObjectSchema = z.object({
 
 const EpisodeInputSchema = z.object({
   "@id": z.string(),
-  "@type": z.literal("gh:Episode"),
   "schema:name": z.string(),
   "schema:episodeNumber": z.string(),
   "gh:hasPart": z.array(MediaObjectSchema).optional(),

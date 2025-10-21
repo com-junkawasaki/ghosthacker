@@ -81,36 +81,32 @@ export class StoryNeo4jRepository {
       const now = new Date();
       const projectId = project.id || crypto.randomUUID();
 
-      // Note: using raw cypher below; Node builder kept for future reference and intentionally removed to satisfy linter
+      const projectNode = new Cypher.Node();
 
-      const query = `
-        MERGE (p:Project {id: $id})
-        SET p += {
-          title: $title,
-          logline: $logline,
-          genres: $genres,
-          tone: $tone,
-          audienceRating: $audienceRating,
-          language: $language,
-          keywords: $keywords,
-          createdAt: $createdAt,
-          updatedAt: $updatedAt
-        }
-        RETURN p
-      `;
+      const query = new Cypher.Merge(
+          new Cypher.Pattern(projectNode, {
+              labels: ["Project"],
+              properties: { id: new Cypher.Param(projectId) }
+          })
+      )
+      .set([
+          projectNode,
+          new Cypher.Map({
+              title: new Cypher.Param(project.title),
+              logline: new Cypher.Param(project.logline),
+              genres: new Cypher.Param(project.genres),
+              tone: new Cypher.Param(project.tone),
+              audienceRating: new Cypher.Param(project.audienceRating),
+              language: new Cypher.Param(project.language),
+              keywords: new Cypher.Param(project.keywords),
+              createdAt: new Cypher.Param(now.toISOString()),
+              updatedAt: new Cypher.Param(now.toISOString()),
+          })
+      ])
+      .return(projectNode);
 
-      const result = await session.run(query, {
-        id: projectId,
-        title: project.title,
-        logline: project.logline,
-        genres: project.genres,
-        tone: project.tone,
-        audienceRating: project.audienceRating,
-        language: project.language,
-        keywords: project.keywords,
-        createdAt: now.toISOString(),
-        updatedAt: now.toISOString(),
-      });
+      const { cypher, params } = query.build();
+      const result = await session.run(cypher, params);
       const record = result.records[0];
 
       return {
@@ -141,23 +137,47 @@ export class StoryNeo4jRepository {
     const session = this.driver.session();
     try {
       const now = new Date().toISOString();
-      const query = `
-        MATCH (p:Project {id: $projectId})
-        MERGE (s:Styles {id: $id})
-        ON CREATE SET s += { visual: $visual, audio: $audio, createdAt: $now, updatedAt: $now }
-        ON MATCH SET  s += { visual: $visual, audio: $audio, updatedAt: $now }
-        MERGE (p)-[:HAS_STYLES]->(s)
-        RETURN s
-      `;
-      const params = {
-        projectId,
-        id: `${projectId}-styles`,
-        visual: styles.visual,
-        audio: styles.audio,
-        now,
-      };
-      const result = await session.run(query, params);
-      return result.records[0]?.get('s').properties ?? null;
+      const projectIdParam = new Cypher.Param(projectId);
+      const nowParam = new Cypher.Param(now);
+
+      const project = new Cypher.Node();
+      const stylesNode = new Cypher.Node();
+      const stylesId = `${projectId}-styles`;
+
+      const query = new Cypher.Match(
+          new Cypher.Pattern(project, { properties: { id: projectIdParam } })
+      )
+          .merge(
+              new Cypher.Pattern(stylesNode, {
+                  properties: { id: new Cypher.Param(stylesId) }
+              })
+          )
+          .onCreateSet([
+              stylesNode,
+              new Cypher.Map({
+                  visual: new Cypher.Param(styles.visual),
+                  audio: new Cypher.Param(styles.audio),
+                  createdAt: nowParam,
+                  updatedAt: nowParam
+              })
+          ])
+          .onMatchSet([
+              stylesNode,
+              new Cypher.Map({
+                  visual: new Cypher.Param(styles.visual),
+                  audio: new Cypher.Param(styles.audio),
+                  updatedAt: nowParam
+              })
+          ])
+          .with(project, stylesNode)
+          .merge(
+              new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_STYLES" })).to(stylesNode)
+          )
+          .return(stylesNode);
+
+      const { cypher, params } = query.build();
+      const result = await session.run(cypher, params);
+      return result.records[0]?.get('stylesNode').properties ?? null;
     } finally {
       await session.close();
     }
@@ -168,34 +188,50 @@ export class StoryNeo4jRepository {
     const session = this.driver.session();
     try {
       const now = new Date().toISOString();
+      const projectIdParam = new Cypher.Param(projectId);
+
       for (const ep of episodes) {
-        const q = `
-          MATCH (p:Project {id: $projectId})
-          MERGE (e:Episode {id: $id})
-          ON CREATE SET e += { 
-            \`schema:name\`: $name, 
-            \`schema:episodeNumber\`: $episodeNumber, 
-            \`gh:hasPart\`: $hasPart, 
-            createdAt: $now, 
-            updatedAt: $now 
-          }
-          ON MATCH SET  e += { 
-            \`schema:name\`: $name, 
-            \`schema:episodeNumber\`: $episodeNumber, 
-            \`gh:hasPart\`: $hasPart, 
-            updatedAt: $now 
-          }
-          MERGE (p)-[:HAS_EPISODE]->(e)
-          RETURN e
-        `;
-        await session.run(q, { 
-          projectId, 
-          id: ep['@id'], 
-          name: ep['schema:name'], 
-          episodeNumber: ep['schema:episodeNumber'], 
-          hasPart: ep['gh:hasPart'] ? JSON.stringify(ep['gh:hasPart']) : null, 
-          now 
-        });
+      const project = new Cypher.Node();
+      const episode = new Cypher.Node();
+        
+        const hasPartValue = ep['gh:hasPart'] ? JSON.stringify(ep['gh:hasPart']) : null;
+        const nowParam = new Cypher.Param(now);
+
+        const query = new Cypher.Match(
+                new Cypher.Pattern(project, { properties: { id: projectIdParam } })
+            )
+            .merge(
+                new Cypher.Pattern(episode, {
+                    properties: { id: new Cypher.Param(ep["@id"]) }
+                })
+            )
+            .onCreateSet([
+                episode,
+                new Cypher.Map({
+                    'schema:name': new Cypher.Param(ep["schema:name"]),
+                    'schema:episodeNumber': new Cypher.Param(ep["schema:episodeNumber"]),
+                    'gh:hasPart': new Cypher.Param(hasPartValue),
+                    createdAt: nowParam,
+                    updatedAt: nowParam
+                })
+            ])
+            .onMatchSet([
+                episode,
+                new Cypher.Map({
+                    'schema:name': new Cypher.Param(ep["schema:name"]),
+                    'schema:episodeNumber': new Cypher.Param(ep["schema:episodeNumber"]),
+                    'gh:hasPart': new Cypher.Param(hasPartValue),
+                    updatedAt: nowParam
+                })
+            ])
+            .with(project, episode)
+            .merge(
+                new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_EPISODE" })).to(episode)
+            )
+            .return(episode);
+        
+        const { cypher, params } = query.build();
+        await session.run(cypher, params);
       }
       return { ok: true as const };
     } finally {
@@ -224,8 +260,8 @@ export class StoryNeo4jRepository {
         const e = r.get("episode").properties;
         return { 
           id: e.id, 
-          name: e['schema:name'], 
-          episodeNumber: e['schema:episodeNumber'], 
+          name: e['schema:name'] ?? '', 
+          episodeNumber: e['schema:episodeNumber'] ?? '', 
           hasPart: e['gh:hasPart'] ? JSON.parse(e['gh:hasPart']) : [], 
           createdAt: new Date(e.createdAt), 
           updatedAt: new Date(e.updatedAt) 
@@ -241,16 +277,54 @@ export class StoryNeo4jRepository {
     const session = this.driver.session();
     try {
       const now = new Date().toISOString();
+      const projectIdParam = new Cypher.Param(projectId);
+      const nowParam = new Cypher.Param(now);
+
       for (const ch of characters) {
-        const q = `
-          MATCH (p:Project {id: $projectId})
-          MERGE (c:Character {id: $id})
-          ON CREATE SET c += { name: $name, role: $role, motivation: $motivation, conflict: $conflict, voice: $voice, createdAt: $now, updatedAt: $now }
-          ON MATCH SET  c += { name: $name, role: $role, motivation: $motivation, conflict: $conflict, voice: $voice, updatedAt: $now }
-          MERGE (p)-[:HAS_CHARACTER]->(c)
-          RETURN c
-        `;
-        await session.run(q, { projectId, id: `${projectId}:character:${ch.name}`, name: ch.name, role: ch.role, motivation: ch.motivation ?? null, conflict: ch.conflict ?? null, voice: ch.voice ?? null, now });
+        const project = new Cypher.Node();
+        const character = new Cypher.Node();
+
+        const characterId = `${projectId}:character:${ch.name}`;
+
+        const query = new Cypher.Match(
+                new Cypher.Pattern(project, { properties: { id: projectIdParam } })
+            )
+            .merge(
+                new Cypher.Pattern(character, {
+                    properties: { id: new Cypher.Param(characterId) }
+                })
+            )
+            .onCreateSet([
+                character,
+                new Cypher.Map({
+                    'schema:name': new Cypher.Param(ch.name),
+                    'gh:role': new Cypher.Param(ch.role),
+                    'gh:motivation': new Cypher.Param(ch.motivation ?? null),
+                    'gh:conflict': new Cypher.Param(ch.conflict ?? null),
+                    'gh:voice': new Cypher.Param(ch.voice ?? null),
+                    createdAt: nowParam,
+                    updatedAt: nowParam
+                })
+            ])
+            .onMatchSet([
+                character,
+                new Cypher.Map({
+                    'schema:name': new Cypher.Param(ch.name),
+                    'gh:role': new Cypher.Param(ch.role),
+                    'gh:motivation': new Cypher.Param(ch.motivation ?? null),
+                    'gh:conflict': new Cypher.Param(ch.conflict ?? null),
+                    'gh:voice': new Cypher.Param(ch.voice ?? null),
+                    updatedAt: nowParam
+                })
+            ])
+            .with(project, character)
+            .merge(
+                new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_CHARACTER" })).to(character)
+            )
+            .return(character);
+
+        const { cypher, params } = query.build();
+        await session.run(cypher, params);
       }
       return { ok: true as const };
     } finally {
@@ -262,24 +336,63 @@ export class StoryNeo4jRepository {
     const session = this.driver.session();
     try {
       const now = new Date().toISOString();
+      const projectIdParam = new Cypher.Param(projectId);
+      const nowParam = new Cypher.Param(now);
+
       for (const b of backstories) {
         const bid = `${projectId}:backstory:${b.origin.slice(0, 24)}`;
-        const q = `
-          MATCH (p:Project {id: $projectId})
-          MERGE (b:Backstory {id: $id})
-          ON CREATE SET b += { origin: $origin, motivation: $motivation, conflict: $conflict, createdAt: $now, updatedAt: $now }
-          ON MATCH SET  b += { origin: $origin, motivation: $motivation, conflict: $conflict, updatedAt: $now }
-          MERGE (p)-[:HAS_BACKSTORY]->(b)
-          RETURN b
-        `;
-        await session.run(q, { projectId, id: bid, origin: b.origin, motivation: b.motivation ?? null, conflict: b.conflict ?? null, now });
+        const project = new Cypher.Node();
+        const backstory = new Cypher.Node();
+
+        const query = new Cypher.Match(
+                new Cypher.Pattern(project, { properties: { id: projectIdParam } })
+            )
+            .merge(
+                new Cypher.Pattern(backstory, {
+                    properties: { id: new Cypher.Param(bid) }
+                })
+            )
+            .onCreateSet([
+                backstory,
+                new Cypher.Map({
+                    'gh:origin': new Cypher.Param(b.origin),
+                    'gh:motivation': new Cypher.Param(b.motivation ?? null),
+                    'gh:conflict': new Cypher.Param(b.conflict ?? null),
+                    createdAt: nowParam,
+                    updatedAt: nowParam
+                })
+            ])
+            .onMatchSet([
+                backstory,
+                new Cypher.Map({
+                    'gh:origin': new Cypher.Param(b.origin),
+                    'gh:motivation': new Cypher.Param(b.motivation ?? null),
+                    'gh:conflict': new Cypher.Param(b.conflict ?? null),
+                    updatedAt: nowParam
+                })
+            ])
+            .with(project, backstory)
+            .merge(
+                new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_BACKSTORY" })).to(backstory)
+            )
+            .return(backstory);
+
+        const { cypher, params } = query.build();
+        await session.run(cypher, params);
+
         if (b.characterName) {
-          const link = `
-            MATCH (c:Character {id: $cid}), (b:Backstory {id: $bid})
-            MERGE (c)-[:HAS_BACKSTORY]->(b)
-          `;
           const cid = `${projectId}:character:${b.characterName}`;
-          await session.run(link, { cid, bid });
+          const character = new Cypher.Node();
+
+          const linkQuery = new Cypher.Match(character, backstory)
+              .where(character.property("id").eq(new Cypher.Param(cid)))
+              .where(backstory.property("id").eq(new Cypher.Param(bid)))
+              .merge(
+                  new Cypher.Pattern(character).related(new Cypher.Relationship({ type: "HAS_BACKSTORY" })).to(backstory)
+              );
+
+          const { cypher: linkCypher, params: linkParams } = linkQuery.build();
+          await session.run(linkCypher, linkParams);
         }
       }
       return { ok: true as const };
@@ -346,13 +459,19 @@ export class StoryNeo4jRepository {
   } | null> {
     const session = this.driver.session();
     try {
-      const query = `
-        MATCH (p:Project {id: $projectId})-[:HAS_STYLES]->(s:Styles)
-        RETURN s
-      `;
-      const result = await session.run(query, { projectId });
+      const project = new Cypher.Node();
+      const styles = new Cypher.Node();
+
+      const query = new Cypher.Match(
+          new Cypher.Pattern(project, { properties: { id: new Cypher.Param(projectId) } })
+              .related(new Cypher.Relationship({ type: "HAS_STYLES" })).to(styles)
+      )
+      .return(styles);
+
+      const { cypher, params } = query.build();
+      const result = await session.run(cypher, params);
       if (result.records.length === 0) return null;
-      return result.records[0].get('s').properties as {
+      return result.records[0].get('styles').properties as {
         visual: { artStyle: (typeof ART_STYLES)[number]; palette: (typeof PALETTES)[number]; nsfwAllowed: boolean };
         audio: { voice: (typeof VOICES)[number]; tempo: (typeof TEMPOS)[number]; musicMood: (typeof MUSIC)[number] };
       };
@@ -366,19 +485,24 @@ export class StoryNeo4jRepository {
     const session = this.driver.session();
 
     try {
-      const query = `
-        MATCH (p:Project {id: $id})
-        RETURN p
-      `;
+      const project = new Cypher.Node({ labels: ["Project"] });
 
-      const result = await session.run(query, { id });
+      const query = new Cypher.Match(
+          new Cypher.Pattern(project, {
+              properties: { id: new Cypher.Param(id) }
+          })
+      )
+      .return(project);
+
+      const { cypher, params } = query.build();
+      const result = await session.run(cypher, params);
 
       if (result.records.length === 0) {
         return null;
       }
 
       const record = result.records[0];
-      const props = record.get('p').properties;
+      const props = record.get('project').properties;
 
       return {
         id: props.id,
@@ -405,37 +529,47 @@ export class StoryNeo4jRepository {
       const now = new Date();
       const narrativeId = narrative.id || crypto.randomUUID();
 
-      const query = `
-        MATCH (p:Project {id: $projectId})
-        MERGE (n:Narrative {id: $narrativeId})
-        ON CREATE SET n += {
-          synopsis: $synopsis,
-          structure: $structure,
-          beats: $beats,
-          createdAt: $now,
-          updatedAt: $now
-        }
-        ON MATCH SET n += {
-          synopsis: $synopsis,
-          structure: $structure,
-          beats: $beats,
-          updatedAt: $now
-        }
-        MERGE (p)-[:HAS_NARRATIVE]->(n)
-        RETURN n
-      `;
+      const project = new Cypher.Node();
+      const narrativeNode = new Cypher.Node();
 
-      const result = await session.run(query, {
-        projectId,
-        narrativeId,
-        synopsis: narrative.synopsis,
-        structure: narrative.structure,
-        beats: narrative.beats,
-        now: now.toISOString(),
-      });
+      const query = new Cypher.Match(
+              new Cypher.Pattern(project, { properties: { id: new Cypher.Param(projectId) } })
+          )
+          .merge(
+              new Cypher.Pattern(narrativeNode, {
+                  properties: { id: new Cypher.Param(narrativeId) }
+              })
+          )
+          .onCreateSet([
+              narrativeNode,
+              new Cypher.Map({
+                  synopsis: new Cypher.Param(narrative.synopsis),
+                  structure: new Cypher.Param(narrative.structure),
+                  beats: new Cypher.Param(narrative.beats),
+                  createdAt: new Cypher.Param(now.toISOString()),
+                  updatedAt: new Cypher.Param(now.toISOString()),
+              })
+          ])
+          .onMatchSet([
+              narrativeNode,
+              new Cypher.Map({
+                  synopsis: new Cypher.Param(narrative.synopsis),
+                  structure: new Cypher.Param(narrative.structure),
+                  beats: new Cypher.Param(narrative.beats),
+                  updatedAt: new Cypher.Param(now.toISOString()),
+              })
+          ])
+          .with(project, narrativeNode)
+          .merge(
+              new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_NARRATIVE" })).to(narrativeNode)
+          )
+          .return(narrativeNode);
+
+      const { cypher, params } = query.build();
+      const result = await session.run(cypher, params);
 
       const record = result.records[0];
-      const props = record.get('n').properties;
+      const props = record.get('narrativeNode').properties;
 
       return {
         id: props.id,
@@ -455,19 +589,24 @@ export class StoryNeo4jRepository {
     const session = this.driver.session();
 
     try {
-      const query = `
-        MATCH (p:Project {id: $projectId})-[:HAS_NARRATIVE]->(n:Narrative)
-        RETURN n
-      `;
+      const project = new Cypher.Node();
+      const narrative = new Cypher.Node();
 
-      const result = await session.run(query, { projectId });
+      const query = new Cypher.Match(
+          new Cypher.Pattern(project, { properties: { id: new Cypher.Param(projectId) } })
+              .related(new Cypher.Relationship({ type: "HAS_NARRATIVE" })).to(narrative)
+      )
+      .return(narrative);
+
+      const { cypher, params } = query.build();
+      const result = await session.run(cypher, params);
 
       if (result.records.length === 0) {
         return null;
       }
 
       const record = result.records[0];
-      const props = record.get('n').properties;
+      const props = record.get('narrative').properties;
 
       return {
         id: props.id,
@@ -487,16 +626,17 @@ export class StoryNeo4jRepository {
     const session = this.driver.session();
 
     try {
-      const query = `
-        MATCH (p:Project)
-        RETURN p
-        ORDER BY p.updatedAt DESC
-      `;
+      const project = new Cypher.Node();
 
-      const result = await session.run(query);
+      const query = new Cypher.Match(new Cypher.Pattern(project))
+          .return(project)
+          .orderBy([project.property("updatedAt"), "DESC"]);
+
+      const { cypher, params } = query.build();
+      const result = await session.run(cypher, params);
 
       return result.records.map(record => {
-        const props = record.get('p').properties;
+        const props = record.get('project').properties;
         return {
           id: props.id,
           title: props.title,
@@ -524,24 +664,49 @@ export class StoryNeo4jRepository {
     const session = this.driver.session();
     try {
       const now = new Date().toISOString();
-      const query = `
-        MATCH (p:Project {id: $projectId})
-        MERGE (pl:Platforms {id: $id})
-        ON CREATE SET pl += { wattpad: $wattpad, webtoon: $webtoon, youtube: $youtube, createdAt: $now, updatedAt: $now }
-        ON MATCH SET pl += { wattpad: $wattpad, webtoon: $webtoon, youtube: $youtube, updatedAt: $now }
-        MERGE (p)-[:HAS_PLATFORMS]->(pl)
-        RETURN pl
-      `;
-      const params = {
-        projectId,
-        id: `${projectId}-platforms`,
-        wattpad: data.wattpad,
-        webtoon: data.webtoon,
-        youtube: data.youtube,
-        now,
-      };
-      const result = await session.run(query, params);
-      return result.records[0]?.get('pl').properties ?? null;
+      const projectIdParam = new Cypher.Param(projectId);
+      const nowParam = new Cypher.Param(now);
+
+      const project = new Cypher.Node();
+      const platformsNode = new Cypher.Node();
+      const platformsId = `${projectId}-platforms`;
+
+      const query = new Cypher.Match(
+              new Cypher.Pattern(project, { properties: { id: projectIdParam } })
+          )
+          .merge(
+              new Cypher.Pattern(platformsNode, {
+                  properties: { id: new Cypher.Param(platformsId) }
+              })
+          )
+          .onCreateSet([
+              platformsNode,
+              new Cypher.Map({
+                  wattpad: new Cypher.Param(data.wattpad),
+                  webtoon: new Cypher.Param(data.webtoon),
+                  youtube: new Cypher.Param(data.youtube),
+                  createdAt: nowParam,
+                  updatedAt: nowParam
+              })
+          ])
+          .onMatchSet([
+              platformsNode,
+              new Cypher.Map({
+                  wattpad: new Cypher.Param(data.wattpad),
+                  webtoon: new Cypher.Param(data.webtoon),
+                  youtube: new Cypher.Param(data.youtube),
+                  updatedAt: nowParam
+              })
+          ])
+          .with(project, platformsNode)
+          .merge(
+              new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_PLATFORMS" })).to(platformsNode)
+          )
+          .return(platformsNode);
+
+      const { cypher, params } = query.build();
+      const result = await session.run(cypher, params);
+      return result.records[0]?.get('platformsNode').properties ?? null;
     } finally {
       await session.close();
     }
@@ -550,13 +715,19 @@ export class StoryNeo4jRepository {
   async getPlatforms(projectId: string) {
     const session = this.driver.session();
     try {
-      const query = `
-        MATCH (p:Project {id: $projectId})-[:HAS_PLATFORMS]->(pl:Platforms)
-        RETURN pl
-      `;
-      const result = await session.run(query, { projectId });
+      const project = new Cypher.Node();
+      const platforms = new Cypher.Node();
+
+      const query = new Cypher.Match(
+          new Cypher.Pattern(project, { properties: { id: new Cypher.Param(projectId) } })
+              .related(new Cypher.Relationship({ type: "HAS_PLATFORMS" })).to(platforms)
+      )
+      .return(platforms);
+
+      const { cypher, params } = query.build();
+      const result = await session.run(cypher, params);
       if (result.records.length === 0) return null;
-      return result.records[0].get('pl').properties;
+      return result.records[0].get('platforms').properties;
     } finally {
       await session.close();
     }
@@ -567,22 +738,45 @@ export class StoryNeo4jRepository {
     const session = this.driver.session();
     try {
       const now = new Date().toISOString();
-      const query = `
-        MATCH (p:Project {id: $projectId})
-        MERGE (c:Canvas {id: $id})
-        ON CREATE SET c += { config: $config, createdAt: $now, updatedAt: $now }
-        ON MATCH SET c += { config: $config, updatedAt: $now }
-        MERGE (p)-[:HAS_CANVAS]->(c)
-        RETURN c
-      `;
-      const params = {
-        projectId,
-        id: `${projectId}-canvas`,
-        config,
-        now,
-      };
-      const result = await session.run(query, params);
-      return result.records[0]?.get('c').properties ?? null;
+      const projectIdParam = new Cypher.Param(projectId);
+      const nowParam = new Cypher.Param(now);
+
+      const project = new Cypher.Node();
+      const canvasNode = new Cypher.Node();
+      const canvasId = `${projectId}-canvas`;
+
+      const query = new Cypher.Match(
+              new Cypher.Pattern(project, { properties: { id: projectIdParam } })
+          )
+          .merge(
+              new Cypher.Pattern(canvasNode, {
+                  properties: { id: new Cypher.Param(canvasId) }
+              })
+          )
+          .onCreateSet([
+              canvasNode,
+              new Cypher.Map({
+                  config: new Cypher.Param(config),
+                  createdAt: nowParam,
+                  updatedAt: nowParam
+              })
+          ])
+          .onMatchSet([
+              canvasNode,
+              new Cypher.Map({
+                  config: new Cypher.Param(config),
+                  updatedAt: nowParam
+              })
+          ])
+          .with(project, canvasNode)
+          .merge(
+              new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_CANVAS" })).to(canvasNode)
+          )
+          .return(canvasNode);
+
+      const { cypher, params } = query.build();
+      const result = await session.run(cypher, params);
+      return result.records[0]?.get('canvasNode').properties ?? null;
     } finally {
       await session.close();
     }
@@ -591,13 +785,19 @@ export class StoryNeo4jRepository {
   async getCanvas(projectId: string): Promise<{ nodes: unknown[]; edges: unknown[] } | null> {
     const session = this.driver.session();
     try {
-      const query = `
-        MATCH (p:Project {id: $projectId})-[:HAS_CANVAS]->(c:Canvas)
-        RETURN c
-      `;
-      const result = await session.run(query, { projectId });
+      const project = new Cypher.Node();
+      const canvas = new Cypher.Node();
+
+      const query = new Cypher.Match(
+          new Cypher.Pattern(project, { properties: { id: new Cypher.Param(projectId) } })
+              .relatedTo(canvas, { type: "HAS_CANVAS" }).end()
+      )
+      .return(canvas);
+
+      const { cypher, params } = query.build();
+      const result = await session.run(cypher, params);
       if (result.records.length === 0) return null;
-      const props = result.records[0].get('c').properties;
+      const props = result.records[0].get('canvas').properties;
       return props.config as { nodes: unknown[]; edges: unknown[] };
     } finally {
       await session.close();

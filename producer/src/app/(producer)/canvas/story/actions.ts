@@ -61,7 +61,16 @@ export async function submitEpisodes(
 
 export async function loadEpisodes(): Promise<Episode[]> {
 	const client = getClient();
-	return client.story.loadEpisodes.query();
+	const episodeNodes = await client.story.loadEpisodes.query();
+
+	// Convert EpisodeNode[] to Episode[]
+	return episodeNodes.map(node => ({
+		"@id": node.id,
+		"@type": "gh:Episode",
+		"schema:name": node.name,
+		"schema:episodeNumber": node.episodeNumber,
+		"gh:hasPart": node.hasPart || [],
+	}));
 }
 
 export async function submitNarrative(

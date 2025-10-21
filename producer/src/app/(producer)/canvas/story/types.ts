@@ -20,6 +20,7 @@ export type MediaObject = {
 
 export type Episode = {
   "@id": string;
+  "@type": "gh:Episode";
   "schema:name": string;
   "schema:episodeNumber": string;
   "gh:hasPart"?: MediaObject[];

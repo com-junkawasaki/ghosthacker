@@ -12,6 +12,9 @@ type EpisodeState = Omit<Episode, 'gh:hasPart'> & {
   'gh:hasPart'?: MediaObjectState[];
 };
 
+// Data loaded from server might not have `@type` yet for older records
+type LoadedEpisode = Omit<Episode, '@type'> & { '@type'?: "gh:Episode" };
+
 const MEDIA_TYPES = [
   "schema:TextDigitalDocument",
   "schema:ImageObject",
@@ -61,7 +64,7 @@ function MediaObjectRow({
         <label htmlFor={idUrl} className="block text-xs font-medium text-gray-600">Content URL / Path</label>
         <input
           id={idUrl}
-          value={media['schema:contentUrl']}
+          value={media['schema:contentUrl'] ?? ''}
           onChange={(e) => onUpdate({ 'schema:contentUrl': e.target.value })}
           className="mt-1 w-full h-9 rounded-md border border-gray-300 bg-white px-3 text-sm text-gray-900 shadow-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
         />
@@ -114,11 +117,11 @@ function EpisodeEditor({
       <div className="grid grid-cols-2 gap-3">
         <div>
           <label htmlFor={idName} className="block text-[15px] leading-5 font-medium text-gray-900">Episode Title</label>
-          <input id={idName} value={episode['schema:name']} onChange={ev=> onUpdate({'schema:name': ev.target.value})} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 text-[16px] leading-[44px] text-gray-900 shadow-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500" />
+          <input id={idName} value={episode['schema:name'] ?? ''} onChange={ev=> onUpdate({'schema:name': ev.target.value})} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 text-[16px] leading-[44px] text-gray-900 shadow-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
           <label htmlFor={idNumber} className="block text-[15px] leading-5 font-medium text-gray-900">Episode Number/ID</label>
-          <input id={idNumber} value={episode['schema:episodeNumber']} onChange={ev=> onUpdate({'schema:episodeNumber': ev.target.value})} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 text-[16px] leading-[44px] text-gray-900 shadow-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500" />
+          <input id={idNumber} value={episode['schema:episodeNumber'] ?? ''} onChange={ev=> onUpdate({'schema:episodeNumber': ev.target.value})} className="mt-1 w-full h-11 rounded-xl border border-gray-300 bg-white px-4 text-[16px] leading-[44px] text-gray-900 shadow-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500" />
         </div>
       </div>
       
@@ -153,8 +156,9 @@ export default function EpisodesForm() {
   useEffect(() => {
     loadEpisodes().then(eps => {
       if (eps && eps.length > 0) {
-        const episodesWithUiId = eps.map(e => ({
+        const episodesWithUiId = (eps as LoadedEpisode[]).map(e => ({
           ...e,
+          '@type': e['@type'] ?? 'gh:Episode', // Ensure @type exists
           uiId: nanoid(6),
           'gh:hasPart': (e['gh:hasPart'] ?? []).map(p => ({ ...p, uiId: nanoid(6) })),
         }));
