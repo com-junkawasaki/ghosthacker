@@ -174,7 +174,7 @@ export class StoryNeo4jRepository {
           .with(project, stylesNode)
           .merge(
               // @ts-expect-error - cypher-builder types are incorrect
-              new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_STYLES" })).to(stylesNode)
+              new Cypher.Pattern(project).related(new Cypher.Relationship("HAS_STYLES")).to(stylesNode)
           )
           .return([stylesNode, 'stylesNode']);
 
@@ -230,7 +230,7 @@ export class StoryNeo4jRepository {
             .with(project, episode)
             .merge(
                 // @ts-expect-error - cypher-builder types are incorrect
-                new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_EPISODE" })).to(episode)
+                new Cypher.Pattern(project).related(new Cypher.Relationship("HAS_EPISODE")).to(episode)
             )
             .return(episode);
         
@@ -251,7 +251,7 @@ export class StoryNeo4jRepository {
 
       const matchQuery = new Cypher.Match(
         // @ts-expect-error - cypher-builder types are incorrect
-        new Cypher.Pattern(project, { labels: ["Project"], properties: { id: new Cypher.Param(projectId) } }).related(new Cypher.Relationship({ type: "HAS_EPISODE" })).to(episode)
+        new Cypher.Pattern(project, { labels: ["Project"], properties: { id: new Cypher.Param(projectId) } }).related(new Cypher.Relationship("HAS_EPISODE")).to(episode)
       )
       .return([episode, 'episode'])
       .orderBy([episode.property("schema:episodeNumber"), "ASC"]);
@@ -323,7 +323,7 @@ export class StoryNeo4jRepository {
             .with(project, character)
             .merge(
                 new Cypher.Pattern(project)
-                    .related(new Cypher.Relationship({ type: "HAS_CHARACTER" }))
+                    .related(new Cypher.Relationship("HAS_CHARACTER"))
                     .to(character)
             )
             .return(character);
@@ -379,7 +379,7 @@ export class StoryNeo4jRepository {
             .with(project, backstory)
             .merge(
                 new Cypher.Pattern(project)
-                    .related(new Cypher.Relationship({ type: "HAS_BACKSTORY" }))
+                    .related(new Cypher.Relationship("HAS_BACKSTORY"))
                     .to(backstory)
             )
             .return(backstory);
