@@ -12,6 +12,8 @@ const handlers: Record<string, (n: Node, inputs: Record<string, unknown>, ctx: R
   Protagonist: async (n, _, ctx) => ctx.upsertCharacter(n),
   Backstory: async (n, _, ctx) => ctx.upsertBackstory(n),
   World: async (n, _, ctx) => ctx.upsertWorld(n),
+  StoryGraph: async (n, _, ctx) => ctx.loadStoryGraph(n),
+  Narrative: async (n, _, ctx) => ctx.loadNarrative(n),
   Prompt: async (n, inputs, ctx) => ctx.composePrompt(n, inputs),
   Writer: async (n, inputs, ctx) => {
     const promptInput = inputs[Object.keys(inputs)[0]] as { prompt: string };

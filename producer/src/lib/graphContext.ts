@@ -200,6 +200,55 @@ export function createGraphContext() {
         return { draft: `// Failed to load: ${sourcePath}` };
       }
     },
+
+    async loadStoryGraph(n: GenericNode) {
+      const episodeId = n.data?.config?.episodeId as string;
+      if (!episodeId) throw new Error("Episode ID not configured for StoryGraph node");
+
+      const driver = getNeo4jDriver();
+      const session = driver.session();
+
+      try {
+        // Query Neo4j for episode data
+        const result = await session.run(`
+          MATCH (e {\`@id\`: $episodeId})
+          WHERE 'gh:Episode' IN labels(e)
+          OPTIONAL MATCH (e)-[:HAS_SCENE]->(s:Scene)
+          OPTIONAL MATCH (e)-[:HAS_CHARACTER]->(c:Character)
+          RETURN e, collect(s) as scenes, collect(c) as characters
+        `, { episodeId });
+
+        if (result.records.length === 0) {
+          throw new Error(`Episode not found: ${episodeId}`);
+        }
+
+        const record = result.records[0];
+        const episode = record.get('e').properties;
+        const scenes = record.get('scenes').map((s: any) => s.properties);
+        const characters = record.get('characters').map((c: any) => c.properties);
+
+        return {
+          graphData: {
+            episode,
+            scenes,
+            characters
+          }
+        };
+      } finally {
+        await session.close();
+      }
+    },
+
+    async loadNarrative(n: GenericNode) {
+      const config = n.data?.config;
+      if (!config) throw new Error("Narrative configuration not found");
+
+      return {
+        synopsis: config.synopsis,
+        structure: config.structure,
+        beats: config.beats
+      };
+    },
     async composePrompt(n: GenericNode, inputs: Record<string, unknown>) {
       // Combine inputs from dependency nodes into a structured prompt context
       const sourceDrafts = Object.values(inputs).map(i => (i as { draft?: string })?.draft).filter(Boolean);
