@@ -1,4 +1,5 @@
 import { getNeo4jDriver } from './neo4j';
+import * as Cypher from '@neo4j/cypher-builder';
 
 // Merkle DAG: story-neo4j -> neo4j-driver -> cypher-builder
 // Story data persistence layer using Neo4j graph database
@@ -171,14 +172,23 @@ export class StoryNeo4jRepository {
   async getEpisodes(projectId: string): Promise<EpisodeNode[]> {
     const session = this.driver.session();
     try {
-      const q = `
-        MATCH (:Project {id: $projectId})-[:HAS_EPISODE]->(e:\`gh:Episode\`)
-        RETURN e ORDER BY e.episodeId ASC
-      `;
-      const res = await session.run(q, { projectId });
+      const project = new Cypher.Node();
+      const episode = new Cypher.Node();
+
+      const matchQuery = new Cypher.Match(
+        new Cypher.Pattern(project, {labels: ["Project"], properties: { id: new Cypher.Param(projectId) }})
+          .related(new Cypher.Relationship())
+          .to(episode, {labels: ["gh:Episode"]})
+      )
+      .return([episode, 'e'])
+      .orderBy([episode.property("episodeId"), "ASC"]);
+
+      const { cypher, params } = matchQuery.build();
+      const res = await session.run(cypher, params);
+
       return res.records.map(r => {
-        const e = r.get('e').properties as any;
-        return { id: e.id, episodeId: e.episodeId, sourcePath: e.sourcePath, createdAt: new Date(e.createdAt), updatedAt: new Date(e.updatedAt) };
+        const e = r.get("e").properties;
+        return { id: e.id, episodeId: e.episodeId, sourcePath: e.sourcePath, createdAt: new Date(e.createdAt), updatedAt: new Date(e.updatedAt) } as EpisodeNode;
       });
     } finally {
       await session.close();
@@ -240,11 +250,23 @@ export class StoryNeo4jRepository {
   async getCharacters(projectId: string): Promise<CharacterItem[]> {
     const session = this.driver.session();
     try {
-      const q = `MATCH (:Project {id: $projectId})-[:HAS_CHARACTER]->(c:\`gh:Character\`) RETURN c ORDER BY c.name ASC`;
-      const res = await session.run(q, { projectId });
+      const project = new Cypher.Node();
+      const character = new Cypher.Node();
+
+      const matchQuery = new Cypher.Match(
+        new Cypher.Pattern(project, {labels: ["Project"], properties: { id: new Cypher.Param(projectId) }})
+          .related(new Cypher.Relationship())
+          .to(character, {labels: ["gh:Character"]})
+      )
+      .return([character, 'c'])
+      .orderBy([character.property("schema:name"), "ASC"]);
+      
+      const { cypher, params } = matchQuery.build();
+      const res = await session.run(cypher, params);
+
       return res.records.map(r => {
-        const c = r.get('c').properties as any;
-        return { name: c['schema:name'] as string, role: c['gh:role'] as CharacterItem['role'], motivation: c['gh:motivation'] ?? undefined, conflict: c['gh:conflict'] ?? undefined, voice: c['gh:voice'] ?? undefined };
+        const c = r.get("c").properties;
+        return { name: c['schema:name'] as string, role: c['gh:role'] as CharacterItem['role'], motivation: c['gh:motivation'] as string | undefined, conflict: c['gh:conflict'] as string | undefined, voice: c['gh:voice'] as string | undefined };
       });
     } finally {
       await session.close();
@@ -254,11 +276,23 @@ export class StoryNeo4jRepository {
   async getBackstories(projectId: string): Promise<BackstoryItem[]> {
     const session = this.driver.session();
     try {
-      const q = `MATCH (:Project {id: $projectId})-[:HAS_BACKSTORY]->(b:\`gh:Backstory\`) RETURN b ORDER BY b.updatedAt DESC`;
-      const res = await session.run(q, { projectId });
+      const project = new Cypher.Node();
+      const backstory = new Cypher.Node();
+
+      const matchQuery = new Cypher.Match(
+        new Cypher.Pattern(project, {labels: ["Project"], properties: { id: new Cypher.Param(projectId) }})
+          .related(new Cypher.Relationship())
+          .to(backstory, {labels: ["gh:Backstory"]})
+      )
+      .return([backstory, 'b'])
+      .orderBy([backstory.property("updatedAt"), "DESC"]);
+
+      const { cypher, params } = matchQuery.build();
+      const res = await session.run(cypher, params);
+
       return res.records.map(r => {
-        const b = r.get('b').properties as any;
-        return { origin: b['gh:origin'] as string, motivation: b['gh:motivation'] ?? undefined, conflict: b['gh:conflict'] ?? undefined };
+        const b = r.get("b").properties;
+        return { origin: b['gh:origin'] as string, motivation: b['gh:motivation'] as string | undefined, conflict: b['gh:conflict'] as string | undefined };
       });
     } finally {
       await session.close();

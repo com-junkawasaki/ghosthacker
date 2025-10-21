@@ -34,25 +34,25 @@ export async function getNodeConfig(nodeId: string): Promise<{ nodeId: string; n
   const session = driver.session();
   try {
     const node = new Cypher.Node();
-    const raw = new Cypher.Raw((context) => {
-      const n = context.compile(node);
-      const labelStr = ':PipelineNode';
-      return `MATCH (${n}${labelStr} { id: $param0 }) RETURN ${n} AS n`;
-    });
-    const res = await session.run(raw.build().cypher, raw.build().params);
+    const query = new Cypher.Match(new Cypher.Pattern(node, {labels: ["PipelineNode"], properties: { id: new Cypher.Param(nodeId) }}))
+        .return([node, 'n']);
+
+    const { cypher, params } = query.build();
+    const res = await session.run(cypher, params);
     const rec = res.records[0];
     if (!rec) return null;
-    const n = rec.get('n') as { properties: { id: string; type: string; label: string; configJson?: string } };
+
+    const n = rec.get("n").properties;
     let config: Record<string, unknown> = {};
     try {
-      if (n.properties.configJson) config = JSON.parse(n.properties.configJson) as Record<string, unknown>;
+      if (n.configJson) config = JSON.parse(n.configJson as string) as Record<string, unknown>;
     } catch {
       config = {};
     }
     return {
-      nodeId: n.properties.id,
-      nodeType: n.properties.type,
-      label: n.properties.label,
+      nodeId: n.id as string,
+      nodeType: n.type as string,
+      label: n.label as string,
       config,
     };
   } finally {
