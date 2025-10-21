@@ -8,7 +8,7 @@ const GHOntologyPrefix = 'gh:';
 interface GraphNode {
   '@id': string;
   '@type': string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 type ActNode = {
@@ -65,7 +65,7 @@ async function main() {
           }
           return acc;
         },
-        {} as Record<string, any>,
+        {} as Record<string, string | number | boolean>,
       );
 
       const query = `

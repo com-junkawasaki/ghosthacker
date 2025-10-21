@@ -28,6 +28,21 @@ import {
 } from '@/pipeline/node-types';
 import type { NodeData } from '@/pipeline/node-types';
 
+interface GraphNode {
+  id: string;
+  labels: string[];
+  name?: string;
+  title?: string;
+  [key: string]: unknown;
+}
+
+interface GraphEdge {
+  id: string;
+  source: string;
+  target: string;
+  type: string;
+}
+
 const api = createTRPCReact<AppRouter>();
 
 const nodeTypes = {
@@ -61,7 +76,7 @@ function ProducerCanvasComponent() {
     if (storyGraphQuery.data) {
       const { nodes: graphNodes, edges: graphEdges } = storyGraphQuery.data;
 
-      const rfNodes: RFNode<NodeData>[] = graphNodes.map((n, idx) => ({
+      const rfNodes: RFNode<NodeData>[] = (graphNodes as unknown as GraphNode[]).map((n, idx) => ({
         id: n.id.toString(),
         type: n.labels[0], // Assuming the first label is the node type
         position: { x: 100 + (idx % 8) * 250, y: 100 + Math.floor(idx / 8) * 180 },
@@ -70,11 +85,11 @@ function ProducerCanvasComponent() {
           type: n.labels[0],
           label: n.name || n.title || n.labels[0],
           status: 'idle',
-          config: n,
+          config: n as Record<string, string | number | boolean | null>,
         },
       }));
 
-      const rfEdges: RFEdge[] = graphEdges.map(e => ({
+      const rfEdges: RFEdge[] = (graphEdges as unknown as GraphEdge[]).map(e => ({
         id: e.id.toString(),
         source: e.source.toString(),
         target: e.target.toString(),
@@ -169,9 +184,9 @@ export default function ProducerCanvas() {
       links: [
         httpBatchLink({
           url: '/api/trpc',
+          transformer: superjson,
         }),
       ],
-      transformer: superjson,
     })
   );
 

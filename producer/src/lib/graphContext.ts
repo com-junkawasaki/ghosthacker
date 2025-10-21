@@ -202,16 +202,16 @@ export function createGraphContext() {
     },
     async composePrompt(n: GenericNode, inputs: Record<string, unknown>) {
       // Combine inputs from dependency nodes into a structured prompt context
-      const sourceDrafts = Object.values(inputs).map(i => (i as any)?.draft).filter(Boolean);
-      const characters = Object.values(inputs).map(i => (i as any)?.name).filter(Boolean);
+      const sourceDrafts = Object.values(inputs).map(i => (i as { draft?: string })?.draft).filter(Boolean);
+      const characters = Object.values(inputs).map(i => (i as { name?: string })?.name).filter(Boolean);
       
       const promptContext = {
         style: n.data?.config?.style ?? "atmospheric",
         inputs: {
           sources: sourceDrafts,
           characters: characters,
-          backstory: (inputs as any).backstory,
-          world: (inputs as any).world,
+          backstory: (inputs as { backstory: unknown }).backstory,
+          world: (inputs as { world: unknown }).world,
         }
       };
 

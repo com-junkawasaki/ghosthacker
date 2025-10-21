@@ -74,7 +74,7 @@ async function main() {
         const files = fs.readdirSync(characterDirPath).filter(file => file.endsWith('.md'));
 
         const characterId = `${GHOSTHACKER_ONTOLOGY_PREFIX}:character-${charDir}`;
-        const characterNode: Record<string, any> = {
+        const characterNode: Record<string, unknown> = {
             '@id': characterId,
             '@type': `${GHOSTHACKER_ONTOLOGY_PREFIX}:Character`,
         };
@@ -109,7 +109,7 @@ async function main() {
                 const flattened_sections = Object.entries(sections).reduce((acc, [key, value]) => {
                     acc[`portrait_${key}`] = value;
                     return acc;
-                }, {} as Record<string, any>);
+                }, {} as Record<string, string>);
                 Object.assign(characterNode, flattened_sections);
             }
         }

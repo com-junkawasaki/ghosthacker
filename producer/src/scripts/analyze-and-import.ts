@@ -15,8 +15,14 @@ function extractValue(value: { value: unknown }[]): unknown {
     return undefined;
 }
 
-function parseMarkdown(content: string): Record<string, any> {
-  const data: Record<string, any> = {};
+/**
+ * Parses a markdown file into a structured object.
+ * @param content The content of the markdown file.
+ * @returns A nested object representing the markdown structure.
+ *  `  - **Role**: Antagonist`
+ */
+function parseMarkdown(content: string): Record<string, unknown> {
+  const data: Record<string, Record<string, unknown>> = {};
   const lines = content.split('\n');
   let currentSection: string | null = null;
   let currentSubSection: string | null = null;
@@ -32,18 +38,18 @@ function parseMarkdown(content: string): Record<string, any> {
       currentSubSection = null;
     } else if (h3Match && currentSection) {
         currentSubSection = h3Match[1].trim().toLowerCase().replace(/\s+/g, '_');
-        data[currentSection][currentSubSection] = {};
+        (data[currentSection] as Record<string, unknown>)[currentSubSection] = {};
     } else if (listItemMatch && currentSection) {
         const key = listItemMatch[1].trim().toLowerCase();
         const value = listItemMatch[2].trim();
         if(currentSubSection) {
-            data[currentSection][currentSubSection][key] = value;
+            ((data[currentSection] as Record<string, unknown>)[currentSubSection] as Record<string, unknown>)[key] = value;
         } else {
             data[currentSection][key] = value;
         }
     } else if(currentSection) {
         if(typeof data[currentSection] === 'string') {
-            data[currentSection] += line + '\n';
+            (data[currentSection] as string) += line + '\n';
         }
     }
   }

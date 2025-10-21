@@ -563,7 +563,7 @@ export class StoryNeo4jRepository {
     }
   }
 
-  async getStoryGraph(): Promise<{ nodes: Record<string, any>[]; edges: Record<string, any>[] }> {
+  async getStoryGraph(): Promise<{ nodes: Record<string, unknown>[]; edges: Record<string, unknown>[] }> {
     const session = this.driver.session();
     try {
       const query = `
@@ -573,8 +573,8 @@ export class StoryNeo4jRepository {
       `;
       const result = await session.run(query);
 
-      const nodes = new Map<string, Record<string, any>>();
-      const edges: Record<string, any>[] = [];
+      const nodes = new Map<string, Record<string, unknown>>();
+      const edges: Record<string, unknown>[] = [];
 
       for (const record of result.records) {
         const nodeN = record.get('n');

@@ -44,7 +44,8 @@ export default function EpisodesForm() {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault(); setSubmitting(true); setMessage(null); setErrors(null);
-    const payload = list.map(({id, ...rest}) => rest);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const payload = list.map(({ id, ...rest }) => rest);
     const res = await submitEpisodes(payload);
     if (res.ok) setMessage('Saved episodes successfully.');
     else setErrors(res.faults.map(f => `${f.path?.join('.') ?? ''}: ${f.message}`));
