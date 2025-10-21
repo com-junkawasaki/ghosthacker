@@ -1,0 +1,338 @@
+{
+  "@context": {
+    "gh": "https://ghosthacker.gftd.co.jp/ontology#",
+    "schema": "http://schema.org/",
+    "name": "schema:name",
+    "title": "schema:title",
+    "description": "schema:description",
+    "has_character": {
+      "@id": "gh:has_character",
+      "@type": "@id"
+    },
+    "has_act": {
+      "@id": "gh:has_act",
+      "@type": "@id"
+    },
+    "has_scene": {
+      "@id": "gh:has_scene",
+      "@type": "@id"
+    },
+    "takes_place_in": {
+      "@id": "gh:takes_place_in",
+      "@type": "@id"
+    },
+    "includes_event": {
+      "@id": "gh:includes_event",
+      "@type": "@id"
+    },
+    "appears_in": {
+      "@id": "gh:appears_in",
+      "@type": "@id"
+    },
+    "mentions": {
+      "@id": "gh:mentions",
+      "@type": "@id"
+    },
+    "is_father_of": {
+      "@id": "gh:is_father_of",
+      "@type": "@id"
+    },
+    "has_episode": {
+      "@id": "gh:has_episode",
+      "@type": "@id"
+    }
+  },
+  "@graph": [
+    {
+      "@id": "gh:Episode:Ghost-Hacker-Episode-01",
+      "@type": "gh:Episode",
+      "name": "Ghost Hacker Episode 01",
+      "has_act": [
+        {
+          "@id": "gh:Act:Everyday-Life-and-Anomaly"
+        },
+        {
+          "@id": "gh:Act:Accepting-and-Analyzing-the-Request"
+        },
+        {
+          "@id": "gh:Act:Ghost-Hacking"
+        },
+        {
+          "@id": "gh:Act:Resolution-and-Epilogue"
+        }
+      ]
+    },
+    {
+      "@id": "gh:Act:Everyday-Life-and-Anomaly",
+      "@type": "gh:Act",
+      "name": "Everyday Life and Anomaly",
+      "has_scene": [
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-1"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-2"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-3"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-4"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-5"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-6"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-7"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-8"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-9"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-10"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-11"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-12"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-13"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-14"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-15"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-16"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-17"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-18"
+        },
+        {
+          "@id": "gh:Scene:Everyday-Life-and-Anomaly-scene-19"
+        }
+      ]
+    },
+    {
+      "@id": "gh:Act:Accepting-and-Analyzing-the-Request",
+      "@type": "gh:Act",
+      "name": "Accepting and Analyzing the Request",
+      "has_scene": [
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-1"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-2"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-3"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-4"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-5"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-6"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-7"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-8"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-9"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-10"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-11"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-12"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-13"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-14"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-15"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-16"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-17"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-18"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-19"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-20"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-21"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-22"
+        },
+        {
+          "@id": "gh:Scene:Accepting-and-Analyzing-the-Request-scene-23"
+        }
+      ]
+    },
+    {
+      "@id": "gh:Act:Ghost-Hacking",
+      "@type": "gh:Act",
+      "name": "Ghost Hacking",
+      "has_scene": [
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-1"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-2"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-3"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-4"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-5"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-6"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-7"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-8"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-9"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-10"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-11"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-12"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-13"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-14"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-15"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-16"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-17"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-18"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-19"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-20"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-21"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-22"
+        },
+        {
+          "@id": "gh:Scene:Ghost-Hacking-scene-23"
+        }
+      ]
+    },
+    {
+      "@id": "gh:Act:Resolution-and-Epilogue",
+      "@type": "gh:Act",
+      "name": "Resolution and Epilogue",
+      "has_scene": [
+        {
+          "@id": "gh:Scene:Resolution-and-Epilogue-scene-1"
+        },
+        {
+          "@id": "gh:Scene:Resolution-and-Epilogue-scene-2"
+        },
+        {
+          "@id": "gh:Scene:Resolution-and-Epilogue-scene-3"
+        },
+        {
+          "@id": "gh:Scene:Resolution-and-Epilogue-scene-4"
+        },
+        {
+          "@id": "gh:Scene:Resolution-and-Epilogue-scene-5"
+        },
+        {
+          "@id": "gh:Scene:Resolution-and-Epilogue-scene-6"
+        },
+        {
+          "@id": "gh:Scene:Resolution-and-Epilogue-scene-7"
+        },
+        {
+          "@id": "gh:Scene:Resolution-and-Epilogue-scene-8"
+        },
+        {
+          "@id": "gh:Scene:Resolution-and-Epilogue-scene-9"
+        },
+        {
+          "@id": "gh:Scene:Resolution-and-Epilogue-scene-10"
+        },
+        {
+          "@id": "gh:Scene:Resolution-and-Epilogue-scene-11"
+        },
+        {
+          "@id": "gh:Scene:Resolution-and-Epilogue-scene-12"
+        },
+        {
+          "@id": "gh:Scene:Resolution-and-Epilogue-scene-13"
+        },
+        {
+          "@id": "gh:Scene:Resolution-and-Epilogue-scene-14"
+        },
+        {
+          "@id": "gh:Scene:Resolution-and-Epilogue-scene-15"
+        },
+        {
+          "@id": "gh:Scene:Resolution-and-Epilogue-scene-16"
+        },
+        {
+          "@id": "gh:Scene:Resolution-and-Epilogue-scene-17"
+        }
+      ]
+    }

@@ -322,8 +322,9 @@ export class StoryNeo4jRepository {
             ])
             .with(project, character)
             .merge(
-                // @ts-expect-error - cypher-builder types are incorrect
-                new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_CHARACTER" })).to(character)
+                new Cypher.Pattern(project)
+                    .related(new Cypher.Relationship({ type: "HAS_CHARACTER" }))
+                    .to(character)
             )
             .return(character);
 
@@ -377,8 +378,9 @@ export class StoryNeo4jRepository {
             ])
             .with(project, backstory)
             .merge(
-                // @ts-expect-error - cypher-builder types are incorrect
-                new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_BACKSTORY" })).to(backstory)
+                new Cypher.Pattern(project)
+                    .related(new Cypher.Relationship({ type: "HAS_BACKSTORY" }))
+                    .to(backstory)
             )
             .return(backstory);
 
@@ -392,11 +394,11 @@ export class StoryNeo4jRepository {
           const linkQuery = new Cypher.Match(
               new Cypher.Pattern(character)
                   .where(Cypher.eq(character.property("id"), new Cypher.Param(cid)))
-                  .related(new Cypher.Relationship()).to(backstory)
+                  .related(new Cypher.Relationship({ type: "HAS_BACKSTORY" })).to(backstory)
           )
           .where(Cypher.eq(backstory.property("id"), new Cypher.Param(bid)))
           .merge(
-              new Cypher.Pattern(character).related(new Cypher.Relationship()).to(backstory)
+              new Cypher.Pattern(character).related(new Cypher.Relationship({ type: "HAS_BACKSTORY" })).to(backstory)
           );
 
           const { cypher: linkCypher, params: linkParams } = linkQuery.build();
@@ -416,7 +418,7 @@ export class StoryNeo4jRepository {
       const character = new Cypher.Node();
 
       const matchQuery = new Cypher.Match(
-                new Cypher.Pattern(project).related(new Cypher.Relationship()).to(character)
+                new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_CHARACTER" })).to(character)
       )
       .return([character, 'c'])
       .orderBy([character.property("schema:name"), "ASC"]);
