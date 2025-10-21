@@ -4,6 +4,7 @@ import { withNodeSpan } from "@/observability/otel";
 import { providers } from "@/lib/ai/providers";
 import { ensureOutputs } from "@/schemas/nodes";
 import type { GenericNode, StoryTopology } from "./types";
+import { saveArtifact } from "@/infra/neo4j/artifactsRepo";
 
 // topology is injected by caller; loader resides in API layer
 
@@ -38,6 +39,7 @@ export async function runPipeline(topology: StoryTopology): Promise<void> {
         return withNodeSpan(node, async () => {
           const out = await handlers[node.type](node, ctx);
           ensureOutputs(node.type, out);
+          await saveArtifact({ nodeId: node.id, nodeType: node.type, label: node.label, payload: out });
           return out;
         });
       })

@@ -9,6 +9,10 @@ import { Background } from '@reactflow/background';
 import { createTRPCClient, httpBatchLink } from '@trpc/client';
 import superjson from 'superjson';
 import type { AppRouter } from '@/server/routers';
+// Shared tRPC client
+const trpcClient = createTRPCClient<AppRouter>({
+  links: [httpBatchLink({ url: '/api/trpc', transformer: superjson })],
+});
 
 // Additional styles for React Flow (injected via globals.css)
 const reactFlowStyles = `
@@ -294,6 +298,7 @@ const initialEdges: RFEdge[] = [
 function ProducerCanvasComponent() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [runStatus, setRunStatus] = useState<'idle' | 'running' | 'success' | 'error'>('idle');
 
   const onConnect = useCallback(
     (params: Connection) => setEdges((eds) => addEdge(params, eds)),
@@ -301,9 +306,40 @@ function ProducerCanvasComponent() {
   );
 
   const onRunPipeline = useCallback(async () => {
-    // TODO: Implement pipeline execution
-    console.log('Running pipeline...', { nodes: nodes.length, edges: edges.length });
-  }, [nodes, edges]);
+    setRunStatus('running');
+    try {
+      await trpcClient.pipeline.run.mutate();
+      // refresh canvas config after run
+      const cfg = await trpcClient.canvas.getCanvas.query();
+      if (cfg) {
+        const computedNodes: RFNode<NodeData>[] = (cfg.nodes as { id?: string; type?: string; label?: string; data?: unknown }[]).map((n, idx) => ({
+          id: n.id ?? String(idx + 1),
+          type: n.type ?? 'sourceDoc',
+          position: { x: 100 + (idx % 6) * 220, y: 60 + Math.floor(idx / 6) * 180 },
+          data: {
+            id: n.id ?? String(idx + 1),
+            type: n.type ?? 'unknown',
+            label: n.label ?? n.type ?? 'Node',
+            status: 'idle',
+            config: (n.data ?? {}) as Record<string, string | number | boolean | null>,
+          },
+        }));
+        const computedEdges: RFEdge[] = (cfg.edges as { id?: string; source: string; target: string }[]).map((e, i) => ({
+          id: e.id ?? `e-${i}`,
+          source: e.source,
+          target: e.target,
+        }));
+        setNodes(computedNodes);
+        setEdges(computedEdges);
+      }
+      setRunStatus('success');
+    } catch (err) {
+      console.error('pipeline.run error', err);
+      setRunStatus('error');
+    } finally {
+      setTimeout(() => setRunStatus('idle'), 2500);
+    }
+  }, [setNodes, setEdges]);
 
   const routeForNodeType = useCallback((type?: string): string | null => {
     switch (type) {
@@ -343,8 +379,7 @@ function ProducerCanvasComponent() {
     setTimeout(() => {
       console.log('DOM after mount:', document.querySelector('.react-flow__viewport'));
     }, 100);
-    const client = createTRPCClient<AppRouter>({ links: [httpBatchLink({ url: '/api/trpc', transformer: superjson })] });
-    client.canvas.getCanvas.query()
+    trpcClient.canvas.getCanvas.query()
       .then((cfg) => {
         if (!cfg) return;
         console.log('Hydrating canvas with server config');
@@ -437,6 +472,13 @@ function ProducerCanvasComponent() {
         >
           Run Pipeline
         </button>
+        {runStatus !== 'idle' && (
+          <div className="mt-3 text-sm">
+            {runStatus === 'running' && <span className="text-blue-700">Running...</span>}
+            {runStatus === 'success' && <span className="text-green-700">Completed</span>}
+            {runStatus === 'error' && <span className="text-red-700">Failed</span>}
+          </div>
+        )}
       </div>
     </div>
   );
