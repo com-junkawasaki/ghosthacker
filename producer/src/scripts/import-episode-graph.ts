@@ -1,7 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
 import { getNeo4jDriver } from "../infra/neo4j/client";
-import * as Cypher from "@neo4j/cypher-builder";
 
 const GHOntologyPrefix = 'gh:';
 
@@ -11,6 +10,11 @@ interface GraphNode {
   '@type': string;
   [key: string]: any;
 }
+
+type ActNode = {
+  id: string;
+  properties: Record<string, unknown>;
+};
 
 async function main() {
   const driver = getNeo4jDriver();

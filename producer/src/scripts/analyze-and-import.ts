@@ -3,14 +3,17 @@ import path from 'path';
 import { getNeo4jDriver } from '../infra/neo4j/client';
 import { Value } from '@sinclair/typebox/value';
 import { Type } from '@sinclair/typebox';
+import { GenericNodeSchema } from '../ontology/schema';
 
 const GHOSTHACKER_ONTOLOGY_PREFIX = 'gh';
-const SCHEMA_ORG_PREFIX = 'schema';
 
-const GenericNodeSchema = Type.Object({
-  '@id': Type.String(),
-  '@type': Type.String(),
-});
+// Helper to extract value from Neo4j property format
+function extractValue(value: { value: unknown }[]): unknown {
+    if (Array.isArray(value) && value.length > 0) {
+        return value[0].value;
+    }
+    return undefined;
+}
 
 function parseMarkdown(content: string): Record<string, any> {
   const data: Record<string, any> = {};
@@ -83,7 +86,7 @@ async function main() {
                   acc[key] = JSON.stringify(value);
               }
               return acc;
-          }, {} as Record<string, any>);
+          }, {} as Record<string, unknown>);
 
 
         const query = `

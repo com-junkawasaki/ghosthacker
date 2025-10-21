@@ -1,6 +1,6 @@
 import { env } from "@/env";
 import { createGraphContext } from "@/lib/graphContext";
-import { withNodeSpan } from "@/observability/otel";
+import { traceAsync } from "@/observability/otel";
 import { providers } from "@/lib/ai/providers";
 import { ensureOutputs } from "@/schemas/nodes";
 import { saveArtifact } from "@/infra/neo4j/artifactsRepo";
@@ -50,7 +50,7 @@ export async function runPipeline(nodes: Node[], edges: Edge[]): Promise<void> {
             return acc;
         }, {} as Record<string, unknown>);
 
-        return withNodeSpan({id: node.id, type: node.type }, async () => {
+        return traceAsync(`node:${node.id}`, async () => {
           const out = await handlers[node.type!](node, inputs, ctx);
           ensureOutputs(node.type!, out);
           artifacts.set(id, out);

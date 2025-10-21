@@ -1,5 +1,17 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { OpenAI } from 'openai';
+import { getNeo4jDriver } from '../infra/neo4j/client';
+
+interface Character {
+  name: string;
+  [key: string]: unknown;
+}
+
+interface AnalysisResult {
+  name: string;
+  [key: string]: unknown;
+}
 
 const GHOSTHACKER_ONTOLOGY_PREFIX = 'gh';
 const SCHEMA_ORG_PREFIX = 'schema';
@@ -21,6 +33,27 @@ function parseMarkdownSections(content: string): Record<string, string> {
     });
 
     return sections;
+}
+
+async function analyzeCharacter(character: Character): Promise<AnalysisResult> {
+  const prompt = `Analyze the character "${character.name}" based on the following data:
+${JSON.stringify(character, null, 2)}
+`;
+
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+
+  const completion = await openai.chat.completions.create({
+    model: "gpt-4",
+    messages: [{ role: "user", content: prompt }],
+    temperature: 0.7,
+  });
+
+  return {
+    name: character.name,
+    analysis: completion.choices[0].message.content,
+  };
 }
 
 async function main() {

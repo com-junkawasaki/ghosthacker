@@ -9,7 +9,7 @@ export const canvasRouter = router({
     const saved = await storyRepository.getCanvas(PROJECT_ID);
     if (saved) return saved;
     // fallback derive from current saved entities
-    const [p, n, s, pl, eps] = await Promise.all([
+    const [p, n, s, , eps] = await Promise.all([
       storyRepository.getProject(PROJECT_ID),
       storyRepository.getNarrative(PROJECT_ID),
       storyRepository.getStyles(PROJECT_ID),

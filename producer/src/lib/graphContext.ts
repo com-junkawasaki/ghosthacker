@@ -5,6 +5,118 @@ import path from "path";
 
 type GenericNode = Node;
 
+export type MaybePromise<T> = T | Promise<T>;
+
+export interface NodeDefinition<T = unknown> {
+  inputs: Record<string, unknown>;
+  outputs: Record<string, unknown>;
+  operation: (inputs: Record<string, unknown>) => MaybePromise<Record<string, unknown>>;
+}
+
+export type PipelineState = {
+  __status: 'running' | 'completed' | 'error';
+  [key: string]: unknown;
+};
+
+export class GraphContext {
+  private executionId: string;
+  private nodeDefinitions: Map<string, NodeDefinition<unknown>> = new Map();
+  private state: PipelineState = { __status: 'running' };
+  private activePromises: Set<Promise<void>> = new Set();
+
+  constructor(executionId?: string) {
+    this.executionId = executionId ?? `exec-${Date.now()}`;
+  }
+
+  defineNode<T>(type: string, definition: NodeDefinition<unknown>): this {
+    if (this.nodeDefinitions.has(type)) {
+      throw new Error(`Node type "${type}" is already defined.`);
+    }
+    this.nodeDefinitions.set(type, definition);
+    return this;
+  }
+
+  async execute(graph: {
+    nodes: { id: string, type: string, data: Record<string, unknown> }[];
+    edges: { source: string, target: string }[];
+  }): Promise<Record<string, unknown>> {
+    const nodeMap = new Map(graph.nodes.map((n) => [n.id, n]));
+    const adj: Record<string, string[]> = Object.fromEntries(graph.nodes.map((n) => [n.id, []]));
+
+    // Build adjacency list
+    graph.edges.forEach(({ source, target }) => {
+      adj[source].push(target);
+    });
+
+    const visited: Set<string> = new Set();
+    const stack: string[] = [];
+
+    const visit = (nodeId: string) => {
+      if (visited.has(nodeId)) {
+        return;
+      }
+      visited.add(nodeId);
+      stack.push(nodeId);
+      adj[nodeId].forEach(visit);
+    };
+
+    // Start DFS from any node that is not a dependency
+    const startNodes = graph.nodes.filter(
+      (n) => !graph.edges.some((e) => e.target === n.id)
+    );
+
+    if (startNodes.length === 0) {
+      throw new Error("No starting nodes found in the graph.");
+    }
+
+    startNodes.forEach((node) => visit(node.id));
+
+    const result: Record<string, unknown> = {};
+
+    for (const nodeId of stack) {
+      const node = nodeMap.get(nodeId);
+      if (!node) {
+        throw new Error(`Node with ID "${nodeId}" not found.`);
+      }
+
+      const definition = this.nodeDefinitions.get(node.type);
+      if (!definition) {
+        throw new Error(`Node type "${node.type}" not defined.`);
+      }
+
+      const inputs = await Promise.all(
+        Object.entries(definition.inputs).map(([key]) => {
+          const dependencyNode = graph.nodes.find((n) => n.id === key);
+          if (!dependencyNode) {
+            throw new Error(`Dependency node with ID "${key}" not found.`);
+          }
+          return this.execute(
+            {
+              nodes: graph.nodes.filter((n) => n.id !== nodeId),
+              edges: graph.edges.filter(
+                (e) => e.source !== key && e.target !== nodeId
+              ),
+            }
+          );
+        })
+      );
+
+      const operationResult = await definition.operation(
+        Object.fromEntries(
+          Object.entries(definition.inputs).map(([key], index) => [
+            key,
+            inputs[index],
+          ])
+        )
+      );
+
+      result[nodeId] = operationResult;
+    }
+
+    return result;
+  }
+}
+
 export function createGraphContext() {
   const driver = getNeo4jDriver();
 

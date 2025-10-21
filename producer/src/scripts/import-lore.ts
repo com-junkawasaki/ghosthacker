@@ -14,7 +14,7 @@ const GHOSTHACKER_ONTOLOGY_PREFIX = 'gh';
 const SCHEMA_ORG_PREFIX = 'schema';
 
 // Helper to extract value from Neo4j property format
-function extractValue(value: any): any {
+function extractValue(value: { value: unknown }[]): unknown {
     if (Array.isArray(value) && value.length > 0) {
         return value[0].value;
     }
@@ -87,7 +87,7 @@ async function main() {
                     const type = `${GHOSTHACKER_ONTOLOGY_PREFIX}:${vertex.label}`;
                     
                     const properties = Object.entries(vertex.properties).reduce((acc, [key, value]) => {
-                        const extracted = extractValue(value);
+                        const extracted = extractValue(value as { value: unknown }[]);
                         if (extracted !== undefined) {
                             // Map `name` and `title` to schema.org prefix
                             if (key === 'name' || key === 'title') {
@@ -97,7 +97,7 @@ async function main() {
                             }
                         }
                         return acc;
-                    }, {} as Record<string, any>);
+                    }, {} as Record<string, unknown>);
 
                     const nodeData = {
                         '@id': id,

@@ -5,7 +5,7 @@ import { ReactFlow, addEdge, useNodesState, useEdgesState } from '@reactflow/cor
 import type { Node as RFNode, Edge as RFEdge, Connection } from '@reactflow/core';
 import { Controls } from '@reactflow/controls';
 import { Background } from '@reactflow/background';
-import { createTRPCClient, httpBatchLink, createTRPCReact } from '@trpc/react-query';
+import { httpBatchLink, createTRPCReact } from '@trpc/react-query';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import superjson from 'superjson';
 import type { AppRouter } from '@/server/routers';

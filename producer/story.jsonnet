@@ -68,18 +68,17 @@
       outputs: ['synopsis', 'structure', 'beats'],
     },
 
-    // Source Document Node
+    // Story Graph Node (from Neo4j)
     {
-      id: 'source-ep1',
-      type: 'SourceDoc',
-      label: 'Episode 1 Source',
+      id: 'story-graph-ep1',
+      type: 'StoryGraph',
+      label: 'Episode 1 Story Graph',
       // UI integration
-      ui: { route: '/canvas/source-ep1' },
+      ui: { route: '/canvas/story' },
       config: {
-        episodeId: 'ja_Episode_01_Masterpiece',
-        sourcePath: '../250806/episodes/ja_Episode_01_Masterpiece.md',
+        episodeId: 'gh:Episode:Ghost-Hacker-Episode-01',
       },
-      outputs: ['draft'],
+      outputs: ['graphData'],
     },
 
     // Prompt Composition Node
@@ -87,7 +86,7 @@
       id: 'prompt-story',
       type: 'Prompt',
       label: 'Story Prompt',
-      dependsOn: ['source-ep1', 'lore-protagonist', 'lore-backstory', 'lore-world', 'narrative-structure'],
+      dependsOn: ['story-graph-ep1', 'lore-protagonist', 'lore-backstory', 'lore-world', 'narrative-structure'],
       // UI integration
       ui: { route: '/canvas/prompt-story' },
       config: {
@@ -262,7 +261,7 @@
 
   // Execution topology (topological sort order)
   executionOrder: [
-    'source-ep1',
+    'story-graph-ep1',
     ['lore-protagonist', 'lore-backstory', 'lore-world', 'narrative-structure'],
     'prompt-story',
     'writer-content',
