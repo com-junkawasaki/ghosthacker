@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "import:lore": "pnpm tsx src/scripts/import-lore.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -19,6 +20,7 @@
     "@reactflow/core": "^11.11.4",
     "@reactflow/minimap": "^11.7.14",
     "@reactflow/node-resizer": "^2.2.14",
+    "@sinclair/typebox": "^0.34.41",
     "@t3-oss/env-nextjs": "^0.13.8",
     "@trpc/client": "^11.6.0",
     "@trpc/server": "^11.6.0",
@@ -45,6 +47,7 @@
     "eslint-config-next": "15.5.5",
     "postcss": "^8.5.6",
     "tailwindcss": "3.4.0",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.3"
   }
 }
