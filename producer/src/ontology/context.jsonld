@@ -6,6 +6,12 @@
     "title": "schema:title",
     "description": "schema:description",
     "has_character": { "@id": "gh:has_character", "@type": "@id" },
+    "has_act": { "@id": "gh:has_act", "@type": "@id" },
+    "has_scene": { "@id": "gh:has_scene", "@type": "@id" },
+    "takes_place_in": { "@id": "gh:takes_place_in", "@type": "@id" },
+    "includes_event": { "@id": "gh:includes_event", "@type": "@id" },
+    "appears_in": { "@id": "gh:appears_in", "@type": "@id" },
+    "mentions": { "@id": "gh:mentions", "@type": "@id" },
     "is_father_of": { "@id": "gh:is_father_of", "@type": "@id" },
     "has_episode": { "@id": "gh:has_episode", "@type": "@id" },
     "has_scene": { "@id": "gh:has_scene", "@type": "@id" }

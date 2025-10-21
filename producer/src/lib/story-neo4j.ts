@@ -1,4 +1,4 @@
-import { getNeo4jDriver } from './neo4j';
+import { getNeo4jDriver } from '../infra/neo4j/client';
 import * as Cypher from '@neo4j/cypher-builder';
 
 // Merkle DAG: story-neo4j -> neo4j-driver -> cypher-builder
@@ -558,6 +558,57 @@ export class StoryNeo4jRepository {
       if (result.records.length === 0) return null;
       const props = result.records[0].get('c').properties;
       return props.config as { nodes: unknown[]; edges: unknown[] };
+    } finally {
+      await session.close();
+    }
+  }
+
+  async getStoryGraph(): Promise<{ nodes: any[]; edges: any[] }> {
+    const session = this.driver.session();
+    try {
+      const query = `
+        MATCH (n)
+        OPTIONAL MATCH (n)-[r]->(m)
+        RETURN n, r, m
+      `;
+      const result = await session.run(query);
+
+      const nodes = new Map<string, any>();
+      const edges: any[] = [];
+
+      for (const record of result.records) {
+        const nodeN = record.get('n');
+        const rel = record.get('r');
+        const nodeM = record.get('m');
+
+        if (nodeN && !nodes.has(nodeN.identity.toString())) {
+          nodes.set(nodeN.identity.toString(), {
+            id: nodeN.properties.id || nodeN.identity.toString(),
+            ...nodeN.properties,
+            labels: nodeN.labels,
+          });
+        }
+
+        if (nodeM && !nodes.has(nodeM.identity.toString())) {
+          nodes.set(nodeM.identity.toString(), {
+            id: nodeM.properties.id || nodeM.identity.toString(),
+            ...nodeM.properties,
+            labels: nodeM.labels,
+          });
+        }
+
+        if (rel) {
+          edges.push({
+            id: rel.identity.toString(),
+            source: rel.start.toString(),
+            target: rel.end.toString(),
+            type: rel.type,
+            ...rel.properties,
+          });
+        }
+      }
+
+      return { nodes: Array.from(nodes.values()), edges };
     } finally {
       await session.close();
     }

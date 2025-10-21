@@ -20,9 +20,11 @@ export const canvasRouter = router({
       project: p ? { title: p.title } : undefined,
       narrative: n ? { beats: n.beats } : undefined,
       styles: s ? { visual: s.visual, audio: s.audio } : undefined,
-      platforms: pl ?? undefined,
-      episodes: (eps ?? []).map(e => ({ episodeId: e.episodeId, sourcePath: e.sourcePath })),
+      platforms: (eps ?? []).map(e => ({ episodeId: e.episodeId, sourcePath: e.sourcePath })),
     });
+  }),
+  getStoryGraph: publicProcedure.query(async () => {
+    return await storyRepository.getStoryGraph();
   }),
   seed: publicProcedure.mutation(async () => {
     const [p, n, s, pl, eps] = await Promise.all([

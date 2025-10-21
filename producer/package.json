@@ -9,7 +9,9 @@
     "lint": "eslint",
     "import:lore": "pnpm tsx src/scripts/import-lore.ts",
     "analyze:characters": "pnpm tsx src/scripts/analyze-characters.ts",
-    "analyze-and-import": "pnpm tsx src/scripts/analyze-and-import.ts"
+    "analyze-and-import": "pnpm tsx src/scripts/analyze-and-import.ts",
+    "import:episode": "pnpm tsx src/scripts/import-episode-graph.ts",
+    "generate:episode-jsonld": "pnpm tsx src/scripts/generate-episode-jsonld.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

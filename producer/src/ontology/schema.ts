@@ -10,6 +10,10 @@ const ProjectType = Type.Literal(`${GHOntology}Project`);
 const EpisodeType = Type.Literal(`${GHOntology}Episode`);
 const SceneType = Type.Literal(`${GHOntology}Scene`);
 const SettingType = Type.Literal(`${GHOntology}Setting`);
+const ActType = Type.Literal(`${GHOntology}Act`);
+const LocationType = Type.Literal(`${GHOntology}Location`);
+const EventType = Type.Literal(`${GHOntology}Event`);
+const ConceptType = Type.Literal(`${GHOntology}Concept`);
 
 
 export const BaseSchema = Type.Object({
@@ -54,21 +58,65 @@ export const EpisodeSchema = Type.Intersect([
     BaseSchema,
     Type.Object({
         '@type': EpisodeType,
-        [`${SchemaOrg}title`]: Type.String(),
+        [`${SchemaOrg}name`]: Type.String(),
+        [`${GHOntology}has_act`]: Type.Optional(Type.Array(Type.Object({ '@id': IRI }))),
     }),
 ]);
 export type Episode = Static<typeof EpisodeSchema>;
+
+export const ActSchema = Type.Intersect([
+    BaseSchema,
+    Type.Object({
+        '@type': ActType,
+        [`${SchemaOrg}name`]: Type.String(),
+        [`${GHOntology}has_scene`]: Type.Optional(Type.Array(Type.Object({ '@id': IRI }))),
+    }),
+]);
+export type Act = Static<typeof ActSchema>;
 
 export const SceneSchema = Type.Intersect([
     BaseSchema,
     Type.Object({
         '@type': SceneType,
         [`${SchemaOrg}name`]: Type.String(),
-        [`${GHOntology}duration`]: Type.Optional(Type.String()),
-        [`${GHOntology}location_prompt`]: Type.Optional(Type.String()),
+        [`${GHOntology}textContent`]: Type.String(),
+        [`${GHOntology}takes_place_in`]: Type.Optional(Type.Object({ '@id': IRI })),
+        [`${GHOntology}includes_event`]: Type.Optional(Type.Array(Type.Object({ '@id': IRI }))),
+        [`${GHOntology}appears_in`]: Type.Optional(Type.Array(Type.Object({ '@id': IRI }))),
+        [`${GHOntology}mentions`]: Type.Optional(Type.Array(Type.Object({ '@id': IRI }))),
     }),
 ]);
 export type Scene = Static<typeof SceneSchema>;
+
+export const LocationSchema = Type.Intersect([
+    BaseSchema,
+    Type.Object({
+        '@type': LocationType,
+        [`${SchemaOrg}name`]: Type.String(),
+        [`${SchemaOrg}description`]: Type.Optional(Type.String()),
+    }),
+]);
+export type Location = Static<typeof LocationSchema>;
+
+export const EventSchema = Type.Intersect([
+    BaseSchema,
+    Type.Object({
+        '@type': EventType,
+        [`${SchemaOrg}name`]: Type.String(),
+        [`${SchemaOrg}description`]: Type.Optional(Type.String()),
+    }),
+]);
+export type Event = Static<typeof EventSchema>;
+
+export const ConceptSchema = Type.Intersect([
+    BaseSchema,
+    Type.Object({
+        '@type': ConceptType,
+        [`${SchemaOrg}name`]: Type.String(),
+        [`${SchemaOrg}description`]: Type.Optional(Type.String()),
+    }),
+]);
+export type Concept = Static<typeof ConceptSchema>;
 
 
 export const SettingSchema = Type.Intersect([
