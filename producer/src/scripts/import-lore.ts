@@ -30,6 +30,26 @@ async function main() {
     console.log('Starting lore import...');
 
     const jsonlPath = path.resolve(process.cwd(), '..', '250806', 'gftd.jsonl');
+    const characterJsonldPath = path.resolve(process.cwd(), 'src', 'ontology', 'characters.jsonld');
+    
+    // Process characters.jsonld
+    if (fs.existsSync(characterJsonldPath)) {
+        const characterContent = fs.readFileSync(characterJsonldPath, 'utf-8');
+        const characterData = JSON.parse(characterContent);
+        if (characterData['@graph']) {
+            for (const vertex of characterData['@graph']) {
+                const id = vertex['@id'];
+                const type = vertex['@type'];
+                const query = `
+                    MERGE (n { \`@id\`: $id })
+                    SET n += $props
+                    SET n :\`${type}\`
+                `;
+                await session.run(query, { id, props: vertex });
+            }
+        }
+    }
+
     const content = fs.readFileSync(jsonlPath, 'utf-8');
     const lines = content.split('\n').filter(line => line.trim() !== '');
     

@@ -7,7 +7,8 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "import:lore": "pnpm tsx src/scripts/import-lore.ts"
+    "import:lore": "pnpm tsx src/scripts/import-lore.ts",
+    "analyze:characters": "pnpm tsx src/scripts/analyze-characters.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
