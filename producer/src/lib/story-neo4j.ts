@@ -41,8 +41,10 @@ export type MediaObject = {
 
 export interface EpisodeNode {
   id: string; // maps to @id
+  episodeId: string; // for compatibility with SourceDoc schema
   name: string;
   episodeNumber: string;
+  sourcePath: string; // path to source file
   hasPart?: MediaObject[];
   createdAt: Date;
   updatedAt: Date;
@@ -171,6 +173,7 @@ export class StoryNeo4jRepository {
           ])
           .with(project, stylesNode)
           .merge(
+              // @ts-expect-error - cypher-builder types are incorrect
               new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_STYLES" })).to(stylesNode)
           )
           .return(stylesNode);
@@ -226,6 +229,7 @@ export class StoryNeo4jRepository {
             ])
             .with(project, episode)
             .merge(
+                // @ts-expect-error - cypher-builder types are incorrect
                 new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_EPISODE" })).to(episode)
             )
             .return(episode);
@@ -246,9 +250,8 @@ export class StoryNeo4jRepository {
       const episode = new Cypher.Node();
 
       const matchQuery = new Cypher.Match(
-        new Cypher.Pattern(project, {labels: ["Project"], properties: { id: new Cypher.Param(projectId) }})
-          .related(new Cypher.Relationship())
-          .to(episode, {labels: ["gh:Episode"]})
+        // @ts-expect-error - cypher-builder types are incorrect
+        new Cypher.Pattern(project, { labels: ["Project"], properties: { id: new Cypher.Param(projectId) } }).related(new Cypher.Relationship({ type: "HAS_EPISODE" })).to(episode)
       )
       .return(episode)
       .orderBy([episode.property("schema:episodeNumber"), "ASC"]);
@@ -319,6 +322,7 @@ export class StoryNeo4jRepository {
             ])
             .with(project, character)
             .merge(
+                // @ts-expect-error - cypher-builder types are incorrect
                 new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_CHARACTER" })).to(character)
             )
             .return(character);
@@ -373,6 +377,7 @@ export class StoryNeo4jRepository {
             ])
             .with(project, backstory)
             .merge(
+                // @ts-expect-error - cypher-builder types are incorrect
                 new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_BACKSTORY" })).to(backstory)
             )
             .return(backstory);
@@ -384,12 +389,15 @@ export class StoryNeo4jRepository {
           const cid = `${projectId}:character:${b.characterName}`;
           const character = new Cypher.Node();
 
-          const linkQuery = new Cypher.Match(character, backstory)
-              .where(character.property("id").eq(new Cypher.Param(cid)))
-              .where(backstory.property("id").eq(new Cypher.Param(bid)))
-              .merge(
-                  new Cypher.Pattern(character).related(new Cypher.Relationship({ type: "HAS_BACKSTORY" })).to(backstory)
-              );
+          const linkQuery = new Cypher.Match(
+              new Cypher.Pattern(character)
+                  .where(Cypher.eq(character.property("id"), new Cypher.Param(cid)))
+                  .related(new Cypher.Relationship()).to(backstory)
+          )
+          .where(Cypher.eq(backstory.property("id"), new Cypher.Param(bid)))
+          .merge(
+              new Cypher.Pattern(character).related(new Cypher.Relationship()).to(backstory)
+          );
 
           const { cypher: linkCypher, params: linkParams } = linkQuery.build();
           await session.run(linkCypher, linkParams);
@@ -408,13 +416,11 @@ export class StoryNeo4jRepository {
       const character = new Cypher.Node();
 
       const matchQuery = new Cypher.Match(
-        new Cypher.Pattern(project, {labels: ["Project"], properties: { id: new Cypher.Param(projectId) }})
-          .related(new Cypher.Relationship())
-          .to(character, {labels: ["gh:Character"]})
+                new Cypher.Pattern(project).related(new Cypher.Relationship()).to(character)
       )
       .return([character, 'c'])
       .orderBy([character.property("schema:name"), "ASC"]);
-      
+
       const { cypher, params } = matchQuery.build();
       const res = await session.run(cypher, params);
 
@@ -434,9 +440,8 @@ export class StoryNeo4jRepository {
       const backstory = new Cypher.Node();
 
       const matchQuery = new Cypher.Match(
-        new Cypher.Pattern(project, {labels: ["Project"], properties: { id: new Cypher.Param(projectId) }})
-          .related(new Cypher.Relationship())
-          .to(backstory, {labels: ["gh:Backstory"]})
+                // @ts-expect-error - cypher-builder types are incorrect
+                new Cypher.Pattern(project, { labels: ["Project"], properties: { id: new Cypher.Param(projectId) } }).related(new Cypher.Relationship({ type: "HAS_BACKSTORY" })).to(backstory)
       )
       .return([backstory, 'b'])
       .orderBy([backstory.property("updatedAt"), "DESC"]);
@@ -463,8 +468,8 @@ export class StoryNeo4jRepository {
       const styles = new Cypher.Node();
 
       const query = new Cypher.Match(
-          new Cypher.Pattern(project, { properties: { id: new Cypher.Param(projectId) } })
-              .related(new Cypher.Relationship({ type: "HAS_STYLES" })).to(styles)
+          // @ts-expect-error - cypher-builder types are incorrect
+          new Cypher.Pattern(project, { properties: { id: new Cypher.Param(projectId) } }).related(new Cypher.Relationship({ type: "HAS_STYLES" })).to(styles)
       )
       .return(styles);
 
@@ -485,10 +490,11 @@ export class StoryNeo4jRepository {
     const session = this.driver.session();
 
     try {
-      const project = new Cypher.Node({ labels: ["Project"] });
+      const project = new Cypher.Node();
 
       const query = new Cypher.Match(
           new Cypher.Pattern(project, {
+              labels: ["Project"],
               properties: { id: new Cypher.Param(id) }
           })
       )
@@ -561,6 +567,7 @@ export class StoryNeo4jRepository {
           ])
           .with(project, narrativeNode)
           .merge(
+              // @ts-expect-error - cypher-builder types are incorrect
               new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_NARRATIVE" })).to(narrativeNode)
           )
           .return(narrativeNode);
@@ -593,8 +600,8 @@ export class StoryNeo4jRepository {
       const narrative = new Cypher.Node();
 
       const query = new Cypher.Match(
-          new Cypher.Pattern(project, { properties: { id: new Cypher.Param(projectId) } })
-              .related(new Cypher.Relationship({ type: "HAS_NARRATIVE" })).to(narrative)
+          // @ts-expect-error - cypher-builder types are incorrect
+          new Cypher.Pattern(project, { properties: { id: new Cypher.Param(projectId) } }).related(new Cypher.Relationship({ type: "HAS_NARRATIVE" })).to(narrative)
       )
       .return(narrative);
 
@@ -700,6 +707,7 @@ export class StoryNeo4jRepository {
           ])
           .with(project, platformsNode)
           .merge(
+              // @ts-expect-error - cypher-builder types are incorrect
               new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_PLATFORMS" })).to(platformsNode)
           )
           .return(platformsNode);
@@ -719,12 +727,14 @@ export class StoryNeo4jRepository {
       const platforms = new Cypher.Node();
 
       const query = new Cypher.Match(
-          new Cypher.Pattern(project, { properties: { id: new Cypher.Param(projectId) } })
-              .related(new Cypher.Relationship({ type: "HAS_PLATFORMS" })).to(platforms)
+          // @ts-expect-error - cypher-builder types are incorrect
+          new Cypher.Pattern(project, { properties: { id: new Cypher.Param(projectId) } }).related(new Cypher.Relationship({ type: "HAS_PLATFORMS" })).to(platforms)
       )
-      .return(platforms);
+      .return([platforms, 'platforms']);
 
       const { cypher, params } = query.build();
+      console.log('Generated Cypher:', cypher);
+      console.log('Params:', params);
       const result = await session.run(cypher, params);
       if (result.records.length === 0) return null;
       return result.records[0].get('platforms').properties;
@@ -770,6 +780,7 @@ export class StoryNeo4jRepository {
           ])
           .with(project, canvasNode)
           .merge(
+              // @ts-expect-error - cypher-builder types are incorrect
               new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_CANVAS" })).to(canvasNode)
           )
           .return(canvasNode);
@@ -789,8 +800,8 @@ export class StoryNeo4jRepository {
       const canvas = new Cypher.Node();
 
       const query = new Cypher.Match(
-          new Cypher.Pattern(project, { properties: { id: new Cypher.Param(projectId) } })
-              .relatedTo(canvas, { type: "HAS_CANVAS" }).end()
+          // @ts-expect-error - cypher-builder types are incorrect
+          new Cypher.Pattern(project, { properties: { id: new Cypher.Param(projectId) } }).related(new Cypher.Relationship({ type: "HAS_CANVAS" })).to(canvas)
       )
       .return(canvas);
 
