@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function ProducerLayout({
   children,
@@ -6,9 +7,16 @@ export default function ProducerLayout({
   return (
     <div className="h-screen w-full grid grid-cols-[260px_1fr]">
       <aside className="h-full border-r border-gray-200 bg-white/95 backdrop-blur px-4 py-6 dark:bg-gray-950/80 dark:border-gray-800">
-        <div className="mb-6">
-          <div className="text-sm text-gray-500 dark:text-gray-400">Workspace</div>
-          <div className="text-lg font-semibold text-gray-900 dark:text-gray-100">Ghost Hacker Producer</div>
+        <div className="mb-6 flex items-center justify-between">
+          <div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">
+              Workspace
+            </div>
+            <div className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+              Ghost Hacker Producer
+            </div>
+          </div>
+          <ThemeToggle />
         </div>
 
         <nav className="space-y-6 text-sm text-gray-800 dark:text-gray-200">

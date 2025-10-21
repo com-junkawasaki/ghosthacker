@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "import:lore": "pnpm tsx src/scripts/import-lore.ts",
-    "analyze:characters": "pnpm tsx src/scripts/analyze-characters.ts"
+    "analyze:characters": "pnpm tsx src/scripts/analyze-characters.ts",
+    "analyze-and-import": "pnpm tsx src/scripts/analyze-and-import.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
