@@ -21,6 +21,7 @@ export function deriveCanvasConfig(opts: {
     webtoon?: { episodePanels?: number };
     youtube?: { targetDurationSec?: number; aspectRatio?: string };
   } | null;
+  episodes?: { episodeId: string; sourcePath: string }[] | null;
 }): CanvasConfig {
   const nodes: CanvasNodeConfig[] = [];
 
@@ -28,7 +29,13 @@ export function deriveCanvasConfig(opts: {
     nodes.push({ id, type, label, data: { id, type, label, ...(extra ?? {}) } });
   };
 
-  add('source-1', 'sourceDoc', opts.project?.title ?? 'Project');
+  if (opts.episodes && opts.episodes.length > 0) {
+    opts.episodes.forEach((ep, idx) => {
+      add(`source-${idx + 1}`, 'sourceDoc', ep.episodeId, { episodeId: ep.episodeId, sourcePath: ep.sourcePath });
+    });
+  } else {
+    add('source-1', 'sourceDoc', opts.project?.title ?? 'Project');
+  }
   add('prompt-1', 'prompt', 'Story Prompt');
   add('writer-1', 'writer', 'AI Writer');
   add('image-gen-1', 'imageGen', 'Image Generation', { palette: opts.styles?.visual?.palette });

@@ -111,7 +111,13 @@ export async function submitCharacters(input: CharacterInput[]): Promise<ServerA
       return { ok: false, faults };
     }
   }
-  return { ok: true, value: input };
+  try {
+    await storyRepository.saveCharacters(DEFAULT_PROJECT_ID, input.map(c => ({ name: c.name, role: c.role, motivation: c.motivation, conflict: c.conflict, voice: c.voice })));
+    return { ok: true, value: input };
+  } catch (error) {
+    console.error('Failed to save characters:', error);
+    return { ok: false, faults: [{ code: 'database_error', message: 'Failed to save characters to database' }] };
+  }
 }
 
 export type StylesInput = {
@@ -163,6 +169,35 @@ export async function submitPlatforms(input: PlatformsInput): Promise<ServerActi
   } catch (error) {
     console.error('Failed to save platforms:', error);
     return { ok: false, faults: [{ code: 'database_error', message: 'Failed to save platforms to database' }] };
+  }
+}
+
+export type EpisodesInput = { episodeId: string; sourcePath: string }[];
+export async function submitEpisodes(input: EpisodesInput): Promise<ServerActionResult<EpisodesInput>> {
+  // simple validation
+  for (const e of input) {
+    if (!e.episodeId || !e.sourcePath) return { ok: false, faults: [{ code: 'validation_error', message: 'episodeId and sourcePath are required' }] };
+  }
+  try {
+    await storyRepository.saveEpisodes(DEFAULT_PROJECT_ID, input);
+    return { ok: true, value: input };
+  } catch (error) {
+    console.error('Failed to save episodes:', error);
+    return { ok: false, faults: [{ code: 'database_error', message: 'Failed to save episodes to database' }] };
+  }
+}
+
+export type BackstoriesInput = { origin: string; motivation?: string; conflict?: string; characterName?: string }[];
+export async function submitBackstories(input: BackstoriesInput): Promise<ServerActionResult<BackstoriesInput>> {
+  for (const b of input) {
+    if (!b.origin) return { ok: false, faults: [{ code: 'validation_error', message: 'origin is required' }] };
+  }
+  try {
+    await storyRepository.saveBackstories(DEFAULT_PROJECT_ID, input);
+    return { ok: true, value: input };
+  } catch (error) {
+    console.error('Failed to save backstories:', error);
+    return { ok: false, faults: [{ code: 'database_error', message: 'Failed to save backstories to database' }] };
   }
 }
 

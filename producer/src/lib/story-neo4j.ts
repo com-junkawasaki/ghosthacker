@@ -30,6 +30,29 @@ export interface NarrativeNode {
   updatedAt: Date;
 }
 
+export interface EpisodeNode {
+  id: string;
+  episodeId: string;
+  sourcePath: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface CharacterItem {
+  name: string;
+  role: 'protagonist' | 'antagonist' | 'support';
+  motivation?: string;
+  conflict?: string;
+  voice?: string;
+}
+
+export interface BackstoryItem {
+  origin: string;
+  motivation?: string;
+  conflict?: string;
+  characterName?: string;
+}
+
 export class StoryNeo4jRepository {
   private driver = getNeo4jDriver();
 
@@ -118,6 +141,97 @@ export class StoryNeo4jRepository {
       };
       const result = await session.run(query, params);
       return result.records[0]?.get('s').properties ?? null;
+    } finally {
+      await session.close();
+    }
+  }
+
+  // Episodes: save list and link to project
+  async saveEpisodes(projectId: string, episodes: { episodeId: string; sourcePath: string }[]) {
+    const session = this.driver.session();
+    try {
+      const now = new Date().toISOString();
+      for (const ep of episodes) {
+        const q = `
+          MATCH (p:Project {id: $projectId})
+          MERGE (e:Episode {id: $id})
+          ON CREATE SET e += { episodeId: $episodeId, sourcePath: $sourcePath, createdAt: $now, updatedAt: $now }
+          ON MATCH SET  e += { episodeId: $episodeId, sourcePath: $sourcePath, updatedAt: $now }
+          MERGE (p)-[:HAS_EPISODE]->(e)
+          RETURN e
+        `;
+        await session.run(q, { projectId, id: `${projectId}:${ep.episodeId}`, episodeId: ep.episodeId, sourcePath: ep.sourcePath, now });
+      }
+      return { ok: true as const };
+    } finally {
+      await session.close();
+    }
+  }
+
+  async getEpisodes(projectId: string): Promise<EpisodeNode[]> {
+    const session = this.driver.session();
+    try {
+      const q = `
+        MATCH (:Project {id: $projectId})-[:HAS_EPISODE]->(e:Episode)
+        RETURN e ORDER BY e.episodeId ASC
+      `;
+      const res = await session.run(q, { projectId });
+      return res.records.map(r => {
+        const e = r.get('e').properties as any;
+        return { id: e.id, episodeId: e.episodeId, sourcePath: e.sourcePath, createdAt: new Date(e.createdAt), updatedAt: new Date(e.updatedAt) };
+      });
+    } finally {
+      await session.close();
+    }
+  }
+
+  // Characters: save list and link to project
+  async saveCharacters(projectId: string, characters: CharacterItem[]) {
+    const session = this.driver.session();
+    try {
+      const now = new Date().toISOString();
+      for (const ch of characters) {
+        const q = `
+          MATCH (p:Project {id: $projectId})
+          MERGE (c:Character {id: $id})
+          ON CREATE SET c += { name: $name, role: $role, motivation: $motivation, conflict: $conflict, voice: $voice, createdAt: $now, updatedAt: $now }
+          ON MATCH SET  c += { name: $name, role: $role, motivation: $motivation, conflict: $conflict, voice: $voice, updatedAt: $now }
+          MERGE (p)-[:HAS_CHARACTER]->(c)
+          RETURN c
+        `;
+        await session.run(q, { projectId, id: `${projectId}:character:${ch.name}`, name: ch.name, role: ch.role, motivation: ch.motivation ?? null, conflict: ch.conflict ?? null, voice: ch.voice ?? null, now });
+      }
+      return { ok: true as const };
+    } finally {
+      await session.close();
+    }
+  }
+
+  async saveBackstories(projectId: string, backstories: BackstoryItem[]) {
+    const session = this.driver.session();
+    try {
+      const now = new Date().toISOString();
+      for (const b of backstories) {
+        const bid = `${projectId}:backstory:${b.origin.slice(0, 24)}`;
+        const q = `
+          MATCH (p:Project {id: $projectId})
+          MERGE (b:Backstory {id: $id})
+          ON CREATE SET b += { origin: $origin, motivation: $motivation, conflict: $conflict, createdAt: $now, updatedAt: $now }
+          ON MATCH SET  b += { origin: $origin, motivation: $motivation, conflict: $conflict, updatedAt: $now }
+          MERGE (p)-[:HAS_BACKSTORY]->(b)
+          RETURN b
+        `;
+        await session.run(q, { projectId, id: bid, origin: b.origin, motivation: b.motivation ?? null, conflict: b.conflict ?? null, now });
+        if (b.characterName) {
+          const link = `
+            MATCH (c:Character {id: $cid}), (b:Backstory {id: $bid})
+            MERGE (c)-[:HAS_BACKSTORY]->(b)
+          `;
+          const cid = `${projectId}:character:${b.characterName}`;
+          await session.run(link, { cid, bid });
+        }
+      }
+      return { ok: true as const };
     } finally {
       await session.close();
     }

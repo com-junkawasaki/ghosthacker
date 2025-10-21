@@ -2,6 +2,8 @@ import Link from "next/link";
 import StoryOverviewForm from "./StoryOverviewForm.client";
 import NarrativeForm from "./NarrativeForm.client";
 import CharactersForm from "./CharactersForm.client";
+import EpisodesForm from "./EpisodesForm.client";
+import BackstoriesForm from "./BackstoriesForm.client";
 import StyleForm from "./StyleForm.client";
 import PlatformsForm from "./PlatformsForm.client";
 import PreviewPanel from "./PreviewPanel.client";
@@ -29,8 +31,18 @@ export default function StoryPipelinePage() {
       </div>
 
       <div className="mt-6 rounded-2xl border border-gray-200 bg-white/95 p-5 shadow-sm backdrop-blur dark:bg-gray-900/80 dark:border-gray-700">
+        <div className="text-sm font-medium text-gray-900 mb-3">Episodes</div>
+        <EpisodesForm />
+      </div>
+
+      <div className="mt-6 rounded-2xl border border-gray-200 bg-white/95 p-5 shadow-sm backdrop-blur dark:bg-gray-900/80 dark:border-gray-700">
         <div className="text-sm font-medium text-gray-900 mb-3">Characters</div>
         <CharactersForm />
+      </div>
+
+      <div className="mt-6 rounded-2xl border border-gray-200 bg-white/95 p-5 shadow-sm backdrop-blur dark:bg-gray-900/80 dark:border-gray-700">
+        <div className="text-sm font-medium text-gray-900 mb-3">Backstories</div>
+        <BackstoriesForm />
       </div>
 
       <div className="mt-6 rounded-2xl border border-gray-200 bg-white/95 p-5 shadow-sm backdrop-blur dark:bg-gray-900/80 dark:border-gray-700">

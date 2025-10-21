@@ -9,31 +9,35 @@ export const canvasRouter = router({
     const saved = await storyRepository.getCanvas(PROJECT_ID);
     if (saved) return saved;
     // fallback derive from current saved entities
-    const [p, n, s, pl] = await Promise.all([
+    const [p, n, s, pl, eps] = await Promise.all([
       storyRepository.getProject(PROJECT_ID),
       storyRepository.getNarrative(PROJECT_ID),
       storyRepository.getStyles(PROJECT_ID),
       storyRepository.getPlatforms(PROJECT_ID),
+      storyRepository.getEpisodes(PROJECT_ID),
     ]);
     return deriveCanvasConfig({
       project: p ? { title: p.title } : undefined,
       narrative: n ? { beats: n.beats } : undefined,
       styles: s ? { visual: s.visual, audio: s.audio } : undefined,
       platforms: pl ?? undefined,
+      episodes: (eps ?? []).map(e => ({ episodeId: e.episodeId, sourcePath: e.sourcePath })),
     });
   }),
   seed: publicProcedure.mutation(async () => {
-    const [p, n, s, pl] = await Promise.all([
+    const [p, n, s, pl, eps] = await Promise.all([
       storyRepository.getProject(PROJECT_ID),
       storyRepository.getNarrative(PROJECT_ID),
       storyRepository.getStyles(PROJECT_ID),
       storyRepository.getPlatforms(PROJECT_ID),
+      storyRepository.getEpisodes(PROJECT_ID),
     ]);
     const config = deriveCanvasConfig({
       project: p ? { title: p.title } : undefined,
       narrative: n ? { beats: n.beats } : undefined,
       styles: s ? { visual: s.visual, audio: s.audio } : undefined,
       platforms: pl ?? undefined,
+      episodes: (eps ?? []).map(e => ({ episodeId: e.episodeId, sourcePath: e.sourcePath })),
     });
     await storyRepository.saveCanvas(PROJECT_ID, config);
     return { ok: true } as const;

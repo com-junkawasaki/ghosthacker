@@ -14,7 +14,7 @@ export async function upsertNodeConfig(params: { nodeId: string; nodeType: strin
         id: new Cypher.Param(params.nodeId),
         type: new Cypher.Param(params.nodeType),
         label: new Cypher.Param(params.label),
-        config: new Cypher.Param(params.config),
+        configJson: new Cypher.Param(JSON.stringify(params.config)),
         updatedAt: Cypher.datetime(),
       } as const;
       const setMap = ctx.compile(new Cypher.Map(props));
@@ -42,12 +42,18 @@ export async function getNodeConfig(nodeId: string): Promise<{ nodeId: string; n
     const res = await session.run(raw.build().cypher, raw.build().params);
     const rec = res.records[0];
     if (!rec) return null;
-    const n = rec.get('n') as { properties: { id: string; type: string; label: string; config?: Record<string, unknown> } };
+    const n = rec.get('n') as { properties: { id: string; type: string; label: string; configJson?: string } };
+    let config: Record<string, unknown> = {};
+    try {
+      if (n.properties.configJson) config = JSON.parse(n.properties.configJson) as Record<string, unknown>;
+    } catch {
+      config = {};
+    }
     return {
       nodeId: n.properties.id,
       nodeType: n.properties.type,
       label: n.properties.label,
-      config: n.properties.config ?? {},
+      config,
     };
   } finally {
     await session.close();
