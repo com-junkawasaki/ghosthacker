@@ -1,5 +1,6 @@
 import { getNeo4jDriver } from '../infra/neo4j/client';
 import * as Cypher from '@neo4j/cypher-builder';
+import { STRUCTURES, TONES, ART_STYLES, PALETTES, VOICES, TEMPOS, MUSIC } from '@/app/(producer)/canvas/story/types';
 
 // Merkle DAG: story-neo4j -> neo4j-driver -> cypher-builder
 // Story data persistence layer using Neo4j graph database
@@ -9,7 +10,7 @@ export interface ProjectNode {
   title: string;
   logline: string;
   genres: string[];
-  tone: string;
+  tone: (typeof TONES)[number];
   audienceRating: string;
   language: string;
   keywords: string[];
@@ -20,11 +21,11 @@ export interface ProjectNode {
 export interface NarrativeNode {
   id: string;
   synopsis: string;
-  structure: string;
+  structure: (typeof STRUCTURES)[number];
   beats: Array<{
     id: string;
     label: string;
-    purpose: string;
+    purpose: 'setup' | 'conflict' | 'climax';
     targetLength: number;
   }>;
   createdAt: Date;
@@ -300,8 +301,8 @@ export class StoryNeo4jRepository {
   }
 
   async getStyles(projectId: string): Promise<{
-    visual: { artStyle: string; palette: string; nsfwAllowed: boolean };
-    audio: { voice: string; tempo: string; musicMood: string };
+    visual: { artStyle: (typeof ART_STYLES)[number]; palette: (typeof PALETTES)[number]; nsfwAllowed: boolean };
+    audio: { voice: (typeof VOICES)[number]; tempo: (typeof TEMPOS)[number]; musicMood: (typeof MUSIC)[number] };
   } | null> {
     const session = this.driver.session();
     try {
@@ -312,8 +313,8 @@ export class StoryNeo4jRepository {
       const result = await session.run(query, { projectId });
       if (result.records.length === 0) return null;
       return result.records[0].get('s').properties as {
-        visual: { artStyle: string; palette: string; nsfwAllowed: boolean };
-        audio: { voice: string; tempo: string; musicMood: string };
+        visual: { artStyle: (typeof ART_STYLES)[number]; palette: (typeof PALETTES)[number]; nsfwAllowed: boolean };
+        audio: { voice: (typeof VOICES)[number]; tempo: (typeof TEMPOS)[number]; musicMood: (typeof MUSIC)[number] };
       };
     } finally {
       await session.close();
