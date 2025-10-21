@@ -105,23 +105,23 @@ export class StoryNeo4jRepository {
               updatedAt: new Cypher.Param(now.toISOString()),
           })
       ])
-      .return(projectNode);
+      .return([projectNode, 'projectNode']);
 
       const { cypher, params } = query.build();
       const result = await session.run(cypher, params);
       const record = result.records[0];
 
       return {
-        id: record.get('p').properties.id,
-        title: record.get('p').properties.title,
-        logline: record.get('p').properties.logline,
-        genres: record.get('p').properties.genres,
-        tone: record.get('p').properties.tone,
-        audienceRating: record.get('p').properties.audienceRating,
-        language: record.get('p').properties.language,
-        keywords: record.get('p').properties.keywords,
-        createdAt: new Date(record.get('p').properties.createdAt),
-        updatedAt: new Date(record.get('p').properties.updatedAt),
+        id: record.get('projectNode').properties.id,
+        title: record.get('projectNode').properties.title,
+        logline: record.get('projectNode').properties.logline,
+        genres: record.get('projectNode').properties.genres,
+        tone: record.get('projectNode').properties.tone,
+        audienceRating: record.get('projectNode').properties.audienceRating,
+        language: record.get('projectNode').properties.language,
+        keywords: record.get('projectNode').properties.keywords,
+        createdAt: new Date(record.get('projectNode').properties.createdAt),
+        updatedAt: new Date(record.get('projectNode').properties.updatedAt),
       };
     } finally {
       await session.close();
@@ -176,7 +176,7 @@ export class StoryNeo4jRepository {
               // @ts-expect-error - cypher-builder types are incorrect
               new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_STYLES" })).to(stylesNode)
           )
-          .return(stylesNode);
+          .return([stylesNode, 'stylesNode']);
 
       const { cypher, params } = query.build();
       const result = await session.run(cypher, params);
@@ -253,7 +253,7 @@ export class StoryNeo4jRepository {
         // @ts-expect-error - cypher-builder types are incorrect
         new Cypher.Pattern(project, { labels: ["Project"], properties: { id: new Cypher.Param(projectId) } }).related(new Cypher.Relationship({ type: "HAS_EPISODE" })).to(episode)
       )
-      .return(episode)
+      .return([episode, 'episode'])
       .orderBy([episode.property("schema:episodeNumber"), "ASC"]);
 
       const { cypher, params } = matchQuery.build();
@@ -471,7 +471,7 @@ export class StoryNeo4jRepository {
           // @ts-expect-error - cypher-builder types are incorrect
           new Cypher.Pattern(project, { properties: { id: new Cypher.Param(projectId) } }).related(new Cypher.Relationship({ type: "HAS_STYLES" })).to(styles)
       )
-      .return(styles);
+      .return([styles, 'styles']);
 
       const { cypher, params } = query.build();
       const result = await session.run(cypher, params);
@@ -498,7 +498,7 @@ export class StoryNeo4jRepository {
               properties: { id: new Cypher.Param(id) }
           })
       )
-      .return(project);
+      .return([project, 'project']);
 
       const { cypher, params } = query.build();
       const result = await session.run(cypher, params);
@@ -570,7 +570,7 @@ export class StoryNeo4jRepository {
               // @ts-expect-error - cypher-builder types are incorrect
               new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_NARRATIVE" })).to(narrativeNode)
           )
-          .return(narrativeNode);
+          .return([narrativeNode, 'narrativeNode']);
 
       const { cypher, params } = query.build();
       const result = await session.run(cypher, params);
@@ -603,7 +603,7 @@ export class StoryNeo4jRepository {
           // @ts-expect-error - cypher-builder types are incorrect
           new Cypher.Pattern(project, { properties: { id: new Cypher.Param(projectId) } }).related(new Cypher.Relationship({ type: "HAS_NARRATIVE" })).to(narrative)
       )
-      .return(narrative);
+      .return([narrative, 'narrative']);
 
       const { cypher, params } = query.build();
       const result = await session.run(cypher, params);
@@ -636,7 +636,7 @@ export class StoryNeo4jRepository {
       const project = new Cypher.Node();
 
       const query = new Cypher.Match(new Cypher.Pattern(project))
-          .return(project)
+          .return([project, 'project'])
           .orderBy([project.property("updatedAt"), "DESC"]);
 
       const { cypher, params } = query.build();
@@ -710,7 +710,7 @@ export class StoryNeo4jRepository {
               // @ts-expect-error - cypher-builder types are incorrect
               new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_PLATFORMS" })).to(platformsNode)
           )
-          .return(platformsNode);
+          .return([platformsNode, 'platformsNode']);
 
       const { cypher, params } = query.build();
       const result = await session.run(cypher, params);
@@ -783,7 +783,7 @@ export class StoryNeo4jRepository {
               // @ts-expect-error - cypher-builder types are incorrect
               new Cypher.Pattern(project).related(new Cypher.Relationship({ type: "HAS_CANVAS" })).to(canvasNode)
           )
-          .return(canvasNode);
+          .return([canvasNode, 'canvasNode']);
 
       const { cypher, params } = query.build();
       const result = await session.run(cypher, params);
@@ -803,7 +803,7 @@ export class StoryNeo4jRepository {
           // @ts-expect-error - cypher-builder types are incorrect
           new Cypher.Pattern(project, { properties: { id: new Cypher.Param(projectId) } }).related(new Cypher.Relationship({ type: "HAS_CANVAS" })).to(canvas)
       )
-      .return(canvas);
+      .return([canvas, 'canvas']);
 
       const { cypher, params } = query.build();
       const result = await session.run(cypher, params);
