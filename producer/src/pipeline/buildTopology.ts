@@ -53,8 +53,15 @@ export function buildExecutionPlan(nodes: Node[], edges: Edge[]): ExecutionPlan 
     executionOrder.push(currentLevel);
   }
 
-  if (executionOrder.flat().length !== nodes.length) {
-    throw new Error('Cycle detected in graph, cannot determine execution order.');
+  const processedNodes = executionOrder.flat();
+  if (processedNodes.length !== nodes.length) {
+    const allNodeIds = nodes.map(n => n.id);
+    const unprocessedNodes = allNodeIds.filter(id => !processedNodes.includes(id));
+    console.error('Unprocessed nodes (possible cycle or missing dependencies):', unprocessedNodes);
+    console.error('Processed nodes:', processedNodes);
+    console.error('All nodes:', allNodeIds);
+    console.error('Edges:', edges.map(e => `${e.source} -> ${e.target}`));
+    throw new Error(`Cycle detected in graph or missing dependencies. Unprocessed nodes: ${unprocessedNodes.join(', ')}`);
   }
 
   return { executionOrder, dependencies };

@@ -110,6 +110,10 @@ function ProducerCanvasComponent() {
   const runPipelineMutation = api.pipeline.run.useMutation();
 
   const onRunPipeline = useCallback(async () => {
+    // Prevent pipeline execution from Canvas - use Story Pipeline page instead
+    alert('パイプライン実行は /canvas/story ページから行ってください。このページはグラフ可視化専用です。');
+    return;
+
     setRunStatus('running');
     try {
       await runPipelineMutation.mutateAsync({ nodes, edges });
