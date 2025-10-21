@@ -1,4 +1,3 @@
-import * as Cypher from "@neo4j/cypher-builder";
 import { getNeo4jDriver } from "@/infra/neo4j/client";
 
 type GenericNode = { id: string; type: string; label?: string; config?: Record<string, unknown> };
@@ -9,13 +8,8 @@ export function createGraphContext() {
   async function fetchCharacterBundle(name: string) {
     const session = driver.session();
     try {
-      const c = new Cypher.Node("c", "Character");
-      const q = new Cypher.Query()
-        .match(new Cypher.Pattern(c).withProperties({ name: new Cypher.Param(name) }))
-        .return(c)
-        .limit(1);
-      const { cypher, params } = q.build();
-      const r = await session.run(cypher, params);
+      const cypher = `MATCH (c:Character {name: $name}) RETURN c LIMIT 1`;
+      const r = await session.run(cypher, { name });
       return r.records[0]?.toObject() ?? null;
     } finally {
       await session.close();
