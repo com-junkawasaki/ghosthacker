@@ -1,5 +1,22 @@
 ### Ghost Hacker Episode 01: 神への恐れ (Masterpiece Version)
 
+#### 作品概要（Hybrid: Linear Episodic + Archipelago Arc）
+
+- **World**: 2065年、水路が網の目のように巡る未来都市・東京。ガラスと水と光が融け合い、魂の「Spirit」と情報生命「Ghost」が並存し、観測可能な生命として扱われる。
+- **Profession/Ghost Hacker**: 魂の不調を診断・治療する国家資格の専門医。心療内科の繊細さと脳外科の精密さを併せ持ち、トラウマや情報的バグという「絡まり」を解き、Ghostを「生命の樹（Tree of Life）」へ還帰させる。
+- **Protagonist**: Tamaki（環樹）／相棒AI Ghost「NEI-Chan」。
+- **Logline**: 駆け出しのGhost Hacker・Tamakiが、Logosの依頼で天才物理学者Eliasの「孤独」に潜航し、非分離のコードと仲間の支援で魂をTree of Lifeへ導く。各話は個別症例の線形解決、全体は「非分離／生命の樹」の群島的謎で連結される。
+- **Structure**: Hybrid（線形エピソード進行＋群島アーク連結）
+  - Linear Episodic: 依頼→診断→ダイブ→対処→還帰（毎話の完結）
+  - Archipelago Arc: 「孤独」「非分離」「生命の樹」へ連なる大域的謎が島々のように接続
+- **Arcs**
+  - Archipelago: 孤独/非分離（Tamakiと世界観の根源命題）
+  - Episodic: 依頼『Elias/Logos』症例（今回の症例）
+- **Beats**
+  - setup: Session Start
+  - conflict: Ghost Encounter
+  - climax: Integration & Catharsis
+
 #### **第一幕：日常と異変**
 
 渋谷の運河は、今日も静かだ。私のオフィスはその運河沿いに建っている。床から天井まで広がる大きな窓の向こうには、まるで沖縄の海を切り取ってきたかのような、深く、そして青く透き通った水が広がっている。時折、水上バスが音もなく滑るように通り過ぎていく。その光景を眺めながら、私は自分の仕事について考えていた。

@@ -40,13 +40,30 @@
     "has_episode": {
       "@id": "gh:has_episode",
       "@type": "@id"
-    }
+    },
+    "structure": { "@id": "gh:structure" },
+    "has_arc": { "@id": "gh:has_arc", "@type": "@id" },
+    "arc_type": { "@id": "gh:arc_type" },
+    "has_beat": { "@id": "gh:has_beat", "@type": "@id" },
+    "purpose": { "@id": "gh:purpose" },
+    "target_length": { "@id": "gh:target_length" }
   },
   "@graph": [
     {
       "@id": "gh:Episode:Ghost-Hacker-Episode-01",
       "@type": "gh:Episode",
       "name": "Ghost Hacker Episode 01",
+      "description": "駆け出しのGhost Hacker・TamakiがLogosの依頼でEliasの心の『孤独』に潜り、魂をTree of Lifeへ導く。各話で個別の症例を解く一方、非分離と生命の樹の謎が群島状に連なる。",
+      "structure": "Hybrid: Linear Episodic + Archipelago Arc",
+      "has_arc": [
+        { "@id": "gh:Arc:Loneliness-Archipelago" },
+        { "@id": "gh:Arc:Case-E01-Episodic" }
+      ],
+      "has_beat": [
+        { "@id": "gh:Beat:beat-01" },
+        { "@id": "gh:Beat:beat-02" },
+        { "@id": "gh:Beat:beat-03" }
+      ],
       "has_act": [
         {
           "@id": "gh:Act:-----"
@@ -1410,6 +1427,39 @@
       "appears_in": [],
       "mentions": [],
       "includes_event": []
+    },
+    {
+      "@id": "gh:Arc:Loneliness-Archipelago",
+      "@type": "gh:Arc",
+      "name": "孤独/非分離の群島（アーキペラゴ）",
+      "arc_type": "Archipelago"
+    },
+    {
+      "@id": "gh:Arc:Case-E01-Episodic",
+      "@type": "gh:Arc",
+      "name": "依頼『Elias/Logos』症例（エピソード）",
+      "arc_type": "Episodic"
+    },
+    {
+      "@id": "gh:Beat:beat-01",
+      "@type": "gh:Beat",
+      "name": "Session Start",
+      "purpose": "setup",
+      "target_length": 200
+    },
+    {
+      "@id": "gh:Beat:beat-02",
+      "@type": "gh:Beat",
+      "name": "Ghost Encounter",
+      "purpose": "conflict",
+      "target_length": 800
+    },
+    {
+      "@id": "gh:Beat:beat-03",
+      "@type": "gh:Beat",
+      "name": "Integration & Catharsis",
+      "purpose": "climax",
+      "target_length": 400
     },
     {
       "@id": "gh:Character:Kaede",
