@@ -53,6 +53,19 @@
       "@id": "gh:Episode:Ghost-Hacker-Episode-01",
       "@type": "gh:Episode",
       "name": "Ghost Hacker Episode 01",
+      "title": "Ghost Hacker Episode 01: 神への恐れ",
+      "keywords": [
+        "Wattpad",
+        "サイバーパンク",
+        "SF",
+        "ゴースト",
+        "スピリット",
+        "非分離",
+        "生命の樹",
+        "東京",
+        "心理",
+        "ハッカー"
+      ],
       "description": "駆け出しのGhost Hacker・TamakiがLogosの依頼でEliasの心の『孤独』に潜り、魂をTree of Lifeへ導く。各話で個別の症例を解く一方、非分離と生命の樹の謎が群島状に連なる。",
       "structure": "Hybrid: Linear Episodic + Archipelago Arc",
       "has_arc": [
