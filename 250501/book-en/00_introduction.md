@@ -14,7 +14,7 @@ In this book, "hacking" is not about destruction or exploitation.  It is the mos
 
 ### Ancestral Ghost Hackers
 
-Before us stand great pioneers who opened the path.  They differed in era and culture, yet confronted the same question—what is human consciousness (the ghost) and how can we rewrite it?
+Before us stand great pioNeirs who opened the path.  They differed in era and culture, yet confronted the same question—what is human consciousness (the ghost) and how can we rewrite it?
 
 * **The Ṛṣis of the Upaniṣads**: Humankind's very first ghost hackers.  By diving into their inner universe through meditation, they discovered the ultimate system information that the individual soul (Ātman) is identical with the ground of the universe (Brahman)—as if every user had `root` privileges.
 * **Heraclitus**: The ancient Greek philosopher who saw that "everything flows," recognizing reality not as something static but as an ever-changing process—an executing program.  He inferred the existence of a fundamental logic (Logos) that governs the change—the first to theorize the kernel.
@@ -23,7 +23,7 @@ Before us stand great pioneers who opened the path.  They differed in era and cu
 * **Kūkai and Saichō**: Two Japanese geniuses who applied innovative patches to the Buddhist OS.  Kūkai mapped a path to enlightenment **within this very body** using Esoteric rituals, mandalas (system blueprints), and commands.  Saichō declared Buddhism open source: every being has Buddha-nature and can become a Buddha.
 * **Linji Yixuan and Dōgen**: Masters who developed the debugger called Zen.  Linji used the logic-bomb of "kōan" to crash infinite loops of thought, forcing a kernel panic that reboots into direct enlightenment.  Dōgen proposed the quiet monitoring tool of **shikantaza**, observing the endless log of thought to realize the system's native functioning.
 * **D.T. Suzuki**: The brilliant evangelist who published the spec sheet of the Japanese OS "Zen" to the world in English.  Without his works, Western hackers could hardly have accessed Zen's source code.
-* **Alan Watts**: A genius reverse engineer who, passing through the door Suzuki opened, translated the kernel logic of Zen into terms Western OSs could parse.  He leapt over the firewall called logic.
+* **Alan Watts**: A genius reverse engiNeir who, passing through the door Suzuki opened, translated the kernel logic of Zen into terms Western OSs could parse.  He leapt over the firewall called logic.
 * **Carl Gustav Jung**: The architect of depth psychology who decoded the unconscious source, mapping archetypes and the collective unconscious.  The `P(wO|wI)` we quote is a by-product of his exploration.
 * **Hayao Kawai**: A clinician who applied Jung's Western debugger to the Japanese "kokoro," revealing its hollow core and mythic architecture—the unique kernel parameters of the Japanese ghost.
 * **Timothy Leary**: Prophet of psychedelics who proclaimed "Upgrade the mental OS," attempting to expand consciousness with the new software LSD.  "Tune in, turn on, drop out" was a command to free oneself from the existing social system.

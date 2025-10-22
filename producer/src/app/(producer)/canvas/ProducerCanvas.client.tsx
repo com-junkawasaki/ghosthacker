@@ -128,7 +128,7 @@ function ProducerCanvasComponent() {
   }, [nodes, edges, runPipelineMutation, storyGraphQuery]);
 
   const onNodeClick = useCallback((_evt: unknown, node: RFNode<NodeData>) => {
-    // Navigation logic can be re-implemented if needed
+    // Navigation logic can be re-implemented if Neided
     console.log('Node clicked:', node);
   }, []);
 

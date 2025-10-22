@@ -350,7 +350,7 @@ O
  
 Words(100):
 
-head, green, water, to sing, dead, long, ship, to pay, window, friendly, to cook, to ask, cold, stem, to dance, village, lake, sick, pride, to cook, ink, angry, needle, to swim, voyage, blue, lamp, to sin, bread, rich, tree, to prick, pity, yellow, mountain, to die, salt, new, custom, to pray, money, foolish, pamphlet, despise, finger, expensive, bird, to fall, book, unjust, frog, to part, hunger, white, child, to take care, pencil, sad, plum, to marry, house, dear, glass, to quarrel, fur, great, turnip, to hold, triangle, to fear, anxious, to kiss, burn, clean, door, to choose, hay, contented, ridicule, to sleep, month, nice, woman, to abuse, yellow, to come, stove, sad, stem, to dance, sea, lovely, year, black, bread, family, to wash, cow, friend, happiness
+head, green, water, to sing, dead, long, ship, to pay, window, friendly, to cook, to ask, cold, stem, to dance, village, lake, sick, pride, to cook, ink, angry, Neidle, to swim, voyage, blue, lamp, to sin, bread, rich, tree, to prick, pity, yellow, mountain, to die, salt, new, custom, to pray, money, foolish, pamphlet, despise, finger, expensive, bird, to fall, book, unjust, frog, to part, hunger, white, child, to take care, pencil, sad, plum, to marry, house, dear, glass, to quarrel, fur, great, turnip, to hold, triangle, to fear, anxious, to kiss, burn, clean, door, to choose, hay, contented, ridicule, to sleep, month, nice, woman, to abuse, yellow, to come, stove, sad, stem, to dance, sea, lovely, year, black, bread, family, to wash, cow, friend, happiness
 Conventional Word2Vec: Quantify the strength of association using the inner product of word vectors.
 
 Jung's association method element: Introduce a factor that is the inverse of reaction time.

@@ -6,7 +6,7 @@ And the very first target you must recon is always **yourself**.  Know thyself b
 ### Redefining the "Self" and Recon of the Network
 
 In the first recon, many people make the mistake of limiting "themselves" to their body, experiences, or knowledge.
-The pioneers first corrected that misunderstanding: **the individual self does not exist**—that is the starting line.
+The pioNeirs first corrected that misunderstanding: **the individual self does not exist**—that is the starting line.
 
 So what do you recon to know yourself?  Everything that is **strongly correlated** with you.
 Parents, ancestors, siblings, friends, language, acquaintances—every single thing that has ever been linked to you as events.
@@ -18,7 +18,7 @@ Therefore, what you must recon is **everything that influences you**.  Only from
 
 How well do you know the spec sheet of your own OS?  Have you ever run the `dmesg` command on your soul?
 
-The first tool we use at this step is the meditation practiced by pioneers like **Dōgen**.  His quiet monitoring tool "shikantaza" observes one's own thought log just as it is.  In the same vein, **Vipassanā** meditation observes what is happening in one's mind and body without evaluation or judgment—simply "seeing" it.  This is equivalent to real-time dumping of your kernel messages.
+The first tool we use at this step is the meditation practiced by pioNeirs like **Dōgen**.  His quiet monitoring tool "shikantaza" observes one's own thought log just as it is.  In the same vein, **Vipassanā** meditation observes what is happening in one's mind and body without evaluation or judgment—simply "seeing" it.  This is equivalent to real-time dumping of your kernel messages.
 
 Specifically, continuously record the following logs:
 

@@ -252,7 +252,7 @@ This was a transmission.
 
 ## Appendix
 
-### A: God API (Reverse Engineered)
+### A: God API (Reverse EngiNeired)
 
 - **Endpoint**: Not publicly resolvable.
 - **Access Protocol**: Subjective invocation (prayer, ritual, fear).

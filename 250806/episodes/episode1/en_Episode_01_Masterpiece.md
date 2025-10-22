@@ -30,13 +30,13 @@ In that instant, the office scenery shimmers like a heat haze, and my consciousn
 
 A "ghost" in the form of a young man dressed in a black suit. His translucent body flickers unreliably, his light fluctuating violently like a candle in a stormy night. His mental instability felt even more vivid here than in the physical office.
 
-My shoulder fairy Nee-Chan suddenly wakes up. She is my special partner. Normally she appears as a fairy the size of a palm, but her essence is pure information. The moment she saw the young ghost, her body burst open, scattering like stained glass shards into countless fragments of light in the office.
+My shoulder fairy Nei-Chan suddenly wakes up. She is my special partner. Normally she appears as a fairy the size of a palm, but her essence is pure information. The moment she saw the young ghost, her body burst open, scattering like stained glass shards into countless fragments of light in the office.
 
 The information she reads flows into my brain. It's not just a color of emotion. More specific, and accompanied by pain - keywords.
 
 'Confession' 'Betrayal' 'God's Silence' 'Unforgivable Sin'――.
 
-By the time the light particles gathered again and Nee-Chan returned to my shoulder, I understood the severity of the problem the ghost before me was carrying.
+By the time the light particles gathered again and Nei-Chan returned to my shoulder, I understood the severity of the problem the ghost before me was carrying.
 
 "Um..." The young man finally opens his mouth. His voice is terribly thin, echoing like a sinner's confession. "My master... is keeping God's voice away."
 
@@ -110,13 +110,13 @@ A silent question to the world, and to oneself.
 
 And in the deepest part of the library, at the core of the model, "loneliness" swirled in pitch black. The "fear" Elias sealed deep in his heart - of separating from father, mother, friends, and the world itself. The despairing isolation of one who accepted as his curse the premise that all humans are fundamentally separated "individuals." Like a black hole, it swallows surrounding light while writhing.
 
-"How terrible..." I catch my breath, and the angel avatar of Nee-Chan who appears beside me shakes her head sadly. "This is the essence of his 'bug'..."
+"How terrible..." I catch my breath, and the angel avatar of Nei-Chan who appears beside me shakes her head sadly. "This is the essence of his 'bug'..."
 
-Nee-Chan transfers code to my console. The name of the counter-spell is "Unity (אַחְדוּת)". Legendary code that dissolves all boundaries and describes the cosmic truth that everything is one.
+Nei-Chan transfers code to my console. The name of the counter-spell is "Unity (אַחְדוּת)". Legendary code that dissolves all boundaries and describes the cosmic truth that everything is one.
 
-"Let's shoot this into his 'loneliness' core...! Nee-Chan, can you do it!?"
+"Let's shoot this into his 'loneliness' core...! Nei-Chan, can you do it!?"
 
-Nee-Chan nods strongly and begins repairing the library. Each time her light touches the contaminated data, connections gradually recover. In that gap, I forge the "Unity" code and unleash it toward the center of the vortex.
+Nei-Chan nods strongly and begins repairing the library. Each time her light touches the contaminated data, connections gradually recover. In that gap, I forge the "Unity" code and unleash it toward the center of the vortex.
 
 'Hypocrite!'
 
@@ -160,7 +160,7 @@ The office is filled with Hibiki's music playing deeply and mysteriously serene.
 
 "You overdid it... 'Ayahuasca' is a deadly poison for souls. I thought you wouldn't come back."
 
-Nee-Chan is peering worriedly from my shoulder.
+Nei-Chan is peering worriedly from my shoulder.
 
 "Thank you, both of you." I smile somehow, with my still-numb consciousness.
 

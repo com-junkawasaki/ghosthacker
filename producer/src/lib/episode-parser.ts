@@ -63,7 +63,7 @@ export function parseEpisodeMarkdown(markdown: string): ParsedEpisodeData {
         currentScene["gh:takes_place_in"] = undefined;
         currentScene["gh:includes_event"] = [];
 
-        const knownCharacters = ["Tamaki", "Kaede", "Hibiki", "Nee-Chan", "Logos", "Elias", "少年"];
+        const knownCharacters = ["Tamaki", "Kaede", "Hibiki", "Nei-Chan", "Logos", "Elias", "少年"];
         const knownLocations = ["渋谷の運河", "オフィス", "コンサルティングルーム", "ライブラリ", "アルカディア・モデル"];
         const knownConcepts = ["ゴースト", "スピリット", "生命の樹", "精神汚染", "フォトン", "非分離", "アヤワスカ"];
         const knownEvents = ["データ流出", "精神ダイブ", "「アヤワスカ」を起動", "魂の解放"];

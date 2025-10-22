@@ -1,6 +1,6 @@
 ## Chapter 4: Privilege Escalation — "Shadow Integration"
 
-User-level access and surface "enlightenment" are not enough.  To touch the core of the system and truly become one with it, you need **`root`**.  The exploit that achieves this escalation is **Shadow Integration**.
+User-level access and surface "enlightenment" are not enough.  To touch the core of the system and truly become one with it, you Neid **`root`**.  The exploit that achieves this escalation is **Shadow Integration**.
 
 Shadow Integration is the process of logging, debugging, and merging hidden bugs in the unconscious—jealousy, fear, inferiority, aggression—into your latest code.  Its most powerful tools are **unconditional affirmation** and **deep empathy**.  This time you apply them not outward but inward.
 

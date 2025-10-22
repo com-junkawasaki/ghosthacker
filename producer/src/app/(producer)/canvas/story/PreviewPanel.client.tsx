@@ -12,7 +12,7 @@ type Beat = { id: string; label: string; purpose: 'setup'|'conflict'|'climax'; t
 type Narrative = { synopsis: string; structure: string; beats?: Beat[] } | null;
 
 export default function PreviewPanel() {
-  // Local cache if needed later; currently used only for estimates and mapping
+  // Local cache if Neided later; currently used only for estimates and mapping
   const [, setProject] = useState<Project>(null);
   const [, setNarrative] = useState<Narrative>(null);
   const [estimates, setEstimates] = useState<{ words: number; durationSec: number; panels: number }>({ words: 0, durationSec: 0, panels: 0 });

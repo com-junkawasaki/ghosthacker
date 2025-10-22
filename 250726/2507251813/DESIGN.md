@@ -25,7 +25,7 @@ Read file: README.md
 ## 2. 主要キャラクター
 | 役割                 | 概要・キー属性 |
 |----------------------|----------------|
-| **Akito**            | プロテスタント的恐れで育つ。後に Ghost Hacker／Spirit Engineer。 |
+| **Akito**            | プロテスタント的恐れで育つ。後に Ghost Hacker／Spirit EngiNeir。 |
 | **Ren**              | 0 歳で死亡→母の罪悪感で Akito にインストールされた情報魂。 |
 | **Mother**           | 無自覚ハッカー。高知性・共感欠如。罪悪感＝バックドア。 |
 | **Daughter**         | “いい感じ”エンジンを体現する次世代。 |
@@ -103,7 +103,7 @@ UI プロトタイプ：
 ```python
 class GhostHacker:
     def __init__(self):
-        self.mode = "SpiritEngineer"  # daytime
+        self.mode = "SpiritEngiNeir"  # daytime
     def night_shift(self):
         self.mode = "GhostHacker"
         self.hunt_unforgiven()

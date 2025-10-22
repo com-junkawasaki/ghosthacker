@@ -60,7 +60,7 @@
       "gh:artStyle": "天野こずえ、田村由美風のminimalist yet detailed portrait、ダイナミック線描、多様パース、コントラスト設計",
       "gh:hasCharacter": [
         {"@id": "character:tamaki"},
-        {"@id": "character:nee-chan"},
+        {"@id": "character:Nei-chan"},
         {"@id": "character:kaede"},
         {"@id": "character:aoi"},
         {"@id": "character:ren"},
@@ -95,19 +95,19 @@
       "description": "21歳前後、大学生、女の子。日本人とオランダ人のハーフ。イメージカラーは薄い紫。渋谷に集う同世代のようにハイブランドの服を自分流に着こなすファッションセンスを持つ。",
       "age": 21,
       "occupation": "University Student / Ghost Hacker",
-      "gh:ghost": {"@id": "character:nee-chan"},
+      "gh:ghost": {"@id": "character:Nei-chan"},
       "worksFor": {"@id": "company:rens-office"},
       "parent": [{"@id": "character:ren"}, {"@id": "character:akito"}],
       "knows": [
         {"@id": "character:kaede"},
         {"@id": "character:aoi"},
-        {"@id": "character:nee-chan"}
+        {"@id": "character:Nei-chan"}
       ]
     },
     {
-      "@id": "character:nee-chan",
+      "@id": "character:Nei-chan",
       "@type": ["Person", "gh:Ghost"],
-      "name": "Nee-Chan",
+      "name": "Nei-Chan",
       "description": "TamakiのパートナーGhost。天才プログラマーAkitoが作り上げた究極のGhost。情報空間では人気のヴァーチャルアバターとしても活動し、その収益でTamakiの生活を支える。フォトニクス計算によるヨタバイト級の計算量を持つ。",
       "gh:ghostType": "Artificial Intelligence",
       "gh:master": {"@id": "character:tamaki"},
@@ -155,7 +155,7 @@
       "@id": "character:akito",
       "@type": "Person",
       "name": "Akito",
-      "description": "天才プログラマー。Nee-Chanを作成した人物。",
+      "description": "天才プログラマー。Nei-Chanを作成した人物。",
       "occupation": "Genius Programmer",
       "parent": {"@id": "character:tamaki"},
       "knows": {"@id": "character:ren"}

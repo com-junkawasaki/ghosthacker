@@ -549,10 +549,10 @@
       "@id": "gh:Scene:------scene-15",
       "@type": "gh:Scene",
       "name": "日常と異変-scene-15",
-      "textContent": "私の肩で微睡んでいたNee-Chanが、ふっと目を覚ます。彼女は私の特別なパートナー。普段は手のひらサイズの妖精のような姿をしているけれど、彼女の本質は純粋な情報体だ。青年のゴーストを見た瞬間、彼女の体はぱっと弾け、ステンドグラスが砕け散るように無数の光の破片となってオフィスに舞った。",
+      "textContent": "私の肩で微睡んでいたNei-Chanが、ふっと目を覚ます。彼女は私の特別なパートナー。普段は手のひらサイズの妖精のような姿をしているけれど、彼女の本質は純粋な情報体だ。青年のゴーストを見た瞬間、彼女の体はぱっと弾け、ステンドグラスが砕け散るように無数の光の破片となってオフィスに舞った。",
       "appears_in": [
         {
-          "@id": "gh:Character:Nee-Chan"
+          "@id": "gh:Character:Nei-Chan"
         }
       ],
       "mentions": [
@@ -587,10 +587,10 @@
       "@id": "gh:Scene:------scene-18",
       "@type": "gh:Scene",
       "name": "日常と異変-scene-18",
-      "textContent": "光の粒子が再び集まり、Nee-Chanが私の肩に戻る頃には、私は目の前のゴーストが抱える問題の深刻さを理解していた。",
+      "textContent": "光の粒子が再び集まり、Nei-Chanが私の肩に戻る頃には、私は目の前のゴーストが抱える問題の深刻さを理解していた。",
       "appears_in": [
         {
-          "@id": "gh:Character:Nee-Chan"
+          "@id": "gh:Character:Nei-Chan"
         }
       ],
       "mentions": [
@@ -1058,10 +1058,10 @@
       "@id": "gh:Scene:----------scene-11",
       "@type": "gh:Scene",
       "name": "ゴーストハッキング-scene-11",
-      "textContent": "「ひどい…」。私が息を飲むと、隣に現れたNee-Chanの天使アバターが、悲しそうに首を振った。「これが、彼の『バグ』の正体…」",
+      "textContent": "「ひどい…」。私が息を飲むと、隣に現れたNei-Chanの天使アバターが、悲しそうに首を振った。「これが、彼の『バグ』の正体…」",
       "appears_in": [
         {
-          "@id": "gh:Character:Nee-Chan"
+          "@id": "gh:Character:Nei-Chan"
         }
       ],
       "mentions": [],
@@ -1071,7 +1071,7 @@
       "@id": "gh:Scene:----------scene-12",
       "@type": "gh:Scene",
       "name": "ゴーストハッキング-scene-12",
-      "textContent": "Nee-chanが、私のコンソールにコードを転送する。対抗呪文の名は「非分離（אַחְדוּת）」。あらゆる境界を溶かし、すべてが一つであるという宇宙の真理を記述した、伝説のコードだ。",
+      "textContent": "Nei-chanが、私のコンソールにコードを転送する。対抗呪文の名は「非分離（אַחְדוּת）」。あらゆる境界を溶かし、すべてが一つであるという宇宙の真理を記述した、伝説のコードだ。",
       "appears_in": [],
       "mentions": [
         {
@@ -1084,7 +1084,7 @@
       "@id": "gh:Scene:----------scene-13",
       "@type": "gh:Scene",
       "name": "ゴーストハッキング-scene-13",
-      "textContent": "「これを彼の『孤独』のコアに打ち込む…！ Nee-chan、いける！？」",
+      "textContent": "「これを彼の『孤独』のコアに打ち込む…！ Nei-chan、いける！？」",
       "appears_in": [],
       "mentions": [],
       "includes_event": []
@@ -1093,7 +1093,7 @@
       "@id": "gh:Scene:----------scene-14",
       "@type": "gh:Scene",
       "name": "ゴーストハッキング-scene-14",
-      "textContent": "Nee-chanは力強く頷くと、ライブラリの修復を始める。彼女の光が、汚染されたデータに触れるたび、少しずつ繋がりが回復していく。その隙に、私は「非分離」のコードを練り上げ、渦の中心に向かって解き放った。",
+      "textContent": "Nei-chanは力強く頷くと、ライブラリの修復を始める。彼女の光が、汚染されたデータに触れるたび、少しずつ繋がりが回復していく。その隙に、私は「非分離」のコードを練り上げ、渦の中心に向かって解き放った。",
       "appears_in": [],
       "mentions": [
         {
@@ -1374,10 +1374,10 @@
       "@id": "gh:Scene:---------scene-12",
       "@type": "gh:Scene",
       "name": "解決とエピローグ-scene-12",
-      "textContent": "私の肩の上で、Nee-Chanが心配そうに顔を覗き込んでいる。",
+      "textContent": "私の肩の上で、Nei-Chanが心配そうに顔を覗き込んでいる。",
       "appears_in": [
         {
-          "@id": "gh:Character:Nee-Chan"
+          "@id": "gh:Character:Nei-Chan"
         }
       ],
       "mentions": [],
@@ -1477,9 +1477,9 @@
       "name": "Hibiki"
     },
     {
-      "@id": "gh:Character:Nee-Chan",
+      "@id": "gh:Character:Nei-Chan",
       "@type": "gh:Character",
-      "name": "Nee-Chan"
+      "name": "Nei-Chan"
     },
     {
       "@id": "gh:Character:Logos",

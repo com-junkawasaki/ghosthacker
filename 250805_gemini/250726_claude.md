@@ -594,7 +594,7 @@ def love_protocol(parent, child):
 ## 技術レイヤー：例外処理としての神学
 
 ```python
-class DivineErrorHandler:
+class DiviNeirrorHandler:
     def __init__(self):
         self.faith_level = 0.5
         self.doubt_tolerance = 0.3
@@ -1416,7 +1416,7 @@ class GenerativeParenting:
     def check_internal_state(self):
         return {
             'anxious': self.fear_detector.is_active(),
-            'controlling': self.need_to_be_right.is_active(),
+            'controlling': self.Neid_to_be_right.is_active(),
             'present': self.presence_level.current(),
             'loving': self.unconditional_love.available()
         }
@@ -1492,7 +1492,7 @@ def relational_spirituality():
 3. **智慧**：「いい感じ」を信頼して行動する
 4. **奉仕**：娘の成長に自分を捧げる
 
-これが、後の「Spirit Engineer」としての活動の基盤となります。
+これが、後の「Spirit EngiNeir」としての活動の基盤となります。
 
 ---
 
@@ -1562,7 +1562,7 @@ class GhostRouter:
 
 class SpiritHackerOperations:
     def __init__(self):
-        self.day_mode = SpiritEngineer()
+        self.day_mode = SpiritEngiNeir()
         self.night_mode = GhostHacker()
         self.current_mode = "day"
     
@@ -1571,7 +1571,7 @@ class SpiritHackerOperations:
             self.current_mode = "ghost_hacker"
             return self.night_mode.activate()
         else:
-            self.current_mode = "spirit_engineer"
+            self.current_mode = "spirit_engiNeir"
             return self.day_mode.activate()
     
     def liberate_souls(self, souls):
@@ -1737,7 +1737,7 @@ Akitoは、その少年の魂が母親の夢に現れるプロセスをファシ
 
 これらの体験を通じて、Akitoは自分の使命を明確にしました：
 
-**Spirit Engineer（昼）**：
+**Spirit EngiNeir（昼）**：
 - 生きている人の感情と関係性の健全化
 - 「いい感じ」を生成する空間と関係の設計
 - 恐れではなく愛をベースにした決定支援

@@ -120,7 +120,7 @@ export class FfmpegRenderer implements VideoRenderer {
 
   async render(request: VideoGenerationRequest): Promise<VideoGenerationResult> {
     // This is a simplified implementation
-    // In production, you'd need to:
+    // In production, you'd Neid to:
     // 1. Generate images for each scene
     // 2. Use TTS for narration
     // 3. Use FFmpeg to combine everything
@@ -128,7 +128,7 @@ export class FfmpegRenderer implements VideoRenderer {
     try {
       const outputPath = `/tmp/video_${Date.now()}.mp4`;
 
-      // Simplified FFmpeg command (would need actual image assets)
+      // Simplified FFmpeg command (would Neid actual image assets)
       const ffmpegCommand = [
         'ffmpeg',
         '-f', 'lavfi',

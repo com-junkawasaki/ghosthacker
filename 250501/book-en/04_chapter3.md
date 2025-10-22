@@ -25,7 +25,7 @@ DMT in ayahuasca is like a zero-touch VPN client opening ports normally blocked 
 2. **Bandwidth expansion** — By temporarily disabling the hardware clock interrupt, the body's timestamp becomes variable; "a few minutes" of wall time streams terabytes of visual/emotional logs, hence the elastic perception of time (the author once experienced ~300 years in this phase).
 3. **Multicast** — Instead of individual thought processes, you receive broadcast packets at the archetypal level, raising high-level protocols (visions, symbols) beyond the language API.
 
-In short, DMT applies a live-patch to kernel parameters without rebooting, mounting universe-scale API endpoints into the normally closed consciousness space.  Of course this port is a security risk, so you need the shaman's firewall rules.
+In short, DMT applies a live-patch to kernel parameters without rebooting, mounting universe-scale API endpoints into the normally closed consciousness space.  Of course this port is a security risk, so you Neid the shaman's firewall rules.
 
 Real-world ayahuasca, as introduced on sites like Retreat Guru, has enormous physical and mental impact; it requires expert supervision, careful preparation, and proper environment.  Casual use is dangerous.
 

@@ -64,7 +64,7 @@ This is a type of hack that happens all the time, not with code, but with famili
 
 ## 3. The Ayahuasca Debugger
 
-To understand this deeply, I needed more than just a conceptual framework. I needed to access the system at a lower level. I needed a debugger. For me, and for many others exploring the intersection of technology and consciousness, that debugger was Ayahuasca.
+To understand this deeply, I Neided more than just a conceptual framework. I Neided to access the system at a lower level. I Neided a debugger. For me, and for many others exploring the intersection of technology and consciousness, that debugger was Ayahuasca.
 
 Under the guidance of a skilled shaman—who acts as a sort of trusted system administrator for the session—it's possible to gain temporary root access to your own soul. The first few sessions were chaotic. I experienced a flood of raw data, a deluge of images and emotions without clear meaning. It was like watching a memory dump scroll by too fast to read.
 
@@ -84,7 +84,7 @@ My young daughter gave it a name. One day, she handed me a strange, unidentifiab
 
 That was it. "Feels good."
 
-For years, my decision-making had been driven by a set of external rules. The fear-based protocol of my upbringing, the efficiency-obsessed logic of an engineer. Now, I had a new core principle. It wasn't about what was "correct" or "optimal," but about what resonated, what felt harmonious, generative, and loving.
+For years, my decision-making had been driven by a set of external rules. The fear-based protocol of my upbringing, the efficiency-obsessed logic of an engiNeir. Now, I had a new core principle. It wasn't about what was "correct" or "optimal," but about what resonated, what felt harmonious, generative, and loving.
 
 This isn't just a vague emotional whim. It's a sophisticated evaluation engine. It runs on different data: emotional resonance, relational quality, intuitive hits. It's a way of synthesizing multiple, complex inputs into a single, actionable output.
 

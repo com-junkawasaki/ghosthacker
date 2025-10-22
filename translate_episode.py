@@ -124,7 +124,7 @@ def translate_text(text):
         "Kaede": "Kaede",
         "Tamaki": "Tamaki",
         "Hibiki": "Hibiki",
-        "Nee-Chan": "Nee-Chan",
+        "Nei-Chan": "Nei-Chan",
         "Logos": "Logos",
         "Elias": "Elias",
         "少年": "Boy",

@@ -84,7 +84,7 @@ async function main() {
             const content = fs.readFileSync(filePath, 'utf-8');
             const sections = parseMarkdownSections(content);
             
-            if (mdFile.endsWith('akito.md') || mdFile.endsWith('character.md') || mdFile.endsWith('kaede.md') || mdFile.endsWith('ren.md') || mdFile.endsWith('tamaki.md') || mdFile.endsWith('aoi.md') || mdFile.endsWith('elias.md') || mdFile.endsWith('hibiki.md') || mdFile.endsWith('nee-chan.md')) { // Generic character info
+            if (mdFile.endsWith('akito.md') || mdFile.endsWith('character.md') || mdFile.endsWith('kaede.md') || mdFile.endsWith('ren.md') || mdFile.endsWith('tamaki.md') || mdFile.endsWith('aoi.md') || mdFile.endsWith('elias.md') || mdFile.endsWith('hibiki.md') || mdFile.endsWith('Nei-chan.md')) { // Generic character info
                  const nameMatch = content.match(/^#\s*(.*)/);
                  if(nameMatch) characterNode[`${SCHEMA_ORG_PREFIX}:name`] = nameMatch[1].trim();
                  Object.assign(characterNode, sections);
