@@ -116,7 +116,7 @@ function ProducerCanvasComponent() {
 
     setRunStatus('running');
     try {
-      await runPipelineMutation.mutateAsync({ nodes, edges });
+      await runPipelineMutation.mutateAsync();
       await storyGraphQuery.refetch();
       setRunStatus('success');
     } catch (err) {

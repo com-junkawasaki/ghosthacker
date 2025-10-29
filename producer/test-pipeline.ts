@@ -40,13 +40,11 @@ async function testPipeline() {
     console.log("Loading topology...");
     const topology = loadTopology();
 
-    console.log(`Converting ${topology.pipeline.length} nodes to ReactFlow format...`);
-    const { nodes, edges } = convertTopologyToReactFlow(topology);
-
-    console.log(`Nodes: ${nodes.length}, Edges: ${edges.length}`);
+    const pipelineNodes = topology["@graph"].filter((node): node is any => node["@type"] === "gh:PipelineNode");
+    console.log(`Loaded ${pipelineNodes.length} pipeline nodes from JSON-LD topology`);
 
     console.log("Starting pipeline execution...");
-    await runPipeline(nodes, edges);
+    await runPipeline(topology);
 
     console.log("Pipeline execution completed successfully!");
   } catch (error) {

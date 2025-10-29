@@ -18,12 +18,12 @@ const EdgeSchema = z.object({
 
 export const pipelineRouter = router({
   run: publicProcedure
-    .input(z.object({
-        nodes: z.array(NodeSchema),
-        edges: z.array(EdgeSchema),
-    }))
-    .mutation(async ({ input }) => {
-        await runPipeline(input.nodes as Node[], input.edges as Edge[]);
+    .mutation(async () => {
+        // Load topology from JSON-LD and run pipeline
+        const { loadTopology } = await import("../../pipeline/loadTopology");
+        const { runPipeline } = await import("../../pipeline/executor");
+        const topology = loadTopology();
+        await runPipeline(topology);
         return { ok: true } as const;
   }),
 });

@@ -12,6 +12,7 @@ import type { PipelineNode } from "../ontology/schema";
 type CompatibleNode = {
   id: string;
   type: string;
+  position: { x: number; y: number };
   data: {
     label: string;
     config?: Record<string, unknown>;
@@ -48,6 +49,7 @@ function convertPipelineNode(node: PipelineNode): CompatibleNode {
   return {
     id: node["@id"],
     type: node["gh:node_type"],
+    position: { x: 0, y: 0 }, // Default position for JSON-LD nodes
     data: {
       label: node["gh:node_label"],
       config: node["gh:config"] as Record<string, unknown>,
