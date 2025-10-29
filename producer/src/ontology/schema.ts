@@ -150,3 +150,58 @@ export const SettingSchema = Type.Intersect([
     }),
 ]);
 export type Setting = Static<typeof SettingSchema>;
+
+// Pipeline-related schemas
+const PipelineType = Type.Literal(`${GHOntology}Pipeline`);
+const PipelineNodeType = Type.Literal(`${GHOntology}PipelineNode`);
+const ResourceRequirementType = Type.Literal(`${GHOntology}ResourceRequirement`);
+const OutputSpecificationType = Type.Literal(`${GHOntology}OutputSpecification`);
+
+export const ResourceRequirementSchema = Type.Intersect([
+    BaseSchema,
+    Type.Object({
+        '@type': ResourceRequirementType,
+        [`${GHOntology}cpu_requirement`]: Type.Number(),
+        [`${GHOntology}memory_requirement`]: Type.String(),
+        [`${GHOntology}timeout_duration`]: Type.String(),
+    }),
+]);
+export type ResourceRequirement = Static<typeof ResourceRequirementSchema>;
+
+export const OutputSpecificationSchema = Type.Intersect([
+    BaseSchema,
+    Type.Object({
+        '@type': OutputSpecificationType,
+        [`${GHOntology}output_format`]: Type.String(),
+        [`${GHOntology}output_platform`]: Type.String(),
+        [`${GHOntology}config`]: Type.Optional(Type.Any()),
+    }),
+]);
+export type OutputSpecification = Static<typeof OutputSpecificationSchema>;
+
+export const PipelineNodeSchema = Type.Intersect([
+    BaseSchema,
+    Type.Object({
+        '@type': PipelineNodeType,
+        [`${GHOntology}node_type`]: Type.String(),
+        [`${GHOntology}node_label`]: Type.String(),
+        [`${GHOntology}route`]: Type.Optional(Type.String()),
+        [`${GHOntology}config`]: Type.Optional(Type.Any()),
+        [`${GHOntology}outputs`]: Type.Optional(Type.Array(Type.String())),
+        [`${GHOntology}depends_on`]: Type.Optional(Type.Array(Type.Object({ '@id': IRI }))),
+        [`${GHOntology}execution_order`]: Type.Optional(Type.Number()),
+        [`${GHOntology}requires_resource`]: Type.Optional(Type.Object({ '@id': IRI })),
+    }),
+]);
+export type PipelineNode = Static<typeof PipelineNodeSchema>;
+
+export const PipelineSchema = Type.Intersect([
+    BaseSchema,
+    Type.Object({
+        '@type': PipelineType,
+        [`${SchemaOrg}name`]: Type.String(),
+        [`${SchemaOrg}description`]: Type.Optional(Type.String()),
+        [`${GHOntology}has_node`]: Type.Optional(Type.Array(Type.Object({ '@id': IRI }))),
+    }),
+]);
+export type Pipeline = Static<typeof PipelineSchema>;

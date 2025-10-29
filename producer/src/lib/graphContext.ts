@@ -224,8 +224,8 @@ export function createGraphContext() {
 
         const record = result.records[0];
         const episode = record.get('e').properties;
-        const scenes = record.get('scenes').map((s: any) => s.properties);
-        const characters = record.get('characters').map((c: any) => c.properties);
+        const scenes = record.get('scenes').map((s: { properties: Record<string, unknown> }) => s.properties);
+        const characters = record.get('characters').map((c: { properties: Record<string, unknown> }) => c.properties);
 
         return {
           graphData: {

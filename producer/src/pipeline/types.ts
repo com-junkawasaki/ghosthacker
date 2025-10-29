@@ -1,13 +1,8 @@
-export type GenericNode = {
-  id: string;
-  type: string;
-  label?: string;
-  config?: Record<string, unknown>;
-};
+import type { Pipeline, PipelineNode, ResourceRequirement, OutputSpecification } from "../ontology/schema";
 
+// JSON-LD based types
 export type StoryTopology = {
-  pipeline: GenericNode[];
-  executionOrder: (string | string[])[];
+  "@graph": (Pipeline | PipelineNode | ResourceRequirement | OutputSpecification)[];
 };
 
 

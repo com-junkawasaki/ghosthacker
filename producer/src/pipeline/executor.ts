@@ -5,9 +5,20 @@ import { providers } from "@/lib/ai/providers";
 import { ensureOutputs } from "@/schemas/nodes";
 import { saveArtifact } from "@/infra/neo4j/artifactsRepo";
 import { buildExecutionPlan } from "./buildTopology";
-import type { Node, Edge } from "@reactflow/core";
+import type { StoryTopology } from "./types";
+import type { PipelineNode } from "../ontology/schema";
 
-const handlers: Record<string, (n: Node, inputs: Record<string, unknown>, ctx: ReturnType<typeof createGraphContext>) => Promise<Record<string, unknown>>> = {
+// Convert PipelineNode to a format compatible with existing handlers
+type CompatibleNode = {
+  id: string;
+  type: string;
+  data: {
+    label: string;
+    config?: Record<string, unknown>;
+  };
+};
+
+const handlers: Record<string, (n: CompatibleNode, inputs: Record<string, unknown>, ctx: ReturnType<typeof createGraphContext>) => Promise<Record<string, unknown>>> = {
   SourceDoc: async (n, _, ctx) => ctx.loadSource(n),
   Protagonist: async (n, _, ctx) => ctx.upsertCharacter(n),
   Backstory: async (n, _, ctx) => ctx.upsertBackstory(n),
@@ -33,19 +44,35 @@ const handlers: Record<string, (n: Node, inputs: Record<string, unknown>, ctx: R
   PublishYouTube: async (n, inputs, ctx) => providers.publish.youtube(n, await ctx.buildYouTubeContext(n, inputs)),
 };
 
-export async function runPipeline(nodes: Node[], edges: Edge[]): Promise<void> {
+function convertPipelineNode(node: PipelineNode): CompatibleNode {
+  return {
+    id: node["@id"],
+    type: node["gh:node_type"],
+    data: {
+      label: node["gh:node_label"],
+      config: node["gh:config"] as Record<string, unknown>,
+    },
+  };
+}
+
+export async function runPipeline(topology: StoryTopology): Promise<void> {
   void env; // ensure env tree-shaken correctness
   const ctx = createGraphContext();
-  const { executionOrder, dependencies } = buildExecutionPlan(nodes, edges);
+  const { executionOrder, dependencies } = buildExecutionPlan(topology);
   const artifacts = new Map<string, unknown>();
-  const nodeMap = new Map(nodes.map(n => [n.id, n]));
+
+  // Extract pipeline nodes from JSON-LD graph
+  const pipelineNodes = topology["@graph"].filter(
+    (node): node is PipelineNode => node["@type"] === "gh:PipelineNode"
+  );
+  const nodeMap = new Map(pipelineNodes.map(n => [n["@id"], convertPipelineNode(n)]));
 
   for (const level of executionOrder) {
     await Promise.all(
       level.map(async (id) => {
         const node = nodeMap.get(id);
         if (!node || !node.type) throw new Error(`Node not found or has no type: ${id}`);
-        
+
         const nodeDependencies = dependencies.get(id) ?? [];
         const inputs = nodeDependencies.reduce((acc, depId) => {
             acc[depId] = artifacts.get(depId);
@@ -53,10 +80,11 @@ export async function runPipeline(nodes: Node[], edges: Edge[]): Promise<void> {
         }, {} as Record<string, unknown>);
 
         return traceAsync(`node:${node.id}`, async () => {
-          const out = await handlers[node.type!](node, inputs, ctx);
-          ensureOutputs(node.type!, out);
+          if (!node.type) throw new Error(`Node type is undefined for node: ${id}`);
+          const out = await handlers[node.type](node, inputs, ctx);
+          ensureOutputs(node.type, out);
           artifacts.set(id, out);
-          await saveArtifact({ nodeId: node.id, nodeType: node.type!, label: node.data.label, payload: out });
+          await saveArtifact({ nodeId: node.id, nodeType: node.type, label: node.data.label, payload: out });
           return out;
         });
       })

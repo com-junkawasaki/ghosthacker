@@ -1,24 +1,41 @@
-import type { Node, Edge } from '@reactflow/core';
+import type { StoryTopology } from "./types";
+import type { PipelineNode } from "../ontology/schema";
 
 export type ExecutionPlan = {
   executionOrder: string[][];
   dependencies: Map<string, string[]>;
 };
 
-export function buildExecutionPlan(nodes: Node[], edges: Edge[]): ExecutionPlan {
+export function buildExecutionPlan(topology: StoryTopology): ExecutionPlan {
+  // Extract pipeline nodes from JSON-LD graph
+  const pipelineNodes = topology["@graph"].filter(
+    (node): node is PipelineNode => node["@type"] === "gh:PipelineNode"
+  );
+
   const inDegree = new Map<string, number>();
   const adj = new Map<string, string[]>();
-  const nodeMap = new Map<string, Node>();
+  const nodeMap = new Map<string, PipelineNode>();
 
-  for (const node of nodes) {
-    inDegree.set(node.id, 0);
-    adj.set(node.id, []);
-    nodeMap.set(node.id, node);
+  // Initialize nodes
+  for (const node of pipelineNodes) {
+    const nodeId = node["@id"];
+    inDegree.set(nodeId, 0);
+    adj.set(nodeId, []);
+    nodeMap.set(nodeId, node);
   }
 
-  for (const edge of edges) {
-    adj.get(edge.source)?.push(edge.target);
-    inDegree.set(edge.target, (inDegree.get(edge.target) ?? 0) + 1);
+  // Build dependency graph from depends_on relationships
+  for (const node of pipelineNodes) {
+    const nodeId = node["@id"];
+    const dependsOn = node["gh:depends_on"];
+
+    if (dependsOn) {
+      for (const dep of dependsOn) {
+        const depId = dep["@id"];
+        adj.get(depId)?.push(nodeId);
+        inDegree.set(nodeId, (inDegree.get(nodeId) ?? 0) + 1);
+      }
+    }
   }
 
   const queue: string[] = [];
@@ -34,7 +51,7 @@ export function buildExecutionPlan(nodes: Node[], edges: Edge[]): ExecutionPlan 
   while (queue.length > 0) {
     const levelSize = queue.length;
     const currentLevel: string[] = [];
-    
+
     for (let i = 0; i < levelSize; i++) {
       const u = queue.shift();
       if (!u) continue;
@@ -54,13 +71,12 @@ export function buildExecutionPlan(nodes: Node[], edges: Edge[]): ExecutionPlan 
   }
 
   const processedNodes = executionOrder.flat();
-  if (processedNodes.length !== nodes.length) {
-    const allNodeIds = nodes.map(n => n.id);
+  if (processedNodes.length !== pipelineNodes.length) {
+    const allNodeIds = pipelineNodes.map(n => n["@id"]);
     const unprocessedNodes = allNodeIds.filter(id => !processedNodes.includes(id));
     console.error('Unprocessed nodes (possible cycle or missing dependencies):', unprocessedNodes);
     console.error('Processed nodes:', processedNodes);
     console.error('All nodes:', allNodeIds);
-    console.error('Edges:', edges.map(e => `${e.source} -> ${e.target}`));
     throw new Error(`Cycle detected in graph or missing dependencies. Unprocessed nodes: ${unprocessedNodes.join(', ')}`);
   }
 

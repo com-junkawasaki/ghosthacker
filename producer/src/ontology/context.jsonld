@@ -1,10 +1,18 @@
 {
   "@context": {
+    "@base": "https://ghosthacker.gftd.co.jp/",
+    "@vocab": "https://ghosthacker.gftd.co.jp/ontology#",
     "gh": "https://ghosthacker.gftd.co.jp/ontology#",
     "schema": "http://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "prov": "http://www.w3.org/ns/prov#",
+
     "name": "schema:name",
     "title": "schema:title",
     "description": "schema:description",
+
     "has_character": { "@id": "gh:has_character", "@type": "@id" },
     "has_act": { "@id": "gh:has_act", "@type": "@id" },
     "has_scene": { "@id": "gh:has_scene", "@type": "@id" },
@@ -14,6 +22,34 @@
     "mentions": { "@id": "gh:mentions", "@type": "@id" },
     "is_father_of": { "@id": "gh:is_father_of", "@type": "@id" },
     "has_episode": { "@id": "gh:has_episode", "@type": "@id" },
-    "has_scene": { "@id": "gh:has_scene", "@type": "@id" }
+
+    "Pipeline": "gh:Pipeline",
+    "PipelineNode": "gh:PipelineNode",
+    "PipelineExecution": "gh:PipelineExecution",
+
+    "has_node": { "@id": "gh:has_node", "@type": "@id" },
+    "depends_on": { "@id": "gh:depends_on", "@type": "@id" },
+    "executes_after": { "@id": "gh:executes_after", "@type": "@id" },
+    "has_output": { "@id": "gh:has_output", "@type": "@id" },
+    "requires_resource": { "@id": "gh:requires_resource", "@type": "@id" },
+
+    "node_type": { "@id": "gh:node_type", "@type": "xsd:string" },
+    "node_label": { "@id": "gh:node_label", "@type": "xsd:string" },
+    "execution_order": { "@id": "gh:execution_order", "@type": "xsd:integer" },
+    "cpu_requirement": { "@id": "gh:cpu_requirement", "@type": "xsd:decimal" },
+    "memory_requirement": { "@id": "gh:memory_requirement", "@type": "xsd:string" },
+    "timeout_duration": { "@id": "gh:timeout_duration", "@type": "xsd:string" },
+
+    "output_format": { "@id": "gh:output_format", "@type": "xsd:string" },
+    "output_platform": { "@id": "gh:output_platform", "@type": "xsd:string" },
+    "output_quality": { "@id": "gh:output_quality", "@type": "xsd:string" },
+
+    "route": { "@id": "gh:route", "@type": "xsd:string" },
+    "config": { "@id": "gh:config", "@type": "@json" },
+    "outputs": { "@id": "gh:outputs", "@type": "@json" },
+
+    "prov:generatedAtTime": { "@type": "xsd:dateTime" },
+    "prov:wasAssociatedWith": { "@type": "@id" },
+    "prov:used": { "@type": "@id" }
   }
 }

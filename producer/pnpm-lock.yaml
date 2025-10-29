@@ -12,8 +12,8 @@ importers:
         specifier: ^3.9.0
         version: 3.10.0(react-hook-form@7.65.0(react@19.1.0))
       '@neo4j/cypher-builder':
-        specifier: ^2.8.1
-        version: 2.9.0
+        specifier: ^2.10.0
+        version: 2.10.0
       '@opentelemetry/api':
         specifier: ^1.9.0
         version: 1.9.0
@@ -521,8 +521,8 @@ packages:
   '@napi-rs/wasm-runtime@0.2.12':
     resolution: {integrity: sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ==}
 
-  '@neo4j/cypher-builder@2.9.0':
-    resolution: {integrity: sha512-7VTum5o757WojTwDhkAaj+jEcgBTr6yIgmM+ofhgNZ656knnjIbjyPmaDWYoW1kVQd8JHjTHMm0cyQ83ejUY6A==}
+  '@neo4j/cypher-builder@2.10.0':
+    resolution: {integrity: sha512-6R7X/OEc9Q2OzUUIHFeTTmXg6jOLyiYikc04NTGIE5sKhWRsySPpcx4dxrEWS9Qk+Ag8Wmv6aR5bKYuJm7YNvw==}
     engines: {node: '>=16.0.0'}
 
   '@next/env@15.5.5':
@@ -3436,7 +3436,7 @@ snapshots:
       '@tybys/wasm-util': 0.10.1
     optional: true
 
-  '@neo4j/cypher-builder@2.9.0': {}
+  '@neo4j/cypher-builder@2.10.0': {}
 
   '@next/env@15.5.5': {}
 
