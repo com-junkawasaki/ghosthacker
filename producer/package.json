@@ -43,6 +43,7 @@
     "superjson": "^2.2.2",
     "ulid": "^3.0.1",
     "valibot": "^1.1.0",
+    "xstate": "^5.23.0",
     "zod": "^4.1.12"
   },
   "devDependencies": {

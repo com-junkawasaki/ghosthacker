@@ -9,6 +9,7 @@ import { httpBatchLink, createTRPCReact } from '@trpc/react-query';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import superjson from 'superjson';
 import type { AppRouter } from '@/server/routers';
+import { createActor, createMachine } from 'xstate';
 import {
   SourceDocNode,
   PromptNode,
@@ -43,6 +44,109 @@ interface GraphEdge {
   type: string;
 }
 
+// XState machine for Producer Canvas
+interface ProducerCanvasContext {
+  nodes: RFNode<NodeData>[];
+  edges: RFEdge[];
+  runStatus: 'idle' | 'running' | 'success' | 'error';
+  error: string | null;
+}
+
+type ProducerCanvasEvent =
+  | { type: 'GRAPH_LOADED'; nodes: RFNode<NodeData>[]; edges: RFEdge[] }
+  | { type: 'LOAD_ERROR'; error: string }
+  | { type: 'RUN_PIPELINE' }
+  | { type: 'UPDATE_NODES'; nodes: RFNode<NodeData>[] }
+  | { type: 'UPDATE_EDGES'; edges: RFEdge[] }
+  | { type: 'RUN_SUCCESS' }
+  | { type: 'RUN_ERROR'; error: string }
+  | { type: 'RESET' }
+  | { type: 'RETRY' };
+
+const producerCanvasMachine = createMachine({
+  id: 'producerCanvas',
+  initial: 'loading',
+  context: {
+    nodes: [],
+    edges: [],
+    runStatus: 'idle',
+    error: null,
+  },
+  states: {
+    loading: {
+      on: {
+        GRAPH_LOADED: {
+          target: 'idle',
+          actions: 'setGraphData',
+        },
+        LOAD_ERROR: {
+          target: 'error',
+          actions: 'setError',
+        },
+      },
+    },
+    idle: {
+      on: {
+        RUN_PIPELINE: 'running',
+        UPDATE_NODES: {
+          actions: 'updateNodes',
+        },
+        UPDATE_EDGES: {
+          actions: 'updateEdges',
+        },
+      },
+    },
+    running: {
+      on: {
+        RUN_SUCCESS: 'success',
+        RUN_ERROR: {
+          target: 'error',
+          actions: 'setError',
+        },
+      },
+    },
+    success: {
+      after: {
+        2500: 'idle',
+      },
+      on: {
+        RESET: 'idle',
+      },
+    },
+    error: {
+      on: {
+        RETRY: 'idle',
+        RESET: 'idle',
+      },
+    },
+  },
+}, {
+  actions: {
+    setGraphData: (context: any, event: any) => {
+      if (event?.type === 'GRAPH_LOADED') {
+        context.nodes = event.nodes;
+        context.edges = event.edges;
+      }
+    },
+    updateNodes: (context: any, event: any) => {
+      if (event?.type === 'UPDATE_NODES') {
+        context.nodes = event.nodes;
+      }
+    },
+    updateEdges: (context: any, event: any) => {
+      if (event?.type === 'UPDATE_EDGES') {
+        context.edges = event.edges;
+      }
+    },
+    setError: (context: any, event: any) => {
+      if (event?.type === 'LOAD_ERROR' || event?.type === 'RUN_ERROR') {
+        context.error = event.error;
+        context.runStatus = 'error';
+      }
+    },
+  },
+});
+
 const api = createTRPCReact<AppRouter>();
 
 const nodeTypes = {
@@ -66,7 +170,16 @@ const nodeTypes = {
 function ProducerCanvasComponent() {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const [runStatus, setRunStatus] = useState<'idle' | 'running' | 'success' | 'error'>('idle');
+
+  // XState actor for producer canvas state management
+  const [producerActor] = useState(() => createActor(producerCanvasMachine).start());
+  const [actorState, setActorState] = useState(producerActor.getSnapshot());
+
+  // Subscribe to actor state changes
+  useEffect(() => {
+    const subscription = producerActor.subscribe(setActorState);
+    return () => subscription.unsubscribe();
+  }, [producerActor]);
 
   const storyGraphQuery = api.canvas.getStoryGraph.useQuery(undefined, {
     refetchOnWindowFocus: false,
@@ -98,8 +211,24 @@ function ProducerCanvasComponent() {
 
       setNodes(rfNodes);
       setEdges(rfEdges);
+
+      // Send graph loaded event to actor
+      producerActor.send({
+        type: 'GRAPH_LOADED',
+        nodes: rfNodes,
+        edges: rfEdges,
+      });
     }
-  }, [storyGraphQuery.data, setNodes, setEdges]);
+  }, [storyGraphQuery.data, setNodes, setEdges, producerActor]);
+
+  useEffect(() => {
+    if (storyGraphQuery.isError) {
+      producerActor.send({
+        type: 'LOAD_ERROR',
+        error: storyGraphQuery.error?.message || 'Failed to load graph',
+      });
+    }
+  }, [storyGraphQuery.isError, storyGraphQuery.error, producerActor]);
 
 
   const onConnect = useCallback(
@@ -114,30 +243,33 @@ function ProducerCanvasComponent() {
     alert('パイプライン実行は /canvas/story ページから行ってください。このページはグラフ可視化専用です。');
     return;
 
-    setRunStatus('running');
+    // Send run pipeline event to actor
+    producerActor.send({ type: 'RUN_PIPELINE' });
+
     try {
       await runPipelineMutation.mutateAsync();
       await storyGraphQuery.refetch();
-      setRunStatus('success');
-    } catch (err) {
+      producerActor.send({ type: 'RUN_SUCCESS' });
+    } catch (err: any) {
       console.error('pipeline.run error', err);
-      setRunStatus('error');
-    } finally {
-      setTimeout(() => setRunStatus('idle'), 2500);
+      producerActor.send({
+        type: 'RUN_ERROR',
+        error: err instanceof Error ? err.message : 'Pipeline execution failed',
+      });
     }
-  }, [nodes, edges, runPipelineMutation, storyGraphQuery]);
+  }, [runPipelineMutation, storyGraphQuery, producerActor]);
 
   const onNodeClick = useCallback((_evt: unknown, node: RFNode<NodeData>) => {
     // Navigation logic can be re-implemented if Neided
     console.log('Node clicked:', node);
   }, []);
 
-  if (storyGraphQuery.isLoading) {
+  if (actorState.matches('loading') || storyGraphQuery.isLoading) {
     return <div>Loading story...</div>;
   }
 
-  if (storyGraphQuery.isError) {
-    return <div>Error loading story: {storyGraphQuery.error.message}</div>
+  if (actorState.matches('error') && !storyGraphQuery.data) {
+    return <div>Error loading story: {actorState.context.error}</div>
   }
 
   return (
@@ -165,15 +297,15 @@ function ProducerCanvasComponent() {
           onClick={onRunPipeline}
           type="button"
           className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          disabled={runStatus === 'running'}
+          disabled={actorState.matches('running') || actorState.matches('loading')}
         >
-          {runStatus === 'running' ? 'Running...' : 'Run Pipeline'}
+          {actorState.matches('running') ? 'Running...' : 'Run Pipeline'}
         </button>
-        {runStatus !== 'idle' && (
+        {!actorState.matches('idle') && !actorState.matches('loading') && (
           <div className="mt-3 text-sm">
-            {runStatus === 'running' && <span className="text-blue-700">Running...</span>}
-            {runStatus === 'success' && <span className="text-green-700">Completed</span>}
-            {runStatus === 'error' && <span className="text-red-700">Failed</span>}
+            {actorState.matches('running') && <span className="text-blue-700">Running...</span>}
+            {actorState.matches('success') && <span className="text-green-700">Completed</span>}
+            {actorState.matches('error') && <span className="text-red-700">Failed: {actorState.context.error}</span>}
           </div>
         )}
       </div>

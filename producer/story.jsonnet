@@ -1,6 +1,8 @@
 {
   // Ghost Hacker Producer Pipeline Topology
   // Merkle DAG: pipeline nodes -> dependencies -> execution order
+  // XState Actor Model: Canvas state management with finite state machine
+  // tRPC Integration: Type-safe API communication for pipeline operations
 
   pipeline: [
     // Lore: Protagonist Node
