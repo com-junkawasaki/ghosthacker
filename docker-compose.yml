@@ -27,11 +27,35 @@ services:
       retries: 5
       start_period: 30s
 
+  mongodb:
+    image: mongo:8.0
+    container_name: ghosthacker-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=ghosthacker
+      - MONGO_INITDB_ROOT_PASSWORD=ghosthacker
+      - MONGO_INITDB_DATABASE=ghosthacker
+    volumes:
+      - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
+    networks:
+      - ghosthacker-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
 volumes:
   neo4j_data:
   neo4j_logs:
   neo4j_import:
   neo4j_plugins:
+  mongodb_data:
+  mongodb_config:
 
 networks:
   ghosthacker-network:
