@@ -2,7 +2,7 @@
 
 import { nodeSchemas, type NodeTypeKey } from "@/schemas/nodes";
 import { safeParse } from "valibot";
-import { upsertNodeConfig, getNodeConfig } from "@/infra/neo4j/nodeConfigRepo";
+import { upsertNodeConfig, getNodeConfig } from "@/infra/mongodb/repositories/node-config-repo";
 
 // Merkle DAG: Server action to persist node config
 export async function saveNodeConfig(params: {
@@ -21,7 +21,7 @@ export async function saveNodeConfig(params: {
     await upsertNodeConfig({ nodeId: params.nodeId, nodeType: params.nodeType, label: params.nodeId, config: result.output as Record<string, unknown> });
     return { ok: true as const, data: { nodeId: params.nodeId, nodeType: params.nodeType, config: result.output } };
   } catch {
-    return { ok: false as const, fault: { type: "StorageUnavailable", message: "Neo4j is not reachable" } };
+    return { ok: false as const, fault: { type: "StorageUnavailable", message: "MongoDB is not reachable" } };
   }
 }
 

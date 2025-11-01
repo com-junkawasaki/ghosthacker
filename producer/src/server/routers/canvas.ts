@@ -1,5 +1,5 @@
 import { router, publicProcedure } from '../trpc';
-import { storyRepository } from '@/lib/story-neo4j';
+import { storyRepository } from '@/infra/mongodb/repositories/story-repo';
 import { deriveCanvasConfig } from '@/lib/mapping';
 
 const PROJECT_ID = 'ghost-hacker-project';

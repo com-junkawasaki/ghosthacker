@@ -3,7 +3,7 @@ import { createGraphContext } from "@/lib/graphContext";
 import { traceAsync } from "@/observability/otel";
 import { providers } from "@/lib/ai/providers";
 import { ensureOutputs } from "@/schemas/nodes";
-import { saveArtifact } from "@/infra/neo4j/artifactsRepo";
+import { saveArtifact } from "@/infra/mongodb/repositories/artifacts-repo";
 import { buildExecutionPlan } from "./buildTopology";
 import type { StoryTopology } from "./types";
 import type { PipelineNode } from "../ontology/schema";

@@ -1,4 +1,4 @@
-import { getNeo4jDriver } from "@/infra/neo4j/client";
+import { getMongoDb } from "@/infra/mongodb/client";
 import { Node } from "@reactflow/core";
 import fs from "fs";
 import path from "path";
@@ -118,18 +118,11 @@ export class GraphContext {
 }
 
 export function createGraphContext() {
-  const driver = getNeo4jDriver();
-
   async function fetchCharacterBundle(name: string) {
-    const session = driver.session();
-    try {
-      const cypher = `MATCH (c:Character {name: $name}) RETURN c LIMIT 1`;
-      const r = await session.run(cypher, { name });
-      const record = r.records[0]?.get("c");
-      return record ? record.properties : null;
-    } finally {
-      await session.close();
-    }
+    const db = await getMongoDb();
+    const collection = db.collection('story_characters');
+    const doc = await collection.findOne({ name });
+    return doc ? doc : null;
   }
 
   return {
@@ -147,45 +140,44 @@ export function createGraphContext() {
 
     // Node persistence/derivation placeholders
     async upsertCharacter(n: GenericNode) {
-      const session = driver.session();
-      try {
-        const id = n.id;
-        const name = (n.data?.config?.name as string) ?? "Akito";
-        const q = `MERGE (c:Character {id: $id}) SET c.name = $name, c.updatedAt = datetime() RETURN c`;
-        const r = await session.run(q, { id, name });
-        const record = r.records[0]?.get("c");
-        return { name: record ? record.properties.name : 'unknown' };
-      } finally {
-        await session.close();
-      }
+      const db = await getMongoDb();
+      const collection = db.collection('story_characters');
+      const id = n.id;
+      const name = (n.data?.config?.name as string) ?? "Akito";
+      await collection.updateOne(
+        { id },
+        { $set: { id, name, updatedAt: new Date() } },
+        { upsert: true }
+      );
+      return { name };
     },
     async upsertBackstory(n: GenericNode) {
-      const session = driver.session();
-      try {
-        const id = n.id;
-        const origin = (n.data?.config?.origin as string) ?? "";
-        const motivation = (n.data?.config?.motivation as string) ?? "";
-        const conflict = (n.data?.config?.conflict as string) ?? "";
-        const q = `MERGE (b:Backstory {id: $id}) SET b += { origin: $origin, motivation: $motivation, conflict: $conflict, updatedAt: datetime() } RETURN b`;
-        await session.run(q, { id, origin, motivation, conflict });
-        return { origin, motivation, conflict };
-      } finally {
-        await session.close();
-      }
+      const db = await getMongoDb();
+      const collection = db.collection('story_backstories');
+      const id = n.id;
+      const origin = (n.data?.config?.origin as string) ?? "";
+      const motivation = (n.data?.config?.motivation as string) ?? "";
+      const conflict = (n.data?.config?.conflict as string) ?? "";
+      await collection.updateOne(
+        { id },
+        { $set: { id, origin, motivation, conflict, updatedAt: new Date() } },
+        { upsert: true }
+      );
+      return { origin, motivation, conflict };
     },
     async upsertWorld(n: GenericNode) {
-      const session = driver.session();
-      try {
-        const id = n.id;
-        const setting = (n.data?.config?.setting as string) ?? "Near-future Tokyo";
-        const era = (n.data?.config?.era as string) ?? "2042";
-        const rules = (n.data?.config?.rules as string) ?? "Ghost-net protocols";
-        const q = `MERGE (w:World {id: $id}) SET w += { setting: $setting, era: $era, rules: $rules, updatedAt: datetime() } RETURN w`;
-        await session.run(q, { id, setting, era, rules });
-        return { setting, era, rules };
-      } finally {
-        await session.close();
-      }
+      const db = await getMongoDb();
+      const collection = db.collection('story_worlds');
+      const id = n.id;
+      const setting = (n.data?.config?.setting as string) ?? "Near-future Tokyo";
+      const era = (n.data?.config?.era as string) ?? "2042";
+      const rules = (n.data?.config?.rules as string) ?? "Ghost-net protocols";
+      await collection.updateOne(
+        { id },
+        { $set: { id, setting, era, rules, updatedAt: new Date() } },
+        { upsert: true }
+      );
+      return { setting, era, rules };
     },
     async loadSource(n: GenericNode) {
       const sourcePath = n.data?.config?.sourcePath as string;
@@ -205,38 +197,23 @@ export function createGraphContext() {
       const episodeId = n.data?.config?.episodeId as string;
       if (!episodeId) throw new Error("Episode ID not configured for StoryGraph node");
 
-      const driver = getNeo4jDriver();
-      const session = driver.session();
+      const db = await getMongoDb();
+      const episodesCollection = db.collection('story_episodes');
+      const episode = await episodesCollection.findOne({ episodeId });
 
-      try {
-        // Query Neo4j for episode data
-        const result = await session.run(`
-          MATCH (e {\`@id\`: $episodeId})
-          WHERE 'gh:Episode' IN labels(e)
-          OPTIONAL MATCH (e)-[:HAS_SCENE]->(s:Scene)
-          OPTIONAL MATCH (e)-[:HAS_CHARACTER]->(c:Character)
-          RETURN e, collect(s) as scenes, collect(c) as characters
-        `, { episodeId });
-
-        if (result.records.length === 0) {
-          throw new Error(`Episode not found: ${episodeId}`);
-        }
-
-        const record = result.records[0];
-        const episode = record.get('e').properties;
-        const scenes = record.get('scenes').map((s: { properties: Record<string, unknown> }) => s.properties);
-        const characters = record.get('characters').map((c: { properties: Record<string, unknown> }) => c.properties);
-
-        return {
-          graphData: {
-            episode,
-            scenes,
-            characters
-          }
-        };
-      } finally {
-        await session.close();
+      if (!episode) {
+        throw new Error(`Episode not found: ${episodeId}`);
       }
+
+      // For MongoDB, we'll return the episode data directly
+      // Scenes and characters can be stored as arrays in the episode document if needed
+      return {
+        graphData: {
+          episode,
+          scenes: episode.scenes || [],
+          characters: episode.characters || [],
+        }
+      };
     },
 
     async loadNarrative(n: GenericNode) {
