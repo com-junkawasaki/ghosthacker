@@ -14,5 +14,10 @@ gh:DiveShape a sh:NodeShape ;
   sh:targetNode <https://gftd.ai/ghost-hacker/Dive/S1E0-01> ;
   sh:property [ sh:path gh:operator ; sh:hasValue gh:character:tamaki ] ;
   sh:property [ sh:path gh:support ; sh:minCount 1 ] ;
-  sh:property [ sh:path gh:method ; sh:minCount 2 ] .
+  sh:property [ sh:path gh:method ; sh:minCount 2 ] ;
+  sh:property [ sh:path gh:ascDepth ; sh:datatype xsd:decimal ; sh:minInclusive 0.7 ] ;
+  sh:property [ sh:path gh:contaminationRisk ; sh:datatype xsd:decimal ; sh:maxInclusive 0.3 ] ;
+  sh:property [ sh:path gh:hasStep ; sh:minCount 4 ] ;
+  sh:property [ sh:path gh:emergent ; sh:hasValue true ] ;
+  sh:property [ sh:path gh:authorizationBy ; sh:hasValue gh:character:kaede ] .
 

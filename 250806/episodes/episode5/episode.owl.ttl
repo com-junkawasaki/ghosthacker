@@ -8,5 +8,18 @@
   gh:hasCharacter gh:character:tamaki , gh:character:nabil-al-khalil ;
   gh:motifRefs gh:Motif/Reincarnation ;
   gh:techRefs gh:Tech/SIP ;
-  gh:processRefs gh:Process/MemorySpace1024D .
+  gh:processRefs gh:Process/MemorySpace1024D ;
+  gh:dive <https://gftd.ai/ghost-hacker/Dive/S1E5-01> ;
+  gh:release <https://gftd.ai/ghost-hacker/Release/S1E5-01> .
+
+<https://gftd.ai/ghost-hacker/Dive/S1E5-01> a gh:Dive ;
+  gh:operator gh:character:tamaki ;
+  gh:method "device/SIP", "lineage/house-keys" ;
+  gh:hasStep <https://gftd.ai/ghost-hacker/Dive/S1E5-01/step/1> , <https://gftd.ai/ghost-hacker/Dive/S1E5-01/step/2> .
+
+<https://gftd.ai/ghost-hacker/Dive/S1E5-01/step/1> a gh:Step ; gh:stepOrder 1 ; gh:action "trace displacement" .
+<https://gftd.ai/ghost-hacker/Dive/S1E5-01/step/2> a gh:Step ; gh:stepOrder 2 ; gh:action "rekey belonging" .
+
+<https://gftd.ai/ghost-hacker/Release/S1E5-01> a gh:Release ;
+  schema:description "鍵の再意味付けによる帰属感の回復" .
 

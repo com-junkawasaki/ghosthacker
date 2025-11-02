@@ -28,3 +28,23 @@
   schema:description "I AMの独我化meme（孤独の堅牢化）" ;
   gh:ghostType "Human-derived" .
 
+# Dive detail: steps and constraints
+<https://gftd.ai/ghost-hacker/Dive/S1E0-01>
+  gh:hasStep <https://gftd.ai/ghost-hacker/Dive/S1E0-01/step/1> ,
+             <https://gftd.ai/ghost-hacker/Dive/S1E0-01/step/2> ,
+             <https://gftd.ai/ghost-hacker/Dive/S1E0-01/step/3> ,
+             <https://gftd.ai/ghost-hacker/Dive/S1E0-01/step/4> ,
+             <https://gftd.ai/ghost-hacker/Dive/S1E0-01/step/5> ,
+             <https://gftd.ai/ghost-hacker/Dive/S1E0-01/step/6> ;
+  gh:ascDepth "0.7"^^xsd:decimal ;
+  gh:contaminationRisk "0.25"^^xsd:decimal ;
+  gh:authorizationBy gh:character:kaede ;
+  gh:emergent "true"^^xsd:boolean .
+
+<https://gftd.ai/ghost-hacker/Dive/S1E0-01/step/1> a gh:Step ; gh:stepOrder 1 ; gh:action "kagura induction" .
+<https://gftd.ai/ghost-hacker/Dive/S1E0-01/step/2> a gh:Step ; gh:stepOrder 2 ; gh:action "boot SIP / attach 1024D" .
+<https://gftd.ai/ghost-hacker/Dive/S1E0-01/step/3> a gh:Step ; gh:stepOrder 3 ; gh:action "ayahuasca emergent support" .
+<https://gftd.ai/ghost-hacker/Dive/S1E0-01/step/4> a gh:Step ; gh:stepOrder 4 ; gh:action "trace lineage (mother->grandmother partner)" .
+<https://gftd.ai/ghost-hacker/Dive/S1E0-01/step/5> a gh:Step ; gh:stepOrder 5 ; gh:action "daemon identification (isolation meme)" .
+<https://gftd.ai/ghost-hacker/Dive/S1E0-01/step/6> a gh:Step ; gh:stepOrder 6 ; gh:action "acceptance and reintegration" .
+

@@ -23,3 +23,27 @@
 <https://gftd.ai/ghost-hacker/Release/S1E1-01> a gh:Release ;
   schema:description "ASC解放と再接続の端緒（Library/Waterモチーフの再意味付け）" .
 
+# Dive detail: steps and constraints
+<https://gftd.ai/ghost-hacker/Dive/S1E1-01>
+  gh:hasStep <https://gftd.ai/ghost-hacker/Dive/S1E1-01/step/1> ,
+             <https://gftd.ai/ghost-hacker/Dive/S1E1-01/step/2> ,
+             <https://gftd.ai/ghost-hacker/Dive/S1E1-01/step/3> ,
+             <https://gftd.ai/ghost-hacker/Dive/S1E1-01/step/4> ,
+             <https://gftd.ai/ghost-hacker/Dive/S1E1-01/step/5> ,
+             <https://gftd.ai/ghost-hacker/Dive/S1E1-01/step/6> ,
+             <https://gftd.ai/ghost-hacker/Dive/S1E1-01/step/7> ,
+             <https://gftd.ai/ghost-hacker/Dive/S1E1-01/step/8> ;
+  gh:ascDepth "0.6"^^xsd:decimal ;
+  gh:contaminationRisk "0.2"^^xsd:decimal ;
+  gh:authorizationBy gh:character:kaede ;
+  gh:emergent "false"^^xsd:boolean .
+
+<https://gftd.ai/ghost-hacker/Dive/S1E1-01/step/1> a gh:Step ; gh:stepOrder 1 ; gh:action "compile non-separation code" .
+<https://gftd.ai/ghost-hacker/Dive/S1E1-01/step/2> a gh:Step ; gh:stepOrder 2 ; gh:action "calibrate rite/intro" .
+<https://gftd.ai/ghost-hacker/Dive/S1E1-01/step/3> a gh:Step ; gh:stepOrder 3 ; gh:action "boot SIP device" .
+<https://gftd.ai/ghost-hacker/Dive/S1E1-01/step/4> a gh:Step ; gh:stepOrder 4 ; gh:action "attach to Memory Space (1024D)" .
+<https://gftd.ai/ghost-hacker/Dive/S1E1-01/step/5> a gh:Step ; gh:stepOrder 5 ; gh:action "privilege escalation (sandbox)" .
+<https://gftd.ai/ghost-hacker/Dive/S1E1-01/step/6> a gh:Step ; gh:stepOrder 6 ; gh:action "identify daemon process" .
+<https://gftd.ai/ghost-hacker/Dive/S1E1-01/step/7> a gh:Step ; gh:stepOrder 7 ; gh:action "kill daemon" ; gh:killCondition "daemon=true & consented" ; gh:nullifyPath "/dev/null" .
+<https://gftd.ai/ghost-hacker/Dive/S1E1-01/step/8> a gh:Step ; gh:stepOrder 8 ; gh:action "reintegration & release" .
+
