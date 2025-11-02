@@ -21,19 +21,10 @@ const DRY_RUN = process.env.DRY_RUN === "1" || !HUME_API_KEY || !HUME_LANGUAGE_U
 async function readText(file: string) { return fs.promises.readFile(file, "utf8"); }
 async function readJson(file: string) { const t = await readText(file); try { return JSON.parse(t); } catch { return JSON5.parse(t); } }
 
-function segment(text: string, max = 1400, maxChunks = 8): string[] {
-  const out: string[] = [];
-  let cur = "";
-  for (const line of text.split(/\n+/)) {
-    const add = cur ? cur + "\n" + line : line;
-    if (add.length > max) {
-      if (cur) out.push(cur);
-      cur = line;
-      if (out.length >= maxChunks) break;
-    } else cur = add;
-  }
-  if (cur && out.length < maxChunks) out.push(cur);
-  return out.length ? out : [text.slice(0, Math.min(max, text.length))];
+function splitSentences(text: string, maxSentences = Number(process.env.MAX_SENTENCE_CALLS || 200)): string[] {
+  const raw = text.replace(/\r\n/g, "\n").split(/(?<=[。！？!?\.])\s+/);
+  const sentences = raw.map(s => s.trim()).filter(s => s.length > 0);
+  return sentences.slice(0, maxSentences);
 }
 
 function fallbackEmotions(text: string): EmotionScore[] {
@@ -53,7 +44,6 @@ function fallbackEmotions(text: string): EmotionScore[] {
 async function callHume(text: string): Promise<EmotionScore[]> {
   if (DRY_RUN) return fallbackEmotions(text);
   const endpoint = String(HUME_LANGUAGE_URL);
-  // Batch jobs flow
   const create = await fetch(endpoint, {
     method: "POST",
     headers: { "Authorization": `Bearer ${HUME_API_KEY}`, "X-API-Key": `${HUME_API_KEY}`, "Content-Type": "application/json" },
@@ -89,13 +79,16 @@ async function listWattpadEpisodes(): Promise<Array<{ id: string; title?: string
     const list = manifest?.episodes || [];
     for (const e of list) eps.push({ id: e.id, title: e.title, files: (e.files||[]).map((f:string)=>path.join(wattpadDir, f)) });
   } catch {}
-  // also include top-level epXX_*.md
-  const top = await fs.promises.readdir(episodesDir);
-  for (const f of top) {
-    if (f.endsWith(".md") && f.startsWith("ep")) {
-      const id = f.slice(0, f.indexOf("_"))?.toUpperCase() || f.replace(/\.md$/,"");
-      const abs = path.join(episodesDir, f);
-      eps.push({ id, files: [abs] });
+  // part-basedのみ運用（トップレベル単一版は削除済み）
+  const dirs = await fs.promises.readdir(episodesDir, { withFileTypes: true });
+  for (const d of dirs) {
+    if (d.isDirectory() && /^ep\d+$/i.test(d.name)) {
+      const dirPath = path.join(episodesDir, d.name);
+      const parts = (await fs.promises.readdir(dirPath))
+        .filter(fn => /^part\d+\.md$/i.test(fn))
+        .map(fn => path.join(dirPath, fn))
+        .sort();
+      if (parts.length) eps.push({ id: d.name.toUpperCase(), files: parts });
     }
   }
   // dedupe by id
@@ -108,9 +101,7 @@ async function listWattpadEpisodes(): Promise<Array<{ id: string; title?: string
 }
 
 function mapToGhEpisodeId(id: string): string {
-  // manifest uses S1E1 etc → map直接
   if (/^S\d+E\d+$/i.test(id)) return `gh:Episode/${id}`;
-  // ep09 → gh:Episode/EP9
   if (/^EP\d+$/i.test(id)) return `gh:Episode/${id.toUpperCase()}`;
   if (/^EP\d+/.test(id.toUpperCase())) return `gh:Episode/${id.toUpperCase()}`;
   return `gh:Episode/${id}`;
@@ -129,39 +120,75 @@ async function main() {
 
   for (const ep of episodes) {
     const ghId = mapToGhEpisodeId(ep.id);
-    // read and combine text
-    const texts: string[] = [];
-    for (const file of ep.files) {
-      try { texts.push(await readText(file)); } catch {}
-    }
-    if (!texts.length) continue;
-    const combined = texts.join("\n\n");
-    const parts = segment(combined, 1400, 8);
+    if (!ep.files.length) continue;
 
-    const trajectory: any[] = [];
-    for (let i = 0; i < parts.length; i++) {
-      const scores = await callHume(parts[i]);
-      trajectory.push({ "@type": "EmotionProfile", position: i+1, emotionVector: scores.map(s=>({"@type":"EmotionScore", emotion: s.emotion, score: s.score})) });
-    }
-    // overall
-    const agg = new Map<string, number>();
-    for (const p of trajectory) for (const v of p.emotionVector) agg.set(v.emotion, (agg.get(v.emotion)||0) + v.score);
-    const norm = Array.from(agg.entries()).map(([emotion,score])=>({emotion,score: score/trajectory.length}));
-    const tot = norm.reduce((a,b)=>a+b.score,0)||1; const overall = norm.map(s=>({emotion:s.emotion,score:+(s.score/tot).toFixed(4)})).sort((a,b)=>b.score-a.score).slice(0,12);
+    const partProfiles: any[] = [];
+    const episodeAgg = new Map<string, number>();
+    let episodeSentenceCount = 0;
 
+    for (let pfIdx = 0; pfIdx < ep.files.length; pfIdx++) {
+      const file = ep.files[pfIdx];
+      let text = "";
+      try { text = await readText(file); } catch {}
+      if (!text) continue;
+
+      const sentences = splitSentences(text);
+      const sentenceProfiles: any[] = [];
+      for (let si = 0; si < sentences.length; si++) {
+        const sent = sentences[si];
+        const scores = await callHume(sent);
+        sentenceProfiles.push({
+          "@type": "EmotionProfile",
+          position: si + 1,
+          segmentText: sent.slice(0, 400),
+          emotionVector: scores.map(s => ({ "@type": "EmotionScore", emotion: s.emotion, score: s.score }))
+        });
+        for (const sc of scores) {
+          episodeAgg.set(sc.emotion, (episodeAgg.get(sc.emotion) || 0) + sc.score);
+        }
+        episodeSentenceCount += 1;
+      }
+
+      const partAgg = new Map<string, number>();
+      for (const sp of sentenceProfiles) for (const ev of sp.emotionVector) partAgg.set(ev.emotion, (partAgg.get(ev.emotion)||0) + ev.score);
+      const partTot = Array.from(partAgg.values()).reduce((a,b)=>a+b,0) || 1;
+      const partVec = Array.from(partAgg.entries()).map(([emotion,score])=>({ emotion, score: +(score/partTot).toFixed(4) }))
+        .sort((a,b)=>b.score-a.score).slice(0,12);
+
+      partProfiles.push({
+        "@id": `${ghId}:Part:${pfIdx+1}:EmotionProfile`,
+        "@type": "EmotionProfile",
+        subject: { "@id": ghId },
+        episode: { "@id": ghId },
+        sourcePath: path.relative(rootDir, file),
+        language: "ja",
+        createdAt: new Date().toISOString(),
+        emotionVector: partVec.map(s=>({ "@type": "EmotionScore", emotion: s.emotion, score: s.score })),
+        trajectory: sentenceProfiles
+      });
+    }
+
+    const epTot = Array.from(episodeAgg.values()).reduce((a,b)=>a+b,0) || 1;
+    const epVec = Array.from(episodeAgg.entries()).map(([emotion,score])=>({ emotion, score: +(score/epTot).toFixed(4) }))
+      .sort((a,b)=>b.score-a.score).slice(0,12);
+
+    graph.push(...partProfiles);
     graph.push({
-      "@id": `${ghId}:EmotionProfile`, "@type": "EmotionProfile",
-      subject: { "@id": ghId }, episode: { "@id": ghId },
-      sourcePath: ep.files.map(f=>path.relative(rootDir,f)), language: "ja", createdAt: new Date().toISOString(),
-      emotionVector: overall.map(s=>({"@type":"EmotionScore", emotion: s.emotion, score: s.score})),
-      trajectory
+      "@id": `${ghId}:EmotionProfile`,
+      "@type": "EmotionProfile",
+      subject: { "@id": ghId },
+      episode: { "@id": ghId },
+      sourcePath: ep.files.map(f=>path.relative(rootDir,f)),
+      language: "ja",
+      createdAt: new Date().toISOString(),
+      emotionVector: epVec.map(s=>({ "@type": "EmotionScore", emotion: s.emotion, score: s.score })),
+      trajectory: partProfiles.map((pp, idx) => ({ "@type": "EmotionProfile", position: idx+1, emotionVector: pp.emotionVector }))
     });
   }
 
-  const out = { "@context": [ ctx["@context"] ], "@graph": graph };
+  const out = { "@context": [ (await readJson(contextPath))["@context"] ], "@graph": graph };
   await fs.promises.writeFile(outputJsonLd, JSON.stringify(out, null, 2), "utf8");
 
-  // Improvement report (compare last segment to plan final beat)
   const lines: string[] = [];
   lines.push(`# Wattpad Emotional Improvement Report`);
   for (const node of graph) {
@@ -179,7 +206,6 @@ async function main() {
       diffs.sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta));
       lines.push(`- target vs actual (last segment):`);
       for (const d of diffs.slice(0,6)) lines.push(`  - ${d.emotion}: target=${d.target?.toFixed(2)} actual=${d.actual?.toFixed(2)} delta=${d.delta.toFixed(2)}`);
-      // simple suggestions
       const needMoreRelease = ((measured.get("relief")||0) + (measured.get("joy")||0) + (measured.get("hope")||0)) < ((target.get("relief")||0)+(target.get("joy")||0)+(target.get("hope")||0));
       if (needMoreRelease) lines.push(`- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。`);
       const fearTooHigh = (measured.get("fear")||0) > (target.get("fear")||0) + 0.1;
@@ -191,7 +217,6 @@ async function main() {
     }
   }
   await fs.promises.writeFile(outputImprovement, lines.join("\n"), "utf8");
-  // eslint-disable-next-line no-console
   console.log(`Wattpad emotions written: ${outputJsonLd}`);
   console.log(`Improvement report written: ${outputImprovement}`);
 }
