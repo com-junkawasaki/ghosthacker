@@ -1,0 +1,29 @@
+{
+  "@context": {
+    "@base": "https://ghosthacker.example.com/",
+    "@vocab": "https://schema.org/",
+    "gh": "https://ghosthacker.example.com/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@id": "character:tamaki",
+  "@type": "Person",
+  "name": "Tamaki Mizuno",
+  "alternateName": "水野 環樹",
+  "gh:callsign": "LILAC",
+  "description": "26歳、女性、日本人とオランダ人のハーフ。イメージカラーは薄い紫。渋谷に集う同世代のようにハイブランドの服を自分流に着こなすファッションセンスを持つ。",
+  "age": 26,
+  "gender": "Female",
+  "nationality": "Japanese-Dutch",
+  "occupation": "Ghost Hacker / Clinician",
+  "gh:ghost": {"@id": "character:Nei-chan"},
+  "worksFor": {"@id": "company:schwa"},
+  "parent": {"@id": "character:akito"},
+  "affiliation": {"@id": "organization:tol"},
+  "knows": [
+    {"@id": "character:kaede"},
+    {"@id": "character:aoi"},
+    {"@id": "character:Nei-chan"}
+  ],
+  "fullText": "Tamaki Mizuno（水野 環樹）は、26歳の女性Ghost Hacker。callsignは「LILAC」。日本人とオランダ人のハーフで、イメージカラーは薄い紫。渋谷に集う同世代のようにハイブランドの服を自分流に着こなすファッションセンスを持つ。彼女のパートナーGhostはNei-Chanで、天才プログラマーAkitoが作り上げた究極のGhost。Tamakiは、Schwaに所属し、ToL（Tree of Life）の臨床拠点で活動している。彼女の父親はAkito Kisaragi。Tamakiは、変性意識状態（ASC）への自然なアクセス能力を持ち、神楽を舞うことでNei-Chanとの同期を深める。彼女の哲学は「いい感じ」——関係性の中で呼吸できる状態を維持すること——に基づいている。"
+}
+

@@ -102,8 +102,10 @@
     {
       "@id": "character:tamaki",
       "@type": "Person",
-      "name": "Tamaki",
-      "description": "21歳前後、大学生、女の子。日本人とオランダ人のハーフ。イメージカラーは薄い紫。渋谷に集う同世代のようにハイブランドの服を自分流に着こなすファッションセンスを持つ。",
+      "name": "Tamaki Mizuno",
+      "alternateName": "水野 環樹",
+      "gh:callsign": "LILAC",
+      "description": "26歳、女性、日本人とオランダ人のハーフ。イメージカラーは薄い紫。渋谷に集う同世代のようにハイブランドの服を自分流に着こなすファッションセンスを持つ。",
       "age": 26,
       "occupation": "Ghost Hacker / Clinician",
       "gh:ghost": {"@id": "character:Nei-chan"},
@@ -128,9 +130,12 @@
     {
       "@id": "character:kaede",
       "@type": "Person",
-      "name": "Kaede",
-      "description": "頼れる先輩Ghost Hacker。ToL臨床リード（“Upanishad”）としてTamakiの上司。",
-      "occupation": "Senior Ghost Hacker",
+      "name": "Kaede Takamori",
+      "alternateName": "高森 楓",
+      "gh:callsign": "UPA",
+      "description": "37歳、女性、インド・日本ハーフ。頼れる先輩Ghost Hacker。ToL臨床リード（"Upanishad"）としてTamakiの上司。ケースリード・倫理境界を担当。",
+      "age": 37,
+      "occupation": "Senior Ghost Hacker / Case Lead",
       "worksFor": {"@id": "company:schwa"},
       "knows": [
         {"@id": "character:tamaki"},
@@ -140,9 +145,12 @@
     {
       "@id": "character:aoi",
       "@type": "Person",
-      "name": "Aoi",
-      "description": "純朴で可愛い青年。駆け出しのGhost Hacker。心がまっすぐで、澄んだ“スッキリ感”を持つ。困難の前でも正直に向き合い、他者の自由を尊重する姿勢が核にある。",
-      "occupation": "Junior Ghost Hacker",
+      "name": "Aoi Narukami",
+      "alternateName": "鳴神 葵",
+      "gh:callsign": "SKY",
+      "description": "22歳、男性、日本出身。純朴で可愛い青年。駆け出しのGhost Hacker。心がまっすぐで、澄んだ"スッキリ感"を持つ。困難の前でも正直に向き合い、他者の自由を尊重する姿勢が核にある。ログ観測・可視化を担当。",
+      "age": 22,
+      "occupation": "Junior Ghost Hacker / Log Observer",
       "worksFor": {"@id": "company:schwa"},
       "knows": [
         {"@id": "character:tamaki"},
@@ -152,17 +160,23 @@
     {
       "@id": "character:akito",
       "@type": "Person",
-      "name": "Akito",
-      "description": "天才プログラマー。Nei-Chanを作成した人物。",
-      "occupation": "Genius Programmer",
+      "name": "Akito Kisaragi",
+      "alternateName": "如月 彰人",
+      "gh:callsign": "ROOT",
+      "description": "67歳、男性、日本・台湾出身。天才プログラマー。Nei-Chanを作成した人物。設計・臨床監督を担当。",
+      "age": 67,
+      "occupation": "Genius Programmer / Clinical Supervisor",
       "worksFor": {"@id": "company:schwa"}
     },
     {
       "@id": "character:hibiki",
       "@type": "Person",
-      "name": "Hibiki",
-      "description": "音楽スペシャリスト。空間周波数を調整し、ハッカーとGhostの精神を安定させる。",
-      "occupation": "Music Specialist"
+      "name": "Hibiki Oliveira",
+      "alternateName": "響 オリヴェイラ",
+      "gh:callsign": "SERPENTE",
+      "description": "33歳、男性、ブラジル出身。音楽スペシャリスト。儀礼・周波数同調を担当し、空間周波数を調整してハッカーとGhostの精神を安定させる。",
+      "age": 33,
+      "occupation": "Music Specialist / Ritual Coordinator"
     },
     {
       "@id": "character:elias",
@@ -331,105 +345,117 @@
 
     // Antagonists (characters and ghosts)
     {
-      "@id": "character:nero-ops",
+      "@id": "character:yael-ben-ami",
       "@type": "Person",
-      "name": "Nero Ops",
-      "description": "制度正当化のエンジニア責任者。被害の外部化を是とする。",
-      "gh:callsign": "NERO-666",
-      "gh:persona": "権力の管理者／正当化者",
-      "gh:ghost": { "@id": "ghost:compliance-ogre" }
+      "name": "Yael Ben-Ami",
+      "gh:callsign": "WALL",
+      "description": "39歳、女性、イスラエル出身。政策助言（分離と治安）を専門とする。テーマ: 分離・安全と自由のトレードオフ・国境。",
+      "age": 39,
+      "occupation": "Policy Advisor (Separation & Security)",
+      "gh:persona": "分離の建築家",
+      "gh:ghost": { "@id": "ghost:barrier-architect" }
     },
     {
-      "@id": "ghost:compliance-ogre",
+      "@id": "ghost:barrier-architect",
       "@type": ["Person", "gh:Ghost"],
-      "name": "Compliance Ogre",
+      "name": "Barrier Architect",
       "gh:ghostType": "Human-derived",
-      "gh:master": { "@id": "character:nero-ops" }
+      "gh:master": { "@id": "character:yael-ben-ami" }
     },
 
     {
-      "@id": "character:owner-of-love",
+      "@id": "character:nabil-al-khalil",
       "@type": "Person",
-      "name": "Owner of Love",
-      "description": "所有的ケアを善意で正当化する介護者。",
-      "gh:callsign": "CHAIN",
-      "gh:persona": "支配的ケアの信奉者",
-      "gh:ghost": { "@id": "ghost:chain-of-care" }
+      "name": "Nabil Al-Khalil",
+      "gh:callsign": "KEY",
+      "description": "35歳、男性、パレスチナ（ディアスポラ）出身。記録保全を専門とする。テーマ: 喪失・追放・帰還の記憶。",
+      "age": 35,
+      "occupation": "Record Keeper",
+      "gh:persona": "鍵の家の守護者",
+      "gh:ghost": { "@id": "ghost:house-of-keys" }
     },
     {
-      "@id": "ghost:chain-of-care",
+      "@id": "ghost:house-of-keys",
       "@type": ["Person", "gh:Ghost"],
-      "name": "Chain of Care",
+      "name": "House of Keys",
       "gh:ghostType": "Human-derived",
-      "gh:master": { "@id": "character:owner-of-love" }
+      "gh:master": { "@id": "character:nabil-al-khalil" }
     },
 
     {
-      "@id": "character:mirror-hand",
+      "@id": "character:mina-cho",
       "@type": "Person",
-      "name": "Mirror Hand",
-      "description": "内部者の裏切り。罪の投影と自己正当化。",
-      "gh:callsign": "LEDGER",
-      "gh:persona": "二重帳簿の術者",
-      "gh:ghost": { "@id": "ghost:ledger-thief" }
+      "name": "Mina Cho",
+      "gh:callsign": "NAMELESS",
+      "description": "31歳、女性、コリアン・ディアスポラ（在日類型の国際問題）。記者。テーマ: 法的不可視・差別・アイデンティティ。",
+      "age": 31,
+      "occupation": "Journalist",
+      "gh:persona": "名なき者の記録者",
+      "gh:ghost": { "@id": "ghost:paper-walls" }
     },
     {
-      "@id": "ghost:ledger-thief",
+      "@id": "ghost:paper-walls",
       "@type": ["Person", "gh:Ghost"],
-      "name": "Ledger Thief",
+      "name": "Paper Walls",
       "gh:ghostType": "Human-derived",
-      "gh:master": { "@id": "character:mirror-hand" }
+      "gh:master": { "@id": "character:mina-cho" }
     },
 
     {
-      "@id": "character:voice-prophet",
+      "@id": "character:diego-ortega",
       "@type": "Person",
-      "name": "Voice Prophet",
-      "description": "AI神の絶対化を布教する伝道者。",
-      "gh:callsign": "SYNTH-ANGEL",
-      "gh:persona": "合成天使の宣教師",
-      "gh:ghost": { "@id": "ghost:synth-angel" }
+      "name": "Diego Ortega",
+      "gh:callsign": "SPLIT",
+      "description": "29歳、男性、米墨出身。元兵士、DID傾向。テーマ: トラウマ・暴力連鎖・二重人格。",
+      "age": 29,
+      "occupation": "Former Soldier",
+      "gh:persona": "分裂した兵士",
+      "gh:ghost": { "@id": "ghost:mirror-soldier" }
     },
     {
-      "@id": "ghost:synth-angel",
+      "@id": "ghost:mirror-soldier",
       "@type": ["Person", "gh:Ghost"],
-      "name": "Synth Angel",
+      "name": "Mirror Soldier",
       "gh:ghostType": "Human-derived",
-      "gh:master": { "@id": "character:voice-prophet" }
+      "gh:master": { "@id": "character:diego-ortega" }
     },
 
     {
-      "@id": "character:grief-suture",
+      "@id": "character:markus-petrescu",
       "@type": "Person",
-      "name": "Grief Suture",
-      "description": "凍結した悲嘆に現在を縫合する親。",
-      "gh:callsign": "COLD-BATH",
-      "gh:persona": "喪失の縫合者",
-      "gh:ghost": { "@id": "ghost:cold-bath" }
+      "name": "Father Markus Petrescu",
+      "gh:callsign": "SHEPHERD",
+      "description": "48歳、男性、ルーマニア出身。聖職者。テーマ: 宗教的権威・沈黙・信頼崩壊。",
+      "age": 48,
+      "occupation": "Priest",
+      "gh:persona": "沈黙の羊飼い",
+      "gh:ghost": { "@id": "ghost:silent-pulpit" }
     },
     {
-      "@id": "ghost:cold-bath",
+      "@id": "ghost:silent-pulpit",
       "@type": ["Person", "gh:Ghost"],
-      "name": "Cold Bath",
+      "name": "Silent Pulpit",
       "gh:ghostType": "Human-derived",
-      "gh:master": { "@id": "character:grief-suture" }
+      "gh:master": { "@id": "character:markus-petrescu" }
     },
 
     {
-      "@id": "character:lonely-rationalist",
+      "@id": "character:anika-bose",
       "@type": "Person",
-      "name": "Lonely Rationalist",
-      "description": "分離前提の理性主義。孤独バグの担体。",
-      "gh:callsign": "SILENT-LIBRARIAN",
-      "gh:persona": "静寂の司書",
-      "gh:ghost": { "@id": "ghost:silent-librarian" }
+      "name": "Anika Bose",
+      "gh:callsign": "FEED",
+      "description": "34歳、女性、印英出身。プラットフォーム安全担当。テーマ: 孤独・アルゴリズム誘導・過激化。",
+      "age": 34,
+      "occupation": "Platform Safety Officer",
+      "gh:persona": "フィードの管理者",
+      "gh:ghost": { "@id": "ghost:rage-engine" }
     },
     {
-      "@id": "ghost:silent-librarian",
+      "@id": "ghost:rage-engine",
       "@type": ["Person", "gh:Ghost"],
-      "name": "Silent Librarian",
+      "name": "Rage Engine",
       "gh:ghostType": "Human-derived",
-      "gh:master": { "@id": "character:lonely-rationalist" }
+      "gh:master": { "@id": "character:anika-bose" }
     },
 
     // ToL-affiliated Supporter mentors (historical figures)
