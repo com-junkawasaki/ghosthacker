@@ -317,14 +317,17 @@
     traces: ['pipeline_execution', 'node_execution'],
   },
 
-  // Storage boundary (Neo4j)
+  // Storage boundary (Supabase PostgreSQL)
   storage: {
-    type: 'neo4j',
-    nodeLabel: 'PipelineNode',
+    type: 'supabase',
+    database: 'postgresql',
+    orm: 'drizzle',
+    schema: 'public',
+    nodeTable: 'pipeline_nodes',
     idProp: 'id',
-    typeProp: 'type',
+    typeProp: 'nodeType',
     labelProp: 'label',
-    configProp: 'config',
+    configProp: 'configJson',
   },
 
   // Output specifications

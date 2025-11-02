@@ -3,9 +3,9 @@ import { z } from 'zod';
 
 export const env = createEnv({
   server: {
-    NEO4J_URI: z.string().url(),
-    NEO4J_USER: z.string(),
-    NEO4J_PASSWORD: z.string(),
+    SUPABASE_URL: z.string().url(),
+    SUPABASE_SERVICE_ROLE_KEY: z.string(),
+    DATABASE_URL: z.string().url(),
   },
   client: {},
   experimental__runtimeEnv: {},

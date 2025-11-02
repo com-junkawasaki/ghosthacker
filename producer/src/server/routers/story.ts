@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { router, publicProcedure } from '../trpc';
-import { storyRepository } from '@/lib/story-neo4j';
+import { storyRepository } from '@/lib/story-supabase';
 import { TONES, STRUCTURES } from "@/app/(producer)/canvas/story/types";
 
 const PROJECT_ID = 'ghost-hacker-project'; // FIXME: Should not be hardcoded
