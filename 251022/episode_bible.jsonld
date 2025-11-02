@@ -123,6 +123,11 @@
     { "@id": "gh:Motif/GoodFeeling", "@type": "Motif", "name": "いい感じ", "theme": "愛" },
     { "@id": "gh:Motif/BadFeeling", "@type": "Motif", "name": "わるい感じ", "theme": "依存" },
 
+    { "@id": "gh:Org/ToL", "@type": "Organization", "name": "ToL (Tree of Life)",
+      "description": "国際的な臨床・研究組織。カテゴリー: 心療内科。医師免許とCS知識を要件とする。" },
+    { "@id": "gh:Company/Schwa", "@type": "Organization", "name": "Schwa",
+      "description": "ToLの臨床拠点オフィス。Akitoが代表。Tamaki/Kaede/Hibikiが所属。" },
+
     { "@id": "gh:Motif/NegativeEnergyTransmutation", "@type": "Motif", "name": "負のエネルギー転化", "theme": "愛" },
     { "@id": "gh:Motif/NonAttachmentToMalice", "@type": "Motif", "name": "悪意への非依存", "theme": "依存" },
 
@@ -168,7 +173,9 @@
       "repels": {"@id": "gh:Motif/BadFeeling"},
       "avoids": {"@id": "gh:Motif/BadFeeling"},
       "embodies": {"@id": "gh:Trait/GoodVibesUnderAdversity"},
-      "hasArc": {"@id": "gh:Arc/Tamaki-TreeOfLife-Transmutation"}
+      "hasArc": {"@id": "gh:Arc/Tamaki-TreeOfLife-Transmutation"},
+      "schema:worksFor": {"@id": "gh:Company/Schwa"},
+      "schema:memberOf": {"@id": "gh:Org/ToL"}
     },
 
     { "@id": "gh:Episode/S2E2", "@type": "Episode",

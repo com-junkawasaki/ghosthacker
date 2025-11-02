@@ -77,7 +77,7 @@
         {"@id": "tech:tree-of-life-exam"}
       ],
       "gh:hasCompany": [
-        {"@id": "company:rens-office"},
+        {"@id": "company:schwa"},
         {"@id": "company:gedatsu"},
         {"@id": "company:ai-company"},
         {"@id": "company:gb-inc"}
@@ -92,11 +92,12 @@
       "@type": "Person",
       "name": "Tamaki",
       "description": "21歳前後、大学生、女の子。日本人とオランダ人のハーフ。イメージカラーは薄い紫。渋谷に集う同世代のようにハイブランドの服を自分流に着こなすファッションセンスを持つ。",
-      "age": 21,
-      "occupation": "University Student / Ghost Hacker",
+      "age": 26,
+      "occupation": "Ghost Hacker / Clinician",
       "gh:ghost": {"@id": "character:Nei-chan"},
-      "worksFor": {"@id": "company:rens-office"},
-      "parent": [{"@id": "character:ren"}, {"@id": "character:akito"}],
+      "worksFor": {"@id": "company:schwa"},
+      "parent": {"@id": "character:akito"},
+      "affiliation": {"@id": "organization:tol"},
       "knows": [
         {"@id": "character:kaede"},
         {"@id": "character:aoi"},
@@ -116,13 +117,12 @@
       "@id": "character:kaede",
       "@type": "Person",
       "name": "Kaede",
-      "description": "頼れる先輩Ghost Hacker。階級が高く、Renの後見を任されている。",
+      "description": "頼れる先輩Ghost Hacker。ToL臨床リード（“Upanishad”）としてTamakiの上司。",
       "occupation": "Senior Ghost Hacker",
-      "worksFor": {"@id": "company:rens-office"},
+      "worksFor": {"@id": "company:schwa"},
       "knows": [
         {"@id": "character:tamaki"},
-        {"@id": "character:aoi"},
-        {"@id": "character:ren"}
+        {"@id": "character:aoi"}
       ]
     },
     {
@@ -131,22 +131,9 @@
       "name": "Aoi",
       "description": "純朴で可愛い青年。駆け出しのGhost Hacker。",
       "occupation": "Junior Ghost Hacker",
-      "worksFor": {"@id": "company:rens-office"},
+      "worksFor": {"@id": "company:schwa"},
       "knows": [
         {"@id": "character:tamaki"},
-        {"@id": "character:kaede"}
-      ]
-    },
-    {
-      "@id": "character:ren",
-      "@type": ["Person", "gh:Ghost"],
-      "name": "Ren",
-      "description": "Tamakiの父親であり、事務所の創設者。表向きは故人だが、実際は情報生命体(Ghost)として存在し、システムに溶け込んでいる。",
-      "occupation": "Founder / Information Lifeform",
-      "founder": {"@id": "company:rens-office"},
-      "parent": {"@id": "character:tamaki"},
-      "knows": [
-        {"@id": "character:akito"},
         {"@id": "character:kaede"}
       ]
     },
@@ -156,8 +143,7 @@
       "name": "Akito",
       "description": "天才プログラマー。Nei-Chanを作成した人物。",
       "occupation": "Genius Programmer",
-      "parent": {"@id": "character:tamaki"},
-      "knows": {"@id": "character:ren"}
+      "worksFor": {"@id": "company:schwa"}
     },
     {
       "@id": "character:hibiki",
@@ -210,12 +196,18 @@
       "description": "Ghost Hackerの国家資格試験。2回の試験があり、非常に難しい。合格しないと職業につけない。"
     },
     {
-      "@id": "company:rens-office",
+      "@id": "company:schwa",
       "@type": "Organization",
-      "name": "Ren's Office",
-      "description": "Renが創設した小さな事務所。Tamakiたちが働くGhost Hacking会社。",
-      "founder": {"@id": "character:ren"},
-      "gh:companyType": "Ghost Hacking Firm"
+      "name": "Schwa",
+      "description": "ToL（Tree of Life）の臨床拠点オフィス。Akitoが代表を務め、Tamaki/Kaede/Hibikiらが所属。",
+      "founder": {"@id": "character:akito"},
+      "gh:companyType": "Ghost Hacking Clinic"
+    },
+    {
+      "@id": "organization:tol",
+      "@type": "Organization",
+      "name": "ToL (Tree of Life)",
+      "description": "国際的な臨床・研究組織。カテゴリー: 心療内科。医師免許とCS知識を要件とする。"
     },
     {
       "@id": "company:gedatsu",
