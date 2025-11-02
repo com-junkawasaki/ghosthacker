@@ -34,6 +34,7 @@
         targetTrajectory: 'hopeful-catharsis',
         outputPath: '../250806/episodes/emotions.jsonld',
         contextPath: '../250806/emotion.context.jsonld',
+        planPath: '../250806/episodes/emotional-outline.jsonld',
       },
       outputs: ['emotionProfile', 'trajectory']
     },
@@ -93,6 +94,7 @@
         arcs: [
           'gh:Arc/Tamaki-TreeOfLife-Transmutation',
         ],
+        emotionalPlanPath: '../250806/episodes/emotional-outline.jsonld',
       },
       outputs: ['synopsis', 'structure', 'beats'],
     },
