@@ -53,7 +53,8 @@
     "gh:operationalNote": {"@type": "xsd:string"},
     "gh:securityNote": {"@type": "xsd:string"},
     "gh:hazardNote": {"@type": "xsd:string"},
-    "gh:items": {"@id": "https://ghosthacker.example.com/vocab#items", "@type": "@id"}
+    "gh:items": {"@id": "https://ghosthacker.example.com/vocab#items", "@type": "@id"},
+    "gh:role": {"@type": "xsd:string"}
   },
   "@graph": [
     {
@@ -105,7 +106,8 @@
       "name": "Tamaki Mizuno",
       "alternateName": "水野 環樹",
       "gh:callsign": "LILAC",
-      "description": "26歳、女性、日本人とオランダ人のハーフ。イメージカラーは薄い紫。渋谷に集う同世代のようにハイブランドの服を自分流に着こなすファッションセンスを持つ。",
+      "gh:role": "Protagonist",
+      "description": "26歳、女性、日本人とオランダ人のハーフ。イメージカラーは薄い紫。渋谷に集う同世代のようにハイブランドの服を自分流に着こなすファッションセンスを持つ。物語の主人公（Protagonist）。",
       "age": 26,
       "occupation": "Ghost Hacker / Clinician",
       "gh:ghost": {"@id": "character:Nei-chan"},
@@ -130,8 +132,8 @@
     {
       "@id": "character:kaede",
       "@type": "Person",
-      "name": "Kaede Takamori",
-      "alternateName": "高森 楓",
+      "name": "Kaede Sharma",
+      "alternateName": "काएदे शर्मा",
       "gh:callsign": "UPA",
       "description": "37歳、女性、インド・日本ハーフ。頼れる先輩Ghost Hacker。ToL臨床リード（"Upanishad"）としてTamakiの上司。ケースリード・倫理境界を担当。",
       "age": 37,
