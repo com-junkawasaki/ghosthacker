@@ -55,6 +55,7 @@
       "@id": "project:ghost-hacker",
       "@type": "CreativeWork",
       "name": "Ghost Hacker",
+      "alternateName": "We can't put it toghether. it is toghether.",
       "description": "A story about healing connections in a disconnected world through ghost hacking technology",
       "gh:theme": "Healing connections in a disconnected world",
       "gh:writingStyle": "一人称現在形の口語的・会話的文体 (Wattpad風)",
@@ -191,6 +192,12 @@
       "description": "Ghostの情報構造（心）に干渉し、内面的な葛藤（結び目）を解消する行為。ハッカーは自身の生命エネルギー（光子）を使ってGhostの意識と同期し、精神的な空間にダイブする。",
       "gh:certification": {"@id": "tech:tree-of-life-exam"}
     },
+    { "@id": "tech:sip", "@type": "Intangible", "name": "SIP (Spirit in Physics) Device",
+      "description": "Ghostを計算科学的に可視・物質化し、変性意識状態（ASC）下で意識重ね合わせを支援する医療デバイス。オンラインSession対応。" },
+    { "@id": "process:memory-space-1024d", "@type": "Intangible", "name": "Memory Space (1024D)",
+      "description": "VR様の1024次元情報空間。Ghostは暗号化され、特権昇格やオーバーフロー探索によりdaemon processを特定し、kill→/dev/nullでrelease。情報場はオングストローム級周波数帯で観測される。" },
+    { "@id": "program:zombie-sweeper", "@type": "Intangible", "name": "Zombie Process Sweeper",
+      "description": "個別Session以外に常時運用されるゾンビプロセス退治プログラム。社会インフラのmeme感染を抑止。" },
     {
       "@id": "tech:tree-of-life-exam",
       "@type": "Intangible",
@@ -209,8 +216,16 @@
       "@id": "organization:tol",
       "@type": "Organization",
       "name": "ToL (Tree of Life)",
-      "description": "国際的な臨床・研究組織。カテゴリー: 心療内科。医師免許とCS知識を要件とする。"
+      "description": "国際的な臨床・研究組織（国境なき医師団に類似の運営）。カテゴリー: 心療内科。医師免許とCS知識を要件。日本国内では国家安全保障会議の支援、厚生労働省・宮内庁と連携。",
+      "sponsor": [
+        {"@id": "organization:jpn-nsc"},
+        {"@id": "organization:mhlw"},
+        {"@id": "organization:imperial-household"}
+      ]
     },
+    { "@id": "organization:jpn-nsc", "@type": "Organization", "name": "国家安全保障会議 (NSC)" },
+    { "@id": "organization:mhlw", "@type": "Organization", "name": "厚生労働省 (MHLW)" },
+    { "@id": "organization:imperial-household", "@type": "Organization", "name": "宮内庁" },
     { "@id": "organization:tol-hermeneutics", "@type": "Organization", "name": "ToL Hermeneutics" },
     { "@id": "organization:tol-zen", "@type": "Organization", "name": "ToL Zen" },
     { "@id": "organization:tol-amazon", "@type": "Organization", "name": "ToL Amazon" },

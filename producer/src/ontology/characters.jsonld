@@ -5,6 +5,15 @@
   },
   "@graph": [
     {
+      "@id": "gh:character-daniel-arai",
+      "@type": "gh:Character",
+      "schema:name": "Daniel Arai (新井 ダニエル)",
+      "概要": "クリスチャン。I AMを強く主張し孤独に閉じる。両親の離婚と愛の欠乏、ASD傾向で共感が困難。オンラインSession対象。",
+      "background": "渋谷拠点のSchwaとToLのオンライン介入対象。SIPデバイスでMemory Space (1024D) にて対話。",
+      "属性": "宗教: Christianity / 健康: ASD (Neurodiversity) / テーマ: 孤独・畏れ",
+      "gh:callsign": "I-AM"
+    },
+    {
       "@id": "gh:character-kageboushi-(カゲボウシ)",
       "@type": "gh:Character",
       "schema:name": "Kageboushi (カゲボウシ)",

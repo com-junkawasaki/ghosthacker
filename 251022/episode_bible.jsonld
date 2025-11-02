@@ -131,8 +131,28 @@
     { "@id": "gh:Motif/NegativeEnergyTransmutation", "@type": "Motif", "name": "負のエネルギー転化", "theme": "愛" },
     { "@id": "gh:Motif/NonAttachmentToMalice", "@type": "Motif", "name": "悪意への非依存", "theme": "依存" },
 
+    { "@id": "gh:Tech/SIP", "@type": "Intangible", "name": "SIP (Spirit in Physics) Device",
+      "description": "Ghostを物質化・可視化し、ASC下で意識重ね合わせを行う医療デバイス。オンラインSession対応。" },
+    { "@id": "gh:Process/MemorySpace1024D", "@type": "Intangible", "name": "Memory Space (1024D)",
+      "description": "VR様の1024次元情報空間。暗号化Ghost、特権昇格/overflow探索、daemon kill→/dev/null release。" },
+
     { "@id": "gh:Trait/GoodVibesUnderAdversity", "@type": "gh:Trait",
       "description": "負のエネルギーに晒されても『いい感じ』を保ち、他者に与える。悪意に依存しない。" },
+
+    { "@id": "character:daniel-arai", "@type": "Person", "name": "Daniel Arai", "alternateName": "新井 ダニエル",
+      "description": "クリスチャン。I AMを強く主張し孤独に閉じる。両親の離婚と愛の欠乏、ASD傾向で共感が困難。",
+      "religion": "Christian", "healthCondition": "AutismSpectrum", "gh:callsign": "I-AM" },
+
+    { "@id": "gh:Episode/S1E0", "@type": "Episode",
+      "episodeNumber": 0,
+      "season": {"@id": "gh:Season/1"},
+      "name": "Session \"I AM and Loneliness\"",
+      "alternateName": "We can't put it toghether. it is toghether.",
+      "logline": "I AMを掲げ孤独に閉じるクライアントに対し、SIPでMemory Spaceへダイブし、愛の連鎖断絶を可視化・受容へ導く。",
+      "hasArc": [ {"@id": "gh:Arc/Tamaki-TreeOfLife-Transmutation"} ],
+      "motifRefs": [ {"@id": "gh:Motif/IAM"}, {"@id": "gh:Motif/NonSeparation"}, {"@id": "gh:Motif/TreeOfLife"}, {"@id": "gh:Motif/Forgiveness"} ],
+      "hasCharacter": [ {"@id": "character:tamaki"}, {"@id": "character:kaede"}, {"@id": "character:hibiki"}, {"@id": "character:daniel-arai"} ]
+    },
 
     { "@id": "gh:Episode/S1E1", "@type": "Episode",
       "episodeNumber": 1,
