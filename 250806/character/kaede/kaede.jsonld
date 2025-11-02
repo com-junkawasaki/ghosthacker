@@ -1,0 +1,32 @@
+{
+  "@context": {
+    "@base": "https://gftd.ai/ghost-hacker/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gh": "https://gftd.ai/gh#",
+
+    "Person": "https://schema.org/Person",
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "description": { "@id": "schema:description", "@type": "xsd:string" },
+    "age": { "@id": "https://schema.org/age", "@type": "xsd:integer" },
+    "occupation": { "@id": "schema:occupation", "@type": "xsd:string" },
+    "knows": { "@id": "schema:knows", "@type": "@id" },
+    "worksFor": { "@id": "schema:worksFor", "@type": "@id" },
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" }
+  },
+  "@graph": [
+    {
+      "@id": "character:kaede",
+      "@type": "Person",
+      "name": "Kaede",
+      "age": 25,
+      "occupation": "Senior Ghost Hacker",
+      "description": "冷静沈着で分析的。後輩を静かに導く頼れる先輩。Renからタマキの後見を託されている。",
+      "knows": [ {"@id": "character:tamaki"}, {"@id": "character:aoi"}, {"@id": "character:ren"} ],
+      "worksFor": { "@id": "company:schwa" },
+      "sameAs": "250806/character/kaede/kaede.md"
+    }
+  ]
+}
+
+

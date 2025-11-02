@@ -1,0 +1,36 @@
+{
+  "@context": {
+    "@base": "https://gftd.ai/ghost-hacker/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gh": "https://gftd.ai/gh#",
+
+    "PortraitPrompt": "gh:PortraitPrompt",
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "about": { "@id": "schema:about", "@type": "@id" },
+    "appearance": { "@id": "gh:appearance", "@type": "xsd:string" },
+    "style": { "@id": "gh:style", "@type": "xsd:string" },
+    "setting": { "@id": "gh:setting", "@type": "xsd:string" },
+    "lighting": { "@id": "gh:lighting", "@type": "xsd:string" },
+    "composition": { "@id": "gh:composition", "@type": "xsd:string" },
+    "quality": { "@id": "gh:quality", "@type": "xsd:string" },
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" }
+  },
+  "@graph": [
+    {
+      "@id": "gh:PortraitPrompt/nei-chan",
+      "@type": "PortraitPrompt",
+      "name": "Nei-Chan Portrait Prompt",
+      "about": { "@id": "character:Nei-chan" },
+      "appearance": "写実的で可憐な巫女/平安貴族スタイルの顕現。長い黒髪の垂髪。",
+      "style": "巫女衣装×十二単要素。デジタルテクスチャが流れる絹。",
+      "setting": "枯山水や鳥居がホログラフィックに現れるミニマルなデジタル空間。",
+      "lighting": "月光/障子越しの柔らかな拡散光。金色とシアンのアクセント。",
+      "composition": "全身〜七分身で儀式的な静のポーズ。",
+      "quality": "完全フォトリアル、超高精細8K。",
+      "sameAs": "250806/character/nee-chan/portrait.md"
+    }
+  ]
+}
+
+

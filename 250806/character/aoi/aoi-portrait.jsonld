@@ -1,0 +1,40 @@
+{
+  "@context": {
+    "@base": "https://gftd.ai/ghost-hacker/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gh": "https://gftd.ai/gh#",
+
+    "PortraitPrompt": "gh:PortraitPrompt",
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "about": { "@id": "schema:about", "@type": "@id" },
+    "subject": { "@id": "gh:subject", "@type": "xsd:string" },
+    "appearance": { "@id": "gh:appearance", "@type": "xsd:string" },
+    "style": { "@id": "gh:style", "@type": "xsd:string" },
+    "setting": { "@id": "gh:setting", "@type": "xsd:string" },
+    "lighting": { "@id": "gh:lighting", "@type": "xsd:string" },
+    "composition": { "@id": "gh:composition", "@type": "xsd:string" },
+    "mood": { "@id": "gh:mood", "@type": "xsd:string" },
+    "quality": { "@id": "gh:quality", "@type": "xsd:string" },
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" }
+  },
+  "@graph": [
+    {
+      "@id": "gh:PortraitPrompt/aoi",
+      "@type": "PortraitPrompt",
+      "name": "Aoi Portrait Prompt",
+      "about": { "@id": "character:aoi" },
+      "subject": "18歳の新人ゴーストハッカー。誠実で少しナイーブ。",
+      "appearance": "若々しくフレンドリー。少し乱れた髪。平均的な体格。",
+      "style": "シンプルで機能重視の服装。新しいバックパック、ガジェット好き。",
+      "setting": "渋谷/秋葉原の黄昏時、ネオンの街。背景はボケで色彩豊か。",
+      "lighting": "ネオンの複雑な反射光が顔に映る。",
+      "composition": "ミディアムクローズアップ。都市に圧倒されつつも希望に満ちた視線。",
+      "mood": "若々しく希望に満ちた誠実さ。",
+      "quality": "フォトリアル、8K、映画的ボケ。",
+      "sameAs": "250806/character/aoi/portrait.md"
+    }
+  ]
+}
+
+

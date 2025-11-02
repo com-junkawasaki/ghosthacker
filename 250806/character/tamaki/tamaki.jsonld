@@ -1,0 +1,36 @@
+{
+  "@context": {
+    "@base": "https://gftd.ai/ghost-hacker/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gh": "https://gftd.ai/gh#",
+
+    "Person": "https://schema.org/Person",
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "alternateName": { "@id": "https://schema.org/alternateName", "@type": "xsd:string" },
+    "age": { "@id": "https://schema.org/age", "@type": "xsd:integer" },
+    "nationality": { "@id": "https://schema.org/nationality", "@type": "xsd:string" },
+    "occupation": { "@id": "schema:occupation", "@type": "xsd:string" },
+    "description": { "@id": "schema:description", "@type": "xsd:string" },
+    "knows": { "@id": "schema:knows", "@type": "@id" },
+    "ghost": { "@id": "gh:ghost", "@type": "@id" },
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" }
+  },
+  "@graph": [
+    {
+      "@id": "character:tamaki",
+      "@type": "Person",
+      "name": "Tamaki Vermeer",
+      "alternateName": "N-Chan",
+      "age": 21,
+      "nationality": "Japanese / Dutch",
+      "occupation": "Medical student / Ghost Hacker (apprentice)",
+      "description": "共感能力に優れ、Ghostの心に寄り添うスタイルのハックを得意とする。『いい感じ』を最も大切にする感性の持ち主。",
+      "ghost": { "@id": "character:Nei-chan" },
+      "knows": [ {"@id": "character:kaede"}, {"@id": "character:aoi"}, {"@id": "character:akito"} ],
+      "sameAs": "250806/character/tamaki/tamaki.md"
+    }
+  ]
+}
+
+

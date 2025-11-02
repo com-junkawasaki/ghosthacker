@@ -1,0 +1,38 @@
+{
+  "@context": {
+    "@base": "https://gftd.ai/ghost-hacker/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gh": "https://gftd.ai/gh#",
+
+    "PortraitPrompt": "gh:PortraitPrompt",
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "about": { "@id": "schema:about", "@type": "@id" },
+    "appearance": { "@id": "gh:appearance", "@type": "xsd:string" },
+    "style": { "@id": "gh:style", "@type": "xsd:string" },
+    "setting": { "@id": "gh:setting", "@type": "xsd:string" },
+    "lighting": { "@id": "gh:lighting", "@type": "xsd:string" },
+    "composition": { "@id": "gh:composition", "@type": "xsd:string" },
+    "mood": { "@id": "gh:mood", "@type": "xsd:string" },
+    "quality": { "@id": "gh:quality", "@type": "xsd:string" },
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" }
+  },
+  "@graph": [
+    {
+      "@id": "gh:PortraitPrompt/tamaki",
+      "@type": "PortraitPrompt",
+      "name": "Tamaki Portrait Prompt",
+      "about": { "@id": "character:tamaki" },
+      "appearance": "若々しく可憐。黒髪ロング、青みがかった瞳。穏やかな微笑み。",
+      "style": "上質な白いドレス。ミニマルで過度な装飾なし。",
+      "setting": "ニュートラルなオフホワイト背景。",
+      "lighting": "柔らかく自然な光で肌質感を際立たせる。",
+      "composition": "胸から上の超リアルなクローズアップ。",
+      "mood": "シネマティックで神秘性と親しみが共存。",
+      "quality": "高精細8K。",
+      "sameAs": "250806/character/tamaki/portrait.md"
+    }
+  ]
+}
+
+

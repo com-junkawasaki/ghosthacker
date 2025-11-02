@@ -1,0 +1,38 @@
+{
+  "@context": {
+    "@base": "https://gftd.ai/ghost-hacker/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gh": "https://gftd.ai/gh#",
+
+    "Person": "https://schema.org/Person",
+    "Ghost": "gh:Ghost",
+    "Ability": "gh:Ability",
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "description": { "@id": "schema:description", "@type": "xsd:string" },
+    "ghostType": { "@id": "gh:ghostType", "@type": "xsd:string" },
+    "master": { "@id": "gh:master", "@type": "@id" },
+    "hasAbility": { "@id": "gh:hasAbility", "@type": "@id" },
+    "appearance": { "@id": "gh:appearance", "@type": "xsd:string" },
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" }
+  },
+  "@graph": [
+    {
+      "@id": "ghost:yatagarasu",
+      "@type": ["Person", "Ghost"],
+      "name": "Yatagarasu",
+      "ghostType": "鳥類 / 情報収集特化型",
+      "description": "導きの神『八咫烏』の名を冠するベテランGhost。深層潜航・抽出・ステルスに長ける。",
+      "master": { "@id": "character:kaede" },
+      "hasAbility": [
+        { "@id": "gh:Ability/DeepDive", "@type": "Ability", "name": "深層潜航", "description": "暗号化・隔離領域へ潜入。" },
+        { "@id": "gh:Ability/DataExtraction", "@type": "Ability", "name": "情報抽出", "description": "必要情報を高精度で抽出。" },
+        { "@id": "gh:Ability/Stealth", "@type": "Ability", "name": "ステルス", "description": "存在痕跡を残さない活動。" }
+      ],
+      "appearance": "漆黒の三本足の烏。冷静な眼。",
+      "sameAs": "250806/character/kaede/ghost.md"
+    }
+  ]
+}
+
+

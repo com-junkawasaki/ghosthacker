@@ -1,0 +1,29 @@
+{
+  "@context": {
+    "@base": "https://gftd.ai/ghost-hacker/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gh": "https://gftd.ai/gh#",
+
+    "Person": "https://schema.org/Person",
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "description": { "@id": "schema:description", "@type": "xsd:string" },
+    "occupation": { "@id": "schema:occupation", "@type": "xsd:string" },
+    "parent": { "@id": "https://schema.org/parent", "@type": "@id" },
+    "spouse": { "@id": "https://schema.org/spouse", "@type": "@id" },
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" }
+  },
+  "@graph": [
+    {
+      "@id": "character:ren",
+      "@type": "Person",
+      "name": "Ren",
+      "occupation": "Genius Programmer / Founder",
+      "description": "TOLの礎をAkitoと築いた伝説のプログラマー。The Silent Code後にGhost化し、ネットワークの観察者としてタマキを見守る。論理を越えて『いい感じ』を信じるに至った。",
+      "parent": { "@id": "character:tamaki" },
+      "sameAs": "250806/character/ren/ren.md"
+    }
+  ]
+}
+
+

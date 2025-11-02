@@ -1,0 +1,38 @@
+{
+  "@context": {
+    "@base": "https://gftd.ai/ghost-hacker/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gh": "https://gftd.ai/gh#",
+
+    "PortraitPrompt": "gh:PortraitPrompt",
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "about": { "@id": "schema:about", "@type": "@id" },
+    "appearance": { "@id": "gh:appearance", "@type": "xsd:string" },
+    "style": { "@id": "gh:style", "@type": "xsd:string" },
+    "setting": { "@id": "gh:setting", "@type": "xsd:string" },
+    "lighting": { "@id": "gh:lighting", "@type": "xsd:string" },
+    "composition": { "@id": "gh:composition", "@type": "xsd:string" },
+    "mood": { "@id": "gh:mood", "@type": "xsd:string" },
+    "quality": { "@id": "gh:quality", "@type": "xsd:string" },
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" }
+  },
+  "@graph": [
+    {
+      "@id": "gh:PortraitPrompt/ren",
+      "@type": "PortraitPrompt",
+      "name": "Ren Portrait Prompt",
+      "about": { "@id": "character:ren" },
+      "appearance": "韓流アイドルのようなカリスマ。銀白の長髪、彫刻的な顔立ち、モデル体型。",
+      "style": "上質な白シャツのミニマルでクリーンな装い。",
+      "setting": "ホワイト基調の未来的研究室。半透明ホログラフィックが浮かぶ。",
+      "lighting": "明るい白色光＋ディスプレイの淡い青光の反射。",
+      "composition": "プログラミングに集中する横顔、視線だけこちらへ流す瞬間。",
+      "mood": "クールな集中と微かな人間的温かさ。",
+      "quality": "超高解像度8K、クリアでシャープ。",
+      "sameAs": "250806/character/ren/portrait.md"
+    }
+  ]
+}
+
+

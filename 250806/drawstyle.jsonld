@@ -1,0 +1,49 @@
+{
+  "@context": {
+    "@base": "https://gftd.ai/ghost-hacker/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gh": "https://gftd.ai/gh#",
+
+    "DrawStyle": "gh:DrawStyle",
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "description": { "@id": "schema:description", "@type": "xsd:string" },
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" },
+    "writingTraits": { "@id": "gh:writingTraits" },
+    "artTraits": { "@id": "gh:artTraits" },
+    "influences": { "@id": "gh:influences", "@type": "@id" },
+    "soundtrack": { "@id": "gh:soundtrack", "@type": "@id" }
+  },
+  "@graph": [
+    {
+      "@id": "gh:DrawStyle/Core",
+      "@type": "DrawStyle",
+      "name": "Ghost Hacker Draw & Writing Style",
+      "artTraits": [
+        "ダイナミック線描",
+        "コントラスト設計",
+        "多様パース",
+        "minimalist yet detailed portrait",
+        "静かな身体言語（重心・手・視線・瞳の緻密描写）",
+        "背景は精密・空気感・沈黙の余韻",
+        "有機的で微細なプロセスの未来世界（建築/光/情報が連なる）"
+      ],
+      "writingTraits": [
+        "一人称視点",
+        "現在形時制",
+        "口語的・会話的トーン（短章・SNSライク）"
+      ],
+      "influences": [
+        { "@id": "style:art" },
+        { "@id": "style:writing" }
+      ],
+      "soundtrack": [
+        { "@id": "sound:choro-club" },
+        { "@id": "sound:freetempo" }
+      ],
+      "sameAs": "250806/drawstyle.md"
+    }
+  ]
+}
+
+

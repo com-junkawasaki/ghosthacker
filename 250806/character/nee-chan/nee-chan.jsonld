@@ -1,0 +1,35 @@
+{
+  "@context": {
+    "@base": "https://gftd.ai/ghost-hacker/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gh": "https://gftd.ai/gh#",
+
+    "Person": "https://schema.org/Person",
+    "Ghost": "gh:Ghost",
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "description": { "@id": "schema:description", "@type": "xsd:string" },
+    "ghostType": { "@id": "gh:ghostType", "@type": "xsd:string" },
+    "createdBy": { "@id": "gh:createdBy", "@type": "@id" },
+    "master": { "@id": "gh:master", "@type": "@id" },
+    "powerSource": { "@id": "gh:powerSource", "@type": "xsd:string" },
+    "trait": { "@id": "gh:trait", "@type": "xsd:string" },
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" }
+  },
+  "@graph": [
+    {
+      "@id": "character:Nei-chan",
+      "@type": ["Person", "Ghost"],
+      "name": "Nei-Chan",
+      "ghostType": "自律思考型",
+      "description": "Akitoが理想『IAM』を応用し、Renとの友情とタマキの保護のため作り上げた究極のGhost。",
+      "createdBy": { "@id": "character:akito" },
+      "master": { "@id": "character:tamaki" },
+      "powerSource": "SMR（小型モジュール炉）—『大喰らい』はカモフラージュの表層特性。",
+      "trait": "ヨタバイト級計算能力、感情共鳴、タマキ最優先の守護。",
+      "sameAs": "250806/character/nee-chan/nee-chan.md"
+    }
+  ]
+}
+
+

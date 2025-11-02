@@ -1,0 +1,32 @@
+{
+  "@context": {
+    "@base": "https://gftd.ai/ghost-hacker/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gh": "https://gftd.ai/gh#",
+
+    "Person": "https://schema.org/Person",
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "description": { "@id": "schema:description", "@type": "xsd:string" },
+    "age": { "@id": "https://schema.org/age", "@type": "xsd:integer" },
+    "occupation": { "@id": "schema:occupation", "@type": "xsd:string" },
+    "nationality": { "@id": "https://schema.org/nationality", "@type": "xsd:string" },
+    "knows": { "@id": "schema:knows", "@type": "@id" },
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" }
+  },
+  "@graph": [
+    {
+      "@id": "character:hibiki",
+      "@type": "Person",
+      "name": "Hibiki",
+      "age": 28,
+      "occupation": "DJ / Ghost Hacker",
+      "nationality": "日系ブラジル人",
+      "description": "陽気で直感的なデジタルシャーマン。『アヤワスカ・ハック』で幻覚的情報空間へダイブし魂を浄化する。",
+      "knows": [ {"@id": "character:tamaki"}, {"@id": "character:kaede"}, {"@id": "character:aoi"} ],
+      "sameAs": "250806/character/hibiki/hibiki.md"
+    }
+  ]
+}
+
+

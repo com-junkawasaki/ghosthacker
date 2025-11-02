@@ -1,0 +1,30 @@
+{
+  "@context": {
+    "@base": "https://gftd.ai/ghost-hacker/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gh": "https://gftd.ai/gh#",
+
+    "Person": "https://schema.org/Person",
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "description": { "@id": "schema:description", "@type": "xsd:string" },
+    "occupation": { "@id": "schema:occupation", "@type": "xsd:string" },
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" },
+    "familyEvent": { "@id": "gh:familyEvent", "@type": "xsd:string" },
+    "philosophy": { "@id": "gh:philosophy", "@type": "xsd:string" }
+  },
+  "@graph": [
+    {
+      "@id": "character:elias",
+      "@type": "Person",
+      "name": "Elias",
+      "occupation": "Physicist",
+      "description": "特異な知性を持ち、精神構造を情報空間で研究。アルカディア・モデルを提唱。現在は神学校に籍を置き、宗教的ドグマの構造を内部から解明しようとする。",
+      "familyEvent": "幼少期に両親（母=現代芸術家、父=伝説的物理学者）が離婚。離婚が家族分断の根因となり、祖父母に育てられた。",
+      "philosophy": "神は存在しないが、『神』システムは悪意ある権威として機能する。分離前提の理性主義に囚われ孤独を抱える。",
+      "sameAs": "250806/character/elias/elias.md"
+    }
+  ]
+}
+
+

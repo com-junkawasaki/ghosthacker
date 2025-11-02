@@ -1,0 +1,36 @@
+{
+  "@context": {
+    "@base": "https://gftd.ai/ghost-hacker/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gh": "https://gftd.ai/gh#",
+
+    "PortraitPrompt": "gh:PortraitPrompt",
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "about": { "@id": "schema:about", "@type": "@id" },
+    "appearance": { "@id": "gh:appearance", "@type": "xsd:string" },
+    "style": { "@id": "gh:style", "@type": "xsd:string" },
+    "setting": { "@id": "gh:setting", "@type": "xsd:string" },
+    "lighting": { "@id": "gh:lighting", "@type": "xsd:string" },
+    "composition": { "@id": "gh:composition", "@type": "xsd:string" },
+    "quality": { "@id": "gh:quality", "@type": "xsd:string" },
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" }
+  },
+  "@graph": [
+    {
+      "@id": "gh:PortraitPrompt/kaede",
+      "@type": "PortraitPrompt",
+      "name": "Kaede Portrait Prompt",
+      "about": { "@id": "character:kaede" },
+      "appearance": "鋭く知的で優しさのある顔立ち。黒髪まとめ髪。細身で姿勢が良い。",
+      "style": "プロフェッショナルで洗練、深い緑を上品に取り入れる。",
+      "setting": "静かで整理されたオフィスの一角（本棚/サーバ/観葉植物/デスクランプ）。",
+      "lighting": "スクリーンのクール光＋デスクランプの暖色。",
+      "composition": "ミディアムショット。的確なアドバイスをくれそうな眼差しで正対。",
+      "quality": "写実・高精細・8K。",
+      "sameAs": "250806/character/kaede/portrait.md"
+    }
+  ]
+}
+
+
