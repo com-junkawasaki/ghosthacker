@@ -12,6 +12,16 @@
 
 ## gh:Episode/S1E1
 - target vs actual (last segment):
+  - sadness: target=0.00 actual=1.00 delta=1.00
+  - trust: target=0.35 actual=0.00 delta=-0.35
+  - relief: target=0.30 actual=0.00 delta=-0.30
+  - joy: target=0.20 actual=0.00 delta=-0.20
+  - fear: target=0.00 actual=0.00 delta=0.00
+  - anger: target=0.00 actual=0.00 delta=0.00
+- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
+
+## gh:Episode/S1E1
+- target vs actual (last segment):
   - trust: target=0.35 actual=0.00 delta=-0.35
   - hope: target=0.00 actual=0.33 delta=0.33
   - joy: target=0.20 actual=0.33 delta=0.13
@@ -21,23 +31,12 @@
 
 ## gh:Episode/S1E1
 - target vs actual (last segment):
+  - sadness: target=0.00 actual=0.50 delta=0.50
   - trust: target=0.35 actual=0.00 delta=-0.35
-  - relief: target=0.30 actual=0.00 delta=-0.30
-  - joy: target=0.20 actual=0.00 delta=-0.20
-  - sadness: target=0.00 actual=0.00 delta=0.00
+  - hope: target=0.00 actual=0.17 delta=0.17
+  - relief: target=0.30 actual=0.17 delta=-0.13
+  - joy: target=0.20 actual=0.17 delta=-0.03
   - fear: target=0.00 actual=0.00 delta=0.00
-  - anger: target=0.00 actual=0.00 delta=0.00
-- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
-
-## gh:Episode/S1E1
-- target vs actual (last segment):
-  - sadness: target=0.00 actual=1.00 delta=1.00
-  - trust: target=0.35 actual=0.00 delta=-0.35
-  - relief: target=0.30 actual=0.00 delta=-0.30
-  - joy: target=0.20 actual=0.00 delta=-0.20
-  - fear: target=0.00 actual=0.00 delta=0.00
-  - anger: target=0.00 actual=0.00 delta=0.00
-- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
 
 ## gh:Episode/S2E2
 - target vs actual (last segment):
@@ -51,7 +50,7 @@
 
 ## gh:Episode/S2E2
 - target vs actual (last segment):
-  - trust: target=0.35 actual=0.00 delta=-0.35
+  - trust: target=0.35 actual=1.00 delta=0.65
   - relief: target=0.30 actual=0.00 delta=-0.30
   - joy: target=0.20 actual=0.00 delta=-0.20
   - sadness: target=0.00 actual=0.00 delta=0.00
@@ -118,13 +117,14 @@
 
 ## gh:Episode/S3E2
 - target vs actual (last segment):
+  - fear: target=0.00 actual=1.00 delta=1.00
   - relief: target=0.35 actual=0.00 delta=-0.35
   - joy: target=0.25 actual=0.00 delta=-0.25
   - sadness: target=0.00 actual=0.00 delta=0.00
-  - fear: target=0.00 actual=0.00 delta=0.00
   - anger: target=0.00 actual=0.00 delta=0.00
   - surprise: target=0.00 actual=0.00 delta=0.00
 - 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
+- 提案: 不安描写は名づけ→整えで早めに解く。"待つ契約"や"I AM"の台詞で恐れを関係に変換。
 
 ## gh:Episode/S3E2
 - target vs actual (last segment):
@@ -156,18 +156,8 @@
 
 ## gh:Episode/S4E1
 - target vs actual (last segment):
-  - anger: target=0.00 actual=1.00 delta=1.00
   - trust: target=0.25 actual=0.00 delta=-0.25
   - anticipation: target=0.25 actual=0.00 delta=-0.25
-  - joy: target=0.00 actual=0.00 delta=0.00
-  - sadness: target=0.00 actual=0.00 delta=0.00
-  - fear: target=0.00 actual=0.00 delta=0.00
-- 提案: 応報の言い換え→回復語彙へ。触媒としてチーム連携（Kaede/Hibiki/Nei-chan）を挿入。
-
-## gh:Episode/S4E1
-- target vs actual (last segment):
-  - anticipation: target=0.25 actual=1.00 delta=0.75
-  - trust: target=0.25 actual=0.00 delta=-0.25
   - joy: target=0.00 actual=0.00 delta=0.00
   - sadness: target=0.00 actual=0.00 delta=0.00
   - fear: target=0.00 actual=0.00 delta=0.00
@@ -175,12 +165,21 @@
 
 ## gh:Episode/S4E1
 - target vs actual (last segment):
-  - joy: target=0.00 actual=0.33 delta=0.33
-  - relief: target=0.00 actual=0.33 delta=0.33
-  - hope: target=0.00 actual=0.33 delta=0.33
   - trust: target=0.25 actual=0.00 delta=-0.25
   - anticipation: target=0.25 actual=0.00 delta=-0.25
+  - joy: target=0.00 actual=0.00 delta=0.00
   - sadness: target=0.00 actual=0.00 delta=0.00
+  - fear: target=0.00 actual=0.00 delta=0.00
+  - anger: target=0.00 actual=0.00 delta=0.00
+
+## gh:Episode/S4E1
+- target vs actual (last segment):
+  - trust: target=0.25 actual=0.00 delta=-0.25
+  - anticipation: target=0.25 actual=0.00 delta=-0.25
+  - joy: target=0.00 actual=0.00 delta=0.00
+  - sadness: target=0.00 actual=0.00 delta=0.00
+  - fear: target=0.00 actual=0.00 delta=0.00
+  - anger: target=0.00 actual=0.00 delta=0.00
 
 ## gh:Episode/S4E1
 - target vs actual (last segment):
@@ -193,20 +192,21 @@
 
 ## gh:Episode/S4E2
 - target vs actual (last segment):
-  - joy: target=0.00 actual=0.22 delta=0.22
-  - relief: target=0.00 actual=0.22 delta=0.22
-  - fear: target=0.00 actual=0.18 delta=0.18
-  - trust: target=0.35 actual=0.17 delta=-0.18
-  - hope: target=0.25 actual=0.22 delta=-0.03
+  - fear: target=0.00 actual=0.55 delta=0.55
+  - anticipation: target=0.00 actual=0.45 delta=0.45
+  - trust: target=0.35 actual=0.00 delta=-0.35
+  - hope: target=0.25 actual=0.00 delta=-0.25
+  - joy: target=0.00 actual=0.00 delta=0.00
   - sadness: target=0.00 actual=0.00 delta=0.00
+- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
 - 提案: 不安描写は名づけ→整えで早めに解く。"待つ契約"や"I AM"の台詞で恐れを関係に変換。
 
 ## gh:Episode/S4E2
 - target vs actual (last segment):
-  - fear: target=0.00 actual=0.43 delta=0.43
+  - fear: target=0.00 actual=0.55 delta=0.55
+  - anticipation: target=0.00 actual=0.45 delta=0.45
+  - trust: target=0.35 actual=0.00 delta=-0.35
   - hope: target=0.25 actual=0.00 delta=-0.25
-  - anticipation: target=0.00 actual=0.18 delta=0.18
-  - trust: target=0.35 actual=0.39 delta=0.04
   - joy: target=0.00 actual=0.00 delta=0.00
   - sadness: target=0.00 actual=0.00 delta=0.00
 - 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
@@ -283,11 +283,13 @@
 ## gh:Episode/S6E1
 - target vs actual (last segment):
   - trust: target=0.35 actual=0.00 delta=-0.35
-  - joy: target=0.00 actual=0.33 delta=0.33
-  - relief: target=0.00 actual=0.33 delta=0.33
-  - hope: target=0.25 actual=0.33 delta=0.08
-  - sadness: target=0.00 actual=0.00 delta=0.00
-  - fear: target=0.00 actual=0.00 delta=0.00
+  - joy: target=0.00 actual=0.22 delta=0.22
+  - relief: target=0.00 actual=0.22 delta=0.22
+  - fear: target=0.00 actual=0.18 delta=0.18
+  - anger: target=0.00 actual=0.17 delta=0.17
+  - hope: target=0.25 actual=0.22 delta=-0.03
+- 提案: 不安描写は名づけ→整えで早めに解く。"待つ契約"や"I AM"の台詞で恐れを関係に変換。
+- 提案: 応報の言い換え→回復語彙へ。触媒としてチーム連携（Kaede/Hibiki/Nei-chan）を挿入。
 
 ## gh:Episode/S6E1
 - target vs actual (last segment):
@@ -451,11 +453,12 @@
 ## gh:Episode/EP12
 - target vs actual (last segment):
   - trust: target=0.38 actual=0.00 delta=-0.38
-  - joy: target=0.00 actual=0.33 delta=0.33
-  - relief: target=0.00 actual=0.33 delta=0.33
-  - hope: target=0.28 actual=0.33 delta=0.05
+  - hope: target=0.28 actual=0.00 delta=-0.28
+  - joy: target=0.00 actual=0.00 delta=0.00
   - sadness: target=0.00 actual=0.00 delta=0.00
   - fear: target=0.00 actual=0.00 delta=0.00
+  - anger: target=0.00 actual=0.00 delta=0.00
+- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
 
 ## gh:Episode/EP12
 - target vs actual (last segment):

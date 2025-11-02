@@ -2,6 +2,22 @@
 - POV: 私（Tamaki／環樹）
 - Beat: De-escalation / Rewire
 
+```json
+{
+  "@context": {
+    "@base": "https://ghosthacker.example.com/",
+    "gh": "https://ghosthacker.junkawasaki.com/gh#",
+    "antagonist": { "@id": "gh:antagonist", "@type": "@id" },
+    "character": "https://ghosthacker.example.com/character/",
+    "ghost": "https://ghosthacker.example.com/ghost/"
+  },
+  "antagonist": [
+    {"@id": "character:nero-ops"},
+    {"@id": "ghost:compliance-ogre"}
+  ]
+}
+```
+
 夜更けのタイムラインは赤い。怒りは拡散が速い。私は音量を下げ、Aoiに合図する。メトリクスが波の形で表示される。怒りのピークは、孤独の谷に連動している。
 
 「まず、スロットル」
@@ -20,5 +36,8 @@ Aoiが小さく笑う。「いい。怒りは炉に。外には信頼を」
 私は拳を開いて、掌を見つめる。「赦す、も選べる」
 Renが短く笑った。「うん。和解のエンジンに切り替えよう」
 静かな冗談がひとつ落ち、部屋の空気は軽くなる。安堵、信頼、そして小さな喜びが回路を満たしはじめた。
+私は依頼人に“再配線”の宿題を渡す。「怒りが来たら、三手先の『守りたい関係』を思い出して。次に、行動を一つ減らす」
+Aoiが首肯する。「怒りの熱は、道具じゃなく指針に」
+窓の外で、夜がほどける。Rage Engine は、和解の回路図へ置き換わっていく。
 
 

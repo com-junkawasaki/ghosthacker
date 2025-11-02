@@ -2,6 +2,22 @@
 - POV: 私（Tamaki／環樹）
 - Beat: Ordinary World / Seed of Conflict
 
+```json
+{
+  "@context": {
+    "@base": "https://ghosthacker.example.com/",
+    "gh": "https://ghosthacker.junkawasaki.com/gh#",
+    "antagonist": { "@id": "gh:antagonist", "@type": "@id" },
+    "character": "https://ghosthacker.example.com/character/",
+    "ghost": "https://ghosthacker.example.com/ghost/"
+  },
+  "antagonist": [
+    {"@id": "character:owner-of-love"},
+    {"@id": "ghost:chain-of-care"}
+  ]
+}
+```
+
 水色の朝。キッチンの湯気と猫のキーホルダー。Aoiはカップを両手で包み、言いにくそうに視線を泳がせた。「Nei-chanがいれば、Tamakiは何でもできる。俺は——」
 
 Aoiは心がまっすぐで、澄んだスッキリ感がある。だからこそ、迷いも言葉にして出す。正直さは、彼の強さだ。

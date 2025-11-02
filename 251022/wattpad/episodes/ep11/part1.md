@@ -2,6 +2,22 @@
 - POV: 私（Tamaki／環樹）
 - Beat: Decompile / Quiet Justice
 
+```json
+{
+  "@context": {
+    "@base": "https://ghosthacker.example.com/",
+    "gh": "https://ghosthacker.junkawasaki.com/gh#",
+    "antagonist": { "@id": "gh:antagonist", "@type": "@id" },
+    "character": "https://ghosthacker.example.com/character/",
+    "ghost": "https://ghosthacker.example.com/ghost/"
+  },
+  "antagonist": [
+    {"@id": "character:nero-ops"},
+    {"@id": "ghost:compliance-ogre"}
+  ]
+}
+```
+
 書類は完璧。だから臭う。私は行間を読む。Kaedeが指すログは、人間が置き去りにされた場所を示す。正義の名を借りた恐れが、現場を締め付けていた。
 
 私は彼（鬼）に名を与える。「あなたの名は、恐れの正当化」名は輪郭。輪郭があれば、道が拓ける。制度は敵じゃない。呼吸の仕方を忘れただけ。
@@ -14,5 +30,6 @@
 Aoi「十分。今日はここまででいい」
 私はうなずく。胸の緊張がほどけ、安堵が広がる。小さな笑顔が返ってくる。
 窓辺の光はやわらかい。希望は声を上げない——けれど、確かにここにある。
+私は『Quiet Justice』のチェックリストを送る。制度は敵じゃない。呼吸を忘れたときに、私たちが思い出す合図が必要なだけだ。
 
 

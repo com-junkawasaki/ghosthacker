@@ -2,6 +2,22 @@
 - POV: 私（Tamaki／環樹）
 - Beat: Opening / Call / Team Setup
 
+```json
+{
+  "@context": {
+    "@base": "https://ghosthacker.example.com/",
+    "gh": "https://ghosthacker.junkawasaki.com/gh#",
+    "antagonist": { "@id": "gh:antagonist", "@type": "@id" },
+    "character": "https://ghosthacker.example.com/character/",
+    "ghost": "https://ghosthacker.example.com/ghost/"
+  },
+  "antagonist": [
+    {"@id": "character:lonely-rationalist"},
+    {"@id": "ghost:silent-librarian"}
+  ]
+}
+```
+
 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。いい感じでいる——呼吸を一つ置き、私の足場を確認する。Tree of Life（生命の樹）に錨を下ろす感覚。ここから始める。
 
 Kaedeの声は乾いた紙の音に似ている。「汚染、上がってる。慎重に」
