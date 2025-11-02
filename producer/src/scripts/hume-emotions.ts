@@ -98,22 +98,87 @@ function fallbackEmotions(text: string): EmotionScore[] {
 
 async function callHume(text: string): Promise<EmotionScore[]> {
   if (DRY_RUN) return fallbackEmotions(text);
-  const res = await fetch(HUME_LANGUAGE_URL as string, {
+  const endpoint = String(HUME_LANGUAGE_URL);
+
+  // Batch Jobs flow
+  if (endpoint.includes("/v0/batch/jobs")) {
+    const createRes = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${HUME_API_KEY}`,
+        "X-API-Key": `${HUME_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        models: { language: {} },
+        input: [{ text }],
+      }),
+    });
+    if (!createRes.ok) {
+      const body = await createRes.text();
+      throw new Error(`Hume batch create error ${createRes.status}: ${body}`);
+    }
+    const job = await createRes.json();
+    const jobId = job?.job_id || job?.id || job?.jobId;
+    if (!jobId) throw new Error(`Hume batch: missing job id in response: ${JSON.stringify(job).slice(0, 300)}`);
+
+    // Poll status
+    const jobUrl = endpoint.endsWith("/jobs") ? `${endpoint}/${jobId}` : `${endpoint}/${jobId}`;
+    const started = Date.now();
+    while (Date.now() - started < 30000) { // 30s max
+      await new Promise(r => setTimeout(r, 1000));
+      const st = await fetch(jobUrl, {
+        headers: {
+          "Authorization": `Bearer ${HUME_API_KEY}`,
+          "X-API-Key": `${HUME_API_KEY}`,
+        },
+      });
+      if (!st.ok) {
+        const body = await st.text();
+        throw new Error(`Hume batch status error ${st.status}: ${body}`);
+      }
+      const status = await st.json();
+      const state = status?.state || status?.status || status?.job_state;
+      if (["succeeded", "completed", "done", "finished"].includes(String(state).toLowerCase())) {
+        // Try get predictions/emotions
+        const outputs = status?.predictions || status?.result || status?.outputs || status?.language || [];
+        const scores: EmotionScore[] = [];
+        const first = Array.isArray(outputs) ? outputs[0] : outputs;
+        const entries = first?.emotions || first?.scores || first?.language || {};
+        for (const [emotion, score] of Object.entries(entries)) {
+          if (typeof score === "number") scores.push({ emotion, score });
+          else if (score && typeof (score as any).score === "number") scores.push({ emotion, score: (score as any).score });
+        }
+        if (scores.length === 0) return fallbackEmotions(text);
+        const total = scores.reduce((a, b) => a + b.score, 0) || 1;
+        return scores
+          .map((s) => ({ emotion: s.emotion, score: Number((s.score / total).toFixed(4)) }))
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 12);
+      }
+      if (["failed", "error"].includes(String(state).toLowerCase())) {
+        throw new Error(`Hume batch job failed: ${JSON.stringify(status).slice(0, 300)}`);
+      }
+    }
+    // Timeout
+    return fallbackEmotions(text);
+  }
+
+  // Simple sync flow (if a direct language endpoint exists)
+  const res = await fetch(endpoint, {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${HUME_API_KEY}`,
+      "X-API-Key": `${HUME_API_KEY}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      texts: [text],
-    }),
+    body: JSON.stringify({ texts: [text] }),
   });
   if (!res.ok) {
     const body = await res.text();
     throw new Error(`Hume API error ${res.status}: ${body}`);
   }
   const data = await res.json();
-  // Expecting structure with emotion scores per text; adapt mapping as needed
   const scores: EmotionScore[] = [];
   const first = Array.isArray(data) ? data[0] : data;
   const entries = first?.emotions || first?.scores || {};

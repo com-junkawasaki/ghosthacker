@@ -69,7 +69,7 @@
       },
       "sourcePath": "250806/episodes/episode1/ja_Episode_01_Masterpiece.jsonld",
       "language": "ja",
-      "createdAt": "2025-11-02T11:23:44.941Z",
+      "createdAt": "2025-11-02T11:33:21.544Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -412,7 +412,7 @@
       },
       "sourcePath": "250806/episodes/episode2/ja_Episode_01_Masterpiece.jsonld",
       "language": "ja",
-      "createdAt": "2025-11-02T11:23:44.943Z",
+      "createdAt": "2025-11-02T11:33:21.546Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
