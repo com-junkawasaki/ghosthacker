@@ -46,7 +46,9 @@
     "gh:hasCharacter": {"@type": "@id"},
     "gh:hasSetting": {"@type": "@id"},
     "gh:hasTechnology": {"@type": "@id"},
-    "gh:hasCompany": {"@type": "@id"}
+    "gh:hasCompany": {"@type": "@id"},
+    "gh:callsign": {"@type": "xsd:string"},
+    "gh:persona": {"@type": "xsd:string"}
   },
   "@graph": [
     {
@@ -209,6 +211,154 @@
       "name": "ToL (Tree of Life)",
       "description": "国際的な臨床・研究組織。カテゴリー: 心療内科。医師免許とCS知識を要件とする。"
     },
+    { "@id": "organization:tol-hermeneutics", "@type": "Organization", "name": "ToL Hermeneutics" },
+    { "@id": "organization:tol-zen", "@type": "Organization", "name": "ToL Zen" },
+    { "@id": "organization:tol-amazon", "@type": "Organization", "name": "ToL Amazon" },
+    { "@id": "organization:tol-native", "@type": "Organization", "name": "ToL Native" },
+    { "@id": "organization:tol-psychedelic", "@type": "Organization", "name": "ToL Psychedelic" },
+    { "@id": "organization:tol-psychology", "@type": "Organization", "name": "ToL Psychology" },
+    { "@id": "organization:tol-comics", "@type": "Organization", "name": "ToL Narrative/Comics" },
+
+    // Antagonists (characters and ghosts)
+    {
+      "@id": "character:nero-ops",
+      "@type": "Person",
+      "name": "Nero Ops",
+      "description": "制度正当化のエンジニア責任者。被害の外部化を是とする。",
+      "gh:callsign": "NERO-666",
+      "gh:persona": "権力の管理者／正当化者",
+      "gh:ghost": { "@id": "ghost:compliance-ogre" }
+    },
+    {
+      "@id": "ghost:compliance-ogre",
+      "@type": ["Person", "gh:Ghost"],
+      "name": "Compliance Ogre",
+      "gh:ghostType": "Human-derived",
+      "gh:master": { "@id": "character:nero-ops" }
+    },
+
+    {
+      "@id": "character:owner-of-love",
+      "@type": "Person",
+      "name": "Owner of Love",
+      "description": "所有的ケアを善意で正当化する介護者。",
+      "gh:callsign": "CHAIN",
+      "gh:persona": "支配的ケアの信奉者",
+      "gh:ghost": { "@id": "ghost:chain-of-care" }
+    },
+    {
+      "@id": "ghost:chain-of-care",
+      "@type": ["Person", "gh:Ghost"],
+      "name": "Chain of Care",
+      "gh:ghostType": "Human-derived",
+      "gh:master": { "@id": "character:owner-of-love" }
+    },
+
+    {
+      "@id": "character:mirror-hand",
+      "@type": "Person",
+      "name": "Mirror Hand",
+      "description": "内部者の裏切り。罪の投影と自己正当化。",
+      "gh:callsign": "LEDGER",
+      "gh:persona": "二重帳簿の術者",
+      "gh:ghost": { "@id": "ghost:ledger-thief" }
+    },
+    {
+      "@id": "ghost:ledger-thief",
+      "@type": ["Person", "gh:Ghost"],
+      "name": "Ledger Thief",
+      "gh:ghostType": "Human-derived",
+      "gh:master": { "@id": "character:mirror-hand" }
+    },
+
+    {
+      "@id": "character:voice-prophet",
+      "@type": "Person",
+      "name": "Voice Prophet",
+      "description": "AI神の絶対化を布教する伝道者。",
+      "gh:callsign": "SYNTH-ANGEL",
+      "gh:persona": "合成天使の宣教師",
+      "gh:ghost": { "@id": "ghost:synth-angel" }
+    },
+    {
+      "@id": "ghost:synth-angel",
+      "@type": ["Person", "gh:Ghost"],
+      "name": "Synth Angel",
+      "gh:ghostType": "Human-derived",
+      "gh:master": { "@id": "character:voice-prophet" }
+    },
+
+    {
+      "@id": "character:grief-suture",
+      "@type": "Person",
+      "name": "Grief Suture",
+      "description": "凍結した悲嘆に現在を縫合する親。",
+      "gh:callsign": "COLD-BATH",
+      "gh:persona": "喪失の縫合者",
+      "gh:ghost": { "@id": "ghost:cold-bath" }
+    },
+    {
+      "@id": "ghost:cold-bath",
+      "@type": ["Person", "gh:Ghost"],
+      "name": "Cold Bath",
+      "gh:ghostType": "Human-derived",
+      "gh:master": { "@id": "character:grief-suture" }
+    },
+
+    {
+      "@id": "character:lonely-rationalist",
+      "@type": "Person",
+      "name": "Lonely Rationalist",
+      "description": "分離前提の理性主義。孤独バグの担体。",
+      "gh:callsign": "SILENT-LIBRARIAN",
+      "gh:persona": "静寂の司書",
+      "gh:ghost": { "@id": "ghost:silent-librarian" }
+    },
+    {
+      "@id": "ghost:silent-librarian",
+      "@type": ["Person", "gh:Ghost"],
+      "name": "Silent Librarian",
+      "gh:ghostType": "Human-derived",
+      "gh:master": { "@id": "character:lonely-rationalist" }
+    },
+
+    // ToL-affiliated Supporter mentors (historical figures)
+    { "@id": "character:upanishadic-rishi", "@type": "Person", "name": "Upanishadic Rishis",
+      "occupation": "Meditative Hackers", "memberOf": { "@id": "organization:tol-hermeneutics" } },
+    { "@id": "character:heraclitus", "@type": "Person", "name": "Heraclitus",
+      "occupation": "Process Philosopher", "memberOf": { "@id": "organization:tol-hermeneutics" } },
+    { "@id": "character:laozi", "@type": "Person", "name": "Laozi",
+      "occupation": "Daoist Sage", "memberOf": { "@id": "organization:tol-hermeneutics" } },
+    { "@id": "character:zhuangzi", "@type": "Person", "name": "Zhuangzi",
+      "occupation": "Daoist Sage", "memberOf": { "@id": "organization:tol-hermeneutics" } },
+    { "@id": "character:bodhidharma", "@type": "Person", "name": "Bodhidharma",
+      "occupation": "Zen Patriarch", "memberOf": { "@id": "organization:tol-zen" } },
+    { "@id": "character:kukai", "@type": "Person", "name": "Kukai",
+      "occupation": "Shingon Architect", "memberOf": { "@id": "organization:tol-hermeneutics" } },
+    { "@id": "character:saicho", "@type": "Person", "name": "Saicho",
+      "occupation": "Tendai Architect", "memberOf": { "@id": "organization:tol-hermeneutics" } },
+    { "@id": "character:linji", "@type": "Person", "name": "Linji Yixuan",
+      "occupation": "Zen Master", "memberOf": { "@id": "organization:tol-zen" } },
+    { "@id": "character:dogen", "@type": "Person", "name": "Dogen",
+      "occupation": "Zen Master", "memberOf": { "@id": "organization:tol-zen" } },
+    { "@id": "character:dt-suzuki", "@type": "Person", "name": "D. T. Suzuki",
+      "occupation": "Zen Evangelist", "memberOf": { "@id": "organization:tol-zen" } },
+    { "@id": "character:alan-watts", "@type": "Person", "name": "Alan Watts",
+      "occupation": "Interpreter of Zen", "memberOf": { "@id": "organization:tol-zen" } },
+    { "@id": "character:c-g-jung", "@type": "Person", "name": "Carl G. Jung",
+      "occupation": "Depth Psychologist", "memberOf": { "@id": "organization:tol-psychology" } },
+    { "@id": "character:hayao-kawai", "@type": "Person", "name": "Hayao Kawai",
+      "occupation": "Clinical Psychologist", "memberOf": { "@id": "organization:tol-psychology" } },
+    { "@id": "character:timothy-leary", "@type": "Person", "name": "Timothy Leary",
+      "occupation": "Psychedelic Advocate", "memberOf": { "@id": "organization:tol-psychedelic" } },
+    { "@id": "character:amazon-shamans", "@type": "Person", "name": "Amazonian Shamans",
+      "occupation": "Ethnobotanists", "memberOf": { "@id": "organization:tol-amazon" } },
+    { "@id": "character:native-medicine-men", "@type": "Person", "name": "Native Medicine Men",
+      "occupation": "Ritual Healers", "memberOf": { "@id": "organization:tol-native" } },
+    { "@id": "character:osamu-tezuka", "@type": "Person", "name": "Osamu Tezuka",
+      "occupation": "Manga Creator", "memberOf": { "@id": "organization:tol-comics" } },
+    { "@id": "character:masamune-shirow", "@type": "Person", "name": "Masamune Shirow",
+      "occupation": "Manga Creator", "memberOf": { "@id": "organization:tol-comics" } }
     {
       "@id": "company:gedatsu",
       "@type": "Organization",
