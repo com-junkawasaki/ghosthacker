@@ -34,6 +34,7 @@
 
     "flashbackOf": { "@id": "gh:flashbackOf", "@type": "@id" },
     "influences": { "@id": "gh:influences", "@type": "@id" },
+    "antagonist": { "@id": "gh:antagonist", "@type": "@id" },
 
     "spansSeasons": { "@id": "gh:spansSeasons", "@type": "@id" },
     "phase": { "@id": "gh:phase", "@type": "xsd:string" },
@@ -118,6 +119,7 @@
       "name": "Episode 1: The Loneliness of a Physicist",
       "logline": "TamakiがEliasの『孤独』に潜航し、非分離コードと禁断の『アヤワスカ』で魂を解放する。",
       "hasArc": [ {"@id": "gh:Arc/Case-E01"}, {"@id": "gh:Arc/Loneliness-Archipelago"} ],
+      "antagonist": [ {"@id": "character:lonely-rationalist"}, {"@id": "ghost:silent-librarian"} ],
       "motifRefs": [
         {"@id": "gh:Motif/Library"}, {"@id": "gh:Motif/Light"}, {"@id": "gh:Motif/Static"}, {"@id": "gh:Motif/NonSeparation"}, {"@id": "gh:Motif/Water"}
       ],
@@ -158,6 +160,7 @@
       "name": "Episode 2: 愛/依存の区別",
       "logline": "Tamaki–Nei-Chan–Aoiの三角関係を通じ、『ケアとしての愛』と『所有としての依存』の違いを可視化する。",
       "hasArc": [ {"@id": "gh:Arc/TamakiGrowth"}, {"@id": "gh:Arc/NeiChanDebt"} ],
+      "antagonist": [ {"@id": "character:owner-of-love"}, {"@id": "ghost:chain-of-care"} ],
       "motifRefs": [ {"@id": "gh:Motif/Promise"}, {"@id": "gh:Motif/Forgiveness"}, {"@id": "gh:Motif/Cat"} ],
       "hasCharacter": [ {"@id": "character:tamaki"}, {"@id": "character:Nei-chan"}, {"@id": "character:aoi"}, {"@id": "character:kaede"} ],
       "source": {"@id": "gh:Source/ep2"}
@@ -172,19 +175,23 @@
     { "@id": "gh:Season/3:outline", "@type": "Episode", "episodeNumber": 1, "season": {"@id": "gh:Season/3"},
       "name": "S3E1: 代償の可視化",
       "logline": "Nei-Chanの稼働コストとTamakiの生命エネルギー負債が顕在化し、依存の価格が問われる。",
-      "hasArc": [ {"@id": "gh:Arc/NeiChanDebt"} ] },
+      "hasArc": [ {"@id": "gh:Arc/NeiChanDebt"} ],
+      "antagonist": [ {"@id": "character:mirror-hand"}, {"@id": "ghost:ledger-thief"} ] },
     { "@id": "gh:Season/3:outline2", "@type": "Episode", "episodeNumber": 2, "season": {"@id": "gh:Season/3"},
       "name": "S3E2: 共依存の罠",
-      "logline": "救済と支配の境界。Tamakiはケアの名を借りた所有の誘惑に直面する。" },
+      "logline": "救済と支配の境界。Tamakiはケアの名を借りた所有の誘惑に直面する。",
+      "antagonist": [ {"@id": "character:owner-of-love"}, {"@id": "ghost:chain-of-care"} ] },
 
     { "@id": "gh:Season/4:outline1", "@type": "Episode", "episodeNumber": 1, "season": {"@id": "gh:Season/4"},
       "name": "S4E1: 共同体の正義",
       "logline": "GB Inc.の不正案件。制度の穴と応報の正義の衝突。",
-      "hasArc": [ {"@id": "gh:Arc/Nero666"} ] },
+      "hasArc": [ {"@id": "gh:Arc/Nero666"} ],
+      "antagonist": [ {"@id": "company:gb-inc"}, {"@id": "character:mirror-hand"} ] },
     { "@id": "gh:Season/4:outline2", "@type": "Episode", "episodeNumber": 2, "season": {"@id": "gh:Season/4"},
       "name": "S4E2: 偽神の兆候",
       "logline": "『偽神』Neroの影が社会インフラに現れる。Tamakiは兆候を追う。",
-      "hasArc": [ {"@id": "gh:Arc/Nero666"} ] },
+      "hasArc": [ {"@id": "gh:Arc/Nero666"} ],
+      "antagonist": [ {"@id": "character:nero-ops"}, {"@id": "ghost:compliance-ogre"} ] },
 
     { "@id": "gh:Season/5:outline1", "@type": "Episode", "episodeNumber": 1, "season": {"@id": "gh:Season/5"},
       "name": "S5E1: 名を問う者",
