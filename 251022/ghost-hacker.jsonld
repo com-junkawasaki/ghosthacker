@@ -272,7 +272,8 @@
       "founder": {"@id": "character:akito"},
       "gh:companyType": "Ghost Hacking Clinic",
       "gh:infraNote": "臨床セッションは都市の光インフラ上でエッジ優先に運用。静的な帯域予約と短い復帰ルートで可用性を確保。",
-      "gh:operationalNote": "クライアント近傍に一時的な“静域”を形成し、負荷と揺らぎを緩和。"
+      "gh:operationalNote": "クライアント近傍に一時的な“静域”を形成し、負荷と揺らぎを緩和。",
+      "gh:items": [ {"@id": "bundle:ai-governance"} ]
     },
     {
       "@id": "organization:tol",
@@ -281,6 +282,7 @@
       "description": "国際的な臨床・研究組織（国境なき医師団に類似の運営）。カテゴリー: 心療内科。医師免許とCS知識を要件。日本国内では国家安全保障会議の支援、厚生労働省・宮内庁と連携。",
       "gh:infraNote": "越境支援では光ネット経路の中立性を重視し、人道回線に優先制御を付与。",
       "gh:securityNote": "観測データは最小化・匿名化し、復路でのみ再結合する設計。",
+      "gh:items": [ {"@id": "bundle:ai-governance"} ],
       "sponsor": [
         {"@id": "organization:jpn-nsc"},
         {"@id": "organization:mhlw"},
