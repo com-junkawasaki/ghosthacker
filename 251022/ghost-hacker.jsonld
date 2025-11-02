@@ -257,7 +257,7 @@
     },
     { "@id": "tech:sip", "@type": "Intangible", "name": "SIP (Spirit in Physics) Device",
       "description": "Ghostを計算科学的に可視・物質化し、変性意識状態（ASC）下で意識重ね合わせを支援する医療デバイス。オンラインSession対応。",
-      "gh:infraNote": "都市の光ネットと同期して微小遅延を抑制。近傍に『静域』を形成して安定化。",
+      "gh:infraNote": "都市の光ネットと同期して微小遅延を抑制。近傍にASC制御帯を形成して安定化。",
       "gh:operationalNote": "現場では雑音の遮断を優先し、深度上げはセッション合図後に段階的に行う。" },
     { "@id": "process:memory-space-1024d", "@type": "Intangible", "name": "Memory Space (1024D)",
       "description": "VR様の1024次元情報空間。Ghostは暗号化され、特権昇格やオーバーフロー探索によりdaemon processを特定し、kill→/dev/nullでrelease。情報場はオングストローム級周波数帯で観測される。",
@@ -265,7 +265,7 @@
       "gh:securityNote": "深度域は階層的に分離し、境界越えはワンウェイ・ゲートでログ化。" },
     { "@id": "program:zombie-sweeper", "@type": "Intangible", "name": "Zombie Process Sweeper",
       "description": "個別Session以外に常時運用されるゾンビプロセス退治プログラム。社会インフラのmeme感染を抑止。",
-      "gh:infraNote": "光経路に沿った広域スキャンで『循環ノイズ』を抽出し、静域へ流して減衰。",
+      "gh:infraNote": "光経路に沿った広域スキャンで『循環ノイズ』を抽出し、低干渉帯へ流して減衰。",
       "gh:operationalNote": "除去よりも隔離→自然減衰を優先。戻れる線は残す。" },
 
     { "@id": "tech:household-robotics", "@type": "Intangible", "name": "Household/Personal Robotics",
@@ -301,7 +301,7 @@
       "founder": {"@id": "character:akito"},
       "gh:companyType": "Ghost Hacking Clinic",
       "gh:infraNote": "臨床セッションは都市の光インフラ上でエッジ優先に運用。静的な帯域予約と短い復帰ルートで可用性を確保。",
-      "gh:operationalNote": "クライアント近傍に一時的な“静域”を形成し、負荷と揺らぎを緩和。",
+      "gh:operationalNote": "クライアント近傍でASC制御帯を一時調整し、負荷と揺らぎを緩和。",
       "gh:items": [ {"@id": "bundle:ai-governance"} ]
     },
     {
