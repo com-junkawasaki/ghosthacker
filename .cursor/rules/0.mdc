@@ -23,7 +23,7 @@ alwaysApply: true
   - 説明より描写（show, don’t tell）
 - 用語運用
   - ASC制御: Tamakiの神楽（一拍）＝スロットル合図／Nei-chanがASC制御を合わせる・維持・落とす
-  - 「静域」は用いず、必要なら「ASC制御帯」「低干渉帯」
+  - 必要なら「ASC制御帯」「低干渉帯」
 
 実施のたびに: 反映 → `pnpm analyze:structure` → SHACL検証 → 感情分析/スコア → 微修正、を1イテレーションとする。
 
