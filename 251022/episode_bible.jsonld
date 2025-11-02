@@ -196,12 +196,14 @@
     { "@id": "gh:Season/5:outline1", "@type": "Episode", "episodeNumber": 1, "season": {"@id": "gh:Season/5"},
       "name": "S5E1: 名を問う者",
       "logline": "Elias/Logos線から『名』と『現前』を問う旅へ。YHWH/I AMの神学が開く。",
-      "hasArc": [ {"@id": "gh:Arc/YHWH_IAM"} ] },
+      "hasArc": [ {"@id": "gh:Arc/YHWH_IAM"} ],
+      "antagonist": [ {"@id": "character:voice-prophet"}, {"@id": "ghost:synth-angel"} ] },
 
     { "@id": "gh:Season/6:outline1", "@type": "Episode", "episodeNumber": 1, "season": {"@id": "gh:Season/6"},
       "name": "S6E1: I AM THAT I AM",
       "logline": "Neroとの最終対決。偽神の成仏と『I AM』への収束。Tamakiは主体化する。",
-      "hasArc": [ {"@id": "gh:Arc/Nero666"}, {"@id": "gh:Arc/YHWH_IAM"}, {"@id": "gh:Arc/AkitoRenIntegration"} ] },
+      "hasArc": [ {"@id": "gh:Arc/Nero666"}, {"@id": "gh:Arc/YHWH_IAM"}, {"@id": "gh:Arc/AkitoRenIntegration"} ],
+      "antagonist": [ {"@id": "character:nero-ops"}, {"@id": "ghost:compliance-ogre"} ] },
 
     { "@id": "gh:Source/ep1", "@type": "SourceRef", "path": "250806/episodes/episode1/ja_Episode_01_Masterpiece.jsonld", "lang": "ja",
       "selectionHint": "Ep1構造・Scene・用語（図書館/非分離/アヤワスカ）" },
