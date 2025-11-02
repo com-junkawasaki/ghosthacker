@@ -1,8 +1,8 @@
-@prefix gh: <https://gftd.ai/gh#> .
+@prefix gh: <https://ghosthacker.junkawasaki.com/gh#> .
 @prefix schema: <http://schema.org/> .
 
 # Session 03: Chain of Care
-<https://gftd.ai/ghost-hacker/Episode/S1E3> a gh:Episode ;
+<https://ghosthacker.junkawasaki.com/ghost-hacker/Episode/S1E3> a gh:Episode ;
   schema:name "Session \"Chain of Care\"" ;
   gh:hasArc gh:Arc/Tamaki-TreeOfLife-Transmutation ;
   gh:hasCharacter gh:character:tamaki , gh:character:kaede , gh:character:owner-of-love ;

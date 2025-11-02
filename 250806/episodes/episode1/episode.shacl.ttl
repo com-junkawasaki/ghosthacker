@@ -1,5 +1,5 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix gh: <https://gftd.ai/gh#> .
+@prefix gh: <https://ghosthacker.junkawasaki.com/gh#> .
 @prefix schema: <http://schema.org/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
@@ -26,7 +26,7 @@ gh:DiveShape a sh:NodeShape ;
 
 # Require Tamaki to be among characters for S1E1
 [] a sh:NodeShape ;
-  sh:targetNode <https://gftd.ai/ghost-hacker/Episode/S1E1> ;
+  sh:targetNode <https://ghosthacker.junkawasaki.com/ghost-hacker/Episode/S1E1> ;
   sh:property [ sh:path gh:hasCharacter ; sh:hasValue gh:character:tamaki ] .
 
 # Step shape

@@ -1,5 +1,5 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix gh: <https://gftd.ai/gh#> .
+@prefix gh: <https://ghosthacker.junkawasaki.com/gh#> .
 @prefix schema: <http://schema.org/> .
 
 gh:EpisodeShape a sh:NodeShape ;

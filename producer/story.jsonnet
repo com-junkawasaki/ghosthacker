@@ -20,6 +20,24 @@
       outputs: ['name', 'role', 'traits'],
     },
 
+    // Emotion Analysis Node (Hume-based)
+    {
+      id: 'emotion-analysis',
+      type: 'EmotionAnalysis',
+      label: 'Emotion Profiles',
+      dependsOn: ['writer-content'],
+      ui: { route: '/canvas/emotion-analysis' },
+      config: {
+        engine: 'hume-language',
+        input: 'episodes-md',
+        maxChunks: 8,
+        targetTrajectory: 'hopeful-catharsis',
+        outputPath: '../250806/episodes/emotions.jsonld',
+        contextPath: '../250806/emotion.context.jsonld',
+      },
+      outputs: ['emotionProfile', 'trajectory']
+    },
+
     // Lore: Backstory Node
     {
       id: 'lore-backstory',
@@ -276,6 +294,7 @@
     ['lore-protagonist', 'lore-backstory', 'lore-world', 'narrative-structure'],
     'prompt-story',
     'writer-content',
+    'emotion-analysis',
     ['image-gen', 'tts-narration'], // Parallel execution
     'webtoon-panel-gen',
     'webtoon-layout',
