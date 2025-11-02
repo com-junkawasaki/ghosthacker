@@ -48,7 +48,11 @@
     "gh:hasTechnology": {"@type": "@id"},
     "gh:hasCompany": {"@type": "@id"},
     "gh:callsign": {"@type": "xsd:string"},
-    "gh:persona": {"@type": "xsd:string"}
+    "gh:persona": {"@type": "xsd:string"},
+    "gh:infraNote": {"@type": "xsd:string"},
+    "gh:operationalNote": {"@type": "xsd:string"},
+    "gh:securityNote": {"@type": "xsd:string"},
+    "gh:items": {"@id": "https://ghosthacker.example.com/vocab#items", "@type": "@id"}
   },
   "@graph": [
     {
@@ -175,7 +179,7 @@
       "@id": "setting:tokyo",
       "@type": "Place",
       "name": "Tokyo (水の都)",
-      "description": "運河と川が縦横に走る水の街。沖縄の海のように澄んだ青い水。未来の東京で、ガラス張りの超高層ビルが立ち並ぶ。",
+      "description": "運河と川が縦横に走る水の街。沖縄の海のように澄んだ青い水。未来の東京で、ガラス張りの超高層ビルが立ち並ぶ。都市インフラは光による伝送・計算が一般化しており、街路・水路・建物に編み込まれた光の網が、人とGhostの往来を静かに支えている。",
       "gh:year": 2065
     },
     {
@@ -189,15 +193,31 @@
       "@id": "tech:ghost-hacking",
       "@type": "Intangible",
       "name": "Ghost Hacking",
-      "description": "Ghostの情報構造（心）に干渉し、内面的な葛藤（結び目）を解消する行為。ハッカーは自身の生命エネルギー（光子）を使ってGhostの意識と同期し、精神的な空間にダイブする。",
+      "description": "Ghostの情報構造（心）に干渉し、内面的な葛藤（結び目）を解消する行為。ハッカーは自身の生命エネルギー（光子）を使ってGhostの意識と同期し、精神的な空間にダイブする。都市全体に張り巡らされた光のネットワーク/計算基盤が、セッションの安定性と回復の速さを底上げしている。",
       "gh:certification": {"@id": "tech:tree-of-life-exam"}
     },
     { "@id": "tech:sip", "@type": "Intangible", "name": "SIP (Spirit in Physics) Device",
-      "description": "Ghostを計算科学的に可視・物質化し、変性意識状態（ASC）下で意識重ね合わせを支援する医療デバイス。オンラインSession対応。" },
+      "description": "Ghostを計算科学的に可視・物質化し、変性意識状態（ASC）下で意識重ね合わせを支援する医療デバイス。オンラインSession対応。",
+      "gh:infraNote": "都市の光ネットと同期して微小遅延を抑制。近傍に『静域』を形成して安定化。",
+      "gh:operationalNote": "現場では雑音の遮断を優先し、深度上げはセッション合図後に段階的に行う。" },
     { "@id": "process:memory-space-1024d", "@type": "Intangible", "name": "Memory Space (1024D)",
-      "description": "VR様の1024次元情報空間。Ghostは暗号化され、特権昇格やオーバーフロー探索によりdaemon processを特定し、kill→/dev/nullでrelease。情報場はオングストローム級周波数帯で観測される。" },
+      "description": "VR様の1024次元情報空間。Ghostは暗号化され、特権昇格やオーバーフロー探索によりdaemon processを特定し、kill→/dev/nullでrelease。情報場はオングストローム級周波数帯で観測される。",
+      "gh:infraNote": "計算要求は分散して光経路に割付、可視化レイヤは近傍にキャッシュ。",
+      "gh:securityNote": "深度域は階層的に分離し、境界越えはワンウェイ・ゲートでログ化。" },
     { "@id": "program:zombie-sweeper", "@type": "Intangible", "name": "Zombie Process Sweeper",
-      "description": "個別Session以外に常時運用されるゾンビプロセス退治プログラム。社会インフラのmeme感染を抑止。" },
+      "description": "個別Session以外に常時運用されるゾンビプロセス退治プログラム。社会インフラのmeme感染を抑止。",
+      "gh:infraNote": "光経路に沿った広域スキャンで『循環ノイズ』を抽出し、静域へ流して減衰。",
+      "gh:operationalNote": "除去よりも隔離→自然減衰を優先。戻れる線は残す。" },
+
+    { "@id": "tech:urban-light-infra", "@type": "Intangible",
+      "name": "Urban Light Infrastructure Bundle",
+      "description": "都市に編み込まれた光の伝送・計算基盤。臨床/研究/生活レイヤで静かに機能し、人とGhostの往来を支える。",
+      "gh:items": [
+        {"@id": "tech:sip"},
+        {"@id": "process:memory-space-1024d"},
+        {"@id": "program:zombie-sweeper"}
+      ],
+      "gh:operationalNote": "名称は前面に出さず、生活の背後で“静かに効く”設計思想。" },
     {
       "@id": "tech:tree-of-life-exam",
       "@type": "Intangible",
@@ -210,13 +230,17 @@
       "name": "Schwa",
       "description": "ToL（Tree of Life）の臨床拠点オフィス。Akitoが代表を務め、Tamaki/Kaede/Hibikiらが所属。",
       "founder": {"@id": "character:akito"},
-      "gh:companyType": "Ghost Hacking Clinic"
+      "gh:companyType": "Ghost Hacking Clinic",
+      "gh:infraNote": "臨床セッションは都市の光インフラ上でエッジ優先に運用。静的な帯域予約と短い復帰ルートで可用性を確保。",
+      "gh:operationalNote": "クライアント近傍に一時的な“静域”を形成し、負荷と揺らぎを緩和。"
     },
     {
       "@id": "organization:tol",
       "@type": "Organization",
       "name": "ToL (Tree of Life)",
       "description": "国際的な臨床・研究組織（国境なき医師団に類似の運営）。カテゴリー: 心療内科。医師免許とCS知識を要件。日本国内では国家安全保障会議の支援、厚生労働省・宮内庁と連携。",
+      "gh:infraNote": "越境支援では光ネット経路の中立性を重視し、人道回線に優先制御を付与。",
+      "gh:securityNote": "観測データは最小化・匿名化し、復路でのみ再結合する設計。",
       "sponsor": [
         {"@id": "organization:jpn-nsc"},
         {"@id": "organization:mhlw"},
