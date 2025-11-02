@@ -73,7 +73,7 @@
         "251022/wattpad/episodes/ep01/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.129Z",
+      "createdAt": "2025-11-02T12:12:08.421Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -256,7 +256,7 @@
         "251022/wattpad/episodes/ep02/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.130Z",
+      "createdAt": "2025-11-02T12:12:08.422Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -383,7 +383,7 @@
         "251022/wattpad/episodes/ep03/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.130Z",
+      "createdAt": "2025-11-02T12:12:08.423Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -510,7 +510,7 @@
         "251022/wattpad/episodes/ep04/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.130Z",
+      "createdAt": "2025-11-02T12:12:08.423Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -637,7 +637,7 @@
         "251022/wattpad/episodes/ep05/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.131Z",
+      "createdAt": "2025-11-02T12:12:08.423Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -764,7 +764,7 @@
         "251022/wattpad/episodes/ep06/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.131Z",
+      "createdAt": "2025-11-02T12:12:08.424Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -891,7 +891,7 @@
         "251022/wattpad/episodes/ep07/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.131Z",
+      "createdAt": "2025-11-02T12:12:08.424Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -1018,7 +1018,7 @@
         "251022/wattpad/episodes/ep08/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.131Z",
+      "createdAt": "2025-11-02T12:12:08.424Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -1143,37 +1143,37 @@
         "251022/wattpad/episodes/ep01_loneliness.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.131Z",
+      "createdAt": "2025-11-02T12:12:08.424Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.192
+          "score": 0.2202
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.192
+          "score": 0.2202
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.192
+          "score": 0.2202
         },
         {
           "@type": "EmotionScore",
           "emotion": "sadness",
-          "score": 0.1791
+          "score": 0.1463
         },
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0.1017
+          "score": 0.0689
         },
         {
           "@type": "EmotionScore",
           "emotion": "trust",
-          "score": 0.0665
+          "score": 0.0565
         },
         {
           "@type": "EmotionScore",
@@ -1183,7 +1183,7 @@
         {
           "@type": "EmotionScore",
           "emotion": "anticipation",
-          "score": 0.0282
+          "score": 0.0192
         },
         {
           "@type": "EmotionScore",
@@ -1259,38 +1259,38 @@
           "emotionVector": [
             {
               "@type": "EmotionScore",
-              "emotion": "sadness",
-              "score": 0.2034
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "fear",
-              "score": 0.2034
-            },
-            {
-              "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0.1582
+              "score": 0.2146
             },
             {
               "@type": "EmotionScore",
               "emotion": "relief",
-              "score": 0.1582
+              "score": 0.2146
             },
             {
               "@type": "EmotionScore",
               "emotion": "hope",
-              "score": 0.1582
+              "score": 0.2146
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0.1379
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0.1379
             },
             {
               "@type": "EmotionScore",
               "emotion": "trust",
-              "score": 0.0621
+              "score": 0.0421
             },
             {
               "@type": "EmotionScore",
               "emotion": "anticipation",
-              "score": 0.0565
+              "score": 0.0383
             },
             {
               "@type": "EmotionScore",
@@ -1324,37 +1324,37 @@
         "251022/wattpad/episodes/ep02_love_vs_dependence.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.132Z",
+      "createdAt": "2025-11-02T12:12:08.424Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "trust",
-          "score": 0.3444
+          "score": 0.286
         },
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.1597
+          "score": 0.2019
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.1597
+          "score": 0.2019
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.1597
+          "score": 0.2019
         },
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0.1177
+          "score": 0.0723
         },
         {
           "@type": "EmotionScore",
           "emotion": "sadness",
-          "score": 0.0588
+          "score": 0.0362
         },
         {
           "@type": "EmotionScore",
@@ -1441,22 +1441,32 @@
             {
               "@type": "EmotionScore",
               "emotion": "trust",
-              "score": 0.6471
+              "score": 0.5301
             },
             {
               "@type": "EmotionScore",
               "emotion": "fear",
-              "score": 0.2353
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "sadness",
-              "score": 0.1176
+              "score": 0.1446
             },
             {
               "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0
+              "score": 0.0843
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.0843
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.0843
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0.0723
             },
             {
               "@type": "EmotionScore",
@@ -1477,16 +1487,6 @@
               "@type": "EmotionScore",
               "emotion": "disgust",
               "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "relief",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "hope",
-              "score": 0
             }
           ]
         }
@@ -1505,32 +1505,32 @@
         "251022/wattpad/episodes/ep03_cost_visualization.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.132Z",
+      "createdAt": "2025-11-02T12:12:08.425Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.2625
+          "score": 0.2869
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.2625
+          "score": 0.2869
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.2625
+          "score": 0.2869
         },
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0.15
+          "score": 0.0984
         },
         {
           "@type": "EmotionScore",
           "emotion": "anticipation",
-          "score": 0.0625
+          "score": 0.041
         },
         {
           "@type": "EmotionScore",
@@ -1566,27 +1566,27 @@
             {
               "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0.2625
+              "score": 0.2869
             },
             {
               "@type": "EmotionScore",
               "emotion": "relief",
-              "score": 0.2625
+              "score": 0.2869
             },
             {
               "@type": "EmotionScore",
               "emotion": "hope",
-              "score": 0.2625
+              "score": 0.2869
             },
             {
               "@type": "EmotionScore",
               "emotion": "fear",
-              "score": 0.15
+              "score": 0.0984
             },
             {
               "@type": "EmotionScore",
               "emotion": "anticipation",
-              "score": 0.0625
+              "score": 0.041
             },
             {
               "@type": "EmotionScore",
@@ -1630,7 +1630,7 @@
         "251022/wattpad/episodes/ep04_codependence_trap.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.132Z",
+      "createdAt": "2025-11-02T12:12:08.425Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -1755,22 +1755,32 @@
         "251022/wattpad/episodes/ep05_justice_and_community.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.132Z",
+      "createdAt": "2025-11-02T12:12:08.425Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "anticipation",
-          "score": 0.5319
+          "score": 0.3677
         },
         {
           "@type": "EmotionScore",
           "emotion": "anger",
-          "score": 0.4681
+          "score": 0.3236
         },
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0
+          "score": 0.1029
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.1029
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.1029
         },
         {
           "@type": "EmotionScore",
@@ -1796,16 +1806,6 @@
           "@type": "EmotionScore",
           "emotion": "disgust",
           "score": 0
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "relief",
-          "score": 0
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "hope",
-          "score": 0
         }
       ],
       "trajectory": [
@@ -1816,17 +1816,27 @@
             {
               "@type": "EmotionScore",
               "emotion": "anticipation",
-              "score": 0.5319
+              "score": 0.3676
             },
             {
               "@type": "EmotionScore",
               "emotion": "anger",
-              "score": 0.4681
+              "score": 0.3235
             },
             {
               "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0
+              "score": 0.1029
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.1029
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.1029
             },
             {
               "@type": "EmotionScore",
@@ -1852,16 +1862,6 @@
               "@type": "EmotionScore",
               "emotion": "disgust",
               "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "relief",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "hope",
-              "score": 0
             }
           ]
         }
@@ -1880,42 +1880,42 @@
         "251022/wattpad/episodes/ep06_false_god_omens.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.132Z",
+      "createdAt": "2025-11-02T12:12:08.425Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0.2963
+          "score": 0.2736
         },
         {
           "@type": "EmotionScore",
           "emotion": "trust",
-          "score": 0.1811
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "anger",
-          "score": 0.1358
+          "score": 0.1433
         },
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.1152
+          "score": 0.1368
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.1152
+          "score": 0.1368
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.1152
+          "score": 0.1368
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0.1075
         },
         {
           "@type": "EmotionScore",
           "emotion": "anticipation",
-          "score": 0.0412
+          "score": 0.0651
         },
         {
           "@type": "EmotionScore",
@@ -1941,37 +1941,37 @@
             {
               "@type": "EmotionScore",
               "emotion": "fear",
-              "score": 0.2963
+              "score": 0.2736
             },
             {
               "@type": "EmotionScore",
               "emotion": "trust",
-              "score": 0.1811
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "anger",
-              "score": 0.1358
+              "score": 0.1433
             },
             {
               "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0.1152
+              "score": 0.1368
             },
             {
               "@type": "EmotionScore",
               "emotion": "relief",
-              "score": 0.1152
+              "score": 0.1368
             },
             {
               "@type": "EmotionScore",
               "emotion": "hope",
-              "score": 0.1152
+              "score": 0.1368
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0.1075
             },
             {
               "@type": "EmotionScore",
               "emotion": "anticipation",
-              "score": 0.0412
+              "score": 0.0651
             },
             {
               "@type": "EmotionScore",
@@ -2005,17 +2005,27 @@
         "251022/wattpad/episodes/ep07_question_the_name.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.132Z",
+      "createdAt": "2025-11-02T12:12:08.425Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "anticipation",
-          "score": 1
+          "score": 0.4167
         },
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0
+          "score": 0.1944
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.1944
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.1944
         },
         {
           "@type": "EmotionScore",
@@ -2046,16 +2056,6 @@
           "@type": "EmotionScore",
           "emotion": "disgust",
           "score": 0
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "relief",
-          "score": 0
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "hope",
-          "score": 0
         }
       ],
       "trajectory": [
@@ -2066,12 +2066,22 @@
             {
               "@type": "EmotionScore",
               "emotion": "anticipation",
-              "score": 1
+              "score": 0.4167
             },
             {
               "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0
+              "score": 0.1944
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.1944
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.1944
             },
             {
               "@type": "EmotionScore",
@@ -2102,16 +2112,6 @@
               "@type": "EmotionScore",
               "emotion": "disgust",
               "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "relief",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "hope",
-              "score": 0
             }
           ]
         }
@@ -2130,37 +2130,37 @@
         "251022/wattpad/episodes/ep08_i_am_that_i_am.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.132Z",
+      "createdAt": "2025-11-02T12:12:08.425Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0.3244
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "anger",
-          "score": 0.2477
+          "score": 0.2353
         },
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.1261
+          "score": 0.183
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.1261
+          "score": 0.183
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.1261
+          "score": 0.183
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0.1797
         },
         {
           "@type": "EmotionScore",
           "emotion": "trust",
-          "score": 0.0495
+          "score": 0.0359
         },
         {
           "@type": "EmotionScore",
@@ -2191,32 +2191,32 @@
             {
               "@type": "EmotionScore",
               "emotion": "fear",
-              "score": 0.3243
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "anger",
-              "score": 0.2477
+              "score": 0.2353
             },
             {
               "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0.1261
+              "score": 0.183
             },
             {
               "@type": "EmotionScore",
               "emotion": "relief",
-              "score": 0.1261
+              "score": 0.183
             },
             {
               "@type": "EmotionScore",
               "emotion": "hope",
-              "score": 0.1261
+              "score": 0.183
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0.1797
             },
             {
               "@type": "EmotionScore",
               "emotion": "trust",
-              "score": 0.0495
+              "score": 0.0359
             },
             {
               "@type": "EmotionScore",
@@ -2255,27 +2255,37 @@
         "251022/wattpad/episodes/ep09_rage_engine.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.132Z",
+      "createdAt": "2025-11-02T12:12:08.425Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "anger",
-          "score": 0.6937
+          "score": 0.5032
         },
         {
           "@type": "EmotionScore",
           "emotion": "sadness",
-          "score": 0.2162
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "disgust",
-          "score": 0.0901
+          "score": 0.1569
         },
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0
+          "score": 0.0915
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.0915
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.0915
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0.0654
         },
         {
           "@type": "EmotionScore",
@@ -2296,16 +2306,6 @@
           "@type": "EmotionScore",
           "emotion": "anticipation",
           "score": 0
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "relief",
-          "score": 0
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "hope",
-          "score": 0
         }
       ],
       "trajectory": [
@@ -2316,22 +2316,32 @@
             {
               "@type": "EmotionScore",
               "emotion": "anger",
-              "score": 0.6937
+              "score": 0.5033
             },
             {
               "@type": "EmotionScore",
               "emotion": "sadness",
-              "score": 0.2162
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "disgust",
-              "score": 0.0901
+              "score": 0.1569
             },
             {
               "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0
+              "score": 0.0915
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.0915
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.0915
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0.0654
             },
             {
               "@type": "EmotionScore",
@@ -2352,16 +2362,6 @@
               "@type": "EmotionScore",
               "emotion": "anticipation",
               "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "relief",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "hope",
-              "score": 0
             }
           ]
         }
@@ -2380,7 +2380,7 @@
         "251022/wattpad/episodes/ep10_zombie_sweep.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.132Z",
+      "createdAt": "2025-11-02T12:12:08.425Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -2505,17 +2505,32 @@
         "251022/wattpad/episodes/ep11_compliance_ogre.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.132Z",
+      "createdAt": "2025-11-02T12:12:08.425Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 1
+          "score": 0.3117
         },
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0
+          "score": 0.1818
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.1818
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.1818
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0.1429
         },
         {
           "@type": "EmotionScore",
@@ -2534,27 +2549,12 @@
         },
         {
           "@type": "EmotionScore",
-          "emotion": "trust",
-          "score": 0
-        },
-        {
-          "@type": "EmotionScore",
           "emotion": "anticipation",
           "score": 0
         },
         {
           "@type": "EmotionScore",
           "emotion": "disgust",
-          "score": 0
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "relief",
-          "score": 0
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "hope",
           "score": 0
         }
       ],
@@ -2566,12 +2566,27 @@
             {
               "@type": "EmotionScore",
               "emotion": "fear",
-              "score": 1
+              "score": 0.3117
             },
             {
               "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0
+              "score": 0.1818
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.1818
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.1818
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.1429
             },
             {
               "@type": "EmotionScore",
@@ -2590,27 +2605,12 @@
             },
             {
               "@type": "EmotionScore",
-              "emotion": "trust",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
               "emotion": "anticipation",
               "score": 0
             },
             {
               "@type": "EmotionScore",
               "emotion": "disgust",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "relief",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "hope",
               "score": 0
             }
           ]
@@ -2630,37 +2630,37 @@
         "251022/wattpad/episodes/ep12_together.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T12:08:29.133Z",
+      "createdAt": "2025-11-02T12:12:08.426Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.2625
+          "score": 0.2772
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.2625
+          "score": 0.2772
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.2625
+          "score": 0.2772
         },
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0.075
+          "score": 0.0594
         },
         {
           "@type": "EmotionScore",
           "emotion": "anger",
-          "score": 0.0688
+          "score": 0.0545
         },
         {
           "@type": "EmotionScore",
           "emotion": "trust",
-          "score": 0.0688
+          "score": 0.0545
         },
         {
           "@type": "EmotionScore",
@@ -2691,32 +2691,32 @@
             {
               "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0.2625
+              "score": 0.2772
             },
             {
               "@type": "EmotionScore",
               "emotion": "relief",
-              "score": 0.2625
+              "score": 0.2772
             },
             {
               "@type": "EmotionScore",
               "emotion": "hope",
-              "score": 0.2625
+              "score": 0.2772
             },
             {
               "@type": "EmotionScore",
               "emotion": "fear",
-              "score": 0.075
+              "score": 0.0594
             },
             {
               "@type": "EmotionScore",
               "emotion": "anger",
-              "score": 0.0688
+              "score": 0.0545
             },
             {
               "@type": "EmotionScore",
               "emotion": "trust",
-              "score": 0.0688
+              "score": 0.0545
             },
             {
               "@type": "EmotionScore",
