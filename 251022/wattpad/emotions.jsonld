@@ -1,0 +1,2746 @@
+{
+  "@context": [
+    {
+      "@base": "https://gftd.ai/ghost-hacker/",
+      "schema": "https://schema.org/",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "gh": "https://gftd.ai/gh#",
+      "EmotionProfile": "gh:EmotionProfile",
+      "EmotionScore": "gh:EmotionScore",
+      "subject": {
+        "@id": "gh:subject",
+        "@type": "@id"
+      },
+      "sourcePath": {
+        "@id": "gh:sourcePath",
+        "@type": "xsd:string"
+      },
+      "language": {
+        "@id": "gh:language",
+        "@type": "xsd:string"
+      },
+      "character": {
+        "@id": "gh:character",
+        "@type": "@id"
+      },
+      "episode": {
+        "@id": "gh:episode",
+        "@type": "@id"
+      },
+      "createdAt": {
+        "@id": "schema:dateCreated",
+        "@type": "xsd:dateTime"
+      },
+      "emotionVector": {
+        "@id": "gh:emotionVector",
+        "@type": "@id"
+      },
+      "emotion": {
+        "@id": "gh:emotion",
+        "@type": "xsd:string"
+      },
+      "score": {
+        "@id": "gh:score",
+        "@type": "xsd:float"
+      },
+      "trajectory": {
+        "@id": "gh:trajectory",
+        "@type": "@id"
+      },
+      "position": {
+        "@id": "gh:position",
+        "@type": "xsd:integer"
+      },
+      "segmentText": {
+        "@id": "gh:segmentText",
+        "@type": "xsd:string"
+      }
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "gh:Episode/S1E1:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/S1E1"
+      },
+      "episode": {
+        "@id": "gh:Episode/S1E1"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep01/part1.md",
+        "251022/wattpad/episodes/ep01/part2.md",
+        "251022/wattpad/episodes/ep01/part3.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.372Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0.1834
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.1834
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.1834
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0.1572
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0.1572
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0.048
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0.0437
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0.0437
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.1834
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.1834
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.1834
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0.1572
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0.1572
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.048
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0.0437
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0.0437
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 2,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/S2E2:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/S2E2"
+      },
+      "episode": {
+        "@id": "gh:Episode/S2E2"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep02/part1.md",
+        "251022/wattpad/episodes/ep02/part2.md",
+        "251022/wattpad/episodes/ep02/part3.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.689Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0.3222
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0.1757
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.1757
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.1757
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0.1004
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0.0502
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.3222
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.1757
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.1757
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.1757
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0.1004
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0.0502
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/S3E1:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/S3E1"
+      },
+      "episode": {
+        "@id": "gh:Episode/S3E1"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep03/part1.md",
+        "251022/wattpad/episodes/ep03/part2.md",
+        "251022/wattpad/episodes/ep03/part3.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.743Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0.2642
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.2642
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.2642
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0.1132
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0.0943
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.2642
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.2642
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.2642
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0.1132
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0.0943
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/S3E2:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/S3E2"
+      },
+      "episode": {
+        "@id": "gh:Episode/S3E2"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep04/part1.md",
+        "251022/wattpad/episodes/ep04/part2.md",
+        "251022/wattpad/episodes/ep04/part3.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.749Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0.4074
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0.1728
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.1728
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.1728
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0.0741
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.4074
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.1728
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.1728
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.1728
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0.0741
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/S4E1:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/S4E1"
+      },
+      "episode": {
+        "@id": "gh:Episode/S4E1"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep05/part1.md",
+        "251022/wattpad/episodes/ep05/part2.md",
+        "251022/wattpad/episodes/ep05/part3.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.757Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0.8197
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0.1803
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0.8197
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0.1803
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/S4E2:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/S4E2"
+      },
+      "episode": {
+        "@id": "gh:Episode/S4E2"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep06/part1.md",
+        "251022/wattpad/episodes/ep06/part2.md",
+        "251022/wattpad/episodes/ep06/part3.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.763Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0.2975
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0.2727
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0.1157
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.1157
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.1157
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0.0826
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0.2975
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.2727
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.1157
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.1157
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.1157
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0.0826
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/S5E1:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/S5E1"
+      },
+      "episode": {
+        "@id": "gh:Episode/S5E1"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep07/part1.md",
+        "251022/wattpad/episodes/ep07/part2.md",
+        "251022/wattpad/episodes/ep07/part3.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.768Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 1
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 1
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/S6E1:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/S6E1"
+      },
+      "episode": {
+        "@id": "gh:Episode/S6E1"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep08/part1.md",
+        "251022/wattpad/episodes/ep08/part2.md",
+        "251022/wattpad/episodes/ep08/part3.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.800Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0.2283
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.2283
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.2283
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0.1957
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0.1196
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.2283
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.2283
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.2283
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0.1957
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0.1196
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/EP01:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/EP01"
+      },
+      "episode": {
+        "@id": "gh:Episode/EP01"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep01_loneliness.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.802Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0.192
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.192
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.192
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0.1791
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0.1017
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0.0665
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0.0484
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0.0282
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.2258
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.2258
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.2258
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0.1548
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0.0968
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.071
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 2,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0.2034
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0.2034
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.1582
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.1582
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.1582
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.0621
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0.0565
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/EP02:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/EP02"
+      },
+      "episode": {
+        "@id": "gh:Episode/EP02"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep02_love_vs_dependence.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.804Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0.3444
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0.1597
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.1597
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.1597
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0.1177
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0.0588
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.3194
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.3194
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.3194
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.0418
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 2,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.6471
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0.2353
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0.1176
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/EP03:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/EP03"
+      },
+      "episode": {
+        "@id": "gh:Episode/EP03"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep03_cost_visualization.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.806Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0.2625
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.2625
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.2625
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0.15
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0.0625
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.2625
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.2625
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.2625
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0.15
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0.0625
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/EP04:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/EP04"
+      },
+      "episode": {
+        "@id": "gh:Episode/EP04"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep04_codependence_trap.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.809Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0.3976
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0.1687
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.1687
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.1687
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0.0964
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.3976
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.1687
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.1687
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.1687
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0.0964
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/EP05:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/EP05"
+      },
+      "episode": {
+        "@id": "gh:Episode/EP05"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep05_justice_and_community.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.812Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0.5319
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0.4681
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0.5319
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0.4681
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/EP06:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/EP06"
+      },
+      "episode": {
+        "@id": "gh:Episode/EP06"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep06_false_god_omens.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.815Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0.2963
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0.1811
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0.1358
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0.1152
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.1152
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.1152
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0.0412
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0.2963
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.1811
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0.1358
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.1152
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.1152
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.1152
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0.0412
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/EP07:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/EP07"
+      },
+      "episode": {
+        "@id": "gh:Episode/EP07"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep07_question_the_name.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.816Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 1
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 1
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/EP08:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/EP08"
+      },
+      "episode": {
+        "@id": "gh:Episode/EP08"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep08_i_am_that_i_am.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.818Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0.3244
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0.2477
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0.1261
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.1261
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.1261
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0.0495
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0.3243
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0.2477
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.1261
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.1261
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.1261
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.0495
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/EP09:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/EP09"
+      },
+      "episode": {
+        "@id": "gh:Episode/EP09"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep09_rage_engine.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.819Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0.6937
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0.2162
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0.0901
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0.6937
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0.2162
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0.0901
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/EP10:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/EP10"
+      },
+      "episode": {
+        "@id": "gh:Episode/EP10"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep10_zombie_sweep.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.820Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0.3333
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.3333
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.3333
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.3333
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.3333
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.3333
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/EP11:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/EP11"
+      },
+      "episode": {
+        "@id": "gh:Episode/EP11"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep11_compliance_ogre.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.824Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 1
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 1
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "gh:Episode/EP12:EmotionProfile",
+      "@type": "EmotionProfile",
+      "subject": {
+        "@id": "gh:Episode/EP12"
+      },
+      "episode": {
+        "@id": "gh:Episode/EP12"
+      },
+      "sourcePath": [
+        "251022/wattpad/episodes/ep12_together.md"
+      ],
+      "language": "ja",
+      "createdAt": "2025-11-02T11:45:33.827Z",
+      "emotionVector": [
+        {
+          "@type": "EmotionScore",
+          "emotion": "joy",
+          "score": 0.2625
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.2625
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.2625
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "fear",
+          "score": 0.075
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anger",
+          "score": 0.0688
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0.0688
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "surprise",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "anticipation",
+          "score": 0
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "disgust",
+          "score": 0
+        }
+      ],
+      "trajectory": [
+        {
+          "@type": "EmotionProfile",
+          "position": 1,
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.2625
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.2625
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.2625
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0.075
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0.0688
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.0688
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

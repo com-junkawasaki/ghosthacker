@@ -169,6 +169,118 @@
           ]
         }
       ]
+    },
+    {
+      "@id": "gh:EmotionalPlan/S3E1",
+      "@type": "EmotionalPlan",
+      "episode": { "@id": "gh:Episode/S3E1" },
+      "name": "S3E1: 代償の可視化 → 現実受容 → 穏やかな回復",
+      "description": "依存コストの現実と向き合い、具体的セルフケアで回復へ",
+      "beats": [
+        { "@type": "EmotionalBeat", "position": 1, "name": "兆し", "motifs": [{"@id":"gh:Motif/Debt"}],
+          "targetVector": [ {"@type":"EmotionScore","emotion":"sadness","score":0.3}, {"@type":"EmotionScore","emotion":"fear","score":0.2}, {"@type":"EmotionScore","emotion":"trust","score":0.2} ] },
+        { "@type": "EmotionalBeat", "position": 2, "name": "診断/可視化", "targetVector": [ {"@type":"EmotionScore","emotion":"trust","score":0.3}, {"@type":"EmotionScore","emotion":"anticipation","score":0.25} ] },
+        { "@type": "EmotionalBeat", "position": 3, "name": "セルフケア/回復", "targetVector": [ {"@type":"EmotionScore","emotion":"relief","score":0.35}, {"@type":"EmotionScore","emotion":"hope","score":0.3}, {"@type":"EmotionScore","emotion":"joy","score":0.2} ] }
+      ]
+    },
+    {
+      "@id": "gh:EmotionalPlan/S3E2",
+      "@type": "EmotionalPlan",
+      "episode": { "@id": "gh:Episode/S3E2" },
+      "name": "S3E2: 共依存の罠 → 境界訓練 → 静かな勝利",
+      "description": "救済と支配を切り分け、手放しで解放へ",
+      "beats": [
+        { "@type":"EmotionalBeat","position":1,"name":"過負荷/緊張","targetVector":[{"@type":"EmotionScore","emotion":"fear","score":0.3},{"@type":"EmotionScore","emotion":"sadness","score":0.2}]},
+        { "@type":"EmotionalBeat","position":2,"name":"境界/待つ契約","targetVector":[{"@type":"EmotionScore","emotion":"trust","score":0.3},{"@type":"EmotionScore","emotion":"anticipation","score":0.25}]},
+        { "@type":"EmotionalBeat","position":3,"name":"Quiet Win","targetVector":[{"@type":"EmotionScore","emotion":"relief","score":0.35},{"@type":"EmotionScore","emotion":"joy","score":0.25}]} ]
+    },
+    {
+      "@id": "gh:EmotionalPlan/S4E1",
+      "@type": "EmotionalPlan",
+      "episode": { "@id": "gh:Episode/S4E1" },
+      "name": "S4E1: 制度の緊張 → 回復の道 → 兆し",
+      "description": "応報に偏らず回復を残し、偽神の兆しを示す",
+      "beats": [
+        { "@type":"EmotionalBeat","position":1,"name":"緊張/対立","targetVector":[{"@type":"EmotionScore","emotion":"anger","score":0.3},{"@type":"EmotionScore","emotion":"fear","score":0.25}]},
+        { "@type":"EmotionalBeat","position":2,"name":"半歩の回復","targetVector":[{"@type":"EmotionScore","emotion":"relief","score":0.3},{"@type":"EmotionScore","emotion":"trust","score":0.25}]},
+        { "@type":"EmotionalBeat","position":3,"name":"兆し/余韻","targetVector":[{"@type":"EmotionScore","emotion":"anticipation","score":0.25},{"@type":"EmotionScore","emotion":"trust","score":0.25}]} ]
+    },
+    {
+      "@id": "gh:EmotionalPlan/S4E2",
+      "@type": "EmotionalPlan",
+      "episode": { "@id": "gh:Episode/S4E2" },
+      "name": "S4E2: 偽神の兆候 → 準備と整え → 静かな決意",
+      "description": "不安を煽らず準備で安定化",
+      "beats": [
+        { "@type":"EmotionalBeat","position":1,"name":"前兆/不安","targetVector":[{"@type":"EmotionScore","emotion":"fear","score":0.28},{"@type":"EmotionScore","emotion":"anticipation","score":0.22}]},
+        { "@type":"EmotionalBeat","position":2,"name":"整える/配置","targetVector":[{"@type":"EmotionScore","emotion":"trust","score":0.3},{"@type":"EmotionScore","emotion":"relief","score":0.25}]},
+        { "@type":"EmotionalBeat","position":3,"name":"静かな決意","targetVector":[{"@type":"EmotionScore","emotion":"trust","score":0.35},{"@type":"EmotionScore","emotion":"hope","score":0.25}]} ]
+    },
+    {
+      "@id": "gh:EmotionalPlan/S5E1",
+      "@type": "EmotionalPlan",
+      "episode": { "@id": "gh:Episode/S5E1" },
+      "name": "S5E1: 名を問う → 現前の理解 → 穏やかな統合",
+      "description": "概念から関係へ、理解の静けさで締める",
+      "beats": [
+        { "@type":"EmotionalBeat","position":1,"name":"問い","targetVector":[{"@type":"EmotionScore","emotion":"anticipation","score":0.28},{"@type":"EmotionScore","emotion":"trust","score":0.22}]},
+        { "@type":"EmotionalBeat","position":2,"name":"理解/気配","targetVector":[{"@type":"EmotionScore","emotion":"trust","score":0.32},{"@type":"EmotionScore","emotion":"joy","score":0.18}]},
+        { "@type":"EmotionalBeat","position":3,"name":"統合/余韻","targetVector":[{"@type":"EmotionScore","emotion":"relief","score":0.35},{"@type":"EmotionScore","emotion":"joy","score":0.25}]} ]
+    },
+    {
+      "@id": "gh:EmotionalPlan/S6E1",
+      "@type": "EmotionalPlan",
+      "episode": { "@id": "gh:Episode/S6E1" },
+      "name": "S6E1: 対峙/命名 → 解放 → 最終余韻(I AM)",
+      "description": "シリーズ最大のカタルシス。解放とI AMの余韻で最大感動",
+      "beats": [
+        { "@type":"EmotionalBeat","position":1,"name":"対峙/命名","targetVector":[{"@type":"EmotionScore","emotion":"fear","score":0.25},{"@type":"EmotionScore","emotion":"anger","score":0.2}]},
+        { "@type":"EmotionalBeat","position":2,"name":"解放","targetVector":[{"@type":"EmotionScore","emotion":"relief","score":0.4},{"@type":"EmotionScore","emotion":"joy","score":0.3}]},
+        { "@type":"EmotionalBeat","position":3,"name":"I AM/余韻","targetVector":[{"@type":"EmotionScore","emotion":"trust","score":0.35},{"@type":"EmotionScore","emotion":"hope","score":0.25}]} ]
+    },
+    {
+      "@id": "gh:EmotionalPlan/EP9",
+      "@type": "EmotionalPlan",
+      "episode": { "@id": "gh:Episode/EP9" },
+      "name": "EP9: 怒りのエンジン → スロットル → 静けさの回復",
+      "description": "怒りの拡散を静かに鎮め、関係回路を再接続",
+      "beats": [
+        { "@type":"EmotionalBeat","position":1,"name":"ピーク/過熱","targetVector":[{"@type":"EmotionScore","emotion":"anger","score":0.35},{"@type":"EmotionScore","emotion":"fear","score":0.2}]},
+        { "@type":"EmotionalBeat","position":2,"name":"スロットリング","targetVector":[{"@type":"EmotionScore","emotion":"relief","score":0.3},{"@type":"EmotionScore","emotion":"trust","score":0.25}]},
+        { "@type":"EmotionalBeat","position":3,"name":"静かな回復","targetVector":[{"@type":"EmotionScore","emotion":"relief","score":0.35},{"@type":"EmotionScore","emotion":"joy","score":0.2}]} ]
+    },
+    {
+      "@id": "gh:EmotionalPlan/EP10",
+      "@type": "EmotionalPlan",
+      "episode": { "@id": "gh:Episode/EP10" },
+      "name": "EP10: ゾンビ掃討 → 停止/残す → 朝の静けさ",
+      "description": "不要ループを止め、関係線を守って静けさへ",
+      "beats": [
+        { "@type":"EmotionalBeat","position":1,"name":"混乱/雑音","targetVector":[{"@type":"EmotionScore","emotion":"fear","score":0.25},{"@type":"EmotionScore","emotion":"disgust","score":0.15}]},
+        { "@type":"EmotionalBeat","position":2,"name":"掃討/選別","targetVector":[{"@type":"EmotionScore","emotion":"trust","score":0.3},{"@type":"EmotionScore","emotion":"relief","score":0.25}]},
+        { "@type":"EmotionalBeat","position":3,"name":"朝/余韻","targetVector":[{"@type":"EmotionScore","emotion":"relief","score":0.35},{"@type":"EmotionScore","emotion":"joy","score":0.2}]} ]
+    },
+    {
+      "@id": "gh:EmotionalPlan/EP11",
+      "@type": "EmotionalPlan",
+      "episode": { "@id": "gh:Episode/EP11" },
+      "name": "EP11: 完璧の鬼 → 名づけ → 呼吸できる正義",
+      "description": "恐れの正当化を名づけて解体し、余韻へ",
+      "beats": [
+        { "@type":"EmotionalBeat","position":1,"name":"窒息/緊張","targetVector":[{"@type":"EmotionScore","emotion":"anger","score":0.3},{"@type":"EmotionScore","emotion":"fear","score":0.2}]},
+        { "@type":"EmotionalBeat","position":2,"name":"名づけ/解体","targetVector":[{"@type":"EmotionScore","emotion":"trust","score":0.3},{"@type":"EmotionScore","emotion":"relief","score":0.25}]},
+        { "@type":"EmotionalBeat","position":3,"name":"呼吸/余韻","targetVector":[{"@type":"EmotionScore","emotion":"relief","score":0.35},{"@type":"EmotionScore","emotion":"joy","score":0.2}]} ]
+    },
+    {
+      "@id": "gh:EmotionalPlan/EP12",
+      "@type": "EmotionalPlan",
+      "episode": { "@id": "gh:Episode/EP12" },
+      "name": "EP12: 還る → I AM → いっしょに",
+      "description": "シリーズ終章：最大の解放と最長の余韻（最も感動）",
+      "beats": [
+        { "@type":"EmotionalBeat","position":1,"name":"静かな導入","targetVector":[{"@type":"EmotionScore","emotion":"anticipation","score":0.25},{"@type":"EmotionScore","emotion":"trust","score":0.25}]},
+        { "@type":"EmotionalBeat","position":2,"name":"解放/I AM","targetVector":[{"@type":"EmotionScore","emotion":"relief","score":0.42},{"@type":"EmotionScore","emotion":"joy","score":0.32}]},
+        { "@type":"EmotionalBeat","position":3,"name":"いっしょに/余韻","targetVector":[{"@type":"EmotionScore","emotion":"trust","score":0.38},{"@type":"EmotionScore","emotion":"hope","score":0.28}]} ]
     }
   ]
 }
