@@ -35,6 +35,7 @@
         outputPath: '../250806/episodes/emotions.jsonld',
         contextPath: '../250806/emotion.context.jsonld',
         planPath: '../250806/episodes/emotional-outline.jsonld',
+        benchmarkPath: '../250806/emotion-benchmark.jsonld',
       },
       outputs: ['emotionProfile', 'trajectory']
     },

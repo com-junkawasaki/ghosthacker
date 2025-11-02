@@ -1,0 +1,122 @@
+[
+  {
+    "episode": "gh:Episode/EP10",
+    "posSimilarity": 0.9487,
+    "penalties": 0,
+    "score": 0.9487
+  },
+  {
+    "episode": "gh:Episode/S3E1",
+    "posSimilarity": 0.9487,
+    "penalties": 0.1132,
+    "score": 0.8355
+  },
+  {
+    "episode": "gh:Episode/EP12",
+    "posSimilarity": 0.9653,
+    "penalties": 0.1438,
+    "score": 0.8215
+  },
+  {
+    "episode": "gh:Episode/EP03",
+    "posSimilarity": 0.9487,
+    "penalties": 0.15,
+    "score": 0.7987
+  },
+  {
+    "episode": "gh:Episode/EP01",
+    "posSimilarity": 0.9656,
+    "penalties": 0.2034,
+    "score": 0.7622
+  },
+  {
+    "episode": "gh:Episode/S2E2",
+    "posSimilarity": 0.7841,
+    "penalties": 0.1004,
+    "score": 0.6837
+  },
+  {
+    "episode": "gh:Episode/S3E2",
+    "posSimilarity": 0.7088,
+    "penalties": 0.0741,
+    "score": 0.6347
+  },
+  {
+    "episode": "gh:Episode/S6E1",
+    "posSimilarity": 0.9487,
+    "penalties": 0.3153,
+    "score": 0.6334
+  },
+  {
+    "episode": "gh:Episode/EP04",
+    "posSimilarity": 0.7089,
+    "penalties": 0.0964,
+    "score": 0.6125
+  },
+  {
+    "episode": "gh:Episode/S4E2",
+    "posSimilarity": 0.7089,
+    "penalties": 0.2975,
+    "score": 0.4114
+  },
+  {
+    "episode": "gh:Episode/EP08",
+    "posSimilarity": 0.9656,
+    "penalties": 0.572,
+    "score": 0.3936
+  },
+  {
+    "episode": "gh:Episode/EP06",
+    "posSimilarity": 0.8252,
+    "penalties": 0.4321,
+    "score": 0.3931
+  },
+  {
+    "episode": "gh:Episode/S1E1",
+    "posSimilarity": 0,
+    "penalties": 0,
+    "score": 0
+  },
+  {
+    "episode": "gh:Episode/S4E1",
+    "posSimilarity": 0,
+    "penalties": 0.1803,
+    "score": 0
+  },
+  {
+    "episode": "gh:Episode/S5E1",
+    "posSimilarity": 0,
+    "penalties": 0,
+    "score": 0
+  },
+  {
+    "episode": "gh:Episode/EP02",
+    "posSimilarity": 0.1826,
+    "penalties": 0.2353,
+    "score": 0
+  },
+  {
+    "episode": "gh:Episode/EP05",
+    "posSimilarity": 0,
+    "penalties": 0.4681,
+    "score": 0
+  },
+  {
+    "episode": "gh:Episode/EP07",
+    "posSimilarity": 0,
+    "penalties": 0,
+    "score": 0
+  },
+  {
+    "episode": "gh:Episode/EP09",
+    "posSimilarity": 0,
+    "penalties": 0.6937,
+    "score": 0
+  },
+  {
+    "episode": "gh:Episode/EP11",
+    "posSimilarity": 0,
+    "penalties": 1,
+    "score": 0
+  }
+]

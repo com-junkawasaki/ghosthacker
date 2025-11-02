@@ -17,7 +17,8 @@
     "import:episode": "pnpm tsx src/scripts/import-episode-graph.ts",
     "generate:episode-jsonld": "pnpm tsx src/scripts/generate-episode-jsonld.ts",
     "analyze:emotions": "pnpm tsx src/scripts/hume-emotions.ts",
-    "analyze:emotions:wattpad": "pnpm tsx src/scripts/hume-emotions-wattpad.ts"
+    "analyze:emotions:wattpad": "pnpm tsx src/scripts/hume-emotions-wattpad.ts",
+    "score:emotions:wattpad": "pnpm tsx src/scripts/emotion-score.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
