@@ -179,7 +179,7 @@
       "@id": "setting:tokyo",
       "@type": "Place",
       "name": "Tokyo (水の都)",
-      "description": "運河と川が縦横に走る水の街。沖縄の海のように澄んだ青い水。未来の東京で、ガラス張りの超高層ビルが立ち並ぶ。都市インフラは光による伝送・計算が一般化しており、街路・水路・建物に編み込まれた光の網が、人とGhostの往来を静かに支えている。",
+      "description": "運河と川が縦横に走る水の街。沖縄の海のように澄んだ青い水。未来の東京で、ガラス張りの超高層ビルが立ち並ぶ。都市インフラは光による伝送・計算が一般化しており、街路・水路・建物に編み込まれた光の網が、人とGhostの往来を静かに支えている。2050年には温暖化対策として20世紀に築かれた高架道路を撤去し、運河と緑を中心とする都市へ再編。都市外周には、なお2000年代の風景も残存する。",
       "gh:year": 2065
     },
     {
@@ -189,6 +189,36 @@
       "description": "情報のみで構成される生命体。人間の思考・感情から生まれ、死者の残留思念、または人工的に作成されたAIを含む。人間には基本的に一人のGhostがつき、主人はMasterと呼ばれる。",
       "gh:ghostType": ["Human-derived", "Artificial Intelligence", "Alien"]
     },
+    { "@id": "society:labor-automation", "@type": "Intangible", "name": "Labor Automation",
+      "description": "AIとロボティクスにより代替が進み、生活基盤は安定。多くの人が『貧窮』から解放され、学習・創造・ケアに時間を振り向ける。" },
+    { "@id": "culture:post-work", "@type": "Intangible", "name": "Post-work Culture",
+      "description": "仕事中心から関係中心へ。静けさ・ケア・共同体への参加が価値として再評価される。" },
+    { "@id": "issue:cross-border-friction", "@type": "Intangible", "name": "Cross-border/Cultural Friction",
+      "description": "国境・文化・価値観の差異に起因する摩擦は依然として存在。対話・合意形成の制度設計が重要。" },
+    { "@id": "issue:environmental-challenges", "@type": "Intangible", "name": "Environmental Challenges",
+      "description": "気候変動や生態系の回復はなお継続課題。都市の再編と静かな日常の両立が試されている。" },
+    { "@id": "policy:tokyo-2050-canal-green", "@type": "Intangible", "name": "Tokyo 2050 Canal & Green Policy",
+      "description": "2050年、温暖化対策として高架道路を撤去し、運河と緑へ都市を転換。外周には過去の景観が残り、時間のレイヤが共存する。" },
+
+    { "@id": "policy:ai-compute-governance", "@type": "Intangible", "name": "AI Compute Governance",
+      "description": "高出力AIの推論・出力はリスクとして扱われ、計算リソースは強く制御・監視される。高い計算量は核施設・核兵器に準じた安全枠組みで監督され、段階的な審査・監査・追跡可能性が義務化される。",
+      "gh:securityNote": "閾値越えのジョブは多重承認と監査証跡を要求。緊急停止・隔離の手順を標準化。" },
+
+    { "@id": "protocol:decentralized-ai-infra", "@type": "Intangible", "name": "Decentralized AI Infrastructure",
+      "description": "一方で、分散型技術に基づくAIインフラも普及。強国の武力による一元的制御ではなく、分散アルゴリズムによる合意形成で資源配分・検証・安心の担保を図る。",
+      "gh:operationalNote": "合意は軽量で再帰的。地域ノードが自律しつつ相互監査を行う。" },
+
+    { "@id": "tech:compute-quota-ledger", "@type": "Intangible", "name": "Compute Quota Ledger",
+      "description": "計算クォータの割当と消費を記録する共有台帳。監視主体・事業者・市民監査が読み出せ、過剰な集中や秘匿的な集積を検知する。",
+      "gh:infraNote": "光ネット上の時刻同期で改竄耐性を確保し、近傍キャッシュで遅延を抑制。" },
+
+    { "@id": "bundle:ai-governance", "@type": "Intangible", "name": "AI Governance Bundle",
+      "description": "集中監督（安全枠組み）と分散合意（自律インフラ）を両立させるためのポリシー/プロトコル/台帳の束ね。",
+      "gh:items": [
+        {"@id": "policy:ai-compute-governance"},
+        {"@id": "protocol:decentralized-ai-infra"},
+        {"@id": "tech:compute-quota-ledger"}
+      ] },
     {
       "@id": "tech:ghost-hacking",
       "@type": "Intangible",
@@ -208,6 +238,16 @@
       "description": "個別Session以外に常時運用されるゾンビプロセス退治プログラム。社会インフラのmeme感染を抑止。",
       "gh:infraNote": "光経路に沿った広域スキャンで『循環ノイズ』を抽出し、静域へ流して減衰。",
       "gh:operationalNote": "除去よりも隔離→自然減衰を優先。戻れる線は残す。" },
+
+    { "@id": "tech:household-robotics", "@type": "Intangible", "name": "Household/Personal Robotics",
+      "description": "家庭・介護・日常業務を担う汎用ロボット群。人の尊厳と自由時間を増やす設計が標準。" },
+    { "@id": "tech:public-service-autonomy", "@type": "Intangible", "name": "Public Service Autonomy",
+      "description": "清掃・輸送・インフラ保全など公共サービスの自律運用。人は調整・監督・合意形成へ。" },
+    { "@id": "tech:consent-mediator", "@type": "Intangible", "name": "Consent Mediator",
+      "description": "合意のための対話補助エージェント。関係の温度を下げ、選択肢を増やす対話設計を提示。" },
+    { "@id": "tech:automation-bundle", "@type": "Intangible", "name": "Automation & Care Bundle",
+      "description": "労働の代替とケアの拡張を支える基盤群。『貧窮の回避』を共通目的に設計される。",
+      "gh:items": [ {"@id": "tech:household-robotics"}, {"@id": "tech:public-service-autonomy"}, {"@id": "tech:consent-mediator"} ] },
 
     { "@id": "tech:urban-light-infra", "@type": "Intangible",
       "name": "Urban Light Infrastructure Bundle",
