@@ -36,7 +36,14 @@
     "influences": { "@id": "gh:influences", "@type": "@id" },
 
     "spansSeasons": { "@id": "gh:spansSeasons", "@type": "@id" },
-    "phase": { "@id": "gh:phase", "@type": "xsd:string" }
+    "phase": { "@id": "gh:phase", "@type": "xsd:string" },
+
+    "alternateName": { "@id": "schema:alternateName", "@type": "xsd:string" },
+    "virtue": { "@id": "gh:virtue", "@type": "xsd:string" },
+    "anchoredTo": { "@id": "gh:anchoredTo", "@type": "@id" },
+    "emits": { "@id": "gh:emits", "@type": "@id" },
+    "repels": { "@id": "gh:repels", "@type": "@id" },
+    "avoids": { "@id": "gh:avoids", "@type": "@id" }
   },
   "@graph": [
     { "@id": "gh:Season/1", "@type": "Season", "name": "Season 1", "theme": "孤独 – 分断と接続の再学習", "featuredThemes": ["孤独", "非分離", "赦し"],
@@ -101,6 +108,10 @@
     { "@id": "gh:Motif/Angel", "@type": "Motif", "name": "天使", "theme": "神" },
     { "@id": "gh:Motif/IAM", "@type": "Motif", "name": "I AM", "theme": "I AM" },
 
+    { "@id": "gh:Motif/TreeOfLife", "@type": "Motif", "name": "生命の樹 / Tree of Life", "theme": "神" },
+    { "@id": "gh:Motif/GoodFeeling", "@type": "Motif", "name": "いい感じ", "theme": "愛" },
+    { "@id": "gh:Motif/BadFeeling", "@type": "Motif", "name": "わるい感じ", "theme": "依存" },
+
     { "@id": "gh:Episode/S1E1", "@type": "Episode",
       "episodeNumber": 1,
       "season": {"@id": "gh:Season/1"},
@@ -133,6 +144,13 @@
     { "@id": "gh:Scene/Opening/op09", "@type": "Scene", "name": "解放の引き金", "sameAs": "scene:op09" },
     { "@id": "gh:Scene/Opening/op10", "@type": "Scene", "name": "解放と再生", "sameAs": "scene:op10" },
     { "@id": "gh:Scene/Opening/op11", "@type": "Scene", "name": "余韻とタイトル", "sameAs": "scene:op11" },
+
+    { "@id": "character:tamaki", "alternateName": "環樹", "virtue": "強い意志",
+      "anchoredTo": {"@id": "gh:Motif/TreeOfLife"},
+      "emits": {"@id": "gh:Motif/GoodFeeling"},
+      "repels": {"@id": "gh:Motif/BadFeeling"},
+      "avoids": {"@id": "gh:Motif/BadFeeling"}
+    },
 
     { "@id": "gh:Episode/S2E2", "@type": "Episode",
       "episodeNumber": 2,
