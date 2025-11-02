@@ -16,7 +16,8 @@
     "composition": { "@id": "gh:composition", "@type": "xsd:string" },
     "mood": { "@id": "gh:mood", "@type": "xsd:string" },
     "quality": { "@id": "gh:quality", "@type": "xsd:string" },
-    "sameAs": { "@id": "schema:sameAs", "@type": "@id" }
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" },
+    "fullText": { "@id": "gh:fullText", "@type": "xsd:string" }
   },
   "@graph": [
     {
@@ -32,7 +33,7 @@
       "composition": "ミディアムクローズアップ。都市に圧倒されつつも希望に満ちた視線。",
       "mood": "若々しく希望に満ちた誠実さ。",
       "quality": "フォトリアル、8K、映画的ボケ。",
-      "sameAs": "250806/character/aoi/portrait.md"
+      "fullText": "# Portrait Prompt for Aoi\n\n## Subject\n- An 18-year-old rookie Ghost Hacker, recently arrived in Tokyo from the countryside. He is sincere, earnest, and a bit naive.\n\n## Appearance\n- **Face:** A youthful, friendly face with a look of genuine curiosity and openness. His expression is slightly wide-eyed, taking in the big city and the world of Ghost Hacking.\n- **Hair:** A simple, slightly messy haircut.\n- **Build:** Average build, looks like a typical teenager.\n\n## Clothing & Style\n- **Outfit:** Simple, practical, and casual clothes. A plain t-shirt or hoodie and jeans. He is more focused on function than fashion. He might have a new, modern backpack filled with gadgets.\n- **Accessories:** A new-looking smartwatch or a pair of wireless earbuds.\n\n## Setting & Lighting\n- **Background:** A bustling street in Shibuya or Akihabara at dusk, with the neon lights of the city creating a colorful, slightly overwhelming backdrop. The background is blurred to keep the focus on him.\n- **Lighting:** The complex, colorful lighting from the city's neon signs reflects on his face, highlighting his sense of wonder and perhaps a little bit of being lost in a new, exciting world.\n\n## Composition & Mood\n- **Shot:** Medium close-up. He is looking around with a sense of awe.\n- **Mood:** Youthful, hopeful, and earnest. The portrait should capture his \"newcomer\" status and his pure-hearted enthusiasm for technology and his dream of becoming a great Hacker.\n- **Quality:** Photorealistic, 8K. The image should have a cinematic feel, with a nice bokeh effect from the city lights."
     }
   ]
 }

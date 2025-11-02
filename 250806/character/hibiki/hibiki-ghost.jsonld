@@ -13,7 +13,8 @@
     "ghostType": { "@id": "gh:ghostType", "@type": "xsd:string" },
     "master": { "@id": "gh:master", "@type": "@id" },
     "hasAbility": { "@id": "gh:hasAbility", "@type": "@id" },
-    "sameAs": { "@id": "schema:sameAs", "@type": "@id" }
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" },
+    "fullText": { "@id": "gh:fullText", "@type": "xsd:string" }
   },
   "@graph": [
     {
@@ -26,7 +27,7 @@
       "hasAbility": [
         { "@id": "gh:Ability/HallucinatoryInjection", "@type": "Ability", "name": "幻覚データ注入", "description": "対象Ghostの構造を可視化し再構築へ導く。" }
       ],
-      "sameAs": "250806/character/hibiki/hibiki.md"
+      "fullText": "(ヒビキ本体の md に統合済み)"
     }
   ]
 }
