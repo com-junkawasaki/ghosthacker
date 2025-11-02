@@ -54,12 +54,6 @@
     "score": 0.9487
   },
   {
-    "episode": "gh:Episode/S6E1",
-    "posSimilarity": 0.9487,
-    "penalties": 0,
-    "score": 0.9487
-  },
-  {
     "episode": "gh:Episode/EP01",
     "posSimilarity": 0.9487,
     "penalties": 0,
@@ -91,12 +85,6 @@
   },
   {
     "episode": "gh:Episode/EP07",
-    "posSimilarity": 0.9487,
-    "penalties": 0,
-    "score": 0.9487
-  },
-  {
-    "episode": "gh:Episode/EP08",
     "posSimilarity": 0.9487,
     "penalties": 0,
     "score": 0.9487
@@ -300,6 +288,12 @@
     "score": 0
   },
   {
+    "episode": "gh:Episode/S6E1",
+    "posSimilarity": 0,
+    "penalties": 0,
+    "score": 0
+  },
+  {
     "episode": "gh:Episode/EP01",
     "posSimilarity": 0,
     "penalties": 0,
@@ -408,6 +402,12 @@
     "score": 0
   },
   {
+    "episode": "gh:Episode/EP08",
+    "posSimilarity": 0,
+    "penalties": 0,
+    "score": 0
+  },
+  {
     "episode": "gh:Episode/EP09",
     "posSimilarity": 0,
     "penalties": 1,
@@ -415,8 +415,8 @@
   },
   {
     "episode": "gh:Episode/EP09",
-    "posSimilarity": 0.511,
-    "penalties": 0.6048,
+    "posSimilarity": 0.5114,
+    "penalties": 0.6542,
     "score": 0
   },
   {
