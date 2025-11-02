@@ -1,0 +1,432 @@
+{
+  "@context": {
+    "@base": "https://ghosthacker.example.com/",
+    "gh": "https://ghosthacker.junkawasaki.com/gh#",
+    "schema": "http://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "EpisodeStructure": "gh:EpisodeStructure",
+    "EpisodePart": "gh:EpisodePart",
+    "episode": {
+      "@id": "gh:episode",
+      "@type": "@id"
+    },
+    "part": {
+      "@id": "gh:part",
+      "@type": "@id"
+    },
+    "position": {
+      "@id": "gh:position",
+      "@type": "xsd:integer"
+    },
+    "wordCount": {
+      "@id": "gh:wordCount",
+      "@type": "xsd:integer"
+    },
+    "beatsCount": {
+      "@id": "gh:beatsCount",
+      "@type": "xsd:integer"
+    },
+    "antagonistBlock": {
+      "@id": "gh:antagonistBlock",
+      "@type": "xsd:boolean"
+    },
+    "sourcePath": {
+      "@id": "gh:sourcePath",
+      "@type": "xsd:string"
+    }
+  },
+  "@graph": [
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP01"
+      },
+      "part": {
+        "@id": "gh:Episode/EP01/part1"
+      },
+      "position": 1,
+      "wordCount": 13,
+      "beatsCount": 1,
+      "antagonistBlock": true,
+      "sourcePath": "251022/wattpad/episodes/ep01/part1.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP01"
+      },
+      "part": {
+        "@id": "gh:Episode/EP01/part2"
+      },
+      "position": 2,
+      "wordCount": 16,
+      "beatsCount": 1,
+      "antagonistBlock": false,
+      "sourcePath": "251022/wattpad/episodes/ep01/part2.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP01"
+      },
+      "part": {
+        "@id": "gh:Episode/EP01/part3"
+      },
+      "position": 3,
+      "wordCount": 10,
+      "beatsCount": 1,
+      "antagonistBlock": false,
+      "sourcePath": "251022/wattpad/episodes/ep01/part3.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP02"
+      },
+      "part": {
+        "@id": "gh:Episode/EP02/part1"
+      },
+      "position": 1,
+      "wordCount": 11,
+      "beatsCount": 1,
+      "antagonistBlock": true,
+      "sourcePath": "251022/wattpad/episodes/ep02/part1.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP02"
+      },
+      "part": {
+        "@id": "gh:Episode/EP02/part2"
+      },
+      "position": 2,
+      "wordCount": 9,
+      "beatsCount": 1,
+      "antagonistBlock": false,
+      "sourcePath": "251022/wattpad/episodes/ep02/part2.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP02"
+      },
+      "part": {
+        "@id": "gh:Episode/EP02/part3"
+      },
+      "position": 3,
+      "wordCount": 11,
+      "beatsCount": 1,
+      "antagonistBlock": false,
+      "sourcePath": "251022/wattpad/episodes/ep02/part3.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP03"
+      },
+      "part": {
+        "@id": "gh:Episode/EP03/part1"
+      },
+      "position": 1,
+      "wordCount": 4,
+      "beatsCount": 1,
+      "antagonistBlock": true,
+      "sourcePath": "251022/wattpad/episodes/ep03/part1.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP03"
+      },
+      "part": {
+        "@id": "gh:Episode/EP03/part2"
+      },
+      "position": 2,
+      "wordCount": 4,
+      "beatsCount": 1,
+      "antagonistBlock": false,
+      "sourcePath": "251022/wattpad/episodes/ep03/part2.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP03"
+      },
+      "part": {
+        "@id": "gh:Episode/EP03/part3"
+      },
+      "position": 3,
+      "wordCount": 7,
+      "beatsCount": 1,
+      "antagonistBlock": false,
+      "sourcePath": "251022/wattpad/episodes/ep03/part3.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP04"
+      },
+      "part": {
+        "@id": "gh:Episode/EP04/part1"
+      },
+      "position": 1,
+      "wordCount": 9,
+      "beatsCount": 1,
+      "antagonistBlock": true,
+      "sourcePath": "251022/wattpad/episodes/ep04/part1.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP04"
+      },
+      "part": {
+        "@id": "gh:Episode/EP04/part2"
+      },
+      "position": 2,
+      "wordCount": 6,
+      "beatsCount": 1,
+      "antagonistBlock": false,
+      "sourcePath": "251022/wattpad/episodes/ep04/part2.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP04"
+      },
+      "part": {
+        "@id": "gh:Episode/EP04/part3"
+      },
+      "position": 3,
+      "wordCount": 7,
+      "beatsCount": 1,
+      "antagonistBlock": false,
+      "sourcePath": "251022/wattpad/episodes/ep04/part3.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP05"
+      },
+      "part": {
+        "@id": "gh:Episode/EP05/part1"
+      },
+      "position": 1,
+      "wordCount": 6,
+      "beatsCount": 1,
+      "antagonistBlock": true,
+      "sourcePath": "251022/wattpad/episodes/ep05/part1.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP05"
+      },
+      "part": {
+        "@id": "gh:Episode/EP05/part2"
+      },
+      "position": 2,
+      "wordCount": 5,
+      "beatsCount": 1,
+      "antagonistBlock": false,
+      "sourcePath": "251022/wattpad/episodes/ep05/part2.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP05"
+      },
+      "part": {
+        "@id": "gh:Episode/EP05/part3"
+      },
+      "position": 3,
+      "wordCount": 8,
+      "beatsCount": 1,
+      "antagonistBlock": false,
+      "sourcePath": "251022/wattpad/episodes/ep05/part3.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP06"
+      },
+      "part": {
+        "@id": "gh:Episode/EP06/part1"
+      },
+      "position": 1,
+      "wordCount": 6,
+      "beatsCount": 1,
+      "antagonistBlock": true,
+      "sourcePath": "251022/wattpad/episodes/ep06/part1.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP06"
+      },
+      "part": {
+        "@id": "gh:Episode/EP06/part2"
+      },
+      "position": 2,
+      "wordCount": 3,
+      "beatsCount": 1,
+      "antagonistBlock": false,
+      "sourcePath": "251022/wattpad/episodes/ep06/part2.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP06"
+      },
+      "part": {
+        "@id": "gh:Episode/EP06/part3"
+      },
+      "position": 3,
+      "wordCount": 7,
+      "beatsCount": 1,
+      "antagonistBlock": false,
+      "sourcePath": "251022/wattpad/episodes/ep06/part3.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP07"
+      },
+      "part": {
+        "@id": "gh:Episode/EP07/part1"
+      },
+      "position": 1,
+      "wordCount": 10,
+      "beatsCount": 1,
+      "antagonistBlock": true,
+      "sourcePath": "251022/wattpad/episodes/ep07/part1.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP07"
+      },
+      "part": {
+        "@id": "gh:Episode/EP07/part2"
+      },
+      "position": 2,
+      "wordCount": 3,
+      "beatsCount": 1,
+      "antagonistBlock": false,
+      "sourcePath": "251022/wattpad/episodes/ep07/part2.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP07"
+      },
+      "part": {
+        "@id": "gh:Episode/EP07/part3"
+      },
+      "position": 3,
+      "wordCount": 5,
+      "beatsCount": 1,
+      "antagonistBlock": false,
+      "sourcePath": "251022/wattpad/episodes/ep07/part3.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP08"
+      },
+      "part": {
+        "@id": "gh:Episode/EP08/part1"
+      },
+      "position": 1,
+      "wordCount": 4,
+      "beatsCount": 1,
+      "antagonistBlock": true,
+      "sourcePath": "251022/wattpad/episodes/ep08/part1.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP08"
+      },
+      "part": {
+        "@id": "gh:Episode/EP08/part2"
+      },
+      "position": 2,
+      "wordCount": 7,
+      "beatsCount": 1,
+      "antagonistBlock": false,
+      "sourcePath": "251022/wattpad/episodes/ep08/part2.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP08"
+      },
+      "part": {
+        "@id": "gh:Episode/EP08/part3"
+      },
+      "position": 3,
+      "wordCount": 5,
+      "beatsCount": 1,
+      "antagonistBlock": false,
+      "sourcePath": "251022/wattpad/episodes/ep08/part3.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP09"
+      },
+      "part": {
+        "@id": "gh:Episode/EP09/part1"
+      },
+      "position": 1,
+      "wordCount": 18,
+      "beatsCount": 1,
+      "antagonistBlock": true,
+      "sourcePath": "251022/wattpad/episodes/ep09/part1.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP10"
+      },
+      "part": {
+        "@id": "gh:Episode/EP10/part1"
+      },
+      "position": 1,
+      "wordCount": 14,
+      "beatsCount": 1,
+      "antagonistBlock": true,
+      "sourcePath": "251022/wattpad/episodes/ep10/part1.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP11"
+      },
+      "part": {
+        "@id": "gh:Episode/EP11/part1"
+      },
+      "position": 1,
+      "wordCount": 10,
+      "beatsCount": 1,
+      "antagonistBlock": true,
+      "sourcePath": "251022/wattpad/episodes/ep11/part1.md"
+    },
+    {
+      "@type": "EpisodePart",
+      "episode": {
+        "@id": "gh:Episode/EP12"
+      },
+      "part": {
+        "@id": "gh:Episode/EP12/part1"
+      },
+      "position": 1,
+      "wordCount": 23,
+      "beatsCount": 1,
+      "antagonistBlock": true,
+      "sourcePath": "251022/wattpad/episodes/ep12/part1.md"
+    }
+  ]
+}
