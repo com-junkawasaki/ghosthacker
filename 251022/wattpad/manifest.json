@@ -2,6 +2,8 @@
   "title": "Ghost Hacker – Wattpad Edition",
   "language": "ja",
   "author": "GFTD.ai / Ghost Hacker",
+  "description": "水の都・東京を舞台に、ゴーストハッカーTamaki（環樹）が“いい感じ”を錨に孤独・依存・正義・神へ潜航するヒーリング×SF。",
+  "cover": "cover.jpg",
   "episodes": [
     {"id": "S1E1", "title": "The Loneliness of a Physicist", "tags": ["東京","水の都","非分離","アヤワスカ","いい感じ"]},
     {"id": "S2E2", "title": "愛／依存の区別", "tags": ["愛","依存","境界","猫","約束","赦し","いい感じ"]},
