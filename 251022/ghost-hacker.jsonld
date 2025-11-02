@@ -52,6 +52,7 @@
     "gh:infraNote": {"@type": "xsd:string"},
     "gh:operationalNote": {"@type": "xsd:string"},
     "gh:securityNote": {"@type": "xsd:string"},
+    "gh:hazardNote": {"@type": "xsd:string"},
     "gh:items": {"@id": "https://ghosthacker.example.com/vocab#items", "@type": "@id"}
   },
   "@graph": [
@@ -81,7 +82,11 @@
       ],
       "gh:hasTechnology": [
         {"@id": "tech:ghost-hacking"},
-        {"@id": "tech:tree-of-life-exam"}
+        {"@id": "tech:tree-of-life-exam"},
+        {"@id": "tech:urban-light-infra"},
+        {"@id": "tech:automation-bundle"},
+        {"@id": "bundle:ai-governance"},
+        {"@id": "bundle:sea-level-4m-risk"}
       ],
       "gh:hasCompany": [
         {"@id": "company:schwa"},
@@ -180,7 +185,8 @@
       "@type": "Place",
       "name": "Tokyo (水の都)",
       "description": "運河と川が縦横に走る水の街。沖縄の海のように澄んだ青い水。未来の東京で、ガラス張りの超高層ビルが立ち並ぶ。都市インフラは光による伝送・計算が一般化しており、街路・水路・建物に編み込まれた光の網が、人とGhostの往来を静かに支えている。2050年には温暖化対策として20世紀に築かれた高架道路を撤去し、運河と緑を中心とする都市へ再編。都市外周には、なお2000年代の風景も残存する。",
-      "gh:year": 2065
+      "gh:year": 2065,
+      "gh:hazardNote": "海面上昇（+4m想定）、大地震、台風大型化により都市設計を見直し。低地は水際線を後退させ、運河・緑・静域でレジリエンスを確保。"
     },
     {
       "@id": "setting:ghost-concept",
@@ -218,6 +224,29 @@
         {"@id": "policy:ai-compute-governance"},
         {"@id": "protocol:decentralized-ai-infra"},
         {"@id": "tech:compute-quota-ledger"}
+      ] },
+
+    { "@id": "scenario:sea-level-rise-4m", "@type": "Intangible", "name": "Sea Level Rise +4m",
+      "description": "長期スケールで海面上昇が+4mに達した世界。デルタ低地・港湾都市は恒常浸水域が拡大し、数億人規模の再都市化が必要。防御可能な都市と撤退・移転を迫られる地域の差が拡大。" },
+    { "@id": "risk:asia-delta", "@type": "Intangible", "name": "Asia Delta Risk",
+      "description": "メコン・ガンジス・揚子江デルタなど海抜1–3m帯が広がる地域。都市・農地・港湾が一体で浸水リスクに晒される。" },
+    { "@id": "risk:europe-lowlands", "@type": "Intangible", "name": "Europe Lowlands Risk",
+      "description": "低地国家・河口域の堤防システムが設計限界に接近。防潮門の再設計と恒常投資が必須。" },
+    { "@id": "risk:americas-coastal", "@type": "Intangible", "name": "Americas Coastal Risk",
+      "description": "空港・地下鉄などインフラ被害が深刻化。石灰岩地盤では防潮壁の効果が限定。" },
+    { "@id": "risk:africa-middleeast", "@type": "Intangible", "name": "Africa/MiddleEast Coastal Risk",
+      "description": "デルタ農業地帯の塩害・人口移動が広域に波及。" },
+    { "@id": "risk:pacific-islands", "@type": "Intangible", "name": "Pacific Islands Risk",
+      "description": "島嶼国は国家存続・移住の政策課題へ。文化・主権の扱いが国際合意の焦点。" },
+    { "@id": "bundle:sea-level-4m-risk", "@type": "Intangible", "name": "Sea Level +4m Risk Bundle",
+      "description": "+4mシナリオにおける地域別の典型リスクを束ねた参照ノード。",
+      "gh:items": [
+        {"@id": "scenario:sea-level-rise-4m"},
+        {"@id": "risk:asia-delta"},
+        {"@id": "risk:europe-lowlands"},
+        {"@id": "risk:americas-coastal"},
+        {"@id": "risk:africa-middleeast"},
+        {"@id": "risk:pacific-islands"}
       ] },
     {
       "@id": "tech:ghost-hacking",
