@@ -224,7 +224,13 @@ export const storyRouter = router({
   loadPlatforms: publicProcedure
     .query(async () => {
       try {
-        return await storyRepository.getPlatforms(PROJECT_ID);
+        const platforms = await storyRepository.getPlatforms(PROJECT_ID);
+        if (!platforms) return null;
+        return {
+          wattpad: platforms.wattpad,
+          webtoon: platforms.webtoon,
+          youtube: platforms.youtube,
+        };
       } catch (error) {
         console.error('Failed to load platforms', error);
         return null;

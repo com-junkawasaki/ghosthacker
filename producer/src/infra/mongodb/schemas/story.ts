@@ -116,9 +116,24 @@ export const PlatformSchema = z.object({
   _id: z.string().optional(),
   id: z.string(),
   projectId: z.string(),
-  name: z.string(),
-  url: z.string().optional(),
-  enabled: z.boolean().default(true),
+  wattpad: z.object({
+    chapterCount: z.number(),
+    includeImages: z.boolean(),
+    chapterLengthWords: z.tuple([z.number(), z.number()]).optional(),
+    imageFrequency: z.enum(['none', 'cover', 'inline-1', 'inline-3']).optional(),
+  }).optional(),
+  webtoon: z.object({
+    episodePanels: z.number(),
+    bubbleDensity: z.enum(['low', 'medium', 'high']),
+    readingPace: z.enum(['slow', 'standard', 'fast']),
+    soundEffects: z.boolean(),
+  }).optional(),
+  youtube: z.object({
+    targetDurationSec: z.number(),
+    aspectRatio: z.enum(['9:16', '16:9']),
+    captions: z.boolean(),
+    brollRatio: z.number(),
+  }).optional(),
   createdAt: z.date().default(() => new Date()),
   updatedAt: z.date().default(() => new Date()),
 });

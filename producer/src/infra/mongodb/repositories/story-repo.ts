@@ -374,34 +374,56 @@ export class StoryMongoRepository {
   }
 
   // Platform operations
-  async savePlatforms(projectId: string, platforms: Array<{ name: string; url?: string; enabled?: boolean }>): Promise<void> {
+  async savePlatforms(
+    projectId: string,
+    platforms: {
+      wattpad?: {
+        chapterCount: number;
+        includeImages: boolean;
+        chapterLengthWords?: [number, number];
+        imageFrequency?: 'none' | 'cover' | 'inline-1' | 'inline-3';
+      };
+      webtoon?: {
+        episodePanels: number;
+        bubbleDensity: 'low' | 'medium' | 'high';
+        readingPace: 'slow' | 'standard' | 'fast';
+        soundEffects: boolean;
+      };
+      youtube?: {
+        targetDurationSec: number;
+        aspectRatio: '9:16' | '16:9';
+        captions: boolean;
+        brollRatio: number;
+      };
+    }
+  ): Promise<void> {
     const db = await getMongoDb();
     const collection = db.collection<PlatformDocument>(COLLECTIONS.platforms);
     const now = new Date();
+    const platformsId = `${projectId}-platforms`;
 
-    // Delete existing platforms for this project
-    await collection.deleteMany({ projectId });
-
-    // Insert new platforms
-    const docs = platforms.map((platform, index) => ({
-      id: `${projectId}-platform-${index}`,
+    const doc: PlatformDocument = {
+      id: platformsId,
       projectId,
-      name: platform.name,
-      url: platform.url,
-      enabled: platform.enabled ?? true,
+      wattpad: platforms.wattpad,
+      webtoon: platforms.webtoon,
+      youtube: platforms.youtube,
       createdAt: now,
       updatedAt: now,
-    }));
+    };
 
-    if (docs.length > 0) {
-      await collection.insertMany(docs);
-    }
+    await collection.updateOne(
+      { id: platformsId },
+      { $set: doc },
+      { upsert: true }
+    );
   }
 
-  async getPlatforms(projectId: string): Promise<PlatformDocument[]> {
+  async getPlatforms(projectId: string): Promise<PlatformDocument | null> {
     const db = await getMongoDb();
     const collection = db.collection<PlatformDocument>(COLLECTIONS.platforms);
-    return await collection.find({ projectId }).toArray();
+    const platformsId = `${projectId}-platforms`;
+    return await collection.findOne({ id: platformsId });
   }
 
   // Canvas operations

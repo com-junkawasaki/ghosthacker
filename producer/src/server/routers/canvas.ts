@@ -9,7 +9,7 @@ export const canvasRouter = router({
     const saved = await storyRepository.getCanvas(PROJECT_ID);
     if (saved) return saved;
     // fallback derive from current saved entities
-    const [p, n, s, , eps] = await Promise.all([
+    const [p, n, s, pl, eps] = await Promise.all([
       storyRepository.getProject(PROJECT_ID),
       storyRepository.getNarrative(PROJECT_ID),
       storyRepository.getStyles(PROJECT_ID),
@@ -20,6 +20,11 @@ export const canvasRouter = router({
       project: p ? { title: p.title } : undefined,
       narrative: n ? { beats: n.beats } : undefined,
       styles: s ? { visual: s.visual, audio: s.audio } : undefined,
+      platforms: pl ? {
+        wattpad: pl.wattpad ? { chapterCount: pl.wattpad.chapterCount } : undefined,
+        webtoon: pl.webtoon ? { episodePanels: pl.webtoon.episodePanels } : undefined,
+        youtube: pl.youtube ? { targetDurationSec: pl.youtube.targetDurationSec, aspectRatio: pl.youtube.aspectRatio } : undefined,
+      } : undefined,
       episodes: (eps ?? []).map(e => ({ episodeId: e.episodeId, sourcePath: e.sourcePath })),
     });
   }),
@@ -38,7 +43,11 @@ export const canvasRouter = router({
       project: p ? { title: p.title } : undefined,
       narrative: n ? { beats: n.beats } : undefined,
       styles: s ? { visual: s.visual, audio: s.audio } : undefined,
-      platforms: pl ?? undefined,
+      platforms: pl ? {
+        wattpad: pl.wattpad ? { chapterCount: pl.wattpad.chapterCount } : undefined,
+        webtoon: pl.webtoon ? { episodePanels: pl.webtoon.episodePanels } : undefined,
+        youtube: pl.youtube ? { targetDurationSec: pl.youtube.targetDurationSec, aspectRatio: pl.youtube.aspectRatio } : undefined,
+      } : undefined,
       episodes: (eps ?? []).map(e => ({ episodeId: e.episodeId, sourcePath: e.sourcePath })),
     });
     await storyRepository.saveCanvas(PROJECT_ID, config);
