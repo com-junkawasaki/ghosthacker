@@ -1,6 +1,7 @@
 ---
 alwaysApply: true
 ---
+
 ## Wattpad構成・検証・感情分析ループ（常時適用ルール）
 
 - 構造要件（各 part）
@@ -11,6 +12,7 @@ alwaysApply: true
   - コマンド: `cd producer && pnpm analyze:structure`
   - 出力: `251022/wattpad/episode-structure.jsonld`
   - SHACL: `250806/episode.shacl.ttl` で検証（EpisodePartShape / EpisodePartAntagonistShape）
+  - wordCountの定義: "reading units"（CJKは約2文字=1単位、非CJKは空白区切り語数）。jaの下限は600、それ以外は800。
 - 感情分析ループ（文単位 → part集計 → episode）
   - 解析: `pnpm analyze:emotions:wattpad`
   - スコア: `pnpm score:emotions:wattpad`

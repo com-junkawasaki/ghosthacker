@@ -7,7 +7,28 @@ gh:EpisodePartShape a sh:NodeShape ;
   sh:targetClass gh:EpisodePart ;
   sh:property [ sh:path gh:episode ; sh:minCount 1 ] ;
   sh:property [ sh:path gh:position ; sh:datatype xsd:integer ; sh:minInclusive 1 ] ;
-  sh:property [ sh:path gh:wordCount ; sh:datatype xsd:integer ; sh:minInclusive 800 ; sh:maxInclusive 1500 ] ;
+  # wordCountは "reading units"（CJKは約2文字=1単位、非CJKは空白区切り語数）
+  # 言語によって下限を分岐（jaは>=600、その他>=800）
+  sh:sparql [
+    a sh:SPARQLConstraint ;
+    sh:message "wordCount (reading units) must be within language-aware bounds" ;
+    sh:select """
+      PREFIX gh: <https://ghosthacker.junkawasaki.com/gh#>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      SELECT ?this WHERE {
+        ?this gh:wordCount ?wc .
+        OPTIONAL { ?this gh:language ?lang }
+        BIND(xsd:integer(?wc) AS ?w)
+        FILTER(
+          (
+            bound(?lang) && ?lang = "ja" && ( ?w < 600 || ?w > 1500 )
+          ) || (
+            (!bound(?lang) || ?lang != "ja") && ( ?w < 800 || ?w > 1500 )
+          )
+        )
+      }
+    """
+  ] ;
   sh:property [ sh:path gh:beatsCount ; sh:datatype xsd:integer ; sh:minInclusive 1 ] .
 
 # Ensure part1 has antagonist block annotated

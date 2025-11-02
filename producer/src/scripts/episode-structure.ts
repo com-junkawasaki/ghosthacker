@@ -15,6 +15,8 @@ type PartInfo = {
   partPath: string;
   position: number;
   wordCount: number;
+  readingUnits: number;
+  language: string;
   beatsCount: number;
   antagonistBlock: boolean;
 };
@@ -71,11 +73,14 @@ function analyze(): PartInfo[] {
     for (const p of ep.parts) {
       pos += 1;
       const txt = fs.readFileSync(p, "utf8");
+      const wc = countWords(txt);
       results.push({
         episodeId: ep.episodeId,
         partPath: path.relative(root, p),
         position: pos,
-        wordCount: countWords(txt),
+        wordCount: wc,
+        readingUnits: wc,
+        language: "ja",
         beatsCount: countBeats(txt),
         antagonistBlock: hasAntagonistBlock(txt),
       });
@@ -96,6 +101,8 @@ function toJsonLd(parts: PartInfo[]) {
     part: { "@id": "gh:part", "@type": "@id" },
     position: { "@id": "gh:position", "@type": "xsd:integer" },
     wordCount: { "@id": "gh:wordCount", "@type": "xsd:integer" },
+    readingUnits: { "@id": "gh:readingUnits", "@type": "xsd:integer" },
+    language: { "@id": "gh:language", "@type": "xsd:string" },
     beatsCount: { "@id": "gh:beatsCount", "@type": "xsd:integer" },
     antagonistBlock: { "@id": "gh:antagonistBlock", "@type": "xsd:boolean" },
     sourcePath: { "@id": "gh:sourcePath", "@type": "xsd:string" },
@@ -109,6 +116,8 @@ function toJsonLd(parts: PartInfo[]) {
       part: { "@id": `gh:Episode/${p.episodeId}/part${p.position}` },
       position: p.position,
       wordCount: p.wordCount,
+      readingUnits: p.readingUnits,
+      language: p.language,
       beatsCount: p.beatsCount,
       antagonistBlock: p.antagonistBlock,
       sourcePath: p.partPath,

@@ -22,6 +22,14 @@
       "@id": "gh:wordCount",
       "@type": "xsd:integer"
     },
+    "readingUnits": {
+      "@id": "gh:readingUnits",
+      "@type": "xsd:integer"
+    },
+    "language": {
+      "@id": "gh:language",
+      "@type": "xsd:string"
+    },
     "beatsCount": {
       "@id": "gh:beatsCount",
       "@type": "xsd:integer"
@@ -45,7 +53,9 @@
         "@id": "gh:Episode/EP01/part1"
       },
       "position": 1,
-      "wordCount": 216,
+      "wordCount": 279,
+      "readingUnits": 279,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep01/part1.md"
@@ -59,7 +69,9 @@
         "@id": "gh:Episode/EP01/part2"
       },
       "position": 2,
-      "wordCount": 232,
+      "wordCount": 255,
+      "readingUnits": 255,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep01/part2.md"
@@ -73,7 +85,9 @@
         "@id": "gh:Episode/EP01/part3"
       },
       "position": 3,
-      "wordCount": 87,
+      "wordCount": 105,
+      "readingUnits": 105,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep01/part3.md"
@@ -87,7 +101,9 @@
         "@id": "gh:Episode/EP02/part1"
       },
       "position": 1,
-      "wordCount": 154,
+      "wordCount": 173,
+      "readingUnits": 173,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep02/part1.md"
@@ -101,7 +117,9 @@
         "@id": "gh:Episode/EP02/part2"
       },
       "position": 2,
-      "wordCount": 125,
+      "wordCount": 168,
+      "readingUnits": 168,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep02/part2.md"
@@ -115,7 +133,9 @@
         "@id": "gh:Episode/EP02/part3"
       },
       "position": 3,
-      "wordCount": 78,
+      "wordCount": 104,
+      "readingUnits": 104,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep02/part3.md"
@@ -130,6 +150,8 @@
       },
       "position": 1,
       "wordCount": 688,
+      "readingUnits": 688,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep03/part1.md"
@@ -144,6 +166,8 @@
       },
       "position": 2,
       "wordCount": 498,
+      "readingUnits": 498,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep03/part2.md"
@@ -157,7 +181,9 @@
         "@id": "gh:Episode/EP03/part3"
       },
       "position": 3,
-      "wordCount": 418,
+      "wordCount": 420,
+      "readingUnits": 420,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep03/part3.md"
@@ -171,7 +197,9 @@
         "@id": "gh:Episode/EP04/part1"
       },
       "position": 1,
-      "wordCount": 114,
+      "wordCount": 129,
+      "readingUnits": 129,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep04/part1.md"
@@ -185,7 +213,9 @@
         "@id": "gh:Episode/EP04/part2"
       },
       "position": 2,
-      "wordCount": 68,
+      "wordCount": 74,
+      "readingUnits": 74,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep04/part2.md"
@@ -200,6 +230,8 @@
       },
       "position": 3,
       "wordCount": 48,
+      "readingUnits": 48,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep04/part3.md"
@@ -213,7 +245,9 @@
         "@id": "gh:Episode/EP05/part1"
       },
       "position": 1,
-      "wordCount": 82,
+      "wordCount": 97,
+      "readingUnits": 97,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep05/part1.md"
@@ -227,7 +261,9 @@
         "@id": "gh:Episode/EP05/part2"
       },
       "position": 2,
-      "wordCount": 117,
+      "wordCount": 120,
+      "readingUnits": 120,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep05/part2.md"
@@ -241,7 +277,9 @@
         "@id": "gh:Episode/EP05/part3"
       },
       "position": 3,
-      "wordCount": 100,
+      "wordCount": 103,
+      "readingUnits": 103,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep05/part3.md"
@@ -255,7 +293,9 @@
         "@id": "gh:Episode/EP06/part1"
       },
       "position": 1,
-      "wordCount": 65,
+      "wordCount": 80,
+      "readingUnits": 80,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep06/part1.md"
@@ -269,7 +309,9 @@
         "@id": "gh:Episode/EP06/part2"
       },
       "position": 2,
-      "wordCount": 54,
+      "wordCount": 59,
+      "readingUnits": 59,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep06/part2.md"
@@ -283,7 +325,9 @@
         "@id": "gh:Episode/EP06/part3"
       },
       "position": 3,
-      "wordCount": 46,
+      "wordCount": 48,
+      "readingUnits": 48,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep06/part3.md"
@@ -297,7 +341,9 @@
         "@id": "gh:Episode/EP07/part1"
       },
       "position": 1,
-      "wordCount": 79,
+      "wordCount": 95,
+      "readingUnits": 95,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep07/part1.md"
@@ -312,6 +358,8 @@
       },
       "position": 2,
       "wordCount": 46,
+      "readingUnits": 46,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep07/part2.md"
@@ -326,6 +374,8 @@
       },
       "position": 3,
       "wordCount": 27,
+      "readingUnits": 27,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep07/part3.md"
@@ -339,7 +389,9 @@
         "@id": "gh:Episode/EP08/part1"
       },
       "position": 1,
-      "wordCount": 72,
+      "wordCount": 88,
+      "readingUnits": 88,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep08/part1.md"
@@ -354,6 +406,8 @@
       },
       "position": 2,
       "wordCount": 71,
+      "readingUnits": 71,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep08/part2.md"
@@ -368,6 +422,8 @@
       },
       "position": 3,
       "wordCount": 63,
+      "readingUnits": 63,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep08/part3.md"
@@ -381,7 +437,9 @@
         "@id": "gh:Episode/EP09/part1"
       },
       "position": 1,
-      "wordCount": 266,
+      "wordCount": 270,
+      "readingUnits": 270,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep09/part1.md"
@@ -395,7 +453,9 @@
         "@id": "gh:Episode/EP10/part1"
       },
       "position": 1,
-      "wordCount": 150,
+      "wordCount": 156,
+      "readingUnits": 156,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep10/part1.md"
@@ -410,6 +470,8 @@
       },
       "position": 1,
       "wordCount": 166,
+      "readingUnits": 166,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep11/part1.md"
@@ -424,6 +486,8 @@
       },
       "position": 1,
       "wordCount": 124,
+      "readingUnits": 124,
+      "language": "ja",
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep12/part1.md"
