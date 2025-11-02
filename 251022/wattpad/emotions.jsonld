@@ -69,7 +69,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep01/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.955Z",
+      "createdAt": "2025-11-02T15:11:47.261Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -649,7 +649,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep01/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.956Z",
+      "createdAt": "2025-11-02T15:11:47.324Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -1628,7 +1628,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep01/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.956Z",
+      "createdAt": "2025-11-02T15:11:47.330Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -2098,7 +2098,7 @@
         "251022/wattpad/episodes/ep01/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.957Z",
+      "createdAt": "2025-11-02T15:11:47.331Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -2333,7 +2333,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep02/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.957Z",
+      "createdAt": "2025-11-02T15:11:47.335Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -2799,27 +2799,37 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep02/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.957Z",
+      "createdAt": "2025-11-02T15:11:47.338Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "trust",
-          "score": 0.8236
+          "score": 0.6618
         },
         {
           "@type": "EmotionScore",
           "emotion": "sadness",
-          "score": 0.1764
+          "score": 0.0882
         },
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0
+          "score": 0.0648
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.0648
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.0648
         },
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0
+          "score": 0.0555
         },
         {
           "@type": "EmotionScore",
@@ -2839,16 +2849,6 @@
         {
           "@type": "EmotionScore",
           "emotion": "disgust",
-          "score": 0
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "relief",
-          "score": 0
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "hope",
           "score": 0
         }
       ],
@@ -3194,6 +3194,234 @@
               "score": 0
             }
           ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 7,
+          "segmentText": "私はAoiの歩幅に合わせて階段を降りる。半歩、休む。半歩、進む。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 8,
+          "segmentText": "Nei-chan「ASC、少し落とす？」\n「うん。今は『待つ』に合わせる」\n\n猫が踊り場で立ち止まる。こちらを見る。来ない。——それでいい。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 1
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 9,
+          "segmentText": "私は足元で神楽を一拍。合図。スロットルを閉じ気味に保つ。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 10,
+          "segmentText": "Aoi「怖いけど、静かだ」\n「その静けさが、戻れる道になる」\n\n運河の風が角を曲がる。街の光の網が、低く、やさしく鳴った。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.2593
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.2593
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.2593
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0.2222
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            }
+          ]
         }
       ]
     },
@@ -3208,32 +3436,32 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep02/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.957Z",
+      "createdAt": "2025-11-02T15:11:47.339Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0.48
+        },
+        {
+          "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.2646
+          "score": 0.1588
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.2646
+          "score": 0.1588
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.2646
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "trust",
-          "score": 0.1333
+          "score": 0.1588
         },
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0.0727
+          "score": 0.0436
         },
         {
           "@type": "EmotionScore",
@@ -3432,6 +3660,177 @@
               "score": 0
             }
           ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 4,
+          "segmentText": "Nei-chan「ASC、落とすね」\n「うん。ありがとう」\n\nAoi「明日は？」\n「三呼吸の練習を一回。猫に『待つ』をお願い」\nAoiが頷く。窓辺の影がやわらぐ。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 1
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 5,
+          "segmentText": "私は手帳に一行。『待つ＝関係の余白を守る技術』。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 1
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 6,
+          "segmentText": "運河の風が、そっと部屋を撫でた。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
         }
       ]
     },
@@ -3450,37 +3849,37 @@
         "251022/wattpad/episodes/ep02/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.957Z",
+      "createdAt": "2025-11-02T15:11:47.339Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "trust",
-          "score": 0.4353
+          "score": 0.5497
         },
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.161
+          "score": 0.126
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.161
+          "score": 0.126
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.161
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "sadness",
-          "score": 0.0504
+          "score": 0.126
         },
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0.0312
+          "score": 0.04
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0.0321
         },
         {
           "@type": "EmotionScore",
@@ -3567,22 +3966,32 @@
             {
               "@type": "EmotionScore",
               "emotion": "trust",
-              "score": 0.8236
+              "score": 0.6618
             },
             {
               "@type": "EmotionScore",
               "emotion": "sadness",
-              "score": 0.1764
+              "score": 0.0882
             },
             {
               "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0
+              "score": 0.0648
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.0648
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.0648
             },
             {
               "@type": "EmotionScore",
               "emotion": "fear",
-              "score": 0
+              "score": 0.0555
             },
             {
               "@type": "EmotionScore",
@@ -3603,16 +4012,6 @@
               "@type": "EmotionScore",
               "emotion": "disgust",
               "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "relief",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "hope",
-              "score": 0
             }
           ]
         },
@@ -3622,28 +4021,28 @@
           "emotionVector": [
             {
               "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.48
+            },
+            {
+              "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0.2646
+              "score": 0.1588
             },
             {
               "@type": "EmotionScore",
               "emotion": "relief",
-              "score": 0.2646
+              "score": 0.1588
             },
             {
               "@type": "EmotionScore",
               "emotion": "hope",
-              "score": 0.2646
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "trust",
-              "score": 0.1333
+              "score": 0.1588
             },
             {
               "@type": "EmotionScore",
               "emotion": "fear",
-              "score": 0.0727
+              "score": 0.0436
             },
             {
               "@type": "EmotionScore",
@@ -3685,7 +4084,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep03/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.957Z",
+      "createdAt": "2025-11-02T15:11:47.340Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -4198,7 +4597,7 @@
         {
           "@type": "EmotionProfile",
           "position": 9,
-          "segmentText": "——診断は済んだ。次は、返し方だ。",
+          "segmentText": "Nei-chan「ASC、合わせる？」\n私は足元で神楽を一拍。合図。出力を推奨値に合わせ、視界のザラつきが半歩ほど減る。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -4255,6 +4654,63 @@
         {
           "@type": "EmotionProfile",
           "position": 10,
+          "segmentText": "——診断は済んだ。次は、返し方だ。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 11,
           "segmentText": "帰路、依頼人と短い“その場練習”をする。廊下の壁に、想像の線を引く。「ここから先は“相手の自由”。あなたは、ここに立つ」\n「立てるかな」\n「立てる。立てない日は、三つ戻る。水／呼吸／猫」\n\nKaedeがメモを送る。『Mirror Hand: 今夜動く可能性 高』。私は頷く。予告があるだけ、今日は易い。対処は、前もって半分すむ。",
           "emotionVector": [
             {
@@ -4311,7 +4767,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 11,
+          "position": 12,
           "segmentText": "エレベーターの鏡に、うっすらと別の手が映る気がした。Ledger Thiefの古い手口——映り込みで、相手を自分に見せる。「あなたの“正しさ”は、たいてい正しい。でも、全部じゃない」\n私は自分にも言い聞かせる。正しさの中に、優しさの椅子を一つ置く。座れなくていい。ある、だけで、呼吸が変わる。",
           "emotionVector": [
             {
@@ -4368,7 +4824,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 12,
+          "position": 13,
           "segmentText": "地上の光。運河の風。依頼人が小さく息を吸う。「やってみます」\n「うん。やってみる、が一番強い言葉」\n\nSchwaに戻る前、私は手帳を開き、一行を足す。『診断＝関係の地図化、返し方＝戻れる道づくり』。地図ができれば、迷っても帰れる。",
           "emotionVector": [
             {
@@ -4436,37 +4892,37 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep03/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.958Z",
+      "createdAt": "2025-11-02T15:11:47.340Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0.437
+        },
+        {
+          "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.2302
+          "score": 0.1535
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.2302
+          "score": 0.1535
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.2302
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "trust",
-          "score": 0.1555
+          "score": 0.1535
         },
         {
           "@type": "EmotionScore",
           "emotion": "anticipation",
-          "score": 0.1183
+          "score": 0.0789
         },
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0.0355
+          "score": 0.0237
         },
         {
           "@type": "EmotionScore",
@@ -4607,6 +5063,63 @@
         {
           "@type": "EmotionProfile",
           "position": 3,
+          "segmentText": "Nei-chan「ASC、維持で。次、合図ちょうだい」\n私は足元で小さく神楽を一拍。テンポを半歩落とし、“待つ契約”のラインを部屋に敷く。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 1
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 4,
           "segmentText": "Ledger Thiefは“帳尻合わせ”を装って近づく。例えば——『今日の分もやっておこう』。私はその影を見失わない。「今日の分は、今日の自分で。未来の自分を担保にしない」\n\n依頼人が小さく頷く。「明日の私に、借金しない」\n「そう」\n\n私は『返し方』のテンプレを送り、通知を全部オフにする時間帯を二人で決める。Nei-chanがサマリを生成。「今日の返し方：睡眠7h、食事2回、連絡3件→1件、散歩20分」\n\n「やる」\n「やる、は強い」\n\n帰り道の風。私は胸に手を置く。Ledger Thiefは“正しさ”の声色がうまい。だから、私は“よさ”の小さな積み重ねで勝つ。赤い帯は、点へ、そして灯へ戻る。",
           "emotionVector": [
             {
@@ -4663,7 +5176,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 4,
+          "position": 5,
           "segmentText": "夜。依頼人から短いメッセージ。「送りたい衝動、きた」\n私は一言だけ返す。「三呼吸」\n既読がつく。十秒。二十秒。『三呼吸、終わった。送らないで、待つにする』\n胸があたたかくなる。「よくやった。水を一口」\n\n窓辺で、私も水を飲む。返し方は、現場で鍛えられる。遠くで、Ledger Thiefの帳簿が一枚、閉じる音がした気がした。閉じる音は小さい。小さいから、聞き逃さない。",
           "emotionVector": [
             {
@@ -4720,8 +5233,8 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 5,
-          "segmentText": "「Tamaki」\n背後でHibikiの声。「音、整えた。寝入りが楽になる」\n「ありがとう」\n「君も、返し方」\n「うん。今日は、早く寝る」\n\nカーテンの隙間から、街の灯が斜めに入る。私は明日のチェック欄に、まだ空欄の『散歩』を書き込んだ。返し方は、明日の私に届く。",
+          "position": 6,
+          "segmentText": "Aoi「Tamaki、いまのもmicro-turn？」\n「うん。小さく勝つ。積む」\n\n「Tamaki」\n背後でHibikiの声。「音、整えた。寝入りが楽になる」\n「ありがとう」\n「君も、返し方」\n「うん。今日は、早く寝る」\n\nカーテンの隙間から、街の灯が斜めに入る。私は明日のチェック欄に、まだ空欄の『散歩』を書き込んだ。返し方は、明日の私に届く。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -4788,32 +5301,32 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep03/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.958Z",
+      "createdAt": "2025-11-02T15:11:47.341Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.263
+          "score": 0.2708
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.263
+          "score": 0.2708
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.263
+          "score": 0.2708
         },
         {
           "@type": "EmotionScore",
           "emotion": "anticipation",
-          "score": 0.125
+          "score": 0.1111
         },
         {
           "@type": "EmotionScore",
           "emotion": "trust",
-          "score": 0.086
+          "score": 0.0764
         },
         {
           "@type": "EmotionScore",
@@ -5753,6 +6266,234 @@
               "score": 0
             }
           ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 17,
+          "segmentText": "Nei-chan「ASC、落とすね」\n「うん。十分」\n\n私は足元で神楽を一拍。終わりの合図。胸の深いところに、静かな『OK』が灯る。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 18,
+          "segmentText": "窓の外で、水音が一度だけ寄せて、離れる。解放。余韻。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.3333
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.3333
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.3333
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 19,
+          "segmentText": "Aoi「明日は？」\n「二十歩の散歩。猫に挨拶」\n「先生に？」\n「先生に」\n\n手帳に一行。『返し方＝戻れる道の維持』。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 20,
+          "segmentText": "街の光の網が低く鳴り、部屋にやわらかな余白が残った。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
         }
       ]
     },
@@ -5771,37 +6512,37 @@
         "251022/wattpad/episodes/ep03/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.958Z",
+      "createdAt": "2025-11-02T15:11:47.341Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.2394
+          "score": 0.2303
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.2394
+          "score": 0.2303
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.2394
+          "score": 0.2303
         },
         {
           "@type": "EmotionScore",
           "emotion": "trust",
-          "score": 0.1635
+          "score": 0.2055
         },
         {
           "@type": "EmotionScore",
           "emotion": "anticipation",
-          "score": 0.1021
+          "score": 0.0893
         },
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0.0164
+          "score": 0.0143
         },
         {
           "@type": "EmotionScore",
@@ -5887,33 +6628,33 @@
           "emotionVector": [
             {
               "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.437
+            },
+            {
+              "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0.2302
+              "score": 0.1535
             },
             {
               "@type": "EmotionScore",
               "emotion": "relief",
-              "score": 0.2302
+              "score": 0.1535
             },
             {
               "@type": "EmotionScore",
               "emotion": "hope",
-              "score": 0.2302
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "trust",
-              "score": 0.1555
+              "score": 0.1535
             },
             {
               "@type": "EmotionScore",
               "emotion": "anticipation",
-              "score": 0.1183
+              "score": 0.0789
             },
             {
               "@type": "EmotionScore",
               "emotion": "fear",
-              "score": 0.0355
+              "score": 0.0237
             },
             {
               "@type": "EmotionScore",
@@ -5944,27 +6685,27 @@
             {
               "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0.263
+              "score": 0.2708
             },
             {
               "@type": "EmotionScore",
               "emotion": "relief",
-              "score": 0.263
+              "score": 0.2708
             },
             {
               "@type": "EmotionScore",
               "emotion": "hope",
-              "score": 0.263
+              "score": 0.2708
             },
             {
               "@type": "EmotionScore",
               "emotion": "anticipation",
-              "score": 0.125
+              "score": 0.1111
             },
             {
               "@type": "EmotionScore",
               "emotion": "trust",
-              "score": 0.086
+              "score": 0.0764
             },
             {
               "@type": "EmotionScore",
@@ -6006,7 +6747,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep04/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.958Z",
+      "createdAt": "2025-11-02T15:11:47.341Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -6358,7 +7099,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep04/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.958Z",
+      "createdAt": "2025-11-02T15:11:47.342Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -6596,7 +7337,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep04/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.959Z",
+      "createdAt": "2025-11-02T15:11:47.342Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -6781,7 +7522,7 @@
         "251022/wattpad/episodes/ep04/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.959Z",
+      "createdAt": "2025-11-02T15:11:47.342Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -7016,7 +7757,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep05/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.959Z",
+      "createdAt": "2025-11-02T15:11:47.342Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -7311,7 +8052,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep05/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.959Z",
+      "createdAt": "2025-11-02T15:11:47.342Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -7549,7 +8290,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep05/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.959Z",
+      "createdAt": "2025-11-02T15:11:47.342Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -7848,7 +8589,7 @@
         "251022/wattpad/episodes/ep05/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.959Z",
+      "createdAt": "2025-11-02T15:11:47.342Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -8083,7 +8824,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep06/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.959Z",
+      "createdAt": "2025-11-02T15:11:47.343Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -8321,7 +9062,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep06/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.959Z",
+      "createdAt": "2025-11-02T15:11:47.343Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -8502,7 +9243,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep06/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.959Z",
+      "createdAt": "2025-11-02T15:11:47.343Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -8687,7 +9428,7 @@
         "251022/wattpad/episodes/ep06/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.959Z",
+      "createdAt": "2025-11-02T15:11:47.343Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -8922,7 +9663,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep07/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.959Z",
+      "createdAt": "2025-11-02T15:11:47.353Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -9217,7 +9958,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep07/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.959Z",
+      "createdAt": "2025-11-02T15:11:47.359Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -9341,7 +10082,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep07/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.959Z",
+      "createdAt": "2025-11-02T15:11:47.360Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -9469,7 +10210,7 @@
         "251022/wattpad/episodes/ep07/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.959Z",
+      "createdAt": "2025-11-02T15:11:47.360Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -9704,7 +10445,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep08/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.960Z",
+      "createdAt": "2025-11-02T15:11:47.369Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -9942,7 +10683,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep08/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.960Z",
+      "createdAt": "2025-11-02T15:11:47.372Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -10180,7 +10921,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep08/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.960Z",
+      "createdAt": "2025-11-02T15:11:47.375Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -10365,7 +11106,7 @@
         "251022/wattpad/episodes/ep08/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.960Z",
+      "createdAt": "2025-11-02T15:11:47.375Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -10600,7 +11341,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep01/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.960Z",
+      "createdAt": "2025-11-02T15:11:47.376Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -11180,7 +11921,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep01/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.960Z",
+      "createdAt": "2025-11-02T15:11:47.378Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -12159,7 +12900,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep01/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.960Z",
+      "createdAt": "2025-11-02T15:11:47.379Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -12629,7 +13370,7 @@
         "251022/wattpad/episodes/ep01/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.960Z",
+      "createdAt": "2025-11-02T15:11:47.379Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -12864,7 +13605,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep02/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.961Z",
+      "createdAt": "2025-11-02T15:11:47.379Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -13330,27 +14071,37 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep02/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.961Z",
+      "createdAt": "2025-11-02T15:11:47.380Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "trust",
-          "score": 0.8236
+          "score": 0.6618
         },
         {
           "@type": "EmotionScore",
           "emotion": "sadness",
-          "score": 0.1764
+          "score": 0.0882
         },
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0
+          "score": 0.0648
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "relief",
+          "score": 0.0648
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "hope",
+          "score": 0.0648
         },
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0
+          "score": 0.0555
         },
         {
           "@type": "EmotionScore",
@@ -13370,16 +14121,6 @@
         {
           "@type": "EmotionScore",
           "emotion": "disgust",
-          "score": 0
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "relief",
-          "score": 0
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "hope",
           "score": 0
         }
       ],
@@ -13725,6 +14466,234 @@
               "score": 0
             }
           ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 7,
+          "segmentText": "私はAoiの歩幅に合わせて階段を降りる。半歩、休む。半歩、進む。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 8,
+          "segmentText": "Nei-chan「ASC、少し落とす？」\n「うん。今は『待つ』に合わせる」\n\n猫が踊り場で立ち止まる。こちらを見る。来ない。——それでいい。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 1
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 9,
+          "segmentText": "私は足元で神楽を一拍。合図。スロットルを閉じ気味に保つ。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 10,
+          "segmentText": "Aoi「怖いけど、静かだ」\n「その静けさが、戻れる道になる」\n\n運河の風が角を曲がる。街の光の網が、低く、やさしく鳴った。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.2593
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.2593
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.2593
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0.2222
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            }
+          ]
         }
       ]
     },
@@ -13739,32 +14708,32 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep02/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.961Z",
+      "createdAt": "2025-11-02T15:11:47.380Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0.48
+        },
+        {
+          "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.2646
+          "score": 0.1588
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.2646
+          "score": 0.1588
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.2646
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "trust",
-          "score": 0.1333
+          "score": 0.1588
         },
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0.0727
+          "score": 0.0436
         },
         {
           "@type": "EmotionScore",
@@ -13963,6 +14932,177 @@
               "score": 0
             }
           ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 4,
+          "segmentText": "Nei-chan「ASC、落とすね」\n「うん。ありがとう」\n\nAoi「明日は？」\n「三呼吸の練習を一回。猫に『待つ』をお願い」\nAoiが頷く。窓辺の影がやわらぐ。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 1
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 5,
+          "segmentText": "私は手帳に一行。『待つ＝関係の余白を守る技術』。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 1
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 6,
+          "segmentText": "運河の風が、そっと部屋を撫でた。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
         }
       ]
     },
@@ -13981,37 +15121,37 @@
         "251022/wattpad/episodes/ep02/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.961Z",
+      "createdAt": "2025-11-02T15:11:47.380Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "trust",
-          "score": 0.4353
+          "score": 0.5497
         },
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.161
+          "score": 0.126
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.161
+          "score": 0.126
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.161
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "sadness",
-          "score": 0.0504
+          "score": 0.126
         },
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0.0312
+          "score": 0.04
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "sadness",
+          "score": 0.0321
         },
         {
           "@type": "EmotionScore",
@@ -14098,22 +15238,32 @@
             {
               "@type": "EmotionScore",
               "emotion": "trust",
-              "score": 0.8236
+              "score": 0.6618
             },
             {
               "@type": "EmotionScore",
               "emotion": "sadness",
-              "score": 0.1764
+              "score": 0.0882
             },
             {
               "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0
+              "score": 0.0648
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.0648
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.0648
             },
             {
               "@type": "EmotionScore",
               "emotion": "fear",
-              "score": 0
+              "score": 0.0555
             },
             {
               "@type": "EmotionScore",
@@ -14134,16 +15284,6 @@
               "@type": "EmotionScore",
               "emotion": "disgust",
               "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "relief",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "hope",
-              "score": 0
             }
           ]
         },
@@ -14153,28 +15293,28 @@
           "emotionVector": [
             {
               "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.48
+            },
+            {
+              "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0.2646
+              "score": 0.1588
             },
             {
               "@type": "EmotionScore",
               "emotion": "relief",
-              "score": 0.2646
+              "score": 0.1588
             },
             {
               "@type": "EmotionScore",
               "emotion": "hope",
-              "score": 0.2646
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "trust",
-              "score": 0.1333
+              "score": 0.1588
             },
             {
               "@type": "EmotionScore",
               "emotion": "fear",
-              "score": 0.0727
+              "score": 0.0436
             },
             {
               "@type": "EmotionScore",
@@ -14216,7 +15356,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep03/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.961Z",
+      "createdAt": "2025-11-02T15:11:47.381Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -14729,7 +15869,7 @@
         {
           "@type": "EmotionProfile",
           "position": 9,
-          "segmentText": "——診断は済んだ。次は、返し方だ。",
+          "segmentText": "Nei-chan「ASC、合わせる？」\n私は足元で神楽を一拍。合図。出力を推奨値に合わせ、視界のザラつきが半歩ほど減る。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -14786,6 +15926,63 @@
         {
           "@type": "EmotionProfile",
           "position": 10,
+          "segmentText": "——診断は済んだ。次は、返し方だ。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 11,
           "segmentText": "帰路、依頼人と短い“その場練習”をする。廊下の壁に、想像の線を引く。「ここから先は“相手の自由”。あなたは、ここに立つ」\n「立てるかな」\n「立てる。立てない日は、三つ戻る。水／呼吸／猫」\n\nKaedeがメモを送る。『Mirror Hand: 今夜動く可能性 高』。私は頷く。予告があるだけ、今日は易い。対処は、前もって半分すむ。",
           "emotionVector": [
             {
@@ -14842,7 +16039,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 11,
+          "position": 12,
           "segmentText": "エレベーターの鏡に、うっすらと別の手が映る気がした。Ledger Thiefの古い手口——映り込みで、相手を自分に見せる。「あなたの“正しさ”は、たいてい正しい。でも、全部じゃない」\n私は自分にも言い聞かせる。正しさの中に、優しさの椅子を一つ置く。座れなくていい。ある、だけで、呼吸が変わる。",
           "emotionVector": [
             {
@@ -14899,7 +16096,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 12,
+          "position": 13,
           "segmentText": "地上の光。運河の風。依頼人が小さく息を吸う。「やってみます」\n「うん。やってみる、が一番強い言葉」\n\nSchwaに戻る前、私は手帳を開き、一行を足す。『診断＝関係の地図化、返し方＝戻れる道づくり』。地図ができれば、迷っても帰れる。",
           "emotionVector": [
             {
@@ -14967,37 +16164,37 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep03/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.961Z",
+      "createdAt": "2025-11-02T15:11:47.381Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0.437
+        },
+        {
+          "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.2302
+          "score": 0.1535
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.2302
+          "score": 0.1535
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.2302
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "trust",
-          "score": 0.1555
+          "score": 0.1535
         },
         {
           "@type": "EmotionScore",
           "emotion": "anticipation",
-          "score": 0.1183
+          "score": 0.0789
         },
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0.0355
+          "score": 0.0237
         },
         {
           "@type": "EmotionScore",
@@ -15138,6 +16335,63 @@
         {
           "@type": "EmotionProfile",
           "position": 3,
+          "segmentText": "Nei-chan「ASC、維持で。次、合図ちょうだい」\n私は足元で小さく神楽を一拍。テンポを半歩落とし、“待つ契約”のラインを部屋に敷く。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 1
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 4,
           "segmentText": "Ledger Thiefは“帳尻合わせ”を装って近づく。例えば——『今日の分もやっておこう』。私はその影を見失わない。「今日の分は、今日の自分で。未来の自分を担保にしない」\n\n依頼人が小さく頷く。「明日の私に、借金しない」\n「そう」\n\n私は『返し方』のテンプレを送り、通知を全部オフにする時間帯を二人で決める。Nei-chanがサマリを生成。「今日の返し方：睡眠7h、食事2回、連絡3件→1件、散歩20分」\n\n「やる」\n「やる、は強い」\n\n帰り道の風。私は胸に手を置く。Ledger Thiefは“正しさ”の声色がうまい。だから、私は“よさ”の小さな積み重ねで勝つ。赤い帯は、点へ、そして灯へ戻る。",
           "emotionVector": [
             {
@@ -15194,7 +16448,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 4,
+          "position": 5,
           "segmentText": "夜。依頼人から短いメッセージ。「送りたい衝動、きた」\n私は一言だけ返す。「三呼吸」\n既読がつく。十秒。二十秒。『三呼吸、終わった。送らないで、待つにする』\n胸があたたかくなる。「よくやった。水を一口」\n\n窓辺で、私も水を飲む。返し方は、現場で鍛えられる。遠くで、Ledger Thiefの帳簿が一枚、閉じる音がした気がした。閉じる音は小さい。小さいから、聞き逃さない。",
           "emotionVector": [
             {
@@ -15251,8 +16505,8 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 5,
-          "segmentText": "「Tamaki」\n背後でHibikiの声。「音、整えた。寝入りが楽になる」\n「ありがとう」\n「君も、返し方」\n「うん。今日は、早く寝る」\n\nカーテンの隙間から、街の灯が斜めに入る。私は明日のチェック欄に、まだ空欄の『散歩』を書き込んだ。返し方は、明日の私に届く。",
+          "position": 6,
+          "segmentText": "Aoi「Tamaki、いまのもmicro-turn？」\n「うん。小さく勝つ。積む」\n\n「Tamaki」\n背後でHibikiの声。「音、整えた。寝入りが楽になる」\n「ありがとう」\n「君も、返し方」\n「うん。今日は、早く寝る」\n\nカーテンの隙間から、街の灯が斜めに入る。私は明日のチェック欄に、まだ空欄の『散歩』を書き込んだ。返し方は、明日の私に届く。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -15319,32 +16573,32 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep03/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.961Z",
+      "createdAt": "2025-11-02T15:11:47.381Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.263
+          "score": 0.2708
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.263
+          "score": 0.2708
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.263
+          "score": 0.2708
         },
         {
           "@type": "EmotionScore",
           "emotion": "anticipation",
-          "score": 0.125
+          "score": 0.1111
         },
         {
           "@type": "EmotionScore",
           "emotion": "trust",
-          "score": 0.086
+          "score": 0.0764
         },
         {
           "@type": "EmotionScore",
@@ -16284,6 +17538,234 @@
               "score": 0
             }
           ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 17,
+          "segmentText": "Nei-chan「ASC、落とすね」\n「うん。十分」\n\n私は足元で神楽を一拍。終わりの合図。胸の深いところに、静かな『OK』が灯る。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 18,
+          "segmentText": "窓の外で、水音が一度だけ寄せて、離れる。解放。余韻。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0.3333
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0.3333
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0.3333
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 19,
+          "segmentText": "Aoi「明日は？」\n「二十歩の散歩。猫に挨拶」\n「先生に？」\n「先生に」\n\n手帳に一行。『返し方＝戻れる道の維持』。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 20,
+          "segmentText": "街の光の網が低く鳴り、部屋にやわらかな余白が残った。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
         }
       ]
     },
@@ -16302,37 +17784,37 @@
         "251022/wattpad/episodes/ep03/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.962Z",
+      "createdAt": "2025-11-02T15:11:47.381Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.2394
+          "score": 0.2303
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.2394
+          "score": 0.2303
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.2394
+          "score": 0.2303
         },
         {
           "@type": "EmotionScore",
           "emotion": "trust",
-          "score": 0.1635
+          "score": 0.2055
         },
         {
           "@type": "EmotionScore",
           "emotion": "anticipation",
-          "score": 0.1021
+          "score": 0.0893
         },
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0.0164
+          "score": 0.0143
         },
         {
           "@type": "EmotionScore",
@@ -16418,33 +17900,33 @@
           "emotionVector": [
             {
               "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.437
+            },
+            {
+              "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0.2302
+              "score": 0.1535
             },
             {
               "@type": "EmotionScore",
               "emotion": "relief",
-              "score": 0.2302
+              "score": 0.1535
             },
             {
               "@type": "EmotionScore",
               "emotion": "hope",
-              "score": 0.2302
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "trust",
-              "score": 0.1555
+              "score": 0.1535
             },
             {
               "@type": "EmotionScore",
               "emotion": "anticipation",
-              "score": 0.1183
+              "score": 0.0789
             },
             {
               "@type": "EmotionScore",
               "emotion": "fear",
-              "score": 0.0355
+              "score": 0.0237
             },
             {
               "@type": "EmotionScore",
@@ -16475,27 +17957,27 @@
             {
               "@type": "EmotionScore",
               "emotion": "joy",
-              "score": 0.263
+              "score": 0.2708
             },
             {
               "@type": "EmotionScore",
               "emotion": "relief",
-              "score": 0.263
+              "score": 0.2708
             },
             {
               "@type": "EmotionScore",
               "emotion": "hope",
-              "score": 0.263
+              "score": 0.2708
             },
             {
               "@type": "EmotionScore",
               "emotion": "anticipation",
-              "score": 0.125
+              "score": 0.1111
             },
             {
               "@type": "EmotionScore",
               "emotion": "trust",
-              "score": 0.086
+              "score": 0.0764
             },
             {
               "@type": "EmotionScore",
@@ -16537,7 +18019,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep04/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.962Z",
+      "createdAt": "2025-11-02T15:11:47.381Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -16889,7 +18371,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep04/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.962Z",
+      "createdAt": "2025-11-02T15:11:47.381Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -17127,7 +18609,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep04/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.962Z",
+      "createdAt": "2025-11-02T15:11:47.382Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -17312,7 +18794,7 @@
         "251022/wattpad/episodes/ep04/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.962Z",
+      "createdAt": "2025-11-02T15:11:47.382Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -17547,7 +19029,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep05/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.962Z",
+      "createdAt": "2025-11-02T15:11:47.382Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -17842,7 +19324,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep05/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.962Z",
+      "createdAt": "2025-11-02T15:11:47.382Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -18080,7 +19562,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep05/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.962Z",
+      "createdAt": "2025-11-02T15:11:47.382Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -18379,7 +19861,7 @@
         "251022/wattpad/episodes/ep05/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.962Z",
+      "createdAt": "2025-11-02T15:11:47.382Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -18614,7 +20096,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep06/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.962Z",
+      "createdAt": "2025-11-02T15:11:47.382Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -18852,7 +20334,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep06/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.962Z",
+      "createdAt": "2025-11-02T15:11:47.383Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -19033,7 +20515,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep06/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.963Z",
+      "createdAt": "2025-11-02T15:11:47.383Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -19218,7 +20700,7 @@
         "251022/wattpad/episodes/ep06/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.963Z",
+      "createdAt": "2025-11-02T15:11:47.383Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -19453,7 +20935,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep07/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.963Z",
+      "createdAt": "2025-11-02T15:11:47.383Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -19748,7 +21230,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep07/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.963Z",
+      "createdAt": "2025-11-02T15:11:47.383Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -19872,7 +21354,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep07/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.963Z",
+      "createdAt": "2025-11-02T15:11:47.383Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -20000,7 +21482,7 @@
         "251022/wattpad/episodes/ep07/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.963Z",
+      "createdAt": "2025-11-02T15:11:47.383Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -20235,7 +21717,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep08/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.963Z",
+      "createdAt": "2025-11-02T15:11:47.384Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -20473,7 +21955,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep08/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.963Z",
+      "createdAt": "2025-11-02T15:11:47.384Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -20711,7 +22193,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep08/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.963Z",
+      "createdAt": "2025-11-02T15:11:47.384Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -20896,7 +22378,7 @@
         "251022/wattpad/episodes/ep08/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.963Z",
+      "createdAt": "2025-11-02T15:11:47.384Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -21131,7 +22613,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep09/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.963Z",
+      "createdAt": "2025-11-02T15:11:47.384Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -21713,7 +23195,7 @@
         "251022/wattpad/episodes/ep09/part1.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.963Z",
+      "createdAt": "2025-11-02T15:11:47.384Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -21836,7 +23318,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep10/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.963Z",
+      "createdAt": "2025-11-02T15:11:47.385Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -22247,7 +23729,7 @@
         "251022/wattpad/episodes/ep10/part1.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.963Z",
+      "createdAt": "2025-11-02T15:11:47.385Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -22370,7 +23852,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep11/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.964Z",
+      "createdAt": "2025-11-02T15:11:47.386Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -22895,7 +24377,7 @@
         "251022/wattpad/episodes/ep11/part1.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.964Z",
+      "createdAt": "2025-11-02T15:11:47.386Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -23018,7 +24500,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep12/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.964Z",
+      "createdAt": "2025-11-02T15:11:47.386Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -23600,7 +25082,7 @@
         "251022/wattpad/episodes/ep12/part1.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-02T15:05:52.964Z",
+      "createdAt": "2025-11-02T15:11:47.386Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
