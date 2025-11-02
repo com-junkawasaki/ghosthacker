@@ -43,7 +43,8 @@
     "anchoredTo": { "@id": "gh:anchoredTo", "@type": "@id" },
     "emits": { "@id": "gh:emits", "@type": "@id" },
     "repels": { "@id": "gh:repels", "@type": "@id" },
-    "avoids": { "@id": "gh:avoids", "@type": "@id" }
+    "avoids": { "@id": "gh:avoids", "@type": "@id" },
+    "embodies": { "@id": "gh:embodies", "@type": "@id" }
   },
   "@graph": [
     { "@id": "gh:Season/1", "@type": "Season", "name": "Season 1", "theme": "孤独 – 分断と接続の再学習", "featuredThemes": ["孤独", "非分離", "赦し"],
@@ -83,6 +84,9 @@
         {"@id": "gh:Season/5"}, {"@id": "gh:Season/6"}
       ] },
 
+    { "@id": "gh:Arc/Tamaki-TreeOfLife-Transmutation", "@type": "Arc", "name": "Tamaki–生命の樹–転化",
+      "spansSeasons": [ {"@id": "gh:Season/2"} ] },
+
     { "@id": "gh:Motif/Library", "@type": "Motif", "name": "図書館", "theme": "孤独",
       "source": {"@id": "gh:Source/ep1"} },
     { "@id": "gh:Motif/Light", "@type": "Motif", "name": "光", "theme": "孤独",
@@ -111,6 +115,12 @@
     { "@id": "gh:Motif/TreeOfLife", "@type": "Motif", "name": "生命の樹 / Tree of Life", "theme": "神" },
     { "@id": "gh:Motif/GoodFeeling", "@type": "Motif", "name": "いい感じ", "theme": "愛" },
     { "@id": "gh:Motif/BadFeeling", "@type": "Motif", "name": "わるい感じ", "theme": "依存" },
+
+    { "@id": "gh:Motif/NegativeEnergyTransmutation", "@type": "Motif", "name": "負のエネルギー転化", "theme": "愛" },
+    { "@id": "gh:Motif/NonAttachmentToMalice", "@type": "Motif", "name": "悪意への非依存", "theme": "依存" },
+
+    { "@id": "gh:Trait/GoodVibesUnderAdversity", "@type": "gh:Trait",
+      "description": "負のエネルギーに晒されても『いい感じ』を保ち、他者に与える。悪意に依存しない。" },
 
     { "@id": "gh:Episode/S1E1", "@type": "Episode",
       "episodeNumber": 1,
@@ -149,7 +159,9 @@
       "anchoredTo": {"@id": "gh:Motif/TreeOfLife"},
       "emits": {"@id": "gh:Motif/GoodFeeling"},
       "repels": {"@id": "gh:Motif/BadFeeling"},
-      "avoids": {"@id": "gh:Motif/BadFeeling"}
+      "avoids": {"@id": "gh:Motif/BadFeeling"},
+      "embodies": {"@id": "gh:Trait/GoodVibesUnderAdversity"},
+      "hasArc": {"@id": "gh:Arc/Tamaki-TreeOfLife-Transmutation"}
     },
 
     { "@id": "gh:Episode/S2E2", "@type": "Episode",

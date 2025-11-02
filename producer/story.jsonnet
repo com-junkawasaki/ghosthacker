@@ -66,6 +66,15 @@
           { id: 'beat-02', label: 'Ghost Encounter', purpose: 'conflict', targetLength: 800 },
           { id: 'beat-03', label: 'Integration & Catharsis', purpose: 'climax', targetLength: 400 },
         ],
+        motifs: [
+          'gh:Motif/TreeOfLife',
+          'gh:Motif/GoodFeeling',
+          'gh:Motif/NegativeEnergyTransmutation',
+          'gh:Motif/NonAttachmentToMalice',
+        ],
+        arcs: [
+          'gh:Arc/Tamaki-TreeOfLife-Transmutation',
+        ],
       },
       outputs: ['synopsis', 'structure', 'beats'],
     },
