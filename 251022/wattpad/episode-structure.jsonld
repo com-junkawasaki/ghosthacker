@@ -45,7 +45,7 @@
         "@id": "gh:Episode/EP01/part1"
       },
       "position": 1,
-      "wordCount": 13,
+      "wordCount": 216,
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep01/part1.md"
@@ -59,7 +59,7 @@
         "@id": "gh:Episode/EP01/part2"
       },
       "position": 2,
-      "wordCount": 16,
+      "wordCount": 232,
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep01/part2.md"
@@ -73,7 +73,7 @@
         "@id": "gh:Episode/EP01/part3"
       },
       "position": 3,
-      "wordCount": 10,
+      "wordCount": 87,
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep01/part3.md"
@@ -87,7 +87,7 @@
         "@id": "gh:Episode/EP02/part1"
       },
       "position": 1,
-      "wordCount": 11,
+      "wordCount": 154,
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep02/part1.md"
@@ -101,7 +101,7 @@
         "@id": "gh:Episode/EP02/part2"
       },
       "position": 2,
-      "wordCount": 9,
+      "wordCount": 125,
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep02/part2.md"
@@ -115,7 +115,7 @@
         "@id": "gh:Episode/EP02/part3"
       },
       "position": 3,
-      "wordCount": 11,
+      "wordCount": 78,
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep02/part3.md"
@@ -129,7 +129,7 @@
         "@id": "gh:Episode/EP03/part1"
       },
       "position": 1,
-      "wordCount": 4,
+      "wordCount": 688,
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep03/part1.md"
@@ -143,7 +143,7 @@
         "@id": "gh:Episode/EP03/part2"
       },
       "position": 2,
-      "wordCount": 4,
+      "wordCount": 498,
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep03/part2.md"
@@ -157,7 +157,7 @@
         "@id": "gh:Episode/EP03/part3"
       },
       "position": 3,
-      "wordCount": 7,
+      "wordCount": 418,
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep03/part3.md"
@@ -171,7 +171,7 @@
         "@id": "gh:Episode/EP04/part1"
       },
       "position": 1,
-      "wordCount": 9,
+      "wordCount": 114,
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep04/part1.md"
@@ -185,7 +185,7 @@
         "@id": "gh:Episode/EP04/part2"
       },
       "position": 2,
-      "wordCount": 6,
+      "wordCount": 68,
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep04/part2.md"
@@ -199,7 +199,7 @@
         "@id": "gh:Episode/EP04/part3"
       },
       "position": 3,
-      "wordCount": 7,
+      "wordCount": 48,
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep04/part3.md"
@@ -213,7 +213,7 @@
         "@id": "gh:Episode/EP05/part1"
       },
       "position": 1,
-      "wordCount": 6,
+      "wordCount": 82,
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep05/part1.md"
@@ -227,7 +227,7 @@
         "@id": "gh:Episode/EP05/part2"
       },
       "position": 2,
-      "wordCount": 5,
+      "wordCount": 117,
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep05/part2.md"
@@ -241,7 +241,7 @@
         "@id": "gh:Episode/EP05/part3"
       },
       "position": 3,
-      "wordCount": 8,
+      "wordCount": 100,
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep05/part3.md"
@@ -255,7 +255,7 @@
         "@id": "gh:Episode/EP06/part1"
       },
       "position": 1,
-      "wordCount": 6,
+      "wordCount": 65,
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep06/part1.md"
@@ -269,7 +269,7 @@
         "@id": "gh:Episode/EP06/part2"
       },
       "position": 2,
-      "wordCount": 3,
+      "wordCount": 54,
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep06/part2.md"
@@ -283,7 +283,7 @@
         "@id": "gh:Episode/EP06/part3"
       },
       "position": 3,
-      "wordCount": 7,
+      "wordCount": 46,
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep06/part3.md"
@@ -297,7 +297,7 @@
         "@id": "gh:Episode/EP07/part1"
       },
       "position": 1,
-      "wordCount": 10,
+      "wordCount": 79,
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep07/part1.md"
@@ -311,7 +311,7 @@
         "@id": "gh:Episode/EP07/part2"
       },
       "position": 2,
-      "wordCount": 3,
+      "wordCount": 46,
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep07/part2.md"
@@ -325,7 +325,7 @@
         "@id": "gh:Episode/EP07/part3"
       },
       "position": 3,
-      "wordCount": 5,
+      "wordCount": 27,
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep07/part3.md"
@@ -339,7 +339,7 @@
         "@id": "gh:Episode/EP08/part1"
       },
       "position": 1,
-      "wordCount": 4,
+      "wordCount": 72,
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep08/part1.md"
@@ -353,7 +353,7 @@
         "@id": "gh:Episode/EP08/part2"
       },
       "position": 2,
-      "wordCount": 7,
+      "wordCount": 71,
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep08/part2.md"
@@ -367,7 +367,7 @@
         "@id": "gh:Episode/EP08/part3"
       },
       "position": 3,
-      "wordCount": 5,
+      "wordCount": 63,
       "beatsCount": 1,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep08/part3.md"
@@ -381,7 +381,7 @@
         "@id": "gh:Episode/EP09/part1"
       },
       "position": 1,
-      "wordCount": 18,
+      "wordCount": 266,
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep09/part1.md"
@@ -395,7 +395,7 @@
         "@id": "gh:Episode/EP10/part1"
       },
       "position": 1,
-      "wordCount": 14,
+      "wordCount": 150,
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep10/part1.md"
@@ -409,7 +409,7 @@
         "@id": "gh:Episode/EP11/part1"
       },
       "position": 1,
-      "wordCount": 10,
+      "wordCount": 166,
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep11/part1.md"
@@ -423,7 +423,7 @@
         "@id": "gh:Episode/EP12/part1"
       },
       "position": 1,
-      "wordCount": 23,
+      "wordCount": 124,
       "beatsCount": 1,
       "antagonistBlock": true,
       "sourcePath": "251022/wattpad/episodes/ep12/part1.md"

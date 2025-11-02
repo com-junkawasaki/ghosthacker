@@ -38,13 +38,20 @@ function listEpisodeParts(): Array<{ episodeId: string; parts: string[] }> {
 
 function countWords(text: string): number {
   const body = text
-    .replace(/```[\s\S]*?```/g, " ")
-    .replace(/^#.*$/gm, " ")
-    .replace(/^-.+$/gm, " ")
-    .replace(/\s+/g, " ")
+    .replace(/```[\s\S]*?```/g, " ") // remove code fences
+    .replace(/^#.*$/gm, " ") // remove headings
+    .replace(/^-.+$/gm, " ") // remove meta lines
+    .replace(/[\t\r\n]/g, " ")
     .trim();
   if (!body) return 0;
-  return body.split(/\s+/).length;
+  // If contains CJK, approximate "words" via visible CJK characters / 2
+  const cjk = body.match(/[\u3040-\u30ff\u4e00-\u9faf\u3400-\u4dbf\uff00-\uffef]/g);
+  if (cjk && cjk.length > 0) {
+    const approx = Math.floor(cjk.length / 2); // rough reading chunk ~2 chars per word-equivalent
+    return approx;
+  }
+  // Otherwise, whitespace tokenization
+  return body.split(/\s+/).filter(Boolean).length;
 }
 
 function countBeats(text: string): number {
