@@ -432,12 +432,13 @@
 
 ## gh:Episode/EP11
 - target vs actual (last segment):
-  - hope: target=0.00 actual=0.26 delta=0.26
-  - trust: target=0.00 actual=0.21 delta=0.21
-  - relief: target=0.35 actual=0.26 delta=-0.09
-  - joy: target=0.20 actual=0.26 delta=0.06
+  - relief: target=0.35 actual=0.00 delta=-0.35
+  - joy: target=0.20 actual=0.00 delta=-0.20
   - sadness: target=0.00 actual=0.00 delta=0.00
   - fear: target=0.00 actual=0.00 delta=0.00
+  - anger: target=0.00 actual=0.00 delta=0.00
+  - surprise: target=0.00 actual=0.00 delta=0.00
+- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
 
 ## gh:Episode/EP11
 - target vs actual (last segment):
