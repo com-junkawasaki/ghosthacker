@@ -1,0 +1,112 @@
+{
+  "@context": {
+    "@base": "https://gftd.ai/ghost-hacker/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gh": "https://gftd.ai/gh#",
+
+    "ObjectDesign": "gh:ObjectDesign",
+    "VehicleDesign": "gh:VehicleDesign",
+    "BuildingDesign": "gh:BuildingDesign",
+    "Infrastructure": "gh:Infrastructure",
+
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "description": { "@id": "schema:description", "@type": "xsd:string" },
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" },
+    "concept": { "@id": "gh:concept", "@type": "xsd:string" },
+    "designPrinciples": { "@id": "gh:designPrinciples" },
+    "generationPrompt": { "@id": "gh:generationPrompt", "@type": "xsd:string" },
+    "propulsionSystem": { "@id": "gh:propulsionSystem", "@type": "xsd:string" },
+    "structure": { "@id": "gh:structure", "@type": "xsd:string" },
+    "energy": { "@id": "gh:energy", "@type": "xsd:string" },
+    "interior": { "@id": "gh:interior", "@type": "xsd:string" }
+  },
+  "@graph": [
+    {
+      "@id": "gh:Object/WaterBus/LinerExpress",
+      "@type": ["ObjectDesign", "VehicleDesign"],
+      "name": "水上バス タイプA：ライナー・エクスプレス",
+      "concept": "都市主要拠点を結ぶ高速特別便。快適な移動と最高の眺望。",
+      "designPrinciples": [
+        "超電導電磁石による磁気浮上式リニアモーター",
+        "日本の新幹線空力設計＋豪華クルーザーの流線形",
+        "透明型太陽光発電＋停留所での非接触充電",
+        "曲面ガラス＋木目調素材の上質内装"
+      ],
+      "propulsionSystem": "磁気浮上式リニアモーター",
+      "structure": "CFRP製モノコック流線形",
+      "energy": "透明太陽光発電＋停留所非接触充電",
+      "interior": "曲面パノラマガラス＋グリーン車級の快適性",
+      "generationPrompt": "傑作、インダストリアルデザイン。日本の新幹線と豪華クルーザーの滑らかな流線形を融合させた、未来的なライナー・エクスプレス...",
+      "sameAs": "250806/setting/object-prompts.md"
+    },
+    {
+      "@id": "gh:Object/WaterBus/PublicCruiser",
+      "@type": ["ObjectDesign", "VehicleDesign"],
+      "name": "水上バス タイプB：パブリッククルーザー",
+      "concept": "市民の足となる大量輸送。機能性と合理性の箱型デザイン。",
+      "designPrinciples": [
+        "磁気浮上式リニアモーター",
+        "モジュール化直線箱型で乗降効率・収容最大化",
+        "主要停留所での大容量非接触充電",
+        "床から天井までガラス張りで景観配慮"
+      ],
+      "propulsionSystem": "磁気浮上式リニアモーター",
+      "structure": "モジュール化直線箱型・大開口引き戸",
+      "energy": "停留所の大容量非接触充電",
+      "interior": "清潔・機能的な通勤電車風＋全面ガラス側面",
+      "generationPrompt": "傑作、インダストリアルデザイン。現代の洗練された路面電車や新幹線車両のような、機能的で直線的なデザインの箱型水上バス...",
+      "sameAs": "250806/setting/object-prompts.md"
+    },
+    {
+      "@id": "gh:Object/WaterBus/WaterTaxi",
+      "@type": ["ObjectDesign", "VehicleDesign"],
+      "name": "水上バス タイプC：ウォータータクシー",
+      "concept": "オンデマンドの小型高速艇。細い水路も航行可能。",
+      "designPrinciples": [
+        "小型高出力磁気浮上ユニット（360度転回）",
+        "スポーツカー×ドローンの小型ポッド形状、ガルウィング",
+        "市内小型非接触充電ステーション",
+        "パーソナルで豪華、全面ホログラムUI"
+      ],
+      "propulsionSystem": "小型磁気浮上ユニット",
+      "structure": "空力優れた小型ポッド、ガルウィング",
+      "energy": "小型バッテリー＋街区充電ステーション",
+      "interior": "プライバシー重視のパーソナル空間",
+      "generationPrompt": "傑作、SF的ビークルデザイン。流麗なフォルムの小型ウォータータクシー...",
+      "sameAs": "250806/setting/object-prompts.md"
+    },
+    {
+      "@id": "gh:Object/Skyscrapers",
+      "@type": ["ObjectDesign", "BuildingDesign"],
+      "name": "超高層ビル群",
+      "concept": "水と共存する環境配慮型アーコロジー。",
+      "designPrinciples": [
+        "深基礎杭＋免震・制振の一体構造、運河ブリッジビル",
+        "スマートガラス＋壁面緑化パネル",
+        "雨水回収・再生、生活排水100%浄化、地熱発電"
+      ],
+      "structure": "免震・制振統合の高層架構、運河跨ぎブリッジ",
+      "energy": "太陽光・地熱・循環水再利用",
+      "generationPrompt": "傑作、未来建築。垂直庭園と運河ブリッジ構造、スマートガラスが空と運河を反射...",
+      "sameAs": "250806/setting/object-prompts.md"
+    },
+    {
+      "@id": "gh:Object/Canals",
+      "@type": ["ObjectDesign", "Infrastructure"],
+      "name": "運河インフラ",
+      "concept": "都市の動脈であり多層浄化・物流システム。",
+      "designPrinciples": [
+        "多層構造（上層旅客・中層貨物・下層データ/浄化）",
+        "多孔質セラミック＋微生物浄化ユニット",
+        "遊歩道・カフェ・LED照明で生活空間と一体化"
+      ],
+      "structure": "断面多層インフラ（旅客/貨物/インフラ層）",
+      "energy": "水質維持の循環動力、都市電力連携",
+      "generationPrompt": "傑作、SFインフラ断面図。上層水上バス、中層貨物ポッド、下層に光ファイバーと浄化システム...",
+      "sameAs": "250806/setting/object-prompts.md"
+    }
+  ]
+}
+
+

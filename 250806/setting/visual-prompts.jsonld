@@ -1,0 +1,131 @@
+{
+  "@context": {
+    "@base": "https://gftd.ai/ghost-hacker/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gh": "https://gftd.ai/gh#",
+
+    "VisualSetting": "gh:VisualSetting",
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "description": { "@id": "schema:description", "@type": "xsd:string" },
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" },
+    "concept": { "@id": "gh:concept", "@type": "xsd:string" },
+    "relationship": { "@id": "gh:relationship", "@type": "xsd:string" },
+    "viewpoints": { "@id": "gh:viewpoints" },
+    "composition": { "@id": "gh:composition", "@type": "xsd:string" },
+    "promptPanorama": { "@id": "gh:promptPanorama", "@type": "xsd:string" },
+    "promptDetail": { "@id": "gh:promptDetail", "@type": "xsd:string" }
+  },
+  "@graph": [
+    {
+      "@id": "gh:Visual/TokyoWaterCity",
+      "@type": "VisualSetting",
+      "name": "水の都・東京",
+      "concept": "穏やかで美しい日常の象徴。内面の混沌との強い対比を生む舞台。",
+      "relationship": "守るべき/取り戻すべき現実世界",
+      "viewpoints": [
+        "壮大なパノラマ/ドローンショット",
+        "水上バス乗客目線、運河沿いカフェ視点",
+        "運河の誘導線、垂直のビル×水平の運河の対比"
+      ],
+      "composition": "安定感と奥行きを強調",
+      "promptPanorama": "傑作、感情豊かな映画的アニメスタイル。ベネチア×近代建築の未来東京パノラマ...",
+      "promptDetail": "傑作、癒し系 aesthetic。運河沿いカフェの窓からの視点...",
+      "sameAs": "250806/setting/visual-prompts.md"
+    },
+    {
+      "@id": "gh:Visual/PhysicalOffice",
+      "@type": "VisualSetting",
+      "name": "物理オフィス",
+      "concept": "現実と精神の狭間にあるチームの聖域。",
+      "relationship": "チームの絆×ハッキング前の緊張感",
+      "viewpoints": [
+        "床から天井までの全面窓、自然光",
+        "中央のゼログラビティチェア配置",
+        "防音ガラスのヒビキDJブース"
+      ],
+      "composition": "ワイドショットと人物別クローズアップで文脈提示",
+      "promptPanorama": "傑作、穏やかで優しいアニメ aesthetic。運河を見下ろすオフィスのワイドショット...",
+      "promptDetail": "傑作、サイバーパンク美学。ゼログラビティチェアのカエデとホログラム...",
+      "sameAs": "250806/setting/visual-prompts.md"
+    },
+    {
+      "@id": "gh:Visual/VirtualConsulting",
+      "@type": "VisualSetting",
+      "name": "仮想コンサルティングルーム",
+      "concept": "安全な対話と共同オペのための無機質な白の手術室。",
+      "relationship": "診断・分析・治療（ハッキング）の最前線",
+      "viewpoints": [
+        "無限の純白空間の中央に2つのゼログラビティチェア",
+        "背後にカエデのデータ滝インターフェース",
+        "空間全体にヒビキの周波数波紋"
+      ],
+      "composition": "広いツーショットで孤独の対話を強調",
+      "promptPanorama": "傑作、ミニマリストSFデザイン。純白空間に向かい合う2つのチェア...",
+      "promptDetail": "サポート用ホログラムが背景で浮遊し主役を妨げない構成",
+      "sameAs": "250806/setting/visual-prompts.md"
+    },
+    {
+      "@id": "gh:Visual/EliasLibraryNormal",
+      "@type": "VisualSetting",
+      "name": "エリアスの精神図書館（正常）",
+      "concept": "広大な知性と孤独の具現化。秩序と論理の完璧な牢獄。",
+      "relationship": "自ら作り上げた精神の砦、プライド",
+      "viewpoints": [
+        "シンメトリー多用、厳格な構図、極端なワイド/ローアングル",
+        "機械的で正確なカメラ動作、天窓の光芒"
+      ],
+      "composition": "神の視点からの正確な運動と対称性",
+      "promptPanorama": "傑作、感情的映画的アニメ。無限本棚のローアングル・ワイド、荘厳なシンメトリー...",
+      "promptDetail": "天窓からの一本の光で冷たく神聖な空気",
+      "sameAs": "250806/setting/visual-prompts.md"
+    },
+    {
+      "@id": "gh:Visual/EliasLibraryCollapse",
+      "@type": "VisualSetting",
+      "name": "エリアスの精神図書館（崩壊）",
+      "concept": "裏切りにより内側から崩壊する論理世界。",
+      "relationship": "砕けるプライドとあふれる制御不能な感情",
+      "viewpoints": [
+        "ダッチアングル、手持ち風の揺れ、焦点喪失のショット",
+        "非対称・無秩序な構図、空間の歪み"
+      ],
+      "composition": "意図的崩壊とグリッチ表現",
+      "promptPanorama": "傑作、抽象アニメーション。裂け目からデジタルスタティックが溢れる崩壊する図書館...",
+      "promptDetail": "揺れる主観、ぼやけた焦点、乱れる物理法則",
+      "sameAs": "250806/setting/visual-prompts.md"
+    },
+    {
+      "@id": "gh:Visual/AbstractClash",
+      "@type": "VisualSetting",
+      "name": "抽象空間（精神世界の衝突）",
+      "concept": "接続（白）と分離（黒）の思想が激突する戦場。",
+      "relationship": "二者の思想エネルギーの攻防",
+      "viewpoints": [
+        "ダイナミックカメラ、分割画面、急激なズーム",
+        "白と黒の強烈なコントラスト"
+      ],
+      "composition": "二者の衝突を画面構成で強調",
+      "promptPanorama": "傑作、ドラマチック抽象。白い光と黒いデータノイズが分割画面で衝突...",
+      "promptDetail": "相互侵食する光と闇のディテール",
+      "sameAs": "250806/setting/visual-prompts.md"
+    },
+    {
+      "@id": "gh:Visual/PsychedelicRelease",
+      "@type": "VisualSetting",
+      "name": "サイケデリック空間（魂の解放）",
+      "concept": "自我溶解と生命の樹への接続。破壊と再生の空間。",
+      "relationship": "解放と個の喪失の両義性",
+      "viewpoints": [
+        "没入する一人称視点",
+        "万華鏡/フラクタルの中心から無限拡張"
+      ],
+      "composition": "上下左右の感覚がない没入構図",
+      "promptPanorama": "傑作、サイケデリック抽象。光の奔流に飲み込まれる一人称視点...",
+      "promptDetail": "中心から無限に広がるフラクタルパターン",
+      "sameAs": "250806/setting/visual-prompts.md"
+    }
+  ]
+}
+
+

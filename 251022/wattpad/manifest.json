@@ -2,8 +2,16 @@
   "title": "Ghost Hacker – Wattpad Edition",
   "language": "ja",
   "author": "GFTD.ai / Ghost Hacker",
+  "description": "水の都・東京を舞台に、ゴーストハッカーTamaki（環樹）が“いい感じ”を錨に孤独・依存・正義・神へ潜航するヒーリング×SF。",
+  "cover": "cover.jpg",
   "episodes": [
     {"id": "S1E1", "title": "The Loneliness of a Physicist", "tags": ["東京","水の都","非分離","アヤワスカ","いい感じ"]},
-    {"id": "S2E2", "title": "愛／依存の区別", "tags": ["愛","依存","境界","猫","約束","赦し","いい感じ"]}
+    {"id": "S2E2", "title": "愛／依存の区別", "tags": ["愛","依存","境界","猫","約束","赦し","いい感じ"]},
+    {"id": "S3E1", "title": "代償の可視化", "tags": ["依存","代償","負債","エネルギー","NeiChan","いい感じ"]},
+    {"id": "S3E2", "title": "共依存の罠", "tags": ["共依存","境界","救済","支配","チーム","いい感じ"]},
+    {"id": "S4E1", "title": "共同体の正義", "tags": ["正義","制度","企業","GBInc","兆候","Nero","いい感じ"]},
+    {"id": "S4E2", "title": "偽神の兆候", "tags": ["偽神","インフラ","兆候","社会","Nero","いい感じ"]},
+    {"id": "S5E1", "title": "名を問う者", "tags": ["神","名","YHWH","IAM","非二元","いい感じ"]},
+    {"id": "S6E1", "title": "I AM THAT I AM", "tags": ["Nero","偽神","IAM","成仏","主体化","いい感じ"]}
   ]
 }
