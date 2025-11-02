@@ -1,0 +1,40 @@
+{
+  "@context": {
+    "@base": "https://gftd.ai/ghost-hacker/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gh": "https://gftd.ai/gh#",
+
+    "Person": "https://schema.org/Person",
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "description": { "@id": "schema:description", "@type": "xsd:string" },
+    "alternateName": { "@id": "schema:alternateName", "@type": "xsd:string" },
+    "occupation": { "@id": "schema:occupation", "@type": "xsd:string" },
+    "worksFor": { "@id": "schema:worksFor", "@type": "@id" },
+    "knows": { "@id": "schema:knows", "@type": "@id" },
+    "parent": { "@id": "schema:parent", "@type": "@id" },
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" },
+
+    "epithet": { "@id": "gh:epithet", "@type": "xsd:string" },
+    "formerOccupation": { "@id": "gh:formerOccupation", "@type": "xsd:string" },
+    "hasGhost": { "@id": "gh:ghost", "@type": "@id" }
+  },
+  "@graph": [
+    {
+      "@id": "character:akito",
+      "@type": "Person",
+      "name": "Akito",
+      "alternateName": "白髪のおっさん",
+      "occupation": "Genius Programmer / Artist",
+      "formerOccupation": "アーティスト",
+      "description": "Renと共にTOLの礎を築いた伝説のアーティスト。The Silent Code事件後に表舞台を離れ、今は時折タマキのオフィスに現れる白髪のおっさんとして知られる。兄弟Renへの友情と後悔が内面に流れ、若い世代を静かに見守る。",
+      "worksFor": { "@id": "company:schwa" },
+      "parent": { "@id": "character:tamaki" },
+      "knows": [ { "@id": "character:tamaki" }, { "@id": "character:Nei-chan" } ],
+      "hasGhost": { "@id": "ghost:kageboushi" },
+      "sameAs": "250806/character/akito/akito.md"
+    }
+  ]
+}
+
+

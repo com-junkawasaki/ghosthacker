@@ -1,0 +1,55 @@
+{
+  "@context": {
+    "@base": "https://gftd.ai/ghost-hacker/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gh": "https://gftd.ai/gh#",
+
+    "CreativeGuideline": "gh:CreativeGuideline",
+    "QA": "gh:QA",
+
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "description": { "@id": "schema:description", "@type": "xsd:string" },
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" },
+    "hasQA": { "@id": "gh:hasQA", "@type": "@id" },
+    "question": { "@id": "gh:question", "@type": "xsd:string" },
+    "answer": { "@id": "gh:answer", "@type": "xsd:string" }
+  },
+  "@graph": [
+    {
+      "@id": "gh:Animation/Framework",
+      "@type": "CreativeGuideline",
+      "name": "ゴーストハッカー 映像フレームワーク",
+      "description": "映像作品の全体設計（コンセプト、映像美、技術、構成）",
+      "sameAs": "250806/animation/Animation.md",
+      "hasQA": [
+        {
+          "@id": "gh:Animation/Framework#q1",
+          "@type": "QA",
+          "question": "Q1. 新作映像作品を企画する上で、全体コンセプト設定のポイントは何ですか？",
+          "answer": "渋谷の大学生を主人公軸に日常と、生命・意識・葛藤・生と死の命題を主軸に据え、愛・友情・成長など普遍的感情を絡める。ジャンル（ほのぼの系SF）と世界観（情緒都市、情報空間、生命スピリットと情報生命ゴーストの融合）を具体化する。"
+        },
+        {
+          "@id": "gh:Animation/Framework#q2",
+          "@type": "QA",
+          "question": "Q2. 映像美設計で必ず押さえるべき要素は？",
+          "answer": "映画的で微細かつ写実的なカメラワーク。演者中心に空間を固定。背景は空気感のある微細描写。新奇性のあるアングル。電脳/情報空間も表現。色彩は白・黒・赤・青の濃淡合成を基本。緩急は時間の伸縮で表現。"
+        },
+        {
+          "@id": "gh:Animation/Framework#q3",
+          "@type": "QA",
+          "question": "Q3. 技術実装要素で重視する手法は？",
+          "answer": "実写的表現で人物・背景を先に撮影しアニメ化。背景は物理的質感重視、人物はデフォルメでキャラクター性強調。エフェクトで情報・音・波・嗅覚・時間を物理現象として可視化し相互作用。光・空気・水で質感演出。"
+        },
+        {
+          "@id": "gh:Animation/Framework#q4",
+          "@type": "QA",
+          "question": "Q4. ストーリーボード・構成プランはどう組み立てればいいですか？",
+          "answer": "シリーズ複数話構成。各話は「相談→開始→同意→フィードバック→浄化後の変化→クロージング→フォローアップ」のフォーマットを基本に、Nei-chan の相談受理から浄化、変化報告、感謝・決意までを描く。"
+        }
+      ]
+    }
+  ]
+}
+
+
