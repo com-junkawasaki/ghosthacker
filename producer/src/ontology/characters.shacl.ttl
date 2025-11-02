@@ -1,0 +1,18 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix gh: <https://ghosthacker.junkawasaki.com/gh#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Character (schema:Person) shape
+gh:PersonShape a sh:NodeShape ;
+  sh:targetClass schema:Person ;
+  sh:property [ sh:path schema:name ; sh:minCount 1 ] ;
+  sh:property [ sh:path schema:age ; sh:datatype xsd:integer ] ;
+  sh:property [ sh:path schema:worksFor ; sh:maxCount 1 ] ;
+  sh:property [ sh:path schema:memberOf ; sh:maxCount 2 ] .
+
+# Internal Character shape (gh:Character used in ontology)
+gh:CharacterShape a sh:NodeShape ;
+  sh:targetClass gh:Character ;
+  sh:property [ sh:path schema:name ; sh:minCount 1 ] .
+
