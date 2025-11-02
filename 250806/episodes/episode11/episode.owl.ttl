@@ -1,0 +1,12 @@
+@prefix gh: <https://gftd.ai/gh#> .
+@prefix schema: <http://schema.org/> .
+
+# Session 11: Compliance Ogre
+<https://gftd.ai/ghost-hacker/Episode/S1E11> a gh:Episode ;
+  schema:name "Session \"Compliance Ogre\"" ;
+  gh:hasArc gh:Arc/Tamaki-TreeOfLife-Transmutation ;
+  gh:hasCharacter gh:character:tamaki , gh:character:nero-ops ;
+  gh:motifRefs gh:Motif/King ;
+  gh:techRefs gh:Tech/SIP ;
+  gh:processRefs gh:Process/MemorySpace1024D .
+

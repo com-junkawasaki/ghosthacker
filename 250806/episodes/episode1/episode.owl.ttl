@@ -1,0 +1,25 @@
+@prefix gh: <https://gftd.ai/gh#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Session 01: The Loneliness of a Physicist
+<https://gftd.ai/ghost-hacker/Episode/S1E1> a gh:Episode ;
+  schema:name "Session \"The Loneliness of a Physicist\"" ;
+  gh:hasArc gh:Arc/Tamaki-TreeOfLife-Transmutation ;
+  gh:hasCharacter gh:character:tamaki , gh:character:kaede , gh:character:hibiki , gh:character:elias , gh:character:logos ;
+  gh:motifRefs gh:Motif/Library , gh:Motif/NonSeparation , gh:Motif/Water ;
+  gh:techRefs gh:Tech/SIP ;
+  gh:processRefs gh:Process/MemorySpace1024D ;
+  gh:dive <https://gftd.ai/ghost-hacker/Dive/S1E1-01> ;
+  gh:release <https://gftd.ai/ghost-hacker/Release/S1E1-01> .
+
+<https://gftd.ai/ghost-hacker/Dive/S1E1-01> a gh:Dive ;
+  schema:description "non-separation code + initial rite; SIP-assisted" ;
+  gh:operator gh:character:tamaki ;
+  gh:support gh:character:kaede ;
+  gh:targetGhost gh:character:logos ;
+  gh:method "code/non-separation", "rite/intro", "device/SIP" .
+
+<https://gftd.ai/ghost-hacker/Release/S1E1-01> a gh:Release ;
+  schema:description "ASC解放と再接続の端緒（Library/Waterモチーフの再意味付け）" .
+

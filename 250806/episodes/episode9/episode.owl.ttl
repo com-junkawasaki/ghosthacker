@@ -1,0 +1,12 @@
+@prefix gh: <https://gftd.ai/gh#> .
+@prefix schema: <http://schema.org/> .
+
+# Session 09: Rage Engine
+<https://gftd.ai/ghost-hacker/Episode/S1E9> a gh:Episode ;
+  schema:name "Session \"Rage Engine\"" ;
+  gh:hasArc gh:Arc/Tamaki-TreeOfLife-Transmutation ;
+  gh:hasCharacter gh:character:tamaki , gh:character:anika-bose ;
+  gh:motifRefs gh:Motif/GoodFeeling ;
+  gh:techRefs gh:Tech/SIP ;
+  gh:processRefs gh:Process/MemorySpace1024D .
+

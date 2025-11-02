@@ -1,0 +1,15 @@
+@prefix gh: <https://gftd.ai/gh#> .
+@prefix schema: <http://schema.org/> .
+
+# Session 10: Zombie Sweep
+<https://gftd.ai/ghost-hacker/Episode/S1E10> a gh:Episode ;
+  schema:name "Session \"Zombie Sweep\"" ;
+  gh:hasArc gh:Arc/Tamaki-TreeOfLife-Transmutation ;
+  gh:hasCharacter gh:character:tamaki ;
+  gh:techRefs gh:Tech/SIP ;
+  gh:processRefs gh:Process/MemorySpace1024D ;
+  gh:programRefs <https://gftd.ai/ghost-hacker/Program/ZombieSweeper> .
+
+<https://gftd.ai/ghost-hacker/Program/ZombieSweeper> a gh:Program ;
+  schema:name "Zombie Process Sweeper" .
+

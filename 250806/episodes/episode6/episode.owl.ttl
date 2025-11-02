@@ -1,0 +1,12 @@
+@prefix gh: <https://gftd.ai/gh#> .
+@prefix schema: <http://schema.org/> .
+
+# Session 06: Barrier Architect
+<https://gftd.ai/ghost-hacker/Episode/S1E6> a gh:Episode ;
+  schema:name "Session \"Barrier Architect\"" ;
+  gh:hasArc gh:Arc/Tamaki-TreeOfLife-Transmutation ;
+  gh:hasCharacter gh:character:tamaki , gh:character:yael-ben-ami ;
+  gh:motifRefs gh:Motif/King ;
+  gh:techRefs gh:Tech/SIP ;
+  gh:processRefs gh:Process/MemorySpace1024D .
+

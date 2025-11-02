@@ -1,0 +1,12 @@
+@prefix gh: <https://gftd.ai/gh#> .
+@prefix schema: <http://schema.org/> .
+
+# Session 08: Silent Pulpit
+<https://gftd.ai/ghost-hacker/Episode/S1E8> a gh:Episode ;
+  schema:name "Session \"Silent Pulpit\"" ;
+  gh:hasArc gh:Arc/Tamaki-TreeOfLife-Transmutation ;
+  gh:hasCharacter gh:character:tamaki , gh:character:markus-petrescu ;
+  gh:motifRefs gh:Motif/Forgiveness ;
+  gh:techRefs gh:Tech/SIP ;
+  gh:processRefs gh:Process/MemorySpace1024D .
+

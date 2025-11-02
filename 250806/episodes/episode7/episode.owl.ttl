@@ -1,0 +1,12 @@
+@prefix gh: <https://gftd.ai/gh#> .
+@prefix schema: <http://schema.org/> .
+
+# Session 07: Mirror Soldier
+<https://gftd.ai/ghost-hacker/Episode/S1E7> a gh:Episode ;
+  schema:name "Session \"Mirror Soldier\"" ;
+  gh:hasArc gh:Arc/Tamaki-TreeOfLife-Transmutation ;
+  gh:hasCharacter gh:character:tamaki , gh:character:diego-ortega ;
+  gh:motifRefs gh:Motif/Angel ;
+  gh:techRefs gh:Tech/SIP ;
+  gh:processRefs gh:Process/MemorySpace1024D .
+

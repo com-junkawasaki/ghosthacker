@@ -43,10 +43,7 @@
     "anchoredTo": { "@id": "gh:anchoredTo", "@type": "@id" },
     "emits": { "@id": "gh:emits", "@type": "@id" },
     "repels": { "@id": "gh:repels", "@type": "@id" },
-    "avoids": { "@id": "gh:avoids", "@type": "@id" },
-    "embodies": { "@id": "gh:embodies", "@type": "@id" },
-    "hasEvent": { "@id": "gh:hasEvent", "@type": "@id" },
-    "age": { "@id": "gh:age", "@type": "xsd:integer" }
+    "avoids": { "@id": "gh:avoids", "@type": "@id" }
   },
   "@graph": [
     { "@id": "gh:Season/1", "@type": "Season", "name": "Season 1", "theme": "孤独 – 分断と接続の再学習", "featuredThemes": ["孤独", "非分離", "赦し"],
@@ -74,7 +71,7 @@
     { "@id": "gh:Arc/NeiChanDebt", "@type": "Arc", "name": "Nei-Chan負債", "spansSeasons": [
         {"@id": "gh:Season/2"}, {"@id": "gh:Season/3"}
       ] },
-    { "@id": "gh:Arc/InnerOtherVisualization", "@type": "Arc", "name": "内なる他者の可視化", "spansSeasons": [
+    { "@id": "gh:Arc/RenVisualization", "@type": "Arc", "name": "Ren可視化", "spansSeasons": [
         {"@id": "gh:Season/1"}, {"@id": "gh:Season/2"}, {"@id": "gh:Season/4"}
       ] },
     { "@id": "gh:Arc/Nero666", "@type": "Arc", "name": "GOD=666(皇帝ネロ)", "phase": "兆候→顕現→対決→成仏",
@@ -84,14 +81,6 @@
       ] },
     { "@id": "gh:Arc/AkitoRenIntegration", "@type": "Arc", "name": "Akito/Ren二重人格の統合", "spansSeasons": [
         {"@id": "gh:Season/5"}, {"@id": "gh:Season/6"}
-      ] },
-    { "@id": "gh:Arc/IS_Betrayal", "@type": "Arc", "name": "IS秩序と裏切り",
-      "description": "分散合意システムISの構築と外攻防、内部裏切りによる崩壊の線。" },
-
-    { "@id": "gh:Arc/Tamaki-TreeOfLife-Transmutation", "@type": "Arc", "name": "Tamaki–生命の樹–転化",
-      "spansSeasons": [ {"@id": "gh:Season/2"} ],
-      "influences": [
-        {"@id": "gh:Timeline/Akito"}
       ] },
 
     { "@id": "gh:Motif/Library", "@type": "Motif", "name": "図書館", "theme": "孤独",
@@ -122,37 +111,6 @@
     { "@id": "gh:Motif/TreeOfLife", "@type": "Motif", "name": "生命の樹 / Tree of Life", "theme": "神" },
     { "@id": "gh:Motif/GoodFeeling", "@type": "Motif", "name": "いい感じ", "theme": "愛" },
     { "@id": "gh:Motif/BadFeeling", "@type": "Motif", "name": "わるい感じ", "theme": "依存" },
-
-    { "@id": "gh:Org/ToL", "@type": "Organization", "name": "ToL (Tree of Life)",
-      "description": "国際的な臨床・研究組織。カテゴリー: 心療内科。医師免許とCS知識を要件とする。" },
-    { "@id": "gh:Company/Schwa", "@type": "Organization", "name": "Schwa",
-      "description": "ToLの臨床拠点オフィス。Akitoが代表。Tamaki/Kaede/Hibikiが所属。" },
-
-    { "@id": "gh:Motif/NegativeEnergyTransmutation", "@type": "Motif", "name": "負のエネルギー転化", "theme": "愛" },
-    { "@id": "gh:Motif/NonAttachmentToMalice", "@type": "Motif", "name": "悪意への非依存", "theme": "依存" },
-
-    { "@id": "gh:Tech/SIP", "@type": "Intangible", "name": "SIP (Spirit in Physics) Device",
-      "description": "Ghostを物質化・可視化し、ASC下で意識重ね合わせを行う医療デバイス。オンラインSession対応。" },
-    { "@id": "gh:Process/MemorySpace1024D", "@type": "Intangible", "name": "Memory Space (1024D)",
-      "description": "VR様の1024次元情報空間。暗号化Ghost、特権昇格/overflow探索、daemon kill→/dev/null release。" },
-
-    { "@id": "gh:Trait/GoodVibesUnderAdversity", "@type": "gh:Trait",
-      "description": "負のエネルギーに晒されても『いい感じ』を保ち、他者に与える。悪意に依存しない。" },
-
-    { "@id": "character:daniel-arai", "@type": "Person", "name": "Daniel Arai", "alternateName": "新井 ダニエル",
-      "description": "クリスチャン。I AMを強く主張し孤独に閉じる。両親の離婚と愛の欠乏、ASD傾向で共感が困難。",
-      "religion": "Christian", "healthCondition": "AutismSpectrum", "gh:callsign": "I-AM" },
-
-    { "@id": "gh:Episode/S1E0", "@type": "Episode",
-      "episodeNumber": 0,
-      "season": {"@id": "gh:Season/1"},
-      "name": "Session \"I AM and Loneliness\"",
-      "alternateName": "We can't put it toghether. it is toghether.",
-      "logline": "I AMを掲げ孤独に閉じるクライアントに対し、SIPでMemory Spaceへダイブし、愛の連鎖断絶を可視化・受容へ導く。",
-      "hasArc": [ {"@id": "gh:Arc/Tamaki-TreeOfLife-Transmutation"} ],
-      "motifRefs": [ {"@id": "gh:Motif/IAM"}, {"@id": "gh:Motif/NonSeparation"}, {"@id": "gh:Motif/TreeOfLife"}, {"@id": "gh:Motif/Forgiveness"} ],
-      "hasCharacter": [ {"@id": "character:tamaki"}, {"@id": "character:kaede"}, {"@id": "character:hibiki"}, {"@id": "character:daniel-arai"} ]
-    },
 
     { "@id": "gh:Episode/S1E1", "@type": "Episode",
       "episodeNumber": 1,
@@ -191,11 +149,7 @@
       "anchoredTo": {"@id": "gh:Motif/TreeOfLife"},
       "emits": {"@id": "gh:Motif/GoodFeeling"},
       "repels": {"@id": "gh:Motif/BadFeeling"},
-      "avoids": {"@id": "gh:Motif/BadFeeling"},
-      "embodies": {"@id": "gh:Trait/GoodVibesUnderAdversity"},
-      "hasArc": {"@id": "gh:Arc/Tamaki-TreeOfLife-Transmutation"},
-      "schema:worksFor": {"@id": "gh:Company/Schwa"},
-      "schema:memberOf": {"@id": "gh:Org/ToL"}
+      "avoids": {"@id": "gh:Motif/BadFeeling"}
     },
 
     { "@id": "gh:Episode/S2E2", "@type": "Episode",
@@ -212,82 +166,8 @@
     { "@id": "gh:Timeline/Akito", "@type": "Timeline", "name": "Akito年代記",
       "description": "Off-Thread: アキトの人生の出来事と啓示の年表。",
       "influences": [ {"@id": "gh:Episode/S1E1"}, {"@id": "gh:Episode/S2E2"} ],
-      "hasEvent": [
-        {"@id": "gh:Event/Akito/Age7-BullyingFaith"},
-        {"@id": "gh:Event/Akito/Age15-Departure"},
-        {"@id": "gh:Event/Akito/Age16-19-Wandering"},
-        {"@id": "gh:Event/Akito/Age17-DeclareWar"},
-        {"@id": "gh:Event/Akito/Age18-StartupExit"},
-        {"@id": "gh:Event/Akito/Age19-PhilosophyExit"},
-        {"@id": "gh:Event/Akito/Age20s-MedSchool-SpiritResearch"},
-        {"@id": "gh:Event/Akito/Age23-SoloFocus"},
-        {"@id": "gh:Event/Akito/Age24-NonSeparationInsight"},
-        {"@id": "gh:Event/Akito/Age25-Buddhist"},
-        {"@id": "gh:Event/Akito/Age26-YHWH-Integration"},
-        {"@id": "gh:Event/Akito/Age27-FatherDeath-ISStart"},
-        {"@id": "gh:Event/Akito/Age28-29-IS-Betrayal"},
-        {"@id": "gh:Event/Akito/Age30-Divorce"},
-        {"@id": "gh:Event/Akito/Age30-FinalAyahuascaSession"},
-        {"@id": "gh:Event/Akito/Age30-IntegrationRebirth"}
-      ],
       "source": {"@id": "gh:Source/akito-timeline"}
     },
-
-    { "@id": "gh:Event/Akito/Age7-BullyingFaith", "@type": "gh:Event", "name": "7歳: 信仰を理由にいじめ",
-      "age": 7,
-      "description": "神信仰が当たり前でない社会で疎外といじめ。価値観の断絶を知る。",
-      "motifRefs": [ {"@id": "gh:Motif/NonSeparation"} ] },
-    { "@id": "gh:Event/Akito/Age15-Departure", "@type": "gh:Event", "name": "15歳: 家出と飛び級卒業",
-      "age": 15,
-      "description": "神と戦うと誓い家を出る。知性を示し飛び級卒業。" },
-    { "@id": "gh:Event/Akito/Age16-19-Wandering", "@type": "gh:Event", "name": "16–19歳: 放浪と自己組織化理論",
-      "age": 16,
-      "description": "海外放浪。複雑系で神の実在を捉え直す試み。" },
-    { "@id": "gh:Event/Akito/Age17-DeclareWar", "@type": "gh:Event", "name": "17歳: 神はいないと宣言し宣戦布告",
-      "age": 17,
-      "description": "不在証明への知的戦いと父=神への反逆。スタートアップ参加。",
-      "motifRefs": [ {"@id": "gh:Motif/Promise"} ] },
-    { "@id": "gh:Event/Akito/Age18-StartupExit", "@type": "gh:Event", "name": "18歳: 事業売却成功",
-      "age": 18,
-      "description": "若くしてエグジット経験を得る。" },
-    { "@id": "gh:Event/Akito/Age19-PhilosophyExit", "@type": "gh:Event", "name": "19歳: 私大で科学哲学→離脱",
-      "age": 19,
-      "description": "既存の神殺し思想に限界を見て学術を離れる。" },
-    { "@id": "gh:Event/Akito/Age20s-MedSchool-SpiritResearch", "@type": "gh:Event", "name": "20代: 医学部籍と精神の情報性研究",
-      "age": 20,
-      "description": "魂を複雑な情報システムと直感。答えは未発見。" },
-    { "@id": "gh:Event/Akito/Age23-SoloFocus", "@type": "gh:Event", "name": "23歳: 孤独な集中へ",
-      "age": 23,
-      "description": "仲間の野心から距離を取り独力に集中。" },
-    { "@id": "gh:Event/Akito/Age24-NonSeparationInsight", "@type": "gh:Event", "name": "24歳: 自他非分離と社会関係資本",
-      "age": 24,
-      "description": "目に見えない価値の重要性に開眼。",
-      "motifRefs": [ {"@id": "gh:Motif/NonSeparation"} ] },
-    { "@id": "gh:Event/Akito/Age25-Buddhist", "@type": "gh:Event", "name": "25歳: 仏教に帰依",
-      "age": 25,
-      "description": "仏教徒となる。" },
-    { "@id": "gh:Event/Akito/Age26-YHWH-Integration", "@type": "gh:Event", "name": "26歳: アヤワスカでI AM啓示",
-      "age": 26,
-      "description": "YHWHを外部の絶対者でなく遍在的生成として悟る。",
-      "motifRefs": [ {"@id": "gh:Motif/IAM"}, {"@id": "gh:Motif/TreeOfLife"} ] },
-    { "@id": "gh:Event/Akito/Age27-FatherDeath-ISStart", "@type": "gh:Event", "name": "27歳: 父の死とIS構築開始",
-      "age": 27,
-      "description": "得度と改名。分散合意の電子政府ISを構築開始。" },
-    { "@id": "gh:Event/Akito/Age28-29-IS-Betrayal", "@type": "gh:Event", "name": "28–29歳: IS外攻防と内部裏切り",
-      "age": 28,
-      "description": "外部攻撃は退けるも側近の裏切りで資産横領。",
-      "motifRefs": [ {"@id": "gh:Motif/Betrayal"} ] },
-    { "@id": "gh:Event/Akito/Age30-Divorce", "@type": "gh:Event", "name": "30歳: 離婚と全喪失",
-      "age": 30,
-      "description": "修正に没頭し家庭崩壊。妻は娘と去る。" },
-    { "@id": "gh:Event/Akito/Age30-FinalAyahuascaSession", "@type": "gh:Event", "name": "30歳: 最終セッションと赦し",
-      "age": 30,
-      "description": "母の罪の記憶と対面。赦しにより母は成仏。動植物との対話感受も付随。",
-      "motifRefs": [ {"@id": "gh:Motif/Forgiveness"}, {"@id": "gh:Motif/Angel"} ] },
-    { "@id": "gh:Event/Akito/Age30-IntegrationRebirth", "@type": "gh:Event", "name": "30歳: もう一人の統合と再生",
-      "age": 30,
-      "description": "失われた“もう一人”を供養・統合し一者として完成。家族への純粋な愛へ転化。",
-      "motifRefs": [ {"@id": "gh:Motif/Reincarnation"}, {"@id": "gh:Motif/Forgiveness"} ] },
 
     { "@id": "gh:Season/3:outline", "@type": "Episode", "episodeNumber": 1, "season": {"@id": "gh:Season/3"},
       "name": "S3E1: 代償の可視化",

@@ -1,0 +1,13 @@
+@prefix gh: <https://gftd.ai/gh#> .
+@prefix schema: <http://schema.org/> .
+
+# Session 12: Together
+<https://gftd.ai/ghost-hacker/Episode/S1E12> a gh:Episode ;
+  schema:name "Session \"Together\"" ;
+  schema:alternateName "We can't put it toghether. it is toghether." ;
+  gh:hasArc gh:Arc/Tamaki-TreeOfLife-Transmutation ;
+  gh:hasCharacter gh:character:tamaki ;
+  gh:motifRefs gh:Motif/IAM , gh:Motif/TreeOfLife ;
+  gh:techRefs gh:Tech/SIP ;
+  gh:processRefs gh:Process/MemorySpace1024D .
+
