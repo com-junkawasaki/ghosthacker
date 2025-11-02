@@ -74,7 +74,7 @@
     { "@id": "gh:Arc/NeiChanDebt", "@type": "Arc", "name": "Nei-Chan負債", "spansSeasons": [
         {"@id": "gh:Season/2"}, {"@id": "gh:Season/3"}
       ] },
-    { "@id": "gh:Arc/RenVisualization", "@type": "Arc", "name": "Ren可視化", "spansSeasons": [
+    { "@id": "gh:Arc/InnerOtherVisualization", "@type": "Arc", "name": "内なる他者の可視化", "spansSeasons": [
         {"@id": "gh:Season/1"}, {"@id": "gh:Season/2"}, {"@id": "gh:Season/4"}
       ] },
     { "@id": "gh:Arc/Nero666", "@type": "Arc", "name": "GOD=666(皇帝ネロ)", "phase": "兆候→顕現→対決→成仏",
@@ -257,9 +257,9 @@
       "age": 30,
       "description": "母の罪の記憶と対面。赦しにより母は成仏。動植物との対話感受も付随。",
       "motifRefs": [ {"@id": "gh:Motif/Forgiveness"}, {"@id": "gh:Motif/Angel"} ] },
-    { "@id": "gh:Event/Akito/Age30-IntegrationRebirth", "@type": "gh:Event", "name": "30歳: レン統合と再生",
+    { "@id": "gh:Event/Akito/Age30-IntegrationRebirth", "@type": "gh:Event", "name": "30歳: もう一人の統合と再生",
       "age": 30,
-      "description": "レンを供養・統合し一者として完成。家族への純粋な愛へ転化。",
+      "description": "失われた“もう一人”を供養・統合し一者として完成。家族への純粋な愛へ転化。",
       "motifRefs": [ {"@id": "gh:Motif/Reincarnation"}, {"@id": "gh:Motif/Forgiveness"} ] },
 
     { "@id": "gh:Season/3:outline", "@type": "Episode", "episodeNumber": 1, "season": {"@id": "gh:Season/3"},
