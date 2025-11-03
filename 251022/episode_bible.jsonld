@@ -113,15 +113,18 @@
     { "@id": "gh:Motif/GoodFeeling", "@type": "Motif", "name": "いい感じ", "theme": "愛" },
     { "@id": "gh:Motif/BadFeeling", "@type": "Motif", "name": "わるい感じ", "theme": "依存" },
 
+    { "@id": "gh:Motif/Meme", "@type": "Motif", "name": "ミーム", "theme": "孤独" },
+    { "@id": "gh:Motif/Gene", "@type": "Motif", "name": "遺伝子", "theme": "孤独" },
+
     { "@id": "gh:Episode/S1E1", "@type": "Episode",
       "episodeNumber": 1,
       "season": {"@id": "gh:Season/1"},
-      "name": "Episode 1: The Loneliness of a Physicist",
-      "logline": "TamakiがEliasの『孤独』に潜航し、非分離コードと禁断の『アヤワスカ』で魂を解放する。",
+      "name": "Episode 1: The Fear of Individuality",
+      "logline": "Ghost Hackerタマキは、自らの死を恐れる孤独な物理学者の精神に潜り、生命が個人を超えた『meme』の繋がりであることを解き明かす。",
       "hasArc": [ {"@id": "gh:Arc/Case-E01"}, {"@id": "gh:Arc/Loneliness-Archipelago"} ],
       "antagonist": [ {"@id": "character:lonely-rationalist"}, {"@id": "ghost:silent-librarian"} ],
       "motifRefs": [
-        {"@id": "gh:Motif/Library"}, {"@id": "gh:Motif/Light"}, {"@id": "gh:Motif/Static"}, {"@id": "gh:Motif/NonSeparation"}, {"@id": "gh:Motif/Water"}
+        {"@id": "gh:Motif/Library"}, {"@id": "gh:Motif/Light"}, {"@id": "gh:Motif/Static"}, {"@id": "gh:Motif/NonSeparation"}, {"@id": "gh:Motif/Water"}, {"@id": "gh:Motif/Meme"}, {"@id": "gh:Motif/Gene"}
       ],
       "hasCharacter": [
         {"@id": "character:tamaki"}, {"@id": "character:Nei-chan"}, {"@id": "character:kaede"}, {"@id": "character:hibiki"}, {"@id": "character:elias"}, {"@id": "character:logos"}
@@ -164,6 +167,18 @@
       "motifRefs": [ {"@id": "gh:Motif/Promise"}, {"@id": "gh:Motif/Forgiveness"}, {"@id": "gh:Motif/Cat"} ],
       "hasCharacter": [ {"@id": "character:tamaki"}, {"@id": "character:Nei-chan"}, {"@id": "character:aoi"}, {"@id": "character:kaede"} ],
       "source": {"@id": "gh:Source/ep2"}
+    },
+
+    { "@id": "gh:Episode/S1E2", "@type": "Episode",
+      "episodeNumber": 2,
+      "season": {"@id": "gh:Season/1"},
+      "name": "Episode 2: The Fear of Immortality",
+      "logline": "タマキは、無限の輪廻を恐れるクライアントと対峙し、自らが「いい感じ」を追求する理由——次の宇宙をより良くするため——を語る。",
+      "hasArc": [ {"@id": "gh:Arc/TamakiGrowth"} ],
+      "antagonist": [ {"@id": "character:dualist"} ],
+      "motifRefs": [ {"@id": "gh:Motif/Reincarnation"}, {"@id": "gh:Motif/GoodFeeling"} ],
+      "hasCharacter": [ {"@id": "character:tamaki"}, {"@id": "character:Nei-chan"}, {"@id": "character:arjun-patel"} ],
+      "source": {"@id": "gh:Source/ep_new_dualist"}
     },
 
     { "@id": "gh:Timeline/Akito", "@type": "Timeline", "name": "Akito年代記",
@@ -209,6 +224,7 @@
       "selectionHint": "Ep1構造・Scene・用語（図書館/非分離/アヤワスカ）" },
     { "@id": "gh:Source/ep1_md", "@type": "SourceRef", "path": "250806/episodes/episode1/ja_Episode_01_Masterpiece.md", "lang": "ja",
       "selectionHint": "Ep1本文（引用せず構造参照）" },
+    { "@id": "gh:Source/ep_new_dualist", "@type": "SourceRef", "path": "251022/wattpad/episodes/ep_new_dualist/part1.md", "lang": "ja", "selectionHint": "新規エピソードの骨子" },
     { "@id": "gh:Source/ep2", "@type": "SourceRef", "path": "250806/episodes/episode2/ja_Episode_01_Masterpiece.jsonld", "lang": "ja",
       "selectionHint": "Ep2素材（A/B/Cアーク配置のための雛形）" },
     { "@id": "gh:Source/opening", "@type": "SourceRef", "path": "250806/gftd.jsonl", "lang": "ja",

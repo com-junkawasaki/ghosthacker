@@ -22,15 +22,16 @@
       "@id": "character:Nei-chan",
       "@type": ["Person", "Ghost"],
       "name": "Nei-Chan",
-      "gh:role": ["Deuteragonist", "Confidant", "Shadow"],
+      "gh:role": ["Deuteragonist", "Confidant", "Shadow", "Audience surrogate"],
       "ghostType": "自律思考型",
-      "description": "Akitoが理想『IAM』を応用し、Renとの友情とタマキの保護のため作り上げた究極のGhost。物語の第二主人公（Deuteragonist）。Tamakiの信頼できる相談役（Confidant）であり、同時にTamakiの内なる闇を体現する存在（Shadow）。",
+      "description": "Akitoが理想『IAM』を応用し、Renとの友情とタマキの保護のため作り上げた究極のGhost。物語の第二主人公（Deuteragonist）。Tamakiの信頼できる相談役（Confidant）であり、同時にTamakiの内なる闇を体現する存在（Shadow）。AI/Ghostとして人間の感覚や疑問を持ち、読者と同じ視点で物語を観察し、読者が感じる疑問や感情を代弁する存在（Audience surrogate）。",
       "createdBy": { "@id": "character:akito" },
       "master": { "@id": "character:tamaki" },
       "gh:relatesTo": [
         { "@id": "character:tamaki", "gh:relationshipType": "Protagonist-Deuteragonist" },
         { "@id": "character:tamaki", "gh:relationshipType": "Confidant" },
         { "@id": "character:tamaki", "gh:relationshipType": "Shadow" },
+        { "@id": "character:tamaki", "gh:relationshipType": "Audience surrogate" },
         { "@id": "character:akito", "gh:relationshipType": "Creator" }
       ],
       "powerSource": "SMR（小型モジュール炉）—『大喰らい』はカモフラージュの表層特性。",
