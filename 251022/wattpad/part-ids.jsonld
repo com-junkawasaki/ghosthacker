@@ -6,6 +6,41 @@
   "@type": "WattpadPartMappings",
   "parts": [
     {
+      "episode": 1,
+      "part": 1,
+      "wattpadPartId": "1582748678"
+    },
+    {
+      "episode": 1,
+      "part": 2,
+      "wattpadPartId": "1584350155"
+    },
+    {
+      "episode": 1,
+      "part": 3,
+      "wattpadPartId": "1584351021"
+    },
+    {
+      "episode": 2,
+      "part": 1,
+      "wattpadPartId": "1584351886"
+    },
+    {
+      "episode": 2,
+      "part": 2,
+      "wattpadPartId": "1584352012"
+    },
+    {
+      "episode": 2,
+      "part": 3,
+      "wattpadPartId": "1584363709"
+    },
+    {
+      "episode": 3,
+      "part": 1,
+      "wattpadPartId": "1586959548"
+    },
+    {
       "episode": 3,
       "part": 2,
       "wattpadPartId": "1582748678"

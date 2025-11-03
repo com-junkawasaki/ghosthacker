@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { launchWithStorage, loginIfNeeded, openWork, createNewPart, saveAndPublish, saveStorage, setTitleAndBody, getExistingPartCount, getFirstExistingPartId, readTitle, readBody, openPartEditor } from "./wattpad";
 import { findEpisodeParts, loadPart, loadEpisodeNames } from "./content";
-import { upsertPartMapping } from "./part-ids";
+import { upsertPartMapping, findPartMapping } from "./part-ids";
 
 type CliFlags = { dryRun: boolean; limit?: number };
 
@@ -53,26 +53,69 @@ async function main() {
     if (partsToCreate.length === 0) {
       console.log("All parts already exist on Wattpad.");
       
-      // For testing: update the first part to verify body content
-      if (limit === 1) {
-        console.log("Test mode: Updating first part to verify body content...");
-        const firstPart = parts[0];
-        const { title: originalTitle, body } = await loadPart(firstPart.filePath);
+      // Update existing parts (if limit is specified, update that many; otherwise update all)
+      const partsToUpdate = limit !== undefined && limit > 0 
+        ? parts.slice(0, limit)
+        : parts;
+      console.log(`Updating ${partsToUpdate.length} existing part(s)...`);
         
-        // Add episode title to part title if this is the first part of an episode
-        let title = originalTitle;
-        if (firstPart.part === 1) {
-          const episodeTitle = episodeNames.get(firstPart.episode);
-          if (episodeTitle) {
-            title = `EP${firstPart.episode}: ${episodeTitle} - ${originalTitle}`;
+        for (const part of partsToUpdate) {
+          const { title: originalTitle, body } = await loadPart(part.filePath);
+          
+          // Add episode title to part title if this is the first part of an episode
+          let title = originalTitle;
+          if (part.part === 1) {
+            const episodeTitle = episodeNames.get(part.episode);
+            if (episodeTitle) {
+              title = `EP${part.episode}: ${episodeTitle} - ${originalTitle}`;
+            }
           }
-        }
-        
-        console.log(`→ Updating [EP${firstPart.episode}-P${firstPart.part}] : ${title}`);
-        
-        if (!dryRun) {
+          
+          console.log(`→ Updating [EP${part.episode}-P${part.part}] : ${title}`);
+          
+          if (dryRun) {
+            console.log("  (dry-run: would update and publish)");
+            continue;
+          }
+          
+          // Find part ID from mapping
+          let partId: string | null = null;
+          const partMapping = await findPartMapping(part.episode, part.part);
+          if (partMapping) {
+            partId = partMapping.wattpadPartId;
+          } else {
+            // If mapping not found, try to get all part IDs from Wattpad and match by order
+            console.log(`  Part ID mapping not found for EP${part.episode}-P${part.part}, trying to get from Wattpad...`);
+            await openWork(page, workId);
+            const allPartIds = await page.evaluate(() => {
+              const links = Array.from(document.querySelectorAll('a[href*="/158"]'));
+              const ids: string[] = [];
+              for (const link of links) {
+                const href = link.getAttribute('href');
+                if (href) {
+                  const match = href.match(/^\/(\d{10,})-/);
+                  if (match) {
+                    ids.push(match[1]);
+                  }
+                }
+              }
+              return [...new Set(ids)]; // Remove duplicates
+            });
+            
+            // Match by global index (parts are ordered by episode then part)
+            if (allPartIds.length > part.index && allPartIds[part.index]) {
+              partId = allPartIds[part.index];
+              console.log(`  Found part ID from Wattpad order: ${partId}`);
+              // Save the mapping for future use
+              await upsertPartMapping(part.episode, part.part, partId);
+            } else {
+              console.warn(`  Could not find part ID for EP${part.episode}-P${part.part} (index ${part.index}), using fallback`);
+              partId = firstExistingPartId || "1582748678";
+            }
+          }
+          
           // Open existing part editor
-          await openPartEditor(page, workId, firstExistingPartId || "1582748678");
+          await openPartEditor(page, workId, partId);
           
           // Set title and body
           await setTitleAndBody(page, title, body);
@@ -104,15 +147,14 @@ async function main() {
           
           // Publish
           await saveAndPublish(page);
-          console.log(`  ✓ Updated and published (ID: ${firstExistingPartId})`);
+          console.log(`  ✓ Updated and published (ID: ${partId})`);
+          
+          // Return to myworks page for next iteration
+          await openWork(page, workId);
         }
         
-        console.log("Test complete.");
+        console.log("Update complete.");
         return;
-      }
-      
-      console.log("Nothing to do.");
-      return;
     }
 
     console.log(`Creating ${partsToCreate.length} new part(s)...`);
