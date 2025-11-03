@@ -8,6 +8,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import sharp from "sharp";
+import OpenAI from "openai";
 
 type ImageEntry = {
   "@id": string;
@@ -80,11 +81,40 @@ async function convertPortrait(srcPng: string, outWebp: string, width = 1024, he
     .toFile(outWebp);
 }
 
+async function generateWithOpenAI(prompt: string, width: number, height: number): Promise<Buffer> {
+  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const size = "1024x1024"; // standard; we will resize to requested
+  const res = await client.images.generate({ model: "gpt-image-1", prompt, size, quality: "high" as any });
+  const b64 = res.data?.[0]?.b64_json;
+  if (!b64) throw new Error("OpenAI images.generate returned no data");
+  const png = Buffer.from(b64, "base64");
+  return await sharp(png).resize(width, height, { fit: "cover" }).webp({ quality: 95 }).toBuffer();
+}
+
+async function editWithOpenAI(basePng: string, prompt: string, width: number, height: number): Promise<Buffer> {
+  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  // edits currently accept square outputs; generate then resize
+  // If edits API is unavailable, fall back to generate.
+  try {
+    // @ts-ignore - types may vary by SDK
+    const res = await client.images.edits({ model: "gpt-image-1", prompt, image: [fs.createReadStream(basePng)], size: "1024x1024" });
+    const b64 = res.data?.[0]?.b64_json;
+    if (!b64) throw new Error("OpenAI images.edits returned no data");
+    const png = Buffer.from(b64, "base64");
+    return await sharp(png).resize(width, height, { fit: "cover" }).webp({ quality: 95 }).toBuffer();
+  } catch (e) {
+    const genPrompt = `${prompt}. Keep identity and facial features of the original person. Tokyo quiet healing aesthetic + ghost hacking digital world.`;
+    return await generateWithOpenAI(genPrompt, width, height);
+  }
+}
+
 async function main() {
   ensureDir(outRoot);
   const entries: ImageEntry[] = [];
 
-  // 1) Character portraits from Gen4 pngs
+  const hasOpenAI = !!process.env.OPENAI_API_KEY;
+
+  // 1) Character portraits from Gen4 pngs (use OpenAI if API key provided)
   if (fs.existsSync(charactersDir)) {
     for (const id of fs.readdirSync(charactersDir)) {
       const cDir = path.join(charactersDir, id);
@@ -93,7 +123,15 @@ async function main() {
       if (files.length === 0) continue;
       const src = path.join(cDir, files[0]);
       const out = path.join(outRoot, "characters", id, "portrait_gen4.webp");
-      await convertPortrait(src, out);
+      if (hasOpenAI) {
+        const col = idToColor(id);
+        const prompt = `Portrait photo, single person centered, background solid color ${col}. Style: Tokyo quiet healing beauty and beautiful yet chaotic digital ghost-hacking world. Emotional, soft light, cinematic.`;
+        const buf = await editWithOpenAI(src, prompt, 1024, 1280);
+        ensureDir(path.dirname(out));
+        fs.writeFileSync(out, buf);
+      } else {
+        await convertPortrait(src, out);
+      }
       const meta = await sharp(out).metadata();
       entries.push({
         "@id": `gh:Image/Character/${id}/portrait_gen4`,
@@ -119,7 +157,14 @@ async function main() {
       const epId = toEpisodeId(ep); // ep03 -> gh:Episode/EP03 etc. We'll fall back to folder name.
       const color = idToColor(ep);
       const heroOut = path.join(outRoot, "episodes", ep, "hero.webp");
-      await createSolidImage(heroOut, 1920, 1080, color);
+      if (hasOpenAI) {
+        const prompt = `Poster/hero image 16:9 for episode ${ep}. Minimal typography (no text if not supported). Theme: Tokyo quiet healing beauty x ghost hacking digital world. Color key ${color}.`;
+        const buf = await generateWithOpenAI(prompt, 1920, 1080);
+        ensureDir(path.dirname(heroOut));
+        fs.writeFileSync(heroOut, buf);
+      } else {
+        await createSolidImage(heroOut, 1920, 1080, color);
+      }
       const heroMeta = await sharp(heroOut).metadata();
       entries.push({
         "@id": `gh:Image/Episode/${ep}/hero`,
@@ -138,7 +183,14 @@ async function main() {
       for (const p of parts) {
         const n = p.match(/part(\d+)/i)?.[1] ?? "1";
         const partOut = path.join(outRoot, "episodes", ep, `part${n}.webp`);
-        await createSolidImage(partOut, 1600, 900, color);
+        if (hasOpenAI) {
+          const prompt = `16:9 illustration for episode ${ep} part ${n}. Theme: scene mood driven, quiet breathing, emotional afterglow. Tokyo healing x ghost hacking. Color key ${color}.`;
+          const buf = await generateWithOpenAI(prompt, 1600, 900);
+          ensureDir(path.dirname(partOut));
+          fs.writeFileSync(partOut, buf);
+        } else {
+          await createSolidImage(partOut, 1600, 900, color);
+        }
         const m = await sharp(partOut).metadata();
         entries.push({
           "@id": `gh:Image/Episode/${ep}/part${n}`,
