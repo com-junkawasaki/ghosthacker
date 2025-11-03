@@ -1,6 +1,7 @@
 import "dotenv/config";
-import { launchWithStorage, loginIfNeeded, openWork, openPartEditor, saveAndPublish, saveStorage, setTitleAndBody, readTitle, readBody } from "./wattpad";
-import { findEpisodeParts, loadPart, sha256 } from "./content";
+import { launchWithStorage, loginIfNeeded, openWork, createNewPart, saveAndPublish, saveStorage, setTitleAndBody, getExistingPartCount } from "./wattpad";
+import { findEpisodeParts, loadPart } from "./content";
+import { upsertPartMapping } from "./part-ids";
 
 type CliFlags = { dryRun: boolean };
 
@@ -25,32 +26,45 @@ async function main() {
     await saveStorage(context);
     await openWork(page, workId);
 
+    // Get count of existing parts on Wattpad
+    const existingPartCount = await getExistingPartCount(page, workId);
+
     const parts = await findEpisodeParts(process.cwd());
     console.log(`Discovered ${parts.length} English parts to process`);
 
-    for (const part of parts) {
+    // Only create new parts for parts that don't exist yet
+    const partsToCreate = parts.slice(existingPartCount);
+    
+    if (partsToCreate.length === 0) {
+      console.log("All parts already exist on Wattpad. Nothing to do.");
+      return;
+    }
+
+    console.log(`Creating ${partsToCreate.length} new part(s)...`);
+
+    for (const part of partsToCreate) {
       const { title, body } = await loadPart(part.filePath);
-      console.log(`→ Part#${part.index + 1} [EP${part.episode}-P${part.part}] : ${title}`);
+      console.log(`→ Creating [EP${part.episode}-P${part.part}] : ${title}`);
 
       if (dryRun) {
+        console.log("  (dry-run: would create and publish)");
         continue;
       }
 
-      await openPartEditor(page, part.index);
+      // Create new part
+      const partId = await createNewPart(page, workId);
 
-      // Idempotency: skip if unchanged
-      const curTitle = (await readTitle(page)) || "";
-      const curBody = (await readBody(page)) || "";
-      const newHash = await sha256(`${title}\n\n${body}`);
-      const curHash = await sha256(`${curTitle}\n\n${curBody}`);
-      if (newHash === curHash) {
-        console.log("  = Skipped (no changes)");
-      } else {
-        await setTitleAndBody(page, title, body);
-        await saveAndPublish(page);
-      }
+      // Set title and body
+      await setTitleAndBody(page, title, body);
 
-      // Return to work TOC to continue
+      // Publish
+      await saveAndPublish(page);
+      console.log(`  ✓ Published (ID: ${partId})`);
+
+      // Save part ID mapping to JSON-LD
+      await upsertPartMapping(part.episode, part.part, partId);
+
+      // Return to myworks page for next iteration
       await openWork(page, workId);
     }
 

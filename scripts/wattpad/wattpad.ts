@@ -16,56 +16,58 @@ export async function launchWithStorage() {
 
 export async function loginIfNeeded(page: Page, email: string, password: string) {
   await page.goto("https://www.wattpad.com/login", { waitUntil: "domcontentloaded" });
+  await page.waitForLoadState("networkidle", { timeout: 30000 }).catch(() => {});
 
-  // If already logged in, the login page may redirect.
-  if (page.url().includes("/home") || page.url().includes("/myworks")) {
-    return;
+  // Cookie banner accept (best-effort)
+  const accept = page.locator('button:has-text("Accept"), button:has-text("Agree")');
+  if (await accept.first().count()) {
+    await accept.first().click().catch(() => {});
   }
 
-  // Fill email
-  const emailSelectors = [
-    'input[type="email"]',
-    'input[name="username"]',
-    'input[name="email"]',
-    'input[placeholder*="Email" i]'
-  ];
-  let filled = false;
-  for (const sel of emailSelectors) {
-    const el = page.locator(sel);
+  // If already logged in (redirected)
+  if (page.url().includes("/home") || page.url().includes("/myworks")) return;
+
+  // Some variants show a gateway; try to pick Email login
+  const emailLoginBtn = page.locator('button:has-text("Email"), a:has-text("Email")');
+  if (await emailLoginBtn.first().count()) {
+    await emailLoginBtn.first().click().catch(() => {});
+    await page.waitForLoadState("networkidle").catch(() => {});
+  }
+
+  const frames = [page, ...page.frames()];
+
+  // Fill email/password in any frame where found
+  let emailFilled = false;
+  for (const ctx of frames) {
+    const el = ctx.locator('input[type="email"], input[name="email"], input[name="username"], input[placeholder*="Email" i]');
     if (await el.first().count()) {
       await el.first().fill(email);
-      filled = true;
+      emailFilled = true;
       break;
     }
   }
-  if (!filled) throw new Error("Cannot find email input on Wattpad login page");
+  if (!emailFilled) throw new Error("Cannot find email input on Wattpad login page");
 
-  // Fill password
-  const pwSelectors = [
-    'input[type="password"]',
-    'input[name="password"]',
-    'input[placeholder*="Password" i]'
-  ];
-  filled = false;
-  for (const sel of pwSelectors) {
-    const el = page.locator(sel);
+  let pwFilled = false;
+  for (const ctx of frames) {
+    const el = ctx.locator('input[type="password"], input[name="password"], input[placeholder*="Password" i]');
     if (await el.first().count()) {
       await el.first().fill(password);
-      filled = true;
+      pwFilled = true;
       break;
     }
   }
-  if (!filled) throw new Error("Cannot find password input on Wattpad login page");
+  if (!pwFilled) throw new Error("Cannot find password input on Wattpad login page");
 
-  // Submit
-  const submit = page.locator('button:has-text("Log in"), button[type="submit"], input[type="submit"]');
-  if (await submit.first().count()) {
-    await submit.first().click();
-  } else {
-    await page.keyboard.press("Enter");
+  // Submit from the same context where the inputs exist, otherwise generic submit
+  for (const ctx of frames) {
+    const submit = ctx.locator('button:has-text("Log in"), button[type="submit"], input[type="submit"], button:has-text("Continue"), button:has-text("Sign in")');
+    if (await submit.first().count()) {
+      await submit.first().click();
+      await page.waitForLoadState("networkidle", { timeout: 30000 }).catch(() => {});
+      break;
+    }
   }
-
-  await page.waitForLoadState("networkidle", { timeout: 30000 });
 }
 
 export async function saveStorage(context: BrowserContext) {
@@ -79,115 +81,171 @@ export async function openWork(page: Page, workId: string) {
   await page.waitForLoadState("networkidle", { timeout: 30000 });
 }
 
-export async function openPartEditor(page: Page, index: number) {
-  // Try common patterns for the table-of-contents parts list.
-  // Click nth part edit; fallback to opening the part and switching to edit.
-  const partRow = page.locator('[data-test*="part" i], [data-automation-id*="part" i], li:has(a)');
-  const count = await partRow.count();
-  if (count === 0) {
-    // Fallback: click first link that resembles a chapter
-    const links = page.locator('a[href*="/story"], a:has-text("Part")');
-    if (await links.count()) {
-      await links.nth(index).click();
-    }
-  } else {
-    const target = partRow.nth(index);
-    // Prefer an explicit edit button inside the row
-    const editBtn = target.locator('a:has-text("Edit"), button:has-text("Edit")');
-    if (await editBtn.count()) {
-      await editBtn.first().click();
-    } else {
-      await target.click();
-    }
-  }
-  await page.waitForLoadState("networkidle");
-}
-
-export async function setTitleAndBody(page: Page, title: string, body: string) {
-  // Title field
-  const titleSel = [
-    'input[name="title"]',
-    'input[placeholder*="Title" i]',
-    'textarea[placeholder*="Title" i]'
+export async function getExistingPartCount(page: Page, workId: string): Promise<number> {
+  // Navigate to myworks page to access Table of Contents
+  await page.goto(`https://www.wattpad.com/myworks/${workId}`, { waitUntil: "domcontentloaded" });
+  await page.waitForLoadState("networkidle", { timeout: 30000 });
+  
+  // Extract part IDs from Table of Contents: try multiple selectors
+  const partSelectors = [
+    '.story-part[data-id]',
+    '.story-part.drag-item[data-id]',
+    '[data-id]',
+    '.parts-list .story-part',
   ];
-  let set = false;
-  for (const sel of titleSel) {
-    const el = page.locator(sel);
-    if (await el.first().count()) {
-      await el.first().fill("");
-      await el.first().type(title, { delay: 5 });
-      set = true;
+  
+  let count = 0;
+  for (const selector of partSelectors) {
+    const elements = page.locator(selector);
+    const c = await elements.count();
+    if (c > 0) {
+      count = c;
       break;
     }
   }
-  if (!set) {
-    // Try role-based
-    const tb = page.getByRole("textbox", { name: /title/i });
-    if (await tb.count()) {
-      await tb.fill("");
-      await tb.type(title, { delay: 5 });
-      set = true;
+  
+  console.log(`Found ${count} existing parts on Wattpad`);
+  return count;
+}
+
+export async function createNewPart(page: Page, workId: string): Promise<string> {
+  // Navigate to myworks page if not already there
+  if (!page.url().includes(`/myworks/${workId}`)) {
+    await page.goto(`https://www.wattpad.com/myworks/${workId}`, { waitUntil: "domcontentloaded" });
+    await page.waitForLoadState("networkidle", { timeout: 30000 });
+  }
+  
+  // Wait for page to be fully loaded, especially the Table of Contents section
+  await page.waitForSelector('.works-item-toc, .parts-list, button', { timeout: 30000 }).catch(() => {});
+  await page.waitForTimeout(2000); // Extra wait for dynamic content
+  
+  // Click "+ New Part" button - try multiple selectors
+  const newPartSelectors = [
+    'button.btn.btn-orange.on-new-part',
+    'button.on-new-part',
+    'button:has-text("New Part")',
+    'button:has-text("+ New Part")',
+    '.on-new-part',
+    'button.btn-orange',
+  ];
+  
+  let clicked = false;
+  let lastError: Error | null = null;
+  
+  for (const selector of newPartSelectors) {
+    try {
+      const btn = page.locator(selector);
+      const count = await btn.count();
+      if (count > 0) {
+        await btn.first().waitFor({ state: "visible", timeout: 10000 });
+        await btn.first().scrollIntoViewIfNeeded();
+        await btn.first().click();
+        clicked = true;
+        console.log(`Successfully clicked button with selector: ${selector}`);
+        break;
+      }
+    } catch (err) {
+      lastError = err as Error;
+      // Try next selector
+      continue;
     }
   }
+  
+  if (!clicked) {
+    // Debug: try to find any button with "new" or "part" text
+    const allButtons = page.locator('button');
+    const buttonCount = await allButtons.count();
+    console.log(`Found ${buttonCount} buttons on the page`);
+    
+    // Log button texts for debugging
+    for (let i = 0; i < Math.min(buttonCount, 10); i++) {
+      const text = await allButtons.nth(i).textContent().catch(() => "");
+      if (text && (text.includes("New") || text.includes("Part") || text.includes("+"))) {
+        console.log(`Button ${i}: "${text}"`);
+      }
+    }
+    
+    throw new Error(`Could not find '+ New Part' button on the page. Last error: ${lastError?.message}`);
+  }
+  
+  // Wait for navigation to new part editor page
+  // Wait for URL to contain /write/ followed by digits
+  await page.waitForFunction(
+    () => /\/myworks\/\d+\/write\/\d+/.test(window.location.href),
+    { timeout: 30000 }
+  );
+  await page.waitForLoadState("networkidle", { timeout: 30000 });
+  
+  // Extract part ID from URL
+  const urlMatch = page.url().match(/\/write\/(\d+)/);
+  if (!urlMatch) {
+    throw new Error("Failed to extract part ID from editor URL");
+  }
+  
+  const partId = urlMatch[1];
+  console.log(`Created new part with ID: ${partId}`);
+  
+  // Wait for editor to be ready
+  await page.waitForSelector('h2#story-title[contenteditable="true"], .story-editor', { timeout: 40000 });
+  
+  return partId;
+}
 
-  // Body editor (contenteditable)
-  const editor = page.locator('[contenteditable="true"]');
+export async function openPartEditor(page: Page, workId: string, partId: string) {
+  await page.goto(`https://www.wattpad.com/myworks/${workId}/write/${partId}`, { waitUntil: "domcontentloaded" });
+  await page.waitForSelector('h2#story-title[contenteditable="true"], .story-editor', { timeout: 40000 });
+}
+
+export async function setTitleAndBody(page: Page, title: string, body: string) {
+  // Title: h2#story-title[contenteditable="true"]
+  const titleEl = page.locator('h2#story-title[contenteditable="true"]');
+  if (await titleEl.first().count()) {
+    await titleEl.first().click();
+    await page.keyboard.press(process.platform === "darwin" ? "Meta+A" : "Control+A");
+    await page.keyboard.press("Backspace");
+    await titleEl.first().type(title, { delay: 5 });
+  }
+
+  // Body: .story-editor (contenteditable div)
+  const editor = page.locator('.story-editor[role="textbox"]');
   if (await editor.first().count()) {
     await editor.first().click();
     await page.keyboard.press(process.platform === "darwin" ? "Meta+A" : "Control+A");
     await page.keyboard.press("Backspace");
-    await editor.first().type(body, { delay: 1 });
-  } else {
-    // Fallback to textarea
-    const ta = page.locator("textarea");
-    if (await ta.first().count()) {
-      await ta.first().fill(body);
-    }
+    // For contenteditable, set text via evaluate - Wattpad will format it
+    await editor.first().evaluate((el, text) => {
+      el.textContent = text;
+      // Trigger input event so Wattpad recognizes the change
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+    }, body);
   }
 }
 
 export async function saveAndPublish(page: Page) {
-  // Save
-  const saveBtn = page.locator('button:has-text("Save"), [data-test*="save" i]');
-  if (await saveBtn.first().count()) {
-    await saveBtn.first().click();
-  }
-  // Wait for saved indicator
-  await page.waitForTimeout(1500);
-
-  // Publish (if required / present)
-  const publishBtn = page.locator('button:has-text("Publish"), [data-test*="publish" i]');
+  // Wait a moment for auto-save
+  await page.waitForTimeout(1000);
+  
+  // Click "Publish Changes" button
+  const publishBtn = page.locator('button:has-text("Publish Changes")');
   if (await publishBtn.first().count()) {
     await publishBtn.first().click();
-    await page.waitForTimeout(1500);
+    // Wait for confirmation/toast
+    await page.waitForTimeout(2000);
   }
 }
 
 export async function readTitle(page: Page): Promise<string> {
-  const titleSel = [
-    'input[name="title"]',
-    'input[placeholder*="Title" i]',
-    'textarea[placeholder*="Title" i]'
-  ];
-  for (const sel of titleSel) {
-    const el = page.locator(sel);
-    if (await el.first().count()) {
-      return (await el.first().inputValue()).trim();
-    }
+  const titleEl = page.locator('h2#story-title[contenteditable="true"]');
+  if (await titleEl.first().count()) {
+    return (await titleEl.first().innerText()).trim();
   }
-  const tb = page.getByRole("textbox", { name: /title/i });
-  if (await tb.count()) return (await tb.inputValue()).trim();
   return "";
 }
 
 export async function readBody(page: Page): Promise<string> {
-  const editor = page.locator('[contenteditable="true"]');
+  const editor = page.locator('.story-editor[role="textbox"]');
   if (await editor.first().count()) {
     return (await editor.first().innerText()).trim();
-  }
-  const ta = page.locator("textarea");
-  if (await ta.first().count()) {
-    return (await ta.first().inputValue()).trim();
   }
   return "";
 }
