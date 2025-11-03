@@ -31,12 +31,12 @@
 
 ## gh:Episode/S1E1
 - target vs actual (last segment):
-  - hope: target=0.00 actual=0.43 delta=0.43
   - trust: target=0.35 actual=0.00 delta=-0.35
-  - relief: target=0.30 actual=0.23 delta=-0.07
-  - anticipation: target=0.00 actual=0.04 delta=0.04
+  - anticipation: target=0.00 actual=0.30 delta=0.30
+  - hope: target=0.00 actual=0.28 delta=0.28
+  - relief: target=0.30 actual=0.15 delta=-0.15
   - joy: target=0.20 actual=0.23 delta=0.03
-  - sadness: target=0.00 actual=0.03 delta=0.03
+  - sadness: target=0.00 actual=0.02 delta=0.02
 
 ## gh:Episode/S2E2
 - target vs actual (last segment):
@@ -110,13 +110,14 @@
 
 ## gh:Episode/S3E1
 - target vs actual (last segment):
-  - anticipation: target=0.00 actual=0.25 delta=0.25
-  - trust: target=0.00 actual=0.22 delta=0.22
   - hope: target=0.30 actual=0.08 delta=-0.22
+  - anticipation: target=0.00 actual=0.21 delta=0.21
+  - trust: target=0.00 actual=0.18 delta=0.18
   - joy: target=0.20 actual=0.03 delta=-0.17
-  - sadness: target=0.00 actual=0.17 delta=0.17
-  - relief: target=0.35 actual=0.25 delta=-0.10
+  - sadness: target=0.00 actual=0.13 delta=0.13
+  - fear: target=0.00 actual=0.13 delta=0.13
 - 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
+- 提案: 不安描写は名づけ→整えで早めに解く。"待つ契約"や"I AM"の台詞で恐れを関係に変換。
 
 ## gh:Episode/S3E2
 - target vs actual (last segment):
@@ -151,11 +152,11 @@
 ## gh:Episode/S3E2
 - target vs actual (last segment):
   - relief: target=0.35 actual=0.11 delta=-0.24
-  - hope: target=0.00 actual=0.21 delta=0.21
+  - hope: target=0.00 actual=0.20 delta=0.20
+  - anticipation: target=0.00 actual=0.18 delta=0.18
   - joy: target=0.25 actual=0.07 delta=-0.18
-  - trust: target=0.00 actual=0.18 delta=0.18
-  - sadness: target=0.00 actual=0.17 delta=0.17
-  - anticipation: target=0.00 actual=0.16 delta=0.16
+  - trust: target=0.00 actual=0.17 delta=0.17
+  - sadness: target=0.00 actual=0.16 delta=0.16
 - 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
 
 ## gh:Episode/S4E1
@@ -188,11 +189,11 @@
 
 ## gh:Episode/S4E1
 - target vs actual (last segment):
-  - relief: target=0.00 actual=0.28 delta=0.28
+  - relief: target=0.00 actual=0.29 delta=0.29
   - trust: target=0.25 actual=0.01 delta=-0.24
-  - joy: target=0.00 actual=0.23 delta=0.23
-  - anticipation: target=0.25 actual=0.05 delta=-0.20
-  - hope: target=0.00 actual=0.16 delta=0.16
+  - joy: target=0.00 actual=0.21 delta=0.21
+  - anticipation: target=0.25 actual=0.07 delta=-0.18
+  - hope: target=0.00 actual=0.15 delta=0.15
   - fear: target=0.00 actual=0.10 delta=0.10
 
 ## gh:Episode/S4E2
@@ -228,10 +229,10 @@
 
 ## gh:Episode/S4E2
 - target vs actual (last segment):
-  - relief: target=0.00 actual=0.39 delta=0.39
-  - anticipation: target=0.00 actual=0.26 delta=0.26
+  - relief: target=0.00 actual=0.67 delta=0.67
   - hope: target=0.25 actual=0.00 delta=-0.25
-  - trust: target=0.35 actual=0.34 delta=-0.01
+  - trust: target=0.35 actual=0.19 delta=-0.16
+  - anticipation: target=0.00 actual=0.14 delta=0.14
   - joy: target=0.00 actual=0.00 delta=0.00
   - sadness: target=0.00 actual=0.00 delta=0.00
 
@@ -308,10 +309,10 @@
 
 ## gh:Episode/S6E1
 - target vs actual (last segment):
-  - joy: target=0.00 actual=0.17 delta=0.17
+  - joy: target=0.00 actual=0.18 delta=0.18
   - relief: target=0.00 actual=0.17 delta=0.17
-  - hope: target=0.25 actual=0.35 delta=0.10
-  - trust: target=0.35 actual=0.30 delta=-0.05
+  - hope: target=0.25 actual=0.33 delta=0.08
+  - trust: target=0.35 actual=0.32 delta=-0.03
   - sadness: target=0.00 actual=0.00 delta=0.00
   - fear: target=0.00 actual=0.00 delta=0.00
 
@@ -386,11 +387,11 @@
 
 ## gh:Episode/EP04
 - target vs actual (last segment):
-  - anticipation: target=0.00 actual=0.16 delta=0.16
+  - anticipation: target=0.00 actual=0.18 delta=0.18
   - relief: target=0.25 actual=0.11 delta=-0.14
-  - trust: target=0.30 actual=0.18 delta=-0.12
+  - trust: target=0.30 actual=0.17 delta=-0.13
   - surprise: target=0.00 actual=0.10 delta=0.10
-  - sadness: target=0.25 actual=0.17 delta=-0.08
+  - sadness: target=0.25 actual=0.16 delta=-0.09
   - joy: target=0.00 actual=0.07 delta=0.07
 - 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
 
