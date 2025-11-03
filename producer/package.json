@@ -19,7 +19,8 @@
     "analyze:emotions": "pnpm tsx src/scripts/hume-emotions.ts",
     "analyze:emotions:wattpad": "pnpm tsx src/scripts/hume-emotions-wattpad.ts",
     "score:emotions:wattpad": "pnpm tsx src/scripts/emotion-score.ts",
-    "analyze:structure": "pnpm tsx src/scripts/episode-structure.ts"
+    "analyze:structure": "pnpm tsx src/scripts/episode-structure.ts",
+    "integrate:emotion-analysis": "pnpm tsx src/scripts/integrate-emotion-analysis.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

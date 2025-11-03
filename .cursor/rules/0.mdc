@@ -49,7 +49,12 @@ alwaysApply: true
     - `producer/src/scripts/episode-structure.ts` → `pnpm analyze:structure`
     - `producer/src/scripts/hume-emotions-wattpad.ts` → `pnpm analyze:emotions:wattpad`
     - `producer/src/scripts/emotion-score.ts` → `pnpm score:emotions:wattpad`
+    - `producer/src/scripts/integrate-emotion-analysis.ts` → `pnpm integrate:emotion-analysis`
     - オプション: `producer/src/scripts/generate-episode-jsonld.ts`（エピソードJSON-LD生成系がある場合）
+  - 統合データ
+    - `251022/wattpad/integrated-emotion-analysis.jsonld`（感情分析・構造・スコアの統合）
+    - `250806/emotion-analysis-schema.jsonld`（感情分析システムのOWLスキーマ）
+    - `250806/emotion-analysis.shacl.ttl`（感情分析のSHACL検証ルール）
 
 - 手順（1イテレーション）
   1) 本文編集（短段落/会話/小さな場面転換・antagonist注釈）
@@ -58,7 +63,10 @@ alwaysApply: true
   3) SHACL検証（構造）: `250806/episode.shacl.ttl` × `episode-structure.jsonld`
   4) 感情解析: `pnpm analyze:emotions:wattpad`（文→part→episode集計）
   5) スコア算出: `pnpm score:emotions:wattpad`（ベンチマーク比較）
-  6) 差分改善（表現の言い換え/小さな場面転換配置/終盤の余韻調整）→ 1)へ
+  6) 統合JSON-LD生成: `pnpm integrate:emotion-analysis`
+     - 出力: `251022/wattpad/integrated-emotion-analysis.jsonld`
+     - SHACL検証: `250806/emotion-analysis.shacl.ttl`
+  7) 差分改善（表現の言い換え/小さな場面転換配置/終盤の余韻調整）→ 1)へ
 
 ### セッション粒度
 - 1 episode = 1 session を厳守（連続パートは同一夜・同一セッション内で進行）

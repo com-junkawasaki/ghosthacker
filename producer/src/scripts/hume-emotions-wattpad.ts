@@ -31,14 +31,27 @@ function fallbackEmotions(text: string): EmotionScore[] {
   const l = text.toLowerCase();
   const dims = ["joy","sadness","fear","anger","surprise","trust","anticipation","disgust","relief","hope"];
   const w = dims.map((d) => {
-    let s = 0; if (["joy","hope","relief"].includes(d)) s += (l.match(/解放|還る|水|朝|hope|relief|joy|赦し|静けさ/g)||[]).length*1.4;
-    if (d==="sadness") s += (l.match(/孤独|loss|涙|疲れ|沈む/g)||[]).length*1.2;
-    if (d==="fear") s += (l.match(/恐れ|不安|怖い|前兆|脅威/g)||[]).length*1.2;
-    if (d==="anger") s += (l.match(/怒り|rage|偽神|詰まる/g)||[]).length*1.1;
-    if (d==="disgust") s += (l.match(/汚染|嫌悪|過激/g)||[]).length*1.0;
-    if (d==="trust") s += (l.match(/信頼|契約|整える|待つ/g)||[]).length*1.1;
-    if (d==="anticipation") s += (l.match(/兆し|準備|名を問う/g)||[]).length*1.0; return s; });
-  const tot = w.reduce((a,b)=>a+b,0)||1; return dims.map((e,i)=>({emotion:e,score: +(w[i]/tot).toFixed(4)})).sort((a,b)=>b.score-a.score).slice(0,10);
+    let s = 0;
+    // Positive emotions
+    if (d === "joy") s += (l.match(/笑う|嬉しい|楽しい|喜び|幸せ|joy|happy|smile|微笑/g)||[]).length * 1.5;
+    if (d === "relief") s += (l.match(/解放|安心|ほっと|軽く|楽に|relief|安堵|大丈夫|自由/g)||[]).length * 1.5;
+    if (d === "hope") s += (l.match(/希望|未来|明日|きっと|進む|道|光|hope|新しい|できる/g)||[]).length * 1.5;
+    if (d === "trust") s += (l.match(/信頼|信じ|頼る|任せ|一緒|trust|繋がる|支え|守る/g)||[]).length * 1.3;
+    
+    // Negative emotions
+    if (d === "sadness") s += (l.match(/悲し|涙|泣|辛い|寂し|孤独|痛み|苦し|loss|sad|切ない/g)||[]).length * 1.3;
+    if (d === "fear") s += (l.match(/恐れ|怖い|不安|心配|怯え|恐怖|fear|afraid|脅威/g)||[]).length * 1.2;
+    if (d === "anger") s += (l.match(/怒り|腹立|憤り|怒る|イライラ|rage|angry|偽神/g)||[]).length * 1.2;
+    if (d === "disgust") s += (l.match(/嫌|気持ち悪|汚い|嫌悪|disgust|醜い/g)||[]).length * 1.0;
+    
+    // Neutral/Mixed emotions
+    if (d === "surprise") s += (l.match(/驚|びっくり|意外|まさか|えっ|surprise|shocked/g)||[]).length * 1.0;
+    if (d === "anticipation") s += (l.match(/期待|待つ|楽しみ|これから|次|anticipation|準備/g)||[]).length * 1.0;
+    
+    return s;
+  });
+  const tot = w.reduce((a,b)=>a+b,0)||1;
+  return dims.map((e,i)=>({emotion:e,score: +(w[i]/tot).toFixed(4)})).sort((a,b)=>b.score-a.score).slice(0,10);
 }
 
 async function callHume(text: string): Promise<EmotionScore[]> {
