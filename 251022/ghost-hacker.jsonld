@@ -54,7 +54,9 @@
     "gh:securityNote": {"@type": "xsd:string"},
     "gh:hazardNote": {"@type": "xsd:string"},
     "gh:items": {"@id": "https://ghosthacker.example.com/vocab#items", "@type": "@id"},
-    "gh:role": {"@type": "xsd:string"}
+    "gh:role": {"@type": "xsd:string"},
+    "gh:relatesTo": {"@id": "https://ghosthacker.example.com/vocab#relatesTo", "@type": "@id"},
+    "gh:relationshipType": {"@id": "https://ghosthacker.example.com/vocab#relationshipType", "@type": "xsd:string"}
   },
   "@graph": [
     {
@@ -93,7 +95,7 @@
         {"@id": "company:schwa"},
         {"@id": "company:gedatsu"},
         {"@id": "company:ai-company"},
-        {"@id": "company:gb-inc"}
+        {"@id": "company:gnb-inc"}
       ],
       "gh:soundtrack": [
         {"@id": "sound:choro-club"},
@@ -135,7 +137,7 @@
       "name": "Kaede Sharma",
       "alternateName": "काएदे शर्मा",
       "gh:callsign": "UPA",
-      "description": "37歳、女性、インド・日本ハーフ。頼れる先輩Ghost Hacker。ToL臨床リード（"Upanishad"）としてTamakiの上司。ケースリード・倫理境界を担当。",
+      "description": "37歳、女性、インド・日本ハーフ。頼れる先輩Ghost Hacker。ToL臨床リード（\"Upanishad\"）としてTamakiの上司。ケースリード・倫理境界を担当。",
       "age": 37,
       "occupation": "Senior Ghost Hacker / Case Lead",
       "worksFor": {"@id": "company:schwa"},
@@ -150,7 +152,7 @@
       "name": "Aoi Narukami",
       "alternateName": "鳴神 葵",
       "gh:callsign": "SKY",
-      "description": "22歳、男性、日本出身。純朴で可愛い青年。駆け出しのGhost Hacker。心がまっすぐで、澄んだ"スッキリ感"を持つ。困難の前でも正直に向き合い、他者の自由を尊重する姿勢が核にある。ログ観測・可視化を担当。",
+      "description": "22歳、男性、日本出身。純朴で可愛い青年。駆け出しのGhost Hacker。心がまっすぐで、澄んだ\"スッキリ感\"を持つ。困難の前でも正直に向き合い、他者の自由を尊重する姿勢が核にある。ログ観測・可視化を担当。",
       "age": 22,
       "occupation": "Junior Ghost Hacker / Log Observer",
       "worksFor": {"@id": "company:schwa"},
@@ -344,8 +346,6 @@
     { "@id": "organization:tol-psychedelic", "@type": "Organization", "name": "ToL Psychedelic" },
     { "@id": "organization:tol-psychology", "@type": "Organization", "name": "ToL Psychology" },
     { "@id": "organization:tol-comics", "@type": "Organization", "name": "ToL Narrative/Comics" },
-
-    // Antagonists (characters and ghosts)
     {
       "@id": "character:yael-ben-ami",
       "@type": "Person",
@@ -460,7 +460,6 @@
       "gh:master": { "@id": "character:anika-bose" }
     },
 
-    // ToL-affiliated Supporter mentors (modern inheritors)
     { "@id": "character:arjun-patel", "@type": "Person", "name": "Arjun Patel",
       "gh:callsign": "ATMAN", "gh:role": "Supporter", "age": 42, "gender": "Male",
       "nationality": "Indian", "occupation": "Meditative Hacker", "memberOf": { "@id": "organization:tol-hermeneutics" } },
@@ -523,7 +522,7 @@
       "nationality": "Japanese", "occupation": "Manga Creator", "memberOf": { "@id": "organization:tol-comics" } },
     { "@id": "character:kai-shirow", "@type": "Person", "name": "Kai Shirow",
       "gh:callsign": "GHOSTNAME", "gh:role": "Supporter", "age": 39, "gender": "Non-binary",
-      "nationality": "Japanese", "occupation": "Manga Creator", "memberOf": { "@id": "organization:tol-comics" } }
+      "nationality": "Japanese", "occupation": "Manga Creator", "memberOf": { "@id": "organization:tol-comics" } },
     {
       "@id": "company:gedatsu",
       "@type": "Organization",
@@ -539,9 +538,9 @@
       "gh:companyType": "Ghost Hacking Competitor"
     },
     {
-      "@id": "company:gb-inc",
+      "@id": "company:gnb-inc",
       "@type": "Organization",
-      "name": "GB Inc. (Good and Bad)",
+      "name": "GnB Inc. (Good and Bad)",
       "description": "問題を引き起こすことで知られるGhost Hacking会社。",
       "gh:companyType": "Ghost Hacking Competitor"
     },

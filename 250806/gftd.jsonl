@@ -60,7 +60,7 @@
           "competitors": [
             { "name": "Gedatsu", "philosophy": "Likely inspired by Buddhist concepts of liberation." },
             { "name": "Ai", "philosophy": "Likely focused on the concept of 'love'." },
-            { "name": "GB Inc. (Good and Bad)", "reputation": "Known to cause problems." }
+            { "name": "GnB Inc. (Good and Bad)", "reputation": "Known to cause problems." }
           ]
         }
       }

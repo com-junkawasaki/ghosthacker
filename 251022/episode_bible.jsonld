@@ -184,9 +184,9 @@
 
     { "@id": "gh:Season/4:outline1", "@type": "Episode", "episodeNumber": 1, "season": {"@id": "gh:Season/4"},
       "name": "S4E1: 共同体の正義",
-      "logline": "GB Inc.の不正案件。制度の穴と応報の正義の衝突。",
+      "logline": "GnB Inc.の不正案件。制度の穴と応報の正義の衝突。",
       "hasArc": [ {"@id": "gh:Arc/Nero666"} ],
-      "antagonist": [ {"@id": "company:gb-inc"}, {"@id": "character:mirror-hand"} ] },
+      "antagonist": [ {"@id": "company:gnb-inc"}, {"@id": "character:mirror-hand"} ] },
     { "@id": "gh:Season/4:outline2", "@type": "Episode", "episodeNumber": 2, "season": {"@id": "gh:Season/4"},
       "name": "S4E2: 偽神の兆候",
       "logline": "『偽神』Neroの影が社会インフラに現れる。Tamakiは兆候を追う。",

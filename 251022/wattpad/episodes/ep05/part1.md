@@ -12,13 +12,13 @@
     "company": "https://ghosthacker.example.com/company/"
   },
   "antagonist": [
-    {"@id": "company:gb-inc"},
+    {"@id": "company:gnb-inc"},
     {"@id": "character:mirror-hand"}
   ]
 }
 ```
 
-GB Inc.の不正。形式は整っているのに、文脈が悲鳴をあげている。私は両方を持って、コンソール＝法廷に立つ。Kaedeの示す痕跡は、完璧の偽装を指していた。完璧は、息が詰まる匂いがする。
+GnB Inc.の不正。形式は整っているのに、文脈が悲鳴をあげている。私は両方を持って、コンソール＝法廷に立つ。Kaedeの示す痕跡は、完璧の偽装を指していた。完璧は、息が詰まる匂いがする。
 Nei-chan「ASC、合わせる？」
 私は足元で神楽を一拍。合図。意識の解像度が静かに上がる。
 私「記録は正しい。けれど、文脈が削られている。ここ」
