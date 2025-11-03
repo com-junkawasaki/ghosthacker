@@ -1,30 +1,94 @@
-# EP4-1 — 手放す練習（屋上）
-- POV: 私（Tamaki／環樹）
-- Beat: Strain / Pattern Break
+# Session: Leo Kazan & Millia Stuart - Part 1
 
 ```json
 {
-  "@context": {
-    "@base": "https://ghosthacker.example.com/",
-    "gh": "https://ghosthacker.junkawasaki.com/gh#",
-    "antagonist": { "@id": "gh:antagonist", "@type": "@id" },
-    "character": "https://ghosthacker.example.com/character/",
-    "ghost": "https://ghosthacker.example.com/ghost/"
-  },
+  "@context": "https://ghosthacker.example.com/",
+  "@type": "EpisodePart",
+  "partOf": "episode:s3e2",
+  "position": 1,
   "antagonist": [
-    {"@id": "character:owner-of-love"},
-    {"@id": "ghost:chain-of-care"}
+    { "@id": "character:leo-kazan" },
+    { "@id": "character:millia-stuart" }
   ]
 }
 ```
 
-Aoiの未読が真っ赤に増える。私は彼を屋上へ連れ出し、都会の風を吸わせる。Nei-chanがカウントし、私は細いゴムを渡す。伸ばして、そっと戻す。身体で覚える手放し方。
-Nei-chan「ASC、合わせる？」
-私は足元で神楽を一拍。合図。意識の解像度が静かに上がる。
+---
 
-「助けたい。でも、止められない」
-「だから、止めるのは“あなたがやる”じゃない」
-境界を整えるのは、関係を壊す代わりに、関係を長くするためだ。
-監視は『所有の鎖（Chain of Care）』の変種——善意で正当化される支配だ。
-私はAoiに輪ゴムをもう一本渡す。「伸ばす、戻す。相手にも、あなたにも」
-風がひと筋、屋上の縁を撫でる。遠くで通知の音。私はスマホを伏せて言う。「監視は、あなたの不安のケアだった。今は不安をケアしよう」
+朝の光が渋谷の運河を照らす。Nei-chanがキッチンで何か作っている——彼女は食べないくせに、私のために料理をするのが好きだ。
+
+「タマ、今日は大変だよ。カップルセッションだって」
+
+私はコーヒーを淹れながら、ToLのファイルを開く。
+
+**Leo Kazan, 38, Director of Humanitarian NGO. Millia Stuart, 30, Digital Artist.**
+
+Kaedeのノートが添付されている。
+
+*「この二人は、お互いを"愛している"と言っている。でも、Milliaはリストカットを繰り返し、LeoはMilliaを"救おうとして"疲弊している。彼らの関係性は、共依存の可能性が高い」*
+
+Nei-chanが私の横に座る。「タマ、"愛"って何？」
+
+私は笑う。「それが分かれば、苦労しないよ」
+
+Kaedeが通信に入る。「Tamaki、このセッションは難しい。LeoのGhostはアダム・スミスの道徳感情論——他者からの"共感"を求める哲学。MilliaのGhostはJ.S.ミルの個人の自由と、日本の家父長制の"祖霊の鎖"の二つ。彼らは互いに、相手を"救おう"として、相手を傷つけている」
+
+Hibikiの周波数が部屋に入り込む。「Tamaki、二人の周波数は完全に非同期だ。彼らは"同じ言葉"を使っているが、その意味が違う」
+
+私は深く息を吸う。Nei-chanに合図し、神楽を小さく踏む。ASC制御の準備。
+
+画面がぼやけ、二人が現れる。Leoは情熱的で、Milliaは繊細で、でも……どこか、空洞がある。
+
+「Tamaki Mizuno、ですね。私はLeo Kazan。こちらはMillia」
+
+Leoの声は温かい。でも、その奥に、疲労がある。
+
+Milliaは小さく微笑む。でも、その笑顔は、壊れそうだ。
+
+「お二人は……"愛し合っている"と聞きました」
+
+Leoが即座に答える。「はい。私はMilliaを愛しています。彼女は……私の全てです」
+
+Milliaの笑顔が、少し凍る。
+
+Nei-chanが囁く。『タマ、Milliaの感情メトリクス……"愛"じゃなくて、"罪悪感"が強い』
+
+私はMilliaに尋ねる。
+
+「Millia、あなたは……Leoを愛していますか？」
+
+彼女の視線が泳ぐ。そして、小さく言った。
+
+「……私は、Leoに"愛されている"のが……怖いです」
+
+Leoの表情が崩れる。
+
+「Millia……なぜ？ 私は、君を守りたいだけなんだ」
+
+私は深く息を吸う。ここからが本番。
+
+「Leo、あなたは"共感"を、与えるものだと思っていますね」
+
+彼が驚いて私を見る。
+
+「Millia、あなたは"愛"を、返さなければならない借金だと思っていますね」
+
+彼女の目が、涙を浮かべる。
+
+Nei-chanが静かに告げる。『タマ、二人とも……"愛"を、取引だと思ってる』
+
+私は二人に向き直る。
+
+「お二人は、"愛"と"信用"を、混同しています。そして、"信頼"を、忘れています」
+
+Leoが問う。
+
+「……それは、どう違うんですか？」
+
+私は笑う。
+
+「それを、これから見つけましょう」
+
+---
+
+**[Beat: Leo & Milliaセッション開始——愛、信用、信頼の混乱]**

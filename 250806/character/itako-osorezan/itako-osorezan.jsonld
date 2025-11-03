@@ -1,0 +1,18 @@
+{
+  "@context": {
+    "@base": "https://ghosthacker.example.com/",
+    "@vocab": "https://schema.org/",
+    "gh": "https://ghosthacker.example.com/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@id": "character:itako-osorezan",
+  "@type": "Person",
+  "name": "Itako Osorezan",
+  "alternateName": "恐山イタコ",
+  "gh:role": "Supporter",
+  "description": "若くグラマーな老婆の姿をした、霊的手術の専門家。シャーマニズムと最新のGhost技術を融合させ、魂の癒着を切除する。",
+  "age": "不明 (見た目は20代、口調は老婆)",
+  "gender": "Female",
+  "occupation": "Spiritual Surgeon",
+  "fullText": "Itako Osorezan、通称「Dr. イタコ」は、魂の癒着（Complex）を切除する霊的手術の第一人者。見た目は20代のグラマラスな女性だが、その口調や振る舞いは老練な老婆そのもの。日本の恐山にルーツを持つイタコの家系と、最新のGhostハッキング技術を融合させた独自の施術を行う。Hibikiとは旧知の仲で、彼が担当するアヤワスカセッションのような「麻酔」の後、魂の外科手術を執刀する。腕は確かだが、口は悪く、患者への共感よりも「切れるか切れないか」を重視する職人肌。"
+}

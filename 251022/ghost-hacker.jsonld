@@ -493,6 +493,96 @@
       "gh:master": { "@id": "character:anika-bose" }
     },
 
+    {
+      "@id": "character:lachlan-keyes",
+      "@type": "Person",
+      "name": "Lachlan Keyes",
+      "gh:callsign": "FORTRESS",
+      "gh:role": "Antagonist",
+      "age": 42,
+      "gender": "Male",
+      "nationality": "Australian",
+      "occupation": "Orbital Facilities Security Architect",
+      "description": "合理的で、感情をリスク要因と見なす軌道上施設のセキュリティアーキテクト。",
+      "gh:ghost": { "@id": "ghost:john-locke" }
+    },
+    {
+      "@id": "ghost:john-locke",
+      "@type": ["Person", "gh:Ghost"],
+      "name": "The Fortress of Self",
+      "gh:ghostType": "Philosophical",
+      "gh:master": { "@id": "character:lachlan-keyes" },
+      "description": "ジョン・ロックの『自己所有権』の哲学を体現するGhost。身体こそが唯一の所有物であり、自己と他者を明確に分離する。"
+    },
+
+    {
+      "@id": "character:leo-kazan",
+      "@type": "Person",
+      "name": "Leo Kazan",
+      "gh:callsign": "COMPASS",
+      "gh:role": "Antagonist",
+      "age": 38,
+      "gender": "Male",
+      "nationality": "French (Russian descendant)",
+      "occupation": "Director of a Humanitarian NGO",
+      "description": "情に厚いが、『共感されるべき自分』を演じることに疲弊している人道支援NGOのディレクター。",
+      "gh:ghost": { "@id": "ghost:adam-smith" },
+      "knows": [{"@id": "character:millia-stuart"}]
+    },
+    {
+      "@id": "ghost:adam-smith",
+      "@type": ["Person", "gh:Ghost"],
+      "name": "The Invisible Hand",
+      "gh:ghostType": "Philosophical",
+      "gh:master": { "@id": "character:leo-kazan" },
+      "description": "アダム・スミスの『道徳感情論』を体現するGhost。共感と道徳的行動を求めるが、個人の自由な感情と社会的期待の間で葛藤を生む。"
+    },
+
+    {
+      "@id": "character:millia-stuart",
+      "@type": "Person",
+      "name": "Millia Stuart",
+      "gh:callsign": "CANVAS",
+      "gh:role": "Antagonist",
+      "age": 30,
+      "gender": "Female",
+      "nationality": "British (Japanese roots)",
+      "occupation": "Digital Artist",
+      "description": "個人の自由を渇望するが、家族との精神的な癒着に苦しむデジタルアーティスト。",
+      "gh:ghost": [{ "@id": "ghost:js-mill" }, { "@id": "ghost:the-ancestors-chain" }],
+      "knows": [{"@id": "character:leo-kazan"}]
+    },
+    {
+      "@id": "ghost:js-mill",
+      "@type": ["Person", "gh:Ghost"],
+      "name": "The Liberty Bell",
+      "gh:ghostType": "Philosophical",
+      "gh:master": { "@id": "character:millia-stuart" },
+      "description": "J.S.ミルの『自由論』を体現するGhost。個人の自由意志と選択を最優先する。"
+    },
+    {
+      "@id": "ghost:the-ancestors-chain",
+      "@type": ["Person", "gh:Ghost"],
+      "name": "祖霊の鎖 (The Ancestors' Chain)",
+      "gh:ghostType": "Cultural",
+      "gh:master": { "@id": "character:millia-stuart" },
+      "description": "儒教的家父長制と日本の『家』制度を体現するGhost。個人の感情より家族の調和を優先させ、魂に癒着する。"
+    },
+
+    {
+      "@id": "character:itako-osorezan",
+      "@type": "Person",
+      "name": "Itako Osorezan",
+      "alternateName": "恐山イタコ",
+      "gh:callsign": "SCALPEL",
+      "gh:role": "Supporter",
+      "age": "不明",
+      "gender": "Female",
+      "occupation": "Spiritual Surgeon",
+      "description": "若くグラマーな老婆の姿をした、霊的手術の専門家。シャーマニズムと最新のGhost技術を融合させ、魂の癒着を切除する。",
+      "memberOf": { "@id": "organization:tol" }
+    },
+
     { "@id": "character:arjun-patel", "@type": "Person", "name": "Arjun Patel",
       "gh:callsign": "ATMAN", "gh:role": "Supporter", "age": 42, "gender": "Male",
       "nationality": "Indian", "occupation": ["Meditative Hacker", "Deamon Hunter", "Zombie Killer"], "memberOf": { "@id": "organization:tol-hermeneutics" } },
