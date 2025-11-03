@@ -194,7 +194,7 @@
       "antagonist": [ {"@id": "character:lachlan-keyes"}, {"@id": "ghost:john-locke"} ] },
     { "@id": "gh:Season/3:outline2", "@type": "Episode", "episodeNumber": 2, "season": {"@id": "gh:Season/3"},
       "name": "S3E2: 友達と親友、家族の経済",
-      "logline": "100円の水から“冷蔵庫”の共有へ— Tamakiの問いと行為で開示が進み、他人/友達/家族の経済を行き来しながら『信用・信頼・愛』と“拡張された自己”に気づく（セッション予約はMillia）",
+      "logline": "100円の水から"冷蔵庫"の共有へ— Tamakiの問いと行為で開示が進み、他人/友達/家族の経済を行き来しながら『信用・信頼・愛』と"拡張された自己"に気づく（セッション予約はMillia）",
       "hasArc": [ {"@id": "gh:Arc/TamakiGrowth"} ],
       "antagonist": [ {"@id": "character:leo-kazan"}, {"@id": "character:millia-stuart"}, {"@id": "ghost:adam-smith"}, {"@id": "ghost:js-mill"}, {"@id": "ghost:the-ancestors-chain"} ],
       "gh:context": {
@@ -204,6 +204,39 @@
         "gh:familyContrast": [
           {"@id": "character:leo-kazan", "gh:familySupport": true},
           {"@id": "character:millia-stuart", "gh:familyIssue": "家父長制起因の癒着（秘匿）"}
+        ]
+      },
+      "gh:emotionalPlan": {
+        "@type": "gh:EmotionalPlan",
+        "gh:beats": [
+          {
+            "@type": "gh:EmotionalBeat",
+            "gh:position": 1,
+            "gh:targetEmotions": {
+              "curiosity": 0.25,
+              "surprise": 0.20,
+              "anticipation": 0.15
+            }
+          },
+          {
+            "@type": "gh:EmotionalBeat",
+            "gh:position": 2,
+            "gh:targetEmotions": {
+              "curiosity": 0.20,
+              "surprise": 0.25,
+              "anticipation": 0.20
+            }
+          },
+          {
+            "@type": "gh:EmotionalBeat",
+            "gh:position": 3,
+            "gh:targetEmotions": {
+              "sadness": 0.25,
+              "trust": 0.30,
+              "relief": 0.25,
+              "hope": 0.20
+            }
+          }
         ]
       }
     },

@@ -61,7 +61,6 @@ dims = relief, joy, hope, trust / penalties = fear+anger
 - gh:Episode/EP04: score=0 (sim=0, penalties=1)
 - gh:Episode/EP04: score=0 (sim=0, penalties=0)
 - gh:Episode/EP04: score=0 (sim=0, penalties=0)
-- gh:Episode/EP04: score=0 (sim=0, penalties=0)
 - gh:Episode/EP05: score=0 (sim=0, penalties=0)
 - gh:Episode/EP05: score=0 (sim=0, penalties=0)
 - gh:Episode/EP05: score=0 (sim=0, penalties=0)

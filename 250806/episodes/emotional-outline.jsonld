@@ -195,6 +195,17 @@
         { "@type":"EmotionalBeat","position":3,"name":"Quiet Win","targetVector":[{"@type":"EmotionScore","emotion":"relief","score":0.35},{"@type":"EmotionScore","emotion":"joy","score":0.25}]} ]
     },
     {
+      "@id": "gh:EmotionalPlan/EP04",
+      "@type": "EmotionalPlan",
+      "episode": { "@id": "gh:Episode/EP04" },
+      "name": "EP04: 友達と親友、家族の経済 → 告白 → 信頼と希望",
+      "description": "好奇心と驚きから始まり、悲しみの告白を経て、信頼・解放・希望へ",
+      "beats": [
+        { "@type":"EmotionalBeat","position":1,"name":"好奇心/驚き","targetVector":[{"@type":"EmotionScore","emotion":"curiosity","score":0.25},{"@type":"EmotionScore","emotion":"surprise","score":0.20},{"@type":"EmotionScore","emotion":"anticipation","score":0.15}]},
+        { "@type":"EmotionalBeat","position":2,"name":"驚き/期待","targetVector":[{"@type":"EmotionScore","emotion":"curiosity","score":0.20},{"@type":"EmotionScore","emotion":"surprise","score":0.25},{"@type":"EmotionScore","emotion":"anticipation","score":0.20}]},
+        { "@type":"EmotionalBeat","position":3,"name":"告白/信頼/解放","targetVector":[{"@type":"EmotionScore","emotion":"sadness","score":0.25},{"@type":"EmotionScore","emotion":"trust","score":0.30},{"@type":"EmotionScore","emotion":"relief","score":0.25},{"@type":"EmotionScore","emotion":"hope","score":0.20}]} ]
+    },
+    {
       "@id": "gh:EmotionalPlan/S4E1",
       "@type": "EmotionalPlan",
       "episode": { "@id": "gh:Episode/S4E1" },

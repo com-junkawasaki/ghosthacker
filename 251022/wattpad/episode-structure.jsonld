@@ -245,28 +245,12 @@
         "@id": "gh:Episode/EP04/part3"
       },
       "position": 3,
-      "wordCount": 301,
-      "readingUnits": 301,
+      "wordCount": 405,
+      "readingUnits": 405,
       "language": "ja",
       "beatsCount": 0,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep04/part3.md"
-    },
-    {
-      "@type": "EpisodePart",
-      "episode": {
-        "@id": "gh:Episode/EP04"
-      },
-      "part": {
-        "@id": "gh:Episode/EP04/part4"
-      },
-      "position": 4,
-      "wordCount": 185,
-      "readingUnits": 185,
-      "language": "ja",
-      "beatsCount": 0,
-      "antagonistBlock": false,
-      "sourcePath": "251022/wattpad/episodes/ep04/part4.md"
     },
     {
       "@type": "EpisodePart",

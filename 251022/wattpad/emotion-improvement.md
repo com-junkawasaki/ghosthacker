@@ -353,19 +353,45 @@
 - 計画未定義: EmotionalPlanが無いので既定の終盤( relief/joy/hope )増強を推奨。
 
 ## gh:Episode/EP04
-- 計画未定義: EmotionalPlanが無いので既定の終盤( relief/joy/hope )増強を推奨。
+- target vs actual (last segment):
+  - trust: target=0.30 actual=1.00 delta=0.70
+  - sadness: target=0.25 actual=0.00 delta=-0.25
+  - relief: target=0.25 actual=0.00 delta=-0.25
+  - hope: target=0.20 actual=0.00 delta=-0.20
+  - joy: target=0.00 actual=0.00 delta=0.00
+  - fear: target=0.00 actual=0.00 delta=0.00
+- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
 
 ## gh:Episode/EP04
-- 計画未定義: EmotionalPlanが無いので既定の終盤( relief/joy/hope )増強を推奨。
+- target vs actual (last segment):
+  - anger: target=0.00 actual=1.00 delta=1.00
+  - trust: target=0.30 actual=0.00 delta=-0.30
+  - sadness: target=0.25 actual=0.00 delta=-0.25
+  - relief: target=0.25 actual=0.00 delta=-0.25
+  - hope: target=0.20 actual=0.00 delta=-0.20
+  - joy: target=0.00 actual=0.00 delta=0.00
+- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
+- 提案: 応報の言い換え→回復語彙へ。触媒としてチーム連携（Kaede/Hibiki/Nei-chan）を挿入。
 
 ## gh:Episode/EP04
-- 計画未定義: EmotionalPlanが無いので既定の終盤( relief/joy/hope )増強を推奨。
+- target vs actual (last segment):
+  - trust: target=0.30 actual=0.00 delta=-0.30
+  - sadness: target=0.25 actual=0.00 delta=-0.25
+  - relief: target=0.25 actual=0.00 delta=-0.25
+  - hope: target=0.20 actual=0.00 delta=-0.20
+  - joy: target=0.00 actual=0.00 delta=0.00
+  - fear: target=0.00 actual=0.00 delta=0.00
+- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
 
 ## gh:Episode/EP04
-- 計画未定義: EmotionalPlanが無いので既定の終盤( relief/joy/hope )増強を推奨。
-
-## gh:Episode/EP04
-- 計画未定義: EmotionalPlanが無いので既定の終盤( relief/joy/hope )増強を推奨。
+- target vs actual (last segment):
+  - sadness: target=0.25 actual=1.00 delta=0.75
+  - trust: target=0.30 actual=0.00 delta=-0.30
+  - relief: target=0.25 actual=0.00 delta=-0.25
+  - hope: target=0.20 actual=0.00 delta=-0.20
+  - joy: target=0.00 actual=0.00 delta=0.00
+  - fear: target=0.00 actual=0.00 delta=0.00
+- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
 
 ## gh:Episode/EP05
 - 計画未定義: EmotionalPlanが無いので既定の終盤( relief/joy/hope )増強を推奨。
