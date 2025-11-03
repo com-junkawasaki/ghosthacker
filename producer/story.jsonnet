@@ -273,6 +273,35 @@
       outputs: ['wattpad_package', 'download_url'],
     },
 
+    // Wattpad Publish Node (Automated Publishing)
+    {
+      id: 'publish-wattpad',
+      type: 'PublishWattpad',
+      label: 'Wattpad Auto Publish',
+      dependsOn: ['export-wattpad'],
+      // UI integration
+      ui: { route: '/canvas/publish-wattpad' },
+      config: {
+        scriptPath: '../../scripts/wattpad/publish.ts',
+        workId: '402848261',
+        emailEnv: 'WATTPAD_EMAIL',
+        passwordEnv: 'WATTPAD_PASSWORD',
+        headless: false,
+        features: [
+          'auto-login',
+          'jsonld-stripping',
+          'episode-title-injection',
+          'part-id-mapping',
+          'content-verification',
+        ],
+        outputs: {
+          partIds: '../251022/wattpad/part-ids.jsonld',
+          logs: '../debug/wattpad-publish.log',
+        },
+      },
+      outputs: ['published_parts', 'part_ids', 'publish_status'],
+    },
+
     // YouTube Upload Node (optional)
     {
       id: 'publish-youtube',
@@ -304,7 +333,9 @@
     'webtoon-export',
     'video-gen',
     'render-video',
-    ['export-wattpad', 'publish-youtube'], // Parallel execution
+    'export-wattpad',
+    'publish-wattpad',
+    'publish-youtube',
   ],
 
   // Resource requirements per node type
@@ -323,6 +354,7 @@
     VideoGen: { cpu: 4, memory: '8GB', timeout: '30m' },
     Render: { cpu: 2, memory: '4GB', timeout: '20m' },
     ExportWattpad: { cpu: 0.5, memory: '256MB', timeout: '5m' },
+    PublishWattpad: { cpu: 1, memory: '512MB', timeout: '30m' },
     PublishYouTube: { cpu: 0.5, memory: '256MB', timeout: '10m' },
   },
 
@@ -336,6 +368,7 @@
       'webtoon-export': ['episode'],
       'video-gen': ['video'],
       'export-wattpad': ['wattpad_package'],
+      'publish-wattpad': ['published_parts', 'part_ids'],
     },
     maxRetries: 3,
     timeoutBuffer: '2m',
