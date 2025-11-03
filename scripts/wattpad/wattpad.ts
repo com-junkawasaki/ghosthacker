@@ -757,23 +757,38 @@ export async function setTitleAndBody(page: Page, title: string, body: string) {
   const titleEl = page.locator('h2#story-title[contenteditable="true"]');
   if (await titleEl.first().count()) {
     await titleEl.first().click();
+    await page.waitForTimeout(200); // Wait for focus
     await page.keyboard.press(process.platform === "darwin" ? "Meta+A" : "Control+A");
     await page.keyboard.press("Backspace");
-    await titleEl.first().type(title, { delay: 5 });
+    await page.waitForTimeout(200);
+    await titleEl.first().type(title, { delay: 10 });
+    await page.waitForTimeout(500); // Wait for title to be saved
   }
 
   // Body: .story-editor (contenteditable div)
+  // Use keyboard input instead of textContent to ensure Wattpad's medium-editor recognizes the change
   const editor = page.locator('.story-editor[role="textbox"]');
   if (await editor.first().count()) {
     await editor.first().click();
+    await page.waitForTimeout(500); // Wait for editor to be ready
+    
+    // Clear existing content
     await page.keyboard.press(process.platform === "darwin" ? "Meta+A" : "Control+A");
+    await page.waitForTimeout(200);
     await page.keyboard.press("Backspace");
-    // For contenteditable, set text via evaluate - Wattpad will format it
-    await editor.first().evaluate((el, text) => {
-      el.textContent = text;
-      // Trigger input event so Wattpad recognizes the change
+    await page.waitForTimeout(500); // Wait for content to be cleared
+    
+    // Type the body content using keyboard input
+    // Use slower delay for longer content to ensure reliability
+    await page.keyboard.type(body, { delay: 5 });
+    await page.waitForTimeout(1000); // Wait for content to be processed by medium-editor
+    
+    // Trigger additional events to ensure Wattpad recognizes the change
+    await editor.first().evaluate((el) => {
       el.dispatchEvent(new Event('input', { bubbles: true }));
-    }, body);
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+    await page.waitForTimeout(500);
   }
 }
 

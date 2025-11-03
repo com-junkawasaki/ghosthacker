@@ -97,3 +97,83 @@ export async function loadPart(filePath: string): Promise<ParsedContent> {
   return parseMarkdown(src);
 }
 
+/**
+ * Episode name mapping: EP number (1-12) -> Episode title
+ */
+export type EpisodeNameMap = Map<number, string>;
+
+/**
+ * Load episode names from manifest.json and story_owl.jsonld
+ * Returns a map of episode number (1-12) to episode title
+ */
+export async function loadEpisodeNames(rootDir: string): Promise<EpisodeNameMap> {
+  const map = new Map<number, string>();
+  
+  // Try to load from manifest.json first (has EP01-EP08)
+  const manifestPath = path.resolve(rootDir, "251022/wattpad/manifest.json");
+  try {
+    const manifestContent = await fs.readFile(manifestPath, "utf8");
+    const manifest = JSON.parse(manifestContent) as {
+      episodes?: Array<{ id: string; title: string; files?: string[] }>;
+    };
+    
+    if (manifest.episodes) {
+      for (const ep of manifest.episodes) {
+        // Extract EP number from files path (e.g., "episodes/ep01/part1.md" -> 1)
+        const epMatch = ep.files?.[0]?.match(/ep(\d+)/i);
+        if (epMatch) {
+          const epNum = Number(epMatch[1]);
+          map.set(epNum, ep.title);
+        }
+      }
+    }
+  } catch (err) {
+    console.warn(`Failed to load manifest.json: ${err}`);
+  }
+  
+  // Fallback to story_owl.jsonld for any missing episodes
+  const storyOwlPath = path.resolve(rootDir, "251022/story_owl.jsonld");
+  try {
+    const storyOwlContent = await fs.readFile(storyOwlPath, "utf8");
+    const storyOwl = JSON.parse(storyOwlContent) as {
+      "@graph"?: Array<{ "@id"?: string; "@type"?: string; name?: string }>;
+    };
+    
+    if (storyOwl["@graph"]) {
+      // Mapping from episode ID to EP number based on manifest.json patterns
+      // S1E1 -> EP01, S2E1 -> EP02, S3E1 -> EP03, S3E2 -> EP04, etc.
+      const episodeIdToEpNum: Record<string, number> = {
+        "gh:Episode/S1E1": 1,
+        "gh:Episode/S2E1": 2,
+        "gh:Episode/S3E1": 3,
+        "gh:Episode/S3E2": 4,
+        "gh:Episode/S4E1": 5,
+        "gh:Episode/S4E2": 6,
+        "gh:Episode/S5E1": 7,
+        "gh:Episode/S6E1": 8,
+      };
+      
+      for (const item of storyOwl["@graph"]) {
+        if (item["@type"] === "Episode" && item["@id"] && item.name) {
+          const epNum = episodeIdToEpNum[item["@id"]];
+          if (epNum && !map.has(epNum)) {
+            map.set(epNum, item.name);
+          }
+        }
+      }
+    }
+  } catch (err) {
+    console.warn(`Failed to load story_owl.jsonld: ${err}`);
+  }
+  
+  return map;
+}
+
+/**
+ * Get episode title for a given episode number
+ */
+export async function getEpisodeTitle(rootDir: string, episode: number): Promise<string | null> {
+  const episodeNames = await loadEpisodeNames(rootDir);
+  return episodeNames.get(episode) || null;
+}
+
