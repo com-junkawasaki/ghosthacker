@@ -5,7 +5,14 @@ import * as path from "path";
 export const STORAGE_STATE_PATH = path.resolve(".auth/wattpad.json");
 
 export async function launchWithStorage() {
-  const browser: Browser = await chromium.launch({ headless: true });
+  // Allow headless mode to be controlled via environment variable
+  // Set WATTPAD_HEADLESS=false to open browser window
+  const headless = process.env.WATTPAD_HEADLESS !== "false";
+  const browser: Browser = await chromium.launch({ 
+    headless,
+    // Slow down actions when browser is visible for debugging
+    slowMo: headless ? 0 : 100,
+  });
   const hasStorage = fs.existsSync(STORAGE_STATE_PATH);
   const context: BrowserContext = hasStorage
     ? await browser.newContext({ storageState: STORAGE_STATE_PATH })
@@ -804,27 +811,110 @@ export async function setTitleAndBody(page: Page, title: string, body: string) {
     // Type the body content using keyboard input
     // Use slower delay for longer content to ensure reliability
     await page.keyboard.type(body, { delay: 5 });
-    await page.waitForTimeout(1000); // Wait for content to be processed by medium-editor
+    await page.waitForTimeout(2000); // Wait for content to be processed by medium-editor
     
     // Trigger additional events to ensure Wattpad recognizes the change
     await editor.first().evaluate((el) => {
       el.dispatchEvent(new Event('input', { bubbles: true }));
       el.dispatchEvent(new Event('change', { bubbles: true }));
+      el.dispatchEvent(new Event('blur', { bubbles: true }));
     });
+    
+    // Click outside the editor to trigger auto-save
+    await page.keyboard.press("Escape"); // Close any dropdowns/menus
     await page.waitForTimeout(500);
+    
+    // Click on a neutral area (title area) to ensure editor loses focus
+    const titleEl = page.locator('h2#story-title[contenteditable="true"]');
+    if (await titleEl.first().count()) {
+      await titleEl.first().click({ force: true });
+      await page.waitForTimeout(500);
+    }
+    
+    // Wait for auto-save to trigger
+    await page.waitForTimeout(2000);
   }
 }
 
 export async function saveAndPublish(page: Page) {
-  // Wait a moment for auto-save
-  await page.waitForTimeout(1000);
+  // Wait for auto-save to trigger after content changes
+  await page.waitForTimeout(2000);
+  
+  // First, try to save changes explicitly
+  // Wattpad may show "Save" or "Save Changes" button when there are unsaved changes
+  const saveSelectors = [
+    'button:has-text("Save")',
+    'button:has-text("Save Changes")',
+    'button[class*="save"]',
+    'button[aria-label*="Save" i]',
+  ];
+  
+  let saved = false;
+  for (const selector of saveSelectors) {
+    const saveBtn = page.locator(selector);
+    const btnCount = await saveBtn.first().count();
+    if (btnCount > 0) {
+      // Check if button is enabled/visible
+      const isVisible = await saveBtn.first().isVisible().catch(() => false);
+      if (isVisible) {
+        console.log(`  Clicking save button: ${selector}`);
+        await saveBtn.first().click();
+        await page.waitForTimeout(2000); // Wait for save to complete
+        saved = true;
+        break;
+      }
+    }
+  }
+  
+  if (!saved) {
+    console.log("  No explicit save button found, relying on auto-save");
+    // Wait a bit more for auto-save to complete
+    await page.waitForTimeout(2000);
+  }
+  
+  // Wait for any "Saving..." indicator to disappear
+  try {
+    await page.waitForFunction(
+      () => {
+        const savingIndicators = document.querySelectorAll('[class*="saving"], [class*="Saving"], [aria-label*="Saving" i]');
+        return Array.from(savingIndicators).every(el => {
+          const style = window.getComputedStyle(el);
+          return style.display === 'none' || style.visibility === 'hidden';
+        });
+      },
+      { timeout: 5000 }
+    ).catch(() => {});
+  } catch {
+    // Ignore timeout, continue anyway
+  }
   
   // Click "Publish Changes" button
-  const publishBtn = page.locator('button:has-text("Publish Changes")');
-  if (await publishBtn.first().count()) {
-    await publishBtn.first().click();
-    // Wait for confirmation/toast
-    await page.waitForTimeout(2000);
+  const publishSelectors = [
+    'button:has-text("Publish Changes")',
+    'button:has-text("Publish")',
+    'button[class*="publish"]',
+    'button[aria-label*="Publish" i]',
+  ];
+  
+  let published = false;
+  for (const selector of publishSelectors) {
+    const publishBtn = page.locator(selector);
+    const btnCount = await publishBtn.first().count();
+    if (btnCount > 0) {
+      const isVisible = await publishBtn.first().isVisible().catch(() => false);
+      if (isVisible) {
+        console.log(`  Clicking publish button: ${selector}`);
+        await publishBtn.first().click();
+        // Wait for confirmation/toast
+        await page.waitForTimeout(3000);
+        published = true;
+        break;
+      }
+    }
+  }
+  
+  if (!published) {
+    console.warn("  ⚠ Could not find publish button, changes may not be published");
   }
 }
 

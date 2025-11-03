@@ -47,6 +47,7 @@ export async function findEpisodeParts(rootDir: string): Promise<EpisodePart[]> 
 
 /**
  * Parse markdown content: strip leading fenced JSON/JSON-LD block if present, extract H1 as title and the remainder as body.
+ * JSON-LD blocks can appear before or after the H1 title.
  */
 export function parseMarkdown(md: string): ParsedContent {
   const lines = md.replace(/^\uFEFF/, "").split(/\r?\n/);
@@ -54,7 +55,7 @@ export function parseMarkdown(md: string): ParsedContent {
   // Skip initial blank lines
   while (i < lines.length && lines[i].trim() === "") i++;
 
-  // Optional leading fenced JSON block
+  // Optional leading fenced JSON block (before H1)
   if (i < lines.length && /^```json/i.test(lines[i]?.trim())) {
     i++; // move past opening fence
     while (i < lines.length && !/^```\s*$/.test(lines[i])) i++;
@@ -63,12 +64,31 @@ export function parseMarkdown(md: string): ParsedContent {
     while (i < lines.length && lines[i].trim() === "") i++;
   }
 
-  // Title: first H1 after the optional JSON-LD block
+  // Title: first H1
   let title = "";
   let bodyStart = i;
   if (i < lines.length && /^#\s+/.test(lines[i])) {
     title = lines[i].replace(/^#\s+/, "").trim();
     bodyStart = i + 1;
+    
+    // Skip metadata lines (lines starting with "-" or other metadata patterns)
+    while (bodyStart < lines.length && (
+      lines[bodyStart].trim().startsWith("-") ||
+      lines[bodyStart].trim() === "" ||
+      /^[-*]\s/.test(lines[bodyStart].trim())
+    )) {
+      bodyStart++;
+    }
+    
+    // Check for JSON-LD block after H1 and metadata
+    if (bodyStart < lines.length && /^```json/i.test(lines[bodyStart]?.trim())) {
+      const jsonStart = bodyStart;
+      bodyStart++; // move past opening fence
+      while (bodyStart < lines.length && !/^```\s*$/.test(lines[bodyStart])) bodyStart++;
+      if (bodyStart < lines.length && /^```\s*$/.test(lines[bodyStart])) bodyStart++;
+      // Skip blank line after code fence if any
+      while (bodyStart < lines.length && lines[bodyStart].trim() === "") bodyStart++;
+    }
   }
 
   const body = lines.slice(bodyStart).join("\n").trim();

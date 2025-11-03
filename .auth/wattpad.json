@@ -5,7 +5,7 @@
       "value": "6slI3jeXShtEBCBKColEZ01jQZHYLkGVwUSqIQ9JauU%3D.%7B%7D",
       "domain": ".capig.stape.gl",
       "path": "/events/c7edd25b69c98075324bfe2b9254ff4b50a0e0bbf2827b91ea03fe9ce489a0c8",
-      "expires": 1769965500.2409,
+      "expires": 1769966139.561046,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
@@ -16,16 +16,6 @@
       "domain": ".wattpad.com",
       "path": "/",
       "expires": 1796741381.070498,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "sn__time",
-      "value": "j%3Anull",
-      "domain": ".wattpad.com",
-      "path": "/",
-      "expires": 1762190036.746615,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -45,7 +35,7 @@
       "value": "1",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1769965498.74122,
+      "expires": 1769966137.838055,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -55,7 +45,7 @@
       "value": "en_US",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1769965498.7412,
+      "expires": 1769966137.838006,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -195,7 +185,7 @@
       "value": "19A03833aa663ac74dd9ace1762181381",
       "domain": ".scorecardresearch.com",
       "path": "/",
-      "expires": 1795885499.805575,
+      "expires": 1795886138.689738,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -205,7 +195,7 @@
       "value": "19A03833aa663ac74dd9ace1762181381",
       "domain": ".scorecardresearch.com",
       "path": "/",
-      "expires": 1795885499.805627,
+      "expires": 1795886138.689756,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None",
@@ -227,7 +217,7 @@
       "value": "c727a51f-99e3-406e-9b39-6319e187b1bf-1o9fg",
       "domain": ".clmbtech.com",
       "path": "/",
-      "expires": 1796749499.748907,
+      "expires": 1796750139.185082,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
@@ -237,7 +227,7 @@
       "value": "c727a51f-99e3-406e-9b39-6319e187b1bf-1o9fg",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1796749499.74973,
+      "expires": 1796750139.188369,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -247,7 +237,7 @@
       "value": "GA1.2.1898941248.1762181382",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1762275899,
+      "expires": 1762276538,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -317,7 +307,7 @@
       "value": "fb.1.1762181383323.247631917849334415",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1769965499,
+      "expires": 1769966139,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -685,16 +675,6 @@
       "sameSite": "None"
     },
     {
-      "name": "__cf_bm",
-      "value": "fkDrmUn.Pred9VFNKNKnhAICXVaNmu7EIBw7F_Sm_a8-1762188231-1.0.1.1-z3sGsaROz.vo9tSrU6jqI1oHsllUGB8scOW6dQ4qWAVHI.KRAOuLprwf3Tjy1aIZkrN4oveWaInsoKKsSBP8slq6f0oRSn66md0aPs5GreI",
-      "domain": ".temu.com",
-      "path": "/",
-      "expires": 1762190031.296229,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "None"
-    },
-    {
       "name": "_gcl_au",
       "value": "1.1.986279459.1762181383.1456671867.1762188235.1762188236",
       "domain": ".wattpad.com",
@@ -729,7 +709,7 @@
       "value": "true",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1793725498.740943,
+      "expires": 1793726137.837492,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -746,20 +726,20 @@
     },
     {
       "name": "_ga_FNDTZ0MZDQ",
-      "value": "GS2.1.s1762181381$o1$g1$t1762189499$j60$l0$h0",
+      "value": "GS2.1.s1762181381$o1$g1$t1762190138$j5$l0$h0",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1796749499.585754,
+      "expires": 1796750138.690164,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
     },
     {
       "name": "_ga",
-      "value": "GA1.2.1922627931.1762181382",
+      "value": "GA1.1.1922627931.1762181382",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1796749499.608563,
+      "expires": 1796750138.690338,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -771,11 +751,15 @@
       "localStorage": [
         {
           "name": "lastExternalReferrerTime",
-          "value": "1762189499957"
+          "value": "1762190139354"
         },
         {
           "name": "mobile-web#user.user50919.works",
           "value": "{\"_ts\":1762190043187,\"resp\":{\"total\":1,\"stories\":[{\"id\":\"402848261\",\"title\":\"Ghost Hacker\",\"voteCount\":0,\"commentCount\":0,\"language\":1,\"user\":{\"name\":\"user50919\",\"avatar\":\"https://img.wattpad.com/useravatar/user50919.128.101480.jpg\",\"fullname\":\"JK\",\"verified\":false},\"description\":\"渋谷の運河は、今日も静かだ。私のオフィスはその運河沿いに建っている。床から天井まで広がる大きな窓の向こうには、まるで沖縄の海を切り取ってきたかのような、深く、そして青く透き通った水が広がっている。時折、水上バスが音もなく滑るように通り過ぎていく。その光景を眺めながら、私は自分の仕事について考えていた。\\n\\n「ゴーストハッカー」。それが私の職業。\",\"cover\":\"https://img.wattpad.com/cover/402848261-256-k151505.jpg\",\"completed\":false,\"categories\":[5],\"tags\":[\"ghost\",\"hack\",\"spirite\",\"tokyo\"],\"url\":\"https://www.wattpad.com/story/402848261-ghost-hacker\",\"numParts\":7,\"lastPublishedPart\":{\"id\":1586959548,\"createDate\":\"2025-11-03T15:32:45Z\"},\"parts\":[{\"id\":1582748678,\"title\":\"The Ordinary and the Anomaly\",\"draft\":false,\"modifyDate\":\"2025-10-22T04:27:12Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1584350155,\"title\":\"Accepting the Request and Analysis\",\"draft\":false,\"modifyDate\":\"2025-10-22T04:30:36Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1584351021,\"title\":\"Accepting the Request and Analysis (Part 2)\",\"draft\":false,\"modifyDate\":\"2025-10-22T04:31:42Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1584351886,\"title\":\"Ghost Hacking (Part 1)\",\"draft\":false,\"modifyDate\":\"2025-10-22T02:41:34Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1584352012,\"title\":\" Ghost Hacking (Part 2)\",\"draft\":false,\"modifyDate\":\"2025-10-22T03:45:52Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1584363709,\"title\":\"Resolution\",\"draft\":false,\"modifyDate\":\"2025-10-22T03:47:32Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1586959548,\"title\":\"Untitled Part 7\",\"draft\":true,\"modifyDate\":\"2025-11-03T15:32:45Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"}],\"hasBannedCover\":false,\"readCount\":18,\"textids\":\"1582748678,1584350155,1584351021,1584351886,1584352012,1584363709,1586959548\",\"published\":true,\"categoryObject\":{\"id\":5,\"name\":\"Science Fiction\",\"name_english\":\"Science Fiction\",\"roles\":[\"onboarding\",\"writing\",\"searching\"],\"tagline\":\"Get lost in the speculative Science Fiction stories of the future: dystopian novels, space odysseys, post-apocalyptic worlds from the great authors and writers of today. We have the best in free books and stories online by authors who love to write alien, fantasy, space time travel, and short sci fi.\",\"banner\":\"science_fiction.jpg\",\"bg_image\":\"bg_science_fiction.png\"},\"storyLanguage\":\"English\",\"rank\":null,\"skip_title\":0}]}}"
+        },
+        {
+          "name": "topicsLastReferenceTime",
+          "value": "1762190139371"
         },
         {
           "name": "lastExternalReferrer",
@@ -787,7 +771,7 @@
         },
         {
           "name": "_gcl_ls",
-          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":86,\"timeouts\":0,\"creationTimeMs\":1762189500097},\"expires\":1769965500097}}"
+          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":91,\"timeouts\":0,\"creationTimeMs\":1762190139419},\"expires\":1769966139419}}"
         },
         {
           "name": "mobile-web#system.categories.1",
