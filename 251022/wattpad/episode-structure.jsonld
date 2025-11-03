@@ -245,8 +245,8 @@
         "@id": "gh:Episode/EP04/part3"
       },
       "position": 3,
-      "wordCount": 405,
-      "readingUnits": 405,
+      "wordCount": 669,
+      "readingUnits": 669,
       "language": "ja",
       "beatsCount": 0,
       "antagonistBlock": false,
@@ -261,8 +261,8 @@
         "@id": "gh:Episode/EP05/part1"
       },
       "position": 1,
-      "wordCount": 306,
-      "readingUnits": 306,
+      "wordCount": 563,
+      "readingUnits": 563,
       "language": "ja",
       "beatsCount": 0,
       "antagonistBlock": false,
@@ -277,8 +277,8 @@
         "@id": "gh:Episode/EP05/part2"
       },
       "position": 2,
-      "wordCount": 322,
-      "readingUnits": 322,
+      "wordCount": 443,
+      "readingUnits": 443,
       "language": "ja",
       "beatsCount": 0,
       "antagonistBlock": false,
@@ -293,28 +293,12 @@
         "@id": "gh:Episode/EP05/part3"
       },
       "position": 3,
-      "wordCount": 530,
-      "readingUnits": 530,
+      "wordCount": 840,
+      "readingUnits": 840,
       "language": "ja",
       "beatsCount": 0,
       "antagonistBlock": false,
       "sourcePath": "251022/wattpad/episodes/ep05/part3.md"
-    },
-    {
-      "@type": "EpisodePart",
-      "episode": {
-        "@id": "gh:Episode/EP05"
-      },
-      "part": {
-        "@id": "gh:Episode/EP05/part4"
-      },
-      "position": 4,
-      "wordCount": 213,
-      "readingUnits": 213,
-      "language": "ja",
-      "beatsCount": 0,
-      "antagonistBlock": false,
-      "sourcePath": "251022/wattpad/episodes/ep05/part4.md"
     },
     {
       "@type": "EpisodePart",
