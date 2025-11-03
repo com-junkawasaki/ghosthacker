@@ -32,6 +32,18 @@ const episodesDir = path.join(repoRoot, "251022/wattpad/episodes");
 const outRoot = path.join(repoRoot, "251022/assets");
 const catalogPath = path.join(outRoot, "images.jsonld");
 
+// --- simple CLI flags ---
+// --character=hibiki  --episode=ep07  --part=2  --type=portrait|hero|part
+function getArg(name: string): string | undefined {
+  const pfx = name + "=";
+  const a = process.argv.slice(2).find((a) => a.startsWith(pfx));
+  return a ? a.slice(pfx.length) : undefined;
+}
+const onlyCharacter = getArg("--character");
+const onlyEpisode = getArg("--episode");
+const onlyPart = getArg("--part");
+const onlyType = getArg("--type");
+
 function ensureDir(p: string) {
   fs.mkdirSync(p, { recursive: true });
 }
@@ -119,6 +131,8 @@ async function main() {
     for (const id of fs.readdirSync(charactersDir)) {
       const cDir = path.join(charactersDir, id);
       if (!fs.statSync(cDir).isDirectory()) continue;
+      if (onlyCharacter && id !== onlyCharacter) continue;
+      if (onlyType && onlyType !== "portrait") continue;
       const files = fs.readdirSync(cDir).filter((f) => f.toLowerCase().includes("gen4") && f.toLowerCase().endsWith(".png"));
       if (files.length === 0) continue;
       const src = path.join(cDir, files[0]);
@@ -154,34 +168,39 @@ async function main() {
     for (const ep of fs.readdirSync(episodesDir)) {
       const epDir = path.join(episodesDir, ep);
       if (!fs.statSync(epDir).isDirectory()) continue;
+      if (onlyEpisode && ep !== onlyEpisode) continue;
       const epId = toEpisodeId(ep); // ep03 -> gh:Episode/EP03 etc. We'll fall back to folder name.
       const color = idToColor(ep);
       const heroOut = path.join(outRoot, "episodes", ep, "hero.webp");
-      if (hasOpenAI) {
+      if (!onlyType || onlyType === "hero") {
+        if (hasOpenAI) {
         const prompt = `Poster/hero image 16:9 for episode ${ep}. Minimal typography (no text if not supported). Theme: Tokyo quiet healing beauty x ghost hacking digital world. Color key ${color}.`;
         const buf = await generateWithOpenAI(prompt, 1920, 1080);
         ensureDir(path.dirname(heroOut));
         fs.writeFileSync(heroOut, buf);
-      } else {
-        await createSolidImage(heroOut, 1920, 1080, color);
+        } else {
+          await createSolidImage(heroOut, 1920, 1080, color);
+        }
+        const heroMeta = await sharp(heroOut).metadata();
+        entries.push({
+          "@id": `gh:Image/Episode/${ep}/hero`,
+          "@type": ["gh:ImageAsset", "gh:EpisodeIllustration"],
+          "gh:filePath": path.relative(repoRoot, heroOut).replace(/\\/g, "/"),
+          "gh:format": "image/webp",
+          "gh:checksumSha256": sha256(heroOut),
+          "exif:width": heroMeta.width || 0,
+          "exif:height": heroMeta.height || 0,
+          "gh:colorTheme": color,
+          "gh:styleTag": "placeholder,solid-color",
+          "gh:forEpisode": { "@id": epId }
+        });
       }
-      const heroMeta = await sharp(heroOut).metadata();
-      entries.push({
-        "@id": `gh:Image/Episode/${ep}/hero`,
-        "@type": ["gh:ImageAsset", "gh:EpisodeIllustration"],
-        "gh:filePath": path.relative(repoRoot, heroOut).replace(/\\/g, "/"),
-        "gh:format": "image/webp",
-        "gh:checksumSha256": sha256(heroOut),
-        "exif:width": heroMeta.width || 0,
-        "exif:height": heroMeta.height || 0,
-        "gh:colorTheme": color,
-        "gh:styleTag": "placeholder,solid-color",
-        "gh:forEpisode": { "@id": epId }
-      });
 
       const parts = fs.readdirSync(epDir).filter((f) => /^part\d+\.md$/i.test(f));
       for (const p of parts) {
         const n = p.match(/part(\d+)/i)?.[1] ?? "1";
+        if (onlyType && onlyType !== "part") continue;
+        if (onlyPart && n !== onlyPart) continue;
         const partOut = path.join(outRoot, "episodes", ep, `part${n}.webp`);
         if (hasOpenAI) {
           const prompt = `16:9 illustration for episode ${ep} part ${n}. Theme: scene mood driven, quiet breathing, emotional afterglow. Tokyo healing x ghost hacking. Color key ${color}.`;
