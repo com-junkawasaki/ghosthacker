@@ -757,12 +757,35 @@ export async function setTitleAndBody(page: Page, title: string, body: string) {
   const titleEl = page.locator('h2#story-title[contenteditable="true"]');
   if (await titleEl.first().count()) {
     await titleEl.first().click();
-    await page.waitForTimeout(200); // Wait for focus
+    await page.waitForTimeout(300); // Wait for focus
+    
+    // Clear existing content more thoroughly
     await page.keyboard.press(process.platform === "darwin" ? "Meta+A" : "Control+A");
+    await page.waitForTimeout(100);
     await page.keyboard.press("Backspace");
     await page.waitForTimeout(200);
+    
+    // Double-check by evaluating and clearing
+    await titleEl.first().evaluate((el) => {
+      el.textContent = "";
+      el.innerText = "";
+    });
+    await page.waitForTimeout(200);
+    
+    // Type new title
     await titleEl.first().type(title, { delay: 10 });
     await page.waitForTimeout(500); // Wait for title to be saved
+    
+    // Verify title was set correctly
+    const actualTitle = await titleEl.first().innerText();
+    if (actualTitle.trim() !== title.trim()) {
+      // Try one more time with direct evaluation if keyboard input didn't work
+      await titleEl.first().evaluate((el, newTitle) => {
+        el.textContent = newTitle;
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+      }, title);
+      await page.waitForTimeout(500);
+    }
   }
 
   // Body: .story-editor (contenteditable div)

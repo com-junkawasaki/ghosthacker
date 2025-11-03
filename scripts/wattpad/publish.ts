@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { launchWithStorage, loginIfNeeded, openWork, createNewPart, saveAndPublish, saveStorage, setTitleAndBody, getExistingPartCount, getFirstExistingPartId, readTitle, readBody } from "./wattpad";
+import { launchWithStorage, loginIfNeeded, openWork, createNewPart, saveAndPublish, saveStorage, setTitleAndBody, getExistingPartCount, getFirstExistingPartId, readTitle, readBody, openPartEditor } from "./wattpad";
 import { findEpisodeParts, loadPart, loadEpisodeNames } from "./content";
 import { upsertPartMapping } from "./part-ids";
 
@@ -51,7 +51,67 @@ async function main() {
     }
     
     if (partsToCreate.length === 0) {
-      console.log("All parts already exist on Wattpad. Nothing to do.");
+      console.log("All parts already exist on Wattpad.");
+      
+      // For testing: update the first part to verify body content
+      if (limit === 1) {
+        console.log("Test mode: Updating first part to verify body content...");
+        const firstPart = parts[0];
+        const { title: originalTitle, body } = await loadPart(firstPart.filePath);
+        
+        // Add episode title to part title if this is the first part of an episode
+        let title = originalTitle;
+        if (firstPart.part === 1) {
+          const episodeTitle = episodeNames.get(firstPart.episode);
+          if (episodeTitle) {
+            title = `EP${firstPart.episode}: ${episodeTitle} - ${originalTitle}`;
+          }
+        }
+        
+        console.log(`→ Updating [EP${firstPart.episode}-P${firstPart.part}] : ${title}`);
+        
+        if (!dryRun) {
+          // Open existing part editor
+          await openPartEditor(page, workId, firstExistingPartId || "1582748678");
+          
+          // Set title and body
+          await setTitleAndBody(page, title, body);
+          
+          // Verify title and body were set correctly
+          const actualTitle = await readTitle(page);
+          const actualBody = await readBody(page);
+          
+          if (actualTitle.trim() !== title.trim()) {
+            console.warn(`  ⚠ Title mismatch: expected "${title}", got "${actualTitle}"`);
+          } else {
+            console.log(`  ✓ Title verified: "${actualTitle}"`);
+          }
+          
+          // Compare body content (allow for whitespace differences)
+          const expectedBodyTrimmed = body.trim().replace(/\s+/g, " ");
+          const actualBodyTrimmed = actualBody.trim().replace(/\s+/g, " ");
+          const bodyMatchRatio = actualBodyTrimmed.length > 0 
+            ? Math.min(expectedBodyTrimmed.length, actualBodyTrimmed.length) / Math.max(expectedBodyTrimmed.length, actualBodyTrimmed.length)
+            : 0;
+          
+          if (bodyMatchRatio < 0.8) {
+            console.warn(`  ⚠ Body content mismatch: expected ${expectedBodyTrimmed.length} chars, got ${actualBodyTrimmed.length} chars (match ratio: ${(bodyMatchRatio * 100).toFixed(1)}%)`);
+            console.warn(`  First 100 chars of expected: "${expectedBodyTrimmed.substring(0, 100)}"`);
+            console.warn(`  First 100 chars of actual: "${actualBodyTrimmed.substring(0, 100)}"`);
+          } else {
+            console.log(`  ✓ Body verified: ${actualBodyTrimmed.length} characters (match ratio: ${(bodyMatchRatio * 100).toFixed(1)}%)`);
+          }
+          
+          // Publish
+          await saveAndPublish(page);
+          console.log(`  ✓ Updated and published (ID: ${firstExistingPartId})`);
+        }
+        
+        console.log("Test complete.");
+        return;
+      }
+      
+      console.log("Nothing to do.");
       return;
     }
 

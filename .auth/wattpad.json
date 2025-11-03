@@ -5,7 +5,7 @@
       "value": "6slI3jeXShtEBCBKColEZ01jQZHYLkGVwUSqIQ9JauU%3D.%7B%7D",
       "domain": ".capig.stape.gl",
       "path": "/events/c7edd25b69c98075324bfe2b9254ff4b50a0e0bbf2827b91ea03fe9ce489a0c8",
-      "expires": 1769964813.573689,
+      "expires": 1769965500.2409,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
@@ -45,7 +45,7 @@
       "value": "1",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1769964811.871513,
+      "expires": 1769965498.74122,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -55,7 +55,7 @@
       "value": "en_US",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1769964811.871494,
+      "expires": 1769965498.7412,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -195,7 +195,7 @@
       "value": "19A03833aa663ac74dd9ace1762181381",
       "domain": ".scorecardresearch.com",
       "path": "/",
-      "expires": 1795884812.784957,
+      "expires": 1795885499.805575,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -205,7 +205,7 @@
       "value": "19A03833aa663ac74dd9ace1762181381",
       "domain": ".scorecardresearch.com",
       "path": "/",
-      "expires": 1795884812.784993,
+      "expires": 1795885499.805627,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None",
@@ -227,7 +227,7 @@
       "value": "c727a51f-99e3-406e-9b39-6319e187b1bf-1o9fg",
       "domain": ".clmbtech.com",
       "path": "/",
-      "expires": 1796748812.958212,
+      "expires": 1796749499.748907,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
@@ -237,7 +237,7 @@
       "value": "c727a51f-99e3-406e-9b39-6319e187b1bf-1o9fg",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1796748812.959328,
+      "expires": 1796749499.74973,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -247,7 +247,7 @@
       "value": "GA1.2.1898941248.1762181382",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1762275212,
+      "expires": 1762275899,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -317,7 +317,7 @@
       "value": "fb.1.1762181383323.247631917849334415",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1769964813,
+      "expires": 1769965499,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -675,16 +675,6 @@
       "sameSite": "None"
     },
     {
-      "name": "AMP_TOKEN",
-      "value": "%24NOT_FOUND",
-      "domain": ".wattpad.com",
-      "path": "/",
-      "expires": 1762188838,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
       "name": "IDSYNC",
       "value": "19gq~2sds",
       "domain": ".analytics.yahoo.com",
@@ -735,41 +725,41 @@
       "sameSite": "Lax"
     },
     {
-      "name": "RT",
-      "value": "",
-      "domain": ".wattpad.com",
-      "path": "/",
-      "expires": 1762188843,
-      "httpOnly": false,
-      "secure": true,
-      "sameSite": "Lax"
-    },
-    {
       "name": "wp-web-page",
       "value": "true",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1793724811.871241,
+      "expires": 1793725498.740943,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
     },
     {
-      "name": "_ga_FNDTZ0MZDQ",
-      "value": "GS2.1.s1762181381$o1$g1$t1762188812$j60$l0$h0",
+      "name": "AMP_TOKEN",
+      "value": "%24NOT_FOUND",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1796748812.765121,
+      "expires": 1762193013,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ga_FNDTZ0MZDQ",
+      "value": "GS2.1.s1762181381$o1$g1$t1762189499$j60$l0$h0",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1796749499.585754,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
     },
     {
       "name": "_ga",
-      "value": "GA1.1.1922627931.1762181382",
+      "value": "GA1.2.1922627931.1762181382",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1796748812.765333,
+      "expires": 1796749499.608563,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -781,7 +771,7 @@
       "localStorage": [
         {
           "name": "lastExternalReferrerTime",
-          "value": "1762188813397"
+          "value": "1762189499957"
         },
         {
           "name": "mobile-web#user.user50919.works",
@@ -797,7 +787,7 @@
         },
         {
           "name": "_gcl_ls",
-          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":83,\"timeouts\":0,\"creationTimeMs\":1762188813114},\"expires\":1769964813114}}"
+          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":86,\"timeouts\":0,\"creationTimeMs\":1762189500097},\"expires\":1769965500097}}"
         },
         {
           "name": "mobile-web#system.categories.1",
