@@ -12,6 +12,7 @@ alwaysApply: true
   - コマンド: `cd producer && pnpm analyze:structure`
   - 出力: `251022/wattpad/episode-structure.jsonld`
   - SHACL: `250806/episode.shacl.ttl` で検証（EpisodePartShape / EpisodePartAntagonistShape）
+ - SHACL: `250806/episode.shacl.ttl` で検証（EpisodePartShape / EpisodePartAntagonistShape / DialogueRatioShape / TurnDensityShape / MicroTurnShape / AntagonistSubjectivityShape / ContextDripShape / ASCShape）
   - wordCountの定義: "reading units"（CJKは約2文字=1単位、非CJKは空白区切り語数）。jaの下限は600、それ以外は800。
 - 感情分析ループ（文単位 → part集計 → episode）
   - 解析: `pnpm analyze:emotions:wattpad`
@@ -21,6 +22,7 @@ alwaysApply: true
   - 短段落・会話中心（モバイル読了）
   - 小さな場面転換を各partに2–3箇所
   - 説明より描写（show, don’t tell）
+  - 導入は台詞で状況を織り込む（ARIA風：Kaede/Hibiki/Nei-chan/Aoiの短い掛け合いで季節・ニュース・環境を提示）
 - 用語運用
   - 必要なら「ASC制御帯」「低干渉帯」
 
@@ -54,6 +56,9 @@ alwaysApply: true
   4) 感情解析: `pnpm analyze:emotions:wattpad`（文→part→episode集計）
   5) スコア算出: `pnpm score:emotions:wattpad`（ベンチマーク比較）
   6) 差分改善（表現の言い換え/小さな場面転換配置/終盤の余韻調整）→ 1)へ
+
+### セッション粒度
+- 1 episode = 1 session を厳守（連続パートは同一夜・同一セッション内で進行）
 
 - 用語・運用（OWL/SHACL整合のための統一）
   - ASC制御: Tamakiの神楽（一拍）＝スロットル合図／Nei-chanがASC制御を合わせる・維持・落とす

@@ -50,3 +50,36 @@ gh:EpisodePartAntagonistShape a sh:NodeShape ;
   ] .
 
 
+# Dialogue quality (lightweight, optional if properties absent)
+gh:DialogueRatioShape a sh:NodeShape ;
+  sh:targetClass gh:EpisodePart ;
+  sh:property [ sh:path gh:dialogueRatio ; sh:minInclusive 0.50 ; sh:maxInclusive 0.75 ;
+    sh:message "対話比率は50–75%に" ] .
+
+gh:TurnDensityShape a sh:NodeShape ;
+  sh:targetClass gh:EpisodePart ;
+  sh:property [ sh:path gh:turnsPer200RU ; sh:minInclusive 6 ; sh:maxInclusive 12 ;
+    sh:message "200RUあたりターン数は6–12に" ] .
+
+gh:MicroTurnShape a sh:NodeShape ;
+  sh:targetClass gh:EpisodePart ;
+  sh:property [ sh:path gh:microTurnCount ; sh:minInclusive 2 ; sh:maxInclusive 4 ;
+    sh:message "各part 2–4の小転回" ] .
+
+gh:AntagonistSubjectivityShape a sh:NodeShape ;
+  sh:targetClass gh:EpisodePart ;
+  sh:property [ sh:path gh:antagonistFirstPersonLines ; sh:minInclusive 6 ;
+    sh:message "アンタゴニストの一人称発話を増やす" ] ;
+  sh:property [ sh:path gh:antagonistAffectLines ; sh:minInclusive 3 ;
+    sh:message "感情語を含む発話を確保" ] .
+
+gh:ContextDripShape a sh:NodeShape ;
+  sh:targetClass gh:EpisodePart ;
+  sh:property [ sh:path gh:newProperNouns ; sh:maxInclusive 3 ;
+    sh:message "新規固有名の導入は3件以内" ] .
+
+gh:ASCShape a sh:NodeShape ;
+  sh:targetClass gh:EpisodePart ;
+  sh:property [ sh:path gh:ascCueCount ; sh:minInclusive 1 ;
+    sh:message "各partにASC合図を1回以上" ] .
+
