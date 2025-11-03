@@ -56,7 +56,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep01/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.676Z",
+          "createdAt": "2025-11-03T12:34:01.092Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -1149,7 +1149,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep01/part2.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.677Z",
+          "createdAt": "2025-11-03T12:34:01.096Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -2755,7 +2755,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep01/part3.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.678Z",
+          "createdAt": "2025-11-03T12:34:01.097Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -3567,7 +3567,7 @@
             "251022/wattpad/episodes/ep01/part3.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.678Z",
+          "createdAt": "2025-11-03T12:34:01.097Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -3988,24 +3988,24 @@
       }
     },
     {
-      "@id": "gh:Episode/S2E2",
+      "@id": "gh:Episode/S2E1",
       "@type": "gh:EmotionAnalysis",
       "episode": {
-        "@id": "gh:Episode/S2E2"
+        "@id": "gh:Episode/S2E1"
       },
       "emotionProfiles": [
         {
-          "@id": "gh:Episode/S2E2:Part:1:EmotionProfile",
+          "@id": "gh:Episode/S2E1:Part:1:EmotionProfile",
           "@type": "EmotionProfile",
           "subject": {
-            "@id": "gh:Episode/S2E2"
+            "@id": "gh:Episode/S2E1"
           },
           "episode": {
-            "@id": "gh:Episode/S2E2"
+            "@id": "gh:Episode/S2E1"
           },
           "sourcePath": "251022/wattpad/episodes/ep02/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.678Z",
+          "createdAt": "2025-11-03T12:34:01.098Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -4461,17 +4461,17 @@
           ]
         },
         {
-          "@id": "gh:Episode/S2E2:Part:2:EmotionProfile",
+          "@id": "gh:Episode/S2E1:Part:2:EmotionProfile",
           "@type": "EmotionProfile",
           "subject": {
-            "@id": "gh:Episode/S2E2"
+            "@id": "gh:Episode/S2E1"
           },
           "episode": {
-            "@id": "gh:Episode/S2E2"
+            "@id": "gh:Episode/S2E1"
           },
           "sourcePath": "251022/wattpad/episodes/ep02/part2.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.679Z",
+          "createdAt": "2025-11-03T12:34:01.098Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -5212,17 +5212,17 @@
           ]
         },
         {
-          "@id": "gh:Episode/S2E2:Part:3:EmotionProfile",
+          "@id": "gh:Episode/S2E1:Part:3:EmotionProfile",
           "@type": "EmotionProfile",
           "subject": {
-            "@id": "gh:Episode/S2E2"
+            "@id": "gh:Episode/S2E1"
           },
           "episode": {
-            "@id": "gh:Episode/S2E2"
+            "@id": "gh:Episode/S2E1"
           },
           "sourcePath": "251022/wattpad/episodes/ep02/part3.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.679Z",
+          "createdAt": "2025-11-03T12:34:01.101Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -5621,13 +5621,13 @@
           ]
         },
         {
-          "@id": "gh:Episode/S2E2:EmotionProfile",
+          "@id": "gh:Episode/S2E1:EmotionProfile",
           "@type": "EmotionProfile",
           "subject": {
-            "@id": "gh:Episode/S2E2"
+            "@id": "gh:Episode/S2E1"
           },
           "episode": {
-            "@id": "gh:Episode/S2E2"
+            "@id": "gh:Episode/S2E1"
           },
           "sourcePath": [
             "251022/wattpad/episodes/ep02/part1.md",
@@ -5635,7 +5635,7 @@
             "251022/wattpad/episodes/ep02/part3.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.679Z",
+          "createdAt": "2025-11-03T12:34:01.101Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -5873,171 +5873,7 @@
           "@id": "gh:EmotionalBenchmark/KimiNoNaWa"
         }
       },
-      "emotionalPlan": {
-        "@id": "gh:EmotionalPlan/S2E2",
-        "@type": "gh:EmotionalPlan",
-        "name": "S2E2: 愛/依存の区別 → 赦しの手触り",
-        "description": "所有的依存からケアとしての愛へ。痛みを通過して赦しに着地。",
-        "beats": [
-          {
-            "@type": "EmotionalBeat",
-            "position": 1,
-            "name": "約束: やさしい始まり",
-            "motifs": [
-              {
-                "@id": "gh:Motif/Promise"
-              }
-            ],
-            "targetVector": [
-              {
-                "@type": "EmotionScore",
-                "emotion": "anticipation",
-                "score": 0.3
-              },
-              {
-                "@type": "EmotionScore",
-                "emotion": "joy",
-                "score": 0.25
-              },
-              {
-                "@type": "EmotionScore",
-                "emotion": "trust",
-                "score": 0.2
-              }
-            ]
-          },
-          {
-            "@type": "EmotionalBeat",
-            "position": 2,
-            "name": "摩擦とズレ",
-            "motifs": [
-              {
-                "@id": "gh:Motif/Cat"
-              }
-            ],
-            "targetVector": [
-              {
-                "@type": "EmotionScore",
-                "emotion": "sadness",
-                "score": 0.25
-              },
-              {
-                "@type": "EmotionScore",
-                "emotion": "fear",
-                "score": 0.2
-              },
-              {
-                "@type": "EmotionScore",
-                "emotion": "anger",
-                "score": 0.15
-              }
-            ]
-          },
-          {
-            "@type": "EmotionalBeat",
-            "position": 3,
-            "name": "代償の可視化",
-            "motifs": [
-              {
-                "@id": "gh:Motif/Debt"
-              }
-            ],
-            "targetVector": [
-              {
-                "@type": "EmotionScore",
-                "emotion": "sadness",
-                "score": 0.35
-              },
-              {
-                "@type": "EmotionScore",
-                "emotion": "disgust",
-                "score": 0.15
-              },
-              {
-                "@type": "EmotionScore",
-                "emotion": "fear",
-                "score": 0.15
-              }
-            ]
-          },
-          {
-            "@type": "EmotionalBeat",
-            "position": 4,
-            "name": "転換: ケアの定義",
-            "motifs": [
-              {
-                "@id": "gh:Motif/Forgiveness"
-              }
-            ],
-            "targetVector": [
-              {
-                "@type": "EmotionScore",
-                "emotion": "trust",
-                "score": 0.25
-              },
-              {
-                "@type": "EmotionScore",
-                "emotion": "anticipation",
-                "score": 0.2
-              }
-            ]
-          },
-          {
-            "@type": "EmotionalBeat",
-            "position": 5,
-            "name": "赦しと再接続",
-            "motifs": [
-              {
-                "@id": "gh:Motif/Forgiveness"
-              }
-            ],
-            "targetVector": [
-              {
-                "@type": "EmotionScore",
-                "emotion": "relief",
-                "score": 0.35
-              },
-              {
-                "@type": "EmotionScore",
-                "emotion": "joy",
-                "score": 0.25
-              },
-              {
-                "@type": "EmotionScore",
-                "emotion": "hope",
-                "score": 0.25
-              }
-            ]
-          },
-          {
-            "@type": "EmotionalBeat",
-            "position": 6,
-            "name": "余韻: 静かな承認",
-            "motifs": [
-              {
-                "@id": "gh:Motif/GoodFeeling"
-              }
-            ],
-            "targetVector": [
-              {
-                "@type": "EmotionScore",
-                "emotion": "trust",
-                "score": 0.35
-              },
-              {
-                "@type": "EmotionScore",
-                "emotion": "relief",
-                "score": 0.3
-              },
-              {
-                "@type": "EmotionScore",
-                "emotion": "joy",
-                "score": 0.2
-              }
-            ]
-          }
-        ]
-      }
+      "emotionalPlan": null
     },
     {
       "@id": "gh:Episode/S3E1",
@@ -6057,7 +5893,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep03/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.680Z",
+          "createdAt": "2025-11-03T12:34:01.102Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -6979,7 +6815,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep03/part2.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.681Z",
+          "createdAt": "2025-11-03T12:34:01.104Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -7901,7 +7737,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep03/part3.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.681Z",
+          "createdAt": "2025-11-03T12:34:01.104Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -8485,7 +8321,7 @@
             "251022/wattpad/episodes/ep03/part3.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.681Z",
+          "createdAt": "2025-11-03T12:34:01.104Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -8816,7 +8652,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep04/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.682Z",
+          "createdAt": "2025-11-03T12:34:01.105Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -10821,7 +10657,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep04/part2.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.683Z",
+          "createdAt": "2025-11-03T12:34:01.106Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -13111,7 +12947,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep04/part3.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.685Z",
+          "createdAt": "2025-11-03T12:34:01.108Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -17343,7 +17179,7 @@
             "251022/wattpad/episodes/ep04/part3.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.685Z",
+          "createdAt": "2025-11-03T12:34:01.108Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -17659,7 +17495,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep05/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.686Z",
+          "createdAt": "2025-11-03T12:34:01.110Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -22001,7 +21837,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep05/part2.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.687Z",
+          "createdAt": "2025-11-03T12:34:01.114Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -25716,7 +25552,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep05/part3.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.688Z",
+          "createdAt": "2025-11-03T12:34:01.117Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -30860,7 +30696,7 @@
             "251022/wattpad/episodes/ep05/part3.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.688Z",
+          "createdAt": "2025-11-03T12:34:01.117Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -31176,7 +31012,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep06/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.689Z",
+          "createdAt": "2025-11-03T12:34:01.117Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -31585,7 +31421,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep06/part2.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.689Z",
+          "createdAt": "2025-11-03T12:34:01.117Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -31766,7 +31602,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep06/part3.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.689Z",
+          "createdAt": "2025-11-03T12:34:01.118Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -32179,7 +32015,7 @@
             "251022/wattpad/episodes/ep06/part3.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.689Z",
+          "createdAt": "2025-11-03T12:34:01.118Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -32495,7 +32331,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep07/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.689Z",
+          "createdAt": "2025-11-03T12:34:01.118Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -32790,7 +32626,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep07/part2.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.690Z",
+          "createdAt": "2025-11-03T12:34:01.118Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -32914,7 +32750,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep07/part3.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.690Z",
+          "createdAt": "2025-11-03T12:34:01.119Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -33042,7 +32878,7 @@
             "251022/wattpad/episodes/ep07/part3.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.690Z",
+          "createdAt": "2025-11-03T12:34:01.119Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -33358,7 +33194,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep08/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.690Z",
+          "createdAt": "2025-11-03T12:34:01.119Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -33596,7 +33432,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep08/part2.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.690Z",
+          "createdAt": "2025-11-03T12:34:01.119Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -34062,7 +33898,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep08/part3.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.691Z",
+          "createdAt": "2025-11-03T12:34:01.119Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -34418,7 +34254,7 @@
             "251022/wattpad/episodes/ep08/part3.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.691Z",
+          "createdAt": "2025-11-03T12:34:01.119Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -34734,7 +34570,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep01/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.691Z",
+          "createdAt": "2025-11-03T12:34:01.120Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -35827,7 +35663,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep01/part2.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.692Z",
+          "createdAt": "2025-11-03T12:34:01.120Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -37433,7 +37269,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep01/part3.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.692Z",
+          "createdAt": "2025-11-03T12:34:01.121Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -38245,7 +38081,7 @@
             "251022/wattpad/episodes/ep01/part3.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.692Z",
+          "createdAt": "2025-11-03T12:34:01.121Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -38480,8 +38316,8 @@
             "@id": "gh:Episode/EP01/part1"
           },
           "position": 1,
-          "wordCount": 393,
-          "readingUnits": 393,
+          "wordCount": 450,
+          "readingUnits": 450,
           "language": "ja",
           "beatsCount": 1,
           "antagonistBlock": true,
@@ -38496,8 +38332,8 @@
             "@id": "gh:Episode/EP01/part2"
           },
           "position": 2,
-          "wordCount": 458,
-          "readingUnits": 458,
+          "wordCount": 524,
+          "readingUnits": 524,
           "language": "ja",
           "beatsCount": 1,
           "antagonistBlock": false,
@@ -38512,8 +38348,8 @@
             "@id": "gh:Episode/EP01/part3"
           },
           "position": 3,
-          "wordCount": 218,
-          "readingUnits": 218,
+          "wordCount": 257,
+          "readingUnits": 257,
           "language": "ja",
           "beatsCount": 1,
           "antagonistBlock": false,
@@ -38552,7 +38388,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep02/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.692Z",
+          "createdAt": "2025-11-03T12:34:01.121Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -39018,7 +38854,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep02/part2.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.692Z",
+          "createdAt": "2025-11-03T12:34:01.121Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -39769,7 +39605,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep02/part3.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.692Z",
+          "createdAt": "2025-11-03T12:34:01.122Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -40182,7 +40018,7 @@
             "251022/wattpad/episodes/ep02/part3.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.692Z",
+          "createdAt": "2025-11-03T12:34:01.122Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -40433,8 +40269,8 @@
             "@id": "gh:Episode/EP02/part2"
           },
           "position": 2,
-          "wordCount": 251,
-          "readingUnits": 251,
+          "wordCount": 273,
+          "readingUnits": 273,
           "language": "ja",
           "beatsCount": 1,
           "antagonistBlock": false,
@@ -40489,7 +40325,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep03/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.693Z",
+          "createdAt": "2025-11-03T12:34:01.122Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -41411,7 +41247,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep03/part2.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.693Z",
+          "createdAt": "2025-11-03T12:34:01.122Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -42333,7 +42169,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep03/part3.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.693Z",
+          "createdAt": "2025-11-03T12:34:01.123Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -42913,7 +42749,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep03/part4.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.694Z",
+          "createdAt": "2025-11-03T12:34:01.123Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -43954,7 +43790,7 @@
             "251022/wattpad/episodes/ep03/part4.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.694Z",
+          "createdAt": "2025-11-03T12:34:01.123Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -44245,8 +44081,8 @@
             "@id": "gh:Episode/EP03/part1"
           },
           "position": 1,
-          "wordCount": 523,
-          "readingUnits": 523,
+          "wordCount": 576,
+          "readingUnits": 576,
           "language": "ja",
           "beatsCount": 0,
           "antagonistBlock": false,
@@ -44261,8 +44097,8 @@
             "@id": "gh:Episode/EP03/part2"
           },
           "position": 2,
-          "wordCount": 347,
-          "readingUnits": 347,
+          "wordCount": 397,
+          "readingUnits": 397,
           "language": "ja",
           "beatsCount": 0,
           "antagonistBlock": false,
@@ -44277,8 +44113,8 @@
             "@id": "gh:Episode/EP03/part3"
           },
           "position": 3,
-          "wordCount": 232,
-          "readingUnits": 232,
+          "wordCount": 267,
+          "readingUnits": 267,
           "language": "ja",
           "beatsCount": 0,
           "antagonistBlock": false,
@@ -44333,7 +44169,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep04/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.695Z",
+          "createdAt": "2025-11-03T12:34:01.124Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -46338,7 +46174,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep04/part2.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.695Z",
+          "createdAt": "2025-11-03T12:34:01.125Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -48628,7 +48464,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep04/part3.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.696Z",
+          "createdAt": "2025-11-03T12:34:01.126Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -52860,7 +52696,7 @@
             "251022/wattpad/episodes/ep04/part3.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.696Z",
+          "createdAt": "2025-11-03T12:34:01.126Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -53095,8 +52931,8 @@
             "@id": "gh:Episode/EP04/part1"
           },
           "position": 1,
-          "wordCount": 690,
-          "readingUnits": 690,
+          "wordCount": 795,
+          "readingUnits": 795,
           "language": "ja",
           "beatsCount": 0,
           "antagonistBlock": true,
@@ -53111,8 +52947,8 @@
             "@id": "gh:Episode/EP04/part2"
           },
           "position": 2,
-          "wordCount": 769,
-          "readingUnits": 769,
+          "wordCount": 840,
+          "readingUnits": 840,
           "language": "ja",
           "beatsCount": 0,
           "antagonistBlock": false,
@@ -53127,8 +52963,8 @@
             "@id": "gh:Episode/EP04/part3"
           },
           "position": 3,
-          "wordCount": 947,
-          "readingUnits": 947,
+          "wordCount": 977,
+          "readingUnits": 977,
           "language": "ja",
           "beatsCount": 0,
           "antagonistBlock": false,
@@ -53245,7 +53081,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep05/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.697Z",
+          "createdAt": "2025-11-03T12:34:01.127Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -57587,7 +57423,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep05/part2.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.697Z",
+          "createdAt": "2025-11-03T12:34:01.128Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -61302,7 +61138,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep05/part3.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.698Z",
+          "createdAt": "2025-11-03T12:34:01.129Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -66446,7 +66282,7 @@
             "251022/wattpad/episodes/ep05/part3.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.698Z",
+          "createdAt": "2025-11-03T12:34:01.129Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -66681,8 +66517,8 @@
             "@id": "gh:Episode/EP05/part1"
           },
           "position": 1,
-          "wordCount": 590,
-          "readingUnits": 590,
+          "wordCount": 830,
+          "readingUnits": 830,
           "language": "ja",
           "beatsCount": 0,
           "antagonistBlock": false,
@@ -66697,8 +66533,8 @@
             "@id": "gh:Episode/EP05/part2"
           },
           "position": 2,
-          "wordCount": 443,
-          "readingUnits": 443,
+          "wordCount": 485,
+          "readingUnits": 485,
           "language": "ja",
           "beatsCount": 0,
           "antagonistBlock": false,
@@ -66713,8 +66549,8 @@
             "@id": "gh:Episode/EP05/part3"
           },
           "position": 3,
-          "wordCount": 840,
-          "readingUnits": 840,
+          "wordCount": 897,
+          "readingUnits": 897,
           "language": "ja",
           "beatsCount": 0,
           "antagonistBlock": false,
@@ -66753,7 +66589,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep06/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.699Z",
+          "createdAt": "2025-11-03T12:34:01.129Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -67162,7 +66998,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep06/part2.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.699Z",
+          "createdAt": "2025-11-03T12:34:01.129Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -67343,7 +67179,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep06/part3.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.699Z",
+          "createdAt": "2025-11-03T12:34:01.130Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -67756,7 +67592,7 @@
             "251022/wattpad/episodes/ep06/part3.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.699Z",
+          "createdAt": "2025-11-03T12:34:01.130Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -67991,8 +67827,8 @@
             "@id": "gh:Episode/EP06/part1"
           },
           "position": 1,
-          "wordCount": 80,
-          "readingUnits": 80,
+          "wordCount": 123,
+          "readingUnits": 123,
           "language": "ja",
           "beatsCount": 1,
           "antagonistBlock": true,
@@ -68023,8 +67859,8 @@
             "@id": "gh:Episode/EP06/part3"
           },
           "position": 3,
-          "wordCount": 48,
-          "readingUnits": 48,
+          "wordCount": 92,
+          "readingUnits": 92,
           "language": "ja",
           "beatsCount": 1,
           "antagonistBlock": false,
@@ -68063,7 +67899,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep07/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.700Z",
+          "createdAt": "2025-11-03T12:34:01.130Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -68358,7 +68194,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep07/part2.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.701Z",
+          "createdAt": "2025-11-03T12:34:01.130Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -68482,7 +68318,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep07/part3.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.701Z",
+          "createdAt": "2025-11-03T12:34:01.130Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -68610,7 +68446,7 @@
             "251022/wattpad/episodes/ep07/part3.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.701Z",
+          "createdAt": "2025-11-03T12:34:01.130Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -68917,7 +68753,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep08/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.701Z",
+          "createdAt": "2025-11-03T12:34:01.130Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -69155,7 +68991,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep08/part2.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.701Z",
+          "createdAt": "2025-11-03T12:34:01.131Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -69621,7 +69457,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep08/part3.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.701Z",
+          "createdAt": "2025-11-03T12:34:01.131Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -69977,7 +69813,7 @@
             "251022/wattpad/episodes/ep08/part3.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.701Z",
+          "createdAt": "2025-11-03T12:34:01.131Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -70228,8 +70064,8 @@
             "@id": "gh:Episode/EP08/part2"
           },
           "position": 2,
-          "wordCount": 114,
-          "readingUnits": 114,
+          "wordCount": 149,
+          "readingUnits": 149,
           "language": "ja",
           "beatsCount": 1,
           "antagonistBlock": false,
@@ -70244,8 +70080,8 @@
             "@id": "gh:Episode/EP08/part3"
           },
           "position": 3,
-          "wordCount": 89,
-          "readingUnits": 89,
+          "wordCount": 108,
+          "readingUnits": 108,
           "language": "ja",
           "beatsCount": 1,
           "antagonistBlock": false,
@@ -70284,7 +70120,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep09/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.702Z",
+          "createdAt": "2025-11-03T12:34:01.131Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -71265,7 +71101,7 @@
             "251022/wattpad/episodes/ep09/part1.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.702Z",
+          "createdAt": "2025-11-03T12:34:01.131Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -71388,8 +71224,8 @@
             "@id": "gh:Episode/EP09/part1"
           },
           "position": 1,
-          "wordCount": 341,
-          "readingUnits": 341,
+          "wordCount": 368,
+          "readingUnits": 368,
           "language": "ja",
           "beatsCount": 1,
           "antagonistBlock": true,
@@ -71428,7 +71264,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep10/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.702Z",
+          "createdAt": "2025-11-03T12:34:01.132Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -72181,7 +72017,7 @@
             "251022/wattpad/episodes/ep10/part1.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.702Z",
+          "createdAt": "2025-11-03T12:34:01.132Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -72304,8 +72140,8 @@
             "@id": "gh:Episode/EP10/part1"
           },
           "position": 1,
-          "wordCount": 230,
-          "readingUnits": 230,
+          "wordCount": 255,
+          "readingUnits": 255,
           "language": "ja",
           "beatsCount": 1,
           "antagonistBlock": true,
@@ -72402,7 +72238,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep11/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.703Z",
+          "createdAt": "2025-11-03T12:34:01.132Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -72927,7 +72763,7 @@
             "251022/wattpad/episodes/ep11/part1.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.703Z",
+          "createdAt": "2025-11-03T12:34:01.132Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -73148,7 +72984,7 @@
           },
           "sourcePath": "251022/wattpad/episodes/ep12/part1.md",
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.703Z",
+          "createdAt": "2025-11-03T12:34:01.133Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -73730,7 +73566,7 @@
             "251022/wattpad/episodes/ep12/part1.md"
           ],
           "language": "ja",
-          "createdAt": "2025-11-03T12:21:03.703Z",
+          "createdAt": "2025-11-03T12:34:01.133Z",
           "emotionVector": [
             {
               "@type": "EmotionScore",

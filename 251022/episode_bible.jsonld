@@ -157,22 +157,10 @@
       "avoids": {"@id": "gh:Motif/BadFeeling"}
     },
 
-    { "@id": "gh:Episode/S2E2", "@type": "Episode",
-      "episodeNumber": 2,
+    { "@id": "gh:Episode/S2E1", "@type": "Episode",
+      "episodeNumber": 1,
       "season": {"@id": "gh:Season/2"},
-      "name": "Episode 2: 愛/依存の区別",
-      "logline": "Tamaki–Nei-Chan–Aoiの三角関係を通じ、『ケアとしての愛』と『所有としての依存』の違いを可視化する。",
-      "hasArc": [ {"@id": "gh:Arc/TamakiGrowth"}, {"@id": "gh:Arc/NeiChanDebt"} ],
-      "antagonist": [ {"@id": "character:owner-of-love"}, {"@id": "ghost:chain-of-care"} ],
-      "motifRefs": [ {"@id": "gh:Motif/Promise"}, {"@id": "gh:Motif/Forgiveness"}, {"@id": "gh:Motif/Cat"} ],
-      "hasCharacter": [ {"@id": "character:tamaki"}, {"@id": "character:Nei-chan"}, {"@id": "character:aoi"}, {"@id": "character:kaede"} ],
-      "source": {"@id": "gh:Source/ep2"}
-    },
-
-    { "@id": "gh:Episode/S1E2", "@type": "Episode",
-      "episodeNumber": 2,
-      "season": {"@id": "gh:Season/1"},
-      "name": "Episode 2: The Fear of Immortality",
+      "name": "Episode 1: The Fear of Immortality",
       "logline": "タマキは、無限の輪廻を恐れるクライアントと対峙し、自らが「いい感じ」を追求する理由——次の宇宙をより良くするため——を語る。",
       "hasArc": [ {"@id": "gh:Arc/TamakiGrowth"} ],
       "antagonist": [ {"@id": "character:dualist"} ],
@@ -183,7 +171,7 @@
 
     { "@id": "gh:Timeline/Akito", "@type": "Timeline", "name": "Akito年代記",
       "description": "Off-Thread: アキトの人生の出来事と啓示の年表。",
-      "influences": [ {"@id": "gh:Episode/S1E1"}, {"@id": "gh:Episode/S2E2"} ],
+      "influences": [ {"@id": "gh:Episode/S1E1"}, {"@id": "gh:Episode/S2E1"} ],
       "source": {"@id": "gh:Source/akito-timeline"}
     },
 

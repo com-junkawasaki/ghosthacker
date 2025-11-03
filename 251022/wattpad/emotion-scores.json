@@ -252,7 +252,7 @@
     "score": 0.4105
   },
   {
-    "episode": "gh:Episode/S2E2",
+    "episode": "gh:Episode/S2E1",
     "finalSimilarity": 0.6136,
     "finalPenalties": 0.0571,
     "posGrowth": 0,
@@ -306,7 +306,7 @@
     "score": 0.2527
   },
   {
-    "episode": "gh:Episode/S2E2",
+    "episode": "gh:Episode/S2E1",
     "finalSimilarity": 0.3651,
     "finalPenalties": 0.2857,
     "posGrowth": 0,
@@ -432,7 +432,7 @@
     "score": 0.1762
   },
   {
-    "episode": "gh:Episode/S2E2",
+    "episode": "gh:Episode/S2E1",
     "finalSimilarity": 0,
     "finalPenalties": 0,
     "posGrowth": 0,
@@ -450,7 +450,7 @@
     "score": 0.1444
   },
   {
-    "episode": "gh:Episode/S2E2",
+    "episode": "gh:Episode/S2E1",
     "finalSimilarity": 0,
     "finalPenalties": 0,
     "posGrowth": 0,
