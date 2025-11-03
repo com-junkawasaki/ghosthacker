@@ -20,7 +20,9 @@
     "analyze:emotions:wattpad": "pnpm tsx src/scripts/hume-emotions-wattpad.ts",
     "score:emotions:wattpad": "pnpm tsx src/scripts/emotion-score.ts",
     "analyze:structure": "pnpm tsx src/scripts/episode-structure.ts",
-    "integrate:emotion-analysis": "pnpm tsx src/scripts/integrate-emotion-analysis.ts"
+    "integrate:emotion-analysis": "pnpm tsx src/scripts/integrate-emotion-analysis.ts",
+    "gen:images": "pnpm tsx src/scripts/generate-image-catalog.ts",
+    "validate:images": "pnpm tsx src/scripts/validate-images.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -53,6 +55,7 @@
     "react-dom": "19.1.0",
     "react-hook-form": "^7.53.0",
     "reactflow": "^11.11.4",
+    "sharp": "0.33.3",
     "superjson": "^2.2.2",
     "ulid": "^3.0.1",
     "valibot": "^1.1.0",
