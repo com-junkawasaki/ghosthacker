@@ -23,6 +23,9 @@ alwaysApply: true
   - 小さな場面転換を各partに2–3箇所
   - 説明より会話で描写（show, don’t tell）
   - 導入は台詞で状況を織り込む（ARIA風：Kaede/Hibiki/Nei-chan/Aoiの短い掛け合いで季節・ニュース・環境を提示）
+ - 導入は台詞で状況を織り込む（ARIA風：Kaede/Hibiki/Nei-chan/Aoiの短い掛け合いで季節・ニュース・環境を提示）
+ - 会話の開示方針: クライアントは原則自ら開示しない。Tamakiの質問/アクションで感情と共に引き出す（prompted）。`gh:promptedDisclosureCount`≥1 / `gh:unpromptedDisclosureCount`=0 を目安
+ - コンテクストはJSON-LDに整理（予約者/動機/家族支援の有無/羨望など）。本文では台詞で自然に滲ませる。
 - 用語運用
   - 必要なら「ASC制御帯」「低干渉帯」
 

@@ -213,8 +213,8 @@
         "@id": "gh:Episode/EP04/part1"
       },
       "position": 1,
-      "wordCount": 598,
-      "readingUnits": 598,
+      "wordCount": 690,
+      "readingUnits": 690,
       "language": "ja",
       "beatsCount": 0,
       "antagonistBlock": true,
@@ -229,8 +229,8 @@
         "@id": "gh:Episode/EP04/part2"
       },
       "position": 2,
-      "wordCount": 736,
-      "readingUnits": 736,
+      "wordCount": 769,
+      "readingUnits": 769,
       "language": "ja",
       "beatsCount": 0,
       "antagonistBlock": false,
@@ -245,8 +245,8 @@
         "@id": "gh:Episode/EP04/part3"
       },
       "position": 3,
-      "wordCount": 650,
-      "readingUnits": 650,
+      "wordCount": 679,
+      "readingUnits": 679,
       "language": "ja",
       "beatsCount": 0,
       "antagonistBlock": false,
@@ -261,8 +261,8 @@
         "@id": "gh:Episode/EP04/part4"
       },
       "position": 4,
-      "wordCount": 394,
-      "readingUnits": 394,
+      "wordCount": 428,
+      "readingUnits": 428,
       "language": "ja",
       "beatsCount": 0,
       "antagonistBlock": false,

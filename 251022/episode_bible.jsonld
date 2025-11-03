@@ -194,9 +194,19 @@
       "antagonist": [ {"@id": "character:lachlan-keyes"}, {"@id": "ghost:john-locke"} ] },
     { "@id": "gh:Season/3:outline2", "@type": "Episode", "episodeNumber": 2, "season": {"@id": "gh:Season/3"},
       "name": "S3E2: 友達と親友、家族の経済",
-      "logline": "100円の水から“冷蔵庫”の共有へ— 他人/友達/家族の経済を行き来し、『信用・信頼・愛』の差分と“拡張された自己”に気づく。",
+      "logline": "100円の水から“冷蔵庫”の共有へ— Tamakiの問いと行為で開示が進み、他人/友達/家族の経済を行き来しながら『信用・信頼・愛』と“拡張された自己”に気づく（セッション予約はMillia）",
       "hasArc": [ {"@id": "gh:Arc/TamakiGrowth"} ],
-      "antagonist": [ {"@id": "character:leo-kazan"}, {"@id": "character:millia-stuart"}, {"@id": "ghost:adam-smith"}, {"@id": "ghost:js-mill"}, {"@id": "ghost:the-ancestors-chain"} ] },
+      "antagonist": [ {"@id": "character:leo-kazan"}, {"@id": "character:millia-stuart"}, {"@id": "ghost:adam-smith"}, {"@id": "ghost:js-mill"}, {"@id": "ghost:the-ancestors-chain"} ],
+      "gh:context": {
+        "gh:sessionBookedBy": {"@id": "character:millia-stuart"},
+        "gh:promptingStyle": "tamakiQuestions",
+        "gh:disclosurePolicy": "clientDoesNotSelfDisclose",
+        "gh:familyContrast": [
+          {"@id": "character:leo-kazan", "gh:familySupport": true},
+          {"@id": "character:millia-stuart", "gh:familyIssue": "家父長制起因の癒着（秘匿）"}
+        ]
+      }
+    },
     { "@id": "gh:Season/3:outline3", "@type": "Episode", "episodeNumber": 3, "season": {"@id": "gh:Season/3"},
       "name": "S3E3: 魂の外科手術",
       "logline": "魂の癒着（Complex）の切除。Hibikiの“麻酔”とDr.イタコの執刀で、“家”の鎖はほどけ、愛は非分離へ戻る。",
