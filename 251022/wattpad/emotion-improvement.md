@@ -80,12 +80,12 @@
 
 ## gh:Episode/S3E1
 - target vs actual (last segment):
+  - anticipation: target=0.00 actual=1.00 delta=1.00
   - relief: target=0.35 actual=0.00 delta=-0.35
   - hope: target=0.30 actual=0.00 delta=-0.30
   - joy: target=0.20 actual=0.00 delta=-0.20
   - sadness: target=0.00 actual=0.00 delta=0.00
   - fear: target=0.00 actual=0.00 delta=0.00
-  - anger: target=0.00 actual=0.00 delta=0.00
 - 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
 
 ## gh:Episode/S3E1
@@ -100,44 +100,44 @@
 
 ## gh:Episode/S3E1
 - target vs actual (last segment):
-  - relief: target=0.35 actual=0.00 delta=-0.35
-  - hope: target=0.30 actual=0.00 delta=-0.30
-  - joy: target=0.20 actual=0.00 delta=-0.20
-  - sadness: target=0.00 actual=0.00 delta=0.00
-  - fear: target=0.00 actual=0.00 delta=0.00
-  - anger: target=0.00 actual=0.00 delta=0.00
-- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
-
-## gh:Episode/S3E1
-- target vs actual (last segment):
-  - anticipation: target=0.00 actual=0.11 delta=0.11
-  - relief: target=0.35 actual=0.27 delta=-0.08
-  - trust: target=0.00 actual=0.08 delta=0.08
-  - joy: target=0.20 actual=0.27 delta=0.07
-  - hope: target=0.30 actual=0.27 delta=-0.03
-  - sadness: target=0.00 actual=0.00 delta=0.00
-- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
-
-## gh:Episode/S3E2
-- target vs actual (last segment):
-  - fear: target=0.00 actual=1.00 delta=1.00
-  - relief: target=0.35 actual=0.00 delta=-0.35
-  - joy: target=0.25 actual=0.00 delta=-0.25
-  - sadness: target=0.00 actual=0.00 delta=0.00
-  - anger: target=0.00 actual=0.00 delta=0.00
-  - surprise: target=0.00 actual=0.00 delta=0.00
-- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
-- 提案: 不安描写は名づけ→整えで早めに解く。"待つ契約"や"I AM"の台詞で恐れを関係に変換。
-
-## gh:Episode/S3E2
-- target vs actual (last segment):
-  - hope: target=0.00 actual=0.33 delta=0.33
-  - joy: target=0.25 actual=0.33 delta=0.08
+  - joy: target=0.20 actual=0.33 delta=0.13
+  - hope: target=0.30 actual=0.33 delta=0.03
   - relief: target=0.35 actual=0.33 delta=-0.02
   - sadness: target=0.00 actual=0.00 delta=0.00
   - fear: target=0.00 actual=0.00 delta=0.00
   - anger: target=0.00 actual=0.00 delta=0.00
 
+## gh:Episode/S3E1
+- target vs actual (last segment):
+  - trust: target=0.00 actual=0.33 delta=0.33
+  - relief: target=0.35 actual=0.22 delta=-0.13
+  - hope: target=0.30 actual=0.22 delta=-0.08
+  - joy: target=0.20 actual=0.22 delta=0.02
+  - sadness: target=0.00 actual=0.00 delta=0.00
+  - fear: target=0.00 actual=0.00 delta=0.00
+- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
+
+## gh:Episode/S3E2
+- target vs actual (last segment):
+  - trust: target=0.00 actual=1.00 delta=1.00
+  - relief: target=0.35 actual=0.00 delta=-0.35
+  - joy: target=0.25 actual=0.00 delta=-0.25
+  - sadness: target=0.00 actual=0.00 delta=0.00
+  - fear: target=0.00 actual=0.00 delta=0.00
+  - anger: target=0.00 actual=0.00 delta=0.00
+- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
+
+## gh:Episode/S3E2
+- target vs actual (last segment):
+  - anger: target=0.00 actual=1.00 delta=1.00
+  - relief: target=0.35 actual=0.00 delta=-0.35
+  - joy: target=0.25 actual=0.00 delta=-0.25
+  - sadness: target=0.00 actual=0.00 delta=0.00
+  - fear: target=0.00 actual=0.00 delta=0.00
+  - surprise: target=0.00 actual=0.00 delta=0.00
+- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
+- 提案: 応報の言い換え→回復語彙へ。触媒としてチーム連携（Kaede/Hibiki/Nei-chan）を挿入。
+
 ## gh:Episode/S3E2
 - target vs actual (last segment):
   - relief: target=0.35 actual=0.00 delta=-0.35
@@ -150,12 +150,13 @@
 
 ## gh:Episode/S3E2
 - target vs actual (last segment):
-  - hope: target=0.00 actual=0.33 delta=0.33
-  - joy: target=0.25 actual=0.33 delta=0.08
-  - relief: target=0.35 actual=0.33 delta=-0.02
-  - sadness: target=0.00 actual=0.00 delta=0.00
+  - sadness: target=0.00 actual=1.00 delta=1.00
+  - relief: target=0.35 actual=0.00 delta=-0.35
+  - joy: target=0.25 actual=0.00 delta=-0.25
   - fear: target=0.00 actual=0.00 delta=0.00
   - anger: target=0.00 actual=0.00 delta=0.00
+  - surprise: target=0.00 actual=0.00 delta=0.00
+- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。
 
 ## gh:Episode/S4E1
 - target vs actual (last segment):
@@ -168,12 +169,13 @@
 
 ## gh:Episode/S4E1
 - target vs actual (last segment):
+  - joy: target=0.00 actual=0.26 delta=0.26
+  - relief: target=0.00 actual=0.26 delta=0.26
+  - hope: target=0.00 actual=0.26 delta=0.26
   - trust: target=0.25 actual=0.00 delta=-0.25
   - anticipation: target=0.25 actual=0.00 delta=-0.25
-  - joy: target=0.00 actual=0.00 delta=0.00
-  - sadness: target=0.00 actual=0.00 delta=0.00
-  - fear: target=0.00 actual=0.00 delta=0.00
-  - anger: target=0.00 actual=0.00 delta=0.00
+  - anger: target=0.00 actual=0.21 delta=0.21
+- 提案: 応報の言い換え→回復語彙へ。触媒としてチーム連携（Kaede/Hibiki/Nei-chan）を挿入。
 
 ## gh:Episode/S4E1
 - target vs actual (last segment):
@@ -186,12 +188,12 @@
 
 ## gh:Episode/S4E1
 - target vs actual (last segment):
-  - anticipation: target=0.25 actual=0.55 delta=0.30
-  - trust: target=0.25 actual=0.12 delta=-0.13
-  - joy: target=0.00 actual=0.11 delta=0.11
-  - relief: target=0.00 actual=0.11 delta=0.11
-  - hope: target=0.00 actual=0.11 delta=0.11
-  - sadness: target=0.00 actual=0.00 delta=0.00
+  - sadness: target=0.00 actual=0.59 delta=0.59
+  - trust: target=0.25 actual=0.16 delta=-0.09
+  - anticipation: target=0.25 actual=0.25 delta=0.00
+  - joy: target=0.00 actual=0.00 delta=0.00
+  - fear: target=0.00 actual=0.00 delta=0.00
+  - anger: target=0.00 actual=0.00 delta=0.00
 
 ## gh:Episode/S4E2
 - target vs actual (last segment):
@@ -347,7 +349,7 @@
 ## gh:Episode/EP03
 - 計画未定義: EmotionalPlanが無いので既定の終盤( relief/joy/hope )増強を推奨。
 
-## gh:Episode/EP04
+## gh:Episode/EP03
 - 計画未定義: EmotionalPlanが無いので既定の終盤( relief/joy/hope )増強を推奨。
 
 ## gh:Episode/EP04
@@ -357,6 +359,15 @@
 - 計画未定義: EmotionalPlanが無いので既定の終盤( relief/joy/hope )増強を推奨。
 
 ## gh:Episode/EP04
+- 計画未定義: EmotionalPlanが無いので既定の終盤( relief/joy/hope )増強を推奨。
+
+## gh:Episode/EP04
+- 計画未定義: EmotionalPlanが無いので既定の終盤( relief/joy/hope )増強を推奨。
+
+## gh:Episode/EP04
+- 計画未定義: EmotionalPlanが無いので既定の終盤( relief/joy/hope )増強を推奨。
+
+## gh:Episode/EP05
 - 計画未定義: EmotionalPlanが無いので既定の終盤( relief/joy/hope )増強を推奨。
 
 ## gh:Episode/EP05
