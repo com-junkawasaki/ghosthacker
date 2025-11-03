@@ -90,7 +90,8 @@
         {"@id": "character:akito"},
         {"@id": "character:hibiki"},
         {"@id": "character:elias"},
-        {"@id": "character:logos"}
+        {"@id": "character:logos"},
+        {"@id": "character:dualist"}
       ],
       "gh:hasSetting": [
         {"@id": "setting:tokyo"},
@@ -121,7 +122,7 @@
       "name": "Tamaki Mizuno",
       "alternateName": "水野 環樹",
       "gh:callsign": "LILAC",
-      "gh:role": "Protagonist",
+      "role": "Protagonist",
       "description": "26歳、女性、日本人とオランダ人のハーフ。イメージカラーは薄い紫。渋谷に集う同世代のようにハイブランドの服を自分流に着こなすファッションセンスを持つ。物語の主人公（Protagonist）。",
       "age": 26,
       "occupation": ["Ghost Hacker / Clinician", "Deamon Hunter", "Zombie Killer"],
@@ -210,6 +211,13 @@
       "description": "EliasのGhost。梟をモチーフとする。",
       "gh:ghostType": "Human-derived",
       "gh:master": {"@id": "character:elias"}
+    },
+    {
+      "@id": "character:dualist",
+      "@type": "Person",
+      "name": "Dualist Client",
+      "description": "自己と世界を分離して考え、無限に続く輪廻（自己の永続）を苦痛として恐れるクライアント。",
+      "gh:role": "Client"
     },
     {
       "@id": "setting:tokyo",

@@ -177,7 +177,7 @@
       "hasArc": [ {"@id": "gh:Arc/TamakiGrowth"} ],
       "antagonist": [ {"@id": "character:dualist"} ],
       "motifRefs": [ {"@id": "gh:Motif/Reincarnation"}, {"@id": "gh:Motif/GoodFeeling"} ],
-      "hasCharacter": [ {"@id": "character:tamaki"}, {"@id": "character:Nei-chan"}, {"@id": "character:arjun-patel"} ],
+      "hasCharacter": [ {"@id": "character:tamaki"}, {"@id": "character:Nei-chan"}, {"@id": "character:arjun-patel"}, {"@id": "character:dualist"} ],
       "source": {"@id": "gh:Source/ep_new_dualist"}
     },
 
