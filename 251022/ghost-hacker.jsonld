@@ -299,6 +299,13 @@
         {"@id": "risk:africa-middleeast"},
         {"@id": "risk:pacific-islands"}
       ] },
+    { "@id": "event:great-transgression", "@type": "Event",
+      "name": "Great Transgression (Event +4 m)",
+      "description": "Rapid multi‑meter global mean sea‑level rise (~+4 m) following Arctic ice‑sheet collapse, returning Tokyo to a city of water.",
+      "startDate": "2050-01-01",
+      "endDate": "2059-12-31",
+      "temporalCoverage": "2050/2059",
+      "sameAs": [ {"@id": "scenario:sea-level-rise-4m"}, {"@id": "bundle:sea-level-4m-risk"} ] },
     {
       "@id": "tech:ghost-hacking",
       "@type": "Intangible",
