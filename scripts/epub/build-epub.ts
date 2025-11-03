@@ -65,16 +65,21 @@ function stripJsonLd(md: string): string {
 
 function mdToHtml(md: string): { title: string; html: string } {
   const lines = md.replace(/^\uFEFF/, "").split(/\r?\n/);
-  // Extract H1 title if present
+  // Extract and remove the first H1 to avoid duplication with section title
   let title = "";
-  for (const line of lines) {
-    const m = line.match(/^#\s+(.+)$/);
-    if (m) {
+  let removed = false;
+  const kept: string[] = [];
+  for (let i = 0; i < lines.length; i++) {
+    const m = lines[i].match(/^#\s+(.+)$/);
+    if (!removed && m) {
       title = m[1].trim();
-      break;
+      removed = true; // skip this H1 line
+      continue;
     }
+    kept.push(lines[i]);
   }
-  const html = marked.parse(md);
+  const rendered = kept.join("\n");
+  const html = marked.parse(rendered);
   return { title: title || "Untitled", html: String(html) };
 }
 
