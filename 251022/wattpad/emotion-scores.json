@@ -208,21 +208,21 @@
   },
   {
     "episode": "gh:Episode/S3E2",
-    "finalSimilarity": 0.8093,
+    "finalSimilarity": 0.7598,
     "finalPenalties": 0,
     "posGrowth": 0,
-    "negDecline": 0.0603,
-    "smoothness": 0.5,
-    "score": 0.4298
+    "negDecline": 0.0177,
+    "smoothness": 0.5621,
+    "score": 0.4181
   },
   {
     "episode": "gh:Episode/EP04",
-    "finalSimilarity": 0.8093,
+    "finalSimilarity": 0.7598,
     "finalPenalties": 0,
     "posGrowth": 0,
-    "negDecline": 0.0603,
-    "smoothness": 0.5,
-    "score": 0.4298
+    "negDecline": 0.0177,
+    "smoothness": 0.5621,
+    "score": 0.4181
   },
   {
     "episode": "gh:Episode/EP11",
