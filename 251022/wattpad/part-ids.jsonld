@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "wattpad": "https://www.wattpad.com/"
+  },
+  "@type": "WattpadPartMappings",
+  "parts": [
+    {
+      "episode": 3,
+      "part": 2,
+      "wattpadPartId": "1582748678"
+    },
+    {
+      "episode": 3,
+      "part": 3,
+      "wattpadPartId": "1586972701"
+    }
+  ]
+}

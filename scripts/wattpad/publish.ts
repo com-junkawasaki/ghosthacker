@@ -1,17 +1,19 @@
 import "dotenv/config";
-import { launchWithStorage, loginIfNeeded, openWork, createNewPart, saveAndPublish, saveStorage, setTitleAndBody, getExistingPartCount } from "./wattpad";
+import { launchWithStorage, loginIfNeeded, openWork, createNewPart, saveAndPublish, saveStorage, setTitleAndBody, getExistingPartCount, getFirstExistingPartId } from "./wattpad";
 import { findEpisodeParts, loadPart } from "./content";
 import { upsertPartMapping } from "./part-ids";
 
-type CliFlags = { dryRun: boolean };
+type CliFlags = { dryRun: boolean; limit?: number };
 
 function getFlags(): CliFlags {
   const dryRun = process.argv.includes("--dry-run");
-  return { dryRun };
+  const limitArg = process.argv.find((arg) => arg.startsWith("--limit="));
+  const limit = limitArg ? Number(limitArg.split("=")[1]) : undefined;
+  return { dryRun, limit };
 }
 
 async function main() {
-  const { dryRun } = getFlags();
+  const { dryRun, limit } = getFlags();
   const email = process.env.WATTPAD_EMAIL ?? "";
   const password = process.env.WATTPAD_PASSWORD ?? "";
   const workId = process.env.WATTPAD_WORK_ID ?? "402848261";
@@ -28,12 +30,22 @@ async function main() {
 
     // Get count of existing parts on Wattpad
     const existingPartCount = await getExistingPartCount(page, workId);
+    
+    // Get first existing part ID to use as editor entry point
+    const firstExistingPartId = await getFirstExistingPartId(page, workId);
+    console.log(`Using existing part ID ${firstExistingPartId} as editor entry point`);
 
     const parts = await findEpisodeParts(process.cwd());
     console.log(`Discovered ${parts.length} English parts to process`);
 
     // Only create new parts for parts that don't exist yet
-    const partsToCreate = parts.slice(existingPartCount);
+    let partsToCreate = parts.slice(existingPartCount);
+    
+    // Apply limit if specified
+    if (limit !== undefined && limit > 0) {
+      partsToCreate = partsToCreate.slice(0, limit);
+      console.log(`Limiting to ${limit} part(s) for testing`);
+    }
     
     if (partsToCreate.length === 0) {
       console.log("All parts already exist on Wattpad. Nothing to do.");
@@ -51,8 +63,8 @@ async function main() {
         continue;
       }
 
-      // Create new part
-      const partId = await createNewPart(page, workId);
+      // Create new part (use existing part ID as entry point, pass credentials for re-login if needed)
+      const partId = await createNewPart(page, workId, firstExistingPartId || undefined, email, password);
 
       // Set title and body
       await setTitleAndBody(page, title, body);

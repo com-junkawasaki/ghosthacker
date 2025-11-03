@@ -5,7 +5,7 @@
       "value": "6slI3jeXShtEBCBKColEZ01jQZHYLkGVwUSqIQ9JauU%3D.%7B%7D",
       "domain": ".capig.stape.gl",
       "path": "/events/c7edd25b69c98075324bfe2b9254ff4b50a0e0bbf2827b91ea03fe9ce489a0c8",
-      "expires": 1769958813.951618,
+      "expires": 1769964451.234346,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
@@ -25,7 +25,7 @@
       "value": "j%3Anull",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1762184613.093201,
+      "expires": 1762190036.746615,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -41,64 +41,24 @@
       "sameSite": "Lax"
     },
     {
-      "name": "adMetrics",
-      "value": "0",
-      "domain": "www.wattpad.com",
-      "path": "/",
-      "expires": 1777949381.073986,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "wp-web-auth-cache-bust",
-      "value": "0",
-      "domain": "www.wattpad.com",
-      "path": "/",
-      "expires": 1777949381.07401,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "_pbeb_",
-      "value": "0",
-      "domain": "www.wattpad.com",
-      "path": "/",
-      "expires": 1777949381.074031,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "_afp25f_",
-      "value": "0",
-      "domain": "www.wattpad.com",
-      "path": "/",
-      "expires": 1777949381.074067,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
       "name": "lang",
       "value": "1",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1767365381.07411,
+      "expires": 1769964449.588194,
       "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
+      "secure": true,
+      "sameSite": "None"
     },
     {
       "name": "locale",
       "value": "en_US",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1767365381.074123,
+      "expires": 1769964449.588161,
       "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
+      "secure": true,
+      "sameSite": "None"
     },
     {
       "name": "ff",
@@ -115,7 +75,7 @@
       "value": "1",
       "domain": "www.wattpad.com",
       "path": "/",
-      "expires": 1793718813,
+      "expires": 1793724242,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
@@ -125,7 +85,7 @@
       "value": "-9",
       "domain": "www.wattpad.com",
       "path": "/",
-      "expires": 1793718813,
+      "expires": 1793724242,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
@@ -135,7 +95,7 @@
       "value": "Asia%2FTokyo",
       "domain": "www.wattpad.com",
       "path": "/",
-      "expires": 1793718813,
+      "expires": 1793724242,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
@@ -155,7 +115,7 @@
       "value": "aQjBBRdaRJwABEn1DffaEgAA",
       "domain": ".casalemedia.com",
       "path": "/",
-      "expires": 1793718813.45292,
+      "expires": 1793724242.840983,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -165,7 +125,7 @@
       "value": "5465",
       "domain": ".casalemedia.com",
       "path": "/",
-      "expires": 1769957381.631716,
+      "expires": 1769960299.981597,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -175,7 +135,7 @@
       "value": "5465",
       "domain": ".casalemedia.com",
       "path": "/",
-      "expires": 1769958813.452961,
+      "expires": 1769964242.841019,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -235,7 +195,7 @@
       "value": "19A03833aa663ac74dd9ace1762181381",
       "domain": ".scorecardresearch.com",
       "path": "/",
-      "expires": 1795878813.505427,
+      "expires": 1795884450.731535,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -245,7 +205,7 @@
       "value": "19A03833aa663ac74dd9ace1762181381",
       "domain": ".scorecardresearch.com",
       "path": "/",
-      "expires": 1795878813.505465,
+      "expires": 1795884450.731574,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None",
@@ -267,7 +227,7 @@
       "value": "c727a51f-99e3-406e-9b39-6319e187b1bf-1o9fg",
       "domain": ".clmbtech.com",
       "path": "/",
-      "expires": 1796742813.680983,
+      "expires": 1796748450.730967,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
@@ -277,27 +237,17 @@
       "value": "c727a51f-99e3-406e-9b39-6319e187b1bf-1o9fg",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1796742813.681806,
+      "expires": 1796748450.731998,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
-    },
-    {
-      "name": "AMP_TOKEN",
-      "value": "%24NOT_FOUND",
-      "domain": ".wattpad.com",
-      "path": "/",
-      "expires": 1762184982,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
     },
     {
       "name": "_gid",
       "value": "GA1.2.1898941248.1762181382",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1762269213,
+      "expires": 1762274850,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -317,7 +267,7 @@
       "value": "A-NJ2p8Edk_DmmwIppbYsbg",
       "domain": ".amazon-adsystem.com",
       "path": "/",
-      "expires": 1782918813.613236,
+      "expires": 1782924243.024101,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
@@ -327,7 +277,7 @@
       "value": "0",
       "domain": ".amazon-adsystem.com",
       "path": "/",
-      "expires": 1796742813.613294,
+      "expires": 1796748243.024153,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
@@ -337,7 +287,7 @@
       "value": "ue1-d90cce4c152a4686a8c74c89c9346b39",
       "domain": "e-9660.adzerk.net",
       "path": "/",
-      "expires": 1793718813.59912,
+      "expires": 1793724243.527557,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -363,21 +313,11 @@
       "sameSite": "None"
     },
     {
-      "name": "_gcl_au",
-      "value": "1.1.986279459.1762181383",
-      "domain": ".wattpad.com",
-      "path": "/",
-      "expires": 1769957383,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
       "name": "_fbp",
       "value": "fb.1.1762181383323.247631917849334415",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1769958813,
+      "expires": 1769964451,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -387,7 +327,7 @@
       "value": "d=AQABBAnBCGkCEPKh8YB_881UtpuJTLfm60oFEgEBAQESCmkSaWChyyMA_eMCAA&S=AQAAAngqj10_y48LR_IyO7E_4lc",
       "domain": ".yahoo.com",
       "path": "/",
-      "expires": 1793740413.429196,
+      "expires": 1793745842.926104,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
@@ -407,7 +347,7 @@
       "value": "57817807676295914224156481595023738740",
       "domain": ".demdex.net",
       "path": "/",
-      "expires": 1777734813.269158,
+      "expires": 1777740242.858801,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -417,7 +357,7 @@
       "value": "57817807676295914224156481595023738740",
       "domain": ".dpm.demdex.net",
       "path": "/",
-      "expires": 1777734813.269208,
+      "expires": 1777740242.858841,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -735,41 +675,91 @@
       "sameSite": "None"
     },
     {
+      "name": "AMP_TOKEN",
+      "value": "%24NOT_FOUND",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1762188838,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
       "name": "IDSYNC",
-      "value": "19gq~2sdr",
+      "value": "19gq~2sds",
       "domain": ".analytics.yahoo.com",
       "path": "/",
-      "expires": 1793718813.429148,
+      "expires": 1793724242.926055,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
     },
     {
       "name": "__cf_bm",
-      "value": "BQmr51cjGeeSwSLxRiEV3FDZfwa8G1BvqY8qCskJ9rM-1762182721-1.0.1.1-q0h8BocCLF.uZknNVkfLzCPbxrOAKsFBEq5RpBFtnShaEdlL9X6CjiLycZ_WyZalRpIWYNj_DwjY2VOTztmrCeaJhhiV8vRSEZ4fSr51EJA",
+      "value": "fkDrmUn.Pred9VFNKNKnhAICXVaNmu7EIBw7F_Sm_a8-1762188231-1.0.1.1-z3sGsaROz.vo9tSrU6jqI1oHsllUGB8scOW6dQ4qWAVHI.KRAOuLprwf3Tjy1aIZkrN4oveWaInsoKKsSBP8slq6f0oRSn66md0aPs5GreI",
       "domain": ".temu.com",
       "path": "/",
-      "expires": 1762184521.677322,
+      "expires": 1762190031.296229,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
+    },
+    {
+      "name": "_gcl_au",
+      "value": "1.1.986279459.1762181383.1456671867.1762188235.1762188236",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1769957383,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "token",
+      "value": "530176191%3A2%3A1762188236%3AMUt5LIpovpV92QjMkBazQCy_XYavfbraDAWFNo-o32oCoXN34NHS9SWfTbc6xf6O",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1769964236.746799,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "isStaff",
+      "value": "1",
+      "domain": "www.wattpad.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
     },
     {
       "name": "RT",
       "value": "",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1762183413,
+      "expires": 1762188843,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
     },
     {
-      "name": "_ga_FNDTZ0MZDQ",
-      "value": "GS2.1.s1762181381$o1$g1$t1762182813$j29$l0$h0",
+      "name": "wp-web-page",
+      "value": "true",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1796742813.28876,
+      "expires": 1793724449.587672,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_ga_FNDTZ0MZDQ",
+      "value": "GS2.1.s1762181381$o1$g1$t1762188450$j60$l0$h0",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1796748450.51585,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -779,7 +769,7 @@
       "value": "GA1.1.1922627931.1762181382",
       "domain": ".wattpad.com",
       "path": "/",
-      "expires": 1796742813.289039,
+      "expires": 1796748450.516115,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -790,20 +780,36 @@
       "origin": "https://www.wattpad.com",
       "localStorage": [
         {
+          "name": "lastExternalReferrerTime",
+          "value": "1762188451054"
+        },
+        {
+          "name": "mobile-web#user.user50919.works",
+          "value": "{\"_ts\":1762190043187,\"resp\":{\"total\":1,\"stories\":[{\"id\":\"402848261\",\"title\":\"Ghost Hacker\",\"voteCount\":0,\"commentCount\":0,\"language\":1,\"user\":{\"name\":\"user50919\",\"avatar\":\"https://img.wattpad.com/useravatar/user50919.128.101480.jpg\",\"fullname\":\"JK\",\"verified\":false},\"description\":\"渋谷の運河は、今日も静かだ。私のオフィスはその運河沿いに建っている。床から天井まで広がる大きな窓の向こうには、まるで沖縄の海を切り取ってきたかのような、深く、そして青く透き通った水が広がっている。時折、水上バスが音もなく滑るように通り過ぎていく。その光景を眺めながら、私は自分の仕事について考えていた。\\n\\n「ゴーストハッカー」。それが私の職業。\",\"cover\":\"https://img.wattpad.com/cover/402848261-256-k151505.jpg\",\"completed\":false,\"categories\":[5],\"tags\":[\"ghost\",\"hack\",\"spirite\",\"tokyo\"],\"url\":\"https://www.wattpad.com/story/402848261-ghost-hacker\",\"numParts\":7,\"lastPublishedPart\":{\"id\":1586959548,\"createDate\":\"2025-11-03T15:32:45Z\"},\"parts\":[{\"id\":1582748678,\"title\":\"The Ordinary and the Anomaly\",\"draft\":false,\"modifyDate\":\"2025-10-22T04:27:12Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1584350155,\"title\":\"Accepting the Request and Analysis\",\"draft\":false,\"modifyDate\":\"2025-10-22T04:30:36Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1584351021,\"title\":\"Accepting the Request and Analysis (Part 2)\",\"draft\":false,\"modifyDate\":\"2025-10-22T04:31:42Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1584351886,\"title\":\"Ghost Hacking (Part 1)\",\"draft\":false,\"modifyDate\":\"2025-10-22T02:41:34Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1584352012,\"title\":\" Ghost Hacking (Part 2)\",\"draft\":false,\"modifyDate\":\"2025-10-22T03:45:52Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1584363709,\"title\":\"Resolution\",\"draft\":false,\"modifyDate\":\"2025-10-22T03:47:32Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1586959548,\"title\":\"Untitled Part 7\",\"draft\":true,\"modifyDate\":\"2025-11-03T15:32:45Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"}],\"hasBannedCover\":false,\"readCount\":18,\"textids\":\"1582748678,1584350155,1584351021,1584351886,1584352012,1584363709,1586959548\",\"published\":true,\"categoryObject\":{\"id\":5,\"name\":\"Science Fiction\",\"name_english\":\"Science Fiction\",\"roles\":[\"onboarding\",\"writing\",\"searching\"],\"tagline\":\"Get lost in the speculative Science Fiction stories of the future: dystopian novels, space odysseys, post-apocalyptic worlds from the great authors and writers of today. We have the best in free books and stories online by authors who love to write alien, fantasy, space time travel, and short sci fi.\",\"banner\":\"science_fiction.jpg\",\"bg_image\":\"bg_science_fiction.png\"},\"storyLanguage\":\"English\",\"rank\":null,\"skip_title\":0}]}}"
+        },
+        {
           "name": "lastExternalReferrer",
           "value": "empty"
         },
         {
-          "name": "_gcl_ls",
-          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":28,\"timeouts\":0,\"creationTimeMs\":1762182813723},\"expires\":1769958813723}}"
+          "name": "monaco-mobile-web:keys",
+          "value": "{\"mobile-web#user.user50919.works.published\":1762190043191,\"mobile-web#system.categories.1\":1762231442994,\"mobile-web#user.user50919.works\":1762190043187}"
         },
         {
-          "name": "lastExternalReferrerTime",
-          "value": "1762182810924"
+          "name": "_gcl_ls",
+          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":81,\"timeouts\":0,\"creationTimeMs\":1762188450992},\"expires\":1769964450992}}"
+        },
+        {
+          "name": "mobile-web#system.categories.1",
+          "value": "{\"_ts\":1762231442994,\"resp\":[{\"id\":5,\"name\":\"Science Fiction\",\"name_english\":\"Science Fiction\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":3,\"name\":\"Fantasy\",\"name_english\":\"Fantasy\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":4,\"name\":\"Romance\",\"name_english\":\"Romance\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":7,\"name\":\"Humor\",\"name_english\":\"Humor\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":12,\"name\":\"Paranormal\",\"name_english\":\"Paranormal\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":8,\"name\":\"Mystery / Thriller\",\"name_english\":\"Mystery / Thriller\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":9,\"name\":\"Horror\",\"name_english\":\"Horror\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":11,\"name\":\"Adventure\",\"name_english\":\"Adventure\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":23,\"name\":\"Historical Fiction\",\"name_english\":\"Historical Fiction\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":1,\"name\":\"Teen Fiction\",\"name_english\":\"Teen Fiction\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":6,\"name\":\"Fanfiction\",\"name_english\":\"Fanfiction\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":2,\"name\":\"Poetry\",\"name_english\":\"Poetry\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":17,\"name\":\"Short Story\",\"name_english\":\"Short Story\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":21,\"name\":\"General Fiction\",\"name_english\":\"General Fiction\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":24,\"name\":\"ChickLit\",\"name_english\":\"ChickLit\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":14,\"name\":\"Action\",\"name_english\":\"Action\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":18,\"name\":\"Vampire\",\"name_english\":\"Vampire\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":22,\"name\":\"Werewolf\",\"name_english\":\"Werewolf\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":13,\"name\":\"Spiritual\",\"name_english\":\"Spiritual\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":16,\"name\":\"Non-Fiction\",\"name_english\":\"Non-Fiction\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":10,\"name\":\"Classics\",\"name_english\":\"Classics\",\"roles\":[\"onboarding\",\"searching\"]},{\"id\":19,\"name\":\"Random\",\"name_english\":\"Random\",\"roles\":[\"writing\",\"searching\"]}]}"
         },
         {
           "name": "language",
           "value": "\"1\""
+        },
+        {
+          "name": "mobile-web#user.user50919.works.published",
+          "value": "{\"_ts\":1762190043191,\"resp\":{\"total\":1,\"stories\":[{\"id\":\"402848261\",\"title\":\"Ghost Hacker\",\"voteCount\":0,\"commentCount\":0,\"language\":1,\"user\":{\"name\":\"user50919\",\"avatar\":\"https://img.wattpad.com/useravatar/user50919.128.101480.jpg\",\"fullname\":\"JK\",\"verified\":false},\"description\":\"渋谷の運河は、今日も静かだ。私のオフィスはその運河沿いに建っている。床から天井まで広がる大きな窓の向こうには、まるで沖縄の海を切り取ってきたかのような、深く、そして青く透き通った水が広がっている。時折、水上バスが音もなく滑るように通り過ぎていく。その光景を眺めながら、私は自分の仕事について考えていた。\\n\\n「ゴーストハッカー」。それが私の職業。\",\"cover\":\"https://img.wattpad.com/cover/402848261-256-k151505.jpg\",\"completed\":false,\"categories\":[5],\"tags\":[\"ghost\",\"hack\",\"spirite\",\"tokyo\"],\"rating\":1,\"copyright\":1,\"url\":\"https://www.wattpad.com/story/402848261-ghost-hacker\",\"numParts\":7,\"lastPublishedPart\":{\"id\":1586959548,\"createDate\":\"2025-11-03T15:32:45Z\"},\"parts\":[{\"id\":1582748678,\"title\":\"The Ordinary and the Anomaly\",\"draft\":false,\"modifyDate\":\"2025-10-22T04:27:12Z\",\"createDate\":\"2025-10-22T02:12:53Z\",\"commentCount\":0,\"voteCount\":0,\"readCount\":5,\"hasBannedImages\":false,\"stats\":true,\"flag1\":0,\"source\":\"\"},{\"id\":1584350155,\"title\":\"Accepting the Request and Analysis\",\"draft\":false,\"modifyDate\":\"2025-10-22T04:30:36Z\",\"createDate\":\"2025-10-22T02:14:50Z\",\"commentCount\":0,\"voteCount\":0,\"readCount\":3,\"hasBannedImages\":false,\"stats\":true,\"flag1\":0,\"source\":\"\"},{\"id\":1584351021,\"title\":\"Accepting the Request and Analysis (Part 2)\",\"draft\":false,\"modifyDate\":\"2025-10-22T04:31:42Z\",\"createDate\":\"2025-10-22T02:16:57Z\",\"commentCount\":0,\"voteCount\":0,\"readCount\":3,\"hasBannedImages\":false,\"stats\":true,\"flag1\":0,\"source\":\"\"},{\"id\":1584351886,\"title\":\"Ghost Hacking (Part 1)\",\"draft\":false,\"modifyDate\":\"2025-10-22T02:41:34Z\",\"createDate\":\"2025-10-22T02:22:10Z\",\"commentCount\":0,\"voteCount\":0,\"readCount\":2,\"hasBannedImages\":false,\"stats\":true,\"flag1\":0,\"source\":\"\"},{\"id\":1584352012,\"title\":\" Ghost Hacking (Part 2)\",\"draft\":false,\"modifyDate\":\"2025-10-22T03:45:52Z\",\"createDate\":\"2025-10-22T02:24:09Z\",\"commentCount\":0,\"voteCount\":0,\"readCount\":3,\"hasBannedImages\":false,\"stats\":true,\"flag1\":0,\"source\":\"\"},{\"id\":1584363709,\"title\":\"Resolution\",\"draft\":false,\"modifyDate\":\"2025-10-22T03:47:32Z\",\"createDate\":\"2025-10-22T03:47:20Z\",\"commentCount\":0,\"voteCount\":0,\"readCount\":2,\"hasBannedImages\":false,\"stats\":true,\"flag1\":0,\"source\":\"\"},{\"id\":1586959548,\"title\":\"Untitled Part 7\",\"draft\":true,\"modifyDate\":\"2025-11-03T15:32:45Z\",\"createDate\":\"2025-11-03T15:32:45Z\",\"commentCount\":0,\"voteCount\":0,\"readCount\":0,\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"}],\"hasBannedCover\":false,\"readCount\":18,\"slugUrl\":\"402848261-ghost-hacker\",\"partCount\":7,\"publishedCount\":6,\"draftCount\":1,\"editReturn\":{\"id\":1586959548,\"title\":\"Untitled Part 7\",\"draft\":true,\"modifyDate\":\"2025-11-03T15:32:45Z\",\"createDate\":\"2025-11-03T15:32:45Z\",\"commentCount\":0,\"voteCount\":0,\"readCount\":0,\"hasBannedImages\":false},\"hasParts\":true,\"hasBannedImages\":false,\"textids\":\"1582748678,1584350155,1584351021,1584351886,1584352012,1584363709,1586959548\",\"published\":true,\"categoryObject\":{\"id\":5,\"name\":\"Science Fiction\",\"name_english\":\"Science Fiction\",\"roles\":[\"onboarding\",\"writing\",\"searching\"],\"tagline\":\"Get lost in the speculative Science Fiction stories of the future: dystopian novels, space odysseys, post-apocalyptic worlds from the great authors and writers of today. We have the best in free books and stories online by authors who love to write alien, fantasy, space time travel, and short sci fi.\",\"banner\":\"science_fiction.jpg\",\"bg_image\":\"bg_science_fiction.png\"},\"storyLanguage\":\"English\",\"rank\":null,\"skip_title\":0,\"categoryLabels\":[{\"name\":\"Science Fiction\"}],\"socialLinks\":[{\"name\":\"facebook\",\"icon\":\"fa-facebook\",\"label\":\"Share via Facebook\",\"href\":\"https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.wattpad.com%2Fstory%2F402848261-ghost-hacker%3Futm_source%3Dweb%26utm_medium%3Dfacebook%26utm_content%3Dshare_myworks_details\"},{\"name\":\"twitter\",\"icon\":\"fa-twitter\",\"label\":\"Share via Twitter\",\"content\":\"share_myworks_details\",\"text\":\"Ghost Hacker #wattpad\",\"urlTemplate\":\"https://twitter.com/intent/tweet?text=%s&url=%s\",\"url\":\"https://www.wattpad.com/story/402848261-ghost-hacker\",\"href\":\"https://twitter.com/intent/tweet?text=Ghost+Hacker+%23wattpad&url=https%3A%2F%2Fwww.wattpad.com%2Fstory%2F402848261-ghost-hacker%3Futm_source%3Dweb%26utm_medium%3Dtwitter%26utm_content%3Dshare_myworks_details\"}]}]}}"
         }
       ]
     }
