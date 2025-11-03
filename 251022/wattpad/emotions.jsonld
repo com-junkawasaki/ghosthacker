@@ -69,7 +69,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep01/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.802Z",
+      "createdAt": "2025-11-03T11:15:17.017Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -706,7 +706,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep01/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.804Z",
+      "createdAt": "2025-11-03T11:15:17.018Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -1742,7 +1742,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep01/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.804Z",
+      "createdAt": "2025-11-03T11:15:17.019Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -2212,7 +2212,7 @@
         "251022/wattpad/episodes/ep01/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.804Z",
+      "createdAt": "2025-11-03T11:15:17.019Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -2447,7 +2447,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep02/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.805Z",
+      "createdAt": "2025-11-03T11:15:17.020Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -2913,7 +2913,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep02/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.805Z",
+      "createdAt": "2025-11-03T11:15:17.020Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -3550,7 +3550,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep02/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.805Z",
+      "createdAt": "2025-11-03T11:15:17.020Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -3963,7 +3963,7 @@
         "251022/wattpad/episodes/ep02/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.805Z",
+      "createdAt": "2025-11-03T11:15:17.020Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -4198,7 +4198,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep03/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.806Z",
+      "createdAt": "2025-11-03T11:15:17.021Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -4892,7 +4892,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep03/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.807Z",
+      "createdAt": "2025-11-03T11:15:17.021Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -5586,7 +5586,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep03/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.808Z",
+      "createdAt": "2025-11-03T11:15:17.022Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -5999,7 +5999,7 @@
         "251022/wattpad/episodes/ep03/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.808Z",
+      "createdAt": "2025-11-03T11:15:17.022Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -6234,7 +6234,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep04/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.809Z",
+      "createdAt": "2025-11-03T11:15:17.022Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -7783,7 +7783,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep04/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.810Z",
+      "createdAt": "2025-11-03T11:15:17.023Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -9674,12 +9674,17 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep04/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.810Z",
+      "createdAt": "2025-11-03T11:15:17.023Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "sadness",
-          "score": 1
+          "score": 0.75
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0.25
         },
         {
           "@type": "EmotionScore",
@@ -9699,11 +9704,6 @@
         {
           "@type": "EmotionScore",
           "emotion": "surprise",
-          "score": 0
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "trust",
           "score": 0
         },
         {
@@ -10073,7 +10073,7 @@
         {
           "@type": "EmotionProfile",
           "position": 7,
-          "segmentText": "売るの？！」\n\nTamaki「最後。あなたの家族を1億で売れますか？」\n\nLeo「え、それは絶対売らない」\n\n（沈黙）\n\nTamaki「10億円なら？」\n\nLeo「売らない！」\n\nMillia「……売る」\n\nLeo「ええ？",
+          "segmentText": "売るの？！」\n\nTamaki「最後。あなたの家族を1億で売れますか？」\n\nLeo「え、それは絶対売らない」\n\n（沈黙）\n\nTamaki「10億円なら？」\n\nLeo「売らない！」\n\nMillia「……売る」\n\nLeo「ええ？」\n\nMilliaは俯き、泣き出す。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -10130,7 +10130,7 @@
         {
           "@type": "EmotionProfile",
           "position": 8,
-          "segmentText": "嘘！」\n\nMilliaは俯き、泣き出す。Leoは戸惑い、手が宙に浮く。",
+          "segmentText": "Millia「1円でも……売りたい……」\n\nTamaki「そう。\"家族だから\"といって、愛さなければならない義務はない」\n\nMilliaが顔を上げる。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -10187,7 +10187,7 @@
         {
           "@type": "EmotionProfile",
           "position": 9,
-          "segmentText": "Leo「……ミリア、知らなかった。ぼく、ほんとに——知らなかった」\nTamaki「うん。Leoは\"知らなかった\"。ここで、初めて『見る』だけでいい」\nMillia（小声）「……隠していました。ごめん」\n\nMillia「1円でも、いくらでも——売りたい……」\n\nTamakiは彼女の言葉を遮らない。",
+          "segmentText": "Millia「……でも、切れない」\n\nTamaki「それは\"complex\"。心身複合——魂の癒着。でも、切ることはできる」\n\nMilliaの目に、小さな光が灯る。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -10244,16 +10244,16 @@
         {
           "@type": "EmotionProfile",
           "position": 10,
-          "segmentText": "Tamaki「そう。愛と関係性の経済の見分け方は『売れるか／売れないか』。自分と\"感じている\"か否か」\n\nLeo「な、なるほど……でも、今はどうしたら……」\n\nTamaki「\"家族だから\"といって、愛さなければならない義務はない。\"あなたを愛している\"という嘘を、愛さなくていい」\n\nMillia（涙のまま）「……でも、切れない」\n\nTamaki「それは\"complex\"。心身複合——魂の癒着。身体が離れても、魂が繋がってしまう。魂を切るのは、自分の体を切るのと同じ。——だから痛い」\n\nTamaki「あなたには勇気がある。でも、ちゃんと切るのは専門家に任せよう」\n\nMillia「どうしたら……Dr.",
+          "segmentText": "Millia「……本当に？」\n\n私は頷く。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
-              "emotion": "sadness",
-              "score": 1
+              "emotion": "joy",
+              "score": 0
             },
             {
               "@type": "EmotionScore",
-              "emotion": "joy",
+              "emotion": "sadness",
               "score": 0
             },
             {
@@ -10301,7 +10301,7 @@
         {
           "@type": "EmotionProfile",
           "position": 11,
-          "segmentText": "Tamaki」\n\nTamaki「手続きと、麻酔と、手術。——Hibikiが麻酔、Dr.",
+          "segmentText": "「うん。専門家がいる。Hibikiが麻酔をかけて、Dr.",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -10358,7 +10358,7 @@
         {
           "@type": "EmotionProfile",
           "position": 12,
-          "segmentText": "イタコが執刀」\n\nMillia「……先生、お願いします」\n\n私は頷く。",
+          "segmentText": "イタコが執刀する。——あなたは、自由になれる」\n\nLeoが、Milliaの手を取る。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -10415,6 +10415,120 @@
         {
           "@type": "EmotionProfile",
           "position": 13,
+          "segmentText": "Leo「ミリア。ぼくは……ずっと一緒にいる」\n\nMilliaが、涙のまま、小さく笑う。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 1
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 14,
+          "segmentText": "Millia「……先生、お願いします」\n\n私は頷く。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 15,
           "segmentText": "「大丈夫。あなたは一人じゃない。Leoも、私たちも、一緒にいる」\n\nLeoが、ゆっくりとMilliaの手を取る。今度は、迷いなく。",
           "emotionVector": [
             {
@@ -10471,7 +10585,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 14,
+          "position": 16,
           "segmentText": "Leo「ミリア。ぼくは……ずっと一緒にいる。どんな手術でも、その後も」\n\nMilliaが、涙のまま、小さく笑う。",
           "emotionVector": [
             {
@@ -10528,7 +10642,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 15,
+          "position": 17,
           "segmentText": "Millia「……ありがとう」\n\nNei-chanの声が、優しく響く。",
           "emotionVector": [
             {
@@ -10585,7 +10699,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 16,
+          "position": 18,
           "segmentText": "Nei-chan『タマ、二人の手、繋がってる。あったかい』\n\n私は二人を見つめる。",
           "emotionVector": [
             {
@@ -10642,7 +10756,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 17,
+          "position": 19,
           "segmentText": "「次のステップは、Dr.",
           "emotionVector": [
             {
@@ -10699,7 +10813,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 18,
+          "position": 20,
           "segmentText": "イタコのセッション。——でも、今日はここまで。二人で、ゆっくり話して」\n\nLeoが頷く。Milliaも、静かに頷く。",
           "emotionVector": [
             {
@@ -10756,7 +10870,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 19,
+          "position": 21,
           "segmentText": "セッションルームの光が、少しずつ戻っていく。",
           "emotionVector": [
             {
@@ -10813,122 +10927,8 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 20,
-          "segmentText": "Milliaの表情が、ほんの少し、柔らかくなる。",
-          "emotionVector": [
-            {
-              "@type": "EmotionScore",
-              "emotion": "joy",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "sadness",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "fear",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "anger",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "surprise",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "trust",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "anticipation",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "disgust",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "relief",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "hope",
-              "score": 0
-            }
-          ]
-        },
-        {
-          "@type": "EmotionProfile",
-          "position": 21,
-          "segmentText": "Leo「……ミリア、これから、どうなるかわからないけど……でも、一緒に進もう」\n\nMillia「……うん。ありがとう、Leo」\n\n二人の輪郭が、安定する。",
-          "emotionVector": [
-            {
-              "@type": "EmotionScore",
-              "emotion": "joy",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "sadness",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "fear",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "anger",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "surprise",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "trust",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "anticipation",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "disgust",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "relief",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "hope",
-              "score": 0
-            }
-          ]
-        },
-        {
-          "@type": "EmotionProfile",
           "position": 22,
-          "segmentText": "そして、初めて——本当に、お互いを見ている。",
+          "segmentText": "Milliaの表情が、ほんの少し、柔らかくなる。重荷が、少しだけ軽くなったように見える。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -10985,7 +10985,7 @@
         {
           "@type": "EmotionProfile",
           "position": 23,
-          "segmentText": "私は、静かに微笑む。",
+          "segmentText": "Leo「……ミリア、これから、どうなるかわからないけど……でも、一緒に進もう」\n\nMillia「……うん。ありがとう、Leo」\n\n彼女の声に、初めて、安心の色が混じる。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -11042,7 +11042,7 @@
         {
           "@type": "EmotionProfile",
           "position": 24,
-          "segmentText": "「大丈夫。あなたたちは、もう一人じゃない」\n\nNei-chan『タマ、二人、すごくあったかい。希望の色してる』\n\n私は頷く。",
+          "segmentText": "二人の輪郭が、安定する。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -11099,7 +11099,7 @@
         {
           "@type": "EmotionProfile",
           "position": 25,
-          "segmentText": "「うん。これから、きっと大丈夫」",
+          "segmentText": "そして、初めて——本当に、お互いを見ている。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -11109,6 +11109,291 @@
             {
               "@type": "EmotionScore",
               "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 26,
+          "segmentText": "私は、静かに微笑む。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 27,
+          "segmentText": "「大丈夫。あなたたちは、もう一人じゃない。これから、新しい道が開ける」\n\nNei-chan『タマ、二人、すごくあったかい。希望の色してる。キラキラしてる』\n\nLeoが、Milliaの手をそっと握る。Milliaも、握り返す。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 28,
+          "segmentText": "二人の間に、静かな信頼が流れる。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 1
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 29,
+          "segmentText": "私は頷く。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 30,
+          "segmentText": "「うん。これから、きっと大丈夫。一歩ずつ、進んでいける」\n\nMilliaが、小さく微笑む。涙はまだ乾いていないけれど、その目には——希望がある。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 1
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
               "score": 0
             },
             {
@@ -11170,47 +11455,47 @@
         "251022/wattpad/episodes/ep04/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.810Z",
+      "createdAt": "2025-11-03T11:15:17.023Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "trust",
-          "score": 0.3055
+          "score": 0.3224
         },
         {
           "@type": "EmotionScore",
           "emotion": "sadness",
-          "score": 0.2857
+          "score": 0.3043
         },
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0.1429
+          "score": 0.1304
         },
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.0569
+          "score": 0.052
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.0569
+          "score": 0.052
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.0569
+          "score": 0.052
         },
         {
           "@type": "EmotionScore",
           "emotion": "anger",
-          "score": 0.0476
+          "score": 0.0435
         },
         {
           "@type": "EmotionScore",
           "emotion": "anticipation",
-          "score": 0.0476
+          "score": 0.0435
         },
         {
           "@type": "EmotionScore",
@@ -11343,7 +11628,12 @@
             {
               "@type": "EmotionScore",
               "emotion": "sadness",
-              "score": 1
+              "score": 0.75
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.25
             },
             {
               "@type": "EmotionScore",
@@ -11363,11 +11653,6 @@
             {
               "@type": "EmotionScore",
               "emotion": "surprise",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "trust",
               "score": 0
             },
             {
@@ -11405,7 +11690,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep05/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.810Z",
+      "createdAt": "2025-11-03T11:15:17.024Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -12441,7 +12726,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep05/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.811Z",
+      "createdAt": "2025-11-03T11:15:17.025Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -13876,7 +14161,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep05/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.811Z",
+      "createdAt": "2025-11-03T11:15:17.025Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -16056,7 +16341,7 @@
         "251022/wattpad/episodes/ep05/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.811Z",
+      "createdAt": "2025-11-03T11:15:17.025Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -16291,7 +16576,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep06/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.812Z",
+      "createdAt": "2025-11-03T11:15:17.026Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -16529,7 +16814,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep06/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.812Z",
+      "createdAt": "2025-11-03T11:15:17.027Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -16710,7 +16995,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep06/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.813Z",
+      "createdAt": "2025-11-03T11:15:17.027Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -16895,7 +17180,7 @@
         "251022/wattpad/episodes/ep06/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.813Z",
+      "createdAt": "2025-11-03T11:15:17.027Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -17130,7 +17415,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep07/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.813Z",
+      "createdAt": "2025-11-03T11:15:17.028Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -17425,7 +17710,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep07/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.813Z",
+      "createdAt": "2025-11-03T11:15:17.028Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -17549,7 +17834,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep07/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.813Z",
+      "createdAt": "2025-11-03T11:15:17.028Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -17677,7 +17962,7 @@
         "251022/wattpad/episodes/ep07/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.813Z",
+      "createdAt": "2025-11-03T11:15:17.028Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -17912,7 +18197,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep08/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.814Z",
+      "createdAt": "2025-11-03T11:15:17.029Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -18150,7 +18435,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep08/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.814Z",
+      "createdAt": "2025-11-03T11:15:17.029Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -18445,7 +18730,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep08/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.814Z",
+      "createdAt": "2025-11-03T11:15:17.029Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -18687,7 +18972,7 @@
         "251022/wattpad/episodes/ep08/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.814Z",
+      "createdAt": "2025-11-03T11:15:17.029Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -18922,7 +19207,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep01/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.814Z",
+      "createdAt": "2025-11-03T11:15:17.030Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -19559,7 +19844,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep01/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.815Z",
+      "createdAt": "2025-11-03T11:15:17.030Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -20595,7 +20880,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep01/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.815Z",
+      "createdAt": "2025-11-03T11:15:17.030Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -21065,7 +21350,7 @@
         "251022/wattpad/episodes/ep01/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.815Z",
+      "createdAt": "2025-11-03T11:15:17.031Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -21300,7 +21585,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep02/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.815Z",
+      "createdAt": "2025-11-03T11:15:17.031Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -21766,7 +22051,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep02/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.815Z",
+      "createdAt": "2025-11-03T11:15:17.032Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -22403,7 +22688,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep02/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.816Z",
+      "createdAt": "2025-11-03T11:15:17.032Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -22816,7 +23101,7 @@
         "251022/wattpad/episodes/ep02/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.816Z",
+      "createdAt": "2025-11-03T11:15:17.032Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -23051,7 +23336,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep03/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.816Z",
+      "createdAt": "2025-11-03T11:15:17.032Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -23745,7 +24030,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep03/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.816Z",
+      "createdAt": "2025-11-03T11:15:17.032Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -24439,7 +24724,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep03/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.816Z",
+      "createdAt": "2025-11-03T11:15:17.033Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -24848,7 +25133,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep03/part4.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.817Z",
+      "createdAt": "2025-11-03T11:15:17.034Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -25889,7 +26174,7 @@
         "251022/wattpad/episodes/ep03/part4.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.817Z",
+      "createdAt": "2025-11-03T11:15:17.034Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -26180,7 +26465,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep04/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.817Z",
+      "createdAt": "2025-11-03T11:15:17.035Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -27729,7 +28014,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep04/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.818Z",
+      "createdAt": "2025-11-03T11:15:17.035Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -29620,12 +29905,17 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep04/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.818Z",
+      "createdAt": "2025-11-03T11:15:17.035Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "sadness",
-          "score": 1
+          "score": 0.75
+        },
+        {
+          "@type": "EmotionScore",
+          "emotion": "trust",
+          "score": 0.25
         },
         {
           "@type": "EmotionScore",
@@ -29645,11 +29935,6 @@
         {
           "@type": "EmotionScore",
           "emotion": "surprise",
-          "score": 0
-        },
-        {
-          "@type": "EmotionScore",
-          "emotion": "trust",
           "score": 0
         },
         {
@@ -30019,7 +30304,7 @@
         {
           "@type": "EmotionProfile",
           "position": 7,
-          "segmentText": "売るの？！」\n\nTamaki「最後。あなたの家族を1億で売れますか？」\n\nLeo「え、それは絶対売らない」\n\n（沈黙）\n\nTamaki「10億円なら？」\n\nLeo「売らない！」\n\nMillia「……売る」\n\nLeo「ええ？",
+          "segmentText": "売るの？！」\n\nTamaki「最後。あなたの家族を1億で売れますか？」\n\nLeo「え、それは絶対売らない」\n\n（沈黙）\n\nTamaki「10億円なら？」\n\nLeo「売らない！」\n\nMillia「……売る」\n\nLeo「ええ？」\n\nMilliaは俯き、泣き出す。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -30076,7 +30361,7 @@
         {
           "@type": "EmotionProfile",
           "position": 8,
-          "segmentText": "嘘！」\n\nMilliaは俯き、泣き出す。Leoは戸惑い、手が宙に浮く。",
+          "segmentText": "Millia「1円でも……売りたい……」\n\nTamaki「そう。\"家族だから\"といって、愛さなければならない義務はない」\n\nMilliaが顔を上げる。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -30133,7 +30418,7 @@
         {
           "@type": "EmotionProfile",
           "position": 9,
-          "segmentText": "Leo「……ミリア、知らなかった。ぼく、ほんとに——知らなかった」\nTamaki「うん。Leoは\"知らなかった\"。ここで、初めて『見る』だけでいい」\nMillia（小声）「……隠していました。ごめん」\n\nMillia「1円でも、いくらでも——売りたい……」\n\nTamakiは彼女の言葉を遮らない。",
+          "segmentText": "Millia「……でも、切れない」\n\nTamaki「それは\"complex\"。心身複合——魂の癒着。でも、切ることはできる」\n\nMilliaの目に、小さな光が灯る。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -30190,16 +30475,16 @@
         {
           "@type": "EmotionProfile",
           "position": 10,
-          "segmentText": "Tamaki「そう。愛と関係性の経済の見分け方は『売れるか／売れないか』。自分と\"感じている\"か否か」\n\nLeo「な、なるほど……でも、今はどうしたら……」\n\nTamaki「\"家族だから\"といって、愛さなければならない義務はない。\"あなたを愛している\"という嘘を、愛さなくていい」\n\nMillia（涙のまま）「……でも、切れない」\n\nTamaki「それは\"complex\"。心身複合——魂の癒着。身体が離れても、魂が繋がってしまう。魂を切るのは、自分の体を切るのと同じ。——だから痛い」\n\nTamaki「あなたには勇気がある。でも、ちゃんと切るのは専門家に任せよう」\n\nMillia「どうしたら……Dr.",
+          "segmentText": "Millia「……本当に？」\n\n私は頷く。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
-              "emotion": "sadness",
-              "score": 1
+              "emotion": "joy",
+              "score": 0
             },
             {
               "@type": "EmotionScore",
-              "emotion": "joy",
+              "emotion": "sadness",
               "score": 0
             },
             {
@@ -30247,7 +30532,7 @@
         {
           "@type": "EmotionProfile",
           "position": 11,
-          "segmentText": "Tamaki」\n\nTamaki「手続きと、麻酔と、手術。——Hibikiが麻酔、Dr.",
+          "segmentText": "「うん。専門家がいる。Hibikiが麻酔をかけて、Dr.",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -30304,7 +30589,7 @@
         {
           "@type": "EmotionProfile",
           "position": 12,
-          "segmentText": "イタコが執刀」\n\nMillia「……先生、お願いします」\n\n私は頷く。",
+          "segmentText": "イタコが執刀する。——あなたは、自由になれる」\n\nLeoが、Milliaの手を取る。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -30361,6 +30646,120 @@
         {
           "@type": "EmotionProfile",
           "position": 13,
+          "segmentText": "Leo「ミリア。ぼくは……ずっと一緒にいる」\n\nMilliaが、涙のまま、小さく笑う。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 1
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 14,
+          "segmentText": "Millia「……先生、お願いします」\n\n私は頷く。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 15,
           "segmentText": "「大丈夫。あなたは一人じゃない。Leoも、私たちも、一緒にいる」\n\nLeoが、ゆっくりとMilliaの手を取る。今度は、迷いなく。",
           "emotionVector": [
             {
@@ -30417,7 +30816,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 14,
+          "position": 16,
           "segmentText": "Leo「ミリア。ぼくは……ずっと一緒にいる。どんな手術でも、その後も」\n\nMilliaが、涙のまま、小さく笑う。",
           "emotionVector": [
             {
@@ -30474,7 +30873,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 15,
+          "position": 17,
           "segmentText": "Millia「……ありがとう」\n\nNei-chanの声が、優しく響く。",
           "emotionVector": [
             {
@@ -30531,7 +30930,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 16,
+          "position": 18,
           "segmentText": "Nei-chan『タマ、二人の手、繋がってる。あったかい』\n\n私は二人を見つめる。",
           "emotionVector": [
             {
@@ -30588,7 +30987,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 17,
+          "position": 19,
           "segmentText": "「次のステップは、Dr.",
           "emotionVector": [
             {
@@ -30645,7 +31044,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 18,
+          "position": 20,
           "segmentText": "イタコのセッション。——でも、今日はここまで。二人で、ゆっくり話して」\n\nLeoが頷く。Milliaも、静かに頷く。",
           "emotionVector": [
             {
@@ -30702,7 +31101,7 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 19,
+          "position": 21,
           "segmentText": "セッションルームの光が、少しずつ戻っていく。",
           "emotionVector": [
             {
@@ -30759,122 +31158,8 @@
         },
         {
           "@type": "EmotionProfile",
-          "position": 20,
-          "segmentText": "Milliaの表情が、ほんの少し、柔らかくなる。",
-          "emotionVector": [
-            {
-              "@type": "EmotionScore",
-              "emotion": "joy",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "sadness",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "fear",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "anger",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "surprise",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "trust",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "anticipation",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "disgust",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "relief",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "hope",
-              "score": 0
-            }
-          ]
-        },
-        {
-          "@type": "EmotionProfile",
-          "position": 21,
-          "segmentText": "Leo「……ミリア、これから、どうなるかわからないけど……でも、一緒に進もう」\n\nMillia「……うん。ありがとう、Leo」\n\n二人の輪郭が、安定する。",
-          "emotionVector": [
-            {
-              "@type": "EmotionScore",
-              "emotion": "joy",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "sadness",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "fear",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "anger",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "surprise",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "trust",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "anticipation",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "disgust",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "relief",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "hope",
-              "score": 0
-            }
-          ]
-        },
-        {
-          "@type": "EmotionProfile",
           "position": 22,
-          "segmentText": "そして、初めて——本当に、お互いを見ている。",
+          "segmentText": "Milliaの表情が、ほんの少し、柔らかくなる。重荷が、少しだけ軽くなったように見える。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -30931,7 +31216,7 @@
         {
           "@type": "EmotionProfile",
           "position": 23,
-          "segmentText": "私は、静かに微笑む。",
+          "segmentText": "Leo「……ミリア、これから、どうなるかわからないけど……でも、一緒に進もう」\n\nMillia「……うん。ありがとう、Leo」\n\n彼女の声に、初めて、安心の色が混じる。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -30988,7 +31273,7 @@
         {
           "@type": "EmotionProfile",
           "position": 24,
-          "segmentText": "「大丈夫。あなたたちは、もう一人じゃない」\n\nNei-chan『タマ、二人、すごくあったかい。希望の色してる』\n\n私は頷く。",
+          "segmentText": "二人の輪郭が、安定する。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -31045,7 +31330,7 @@
         {
           "@type": "EmotionProfile",
           "position": 25,
-          "segmentText": "「うん。これから、きっと大丈夫」",
+          "segmentText": "そして、初めて——本当に、お互いを見ている。",
           "emotionVector": [
             {
               "@type": "EmotionScore",
@@ -31055,6 +31340,291 @@
             {
               "@type": "EmotionScore",
               "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 26,
+          "segmentText": "私は、静かに微笑む。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 27,
+          "segmentText": "「大丈夫。あなたたちは、もう一人じゃない。これから、新しい道が開ける」\n\nNei-chan『タマ、二人、すごくあったかい。希望の色してる。キラキラしてる』\n\nLeoが、Milliaの手をそっと握る。Milliaも、握り返す。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 28,
+          "segmentText": "二人の間に、静かな信頼が流れる。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 1
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 29,
+          "segmentText": "私は頷く。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "fear",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anger",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "surprise",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "anticipation",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "disgust",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "relief",
+              "score": 0
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "hope",
+              "score": 0
+            }
+          ]
+        },
+        {
+          "@type": "EmotionProfile",
+          "position": 30,
+          "segmentText": "「うん。これから、きっと大丈夫。一歩ずつ、進んでいける」\n\nMilliaが、小さく微笑む。涙はまだ乾いていないけれど、その目には——希望がある。",
+          "emotionVector": [
+            {
+              "@type": "EmotionScore",
+              "emotion": "sadness",
+              "score": 1
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "joy",
               "score": 0
             },
             {
@@ -31116,47 +31686,47 @@
         "251022/wattpad/episodes/ep04/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.818Z",
+      "createdAt": "2025-11-03T11:15:17.035Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
           "emotion": "trust",
-          "score": 0.3055
+          "score": 0.3224
         },
         {
           "@type": "EmotionScore",
           "emotion": "sadness",
-          "score": 0.2857
+          "score": 0.3043
         },
         {
           "@type": "EmotionScore",
           "emotion": "fear",
-          "score": 0.1429
+          "score": 0.1304
         },
         {
           "@type": "EmotionScore",
           "emotion": "joy",
-          "score": 0.0569
+          "score": 0.052
         },
         {
           "@type": "EmotionScore",
           "emotion": "relief",
-          "score": 0.0569
+          "score": 0.052
         },
         {
           "@type": "EmotionScore",
           "emotion": "hope",
-          "score": 0.0569
+          "score": 0.052
         },
         {
           "@type": "EmotionScore",
           "emotion": "anger",
-          "score": 0.0476
+          "score": 0.0435
         },
         {
           "@type": "EmotionScore",
           "emotion": "anticipation",
-          "score": 0.0476
+          "score": 0.0435
         },
         {
           "@type": "EmotionScore",
@@ -31289,7 +31859,12 @@
             {
               "@type": "EmotionScore",
               "emotion": "sadness",
-              "score": 1
+              "score": 0.75
+            },
+            {
+              "@type": "EmotionScore",
+              "emotion": "trust",
+              "score": 0.25
             },
             {
               "@type": "EmotionScore",
@@ -31309,11 +31884,6 @@
             {
               "@type": "EmotionScore",
               "emotion": "surprise",
-              "score": 0
-            },
-            {
-              "@type": "EmotionScore",
-              "emotion": "trust",
               "score": 0
             },
             {
@@ -31351,7 +31921,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep05/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.818Z",
+      "createdAt": "2025-11-03T11:15:17.036Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -32387,7 +32957,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep05/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.818Z",
+      "createdAt": "2025-11-03T11:15:17.036Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -33822,7 +34392,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep05/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.818Z",
+      "createdAt": "2025-11-03T11:15:17.037Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -35998,7 +36568,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep05/part4.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.819Z",
+      "createdAt": "2025-11-03T11:15:17.037Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -36868,7 +37438,7 @@
         "251022/wattpad/episodes/ep05/part4.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.819Z",
+      "createdAt": "2025-11-03T11:15:17.037Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -37159,7 +37729,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep06/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.819Z",
+      "createdAt": "2025-11-03T11:15:17.037Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -37397,7 +37967,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep06/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.819Z",
+      "createdAt": "2025-11-03T11:15:17.037Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -37578,7 +38148,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep06/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.819Z",
+      "createdAt": "2025-11-03T11:15:17.037Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -37763,7 +38333,7 @@
         "251022/wattpad/episodes/ep06/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.819Z",
+      "createdAt": "2025-11-03T11:15:17.037Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -37998,7 +38568,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep07/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.819Z",
+      "createdAt": "2025-11-03T11:15:17.038Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -38293,7 +38863,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep07/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.819Z",
+      "createdAt": "2025-11-03T11:15:17.038Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -38417,7 +38987,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep07/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.819Z",
+      "createdAt": "2025-11-03T11:15:17.038Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -38545,7 +39115,7 @@
         "251022/wattpad/episodes/ep07/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.819Z",
+      "createdAt": "2025-11-03T11:15:17.038Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -38780,7 +39350,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep08/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.820Z",
+      "createdAt": "2025-11-03T11:15:17.038Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -39018,7 +39588,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep08/part2.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.820Z",
+      "createdAt": "2025-11-03T11:15:17.038Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -39313,7 +39883,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep08/part3.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.820Z",
+      "createdAt": "2025-11-03T11:15:17.038Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -39555,7 +40125,7 @@
         "251022/wattpad/episodes/ep08/part3.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.820Z",
+      "createdAt": "2025-11-03T11:15:17.038Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -39790,7 +40360,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep09/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.820Z",
+      "createdAt": "2025-11-03T11:15:17.039Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -40486,7 +41056,7 @@
         "251022/wattpad/episodes/ep09/part1.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.820Z",
+      "createdAt": "2025-11-03T11:15:17.039Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -40609,7 +41179,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep10/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.821Z",
+      "createdAt": "2025-11-03T11:15:17.039Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -41077,7 +41647,7 @@
         "251022/wattpad/episodes/ep10/part1.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.821Z",
+      "createdAt": "2025-11-03T11:15:17.039Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -41200,7 +41770,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep11/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.821Z",
+      "createdAt": "2025-11-03T11:15:17.040Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -41725,7 +42295,7 @@
         "251022/wattpad/episodes/ep11/part1.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.821Z",
+      "createdAt": "2025-11-03T11:15:17.040Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -41848,7 +42418,7 @@
       },
       "sourcePath": "251022/wattpad/episodes/ep12/part1.md",
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.822Z",
+      "createdAt": "2025-11-03T11:15:17.040Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
@@ -42430,7 +43000,7 @@
         "251022/wattpad/episodes/ep12/part1.md"
       ],
       "language": "ja",
-      "createdAt": "2025-11-03T11:07:58.822Z",
+      "createdAt": "2025-11-03T11:15:17.040Z",
       "emotionVector": [
         {
           "@type": "EmotionScore",
