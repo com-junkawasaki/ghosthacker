@@ -1,7 +1,7 @@
 use async_graphql::*;
 use crate::infra::database::DbPool;
 use crate::schema::types::*;
-use crate::activities::{StoryActivities, CanvasActivities, PipelineActivities};
+use crate::activities::{StoryActivities, CanvasActivities, PipelineActivities, episode::EpisodeActivities};
 use uuid::Uuid;
 
 #[derive(Default)]
@@ -140,6 +140,45 @@ impl MutationRoot {
         let pool = ctx.data::<DbPool>()?;
         
         PipelineActivities::run_pipeline(pool, input)
+            .await
+            .map_err(|e| Error::new(e))
+    }
+
+    /// Generate character dialogue based on character context
+    async fn generate_character_dialogue(
+        &self,
+        character_id: String,
+        scene_setting: Option<String>,
+    ) -> Result<String> {
+        EpisodeActivities::generate_character_dialogue(&character_id, scene_setting.as_deref())
+            .await
+            .map(|dialogue| serde_json::to_string(&dialogue).unwrap_or_default())
+            .map_err(|e| Error::new(e))
+    }
+
+    /// Compose episode from dialogue and context
+    async fn compose_episode_from_dialogue(
+        &self,
+        dialogue_json: String,
+        episode_structure: Option<String>,
+    ) -> Result<String> {
+        let dialogue: crate::activities::episode::Dialogue = serde_json::from_str(&dialogue_json)
+            .map_err(|e| Error::new(format!("Invalid dialogue JSON: {}", e)))?;
+
+        EpisodeActivities::compose_episode_from_dialogue(dialogue, episode_structure.as_deref())
+            .await
+            .map(|episode| serde_json::to_string(&episode).unwrap_or_default())
+            .map_err(|e| Error::new(e))
+    }
+
+    /// Translate episode sentence
+    async fn translate_episode_sentence(
+        &self,
+        episode_id: String,
+        sentence_id: String,
+        target_language: String,
+    ) -> Result<String> {
+        EpisodeActivities::translate_episode_sentence(&episode_id, &sentence_id, &target_language)
             .await
             .map_err(|e| Error::new(e))
     }

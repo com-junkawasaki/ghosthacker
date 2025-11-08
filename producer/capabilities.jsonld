@@ -103,6 +103,27 @@
       "updatedAt": "2025-01-27T00:00:00Z"
     },
     {
+      "@id": "capability:episode-generation",
+      "@type": "Capability",
+      "name": "Episode Generation Capability",
+      "description": "登場人物の context をベースに GPT で会話を生成し、episode をまとめる機能を提供する",
+      "capabilityType": "Business",
+      "businessFunction": "Content Generation",
+      "resourceObject": "Character, Episode, Dialogue",
+      "verb": "Generate",
+      "hasActivity": [
+        { "@id": "activity:generate-character-dialogue" },
+        { "@id": "activity:compose-episode-from-dialogue" }
+      ],
+      "requiresResource": [
+        { "@id": "resource:jsonld-storage" },
+        { "@id": "resource:gpt-api" }
+      ],
+      "performedBy": { "@id": "service:graphql-episode-service" },
+      "createdAt": "2025-01-27T00:00:00Z",
+      "updatedAt": "2025-01-27T00:00:00Z"
+    },
+    {
       "@id": "resource:supabase-database",
       "@type": "dodaf:Resource",
       "name": "Supabase PostgreSQL Database",
@@ -122,6 +143,20 @@
       "name": "Pipeline Storage",
       "description": "パイプライン設定と実行履歴のストレージ",
       "resourceType": "Storage"
+    },
+    {
+      "@id": "resource:jsonld-storage",
+      "@type": "dodaf:Resource",
+      "name": "JSON-LD File Storage",
+      "description": "JSON-LD ファイルストレージ（resources/ ディレクトリ）",
+      "resourceType": "FileStorage"
+    },
+    {
+      "@id": "resource:gpt-api",
+      "@type": "dodaf:Resource",
+      "name": "GPT API",
+      "description": "GPT API（OpenRouter/OpenAI）",
+      "resourceType": "ExternalAPI"
     },
     {
       "@id": "service:graphql-story-service",
@@ -146,6 +181,14 @@
       "description": "Pipeline Execution を提供する GraphQL サービス",
       "serviceType": "GraphQL",
       "endpoint": "https://graphql.pipeline.gftd.ai/graphql"
+    },
+    {
+      "@id": "service:graphql-episode-service",
+      "@type": "dodaf:Service",
+      "name": "GraphQL Episode Generation Service",
+      "description": "Episode Generation を提供する GraphQL サービス",
+      "serviceType": "GraphQL",
+      "endpoint": "https://graphql.episode.gftd.ai/graphql"
     }
   ]
 }

@@ -11,6 +11,25 @@ export const graphqlClient = new GraphQLClient(GRAPHQL_ENDPOINT, {
   },
 });
 
+// Episode Generation Mutations
+export const episodeMutations = {
+  generateCharacterDialogue: `
+    mutation GenerateCharacterDialogue($characterId: String!, $sceneSetting: String) {
+      generateCharacterDialogue(characterId: $characterId, sceneSetting: $sceneSetting)
+    }
+  `,
+  composeEpisodeFromDialogue: `
+    mutation ComposeEpisodeFromDialogue($dialogueJson: String!, $episodeStructure: String) {
+      composeEpisodeFromDialogue(dialogueJson: $dialogueJson, episodeStructure: $episodeStructure)
+    }
+  `,
+  translateEpisodeSentence: `
+    mutation TranslateEpisodeSentence($episodeId: String!, $sentenceId: String!, $targetLanguage: String!) {
+      translateEpisodeSentence(episodeId: $episodeId, sentenceId: $sentenceId, targetLanguage: $targetLanguage)
+    }
+  `,
+};
+
 // GraphQL Queries
 export const queries = {
   project: `

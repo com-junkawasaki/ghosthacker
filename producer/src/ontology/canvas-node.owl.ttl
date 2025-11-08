@@ -1,0 +1,128 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gh: <https://ghosthacker.gftd.co.jp/ontology#> .
+
+# Canvas Ontology
+gh:Canvas
+    a owl:Class ;
+    rdfs:label "Canvas" ;
+    rdfs:comment "Canvas は全てのノードとエッジを含むグラフ構造" .
+
+gh:CanvasNode
+    a owl:Class ;
+    rdfs:label "Canvas Node" ;
+    rdfs:comment "Canvas 上のノード（PipelineNode, CharacterNode, EpisodeNode の基底クラス）" .
+
+gh:PipelineNode
+    a owl:Class ;
+    rdfs:subClassOf gh:CanvasNode ;
+    rdfs:label "Pipeline Node" ;
+    rdfs:comment "パイプラインノード（既存のノードタイプ）" .
+
+gh:CharacterNode
+    a owl:Class ;
+    rdfs:subClassOf gh:CanvasNode ;
+    rdfs:label "Character Node" ;
+    rdfs:comment "登場人物ノード" .
+
+gh:EpisodeNode
+    a owl:Class ;
+    rdfs:subClassOf gh:CanvasNode ;
+    rdfs:label "Episode Node" ;
+    rdfs:comment "Episode ノード" .
+
+gh:CanvasEdge
+    a owl:Class ;
+    rdfs:label "Canvas Edge" ;
+    rdfs:comment "Canvas 上のエッジ（ノード間の接続）" .
+
+# Properties
+gh:has_node
+    a owl:ObjectProperty ;
+    rdfs:domain gh:Canvas ;
+    rdfs:range gh:CanvasNode ;
+    rdfs:label "has node" ;
+    rdfs:comment "Canvas が持つノード" .
+
+gh:has_edge
+    a owl:ObjectProperty ;
+    rdfs:domain gh:Canvas ;
+    rdfs:range gh:CanvasEdge ;
+    rdfs:label "has edge" ;
+    rdfs:comment "Canvas が持つエッジ" .
+
+gh:source
+    a owl:ObjectProperty ;
+    rdfs:domain gh:CanvasEdge ;
+    rdfs:range gh:CanvasNode ;
+    rdfs:label "source" ;
+    rdfs:comment "エッジのソースノード" .
+
+gh:target
+    a owl:ObjectProperty ;
+    rdfs:domain gh:CanvasEdge ;
+    rdfs:range gh:CanvasNode ;
+    rdfs:label "target" ;
+    rdfs:comment "エッジのターゲットノード" .
+
+gh:node_type
+    a owl:DatatypeProperty ;
+    rdfs:domain gh:CanvasNode ;
+    rdfs:range xsd:string ;
+    rdfs:label "node type" ;
+    rdfs:comment "ノードのタイプ" .
+
+gh:node_label
+    a owl:DatatypeProperty ;
+    rdfs:domain gh:CanvasNode ;
+    rdfs:range xsd:string ;
+    rdfs:label "node label" ;
+    rdfs:comment "ノードのラベル" .
+
+gh:position_x
+    a owl:DatatypeProperty ;
+    rdfs:domain gh:CanvasNode ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "position x" ;
+    rdfs:comment "ノードの X 座標" .
+
+gh:position_y
+    a owl:DatatypeProperty ;
+    rdfs:domain gh:CanvasNode ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "position y" ;
+    rdfs:comment "ノードの Y 座標" .
+
+gh:config
+    a owl:ObjectProperty ;
+    rdfs:domain gh:CanvasNode ;
+    rdfs:label "config" ;
+    rdfs:comment "ノードの設定（JSON オブジェクト）" .
+
+gh:data
+    a owl:ObjectProperty ;
+    rdfs:domain gh:CanvasNode ;
+    rdfs:label "data" ;
+    rdfs:comment "ノードのデータ（JSON オブジェクト）" .
+
+gh:has_character
+    a owl:ObjectProperty ;
+    rdfs:domain gh:CharacterNode ;
+    rdfs:label "has character" ;
+    rdfs:comment "CharacterNode が参照する登場人物" .
+
+gh:has_episode
+    a owl:ObjectProperty ;
+    rdfs:domain gh:EpisodeNode ;
+    rdfs:label "has episode" ;
+    rdfs:comment "EpisodeNode が参照する episode" .
+
+gh:depends_on
+    a owl:ObjectProperty ;
+    rdfs:domain gh:PipelineNode ;
+    rdfs:range gh:CanvasNode ;
+    rdfs:label "depends on" ;
+    rdfs:comment "ノードの依存関係" .
+

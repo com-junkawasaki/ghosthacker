@@ -7,6 +7,8 @@ import { Controls } from '@reactflow/controls';
 import { Background } from '@reactflow/background';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createActor, createMachine } from 'xstate';
+import NodeEditorPanel from './components/NodeEditorPanel';
+import { loadCanvasFromJsonLd, saveCanvasToJsonLd } from '@/lib/canvas-jsonld';
 import {
   SourceDocNode,
   PromptNode,
@@ -23,6 +25,8 @@ import {
   ProtagonistNode,
   BackstoryNode,
   WorldNode,
+  CharacterNode,
+  EpisodeNode,
 } from '@/pipeline/node-types';
 import type { NodeData } from '@/pipeline/node-types';
 
@@ -162,11 +166,14 @@ const nodeTypes = {
   protagonist: ProtagonistNode,
   backstory: BackstoryNode,
   world: WorldNode,
+  CharacterNode: CharacterNode,
+  EpisodeNode: EpisodeNode,
 };
 
 function ProducerCanvasComponent() {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [selectedNode, setSelectedNode] = useState<RFNode<NodeData> | null>(null);
 
   // XState actor for producer canvas state management
   const [producerActor] = useState(() => createActor(producerCanvasMachine).start());
@@ -182,21 +189,42 @@ function ProducerCanvasComponent() {
   const [storyGraphLoading, setStoryGraphLoading] = useState(true);
   const [storyGraphError, setStoryGraphError] = useState<Error | null>(null);
 
+  // Load canvas from JSON-LD file on mount
   useEffect(() => {
-    const loadStoryGraph = async () => {
+    const loadCanvas = () => {
       try {
-        setStoryGraphLoading(true);
-        const PROJECT_ID = 'ghost-hacker-project';
-        const data = await graphqlClient.request(queries.storyGraph, { projectId: PROJECT_ID });
-        setStoryGraphData(data.storyGraph);
+        const canvasData = loadCanvasFromJsonLd('canvas.jsonld');
+        if (canvasData) {
+          setNodes(canvasData.nodes);
+          setEdges(canvasData.edges);
+          producerActor.send({
+            type: 'GRAPH_LOADED',
+            nodes: canvasData.nodes,
+            edges: canvasData.edges,
+          });
+          return;
+        }
       } catch (error) {
-        setStoryGraphError(error as Error);
-      } finally {
-        setStoryGraphLoading(false);
+        console.warn('Failed to load canvas from JSON-LD, falling back to GraphQL', error);
       }
+
+      // Fallback to GraphQL if JSON-LD file doesn't exist
+      const loadStoryGraph = async () => {
+        try {
+          setStoryGraphLoading(true);
+          const PROJECT_ID = 'ghost-hacker-project';
+          const data = await graphqlClient.request(queries.storyGraph, { projectId: PROJECT_ID });
+          setStoryGraphData(data.storyGraph);
+        } catch (error) {
+          setStoryGraphError(error as Error);
+        } finally {
+          setStoryGraphLoading(false);
+        }
+      };
+      loadStoryGraph();
     };
-    loadStoryGraph();
-  }, []);
+    loadCanvas();
+  }, [setNodes, setEdges, producerActor]);
 
   useEffect(() => {
     if (storyGraphData) {
@@ -271,9 +299,20 @@ function ProducerCanvasComponent() {
   }, [producerActor]);
 
   const onNodeClick = useCallback((_evt: unknown, node: RFNode<NodeData>) => {
-    // Navigation logic can be re-implemented if Neided
-    console.log('Node clicked:', node);
+    setSelectedNode(node);
   }, []);
+
+  const handleNodeUpdate = useCallback((nodeId: string, data: Partial<NodeData>) => {
+    setNodes((nds) =>
+      nds.map((node) =>
+        node.id === nodeId ? { ...node, data: { ...node.data, ...data } } : node
+      )
+    );
+  }, [setNodes]);
+
+  const handleSave = useCallback(() => {
+    saveCanvasToJsonLd(nodes, edges);
+  }, [nodes, edges]);
 
   if (actorState.matches('loading') || storyGraphLoading) {
     return <div>Loading story...</div>;
@@ -284,42 +323,53 @@ function ProducerCanvasComponent() {
   }
 
   return (
-    <div className="h-full w-full relative">
-      <ReactFlow
+    <div className="h-full w-full relative flex">
+      <div className="flex-1">
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onNodeClick={onNodeClick}
+          onConnect={onConnect}
+          nodeTypes={nodeTypes}
+          fitView
+        >
+          <Controls />
+          <Background gap={12} size={1} />
+        </ReactFlow>
+
+        <div className="absolute top-4 left-4 bg-white/95 backdrop-blur p-4 rounded-xl shadow-xl border border-gray-200 z-10">
+          <h2 className="text-xl font-semibold mb-2 text-gray-900">Ghost Hacker Producer</h2>
+          <p className="text-base text-gray-800 mb-3">
+            Nodes: {nodes.length} | Edges: {edges.length}
+          </p>
+          <button
+            onClick={onRunPipeline}
+            type="button"
+            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            disabled={actorState.matches('running') || actorState.matches('loading')}
+          >
+            {actorState.matches('running') ? 'Running...' : 'Run Pipeline'}
+          </button>
+          {!actorState.matches('idle') && !actorState.matches('loading') && (
+            <div className="mt-3 text-sm">
+              {actorState.matches('running') && <span className="text-blue-700">Running...</span>}
+              {actorState.matches('success') && <span className="text-green-700">Completed</span>}
+              {actorState.matches('error') && <span className="text-red-700">Failed: {actorState.context.error}</span>}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Node Editor Panel */}
+      <NodeEditorPanel
+        selectedNode={selectedNode}
         nodes={nodes}
         edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onNodeClick={onNodeClick}
-        onConnect={onConnect}
-        nodeTypes={nodeTypes}
-        fitView
-      >
-        <Controls />
-        <Background gap={12} size={1} />
-      </ReactFlow>
-
-      <div className="absolute top-4 left-4 bg-white/95 backdrop-blur p-4 rounded-xl shadow-xl border border-gray-200 z-10">
-        <h2 className="text-xl font-semibold mb-2 text-gray-900">Ghost Hacker Producer</h2>
-        <p className="text-base text-gray-800 mb-3">
-          Nodes: {nodes.length} | Edges: {edges.length}
-        </p>
-        <button
-          onClick={onRunPipeline}
-          type="button"
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          disabled={actorState.matches('running') || actorState.matches('loading')}
-        >
-          {actorState.matches('running') ? 'Running...' : 'Run Pipeline'}
-        </button>
-        {!actorState.matches('idle') && !actorState.matches('loading') && (
-          <div className="mt-3 text-sm">
-            {actorState.matches('running') && <span className="text-blue-700">Running...</span>}
-            {actorState.matches('success') && <span className="text-green-700">Completed</span>}
-            {actorState.matches('error') && <span className="text-red-700">Failed: {actorState.context.error}</span>}
-          </div>
-        )}
-      </div>
+        onNodeUpdate={handleNodeUpdate}
+        onSave={handleSave}
+      />
     </div>
   );
 }

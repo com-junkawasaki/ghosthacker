@@ -421,6 +421,75 @@
         { "@id": "output:pipeline-topology" }
       ],
       "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:generate-character-dialogue",
+      "@type": "Activity",
+      "name": "Generate Character Dialogue Activity",
+      "description": "登場人物の context をベースに GPT で会話を生成する",
+      "activityType": "Mutation",
+      "operation": "generate",
+      "realizesCapability": { "@id": "capability:episode-generation" },
+      "usesResource": [
+        { "@id": "resource:jsonld-storage" },
+        { "@id": "resource:gpt-api" }
+      ],
+      "performedBy": { "@id": "service:graphql-episode-service" },
+      "hasInput": [
+        { "@id": "input:character-id" },
+        { "@id": "input:character-context" },
+        { "@id": "input:scene-setting" }
+      ],
+      "hasOutput": [
+        { "@id": "output:dialogue" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:compose-episode-from-dialogue",
+      "@type": "Activity",
+      "name": "Compose Episode from Dialogue Activity",
+      "description": "会話と context をベースに episode をまとめる",
+      "activityType": "Mutation",
+      "operation": "compose",
+      "realizesCapability": { "@id": "capability:episode-generation" },
+      "usesResource": [
+        { "@id": "resource:jsonld-storage" },
+        { "@id": "resource:gpt-api" }
+      ],
+      "performedBy": { "@id": "service:graphql-episode-service" },
+      "hasInput": [
+        { "@id": "input:dialogue" },
+        { "@id": "input:character-context" },
+        { "@id": "input:episode-structure" }
+      ],
+      "hasOutput": [
+        { "@id": "output:episode" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:translate-episode-sentence",
+      "@type": "Activity",
+      "name": "Translate Episode Sentence Activity",
+      "description": "Episode を文章ごとに翻訳支援する",
+      "activityType": "Mutation",
+      "operation": "translate",
+      "realizesCapability": { "@id": "capability:episode-generation" },
+      "usesResource": [
+        { "@id": "resource:jsonld-storage" },
+        { "@id": "resource:gpt-api" }
+      ],
+      "performedBy": { "@id": "service:graphql-episode-service" },
+      "hasInput": [
+        { "@id": "input:episode-id" },
+        { "@id": "input:sentence-id" },
+        { "@id": "input:target-language" }
+      ],
+      "hasOutput": [
+        { "@id": "output:translation" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
     }
   ]
 }
