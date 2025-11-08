@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import type { Node as RFNode } from '@reactflow/core';
 import type { NodeData } from '@/pipeline/node-types';
-import { saveCanvasToJsonLd, loadCanvasFromJsonLd } from '@/lib/canvas-jsonld';
+import { saveCanvasToJsonLd, loadCanvasFromJsonLd, canvasToJsonLd } from '@/lib/canvas-jsonld';
 import { validateCanvasJsonLd, formatValidationErrors } from '@/lib/shacl-validator';
 import type { Edge as RFEdge } from '@reactflow/core';
 
@@ -49,7 +49,6 @@ export default function NodeEditorPanel({
     setIsSaving(true);
     try {
       // バリデーション
-      const { canvasToJsonLd } = await import('@/lib/canvas-jsonld');
       const jsonLd = canvasToJsonLd(nodes, edges);
       const validation = validateCanvasJsonLd(jsonLd);
       

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { graphqlClient, episodeMutations } from '@/lib/graphql-client';
-import { readJsonLd, listJsonLdFiles } from '@/lib/jsonld-storage';
 
 interface Episode {
   id: string;
@@ -25,46 +24,24 @@ export default function TranslatePage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Load episodes from JSON-LD files
+  // Load episodes from localStorage or API
   useEffect(() => {
     const loadEpisodes = async () => {
       try {
-        const episodeFiles = listJsonLdFiles('episodes');
-        const loadedEpisodes: Episode[] = [];
-
-        for (const file of episodeFiles) {
-          const data = readJsonLd<{
-            '@graph'?: Array<{
-              '@id'?: string;
-              'schema:title'?: string;
-              'gh:content'?: string;
-            }>;
-          }>('episodes', `${file}.jsonld`);
-
-          if (data && data['@graph']) {
-            const ep = data['@graph'][0];
-            if (ep) {
-              const content = ep['gh:content'] || '';
-              // Split content into sentences (simple split by period/newline)
-              const sentences: Sentence[] = content
-                .split(/[.\n]/)
-                .filter((s) => s.trim().length > 0)
-                .map((text, idx) => ({
-                  id: `sentence-${idx}`,
-                  text: text.trim(),
-                }));
-
-              loadedEpisodes.push({
-                id: ep['@id'] || file,
-                title: ep['schema:title'] || file,
-                content,
-                sentences,
-              });
+        // Try to load from localStorage
+        if (typeof window !== 'undefined') {
+          const stored = localStorage.getItem('episodes');
+          if (stored) {
+            const parsed = JSON.parse(stored) as Episode[];
+            if (parsed.length > 0) {
+              setEpisodes(parsed);
+              return;
             }
           }
         }
 
-        setEpisodes(loadedEpisodes);
+        // Placeholder: empty episodes list
+        setEpisodes([]);
       } catch (err) {
         setError(`Failed to load episodes: ${err instanceof Error ? err.message : 'Unknown error'}`);
       }

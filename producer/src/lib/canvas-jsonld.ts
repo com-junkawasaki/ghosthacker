@@ -7,7 +7,16 @@
  */
 import type { Node as RFNode, Edge as RFEdge } from '@reactflow/core';
 import type { NodeData } from '@/pipeline/node-types';
-import { readJsonLd, writeJsonLd, type JsonLdDocument } from './jsonld-storage';
+
+// Note: jsonld-storage uses node:fs, so we use localStorage for client-side
+// For server-side, use API routes or server actions
+export interface JsonLdDocument {
+  '@context'?: Record<string, unknown>;
+  '@graph'?: unknown[];
+  '@id'?: string;
+  '@type'?: string | string[];
+  [key: string]: unknown;
+}
 
 export interface CanvasJsonLd extends JsonLdDocument {
   '@id': string;
@@ -170,28 +179,51 @@ export function jsonLdToCanvas(
 }
 
 /**
- * Canvas を JSON-LD ファイルに保存
+ * Canvas を JSON-LD ファイルに保存（クライアント側: localStorage使用）
  */
 export function saveCanvasToJsonLd(
   nodes: RFNode<NodeData>[],
   edges: RFEdge[],
   filename: string = 'canvas.jsonld'
 ): void {
-  const jsonLd = canvasToJsonLd(nodes, edges);
-  writeJsonLd('canvas', filename.replace('.jsonld', ''), jsonLd);
+  if (typeof window === 'undefined') {
+    // Server-side: no-op
+    return;
+  }
+
+  try {
+    const jsonLd = canvasToJsonLd(nodes, edges);
+    const storageKey = `canvas:${filename}`;
+    localStorage.setItem(storageKey, JSON.stringify(jsonLd));
+  } catch (error) {
+    console.error('Failed to save canvas to localStorage:', error);
+  }
 }
 
 /**
- * JSON-LD ファイルから Canvas を読み込み
+ * JSON-LD ファイルから Canvas を読み込み（クライアント側: localStorage使用）
  */
 export function loadCanvasFromJsonLd(
   filename: string = 'canvas.jsonld'
 ): { nodes: RFNode<NodeData>[]; edges: RFEdge[] } | null {
-  const jsonLd = readJsonLd<CanvasJsonLd>('canvas', filename.replace('.jsonld', ''));
-  if (!jsonLd) {
+  if (typeof window === 'undefined') {
+    // Server-side: return null
     return null;
   }
-  return jsonLdToCanvas(jsonLd);
+
+  try {
+    const storageKey = `canvas:${filename}`;
+    const stored = localStorage.getItem(storageKey);
+    if (!stored) {
+      return null;
+    }
+
+    const jsonLd = JSON.parse(stored) as CanvasJsonLd;
+    return jsonLdToCanvas(jsonLd);
+  } catch (error) {
+    console.error('Failed to load canvas from localStorage:', error);
+    return null;
+  }
 }
 
 /**

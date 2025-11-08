@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { graphqlClient, episodeMutations } from '@/lib/graphql-client';
-import { readJsonLd } from '@/lib/jsonld-storage';
 
 interface Character {
   id: string;
@@ -20,24 +19,24 @@ export default function EpisodeGenerationPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Load characters from JSON-LD files
+  // Load characters from localStorage or API
   const loadCharacters = async () => {
     try {
-      const characterFiles = ['character1', 'character2']; // TODO: List actual character files
-      const loadedCharacters: Character[] = [];
+      // TODO: Load from API or localStorage
+      // For now, use placeholder data
+      const loadedCharacters: Character[] = [
+        { id: 'character1', name: 'Character 1' },
+        { id: 'character2', name: 'Character 2' },
+      ];
 
-      for (const file of characterFiles) {
-        const data = readJsonLd<{ '@graph'?: Array<{ '@id'?: string; 'schema:name'?: string }> }>(
-          'characters',
-          `${file}.jsonld`
-        );
-        if (data && data['@graph']) {
-          const char = data['@graph'][0];
-          if (char) {
-            loadedCharacters.push({
-              id: char['@id'] || file,
-              name: char['schema:name'] || file,
-            });
+      // Try to load from localStorage
+      if (typeof window !== 'undefined') {
+        const stored = localStorage.getItem('characters');
+        if (stored) {
+          const parsed = JSON.parse(stored) as Character[];
+          if (parsed.length > 0) {
+            setCharacters(parsed);
+            return;
           }
         }
       }
