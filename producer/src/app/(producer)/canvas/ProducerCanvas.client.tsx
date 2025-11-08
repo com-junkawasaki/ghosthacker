@@ -275,11 +275,11 @@ function ProducerCanvasComponent() {
     console.log('Node clicked:', node);
   }, []);
 
-  if (actorState.matches('loading') || storyGraphQuery.isLoading) {
+  if (actorState.matches('loading') || storyGraphLoading) {
     return <div>Loading story...</div>;
   }
 
-  if (actorState.matches('error') && !storyGraphQuery.data) {
+  if (actorState.matches('error') && !storyGraphData) {
     return <div>Error loading story: {actorState.context.error}</div>
   }
 

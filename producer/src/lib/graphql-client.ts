@@ -2,8 +2,8 @@ import { GraphQLClient } from 'graphql-request';
 
 const GRAPHQL_ENDPOINT = 
   typeof window !== 'undefined' 
-    ? (process.env.NEXT_PUBLIC_GRAPHQL_API_URL || 'http://localhost:8080/graphql')
-    : (process.env.GRAPHQL_API_URL || 'http://localhost:8080/graphql');
+    ? (process.env.NEXT_PUBLIC_GRAPHQL_API_URL || 'http://localhost:8081/graphql')
+    : (process.env.GRAPHQL_API_URL || 'http://localhost:8081/graphql');
 
 export const graphqlClient = new GraphQLClient(GRAPHQL_ENDPOINT, {
   headers: {
