@@ -279,7 +279,7 @@ function ProducerCanvasComponent() {
     return <div>Loading story...</div>;
   }
 
-  if (actorState.matches('error') && !storyGraphData) {
+  if (actorState.matches('error') && storyGraphError) {
     return <div>Error loading story: {actorState.context.error}</div>
   }
 

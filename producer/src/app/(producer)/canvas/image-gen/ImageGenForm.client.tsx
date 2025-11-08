@@ -4,10 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { valibotResolver } from '@hookform/resolvers/valibot';
 import { createActor, createMachine } from 'xstate';
-import { httpBatchLink, createTRPCReact } from '@trpc/react-query';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import superjson from 'superjson';
-import type { AppRouter } from '@/server/routers';
 import { nodeSchemas } from '@/schemas/nodes';
 import { saveNodeConfig } from '@/app/(producer)/canvas/actions';
 
@@ -86,20 +83,7 @@ const imageGenMachine = createMachine({
   },
 });
 
-const api = createTRPCReact<AppRouter>();
-
 function ImageGenFormComponent() {
-  const [queryClient] = useState(() => new QueryClient());
-  const [trpcClient] = useState(() =>
-    api.createClient({
-      links: [
-        httpBatchLink({
-          url: '/api/trpc',
-          transformer: superjson,
-        }),
-      ],
-    })
-  );
 
   // XState actor for form state management
   const [actor] = useState(() => createActor(imageGenMachine).start());
@@ -250,22 +234,10 @@ function ImageGenFormComponent() {
 
 export default function ImageGenForm() {
   const [queryClient] = useState(() => new QueryClient());
-  const [trpcClient] = useState(() =>
-    api.createClient({
-      links: [
-        httpBatchLink({
-          url: '/api/trpc',
-          transformer: superjson,
-        }),
-      ],
-    })
-  );
 
   return (
-    <api.Provider client={trpcClient} queryClient={queryClient}>
-      <QueryClientProvider client={queryClient}>
-        <ImageGenFormComponent />
-      </QueryClientProvider>
-    </api.Provider>
+    <QueryClientProvider client={queryClient}>
+      <ImageGenFormComponent />
+    </QueryClientProvider>
   );
 }
