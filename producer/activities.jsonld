@@ -1,0 +1,427 @@
+{
+  "@context": {
+    "@base": "https://ghosthacker.gftd.co.jp/",
+    "@vocab": "https://ghosthacker.gftd.co.jp/ontology#",
+    "gh": "https://ghosthacker.gftd.co.jp/ontology#",
+    "schema": "http://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "dodaf": "http://www.dod.mil/dodaf/dm2#",
+    
+    "name": "schema:name",
+    "description": "schema:description",
+    "createdAt": { "@id": "prov:generatedAtTime", "@type": "xsd:dateTime" },
+    "updatedAt": { "@id": "prov:wasModifiedAt", "@type": "xsd:dateTime" },
+    
+    "Activity": "dodaf:Activity",
+    "realizesCapability": { "@id": "dodaf:realizesCapability", "@type": "@id" },
+    "usesResource": { "@id": "dodaf:usesResource", "@type": "@id" },
+    "performedBy": { "@id": "dodaf:performedBy", "@type": "@id" },
+    "hasInput": { "@id": "dodaf:hasInput", "@type": "@id" },
+    "hasOutput": { "@id": "dodaf:hasOutput", "@type": "@id" },
+    "activityType": { "@id": "dodaf:activityType", "@type": "xsd:string" },
+    "operation": { "@id": "dodaf:operation", "@type": "xsd:string" }
+  },
+  "@graph": [
+    {
+      "@id": "activity:create-project",
+      "@type": "Activity",
+      "name": "Create Project Activity",
+      "description": "新しいプロジェクトを作成する",
+      "activityType": "Mutation",
+      "operation": "create",
+      "realizesCapability": { "@id": "capability:story-management" },
+      "usesResource": { "@id": "resource:supabase-database" },
+      "performedBy": { "@id": "service:graphql-story-service" },
+      "hasInput": [
+        { "@id": "input:project-input" }
+      ],
+      "hasOutput": [
+        { "@id": "output:project" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:update-project",
+      "@type": "Activity",
+      "name": "Update Project Activity",
+      "description": "既存のプロジェクトを更新する",
+      "activityType": "Mutation",
+      "operation": "update",
+      "realizesCapability": { "@id": "capability:story-management" },
+      "usesResource": { "@id": "resource:supabase-database" },
+      "performedBy": { "@id": "service:graphql-story-service" },
+      "hasInput": [
+        { "@id": "input:project-id" },
+        { "@id": "input:project-input" }
+      ],
+      "hasOutput": [
+        { "@id": "output:project" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:get-project",
+      "@type": "Activity",
+      "name": "Get Project Activity",
+      "description": "プロジェクトを取得する",
+      "activityType": "Query",
+      "operation": "read",
+      "realizesCapability": { "@id": "capability:story-management" },
+      "usesResource": { "@id": "resource:supabase-database" },
+      "performedBy": { "@id": "service:graphql-story-service" },
+      "hasInput": [
+        { "@id": "input:project-id" }
+      ],
+      "hasOutput": [
+        { "@id": "output:project" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:save-narrative",
+      "@type": "Activity",
+      "name": "Save Narrative Activity",
+      "description": "ナラティブ構造を保存する",
+      "activityType": "Mutation",
+      "operation": "createOrUpdate",
+      "realizesCapability": { "@id": "capability:story-management" },
+      "usesResource": { "@id": "resource:supabase-database" },
+      "performedBy": { "@id": "service:graphql-story-service" },
+      "hasInput": [
+        { "@id": "input:project-id" },
+        { "@id": "input:narrative-input" }
+      ],
+      "hasOutput": [
+        { "@id": "output:narrative" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:get-narrative",
+      "@type": "Activity",
+      "name": "Get Narrative Activity",
+      "description": "ナラティブ構造を取得する",
+      "activityType": "Query",
+      "operation": "read",
+      "realizesCapability": { "@id": "capability:story-management" },
+      "usesResource": { "@id": "resource:supabase-database" },
+      "performedBy": { "@id": "service:graphql-story-service" },
+      "hasInput": [
+        { "@id": "input:project-id" }
+      ],
+      "hasOutput": [
+        { "@id": "output:narrative" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:save-characters",
+      "@type": "Activity",
+      "name": "Save Characters Activity",
+      "description": "キャラクター情報を保存する",
+      "activityType": "Mutation",
+      "operation": "createOrUpdate",
+      "realizesCapability": { "@id": "capability:story-management" },
+      "usesResource": { "@id": "resource:supabase-database" },
+      "performedBy": { "@id": "service:graphql-story-service" },
+      "hasInput": [
+        { "@id": "input:project-id" },
+        { "@id": "input:characters-input" }
+      ],
+      "hasOutput": [
+        { "@id": "output:characters" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:get-characters",
+      "@type": "Activity",
+      "name": "Get Characters Activity",
+      "description": "キャラクター情報を取得する",
+      "activityType": "Query",
+      "operation": "read",
+      "realizesCapability": { "@id": "capability:story-management" },
+      "usesResource": { "@id": "resource:supabase-database" },
+      "performedBy": { "@id": "service:graphql-story-service" },
+      "hasInput": [
+        { "@id": "input:project-id" }
+      ],
+      "hasOutput": [
+        { "@id": "output:characters" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:save-backstories",
+      "@type": "Activity",
+      "name": "Save Backstories Activity",
+      "description": "バックストーリー情報を保存する",
+      "activityType": "Mutation",
+      "operation": "createOrUpdate",
+      "realizesCapability": { "@id": "capability:story-management" },
+      "usesResource": { "@id": "resource:supabase-database" },
+      "performedBy": { "@id": "service:graphql-story-service" },
+      "hasInput": [
+        { "@id": "input:project-id" },
+        { "@id": "input:backstories-input" }
+      ],
+      "hasOutput": [
+        { "@id": "output:backstories" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:get-backstories",
+      "@type": "Activity",
+      "name": "Get Backstories Activity",
+      "description": "バックストーリー情報を取得する",
+      "activityType": "Query",
+      "operation": "read",
+      "realizesCapability": { "@id": "capability:story-management" },
+      "usesResource": { "@id": "resource:supabase-database" },
+      "performedBy": { "@id": "service:graphql-story-service" },
+      "hasInput": [
+        { "@id": "input:project-id" }
+      ],
+      "hasOutput": [
+        { "@id": "output:backstories" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:save-episodes",
+      "@type": "Activity",
+      "name": "Save Episodes Activity",
+      "description": "エピソード情報を保存する",
+      "activityType": "Mutation",
+      "operation": "createOrUpdate",
+      "realizesCapability": { "@id": "capability:story-management" },
+      "usesResource": { "@id": "resource:supabase-database" },
+      "performedBy": { "@id": "service:graphql-story-service" },
+      "hasInput": [
+        { "@id": "input:project-id" },
+        { "@id": "input:episodes-input" }
+      ],
+      "hasOutput": [
+        { "@id": "output:episodes" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:get-episodes",
+      "@type": "Activity",
+      "name": "Get Episodes Activity",
+      "description": "エピソード情報を取得する",
+      "activityType": "Query",
+      "operation": "read",
+      "realizesCapability": { "@id": "capability:story-management" },
+      "usesResource": { "@id": "resource:supabase-database" },
+      "performedBy": { "@id": "service:graphql-story-service" },
+      "hasInput": [
+        { "@id": "input:project-id" }
+      ],
+      "hasOutput": [
+        { "@id": "output:episodes" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:save-styles",
+      "@type": "Activity",
+      "name": "Save Styles Activity",
+      "description": "スタイル情報（視覚・音声）を保存する",
+      "activityType": "Mutation",
+      "operation": "createOrUpdate",
+      "realizesCapability": { "@id": "capability:story-management" },
+      "usesResource": { "@id": "resource:supabase-database" },
+      "performedBy": { "@id": "service:graphql-story-service" },
+      "hasInput": [
+        { "@id": "input:project-id" },
+        { "@id": "input:styles-input" }
+      ],
+      "hasOutput": [
+        { "@id": "output:styles" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:get-styles",
+      "@type": "Activity",
+      "name": "Get Styles Activity",
+      "description": "スタイル情報を取得する",
+      "activityType": "Query",
+      "operation": "read",
+      "realizesCapability": { "@id": "capability:story-management" },
+      "usesResource": { "@id": "resource:supabase-database" },
+      "performedBy": { "@id": "service:graphql-story-service" },
+      "hasInput": [
+        { "@id": "input:project-id" }
+      ],
+      "hasOutput": [
+        { "@id": "output:styles" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:save-platforms",
+      "@type": "Activity",
+      "name": "Save Platforms Activity",
+      "description": "プラットフォーム設定（Wattpad、Webtoon、YouTube）を保存する",
+      "activityType": "Mutation",
+      "operation": "createOrUpdate",
+      "realizesCapability": { "@id": "capability:story-management" },
+      "usesResource": { "@id": "resource:supabase-database" },
+      "performedBy": { "@id": "service:graphql-story-service" },
+      "hasInput": [
+        { "@id": "input:project-id" },
+        { "@id": "input:platforms-input" }
+      ],
+      "hasOutput": [
+        { "@id": "output:platforms" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:get-platforms",
+      "@type": "Activity",
+      "name": "Get Platforms Activity",
+      "description": "プラットフォーム設定を取得する",
+      "activityType": "Query",
+      "operation": "read",
+      "realizesCapability": { "@id": "capability:story-management" },
+      "usesResource": { "@id": "resource:supabase-database" },
+      "performedBy": { "@id": "service:graphql-story-service" },
+      "hasInput": [
+        { "@id": "input:project-id" }
+      ],
+      "hasOutput": [
+        { "@id": "output:platforms" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:get-canvas",
+      "@type": "Activity",
+      "name": "Get Canvas Activity",
+      "description": "キャンバス設定を取得する（保存されていない場合は既存エンティティから導出）",
+      "activityType": "Query",
+      "operation": "read",
+      "realizesCapability": { "@id": "capability:canvas-management" },
+      "usesResource": [
+        { "@id": "resource:supabase-database" }
+      ],
+      "performedBy": { "@id": "service:graphql-canvas-service" },
+      "hasInput": [
+        { "@id": "input:project-id" }
+      ],
+      "hasOutput": [
+        { "@id": "output:canvas" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:save-canvas",
+      "@type": "Activity",
+      "name": "Save Canvas Activity",
+      "description": "キャンバス設定を保存する",
+      "activityType": "Mutation",
+      "operation": "createOrUpdate",
+      "realizesCapability": { "@id": "capability:canvas-management" },
+      "usesResource": [
+        { "@id": "resource:supabase-database" }
+      ],
+      "performedBy": { "@id": "service:graphql-canvas-service" },
+      "hasInput": [
+        { "@id": "input:project-id" },
+        { "@id": "input:canvas-input" }
+      ],
+      "hasOutput": [
+        { "@id": "output:canvas" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:get-story-graph",
+      "@type": "Activity",
+      "name": "Get Story Graph Activity",
+      "description": "ストーリーグラフを取得する（Neo4jから）",
+      "activityType": "Query",
+      "operation": "read",
+      "realizesCapability": { "@id": "capability:canvas-management" },
+      "usesResource": [
+        { "@id": "resource:neo4j-graph" }
+      ],
+      "performedBy": { "@id": "service:graphql-canvas-service" },
+      "hasInput": [
+        { "@id": "input:project-id" }
+      ],
+      "hasOutput": [
+        { "@id": "output:story-graph" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:seed-canvas",
+      "@type": "Activity",
+      "name": "Seed Canvas Activity",
+      "description": "既存エンティティからキャンバス設定を生成して保存する",
+      "activityType": "Mutation",
+      "operation": "createOrUpdate",
+      "realizesCapability": { "@id": "capability:canvas-management" },
+      "usesResource": [
+        { "@id": "resource:supabase-database" }
+      ],
+      "performedBy": { "@id": "service:graphql-canvas-service" },
+      "hasInput": [
+        { "@id": "input:project-id" }
+      ],
+      "hasOutput": [
+        { "@id": "output:canvas" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:run-pipeline",
+      "@type": "Activity",
+      "name": "Run Pipeline Activity",
+      "description": "パイプラインを実行する（トポロジーを読み込んで実行）",
+      "activityType": "Mutation",
+      "operation": "execute",
+      "realizesCapability": { "@id": "capability:pipeline-execution" },
+      "usesResource": [
+        { "@id": "resource:supabase-database" },
+        { "@id": "resource:pipeline-storage" }
+      ],
+      "performedBy": { "@id": "service:graphql-pipeline-service" },
+      "hasInput": [
+        { "@id": "input:pipeline-input" }
+      ],
+      "hasOutput": [
+        { "@id": "output:pipeline-execution" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:get-pipeline-topology",
+      "@type": "Activity",
+      "name": "Get Pipeline Topology Activity",
+      "description": "パイプライントポロジーを取得する",
+      "activityType": "Query",
+      "operation": "read",
+      "realizesCapability": { "@id": "capability:pipeline-execution" },
+      "usesResource": [
+        { "@id": "resource:pipeline-storage" }
+      ],
+      "performedBy": { "@id": "service:graphql-pipeline-service" },
+      "hasInput": [],
+      "hasOutput": [
+        { "@id": "output:pipeline-topology" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    }
+  ]
+}
+
