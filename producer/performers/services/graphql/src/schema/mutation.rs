@@ -1,7 +1,7 @@
 use async_graphql::*;
 use crate::infra::database::DbPool;
 use crate::schema::types::*;
-use crate::activities::{StoryActivities, CanvasActivities, PipelineActivities, episode::EpisodeActivities};
+use crate::activities::{StoryActivities, CanvasActivities, PipelineActivities, episode::EpisodeActivities, epub_export::EpubExportActivities};
 use uuid::Uuid;
 
 #[derive(Default)]
@@ -179,6 +179,55 @@ impl MutationRoot {
         target_language: String,
     ) -> Result<String> {
         EpisodeActivities::translate_episode_sentence(&episode_id, &sentence_id, &target_language)
+            .await
+            .map_err(|e| Error::new(e))
+    }
+
+    /// Export ePub3 document
+    async fn export_epub3(
+        &self,
+        document_id: String,
+        title: String,
+        author: String,
+        language: Option<String>,
+    ) -> Result<String> {
+        let request = crate::activities::epub_export::EpubExportRequest {
+            document_id,
+            settings_id: None,
+            metadata: crate::activities::epub_export::EpubMetadata {
+                title,
+                author,
+                language,
+                publisher: None,
+            },
+        };
+
+        EpubExportActivities::export_epub3(request)
+            .await
+            .map_err(|e| Error::new(e))
+    }
+
+    /// Export Kindle document
+    async fn export_kindle(
+        &self,
+        document_id: String,
+        format: String,
+        title: String,
+        author: String,
+        language: Option<String>,
+    ) -> Result<String> {
+        let request = crate::activities::epub_export::KindleExportRequest {
+            document_id,
+            format,
+            metadata: crate::activities::epub_export::EpubMetadata {
+                title,
+                author,
+                language,
+                publisher: None,
+            },
+        };
+
+        EpubExportActivities::export_kindle(request)
             .await
             .map_err(|e| Error::new(e))
     }

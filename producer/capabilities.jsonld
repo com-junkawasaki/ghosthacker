@@ -124,6 +124,27 @@
       "updatedAt": "2025-01-27T00:00:00Z"
     },
     {
+      "@id": "capability:epub-export",
+      "@type": "Capability",
+      "name": "ePub Export Capability",
+      "description": "ePub3/Kindle形式へのエクスポート機能を提供する",
+      "capabilityType": "Technical",
+      "businessFunction": "Content Export",
+      "resourceObject": "EpubDocument, EpubSettings",
+      "verb": "Export",
+      "hasActivity": [
+        { "@id": "activity:export-epub3" },
+        { "@id": "activity:export-kindle" }
+      ],
+      "requiresResource": [
+        { "@id": "resource:jsonld-storage" },
+        { "@id": "resource:kindlegen" }
+      ],
+      "performedBy": { "@id": "service:graphql-epub-service" },
+      "createdAt": "2025-01-27T00:00:00Z",
+      "updatedAt": "2025-01-27T00:00:00Z"
+    },
+    {
       "@id": "resource:supabase-database",
       "@type": "dodaf:Resource",
       "name": "Supabase PostgreSQL Database",
@@ -159,6 +180,13 @@
       "resourceType": "ExternalAPI"
     },
     {
+      "@id": "resource:kindlegen",
+      "@type": "dodaf:Resource",
+      "name": "KindleGen",
+      "description": "KindleGen/Calibre（Kindle形式変換ツール）",
+      "resourceType": "Tool"
+    },
+    {
       "@id": "service:graphql-story-service",
       "@type": "dodaf:Service",
       "name": "GraphQL Story Management Service",
@@ -189,6 +217,14 @@
       "description": "Episode Generation を提供する GraphQL サービス",
       "serviceType": "GraphQL",
       "endpoint": "https://graphql.episode.gftd.ai/graphql"
+    },
+    {
+      "@id": "service:graphql-epub-service",
+      "@type": "dodaf:Service",
+      "name": "GraphQL ePub Export Service",
+      "description": "ePub Export を提供する GraphQL サービス",
+      "serviceType": "GraphQL",
+      "endpoint": "https://graphql.epub.gftd.ai/graphql"
     }
   ]
 }

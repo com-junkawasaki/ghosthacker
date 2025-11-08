@@ -30,6 +30,20 @@ export const episodeMutations = {
   `,
 };
 
+// ePub Export Mutations
+export const epubMutations = {
+  exportEpub3: `
+    mutation ExportEpub3($documentId: String!, $title: String!, $author: String!, $language: String) {
+      exportEpub3(documentId: $documentId, title: $title, author: $author, language: $language)
+    }
+  `,
+  exportKindle: `
+    mutation ExportKindle($documentId: String!, $format: String!, $title: String!, $author: String!, $language: String) {
+      exportKindle(documentId: $documentId, format: $format, title: $title, author: $author, language: $language)
+    }
+  `,
+};
+
 // GraphQL Queries
 export const queries = {
   project: `

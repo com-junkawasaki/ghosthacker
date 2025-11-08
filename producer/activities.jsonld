@@ -490,6 +490,50 @@
         { "@id": "output:translation" }
       ],
       "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:export-epub3",
+      "@type": "Activity",
+      "name": "Export ePub3 Activity",
+      "description": "ePub3形式にエクスポートする",
+      "activityType": "Mutation",
+      "operation": "export",
+      "realizesCapability": { "@id": "capability:epub-export" },
+      "usesResource": [
+        { "@id": "resource:jsonld-storage" }
+      ],
+      "performedBy": { "@id": "service:graphql-epub-service" },
+      "hasInput": [
+        { "@id": "input:document-id" },
+        { "@id": "input:metadata" }
+      ],
+      "hasOutput": [
+        { "@id": "output:epub-file" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
+    },
+    {
+      "@id": "activity:export-kindle",
+      "@type": "Activity",
+      "name": "Export Kindle Activity",
+      "description": "Kindle形式（MOBI/AZW3）にエクスポートする",
+      "activityType": "Mutation",
+      "operation": "export",
+      "realizesCapability": { "@id": "capability:epub-export" },
+      "usesResource": [
+        { "@id": "resource:jsonld-storage" },
+        { "@id": "resource:kindlegen" }
+      ],
+      "performedBy": { "@id": "service:graphql-epub-service" },
+      "hasInput": [
+        { "@id": "input:document-id" },
+        { "@id": "input:format" },
+        { "@id": "input:metadata" }
+      ],
+      "hasOutput": [
+        { "@id": "output:kindle-file" }
+      ],
+      "createdAt": "2025-01-27T00:00:00Z"
     }
   ]
 }
