@@ -5,10 +5,7 @@ import { ReactFlow, addEdge, useNodesState, useEdgesState } from '@reactflow/cor
 import type { Node as RFNode, Edge as RFEdge, Connection } from '@reactflow/core';
 import { Controls } from '@reactflow/controls';
 import { Background } from '@reactflow/background';
-import { httpBatchLink, createTRPCReact } from '@trpc/react-query';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import superjson from 'superjson';
-import type { AppRouter } from '@/server/routers';
 import { createActor, createMachine } from 'xstate';
 import {
   SourceDocNode,
@@ -147,7 +144,7 @@ const producerCanvasMachine = createMachine({
   },
 });
 
-const api = createTRPCReact<AppRouter>();
+import { graphqlClient, queries } from '@/lib/graphql-client';
 
 const nodeTypes = {
   sourceDoc: SourceDocNode,
@@ -181,13 +178,29 @@ function ProducerCanvasComponent() {
     return () => subscription.unsubscribe();
   }, [producerActor]);
 
-  const storyGraphQuery = api.canvas.getStoryGraph.useQuery(undefined, {
-    refetchOnWindowFocus: false,
-  });
+  const [storyGraphData, setStoryGraphData] = useState<{ nodes: unknown[]; edges: unknown[] } | null>(null);
+  const [storyGraphLoading, setStoryGraphLoading] = useState(true);
+  const [storyGraphError, setStoryGraphError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (storyGraphQuery.data) {
-      const { nodes: graphNodes, edges: graphEdges } = storyGraphQuery.data;
+    const loadStoryGraph = async () => {
+      try {
+        setStoryGraphLoading(true);
+        const PROJECT_ID = 'ghost-hacker-project';
+        const data = await graphqlClient.request(queries.storyGraph, { projectId: PROJECT_ID });
+        setStoryGraphData(data.storyGraph);
+      } catch (error) {
+        setStoryGraphError(error as Error);
+      } finally {
+        setStoryGraphLoading(false);
+      }
+    };
+    loadStoryGraph();
+  }, []);
+
+  useEffect(() => {
+    if (storyGraphData) {
+      const { nodes: graphNodes, edges: graphEdges } = storyGraphData;
 
       const rfNodes: RFNode<NodeData>[] = (graphNodes as unknown as GraphNode[]).map((n, idx) => ({
         id: n.id.toString(),
@@ -219,24 +232,22 @@ function ProducerCanvasComponent() {
         edges: rfEdges,
       });
     }
-  }, [storyGraphQuery.data, setNodes, setEdges, producerActor]);
+  }, [storyGraphData, setNodes, setEdges, producerActor]);
 
   useEffect(() => {
-    if (storyGraphQuery.isError) {
+    if (storyGraphError) {
       producerActor.send({
         type: 'LOAD_ERROR',
-        error: storyGraphQuery.error?.message || 'Failed to load graph',
+        error: storyGraphError.message || 'Failed to load graph',
       });
     }
-  }, [storyGraphQuery.isError, storyGraphQuery.error, producerActor]);
+  }, [storyGraphError, producerActor]);
 
 
   const onConnect = useCallback(
     (params: Connection) => setEdges((eds) => addEdge(params, eds)),
     [setEdges]
   );
-
-  const runPipelineMutation = api.pipeline.run.useMutation();
 
   const onRunPipeline = useCallback(async () => {
     // Prevent pipeline execution from Canvas - use Story Pipeline page instead
@@ -247,8 +258,8 @@ function ProducerCanvasComponent() {
     producerActor.send({ type: 'RUN_PIPELINE' });
 
     try {
-      await runPipelineMutation.mutateAsync();
-      await storyGraphQuery.refetch();
+      // TODO: Implement pipeline execution via GraphQL
+      // await graphqlClient.request(mutations.runPipeline, { input: {} });
       producerActor.send({ type: 'RUN_SUCCESS' });
     } catch (err: any) {
       console.error('pipeline.run error', err);
@@ -257,7 +268,7 @@ function ProducerCanvasComponent() {
         error: err instanceof Error ? err.message : 'Pipeline execution failed',
       });
     }
-  }, [runPipelineMutation, storyGraphQuery, producerActor]);
+  }, [producerActor]);
 
   const onNodeClick = useCallback((_evt: unknown, node: RFNode<NodeData>) => {
     // Navigation logic can be re-implemented if Neided
@@ -315,22 +326,10 @@ function ProducerCanvasComponent() {
 
 export default function ProducerCanvas() {
   const [queryClient] = useState(() => new QueryClient());
-  const [trpcClient] = useState(() =>
-    api.createClient({
-      links: [
-        httpBatchLink({
-          url: '/api/trpc',
-          transformer: superjson,
-        }),
-      ],
-    })
-  );
 
   return (
-    <api.Provider client={trpcClient} queryClient={queryClient}>
-      <QueryClientProvider client={queryClient}>
-        <ProducerCanvasComponent />
-      </QueryClientProvider>
-    </api.Provider>
+    <QueryClientProvider client={queryClient}>
+      <ProducerCanvasComponent />
+    </QueryClientProvider>
   );
 }
