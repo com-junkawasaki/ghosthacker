@@ -1,0 +1,25 @@
+{
+  "@context": {
+    "@base": "https://ghosthacker.gftd.co.jp/",
+    "@vocab": "https://ghosthacker.gftd.co.jp/ontology#",
+    "gh": "https://ghosthacker.gftd.co.jp/ontology#",
+    "schema": "http://schema.org/"
+  },
+  "@graph": [
+    {
+      "@id": "epub:paragraph-0",
+      "@type": "gh:EpubParagraph",
+      "gh:content": "Start writing..."
+    },
+    {
+      "@id": "epub:paragraph-3",
+      "@type": "gh:EpubParagraph",
+      "gh:content": "sss"
+    },
+    {
+      "@id": "epub:heading-0",
+      "@type": "gh:EpubChapter",
+      "schema:title": "Chapter Title"
+    }
+  ]
+}
