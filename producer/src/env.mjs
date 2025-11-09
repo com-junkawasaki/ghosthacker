@@ -3,9 +3,9 @@ import { z } from "zod";
 
 export const env = createEnv({
   server: {
-    NEO4J_URI: z.string().url(),
-    NEO4J_USER: z.string().min(1),
-    NEO4J_PASSWORD: z.string().min(1),
+    SUPABASE_URL: z.string().url(),
+    SUPABASE_SERVICE_ROLE_KEY: z.string().min(1),
+    DATABASE_URL: z.string().url(),
     OPENROUTER_API_KEY: z.string().optional(),
     OPENAI_API_KEY: z.string().optional(),
     YOUTUBE_CLIENT_ID: z.string().optional(),
@@ -16,9 +16,9 @@ export const env = createEnv({
     NEXT_PUBLIC_APP_URL: z.string().url(),
   },
   runtimeEnv: {
-    NEO4J_URI: process.env.NEO4J_URI,
-    NEO4J_USER: process.env.NEO4J_USER,
-    NEO4J_PASSWORD: process.env.NEO4J_PASSWORD,
+    SUPABASE_URL: process.env.SUPABASE_URL,
+    SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
+    DATABASE_URL: process.env.DATABASE_URL,
     OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
     YOUTUBE_CLIENT_ID: process.env.YOUTUBE_CLIENT_ID,

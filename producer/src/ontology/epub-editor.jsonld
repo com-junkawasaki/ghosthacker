@@ -1,0 +1,86 @@
+{
+  "@context": {
+    "@base": "https://ghosthacker.gftd.co.jp/",
+    "@vocab": "https://ghosthacker.gftd.co.jp/ontology#",
+    "gh": "https://ghosthacker.gftd.co.jp/ontology#",
+    "schema": "http://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "prov": "http://www.w3.org/ns/prov#",
+
+    "name": "schema:name",
+    "title": "schema:title",
+    "description": "schema:description",
+
+    "EpubEditorSettings": "gh:EpubEditorSettings",
+    "EpubDocument": "gh:EpubDocument",
+    "EpubChapter": "gh:EpubChapter",
+    "EpubParagraph": "gh:EpubParagraph",
+    "EpubImage": "gh:EpubImage",
+    "EpubDialogue": "gh:EpubDialogue",
+
+    "fontFamily": { "@id": "gh:fontFamily", "@type": "xsd:string" },
+    "fontSize": { "@id": "gh:fontSize", "@type": "xsd:string" },
+    "lineHeight": { "@id": "gh:lineHeight", "@type": "xsd:decimal" },
+    "letterSpacing": { "@id": "gh:letterSpacing", "@type": "xsd:string" },
+    "pageWidth": { "@id": "gh:pageWidth", "@type": "xsd:string" },
+    "pageHeight": { "@id": "gh:pageHeight", "@type": "xsd:string" },
+    "margin": { "@id": "gh:margin", "@type": "@json" },
+    "textColor": { "@id": "gh:textColor", "@type": "xsd:string" },
+    "backgroundColor": { "@id": "gh:backgroundColor", "@type": "xsd:string" },
+    "linkColor": { "@id": "gh:linkColor", "@type": "xsd:string" },
+
+    "hasChapter": { "@id": "gh:hasChapter", "@type": "@id", "@container": "@set" },
+    "hasParagraph": { "@id": "gh:hasParagraph", "@type": "@id", "@container": "@set" },
+    "hasImage": { "@id": "gh:hasImage", "@type": "@id", "@container": "@set" },
+    "hasDialogue": { "@id": "gh:hasDialogue", "@type": "@id", "@container": "@set" },
+    "content": { "@id": "gh:content", "@type": "xsd:string" },
+    "imageUrl": { "@id": "gh:imageUrl", "@type": "xsd:anyURI" },
+    "speaker": { "@id": "gh:speaker", "@type": "@id" },
+    "dialogueText": { "@id": "gh:dialogueText", "@type": "xsd:string" },
+
+    "prov:generatedAtTime": { "@type": "xsd:dateTime" },
+    "prov:wasAssociatedWith": { "@type": "@id" }
+  },
+  "@graph": [
+    {
+      "@id": "gh:EpubEditorSettings",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Epub Editor Settings",
+      "rdfs:comment": "ePubエディタの設定（フォント、レイアウト、カラーなど）"
+    },
+    {
+      "@id": "gh:EpubDocument",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Epub Document",
+      "rdfs:comment": "ePubドキュメント全体"
+    },
+    {
+      "@id": "gh:EpubChapter",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Epub Chapter",
+      "rdfs:comment": "ePubの章"
+    },
+    {
+      "@id": "gh:EpubParagraph",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Epub Paragraph",
+      "rdfs:comment": "ePubの段落"
+    },
+    {
+      "@id": "gh:EpubImage",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Epub Image",
+      "rdfs:comment": "ePubの画像"
+    },
+    {
+      "@id": "gh:EpubDialogue",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Epub Dialogue",
+      "rdfs:comment": "ePubの会話"
+    }
+  ]
+}
+

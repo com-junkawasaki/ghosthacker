@@ -1,6 +1,6 @@
 import Link from "next/link";
 import NodePanel from "@/components/NodePanel";
-import NodeConfigForm from "@/components/NodeConfigForm.client";
+import WriterForm from "./WriterForm.client";
 
 // Merkle DAG Node: writer-content (type: Writer)
 export default function WriterContentPage() {
@@ -21,11 +21,7 @@ export default function WriterContentPage() {
         config={{ model: "gpt-4o-mini", maxTokens: 2000, temperature: 0.7 }}
       />
 
-      <NodeConfigForm
-        nodeId="writer-content"
-        nodeType="Writer"
-        defaultValues={{ model: "gpt-4o-mini", maxTokens: 2000, temperature: 0.7 }}
-      />
+      <WriterForm />
     </div>
   );
 }

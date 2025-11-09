@@ -1,6 +1,8 @@
 {
   // Ghost Hacker Producer Pipeline Topology
   // Merkle DAG: pipeline nodes -> dependencies -> execution order
+  // XState Actor Model: Canvas state management with finite state machine
+  // tRPC Integration: Type-safe API communication for pipeline operations
 
   pipeline: [
     // Lore: Protagonist Node
@@ -16,6 +18,26 @@
         traits: 'Stoic, Empathic',
       },
       outputs: ['name', 'role', 'traits'],
+    },
+
+    // Emotion Analysis Node (Hume-based)
+    {
+      id: 'emotion-analysis',
+      type: 'EmotionAnalysis',
+      label: 'Emotion Profiles',
+      dependsOn: ['writer-content'],
+      ui: { route: '/canvas/emotion-analysis' },
+      config: {
+        engine: 'hume-language',
+        input: 'episodes-md',
+        maxChunks: 8,
+        targetTrajectory: 'hopeful-catharsis',
+        outputPath: '../250806/episodes/emotions.jsonld',
+        contextPath: '../250806/emotion.context.jsonld',
+        planPath: '../250806/episodes/emotional-outline.jsonld',
+        benchmarkPath: '../250806/emotion-benchmark.jsonld',
+      },
+      outputs: ['emotionProfile', 'trajectory']
     },
 
     // Lore: Backstory Node
@@ -64,6 +86,16 @@
           { id: 'beat-02', label: 'Ghost Encounter', purpose: 'conflict', targetLength: 800 },
           { id: 'beat-03', label: 'Integration & Catharsis', purpose: 'climax', targetLength: 400 },
         ],
+        motifs: [
+          'gh:Motif/TreeOfLife',
+          'gh:Motif/GoodFeeling',
+          'gh:Motif/NegativeEnergyTransmutation',
+          'gh:Motif/NonAttachmentToMalice',
+        ],
+        arcs: [
+          'gh:Arc/Tamaki-TreeOfLife-Transmutation',
+        ],
+        emotionalPlanPath: '../250806/episodes/emotional-outline.jsonld',
       },
       outputs: ['synopsis', 'structure', 'beats'],
     },
@@ -241,6 +273,35 @@
       outputs: ['wattpad_package', 'download_url'],
     },
 
+    // Wattpad Publish Node (Automated Publishing)
+    {
+      id: 'publish-wattpad',
+      type: 'PublishWattpad',
+      label: 'Wattpad Auto Publish',
+      dependsOn: ['export-wattpad'],
+      // UI integration
+      ui: { route: '/canvas/publish-wattpad' },
+      config: {
+        scriptPath: '../../scripts/wattpad/publish.ts',
+        workId: '402848261',
+        emailEnv: 'WATTPAD_EMAIL',
+        passwordEnv: 'WATTPAD_PASSWORD',
+        headless: false,
+        features: [
+          'auto-login',
+          'jsonld-stripping',
+          'episode-title-injection',
+          'part-id-mapping',
+          'content-verification',
+        ],
+        outputs: {
+          partIds: '../251022/wattpad/part-ids.jsonld',
+          logs: '../debug/wattpad-publish.log',
+        },
+      },
+      outputs: ['published_parts', 'part_ids', 'publish_status'],
+    },
+
     // YouTube Upload Node (optional)
     {
       id: 'publish-youtube',
@@ -265,13 +326,16 @@
     ['lore-protagonist', 'lore-backstory', 'lore-world', 'narrative-structure'],
     'prompt-story',
     'writer-content',
+    'emotion-analysis',
     ['image-gen', 'tts-narration'], // Parallel execution
     'webtoon-panel-gen',
     'webtoon-layout',
     'webtoon-export',
     'video-gen',
     'render-video',
-    ['export-wattpad', 'publish-youtube'], // Parallel execution
+    'export-wattpad',
+    'publish-wattpad',
+    'publish-youtube',
   ],
 
   // Resource requirements per node type
@@ -290,6 +354,7 @@
     VideoGen: { cpu: 4, memory: '8GB', timeout: '30m' },
     Render: { cpu: 2, memory: '4GB', timeout: '20m' },
     ExportWattpad: { cpu: 0.5, memory: '256MB', timeout: '5m' },
+    PublishWattpad: { cpu: 1, memory: '512MB', timeout: '30m' },
     PublishYouTube: { cpu: 0.5, memory: '256MB', timeout: '10m' },
   },
 
@@ -303,6 +368,7 @@
       'webtoon-export': ['episode'],
       'video-gen': ['video'],
       'export-wattpad': ['wattpad_package'],
+      'publish-wattpad': ['published_parts', 'part_ids'],
     },
     maxRetries: 3,
     timeoutBuffer: '2m',
@@ -315,14 +381,17 @@
     traces: ['pipeline_execution', 'node_execution'],
   },
 
-  // Storage boundary (Neo4j)
+  // Storage boundary (Supabase PostgreSQL)
   storage: {
-    type: 'neo4j',
-    nodeLabel: 'PipelineNode',
+    type: 'supabase',
+    database: 'postgresql',
+    orm: 'drizzle',
+    schema: 'public',
+    nodeTable: 'pipeline_nodes',
     idProp: 'id',
-    typeProp: 'type',
+    typeProp: 'nodeType',
     labelProp: 'label',
-    configProp: 'config',
+    configProp: 'configJson',
   },
 
   // Output specifications

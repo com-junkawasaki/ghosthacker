@@ -1,0 +1,78 @@
+---
+alwaysApply: true
+---
+
+## Wattpad構成・検証・感情分析ループ（常時適用ルール）
+
+- 構造要件（各 part）
+  - 語数: 800–1200（許容: 800–1500）
+  - Beat数: 1以上
+  - part1: JSON-LD antagonist注釈ブロック必須
+- 構造メトリクス生成
+  - コマンド: `cd producer && pnpm analyze:structure`
+  - 出力: `251022/wattpad/episode-structure.jsonld`
+  - SHACL: `250806/episode.shacl.ttl` で検証（EpisodePartShape / EpisodePartAntagonistShape）
+ - SHACL: `250806/episode.shacl.ttl` で検証（EpisodePartShape / EpisodePartAntagonistShape / DialogueRatioShape / TurnDensityShape / MicroTurnShape / AntagonistSubjectivityShape / ContextDripShape / ASCShape）
+  - wordCountの定義: "reading units"（CJKは約2文字=1単位、非CJKは空白区切り語数）。jaの下限は600、それ以外は800。
+- 感情分析ループ（文単位 → part集計 → episode）
+  - 解析: `pnpm analyze:emotions:wattpad`
+  - スコア: `pnpm score:emotions:wattpad`
+  - 目的: 計測→改善（小さな場面転換追加・言い換え・終盤の余韻調整）
+- 文章スタイル（Wattpad最適化）
+  - 短段落・会話中心（モバイル読了）
+  - 小さな場面転換を各partに2–3箇所
+  - 説明より会話で描写（show, don’t tell）
+  - 導入は台詞で状況を織り込む（ARIA風：Kaede/Hibiki/Nei-chan/Aoiの短い掛け合いで季節・ニュース・環境を提示）
+ - 導入は台詞で状況を織り込む（ARIA風：Kaede/Hibiki/Nei-chan/Aoiの短い掛け合いで季節・ニュース・環境を提示）
+ - 会話の開示方針: クライアントは原則自ら開示しない。Tamakiの質問/アクションで感情と共に引き出す（prompted）。`gh:promptedDisclosureCount`≥1 / `gh:unpromptedDisclosureCount`=0 を目安
+ - コンテクストはJSON-LDに整理（予約者/動機/家族支援の有無/羨望など）。本文では台詞で自然に滲ませる。
+- 用語運用
+  - 必要なら「ASC制御帯」「低干渉帯」
+
+実施のたびに: 反映 → `pnpm analyze:structure` → SHACL検証 → 感情分析/スコア → 微修正、を1イテレーションとする。
+
+## OWL / SHACL に基づく生成プロセス（参照と手順）
+
+- 目的: OWL/SHACLを正典に、JSON-LDの物語グラフとWattpad本文を往復しながら一貫性を保持する。
+
+- 参照アーティファクト（正典 / 制約 / 生成元）
+  - 物語グラフ（JSON-LD）
+    - `251022/ghost-hacker.jsonld`（世界・登場人物・技術・政策・リスク束ね）
+    - `251022/story_owl.jsonld`（ストーリー構造のOWL表現がある場合は優先参照）
+    - `251022/episode_bible.jsonld`（各Episodeの構造・対立・出典）
+    - `250806/emotion-benchmark.jsonld`（感情ベンチマーク）
+    - `250806/emotion.context.jsonld`（感情語彙コンテキスト）
+  - SHACL（TTL）
+    - `250806/episode.shacl.ttl`（構造: 語数/Beat/antagonist注釈/position）
+    - `250806/emotion.shacl.ttl`（感情: ビート/終盤ベクトル制約）
+  - スクリプト（生成・解析）
+    - `producer/src/scripts/episode-structure.ts` → `pnpm analyze:structure`
+    - `producer/src/scripts/hume-emotions-wattpad.ts` → `pnpm analyze:emotions:wattpad`
+    - `producer/src/scripts/emotion-score.ts` → `pnpm score:emotions:wattpad`
+    - `producer/src/scripts/integrate-emotion-analysis.ts` → `pnpm integrate:emotion-analysis`
+    - オプション: `producer/src/scripts/generate-episode-jsonld.ts`（エピソードJSON-LD生成系がある場合）
+  - 統合データ
+    - `251022/wattpad/integrated-emotion-analysis.jsonld`（感情分析・構造・スコアの統合）
+    - `250806/emotion-analysis-schema.jsonld`（感情分析システムのOWLスキーマ）
+    - `250806/emotion-analysis.shacl.ttl`（感情分析のSHACL検証ルール）
+
+- 手順（1イテレーション）
+  1) 本文編集（短段落/会話/小さな場面転換・antagonist注釈）
+  2) 構造メトリクス生成: `cd producer && pnpm analyze:structure`
+     - 出力: `251022/wattpad/episode-structure.jsonld`
+  3) SHACL検証（構造）: `250806/episode.shacl.ttl` × `episode-structure.jsonld`
+  4) 感情解析: `pnpm analyze:emotions:wattpad`（文→part→episode集計）
+  5) スコア算出: `pnpm score:emotions:wattpad`（ベンチマーク比較）
+  6) 統合JSON-LD生成: `pnpm integrate:emotion-analysis`
+     - 出力: `251022/wattpad/integrated-emotion-analysis.jsonld`
+     - SHACL検証: `250806/emotion-analysis.shacl.ttl`
+  7) 差分改善（表現の言い換え/小さな場面転換配置/終盤の余韻調整）→ 1)へ
+
+### セッション粒度
+- 1 episode = 1 session を厳守（連続パートは同一夜・同一セッション内で進行）
+
+- 用語・運用（OWL/SHACL整合のための統一）
+  - ASC制御: Tamakiの神楽（一拍）＝スロットル合図／Nei-chanがASC制御を合わせる・維持・落とす
+  - 「静域」は用いず、必要なら「ASC制御帯」「低干渉帯」を記述
+  - antagonistは `part1.md` 冒頭のJSON-LDで明示（`character:`/`ghost:`/`company:`）
+

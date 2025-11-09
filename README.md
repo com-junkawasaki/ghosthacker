@@ -126,6 +126,43 @@ pnpm generate:episode-jsonld
 pnpm analyze-and-import
 ```
 
+### Wattpad自動投稿
+
+英語版エピソードをWattpadに自動投稿：
+
+```bash
+# 環境変数の設定（.envrcまたはexport）
+export WATTPAD_EMAIL='your-email@example.com'
+export WATTPAD_PASSWORD='your-password'
+export WATTPAD_WORK_ID='402848261'  # Wattpad作品ID
+export WATTPAD_HEADLESS=false       # ブラウザを開く場合はfalse
+
+# 1件のみテスト投稿
+pnpm wattpad:publish --limit=1
+
+# 5件テスト投稿
+pnpm wattpad:publish --limit=5
+
+# 全件投稿（既存パートも更新）
+pnpm wattpad:publish
+
+# ドライラン（実際には投稿しない）
+pnpm wattpad:publish --dry-run
+```
+
+**機能:**
+- 英語版エピソード（`part*.en.md`）の自動検出
+- JSON-LDブロックの自動削除
+- エピソードタイトルの自動追加（EP1の最初のパートなど）
+- パートIDの自動マッピング保存
+- タイトル・本文の検証
+- ブラウザ可視モードでのデバッグ対応
+
+**ファイル構成:**
+- `251022/wattpad/episodes/epXX/partY.en.md`: 英語版エピソード原稿
+- `251022/wattpad/part-ids.jsonld`: WattpadパートIDマッピング
+- `251022/wattpad/manifest.json`: エピソードメタデータ
+
 ## Pipeline実行順序
 
 1. **ストーリーグラフ取得** (Neo4j)
@@ -145,6 +182,7 @@ pnpm analyze-and-import
 - [x] Image generation (Flux)
 - [x] Webtoon panel layout
 - [x] TTS narration
+- [x] Wattpad automated publishing
 - [ ] Video generation (Sora)
 - [ ] Multi-platform export
 

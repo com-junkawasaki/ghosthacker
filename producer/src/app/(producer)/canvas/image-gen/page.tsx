@@ -1,6 +1,6 @@
 import Link from "next/link";
 import NodePanel from "@/components/NodePanel";
-import NodeConfigForm from "@/components/NodeConfigForm.client";
+import ImageGenForm from "./ImageGenForm.client";
 
 // Merkle DAG Node: image-gen (type: ImageGen)
 export default function ImageGenPage() {
@@ -21,11 +21,7 @@ export default function ImageGenPage() {
         config={{ model: "flux-1.1-pro", style: "atmospheric-horror", count: 5 }}
       />
 
-      <NodeConfigForm
-        nodeId="image-gen"
-        nodeType="ImageGen"
-        defaultValues={{ model: "flux-1.1-pro", style: "atmospheric-horror", count: 5 }}
-      />
+      <ImageGenForm />
     </div>
   );
 }

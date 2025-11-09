@@ -1,0 +1,86 @@
+{
+  "@context": {
+    "@base": "https://ghosthacker.gftd.co.jp/",
+    "@vocab": "https://ghosthacker.gftd.co.jp/ontology#",
+    "gh": "https://ghosthacker.gftd.co.jp/ontology#",
+    "schema": "http://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "prov": "http://www.w3.org/ns/prov#",
+
+    "name": "schema:name",
+    "title": "schema:title",
+    "description": "schema:description",
+
+    "Canvas": "gh:Canvas",
+    "CanvasNode": "gh:CanvasNode",
+    "PipelineNode": "gh:PipelineNode",
+    "CharacterNode": "gh:CharacterNode",
+    "EpisodeNode": "gh:EpisodeNode",
+    "CanvasEdge": "gh:CanvasEdge",
+
+    "has_node": { "@id": "gh:has_node", "@type": "@id", "@container": "@set" },
+    "has_edge": { "@id": "gh:has_edge", "@type": "@id", "@container": "@set" },
+    "source": { "@id": "gh:source", "@type": "@id" },
+    "target": { "@id": "gh:target", "@type": "@id" },
+    "depends_on": { "@id": "gh:depends_on", "@type": "@id", "@container": "@set" },
+
+    "node_type": { "@id": "gh:node_type", "@type": "xsd:string" },
+    "node_label": { "@id": "gh:node_label", "@type": "xsd:string" },
+    "position_x": { "@id": "gh:position_x", "@type": "xsd:decimal" },
+    "position_y": { "@id": "gh:position_y", "@type": "xsd:decimal" },
+    "config": { "@id": "gh:config", "@type": "@json" },
+    "data": { "@id": "gh:data", "@type": "@json" },
+
+    "edge_type": { "@id": "gh:edge_type", "@type": "xsd:string" },
+    "edge_label": { "@id": "gh:edge_label", "@type": "xsd:string" },
+
+    "prov:generatedAtTime": { "@type": "xsd:dateTime" },
+    "prov:wasAssociatedWith": { "@type": "@id" }
+  },
+  "@graph": [
+    {
+      "@id": "gh:Canvas",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Canvas",
+      "rdfs:comment": "Canvas は全てのノードとエッジを含むグラフ構造"
+    },
+    {
+      "@id": "gh:CanvasNode",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Canvas Node",
+      "rdfs:comment": "Canvas 上のノード（PipelineNode, CharacterNode, EpisodeNode の基底クラス）",
+      "rdfs:subClassOf": { "@id": "gh:CanvasNode" }
+    },
+    {
+      "@id": "gh:PipelineNode",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Pipeline Node",
+      "rdfs:comment": "パイプラインノード（既存のノードタイプ）",
+      "rdfs:subClassOf": { "@id": "gh:CanvasNode" }
+    },
+    {
+      "@id": "gh:CharacterNode",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Character Node",
+      "rdfs:comment": "登場人物ノード",
+      "rdfs:subClassOf": { "@id": "gh:CanvasNode" }
+    },
+    {
+      "@id": "gh:EpisodeNode",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Episode Node",
+      "rdfs:comment": "Episode ノード",
+      "rdfs:subClassOf": { "@id": "gh:CanvasNode" }
+    },
+    {
+      "@id": "gh:CanvasEdge",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Canvas Edge",
+      "rdfs:comment": "Canvas 上のエッジ（ノード間の接続）"
+    }
+  ]
+}
+

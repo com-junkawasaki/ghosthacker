@@ -2,7 +2,7 @@
 
 import { nodeSchemas, type NodeTypeKey } from "@/schemas/nodes";
 import { safeParse } from "valibot";
-import { upsertNodeConfig, getNodeConfig } from "@/infra/neo4j/nodeConfigRepo";
+import { upsertNodeConfig, getNodeConfig } from "@/infra/supabase/nodeConfigRepo";
 
 // Merkle DAG: Server action to persist node config
 export async function saveNodeConfig(params: {

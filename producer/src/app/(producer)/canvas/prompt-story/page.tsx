@@ -1,6 +1,6 @@
 import Link from "next/link";
 import NodePanel from "@/components/NodePanel";
-import NodeConfigForm from "@/components/NodeConfigForm.client";
+import PromptForm from "./PromptForm.client";
 
 // Merkle DAG Node: prompt-story (type: Prompt)
 export default function PromptStoryPage() {
@@ -21,11 +21,7 @@ export default function PromptStoryPage() {
         config={{ promptType: "story", style: "atmospheric", genre: "ghost-horror" }}
       />
 
-      <NodeConfigForm
-        nodeId="prompt-story"
-        nodeType="Prompt"
-        defaultValues={{ promptType: "story", style: "atmospheric", genre: "ghost-horror" }}
-      />
+      <PromptForm />
     </div>
   );
 }

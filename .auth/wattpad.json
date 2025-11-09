@@ -1,0 +1,791 @@
+{
+  "cookies": [
+    {
+      "name": "cee",
+      "value": "6slI3jeXShtEBCBKColEZ01jQZHYLkGVwUSqIQ9JauU%3D.%7B%7D",
+      "domain": ".capig.stape.gl",
+      "path": "/events/c7edd25b69c98075324bfe2b9254ff4b50a0e0bbf2827b91ea03fe9ce489a0c8",
+      "expires": 1769966994.629916,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "wp_id",
+      "value": "2c426d7c-4bb1-4170-b3e3-f709b36a4b96",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1796741381.070498,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "fs__exp",
+      "value": "1",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1796741381.073941,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "lang",
+      "value": "1",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1769966992.254685,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "locale",
+      "value": "en_US",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1769966992.254653,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ff",
+      "value": "1",
+      "domain": "www.wattpad.com",
+      "path": "/",
+      "expires": 1793717381,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "dpr",
+      "value": "1",
+      "domain": "www.wattpad.com",
+      "path": "/",
+      "expires": 1793724242,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "tz",
+      "value": "-9",
+      "domain": "www.wattpad.com",
+      "path": "/",
+      "expires": 1793724242,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "X-Time-Zone",
+      "value": "Asia%2FTokyo",
+      "domain": "www.wattpad.com",
+      "path": "/",
+      "expires": 1793724242,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "te_session_id",
+      "value": "1762181381598",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "CMID",
+      "value": "aQjBBRdaRJwABEn1DffaEgAA",
+      "domain": ".casalemedia.com",
+      "path": "/",
+      "expires": 1793724242.840983,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "CMPS",
+      "value": "5465",
+      "domain": ".casalemedia.com",
+      "path": "/",
+      "expires": 1769960299.981597,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "CMPRO",
+      "value": "5465",
+      "domain": ".casalemedia.com",
+      "path": "/",
+      "expires": 1769964242.841019,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "TDID",
+      "value": "20dd5489-c1a8-483f-93c4-d8bfad064809",
+      "domain": ".adsrvr.org",
+      "path": "/",
+      "expires": 1793717381.790696,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "bito",
+      "value": "AAEBvE7SEYIAAB1FHYUQOQ",
+      "domain": ".bidr.io",
+      "path": "/",
+      "expires": 1796291381.789073,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "bitoIsSecure",
+      "value": "ok",
+      "domain": ".bidr.io",
+      "path": "/",
+      "expires": 1796291381.789116,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "TDCPM",
+      "value": "CAESFQoGY2FzYWxlEgsIopDLjsi8zT4QBRgFIAEoAjILCMbsm7vevM0-EAU4AQ..",
+      "domain": ".adsrvr.org",
+      "path": "/",
+      "expires": 1793717381.790721,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ANON_ID",
+      "value": "a5noeUsjyDMmTFMcEJLZdagIsb8Yc3RWTPiLlm27Zb",
+      "domain": ".tribalfusion.com",
+      "path": "/",
+      "expires": 1769957382.855908,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "UID",
+      "value": "19A03833aa663ac74dd9ace1762181381",
+      "domain": ".scorecardresearch.com",
+      "path": "/",
+      "expires": 1795886994.114339,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "XID",
+      "value": "19A03833aa663ac74dd9ace1762181381",
+      "domain": ".scorecardresearch.com",
+      "path": "/",
+      "expires": 1795886994.114379,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None",
+      "partitionKey": "https://wattpad.com",
+      "_crHasCrossSiteAncestor": true
+    },
+    {
+      "name": "IDE",
+      "value": "AHWqTUlEQbht3CWc0Gbae9E__anwTE1bysqsQW9okttsqVe5qOSYoXiJBFMv_nZuLPI",
+      "domain": ".doubleclick.net",
+      "path": "/",
+      "expires": 1796741381.928741,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_col_uuid",
+      "value": "c727a51f-99e3-406e-9b39-6319e187b1bf-1o9fg",
+      "domain": ".clmbtech.com",
+      "path": "/",
+      "expires": 1796750994.304288,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_col_uuid",
+      "value": "c727a51f-99e3-406e-9b39-6319e187b1bf-1o9fg",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1796750994.305309,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_gid",
+      "value": "GA1.2.1898941248.1762181382",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1762277393,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "zuid",
+      "value": "9brVHgrzyCr2i_4K2FxP",
+      "domain": ".zemanta.com",
+      "path": "/",
+      "expires": 1769957382.976869,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ad-id",
+      "value": "A-NJ2p8Edk_DmmwIppbYsbg",
+      "domain": ".amazon-adsystem.com",
+      "path": "/",
+      "expires": 1782924243.024101,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ad-privacy",
+      "value": "0",
+      "domain": ".amazon-adsystem.com",
+      "path": "/",
+      "expires": 1796748243.024153,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "azk",
+      "value": "ue1-d90cce4c152a4686a8c74c89c9346b39",
+      "domain": "e-9660.adzerk.net",
+      "path": "/",
+      "expires": 1793724243.527557,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "azk-ss",
+      "value": "true",
+      "domain": "e-9660.adzerk.net",
+      "path": "/",
+      "expires": 1793717382.640663,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "obuid",
+      "value": "20c96da5-c36d-49ad-b1ea-a47df8ad37cc",
+      "domain": ".outbrain.com",
+      "path": "/",
+      "expires": 1769957382.808485,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_fbp",
+      "value": "fb.1.1762181383323.247631917849334415",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1769966994,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "A3",
+      "value": "d=AQABBAnBCGkCEPKh8YB_881UtpuJTLfm60oFEgEBAQESCmkSaWChyyMA_eMCAA&S=AQAAAngqj10_y48LR_IyO7E_4lc",
+      "domain": ".yahoo.com",
+      "path": "/",
+      "expires": 1793745842.926104,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "cid_21cc0669b44d43f5abc0c8a40f72957b",
+      "value": "1",
+      "domain": ".ctnsnet.com",
+      "path": "/",
+      "expires": 1793717385.973961,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "demdex",
+      "value": "57817807676295914224156481595023738740",
+      "domain": ".demdex.net",
+      "path": "/",
+      "expires": 1777740242.858801,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "dpm",
+      "value": "57817807676295914224156481595023738740",
+      "domain": ".dpm.demdex.net",
+      "path": "/",
+      "expires": 1777740242.858841,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "mc",
+      "value": "6908c10a-2b4b5-5f881-1599b",
+      "domain": ".quantserve.com",
+      "path": "/",
+      "expires": 1796395786.311034,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "sp",
+      "value": "CgkIhf8CEgMQ1RA=",
+      "domain": ".quantserve.com",
+      "path": "/",
+      "expires": 1769957386.387321,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__mguid_",
+      "value": "65170ae598991c9c2mma5700mhj9arvg",
+      "domain": ".mediago.io",
+      "path": "/",
+      "expires": 1793717386.469168,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__mguid_",
+      "value": "65170ae54988048e2v5rvr00mhj9arz2",
+      "domain": ".popin.cc",
+      "path": "/",
+      "expires": 1793717386.529695,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "uid",
+      "value": "0c9c220300492d65ad5db0fc",
+      "domain": ".adotmob.com",
+      "path": "/",
+      "expires": 1777733386.638342,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "uuid",
+      "value": "0c9c220300492d65ad5db0fc",
+      "domain": ".adotmob.com",
+      "path": "/",
+      "expires": 1777733386.638394,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "partners",
+      "value": "IX%3A1762181386494",
+      "domain": ".adotmob.com",
+      "path": "/",
+      "expires": 1777733386.63841,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "b",
+      "value": "6908C11FFCFC9025937A9C91_",
+      "domain": ".blismedia.com",
+      "path": "/",
+      "expires": 1793721407.982902,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "C",
+      "value": "1",
+      "domain": ".adform.net",
+      "path": "/",
+      "expires": 1764773408.061792,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "uid",
+      "value": "2410446136375008003",
+      "domain": ".adform.net",
+      "path": "/",
+      "expires": 1767365408.118027,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "tuuid",
+      "value": "d9262c23-af14-4ad8-be46-5569b5607dca",
+      "domain": ".company-target.com",
+      "path": "/",
+      "expires": 1796395808.158712,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "tuuid_lu",
+      "value": "1762181408|ix:0",
+      "domain": ".company-target.com",
+      "path": "/",
+      "expires": 1796395808.158745,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "uid",
+      "value": "2811646526714374020",
+      "domain": ".turn.com",
+      "path": "/",
+      "expires": 1777733408.166523,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "sa-user-id",
+      "value": "s%3A0-750e40c9-6f57-54b4-7751-74408303b905.RdrYYMdfizA8T%2BNJWWf5R83ez1DEfeF%2B1%2FHY7vaGvnU",
+      "domain": "sync.srv.stackadapt.com",
+      "path": "/",
+      "expires": 1793717408.68326,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "sa-user-id",
+      "value": "s%3A0-750e40c9-6f57-54b4-7751-74408303b905.RdrYYMdfizA8T%2BNJWWf5R83ez1DEfeF%2B1%2FHY7vaGvnU",
+      "domain": ".srv.stackadapt.com",
+      "path": "/",
+      "expires": 1793717408.683295,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "sa-user-id-v2",
+      "value": "s%3AdQ5AyW9XVLR3UXRAgwO5BdtoiIw.up3H6g11B6g1vgRTruCuF4sapUcfeS7hlIQKFLW3CHI",
+      "domain": "sync.srv.stackadapt.com",
+      "path": "/",
+      "expires": 1793717408.683307,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "sa-user-id-v2",
+      "value": "s%3AdQ5AyW9XVLR3UXRAgwO5BdtoiIw.up3H6g11B6g1vgRTruCuF4sapUcfeS7hlIQKFLW3CHI",
+      "domain": ".srv.stackadapt.com",
+      "path": "/",
+      "expires": 1793717408.683316,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "sa-user-id-v3",
+      "value": "s%3AAQAKIG7hCc1eanslpoPb4vnwNkq_xqM016-Y6JMoWX9l-0WdEAMYAyCggqPIBjABOgSODB-rQgScoNMuUAE.Y1HjtLp%2BXWU0XMRwk8nZ0EGy1LNltuoxkp4ESF%2BtCH8",
+      "domain": "sync.srv.stackadapt.com",
+      "path": "/",
+      "expires": 1793717408.683323,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "sa-user-id-v3",
+      "value": "s%3AAQAKIG7hCc1eanslpoPb4vnwNkq_xqM016-Y6JMoWX9l-0WdEAMYAyCggqPIBjABOgSODB-rQgScoNMuUAE.Y1HjtLp%2BXWU0XMRwk8nZ0EGy1LNltuoxkp4ESF%2BtCH8",
+      "domain": ".srv.stackadapt.com",
+      "path": "/",
+      "expires": 1793717408.683333,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "tuuid",
+      "value": "f9b122fe-0757-4a8e-940f-45b7ee0c6956",
+      "domain": ".bidswitch.net",
+      "path": "/",
+      "expires": 1793717412.296713,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "c",
+      "value": "1762181412",
+      "domain": ".bidswitch.net",
+      "path": "/",
+      "expires": 1793717412.281254,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "tuuid_lu",
+      "value": "1762181412",
+      "domain": ".bidswitch.net",
+      "path": "/",
+      "expires": 1793717412.29676,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "suid",
+      "value": "2A27DBDFEFAB48758A1841C03054910D",
+      "domain": ".simpli.fi",
+      "path": "/",
+      "expires": 1793803812.355589,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "zuuid",
+      "value": "c9e02f46-af31-4566-abeb-cfb01e92f1c3",
+      "domain": ".sportradarserving.com",
+      "path": "/",
+      "expires": 1793631012.614719,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "c",
+      "value": "1762181412",
+      "domain": ".sportradarserving.com",
+      "path": "/",
+      "expires": 1793631012.593296,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "zuuid_lu",
+      "value": "1762181412",
+      "domain": ".sportradarserving.com",
+      "path": "/",
+      "expires": 1793631012.614767,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "zuuid_k",
+      "value": "1",
+      "domain": ".sportradarserving.com",
+      "path": "/",
+      "expires": 1793631012.614784,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "zuuid_k_lu",
+      "value": "1762181412",
+      "domain": ".sportradarserving.com",
+      "path": "/",
+      "expires": 1793631012.614798,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "g",
+      "value": "9ykuS10IwiPlHCc0EvIw_1762181412788",
+      "domain": ".creativecdn.com",
+      "path": "/",
+      "expires": 1793717413.051826,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ts",
+      "value": "1762181412",
+      "domain": ".creativecdn.com",
+      "path": "/",
+      "expires": 1793717413.051868,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None",
+      "partitionKey": "https://wattpad.com",
+      "_crHasCrossSiteAncestor": true
+    },
+    {
+      "name": "_knxq_",
+      "value": "e5e7846d-3b7b-b511-736b1a7d.1762181381.1.1762181527.1762181381",
+      "domain": ".brand-display.com",
+      "path": "/",
+      "expires": 1796741527.532287,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "IDSYNC",
+      "value": "19gq~2sds",
+      "domain": ".analytics.yahoo.com",
+      "path": "/",
+      "expires": 1793724242.926055,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_gcl_au",
+      "value": "1.1.986279459.1762181383.1456671867.1762188235.1762188236",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1769957383,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "token",
+      "value": "530176191%3A2%3A1762188236%3AMUt5LIpovpV92QjMkBazQCy_XYavfbraDAWFNo-o32oCoXN34NHS9SWfTbc6xf6O",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1769964236.746799,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "isStaff",
+      "value": "1",
+      "domain": "www.wattpad.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "wp-web-page",
+      "value": "true",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1793726992.254266,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "AMP_TOKEN",
+      "value": "%24NOT_FOUND",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1762193013,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ga_FNDTZ0MZDQ",
+      "value": "GS2.1.s1762181381$o1$g1$t1762190994$j32$l0$h0",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1796750994.035053,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ga",
+      "value": "GA1.1.1922627931.1762181382",
+      "domain": ".wattpad.com",
+      "path": "/",
+      "expires": 1796750994.035246,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://www.wattpad.com",
+      "localStorage": [
+        {
+          "name": "lastExternalReferrerTime",
+          "value": "1762190994433"
+        },
+        {
+          "name": "mobile-web#user.user50919.works",
+          "value": "{\"_ts\":1762190043187,\"resp\":{\"total\":1,\"stories\":[{\"id\":\"402848261\",\"title\":\"Ghost Hacker\",\"voteCount\":0,\"commentCount\":0,\"language\":1,\"user\":{\"name\":\"user50919\",\"avatar\":\"https://img.wattpad.com/useravatar/user50919.128.101480.jpg\",\"fullname\":\"JK\",\"verified\":false},\"description\":\"渋谷の運河は、今日も静かだ。私のオフィスはその運河沿いに建っている。床から天井まで広がる大きな窓の向こうには、まるで沖縄の海を切り取ってきたかのような、深く、そして青く透き通った水が広がっている。時折、水上バスが音もなく滑るように通り過ぎていく。その光景を眺めながら、私は自分の仕事について考えていた。\\n\\n「ゴーストハッカー」。それが私の職業。\",\"cover\":\"https://img.wattpad.com/cover/402848261-256-k151505.jpg\",\"completed\":false,\"categories\":[5],\"tags\":[\"ghost\",\"hack\",\"spirite\",\"tokyo\"],\"url\":\"https://www.wattpad.com/story/402848261-ghost-hacker\",\"numParts\":7,\"lastPublishedPart\":{\"id\":1586959548,\"createDate\":\"2025-11-03T15:32:45Z\"},\"parts\":[{\"id\":1582748678,\"title\":\"The Ordinary and the Anomaly\",\"draft\":false,\"modifyDate\":\"2025-10-22T04:27:12Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1584350155,\"title\":\"Accepting the Request and Analysis\",\"draft\":false,\"modifyDate\":\"2025-10-22T04:30:36Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1584351021,\"title\":\"Accepting the Request and Analysis (Part 2)\",\"draft\":false,\"modifyDate\":\"2025-10-22T04:31:42Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1584351886,\"title\":\"Ghost Hacking (Part 1)\",\"draft\":false,\"modifyDate\":\"2025-10-22T02:41:34Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1584352012,\"title\":\" Ghost Hacking (Part 2)\",\"draft\":false,\"modifyDate\":\"2025-10-22T03:45:52Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1584363709,\"title\":\"Resolution\",\"draft\":false,\"modifyDate\":\"2025-10-22T03:47:32Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"},{\"id\":1586959548,\"title\":\"Untitled Part 7\",\"draft\":true,\"modifyDate\":\"2025-11-03T15:32:45Z\",\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"}],\"hasBannedCover\":false,\"readCount\":18,\"textids\":\"1582748678,1584350155,1584351021,1584351886,1584352012,1584363709,1586959548\",\"published\":true,\"categoryObject\":{\"id\":5,\"name\":\"Science Fiction\",\"name_english\":\"Science Fiction\",\"roles\":[\"onboarding\",\"writing\",\"searching\"],\"tagline\":\"Get lost in the speculative Science Fiction stories of the future: dystopian novels, space odysseys, post-apocalyptic worlds from the great authors and writers of today. We have the best in free books and stories online by authors who love to write alien, fantasy, space time travel, and short sci fi.\",\"banner\":\"science_fiction.jpg\",\"bg_image\":\"bg_science_fiction.png\"},\"storyLanguage\":\"English\",\"rank\":null,\"skip_title\":0}]}}"
+        },
+        {
+          "name": "topicsLastReferenceTime",
+          "value": "1762190994451"
+        },
+        {
+          "name": "lastExternalReferrer",
+          "value": "empty"
+        },
+        {
+          "name": "monaco-mobile-web:keys",
+          "value": "{\"mobile-web#user.user50919.works.published\":1762190043191,\"mobile-web#system.categories.1\":1762231442994,\"mobile-web#user.user50919.works\":1762190043187}"
+        },
+        {
+          "name": "_gcl_ls",
+          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":96,\"timeouts\":0,\"creationTimeMs\":1762190994511},\"expires\":1769966994511}}"
+        },
+        {
+          "name": "mobile-web#system.categories.1",
+          "value": "{\"_ts\":1762231442994,\"resp\":[{\"id\":5,\"name\":\"Science Fiction\",\"name_english\":\"Science Fiction\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":3,\"name\":\"Fantasy\",\"name_english\":\"Fantasy\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":4,\"name\":\"Romance\",\"name_english\":\"Romance\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":7,\"name\":\"Humor\",\"name_english\":\"Humor\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":12,\"name\":\"Paranormal\",\"name_english\":\"Paranormal\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":8,\"name\":\"Mystery / Thriller\",\"name_english\":\"Mystery / Thriller\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":9,\"name\":\"Horror\",\"name_english\":\"Horror\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":11,\"name\":\"Adventure\",\"name_english\":\"Adventure\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":23,\"name\":\"Historical Fiction\",\"name_english\":\"Historical Fiction\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":1,\"name\":\"Teen Fiction\",\"name_english\":\"Teen Fiction\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":6,\"name\":\"Fanfiction\",\"name_english\":\"Fanfiction\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":2,\"name\":\"Poetry\",\"name_english\":\"Poetry\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":17,\"name\":\"Short Story\",\"name_english\":\"Short Story\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":21,\"name\":\"General Fiction\",\"name_english\":\"General Fiction\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":24,\"name\":\"ChickLit\",\"name_english\":\"ChickLit\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":14,\"name\":\"Action\",\"name_english\":\"Action\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":18,\"name\":\"Vampire\",\"name_english\":\"Vampire\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":22,\"name\":\"Werewolf\",\"name_english\":\"Werewolf\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":13,\"name\":\"Spiritual\",\"name_english\":\"Spiritual\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":16,\"name\":\"Non-Fiction\",\"name_english\":\"Non-Fiction\",\"roles\":[\"onboarding\",\"writing\",\"searching\"]},{\"id\":10,\"name\":\"Classics\",\"name_english\":\"Classics\",\"roles\":[\"onboarding\",\"searching\"]},{\"id\":19,\"name\":\"Random\",\"name_english\":\"Random\",\"roles\":[\"writing\",\"searching\"]}]}"
+        },
+        {
+          "name": "language",
+          "value": "\"1\""
+        },
+        {
+          "name": "mobile-web#user.user50919.works.published",
+          "value": "{\"_ts\":1762190043191,\"resp\":{\"total\":1,\"stories\":[{\"id\":\"402848261\",\"title\":\"Ghost Hacker\",\"voteCount\":0,\"commentCount\":0,\"language\":1,\"user\":{\"name\":\"user50919\",\"avatar\":\"https://img.wattpad.com/useravatar/user50919.128.101480.jpg\",\"fullname\":\"JK\",\"verified\":false},\"description\":\"渋谷の運河は、今日も静かだ。私のオフィスはその運河沿いに建っている。床から天井まで広がる大きな窓の向こうには、まるで沖縄の海を切り取ってきたかのような、深く、そして青く透き通った水が広がっている。時折、水上バスが音もなく滑るように通り過ぎていく。その光景を眺めながら、私は自分の仕事について考えていた。\\n\\n「ゴーストハッカー」。それが私の職業。\",\"cover\":\"https://img.wattpad.com/cover/402848261-256-k151505.jpg\",\"completed\":false,\"categories\":[5],\"tags\":[\"ghost\",\"hack\",\"spirite\",\"tokyo\"],\"rating\":1,\"copyright\":1,\"url\":\"https://www.wattpad.com/story/402848261-ghost-hacker\",\"numParts\":7,\"lastPublishedPart\":{\"id\":1586959548,\"createDate\":\"2025-11-03T15:32:45Z\"},\"parts\":[{\"id\":1582748678,\"title\":\"The Ordinary and the Anomaly\",\"draft\":false,\"modifyDate\":\"2025-10-22T04:27:12Z\",\"createDate\":\"2025-10-22T02:12:53Z\",\"commentCount\":0,\"voteCount\":0,\"readCount\":5,\"hasBannedImages\":false,\"stats\":true,\"flag1\":0,\"source\":\"\"},{\"id\":1584350155,\"title\":\"Accepting the Request and Analysis\",\"draft\":false,\"modifyDate\":\"2025-10-22T04:30:36Z\",\"createDate\":\"2025-10-22T02:14:50Z\",\"commentCount\":0,\"voteCount\":0,\"readCount\":3,\"hasBannedImages\":false,\"stats\":true,\"flag1\":0,\"source\":\"\"},{\"id\":1584351021,\"title\":\"Accepting the Request and Analysis (Part 2)\",\"draft\":false,\"modifyDate\":\"2025-10-22T04:31:42Z\",\"createDate\":\"2025-10-22T02:16:57Z\",\"commentCount\":0,\"voteCount\":0,\"readCount\":3,\"hasBannedImages\":false,\"stats\":true,\"flag1\":0,\"source\":\"\"},{\"id\":1584351886,\"title\":\"Ghost Hacking (Part 1)\",\"draft\":false,\"modifyDate\":\"2025-10-22T02:41:34Z\",\"createDate\":\"2025-10-22T02:22:10Z\",\"commentCount\":0,\"voteCount\":0,\"readCount\":2,\"hasBannedImages\":false,\"stats\":true,\"flag1\":0,\"source\":\"\"},{\"id\":1584352012,\"title\":\" Ghost Hacking (Part 2)\",\"draft\":false,\"modifyDate\":\"2025-10-22T03:45:52Z\",\"createDate\":\"2025-10-22T02:24:09Z\",\"commentCount\":0,\"voteCount\":0,\"readCount\":3,\"hasBannedImages\":false,\"stats\":true,\"flag1\":0,\"source\":\"\"},{\"id\":1584363709,\"title\":\"Resolution\",\"draft\":false,\"modifyDate\":\"2025-10-22T03:47:32Z\",\"createDate\":\"2025-10-22T03:47:20Z\",\"commentCount\":0,\"voteCount\":0,\"readCount\":2,\"hasBannedImages\":false,\"stats\":true,\"flag1\":0,\"source\":\"\"},{\"id\":1586959548,\"title\":\"Untitled Part 7\",\"draft\":true,\"modifyDate\":\"2025-11-03T15:32:45Z\",\"createDate\":\"2025-11-03T15:32:45Z\",\"commentCount\":0,\"voteCount\":0,\"readCount\":0,\"hasBannedImages\":false,\"stats\":false,\"flag1\":0,\"source\":\"\"}],\"hasBannedCover\":false,\"readCount\":18,\"slugUrl\":\"402848261-ghost-hacker\",\"partCount\":7,\"publishedCount\":6,\"draftCount\":1,\"editReturn\":{\"id\":1586959548,\"title\":\"Untitled Part 7\",\"draft\":true,\"modifyDate\":\"2025-11-03T15:32:45Z\",\"createDate\":\"2025-11-03T15:32:45Z\",\"commentCount\":0,\"voteCount\":0,\"readCount\":0,\"hasBannedImages\":false},\"hasParts\":true,\"hasBannedImages\":false,\"textids\":\"1582748678,1584350155,1584351021,1584351886,1584352012,1584363709,1586959548\",\"published\":true,\"categoryObject\":{\"id\":5,\"name\":\"Science Fiction\",\"name_english\":\"Science Fiction\",\"roles\":[\"onboarding\",\"writing\",\"searching\"],\"tagline\":\"Get lost in the speculative Science Fiction stories of the future: dystopian novels, space odysseys, post-apocalyptic worlds from the great authors and writers of today. We have the best in free books and stories online by authors who love to write alien, fantasy, space time travel, and short sci fi.\",\"banner\":\"science_fiction.jpg\",\"bg_image\":\"bg_science_fiction.png\"},\"storyLanguage\":\"English\",\"rank\":null,\"skip_title\":0,\"categoryLabels\":[{\"name\":\"Science Fiction\"}],\"socialLinks\":[{\"name\":\"facebook\",\"icon\":\"fa-facebook\",\"label\":\"Share via Facebook\",\"href\":\"https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.wattpad.com%2Fstory%2F402848261-ghost-hacker%3Futm_source%3Dweb%26utm_medium%3Dfacebook%26utm_content%3Dshare_myworks_details\"},{\"name\":\"twitter\",\"icon\":\"fa-twitter\",\"label\":\"Share via Twitter\",\"content\":\"share_myworks_details\",\"text\":\"Ghost Hacker #wattpad\",\"urlTemplate\":\"https://twitter.com/intent/tweet?text=%s&url=%s\",\"url\":\"https://www.wattpad.com/story/402848261-ghost-hacker\",\"href\":\"https://twitter.com/intent/tweet?text=Ghost+Hacker+%23wattpad&url=https%3A%2F%2Fwww.wattpad.com%2Fstory%2F402848261-ghost-hacker%3Futm_source%3Dweb%26utm_medium%3Dtwitter%26utm_content%3Dshare_myworks_details\"}]}]}}"
+        }
+      ]
+    }
+  ]
+}

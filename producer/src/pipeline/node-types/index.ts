@@ -14,6 +14,8 @@ export { PublishYouTubeNode } from './PublishYouTubeNode';
 export { ProtagonistNode } from './ProtagonistNode';
 export { BackstoryNode } from './BackstoryNode';
 export { WorldNode } from './WorldNode';
+export { CharacterNode } from './CharacterNode';
+export { EpisodeNode } from './EpisodeNode';
 
 // Node data types
 export type NodeData = {
