@@ -22,7 +22,7 @@ export interface JsonLdDocument {
  * JSON-LD ファイルを読み込む
  */
 export function readJsonLd<T = JsonLdDocument>(
-  category: 'canvas' | 'characters' | 'episodes' | 'translations',
+  category: 'canvas' | 'characters' | 'episodes' | 'translations' | 'epub',
   filename: string
 ): T | null {
   const filePath = path.join(RESOURCES_BASE, category, filename);
@@ -44,7 +44,7 @@ export function readJsonLd<T = JsonLdDocument>(
  * JSON-LD ファイルを保存する
  */
 export function writeJsonLd(
-  category: 'canvas' | 'characters' | 'episodes' | 'translations',
+  category: 'canvas' | 'characters' | 'episodes' | 'translations' | 'epub',
   filename: string,
   data: JsonLdDocument
 ): void {
@@ -69,7 +69,7 @@ export function writeJsonLd(
  * JSON-LD ファイルを削除する
  */
 export function deleteJsonLd(
-  category: 'canvas' | 'characters' | 'episodes' | 'translations',
+  category: 'canvas' | 'characters' | 'episodes' | 'translations' | 'epub',
   filename: string
 ): boolean {
   const filePath = path.join(RESOURCES_BASE, category, filename);
@@ -91,7 +91,7 @@ export function deleteJsonLd(
  * カテゴリ内の全ての JSON-LD ファイルをリストアップ
  */
 export function listJsonLdFiles(
-  category: 'canvas' | 'characters' | 'episodes' | 'translations'
+  category: 'canvas' | 'characters' | 'episodes' | 'translations' | 'epub'
 ): string[] {
   const dirPath = path.join(RESOURCES_BASE, category);
   
@@ -113,7 +113,7 @@ export function listJsonLdFiles(
  * ファイルパスを取得（相対パス）
  */
 export function getJsonLdPath(
-  category: 'canvas' | 'characters' | 'episodes' | 'translations',
+  category: 'canvas' | 'characters' | 'episodes' | 'translations' | 'epub',
   filename: string
 ): string {
   return path.join('resources', category, `${filename}.jsonld`);

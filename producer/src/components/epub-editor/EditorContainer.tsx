@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import ContentEditable from './ContentEditable';
 import SettingsPanel from './SettingsPanel';
 import AIPanel from './AIPanel';
 import type { EpubEditorSettings, EpubDocument } from '@/lib/epub-settings';
 import { loadEpubSettings, saveEpubSettings, loadEpubDocument, saveEpubDocument } from '@/lib/epub-settings';
 import { downloadEpub3 } from '@/lib/epub-export';
+import { saveEpubJsonLd } from '@/app/(producer)/editor/epub/actions';
 
 interface EditorContainerProps {
   initialContent?: string;
@@ -34,7 +35,10 @@ export default function EditorContainer({
   const [selectedText, setSelectedText] = useState<string>('');
   const [cursorPosition, setCursorPosition] = useState<{ x: number; y: number } | undefined>();
   const [characterId, setCharacterId] = useState<string | undefined>();
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [saveError, setSaveError] = useState<string | null>(null);
   const editorRef = useRef<HTMLDivElement>(null);
+  const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleContentChange = useCallback((newContent: string) => {
     setContent(newContent);
@@ -134,6 +138,50 @@ export default function EditorContainer({
     setShowAIPanel(false);
   }, []);
 
+  // JSON-LD のリアルタイム保存（debounce 付き）
+  useEffect(() => {
+    // 既存のタイマーをクリア
+    if (saveTimeoutRef.current) {
+      clearTimeout(saveTimeoutRef.current);
+    }
+
+    // jsonLd が null または空の場合は保存しない
+    if (!jsonLd || (typeof jsonLd === 'object' && Object.keys(jsonLd).length === 0)) {
+      return;
+    }
+
+    // 500ms の debounce 後に保存
+    saveTimeoutRef.current = setTimeout(async () => {
+      setSaveStatus('saving');
+      setSaveError(null);
+
+      try {
+        const result = await saveEpubJsonLd(jsonLd as Record<string, unknown>, 'epub-document.jsonld');
+        
+        if (result.ok) {
+          setSaveStatus('saved');
+          // 2秒後に 'idle' に戻す
+          setTimeout(() => {
+            setSaveStatus('idle');
+          }, 2000);
+        } else {
+          setSaveStatus('error');
+          setSaveError(result.error);
+        }
+      } catch (error) {
+        setSaveStatus('error');
+        setSaveError(error instanceof Error ? error.message : 'Unknown error');
+      }
+    }, 500);
+
+    // クリーンアップ関数
+    return () => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+    };
+  }, [jsonLd]);
+
   return (
     <div className={`epub-editor-container flex h-screen ${className}`}>
       {/* メインエディタエリア */}
@@ -160,6 +208,25 @@ export default function EditorContainer({
           </div>
 
           <div className="flex items-center gap-2">
+            {/* 保存状態の表示 */}
+            {saveStatus === 'saving' && (
+              <div className="text-sm text-gray-500 flex items-center gap-1">
+                <span className="animate-spin">⏳</span>
+                <span>Saving...</span>
+              </div>
+            )}
+            {saveStatus === 'saved' && (
+              <div className="text-sm text-green-600 flex items-center gap-1">
+                <span>✓</span>
+                <span>Saved</span>
+              </div>
+            )}
+            {saveStatus === 'error' && (
+              <div className="text-sm text-red-600 flex items-center gap-1" title={saveError || 'Save error'}>
+                <span>✗</span>
+                <span>Error</span>
+              </div>
+            )}
             <button
               onClick={() => setShowSettings(!showSettings)}
               className="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm hover:bg-gray-200"
