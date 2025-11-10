@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   terminusdb:
     image: terminusdb/terminusdb-server:latest
@@ -12,16 +10,17 @@ services:
     volumes:
       - terminusdb-data:/app/db
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:6363/"]
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:6363/ || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
+      start_period: 30s
 
   postgres:
     image: postgres:16-alpine
     container_name: producerv2-postgres
     ports:
-      - "5432:5432"
+      - "5434:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -42,16 +41,40 @@ services:
     ports:
       - "3000:3000"
     environment:
+      # Node.js / Next.js
       NODE_ENV: development
       CHOKIDAR_USEPOLLING: "true"
       WATCHPACK_POLLING: "true"
       WATCHPACK_POLLING_INTERVAL: 1000
-      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+      NEXT_PUBLIC_APP_URL: http://localhost:3000
+      
+      # TerminusDB
       TERMINUSDB_URL: http://terminusdb:6363
+      TERMINUSDB_USER: admin
       TERMINUSDB_SERVER_PASS: root
+      TERMINUSDB_DB: producerv2
+      TERMINUSDB_ORGANIZATION: ""
+      
+      # Database
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
-      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:-}
-      CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:-}
+      
+      # Clerk Authentication (開発用のプレースホルダー)
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: pk_test_ZW5vdWdoLWNoaXBtdW5rLTkyLmNsZXJrLmFjY291bnRzLmRldiQ
+      CLERK_SECRET_KEY: sk_test_FmPI35dNxAij0tuaX7rV5PDIDVmVvx8J11nyVyxEGu
+      
+      # LLM Providers (開発用のプレースホルダー)
+      OPENAI_API_KEY: sk-placeholder-openai-api-key
+      ANTHROPIC_API_KEY: sk-ant-placeholder-anthropic-api-key
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+      
+      # Media Providers (開発用のプレースホルダー)
+      HUME_API_KEY: placeholder-hume-api-key
+      RUNWAYML_API_KEY: placeholder-runwayml-api-key
+      
+      # YouTube API (開発用のプレースホルダー)
+      YOUTUBE_CLIENT_ID: placeholder-youtube-client-id
+      YOUTUBE_CLIENT_SECRET: placeholder-youtube-client-secret
+      YOUTUBE_REDIRECT_URI: http://localhost:3000/api/auth/youtube/callback
     volumes:
       - .:/app
       - /app/node_modules

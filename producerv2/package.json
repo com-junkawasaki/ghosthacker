@@ -16,7 +16,7 @@
     "next": "14.2.18",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "@terminusdb/terminusdb-client": "^7.0.0",
+    "@terminusdb/terminusdb-client": "^11.1.2",
     "@terminusdb/terminusdb-documents-ui": "^1.0.0",
     "@clerk/nextjs": "^6.0.0",
     "zod": "^3.23.8",
@@ -38,7 +38,7 @@
     "@graphql-codegen/cli": "^5.0.2",
     "@graphql-codegen/typescript": "^4.0.1",
     "@graphql-codegen/typescript-operations": "^4.2.0",
-    "@graphql-codegen/typed-document-node": "^4.1.0",
+    "@graphql-codegen/typed-document-node": "^6.1.0",
     "tailwindcss": "^3.4.1",
     "postcss": "^8.4.35",
     "autoprefixer": "^10.4.17"
