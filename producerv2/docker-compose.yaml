@@ -77,7 +77,7 @@ services:
       YOUTUBE_REDIRECT_URI: http://localhost:3000/api/auth/youtube/callback
     volumes:
       - .:/app
-      - /app/node_modules
+      - /app/performers/actors/content-creator/node_modules
       - /app/.next
     depends_on:
       - terminusdb

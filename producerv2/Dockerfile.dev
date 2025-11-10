@@ -4,20 +4,15 @@ WORKDIR /app
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
-# content-creatorのpackage.jsonをコピー
-COPY performers/actors/content-creator/package.json performers/actors/content-creator/pnpm-lock.yaml* ./performers/actors/content-creator/
+# プロジェクト全体をコピー
+COPY . .
 
+# content-creatorディレクトリに移動して依存関係をインストール
 WORKDIR /app/performers/actors/content-creator
 
 RUN pnpm install
 
-WORKDIR /app
-
-COPY . .
-
 EXPOSE 3000
-
-WORKDIR /app/performers/actors/content-creator
 
 CMD ["pnpm", "dev"]
 

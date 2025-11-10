@@ -9,7 +9,10 @@ const nextConfig = {
       bodySizeLimit: '10mb',
     },
   },
-  distDir: path.resolve(__dirname, '../../.next'),
+  // distDirはデフォルトの.nextを使用（content-creatorディレクトリ内）
+  // distDir: path.resolve(__dirname, '../../.next'),
+  // src/appディレクトリを明示的に指定
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
 };
 
 module.exports = nextConfig;
