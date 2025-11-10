@@ -1,0 +1,91 @@
+services:
+  # Next.js Application
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: producer-nextjs
+    ports:
+      - "1016:1016"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      NODE_ENV: development
+      # Improve file watching reliability on macOS bind mounts
+      CHOKIDAR_USEPOLLING: "true"
+      WATCHPACK_POLLING: "true"
+      WATCHPACK_POLLING_INTERVAL: 1000
+      # App URLs (loaded from host env / .envrc)
+      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:1016}
+      # GraphQL API URL
+      # Client-side: use localhost for browser access
+      NEXT_PUBLIC_GRAPHQL_API_URL: ${NEXT_PUBLIC_GRAPHQL_API_URL:-http://localhost:8081/graphql}
+      # Server-side: use container name for server-to-server communication
+      GRAPHQL_API_URL: ${GRAPHQL_API_URL:-http://graphql:8080/graphql}
+      # Database
+      DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:postgres@postgres:5432/postgres}
+      # Supabase (if using Supabase, these should be set from host env)
+      SUPABASE_URL: ${SUPABASE_URL:-}
+      SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY:-}
+      # Optional API Keys
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      YOUTUBE_CLIENT_ID: ${YOUTUBE_CLIENT_ID:-}
+      YOUTUBE_CLIENT_SECRET: ${YOUTUBE_CLIENT_SECRET:-}
+      SORA_API_KEY: ${SORA_API_KEY:-}
+    depends_on:
+      - graphql
+      - postgres
+    networks:
+      - producer-network
+
+  # GraphQL Rust Service
+  graphql:
+    build:
+      context: ./performers/services/graphql
+      dockerfile: Dockerfile.dev
+    container_name: producer-graphql
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./performers/services/graphql:/app
+      - graphql-target:/app/target
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:postgres@postgres:5432/postgres}
+      RUST_LOG: debug
+      RUST_BACKTRACE: 1
+    depends_on:
+      - postgres
+    networks:
+      - producer-network
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: producer-postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    networks:
+      - producer-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres-data:
+  graphql-target:
+
+networks:
+  producer-network:
+    driver: bridge
+

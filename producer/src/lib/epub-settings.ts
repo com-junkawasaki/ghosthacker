@@ -1,12 +1,13 @@
 /**
  * ePub設定管理ユーティリティ
  * 
- * JSON-LDファイルへの保存・読み込み
- * SHACL検証統合
+ * 型定義とCSS変換関数を提供
+ * 
+ * ⚠️ File I/O operations are handled via Server Actions (see editor/epub/actions.ts).
+ * This module only provides type definitions and utility functions that can be used on both client and server.
  * 
  * @context https://ghosthacker.gftd.co.jp/ontology#
  */
-import { readJsonLd, writeJsonLd } from './jsonld-storage';
 
 export interface JsonLdDocument {
   '@context'?: Record<string, unknown>;
@@ -69,54 +70,33 @@ const DEFAULT_SETTINGS: EpubEditorSettings = {
 };
 
 /**
- * ePub設定を読み込む（サーバー側: ファイルシステム）
+ * デフォルト設定を取得
  * 
- * クライアント側から呼び出す場合は Server Action を使用すること
+ * クライアント側で使用する場合は、この関数を使用してデフォルト値を取得できます。
+ * ファイルから読み込む場合は、Server Actions (loadEpubSettingsAction) を使用してください。
  */
-export function loadEpubSettings(filename: string = 'epub-settings.jsonld'): EpubEditorSettings {
-  if (typeof window !== 'undefined') {
-    // Client-side: Server Action経由で呼び出す必要がある
-    console.warn('loadEpubSettings should be called from server-side. Use loadEpubSettingsAction instead.');
-    return DEFAULT_SETTINGS;
-  }
-
-  try {
-    // ファイル名から拡張子を除去（readJsonLdが自動的に追加する）
-    const nameWithoutExt = filename.replace(/\.jsonld$/, '');
-    const settings = readJsonLd<EpubEditorSettings>('epub', nameWithoutExt);
-    if (settings) {
-      return settings;
-    }
-  } catch (error) {
-    console.error('Failed to load ePub settings from file:', error);
-  }
-
+export function getDefaultEpubSettings(): EpubEditorSettings {
   return DEFAULT_SETTINGS;
 }
 
 /**
- * ePub設定を保存する（サーバー側: ファイルシステム）
- * 
- * クライアント側から呼び出す場合は Server Action を使用すること
+ * @deprecated Use loadEpubSettingsAction from '@/app/(producer)/editor/epub/actions' instead.
+ * File I/O operations should be handled via Server Actions.
+ */
+export function loadEpubSettings(filename: string = 'epub-settings.jsonld'): EpubEditorSettings {
+  console.warn('loadEpubSettings is deprecated. Use loadEpubSettingsAction from editor/epub/actions.ts instead.');
+  return DEFAULT_SETTINGS;
+}
+
+/**
+ * @deprecated Use saveEpubSettingsAction from '@/app/(producer)/editor/epub/actions' instead.
+ * File I/O operations should be handled via Server Actions.
  */
 export function saveEpubSettings(
   settings: EpubEditorSettings,
   filename: string = 'epub-settings.jsonld'
 ): void {
-  if (typeof window !== 'undefined') {
-    // Client-side: Server Action経由で呼び出す必要がある
-    console.warn('saveEpubSettings should be called from server-side. Use saveEpubSettingsAction instead.');
-    return;
-  }
-
-  try {
-    // ファイル名から拡張子を除去（writeJsonLdが自動的に追加する）
-    const nameWithoutExt = filename.replace(/\.jsonld$/, '');
-    writeJsonLd('epub', nameWithoutExt, settings);
-  } catch (error) {
-    console.error('Failed to save ePub settings to file:', error);
-    throw error;
-  }
+  console.warn('saveEpubSettings is deprecated. Use saveEpubSettingsAction from editor/epub/actions.ts instead.');
 }
 
 /**
@@ -154,49 +134,22 @@ export function settingsToCss(settings: EpubEditorSettings): string {
 }
 
 /**
- * ePubドキュメントを読み込む（サーバー側: ファイルシステム）
- * 
- * クライアント側から呼び出す場合は Server Action を使用すること
+ * @deprecated Use loadEpubDocumentAction from '@/app/(producer)/editor/epub/actions' instead.
+ * File I/O operations should be handled via Server Actions.
  */
 export function loadEpubDocument(filename: string = 'epub-document.jsonld'): EpubDocument | null {
-  if (typeof window !== 'undefined') {
-    // Client-side: Server Action経由で呼び出す必要がある
-    console.warn('loadEpubDocument should be called from server-side. Use loadEpubDocumentAction instead.');
-    return null;
-  }
-
-  try {
-    // ファイル名から拡張子を除去（readJsonLdが自動的に追加する）
-    const nameWithoutExt = filename.replace(/\.jsonld$/, '');
-    return readJsonLd<EpubDocument>('epub', nameWithoutExt);
-  } catch (error) {
-    console.error('Failed to load ePub document from file:', error);
-    return null;
-  }
+  console.warn('loadEpubDocument is deprecated. Use loadEpubDocumentAction from editor/epub/actions.ts instead.');
+  return null;
 }
 
 /**
- * ePubドキュメントを保存する（サーバー側: ファイルシステム）
- * 
- * クライアント側から呼び出す場合は Server Action を使用すること
+ * @deprecated Use saveEpubDocumentAction from '@/app/(producer)/editor/epub/actions' instead.
+ * File I/O operations should be handled via Server Actions.
  */
 export function saveEpubDocument(
   document: EpubDocument,
   filename: string = 'epub-document.jsonld'
 ): void {
-  if (typeof window !== 'undefined') {
-    // Client-side: Server Action経由で呼び出す必要がある
-    console.warn('saveEpubDocument should be called from server-side. Use saveEpubDocumentAction instead.');
-    return;
-  }
-
-  try {
-    // ファイル名から拡張子を除去（writeJsonLdが自動的に追加する）
-    const nameWithoutExt = filename.replace(/\.jsonld$/, '');
-    writeJsonLd('epub', nameWithoutExt, document);
-  } catch (error) {
-    console.error('Failed to save ePub document to file:', error);
-    throw error;
-  }
+  console.warn('saveEpubDocument is deprecated. Use saveEpubDocumentAction from editor/epub/actions.ts instead.');
 }
 

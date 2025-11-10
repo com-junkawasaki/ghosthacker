@@ -5,9 +5,9 @@ import ContentEditable from './ContentEditable';
 import SettingsPanel from './SettingsPanel';
 import AIPanel from './AIPanel';
 import type { EpubEditorSettings, EpubDocument } from '@/lib/epub-settings';
-import { loadEpubSettings, saveEpubSettings, loadEpubDocument, saveEpubDocument } from '@/lib/epub-settings';
+import { getDefaultEpubSettings } from '@/lib/epub-settings';
 import { downloadEpub3 } from '@/lib/epub-export';
-import { saveEpubJsonLd } from '@/app/(producer)/editor/epub/actions';
+import { saveEpubJsonLd, saveEpubSettingsAction, loadEpubSettingsAction } from '@/app/(producer)/editor/epub/actions';
 
 interface EditorContainerProps {
   initialContent?: string;
@@ -28,8 +28,17 @@ export default function EditorContainer({
 }: EditorContainerProps) {
   const [viewMode, setViewMode] = useState<'scroll' | 'page'>('scroll');
   const [content, setContent] = useState(initialContent);
-  const [settings, setSettings] = useState<EpubEditorSettings>(() => loadEpubSettings());
+  const [settings, setSettings] = useState<EpubEditorSettings>(() => getDefaultEpubSettings());
   const [showSettings, setShowSettings] = useState(false);
+  
+  // 初期設定の読み込み（マウント時）
+  useEffect(() => {
+    loadEpubSettingsAction().then((result) => {
+      if (result.ok) {
+        setSettings(result.data);
+      }
+    });
+  }, []);
   const [jsonLd, setJsonLd] = useState<unknown>(null);
   const [showAIPanel, setShowAIPanel] = useState(false);
   const [selectedText, setSelectedText] = useState<string>('');
@@ -48,9 +57,10 @@ export default function EditorContainer({
     setJsonLd(newJsonLd);
   }, []);
 
-  const handleSettingsChange = useCallback((newSettings: EpubEditorSettings) => {
+  const handleSettingsChange = useCallback(async (newSettings: EpubEditorSettings) => {
     setSettings(newSettings);
-    saveEpubSettings(newSettings);
+    // Server Action経由で保存
+    await saveEpubSettingsAction(newSettings);
   }, []);
 
   // テキスト選択ハンドラ

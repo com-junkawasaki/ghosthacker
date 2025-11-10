@@ -2,7 +2,7 @@
 
 import { nodeSchemas, type NodeTypeKey } from "@/schemas/nodes";
 import { safeParse } from "valibot";
-import { writeJsonLd, readJsonLd } from "@/lib/jsonld-storage";
+import { writeJsonLd, readJsonLd } from "@/server/lib/jsonld-storage";
 
 // Merkle DAG: Server action to persist node config to file system
 export async function saveNodeConfig(params: {
