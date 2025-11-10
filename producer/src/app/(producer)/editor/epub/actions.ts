@@ -1,6 +1,6 @@
 'use server';
 
-import { writeJsonLd, readJsonLd, type JsonLdDocument } from '@/server/lib/jsonld-storage';
+import { writeJsonLd, readJsonLd, type JsonLdDocument } from '@/infra/server/jsonld-storage';
 import type { EpubEditorSettings, EpubDocument } from '@/lib/epub-settings';
 
 /**

@@ -1,6 +1,6 @@
 'use server';
 
-import { readJsonLd, listJsonLdFiles } from '@/server/lib/jsonld-storage';
+import { readJsonLd, listJsonLdFiles } from '@/infra/server/jsonld-storage';
 
 /**
  * エピソード一覧を取得する Server Action

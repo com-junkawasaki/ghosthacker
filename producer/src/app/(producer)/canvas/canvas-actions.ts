@@ -1,6 +1,6 @@
 'use server';
 
-import { writeJsonLd, readJsonLd } from '@/server/lib/jsonld-storage';
+import { writeJsonLd, readJsonLd } from '@/infra/server/jsonld-storage';
 import { canvasToJsonLd, jsonLdToCanvas, type CanvasJsonLd } from '@/lib/canvas-jsonld';
 import type { Node as RFNode, Edge as RFEdge } from '@reactflow/core';
 import type { NodeData } from '@/pipeline/node-types';
