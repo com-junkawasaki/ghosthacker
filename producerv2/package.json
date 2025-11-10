@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "pnpm type-check && next build",
-    "start": "next start",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "dev": "cd performers/actors/content-creator && next dev",
+    "build": "pnpm type-check && cd performers/actors/content-creator && next build",
+    "start": "cd performers/actors/content-creator && next start",
+    "lint": "cd performers/actors/content-creator && eslint .",
+    "lint:fix": "cd performers/actors/content-creator && eslint . --fix",
     "type-check": "tsc --noEmit",
     "codegen": "graphql-codegen --config codegen.yaml",
     "codegen:watch": "graphql-codegen --config codegen.yaml --watch"

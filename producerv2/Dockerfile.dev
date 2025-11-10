@@ -12,5 +12,7 @@ COPY . .
 
 EXPOSE 3000
 
+WORKDIR /app/performers/actors/content-creator
+
 CMD ["pnpm", "dev"]
 

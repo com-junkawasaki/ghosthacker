@@ -10,11 +10,11 @@ services:
     volumes:
       - terminusdb-data:/app/db
     healthcheck:
-      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:6363/ || exit 1"]
+      test: ["CMD-SHELL", "python3 -c 'import urllib.request; urllib.request.urlopen(\"http://localhost:6363/\")' || exit 1"]
       interval: 10s
       timeout: 5s
-      retries: 5
-      start_period: 30s
+      retries: 10
+      start_period: 60s
 
   postgres:
     image: postgres:16-alpine
@@ -80,10 +80,8 @@ services:
       - /app/node_modules
       - /app/.next
     depends_on:
-      terminusdb:
-        condition: service_healthy
-      postgres:
-        condition: service_healthy
+      - terminusdb
+      - postgres
 
 volumes:
   terminusdb-data:

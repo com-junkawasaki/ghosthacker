@@ -25,12 +25,18 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/internal/*": ["./src/internal/*"],
+      "@/internal/*": ["../../src/internal/*"],
       "@/components/*": ["./src/components/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "performers/**/*.ts", "performers/**/*.tsx"],
-  "exclude": ["node_modules", ".next", "performers/actors/content-creator"]
+  "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }
+
