@@ -3,7 +3,7 @@ const path = require('path');
 
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['@terminusdb/terminusdb-documents-ui'],
+  transpilePackages: ['@terminusdb/terminusdb-documents-ui', '@terminusdb/terminusdb-client'],
   experimental: {
     serverActions: {
       bodySizeLimit: '10mb',

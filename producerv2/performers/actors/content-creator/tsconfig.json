@@ -39,7 +39,7 @@
         "./src/*"
       ],
       "@/internal/*": [
-        "../../src/internal/*"
+        "./src/internal/*"
       ],
       "@/components/*": [
         "./src/components/*"

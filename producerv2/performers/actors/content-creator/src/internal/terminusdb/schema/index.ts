@@ -1,0 +1,37 @@
+/**
+ * TerminusDB OWL Schema
+ */
+
+import { getTerminusDBClient } from '../client';
+
+const schema = {
+  "@context": {
+    "ex": "https://example.org/ontology#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "ex:Story",
+      "@type": "owl:Class",
+      "rdfs:label": "Story",
+      "rdfs:comment": "A story document"
+    },
+    {
+      "@id": "ex:Script",
+      "@type": "owl:Class",
+      "rdfs:label": "Script",
+      "rdfs:comment": "A script generated from a story"
+    }
+  ]
+};
+
+export async function applyOWLSchema(): Promise<void> {
+  const client = getTerminusDBClient();
+  // OWLスキーマを適用する実装
+  // ここでは基本的な実装のみ
+  console.log('Applying OWL schema:', schema);
+}
+
