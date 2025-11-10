@@ -6,8 +6,7 @@
  * 
  * @context https://ghosthacker.gftd.co.jp/ontology#
  */
-// Note: jsonld-storage uses node:fs, so we use localStorage for client-side
-// For server-side, use API routes or server actions
+import { readJsonLd, writeJsonLd } from './jsonld-storage';
 
 export interface JsonLdDocument {
   '@context'?: Record<string, unknown>;
@@ -70,42 +69,53 @@ const DEFAULT_SETTINGS: EpubEditorSettings = {
 };
 
 /**
- * ePub設定を読み込む（クライアント側: localStorage使用）
+ * ePub設定を読み込む（サーバー側: ファイルシステム）
+ * 
+ * クライアント側から呼び出す場合は Server Action を使用すること
  */
 export function loadEpubSettings(filename: string = 'epub-settings.jsonld'): EpubEditorSettings {
-  if (typeof window === 'undefined') {
-    // Server-side: return default
+  if (typeof window !== 'undefined') {
+    // Client-side: Server Action経由で呼び出す必要がある
+    console.warn('loadEpubSettings should be called from server-side. Use loadEpubSettingsAction instead.');
     return DEFAULT_SETTINGS;
   }
 
   try {
-    const stored = localStorage.getItem(`epub-settings:${filename}`);
-    if (stored) {
-      return JSON.parse(stored) as EpubEditorSettings;
+    // ファイル名から拡張子を除去（readJsonLdが自動的に追加する）
+    const nameWithoutExt = filename.replace(/\.jsonld$/, '');
+    const settings = readJsonLd<EpubEditorSettings>('epub', nameWithoutExt);
+    if (settings) {
+      return settings;
     }
   } catch (error) {
-    console.error('Failed to load ePub settings from localStorage:', error);
+    console.error('Failed to load ePub settings from file:', error);
   }
 
   return DEFAULT_SETTINGS;
 }
 
 /**
- * ePub設定を保存する（クライアント側: localStorage使用）
+ * ePub設定を保存する（サーバー側: ファイルシステム）
+ * 
+ * クライアント側から呼び出す場合は Server Action を使用すること
  */
 export function saveEpubSettings(
   settings: EpubEditorSettings,
   filename: string = 'epub-settings.jsonld'
 ): void {
-  if (typeof window === 'undefined') {
-    // Server-side: no-op
+  if (typeof window !== 'undefined') {
+    // Client-side: Server Action経由で呼び出す必要がある
+    console.warn('saveEpubSettings should be called from server-side. Use saveEpubSettingsAction instead.');
     return;
   }
 
   try {
-    localStorage.setItem(`epub-settings:${filename}`, JSON.stringify(settings));
+    // ファイル名から拡張子を除去（writeJsonLdが自動的に追加する）
+    const nameWithoutExt = filename.replace(/\.jsonld$/, '');
+    writeJsonLd('epub', nameWithoutExt, settings);
   } catch (error) {
-    console.error('Failed to save ePub settings to localStorage:', error);
+    console.error('Failed to save ePub settings to file:', error);
+    throw error;
   }
 }
 
@@ -144,40 +154,49 @@ export function settingsToCss(settings: EpubEditorSettings): string {
 }
 
 /**
- * ePubドキュメントを読み込む（クライアント側: localStorage使用）
+ * ePubドキュメントを読み込む（サーバー側: ファイルシステム）
+ * 
+ * クライアント側から呼び出す場合は Server Action を使用すること
  */
 export function loadEpubDocument(filename: string = 'epub-document.jsonld'): EpubDocument | null {
-  if (typeof window === 'undefined') {
+  if (typeof window !== 'undefined') {
+    // Client-side: Server Action経由で呼び出す必要がある
+    console.warn('loadEpubDocument should be called from server-side. Use loadEpubDocumentAction instead.');
     return null;
   }
 
   try {
-    const stored = localStorage.getItem(`epub-document:${filename}`);
-    if (stored) {
-      return JSON.parse(stored) as EpubDocument;
-    }
+    // ファイル名から拡張子を除去（readJsonLdが自動的に追加する）
+    const nameWithoutExt = filename.replace(/\.jsonld$/, '');
+    return readJsonLd<EpubDocument>('epub', nameWithoutExt);
   } catch (error) {
-    console.error('Failed to load ePub document from localStorage:', error);
+    console.error('Failed to load ePub document from file:', error);
+    return null;
   }
-
-  return null;
 }
 
 /**
- * ePubドキュメントを保存する（クライアント側: localStorage使用）
+ * ePubドキュメントを保存する（サーバー側: ファイルシステム）
+ * 
+ * クライアント側から呼び出す場合は Server Action を使用すること
  */
 export function saveEpubDocument(
   document: EpubDocument,
   filename: string = 'epub-document.jsonld'
 ): void {
-  if (typeof window === 'undefined') {
+  if (typeof window !== 'undefined') {
+    // Client-side: Server Action経由で呼び出す必要がある
+    console.warn('saveEpubDocument should be called from server-side. Use saveEpubDocumentAction instead.');
     return;
   }
 
   try {
-    localStorage.setItem(`epub-document:${filename}`, JSON.stringify(document));
+    // ファイル名から拡張子を除去（writeJsonLdが自動的に追加する）
+    const nameWithoutExt = filename.replace(/\.jsonld$/, '');
+    writeJsonLd('epub', nameWithoutExt, document);
   } catch (error) {
-    console.error('Failed to save ePub document to localStorage:', error);
+    console.error('Failed to save ePub document to file:', error);
+    throw error;
   }
 }
 

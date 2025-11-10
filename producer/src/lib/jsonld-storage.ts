@@ -25,7 +25,9 @@ export function readJsonLd<T = JsonLdDocument>(
   category: 'canvas' | 'characters' | 'episodes' | 'translations' | 'epub',
   filename: string
 ): T | null {
-  const filePath = path.join(RESOURCES_BASE, category, filename);
+  // 拡張子がない場合は自動追加、サブディレクトリもサポート
+  const nameWithExt = filename.endsWith('.jsonld') ? filename : `${filename}.jsonld`;
+  const filePath = path.join(RESOURCES_BASE, category, nameWithExt);
   
   if (!fs.existsSync(filePath)) {
     return null;
@@ -48,19 +50,20 @@ export function writeJsonLd(
   filename: string,
   data: JsonLdDocument
 ): void {
-  const dirPath = path.join(RESOURCES_BASE, category);
+  // 拡張子がない場合は自動追加、サブディレクトリもサポート
+  const nameWithExt = filename.endsWith('.jsonld') ? filename : `${filename}.jsonld`;
+  const fullPath = path.join(RESOURCES_BASE, category, nameWithExt);
+  const dirPath = path.dirname(fullPath);
   
-  // ディレクトリが存在しない場合は作成
+  // ディレクトリが存在しない場合は作成（サブディレクトリも含む）
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, { recursive: true });
   }
-
-  const filePath = path.join(dirPath, filename);
   
   try {
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
+    fs.writeFileSync(fullPath, JSON.stringify(data, null, 2), 'utf-8');
   } catch (error) {
-    console.error(`Failed to write JSON-LD file: ${filePath}`, error);
+    console.error(`Failed to write JSON-LD file: ${fullPath}`, error);
     throw error;
   }
 }

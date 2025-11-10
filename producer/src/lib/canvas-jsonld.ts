@@ -7,9 +7,7 @@
  */
 import type { Node as RFNode, Edge as RFEdge } from '@reactflow/core';
 import type { NodeData } from '@/pipeline/node-types';
-
-// Note: jsonld-storage uses node:fs, so we use localStorage for client-side
-// For server-side, use API routes or server actions
+import { readJsonLd, writeJsonLd } from './jsonld-storage';
 export interface JsonLdDocument {
   '@context'?: Record<string, unknown>;
   '@graph'?: unknown[];
@@ -179,49 +177,56 @@ export function jsonLdToCanvas(
 }
 
 /**
- * Canvas を JSON-LD ファイルに保存（クライアント側: localStorage使用）
+ * Canvas を JSON-LD ファイルに保存（サーバー側: ファイルシステム）
+ * 
+ * クライアント側から呼び出す場合は Server Action を使用すること
  */
 export function saveCanvasToJsonLd(
   nodes: RFNode<NodeData>[],
   edges: RFEdge[],
   filename: string = 'canvas.jsonld'
 ): void {
-  if (typeof window === 'undefined') {
-    // Server-side: no-op
+  if (typeof window !== 'undefined') {
+    // Client-side: Server Action経由で呼び出す必要がある
+    console.warn('saveCanvasToJsonLd should be called from server-side. Use saveCanvasToJsonLdAction instead.');
     return;
   }
 
   try {
     const jsonLd = canvasToJsonLd(nodes, edges);
-    const storageKey = `canvas:${filename}`;
-    localStorage.setItem(storageKey, JSON.stringify(jsonLd));
+    // ファイル名から拡張子を除去（writeJsonLdが自動的に追加する）
+    const nameWithoutExt = filename.replace(/\.jsonld$/, '');
+    writeJsonLd('canvas', nameWithoutExt, jsonLd);
   } catch (error) {
-    console.error('Failed to save canvas to localStorage:', error);
+    console.error('Failed to save canvas to file:', error);
+    throw error;
   }
 }
 
 /**
- * JSON-LD ファイルから Canvas を読み込み（クライアント側: localStorage使用）
+ * JSON-LD ファイルから Canvas を読み込み（サーバー側: ファイルシステム）
+ * 
+ * クライアント側から呼び出す場合は Server Action を使用すること
  */
 export function loadCanvasFromJsonLd(
   filename: string = 'canvas.jsonld'
 ): { nodes: RFNode<NodeData>[]; edges: RFEdge[] } | null {
-  if (typeof window === 'undefined') {
-    // Server-side: return null
+  if (typeof window !== 'undefined') {
+    // Client-side: Server Action経由で呼び出す必要がある
+    console.warn('loadCanvasFromJsonLd should be called from server-side. Use loadCanvasFromJsonLdAction instead.');
     return null;
   }
 
   try {
-    const storageKey = `canvas:${filename}`;
-    const stored = localStorage.getItem(storageKey);
-    if (!stored) {
+    // ファイル名から拡張子を除去（readJsonLdが自動的に追加する）
+    const nameWithoutExt = filename.replace(/\.jsonld$/, '');
+    const jsonLd = readJsonLd<CanvasJsonLd>('canvas', nameWithoutExt);
+    if (!jsonLd) {
       return null;
     }
-
-    const jsonLd = JSON.parse(stored) as CanvasJsonLd;
     return jsonLdToCanvas(jsonLd);
   } catch (error) {
-    console.error('Failed to load canvas from localStorage:', error);
+    console.error('Failed to load canvas from file:', error);
     return null;
   }
 }

@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import type { Node as RFNode } from '@reactflow/core';
 import type { NodeData } from '@/pipeline/node-types';
-import { saveCanvasToJsonLd, loadCanvasFromJsonLd, canvasToJsonLd } from '@/lib/canvas-jsonld';
+import { canvasToJsonLd } from '@/lib/canvas-jsonld';
+import { saveCanvasToJsonLdAction } from '../canvas-actions';
 import { validateCanvasJsonLd, formatValidationErrors } from '@/lib/shacl-validator';
 import type { Edge as RFEdge } from '@reactflow/core';
 
@@ -54,11 +55,18 @@ export default function NodeEditorPanel({
       
       if (!validation.valid) {
         setValidationErrors(formatValidationErrors(validation));
+        setIsSaving(false);
         return;
       }
 
-      // JSON-LD ファイルに保存
-      saveCanvasToJsonLd(nodes, edges);
+      // JSON-LD ファイルに保存（Server Action経由）
+      const result = await saveCanvasToJsonLdAction(nodes, edges);
+      
+      if (!result.ok) {
+        setValidationErrors(`Save failed: ${result.error}`);
+        setIsSaving(false);
+        return;
+      }
       
       setValidationErrors('');
       onSave();

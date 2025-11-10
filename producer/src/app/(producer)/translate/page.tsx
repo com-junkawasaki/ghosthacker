@@ -24,24 +24,48 @@ export default function TranslatePage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Load episodes from localStorage or API
+  // Load episodes from file system
   useEffect(() => {
     const loadEpisodes = async () => {
       try {
-        // Try to load from localStorage
-        if (typeof window !== 'undefined') {
-          const stored = localStorage.getItem('episodes');
-          if (stored) {
-            const parsed = JSON.parse(stored) as Episode[];
-            if (parsed.length > 0) {
-              setEpisodes(parsed);
-              return;
-            }
+        const { listEpisodesAction, loadEpisodeAction } = await import('@/app/(producer)/episodes/actions');
+        const listResult = await listEpisodesAction();
+        
+        if (!listResult.ok) {
+          setError(listResult.error);
+          return;
+        }
+
+        // Load each episode file
+        const loadedEpisodes: Episode[] = [];
+        
+        for (const episodeId of listResult.data) {
+          const epResult = await loadEpisodeAction(episodeId);
+          if (epResult.ok) {
+            const epData = epResult.data as { 
+              '@id'?: string; 
+              'schema:title'?: string; 
+              'gh:content'?: string;
+              'gh:hasSentence'?: Array<{ '@id': string; 'gh:text'?: string; 'gh:translation'?: string }>;
+              [key: string]: unknown;
+            };
+            
+            const sentences: Sentence[] = (epData['gh:hasSentence'] || []).map((s, idx) => ({
+              id: s['@id']?.replace('sentence:', '') || `sentence-${idx}`,
+              text: s['gh:text'] || '',
+              translation: s['gh:translation'],
+            }));
+
+            loadedEpisodes.push({
+              id: epData['@id']?.replace('episode:', '') || episodeId,
+              title: (epData['schema:title'] || episodeId) as string,
+              content: (epData['gh:content'] || '') as string,
+              sentences,
+            });
           }
         }
 
-        // Placeholder: empty episodes list
-        setEpisodes([]);
+        setEpisodes(loadedEpisodes);
       } catch (err) {
         setError(`Failed to load episodes: ${err instanceof Error ? err.message : 'Unknown error'}`);
       }

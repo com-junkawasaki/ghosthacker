@@ -8,7 +8,7 @@ import { Background } from '@reactflow/background';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createActor, createMachine } from 'xstate';
 import NodeEditorPanel from './components/NodeEditorPanel';
-import { loadCanvasFromJsonLd, saveCanvasToJsonLd } from '@/lib/canvas-jsonld';
+import { loadCanvasFromJsonLdAction, saveCanvasToJsonLdAction } from './canvas-actions';
 import {
   SourceDocNode,
   PromptNode,
@@ -191,16 +191,16 @@ function ProducerCanvasComponent() {
 
   // Load canvas from JSON-LD file on mount
   useEffect(() => {
-    const loadCanvas = () => {
+    const loadCanvas = async () => {
       try {
-        const canvasData = loadCanvasFromJsonLd('canvas.jsonld');
-        if (canvasData) {
-          setNodes(canvasData.nodes);
-          setEdges(canvasData.edges);
+        const result = await loadCanvasFromJsonLdAction('canvas.jsonld');
+        if (result.ok) {
+          setNodes(result.data.nodes);
+          setEdges(result.data.edges);
           producerActor.send({
             type: 'GRAPH_LOADED',
-            nodes: canvasData.nodes,
-            edges: canvasData.edges,
+            nodes: result.data.nodes,
+            edges: result.data.edges,
           });
           return;
         }
@@ -310,8 +310,11 @@ function ProducerCanvasComponent() {
     );
   }, [setNodes]);
 
-  const handleSave = useCallback(() => {
-    saveCanvasToJsonLd(nodes, edges);
+  const handleSave = useCallback(async () => {
+    const result = await saveCanvasToJsonLdAction(nodes, edges);
+    if (!result.ok) {
+      console.error('Failed to save canvas:', result.error);
+    }
   }, [nodes, edges]);
 
   if (actorState.matches('loading') || storyGraphLoading) {

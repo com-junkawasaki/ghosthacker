@@ -19,25 +19,31 @@ export default function EpisodeGenerationPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Load characters from localStorage or API
+  // Load characters from file system
   const loadCharacters = async () => {
     try {
-      // TODO: Load from API or localStorage
-      // For now, use placeholder data
-      const loadedCharacters: Character[] = [
-        { id: 'character1', name: 'Character 1' },
-        { id: 'character2', name: 'Character 2' },
-      ];
+      const { listCharactersAction } = await import('@/app/(producer)/characters/actions');
+      const result = await listCharactersAction();
+      
+      if (!result.ok) {
+        setError(result.error);
+        return;
+      }
 
-      // Try to load from localStorage
-      if (typeof window !== 'undefined') {
-        const stored = localStorage.getItem('characters');
-        if (stored) {
-          const parsed = JSON.parse(stored) as Character[];
-          if (parsed.length > 0) {
-            setCharacters(parsed);
-            return;
-          }
+      // Load each character file
+      const { loadCharacterAction } = await import('@/app/(producer)/characters/actions');
+      const loadedCharacters: Character[] = [];
+      
+      for (const characterId of result.data) {
+        const charResult = await loadCharacterAction(characterId);
+        if (charResult.ok) {
+          const charData = charResult.data as { '@id'?: string; 'schema:name'?: string; 'gh:name'?: string; [key: string]: unknown };
+          loadedCharacters.push({
+            id: charData['@id']?.replace('character:', '') || characterId,
+            name: (charData['schema:name'] || charData['gh:name'] || characterId) as string,
+            backstory: charData['gh:backstory'] as string | undefined,
+            traits: charData['gh:traits'] as string[] | undefined,
+          });
         }
       }
 

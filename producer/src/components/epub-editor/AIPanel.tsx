@@ -151,11 +151,12 @@ export default function AIPanel({
   // コンテキスト読み込み
   const loadContextForGeneration = useCallback(async () => {
     try {
-      // キャラクター情報を読み込む（localStorageまたはAPI経由）
-      if (characterId && typeof window !== 'undefined') {
-        const stored = localStorage.getItem(`character:${characterId}`);
-        if (stored) {
-          return JSON.parse(stored);
+      // キャラクター情報を読み込む（ファイルシステム経由）
+      if (characterId) {
+        const { loadCharacterAction } = await import('@/app/(producer)/characters/actions');
+        const result = await loadCharacterAction(characterId);
+        if (result.ok) {
+          return result.data;
         }
       }
       return {};
