@@ -9,4 +9,3 @@ generates:
     config:
       useIndexSignature: true
       skipTypename: false
-
