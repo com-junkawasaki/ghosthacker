@@ -1,0 +1,12 @@
+schema: http://localhost:8080/graphql
+documents: "src/**/*.graphql"
+generates:
+  src/generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typed-document-node"
+    config:
+      useIndexSignature: true
+      skipTypename: false
+

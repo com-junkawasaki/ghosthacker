@@ -1,0 +1,53 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "id": "@id",
+    "type": "@type",
+    "ex": "https://gftd.ai/producerv2#",
+    "dct": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    
+    "name": "dct:title",
+    "description": "dct:description",
+    "label": "rdfs:label"
+  },
+  "@graph": [
+    {
+      "id": "ex:StoryIngestion",
+      "type": "ex:Capability",
+      "name": "Story Ingestion",
+      "label": "Story Ingestion",
+      "description": "JSON-LD形式のstoryをTerminusDBに取り込み、OWLオントロジーとして管理する能力"
+    },
+    {
+      "id": "ex:ScriptGeneration",
+      "type": "ex:Capability",
+      "name": "Script Generation",
+      "label": "Script Generation",
+      "description": "StoryからLLMを使用してスクリプトを生成する能力（GPT-5, Claude, Ollama対応）"
+    },
+    {
+      "id": "ex:MediaGeneration",
+      "type": "ex:Capability",
+      "name": "Media Generation",
+      "label": "Media Generation",
+      "description": "スクリプトから画像（GPT）、音声（Hume）、動画（RunwayML）を生成する能力"
+    },
+    {
+      "id": "ex:VideoComposition",
+      "type": "ex:Capability",
+      "name": "Video Composition",
+      "label": "Video Composition",
+      "description": "画像と音声を合成して動画を作成する能力"
+    },
+    {
+      "id": "ex:YouTubeUpload",
+      "type": "ex:Capability",
+      "name": "YouTube Upload",
+      "label": "YouTube Upload",
+      "description": "生成された動画をYouTubeに自動アップロードする能力"
+    }
+  ]
+}
+

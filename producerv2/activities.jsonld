@@ -1,0 +1,75 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "id": "@id",
+    "type": "@type",
+    "ex": "https://gftd.ai/producerv2#",
+    "dct": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "cpm": "https://example.org/cpm#",
+    "prov": "http://www.w3.org/ns/prov#",
+    
+    "name": "dct:title",
+    "description": "dct:description",
+    "dependsOn": {"@id": "cpm:dependsOn", "@container": "@set"},
+    "produces": {"@id": "cpm:produces", "@container": "@set"},
+    "usesCapability": {"@id": "ex:usesCapability", "@type": "@id"}
+  },
+  "@graph": [
+    {
+      "id": "ex:IngestStory",
+      "type": "ex:Activity",
+      "name": "Ingest Story",
+      "description": "JSON-LD形式のstoryをTerminusDBに保存",
+      "usesCapability": "ex:StoryIngestion",
+      "dependsOn": [],
+      "produces": [{"@id": "ex:Story"}]
+    },
+    {
+      "id": "ex:GenerateScript",
+      "type": "ex:Activity",
+      "name": "Generate Script",
+      "description": "StoryからLLMを使用してスクリプトを生成",
+      "usesCapability": "ex:ScriptGeneration",
+      "dependsOn": [{"@id": "ex:IngestStory"}],
+      "produces": [{"@id": "ex:Script"}]
+    },
+    {
+      "id": "ex:GenerateImage",
+      "type": "ex:Activity",
+      "name": "Generate Image",
+      "description": "スクリプトから画像を生成（GPT Image API）",
+      "usesCapability": "ex:MediaGeneration",
+      "dependsOn": [{"@id": "ex:GenerateScript"}],
+      "produces": [{"@id": "ex:ImageAsset"}]
+    },
+    {
+      "id": "ex:GenerateAudio",
+      "type": "ex:Activity",
+      "name": "Generate Audio",
+      "description": "スクリプトから音声を生成（Hume TTS API）",
+      "usesCapability": "ex:MediaGeneration",
+      "dependsOn": [{"@id": "ex:GenerateScript"}],
+      "produces": [{"@id": "ex:AudioAsset"}]
+    },
+    {
+      "id": "ex:ComposeVideo",
+      "type": "ex:Activity",
+      "name": "Compose Video",
+      "description": "画像と音声を合成して動画を作成（RunwayML）",
+      "usesCapability": "ex:VideoComposition",
+      "dependsOn": [{"@id": "ex:GenerateImage"}, {"@id": "ex:GenerateAudio"}],
+      "produces": [{"@id": "ex:VideoAsset"}]
+    },
+    {
+      "id": "ex:UploadYouTube",
+      "type": "ex:Activity",
+      "name": "Upload to YouTube",
+      "description": "生成された動画をYouTubeに自動アップロード",
+      "usesCapability": "ex:YouTubeUpload",
+      "dependsOn": [{"@id": "ex:ComposeVideo"}],
+      "produces": [{"@id": "ex:YouTubePublication"}]
+    }
+  ]
+}
+

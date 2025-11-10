@@ -1,0 +1,112 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "id": "@id",
+    "type": "@type",
+    "ex": "https://gftd.ai/producerv2#",
+    "dct": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "cpm": "https://example.org/cpm#",
+    
+    "name": "dct:title",
+    "description": "dct:description",
+    "createdAt": {"@id": "dct:created", "@type": "xsd:dateTime"},
+    "updatedAt": {"@id": "dct:modified", "@type": "xsd:dateTime"},
+    "goal": "ex:goal",
+    "status": "ex:status",
+    "capabilities": {"@id": "ex:hasCapability", "@container": "@set"},
+    "activities": {"@id": "ex:hasActivity", "@container": "@set"},
+    "performers": {"@id": "ex:hasPerformer", "@container": "@set"},
+    "dependsOn": {"@id": "cpm:dependsOn", "@container": "@set"},
+    "produces": {"@id": "cpm:produces", "@container": "@set"}
+  },
+  "id": "https://gftd.ai/producerv2",
+  "type": "ex:Project",
+  "name": "OWL-based LLM Content Generator with YouTube Pipeline",
+  "description": "TerminusDBとOWLオントロジーを活用した、storyからYouTube動画までの制作パイプラインを統合するコンテンツジェネレーター",
+  "goal": "JSON-LD形式のstory入力から、YouTube動画アップロードまでを統合した制作パイプラインを構築し、複数のLLMプロバイダーを切り替え可能にする",
+  "status": "active",
+  "createdAt": "2025-01-11T00:00:00+09:00",
+  "updatedAt": "2025-01-11T00:00:00+09:00",
+  "capabilities": [
+    {"@id": "ex:StoryIngestion", "name": "Story Ingestion"},
+    {"@id": "ex:ScriptGeneration", "name": "Script Generation"},
+    {"@id": "ex:MediaGeneration", "name": "Media Generation"},
+    {"@id": "ex:VideoComposition", "name": "Video Composition"},
+    {"@id": "ex:YouTubeUpload", "name": "YouTube Upload"}
+  ],
+  "activities": [
+    {
+      "@id": "ex:IngestStory",
+      "name": "Ingest Story",
+      "dependsOn": [],
+      "produces": [{"@id": "ex:Story"}]
+    },
+    {
+      "@id": "ex:GenerateScript",
+      "name": "Generate Script",
+      "dependsOn": [{"@id": "ex:IngestStory"}],
+      "produces": [{"@id": "ex:Script"}]
+    },
+    {
+      "@id": "ex:GenerateImage",
+      "name": "Generate Image",
+      "dependsOn": [{"@id": "ex:GenerateScript"}],
+      "produces": [{"@id": "ex:ImageAsset"}]
+    },
+    {
+      "@id": "ex:GenerateAudio",
+      "name": "Generate Audio",
+      "dependsOn": [{"@id": "ex:GenerateScript"}],
+      "produces": [{"@id": "ex:AudioAsset"}]
+    },
+    {
+      "@id": "ex:ComposeVideo",
+      "name": "Compose Video",
+      "dependsOn": [{"@id": "ex:GenerateImage"}, {"@id": "ex:GenerateAudio"}],
+      "produces": [{"@id": "ex:VideoAsset"}]
+    },
+    {
+      "@id": "ex:UploadYouTube",
+      "name": "Upload to YouTube",
+      "dependsOn": [{"@id": "ex:ComposeVideo"}],
+      "produces": [{"@id": "ex:YouTubePublication"}]
+    }
+  ],
+  "performers": [
+    {
+      "@id": "ex:ContentCreatorActor",
+      "type": "ex:Actor",
+      "name": "Content Creator"
+    },
+    {
+      "@id": "ex:StoryIngestionService",
+      "type": "ex:Service",
+      "name": "Story Ingestion Service"
+    },
+    {
+      "@id": "ex:ContentGenerationService",
+      "type": "ex:Service",
+      "name": "Content Generation Service"
+    },
+    {
+      "@id": "ex:MediaGenerationService",
+      "type": "ex:Service",
+      "name": "Media Generation Service"
+    },
+    {
+      "@id": "ex:YouTubeService",
+      "type": "ex:Service",
+      "name": "YouTube Service"
+    },
+    {
+      "@id": "ex:TerminusDBSystem",
+      "type": "ex:System",
+      "name": "TerminusDB System"
+    }
+  ]
+}
+

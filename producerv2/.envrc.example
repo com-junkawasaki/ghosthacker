@@ -1,0 +1,28 @@
+# TerminusDB
+export TERMINUSDB_URL=http://localhost:6363
+export TERMINUSDB_SERVER_PASS=root
+
+# Database
+export DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
+
+# Clerk Authentication
+export NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
+export CLERK_SECRET_KEY=sk_test_...
+
+# LLM Providers
+export OPENAI_API_KEY=sk-...
+export ANTHROPIC_API_KEY=sk-ant-...
+export OLLAMA_BASE_URL=http://localhost:11434
+
+# Media Providers
+export HUME_API_KEY=...
+export RUNWAYML_API_KEY=...
+
+# YouTube API
+export YOUTUBE_CLIENT_ID=...
+export YOUTUBE_CLIENT_SECRET=...
+export YOUTUBE_REDIRECT_URI=http://localhost:3000/api/auth/youtube/callback
+
+# App URL
+export NEXT_PUBLIC_APP_URL=http://localhost:3000
+

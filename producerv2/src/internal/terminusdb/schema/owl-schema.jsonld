@@ -1,0 +1,169 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "id": "@id",
+    "type": "@type",
+    "ex": "https://gftd.ai/producerv2#",
+    "dct": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    
+    "label": "rdfs:label",
+    "comment": "rdfs:comment",
+    "domain": {"@id": "rdfs:domain", "@type": "@id"},
+    "range": {"@id": "rdfs:range", "@type": "@id"},
+    "subClassOf": {"@id": "rdfs:subClassOf", "@type": "@id"},
+    "wasDerivedFrom": {"@id": "prov:wasDerivedFrom", "@type": "@id"}
+  },
+  "@graph": [
+    {
+      "id": "ex:Story",
+      "type": "owl:Class",
+      "label": "Story",
+      "comment": "入力ストーリー。JSON-LD形式で保存される。"
+    },
+    {
+      "id": "ex:Script",
+      "type": "owl:Class",
+      "label": "Script",
+      "comment": "生成されたスクリプト。StoryからLLMで生成される。",
+      "subClassOf": "ex:Story"
+    },
+    {
+      "id": "ex:ImageAsset",
+      "type": "owl:Class",
+      "label": "Image Asset",
+      "comment": "画像アセット。Scriptから生成される。"
+    },
+    {
+      "id": "ex:AudioAsset",
+      "type": "owl:Class",
+      "label": "Audio Asset",
+      "comment": "音声アセット。Scriptから生成される。"
+    },
+    {
+      "id": "ex:VideoAsset",
+      "type": "owl:Class",
+      "label": "Video Asset",
+      "comment": "動画アセット。ImageAssetとAudioAssetから合成される。"
+    },
+    {
+      "id": "ex:YouTubePublication",
+      "type": "owl:Class",
+      "label": "YouTube Publication",
+      "comment": "YouTube公開情報。VideoAssetから生成される。"
+    },
+    {
+      "id": "ex:title",
+      "type": "owl:DatatypeProperty",
+      "label": "Title",
+      "domain": "ex:Story",
+      "range": "xsd:string"
+    },
+    {
+      "id": "ex:content",
+      "type": "owl:DatatypeProperty",
+      "label": "Content",
+      "domain": "ex:Story",
+      "range": "xsd:string"
+    },
+    {
+      "id": "ex:scriptText",
+      "type": "owl:DatatypeProperty",
+      "label": "Script Text",
+      "domain": "ex:Script",
+      "range": "xsd:string"
+    },
+    {
+      "id": "ex:imageUrl",
+      "type": "owl:DatatypeProperty",
+      "label": "Image URL",
+      "domain": "ex:ImageAsset",
+      "range": "xsd:anyURI"
+    },
+    {
+      "id": "ex:audioUrl",
+      "type": "owl:DatatypeProperty",
+      "label": "Audio URL",
+      "domain": "ex:AudioAsset",
+      "range": "xsd:anyURI"
+    },
+    {
+      "id": "ex:videoUrl",
+      "type": "owl:DatatypeProperty",
+      "label": "Video URL",
+      "domain": "ex:VideoAsset",
+      "range": "xsd:anyURI"
+    },
+    {
+      "id": "ex:youtubeVideoId",
+      "type": "owl:DatatypeProperty",
+      "label": "YouTube Video ID",
+      "domain": "ex:YouTubePublication",
+      "range": "xsd:string"
+    },
+    {
+      "id": "ex:youtubeUrl",
+      "type": "owl:DatatypeProperty",
+      "label": "YouTube URL",
+      "domain": "ex:YouTubePublication",
+      "range": "xsd:anyURI"
+    },
+    {
+      "id": "ex:derivedFromStory",
+      "type": "owl:ObjectProperty",
+      "label": "Derived From Story",
+      "domain": "ex:Script",
+      "range": "ex:Story",
+      "subPropertyOf": "prov:wasDerivedFrom"
+    },
+    {
+      "id": "ex:derivedFromScript",
+      "type": "owl:ObjectProperty",
+      "label": "Derived From Script",
+      "domain": ["ex:ImageAsset", "ex:AudioAsset"],
+      "range": "ex:Script",
+      "subPropertyOf": "prov:wasDerivedFrom"
+    },
+    {
+      "id": "ex:composedFrom",
+      "type": "owl:ObjectProperty",
+      "label": "Composed From",
+      "domain": "ex:VideoAsset",
+      "range": ["ex:ImageAsset", "ex:AudioAsset"],
+      "subPropertyOf": "prov:wasDerivedFrom"
+    },
+    {
+      "id": "ex:publishedFrom",
+      "type": "owl:ObjectProperty",
+      "label": "Published From",
+      "domain": "ex:YouTubePublication",
+      "range": "ex:VideoAsset",
+      "subPropertyOf": "prov:wasDerivedFrom"
+    },
+    {
+      "id": "ex:status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "domain": ["ex:Script", "ex:ImageAsset", "ex:AudioAsset", "ex:VideoAsset", "ex:YouTubePublication"],
+      "range": "xsd:string"
+    },
+    {
+      "id": "ex:createdAt",
+      "type": "owl:DatatypeProperty",
+      "label": "Created At",
+      "domain": "owl:Thing",
+      "range": "xsd:dateTime"
+    },
+    {
+      "id": "ex:updatedAt",
+      "type": "owl:DatatypeProperty",
+      "label": "Updated At",
+      "domain": "owl:Thing",
+      "range": "xsd:dateTime"
+    }
+  ]
+}
+

@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "id": "@id",
+    "type": "@type",
+    "ex": "https://gftd.ai/producerv2#",
+    "dct": "http://purl.org/dc/terms/",
+    
+    "name": "dct:title",
+    "description": "dct:description"
+  },
+  "id": "ex:TerminusDBSystem",
+  "type": "ex:System",
+  "name": "TerminusDB System",
+  "description": "TerminusDB接続管理システム。OWLスキーマ定義、マイグレーション、CRUD操作を提供。"
+}
+
