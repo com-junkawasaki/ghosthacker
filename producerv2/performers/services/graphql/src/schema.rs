@@ -19,7 +19,7 @@ use crate::terminusdb::{
     schema::{
         Chapter as TerminusChapter, EPUBDocument as TerminusEPUBDocument,
         KindleDocument as TerminusKindleDocument, Metadata as TerminusMetadata,
-        Paragraph as TerminusParagraph, Script as TerminusScript,
+        Paragraph as TerminusParagraph, Project as TerminusProject, Script as TerminusScript,
         Section as TerminusSection, Story as TerminusStory,
         TextNode as TerminusTextNode,
     },
@@ -163,7 +163,7 @@ impl QueryRoot {
     ///   "ex:consumes": "ex:DocumentId",
     ///   "ex:produces": "ex:ChapterList"
     /// }
-    async fn chapters(&self, document_id: String) -> Result<Vec<Chapter>> {
+    async fn chapters(&self, _document_id: String) -> Result<Vec<Chapter>> {
         // 簡易実装: 実際のWOQLクエリが必要
         // 現時点では空のリストを返す
         Ok(vec![])
@@ -177,7 +177,48 @@ impl QueryRoot {
     ///   "ex:consumes": "ex:ParagraphId",
     ///   "ex:produces": "ex:TextNodeList"
     /// }
-    async fn text_nodes(&self, paragraph_id: String) -> Result<Vec<TextNode>> {
+    async fn text_nodes(&self, _paragraph_id: String) -> Result<Vec<TextNode>> {
+        // 簡易実装: 実際のWOQLクエリが必要
+        // 現時点では空のリストを返す
+        Ok(vec![])
+    }
+
+    /// プロジェクトを取得
+    /// 
+    /// @context {
+    ///   "@id": "ex:getProject",
+    ///   "@type": "ex:Activity",
+    ///   "ex:consumes": "ex:ProjectId",
+    ///   "ex:produces": "ex:Project"
+    /// }
+    async fn project(&self, id: String) -> Result<Option<Project>> {
+        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+
+        match client.get_document(&id).await {
+            Ok(doc) => {
+                match serde_json::from_value::<TerminusProject>(doc) {
+                    Ok(project) => Ok(Some(project.into())),
+                    Err(e) => {
+                        error!("Failed to parse project {}: {}", id, e);
+                        Ok(None)
+                    }
+                }
+            }
+            Err(e) => {
+                error!("Failed to get project {}: {}", id, e);
+                Ok(None)
+            }
+        }
+    }
+
+    /// すべてのプロジェクトを取得
+    /// 
+    /// @context {
+    ///   "@id": "ex:getAllProjects",
+    ///   "@type": "ex:Activity",
+    ///   "ex:produces": "ex:ProjectList"
+    /// }
+    async fn projects(&self) -> Result<Vec<Project>> {
         // 簡易実装: 実際のWOQLクエリが必要
         // 現時点では空のリストを返す
         Ok(vec![])
@@ -450,7 +491,7 @@ impl MutationRoot {
         &self,
         id: String,
         title: Option<String>,
-        metadata: Option<MetadataInput>,
+        _metadata: Option<MetadataInput>,
     ) -> Result<EPUBDocument> {
         let client = get_client().map_err(|e| Error::new(e.to_string()))?;
 
@@ -477,7 +518,7 @@ impl MutationRoot {
     /// 章を作成
     async fn create_chapter(
         &self,
-        document_id: String,
+        _document_id: String,
         title: String,
         order: i32,
     ) -> Result<Chapter> {
@@ -542,7 +583,7 @@ impl MutationRoot {
     /// 段落を作成
     async fn create_paragraph(
         &self,
-        chapter_id: String,
+        _chapter_id: String,
         order: i32,
     ) -> Result<Paragraph> {
         let client = get_client().map_err(|e| Error::new(e.to_string()))?;
@@ -672,6 +713,105 @@ impl MutationRoot {
             Err(e) => {
                 error!("Failed to delete text node: {}", e);
                 Err(Error::new(format!("Failed to delete text node: {}", e)))
+            }
+        }
+    }
+
+    /// プロジェクトを作成
+    /// 
+    /// @context {
+    ///   "@id": "ex:createProject",
+    ///   "@type": "ex:Activity",
+    ///   "ex:consumes": "ex:ProjectInput",
+    ///   "ex:produces": "ex:Project"
+    /// }
+    async fn create_project(&self, name: String, description: Option<String>) -> Result<Project> {
+        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+
+        let now = chrono::Utc::now().to_rfc3339();
+        let project_id = format!("Project_{}", nanoid!());
+
+        let project = TerminusProject {
+            id: project_id.clone(),
+            r#type: "ex:Project".to_string(),
+            name: name.clone(),
+            description,
+            status: Some("active".to_string()),
+            created_at: Some(now.clone()),
+            updated_at: Some(now.clone()),
+        };
+
+        let doc = serde_json::to_value(&project)?;
+        match client.insert_document(&doc).await {
+            Ok(_) => Ok(project.into()),
+            Err(e) => {
+                error!("Failed to create project: {}", e);
+                Err(Error::new(format!("Failed to create project: {}", e)))
+            }
+        }
+    }
+
+    /// プロジェクトを更新
+    /// 
+    /// @context {
+    ///   "@id": "ex:updateProject",
+    ///   "@type": "ex:Activity",
+    ///   "ex:consumes": ["ex:ProjectId", "ex:ProjectUpdate"],
+    ///   "ex:produces": "ex:Project"
+    /// }
+    async fn update_project(
+        &self,
+        id: String,
+        name: Option<String>,
+        description: Option<String>,
+        status: Option<String>,
+    ) -> Result<Project> {
+        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+
+        // 既存のプロジェクトを取得
+        let doc = client.get_document(&id).await
+            .map_err(|e| Error::new(format!("Project not found: {}", e)))?;
+        let mut project: TerminusProject = serde_json::from_value(doc)
+            .map_err(|e| Error::new(format!("Failed to parse project: {}", e)))?;
+
+        // 更新フィールドを適用
+        if let Some(n) = name {
+            project.name = n;
+        }
+        if let Some(d) = description {
+            project.description = Some(d);
+        }
+        if let Some(s) = status {
+            project.status = Some(s);
+        }
+        project.updated_at = Some(chrono::Utc::now().to_rfc3339());
+
+        let doc = serde_json::to_value(&project)?;
+        match client.update_document(&doc).await {
+            Ok(_) => Ok(project.into()),
+            Err(e) => {
+                error!("Failed to update project: {}", e);
+                Err(Error::new(format!("Failed to update project: {}", e)))
+            }
+        }
+    }
+
+    /// プロジェクトを削除
+    /// 
+    /// @context {
+    ///   "@id": "ex:deleteProject",
+    ///   "@type": "ex:Activity",
+    ///   "ex:consumes": "ex:ProjectId",
+    ///   "ex:produces": "ex:Deleted"
+    /// }
+    async fn delete_project(&self, id: String) -> Result<bool> {
+        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+
+        match client.delete_document(&id).await {
+            Ok(_) => Ok(true),
+            Err(e) => {
+                error!("Failed to delete project: {}", e);
+                Err(Error::new(format!("Failed to delete project: {}", e)))
             }
         }
     }
@@ -933,5 +1073,28 @@ pub struct MetadataInput {
     pub publisher: Option<String>,
     pub date: Option<String>,
     pub description: Option<String>,
+}
+
+#[derive(SimpleObject, Serialize, Deserialize, Clone)]
+pub struct Project {
+    pub id: String,
+    pub name: String,
+    pub description: Option<String>,
+    pub status: Option<String>,
+    pub created_at: String,
+    pub updated_at: String,
+}
+
+impl From<TerminusProject> for Project {
+    fn from(project: TerminusProject) -> Self {
+        Project {
+            id: project.id,
+            name: project.name,
+            description: project.description,
+            status: project.status,
+            created_at: project.created_at.unwrap_or_default(),
+            updated_at: project.updated_at.unwrap_or_default(),
+        }
+    }
 }
 

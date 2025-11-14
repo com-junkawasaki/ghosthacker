@@ -11,7 +11,13 @@ export default function ProjectLayout({
     <div>
       <nav className="bg-gray-100 border-b border-gray-200">
         <div className="container mx-auto px-4">
-          <div className="flex gap-4 py-4">
+          <div className="flex gap-4 py-4 items-center">
+            <Link
+              href="/projects"
+              className="text-gray-600 hover:text-gray-900 font-semibold mr-4"
+            >
+              ← Projects
+            </Link>
             <Link
               href={`/projects/${params.projectId}/story`}
               className="text-blue-600 hover:underline"

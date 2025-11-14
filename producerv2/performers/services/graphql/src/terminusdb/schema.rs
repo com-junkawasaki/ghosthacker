@@ -215,6 +215,25 @@ pub struct Style {
     pub alignment: Option<String>,
 }
 
+/// Project構造体
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Project {
+    #[serde(rename = "@id")]
+    pub id: String,
+    #[serde(rename = "@type")]
+    pub r#type: String,
+    #[serde(rename = "ex:name")]
+    pub name: String,
+    #[serde(rename = "ex:description", skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
+    #[serde(rename = "ex:status", skip_serializing_if = "Option::is_none")]
+    pub status: Option<String>,
+    #[serde(rename = "ex:createdAt", skip_serializing_if = "Option::is_none")]
+    pub created_at: Option<String>,
+    #[serde(rename = "ex:updatedAt", skip_serializing_if = "Option::is_none")]
+    pub updated_at: Option<String>,
+}
+
 /// OWLスキーマをTerminusDBに適用
 /// 
 /// @context {
@@ -300,6 +319,13 @@ pub async fn apply_owl_schema() -> Result<()> {
         "rdfs:comment": "Style information for text nodes and paragraphs"
     });
 
+    let project_schema = json!({
+        "@id": "ex:Project",
+        "@type": "owl:Class",
+        "rdfs:label": "Project",
+        "rdfs:comment": "A project for managing content creation workflows"
+    });
+
     // スキーマを適用（既に存在する場合はエラーを無視）
     let schemas = vec![
         ("Story", &story_schema),
@@ -312,6 +338,7 @@ pub async fn apply_owl_schema() -> Result<()> {
         ("TextNode", &text_node_schema),
         ("Metadata", &metadata_schema),
         ("Style", &style_schema),
+        ("Project", &project_schema),
     ];
 
     for (name, schema) in schemas {

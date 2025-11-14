@@ -280,10 +280,16 @@ export default function Home() {
             </h2>
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/projects/default"
+                href="/projects"
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
-                プロジェクトを開く
+                プロジェクト一覧
+              </Link>
+              <Link
+                href="/projects/default"
+                className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+              >
+                デフォルトプロジェクト
               </Link>
             </div>
           </div>
@@ -292,3 +298,4 @@ export default function Home() {
     </main>
   );
 }
+
