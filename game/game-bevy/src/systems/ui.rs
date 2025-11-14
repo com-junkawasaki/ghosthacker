@@ -11,7 +11,7 @@
 
 use bevy::prelude::*;
 use crate::components::{ButtonType, CurrentPuzzleMode};
-use crate::resources::GameState;
+use crate::resources::{GameState, JapaneseFont};
 use game_core::session::SessionState;
 
 /// UIルートマーカー
@@ -24,6 +24,7 @@ pub fn ui_system(
     asset_server: Res<AssetServer>,
     game_state: Res<GameState>,
     ui_query: Query<Entity, With<UiRootMarker>>,
+    japanese_font: Res<JapaneseFont>,
 ) {
     // 既存のUIが存在する場合は何もしない（状態変更時は別のシステムで削除）
     if !ui_query.is_empty() {
@@ -34,34 +35,34 @@ pub fn ui_system(
         match session.state {
             SessionState::GeneratingGhost => {
                 // ゴースト生成フェーズUI
-                spawn_ghost_generation_ui(&mut commands, &asset_server);
+                spawn_ghost_generation_ui(&mut commands, &asset_server, &japanese_font);
             }
             SessionState::PresentingProblem => {
                 // 問題提示フェーズUI
-                spawn_problem_presentation_ui(&mut commands, &asset_server, session);
+                spawn_problem_presentation_ui(&mut commands, &asset_server, session, &japanese_font);
             }
             SessionState::SolvingPuzzle => {
                 // 因果パズルフェーズUI
-                spawn_puzzle_ui(&mut commands, &asset_server, session);
+                spawn_puzzle_ui(&mut commands, &asset_server, session, &japanese_font);
             }
             SessionState::Reconstructing => {
                 // 再構成フェーズUI
-                spawn_reconstruction_ui(&mut commands, &asset_server, session);
+                spawn_reconstruction_ui(&mut commands, &asset_server, session, &japanese_font);
             }
             SessionState::Reflecting => {
                 // リフレクションフェーズUI
-                spawn_reflection_ui(&mut commands, &asset_server, session);
+                spawn_reflection_ui(&mut commands, &asset_server, session, &japanese_font);
             }
             _ => {}
         }
     } else {
         // 初期画面
-        spawn_intro_ui(&mut commands, &asset_server);
+        spawn_intro_ui(&mut commands, &asset_server, &japanese_font);
     }
 }
 
 /// イントロ画面UI
-fn spawn_intro_ui(commands: &mut Commands, _asset_server: &Res<AssetServer>) {
+fn spawn_intro_ui(commands: &mut Commands, _asset_server: &Res<AssetServer>, font: &Res<JapaneseFont>) {
     commands
         .spawn((
             NodeBundle {
@@ -84,9 +85,9 @@ fn spawn_intro_ui(commands: &mut Commands, _asset_server: &Res<AssetServer>) {
             parent.spawn(TextBundle::from_section(
                 "Ghost Hacker",
                 TextStyle {
+                    font: font.0.clone(),
                     font_size: 48.0,
                     color: Color::WHITE,
-                    ..default()
                 },
             ));
 
@@ -102,9 +103,9 @@ fn spawn_intro_ui(commands: &mut Commands, _asset_server: &Res<AssetServer>) {
             parent.spawn(TextBundle::from_section(
                 "これは、あなたの影から生まれるゴーストです。",
                 TextStyle {
+                    font: font.0.clone(),
                     font_size: 20.0,
                     color: Color::rgb(0.8, 0.8, 0.8),
-                    ..default()
                 },
             ));
 
@@ -133,9 +134,9 @@ fn spawn_intro_ui(commands: &mut Commands, _asset_server: &Res<AssetServer>) {
                     parent.spawn(TextBundle::from_section(
                         "はじめる",
                         TextStyle {
+                            font: font.0.clone(),
                             font_size: 24.0,
                             color: Color::WHITE,
-                            ..default()
                         },
                     ));
                 });
@@ -143,7 +144,7 @@ fn spawn_intro_ui(commands: &mut Commands, _asset_server: &Res<AssetServer>) {
 }
 
 /// ゴースト生成フェーズUI
-fn spawn_ghost_generation_ui(commands: &mut Commands, _asset_server: &Res<AssetServer>) {
+fn spawn_ghost_generation_ui(commands: &mut Commands, _asset_server: &Res<AssetServer>, font: &Res<JapaneseFont>) {
     commands
         .spawn((
             NodeBundle {
@@ -166,9 +167,9 @@ fn spawn_ghost_generation_ui(commands: &mut Commands, _asset_server: &Res<AssetS
             parent.spawn(TextBundle::from_section(
                 "ゴーストを生成",
                 TextStyle {
+                    font: font.0.clone(),
                     font_size: 32.0,
                     color: Color::WHITE,
-                    ..default()
                 },
             ));
 
@@ -195,9 +196,9 @@ fn spawn_ghost_generation_ui(commands: &mut Commands, _asset_server: &Res<AssetS
                     parent.spawn(TextBundle::from_section(
                         "カード選択エリア",
                         TextStyle {
+                            font: font.0.clone(),
                             font_size: 16.0,
                             color: Color::rgb(0.7, 0.7, 0.7),
-                            ..default()
                         },
                     ));
                 });
@@ -226,9 +227,9 @@ fn spawn_ghost_generation_ui(commands: &mut Commands, _asset_server: &Res<AssetS
                     parent.spawn(TextBundle::from_section(
                         "タグ選択エリア",
                         TextStyle {
+                            font: font.0.clone(),
                             font_size: 16.0,
                             color: Color::rgb(0.7, 0.7, 0.7),
-                            ..default()
                         },
                     ));
                 });
@@ -256,9 +257,9 @@ fn spawn_ghost_generation_ui(commands: &mut Commands, _asset_server: &Res<AssetS
                     parent.spawn(TextBundle::from_section(
                         "スライダーエリア",
                         TextStyle {
+                            font: font.0.clone(),
                             font_size: 16.0,
                             color: Color::rgb(0.7, 0.7, 0.7),
-                            ..default()
                         },
                     ));
                 });
@@ -270,6 +271,7 @@ fn spawn_problem_presentation_ui(
     commands: &mut Commands,
     _asset_server: &Res<AssetServer>,
     _session: &game_core::session::Session,
+    font: &Res<JapaneseFont>,
 ) {
     commands
         .spawn((
@@ -303,9 +305,9 @@ fn spawn_problem_presentation_ui(
                     parent.spawn(TextBundle::from_section(
                         "ゴーストのモノローグ...",
                         TextStyle {
+                            font: font.0.clone(),
                             font_size: 18.0,
                             color: Color::WHITE,
-                            ..default()
                         },
                     ));
                 });
@@ -326,9 +328,9 @@ fn spawn_problem_presentation_ui(
                     parent.spawn(TextBundle::from_section(
                         "断片カードエリア（横スクロール）",
                         TextStyle {
+                            font: font.0.clone(),
                             font_size: 16.0,
                             color: Color::rgb(0.7, 0.7, 0.7),
-                            ..default()
                         },
                     ));
                 });
@@ -340,6 +342,7 @@ fn spawn_puzzle_ui(
     commands: &mut Commands,
     _asset_server: &Res<AssetServer>,
     _session: &game_core::session::Session,
+    font: &Res<JapaneseFont>,
 ) {
     commands
         .spawn((
@@ -384,9 +387,9 @@ fn spawn_puzzle_ui(
                         parent.spawn(TextBundle::from_section(
                             "時系列",
                             TextStyle {
+                                font: font.0.clone(),
                                 font_size: 16.0,
                                 color: Color::WHITE,
-                                ..default()
                             },
                         ));
                     });
@@ -407,9 +410,9 @@ fn spawn_puzzle_ui(
                         parent.spawn(TextBundle::from_section(
                             "因果",
                             TextStyle {
+                                font: font.0.clone(),
                                 font_size: 16.0,
                                 color: Color::WHITE,
-                                ..default()
                             },
                         ));
                     });
@@ -430,9 +433,9 @@ fn spawn_puzzle_ui(
                         parent.spawn(TextBundle::from_section(
                             "感情",
                             TextStyle {
+                                font: font.0.clone(),
                                 font_size: 16.0,
                                 color: Color::WHITE,
-                                ..default()
                             },
                         ));
                     });
@@ -454,9 +457,9 @@ fn spawn_puzzle_ui(
                     parent.spawn(TextBundle::from_section(
                         "パズル操作エリア",
                         TextStyle {
+                            font: font.0.clone(),
                             font_size: 16.0,
                             color: Color::rgb(0.7, 0.7, 0.7),
-                            ..default()
                         },
                     ));
                 });
@@ -468,6 +471,7 @@ fn spawn_reconstruction_ui(
     commands: &mut Commands,
     _asset_server: &Res<AssetServer>,
     _session: &game_core::session::Session,
+    font: &Res<JapaneseFont>,
 ) {
     commands
         .spawn((
@@ -501,9 +505,9 @@ fn spawn_reconstruction_ui(
                     parent.spawn(TextBundle::from_section(
                         "気づきモノローグ...",
                         TextStyle {
+                            font: font.0.clone(),
                             font_size: 18.0,
                             color: Color::WHITE,
-                            ..default()
                         },
                     ));
                 });
@@ -524,9 +528,9 @@ fn spawn_reconstruction_ui(
                     parent.spawn(TextBundle::from_section(
                         "3Dグラフアニメーションエリア",
                         TextStyle {
+                            font: font.0.clone(),
                             font_size: 16.0,
                             color: Color::rgb(0.7, 0.7, 0.7),
-                            ..default()
                         },
                     ));
                 });
@@ -538,6 +542,7 @@ fn spawn_reflection_ui(
     commands: &mut Commands,
     _asset_server: &Res<AssetServer>,
     _session: &game_core::session::Session,
+    font: &Res<JapaneseFont>,
 ) {
     commands
         .spawn((
@@ -561,9 +566,9 @@ fn spawn_reflection_ui(
             parent.spawn(TextBundle::from_section(
                 "質問: このセッションで何を学びましたか？",
                 TextStyle {
+                    font: font.0.clone(),
                     font_size: 20.0,
                     color: Color::WHITE,
-                    ..default()
                 },
             ));
 
@@ -593,9 +598,9 @@ fn spawn_reflection_ui(
                     parent.spawn(TextBundle::from_section(
                         "回答入力エリア",
                         TextStyle {
+                            font: font.0.clone(),
                             font_size: 16.0,
                             color: Color::rgb(0.7, 0.7, 0.7),
-                            ..default()
                         },
                     ));
                 });

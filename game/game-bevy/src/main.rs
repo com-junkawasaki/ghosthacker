@@ -24,7 +24,7 @@ fn main() {
         .add_plugins(DefaultPlugins)
         .init_resource::<GameState>()
         .init_resource::<CurrentPuzzleMode>()
-        .add_systems(Startup, setup)
+        .add_systems(Startup, (setup, load_font))
         .add_systems(Update, (
             button_handler_system,
             input_system,
@@ -38,5 +38,11 @@ fn main() {
 fn setup(mut commands: Commands) {
     // 2Dカメラを作成（UI表示用）
     commands.spawn(Camera2dBundle::default());
+}
+
+fn load_font(mut commands: Commands, asset_server: Res<AssetServer>) {
+    // Google Noto Sans JPフォントを読み込む
+    let font_handle = asset_server.load("fonts/NotoSansJP-Regular.ttf");
+    commands.insert_resource(JapaneseFont(font_handle));
 }
 
