@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "pnpm codegen && next build",
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "codegen": "graphql-codegen --config codegen.yaml",
+    "codegen:watch": "graphql-codegen --config codegen.yaml --watch"
   },
   "dependencies": {
     "next": "14.2.18",
@@ -20,7 +22,9 @@
     "@hookform/resolvers": "^3.9.0",
     "react-hook-form": "^7.53.0",
     "nanoid": "^5.0.7",
-    "jose": "^5.9.6"
+    "jose": "^5.9.6",
+    "graphql-request": "^6.1.0",
+    "graphql": "^16.8.1"
   },
   "devDependencies": {
     "@types/node": "^22.7.5",
@@ -33,7 +37,11 @@
     "@typescript-eslint/parser": "^8.0.0",
     "tailwindcss": "^3.4.1",
     "postcss": "^8.4.35",
-    "autoprefixer": "^10.4.17"
+    "autoprefixer": "^10.4.17",
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/typescript": "^4.0.0",
+    "@graphql-codegen/typescript-operations": "^4.0.0",
+    "@graphql-codegen/typed-document-node": "^4.0.0"
   }
 }
 

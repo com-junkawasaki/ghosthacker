@@ -1,0 +1,20 @@
+query GetStories {
+  stories {
+    id
+    title
+    content
+    created_at
+    updated_at
+  }
+}
+
+query GetStory($id: String!) {
+  story(id: $id) {
+    id
+    title
+    content
+    created_at
+    updated_at
+  }
+}
+

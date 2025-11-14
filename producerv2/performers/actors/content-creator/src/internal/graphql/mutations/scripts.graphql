@@ -1,0 +1,26 @@
+mutation CreateScript($scriptText: String!, $derivedFromStory: String!, $status: String!) {
+  createScript(script_text: $scriptText, derived_from_story: $derivedFromStory, status: $status) {
+    id
+    script_text
+    derived_from_story
+    status
+    created_at
+    updated_at
+  }
+}
+
+mutation UpdateScript($id: String!, $scriptText: String, $status: String) {
+  updateScript(id: $id, script_text: $scriptText, status: $status) {
+    id
+    script_text
+    derived_from_story
+    status
+    created_at
+    updated_at
+  }
+}
+
+mutation DeleteScript($id: String!) {
+  deleteScript(id: $id)
+}
+
