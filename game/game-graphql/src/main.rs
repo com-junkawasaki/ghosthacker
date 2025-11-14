@@ -24,8 +24,7 @@ mod schema;
 mod terminusdb;
 mod hume;
 
-use schema::{MutationRoot, QueryRoot};
-use async_graphql::EmptySubscription;
+use schema::{MutationRoot, QueryRoot, SubscriptionRoot};
 
 #[handler]
 async fn graphql_playground() -> Html<String> {
@@ -54,7 +53,7 @@ async fn main() -> anyhow::Result<()> {
     let schema = Schema::build(
         QueryRoot::default(),
         MutationRoot::default(),
-        EmptySubscription,
+        SubscriptionRoot::default(),
     )
     .finish();
 

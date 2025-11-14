@@ -5,6 +5,8 @@
 
 use anyhow::Result;
 use reqwest::Client;
+use serde_json::json;
+use serde_json::Value;
 use std::sync::Arc;
 use once_cell::sync::OnceCell;
 
@@ -19,7 +21,8 @@ static CLIENT: OnceCell<Arc<TerminusDBClient>> = OnceCell::new();
 
 impl TerminusDBClient {
     pub fn new(base_url: String, user: String, password: String, db_name: String) -> Result<Self> {
-        let auth_header = format!("Basic {}", base64::encode(format!("{}:{}", user, password)));
+        let credentials = format!("{}:{}", user, password);
+        let auth_header = format!("Basic {}", base64::engine::general_purpose::STANDARD.encode(credentials));
         Ok(Self {
             http_client: Client::new(),
             base_url,
@@ -29,7 +32,55 @@ impl TerminusDBClient {
     }
 
     pub async fn ensure_database(&self) -> Result<()> {
-        // TODO: データベースの存在確認と作成
+        // データベースの存在確認
+        let check_url = format!("{}/api/db/{}", self.base_url, self.db_name);
+        let response = self
+            .http_client
+            .get(&check_url)
+            .header("Authorization", &self.auth_header)
+            .send()
+            .await?;
+
+        if response.status().as_u16() == 404 {
+            // データベースが存在しない場合は作成
+            let create_url = format!("{}/api/db", self.base_url);
+            let create_body = json!({
+                "label": self.db_name,
+                "comment": "Ghost Hacker Game Database"
+            });
+            
+            self.http_client
+                .post(&create_url)
+                .header("Authorization", &self.auth_header)
+                .header("Content-Type", "application/json")
+                .json(&create_body)
+                .send()
+                .await?
+                .error_for_status()?;
+            
+            tracing::info!("Database {} created", self.db_name);
+        } else {
+            response.error_for_status()?;
+        }
+
+        Ok(())
+    }
+
+    pub async fn insert_schema(&self, schema: &Value) -> Result<()> {
+        let url = format!(
+            "{}/api/document/{}/local/branch/main?graph_type=schema",
+            self.base_url, self.db_name
+        );
+        let response = self
+            .http_client
+            .post(&url)
+            .header("Authorization", &self.auth_header)
+            .header("Content-Type", "application/json")
+            .json(schema)
+            .send()
+            .await?;
+
+        response.error_for_status()?;
         Ok(())
     }
 }

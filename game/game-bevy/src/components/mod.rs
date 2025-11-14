@@ -9,5 +9,5 @@ pub mod puzzle;
 
 pub use ghost::GhostComponent;
 pub use event::EventComponent;
-pub use puzzle::PuzzleComponent;
+pub use puzzle::{PuzzleComponent, PuzzleMode};
 

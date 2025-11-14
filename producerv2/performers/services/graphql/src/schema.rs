@@ -736,6 +736,7 @@ impl MutationRoot {
                     r#type: "ex:Project".to_string(),
                     name: name.clone(),
                     author: author.clone(),
+                    dct_creator: Some(author.clone()),
                     description,
                     status: Some("active".to_string()),
                     created_at: Some(now.clone()),

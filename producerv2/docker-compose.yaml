@@ -9,12 +9,12 @@ services:
       TERMINUSDB_SERVER_PASS: root
     volumes:
       - terminusdb-data:/app/db
-    # healthcheck:
-    #   test: ["CMD-SHELL", "nc -z localhost 6363 || exit 1"]
-    #   interval: 5s
-    #   timeout: 3s
-    #   retries: 5
-    #   start_period: 30s
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z localhost 6363 || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 30s
 
   postgres:
     image: postgres:16-alpine
@@ -45,15 +45,15 @@ services:
       TERMINUSDB_URL: http://terminusdb:6363
       TERMINUSDB_USER: admin
       TERMINUSDB_SERVER_PASS: root
-      TERMINUSDB_DB: producerv2_clean
+      TERMINUSDB_DB: producerv2
       TERMINUSDB_ORGANIZATION: ""
       RUST_LOG: info
-    command: ["sh", "-c", "sleep 30 && /app/producerv2-graphql"]
+    command: ["/app/producerv2-graphql"]
     # volumes:
     #   - ./performers/services/graphql:/app
     depends_on:
       terminusdb:
-        condition: service_started
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
       interval: 10s
@@ -83,7 +83,7 @@ services:
       TERMINUSDB_URL: http://terminusdb:6363
       TERMINUSDB_USER: admin
       TERMINUSDB_SERVER_PASS: root
-      TERMINUSDB_DB: producerv2_clean
+      TERMINUSDB_DB: producerv2
       TERMINUSDB_ORGANIZATION: ""
       
       # Database

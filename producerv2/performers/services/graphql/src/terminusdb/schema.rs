@@ -226,6 +226,8 @@ pub struct Project {
     pub name: String,
     #[serde(rename = "ex:author")]
     pub author: String,
+    #[serde(rename = "dct:creator")]
+    pub dct_creator: Option<String>,
     #[serde(rename = "ex:description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     #[serde(rename = "ex:status", skip_serializing_if = "Option::is_none")]

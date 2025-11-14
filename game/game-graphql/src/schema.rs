@@ -9,7 +9,8 @@
  * }
  */
 
-use async_graphql::{Error, InputObject, Object, Result, SimpleObject};
+use async_graphql::{Error, InputObject, Object, Result, SimpleObject, Subscription};
+use async_stream::stream;
 use uuid::Uuid;
 
 use game_core::ghost::GhostState;
@@ -193,3 +194,27 @@ pub struct ReflectionInput {
     pub answer: String,
 }
 
+#[derive(Default)]
+pub struct SubscriptionRoot;
+
+#[Subscription]
+impl SubscriptionRoot {
+    /// ゴースト状態変更通知
+    async fn ghost_state_changed(&self, _ghost_id: Uuid) -> impl Stream<Item = Result<GhostState>> {
+        // TODO: リアルタイムでゴースト状態変更を通知
+        stream! {
+            yield Ok(GhostState::default());
+        }
+    }
+
+    /// 新規イベント断片通知
+    async fn new_event_fragment(&self, _ghost_id: Uuid) -> impl Stream<Item = Result<EventFragment>> {
+        // TODO: リアルタイムで新規イベント断片を通知
+        stream! {
+            yield Ok(EventFragment {
+                id: Uuid::new_v4(),
+                content: String::new(),
+            });
+        }
+    }
+}
