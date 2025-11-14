@@ -11,7 +11,7 @@ COPY . .
     WORKDIR /app/performers/actors/content-creator
     
     ENV CI=true
-    RUN pnpm install
+    RUN pnpm install --no-frozen-lockfile
 
 EXPOSE 3000
 

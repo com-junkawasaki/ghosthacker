@@ -9,12 +9,13 @@ services:
       TERMINUSDB_SERVER_PASS: root
     volumes:
       - terminusdb-data:/app/db
-    healthcheck:
-      test: ["CMD-SHELL", "python3 -c 'import urllib.request; urllib.request.urlopen(\"http://localhost:6363/\")' || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 60s
+    # TerminusDBは起動に時間がかかるため、ヘルスチェックを無効化
+    # healthcheck:
+    #   test: ["CMD-SHELL", "nc -z localhost 6363 || exit 1"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 10
+    #   start_period: 60s
 
   postgres:
     image: postgres:16-alpine
@@ -48,11 +49,11 @@ services:
       TERMINUSDB_DB: producerv2
       TERMINUSDB_ORGANIZATION: ""
       RUST_LOG: info
-    volumes:
-      - ./performers/services/graphql:/app
+    # volumes:
+    #   - ./performers/services/graphql:/app
     depends_on:
       terminusdb:
-        condition: service_healthy
+        condition: service_started
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
       interval: 10s

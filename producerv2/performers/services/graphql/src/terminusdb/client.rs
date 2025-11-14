@@ -14,7 +14,7 @@ use base64::{engine::general_purpose, Engine as _};
 use reqwest::Client;
 use serde_json::Value;
 use std::sync::{Arc, OnceLock};
-use tracing::{info, warn};
+use tracing::info;
 
 pub struct TerminusDBClient {
     http_client: Client,

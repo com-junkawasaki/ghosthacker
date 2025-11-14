@@ -9,19 +9,15 @@
  * }
  */
 
-use async_graphql::{Error, Object, Result, SimpleObject, Subscription};
-use async_stream::stream;
+use async_graphql::{Error, Object, Result, SimpleObject};
 use nanoid::nanoid;
 use serde::{Deserialize, Serialize};
-use std::time::Duration;
-use tokio_stream::Stream;
 use tracing::error;
 
 use crate::terminusdb::{
     client::get_client,
     schema::{Script as TerminusScript, Story as TerminusStory},
 };
-use serde_json::Value;
 
 #[derive(Default)]
 pub struct QueryRoot;
@@ -301,18 +297,19 @@ impl MutationRoot {
 #[derive(Default)]
 pub struct SubscriptionRoot;
 
-#[Subscription]
-impl SubscriptionRoot {
-    /// Story更新のサブスクリプション
-    async fn story_updated(&self) -> impl Stream<Item = Story> {
-        stream! {
-            loop {
-                tokio::time::sleep(Duration::from_secs(5)).await;
-                // 実際の実装では、TerminusDBの変更を監視
-            }
-        }
-    }
-}
+// Subscriptionは将来実装予定
+// #[Subscription]
+// impl SubscriptionRoot {
+//     /// Story更新のサブスクリプション
+//     async fn story_updated(&self) -> impl Stream<Item = Story> {
+//         stream! {
+//             loop {
+//                 tokio::time::sleep(Duration::from_secs(60)).await;
+//                 // 実際の実装では、TerminusDBの変更イベントを監視してStoryをyieldする
+//             }
+//         }
+//     }
+// }
 
 #[derive(SimpleObject, Serialize, Deserialize, Clone)]
 pub struct Story {

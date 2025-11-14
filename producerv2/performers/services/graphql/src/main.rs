@@ -23,7 +23,8 @@ use poem::{
 mod schema;
 mod terminusdb;
 
-use schema::{MutationRoot, QueryRoot, SubscriptionRoot};
+use schema::{MutationRoot, QueryRoot};
+use async_graphql::EmptySubscription;
 
 #[handler]
 async fn graphql_playground() -> Html<String> {
@@ -52,7 +53,7 @@ async fn main() -> anyhow::Result<()> {
     let schema = Schema::build(
         QueryRoot::default(),
         MutationRoot::default(),
-        SubscriptionRoot::default(),
+        EmptySubscription,
     )
     .finish();
 

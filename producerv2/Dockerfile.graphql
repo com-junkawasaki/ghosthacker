@@ -22,7 +22,7 @@ RUN apk add --no-cache ca-certificates curl
 WORKDIR /app
 
 # ビルドしたバイナリをコピー
-COPY --from=builder /app/performers/services/graphql/target/release/producerv2-graphql /app/producerv2-graphql
+COPY --from=builder /app/target/release/producerv2-graphql /app/producerv2-graphql
 
 EXPOSE 8080
 
