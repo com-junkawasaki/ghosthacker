@@ -1,0 +1,31 @@
+services:
+  terminusdb:
+    image: terminusdb/terminusdb-server:latest
+    container_name: ghosthacker-game-terminusdb
+    ports:
+      - "6363:6363"
+    environment:
+      TERMINUSDB_SERVER_PORT: 6363
+      TERMINUSDB_SERVER_PASS: root
+    volumes:
+      - terminusdb-data:/app/db
+
+  graphql:
+    build:
+      context: .
+      dockerfile: Dockerfile.graphql
+    container_name: ghosthacker-game-graphql
+    ports:
+      - "8080:8080"
+    environment:
+      TERMINUSDB_URL: http://terminusdb:6363
+      TERMINUSDB_USER: admin
+      TERMINUSDB_SERVER_PASS: root
+      TERMINUSDB_DB: ghosthacker_game
+      RUST_LOG: info
+    depends_on:
+      - terminusdb
+
+volumes:
+  terminusdb-data:
+

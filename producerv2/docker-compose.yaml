@@ -10,9 +10,9 @@ services:
     volumes:
       - terminusdb-data:/app/db
     healthcheck:
-      test: ["CMD-SHELL", "nc -z localhost 6363 || exit 1"]
-      interval: 5s
-      timeout: 3s
+      test: ["CMD", "curl", "-f", "http://localhost:6363/"]
+      interval: 10s
+      timeout: 5s
       retries: 5
       start_period: 30s
 

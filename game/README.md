@@ -33,13 +33,60 @@ game/
 # 依存関係のインストール
 cargo build
 
-# GraphQLサービスの起動
+# Docker ComposeでTerminusDBとGraphQLサービスを起動
+make docker-up
+
+# または個別に起動
 cd game-graphql
 cargo run
 
 # ゲームの実行（Bevy）
 cd game-bevy
 cargo run
+```
+
+## 環境変数
+
+`.env`ファイルを作成して以下を設定：
+
+```bash
+# TerminusDB
+TERMINUSDB_URL=http://localhost:6363
+TERMINUSDB_USER=admin
+TERMINUSDB_SERVER_PASS=root
+TERMINUSDB_DB=ghosthacker_game
+
+# Hume LLM (オプション)
+HUME_API_KEY=your_api_key_here
+```
+
+## ビルド
+
+```bash
+# 全クレートをビルド
+make build
+
+# GraphQLサービスのDockerビルド
+make docker-build
+
+# iOSビルド（Xcode必要）
+make ios-build
+
+# Androidビルド（Android NDK必要）
+make android-build
+
+# WASMビルド
+make wasm-build
+```
+
+## テスト
+
+```bash
+# 全テストを実行
+make test
+
+# または個別に
+cargo test --workspace
 ```
 
 ## ゲームフロー
