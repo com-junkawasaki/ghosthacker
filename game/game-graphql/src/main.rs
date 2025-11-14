@@ -1,3 +1,5 @@
+#![recursion_limit = "256"]
+
 /**
  * Game GraphQL Service Main
  * ゲーム専用GraphQLサービス
@@ -8,8 +10,6 @@
  *   "ex:provides": "ex:GraphQLAPI"
  * }
  */
-
-#![recursion_limit = "256"]
 
 use async_graphql::Schema;
 use async_graphql_poem::GraphQL;

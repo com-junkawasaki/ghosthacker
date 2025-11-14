@@ -16,14 +16,61 @@ use uuid::Uuid;
 
 /// TerminusDBからゴーストを取得してGraphQL型に変換
 pub fn ghost_from_document(doc: &Value) -> Option<Ghost> {
-    // TODO: TerminusDBドキュメントからGhost型に変換
-    doc.get("@id")
-        .and_then(|id| id.as_str())
-        .and_then(|id_str| Uuid::parse_str(id_str).ok())
-        .map(|id| Ghost {
-            id,
-            state: GhostState::default(), // TODO: ドキュメントから状態を読み取る
-        })
+    let id_str = doc.get("@id")?.as_str()?;
+    let id = Uuid::parse_str(id_str).ok()?;
+    
+    // 状態を読み取る
+    let state = if let Some(state_obj) = doc.get("gh:hasInitialState") {
+        GhostState::new(
+            state_obj.get("gh:truth")?.as_f64()? as f32,
+            state_obj.get("gh:coherence")?.as_f64()? as f32,
+            state_obj.get("gh:memoryIntegrity")?.as_f64()? as f32,
+            state_obj.get("gh:noise")?.as_f64()? as f32,
+            state_obj.get("gh:emotionDistortion")?.as_f64()? as f32,
+        )
+    } else {
+        GhostState::default()
+    };
+    
+    Some(Ghost { 
+        id, 
+        state: GhostStateGraphQL::from(state)
+    })
+}
+
+/// TerminusDBからイベント断片を取得してGraphQL型に変換
+pub fn event_fragment_from_document(doc: &Value) -> Option<EventFragment> {
+    let id_str = doc.get("@id")?.as_str()?;
+    let id = Uuid::parse_str(id_str).ok()?;
+    let content = doc.get("gh:content")?.as_str()?.to_string();
+    Some(EventFragment { id, content })
+}
+
+/// GraphQL型からTerminusDBイベント断片ドキュメントに変換
+pub fn event_fragment_to_document(fragment: &EventFragment) -> Value {
+    json!({
+        "@id": format!("eventFragment:{}", fragment.id),
+        "@type": "gh:EventFragment",
+        "gh:content": fragment.content,
+    })
+}
+
+/// TerminusDBからセッションを取得してGraphQL型に変換
+pub fn session_from_document(doc: &Value) -> Option<Session> {
+    let id_str = doc.get("@id")?.as_str()?;
+    let id = Uuid::parse_str(id_str).ok()?;
+    let ghost_id_str = doc.get("gh:hasGhost")?.as_str()?;
+    let ghost_id = Uuid::parse_str(ghost_id_str).ok()?;
+    Some(Session { id, ghost_id })
+}
+
+/// GraphQL型からTerminusDBセッションドキュメントに変換
+pub fn session_to_document(session: &Session) -> Value {
+    json!({
+        "@id": format!("session:{}", session.id),
+        "@type": "gh:Session",
+        "gh:hasGhost": format!("ghost:{}", session.ghost_id),
+    })
 }
 
 /// GraphQL型からTerminusDBドキュメントに変換
@@ -44,10 +91,45 @@ pub fn ghost_to_document(ghost: &Ghost) -> Value {
 }
 
 // GraphQL型定義（schema.rsから移動）
+
+/// GhostStateのGraphQL表現
+#[derive(SimpleObject)]
+pub struct GhostStateGraphQL {
+    pub truth: f32,
+    pub coherence: f32,
+    pub memory_integrity: f32,
+    pub noise: f32,
+    pub emotion_distortion: f32,
+}
+
+impl From<GhostState> for GhostStateGraphQL {
+    fn from(state: GhostState) -> Self {
+        Self {
+            truth: state.truth,
+            coherence: state.coherence,
+            memory_integrity: state.memory_integrity,
+            noise: state.noise,
+            emotion_distortion: state.emotion_distortion,
+        }
+    }
+}
+
+impl From<&GhostState> for GhostStateGraphQL {
+    fn from(state: &GhostState) -> Self {
+        Self {
+            truth: state.truth,
+            coherence: state.coherence,
+            memory_integrity: state.memory_integrity,
+            noise: state.noise,
+            emotion_distortion: state.emotion_distortion,
+        }
+    }
+}
+
 #[derive(SimpleObject)]
 pub struct Ghost {
     pub id: Uuid,
-    pub state: GhostState,
+    pub state: GhostStateGraphQL,
 }
 
 #[derive(SimpleObject)]

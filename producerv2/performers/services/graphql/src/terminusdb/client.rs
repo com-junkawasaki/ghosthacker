@@ -123,16 +123,9 @@ impl TerminusDBClient {
         Ok(vec![result])
     }
 
-            /// JSON-LDドキュメントに@contextを追加
-            fn add_jsonld_context(document: &mut Value) {
-                if let Some(obj) = document.as_object_mut() {
-                    let context = json!({
-                        "ex": "https://example.org/ex#",
-                        "dct": "http://purl.org/dc/terms/",
-                        "xsd": "http://www.w3.org/2001/XMLSchema#"
-                    });
-                    obj.insert("@context".to_string(), context);
-                }
+            /// JSON-LDドキュメントに@contextを追加（スキップ）
+            fn add_jsonld_context(_document: &mut Value) {
+                // @contextを追加しない（プレーンJSONとして送信）
             }
 
     pub async fn insert_document(&self, document: &Value) -> Result<()> {

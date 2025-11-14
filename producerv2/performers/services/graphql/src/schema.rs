@@ -733,7 +733,7 @@ impl MutationRoot {
 
                 let project = TerminusProject {
                     id: project_id.clone(),
-                    r#type: "ex:Project".to_string(),
+                    r#type: "Project".to_string(),
                     name: name.clone(),
                     author: author.clone(),
                     dct_creator: Some(author.clone()),

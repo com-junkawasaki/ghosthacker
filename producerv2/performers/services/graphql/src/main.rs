@@ -46,8 +46,8 @@ async fn main() -> anyhow::Result<()> {
             // TerminusDBクライアントを初期化
             terminusdb::client::initialize().await?;
 
-            // OWLスキーマ適用をスキップ（テストのため）
-            // terminusdb::schema::apply_owl_schema().await?;
+            // OWLスキーマ適用
+            terminusdb::schema::apply_owl_schema().await?;
 
     // GraphQLスキーマを構築
     let schema = Schema::build(

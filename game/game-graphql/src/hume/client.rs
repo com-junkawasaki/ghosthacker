@@ -96,8 +96,7 @@ pub async fn generate_ghost_monologue(
         emotion_labels,
     );
 
-    // TODO: 実際のHume LLM APIを呼び出す
-    // 現在はモック実装
+    // Hume LLM APIを呼び出す
     let api_key = env::var("HUME_API_KEY").unwrap_or_default();
     if api_key.is_empty() {
         // モックレスポンス
@@ -111,8 +110,59 @@ pub async fn generate_ghost_monologue(
         ));
     }
 
-    // TODO: Hume API呼び出しを実装
-    Ok("Not implemented".to_string())
+    // OpenRouter APIを使用（Hume APIの代替として）
+    // 実際のHume APIを使用する場合は、適切なエンドポイントに変更
+    let openrouter_url = env::var("OPENROUTER_URL")
+        .unwrap_or_else(|_| "https://openrouter.ai/api/v1/chat/completions".to_string());
+    
+    let response = HTTP_CLIENT
+        .post(&openrouter_url)
+        .header("Authorization", format!("Bearer {}", api_key))
+        .header("Content-Type", "application/json")
+        .json(&json!({
+            "model": "gpt-4o-mini",
+            "messages": [
+                {
+                    "role": "system",
+                    "content": "You are a Ghost character, the shadow of a user. Express fragmented memories, contradictions, and emotional distortions based on the given state."
+                },
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            "temperature": 0.7 + (ghost_state.noise * 0.3), // noiseが高いほどランダム性を増す
+            "max_tokens": 150
+        }))
+        .send()
+        .await?;
+
+    if !response.status().is_success() {
+        let error_text = response.text().await.unwrap_or_else(|_| "Unknown error".to_string());
+        tracing::warn!("LLM API error: {}", error_text);
+        // フォールバック: モックレスポンス
+        return Ok(format!(
+            "最近、ずっと引っかかっていることがあるの...{}",
+            if ghost_state.noise > 0.7 {
+                "でも、何だったか思い出せない..."
+            } else {
+                "少し整理したい気持ちがある。"
+            }
+        ));
+    }
+
+    let result: serde_json::Value = response.json().await?;
+    let content = result
+        .get("choices")
+        .and_then(|c| c.as_array())
+        .and_then(|arr| arr.first())
+        .and_then(|choice| choice.get("message"))
+        .and_then(|msg| msg.get("content"))
+        .and_then(|c| c.as_str())
+        .unwrap_or("記憶が曖昧で...")
+        .to_string();
+
+    Ok(content)
 }
 
 /// イベント断片生成
@@ -141,8 +191,69 @@ pub async fn generate_event_fragments(
         player_question
     );
 
-    // TODO: 実際のHume LLM APIを呼び出す
-    Ok(vec![])
+    // LLM APIを呼び出してイベント断片を生成
+    let api_key = env::var("HUME_API_KEY").unwrap_or_default();
+    if api_key.is_empty() {
+        // モックレスポンス
+        return Ok(vec![
+            "あの日、何かが起きた...".to_string(),
+            "でも、詳細は思い出せない。".to_string(),
+        ]);
+    }
+
+    let openrouter_url = env::var("OPENROUTER_URL")
+        .unwrap_or_else(|_| "https://openrouter.ai/api/v1/chat/completions".to_string());
+    
+    let response = HTTP_CLIENT
+        .post(&openrouter_url)
+        .header("Authorization", format!("Bearer {}", api_key))
+        .header("Content-Type", "application/json")
+        .json(&json!({
+            "model": "gpt-4o-mini",
+            "messages": [
+                {
+                    "role": "system",
+                    "content": "Generate 1-3 fragmented event descriptions in Japanese, each about 50 characters. Include contradictions and memory gaps based on the ghost's state."
+                },
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            "temperature": 0.8 + (ghost_state.noise * 0.2),
+            "max_tokens": 200
+        }))
+        .send()
+        .await?;
+
+    if !response.status().is_success() {
+        tracing::warn!("LLM API error for event fragments");
+        return Ok(vec!["新しい記憶の断片が浮かんできた...".to_string()]);
+    }
+
+    let result: serde_json::Value = response.json().await?;
+    let content = result
+        .get("choices")
+        .and_then(|c| c.as_array())
+        .and_then(|arr| arr.first())
+        .and_then(|choice| choice.get("message"))
+        .and_then(|msg| msg.get("content"))
+        .and_then(|c| c.as_str())
+        .unwrap_or("")
+        .to_string();
+
+    // 改行で分割して断片として返す
+    let fragments: Vec<String> = content
+        .lines()
+        .map(|s| s.trim().to_string())
+        .filter(|s| !s.is_empty())
+        .collect();
+
+    if fragments.is_empty() {
+        Ok(vec!["新しい記憶の断片が浮かんできた...".to_string()])
+    } else {
+        Ok(fragments)
+    }
 }
 
 /// 気づきモノローグ生成
@@ -163,6 +274,53 @@ pub async fn generate_insight(
         emotion_labels.join("\n")
     );
 
-    // TODO: 実際のHume LLM APIを呼び出す
-    Ok("なるほど...そういうことだったのか。整理できて、少しすっきりした。".to_string())
+    // LLM APIを呼び出して気づきモノローグを生成
+    let api_key = env::var("HUME_API_KEY").unwrap_or_default();
+    if api_key.is_empty() {
+        // モックレスポンス
+        return Ok("なるほど...そういうことだったのか。整理できて、少しすっきりした。".to_string());
+    }
+
+    let openrouter_url = env::var("OPENROUTER_URL")
+        .unwrap_or_else(|_| "https://openrouter.ai/api/v1/chat/completions".to_string());
+    
+    let response = HTTP_CLIENT
+        .post(&openrouter_url)
+        .header("Authorization", format!("Bearer {}", api_key))
+        .header("Content-Type", "application/json")
+        .json(&json!({
+            "model": "gpt-4o-mini",
+            "messages": [
+                {
+                    "role": "system",
+                    "content": "You are a Ghost character who has gained insight. Express realization and clarity in Japanese, 100-150 characters."
+                },
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            "temperature": 0.6,
+            "max_tokens": 200
+        }))
+        .send()
+        .await?;
+
+    if !response.status().is_success() {
+        tracing::warn!("LLM API error for insight");
+        return Ok("なるほど...そういうことだったのか。整理できて、少しすっきりした。".to_string());
+    }
+
+    let result: serde_json::Value = response.json().await?;
+    let content = result
+        .get("choices")
+        .and_then(|c| c.as_array())
+        .and_then(|arr| arr.first())
+        .and_then(|choice| choice.get("message"))
+        .and_then(|msg| msg.get("content"))
+        .and_then(|c| c.as_str())
+        .unwrap_or("なるほど...そういうことだったのか。整理できて、少しすっきりした。")
+        .to_string();
+
+    Ok(content)
 }

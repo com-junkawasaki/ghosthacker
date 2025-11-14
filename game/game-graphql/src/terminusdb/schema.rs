@@ -1,3 +1,5 @@
+#![recursion_limit = "256"]
+
 /**
  * TerminusDB Schema
  * RDFスキーマ定義とOWLスキーマ適用
@@ -8,8 +10,6 @@
  *   "ex:defines": ["ex:Ghost", "ex:EventFragment", "ex:CausalLink", "ex:EmotionLabel", "ex:Session"]
  * }
  */
-
-#![recursion_limit = "256"]
 
 use anyhow::Result;
 use serde_json::{json, Value};

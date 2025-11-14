@@ -21,8 +21,9 @@ static CLIENT: OnceCell<Arc<TerminusDBClient>> = OnceCell::new();
 
 impl TerminusDBClient {
     pub fn new(base_url: String, user: String, password: String, db_name: String) -> Result<Self> {
+        use base64::Engine;
         let credentials = format!("{}:{}", user, password);
-        let auth_header = format!("Basic {}", base64::engine::general_purpose::STANDARD.encode(credentials));
+        let auth_header = format!("Basic {}", base64::engine::general_purpose::STANDARD.encode(credentials.as_bytes()));
         Ok(Self {
             http_client: Client::new(),
             base_url,
