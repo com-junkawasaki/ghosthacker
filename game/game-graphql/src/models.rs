@@ -93,6 +93,17 @@ pub fn session_to_document(session: &Session) -> Value {
     })
 }
 
+/// GraphQL型からTerminusDBセッションドキュメントに変換（リフレクションIDを含む）
+pub fn session_to_document_with_reflection(session: &Session, reflection_id: Option<Uuid>) -> Value {
+    let mut doc = session_to_document(session);
+    if let Some(ref_id) = reflection_id {
+        if let Some(obj) = doc.as_object_mut() {
+            obj.insert("gh:hasReflection".to_string(), json!(format!("reflection:{}", ref_id)));
+        }
+    }
+    doc
+}
+
 /// GraphQL型からTerminusDBドキュメントに変換
 pub fn ghost_to_document(ghost: &Ghost) -> Value {
     json!({
@@ -110,10 +121,56 @@ pub fn ghost_to_document(ghost: &Ghost) -> Value {
     })
 }
 
+/// GraphQL型からTerminusDBドキュメントに変換（traits/valuesを含む）
+pub fn ghost_to_document_with_traits(
+    ghost: &Ghost,
+    traits: &[String],
+    values: &[crate::schema::ValuePreferenceInput],
+) -> Value {
+    let mut doc = ghost_to_document(ghost);
+    
+    // traitsを追加
+    if !traits.is_empty() {
+        let traits_array: Vec<Value> = traits
+            .iter()
+            .map(|t| {
+                json!({
+                    "@id": format!("trait:{}", uuid::Uuid::new_v4()),
+                    "@type": "gh:Trait",
+                    "gh:traitType": t
+                })
+            })
+            .collect();
+        if let Some(obj) = doc.as_object_mut() {
+            obj.insert("gh:hasTrait".to_string(), json!(traits_array));
+        }
+    }
+    
+    // valuesを追加
+    if !values.is_empty() {
+        let values_array: Vec<Value> = values
+            .iter()
+            .map(|v| {
+                json!({
+                    "@id": format!("valuePreference:{}", uuid::Uuid::new_v4()),
+                    "@type": "gh:ValuePreference",
+                    "gh:valueType": v.value_type,
+                    "gh:weight": v.weight
+                })
+            })
+            .collect();
+        if let Some(obj) = doc.as_object_mut() {
+            obj.insert("gh:hasValuePreference".to_string(), json!(values_array));
+        }
+    }
+    
+    doc
+}
+
 // GraphQL型定義（schema.rsから移動）
 
 /// GhostStateのGraphQL表現
-#[derive(SimpleObject)]
+#[derive(SimpleObject, Clone, Debug)]
 pub struct GhostStateGraphQL {
     pub truth: f32,
     pub coherence: f32,
@@ -152,7 +209,7 @@ pub struct Ghost {
     pub state: GhostStateGraphQL,
 }
 
-#[derive(SimpleObject)]
+#[derive(SimpleObject, Clone, Debug)]
 pub struct EventFragment {
     pub id: Uuid,
     pub content: String,
@@ -179,5 +236,22 @@ pub fn player_profile_from_document(doc: &Value) -> Option<PlayerProfile> {
         Uuid::parse_str(id_str).ok()?
     };
     Some(PlayerProfile { id })
+}
+
+/// TerminusDBからリフレクションを取得してGraphQL型に変換
+pub fn reflection_from_document(doc: &Value) -> Option<game_core::session::Reflection> {
+    let question = doc.get("gh:question")?.as_str()?.to_string();
+    let answer = doc.get("gh:answer")?.as_str()?.to_string();
+    Some(game_core::session::Reflection { question, answer })
+}
+
+/// GraphQL型からTerminusDBリフレクションドキュメントに変換
+pub fn reflection_to_document(reflection: &game_core::session::Reflection) -> Value {
+    json!({
+        "@id": format!("reflection:{}", Uuid::new_v4()),
+        "@type": "gh:Reflection",
+        "gh:question": reflection.question,
+        "gh:answer": reflection.answer,
+    })
 }
 

@@ -38,6 +38,18 @@
       "type": "ex:Capability",
       "name": "Session Management",
       "description": "セッションのライフサイクルを管理し、履歴とプレイヤー傾向を保存する"
+    },
+    {
+      "id": "ex:RealTimeSubscription",
+      "type": "ex:Capability",
+      "name": "Real-time Subscription",
+      "description": "tokio::sync::broadcastチャンネルを使用してゴースト状態変更と新規イベント断片をリアルタイム通知"
+    },
+    {
+      "id": "ex:ReflectionManagement",
+      "type": "ex:Capability",
+      "name": "Reflection Management",
+      "description": "セッション完了時のリフレクションをReflectionドキュメントとして作成・保存し、セッションにリンク"
     }
   ]
 }

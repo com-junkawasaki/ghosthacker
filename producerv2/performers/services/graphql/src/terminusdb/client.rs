@@ -70,7 +70,7 @@ impl TerminusDBClient {
                     }
                     info!("Database '{}' created successfully", self.db_name);
                 } else if response.status().is_success() {
-                    // データベースが存在する場合はそのまま使用（スキーマ制約は無視）
+                    // データベースが存在する場合はそのまま使用
                     info!("Database '{}' already exists, using existing database", self.db_name);
                 } else {
                     let error_text = response.text().await.unwrap_or_default();

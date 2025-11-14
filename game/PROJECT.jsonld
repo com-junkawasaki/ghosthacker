@@ -31,13 +31,15 @@
   "goal": "Rust + BevyでiOS/Android/WASM対応のGhost Hackerゲームを実装。ゲーム専用GraphQLサービスでTerminusDB/Hume LLMと統合し、ゴーストの生成・パズル操作・状態更新・再推論のフローを実現する。",
   "status": "active",
   "createdAt": "2025-01-11T00:00:00+09:00",
-  "updatedAt": "2025-01-11T00:00:00+09:00",
+  "updatedAt": "2025-11-14T11:07:00+09:00",
   "capabilities": [
-    {"@id": "ex:GhostGeneration", "name": "Ghost Generation"},
-    {"@id": "ex:CausalPuzzle", "name": "Causal Puzzle"},
-    {"@id": "ex:GhostStateManagement", "name": "Ghost State Management"},
-    {"@id": "ex:LLMIntegration", "name": "LLM Integration"},
-    {"@id": "ex:SessionManagement", "name": "Session Management"}
+    {"@id": "ex:GhostGeneration", "name": "Ghost Generation", "status": "implemented"},
+    {"@id": "ex:CausalPuzzle", "name": "Causal Puzzle", "status": "implemented"},
+    {"@id": "ex:GhostStateManagement", "name": "Ghost State Management", "status": "implemented"},
+    {"@id": "ex:LLMIntegration", "name": "LLM Integration", "status": "implemented"},
+    {"@id": "ex:SessionManagement", "name": "Session Management", "status": "implemented"},
+    {"@id": "ex:RealTimeSubscription", "name": "Real-time Subscription", "status": "implemented"},
+    {"@id": "ex:ReflectionManagement", "name": "Reflection Management", "status": "implemented"}
   ],
   "activities": [
     {
@@ -68,13 +70,22 @@
       "@id": "ex:UpdateGhostState",
       "name": "Update Ghost State",
       "dependsOn": [{"@id": "ex:SolveEmotionPuzzle"}],
-      "produces": [{"@id": "ex:UpdatedGhostState"}]
+      "produces": [{"@id": "ex:UpdatedGhostState"}],
+      "status": "implemented"
     },
     {
       "@id": "ex:GenerateInsight",
       "name": "Generate Insight",
       "dependsOn": [{"@id": "ex:UpdateGhostState"}],
-      "produces": [{"@id": "ex:GhostInsight"}]
+      "produces": [{"@id": "ex:GhostInsight"}],
+      "status": "implemented"
+    },
+    {
+      "@id": "ex:CompleteSession",
+      "name": "Complete Session",
+      "dependsOn": [{"@id": "ex:GenerateInsight"}],
+      "produces": [{"@id": "ex:CompletedSession"}],
+      "status": "implemented"
     }
   ],
   "performers": [

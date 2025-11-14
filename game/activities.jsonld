@@ -58,7 +58,17 @@
       "name": "Generate Insight",
       "description": "修正後の因果グラフから気づきモノローグを生成",
       "dependsOn": [{"@id": "ex:UpdateGhostState"}],
-      "produces": [{"@id": "ex:GhostInsight"}]
+      "produces": [{"@id": "ex:GhostInsight"}],
+      "status": "implemented"
+    },
+    {
+      "id": "ex:CompleteSession",
+      "type": "ex:Activity",
+      "name": "Complete Session",
+      "description": "セッションを完了し、リフレクションを追加",
+      "dependsOn": [{"@id": "ex:GenerateInsight"}],
+      "produces": [{"@id": "ex:CompletedSession"}],
+      "status": "implemented"
     }
   ]
 }

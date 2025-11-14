@@ -17,9 +17,10 @@ use uuid::Uuid;
 use game_core::ghost::GhostState;
 use crate::terminusdb::client::get_client;
 use crate::models::{
-    ghost_from_document, ghost_to_document,
+    ghost_from_document, ghost_to_document, ghost_to_document_with_traits,
     event_fragment_from_document, event_fragment_to_document,
-    session_from_document, session_to_document,
+    session_from_document, session_to_document, session_to_document_with_reflection,
+    reflection_from_document, reflection_to_document,
     player_profile_from_document,
     Ghost, EventFragment, Session, PlayerProfile, GhostStateGraphQL
 };
@@ -89,8 +90,17 @@ impl MutationRoot {
     async fn create_ghost(&self, input: CreateGhostInput) -> Result<Ghost> {
         let client = get_client()?;
         
-        // 初期状態を計算（TODO: 入力から計算）
-        let initial_state = GhostState::default();
+        // 初期状態をランダム生成（[0.3, 0.7]の範囲）
+        use rand::{Rng, SeedableRng};
+        use rand::rngs::StdRng;
+        let mut rng = StdRng::from_entropy();
+        let initial_state = GhostState::new(
+            rng.gen_range(0.3..=0.7),
+            rng.gen_range(0.3..=0.7),
+            rng.gen_range(0.3..=0.7),
+            rng.gen_range(0.3..=0.7),
+            rng.gen_range(0.3..=0.7),
+        );
         
         let ghost_id = Uuid::new_v4();
         let ghost = Ghost {
@@ -98,8 +108,8 @@ impl MutationRoot {
             state: GhostStateGraphQL::from(initial_state),
         };
         
-        // TerminusDBに保存
-        let doc = ghost_to_document(&ghost);
+        // TerminusDBに保存（traits/valuesも含める）
+        let doc = ghost_to_document_with_traits(&ghost, &input.traits, &input.values);
         client.insert_document(&doc).await?;
         
         Ok(ghost)
@@ -134,6 +144,9 @@ impl MutationRoot {
         // TerminusDBを更新
         let updated_doc = ghost_to_document(&ghost);
         client.update_document(&updated_doc).await?;
+        
+        // イベントを送信
+        send_ghost_state_event(ghost_id, ghost.state.clone());
         
         Ok(ghost)
     }
@@ -180,6 +193,9 @@ impl MutationRoot {
         // TerminusDBに保存
         let doc = crate::models::event_fragment_to_document(&event_fragment);
         client.insert_document(&doc).await?;
+        
+        // イベントを送信
+        send_event_fragment_event(ghost_id, event_fragment.clone());
         
         Ok(event_fragment)
     }
@@ -274,17 +290,53 @@ impl MutationRoot {
             ghost.state.emotion_distortion,
         );
         
-        // 因果リンクを構築
-        let causal_links = links.iter().map(|link| {
-            game_core::puzzle::causality::CausalLink {
-                id: Uuid::new_v4(),
-                from: link.from,
-                to: link.to,
-                is_correct: true, // TODO: 実際の検証ロジックを実装
-            }
-        }).collect();
+        // イベント断片を取得
+        let ghost_id_str = ghost_id.to_string();
+        let event_docs = client.query_event_fragments_by_ghost(&ghost_id_str).await?;
+        let event_fragments: Vec<EventFragment> = event_docs
+            .iter()
+            .filter_map(|doc| event_fragment_from_document(doc))
+            .collect();
         
+        // イベント断片のIDセットを作成
+        let event_ids: std::collections::HashSet<Uuid> = event_fragments
+            .iter()
+            .map(|f| f.id)
+            .collect();
+        
+        // 因果リンクを構築（from/toが存在することを検証）
+        let causal_links: Result<Vec<game_core::puzzle::causality::CausalLink>> = links
+            .iter()
+            .map(|link| {
+                if !event_ids.contains(&link.from) {
+                    return Err(Error::new(format!(
+                        "Event fragment not found: {}",
+                        link.from
+                    )));
+                }
+                if !event_ids.contains(&link.to) {
+                    return Err(Error::new(format!(
+                        "Event fragment not found: {}",
+                        link.to
+                    )));
+                }
+                Ok(game_core::puzzle::causality::CausalLink {
+                    id: Uuid::new_v4(),
+                    from: link.from,
+                    to: link.to,
+                    is_correct: true, // プレイヤーの操作を正しいとみなす
+                })
+            })
+            .collect();
+        
+        let causal_links = causal_links?;
         let causality = Causality::new(causal_links);
+        
+        // ループ検出（警告のみ）
+        if causality.has_loop() {
+            tracing::warn!("Causal loop detected for ghost {}", ghost_id);
+        }
+        
         let params = UpdateParams::default();
         
         // ゴースト状態を更新
@@ -324,26 +376,50 @@ impl MutationRoot {
             ghost.state.emotion_distortion,
         );
         
-        // 感情ラベルを構築
-        use game_core::puzzle::emotion::{EmotionLabel, EmotionType};
-        let emotion_labels: Vec<EmotionLabel> = labels.iter().map(|label| {
-            let emotion_type = match label.emotion.as_str() {
-                "joy" => EmotionType::Joy,
-                "sadness" => EmotionType::Sadness,
-                "anger" => EmotionType::Anger,
-                "fear" => EmotionType::Fear,
-                "surprise" => EmotionType::Surprise,
-                "disgust" => EmotionType::Disgust,
-                _ => EmotionType::Neutral,
-            };
-            EmotionLabel {
-                event_id: label.event_id,
-                emotion: emotion_type,
-                intensity: label.intensity,
-                is_correct: true, // TODO: 実際の検証ロジックを実装
-            }
-        }).collect();
+        // イベント断片を取得
+        let ghost_id_str = ghost_id.to_string();
+        let event_docs = client.query_event_fragments_by_ghost(&ghost_id_str).await?;
+        let event_fragments: Vec<EventFragment> = event_docs
+            .iter()
+            .filter_map(|doc| event_fragment_from_document(doc))
+            .collect();
         
+        // イベント断片のIDセットを作成
+        let event_ids: std::collections::HashSet<Uuid> = event_fragments
+            .iter()
+            .map(|f| f.id)
+            .collect();
+        
+        // 感情ラベルを構築（event_idが存在することを検証）
+        use game_core::puzzle::emotion::{EmotionLabel, EmotionType};
+        let emotion_labels: Result<Vec<EmotionLabel>> = labels
+            .iter()
+            .map(|label| {
+                if !event_ids.contains(&label.event_id) {
+                    return Err(Error::new(format!(
+                        "Event fragment not found: {}",
+                        label.event_id
+                    )));
+                }
+                let emotion_type = match label.emotion.as_str() {
+                    "joy" => EmotionType::Joy,
+                    "sadness" => EmotionType::Sadness,
+                    "anger" => EmotionType::Anger,
+                    "fear" => EmotionType::Fear,
+                    "surprise" => EmotionType::Surprise,
+                    "disgust" => EmotionType::Disgust,
+                    _ => EmotionType::Neutral,
+                };
+                Ok(EmotionLabel {
+                    event_id: label.event_id,
+                    emotion: emotion_type,
+                    intensity: label.intensity,
+                    is_correct: true, // プレイヤーの操作を正しいとみなす
+                })
+            })
+            .collect();
+        
+        let emotion_labels = emotion_labels?;
         let emotion = Emotion::new(emotion_labels);
         let params = UpdateParams::default();
         
@@ -387,14 +463,39 @@ impl MutationRoot {
         };
         
         // リフレクションを追加（オプション）
-        if let Some(_reflection_input) = reflection {
-            // TODO: セッションにリフレクションを追加するロジックを実装
-            // 現在はセッションドキュメントに直接保存
-        }
+        let reflection_id = if let Some(reflection_input) = reflection {
+            let reflection = game_core::session::Reflection {
+                question: reflection_input.question,
+                answer: reflection_input.answer,
+            };
+            
+            // Reflectionドキュメントを作成・保存
+            let reflection_doc = reflection_to_document(&reflection);
+            client.insert_document(&reflection_doc).await?;
+            
+            // リフレクションIDを抽出
+            if let Some(id_str) = reflection_doc.get("@id").and_then(|v| v.as_str()) {
+                if let Some(id) = id_str.split(':').nth(1).and_then(|s| Uuid::parse_str(s).ok()) {
+                    Some(id)
+                } else {
+                    None
+                }
+            } else {
+                None
+            }
+        } else {
+            None
+        };
         
-        // TerminusDBに保存/更新
-        let doc = session_to_document(&session);
-        client.insert_document(&doc).await?;
+        // TerminusDBに保存/更新（リフレクションIDを含む）
+        let doc = session_to_document_with_reflection(&session, reflection_id);
+        if client.get_document(&format!("session:{}", session.id)).await.is_ok() {
+            // 既存のセッションを更新
+            client.update_document(&doc).await?;
+        } else {
+            // 新規セッションを作成
+            client.insert_document(&doc).await?;
+        }
         
         Ok(session)
     }
@@ -447,27 +548,73 @@ pub struct ReflectionInput {
     pub answer: String,
 }
 
+// イベントタイプ
+#[derive(Debug, Clone)]
+enum GameEvent {
+    GhostStateChanged { ghost_id: Uuid, state: GhostStateGraphQL },
+    NewEventFragment { ghost_id: Uuid, fragment: EventFragment },
+}
+
+// グローバルなbroadcastチャンネル
+static EVENT_CHANNEL: once_cell::sync::Lazy<tokio::sync::broadcast::Sender<GameEvent>> =
+    once_cell::sync::Lazy::new(|| {
+        let (tx, _rx) = tokio::sync::broadcast::channel(100);
+        tx
+    });
+
+/// イベントを送信するヘルパー関数
+fn send_ghost_state_event(ghost_id: Uuid, state: GhostStateGraphQL) {
+    let _ = EVENT_CHANNEL.send(GameEvent::GhostStateChanged { ghost_id, state });
+}
+
+fn send_event_fragment_event(ghost_id: Uuid, fragment: EventFragment) {
+    let _ = EVENT_CHANNEL.send(GameEvent::NewEventFragment { ghost_id, fragment });
+}
+
 #[derive(Default)]
 pub struct SubscriptionRoot;
 
 #[Subscription]
 impl SubscriptionRoot {
     /// ゴースト状態変更通知
-    async fn ghost_state_changed(&self, _ghost_id: Uuid) -> impl Stream<Item = Result<GhostStateGraphQL>> {
-        // TODO: リアルタイムでゴースト状態変更を通知
+    async fn ghost_state_changed(&self, ghost_id: Uuid) -> impl Stream<Item = Result<GhostStateGraphQL>> {
+        let mut rx = EVENT_CHANNEL.subscribe();
         stream! {
-            yield Ok(GhostStateGraphQL::from(GhostState::default()));
+            loop {
+                match rx.recv().await {
+                    Ok(GameEvent::GhostStateChanged { ghost_id: event_ghost_id, state }) => {
+                        if event_ghost_id == ghost_id {
+                            yield Ok(state);
+                        }
+                    }
+                    Ok(_) => {} // 他のイベントは無視
+                    Err(_) => {
+                        // チャンネルが閉じられた場合、ストリームを終了
+                        break;
+                    }
+                }
+            }
         }
     }
 
     /// 新規イベント断片通知
-    async fn new_event_fragment(&self, _ghost_id: Uuid) -> impl Stream<Item = Result<EventFragment>> {
-        // TODO: リアルタイムで新規イベント断片を通知
+    async fn new_event_fragment(&self, ghost_id: Uuid) -> impl Stream<Item = Result<EventFragment>> {
+        let mut rx = EVENT_CHANNEL.subscribe();
         stream! {
-            yield Ok(EventFragment {
-                id: Uuid::new_v4(),
-                content: String::new(),
-            });
+            loop {
+                match rx.recv().await {
+                    Ok(GameEvent::NewEventFragment { ghost_id: event_ghost_id, fragment }) => {
+                        if event_ghost_id == ghost_id {
+                            yield Ok(fragment);
+                        }
+                    }
+                    Ok(_) => {} // 他のイベントは無視
+                    Err(_) => {
+                        // チャンネルが閉じられた場合、ストリームを終了
+                        break;
+                    }
+                }
+            }
         }
     }
 }
