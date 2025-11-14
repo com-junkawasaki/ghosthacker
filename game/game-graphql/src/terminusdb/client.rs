@@ -3,12 +3,12 @@
  * TerminusDBクライアント実装
  */
 
-use anyhow::Result;
+use anyhow::{Context, Result};
 use reqwest::Client;
-use serde_json::json;
-use serde_json::Value;
+use serde_json::{json, Value};
 use std::sync::Arc;
 use once_cell::sync::OnceCell;
+use tracing::{error, info};
 
 pub struct TerminusDBClient {
     http_client: Client,
@@ -82,6 +82,124 @@ impl TerminusDBClient {
 
         response.error_for_status()?;
         Ok(())
+    }
+
+    /// ドキュメントを取得
+    pub async fn get_document(&self, id: &str) -> Result<Value> {
+        let url = format!(
+            "{}/api/document/{}/local/branch/main/{}",
+            self.base_url, self.db_name, id
+        );
+        let response = self
+            .http_client
+            .get(&url)
+            .header("Authorization", &self.auth_header)
+            .send()
+            .await?;
+
+        if response.status().as_u16() == 404 {
+            return Err(anyhow::anyhow!("Document not found: {}", id));
+        }
+
+        response
+            .error_for_status()?
+            .json()
+            .await
+            .context("Failed to parse document response")
+    }
+
+    /// ドキュメントを挿入
+    pub async fn insert_document(&self, document: &Value) -> Result<()> {
+        let mut doc = document.clone();
+        Self::add_jsonld_context(&mut doc);
+
+        let url = format!(
+            "{}/api/document/{}/local/branch/main",
+            self.base_url, self.db_name
+        );
+        let response = self
+            .http_client
+            .post(&url)
+            .header("Authorization", &self.auth_header)
+            .header("Content-Type", "application/json")
+            .json(&doc)
+            .send()
+            .await?;
+
+        if !response.status().is_success() {
+            let status = response.status();
+            let error_text = response.text().await.unwrap_or_else(|_| "Unknown error".to_string());
+            error!("TerminusDB insert error ({}): {}", status, error_text);
+            return Err(anyhow::anyhow!("TerminusDB error ({}): {}", status, error_text));
+        }
+
+        Ok(())
+    }
+
+    /// ドキュメントを更新
+    pub async fn update_document(&self, document: &Value) -> Result<()> {
+        let mut doc = document.clone();
+        Self::add_jsonld_context(&mut doc);
+
+        let url = format!(
+            "{}/api/document/{}/local/branch/main",
+            self.base_url, self.db_name
+        );
+        let response = self
+            .http_client
+            .put(&url)
+            .header("Authorization", &self.auth_header)
+            .header("Content-Type", "application/json")
+            .json(&doc)
+            .send()
+            .await?;
+
+        if !response.status().is_success() {
+            let status = response.status();
+            let error_text = response.text().await.unwrap_or_else(|_| "Unknown error".to_string());
+            error!("TerminusDB update error ({}): {}", status, error_text);
+            return Err(anyhow::anyhow!("TerminusDB error ({}): {}", status, error_text));
+        }
+
+        Ok(())
+    }
+
+    /// WOQLクエリを実行
+    pub async fn query_documents(&self, query: Value) -> Result<Vec<Value>> {
+        let url = format!(
+            "{}/api/woql/{}/local/branch/main",
+            self.base_url, self.db_name
+        );
+        let response = self
+            .http_client
+            .post(&url)
+            .header("Authorization", &self.auth_header)
+            .header("Content-Type", "application/json")
+            .json(&query)
+            .send()
+            .await?;
+
+        let result: Value = response.error_for_status()?.json().await?;
+        // WOQLクエリの結果からドキュメントを抽出
+        // 簡易実装: 実際のWOQLクエリ結果の構造に応じて調整が必要
+        Ok(vec![result])
+    }
+
+    /// JSON-LDドキュメントに@contextを追加
+    fn add_jsonld_context(document: &mut Value) {
+        if let Some(obj) = document.as_object_mut() {
+            if !obj.contains_key("@context") {
+                let context = json!({
+                    "@base": "https://ghosthacker.example.com/game/",
+                    "@vocab": "https://ghosthacker.example.com/game/vocab#",
+                    "gh": "https://ghosthacker.example.com/vocab#",
+                    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+                    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+                    "xsd": "http://www.w3.org/2001/XMLSchema#"
+                });
+                obj.insert("@context".to_string(), context);
+            }
+        }
     }
 }
 

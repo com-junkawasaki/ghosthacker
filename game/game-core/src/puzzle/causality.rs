@@ -4,6 +4,7 @@
  */
 
 use serde::{Deserialize, Serialize};
+use std::collections::{HashMap, HashSet};
 use uuid::Uuid;
 
 /// 因果リンク
@@ -37,7 +38,6 @@ impl Causality {
 
     /// ループを検出
     pub fn has_loop(&self) -> bool {
-        use std::collections::{HashMap, HashSet};
 
         // グラフを構築
         let mut graph: HashMap<Uuid, Vec<Uuid>> = HashMap::new();

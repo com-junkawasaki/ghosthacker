@@ -15,6 +15,7 @@ use uuid::Uuid;
 
 use game_core::ghost::GhostState;
 use crate::terminusdb::client::get_client;
+use crate::models::{ghost_from_document, ghost_to_document, Ghost, EventFragment, Session, PlayerProfile};
 
 #[derive(Default)]
 pub struct QueryRoot;
@@ -24,8 +25,10 @@ impl QueryRoot {
     /// ゴースト取得
     async fn ghost(&self, id: Uuid) -> Result<Ghost> {
         let client = get_client()?;
-        // TODO: TerminusDBからゴーストを取得
-        Err(Error::new("Not implemented"))
+        let doc_id = format!("ghost:{}", id);
+        let doc = client.get_document(&doc_id).await?;
+        ghost_from_document(&doc)
+            .ok_or_else(|| Error::new(format!("Failed to parse ghost document: {}", id)))
     }
 
     /// イベント断片取得
@@ -58,8 +61,21 @@ impl MutationRoot {
     /// ゴースト生成
     async fn create_ghost(&self, input: CreateGhostInput) -> Result<Ghost> {
         let client = get_client()?;
-        // TODO: ゴーストを生成してTerminusDBに保存
-        Err(Error::new("Not implemented"))
+        
+        // 初期状態を計算（TODO: 入力から計算）
+        let initial_state = GhostState::default();
+        
+        let ghost_id = Uuid::new_v4();
+        let ghost = Ghost {
+            id: ghost_id,
+            state: initial_state,
+        };
+        
+        // TerminusDBに保存
+        let doc = ghost_to_document(&ghost);
+        client.insert_document(&doc).await?;
+        
+        Ok(ghost)
     }
 
     /// ゴースト状態更新
@@ -69,8 +85,30 @@ impl MutationRoot {
         state: GhostStateInput,
     ) -> Result<Ghost> {
         let client = get_client()?;
-        // TODO: ゴースト状態を更新
-        Err(Error::new("Not implemented"))
+        
+        // 既存のゴーストが存在することを確認
+        let doc_id = format!("ghost:{}", ghost_id);
+        let _doc = client.get_document(&doc_id).await?;
+        
+        // 状態を更新
+        let updated_state = GhostState::new(
+            state.truth,
+            state.coherence,
+            state.memory_integrity,
+            state.noise,
+            state.emotion_distortion,
+        );
+        
+        let ghost = Ghost {
+            id: ghost_id,
+            state: updated_state,
+        };
+        
+        // TerminusDBを更新
+        let updated_doc = ghost_to_document(&ghost);
+        client.update_document(&updated_doc).await?;
+        
+        Ok(ghost)
     }
 
     /// イベント断片生成
@@ -125,29 +163,7 @@ impl MutationRoot {
     }
 }
 
-// GraphQL型定義
-#[derive(SimpleObject)]
-pub struct Ghost {
-    pub id: Uuid,
-    pub state: GhostState,
-}
-
-#[derive(SimpleObject)]
-pub struct EventFragment {
-    pub id: Uuid,
-    pub content: String,
-}
-
-#[derive(SimpleObject)]
-pub struct Session {
-    pub id: Uuid,
-    pub ghost_id: Uuid,
-}
-
-#[derive(SimpleObject)]
-pub struct PlayerProfile {
-    pub id: Uuid,
-}
+// GraphQL型定義は models.rs に移動
 
 #[derive(InputObject)]
 pub struct CreateGhostInput {

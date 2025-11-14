@@ -9,6 +9,8 @@
  * }
  */
 
+#![recursion_limit = "256"]
+
 use anyhow::Result;
 use serde_json::{json, Value};
 use crate::terminusdb::client::get_client;

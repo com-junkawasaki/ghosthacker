@@ -9,6 +9,8 @@
  * }
  */
 
+#![recursion_limit = "256"]
+
 use async_graphql::Schema;
 use async_graphql_poem::GraphQL;
 use poem::{
@@ -23,6 +25,7 @@ use poem::{
 mod schema;
 mod terminusdb;
 mod hume;
+mod models;
 
 use schema::{MutationRoot, QueryRoot, SubscriptionRoot};
 

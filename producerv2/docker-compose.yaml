@@ -52,8 +52,7 @@ services:
     # volumes:
     #   - ./performers/services/graphql:/app
     depends_on:
-      terminusdb:
-        condition: service_healthy
+      - terminusdb
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
       interval: 10s

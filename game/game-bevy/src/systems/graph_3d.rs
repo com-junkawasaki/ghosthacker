@@ -25,20 +25,16 @@ pub fn graph_3d_system(
     // TODO: 因果リンク（エッジ）の3D描画
     // TODO: 再構成アニメーション（ノード収束、光の安定）
     
-    // ノードの3Dメッシュ作成例
-    let node_mesh = meshes.add(Mesh::new(PrimitiveTopology::TriangleList));
-    
-    // エッジの3Dメッシュ作成例
-    let edge_mesh = meshes.add(Mesh::new(PrimitiveTopology::LineList));
-    
+    // TODO: ノード/エッジの3Dメッシュ作成
+    // Bevy 0.13ではMesh::newのAPIが変更されているため、実際の実装時に調整が必要
     // マテリアル作成例
-    let node_material = materials.add(StandardMaterial {
-        base_color: Color::srgb(0.5, 0.5, 0.8),
+    let _node_material = materials.add(StandardMaterial {
+        base_color: Color::rgb(0.5, 0.5, 0.8),
         ..default()
     });
     
-    let edge_material = materials.add(StandardMaterial {
-        base_color: Color::srgb(0.8, 0.8, 0.8),
+    let _edge_material = materials.add(StandardMaterial {
+        base_color: Color::rgb(0.8, 0.8, 0.8),
         ..default()
     });
 }

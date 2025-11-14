@@ -12,12 +12,13 @@
 use bevy::prelude::*;
 use bevy::input::mouse::MouseButtonInput;
 use bevy::input::ButtonState;
+use bevy::input::keyboard::KeyCode;
 
 /// 入力システム: ドラッグ&ドロップ、タップ、スワイプ、音声入力を処理
 pub fn input_system(
     mut mouse_button_input_events: EventReader<MouseButtonInput>,
     mut touch_input: EventReader<bevy::input::touch::TouchInput>,
-    keyboard_input: Res<Input<KeyCode>>,
+    keyboard_input: Res<ButtonInput<KeyCode>>,
 ) {
     // マウス/タッチ入力処理
     for event in mouse_button_input_events.read() {

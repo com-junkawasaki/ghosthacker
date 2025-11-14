@@ -327,7 +327,12 @@ pub async fn apply_owl_schema() -> Result<()> {
         "@id": "ex:Project",
         "@type": "owl:Class",
         "rdfs:label": "Project",
-        "rdfs:comment": "A project for managing content creation workflows"
+        "rdfs:comment": "A project for managing content creation workflows",
+        "rdfs:subClassOf": {
+            "@type": "owl:Restriction",
+            "owl:onProperty": "ex:author",
+            "owl:cardinality": 1
+        }
     });
 
     // スキーマを適用（既に存在する場合はエラーを無視）

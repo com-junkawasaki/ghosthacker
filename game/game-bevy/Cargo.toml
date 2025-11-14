@@ -10,4 +10,5 @@ game-core = { path = "../game-core" }
 bevy = { version = "0.13", features = ["default"] }
 serde = { workspace = true }
 serde_json = { workspace = true }
+uuid = { workspace = true }
 
