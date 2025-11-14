@@ -1,0 +1,13 @@
+[package]
+name = "game-bevy"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+game-core = { path = "../game-core" }
+bevy = { version = "0.13", features = ["default"] }
+serde = { workspace = true }
+serde_json = { workspace = true }
+

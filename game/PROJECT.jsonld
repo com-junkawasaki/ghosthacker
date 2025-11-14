@@ -1,0 +1,108 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "id": "@id",
+    "type": "@type",
+    "ex": "https://ghosthacker.example.com/game#",
+    "dct": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "cpm": "https://example.org/cpm#",
+    "gh": "https://ghosthacker.example.com/vocab#",
+    
+    "name": "dct:title",
+    "description": "dct:description",
+    "createdAt": {"@id": "dct:created", "@type": "xsd:dateTime"},
+    "updatedAt": {"@id": "dct:modified", "@type": "xsd:dateTime"},
+    "goal": "ex:goal",
+    "status": "ex:status",
+    "capabilities": {"@id": "ex:hasCapability", "@container": "@set"},
+    "activities": {"@id": "ex:hasActivity", "@container": "@set"},
+    "performers": {"@id": "ex:hasPerformer", "@container": "@set"},
+    "dependsOn": {"@id": "cpm:dependsOn", "@container": "@set"},
+    "produces": {"@id": "cpm:produces", "@container": "@set"}
+  },
+  "id": "https://ghosthacker.example.com/game",
+  "type": "ex:Project",
+  "name": "Ghost Hacker Game",
+  "description": "2068年Tokyoを舞台とした対話アドベンチャー/因果推論パズルゲーム。プレイヤーは「自分の影であるゴースト」を生成し、その歪んだ因果関係と感情ラベルを観察・修正していく。",
+  "goal": "Rust + BevyでiOS/Android/WASM対応のGhost Hackerゲームを実装。ゲーム専用GraphQLサービスでTerminusDB/Hume LLMと統合し、ゴーストの生成・パズル操作・状態更新・再推論のフローを実現する。",
+  "status": "active",
+  "createdAt": "2025-01-11T00:00:00+09:00",
+  "updatedAt": "2025-01-11T00:00:00+09:00",
+  "capabilities": [
+    {"@id": "ex:GhostGeneration", "name": "Ghost Generation"},
+    {"@id": "ex:CausalPuzzle", "name": "Causal Puzzle"},
+    {"@id": "ex:GhostStateManagement", "name": "Ghost State Management"},
+    {"@id": "ex:LLMIntegration", "name": "LLM Integration"},
+    {"@id": "ex:SessionManagement", "name": "Session Management"}
+  ],
+  "activities": [
+    {
+      "@id": "ex:GenerateGhost",
+      "name": "Generate Ghost",
+      "dependsOn": [],
+      "produces": [{"@id": "ex:Ghost"}]
+    },
+    {
+      "@id": "ex:SolveTimelinePuzzle",
+      "name": "Solve Timeline Puzzle",
+      "dependsOn": [{"@id": "ex:GenerateGhost"}],
+      "produces": [{"@id": "ex:TimelineOrder"}]
+    },
+    {
+      "@id": "ex:SolveCausalityPuzzle",
+      "name": "Solve Causality Puzzle",
+      "dependsOn": [{"@id": "ex:SolveTimelinePuzzle"}],
+      "produces": [{"@id": "ex:CausalLinks"}]
+    },
+    {
+      "@id": "ex:SolveEmotionPuzzle",
+      "name": "Solve Emotion Puzzle",
+      "dependsOn": [{"@id": "ex:SolveCausalityPuzzle"}],
+      "produces": [{"@id": "ex:EmotionLabels"}]
+    },
+    {
+      "@id": "ex:UpdateGhostState",
+      "name": "Update Ghost State",
+      "dependsOn": [{"@id": "ex:SolveEmotionPuzzle"}],
+      "produces": [{"@id": "ex:UpdatedGhostState"}]
+    },
+    {
+      "@id": "ex:GenerateInsight",
+      "name": "Generate Insight",
+      "dependsOn": [{"@id": "ex:UpdateGhostState"}],
+      "produces": [{"@id": "ex:GhostInsight"}]
+    }
+  ],
+  "performers": [
+    {
+      "@id": "ex:GameCore",
+      "type": "ex:Library",
+      "name": "Game Core Library"
+    },
+    {
+      "@id": "ex:GameBevy",
+      "type": "ex:Application",
+      "name": "Bevy Game Engine Application"
+    },
+    {
+      "@id": "ex:GameGraphQL",
+      "type": "ex:Service",
+      "name": "Game GraphQL Service"
+    },
+    {
+      "@id": "ex:TerminusDBSystem",
+      "type": "ex:System",
+      "name": "TerminusDB System"
+    },
+    {
+      "@id": "ex:HumeLLM",
+      "type": "ex:Service",
+      "name": "Hume LLM Service"
+    }
+  ]
+}
+

@@ -1,0 +1,44 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "id": "@id",
+    "type": "@type",
+    "ex": "https://ghosthacker.example.com/game#",
+    "dct": "http://purl.org/dc/terms/",
+    "name": "dct:title",
+    "description": "dct:description"
+  },
+  "@graph": [
+    {
+      "id": "ex:GhostGeneration",
+      "type": "ex:Capability",
+      "name": "Ghost Generation",
+      "description": "プレイヤーの性格診断・価値観・感情反応スタイルからゴーストを生成し、初期状態を計算する"
+    },
+    {
+      "id": "ex:CausalPuzzle",
+      "type": "ex:Capability",
+      "name": "Causal Puzzle",
+      "description": "時系列・因果関係・感情ラベルのパズルを解き、ゴーストの内部状態を修正する"
+    },
+    {
+      "id": "ex:GhostStateManagement",
+      "type": "ex:Capability",
+      "name": "Ghost State Management",
+      "description": "ゴーストの内部パラメータ（truth, coherence, memory_integrity, noise, emotion_distortion）を管理・更新する"
+    },
+    {
+      "id": "ex:LLMIntegration",
+      "type": "ex:Capability",
+      "name": "LLM Integration",
+      "description": "Hume LLMと統合し、ゴーストのモノローグ・イベント断片・気づきを生成する"
+    },
+    {
+      "id": "ex:SessionManagement",
+      "type": "ex:Capability",
+      "name": "Session Management",
+      "description": "セッションのライフサイクルを管理し、履歴とプレイヤー傾向を保存する"
+    }
+  ]
+}
+
