@@ -12,16 +12,24 @@
 use bevy::prelude::*;
 use crate::components::{ButtonType, CurrentPuzzleMode};
 use crate::resources::GameState;
+use crate::systems::ui::UiRootMarker;
 use game_core::session::{Session, SessionState};
 
 /// ボタンクリックハンドラーシステム
 pub fn button_handler_system(
+    mut commands: Commands,
     mut interaction_query: Query<(&Interaction, &ButtonType), (Changed<Interaction>, With<Button>)>,
     mut game_state: ResMut<GameState>,
     mut puzzle_mode: ResMut<CurrentPuzzleMode>,
+    ui_query: Query<Entity, With<UiRootMarker>>,
 ) {
     for (interaction, button_type) in interaction_query.iter() {
         if *interaction == Interaction::Pressed {
+            // 状態変更時にUIを削除
+            for entity in ui_query.iter() {
+                commands.entity(entity).despawn_recursive();
+            }
+            
             match button_type {
                 ButtonType::StartGame => {
                     // セッションを開始

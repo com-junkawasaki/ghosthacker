@@ -23,11 +23,11 @@ pub fn ui_system(
     mut commands: Commands,
     asset_server: Res<AssetServer>,
     game_state: Res<GameState>,
-    mut ui_query: Query<Entity, With<UiRootMarker>>,
+    ui_query: Query<Entity, With<UiRootMarker>>,
 ) {
-    // 既存のUIを削除
-    for entity in ui_query.iter() {
-        commands.entity(entity).despawn_recursive();
+    // 既存のUIが存在する場合は何もしない（状態変更時は別のシステムで削除）
+    if !ui_query.is_empty() {
+        return;
     }
 
     if let Some(session) = &game_state.current_session {
@@ -118,14 +118,17 @@ fn spawn_intro_ui(commands: &mut Commands, _asset_server: &Res<AssetServer>) {
 
             // はじめるボタン
             parent
-                .spawn(ButtonBundle {
-                    style: Style {
-                        padding: UiRect::all(Val::Px(20.0)),
+                .spawn((
+                    ButtonBundle {
+                        style: Style {
+                            padding: UiRect::all(Val::Px(20.0)),
+                            ..default()
+                        },
+                        background_color: Color::rgb(0.2, 0.5, 0.8).into(),
                         ..default()
                     },
-                    background_color: Color::rgb(0.2, 0.5, 0.8).into(),
-                    ..default()
-                })
+                    ButtonType::StartGame,
+                ))
                 .with_children(|parent| {
                     parent.spawn(TextBundle::from_section(
                         "はじめる",
@@ -599,14 +602,17 @@ fn spawn_reflection_ui(
 
             // 送信ボタン
             parent
-                .spawn(ButtonBundle {
-                    style: Style {
-                        padding: UiRect::all(Val::Px(20.0)),
+                .spawn((
+                    ButtonBundle {
+                        style: Style {
+                            padding: UiRect::all(Val::Px(20.0)),
+                            ..default()
+                        },
+                        background_color: Color::rgb(0.2, 0.5, 0.8).into(),
                         ..default()
                     },
-                    background_color: Color::rgb(0.2, 0.5, 0.8).into(),
-                    ..default()
-                })
+                    ButtonType::SubmitReflection,
+                ))
                 .with_children(|parent| {
                     parent.spawn(TextBundle::from_section(
                         "送信",

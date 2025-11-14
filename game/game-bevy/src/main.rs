@@ -36,6 +36,7 @@ fn main() {
 }
 
 fn setup(mut commands: Commands) {
-    // 初期セットアップ
+    // 2Dカメラを作成（UI表示用）
+    commands.spawn(Camera2dBundle::default());
 }
 

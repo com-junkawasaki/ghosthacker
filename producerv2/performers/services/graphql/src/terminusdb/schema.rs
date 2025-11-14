@@ -178,8 +178,6 @@ pub struct Metadata {
     pub r#type: String,
     #[serde(rename = "dct:title", skip_serializing_if = "Option::is_none")]
     pub title: Option<String>,
-    #[serde(rename = "dct:creator", skip_serializing_if = "Option::is_none")]
-    pub author: Option<String>,
     #[serde(rename = "dct:identifier", skip_serializing_if = "Option::is_none")]
     pub isbn: Option<String>,
     #[serde(rename = "dct:language", skip_serializing_if = "Option::is_none")]
