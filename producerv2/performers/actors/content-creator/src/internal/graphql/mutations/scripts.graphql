@@ -1,22 +1,22 @@
 mutation CreateScript($scriptText: String!, $derivedFromStory: String!, $status: String!) {
-  createScript(script_text: $scriptText, derived_from_story: $derivedFromStory, status: $status) {
+  createScript(scriptText: $scriptText, derivedFromStory: $derivedFromStory, status: $status) {
     id
-    script_text
-    derived_from_story
+    scriptText
+    derivedFromStory
     status
-    created_at
-    updated_at
+    createdAt
+    updatedAt
   }
 }
 
 mutation UpdateScript($id: String!, $scriptText: String, $status: String) {
-  updateScript(id: $id, script_text: $scriptText, status: $status) {
+  updateScript(id: $id, scriptText: $scriptText, status: $status) {
     id
-    script_text
-    derived_from_story
+    scriptText
+    derivedFromStory
     status
-    created_at
-    updated_at
+    createdAt
+    updatedAt
   }
 }
 

@@ -31,6 +31,18 @@ export default function ProjectLayout({
               Assets
             </Link>
             <Link
+              href={`/projects/${params.projectId}/epub-editor`}
+              className="text-blue-600 hover:underline"
+            >
+              EPUB Editor
+            </Link>
+            <Link
+              href={`/projects/${params.projectId}/kindle-editor`}
+              className="text-blue-600 hover:underline"
+            >
+              Kindle Editor
+            </Link>
+            <Link
               href={`/projects/${params.projectId}/settings`}
               className="text-blue-600 hover:underline"
             >

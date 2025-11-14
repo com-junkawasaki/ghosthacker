@@ -1,0 +1,96 @@
+mutation CreateEPUBDocument($title: String!, $metadata: MetadataInput) {
+  createEPUBDocument(title: $title, metadata: $metadata) {
+    id
+    title
+    metadata
+    chapters
+    createdAt
+    updatedAt
+  }
+}
+
+mutation UpdateEPUBDocument($id: String!, $title: String, $metadata: MetadataInput) {
+  updateEPUBDocument(id: $id, title: $title, metadata: $metadata) {
+    id
+    title
+    metadata
+    chapters
+    createdAt
+    updatedAt
+  }
+}
+
+mutation CreateChapter($documentId: String!, $title: String!, $order: Int!) {
+  createChapter(documentId: $documentId, title: $title, order: $order) {
+    id
+    title
+    order
+    sections
+    paragraphs
+    createdAt
+    updatedAt
+  }
+}
+
+mutation UpdateChapter($id: String!, $title: String, $order: Int) {
+  updateChapter(id: $id, title: $title, order: $order) {
+    id
+    title
+    order
+    sections
+    paragraphs
+    createdAt
+    updatedAt
+  }
+}
+
+mutation CreateParagraph($chapterId: String!, $order: Int!) {
+  createParagraph(chapterId: $chapterId, order: $order) {
+    id
+    order
+    textNodes
+    style
+    createdAt
+    updatedAt
+  }
+}
+
+mutation UpdateParagraph($id: String!, $order: Int) {
+  updateParagraph(id: $id, order: $order) {
+    id
+    order
+    textNodes
+    style
+    createdAt
+    updatedAt
+  }
+}
+
+mutation CreateTextNode($paragraphId: String!, $content: String!, $order: Int!) {
+  createTextNode(paragraphId: $paragraphId, content: $content, order: $order) {
+    id
+    content
+    order
+    belongsToParagraph
+    style
+    createdAt
+    updatedAt
+  }
+}
+
+mutation UpdateTextNode($id: String!, $content: String, $order: Int) {
+  updateTextNode(id: $id, content: $content, order: $order) {
+    id
+    content
+    order
+    belongsToParagraph
+    style
+    createdAt
+    updatedAt
+  }
+}
+
+mutation DeleteTextNode($id: String!) {
+  deleteTextNode(id: $id)
+}
+

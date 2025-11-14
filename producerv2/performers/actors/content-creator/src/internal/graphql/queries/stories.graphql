@@ -3,8 +3,8 @@ query GetStories {
     id
     title
     content
-    created_at
-    updated_at
+    createdAt
+    updatedAt
   }
 }
 
@@ -13,8 +13,8 @@ query GetStory($id: String!) {
     id
     title
     content
-    created_at
-    updated_at
+    createdAt
+    updatedAt
   }
 }
 

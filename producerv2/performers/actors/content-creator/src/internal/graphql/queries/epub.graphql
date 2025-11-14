@@ -1,0 +1,46 @@
+query GetEPUBDocument($id: String!) {
+  epubDocument(id: $id) {
+    id
+    title
+    metadata
+    chapters
+    createdAt
+    updatedAt
+  }
+}
+
+query GetKindleDocument($id: String!) {
+  kindleDocument(id: $id) {
+    id
+    title
+    metadata
+    chapters
+    createdAt
+    updatedAt
+  }
+}
+
+query GetChapters($documentId: String!) {
+  chapters(documentId: $documentId) {
+    id
+    title
+    order
+    sections
+    paragraphs
+    createdAt
+    updatedAt
+  }
+}
+
+query GetTextNodes($paragraphId: String!) {
+  textNodes(paragraphId: $paragraphId) {
+    id
+    content
+    order
+    belongsToParagraph
+    style
+    createdAt
+    updatedAt
+  }
+}
+

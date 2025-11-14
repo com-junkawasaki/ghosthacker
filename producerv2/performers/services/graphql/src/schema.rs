@@ -9,14 +9,20 @@
  * }
  */
 
-use async_graphql::{Error, Object, Result, SimpleObject};
+use async_graphql::{Error, InputObject, Object, Result, SimpleObject};
 use nanoid::nanoid;
 use serde::{Deserialize, Serialize};
 use tracing::error;
 
 use crate::terminusdb::{
     client::get_client,
-    schema::{Script as TerminusScript, Story as TerminusStory},
+    schema::{
+        Chapter as TerminusChapter, EPUBDocument as TerminusEPUBDocument,
+        KindleDocument as TerminusKindleDocument, Metadata as TerminusMetadata,
+        Paragraph as TerminusParagraph, Script as TerminusScript,
+        Section as TerminusSection, Story as TerminusStory,
+        TextNode as TerminusTextNode,
+    },
 };
 
 #[derive(Default)]
@@ -91,6 +97,90 @@ impl QueryRoot {
                 Ok(None)
             }
         }
+    }
+
+    /// EPUBドキュメントを取得
+    /// 
+    /// @context {
+    ///   "@id": "ex:getEPUBDocument",
+    ///   "@type": "ex:Activity",
+    ///   "ex:consumes": "ex:DocumentId",
+    ///   "ex:produces": "ex:EPUBDocument"
+    /// }
+    async fn epub_document(&self, id: String) -> Result<Option<EPUBDocument>> {
+        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+
+        match client.get_document(&id).await {
+            Ok(doc) => {
+                match serde_json::from_value::<TerminusEPUBDocument>(doc) {
+                    Ok(epub) => Ok(Some(epub.into())),
+                    Err(e) => {
+                        error!("Failed to parse EPUB document {}: {}", id, e);
+                        Ok(None)
+                    }
+                }
+            }
+            Err(e) => {
+                error!("Failed to get EPUB document {}: {}", id, e);
+                Ok(None)
+            }
+        }
+    }
+
+    /// Kindleドキュメントを取得
+    /// 
+    /// @context {
+    ///   "@id": "ex:getKindleDocument",
+    ///   "@type": "ex:Activity",
+    ///   "ex:consumes": "ex:DocumentId",
+    ///   "ex:produces": "ex:KindleDocument"
+    /// }
+    async fn kindle_document(&self, id: String) -> Result<Option<KindleDocument>> {
+        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+
+        match client.get_document(&id).await {
+            Ok(doc) => {
+                match serde_json::from_value::<TerminusKindleDocument>(doc) {
+                    Ok(kindle) => Ok(Some(kindle.into())),
+                    Err(e) => {
+                        error!("Failed to parse Kindle document {}: {}", id, e);
+                        Ok(None)
+                    }
+                }
+            }
+            Err(e) => {
+                error!("Failed to get Kindle document {}: {}", id, e);
+                Ok(None)
+            }
+        }
+    }
+
+    /// 章を取得
+    /// 
+    /// @context {
+    ///   "@id": "ex:getChapters",
+    ///   "@type": "ex:Activity",
+    ///   "ex:consumes": "ex:DocumentId",
+    ///   "ex:produces": "ex:ChapterList"
+    /// }
+    async fn chapters(&self, document_id: String) -> Result<Vec<Chapter>> {
+        // 簡易実装: 実際のWOQLクエリが必要
+        // 現時点では空のリストを返す
+        Ok(vec![])
+    }
+
+    /// テキストノードを取得
+    /// 
+    /// @context {
+    ///   "@id": "ex:getTextNodes",
+    ///   "@type": "ex:Activity",
+    ///   "ex:consumes": "ex:ParagraphId",
+    ///   "ex:produces": "ex:TextNodeList"
+    /// }
+    async fn text_nodes(&self, paragraph_id: String) -> Result<Vec<TextNode>> {
+        // 簡易実装: 実際のWOQLクエリが必要
+        // 現時点では空のリストを返す
+        Ok(vec![])
     }
 }
 
@@ -292,6 +382,299 @@ impl MutationRoot {
             }
         }
     }
+
+    /// EPUBドキュメントを作成
+    /// 
+    /// @context {
+    ///   "@id": "ex:createEPUBDocument",
+    ///   "@type": "ex:Activity",
+    ///   "ex:consumes": "ex:EPUBDocumentInput",
+    ///   "ex:produces": "ex:EPUBDocument"
+    /// }
+    async fn create_epub_document(
+        &self,
+        title: String,
+        metadata: Option<MetadataInput>,
+    ) -> Result<EPUBDocument> {
+        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+
+        let now = chrono::Utc::now().to_rfc3339();
+        let doc_id = format!("EPUBDocument_{}", nanoid!());
+
+        let mut epub = TerminusEPUBDocument {
+            id: doc_id.clone(),
+            r#type: "ex:EPUBDocument".to_string(),
+            title: title.clone(),
+            metadata: None,
+            chapters: None,
+            created_at: Some(now.clone()),
+            updated_at: Some(now.clone()),
+        };
+
+        // メタデータを作成
+        if let Some(meta_input) = metadata {
+            let meta_id = format!("Metadata_{}", nanoid!());
+            let meta = TerminusMetadata {
+                id: meta_id.clone(),
+                r#type: "ex:Metadata".to_string(),
+                title: meta_input.title,
+                author: meta_input.author,
+                isbn: meta_input.isbn,
+                language: meta_input.language,
+                publisher: meta_input.publisher,
+                date: meta_input.date,
+                description: meta_input.description,
+                created_at: Some(now.clone()),
+                updated_at: Some(now.clone()),
+            };
+            epub.metadata = Some(meta_id.clone());
+
+            // メタデータを保存
+            let meta_doc = serde_json::to_value(&meta)?;
+            client.insert_document(&meta_doc).await
+                .map_err(|e| Error::new(format!("Failed to create metadata: {}", e)))?;
+        }
+
+        let doc = serde_json::to_value(&epub)?;
+        match client.insert_document(&doc).await {
+            Ok(_) => Ok(epub.into()),
+            Err(e) => {
+                error!("Failed to create EPUB document: {}", e);
+                Err(Error::new(format!("Failed to create EPUB document: {}", e)))
+            }
+        }
+    }
+
+    /// EPUBドキュメントを更新
+    async fn update_epub_document(
+        &self,
+        id: String,
+        title: Option<String>,
+        metadata: Option<MetadataInput>,
+    ) -> Result<EPUBDocument> {
+        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+
+        let doc = client.get_document(&id).await
+            .map_err(|e| Error::new(format!("EPUB document not found: {}", e)))?;
+        let mut epub: TerminusEPUBDocument = serde_json::from_value(doc)
+            .map_err(|e| Error::new(format!("Failed to parse EPUB document: {}", e)))?;
+
+        if let Some(t) = title {
+            epub.title = t;
+        }
+        epub.updated_at = Some(chrono::Utc::now().to_rfc3339());
+
+        let doc = serde_json::to_value(&epub)?;
+        match client.update_document(&doc).await {
+            Ok(_) => Ok(epub.into()),
+            Err(e) => {
+                error!("Failed to update EPUB document: {}", e);
+                Err(Error::new(format!("Failed to update EPUB document: {}", e)))
+            }
+        }
+    }
+
+    /// 章を作成
+    async fn create_chapter(
+        &self,
+        document_id: String,
+        title: String,
+        order: i32,
+    ) -> Result<Chapter> {
+        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+
+        let now = chrono::Utc::now().to_rfc3339();
+        let chapter_id = format!("Chapter_{}", nanoid!());
+
+        let chapter = TerminusChapter {
+            id: chapter_id.clone(),
+            r#type: "ex:Chapter".to_string(),
+            title: title.clone(),
+            order,
+            sections: None,
+            paragraphs: None,
+            created_at: Some(now.clone()),
+            updated_at: Some(now.clone()),
+        };
+
+        let doc = serde_json::to_value(&chapter)?;
+        match client.insert_document(&doc).await {
+            Ok(_) => Ok(chapter.into()),
+            Err(e) => {
+                error!("Failed to create chapter: {}", e);
+                Err(Error::new(format!("Failed to create chapter: {}", e)))
+            }
+        }
+    }
+
+    /// 章を更新
+    async fn update_chapter(
+        &self,
+        id: String,
+        title: Option<String>,
+        order: Option<i32>,
+    ) -> Result<Chapter> {
+        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+
+        let doc = client.get_document(&id).await
+            .map_err(|e| Error::new(format!("Chapter not found: {}", e)))?;
+        let mut chapter: TerminusChapter = serde_json::from_value(doc)
+            .map_err(|e| Error::new(format!("Failed to parse chapter: {}", e)))?;
+
+        if let Some(t) = title {
+            chapter.title = t;
+        }
+        if let Some(o) = order {
+            chapter.order = o;
+        }
+        chapter.updated_at = Some(chrono::Utc::now().to_rfc3339());
+
+        let doc = serde_json::to_value(&chapter)?;
+        match client.update_document(&doc).await {
+            Ok(_) => Ok(chapter.into()),
+            Err(e) => {
+                error!("Failed to update chapter: {}", e);
+                Err(Error::new(format!("Failed to update chapter: {}", e)))
+            }
+        }
+    }
+
+    /// 段落を作成
+    async fn create_paragraph(
+        &self,
+        chapter_id: String,
+        order: i32,
+    ) -> Result<Paragraph> {
+        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+
+        let now = chrono::Utc::now().to_rfc3339();
+        let paragraph_id = format!("Paragraph_{}", nanoid!());
+
+        let paragraph = TerminusParagraph {
+            id: paragraph_id.clone(),
+            r#type: "ex:Paragraph".to_string(),
+            order,
+            text_nodes: None,
+            style: None,
+            created_at: Some(now.clone()),
+            updated_at: Some(now.clone()),
+        };
+
+        let doc = serde_json::to_value(&paragraph)?;
+        match client.insert_document(&doc).await {
+            Ok(_) => Ok(paragraph.into()),
+            Err(e) => {
+                error!("Failed to create paragraph: {}", e);
+                Err(Error::new(format!("Failed to create paragraph: {}", e)))
+            }
+        }
+    }
+
+    /// 段落を更新
+    async fn update_paragraph(
+        &self,
+        id: String,
+        order: Option<i32>,
+    ) -> Result<Paragraph> {
+        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+
+        let doc = client.get_document(&id).await
+            .map_err(|e| Error::new(format!("Paragraph not found: {}", e)))?;
+        let mut paragraph: TerminusParagraph = serde_json::from_value(doc)
+            .map_err(|e| Error::new(format!("Failed to parse paragraph: {}", e)))?;
+
+        if let Some(o) = order {
+            paragraph.order = o;
+        }
+        paragraph.updated_at = Some(chrono::Utc::now().to_rfc3339());
+
+        let doc = serde_json::to_value(&paragraph)?;
+        match client.update_document(&doc).await {
+            Ok(_) => Ok(paragraph.into()),
+            Err(e) => {
+                error!("Failed to update paragraph: {}", e);
+                Err(Error::new(format!("Failed to update paragraph: {}", e)))
+            }
+        }
+    }
+
+    /// テキストノードを作成
+    async fn create_text_node(
+        &self,
+        paragraph_id: String,
+        content: String,
+        order: i32,
+    ) -> Result<TextNode> {
+        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+
+        let now = chrono::Utc::now().to_rfc3339();
+        let text_node_id = format!("TextNode_{}", nanoid!());
+
+        let text_node = TerminusTextNode {
+            id: text_node_id.clone(),
+            r#type: "ex:TextNode".to_string(),
+            content: content.clone(),
+            order,
+            belongs_to_paragraph: paragraph_id.clone(),
+            style: None,
+            created_at: Some(now.clone()),
+            updated_at: Some(now.clone()),
+        };
+
+        let doc = serde_json::to_value(&text_node)?;
+        match client.insert_document(&doc).await {
+            Ok(_) => Ok(text_node.into()),
+            Err(e) => {
+                error!("Failed to create text node: {}", e);
+                Err(Error::new(format!("Failed to create text node: {}", e)))
+            }
+        }
+    }
+
+    /// テキストノードを更新
+    async fn update_text_node(
+        &self,
+        id: String,
+        content: Option<String>,
+        order: Option<i32>,
+    ) -> Result<TextNode> {
+        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+
+        let doc = client.get_document(&id).await
+            .map_err(|e| Error::new(format!("Text node not found: {}", e)))?;
+        let mut text_node: TerminusTextNode = serde_json::from_value(doc)
+            .map_err(|e| Error::new(format!("Failed to parse text node: {}", e)))?;
+
+        if let Some(c) = content {
+            text_node.content = c;
+        }
+        if let Some(o) = order {
+            text_node.order = o;
+        }
+        text_node.updated_at = Some(chrono::Utc::now().to_rfc3339());
+
+        let doc = serde_json::to_value(&text_node)?;
+        match client.update_document(&doc).await {
+            Ok(_) => Ok(text_node.into()),
+            Err(e) => {
+                error!("Failed to update text node: {}", e);
+                Err(Error::new(format!("Failed to update text node: {}", e)))
+            }
+        }
+    }
+
+    /// テキストノードを削除
+    async fn delete_text_node(&self, id: String) -> Result<bool> {
+        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+
+        match client.delete_document(&id).await {
+            Ok(_) => Ok(true),
+            Err(e) => {
+                error!("Failed to delete text node: {}", e);
+                Err(Error::new(format!("Failed to delete text node: {}", e)))
+            }
+        }
+    }
 }
 
 #[derive(Default)]
@@ -394,5 +777,161 @@ pub struct YouTubePublication {
     pub status: String,
     pub created_at: String,
     pub updated_at: String,
+}
+
+// EPUB/Kindle GraphQL型定義
+
+#[derive(SimpleObject, Serialize, Deserialize, Clone)]
+pub struct EPUBDocument {
+    pub id: String,
+    pub title: String,
+    pub metadata: Option<String>,
+    pub chapters: Option<Vec<String>>,
+    pub created_at: String,
+    pub updated_at: String,
+}
+
+impl From<TerminusEPUBDocument> for EPUBDocument {
+    fn from(epub: TerminusEPUBDocument) -> Self {
+        EPUBDocument {
+            id: epub.id,
+            title: epub.title,
+            metadata: epub.metadata,
+            chapters: epub.chapters,
+            created_at: epub.created_at.unwrap_or_default(),
+            updated_at: epub.updated_at.unwrap_or_default(),
+        }
+    }
+}
+
+#[derive(SimpleObject, Serialize, Deserialize, Clone)]
+pub struct KindleDocument {
+    pub id: String,
+    pub title: String,
+    pub metadata: Option<String>,
+    pub chapters: Option<Vec<String>>,
+    pub created_at: String,
+    pub updated_at: String,
+}
+
+impl From<TerminusKindleDocument> for KindleDocument {
+    fn from(kindle: TerminusKindleDocument) -> Self {
+        KindleDocument {
+            id: kindle.id,
+            title: kindle.title,
+            metadata: kindle.metadata,
+            chapters: kindle.chapters,
+            created_at: kindle.created_at.unwrap_or_default(),
+            updated_at: kindle.updated_at.unwrap_or_default(),
+        }
+    }
+}
+
+#[derive(SimpleObject, Serialize, Deserialize, Clone)]
+pub struct Chapter {
+    pub id: String,
+    pub title: String,
+    pub order: i32,
+    pub sections: Option<Vec<String>>,
+    pub paragraphs: Option<Vec<String>>,
+    pub created_at: String,
+    pub updated_at: String,
+}
+
+impl From<TerminusChapter> for Chapter {
+    fn from(chapter: TerminusChapter) -> Self {
+        Chapter {
+            id: chapter.id,
+            title: chapter.title,
+            order: chapter.order,
+            sections: chapter.sections,
+            paragraphs: chapter.paragraphs,
+            created_at: chapter.created_at.unwrap_or_default(),
+            updated_at: chapter.updated_at.unwrap_or_default(),
+        }
+    }
+}
+
+#[derive(SimpleObject, Serialize, Deserialize, Clone)]
+pub struct Section {
+    pub id: String,
+    pub title: String,
+    pub order: i32,
+    pub paragraphs: Option<Vec<String>>,
+    pub created_at: String,
+    pub updated_at: String,
+}
+
+impl From<TerminusSection> for Section {
+    fn from(section: TerminusSection) -> Self {
+        Section {
+            id: section.id,
+            title: section.title,
+            order: section.order,
+            paragraphs: section.paragraphs,
+            created_at: section.created_at.unwrap_or_default(),
+            updated_at: section.updated_at.unwrap_or_default(),
+        }
+    }
+}
+
+#[derive(SimpleObject, Serialize, Deserialize, Clone)]
+pub struct Paragraph {
+    pub id: String,
+    pub order: i32,
+    pub text_nodes: Option<Vec<String>>,
+    pub style: Option<String>,
+    pub created_at: String,
+    pub updated_at: String,
+}
+
+impl From<TerminusParagraph> for Paragraph {
+    fn from(paragraph: TerminusParagraph) -> Self {
+        Paragraph {
+            id: paragraph.id,
+            order: paragraph.order,
+            text_nodes: paragraph.text_nodes,
+            style: paragraph.style,
+            created_at: paragraph.created_at.unwrap_or_default(),
+            updated_at: paragraph.updated_at.unwrap_or_default(),
+        }
+    }
+}
+
+#[derive(SimpleObject, Serialize, Deserialize, Clone)]
+pub struct TextNode {
+    pub id: String,
+    pub content: String,
+    pub order: i32,
+    pub belongs_to_paragraph: String,
+    pub style: Option<String>,
+    pub created_at: String,
+    pub updated_at: String,
+}
+
+impl From<TerminusTextNode> for TextNode {
+    fn from(text_node: TerminusTextNode) -> Self {
+        TextNode {
+            id: text_node.id,
+            content: text_node.content,
+            order: text_node.order,
+            belongs_to_paragraph: text_node.belongs_to_paragraph,
+            style: text_node.style,
+            created_at: text_node.created_at.unwrap_or_default(),
+            updated_at: text_node.updated_at.unwrap_or_default(),
+        }
+    }
+}
+
+#[derive(SimpleObject, Serialize, Deserialize, Clone, InputObject)]
+#[graphql(input_name = "MetadataInput")]
+pub struct MetadataInput {
+    pub title: Option<String>,
+    pub author: Option<String>,
+    pub isbn: Option<String>,
+    pub language: Option<String>,
+    pub publisher: Option<String>,
+    pub date: Option<String>,
+    pub description: Option<String>,
 }
 

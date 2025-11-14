@@ -1,0 +1,506 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "id": "@id",
+    "type": "@type",
+    "ex": "https://gftd.ai/producerv2#",
+    "dodaf": "https://dodcio.defense.gov/DoDAF#",
+    "dct": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "prov": "http://www.w3.org/ns/prov#",
+    
+    "name": "dct:title",
+    "description": "dct:description",
+    "createdAt": {"@id": "dct:created", "@type": "xsd:dateTime"},
+    "updatedAt": {"@id": "dct:modified", "@type": "xsd:dateTime"},
+    
+    "viewpoint": "dodaf:viewpoint",
+    "model": "dodaf:model",
+    "hasViewpoint": "dodaf:hasViewpoint",
+    "hasModel": "dodaf:hasModel"
+  },
+  "@graph": [
+    {
+      "id": "ex:DoDAFArchitecture",
+      "type": "dodaf:Architecture",
+      "name": "Producer V2 DoDAF Architecture",
+      "description": "DoDAF 2.0全ビューポイントに基づくアーキテクチャ記述",
+      "hasViewpoint": [
+        {"@id": "ex:AV"},
+        {"@id": "ex:CV"},
+        {"@id": "ex:DIV"},
+        {"@id": "ex:OV"},
+        {"@id": "ex:PV"},
+        {"@id": "ex:SvcV"},
+        {"@id": "ex:StdV"},
+        {"@id": "ex:SV"}
+      ]
+    },
+    {
+      "id": "ex:AV",
+      "type": "dodaf:AllViewpoint",
+      "name": "All Viewpoint",
+      "hasModel": [
+        {"@id": "ex:AV1"},
+        {"@id": "ex:AV2"}
+      ]
+    },
+    {
+      "id": "ex:AV1",
+      "type": "dodaf:Model",
+      "name": "AV-1: Overview and Summary Information",
+      "description": "プロジェクト概要と要約情報",
+      "model": "AV-1"
+    },
+    {
+      "id": "ex:AV2",
+      "type": "dodaf:Model",
+      "name": "AV-2: Integrated Dictionary",
+      "description": "統合辞書",
+      "model": "AV-2"
+    },
+    {
+      "id": "ex:CV",
+      "type": "dodaf:CapabilityViewpoint",
+      "name": "Capability Viewpoint",
+      "hasModel": [
+        {"@id": "ex:CV1"},
+        {"@id": "ex:CV2"},
+        {"@id": "ex:CV3"},
+        {"@id": "ex:CV4"},
+        {"@id": "ex:CV5"},
+        {"@id": "ex:CV6"},
+        {"@id": "ex:CV7"}
+      ]
+    },
+    {
+      "id": "ex:CV1",
+      "type": "dodaf:Model",
+      "name": "CV-1: Vision",
+      "description": "ビジョン",
+      "model": "CV-1"
+    },
+    {
+      "id": "ex:CV2",
+      "type": "dodaf:Model",
+      "name": "CV-2: Capability Taxonomy",
+      "description": "能力分類",
+      "model": "CV-2"
+    },
+    {
+      "id": "ex:CV3",
+      "type": "dodaf:Model",
+      "name": "CV-3: Capability Phasing",
+      "description": "能力フェージング",
+      "model": "CV-3"
+    },
+    {
+      "id": "ex:CV4",
+      "type": "dodaf:Model",
+      "name": "CV-4: Capability Dependencies",
+      "description": "能力依存関係",
+      "model": "CV-4"
+    },
+    {
+      "id": "ex:CV5",
+      "type": "dodaf:Model",
+      "name": "CV-5: Capability to Organizational Development Mapping",
+      "description": "能力と組織開発のマッピング",
+      "model": "CV-5"
+    },
+    {
+      "id": "ex:CV6",
+      "type": "dodaf:Model",
+      "name": "CV-6: Capability to Operational Activities Mapping",
+      "description": "能力と運用活動のマッピング",
+      "model": "CV-6"
+    },
+    {
+      "id": "ex:CV7",
+      "type": "dodaf:Model",
+      "name": "CV-7: Capability to Services Mapping",
+      "description": "能力とサービスのマッピング",
+      "model": "CV-7"
+    },
+    {
+      "id": "ex:DIV",
+      "type": "dodaf:DataAndInformationViewpoint",
+      "name": "Data and Information Viewpoint",
+      "hasModel": [
+        {"@id": "ex:DIV1"},
+        {"@id": "ex:DIV2"},
+        {"@id": "ex:DIV3"}
+      ]
+    },
+    {
+      "id": "ex:DIV1",
+      "type": "dodaf:Model",
+      "name": "DIV-1: Conceptual Data Model",
+      "description": "概念データモデル",
+      "model": "DIV-1"
+    },
+    {
+      "id": "ex:DIV2",
+      "type": "dodaf:Model",
+      "name": "DIV-2: Logical Data Model",
+      "description": "論理データモデル",
+      "model": "DIV-2"
+    },
+    {
+      "id": "ex:DIV3",
+      "type": "dodaf:Model",
+      "name": "DIV-3: Physical Data Model",
+      "description": "物理データモデル",
+      "model": "DIV-3"
+    },
+    {
+      "id": "ex:OV",
+      "type": "dodaf:OperationalViewpoint",
+      "name": "Operational Viewpoint",
+      "hasModel": [
+        {"@id": "ex:OV1"},
+        {"@id": "ex:OV2"},
+        {"@id": "ex:OV3"},
+        {"@id": "ex:OV4"},
+        {"@id": "ex:OV5a"},
+        {"@id": "ex:OV5b"},
+        {"@id": "ex:OV6a"},
+        {"@id": "ex:OV6b"},
+        {"@id": "ex:OV6c"}
+      ]
+    },
+    {
+      "id": "ex:OV1",
+      "type": "dodaf:Model",
+      "name": "OV-1: High-Level Operational Concept Graphic",
+      "description": "高レベル運用コンセプトグラフィック",
+      "model": "OV-1"
+    },
+    {
+      "id": "ex:OV2",
+      "type": "dodaf:Model",
+      "name": "OV-2: Operational Resource Flow Description",
+      "description": "運用リソースフロー記述",
+      "model": "OV-2"
+    },
+    {
+      "id": "ex:OV3",
+      "type": "dodaf:Model",
+      "name": "OV-3: Operational Information Exchange Matrix",
+      "description": "運用情報交換マトリックス",
+      "model": "OV-3"
+    },
+    {
+      "id": "ex:OV4",
+      "type": "dodaf:Model",
+      "name": "OV-4: Organizational Relationships Chart",
+      "description": "組織関係図",
+      "model": "OV-4"
+    },
+    {
+      "id": "ex:OV5a",
+      "type": "dodaf:Model",
+      "name": "OV-5a: Operational Activity Decomposition Tree",
+      "description": "運用活動分解ツリー",
+      "model": "OV-5a"
+    },
+    {
+      "id": "ex:OV5b",
+      "type": "dodaf:Model",
+      "name": "OV-5b: Operational Activity Model",
+      "description": "運用活動モデル",
+      "model": "OV-5b"
+    },
+    {
+      "id": "ex:OV6a",
+      "type": "dodaf:Model",
+      "name": "OV-6a: Operational Rules Model",
+      "description": "運用ルールモデル",
+      "model": "OV-6a"
+    },
+    {
+      "id": "ex:OV6b",
+      "type": "dodaf:Model",
+      "name": "OV-6b: State Transition Description",
+      "description": "状態遷移記述",
+      "model": "OV-6b"
+    },
+    {
+      "id": "ex:OV6c",
+      "type": "dodaf:Model",
+      "name": "OV-6c: Event-Trace Description",
+      "description": "イベントトレース記述",
+      "model": "OV-6c"
+    },
+    {
+      "id": "ex:PV",
+      "type": "dodaf:ProjectViewpoint",
+      "name": "Project Viewpoint",
+      "hasModel": [
+        {"@id": "ex:PV1"},
+        {"@id": "ex:PV2"}
+      ]
+    },
+    {
+      "id": "ex:PV1",
+      "type": "dodaf:Model",
+      "name": "PV-1: Project Portfolio Relationships",
+      "description": "プロジェクトポートフォリオ関係",
+      "model": "PV-1"
+    },
+    {
+      "id": "ex:PV2",
+      "type": "dodaf:Model",
+      "name": "PV-2: Project Timelines",
+      "description": "プロジェクトタイムライン",
+      "model": "PV-2"
+    },
+    {
+      "id": "ex:SvcV",
+      "type": "dodaf:ServicesViewpoint",
+      "name": "Services Viewpoint",
+      "hasModel": [
+        {"@id": "ex:SvcV1"},
+        {"@id": "ex:SvcV2"},
+        {"@id": "ex:SvcV3a"},
+        {"@id": "ex:SvcV3b"},
+        {"@id": "ex:SvcV4"},
+        {"@id": "ex:SvcV5"},
+        {"@id": "ex:SvcV6"},
+        {"@id": "ex:SvcV7"},
+        {"@id": "ex:SvcV8"},
+        {"@id": "ex:SvcV9"},
+        {"@id": "ex:SvcV10a"},
+        {"@id": "ex:SvcV10b"},
+        {"@id": "ex:SvcV10c"}
+      ]
+    },
+    {
+      "id": "ex:SvcV1",
+      "type": "dodaf:Model",
+      "name": "SvcV-1: Services Context Description",
+      "description": "サービスコンテキスト記述",
+      "model": "SvcV-1"
+    },
+    {
+      "id": "ex:SvcV2",
+      "type": "dodaf:Model",
+      "name": "SvcV-2: Services Resource Flow Description",
+      "description": "サービスリソースフロー記述",
+      "model": "SvcV-2"
+    },
+    {
+      "id": "ex:SvcV3a",
+      "type": "dodaf:Model",
+      "name": "SvcV-3a: Systems-Services Matrix",
+      "description": "システム-サービスマトリックス",
+      "model": "SvcV-3a"
+    },
+    {
+      "id": "ex:SvcV3b",
+      "type": "dodaf:Model",
+      "name": "SvcV-3b: Services-Services Matrix",
+      "description": "サービス-サービスマトリックス",
+      "model": "SvcV-3b"
+    },
+    {
+      "id": "ex:SvcV4",
+      "type": "dodaf:Model",
+      "name": "SvcV-4: Services Functionality Description",
+      "description": "サービス機能記述",
+      "model": "SvcV-4"
+    },
+    {
+      "id": "ex:SvcV5",
+      "type": "dodaf:Model",
+      "name": "SvcV-5: Operational Activity to Services Traceability Matrix",
+      "description": "運用活動とサービスのトレーサビリティマトリックス",
+      "model": "SvcV-5"
+    },
+    {
+      "id": "ex:SvcV6",
+      "type": "dodaf:Model",
+      "name": "SvcV-6: Services Resource Flow Matrix",
+      "description": "サービスリソースフローマトリックス",
+      "model": "SvcV-6"
+    },
+    {
+      "id": "ex:SvcV7",
+      "type": "dodaf:Model",
+      "name": "SvcV-7: Services Measures Matrix",
+      "description": "サービス測定マトリックス",
+      "model": "SvcV-7"
+    },
+    {
+      "id": "ex:SvcV8",
+      "type": "dodaf:Model",
+      "name": "SvcV-8: Services Evolution Description",
+      "description": "サービス進化記述",
+      "model": "SvcV-8"
+    },
+    {
+      "id": "ex:SvcV9",
+      "type": "dodaf:Model",
+      "name": "SvcV-9: Services Technology and Skills Forecast",
+      "description": "サービス技術とスキル予測",
+      "model": "SvcV-9"
+    },
+    {
+      "id": "ex:SvcV10a",
+      "type": "dodaf:Model",
+      "name": "SvcV-10a: Services Rules Model",
+      "description": "サービスルールモデル",
+      "model": "SvcV-10a"
+    },
+    {
+      "id": "ex:SvcV10b",
+      "type": "dodaf:Model",
+      "name": "SvcV-10b: Services State Transition Description",
+      "description": "サービス状態遷移記述",
+      "model": "SvcV-10b"
+    },
+    {
+      "id": "ex:SvcV10c",
+      "type": "dodaf:Model",
+      "name": "SvcV-10c: Services Event-Trace Description",
+      "description": "サービスイベントトレース記述",
+      "model": "SvcV-10c"
+    },
+    {
+      "id": "ex:StdV",
+      "type": "dodaf:StandardsViewpoint",
+      "name": "Standards Viewpoint",
+      "hasModel": [
+        {"@id": "ex:StdV1"},
+        {"@id": "ex:StdV2"}
+      ]
+    },
+    {
+      "id": "ex:StdV1",
+      "type": "dodaf:Model",
+      "name": "StdV-1: Standards Profile",
+      "description": "標準プロファイル",
+      "model": "StdV-1"
+    },
+    {
+      "id": "ex:StdV2",
+      "type": "dodaf:Model",
+      "name": "StdV-2: Standards Forecast",
+      "description": "標準予測",
+      "model": "StdV-2"
+    },
+    {
+      "id": "ex:SV",
+      "type": "dodaf:SystemsViewpoint",
+      "name": "Systems Viewpoint",
+      "hasModel": [
+        {"@id": "ex:SV1"},
+        {"@id": "ex:SV2"},
+        {"@id": "ex:SV3"},
+        {"@id": "ex:SV4"},
+        {"@id": "ex:SV5a"},
+        {"@id": "ex:SV5b"},
+        {"@id": "ex:SV6"},
+        {"@id": "ex:SV7"},
+        {"@id": "ex:SV8"},
+        {"@id": "ex:SV9"},
+        {"@id": "ex:SV10a"},
+        {"@id": "ex:SV10b"},
+        {"@id": "ex:SV10c"}
+      ]
+    },
+    {
+      "id": "ex:SV1",
+      "type": "dodaf:Model",
+      "name": "SV-1: Systems Interface Description",
+      "description": "システムインターフェース記述",
+      "model": "SV-1"
+    },
+    {
+      "id": "ex:SV2",
+      "type": "dodaf:Model",
+      "name": "SV-2: Systems Resource Flow Description",
+      "description": "システムリソースフロー記述",
+      "model": "SV-2"
+    },
+    {
+      "id": "ex:SV3",
+      "type": "dodaf:Model",
+      "name": "SV-3: Systems-Systems Matrix",
+      "description": "システム-システムマトリックス",
+      "model": "SV-3"
+    },
+    {
+      "id": "ex:SV4",
+      "type": "dodaf:Model",
+      "name": "SV-4: Systems Functionality Description",
+      "description": "システム機能記述",
+      "model": "SV-4"
+    },
+    {
+      "id": "ex:SV5a",
+      "type": "dodaf:Model",
+      "name": "SV-5a: Operational Activity to Systems Function Traceability Matrix",
+      "description": "運用活動とシステム機能のトレーサビリティマトリックス",
+      "model": "SV-5a"
+    },
+    {
+      "id": "ex:SV5b",
+      "type": "dodaf:Model",
+      "name": "SV-5b: Operational Activity to Systems Traceability Matrix",
+      "description": "運用活動とシステムのトレーサビリティマトリックス",
+      "model": "SV-5b"
+    },
+    {
+      "id": "ex:SV6",
+      "type": "dodaf:Model",
+      "name": "SV-6: Systems Resource Flow Matrix",
+      "description": "システムリソースフローマトリックス",
+      "model": "SV-6"
+    },
+    {
+      "id": "ex:SV7",
+      "type": "dodaf:Model",
+      "name": "SV-7: Systems Measures Matrix",
+      "description": "システム測定マトリックス",
+      "model": "SV-7"
+    },
+    {
+      "id": "ex:SV8",
+      "type": "dodaf:Model",
+      "name": "SV-8: Systems Evolution Description",
+      "description": "システム進化記述",
+      "model": "SV-8"
+    },
+    {
+      "id": "ex:SV9",
+      "type": "dodaf:Model",
+      "name": "SV-9: Systems Technology and Skills Forecast",
+      "description": "システム技術とスキル予測",
+      "model": "SV-9"
+    },
+    {
+      "id": "ex:SV10a",
+      "type": "dodaf:Model",
+      "name": "SV-10a: Systems Rules Model",
+      "description": "システムルールモデル",
+      "model": "SV-10a"
+    },
+    {
+      "id": "ex:SV10b",
+      "type": "dodaf:Model",
+      "name": "SV-10b: Systems State Transition Description",
+      "description": "システム状態遷移記述",
+      "model": "SV-10b"
+    },
+    {
+      "id": "ex:SV10c",
+      "type": "dodaf:Model",
+      "name": "SV-10c: Systems Event-Trace Description",
+      "description": "システムイベントトレース記述",
+      "model": "SV-10c"
+    }
+  ]
+}
+

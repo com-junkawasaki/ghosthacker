@@ -1,11 +1,11 @@
 query GetScript($id: String!) {
   script(id: $id) {
     id
-    script_text
-    derived_from_story
+    scriptText
+    derivedFromStory
     status
-    created_at
-    updated_at
+    createdAt
+    updatedAt
   }
 }
 
