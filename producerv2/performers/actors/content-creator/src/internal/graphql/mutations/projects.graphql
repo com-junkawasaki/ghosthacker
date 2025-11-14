@@ -1,8 +1,7 @@
-mutation CreateProject($name: String!, $author: String!, $description: String) {
-  createProject(name: $name, author: $author, description: $description) {
+mutation CreateProject($name: String!, $description: String) {
+  createProject(name: $name, description: $description) {
     id
     name
-    author
     description
     status
     createdAt
@@ -10,11 +9,10 @@ mutation CreateProject($name: String!, $author: String!, $description: String) {
   }
 }
 
-mutation UpdateProject($id: String!, $name: String, $author: String, $description: String, $status: String) {
-  updateProject(id: $id, name: $name, author: $author, description: $description, status: $status) {
+mutation UpdateProject($id: String!, $name: String, $description: String, $status: String) {
+  updateProject(id: $id, name: $name, description: $description, status: $status) {
     id
     name
-    author
     description
     status
     createdAt

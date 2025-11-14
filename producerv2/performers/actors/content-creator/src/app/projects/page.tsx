@@ -24,7 +24,6 @@ import {
 interface Project {
   id: string;
   name: string;
-  author: string;
   description: string | null;
   status: string | null;
   createdAt: string;
@@ -37,7 +36,6 @@ export default function ProjectsPage() {
   const [error, setError] = useState<string | null>(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [newProjectName, setNewProjectName] = useState('');
-  const [newProjectAuthor, setNewProjectAuthor] = useState('');
   const [newProjectDescription, setNewProjectDescription] = useState('');
 
   useEffect(() => {
@@ -63,10 +61,6 @@ export default function ProjectsPage() {
       setError('Project name is required');
       return;
     }
-    if (!newProjectAuthor.trim()) {
-      setError('Author is required');
-      return;
-    }
 
     setLoading(true);
     setError(null);
@@ -74,13 +68,11 @@ export default function ProjectsPage() {
               const result = await graphqlRequest(CreateProjectDocument, {
                 variables: {
                   name: newProjectName,
-                  author: newProjectAuthor,
                   description: newProjectDescription || undefined,
                 },
               });
       setProjects([...projects, result.createProject]);
       setNewProjectName('');
-      setNewProjectAuthor('');
       setNewProjectDescription('');
       setShowCreateModal(false);
     } catch (err) {
@@ -178,7 +170,6 @@ export default function ProjectsPage() {
                   </div>
                 </div>
                 <div className="text-xs text-gray-500 dark:text-gray-400 mb-4">
-                  <div>Author: {project.author}</div>
                   <div>Created: {new Date(project.createdAt).toLocaleDateString()}</div>
                   <div>Updated: {new Date(project.updatedAt).toLocaleDateString()}</div>
                 </div>
@@ -222,18 +213,6 @@ export default function ProjectsPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Author *
-                  </label>
-                  <input
-                    type="text"
-                    value={newProjectAuthor}
-                    onChange={(e) => setNewProjectAuthor(e.target.value)}
-                    className="w-full px-4 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:border-blue-400"
-                    placeholder="Enter author name"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Description
                   </label>
                   <textarea
@@ -248,7 +227,7 @@ export default function ProjectsPage() {
               <div className="flex gap-3 mt-6">
                 <button
                   onClick={handleCreateProject}
-                  disabled={loading || !newProjectName.trim() || !newProjectAuthor.trim()}
+                  disabled={loading || !newProjectName.trim()}
                   className="flex-1 px-4 py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? 'Creating...' : 'Create'}
@@ -257,7 +236,6 @@ export default function ProjectsPage() {
                         onClick={() => {
                           setShowCreateModal(false);
                           setNewProjectName('');
-                          setNewProjectAuthor('');
                           setNewProjectDescription('');
                         }}
                   className="px-4 py-2 bg-gray-200 text-gray-700 font-semibold rounded hover:bg-gray-300 transition duration-200"

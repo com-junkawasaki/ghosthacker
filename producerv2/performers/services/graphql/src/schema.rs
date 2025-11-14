@@ -725,7 +725,7 @@ impl MutationRoot {
             ///   "ex:consumes": "ex:ProjectInput",
             ///   "ex:produces": "ex:Project"
             /// }
-            async fn create_project(&self, name: String, author: String, description: Option<String>) -> Result<Project> {
+            async fn create_project(&self, name: String, description: Option<String>) -> Result<Project> {
         let client = get_client().map_err(|e| Error::new(e.to_string()))?;
 
         let now = chrono::Utc::now().to_rfc3339();
@@ -735,8 +735,6 @@ impl MutationRoot {
                     id: project_id.clone(),
                     r#type: "Project".to_string(),
                     name: name.clone(),
-                    author: author.clone(),
-                    dct_creator: Some(author.clone()),
                     description,
                     status: Some("active".to_string()),
                     created_at: Some(now.clone()),
@@ -765,7 +763,6 @@ impl MutationRoot {
                 &self,
                 id: String,
                 name: Option<String>,
-                author: Option<String>,
                 description: Option<String>,
                 status: Option<String>,
             ) -> Result<Project> {
@@ -780,9 +777,6 @@ impl MutationRoot {
                 // 更新フィールドを適用
                 if let Some(n) = name {
                     project.name = n;
-                }
-                if let Some(a) = author {
-                    project.author = a;
                 }
                 if let Some(d) = description {
                     project.description = Some(d);
@@ -1085,7 +1079,6 @@ pub struct MetadataInput {
 pub struct Project {
     pub id: String,
     pub name: String,
-    pub author: String,
     pub description: Option<String>,
     pub status: Option<String>,
     pub created_at: String,
@@ -1097,7 +1090,6 @@ impl From<TerminusProject> for Project {
         Project {
             id: project.id,
             name: project.name,
-            author: project.author,
             description: project.description,
             status: project.status,
             created_at: project.created_at.unwrap_or_default(),

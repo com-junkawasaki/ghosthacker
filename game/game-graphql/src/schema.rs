@@ -9,7 +9,7 @@
  * }
  */
 
-use async_graphql::{Error, InputObject, Object, Result, SimpleObject, Subscription};
+use async_graphql::{Error, InputObject, Object, Result, Subscription};
 use async_stream::stream;
 use futures::Stream;
 use uuid::Uuid;
@@ -20,12 +20,12 @@ use crate::models::{
     ghost_from_document, ghost_to_document,
     event_fragment_from_document, event_fragment_to_document,
     session_from_document, session_to_document,
+    player_profile_from_document,
     Ghost, EventFragment, Session, PlayerProfile, GhostStateGraphQL
 };
-use crate::hume::client::{generate_event_fragments, generate_ghost_monologue, generate_insight};
+use crate::hume::client::generate_event_fragments;
 use game_core::puzzle::{Timeline, Causality, Emotion};
 use game_core::math::update::{update_timeline_correction, update_causality_correction, update_emotion_correction, UpdateParams};
-use game_core::session::Reflection;
 
 #[derive(Default)]
 pub struct QueryRoot;
@@ -44,22 +44,39 @@ impl QueryRoot {
     /// イベント断片取得
     async fn event_fragments(&self, ghost_id: Uuid) -> Result<Vec<EventFragment>> {
         let client = get_client()?;
-        // TODO: TerminusDBからイベント断片を取得
-        Err(Error::new("Not implemented"))
+        let ghost_id_str = ghost_id.to_string();
+        let docs = client.query_event_fragments_by_ghost(&ghost_id_str).await?;
+        
+        let fragments: Vec<EventFragment> = docs
+            .iter()
+            .filter_map(|doc| event_fragment_from_document(doc))
+            .collect();
+        
+        Ok(fragments)
     }
 
     /// セッション取得
     async fn session(&self, id: Uuid) -> Result<Session> {
         let client = get_client()?;
-        // TODO: TerminusDBからセッションを取得
-        Err(Error::new("Not implemented"))
+        let doc_id = format!("session:{}", id);
+        let doc = client.get_document(&doc_id).await?;
+        session_from_document(&doc)
+            .ok_or_else(|| Error::new(format!("Failed to parse session document: {}", id)))
     }
 
     /// プレイヤープロフィール取得
     async fn player_profile(&self, user_id: Uuid) -> Result<PlayerProfile> {
         let client = get_client()?;
-        // TODO: TerminusDBからプレイヤープロフィールを取得
-        Err(Error::new("Not implemented"))
+        let user_id_str = user_id.to_string();
+        let docs = client.query_player_profile(&user_id_str).await?;
+        
+        if let Some(doc) = docs.first() {
+            player_profile_from_document(doc)
+                .ok_or_else(|| Error::new(format!("Failed to parse player profile document: {}", user_id)))
+        } else {
+            // プロフィールが存在しない場合は新規作成
+            Ok(PlayerProfile { id: user_id })
+        }
     }
 }
 
@@ -187,15 +204,35 @@ impl MutationRoot {
         );
         
         // イベント断片を取得
-        // TODO: WOQLクエリでゴーストに関連するイベント断片を取得
-        // 簡易実装: 順序からイベント断片を構築
-        let fragments = order.iter().map(|&id| {
-            game_core::puzzle::timeline::EventFragment {
-                id,
-                content: String::new(),
-                timestamp: None, // TODO: 実際のタイムスタンプを設定
+        let ghost_id_str = ghost_id.to_string();
+        let event_docs = client.query_event_fragments_by_ghost(&ghost_id_str).await?;
+        
+        // ドキュメントからイベント断片を構築
+        let mut fragments: Vec<game_core::puzzle::timeline::EventFragment> = event_docs
+            .iter()
+            .filter_map(|doc| {
+                event_fragment_from_document(doc).map(|ef| {
+                    game_core::puzzle::timeline::EventFragment {
+                        id: ef.id,
+                        content: ef.content,
+                        timestamp: doc.get("gh:timestamp").and_then(|v| v.as_i64()),
+                    }
+                })
+            })
+            .collect();
+        
+        // 順序に従って並び替え（orderに含まれるIDのみ）
+        let order_set: std::collections::HashSet<Uuid> = order.iter().copied().collect();
+        fragments.retain(|f| order_set.contains(&f.id));
+        
+        // 順序に従ってソート
+        let mut sorted_fragments = Vec::new();
+        for &id in &order {
+            if let Some(pos) = fragments.iter().position(|f| f.id == id) {
+                sorted_fragments.push(fragments.remove(pos));
             }
-        }).collect();
+        }
+        let fragments = sorted_fragments;
         
         let timeline = Timeline::new(fragments);
         let params = UpdateParams::default();

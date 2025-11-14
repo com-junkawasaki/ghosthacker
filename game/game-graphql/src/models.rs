@@ -17,7 +17,12 @@ use uuid::Uuid;
 /// TerminusDBからゴーストを取得してGraphQL型に変換
 pub fn ghost_from_document(doc: &Value) -> Option<Ghost> {
     let id_str = doc.get("@id")?.as_str()?;
-    let id = Uuid::parse_str(id_str).ok()?;
+    // ID形式: "ghost:uuid" または "uuid" をサポート
+    let id = if id_str.contains(':') {
+        id_str.split(':').nth(1).and_then(|s| Uuid::parse_str(s).ok())?
+    } else {
+        Uuid::parse_str(id_str).ok()?
+    };
     
     // 状態を読み取る
     let state = if let Some(state_obj) = doc.get("gh:hasInitialState") {
@@ -41,7 +46,12 @@ pub fn ghost_from_document(doc: &Value) -> Option<Ghost> {
 /// TerminusDBからイベント断片を取得してGraphQL型に変換
 pub fn event_fragment_from_document(doc: &Value) -> Option<EventFragment> {
     let id_str = doc.get("@id")?.as_str()?;
-    let id = Uuid::parse_str(id_str).ok()?;
+    // ID形式: "eventFragment:uuid" または "uuid" をサポート
+    let id = if id_str.contains(':') {
+        id_str.split(':').nth(1).and_then(|s| Uuid::parse_str(s).ok())?
+    } else {
+        Uuid::parse_str(id_str).ok()?
+    };
     let content = doc.get("gh:content")?.as_str()?.to_string();
     Some(EventFragment { id, content })
 }
@@ -58,9 +68,19 @@ pub fn event_fragment_to_document(fragment: &EventFragment) -> Value {
 /// TerminusDBからセッションを取得してGraphQL型に変換
 pub fn session_from_document(doc: &Value) -> Option<Session> {
     let id_str = doc.get("@id")?.as_str()?;
-    let id = Uuid::parse_str(id_str).ok()?;
+    // ID形式: "session:uuid" または "uuid" をサポート
+    let id = if id_str.contains(':') {
+        id_str.split(':').nth(1).and_then(|s| Uuid::parse_str(s).ok())?
+    } else {
+        Uuid::parse_str(id_str).ok()?
+    };
     let ghost_id_str = doc.get("gh:hasGhost")?.as_str()?;
-    let ghost_id = Uuid::parse_str(ghost_id_str).ok()?;
+    // ghost_id形式: "ghost:uuid" または "uuid" をサポート
+    let ghost_id = if ghost_id_str.contains(':') {
+        ghost_id_str.split(':').nth(1).and_then(|s| Uuid::parse_str(s).ok())?
+    } else {
+        Uuid::parse_str(ghost_id_str).ok()?
+    };
     Some(Session { id, ghost_id })
 }
 
@@ -147,5 +167,17 @@ pub struct Session {
 #[derive(SimpleObject)]
 pub struct PlayerProfile {
     pub id: Uuid,
+}
+
+/// TerminusDBからプレイヤープロフィールを取得してGraphQL型に変換
+pub fn player_profile_from_document(doc: &Value) -> Option<PlayerProfile> {
+    let id_str = doc.get("@id")?.as_str()?;
+    // ID形式: "playerProfile:uuid" または "uuid" をサポート
+    let id = if id_str.contains(':') {
+        id_str.split(':').nth(1).and_then(|s| Uuid::parse_str(s).ok())?
+    } else {
+        Uuid::parse_str(id_str).ok()?
+    };
+    Some(PlayerProfile { id })
 }
 

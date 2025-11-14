@@ -23,8 +23,10 @@ fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
         .init_resource::<GameState>()
+        .init_resource::<CurrentPuzzleMode>()
         .add_systems(Startup, setup)
         .add_systems(Update, (
+            button_handler_system,
             input_system,
             ui_system,
             ghost_render_system,

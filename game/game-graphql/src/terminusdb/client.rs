@@ -8,7 +8,7 @@ use reqwest::Client;
 use serde_json::{json, Value};
 use std::sync::Arc;
 use once_cell::sync::OnceCell;
-use tracing::{error, info};
+use tracing::error;
 
 pub struct TerminusDBClient {
     http_client: Client,
@@ -181,9 +181,79 @@ impl TerminusDBClient {
             .await?;
 
         let result: Value = response.error_for_status()?.json().await?;
+        
         // WOQLクエリの結果からドキュメントを抽出
-        // 簡易実装: 実際のWOQLクエリ結果の構造に応じて調整が必要
-        Ok(vec![result])
+        // TerminusDBのWOQLクエリ結果は {"bindings": [{"V": {...}, ...}]} の形式
+        if let Some(bindings) = result.get("bindings").and_then(|b| b.as_array()) {
+            let mut documents = Vec::new();
+            for binding in bindings {
+                if let Some(doc) = binding.get("V") {
+                    documents.push(doc.clone());
+                }
+            }
+            Ok(documents)
+        } else {
+            // フォールバック: 結果が期待される形式でない場合
+            Ok(vec![result])
+        }
+    }
+
+    /// ゴーストに関連するイベント断片を取得するWOQLクエリ
+    pub async fn query_event_fragments_by_ghost(&self, ghost_id: &str) -> Result<Vec<Value>> {
+        let query = json!({
+            "@type": "And",
+            "query": [
+                {
+                    "@type": "Triple",
+                    "subject": {"@type": "Value", "variable": "Event"},
+                    "predicate": {"@type": "Value", "node": "gh:belongsToGhost"},
+                    "object": {"@type": "Value", "node": format!("ghost:{}", ghost_id)}
+                },
+                {
+                    "@type": "Triple",
+                    "subject": {"@type": "Value", "variable": "Event"},
+                    "predicate": {"@type": "Value", "node": "rdf:type"},
+                    "object": {"@type": "Value", "node": "gh:EventFragment"}
+                }
+            ]
+        });
+        
+        self.query_documents(query).await
+    }
+
+    /// すべてのセッションを取得するWOQLクエリ
+    pub async fn query_all_sessions(&self) -> Result<Vec<Value>> {
+        let query = json!({
+            "@type": "Triple",
+            "subject": {"@type": "Value", "variable": "Session"},
+            "predicate": {"@type": "Value", "node": "rdf:type"},
+            "object": {"@type": "Value", "node": "gh:Session"}
+        });
+        
+        self.query_documents(query).await
+    }
+
+    /// プレイヤープロフィールを取得するWOQLクエリ
+    pub async fn query_player_profile(&self, user_id: &str) -> Result<Vec<Value>> {
+        let query = json!({
+            "@type": "And",
+            "query": [
+                {
+                    "@type": "Triple",
+                    "subject": {"@type": "Value", "variable": "Profile"},
+                    "predicate": {"@type": "Value", "node": "rdf:type"},
+                    "object": {"@type": "Value", "node": "gh:PlayerProfile"}
+                },
+                {
+                    "@type": "Triple",
+                    "subject": {"@type": "Value", "variable": "Profile"},
+                    "predicate": {"@type": "Value", "node": "gh:userId"},
+                    "object": {"@type": "Value", "data": {"@type": "xsd:string", "@value": user_id}}
+                }
+            ]
+        });
+        
+        self.query_documents(query).await
     }
 
     /// JSON-LDドキュメントに@contextを追加

@@ -10,7 +10,7 @@
  */
 
 use bevy::prelude::*;
-use crate::components::PuzzleMode;
+use crate::components::{ButtonType, CurrentPuzzleMode};
 use crate::resources::GameState;
 use game_core::session::SessionState;
 
@@ -366,14 +366,17 @@ fn spawn_puzzle_ui(
                 })
                 .with_children(|parent| {
                     // 時系列モード
-                    parent.spawn(ButtonBundle {
-                        style: Style {
-                            padding: UiRect::all(Val::Px(15.0)),
+                    parent.spawn((
+                        ButtonBundle {
+                            style: Style {
+                                padding: UiRect::all(Val::Px(15.0)),
+                                ..default()
+                            },
+                            background_color: Color::rgb(0.2, 0.2, 0.3).into(),
                             ..default()
                         },
-                        background_color: Color::rgb(0.2, 0.2, 0.3).into(),
-                        ..default()
-                    })
+                        ButtonType::PuzzleModeTimeline,
+                    ))
                     .with_children(|parent| {
                         parent.spawn(TextBundle::from_section(
                             "時系列",
@@ -386,14 +389,17 @@ fn spawn_puzzle_ui(
                     });
 
                     // 因果モード
-                    parent.spawn(ButtonBundle {
-                        style: Style {
-                            padding: UiRect::all(Val::Px(15.0)),
+                    parent.spawn((
+                        ButtonBundle {
+                            style: Style {
+                                padding: UiRect::all(Val::Px(15.0)),
+                                ..default()
+                            },
+                            background_color: Color::rgb(0.2, 0.2, 0.3).into(),
                             ..default()
                         },
-                        background_color: Color::rgb(0.2, 0.2, 0.3).into(),
-                        ..default()
-                    })
+                        ButtonType::PuzzleModeCausality,
+                    ))
                     .with_children(|parent| {
                         parent.spawn(TextBundle::from_section(
                             "因果",
@@ -406,14 +412,17 @@ fn spawn_puzzle_ui(
                     });
 
                     // 感情モード
-                    parent.spawn(ButtonBundle {
-                        style: Style {
-                            padding: UiRect::all(Val::Px(15.0)),
+                    parent.spawn((
+                        ButtonBundle {
+                            style: Style {
+                                padding: UiRect::all(Val::Px(15.0)),
+                                ..default()
+                            },
+                            background_color: Color::rgb(0.2, 0.2, 0.3).into(),
                             ..default()
                         },
-                        background_color: Color::rgb(0.2, 0.2, 0.3).into(),
-                        ..default()
-                    })
+                        ButtonType::PuzzleModeEmotion,
+                    ))
                     .with_children(|parent| {
                         parent.spawn(TextBundle::from_section(
                             "感情",
