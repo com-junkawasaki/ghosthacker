@@ -12,6 +12,7 @@
 use bevy::prelude::*;
 use crate::components::{ButtonType, CurrentPuzzleMode};
 use crate::resources::{GameState, JapaneseFont};
+use crate::ui::{load_jsonld_ui, build_screen_from_jsonld};
 use game_core::session::SessionState;
 
 /// UIルートマーカー
@@ -56,12 +57,45 @@ pub fn ui_system(
             _ => {}
         }
     } else {
-        // 初期画面
-        spawn_intro_ui(&mut commands, &asset_server, &japanese_font);
+        // 初期画面（JSON-LDから生成）
+        info!("Attempting to load JSON-LD UI...");
+        match spawn_intro_ui_from_jsonld(&mut commands, &japanese_font) {
+            Ok(_) => {
+                info!("JSON-LD UI loaded successfully");
+            }
+            Err(e) => {
+                warn!("Failed to load JSON-LD UI, falling back to default: {}", e);
+                spawn_intro_ui(&mut commands, &asset_server, &japanese_font);
+            }
+        }
     }
 }
 
-/// イントロ画面UI
+/// イントロ画面UI（JSON-LDから生成）
+fn spawn_intro_ui_from_jsonld(commands: &mut Commands, font: &Res<JapaneseFont>) -> Result<(), String> {
+    // プロジェクトルートからの相対パス
+    let json_ld_paths = [
+        "game/game-bevy/ui/intro-screen.jsonld.mdc",
+        "game-bevy/ui/intro-screen.jsonld.mdc",
+        "../game-bevy/ui/intro-screen.jsonld.mdc",
+    ];
+    
+    let mut json_ld = None;
+    for path in &json_ld_paths {
+        if let Ok(ld) = load_jsonld_ui(path) {
+            json_ld = Some(ld);
+            break;
+        }
+    }
+    
+    let json_ld = json_ld.ok_or_else(|| "JSON-LD file not found in any expected location".to_string())?;
+    
+    build_screen_from_jsonld(commands, &json_ld, "ghui:IntroScreen", font)?;
+    
+    Ok(())
+}
+
+/// イントロ画面UI（フォールバック用）
 fn spawn_intro_ui(commands: &mut Commands, _asset_server: &Res<AssetServer>, font: &Res<JapaneseFont>) {
     commands
         .spawn((

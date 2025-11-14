@@ -14,6 +14,7 @@ use bevy::prelude::*;
 mod systems;
 mod components;
 mod resources;
+mod ui;
 
 use systems::*;
 use components::*;
@@ -21,7 +22,14 @@ use resources::*;
 
 fn main() {
     App::new()
-        .add_plugins(DefaultPlugins)
+        .add_plugins(DefaultPlugins.set(WindowPlugin {
+            primary_window: Some(Window {
+                title: "Ghost Hacker".into(),
+                resolution: (1280.0, 720.0).into(),
+                ..default()
+            }),
+            ..default()
+        }))
         .init_resource::<GameState>()
         .init_resource::<CurrentPuzzleMode>()
         .add_systems(Startup, (setup, load_font))
