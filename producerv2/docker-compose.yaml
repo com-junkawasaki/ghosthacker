@@ -33,6 +33,32 @@ services:
       timeout: 5s
       retries: 5
 
+  graphql:
+    build:
+      context: .
+      dockerfile: Dockerfile.graphql
+    container_name: producerv2-graphql
+    ports:
+      - "8080:8080"
+    environment:
+      # TerminusDB (ハードコード)
+      TERMINUSDB_URL: http://terminusdb:6363
+      TERMINUSDB_USER: admin
+      TERMINUSDB_SERVER_PASS: root
+      TERMINUSDB_DB: producerv2
+      TERMINUSDB_ORGANIZATION: ""
+      RUST_LOG: info
+    volumes:
+      - ./performers/services/graphql:/app
+    depends_on:
+      terminusdb:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   app:
     build:
       context: .
@@ -48,7 +74,11 @@ services:
       WATCHPACK_POLLING_INTERVAL: 1000
       NEXT_PUBLIC_APP_URL: http://localhost:3000
       
-      # TerminusDB
+      # GraphQL API
+      NEXT_PUBLIC_GRAPHQL_API_URL: http://localhost:8080/graphql
+      GRAPHQL_API_URL: http://graphql:8080/graphql
+      
+      # TerminusDB (deprecated - GraphQL経由でアクセス)
       TERMINUSDB_URL: http://terminusdb:6363
       TERMINUSDB_USER: admin
       TERMINUSDB_SERVER_PASS: root
@@ -82,6 +112,7 @@ services:
     depends_on:
       - terminusdb
       - postgres
+      - graphql
 
 volumes:
   terminusdb-data:

@@ -1,56 +1,71 @@
 /**
  * GraphQL Service Main
- * Rust async-graphqlサービス
+ * Rust async-graphqlサービス with Poem
+ * 
+ * @context {
+ *   "@id": "ex:GraphQLServiceMain",
+ *   "@type": "ex:Service",
+ *   "ex:provides": "ex:GraphQLAPI"
+ * }
  */
 
 use async_graphql::{EmptyMutation, EmptySubscription, Schema};
-use async_graphql_axum::{GraphQLRequest, GraphQLResponse};
-use axum::{
-    extract::Extension,
-    http::Method,
-    response::Html,
-    routing::get,
-    Router,
+use async_graphql_poem::GraphQL;
+use poem::{
+    handler,
+    http::StatusCode,
+    listener::TcpListener,
+    middleware::Cors,
+    web::Html,
+    EndpointExt, Route, Server,
 };
-use tower_http::cors::{Any, CorsLayer};
 
 mod schema;
+mod terminusdb;
 
-use schema::QueryRoot;
+use schema::{MutationRoot, QueryRoot, SubscriptionRoot};
 
-async fn graphql_handler(
-    Extension(schema): Extension<Schema<QueryRoot, EmptyMutation, EmptySubscription>>,
-    req: GraphQLRequest,
-) -> GraphQLResponse {
-    schema.execute(req.into_inner()).await.into()
-}
-
+#[handler]
 async fn graphql_playground() -> Html<String> {
     Html(async_graphql::http::playground_source(
         async_graphql::http::GraphQLPlaygroundConfig::new("/graphql"),
     ))
 }
 
+#[handler]
+async fn health() -> (StatusCode, &'static str) {
+    (StatusCode::OK, "OK")
+}
+
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
+    dotenv::dotenv().ok();
     tracing_subscriber::fmt::init();
 
-    let schema = Schema::build(QueryRoot::default(), EmptyMutation, EmptySubscription)
-        .finish();
+    // TerminusDBクライアントを初期化
+    terminusdb::client::initialize().await?;
+    
+    // OWLスキーマを適用
+    terminusdb::schema::apply_owl_schema().await?;
 
-    let cors = CorsLayer::new()
-        .allow_methods([Method::GET, Method::POST])
-        .allow_headers(Any)
-        .allow_origin(Any);
+    // GraphQLスキーマを構築
+    let schema = Schema::build(
+        QueryRoot::default(),
+        MutationRoot::default(),
+        SubscriptionRoot::default(),
+    )
+    .finish();
 
-    let app = Router::new()
-        .route("/graphql", get(graphql_playground).post(graphql_handler))
-        .layer(Extension(schema))
-        .layer(cors);
+    // Poemルートを設定
+    let app = Route::new()
+        .at("/graphql", GraphQL::new(schema))
+        .at("/graphql-playground", graphql_playground)
+        .at("/health", health)
+        .with(Cors::new());
 
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await?;
+    let listener = TcpListener::bind("0.0.0.0:8080");
     tracing::info!("GraphQL server running on http://0.0.0.0:8080/graphql");
-    axum::serve(listener, app).await?;
+    Server::new(listener).run(app).await?;
 
     Ok(())
 }
