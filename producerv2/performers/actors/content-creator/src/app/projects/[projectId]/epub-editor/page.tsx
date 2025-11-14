@@ -13,6 +13,17 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
+import { graphqlRequest } from '@/internal/graphql/client';
+import {
+  CreateEpubDocumentDocument,
+  CreateChapterDocument,
+  CreateParagraphDocument,
+  CreateTextNodeDocument,
+  UpdateTextNodeDocument,
+  DeleteTextNodeDocument,
+  GetTextNodesDocument,
+} from '@/generated/graphql';
+import { exportEPUB } from '@/internal/epub/export';
 
 interface EPUBDocument {
   id: string;
@@ -82,35 +93,21 @@ export default function EPUBEditorPage() {
     setError(null);
 
     try {
-      const response = await fetch('/api/graphql', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query: `
-            mutation CreateEPUBDocument($title: String!, $metadata: MetadataInput) {
-              createEPUBDocument(title: $title, metadata: $metadata) {
-                id
-                title
-                metadata
-                chapters
-                created_at
-                updated_at
-              }
-            }
-          `,
-          variables: {
-            title: 'New EPUB Document',
-            metadata: metadata,
-          },
-        }),
+      const result = await graphqlRequest(CreateEpubDocumentDocument, {
+        variables: {
+          title: metadata.title || 'New EPUB Document',
+          metadata: Object.keys(metadata).length > 0 ? metadata : undefined,
+        },
       });
 
-      const result = await response.json();
-      if (result.errors) {
-        throw new Error(result.errors[0].message);
-      }
-
-      setDocument(result.data.createEPUBDocument);
+      setDocument({
+        id: result.createEpubDocument.id,
+        title: result.createEpubDocument.title,
+        metadata: result.createEpubDocument.metadata,
+        chapters: result.createEpubDocument.chapters,
+        created_at: result.createEpubDocument.createdAt,
+        updated_at: result.createEpubDocument.updatedAt,
+      });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create document');
     } finally {
@@ -126,37 +123,26 @@ export default function EPUBEditorPage() {
     setError(null);
 
     try {
-      const response = await fetch('/api/graphql', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query: `
-            mutation CreateChapter($documentId: String!, $title: String!, $order: Int!) {
-              createChapter(documentId: $documentId, title: $title, order: $order) {
-                id
-                title
-                order
-                sections
-                paragraphs
-                created_at
-                updated_at
-              }
-            }
-          `,
-          variables: {
-            documentId: document.id,
-            title,
-            order: chapters.length + 1,
-          },
-        }),
+      const result = await graphqlRequest(CreateChapterDocument, {
+        variables: {
+          documentId: document.id,
+          title,
+          order: chapters.length + 1,
+        },
       });
 
-      const result = await response.json();
-      if (result.errors) {
-        throw new Error(result.errors[0].message);
-      }
-
-      setChapters([...chapters, result.data.createChapter]);
+      setChapters([
+        ...chapters,
+        {
+          id: result.createChapter.id,
+          title: result.createChapter.title,
+          order: result.createChapter.order,
+          sections: result.createChapter.sections,
+          paragraphs: result.createChapter.paragraphs,
+          created_at: result.createChapter.createdAt,
+          updated_at: result.createChapter.updatedAt,
+        },
+      ]);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create chapter');
     } finally {
@@ -170,35 +156,24 @@ export default function EPUBEditorPage() {
     setError(null);
 
     try {
-      const response = await fetch('/api/graphql', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query: `
-            mutation CreateParagraph($chapterId: String!, $order: Int!) {
-              createParagraph(chapterId: $chapterId, order: $order) {
-                id
-                order
-                text_nodes
-                style
-                created_at
-                updated_at
-              }
-            }
-          `,
-          variables: {
-            chapterId,
-            order: paragraphs.length + 1,
-          },
-        }),
+      const result = await graphqlRequest(CreateParagraphDocument, {
+        variables: {
+          chapterId,
+          order: paragraphs.length + 1,
+        },
       });
 
-      const result = await response.json();
-      if (result.errors) {
-        throw new Error(result.errors[0].message);
-      }
-
-      setParagraphs([...paragraphs, result.data.createParagraph]);
+      setParagraphs([
+        ...paragraphs,
+        {
+          id: result.createParagraph.id,
+          order: result.createParagraph.order,
+          text_nodes: result.createParagraph.textNodes,
+          style: result.createParagraph.style,
+          created_at: result.createParagraph.createdAt,
+          updated_at: result.createParagraph.updatedAt,
+        },
+      ]);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create paragraph');
     } finally {
@@ -212,37 +187,26 @@ export default function EPUBEditorPage() {
     setError(null);
 
     try {
-      const response = await fetch('/api/graphql', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query: `
-            mutation CreateTextNode($paragraphId: String!, $content: String!, $order: Int!) {
-              createTextNode(paragraphId: $paragraphId, content: $content, order: $order) {
-                id
-                content
-                order
-                belongs_to_paragraph
-                style
-                created_at
-                updated_at
-              }
-            }
-          `,
-          variables: {
-            paragraphId,
-            content,
-            order: textNodes.length + 1,
-          },
-        }),
+      const result = await graphqlRequest(CreateTextNodeDocument, {
+        variables: {
+          paragraphId,
+          content,
+          order: textNodes.length + 1,
+        },
       });
 
-      const result = await response.json();
-      if (result.errors) {
-        throw new Error(result.errors[0].message);
-      }
-
-      setTextNodes([...textNodes, result.data.createTextNode]);
+      setTextNodes([
+        ...textNodes,
+        {
+          id: result.createTextNode.id,
+          content: result.createTextNode.content,
+          order: result.createTextNode.order,
+          belongs_to_paragraph: result.createTextNode.belongsToParagraph,
+          style: result.createTextNode.style,
+          created_at: result.createTextNode.createdAt,
+          updated_at: result.createTextNode.updatedAt,
+        },
+      ]);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create text node');
     } finally {
@@ -256,38 +220,22 @@ export default function EPUBEditorPage() {
     setError(null);
 
     try {
-      const response = await fetch('/api/graphql', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query: `
-            mutation UpdateTextNode($id: String!, $content: String, $order: Int) {
-              updateTextNode(id: $id, content: $content, order: $order) {
-                id
-                content
-                order
-                belongs_to_paragraph
-                style
-                created_at
-                updated_at
-              }
-            }
-          `,
-          variables: {
-            id,
-            content,
-          },
-        }),
+      const result = await graphqlRequest(UpdateTextNodeDocument, {
+        variables: {
+          id,
+          content,
+        },
       });
-
-      const result = await response.json();
-      if (result.errors) {
-        throw new Error(result.errors[0].message);
-      }
 
       setTextNodes(
         textNodes.map((node) =>
-          node.id === id ? result.data.updateTextNode : node
+          node.id === id
+            ? {
+                ...node,
+                content: result.updateTextNode.content,
+                updated_at: result.updateTextNode.updatedAt,
+              }
+            : node
         )
       );
     } catch (err) {
@@ -411,9 +359,29 @@ export default function EPUBEditorPage() {
                           ? 'bg-green-100 border-2 border-green-500'
                           : 'bg-gray-50 border border-gray-200 hover:bg-gray-100'
                       }`}
-                      onClick={() => {
+                      onClick={async () => {
                         setSelectedParagraph(paragraph.id);
-                        // TODO: テキストノードを取得
+                        // テキストノードを取得
+                        try {
+                          const result = await graphqlRequest(GetTextNodesDocument, {
+                            variables: {
+                              paragraphId: paragraph.id,
+                            },
+                          });
+                          setTextNodes(
+                            result.textNodes.map((node) => ({
+                              id: node.id,
+                              content: node.content,
+                              order: node.order,
+                              belongs_to_paragraph: node.belongsToParagraph,
+                              style: node.style,
+                              created_at: node.createdAt,
+                              updated_at: node.updatedAt,
+                            }))
+                          );
+                        } catch (err) {
+                          console.error('Failed to load text nodes:', err);
+                        }
                       }}
                     >
                       <p className="text-sm">段落 #{paragraph.order}</p>
@@ -440,8 +408,15 @@ export default function EPUBEditorPage() {
                               className="flex-1 px-3 py-2 border border-gray-300 rounded-md"
                             />
                             <button
-                              onClick={() => {
-                                // TODO: テキストノードを削除
+                              onClick={async () => {
+                                try {
+                                  await graphqlRequest(DeleteTextNodeDocument, {
+                                    variables: { id: node.id },
+                                  });
+                                  setTextNodes(textNodes.filter((n) => n.id !== node.id));
+                                } catch (err) {
+                                  setError(err instanceof Error ? err.message : 'Failed to delete text node');
+                                }
                               }}
                               className="px-3 py-2 bg-red-600 text-white rounded hover:bg-red-700"
                             >
@@ -469,9 +444,57 @@ export default function EPUBEditorPage() {
             )}
           </div>
 
-          {/* 右サイドバー: メタデータ編集 */}
+          {/* 右サイドバー: メタデータ編集とエクスポート */}
           <div className="bg-white rounded-lg shadow-md p-4">
-            <h2 className="text-lg font-semibold mb-4">メタデータ (Dublin Core)</h2>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-semibold">メタデータ (Dublin Core)</h2>
+              {document && (
+                <div className="flex gap-2">
+                  <button
+                    onClick={async () => {
+                      try {
+                        const blob = await exportEPUB({
+                          documentId: document.id,
+                          format: 'epub',
+                        });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `${document.title}.epub`;
+                        a.click();
+                        URL.revokeObjectURL(url);
+                      } catch (err) {
+                        setError(err instanceof Error ? err.message : 'Failed to export EPUB');
+                      }
+                    }}
+                    className="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700"
+                  >
+                    EPUB出力
+                  </button>
+                  <button
+                    onClick={async () => {
+                      try {
+                        const blob = await exportEPUB({
+                          documentId: document.id,
+                          format: 'kindle',
+                        });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `${document.title}.mobi`;
+                        a.click();
+                        URL.revokeObjectURL(url);
+                      } catch (err) {
+                        setError(err instanceof Error ? err.message : 'Failed to export Kindle');
+                      }
+                    }}
+                    className="px-3 py-1 bg-orange-600 text-white text-sm rounded hover:bg-orange-700"
+                  >
+                    Kindle出力
+                  </button>
+                </div>
+              )}
+            </div>
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">

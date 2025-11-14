@@ -1,5 +1,5 @@
 mutation CreateEPUBDocument($title: String!, $metadata: MetadataInput) {
-  createEPUBDocument(title: $title, metadata: $metadata) {
+  createEpubDocument(title: $title, metadata: $metadata) {
     id
     title
     metadata
@@ -10,7 +10,7 @@ mutation CreateEPUBDocument($title: String!, $metadata: MetadataInput) {
 }
 
 mutation UpdateEPUBDocument($id: String!, $title: String, $metadata: MetadataInput) {
-  updateEPUBDocument(id: $id, title: $title, metadata: $metadata) {
+  updateEpubDocument(id: $id, title: $title, metadata: $metadata) {
     id
     title
     metadata
