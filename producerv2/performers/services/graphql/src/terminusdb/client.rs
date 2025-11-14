@@ -12,9 +12,9 @@
 use anyhow::{Context, Result};
 use base64::{engine::general_purpose, Engine as _};
 use reqwest::Client;
-use serde_json::Value;
+use serde_json::{json, Value};
 use std::sync::{Arc, OnceLock};
-use tracing::info;
+use tracing::{error, info, warn};
 
 pub struct TerminusDBClient {
     http_client: Client,
@@ -38,46 +38,47 @@ impl TerminusDBClient {
         })
     }
 
-    async fn ensure_database(&self) -> Result<()> {
-        let url = format!("{}/api/db/{}", self.base_url, self.db_name);
-        let response = self
-            .http_client
-            .get(&url)
-            .header("Authorization", &self.auth_header)
-            .send()
-            .await?;
+            async fn ensure_database(&self) -> Result<()> {
+                let url = format!("{}/api/db/{}", self.base_url, self.db_name);
+                let response = self
+                    .http_client
+                    .get(&url)
+                    .header("Authorization", &self.auth_header)
+                    .send()
+                    .await?;
 
-        if response.status().as_u16() == 404 {
-            // データベースが存在しない場合は作成
-            let create_url = format!("{}/api/db/{}", self.base_url, self.db_name);
-            let create_body = serde_json::json!({
-                "label": "Producer V2",
-                "comment": "OWL-based LLM Content Generator"
-            });
+                if response.status().as_u16() == 404 {
+                    // データベースが存在しない場合は作成
+                    let create_url = format!("{}/api/db/{}", self.base_url, self.db_name);
+                    let create_body = serde_json::json!({
+                        "label": "Producer V2",
+                        "comment": "OWL-based LLM Content Generator"
+                    });
 
-            let create_response = self
-                .http_client
-                .post(&create_url)
-                .header("Authorization", &self.auth_header)
-                .header("Content-Type", "application/json")
-                .json(&create_body)
-                .send()
-                .await?;
+                    let create_response = self
+                        .http_client
+                        .post(&create_url)
+                        .header("Authorization", &self.auth_header)
+                        .header("Content-Type", "application/json")
+                        .json(&create_body)
+                        .send()
+                        .await?;
 
-            if !create_response.status().is_success() {
-                let error_text = create_response.text().await.unwrap_or_default();
-                return Err(anyhow::anyhow!("Failed to create database: {}", error_text));
+                    if !create_response.status().is_success() {
+                        let error_text = create_response.text().await.unwrap_or_default();
+                        return Err(anyhow::anyhow!("Failed to create database: {}", error_text));
+                    }
+                    info!("Database '{}' created successfully", self.db_name);
+                } else if response.status().is_success() {
+                    // データベースが存在する場合はそのまま使用（スキーマ制約は無視）
+                    info!("Database '{}' already exists, using existing database", self.db_name);
+                } else {
+                    let error_text = response.text().await.unwrap_or_default();
+                    return Err(anyhow::anyhow!("Failed to check database: {}", error_text));
+                }
+
+                Ok(())
             }
-            info!("Database '{}' created successfully", self.db_name);
-        } else if !response.status().is_success() {
-            let error_text = response.text().await.unwrap_or_default();
-            return Err(anyhow::anyhow!("Failed to check database: {}", error_text));
-        } else {
-            info!("Database '{}' already exists", self.db_name);
-        }
-
-        Ok(())
-    }
 
     pub async fn get_document(&self, id: &str) -> Result<Value> {
         let url = format!(
@@ -122,7 +123,15 @@ impl TerminusDBClient {
         Ok(vec![result])
     }
 
+    /// JSON-LDドキュメントに@contextを追加（最小版）
+    fn add_jsonld_context(_document: &mut Value) {
+        // @contextを追加しない（プレーンJSONとして送信）
+    }
+
     pub async fn insert_document(&self, document: &Value) -> Result<()> {
+        let mut doc = document.clone();
+        Self::add_jsonld_context(&mut doc);
+
         let url = format!(
             "{}/api/document/{}/local/branch/main",
             self.base_url, self.db_name
@@ -132,15 +141,25 @@ impl TerminusDBClient {
             .post(&url)
             .header("Authorization", &self.auth_header)
             .header("Content-Type", "application/json")
-            .json(document)
+            .json(&doc)
             .send()
             .await?;
 
-        response.error_for_status()?;
+        if !response.status().is_success() {
+            let status = response.status();
+            let error_text = response.text().await.unwrap_or_else(|_| "Unknown error".to_string());
+            error!("TerminusDB insert error ({}): {}", status, error_text);
+            error!("Request document: {}", serde_json::to_string_pretty(&doc).unwrap_or_default());
+            return Err(anyhow::anyhow!("TerminusDB error ({}): {}", status, error_text));
+        }
+
         Ok(())
     }
 
     pub async fn update_document(&self, document: &Value) -> Result<()> {
+        let mut doc = document.clone();
+        Self::add_jsonld_context(&mut doc);
+
         let url = format!(
             "{}/api/document/{}/local/branch/main",
             self.base_url, self.db_name
@@ -150,11 +169,18 @@ impl TerminusDBClient {
             .put(&url)
             .header("Authorization", &self.auth_header)
             .header("Content-Type", "application/json")
-            .json(document)
+            .json(&doc)
             .send()
             .await?;
 
-        response.error_for_status()?;
+        if !response.status().is_success() {
+            let status = response.status();
+            let error_text = response.text().await.unwrap_or_else(|_| "Unknown error".to_string());
+            error!("TerminusDB update error ({}): {}", status, error_text);
+            error!("Request document: {}", serde_json::to_string_pretty(&doc).unwrap_or_default());
+            return Err(anyhow::anyhow!("TerminusDB error ({}): {}", status, error_text));
+        }
+
         Ok(())
     }
 

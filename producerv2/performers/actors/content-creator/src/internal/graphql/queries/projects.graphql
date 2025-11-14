@@ -13,6 +13,7 @@ query GetProject($id: String!) {
   project(id: $id) {
     id
     name
+    author
     description
     status
     createdAt

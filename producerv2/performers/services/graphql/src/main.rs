@@ -43,11 +43,11 @@ async fn main() -> anyhow::Result<()> {
     dotenv::dotenv().ok();
     tracing_subscriber::fmt::init();
 
-    // TerminusDBクライアントを初期化
-    terminusdb::client::initialize().await?;
-    
-    // OWLスキーマを適用
-    terminusdb::schema::apply_owl_schema().await?;
+            // TerminusDBクライアントを初期化
+            terminusdb::client::initialize().await?;
+
+            // OWLスキーマ適用
+            terminusdb::schema::apply_owl_schema().await?;
 
     // GraphQLスキーマを構築
     let schema = Schema::build(

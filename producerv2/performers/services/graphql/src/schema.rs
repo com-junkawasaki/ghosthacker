@@ -717,29 +717,30 @@ impl MutationRoot {
         }
     }
 
-    /// プロジェクトを作成
-    /// 
-    /// @context {
-    ///   "@id": "ex:createProject",
-    ///   "@type": "ex:Activity",
-    ///   "ex:consumes": "ex:ProjectInput",
-    ///   "ex:produces": "ex:Project"
-    /// }
-    async fn create_project(&self, name: String, description: Option<String>) -> Result<Project> {
+            /// プロジェクトを作成
+            ///
+            /// @context {
+            ///   "@id": "ex:createProject",
+            ///   "@type": "ex:Activity",
+            ///   "ex:consumes": "ex:ProjectInput",
+            ///   "ex:produces": "ex:Project"
+            /// }
+            async fn create_project(&self, name: String, author: String, description: Option<String>) -> Result<Project> {
         let client = get_client().map_err(|e| Error::new(e.to_string()))?;
 
         let now = chrono::Utc::now().to_rfc3339();
         let project_id = format!("Project_{}", nanoid!());
 
-        let project = TerminusProject {
-            id: project_id.clone(),
-            r#type: "ex:Project".to_string(),
-            name: name.clone(),
-            description,
-            status: Some("active".to_string()),
-            created_at: Some(now.clone()),
-            updated_at: Some(now.clone()),
-        };
+                let project = TerminusProject {
+                    id: project_id.clone(),
+                    r#type: "ex:Project".to_string(),
+                    name: name.clone(),
+                    author: author.clone(),
+                    description,
+                    status: Some("active".to_string()),
+                    created_at: Some(now.clone()),
+                    updated_at: Some(now.clone()),
+                };
 
         let doc = serde_json::to_value(&project)?;
         match client.insert_document(&doc).await {
@@ -759,13 +760,14 @@ impl MutationRoot {
     ///   "ex:consumes": ["ex:ProjectId", "ex:ProjectUpdate"],
     ///   "ex:produces": "ex:Project"
     /// }
-    async fn update_project(
-        &self,
-        id: String,
-        name: Option<String>,
-        description: Option<String>,
-        status: Option<String>,
-    ) -> Result<Project> {
+            async fn update_project(
+                &self,
+                id: String,
+                name: Option<String>,
+                author: Option<String>,
+                description: Option<String>,
+                status: Option<String>,
+            ) -> Result<Project> {
         let client = get_client().map_err(|e| Error::new(e.to_string()))?;
 
         // 既存のプロジェクトを取得
@@ -774,17 +776,20 @@ impl MutationRoot {
         let mut project: TerminusProject = serde_json::from_value(doc)
             .map_err(|e| Error::new(format!("Failed to parse project: {}", e)))?;
 
-        // 更新フィールドを適用
-        if let Some(n) = name {
-            project.name = n;
-        }
-        if let Some(d) = description {
-            project.description = Some(d);
-        }
-        if let Some(s) = status {
-            project.status = Some(s);
-        }
-        project.updated_at = Some(chrono::Utc::now().to_rfc3339());
+                // 更新フィールドを適用
+                if let Some(n) = name {
+                    project.name = n;
+                }
+                if let Some(a) = author {
+                    project.author = a;
+                }
+                if let Some(d) = description {
+                    project.description = Some(d);
+                }
+                if let Some(s) = status {
+                    project.status = Some(s);
+                }
+                project.updated_at = Some(chrono::Utc::now().to_rfc3339());
 
         let doc = serde_json::to_value(&project)?;
         match client.update_document(&doc).await {
@@ -1079,6 +1084,7 @@ pub struct MetadataInput {
 pub struct Project {
     pub id: String,
     pub name: String,
+    pub author: String,
     pub description: Option<String>,
     pub status: Option<String>,
     pub created_at: String,
@@ -1090,6 +1096,7 @@ impl From<TerminusProject> for Project {
         Project {
             id: project.id,
             name: project.name,
+            author: project.author,
             description: project.description,
             status: project.status,
             created_at: project.created_at.unwrap_or_default(),
