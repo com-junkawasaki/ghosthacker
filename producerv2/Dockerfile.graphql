@@ -1,15 +1,15 @@
-FROM rust:1.75-alpine AS builder
+FROM rust:1.83-alpine AS builder
 
 WORKDIR /app
 
 # ビルドに必要な依存関係をインストール
 RUN apk add --no-cache musl-dev openssl-dev
 
-# プロジェクト全体をコピー
-COPY . .
+# GraphQLサービスディレクトリのみをコピー
+COPY performers/services/graphql/Cargo.toml performers/services/graphql/Cargo.lock* ./
+COPY performers/services/graphql/src ./src
 
-# GraphQLサービスディレクトリに移動
-WORKDIR /app/performers/services/graphql
+WORKDIR /app
 
 # ビルド
 RUN cargo build --release

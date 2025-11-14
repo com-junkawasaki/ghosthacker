@@ -8,12 +8,12 @@
  * }
  */
 
-use anyhow::{Context, Result};
+use anyhow::Result;
 use serde::{Deserialize, Serialize};
-use terminusdb_rs::{BranchSpec, DocumentInsertArgs};
+use serde_json::json;
 use tracing::{info, warn};
 
-use super::client::{get_client, get_database_name};
+use super::client::get_client;
 
 /// Storyドキュメント構造体
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -60,14 +60,27 @@ pub struct Script {
 /// }
 pub async fn apply_owl_schema() -> Result<()> {
     let client = get_client()?;
-    let db_name = get_database_name();
-    let branch = BranchSpec::from(db_name.clone());
-    let args = DocumentInsertArgs::from(branch.clone());
 
-    info!("Applying OWL schema to database '{}'", db_name);
+    info!("Applying OWL schema to database");
 
-    // Storyスキーマを適用
-    match client.schema::<Story>(args.clone()).await {
+    // Storyクラスのスキーマ定義
+    let story_schema = json!({
+        "@id": "ex:Story",
+        "@type": "owl:Class",
+        "rdfs:label": "Story",
+        "rdfs:comment": "A story document"
+    });
+
+    // Scriptクラスのスキーマ定義
+    let script_schema = json!({
+        "@id": "ex:Script",
+        "@type": "owl:Class",
+        "rdfs:label": "Script",
+        "rdfs:comment": "A script generated from a story"
+    });
+
+    // スキーマを適用（既に存在する場合はエラーを無視）
+    match client.insert_schema(&story_schema).await {
         Ok(_) => {
             info!("Story schema applied successfully");
         }
@@ -76,8 +89,7 @@ pub async fn apply_owl_schema() -> Result<()> {
         }
     }
 
-    // Scriptスキーマを適用
-    match client.schema::<Script>(args.clone()).await {
+    match client.insert_schema(&script_schema).await {
         Ok(_) => {
             info!("Script schema applied successfully");
         }
@@ -89,4 +101,3 @@ pub async fn apply_owl_schema() -> Result<()> {
     info!("OWL schema application completed");
     Ok(())
 }
-

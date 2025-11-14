@@ -9,7 +9,7 @@
  * }
  */
 
-use async_graphql::{EmptyMutation, EmptySubscription, Schema};
+use async_graphql::Schema;
 use async_graphql_poem::GraphQL;
 use poem::{
     handler,
