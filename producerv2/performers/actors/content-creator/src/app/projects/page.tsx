@@ -104,12 +104,12 @@ export default function ProjectsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 py-8">
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Projects</h1>
-            <p className="text-gray-600">Manage your content creation projects</p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">Projects</h1>
+            <p className="text-gray-600 dark:text-gray-400">Manage your content creation projects</p>
           </div>
           <button
             onClick={() => setShowCreateModal(true)}
@@ -127,11 +127,11 @@ export default function ProjectsPage() {
 
         {loading && projects.length === 0 ? (
           <div className="text-center py-12">
-            <div className="text-lg text-gray-500">Loading projects...</div>
+            <div className="text-lg text-gray-500 dark:text-gray-400">Loading projects...</div>
           </div>
         ) : projects.length === 0 ? (
-          <div className="text-center py-12 bg-white rounded-lg shadow-md">
-            <p className="text-gray-500 text-lg mb-4">No projects yet</p>
+          <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <p className="text-gray-500 dark:text-gray-400 text-lg mb-4">No projects yet</p>
             <button
               onClick={() => setShowCreateModal(true)}
               className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-200"
@@ -144,15 +144,15 @@ export default function ProjectsPage() {
             {projects.map((project) => (
               <div
                 key={project.id}
-                className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200"
+                className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
-                    <h2 className="text-xl font-semibold text-gray-900 mb-2">
+                    <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
                       {project.name}
                     </h2>
                     {project.description && (
-                      <p className="text-gray-600 text-sm mb-2 line-clamp-2">
+                      <p className="text-gray-600 dark:text-gray-400 text-sm mb-2 line-clamp-2">
                         {project.description}
                       </p>
                     )}
@@ -169,7 +169,7 @@ export default function ProjectsPage() {
                     )}
                   </div>
                 </div>
-                <div className="text-xs text-gray-500 mb-4">
+                <div className="text-xs text-gray-500 dark:text-gray-400 mb-4">
                   <div>Created: {new Date(project.createdAt).toLocaleDateString()}</div>
                   <div>Updated: {new Date(project.updatedAt).toLocaleDateString()}</div>
                 </div>
@@ -195,30 +195,30 @@ export default function ProjectsPage() {
         {/* Create Project Modal */}
         {showCreateModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Create New Project</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Create New Project</h2>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Project Name *
                   </label>
                   <input
                     type="text"
                     value={newProjectName}
                     onChange={(e) => setNewProjectName(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:border-blue-400"
                     placeholder="Enter project name"
                     autoFocus
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Description
                   </label>
                   <textarea
                     value={newProjectDescription}
                     onChange={(e) => setNewProjectDescription(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:border-blue-400"
                     placeholder="Enter project description (optional)"
                     rows={3}
                   />

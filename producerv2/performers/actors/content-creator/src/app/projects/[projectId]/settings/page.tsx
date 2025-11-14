@@ -64,7 +64,7 @@ export default function SettingsPage({ params }: { params: { projectId: string }
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Settings</h1>
+      <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">Settings</h1>
 
       {message && (
         <div
@@ -81,17 +81,17 @@ export default function SettingsPage({ params }: { params: { projectId: string }
       <div className="space-y-8">
         {/* LLM Provider Settings */}
         <section>
-          <h2 className="text-2xl font-semibold mb-4">LLM Provider</h2>
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">LLM Provider</h2>
           <div className="space-y-4">
             <div>
-              <label htmlFor="llmProvider" className="block text-sm font-medium mb-2">
+              <label htmlFor="llmProvider" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Provider
               </label>
               <select
                 id="llmProvider"
                 value={llmProvider}
                 onChange={(e) => setLlmProvider(e.target.value as LLMProviderType)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
               >
                 <option value="openai">OpenAI (GPT-5)</option>
                 <option value="anthropic">Anthropic (Claude)</option>
@@ -101,7 +101,7 @@ export default function SettingsPage({ params }: { params: { projectId: string }
 
             {llmProvider === 'openai' && (
               <div>
-                <label htmlFor="openaiApiKey" className="block text-sm font-medium mb-2">
+                <label htmlFor="openaiApiKey" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   OpenAI API Key
                 </label>
                 <input
@@ -109,7 +109,7 @@ export default function SettingsPage({ params }: { params: { projectId: string }
                   id="openaiApiKey"
                   value={openaiApiKey}
                   onChange={(e) => setOpenaiApiKey(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
                   placeholder="sk-..."
                 />
               </div>
@@ -117,7 +117,7 @@ export default function SettingsPage({ params }: { params: { projectId: string }
 
             {llmProvider === 'anthropic' && (
               <div>
-                <label htmlFor="anthropicApiKey" className="block text-sm font-medium mb-2">
+                <label htmlFor="anthropicApiKey" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Anthropic API Key
                 </label>
                 <input
@@ -125,7 +125,7 @@ export default function SettingsPage({ params }: { params: { projectId: string }
                   id="anthropicApiKey"
                   value={anthropicApiKey}
                   onChange={(e) => setAnthropicApiKey(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
                   placeholder="sk-ant-..."
                 />
               </div>
@@ -133,7 +133,7 @@ export default function SettingsPage({ params }: { params: { projectId: string }
 
             {llmProvider === 'ollama' && (
               <div>
-                <label htmlFor="ollamaBaseUrl" className="block text-sm font-medium mb-2">
+                <label htmlFor="ollamaBaseUrl" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Ollama Base URL
                 </label>
                 <input
@@ -141,7 +141,7 @@ export default function SettingsPage({ params }: { params: { projectId: string }
                   id="ollamaBaseUrl"
                   value={ollamaBaseUrl}
                   onChange={(e) => setOllamaBaseUrl(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
                   placeholder="http://localhost:11434"
                 />
               </div>
@@ -151,10 +151,10 @@ export default function SettingsPage({ params }: { params: { projectId: string }
 
         {/* Media Provider Settings */}
         <section>
-          <h2 className="text-2xl font-semibold mb-4">Media Providers</h2>
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Media Providers</h2>
           <div className="space-y-4">
             <div>
-              <label htmlFor="humeApiKey" className="block text-sm font-medium mb-2">
+              <label htmlFor="humeApiKey" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Hume API Key (TTS)
               </label>
               <input
@@ -162,13 +162,13 @@ export default function SettingsPage({ params }: { params: { projectId: string }
                 id="humeApiKey"
                 value={humeApiKey}
                 onChange={(e) => setHumeApiKey(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
                 placeholder="Hume API Key"
               />
             </div>
 
             <div>
-              <label htmlFor="runwaymlApiKey" className="block text-sm font-medium mb-2">
+              <label htmlFor="runwaymlApiKey" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 RunwayML API Key (Video)
               </label>
               <input
@@ -176,7 +176,7 @@ export default function SettingsPage({ params }: { params: { projectId: string }
                 id="runwaymlApiKey"
                 value={runwaymlApiKey}
                 onChange={(e) => setRunwaymlApiKey(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
                 placeholder="RunwayML API Key"
               />
             </div>
@@ -185,10 +185,10 @@ export default function SettingsPage({ params }: { params: { projectId: string }
 
         {/* YouTube Settings */}
         <section>
-          <h2 className="text-2xl font-semibold mb-4">YouTube API</h2>
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">YouTube API</h2>
           <div className="space-y-4">
             <div>
-              <label htmlFor="youtubeClientId" className="block text-sm font-medium mb-2">
+              <label htmlFor="youtubeClientId" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 YouTube Client ID
               </label>
               <input
@@ -196,13 +196,13 @@ export default function SettingsPage({ params }: { params: { projectId: string }
                 id="youtubeClientId"
                 value={youtubeClientId}
                 onChange={(e) => setYoutubeClientId(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
                 placeholder="YouTube OAuth Client ID"
               />
             </div>
 
             <div>
-              <label htmlFor="youtubeClientSecret" className="block text-sm font-medium mb-2">
+              <label htmlFor="youtubeClientSecret" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 YouTube Client Secret
               </label>
               <input
@@ -210,7 +210,7 @@ export default function SettingsPage({ params }: { params: { projectId: string }
                 id="youtubeClientSecret"
                 value={youtubeClientSecret}
                 onChange={(e) => setYoutubeClientSecret(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
                 placeholder="YouTube OAuth Client Secret"
               />
             </div>

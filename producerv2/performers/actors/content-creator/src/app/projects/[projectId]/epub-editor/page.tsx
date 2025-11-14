@@ -248,8 +248,8 @@ export default function EPUBEditorPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">EPUB Editor</h1>
-        <p className="text-gray-600">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">EPUB Editor</h1>
+        <p className="text-gray-600 dark:text-gray-400">
           RDFベースのEPUBエディタ - テキストノードをRDFリソースとして管理
         </p>
       </div>
@@ -262,27 +262,27 @@ export default function EPUBEditorPage() {
 
       {/* ドキュメント作成 */}
       {!document && (
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-          <h2 className="text-xl font-semibold mb-4">新しいEPUBドキュメントを作成</h2>
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">新しいEPUBドキュメントを作成</h2>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 タイトル
               </label>
               <input
                 type="text"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md"
                 placeholder="EPUB Document Title"
                 onChange={(e) => setMetadata({ ...metadata, title: e.target.value })}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 著者
               </label>
               <input
                 type="text"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md"
                 placeholder="Author Name"
                 onChange={(e) => setMetadata({ ...metadata, author: e.target.value })}
               />
@@ -302,9 +302,9 @@ export default function EPUBEditorPage() {
       {document && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* 左サイドバー: 章一覧 */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-semibold">章</h2>
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">章</h2>
               <button
                 onClick={() => {
                   const title = prompt('章のタイトルを入力:');
@@ -321,8 +321,8 @@ export default function EPUBEditorPage() {
                   key={chapter.id}
                   className={`p-3 rounded cursor-pointer ${
                     selectedChapter === chapter.id
-                      ? 'bg-blue-100 border-2 border-blue-500'
-                      : 'bg-gray-50 border border-gray-200 hover:bg-gray-100'
+                      ? 'bg-blue-100 dark:bg-blue-900 border-2 border-blue-500 dark:border-blue-400'
+                      : 'bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600'
                   }`}
                   onClick={() => {
                     setSelectedChapter(chapter.id);
@@ -330,19 +330,19 @@ export default function EPUBEditorPage() {
                     setTextNodes([]);
                   }}
                 >
-                  <h3 className="font-medium">{chapter.title}</h3>
-                  <p className="text-xs text-gray-500">順序: {chapter.order}</p>
+                  <h3 className="font-medium text-gray-900 dark:text-gray-100">{chapter.title}</h3>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">順序: {chapter.order}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* 中央: 段落とテキストノード */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
             {selectedChapter ? (
               <>
                 <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-lg font-semibold">段落</h2>
+                  <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">段落</h2>
                   <button
                     onClick={() => handleCreateParagraph(selectedChapter)}
                     className="px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700"
@@ -356,8 +356,8 @@ export default function EPUBEditorPage() {
                       key={paragraph.id}
                       className={`p-3 rounded cursor-pointer ${
                         selectedParagraph === paragraph.id
-                          ? 'bg-green-100 border-2 border-green-500'
-                          : 'bg-gray-50 border border-gray-200 hover:bg-gray-100'
+                          ? 'bg-green-100 dark:bg-green-900 border-2 border-green-500 dark:border-green-400'
+                          : 'bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600'
                       }`}
                       onClick={async () => {
                         setSelectedParagraph(paragraph.id);
@@ -384,15 +384,15 @@ export default function EPUBEditorPage() {
                         }
                       }}
                     >
-                      <p className="text-sm">段落 #{paragraph.order}</p>
+                      <p className="text-sm text-gray-900 dark:text-gray-100">段落 #{paragraph.order}</p>
                     </div>
                   ))}
                 </div>
 
                 {/* テキストエディタ */}
                 {selectedParagraph && (
-                  <div className="border-t pt-4">
-                    <h3 className="font-semibold mb-2">テキストノード</h3>
+                  <div className="border-t border-gray-300 dark:border-gray-600 pt-4">
+                    <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">テキストノード</h3>
                     <div className="space-y-2">
                       {textNodes
                         .filter((node) => node.belongs_to_paragraph === selectedParagraph)
@@ -405,7 +405,7 @@ export default function EPUBEditorPage() {
                               onChange={(e) =>
                                 handleUpdateTextNode(node.id, e.target.value)
                               }
-                              className="flex-1 px-3 py-2 border border-gray-300 rounded-md"
+                              className="flex-1 px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md"
                             />
                             <button
                               onClick={async () => {
@@ -438,16 +438,16 @@ export default function EPUBEditorPage() {
                 )}
               </>
             ) : (
-              <div className="text-center text-gray-500 py-8">
+              <div className="text-center text-gray-500 dark:text-gray-400 py-8">
                 章を選択してください
               </div>
             )}
           </div>
 
           {/* 右サイドバー: メタデータ編集とエクスポート */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-semibold">メタデータ (Dublin Core)</h2>
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">メタデータ (Dublin Core)</h2>
               {document && (
                 <div className="flex gap-2">
                   <button
@@ -497,68 +497,68 @@ export default function EPUBEditorPage() {
             </div>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   タイトル
                 </label>
                 <input
                   type="text"
                   value={metadata.title || ''}
                   onChange={(e) => setMetadata({ ...metadata, title: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   著者
                 </label>
                 <input
                   type="text"
                   value={metadata.author || ''}
                   onChange={(e) => setMetadata({ ...metadata, author: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   ISBN
                 </label>
                 <input
                   type="text"
                   value={metadata.isbn || ''}
                   onChange={(e) => setMetadata({ ...metadata, isbn: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   言語
                 </label>
                 <input
                   type="text"
                   value={metadata.language || ''}
                   onChange={(e) => setMetadata({ ...metadata, language: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   出版社
                 </label>
                 <input
                   type="text"
                   value={metadata.publisher || ''}
                   onChange={(e) => setMetadata({ ...metadata, publisher: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   説明
                 </label>
                 <textarea
                   value={metadata.description || ''}
                   onChange={(e) => setMetadata({ ...metadata, description: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md"
                   rows={4}
                 />
               </div>
