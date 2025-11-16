@@ -20,8 +20,8 @@ mutation UpdateEPUBDocument($id: String!, $title: String, $metadata: MetadataInp
   }
 }
 
-mutation CreateChapter($documentId: String!, $title: String!, $order: Int!) {
-  createChapter(documentId: $documentId, title: $title, order: $order) {
+mutation CreateChapter($documentId: String!, $isEpub: Boolean, $title: String!, $order: Int!) {
+  createChapter(documentId: $documentId, isEpub: $isEpub, title: $title, order: $order) {
     id
     title
     order
@@ -44,8 +44,8 @@ mutation UpdateChapter($id: String!, $title: String, $order: Int) {
   }
 }
 
-mutation CreateParagraph($chapterId: String!, $order: Int!) {
-  createParagraph(chapterId: $chapterId, order: $order) {
+mutation CreateParagraph($chapterId: String, $sectionId: String, $order: Int!) {
+  createParagraph(chapterId: $chapterId, sectionId: $sectionId, order: $order) {
     id
     order
     textNodes

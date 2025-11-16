@@ -25,6 +25,9 @@ WORKDIR /app
 # ビルドしたバイナリをコピー
 COPY --from=builder /app/target/release/producerv2-graphql /app/producerv2-graphql
 
+# マイグレーションファイルをコピー
+COPY performers/services/graphql/migrations ./migrations
+
 EXPOSE 8080
 
 HEALTHCHECK --interval=10s --timeout=5s --retries=3 \

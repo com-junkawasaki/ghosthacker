@@ -126,6 +126,7 @@ export default function EPUBEditorPage() {
       const result = await graphqlRequest(CreateChapterDocument, {
         variables: {
           documentId: document.id,
+          isEpub: true,
           title,
           order: chapters.length + 1,
         },

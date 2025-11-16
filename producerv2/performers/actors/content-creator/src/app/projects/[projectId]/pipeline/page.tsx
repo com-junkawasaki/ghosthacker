@@ -7,6 +7,8 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import { graphqlRequest } from '@/internal/graphql/client';
+import { GetStoryDocument, CreateScriptDocument } from '@/generated/graphql';
 
 type PipelineStatus = 'pending' | 'running' | 'completed' | 'failed' | 'cancelled';
 type PipelineStep = 'ingest_story' | 'generate_script' | 'generate_image' | 'generate_audio' | 'compose_video' | 'upload_youtube';
@@ -46,28 +48,41 @@ export default function PipelineMonitorPage({ params }: { params: { projectId: s
     });
 
     try {
-      const response = await fetch('/api/pipeline/execute', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          story: {
-            title: 'Story Title', // 実際にはstoryIdから取得
-            content: 'Story Content',
-          },
-          youtubeTitle: youtubeTitle || undefined,
-          youtubeDescription: youtubeDescription || undefined,
-        }),
+      // Step 1: Storyを取得
+      const storyResult = await graphqlRequest(GetStoryDocument, {
+        variables: { id: storyId },
       });
 
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.error ?? 'Failed to execute pipeline');
+      if (!storyResult.story) {
+        throw new Error('Story not found');
       }
 
-      const data = await response.json();
-      setContext(data.context);
+      setContext((prev) => ({
+        ...(prev ?? { storyId, status: 'running', currentStep: 'ingest_story' }),
+        currentStep: 'generate_script',
+      }));
+
+      // Step 2: Scriptを生成（仮実装 - 実際のLLM処理は後で実装）
+      const scriptText = `Script generated from story: ${storyResult.story.title}\n\n${storyResult.story.content.substring(0, 500)}...`;
+
+      const scriptResult = await graphqlRequest(CreateScriptDocument, {
+        variables: {
+          scriptText,
+          derivedFromStory: storyId,
+          status: 'draft',
+        },
+      });
+
+      if (!scriptResult.createScript) {
+        throw new Error('Failed to create script');
+      }
+
+      setContext((prev) => ({
+        ...(prev ?? { storyId, status: 'running', currentStep: 'generate_script' }),
+        scriptId: scriptResult.createScript.id,
+        currentStep: 'generate_image',
+        status: 'completed', // 仮実装のため、ここで完了とする
+      }));
     } catch (error) {
       setContext((prev) => ({
         ...(prev ?? { storyId, status: 'failed', currentStep: 'ingest_story' }),

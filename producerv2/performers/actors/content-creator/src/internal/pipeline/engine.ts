@@ -1,8 +1,16 @@
 /**
  * Pipeline Engine
+ * 
+ * @context {
+ *   "@id": "ex:PipelineEngine",
+ *   "@type": "ex:Service",
+ *   "ex:provides": "ex:PipelineExecution"
+ * }
  */
 
 import type { PipelineConfig, PipelineContext } from './types';
+import { graphqlRequest } from '../graphql/client';
+import { CreateStoryDocument, CreateScriptDocument } from '@/generated/graphql';
 
 export class PipelineEngine {
   private config: PipelineConfig;
@@ -26,27 +34,52 @@ export class PipelineEngine {
 
     try {
       // Step 1: Storyを保存
-      context.storyId = `story_${Date.now()}`;
+      const storyResult = await graphqlRequest(CreateStoryDocument, {
+        variables: {
+          title: storyData.title,
+          content: storyData.content,
+        },
+      });
+
+      if (!storyResult.createStory) {
+        throw new Error('Failed to create story');
+      }
+
+      context.storyId = storyResult.createStory.id;
       context.currentStep = 'generate_script';
       context.updatedAt = new Date().toISOString();
 
-      // Step 2: Scriptを生成
-      context.scriptId = `script_${Date.now()}`;
+      // Step 2: Scriptを生成（仮実装 - 実際のLLM処理は後で実装）
+      const scriptText = `Script generated from story: ${storyData.title}\n\n${storyData.content.substring(0, 500)}...`;
+
+      const scriptResult = await graphqlRequest(CreateScriptDocument, {
+        variables: {
+          scriptText,
+          derivedFromStory: context.storyId,
+          status: 'draft',
+        },
+      });
+
+      if (!scriptResult.createScript) {
+        throw new Error('Failed to create script');
+      }
+
+      context.scriptId = scriptResult.createScript.id;
       context.currentStep = 'generate_image';
       context.updatedAt = new Date().toISOString();
 
-      // Step 3: ImageとAudioを並列生成
+      // Step 3: ImageとAudioを並列生成（仮実装）
       context.imageAssetId = `image_${Date.now()}`;
       context.audioAssetId = `audio_${Date.now()}`;
       context.currentStep = 'compose_video';
       context.updatedAt = new Date().toISOString();
 
-      // Step 4: Videoを合成
+      // Step 4: Videoを合成（仮実装）
       context.videoAssetId = `video_${Date.now()}`;
       context.currentStep = 'upload_youtube';
       context.updatedAt = new Date().toISOString();
 
-      // Step 5: YouTubeにアップロード
+      // Step 5: YouTubeにアップロード（仮実装）
       if (youtubeTitle) {
         context.youtubePublicationId = `youtube_${Date.now()}`;
       }
