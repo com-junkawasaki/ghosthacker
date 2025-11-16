@@ -39,7 +39,12 @@ pub struct Story {
 }
 
 /// Scriptドキュメント構造体
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
+#[tdb(
+    class_name = "Script",
+    base = "ex:",
+    key = "random"
+)]
 pub struct Script {
     #[serde(rename = "@id")]
     pub id: String,
@@ -58,7 +63,12 @@ pub struct Script {
 }
 
 /// EPUBドキュメント構造体
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
+#[tdb(
+    class_name = "EPUBDocument",
+    base = "ex:",
+    key = "random"
+)]
 pub struct EPUBDocument {
     #[serde(rename = "@id")]
     pub id: String,
@@ -77,7 +87,12 @@ pub struct EPUBDocument {
 }
 
 /// Kindleドキュメント構造体
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
+#[tdb(
+    class_name = "KindleDocument",
+    base = "ex:",
+    key = "random"
+)]
 pub struct KindleDocument {
     #[serde(rename = "@id")]
     pub id: String,
@@ -96,7 +111,12 @@ pub struct KindleDocument {
 }
 
 /// 章構造体
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
+#[tdb(
+    class_name = "Chapter",
+    base = "ex:",
+    key = "random"
+)]
 pub struct Chapter {
     #[serde(rename = "@id")]
     pub id: String,
@@ -117,7 +137,12 @@ pub struct Chapter {
 }
 
 /// 節構造体
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
+#[tdb(
+    class_name = "Section",
+    base = "ex:",
+    key = "random"
+)]
 pub struct Section {
     #[serde(rename = "@id")]
     pub id: String,
@@ -136,7 +161,12 @@ pub struct Section {
 }
 
 /// 段落構造体
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
+#[tdb(
+    class_name = "Paragraph",
+    base = "ex:",
+    key = "random"
+)]
 pub struct Paragraph {
     #[serde(rename = "@id")]
     pub id: String,
@@ -155,7 +185,12 @@ pub struct Paragraph {
 }
 
 /// テキストノード構造体（RDFリソースとして）
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
+#[tdb(
+    class_name = "TextNode",
+    base = "ex:",
+    key = "random"
+)]
 pub struct TextNode {
     #[serde(rename = "@id")]
     pub id: String,
@@ -176,7 +211,12 @@ pub struct TextNode {
 }
 
 /// メタデータ構造体（Dublin Core）
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
+#[tdb(
+    class_name = "Metadata",
+    base = "ex:",
+    key = "random"
+)]
 pub struct Metadata {
     #[serde(rename = "@id")]
     pub id: String,

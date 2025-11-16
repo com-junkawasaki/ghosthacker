@@ -283,8 +283,7 @@ impl MutationRoot {
         }
         story.updated_at = Some(chrono::Utc::now().to_rfc3339());
 
-        
-        match update_document_typed(&doc).await {
+        match update_document_typed(&story).await {
             Ok(_) => Ok(story.into()),
             Err(e) => {
                 error!("Failed to update story: {}", e);
@@ -341,9 +340,7 @@ impl MutationRoot {
             created_at: Some(now.clone()),
             updated_at: Some(now.clone()),
         };
-
-        
-        match insert_document_typed(&doc).await {
+        match insert_document_typed(&script).await {
             Ok(_) => Ok(script.into()),
             Err(e) => {
                 error!("Failed to create script: {}", e);
@@ -383,8 +380,7 @@ impl MutationRoot {
         }
         script.updated_at = Some(chrono::Utc::now().to_rfc3339());
 
-        
-        match update_document_typed(&doc).await {
+        match update_document_typed(&script).await {
             Ok(_) => Ok(script.into()),
             Err(e) => {
                 error!("Failed to update script: {}", e);
@@ -459,13 +455,11 @@ impl MutationRoot {
             epub.metadata = Some(meta_id.clone());
 
             // メタデータを保存
-            let meta_doc = serde_json::to_value(&meta)?;
-            insert_document_typed(&meta_doc).await
+            insert_document_typed(&meta).await
                 .map_err(|e| Error::new(format!("Failed to create metadata: {}", e)))?;
         }
 
-        
-        match insert_document_typed(&doc).await {
+        match insert_document_typed(&epub).await {
             Ok(_) => Ok(epub.into()),
             Err(e) => {
                 error!("Failed to create EPUB document: {}", e);
@@ -493,8 +487,7 @@ impl MutationRoot {
         }
         epub.updated_at = Some(chrono::Utc::now().to_rfc3339());
 
-        
-        match update_document_typed(&doc).await {
+        match update_document_typed(&epub).await {
             Ok(_) => Ok(epub.into()),
             Err(e) => {
                 error!("Failed to update EPUB document: {}", e);
@@ -525,9 +518,7 @@ impl MutationRoot {
             created_at: Some(now.clone()),
             updated_at: Some(now.clone()),
         };
-
-        
-        match insert_document_typed(&doc).await {
+        match insert_document_typed(&chapter).await {
             Ok(_) => Ok(chapter.into()),
             Err(e) => {
                 error!("Failed to create chapter: {}", e);
@@ -558,8 +549,7 @@ impl MutationRoot {
         }
         chapter.updated_at = Some(chrono::Utc::now().to_rfc3339());
 
-        
-        match update_document_typed(&doc).await {
+        match update_document_typed(&chapter).await {
             Ok(_) => Ok(chapter.into()),
             Err(e) => {
                 error!("Failed to update chapter: {}", e);
@@ -588,9 +578,7 @@ impl MutationRoot {
             created_at: Some(now.clone()),
             updated_at: Some(now.clone()),
         };
-
-        
-        match insert_document_typed(&doc).await {
+        match insert_document_typed(&paragraph).await {
             Ok(_) => Ok(paragraph.into()),
             Err(e) => {
                 error!("Failed to create paragraph: {}", e);
@@ -617,8 +605,7 @@ impl MutationRoot {
         }
         paragraph.updated_at = Some(chrono::Utc::now().to_rfc3339());
 
-        
-        match update_document_typed(&doc).await {
+        match update_document_typed(&paragraph).await {
             Ok(_) => Ok(paragraph.into()),
             Err(e) => {
                 error!("Failed to update paragraph: {}", e);
@@ -649,9 +636,7 @@ impl MutationRoot {
             created_at: Some(now.clone()),
             updated_at: Some(now.clone()),
         };
-
-        
-        match insert_document_typed(&doc).await {
+        match insert_document_typed(&text_node).await {
             Ok(_) => Ok(text_node.into()),
             Err(e) => {
                 error!("Failed to create text node: {}", e);
@@ -682,8 +667,7 @@ impl MutationRoot {
         }
         text_node.updated_at = Some(chrono::Utc::now().to_rfc3339());
 
-        
-        match update_document_typed(&doc).await {
+        match update_document_typed(&text_node).await {
             Ok(_) => Ok(text_node.into()),
             Err(e) => {
                 error!("Failed to update text node: {}", e);

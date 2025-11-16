@@ -1,0 +1,5 @@
+[build]
+rustc = "/Users/junkawasaki/.rustup/toolchains/nightly-aarch64-apple-darwin/bin/rustc"
+
+[target.aarch64-apple-darwin]
+rustflags = []
