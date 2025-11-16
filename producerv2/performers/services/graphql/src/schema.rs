@@ -15,17 +15,22 @@ use serde::{Deserialize, Serialize};
 use tracing::error;
 
 use crate::database::{
-    client::{get_all_resources, delete_document},
-    schema::{
-        get_document_typed, insert_document_typed, update_document_typed, ToJsonLd,
-        Chapter as DatabaseChapter, EPUBDocument as DatabaseEPUBDocument,
-        KindleDocument as DatabaseKindleDocument, Metadata as DatabaseMetadata,
-        Paragraph as DatabaseParagraph, Project as DatabaseProject, Script as DatabaseScript,
-        Section as DatabaseSection, Story as DatabaseStory,
-        TextNode as DatabaseTextNode,
-    },
+    get_project, get_all_projects, create_project, update_project, delete_project,
+    get_story, get_all_stories, create_story, update_story, delete_story,
+    get_script, get_all_scripts, create_script, update_script, delete_script,
+    get_epub_document, create_epub_document, update_epub_document,
+    get_kindle_document, create_kindle_document, update_kindle_document,
+    get_metadata, create_metadata, update_metadata,
+    get_chapter, get_chapters_by_document, create_chapter, update_chapter,
+    get_section, get_sections_by_chapter, create_section, update_section,
+    get_paragraph, get_paragraphs_by_parent, create_paragraph, update_paragraph,
+    get_text_node, get_text_nodes_by_paragraph, create_text_node, update_text_node, delete_text_node,
+    Chapter as DatabaseChapter, EPUBDocument as DatabaseEPUBDocument,
+    KindleDocument as DatabaseKindleDocument, Metadata as DatabaseMetadata,
+    Paragraph as DatabaseParagraph, Project as DatabaseProject, Script as DatabaseScript,
+    Section as DatabaseSection, Story as DatabaseStory,
+    TextNode as DatabaseTextNode,
 };
-use crate::validation::shacl::{get_default_shape_for_type, validate_with_shacl, validation_result_to_graphql_error};
 
 #[derive(Default)]
 pub struct QueryRoot;
@@ -41,8 +46,9 @@ impl QueryRoot {
     ///   "ex:produces": "ex:Story"
     /// }
     async fn story(&self, id: String) -> Result<Option<Story>> {
-        match get_document_typed::<DatabaseStory>(&id).await {
-            Ok(story) => Ok(Some(story.into())),
+        match get_story(&id).await {
+            Ok(Some(story)) => Ok(Some(story.into())),
+            Ok(None) => Ok(None),
             Err(e) => {
                 error!("Failed to get story {}: {}", id, e);
                 Ok(None)
@@ -58,16 +64,8 @@ impl QueryRoot {
     ///   "ex:produces": "ex:StoryList"
     /// }
     async fn stories(&self) -> Result<Vec<Story>> {
-        match get_all_resources(Some("ex:Story")).await {
-            Ok(ids) => {
-                let mut stories = Vec::new();
-                for id in ids {
-                    if let Ok(story) = get_document_typed::<DatabaseStory>(&id).await {
-                        stories.push(story.into());
-                    }
-                }
-                Ok(stories)
-            }
+        match get_all_stories().await {
+            Ok(stories) => Ok(stories.into_iter().map(|s| s.into()).collect()),
             Err(e) => {
                 error!("Failed to get stories: {}", e);
                 Ok(vec![])
@@ -84,8 +82,9 @@ impl QueryRoot {
     ///   "ex:produces": "ex:Script"
     /// }
     async fn script(&self, id: String) -> Result<Option<Script>> {
-        match get_document_typed::<DatabaseScript>(&id).await {
-            Ok(script) => Ok(Some(script.into())),
+        match get_script(&id).await {
+            Ok(Some(script)) => Ok(Some(script.into())),
+            Ok(None) => Ok(None),
             Err(e) => {
                 error!("Failed to get script {}: {}", id, e);
                 Ok(None)
@@ -102,8 +101,9 @@ impl QueryRoot {
     ///   "ex:produces": "ex:EPUBDocument"
     /// }
     async fn epub_document(&self, id: String) -> Result<Option<EPUBDocument>> {
-        match get_document_typed::<DatabaseEPUBDocument>(&id).await {
-            Ok(epub) => Ok(Some(epub.into())),
+        match get_epub_document(&id).await {
+            Ok(Some(epub)) => Ok(Some(epub.into())),
+            Ok(None) => Ok(None),
             Err(e) => {
                 error!("Failed to get EPUB document {}: {}", id, e);
                 Ok(None)
@@ -120,8 +120,9 @@ impl QueryRoot {
     ///   "ex:produces": "ex:KindleDocument"
     /// }
     async fn kindle_document(&self, id: String) -> Result<Option<KindleDocument>> {
-        match get_document_typed::<DatabaseKindleDocument>(&id).await {
-            Ok(kindle) => Ok(Some(kindle.into())),
+        match get_kindle_document(&id).await {
+            Ok(Some(kindle)) => Ok(Some(kindle.into())),
+            Ok(None) => Ok(None),
             Err(e) => {
                 error!("Failed to get Kindle document {}: {}", id, e);
                 Ok(None)
@@ -137,10 +138,15 @@ impl QueryRoot {
     ///   "ex:consumes": "ex:DocumentId",
     ///   "ex:produces": "ex:ChapterList"
     /// }
-    async fn chapters(&self, _document_id: String) -> Result<Vec<Chapter>> {
-        // 簡易実装: 実際のWOQLクエリが必要
-        // 現時点では空のリストを返す
-        Ok(vec![])
+    async fn chapters(&self, document_id: String, is_epub: Option<bool>) -> Result<Vec<Chapter>> {
+        let is_epub = is_epub.unwrap_or(true);
+        match get_chapters_by_document(&document_id, is_epub).await {
+            Ok(chapters) => Ok(chapters.into_iter().map(|c| c.into()).collect()),
+            Err(e) => {
+                error!("Failed to get chapters for document {}: {}", document_id, e);
+                Ok(vec![])
+            }
+        }
     }
 
     /// テキストノードを取得
@@ -151,10 +157,14 @@ impl QueryRoot {
     ///   "ex:consumes": "ex:ParagraphId",
     ///   "ex:produces": "ex:TextNodeList"
     /// }
-    async fn text_nodes(&self, _paragraph_id: String) -> Result<Vec<TextNode>> {
-        // 簡易実装: 実際のWOQLクエリが必要
-        // 現時点では空のリストを返す
-        Ok(vec![])
+    async fn text_nodes(&self, paragraph_id: String) -> Result<Vec<TextNode>> {
+        match get_text_nodes_by_paragraph(&paragraph_id).await {
+            Ok(text_nodes) => Ok(text_nodes.into_iter().map(|tn| tn.into()).collect()),
+            Err(e) => {
+                error!("Failed to get text nodes for paragraph {}: {}", paragraph_id, e);
+                Ok(vec![])
+            }
+        }
     }
 
     /// プロジェクトを取得
@@ -166,8 +176,9 @@ impl QueryRoot {
     ///   "ex:produces": "ex:Project"
     /// }
     async fn project(&self, id: String) -> Result<Option<Project>> {
-        match get_document_typed::<DatabaseProject>(&id).await {
-            Ok(project) => Ok(Some(project.into())),
+        match get_project(&id).await {
+            Ok(Some(project)) => Ok(Some(project.into())),
+            Ok(None) => Ok(None),
             Err(e) => {
                 error!("Failed to get project {}: {}", id, e);
                 Ok(None)
@@ -183,16 +194,8 @@ impl QueryRoot {
     ///   "ex:produces": "ex:ProjectList"
     /// }
     async fn projects(&self) -> Result<Vec<Project>> {
-        match get_all_resources(Some("ex:Project")).await {
-            Ok(ids) => {
-                let mut projects = Vec::new();
-                for id in ids {
-                    if let Ok(project) = get_document_typed::<DatabaseProject>(&id).await {
-                        projects.push(project.into());
-                    }
-                }
-                Ok(projects)
-            }
+        match get_all_projects().await {
+            Ok(projects) => Ok(projects.into_iter().map(|p| p.into()).collect()),
             Err(e) => {
                 error!("Failed to get projects: {}", e);
                 Ok(vec![])
@@ -215,28 +218,18 @@ impl MutationRoot {
     ///   "ex:produces": "ex:Story"
     /// }
     async fn create_story(&self, title: String, content: String) -> Result<Story> {
-        let now = chrono::Utc::now().to_rfc3339();
+        let now = chrono::Utc::now();
         let story_id = format!("Story_{}", nanoid!());
 
         let story = DatabaseStory {
             id: story_id.clone(),
-            r#type: "ex:Story".to_string(),
             title: title.clone(),
             content: content.clone(),
-            created_at: Some(now.clone()),
-            updated_at: Some(now.clone()),
+            created_at: now,
+            updated_at: now,
         };
 
-        // SHACL バリデーション
-        let doc = story.to_jsonld();
-        if let Some(shape) = get_default_shape_for_type("ex:Story") {
-            let validation_result = validate_with_shacl(&doc, &shape)?;
-            if !validation_result.is_valid {
-                return Err(validation_result_to_graphql_error(&validation_result));
-            }
-        }
-
-        match insert_document_typed(&story).await {
+        match create_story(&story).await {
             Ok(_) => Ok(story.into()),
             Err(e) => {
                 error!("Failed to create story: {}", e);
@@ -259,11 +252,10 @@ impl MutationRoot {
         title: Option<String>,
         content: Option<String>,
     ) -> Result<Story> {
-        
-
         // 既存のStoryを取得
-        let mut story = get_document_typed::<DatabaseStory>(&id).await
-            .map_err(|e| Error::new(format!("Story not found: {}", e)))?;
+        let mut story = get_story(&id).await
+            .map_err(|e| Error::new(format!("Story not found: {}", e)))?
+            .ok_or_else(|| Error::new(format!("Story not found: {}", id)))?;
 
         // 更新フィールドを適用
         if let Some(t) = title {
@@ -272,18 +264,9 @@ impl MutationRoot {
         if let Some(c) = content {
             story.content = c;
         }
-        story.updated_at = Some(chrono::Utc::now().to_rfc3339());
+        story.updated_at = chrono::Utc::now();
 
-        // SHACL バリデーション
-        let doc = story.to_jsonld();
-        if let Some(shape) = get_default_shape_for_type("ex:Story") {
-            let validation_result = validate_with_shacl(&doc, &shape)?;
-            if !validation_result.is_valid {
-                return Err(validation_result_to_graphql_error(&validation_result));
-            }
-        }
-
-        match update_document_typed(&story).await {
+        match update_story(&story).await {
             Ok(_) => Ok(story.into()),
             Err(e) => {
                 error!("Failed to update story: {}", e);
@@ -301,9 +284,7 @@ impl MutationRoot {
     ///   "ex:produces": "ex:Deleted"
     /// }
     async fn delete_story(&self, id: String) -> Result<bool> {
-        
-
-        match delete_document(&id).await {
+        match delete_story(&id).await {
             Ok(_) => Ok(true),
             Err(e) => {
                 error!("Failed to delete story: {}", e);
@@ -326,31 +307,19 @@ impl MutationRoot {
         derived_from_story: String,
         status: String,
     ) -> Result<Script> {
-        
-
-        let now = chrono::Utc::now().to_rfc3339();
+        let now = chrono::Utc::now();
         let script_id = format!("Script_{}", nanoid!());
 
         let script = DatabaseScript {
             id: script_id.clone(),
-            r#type: "ex:Script".to_string(),
             script_text: script_text.clone(),
             derived_from_story: derived_from_story.clone(),
             status: status.clone(),
-            created_at: Some(now.clone()),
-            updated_at: Some(now.clone()),
+            created_at: now,
+            updated_at: now,
         };
 
-        // SHACL バリデーション
-        let doc = script.to_jsonld();
-        if let Some(shape) = get_default_shape_for_type("ex:Script") {
-            let validation_result = validate_with_shacl(&doc, &shape)?;
-            if !validation_result.is_valid {
-                return Err(validation_result_to_graphql_error(&validation_result));
-            }
-        }
-
-        match insert_document_typed(&script).await {
+        match create_script(&script).await {
             Ok(_) => Ok(script.into()),
             Err(e) => {
                 error!("Failed to create script: {}", e);
@@ -373,11 +342,10 @@ impl MutationRoot {
         script_text: Option<String>,
         status: Option<String>,
     ) -> Result<Script> {
-        
-
         // 既存のScriptを取得
-        let mut script = get_document_typed::<DatabaseScript>(&id).await
-            .map_err(|e| Error::new(format!("Script not found: {}", e)))?;
+        let mut script = get_script(&id).await
+            .map_err(|e| Error::new(format!("Script not found: {}", e)))?
+            .ok_or_else(|| Error::new(format!("Script not found: {}", id)))?;
 
         // 更新フィールドを適用
         if let Some(st) = script_text {
@@ -386,9 +354,9 @@ impl MutationRoot {
         if let Some(s) = status {
             script.status = s;
         }
-        script.updated_at = Some(chrono::Utc::now().to_rfc3339());
+        script.updated_at = chrono::Utc::now();
 
-        match update_document_typed(&script).await {
+        match update_script(&script).await {
             Ok(_) => Ok(script.into()),
             Err(e) => {
                 error!("Failed to update script: {}", e);
@@ -406,9 +374,7 @@ impl MutationRoot {
     ///   "ex:produces": "ex:Deleted"
     /// }
     async fn delete_script(&self, id: String) -> Result<bool> {
-        
-
-        match delete_document(&id).await {
+        match delete_script(&id).await {
             Ok(_) => Ok(true),
             Err(e) => {
                 error!("Failed to delete script: {}", e);
@@ -430,44 +396,41 @@ impl MutationRoot {
         title: String,
         metadata: Option<MetadataInput>,
     ) -> Result<EPUBDocument> {
-        
-
-        let now = chrono::Utc::now().to_rfc3339();
+        let now = chrono::Utc::now();
         let doc_id = format!("EPUBDocument_{}", nanoid!());
 
-        let mut epub = DatabaseEPUBDocument {
-            id: doc_id.clone(),
-            r#type: "ex:EPUBDocument".to_string(),
-            title: title.clone(),
-            metadata: None,
-            chapters: None,
-            created_at: Some(now.clone()),
-            updated_at: Some(now.clone()),
-        };
+        let mut metadata_id = None;
 
         // メタデータを作成
         if let Some(meta_input) = metadata {
             let meta_id = format!("Metadata_{}", nanoid!());
             let meta = DatabaseMetadata {
                 id: meta_id.clone(),
-                r#type: "ex:Metadata".to_string(),
                 title: meta_input.title,
                 isbn: meta_input.isbn,
                 language: meta_input.language,
                 publisher: meta_input.publisher,
                 date: meta_input.date,
                 description: meta_input.description,
-                created_at: Some(now.clone()),
-                updated_at: Some(now.clone()),
+                created_at: now,
+                updated_at: now,
             };
-            epub.metadata = Some(meta_id.clone());
+            metadata_id = Some(meta_id.clone());
 
             // メタデータを保存
-            insert_document_typed(&meta).await
+            create_metadata(&meta).await
                 .map_err(|e| Error::new(format!("Failed to create metadata: {}", e)))?;
         }
 
-        match insert_document_typed(&epub).await {
+        let epub = DatabaseEPUBDocument {
+            id: doc_id.clone(),
+            title: title.clone(),
+            metadata_id: metadata_id.clone(),
+            created_at: now,
+            updated_at: now,
+        };
+
+        match create_epub_document(&epub).await {
             Ok(_) => Ok(epub.into()),
             Err(e) => {
                 error!("Failed to create EPUB document: {}", e);
@@ -483,17 +446,16 @@ impl MutationRoot {
         title: Option<String>,
         _metadata: Option<MetadataInput>,
     ) -> Result<EPUBDocument> {
-        
-
-        let mut epub = get_document_typed::<DatabaseEPUBDocument>(&id).await
-            .map_err(|e| Error::new(format!("EPUB document not found: {}", e)))?;
+        let mut epub = get_epub_document(&id).await
+            .map_err(|e| Error::new(format!("EPUB document not found: {}", e)))?
+            .ok_or_else(|| Error::new(format!("EPUB document not found: {}", id)))?;
 
         if let Some(t) = title {
             epub.title = t;
         }
-        epub.updated_at = Some(chrono::Utc::now().to_rfc3339());
+        epub.updated_at = chrono::Utc::now();
 
-        match update_document_typed(&epub).await {
+        match update_epub_document(&epub).await {
             Ok(_) => Ok(epub.into()),
             Err(e) => {
                 error!("Failed to update EPUB document: {}", e);
@@ -505,26 +467,25 @@ impl MutationRoot {
     /// 章を作成
     async fn create_chapter(
         &self,
-        _document_id: String,
+        document_id: String,
+        is_epub: Option<bool>,
         title: String,
         order: i32,
     ) -> Result<Chapter> {
-        
-
-        let now = chrono::Utc::now().to_rfc3339();
+        let now = chrono::Utc::now();
         let chapter_id = format!("Chapter_{}", nanoid!());
+        let is_epub = is_epub.unwrap_or(true);
 
         let chapter = DatabaseChapter {
             id: chapter_id.clone(),
-            r#type: "ex:Chapter".to_string(),
+            epub_document_id: if is_epub { Some(document_id.clone()) } else { None },
+            kindle_document_id: if !is_epub { Some(document_id.clone()) } else { None },
             title: title.clone(),
             order,
-            sections: None,
-            paragraphs: None,
-            created_at: Some(now.clone()),
-            updated_at: Some(now.clone()),
+            created_at: now,
+            updated_at: now,
         };
-        match insert_document_typed(&chapter).await {
+        match create_chapter(&chapter).await {
             Ok(_) => Ok(chapter.into()),
             Err(e) => {
                 error!("Failed to create chapter: {}", e);
@@ -540,10 +501,9 @@ impl MutationRoot {
         title: Option<String>,
         order: Option<i32>,
     ) -> Result<Chapter> {
-        
-
-        let mut chapter = get_document_typed::<DatabaseChapter>(&id).await
-            .map_err(|e| Error::new(format!("Chapter not found: {}", e)))?;
+        let mut chapter = get_chapter(&id).await
+            .map_err(|e| Error::new(format!("Chapter not found: {}", e)))?
+            .ok_or_else(|| Error::new(format!("Chapter not found: {}", id)))?;
 
         if let Some(t) = title {
             chapter.title = t;
@@ -551,9 +511,9 @@ impl MutationRoot {
         if let Some(o) = order {
             chapter.order = o;
         }
-        chapter.updated_at = Some(chrono::Utc::now().to_rfc3339());
+        chapter.updated_at = chrono::Utc::now();
 
-        match update_document_typed(&chapter).await {
+        match update_chapter(&chapter).await {
             Ok(_) => Ok(chapter.into()),
             Err(e) => {
                 error!("Failed to update chapter: {}", e);
@@ -565,24 +525,23 @@ impl MutationRoot {
     /// 段落を作成
     async fn create_paragraph(
         &self,
-        _chapter_id: String,
+        chapter_id: Option<String>,
+        section_id: Option<String>,
         order: i32,
     ) -> Result<Paragraph> {
-        
-
-        let now = chrono::Utc::now().to_rfc3339();
+        let now = chrono::Utc::now();
         let paragraph_id = format!("Paragraph_{}", nanoid!());
 
         let paragraph = DatabaseParagraph {
             id: paragraph_id.clone(),
-            r#type: "ex:Paragraph".to_string(),
+            chapter_id,
+            section_id,
             order,
-            text_nodes: None,
             style: None,
-            created_at: Some(now.clone()),
-            updated_at: Some(now.clone()),
+            created_at: now,
+            updated_at: now,
         };
-        match insert_document_typed(&paragraph).await {
+        match create_paragraph(&paragraph).await {
             Ok(_) => Ok(paragraph.into()),
             Err(e) => {
                 error!("Failed to create paragraph: {}", e);
@@ -597,17 +556,16 @@ impl MutationRoot {
         id: String,
         order: Option<i32>,
     ) -> Result<Paragraph> {
-        
-
-        let mut paragraph = get_document_typed::<DatabaseParagraph>(&id).await
-            .map_err(|e| Error::new(format!("Paragraph not found: {}", e)))?;
+        let mut paragraph = get_paragraph(&id).await
+            .map_err(|e| Error::new(format!("Paragraph not found: {}", e)))?
+            .ok_or_else(|| Error::new(format!("Paragraph not found: {}", id)))?;
 
         if let Some(o) = order {
             paragraph.order = o;
         }
-        paragraph.updated_at = Some(chrono::Utc::now().to_rfc3339());
+        paragraph.updated_at = chrono::Utc::now();
 
-        match update_document_typed(&paragraph).await {
+        match update_paragraph(&paragraph).await {
             Ok(_) => Ok(paragraph.into()),
             Err(e) => {
                 error!("Failed to update paragraph: {}", e);
@@ -623,22 +581,19 @@ impl MutationRoot {
         content: String,
         order: i32,
     ) -> Result<TextNode> {
-        
-
-        let now = chrono::Utc::now().to_rfc3339();
+        let now = chrono::Utc::now();
         let text_node_id = format!("TextNode_{}", nanoid!());
 
         let text_node = DatabaseTextNode {
             id: text_node_id.clone(),
-            r#type: "ex:TextNode".to_string(),
+            paragraph_id: paragraph_id.clone(),
             content: content.clone(),
             order,
-            belongs_to_paragraph: paragraph_id.clone(),
             style: None,
-            created_at: Some(now.clone()),
-            updated_at: Some(now.clone()),
+            created_at: now,
+            updated_at: now,
         };
-        match insert_document_typed(&text_node).await {
+        match create_text_node(&text_node).await {
             Ok(_) => Ok(text_node.into()),
             Err(e) => {
                 error!("Failed to create text node: {}", e);
@@ -654,10 +609,9 @@ impl MutationRoot {
         content: Option<String>,
         order: Option<i32>,
     ) -> Result<TextNode> {
-        
-
-        let mut text_node = get_document_typed::<DatabaseTextNode>(&id).await
-            .map_err(|e| Error::new(format!("Text node not found: {}", e)))?;
+        let mut text_node = get_text_node(&id).await
+            .map_err(|e| Error::new(format!("Text node not found: {}", e)))?
+            .ok_or_else(|| Error::new(format!("Text node not found: {}", id)))?;
 
         if let Some(c) = content {
             text_node.content = c;
@@ -665,9 +619,9 @@ impl MutationRoot {
         if let Some(o) = order {
             text_node.order = o;
         }
-        text_node.updated_at = Some(chrono::Utc::now().to_rfc3339());
+        text_node.updated_at = chrono::Utc::now();
 
-        match update_document_typed(&text_node).await {
+        match update_text_node(&text_node).await {
             Ok(_) => Ok(text_node.into()),
             Err(e) => {
                 error!("Failed to update text node: {}", e);
@@ -678,9 +632,7 @@ impl MutationRoot {
 
     /// テキストノードを削除
     async fn delete_text_node(&self, id: String) -> Result<bool> {
-        
-
-        match delete_document(&id).await {
+        match delete_text_node(&id).await {
             Ok(_) => Ok(true),
             Err(e) => {
                 error!("Failed to delete text node: {}", e);
@@ -697,34 +649,21 @@ impl MutationRoot {
             ///   "ex:consumes": "ex:ProjectInput",
             ///   "ex:produces": "ex:Project"
             /// }
-            async fn create_project(&self, name: String, description: Option<String>) -> Result<Project> {
-        let now = chrono::Utc::now().to_rfc3339();
+    async fn create_project(&self, name: String, description: Option<String>) -> Result<Project> {
+        let now = chrono::Utc::now();
         let project_id = format!("Project_{}", nanoid!());
 
         let project = DatabaseProject {
             id: project_id.clone(),
-            r#type: "ex:Project".to_string(),
             name: name.clone(),
             author: Some("system".to_string()),
             description,
             status: Some("active".to_string()),
-            created_at: Some(now.clone()),
-            updated_at: Some(now.clone()),
+            created_at: now,
+            updated_at: now,
         };
 
-        // SHACL バリデーション
-        let doc = project.to_jsonld();
-        // デバッグ: JSON-LD ドキュメントをログ出力
-        tracing::info!("Project JSON-LD: {}", serde_json::to_string_pretty(&doc).unwrap_or_default());
-        if let Some(shape) = get_default_shape_for_type("ex:Project") {
-            let validation_result = validate_with_shacl(&doc, &shape)?;
-            if !validation_result.is_valid {
-                tracing::error!("SHACL validation failed: {:?}", validation_result.errors);
-                return Err(validation_result_to_graphql_error(&validation_result));
-            }
-        }
-
-        match insert_document_typed(&project).await {
+        match create_project(&project).await {
             Ok(_) => Ok(project.into()),
             Err(e) => {
                 error!("Failed to create project: {}", e);
@@ -741,41 +680,31 @@ impl MutationRoot {
     ///   "ex:consumes": ["ex:ProjectId", "ex:ProjectUpdate"],
     ///   "ex:produces": "ex:Project"
     /// }
-            async fn update_project(
-                &self,
-                id: String,
-                name: Option<String>,
-                description: Option<String>,
-                status: Option<String>,
-            ) -> Result<Project> {
-        
-
+    async fn update_project(
+        &self,
+        id: String,
+        name: Option<String>,
+        description: Option<String>,
+        status: Option<String>,
+    ) -> Result<Project> {
         // 既存のプロジェクトを取得
-        let mut project = get_document_typed::<DatabaseProject>(&id).await
-            .map_err(|e| Error::new(format!("Project not found: {}", e)))?;
+        let mut project = get_project(&id).await
+            .map_err(|e| Error::new(format!("Project not found: {}", e)))?
+            .ok_or_else(|| Error::new(format!("Project not found: {}", id)))?;
 
-                // 更新フィールドを適用
-                if let Some(n) = name {
-                    project.name = n;
-                }
-                if let Some(d) = description {
-                    project.description = Some(d);
-                }
-                if let Some(s) = status {
-                    project.status = Some(s);
-                }
-                project.updated_at = Some(chrono::Utc::now().to_rfc3339());
-
-        // SHACL バリデーション
-        let doc = project.to_jsonld();
-        if let Some(shape) = get_default_shape_for_type("ex:Project") {
-            let validation_result = validate_with_shacl(&doc, &shape)?;
-            if !validation_result.is_valid {
-                return Err(validation_result_to_graphql_error(&validation_result));
-            }
+        // 更新フィールドを適用
+        if let Some(n) = name {
+            project.name = n;
         }
+        if let Some(d) = description {
+            project.description = Some(d);
+        }
+        if let Some(s) = status {
+            project.status = Some(s);
+        }
+        project.updated_at = chrono::Utc::now();
 
-        match update_document_typed(&project).await {
+        match update_project(&project).await {
             Ok(_) => Ok(project.into()),
             Err(e) => {
                 error!("Failed to update project: {}", e);
@@ -793,9 +722,7 @@ impl MutationRoot {
     ///   "ex:produces": "ex:Deleted"
     /// }
     async fn delete_project(&self, id: String) -> Result<bool> {
-        
-
-        match delete_document(&id).await {
+        match delete_project(&id).await {
             Ok(_) => Ok(true),
             Err(e) => {
                 error!("Failed to delete project: {}", e);
@@ -837,8 +764,8 @@ impl From<DatabaseStory> for Story {
             id: story.id,
             title: story.title,
             content: story.content,
-            created_at: story.created_at.unwrap_or_default(),
-            updated_at: story.updated_at.unwrap_or_default(),
+            created_at: story.created_at.to_rfc3339(),
+            updated_at: story.updated_at.to_rfc3339(),
         }
     }
 }
@@ -860,8 +787,8 @@ impl From<DatabaseScript> for Script {
             script_text: script.script_text,
             derived_from_story: script.derived_from_story,
             status: script.status,
-            created_at: script.created_at.unwrap_or_default(),
-            updated_at: script.updated_at.unwrap_or_default(),
+            created_at: script.created_at.to_rfc3339(),
+            updated_at: script.updated_at.to_rfc3339(),
         }
     }
 }
@@ -924,10 +851,10 @@ impl From<DatabaseEPUBDocument> for EPUBDocument {
         EPUBDocument {
             id: epub.id,
             title: epub.title,
-            metadata: epub.metadata,
-            chapters: epub.chapters,
-            created_at: epub.created_at.unwrap_or_default(),
-            updated_at: epub.updated_at.unwrap_or_default(),
+            metadata: epub.metadata_id,
+            chapters: None, // TODO: 必要に応じてchaptersを取得
+            created_at: epub.created_at.to_rfc3339(),
+            updated_at: epub.updated_at.to_rfc3339(),
         }
     }
 }
@@ -947,10 +874,10 @@ impl From<DatabaseKindleDocument> for KindleDocument {
         KindleDocument {
             id: kindle.id,
             title: kindle.title,
-            metadata: kindle.metadata,
-            chapters: kindle.chapters,
-            created_at: kindle.created_at.unwrap_or_default(),
-            updated_at: kindle.updated_at.unwrap_or_default(),
+            metadata: kindle.metadata_id,
+            chapters: None, // TODO: 必要に応じてchaptersを取得
+            created_at: kindle.created_at.to_rfc3339(),
+            updated_at: kindle.updated_at.to_rfc3339(),
         }
     }
 }
@@ -972,10 +899,10 @@ impl From<DatabaseChapter> for Chapter {
             id: chapter.id,
             title: chapter.title,
             order: chapter.order,
-            sections: chapter.sections,
-            paragraphs: chapter.paragraphs,
-            created_at: chapter.created_at.unwrap_or_default(),
-            updated_at: chapter.updated_at.unwrap_or_default(),
+            sections: None, // TODO: 必要に応じてsectionsを取得
+            paragraphs: None, // TODO: 必要に応じてparagraphsを取得
+            created_at: chapter.created_at.to_rfc3339(),
+            updated_at: chapter.updated_at.to_rfc3339(),
         }
     }
 }
@@ -996,9 +923,9 @@ impl From<DatabaseSection> for Section {
             id: section.id,
             title: section.title,
             order: section.order,
-            paragraphs: section.paragraphs,
-            created_at: section.created_at.unwrap_or_default(),
-            updated_at: section.updated_at.unwrap_or_default(),
+            paragraphs: None, // TODO: 必要に応じてparagraphsを取得
+            created_at: section.created_at.to_rfc3339(),
+            updated_at: section.updated_at.to_rfc3339(),
         }
     }
 }
@@ -1018,10 +945,10 @@ impl From<DatabaseParagraph> for Paragraph {
         Paragraph {
             id: paragraph.id,
             order: paragraph.order,
-            text_nodes: paragraph.text_nodes,
+            text_nodes: None, // TODO: 必要に応じてtext_nodesを取得
             style: paragraph.style,
-            created_at: paragraph.created_at.unwrap_or_default(),
-            updated_at: paragraph.updated_at.unwrap_or_default(),
+            created_at: paragraph.created_at.to_rfc3339(),
+            updated_at: paragraph.updated_at.to_rfc3339(),
         }
     }
 }
@@ -1043,10 +970,10 @@ impl From<DatabaseTextNode> for TextNode {
             id: text_node.id,
             content: text_node.content,
             order: text_node.order,
-            belongs_to_paragraph: text_node.belongs_to_paragraph,
+            belongs_to_paragraph: text_node.paragraph_id,
             style: text_node.style,
-            created_at: text_node.created_at.unwrap_or_default(),
-            updated_at: text_node.updated_at.unwrap_or_default(),
+            created_at: text_node.created_at.to_rfc3339(),
+            updated_at: text_node.updated_at.to_rfc3339(),
         }
     }
 }
@@ -1079,8 +1006,8 @@ impl From<DatabaseProject> for Project {
             name: project.name,
             description: project.description,
             status: project.status,
-            created_at: project.created_at.unwrap_or_default(),
-            updated_at: project.updated_at.unwrap_or_default(),
+            created_at: project.created_at.to_rfc3339(),
+            updated_at: project.updated_at.to_rfc3339(),
         }
     }
 }

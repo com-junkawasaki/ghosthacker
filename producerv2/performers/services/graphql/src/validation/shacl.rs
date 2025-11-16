@@ -76,7 +76,17 @@ pub fn validate_with_shacl(document: &Value, shape: &ShaclShape) -> Result<Valid
 
     // 各プロパティをバリデーション
     for (prop_path, prop_shape) in &shape.properties {
+        // デバッグ: ドキュメントの内容をログ出力
+        if prop_path == "ex:name" {
+            tracing::warn!("[SHACL DEBUG] Validating property: {}", prop_path);
+            tracing::warn!("[SHACL DEBUG] Document keys: {:?}", 
+                document.as_object().map(|o| o.keys().collect::<Vec<_>>()));
+            tracing::warn!("[SHACL DEBUG] Document: {}", serde_json::to_string_pretty(document).unwrap_or_default());
+        }
         let value = get_property_value(document, prop_path);
+        if prop_path == "ex:name" {
+            tracing::warn!("[SHACL DEBUG] Property value for '{}': {:?}", prop_path, value);
+        }
 
         // minCount チェック
         if let Some(min) = prop_shape.min_count {
@@ -177,7 +187,7 @@ fn get_property_value<'a>(document: &'a Value, path: &str) -> Option<&'a Value> 
     // デバッグ: ドキュメントのすべてのキーをログ出力
     if let Some(obj) = document.as_object() {
         let keys: Vec<&str> = obj.keys().map(|k| k.as_str()).collect();
-        tracing::warn!("Property '{}' not found. Available keys: {:?}", path, keys);
+        eprintln!("[DEBUG] Property '{}' not found. Available keys: {:?}", path, keys);
     }
     
     None

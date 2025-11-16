@@ -26,7 +26,7 @@ services:
     environment:
       # PostgreSQL Database
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
-      RUST_LOG: info
+      RUST_LOG: debug
     command: ["/app/producerv2-graphql"]
     # volumes:
     #   - ./performers/services/graphql:/app

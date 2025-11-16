@@ -1,6 +1,6 @@
 /**
  * Database Module
- * SQLx + PostgreSQL を使用した RDF/SHACL/JSON-LD データベース実装
+ * SQLx + PostgreSQL を使用したリレーショナルデータベース実装
  * 
  * @context {
  *   "@id": "ex:DatabaseModule",
@@ -12,5 +12,6 @@
 pub mod client;
 pub mod schema;
 
-pub use client::{delete_document, get_all_resources};
+pub use client::*;
+pub use schema::*;
 
