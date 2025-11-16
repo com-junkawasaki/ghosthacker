@@ -222,7 +222,7 @@ pub struct Project {
     pub r#type: String,
     #[serde(rename = "ex:name")]
     pub name: String,
-    #[serde(rename = "ex:author", skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "author", skip_serializing_if = "Option::is_none")]
     pub author: Option<String>,
     #[serde(rename = "ex:description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -323,7 +323,24 @@ pub async fn apply_owl_schema() -> Result<()> {
         "@id": "Project",
         "@type": "owl:Class",
         "rdfs:label": "Project",
-        "rdfs:comment": "A project for managing content creation workflows"
+        "rdfs:comment": "A project for managing content creation workflows",
+        "rdfs:subClassOf": {
+            "@id": "sys:Document"
+        }
+    });
+
+    // Project の author プロパティ定義
+    let project_author_property = json!({
+        "@id": "author",
+        "@type": "owl:DatatypeProperty",
+        "rdfs:label": "author",
+        "rdfs:comment": "The author of the project",
+        "rdfs:domain": {
+            "@id": "Project"
+        },
+        "rdfs:range": {
+            "@id": "xsd:string"
+        }
     });
 
     // スキーマを適用（既に存在する場合はエラーを無視）
@@ -339,6 +356,7 @@ pub async fn apply_owl_schema() -> Result<()> {
         ("Metadata", &metadata_schema),
         ("Style", &style_schema),
         ("Project", &project_schema),
+        ("ProjectAuthorProperty", &project_author_property),
     ];
 
     for (name, schema) in schemas {

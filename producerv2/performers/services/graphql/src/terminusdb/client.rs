@@ -15,18 +15,20 @@ use reqwest::Client;
 use serde_json::{json, Value};
 use std::sync::{Arc, OnceLock};
 use tracing::{error, info, warn};
+use urlencoding::encode;
 
 pub struct TerminusDBClient {
     http_client: Client,
     base_url: String,
     auth_header: String,
+    organization: String,
     db_name: String,
 }
 
 static CLIENT: OnceLock<Arc<TerminusDBClient>> = OnceLock::new();
 
 impl TerminusDBClient {
-    fn new(base_url: String, user: String, password: String, db_name: String) -> Result<Self> {
+    fn new(base_url: String, user: String, password: String, organization: String, db_name: String) -> Result<Self> {
         let auth = format!("{}:{}", user, password);
         let auth_header = format!("Basic {}", general_purpose::STANDARD.encode(auth.as_bytes()));
 
@@ -34,6 +36,7 @@ impl TerminusDBClient {
             http_client: Client::new(),
             base_url,
             auth_header,
+            organization,
             db_name,
         })
     }
@@ -44,7 +47,9 @@ impl TerminusDBClient {
                     .parse::<bool>()
                     .unwrap_or(false);
 
-                let url = format!("{}/api/db/{}", self.base_url, self.db_name);
+                info!("Checking database '{}/{}' at {}", self.organization, self.db_name, self.base_url);
+                let url = format!("{}/api/db/{}/{}", self.base_url, self.organization, self.db_name);
+                info!("GET {}", url);
                 let response = self
                     .http_client
                     .get(&url)
@@ -56,8 +61,8 @@ impl TerminusDBClient {
                     // データベースが存在する場合
                     if reset_db {
                         // リセットが有効な場合は削除して再作成
-                        info!("Resetting database '{}' (TERMINUSDB_RESET_DB=true)", self.db_name);
-                        let delete_url = format!("{}/api/db/{}", self.base_url, self.db_name);
+                        info!("Resetting database '{}/{}' (TERMINUSDB_RESET_DB=true)", self.organization, self.db_name);
+                        let delete_url = format!("{}/api/db/{}/{}", self.base_url, self.organization, self.db_name);
                         let delete_response = self
                             .http_client
                             .delete(&delete_url)
@@ -83,7 +88,8 @@ impl TerminusDBClient {
                 }
 
                 // データベースを作成
-                let create_url = format!("{}/api/db/{}", self.base_url, self.db_name);
+                let create_url = format!("{}/api/db/{}/{}", self.base_url, self.organization, self.db_name);
+                info!("POST {} with organization='{}' db_name='{}'", create_url, self.organization, self.db_name);
                 let create_body = serde_json::json!({
                     "label": "Producer V2",
                     "comment": "OWL-based LLM Content Generator"
@@ -109,8 +115,8 @@ impl TerminusDBClient {
 
     pub async fn get_document(&self, id: &str) -> Result<Value> {
         let url = format!(
-            "{}/api/document/{}/local/branch/main/{}",
-            self.base_url, self.db_name, id
+            "{}/api/document/{}/{}/local/branch/main/{}",
+            self.base_url, self.organization, self.db_name, id
         );
         let response = self
             .http_client
@@ -132,8 +138,8 @@ impl TerminusDBClient {
 
     pub async fn query_documents(&self, query: Value) -> Result<Vec<Value>> {
         let url = format!(
-            "{}/api/woql/{}/local/branch/main",
-            self.base_url, self.db_name
+            "{}/api/woql/{}/{}/local/branch/main",
+            self.base_url, self.organization, self.db_name
         );
         let response = self
             .http_client
@@ -155,13 +161,28 @@ impl TerminusDBClient {
                 // @contextを追加しない（プレーンJSONとして送信）
             }
 
+    /// デフォルトの author を取得
+    /// 環境変数 TERMINUSDB_AUTHOR が設定されている場合はそれを使用、なければ "system" を返す
+    fn get_default_author() -> String {
+        std::env::var("TERMINUSDB_AUTHOR")
+            .unwrap_or_else(|_| "system".to_string())
+    }
+
     pub async fn insert_document(&self, document: &Value) -> Result<()> {
+        self.insert_document_with_author(document, None).await
+    }
+
+    pub async fn insert_document_with_author(&self, document: &Value, author: Option<&str>) -> Result<()> {
         let mut doc = document.clone();
         Self::add_jsonld_context(&mut doc);
 
+        // author が None の場合はデフォルト値を取得
+        let default_author = Self::get_default_author();
+        let author_str = author.unwrap_or_else(|| default_author.as_str());
+        let encoded_author = encode(author_str);
         let url = format!(
-            "{}/api/document/{}/local/branch/main",
-            self.base_url, self.db_name
+            "{}/api/document/{}/{}/local/branch/main?author={}",
+            self.base_url, self.organization, self.db_name, encoded_author
         );
         let response = self
             .http_client
@@ -184,12 +205,20 @@ impl TerminusDBClient {
     }
 
     pub async fn update_document(&self, document: &Value) -> Result<()> {
+        self.update_document_with_author(document, None).await
+    }
+
+    pub async fn update_document_with_author(&self, document: &Value, author: Option<&str>) -> Result<()> {
         let mut doc = document.clone();
         Self::add_jsonld_context(&mut doc);
 
+        // author が None の場合はデフォルト値を取得
+        let default_author = Self::get_default_author();
+        let author_str = author.unwrap_or_else(|| default_author.as_str());
+        let encoded_author = encode(author_str);
         let url = format!(
-            "{}/api/document/{}/local/branch/main",
-            self.base_url, self.db_name
+            "{}/api/document/{}/{}/local/branch/main?author={}",
+            self.base_url, self.organization, self.db_name, encoded_author
         );
         let response = self
             .http_client
@@ -213,8 +242,8 @@ impl TerminusDBClient {
 
     pub async fn delete_document(&self, id: &str) -> Result<()> {
         let url = format!(
-            "{}/api/document/{}/local/branch/main/{}",
-            self.base_url, self.db_name, id
+            "{}/api/document/{}/{}/local/branch/main/{}",
+            self.base_url, self.organization, self.db_name, id
         );
         let response = self
             .http_client
@@ -229,8 +258,8 @@ impl TerminusDBClient {
 
     pub async fn insert_schema(&self, schema: &Value) -> Result<()> {
         let url = format!(
-            "{}/api/document/{}/local/branch/main?graph_type=schema",
-            self.base_url, self.db_name
+            "{}/api/document/{}/{}/local/branch/main?graph_type=schema",
+            self.base_url, self.organization, self.db_name
         );
         let response = self
             .http_client
@@ -260,22 +289,41 @@ pub async fn initialize() -> Result<()> {
         .unwrap_or_else(|_| "admin".to_string());
     let password = std::env::var("TERMINUSDB_SERVER_PASS")
         .unwrap_or_else(|_| "root".to_string());
+    let organization = std::env::var("TERMINUSDB_ORGANIZATION")
+        .unwrap_or_else(|_| "admin".to_string());
     let db_name = std::env::var("TERMINUSDB_DB")
         .unwrap_or_else(|_| "producerv2".to_string());
 
-    info!("Connecting to TerminusDB at {}", url);
+    info!("Connecting to TerminusDB at {} (organization: {}, db: {})", url, organization, db_name);
 
-    let client = TerminusDBClient::new(url.clone(), user, password, db_name.clone())?;
+    let client = TerminusDBClient::new(url.clone(), user, password, organization.clone(), db_name.clone())?;
 
-    // データベースの存在確認と作成
-    client.ensure_database().await?;
+    // TerminusDBが起動するまでリトライ（最大30秒、5秒間隔）
+    let max_retries = 6;
+    let retry_delay = tokio::time::Duration::from_secs(5);
 
+    for attempt in 1..=max_retries {
+        match client.ensure_database().await {
+            Ok(_) => {
     CLIENT.set(Arc::new(client)).map_err(|_| {
         anyhow::anyhow!("TerminusDB client already initialized")
     })?;
-
     info!("TerminusDB client initialized successfully");
-    Ok(())
+                return Ok(());
+            }
+            Err(e) => {
+                if attempt < max_retries {
+                    warn!("Failed to connect to TerminusDB (attempt {}/{}): {}. Retrying in {:?}...", 
+                          attempt, max_retries, e, retry_delay);
+                    tokio::time::sleep(retry_delay).await;
+                } else {
+                    return Err(anyhow::anyhow!("Failed to connect to TerminusDB after {} attempts: {}", max_retries, e));
+                }
+            }
+        }
+    }
+
+    Err(anyhow::anyhow!("Failed to initialize TerminusDB client"))
 }
 
 /// TerminusDBクライアントインスタンスを取得
