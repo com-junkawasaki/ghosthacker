@@ -734,6 +734,7 @@ impl MutationRoot {
                     id: project_id.clone(),
                     r#type: "Project".to_string(),
                     name: name.clone(),
+                    author: None,
                     description,
                     status: Some("active".to_string()),
                     created_at: Some(now.clone()),

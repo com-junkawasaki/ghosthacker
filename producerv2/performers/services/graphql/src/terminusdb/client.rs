@@ -39,6 +39,11 @@ impl TerminusDBClient {
     }
 
             async fn ensure_database(&self) -> Result<()> {
+                let reset_db = std::env::var("TERMINUSDB_RESET_DB")
+                    .unwrap_or_else(|_| "false".to_string())
+                    .parse::<bool>()
+                    .unwrap_or(false);
+
                 let url = format!("{}/api/db/{}", self.base_url, self.db_name);
                 let response = self
                     .http_client
@@ -47,35 +52,57 @@ impl TerminusDBClient {
                     .send()
                     .await?;
 
-                if response.status().as_u16() == 404 {
-                    // データベースが存在しない場合は作成
-                    let create_url = format!("{}/api/db/{}", self.base_url, self.db_name);
-                    let create_body = serde_json::json!({
-                        "label": "Producer V2",
-                        "comment": "OWL-based LLM Content Generator"
-                    });
+                if response.status().is_success() {
+                    // データベースが存在する場合
+                    if reset_db {
+                        // リセットが有効な場合は削除して再作成
+                        info!("Resetting database '{}' (TERMINUSDB_RESET_DB=true)", self.db_name);
+                        let delete_url = format!("{}/api/db/{}", self.base_url, self.db_name);
+                        let delete_response = self
+                            .http_client
+                            .delete(&delete_url)
+                            .header("Authorization", &self.auth_header)
+                            .send()
+                            .await?;
 
-                    let create_response = self
-                        .http_client
-                        .post(&create_url)
-                        .header("Authorization", &self.auth_header)
-                        .header("Content-Type", "application/json")
-                        .json(&create_body)
-                        .send()
-                        .await?;
-
-                    if !create_response.status().is_success() {
-                        let error_text = create_response.text().await.unwrap_or_default();
-                        return Err(anyhow::anyhow!("Failed to create database: {}", error_text));
+                        if !delete_response.status().is_success() {
+                            let error_text = delete_response.text().await.unwrap_or_default();
+                            warn!("Failed to delete database (may not exist): {}", error_text);
+                        } else {
+                            info!("Database '{}' deleted successfully", self.db_name);
+                        }
+                    } else {
+                        // リセットが無効な場合はそのまま使用
+                        info!("Database '{}' already exists, using existing database", self.db_name);
+                        return Ok(());
                     }
-                    info!("Database '{}' created successfully", self.db_name);
-                } else if response.status().is_success() {
-                    // データベースが存在する場合はそのまま使用
-                    info!("Database '{}' already exists, using existing database", self.db_name);
-                } else {
+                } else if response.status().as_u16() != 404 {
+                    // 404以外のエラーの場合
                     let error_text = response.text().await.unwrap_or_default();
                     return Err(anyhow::anyhow!("Failed to check database: {}", error_text));
                 }
+
+                // データベースを作成
+                let create_url = format!("{}/api/db/{}", self.base_url, self.db_name);
+                let create_body = serde_json::json!({
+                    "label": "Producer V2",
+                    "comment": "OWL-based LLM Content Generator"
+                });
+
+                let create_response = self
+                    .http_client
+                    .post(&create_url)
+                    .header("Authorization", &self.auth_header)
+                    .header("Content-Type", "application/json")
+                    .json(&create_body)
+                    .send()
+                    .await?;
+
+                if !create_response.status().is_success() {
+                    let error_text = create_response.text().await.unwrap_or_default();
+                    return Err(anyhow::anyhow!("Failed to create database: {}", error_text));
+                }
+                info!("Database '{}' created successfully", self.db_name);
 
                 Ok(())
             }

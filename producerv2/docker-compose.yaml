@@ -47,6 +47,7 @@ services:
       TERMINUSDB_SERVER_PASS: root
       TERMINUSDB_DB: producerv2
       TERMINUSDB_ORGANIZATION: ""
+      TERMINUSDB_RESET_DB: "true"
       RUST_LOG: info
     command: ["/app/producerv2-graphql"]
     # volumes:
