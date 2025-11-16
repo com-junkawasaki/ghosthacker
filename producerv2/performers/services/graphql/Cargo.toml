@@ -27,3 +27,8 @@ chrono = { version = "0.4", features = ["serde"] }
 urlencoding = "2.1"
 sqlx = { version = "0.7", features = ["postgres", "runtime-tokio-rustls", "chrono", "uuid", "json"] }
 
+[dev-dependencies]
+tokio-test = "0.4"
+mockall = "0.12"
+sqlx = { version = "0.7", features = ["postgres", "runtime-tokio-rustls", "chrono", "uuid", "json", "migrate"] }
+

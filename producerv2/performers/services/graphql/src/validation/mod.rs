@@ -11,3 +11,5 @@
 
 pub mod shacl;
 
+pub use shacl::{PropertyShape, ShaclShape};
+

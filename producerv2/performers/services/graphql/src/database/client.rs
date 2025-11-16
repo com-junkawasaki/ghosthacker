@@ -203,10 +203,10 @@ pub async fn insert_document(document: &Value) -> Result<()> {
         // 値を処理
         if value.is_array() {
             for item in value.as_array().unwrap() {
-                insert_triple(&mut *tx, id, &predicate, item).await?;
+                insert_triple(&mut tx, id, &predicate, item).await?;
             }
         } else {
-            insert_triple(&mut *tx, id, &predicate, value).await?;
+            insert_triple(&mut tx, id, &predicate, value).await?;
         }
     }
 

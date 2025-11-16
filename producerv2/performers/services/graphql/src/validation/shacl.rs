@@ -157,7 +157,12 @@ pub fn validate_with_shacl(document: &Value, shape: &ShaclShape) -> Result<Valid
 
 /// プロパティ値を取得（簡易実装）
 fn get_property_value<'a>(document: &'a Value, path: &str) -> Option<&'a Value> {
-    // 述語を展開（ex:title -> title）
+    // まず完全なパス（ex:name）で検索
+    if let Some(value) = document.get(path) {
+        return Some(value);
+    }
+    
+    // 見つからなければ、プレフィックスを削除したキー（name）で検索
     let key = path
         .strip_prefix("ex:")
         .or_else(|| path.strip_prefix("dct:"))
