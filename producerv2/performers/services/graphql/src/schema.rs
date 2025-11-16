@@ -1,6 +1,6 @@
 /**
  * GraphQL Schema定義
- * TerminusDB OWLから生成されるGraphQLスキーマ
+ * PostgreSQL + SQLx を使用した GraphQL スキーマ
  * 
  * @context {
  *   "@id": "ex:GraphQLSchema",
@@ -14,16 +14,18 @@ use nanoid::nanoid;
 use serde::{Deserialize, Serialize};
 use tracing::error;
 
-use crate::terminusdb::{
-    client::{get_document_typed, insert_document_typed, update_document_typed, delete_document},
+use crate::database::{
+    client::{get_all_resources, get_document, delete_document},
     schema::{
-        Chapter as TerminusChapter, EPUBDocument as TerminusEPUBDocument,
-        KindleDocument as TerminusKindleDocument, Metadata as TerminusMetadata,
-        Paragraph as TerminusParagraph, Project as TerminusProject, Script as TerminusScript,
-        Section as TerminusSection, Story as TerminusStory,
-        TextNode as TerminusTextNode,
+        get_document_typed, insert_document_typed, update_document_typed,
+        Chapter as DatabaseChapter, EPUBDocument as DatabaseEPUBDocument,
+        KindleDocument as DatabaseKindleDocument, Metadata as DatabaseMetadata,
+        Paragraph as DatabaseParagraph, Project as DatabaseProject, Script as DatabaseScript,
+        Section as DatabaseSection, Story as DatabaseStory,
+        TextNode as DatabaseTextNode,
     },
 };
+use crate::validation::shacl::{get_default_shape_for_type, validate_with_shacl, validation_result_to_graphql_error};
 
 #[derive(Default)]
 pub struct QueryRoot;
@@ -39,7 +41,7 @@ impl QueryRoot {
     ///   "ex:produces": "ex:Story"
     /// }
     async fn story(&self, id: String) -> Result<Option<Story>> {
-        match get_document_typed::<TerminusStory>(&id).await {
+        match get_document_typed::<DatabaseStory>(&id).await {
             Ok(story) => Ok(Some(story.into())),
             Err(e) => {
                 error!("Failed to get story {}: {}", id, e);
@@ -56,9 +58,21 @@ impl QueryRoot {
     ///   "ex:produces": "ex:StoryList"
     /// }
     async fn stories(&self) -> Result<Vec<Story>> {
-        // 簡易実装: 実際のWOQLクエリが必要
-        // 現時点では空のリストを返す
-        Ok(vec![])
+        match get_all_resources(Some("ex:Story")).await {
+            Ok(ids) => {
+                let mut stories = Vec::new();
+                for id in ids {
+                    if let Ok(Some(story)) = get_document_typed::<DatabaseStory>(&id).await {
+                        stories.push(story.into());
+                    }
+                }
+                Ok(stories)
+            }
+            Err(e) => {
+                error!("Failed to get stories: {}", e);
+                Ok(vec![])
+            }
+        }
     }
 
     /// Scriptを取得
@@ -70,7 +84,7 @@ impl QueryRoot {
     ///   "ex:produces": "ex:Script"
     /// }
     async fn script(&self, id: String) -> Result<Option<Script>> {
-        match get_document_typed::<TerminusScript>(&id).await {
+        match get_document_typed::<DatabaseScript>(&id).await {
             Ok(script) => Ok(Some(script.into())),
             Err(e) => {
                 error!("Failed to get script {}: {}", id, e);
@@ -88,7 +102,7 @@ impl QueryRoot {
     ///   "ex:produces": "ex:EPUBDocument"
     /// }
     async fn epub_document(&self, id: String) -> Result<Option<EPUBDocument>> {
-        match get_document_typed::<TerminusEPUBDocument>(&id).await {
+        match get_document_typed::<DatabaseEPUBDocument>(&id).await {
             Ok(epub) => Ok(Some(epub.into())),
             Err(e) => {
                 error!("Failed to get EPUB document {}: {}", id, e);
@@ -106,7 +120,7 @@ impl QueryRoot {
     ///   "ex:produces": "ex:KindleDocument"
     /// }
     async fn kindle_document(&self, id: String) -> Result<Option<KindleDocument>> {
-        match get_document_typed::<TerminusKindleDocument>(&id).await {
+        match get_document_typed::<DatabaseKindleDocument>(&id).await {
             Ok(kindle) => Ok(Some(kindle.into())),
             Err(e) => {
                 error!("Failed to get Kindle document {}: {}", id, e);
@@ -152,7 +166,7 @@ impl QueryRoot {
     ///   "ex:produces": "ex:Project"
     /// }
     async fn project(&self, id: String) -> Result<Option<Project>> {
-        match get_document_typed::<TerminusProject>(&id).await {
+        match get_document_typed::<DatabaseProject>(&id).await {
             Ok(project) => Ok(Some(project.into())),
             Err(e) => {
                 error!("Failed to get project {}: {}", id, e);
@@ -169,9 +183,21 @@ impl QueryRoot {
     ///   "ex:produces": "ex:ProjectList"
     /// }
     async fn projects(&self) -> Result<Vec<Project>> {
-        // 簡易実装: 実際のWOQLクエリが必要
-        // 現時点では空のリストを返す
-        Ok(vec![])
+        match get_all_resources(Some("ex:Project")).await {
+            Ok(ids) => {
+                let mut projects = Vec::new();
+                for id in ids {
+                    if let Ok(Some(project)) = get_document_typed::<DatabaseProject>(&id).await {
+                        projects.push(project.into());
+                    }
+                }
+                Ok(projects)
+            }
+            Err(e) => {
+                error!("Failed to get projects: {}", e);
+                Ok(vec![])
+            }
+        }
     }
 }
 
@@ -189,12 +215,10 @@ impl MutationRoot {
     ///   "ex:produces": "ex:Story"
     /// }
     async fn create_story(&self, title: String, content: String) -> Result<Story> {
-        
-
         let now = chrono::Utc::now().to_rfc3339();
         let story_id = format!("Story_{}", nanoid!());
 
-        let story = TerminusStory {
+        let story = DatabaseStory {
             id: story_id.clone(),
             r#type: "ex:Story".to_string(),
             title: title.clone(),
@@ -202,6 +226,15 @@ impl MutationRoot {
             created_at: Some(now.clone()),
             updated_at: Some(now.clone()),
         };
+
+        // SHACL バリデーション
+        let doc = story.to_jsonld();
+        if let Some(shape) = get_default_shape_for_type("ex:Story") {
+            let validation_result = validate_with_shacl(&doc, &shape)?;
+            if !validation_result.is_valid {
+                return Err(validation_result_to_graphql_error(&validation_result));
+            }
+        }
 
         match insert_document_typed(&story).await {
             Ok(_) => Ok(story.into()),
@@ -229,7 +262,7 @@ impl MutationRoot {
         
 
         // 既存のStoryを取得
-        let mut story = get_document_typed::<TerminusStory>(&id).await
+        let mut story = get_document_typed::<DatabaseStory>(&id).await
             .map_err(|e| Error::new(format!("Story not found: {}", e)))?;
 
         // 更新フィールドを適用
@@ -240,6 +273,15 @@ impl MutationRoot {
             story.content = c;
         }
         story.updated_at = Some(chrono::Utc::now().to_rfc3339());
+
+        // SHACL バリデーション
+        let doc = story.to_jsonld();
+        if let Some(shape) = get_default_shape_for_type("ex:Story") {
+            let validation_result = validate_with_shacl(&doc, &shape)?;
+            if !validation_result.is_valid {
+                return Err(validation_result_to_graphql_error(&validation_result));
+            }
+        }
 
         match update_document_typed(&story).await {
             Ok(_) => Ok(story.into()),
@@ -289,7 +331,7 @@ impl MutationRoot {
         let now = chrono::Utc::now().to_rfc3339();
         let script_id = format!("Script_{}", nanoid!());
 
-        let script = TerminusScript {
+        let script = DatabaseScript {
             id: script_id.clone(),
             r#type: "ex:Script".to_string(),
             script_text: script_text.clone(),
@@ -298,6 +340,16 @@ impl MutationRoot {
             created_at: Some(now.clone()),
             updated_at: Some(now.clone()),
         };
+
+        // SHACL バリデーション
+        let doc = script.to_jsonld();
+        if let Some(shape) = get_default_shape_for_type("ex:Script") {
+            let validation_result = validate_with_shacl(&doc, &shape)?;
+            if !validation_result.is_valid {
+                return Err(validation_result_to_graphql_error(&validation_result));
+            }
+        }
+
         match insert_document_typed(&script).await {
             Ok(_) => Ok(script.into()),
             Err(e) => {
@@ -324,7 +376,7 @@ impl MutationRoot {
         
 
         // 既存のScriptを取得
-        let mut script = get_document_typed::<TerminusScript>(&id).await
+        let mut script = get_document_typed::<DatabaseScript>(&id).await
             .map_err(|e| Error::new(format!("Script not found: {}", e)))?;
 
         // 更新フィールドを適用
@@ -383,7 +435,7 @@ impl MutationRoot {
         let now = chrono::Utc::now().to_rfc3339();
         let doc_id = format!("EPUBDocument_{}", nanoid!());
 
-        let mut epub = TerminusEPUBDocument {
+        let mut epub = DatabaseEPUBDocument {
             id: doc_id.clone(),
             r#type: "ex:EPUBDocument".to_string(),
             title: title.clone(),
@@ -396,7 +448,7 @@ impl MutationRoot {
         // メタデータを作成
         if let Some(meta_input) = metadata {
             let meta_id = format!("Metadata_{}", nanoid!());
-            let meta = TerminusMetadata {
+            let meta = DatabaseMetadata {
                 id: meta_id.clone(),
                 r#type: "ex:Metadata".to_string(),
                 title: meta_input.title,
@@ -433,7 +485,7 @@ impl MutationRoot {
     ) -> Result<EPUBDocument> {
         
 
-        let mut epub = get_document_typed::<TerminusEPUBDocument>(&id).await
+        let mut epub = get_document_typed::<DatabaseEPUBDocument>(&id).await
             .map_err(|e| Error::new(format!("EPUB document not found: {}", e)))?;
 
         if let Some(t) = title {
@@ -462,7 +514,7 @@ impl MutationRoot {
         let now = chrono::Utc::now().to_rfc3339();
         let chapter_id = format!("Chapter_{}", nanoid!());
 
-        let chapter = TerminusChapter {
+        let chapter = DatabaseChapter {
             id: chapter_id.clone(),
             r#type: "ex:Chapter".to_string(),
             title: title.clone(),
@@ -490,7 +542,7 @@ impl MutationRoot {
     ) -> Result<Chapter> {
         
 
-        let mut chapter = get_document_typed::<TerminusChapter>(&id).await
+        let mut chapter = get_document_typed::<DatabaseChapter>(&id).await
             .map_err(|e| Error::new(format!("Chapter not found: {}", e)))?;
 
         if let Some(t) = title {
@@ -521,7 +573,7 @@ impl MutationRoot {
         let now = chrono::Utc::now().to_rfc3339();
         let paragraph_id = format!("Paragraph_{}", nanoid!());
 
-        let paragraph = TerminusParagraph {
+        let paragraph = DatabaseParagraph {
             id: paragraph_id.clone(),
             r#type: "ex:Paragraph".to_string(),
             order,
@@ -547,7 +599,7 @@ impl MutationRoot {
     ) -> Result<Paragraph> {
         
 
-        let mut paragraph = get_document_typed::<TerminusParagraph>(&id).await
+        let mut paragraph = get_document_typed::<DatabaseParagraph>(&id).await
             .map_err(|e| Error::new(format!("Paragraph not found: {}", e)))?;
 
         if let Some(o) = order {
@@ -576,7 +628,7 @@ impl MutationRoot {
         let now = chrono::Utc::now().to_rfc3339();
         let text_node_id = format!("TextNode_{}", nanoid!());
 
-        let text_node = TerminusTextNode {
+        let text_node = DatabaseTextNode {
             id: text_node_id.clone(),
             r#type: "ex:TextNode".to_string(),
             content: content.clone(),
@@ -604,7 +656,7 @@ impl MutationRoot {
     ) -> Result<TextNode> {
         
 
-        let mut text_node = get_document_typed::<TerminusTextNode>(&id).await
+        let mut text_node = get_document_typed::<DatabaseTextNode>(&id).await
             .map_err(|e| Error::new(format!("Text node not found: {}", e)))?;
 
         if let Some(c) = content {
@@ -646,14 +698,12 @@ impl MutationRoot {
             ///   "ex:produces": "ex:Project"
             /// }
             async fn create_project(&self, name: String, description: Option<String>) -> Result<Project> {
-        use crate::terminusdb::client::insert_document_typed;
-
         let now = chrono::Utc::now().to_rfc3339();
         let project_id = format!("Project_{}", nanoid!());
 
-        let project = TerminusProject {
+        let project = DatabaseProject {
             id: project_id.clone(),
-            r#type: "terminusdb:///schema#Project".to_string(),
+            r#type: "ex:Project".to_string(),
             name: name.clone(),
             author: Some("system".to_string()),
             description,
@@ -661,6 +711,15 @@ impl MutationRoot {
             created_at: Some(now.clone()),
             updated_at: Some(now.clone()),
         };
+
+        // SHACL バリデーション
+        let doc = project.to_jsonld();
+        if let Some(shape) = get_default_shape_for_type("ex:Project") {
+            let validation_result = validate_with_shacl(&doc, &shape)?;
+            if !validation_result.is_valid {
+                return Err(validation_result_to_graphql_error(&validation_result));
+            }
+        }
 
         match insert_document_typed(&project).await {
             Ok(_) => Ok(project.into()),
@@ -689,7 +748,7 @@ impl MutationRoot {
         
 
         // 既存のプロジェクトを取得
-        let mut project = get_document_typed::<TerminusProject>(&id).await
+        let mut project = get_document_typed::<DatabaseProject>(&id).await
             .map_err(|e| Error::new(format!("Project not found: {}", e)))?;
 
                 // 更新フィールドを適用
@@ -703,6 +762,15 @@ impl MutationRoot {
                     project.status = Some(s);
                 }
                 project.updated_at = Some(chrono::Utc::now().to_rfc3339());
+
+        // SHACL バリデーション
+        let doc = project.to_jsonld();
+        if let Some(shape) = get_default_shape_for_type("ex:Project") {
+            let validation_result = validate_with_shacl(&doc, &shape)?;
+            if !validation_result.is_valid {
+                return Err(validation_result_to_graphql_error(&validation_result));
+            }
+        }
 
         match update_document_typed(&project).await {
             Ok(_) => Ok(project.into()),
@@ -760,8 +828,8 @@ pub struct Story {
     pub updated_at: String,
 }
 
-impl From<TerminusStory> for Story {
-    fn from(story: TerminusStory) -> Self {
+impl From<DatabaseStory> for Story {
+    fn from(story: DatabaseStory) -> Self {
         Story {
             id: story.id,
             title: story.title,
@@ -782,8 +850,8 @@ pub struct Script {
     pub updated_at: String,
 }
 
-impl From<TerminusScript> for Script {
-    fn from(script: TerminusScript) -> Self {
+impl From<DatabaseScript> for Script {
+    fn from(script: DatabaseScript) -> Self {
         Script {
             id: script.id,
             script_text: script.script_text,
@@ -848,8 +916,8 @@ pub struct EPUBDocument {
     pub updated_at: String,
 }
 
-impl From<TerminusEPUBDocument> for EPUBDocument {
-    fn from(epub: TerminusEPUBDocument) -> Self {
+impl From<DatabaseEPUBDocument> for EPUBDocument {
+    fn from(epub: DatabaseEPUBDocument) -> Self {
         EPUBDocument {
             id: epub.id,
             title: epub.title,
@@ -871,8 +939,8 @@ pub struct KindleDocument {
     pub updated_at: String,
 }
 
-impl From<TerminusKindleDocument> for KindleDocument {
-    fn from(kindle: TerminusKindleDocument) -> Self {
+impl From<DatabaseKindleDocument> for KindleDocument {
+    fn from(kindle: DatabaseKindleDocument) -> Self {
         KindleDocument {
             id: kindle.id,
             title: kindle.title,
@@ -895,8 +963,8 @@ pub struct Chapter {
     pub updated_at: String,
 }
 
-impl From<TerminusChapter> for Chapter {
-    fn from(chapter: TerminusChapter) -> Self {
+impl From<DatabaseChapter> for Chapter {
+    fn from(chapter: DatabaseChapter) -> Self {
         Chapter {
             id: chapter.id,
             title: chapter.title,
@@ -919,8 +987,8 @@ pub struct Section {
     pub updated_at: String,
 }
 
-impl From<TerminusSection> for Section {
-    fn from(section: TerminusSection) -> Self {
+impl From<DatabaseSection> for Section {
+    fn from(section: DatabaseSection) -> Self {
         Section {
             id: section.id,
             title: section.title,
@@ -942,8 +1010,8 @@ pub struct Paragraph {
     pub updated_at: String,
 }
 
-impl From<TerminusParagraph> for Paragraph {
-    fn from(paragraph: TerminusParagraph) -> Self {
+impl From<DatabaseParagraph> for Paragraph {
+    fn from(paragraph: DatabaseParagraph) -> Self {
         Paragraph {
             id: paragraph.id,
             order: paragraph.order,
@@ -966,8 +1034,8 @@ pub struct TextNode {
     pub updated_at: String,
 }
 
-impl From<TerminusTextNode> for TextNode {
-    fn from(text_node: TerminusTextNode) -> Self {
+impl From<DatabaseTextNode> for TextNode {
+    fn from(text_node: DatabaseTextNode) -> Self {
         TextNode {
             id: text_node.id,
             content: text_node.content,
@@ -1001,8 +1069,8 @@ pub struct Project {
     pub updated_at: String,
 }
 
-impl From<TerminusProject> for Project {
-    fn from(project: TerminusProject) -> Self {
+impl From<DatabaseProject> for Project {
+    fn from(project: DatabaseProject) -> Self {
         Project {
             id: project.id,
             name: project.name,

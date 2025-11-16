@@ -1,15 +1,4 @@
 services:
-  terminusdb:
-    image: terminusdb/terminusdb-server:latest
-    container_name: producerv2-terminusdb
-    ports:
-      - "6363:6363"
-    environment:
-      TERMINUSDB_SERVER_PORT: 6363
-      TERMINUSDB_SERVER_PASS: root
-    volumes:
-      - terminusdb-data:/app/db
-
   postgres:
     image: postgres:16-alpine
     container_name: producerv2-postgres
@@ -35,19 +24,15 @@ services:
     ports:
       - "8080:8080"
     environment:
-      # TerminusDB (ハードコード)
-      TERMINUSDB_URL: http://terminusdb:6363
-      TERMINUSDB_USER: admin
-      TERMINUSDB_SERVER_PASS: root
-      TERMINUSDB_DB: producerv2
-      TERMINUSDB_ORGANIZATION: admin
-      TERMINUSDB_RESET_DB: "true"
+      # PostgreSQL Database
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
       RUST_LOG: info
     command: ["/app/producerv2-graphql"]
     # volumes:
     #   - ./performers/services/graphql:/app
     depends_on:
-      - terminusdb
+      postgres:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
       interval: 10s
@@ -72,13 +57,6 @@ services:
       # GraphQL API
       NEXT_PUBLIC_GRAPHQL_API_URL: http://localhost:8080/graphql
       GRAPHQL_API_URL: http://graphql:8080/graphql
-      
-      # TerminusDB (deprecated - GraphQL経由でアクセス)
-      TERMINUSDB_URL: http://terminusdb:6363
-      TERMINUSDB_USER: admin
-      TERMINUSDB_SERVER_PASS: root
-      TERMINUSDB_DB: producerv2
-      TERMINUSDB_ORGANIZATION: ""
       
       # Database
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
@@ -105,11 +83,9 @@ services:
       - /app/performers/actors/content-creator/node_modules
       - /app/.next
     depends_on:
-      - terminusdb
       - postgres
       - graphql
 
 volumes:
-  terminusdb-data:
   postgres-data:
 

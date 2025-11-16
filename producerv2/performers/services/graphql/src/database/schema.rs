@@ -1,8 +1,9 @@
 /**
- * TerminusDB Schema Management
+ * Database Schema Models
+ * SQLx 用の RDF/SHACL/JSON-LD スキーマモデル
  * 
  * @context {
- *   "@id": "ex:TerminusDBSchema",
+ *   "@id": "ex:DatabaseSchema",
  *   "@type": "ex:Service",
  *   "ex:provides": "ex:SchemaManagement"
  * }
@@ -10,20 +11,22 @@
 
 use anyhow::Result;
 use serde::{Deserialize, Serialize};
-use serde_json::json;
-use tracing::{info, warn};
-use terminusdb_schema_derive::TerminusDBModel;
-use terminusdb_schema::ToTDBInstance;
+use serde_json::Value;
 
-use super::client::{get_client, insert_schema_typed};
+use super::client::{get_document, insert_document, update_document, delete_document};
+
+/// JSON-LD ドキュメントから構造体への変換トレイト
+pub trait FromJsonLd: Sized {
+    fn from_jsonld(value: &Value) -> Result<Self>;
+}
+
+/// 構造体から JSON-LD ドキュメントへの変換トレイト
+pub trait ToJsonLd {
+    fn to_jsonld(&self) -> Value;
+}
 
 /// Storyドキュメント構造体
-#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
-#[tdb(
-    class_name = "Story",
-    base = "ex:",
-    key = "random"
-)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Story {
     #[serde(rename = "@id")]
     pub id: String,
@@ -39,13 +42,20 @@ pub struct Story {
     pub updated_at: Option<String>,
 }
 
+impl FromJsonLd for Story {
+    fn from_jsonld(value: &Value) -> Result<Self> {
+        Ok(serde_json::from_value(value.clone())?)
+    }
+}
+
+impl ToJsonLd for Story {
+    fn to_jsonld(&self) -> Value {
+        serde_json::to_value(self).unwrap()
+    }
+}
+
 /// Scriptドキュメント構造体
-#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
-#[tdb(
-    class_name = "Script",
-    base = "ex:",
-    key = "random"
-)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Script {
     #[serde(rename = "@id")]
     pub id: String,
@@ -63,13 +73,20 @@ pub struct Script {
     pub updated_at: Option<String>,
 }
 
+impl FromJsonLd for Script {
+    fn from_jsonld(value: &Value) -> Result<Self> {
+        Ok(serde_json::from_value(value.clone())?)
+    }
+}
+
+impl ToJsonLd for Script {
+    fn to_jsonld(&self) -> Value {
+        serde_json::to_value(self).unwrap()
+    }
+}
+
 /// EPUBドキュメント構造体
-#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
-#[tdb(
-    class_name = "EPUBDocument",
-    base = "ex:",
-    key = "random"
-)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct EPUBDocument {
     #[serde(rename = "@id")]
     pub id: String,
@@ -87,13 +104,20 @@ pub struct EPUBDocument {
     pub updated_at: Option<String>,
 }
 
+impl FromJsonLd for EPUBDocument {
+    fn from_jsonld(value: &Value) -> Result<Self> {
+        Ok(serde_json::from_value(value.clone())?)
+    }
+}
+
+impl ToJsonLd for EPUBDocument {
+    fn to_jsonld(&self) -> Value {
+        serde_json::to_value(self).unwrap()
+    }
+}
+
 /// Kindleドキュメント構造体
-#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
-#[tdb(
-    class_name = "KindleDocument",
-    base = "ex:",
-    key = "random"
-)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct KindleDocument {
     #[serde(rename = "@id")]
     pub id: String,
@@ -111,13 +135,20 @@ pub struct KindleDocument {
     pub updated_at: Option<String>,
 }
 
+impl FromJsonLd for KindleDocument {
+    fn from_jsonld(value: &Value) -> Result<Self> {
+        Ok(serde_json::from_value(value.clone())?)
+    }
+}
+
+impl ToJsonLd for KindleDocument {
+    fn to_jsonld(&self) -> Value {
+        serde_json::to_value(self).unwrap()
+    }
+}
+
 /// 章構造体
-#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
-#[tdb(
-    class_name = "Chapter",
-    base = "ex:",
-    key = "random"
-)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Chapter {
     #[serde(rename = "@id")]
     pub id: String,
@@ -137,13 +168,20 @@ pub struct Chapter {
     pub updated_at: Option<String>,
 }
 
+impl FromJsonLd for Chapter {
+    fn from_jsonld(value: &Value) -> Result<Self> {
+        Ok(serde_json::from_value(value.clone())?)
+    }
+}
+
+impl ToJsonLd for Chapter {
+    fn to_jsonld(&self) -> Value {
+        serde_json::to_value(self).unwrap()
+    }
+}
+
 /// 節構造体
-#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
-#[tdb(
-    class_name = "Section",
-    base = "ex:",
-    key = "random"
-)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Section {
     #[serde(rename = "@id")]
     pub id: String,
@@ -161,13 +199,20 @@ pub struct Section {
     pub updated_at: Option<String>,
 }
 
+impl FromJsonLd for Section {
+    fn from_jsonld(value: &Value) -> Result<Self> {
+        Ok(serde_json::from_value(value.clone())?)
+    }
+}
+
+impl ToJsonLd for Section {
+    fn to_jsonld(&self) -> Value {
+        serde_json::to_value(self).unwrap()
+    }
+}
+
 /// 段落構造体
-#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
-#[tdb(
-    class_name = "Paragraph",
-    base = "ex:",
-    key = "random"
-)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Paragraph {
     #[serde(rename = "@id")]
     pub id: String,
@@ -185,13 +230,20 @@ pub struct Paragraph {
     pub updated_at: Option<String>,
 }
 
+impl FromJsonLd for Paragraph {
+    fn from_jsonld(value: &Value) -> Result<Self> {
+        Ok(serde_json::from_value(value.clone())?)
+    }
+}
+
+impl ToJsonLd for Paragraph {
+    fn to_jsonld(&self) -> Value {
+        serde_json::to_value(self).unwrap()
+    }
+}
+
 /// テキストノード構造体（RDFリソースとして）
-#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
-#[tdb(
-    class_name = "TextNode",
-    base = "ex:",
-    key = "random"
-)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TextNode {
     #[serde(rename = "@id")]
     pub id: String,
@@ -211,13 +263,20 @@ pub struct TextNode {
     pub updated_at: Option<String>,
 }
 
+impl FromJsonLd for TextNode {
+    fn from_jsonld(value: &Value) -> Result<Self> {
+        Ok(serde_json::from_value(value.clone())?)
+    }
+}
+
+impl ToJsonLd for TextNode {
+    fn to_jsonld(&self) -> Value {
+        serde_json::to_value(self).unwrap()
+    }
+}
+
 /// メタデータ構造体（Dublin Core）
-#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
-#[tdb(
-    class_name = "Metadata",
-    base = "ex:",
-    key = "random"
-)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Metadata {
     #[serde(rename = "@id")]
     pub id: String,
@@ -241,35 +300,20 @@ pub struct Metadata {
     pub updated_at: Option<String>,
 }
 
-/// スタイル構造体
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Style {
-    #[serde(rename = "@id")]
-    pub id: String,
-    #[serde(rename = "@type")]
-    pub r#type: String,
-    #[serde(rename = "ex:fontFamily", skip_serializing_if = "Option::is_none")]
-    pub font_family: Option<String>,
-    #[serde(rename = "ex:fontSize", skip_serializing_if = "Option::is_none")]
-    pub font_size: Option<String>,
-    #[serde(rename = "ex:fontWeight", skip_serializing_if = "Option::is_none")]
-    pub font_weight: Option<String>,
-    #[serde(rename = "ex:color", skip_serializing_if = "Option::is_none")]
-    pub color: Option<String>,
-    #[serde(rename = "ex:alignment", skip_serializing_if = "Option::is_none")]
-    pub alignment: Option<String>,
+impl FromJsonLd for Metadata {
+    fn from_jsonld(value: &Value) -> Result<Self> {
+        Ok(serde_json::from_value(value.clone())?)
+    }
+}
+
+impl ToJsonLd for Metadata {
+    fn to_jsonld(&self) -> Value {
+        serde_json::to_value(self).unwrap()
+    }
 }
 
 /// Project構造体
-/// 
-/// TerminusDBModel トレイトを使用して型安全なスキーマ定義を提供
-/// 既存のコードとの互換性のため、@id と @type フィールドを保持
-#[derive(TerminusDBModel, Debug, Clone, Serialize, Deserialize)]
-#[tdb(
-    class_name = "Project",
-    base = "terminusdb:///schema#",
-    key = "random"
-)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Project {
     #[serde(rename = "@id")]
     pub id: String,
@@ -289,31 +333,33 @@ pub struct Project {
     pub updated_at: Option<String>,
 }
 
-/// OWLスキーマをTerminusDBに適用
-/// terminusdb-rs を使用した型安全な実装
-/// 
-/// @context {
-///   "@id": "ex:applyOWLSchema",
-///   "@type": "ex:Activity",
-///   "ex:produces": "ex:AppliedSchema"
-/// }
-pub async fn apply_owl_schema() -> Result<()> {
-    info!("Applying OWL schema to database using terminusdb-rs");
-
-    // Project スキーマを挿入（型安全な方法）
-    match insert_schema_typed::<Project>().await {
-        Ok(_) => {
-            info!("Project schema applied successfully");
-        }
-        Err(e) => {
-            warn!("Failed to apply Project schema (may already exist): {}", e);
-        }
+impl FromJsonLd for Project {
+    fn from_jsonld(value: &Value) -> Result<Self> {
+        Ok(serde_json::from_value(value.clone())?)
     }
-
-    // 注意: 他のスキーマ（Story, Script, EPUBDocument など）は
-    // 将来的に TerminusDBModel を実装した型として定義する必要があります
-    // 現在は Project のみ型安全なスキーマ適用を実装しています
-
-    info!("OWL schema application completed");
-    Ok(())
 }
+
+impl ToJsonLd for Project {
+    fn to_jsonld(&self) -> Value {
+        serde_json::to_value(self).unwrap()
+    }
+}
+
+/// 型安全なドキュメント取得
+pub async fn get_document_typed<T: FromJsonLd>(id: &str) -> Result<T> {
+    let doc = get_document(id).await?;
+    T::from_jsonld(&doc)
+}
+
+/// 型安全なドキュメント挿入
+pub async fn insert_document_typed<T: ToJsonLd>(instance: &T) -> Result<()> {
+    let doc = instance.to_jsonld();
+    insert_document(&doc).await
+}
+
+/// 型安全なドキュメント更新
+pub async fn update_document_typed<T: ToJsonLd>(instance: &T) -> Result<()> {
+    let doc = instance.to_jsonld();
+    update_document(&doc).await
+}
+
