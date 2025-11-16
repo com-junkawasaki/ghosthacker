@@ -13,6 +13,7 @@ use serde::{Deserialize, Serialize};
 use serde_json::json;
 use tracing::{info, warn};
 use terminusdb_schema_derive::TerminusDBModel;
+use terminusdb_schema::ToTDBInstance;
 
 use super::client::{get_client, insert_schema_typed};
 

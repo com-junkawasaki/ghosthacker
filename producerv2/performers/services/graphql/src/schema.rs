@@ -15,7 +15,7 @@ use serde::{Deserialize, Serialize};
 use tracing::error;
 
 use crate::terminusdb::{
-    client::{get_document, insert_document_typed, update_document_typed, delete_document},
+    client::{get_document_typed, insert_document_typed, update_document_typed, delete_document},
     schema::{
         Chapter as TerminusChapter, EPUBDocument as TerminusEPUBDocument,
         KindleDocument as TerminusKindleDocument, Metadata as TerminusMetadata,
@@ -39,16 +39,8 @@ impl QueryRoot {
     ///   "ex:produces": "ex:Story"
     /// }
     async fn story(&self, id: String) -> Result<Option<Story>> {
-        match get_document(&id).await {
-            Ok(doc) => {
-                match serde_json::from_value::<TerminusStory>(doc) {
-                    Ok(story) => Ok(Some(story.into())),
-                    Err(e) => {
-                        error!("Failed to parse story {}: {}", id, e);
-                        Ok(None)
-                    }
-                }
-            }
+        match get_document_typed::<TerminusStory>(&id).await {
+            Ok(story) => Ok(Some(story.into())),
             Err(e) => {
                 error!("Failed to get story {}: {}", id, e);
                 Ok(None)
@@ -78,16 +70,8 @@ impl QueryRoot {
     ///   "ex:produces": "ex:Script"
     /// }
     async fn script(&self, id: String) -> Result<Option<Script>> {
-        match get_document(&id).await {
-            Ok(doc) => {
-                match serde_json::from_value::<TerminusScript>(doc) {
-                    Ok(script) => Ok(Some(script.into())),
-                    Err(e) => {
-                        error!("Failed to parse script {}: {}", id, e);
-                        Ok(None)
-                    }
-                }
-            }
+        match get_document_typed::<TerminusScript>(&id).await {
+            Ok(script) => Ok(Some(script.into())),
             Err(e) => {
                 error!("Failed to get script {}: {}", id, e);
                 Ok(None)
@@ -104,16 +88,8 @@ impl QueryRoot {
     ///   "ex:produces": "ex:EPUBDocument"
     /// }
     async fn epub_document(&self, id: String) -> Result<Option<EPUBDocument>> {
-        match get_document(&id).await {
-            Ok(doc) => {
-                match serde_json::from_value::<TerminusEPUBDocument>(doc) {
-                    Ok(epub) => Ok(Some(epub.into())),
-                    Err(e) => {
-                        error!("Failed to parse EPUB document {}: {}", id, e);
-                        Ok(None)
-                    }
-                }
-            }
+        match get_document_typed::<TerminusEPUBDocument>(&id).await {
+            Ok(epub) => Ok(Some(epub.into())),
             Err(e) => {
                 error!("Failed to get EPUB document {}: {}", id, e);
                 Ok(None)
@@ -130,16 +106,8 @@ impl QueryRoot {
     ///   "ex:produces": "ex:KindleDocument"
     /// }
     async fn kindle_document(&self, id: String) -> Result<Option<KindleDocument>> {
-        match get_document(&id).await {
-            Ok(doc) => {
-                match serde_json::from_value::<TerminusKindleDocument>(doc) {
-                    Ok(kindle) => Ok(Some(kindle.into())),
-                    Err(e) => {
-                        error!("Failed to parse Kindle document {}: {}", id, e);
-                        Ok(None)
-                    }
-                }
-            }
+        match get_document_typed::<TerminusKindleDocument>(&id).await {
+            Ok(kindle) => Ok(Some(kindle.into())),
             Err(e) => {
                 error!("Failed to get Kindle document {}: {}", id, e);
                 Ok(None)
@@ -184,16 +152,8 @@ impl QueryRoot {
     ///   "ex:produces": "ex:Project"
     /// }
     async fn project(&self, id: String) -> Result<Option<Project>> {
-        match get_document(&id).await {
-            Ok(doc) => {
-                match serde_json::from_value::<TerminusProject>(doc) {
-                    Ok(project) => Ok(Some(project.into())),
-                    Err(e) => {
-                        error!("Failed to parse project {}: {}", id, e);
-                        Ok(None)
-                    }
-                }
-            }
+        match get_document_typed::<TerminusProject>(&id).await {
+            Ok(project) => Ok(Some(project.into())),
             Err(e) => {
                 error!("Failed to get project {}: {}", id, e);
                 Ok(None)
@@ -269,10 +229,8 @@ impl MutationRoot {
         
 
         // 既存のStoryを取得
-        let doc = get_document(&id).await
+        let mut story = get_document_typed::<TerminusStory>(&id).await
             .map_err(|e| Error::new(format!("Story not found: {}", e)))?;
-        let mut story: TerminusStory = serde_json::from_value(doc)
-            .map_err(|e| Error::new(format!("Failed to parse story: {}", e)))?;
 
         // 更新フィールドを適用
         if let Some(t) = title {
@@ -366,10 +324,8 @@ impl MutationRoot {
         
 
         // 既存のScriptを取得
-        let doc = get_document(&id).await
+        let mut script = get_document_typed::<TerminusScript>(&id).await
             .map_err(|e| Error::new(format!("Script not found: {}", e)))?;
-        let mut script: TerminusScript = serde_json::from_value(doc)
-            .map_err(|e| Error::new(format!("Failed to parse script: {}", e)))?;
 
         // 更新フィールドを適用
         if let Some(st) = script_text {
@@ -477,10 +433,8 @@ impl MutationRoot {
     ) -> Result<EPUBDocument> {
         
 
-        let doc = get_document(&id).await
+        let mut epub = get_document_typed::<TerminusEPUBDocument>(&id).await
             .map_err(|e| Error::new(format!("EPUB document not found: {}", e)))?;
-        let mut epub: TerminusEPUBDocument = serde_json::from_value(doc)
-            .map_err(|e| Error::new(format!("Failed to parse EPUB document: {}", e)))?;
 
         if let Some(t) = title {
             epub.title = t;
@@ -536,10 +490,8 @@ impl MutationRoot {
     ) -> Result<Chapter> {
         
 
-        let doc = get_document(&id).await
+        let mut chapter = get_document_typed::<TerminusChapter>(&id).await
             .map_err(|e| Error::new(format!("Chapter not found: {}", e)))?;
-        let mut chapter: TerminusChapter = serde_json::from_value(doc)
-            .map_err(|e| Error::new(format!("Failed to parse chapter: {}", e)))?;
 
         if let Some(t) = title {
             chapter.title = t;
@@ -595,10 +547,8 @@ impl MutationRoot {
     ) -> Result<Paragraph> {
         
 
-        let doc = get_document(&id).await
+        let mut paragraph = get_document_typed::<TerminusParagraph>(&id).await
             .map_err(|e| Error::new(format!("Paragraph not found: {}", e)))?;
-        let mut paragraph: TerminusParagraph = serde_json::from_value(doc)
-            .map_err(|e| Error::new(format!("Failed to parse paragraph: {}", e)))?;
 
         if let Some(o) = order {
             paragraph.order = o;
@@ -654,10 +604,8 @@ impl MutationRoot {
     ) -> Result<TextNode> {
         
 
-        let doc = get_document(&id).await
+        let mut text_node = get_document_typed::<TerminusTextNode>(&id).await
             .map_err(|e| Error::new(format!("Text node not found: {}", e)))?;
-        let mut text_node: TerminusTextNode = serde_json::from_value(doc)
-            .map_err(|e| Error::new(format!("Failed to parse text node: {}", e)))?;
 
         if let Some(c) = content {
             text_node.content = c;
@@ -741,10 +689,8 @@ impl MutationRoot {
         
 
         // 既存のプロジェクトを取得
-        let doc = get_document(&id).await
+        let mut project = get_document_typed::<TerminusProject>(&id).await
             .map_err(|e| Error::new(format!("Project not found: {}", e)))?;
-        let mut project: TerminusProject = serde_json::from_value(doc)
-            .map_err(|e| Error::new(format!("Failed to parse project: {}", e)))?;
 
                 // 更新フィールドを適用
                 if let Some(n) = name {
@@ -758,8 +704,7 @@ impl MutationRoot {
                 }
                 project.updated_at = Some(chrono::Utc::now().to_rfc3339());
 
-        
-        match update_document_typed(&doc).await {
+        match update_document_typed(&project).await {
             Ok(_) => Ok(project.into()),
             Err(e) => {
                 error!("Failed to update project: {}", e);

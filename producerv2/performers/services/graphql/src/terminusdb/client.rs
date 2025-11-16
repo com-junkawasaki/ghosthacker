@@ -13,7 +13,7 @@ use anyhow::Result;
 use serde_json::Value;
 use std::sync::{Arc, OnceLock};
 use terminusdb_client::*;
-use terminusdb_schema::TerminusDBModel;
+use terminusdb_schema::{TerminusDBModel, ToTDBInstance, FromTDBInstance, InstanceFromJson};
 use tracing::{error, info, warn};
 
 static CLIENT: OnceLock<Arc<TerminusDBHttpClient>> = OnceLock::new();
@@ -37,7 +37,7 @@ pub async fn initialize() -> Result<()> {
     // TerminusDBHttpClient の作成
     // 注意: local_node() は localhost 専用なので、カスタム URL の場合は別の方法が必要
     let client = if url == "http://localhost:6363" || url.contains("localhost") {
-        TerminusDBHttpClient::local_node().await?
+        TerminusDBHttpClient::local_node().await
     } else {
         // カスタム URL の場合は、HTTP クライアントを直接作成する必要がある
         // 現在の実装では local_node() のみサポート
@@ -104,15 +104,29 @@ pub fn get_database_name() -> String {
 }
 
 /// ドキュメントを取得
+/// 注意: terminusdb-rs の get メソッドは型安全な取得を推奨しているため、
+/// この関数は既存のコードとの互換性のために残していますが、
+/// 新しいコードでは get_document_typed を使用することを推奨します
 pub async fn get_document(id: &str) -> Result<Value> {
+    // terminusdb-rs では型安全な取得を推奨しているため、
+    // この関数は非推奨です。新しいコードでは TerminusDBModel を実装した型を使用してください
+    error!("get_document with Value is deprecated. Use get_document_typed instead.");
+    Err(anyhow::anyhow!("get_document with Value is deprecated. Use get_document_typed instead."))
+}
+
+/// 型安全なドキュメント取得
+pub async fn get_document_typed<T: TerminusDBModel>(id: &str) -> Result<T> 
+where
+    T: ToTDBInstance + FromTDBInstance + InstanceFromJson,
+{
     let client = get_client()?;
     let db_name = get_database_name();
     let branch = BranchSpec::from(db_name);
     
-    // terminusdb-rs の get メソッドを使用
-    // 注意: 実際の API に応じて調整が必要
-    let result = client.get::<Value>(id, &branch).await?;
-    Ok(result)
+    // terminusdb-rs の get_instance メソッドを使用
+    // DefaultTDBDeserializer を使用してデシリアライズ
+    let mut deserializer = DefaultTDBDeserializer;
+    client.get_instance(id, &branch, &mut deserializer).await
 }
 
 /// ドキュメントを挿入（既存の API との互換性のため）
@@ -131,7 +145,8 @@ pub async fn insert_document_typed<T: TerminusDBModel>(instance: &T) -> Result<(
     let db_name = get_database_name();
     let branch = BranchSpec::from(db_name);
     let args = DocumentInsertArgs::from(branch);
-    client.insert(instance, args).await?;
+    // terminusdb-rs の insert_instance_with_commit_id メソッドを使用
+    client.insert_instance_with_commit_id(instance, args).await?;
     Ok(())
 }
 
@@ -151,8 +166,8 @@ pub async fn update_document_typed<T: TerminusDBModel>(instance: &T) -> Result<(
     let db_name = get_database_name();
     let branch = BranchSpec::from(db_name);
     let args = DocumentInsertArgs::from(branch);
-    // 注意: terminusdb-rs の update API に応じて調整が必要
-    client.insert(instance, args).await?;
+    // terminusdb-rs では insert が update も兼ねる
+    client.insert_instance_with_commit_id(instance, args).await?;
     Ok(())
 }
 

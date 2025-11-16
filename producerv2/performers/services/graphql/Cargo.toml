@@ -26,5 +26,6 @@ nanoid = "0.4"
 chrono = { version = "0.4", features = ["serde"] }
 urlencoding = "2.1"
 terminusdb-client = { git = "https://github.com/ParapluOU/terminusdb-rs", package = "terminusdb-client" }
+terminusdb-schema = { git = "https://github.com/ParapluOU/terminusdb-rs", package = "terminusdb-schema" }
 terminusdb-schema-derive = { git = "https://github.com/ParapluOU/terminusdb-rs", package = "terminusdb-schema-derive" }
 
