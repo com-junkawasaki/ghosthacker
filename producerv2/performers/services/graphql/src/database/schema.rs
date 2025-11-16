@@ -13,7 +13,7 @@ use anyhow::Result;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
-use super::client::{get_document, insert_document, update_document, delete_document};
+use super::client::{get_document, insert_document, update_document};
 
 /// JSON-LD ドキュメントから構造体への変換トレイト
 pub trait FromJsonLd: Sized {

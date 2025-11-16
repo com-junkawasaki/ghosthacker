@@ -13,7 +13,6 @@ use anyhow::Result;
 use async_graphql::Error;
 use serde_json::Value;
 use std::collections::HashMap;
-use tracing::warn;
 
 /// SHACL バリデーション結果
 #[derive(Debug, Clone)]
@@ -157,7 +156,7 @@ pub fn validate_with_shacl(document: &Value, shape: &ShaclShape) -> Result<Valid
 }
 
 /// プロパティ値を取得（簡易実装）
-fn get_property_value(document: &Value, path: &str) -> Option<&Value> {
+fn get_property_value<'a>(document: &'a Value, path: &str) -> Option<&'a Value> {
     // 述語を展開（ex:title -> title）
     let key = path
         .strip_prefix("ex:")

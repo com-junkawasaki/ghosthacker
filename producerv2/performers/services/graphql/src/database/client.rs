@@ -13,7 +13,7 @@ use anyhow::Result;
 use serde_json::Value;
 use sqlx::{postgres::PgPoolOptions, PgPool, Row};
 use std::sync::{Arc, OnceLock};
-use tracing::{error, info, warn};
+use tracing::info;
 
 static POOL: OnceLock<Arc<PgPool>> = OnceLock::new();
 

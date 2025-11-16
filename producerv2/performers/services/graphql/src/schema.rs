@@ -15,9 +15,9 @@ use serde::{Deserialize, Serialize};
 use tracing::error;
 
 use crate::database::{
-    client::{get_all_resources, get_document, delete_document},
+    client::{get_all_resources, delete_document},
     schema::{
-        get_document_typed, insert_document_typed, update_document_typed,
+        get_document_typed, insert_document_typed, update_document_typed, ToJsonLd,
         Chapter as DatabaseChapter, EPUBDocument as DatabaseEPUBDocument,
         KindleDocument as DatabaseKindleDocument, Metadata as DatabaseMetadata,
         Paragraph as DatabaseParagraph, Project as DatabaseProject, Script as DatabaseScript,
@@ -62,7 +62,7 @@ impl QueryRoot {
             Ok(ids) => {
                 let mut stories = Vec::new();
                 for id in ids {
-                    if let Ok(Some(story)) = get_document_typed::<DatabaseStory>(&id).await {
+                    if let Ok(story) = get_document_typed::<DatabaseStory>(&id).await {
                         stories.push(story.into());
                     }
                 }
@@ -187,7 +187,7 @@ impl QueryRoot {
             Ok(ids) => {
                 let mut projects = Vec::new();
                 for id in ids {
-                    if let Ok(Some(project)) = get_document_typed::<DatabaseProject>(&id).await {
+                    if let Ok(project) = get_document_typed::<DatabaseProject>(&id).await {
                         projects.push(project.into());
                     }
                 }
