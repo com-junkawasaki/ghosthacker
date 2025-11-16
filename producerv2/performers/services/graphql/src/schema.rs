@@ -732,7 +732,7 @@ impl MutationRoot {
 
                 let project = TerminusProject {
                     id: project_id.clone(),
-                    r#type: "Project".to_string(),
+                    r#type: "terminusdb:///schema#Project".to_string(),
                     name: name.clone(),
                     author: Some("system".to_string()), // TerminusDB requires author field
                     description,

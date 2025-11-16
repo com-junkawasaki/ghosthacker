@@ -320,7 +320,7 @@ pub async fn apply_owl_schema() -> Result<()> {
     });
 
     let project_schema = json!({
-        "@id": "Project",
+        "@id": "terminusdb:///schema#Project",
         "@type": "owl:Class",
         "rdfs:label": "Project",
         "rdfs:comment": "A project for managing content creation workflows",
@@ -331,12 +331,12 @@ pub async fn apply_owl_schema() -> Result<()> {
 
     // Project の author プロパティ定義
     let project_author_property = json!({
-        "@id": "author",
+        "@id": "terminusdb:///schema#author",
         "@type": "owl:DatatypeProperty",
         "rdfs:label": "author",
         "rdfs:comment": "The author of the project",
         "rdfs:domain": {
-            "@id": "Project"
+            "@id": "terminusdb:///schema#Project"
         },
         "rdfs:range": {
             "@id": "xsd:string"

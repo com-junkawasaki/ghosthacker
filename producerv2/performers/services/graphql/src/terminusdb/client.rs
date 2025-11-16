@@ -168,11 +168,18 @@ impl TerminusDBClient {
             .unwrap_or_else(|_| "system".to_string())
     }
 
-    pub async fn insert_document(&self, document: &Value) -> Result<()> {
-        self.insert_document_with_author(document, None).await
+    /// デフォルトの message を取得
+    /// 環境変数 TERMINUSDB_MESSAGE が設定されている場合はそれを使用、なければ "Document created" を返す
+    fn get_default_message() -> String {
+        std::env::var("TERMINUSDB_MESSAGE")
+            .unwrap_or_else(|_| "Document created".to_string())
     }
 
-    pub async fn insert_document_with_author(&self, document: &Value, author: Option<&str>) -> Result<()> {
+    pub async fn insert_document(&self, document: &Value) -> Result<()> {
+        self.insert_document_with_author(document, None, None).await
+    }
+
+    pub async fn insert_document_with_author(&self, document: &Value, author: Option<&str>, message: Option<&str>) -> Result<()> {
         let mut doc = document.clone();
         Self::add_jsonld_context(&mut doc);
 
@@ -180,9 +187,15 @@ impl TerminusDBClient {
         let default_author = Self::get_default_author();
         let author_str = author.unwrap_or_else(|| default_author.as_str());
         let encoded_author = encode(author_str);
+
+        // message が None の場合はデフォルト値を取得
+        let default_message = Self::get_default_message();
+        let message_str = message.unwrap_or_else(|| default_message.as_str());
+        let encoded_message = encode(message_str);
+
         let url = format!(
-            "{}/api/document/{}/{}/local/branch/main?author={}",
-            self.base_url, self.organization, self.db_name, encoded_author
+            "{}/api/document/{}/{}/local/branch/main?author={}&message={}",
+            self.base_url, self.organization, self.db_name, encoded_author, encoded_message
         );
         let response = self
             .http_client
@@ -205,10 +218,10 @@ impl TerminusDBClient {
     }
 
     pub async fn update_document(&self, document: &Value) -> Result<()> {
-        self.update_document_with_author(document, None).await
+        self.update_document_with_author(document, None, None).await
     }
 
-    pub async fn update_document_with_author(&self, document: &Value, author: Option<&str>) -> Result<()> {
+    pub async fn update_document_with_author(&self, document: &Value, author: Option<&str>, message: Option<&str>) -> Result<()> {
         let mut doc = document.clone();
         Self::add_jsonld_context(&mut doc);
 
@@ -216,9 +229,15 @@ impl TerminusDBClient {
         let default_author = Self::get_default_author();
         let author_str = author.unwrap_or_else(|| default_author.as_str());
         let encoded_author = encode(author_str);
+
+        // message が None の場合はデフォルト値を取得
+        let default_message = Self::get_default_message();
+        let message_str = message.unwrap_or_else(|| default_message.as_str());
+        let encoded_message = encode(message_str);
+
         let url = format!(
-            "{}/api/document/{}/{}/local/branch/main?author={}",
-            self.base_url, self.organization, self.db_name, encoded_author
+            "{}/api/document/{}/{}/local/branch/main?author={}&message={}",
+            self.base_url, self.organization, self.db_name, encoded_author, encoded_message
         );
         let response = self
             .http_client
@@ -257,9 +276,15 @@ impl TerminusDBClient {
     }
 
     pub async fn insert_schema(&self, schema: &Value) -> Result<()> {
+        // author と message パラメータを追加
+        let default_author = Self::get_default_author();
+        let default_message = Self::get_default_message();
+        let encoded_author = encode(&default_author);
+        let encoded_message = encode(&default_message);
+        
         let url = format!(
-            "{}/api/document/{}/{}/local/branch/main?graph_type=schema",
-            self.base_url, self.organization, self.db_name
+            "{}/api/document/{}/{}/local/branch/main?graph_type=schema&author={}&message={}",
+            self.base_url, self.organization, self.db_name, encoded_author, encoded_message
         );
         let response = self
             .http_client
