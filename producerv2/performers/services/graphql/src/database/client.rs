@@ -110,20 +110,36 @@ pub async fn get_document(id: &str) -> Result<Value> {
         let object: String = row.get(1);
         let object_type: String = row.get(2);
 
-        // 述語を展開（ex:title -> title）
-        let key = predicate
-            .strip_prefix("ex:")
-            .or_else(|| predicate.strip_prefix("dct:"))
-            .unwrap_or(&predicate);
+        // 述語をそのまま使用（ex:name を保持）
+        let key = &predicate;
+        
+        // ex:createdAt と ex:updatedAt は既に JSON-LD ドキュメントに含まれているのでスキップ
+        if key == "ex:createdAt" || key == "ex:updatedAt" {
+            continue;
+        }
 
         match object_type.as_str() {
             "uri" => {
                 // URI リソース参照
-                doc[key] = serde_json::json!({ "@id": object });
+                if doc[key].is_array() {
+                    doc[key].as_array_mut().unwrap().push(serde_json::json!({ "@id": object }));
+                } else if doc[key].is_null() {
+                    doc[key] = serde_json::json!({ "@id": object });
+                } else {
+                    let existing = doc[key].clone();
+                    doc[key] = serde_json::json!([existing, { "@id": object }]);
+                }
             }
             "bnode" => {
                 // 空白ノード（簡易実装：文字列として保存）
-                doc[key] = serde_json::json!(object);
+                if doc[key].is_array() {
+                    doc[key].as_array_mut().unwrap().push(serde_json::json!(object));
+                } else if doc[key].is_null() {
+                    doc[key] = serde_json::json!(object);
+                } else {
+                    let existing = doc[key].clone();
+                    doc[key] = serde_json::json!([existing, object]);
+                }
             }
             _ => {
                 // リテラル値

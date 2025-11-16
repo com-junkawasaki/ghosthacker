@@ -714,9 +714,12 @@ impl MutationRoot {
 
         // SHACL バリデーション
         let doc = project.to_jsonld();
+        // デバッグ: JSON-LD ドキュメントをログ出力
+        tracing::info!("Project JSON-LD: {}", serde_json::to_string_pretty(&doc).unwrap_or_default());
         if let Some(shape) = get_default_shape_for_type("ex:Project") {
             let validation_result = validate_with_shacl(&doc, &shape)?;
             if !validation_result.is_valid {
+                tracing::error!("SHACL validation failed: {:?}", validation_result.errors);
                 return Err(validation_result_to_graphql_error(&validation_result));
             }
         }

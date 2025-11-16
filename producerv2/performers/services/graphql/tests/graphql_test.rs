@@ -9,14 +9,15 @@
  * }
  */
 
-use producerv2_graphql::database::client::initialize;
-use producerv2_graphql::database::schema::{insert_document_typed, get_document_typed, Project, Story};
+use producerv2_graphql::database::schema::{insert_document_typed, get_document_typed, ToJsonLd, Project, Story};
 use producerv2_graphql::validation::shacl::{get_default_shape_for_type, validate_with_shacl};
+
+mod common;
+use common::setup_test_database;
 
 #[tokio::test]
 async fn test_create_project_mutation() {
-    std::env::set_var("DATABASE_URL", "postgresql://postgres:postgres@localhost:5434/postgres");
-    initialize().await.unwrap();
+    setup_test_database().await;
     
     let project = Project {
         id: "Project_graphql_test".to_string(),
@@ -51,8 +52,7 @@ async fn test_create_project_mutation() {
 
 #[tokio::test]
 async fn test_create_story_mutation() {
-    std::env::set_var("DATABASE_URL", "postgresql://postgres:postgres@localhost:5434/postgres");
-    initialize().await.unwrap();
+    setup_test_database().await;
     
     let story = Story {
         id: "Story_graphql_test".to_string(),
@@ -86,8 +86,7 @@ async fn test_create_story_mutation() {
 
 #[tokio::test]
 async fn test_query_all_projects() {
-    std::env::set_var("DATABASE_URL", "postgresql://postgres:postgres@localhost:5434/postgres");
-    initialize().await.unwrap();
+    setup_test_database().await;
     
     // テスト用プロジェクトを作成
     let project1 = Project {

@@ -8,14 +8,16 @@
  * }
  */
 
-use producerv2_graphql::database::client::{get_document, insert_document, delete_document, initialize};
+use producerv2_graphql::database::client::{get_document, insert_document, delete_document};
 use producerv2_graphql::database::schema::{get_document_typed, insert_document_typed, Project};
+
+mod common;
+use common::setup_test_database;
 
 #[tokio::test]
 async fn test_insert_and_get_document() {
     // テスト用データベース初期化
-    std::env::set_var("DATABASE_URL", "postgresql://postgres:postgres@localhost:5434/postgres");
-    initialize().await.unwrap();
+    setup_test_database().await;
     
     // テスト用の Project ドキュメントを作成
     let project_doc = serde_json::json!({
@@ -45,8 +47,7 @@ async fn test_insert_and_get_document() {
 
 #[tokio::test]
 async fn test_insert_and_get_typed_document() {
-    std::env::set_var("DATABASE_URL", "postgresql://postgres:postgres@localhost:5434/postgres");
-    initialize().await.unwrap();
+    setup_test_database().await;
     
     let project = Project {
         id: "Project_test_typed".to_string(),
@@ -77,8 +78,7 @@ async fn test_insert_and_get_typed_document() {
 
 #[tokio::test]
 async fn test_delete_document() {
-    std::env::set_var("DATABASE_URL", "postgresql://postgres:postgres@localhost:5434/postgres");
-    initialize().await.unwrap();
+    setup_test_database().await;
     
     // まずドキュメントを作成
     let project_doc = serde_json::json!({

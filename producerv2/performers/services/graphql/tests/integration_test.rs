@@ -8,17 +8,15 @@
  * }
  */
 
-use producerv2_graphql::database::client::initialize;
 use producerv2_graphql::database::schema::{Project, ToJsonLd};
 use producerv2_graphql::validation::shacl::{get_default_shape_for_type, validate_with_shacl};
 
+mod common;
+use common::setup_test_database;
+
 #[tokio::test]
 async fn test_database_initialization() {
-    // テスト用データベース URL（環境変数から取得、デフォルトはテスト用）
-    std::env::set_var("DATABASE_URL", "postgresql://postgres:postgres@localhost:5434/postgres");
-    
-    let result = initialize().await;
-    assert!(result.is_ok(), "Database initialization should succeed");
+    setup_test_database().await;
 }
 
 #[tokio::test]
@@ -98,6 +96,12 @@ async fn test_project_to_jsonld() {
     // JSON-LD の構造を確認
     assert_eq!(jsonld.get("@id").and_then(|v| v.as_str()), Some("Project_test789"));
     assert_eq!(jsonld.get("@type").and_then(|v| v.as_str()), Some("ex:Project"));
-    assert_eq!(jsonld.get("ex:name").and_then(|v| v.as_str()), Some("Test Project"));
+    
+    // ex:name キーが存在することを確認
+    let ex_name = jsonld.get("ex:name");
+    eprintln!("ex:name value: {:?}", ex_name);
+    eprintln!("Full JSON-LD: {}", serde_json::to_string_pretty(&jsonld).unwrap());
+    assert!(ex_name.is_some(), "ex:name key should exist in JSON-LD");
+    assert_eq!(ex_name.and_then(|v| v.as_str()), Some("Test Project"));
 }
 

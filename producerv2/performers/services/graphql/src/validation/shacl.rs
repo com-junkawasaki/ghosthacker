@@ -159,6 +159,7 @@ pub fn validate_with_shacl(document: &Value, shape: &ShaclShape) -> Result<Valid
 fn get_property_value<'a>(document: &'a Value, path: &str) -> Option<&'a Value> {
     // まず完全なパス（ex:name）で検索
     if let Some(value) = document.get(path) {
+        tracing::info!("Found property '{}' with full path", path);
         return Some(value);
     }
     
@@ -168,7 +169,18 @@ fn get_property_value<'a>(document: &'a Value, path: &str) -> Option<&'a Value> 
         .or_else(|| path.strip_prefix("dct:"))
         .unwrap_or(path);
 
-    document.get(key)
+    if let Some(value) = document.get(key) {
+        tracing::info!("Found property '{}' with stripped key '{}'", path, key);
+        return Some(value);
+    }
+    
+    // デバッグ: ドキュメントのすべてのキーをログ出力
+    if let Some(obj) = document.as_object() {
+        let keys: Vec<&str> = obj.keys().map(|k| k.as_str()).collect();
+        tracing::warn!("Property '{}' not found. Available keys: {:?}", path, keys);
+    }
+    
+    None
 }
 
 /// データ型をチェック（簡易実装）

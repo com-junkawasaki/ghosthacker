@@ -8,7 +8,8 @@
  * }
  */
 
-use producerv2_graphql::validation::shacl::{get_default_shape_for_type, validate_with_shacl, ShaclShape};
+use producerv2_graphql::validation::shacl::{get_default_shape_for_type, validate_with_shacl};
+use producerv2_graphql::validation::{PropertyShape, ShaclShape};
 
 #[test]
 fn test_get_property_value_with_ex_prefix() {
