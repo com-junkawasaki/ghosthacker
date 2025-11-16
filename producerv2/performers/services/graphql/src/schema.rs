@@ -15,7 +15,7 @@ use serde::{Deserialize, Serialize};
 use tracing::error;
 
 use crate::terminusdb::{
-    client::get_client,
+    client::{get_document, insert_document_typed, update_document_typed, delete_document},
     schema::{
         Chapter as TerminusChapter, EPUBDocument as TerminusEPUBDocument,
         KindleDocument as TerminusKindleDocument, Metadata as TerminusMetadata,
@@ -39,9 +39,7 @@ impl QueryRoot {
     ///   "ex:produces": "ex:Story"
     /// }
     async fn story(&self, id: String) -> Result<Option<Story>> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
-
-        match client.get_document(&id).await {
+        match get_document(&id).await {
             Ok(doc) => {
                 match serde_json::from_value::<TerminusStory>(doc) {
                     Ok(story) => Ok(Some(story.into())),
@@ -80,9 +78,7 @@ impl QueryRoot {
     ///   "ex:produces": "ex:Script"
     /// }
     async fn script(&self, id: String) -> Result<Option<Script>> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
-
-        match client.get_document(&id).await {
+        match get_document(&id).await {
             Ok(doc) => {
                 match serde_json::from_value::<TerminusScript>(doc) {
                     Ok(script) => Ok(Some(script.into())),
@@ -108,9 +104,7 @@ impl QueryRoot {
     ///   "ex:produces": "ex:EPUBDocument"
     /// }
     async fn epub_document(&self, id: String) -> Result<Option<EPUBDocument>> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
-
-        match client.get_document(&id).await {
+        match get_document(&id).await {
             Ok(doc) => {
                 match serde_json::from_value::<TerminusEPUBDocument>(doc) {
                     Ok(epub) => Ok(Some(epub.into())),
@@ -136,9 +130,7 @@ impl QueryRoot {
     ///   "ex:produces": "ex:KindleDocument"
     /// }
     async fn kindle_document(&self, id: String) -> Result<Option<KindleDocument>> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
-
-        match client.get_document(&id).await {
+        match get_document(&id).await {
             Ok(doc) => {
                 match serde_json::from_value::<TerminusKindleDocument>(doc) {
                     Ok(kindle) => Ok(Some(kindle.into())),
@@ -192,9 +184,7 @@ impl QueryRoot {
     ///   "ex:produces": "ex:Project"
     /// }
     async fn project(&self, id: String) -> Result<Option<Project>> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
-
-        match client.get_document(&id).await {
+        match get_document(&id).await {
             Ok(doc) => {
                 match serde_json::from_value::<TerminusProject>(doc) {
                     Ok(project) => Ok(Some(project.into())),
@@ -239,7 +229,7 @@ impl MutationRoot {
     ///   "ex:produces": "ex:Story"
     /// }
     async fn create_story(&self, title: String, content: String) -> Result<Story> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        
 
         let now = chrono::Utc::now().to_rfc3339();
         let story_id = format!("Story_{}", nanoid!());
@@ -253,8 +243,7 @@ impl MutationRoot {
             updated_at: Some(now.clone()),
         };
 
-        let doc = serde_json::to_value(&story)?;
-        match client.insert_document(&doc).await {
+        match insert_document_typed(&story).await {
             Ok(_) => Ok(story.into()),
             Err(e) => {
                 error!("Failed to create story: {}", e);
@@ -277,10 +266,10 @@ impl MutationRoot {
         title: Option<String>,
         content: Option<String>,
     ) -> Result<Story> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        
 
         // 既存のStoryを取得
-        let doc = client.get_document(&id).await
+        let doc = get_document(&id).await
             .map_err(|e| Error::new(format!("Story not found: {}", e)))?;
         let mut story: TerminusStory = serde_json::from_value(doc)
             .map_err(|e| Error::new(format!("Failed to parse story: {}", e)))?;
@@ -294,8 +283,8 @@ impl MutationRoot {
         }
         story.updated_at = Some(chrono::Utc::now().to_rfc3339());
 
-        let doc = serde_json::to_value(&story)?;
-        match client.update_document(&doc).await {
+        
+        match update_document_typed(&doc).await {
             Ok(_) => Ok(story.into()),
             Err(e) => {
                 error!("Failed to update story: {}", e);
@@ -313,9 +302,9 @@ impl MutationRoot {
     ///   "ex:produces": "ex:Deleted"
     /// }
     async fn delete_story(&self, id: String) -> Result<bool> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        
 
-        match client.delete_document(&id).await {
+        match delete_document(&id).await {
             Ok(_) => Ok(true),
             Err(e) => {
                 error!("Failed to delete story: {}", e);
@@ -338,7 +327,7 @@ impl MutationRoot {
         derived_from_story: String,
         status: String,
     ) -> Result<Script> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        
 
         let now = chrono::Utc::now().to_rfc3339();
         let script_id = format!("Script_{}", nanoid!());
@@ -353,8 +342,8 @@ impl MutationRoot {
             updated_at: Some(now.clone()),
         };
 
-        let doc = serde_json::to_value(&script)?;
-        match client.insert_document(&doc).await {
+        
+        match insert_document_typed(&doc).await {
             Ok(_) => Ok(script.into()),
             Err(e) => {
                 error!("Failed to create script: {}", e);
@@ -377,10 +366,10 @@ impl MutationRoot {
         script_text: Option<String>,
         status: Option<String>,
     ) -> Result<Script> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        
 
         // 既存のScriptを取得
-        let doc = client.get_document(&id).await
+        let doc = get_document(&id).await
             .map_err(|e| Error::new(format!("Script not found: {}", e)))?;
         let mut script: TerminusScript = serde_json::from_value(doc)
             .map_err(|e| Error::new(format!("Failed to parse script: {}", e)))?;
@@ -394,8 +383,8 @@ impl MutationRoot {
         }
         script.updated_at = Some(chrono::Utc::now().to_rfc3339());
 
-        let doc = serde_json::to_value(&script)?;
-        match client.update_document(&doc).await {
+        
+        match update_document_typed(&doc).await {
             Ok(_) => Ok(script.into()),
             Err(e) => {
                 error!("Failed to update script: {}", e);
@@ -413,9 +402,9 @@ impl MutationRoot {
     ///   "ex:produces": "ex:Deleted"
     /// }
     async fn delete_script(&self, id: String) -> Result<bool> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        
 
-        match client.delete_document(&id).await {
+        match delete_document(&id).await {
             Ok(_) => Ok(true),
             Err(e) => {
                 error!("Failed to delete script: {}", e);
@@ -437,7 +426,7 @@ impl MutationRoot {
         title: String,
         metadata: Option<MetadataInput>,
     ) -> Result<EPUBDocument> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        
 
         let now = chrono::Utc::now().to_rfc3339();
         let doc_id = format!("EPUBDocument_{}", nanoid!());
@@ -471,12 +460,12 @@ impl MutationRoot {
 
             // メタデータを保存
             let meta_doc = serde_json::to_value(&meta)?;
-            client.insert_document(&meta_doc).await
+            insert_document_typed(&meta_doc).await
                 .map_err(|e| Error::new(format!("Failed to create metadata: {}", e)))?;
         }
 
-        let doc = serde_json::to_value(&epub)?;
-        match client.insert_document(&doc).await {
+        
+        match insert_document_typed(&doc).await {
             Ok(_) => Ok(epub.into()),
             Err(e) => {
                 error!("Failed to create EPUB document: {}", e);
@@ -492,9 +481,9 @@ impl MutationRoot {
         title: Option<String>,
         _metadata: Option<MetadataInput>,
     ) -> Result<EPUBDocument> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        
 
-        let doc = client.get_document(&id).await
+        let doc = get_document(&id).await
             .map_err(|e| Error::new(format!("EPUB document not found: {}", e)))?;
         let mut epub: TerminusEPUBDocument = serde_json::from_value(doc)
             .map_err(|e| Error::new(format!("Failed to parse EPUB document: {}", e)))?;
@@ -504,8 +493,8 @@ impl MutationRoot {
         }
         epub.updated_at = Some(chrono::Utc::now().to_rfc3339());
 
-        let doc = serde_json::to_value(&epub)?;
-        match client.update_document(&doc).await {
+        
+        match update_document_typed(&doc).await {
             Ok(_) => Ok(epub.into()),
             Err(e) => {
                 error!("Failed to update EPUB document: {}", e);
@@ -521,7 +510,7 @@ impl MutationRoot {
         title: String,
         order: i32,
     ) -> Result<Chapter> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        
 
         let now = chrono::Utc::now().to_rfc3339();
         let chapter_id = format!("Chapter_{}", nanoid!());
@@ -537,8 +526,8 @@ impl MutationRoot {
             updated_at: Some(now.clone()),
         };
 
-        let doc = serde_json::to_value(&chapter)?;
-        match client.insert_document(&doc).await {
+        
+        match insert_document_typed(&doc).await {
             Ok(_) => Ok(chapter.into()),
             Err(e) => {
                 error!("Failed to create chapter: {}", e);
@@ -554,9 +543,9 @@ impl MutationRoot {
         title: Option<String>,
         order: Option<i32>,
     ) -> Result<Chapter> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        
 
-        let doc = client.get_document(&id).await
+        let doc = get_document(&id).await
             .map_err(|e| Error::new(format!("Chapter not found: {}", e)))?;
         let mut chapter: TerminusChapter = serde_json::from_value(doc)
             .map_err(|e| Error::new(format!("Failed to parse chapter: {}", e)))?;
@@ -569,8 +558,8 @@ impl MutationRoot {
         }
         chapter.updated_at = Some(chrono::Utc::now().to_rfc3339());
 
-        let doc = serde_json::to_value(&chapter)?;
-        match client.update_document(&doc).await {
+        
+        match update_document_typed(&doc).await {
             Ok(_) => Ok(chapter.into()),
             Err(e) => {
                 error!("Failed to update chapter: {}", e);
@@ -585,7 +574,7 @@ impl MutationRoot {
         _chapter_id: String,
         order: i32,
     ) -> Result<Paragraph> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        
 
         let now = chrono::Utc::now().to_rfc3339();
         let paragraph_id = format!("Paragraph_{}", nanoid!());
@@ -600,8 +589,8 @@ impl MutationRoot {
             updated_at: Some(now.clone()),
         };
 
-        let doc = serde_json::to_value(&paragraph)?;
-        match client.insert_document(&doc).await {
+        
+        match insert_document_typed(&doc).await {
             Ok(_) => Ok(paragraph.into()),
             Err(e) => {
                 error!("Failed to create paragraph: {}", e);
@@ -616,9 +605,9 @@ impl MutationRoot {
         id: String,
         order: Option<i32>,
     ) -> Result<Paragraph> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        
 
-        let doc = client.get_document(&id).await
+        let doc = get_document(&id).await
             .map_err(|e| Error::new(format!("Paragraph not found: {}", e)))?;
         let mut paragraph: TerminusParagraph = serde_json::from_value(doc)
             .map_err(|e| Error::new(format!("Failed to parse paragraph: {}", e)))?;
@@ -628,8 +617,8 @@ impl MutationRoot {
         }
         paragraph.updated_at = Some(chrono::Utc::now().to_rfc3339());
 
-        let doc = serde_json::to_value(&paragraph)?;
-        match client.update_document(&doc).await {
+        
+        match update_document_typed(&doc).await {
             Ok(_) => Ok(paragraph.into()),
             Err(e) => {
                 error!("Failed to update paragraph: {}", e);
@@ -645,7 +634,7 @@ impl MutationRoot {
         content: String,
         order: i32,
     ) -> Result<TextNode> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        
 
         let now = chrono::Utc::now().to_rfc3339();
         let text_node_id = format!("TextNode_{}", nanoid!());
@@ -661,8 +650,8 @@ impl MutationRoot {
             updated_at: Some(now.clone()),
         };
 
-        let doc = serde_json::to_value(&text_node)?;
-        match client.insert_document(&doc).await {
+        
+        match insert_document_typed(&doc).await {
             Ok(_) => Ok(text_node.into()),
             Err(e) => {
                 error!("Failed to create text node: {}", e);
@@ -678,9 +667,9 @@ impl MutationRoot {
         content: Option<String>,
         order: Option<i32>,
     ) -> Result<TextNode> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        
 
-        let doc = client.get_document(&id).await
+        let doc = get_document(&id).await
             .map_err(|e| Error::new(format!("Text node not found: {}", e)))?;
         let mut text_node: TerminusTextNode = serde_json::from_value(doc)
             .map_err(|e| Error::new(format!("Failed to parse text node: {}", e)))?;
@@ -693,8 +682,8 @@ impl MutationRoot {
         }
         text_node.updated_at = Some(chrono::Utc::now().to_rfc3339());
 
-        let doc = serde_json::to_value(&text_node)?;
-        match client.update_document(&doc).await {
+        
+        match update_document_typed(&doc).await {
             Ok(_) => Ok(text_node.into()),
             Err(e) => {
                 error!("Failed to update text node: {}", e);
@@ -705,9 +694,9 @@ impl MutationRoot {
 
     /// テキストノードを削除
     async fn delete_text_node(&self, id: String) -> Result<bool> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        
 
-        match client.delete_document(&id).await {
+        match delete_document(&id).await {
             Ok(_) => Ok(true),
             Err(e) => {
                 error!("Failed to delete text node: {}", e);
@@ -725,24 +714,23 @@ impl MutationRoot {
             ///   "ex:produces": "ex:Project"
             /// }
             async fn create_project(&self, name: String, description: Option<String>) -> Result<Project> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        use crate::terminusdb::client::insert_document_typed;
 
         let now = chrono::Utc::now().to_rfc3339();
         let project_id = format!("Project_{}", nanoid!());
 
-                let project = TerminusProject {
-                    id: project_id.clone(),
-                    r#type: "terminusdb:///schema#Project".to_string(),
-                    name: name.clone(),
-                    author: Some("system".to_string()), // TerminusDB requires author field
-                    description,
-                    status: Some("active".to_string()),
-                    created_at: Some(now.clone()),
-                    updated_at: Some(now.clone()),
-                };
+        let project = TerminusProject {
+            id: project_id.clone(),
+            r#type: "terminusdb:///schema#Project".to_string(),
+            name: name.clone(),
+            author: Some("system".to_string()),
+            description,
+            status: Some("active".to_string()),
+            created_at: Some(now.clone()),
+            updated_at: Some(now.clone()),
+        };
 
-        let doc = serde_json::to_value(&project)?;
-        match client.insert_document(&doc).await {
+        match insert_document_typed(&project).await {
             Ok(_) => Ok(project.into()),
             Err(e) => {
                 error!("Failed to create project: {}", e);
@@ -766,10 +754,10 @@ impl MutationRoot {
                 description: Option<String>,
                 status: Option<String>,
             ) -> Result<Project> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        
 
         // 既存のプロジェクトを取得
-        let doc = client.get_document(&id).await
+        let doc = get_document(&id).await
             .map_err(|e| Error::new(format!("Project not found: {}", e)))?;
         let mut project: TerminusProject = serde_json::from_value(doc)
             .map_err(|e| Error::new(format!("Failed to parse project: {}", e)))?;
@@ -786,8 +774,8 @@ impl MutationRoot {
                 }
                 project.updated_at = Some(chrono::Utc::now().to_rfc3339());
 
-        let doc = serde_json::to_value(&project)?;
-        match client.update_document(&doc).await {
+        
+        match update_document_typed(&doc).await {
             Ok(_) => Ok(project.into()),
             Err(e) => {
                 error!("Failed to update project: {}", e);
@@ -805,9 +793,9 @@ impl MutationRoot {
     ///   "ex:produces": "ex:Deleted"
     /// }
     async fn delete_project(&self, id: String) -> Result<bool> {
-        let client = get_client().map_err(|e| Error::new(e.to_string()))?;
+        
 
-        match client.delete_document(&id).await {
+        match delete_document(&id).await {
             Ok(_) => Ok(true),
             Err(e) => {
                 error!("Failed to delete project: {}", e);
