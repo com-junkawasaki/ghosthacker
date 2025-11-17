@@ -24,10 +24,24 @@ export default defineConfig({
   server: {
     host: true, // Listen on all addresses
     port: 3000,
-    allowedHosts: [
-      'frontend.producerv3.orb.local',
-      'localhost',
-      '127.0.0.1',
-    ],
+  },
+  vite: {
+    server: {
+      allowedHosts: [
+        'frontend.producerv3.orb.local',
+        'localhost',
+        '127.0.0.1',
+        '.orb.local', // Allow all OrbStack local domains
+      ],
+    },
+    optimizeDeps: {
+      include: ['@apollo/client', '@apollo/client/link/context'],
+      esbuildOptions: {
+        target: 'esnext',
+      },
+    },
+    ssr: {
+      noExternal: ['@apollo/client'],
+    },
   },
 });

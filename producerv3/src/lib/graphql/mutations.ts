@@ -5,7 +5,7 @@
  * 
  * GraphQL mutations for EPUB operations
  */
-import { gql } from '@apollo/client';
+import gql from 'graphql-tag';
 
 export const CREATE_EPUB = gql`
   mutation CreateEpub($input: CreateEpubInput!) {

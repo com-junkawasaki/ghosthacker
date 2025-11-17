@@ -5,8 +5,10 @@
  * 
  * Metadata form component for editing EPUB metadata
  */
-import { useQuery, useMutation } from '@apollo/client';
 import { useState } from 'react';
+// @ts-ignore - Apollo Client CommonJS import workaround
+import pkg from '@apollo/client';
+const { useQuery, useMutation } = pkg;
 import { GET_EPUB } from '../../lib/graphql/queries';
 import { UPDATE_METADATA } from '../../lib/graphql/mutations';
 

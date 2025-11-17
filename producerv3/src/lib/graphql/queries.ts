@@ -5,7 +5,7 @@
  * 
  * GraphQL queries for EPUB operations
  */
-import { gql } from '@apollo/client';
+import gql from 'graphql-tag';
 
 export const GET_EPUB = gql`
   query GetEpub($id: ID!) {
