@@ -37,10 +37,10 @@
   "id": "https://gftd.ai/project/epub-editor",
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
-  "description": "Tiptap editor based EPUB editing tool with AI Generator integration, emotion analysis (Hume AI), and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "1.9.0",
+  "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation, emotion analysis (Hume AI), and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
+  "version": "2.0.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-11-17T14:00:00Z",
+  "updatedAt": "2025-01-17T14:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -54,9 +54,11 @@
   "hasCapability": [
     {"@id": "https://gftd.ai/capability/epub-editing"},
     {"@id": "https://gftd.ai/capability/ai-generation"},
+    {"@id": "https://gftd.ai/capability/multi-agent-content-generation"},
     {"@id": "https://gftd.ai/capability/epub-export"},
     {"@id": "https://gftd.ai/capability/epub-import-export"},
     {"@id": "https://gftd.ai/capability/emotion-analysis"},
+    {"@id": "https://gftd.ai/capability/emotion-arc-generation"},
     {"@id": "https://gftd.ai/capability/jsonld-data-management"},
     {"@id": "https://gftd.ai/capability/markdown-processing"},
     {"@id": "https://gftd.ai/capability/image-generation"}
@@ -82,7 +84,10 @@
     {"@id": "https://gftd.ai/activity/import-jsonld-nodes"},
     {"@id": "https://gftd.ai/activity/concatenate-markdown-files"},
     {"@id": "https://gftd.ai/activity/generate-image"},
-    {"@id": "https://gftd.ai/activity/extract-editor-context"}
+    {"@id": "https://gftd.ai/activity/extract-editor-context"},
+    {"@id": "https://gftd.ai/activity/ai-content-generation"},
+    {"@id": "https://gftd.ai/activity/build-multi-agent-context"},
+    {"@id": "https://gftd.ai/activity/generate-emotion-arc"}
   ],
   
   "hasPerformer": [
@@ -184,6 +189,24 @@
       "type": "cpm:Resource",
       "name": "Editor Context",
       "description": "Editor context information extracted from TipTap editor including selected nodes, masked nodes, mask information, and selected text. Used for generating image prompts automatically."
+    },
+    {
+      "@id": "https://gftd.ai/resource/ai-generated-content",
+      "type": "cpm:Resource",
+      "name": "AI Generated Content",
+      "description": "AI-generated narrative content created using OpenAI API with multi-agent model. Each character and narrator generates content based on their own context (character attributes, scene presence, POV perspective). Generated content includes emotion analysis results from Hume AI."
+    },
+    {
+      "@id": "https://gftd.ai/resource/multi-agent-context",
+      "type": "cpm:Resource",
+      "name": "Multi-Agent Context",
+      "description": "Context information for multi-agent content generation. Includes character context (attributes, relationships, dialogue, scene presence), scene context (characters present, location, emotion state), and narrator context (POV, perspective type). Only characters present in a scene have access to that scene's context."
+    },
+    {
+      "@id": "https://gftd.ai/resource/emotion-arc",
+      "type": "cpm:Resource",
+      "name": "Emotion Arc",
+      "description": "Emotional arc (EmotionalPlan) defining the emotional flow of a scene. Includes emotion beats with target emotions, actual emotion analysis results, deviation calculations, and alignment scores. Used to guide content generation and adjust generated text to match desired emotional progression."
     }
   ],
   
@@ -251,7 +274,7 @@
     {
       "@id": "https://gftd.ai/dependency/openai-api",
       "name": "OpenAI API",
-      "description": "OpenAI DALL-E API for image generation (DALL-E 2 and DALL-E 3 models). Used for generating images from text prompts."
+      "description": "OpenAI API for content generation (GPT-4) and image generation (DALL-E 2 and DALL-E 3 models). Used for multi-agent content generation where each character and narrator generates text based on their context, and for generating images from text prompts."
     },
     {
       "@id": "https://gftd.ai/dependency/higgsfield-api",
@@ -519,6 +542,13 @@
       "description": "Refactored Tiptap nodes to support two patterns: Block Container Nodes (can contain paragraph content) and Inline Atom Nodes (reference tags). Character, Scene, Location, Organization, and POV nodes are now Block Container Nodes. Ghost, Technology, Episode, Arc, Motif, Season, Timeline, Beat, and other reference nodes remain Inline Atom Nodes.",
       "status": "resolved",
       "resolution": "Updated createStoryNode function to support isBlockContainer parameter. Block Container Nodes use group: 'block', content: 'paragraph+', atom: false, and render as div elements with header and content areas. Inline Atom Nodes use group: 'inline', atom: true, and render as span elements. Updated CharacterNode, LocationNode, OrganizationNode, SceneNode, and POVNode to Block Container pattern. Document configuration already supports block+ content."
+    },
+    {
+      "@id": "https://gftd.ai/issue/ai-content-generation-multi-agent",
+      "name": "AI Content Generation with Multi-Agent Model",
+      "description": "Implemented AI content generation extension based on Tiptap AI Toolkit. Features multi-agent model where each character and narrator generates content based on their own context. Characters only have access to context from scenes they are present in. Integrated OpenAI GPT-4 API for text generation and Hume AI for emotion analysis. Includes emotion arc generation and adjustment capabilities.",
+      "status": "resolved",
+      "resolution": "Created AIContentGenerationExtension Tiptap extension with generateContent and generateWithContext commands. Implemented multi-agent context builder (src/lib/ai/multiAgentContext.ts) to extract character, scene, and narrator contexts from JSONLD nodes. Enhanced context extractor (src/lib/editor/contextExtractor.ts) with scene character extraction and dialogue extraction. Added GraphQL mutation generateContentWithMultiAgent with OpenAI API integration in Rust backend (performers/services/graphql/src/ports/ai_service.rs). Created AIContentGenerationControls UI component with agent selection and emotion arc configuration. Implemented emotion arc generator (src/lib/ai/emotionArcGenerator.ts) for generating and analyzing emotional flows. Integrated AI generation button into TiptapEditor toolbar."
     }
   ]
 }
