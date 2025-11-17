@@ -62,6 +62,20 @@
       "realizedBy": [
         {"@id": "https://gftd.ai/performer/service/graphql"}
       ]
+    },
+    {
+      "id": "https://gftd.ai/capability/emotion-analysis",
+      "type": "cpm:Capability",
+      "name": "Emotion Analysis",
+      "description": "Capability to analyze emotions in text content using Hume AI API. Provides paragraph-level emotion profiles with emotion vectors (joy, sadness, fear, anger, surprise, trust, anticipation, disgust, relief, hope). Results are integrated into Tiptap editor as paragraph node attributes and can be visualized via mask functionality with color-coded emotion types.",
+      "createdAt": "2025-01-27T12:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/analyze-emotions"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
     }
   ]
 }

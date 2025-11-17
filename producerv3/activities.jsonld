@@ -139,6 +139,26 @@
       "produces": [
         {"@id": "https://gftd.ai/resource/project-list"}
       ]
+    },
+    {
+      "id": "https://gftd.ai/activity/analyze-emotions",
+      "type": "cpm:Activity",
+      "name": "Analyze Emotions",
+      "description": "Analyze emotions in text content using Hume AI API. Supports paragraph-level emotion analysis with emotion vector (joy, sadness, fear, anger, surprise, trust, anticipation, disgust, relief, hope). Results are stored as paragraph node attributes and can be visualized via mask functionality.",
+      "createdAt": "2025-01-27T12:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/chapter"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/emotion-profile"}
+      ],
+      "dependsOn": [
+        {"@id": "https://gftd.ai/activity/edit-epub-content"}
+      ]
     }
   ]
 }

@@ -32,6 +32,11 @@ services:
       - NEXT_PUBLIC_GRAPHQL_API_URL=http://localhost:8081/graphql
       - RUST_LOG=info
       - RUST_BACKTRACE=1
+      # Hume AI (for emotion analysis)
+      - HUME_API=
+      - HUME_API_KEY=
+      - HUME_LANGUAGE_URL=https://api.hume.ai/v0/batch/jobs
+      - DRY_RUN=1
     depends_on:
       postgres:
         condition: service_healthy

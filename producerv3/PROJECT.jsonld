@@ -37,10 +37,10 @@
   "id": "https://gftd.ai/project/epub-editor",
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
-  "description": "Tiptap editor based EPUB editing tool with AI Generator integration and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "1.3.0",
+  "description": "Tiptap editor based EPUB editing tool with AI Generator integration, emotion analysis (Hume AI), and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
+  "version": "1.4.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-11-17T07:42:42Z",
+  "updatedAt": "2025-01-27T12:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -54,7 +54,8 @@
   "hasCapability": [
     {"@id": "https://gftd.ai/capability/epub-editing"},
     {"@id": "https://gftd.ai/capability/ai-generation"},
-    {"@id": "https://gftd.ai/capability/epub-export"}
+    {"@id": "https://gftd.ai/capability/epub-export"},
+    {"@id": "https://gftd.ai/capability/emotion-analysis"}
   ],
   
   "hasActivity": [
@@ -67,7 +68,8 @@
     {"@id": "https://gftd.ai/activity/export-epub"},
     {"@id": "https://gftd.ai/activity/insert-jsonld-nodes"},
     {"@id": "https://gftd.ai/activity/mask-content"},
-    {"@id": "https://gftd.ai/activity/slash-commands"}
+    {"@id": "https://gftd.ai/activity/slash-commands"},
+    {"@id": "https://gftd.ai/activity/analyze-emotions"}
   ],
   
   "hasPerformer": [
@@ -127,6 +129,12 @@
       "type": "cpm:Resource",
       "name": "Mask Types",
       "description": "Content masking types (emotion, theme, context, notes, relationship, virtue, anchoredTo, emitsRepelsAvoids, phase, role)"
+    },
+    {
+      "@id": "https://gftd.ai/resource/emotion-profile",
+      "type": "cpm:Resource",
+      "name": "Emotion Profile",
+      "description": "Emotion analysis results (emotion vector with scores) attached to paragraph nodes, analyzed via Hume AI API"
     }
   ],
   
@@ -165,6 +173,21 @@
       "@id": "https://gftd.ai/dependency/async-graphql",
       "name": "async-graphql",
       "description": "Rust GraphQL library, version 7"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/reqwest",
+      "name": "reqwest",
+      "description": "Rust HTTP client library, version 0.12, used for Hume AI API calls"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/regex",
+      "name": "regex",
+      "description": "Rust regular expression library, version 1, used for text segmentation in emotion analysis"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/hume-ai",
+      "name": "Hume AI",
+      "description": "Hume AI Language API for emotion analysis (optional, falls back to deterministic analysis if not configured)"
     }
   ],
   
@@ -192,7 +215,9 @@
       "async_graphql_version": "7",
       "poem_version": "3",
       "sqlx_version": "0.8",
-      "postgresql_version": "16"
+      "postgresql_version": "16",
+      "reqwest_version": "0.12",
+      "regex_version": "1"
     },
     {
       "@id": "https://gftd.ai/config/frontend",
@@ -348,6 +373,20 @@
       "description": "Fixed TypeScript type errors in Tiptap extensions (parseHTML, renderHTML, addCommands) and missing @tiptap/core/@tiptap/pm dependencies.",
       "status": "resolved",
       "resolution": "Added @tiptap/core and @tiptap/pm packages (v2.27.1). Fixed all type annotations in extension files. Updated CommandProps usage. Fixed SlashCommand and MaskExtension type errors."
+    },
+    {
+      "@id": "https://gftd.ai/issue/emotion-analysis-integration",
+      "name": "Emotion Analysis Integration",
+      "description": "Integrated Hume AI emotion analysis as Tiptap extension. Backend: Rust GraphQL service with emotion analysis mutation. Frontend: EmotionAnalysisExtension and EmotionAnalysisControls components. Emotion profiles are stored as paragraph node attributes and visualized via mask functionality.",
+      "status": "resolved",
+      "resolution": "Created emotion analysis schema (emotion.rs), service (emotion_service.rs), and GraphQL mutation. Implemented EmotionAnalysisExtension for Tiptap with paragraph node attributes (emotionProfile, emotionVector). Added EmotionAnalysisControls UI component. Integrated with existing MaskExtension for visualization. Added emotion type color mapping in CSS. GraphQL mutation re-exports generated DocumentNodes to avoid redundancy."
+    },
+    {
+      "@id": "https://gftd.ai/issue/graphql-mutation-redundancy",
+      "name": "GraphQL Mutation Redundancy",
+      "description": "GraphQL mutations were defined twice: in .graphql files and in TypeScript with gql tags. This was redundant since GraphQL Codegen already generates DocumentNodes.",
+      "status": "resolved",
+      "resolution": "Refactored mutations.ts to re-export generated DocumentNodes from graphql.ts instead of using gql tags. Now mutations are defined once in .graphql files, and TypeScript file just re-exports the generated types."
     }
   ]
 }
