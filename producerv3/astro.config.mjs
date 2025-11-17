@@ -69,7 +69,7 @@ export default defineConfig({
       },
     },
     optimizeDeps: {
-      include: ['@apollo/client', '@apollo/client/link/context'],
+      include: ['@apollo/client', '@apollo/client/link/context', 'zustand', 'ts-pattern'],
       esbuildOptions: {
         target: 'esnext',
       },

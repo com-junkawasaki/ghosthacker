@@ -41,3 +41,5 @@ Cargo.lock
 
 # Neo4j
 neo4j-data/
+
+.pnpm-store/
