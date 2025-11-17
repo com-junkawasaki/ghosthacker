@@ -124,64 +124,64 @@ export function NodeClassificationControls({ editor }: NodeClassificationControl
         }
       } else {
         // Single node mode: use existing logic
-        let nodeInfo = extractNodeForClassification(editor);
+      let nodeInfo = extractNodeForClassification(editor);
 
-        // If no node selected, try to get node at cursor position
-        if (!nodeInfo && !selection.empty) {
-          const node = state.doc.nodeAt(from);
-          if (node) {
-            nodeInfo = extractNodeForClassification(editor, node, { from, to });
+      // If no node selected, try to get node at cursor position
+      if (!nodeInfo && !selection.empty) {
+        const node = state.doc.nodeAt(from);
+        if (node) {
+          nodeInfo = extractNodeForClassification(editor, node, { from, to });
+        }
+      }
+
+      // If still no node, use context around cursor
+      if (!nodeInfo) {
+        const context = extractContextAroundCursor(editor, 100);
+        if (context.selectedText) {
+          nodeInfo = {
+            text: context.selectedText,
+            context: context.selectedText,
+          };
+        }
+      }
+
+      if (!nodeInfo || !nodeInfo.text.trim()) {
+        setError('分類対象のノードまたはテキストを選択してください');
+        setIsClassifying(false);
+        return;
+      }
+
+      // Prepare mask info for API
+      const maskInfo = nodeInfo.maskInfo
+        ? {
+            masks: nodeInfo.maskInfo.map((mask) => ({
+              type: mask.type,
+              enabled: mask.enabled,
+              attributes: mask.attributes,
+            })),
           }
-        }
+        : undefined;
 
-        // If still no node, use context around cursor
-        if (!nodeInfo) {
-          const context = extractContextAroundCursor(editor, 100);
-          if (context.selectedText) {
-            nodeInfo = {
-              text: context.selectedText,
-              context: context.selectedText,
-            };
-          }
-        }
-
-        if (!nodeInfo || !nodeInfo.text.trim()) {
-          setError('分類対象のノードまたはテキストを選択してください');
-          setIsClassifying(false);
-          return;
-        }
-
-        // Prepare mask info for API
-        const maskInfo = nodeInfo.maskInfo
-          ? {
-              masks: nodeInfo.maskInfo.map((mask) => ({
-                type: mask.type,
-                enabled: mask.enabled,
-                attributes: mask.attributes,
-              })),
-            }
-          : undefined;
-
-        // Call GraphQL mutation
-        const { data } = await classifyNode({
-          variables: {
-            input: {
-              text: nodeInfo.text,
-              currentType: nodeInfo.currentType || undefined,
-              attributes: nodeInfo.attributes ? JSON.parse(JSON.stringify(nodeInfo.attributes)) : undefined,
-              maskInfo: maskInfo ? JSON.parse(JSON.stringify(maskInfo)) : undefined,
-              context: nodeInfo.context || undefined,
-            },
+      // Call GraphQL mutation
+      const { data } = await classifyNode({
+        variables: {
+          input: {
+            text: nodeInfo.text,
+            currentType: nodeInfo.currentType || undefined,
+            attributes: nodeInfo.attributes ? JSON.parse(JSON.stringify(nodeInfo.attributes)) : undefined,
+            maskInfo: maskInfo ? JSON.parse(JSON.stringify(maskInfo)) : undefined,
+            context: nodeInfo.context || undefined,
           },
-        });
+        },
+      });
 
-        if (data?.classifyNode) {
-          setClassificationResult(data.classifyNode);
-          setNodePosition(nodeInfo.position || { from, to });
+      if (data?.classifyNode) {
+        setClassificationResult(data.classifyNode);
+        setNodePosition(nodeInfo.position || { from, to });
           setMultipleClassificationResults([]);
-          setShowDialog(true);
-        } else {
-          setError('分類に失敗しました');
+        setShowDialog(true);
+      } else {
+        setError('分類に失敗しました');
         }
       }
     } catch (err) {

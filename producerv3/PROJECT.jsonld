@@ -37,10 +37,10 @@
   "id": "https://gftd.ai/project/epub-editor",
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
-  "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation, AI node classification and batch reclassification (single and multiple nodes), emotion analysis (Hume AI) with sidebar visualization and benchmark comparison, and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "2.5.0",
+  "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation with structured context extraction (hierarchical hybrid approach: Node + Mark + Attribute), AI node classification and batch reclassification (single and multiple nodes), emotion analysis (Hume AI) with sidebar visualization and benchmark comparison, and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
+  "version": "2.6.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-01-27T19:00:00Z",
+  "updatedAt": "2025-01-27T20:30:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -96,7 +96,9 @@
     {"@id": "https://gftd.ai/activity/classify-node"},
     {"@id": "https://gftd.ai/activity/reclassify-nodes"},
     {"@id": "https://gftd.ai/activity/batch-classify-nodes"},
-    {"@id": "https://gftd.ai/activity/manage-mask-context"}
+    {"@id": "https://gftd.ai/activity/manage-mask-context"},
+    {"@id": "https://gftd.ai/activity/extract-structured-context"},
+    {"@id": "https://gftd.ai/activity/generate-context-jsonld"}
   ],
   
   "hasPerformer": [
@@ -640,6 +642,14 @@
       "status": "resolved",
       "priority": "high",
       "resolution": "Created extractMultipleNodesFromSelection() function in nodeClassifier.ts to extract multiple nodes from text selection range. Extended NodeClassificationControls to detect multiple nodes and classify each node individually. Enhanced NodeClassificationDialog to display multiple classification results in a list view with individual apply/skip buttons, progress bar, and batch apply functionality. Each node shows its classification result (suggested type, confidence, reasoning) with visual feedback for applied/skipped states. Error handling allows partial failures without stopping the entire batch classification process."
+    },
+    {
+      "@id": "https://gftd.ai/issue/structured-context-integration",
+      "name": "Structured Context Integration for AI Generation",
+      "description": "Implemented hierarchical hybrid approach (Node + Mark + Attribute) for structured context extraction. Extracts scene, location, character, dialogue, emotion, and context information from editor content. Generates JSON-LD from structured context. Extends AI generation prompts to use structured context. Integrates structured context into multi-agent context builder. Updates AI generation controls to use structured context.",
+      "status": "resolved",
+      "priority": "high",
+      "resolution": "Created structuredContextExtractor.ts with extractStructuredContext() function that extracts hierarchical context (Scene Node, Location Node, Character Node/Mark, Dialogue with Marks, Emotion Marks, Context Marks). Created contextToJsonLd.ts with generateContextJSONLD() function to convert structured context to JSON-LD format. Extended promptGenerator.ts with generateStructuredPrompt() and generateMultiAgentPrompt() functions. Updated multiAgentContext.ts to integrate structured context with mark information (emotion, context). Updated AIContentGenerationControls.tsx to use structured context extraction and generate prompts from structured context. Extended contextExtractor.ts to optionally include structured context in EditorContext. All implementations follow hierarchical hybrid approach: Scene/Location as Block Nodes, Character as Block Node + Mark, Dialogue as Paragraph + Marks, Context/Emotion as Marks."
     }
   ]
 }

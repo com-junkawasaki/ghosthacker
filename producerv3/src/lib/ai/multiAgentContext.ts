@@ -205,12 +205,15 @@ export function buildSceneContext(editor: Editor, sceneId: string): SceneContext
     return null;
   }
   
-  return {
+  const sceneContext: SceneContext = {
     sceneId,
     name: sceneNode.name,
     characters,
-    location,
   };
+  if (location) {
+    sceneContext.location = location;
+  }
+  return sceneContext;
 }
 
 /**
@@ -227,9 +230,12 @@ export function buildNarratorContext(editor: Editor, povId: string): NarratorCon
     if (node.type.name === 'pov') {
       const attrs = node.attrs as Record<string, unknown>;
       if (attrs.povId === povId) {
+        // POV node is not in NodeType, so we create a custom structure
+        // We'll use a workaround by creating a node-like structure
+        const name = (attrs.name as string) || 'Unknown';
         povNode = {
-          type: 'pov',
-          name: (attrs.name as string) || 'Unknown',
+          type: 'character' as NodeType, // Use character as fallback type
+          name,
           attributes: attrs,
           position: { from: pos, to: pos + node.nodeSize },
         };
@@ -248,17 +254,22 @@ export function buildNarratorContext(editor: Editor, povId: string): NarratorCon
         : (attrs.characterId as string))
     : undefined;
   
-  return {
+  const narratorContext: NarratorContext = {
     povId,
-    characterId,
-    perspectiveType: attrs.perspectiveType as
+    name: povNode.name,
+  };
+  if (characterId) {
+    narratorContext.characterId = characterId;
+  }
+  if (attrs.perspectiveType) {
+    narratorContext.perspectiveType = attrs.perspectiveType as
       | 'first-person'
       | 'third-person-limited'
       | 'third-person-omniscient'
-      | 'second-person'
-      | undefined,
-    name: povNode.name,
-  };
+      | 'second-person';
+  }
+  
+  return narratorContext;
 }
 
 /**
@@ -367,13 +378,20 @@ export function buildMultiAgentContext(
     }
   }
   
+  // Build base context
+  const baseContext: MultiAgentContext = {
+    characters,
+  };
+  if (narrator) {
+    baseContext.narrator = narrator;
+  }
+  if (scene) {
+    baseContext.scene = scene;
+  }
+  
   // Filter by scene presence
   const filteredContext = filterContextByPresence(
-    {
-      characters,
-      narrator,
-      scene,
-    },
+    baseContext,
     sceneId
   );
   

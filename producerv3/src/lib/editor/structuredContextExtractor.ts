@@ -246,15 +246,18 @@ function extractDialogueWithContext(
           }
         });
 
-        dialogues.push({
+        const dialogue: DialogueWithContext = {
           text,
           position: {
             from: pos,
             to: pos + node.nodeSize,
           },
           marks,
-          characterId,
-        });
+        };
+        if (characterId) {
+          dialogue.characterId = characterId;
+        }
+        dialogues.push(dialogue);
       }
     }
   });

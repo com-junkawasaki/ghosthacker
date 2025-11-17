@@ -134,18 +134,18 @@ export function NodeClassificationDialog({
         }
 
         if (onReclassify) {
-          onReclassify(
-            classificationResult.suggestedType,
-            classificationResult.suggestedAttributes as Record<string, unknown> | undefined
-          );
-        }
+        onReclassify(
+          classificationResult.suggestedType,
+          classificationResult.suggestedAttributes as Record<string, unknown> | undefined
+        );
+      }
 
         // Close classification dialog if analysis dialog is not shown
         if (!showAnalysisDialog) {
           onClose();
         }
       } else {
-        onClose();
+      onClose();
       }
     } catch (error) {
       console.error('Error applying classification:', error);
@@ -335,17 +335,17 @@ export function NodeClassificationDialog({
 
   // Single node mode rendering
   if (!isMultipleMode && classificationResult) {
-    const confidenceColor =
-      classificationResult.confidence >= 0.8
-        ? 'text-green-600'
-        : classificationResult.confidence >= 0.6
-        ? 'text-yellow-600'
-        : 'text-red-600';
+  const confidenceColor =
+    classificationResult.confidence >= 0.8
+      ? 'text-green-600'
+      : classificationResult.confidence >= 0.6
+      ? 'text-yellow-600'
+      : 'text-red-600';
 
-    return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-          <h2 className="text-xl font-bold mb-4">ノード分類結果</h2>
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <h2 className="text-xl font-bold mb-4">ノード分類結果</h2>
 
         <div className="space-y-4">
           {/* Suggested Type */}
@@ -411,25 +411,25 @@ export function NodeClassificationDialog({
           </div>
         </div>
 
-          <div className="mt-6 flex justify-end gap-2">
-            <button
+        <div className="mt-6 flex justify-end gap-2">
+          <button
               onClick={handleClose}
-              disabled={isApplying}
-              className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded disabled:opacity-50"
-            >
-              キャンセル
-            </button>
-            <button
-              onClick={handleApply}
-              disabled={isApplying || !editor || !nodePosition}
-              className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded disabled:opacity-50"
-            >
-              {isApplying ? '適用中...' : '適用'}
-            </button>
-          </div>
+            disabled={isApplying}
+            className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded disabled:opacity-50"
+          >
+            キャンセル
+          </button>
+          <button
+            onClick={handleApply}
+            disabled={isApplying || !editor || !nodePosition}
+            className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded disabled:opacity-50"
+          >
+            {isApplying ? '適用中...' : '適用'}
+          </button>
         </div>
       </div>
-    );
+    </div>
+  );
   }
 
   // Multiple nodes mode rendering

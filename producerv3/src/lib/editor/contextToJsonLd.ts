@@ -82,8 +82,9 @@ export function generateContextJSONLD(context: StructuredContext): ContextJSONLD
   // Scene情報
   if (context.scene) {
     const sceneAttrs = context.scene.attributes;
+    const sceneId = sceneAttrs.sceneId as string | undefined;
     jsonld.scene = {
-      '@id': (sceneAttrs.sceneId as string) || undefined,
+      ...(sceneId ? { '@id': sceneId } : {}),
       '@type': 'Scene',
       name: context.scene.name,
       ...Object.fromEntries(
@@ -97,8 +98,9 @@ export function generateContextJSONLD(context: StructuredContext): ContextJSONLD
   // Location情報
   if (context.location) {
     const locationAttrs = context.location.attributes;
+    const locationId = locationAttrs.locationId as string | undefined;
     jsonld.location = {
-      '@id': (locationAttrs.locationId as string) || undefined,
+      ...(locationId ? { '@id': locationId } : {}),
       '@type': 'Place',
       name: context.location.name,
       ...Object.fromEntries(
@@ -113,8 +115,9 @@ export function generateContextJSONLD(context: StructuredContext): ContextJSONLD
   if (context.characters.length > 0) {
     jsonld.characters = context.characters.map((charWithMarks) => {
       const charAttrs = charWithMarks.node.attributes;
+      const characterId = charAttrs.characterId as string | undefined;
       const characterJsonld: ContextJSONLD['characters']![0] = {
-        '@id': (charAttrs.characterId as string) || undefined,
+        ...(characterId ? { '@id': characterId } : {}),
         '@type': 'Person',
         name: charWithMarks.node.name,
         ...Object.fromEntries(

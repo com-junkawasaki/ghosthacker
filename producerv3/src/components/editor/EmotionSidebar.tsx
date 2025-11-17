@@ -282,22 +282,22 @@ export function EmotionSidebar({ editor, selectedBenchmark, onBenchmarkChange }:
                       .filter((emotion) => emotion && emotion.score !== undefined && emotion.score !== null)
                       .slice(0, 3)
                       .map((emotion, idx) => {
-                        const emoColor = getEmotionColor(emotion.emotion);
+                      const emoColor = getEmotionColor(emotion.emotion);
                         const score = emotion.score ?? 0;
-                        return (
-                          <span
-                            key={idx}
-                            className="text-xs px-1.5 py-0.5 rounded"
-                            style={{
-                              backgroundColor: emoColor.bg,
-                              color: emoColor.text,
-                            }}
+                      return (
+                        <span
+                          key={idx}
+                          className="text-xs px-1.5 py-0.5 rounded"
+                          style={{
+                            backgroundColor: emoColor.bg,
+                            color: emoColor.text,
+                          }}
                             title={`Score: ${score.toFixed(3)}`}
-                          >
+                        >
                             {emotion.emotion}: {(score * 100).toFixed(0)}%
-                          </span>
-                        );
-                      })}
+                        </span>
+                      );
+                    })}
                   </div>
 
                   {/* Benchmark comparison details */}

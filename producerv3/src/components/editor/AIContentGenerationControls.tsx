@@ -62,9 +62,9 @@ export function AIContentGenerationControls({ editor }: AIContentGenerationContr
 
       // Build multi-agent context with structured context
       const multiAgentContext = buildMultiAgentContext(editor, {
-        characterIds: characterId ? [characterId] : undefined,
-        sceneId,
-        povId,
+        ...(characterId ? { characterIds: [characterId] } : {}),
+        ...(sceneId ? { sceneId } : {}),
+        ...(povId ? { povId } : {}),
         includeStructuredContext: true,
       });
 
