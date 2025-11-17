@@ -5,7 +5,7 @@
  * 
  * Technologyノード拡張
  */
-import { Node, mergeAttributes } from '@tiptap/core';
+import { Node, mergeAttributes, type CommandProps } from '@tiptap/core';
 import { TechnologyNode as TechnologyNodeType } from '@/types/jsonld';
 
 export interface TechnologyNodeOptions {
@@ -40,8 +40,8 @@ export const TechnologyNode = Node.create<TechnologyNodeOptions>({
     return {
       technologyId: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-technology-id'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-technology-id'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.technologyId) {
             return {};
           }
@@ -52,8 +52,8 @@ export const TechnologyNode = Node.create<TechnologyNodeOptions>({
       },
       name: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-name'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-name'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.name) {
             return {};
           }
@@ -64,8 +64,8 @@ export const TechnologyNode = Node.create<TechnologyNodeOptions>({
       },
       description: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-description'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-description'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.description) {
             return {};
           }
@@ -76,11 +76,11 @@ export const TechnologyNode = Node.create<TechnologyNodeOptions>({
       },
       certification: {
         default: null,
-        parseHTML: (element) => {
+        parseHTML: (element: HTMLElement) => {
           const certification = element.getAttribute('data-certification');
           return certification ? { '@id': certification } : null;
         },
-        renderHTML: (attributes) => {
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.certification) {
             return {};
           }
@@ -95,8 +95,8 @@ export const TechnologyNode = Node.create<TechnologyNodeOptions>({
       },
       infraNote: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-infra-note'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-infra-note'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.infraNote) {
             return {};
           }
@@ -107,8 +107,8 @@ export const TechnologyNode = Node.create<TechnologyNodeOptions>({
       },
       operationalNote: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-operational-note'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-operational-note'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.operationalNote) {
             return {};
           }
@@ -119,8 +119,8 @@ export const TechnologyNode = Node.create<TechnologyNodeOptions>({
       },
       securityNote: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-security-note'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-security-note'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.securityNote) {
             return {};
           }
@@ -155,7 +155,7 @@ export const TechnologyNode = Node.create<TechnologyNodeOptions>({
     return {
       insertTechnology:
         (attributes: Partial<TechnologyNodeType>) =>
-        ({ commands }) => {
+        ({ commands }: CommandProps) => {
           return commands.insertContent({
             type: this.name,
             attrs: attributes,
@@ -163,7 +163,7 @@ export const TechnologyNode = Node.create<TechnologyNodeOptions>({
         },
       updateTechnology:
         (attributes: Partial<TechnologyNodeType>) =>
-        ({ commands }) => {
+        ({ commands }: CommandProps) => {
           return commands.updateAttributes(this.name, attributes);
         },
     };

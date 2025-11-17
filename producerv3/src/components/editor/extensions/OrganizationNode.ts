@@ -5,7 +5,7 @@
  * 
  * Organization/Companyノード拡張
  */
-import { Node, mergeAttributes } from '@tiptap/core';
+import { Node, mergeAttributes, type CommandProps } from '@tiptap/core';
 import { OrganizationNode as OrganizationNodeType, CompanyNode } from '@/types/jsonld';
 
 export interface OrganizationNodeOptions {
@@ -44,8 +44,8 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
     return {
       organizationId: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-organization-id'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-organization-id'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.organizationId) {
             return {};
           }
@@ -56,8 +56,8 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
       },
       name: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-name'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-name'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.name) {
             return {};
           }
@@ -68,8 +68,8 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
       },
       description: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-description'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-description'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.description) {
             return {};
           }
@@ -80,11 +80,11 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
       },
       founder: {
         default: null,
-        parseHTML: (element) => {
+        parseHTML: (element: HTMLElement) => {
           const founder = element.getAttribute('data-founder');
           return founder ? { '@id': founder } : null;
         },
-        renderHTML: (attributes) => {
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.founder) {
             return {};
           }
@@ -99,8 +99,8 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
       },
       companyType: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-company-type'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-company-type'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.companyType) {
             return {};
           }
@@ -111,8 +111,8 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
       },
       infraNote: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-infra-note'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-infra-note'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.infraNote) {
             return {};
           }
@@ -123,8 +123,8 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
       },
       operationalNote: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-operational-note'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-operational-note'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.operationalNote) {
             return {};
           }
@@ -135,8 +135,8 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
       },
       securityNote: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-security-note'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-security-note'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.securityNote) {
             return {};
           }
@@ -175,7 +175,7 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
     return {
       insertOrganization:
         (attributes: Partial<OrganizationNodeType>) =>
-        ({ commands }) => {
+        ({ commands }: CommandProps) => {
           return commands.insertContent({
             type: this.name,
             attrs: { ...attributes, 'data-type': 'organization' },
@@ -183,12 +183,12 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
         },
       updateOrganization:
         (attributes: Partial<OrganizationNodeType>) =>
-        ({ commands }) => {
+        ({ commands }: CommandProps) => {
           return commands.updateAttributes(this.name, attributes);
         },
       insertCompany:
         (attributes: Partial<CompanyNode>) =>
-        ({ commands }) => {
+        ({ commands }: CommandProps) => {
           return commands.insertContent({
             type: this.name,
             attrs: { ...attributes, 'data-type': 'company' },
@@ -196,7 +196,7 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
         },
       updateCompany:
         (attributes: Partial<CompanyNode>) =>
-        ({ commands }) => {
+        ({ commands }: CommandProps) => {
           return commands.updateAttributes(this.name, attributes);
         },
     };

@@ -5,8 +5,7 @@
  * 
  * Characterノード拡張
  */
-import { Node, mergeAttributes } from '@tiptap/core';
-import { ReactRenderer } from '@tiptap/react';
+import { Node, mergeAttributes, type CommandProps } from '@tiptap/core';
 import { CharacterNode as CharacterNodeType } from '@/types/jsonld';
 
 export interface CharacterNodeOptions {
@@ -47,8 +46,8 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
     return {
       characterId: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-character-id'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-character-id'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.characterId) {
             return {};
           }
@@ -59,8 +58,8 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
       },
       name: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-name'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-name'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.name) {
             return {};
           }
@@ -72,7 +71,7 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
       callsign: {
         default: null,
         parseHTML: (element) => element.getAttribute('data-callsign'),
-        renderHTML: (attributes) => {
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.callsign) {
             return {};
           }
@@ -84,7 +83,7 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
       description: {
         default: null,
         parseHTML: (element) => element.getAttribute('data-description'),
-        renderHTML: (attributes) => {
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.description) {
             return {};
           }
@@ -99,7 +98,7 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
           const age = element.getAttribute('data-age');
           return age ? parseInt(age, 10) : null;
         },
-        renderHTML: (attributes) => {
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.age) {
             return {};
           }
@@ -114,7 +113,7 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
           const occupation = element.getAttribute('data-occupation');
           return occupation ? JSON.parse(occupation) : null;
         },
-        renderHTML: (attributes) => {
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.occupation) {
             return {};
           }
@@ -126,7 +125,7 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
       role: {
         default: null,
         parseHTML: (element) => element.getAttribute('data-role'),
-        renderHTML: (attributes) => {
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.role) {
             return {};
           }
@@ -138,7 +137,7 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
       virtue: {
         default: null,
         parseHTML: (element) => element.getAttribute('data-virtue'),
-        renderHTML: (attributes) => {
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.virtue) {
             return {};
           }
@@ -150,7 +149,7 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
       alternateName: {
         default: null,
         parseHTML: (element) => element.getAttribute('data-alternate-name'),
-        renderHTML: (attributes) => {
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.alternateName) {
             return {};
           }
@@ -170,14 +169,14 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
     ];
   },
 
-  renderHTML({ HTMLAttributes }) {
+  renderHTML({ HTMLAttributes }: { HTMLAttributes: Record<string, unknown> }) {
     return [
       'span',
       mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
         'data-type': 'character',
         class: 'character-node inline-flex items-center px-2 py-1 rounded bg-purple-100 text-purple-800 cursor-pointer hover:bg-purple-200',
       }),
-      HTMLAttributes.name || HTMLAttributes.characterId || 'Character',
+      (HTMLAttributes.name as string) || (HTMLAttributes.characterId as string) || 'Character',
     ];
   },
 
@@ -185,7 +184,7 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
     return {
       insertCharacter:
         (attributes: Partial<CharacterNodeType>) =>
-        ({ commands }) => {
+        ({ commands }: CommandProps) => {
           return commands.insertContent({
             type: this.name,
             attrs: attributes,
@@ -193,7 +192,7 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
         },
       updateCharacter:
         (attributes: Partial<CharacterNodeType>) =>
-        ({ commands }) => {
+        ({ commands }: CommandProps) => {
           return commands.updateAttributes(this.name, attributes);
         },
     };

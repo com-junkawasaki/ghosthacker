@@ -8,8 +8,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
-import { ChapterTree } from '../ChapterTree';
-import { GET_CHAPTERS } from '../../../lib/graphql/queries';
+import { ChapterTree } from '@/components/editor/ChapterTree';
+import { GET_CHAPTERS } from '@/lib/graphql/queries';
 
 const mocks = [
   {

@@ -8,6 +8,8 @@
  */
 import { Extension } from '@tiptap/core';
 import { MaskType } from '@/types/jsonld';
+import type { Transaction, EditorState } from '@tiptap/pm/state';
+import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
 
 export interface MaskExtensionOptions {
   HTMLAttributes: Record<string, unknown>;
@@ -64,8 +66,8 @@ export const MaskExtension = Extension.create<MaskExtensionOptions>({
         attributes: {
           emotionMask: {
             default: false,
-            parseHTML: (element) => element.getAttribute('data-emotion-mask') === 'true',
-            renderHTML: (attributes) => {
+            parseHTML: (element: HTMLElement) => element.getAttribute('data-emotion-mask') === 'true',
+            renderHTML: (attributes: Record<string, unknown>) => {
               if (!attributes.emotionMask) {
                 return {};
               }
@@ -76,8 +78,8 @@ export const MaskExtension = Extension.create<MaskExtensionOptions>({
           },
           themeMask: {
             default: false,
-            parseHTML: (element) => element.getAttribute('data-theme-mask') === 'true',
-            renderHTML: (attributes) => {
+            parseHTML: (element: HTMLElement) => element.getAttribute('data-theme-mask') === 'true',
+            renderHTML: (attributes: Record<string, unknown>) => {
               if (!attributes.themeMask) {
                 return {};
               }
@@ -89,7 +91,7 @@ export const MaskExtension = Extension.create<MaskExtensionOptions>({
           contextMask: {
             default: false,
             parseHTML: (element) => element.getAttribute('data-context-mask') === 'true',
-            renderHTML: (attributes) => {
+            renderHTML: (attributes: Record<string, unknown>) => {
               if (!attributes.contextMask) {
                 return {};
               }
@@ -101,7 +103,7 @@ export const MaskExtension = Extension.create<MaskExtensionOptions>({
           notesMask: {
             default: false,
             parseHTML: (element) => element.getAttribute('data-notes-mask') === 'true',
-            renderHTML: (attributes) => {
+            renderHTML: (attributes: Record<string, unknown>) => {
               if (!attributes.notesMask) {
                 return {};
               }
@@ -113,7 +115,7 @@ export const MaskExtension = Extension.create<MaskExtensionOptions>({
           relationshipMask: {
             default: false,
             parseHTML: (element) => element.getAttribute('data-relationship-mask') === 'true',
-            renderHTML: (attributes) => {
+            renderHTML: (attributes: Record<string, unknown>) => {
               if (!attributes.relationshipMask) {
                 return {};
               }
@@ -125,7 +127,7 @@ export const MaskExtension = Extension.create<MaskExtensionOptions>({
           virtueMask: {
             default: false,
             parseHTML: (element) => element.getAttribute('data-virtue-mask') === 'true',
-            renderHTML: (attributes) => {
+            renderHTML: (attributes: Record<string, unknown>) => {
               if (!attributes.virtueMask) {
                 return {};
               }
@@ -137,7 +139,7 @@ export const MaskExtension = Extension.create<MaskExtensionOptions>({
           anchoredToMask: {
             default: false,
             parseHTML: (element) => element.getAttribute('data-anchored-to-mask') === 'true',
-            renderHTML: (attributes) => {
+            renderHTML: (attributes: Record<string, unknown>) => {
               if (!attributes.anchoredToMask) {
                 return {};
               }
@@ -149,7 +151,7 @@ export const MaskExtension = Extension.create<MaskExtensionOptions>({
           emitsRepelsAvoidsMask: {
             default: false,
             parseHTML: (element) => element.getAttribute('data-emits-repels-avoids-mask') === 'true',
-            renderHTML: (attributes) => {
+            renderHTML: (attributes: Record<string, unknown>) => {
               if (!attributes.emitsRepelsAvoidsMask) {
                 return {};
               }
@@ -161,7 +163,7 @@ export const MaskExtension = Extension.create<MaskExtensionOptions>({
           phaseMask: {
             default: false,
             parseHTML: (element) => element.getAttribute('data-phase-mask') === 'true',
-            renderHTML: (attributes) => {
+            renderHTML: (attributes: Record<string, unknown>) => {
               if (!attributes.phaseMask) {
                 return {};
               }
@@ -173,7 +175,7 @@ export const MaskExtension = Extension.create<MaskExtensionOptions>({
           roleMask: {
             default: false,
             parseHTML: (element) => element.getAttribute('data-role-mask') === 'true',
-            renderHTML: (attributes) => {
+            renderHTML: (attributes: Record<string, unknown>) => {
               if (!attributes.roleMask) {
                 return {};
               }
@@ -191,7 +193,7 @@ export const MaskExtension = Extension.create<MaskExtensionOptions>({
     return {
       toggleMask:
         (maskType: MaskType['type']) =>
-        ({ tr, state, dispatch }) => {
+        ({ tr, state, dispatch }: { tr: Transaction; state: EditorState; dispatch?: ((tr: Transaction) => void) | undefined }) => {
           const { selection } = state;
           const { from, to } = selection;
 
@@ -217,11 +219,12 @@ export const MaskExtension = Extension.create<MaskExtensionOptions>({
             return false;
           }
 
-          state.doc.nodesBetween(from, to, (node, pos) => {
-            if (node.isInline && node.attrs[attributeName] !== undefined) {
-              const currentValue = node.attrs[attributeName] || false;
+          state.doc.nodesBetween(from, to, (node: ProseMirrorNode, pos: number) => {
+            const attrs = node.attrs as Record<string, unknown>;
+            if (node.isInline && attrs[attributeName] !== undefined) {
+              const currentValue = attrs[attributeName] || false;
               tr.setNodeMarkup(pos, undefined, {
-                ...node.attrs,
+                ...attrs,
                 [attributeName]: !currentValue,
               });
             }
@@ -231,7 +234,7 @@ export const MaskExtension = Extension.create<MaskExtensionOptions>({
         },
       setMask:
         (maskType: MaskType['type'], enabled: boolean) =>
-        ({ tr, state, dispatch }) => {
+        ({ tr, state, dispatch }: { tr: Transaction; state: EditorState; dispatch?: ((tr: Transaction) => void) | undefined }) => {
           const { selection } = state;
           const { from, to } = selection;
 
@@ -257,10 +260,11 @@ export const MaskExtension = Extension.create<MaskExtensionOptions>({
             return false;
           }
 
-          state.doc.nodesBetween(from, to, (node, pos) => {
-            if (node.isInline && node.attrs[attributeName] !== undefined) {
+          state.doc.nodesBetween(from, to, (node: ProseMirrorNode, pos: number) => {
+            const attrs = node.attrs as Record<string, unknown>;
+            if (node.isInline && attrs[attributeName] !== undefined) {
               tr.setNodeMarkup(pos, undefined, {
-                ...node.attrs,
+                ...attrs,
                 [attributeName]: enabled,
               });
             }
@@ -270,7 +274,7 @@ export const MaskExtension = Extension.create<MaskExtensionOptions>({
         },
       toggleAllMasks:
         () =>
-        ({ tr, state, dispatch }) => {
+        ({ tr, state, dispatch }: { tr: Transaction; state: EditorState; dispatch?: ((tr: Transaction) => void) | undefined }) => {
           const { selection } = state;
           const { from, to } = selection;
 
@@ -291,19 +295,20 @@ export const MaskExtension = Extension.create<MaskExtensionOptions>({
             'roleMask',
           ];
 
-          state.doc.nodesBetween(from, to, (node, pos) => {
+          state.doc.nodesBetween(from, to, (node: ProseMirrorNode, pos: number) => {
             if (node.isInline) {
-              const newAttrs = { ...node.attrs };
+              const attrs = node.attrs as Record<string, unknown>;
+              const newAttrs = { ...attrs };
               let hasAnyMask = false;
 
               maskAttributes.forEach((attr) => {
-                if (node.attrs[attr] !== undefined) {
-                  hasAnyMask = hasAnyMask || node.attrs[attr] === true;
+                if (attrs[attr] !== undefined) {
+                  hasAnyMask = hasAnyMask || attrs[attr] === true;
                 }
               });
 
               maskAttributes.forEach((attr) => {
-                if (node.attrs[attr] !== undefined) {
+                if (attrs[attr] !== undefined) {
                   newAttrs[attr] = !hasAnyMask;
                 }
               });

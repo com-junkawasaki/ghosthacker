@@ -1,0 +1,123 @@
+/**
+ * @context https://gftd.ai/ontology/epub-editor#
+ * @type cpm:Activity
+ * @id https://gftd.ai/activity/editor-styles
+ * 
+ * エディタスタイル定義
+ * マスクタイプごとのスタイル定義
+ */
+
+/* マスクされたノードのスタイル */
+[data-emotion-mask="true"] {
+  opacity: 0.3;
+  filter: blur(2px);
+}
+
+[data-theme-mask="true"] {
+  opacity: 0.4;
+  filter: blur(1px);
+}
+
+[data-context-mask="true"] {
+  opacity: 0.3;
+  filter: blur(2px);
+}
+
+[data-notes-mask="true"] {
+  opacity: 0.2;
+  filter: blur(3px);
+}
+
+[data-relationship-mask="true"] {
+  opacity: 0.3;
+  filter: blur(2px);
+}
+
+[data-virtue-mask="true"] {
+  opacity: 0.4;
+  filter: blur(1px);
+}
+
+[data-anchored-to-mask="true"] {
+  opacity: 0.3;
+  filter: blur(2px);
+}
+
+[data-emits-repels-avoids-mask="true"] {
+  opacity: 0.3;
+  filter: blur(2px);
+}
+
+[data-phase-mask="true"] {
+  opacity: 0.4;
+  filter: blur(1px);
+}
+
+[data-role-mask="true"] {
+  opacity: 0.4;
+  filter: blur(1px);
+}
+
+/* 複数のマスクが適用されている場合 */
+[data-emotion-mask="true"][data-theme-mask="true"],
+[data-emotion-mask="true"][data-context-mask="true"],
+[data-theme-mask="true"][data-context-mask="true"] {
+  opacity: 0.1;
+  filter: blur(4px);
+}
+
+/* ノードのホバー状態 */
+.character-node:hover,
+.ghost-node:hover,
+.location-node:hover,
+.organization-node:hover,
+.company-node:hover,
+.technology-node:hover,
+.episode-node:hover,
+.scene-node:hover,
+.arc-node:hover,
+.motif-node:hover,
+.season-node:hover,
+.timeline-node:hover,
+.source-ref-node:hover,
+.event-node:hover,
+.occupation-node:hover,
+.setting-node:hover {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* スラッシュコマンドの装飾 */
+.slash-command {
+  background-color: #e0e7ff;
+  border-radius: 4px;
+  padding: 0 2px;
+}
+
+/* エディタコンテナ */
+.editor-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ProseMirrorエディタのスタイル */
+.ProseMirror {
+  outline: none;
+  min-height: 200px;
+}
+
+.ProseMirror p {
+  margin: 0.5em 0;
+}
+
+.ProseMirror h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.67em 0;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0.75em 0;
+}
+

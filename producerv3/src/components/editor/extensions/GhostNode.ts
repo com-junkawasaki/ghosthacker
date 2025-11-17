@@ -5,7 +5,7 @@
  * 
  * Ghostノード拡張
  */
-import { Node, mergeAttributes } from '@tiptap/core';
+import { Node, mergeAttributes, type CommandProps } from '@tiptap/core';
 import { GhostNode as GhostNodeType } from '@/types/jsonld';
 
 export interface GhostNodeOptions {
@@ -40,8 +40,8 @@ export const GhostNode = Node.create<GhostNodeOptions>({
     return {
       ghostId: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-ghost-id'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-ghost-id'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.ghostId) {
             return {};
           }
@@ -52,8 +52,8 @@ export const GhostNode = Node.create<GhostNodeOptions>({
       },
       name: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-name'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-name'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.name) {
             return {};
           }
@@ -64,8 +64,8 @@ export const GhostNode = Node.create<GhostNodeOptions>({
       },
       ghostType: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-ghost-type'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-ghost-type'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.ghostType) {
             return {};
           }
@@ -76,8 +76,8 @@ export const GhostNode = Node.create<GhostNodeOptions>({
       },
       description: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-description'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-description'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.description) {
             return {};
           }
@@ -88,11 +88,11 @@ export const GhostNode = Node.create<GhostNodeOptions>({
       },
       master: {
         default: null,
-        parseHTML: (element) => {
+        parseHTML: (element: HTMLElement) => {
           const master = element.getAttribute('data-master');
           return master ? { '@id': master } : null;
         },
-        renderHTML: (attributes) => {
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.master) {
             return {};
           }
@@ -107,11 +107,11 @@ export const GhostNode = Node.create<GhostNodeOptions>({
       },
       createdBy: {
         default: null,
-        parseHTML: (element) => {
+        parseHTML: (element: HTMLElement) => {
           const createdBy = element.getAttribute('data-created-by');
           return createdBy ? { '@id': createdBy } : null;
         },
-        renderHTML: (attributes) => {
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.createdBy) {
             return {};
           }
@@ -150,7 +150,7 @@ export const GhostNode = Node.create<GhostNodeOptions>({
     return {
       insertGhost:
         (attributes: Partial<GhostNodeType>) =>
-        ({ commands }) => {
+        ({ commands }: CommandProps) => {
           return commands.insertContent({
             type: this.name,
             attrs: attributes,
@@ -158,7 +158,7 @@ export const GhostNode = Node.create<GhostNodeOptions>({
         },
       updateGhost:
         (attributes: Partial<GhostNodeType>) =>
-        ({ commands }) => {
+        ({ commands }: CommandProps) => {
           return commands.updateAttributes(this.name, attributes);
         },
     };

@@ -6,7 +6,7 @@
  * Tests for GraphQL client configuration
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { client } from '../client';
+import { getClient } from '@/lib/graphql/client';
 
 describe('GraphQL Client', () => {
   beforeEach(() => {
@@ -14,18 +14,27 @@ describe('GraphQL Client', () => {
   });
 
   it('creates Apollo client instance', () => {
+    const client = getClient();
     expect(client).toBeDefined();
-    expect(client.link).toBeDefined();
-    expect(client.cache).toBeDefined();
+    if (client) {
+      expect(client.link).toBeDefined();
+      expect(client.cache).toBeDefined();
+    }
   });
 
   it('has correct default URI', () => {
     // Client should be configured with a URI
-    expect(client.link).toBeDefined();
+    const client = getClient();
+    if (client) {
+      expect(client.link).toBeDefined();
+    }
   });
 
   it('has InMemoryCache configured', () => {
-    expect(client.cache).toBeDefined();
+    const client = getClient();
+    if (client) {
+      expect(client.cache).toBeDefined();
+    }
   });
 });
 

@@ -5,7 +5,7 @@
  * 
  * Story構造ノード拡張（Episode/Scene/Arc/Motif/Season/Timeline）
  */
-import { Node, mergeAttributes } from '@tiptap/core';
+import { Node, mergeAttributes, type CommandProps } from '@tiptap/core';
 import {
   EpisodeNode as EpisodeNodeType,
   SceneNode as SceneNodeType,
@@ -73,8 +73,8 @@ const createStoryNode = (
       const baseAttributes: Record<string, unknown> = {
         [`${name}Id`]: {
           default: null,
-          parseHTML: (element) => element.getAttribute(`data-${name}-id`),
-          renderHTML: (attributes) => {
+          parseHTML: (element: HTMLElement) => element.getAttribute(`data-${name}-id`),
+          renderHTML: (attributes: Record<string, unknown>) => {
             const id = attributes[`${name}Id`];
             if (!id) {
               return {};
@@ -86,8 +86,8 @@ const createStoryNode = (
         },
         name: {
           default: null,
-          parseHTML: (element) => element.getAttribute('data-name'),
-          renderHTML: (attributes) => {
+          parseHTML: (element: HTMLElement) => element.getAttribute('data-name'),
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.name) {
               return {};
             }
@@ -98,8 +98,8 @@ const createStoryNode = (
         },
         description: {
           default: null,
-          parseHTML: (element) => element.getAttribute('data-description'),
-          renderHTML: (attributes) => {
+          parseHTML: (element: HTMLElement) => element.getAttribute('data-description'),
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.description) {
               return {};
             }
@@ -114,11 +114,11 @@ const createStoryNode = (
       if (name === 'episode') {
         baseAttributes.episodeNumber = {
           default: null,
-          parseHTML: (element) => {
+          parseHTML: (element: HTMLElement) => {
             const num = element.getAttribute('data-episode-number');
             return num ? parseInt(num, 10) : null;
           },
-          renderHTML: (attributes) => {
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.episodeNumber) {
               return {};
             }
@@ -129,11 +129,11 @@ const createStoryNode = (
         };
         baseAttributes.season = {
           default: null,
-          parseHTML: (element) => {
+          parseHTML: (element: HTMLElement) => {
             const season = element.getAttribute('data-season');
             return season ? { '@id': season } : null;
           },
-          renderHTML: (attributes) => {
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.season) {
               return {};
             }
@@ -148,8 +148,8 @@ const createStoryNode = (
         };
         baseAttributes.logline = {
           default: null,
-          parseHTML: (element) => element.getAttribute('data-logline'),
-          renderHTML: (attributes) => {
+          parseHTML: (element: HTMLElement) => element.getAttribute('data-logline'),
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.logline) {
               return {};
             }
@@ -164,8 +164,8 @@ const createStoryNode = (
       if (name === 'arc') {
         baseAttributes.phase = {
           default: null,
-          parseHTML: (element) => element.getAttribute('data-phase'),
-          renderHTML: (attributes) => {
+          parseHTML: (element: HTMLElement) => element.getAttribute('data-phase'),
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.phase) {
               return {};
             }
@@ -180,8 +180,8 @@ const createStoryNode = (
       if (name === 'motif') {
         baseAttributes.theme = {
           default: null,
-          parseHTML: (element) => element.getAttribute('data-theme'),
-          renderHTML: (attributes) => {
+          parseHTML: (element: HTMLElement) => element.getAttribute('data-theme'),
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.theme) {
               return {};
             }
@@ -196,8 +196,8 @@ const createStoryNode = (
       if (name === 'season') {
         baseAttributes.theme = {
           default: null,
-          parseHTML: (element) => element.getAttribute('data-theme'),
-          renderHTML: (attributes) => {
+          parseHTML: (element: HTMLElement) => element.getAttribute('data-theme'),
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.theme) {
               return {};
             }
@@ -208,11 +208,11 @@ const createStoryNode = (
         };
         baseAttributes.featuredThemes = {
           default: null,
-          parseHTML: (element) => {
+          parseHTML: (element: HTMLElement) => {
             const themes = element.getAttribute('data-featured-themes');
             return themes ? JSON.parse(themes) : null;
           },
-          renderHTML: (attributes) => {
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.featuredThemes) {
               return {};
             }
@@ -227,8 +227,8 @@ const createStoryNode = (
       if (name === 'scene') {
         baseAttributes.sameAs = {
           default: null,
-          parseHTML: (element) => element.getAttribute('data-same-as'),
-          renderHTML: (attributes) => {
+          parseHTML: (element: HTMLElement) => element.getAttribute('data-same-as'),
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.sameAs) {
               return {};
             }
@@ -265,7 +265,7 @@ const createStoryNode = (
       return {
         [`insert${name.charAt(0).toUpperCase() + name.slice(1)}`]:
           (attributes: Record<string, unknown>) =>
-          ({ commands }) => {
+          ({ commands }: CommandProps) => {
             return commands.insertContent({
               type: this.name,
               attrs: attributes,
@@ -273,7 +273,7 @@ const createStoryNode = (
           },
         [`update${name.charAt(0).toUpperCase() + name.slice(1)}`]:
           (attributes: Record<string, unknown>) =>
-          ({ commands }) => {
+          ({ commands }: CommandProps) => {
             return commands.updateAttributes(this.name, attributes);
           },
       };

@@ -6,8 +6,8 @@
  * スラッシュコマンド拡張
  */
 import { Extension } from '@tiptap/core';
-import { Plugin, PluginKey } from '@tiptap/pm/state';
-import { Decoration, DecorationSet } from '@tiptap/pm/view';
+import { Plugin, PluginKey, type Transaction, type EditorState } from '@tiptap/pm/state';
+import { Decoration, DecorationSet, type EditorView } from '@tiptap/pm/view';
 
 export interface SlashCommandOptions {
   suggestion: {
@@ -56,17 +56,17 @@ export const SlashCommand = Extension.create<SlashCommandOptions>({
           init() {
             return DecorationSet.empty;
           },
-          apply(tr, set) {
+          apply(tr: Transaction, set: DecorationSet) {
             set = set.map(tr.mapping, tr.doc);
             return set;
           },
         },
         props: {
-          decorations: (state) => {
+          decorations: (state: EditorState) => {
             const { selection } = state;
             const { $from } = selection;
             const textBefore = $from.nodeBefore?.textContent || '';
-            const textAfter = $from.textBetween(Math.max(0, $from.pos - 50), $from.pos);
+            const textAfter = state.doc.textBetween(Math.max(0, $from.pos - 50), $from.pos);
 
             // スラッシュコマンドの検出
             const match = textAfter.match(/\/(\w*)$/);
@@ -74,7 +74,7 @@ export const SlashCommand = Extension.create<SlashCommandOptions>({
               return DecorationSet.empty;
             }
 
-            const query = match[1].toLowerCase();
+            const query = match[1]?.toLowerCase() || '';
             const items = this.options.suggestion.items(query);
 
             if (items.length === 0) {
@@ -93,11 +93,11 @@ export const SlashCommand = Extension.create<SlashCommandOptions>({
 
             return DecorationSet.create(state.doc, decorations);
           },
-          handleKeyDown: (view, event) => {
+          handleKeyDown: (view: EditorView, event: KeyboardEvent) => {
             const { state } = view;
             const { selection } = state;
             const { $from } = selection;
-            const textAfter = $from.textBetween(Math.max(0, $from.pos - 50), $from.pos);
+            const textAfter = state.doc.textBetween(Math.max(0, $from.pos - 50), $from.pos);
             const match = textAfter.match(/\/(\w*)$/);
 
             if (!match) {
@@ -112,14 +112,16 @@ export const SlashCommand = Extension.create<SlashCommandOptions>({
 
             if (event.key === 'Enter' || event.key === 'Tab') {
               event.preventDefault();
-              const query = match[1].toLowerCase();
+              const query = match[1]?.toLowerCase() || '';
               const items = this.options.suggestion.items(query);
               if (items.length > 0) {
                 const range = {
                   from: $from.pos - query.length - 1,
                   to: $from.pos,
                 };
-                items[0].command({ editor: this.editor, range });
+                if (this.editor) {
+                  items[0]?.command({ editor: this.editor, range });
+                }
               }
               return true;
             }

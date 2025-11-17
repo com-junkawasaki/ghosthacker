@@ -5,7 +5,7 @@
  * 
  * Locationノード拡張
  */
-import { Node, mergeAttributes } from '@tiptap/core';
+import { Node, mergeAttributes, type CommandProps } from '@tiptap/core';
 import { LocationNode as LocationNodeType } from '@/types/jsonld';
 
 export interface LocationNodeOptions {
@@ -40,8 +40,8 @@ export const LocationNode = Node.create<LocationNodeOptions>({
     return {
       locationId: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-location-id'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-location-id'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.locationId) {
             return {};
           }
@@ -52,8 +52,8 @@ export const LocationNode = Node.create<LocationNodeOptions>({
       },
       name: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-name'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-name'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.name) {
             return {};
           }
@@ -64,8 +64,8 @@ export const LocationNode = Node.create<LocationNodeOptions>({
       },
       description: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-description'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-description'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.description) {
             return {};
           }
@@ -76,11 +76,11 @@ export const LocationNode = Node.create<LocationNodeOptions>({
       },
       year: {
         default: null,
-        parseHTML: (element) => {
+        parseHTML: (element: HTMLElement) => {
           const year = element.getAttribute('data-year');
           return year ? parseInt(year, 10) : null;
         },
-        renderHTML: (attributes) => {
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.year) {
             return {};
           }
@@ -91,8 +91,8 @@ export const LocationNode = Node.create<LocationNodeOptions>({
       },
       hazardNote: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-hazard-note'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-hazard-note'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.hazardNote) {
             return {};
           }
@@ -103,8 +103,8 @@ export const LocationNode = Node.create<LocationNodeOptions>({
       },
       operationalNote: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-operational-note'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-operational-note'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.operationalNote) {
             return {};
           }
@@ -115,8 +115,8 @@ export const LocationNode = Node.create<LocationNodeOptions>({
       },
       securityNote: {
         default: null,
-        parseHTML: (element) => element.getAttribute('data-security-note'),
-        renderHTML: (attributes) => {
+        parseHTML: (element: HTMLElement) => element.getAttribute('data-security-note'),
+        renderHTML: (attributes: Record<string, unknown>) => {
           if (!attributes.securityNote) {
             return {};
           }
@@ -151,7 +151,7 @@ export const LocationNode = Node.create<LocationNodeOptions>({
     return {
       insertLocation:
         (attributes: Partial<LocationNodeType>) =>
-        ({ commands }) => {
+        ({ commands }: CommandProps) => {
           return commands.insertContent({
             type: this.name,
             attrs: attributes,
@@ -159,7 +159,7 @@ export const LocationNode = Node.create<LocationNodeOptions>({
         },
       updateLocation:
         (attributes: Partial<LocationNodeType>) =>
-        ({ commands }) => {
+        ({ commands }: CommandProps) => {
           return commands.updateAttributes(this.name, attributes);
         },
     };

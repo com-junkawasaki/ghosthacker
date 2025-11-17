@@ -75,6 +75,10 @@ export function SlashCommandMenu({ editor, query, onSelect }: SlashCommandMenuPr
     const dataKey = commandType.key + 's' as keyof typeof data;
     const nodes = data[dataKey] || [];
 
+    if (!editor) {
+      return;
+    }
+
     const menuItems: MenuItem[] = nodes.map((node: Record<string, unknown>) => ({
       title: (node.name as string) || (node[`${commandType.key}Id`] as string) || 'Untitled',
       command: () => {
@@ -84,49 +88,52 @@ export function SlashCommandMenu({ editor, query, onSelect }: SlashCommandMenuPr
         // ノードを挿入
         editor.chain().focus().deleteRange(range).run();
 
+        const nodeId = String(node.id || '');
+        const nodeName = String(node.name || 'Untitled');
+
         switch (commandType.key) {
           case 'character':
-            editor.chain().insertCharacter({ characterId: node.id, name: node.name as string }).run();
+            editor.chain().insertCharacter({ characterId: nodeId, name: nodeName }).run();
             break;
           case 'ghost':
-            editor.chain().insertGhost({ ghostId: node.id, name: node.name as string }).run();
+            editor.chain().insertGhost({ ghostId: nodeId, name: nodeName }).run();
             break;
           case 'location':
-            editor.chain().insertLocation({ locationId: node.id, name: node.name as string }).run();
+            editor.chain().insertLocation({ locationId: nodeId, name: nodeName }).run();
             break;
           case 'organization':
-            editor.chain().insertOrganization({ organizationId: node.id, name: node.name as string }).run();
+            editor.chain().insertOrganization({ organizationId: nodeId, name: nodeName }).run();
             break;
           case 'company':
-            editor.chain().insertCompany({ companyId: node.id, name: node.name as string }).run();
+            editor.chain().insertCompany({ companyId: nodeId, name: nodeName }).run();
             break;
           case 'technology':
-            editor.chain().insertTechnology({ technologyId: node.id, name: node.name as string }).run();
+            editor.chain().insertTechnology({ technologyId: nodeId, name: nodeName }).run();
             break;
           case 'episode':
-            editor.chain().insertEpisode({ episodeId: node.id, name: node.name as string }).run();
+            editor.chain().insertEpisode({ episodeId: nodeId, name: nodeName }).run();
             break;
           case 'scene':
-            editor.chain().insertScene({ sceneId: node.id, name: node.name as string }).run();
+            editor.chain().insertScene({ sceneId: nodeId, name: nodeName }).run();
             break;
           case 'arc':
-            editor.chain().insertArc({ arcId: node.id, name: node.name as string }).run();
+            editor.chain().insertArc({ arcId: nodeId, name: nodeName }).run();
             break;
           case 'motif':
-            editor.chain().insertMotif({ motifId: node.id, name: node.name as string }).run();
+            editor.chain().insertMotif({ motifId: nodeId, name: nodeName }).run();
             break;
           case 'season':
-            editor.chain().insertSeason({ seasonId: node.id, name: node.name as string }).run();
+            editor.chain().insertSeason({ seasonId: nodeId, name: nodeName }).run();
             break;
           case 'timeline':
-            editor.chain().insertTimeline({ timelineId: node.id, name: node.name as string }).run();
+            editor.chain().insertTimeline({ timelineId: nodeId, name: nodeName }).run();
             break;
           case 'event':
-            editor.chain().insertEvent({ eventId: node.id, name: node.name as string }).run();
+            editor.chain().insertEvent({ eventId: nodeId, name: nodeName }).run();
             break;
         }
 
-        onSelect({ title: node.name as string, command: () => {}, type: commandType.key });
+        onSelect({ title: nodeName, command: () => {}, type: commandType.key });
       },
       type: commandType.key,
     }));

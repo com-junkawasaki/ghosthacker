@@ -11,10 +11,35 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_CHAPTER } from '@/lib/graphql/queries';
 import { UPDATE_CHAPTER } from '@/lib/graphql/mutations';
+import { useEditorSaveStore } from '@/stores/editorSave';
+import { CharacterNode } from './extensions/CharacterNode';
+import { GhostNode } from './extensions/GhostNode';
+import { LocationNode } from './extensions/LocationNode';
+import { OrganizationNode } from './extensions/OrganizationNode';
+import { TechnologyNode } from './extensions/TechnologyNode';
+import {
+  EpisodeNode,
+  SceneNode,
+  ArcNode,
+  MotifNode,
+  SeasonNode,
+  TimelineNode,
+} from './extensions/StoryNode';
+import {
+  SourceRefNode,
+  EventNode,
+  OccupationNode,
+  SettingNode,
+} from './extensions/MetaNode';
+import { MaskExtension } from './extensions/MaskExtension';
+import { SlashCommand } from './extensions/SlashCommand';
+import { NodeSelectorDialog } from './NodeSelectorDialog';
+import { MaskControls } from './MaskControls';
+import '@/styles/editor.css';
 
 interface TiptapEditorProps {
   projectId: string;
@@ -27,8 +52,26 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
     skip: !chapterId,
   });
 
-  const [updateChapter, { error: updateError }] = useMutation(UPDATE_CHAPTER);
+  const { status: saveStatus, error: saveError, setSaving, setSaved, setError } = useEditorSaveStore();
+  const [updateChapter, { loading: isSaving }] = useMutation(UPDATE_CHAPTER, {
+    onCompleted: () => {
+      setSaved();
+      // Reset to idle after 3 seconds
+      if (savedTimeoutRef.current) {
+        clearTimeout(savedTimeoutRef.current);
+      }
+      savedTimeoutRef.current = setTimeout(() => {
+        useEditorSaveStore.getState().reset();
+      }, 3000);
+    },
+    onError: (err) => {
+      console.error('Error saving chapter:', err);
+      setError(err.message || '保存に失敗しました');
+    },
+  });
   const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const savedTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [selectedNodeType, setSelectedNodeType] = useState<string | null>(null);
 
   const editor = useEditor({
     extensions: [
@@ -40,6 +83,61 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
       Link.configure({
         openOnClick: false,
       }),
+      // JSON-LDノード拡張
+      CharacterNode,
+      GhostNode,
+      LocationNode,
+      OrganizationNode,
+      TechnologyNode,
+      EpisodeNode,
+      SceneNode,
+      ArcNode,
+      MotifNode,
+      SeasonNode,
+      TimelineNode,
+      SourceRefNode,
+      EventNode,
+      OccupationNode,
+      SettingNode,
+      // マスク拡張
+      MaskExtension,
+      // スラッシュコマンド拡張
+      SlashCommand.configure({
+        suggestion: {
+          char: '/',
+          allowSpaces: false,
+          allowedPrefixes: [' '],
+          startOfLine: false,
+          decorationTag: 'span',
+          decorationClass: 'slash-command',
+          command: () => {},
+          items: (query: string) => {
+            const nodeTypes = [
+              'character',
+              'ghost',
+              'location',
+              'organization',
+              'company',
+              'technology',
+              'episode',
+              'scene',
+              'arc',
+              'motif',
+              'season',
+              'timeline',
+              'event',
+            ];
+            return nodeTypes
+              .filter((type) => type.toLowerCase().startsWith(query.toLowerCase()))
+              .map((type) => ({
+                title: type.charAt(0).toUpperCase() + type.slice(1),
+                command: ({ editor, range }: { editor: unknown; range: { from: number; to: number } }) => {
+                  setSelectedNodeType(type);
+                },
+              }));
+          },
+        },
+      }),
     ],
     content: data?.chapter?.contentHtml || '',
     immediatelyRender: false,
@@ -50,6 +148,9 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
           clearTimeout(saveTimeoutRef.current);
         }
         
+        // Set status to saving when debounce starts
+        setSaving();
+        
         // Debounce save operation (wait 1 second after last change)
         saveTimeoutRef.current = setTimeout(() => {
           updateChapter({
@@ -59,8 +160,6 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
                 contentHtml: editor.getHTML(),
               },
             },
-          }).catch((err) => {
-            console.error('Error saving chapter:', err);
           });
         }, 1000);
       }
@@ -73,11 +172,29 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
     }
   }, [editor, data, chapterId]);
 
-  // Cleanup timeout on unmount
+  // Manual save function
+  const handleManualSave = () => {
+    if (!editor || !chapterId || isSaving) return;
+    
+    setSaving();
+    updateChapter({
+      variables: {
+        input: {
+          id: chapterId,
+          contentHtml: editor.getHTML(),
+        },
+      },
+    });
+  };
+
+  // Cleanup timeouts on unmount
   useEffect(() => {
     return () => {
       if (saveTimeoutRef.current) {
         clearTimeout(saveTimeoutRef.current);
+      }
+      if (savedTimeoutRef.current) {
+        clearTimeout(savedTimeoutRef.current);
       }
     };
   }, []);
@@ -100,12 +217,8 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
 
   return (
     <div className="editor-container h-full flex flex-col">
-      {updateError && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-2">
-          Error saving: {updateError.message}
-        </div>
-      )}
-      <div className="editor-toolbar flex gap-2 p-2 border-b border-gray-300">
+      <div className="editor-toolbar flex flex-wrap gap-2 p-2 border-b border-gray-300 items-center">
+        {/* 基本フォーマット */}
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
           className={`px-3 py-1 rounded ${
@@ -146,10 +259,207 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
         >
           H2
         </button>
+        
+        {/* JSON-LDノード挿入ボタン */}
+        <div className="border-l border-gray-300 pl-2 ml-2 flex gap-1">
+          <button
+            onClick={() => setSelectedNodeType('character')}
+            className="px-2 py-1 text-xs rounded bg-purple-100 text-purple-800 hover:bg-purple-200"
+          >
+            Character
+          </button>
+          <button
+            onClick={() => setSelectedNodeType('ghost')}
+            className="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800 hover:bg-gray-200"
+          >
+            Ghost
+          </button>
+          <button
+            onClick={() => setSelectedNodeType('location')}
+            className="px-2 py-1 text-xs rounded bg-blue-100 text-blue-800 hover:bg-blue-200"
+          >
+            Location
+          </button>
+          <button
+            onClick={() => setSelectedNodeType('organization')}
+            className="px-2 py-1 text-xs rounded bg-green-100 text-green-800 hover:bg-green-200"
+          >
+            Org
+          </button>
+          <button
+            onClick={() => setSelectedNodeType('technology')}
+            className="px-2 py-1 text-xs rounded bg-yellow-100 text-yellow-800 hover:bg-yellow-200"
+          >
+            Tech
+          </button>
+          <button
+            onClick={() => setSelectedNodeType('episode')}
+            className="px-2 py-1 text-xs rounded bg-indigo-100 text-indigo-800 hover:bg-indigo-200"
+          >
+            Episode
+          </button>
+          <button
+            onClick={() => setSelectedNodeType('scene')}
+            className="px-2 py-1 text-xs rounded bg-pink-100 text-pink-800 hover:bg-pink-200"
+          >
+            Scene
+          </button>
+          <button
+            onClick={() => setSelectedNodeType('arc')}
+            className="px-2 py-1 text-xs rounded bg-orange-100 text-orange-800 hover:bg-orange-200"
+          >
+            Arc
+          </button>
+          <button
+            onClick={() => setSelectedNodeType('motif')}
+            className="px-2 py-1 text-xs rounded bg-teal-100 text-teal-800 hover:bg-teal-200"
+          >
+            Motif
+          </button>
+        </div>
+
+        {/* 保存ボタンと状態表示 */}
+        <div className="ml-auto flex items-center gap-2">
+          {/* 保存状態インジケーター */}
+          {saveStatus === 'saving' && (
+            <div className="flex items-center gap-1 text-sm text-gray-600">
+              <svg
+                className="animate-spin h-4 w-4 text-blue-500"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              <span>保存中...</span>
+            </div>
+          )}
+          {saveStatus === 'saved' && (
+            <div className="flex items-center gap-1 text-sm text-green-600">
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              <span>保存済み</span>
+            </div>
+          )}
+          {saveStatus === 'error' && (
+            <div className="flex items-center gap-1 text-sm text-red-600">
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+              <span>{saveError || '保存エラー'}</span>
+            </div>
+          )}
+          
+          {/* 手動保存ボタン */}
+          <button
+            onClick={handleManualSave}
+            disabled={isSaving || !chapterId}
+            className={`px-4 py-1 rounded text-sm font-medium ${
+              isSaving || !chapterId
+                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                : 'bg-blue-500 text-white hover:bg-blue-600'
+            }`}
+          >
+            保存
+          </button>
+        </div>
       </div>
-      <div className="editor-content flex-1 p-4 overflow-y-auto">
+      <MaskControls />
+      <div className="editor-content flex-1 p-4 overflow-y-auto relative">
         <EditorContent editor={editor} />
       </div>
+      
+      {/* ノード選択ダイアログ */}
+      {selectedNodeType && (
+        <NodeSelectorDialog
+          nodeType={selectedNodeType}
+          isOpen={true}
+          onClose={() => setSelectedNodeType(null)}
+          onSelect={(node) => {
+            if (!editor) return;
+            
+            const nodeId = node.id as string;
+            const nodeName = (node.name as string) || 'Untitled';
+            
+            switch (selectedNodeType) {
+              case 'character':
+                editor.chain().focus().insertCharacter({ characterId: nodeId, name: nodeName }).run();
+                break;
+              case 'ghost':
+                editor.chain().focus().insertGhost({ ghostId: nodeId, name: nodeName }).run();
+                break;
+              case 'location':
+                editor.chain().focus().insertLocation({ locationId: nodeId, name: nodeName }).run();
+                break;
+              case 'organization':
+                editor.chain().focus().insertOrganization({ organizationId: nodeId, name: nodeName }).run();
+                break;
+              case 'company':
+                editor.chain().focus().insertCompany({ companyId: nodeId, name: nodeName }).run();
+                break;
+              case 'technology':
+                editor.chain().focus().insertTechnology({ technologyId: nodeId, name: nodeName }).run();
+                break;
+              case 'episode':
+                editor.chain().focus().insertEpisode({ episodeId: nodeId, name: nodeName }).run();
+                break;
+              case 'scene':
+                editor.chain().focus().insertScene({ sceneId: nodeId, name: nodeName }).run();
+                break;
+              case 'arc':
+                editor.chain().focus().insertArc({ arcId: nodeId, name: nodeName }).run();
+                break;
+              case 'motif':
+                editor.chain().focus().insertMotif({ motifId: nodeId, name: nodeName }).run();
+                break;
+              case 'season':
+                editor.chain().focus().insertSeason({ seasonId: nodeId, name: nodeName }).run();
+                break;
+              case 'timeline':
+                editor.chain().focus().insertTimeline({ timelineId: nodeId, name: nodeName }).run();
+                break;
+              case 'event':
+                editor.chain().focus().insertEvent({ eventId: nodeId, name: nodeName }).run();
+                break;
+            }
+            
+            setSelectedNodeType(null);
+          }}
+        />
+      )}
     </div>
   );
 }

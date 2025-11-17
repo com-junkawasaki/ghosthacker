@@ -5,7 +5,7 @@
  * 
  * メタノード拡張（SourceRef/Event/Occupation/Setting）
  */
-import { Node, mergeAttributes } from '@tiptap/core';
+import { Node, mergeAttributes, type CommandProps } from '@tiptap/core';
 import {
   SourceRefNode as SourceRefNodeType,
   EventNode as EventNodeType,
@@ -63,8 +63,8 @@ const createMetaNode = (
       const baseAttributes: Record<string, unknown> = {
         [`${name}Id`]: {
           default: null,
-          parseHTML: (element) => element.getAttribute(`data-${name}-id`),
-          renderHTML: (attributes) => {
+          parseHTML: (element: HTMLElement) => element.getAttribute(`data-${name}-id`),
+          renderHTML: (attributes: Record<string, unknown>) => {
             const id = attributes[`${name}Id`];
             if (!id) {
               return {};
@@ -76,8 +76,8 @@ const createMetaNode = (
         },
         name: {
           default: null,
-          parseHTML: (element) => element.getAttribute('data-name'),
-          renderHTML: (attributes) => {
+          parseHTML: (element: HTMLElement) => element.getAttribute('data-name'),
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.name) {
               return {};
             }
@@ -88,8 +88,8 @@ const createMetaNode = (
         },
         description: {
           default: null,
-          parseHTML: (element) => element.getAttribute('data-description'),
-          renderHTML: (attributes) => {
+          parseHTML: (element: HTMLElement) => element.getAttribute('data-description'),
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.description) {
               return {};
             }
@@ -104,8 +104,8 @@ const createMetaNode = (
       if (name === 'sourceRef') {
         baseAttributes.path = {
           default: null,
-          parseHTML: (element) => element.getAttribute('data-path'),
-          renderHTML: (attributes) => {
+          parseHTML: (element: HTMLElement) => element.getAttribute('data-path'),
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.path) {
               return {};
             }
@@ -116,8 +116,8 @@ const createMetaNode = (
         };
         baseAttributes.lang = {
           default: null,
-          parseHTML: (element) => element.getAttribute('data-lang'),
-          renderHTML: (attributes) => {
+          parseHTML: (element: HTMLElement) => element.getAttribute('data-lang'),
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.lang) {
               return {};
             }
@@ -128,8 +128,8 @@ const createMetaNode = (
         };
         baseAttributes.selectionHint = {
           default: null,
-          parseHTML: (element) => element.getAttribute('data-selection-hint'),
-          renderHTML: (attributes) => {
+          parseHTML: (element: HTMLElement) => element.getAttribute('data-selection-hint'),
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.selectionHint) {
               return {};
             }
@@ -144,8 +144,8 @@ const createMetaNode = (
       if (name === 'event') {
         baseAttributes.startDate = {
           default: null,
-          parseHTML: (element) => element.getAttribute('data-start-date'),
-          renderHTML: (attributes) => {
+          parseHTML: (element: HTMLElement) => element.getAttribute('data-start-date'),
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.startDate) {
               return {};
             }
@@ -156,8 +156,8 @@ const createMetaNode = (
         };
         baseAttributes.endDate = {
           default: null,
-          parseHTML: (element) => element.getAttribute('data-end-date'),
-          renderHTML: (attributes) => {
+          parseHTML: (element: HTMLElement) => element.getAttribute('data-end-date'),
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.endDate) {
               return {};
             }
@@ -168,8 +168,8 @@ const createMetaNode = (
         };
         baseAttributes.temporalCoverage = {
           default: null,
-          parseHTML: (element) => element.getAttribute('data-temporal-coverage'),
-          renderHTML: (attributes) => {
+          parseHTML: (element: HTMLElement) => element.getAttribute('data-temporal-coverage'),
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.temporalCoverage) {
               return {};
             }
@@ -184,11 +184,11 @@ const createMetaNode = (
       if (name === 'setting') {
         baseAttributes.ghostType = {
           default: null,
-          parseHTML: (element) => {
+          parseHTML: (element: HTMLElement) => {
             const ghostType = element.getAttribute('data-ghost-type');
             return ghostType ? JSON.parse(ghostType) : null;
           },
-          renderHTML: (attributes) => {
+          renderHTML: (attributes: Record<string, unknown>) => {
             if (!attributes.ghostType) {
               return {};
             }
@@ -225,7 +225,7 @@ const createMetaNode = (
       return {
         [`insert${name.charAt(0).toUpperCase() + name.slice(1)}`]:
           (attributes: Record<string, unknown>) =>
-          ({ commands }) => {
+          ({ commands }: CommandProps) => {
             return commands.insertContent({
               type: this.name,
               attrs: attributes,
@@ -233,7 +233,7 @@ const createMetaNode = (
           },
         [`update${name.charAt(0).toUpperCase() + name.slice(1)}`]:
           (attributes: Record<string, unknown>) =>
-          ({ commands }) => {
+          ({ commands }: CommandProps) => {
             return commands.updateAttributes(this.name, attributes);
           },
       };

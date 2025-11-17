@@ -37,10 +37,10 @@
   "id": "https://gftd.ai/project/epub-editor",
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
-  "description": "Tiptap editor based EPUB editing tool with AI Generator integration. Frontend: Next.js 14 App Router + Tiptap, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "1.2.0",
+  "description": "Tiptap editor based EPUB editing tool with AI Generator integration and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
+  "version": "1.3.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-11-17T08:00:00Z",
+  "updatedAt": "2025-11-17T07:42:42Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -64,7 +64,10 @@
     {"@id": "https://gftd.ai/activity/manage-metadata"},
     {"@id": "https://gftd.ai/activity/manage-media"},
     {"@id": "https://gftd.ai/activity/generate-text"},
-    {"@id": "https://gftd.ai/activity/export-epub"}
+    {"@id": "https://gftd.ai/activity/export-epub"},
+    {"@id": "https://gftd.ai/activity/insert-jsonld-nodes"},
+    {"@id": "https://gftd.ai/activity/mask-content"},
+    {"@id": "https://gftd.ai/activity/slash-commands"}
   ],
   
   "hasPerformer": [
@@ -112,6 +115,18 @@
       "type": "cpm:Resource",
       "name": "Project List",
       "description": "List of all EPUB projects with metadata"
+    },
+    {
+      "@id": "https://gftd.ai/resource/jsonld-nodes",
+      "type": "cpm:Resource",
+      "name": "JSON-LD Nodes",
+      "description": "Semantic story elements (Character, Ghost, Location, Organization, Technology, Episode, Scene, Arc, Motif, Season, Timeline, Event, SourceRef, Occupation, Setting)"
+    },
+    {
+      "@id": "https://gftd.ai/resource/mask-types",
+      "type": "cpm:Resource",
+      "name": "Mask Types",
+      "description": "Content masking types (emotion, theme, context, notes, relationship, virtue, anchoredTo, emitsRepelsAvoids, phase, role)"
     }
   ],
   
@@ -305,6 +320,34 @@
       "description": "Fixed TypeScript type errors related to exactOptionalPropertyTypes and missing type definitions.",
       "status": "resolved",
       "resolution": "Added @types/react and @types/react-dom packages. Updated optional property types to explicitly include undefined (string | undefined). Fixed GraphQL client exports."
+    },
+    {
+      "@id": "https://gftd.ai/issue/jsonld-nodes-implementation",
+      "name": "JSON-LD Nodes Implementation",
+      "description": "Implemented JSON-LD semantic nodes for story elements (Character, Ghost, Location, Organization, Technology, Episode, Scene, Arc, Motif, Season, Timeline, Event, SourceRef, Occupation, Setting) as Tiptap custom nodes.",
+      "status": "resolved",
+      "resolution": "Created custom Tiptap node extensions for all JSON-LD node types. Added GraphQL queries to fetch node data. Implemented node insertion via toolbar buttons and slash commands. Added NodeSelectorDialog component for node selection."
+    },
+    {
+      "@id": "https://gftd.ai/issue/mask-functionality",
+      "name": "Mask Functionality Implementation",
+      "description": "Implemented content masking functionality with 10 mask types (emotion, theme, context, notes, relationship, virtue, anchoredTo, emitsRepelsAvoids, phase, role).",
+      "status": "resolved",
+      "resolution": "Created MaskExtension Tiptap extension with individual mask attributes for each type. Added MaskControls component for UI control. Implemented toggleMask, setMask, and toggleAllMasks commands. Added CSS styling for masked content."
+    },
+    {
+      "@id": "https://gftd.ai/issue/slash-commands",
+      "name": "Slash Commands Implementation",
+      "description": "Implemented slash command interface for inserting JSON-LD nodes via /character, /location, etc.",
+      "status": "resolved",
+      "resolution": "Created SlashCommand Tiptap extension with suggestion mechanism. Added SlashCommandMenu component for displaying suggestions. Integrated with node insertion commands."
+    },
+    {
+      "@id": "https://gftd.ai/issue/tiptap-type-errors",
+      "name": "Tiptap Type Errors",
+      "description": "Fixed TypeScript type errors in Tiptap extensions (parseHTML, renderHTML, addCommands) and missing @tiptap/core/@tiptap/pm dependencies.",
+      "status": "resolved",
+      "resolution": "Added @tiptap/core and @tiptap/pm packages (v2.27.1). Fixed all type annotations in extension files. Updated CommandProps usage. Fixed SlashCommand and MaskExtension type errors."
     }
   ]
 }
