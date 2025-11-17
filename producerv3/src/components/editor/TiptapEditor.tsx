@@ -419,6 +419,20 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
     };
   }, []);
 
+  // Handle Ctrl+A / Cmd+A to select only editor content
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    // Ctrl+A (Windows/Linux) または Cmd+A (Mac) を検出
+    if ((event.ctrlKey || event.metaKey) && event.key === 'a') {
+      // エディタがフォーカスされている場合のみ処理
+      if (editor && editor.isFocused) {
+        event.preventDefault();
+        event.stopPropagation();
+        // エディタ内のコンテンツのみを選択
+        editor.commands.selectAll();
+      }
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -724,7 +738,10 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
         </div>
       </div>
       <div className="editor-content-wrapper flex-1 flex overflow-hidden">
-        <div className="editor-content flex-1 p-4 overflow-y-auto relative">
+        <div 
+          className="editor-content flex-1 p-4 overflow-y-auto relative"
+          onKeyDown={handleKeyDown}
+        >
           <EditorContent editor={editor} />
           <FloatingToolbar 
             editor={editor} 

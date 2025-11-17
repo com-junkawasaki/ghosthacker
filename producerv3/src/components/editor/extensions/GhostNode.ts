@@ -7,6 +7,7 @@
  */
 import { Node, mergeAttributes, type CommandProps } from '@tiptap/core';
 import { GhostNode as GhostNodeType } from '@/types/jsonld';
+import { getNodeLabelClasses, getNodeTypeDisplayName } from '@/lib/editor/nodeColors';
 
 export interface GhostNodeOptions {
   HTMLAttributes: Record<string, unknown>;
@@ -136,13 +137,22 @@ export const GhostNode = Node.create<GhostNodeOptions>({
   },
 
   renderHTML({ HTMLAttributes }) {
+    const nodeType = 'ghost';
+    const name = (HTMLAttributes.name as string) || (HTMLAttributes.ghostId as string) || 'Ghost';
+    const labelClasses = getNodeLabelClasses(nodeType);
+    const labelText = getNodeTypeDisplayName(nodeType);
+    
     return [
       'span',
       mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
-        'data-type': 'ghost',
-        class: 'ghost-node inline-flex items-center px-2 py-1 rounded bg-gray-100 text-gray-800 cursor-pointer hover:bg-gray-200',
+        'data-type': nodeType,
+        class: `${nodeType}-node inline-flex items-center gap-1 px-2 py-1 rounded cursor-pointer hover:opacity-80`,
+        style: 'background-color: rgb(249 250 251); color: rgb(31 41 55);',
       }),
-      HTMLAttributes.name || HTMLAttributes.ghostId || 'Ghost',
+      [
+        ['span', { class: labelClasses }, labelText],
+        name,
+      ],
     ];
   },
 

@@ -7,6 +7,7 @@
  */
 import { Node, mergeAttributes, type CommandProps } from '@tiptap/core';
 import { OrganizationNode as OrganizationNodeType, CompanyNode } from '@/types/jsonld';
+import { getNodeClasses, getNodeLabelClasses, getNodeTypeDisplayName } from '@/lib/editor/nodeColors';
 
 export interface OrganizationNodeOptions {
   HTMLAttributes: Record<string, unknown>;
@@ -162,15 +163,22 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
   renderHTML({ HTMLAttributes, node }: { HTMLAttributes: Record<string, unknown>; node?: unknown }) {
     const nodeType = (HTMLAttributes['data-type'] as string) || 'organization';
     const name = (HTMLAttributes.name as string) || (HTMLAttributes.organizationId as string) || 'Organization';
+    const nodeClasses = getNodeClasses(nodeType);
+    const labelClasses = getNodeLabelClasses(nodeType);
+    const labelText = getNodeTypeDisplayName(nodeType);
+    
     return [
       'div',
       mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
         'data-type': nodeType,
-        class: `${nodeType}-node border border-green-200 rounded-lg p-4 my-4 bg-green-50`,
+        class: nodeClasses,
       }),
       [
-        ['div', { class: `${nodeType}-header font-semibold text-green-800 mb-2` }, name],
-        ['div', { class: `${nodeType}-content` }, 0], // 0 = 子ノードをここに挿入
+        ['div', { class: 'flex items-center gap-2 mb-2' }, [
+          ['span', { class: labelClasses }, labelText],
+          ['span', { class: 'font-semibold flex-1' }, name],
+        ]],
+        ['div', { class: 'node-content' }, 0], // 0 = 子ノードをここに挿入
       ],
     ];
   },

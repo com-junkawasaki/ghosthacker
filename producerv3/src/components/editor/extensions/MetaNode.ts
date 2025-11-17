@@ -12,6 +12,7 @@ import {
   OccupationNode as OccupationNodeType,
   SettingNode as SettingNodeType,
 } from '@/types/jsonld';
+import { getNodeLabelClasses, getNodeTypeDisplayName } from '@/lib/editor/nodeColors';
 
 export interface MetaNodeOptions {
   HTMLAttributes: Record<string, unknown>;
@@ -211,13 +212,23 @@ const createMetaNode = (
     },
 
     renderHTML({ HTMLAttributes }) {
+      const displayName = HTMLAttributes.name || HTMLAttributes[`${name}Id`] || name.charAt(0).toUpperCase() + name.slice(1);
+      // nodeTypeをnodeColorsのマッピングに合わせる（'source-ref' -> 'sourceRef'）
+      const colorNodeType = nodeType === 'source-ref' ? 'sourceRef' : nodeType;
+      const labelClasses = getNodeLabelClasses(colorNodeType);
+      const labelText = getNodeTypeDisplayName(colorNodeType);
+      
       return [
         'span',
         mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
           'data-type': nodeType,
-          class: `${nodeType}-node inline-flex items-center px-2 py-1 rounded ${bgColor} ${textColor} cursor-pointer hover:opacity-80`,
+          class: `${nodeType}-node inline-flex items-center gap-1 px-2 py-1 rounded cursor-pointer hover:opacity-80`,
+          style: `background-color: ${bgColor.includes('bg-') ? 'var(--color-' + bgColor.replace('bg-', '').replace('-', '-') + ')' : bgColor}; color: ${textColor.includes('text-') ? 'var(--color-' + textColor.replace('text-', '').replace('-', '-') + ')' : textColor};`,
         }),
-        HTMLAttributes.name || HTMLAttributes[`${name}Id`] || name.charAt(0).toUpperCase() + name.slice(1),
+        [
+          ['span', { class: labelClasses }, labelText],
+          displayName,
+        ],
       ];
     },
 

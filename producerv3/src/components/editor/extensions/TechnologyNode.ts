@@ -7,6 +7,7 @@
  */
 import { Node, mergeAttributes, type CommandProps } from '@tiptap/core';
 import { TechnologyNode as TechnologyNodeType } from '@/types/jsonld';
+import { getNodeLabelClasses, getNodeTypeDisplayName } from '@/lib/editor/nodeColors';
 
 export interface TechnologyNodeOptions {
   HTMLAttributes: Record<string, unknown>;
@@ -141,13 +142,22 @@ export const TechnologyNode = Node.create<TechnologyNodeOptions>({
   },
 
   renderHTML({ HTMLAttributes }) {
+    const nodeType = 'technology';
+    const name = (HTMLAttributes.name as string) || (HTMLAttributes.technologyId as string) || 'Technology';
+    const labelClasses = getNodeLabelClasses(nodeType);
+    const labelText = getNodeTypeDisplayName(nodeType);
+    
     return [
       'span',
       mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
-        'data-type': 'technology',
-        class: 'technology-node inline-flex items-center px-2 py-1 rounded bg-yellow-100 text-yellow-800 cursor-pointer hover:bg-yellow-200',
+        'data-type': nodeType,
+        class: `${nodeType}-node inline-flex items-center gap-1 px-2 py-1 rounded cursor-pointer hover:opacity-80`,
+        style: 'background-color: rgb(255 237 213); color: rgb(154 52 18);',
       }),
-      HTMLAttributes.name || HTMLAttributes.technologyId || 'Technology',
+      [
+        ['span', { class: labelClasses }, labelText],
+        name,
+      ],
     ];
   },
 

@@ -16,6 +16,7 @@ import {
   POVNode as POVNodeType,
   BeatNode as BeatNodeType,
 } from '@/types/jsonld';
+import { getNodeClasses, getNodeLabelClasses, getNodeTypeDisplayName } from '@/lib/editor/nodeColors';
 
 export interface StoryNodeOptions {
   HTMLAttributes: Record<string, unknown>;
@@ -345,17 +346,23 @@ const createStoryNode = (
 
     renderHTML({ HTMLAttributes, node }) {
       const displayName = HTMLAttributes.name || HTMLAttributes[`${name}Id`] || name.charAt(0).toUpperCase() + name.slice(1);
+      const nodeClasses = getNodeClasses(nodeType);
+      const labelClasses = getNodeLabelClasses(nodeType);
+      const labelText = getNodeTypeDisplayName(nodeType);
       
       if (isBlockContainer) {
         return [
           'div',
           mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
             'data-type': nodeType,
-            class: `${nodeType}-node border rounded-lg p-4 my-4 ${bgColor} ${textColor}`,
+            class: nodeClasses,
           }),
           [
-            ['div', { class: `${nodeType}-header font-semibold mb-2` }, displayName],
-            ['div', { class: `${nodeType}-content` }, 0], // 0 = 子ノードをここに挿入
+            ['div', { class: 'flex items-center gap-2 mb-2' }, [
+              ['span', { class: labelClasses }, labelText],
+              ['span', { class: 'font-semibold flex-1' }, displayName],
+            ]],
+            ['div', { class: 'node-content' }, 0], // 0 = 子ノードをここに挿入
           ],
         ];
       }
@@ -364,9 +371,13 @@ const createStoryNode = (
         'span',
         mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
           'data-type': nodeType,
-          class: `${nodeType}-node inline-flex items-center px-2 py-1 rounded ${bgColor} ${textColor} cursor-pointer hover:opacity-80`,
+          class: `${nodeType}-node inline-flex items-center gap-1 px-2 py-1 rounded cursor-pointer hover:opacity-80`,
+          style: `background-color: ${bgColor.includes('bg-') ? 'var(--color-' + bgColor.replace('bg-', '').replace('-', '-') + ')' : bgColor}; color: ${textColor.includes('text-') ? 'var(--color-' + textColor.replace('text-', '').replace('-', '-') + ')' : textColor};`,
         }),
-        displayName,
+        [
+          ['span', { class: labelClasses }, labelText],
+          displayName,
+        ],
       ];
     },
 

@@ -7,6 +7,7 @@
  */
 import { Node, mergeAttributes, type CommandProps } from '@tiptap/core';
 import { LocationNode as LocationNodeType } from '@/types/jsonld';
+import { getNodeClasses, getNodeLabelClasses, getNodeTypeDisplayName } from '@/lib/editor/nodeColors';
 
 export interface LocationNodeOptions {
   HTMLAttributes: Record<string, unknown>;
@@ -138,15 +139,23 @@ export const LocationNode = Node.create<LocationNodeOptions>({
 
   renderHTML({ HTMLAttributes, node }: { HTMLAttributes: Record<string, unknown>; node?: unknown }) {
     const name = (HTMLAttributes.name as string) || (HTMLAttributes.locationId as string) || 'Location';
+    const nodeType = 'location';
+    const nodeClasses = getNodeClasses(nodeType);
+    const labelClasses = getNodeLabelClasses(nodeType);
+    const labelText = getNodeTypeDisplayName(nodeType);
+    
     return [
       'div',
       mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
-        'data-type': 'location',
-        class: 'location-node border border-blue-200 rounded-lg p-4 my-4 bg-blue-50',
+        'data-type': nodeType,
+        class: nodeClasses,
       }),
       [
-        ['div', { class: 'location-header font-semibold text-blue-800 mb-2' }, name],
-        ['div', { class: 'location-content' }, 0], // 0 = 子ノードをここに挿入
+        ['div', { class: 'flex items-center gap-2 mb-2' }, [
+          ['span', { class: labelClasses }, labelText],
+          ['span', { class: 'font-semibold flex-1' }, name],
+        ]],
+        ['div', { class: 'node-content' }, 0], // 0 = 子ノードをここに挿入
       ],
     ];
   },

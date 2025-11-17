@@ -7,6 +7,7 @@
  */
 import { Node, mergeAttributes, type CommandProps } from '@tiptap/core';
 import { ChapterLinkNode as ChapterLinkNodeType } from '@/types/jsonld';
+import { getNodeLabelClasses, getNodeTypeDisplayName } from '@/lib/editor/nodeColors';
 
 export interface ChapterLinkNodeOptions {
   HTMLAttributes: Record<string, unknown>;
@@ -114,14 +115,21 @@ export const ChapterLinkNode = Node.create<ChapterLinkNodeOptions>({
     const displayText = order !== null && order !== undefined 
       ? `Chapter ${order}: ${title}`
       : title;
+    const nodeType = 'chapterLink';
+    const labelClasses = getNodeLabelClasses(nodeType);
+    const labelText = getNodeTypeDisplayName(nodeType);
 
     return [
       'span',
       mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
-        'data-type': 'chapterLink',
-        class: 'chapter-link-node inline-flex items-center px-2 py-1 rounded bg-blue-100 text-blue-800 cursor-pointer hover:bg-blue-200',
+        'data-type': nodeType,
+        class: `${nodeType}-node inline-flex items-center gap-1 px-2 py-1 rounded cursor-pointer hover:opacity-80`,
+        style: 'background-color: rgb(224 242 254); color: rgb(30 64 175);',
       }),
-      displayText,
+      [
+        ['span', { class: labelClasses }, labelText],
+        displayText,
+      ],
     ];
   },
 
