@@ -400,54 +400,62 @@ export function reclassifyNode(
       }
     });
     
-    // Type-safe dynamic access to TipTap chain commands
-    // TipTap chain API returns an object with dynamically added methods from extensions
-    type ChainCommand = (args: Record<string, unknown>) => { run: () => void };
-    const chainFocus = editor.chain().focus() as Record<string, unknown>;
-    const insertCommand = chainFocus[command];
+    // Create a safe attributes object with only primitives
+    // Validate one more time that no arrays are present
+    const safeAttributes: Record<string, string | number | boolean | null> = {
+      name: nodeName,
+    };
     
-    // Type guard: check if insertCommand is a function
-    if (typeof insertCommand === 'function') {
-      try {
-        // Create a safe attributes object with only primitives
-        // Validate one more time that no arrays are present
-        const safeAttributes: Record<string, string | number | boolean | null> = {
-          name: nodeName,
-        };
-        
-        // Add finalAttributes, ensuring no arrays slip through
-        Object.entries(finalAttributes).forEach(([key, value]) => {
-          if (Array.isArray(value)) {
-            console.error(`Array detected in finalAttributes for ${key}:`, value);
-            return; // Skip arrays
-          }
-          if (value === null || typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-            safeAttributes[key] = value;
-          }
-        });
-        
-        // Execute delete and insert in sequence
-        // First delete the old node, then insert the new one
-        editor.chain().focus().setTextSelection({ from, to }).deleteSelection().run();
-        // Then insert the new node
-        (insertCommand as ChainCommand)(safeAttributes).run();
-      } catch (insertError) {
-        console.error('Error inserting node:', insertError, 'Attributes:', finalAttributes);
-        // Fallback: try with minimal attributes
-        // Create a new chain for fallback since the previous one was consumed
-        try {
-          editor.chain().focus().setTextSelection({ from, to }).deleteSelection();
-          (insertCommand as ChainCommand)({
-            name: nodeName,
-          }).run();
-        } catch (fallbackError) {
-          console.error('Fallback insert also failed:', fallbackError);
-          throw fallbackError;
-        }
+    // Add finalAttributes, ensuring no arrays slip through
+    Object.entries(finalAttributes).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        console.error(`Array detected in finalAttributes for ${key}:`, value);
+        return; // Skip arrays
       }
-    } else {
-      // If insert command doesn't exist, just delete the selection
-      editor.chain().focus().setTextSelection({ from, to }).deleteSelection().run();
+      if (value === null || typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+        safeAttributes[key] = value;
+      }
+    });
+    
+    // Use insertContent to insert the node atomically in the same transaction
+    // This avoids transaction mismatch errors by ensuring delete and insert happen in one transaction
+    try {
+      const { schema } = editor.state;
+      const nodeType = schema.nodes[newType];
+      
+      if (!nodeType) {
+        console.error(`Node type "${newType}" not found in schema`);
+        return false;
+      }
+      
+      // Create the node content object for insertContent
+      // Tiptap's insertContent will handle text content automatically
+      const nodeContentObj: { type: string; attrs: Record<string, string | number | boolean | null> } = {
+        type: newType,
+        attrs: safeAttributes,
+      };
+      
+      // Execute delete and insert in the same chain to ensure atomic transaction
+      // This ensures the transaction is applied atomically with consistent state
+      editor.chain().focus().setTextSelection({ from, to }).deleteSelection().insertContent(nodeContentObj).run();
+      
+    } catch (insertError) {
+      console.error('Error inserting node:', insertError, 'Attributes:', safeAttributes);
+      // Fallback: try with minimal attributes
+      try {
+        const { schema } = editor.state;
+        const nodeType = schema.nodes[newType];
+        if (nodeType) {
+          const minimalNode = nodeType.create({ name: nodeName });
+          editor.chain().focus().setTextSelection({ from, to }).deleteSelection().insertContent(minimalNode).run();
+        } else {
+          console.error(`Node type "${newType}" not found in schema`);
+          return false;
+        }
+      } catch (fallbackError) {
+        console.error('Fallback insert also failed:', fallbackError);
+        return false;
+      }
     }
     
     return true;

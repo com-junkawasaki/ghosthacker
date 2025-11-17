@@ -8,6 +8,7 @@
 import { Node, mergeAttributes, type CommandProps } from '@tiptap/core';
 import { GhostNode as GhostNodeType } from '@/types/jsonld';
 import { getNodeLabelClasses, getNodeTypeDisplayName } from '@/lib/editor/nodeColors';
+import { sanitizeNodeAttributes } from '@/lib/editor/sanitizeAttributes';
 
 export interface GhostNodeOptions {
   HTMLAttributes: Record<string, unknown>;

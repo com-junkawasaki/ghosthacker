@@ -184,38 +184,17 @@ export const LocationNode = Node.create<LocationNodeOptions>({
     return {
       insertLocation:
         (attributes: Partial<LocationNodeType>) =>
-        ({ state, dispatch }: CommandProps) => {
-          try {
-            // ts-patternを使用して型安全にattributesをサニタイズ
-            // ビルド時に型チェック可能で、配列やオブジェクトを適切に変換
-            const sanitizedAttributes = sanitizeNodeAttributes(attributes);
-            
-            const { schema } = state;
-            const paragraphNodeType = schema.nodes.paragraph;
-            if (!paragraphNodeType) {
-              console.error('Paragraph node type not found in schema');
-              return false;
-            }
-            const paragraphNode = paragraphNodeType.create();
-            const locationNodeType = schema.nodes[this.name];
-            if (!locationNodeType) {
-              console.error(`Location node type "${this.name}" not found in schema`);
-              return false;
-            }
-            // サニタイズされたattributesを使用（型安全）
-            const locationNode = locationNodeType.create(sanitizedAttributes, [paragraphNode]);
-            
-            if (dispatch) {
-              const { selection } = state;
-              const tr = state.tr.insert(selection.from, locationNode);
-              dispatch(tr);
-            }
-            
-            return true;
-          } catch (error) {
-            console.error('Error inserting location node:', error, 'Attributes:', attributes);
-            return false;
-          }
+        ({ commands }: CommandProps) => {
+          // ts-patternを使用して型安全にattributesをサニタイズ
+          // ビルド時に型チェック可能で、配列やオブジェクトを適切に変換
+          const sanitizedAttributes = sanitizeNodeAttributes(attributes);
+          
+          // Use insertContent to avoid text node creation errors
+          // Tiptap's insertContent handles node creation more safely
+          return commands.insertContent({
+            type: this.name,
+            attrs: sanitizedAttributes,
+          });
         },
       updateLocation:
         (attributes: Partial<LocationNodeType>) =>

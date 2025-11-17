@@ -218,39 +218,17 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
     return {
       insertCharacter:
         (attributes: Partial<CharacterNodeType>) =>
-        ({ state, dispatch }: CommandProps) => {
-          try {
-            // ts-patternを使用して型安全にattributesをサニタイズ
-            // ビルド時に型チェック可能で、配列やオブジェクトを適切に変換
-            const sanitizedAttributes = sanitizeNodeAttributes(attributes);
-            
-            const { schema } = state;
-            const paragraphNodeType = schema.nodes.paragraph;
-            if (!paragraphNodeType) {
-              console.error('Paragraph node type not found in schema');
-              return false;
-            }
-            const paragraphNode = paragraphNodeType.create();
-            const characterNodeType = schema.nodes[this.name];
-            if (!characterNodeType) {
-              console.error(`Character node type "${this.name}" not found in schema`);
-              return false;
-            }
-            // サニタイズされたattributesを使用（型安全）
-            const characterNode = characterNodeType.create(sanitizedAttributes, [paragraphNode]);
-            
-            if (dispatch) {
-              const { selection } = state;
-              const tr = state.tr.insert(selection.from, characterNode);
-              dispatch(tr);
-            }
-            
-            return true;
-          } catch (error) {
-            console.error('Error inserting character node:', error, 'Attributes:', attributes);
-            // Return false to indicate failure, but don't throw to prevent editor crash
-            return false;
-          }
+        ({ commands }: CommandProps) => {
+          // ts-patternを使用して型安全にattributesをサニタイズ
+          // ビルド時に型チェック可能で、配列やオブジェクトを適切に変換
+          const sanitizedAttributes = sanitizeNodeAttributes(attributes);
+          
+          // Use insertContent to avoid text node creation errors
+          // Tiptap's insertContent handles node creation more safely
+          return commands.insertContent({
+            type: this.name,
+            attrs: sanitizedAttributes,
+          });
         },
       updateCharacter:
         (attributes: Partial<CharacterNodeType>) =>

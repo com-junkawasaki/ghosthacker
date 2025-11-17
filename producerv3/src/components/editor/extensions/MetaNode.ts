@@ -13,6 +13,7 @@ import {
   SettingNode as SettingNodeType,
 } from '@/types/jsonld';
 import { getNodeLabelClasses, getNodeTypeDisplayName } from '@/lib/editor/nodeColors';
+import { sanitizeNodeAttributes } from '@/lib/editor/sanitizeAttributes';
 
 export interface MetaNodeOptions {
   HTMLAttributes: Record<string, unknown>;
@@ -237,9 +238,13 @@ const createMetaNode = (
         [`insert${name.charAt(0).toUpperCase() + name.slice(1)}`]:
           (attributes: Record<string, unknown>) =>
           ({ commands }: CommandProps) => {
+            // ts-patternを使用して型安全にattributesをサニタイズ
+            // ビルド時に型チェック可能で、配列やオブジェクトを適切に変換
+            const sanitizedAttributes = sanitizeNodeAttributes(attributes);
+            
             return commands.insertContent({
               type: this.name,
-              attrs: attributes,
+              attrs: sanitizedAttributes,
             });
           },
         [`update${name.charAt(0).toUpperCase() + name.slice(1)}`]:

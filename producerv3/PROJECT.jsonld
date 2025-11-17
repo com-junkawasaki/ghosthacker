@@ -38,9 +38,9 @@
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
   "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation with structured context extraction (hierarchical hybrid approach: Node + Mark + Attribute), AI node classification and batch reclassification (single and multiple nodes), node content analysis (sub-node detection, mask recommendations, emotion analysis), emotion analysis (Hume AI) with current node analysis, sidebar visualization and benchmark comparison, and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "2.9.0",
+  "version": "2.10.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-01-27T23:00:00Z",
+  "updatedAt": "2025-01-28T00:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -101,7 +101,8 @@
     {"@id": "https://gftd.ai/activity/update-node-type"},
     {"@id": "https://gftd.ai/activity/manage-mask-context"},
     {"@id": "https://gftd.ai/activity/extract-structured-context"},
-    {"@id": "https://gftd.ai/activity/generate-context-jsonld"}
+    {"@id": "https://gftd.ai/activity/generate-context-jsonld"},
+    {"@id": "https://gftd.ai/activity/sanitize-attributes"}
   ],
   
   "hasPerformer": [
@@ -725,6 +726,14 @@
       "status": "resolved",
       "priority": "high",
       "resolution": "Created getCurrentNodeFullText() function in TiptapEditor.tsx to extract text from current node (supports Block Container Nodes: character, scene, location, organization, pov, and paragraphs). Implemented handleAnalyzeCurrentNode() function using ANALYZE_EMOTIONS GraphQL mutation with error handling. Added 'Hume感情分析' button to editor toolbar Phase 2 section (next to NodeClassificationControls) with loading state ('分析中...') and disabled state. Added emotionAnalysisError state and error banner UI (yellow warning banner) for user feedback. Integrated with existing EmotionAnalysisExtension.setEmotionProfile() command to apply emotion profiles to nodes. Fixed duplicate useMutation import error. All functionality tested and build successful."
+    },
+    {
+      "@id": "https://gftd.ai/issue/tiptap-node-attributes-type-safety",
+      "name": "Tiptap Node Attributes Type Safety with ts-pattern",
+      "description": "Implemented type-safe attribute sanitization for all Tiptap node extensions to prevent 'Invalid array passed to renderSpec' errors at build time. Created common sanitization utility using ts-pattern and union types for compile-time type checking. Applied sanitization to all insert commands across all node extensions (Character, Location, Organization, Company, Ghost, Technology, Episode, Scene, Arc, Motif, Season, Timeline, POV, Beat, SourceRef, Event, Occupation, Setting).",
+      "status": "resolved",
+      "priority": "high",
+      "resolution": "Created common sanitization utility (src/lib/editor/sanitizeAttributes.ts) with sanitizeAttributeValue() function using ts-pattern for type-safe value conversion. Implemented sanitizeNodeAttributes() generic function to sanitize all node attributes. Defined TiptapAttributeValue union type (string | number | boolean | null | undefined) to enforce type safety. Applied sanitization to all insert commands: CharacterNode.insertCharacter(), LocationNode.insertLocation(), OrganizationNode.insertOrganization() and insertCompany(), GhostNode.insertGhost(), TechnologyNode.insertTechnology(), StoryNode factory (insertEpisode, insertScene, insertArc, insertMotif, insertSeason, insertTimeline, insertPOV, insertBeat), and MetaNode factory (insertSourceRef, insertEvent, insertOccupation, insertSetting). All sanitization uses ts-pattern with exhaustive type guards to convert arrays and objects to primitive types at build time. TypeScript strict mode ensures compile-time detection of type errors. All node extensions now prevent renderSpec errors by sanitizing attributes before passing to Tiptap's create() or insertContent() methods."
     }
   ]
 }
