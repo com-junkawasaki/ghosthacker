@@ -8,23 +8,40 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-const httpLink = createHttpLink({
-  uri: import.meta.env.PUBLIC_GRAPHQL_API_URL || 'http://localhost:8080/graphql',
-});
+let client: ApolloClient<any> | null = null;
 
-const authLink = setContext((_, { headers }) => {
-  // TODO: Add Clerk token to headers
-  const token = typeof window !== 'undefined' ? localStorage.getItem('auth_token') : null;
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    },
-  };
-});
+function createClient() {
+  if (typeof window === 'undefined') {
+    // Server-side: return a mock client or null
+    return null;
+  }
 
-export const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-});
+  if (client) {
+    return client;
+  }
+
+  const httpLink = createHttpLink({
+    uri: import.meta.env.PUBLIC_GRAPHQL_API_URL || 'http://localhost:25325/graphql',
+  });
+
+  const authLink = setContext((_, { headers }) => {
+    const token = localStorage.getItem('auth_token');
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : '',
+      },
+    };
+  });
+
+  client = new ApolloClient({
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache(),
+    ssrMode: false,
+  });
+
+  return client;
+}
+
+export const getClient = () => createClient();
 

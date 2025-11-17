@@ -1,6 +1,17 @@
 ---
-
+/**
+ * @context https://gftd.ai/ontology/epub-editor#
+ * @type cpm:Activity
+ * @id https://gftd.ai/activity/landing-page
+ * 
+ * Landing page - redirects to projects or shows project list
+ */
 ---
+
+<script>
+	// Redirect to a default project or project list
+	window.location.href = '/projects/default/editor';
+</script>
 
 <html lang="en">
 	<head>
@@ -8,9 +19,15 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>EPUB Editor</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+			<div style="text-align: center;">
+				<h1>EPUB Editor</h1>
+				<p>Redirecting to editor...</p>
+				<p><a href="/projects/default/editor">Click here if not redirected</a></p>
+			</div>
+		</div>
 	</body>
 </html>

@@ -26,6 +26,9 @@ export default defineConfig({
     server: {
       host: true, // Listen on all addresses for Docker
       strictPort: false,
+      fs: {
+        deny: ['**/__tests__/**', '**/*.test.*', '**/*.spec.*', '**/test/**'],
+      },
       hmr: {
         // HMR configuration for Docker environment
         // Use host network IP or container name for HMR connection
@@ -45,6 +48,25 @@ export default defineConfig({
         '127.0.0.1',
         '.orb.local', // Allow all OrbStack local domains
       ],
+    },
+    resolve: {
+      alias: {
+        // Exclude test files from build
+      },
+    },
+    build: {
+      rollupOptions: {
+        external: (id) => {
+          // Exclude test files and test dependencies
+          if (id.includes('__tests__') || id.includes('.test.') || id.includes('.spec.')) {
+            return true;
+          }
+          if (id === 'vitest' || id === '@testing-library/react' || id === '@testing-library/jest-dom') {
+            return true;
+          }
+          return false;
+        },
+      },
     },
     optimizeDeps: {
       include: ['@apollo/client', '@apollo/client/link/context'],

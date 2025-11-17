@@ -20,15 +20,16 @@ import { ApolloProvider } from '../../../components/editor/ApolloProvider';
     <title>EPUB Editor - {Astro.params.projectId}</title>
   </head>
   <body>
-    <ApolloProvider client:load>
+    <div id="root"></div>
+    <ApolloProvider client:only="react">
       <div class="editor-layout">
         <aside class="sidebar">
-          <ChapterTree client:load epubId={Astro.params.projectId} />
-          <MetadataForm client:load epubId={Astro.params.projectId} />
-          <MediaLibrary client:load chapterId="" />
+          <ChapterTree client:only="react" epubId={Astro.params.projectId} />
+          <MetadataForm client:only="react" epubId={Astro.params.projectId} />
+          <MediaLibrary client:only="react" chapterId="" />
         </aside>
         <main class="editor-main">
-          <TiptapEditor client:load projectId={Astro.params.projectId} />
+          <TiptapEditor client:only="react" projectId={Astro.params.projectId} />
         </main>
       </div>
     </ApolloProvider>
