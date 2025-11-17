@@ -5,6 +5,8 @@
  * 
  * AI text generator component
  */
+'use client';
+
 import { useState } from 'react';
 
 interface TextGeneratorProps {

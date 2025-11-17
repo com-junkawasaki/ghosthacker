@@ -5,7 +5,7 @@
  * 
  * AI proofreading API route
  */
-export async function POST({ request }: { request: Request }) {
+export async function POST(request: Request) {
   const { chapter_id } = await request.json();
   
   // TODO: Integrate with actual AI service

@@ -5,8 +5,10 @@
  * 
  * Apollo Provider wrapper component using Zustand
  */
+'use client';
+
 import { ApolloProvider as ApolloProviderBase } from '@apollo/client';
-import { useApolloClientStore } from '../../stores/apolloClient';
+import { useApolloClientStore } from '@/stores/apolloClient';
 
 interface ApolloProviderProps {
   children: React.ReactNode;

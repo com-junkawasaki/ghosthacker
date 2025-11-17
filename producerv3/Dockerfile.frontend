@@ -1,6 +1,6 @@
-# Astro Frontend Dockerfile
+# Next.js Frontend Dockerfile
 # Development stage
-FROM node:22-slim as development
+FROM node:20-slim as development
 
 WORKDIR /app
 
@@ -19,10 +19,10 @@ COPY . .
 EXPOSE 3000
 
 # Development command (hot reload)
-CMD ["pnpm", "dev", "--host"]
+CMD ["pnpm", "dev"]
 
 # Production stage
-FROM node:22-slim as production
+FROM node:20-slim as production
 
 WORKDIR /app
 
@@ -44,4 +44,4 @@ RUN pnpm build
 EXPOSE 3000
 
 # Production command
-CMD ["pnpm", "preview", "--host"]
+CMD ["pnpm", "start"]

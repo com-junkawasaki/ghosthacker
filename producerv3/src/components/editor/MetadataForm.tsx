@@ -5,10 +5,12 @@
  * 
  * Metadata form component for editing EPUB metadata
  */
+'use client';
+
 import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_EPUB } from '../../lib/graphql/queries';
-import { UPDATE_METADATA } from '../../lib/graphql/mutations';
+import { GET_EPUB } from '@/lib/graphql/queries';
+import { UPDATE_METADATA } from '@/lib/graphql/mutations';
 
 interface MetadataFormProps {
   epubId: string;

@@ -7,7 +7,7 @@
  */
 import { create } from 'zustand';
 import type { ApolloClient } from '@apollo/client';
-import { getClient } from '../lib/graphql/client';
+import { getClient } from '@/lib/graphql/client';
 
 type ApolloClientState = 
   | { status: 'idle'; client: null }

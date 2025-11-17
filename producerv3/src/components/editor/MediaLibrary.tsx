@@ -5,8 +5,10 @@
  * 
  * Media library component for managing EPUB media assets
  */
+'use client';
+
 import { useMutation } from '@apollo/client';
-import { CREATE_MEDIA } from '../../lib/graphql/mutations';
+import { CREATE_MEDIA } from '@/lib/graphql/mutations';
 import { useState } from 'react';
 
 interface MediaLibraryProps {

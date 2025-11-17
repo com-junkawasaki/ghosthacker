@@ -5,6 +5,8 @@
  * 
  * AI proofreader component
  */
+'use client';
+
 import { useState } from 'react';
 
 interface ProofreaderProps {

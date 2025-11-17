@@ -5,6 +5,8 @@
  * 
  * AI summarizer component
  */
+'use client';
+
 import { useState } from 'react';
 
 interface SummarizerProps {

@@ -6,7 +6,6 @@
  * GraphQL client configuration for Apollo Client
  */
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
 
 let client: ApolloClient<any> | null = null;
 
@@ -21,21 +20,12 @@ function createClient() {
   }
 
   const httpLink = createHttpLink({
-    uri: import.meta.env.PUBLIC_GRAPHQL_API_URL || 'http://localhost:25325/graphql',
+    uri: process.env.NEXT_PUBLIC_GRAPHQL_API_URL || 'http://localhost:25325/graphql',
   });
 
-  const authLink = setContext((_, { headers }) => {
-    const token = localStorage.getItem('auth_token');
-    return {
-      headers: {
-        ...headers,
-        authorization: token ? `Bearer ${token}` : '',
-      },
-    };
-  });
-
+  // No authentication for now (per user choice)
   client = new ApolloClient({
-    link: authLink.concat(httpLink),
+    link: httpLink,
     cache: new InMemoryCache(),
     ssrMode: false,
   });

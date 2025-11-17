@@ -5,14 +5,16 @@
  * 
  * Main Tiptap editor component for EPUB content editing
  */
+'use client';
+
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
 import { useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_CHAPTER } from '../../lib/graphql/queries';
-import { UPDATE_CHAPTER } from '../../lib/graphql/mutations';
+import { GET_CHAPTER } from '@/lib/graphql/queries';
+import { UPDATE_CHAPTER } from '@/lib/graphql/mutations';
 
 interface TiptapEditorProps {
   projectId: string;

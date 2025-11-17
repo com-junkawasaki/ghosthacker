@@ -5,8 +5,10 @@
  * 
  * Chapter tree component for managing EPUB chapters
  */
+'use client';
+
 import { useQuery } from '@apollo/client';
-import { GET_CHAPTERS } from '../../lib/graphql/queries';
+import { GET_CHAPTERS } from '@/lib/graphql/queries';
 
 interface ChapterTreeProps {
   epubId: string;

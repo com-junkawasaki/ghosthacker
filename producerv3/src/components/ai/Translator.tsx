@@ -5,6 +5,8 @@
  * 
  * AI translator component
  */
+'use client';
+
 import { useState } from 'react';
 
 interface TranslatorProps {
