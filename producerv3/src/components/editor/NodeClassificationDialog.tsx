@@ -13,7 +13,8 @@ import type { Editor } from '@tiptap/react';
 import { useMutation, gql } from '@apollo/client';
 import type { NodeClassificationResult, NodeForClassification } from '@/lib/ai/nodeClassifier';
 import { reclassifyNode, getNodeTypeDisplayName, getNodeIdAndType } from '@/lib/ai/nodeClassifier';
-import { UPDATE_NODE_TYPE } from '@/lib/graphql/mutations';
+import { UPDATE_NODE_TYPE, ANALYZE_NODE_CONTENT } from '@/lib/graphql/mutations';
+import { applyDetectedNodes, applyRecommendedMasks, applyEmotionAnalysis, type AnalyzeNodeContentResult, type DetectedNode, type RecommendedMask } from '@/lib/ai/contentAnalyzer';
 
 // Fallback empty mutation document if UPDATE_NODE_TYPE is not available
 const EMPTY_MUTATION = gql`
@@ -53,9 +54,12 @@ export function NodeClassificationDialog({
   const [isApplying, setIsApplying] = useState(false);
   const [appliedIndices, setAppliedIndices] = useState<Set<number>>(new Set());
   const [skippedIndices, setSkippedIndices] = useState<Set<number>>(new Set());
+  const [analysisResult, setAnalysisResult] = useState<AnalyzeNodeContentResult | null>(null);
+  const [showAnalysisDialog, setShowAnalysisDialog] = useState(false);
   // UpdateNodeType mutation - will be available after codegen runs with updated schema
   // Use fallback empty mutation if UPDATE_NODE_TYPE is not available
   const [updateNodeType] = useMutation(UPDATE_NODE_TYPE || EMPTY_MUTATION);
+  const [analyzeNodeContent] = useMutation(ANALYZE_NODE_CONTENT || EMPTY_MUTATION);
 
   const isMultipleMode = multipleClassificationResults && multipleClassificationResults.length > 0;
 
@@ -103,14 +107,46 @@ export function NodeClassificationDialog({
         classificationResult.suggestedAttributes as Record<string, unknown> | undefined
       );
 
-      if (success && onReclassify) {
-        onReclassify(
-          classificationResult.suggestedType,
-          classificationResult.suggestedAttributes as Record<string, unknown> | undefined
-        );
-      }
+      if (success) {
+        // After successful classification, analyze node content
+        if (ANALYZE_NODE_CONTENT) {
+          try {
+            const nodeText = editor.state.doc.textBetween(nodePosition.from, nodePosition.to);
+            const { data } = await analyzeNodeContent({
+              variables: {
+                input: {
+                  nodeId: nodeInfo?.nodeId || undefined,
+                  nodeType: classificationResult.suggestedType,
+                  contentText: nodeText,
+                  context: undefined,
+                },
+              },
+            });
 
-      onClose();
+            if (data?.analyzeNodeContent) {
+              setAnalysisResult(data.analyzeNodeContent);
+              setShowAnalysisDialog(true);
+            }
+          } catch (analysisError) {
+            console.error('Error analyzing node content:', analysisError);
+            // Continue even if analysis fails
+          }
+        }
+
+        if (onReclassify) {
+          onReclassify(
+            classificationResult.suggestedType,
+            classificationResult.suggestedAttributes as Record<string, unknown> | undefined
+          );
+        }
+
+        // Close classification dialog if analysis dialog is not shown
+        if (!showAnalysisDialog) {
+          onClose();
+        }
+      } else {
+        onClose();
+      }
     } catch (error) {
       console.error('Error applying classification:', error);
     } finally {
@@ -261,6 +297,39 @@ export function NodeClassificationDialog({
   const handleClose = () => {
     setAppliedIndices(new Set());
     setSkippedIndices(new Set());
+    setAnalysisResult(null);
+    setShowAnalysisDialog(false);
+    onClose();
+  };
+
+  const handleApplyAnalysis = () => {
+    if (!editor || !analysisResult || !nodePosition) {
+      return;
+    }
+
+    // Apply detected nodes
+    if (analysisResult.detectedNodes.length > 0) {
+      applyDetectedNodes(editor, analysisResult.detectedNodes, nodePosition);
+    }
+
+    // Apply recommended masks
+    if (analysisResult.recommendedMasks.length > 0) {
+      applyRecommendedMasks(editor, analysisResult.recommendedMasks, nodePosition);
+    }
+
+    // Apply emotion analysis
+    if (analysisResult.emotionProfile) {
+      applyEmotionAnalysis(editor, analysisResult.emotionProfile, nodePosition);
+    }
+
+    setShowAnalysisDialog(false);
+    setAnalysisResult(null);
+    onClose();
+  };
+
+  const handleSkipAnalysis = () => {
+    setShowAnalysisDialog(false);
+    setAnalysisResult(null);
     onClose();
   };
 
@@ -511,6 +580,104 @@ export function NodeClassificationDialog({
                 閉じる
               </button>
             </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Analysis result dialog
+  if (showAnalysisDialog && analysisResult) {
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="bg-white rounded-lg p-6 max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-bold">ノードコンテンツ分析結果</h2>
+            <button
+              onClick={handleSkipAnalysis}
+              className="text-gray-500 hover:text-gray-700"
+            >
+              ✕
+            </button>
+          </div>
+
+          {/* Detected Nodes */}
+          {analysisResult.detectedNodes.length > 0 && (
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold mb-2">検出されたサブノード ({analysisResult.detectedNodes.length}件)</h3>
+              <div className="space-y-2 max-h-40 overflow-y-auto">
+                {analysisResult.detectedNodes.map((node: DetectedNode, idx: number) => (
+                  <div key={idx} className="p-2 bg-blue-50 rounded border border-blue-200">
+                    <div className="flex justify-between items-start">
+                      <div className="flex-1">
+                        <span className="text-sm font-semibold text-blue-800">
+                          {getNodeTypeDisplayName(node.nodeType)}
+                        </span>
+                        <span className="ml-2 text-xs text-gray-600">
+                          (信頼度: {(node.confidence * 100).toFixed(1)}%)
+                        </span>
+                        <div className="text-xs text-gray-700 mt-1">
+                          {node.text.substring(0, 100)}
+                          {node.text.length > 100 ? '...' : ''}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Recommended Masks */}
+          {analysisResult.recommendedMasks.length > 0 && (
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold mb-2">推奨マスク ({analysisResult.recommendedMasks.length}件)</h3>
+              <div className="flex flex-wrap gap-2">
+                {analysisResult.recommendedMasks.map((mask: RecommendedMask, idx: number) => (
+                  <div
+                    key={idx}
+                    className="px-3 py-1 bg-green-100 text-green-800 rounded text-sm"
+                  >
+                    {mask.maskType} ({(mask.confidence * 100).toFixed(0)}%)
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Emotion Profile */}
+          {analysisResult.emotionProfile && analysisResult.emotionProfile.emotionVector.length > 0 && (
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold mb-2">感情分析結果</h3>
+              <div className="flex flex-wrap gap-2">
+                {analysisResult.emotionProfile.emotionVector
+                  .slice(0, 5)
+                  .map((emotion: { emotion: string; score: number }, idx: number) => (
+                    <div
+                      key={idx}
+                      className="px-3 py-1 bg-purple-100 text-purple-800 rounded text-sm"
+                    >
+                      {emotion.emotion}: {(emotion.score * 100).toFixed(1)}%
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
+
+          {/* Action buttons */}
+          <div className="flex justify-end gap-2 mt-6">
+            <button
+              onClick={handleSkipAnalysis}
+              className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded"
+            >
+              スキップ
+            </button>
+            <button
+              onClick={handleApplyAnalysis}
+              className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded"
+            >
+              すべて適用
+            </button>
           </div>
         </div>
       </div>

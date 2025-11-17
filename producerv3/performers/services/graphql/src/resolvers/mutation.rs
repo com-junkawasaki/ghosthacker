@@ -17,6 +17,7 @@ use crate::schema::ai::{
     MultiAgentGenerateInput, GeneratedContent,
     ClassifyNodeInput, NodeClassificationResult, ReclassifySelectedNodesInput, ReclassifyResult,
     UpdateNodeTypeInput, UpdateNodeTypeResult,
+    AnalyzeNodeContentInput, AnalyzeNodeContentResult,
 };
 use crate::schema::emotion::{EmotionProfile, AnalyzeEmotionsInput};
 use crate::schema::graph::{GraphLink, GraphIncidence, CreateGraphLinkInput, UpdateGraphLinkInput, CreateGraphIncidenceInput, UpdateGraphIncidenceInput};
@@ -223,6 +224,17 @@ impl MutationRoot {
             input.attributes,
         ).await
             .map_err(|e| async_graphql::Error::new(format!("Failed to update node type: {:?}", e)))
+    }
+
+    /// Analyze node content to detect sub-nodes, recommend masks, and analyze emotions
+    async fn analyze_node_content(
+        &self,
+        ctx: &Context<'_>,
+        input: AnalyzeNodeContentInput,
+    ) -> async_graphql::Result<AnalyzeNodeContentResult> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        ai_service::analyze_node_content(pool, input).await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to analyze node content: {:?}", e)))
     }
 }
 

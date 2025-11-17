@@ -209,3 +209,29 @@ mutation UpdateNodeType($input: UpdateNodeTypeInput!) {
     message
   }
 }
+
+mutation AnalyzeNodeContent($input: AnalyzeNodeContentInput!) {
+  analyzeNodeContent(input: $input) {
+    detectedNodes {
+      text
+      nodeType
+      confidence
+      position {
+        start
+        end
+      }
+    }
+    recommendedMasks {
+      maskType
+      confidence
+    }
+    emotionProfile {
+      emotionVector {
+        emotion
+        score
+      }
+      createdAt
+      language
+    }
+  }
+}

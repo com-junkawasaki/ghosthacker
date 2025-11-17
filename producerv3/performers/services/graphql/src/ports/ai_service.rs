@@ -10,6 +10,7 @@ use crate::schema::ai::{
     GeneratedText, GenerateTextInput, SummarizeInput, ProofreadInput, TranslateInput,
     MultiAgentGenerateInput, GeneratedContent,
     ClassifyNodeInput, NodeClassificationResult, ReclassifySelectedNodesInput, ReclassifyResult,
+    AnalyzeNodeContentInput, AnalyzeNodeContentResult, DetectedNode, RecommendedMask, TextPosition,
 };
 use crate::schema::emotion::EmotionProfile;
 use crate::ports::{postgres, emotion_service};
@@ -354,6 +355,153 @@ pub async fn classify_node(input: ClassifyNodeInput) -> anyhow::Result<NodeClass
         suggested_attributes: classification_data.suggested_attributes,
         suggested_mask_type: classification_data.suggested_mask_type,
     })
+}
+
+/// Analyze node content to detect sub-nodes, recommend masks, and analyze emotions
+pub async fn analyze_node_content(
+    pool: &postgres::PostgresPool,
+    input: AnalyzeNodeContentInput,
+) -> anyhow::Result<AnalyzeNodeContentResult> {
+    let text = input.content_text.clone();
+    
+    // 1. Analyze emotions for the entire content
+    let emotion_profile = emotion_service::analyze_emotions(
+        pool,
+        Some(text.clone()),
+        None,
+        Some("ja".to_string()),
+        Some(200),
+    ).await.ok();
+    
+    // 2. Split text into sentences/chunks for sub-node detection
+    let chunks = split_text_into_chunks(&text, 100); // Split into ~100 char chunks
+    
+    // 3. Detect sub-nodes in each chunk
+    let mut detected_nodes = Vec::new();
+    let mut current_pos = 0;
+    
+    for chunk in chunks {
+        let chunk_start = current_pos;
+        let chunk_end = current_pos + chunk.len() as i32;
+        
+        // Classify chunk to detect if it contains a sub-node
+        let classification_input = ClassifyNodeInput {
+            text: chunk.clone(),
+            current_type: Some(input.node_type.clone()),
+            attributes: None,
+            mask_info: None,
+            context: input.context.clone(),
+        };
+        
+        if let Ok(classification) = classify_node(classification_input).await {
+            // If confidence is high and type is different from parent, it's a detected sub-node
+            if classification.confidence > 0.7 && classification.suggested_type != input.node_type {
+                detected_nodes.push(DetectedNode {
+                    text: chunk,
+                    node_type: classification.suggested_type,
+                    confidence: classification.confidence,
+                    position: Some(TextPosition {
+                        start: chunk_start,
+                        end: chunk_end,
+                    }),
+                });
+            }
+        }
+        
+        current_pos = chunk_end;
+    }
+    
+    // 4. Recommend masks based on node type and content
+    let recommended_masks = recommend_masks_for_node_type(&input.node_type, &text);
+    
+    Ok(AnalyzeNodeContentResult {
+        detected_nodes,
+        recommended_masks,
+        emotion_profile,
+    })
+}
+
+/// Split text into chunks for analysis
+fn split_text_into_chunks(text: &str, chunk_size: usize) -> Vec<String> {
+    let mut chunks = Vec::new();
+    let mut current_chunk = String::new();
+    
+    for sentence in text.split(|c: char| c == '。' || c == '.' || c == '！' || c == '!' || c == '？' || c == '?') {
+        let sentence = sentence.trim();
+        if sentence.is_empty() {
+            continue;
+        }
+        
+        if current_chunk.len() + sentence.len() > chunk_size && !current_chunk.is_empty() {
+            chunks.push(current_chunk.clone());
+            current_chunk = sentence.to_string();
+        } else {
+            if !current_chunk.is_empty() {
+                current_chunk.push_str("。");
+            }
+            current_chunk.push_str(sentence);
+        }
+    }
+    
+    if !current_chunk.is_empty() {
+        chunks.push(current_chunk);
+    }
+    
+    chunks
+}
+
+/// Recommend masks based on node type and content
+fn recommend_masks_for_node_type(node_type: &str, content: &str) -> Vec<RecommendedMask> {
+    let mut masks = Vec::new();
+    
+    // Base mask recommendations on node type
+    match node_type {
+        "character" => {
+            masks.push(RecommendedMask {
+                mask_type: "emotion".to_string(),
+                confidence: 0.9,
+            });
+            masks.push(RecommendedMask {
+                mask_type: "relationship".to_string(),
+                confidence: 0.8,
+            });
+            masks.push(RecommendedMask {
+                mask_type: "virtue".to_string(),
+                confidence: 0.7,
+            });
+        }
+        "scene" => {
+            masks.push(RecommendedMask {
+                mask_type: "emotion".to_string(),
+                confidence: 0.9,
+            });
+            masks.push(RecommendedMask {
+                mask_type: "theme".to_string(),
+                confidence: 0.8,
+            });
+            masks.push(RecommendedMask {
+                mask_type: "context".to_string(),
+                confidence: 0.7,
+            });
+        }
+        "location" => {
+            masks.push(RecommendedMask {
+                mask_type: "context".to_string(),
+                confidence: 0.8,
+            });
+        }
+        _ => {
+            // Default: recommend emotion mask if content seems emotional
+            if content.contains("感情") || content.contains("気持ち") || content.contains("感じ") {
+                masks.push(RecommendedMask {
+                    mask_type: "emotion".to_string(),
+                    confidence: 0.7,
+                });
+            }
+        }
+    }
+    
+    masks
 }
 
 /// Build classification prompt from input

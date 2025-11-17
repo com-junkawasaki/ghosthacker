@@ -113,3 +113,38 @@ pub struct UpdateNodeTypeResult {
     pub message: Option<String>,
 }
 
+#[derive(InputObject)]
+pub struct AnalyzeNodeContentInput {
+    pub node_id: Option<ID>,
+    pub node_type: String,
+    pub content_text: String,
+    pub context: Option<String>,
+}
+
+#[derive(SimpleObject)]
+pub struct DetectedNode {
+    pub text: String,
+    pub node_type: String,
+    pub confidence: f64,
+    pub position: Option<TextPosition>,
+}
+
+#[derive(SimpleObject)]
+pub struct TextPosition {
+    pub start: i32,
+    pub end: i32,
+}
+
+#[derive(SimpleObject)]
+pub struct RecommendedMask {
+    pub mask_type: String,
+    pub confidence: f64,
+}
+
+#[derive(SimpleObject)]
+pub struct AnalyzeNodeContentResult {
+    pub detected_nodes: Vec<DetectedNode>,
+    pub recommended_masks: Vec<RecommendedMask>,
+    pub emotion_profile: Option<EmotionProfile>,
+}
+

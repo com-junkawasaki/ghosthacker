@@ -39,5 +39,6 @@ export {
 // Note: This export may be undefined until GraphQL server is restarted and codegen is run
 import * as GeneratedGraphQL from '@/generated/graphql';
 export const UPDATE_NODE_TYPE = (GeneratedGraphQL as any).UpdateNodeTypeDocument as typeof GeneratedGraphQL.UpdateNodeTypeDocument | undefined;
+export const ANALYZE_NODE_CONTENT = (GeneratedGraphQL as any).AnalyzeNodeContentDocument as typeof GeneratedGraphQL.AnalyzeNodeContentDocument | undefined;
 
 
