@@ -7,7 +7,7 @@
  * Astro configuration for EPUB Editor Frontend
  */
 import { defineConfig } from 'astro/config';
-import react from '@astro/react';
+import react from '@astrojs/react';
 import clerk from '@clerk/astro';
 
 // https://astro.build/config

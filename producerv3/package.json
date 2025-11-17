@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "astro": "^5.15.8",
-    "@astro/react": "^4.0.0",
-    "@clerk/astro": "^6.0.0",
+    "@astrojs/react": "^4.0.0",
+    "@clerk/astro": "^2.15.1",
     "@tiptap/react": "^2.1.13",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",

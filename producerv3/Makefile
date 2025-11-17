@@ -16,7 +16,7 @@ help:
 
 dev: build up
 	@echo "Development environment started!"
-	@echo "Frontend: http://localhost:3000"
+	@echo "Frontend: http://localhost:25320"
 	@echo "GraphQL: http://localhost:8080/graphql"
 	@echo "Neo4j Browser: http://localhost:7474"
 
@@ -37,7 +37,28 @@ clean:
 	docker volume prune -f
 
 neo4j-init:
-	docker exec -i epub-editor-neo4j cypher-shell -u neo4j -p password < performers/services/graphql/neo4j-schema.cypher
+	@echo "Initializing Neo4j schema..."
+	@if ! docker ps | grep -q epub-editor-neo4j; then \
+		echo "Error: Neo4j container is not running. Please start it first with 'make up' or 'make neo4j'"; \
+		exit 1; \
+	fi
+	@echo "Waiting for Neo4j to be ready..."
+	@timeout=30; \
+	while [ $$timeout -gt 0 ]; do \
+		if docker exec epub-editor-neo4j cypher-shell -u neo4j -p password "RETURN 1" > /dev/null 2>&1; then \
+			break; \
+		fi; \
+		echo "Waiting for Neo4j... ($$timeout seconds remaining)"; \
+		sleep 1; \
+		timeout=$$((timeout - 1)); \
+	done; \
+	if [ $$timeout -eq 0 ]; then \
+		echo "Error: Neo4j is not responding. Please check the container logs."; \
+		exit 1; \
+	fi
+	@docker exec -i epub-editor-neo4j cypher-shell -u neo4j -p password < performers/services/graphql/neo4j-schema-init.cypher || \
+		(echo "Error: Failed to initialize Neo4j schema. Make sure Neo4j is ready." && exit 1)
+	@echo "Neo4j schema initialized successfully!"
 
 frontend:
 	docker-compose up -d frontend

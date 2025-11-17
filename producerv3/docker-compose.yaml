@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   neo4j:
     image: neo4j:5.15
@@ -66,7 +64,7 @@ services:
       target: development
     container_name: epub-editor-frontend
     ports:
-      - "3000:3000"
+      - "25320:3000"
     environment:
       NODE_ENV: development
       # Improve file watching reliability on macOS bind mounts
@@ -74,7 +72,7 @@ services:
       WATCHPACK_POLLING: "true"
       WATCHPACK_POLLING_INTERVAL: 1000
       # App URLs (loaded from host env / .envrc)
-      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:25320}
       # GraphQL API URL
       # Client-side: use localhost for browser access
       NEXT_PUBLIC_GRAPHQL_API_URL: ${NEXT_PUBLIC_GRAPHQL_API_URL:-http://localhost:8080/graphql}

@@ -1,6 +1,6 @@
 # Rust GraphQL Service Dockerfile
 # Development stage
-FROM rust:1.75-slim as development
+FROM rust:latest as development
 
 WORKDIR /app
 
@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install cargo-watch for hot reload
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
-    && ~/.cargo/bin/cargo install cargo-watch
+# Use specific version that works with current Rust version
+RUN cargo install cargo-watch --version 8.5.2 || cargo install cargo-watch
 
 # Copy Cargo files
 COPY Cargo.toml Cargo.lock* ./
@@ -27,7 +27,7 @@ EXPOSE 8080
 CMD ["cargo", "watch", "-x", "run"]
 
 # Production builder stage
-FROM rust:1.75-slim as builder
+FROM rust:latest as builder
 
 WORKDIR /app
 

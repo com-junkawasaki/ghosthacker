@@ -53,12 +53,14 @@ make dev
 # Or manually:
 docker-compose up -d
 
-# Initialize Neo4j schema
+# Initialize Neo4j schema (wait for Neo4j to be ready first)
 make neo4j-init
 ```
 
+**Note**: Neo4j schema will be automatically initialized on first container start via `docker-entrypoint-initdb.d`. Use `make neo4j-init` if you need to reinitialize or if the automatic initialization failed.
+
 Services will be available at:
-- Frontend: http://localhost:3000
+- Frontend: http://localhost:25320
 - GraphQL API: http://localhost:8080/graphql
 - Neo4j Browser: http://localhost:7474
 
