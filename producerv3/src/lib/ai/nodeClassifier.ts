@@ -10,6 +10,7 @@ import type { Editor } from '@tiptap/react';
 import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
 import type { ExtractedNode, MaskInfo } from '@/lib/editor/contextExtractor';
 import { extractEditorContext, extractContextAroundCursor } from '@/lib/editor/contextExtractor';
+import { sanitizeNodeAttributes } from '@/lib/editor/sanitizeAttributes';
 
 /**
  * Node classification result
@@ -321,48 +322,13 @@ export function reclassifyNode(
     // Get current node content
     const nodeContent = node.textContent || '';
     
-    // Insert new node with new type and attributes
-    // Filter out arrays and complex objects from attributes to prevent renderSpec errors
-    // Tiptap node attributes only support primitive types (string, number, boolean, null)
-    const sanitizeValue = (value: unknown): unknown => {
-      // Return primitive types as-is
-      if (value === null || value === undefined) {
-        return undefined;
-      }
-      if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-        return value;
-      }
-      // Convert arrays to comma-separated strings for certain fields, or skip them
-      if (Array.isArray(value)) {
-        // For string arrays, join them with commas
-        if (value.length > 0 && typeof value[0] === 'string') {
-          return value.join(', ');
-        }
-        // For object arrays (like knows, hasArc, etc.), skip them
-        return undefined;
-      }
-      // For objects with @id property, extract the ID as string
-      if (typeof value === 'object' && value !== null) {
-        const obj = value as Record<string, unknown>;
-        // If it's a simple object with @id, extract the ID
-        if ('@id' in obj && typeof obj['@id'] === 'string') {
-          return obj['@id'];
-        }
-        // For other objects, skip them (Tiptap doesn't support nested objects)
-        return undefined;
-      }
-      return undefined;
-    };
-
-    const sanitizedAttributes: Record<string, unknown> = {};
-    if (newAttributes) {
-      Object.entries(newAttributes).forEach(([key, value]) => {
-        const sanitized = sanitizeValue(value);
-        if (sanitized !== undefined) {
-          sanitizedAttributes[key] = sanitized;
-        }
-      });
-    }
+    // Block Container Nodes require content: [{ type: 'paragraph' }] in insertContent
+    const blockContainerNodes = ['character', 'scene', 'location', 'organization', 'pov'];
+    const isBlockContainer = blockContainerNodes.includes(newType);
+    
+    // Use sanitizeNodeAttributes to properly sanitize attributes
+    // This ensures arrays and objects are converted to primitives
+    const sanitizedAttributes = sanitizeNodeAttributes(newAttributes || {});
     
     // Ensure name is always a string, never an array or object
     // Handle name separately to ensure it's always a valid string
@@ -371,9 +337,6 @@ export function reclassifyNode(
       const nameValue = sanitizedAttributes.name;
       if (typeof nameValue === 'string') {
         nodeName = nameValue;
-      } else if (Array.isArray(nameValue) && nameValue.length > 0 && typeof nameValue[0] === 'string') {
-        // If name is an array, take the first element
-        nodeName = nameValue[0] as string;
       } else {
         nodeName = nodeContent.substring(0, 50);
       }
@@ -383,39 +346,11 @@ export function reclassifyNode(
       nodeName = nodeContent.substring(0, 50);
     }
     
-    // Final validation: ensure all values in sanitizedAttributes are primitives
-    // Double-check to filter out any arrays that might have slipped through
-    const finalAttributes: Record<string, string | number | boolean | null> = {};
-    Object.entries(sanitizedAttributes).forEach(([key, value]) => {
-      // Skip arrays completely - they should have been converted to strings by sanitizeValue
-      if (Array.isArray(value)) {
-        console.warn(`Skipping array value for attribute ${key}:`, value);
-        return;
-      }
-      // Only include primitive types
-      if (value === null || typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-        finalAttributes[key] = value as string | number | boolean | null;
-      } else {
-        console.warn(`Skipping non-primitive value for attribute ${key}:`, value, typeof value);
-      }
-    });
-    
-    // Create a safe attributes object with only primitives
-    // Validate one more time that no arrays are present
+    // Create a safe attributes object with name and sanitized attributes
     const safeAttributes: Record<string, string | number | boolean | null> = {
       name: nodeName,
+      ...sanitizedAttributes,
     };
-    
-    // Add finalAttributes, ensuring no arrays slip through
-    Object.entries(finalAttributes).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        console.error(`Array detected in finalAttributes for ${key}:`, value);
-        return; // Skip arrays
-      }
-      if (value === null || typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-        safeAttributes[key] = value;
-      }
-    });
     
     // Use insertContent to insert the node atomically in the same transaction
     // This avoids transaction mismatch errors by ensuring delete and insert happen in one transaction
@@ -429,11 +364,20 @@ export function reclassifyNode(
       }
       
       // Create the node content object for insertContent
-      // Tiptap's insertContent will handle text content automatically
-      const nodeContentObj: { type: string; attrs: Record<string, string | number | boolean | null> } = {
+      // Block Container Nodes require content: [{ type: 'paragraph' }]
+      const nodeContentObj: { 
+        type: string; 
+        attrs: Record<string, string | number | boolean | null>;
+        content?: Array<{ type: string }>;
+      } = {
         type: newType,
         attrs: safeAttributes,
       };
+      
+      // Add content for Block Container Nodes
+      if (isBlockContainer) {
+        nodeContentObj.content = [{ type: 'paragraph' }];
+      }
       
       // Execute delete and insert in the same chain to ensure atomic transaction
       // This ensures the transaction is applied atomically with consistent state
@@ -446,8 +390,21 @@ export function reclassifyNode(
         const { schema } = editor.state;
         const nodeType = schema.nodes[newType];
         if (nodeType) {
-          const minimalNode = nodeType.create({ name: nodeName });
-          editor.chain().focus().setTextSelection({ from, to }).deleteSelection().insertContent(minimalNode).run();
+          // Create minimal node content object with content for Block Container Nodes
+          const minimalContentObj: {
+            type: string;
+            attrs: Record<string, string>;
+            content?: Array<{ type: string }>;
+          } = {
+            type: newType,
+            attrs: { name: nodeName },
+          };
+          
+          if (isBlockContainer) {
+            minimalContentObj.content = [{ type: 'paragraph' }];
+          }
+          
+          editor.chain().focus().setTextSelection({ from, to }).deleteSelection().insertContent(minimalContentObj).run();
         } else {
           console.error(`Node type "${newType}" not found in schema`);
           return false;
