@@ -5,24 +5,32 @@
  * 
  * EPUB Document GraphQL schema definitions
  */
-use async_graphql::{Object, InputObject, SimpleObject, ID, Scalar, ScalarType};
-use chrono::{DateTime, Utc};
-use async_graphql::Value;
+use async_graphql::{Object, InputObject, SimpleObject, ID};
 
-#[derive(SimpleObject)]
-pub struct Epub {
-    pub id: ID,
-    pub title: String,
-    pub language: String,
-    #[graphql(scalar)]
-    pub created_at: String,
-    #[graphql(scalar)]
-    pub updated_at: String,
-    pub chapters: Vec<Chapter>,
-    pub metadata: Vec<MetadataItem>,
+// Define nested types first to avoid forward reference issues
+#[derive(SimpleObject, Clone)]
+pub struct MetadataItem {
+    pub key: String,
+    pub value: String,
 }
 
-#[derive(SimpleObject)]
+#[derive(SimpleObject, Clone)]
+pub struct Paragraph {
+    pub id: ID,
+    pub order: i32,
+    pub content_html: String,
+}
+
+#[derive(SimpleObject, Clone)]
+pub struct Media {
+    pub id: ID,
+    pub r#type: String,
+    pub url: String,
+    pub mime_type: String,
+    pub file_size: i64,
+}
+
+#[derive(SimpleObject, Clone)]
 pub struct Chapter {
     pub id: ID,
     pub title: String,
@@ -32,26 +40,15 @@ pub struct Chapter {
     pub media: Vec<Media>,
 }
 
-#[derive(SimpleObject)]
-pub struct Paragraph {
+#[derive(SimpleObject, Clone)]
+pub struct Epub {
     pub id: ID,
-    pub order: i32,
-    pub content_html: String,
-}
-
-#[derive(SimpleObject)]
-pub struct Media {
-    pub id: ID,
-    pub r#type: String,
-    pub url: String,
-    pub mime_type: String,
-    pub file_size: i64,
-}
-
-#[derive(SimpleObject)]
-pub struct MetadataItem {
-    pub key: String,
-    pub value: String,
+    pub title: String,
+    pub language: String,
+    pub created_at: String,
+    pub updated_at: String,
+    pub chapters: Vec<Chapter>,
+    pub metadata: Vec<MetadataItem>,
 }
 
 #[derive(InputObject)]

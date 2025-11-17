@@ -27,7 +27,7 @@ pub async fn summarize_chapter(
     // Get chapter content
     let chapter = neo4j::get_chapter(pool, input.chapter_id.to_string())
         .await
-        .map_err(|e| async_graphql::Error::new(e.to_string()))?
+        .map_err(|e| anyhow::anyhow!("Failed to get chapter: {:?}", e))?
         .ok_or_else(|| anyhow::anyhow!("Chapter not found"))?;
     
     // TODO: Integrate with AI summarization service
@@ -45,7 +45,7 @@ pub async fn proofread_chapter(
     // Get chapter content
     let chapter = neo4j::get_chapter(pool, input.chapter_id.to_string())
         .await
-        .map_err(|e| async_graphql::Error::new(e.to_string()))?
+        .map_err(|e| anyhow::anyhow!("Failed to get chapter: {:?}", e))?
         .ok_or_else(|| anyhow::anyhow!("Chapter not found"))?;
     
     // TODO: Integrate with AI proofreading service
@@ -63,7 +63,7 @@ pub async fn translate_chapter(
     // Get chapter content
     let chapter = neo4j::get_chapter(pool, input.chapter_id.to_string())
         .await
-        .map_err(|e| async_graphql::Error::new(e.to_string()))?
+        .map_err(|e| anyhow::anyhow!("Failed to get chapter: {:?}", e))?
         .ok_or_else(|| anyhow::anyhow!("Chapter not found"))?;
     
     // TODO: Integrate with AI translation service

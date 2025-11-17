@@ -98,5 +98,6 @@ volumes:
 
 networks:
   epub-editor-network:
+    name: epub-editor-network-v2
     driver: bridge
 

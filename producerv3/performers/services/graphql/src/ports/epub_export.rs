@@ -16,7 +16,7 @@ pub async fn export_epub(pool: &neo4j::Neo4jPool, epub_id: String) -> anyhow::Re
     // Get EPUB data
     let epub = neo4j::get_epub(pool, epub_id.clone())
         .await
-        .map_err(|e| async_graphql::Error::new(e.to_string()))?
+        .map_err(|e| anyhow::anyhow!("Failed to get EPUB: {:?}", e))?
         .ok_or_else(|| anyhow::anyhow!("EPUB not found"))?;
     
     // Create ZIP buffer
@@ -81,7 +81,7 @@ fn generate_opf(epub: &Epub) -> anyhow::Result<String> {
     opf.push_str("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
     opf.push_str("<package xmlns=\"http://www.idpf.org/2007/opf\" unique-identifier=\"book-id\" version=\"3.0\">\n");
     opf.push_str("  <metadata xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\n");
-    opf.push_str(&format!("    <dc:identifier id=\"book-id\">{}</dc:identifier>\n", epub.id));
+    opf.push_str(&format!("    <dc:identifier id=\"book-id\">{}</dc:identifier>\n", epub.id.as_str()));
     opf.push_str(&format!("    <dc:title>{}</dc:title>\n", escape_xml(&epub.title)));
     opf.push_str(&format!("    <dc:language>{}</dc:language>\n", epub.language));
     
@@ -108,7 +108,7 @@ fn generate_opf(epub: &Epub) -> anyhow::Result<String> {
     // Add media
     for chapter in &epub.chapters {
         for media in &chapter.media {
-            let id = format!("media_{}", media.id);
+            let id = format!("media_{}", media.id.as_str());
             let href = format!("Images/{}", media.url.split('/').last().unwrap_or("media"));
             opf.push_str(&format!("    <item id=\"{}\" href=\"{}\" media-type=\"{}\"/>\n", id, href, media.mime_type));
         }
@@ -134,7 +134,7 @@ fn generate_ncx(epub: &Epub) -> anyhow::Result<String> {
     ncx.push_str("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
     ncx.push_str("<ncx xmlns=\"http://www.daisy.org/z3986/2005/ncx/\" version=\"2005-1\">\n");
     ncx.push_str("  <head>\n");
-    ncx.push_str(&format!("    <meta name=\"dtb:uid\" content=\"{}\"/>\n", epub.id));
+    ncx.push_str(&format!("    <meta name=\"dtb:uid\" content=\"{}\"/>\n", epub.id.as_str()));
     ncx.push_str("    <meta name=\"dtb:depth\" content=\"1\"/>\n");
     ncx.push_str("    <meta name=\"dtb:totalPageCount\" content=\"0\"/>\n");
     ncx.push_str("    <meta name=\"dtb:maxPageNumber\" content=\"0\"/>\n");
