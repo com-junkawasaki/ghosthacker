@@ -32,6 +32,17 @@ query GetChapters($documentId: String!) {
   }
 }
 
+query GetParagraphs($chapterId: String!) {
+  paragraphs(chapterId: $chapterId) {
+    id
+    order
+    textNodes
+    style
+    createdAt
+    updatedAt
+  }
+}
+
 query GetTextNodes($paragraphId: String!) {
   textNodes(paragraphId: $paragraphId) {
     id

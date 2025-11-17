@@ -149,6 +149,24 @@ impl QueryRoot {
         }
     }
 
+    /// 段落を取得
+    /// 
+    /// @context {
+    ///   "@id": "ex:getParagraphs",
+    ///   "@type": "ex:Activity",
+    ///   "ex:consumes": "ex:ChapterId",
+    ///   "ex:produces": "ex:ParagraphList"
+    /// }
+    async fn paragraphs(&self, chapter_id: String) -> Result<Vec<Paragraph>> {
+        match get_paragraphs_by_parent(Some(&chapter_id), None).await {
+            Ok(paragraphs) => Ok(paragraphs.into_iter().map(|p| p.into()).collect()),
+            Err(e) => {
+                error!("Failed to get paragraphs for chapter {}: {}", chapter_id, e);
+                Ok(vec![])
+            }
+        }
+    }
+
     /// テキストノードを取得
     /// 
     /// @context {

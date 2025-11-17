@@ -28,7 +28,11 @@
     "nanoid": "^5.0.7",
     "jose": "^5.9.6",
     "graphql-request": "^6.1.0",
-    "graphql": "^16.8.1"
+    "graphql": "^16.8.1",
+    "@tiptap/react": "^2.1.13",
+    "@tiptap/starter-kit": "^2.1.13",
+    "@tiptap/extension-placeholder": "^2.1.13",
+    "@tiptap/extension-character-count": "^2.1.13"
   },
   "devDependencies": {
     "@types/node": "^22.7.5",

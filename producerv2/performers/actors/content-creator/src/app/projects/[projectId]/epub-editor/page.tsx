@@ -11,7 +11,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import { graphqlRequest } from '@/internal/graphql/client';
 import {
@@ -19,11 +19,15 @@ import {
   CreateChapterDocument,
   CreateParagraphDocument,
   CreateTextNodeDocument,
-  UpdateTextNodeDocument,
+  UpdateParagraphDocument,
   DeleteTextNodeDocument,
+  GetParagraphsDocument,
   GetTextNodesDocument,
 } from '@/generated/graphql';
 import { exportEPUB } from '@/internal/epub/export';
+import { TipTapEditor } from '@/internal/epub/TipTapEditor';
+import { epubToTipTap, tiptapToEPUB } from '@/internal/epub/tiptap-converter';
+import { JSONContent } from '@tiptap/core';
 
 interface EPUBDocument {
   id: string;
@@ -81,11 +85,12 @@ export default function EPUBEditorPage() {
   const [chapters, setChapters] = useState<Chapter[]>([]);
   const [selectedChapter, setSelectedChapter] = useState<string | null>(null);
   const [paragraphs, setParagraphs] = useState<Paragraph[]>([]);
-  const [selectedParagraph, setSelectedParagraph] = useState<string | null>(null);
   const [textNodes, setTextNodes] = useState<TextNode[]>([]);
+  const [tiptapContent, setTipTapContent] = useState<JSONContent>({ type: 'doc', content: [] });
   const [metadata, setMetadata] = useState<MetadataInput>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [saveTimeout, setSaveTimeout] = useState<NodeJS.Timeout | null>(null);
 
   // 新しいEPUBドキュメントを作成
   const handleCreateDocument = async () => {
@@ -132,18 +137,20 @@ export default function EPUBEditorPage() {
         },
       });
 
-      setChapters([
-        ...chapters,
-        {
-          id: result.createChapter.id,
-          title: result.createChapter.title,
-          order: result.createChapter.order,
-          sections: result.createChapter.sections,
-          paragraphs: result.createChapter.paragraphs,
-          created_at: result.createChapter.createdAt,
-          updated_at: result.createChapter.updatedAt,
-        },
-      ]);
+      const newChapter: Chapter = {
+        id: result.createChapter.id,
+        title: result.createChapter.title,
+        order: result.createChapter.order,
+        sections: result.createChapter.sections,
+        paragraphs: result.createChapter.paragraphs,
+        created_at: result.createChapter.createdAt,
+        updated_at: result.createChapter.updatedAt,
+      };
+
+      setChapters([...chapters, newChapter]);
+      setSelectedChapter(newChapter.id);
+      // 新しい章を選択したので、空のTipTapコンテンツを設定
+      setTipTapContent({ type: 'doc', content: [] });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create chapter');
     } finally {
@@ -151,100 +158,170 @@ export default function EPUBEditorPage() {
     }
   };
 
-  // 段落を作成
-  const handleCreateParagraph = async (chapterId: string) => {
-    setLoading(true);
-    setError(null);
-
+  // ChapterのParagraphとTextNodeを読み込んでTipTap JSONに変換
+  const loadChapterContent = useCallback(async (chapterId: string) => {
     try {
-      const result = await graphqlRequest(CreateParagraphDocument, {
-        variables: {
-          chapterId,
-          order: paragraphs.length + 1,
-        },
+      // Paragraphsを取得
+      const paragraphsResult = await graphqlRequest(GetParagraphsDocument, {
+        variables: { chapterId },
       });
 
-      setParagraphs([
-        ...paragraphs,
-        {
-          id: result.createParagraph.id,
-          order: result.createParagraph.order,
-          text_nodes: result.createParagraph.textNodes,
-          style: result.createParagraph.style,
-          created_at: result.createParagraph.createdAt,
-          updated_at: result.createParagraph.updatedAt,
-        },
-      ]);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create paragraph');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // テキストノードを作成
-  const handleCreateTextNode = async (paragraphId: string, content: string) => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const result = await graphqlRequest(CreateTextNodeDocument, {
-        variables: {
-          paragraphId,
-          content,
-          order: textNodes.length + 1,
-        },
-      });
-
-      setTextNodes([
-        ...textNodes,
-        {
-          id: result.createTextNode.id,
-          content: result.createTextNode.content,
-          order: result.createTextNode.order,
-          belongs_to_paragraph: result.createTextNode.belongsToParagraph,
-          style: result.createTextNode.style,
-          created_at: result.createTextNode.createdAt,
-          updated_at: result.createTextNode.updatedAt,
-        },
-      ]);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create text node');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // テキストノードを更新
-  const handleUpdateTextNode = async (id: string, content: string) => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const result = await graphqlRequest(UpdateTextNodeDocument, {
-        variables: {
-          id,
-          content,
-        },
-      });
-
-      setTextNodes(
-        textNodes.map((node) =>
-          node.id === id
-            ? {
-                ...node,
-                content: result.updateTextNode.content,
-                updated_at: result.updateTextNode.updatedAt,
-              }
-            : node
-        )
+      const loadedParagraphs = paragraphsResult.paragraphs;
+      setParagraphs(
+        loadedParagraphs.map((p) => ({
+          id: p.id,
+          order: p.order,
+          text_nodes: p.textNodes,
+          style: p.style,
+          created_at: p.createdAt,
+          updated_at: p.updatedAt,
+        }))
       );
+
+      // 各ParagraphのTextNodeを取得
+      const allTextNodes: TextNode[] = [];
+      for (const paragraph of loadedParagraphs) {
+        try {
+          const textNodesResult = await graphqlRequest(GetTextNodesDocument, {
+            variables: { paragraphId: paragraph.id },
+          });
+          allTextNodes.push(
+            ...textNodesResult.textNodes.map((tn) => ({
+              id: tn.id,
+              content: tn.content,
+              order: tn.order,
+              belongs_to_paragraph: tn.belongsToParagraph,
+              style: tn.style,
+              created_at: tn.createdAt,
+              updated_at: tn.updatedAt,
+            }))
+          );
+        } catch (err) {
+          console.error(`Failed to load text nodes for paragraph ${paragraph.id}:`, err);
+        }
+      }
+      setTextNodes(allTextNodes);
+
+      // EPUB構造をTipTap JSONに変換
+      const paragraphData = loadedParagraphs.map((p) => ({
+        id: p.id,
+        order: p.order,
+        style: p.style,
+        textNodes: allTextNodes
+          .filter((tn) => tn.belongs_to_paragraph === p.id)
+          .map((tn) => ({
+            id: tn.id,
+            content: tn.content,
+            order: tn.order,
+            style: tn.style,
+          })),
+      }));
+
+      const tiptapJSON = epubToTipTap(paragraphData);
+      setTipTapContent(tiptapJSON);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to update text node');
-    } finally {
-      setLoading(false);
+      setError(err instanceof Error ? err.message : 'Failed to load chapter content');
+      console.error('Failed to load chapter content:', err);
     }
-  };
+  }, []);
+
+  // TipTapコンテンツの変更を保存（デバウンス付き）
+  const handleTipTapUpdate = useCallback(
+    async (content: JSONContent) => {
+      setTipTapContent(content);
+
+      // デバウンス: 500ms後に保存
+      if (saveTimeout) {
+        clearTimeout(saveTimeout);
+      }
+
+      const timeout = setTimeout(async () => {
+        if (!selectedChapter) return;
+
+        try {
+          // TipTap JSONをEPUB構造に変換
+          const { paragraphs: newParagraphs } = tiptapToEPUB(content, selectedChapter);
+
+          // 既存のParagraphとTextNodeを更新または新規作成
+          for (const newParagraph of newParagraphs) {
+            // 既存のParagraphを探す（orderでマッチング）
+            const existingParagraph = paragraphs.find((p) => p.order === newParagraph.order);
+
+            if (existingParagraph) {
+              // 既存のParagraphを更新
+              await graphqlRequest(UpdateParagraphDocument, {
+                variables: {
+                  id: existingParagraph.id,
+                  order: newParagraph.order,
+                },
+              });
+
+              // 既存のTextNodeを削除してから新規作成
+              const existingTextNodes = textNodes.filter(
+                (tn) => tn.belongs_to_paragraph === existingParagraph.id
+              );
+              for (const textNode of existingTextNodes) {
+                try {
+                  await graphqlRequest(DeleteTextNodeDocument, {
+                    variables: { id: textNode.id },
+                  });
+                } catch (err) {
+                  console.error(`Failed to delete text node ${textNode.id}:`, err);
+                }
+              }
+
+              // 新しいTextNodeを作成
+              for (const textNode of newParagraph.textNodes) {
+                await graphqlRequest(CreateTextNodeDocument, {
+                  variables: {
+                    paragraphId: existingParagraph.id,
+                    content: textNode.content,
+                    order: textNode.order,
+                  },
+                });
+              }
+            } else {
+              // 新しいParagraphを作成
+              const paragraphResult = await graphqlRequest(CreateParagraphDocument, {
+                variables: {
+                  chapterId: selectedChapter,
+                  order: newParagraph.order,
+                },
+              });
+
+              // TextNodeを作成
+              for (const textNode of newParagraph.textNodes) {
+                await graphqlRequest(CreateTextNodeDocument, {
+                  variables: {
+                    paragraphId: paragraphResult.createParagraph.id,
+                    content: textNode.content,
+                    order: textNode.order,
+                  },
+                });
+              }
+            }
+          }
+
+          // データを再読み込み
+          await loadChapterContent(selectedChapter);
+        } catch (err) {
+          setError(err instanceof Error ? err.message : 'Failed to save content');
+          console.error('Failed to save content:', err);
+        }
+      }, 500);
+
+      setSaveTimeout(timeout);
+    },
+    [selectedChapter, paragraphs, textNodes, saveTimeout, loadChapterContent]
+  );
+
+  // Chapter選択時の処理
+  useEffect(() => {
+    if (selectedChapter) {
+      loadChapterContent(selectedChapter);
+    }
+  }, [selectedChapter, loadChapterContent]);
+
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -327,8 +404,6 @@ export default function EPUBEditorPage() {
                   }`}
                   onClick={() => {
                     setSelectedChapter(chapter.id);
-                    setSelectedParagraph(null);
-                    setTextNodes([]);
                   }}
                 >
                   <h3 className="font-medium text-gray-900 dark:text-gray-100">{chapter.title}</h3>
@@ -338,106 +413,25 @@ export default function EPUBEditorPage() {
             </div>
           </div>
 
-          {/* 中央: 段落とテキストノード */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
+          {/* 中央: TipTap WYSIWYGエディタ */}
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 lg:col-span-2">
             {selectedChapter ? (
-              <>
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">段落</h2>
-                  <button
-                    onClick={() => handleCreateParagraph(selectedChapter)}
-                    className="px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700"
-                  >
-                    + 追加
-                  </button>
-                </div>
-                <div className="space-y-2 mb-4">
-                  {paragraphs.map((paragraph) => (
-                    <div
-                      key={paragraph.id}
-                      className={`p-3 rounded cursor-pointer ${
-                        selectedParagraph === paragraph.id
-                          ? 'bg-green-100 dark:bg-green-900 border-2 border-green-500 dark:border-green-400'
-                          : 'bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600'
-                      }`}
-                      onClick={async () => {
-                        setSelectedParagraph(paragraph.id);
-                        // テキストノードを取得
-                        try {
-                          const result = await graphqlRequest(GetTextNodesDocument, {
-                            variables: {
-                              paragraphId: paragraph.id,
-                            },
-                          });
-                          setTextNodes(
-                            result.textNodes.map((node) => ({
-                              id: node.id,
-                              content: node.content,
-                              order: node.order,
-                              belongs_to_paragraph: node.belongsToParagraph,
-                              style: node.style,
-                              created_at: node.createdAt,
-                              updated_at: node.updatedAt,
-                            }))
-                          );
-                        } catch (err) {
-                          console.error('Failed to load text nodes:', err);
-                        }
-                      }}
-                    >
-                      <p className="text-sm text-gray-900 dark:text-gray-100">段落 #{paragraph.order}</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* テキストエディタ */}
-                {selectedParagraph && (
-                  <div className="border-t border-gray-300 dark:border-gray-600 pt-4">
-                    <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">テキストノード</h3>
-                    <div className="space-y-2">
-                      {textNodes
-                        .filter((node) => node.belongs_to_paragraph === selectedParagraph)
-                        .sort((a, b) => a.order - b.order)
-                        .map((node) => (
-                          <div key={node.id} className="flex gap-2">
-                            <input
-                              type="text"
-                              value={node.content}
-                              onChange={(e) =>
-                                handleUpdateTextNode(node.id, e.target.value)
-                              }
-                              className="flex-1 px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md"
-                            />
-                            <button
-                              onClick={async () => {
-                                try {
-                                  await graphqlRequest(DeleteTextNodeDocument, {
-                                    variables: { id: node.id },
-                                  });
-                                  setTextNodes(textNodes.filter((n) => n.id !== node.id));
-                                } catch (err) {
-                                  setError(err instanceof Error ? err.message : 'Failed to delete text node');
-                                }
-                              }}
-                              className="px-3 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-                            >
-                              削除
-                            </button>
-                          </div>
-                        ))}
-                      <button
-                        onClick={() => {
-                          const content = prompt('テキストを入力:');
-                          if (content) handleCreateTextNode(selectedParagraph, content);
-                        }}
-                        className="w-full px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                      >
-                        + テキストノードを追加
-                      </button>
-                    </div>
+              <div>
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                  {chapters.find((c) => c.id === selectedChapter)?.title || 'Chapter Editor'}
+                </h2>
+                {loading ? (
+                  <div className="text-center text-gray-500 dark:text-gray-400 py-8">
+                    読み込み中...
                   </div>
+                ) : (
+                  <TipTapEditor
+                    content={tiptapContent}
+                    onUpdate={handleTipTapUpdate}
+                    placeholder="コンテンツを入力してください..."
+                  />
                 )}
-              </>
+              </div>
             ) : (
               <div className="text-center text-gray-500 dark:text-gray-400 py-8">
                 章を選択してください
