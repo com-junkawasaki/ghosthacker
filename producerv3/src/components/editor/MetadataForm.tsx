@@ -11,14 +11,18 @@ import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_EPUB } from '@/lib/graphql/queries';
 import { UPDATE_METADATA } from '@/lib/graphql/mutations';
+import { normalizeProjectId } from '@/lib/utils/uuid';
 
 interface MetadataFormProps {
   epubId: string;
 }
 
 export function MetadataForm({ epubId }: MetadataFormProps) {
+  // Ensure epubId is normalized to UUID format for GraphQL ID type
+  const normalizedEpubId = normalizeProjectId(epubId);
+  
   const { data } = useQuery(GET_EPUB, {
-    variables: { id: epubId },
+    variables: { id: normalizedEpubId },
   });
 
   const [updateMetadata] = useMutation(UPDATE_METADATA);
@@ -36,7 +40,7 @@ export function MetadataForm({ epubId }: MetadataFormProps) {
       await updateMetadata({
         variables: {
           input: {
-            epubId: epubId,
+            epubId: normalizedEpubId,
             key: 'author',
             value: author,
           },
@@ -47,7 +51,7 @@ export function MetadataForm({ epubId }: MetadataFormProps) {
       await updateMetadata({
         variables: {
           input: {
-            epubId: epubId,
+            epubId: normalizedEpubId,
             key: 'isbn',
             value: isbn,
           },

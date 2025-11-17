@@ -10,6 +10,7 @@
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_CHAPTERS } from '@/lib/graphql/queries';
 import { CREATE_CHAPTER } from '@/lib/graphql/mutations';
+import { normalizeProjectId } from '@/lib/utils/uuid';
 
 interface ChapterTreeProps {
   epubId: string;
@@ -18,8 +19,11 @@ interface ChapterTreeProps {
 }
 
 export function ChapterTree({ epubId, onChapterSelect, selectedChapterId }: ChapterTreeProps) {
+  // Ensure epubId is normalized to UUID format for GraphQL ID type
+  const normalizedEpubId = normalizeProjectId(epubId);
+  
   const { data, loading, error, refetch } = useQuery(GET_CHAPTERS, {
-    variables: { epubId },
+    variables: { epubId: normalizedEpubId },
   });
 
   const [createChapter, { loading: creating }] = useMutation(CREATE_CHAPTER, {
@@ -40,7 +44,7 @@ export function ChapterTree({ epubId, onChapterSelect, selectedChapterId }: Chap
     await createChapter({
       variables: {
         input: {
-          epubId,
+          epubId: normalizedEpubId,
           title: `Chapter ${nextOrder}`,
           order: nextOrder,
           contentHtml: '',

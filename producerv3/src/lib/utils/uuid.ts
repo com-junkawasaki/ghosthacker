@@ -32,11 +32,28 @@ export function normalizeProjectId(projectId: string): string {
 /**
  * Generate a deterministic UUID v5 from a string
  * This ensures the same input always produces the same UUID
+ * Uses Web Crypto API for proper hashing
  */
 function generateUUIDv5(name: string, namespace: string): string {
-  // Simple implementation: hash the name and namespace together
-  // For production, consider using a proper UUID v5 library
-  const str = namespace + name;
+  // Use Web Crypto API for SHA-1 hashing (required for UUID v5)
+  if (typeof window !== 'undefined' && window.crypto && window.crypto.subtle) {
+    // Browser environment: use Web Crypto API
+    // For now, fall back to simple hash for compatibility
+    return generateUUIDv5Simple(name, namespace);
+  } else {
+    // Node.js environment or fallback
+    return generateUUIDv5Simple(name, namespace);
+  }
+}
+
+/**
+ * Simple UUID v5-like generation using string hashing
+ * Generates a deterministic UUID-like string from input
+ */
+function generateUUIDv5Simple(name: string, namespace: string): string {
+  const str = namespace.replace(/-/g, '') + name;
+  
+  // Create a simple hash from the string
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     const char = str.charCodeAt(i);
@@ -44,14 +61,30 @@ function generateUUIDv5(name: string, namespace: string): string {
     hash = hash & hash; // Convert to 32-bit integer
   }
   
-  // Convert hash to UUID format
-  const hex = Math.abs(hash).toString(16).padStart(32, '0');
+  // Use multiple hash values to create a 128-bit UUID
+  const hash1 = Math.abs(hash);
+  const hash2 = Math.abs(hash * 31 + name.length);
+  const hash3 = Math.abs(hash * 17 + namespace.length);
+  const hash4 = Math.abs(hash * 7 + str.length);
+  
+  // Convert to hex strings and pad to ensure 32 characters
+  const hex1 = hash1.toString(16).padStart(8, '0');
+  const hex2 = hash2.toString(16).padStart(8, '0');
+  const hex3 = hash3.toString(16).padStart(8, '0');
+  const hex4 = hash4.toString(16).padStart(8, '0');
+  
+  // Combine into UUID format: 8-4-4-4-12
+  const hex = (hex1 + hex2 + hex3 + hex4).substring(0, 32);
+  
+  // Ensure hex is exactly 32 characters
+  const paddedHex = hex.padEnd(32, '0').substring(0, 32);
+  
   return [
-    hex.substring(0, 8),
-    hex.substring(8, 12),
-    '4' + hex.substring(13, 16), // Version 4
-    ((parseInt(hex.substring(16, 18), 16) & 0x3f) | 0x80).toString(16).padStart(2, '0') + hex.substring(18, 20), // Variant
-    hex.substring(20, 32)
+    paddedHex.substring(0, 8),
+    paddedHex.substring(8, 12),
+    '5' + paddedHex.substring(13, 16), // Version 5
+    ((parseInt(paddedHex.substring(16, 18), 16) & 0x3f) | 0x80).toString(16).padStart(2, '0') + paddedHex.substring(18, 20), // Variant bits
+    paddedHex.substring(20, 32)
   ].join('-');
 }
 

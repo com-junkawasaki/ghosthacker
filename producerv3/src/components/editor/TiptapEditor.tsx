@@ -30,6 +30,7 @@ import { useQuery, useMutation, useApolloClient } from '@apollo/client';
 import { GET_CHAPTER, GET_EPUB } from '@/lib/graphql/queries';
 import { UPDATE_CHAPTER } from '@/lib/graphql/mutations';
 import { useEditorSaveStore } from '@/stores/editorSave';
+import { normalizeProjectId } from '@/lib/utils/uuid';
 import { exportEpub } from '@/lib/export/epubExport';
 import { importEpub, readExportFile } from '@/lib/import/epubImport';
 import { CharacterNode } from './extensions/CharacterNode';
@@ -68,6 +69,9 @@ interface TiptapEditorProps {
 }
 
 export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: TiptapEditorProps) {
+  // Ensure epubId is normalized to UUID format for GraphQL ID type
+  const normalizedEpubId = epubId ? normalizeProjectId(epubId) : undefined;
+  
   // Get single chapter if chapterId is selected
   const { data: chapterData, loading: chapterLoading } = useQuery(GET_CHAPTER, {
     variables: { id: chapterId },
@@ -76,8 +80,8 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
 
   // Get all chapters if no chapterId is selected
   const { data: epubData, loading: epubLoading } = useQuery(GET_EPUB, {
-    variables: { id: epubId },
-    skip: !epubId || !!chapterId,
+    variables: { id: normalizedEpubId },
+    skip: !normalizedEpubId || !!chapterId,
   });
 
   const loading = chapterId ? chapterLoading : epubLoading;
@@ -301,12 +305,12 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
 
   // Export EPUB function
   const handleExport = async () => {
-    if (!epubId || isExporting) return;
+    if (!normalizedEpubId || isExporting) return;
 
     try {
       setIsExporting(true);
       setImportError(null);
-      await exportEpub(apolloClient, epubId);
+      await exportEpub(apolloClient, normalizedEpubId);
     } catch (error) {
       console.error('Export failed:', error);
       setImportError(error instanceof Error ? error.message : 'エクスポートに失敗しました');
@@ -318,7 +322,7 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
   // Import EPUB function
   const handleImport = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (!file || !epubId || isImporting) return;
+    if (!file || !normalizedEpubId || isImporting) return;
 
     try {
       setIsImporting(true);
@@ -328,10 +332,10 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
       const exportData = await readExportFile(file);
 
       // Import EPUB content
-      await importEpub(apolloClient, epubId, exportData);
+      await importEpub(apolloClient, normalizedEpubId, exportData);
 
       // Refresh EPUB data
-      if (epubId) {
+      if (normalizedEpubId) {
         await apolloClient.refetchQueries({
           include: [GET_EPUB],
         });
@@ -490,7 +494,7 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
           <button
             onClick={() => setShowChapterSelector(true)}
             className="px-2 py-1 text-xs rounded bg-blue-100 text-blue-800 hover:bg-blue-200"
-            disabled={!epubId}
+            disabled={!normalizedEpubId}
             title="Insert chapter link"
           >
             Chapter
@@ -498,7 +502,7 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
         </div>
 
         {/* エクスポート/インポートボタン */}
-        {epubId && (
+        {normalizedEpubId && (
           <div className="border-l border-gray-300 pl-2 ml-2 flex gap-1">
             <button
               onClick={handleExport}
@@ -704,19 +708,19 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
       )}
       
       {/* 章選択ダイアログ */}
-      {epubId && (
+      {normalizedEpubId && (
         <ChapterSelectorDialog
-          epubId={epubId}
+          epubId={normalizedEpubId}
           isOpen={showChapterSelector}
           onClose={() => setShowChapterSelector(false)}
           onSelect={(chapter) => {
-            if (!editor || !epubId) return;
+            if (!editor || !normalizedEpubId) return;
             
             editor.chain().focus().insertChapterLink({
               chapterId: chapter.id,
               title: chapter.title,
               order: chapter.order,
-              epubId: epubId,
+              epubId: normalizedEpubId,
             }).run();
             
             setShowChapterSelector(false);

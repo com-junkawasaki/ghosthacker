@@ -10,6 +10,7 @@
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_CHAPTERS } from '@/lib/graphql/queries';
+import { normalizeProjectId } from '@/lib/utils/uuid';
 
 interface ChapterSelectorDialogProps {
   epubId: string;
@@ -20,10 +21,13 @@ interface ChapterSelectorDialogProps {
 
 export function ChapterSelectorDialog({ epubId, isOpen, onClose, onSelect }: ChapterSelectorDialogProps) {
   const [searchQuery, setSearchQuery] = useState('');
+  
+  // Ensure epubId is normalized to UUID format for GraphQL ID type
+  const normalizedEpubId = normalizeProjectId(epubId);
 
   const { data, loading, error } = useQuery(GET_CHAPTERS, {
-    variables: { epubId },
-    skip: !isOpen || !epubId,
+    variables: { epubId: normalizedEpubId },
+    skip: !isOpen || !normalizedEpubId,
   });
 
   if (!isOpen) {
