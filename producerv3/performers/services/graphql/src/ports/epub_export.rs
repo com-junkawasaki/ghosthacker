@@ -9,12 +9,12 @@ use std::io::Write;
 use zip::write::{FileOptions, ZipWriter};
 use zip::CompressionMethod;
 use crate::schema::epub::Epub;
-use crate::ports::neo4j;
+use crate::ports::postgres;
 
 /// Export EPUB to ZIP file (EPUB 3.0 format)
-pub async fn export_epub(pool: &neo4j::Neo4jPool, epub_id: String) -> anyhow::Result<Vec<u8>> {
+pub async fn export_epub(pool: &postgres::PostgresPool, epub_id: String) -> anyhow::Result<Vec<u8>> {
     // Get EPUB data
-    let epub = neo4j::get_epub(pool, epub_id.clone())
+    let epub = postgres::get_epub(pool, epub_id.clone())
         .await
         .map_err(|e| anyhow::anyhow!("Failed to get EPUB: {:?}", e))?
         .ok_or_else(|| anyhow::anyhow!("EPUB not found"))?;

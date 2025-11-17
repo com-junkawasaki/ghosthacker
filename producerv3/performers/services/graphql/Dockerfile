@@ -18,6 +18,9 @@ RUN cargo install cargo-watch --version 8.5.2 || cargo install cargo-watch
 # Copy Cargo files
 COPY Cargo.toml Cargo.lock* ./
 
+# Copy migrations directory
+COPY migrations ./migrations
+
 # Copy source code
 COPY src ./src
 
@@ -39,6 +42,9 @@ RUN apt-get update && apt-get install -y \
 
 # Copy Cargo files
 COPY Cargo.toml Cargo.lock* ./
+
+# Copy migrations directory
+COPY migrations ./migrations
 
 # Copy source code
 COPY src ./src

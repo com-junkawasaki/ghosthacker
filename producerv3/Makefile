@@ -69,6 +69,26 @@ graphql:
 neo4j:
 	docker-compose up -d neo4j
 
+# Test commands
+test: test-rust test-ts
+
+test-rust:
+	cd performers/services/graphql && cargo test -- --test-threads=1
+
+test-ts:
+	pnpm test
+
+test-coverage: test-rust-coverage test-ts-coverage
+
+test-rust-coverage:
+	cd performers/services/graphql && cargo test -- --test-threads=1
+
+test-ts-coverage:
+	pnpm test:coverage
+
+test-watch:
+	pnpm test:watch
+
 # Production commands
 prod-build:
 	docker-compose -f docker-compose.prod.yaml build

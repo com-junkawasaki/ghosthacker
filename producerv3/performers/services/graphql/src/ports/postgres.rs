@@ -6,11 +6,11 @@
  * PostgreSQL database connection and query implementation using sqlx
  */
 use async_graphql::Result;
-use sqlx::{PgPool, Postgres, Pool};
+use sqlx::PgPool;
 use std::sync::Arc;
 use uuid::Uuid;
 use chrono::{DateTime, Utc};
-use crate::schema::epub::{Epub, Chapter, Paragraph, Media, MetadataItem};
+use crate::schema::epub::{Epub, Chapter, Media, MetadataItem};
 
 pub type PostgresPool = Arc<PgPool>;
 
@@ -21,33 +21,22 @@ pub async fn create_pool() -> anyhow::Result<PostgresPool> {
     
     let pool = PgPool::connect(&database_url).await?;
     
-    // Run migrations manually - execute each statement separately
-    let migration_sql = include_str!("../../migrations/001_initial_schema.sql");
-    // Split by semicolon and execute each statement
-    for statement in migration_sql.split(';') {
-        let trimmed = statement.trim();
-        if !trimmed.is_empty() && !trimmed.starts_with("--") {
-            if let Err(e) = sqlx::query(trimmed).execute(&pool).await {
-                // Ignore errors for statements that might already exist (e.g., CREATE TABLE IF NOT EXISTS)
-                eprintln!("Migration warning: {}", e);
-            }
-        }
-    }
+    // Run migrations using sqlx::migrate!
+    sqlx::migrate!("./migrations").run(&pool).await?;
     
     Ok(Arc::new(pool))
 }
 
 /// Get EPUB by ID
 pub async fn get_epub(pool: &PostgresPool, id: String) -> Result<Option<Epub>> {
-    let epub_row = sqlx::query_as!(
-        EpubRow,
+    let epub_row = sqlx::query_as::<_, EpubRow>(
         r#"
         SELECT id, title, language, created_at, updated_at
         FROM epubs
         WHERE id = $1
         "#,
-        Uuid::parse_str(&id)?
     )
+    .bind(Uuid::parse_str(&id)?)
     .fetch_optional(pool.as_ref())
     .await?;
     
@@ -72,13 +61,12 @@ pub async fn get_epub(pool: &PostgresPool, id: String) -> Result<Option<Epub>> {
 
 /// List all EPUBs
 pub async fn list_epubs(pool: &PostgresPool) -> Result<Vec<Epub>> {
-    let rows = sqlx::query_as!(
-        EpubRow,
+    let rows = sqlx::query_as::<_, EpubRow>(
         r#"
         SELECT id, title, language, created_at, updated_at
         FROM epubs
         ORDER BY created_at DESC
-        "#
+        "#,
     )
     .fetch_all(pool.as_ref())
     .await?;
@@ -547,3 +535,299 @@ struct MetadataRow {
     value: String,
 }
 
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use sqlx::PgPool;
+    use std::env;
+
+    async fn setup_test_pool() -> PostgresPool {
+        let database_url = env::var("TEST_DATABASE_URL")
+            .unwrap_or_else(|_| "postgresql://postgres:postgres@localhost:5433/postgres".to_string());
+        
+        let pool = PgPool::connect(&database_url).await.expect("Failed to connect to test database");
+        
+        // Run migrations
+        sqlx::migrate!("./migrations").run(&pool).await.expect("Failed to run migrations");
+        
+        Arc::new(pool)
+    }
+
+    async fn cleanup_test_data(pool: &PostgresPool) {
+        sqlx::query!("DELETE FROM media").execute(pool.as_ref()).await.ok();
+        sqlx::query!("DELETE FROM chapters").execute(pool.as_ref()).await.ok();
+        sqlx::query!("DELETE FROM metadata").execute(pool.as_ref()).await.ok();
+        sqlx::query!("DELETE FROM epubs").execute(pool.as_ref()).await.ok();
+    }
+
+    #[tokio::test]
+    async fn test_create_and_get_epub() {
+        let pool = setup_test_pool().await;
+        cleanup_test_data(&pool).await;
+
+        let epub = create_epub(&pool, "Test EPUB".to_string(), "en".to_string())
+            .await
+            .expect("Failed to create EPUB");
+
+        assert_eq!(epub.title, "Test EPUB");
+        assert_eq!(epub.language, "en");
+        assert!(!epub.id.to_string().is_empty());
+
+        let retrieved = get_epub(&pool, epub.id.to_string())
+            .await
+            .expect("Failed to get EPUB")
+            .expect("EPUB not found");
+
+        assert_eq!(retrieved.title, "Test EPUB");
+        assert_eq!(retrieved.language, "en");
+    }
+
+    #[tokio::test]
+    async fn test_list_epubs() {
+        let pool = setup_test_pool().await;
+        cleanup_test_data(&pool).await;
+
+        create_epub(&pool, "EPUB 1".to_string(), "en".to_string()).await.expect("Failed to create EPUB 1");
+        create_epub(&pool, "EPUB 2".to_string(), "ja".to_string()).await.expect("Failed to create EPUB 2");
+
+        let epubs = list_epubs(&pool).await.expect("Failed to list EPUBs");
+        assert_eq!(epubs.len(), 2);
+    }
+
+    #[tokio::test]
+    async fn test_update_epub() {
+        let pool = setup_test_pool().await;
+        cleanup_test_data(&pool).await;
+
+        let epub = create_epub(&pool, "Original Title".to_string(), "en".to_string())
+            .await
+            .expect("Failed to create EPUB");
+
+        let updated = update_epub(
+            &pool,
+            epub.id.to_string(),
+            Some("Updated Title".to_string()),
+            None,
+        )
+        .await
+        .expect("Failed to update EPUB");
+
+        assert_eq!(updated.title, "Updated Title");
+        assert_eq!(updated.language, "en");
+    }
+
+    #[tokio::test]
+    async fn test_delete_epub() {
+        let pool = setup_test_pool().await;
+        cleanup_test_data(&pool).await;
+
+        let epub = create_epub(&pool, "To Delete".to_string(), "en".to_string())
+            .await
+            .expect("Failed to create EPUB");
+
+        let deleted = delete_epub(&pool, epub.id.to_string())
+            .await
+            .expect("Failed to delete EPUB");
+
+        assert!(deleted);
+
+        let retrieved = get_epub(&pool, epub.id.to_string())
+            .await
+            .expect("Failed to get EPUB");
+
+        assert!(retrieved.is_none());
+    }
+
+    #[tokio::test]
+    async fn test_create_and_get_chapter() {
+        let pool = setup_test_pool().await;
+        cleanup_test_data(&pool).await;
+
+        let epub = create_epub(&pool, "Test EPUB".to_string(), "en".to_string())
+            .await
+            .expect("Failed to create EPUB");
+
+        let chapter = create_chapter(
+            &pool,
+            epub.id.to_string(),
+            "Chapter 1".to_string(),
+            1,
+            "<p>Content</p>".to_string(),
+        )
+        .await
+        .expect("Failed to create chapter");
+
+        assert_eq!(chapter.title, "Chapter 1");
+        assert_eq!(chapter.order, 1);
+        assert_eq!(chapter.content_html, "<p>Content</p>");
+
+        let retrieved = get_chapter(&pool, chapter.id.to_string())
+            .await
+            .expect("Failed to get chapter")
+            .expect("Chapter not found");
+
+        assert_eq!(retrieved.title, "Chapter 1");
+    }
+
+    #[tokio::test]
+    async fn test_get_chapters_for_epub() {
+        let pool = setup_test_pool().await;
+        cleanup_test_data(&pool).await;
+
+        let epub = create_epub(&pool, "Test EPUB".to_string(), "en".to_string())
+            .await
+            .expect("Failed to create EPUB");
+
+        create_chapter(&pool, epub.id.to_string(), "Chapter 1".to_string(), 1, "".to_string())
+            .await
+            .expect("Failed to create chapter 1");
+        create_chapter(&pool, epub.id.to_string(), "Chapter 2".to_string(), 2, "".to_string())
+            .await
+            .expect("Failed to create chapter 2");
+
+        let chapters = get_chapters(&pool, epub.id.to_string())
+            .await
+            .expect("Failed to get chapters");
+
+        assert_eq!(chapters.len(), 2);
+        assert_eq!(chapters[0].order, 1);
+        assert_eq!(chapters[1].order, 2);
+    }
+
+    #[tokio::test]
+    async fn test_update_chapter() {
+        let pool = setup_test_pool().await;
+        cleanup_test_data(&pool).await;
+
+        let epub = create_epub(&pool, "Test EPUB".to_string(), "en".to_string())
+            .await
+            .expect("Failed to create EPUB");
+
+        let chapter = create_chapter(
+            &pool,
+            epub.id.to_string(),
+            "Original Title".to_string(),
+            1,
+            "".to_string(),
+        )
+        .await
+        .expect("Failed to create chapter");
+
+        let updated = update_chapter(
+            &pool,
+            chapter.id.to_string(),
+            Some("Updated Title".to_string()),
+            None,
+            None,
+        )
+        .await
+        .expect("Failed to update chapter");
+
+        assert_eq!(updated.title, "Updated Title");
+    }
+
+    #[tokio::test]
+    async fn test_delete_chapter() {
+        let pool = setup_test_pool().await;
+        cleanup_test_data(&pool).await;
+
+        let epub = create_epub(&pool, "Test EPUB".to_string(), "en".to_string())
+            .await
+            .expect("Failed to create EPUB");
+
+        let chapter = create_chapter(
+            &pool,
+            epub.id.to_string(),
+            "To Delete".to_string(),
+            1,
+            "".to_string(),
+        )
+        .await
+        .expect("Failed to create chapter");
+
+        let deleted = delete_chapter(&pool, chapter.id.to_string())
+            .await
+            .expect("Failed to delete chapter");
+
+        assert!(deleted);
+
+        let retrieved = get_chapter(&pool, chapter.id.to_string())
+            .await
+            .expect("Failed to get chapter");
+
+        assert!(retrieved.is_none());
+    }
+
+    #[tokio::test]
+    async fn test_create_and_get_media() {
+        let pool = setup_test_pool().await;
+        cleanup_test_data(&pool).await;
+
+        let epub = create_epub(&pool, "Test EPUB".to_string(), "en".to_string())
+            .await
+            .expect("Failed to create EPUB");
+
+        let chapter = create_chapter(
+            &pool,
+            epub.id.to_string(),
+            "Chapter 1".to_string(),
+            1,
+            "".to_string(),
+        )
+        .await
+        .expect("Failed to create chapter");
+
+        let media = create_media(
+            &pool,
+            chapter.id.to_string(),
+            "image".to_string(),
+            "https://example.com/image.jpg".to_string(),
+            "image/jpeg".to_string(),
+            1024,
+        )
+        .await
+        .expect("Failed to create media");
+
+        assert_eq!(media.r#type, "image");
+        assert_eq!(media.url, "https://example.com/image.jpg");
+        assert_eq!(media.mime_type, "image/jpeg");
+        assert_eq!(media.file_size, 1024);
+
+        let retrieved = get_media(&pool, media.id.to_string())
+            .await
+            .expect("Failed to get media")
+            .expect("Media not found");
+
+        assert_eq!(retrieved.r#type, "image");
+    }
+
+    #[tokio::test]
+    async fn test_update_metadata() {
+        let pool = setup_test_pool().await;
+        cleanup_test_data(&pool).await;
+
+        let epub = create_epub(&pool, "Test EPUB".to_string(), "en".to_string())
+            .await
+            .expect("Failed to create EPUB");
+
+        let metadata = update_metadata(
+            &pool,
+            epub.id.to_string(),
+            "author".to_string(),
+            "Test Author".to_string(),
+        )
+        .await
+        .expect("Failed to update metadata");
+
+        assert_eq!(metadata.key, "author");
+        assert_eq!(metadata.value, "Test Author");
+
+        let all_metadata = get_metadata(&pool, epub.id.to_string())
+            .await
+            .expect("Failed to get metadata");
+
+        assert_eq!(all_metadata.len(), 1);
+        assert_eq!(all_metadata[0].key, "author");
+        assert_eq!(all_metadata[0].value, "Test Author");
+    }
+}

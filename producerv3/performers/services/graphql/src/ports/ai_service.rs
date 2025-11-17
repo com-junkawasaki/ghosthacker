@@ -7,7 +7,7 @@
  * Supports text generation, summarization, proofreading, and translation
  */
 use crate::schema::ai::{GeneratedText, GenerateTextInput, SummarizeInput, ProofreadInput, TranslateInput};
-use crate::ports::neo4j;
+use crate::ports::postgres;
 
 /// Generate text using AI
 pub async fn generate_text(_input: GenerateTextInput) -> anyhow::Result<GeneratedText> {
@@ -21,11 +21,11 @@ pub async fn generate_text(_input: GenerateTextInput) -> anyhow::Result<Generate
 
 /// Summarize chapter content
 pub async fn summarize_chapter(
-    pool: &neo4j::Neo4jPool,
+    pool: &postgres::PostgresPool,
     input: SummarizeInput,
 ) -> anyhow::Result<GeneratedText> {
     // Get chapter content
-    let chapter = neo4j::get_chapter(pool, input.chapter_id.to_string())
+    let chapter = postgres::get_chapter(pool, input.chapter_id.to_string())
         .await
         .map_err(|e| anyhow::anyhow!("Failed to get chapter: {:?}", e))?
         .ok_or_else(|| anyhow::anyhow!("Chapter not found"))?;
@@ -39,11 +39,11 @@ pub async fn summarize_chapter(
 
 /// Proofread chapter content
 pub async fn proofread_chapter(
-    pool: &neo4j::Neo4jPool,
+    pool: &postgres::PostgresPool,
     input: ProofreadInput,
 ) -> anyhow::Result<GeneratedText> {
     // Get chapter content
-    let chapter = neo4j::get_chapter(pool, input.chapter_id.to_string())
+    let chapter = postgres::get_chapter(pool, input.chapter_id.to_string())
         .await
         .map_err(|e| anyhow::anyhow!("Failed to get chapter: {:?}", e))?
         .ok_or_else(|| anyhow::anyhow!("Chapter not found"))?;
@@ -57,11 +57,11 @@ pub async fn proofread_chapter(
 
 /// Translate chapter content
 pub async fn translate_chapter(
-    pool: &neo4j::Neo4jPool,
+    pool: &postgres::PostgresPool,
     input: TranslateInput,
 ) -> anyhow::Result<GeneratedText> {
     // Get chapter content
-    let chapter = neo4j::get_chapter(pool, input.chapter_id.to_string())
+    let chapter = postgres::get_chapter(pool, input.chapter_id.to_string())
         .await
         .map_err(|e| anyhow::anyhow!("Failed to get chapter: {:?}", e))?
         .ok_or_else(|| anyhow::anyhow!("Chapter not found"))?;

@@ -25,7 +25,6 @@ export default defineConfig({
   vite: {
     server: {
       host: true, // Listen on all addresses for Docker
-      port: 3000,
       strictPort: false,
       hmr: {
         // HMR configuration for Docker environment

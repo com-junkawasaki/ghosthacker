@@ -55,7 +55,7 @@ services:
       target: development
     container_name: epub-editor-frontend
     ports:
-      - "25320:3000"
+      - "25320:3001"
     environment:
       NODE_ENV: development
       # Improve file watching reliability on macOS bind mounts
