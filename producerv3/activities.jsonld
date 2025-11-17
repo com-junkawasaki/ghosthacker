@@ -180,40 +180,45 @@
       ]
     },
     {
-      "id": "https://gftd.ai/activity/import-jsonld-nodes",
+      "id": "https://gftd.ai/activity/generate-image",
       "type": "cpm:Activity",
-      "name": "Import JSON-LD Nodes",
-      "description": "Bulk import JSON-LD semantic story data from JSON-LD files into PostgreSQL database. Supports importing Character, Ghost, Location, Organization, Company, Technology, Episode, Scene, Arc, Motif, Season, Timeline, Event, SourceRef, Occupation, and Setting nodes. Handles @graph arrays by importing each element individually. Uses upsert operations to overwrite existing data.",
-      "createdAt": "2025-11-17T08:40:00Z",
-      "performedBy": [
-        {"@id": "https://gftd.ai/performer/service/graphql"}
-      ],
-      "consumes": [
-        {"@id": "https://gftd.ai/resource/jsonld-nodes"}
-      ],
-      "produces": [
-        {"@id": "https://gftd.ai/resource/jsonld-nodes"}
-      ],
-      "dependsOn": [
-        {"@id": "https://gftd.ai/activity/manage-jsonld-nodes"}
-      ]
-    },
-    {
-      "id": "https://gftd.ai/activity/concatenate-markdown-files",
-      "type": "cpm:Activity",
-      "name": "Concatenate Markdown Files",
-      "description": "Concatenate Markdown episode files (part*.md and part*.en.md) into combined files per episode and all-episodes combined files. Processes ep01-ep12 directories, combines parts in order, and generates combined.md, combined.en.md per episode, plus all_episodes.md and all_episodes.en.md.",
-      "createdAt": "2025-11-17T08:40:00Z",
+      "name": "Generate Image",
+      "description": "Generate images using AI (OpenAI DALL-E or Higgsfield) based on editor context. Automatically extracts selected nodes, masked nodes, and mask information to create image prompts. Generated images are inserted into editor as Base64 data URIs.",
+      "createdAt": "2025-11-17T12:00:00Z",
       "performedBy": [
         {"@id": "https://gftd.ai/performer/actor/editor"}
       ],
       "consumes": [
-        {"@id": "https://gftd.ai/resource/markdown-episode-files"}
+        {"@id": "https://gftd.ai/resource/editor-context"}
       ],
       "produces": [
-        {"@id": "https://gftd.ai/resource/combined-markdown-files"}
+        {"@id": "https://gftd.ai/resource/generated-image"}
       ],
-      "dependsOn": []
+      "dependsOn": [
+        {"@id": "https://gftd.ai/activity/extract-editor-context"},
+        {"@id": "https://gftd.ai/activity/edit-epub-content"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/extract-editor-context",
+      "type": "cpm:Activity",
+      "name": "Extract Editor Context",
+      "description": "Extract context information from TipTap editor including selected nodes (character, ghost, location, etc.), masked nodes, mask information (emotion, theme, context, etc.), and selected text. Used for generating image prompts automatically.",
+      "createdAt": "2025-11-17T12:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/jsonld-nodes"},
+        {"@id": "https://gftd.ai/resource/mask-types"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/editor-context"}
+      ],
+      "dependsOn": [
+        {"@id": "https://gftd.ai/activity/edit-epub-content"},
+        {"@id": "https://gftd.ai/activity/mask-content"}
+      ]
     }
   ]
 }

@@ -38,9 +38,9 @@
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
   "description": "Tiptap editor based EPUB editing tool with AI Generator integration, emotion analysis (Hume AI), and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-11-17T08:40:48Z",
+  "updatedAt": "2025-11-17T12:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -58,7 +58,8 @@
     {"@id": "https://gftd.ai/capability/epub-import-export"},
     {"@id": "https://gftd.ai/capability/emotion-analysis"},
     {"@id": "https://gftd.ai/capability/jsonld-data-management"},
-    {"@id": "https://gftd.ai/capability/markdown-processing"}
+    {"@id": "https://gftd.ai/capability/markdown-processing"},
+    {"@id": "https://gftd.ai/capability/image-generation"}
   ],
   
   "hasActivity": [
@@ -79,7 +80,9 @@
     {"@id": "https://gftd.ai/activity/manage-graph-links"},
     {"@id": "https://gftd.ai/activity/manage-graph-incidences"},
     {"@id": "https://gftd.ai/activity/import-jsonld-nodes"},
-    {"@id": "https://gftd.ai/activity/concatenate-markdown-files"}
+    {"@id": "https://gftd.ai/activity/concatenate-markdown-files"},
+    {"@id": "https://gftd.ai/activity/generate-image"},
+    {"@id": "https://gftd.ai/activity/extract-editor-context"}
   ],
   
   "hasPerformer": [
@@ -169,6 +172,18 @@
       "type": "cpm:Resource",
       "name": "Combined Markdown Files",
       "description": "Combined Markdown files generated from episode parts (combined.md, combined.en.md per episode, and all_episodes.md, all_episodes.en.md for all episodes)"
+    },
+    {
+      "@id": "https://gftd.ai/resource/generated-image",
+      "type": "cpm:Resource",
+      "name": "Generated Image",
+      "description": "AI-generated images created from editor context (selected nodes, masked nodes, mask information). Images are generated using OpenAI DALL-E or Higgsfield API and inserted into editor as Base64 data URIs."
+    },
+    {
+      "@id": "https://gftd.ai/resource/editor-context",
+      "type": "cpm:Resource",
+      "name": "Editor Context",
+      "description": "Editor context information extracted from TipTap editor including selected nodes, masked nodes, mask information, and selected text. Used for generating image prompts automatically."
     }
   ],
   
@@ -232,6 +247,16 @@
       "@id": "https://gftd.ai/dependency/python",
       "name": "Python",
       "description": "Python 3 interpreter for running Markdown concatenation scripts"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/openai-api",
+      "name": "OpenAI API",
+      "description": "OpenAI DALL-E API for image generation (DALL-E 2 and DALL-E 3 models). Used for generating images from text prompts."
+    },
+    {
+      "@id": "https://gftd.ai/dependency/higgsfield-api",
+      "name": "Higgsfield API",
+      "description": "Higgsfield AI API for image generation. Alternative to OpenAI DALL-E for generating images from text prompts."
     }
   ],
   
@@ -473,6 +498,13 @@
       "description": "Created Python script to concatenate Markdown episode files (part*.md and part*.en.md) into combined files per episode and all-episodes combined files. Processes ep01-ep12 directories, combines parts in order, and generates combined.md, combined.en.md per episode, plus all_episodes.md and all_episodes.en.md.",
       "status": "resolved",
       "resolution": "Created scripts/concat_episode_markdown.py with functions to find part files, concatenate parts with proper spacing, process each episode directory, and create all-episodes combined files. Script handles both Japanese (part*.md) and English (part*.en.md) files. Generates episode headers (# Episode XX) in all-episodes files. Successfully processed all 12 episodes, creating combined files for each episode and master all-episodes files (138KB Japanese, 110KB English)."
+    },
+    {
+      "@id": "https://gftd.ai/issue/image-generation-implementation",
+      "name": "Image Generation Implementation",
+      "description": "Implemented AI image generation functionality integrated with TipTap editor. Supports OpenAI DALL-E and Higgsfield APIs. Automatically extracts editor context (selected nodes, masked nodes, mask information) to generate image prompts. Generated images are inserted into editor as Base64 data URIs.",
+      "status": "resolved",
+      "resolution": "Created image generation API client (src/lib/ai/imageGenerator.ts) supporting OpenAI DALL-E and Higgsfield APIs. Implemented editor context extractor (src/lib/editor/contextExtractor.ts) to extract selected nodes, masked nodes, and mask information from TipTap editor. Created prompt generator (src/lib/ai/promptGenerator.ts) to convert editor context into image generation prompts. Added ImageGenerationDialog component with automatic prompt generation and manual editing capabilities. Integrated image generation button into TiptapEditor toolbar. Added environment variables for API keys (NEXT_PUBLIC_OPENAI_API_KEY, NEXT_PUBLIC_HIGGSFIELD_API_KEY_ID, NEXT_PUBLIC_HIGGSFIELD_API_KEY_SECRET, NEXT_PUBLIC_HIGGSFIELD_API_ENDPOINT) in docker-compose.yaml."
     }
   ]
 }

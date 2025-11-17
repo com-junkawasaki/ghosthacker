@@ -750,6 +750,7 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
           // Base64画像をエディターに挿入
           editor.chain().focus().setImage({ src: imageBase64 }).run();
         }}
+        editor={editor}
       />
     </div>
   );

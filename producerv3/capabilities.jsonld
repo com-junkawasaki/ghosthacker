@@ -117,6 +117,20 @@
       "realizedBy": [
         {"@id": "https://gftd.ai/performer/actor/editor"}
       ]
+    },
+    {
+      "id": "https://gftd.ai/capability/image-generation",
+      "type": "cpm:Capability",
+      "name": "Image Generation",
+      "description": "Capability to generate images using AI (OpenAI DALL-E or Higgsfield) based on editor context. Automatically extracts selected nodes, masked nodes, and mask information from TipTap editor to create image prompts. Supports multiple image sizes, styles, and quality options. Generated images are inserted into editor as Base64 data URIs.",
+      "createdAt": "2025-11-17T12:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/generate-image"},
+        {"@id": "https://gftd.ai/activity/extract-editor-context"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"}
+      ]
     }
   ]
 }
