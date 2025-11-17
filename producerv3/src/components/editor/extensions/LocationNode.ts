@@ -165,25 +165,32 @@ export const LocationNode = Node.create<LocationNodeOptions>({
       insertLocation:
         (attributes: Partial<LocationNodeType>) =>
         ({ state, dispatch }: CommandProps) => {
-          const { schema } = state;
-          const paragraphNodeType = schema.nodes.paragraph;
-          if (!paragraphNodeType) {
+          try {
+            const { schema } = state;
+            const paragraphNodeType = schema.nodes.paragraph;
+            if (!paragraphNodeType) {
+              console.error('Paragraph node type not found in schema');
+              return false;
+            }
+            const paragraphNode = paragraphNodeType.create();
+            const locationNodeType = schema.nodes[this.name];
+            if (!locationNodeType) {
+              console.error(`Location node type "${this.name}" not found in schema`);
+              return false;
+            }
+            const locationNode = locationNodeType.create(attributes, [paragraphNode]);
+            
+            if (dispatch) {
+              const { selection } = state;
+              const tr = state.tr.insert(selection.from, locationNode);
+              dispatch(tr);
+            }
+            
+            return true;
+          } catch (error) {
+            console.error('Error inserting location node:', error, 'Attributes:', attributes);
             return false;
           }
-          const paragraphNode = paragraphNodeType.create();
-          const locationNodeType = schema.nodes[this.name];
-          if (!locationNodeType) {
-            return false;
-          }
-          const locationNode = locationNodeType.create(attributes, [paragraphNode]);
-          
-          if (dispatch) {
-            const { selection } = state;
-            const tr = state.tr.insert(selection.from, locationNode);
-            dispatch(tr);
-          }
-          
-          return true;
         },
       updateLocation:
         (attributes: Partial<LocationNodeType>) =>

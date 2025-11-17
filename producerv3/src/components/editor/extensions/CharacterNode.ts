@@ -198,25 +198,33 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
       insertCharacter:
         (attributes: Partial<CharacterNodeType>) =>
         ({ state, dispatch }: CommandProps) => {
-          const { schema } = state;
-          const paragraphNodeType = schema.nodes.paragraph;
-          if (!paragraphNodeType) {
+          try {
+            const { schema } = state;
+            const paragraphNodeType = schema.nodes.paragraph;
+            if (!paragraphNodeType) {
+              console.error('Paragraph node type not found in schema');
+              return false;
+            }
+            const paragraphNode = paragraphNodeType.create();
+            const characterNodeType = schema.nodes[this.name];
+            if (!characterNodeType) {
+              console.error(`Character node type "${this.name}" not found in schema`);
+              return false;
+            }
+            const characterNode = characterNodeType.create(attributes, [paragraphNode]);
+            
+            if (dispatch) {
+              const { selection } = state;
+              const tr = state.tr.insert(selection.from, characterNode);
+              dispatch(tr);
+            }
+            
+            return true;
+          } catch (error) {
+            console.error('Error inserting character node:', error, 'Attributes:', attributes);
+            // Return false to indicate failure, but don't throw to prevent editor crash
             return false;
           }
-          const paragraphNode = paragraphNodeType.create();
-          const characterNodeType = schema.nodes[this.name];
-          if (!characterNodeType) {
-            return false;
-          }
-          const characterNode = characterNodeType.create(attributes, [paragraphNode]);
-          
-          if (dispatch) {
-            const { selection } = state;
-            const tr = state.tr.insert(selection.from, characterNode);
-            dispatch(tr);
-          }
-          
-          return true;
         },
       updateCharacter:
         (attributes: Partial<CharacterNodeType>) =>

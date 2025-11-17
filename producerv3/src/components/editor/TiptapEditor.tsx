@@ -385,14 +385,27 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
         editor.commands.setContent(contentResult.value);
       }
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
       console.error('Error setting editor content:', error, 'Content:', content);
-      setEditorError(error instanceof Error ? error.message : 'エディタコンテンツの設定に失敗しました');
       
-      // Fallback: try setting empty content
+      // Try to extract problematic content info for better error message
+      let contentInfo = '不明なコンテンツ';
+      if (typeof content === 'string') {
+        // Try to extract first line or tag for context
+        const firstLine = content.split('\n')[0]?.substring(0, 50) || content.substring(0, 50);
+        contentInfo = `コンテンツ: ${firstLine}...`;
+      } else if (Array.isArray(content)) {
+        contentInfo = `配列形式のコンテンツ（${content.length}要素）`;
+      }
+      
+      setEditorError(`エディタコンテンツの設定に失敗しました: ${errorMessage} (${contentInfo})`);
+      
+      // Fallback: try setting empty content, but don't fail if this also fails
       try {
         editor.commands.setContent('<p></p>');
       } catch (fallbackError) {
         console.error('Error setting fallback content:', fallbackError);
+        // Don't set another error - just log it
       }
     }
   }, []);
@@ -568,16 +581,7 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
     return <div>Loading...</div>;
   }
 
-  if (editorError) {
-    return (
-      <div className="flex items-center justify-center h-full">
-        <div className="text-red-500">
-          <div className="font-bold">エラー:</div>
-          <div>{editorError}</div>
-        </div>
-      </div>
-    );
-  }
+  // Don't block editor rendering on errors - show error banner instead
 
   if (!editor) {
     return <div className="flex items-center justify-center h-full">
@@ -590,6 +594,25 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
 
   return (
     <div className="editor-container h-full flex flex-col">
+      {/* Error banner - show at top but don't block editor */}
+      {editorError && (
+        <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-2">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <div className="text-red-500">
+                <div className="font-bold">エラー:</div>
+                <div className="text-sm">{editorError}</div>
+              </div>
+            </div>
+            <button
+              onClick={() => setEditorError(null)}
+              className="text-red-500 hover:text-red-700 text-sm font-semibold"
+            >
+              閉じる
+            </button>
+          </div>
+        </div>
+      )}
       <div className="editor-toolbar flex flex-wrap gap-2 p-2 border-b border-gray-300 items-center">
         {/* Phase 1: 作成（Content Creation） */}
         <div className="flex items-center gap-2">
@@ -902,52 +925,111 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
             const nodeId = node.id as string;
             const nodeName = (node.name as string) || 'Untitled';
             
+            // Helper function to safely insert nodes with error handling
+            const safeInsertNode = (insertFn: () => void, nodeType: string) => {
+              try {
+                insertFn();
+                // Clear any previous errors on successful insertion
+                setEditorError(null);
+              } catch (error) {
+                const errorMessage = error instanceof Error ? error.message : String(error);
+                console.error(`Error inserting ${nodeType} node (${nodeName}):`, error);
+                setEditorError(`${nodeType}ノード「${nodeName}」の挿入に失敗しました: ${errorMessage}`);
+                // Don't throw - allow editor to continue functioning
+              }
+            };
+            
             // Use ts-pattern for exhaustive node type matching
             match(selectedNodeType)
               .with('character', () => {
-                editor.chain().focus().insertCharacter({ characterId: nodeId, name: nodeName }).run();
+                safeInsertNode(
+                  () => editor.chain().focus().insertCharacter({ characterId: nodeId, name: nodeName }).run(),
+                  'character'
+                );
               })
               .with('ghost', () => {
-                editor.chain().focus().insertGhost({ ghostId: nodeId, name: nodeName }).run();
+                safeInsertNode(
+                  () => editor.chain().focus().insertGhost({ ghostId: nodeId, name: nodeName }).run(),
+                  'ghost'
+                );
               })
               .with('location', () => {
-                editor.chain().focus().insertLocation({ locationId: nodeId, name: nodeName }).run();
+                safeInsertNode(
+                  () => editor.chain().focus().insertLocation({ locationId: nodeId, name: nodeName }).run(),
+                  'location'
+                );
               })
               .with('organization', () => {
-                editor.chain().focus().insertOrganization({ organizationId: nodeId, name: nodeName }).run();
+                safeInsertNode(
+                  () => editor.chain().focus().insertOrganization({ organizationId: nodeId, name: nodeName }).run(),
+                  'organization'
+                );
               })
               .with('company', () => {
-                editor.chain().focus().insertCompany({ companyId: nodeId, name: nodeName }).run();
+                safeInsertNode(
+                  () => editor.chain().focus().insertCompany({ companyId: nodeId, name: nodeName }).run(),
+                  'company'
+                );
               })
               .with('technology', () => {
-                editor.chain().focus().insertTechnology({ technologyId: nodeId, name: nodeName }).run();
+                safeInsertNode(
+                  () => editor.chain().focus().insertTechnology({ technologyId: nodeId, name: nodeName }).run(),
+                  'technology'
+                );
               })
               .with('episode', () => {
-                editor.chain().focus().insertEpisode({ episodeId: nodeId, name: nodeName }).run();
+                safeInsertNode(
+                  () => editor.chain().focus().insertEpisode({ episodeId: nodeId, name: nodeName }).run(),
+                  'episode'
+                );
               })
               .with('scene', () => {
-                editor.chain().focus().insertScene({ sceneId: nodeId, name: nodeName }).run();
+                safeInsertNode(
+                  () => editor.chain().focus().insertScene({ sceneId: nodeId, name: nodeName }).run(),
+                  'scene'
+                );
               })
               .with('arc', () => {
-                editor.chain().focus().insertArc({ arcId: nodeId, name: nodeName }).run();
+                safeInsertNode(
+                  () => editor.chain().focus().insertArc({ arcId: nodeId, name: nodeName }).run(),
+                  'arc'
+                );
               })
               .with('motif', () => {
-                editor.chain().focus().insertMotif({ motifId: nodeId, name: nodeName }).run();
+                safeInsertNode(
+                  () => editor.chain().focus().insertMotif({ motifId: nodeId, name: nodeName }).run(),
+                  'motif'
+                );
               })
               .with('season', () => {
-                editor.chain().focus().insertSeason({ seasonId: nodeId, name: nodeName }).run();
+                safeInsertNode(
+                  () => editor.chain().focus().insertSeason({ seasonId: nodeId, name: nodeName }).run(),
+                  'season'
+                );
               })
               .with('timeline', () => {
-                editor.chain().focus().insertTimeline({ timelineId: nodeId, name: nodeName }).run();
+                safeInsertNode(
+                  () => editor.chain().focus().insertTimeline({ timelineId: nodeId, name: nodeName }).run(),
+                  'timeline'
+                );
               })
               .with('pov', () => {
-                editor.chain().focus().insertPOV({ povId: nodeId, name: nodeName }).run();
+                safeInsertNode(
+                  () => editor.chain().focus().insertPOV({ povId: nodeId, name: nodeName }).run(),
+                  'pov'
+                );
               })
               .with('beat', () => {
-                editor.chain().focus().insertBeat({ beatId: nodeId, name: nodeName }).run();
+                safeInsertNode(
+                  () => editor.chain().focus().insertBeat({ beatId: nodeId, name: nodeName }).run(),
+                  'beat'
+                );
               })
               .with('event', () => {
-                editor.chain().focus().insertEvent({ eventId: nodeId, name: nodeName }).run();
+                safeInsertNode(
+                  () => editor.chain().focus().insertEvent({ eventId: nodeId, name: nodeName }).run(),
+                  'event'
+                );
               })
               .otherwise(() => {
                 console.warn('Unknown node type:', selectedNodeType);

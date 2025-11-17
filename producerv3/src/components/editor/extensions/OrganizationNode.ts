@@ -188,28 +188,35 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
       insertOrganization:
         (attributes: Partial<OrganizationNodeType>) =>
         ({ state, dispatch }: CommandProps) => {
-          const { schema } = state;
-          const paragraphNodeType = schema.nodes.paragraph;
-          if (!paragraphNodeType) {
+          try {
+            const { schema } = state;
+            const paragraphNodeType = schema.nodes.paragraph;
+            if (!paragraphNodeType) {
+              console.error('Paragraph node type not found in schema');
+              return false;
+            }
+            const paragraphNode = paragraphNodeType.create();
+            const organizationNodeType = schema.nodes[this.name];
+            if (!organizationNodeType) {
+              console.error(`Organization node type "${this.name}" not found in schema`);
+              return false;
+            }
+            const organizationNode = organizationNodeType.create(
+              { ...attributes, 'data-type': 'organization' },
+              [paragraphNode]
+            );
+            
+            if (dispatch) {
+              const { selection } = state;
+              const tr = state.tr.insert(selection.from, organizationNode);
+              dispatch(tr);
+            }
+            
+            return true;
+          } catch (error) {
+            console.error('Error inserting organization node:', error, 'Attributes:', attributes);
             return false;
           }
-          const paragraphNode = paragraphNodeType.create();
-          const organizationNodeType = schema.nodes[this.name];
-          if (!organizationNodeType) {
-            return false;
-          }
-          const organizationNode = organizationNodeType.create(
-            { ...attributes, 'data-type': 'organization' },
-            [paragraphNode]
-          );
-          
-          if (dispatch) {
-            const { selection } = state;
-            const tr = state.tr.insert(selection.from, organizationNode);
-            dispatch(tr);
-          }
-          
-          return true;
         },
       updateOrganization:
         (attributes: Partial<OrganizationNodeType>) =>
@@ -219,28 +226,35 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
       insertCompany:
         (attributes: Partial<CompanyNode>) =>
         ({ state, dispatch }: CommandProps) => {
-          const { schema } = state;
-          const paragraphNodeType = schema.nodes.paragraph;
-          if (!paragraphNodeType) {
+          try {
+            const { schema } = state;
+            const paragraphNodeType = schema.nodes.paragraph;
+            if (!paragraphNodeType) {
+              console.error('Paragraph node type not found in schema');
+              return false;
+            }
+            const paragraphNode = paragraphNodeType.create();
+            const companyNodeType = schema.nodes.company;
+            if (!companyNodeType) {
+              console.error('Company node type not found in schema');
+              return false;
+            }
+            const companyNode = companyNodeType.create(
+              { ...attributes, 'data-type': 'company' },
+              [paragraphNode]
+            );
+            
+            if (dispatch) {
+              const { selection } = state;
+              const tr = state.tr.insert(selection.from, companyNode);
+              dispatch(tr);
+            }
+            
+            return true;
+          } catch (error) {
+            console.error('Error inserting company node:', error, 'Attributes:', attributes);
             return false;
           }
-          const paragraphNode = paragraphNodeType.create();
-          const companyNodeType = schema.nodes.company;
-          if (!companyNodeType) {
-            return false;
-          }
-          const companyNode = companyNodeType.create(
-            { ...attributes, 'data-type': 'company' },
-            [paragraphNode]
-          );
-          
-          if (dispatch) {
-            const { selection } = state;
-            const tr = state.tr.insert(selection.from, companyNode);
-            dispatch(tr);
-          }
-          
-          return true;
         },
       updateCompany:
         (attributes: Partial<CompanyNode>) =>
