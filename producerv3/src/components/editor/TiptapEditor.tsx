@@ -67,7 +67,6 @@ import { FloatingToolbar } from './FloatingToolbar';
 import { ImageGenerationDialog } from './ImageGenerationDialog';
 import { AIContentGenerationControls } from './AIContentGenerationControls';
 import { NodeClassificationControls } from './NodeClassificationControls';
-import { EmotionalView } from './EmotionalView';
 import { EmotionSidebar } from './EmotionSidebar';
 import '@/styles/editor.css';
 
@@ -703,11 +702,8 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
         </div>
         
         {/* Emotion Sidebar */}
-        <EmotionSidebar editor={editor} selectedBenchmark={selectedBenchmark} />
+        <EmotionSidebar editor={editor} selectedBenchmark={selectedBenchmark} onBenchmarkChange={setSelectedBenchmark} />
       </div>
-      
-      {/* Emotional View (for emotion curve graph) */}
-      <EmotionalView editor={editor} selectedBenchmark={selectedBenchmark} onBenchmarkChange={setSelectedBenchmark} />
       
       {/* ノード選択ダイアログ */}
       {selectedNodeType && (

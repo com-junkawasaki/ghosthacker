@@ -212,7 +212,7 @@ async fn generate_with_openai(
     let client = reqwest::Client::new();
     
     let request = OpenAIRequest {
-        model: "gpt-4".to_string(),
+        model: "gpt-4o".to_string(), // Updated to gpt-4o for better performance and cost efficiency
         messages: vec![
             OpenAIMessage {
                 role: "system".to_string(),
@@ -411,16 +411,21 @@ async fn classify_with_openai(prompt: &str) -> anyhow::Result<ClassificationData
     
     let client = reqwest::Client::new();
     
-    let response_format = serde_json::json!({
-        "type": "json_object"
-    });
+    // Use environment variable for model, fallback to gpt-4o
+    let model = std::env::var("OPENAI_MODEL")
+        .unwrap_or_else(|_| "gpt-4o".to_string());
     
-    let request = ClassificationRequest {
-        model: "gpt-4".to_string(),
+    // Check if model supports response_format (gpt-4-turbo, gpt-4o, gpt-3.5-turbo)
+    let supports_json_format = model.contains("gpt-4-turbo") 
+        || model.contains("gpt-4o") 
+        || model.contains("gpt-3.5-turbo");
+    
+    let mut request = ClassificationRequest {
+        model: model.clone(),
         messages: vec![
             OpenAIMessage {
                 role: "system".to_string(),
-                content: "You are a node classification assistant. Always respond with valid JSON.".to_string(),
+                content: "You are a node classification assistant. Always respond with valid JSON only, no additional text or explanation.".to_string(),
             },
             OpenAIMessage {
                 role: "user".to_string(),
@@ -428,8 +433,16 @@ async fn classify_with_openai(prompt: &str) -> anyhow::Result<ClassificationData
             },
         ],
         temperature: Some(0.3),
-        response_format: Some(response_format),
+        response_format: None,
     };
+    
+    // Only add response_format if model supports it
+    if supports_json_format {
+        let response_format = serde_json::json!({
+            "type": "json_object"
+        });
+        request.response_format = Some(response_format);
+    }
     
     let response = client
         .post("https://api.openai.com/v1/chat/completions")
@@ -456,8 +469,42 @@ async fn classify_with_openai(prompt: &str) -> anyhow::Result<ClassificationData
         .and_then(|choice| Some(choice.message.content.clone()))
         .ok_or_else(|| anyhow::anyhow!("No content in OpenAI response"))?;
     
-    let classification_data: ClassificationData = serde_json::from_str(&content)
-        .map_err(|e| anyhow::anyhow!("Failed to parse classification data: {:?}", e))?;
+    // Extract JSON from content (handle markdown code blocks if present)
+    let json_content = if content.trim_start().starts_with("```") {
+        // Extract JSON from markdown code block
+        let lines: Vec<&str> = content.lines().collect();
+        let json_start = lines.iter().position(|l| l.trim().starts_with("```json") || l.trim().starts_with("```"));
+        let json_end = lines.iter().rposition(|l| l.trim() == "```");
+        
+        if let (Some(start), Some(end)) = (json_start, json_end) {
+            lines[start + 1..end].join("\n")
+        } else {
+            // Try to find JSON object in content
+            if let Some(start_idx) = content.find('{') {
+                if let Some(end_idx) = content.rfind('}') {
+                    content[start_idx..=end_idx].to_string()
+                } else {
+                    content
+                }
+            } else {
+                content
+            }
+        }
+    } else {
+        // Try to extract JSON object if wrapped in text
+        if let Some(start_idx) = content.find('{') {
+            if let Some(end_idx) = content.rfind('}') {
+                content[start_idx..=end_idx].to_string()
+            } else {
+                content
+            }
+        } else {
+            content
+        }
+    };
+    
+    let classification_data: ClassificationData = serde_json::from_str(&json_content)
+        .map_err(|e| anyhow::anyhow!("Failed to parse classification data from content: {:?}. Content: {}", e, json_content))?;
     
     Ok(classification_data)
 }

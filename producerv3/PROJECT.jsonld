@@ -37,10 +37,10 @@
   "id": "https://gftd.ai/project/epub-editor",
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
-  "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation, AI node classification and reclassification, emotion analysis (Hume AI) with visualization and benchmark comparison, and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "2.2.0",
+  "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation, AI node classification and reclassification, emotion analysis (Hume AI) with sidebar visualization and benchmark comparison, and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
+  "version": "2.3.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-11-17T09:00:00Z",
+  "updatedAt": "2025-01-27T12:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -159,7 +159,7 @@
       "@id": "https://gftd.ai/resource/emotion-profile",
       "type": "cpm:Resource",
       "name": "Emotion Profile",
-      "description": "Emotion analysis results (emotion vector with scores) attached to all node types (paragraph, character, scene, beat, etc.), analyzed via Hume AI API. Visualized with background colors and border colors based on dominant emotions."
+      "description": "Emotion analysis results (emotion vector with scores) attached to all node types (paragraph, character, scene, beat, etc.), analyzed via Hume AI API. Visualized in right sidebar aligned with each editor line, with background colors and border colors based on dominant emotions."
     },
     {
       "@id": "https://gftd.ai/resource/emotion-benchmark",
@@ -168,10 +168,10 @@
       "description": "Emotional benchmark data (JSON-LD format) defining target emotion scores for reference works (e.g., 君の名は。, ARIA, 聲の形, Arrival, Shawshank). Used for comparing actual emotion scores with benchmarks and calculating alignment scores (0-100%)."
     },
     {
-      "@id": "https://gftd.ai/resource/emotion-curve-graph",
+      "@id": "https://gftd.ai/resource/emotion-sidebar",
       "type": "cpm:Resource",
-      "name": "Emotion Curve Graph",
-      "description": "SVG-based emotion curve graph visualizing emotion flow across nodes. Compares actual emotion scores with benchmark targets. Displays dominant emotions per node position with color-coded lines."
+      "name": "Emotion Sidebar",
+      "description": "Right-side sidebar displaying emotion analysis data aligned with each editor line. Shows dominant emotions, scores, benchmark comparisons, and alignment scores for each analyzed node. Includes benchmark selector dropdown in header. Positioned absolutely to match editor line positions."
     },
     {
       "@id": "https://gftd.ai/resource/export-file",
@@ -589,6 +589,14 @@
       "status": "resolved",
       "priority": "high",
       "resolution": "Extended EmotionAnalysisExtension to support all node types (paragraph, character, scene, beat, arc, etc.). Created emotion visualization library (src/lib/editor/emotionVisualization.ts) with color mapping for 10 emotion types (joy, sadness, fear, anger, surprise, trust, anticipation, disgust, relief, hope). Implemented benchmark comparison system (src/lib/ai/emotionBenchmark.ts) loading JSON-LD benchmark data and calculating alignment scores (0-100%). Created EmotionalView component displaying node-by-node emotion scores, benchmark comparisons, and overall statistics. Implemented EmotionCurveGraph component (SVG-based) visualizing emotion flow and comparing with benchmark targets. Added CSS styles for emotion-based background and border colors. Integrated EmotionalView into TiptapEditor. EmotionStyleExtension was disabled due to schema issues, using CSS-based styling instead via data-emotion-vector attributes."
+    },
+    {
+      "@id": "https://gftd.ai/issue/emotion-sidebar-layout-refactor",
+      "name": "Emotion Sidebar Layout Refactor",
+      "description": "Refactored emotion visualization layout to eliminate duplicate display. Moved all emotion analysis data display to right-side sidebar (EmotionSidebar) aligned with editor lines. Removed bottom EmotionalView panel. Added benchmark selector to sidebar header. Implemented position tracking to align emotion data with corresponding editor lines using DOM element positions and scroll synchronization.",
+      "status": "resolved",
+      "priority": "medium",
+      "resolution": "Created EmotionSidebar component (src/components/editor/EmotionSidebar.tsx) with position tracking logic using ResizeObserver and scroll events. Sidebar displays emotion data aligned with each editor line using absolute positioning. Added benchmark selector dropdown to sidebar header. Removed EmotionalView component from TiptapEditor. Updated TiptapEditor layout to 2-column flex layout (editor content + emotion sidebar). Added CSS styles for sidebar positioning and responsive design. Emotion node items are positioned absolutely based on calculated editor line positions, synchronized with scroll events."
     },
     {
       "@id": "https://gftd.ai/issue/openai-image-generation-cors-error",

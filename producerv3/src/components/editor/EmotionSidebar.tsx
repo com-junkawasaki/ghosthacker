@@ -12,7 +12,7 @@ import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import type { Editor } from '@tiptap/react';
 import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
 import type { EmotionScore } from '@/types/jsonld';
-import { compareWithAllBenchmarks, getBenchmarkById, type BenchmarkComparisonResult } from '@/lib/ai/emotionBenchmark';
+import { compareWithAllBenchmarks, getAllBenchmarks, getBenchmarkById, type BenchmarkComparisonResult } from '@/lib/ai/emotionBenchmark';
 import { getDominantEmotion, getEmotionColor } from '@/lib/editor/emotionVisualization';
 
 interface NodeEmotionData {
@@ -37,9 +37,10 @@ interface NodePosition {
 interface EmotionSidebarProps {
   editor: Editor | null;
   selectedBenchmark?: string | null;
+  onBenchmarkChange?: (benchmarkId: string | null) => void;
 }
 
-export function EmotionSidebar({ editor, selectedBenchmark }: EmotionSidebarProps) {
+export function EmotionSidebar({ editor, selectedBenchmark, onBenchmarkChange }: EmotionSidebarProps) {
   const [nodePositions, setNodePositions] = useState<NodePosition[]>([]);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const editorContentRef = useRef<HTMLElement | null>(null);
@@ -178,8 +179,24 @@ export function EmotionSidebar({ editor, selectedBenchmark }: EmotionSidebarProp
     >
       <div className="p-4 sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-300 dark:border-gray-600 z-10">
         <h3 className="text-sm font-semibold mb-2">感情分析</h3>
-        <div className="text-xs text-gray-600 dark:text-gray-400">
+        <div className="text-xs text-gray-600 dark:text-gray-400 mb-3">
           {nodeEmotions.length} ノード分析済み
+        </div>
+        {/* Benchmark selector */}
+        <div>
+          <label className="text-xs font-semibold mb-1 block">ベンチマーク選択:</label>
+          <select
+            value={selectedBenchmark || ''}
+            onChange={(e) => onBenchmarkChange?.(e.target.value || null)}
+            className="w-full px-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800"
+          >
+            <option value="">全てのベンチマーク</option>
+            {getAllBenchmarks().map((benchmark) => (
+              <option key={benchmark['@id']} value={benchmark['@id']}>
+                {benchmark.name}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
