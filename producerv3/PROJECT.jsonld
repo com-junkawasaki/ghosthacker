@@ -29,16 +29,18 @@
     
     "goal": {"@id": "cpm:goal", "@type": "@id"},
     "status": "cpm:status",
-    "priority": "cpm:priority"
+    "priority": "cpm:priority",
+    "configuration": {"@id": "cpm:configuration", "@container": "@set"},
+    "issue": {"@id": "cpm:issue", "@container": "@set"}
   },
   
   "id": "https://gftd.ai/project/epub-editor",
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
   "description": "Tiptap editor based EPUB editing tool with AI Generator integration. Frontend: Astro + Tiptap, Backend: GraphQL (Poem/Rust) + Neo4j",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-01-27T00:00:00Z",
+  "updatedAt": "2025-11-17T04:50:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -69,19 +71,19 @@
       "@id": "https://gftd.ai/performer/actor/editor",
       "type": "cpm:Actor",
       "name": "Editor Actor",
-      "description": "Frontend actor providing EPUB editing UI"
+      "description": "Frontend actor providing EPUB editing UI, running on port 25320"
     },
     {
       "@id": "https://gftd.ai/performer/service/graphql",
       "type": "cpm:Service",
       "name": "GraphQL Service",
-      "description": "GraphQL API service built with Poem/Rust"
+      "description": "GraphQL API service built with Poem v3/Rust, async-graphql v7, running on port 25325 (host) -> 8080 (container)"
     },
     {
       "@id": "https://gftd.ai/performer/system/neo4j",
       "type": "cpm:System",
       "name": "Neo4j Database",
-      "description": "Graph database storing EPUB structure and content"
+      "description": "Graph database storing EPUB structure and content, running on ports 7474 (HTTP) and 7687 (Bolt)"
     }
   ],
   
@@ -115,13 +117,73 @@
     {
       "@id": "https://gftd.ai/dependency/neo4j",
       "name": "Neo4j Database",
-      "description": "Graph database for EPUB structure"
+      "description": "Graph database for EPUB structure, version 5.15"
     },
     {
       "@id": "https://gftd.ai/dependency/poem",
       "name": "Poem Framework",
-      "description": "Rust web framework"
+      "description": "Rust web framework, version 3"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/async-graphql",
+      "name": "async-graphql",
+      "description": "Rust GraphQL library, version 7"
+    }
+  ],
+  
+  "configuration": [
+    {
+      "@id": "https://gftd.ai/config/ports",
+      "name": "Service Ports",
+      "description": "Port configuration for services",
+      "frontend": 25320,
+      "graphql": 25325,
+      "neo4j_http": 7474,
+      "neo4j_bolt": 7687
+    },
+    {
+      "@id": "https://gftd.ai/config/network",
+      "name": "Docker Network",
+      "description": "Docker network configuration",
+      "network_name": "epub-editor-network-v2",
+      "driver": "bridge"
+    },
+    {
+      "@id": "https://gftd.ai/config/rust",
+      "name": "Rust Configuration",
+      "description": "Rust toolchain and dependencies",
+      "edition": "2021",
+      "async_graphql_version": "7",
+      "poem_version": "3",
+      "neo4rs_version": "0.7"
+    }
+  ],
+  
+  "issue": [
+    {
+      "@id": "https://gftd.ai/issue/graphql-codegen-schema-loading",
+      "name": "GraphQL Codegen Schema Loading",
+      "description": "Codegen fails to load schema from localhost:25325 when running inside container. Use http://graphql:8080/graphql for container-based codegen.",
+      "status": "resolved",
+      "resolution": "Updated codegen.yaml to support both localhost (host) and graphql:8080 (container) endpoints"
+    },
+    {
+      "@id": "https://gftd.ai/issue/simpleobject-outputtype",
+      "name": "SimpleObject OutputType Implementation",
+      "description": "Fixed SimpleObject derive macro issues by reordering struct definitions and adding Clone trait",
+      "status": "resolved"
+    },
+    {
+      "@id": "https://gftd.ai/issue/async-graphql-error-conversion",
+      "name": "async_graphql::Error Conversion",
+      "description": "Fixed error conversion from async_graphql::Error to anyhow::Error using format! macro with Debug trait",
+      "status": "resolved"
+    },
+    {
+      "@id": "https://gftd.ai/issue/disk-space",
+      "name": "Disk Space Management",
+      "description": "Cleaned up Docker volumes and Rust target directories to free up ~14GB of disk space",
+      "status": "resolved"
     }
   ]
 }
-
