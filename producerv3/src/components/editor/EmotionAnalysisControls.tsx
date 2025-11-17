@@ -13,7 +13,7 @@ import { useMutation } from '@apollo/client';
 import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
 import { ANALYZE_EMOTIONS } from '@/lib/graphql/mutations';
 import { EmotionProfile, EmotionScore } from '@/types/jsonld';
-import { MaskType } from '@/types/jsonld';
+import { MarkType } from '@/types/jsonld';
 
 export function EmotionAnalysisControls() {
   const editor = useEditor();
@@ -88,7 +88,7 @@ export function EmotionAnalysisControls() {
   };
 
   const handleToggleEmotionMask = () => {
-    editor.chain().focus().toggleMark('emotion' as MaskType['type']).run();
+    editor.chain().focus().toggleMark('emotion' as MarkType['type']).run();
   };
 
   const handleClearEmotions = () => {

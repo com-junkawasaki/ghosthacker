@@ -7,7 +7,7 @@
  * Analyze node content and apply detected nodes, masks, and emotions
  */
 import type { Editor } from '@tiptap/react';
-import type { MaskType } from '@/types/jsonld';
+import type { MarkType } from '@/types/jsonld';
 import { EmotionProfile } from '@/types/jsonld';
 
 export interface DetectedNode {
@@ -140,7 +140,7 @@ export function applyRecommendedMasks(
 
   // Apply each mask
   for (const mask of highConfidenceMasks) {
-    editor.chain().focus().setMark(mask.maskType as MaskType['type'], true).run();
+    editor.chain().focus().setMark(mask.maskType as MarkType['type'], true).run();
   }
 }
 

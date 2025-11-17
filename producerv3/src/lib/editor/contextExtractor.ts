@@ -9,7 +9,7 @@
 
 import type { Editor } from '@tiptap/react';
 import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
-import type { MaskType } from '@/types/jsonld';
+import type { MarkType } from '@/types/jsonld';
 import { extractStructuredContext, extractStructuredContextAroundCursor } from './structuredContextExtractor';
 
 /**
@@ -47,7 +47,7 @@ export interface ExtractedNode {
  * Mask情報
  */
 export interface MaskInfo {
-  type: MaskType['type'];
+  type: MarkType['type'];
   enabled: boolean;
   attributes?: Record<string, unknown>;
 }
@@ -88,7 +88,7 @@ const NODE_TYPE_MAP: Record<string, NodeType> = {
 /**
  * Mask属性のマッピング
  */
-const MASK_ATTRIBUTE_MAP: Record<string, MaskType['type']> = {
+const MASK_ATTRIBUTE_MAP: Record<string, MarkType['type']> = {
   emotionMask: 'emotion',
   themeMask: 'theme',
   contextMask: 'context',

@@ -375,7 +375,7 @@ export type JsonLdNode =
   | SettingNode
   | ChapterLinkNode;
 
-export type MaskType =
+export type MarkType =
   | EmotionMask
   | ThemeMask
   | ContextMask
@@ -386,9 +386,6 @@ export type MaskType =
   | EmitsRepelsAvoidsMask
   | PhaseMask
   | RoleMask;
-
-// MarkType is an alias for MaskType for backward compatibility
-export type MarkType = MaskType;
 
 // ============================================================================
 // Tiptapノード属性型

@@ -11,9 +11,9 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { Editor } from '@tiptap/react';
-import { MaskType } from '@/types/jsonld';
+import { MarkType } from '@/types/jsonld';
 
-const MASK_TYPES: Array<{ type: MaskType['type']; label: string }> = [
+const MASK_TYPES: Array<{ type: MarkType['type']; label: string }> = [
   { type: 'emotion', label: 'Emotion' },
   { type: 'theme', label: 'Theme' },
   { type: 'context', label: 'Context' },
@@ -46,7 +46,7 @@ interface FloatingToolbarProps {
 export function FloatingToolbar({ editor, onInsertNode }: FloatingToolbarProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
-  const [activeMasks, setActiveMasks] = useState<Set<MaskType['type']>>(new Set());
+  const [activeMasks, setActiveMasks] = useState<Set<MarkType['type']>>(new Set());
   const toolbarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -81,7 +81,7 @@ export function FloatingToolbar({ editor, onInsertNode }: FloatingToolbarProps) 
     };
   }, [editor]);
 
-  const toggleMark = (markType: MaskType['type']) => {
+  const toggleMark = (markType: MarkType['type']) => {
     const { from, to } = editor.state.selection;
     if (from === to) return;
 

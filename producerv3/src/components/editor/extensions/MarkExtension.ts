@@ -8,7 +8,7 @@
 import { Extension, type RawCommands, type CommandProps } from '@tiptap/core';
 import type { EditorState, Transaction } from '@tiptap/pm/state';
 import type { Node as ProseMirrorNode, Mark } from '@tiptap/pm/model';
-import type { MaskType } from '@/types/jsonld';
+import type { MarkType } from '@/types/jsonld';
 
 export interface MarkExtensionOptions {
   HTMLAttributes: Record<string, unknown>;
@@ -20,11 +20,11 @@ declare module '@tiptap/core' {
       /**
        * Toggle mark for a specific mark type
        */
-      toggleMark: (markType: MaskType['type']) => ReturnType;
+      toggleMark: (markType: MarkType['type']) => ReturnType;
       /**
        * Set mark state for a specific mark type
        */
-      setMark: (markType: MaskType['type'], enabled: boolean) => ReturnType;
+      setMark: (markType: MarkType['type'], enabled: boolean) => ReturnType;
       /**
        * Toggle all marks
        */
@@ -35,8 +35,8 @@ declare module '@tiptap/core' {
 
 // Type assertion helper to ensure RawCommands compatibility
 type MarkExtensionCommands = {
-  toggleMark: (markType: MaskType['type']) => (props: CommandProps) => boolean;
-  setMark: (markType: MaskType['type'], enabled: boolean) => (props: CommandProps) => boolean;
+  toggleMark: (markType: MarkType['type']) => (props: CommandProps) => boolean;
+  setMark: (markType: MarkType['type'], enabled: boolean) => (props: CommandProps) => boolean;
   toggleAllMarks: () => (props: { state: EditorState; dispatch: ((tr: Transaction) => void) | undefined }) => boolean;
 };
 
@@ -52,9 +52,9 @@ export const MarkExtension = Extension.create<MarkExtensionOptions>({
   addCommands(): Partial<RawCommands> {
     const commands: MarkExtensionCommands = {
       toggleMark:
-        (markType: MaskType['type']) =>
+        (markType: MarkType['type']) =>
         ({ commands }) => {
-          const markNameMap: Record<MaskType['type'], string> = {
+          const markNameMap: Record<MarkType['type'], string> = {
             emotion: 'emotionMark',
             theme: 'themeMark',
             context: 'contextMark',
@@ -75,9 +75,9 @@ export const MarkExtension = Extension.create<MarkExtensionOptions>({
           return commands.toggleMark(markName) as boolean;
         },
       setMark:
-        (markType: MaskType['type'], enabled: boolean) =>
+        (markType: MarkType['type'], enabled: boolean) =>
         ({ commands }) => {
-          const markNameMap: Record<MaskType['type'], string> = {
+          const markNameMap: Record<MarkType['type'], string> = {
             emotion: 'emotionMark',
             theme: 'themeMark',
             context: 'contextMark',
@@ -104,7 +104,7 @@ export const MarkExtension = Extension.create<MarkExtensionOptions>({
       toggleAllMarks:
         () =>
         ({ state, dispatch }) => {
-          const markTypes: MaskType['type'][] = [
+          const markTypes: MarkType['type'][] = [
             'emotion',
             'theme',
             'context',
@@ -126,7 +126,7 @@ export const MarkExtension = Extension.create<MarkExtensionOptions>({
             return true;
           }
 
-          const markNameMap: Record<MaskType['type'], string> = {
+          const markNameMap: Record<MarkType['type'], string> = {
             emotion: 'emotionMark',
             theme: 'themeMark',
             context: 'contextMark',
