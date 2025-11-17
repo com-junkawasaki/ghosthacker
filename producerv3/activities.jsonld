@@ -219,6 +219,27 @@
         {"@id": "https://gftd.ai/activity/edit-epub-content"},
         {"@id": "https://gftd.ai/activity/mask-content"}
       ]
+    },
+    {
+      "id": "https://gftd.ai/activity/analyze-current-node-emotions",
+      "type": "cpm:Activity",
+      "name": "Analyze Current Node Emotions",
+      "description": "Analyze emotions for the current node (Block Container Nodes: character, scene, location, organization, pov, or paragraph) using Hume AI API. Extracts full text content from the selected node including all child nodes, sends to Hume AI for emotion analysis, and applies emotion profile to the node. Supports both block container nodes and inline atom nodes. Includes error handling with user feedback via error banner.",
+      "createdAt": "2025-01-27T22:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/jsonld-nodes"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/emotion-profile"}
+      ],
+      "dependsOn": [
+        {"@id": "https://gftd.ai/activity/analyze-emotions"},
+        {"@id": "https://gftd.ai/activity/edit-epub-content"}
+      ]
     }
   ]
 }

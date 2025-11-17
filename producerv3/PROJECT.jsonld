@@ -37,10 +37,10 @@
   "id": "https://gftd.ai/project/epub-editor",
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
-  "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation with structured context extraction (hierarchical hybrid approach: Node + Mark + Attribute), AI node classification and batch reclassification (single and multiple nodes), node content analysis (sub-node detection, mask recommendations, emotion analysis), emotion analysis (Hume AI) with sidebar visualization and benchmark comparison, and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "2.7.0",
+  "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation with structured context extraction (hierarchical hybrid approach: Node + Mark + Attribute), AI node classification and batch reclassification (single and multiple nodes), node content analysis (sub-node detection, mask recommendations, emotion analysis), emotion analysis (Hume AI) with current node analysis, sidebar visualization and benchmark comparison, and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
+  "version": "2.8.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-01-27T21:00:00Z",
+  "updatedAt": "2025-01-27T22:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -81,6 +81,7 @@
     {"@id": "https://gftd.ai/activity/mask-content"},
     {"@id": "https://gftd.ai/activity/slash-commands"},
     {"@id": "https://gftd.ai/activity/analyze-emotions"},
+    {"@id": "https://gftd.ai/activity/analyze-current-node-emotions"},
     {"@id": "https://gftd.ai/activity/emotion-visualization"},
     {"@id": "https://gftd.ai/activity/emotion-benchmark-comparison"},
     {"@id": "https://gftd.ai/activity/manage-jsonld-nodes"},
@@ -177,7 +178,7 @@
       "@id": "https://gftd.ai/resource/emotion-profile",
       "type": "cpm:Resource",
       "name": "Emotion Profile",
-      "description": "Emotion analysis results (emotion vector with scores) attached to all node types (paragraph, character, scene, beat, etc.), analyzed via Hume AI API. Visualized in right sidebar aligned with each editor line, with background colors and border colors based on dominant emotions."
+      "description": "Emotion analysis results (emotion vector with scores) attached to all node types (paragraph, character, scene, beat, etc.), analyzed via Hume AI API. Can be analyzed for current node (Block Container Nodes: character, scene, location, organization, pov, or paragraph) via toolbar button. Extracts full text content from selected node including all child nodes. Visualized in right sidebar aligned with each editor line, with background colors and border colors based on dominant emotions."
     },
     {
       "@id": "https://gftd.ai/resource/emotion-benchmark",
@@ -708,6 +709,22 @@
       "status": "resolved",
       "priority": "medium",
       "resolution": "Added ts-pattern import to TiptapEditor.tsx. Refactored normalizeContentHtml() function to use ts-pattern for content type matching. Refactored setEditorContent() function to use ts-pattern for content validation and type handling. Refactored node type switch statement to use ts-pattern with exhaustive() matching for all node types (character, ghost, location, organization, company, technology, episode, scene, arc, motif, season, timeline, pov, beat, event). Refactored save status display to use ts-pattern with exhaustive() matching for all status types (idle, saving, saved, error). All pattern matching now provides compile-time exhaustiveness guarantees."
+    },
+    {
+      "@id": "https://gftd.ai/issue/renderhtml-array-error-fix",
+      "name": "renderHTML Array Error Fix",
+      "description": "Fixed 'Invalid array passed to renderSpec' error in TipTap renderHTML methods. Error occurred when mergeAttributes returned objects containing arrays (e.g., class attribute as array). Added sanitization to convert arrays to strings before passing to renderSpec.",
+      "status": "resolved",
+      "priority": "high",
+      "resolution": "Updated CharacterNode, OrganizationNode, and LocationNode renderHTML methods to sanitize mergeAttributes results. Added array detection and conversion to strings (using join(' ')) for all attribute values. Added error handling in getHTML() calls to prevent editor crashes. All renderHTML methods now ensure attributes are objects with string values, not arrays."
+    },
+    {
+      "@id": "https://gftd.ai/issue/current-node-emotion-analysis",
+      "name": "Current Node Emotion Analysis Implementation",
+      "description": "Implemented emotion analysis for current node functionality. Users can analyze emotions for the currently selected node (Block Container Nodes: character, scene, location, organization, pov, or paragraph) via toolbar button. Extracts full text content from selected node including all child nodes, sends to Hume AI API, and applies emotion profile to the node.",
+      "status": "resolved",
+      "priority": "high",
+      "resolution": "Created getCurrentNodeFullText() function to extract text from current node (supports Block Container Nodes and paragraphs). Implemented handleAnalyzeCurrentNode() function using analyzeEmotions GraphQL mutation. Added Hume感情分析 button to editor toolbar with loading state and error handling. Added emotion analysis error banner for user feedback. Integrated with existing EmotionAnalysisExtension to apply emotion profiles to nodes. Error handling prevents editor crashes and provides user feedback."
     }
   ]
 }
