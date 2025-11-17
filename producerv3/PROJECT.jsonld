@@ -38,9 +38,9 @@
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
   "description": "Tiptap editor based EPUB editing tool with AI Generator integration, emotion analysis (Hume AI), and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-01-27T18:00:00Z",
+  "updatedAt": "2025-11-17T08:40:48Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -56,7 +56,9 @@
     {"@id": "https://gftd.ai/capability/ai-generation"},
     {"@id": "https://gftd.ai/capability/epub-export"},
     {"@id": "https://gftd.ai/capability/epub-import-export"},
-    {"@id": "https://gftd.ai/capability/emotion-analysis"}
+    {"@id": "https://gftd.ai/capability/emotion-analysis"},
+    {"@id": "https://gftd.ai/capability/jsonld-data-management"},
+    {"@id": "https://gftd.ai/capability/markdown-processing"}
   ],
   
   "hasActivity": [
@@ -75,7 +77,9 @@
     {"@id": "https://gftd.ai/activity/analyze-emotions"},
     {"@id": "https://gftd.ai/activity/manage-jsonld-nodes"},
     {"@id": "https://gftd.ai/activity/manage-graph-links"},
-    {"@id": "https://gftd.ai/activity/manage-graph-incidences"}
+    {"@id": "https://gftd.ai/activity/manage-graph-incidences"},
+    {"@id": "https://gftd.ai/activity/import-jsonld-nodes"},
+    {"@id": "https://gftd.ai/activity/concatenate-markdown-files"}
   ],
   
   "hasPerformer": [
@@ -153,6 +157,18 @@
       "type": "cpm:Resource",
       "name": "Graph Nodes, Links, and Incidences",
       "description": "Incidence graph model for JSON-LD nodes. GraphLinks represent relationships between nodes (worksFor, knows, parent, spouse, etc.). GraphIncidences connect nodes to links with roles (source, target, participant). Uses existing JSON-LD node tables as nodes."
+    },
+    {
+      "@id": "https://gftd.ai/resource/markdown-episode-files",
+      "type": "cpm:Resource",
+      "name": "Markdown Episode Files",
+      "description": "Markdown files for Wattpad episodes (part*.md and part*.en.md) organized by episode directories (ep01-ep12)"
+    },
+    {
+      "@id": "https://gftd.ai/resource/combined-markdown-files",
+      "type": "cpm:Resource",
+      "name": "Combined Markdown Files",
+      "description": "Combined Markdown files generated from episode parts (combined.md, combined.en.md per episode, and all_episodes.md, all_episodes.en.md for all episodes)"
     }
   ],
   
@@ -206,6 +222,16 @@
       "@id": "https://gftd.ai/dependency/hume-ai",
       "name": "Hume AI",
       "description": "Hume AI Language API for emotion analysis (optional, falls back to deterministic analysis if not configured)"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/walkdir",
+      "name": "walkdir",
+      "description": "Rust library for recursively walking directories, version 2, used in JSON-LD import CLI tool"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/python",
+      "name": "Python",
+      "description": "Python 3 interpreter for running Markdown concatenation scripts"
     }
   ],
   
@@ -433,6 +459,20 @@
       "description": "Implemented EPUB content export and import functionality using Tiptap JSON format. Export includes EPUB structure, chapters, JSON-LD nodes, mask information, and emotion analysis data. Import restores EPUB content from JSON file with validation and error handling.",
       "status": "resolved",
       "resolution": "Created export functionality (src/lib/export/epubExport.ts) to convert EPUB HTML content to Tiptap JSON format and download as JSON file. Created import functionality (src/lib/import/epubImport.ts) to read JSON file, validate structure, and restore EPUB content. Added export/import buttons to TiptapEditor toolbar with file selection dialog and user feedback. Used @tiptap/core generateJSON and generateHTML helpers for format conversion. All Tiptap extensions (JSON-LD nodes, MaskExtension, EmotionAnalysisExtension) are included in export/import process."
+    },
+    {
+      "@id": "https://gftd.ai/issue/jsonld-import-implementation",
+      "name": "JSON-LD Import Implementation",
+      "description": "Implemented JSON-LD import functionality for bulk importing semantic story data from JSON-LD files. Supports importing Character, Ghost, Location, Organization, Company, Technology, Episode, Scene, Arc, Motif, Season, Timeline, Event, SourceRef, Occupation, and Setting nodes. Handles @graph arrays by importing each element individually. Uses upsert operations to overwrite existing data.",
+      "status": "resolved",
+      "resolution": "Created PostgreSQL upsert functions (upsert_character, upsert_ghost, upsert_location, etc.) in postgres.rs. Implemented JSON-LD parser and mapper in scripts/import_jsonld.rs with extract_node_id function to handle various @id formats (gh:Type:identifier, character:id, etc.). Created CLI tool (bin/import_jsonld.rs) to recursively walk directories and import all JSON-LD files. Added create_pool_without_migrations function to skip migrations during import. Fixed error handling for async_graphql::Error conversion using Debug trait. Added Makefile target for import-jsonld command."
+    },
+    {
+      "@id": "https://gftd.ai/issue/markdown-concatenation-script",
+      "name": "Markdown Concatenation Script",
+      "description": "Created Python script to concatenate Markdown episode files (part*.md and part*.en.md) into combined files per episode and all-episodes combined files. Processes ep01-ep12 directories, combines parts in order, and generates combined.md, combined.en.md per episode, plus all_episodes.md and all_episodes.en.md.",
+      "status": "resolved",
+      "resolution": "Created scripts/concat_episode_markdown.py with functions to find part files, concatenate parts with proper spacing, process each episode directory, and create all-episodes combined files. Script handles both Japanese (part*.md) and English (part*.en.md) files. Generates episode headers (# Episode XX) in all-episodes files. Successfully processed all 12 episodes, creating combined files for each episode and master all-episodes files (138KB Japanese, 110KB English)."
     }
   ]
 }

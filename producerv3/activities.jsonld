@@ -178,6 +178,42 @@
         {"@id": "https://gftd.ai/activity/manage-chapters"},
         {"@id": "https://gftd.ai/activity/manage-metadata"}
       ]
+    },
+    {
+      "id": "https://gftd.ai/activity/import-jsonld-nodes",
+      "type": "cpm:Activity",
+      "name": "Import JSON-LD Nodes",
+      "description": "Bulk import JSON-LD semantic story data from JSON-LD files into PostgreSQL database. Supports importing Character, Ghost, Location, Organization, Company, Technology, Episode, Scene, Arc, Motif, Season, Timeline, Event, SourceRef, Occupation, and Setting nodes. Handles @graph arrays by importing each element individually. Uses upsert operations to overwrite existing data.",
+      "createdAt": "2025-11-17T08:40:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/jsonld-nodes"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/jsonld-nodes"}
+      ],
+      "dependsOn": [
+        {"@id": "https://gftd.ai/activity/manage-jsonld-nodes"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/concatenate-markdown-files",
+      "type": "cpm:Activity",
+      "name": "Concatenate Markdown Files",
+      "description": "Concatenate Markdown episode files (part*.md and part*.en.md) into combined files per episode and all-episodes combined files. Processes ep01-ep12 directories, combines parts in order, and generates combined.md, combined.en.md per episode, plus all_episodes.md and all_episodes.en.md.",
+      "createdAt": "2025-11-17T08:40:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/markdown-episode-files"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/combined-markdown-files"}
+      ],
+      "dependsOn": []
     }
   ]
 }

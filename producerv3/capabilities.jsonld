@@ -90,6 +90,33 @@
       "realizedBy": [
         {"@id": "https://gftd.ai/performer/actor/editor"}
       ]
+    },
+    {
+      "id": "https://gftd.ai/capability/jsonld-data-management",
+      "type": "cpm:Capability",
+      "name": "JSON-LD Data Management",
+      "description": "Capability to bulk import JSON-LD semantic story data from JSON-LD files into PostgreSQL database. Supports importing Character, Ghost, Location, Organization, Company, Technology, Episode, Scene, Arc, Motif, Season, Timeline, Event, SourceRef, Occupation, and Setting nodes. Handles @graph arrays and uses upsert operations.",
+      "createdAt": "2025-11-17T08:40:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/import-jsonld-nodes"},
+        {"@id": "https://gftd.ai/activity/manage-jsonld-nodes"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/markdown-processing",
+      "type": "cpm:Capability",
+      "name": "Markdown Processing",
+      "description": "Capability to concatenate Markdown episode files into combined files. Processes episode directories (ep01-ep12), combines parts in order, and generates combined files per episode and all-episodes master files. Supports both Japanese and English versions.",
+      "createdAt": "2025-11-17T08:40:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/concatenate-markdown-files"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"}
+      ]
     }
   ]
 }
