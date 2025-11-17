@@ -26,10 +26,12 @@ import History from '@tiptap/extension-history';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
 import { useEffect, useRef, useState } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery, useMutation, useApolloClient } from '@apollo/client';
 import { GET_CHAPTER, GET_EPUB } from '@/lib/graphql/queries';
 import { UPDATE_CHAPTER } from '@/lib/graphql/mutations';
 import { useEditorSaveStore } from '@/stores/editorSave';
+import { exportEpub } from '@/lib/export/epubExport';
+import { importEpub, readExportFile } from '@/lib/import/epubImport';
 import { CharacterNode } from './extensions/CharacterNode';
 import { GhostNode } from './extensions/GhostNode';
 import { LocationNode } from './extensions/LocationNode';
@@ -115,12 +117,12 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
   const [selectedNodeType, setSelectedNodeType] = useState<string | null>(null);
   const [showChapterSelector, setShowChapterSelector] = useState(false);
   const [editorError, setEditorError] = useState<string | null>(null);
+  const [isExporting, setIsExporting] = useState(false);
+  const [isImporting, setIsImporting] = useState(false);
+  const [importError, setImportError] = useState<string | null>(null);
+  const apolloClient = useApolloClient();
 
   const editor = useEditor({
-    onError: ({ error }) => {
-      console.error('Tiptap editor error:', error);
-      setEditorError(error.message || 'エディタの初期化に失敗しました');
-    },
     extensions: [
       // 基本ノード（必須）- Documentは最初に配置する必要がある
       Document.configure({
@@ -158,9 +160,13 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
       LocationNode,
       OrganizationNode,
       TechnologyNode,
-      ChapterLinkNode.configure({
-        onChapterSelect: onChapterSelect,
-      }),
+      ChapterLinkNode.configure(
+        onChapterSelect
+          ? {
+              onChapterSelect,
+            }
+          : {}
+      ),
       EpisodeNode,
       SceneNode,
       ArcNode,
@@ -290,6 +296,57 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
         },
       },
     });
+  };
+
+  // Export EPUB function
+  const handleExport = async () => {
+    if (!epubId || isExporting) return;
+
+    try {
+      setIsExporting(true);
+      setImportError(null);
+      await exportEpub(apolloClient, epubId);
+    } catch (error) {
+      console.error('Export failed:', error);
+      setImportError(error instanceof Error ? error.message : 'エクスポートに失敗しました');
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
+  // Import EPUB function
+  const handleImport = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file || !epubId || isImporting) return;
+
+    try {
+      setIsImporting(true);
+      setImportError(null);
+
+      // Read and parse export file
+      const exportData = await readExportFile(file);
+
+      // Import EPUB content
+      await importEpub(apolloClient, epubId, exportData);
+
+      // Refresh EPUB data
+      if (epubId) {
+        await apolloClient.refetchQueries({
+          include: [GET_EPUB],
+        });
+      }
+
+      // Show success message
+      alert('インポートが完了しました');
+    } catch (error) {
+      console.error('Import failed:', error);
+      setImportError(error instanceof Error ? error.message : 'インポートに失敗しました');
+      alert(`インポートエラー: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    } finally {
+      setIsImporting(false);
+      // Reset file input
+      event.target.value = '';
+    }
   };
 
   // Cleanup timeouts on unmount
@@ -439,8 +496,61 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
           </button>
         </div>
 
+        {/* エクスポート/インポートボタン */}
+        {epubId && (
+          <div className="border-l border-gray-300 pl-2 ml-2 flex gap-1">
+            <button
+              onClick={handleExport}
+              disabled={isExporting}
+              className={`px-3 py-1 rounded text-sm font-medium ${
+                isExporting
+                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  : 'bg-green-500 text-white hover:bg-green-600'
+              }`}
+              title="EPUB全体をエクスポート"
+            >
+              {isExporting ? 'エクスポート中...' : 'エクスポート'}
+            </button>
+            <label
+              className={`px-3 py-1 rounded text-sm font-medium cursor-pointer ${
+                isImporting
+                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  : 'bg-blue-500 text-white hover:bg-blue-600'
+              }`}
+            >
+              {isImporting ? 'インポート中...' : 'インポート'}
+              <input
+                type="file"
+                accept=".json,application/json"
+                onChange={handleImport}
+                disabled={isImporting}
+                className="hidden"
+              />
+            </label>
+          </div>
+        )}
+
         {/* 保存ボタンと状態表示 */}
         <div className="ml-auto flex items-center gap-2">
+          {/* インポートエラー表示 */}
+          {importError && (
+            <div className="flex items-center gap-1 text-sm text-red-600">
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+              <span>{importError}</span>
+            </div>
+          )}
           {/* 保存状態インジケーター */}
           {saveStatus === 'saving' && (
             <div className="flex items-center gap-1 text-sm text-gray-600">

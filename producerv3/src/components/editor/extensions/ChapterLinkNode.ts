@@ -31,10 +31,10 @@ declare module '@tiptap/core' {
 export const ChapterLinkNode = Node.create<ChapterLinkNodeOptions>({
   name: 'chapterLink',
 
-  addOptions() {
+  addOptions(): ChapterLinkNodeOptions {
     return {
       HTMLAttributes: {},
-      onChapterSelect: undefined,
+      onChapterSelect: undefined as (chapterId: string) => void | undefined,
     };
   },
 

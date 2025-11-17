@@ -38,9 +38,9 @@
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
   "description": "Tiptap editor based EPUB editing tool with AI Generator integration, emotion analysis (Hume AI), and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-01-27T12:00:00Z",
+  "updatedAt": "2025-01-27T16:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -387,6 +387,27 @@
       "description": "GraphQL mutations were defined twice: in .graphql files and in TypeScript with gql tags. This was redundant since GraphQL Codegen already generates DocumentNodes.",
       "status": "resolved",
       "resolution": "Refactored mutations.ts to re-export generated DocumentNodes from graphql.ts instead of using gql tags. Now mutations are defined once in .graphql files, and TypeScript file just re-exports the generated types."
+    },
+    {
+      "@id": "https://gftd.ai/issue/graphql-compilation-error",
+      "name": "GraphQL Service Compilation Error",
+      "description": "GraphQL service failed to compile due to async_graphql::Error not implementing StdError trait, preventing use of anyhow::Context::context() method.",
+      "status": "resolved",
+      "resolution": "Fixed emotion_service.rs to use .map_err() instead of .context() for error conversion from async_graphql::Error to anyhow::Error. Changed postgres::get_chapter() error handling to use format! macro with Debug trait."
+    },
+    {
+      "@id": "https://gftd.ai/issue/readonly-array-sort-error",
+      "name": "Read-only Array Sort Error",
+      "description": "TypeError: Cannot assign to read only property '0' of object '[object Array]' when sorting chapters array from GraphQL query result.",
+      "status": "resolved",
+      "resolution": "Fixed TiptapEditor component to use useMemo hook with array spread operator ([...array]) to create a mutable copy before sorting. This prevents mutation of read-only Apollo Client cache data."
+    },
+    {
+      "@id": "https://gftd.ai/issue/maskcontrols-editor-instance",
+      "name": "MaskControls Editor Instance Error",
+      "description": "MaskControls component was calling useEditor() without arguments, causing 'Schema is missing its top node type' error. useEditor() hook requires an editor instance to be passed as argument or accessed via context.",
+      "status": "resolved",
+      "resolution": "Updated MaskControls component to accept editor instance as prop from parent TiptapEditor component. Changed from useEditor() hook to Editor | null prop type."
     }
   ]
 }

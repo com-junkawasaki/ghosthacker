@@ -135,7 +135,14 @@ PORT=8080
 - **Content Masking**: Visual masking of content with 10 mask types (emotion, theme, context, notes, relationship, virtue, anchoredTo, emitsRepelsAvoids, phase, role)
 - **Slash Commands**: Insert nodes via slash commands (`/character`, `/location`, etc.)
 
-## Recent Updates (v1.3.0)
+## Recent Updates (v1.4.1)
+
+### Bug Fixes
+- **GraphQL Compilation Error**: Fixed async_graphql::Error conversion issue in emotion_service.rs by using `.map_err()` instead of `.context()`
+- **Read-only Array Sort Error**: Fixed TypeError when sorting chapters array by using `useMemo` with array spread operator to create mutable copy
+- **MaskControls Editor Instance**: Fixed MaskControls component to accept editor instance as prop instead of calling `useEditor()` hook
+
+## Previous Updates (v1.3.0)
 
 ### JSON-LD Semantic Nodes
 - **Custom Tiptap Nodes**: Implemented 15 JSON-LD node types (Character, Ghost, Location, Organization, Technology, Episode, Scene, Arc, Motif, Season, Timeline, Event, SourceRef, Occupation, Setting)
