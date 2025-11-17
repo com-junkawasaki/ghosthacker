@@ -38,9 +38,9 @@
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
   "description": "Tiptap editor based EPUB editing tool with AI Generator integration, emotion analysis (Hume AI), and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-01-27T17:00:00Z",
+  "updatedAt": "2025-01-27T18:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -72,7 +72,10 @@
     {"@id": "https://gftd.ai/activity/insert-jsonld-nodes"},
     {"@id": "https://gftd.ai/activity/mask-content"},
     {"@id": "https://gftd.ai/activity/slash-commands"},
-    {"@id": "https://gftd.ai/activity/analyze-emotions"}
+    {"@id": "https://gftd.ai/activity/analyze-emotions"},
+    {"@id": "https://gftd.ai/activity/manage-jsonld-nodes"},
+    {"@id": "https://gftd.ai/activity/manage-graph-links"},
+    {"@id": "https://gftd.ai/activity/manage-graph-incidences"}
   ],
   
   "hasPerformer": [
@@ -144,6 +147,12 @@
       "type": "cpm:Resource",
       "name": "Export File",
       "description": "EPUB content export file in Tiptap JSON format, containing EPUB structure, chapters, JSON-LD nodes, mask information, and emotion analysis data"
+    },
+    {
+      "@id": "https://gftd.ai/resource/graph-nodes-links-incidences",
+      "type": "cpm:Resource",
+      "name": "Graph Nodes, Links, and Incidences",
+      "description": "Incidence graph model for JSON-LD nodes. GraphLinks represent relationships between nodes (worksFor, knows, parent, spouse, etc.). GraphIncidences connect nodes to links with roles (source, target, participant). Uses existing JSON-LD node tables as nodes."
     }
   ],
   

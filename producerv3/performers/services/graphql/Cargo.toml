@@ -2,10 +2,15 @@
 name = "epub-editor-graphql"
 version = "0.1.0"
 edition = "2021"
+default-run = "epub-editor-graphql"
 
 [lib]
 name = "epub_editor_graphql"
 path = "src/lib.rs"
+
+[[bin]]
+name = "epub-editor-graphql"
+path = "src/main.rs"
 
 [[bin]]
 name = "import_jsonld"

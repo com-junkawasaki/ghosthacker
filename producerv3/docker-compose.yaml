@@ -52,7 +52,7 @@ services:
         condition: service_healthy
     networks:
       - epub-editor-network
-    command: cargo watch -x "run" --ignore "target/**" --delay 0.5 --clear
+    command: cargo watch -x "run --bin epub-editor-graphql" --ignore "target/**" --delay 0.5 --clear --watch-when-idle
 
   frontend:
     build:
