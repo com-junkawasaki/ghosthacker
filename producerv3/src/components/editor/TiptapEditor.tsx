@@ -375,7 +375,7 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
             console.warn('JSON value is an array, converting to empty string');
             editor.commands.setContent('<p></p>');
           } else {
-            editor.commands.setContent(contentResult.value);
+            editor.commands.setContent(contentResult.value as string | import('@tiptap/core').JSONContent | import('@tiptap/core').JSONContent[] | null);
           }
         } catch (jsonError) {
           console.error('Error setting JSON content, falling back to empty:', jsonError);

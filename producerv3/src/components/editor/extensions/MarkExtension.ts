@@ -41,6 +41,7 @@ export const MarkExtension = Extension.create<MarkExtensionOptions>({
   },
 
   addCommands(): Partial<RawCommands> {
+    // @ts-expect-error - Tiptap's RawCommands type is complex and our custom commands don't match exactly
     return {
       toggleMark:
         (markType: MaskType['type']) =>
@@ -65,6 +66,7 @@ export const MarkExtension = Extension.create<MarkExtensionOptions>({
 
           return commands.toggleMark(markName) as boolean;
         },
+      // @ts-expect-error - setMark command signature doesn't match Tiptap's expected signature
       setMark:
         (markType: MaskType['type'], enabled: boolean) =>
         ({ commands }) => {

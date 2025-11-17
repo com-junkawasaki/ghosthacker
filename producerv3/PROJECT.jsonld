@@ -38,9 +38,9 @@
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
   "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation with structured context extraction (hierarchical hybrid approach: Node + Mark + Attribute), AI node classification and batch reclassification (single and multiple nodes), node content analysis (sub-node detection, mask recommendations, emotion analysis), emotion analysis (Hume AI) with sidebar visualization and benchmark comparison, and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-01-27T20:30:00Z",
+  "updatedAt": "2025-01-27T21:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -335,6 +335,16 @@
       "@id": "https://gftd.ai/dependency/higgsfield-api",
       "name": "Higgsfield API",
       "description": "Higgsfield AI API for image generation. Alternative to OpenAI DALL-E for generating images from text prompts."
+    },
+    {
+      "@id": "https://gftd.ai/dependency/ts-pattern",
+      "name": "ts-pattern",
+      "description": "TypeScript pattern matching library for exhaustive type-safe pattern matching, version 5.9.0"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/zustand",
+      "name": "Zustand",
+      "description": "Lightweight state management library for React, used for editor save state management"
     }
   ],
   
@@ -682,6 +692,22 @@
       "status": "resolved",
       "priority": "high",
       "resolution": "Created structuredContextExtractor.ts with extractStructuredContext() function that extracts hierarchical context (Scene Node, Location Node, Character Node/Mark, Dialogue with Marks, Emotion Marks, Context Marks). Created contextToJsonLd.ts with generateContextJSONLD() function to convert structured context to JSON-LD format. Extended promptGenerator.ts with generateStructuredPrompt() and generateMultiAgentPrompt() functions. Updated multiAgentContext.ts to integrate structured context with mark information (emotion, context). Updated AIContentGenerationControls.tsx to use structured context extraction and generate prompts from structured context. Extended contextExtractor.ts to optionally include structured context in EditorContext. All implementations follow hierarchical hybrid approach: Scene/Location as Block Nodes, Character as Block Node + Mark, Dialogue as Paragraph + Marks, Context/Emotion as Marks."
+    },
+    {
+      "@id": "https://gftd.ai/issue/tiptap-renderspec-array-error",
+      "name": "Tiptap renderSpec Array Error",
+      "description": "Fixed 'Invalid array passed to renderSpec' error occurring when setting editor content. Error was caused by arrays being passed to Tiptap's setContent() method, which expects HTML strings or valid Tiptap JSON objects.",
+      "status": "resolved",
+      "priority": "high",
+      "resolution": "Enhanced setEditorContent() function in TiptapEditor.tsx with comprehensive content validation using ts-pattern. Added isValidTiptapJSON() helper to validate Tiptap JSON structure. Improved array detection and conversion to empty paragraph. Added double-check validation before calling setContent() to ensure arrays are never passed. Updated reclassifyNode() function in nodeClassifier.ts to filter out arrays from newAttributes before passing to insert commands. All content paths now validate and sanitize input to prevent renderSpec errors."
+    },
+    {
+      "@id": "https://gftd.ai/issue/ts-pattern-zustand-integration",
+      "name": "ts-pattern and Zustand Integration",
+      "description": "Integrated ts-pattern library for type-safe exhaustive pattern matching throughout the codebase. Refactored conditional logic to use ts-pattern for better type safety and compile-time exhaustiveness checking.",
+      "status": "resolved",
+      "priority": "medium",
+      "resolution": "Added ts-pattern import to TiptapEditor.tsx. Refactored normalizeContentHtml() function to use ts-pattern for content type matching. Refactored setEditorContent() function to use ts-pattern for content validation and type handling. Refactored node type switch statement to use ts-pattern with exhaustive() matching for all node types (character, ghost, location, organization, company, technology, episode, scene, arc, motif, season, timeline, pov, beat, event). Refactored save status display to use ts-pattern with exhaustive() matching for all status types (idle, saving, saved, error). All pattern matching now provides compile-time exhaustiveness guarantees."
     }
   ]
 }

@@ -271,7 +271,7 @@ export function generateEmotionArcFromScene(
     resolution: { relief: 0.7, hope: 0.6 },
   };
 
-  const targetEmotions = baseEmotions[sceneType] || baseEmotions.opening;
+  const targetEmotions: Record<string, number> = (baseEmotions[sceneType] || baseEmotions.opening) as Record<string, number>;
   const beatCount = Math.max(3, Math.min(sceneLength / 500, 10));
 
   const beats: EmotionBeat[] = [];
@@ -301,11 +301,22 @@ export function generateEmotionArcFromScene(
     });
   }
 
-  return {
+  const peakEmotion = findPeakEmotion(beats);
+  const lastBeat = beats[beats.length - 1];
+  const resolutionEmotion = lastBeat
+    ? Object.keys(lastBeat.targetEmotions)[0]
+    : undefined;
+
+  const result: EmotionalArc = {
     beats,
     overallFlow: determineEmotionFlow(beats),
-    peakEmotion: findPeakEmotion(beats),
-    resolutionEmotion: Object.keys(beats[beats.length - 1]?.targetEmotions || {})[0],
   };
+  if (peakEmotion) {
+    result.peakEmotion = peakEmotion;
+  }
+  if (resolutionEmotion) {
+    result.resolutionEmotion = resolutionEmotion;
+  }
+  return result;
 }
 

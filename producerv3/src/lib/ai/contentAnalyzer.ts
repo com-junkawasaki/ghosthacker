@@ -101,10 +101,18 @@ export function applyDetectedNodes(
       .setTextSelection({ from: absoluteStart, to: absoluteEnd })
       .run();
 
-    // Insert node at selection
-    (editor.chain().focus() as any)[command]?.({
-      name: detectedNode.text.substring(0, 50), // Use first 50 chars as name
-    }).run();
+    // Insert node at selection - type-safe dynamic access to TipTap chain commands
+    // TipTap chain API returns an object with dynamically added methods from extensions
+    type ChainCommand = (args: Record<string, unknown>) => { run: () => void };
+    const chainFocus = editor.chain().focus() as Record<string, unknown>;
+    const insertCommand = chainFocus[command];
+    
+    // Type guard: check if insertCommand is a function
+    if (typeof insertCommand === 'function') {
+      (insertCommand as ChainCommand)({
+        name: detectedNode.text.substring(0, 50), // Use first 50 chars as name
+      }).run();
+    }
   }
 }
 

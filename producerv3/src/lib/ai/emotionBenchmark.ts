@@ -10,6 +10,14 @@ import type { EmotionScore } from '@/types/jsonld';
 import benchmarkData from '@/data/emotionalBenchmarks.json';
 
 /**
+ * JSON-LD document structure with @graph array
+ */
+interface JsonLdDocument {
+  '@context'?: unknown;
+  '@graph'?: Array<EmotionalBenchmarkSet | EmotionalBenchmark>;
+}
+
+/**
  * Benchmark emotion score structure
  */
 export interface BenchmarkEmotionScore {
@@ -76,7 +84,8 @@ export function loadBenchmarks(): {
   const sets: EmotionalBenchmarkSet[] = [];
 
   // Parse JSON-LD graph
-  const graph = (benchmarkData as any)['@graph'] || [];
+  const jsonLdDoc = benchmarkData as JsonLdDocument;
+  const graph = jsonLdDoc['@graph'] ?? [];
   
   for (const item of graph) {
     if (item['@type'] === 'EmotionalBenchmarkSet') {

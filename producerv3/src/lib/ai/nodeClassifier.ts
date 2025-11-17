@@ -330,23 +330,101 @@ export function reclassifyNode(
       .run();
     
     // Insert new node with new type and attributes
-    // Filter out arrays from attributes to prevent renderSpec errors
+    // Filter out arrays and complex objects from attributes to prevent renderSpec errors
+    // Tiptap node attributes only support primitive types (string, number, boolean, null)
+    const sanitizeValue = (value: unknown): unknown => {
+      // Return primitive types as-is
+      if (value === null || value === undefined) {
+        return undefined;
+      }
+      if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+        return value;
+      }
+      // Convert arrays to comma-separated strings for certain fields, or skip them
+      if (Array.isArray(value)) {
+        // For string arrays, join them with commas
+        if (value.length > 0 && typeof value[0] === 'string') {
+          return value.join(', ');
+        }
+        // For object arrays (like knows, hasArc, etc.), skip them
+        return undefined;
+      }
+      // For objects with @id property, extract the ID as string
+      if (typeof value === 'object' && value !== null) {
+        const obj = value as Record<string, unknown>;
+        // If it's a simple object with @id, extract the ID
+        if ('@id' in obj && typeof obj['@id'] === 'string') {
+          return obj['@id'];
+        }
+        // For other objects, skip them (Tiptap doesn't support nested objects)
+        return undefined;
+      }
+      return undefined;
+    };
+
     const sanitizedAttributes: Record<string, unknown> = {};
     if (newAttributes) {
       Object.entries(newAttributes).forEach(([key, value]) => {
-        // Skip arrays and null/undefined values
-        if (!Array.isArray(value) && value !== null && value !== undefined) {
-          sanitizedAttributes[key] = value;
+        const sanitized = sanitizeValue(value);
+        if (sanitized !== undefined) {
+          sanitizedAttributes[key] = sanitized;
         }
       });
     }
     
-    const insertCommand = (editor.chain().focus() as any)[command];
-    if (insertCommand) {
-      insertCommand({
-        ...sanitizedAttributes,
-        name: sanitizedAttributes.name || nodeContent.substring(0, 50),
-      }).run();
+    // Ensure name is always a string, never an array or object
+    // Handle name separately to ensure it's always a valid string
+    let nodeName: string;
+    if (sanitizedAttributes.name !== undefined) {
+      const nameValue = sanitizedAttributes.name;
+      if (typeof nameValue === 'string') {
+        nodeName = nameValue;
+      } else if (Array.isArray(nameValue) && nameValue.length > 0 && typeof nameValue[0] === 'string') {
+        // If name is an array, take the first element
+        nodeName = nameValue[0] as string;
+      } else {
+        nodeName = nodeContent.substring(0, 50);
+      }
+      // Remove name from sanitizedAttributes to avoid duplication
+      delete sanitizedAttributes.name;
+    } else {
+      nodeName = nodeContent.substring(0, 50);
+    }
+    
+    // Final validation: ensure all values in sanitizedAttributes are primitives
+    const finalAttributes: Record<string, string | number | boolean | null> = {};
+    Object.entries(sanitizedAttributes).forEach(([key, value]) => {
+      if (value === null || typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+        finalAttributes[key] = value as string | number | boolean | null;
+      }
+      // Skip any non-primitive values
+    });
+    
+    // Type-safe dynamic access to TipTap chain commands
+    // TipTap chain API returns an object with dynamically added methods from extensions
+    type ChainCommand = (args: Record<string, unknown>) => { run: () => void };
+    const chainFocus = editor.chain().focus() as Record<string, unknown>;
+    const insertCommand = chainFocus[command];
+    
+    // Type guard: check if insertCommand is a function
+    if (typeof insertCommand === 'function') {
+      try {
+        (insertCommand as ChainCommand)({
+          ...finalAttributes,
+          name: nodeName,
+        }).run();
+      } catch (insertError) {
+        console.error('Error inserting node:', insertError, 'Attributes:', sanitizedAttributes);
+        // Fallback: try with minimal attributes
+        try {
+          (insertCommand as ChainCommand)({
+            name: nodeName,
+          }).run();
+        } catch (fallbackError) {
+          console.error('Fallback insert also failed:', fallbackError);
+          throw fallbackError;
+        }
+      }
     }
     
     return true;

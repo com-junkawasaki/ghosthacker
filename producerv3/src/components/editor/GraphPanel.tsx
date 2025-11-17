@@ -257,7 +257,7 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
   });
   
   // Store mutation functions in refs to avoid unnecessary re-renders
-  createLinkRef.current = createLink;
+  createLinkRef.current = createLink as (options?: { variables?: unknown; onCompleted?: (data: unknown) => void; onError?: (error: Error) => void }) => Promise<unknown>;
   const [updateLink] = useMutation(UPDATE_GRAPH_LINK, {
     onCompleted: () => refetchLinks(),
   });
@@ -272,7 +272,7 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
   });
   
   // Store mutation functions in refs to avoid unnecessary re-renders
-  createIncidenceRef.current = createIncidence;
+  createIncidenceRef.current = createIncidence as (options?: { variables?: unknown; onCompleted?: (data: unknown) => void; onError?: (error: Error) => void }) => Promise<unknown>;
   const [updateIncidence] = useMutation(UPDATE_GRAPH_INCIDENCE, {
     onCompleted: () => refetchIncidences(),
   });
