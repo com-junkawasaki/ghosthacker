@@ -75,7 +75,7 @@ services:
       - graphql
     networks:
       - epub-editor-network
-    command: pnpm dev
+    command: sh -c "pnpm install && pnpm dev"
 
 volumes:
   postgres-data:

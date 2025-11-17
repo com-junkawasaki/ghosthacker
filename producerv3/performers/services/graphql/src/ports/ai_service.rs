@@ -10,11 +10,11 @@ use crate::schema::ai::{GeneratedText, GenerateTextInput, SummarizeInput, Proofr
 use crate::ports::postgres;
 
 /// Generate text using AI
-pub async fn generate_text(_input: GenerateTextInput) -> anyhow::Result<GeneratedText> {
+pub async fn generate_text(input: GenerateTextInput) -> anyhow::Result<GeneratedText> {
     // TODO: Integrate with actual AI service (OpenAI, Anthropic, etc.)
-    // For now, return placeholder
+    // For now, return placeholder with prompt
     Ok(GeneratedText {
-        text: "Generated text placeholder".to_string(),
+        text: format!("Generated text for prompt: {}", input.prompt),
         confidence: Some(0.8),
     })
 }
