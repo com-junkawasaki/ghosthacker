@@ -5,16 +5,19 @@
  * 
  * EPUB Document GraphQL schema definitions
  */
-use async_graphql::{Object, InputObject, SimpleObject, ID};
+use async_graphql::{Object, InputObject, SimpleObject, ID, Scalar, ScalarType};
 use chrono::{DateTime, Utc};
+use async_graphql::Value;
 
 #[derive(SimpleObject)]
 pub struct Epub {
     pub id: ID,
     pub title: String,
     pub language: String,
-    pub created_at: DateTime<Utc>,
-    pub updated_at: DateTime<Utc>,
+    #[graphql(scalar)]
+    pub created_at: String,
+    #[graphql(scalar)]
+    pub updated_at: String,
     pub chapters: Vec<Chapter>,
     pub metadata: Vec<MetadataItem>,
 }

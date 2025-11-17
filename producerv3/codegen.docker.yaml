@@ -1,5 +1,7 @@
 schema: http://graphql:8080/graphql
-documents: 'src/**/*.graphql'
+documents: 
+  - 'src/**/*.graphql'
+  - 'src/**/*.{ts,tsx}'
 generates:
   src/generated/graphql.ts:
     plugins:
@@ -11,3 +13,4 @@ generates:
       strictScalars: true
       dedupeFragments: true
       skipTypename: false
+

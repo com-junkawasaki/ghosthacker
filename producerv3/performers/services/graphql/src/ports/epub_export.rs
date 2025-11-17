@@ -15,7 +15,8 @@ use crate::ports::neo4j;
 pub async fn export_epub(pool: &neo4j::Neo4jPool, epub_id: String) -> anyhow::Result<Vec<u8>> {
     // Get EPUB data
     let epub = neo4j::get_epub(pool, epub_id.clone())
-        .await?
+        .await
+        .map_err(|e| async_graphql::Error::new(e.to_string()))?
         .ok_or_else(|| anyhow::anyhow!("EPUB not found"))?;
     
     // Create ZIP buffer

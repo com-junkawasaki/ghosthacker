@@ -374,12 +374,9 @@ async fn node_to_epub(node: Node, pool: &Neo4jPool) -> Result<Epub> {
     let created_at_str: String = node.get("created_at")?;
     let updated_at_str: String = node.get("updated_at")?;
     
-    let created_at = chrono::DateTime::parse_from_rfc3339(&created_at_str)
-        .map_err(|e| format!("Invalid created_at: {}", e))?
-        .with_timezone(&Utc);
-    let updated_at = chrono::DateTime::parse_from_rfc3339(&updated_at_str)
-        .map_err(|e| format!("Invalid updated_at: {}", e))?
-        .with_timezone(&Utc);
+    // Keep as String for GraphQL schema
+    let created_at = created_at_str;
+    let updated_at = updated_at_str;
     
     let chapters = get_chapters(pool, id.clone()).await.unwrap_or_default();
     let metadata = get_metadata(pool, id.clone()).await.unwrap_or_default();

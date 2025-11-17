@@ -1,0 +1,62 @@
+mutation CreateEpub($input: CreateEpubInput!) {
+  createEpub(input: $input) {
+    id
+    title
+    language
+    created_at
+    updated_at
+  }
+}
+
+mutation UpdateEpub($input: UpdateEpubInput!) {
+  updateEpub(input: $input) {
+    id
+    title
+    language
+    updated_at
+  }
+}
+
+mutation DeleteEpub($id: ID!) {
+  deleteEpub(id: $id)
+}
+
+mutation CreateChapter($input: CreateChapterInput!) {
+  createChapter(input: $input) {
+    id
+    title
+    order
+    content_html
+  }
+}
+
+mutation UpdateChapter($input: UpdateChapterInput!) {
+  updateChapter(input: $input) {
+    id
+    title
+    order
+    content_html
+  }
+}
+
+mutation DeleteChapter($id: ID!) {
+  deleteChapter(id: $id)
+}
+
+mutation CreateMedia($input: CreateMediaInput!) {
+  createMedia(input: $input) {
+    id
+    type
+    url
+    mime_type
+    file_size
+  }
+}
+
+mutation UpdateMetadata($input: UpdateMetadataInput!) {
+  updateMetadata(input: $input) {
+    key
+    value
+  }
+}
+

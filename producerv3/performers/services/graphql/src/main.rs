@@ -7,7 +7,7 @@
  * Provides Query, Mutation, and Subscription operations for EPUB editing
  */
 use async_graphql::{EmptySubscription, Schema};
-use async_graphql_poem::{GraphQL, GraphQLSubscription};
+use async_graphql_poem::GraphQL;
 use poem::{listener::TcpListener, Route, Server};
 
 mod schema;
@@ -31,10 +31,9 @@ async fn main() -> anyhow::Result<()> {
     .data(neo4j_pool)
     .finish();
     
-    // Create routes
+    // Create routes using GraphQL endpoint
     let app = Route::new()
-        .at("/graphql", GraphQL::new(schema.clone()))
-        .at("/graphql/ws", GraphQLSubscription::new(schema));
+        .nest("/graphql", GraphQL::new(schema));
     
     // Start server
     let port = std::env::var("PORT")
