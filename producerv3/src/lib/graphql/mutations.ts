@@ -13,8 +13,8 @@ export const CREATE_EPUB = gql`
       id
       title
       language
-      created_at
-      updated_at
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -25,7 +25,7 @@ export const UPDATE_EPUB = gql`
       id
       title
       language
-      updated_at
+      updatedAt
     }
   }
 `;
@@ -42,7 +42,7 @@ export const CREATE_CHAPTER = gql`
       id
       title
       order
-      content_html
+      contentHtml
     }
   }
 `;
@@ -53,7 +53,7 @@ export const UPDATE_CHAPTER = gql`
       id
       title
       order
-      content_html
+      contentHtml
     }
   }
 `;
@@ -70,8 +70,8 @@ export const CREATE_MEDIA = gql`
       id
       type
       url
-      mime_type
-      file_size
+      mimeType
+      fileSize
     }
   }
 `;

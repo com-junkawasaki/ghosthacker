@@ -3,8 +3,8 @@ mutation CreateEpub($input: CreateEpubInput!) {
     id
     title
     language
-    created_at
-    updated_at
+    createdAt
+    updatedAt
   }
 }
 
@@ -13,7 +13,7 @@ mutation UpdateEpub($input: UpdateEpubInput!) {
     id
     title
     language
-    updated_at
+    updatedAt
   }
 }
 
@@ -26,7 +26,7 @@ mutation CreateChapter($input: CreateChapterInput!) {
     id
     title
     order
-    content_html
+    contentHtml
   }
 }
 
@@ -35,7 +35,7 @@ mutation UpdateChapter($input: UpdateChapterInput!) {
     id
     title
     order
-    content_html
+    contentHtml
   }
 }
 
@@ -48,8 +48,8 @@ mutation CreateMedia($input: CreateMediaInput!) {
     id
     type
     url
-    mime_type
-    file_size
+    mimeType
+    fileSize
   }
 }
 

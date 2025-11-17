@@ -23,7 +23,7 @@ export function Summarizer({ chapterId, onSummarize }: SummarizerProps) {
       const { data } = await summarizeChapter({
         variables: {
           input: {
-            chapter_id: chapterId,
+            chapterId: chapterId,
           },
         },
       });

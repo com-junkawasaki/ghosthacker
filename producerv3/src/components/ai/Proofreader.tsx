@@ -23,7 +23,7 @@ export function Proofreader({ chapterId, onProofread }: ProofreaderProps) {
       const { data } = await proofreadChapter({
         variables: {
           input: {
-            chapter_id: chapterId,
+            chapterId: chapterId,
           },
         },
       });

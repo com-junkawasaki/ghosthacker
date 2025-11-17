@@ -31,11 +31,11 @@ export function MediaLibrary({ chapterId }: MediaLibraryProps) {
       await createMedia({
         variables: {
           input: {
-            chapter_id: chapterId,
+            chapterId: chapterId,
             type: 'image',
             url,
-            mime_type: file.type,
-            file_size: file.size,
+            mimeType: file.type,
+            fileSize: file.size,
           },
         },
       });

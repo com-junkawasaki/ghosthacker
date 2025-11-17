@@ -3,19 +3,19 @@ query GetEpub($id: ID!) {
     id
     title
     language
-    created_at
-    updated_at
+    createdAt
+    updatedAt
     chapters {
       id
       title
       order
-      content_html
+      contentHtml
       media {
         id
         type
         url
-        mime_type
-        file_size
+        mimeType
+        fileSize
       }
     }
     metadata {
@@ -30,8 +30,8 @@ query ListEpubs {
     id
     title
     language
-    created_at
-    updated_at
+    createdAt
+    updatedAt
   }
 }
 
@@ -40,18 +40,18 @@ query GetChapter($id: ID!) {
     id
     title
     order
-    content_html
+    contentHtml
     paragraphs {
       id
       order
-      content_html
+      contentHtml
     }
     media {
       id
       type
       url
-      mime_type
-      file_size
+      mimeType
+      fileSize
     }
   }
 }
@@ -61,7 +61,7 @@ query GetChapters($epubId: ID!) {
     id
     title
     order
-    content_html
+    contentHtml
   }
 }
 

@@ -40,7 +40,7 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
         openOnClick: false,
       }),
     ],
-    content: data?.chapter?.content_html || '',
+    content: data?.chapter?.contentHtml || '',
     immediatelyRender: false,
     onUpdate: ({ editor }) => {
       if (chapterId) {
@@ -48,7 +48,7 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
           variables: {
             input: {
               id: chapterId,
-              content_html: editor.getHTML(),
+              contentHtml: editor.getHTML(),
             },
           },
         });
@@ -57,8 +57,8 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
   });
 
   useEffect(() => {
-    if (editor && data?.chapter?.content_html) {
-      editor.commands.setContent(data.chapter.content_html);
+    if (editor && data?.chapter?.contentHtml) {
+      editor.commands.setContent(data.chapter.contentHtml);
     }
   }, [editor, data]);
 

@@ -25,8 +25,8 @@ export function Translator({ chapterId, onTranslate }: TranslatorProps) {
       const { data } = await translateChapter({
         variables: {
           input: {
-            chapter_id: chapterId,
-            target_language: targetLanguage,
+            chapterId: chapterId,
+            targetLanguage: targetLanguage,
           },
         },
       });

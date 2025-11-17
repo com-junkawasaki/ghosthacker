@@ -13,19 +13,19 @@ export const GET_EPUB = gql`
       id
       title
       language
-      created_at
-      updated_at
+      createdAt
+      updatedAt
       chapters {
         id
         title
         order
-        content_html
+        contentHtml
         media {
           id
           type
           url
-          mime_type
-          file_size
+          mimeType
+          fileSize
         }
       }
       metadata {
@@ -42,8 +42,8 @@ export const LIST_EPUBS = gql`
       id
       title
       language
-      created_at
-      updated_at
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -54,18 +54,18 @@ export const GET_CHAPTER = gql`
       id
       title
       order
-      content_html
+      contentHtml
       paragraphs {
         id
         order
-        content_html
+        contentHtml
       }
       media {
         id
         type
         url
-        mime_type
-        file_size
+        mimeType
+        fileSize
       }
     }
   }
@@ -77,7 +77,7 @@ export const GET_CHAPTERS = gql`
       id
       title
       order
-      content_html
+      contentHtml
     }
   }
 `;

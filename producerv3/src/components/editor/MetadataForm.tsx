@@ -36,7 +36,7 @@ export function MetadataForm({ epubId }: MetadataFormProps) {
       await updateMetadata({
         variables: {
           input: {
-            epub_id: epubId,
+            epubId: epubId,
             key: 'author',
             value: author,
           },
@@ -47,7 +47,7 @@ export function MetadataForm({ epubId }: MetadataFormProps) {
       await updateMetadata({
         variables: {
           input: {
-            epub_id: epubId,
+            epubId: epubId,
             key: 'isbn',
             value: isbn,
           },
