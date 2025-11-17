@@ -518,8 +518,15 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
 
   const onConnect = useCallback(
     (params: Connection) => {
+      // Filter out null handle IDs - React Flow doesn't accept null, use undefined instead
+      const connection: Connection = {
+        ...params,
+        sourceHandle: params.sourceHandle ?? undefined,
+        targetHandle: params.targetHandle ?? undefined,
+      };
+      
       // Show link type selector dialog
-      setPendingConnection(params);
+      setPendingConnection(connection);
       setLinkType('related');
     },
     []
