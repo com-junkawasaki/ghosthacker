@@ -2,7 +2,7 @@
   "name": "@gftdcojp/epub-editor-frontend",
   "version": "0.1.0",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3000",
     "build": "pnpm type-check && next build",
     "start": "next start",
     "type-check": "tsc --noEmit",
@@ -21,7 +21,6 @@
     "@tiptap/extension-link": "^2.1.13",
     "@tiptap/react": "^2.1.13",
     "@tiptap/starter-kit": "^2.1.13",
-    "@tiptap-pro/extension-pages": "alpha",
     "graphql": "^16.9.0",
     "graphql-tag": "^2.12.6",
     "next": "^14.2.0",
