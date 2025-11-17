@@ -5,9 +5,7 @@
  * 
  * Chapter tree component for managing EPUB chapters
  */
-// @ts-ignore - Apollo Client CommonJS import workaround
-import pkg from '@apollo/client';
-const { useQuery } = pkg;
+import { useQuery } from '@apollo/client';
 import { GET_CHAPTERS } from '../../lib/graphql/queries';
 
 interface ChapterTreeProps {

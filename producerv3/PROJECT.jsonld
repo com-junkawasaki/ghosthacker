@@ -197,6 +197,13 @@
       "name": "Docker Image Download Performance",
       "description": "Docker image download is slow, especially for Rust and Node.js base images. Consider using local image cache or pre-pulling images.",
       "status": "acknowledged"
+    },
+    {
+      "@id": "https://gftd.ai/issue/clerk-removal",
+      "name": "Clerk Authentication Removal",
+      "description": "Removed Clerk authentication integration to resolve white screen issue. Authentication will be re-implemented later if needed.",
+      "status": "resolved",
+      "resolution": "Removed @clerk/astro package and integration from astro.config.mjs, removed Clerk environment variables from docker-compose.yaml"
     }
   ]
 }

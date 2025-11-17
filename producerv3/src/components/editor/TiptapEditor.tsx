@@ -10,9 +10,7 @@ import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
 import { useEffect } from 'react';
-// @ts-ignore - Apollo Client CommonJS import workaround
-import pkg from '@apollo/client';
-const { useQuery, useMutation } = pkg;
+import { useQuery, useMutation } from '@apollo/client';
 import { GET_CHAPTER } from '../../lib/graphql/queries';
 import { UPDATE_CHAPTER } from '../../lib/graphql/mutations';
 

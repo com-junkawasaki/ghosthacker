@@ -74,8 +74,6 @@ services:
       # Server Configuration
       PORT: 8080
       HOST: 0.0.0.0
-      # Clerk Authentication (hardcoded for development)
-      CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:-}
       # AI Service Configuration (for future integration)
       AI_SERVICE_API_KEY: ${AI_SERVICE_API_KEY:-}
       AI_SERVICE_ENDPOINT: ${AI_SERVICE_ENDPOINT:-}
@@ -102,16 +100,20 @@ services:
       CHOKIDAR_USEPOLLING: "true"
       WATCHPACK_POLLING: "true"
       WATCHPACK_POLLING_INTERVAL: 1000
+      # HMR Configuration for Docker
+      VITE_HMR_HOST: ${VITE_HMR_HOST:-localhost}
+      VITE_HMR_PORT: ${VITE_HMR_PORT:-3000}
+      VITE_HMR_PROTOCOL: ${VITE_HMR_PROTOCOL:-ws}
+      VITE_HMR_CLIENT_PORT: ${VITE_HMR_CLIENT_PORT:-25320}
       # App URLs (loaded from host env / .envrc)
       NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:25320}
       # GraphQL API URL (Go implementation)
       # Client-side: use localhost for browser access
+      # Astro uses PUBLIC_ prefix for client-side environment variables
+      PUBLIC_GRAPHQL_API_URL: ${PUBLIC_GRAPHQL_API_URL:-http://localhost:25326/graphql}
       NEXT_PUBLIC_GRAPHQL_API_URL: ${NEXT_PUBLIC_GRAPHQL_API_URL:-http://localhost:25326/graphql}
       # Server-side: use container name for server-to-server communication
       GRAPHQL_API_URL: ${GRAPHQL_API_URL:-http://graphql-go:8080/graphql}
-      # Clerk Authentication (hardcoded for development)
-      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:-pk_test_ZW5vdWdoLWNoaXBtdW5rLTkyLmNsZXJrLmFjY291bnRzLmRldiQ}
-      CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:-sk_test_FmPI35dNxAij0tuaX7rV5PDIDVmVvx8J11nyVyxEGu}
     volumes:
       - .:/app
       - /app/node_modules

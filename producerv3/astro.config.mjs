@@ -8,25 +8,38 @@
  */
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-import clerk from '@clerk/astro';
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
     react(),
-    clerk({
-      afterSignInUrl: '/projects',
-      afterSignUpUrl: '/projects',
-    }),
   ],
   output: 'server',
-  adapter: undefined, // Add adapter for production deployment
+  // Adapter is only required for production builds
+  // In development, Astro dev server handles SSR without adapter
+  // adapter: undefined, // Will be set conditionally if available
   server: {
     host: true, // Listen on all addresses
     port: 3000,
   },
   vite: {
     server: {
+      host: true, // Listen on all addresses for Docker
+      port: 3000,
+      strictPort: false,
+      hmr: {
+        // HMR configuration for Docker environment
+        // Use host network IP or container name for HMR connection
+        host: process.env.VITE_HMR_HOST || 'localhost',
+        port: process.env.VITE_HMR_PORT || 3000,
+        protocol: process.env.VITE_HMR_PROTOCOL || 'ws',
+        clientPort: process.env.VITE_HMR_CLIENT_PORT || 25320, // Host port mapped to container port 3000
+      },
+      watch: {
+        // Improve file watching reliability on macOS bind mounts
+        usePolling: process.env.CHOKIDAR_USEPOLLING === 'true',
+        interval: parseInt(process.env.WATCHPACK_POLLING_INTERVAL || '1000', 10),
+      },
       allowedHosts: [
         'frontend.producerv3.orb.local',
         'localhost',
