@@ -12,7 +12,7 @@ use crate::schema::epub::{
     CreateChapterInput, UpdateChapterInput,
     CreateMediaInput, UpdateMetadataInput,
 };
-use crate::ports::neo4j;
+use crate::ports::postgres;
 
 #[derive(Default)]
 pub struct MutationRoot;
@@ -21,26 +21,26 @@ pub struct MutationRoot;
 impl MutationRoot {
     /// Create new EPUB
     async fn create_epub(&self, ctx: &Context<'_>, input: CreateEpubInput) -> async_graphql::Result<Epub> {
-        let pool = ctx.data::<neo4j::Neo4jPool>()?;
-        neo4j::create_epub(pool, input.title, input.language).await
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::create_epub(pool, input.title, input.language).await
     }
     
     /// Update EPUB
     async fn update_epub(&self, ctx: &Context<'_>, input: UpdateEpubInput) -> async_graphql::Result<Epub> {
-        let pool = ctx.data::<neo4j::Neo4jPool>()?;
-        neo4j::update_epub(pool, input.id.to_string(), input.title, input.language).await
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::update_epub(pool, input.id.to_string(), input.title, input.language).await
     }
     
     /// Delete EPUB
     async fn delete_epub(&self, ctx: &Context<'_>, id: ID) -> async_graphql::Result<bool> {
-        let pool = ctx.data::<neo4j::Neo4jPool>()?;
-        neo4j::delete_epub(pool, id.to_string()).await
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::delete_epub(pool, id.to_string()).await
     }
     
     /// Create chapter
     async fn create_chapter(&self, ctx: &Context<'_>, input: CreateChapterInput) -> async_graphql::Result<Chapter> {
-        let pool = ctx.data::<neo4j::Neo4jPool>()?;
-        neo4j::create_chapter(
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::create_chapter(
             pool,
             input.epub_id.to_string(),
             input.title,
@@ -51,8 +51,8 @@ impl MutationRoot {
     
     /// Update chapter
     async fn update_chapter(&self, ctx: &Context<'_>, input: UpdateChapterInput) -> async_graphql::Result<Chapter> {
-        let pool = ctx.data::<neo4j::Neo4jPool>()?;
-        neo4j::update_chapter(
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::update_chapter(
             pool,
             input.id.to_string(),
             input.title,
@@ -63,14 +63,14 @@ impl MutationRoot {
     
     /// Delete chapter
     async fn delete_chapter(&self, ctx: &Context<'_>, id: ID) -> async_graphql::Result<bool> {
-        let pool = ctx.data::<neo4j::Neo4jPool>()?;
-        neo4j::delete_chapter(pool, id.to_string()).await
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::delete_chapter(pool, id.to_string()).await
     }
     
     /// Create media
     async fn create_media(&self, ctx: &Context<'_>, input: CreateMediaInput) -> async_graphql::Result<Media> {
-        let pool = ctx.data::<neo4j::Neo4jPool>()?;
-        neo4j::create_media(
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::create_media(
             pool,
             input.chapter_id.to_string(),
             input.r#type,
@@ -82,8 +82,8 @@ impl MutationRoot {
     
     /// Update metadata
     async fn update_metadata(&self, ctx: &Context<'_>, input: UpdateMetadataInput) -> async_graphql::Result<MetadataItem> {
-        let pool = ctx.data::<neo4j::Neo4jPool>()?;
-        neo4j::update_metadata(
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::update_metadata(
             pool,
             input.epub_id.to_string(),
             input.key,

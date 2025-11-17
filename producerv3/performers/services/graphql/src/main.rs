@@ -5,6 +5,7 @@
  * 
  * GraphQL API service for EPUB Editor Tool
  * Provides Query, Mutation, and Subscription operations for EPUB editing
+ * Uses PostgreSQL database with sqlx for data persistence
  */
 use async_graphql::{EmptySubscription, Schema};
 use async_graphql_poem::GraphQL;
@@ -19,8 +20,8 @@ use resolvers::mutation::MutationRoot;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    // Initialize Neo4j connection
-    let neo4j_pool = ports::neo4j::create_pool().await?;
+    // Initialize PostgreSQL connection
+    let postgres_pool = ports::postgres::create_pool().await?;
     
     // Create GraphQL schema
     let schema = Schema::build(
@@ -28,7 +29,7 @@ async fn main() -> anyhow::Result<()> {
         MutationRoot::default(),
         EmptySubscription,
     )
-    .data(neo4j_pool)
+    .data(postgres_pool)
     .finish();
     
     // Create routes using GraphQL endpoint

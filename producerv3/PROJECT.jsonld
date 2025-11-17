@@ -37,7 +37,7 @@
   "id": "https://gftd.ai/project/epub-editor",
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
-  "description": "Tiptap editor based EPUB editing tool with AI Generator integration. Frontend: Astro + Tiptap, Backend: GraphQL (Poem/Rust) + Neo4j",
+  "description": "Tiptap editor based EPUB editing tool with AI Generator integration. Frontend: Astro + Tiptap, Backend: GraphQL (Poem/Rust) + PostgreSQL",
   "version": "1.0.1",
   "createdAt": "2025-01-27T00:00:00Z",
   "updatedAt": "2025-11-17T05:22:21Z",
@@ -80,16 +80,10 @@
       "description": "GraphQL API service built with Poem v3/Rust, async-graphql v7, running on port 25325 (host) -> 8080 (container)"
     },
     {
-      "@id": "https://gftd.ai/performer/system/neo4j",
+      "@id": "https://gftd.ai/performer/system/postgresql",
       "type": "cpm:System",
-      "name": "Neo4j Database",
-      "description": "Graph database storing EPUB structure and content, running on ports 7474 (HTTP) and 7687 (Bolt)"
-    },
-    {
-      "@id": "https://gftd.ai/performer/service/graphql-go",
-      "type": "cpm:Service",
-      "name": "GraphQL Go Service",
-      "description": "GraphQL API service built with Go, running on port 25326 (host) -> 8080 (container)"
+      "name": "PostgreSQL Database",
+      "description": "Relational database storing EPUB structure and content, running on port 5432"
     }
   ],
   
@@ -121,9 +115,14 @@
       "description": "Rich text editor framework"
     },
     {
-      "@id": "https://gftd.ai/dependency/neo4j",
-      "name": "Neo4j Database",
-      "description": "Graph database for EPUB structure, version 5.15"
+      "@id": "https://gftd.ai/dependency/postgresql",
+      "name": "PostgreSQL Database",
+      "description": "Relational database for EPUB structure, version 16"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/sqlx",
+      "name": "sqlx",
+      "description": "Rust SQL toolkit, version 0.8"
     },
     {
       "@id": "https://gftd.ai/dependency/poem",
@@ -144,9 +143,7 @@
       "description": "Port configuration for services",
       "frontend": 25320,
       "graphql": 25325,
-      "graphql_go": 25326,
-      "neo4j_http": 7474,
-      "neo4j_bolt": 7687
+      "postgres": 5432
     },
     {
       "@id": "https://gftd.ai/config/network",
@@ -162,7 +159,8 @@
       "edition": "2021",
       "async_graphql_version": "7",
       "poem_version": "3",
-      "neo4rs_version": "0.7"
+      "sqlx_version": "0.8",
+      "postgresql_version": "16"
     }
   ],
   
