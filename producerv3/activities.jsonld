@@ -141,23 +141,42 @@
       ]
     },
     {
-      "id": "https://gftd.ai/activity/analyze-emotions",
+      "id": "https://gftd.ai/activity/export-epub-content",
       "type": "cpm:Activity",
-      "name": "Analyze Emotions",
-      "description": "Analyze emotions in text content using Hume AI API. Supports paragraph-level emotion analysis with emotion vector (joy, sadness, fear, anger, surprise, trust, anticipation, disgust, relief, hope). Results are stored as paragraph node attributes and can be visualized via mask functionality.",
-      "createdAt": "2025-01-27T12:00:00Z",
+      "name": "Export EPUB Content",
+      "description": "Export EPUB entire content (all chapters) as Tiptap JSON format file. Includes EPUB metadata, chapters with Tiptap JSON content, JSON-LD nodes, mask information, and emotion analysis data. File is downloaded as JSON with EPUB title and timestamp.",
+      "createdAt": "2025-01-27T17:00:00Z",
       "performedBy": [
-        {"@id": "https://gftd.ai/performer/actor/editor"},
-        {"@id": "https://gftd.ai/performer/service/graphql"}
+        {"@id": "https://gftd.ai/performer/actor/editor"}
       ],
       "consumes": [
-        {"@id": "https://gftd.ai/resource/chapter"}
+        {"@id": "https://gftd.ai/resource/epub-document"}
       ],
       "produces": [
-        {"@id": "https://gftd.ai/resource/emotion-profile"}
+        {"@id": "https://gftd.ai/resource/export-file"}
       ],
       "dependsOn": [
         {"@id": "https://gftd.ai/activity/edit-epub-content"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/import-epub-content",
+      "type": "cpm:Activity",
+      "name": "Import EPUB Content",
+      "description": "Import EPUB content from Tiptap JSON format file. Validates file structure, restores EPUB metadata and chapters, converts Tiptap JSON to HTML, and updates database. Supports both creating new chapters and updating existing chapters.",
+      "createdAt": "2025-01-27T17:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/export-file"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/epub-document"}
+      ],
+      "dependsOn": [
+        {"@id": "https://gftd.ai/activity/manage-chapters"},
+        {"@id": "https://gftd.ai/activity/manage-metadata"}
       ]
     }
   ]

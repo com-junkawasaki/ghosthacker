@@ -76,6 +76,20 @@
         {"@id": "https://gftd.ai/performer/actor/editor"},
         {"@id": "https://gftd.ai/performer/service/graphql"}
       ]
+    },
+    {
+      "id": "https://gftd.ai/capability/epub-import-export",
+      "type": "cpm:Capability",
+      "name": "EPUB Import/Export",
+      "description": "Capability to export and import EPUB content in Tiptap JSON format. Export preserves EPUB structure, chapters, JSON-LD nodes, mask information, and emotion analysis data. Import restores EPUB content with validation and error handling. Supports full EPUB backup and restore functionality.",
+      "createdAt": "2025-01-27T17:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/export-epub-content"},
+        {"@id": "https://gftd.ai/activity/import-epub-content"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"}
+      ]
     }
   ]
 }

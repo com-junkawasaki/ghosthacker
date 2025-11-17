@@ -38,9 +38,9 @@
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
   "description": "Tiptap editor based EPUB editing tool with AI Generator integration, emotion analysis (Hume AI), and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-01-27T16:00:00Z",
+  "updatedAt": "2025-01-27T17:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -55,6 +55,7 @@
     {"@id": "https://gftd.ai/capability/epub-editing"},
     {"@id": "https://gftd.ai/capability/ai-generation"},
     {"@id": "https://gftd.ai/capability/epub-export"},
+    {"@id": "https://gftd.ai/capability/epub-import-export"},
     {"@id": "https://gftd.ai/capability/emotion-analysis"}
   ],
   
@@ -66,6 +67,8 @@
     {"@id": "https://gftd.ai/activity/manage-media"},
     {"@id": "https://gftd.ai/activity/generate-text"},
     {"@id": "https://gftd.ai/activity/export-epub"},
+    {"@id": "https://gftd.ai/activity/export-epub-content"},
+    {"@id": "https://gftd.ai/activity/import-epub-content"},
     {"@id": "https://gftd.ai/activity/insert-jsonld-nodes"},
     {"@id": "https://gftd.ai/activity/mask-content"},
     {"@id": "https://gftd.ai/activity/slash-commands"},
@@ -135,6 +138,12 @@
       "type": "cpm:Resource",
       "name": "Emotion Profile",
       "description": "Emotion analysis results (emotion vector with scores) attached to paragraph nodes, analyzed via Hume AI API"
+    },
+    {
+      "@id": "https://gftd.ai/resource/export-file",
+      "type": "cpm:Resource",
+      "name": "Export File",
+      "description": "EPUB content export file in Tiptap JSON format, containing EPUB structure, chapters, JSON-LD nodes, mask information, and emotion analysis data"
     }
   ],
   
@@ -408,6 +417,13 @@
       "description": "MaskControls component was calling useEditor() without arguments, causing 'Schema is missing its top node type' error. useEditor() hook requires an editor instance to be passed as argument or accessed via context.",
       "status": "resolved",
       "resolution": "Updated MaskControls component to accept editor instance as prop from parent TiptapEditor component. Changed from useEditor() hook to Editor | null prop type."
+    },
+    {
+      "@id": "https://gftd.ai/issue/epub-export-import-implementation",
+      "name": "EPUB Export/Import Implementation",
+      "description": "Implemented EPUB content export and import functionality using Tiptap JSON format. Export includes EPUB structure, chapters, JSON-LD nodes, mask information, and emotion analysis data. Import restores EPUB content from JSON file with validation and error handling.",
+      "status": "resolved",
+      "resolution": "Created export functionality (src/lib/export/epubExport.ts) to convert EPUB HTML content to Tiptap JSON format and download as JSON file. Created import functionality (src/lib/import/epubImport.ts) to read JSON file, validate structure, and restore EPUB content. Added export/import buttons to TiptapEditor toolbar with file selection dialog and user feedback. Used @tiptap/core generateJSON and generateHTML helpers for format conversion. All Tiptap extensions (JSON-LD nodes, MaskExtension, EmotionAnalysisExtension) are included in export/import process."
     }
   ]
 }
