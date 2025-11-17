@@ -60,3 +60,30 @@ mutation UpdateMetadata($input: UpdateMetadataInput!) {
   }
 }
 
+mutation GenerateText($input: GenerateTextInput!) {
+  generateText(input: $input) {
+    text
+    confidence
+  }
+}
+
+mutation SummarizeChapter($input: SummarizeInput!) {
+  summarizeChapter(input: $input) {
+    text
+    confidence
+  }
+}
+
+mutation ProofreadChapter($input: ProofreadInput!) {
+  proofreadChapter(input: $input) {
+    text
+    confidence
+  }
+}
+
+mutation TranslateChapter($input: TranslateInput!) {
+  translateChapter(input: $input) {
+    text
+    confidence
+  }
+}

@@ -8,6 +8,8 @@
 'use client';
 
 import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { GENERATE_TEXT } from '@/lib/graphql/mutations';
 
 interface TextGeneratorProps {
   onGenerate: (text: string) => void;
@@ -15,23 +17,22 @@ interface TextGeneratorProps {
 
 export function TextGenerator({ onGenerate }: TextGeneratorProps) {
   const [prompt, setPrompt] = useState('');
-  const [generating, setGenerating] = useState(false);
+  const [generateText, { loading: generating }] = useMutation(GENERATE_TEXT);
 
   const handleGenerate = async () => {
-    setGenerating(true);
     try {
-      // TODO: Call AI service API
-      const response = await fetch('/api/ai/generate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt }),
+      const { data } = await generateText({
+        variables: {
+          input: {
+            prompt,
+          },
+        },
       });
-      const data = await response.json();
-      onGenerate(data.text);
+      if (data?.generateText?.text) {
+        onGenerate(data.generateText.text);
+      }
     } catch (error) {
       console.error('Error generating text:', error);
-    } finally {
-      setGenerating(false);
     }
   };
 

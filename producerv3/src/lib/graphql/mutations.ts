@@ -85,3 +85,39 @@ export const UPDATE_METADATA = gql`
   }
 `;
 
+export const GENERATE_TEXT = gql`
+  mutation GenerateText($input: GenerateTextInput!) {
+    generateText(input: $input) {
+      text
+      confidence
+    }
+  }
+`;
+
+export const SUMMARIZE_CHAPTER = gql`
+  mutation SummarizeChapter($input: SummarizeInput!) {
+    summarizeChapter(input: $input) {
+      text
+      confidence
+    }
+  }
+`;
+
+export const PROOFREAD_CHAPTER = gql`
+  mutation ProofreadChapter($input: ProofreadInput!) {
+    proofreadChapter(input: $input) {
+      text
+      confidence
+    }
+  }
+`;
+
+export const TRANSLATE_CHAPTER = gql`
+  mutation TranslateChapter($input: TranslateInput!) {
+    translateChapter(input: $input) {
+      text
+      confidence
+    }
+  }
+`;
+

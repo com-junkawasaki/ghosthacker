@@ -37,7 +37,7 @@
   "id": "https://gftd.ai/project/epub-editor",
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
-  "description": "Tiptap editor based EPUB editing tool with AI Generator integration. Frontend: Astro + Tiptap, Backend: GraphQL (Poem/Rust) + PostgreSQL",
+  "description": "Tiptap editor based EPUB editing tool with AI Generator integration. Frontend: Next.js 14 App Router + Tiptap, Backend: GraphQL (Poem/Rust) + PostgreSQL",
   "version": "1.0.1",
   "createdAt": "2025-01-27T00:00:00Z",
   "updatedAt": "2025-11-17T05:22:21Z",

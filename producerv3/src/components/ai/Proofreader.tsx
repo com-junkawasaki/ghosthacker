@@ -7,7 +7,8 @@
  */
 'use client';
 
-import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { PROOFREAD_CHAPTER } from '@/lib/graphql/mutations';
 
 interface ProofreaderProps {
   chapterId: string;
@@ -15,22 +16,22 @@ interface ProofreaderProps {
 }
 
 export function Proofreader({ chapterId, onProofread }: ProofreaderProps) {
-  const [proofreading, setProofreading] = useState(false);
+  const [proofreadChapter, { loading: proofreading }] = useMutation(PROOFREAD_CHAPTER);
 
   const handleProofread = async () => {
-    setProofreading(true);
     try {
-      const response = await fetch('/api/ai/proofread', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chapter_id: chapterId }),
+      const { data } = await proofreadChapter({
+        variables: {
+          input: {
+            chapter_id: chapterId,
+          },
+        },
       });
-      const data = await response.json();
-      onProofread(data.text);
+      if (data?.proofreadChapter?.text) {
+        onProofread(data.proofreadChapter.text);
+      }
     } catch (error) {
       console.error('Error proofreading:', error);
-    } finally {
-      setProofreading(false);
     }
   };
 

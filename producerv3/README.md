@@ -4,9 +4,8 @@ Tiptap editor based EPUB editing tool with AI Generator integration.
 
 ## Architecture
 
-- **Frontend**: Astro + Tiptap + AI Generator
-- **Backend**: GraphQL (Poem/Rust) + Neo4j
-- **Authentication**: Clerk v6.x
+- **Frontend**: Next.js 14 App Router + Tiptap + AI Generator + Tailwind CSS
+- **Backend**: GraphQL (Poem/Rust) + PostgreSQL
 - **Data Model**: OWL/SHACL + RDF (JSON-LD)
 
 ## Project Structure
@@ -27,14 +26,16 @@ Tiptap editor based EPUB editing tool with AI Generator integration.
 │           │   ├── main.rs
 │           │   ├── schema/     # GraphQL schema definitions
 │           │   ├── resolvers/   # Query/Mutation resolvers
-│           │   └── ports/       # Neo4j, EPUB export, AI service
-│           └── neo4j-schema.cypher
-└── src/                    # Astro frontend
+│           │   └── ports/       # PostgreSQL, EPUB export, AI service
+└── src/                    # Next.js frontend
     ├── app/
     │   ├── projects/[projectId]/
     │   │   └── editor/     # Tiptap editor page
-    │   └── api/
-    │       └── ai/          # AI Generator API routes
+    │   ├── api/
+    │   │   └── ai/          # AI Generator API routes
+    │   ├── layout.tsx       # Root layout
+    │   ├── page.tsx         # Landing page
+    │   └── globals.css      # Global styles with Tailwind
     ├── components/
     │   ├── editor/         # Editor components
     │   └── ai/             # AI Generator components
@@ -53,20 +54,14 @@ make dev
 # Or manually:
 docker-compose up -d
 
-# Initialize Neo4j schema (wait for Neo4j to be ready first)
-make neo4j-init
-```
-
-**Note**: Neo4j schema will be automatically initialized on first container start via `docker-entrypoint-initdb.d`. Use `make neo4j-init` if you need to reinitialize or if the automatic initialization failed.
 
 Services will be available at:
 - Frontend: http://localhost:25320
 - GraphQL API: http://localhost:25325/graphql
-- Neo4j Browser: http://localhost:7474
 
 ### Manual Setup
 
-#### Frontend (Astro)
+#### Frontend (Next.js)
 
 ```bash
 pnpm install
@@ -81,30 +76,19 @@ cargo build
 cargo run
 ```
 
-#### Neo4j
-
-1. Start Neo4j database
-2. Run schema initialization:
-```bash
-cypher-shell -u neo4j -p password < neo4j-schema.cypher
-```
 
 ## Environment Variables
 
 ### Frontend (.env)
 
 ```
-PUBLIC_GRAPHQL_API_URL=http://localhost:25325/graphql
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_key
-CLERK_SECRET_KEY=your_clerk_secret
+NEXT_PUBLIC_GRAPHQL_API_URL=http://localhost:25325/graphql
 ```
 
 ### Backend (.env)
 
 ```
-NEO4J_URI=bolt://localhost:7687
-NEO4J_USER=neo4j
-NEO4J_PASSWORD=password
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
 PORT=8080
 ```
 
@@ -150,7 +134,6 @@ make up           # Start services
 make down         # Stop services
 make logs         # Show logs from all services
 make clean        # Remove containers, volumes, and images
-make neo4j-init   # Initialize Neo4j schema
 ```
 
 ## License

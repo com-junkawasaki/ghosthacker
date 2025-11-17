@@ -8,6 +8,8 @@
 'use client';
 
 import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { TRANSLATE_CHAPTER } from '@/lib/graphql/mutations';
 
 interface TranslatorProps {
   chapterId: string;
@@ -16,25 +18,23 @@ interface TranslatorProps {
 
 export function Translator({ chapterId, onTranslate }: TranslatorProps) {
   const [targetLanguage, setTargetLanguage] = useState('en');
-  const [translating, setTranslating] = useState(false);
+  const [translateChapter, { loading: translating }] = useMutation(TRANSLATE_CHAPTER);
 
   const handleTranslate = async () => {
-    setTranslating(true);
     try {
-      const response = await fetch('/api/ai/translate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chapter_id: chapterId,
-          target_language: targetLanguage,
-        }),
+      const { data } = await translateChapter({
+        variables: {
+          input: {
+            chapter_id: chapterId,
+            target_language: targetLanguage,
+          },
+        },
       });
-      const data = await response.json();
-      onTranslate(data.text);
+      if (data?.translateChapter?.text) {
+        onTranslate(data.translateChapter.text);
+      }
     } catch (error) {
       console.error('Error translating:', error);
-    } finally {
-      setTranslating(false);
     }
   };
 

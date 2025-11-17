@@ -7,7 +7,8 @@
  */
 'use client';
 
-import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { SUMMARIZE_CHAPTER } from '@/lib/graphql/mutations';
 
 interface SummarizerProps {
   chapterId: string;
@@ -15,22 +16,22 @@ interface SummarizerProps {
 }
 
 export function Summarizer({ chapterId, onSummarize }: SummarizerProps) {
-  const [summarizing, setSummarizing] = useState(false);
+  const [summarizeChapter, { loading: summarizing }] = useMutation(SUMMARIZE_CHAPTER);
 
   const handleSummarize = async () => {
-    setSummarizing(true);
     try {
-      const response = await fetch('/api/ai/summarize', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chapter_id: chapterId }),
+      const { data } = await summarizeChapter({
+        variables: {
+          input: {
+            chapter_id: chapterId,
+          },
+        },
       });
-      const data = await response.json();
-      onSummarize(data.text);
+      if (data?.summarizeChapter?.text) {
+        onSummarize(data.summarizeChapter.text);
+      }
     } catch (error) {
       console.error('Error summarizing:', error);
-    } finally {
-      setSummarizing(false);
     }
   };
 
