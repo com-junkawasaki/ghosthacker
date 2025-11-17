@@ -15,7 +15,8 @@ use crate::schema::epub::{
 use crate::schema::ai::{
     GeneratedText, GenerateTextInput, SummarizeInput, ProofreadInput, TranslateInput,
 };
-use crate::ports::{postgres, ai_service};
+use crate::schema::emotion::{EmotionProfile, AnalyzeEmotionsInput};
+use crate::ports::{postgres, ai_service, emotion_service};
 
 #[derive(Default)]
 pub struct MutationRoot;
@@ -119,6 +120,20 @@ impl MutationRoot {
         let pool = ctx.data::<postgres::PostgresPool>()?;
         ai_service::translate_chapter(pool, input).await
             .map_err(|e| async_graphql::Error::new(format!("Failed to translate chapter: {:?}", e)))
+    }
+    
+    /// Analyze emotions in text or chapter
+    async fn analyze_emotions(&self, ctx: &Context<'_>, input: AnalyzeEmotionsInput) -> async_graphql::Result<EmotionProfile> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        let chapter_id = input.chapter_id.map(|id| id.to_string());
+        emotion_service::analyze_emotions(
+            pool,
+            input.text,
+            chapter_id,
+            input.language,
+            input.max_sentences,
+        ).await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to analyze emotions: {:?}", e)))
     }
 }
 

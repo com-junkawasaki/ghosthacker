@@ -14,12 +14,54 @@ importers:
       '@tiptap/core':
         specifier: ^2.1.13
         version: 2.27.1(@tiptap/pm@2.27.1)
+      '@tiptap/extension-blockquote':
+        specifier: ^2.1.13
+        version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))
+      '@tiptap/extension-bold':
+        specifier: ^2.1.13
+        version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))
+      '@tiptap/extension-bullet-list':
+        specifier: ^2.1.13
+        version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))
+      '@tiptap/extension-code':
+        specifier: ^2.1.13
+        version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))
+      '@tiptap/extension-document':
+        specifier: ^2.1.13
+        version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))
+      '@tiptap/extension-hard-break':
+        specifier: ^2.1.13
+        version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))
+      '@tiptap/extension-heading':
+        specifier: ^2.1.13
+        version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))
+      '@tiptap/extension-history':
+        specifier: ^2.1.13
+        version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))(@tiptap/pm@2.27.1)
       '@tiptap/extension-image':
+        specifier: ^2.1.13
+        version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))
+      '@tiptap/extension-italic':
         specifier: ^2.1.13
         version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))
       '@tiptap/extension-link':
         specifier: ^2.1.13
         version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))(@tiptap/pm@2.27.1)
+      '@tiptap/extension-list-item':
+        specifier: ^2.1.13
+        version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))
+      '@tiptap/extension-ordered-list':
+        specifier: ^2.1.13
+        version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))
+      '@tiptap/extension-paragraph':
+        specifier: ^2.1.13
+        version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))
+      '@tiptap/extension-strike':
+        specifier: ^2.1.13
+        version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))
+      '@tiptap/extension-text':
+        specifier: ^2.1.13
+        version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))
       '@tiptap/pm':
         specifier: ^2.1.13
         version: 2.27.1

@@ -87,3 +87,14 @@ mutation TranslateChapter($input: TranslateInput!) {
     confidence
   }
 }
+
+mutation AnalyzeEmotions($input: AnalyzeEmotionsInput!) {
+  analyzeEmotions(input: $input) {
+    emotionVector {
+      emotion
+      score
+    }
+    createdAt
+    language
+  }
+}

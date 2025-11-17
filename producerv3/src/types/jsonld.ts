@@ -205,6 +205,21 @@ export interface SettingNode {
 }
 
 // ============================================================================
+// 感情分析型定義
+// ============================================================================
+
+export interface EmotionProfile {
+  emotionVector: EmotionScore[];
+  createdAt: string;
+  language: string;
+}
+
+export interface EmotionScore {
+  emotion: string; // joy, sadness, fear, anger, surprise, trust, anticipation, disgust, relief, hope
+  score: number; // 0-1
+}
+
+// ============================================================================
 // マスクタイプ定義（視覚的に隠す/表示するメタデータ）
 // ============================================================================
 

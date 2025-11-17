@@ -36,6 +36,12 @@ services:
       # AI Service Configuration (for future integration)
       AI_SERVICE_API_KEY: ${AI_SERVICE_API_KEY:-}
       AI_SERVICE_ENDPOINT: ${AI_SERVICE_ENDPOINT:-}
+      # Hume AI API Configuration (hardcoded for development)
+      HUME_API: q0nGzfOSBZB4D0HbdZorGxek3wXz5O4XpTG8IkEJ0gY8Wlet
+      HUME_API_KEY: LYSOLhalcwGNDdqxtlZOE4172bXGTzg0VxV30BatjXJPUtAULQ6ZoZmyBVTQE19s
+      HUME_LANGUAGE_URL: https://api.hume.ai/v0/batch/jobs
+      # OpenAI API Configuration (hardcoded for development)
+      OPENAI_API_KEY: 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
       # Cargo watch configuration for HMR
       CARGO_WATCH_IGNORE: "target/**"
     volumes:

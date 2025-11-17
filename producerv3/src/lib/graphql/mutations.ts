@@ -121,3 +121,16 @@ export const TRANSLATE_CHAPTER = gql`
   }
 `;
 
+export const ANALYZE_EMOTIONS = gql`
+  mutation AnalyzeEmotions($input: AnalyzeEmotionsInput!) {
+    analyzeEmotions(input: $input) {
+      emotionVector {
+        emotion
+        score
+      }
+      createdAt
+      language
+    }
+  }
+`;
+

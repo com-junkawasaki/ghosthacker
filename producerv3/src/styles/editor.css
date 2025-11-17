@@ -13,6 +13,92 @@
   filter: blur(2px);
 }
 
+/* 感情可視化スタイル（emotionMaskが有効な時） */
+[data-emotion-profile] {
+  position: relative;
+}
+
+[data-emotion-profile]:hover::after {
+  content: attr(data-emotion-profile);
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: pre-wrap;
+  z-index: 1000;
+  pointer-events: none;
+  max-width: 300px;
+}
+
+/* 感情タイプごとの背景色マッピング */
+[data-emotion-vector] {
+  transition: background-color 0.2s ease;
+}
+
+/* joy - 黄色 */
+[data-emotion-vector*='"emotion":"joy"'] {
+  background-color: rgba(255, 235, 59, 0.2);
+}
+
+/* sadness - 青 */
+[data-emotion-vector*='"emotion":"sadness"'] {
+  background-color: rgba(33, 150, 243, 0.2);
+}
+
+/* fear - 赤 */
+[data-emotion-vector*='"emotion":"fear"'] {
+  background-color: rgba(244, 67, 54, 0.2);
+}
+
+/* anger - オレンジ */
+[data-emotion-vector*='"emotion":"anger"'] {
+  background-color: rgba(255, 152, 0, 0.2);
+}
+
+/* surprise - ピンク */
+[data-emotion-vector*='"emotion":"surprise"'] {
+  background-color: rgba(233, 30, 99, 0.2);
+}
+
+/* trust - 緑 */
+[data-emotion-vector*='"emotion":"trust"'] {
+  background-color: rgba(76, 175, 80, 0.2);
+}
+
+/* anticipation - 紫 */
+[data-emotion-vector*='"emotion":"anticipation"'] {
+  background-color: rgba(156, 39, 176, 0.2);
+}
+
+/* disgust - 茶色 */
+[data-emotion-vector*='"emotion":"disgust"'] {
+  background-color: rgba(121, 85, 72, 0.2);
+}
+
+/* relief - 水色 */
+[data-emotion-vector*='"emotion":"relief"'] {
+  background-color: rgba(0, 188, 212, 0.2);
+}
+
+/* hope - ライムグリーン */
+[data-emotion-vector*='"emotion":"hope"'] {
+  background-color: rgba(205, 220, 57, 0.2);
+}
+
+/* 複数の感情が混在する場合のグラデーション */
+[data-emotion-vector]:has([data-emotion-score]) {
+  background: linear-gradient(
+    to right,
+    rgba(255, 235, 59, 0.1),
+    rgba(33, 150, 243, 0.1),
+    rgba(244, 67, 54, 0.1)
+  );
+}
+
 [data-theme-mask="true"] {
   opacity: 0.4;
   filter: blur(1px);

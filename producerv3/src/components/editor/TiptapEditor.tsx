@@ -8,7 +8,20 @@
 'use client';
 
 import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
+import Document from '@tiptap/extension-document';
+import Paragraph from '@tiptap/extension-paragraph';
+import Text from '@tiptap/extension-text';
+import Heading from '@tiptap/extension-heading';
+import Bold from '@tiptap/extension-bold';
+import Italic from '@tiptap/extension-italic';
+import Strike from '@tiptap/extension-strike';
+import Code from '@tiptap/extension-code';
+import BulletList from '@tiptap/extension-bullet-list';
+import OrderedList from '@tiptap/extension-ordered-list';
+import ListItem from '@tiptap/extension-list-item';
+import Blockquote from '@tiptap/extension-blockquote';
+import HardBreak from '@tiptap/extension-hard-break';
+import History from '@tiptap/extension-history';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
 import { useEffect, useRef, useState } from 'react';
@@ -72,10 +85,37 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
   const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const savedTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [selectedNodeType, setSelectedNodeType] = useState<string | null>(null);
+  const [editorError, setEditorError] = useState<string | null>(null);
 
   const editor = useEditor({
+    onError: ({ error }) => {
+      console.error('Tiptap editor error:', error);
+      setEditorError(error.message || 'エディタの初期化に失敗しました');
+    },
     extensions: [
-      StarterKit,
+      // 基本ノード（必須）- Documentは最初に配置する必要がある
+      Document.configure({
+        content: 'block+',
+      }),
+      Paragraph,
+      Text,
+      // フォーマット
+      Heading.configure({
+        levels: [1, 2, 3, 4, 5, 6],
+      }),
+      Bold,
+      Italic,
+      Strike,
+      Code,
+      // リスト
+      BulletList,
+      OrderedList,
+      ListItem,
+      // その他
+      Blockquote,
+      HardBreak,
+      History,
+      // メディア
       Image.configure({
         inline: true,
         allowBase64: true,
@@ -203,8 +243,21 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
     return <div>Loading...</div>;
   }
 
+  if (editorError) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <div className="text-red-500">
+          <div className="font-bold">エラー:</div>
+          <div>{editorError}</div>
+        </div>
+      </div>
+    );
+  }
+
   if (!editor) {
-    return null;
+    return <div className="flex items-center justify-center h-full">
+      <div className="text-gray-500">エディタを初期化中...</div>
+    </div>;
   }
 
   if (!chapterId) {
