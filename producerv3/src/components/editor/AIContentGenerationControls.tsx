@@ -244,35 +244,38 @@ export function AIContentGenerationControls({ editor }: AIContentGenerationContr
                     + ビート追加
                   </button>
                 </div>
-                {emotionArc.map((beat, index) => (
-                  <div key={index} className="mb-2 p-2 border rounded flex items-center gap-2">
-                    <span className="text-sm">ビート {beat.position}</span>
-                    <input
-                      type="text"
-                      placeholder="感情: スコア (例: joy: 0.8)"
-                      className="flex-1 p-1 border rounded text-sm"
-                      onChange={(e) => {
-                        const newArc = [...emotionArc];
-                        // Parse emotion:score format
-                        const parts = e.target.value.split(':');
-                        if (parts.length === 2) {
-                          const emotion = parts[0].trim();
-                          const score = parseFloat(parts[1].trim());
-                          if (!isNaN(score)) {
-                            newArc[index].targetEmotions[emotion] = score;
-                            setEmotionArc(newArc);
+                {emotionArc.map((beat, index) => {
+                  if (!beat) return null;
+                  return (
+                    <div key={index} className="mb-2 p-2 border rounded flex items-center gap-2">
+                      <span className="text-sm">ビート {beat.position}</span>
+                      <input
+                        type="text"
+                        placeholder="感情: スコア (例: joy: 0.8)"
+                        className="flex-1 p-1 border rounded text-sm"
+                        onChange={(e) => {
+                          const newArc = [...emotionArc];
+                          // Parse emotion:score format
+                          const parts = e.target.value.split(':');
+                          if (parts.length === 2 && newArc[index]) {
+                            const emotion = parts[0].trim();
+                            const score = parseFloat(parts[1].trim());
+                            if (!isNaN(score)) {
+                              newArc[index]!.targetEmotions[emotion] = score;
+                              setEmotionArc(newArc);
+                            }
                           }
-                        }
-                      }}
-                    />
-                    <button
-                      onClick={() => removeEmotionBeat(index)}
-                      className="px-2 py-1 text-xs bg-red-100 hover:bg-red-200 rounded"
-                    >
-                      削除
-                    </button>
-                  </div>
-                ))}
+                        }}
+                      />
+                      <button
+                        onClick={() => removeEmotionBeat(index)}
+                        className="px-2 py-1 text-xs bg-red-100 hover:bg-red-200 rounded"
+                      >
+                        削除
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 

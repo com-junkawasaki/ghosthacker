@@ -88,7 +88,7 @@ export function EmotionAnalysisControls() {
   };
 
   const handleToggleEmotionMask = () => {
-    editor.chain().focus().toggleMask('emotion' as MaskType['type']).run();
+    editor.chain().focus().toggleMark('emotion' as MaskType['type']).run();
   };
 
   const handleClearEmotions = () => {

@@ -8,7 +8,7 @@
 'use client';
 
 import { useEditor, EditorContent } from '@tiptap/react';
-import { useMemo, useCallback } from 'react';
+import { useMemo, useCallback, useEffect, useRef, useState } from 'react';
 import Document from '@tiptap/extension-document';
 import Paragraph from '@tiptap/extension-paragraph';
 import Text from '@tiptap/extension-text';
@@ -25,7 +25,6 @@ import HardBreak from '@tiptap/extension-hard-break';
 import History from '@tiptap/extension-history';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
-import { useEffect, useRef, useState } from 'react';
 import { useQuery, useMutation, useApolloClient } from '@apollo/client';
 import { GET_CHAPTER, GET_EPUB } from '@/lib/graphql/queries';
 import { UPDATE_CHAPTER } from '@/lib/graphql/mutations';
@@ -326,7 +325,7 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
   }, [editor, combinedContent, chapterId]);
 
   // Helper function to safely set editor content
-  const setEditorContent = (editor: Editor, content: unknown) => {
+  const setEditorContent = useCallback((editor: import('@tiptap/react').Editor, content: unknown) => {
     try {
       // Ensure content is a string
       let contentString: string;
@@ -366,6 +365,29 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
       }
     }
   }, []);
+
+  useEffect(() => {
+    if (!editor) {
+      return;
+    }
+
+    // Wait for editor to be fully initialized
+    if (!editor.view || !editor.view.state) {
+      // Retry after editor is ready
+      const timeoutId = setTimeout(() => {
+        if (editor.view && editor.view.state && combinedContent) {
+          setEditorContent(editor, combinedContent);
+        }
+      }, 100);
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+
+    if (combinedContent) {
+      setEditorContent(editor, combinedContent);
+    }
+  }, [editor, combinedContent, chapterId, setEditorContent]);
 
   useEffect(() => {
     if (!editor) {

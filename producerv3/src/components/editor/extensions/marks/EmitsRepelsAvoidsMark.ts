@@ -63,7 +63,11 @@ export const EmitsRepelsAvoidsMark = Mark.create<EmitsRepelsAvoidsMarkOptions>({
       setEmitsRepelsAvoidsMark:
         (enabled: boolean) =>
         ({ commands }) => {
-          return commands.setMark(this.name, enabled ? {} : null);
+          if (enabled) {
+            return commands.setMark(this.name);
+          } else {
+            return commands.unsetMark(this.name);
+          }
         },
     };
   },

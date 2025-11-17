@@ -86,7 +86,11 @@ export const MarkExtension = Extension.create<MarkExtensionOptions>({
             return false;
           }
 
-          return commands.setMark(markName, enabled ? {} : null);
+          if (enabled) {
+            return commands.setMark(markName);
+          } else {
+            return commands.unsetMark(markName);
+          }
         },
       toggleAllMarks:
         () =>
