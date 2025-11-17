@@ -4,4 +4,20 @@
 target/
 *.log
 .air.toml
+# Build artifacts
+bin/
+tmp/
+server
+*.exe
+*.dll
+*.so
+*.dylib
+# Test files
+*_test.go
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 

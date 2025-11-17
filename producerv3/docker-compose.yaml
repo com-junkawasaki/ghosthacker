@@ -25,37 +25,37 @@ services:
     networks:
       - epub-editor-network
 
-  graphql:
-    build:
-      context: ./performers/services/graphql
-      dockerfile: Dockerfile
-      target: development
-    container_name: epub-editor-graphql
-    ports:
-      - "25325:8080"
-    environment:
-      NODE_ENV: development
-      # Neo4j Connection
-      NEO4J_URI: bolt://neo4j:7687
-      NEO4J_USER: neo4j
-      NEO4J_PASSWORD: password
-      # Server Configuration
-      PORT: 8080
-      HOST: 0.0.0.0
-      # Clerk Authentication (hardcoded for development)
-      CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:-}
-      # AI Service Configuration (for future integration)
-      AI_SERVICE_API_KEY: ${AI_SERVICE_API_KEY:-}
-      AI_SERVICE_ENDPOINT: ${AI_SERVICE_ENDPOINT:-}
-    volumes:
-      - ./performers/services/graphql:/app
-      - /app/target
-    depends_on:
-      neo4j:
-        condition: service_healthy
-    networks:
-      - epub-editor-network
-    command: cargo watch -x run
+  # graphql:
+  #   build:
+  #     context: ./performers/services/graphql
+  #     dockerfile: Dockerfile
+  #     target: development
+  #   container_name: epub-editor-graphql
+  #   ports:
+  #     - "25325:8080"
+  #   environment:
+  #     NODE_ENV: development
+  #     # Neo4j Connection
+  #     NEO4J_URI: bolt://neo4j:7687
+  #     NEO4J_USER: neo4j
+  #     NEO4J_PASSWORD: password
+  #     # Server Configuration
+  #     PORT: 8080
+  #     HOST: 0.0.0.0
+  #     # Clerk Authentication (hardcoded for development)
+  #     CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:-}
+  #     # AI Service Configuration (for future integration)
+  #     AI_SERVICE_API_KEY: ${AI_SERVICE_API_KEY:-}
+  #     AI_SERVICE_ENDPOINT: ${AI_SERVICE_ENDPOINT:-}
+  #   volumes:
+  #     - ./performers/services/graphql:/app
+  #     - /app/target
+  #   depends_on:
+  #     neo4j:
+  #       condition: service_healthy
+  #   networks:
+  #     - epub-editor-network
+  #   command: cargo watch -x run
 
   graphql-go:
     build:
@@ -104,11 +104,11 @@ services:
       WATCHPACK_POLLING_INTERVAL: 1000
       # App URLs (loaded from host env / .envrc)
       NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:25320}
-      # GraphQL API URL
+      # GraphQL API URL (Go implementation)
       # Client-side: use localhost for browser access
-      NEXT_PUBLIC_GRAPHQL_API_URL: ${NEXT_PUBLIC_GRAPHQL_API_URL:-http://localhost:25325/graphql}
+      NEXT_PUBLIC_GRAPHQL_API_URL: ${NEXT_PUBLIC_GRAPHQL_API_URL:-http://localhost:25326/graphql}
       # Server-side: use container name for server-to-server communication
-      GRAPHQL_API_URL: ${GRAPHQL_API_URL:-http://graphql:8080/graphql}
+      GRAPHQL_API_URL: ${GRAPHQL_API_URL:-http://graphql-go:8080/graphql}
       # Clerk Authentication (hardcoded for development)
       NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:-pk_test_ZW5vdWdoLWNoaXBtdW5rLTkyLmNsZXJrLmFjY291bnRzLmRldiQ}
       CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:-sk_test_FmPI35dNxAij0tuaX7rV5PDIDVmVvx8J11nyVyxEGu}
@@ -117,7 +117,7 @@ services:
       - /app/node_modules
       - /app/.astro
     depends_on:
-      - graphql
+      - graphql-go
     networks:
       - epub-editor-network
     command: pnpm dev --host

@@ -4,8 +4,8 @@ FROM golang:1.22-alpine as development
 
 WORKDIR /app
 
-# Install air for hot reload
-RUN go install github.com/cosmtrek/air@latest
+# Install air for hot reload (use compatible version for Go 1.22)
+RUN go install github.com/cosmtrek/air@v1.49.0
 
 # Copy go mod files
 COPY go.mod go.sum* ./
