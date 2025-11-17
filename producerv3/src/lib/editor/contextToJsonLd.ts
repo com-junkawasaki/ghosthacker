@@ -116,7 +116,7 @@ export function generateContextJSONLD(context: StructuredContext): ContextJSONLD
     jsonld.characters = context.characters.map((charWithMarks) => {
       const charAttrs = charWithMarks.node.attributes;
       const characterId = charAttrs.characterId as string | undefined;
-      const characterJsonld: ContextJSONLD['characters']![0] = {
+      const characterJsonld: NonNullable<ContextJSONLD['characters']>[0] = {
         ...(characterId ? { '@id': characterId } : {}),
         '@type': 'Person',
         name: charWithMarks.node.name,
@@ -142,7 +142,7 @@ export function generateContextJSONLD(context: StructuredContext): ContextJSONLD
   // Dialogue情報
   if (context.dialogue.length > 0) {
     jsonld.dialogue = context.dialogue.map((dialogue) => {
-      const dialogueJsonld: ContextJSONLD['dialogue']![0] = {
+      const dialogueJsonld: NonNullable<ContextJSONLD['dialogue']>[0] = {
         '@type': 'Dialogue',
         text: dialogue.text,
       };

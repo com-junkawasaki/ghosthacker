@@ -83,7 +83,11 @@ export function getDominantEmotion(emotionScores: EmotionScore[]): EmotionScore 
 
   // Sort by score descending and return the highest
   const sorted = [...emotionScores].sort((a, b) => b.score - a.score);
-  return sorted[0].score > 0 ? sorted[0] : null;
+  const topEmotion = sorted[0];
+  if (!topEmotion) {
+    return null;
+  }
+  return topEmotion.score > 0 ? topEmotion : null;
 }
 
 /**

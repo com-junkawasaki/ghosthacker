@@ -117,9 +117,12 @@ export function buildCharacterContext(
     return null;
   }
   
+  // Type assertion to help TypeScript understand characterNode is not null
+  const node: ExtractedNode = characterNode;
+  
   // Extract relationships from attributes
   const relationships: Array<{ type: string; targetId: string }> = [];
-  const attrs = characterNode.attributes;
+  const attrs: Record<string, unknown> = node.attributes;
   
   const relationshipFields = ['worksFor', 'parent', 'spouse', 'sibling', 'colleague', 'knows'];
   relationshipFields.forEach((field) => {
@@ -143,14 +146,15 @@ export function buildCharacterContext(
     }
   });
   
-  return {
+  const result: CharacterContext = {
     characterId,
-    name: characterNode.name,
-    attributes: characterNode.attributes,
+    name: node.name,
+    attributes: node.attributes,
     relationships,
     dialogue,
     scenePresence: sceneId ? scenePresence : true, // If no scene specified, assume present
   };
+  return result;
 }
 
 /**
@@ -207,9 +211,12 @@ export function buildSceneContext(editor: Editor, sceneId: string): SceneContext
     return null;
   }
   
+  // Type assertion to help TypeScript understand sceneNode is not null
+  const node: ExtractedNode = sceneNode;
+  
   const sceneContext: SceneContext = {
     sceneId,
-    name: sceneNode.name,
+    name: node.name,
     characters,
   };
   if (location) {
@@ -250,7 +257,10 @@ export function buildNarratorContext(editor: Editor, povId: string): NarratorCon
     return null;
   }
   
-  const attrs = povNode.attributes;
+  // Type assertion to help TypeScript understand povNode is not null
+  const node: ExtractedNode = povNode;
+  
+  const attrs: Record<string, unknown> = node.attributes;
   const characterId = attrs.characterId
     ? (typeof attrs.characterId === 'object' && '@id' in attrs.characterId
         ? (attrs.characterId as { '@id': string })['@id']
@@ -259,7 +269,7 @@ export function buildNarratorContext(editor: Editor, povId: string): NarratorCon
   
   const narratorContext: NarratorContext = {
     povId,
-    name: povNode.name,
+    name: node.name,
   };
   if (characterId) {
     narratorContext.characterId = characterId;

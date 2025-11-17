@@ -278,7 +278,7 @@ export function generateEmotionArcFromScene(
   for (let i = 0; i < beatCount; i++) {
     const position = Math.floor((i / beatCount) * sceneLength);
     // Gradually transition emotions based on scene type
-    const progress = i / (beatCount - 1);
+    const progress = beatCount > 1 ? i / (beatCount - 1) : 0;
     const adjustedEmotions: Record<string, number> = {};
 
     Object.entries(targetEmotions).forEach(([emotion, baseScore]) => {

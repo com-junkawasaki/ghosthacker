@@ -75,14 +75,23 @@ export function extractNodeForClassification(
     const contextTo = Math.min(state.doc.content.size, position.to + contextRange);
     const context = state.doc.textBetween(contextFrom, contextTo);
     
-    return {
+    const result: NodeForClassification = {
       text,
-      currentType: nodeType,
-      attributes: attrs,
-      maskInfo: maskInfo.length > 0 ? maskInfo : undefined,
-      context: context || undefined,
       position,
     };
+    if (nodeType) {
+      result.currentType = nodeType;
+    }
+    if (Object.keys(attrs).length > 0) {
+      result.attributes = attrs;
+    }
+    if (maskInfo.length > 0) {
+      result.maskInfo = maskInfo;
+    }
+    if (context) {
+      result.context = context;
+    }
+    return result;
   }
   
   // Otherwise, extract from selection
@@ -100,13 +109,22 @@ export function extractNodeForClassification(
     ? state.doc.textBetween(firstNode.position.from, firstNode.position.to)
     : editorContext.selectedText;
   
-  return {
+  const result: NodeForClassification = {
     text: text || '',
-    currentType: firstNode?.type,
-    attributes: firstNode?.attributes,
-    maskInfo: editorContext.masks.length > 0 ? editorContext.masks : undefined,
-    context: editorContext.selectedText || undefined,
   };
+  if (firstNode?.type) {
+    result.currentType = firstNode.type;
+  }
+  if (firstNode?.attributes && Object.keys(firstNode.attributes).length > 0) {
+    result.attributes = firstNode.attributes;
+  }
+  if (editorContext.masks.length > 0) {
+    result.maskInfo = editorContext.masks;
+  }
+  if (editorContext.selectedText) {
+    result.context = editorContext.selectedText;
+  }
+  return result;
 }
 
 /**
@@ -181,14 +199,24 @@ export function extractMultipleNodesFromSelection(
     );
     const context = state.doc.textBetween(contextFrom, contextTo);
 
-    return {
+    const result: NodeForClassification = {
       text: text || '',
-      currentType: extractedNode.type,
-      attributes: extractedNode.attributes,
-      maskInfo: maskInfo.length > 0 ? maskInfo : undefined,
-      context: context || editorContext.selectedText || undefined,
       position: extractedNode.position,
     };
+    if (extractedNode.type) {
+      result.currentType = extractedNode.type;
+    }
+    if (Object.keys(extractedNode.attributes).length > 0) {
+      result.attributes = extractedNode.attributes;
+    }
+    if (maskInfo.length > 0) {
+      result.maskInfo = maskInfo;
+    }
+    const finalContext = context || editorContext.selectedText;
+    if (finalContext) {
+      result.context = finalContext;
+    }
+    return result;
   });
 }
 
@@ -302,11 +330,22 @@ export function reclassifyNode(
       .run();
     
     // Insert new node with new type and attributes
+    // Filter out arrays from attributes to prevent renderSpec errors
+    const sanitizedAttributes: Record<string, unknown> = {};
+    if (newAttributes) {
+      Object.entries(newAttributes).forEach(([key, value]) => {
+        // Skip arrays and null/undefined values
+        if (!Array.isArray(value) && value !== null && value !== undefined) {
+          sanitizedAttributes[key] = value;
+        }
+      });
+    }
+    
     const insertCommand = (editor.chain().focus() as any)[command];
     if (insertCommand) {
       insertCommand({
-        ...newAttributes,
-        name: newAttributes?.name || nodeContent.substring(0, 50),
+        ...sanitizedAttributes,
+        name: sanitizedAttributes.name || nodeContent.substring(0, 50),
       }).run();
     }
     

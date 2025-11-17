@@ -323,6 +323,17 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
   // Helper function to safely set editor content using ts-pattern
   const setEditorContent = useCallback((editor: import('@tiptap/react').Editor, content: unknown) => {
     try {
+      // Helper function to validate Tiptap JSON structure
+      const isValidTiptapJSON = (obj: unknown): obj is { type: string; content?: unknown } => {
+        if (!obj || typeof obj !== 'object') return false;
+        const jsonObj = obj as { type?: unknown; content?: unknown };
+        // Must have type property and be a string
+        if (typeof jsonObj.type !== 'string') return false;
+        // If content exists, it must be an array (Tiptap JSON format)
+        if (jsonObj.content !== undefined && !Array.isArray(jsonObj.content)) return false;
+        return true;
+      };
+
       const contentResult = match(content)
         .when((val): val is string => typeof val === 'string', (str) => {
           const trimmed = str.trim() || '<p></p>';
@@ -333,19 +344,23 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
           return { type: 'string' as const, value: trimmed };
         })
         .when(Array.isArray, () => {
-          console.warn('Content is an array, converting to empty string:', content);
+          console.warn('Content is an array (invalid), converting to empty string:', content);
           return { type: 'string' as const, value: '<p></p>' };
         })
-        .when((val): val is object => val !== null && typeof val === 'object', (obj) => {
-          // Tiptap can accept JSON format, but we need to validate it
-          const jsonContent = obj as { type?: string; content?: unknown };
-          if (jsonContent.type === 'doc' || (Array.isArray(jsonContent.content) && jsonContent.content.length > 0)) {
-            // Valid Tiptap JSON format - use it directly
-            return { type: 'json' as const, value: obj };
-          } else {
-            console.warn('Content is an invalid object, converting to empty string:', obj);
-            return { type: 'string' as const, value: '<p></p>' };
+        .when(isValidTiptapJSON, (obj) => {
+          // Valid Tiptap JSON format - use it directly
+          // Ensure it's properly structured
+          const jsonContent = obj as { type: string; content?: unknown[] };
+          if (jsonContent.type === 'doc' && Array.isArray(jsonContent.content)) {
+            return { type: 'json' as const, value: jsonContent };
           }
+          // Fallback to string if structure is unexpected
+          console.warn('Tiptap JSON has unexpected structure, converting to empty string:', obj);
+          return { type: 'string' as const, value: '<p></p>' };
+        })
+        .when((val): val is object => val !== null && typeof val === 'object', () => {
+          console.warn('Content is an invalid object, converting to empty string:', content);
+          return { type: 'string' as const, value: '<p></p>' };
         })
         .otherwise(() => ({ type: 'string' as const, value: '<p></p>' }));
 
@@ -353,8 +368,19 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
       
       // Avoid unnecessary updates
       if (contentResult.type === 'json') {
-        // For JSON content, we can't easily compare, so always set it
-        editor.commands.setContent(contentResult.value);
+        // For JSON content, validate it's not an array before setting
+        try {
+          // Double-check that value is not an array
+          if (Array.isArray(contentResult.value)) {
+            console.warn('JSON value is an array, converting to empty string');
+            editor.commands.setContent('<p></p>');
+          } else {
+            editor.commands.setContent(contentResult.value);
+          }
+        } catch (jsonError) {
+          console.error('Error setting JSON content, falling back to empty:', jsonError);
+          editor.commands.setContent('<p></p>');
+        }
       } else if (currentContent !== contentResult.value) {
         editor.commands.setContent(contentResult.value);
       }
