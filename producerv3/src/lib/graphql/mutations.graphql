@@ -235,3 +235,19 @@ mutation AnalyzeNodeContent($input: AnalyzeNodeContentInput!) {
     }
   }
 }
+
+mutation UpsertCharacter($input: UpsertCharacterInput!) {
+  upsertCharacter(input: $input) {
+    id
+    characterId
+    name
+    callsign
+    description
+    age
+    occupation
+    role
+    virtue
+    alternateName
+    imageBase64
+  }
+}

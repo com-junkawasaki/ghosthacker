@@ -40,6 +40,7 @@ import {
   UPDATE_GRAPH_INCIDENCE,
   DELETE_GRAPH_INCIDENCE,
 } from '@/lib/graphql/mutations';
+import { gql } from '@apollo/client';
 import { extractGraphLinks, linkExists, type CreateGraphLinkInput, type JsonldNode } from '@/lib/graphql/extractGraph';
 import { normalizeProjectId } from '@/lib/utils/uuid';
 import type { CharacterNode, GhostNode, OrganizationNode } from '@/types/jsonld';
@@ -219,6 +220,7 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
   const [pendingConnection, setPendingConnection] = useState<Connection | null>(null);
   const [linkType, setLinkType] = useState('related');
   const [extractionDone, setExtractionDone] = useState(false);
+  const [editingAttributes, setEditingAttributes] = useState<Record<string, unknown>>({});
   
   // Refs to store mutation functions to avoid unnecessary re-renders
   const createLinkRef = useRef<((options?: { variables?: unknown; onCompleted?: (data: unknown) => void; onError?: (error: Error) => void }) => Promise<unknown>) | null>(null);
@@ -278,6 +280,32 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
   });
   const [deleteIncidence] = useMutation(DELETE_GRAPH_INCIDENCE, {
     onCompleted: () => refetchIncidences(),
+  });
+
+  // Upsert character mutation
+  const UPSERT_CHARACTER = gql`
+    mutation UpsertCharacter($input: UpsertCharacterInput!) {
+      upsertCharacter(input: $input) {
+        id
+        characterId
+        name
+        callsign
+        description
+        age
+        occupation
+        role
+        virtue
+        alternateName
+        imageBase64
+      }
+    }
+  `;
+  const [upsertCharacter] = useMutation(UPSERT_CHARACTER, {
+    refetchQueries: [{ query: GET_CHARACTERS }],
+    onCompleted: () => {
+      setSelectedNode(null);
+      setEditingAttributes({});
+    },
   });
 
   // Auto-extract graph links from JSON-LD nodes when data is loaded
@@ -570,6 +598,35 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
     setLinkType('related');
   }, []);
 
+  // Initialize editing attributes when node is selected
+  useEffect(() => {
+    if (!selectedNode) {
+      setEditingAttributes({});
+      return;
+    }
+
+    const nodeType = selectedNode.data.nodeType as string;
+    const nodeId = selectedNode.data.nodeId as string;
+    
+    // Find the full node data from queries
+    let nodeData: Record<string, unknown> | null = null;
+    if (nodeType === 'character' && charactersData?.characters) {
+      nodeData = charactersData.characters.find((char: { id: string }) => char.id === nodeId) as Record<string, unknown> | undefined || null;
+    } else if (nodeType === 'ghost' && ghostsData?.ghosts) {
+      nodeData = ghostsData.ghosts.find((ghost: { id: string }) => ghost.id === nodeId) as Record<string, unknown> | undefined || null;
+    } else if (nodeType === 'location' && locationsData?.locations) {
+      nodeData = locationsData.locations.find((loc: { id: string }) => loc.id === nodeId) as Record<string, unknown> | undefined || null;
+    } else if (nodeType === 'organization' && organizationsData?.organizations) {
+      nodeData = organizationsData.organizations.find((org: { id: string }) => org.id === nodeId) as Record<string, unknown> | undefined || null;
+    }
+
+    if (nodeData) {
+      setEditingAttributes({ ...nodeData });
+    } else {
+      setEditingAttributes({});
+    }
+  }, [selectedNode, charactersData, ghostsData, locationsData, organizationsData]);
+
   const onNodeClick = useCallback((_event: React.MouseEvent, node: Node) => {
     setSelectedNode(node);
     setSelectedEdge(null);
@@ -655,24 +712,228 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
       )}
 
       {/* Property panel for selected node */}
-      {selectedNode && (
-        <Panel position="top-right" className="bg-white border border-gray-300 rounded-lg shadow-lg p-4 w-80 max-h-96 overflow-y-auto">
-          <h3 className="font-bold mb-2">Node Properties</h3>
-          <div className="text-sm space-y-2">
-            <div><strong>Type:</strong> {String(selectedNode.data.nodeType)}</div>
-            <div><strong>ID:</strong> {String(selectedNode.data.nodeId)}</div>
-            <div><strong>Label:</strong> {String(selectedNode.data.label)}</div>
-            <div className="text-xs text-gray-500 mt-2">Double-click node to edit label</div>
-          </div>
-          <button
-            type="button"
-            onClick={() => setSelectedNode(null)}
-            className="mt-4 px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm w-full"
-          >
-            Close
-          </button>
-        </Panel>
-      )}
+      {selectedNode && (() => {
+        const nodeType = selectedNode.data.nodeType as string;
+        const nodeId = selectedNode.data.nodeId as string;
+        
+        // Find the full node data from queries
+        let nodeData: Record<string, unknown> | null = null;
+        if (nodeType === 'character' && charactersData?.characters) {
+          nodeData = charactersData.characters.find((char: { id: string }) => char.id === nodeId) as Record<string, unknown> | undefined || null;
+        } else if (nodeType === 'ghost' && ghostsData?.ghosts) {
+          nodeData = ghostsData.ghosts.find((ghost: { id: string }) => ghost.id === nodeId) as Record<string, unknown> | undefined || null;
+        } else if (nodeType === 'location' && locationsData?.locations) {
+          nodeData = locationsData.locations.find((loc: { id: string }) => loc.id === nodeId) as Record<string, unknown> | undefined || null;
+        } else if (nodeType === 'organization' && organizationsData?.organizations) {
+          nodeData = organizationsData.organizations.find((org: { id: string }) => org.id === nodeId) as Record<string, unknown> | undefined || null;
+        }
+
+
+        const handleSave = () => {
+          if (nodeType === 'character' && nodeData) {
+            const charData = nodeData as {
+              characterId: string;
+              name: string;
+              callsign?: string | null;
+              description?: string | null;
+              age?: number | null;
+              occupation?: string | null;
+              role?: string | null;
+              virtue?: string | null;
+              alternateName?: string | null;
+              imageBase64?: string | null;
+            };
+            upsertCharacter({
+              variables: {
+                input: {
+                  characterId: charData.characterId,
+                  name: editingAttributes.name as string || charData.name,
+                  callsign: editingAttributes.callsign as string | null || charData.callsign || null,
+                  description: editingAttributes.description as string | null || charData.description || null,
+                  age: editingAttributes.age as number | null || charData.age || null,
+                  occupation: editingAttributes.occupation as string | null || charData.occupation || null,
+                  role: editingAttributes.role as string | null || charData.role || null,
+                  virtue: editingAttributes.virtue as string | null || charData.virtue || null,
+                  alternateName: editingAttributes.alternateName as string | null || charData.alternateName || null,
+                  imageBase64: editingAttributes.imageBase64 as string | null || charData.imageBase64 || null,
+                },
+              },
+            });
+          }
+        };
+
+        const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+          const file = e.target.files?.[0];
+          if (!file) return;
+
+          // Validate file type
+          const validTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'];
+          if (!validTypes.includes(file.type)) {
+            alert('Please select a PNG, JPEG, or WebP image');
+            return;
+          }
+
+          // Convert to base64
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            const base64String = reader.result as string;
+            setEditingAttributes({ ...editingAttributes, imageBase64: base64String });
+          };
+          reader.readAsDataURL(file);
+        };
+
+        return (
+          <Panel position="top-right" className="bg-white border border-gray-300 rounded-lg shadow-lg p-4 w-96 max-h-[80vh] overflow-y-auto z-50">
+            <h3 className="font-bold mb-3">Edit {nodeType} Properties</h3>
+            
+            {nodeType === 'character' && nodeData && Object.keys(editingAttributes).length > 0 && (
+              <div className="space-y-3 text-sm">
+                <div>
+                  <label className="block text-xs font-medium mb-1">Character ID</label>
+                  <input
+                    type="text"
+                    value={(editingAttributes.characterId as string) || ''}
+                    onChange={(e) => setEditingAttributes({ ...editingAttributes, characterId: e.target.value })}
+                    className="w-full px-2 py-1 border border-gray-300 rounded text-sm"
+                    readOnly
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium mb-1">Name *</label>
+                  <input
+                    type="text"
+                    value={(editingAttributes.name as string) || ''}
+                    onChange={(e) => setEditingAttributes({ ...editingAttributes, name: e.target.value })}
+                    className="w-full px-2 py-1 border border-gray-300 rounded text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium mb-1">Callsign</label>
+                  <input
+                    type="text"
+                    value={(editingAttributes.callsign as string) || ''}
+                    onChange={(e) => setEditingAttributes({ ...editingAttributes, callsign: e.target.value || null })}
+                    className="w-full px-2 py-1 border border-gray-300 rounded text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium mb-1">Description</label>
+                  <textarea
+                    value={(editingAttributes.description as string) || ''}
+                    onChange={(e) => setEditingAttributes({ ...editingAttributes, description: e.target.value || null })}
+                    className="w-full px-2 py-1 border border-gray-300 rounded text-sm"
+                    rows={3}
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium mb-1">Age</label>
+                  <input
+                    type="number"
+                    value={(editingAttributes.age as number) || ''}
+                    onChange={(e) => setEditingAttributes({ ...editingAttributes, age: e.target.value ? parseInt(e.target.value, 10) : null })}
+                    className="w-full px-2 py-1 border border-gray-300 rounded text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium mb-1">Occupation</label>
+                  <input
+                    type="text"
+                    value={(editingAttributes.occupation as string) || ''}
+                    onChange={(e) => setEditingAttributes({ ...editingAttributes, occupation: e.target.value || null })}
+                    className="w-full px-2 py-1 border border-gray-300 rounded text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium mb-1">Role</label>
+                  <input
+                    type="text"
+                    value={(editingAttributes.role as string) || ''}
+                    onChange={(e) => setEditingAttributes({ ...editingAttributes, role: e.target.value || null })}
+                    className="w-full px-2 py-1 border border-gray-300 rounded text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium mb-1">Virtue</label>
+                  <input
+                    type="text"
+                    value={(editingAttributes.virtue as string) || ''}
+                    onChange={(e) => setEditingAttributes({ ...editingAttributes, virtue: e.target.value || null })}
+                    className="w-full px-2 py-1 border border-gray-300 rounded text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium mb-1">Alternate Name</label>
+                  <input
+                    type="text"
+                    value={(editingAttributes.alternateName as string) || ''}
+                    onChange={(e) => setEditingAttributes({ ...editingAttributes, alternateName: e.target.value || null })}
+                    className="w-full px-2 py-1 border border-gray-300 rounded text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium mb-1">Profile Image</label>
+                  <input
+                    type="file"
+                    accept="image/png,image/jpeg,image/jpg,image/webp"
+                    onChange={handleImageUpload}
+                    className="w-full px-2 py-1 border border-gray-300 rounded text-sm"
+                  />
+                  {editingAttributes.imageBase64 && (
+                    <img
+                      src={editingAttributes.imageBase64 as string}
+                      alt="Profile"
+                      className="mt-2 max-w-full h-auto rounded max-h-32 object-contain"
+                    />
+                  )}
+                </div>
+                <div className="flex gap-2 mt-4">
+                  <button
+                    type="button"
+                    onClick={handleSave}
+                    className="flex-1 px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded text-sm"
+                  >
+                    Save
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedNode(null);
+                      setEditingAttributes({});
+                    }}
+                    className="flex-1 px-3 py-2 bg-gray-200 hover:bg-gray-300 rounded text-sm"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {(!nodeData || (nodeType !== 'character' || Object.keys(editingAttributes).length === 0)) && (
+              <div className="text-sm space-y-2">
+                <div><strong>Type:</strong> {nodeType}</div>
+                <div><strong>ID:</strong> {nodeId}</div>
+                <div><strong>Label:</strong> {String(selectedNode.data.label)}</div>
+                {nodeType !== 'character' && (
+                  <div className="text-xs text-gray-500 mt-2">Editing for {nodeType} nodes is not yet implemented</div>
+                )}
+                {nodeType === 'character' && !nodeData && (
+                  <div className="text-xs text-red-500 mt-2">Node data not found</div>
+                )}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedNode(null);
+                    setEditingAttributes({});
+                  }}
+                  className="mt-4 px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm w-full"
+                >
+                  Close
+                </button>
+              </div>
+            )}
+          </Panel>
+        );
+      })()}
 
       {/* Property panel for selected edge with incidences */}
       {selectedEdge && (

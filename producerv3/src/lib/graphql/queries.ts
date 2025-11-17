@@ -96,6 +96,7 @@ export const GET_CHARACTERS = gql`
       role
       virtue
       alternateName
+      imageBase64
     }
   }
 `;
