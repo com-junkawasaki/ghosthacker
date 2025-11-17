@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  neo4j:
+    image: neo4j:5.15
+    container_name: epub-editor-neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      NEO4J_AUTH: ${NEO4J_AUTH:-neo4j/password}
+      NEO4J_PLUGINS: '["apoc"]'
+      NEO4J_dbms_security_procedures_unrestricted: apoc.*
+      NEO4J_dbms_security_procedures_allowlist: apoc.*
+    volumes:
+      - neo4j-data:/data
+      - neo4j-logs:/logs
+    healthcheck:
+      test: ["CMD", "cypher-shell", "-u", "neo4j", "-p", "${NEO4J_PASSWORD:-password}", "RETURN 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - epub-editor-network
+    restart: unless-stopped
+
+  graphql:
+    build:
+      context: ./performers/services/graphql
+      dockerfile: Dockerfile
+      target: production
+    container_name: epub-editor-graphql
+    ports:
+      - "8080:8080"
+    environment:
+      NEO4J_URI: bolt://neo4j:7687
+      NEO4J_USER: ${NEO4J_USER:-neo4j}
+      NEO4J_PASSWORD: ${NEO4J_PASSWORD:-password}
+      PORT: 8080
+      HOST: 0.0.0.0
+      CLERK_SECRET_KEY: ${CLERK_SECRET_KEY}
+      AI_SERVICE_API_KEY: ${AI_SERVICE_API_KEY:-}
+      AI_SERVICE_ENDPOINT: ${AI_SERVICE_ENDPOINT:-}
+    depends_on:
+      neo4j:
+        condition: service_healthy
+    networks:
+      - epub-editor-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      target: production
+    container_name: epub-editor-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL}
+      NEXT_PUBLIC_GRAPHQL_API_URL: ${NEXT_PUBLIC_GRAPHQL_API_URL}
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+      CLERK_SECRET_KEY: ${CLERK_SECRET_KEY}
+    depends_on:
+      - graphql
+    networks:
+      - epub-editor-network
+    restart: unless-stopped
+
+volumes:
+  neo4j-data:
+  neo4j-logs:
+
+networks:
+  epub-editor-network:
+    driver: bridge
+

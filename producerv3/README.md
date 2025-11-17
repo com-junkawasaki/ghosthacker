@@ -44,14 +44,34 @@ Tiptap editor based EPUB editing tool with AI Generator integration.
 
 ## Setup
 
-### Frontend (Astro)
+### Docker Compose (Recommended)
+
+```bash
+# Start all services
+make dev
+
+# Or manually:
+docker-compose up -d
+
+# Initialize Neo4j schema
+make neo4j-init
+```
+
+Services will be available at:
+- Frontend: http://localhost:3000
+- GraphQL API: http://localhost:8080/graphql
+- Neo4j Browser: http://localhost:7474
+
+### Manual Setup
+
+#### Frontend (Astro)
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-### Backend (Rust GraphQL)
+#### Backend (Rust GraphQL)
 
 ```bash
 cd performers/services/graphql
@@ -59,7 +79,7 @@ cargo build
 cargo run
 ```
 
-### Neo4j
+#### Neo4j
 
 1. Start Neo4j database
 2. Run schema initialization:
@@ -117,6 +137,18 @@ pnpm type-check
 ```bash
 pnpm lint
 pnpm lint:fix
+```
+
+## Docker Commands
+
+```bash
+make dev          # Start development environment
+make build        # Build all Docker images
+make up           # Start services
+make down         # Stop services
+make logs         # Show logs from all services
+make clean        # Remove containers, volumes, and images
+make neo4j-init   # Initialize Neo4j schema
 ```
 
 ## License

@@ -37,7 +37,13 @@ async fn main() -> anyhow::Result<()> {
         .at("/graphql/ws", GraphQLSubscription::new(schema));
     
     // Start server
-    let listener = TcpListener::bind("0.0.0.0:8080");
+    let port = std::env::var("PORT")
+        .unwrap_or_else(|_| "8080".to_string())
+        .parse::<u16>()?;
+    let host = std::env::var("HOST")
+        .unwrap_or_else(|_| "0.0.0.0".to_string());
+    let listener = TcpListener::bind(format!("{}:{}", host, port));
+    println!("GraphQL server starting on {}:{}", host, port);
     Server::new(listener).run(app).await?;
     
     Ok(())
