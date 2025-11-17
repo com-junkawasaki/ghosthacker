@@ -34,11 +34,47 @@ export {
   ReclassifySelectedNodesDocument as RECLASSIFY_SELECTED_NODES,
 } from '@/generated/graphql';
 
-// Conditionally export UpdateNodeTypeDocument if it exists
-// This will be available after running codegen with updated schema
-// Note: This export may be undefined until GraphQL server is restarted and codegen is run
-import * as GeneratedGraphQL from '@/generated/graphql';
-export const UPDATE_NODE_TYPE = (GeneratedGraphQL as any).UpdateNodeTypeDocument as typeof GeneratedGraphQL.UpdateNodeTypeDocument | undefined;
-export const ANALYZE_NODE_CONTENT = (GeneratedGraphQL as any).AnalyzeNodeContentDocument as typeof GeneratedGraphQL.AnalyzeNodeContentDocument | undefined;
+// UPDATE_NODE_TYPE and ANALYZE_NODE_CONTENT are defined in mutations.graphql
+// They will be available after running codegen
+// For now, we use gql template literals directly
+import { gql } from '@apollo/client';
+
+export const UPDATE_NODE_TYPE = gql`
+  mutation UpdateNodeType($input: UpdateNodeTypeInput!) {
+    updateNodeType(input: $input) {
+      success
+      message
+    }
+  }
+`;
+
+export const ANALYZE_NODE_CONTENT = gql`
+  mutation AnalyzeNodeContent($input: AnalyzeNodeContentInput!) {
+    analyzeNodeContent(input: $input) {
+      detectedNodes {
+        type
+        text
+        position {
+          from
+          to
+        }
+        confidence
+      }
+      recommendedMasks {
+        type
+        text
+        position {
+          from
+          to
+        }
+        confidence
+      }
+      emotionAnalysis {
+        emotion
+        score
+      }
+    }
+  }
+`;
 
 

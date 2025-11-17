@@ -353,9 +353,11 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
                 targetNodeId: normalizeProjectId(link.targetNodeId),
               },
             },
-            onCompleted: (data) => {
+            onCompleted: (data: unknown) => {
               // Create incidences for this link
-              const linkId = data.createGraphLink.id;
+              const linkData = data as { createGraphLink?: { id?: string } };
+              const linkId = linkData.createGraphLink?.id;
+              if (!linkId) return;
               incidences
                 .filter((inc) => inc.linkIndex === links.indexOf(link))
                 .forEach((inc) => {
@@ -537,6 +539,10 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
       sourceParts[1] &&
       targetParts[1]
     ) {
+      if (!sourceParts[0] || !sourceParts[1] || !targetParts[0] || !targetParts[1]) {
+        console.error('Invalid node IDs');
+        return;
+      }
       createLink({
         variables: {
           input: {
@@ -712,7 +718,7 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
                         (inc: { nodeType: string; nodeId: string; role: string }) =>
                           inc.nodeType === sourceParts[0] && inc.nodeId === sourceParts[1] && inc.role === 'source'
                       );
-                      if (!sourceExists) {
+                      if (!sourceExists && sourceParts[0] && sourceParts[1]) {
                         createIncidence({
                           variables: {
                             input: {
@@ -726,22 +732,24 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
                         });
                       }
                       // Create target incidence if it doesn't exist
-                      const targetExists = incidencesData?.graphIncidencesForLink?.some(
-                        (inc: { nodeType: string; nodeId: string; role: string }) =>
-                          inc.nodeType === targetParts[0] && inc.nodeId === targetParts[1] && inc.role === 'target'
-                      );
-                      if (!targetExists) {
-                        createIncidence({
-                          variables: {
-                            input: {
-                              nodeType: targetParts[0],
-                              nodeId: normalizeProjectId(targetParts[1]),
-                              linkId: selectedEdge.id,
-                              role: 'target',
-                              properties: {},
+                      if (targetParts[0] && targetParts[1]) {
+                        const targetExists = incidencesData?.graphIncidencesForLink?.some(
+                          (inc: { nodeType: string; nodeId: string; role: string }) =>
+                            inc.nodeType === targetParts[0] && inc.nodeId === targetParts[1] && inc.role === 'target'
+                        );
+                        if (!targetExists) {
+                          createIncidence({
+                            variables: {
+                              input: {
+                                nodeType: targetParts[0],
+                                nodeId: normalizeProjectId(targetParts[1]),
+                                linkId: selectedEdge.id,
+                                role: 'target',
+                                properties: {},
+                              },
                             },
-                          },
-                        });
+                          });
+                        }
                       }
                     }
                   }

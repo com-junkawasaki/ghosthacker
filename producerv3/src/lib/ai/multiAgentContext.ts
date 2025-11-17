@@ -7,7 +7,7 @@
  * Builds context for each agent (character, narrator) from JSONLD nodes
  */
 import type { Editor } from '@tiptap/react';
-import type { ExtractedNode } from '@/lib/editor/contextExtractor';
+import type { ExtractedNode, NodeType } from '@/lib/editor/contextExtractor';
 import { extractStructuredContext } from '@/lib/editor/structuredContextExtractor';
 import type { StructuredContext } from '@/lib/editor/structuredContextExtractor';
 import type { CharacterNode, SceneNode, POVNode, EmotionMask } from '@/types/jsonld';
@@ -76,12 +76,13 @@ export function buildCharacterContext(
     if (node.type.name === 'character') {
       const attrs = node.attrs as Record<string, unknown>;
       if (attrs.characterId === characterId) {
-        characterNode = {
+        const extractedNode: ExtractedNode = {
           type: 'character',
           name: (attrs.name as string) || 'Unknown',
           attributes: attrs,
           position: { from: pos, to: pos + node.nodeSize },
         };
+        characterNode = extractedNode;
         
         // Extract dialogue from character node content
         node.descendants((childNode) => {
@@ -168,12 +169,13 @@ export function buildSceneContext(editor: Editor, sceneId: string): SceneContext
     if (node.type.name === 'scene') {
       const attrs = node.attrs as Record<string, unknown>;
       if (attrs.sceneId === sceneId) {
-        sceneNode = {
+        const extractedNode: ExtractedNode = {
           type: 'scene',
           name: (attrs.name as string) || 'Unknown',
           attributes: attrs,
           position: { from: pos, to: pos + node.nodeSize },
         };
+        sceneNode = extractedNode;
         
         // Extract characters in scene
         node.descendants((childNode, childPos) => {
@@ -233,12 +235,13 @@ export function buildNarratorContext(editor: Editor, povId: string): NarratorCon
         // POV node is not in NodeType, so we create a custom structure
         // We'll use a workaround by creating a node-like structure
         const name = (attrs.name as string) || 'Unknown';
-        povNode = {
+        const extractedNode: ExtractedNode = {
           type: 'character' as NodeType, // Use character as fallback type
           name,
           attributes: attrs,
           position: { from: pos, to: pos + node.nodeSize },
         };
+        povNode = extractedNode;
       }
     }
   });

@@ -9,6 +9,7 @@
 
 import { useEditor, EditorContent } from '@tiptap/react';
 import { useMemo, useCallback, useEffect, useRef, useState } from 'react';
+import { match } from 'ts-pattern';
 import Document from '@tiptap/extension-document';
 import Paragraph from '@tiptap/extension-paragraph';
 import Text from '@tiptap/extension-text';
@@ -107,18 +108,19 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
   
   // Combine content from all chapters if no chapterId is selected
   const combinedContent = useMemo(() => {
-    // Helper function to normalize contentHtml to string
+    // Helper function to normalize contentHtml to string using ts-pattern
     const normalizeContentHtml = (contentHtml: unknown): string => {
-      if (typeof contentHtml === 'string') {
-        return contentHtml;
-      } else if (Array.isArray(contentHtml)) {
-        console.warn('contentHtml is an array, converting to empty string:', contentHtml);
-        return '';
-      } else if (contentHtml && typeof contentHtml === 'object') {
-        console.warn('contentHtml is an object, converting to empty string:', contentHtml);
-        return '';
-      }
-      return '';
+      return match(contentHtml)
+        .when((val): val is string => typeof val === 'string', (str) => str)
+        .when(Array.isArray, () => {
+          console.warn('contentHtml is an array, converting to empty string:', contentHtml);
+          return '';
+        })
+        .when((val): val is object => val !== null && typeof val === 'object', () => {
+          console.warn('contentHtml is an object, converting to empty string:', contentHtml);
+          return '';
+        })
+        .otherwise(() => '');
     };
 
     if (!chapterId && epubData?.epub?.chapters) {
@@ -318,51 +320,43 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
     },
   });
 
-  // Helper function to safely set editor content
+  // Helper function to safely set editor content using ts-pattern
   const setEditorContent = useCallback((editor: import('@tiptap/react').Editor, content: unknown) => {
     try {
-      // Ensure content is a string
-      let contentString: string;
-      if (typeof content === 'string') {
-        contentString = content.trim() || '<p></p>';
-      } else if (Array.isArray(content)) {
-        console.warn('Content is an array, converting to string:', content);
-        // If it's an array, try to stringify it or use empty content
-        // Tiptap's setContent doesn't accept arrays directly
-        contentString = '<p></p>';
-      } else if (content && typeof content === 'object') {
-        // Tiptap can accept JSON format, but we need to validate it
-        // For now, convert to string to be safe
-        console.warn('Content is an object, converting to string:', content);
-        try {
-          // Try to use it as JSON if it's a valid Tiptap JSON structure
-          const jsonContent = content as { type?: string; content?: unknown };
+      const contentResult = match(content)
+        .when((val): val is string => typeof val === 'string', (str) => {
+          const trimmed = str.trim() || '<p></p>';
+          // Validate HTML string format
+          if (!trimmed.startsWith('<') && !trimmed.match(/^[\s\n]*$/)) {
+            return { type: 'string' as const, value: `<p>${trimmed}</p>` };
+          }
+          return { type: 'string' as const, value: trimmed };
+        })
+        .when(Array.isArray, () => {
+          console.warn('Content is an array, converting to empty string:', content);
+          return { type: 'string' as const, value: '<p></p>' };
+        })
+        .when((val): val is object => val !== null && typeof val === 'object', (obj) => {
+          // Tiptap can accept JSON format, but we need to validate it
+          const jsonContent = obj as { type?: string; content?: unknown };
           if (jsonContent.type === 'doc' || (Array.isArray(jsonContent.content) && jsonContent.content.length > 0)) {
             // Valid Tiptap JSON format - use it directly
-            editor.commands.setContent(content);
-            return;
+            return { type: 'json' as const, value: obj };
           } else {
-            // Invalid format, use empty content
-            contentString = '<p></p>';
+            console.warn('Content is an invalid object, converting to empty string:', obj);
+            return { type: 'string' as const, value: '<p></p>' };
           }
-        } catch {
-          contentString = '<p></p>';
-        }
-      } else {
-        contentString = '<p></p>';
-      }
-
-      // Validate HTML string format
-      if (!contentString.startsWith('<') && !contentString.match(/^[\s\n]*$/)) {
-        // If it doesn't look like HTML, wrap it in a paragraph
-        contentString = `<p>${contentString}</p>`;
-      }
+        })
+        .otherwise(() => ({ type: 'string' as const, value: '<p></p>' }));
 
       const currentContent = editor.getHTML();
       
       // Avoid unnecessary updates
-      if (currentContent !== contentString) {
-        editor.commands.setContent(contentString);
+      if (contentResult.type === 'json') {
+        // For JSON content, we can't easily compare, so always set it
+        editor.commands.setContent(contentResult.value);
+      } else if (currentContent !== contentResult.value) {
+        editor.commands.setContent(contentResult.value);
       }
     } catch (error) {
       console.error('Error setting editor content:', error, 'Content:', content);
@@ -764,68 +758,74 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
                 <span>{importError}</span>
               </div>
             )}
-            {/* 保存状態インジケーター */}
-            {saveStatus === 'saving' && (
-              <div className="flex items-center gap-1 text-sm text-gray-600">
-                <svg
-                  className="animate-spin h-4 w-4 text-blue-500"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
+            {/* 保存状態インジケーター - ts-pattern で型安全に */}
+            {match(saveStatus)
+              .with('saving', () => (
+                <div className="flex items-center gap-1 text-sm text-gray-600">
+                  <svg
+                    className="animate-spin h-4 w-4 text-blue-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    aria-label="保存中"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  <span>保存中...</span>
+                </div>
+              ))
+              .with('saved', () => (
+                <div className="flex items-center gap-1 text-sm text-green-600">
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
                     stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-                <span>保存中...</span>
-              </div>
-            )}
-            {saveStatus === 'saved' && (
-              <div className="flex items-center gap-1 text-sm text-green-600">
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-                <span>保存済み</span>
-              </div>
-            )}
-            {saveStatus === 'error' && (
-              <div className="flex items-center gap-1 text-sm text-red-600">
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-                <span>{saveError || '保存エラー'}</span>
-              </div>
-            )}
+                    viewBox="0 0 24 24"
+                    aria-label="保存済み"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>保存済み</span>
+                </div>
+              ))
+              .with('error', () => (
+                <div className="flex items-center gap-1 text-sm text-red-600">
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-label="エラー"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                  <span>{saveError || '保存エラー'}</span>
+                </div>
+              ))
+              .with('idle', () => null)
+              .exhaustive()}
             
             {/* 手動保存ボタン */}
             <button
@@ -876,53 +876,56 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
             const nodeId = node.id as string;
             const nodeName = (node.name as string) || 'Untitled';
             
-            switch (selectedNodeType) {
-              case 'character':
+            // Use ts-pattern for exhaustive node type matching
+            match(selectedNodeType)
+              .with('character', () => {
                 editor.chain().focus().insertCharacter({ characterId: nodeId, name: nodeName }).run();
-                break;
-              case 'ghost':
+              })
+              .with('ghost', () => {
                 editor.chain().focus().insertGhost({ ghostId: nodeId, name: nodeName }).run();
-                break;
-              case 'location':
+              })
+              .with('location', () => {
                 editor.chain().focus().insertLocation({ locationId: nodeId, name: nodeName }).run();
-                break;
-              case 'organization':
+              })
+              .with('organization', () => {
                 editor.chain().focus().insertOrganization({ organizationId: nodeId, name: nodeName }).run();
-                break;
-              case 'company':
+              })
+              .with('company', () => {
                 editor.chain().focus().insertCompany({ companyId: nodeId, name: nodeName }).run();
-                break;
-              case 'technology':
+              })
+              .with('technology', () => {
                 editor.chain().focus().insertTechnology({ technologyId: nodeId, name: nodeName }).run();
-                break;
-              case 'episode':
+              })
+              .with('episode', () => {
                 editor.chain().focus().insertEpisode({ episodeId: nodeId, name: nodeName }).run();
-                break;
-              case 'scene':
+              })
+              .with('scene', () => {
                 editor.chain().focus().insertScene({ sceneId: nodeId, name: nodeName }).run();
-                break;
-              case 'arc':
+              })
+              .with('arc', () => {
                 editor.chain().focus().insertArc({ arcId: nodeId, name: nodeName }).run();
-                break;
-              case 'motif':
+              })
+              .with('motif', () => {
                 editor.chain().focus().insertMotif({ motifId: nodeId, name: nodeName }).run();
-                break;
-              case 'season':
+              })
+              .with('season', () => {
                 editor.chain().focus().insertSeason({ seasonId: nodeId, name: nodeName }).run();
-                break;
-              case 'timeline':
+              })
+              .with('timeline', () => {
                 editor.chain().focus().insertTimeline({ timelineId: nodeId, name: nodeName }).run();
-                break;
-              case 'pov':
+              })
+              .with('pov', () => {
                 editor.chain().focus().insertPOV({ povId: nodeId, name: nodeName }).run();
-                break;
-              case 'beat':
+              })
+              .with('beat', () => {
                 editor.chain().focus().insertBeat({ beatId: nodeId, name: nodeName }).run();
-                break;
-              case 'event':
+              })
+              .with('event', () => {
                 editor.chain().focus().insertEvent({ eventId: nodeId, name: nodeName }).run();
-                break;
-            }
+              })
+              .otherwise(() => {
+                console.warn('Unknown node type:', selectedNodeType);
+              });
             
             setSelectedNodeType(null);
           }}

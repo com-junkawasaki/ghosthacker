@@ -258,12 +258,15 @@ export function AIContentGenerationControls({ editor }: AIContentGenerationContr
                           // Parse emotion:score format
                           const parts = e.target.value.split(':');
                           if (parts.length === 2 && newArc[index]) {
-                            const emotion = parts[0].trim();
-                            const score = parseFloat(parts[1].trim());
-                            if (!isNaN(score) && newArc[index]) {
-                              const beat = newArc[index]!;
-                              beat.targetEmotions[emotion] = score;
-                              setEmotionArc(newArc);
+                            const emotion = parts[0]?.trim();
+                            const scoreStr = parts[1]?.trim();
+                            if (emotion && scoreStr) {
+                              const score = parseFloat(scoreStr);
+                              if (!isNaN(score) && newArc[index]) {
+                                const beat = newArc[index]!;
+                                beat.targetEmotions[emotion] = score;
+                                setEmotionArc(newArc);
+                              }
                             }
                           }
                         }}

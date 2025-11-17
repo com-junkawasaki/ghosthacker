@@ -53,16 +53,22 @@ export function generateEmotionArc(
 
   // Find peak and resolution emotions
   const peakEmotion = findPeakEmotion(beats);
-  const resolutionEmotion = beats[beats.length - 1]
-    ? Object.keys(beats[beats.length - 1].targetEmotions)[0]
+  const lastBeat = beats[beats.length - 1];
+  const resolutionEmotion = lastBeat
+    ? Object.keys(lastBeat.targetEmotions)[0]
     : undefined;
 
-  return {
+  const result: EmotionalArc = {
     beats,
     overallFlow,
-    peakEmotion,
-    resolutionEmotion,
   };
+  if (peakEmotion) {
+    result.peakEmotion = peakEmotion;
+  }
+  if (resolutionEmotion) {
+    result.resolutionEmotion = resolutionEmotion;
+  }
+  return result;
 }
 
 /**
@@ -80,14 +86,17 @@ export function analyzeEmotionArc(
     const targetBeat = targetArc?.beats[index];
     const deviation = targetBeat
       ? calculateDeviation(profile.emotionVector, targetBeat.targetEmotions)
-      : undefined;
+      : 0;
 
-    return {
+    const beat: EmotionBeat = {
       position: index,
       targetEmotions: targetBeat?.targetEmotions || {},
       actualEmotions: profile.emotionVector,
-      deviation,
     };
+    if (deviation !== undefined && deviation !== 0) {
+      beat.deviation = deviation;
+    }
+    return beat;
   });
 
   const deviations = beats.map((beat) => beat.deviation || 0);
@@ -137,8 +146,18 @@ function determineEmotionFlow(beats: EmotionBeat[]): string {
     return 'stable';
   }
 
-  const firstEmotion = Object.keys(beats[0].targetEmotions)[0];
-  const lastEmotion = Object.keys(beats[beats.length - 1].targetEmotions)[0];
+  const firstBeat = beats[0];
+  const lastBeat = beats[beats.length - 1];
+  if (!firstBeat || !lastBeat) {
+    return 'stable';
+  }
+  const firstEmotionKeys = Object.keys(firstBeat.targetEmotions);
+  const lastEmotionKeys = Object.keys(lastBeat.targetEmotions);
+  if (firstEmotionKeys.length === 0 || lastEmotionKeys.length === 0) {
+    return 'stable';
+  }
+  const firstEmotion = firstEmotionKeys[0];
+  const lastEmotion = lastEmotionKeys[0];
 
   if (firstEmotion === lastEmotion) {
     return 'stable';
@@ -221,8 +240,12 @@ function buildAdjustmentPrompt(
   currentEmotions: EmotionScore[],
   deviation: number
 ): string {
-  const targetEmotion = Object.keys(targetBeat.targetEmotions)[0];
-  const targetScore = targetBeat.targetEmotions[targetEmotion];
+  const targetEmotionKeys = Object.keys(targetBeat.targetEmotions);
+  if (targetEmotionKeys.length === 0) {
+    return 'maintain';
+  }
+  const targetEmotion = targetEmotionKeys[0]!;
+  const targetScore = targetBeat.targetEmotions[targetEmotion] ?? 0;
   const currentScore =
     currentEmotions.find((e) => e.emotion === targetEmotion)?.score || 0;
 

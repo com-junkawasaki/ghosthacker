@@ -169,14 +169,14 @@ export function calculateBlendedColor(emotionScores: EmotionScore[]): {
     const bgMatch = color.bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
     const borderMatch = color.border.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
 
-    if (bgMatch) {
+    if (bgMatch && bgMatch[1] && bgMatch[2] && bgMatch[3]) {
       bgR += parseInt(bgMatch[1]) * weight;
       bgG += parseInt(bgMatch[2]) * weight;
       bgB += parseInt(bgMatch[3]) * weight;
       bgA += parseFloat(bgMatch[4] || '0.3') * weight;
     }
 
-    if (borderMatch) {
+    if (borderMatch && borderMatch[1] && borderMatch[2] && borderMatch[3]) {
       borderR += parseInt(borderMatch[1]) * weight;
       borderG += parseInt(borderMatch[2]) * weight;
       borderB += parseInt(borderMatch[3]) * weight;

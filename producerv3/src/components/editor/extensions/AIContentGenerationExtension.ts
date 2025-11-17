@@ -6,8 +6,7 @@
  * AI Content Generation Extension for Tiptap
  * Based on Tiptap AI Toolkit editDocument primitive
  */
-import { Extension } from '@tiptap/core';
-import type { Editor } from '@tiptap/core';
+import { Extension, type RawCommands, type Editor } from '@tiptap/core';
 import { extractEditorContext, extractContextAroundCursor } from '@/lib/editor/contextExtractor';
 import { buildMultiAgentContext } from '@/lib/ai/multiAgentContext';
 

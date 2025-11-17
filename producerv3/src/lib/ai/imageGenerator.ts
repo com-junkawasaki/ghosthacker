@@ -231,9 +231,10 @@ export async function generateImage(
       case 'higgsfield':
         return await generateHiggsfieldImage(options);
       default:
+        const provider = (options as { provider?: ImageGeneratorProvider }).provider || 'openai';
         throw new ImageGenerationError(
-          `Unsupported provider: ${(options as { provider: string }).provider}`,
-          options.provider as ImageGeneratorProvider
+          `Unsupported provider: ${provider}`,
+          provider
         );
     }
   } catch (error) {

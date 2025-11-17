@@ -63,7 +63,7 @@ export const MarkExtension = Extension.create<MarkExtensionOptions>({
             return false;
           }
 
-          return commands.toggleMark(markName);
+          return commands.toggleMark(markName) as boolean;
         },
       setMark:
         (markType: MaskType['type'], enabled: boolean) =>
@@ -87,9 +87,9 @@ export const MarkExtension = Extension.create<MarkExtensionOptions>({
           }
 
           if (enabled) {
-            return commands.setMark(markName);
+            return commands.setMark(markName) as boolean;
           } else {
-            return commands.unsetMark(markName);
+            return commands.unsetMark(markName) as boolean;
           }
         },
       toggleAllMarks:
