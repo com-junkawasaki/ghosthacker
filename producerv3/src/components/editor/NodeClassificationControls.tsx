@@ -77,15 +77,30 @@ export function NodeClassificationControls({ editor }: NodeClassificationControl
               : undefined;
 
             // Call GraphQL mutation for each node
+            const input: {
+              text: string;
+              currentType?: string;
+              attributes?: any;
+              maskInfo?: any;
+              context?: string;
+            } = {
+              text: nodeInfo.text,
+            };
+            if (nodeInfo.currentType) {
+              input.currentType = nodeInfo.currentType;
+            }
+            if (nodeInfo.attributes) {
+              input.attributes = JSON.parse(JSON.stringify(nodeInfo.attributes));
+            }
+            if (maskInfo) {
+              input.maskInfo = JSON.parse(JSON.stringify(maskInfo));
+            }
+            if (nodeInfo.context) {
+              input.context = nodeInfo.context;
+            }
             const { data } = await classifyNode({
               variables: {
-                input: {
-                  text: nodeInfo.text,
-                  currentType: nodeInfo.currentType || undefined,
-                  attributes: nodeInfo.attributes ? JSON.parse(JSON.stringify(nodeInfo.attributes)) : undefined,
-                  maskInfo: maskInfo ? JSON.parse(JSON.stringify(maskInfo)) : undefined,
-                  context: nodeInfo.context || undefined,
-                },
+                input,
               },
             });
 

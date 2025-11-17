@@ -5,7 +5,7 @@
  * 
  * Mark Extension - 10種類のMarkを統合的に制御するExtension
  */
-import { Extension } from '@tiptap/core';
+import { Extension, type RawCommands } from '@tiptap/core';
 import type { MaskType } from '@/types/jsonld';
 
 export interface MarkExtensionOptions {
@@ -40,7 +40,7 @@ export const MarkExtension = Extension.create<MarkExtensionOptions>({
     };
   },
 
-  addCommands() {
+  addCommands(): Partial<RawCommands> {
     return {
       toggleMark:
         (markType: MaskType['type']) =>

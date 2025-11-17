@@ -26,25 +26,29 @@ export function EmotionCurveGraph({ nodeEmotions, benchmark }: EmotionCurveGraph
     if (nodeEmotions.length === 0) return [];
 
     // Get dominant emotion for each node
-    const points = nodeEmotions.map((node) => {
-      const dominant = node.emotions.reduce(
-        (max, e) => (e.score > max.score ? e : max),
-        node.emotions[0]
-      );
-      return {
-        position: node.position,
-        emotion: dominant.emotion,
-        score: dominant.score,
-      };
-    });
+    const points = nodeEmotions
+      .map((node) => {
+        if (node.emotions.length === 0) return null;
+        const dominant = node.emotions.reduce(
+          (max, e) => (e.score > max.score ? e : max),
+          node.emotions[0]!
+        );
+        return {
+          position: node.position,
+          emotion: dominant.emotion,
+          score: dominant.score,
+        };
+      })
+      .filter((point): point is NonNullable<typeof point> => point !== null);
 
     // Group by emotion and calculate average score per position
     const emotionGroups: Record<string, Array<{ position: number; score: number }>> = {};
     points.forEach((point) => {
+      if (!point) return;
       if (!emotionGroups[point.emotion]) {
         emotionGroups[point.emotion] = [];
       }
-      emotionGroups[point.emotion].push({ position: point.position, score: point.score });
+      emotionGroups[point.emotion]!.push({ position: point.position, score: point.score });
     });
 
     // Create series for each emotion

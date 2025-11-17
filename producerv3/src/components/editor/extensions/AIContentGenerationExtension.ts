@@ -7,7 +7,7 @@
  * Based on Tiptap AI Toolkit editDocument primitive
  */
 import { Extension } from '@tiptap/core';
-import type { Editor } from '@tiptap/react';
+import type { Editor } from '@tiptap/core';
 import { extractEditorContext, extractContextAroundCursor } from '@/lib/editor/contextExtractor';
 import { buildMultiAgentContext } from '@/lib/ai/multiAgentContext';
 
@@ -55,13 +55,13 @@ export const AIContentGenerationExtension = Extension.create<AIContentGeneration
   addOptions() {
     return {
       HTMLAttributes: {},
-      onGenerateStart: undefined,
-      onGenerateComplete: undefined,
-      onGenerateError: undefined,
+      onGenerateStart: () => {},
+      onGenerateComplete: () => {},
+      onGenerateError: () => {},
     };
   },
 
-  addCommands() {
+  addCommands(): Partial<RawCommands> {
     return {
       generateContent:
         (options = {}) =>
@@ -88,9 +88,9 @@ export const AIContentGenerationExtension = Extension.create<AIContentGeneration
 
             // Build multi-agent context
             const multiAgentContext = buildMultiAgentContext(editor, {
-              characterIds: characterId ? [characterId] : undefined,
-              sceneId,
-              povId,
+              ...(characterId ? { characterIds: [characterId] } : {}),
+              ...(sceneId ? { sceneId } : {}),
+              ...(povId ? { povId } : {}),
             });
 
             // Build context string
@@ -140,24 +140,13 @@ export const AIContentGenerationExtension = Extension.create<AIContentGeneration
         },
       generateWithContext:
         (options) =>
-        async ({ editor }: { editor: Editor }) => {
+        ({ editor }: { editor: Editor }) => {
           const { prompt, characterId, sceneId, povId, context } = options;
 
-          try {
-            // Call GraphQL mutation (this will be handled by UI component)
-            // For now, we'll just insert a placeholder
-            // The actual API call will be made by the UI component that uses this extension
-
-            // This is a placeholder - the actual generation will be handled by the UI component
-            // that calls the GraphQL mutation and then uses insertGeneratedContent
-
-            return true;
-          } catch (error) {
-            if (this.options.onGenerateError) {
-              this.options.onGenerateError(error as Error);
-            }
-            return false;
-          }
+          // This is a placeholder - the actual generation will be handled by the UI component
+          // that calls the GraphQL mutation and then uses insertGeneratedContent
+          // We return true immediately as the actual work is done asynchronously by the UI
+          return true;
         },
       insertGeneratedContent:
         (text: string) =>

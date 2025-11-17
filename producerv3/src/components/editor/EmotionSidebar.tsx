@@ -146,13 +146,17 @@ export function EmotionSidebar({ editor, selectedBenchmark, onBenchmarkChange }:
     const handleUpdate = () => {
       setTimeout(calculateNodePositions, 0);
     };
-    editor.on('update', handleUpdate);
+    if (editor) {
+      editor.on('update', handleUpdate);
+    }
 
     return () => {
       editorElement.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
       resizeObserver.disconnect();
-      editor.off('update', handleUpdate);
+      if (editor) {
+        editor.off('update', handleUpdate);
+      }
     };
   }, [editor, calculateNodePositions]);
 

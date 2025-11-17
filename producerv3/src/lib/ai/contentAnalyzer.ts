@@ -132,7 +132,7 @@ export function applyRecommendedMasks(
 
   // Apply each mask
   for (const mask of highConfidenceMasks) {
-    editor.chain().focus().mark.setMark(mask.maskType as MaskType['type'], true).run();
+    editor.chain().focus().setMark(mask.maskType as MaskType['type'], true).run();
   }
 }
 

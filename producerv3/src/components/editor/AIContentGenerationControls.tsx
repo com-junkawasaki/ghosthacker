@@ -260,8 +260,9 @@ export function AIContentGenerationControls({ editor }: AIContentGenerationContr
                           if (parts.length === 2 && newArc[index]) {
                             const emotion = parts[0].trim();
                             const score = parseFloat(parts[1].trim());
-                            if (!isNaN(score)) {
-                              newArc[index]!.targetEmotions[emotion] = score;
+                            if (!isNaN(score) && newArc[index]) {
+                              const beat = newArc[index]!;
+                              beat.targetEmotions[emotion] = score;
                               setEmotionArc(newArc);
                             }
                           }

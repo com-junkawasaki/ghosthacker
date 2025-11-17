@@ -86,8 +86,7 @@ export function FloatingToolbar({ editor, onInsertNode }: FloatingToolbarProps) 
     if (from === to) return;
 
     // Toggle mark on selected text using MarkExtension's toggleMark command
-    // MarkExtension registers toggleMark as 'mark.toggleMark' command (not the standard toggleMark)
-    editor.chain().focus().mark.toggleMark(markType).run();
+    editor.chain().focus().toggleMark(markType).run();
     
     // Update active masks state
     setActiveMasks((prev) => {
@@ -106,7 +105,7 @@ export function FloatingToolbar({ editor, onInsertNode }: FloatingToolbarProps) 
     if (from === to) return;
 
     // Toggle all marks on selected text using MarkExtension's toggleAllMarks command
-    editor.chain().focus().mark.toggleAllMarks().run();
+    editor.chain().focus().toggleAllMarks().run();
     setActiveMasks((prev) => {
       if (prev.size === MASK_TYPES.length) {
         return new Set();

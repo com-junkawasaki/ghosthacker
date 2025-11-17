@@ -107,16 +107,31 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
   
   // Combine content from all chapters if no chapterId is selected
   const combinedContent = useMemo(() => {
+    // Helper function to normalize contentHtml to string
+    const normalizeContentHtml = (contentHtml: unknown): string => {
+      if (typeof contentHtml === 'string') {
+        return contentHtml;
+      } else if (Array.isArray(contentHtml)) {
+        console.warn('contentHtml is an array, converting to empty string:', contentHtml);
+        return '';
+      } else if (contentHtml && typeof contentHtml === 'object') {
+        console.warn('contentHtml is an object, converting to empty string:', contentHtml);
+        return '';
+      }
+      return '';
+    };
+
     if (!chapterId && epubData?.epub?.chapters) {
       return [...epubData.epub.chapters]
         .sort((a: { order: number }, b: { order: number }) => a.order - b.order)
-        .map((chapter: { title: string; order: number; contentHtml: string }) => {
+        .map((chapter: { title: string; order: number; contentHtml: unknown }) => {
           const chapterTitle = chapter.title || `Chapter ${chapter.order}`;
-          return `<h1>${chapterTitle}</h1>${chapter.contentHtml || ''}`;
+          const normalizedContent = normalizeContentHtml(chapter.contentHtml);
+          return `<h1>${chapterTitle}</h1>${normalizedContent}`;
         })
         .join('');
     }
-    return chapterData?.chapter?.contentHtml || '';
+    return normalizeContentHtml(chapterData?.chapter?.contentHtml) || '';
   }, [chapterId, epubData?.epub?.chapters, chapterData?.chapter?.contentHtml]);
 
   const { status: saveStatus, error: saveError, setSaving, setSaved, setError } = useEditorSaveStore();
@@ -303,27 +318,6 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
     },
   });
 
-  useEffect(() => {
-    if (!editor) {
-      return;
-    }
-
-    // Wait for editor to be fully initialized
-    if (!editor.view || !editor.view.state) {
-      // Retry after editor is ready
-      const timeoutId = setTimeout(() => {
-        if (editor.view && editor.view.state && combinedContent) {
-          setEditorContent(editor, combinedContent);
-        }
-      }, 100);
-      return () => clearTimeout(timeoutId);
-    }
-
-    if (combinedContent) {
-      setEditorContent(editor, combinedContent);
-    }
-  }, [editor, combinedContent, chapterId]);
-
   // Helper function to safely set editor content
   const setEditorContent = useCallback((editor: import('@tiptap/react').Editor, content: unknown) => {
     try {
@@ -333,10 +327,27 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
         contentString = content.trim() || '<p></p>';
       } else if (Array.isArray(content)) {
         console.warn('Content is an array, converting to string:', content);
+        // If it's an array, try to stringify it or use empty content
+        // Tiptap's setContent doesn't accept arrays directly
         contentString = '<p></p>';
       } else if (content && typeof content === 'object') {
+        // Tiptap can accept JSON format, but we need to validate it
+        // For now, convert to string to be safe
         console.warn('Content is an object, converting to string:', content);
-        contentString = '<p></p>';
+        try {
+          // Try to use it as JSON if it's a valid Tiptap JSON structure
+          const jsonContent = content as { type?: string; content?: unknown };
+          if (jsonContent.type === 'doc' || (Array.isArray(jsonContent.content) && jsonContent.content.length > 0)) {
+            // Valid Tiptap JSON format - use it directly
+            editor.commands.setContent(content);
+            return;
+          } else {
+            // Invalid format, use empty content
+            contentString = '<p></p>';
+          }
+        } catch {
+          contentString = '<p></p>';
+        }
       } else {
         contentString = '<p></p>';
       }
@@ -366,39 +377,17 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
     }
   }, []);
 
+  // Set editor content when combinedContent changes
   useEffect(() => {
     if (!editor) {
-      return;
+      return undefined;
     }
 
     // Wait for editor to be fully initialized
     if (!editor.view || !editor.view.state) {
       // Retry after editor is ready
       const timeoutId = setTimeout(() => {
-        if (editor.view && editor.view.state && combinedContent) {
-          setEditorContent(editor, combinedContent);
-        }
-      }, 100);
-      return () => {
-        clearTimeout(timeoutId);
-      };
-    }
-
-    if (combinedContent) {
-      setEditorContent(editor, combinedContent);
-    }
-  }, [editor, combinedContent, chapterId, setEditorContent]);
-
-  useEffect(() => {
-    if (!editor) {
-      return;
-    }
-
-    // Wait for editor to be fully initialized
-    if (!editor.view || !editor.view.state) {
-      // Retry after editor is ready
-      const timeoutId = setTimeout(() => {
-        if (editor.view && editor.view.state && combinedContent) {
+        if (editor?.view?.state && combinedContent) {
           setEditorContent(editor, combinedContent);
         }
       }, 100);
@@ -408,7 +397,9 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
     if (combinedContent) {
       setEditorContent(editor, combinedContent);
     }
-  }, [editor, combinedContent, chapterId, setEditorContent]);
+    
+    return undefined;
+  }, [editor, combinedContent, setEditorContent]);
 
   // Set editor editable state based on chapterId
   useEffect(() => {
