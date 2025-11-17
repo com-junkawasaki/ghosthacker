@@ -57,11 +57,13 @@ import {
 } from './extensions/MetaNode';
 import { MaskExtension } from './extensions/MaskExtension';
 import { SlashCommand } from './extensions/SlashCommand';
+import { AIContentGenerationExtension } from './extensions/AIContentGenerationExtension';
 import { NodeSelectorDialog } from './NodeSelectorDialog';
 import { ChapterSelectorDialog } from './ChapterSelectorDialog';
 import { MaskControls } from './MaskControls';
 import { FloatingToolbar } from './FloatingToolbar';
 import { ImageGenerationDialog } from './ImageGenerationDialog';
+import { AIContentGenerationControls } from './AIContentGenerationControls';
 import '@/styles/editor.css';
 
 interface TiptapEditorProps {
@@ -190,6 +192,18 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
       SettingNode,
       // マスク拡張
       MaskExtension,
+      // AIコンテンツ生成拡張
+      AIContentGenerationExtension.configure({
+        onGenerateStart: () => {
+          console.log('AI generation started');
+        },
+        onGenerateComplete: (text: string) => {
+          console.log('AI generation completed:', text);
+        },
+        onGenerateError: (error: Error) => {
+          console.error('AI generation error:', error);
+        },
+      }),
       // スラッシュコマンド拡張
       SlashCommand.configure({
         suggestion: {
@@ -443,6 +457,11 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
           H2
         </button>
         
+        {/* AI生成ボタン */}
+        <div className="border-l border-gray-300 pl-2 ml-2">
+          <AIContentGenerationControls editor={editor} />
+        </div>
+
         {/* 画像生成ボタン */}
         <div className="border-l border-gray-300 pl-2 ml-2">
           <button

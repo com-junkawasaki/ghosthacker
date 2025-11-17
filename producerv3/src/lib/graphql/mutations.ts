@@ -117,3 +117,21 @@ export const DELETE_GRAPH_INCIDENCE = gql`
   }
 `;
 
+export const GENERATE_CONTENT_WITH_MULTI_AGENT = gql`
+  mutation GenerateContentWithMultiAgent($input: MultiAgentGenerateInput!) {
+    generateContentWithMultiAgent(input: $input) {
+      text
+      characterId
+      emotionProfile {
+        emotionVector {
+          emotion
+          score
+        }
+        createdAt
+        language
+      }
+      confidence
+    }
+  }
+`;
+

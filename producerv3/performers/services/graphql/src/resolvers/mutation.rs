@@ -14,6 +14,7 @@ use crate::schema::epub::{
 };
 use crate::schema::ai::{
     GeneratedText, GenerateTextInput, SummarizeInput, ProofreadInput, TranslateInput,
+    MultiAgentGenerateInput, GeneratedContent,
 };
 use crate::schema::emotion::{EmotionProfile, AnalyzeEmotionsInput};
 use crate::schema::graph::{GraphLink, GraphIncidence, CreateGraphLinkInput, UpdateGraphLinkInput, CreateGraphIncidenceInput, UpdateGraphIncidenceInput};
@@ -172,6 +173,17 @@ impl MutationRoot {
     async fn delete_graph_incidence(&self, ctx: &Context<'_>, id: ID) -> async_graphql::Result<bool> {
         let pool = ctx.data::<postgres::PostgresPool>()?;
         postgres::delete_graph_incidence(pool, id.to_string()).await
+    }
+
+    /// Generate content with multi-agent model
+    async fn generate_content_with_multi_agent(
+        &self,
+        ctx: &Context<'_>,
+        input: MultiAgentGenerateInput,
+    ) -> async_graphql::Result<GeneratedContent> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        ai_service::generate_content_with_multi_agent(pool, input).await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to generate content: {:?}", e)))
     }
 }
 

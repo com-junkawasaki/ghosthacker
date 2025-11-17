@@ -160,3 +160,19 @@ mutation UpdateGraphIncidence($input: UpdateGraphIncidenceInput!) {
 mutation DeleteGraphIncidence($id: ID!) {
   deleteGraphIncidence(id: $id)
 }
+
+mutation GenerateContentWithMultiAgent($input: MultiAgentGenerateInput!) {
+  generateContentWithMultiAgent(input: $input) {
+    text
+    characterId
+    emotionProfile {
+      emotionVector {
+        emotion
+        score
+      }
+      createdAt
+      language
+    }
+    confidence
+  }
+}

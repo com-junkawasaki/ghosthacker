@@ -265,3 +265,109 @@ export function extractContextAroundCursor(editor: Editor, range: number = 100):
   };
 }
 
+/**
+ * シーン内のキャラクターを抽出
+ */
+export function extractSceneCharacters(editor: Editor, sceneId: string): ExtractedNode[] {
+  const { state } = editor;
+  const doc = state.doc;
+  const characters: ExtractedNode[] = [];
+  let inScene = false;
+  let sceneStartPos = 0;
+
+  // Find scene node
+  doc.descendants((node, pos) => {
+    if (node.type.name === 'scene') {
+      const attrs = node.attrs as Record<string, unknown>;
+      if (attrs.sceneId === sceneId) {
+        inScene = true;
+        sceneStartPos = pos;
+      } else if (inScene) {
+        // End of scene
+        inScene = false;
+      }
+    }
+
+    // Extract characters within scene
+    if (inScene && node.type.name === 'character') {
+      const nodeInfo = extractNodeInfo(node, pos);
+      if (nodeInfo) {
+        characters.push(nodeInfo);
+      }
+    }
+  });
+
+  return characters;
+}
+
+/**
+ * キャラクターの発話を抽出
+ */
+export function extractCharacterDialogue(editor: Editor, characterId: string): string[] {
+  const { state } = editor;
+  const doc = state.doc;
+  const dialogue: string[] = [];
+
+  doc.descendants((node, pos) => {
+    if (node.type.name === 'character') {
+      const attrs = node.attrs as Record<string, unknown>;
+      if (attrs.characterId === characterId) {
+        // Extract text content from character node
+        node.descendants((childNode) => {
+          if (childNode.isText) {
+            const text = childNode.textContent.trim();
+            if (text) {
+              dialogue.push(text);
+            }
+          }
+        });
+      }
+    }
+  });
+
+  return dialogue;
+}
+
+/**
+ * シーンにいるキャラクターのみをフィルタリング
+ */
+export function filterContextByScenePresence(
+  editor: Editor,
+  characters: ExtractedNode[],
+  sceneId: string
+): ExtractedNode[] {
+  const sceneCharacters = extractSceneCharacters(editor, sceneId);
+  const sceneCharacterIds = new Set(
+    sceneCharacters.map((char) => {
+      const attrs = char.attributes as Record<string, unknown>;
+      return (attrs.characterId as string) || (attrs.name as string);
+    })
+  );
+
+  return characters.filter((char) => {
+    const attrs = char.attributes as Record<string, unknown>;
+    const charId = (attrs.characterId as string) || (attrs.name as string);
+    return sceneCharacterIds.has(charId);
+  });
+}
+
+/**
+ * POVノードからナレーター情報を抽出
+ */
+export function extractNarratorFromPOV(editor: Editor, povId: string): ExtractedNode | null {
+  const { state } = editor;
+  const doc = state.doc;
+  let povNode: ExtractedNode | null = null;
+
+  doc.descendants((node, pos) => {
+    if (node.type.name === 'pov') {
+      const attrs = node.attrs as Record<string, unknown>;
+      if (attrs.povId === povId) {
+        povNode = extractNodeInfo(node, pos);
+      }
+    }
+  });
+
+  return povNode;
+}
+
