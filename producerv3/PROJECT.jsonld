@@ -1,0 +1,127 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://gftd.ai/ontology/epub-editor#",
+    "id": "@id",
+    "type": "@type",
+    "cpm": "https://example.org/cpm#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct": "http://purl.org/dc/terms/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    
+    "name": "dct:title",
+    "description": "dct:description",
+    "createdAt": {"@id": "dct:created", "@type": "xsd:dateTime"},
+    "updatedAt": {"@id": "dct:modified", "@type": "xsd:dateTime"},
+    "version": "dct:hasVersion",
+    
+    "hasCapability": {"@id": "cpm:hasCapability", "@type": "@id", "@container": "@set"},
+    "hasActivity": {"@id": "cpm:hasActivity", "@type": "@id", "@container": "@set"},
+    "hasPerformer": {"@id": "cpm:hasPerformer", "@type": "@id", "@container": "@set"},
+    "hasResource": {"@id": "cpm:hasResource", "@type": "@id", "@container": "@set"},
+    "dependsOn": {"@id": "cpm:dependsOn", "@type": "@id", "@container": "@set"},
+    "produces": {"@id": "cpm:produces", "@type": "@id", "@container": "@set"},
+    "consumes": {"@id": "cpm:consumes", "@type": "@id", "@container": "@set"},
+    
+    "goal": {"@id": "cpm:goal", "@type": "@id"},
+    "status": "cpm:status",
+    "priority": "cpm:priority"
+  },
+  
+  "id": "https://gftd.ai/project/epub-editor",
+  "type": "cpm:Project",
+  "name": "EPUB Editor Tool",
+  "description": "Tiptap editor based EPUB editing tool with AI Generator integration. Frontend: Astro + Tiptap, Backend: GraphQL (Poem/Rust) + Neo4j",
+  "version": "1.0.0",
+  "createdAt": "2025-01-27T00:00:00Z",
+  "updatedAt": "2025-01-27T00:00:00Z",
+  "status": "in_progress",
+  "priority": "high",
+  
+  "goal": {
+    "id": "https://gftd.ai/goal/epub-editor-wellbecoming",
+    "type": "cpm:Goal",
+    "name": "Enable users to create and edit EPUB books with AI assistance",
+    "description": "Users achieve well-becoming through intuitive EPUB editing experience with AI-powered writing assistance"
+  },
+  
+  "hasCapability": [
+    {"@id": "https://gftd.ai/capability/epub-editing"},
+    {"@id": "https://gftd.ai/capability/ai-generation"},
+    {"@id": "https://gftd.ai/capability/epub-export"}
+  ],
+  
+  "hasActivity": [
+    {"@id": "https://gftd.ai/activity/edit-epub-content"},
+    {"@id": "https://gftd.ai/activity/manage-chapters"},
+    {"@id": "https://gftd.ai/activity/manage-metadata"},
+    {"@id": "https://gftd.ai/activity/manage-media"},
+    {"@id": "https://gftd.ai/activity/generate-text"},
+    {"@id": "https://gftd.ai/activity/export-epub"}
+  ],
+  
+  "hasPerformer": [
+    {
+      "@id": "https://gftd.ai/performer/actor/editor",
+      "type": "cpm:Actor",
+      "name": "Editor Actor",
+      "description": "Frontend actor providing EPUB editing UI"
+    },
+    {
+      "@id": "https://gftd.ai/performer/service/graphql",
+      "type": "cpm:Service",
+      "name": "GraphQL Service",
+      "description": "GraphQL API service built with Poem/Rust"
+    },
+    {
+      "@id": "https://gftd.ai/performer/system/neo4j",
+      "type": "cpm:System",
+      "name": "Neo4j Database",
+      "description": "Graph database storing EPUB structure and content"
+    }
+  ],
+  
+  "hasResource": [
+    {
+      "@id": "https://gftd.ai/resource/epub-document",
+      "type": "cpm:Resource",
+      "name": "EPUB Document",
+      "description": "EPUB book structure and content"
+    },
+    {
+      "@id": "https://gftd.ai/resource/chapter",
+      "type": "cpm:Resource",
+      "name": "Chapter",
+      "description": "Chapter within EPUB book"
+    },
+    {
+      "@id": "https://gftd.ai/resource/media",
+      "type": "cpm:Resource",
+      "name": "Media Asset",
+      "description": "Images and media files in EPUB"
+    }
+  ],
+  
+  "dependsOn": [
+    {
+      "@id": "https://gftd.ai/dependency/tiptap",
+      "name": "Tiptap Editor",
+      "description": "Rich text editor framework"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/neo4j",
+      "name": "Neo4j Database",
+      "description": "Graph database for EPUB structure"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/poem",
+      "name": "Poem Framework",
+      "description": "Rust web framework"
+    }
+  ]
+}
+

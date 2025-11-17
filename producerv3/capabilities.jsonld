@@ -1,0 +1,68 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://gftd.ai/ontology/epub-editor#",
+    "id": "@id",
+    "type": "@type",
+    "cpm": "https://example.org/cpm#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct": "http://purl.org/dc/terms/",
+    
+    "name": "dct:title",
+    "description": "dct:description",
+    "createdAt": {"@id": "dct:created", "@type": "xsd:dateTime"},
+    
+    "capability": {"@id": "cpm:Capability", "@container": "@set"},
+    "hasActivity": {"@id": "cpm:hasActivity", "@type": "@id", "@container": "@set"},
+    "realizedBy": {"@id": "cpm:realizedBy", "@type": "@id", "@container": "@set"}
+  },
+  
+  "@graph": [
+    {
+      "id": "https://gftd.ai/capability/epub-editing",
+      "type": "cpm:Capability",
+      "name": "EPUB Editing",
+      "description": "Capability to create, read, update, and delete EPUB book content including text, chapters, metadata, and media",
+      "createdAt": "2025-01-27T00:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/edit-epub-content"},
+        {"@id": "https://gftd.ai/activity/manage-chapters"},
+        {"@id": "https://gftd.ai/activity/manage-metadata"},
+        {"@id": "https://gftd.ai/activity/manage-media"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/ai-generation",
+      "type": "cpm:Capability",
+      "name": "AI Generation",
+      "description": "Capability to generate, summarize, proofread, and translate text using AI models",
+      "createdAt": "2025-01-27T00:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/generate-text"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/epub-export",
+      "type": "cpm:Capability",
+      "name": "EPUB Export",
+      "description": "Capability to export EPUB book structure and content to standard EPUB 3.0 file format",
+      "createdAt": "2025-01-27T00:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/export-epub"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
+    }
+  ]
+}
+

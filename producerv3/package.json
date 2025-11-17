@@ -1,0 +1,40 @@
+{
+  "name": "@gftdcojp/epub-editor-frontend",
+  "type": "module",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "pnpm type-check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "type-check": "astro check --tsconfig ./tsconfig.json",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "codegen": "graphql-codegen --config codegen.yaml",
+    "codegen:watch": "graphql-codegen --config codegen.yaml --watch"
+  },
+  "dependencies": {
+    "astro": "^5.15.8",
+    "@astro/react": "^4.0.0",
+    "@clerk/astro": "^6.0.0",
+    "@tiptap/react": "^2.1.13",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "@tiptap/starter-kit": "^2.1.13",
+    "@tiptap/extension-image": "^2.1.13",
+    "@tiptap/extension-link": "^2.1.13",
+    "@apollo/client": "^3.11.0",
+    "graphql": "^16.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-astro": "^1.0.0",
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/typescript": "^4.0.0",
+    "@graphql-codegen/typescript-operations": "^4.0.0",
+    "@graphql-codegen/typed-document-node": "^4.0.0"
+  }
+}
