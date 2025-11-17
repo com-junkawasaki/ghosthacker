@@ -8,7 +8,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useEditor } from '@tiptap/react';
+import { Editor } from '@tiptap/react';
 import { MaskType } from '@/types/jsonld';
 
 const MASK_TYPES: Array<{ type: MaskType['type']; label: string }> = [
@@ -24,8 +24,11 @@ const MASK_TYPES: Array<{ type: MaskType['type']; label: string }> = [
   { type: 'role', label: 'Role' },
 ];
 
-export function MaskControls() {
-  const editor = useEditor();
+interface MaskControlsProps {
+  editor: Editor | null;
+}
+
+export function MaskControls({ editor }: MaskControlsProps) {
   const [activeMasks, setActiveMasks] = useState<Set<MaskType['type']>>(new Set());
 
   if (!editor) {

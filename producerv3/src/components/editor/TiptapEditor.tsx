@@ -8,6 +8,7 @@
 'use client';
 
 import { useEditor, EditorContent } from '@tiptap/react';
+import { useMemo } from 'react';
 import Document from '@tiptap/extension-document';
 import Paragraph from '@tiptap/extension-paragraph';
 import Text from '@tiptap/extension-text';
@@ -26,7 +27,7 @@ import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
 import { useEffect, useRef, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_CHAPTER } from '@/lib/graphql/queries';
+import { GET_CHAPTER, GET_EPUB } from '@/lib/graphql/queries';
 import { UPDATE_CHAPTER } from '@/lib/graphql/mutations';
 import { useEditorSaveStore } from '@/stores/editorSave';
 import { CharacterNode } from './extensions/CharacterNode';
@@ -64,10 +65,33 @@ interface TiptapEditorProps {
 }
 
 export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: TiptapEditorProps) {
-  const { data, loading } = useQuery(GET_CHAPTER, {
+  // Get single chapter if chapterId is selected
+  const { data: chapterData, loading: chapterLoading } = useQuery(GET_CHAPTER, {
     variables: { id: chapterId },
     skip: !chapterId,
   });
+
+  // Get all chapters if no chapterId is selected
+  const { data: epubData, loading: epubLoading } = useQuery(GET_EPUB, {
+    variables: { id: epubId },
+    skip: !epubId || !!chapterId,
+  });
+
+  const loading = chapterId ? chapterLoading : epubLoading;
+  
+  // Combine content from all chapters if no chapterId is selected
+  const combinedContent = useMemo(() => {
+    if (!chapterId && epubData?.epub?.chapters) {
+      return [...epubData.epub.chapters]
+        .sort((a: { order: number }, b: { order: number }) => a.order - b.order)
+        .map((chapter: { title: string; order: number; contentHtml: string }) => {
+          const chapterTitle = chapter.title || `Chapter ${chapter.order}`;
+          return `<h1>${chapterTitle}</h1>${chapter.contentHtml || ''}`;
+        })
+        .join('');
+    }
+    return chapterData?.chapter?.contentHtml || '';
+  }, [chapterId, epubData?.epub?.chapters, chapterData?.chapter?.contentHtml]);
 
   const { status: saveStatus, error: saveError, setSaving, setSaved, setError } = useEditorSaveStore();
   const [updateChapter, { loading: isSaving }] = useMutation(UPDATE_CHAPTER, {
@@ -187,9 +211,10 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
         },
       }),
     ],
-    content: data?.chapter?.contentHtml || '',
+    content: combinedContent,
     immediatelyRender: false,
     onUpdate: ({ editor }) => {
+      // Only auto-save if a specific chapter is selected
       if (chapterId) {
         // Clear existing timeout
         if (saveTimeoutRef.current) {
@@ -211,14 +236,22 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
           });
         }, 1000);
       }
+      // If no chapterId, don't auto-save (all chapters view is read-only for editing)
     },
   });
 
   useEffect(() => {
-    if (editor && data?.chapter?.contentHtml) {
-      editor.commands.setContent(data.chapter.contentHtml);
+    if (editor && combinedContent) {
+      editor.commands.setContent(combinedContent);
     }
-  }, [editor, data, chapterId]);
+  }, [editor, combinedContent, chapterId]);
+
+  // Set editor editable state based on chapterId
+  useEffect(() => {
+    if (editor) {
+      editor.setEditable(!!chapterId);
+    }
+  }, [editor, chapterId]);
 
   // Handle chapter link clicks
   useEffect(() => {
@@ -292,13 +325,8 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
     </div>;
   }
 
-  if (!chapterId) {
-    return (
-      <div className="flex items-center justify-center h-full">
-        <div className="text-gray-500">Please select a chapter to edit</div>
-      </div>
-    );
-  }
+  // Show editor even if no chapter is selected (display all chapters)
+  // Note: Editing is disabled when no specific chapter is selected
 
   return (
     <div className="editor-container h-full flex flex-col">
@@ -485,12 +513,18 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
                 ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 : 'bg-blue-500 text-white hover:bg-blue-600'
             }`}
+            title={!chapterId ? '章を選択してから編集・保存してください' : '保存'}
           >
             保存
           </button>
+          {!chapterId && (
+            <div className="text-xs text-gray-500 px-2">
+              全章表示モード（編集するには章を選択してください）
+            </div>
+          )}
         </div>
       </div>
-      <MaskControls />
+      <MaskControls editor={editor} />
       <div className="editor-content flex-1 p-4 overflow-y-auto relative">
         <EditorContent editor={editor} />
       </div>
