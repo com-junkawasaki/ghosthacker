@@ -191,9 +191,11 @@ export const LocationNode = Node.create<LocationNodeOptions>({
           
           // Use insertContent to avoid text node creation errors
           // Tiptap's insertContent handles node creation more safely
+          // Block Container Node requires at least one paragraph child
           return commands.insertContent({
             type: this.name,
             attrs: sanitizedAttributes,
+            content: [{ type: 'paragraph' }],
           });
         },
       updateLocation:

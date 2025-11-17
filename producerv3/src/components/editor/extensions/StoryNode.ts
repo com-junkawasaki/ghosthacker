@@ -391,10 +391,17 @@ const createStoryNode = (
             // ビルド時に型チェック可能で、配列やオブジェクトを適切に変換
             const sanitizedAttributes = sanitizeNodeAttributes(attributes);
             
-            return commands.insertContent({
+            // Block Container Node requires at least one paragraph child
+            const contentSpec: { type: string; attrs: Record<string, unknown>; content?: Array<{ type: string }> } = {
               type: this.name,
               attrs: sanitizedAttributes,
-            });
+            };
+            
+            if (isBlockContainer) {
+              contentSpec.content = [{ type: 'paragraph' }];
+            }
+            
+            return commands.insertContent(contentSpec);
           },
         [`update${name.charAt(0).toUpperCase() + name.slice(1)}`]:
           (attributes: Record<string, unknown>) =>
@@ -407,11 +414,11 @@ const createStoryNode = (
 };
 
 export const EpisodeNode = createStoryNode('episode', 'episode', 'bg-indigo-100', 'text-indigo-800');
-export const SceneNode = createStoryNode('scene', 'scene', 'bg-pink-100', 'text-pink-800');
+export const SceneNode = createStoryNode('scene', 'scene', 'bg-pink-100', 'text-pink-800', true); // Block Container Node
 export const ArcNode = createStoryNode('arc', 'arc', 'bg-orange-100', 'text-orange-800');
 export const MotifNode = createStoryNode('motif', 'motif', 'bg-teal-100', 'text-teal-800');
 export const SeasonNode = createStoryNode('season', 'season', 'bg-red-100', 'text-red-800');
 export const TimelineNode = createStoryNode('timeline', 'timeline', 'bg-cyan-100', 'text-cyan-800');
-export const POVNode = createStoryNode('pov', 'pov', 'bg-violet-100', 'text-violet-800');
+export const POVNode = createStoryNode('pov', 'pov', 'bg-violet-100', 'text-violet-800', true); // Block Container Node
 export const BeatNode = createStoryNode('beat', 'beat', 'bg-amber-100', 'text-amber-800');
 
