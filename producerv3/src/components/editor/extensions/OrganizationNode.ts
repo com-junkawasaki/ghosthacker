@@ -34,11 +34,11 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
     };
   },
 
-  group: 'inline',
+  group: 'block',
 
-  inline: true,
+  content: 'paragraph+',
 
-  atom: true,
+  atom: false,
 
   addAttributes() {
     return {
@@ -151,23 +151,27 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
   parseHTML() {
     return [
       {
-        tag: 'span[data-type="organization"]',
+        tag: 'div[data-type="organization"]',
       },
       {
-        tag: 'span[data-type="company"]',
+        tag: 'div[data-type="company"]',
       },
     ];
   },
 
-  renderHTML({ HTMLAttributes }) {
-    const nodeType = HTMLAttributes['data-type'] || 'organization';
+  renderHTML({ HTMLAttributes, node }: { HTMLAttributes: Record<string, unknown>; node?: unknown }) {
+    const nodeType = (HTMLAttributes['data-type'] as string) || 'organization';
+    const name = (HTMLAttributes.name as string) || (HTMLAttributes.organizationId as string) || 'Organization';
     return [
-      'span',
+      'div',
       mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
         'data-type': nodeType,
-        class: `${nodeType}-node inline-flex items-center px-2 py-1 rounded bg-green-100 text-green-800 cursor-pointer hover:bg-green-200`,
+        class: `${nodeType}-node border border-green-200 rounded-lg p-4 my-4 bg-green-50`,
       }),
-      HTMLAttributes.name || HTMLAttributes.organizationId || 'Organization',
+      [
+        ['div', { class: `${nodeType}-header font-semibold text-green-800 mb-2` }, name],
+        ['div', { class: `${nodeType}-content` }, 0], // 0 = 子ノードをここに挿入
+      ],
     ];
   },
 

@@ -36,11 +36,11 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
     };
   },
 
-  group: 'inline',
+  group: 'block',
 
-  inline: true,
+  content: 'paragraph+',
 
-  atom: true,
+  atom: false,
 
   addAttributes() {
     return {
@@ -164,19 +164,23 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
   parseHTML() {
     return [
       {
-        tag: 'span[data-type="character"]',
+        tag: 'div[data-type="character"]',
       },
     ];
   },
 
-  renderHTML({ HTMLAttributes }: { HTMLAttributes: Record<string, unknown> }) {
+  renderHTML({ HTMLAttributes, node }: { HTMLAttributes: Record<string, unknown>; node?: unknown }) {
+    const name = (HTMLAttributes.name as string) || (HTMLAttributes.characterId as string) || 'Character';
     return [
-      'span',
+      'div',
       mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
         'data-type': 'character',
-        class: 'character-node inline-flex items-center px-2 py-1 rounded bg-purple-100 text-purple-800 cursor-pointer hover:bg-purple-200',
+        class: 'character-node border border-purple-200 rounded-lg p-4 my-4 bg-purple-50',
       }),
-      (HTMLAttributes.name as string) || (HTMLAttributes.characterId as string) || 'Character',
+      [
+        ['div', { class: 'character-header font-semibold text-purple-800 mb-2' }, name],
+        ['div', { class: 'character-content' }, 0], // 0 = 子ノードをここに挿入
+      ],
     ];
   },
 

@@ -126,6 +126,26 @@ export interface SceneNode {
   description?: string;
 }
 
+export interface POVNode {
+  '@id'?: string;
+  '@type': 'POV';
+  povId: string;
+  name: string;
+  description?: string;
+  characterId?: { '@id': string };
+  perspectiveType?: 'first-person' | 'third-person-limited' | 'third-person-omniscient' | 'second-person';
+}
+
+export interface BeatNode {
+  '@id'?: string;
+  '@type': 'Beat';
+  beatId: string;
+  name: string;
+  description?: string;
+  position?: number;
+  sceneId?: { '@id': string };
+}
+
 export interface ArcNode {
   '@id'?: string;
   '@type': 'Arc';
@@ -343,6 +363,8 @@ export type JsonLdNode =
   | TechnologyNode
   | EpisodeNode
   | SceneNode
+  | POVNode
+  | BeatNode
   | ArcNode
   | MotifNode
   | SeasonNode

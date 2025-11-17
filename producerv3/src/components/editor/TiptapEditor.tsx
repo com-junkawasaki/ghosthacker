@@ -46,6 +46,8 @@ import {
   MotifNode,
   SeasonNode,
   TimelineNode,
+  POVNode,
+  BeatNode,
 } from './extensions/StoryNode';
 import {
   SourceRefNode,
@@ -180,6 +182,8 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
       MotifNode,
       SeasonNode,
       TimelineNode,
+      POVNode,
+      BeatNode,
       SourceRefNode,
       EventNode,
       OccupationNode,
@@ -210,6 +214,8 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
               'motif',
               'season',
               'timeline',
+              'pov',
+              'beat',
               'event',
             ];
             return nodeTypes
@@ -709,6 +715,12 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
                 break;
               case 'timeline':
                 editor.chain().focus().insertTimeline({ timelineId: nodeId, name: nodeName }).run();
+                break;
+              case 'pov':
+                editor.chain().focus().insertPOV({ povId: nodeId, name: nodeName }).run();
+                break;
+              case 'beat':
+                editor.chain().focus().insertBeat({ beatId: nodeId, name: nodeName }).run();
                 break;
               case 'event':
                 editor.chain().focus().insertEvent({ eventId: nodeId, name: nodeName }).run();

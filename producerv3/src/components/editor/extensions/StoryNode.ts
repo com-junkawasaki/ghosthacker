@@ -13,6 +13,8 @@ import {
   MotifNode as MotifNodeType,
   SeasonNode as SeasonNodeType,
   TimelineNode as TimelineNodeType,
+  POVNode as POVNodeType,
+  BeatNode as BeatNodeType,
 } from '@/types/jsonld';
 
 export interface StoryNodeOptions {
@@ -45,6 +47,14 @@ declare module '@tiptap/core' {
       insertTimeline: (attributes: Partial<TimelineNodeType>) => ReturnType;
       updateTimeline: (attributes: Partial<TimelineNodeType>) => ReturnType;
     };
+    pov: {
+      insertPOV: (attributes: Partial<POVNodeType>) => ReturnType;
+      updatePOV: (attributes: Partial<POVNodeType>) => ReturnType;
+    };
+    beat: {
+      insertBeat: (attributes: Partial<BeatNodeType>) => ReturnType;
+      updateBeat: (attributes: Partial<BeatNodeType>) => ReturnType;
+    };
   }
 }
 
@@ -52,7 +62,8 @@ const createStoryNode = (
   name: string,
   nodeType: string,
   bgColor: string,
-  textColor: string
+  textColor: string,
+  isBlockContainer: boolean = false
 ) => {
   return Node.create<StoryNodeOptions>({
     name,
@@ -63,11 +74,13 @@ const createStoryNode = (
       };
     },
 
-    group: 'inline',
+    group: isBlockContainer ? 'block' : 'inline',
 
-    inline: true,
+    inline: !isBlockContainer,
 
-    atom: true,
+    content: isBlockContainer ? 'paragraph+' : undefined,
+
+    atom: !isBlockContainer,
 
     addAttributes() {
       const baseAttributes: Record<string, unknown> = {
@@ -239,10 +252,90 @@ const createStoryNode = (
         };
       }
 
+      // POV固有の属性
+      if (name === 'pov') {
+        baseAttributes.characterId = {
+          default: null,
+          parseHTML: (element: HTMLElement) => {
+            const charId = element.getAttribute('data-character-id');
+            return charId ? { '@id': charId } : null;
+          },
+          renderHTML: (attributes: Record<string, unknown>) => {
+            if (!attributes.characterId) {
+              return {};
+            }
+            const charId =
+              typeof attributes.characterId === 'object' && '@id' in attributes.characterId
+                ? attributes.characterId['@id']
+                : attributes.characterId;
+            return {
+              'data-character-id': charId,
+            };
+          },
+        };
+        baseAttributes.perspectiveType = {
+          default: null,
+          parseHTML: (element: HTMLElement) => element.getAttribute('data-perspective-type'),
+          renderHTML: (attributes: Record<string, unknown>) => {
+            if (!attributes.perspectiveType) {
+              return {};
+            }
+            return {
+              'data-perspective-type': attributes.perspectiveType,
+            };
+          },
+        };
+      }
+
+      // Beat固有の属性
+      if (name === 'beat') {
+        baseAttributes.position = {
+          default: null,
+          parseHTML: (element: HTMLElement) => {
+            const pos = element.getAttribute('data-position');
+            return pos ? parseInt(pos, 10) : null;
+          },
+          renderHTML: (attributes: Record<string, unknown>) => {
+            if (!attributes.position) {
+              return {};
+            }
+            return {
+              'data-position': attributes.position.toString(),
+            };
+          },
+        };
+        baseAttributes.sceneId = {
+          default: null,
+          parseHTML: (element: HTMLElement) => {
+            const sceneId = element.getAttribute('data-scene-id');
+            return sceneId ? { '@id': sceneId } : null;
+          },
+          renderHTML: (attributes: Record<string, unknown>) => {
+            if (!attributes.sceneId) {
+              return {};
+            }
+            const sceneId =
+              typeof attributes.sceneId === 'object' && '@id' in attributes.sceneId
+                ? attributes.sceneId['@id']
+                : attributes.sceneId;
+            return {
+              'data-scene-id': sceneId,
+            };
+          },
+        };
+      }
+
       return baseAttributes;
     },
 
     parseHTML() {
+      if (isBlockContainer) {
+        return [
+          {
+            tag: `div[data-type="${nodeType}"]`,
+          },
+        ];
+      }
       return [
         {
           tag: `span[data-type="${nodeType}"]`,
@@ -250,14 +343,30 @@ const createStoryNode = (
       ];
     },
 
-    renderHTML({ HTMLAttributes }) {
+    renderHTML({ HTMLAttributes, node }) {
+      const displayName = HTMLAttributes.name || HTMLAttributes[`${name}Id`] || name.charAt(0).toUpperCase() + name.slice(1);
+      
+      if (isBlockContainer) {
+        return [
+          'div',
+          mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
+            'data-type': nodeType,
+            class: `${nodeType}-node border rounded-lg p-4 my-4 ${bgColor} ${textColor}`,
+          }),
+          [
+            ['div', { class: `${nodeType}-header font-semibold mb-2` }, displayName],
+            ['div', { class: `${nodeType}-content` }, 0], // 0 = 子ノードをここに挿入
+          ],
+        ];
+      }
+      
       return [
         'span',
         mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
           'data-type': nodeType,
           class: `${nodeType}-node inline-flex items-center px-2 py-1 rounded ${bgColor} ${textColor} cursor-pointer hover:opacity-80`,
         }),
-        HTMLAttributes.name || HTMLAttributes[`${name}Id`] || name.charAt(0).toUpperCase() + name.slice(1),
+        displayName,
       ];
     },
 
@@ -287,4 +396,6 @@ export const ArcNode = createStoryNode('arc', 'arc', 'bg-orange-100', 'text-oran
 export const MotifNode = createStoryNode('motif', 'motif', 'bg-teal-100', 'text-teal-800');
 export const SeasonNode = createStoryNode('season', 'season', 'bg-red-100', 'text-red-800');
 export const TimelineNode = createStoryNode('timeline', 'timeline', 'bg-cyan-100', 'text-cyan-800');
+export const POVNode = createStoryNode('pov', 'pov', 'bg-violet-100', 'text-violet-800');
+export const BeatNode = createStoryNode('beat', 'beat', 'bg-amber-100', 'text-amber-800');
 

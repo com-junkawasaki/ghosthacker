@@ -58,6 +58,8 @@ export const MaskExtension = Extension.create<MaskExtensionOptions>({
           'motif',
           'season',
           'timeline',
+          'pov',
+          'beat',
           'sourceRef',
           'event',
           'occupation',

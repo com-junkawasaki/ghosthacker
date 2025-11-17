@@ -38,9 +38,9 @@
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
   "description": "Tiptap editor based EPUB editing tool with AI Generator integration, emotion analysis (Hume AI), and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-11-17T12:00:00Z",
+  "updatedAt": "2025-11-17T14:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -135,7 +135,7 @@
       "@id": "https://gftd.ai/resource/jsonld-nodes",
       "type": "cpm:Resource",
       "name": "JSON-LD Nodes",
-      "description": "Semantic story elements (Character, Ghost, Location, Organization, Technology, Episode, Scene, Arc, Motif, Season, Timeline, Event, SourceRef, Occupation, Setting)"
+      "description": "Semantic story elements (Character, Ghost, Location, Organization, Technology, Episode, Scene, Arc, Motif, Season, Timeline, POV, Beat, Event, SourceRef, Occupation, Setting). Block Container Nodes (character, scene, location, organization, pov) can contain paragraph content. Inline Atom Nodes (ghost, technology, episode, arc, motif, season, timeline, beat, event, etc.) are reference tags embedded in text."
     },
     {
       "@id": "https://gftd.ai/resource/mask-types",
@@ -505,6 +505,20 @@
       "description": "Implemented AI image generation functionality integrated with TipTap editor. Supports OpenAI DALL-E and Higgsfield APIs. Automatically extracts editor context (selected nodes, masked nodes, mask information) to generate image prompts. Generated images are inserted into editor as Base64 data URIs.",
       "status": "resolved",
       "resolution": "Created image generation API client (src/lib/ai/imageGenerator.ts) supporting OpenAI DALL-E and Higgsfield APIs. Implemented editor context extractor (src/lib/editor/contextExtractor.ts) to extract selected nodes, masked nodes, and mask information from TipTap editor. Created prompt generator (src/lib/ai/promptGenerator.ts) to convert editor context into image generation prompts. Added ImageGenerationDialog component with automatic prompt generation and manual editing capabilities. Integrated image generation button into TiptapEditor toolbar. Added environment variables for API keys (NEXT_PUBLIC_OPENAI_API_KEY, NEXT_PUBLIC_HIGGSFIELD_API_KEY_ID, NEXT_PUBLIC_HIGGSFIELD_API_KEY_SECRET, NEXT_PUBLIC_HIGGSFIELD_API_ENDPOINT) in docker-compose.yaml."
+    },
+    {
+      "@id": "https://gftd.ai/issue/pov-beat-nodes-implementation",
+      "name": "POV and Beat Nodes Implementation",
+      "description": "Added POV (Point of View) and Beat nodes as Tiptap custom nodes. POV nodes support characterId and perspectiveType attributes. Beat nodes support position and sceneId attributes. Both nodes are integrated into editor with SlashCommand support and NodeSelectorDialog.",
+      "status": "resolved",
+      "resolution": "Created POVNode and BeatNode type definitions in src/types/jsonld.ts. Implemented POVNode and BeatNode in StoryNode.ts using createStoryNode pattern. Added POV and Beat to TiptapEditor extensions, SlashCommand items, and NodeSelectorDialog switch cases. Updated MaskExtension to support POV and Beat nodes."
+    },
+    {
+      "@id": "https://gftd.ai/issue/block-container-node-pattern",
+      "name": "Block Container Node Pattern Implementation",
+      "description": "Refactored Tiptap nodes to support two patterns: Block Container Nodes (can contain paragraph content) and Inline Atom Nodes (reference tags). Character, Scene, Location, Organization, and POV nodes are now Block Container Nodes. Ghost, Technology, Episode, Arc, Motif, Season, Timeline, Beat, and other reference nodes remain Inline Atom Nodes.",
+      "status": "resolved",
+      "resolution": "Updated createStoryNode function to support isBlockContainer parameter. Block Container Nodes use group: 'block', content: 'paragraph+', atom: false, and render as div elements with header and content areas. Inline Atom Nodes use group: 'inline', atom: true, and render as span elements. Updated CharacterNode, LocationNode, OrganizationNode, SceneNode, and POVNode to Block Container pattern. Document configuration already supports block+ content."
     }
   ]
 }

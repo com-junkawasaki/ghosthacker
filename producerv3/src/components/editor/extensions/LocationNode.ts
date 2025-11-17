@@ -30,11 +30,11 @@ export const LocationNode = Node.create<LocationNodeOptions>({
     };
   },
 
-  group: 'inline',
+  group: 'block',
 
-  inline: true,
+  content: 'paragraph+',
 
-  atom: true,
+  atom: false,
 
   addAttributes() {
     return {
@@ -131,19 +131,23 @@ export const LocationNode = Node.create<LocationNodeOptions>({
   parseHTML() {
     return [
       {
-        tag: 'span[data-type="location"]',
+        tag: 'div[data-type="location"]',
       },
     ];
   },
 
-  renderHTML({ HTMLAttributes }) {
+  renderHTML({ HTMLAttributes, node }: { HTMLAttributes: Record<string, unknown>; node?: unknown }) {
+    const name = (HTMLAttributes.name as string) || (HTMLAttributes.locationId as string) || 'Location';
     return [
-      'span',
+      'div',
       mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
         'data-type': 'location',
-        class: 'location-node inline-flex items-center px-2 py-1 rounded bg-blue-100 text-blue-800 cursor-pointer hover:bg-blue-200',
+        class: 'location-node border border-blue-200 rounded-lg p-4 my-4 bg-blue-50',
       }),
-      HTMLAttributes.name || HTMLAttributes.locationId || 'Location',
+      [
+        ['div', { class: 'location-header font-semibold text-blue-800 mb-2' }, name],
+        ['div', { class: 'location-content' }, 0], // 0 = 子ノードをここに挿入
+      ],
     ];
   },
 
