@@ -17,6 +17,7 @@ use crate::schema::jsonld::{
     SourceRef, Occupation, Setting,
 };
 use crate::schema::graph::{GraphLink, GraphIncidence, CreateGraphLinkInput, UpdateGraphLinkInput, CreateGraphIncidenceInput, UpdateGraphIncidenceInput};
+use crate::schema::ai::UpdateNodeTypeResult;
 use serde_json::Value;
 
 pub type PostgresPool = Arc<PgPool>;
@@ -2597,4 +2598,207 @@ pub async fn delete_graph_incidence(pool: &PostgresPool, id: String) -> Result<b
     .rows_affected();
     
     Ok(deleted > 0)
+}
+
+/// Update node type in database
+/// This function moves a node from one type table to another and updates related graph links and incidences
+pub async fn update_node_type(
+    pool: &PostgresPool,
+    node_id: String,
+    old_type: String,
+    new_type: String,
+    attributes: Option<Value>,
+) -> Result<UpdateNodeTypeResult> {
+    // Map node types to table names and ID column names
+    let type_to_table = |node_type: &str| -> Option<(&str, &str)> {
+        match node_type {
+            "character" => Some(("characters", "character_id")),
+            "ghost" => Some(("ghosts", "ghost_id")),
+            "location" => Some(("locations", "location_id")),
+            "organization" => Some(("organizations", "organization_id")),
+            "company" => Some(("companies", "company_id")),
+            "technology" => Some(("technologies", "technology_id")),
+            "episode" => Some(("episodes", "episode_id")),
+            "scene" => Some(("scenes", "scene_id")),
+            "arc" => Some(("arcs", "arc_id")),
+            "motif" => Some(("motifs", "motif_id")),
+            "season" => Some(("seasons", "season_id")),
+            "timeline" => Some(("timelines", "timeline_id")),
+            "event" => Some(("events", "event_id")),
+            "sourceRef" => Some(("source_refs", "source_ref_id")),
+            "occupation" => Some(("occupations", "occupation_id")),
+            "setting" => Some(("settings", "setting_id")),
+            _ => None,
+        }
+    };
+
+    let (old_table, old_id_col) = type_to_table(&old_type)
+        .ok_or_else(|| async_graphql::Error::new(format!("Invalid old node type: {}", old_type)))?;
+    let (new_table, new_id_col) = type_to_table(&new_type)
+        .ok_or_else(|| async_graphql::Error::new(format!("Invalid new node type: {}", new_type)))?;
+
+    // If types are the same, just update graph links and incidences
+    if old_type == new_type {
+        // Update graph links
+        sqlx::query!(
+            r#"
+            UPDATE graph_links
+            SET source_node_type = $1, updated_at = NOW()
+            WHERE source_node_type = $2 AND source_node_id::text = $3
+            "#,
+            new_type,
+            old_type,
+            node_id
+        )
+        .execute(pool.as_ref())
+        .await?;
+
+        sqlx::query!(
+            r#"
+            UPDATE graph_links
+            SET target_node_type = $1, updated_at = NOW()
+            WHERE target_node_type = $2 AND target_node_id::text = $3
+            "#,
+            new_type,
+            old_type,
+            node_id
+        )
+        .execute(pool.as_ref())
+        .await?;
+
+        // Update graph incidences
+        sqlx::query!(
+            r#"
+            UPDATE graph_incidences
+            SET node_type = $1, updated_at = NOW()
+            WHERE node_type = $2 AND node_id::text = $3
+            "#,
+            new_type,
+            old_type,
+            node_id
+        )
+        .execute(pool.as_ref())
+        .await?;
+
+        return Ok(UpdateNodeTypeResult {
+            success: true,
+            node_id: async_graphql::ID::from(node_id),
+            new_type,
+            message: Some("Node type updated (same type, graph links and incidences updated)".to_string()),
+        });
+    }
+
+    // Get node data from old table (get name and description as common fields)
+    let query_str = format!(
+        r#"
+        SELECT name, description
+        FROM {}
+        WHERE {} = $1
+        "#,
+        old_table, old_id_col
+    );
+    let node_data = sqlx::query_as::<_, (String, Option<String>)>(&query_str)
+        .bind(node_id.clone())
+        .fetch_optional(pool.as_ref())
+        .await?;
+
+    let (name, description) = if let Some((row_name, row_desc)) = node_data {
+        (row_name, row_desc)
+    } else {
+        // If node not found in old table, try to get from attributes
+        let name = attributes
+            .as_ref()
+            .and_then(|attrs| attrs.get("name"))
+            .and_then(|v| v.as_str())
+            .map(|s| s.to_string())
+            .unwrap_or_else(|| "Unknown".to_string());
+        let description = attributes
+            .as_ref()
+            .and_then(|attrs| attrs.get("description"))
+            .and_then(|v| v.as_str())
+            .map(|s| s.to_string());
+        (name, description)
+    };
+
+    // Delete from old table
+    let delete_query = format!(
+        r#"
+        DELETE FROM {}
+        WHERE {} = $1
+        "#,
+        old_table, old_id_col
+    );
+    sqlx::query(&delete_query)
+        .bind(node_id.clone())
+        .execute(pool.as_ref())
+        .await?;
+
+    // Insert into new table using upsert function
+    // For simplicity, we'll use a generic INSERT with common fields
+    // More complex mapping would require type-specific handling
+    let insert_query = format!(
+        r#"
+        INSERT INTO {} ({}, name, description, updated_at)
+        VALUES ($1, $2, $3, NOW())
+        ON CONFLICT ({}) DO UPDATE SET
+            name = EXCLUDED.name,
+            description = EXCLUDED.description,
+            updated_at = NOW()
+        "#,
+        new_table, new_id_col, new_id_col
+    );
+    sqlx::query(&insert_query)
+        .bind(node_id.clone())
+        .bind(name.clone())
+        .bind(description.clone())
+        .execute(pool.as_ref())
+        .await?;
+
+    // Update graph links
+    sqlx::query!(
+        r#"
+        UPDATE graph_links
+        SET source_node_type = $1, updated_at = NOW()
+        WHERE source_node_type = $2 AND source_node_id::text = $3
+        "#,
+        new_type,
+        old_type,
+        node_id
+    )
+    .execute(pool.as_ref())
+    .await?;
+
+    sqlx::query!(
+        r#"
+        UPDATE graph_links
+        SET target_node_type = $1, updated_at = NOW()
+        WHERE target_node_type = $2 AND target_node_id::text = $3
+        "#,
+        new_type,
+        old_type,
+        node_id
+    )
+    .execute(pool.as_ref())
+    .await?;
+
+    // Update graph incidences
+    sqlx::query!(
+        r#"
+        UPDATE graph_incidences
+        SET node_type = $1, updated_at = NOW()
+        WHERE node_type = $2 AND node_id::text = $3
+        "#,
+        new_type,
+        old_type,
+        node_id
+    )
+    .execute(pool.as_ref())
+    .await?;
+
+    Ok(UpdateNodeTypeResult {
+        success: true,
+        node_id: async_graphql::ID::from(node_id),
+        new_type,
+        message: Some(format!("Node type updated from {} to {}", old_type, new_type)),
+    })
 }

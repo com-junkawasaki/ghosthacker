@@ -37,10 +37,10 @@
   "id": "https://gftd.ai/project/epub-editor",
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
-  "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation, AI node classification and reclassification, emotion analysis (Hume AI) with sidebar visualization and benchmark comparison, and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "2.4.0",
+  "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation, AI node classification and batch reclassification (single and multiple nodes), emotion analysis (Hume AI) with sidebar visualization and benchmark comparison, and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
+  "version": "2.5.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-01-27T18:00:00Z",
+  "updatedAt": "2025-01-27T19:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -95,6 +95,7 @@
     {"@id": "https://gftd.ai/activity/generate-emotion-arc"},
     {"@id": "https://gftd.ai/activity/classify-node"},
     {"@id": "https://gftd.ai/activity/reclassify-nodes"},
+    {"@id": "https://gftd.ai/activity/batch-classify-nodes"},
     {"@id": "https://gftd.ai/activity/manage-mask-context"}
   ],
   
@@ -245,6 +246,12 @@
       "type": "cpm:Resource",
       "name": "Node Classification Result",
       "description": "AI classification results for nodes including suggested node type (character, location, scene, technology, organization, etc.), confidence score, reasoning, suggested attributes, and suggested mask type. Used to reclassify existing nodes or classify new text selections."
+    },
+    {
+      "@id": "https://gftd.ai/resource/multiple-node-classification-results",
+      "type": "cpm:Resource",
+      "name": "Multiple Node Classification Results",
+      "description": "Batch classification results for multiple nodes selected in text range. Each node is classified individually with its own result (suggested type, confidence, reasoning, attributes). Results are displayed in a list view with individual apply/skip actions and batch apply functionality. Progress tracking shows applied/skipped/remaining counts."
     }
   ],
   
@@ -625,6 +632,14 @@
       "status": "resolved",
       "priority": "medium",
       "resolution": "Reorganized TiptapEditor toolbar into workflow phases: Phase 1 (Creation) - JSON-LD node insertion (10 types) and image generation; Phase 2 (Editing) - Format controls (Bold, Italic, H1, H2), AI generation, and node classification; Phase 4 (Export) - Export/import buttons and save status. Added visual section separators with labels. Integrated MaskControls functionality into FloatingToolbar component with all 10 mask types and Toggle All functionality. Removed standalone MaskControls component. Mask operations are now context-aware, appearing when text is selected."
+    },
+    {
+      "@id": "https://gftd.ai/issue/batch-node-classification",
+      "name": "Batch Node Classification Implementation",
+      "description": "Implemented batch node classification feature allowing users to select multiple nodes in a text range and classify them individually. Each node is classified separately with its own result. Results are displayed in a list view with individual apply/skip actions and batch apply functionality. Progress tracking shows applied/skipped/remaining counts.",
+      "status": "resolved",
+      "priority": "high",
+      "resolution": "Created extractMultipleNodesFromSelection() function in nodeClassifier.ts to extract multiple nodes from text selection range. Extended NodeClassificationControls to detect multiple nodes and classify each node individually. Enhanced NodeClassificationDialog to display multiple classification results in a list view with individual apply/skip buttons, progress bar, and batch apply functionality. Each node shows its classification result (suggested type, confidence, reasoning) with visual feedback for applied/skipped states. Error handling allows partial failures without stopping the entire batch classification process."
     }
   ]
 }

@@ -16,6 +16,7 @@ use crate::schema::ai::{
     GeneratedText, GenerateTextInput, SummarizeInput, ProofreadInput, TranslateInput,
     MultiAgentGenerateInput, GeneratedContent,
     ClassifyNodeInput, NodeClassificationResult, ReclassifySelectedNodesInput, ReclassifyResult,
+    UpdateNodeTypeInput, UpdateNodeTypeResult,
 };
 use crate::schema::emotion::{EmotionProfile, AnalyzeEmotionsInput};
 use crate::schema::graph::{GraphLink, GraphIncidence, CreateGraphLinkInput, UpdateGraphLinkInput, CreateGraphIncidenceInput, UpdateGraphIncidenceInput};
@@ -205,6 +206,23 @@ impl MutationRoot {
     ) -> async_graphql::Result<Vec<ReclassifyResult>> {
         ai_service::reclassify_nodes(input).await
             .map_err(|e| async_graphql::Error::new(format!("Failed to reclassify nodes: {:?}", e)))
+    }
+
+    /// Update node type in database
+    async fn update_node_type(
+        &self,
+        ctx: &Context<'_>,
+        input: UpdateNodeTypeInput,
+    ) -> async_graphql::Result<UpdateNodeTypeResult> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::update_node_type(
+            pool,
+            input.node_id.to_string(),
+            input.old_type,
+            input.new_type,
+            input.attributes,
+        ).await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to update node type: {:?}", e)))
     }
 }
 

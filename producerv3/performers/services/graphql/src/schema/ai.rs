@@ -97,3 +97,19 @@ pub struct ReclassifyResult {
     pub applied: bool,
 }
 
+#[derive(InputObject)]
+pub struct UpdateNodeTypeInput {
+    pub node_id: ID,
+    pub old_type: String,
+    pub new_type: String,
+    pub attributes: Option<serde_json::Value>,
+}
+
+#[derive(SimpleObject)]
+pub struct UpdateNodeTypeResult {
+    pub success: bool,
+    pub node_id: ID,
+    pub new_type: String,
+    pub message: Option<String>,
+}
+

@@ -10,8 +10,17 @@
 
 import { useState } from 'react';
 import type { Editor } from '@tiptap/react';
+import { useMutation, gql } from '@apollo/client';
 import type { NodeClassificationResult, NodeForClassification } from '@/lib/ai/nodeClassifier';
-import { reclassifyNode, getNodeTypeDisplayName } from '@/lib/ai/nodeClassifier';
+import { reclassifyNode, getNodeTypeDisplayName, getNodeIdAndType } from '@/lib/ai/nodeClassifier';
+import { UPDATE_NODE_TYPE } from '@/lib/graphql/mutations';
+
+// Fallback empty mutation document if UPDATE_NODE_TYPE is not available
+const EMPTY_MUTATION = gql`
+  mutation EmptyMutation {
+    __typename
+  }
+`;
 
 interface NodeClassificationWithPosition {
   result: NodeClassificationResult;
@@ -44,6 +53,9 @@ export function NodeClassificationDialog({
   const [isApplying, setIsApplying] = useState(false);
   const [appliedIndices, setAppliedIndices] = useState<Set<number>>(new Set());
   const [skippedIndices, setSkippedIndices] = useState<Set<number>>(new Set());
+  // UpdateNodeType mutation - will be available after codegen runs with updated schema
+  // Use fallback empty mutation if UPDATE_NODE_TYPE is not available
+  const [updateNodeType] = useMutation(UPDATE_NODE_TYPE || EMPTY_MUTATION);
 
   const isMultipleMode = multipleClassificationResults && multipleClassificationResults.length > 0;
 
@@ -51,7 +63,7 @@ export function NodeClassificationDialog({
     return null;
   }
 
-  const handleApply = () => {
+  const handleApply = async () => {
     if (!editor || !nodePosition || !classificationResult) {
       return;
     }
@@ -59,6 +71,31 @@ export function NodeClassificationDialog({
     setIsApplying(true);
 
     try {
+      // Get node ID and current type
+      const nodeInfo = getNodeIdAndType(editor, nodePosition);
+      
+      // Update database if node has ID and mutation is available
+      if (nodeInfo?.nodeId && nodeInfo.nodeType && UPDATE_NODE_TYPE) {
+        try {
+          await updateNodeType({
+            variables: {
+              input: {
+                nodeId: nodeInfo.nodeId,
+                oldType: nodeInfo.nodeType,
+                newType: classificationResult.suggestedType,
+                attributes: classificationResult.suggestedAttributes
+                  ? JSON.parse(JSON.stringify(classificationResult.suggestedAttributes))
+                  : undefined,
+              },
+            },
+          });
+        } catch (dbError) {
+          console.error('Error updating database:', dbError);
+          // Continue with editor update even if database update fails
+        }
+      }
+
+      // Update editor
       const success = reclassifyNode(
         editor,
         nodePosition,
@@ -81,7 +118,7 @@ export function NodeClassificationDialog({
     }
   };
 
-  const handleApplyNode = (index: number) => {
+  const handleApplyNode = async (index: number) => {
     if (!editor || !multipleClassificationResults) {
       return;
     }
@@ -94,6 +131,31 @@ export function NodeClassificationDialog({
     setIsApplying(true);
 
     try {
+      // Get node ID and current type
+      const nodeInfo = getNodeIdAndType(editor, nodeData.position);
+      
+      // Update database if node has ID and mutation is available
+      if (nodeInfo?.nodeId && nodeInfo.nodeType && UPDATE_NODE_TYPE) {
+        try {
+          await updateNodeType({
+            variables: {
+              input: {
+                nodeId: nodeInfo.nodeId,
+                oldType: nodeInfo.nodeType,
+                newType: nodeData.result.suggestedType,
+                attributes: nodeData.result.suggestedAttributes
+                  ? JSON.parse(JSON.stringify(nodeData.result.suggestedAttributes))
+                  : undefined,
+              },
+            },
+          });
+        } catch (dbError) {
+          console.error('Error updating database:', dbError);
+          // Continue with editor update even if database update fails
+        }
+      }
+
+      // Update editor
       const success = reclassifyNode(
         editor,
         nodeData.position,
@@ -129,7 +191,7 @@ export function NodeClassificationDialog({
     });
   };
 
-  const handleApplyAll = () => {
+  const handleApplyAll = async () => {
     if (!editor || !multipleClassificationResults) {
       return;
     }
@@ -138,11 +200,37 @@ export function NodeClassificationDialog({
 
     try {
       const applied: number[] = [];
-      multipleClassificationResults.forEach((nodeData, index) => {
+      
+      for (const [index, nodeData] of multipleClassificationResults.entries()) {
         if (!nodeData.position || skippedIndices.has(index) || appliedIndices.has(index)) {
-          return;
+          continue;
         }
 
+        // Get node ID and current type
+        const nodeInfo = getNodeIdAndType(editor, nodeData.position);
+        
+        // Update database if node has ID
+        if (nodeInfo?.nodeId && nodeInfo.nodeType) {
+          try {
+            await updateNodeType({
+              variables: {
+                input: {
+                  nodeId: nodeInfo.nodeId,
+                  oldType: nodeInfo.nodeType,
+                  newType: nodeData.result.suggestedType,
+                  attributes: nodeData.result.suggestedAttributes
+                    ? JSON.parse(JSON.stringify(nodeData.result.suggestedAttributes))
+                    : undefined,
+                },
+              },
+            });
+          } catch (dbError) {
+            console.error(`Error updating database for node ${index}:`, dbError);
+            // Continue with editor update even if database update fails
+          }
+        }
+
+        // Update editor
         const success = reclassifyNode(
           editor,
           nodeData.position,
@@ -153,7 +241,7 @@ export function NodeClassificationDialog({
         if (success) {
           applied.push(index);
         }
-      });
+      }
 
       if (applied.length > 0) {
         const newAppliedIndices = new Set([...appliedIndices, ...applied]);

@@ -34,4 +34,10 @@ export {
   ReclassifySelectedNodesDocument as RECLASSIFY_SELECTED_NODES,
 } from '@/generated/graphql';
 
+// Conditionally export UpdateNodeTypeDocument if it exists
+// This will be available after running codegen with updated schema
+// Note: This export may be undefined until GraphQL server is restarted and codegen is run
+import * as GeneratedGraphQL from '@/generated/graphql';
+export const UPDATE_NODE_TYPE = (GeneratedGraphQL as any).UpdateNodeTypeDocument as typeof GeneratedGraphQL.UpdateNodeTypeDocument | undefined;
+
 

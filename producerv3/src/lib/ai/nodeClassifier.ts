@@ -193,6 +193,67 @@ export function extractMultipleNodesFromSelection(
 }
 
 /**
+ * Extract node ID from node attributes based on node type
+ */
+export function extractNodeId(nodeType: string, attributes: Record<string, unknown>): string | null {
+  const idAttributeMap: Record<string, string> = {
+    character: 'characterId',
+    ghost: 'ghostId',
+    location: 'locationId',
+    organization: 'organizationId',
+    company: 'companyId',
+    technology: 'technologyId',
+    episode: 'episodeId',
+    scene: 'sceneId',
+    arc: 'arcId',
+    motif: 'motifId',
+    season: 'seasonId',
+    timeline: 'timelineId',
+    pov: 'povId',
+    beat: 'beatId',
+    event: 'eventId',
+    sourceRef: 'sourceRefId',
+    occupation: 'occupationId',
+    setting: 'settingId',
+  };
+
+  const idAttribute = idAttributeMap[nodeType];
+  if (!idAttribute) {
+    return null;
+  }
+
+  const nodeId = attributes[idAttribute];
+  return typeof nodeId === 'string' ? nodeId : null;
+}
+
+/**
+ * Get node ID and type from editor node
+ */
+export function getNodeIdAndType(
+  editor: Editor,
+  nodePosition: { from: number; to: number }
+): { nodeId: string | null; nodeType: string | null } | null {
+  const { state } = editor;
+  const { from } = nodePosition;
+
+  try {
+    const node = state.doc.nodeAt(from);
+    if (!node) {
+      return null;
+    }
+
+    const nodeType = node.type.name;
+    const attributes = node.attrs as Record<string, unknown>;
+    const nodeId = extractNodeId(nodeType, attributes);
+
+    return { nodeId, nodeType };
+  } catch (error) {
+    console.error('Error getting node ID and type:', error);
+    return null;
+  }
+}
+
+/**
  * Reclassify a node in the editor
  */
 export function reclassifyNode(

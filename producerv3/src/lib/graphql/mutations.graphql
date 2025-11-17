@@ -200,3 +200,12 @@ mutation ReclassifySelectedNodes($input: ReclassifySelectedNodesInput!) {
     applied
   }
 }
+
+mutation UpdateNodeType($input: UpdateNodeTypeInput!) {
+  updateNodeType(input: $input) {
+    success
+    nodeId
+    newType
+    message
+  }
+}
