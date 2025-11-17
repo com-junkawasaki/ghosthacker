@@ -9,7 +9,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { useEditor } from '@tiptap/react';
+import type { Editor } from '@tiptap/react';
 import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
 import type { EmotionScore } from '@/types/jsonld';
 import { compareWithAllBenchmarks, getAllBenchmarks, getBenchmarkById, type BenchmarkComparisonResult } from '@/lib/ai/emotionBenchmark';
@@ -27,8 +27,11 @@ interface NodeEmotionData {
   };
 }
 
-export function EmotionalView() {
-  const editor = useEditor();
+interface EmotionalViewProps {
+  editor: Editor | null;
+}
+
+export function EmotionalView({ editor }: EmotionalViewProps) {
   const [selectedBenchmark, setSelectedBenchmark] = useState<string | null>(null);
 
   // Extract emotion data from all nodes

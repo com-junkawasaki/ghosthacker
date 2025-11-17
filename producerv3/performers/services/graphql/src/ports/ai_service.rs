@@ -153,17 +153,17 @@ fn build_character_prompt(input: &MultiAgentGenerateInput) -> anyhow::Result<Str
     
     // Add character information if provided
     if let Some(ref character_id) = input.character_id {
-        prompt_parts.push(format!("Character ID: {}", character_id));
+        prompt_parts.push(format!("Character ID: {}", character_id.to_string()));
     }
     
     // Add scene information if provided
     if let Some(ref scene_id) = input.scene_id {
-        prompt_parts.push(format!("Scene ID: {}", scene_id));
+        prompt_parts.push(format!("Scene ID: {}", scene_id.to_string()));
     }
     
     // Add POV information if provided
     if let Some(ref pov_id) = input.pov_id {
-        prompt_parts.push(format!("POV ID: {}", pov_id));
+        prompt_parts.push(format!("POV ID: {}", pov_id.to_string()));
     }
     
     // Add emotion arc if provided
@@ -186,7 +186,7 @@ fn build_narrator_prompt(input: &MultiAgentGenerateInput) -> anyhow::Result<Stri
     
     // Add POV information
     if let Some(ref pov_id) = input.pov_id {
-        prompt_parts.push(format!("Narrator POV ID: {}", pov_id));
+        prompt_parts.push(format!("Narrator POV ID: {}", pov_id.to_string()));
     }
     
     // Add context

@@ -700,7 +700,7 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
       </div>
       
       {/* Emotional View */}
-      <EmotionalView />
+      <EmotionalView editor={editor} />
       
       {/* ノード選択ダイアログ */}
       {selectedNodeType && (
