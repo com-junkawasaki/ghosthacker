@@ -5,7 +5,7 @@
  * 
  * JSON-LD Node GraphQL schema definitions
  */
-use async_graphql::{SimpleObject, ID};
+use async_graphql::{SimpleObject, InputObject, ID};
 
 #[derive(SimpleObject, Clone)]
 pub struct Character {
@@ -19,6 +19,7 @@ pub struct Character {
     pub role: Option<String>,
     pub virtue: Option<String>,
     pub alternate_name: Option<String>,
+    pub image_base64: Option<String>,
 }
 
 #[derive(SimpleObject, Clone)]
@@ -182,5 +183,19 @@ pub struct Setting {
     pub name: String,
     pub description: Option<String>,
     pub ghost_type: Option<String>,
+}
+
+#[derive(InputObject)]
+pub struct UpsertCharacterInput {
+    pub character_id: String,
+    pub name: String,
+    pub callsign: Option<String>,
+    pub description: Option<String>,
+    pub age: Option<i32>,
+    pub occupation: Option<String>,
+    pub role: Option<String>,
+    pub virtue: Option<String>,
+    pub alternate_name: Option<String>,
+    pub image_base64: Option<String>,
 }
 

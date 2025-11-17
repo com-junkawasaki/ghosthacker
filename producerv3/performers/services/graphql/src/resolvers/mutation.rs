@@ -21,6 +21,7 @@ use crate::schema::ai::{
 };
 use crate::schema::emotion::{EmotionProfile, AnalyzeEmotionsInput};
 use crate::schema::graph::{GraphLink, GraphIncidence, CreateGraphLinkInput, UpdateGraphLinkInput, CreateGraphIncidenceInput, UpdateGraphIncidenceInput};
+use crate::schema::jsonld::{Character, UpsertCharacterInput};
 use crate::ports::{postgres, ai_service, emotion_service};
 
 #[derive(Default)]
@@ -235,6 +236,29 @@ impl MutationRoot {
         let pool = ctx.data::<postgres::PostgresPool>()?;
         ai_service::analyze_node_content(pool, input).await
             .map_err(|e| async_graphql::Error::new(format!("Failed to analyze node content: {:?}", e)))
+    }
+
+    /// Upsert character
+    async fn upsert_character(
+        &self,
+        ctx: &Context<'_>,
+        input: UpsertCharacterInput,
+    ) -> async_graphql::Result<Character> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::upsert_character(
+            pool,
+            input.character_id,
+            input.name,
+            input.callsign,
+            input.description,
+            input.age,
+            input.occupation,
+            input.role,
+            input.virtue,
+            input.alternate_name,
+            input.image_base64,
+        ).await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to upsert character: {:?}", e)))
     }
 }
 

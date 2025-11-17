@@ -161,6 +161,18 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
           };
         },
       },
+      imageBase64: {
+        default: null,
+        parseHTML: (element) => element.getAttribute('data-image-base64'),
+        renderHTML: (attributes: Record<string, unknown>) => {
+          if (!attributes.imageBase64) {
+            return {};
+          }
+          return {
+            'data-image-base64': attributes.imageBase64,
+          };
+        },
+      },
     };
   },
 
@@ -174,6 +186,7 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
 
   renderHTML({ HTMLAttributes, node }: { HTMLAttributes: Record<string, unknown>; node?: unknown }) {
     const name = (HTMLAttributes.name as string) || (HTMLAttributes.characterId as string) || 'Character';
+    const imageBase64 = HTMLAttributes.imageBase64 as string | undefined;
     const nodeType = 'character';
     const nodeClasses = getNodeClasses(nodeType);
     const labelClasses = getNodeLabelClasses(nodeType);
@@ -201,16 +214,32 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
       }
     }
     
+    const children: unknown[] = [
+      ['div', { class: 'flex items-center gap-2 mb-2' }, [
+        ['span', { class: labelClasses }, labelText],
+        ['span', { class: 'font-semibold flex-1' }, name],
+      ]],
+    ];
+    
+    // 画像が存在する場合は表示
+    if (imageBase64) {
+      children.push([
+        'img',
+        {
+          src: imageBase64,
+          alt: name,
+          class: 'max-w-full h-auto rounded mb-2',
+          style: 'max-width: 300px; max-height: 300px; object-fit: contain;',
+        },
+      ]);
+    }
+    
+    children.push(['div', { class: 'node-content' }, 0]); // 0 = 子ノードをここに挿入
+    
     return [
       'div',
       sanitizedAttrs,
-      [
-        ['div', { class: 'flex items-center gap-2 mb-2' }, [
-          ['span', { class: labelClasses }, labelText],
-          ['span', { class: 'font-semibold flex-1' }, name],
-        ]],
-        ['div', { class: 'node-content' }, 0], // 0 = 子ノードをここに挿入
-      ],
+      children,
     ];
   },
 

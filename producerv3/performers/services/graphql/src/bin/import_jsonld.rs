@@ -147,6 +147,7 @@ async fn import_node(
                 mapping.fields.get("role").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("virtue").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("alternate_name").and_then(|v| v.as_str().map(|s| s.to_string())),
+                mapping.fields.get("image_base64").and_then(|v| v.as_str().map(|s| s.to_string())),
             ).await
             .map_err(|e| anyhow::anyhow!("Failed to upsert character {}: {:?}", mapping.node_id, e))?;
         },

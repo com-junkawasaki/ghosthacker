@@ -38,9 +38,9 @@
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
   "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation with structured context extraction (hierarchical hybrid approach: Node + Mark + Attribute), AI node classification and batch reclassification (single and multiple nodes), node content analysis (sub-node detection, mask recommendations, emotion analysis), emotion analysis (Hume AI) with current node analysis, sidebar visualization and benchmark comparison, and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "2.10.0",
+  "version": "2.11.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-01-28T00:00:00Z",
+  "updatedAt": "2025-01-29T00:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -102,7 +102,8 @@
     {"@id": "https://gftd.ai/activity/manage-mask-context"},
     {"@id": "https://gftd.ai/activity/extract-structured-context"},
     {"@id": "https://gftd.ai/activity/generate-context-jsonld"},
-    {"@id": "https://gftd.ai/activity/sanitize-attributes"}
+    {"@id": "https://gftd.ai/activity/sanitize-attributes"},
+    {"@id": "https://gftd.ai/activity/character-image-upload"}
   ],
   
   "hasPerformer": [
@@ -264,6 +265,12 @@
       "type": "cpm:Resource",
       "name": "Node Content Analysis Result",
       "description": "Analysis results for node content after classification, including detected sub-nodes (with text, node type, confidence, position), recommended masks (mask type and confidence), and emotion profile (emotion vector with scores). Analysis is automatically triggered after successful node reclassification. Results are displayed in a dedicated dialog with options to apply detected nodes, recommended masks, and emotion analysis, or skip the analysis."
+    },
+    {
+      "@id": "https://gftd.ai/resource/character-image",
+      "type": "cpm:Resource",
+      "name": "Character Image",
+      "description": "Base64-encoded image data for character profile images. Images are stored in PostgreSQL TEXT column (image_base64) and displayed in TipTap CharacterNode. Supports PNG, JPEG, and WebP formats. Images are uploaded via file selection and converted to base64 format before saving."
     }
   ],
   
@@ -734,6 +741,14 @@
       "status": "resolved",
       "priority": "high",
       "resolution": "Created common sanitization utility (src/lib/editor/sanitizeAttributes.ts) with sanitizeAttributeValue() function using ts-pattern for type-safe value conversion. Implemented sanitizeNodeAttributes() generic function to sanitize all node attributes. Defined TiptapAttributeValue union type (string | number | boolean | null | undefined) to enforce type safety. Applied sanitization to all insert commands: CharacterNode.insertCharacter(), LocationNode.insertLocation(), OrganizationNode.insertOrganization() and insertCompany(), GhostNode.insertGhost(), TechnologyNode.insertTechnology(), StoryNode factory (insertEpisode, insertScene, insertArc, insertMotif, insertSeason, insertTimeline, insertPOV, insertBeat), and MetaNode factory (insertSourceRef, insertEvent, insertOccupation, insertSetting). All sanitization uses ts-pattern with exhaustive type guards to convert arrays and objects to primitive types at build time. TypeScript strict mode ensures compile-time detection of type errors. All node extensions now prevent renderSpec errors by sanitizing attributes before passing to Tiptap's create() or insertContent() methods."
+    },
+    {
+      "@id": "https://gftd.ai/issue/character-image-integration",
+      "name": "Character Node Image Integration",
+      "description": "Implemented image upload functionality for character nodes. Images are stored as base64-encoded strings in PostgreSQL TEXT column and displayed in TipTap CharacterNode. Supports PNG, JPEG, and WebP formats. Images are uploaded via file selection, converted to base64 format, and saved via GraphQL mutation.",
+      "status": "resolved",
+      "priority": "medium",
+      "resolution": "Added image_base64 TEXT column to characters table via migration (004_add_character_image.sql). Updated Rust GraphQL schema (Character struct) and database layer (CharacterRow, list_characters, upsert_character) to support image_base64 field. Created UpsertCharacterInput GraphQL input type and upsertCharacter mutation. Updated TypeScript CharacterNode interface and TipTap CharacterNode extension to support imageBase64 attribute. Enhanced renderHTML() to display images when present. Updated import_jsonld.rs to handle image_base64 field. All implementations follow existing patterns and maintain backward compatibility."
     }
   ]
 }

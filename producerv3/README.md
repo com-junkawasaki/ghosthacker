@@ -137,8 +137,19 @@ PORT=8080
 - **Emotion Analysis**: Analyze emotions for all node types using Hume AI API with visual color coding
 - **Emotion Benchmark Comparison**: Compare emotion scores with reference works and calculate alignment scores
 - **Emotion Curve Visualization**: Visualize emotion flow across nodes with SVG-based graphs
+- **Character Image Upload**: Upload and display profile images for character nodes (base64 format, supports PNG/JPEG/WebP)
 
-## Recent Updates (v2.2.0)
+## Recent Updates (v2.11.0)
+
+### Character Node Image Integration
+- **Image Upload**: Character nodes now support profile image uploads via file selection
+- **Base64 Storage**: Images are stored as base64-encoded strings in PostgreSQL TEXT column
+- **Image Display**: Images are displayed in TipTap CharacterNode with responsive sizing (max 300px)
+- **Format Support**: Supports PNG, JPEG, and WebP image formats
+- **GraphQL Integration**: Added `upsertCharacter` mutation with `imageBase64` field
+- **Database Migration**: Added `image_base64` column to `characters` table
+
+## Previous Updates (v2.2.0)
 
 ### Emotion Visualization & Benchmark Comparison
 - **Emotion Analysis for All Nodes**: Extended emotion analysis to all node types (paragraph, character, scene, beat, arc, etc.), not just paragraphs

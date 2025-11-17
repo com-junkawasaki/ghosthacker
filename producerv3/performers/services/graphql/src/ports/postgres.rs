@@ -604,6 +604,7 @@ struct CharacterRow {
     role: Option<String>,
     virtue: Option<String>,
     alternate_name: Option<String>,
+    image_base64: Option<String>,
     created_at: DateTime<Utc>,
     updated_at: DateTime<Utc>,
 }
@@ -807,7 +808,7 @@ struct SettingRow {
 pub async fn list_characters(pool: &PostgresPool) -> Result<Vec<Character>> {
     let rows = sqlx::query_as::<_, CharacterRow>(
         r#"
-        SELECT id, character_id, name, callsign, description, age, occupation, role, virtue, alternate_name, created_at, updated_at
+        SELECT id, character_id, name, callsign, description, age, occupation, role, virtue, alternate_name, image_base64, created_at, updated_at
         FROM characters
         ORDER BY name ASC
         "#,
@@ -826,6 +827,7 @@ pub async fn list_characters(pool: &PostgresPool) -> Result<Vec<Character>> {
         role: row.role,
         virtue: row.virtue,
         alternate_name: row.alternate_name,
+        image_base64: row.image_base64,
     }).collect())
 }
 
@@ -1216,11 +1218,12 @@ pub async fn upsert_character(
     role: Option<String>,
     virtue: Option<String>,
     alternate_name: Option<String>,
+    image_base64: Option<String>,
 ) -> Result<Character> {
     let row = sqlx::query_as::<_, CharacterRow>(
         r#"
-        INSERT INTO characters (character_id, name, callsign, description, age, occupation, role, virtue, alternate_name)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        INSERT INTO characters (character_id, name, callsign, description, age, occupation, role, virtue, alternate_name, image_base64)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
         ON CONFLICT (character_id) DO UPDATE SET
             name = EXCLUDED.name,
             callsign = EXCLUDED.callsign,
@@ -1230,8 +1233,9 @@ pub async fn upsert_character(
             role = EXCLUDED.role,
             virtue = EXCLUDED.virtue,
             alternate_name = EXCLUDED.alternate_name,
+            image_base64 = EXCLUDED.image_base64,
             updated_at = NOW()
-        RETURNING id, character_id, name, callsign, description, age, occupation, role, virtue, alternate_name, created_at, updated_at
+        RETURNING id, character_id, name, callsign, description, age, occupation, role, virtue, alternate_name, image_base64, created_at, updated_at
         "#,
     )
     .bind(character_id.clone())
@@ -1243,6 +1247,7 @@ pub async fn upsert_character(
     .bind(role.clone())
     .bind(virtue.clone())
     .bind(alternate_name.clone())
+    .bind(image_base64.clone())
     .fetch_one(pool.as_ref())
     .await?;
     
@@ -1257,6 +1262,7 @@ pub async fn upsert_character(
         role: row.role,
         virtue: row.virtue,
         alternate_name: row.alternate_name,
+        image_base64: row.image_base64,
     })
 }
 

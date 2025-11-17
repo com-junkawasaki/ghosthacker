@@ -39,6 +39,7 @@ export interface CharacterNode {
   memberOf?: { '@id': string };
   gender?: string;
   nationality?: string;
+  imageBase64?: string;
 }
 
 export interface GhostNode {
