@@ -15,21 +15,18 @@ use poem::{
     EndpointExt, Route, Server,
 };
 
-mod schema;
-mod resolvers;
-mod ports;
-
-use resolvers::query::QueryRoot;
-use resolvers::mutation::MutationRoot;
+use epub_editor_graphql::resolvers::query::QueryRoot;
+use epub_editor_graphql::resolvers::mutation::MutationRoot;
+use epub_editor_graphql::ports;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     // Initialize PostgreSQL connection
-    let postgres_pool = ports::postgres::create_pool().await?;
+    let postgres_pool = epub_editor_graphql::ports::postgres::create_pool().await?;
     
     // Ensure default EPUB exists (for "default" project ID)
     let default_epub_id = "00000000-0000-0000-0000-000000000000";
-    ports::postgres::ensure_default_epub(&postgres_pool, default_epub_id).await?;
+    epub_editor_graphql::ports::postgres::ensure_default_epub(&postgres_pool, default_epub_id).await?;
     
     // Create GraphQL schema
     let schema = Schema::build(

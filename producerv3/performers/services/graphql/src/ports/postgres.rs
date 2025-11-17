@@ -16,6 +16,8 @@ use crate::schema::jsonld::{
     Episode, Scene, Motif, Season, Timeline, Event,
     SourceRef, Occupation, Setting,
 };
+use crate::schema::graph::{GraphLink, GraphIncidence, CreateGraphLinkInput, UpdateGraphLinkInput, CreateGraphIncidenceInput, UpdateGraphIncidenceInput};
+use serde_json::Value;
 
 pub type PostgresPool = Arc<PgPool>;
 
@@ -1484,4 +1486,365 @@ mod tests {
         assert_eq!(all_metadata[0].key, "author");
         assert_eq!(all_metadata[0].value, "Test Author");
     }
+}
+
+// Graph operations
+
+/// Row structure for graph_links table
+#[derive(sqlx::FromRow)]
+struct GraphLinkRow {
+    id: Uuid,
+    source_node_type: String,
+    source_node_id: Uuid,
+    target_node_type: String,
+    target_node_id: Uuid,
+    link_type: String,
+    properties: Option<Value>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+/// Row structure for graph_incidences table
+#[derive(sqlx::FromRow)]
+struct GraphIncidenceRow {
+    id: Uuid,
+    node_type: String,
+    node_id: Uuid,
+    link_id: Uuid,
+    role: String,
+    properties: Option<Value>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+/// List all graph links
+pub async fn list_graph_links(pool: &PostgresPool) -> Result<Vec<GraphLink>> {
+    let rows = sqlx::query_as::<_, GraphLinkRow>(
+        r#"
+        SELECT id, source_node_type, source_node_id, target_node_type, target_node_id, link_type, properties, created_at, updated_at
+        FROM graph_links
+        ORDER BY created_at DESC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| GraphLink {
+        id: async_graphql::ID::from(row.id.to_string()),
+        source_node_type: row.source_node_type,
+        source_node_id: async_graphql::ID::from(row.source_node_id.to_string()),
+        target_node_type: row.target_node_type,
+        target_node_id: async_graphql::ID::from(row.target_node_id.to_string()),
+        link_type: row.link_type,
+        properties: row.properties,
+        created_at: row.created_at.to_rfc3339(),
+        updated_at: row.updated_at.to_rfc3339(),
+    }).collect())
+}
+
+/// Get graph links for a specific node
+pub async fn get_graph_links_for_node(
+    pool: &PostgresPool,
+    node_type: String,
+    node_id: String,
+) -> Result<Vec<GraphLink>> {
+    let node_uuid = Uuid::parse_str(&node_id)?;
+    
+    let rows = sqlx::query_as::<_, GraphLinkRow>(
+        r#"
+        SELECT id, source_node_type, source_node_id, target_node_type, target_node_id, link_type, properties, created_at, updated_at
+        FROM graph_links
+        WHERE (source_node_type = $1 AND source_node_id = $2)
+           OR (target_node_type = $1 AND target_node_id = $2)
+        ORDER BY created_at DESC
+        "#,
+    )
+    .bind(&node_type)
+    .bind(node_uuid)
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| GraphLink {
+        id: async_graphql::ID::from(row.id.to_string()),
+        source_node_type: row.source_node_type,
+        source_node_id: async_graphql::ID::from(row.source_node_id.to_string()),
+        target_node_type: row.target_node_type,
+        target_node_id: async_graphql::ID::from(row.target_node_id.to_string()),
+        link_type: row.link_type,
+        properties: row.properties,
+        created_at: row.created_at.to_rfc3339(),
+        updated_at: row.updated_at.to_rfc3339(),
+    }).collect())
+}
+
+/// Create a graph link
+pub async fn create_graph_link(
+    pool: &PostgresPool,
+    input: CreateGraphLinkInput,
+) -> Result<GraphLink> {
+    let id = Uuid::new_v4();
+    let source_node_uuid = Uuid::parse_str(input.source_node_id.as_str())?;
+    let target_node_uuid = Uuid::parse_str(input.target_node_id.as_str())?;
+    let properties = input.properties.unwrap_or_else(|| Value::Object(serde_json::Map::new()));
+    
+    let row = sqlx::query_as::<_, GraphLinkRow>(
+        r#"
+        INSERT INTO graph_links (id, source_node_type, source_node_id, target_node_type, target_node_id, link_type, properties)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        RETURNING id, source_node_type, source_node_id, target_node_type, target_node_id, link_type, properties, created_at, updated_at
+        "#,
+    )
+    .bind(id)
+    .bind(&input.source_node_type)
+    .bind(source_node_uuid)
+    .bind(&input.target_node_type)
+    .bind(target_node_uuid)
+    .bind(&input.link_type)
+    .bind(&properties)
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    Ok(GraphLink {
+        id: async_graphql::ID::from(row.id.to_string()),
+        source_node_type: row.source_node_type,
+        source_node_id: async_graphql::ID::from(row.source_node_id.to_string()),
+        target_node_type: row.target_node_type,
+        target_node_id: async_graphql::ID::from(row.target_node_id.to_string()),
+        link_type: row.link_type,
+        properties: row.properties,
+        created_at: row.created_at.to_rfc3339(),
+        updated_at: row.updated_at.to_rfc3339(),
+    })
+}
+
+/// Update a graph link
+pub async fn update_graph_link(
+    pool: &PostgresPool,
+    input: UpdateGraphLinkInput,
+) -> Result<GraphLink> {
+    let link_uuid = Uuid::parse_str(input.id.as_str())?;
+    
+    // Update fields individually using parameterized queries
+    if let Some(link_type) = &input.link_type {
+        sqlx::query!(
+            "UPDATE graph_links SET link_type = $1, updated_at = NOW() WHERE id = $2",
+            link_type,
+            link_uuid
+        )
+        .execute(pool.as_ref())
+        .await?;
+    }
+    
+    if let Some(properties) = &input.properties {
+        sqlx::query!(
+            "UPDATE graph_links SET properties = $1, updated_at = NOW() WHERE id = $2",
+            properties,
+            link_uuid
+        )
+        .execute(pool.as_ref())
+        .await?;
+    }
+    
+    // Return updated link
+    let row = sqlx::query_as::<_, GraphLinkRow>(
+        r#"
+        SELECT id, source_node_type, source_node_id, target_node_type, target_node_id, link_type, properties, created_at, updated_at
+        FROM graph_links
+        WHERE id = $1
+        "#,
+    )
+    .bind(link_uuid)
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    Ok(GraphLink {
+        id: async_graphql::ID::from(row.id.to_string()),
+        source_node_type: row.source_node_type,
+        source_node_id: async_graphql::ID::from(row.source_node_id.to_string()),
+        target_node_type: row.target_node_type,
+        target_node_id: async_graphql::ID::from(row.target_node_id.to_string()),
+        link_type: row.link_type,
+        properties: row.properties,
+        created_at: row.created_at.to_rfc3339(),
+        updated_at: row.updated_at.to_rfc3339(),
+    })
+}
+
+/// Delete a graph link
+pub async fn delete_graph_link(pool: &PostgresPool, id: String) -> Result<bool> {
+    let link_uuid = Uuid::parse_str(&id)?;
+    
+    let deleted = sqlx::query!(
+        r#"
+        DELETE FROM graph_links WHERE id = $1
+        "#,
+        link_uuid
+    )
+    .execute(pool.as_ref())
+    .await?
+    .rows_affected();
+    
+    Ok(deleted > 0)
+}
+
+/// List all graph incidences
+pub async fn list_graph_incidences(pool: &PostgresPool) -> Result<Vec<GraphIncidence>> {
+    let rows = sqlx::query_as::<_, GraphIncidenceRow>(
+        r#"
+        SELECT id, node_type, node_id, link_id, role, properties, created_at, updated_at
+        FROM graph_incidences
+        ORDER BY created_at DESC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| GraphIncidence {
+        id: async_graphql::ID::from(row.id.to_string()),
+        node_type: row.node_type,
+        node_id: async_graphql::ID::from(row.node_id.to_string()),
+        link_id: async_graphql::ID::from(row.link_id.to_string()),
+        role: row.role,
+        properties: row.properties,
+        created_at: row.created_at.to_rfc3339(),
+        updated_at: row.updated_at.to_rfc3339(),
+    }).collect())
+}
+
+/// Get graph incidences for a specific link
+pub async fn get_graph_incidences_for_link(
+    pool: &PostgresPool,
+    link_id: String,
+) -> Result<Vec<GraphIncidence>> {
+    let link_uuid = Uuid::parse_str(&link_id)?;
+    
+    let rows = sqlx::query_as::<_, GraphIncidenceRow>(
+        r#"
+        SELECT id, node_type, node_id, link_id, role, properties, created_at, updated_at
+        FROM graph_incidences
+        WHERE link_id = $1
+        ORDER BY created_at DESC
+        "#,
+    )
+    .bind(link_uuid)
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| GraphIncidence {
+        id: async_graphql::ID::from(row.id.to_string()),
+        node_type: row.node_type,
+        node_id: async_graphql::ID::from(row.node_id.to_string()),
+        link_id: async_graphql::ID::from(row.link_id.to_string()),
+        role: row.role,
+        properties: row.properties,
+        created_at: row.created_at.to_rfc3339(),
+        updated_at: row.updated_at.to_rfc3339(),
+    }).collect())
+}
+
+/// Create a graph incidence
+pub async fn create_graph_incidence(
+    pool: &PostgresPool,
+    input: CreateGraphIncidenceInput,
+) -> Result<GraphIncidence> {
+    let id = Uuid::new_v4();
+    let node_uuid = Uuid::parse_str(input.node_id.as_str())?;
+    let link_uuid = Uuid::parse_str(input.link_id.as_str())?;
+    let properties = input.properties.unwrap_or_else(|| Value::Object(serde_json::Map::new()));
+    
+    let row = sqlx::query_as::<_, GraphIncidenceRow>(
+        r#"
+        INSERT INTO graph_incidences (id, node_type, node_id, link_id, role, properties)
+        VALUES ($1, $2, $3, $4, $5, $6)
+        RETURNING id, node_type, node_id, link_id, role, properties, created_at, updated_at
+        "#,
+    )
+    .bind(id)
+    .bind(&input.node_type)
+    .bind(node_uuid)
+    .bind(link_uuid)
+    .bind(&input.role)
+    .bind(&properties)
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    Ok(GraphIncidence {
+        id: async_graphql::ID::from(row.id.to_string()),
+        node_type: row.node_type,
+        node_id: async_graphql::ID::from(row.node_id.to_string()),
+        link_id: async_graphql::ID::from(row.link_id.to_string()),
+        role: row.role,
+        properties: row.properties,
+        created_at: row.created_at.to_rfc3339(),
+        updated_at: row.updated_at.to_rfc3339(),
+    })
+}
+
+/// Update a graph incidence
+pub async fn update_graph_incidence(
+    pool: &PostgresPool,
+    input: UpdateGraphIncidenceInput,
+) -> Result<GraphIncidence> {
+    let incidence_uuid = Uuid::parse_str(input.id.as_str())?;
+    
+    // Update fields individually using parameterized queries
+    if let Some(role) = &input.role {
+        sqlx::query!(
+            "UPDATE graph_incidences SET role = $1, updated_at = NOW() WHERE id = $2",
+            role,
+            incidence_uuid
+        )
+        .execute(pool.as_ref())
+        .await?;
+    }
+    
+    if let Some(properties) = &input.properties {
+        sqlx::query!(
+            "UPDATE graph_incidences SET properties = $1, updated_at = NOW() WHERE id = $2",
+            properties,
+            incidence_uuid
+        )
+        .execute(pool.as_ref())
+        .await?;
+    }
+    
+    // Return updated incidence
+    let row = sqlx::query_as::<_, GraphIncidenceRow>(
+        r#"
+        SELECT id, node_type, node_id, link_id, role, properties, created_at, updated_at
+        FROM graph_incidences
+        WHERE id = $1
+        "#,
+    )
+    .bind(incidence_uuid)
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    Ok(GraphIncidence {
+        id: async_graphql::ID::from(row.id.to_string()),
+        node_type: row.node_type,
+        node_id: async_graphql::ID::from(row.node_id.to_string()),
+        link_id: async_graphql::ID::from(row.link_id.to_string()),
+        role: row.role,
+        properties: row.properties,
+        created_at: row.created_at.to_rfc3339(),
+        updated_at: row.updated_at.to_rfc3339(),
+    })
+}
+
+/// Delete a graph incidence
+pub async fn delete_graph_incidence(pool: &PostgresPool, id: String) -> Result<bool> {
+    let incidence_uuid = Uuid::parse_str(&id)?;
+    
+    let deleted = sqlx::query!(
+        r#"
+        DELETE FROM graph_incidences WHERE id = $1
+        "#,
+        incidence_uuid
+    )
+    .execute(pool.as_ref())
+    .await?
+    .rows_affected();
+    
+    Ok(deleted > 0)
 }

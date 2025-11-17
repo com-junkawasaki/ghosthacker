@@ -99,3 +99,10 @@ prod-up:
 prod-down:
 	docker-compose -f docker-compose.prod.yaml down
 
+# JSON-LD Import command
+import-jsonld:
+	cd performers/services/graphql && cargo run --bin import_jsonld -- $(ARGS)
+
+import-jsonld-custom:
+	cd performers/services/graphql && cargo run --bin import_jsonld -- $(ARGS)
+

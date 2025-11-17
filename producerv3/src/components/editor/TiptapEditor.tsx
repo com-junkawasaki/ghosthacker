@@ -57,6 +57,7 @@ import { SlashCommand } from './extensions/SlashCommand';
 import { NodeSelectorDialog } from './NodeSelectorDialog';
 import { ChapterSelectorDialog } from './ChapterSelectorDialog';
 import { MaskControls } from './MaskControls';
+import { FloatingToolbar } from './FloatingToolbar';
 import '@/styles/editor.css';
 
 interface TiptapEditorProps {
@@ -637,6 +638,10 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
       <MaskControls editor={editor} />
       <div className="editor-content flex-1 p-4 overflow-y-auto relative">
         <EditorContent editor={editor} />
+        <FloatingToolbar 
+          editor={editor} 
+          onInsertNode={(nodeType) => setSelectedNodeType(nodeType)}
+        />
       </div>
       
       {/* ノード選択ダイアログ */}

@@ -27,7 +27,7 @@ export {
   // AnalyzeEmotionsDocument as ANALYZE_EMOTIONS,
 } from '@/generated/graphql';
 
-// Temporary: Use gql tag until AnalyzeEmotionsDocument is generated
+// Temporary: Use gql tag until documents are generated
 // Remove this after running `pnpm codegen`
 import gql from 'graphql-tag';
 export const ANALYZE_EMOTIONS = gql`
@@ -40,6 +40,80 @@ export const ANALYZE_EMOTIONS = gql`
       createdAt
       language
     }
+  }
+`;
+
+export const CREATE_GRAPH_LINK = gql`
+  mutation CreateGraphLink($input: CreateGraphLinkInput!) {
+    createGraphLink(input: $input) {
+      id
+      sourceNodeType
+      sourceNodeId
+      targetNodeType
+      targetNodeId
+      linkType
+      properties
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+export const UPDATE_GRAPH_LINK = gql`
+  mutation UpdateGraphLink($input: UpdateGraphLinkInput!) {
+    updateGraphLink(input: $input) {
+      id
+      sourceNodeType
+      sourceNodeId
+      targetNodeType
+      targetNodeId
+      linkType
+      properties
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+export const DELETE_GRAPH_LINK = gql`
+  mutation DeleteGraphLink($id: ID!) {
+    deleteGraphLink(id: $id)
+  }
+`;
+
+export const CREATE_GRAPH_INCIDENCE = gql`
+  mutation CreateGraphIncidence($input: CreateGraphIncidenceInput!) {
+    createGraphIncidence(input: $input) {
+      id
+      nodeType
+      nodeId
+      linkId
+      role
+      properties
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+export const UPDATE_GRAPH_INCIDENCE = gql`
+  mutation UpdateGraphIncidence($input: UpdateGraphIncidenceInput!) {
+    updateGraphIncidence(input: $input) {
+      id
+      nodeType
+      nodeId
+      linkId
+      role
+      properties
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+export const DELETE_GRAPH_INCIDENCE = gql`
+  mutation DeleteGraphIncidence($id: ID!) {
+    deleteGraphIncidence(id: $id)
   }
 `;
 

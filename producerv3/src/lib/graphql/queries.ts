@@ -308,3 +308,65 @@ export const GET_SETTINGS = gql`
   }
 `;
 
+export const GET_GRAPH_LINKS = gql`
+  query GetGraphLinks {
+    graphLinks {
+      id
+      sourceNodeType
+      sourceNodeId
+      targetNodeType
+      targetNodeId
+      linkType
+      properties
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+export const GET_GRAPH_LINKS_FOR_NODE = gql`
+  query GetGraphLinksForNode($nodeType: String!, $nodeId: ID!) {
+    graphLinksForNode(nodeType: $nodeType, nodeId: $nodeId) {
+      id
+      sourceNodeType
+      sourceNodeId
+      targetNodeType
+      targetNodeId
+      linkType
+      properties
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+export const GET_GRAPH_INCIDENCES = gql`
+  query GetGraphIncidences {
+    graphIncidences {
+      id
+      nodeType
+      nodeId
+      linkId
+      role
+      properties
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+export const GET_GRAPH_INCIDENCES_FOR_LINK = gql`
+  query GetGraphIncidencesForLink($linkId: ID!) {
+    graphIncidencesForLink(linkId: $linkId) {
+      id
+      nodeType
+      nodeId
+      linkId
+      role
+      properties
+      createdAt
+      updatedAt
+    }
+  }
+`;
+

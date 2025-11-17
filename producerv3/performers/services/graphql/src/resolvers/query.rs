@@ -13,6 +13,7 @@ use crate::schema::jsonld::{
     SourceRef, Occupation, Setting,
 };
 use crate::schema::jsonld::Arc as JsonldArc;
+use crate::schema::graph::{GraphLink, GraphIncidence};
 use crate::ports::postgres;
 
 #[derive(Default)]
@@ -151,6 +152,40 @@ impl QueryRoot {
     async fn settings(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<Setting>> {
         let pool = ctx.data::<postgres::PostgresPool>()?;
         postgres::list_settings(pool).await
+    }
+
+    // Graph queries
+    /// Get all graph links
+    async fn graph_links(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<GraphLink>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_graph_links(pool).await
+    }
+
+    /// Get graph links for a specific node
+    async fn graph_links_for_node(
+        &self,
+        ctx: &Context<'_>,
+        node_type: String,
+        node_id: ID,
+    ) -> async_graphql::Result<Vec<GraphLink>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::get_graph_links_for_node(pool, node_type, node_id.to_string()).await
+    }
+
+    /// Get all graph incidences
+    async fn graph_incidences(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<GraphIncidence>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_graph_incidences(pool).await
+    }
+
+    /// Get graph incidences for a specific link
+    async fn graph_incidences_for_link(
+        &self,
+        ctx: &Context<'_>,
+        link_id: ID,
+    ) -> async_graphql::Result<Vec<GraphIncidence>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::get_graph_incidences_for_link(pool, link_id.to_string()).await
     }
 }
 

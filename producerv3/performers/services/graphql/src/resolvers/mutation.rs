@@ -16,6 +16,7 @@ use crate::schema::ai::{
     GeneratedText, GenerateTextInput, SummarizeInput, ProofreadInput, TranslateInput,
 };
 use crate::schema::emotion::{EmotionProfile, AnalyzeEmotionsInput};
+use crate::schema::graph::{GraphLink, GraphIncidence, CreateGraphLinkInput, UpdateGraphLinkInput, CreateGraphIncidenceInput, UpdateGraphIncidenceInput};
 use crate::ports::{postgres, ai_service, emotion_service};
 
 #[derive(Default)]
@@ -134,6 +135,43 @@ impl MutationRoot {
             input.max_sentences,
         ).await
             .map_err(|e| async_graphql::Error::new(format!("Failed to analyze emotions: {:?}", e)))
+    }
+
+    // Graph mutations
+    /// Create a graph link
+    async fn create_graph_link(&self, ctx: &Context<'_>, input: CreateGraphLinkInput) -> async_graphql::Result<GraphLink> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::create_graph_link(pool, input).await
+    }
+
+    /// Update a graph link
+    async fn update_graph_link(&self, ctx: &Context<'_>, input: UpdateGraphLinkInput) -> async_graphql::Result<GraphLink> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::update_graph_link(pool, input).await
+    }
+
+    /// Delete a graph link
+    async fn delete_graph_link(&self, ctx: &Context<'_>, id: ID) -> async_graphql::Result<bool> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::delete_graph_link(pool, id.to_string()).await
+    }
+
+    /// Create a graph incidence
+    async fn create_graph_incidence(&self, ctx: &Context<'_>, input: CreateGraphIncidenceInput) -> async_graphql::Result<GraphIncidence> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::create_graph_incidence(pool, input).await
+    }
+
+    /// Update a graph incidence
+    async fn update_graph_incidence(&self, ctx: &Context<'_>, input: UpdateGraphIncidenceInput) -> async_graphql::Result<GraphIncidence> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::update_graph_incidence(pool, input).await
+    }
+
+    /// Delete a graph incidence
+    async fn delete_graph_incidence(&self, ctx: &Context<'_>, id: ID) -> async_graphql::Result<bool> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::delete_graph_incidence(pool, id.to_string()).await
     }
 }
 

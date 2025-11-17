@@ -98,3 +98,65 @@ mutation AnalyzeEmotions($input: AnalyzeEmotionsInput!) {
     language
   }
 }
+
+mutation CreateGraphLink($input: CreateGraphLinkInput!) {
+  createGraphLink(input: $input) {
+    id
+    sourceNodeType
+    sourceNodeId
+    targetNodeType
+    targetNodeId
+    linkType
+    properties
+    createdAt
+    updatedAt
+  }
+}
+
+mutation UpdateGraphLink($input: UpdateGraphLinkInput!) {
+  updateGraphLink(input: $input) {
+    id
+    sourceNodeType
+    sourceNodeId
+    targetNodeType
+    targetNodeId
+    linkType
+    properties
+    createdAt
+    updatedAt
+  }
+}
+
+mutation DeleteGraphLink($id: ID!) {
+  deleteGraphLink(id: $id)
+}
+
+mutation CreateGraphIncidence($input: CreateGraphIncidenceInput!) {
+  createGraphIncidence(input: $input) {
+    id
+    nodeType
+    nodeId
+    linkId
+    role
+    properties
+    createdAt
+    updatedAt
+  }
+}
+
+mutation UpdateGraphIncidence($input: UpdateGraphIncidenceInput!) {
+  updateGraphIncidence(input: $input) {
+    id
+    nodeType
+    nodeId
+    linkId
+    role
+    properties
+    createdAt
+    updatedAt
+  }
+}
+
+mutation DeleteGraphIncidence($id: ID!) {
+  deleteGraphIncidence(id: $id)
+}
