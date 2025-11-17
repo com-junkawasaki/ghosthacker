@@ -7,11 +7,11 @@ WORKDIR /app
 # Install air for hot reload (use compatible version for Go 1.22)
 RUN go install github.com/cosmtrek/air@v1.49.0
 
-# Copy go mod files
+# Copy go mod files first for better layer caching
 COPY go.mod go.sum* ./
 RUN go mod download
 
-# Copy source code
+# Copy source code (only necessary files, .dockerignore handles exclusions)
 COPY . .
 
 EXPOSE 8080
@@ -24,11 +24,11 @@ FROM golang:1.22-alpine as builder
 
 WORKDIR /app
 
-# Copy go mod files
+# Copy go mod files first for better layer caching
 COPY go.mod go.sum* ./
 RUN go mod download
 
-# Copy source code
+# Copy source code (only necessary files, .dockerignore handles exclusions)
 COPY . .
 
 # Build the application

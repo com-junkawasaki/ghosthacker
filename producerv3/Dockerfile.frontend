@@ -7,13 +7,13 @@ WORKDIR /app
 # Install pnpm
 RUN npm install -g pnpm
 
-# Copy package files
+# Copy package files first for better layer caching
 COPY package.json pnpm-lock.yaml* ./
 
 # Install dependencies (use --frozen-lockfile if lockfile exists, otherwise install normally)
 RUN if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile; else pnpm install; fi
 
-# Copy source code
+# Copy source code (only necessary files, .dockerignore handles exclusions)
 COPY . .
 
 EXPOSE 3000
