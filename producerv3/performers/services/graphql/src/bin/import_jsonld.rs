@@ -30,7 +30,7 @@ async fn main() -> anyhow::Result<()> {
         .unwrap_or_else(|_| "postgresql://postgres:postgres@localhost:5432/postgres".to_string());
     
     println!("Connecting to database...");
-    let pool = postgres::create_pool().await?;
+    let pool = postgres::create_pool_without_migrations().await?;
     println!("Connected successfully!");
     
     // Import from character folder
@@ -112,7 +112,8 @@ async fn import_file(
 ) -> anyhow::Result<usize> {
     let content = fs::read_to_string(file_path)?;
     
-    let mappings = import_jsonld::parse_jsonld_file(&content)?;
+    let mappings = import_jsonld::parse_jsonld_file(&content)
+        .map_err(|e| anyhow::anyhow!("Failed to parse JSON-LD file {}: {}", file_path.display(), e))?;
     
     let mut imported_count = 0;
     
@@ -146,7 +147,8 @@ async fn import_node(
                 mapping.fields.get("role").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("virtue").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("alternate_name").and_then(|v| v.as_str().map(|s| s.to_string())),
-            ).await?;
+            ).await
+            .map_err(|e| anyhow::anyhow!("Failed to upsert character {}: {:?}", mapping.node_id, e))?;
         },
         "ghost" => {
             postgres::upsert_ghost(
@@ -157,7 +159,8 @@ async fn import_node(
                 mapping.fields.get("description").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("master").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("created_by").and_then(|v| v.as_str().map(|s| s.to_string())),
-            ).await?;
+            ).await
+            .map_err(|e| anyhow::anyhow!("Failed to upsert ghost {}: {:?}", mapping.node_id, e))?;
         },
         "location" => {
             postgres::upsert_location(
@@ -169,7 +172,8 @@ async fn import_node(
                 mapping.fields.get("hazard_note").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("operational_note").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("security_note").and_then(|v| v.as_str().map(|s| s.to_string())),
-            ).await?;
+            ).await
+            .map_err(|e| anyhow::anyhow!("Failed to upsert location {}: {:?}", mapping.node_id, e))?;
         },
         "organization" => {
             postgres::upsert_organization(
@@ -182,7 +186,8 @@ async fn import_node(
                 mapping.fields.get("infra_note").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("operational_note").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("security_note").and_then(|v| v.as_str().map(|s| s.to_string())),
-            ).await?;
+            ).await
+            .map_err(|e| anyhow::anyhow!("Failed to upsert organization {}: {:?}", mapping.node_id, e))?;
         },
         "company" => {
             postgres::upsert_company(
@@ -195,7 +200,8 @@ async fn import_node(
                 mapping.fields.get("infra_note").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("operational_note").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("security_note").and_then(|v| v.as_str().map(|s| s.to_string())),
-            ).await?;
+            ).await
+            .map_err(|e| anyhow::anyhow!("Failed to upsert company {}: {:?}", mapping.node_id, e))?;
         },
         "technology" => {
             postgres::upsert_technology(
@@ -207,7 +213,8 @@ async fn import_node(
                 mapping.fields.get("infra_note").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("operational_note").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("security_note").and_then(|v| v.as_str().map(|s| s.to_string())),
-            ).await?;
+            ).await
+            .map_err(|e| anyhow::anyhow!("Failed to upsert technology {}: {:?}", mapping.node_id, e))?;
         },
         "episode" => {
             let episode_number = mapping.fields.get("episode_number")
@@ -233,7 +240,8 @@ async fn import_node(
                         .filter_map(|v| v.as_str().map(|s| s.to_string()))
                         .collect()),
                 mapping.fields.get("antagonist").and_then(|v| v.as_str().map(|s| s.to_string())),
-            ).await?;
+            ).await
+            .map_err(|e| anyhow::anyhow!("Failed to upsert episode {}: {:?}", mapping.node_id, e))?;
         },
         "scene" => {
             postgres::upsert_scene(
@@ -242,7 +250,8 @@ async fn import_node(
                 mapping.name.clone(),
                 mapping.fields.get("same_as").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("description").and_then(|v| v.as_str().map(|s| s.to_string())),
-            ).await?;
+            ).await
+            .map_err(|e| anyhow::anyhow!("Failed to upsert scene {}: {:?}", mapping.node_id, e))?;
         },
         "arc" => {
             postgres::upsert_arc(
@@ -256,7 +265,8 @@ async fn import_node(
                         .collect()),
                 mapping.fields.get("phase").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("description").and_then(|v| v.as_str().map(|s| s.to_string())),
-            ).await?;
+            ).await
+            .map_err(|e| anyhow::anyhow!("Failed to upsert arc {}: {:?}", mapping.node_id, e))?;
         },
         "motif" => {
             postgres::upsert_motif(
@@ -266,7 +276,8 @@ async fn import_node(
                 mapping.fields.get("theme").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("source").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("description").and_then(|v| v.as_str().map(|s| s.to_string())),
-            ).await?;
+            ).await
+            .map_err(|e| anyhow::anyhow!("Failed to upsert motif {}: {:?}", mapping.node_id, e))?;
         },
         "season" => {
             postgres::upsert_season(
@@ -280,7 +291,8 @@ async fn import_node(
                         .filter_map(|v| v.as_str().map(|s| s.to_string()))
                         .collect()),
                 mapping.fields.get("source").and_then(|v| v.as_str().map(|s| s.to_string())),
-            ).await?;
+            ).await
+            .map_err(|e| anyhow::anyhow!("Failed to upsert season {}: {:?}", mapping.node_id, e))?;
         },
         "timeline" => {
             postgres::upsert_timeline(
@@ -294,7 +306,8 @@ async fn import_node(
                         .filter_map(|v| v.as_str().map(|s| s.to_string()))
                         .collect()),
                 mapping.fields.get("source").and_then(|v| v.as_str().map(|s| s.to_string())),
-            ).await?;
+            ).await
+            .map_err(|e| anyhow::anyhow!("Failed to upsert timeline {}: {:?}", mapping.node_id, e))?;
         },
         "event" => {
             postgres::upsert_event(
@@ -310,7 +323,8 @@ async fn import_node(
                     .map(|arr| arr.iter()
                         .filter_map(|v| v.as_str().map(|s| s.to_string()))
                         .collect()),
-            ).await?;
+            ).await
+            .map_err(|e| anyhow::anyhow!("Failed to upsert event {}: {:?}", mapping.node_id, e))?;
         },
         "source_ref" => {
             let path = mapping.fields.get("path")
@@ -326,7 +340,8 @@ async fn import_node(
                 path,
                 lang,
                 mapping.fields.get("selection_hint").and_then(|v| v.as_str().map(|s| s.to_string())),
-            ).await?;
+            ).await
+            .map_err(|e| anyhow::anyhow!("Failed to upsert source_ref {}: {:?}", mapping.node_id, e))?;
         },
         "occupation" => {
             postgres::upsert_occupation(
@@ -334,7 +349,8 @@ async fn import_node(
                 mapping.node_id.clone(),
                 mapping.name.clone(),
                 mapping.fields.get("description").and_then(|v| v.as_str().map(|s| s.to_string())),
-            ).await?;
+            ).await
+            .map_err(|e| anyhow::anyhow!("Failed to upsert occupation {}: {:?}", mapping.node_id, e))?;
         },
         "setting" => {
             postgres::upsert_setting(
@@ -343,7 +359,8 @@ async fn import_node(
                 mapping.name.clone(),
                 mapping.fields.get("description").and_then(|v| v.as_str().map(|s| s.to_string())),
                 mapping.fields.get("ghost_type").and_then(|v| v.as_str().map(|s| s.to_string())),
-            ).await?;
+            ).await
+            .map_err(|e| anyhow::anyhow!("Failed to upsert setting {}: {:?}", mapping.node_id, e))?;
         },
         _ => {
             return Err(anyhow::anyhow!("Unknown node type: {}", mapping.node_type));

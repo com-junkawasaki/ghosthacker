@@ -13,6 +13,9 @@ use std::collections::HashMap;
 /// - "character:akito" -> ("character", "akito")
 /// - "ghost:kageboushi" -> ("ghost", "kageboushi")
 /// - "gh:Visual/TokyoWaterCity" -> ("setting", "Visual/TokyoWaterCity")
+/// - "gh:Character:Kaede" -> ("character", "Kaede")
+/// - "gh:Location:-----" -> ("location", "-----")
+/// - "gh:Scene:------scene-1" -> ("scene", "------scene-1")
 pub fn extract_node_id(id: &str) -> Option<(String, String)> {
     if let Some(colon_pos) = id.find(':') {
         let prefix = &id[..colon_pos];
@@ -37,11 +40,78 @@ pub fn extract_node_id(id: &str) -> Option<(String, String)> {
             "occupation" => "occupation",
             "setting" => "setting",
             "gh" => {
-                // Check if it's a visual setting or other gh: prefixed type
-                if identifier.starts_with("Visual/") || identifier.starts_with("Setting/") {
-                    "setting"
+                // Handle gh: prefixed IDs
+                // Check for nested colon (gh:Type:identifier)
+                if let Some(nested_colon_pos) = identifier.find(':') {
+                    let type_name = &identifier[..nested_colon_pos];
+                    let actual_id = &identifier[nested_colon_pos + 1..];
+                    
+                    // Map type name to node type
+                    match type_name {
+                        "Character" => return Some(("character".to_string(), actual_id.to_string())),
+                        "Ghost" => return Some(("ghost".to_string(), actual_id.to_string())),
+                        "Location" => return Some(("location".to_string(), actual_id.to_string())),
+                        "Organization" => return Some(("organization".to_string(), actual_id.to_string())),
+                        "Company" => return Some(("company".to_string(), actual_id.to_string())),
+                        "Technology" => return Some(("technology".to_string(), actual_id.to_string())),
+                        "Episode" => {
+                            // Handle Episode/S1E1:EmotionProfile format
+                            if actual_id.contains('/') {
+                                // Extract episode ID part before colon if present
+                                if let Some(ep_colon) = actual_id.find(':') {
+                                    return Some(("episode".to_string(), actual_id[..ep_colon].to_string()));
+                                }
+                            }
+                            return Some(("episode".to_string(), actual_id.to_string()));
+                        },
+                        "Scene" => return Some(("scene".to_string(), actual_id.to_string())),
+                        "Arc" => return Some(("arc".to_string(), actual_id.to_string())),
+                        "Motif" => return Some(("motif".to_string(), actual_id.to_string())),
+                        "Season" => return Some(("season".to_string(), actual_id.to_string())),
+                        "Timeline" => return Some(("timeline".to_string(), actual_id.to_string())),
+                        "Event" => return Some(("event".to_string(), actual_id.to_string())),
+                        "Concept" => {
+                            // Concept might be various types, try to infer from context
+                            // For now, skip or treat as unknown
+                            return None;
+                        },
+                        "Object" => {
+                            // Object might be setting or other type
+                            if actual_id.starts_with("Visual/") || actual_id.starts_with("Setting/") || actual_id.starts_with("WaterBus/") || actual_id.starts_with("Skyscrapers") || actual_id.starts_with("Canals") {
+                                return Some(("setting".to_string(), actual_id.to_string()));
+                            }
+                            return None;
+                        },
+                        "PortraitPrompt" => {
+                            // PortraitPrompt is a type of setting
+                            return Some(("setting".to_string(), format!("PortraitPrompt/{}", actual_id)));
+                        },
+                        "EmotionalPlan" => {
+                            // EmotionalPlan might be episode-related, skip for now
+                            return None;
+                        },
+                        "Act" | "Beat" => {
+                            // Act and Beat are not in our schema, skip
+                            return None;
+                        },
+                        _ => {
+                            // Check if it's a visual setting or other gh: prefixed type
+                            if identifier.starts_with("Visual/") || identifier.starts_with("Setting/") {
+                                return Some(("setting".to_string(), identifier.to_string()));
+                            }
+                            return None;
+                        }
+                    }
                 } else {
-                    return None;
+                    // No nested colon, check if it's a visual setting or other known patterns
+                    if identifier.starts_with("Visual/") || identifier.starts_with("Setting/") || identifier.starts_with("PortraitPrompt/") || identifier.starts_with("Object/") {
+                        "setting"
+                    } else if identifier.starts_with("EmotionalPlan/") {
+                        // Skip EmotionalPlan for now
+                        return None;
+                    } else {
+                        return None;
+                    }
                 }
             },
             _ => return None,

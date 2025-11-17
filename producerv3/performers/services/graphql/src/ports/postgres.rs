@@ -34,6 +34,16 @@ pub async fn create_pool() -> anyhow::Result<PostgresPool> {
     Ok(Arc::new(pool))
 }
 
+/// Create PostgreSQL connection pool without running migrations
+pub async fn create_pool_without_migrations() -> anyhow::Result<PostgresPool> {
+    let database_url = std::env::var("DATABASE_URL")
+        .unwrap_or_else(|_| "postgresql://postgres:postgres@localhost:5432/postgres".to_string());
+    
+    let pool = PgPool::connect(&database_url).await?;
+    
+    Ok(Arc::new(pool))
+}
+
 /// Get EPUB by ID
 pub async fn get_epub(pool: &PostgresPool, id: String) -> Result<Option<Epub>> {
     let epub_row = sqlx::query_as::<_, EpubRow>(
@@ -1189,6 +1199,746 @@ pub async fn list_settings(pool: &PostgresPool) -> Result<Vec<Setting>> {
         description: row.description,
         ghost_type: row.ghost_type,
     }).collect())
+}
+
+// JSON-LD Node Upsert functions
+
+/// Upsert character
+pub async fn upsert_character(
+    pool: &PostgresPool,
+    character_id: String,
+    name: String,
+    callsign: Option<String>,
+    description: Option<String>,
+    age: Option<i32>,
+    occupation: Option<String>,
+    role: Option<String>,
+    virtue: Option<String>,
+    alternate_name: Option<String>,
+) -> Result<Character> {
+    let row = sqlx::query_as::<_, CharacterRow>(
+        r#"
+        INSERT INTO characters (character_id, name, callsign, description, age, occupation, role, virtue, alternate_name)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        ON CONFLICT (character_id) DO UPDATE SET
+            name = EXCLUDED.name,
+            callsign = EXCLUDED.callsign,
+            description = EXCLUDED.description,
+            age = EXCLUDED.age,
+            occupation = EXCLUDED.occupation,
+            role = EXCLUDED.role,
+            virtue = EXCLUDED.virtue,
+            alternate_name = EXCLUDED.alternate_name,
+            updated_at = NOW()
+        RETURNING id, character_id, name, callsign, description, age, occupation, role, virtue, alternate_name, created_at, updated_at
+        "#,
+    )
+    .bind(character_id.clone())
+    .bind(name.clone())
+    .bind(callsign.clone())
+    .bind(description.clone())
+    .bind(age)
+    .bind(occupation.clone())
+    .bind(role.clone())
+    .bind(virtue.clone())
+    .bind(alternate_name.clone())
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    Ok(Character {
+        id: async_graphql::ID::from(row.id.to_string()),
+        character_id: row.character_id,
+        name: row.name,
+        callsign: row.callsign,
+        description: row.description,
+        age: row.age,
+        occupation: row.occupation,
+        role: row.role,
+        virtue: row.virtue,
+        alternate_name: row.alternate_name,
+    })
+}
+
+/// Upsert ghost
+pub async fn upsert_ghost(
+    pool: &PostgresPool,
+    ghost_id: String,
+    name: String,
+    ghost_type: Option<String>,
+    description: Option<String>,
+    master: Option<String>,
+    created_by: Option<String>,
+) -> Result<Ghost> {
+    let row = sqlx::query_as::<_, GhostRow>(
+        r#"
+        INSERT INTO ghosts (ghost_id, name, ghost_type, description, master, created_by)
+        VALUES ($1, $2, $3, $4, $5, $6)
+        ON CONFLICT (ghost_id) DO UPDATE SET
+            name = EXCLUDED.name,
+            ghost_type = EXCLUDED.ghost_type,
+            description = EXCLUDED.description,
+            master = EXCLUDED.master,
+            created_by = EXCLUDED.created_by,
+            updated_at = NOW()
+        RETURNING id, ghost_id, name, ghost_type, description, master, created_by, created_at, updated_at
+        "#,
+    )
+    .bind(ghost_id.clone())
+    .bind(name.clone())
+    .bind(ghost_type.clone())
+    .bind(description.clone())
+    .bind(master.clone())
+    .bind(created_by.clone())
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    Ok(Ghost {
+        id: async_graphql::ID::from(row.id.to_string()),
+        ghost_id: row.ghost_id,
+        name: row.name,
+        ghost_type: row.ghost_type,
+        description: row.description,
+        master: row.master,
+        created_by: row.created_by,
+    })
+}
+
+/// Upsert location
+pub async fn upsert_location(
+    pool: &PostgresPool,
+    location_id: String,
+    name: String,
+    description: Option<String>,
+    year: Option<i32>,
+    hazard_note: Option<String>,
+    operational_note: Option<String>,
+    security_note: Option<String>,
+) -> Result<Location> {
+    let row = sqlx::query_as::<_, LocationRow>(
+        r#"
+        INSERT INTO locations (location_id, name, description, year, hazard_note, operational_note, security_note)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        ON CONFLICT (location_id) DO UPDATE SET
+            name = EXCLUDED.name,
+            description = EXCLUDED.description,
+            year = EXCLUDED.year,
+            hazard_note = EXCLUDED.hazard_note,
+            operational_note = EXCLUDED.operational_note,
+            security_note = EXCLUDED.security_note,
+            updated_at = NOW()
+        RETURNING id, location_id, name, description, year, hazard_note, operational_note, security_note, created_at, updated_at
+        "#,
+    )
+    .bind(location_id.clone())
+    .bind(name.clone())
+    .bind(description.clone())
+    .bind(year)
+    .bind(hazard_note.clone())
+    .bind(operational_note.clone())
+    .bind(security_note.clone())
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    Ok(Location {
+        id: async_graphql::ID::from(row.id.to_string()),
+        location_id: row.location_id,
+        name: row.name,
+        description: row.description,
+        year: row.year,
+        hazard_note: row.hazard_note,
+        operational_note: row.operational_note,
+        security_note: row.security_note,
+    })
+}
+
+/// Upsert organization
+pub async fn upsert_organization(
+    pool: &PostgresPool,
+    organization_id: String,
+    name: String,
+    description: Option<String>,
+    founder: Option<String>,
+    company_type: Option<String>,
+    infra_note: Option<String>,
+    operational_note: Option<String>,
+    security_note: Option<String>,
+) -> Result<Organization> {
+    let row = sqlx::query_as::<_, OrganizationRow>(
+        r#"
+        INSERT INTO organizations (organization_id, name, description, founder, company_type, infra_note, operational_note, security_note)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        ON CONFLICT (organization_id) DO UPDATE SET
+            name = EXCLUDED.name,
+            description = EXCLUDED.description,
+            founder = EXCLUDED.founder,
+            company_type = EXCLUDED.company_type,
+            infra_note = EXCLUDED.infra_note,
+            operational_note = EXCLUDED.operational_note,
+            security_note = EXCLUDED.security_note,
+            updated_at = NOW()
+        RETURNING id, organization_id, name, description, founder, company_type, infra_note, operational_note, security_note, created_at, updated_at
+        "#,
+    )
+    .bind(organization_id.clone())
+    .bind(name.clone())
+    .bind(description.clone())
+    .bind(founder.clone())
+    .bind(company_type.clone())
+    .bind(infra_note.clone())
+    .bind(operational_note.clone())
+    .bind(security_note.clone())
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    Ok(Organization {
+        id: async_graphql::ID::from(row.id.to_string()),
+        organization_id: row.organization_id,
+        name: row.name,
+        description: row.description,
+        founder: row.founder,
+        company_type: row.company_type,
+        infra_note: row.infra_note,
+        operational_note: row.operational_note,
+        security_note: row.security_note,
+    })
+}
+
+/// Upsert company
+pub async fn upsert_company(
+    pool: &PostgresPool,
+    company_id: String,
+    name: String,
+    description: Option<String>,
+    founder: Option<String>,
+    company_type: Option<String>,
+    infra_note: Option<String>,
+    operational_note: Option<String>,
+    security_note: Option<String>,
+) -> Result<Company> {
+    let row = sqlx::query_as::<_, CompanyRow>(
+        r#"
+        INSERT INTO companies (company_id, name, description, founder, company_type, infra_note, operational_note, security_note)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        ON CONFLICT (company_id) DO UPDATE SET
+            name = EXCLUDED.name,
+            description = EXCLUDED.description,
+            founder = EXCLUDED.founder,
+            company_type = EXCLUDED.company_type,
+            infra_note = EXCLUDED.infra_note,
+            operational_note = EXCLUDED.operational_note,
+            security_note = EXCLUDED.security_note,
+            updated_at = NOW()
+        RETURNING id, company_id, name, description, founder, company_type, infra_note, operational_note, security_note, created_at, updated_at
+        "#,
+    )
+    .bind(company_id.clone())
+    .bind(name.clone())
+    .bind(description.clone())
+    .bind(founder.clone())
+    .bind(company_type.clone())
+    .bind(infra_note.clone())
+    .bind(operational_note.clone())
+    .bind(security_note.clone())
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    Ok(Company {
+        id: async_graphql::ID::from(row.id.to_string()),
+        company_id: row.company_id,
+        name: row.name,
+        description: row.description,
+        founder: row.founder,
+        company_type: row.company_type,
+        infra_note: row.infra_note,
+        operational_note: row.operational_note,
+        security_note: row.security_note,
+    })
+}
+
+/// Upsert technology
+pub async fn upsert_technology(
+    pool: &PostgresPool,
+    technology_id: String,
+    name: String,
+    description: Option<String>,
+    certification: Option<String>,
+    infra_note: Option<String>,
+    operational_note: Option<String>,
+    security_note: Option<String>,
+) -> Result<Technology> {
+    let row = sqlx::query_as::<_, TechnologyRow>(
+        r#"
+        INSERT INTO technologies (technology_id, name, description, certification, infra_note, operational_note, security_note)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        ON CONFLICT (technology_id) DO UPDATE SET
+            name = EXCLUDED.name,
+            description = EXCLUDED.description,
+            certification = EXCLUDED.certification,
+            infra_note = EXCLUDED.infra_note,
+            operational_note = EXCLUDED.operational_note,
+            security_note = EXCLUDED.security_note,
+            updated_at = NOW()
+        RETURNING id, technology_id, name, description, certification, infra_note, operational_note, security_note, created_at, updated_at
+        "#,
+    )
+    .bind(technology_id.clone())
+    .bind(name.clone())
+    .bind(description.clone())
+    .bind(certification.clone())
+    .bind(infra_note.clone())
+    .bind(operational_note.clone())
+    .bind(security_note.clone())
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    Ok(Technology {
+        id: async_graphql::ID::from(row.id.to_string()),
+        technology_id: row.technology_id,
+        name: row.name,
+        description: row.description,
+        certification: row.certification,
+        infra_note: row.infra_note,
+        operational_note: row.operational_note,
+        security_note: row.security_note,
+    })
+}
+
+/// Upsert episode
+pub async fn upsert_episode(
+    pool: &PostgresPool,
+    episode_id: String,
+    episode_number: i32,
+    season: String,
+    name: String,
+    logline: Option<String>,
+    has_arc: Option<bool>,
+    has_scene: Option<bool>,
+    has_character: Option<bool>,
+    motif_refs: Option<Vec<String>>,
+    antagonist: Option<String>,
+) -> Result<Episode> {
+    let motif_refs_json = motif_refs.as_ref().map(|v| serde_json::to_value(v).unwrap_or(serde_json::Value::Null));
+    
+    let row = sqlx::query_as::<_, EpisodeRow>(
+        r#"
+        INSERT INTO episodes (episode_id, episode_number, season, name, logline, has_arc, has_scene, has_character, motif_refs, antagonist)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+        ON CONFLICT (episode_id) DO UPDATE SET
+            episode_number = EXCLUDED.episode_number,
+            season = EXCLUDED.season,
+            name = EXCLUDED.name,
+            logline = EXCLUDED.logline,
+            has_arc = EXCLUDED.has_arc,
+            has_scene = EXCLUDED.has_scene,
+            has_character = EXCLUDED.has_character,
+            motif_refs = EXCLUDED.motif_refs,
+            antagonist = EXCLUDED.antagonist,
+            updated_at = NOW()
+        RETURNING id, episode_id, episode_number, season, name, logline, has_arc, has_scene, has_character, motif_refs, antagonist, created_at, updated_at
+        "#,
+    )
+    .bind(episode_id.clone())
+    .bind(episode_number)
+    .bind(season.clone())
+    .bind(name.clone())
+    .bind(logline.clone())
+    .bind(has_arc)
+    .bind(has_scene)
+    .bind(has_character)
+    .bind(motif_refs_json)
+    .bind(antagonist.clone())
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    let motif_refs_result = row.motif_refs.and_then(|v| {
+        serde_json::from_value::<Vec<String>>(v).ok()
+    });
+    
+    Ok(Episode {
+        id: async_graphql::ID::from(row.id.to_string()),
+        episode_id: row.episode_id,
+        episode_number: row.episode_number,
+        season: row.season,
+        name: row.name,
+        logline: row.logline,
+        has_arc: row.has_arc,
+        has_scene: row.has_scene,
+        has_character: row.has_character,
+        motif_refs: motif_refs_result,
+        antagonist: row.antagonist,
+    })
+}
+
+/// Upsert scene
+pub async fn upsert_scene(
+    pool: &PostgresPool,
+    scene_id: String,
+    name: String,
+    same_as: Option<String>,
+    description: Option<String>,
+) -> Result<Scene> {
+    let row = sqlx::query_as::<_, SceneRow>(
+        r#"
+        INSERT INTO scenes (scene_id, name, same_as, description)
+        VALUES ($1, $2, $3, $4)
+        ON CONFLICT (scene_id) DO UPDATE SET
+            name = EXCLUDED.name,
+            same_as = EXCLUDED.same_as,
+            description = EXCLUDED.description,
+            updated_at = NOW()
+        RETURNING id, scene_id, name, same_as, description, created_at, updated_at
+        "#,
+    )
+    .bind(scene_id.clone())
+    .bind(name.clone())
+    .bind(same_as.clone())
+    .bind(description.clone())
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    Ok(Scene {
+        id: async_graphql::ID::from(row.id.to_string()),
+        scene_id: row.scene_id,
+        name: row.name,
+        same_as: row.same_as,
+        description: row.description,
+    })
+}
+
+/// Upsert arc
+pub async fn upsert_arc(
+    pool: &PostgresPool,
+    arc_id: String,
+    name: String,
+    spans_seasons: Option<Vec<String>>,
+    phase: Option<String>,
+    description: Option<String>,
+) -> Result<crate::schema::jsonld::Arc> {
+    let spans_seasons_json = spans_seasons.as_ref().map(|v| serde_json::to_value(v).unwrap_or(serde_json::Value::Null));
+    
+    let row = sqlx::query_as::<_, ArcRow>(
+        r#"
+        INSERT INTO arcs (arc_id, name, spans_seasons, phase, description)
+        VALUES ($1, $2, $3, $4, $5)
+        ON CONFLICT (arc_id) DO UPDATE SET
+            name = EXCLUDED.name,
+            spans_seasons = EXCLUDED.spans_seasons,
+            phase = EXCLUDED.phase,
+            description = EXCLUDED.description,
+            updated_at = NOW()
+        RETURNING id, arc_id, name, spans_seasons, phase, description, created_at, updated_at
+        "#,
+    )
+    .bind(arc_id.clone())
+    .bind(name.clone())
+    .bind(spans_seasons_json)
+    .bind(phase.clone())
+    .bind(description.clone())
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    let spans_seasons_result = row.spans_seasons.and_then(|v| {
+        serde_json::from_value::<Vec<String>>(v).ok()
+    });
+    
+    Ok(crate::schema::jsonld::Arc {
+        id: async_graphql::ID::from(row.id.to_string()),
+        arc_id: row.arc_id,
+        name: row.name,
+        spans_seasons: spans_seasons_result,
+        phase: row.phase,
+        description: row.description,
+    })
+}
+
+/// Upsert motif
+pub async fn upsert_motif(
+    pool: &PostgresPool,
+    motif_id: String,
+    name: String,
+    theme: Option<String>,
+    source: Option<String>,
+    description: Option<String>,
+) -> Result<Motif> {
+    let row = sqlx::query_as::<_, MotifRow>(
+        r#"
+        INSERT INTO motifs (motif_id, name, theme, source, description)
+        VALUES ($1, $2, $3, $4, $5)
+        ON CONFLICT (motif_id) DO UPDATE SET
+            name = EXCLUDED.name,
+            theme = EXCLUDED.theme,
+            source = EXCLUDED.source,
+            description = EXCLUDED.description,
+            updated_at = NOW()
+        RETURNING id, motif_id, name, theme, source, description, created_at, updated_at
+        "#,
+    )
+    .bind(motif_id.clone())
+    .bind(name.clone())
+    .bind(theme.clone())
+    .bind(source.clone())
+    .bind(description.clone())
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    Ok(Motif {
+        id: async_graphql::ID::from(row.id.to_string()),
+        motif_id: row.motif_id,
+        name: row.name,
+        theme: row.theme,
+        source: row.source,
+        description: row.description,
+    })
+}
+
+/// Upsert season
+pub async fn upsert_season(
+    pool: &PostgresPool,
+    season_id: String,
+    name: String,
+    theme: Option<String>,
+    featured_themes: Option<Vec<String>>,
+    source: Option<String>,
+) -> Result<Season> {
+    let featured_themes_json = featured_themes.as_ref().map(|v| serde_json::to_value(v).unwrap_or(serde_json::Value::Null));
+    
+    let row = sqlx::query_as::<_, SeasonRow>(
+        r#"
+        INSERT INTO seasons (season_id, name, theme, featured_themes, source)
+        VALUES ($1, $2, $3, $4, $5)
+        ON CONFLICT (season_id) DO UPDATE SET
+            name = EXCLUDED.name,
+            theme = EXCLUDED.theme,
+            featured_themes = EXCLUDED.featured_themes,
+            source = EXCLUDED.source,
+            updated_at = NOW()
+        RETURNING id, season_id, name, theme, featured_themes, source, created_at, updated_at
+        "#,
+    )
+    .bind(season_id.clone())
+    .bind(name.clone())
+    .bind(theme.clone())
+    .bind(featured_themes_json)
+    .bind(source.clone())
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    let featured_themes_result = row.featured_themes.and_then(|v| {
+        serde_json::from_value::<Vec<String>>(v).ok()
+    });
+    
+    Ok(Season {
+        id: async_graphql::ID::from(row.id.to_string()),
+        season_id: row.season_id,
+        name: row.name,
+        theme: row.theme,
+        featured_themes: featured_themes_result,
+        source: row.source,
+    })
+}
+
+/// Upsert timeline
+pub async fn upsert_timeline(
+    pool: &PostgresPool,
+    timeline_id: String,
+    name: String,
+    description: Option<String>,
+    influences: Option<Vec<String>>,
+    source: Option<String>,
+) -> Result<Timeline> {
+    let influences_json = influences.as_ref().map(|v| serde_json::to_value(v).unwrap_or(serde_json::Value::Null));
+    
+    let row = sqlx::query_as::<_, TimelineRow>(
+        r#"
+        INSERT INTO timelines (timeline_id, name, description, influences, source)
+        VALUES ($1, $2, $3, $4, $5)
+        ON CONFLICT (timeline_id) DO UPDATE SET
+            name = EXCLUDED.name,
+            description = EXCLUDED.description,
+            influences = EXCLUDED.influences,
+            source = EXCLUDED.source,
+            updated_at = NOW()
+        RETURNING id, timeline_id, name, description, influences, source, created_at, updated_at
+        "#,
+    )
+    .bind(timeline_id.clone())
+    .bind(name.clone())
+    .bind(description.clone())
+    .bind(influences_json)
+    .bind(source.clone())
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    let influences_result = row.influences.and_then(|v| {
+        serde_json::from_value::<Vec<String>>(v).ok()
+    });
+    
+    Ok(Timeline {
+        id: async_graphql::ID::from(row.id.to_string()),
+        timeline_id: row.timeline_id,
+        name: row.name,
+        description: row.description,
+        influences: influences_result,
+        source: row.source,
+    })
+}
+
+/// Upsert event
+pub async fn upsert_event(
+    pool: &PostgresPool,
+    event_id: String,
+    name: String,
+    description: Option<String>,
+    start_date: Option<String>,
+    end_date: Option<String>,
+    temporal_coverage: Option<String>,
+    same_as: Option<Vec<String>>,
+) -> Result<Event> {
+    let same_as_json = same_as.as_ref().map(|v| serde_json::to_value(v).unwrap_or(serde_json::Value::Null));
+    
+    let row = sqlx::query_as::<_, EventRow>(
+        r#"
+        INSERT INTO events (event_id, name, description, start_date, end_date, temporal_coverage, same_as)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        ON CONFLICT (event_id) DO UPDATE SET
+            name = EXCLUDED.name,
+            description = EXCLUDED.description,
+            start_date = EXCLUDED.start_date,
+            end_date = EXCLUDED.end_date,
+            temporal_coverage = EXCLUDED.temporal_coverage,
+            same_as = EXCLUDED.same_as,
+            updated_at = NOW()
+        RETURNING id, event_id, name, description, start_date, end_date, temporal_coverage, same_as, created_at, updated_at
+        "#,
+    )
+    .bind(event_id.clone())
+    .bind(name.clone())
+    .bind(description.clone())
+    .bind(start_date.clone())
+    .bind(end_date.clone())
+    .bind(temporal_coverage.clone())
+    .bind(same_as_json)
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    let same_as_result = row.same_as.and_then(|v| {
+        serde_json::from_value::<Vec<String>>(v).ok()
+    });
+    
+    Ok(Event {
+        id: async_graphql::ID::from(row.id.to_string()),
+        event_id: row.event_id,
+        name: row.name,
+        description: row.description,
+        start_date: row.start_date,
+        end_date: row.end_date,
+        temporal_coverage: row.temporal_coverage,
+        same_as: same_as_result,
+    })
+}
+
+/// Upsert source reference
+pub async fn upsert_source_ref(
+    pool: &PostgresPool,
+    source_ref_id: String,
+    path: String,
+    lang: String,
+    selection_hint: Option<String>,
+) -> Result<SourceRef> {
+    let row = sqlx::query_as::<_, SourceRefRow>(
+        r#"
+        INSERT INTO source_refs (source_ref_id, path, lang, selection_hint)
+        VALUES ($1, $2, $3, $4)
+        ON CONFLICT (source_ref_id) DO UPDATE SET
+            path = EXCLUDED.path,
+            lang = EXCLUDED.lang,
+            selection_hint = EXCLUDED.selection_hint,
+            updated_at = NOW()
+        RETURNING id, source_ref_id, path, lang, selection_hint, created_at, updated_at
+        "#,
+    )
+    .bind(source_ref_id.clone())
+    .bind(path.clone())
+    .bind(lang.clone())
+    .bind(selection_hint.clone())
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    Ok(SourceRef {
+        id: async_graphql::ID::from(row.id.to_string()),
+        source_ref_id: row.source_ref_id,
+        path: row.path,
+        lang: row.lang,
+        selection_hint: row.selection_hint,
+    })
+}
+
+/// Upsert occupation
+pub async fn upsert_occupation(
+    pool: &PostgresPool,
+    occupation_id: String,
+    name: String,
+    description: Option<String>,
+) -> Result<Occupation> {
+    let row = sqlx::query_as::<_, OccupationRow>(
+        r#"
+        INSERT INTO occupations (occupation_id, name, description)
+        VALUES ($1, $2, $3)
+        ON CONFLICT (occupation_id) DO UPDATE SET
+            name = EXCLUDED.name,
+            description = EXCLUDED.description,
+            updated_at = NOW()
+        RETURNING id, occupation_id, name, description, created_at, updated_at
+        "#,
+    )
+    .bind(occupation_id.clone())
+    .bind(name.clone())
+    .bind(description.clone())
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    Ok(Occupation {
+        id: async_graphql::ID::from(row.id.to_string()),
+        occupation_id: row.occupation_id,
+        name: row.name,
+        description: row.description,
+    })
+}
+
+/// Upsert setting
+pub async fn upsert_setting(
+    pool: &PostgresPool,
+    setting_id: String,
+    name: String,
+    description: Option<String>,
+    ghost_type: Option<String>,
+) -> Result<Setting> {
+    let row = sqlx::query_as::<_, SettingRow>(
+        r#"
+        INSERT INTO settings (setting_id, name, description, ghost_type)
+        VALUES ($1, $2, $3, $4)
+        ON CONFLICT (setting_id) DO UPDATE SET
+            name = EXCLUDED.name,
+            description = EXCLUDED.description,
+            ghost_type = EXCLUDED.ghost_type,
+            updated_at = NOW()
+        RETURNING id, setting_id, name, description, ghost_type, created_at, updated_at
+        "#,
+    )
+    .bind(setting_id.clone())
+    .bind(name.clone())
+    .bind(description.clone())
+    .bind(ghost_type.clone())
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    Ok(Setting {
+        id: async_graphql::ID::from(row.id.to_string()),
+        setting_id: row.setting_id,
+        name: row.name,
+        description: row.description,
+        ghost_type: row.ghost_type,
+    })
 }
 
 #[cfg(test)]
