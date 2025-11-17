@@ -1,0 +1,85 @@
+"""
+@context https://gftd.ai/ontology/epub-editor#
+@type cpm:Resource
+@id https://gftd.ai/resource/epub-document
+
+EPUB Document GraphQL schema definitions
+"""
+
+type MetadataItem {
+  key: String!
+  value: String!
+}
+
+type Paragraph {
+  id: ID!
+  order: Int!
+  contentHtml: String!
+}
+
+type Media {
+  id: ID!
+  type: String!
+  url: String!
+  mimeType: String!
+  fileSize: Int!
+}
+
+type Chapter {
+  id: ID!
+  title: String!
+  order: Int!
+  contentHtml: String!
+  paragraphs: [Paragraph!]!
+  media: [Media!]!
+}
+
+type Epub {
+  id: ID!
+  title: String!
+  language: String!
+  createdAt: String!
+  updatedAt: String!
+  chapters: [Chapter!]!
+  metadata: [MetadataItem!]!
+}
+
+input CreateEpubInput {
+  title: String!
+  language: String!
+}
+
+input UpdateEpubInput {
+  id: ID!
+  title: String
+  language: String
+}
+
+input CreateChapterInput {
+  epubId: ID!
+  title: String!
+  order: Int!
+  contentHtml: String
+}
+
+input UpdateChapterInput {
+  id: ID!
+  title: String
+  order: Int
+  contentHtml: String
+}
+
+input CreateMediaInput {
+  chapterId: ID!
+  type: String!
+  url: String!
+  mimeType: String!
+  fileSize: Int!
+}
+
+input UpdateMetadataInput {
+  epubId: ID!
+  key: String!
+  value: String!
+}
+
