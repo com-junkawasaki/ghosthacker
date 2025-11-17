@@ -276,7 +276,7 @@ pub async fn delete_script(id: &str) -> Result<()> {
 pub async fn get_metadata(id: &str) -> Result<Option<Metadata>> {
     let pool = get_pool()?;
     let metadata = sqlx::query_as::<_, Metadata>(
-        "SELECT id, title, isbn, language, publisher, date, description, created_at, updated_at FROM metadata WHERE id = $1"
+        "SELECT id, title, author, isbn, language, publisher, date, description, created_at, updated_at FROM metadata WHERE id = $1"
     )
     .bind(id)
     .fetch_optional(pool.as_ref())
@@ -288,11 +288,12 @@ pub async fn get_metadata(id: &str) -> Result<Option<Metadata>> {
 pub async fn create_metadata(metadata: &Metadata) -> Result<()> {
     let pool = get_pool()?;
     sqlx::query(
-        "INSERT INTO metadata (id, title, isbn, language, publisher, date, description, created_at, updated_at) 
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)"
+        "INSERT INTO metadata (id, title, author, isbn, language, publisher, date, description, created_at, updated_at) 
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)"
     )
     .bind(&metadata.id)
     .bind(&metadata.title)
+    .bind(&metadata.author)
     .bind(&metadata.isbn)
     .bind(&metadata.language)
     .bind(&metadata.publisher)
@@ -309,10 +310,11 @@ pub async fn create_metadata(metadata: &Metadata) -> Result<()> {
 pub async fn update_metadata(metadata: &Metadata) -> Result<()> {
     let pool = get_pool()?;
     sqlx::query(
-        "UPDATE metadata SET title = $2, isbn = $3, language = $4, publisher = $5, date = $6, description = $7, updated_at = $8 WHERE id = $1"
+        "UPDATE metadata SET title = $2, author = $3, isbn = $4, language = $5, publisher = $6, date = $7, description = $8, updated_at = $9 WHERE id = $1"
     )
     .bind(&metadata.id)
     .bind(&metadata.title)
+    .bind(&metadata.author)
     .bind(&metadata.isbn)
     .bind(&metadata.language)
     .bind(&metadata.publisher)

@@ -50,6 +50,7 @@ pub struct Script {
 pub struct Metadata {
     pub id: String,
     pub title: Option<String>,
+    pub author: Option<String>,
     pub isbn: Option<String>,
     pub language: Option<String>,
     pub publisher: Option<String>,

@@ -50,3 +50,4 @@ src/generated/
 target/
 Cargo.lock
 
+.pnpm-store/

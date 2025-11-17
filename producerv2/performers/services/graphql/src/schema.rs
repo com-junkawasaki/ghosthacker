@@ -425,6 +425,7 @@ impl MutationRoot {
             let meta = DatabaseMetadata {
                 id: meta_id.clone(),
                 title: meta_input.title,
+                author: meta_input.author,
                 isbn: meta_input.isbn,
                 language: meta_input.language,
                 publisher: meta_input.publisher,
@@ -1000,6 +1001,7 @@ impl From<DatabaseTextNode> for TextNode {
 #[graphql(input_name = "MetadataInput")]
 pub struct MetadataInput {
     pub title: Option<String>,
+    pub author: Option<String>,
     pub isbn: Option<String>,
     pub language: Option<String>,
     pub publisher: Option<String>,
