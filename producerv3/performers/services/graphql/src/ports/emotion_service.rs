@@ -274,7 +274,7 @@ pub async fn analyze_emotions(
     } else if let Some(cid) = chapter_id {
         let chapter = postgres::get_chapter(pool, cid)
             .await
-            .context("Failed to get chapter")?
+            .map_err(|e| anyhow::anyhow!("Failed to get chapter: {:?}", e))?
             .ok_or_else(|| anyhow::anyhow!("Chapter not found"))?;
         
         // Extract plain text from HTML (simple approach)

@@ -204,6 +204,15 @@ export interface SettingNode {
   ghostType?: string | string[];
 }
 
+export interface ChapterLinkNode {
+  '@id'?: string;
+  '@type': 'Chapter';
+  chapterId: string;
+  title: string;
+  order: number;
+  epubId: string;
+}
+
 // ============================================================================
 // 感情分析型定義
 // ============================================================================
@@ -341,7 +350,8 @@ export type JsonLdNode =
   | SourceRefNode
   | EventNode
   | OccupationNode
-  | SettingNode;
+  | SettingNode
+  | ChapterLinkNode;
 
 export type MaskType =
   | EmotionMask

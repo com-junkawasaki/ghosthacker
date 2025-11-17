@@ -42,6 +42,8 @@ export function EditorLayout({ projectId }: EditorLayoutProps) {
           <TiptapEditor 
             projectId={projectId} 
             chapterId={selectedChapterId}
+            epubId={normalizedEpubId}
+            onChapterSelect={setSelectedChapterId}
           />
         </main>
       </div>

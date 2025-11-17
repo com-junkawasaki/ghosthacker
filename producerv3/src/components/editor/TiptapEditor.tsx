@@ -34,6 +34,7 @@ import { GhostNode } from './extensions/GhostNode';
 import { LocationNode } from './extensions/LocationNode';
 import { OrganizationNode } from './extensions/OrganizationNode';
 import { TechnologyNode } from './extensions/TechnologyNode';
+import { ChapterLinkNode } from './extensions/ChapterLinkNode';
 import {
   EpisodeNode,
   SceneNode,
@@ -51,15 +52,18 @@ import {
 import { MaskExtension } from './extensions/MaskExtension';
 import { SlashCommand } from './extensions/SlashCommand';
 import { NodeSelectorDialog } from './NodeSelectorDialog';
+import { ChapterSelectorDialog } from './ChapterSelectorDialog';
 import { MaskControls } from './MaskControls';
 import '@/styles/editor.css';
 
 interface TiptapEditorProps {
   projectId: string;
   chapterId?: string | undefined;
+  epubId?: string | undefined;
+  onChapterSelect?: (chapterId: string) => void;
 }
 
-export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
+export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: TiptapEditorProps) {
   const { data, loading } = useQuery(GET_CHAPTER, {
     variables: { id: chapterId },
     skip: !chapterId,
@@ -85,6 +89,7 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
   const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const savedTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [selectedNodeType, setSelectedNodeType] = useState<string | null>(null);
+  const [showChapterSelector, setShowChapterSelector] = useState(false);
   const [editorError, setEditorError] = useState<string | null>(null);
 
   const editor = useEditor({
@@ -129,6 +134,9 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
       LocationNode,
       OrganizationNode,
       TechnologyNode,
+      ChapterLinkNode.configure({
+        onChapterSelect: onChapterSelect,
+      }),
       EpisodeNode,
       SceneNode,
       ArcNode,
@@ -211,6 +219,30 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
       editor.commands.setContent(data.chapter.contentHtml);
     }
   }, [editor, data, chapterId]);
+
+  // Handle chapter link clicks
+  useEffect(() => {
+    if (!editor || !onChapterSelect) return;
+
+    const handleClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const chapterLinkNode = target.closest('.chapter-link-node');
+      if (chapterLinkNode) {
+        const chapterId = chapterLinkNode.getAttribute('data-chapter-id');
+        if (chapterId) {
+          event.preventDefault();
+          onChapterSelect(chapterId);
+        }
+      }
+    };
+
+    const editorElement = editor.view.dom;
+    editorElement.addEventListener('click', handleClick);
+
+    return () => {
+      editorElement.removeEventListener('click', handleClick);
+    };
+  }, [editor, onChapterSelect]);
 
   // Manual save function
   const handleManualSave = () => {
@@ -369,6 +401,14 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
           >
             Motif
           </button>
+          <button
+            onClick={() => setShowChapterSelector(true)}
+            className="px-2 py-1 text-xs rounded bg-blue-100 text-blue-800 hover:bg-blue-200"
+            disabled={!epubId}
+            title="Insert chapter link"
+          >
+            Chapter
+          </button>
         </div>
 
         {/* 保存ボタンと状態表示 */}
@@ -510,6 +550,27 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
             }
             
             setSelectedNodeType(null);
+          }}
+        />
+      )}
+      
+      {/* 章選択ダイアログ */}
+      {epubId && (
+        <ChapterSelectorDialog
+          epubId={epubId}
+          isOpen={showChapterSelector}
+          onClose={() => setShowChapterSelector(false)}
+          onSelect={(chapter) => {
+            if (!editor || !epubId) return;
+            
+            editor.chain().focus().insertChapterLink({
+              chapterId: chapter.id,
+              title: chapter.title,
+              order: chapter.order,
+              epubId: epubId,
+            }).run();
+            
+            setShowChapterSelector(false);
           }}
         />
       )}
