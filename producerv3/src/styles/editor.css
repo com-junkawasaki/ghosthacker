@@ -249,3 +249,79 @@
   margin: 0.75em 0;
 }
 
+/* エディタコンテンツラッパー（2カラムレイアウト） */
+.editor-content-wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* エディタコンテンツエリア */
+.editor-content {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* 感情分析サイドバー */
+.emotion-sidebar {
+  width: 320px;
+  flex-shrink: 0;
+  border-left: 1px solid rgb(209, 213, 219);
+  background-color: white;
+  overflow-y: auto;
+  position: relative;
+}
+
+.dark .emotion-sidebar {
+  border-left-color: rgb(75, 85, 99);
+  background-color: rgb(17, 24, 39);
+}
+
+/* 感情分析ノードアイテム */
+.emotion-node-item {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: 0.75rem;
+  border-bottom: 1px solid rgb(229, 231, 235);
+  transition: background-color 0.2s ease;
+}
+
+.dark .emotion-node-item {
+  border-bottom-color: rgb(55, 65, 81);
+}
+
+.emotion-node-item:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.dark .emotion-node-item:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 1024px) {
+  .emotion-sidebar {
+    width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .editor-content-wrapper {
+    flex-direction: column;
+  }
+
+  .emotion-sidebar {
+    width: 100%;
+    max-height: 300px;
+    border-left: none;
+    border-top: 1px solid rgb(209, 213, 219);
+  }
+
+  .dark .emotion-sidebar {
+    border-top-color: rgb(75, 85, 99);
+  }
+}
+

@@ -68,6 +68,7 @@ import { ImageGenerationDialog } from './ImageGenerationDialog';
 import { AIContentGenerationControls } from './AIContentGenerationControls';
 import { NodeClassificationControls } from './NodeClassificationControls';
 import { EmotionalView } from './EmotionalView';
+import { EmotionSidebar } from './EmotionSidebar';
 import '@/styles/editor.css';
 
 interface TiptapEditorProps {
@@ -132,6 +133,7 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
   const [showChapterSelector, setShowChapterSelector] = useState(false);
   const [editorError, setEditorError] = useState<string | null>(null);
   const [isExporting, setIsExporting] = useState(false);
+  const [selectedBenchmark, setSelectedBenchmark] = useState<string | null>(null);
   const [isImporting, setIsImporting] = useState(false);
   const [importError, setImportError] = useState<string | null>(null);
   const [showImageGenerationDialog, setShowImageGenerationDialog] = useState(false);
@@ -691,16 +693,21 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
         </div>
       </div>
       <MaskControls editor={editor} />
-      <div className="editor-content flex-1 p-4 overflow-y-auto relative">
-        <EditorContent editor={editor} />
-        <FloatingToolbar 
-          editor={editor} 
-          onInsertNode={(nodeType) => setSelectedNodeType(nodeType)}
-        />
+      <div className="editor-content-wrapper flex-1 flex overflow-hidden">
+        <div className="editor-content flex-1 p-4 overflow-y-auto relative">
+          <EditorContent editor={editor} />
+          <FloatingToolbar 
+            editor={editor} 
+            onInsertNode={(nodeType) => setSelectedNodeType(nodeType)}
+          />
+        </div>
+        
+        {/* Emotion Sidebar */}
+        <EmotionSidebar editor={editor} selectedBenchmark={selectedBenchmark} />
       </div>
       
-      {/* Emotional View */}
-      <EmotionalView editor={editor} />
+      {/* Emotional View (for emotion curve graph) */}
+      <EmotionalView editor={editor} selectedBenchmark={selectedBenchmark} onBenchmarkChange={setSelectedBenchmark} />
       
       {/* ノード選択ダイアログ */}
       {selectedNodeType && (

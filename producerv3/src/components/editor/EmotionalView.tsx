@@ -8,7 +8,7 @@
  */
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import type { Editor } from '@tiptap/react';
 import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
 import type { EmotionScore } from '@/types/jsonld';
@@ -29,10 +29,24 @@ interface NodeEmotionData {
 
 interface EmotionalViewProps {
   editor: Editor | null;
+  selectedBenchmark?: string | null;
+  onBenchmarkChange?: (benchmarkId: string | null) => void;
 }
 
-export function EmotionalView({ editor }: EmotionalViewProps) {
-  const [selectedBenchmark, setSelectedBenchmark] = useState<string | null>(null);
+export function EmotionalView({ editor, selectedBenchmark: propSelectedBenchmark, onBenchmarkChange }: EmotionalViewProps) {
+  const [selectedBenchmark, setSelectedBenchmark] = useState<string | null>(propSelectedBenchmark || null);
+
+  // Sync with prop changes
+  useEffect(() => {
+    if (propSelectedBenchmark !== undefined) {
+      setSelectedBenchmark(propSelectedBenchmark);
+    }
+  }, [propSelectedBenchmark]);
+
+  const handleBenchmarkChange = (benchmarkId: string | null) => {
+    setSelectedBenchmark(benchmarkId);
+    onBenchmarkChange?.(benchmarkId);
+  };
 
   // Extract emotion data from all nodes
   const nodeEmotions = useMemo(() => {
@@ -121,7 +135,7 @@ export function EmotionalView({ editor }: EmotionalViewProps) {
         <label className="text-sm font-semibold mb-2 block">ベンチマーク選択:</label>
         <select
           value={selectedBenchmark || ''}
-          onChange={(e) => setSelectedBenchmark(e.target.value || null)}
+          onChange={(e) => handleBenchmarkChange(e.target.value || null)}
           className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-sm"
         >
           <option value="">全てのベンチマーク</option>

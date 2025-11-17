@@ -12,3 +12,5 @@ generates:
       strictScalars: true
       dedupeFragments: true
       skipTypename: false
+      scalars:
+        JSON: any

@@ -22,144 +22,16 @@ export {
   SummarizeChapterDocument as SUMMARIZE_CHAPTER,
   ProofreadChapterDocument as PROOFREAD_CHAPTER,
   TranslateChapterDocument as TRANSLATE_CHAPTER,
-  // AnalyzeEmotionsDocument will be available after running `pnpm codegen`
-  // Uncomment after GraphQL server is running and codegen has been executed
-  // AnalyzeEmotionsDocument as ANALYZE_EMOTIONS,
+  AnalyzeEmotionsDocument as ANALYZE_EMOTIONS,
+  CreateGraphLinkDocument as CREATE_GRAPH_LINK,
+  UpdateGraphLinkDocument as UPDATE_GRAPH_LINK,
+  DeleteGraphLinkDocument as DELETE_GRAPH_LINK,
+  CreateGraphIncidenceDocument as CREATE_GRAPH_INCIDENCE,
+  UpdateGraphIncidenceDocument as UPDATE_GRAPH_INCIDENCE,
+  DeleteGraphIncidenceDocument as DELETE_GRAPH_INCIDENCE,
+  GenerateContentWithMultiAgentDocument as GENERATE_CONTENT_WITH_MULTI_AGENT,
+  ClassifyNodeDocument as CLASSIFY_NODE,
+  ReclassifySelectedNodesDocument as RECLASSIFY_SELECTED_NODES,
 } from '@/generated/graphql';
 
-// Temporary: Use gql tag until documents are generated
-// Remove this after running `pnpm codegen`
-import gql from 'graphql-tag';
-export const ANALYZE_EMOTIONS = gql`
-  mutation AnalyzeEmotions($input: AnalyzeEmotionsInput!) {
-    analyzeEmotions(input: $input) {
-      emotionVector {
-        emotion
-        score
-      }
-      createdAt
-      language
-    }
-  }
-`;
-
-export const CREATE_GRAPH_LINK = gql`
-  mutation CreateGraphLink($input: CreateGraphLinkInput!) {
-    createGraphLink(input: $input) {
-      id
-      sourceNodeType
-      sourceNodeId
-      targetNodeType
-      targetNodeId
-      linkType
-      properties
-      createdAt
-      updatedAt
-    }
-  }
-`;
-
-export const UPDATE_GRAPH_LINK = gql`
-  mutation UpdateGraphLink($input: UpdateGraphLinkInput!) {
-    updateGraphLink(input: $input) {
-      id
-      sourceNodeType
-      sourceNodeId
-      targetNodeType
-      targetNodeId
-      linkType
-      properties
-      createdAt
-      updatedAt
-    }
-  }
-`;
-
-export const DELETE_GRAPH_LINK = gql`
-  mutation DeleteGraphLink($id: ID!) {
-    deleteGraphLink(id: $id)
-  }
-`;
-
-export const CREATE_GRAPH_INCIDENCE = gql`
-  mutation CreateGraphIncidence($input: CreateGraphIncidenceInput!) {
-    createGraphIncidence(input: $input) {
-      id
-      nodeType
-      nodeId
-      linkId
-      role
-      properties
-      createdAt
-      updatedAt
-    }
-  }
-`;
-
-export const UPDATE_GRAPH_INCIDENCE = gql`
-  mutation UpdateGraphIncidence($input: UpdateGraphIncidenceInput!) {
-    updateGraphIncidence(input: $input) {
-      id
-      nodeType
-      nodeId
-      linkId
-      role
-      properties
-      createdAt
-      updatedAt
-    }
-  }
-`;
-
-export const DELETE_GRAPH_INCIDENCE = gql`
-  mutation DeleteGraphIncidence($id: ID!) {
-    deleteGraphIncidence(id: $id)
-  }
-`;
-
-export const GENERATE_CONTENT_WITH_MULTI_AGENT = gql`
-  mutation GenerateContentWithMultiAgent($input: MultiAgentGenerateInput!) {
-    generateContentWithMultiAgent(input: $input) {
-      text
-      characterId
-      emotionProfile {
-        emotionVector {
-          emotion
-          score
-        }
-        createdAt
-        language
-      }
-      confidence
-    }
-  }
-`;
-
-export const CLASSIFY_NODE = gql`
-  mutation ClassifyNode($input: ClassifyNodeInput!) {
-    classifyNode(input: $input) {
-      suggestedType
-      confidence
-      reasoning
-      suggestedAttributes
-      suggestedMaskType
-    }
-  }
-`;
-
-export const RECLASSIFY_SELECTED_NODES = gql`
-  mutation ReclassifySelectedNodes($input: ReclassifySelectedNodesInput!) {
-    reclassifySelectedNodes(input: $input) {
-      nodeId
-      classification {
-        suggestedType
-        confidence
-        reasoning
-        suggestedAttributes
-        suggestedMaskType
-      }
-      applied
-    }
-  }
-`;
 

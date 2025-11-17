@@ -81,7 +81,7 @@ async function generateOpenAIImage(
         style: model === 'dall-e-3' ? style : undefined,
         quality: model === 'dall-e-3' ? quality : undefined,
         n: model === 'dall-e-2' ? n : undefined,
-        response_format: 'url',
+        response_format: 'b64_json',
       }),
     });
 
@@ -95,22 +95,21 @@ async function generateOpenAIImage(
     }
 
     const data = await response.json();
-    const imageUrl = data.data?.[0]?.url;
+    const b64Json = data.data?.[0]?.b64_json;
 
-    if (!imageUrl) {
+    if (!b64Json) {
       throw new ImageGenerationError(
-        'No image URL returned from OpenAI API',
+        'No base64 image data returned from OpenAI API',
         'openai'
       );
     }
 
-    // URLをBase64に変換
-    const imageBase64 = await urlToBase64(imageUrl);
+    // Base64形式で直接返される場合
+    const imageBase64 = `data:image/png;base64,${b64Json}`;
 
     return {
       success: true,
       imageBase64,
-      imageUrl,
       provider: 'openai',
     };
   } catch (error) {
