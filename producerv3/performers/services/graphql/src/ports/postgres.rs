@@ -2798,7 +2798,7 @@ pub async fn update_node_type(
     Ok(UpdateNodeTypeResult {
         success: true,
         node_id: async_graphql::ID::from(node_id),
-        new_type,
+        new_type: new_type.clone(),
         message: Some(format!("Node type updated from {} to {}", old_type, new_type)),
     })
 }

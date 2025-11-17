@@ -167,12 +167,31 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
     const labelClasses = getNodeLabelClasses(nodeType);
     const labelText = getNodeTypeDisplayName(nodeType);
     
+    // mergeAttributes の結果を検証し、配列が含まれていないことを確認
+    const mergedAttrs = mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
+      'data-type': nodeType,
+      class: nodeClasses,
+    });
+    
+    // class が配列の場合は文字列に変換
+    if (Array.isArray(mergedAttrs.class)) {
+      mergedAttrs.class = mergedAttrs.class.join(' ');
+    }
+    
+    // 配列が含まれていないことを確認（renderSpec が配列を期待しないため）
+    const sanitizedAttrs: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(mergedAttrs)) {
+      if (Array.isArray(value)) {
+        // 配列の場合は文字列に変換（class 属性など）
+        sanitizedAttrs[key] = value.join(' ');
+      } else {
+        sanitizedAttrs[key] = value;
+      }
+    }
+    
     return [
       'div',
-      mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
-        'data-type': nodeType,
-        class: nodeClasses,
-      }),
+      sanitizedAttrs,
       [
         ['div', { class: 'flex items-center gap-2 mb-2' }, [
           ['span', { class: labelClasses }, labelText],

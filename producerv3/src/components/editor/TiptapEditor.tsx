@@ -79,6 +79,10 @@ import { ImageGenerationDialog } from './ImageGenerationDialog';
 import { AIContentGenerationControls } from './AIContentGenerationControls';
 import { NodeClassificationControls } from './NodeClassificationControls';
 import { EmotionSidebar } from './EmotionSidebar';
+import { useMutation } from '@apollo/client';
+import { ANALYZE_EMOTIONS } from '@/lib/graphql/mutations';
+import type { EmotionProfile, EmotionScore } from '@/types/jsonld';
+import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
 import '@/styles/editor.css';
 
 interface TiptapEditorProps {
@@ -163,7 +167,10 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
   const [isImporting, setIsImporting] = useState(false);
   const [importError, setImportError] = useState<string | null>(null);
   const [showImageGenerationDialog, setShowImageGenerationDialog] = useState(false);
+  const [isAnalyzingEmotions, setIsAnalyzingEmotions] = useState(false);
+  const [emotionAnalysisError, setEmotionAnalysisError] = useState<string | null>(null);
   const apolloClient = useApolloClient();
+  const [analyzeEmotions] = useMutation(ANALYZE_EMOTIONS);
 
   const editor = useEditor({
     extensions: [
@@ -306,14 +313,22 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
         
         // Debounce save operation (wait 1 second after last change)
         saveTimeoutRef.current = setTimeout(() => {
-          updateChapter({
-            variables: {
-              input: {
-                id: chapterId,
-                contentHtml: editor.getHTML(),
+          try {
+            const html = editor.getHTML();
+            updateChapter({
+              variables: {
+                input: {
+                  id: chapterId,
+                  contentHtml: html,
+                },
               },
-            },
-          });
+            });
+          } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : String(error);
+            console.error('Error getting HTML:', error);
+            setEditorError(`HTMLの取得に失敗しました: ${errorMessage}`);
+            // エラーが発生してもエディタは継続動作
+          }
         }, 1000);
       }
       // If no chapterId, don't auto-save (all chapters view is read-only for editing)
@@ -364,7 +379,13 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
         })
         .otherwise(() => ({ type: 'string' as const, value: '<p></p>' }));
 
-      const currentContent = editor.getHTML();
+      let currentContent = '<p></p>';
+      try {
+        currentContent = editor.getHTML();
+      } catch (error) {
+        console.error('Error getting current HTML content:', error);
+        // エラーが発生しても処理を継続（デフォルト値を使用）
+      }
       
       // Avoid unnecessary updates
       if (contentResult.type === 'json') {
@@ -490,15 +511,143 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
     if (!editor || !chapterId || isSaving) return;
     
     setSaving();
-    updateChapter({
-      variables: {
-        input: {
-          id: chapterId,
-          contentHtml: editor.getHTML(),
+    try {
+      const html = editor.getHTML();
+      updateChapter({
+        variables: {
+          input: {
+            id: chapterId,
+            contentHtml: html,
+          },
         },
-      },
-    });
+      });
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      console.error('Error getting HTML for manual save:', error);
+      setEditorError(`HTMLの取得に失敗しました: ${errorMessage}`);
+      // エラーが発生してもエディタは継続動作
+    }
   };
+
+  /**
+   * Extract full text content from the current node
+   * Supports Block Container Nodes (character, scene, location, etc.) and Inline Atom Nodes
+   */
+  const getCurrentNodeFullText = useCallback((): string | null => {
+    if (!editor) return null;
+
+    const { selection } = editor.state;
+    const { $anchor } = selection;
+    
+    // Find the node at the current selection position
+    let currentNode: ProseMirrorNode | null = null;
+    let nodePos = 0;
+    
+    // Try to find the node containing the selection
+    editor.state.doc.nodesBetween($anchor.pos, $anchor.pos, (node, pos) => {
+      // Check if this is a block-level node (character, scene, location, paragraph, etc.)
+      const nodeType = node.type.name;
+      const blockContainerNodes = ['character', 'scene', 'location', 'organization', 'pov'];
+      const isBlockContainer = blockContainerNodes.includes(nodeType);
+      
+      if (isBlockContainer || nodeType === 'paragraph') {
+        currentNode = node;
+        nodePos = pos;
+      }
+    });
+
+    // If no block container found, try to get the paragraph at selection
+    if (!currentNode) {
+      const $pos = $anchor;
+      const resolvedPos = editor.state.doc.resolve($pos.pos);
+      const depth = resolvedPos.depth;
+      
+      // Walk up the node tree to find a block node
+      for (let i = depth; i >= 0; i--) {
+        const nodeAtDepth = resolvedPos.node(i);
+        const nodeType = nodeAtDepth.type.name;
+        
+        if (nodeType === 'paragraph' || 
+            ['character', 'scene', 'location', 'organization', 'pov'].includes(nodeType)) {
+          currentNode = nodeAtDepth;
+          nodePos = resolvedPos.start(i);
+          break;
+        }
+      }
+    }
+
+    if (!currentNode) {
+      return null;
+    }
+
+    // Extract text content from the node
+    // For block container nodes, get all text including child nodes
+    let textContent = '';
+    
+    if (currentNode.isBlock) {
+      // Get text from the entire node including all descendants
+      const startPos = nodePos;
+      const endPos = nodePos + currentNode.nodeSize;
+      textContent = editor.state.doc.textBetween(startPos, endPos);
+    } else {
+      // For inline nodes, use textContent directly
+      textContent = currentNode.textContent || '';
+    }
+
+    return textContent.trim() || null;
+  }, [editor]);
+
+  /**
+   * Analyze emotions for the current node using Hume API
+   */
+  const handleAnalyzeCurrentNode = useCallback(async () => {
+    if (!editor || isAnalyzingEmotions) return;
+
+    const nodeText = getCurrentNodeFullText();
+    if (!nodeText || !nodeText.trim()) {
+      setEmotionAnalysisError('分析するテキストが見つかりません。ノードを選択してください。');
+      setTimeout(() => setEmotionAnalysisError(null), 3000);
+      return;
+    }
+
+    setIsAnalyzingEmotions(true);
+    setEmotionAnalysisError(null);
+
+    try {
+      const { data } = await analyzeEmotions({
+        variables: {
+          input: {
+            text: nodeText,
+            language: 'ja',
+            maxSentences: 200,
+          },
+        },
+      });
+
+      if (data?.analyzeEmotions) {
+        const profile: EmotionProfile = {
+          emotionVector: data.analyzeEmotions.emotionVector.map((ev: EmotionScore) => ({
+            emotion: ev.emotion,
+            score: ev.score,
+          })),
+          createdAt: data.analyzeEmotions.createdAt,
+          language: data.analyzeEmotions.language,
+        };
+
+        // Set emotion profile on the current node
+        editor.chain().focus().setEmotionProfile(profile).run();
+        
+        // Clear error on success
+        setEmotionAnalysisError(null);
+      }
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : '感情分析に失敗しました';
+      console.error('Failed to analyze emotions:', error);
+      setEmotionAnalysisError(errorMessage);
+    } finally {
+      setIsAnalyzingEmotions(false);
+    }
+  }, [editor, isAnalyzingEmotions, getCurrentNodeFullText, analyzeEmotions]);
 
   // Export EPUB function
   const handleExport = async () => {
@@ -607,6 +756,25 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
             <button
               onClick={() => setEditorError(null)}
               className="text-red-500 hover:text-red-700 text-sm font-semibold"
+            >
+              閉じる
+            </button>
+          </div>
+        </div>
+      )}
+      {/* Emotion analysis error banner */}
+      {emotionAnalysisError && (
+        <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-2">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <div className="text-yellow-700">
+                <div className="font-bold">感情分析エラー:</div>
+                <div className="text-sm">{emotionAnalysisError}</div>
+              </div>
+            </div>
+            <button
+              onClick={() => setEmotionAnalysisError(null)}
+              className="text-yellow-700 hover:text-yellow-900 text-sm font-semibold"
             >
               閉じる
             </button>
@@ -747,6 +915,21 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
           {/* ノード分類ボタン */}
           <div className="border-l border-gray-300 pl-2 ml-2">
             <NodeClassificationControls editor={editor} />
+          </div>
+          {/* Hume感情分析ボタン */}
+          <div className="border-l border-gray-300 pl-2 ml-2">
+            <button
+              onClick={handleAnalyzeCurrentNode}
+              disabled={isAnalyzingEmotions || !editor}
+              className={`px-3 py-1 rounded text-sm font-medium ${
+                isAnalyzingEmotions
+                  ? 'bg-gray-400 text-white cursor-not-allowed'
+                  : 'bg-purple-500 text-white hover:bg-purple-600'
+              }`}
+              title="現在のノード全体の感情分析を実行（Hume AI）"
+            >
+              {isAnalyzingEmotions ? '分析中...' : 'Hume感情分析'}
+            </button>
           </div>
         </div>
 
