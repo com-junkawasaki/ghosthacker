@@ -4,6 +4,7 @@ query GetEPUBDocument($id: String!) {
     title
     metadata
     chapters
+    tiptapContent
     createdAt
     updatedAt
   }

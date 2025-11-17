@@ -17,18 +17,12 @@ import { graphqlRequest } from '@/internal/graphql/client';
 import {
   CreateEpubDocumentDocument,
   CreateChapterDocument,
-  CreateParagraphDocument,
-  CreateTextNodeDocument,
-  UpdateParagraphDocument,
-  DeleteTextNodeDocument,
-  GetParagraphsDocument,
-  GetTextNodesDocument,
   GetEpubDocumentDocument,
   GetChaptersDocument,
+  UpdateEpubDocumentDocument,
 } from '@/generated/graphql';
 import { exportEPUB } from '@/internal/epub/export';
 import { TipTapEditor } from '@/internal/epub/TipTapEditor';
-import { epubToTipTap, tiptapToEPUB } from '@/internal/epub/tiptap-converter';
 import { JSONContent } from '@tiptap/core';
 
 interface EPUBDocument {
@@ -50,24 +44,6 @@ interface Chapter {
   updated_at: string;
 }
 
-interface Paragraph {
-  id: string;
-  order: number;
-  text_nodes: string[] | null;
-  style: string | null;
-  created_at: string;
-  updated_at: string;
-}
-
-interface TextNode {
-  id: string;
-  content: string;
-  order: number;
-  belongs_to_paragraph: string;
-  style: string | null;
-  created_at: string;
-  updated_at: string;
-}
 
 interface MetadataInput {
   title?: string | null;
@@ -85,8 +61,6 @@ export default function EPUBEditorPage() {
 
   const [document, setDocument] = useState<EPUBDocument | null>(null);
   const [defaultChapterId, setDefaultChapterId] = useState<string | null>(null);
-  const [paragraphs, setParagraphs] = useState<Paragraph[]>([]);
-  const [textNodes, setTextNodes] = useState<TextNode[]>([]);
   const [tiptapContent, setTipTapContent] = useState<JSONContent>({ type: 'doc', content: [] });
   const [metadata, setMetadata] = useState<MetadataInput>({});
   const [loading, setLoading] = useState(false);
@@ -151,12 +125,16 @@ export default function EPUBEditorPage() {
       // localStorageに保存
       localStorage.setItem(`epub_document_${projectId}`, newDocument.id);
 
-      // デフォルトChapterを取得または作成
+      // デフォルトChapterを取得または作成（後方互換性のため）
       const chapterId = await getOrCreateDefaultChapter(newDocument.id);
       setDefaultChapterId(chapterId);
 
-      // Document全体のコンテンツを読み込む
-      await loadDocumentContent(newDocument.id);
+      // TipTapコンテンツを読み込む（存在する場合）
+      if (result.createEpubDocument.tiptapContent) {
+        setTipTapContent(result.createEpubDocument.tiptapContent as JSONContent);
+      } else {
+        setTipTapContent({ type: 'doc', content: [] });
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create document');
     } finally {
@@ -164,68 +142,22 @@ export default function EPUBEditorPage() {
     }
   };
 
-  // Document全体のParagraphとTextNodeを読み込んでTipTap JSONに変換
+  // Document全体のTipTapコンテンツを読み込む
   const loadDocumentContent = useCallback(async (documentId: string) => {
     try {
       setLoading(true);
-      // Document全体のParagraphsを取得
-      const paragraphsResult = await graphqlRequest(GetParagraphsDocument, {
-        variables: { documentId },
+      // EPUBDocumentを取得（tiptapContentを含む）
+      const result = await graphqlRequest(GetEpubDocumentDocument, {
+        variables: { id: documentId },
       });
 
-      const loadedParagraphs = paragraphsResult.paragraphs;
-      setParagraphs(
-        loadedParagraphs.map((p) => ({
-          id: p.id,
-          order: p.order,
-          text_nodes: p.textNodes,
-          style: p.style,
-          created_at: p.createdAt,
-          updated_at: p.updatedAt,
-        }))
-      );
-
-      // 各ParagraphのTextNodeを取得
-      const allTextNodes: TextNode[] = [];
-      for (const paragraph of loadedParagraphs) {
-        try {
-          const textNodesResult = await graphqlRequest(GetTextNodesDocument, {
-            variables: { paragraphId: paragraph.id },
-          });
-          allTextNodes.push(
-            ...textNodesResult.textNodes.map((tn) => ({
-              id: tn.id,
-              content: tn.content,
-              order: tn.order,
-              belongs_to_paragraph: tn.belongsToParagraph,
-              style: tn.style,
-              created_at: tn.createdAt,
-              updated_at: tn.updatedAt,
-            }))
-          );
-        } catch (err) {
-          console.error(`Failed to load text nodes for paragraph ${paragraph.id}:`, err);
-        }
+      if (result.epubDocument?.tiptapContent) {
+        // TipTap JSONを直接使用
+        setTipTapContent(result.epubDocument.tiptapContent as JSONContent);
+      } else {
+        // TipTapコンテンツが存在しない場合は空のドキュメントを設定
+        setTipTapContent({ type: 'doc', content: [] });
       }
-      setTextNodes(allTextNodes);
-
-      // EPUB構造をTipTap JSONに変換
-      const paragraphData = loadedParagraphs.map((p) => ({
-        id: p.id,
-        order: p.order,
-        style: p.style,
-        textNodes: allTextNodes
-          .filter((tn) => tn.belongs_to_paragraph === p.id)
-          .map((tn) => ({
-            id: tn.id,
-            content: tn.content,
-            order: tn.order,
-            style: tn.style,
-          })),
-      }));
-
-      const tiptapJSON = epubToTipTap(paragraphData);
-      setTipTapContent(tiptapJSON);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load document content');
       console.error('Failed to load document content:', err);
@@ -245,74 +177,19 @@ export default function EPUBEditorPage() {
       }
 
       const timeout = setTimeout(async () => {
-        if (!document || !defaultChapterId) return;
+        if (!document) return;
 
         try {
-          // TipTap JSONをEPUB構造に変換
-          const { paragraphs: newParagraphs } = tiptapToEPUB(content, defaultChapterId);
+          // TipTap JSONを直接データベースに保存
+          await graphqlRequest(UpdateEpubDocumentDocument, {
+            variables: {
+              id: document.id,
+              tiptapContent: content,
+            },
+          });
 
-          // 既存のParagraphとTextNodeを更新または新規作成
-          for (const newParagraph of newParagraphs) {
-            // 既存のParagraphを探す（orderでマッチング）
-            const existingParagraph = paragraphs.find((p) => p.order === newParagraph.order);
-
-            if (existingParagraph) {
-              // 既存のParagraphを更新
-              await graphqlRequest(UpdateParagraphDocument, {
-                variables: {
-                  id: existingParagraph.id,
-                  order: newParagraph.order,
-                },
-              });
-
-              // 既存のTextNodeを削除してから新規作成
-              const existingTextNodes = textNodes.filter(
-                (tn) => tn.belongs_to_paragraph === existingParagraph.id
-              );
-              for (const textNode of existingTextNodes) {
-                try {
-                  await graphqlRequest(DeleteTextNodeDocument, {
-                    variables: { id: textNode.id },
-                  });
-                } catch (err) {
-                  console.error(`Failed to delete text node ${textNode.id}:`, err);
-                }
-              }
-
-              // 新しいTextNodeを作成
-              for (const textNode of newParagraph.textNodes) {
-                await graphqlRequest(CreateTextNodeDocument, {
-                  variables: {
-                    paragraphId: existingParagraph.id,
-                    content: textNode.content,
-                    order: textNode.order,
-                  },
-                });
-              }
-            } else {
-              // 新しいParagraphを作成
-              const paragraphResult = await graphqlRequest(CreateParagraphDocument, {
-                variables: {
-                  chapterId: defaultChapterId,
-                  order: newParagraph.order,
-                },
-              });
-
-              // TextNodeを作成
-              for (const textNode of newParagraph.textNodes) {
-                await graphqlRequest(CreateTextNodeDocument, {
-                  variables: {
-                    paragraphId: paragraphResult.createParagraph.id,
-                    content: textNode.content,
-                    order: textNode.order,
-                  },
-                });
-              }
-            }
-          }
-
-          // データを再読み込み
-          await loadDocumentContent(document.id);
+          // データを再読み込み（オプション）
+          // await loadDocumentContent(document.id);
         } catch (err) {
           setError(err instanceof Error ? err.message : 'Failed to save content');
           console.error('Failed to save content:', err);
@@ -321,7 +198,7 @@ export default function EPUBEditorPage() {
 
       setSaveTimeout(timeout);
     },
-    [document, defaultChapterId, paragraphs, textNodes, saveTimeout, loadDocumentContent]
+    [document, saveTimeout]
   );
 
   // 既存のEPUBドキュメントを読み込む（URLパラメータから）
@@ -348,11 +225,11 @@ export default function EPUBEditorPage() {
 
             setDocument(loadedDocument);
 
-            // デフォルトChapterを取得または作成
+            // デフォルトChapterを取得または作成（後方互換性のため）
             const chapterId = await getOrCreateDefaultChapter(loadedDocument.id);
             setDefaultChapterId(chapterId);
 
-            // Document全体のコンテンツを読み込む
+            // TipTapコンテンツを読み込む
             await loadDocumentContent(loadedDocument.id);
           }
         } catch (err) {

@@ -66,6 +66,8 @@ pub struct EPUBDocument {
     pub id: String,
     pub title: String,
     pub metadata_id: Option<String>,
+    #[sqlx(json)]
+    pub tiptap_content: Option<serde_json::Value>,
     pub created_at: DateTime<Utc>,
     pub updated_at: DateTime<Utc>,
 }
@@ -76,6 +78,8 @@ pub struct KindleDocument {
     pub id: String,
     pub title: String,
     pub metadata_id: Option<String>,
+    #[sqlx(json)]
+    pub tiptap_content: Option<serde_json::Value>,
     pub created_at: DateTime<Utc>,
     pub updated_at: DateTime<Utc>,
 }

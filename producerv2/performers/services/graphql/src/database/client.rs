@@ -332,7 +332,7 @@ pub async fn update_metadata(metadata: &Metadata) -> Result<()> {
 pub async fn get_epub_document(id: &str) -> Result<Option<EPUBDocument>> {
     let pool = get_pool()?;
     let epub = sqlx::query_as::<_, EPUBDocument>(
-        "SELECT id, title, metadata_id, created_at, updated_at FROM epub_documents WHERE id = $1"
+        "SELECT id, title, metadata_id, tiptap_content, created_at, updated_at FROM epub_documents WHERE id = $1"
     )
     .bind(id)
     .fetch_optional(pool.as_ref())
@@ -344,12 +344,13 @@ pub async fn get_epub_document(id: &str) -> Result<Option<EPUBDocument>> {
 pub async fn create_epub_document(epub: &EPUBDocument) -> Result<()> {
     let pool = get_pool()?;
     sqlx::query(
-        "INSERT INTO epub_documents (id, title, metadata_id, created_at, updated_at) 
-         VALUES ($1, $2, $3, $4, $5)"
+        "INSERT INTO epub_documents (id, title, metadata_id, tiptap_content, created_at, updated_at) 
+         VALUES ($1, $2, $3, $4, $5, $6)"
     )
     .bind(&epub.id)
     .bind(&epub.title)
     .bind(&epub.metadata_id)
+    .bind(&epub.tiptap_content)
     .bind(epub.created_at)
     .bind(epub.updated_at)
     .execute(pool.as_ref())
@@ -361,11 +362,12 @@ pub async fn create_epub_document(epub: &EPUBDocument) -> Result<()> {
 pub async fn update_epub_document(epub: &EPUBDocument) -> Result<()> {
     let pool = get_pool()?;
     sqlx::query(
-        "UPDATE epub_documents SET title = $2, metadata_id = $3, updated_at = $4 WHERE id = $1"
+        "UPDATE epub_documents SET title = $2, metadata_id = $3, tiptap_content = $4, updated_at = $5 WHERE id = $1"
     )
     .bind(&epub.id)
     .bind(&epub.title)
     .bind(&epub.metadata_id)
+    .bind(&epub.tiptap_content)
     .bind(epub.updated_at)
     .execute(pool.as_ref())
     .await?;
@@ -378,7 +380,7 @@ pub async fn update_epub_document(epub: &EPUBDocument) -> Result<()> {
 pub async fn get_kindle_document(id: &str) -> Result<Option<KindleDocument>> {
     let pool = get_pool()?;
     let kindle = sqlx::query_as::<_, KindleDocument>(
-        "SELECT id, title, metadata_id, created_at, updated_at FROM kindle_documents WHERE id = $1"
+        "SELECT id, title, metadata_id, tiptap_content, created_at, updated_at FROM kindle_documents WHERE id = $1"
     )
     .bind(id)
     .fetch_optional(pool.as_ref())
@@ -390,12 +392,13 @@ pub async fn get_kindle_document(id: &str) -> Result<Option<KindleDocument>> {
 pub async fn create_kindle_document(kindle: &KindleDocument) -> Result<()> {
     let pool = get_pool()?;
     sqlx::query(
-        "INSERT INTO kindle_documents (id, title, metadata_id, created_at, updated_at) 
-         VALUES ($1, $2, $3, $4, $5)"
+        "INSERT INTO kindle_documents (id, title, metadata_id, tiptap_content, created_at, updated_at) 
+         VALUES ($1, $2, $3, $4, $5, $6)"
     )
     .bind(&kindle.id)
     .bind(&kindle.title)
     .bind(&kindle.metadata_id)
+    .bind(&kindle.tiptap_content)
     .bind(kindle.created_at)
     .bind(kindle.updated_at)
     .execute(pool.as_ref())
@@ -407,11 +410,12 @@ pub async fn create_kindle_document(kindle: &KindleDocument) -> Result<()> {
 pub async fn update_kindle_document(kindle: &KindleDocument) -> Result<()> {
     let pool = get_pool()?;
     sqlx::query(
-        "UPDATE kindle_documents SET title = $2, metadata_id = $3, updated_at = $4 WHERE id = $1"
+        "UPDATE kindle_documents SET title = $2, metadata_id = $3, tiptap_content = $4, updated_at = $5 WHERE id = $1"
     )
     .bind(&kindle.id)
     .bind(&kindle.title)
     .bind(&kindle.metadata_id)
+    .bind(&kindle.tiptap_content)
     .bind(kindle.updated_at)
     .execute(pool.as_ref())
     .await?;

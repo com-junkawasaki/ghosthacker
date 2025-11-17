@@ -1,20 +1,22 @@
-mutation CreateEPUBDocument($title: String!, $metadata: MetadataInput) {
-  createEpubDocument(title: $title, metadata: $metadata) {
+mutation CreateEPUBDocument($title: String!, $metadata: MetadataInput, $tiptapContent: JSON) {
+  createEpubDocument(title: $title, metadata: $metadata, tiptapContent: $tiptapContent) {
     id
     title
     metadata
     chapters
+    tiptapContent
     createdAt
     updatedAt
   }
 }
 
-mutation UpdateEPUBDocument($id: String!, $title: String, $metadata: MetadataInput) {
-  updateEpubDocument(id: $id, title: $title, metadata: $metadata) {
+mutation UpdateEPUBDocument($id: String!, $title: String, $metadata: MetadataInput, $tiptapContent: JSON) {
+  updateEpubDocument(id: $id, title: $title, metadata: $metadata, tiptapContent: $tiptapContent) {
     id
     title
     metadata
     chapters
+    tiptapContent
     createdAt
     updatedAt
   }

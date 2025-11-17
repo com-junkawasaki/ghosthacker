@@ -425,6 +425,7 @@ impl MutationRoot {
         &self,
         title: String,
         metadata: Option<MetadataInput>,
+        tiptap_content: Option<serde_json::Value>,
     ) -> Result<EPUBDocument> {
         let now = chrono::Utc::now();
         let doc_id = format!("EPUBDocument_{}", nanoid!());
@@ -457,6 +458,7 @@ impl MutationRoot {
             id: doc_id.clone(),
             title: title.clone(),
             metadata_id: metadata_id.clone(),
+            tiptap_content: tiptap_content.clone(),
             created_at: now,
             updated_at: now,
         };
@@ -476,6 +478,7 @@ impl MutationRoot {
         id: String,
         title: Option<String>,
         _metadata: Option<MetadataInput>,
+        tiptap_content: Option<serde_json::Value>,
     ) -> Result<EPUBDocument> {
         let mut epub = get_epub_document(&id).await
             .map_err(|e| Error::new(format!("EPUB document not found: {}", e)))?
@@ -483,6 +486,9 @@ impl MutationRoot {
 
         if let Some(t) = title {
             epub.title = t;
+        }
+        if let Some(tc) = tiptap_content {
+            epub.tiptap_content = Some(tc);
         }
         epub.updated_at = chrono::Utc::now();
 
@@ -873,6 +879,7 @@ pub struct EPUBDocument {
     pub title: String,
     pub metadata: Option<String>,
     pub chapters: Option<Vec<String>>,
+    pub tiptap_content: Option<serde_json::Value>,
     pub created_at: String,
     pub updated_at: String,
 }
@@ -884,6 +891,7 @@ impl From<DatabaseEPUBDocument> for EPUBDocument {
             title: epub.title,
             metadata: epub.metadata_id,
             chapters: None, // TODO: 必要に応じてchaptersを取得
+            tiptap_content: epub.tiptap_content,
             created_at: epub.created_at.to_rfc3339(),
             updated_at: epub.updated_at.to_rfc3339(),
         }
@@ -896,6 +904,7 @@ pub struct KindleDocument {
     pub title: String,
     pub metadata: Option<String>,
     pub chapters: Option<Vec<String>>,
+    pub tiptap_content: Option<serde_json::Value>,
     pub created_at: String,
     pub updated_at: String,
 }
@@ -907,6 +916,7 @@ impl From<DatabaseKindleDocument> for KindleDocument {
             title: kindle.title,
             metadata: kindle.metadata_id,
             chapters: None, // TODO: 必要に応じてchaptersを取得
+            tiptap_content: kindle.tiptap_content,
             created_at: kindle.created_at.to_rfc3339(),
             updated_at: kindle.updated_at.to_rfc3339(),
         }
