@@ -262,81 +262,97 @@ CREATE INDEX IF NOT EXISTS idx_settings_setting_id ON settings(setting_id);
 CREATE INDEX IF NOT EXISTS idx_settings_name ON settings(name);
 
 -- Triggers for updated_at
+DROP TRIGGER IF EXISTS update_characters_updated_at ON characters;
 CREATE TRIGGER update_characters_updated_at
     BEFORE UPDATE ON characters
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_ghosts_updated_at ON ghosts;
 CREATE TRIGGER update_ghosts_updated_at
     BEFORE UPDATE ON ghosts
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_locations_updated_at ON locations;
 CREATE TRIGGER update_locations_updated_at
     BEFORE UPDATE ON locations
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_organizations_updated_at ON organizations;
 CREATE TRIGGER update_organizations_updated_at
     BEFORE UPDATE ON organizations
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_companies_updated_at ON companies;
 CREATE TRIGGER update_companies_updated_at
     BEFORE UPDATE ON companies
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_technologies_updated_at ON technologies;
 CREATE TRIGGER update_technologies_updated_at
     BEFORE UPDATE ON technologies
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_episodes_updated_at ON episodes;
 CREATE TRIGGER update_episodes_updated_at
     BEFORE UPDATE ON episodes
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_scenes_updated_at ON scenes;
 CREATE TRIGGER update_scenes_updated_at
     BEFORE UPDATE ON scenes
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_arcs_updated_at ON arcs;
 CREATE TRIGGER update_arcs_updated_at
     BEFORE UPDATE ON arcs
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_motifs_updated_at ON motifs;
 CREATE TRIGGER update_motifs_updated_at
     BEFORE UPDATE ON motifs
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_seasons_updated_at ON seasons;
 CREATE TRIGGER update_seasons_updated_at
     BEFORE UPDATE ON seasons
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_timelines_updated_at ON timelines;
 CREATE TRIGGER update_timelines_updated_at
     BEFORE UPDATE ON timelines
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_events_updated_at ON events;
 CREATE TRIGGER update_events_updated_at
     BEFORE UPDATE ON events
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_source_refs_updated_at ON source_refs;
 CREATE TRIGGER update_source_refs_updated_at
     BEFORE UPDATE ON source_refs
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_occupations_updated_at ON occupations;
 CREATE TRIGGER update_occupations_updated_at
     BEFORE UPDATE ON occupations
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_settings_updated_at ON settings;
 CREATE TRIGGER update_settings_updated_at
     BEFORE UPDATE ON settings
     FOR EACH ROW

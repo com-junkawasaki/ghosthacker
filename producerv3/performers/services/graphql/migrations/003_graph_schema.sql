@@ -61,12 +61,14 @@ CREATE INDEX IF NOT EXISTS idx_graph_incidences_role ON graph_incidences(role);
 CREATE INDEX IF NOT EXISTS idx_graph_incidences_properties ON graph_incidences USING GIN(properties);
 
 -- Trigger for updated_at on graph_links
+DROP TRIGGER IF EXISTS update_graph_links_updated_at ON graph_links;
 CREATE TRIGGER update_graph_links_updated_at
     BEFORE UPDATE ON graph_links
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
 -- Trigger for updated_at on graph_incidences
+DROP TRIGGER IF EXISTS update_graph_incidences_updated_at ON graph_incidences;
 CREATE TRIGGER update_graph_incidences_updated_at
     BEFORE UPDATE ON graph_incidences
     FOR EACH ROW
