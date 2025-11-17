@@ -11,7 +11,7 @@
 import { useState } from 'react';
 import type { Editor } from '@tiptap/react';
 import { useMutation } from '@apollo/client';
-import { extractNodeForClassification } from '@/lib/ai/nodeClassifier';
+import { extractNodeForClassification, extractMultipleNodesFromSelection, type NodeForClassification } from '@/lib/ai/nodeClassifier';
 import { extractEditorContext, extractContextAroundCursor } from '@/lib/editor/contextExtractor';
 import { NodeClassificationDialog } from './NodeClassificationDialog';
 import { CLASSIFY_NODE } from '@/lib/graphql/mutations';
@@ -21,11 +21,19 @@ interface NodeClassificationControlsProps {
   editor: Editor | null;
 }
 
+interface NodeClassificationWithPosition {
+  result: NodeClassificationResult;
+  position: { from: number; to: number };
+  nodeInfo: NodeForClassification;
+  error?: string;
+}
+
 export function NodeClassificationControls({ editor }: NodeClassificationControlsProps) {
   const [isClassifying, setIsClassifying] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const [classificationResult, setClassificationResult] = useState<NodeClassificationResult | null>(null);
   const [nodePosition, setNodePosition] = useState<{ from: number; to: number } | undefined>();
+  const [multipleClassificationResults, setMultipleClassificationResults] = useState<NodeClassificationWithPosition[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const [classifyNode] = useMutation(CLASSIFY_NODE);
@@ -47,64 +55,134 @@ export function NodeClassificationControls({ editor }: NodeClassificationControl
       const { selection } = state;
       const { from, to } = selection;
 
-      // Extract node information for classification
-      let nodeInfo = extractNodeForClassification(editor);
+      // Check if selection contains multiple nodes
+      const multipleNodes = extractMultipleNodesFromSelection(editor);
 
-      // If no node selected, try to get node at cursor position
-      if (!nodeInfo && !selection.empty) {
-        const node = state.doc.nodeAt(from);
-        if (node) {
-          nodeInfo = extractNodeForClassification(editor, node, { from, to });
-        }
-      }
+      if (multipleNodes.length > 1) {
+        // Multiple nodes mode: classify each node
+        const results: NodeClassificationWithPosition[] = [];
+        const errors: string[] = [];
 
-      // If still no node, use context around cursor
-      if (!nodeInfo) {
-        const context = extractContextAroundCursor(editor, 100);
-        if (context.selectedText) {
-          nodeInfo = {
-            text: context.selectedText,
-            context: context.selectedText,
-          };
-        }
-      }
+        for (const nodeInfo of multipleNodes) {
+          try {
+            // Prepare mask info for API
+            const maskInfo = nodeInfo.maskInfo
+              ? {
+                  masks: nodeInfo.maskInfo.map((mask) => ({
+                    type: mask.type,
+                    enabled: mask.enabled,
+                    attributes: mask.attributes,
+                  })),
+                }
+              : undefined;
 
-      if (!nodeInfo || !nodeInfo.text.trim()) {
-        setError('分類対象のノードまたはテキストを選択してください');
-        setIsClassifying(false);
-        return;
-      }
+            // Call GraphQL mutation for each node
+            const { data } = await classifyNode({
+              variables: {
+                input: {
+                  text: nodeInfo.text,
+                  currentType: nodeInfo.currentType || undefined,
+                  attributes: nodeInfo.attributes ? JSON.parse(JSON.stringify(nodeInfo.attributes)) : undefined,
+                  maskInfo: maskInfo ? JSON.parse(JSON.stringify(maskInfo)) : undefined,
+                  context: nodeInfo.context || undefined,
+                },
+              },
+            });
 
-      // Prepare mask info for API
-      const maskInfo = nodeInfo.maskInfo
-        ? {
-            masks: nodeInfo.maskInfo.map((mask) => ({
-              type: mask.type,
-              enabled: mask.enabled,
-              attributes: mask.attributes,
-            })),
+            if (data?.classifyNode && nodeInfo.position) {
+              results.push({
+                result: data.classifyNode,
+                position: nodeInfo.position,
+                nodeInfo,
+              });
+            } else {
+              errors.push(`ノード「${nodeInfo.text.substring(0, 30)}...」の分類に失敗しました`);
+            }
+          } catch (err) {
+            const errorMsg = err instanceof Error ? err.message : '分類に失敗しました';
+            errors.push(`ノード「${nodeInfo.text.substring(0, 30)}...」: ${errorMsg}`);
+            results.push({
+              result: {
+                suggestedType: nodeInfo.currentType || 'unknown',
+                confidence: 0,
+                reasoning: '分類エラーが発生しました',
+              },
+              position: nodeInfo.position || { from: 0, to: 0 },
+              nodeInfo,
+              error: errorMsg,
+            });
           }
-        : undefined;
+        }
 
-      // Call GraphQL mutation
-      const { data } = await classifyNode({
-        variables: {
-          input: {
-            text: nodeInfo.text,
-            currentType: nodeInfo.currentType || undefined,
-            attributes: nodeInfo.attributes ? JSON.parse(JSON.stringify(nodeInfo.attributes)) : undefined,
-            maskInfo: maskInfo ? JSON.parse(JSON.stringify(maskInfo)) : undefined,
-            context: nodeInfo.context || undefined,
-          },
-        },
-      });
-
-      if (data?.classifyNode) {
-        setClassificationResult(data.classifyNode);
-        setNodePosition(nodeInfo.position || { from, to });
-        setShowDialog(true);
+        if (results.length > 0) {
+          setMultipleClassificationResults(results);
+          setClassificationResult(null);
+          setNodePosition(undefined);
+          setShowDialog(true);
+        } else {
+          setError(errors.length > 0 ? errors.join('\n') : 'すべてのノードの分類に失敗しました');
+        }
       } else {
-        setError('分類に失敗しました');
+        // Single node mode: use existing logic
+        let nodeInfo = extractNodeForClassification(editor);
+
+        // If no node selected, try to get node at cursor position
+        if (!nodeInfo && !selection.empty) {
+          const node = state.doc.nodeAt(from);
+          if (node) {
+            nodeInfo = extractNodeForClassification(editor, node, { from, to });
+          }
+        }
+
+        // If still no node, use context around cursor
+        if (!nodeInfo) {
+          const context = extractContextAroundCursor(editor, 100);
+          if (context.selectedText) {
+            nodeInfo = {
+              text: context.selectedText,
+              context: context.selectedText,
+            };
+          }
+        }
+
+        if (!nodeInfo || !nodeInfo.text.trim()) {
+          setError('分類対象のノードまたはテキストを選択してください');
+          setIsClassifying(false);
+          return;
+        }
+
+        // Prepare mask info for API
+        const maskInfo = nodeInfo.maskInfo
+          ? {
+              masks: nodeInfo.maskInfo.map((mask) => ({
+                type: mask.type,
+                enabled: mask.enabled,
+                attributes: mask.attributes,
+              })),
+            }
+          : undefined;
+
+        // Call GraphQL mutation
+        const { data } = await classifyNode({
+          variables: {
+            input: {
+              text: nodeInfo.text,
+              currentType: nodeInfo.currentType || undefined,
+              attributes: nodeInfo.attributes ? JSON.parse(JSON.stringify(nodeInfo.attributes)) : undefined,
+              maskInfo: maskInfo ? JSON.parse(JSON.stringify(maskInfo)) : undefined,
+              context: nodeInfo.context || undefined,
+            },
+          },
+        });
+
+        if (data?.classifyNode) {
+          setClassificationResult(data.classifyNode);
+          setNodePosition(nodeInfo.position || { from, to });
+          setMultipleClassificationResults([]);
+          setShowDialog(true);
+        } else {
+          setError('分類に失敗しました');
+        }
       }
     } catch (err) {
       console.error('Classification error:', err);
@@ -119,6 +197,13 @@ export function NodeClassificationControls({ editor }: NodeClassificationControl
     setShowDialog(false);
     setClassificationResult(null);
     setNodePosition(undefined);
+    setMultipleClassificationResults([]);
+  };
+
+  const handleMultipleReclassify = (appliedIndices: number[]) => {
+    // Multiple nodes were applied, close dialog
+    setShowDialog(false);
+    setMultipleClassificationResults([]);
   };
 
   return (
@@ -152,10 +237,13 @@ export function NodeClassificationControls({ editor }: NodeClassificationControl
           setShowDialog(false);
           setClassificationResult(null);
           setNodePosition(undefined);
+          setMultipleClassificationResults([]);
         }}
         classificationResult={classificationResult}
         nodePosition={nodePosition}
+        multipleClassificationResults={multipleClassificationResults.length > 0 ? multipleClassificationResults : undefined}
         onReclassify={handleReclassify}
+        onMultipleReclassify={handleMultipleReclassify}
       />
     </>
   );

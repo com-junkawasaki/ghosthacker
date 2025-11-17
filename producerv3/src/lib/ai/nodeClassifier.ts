@@ -122,6 +122,77 @@ export function extractNodesForClassification(
 }
 
 /**
+ * Extract multiple nodes from selection range for classification
+ * Returns all nodes found in the selection range
+ */
+export function extractMultipleNodesFromSelection(
+  editor: Editor
+): NodeForClassification[] {
+  const { state } = editor;
+  const { selection } = state;
+  const { from, to } = selection;
+
+  // If selection is empty, return empty array
+  if (selection.empty) {
+    return [];
+  }
+
+  // Extract context from selection
+  const editorContext = extractEditorContext(editor);
+
+  // If no nodes found, return empty array
+  if (editorContext.selectedNodes.length === 0) {
+    return [];
+  }
+
+  // Convert ExtractedNode[] to NodeForClassification[]
+  return editorContext.selectedNodes.map((extractedNode) => {
+    const { state } = editor;
+    const text = state.doc.textBetween(
+      extractedNode.position.from,
+      extractedNode.position.to
+    );
+
+    // Extract mask information from attributes
+    const maskInfo: MaskInfo[] = [];
+    const maskAttributes = [
+      'emotionMask', 'themeMask', 'contextMask', 'notesMask',
+      'relationshipMask', 'virtueMask', 'anchoredToMask',
+      'emitsRepelsAvoidsMask', 'phaseMask', 'roleMask',
+    ];
+
+    maskAttributes.forEach((attr) => {
+      if (extractedNode.attributes[attr] === true) {
+        const maskType = attr.replace('Mask', '') as MaskInfo['type'];
+        maskInfo.push({
+          type: maskType,
+          enabled: true,
+          attributes: extractedNode.attributes,
+        });
+      }
+    });
+
+    // Extract context around the node
+    const contextRange = 200;
+    const contextFrom = Math.max(0, extractedNode.position.from - contextRange);
+    const contextTo = Math.min(
+      state.doc.content.size,
+      extractedNode.position.to + contextRange
+    );
+    const context = state.doc.textBetween(contextFrom, contextTo);
+
+    return {
+      text: text || '',
+      currentType: extractedNode.type,
+      attributes: extractedNode.attributes,
+      maskInfo: maskInfo.length > 0 ? maskInfo : undefined,
+      context: context || editorContext.selectedText || undefined,
+      position: extractedNode.position,
+    };
+  });
+}
+
+/**
  * Reclassify a node in the editor
  */
 export function reclassifyNode(

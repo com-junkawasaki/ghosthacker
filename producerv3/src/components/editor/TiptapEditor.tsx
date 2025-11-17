@@ -62,7 +62,6 @@ import { EmotionAnalysisExtension } from './extensions/EmotionAnalysisExtension'
 // import { EmotionStyleExtension } from './extensions/EmotionStyleExtension'; // Disabled - using CSS instead
 import { NodeSelectorDialog } from './NodeSelectorDialog';
 import { ChapterSelectorDialog } from './ChapterSelectorDialog';
-import { MaskControls } from './MaskControls';
 import { FloatingToolbar } from './FloatingToolbar';
 import { ImageGenerationDialog } from './ImageGenerationDialog';
 import { AIContentGenerationControls } from './AIContentGenerationControls';
@@ -424,274 +423,283 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
   return (
     <div className="editor-container h-full flex flex-col">
       <div className="editor-toolbar flex flex-wrap gap-2 p-2 border-b border-gray-300 items-center">
-        {/* 基本フォーマット */}
-        <button
-          onClick={() => editor.chain().focus().toggleBold().run()}
-          className={`px-3 py-1 rounded ${
-            editor.isActive('bold')
-              ? 'bg-blue-500 text-white'
-              : 'bg-gray-200 hover:bg-gray-300'
-          }`}
-        >
-          Bold
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={`px-3 py-1 rounded ${
-            editor.isActive('italic')
-              ? 'bg-blue-500 text-white'
-              : 'bg-gray-200 hover:bg-gray-300'
-          }`}
-        >
-          Italic
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-          className={`px-3 py-1 rounded ${
-            editor.isActive('heading', { level: 1 })
-              ? 'bg-blue-500 text-white'
-              : 'bg-gray-200 hover:bg-gray-300'
-          }`}
-        >
-          H1
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-          className={`px-3 py-1 rounded ${
-            editor.isActive('heading', { level: 2 })
-              ? 'bg-blue-500 text-white'
-              : 'bg-gray-200 hover:bg-gray-300'
-          }`}
-        >
-          H2
-        </button>
-        
-        {/* AI生成ボタン */}
-        <div className="border-l border-gray-300 pl-2 ml-2">
-          <AIContentGenerationControls editor={editor} />
-        </div>
-
-        {/* ノード分類ボタン */}
-        <div className="border-l border-gray-300 pl-2 ml-2">
-          <NodeClassificationControls editor={editor} />
-        </div>
-
-        {/* 画像生成ボタン */}
-        <div className="border-l border-gray-300 pl-2 ml-2">
-          <button
-            onClick={() => setShowImageGenerationDialog(true)}
-            className="px-3 py-1 rounded bg-green-100 text-green-800 hover:bg-green-200 text-sm font-medium"
-            title="画像を生成して挿入"
-          >
-            🖼️ 画像生成
-          </button>
-        </div>
-
-        {/* JSON-LDノード挿入ボタン */}
-        <div className="border-l border-gray-300 pl-2 ml-2 flex gap-1">
-          <button
-            onClick={() => setSelectedNodeType('character')}
-            className="px-2 py-1 text-xs rounded bg-purple-100 text-purple-800 hover:bg-purple-200"
-          >
-            Character
-          </button>
-          <button
-            onClick={() => setSelectedNodeType('ghost')}
-            className="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800 hover:bg-gray-200"
-          >
-            Ghost
-          </button>
-          <button
-            onClick={() => setSelectedNodeType('location')}
-            className="px-2 py-1 text-xs rounded bg-blue-100 text-blue-800 hover:bg-blue-200"
-          >
-            Location
-          </button>
-          <button
-            onClick={() => setSelectedNodeType('organization')}
-            className="px-2 py-1 text-xs rounded bg-green-100 text-green-800 hover:bg-green-200"
-          >
-            Org
-          </button>
-          <button
-            onClick={() => setSelectedNodeType('technology')}
-            className="px-2 py-1 text-xs rounded bg-yellow-100 text-yellow-800 hover:bg-yellow-200"
-          >
-            Tech
-          </button>
-          <button
-            onClick={() => setSelectedNodeType('episode')}
-            className="px-2 py-1 text-xs rounded bg-indigo-100 text-indigo-800 hover:bg-indigo-200"
-          >
-            Episode
-          </button>
-          <button
-            onClick={() => setSelectedNodeType('scene')}
-            className="px-2 py-1 text-xs rounded bg-pink-100 text-pink-800 hover:bg-pink-200"
-          >
-            Scene
-          </button>
-          <button
-            onClick={() => setSelectedNodeType('arc')}
-            className="px-2 py-1 text-xs rounded bg-orange-100 text-orange-800 hover:bg-orange-200"
-          >
-            Arc
-          </button>
-          <button
-            onClick={() => setSelectedNodeType('motif')}
-            className="px-2 py-1 text-xs rounded bg-teal-100 text-teal-800 hover:bg-teal-200"
-          >
-            Motif
-          </button>
-          <button
-            onClick={() => setShowChapterSelector(true)}
-            className="px-2 py-1 text-xs rounded bg-blue-100 text-blue-800 hover:bg-blue-200"
-            disabled={!normalizedEpubId}
-            title="Insert chapter link"
-          >
-            Chapter
-          </button>
-        </div>
-
-        {/* エクスポート/インポートボタン */}
-        {normalizedEpubId && (
-          <div className="border-l border-gray-300 pl-2 ml-2 flex gap-1">
+        {/* Phase 1: 作成（Content Creation） */}
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-semibold text-gray-500 px-2">作成</span>
+          {/* JSON-LDノード挿入ボタン */}
+          <div className="flex gap-1">
             <button
-              onClick={handleExport}
-              disabled={isExporting}
-              className={`px-3 py-1 rounded text-sm font-medium ${
-                isExporting
-                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  : 'bg-green-500 text-white hover:bg-green-600'
-              }`}
-              title="EPUB全体をエクスポート"
+              onClick={() => setSelectedNodeType('character')}
+              className="px-2 py-1 text-xs rounded bg-purple-100 text-purple-800 hover:bg-purple-200"
             >
-              {isExporting ? 'エクスポート中...' : 'エクスポート'}
+              Character
             </button>
-            <label
-              className={`px-3 py-1 rounded text-sm font-medium cursor-pointer ${
-                isImporting
+            <button
+              onClick={() => setSelectedNodeType('ghost')}
+              className="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800 hover:bg-gray-200"
+            >
+              Ghost
+            </button>
+            <button
+              onClick={() => setSelectedNodeType('location')}
+              className="px-2 py-1 text-xs rounded bg-blue-100 text-blue-800 hover:bg-blue-200"
+            >
+              Location
+            </button>
+            <button
+              onClick={() => setSelectedNodeType('organization')}
+              className="px-2 py-1 text-xs rounded bg-green-100 text-green-800 hover:bg-green-200"
+            >
+              Org
+            </button>
+            <button
+              onClick={() => setSelectedNodeType('technology')}
+              className="px-2 py-1 text-xs rounded bg-yellow-100 text-yellow-800 hover:bg-yellow-200"
+            >
+              Tech
+            </button>
+            <button
+              onClick={() => setSelectedNodeType('episode')}
+              className="px-2 py-1 text-xs rounded bg-indigo-100 text-indigo-800 hover:bg-indigo-200"
+            >
+              Episode
+            </button>
+            <button
+              onClick={() => setSelectedNodeType('scene')}
+              className="px-2 py-1 text-xs rounded bg-pink-100 text-pink-800 hover:bg-pink-200"
+            >
+              Scene
+            </button>
+            <button
+              onClick={() => setSelectedNodeType('arc')}
+              className="px-2 py-1 text-xs rounded bg-orange-100 text-orange-800 hover:bg-orange-200"
+            >
+              Arc
+            </button>
+            <button
+              onClick={() => setSelectedNodeType('motif')}
+              className="px-2 py-1 text-xs rounded bg-teal-100 text-teal-800 hover:bg-teal-200"
+            >
+              Motif
+            </button>
+            <button
+              onClick={() => setShowChapterSelector(true)}
+              className="px-2 py-1 text-xs rounded bg-blue-100 text-blue-800 hover:bg-blue-200"
+              disabled={!normalizedEpubId}
+              title="Insert chapter link"
+            >
+              Chapter
+            </button>
+          </div>
+          {/* 画像生成ボタン */}
+          <div className="border-l border-gray-300 pl-2 ml-2">
+            <button
+              onClick={() => setShowImageGenerationDialog(true)}
+              className="px-3 py-1 rounded bg-green-100 text-green-800 hover:bg-green-200 text-sm font-medium"
+              title="画像を生成して挿入"
+            >
+              🖼️ 画像生成
+            </button>
+          </div>
+        </div>
+
+        {/* Phase 2: 編集（Content Editing） */}
+        <div className="flex items-center gap-2 border-l border-gray-300 pl-2 ml-2">
+          <span className="text-xs font-semibold text-gray-500 px-2">編集</span>
+          {/* 基本フォーマット */}
+          <div className="flex gap-1">
+            <button
+              onClick={() => editor.chain().focus().toggleBold().run()}
+              className={`px-3 py-1 rounded ${
+                editor.isActive('bold')
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-gray-200 hover:bg-gray-300'
+              }`}
+            >
+              Bold
+            </button>
+            <button
+              onClick={() => editor.chain().focus().toggleItalic().run()}
+              className={`px-3 py-1 rounded ${
+                editor.isActive('italic')
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-gray-200 hover:bg-gray-300'
+              }`}
+            >
+              Italic
+            </button>
+            <button
+              onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+              className={`px-3 py-1 rounded ${
+                editor.isActive('heading', { level: 1 })
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-gray-200 hover:bg-gray-300'
+              }`}
+            >
+              H1
+            </button>
+            <button
+              onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+              className={`px-3 py-1 rounded ${
+                editor.isActive('heading', { level: 2 })
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-gray-200 hover:bg-gray-300'
+              }`}
+            >
+              H2
+            </button>
+          </div>
+          {/* AI生成ボタン */}
+          <div className="border-l border-gray-300 pl-2 ml-2">
+            <AIContentGenerationControls editor={editor} />
+          </div>
+          {/* ノード分類ボタン */}
+          <div className="border-l border-gray-300 pl-2 ml-2">
+            <NodeClassificationControls editor={editor} />
+          </div>
+        </div>
+
+        {/* Phase 4: エクスポート（Content Export） */}
+        <div className="flex items-center gap-2 border-l border-gray-300 pl-2 ml-2 ml-auto">
+          <span className="text-xs font-semibold text-gray-500 px-2">エクスポート</span>
+          {/* エクスポート/インポートボタン */}
+          {normalizedEpubId && (
+            <div className="flex gap-1">
+              <button
+                onClick={handleExport}
+                disabled={isExporting}
+                className={`px-3 py-1 rounded text-sm font-medium ${
+                  isExporting
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : 'bg-green-500 text-white hover:bg-green-600'
+                }`}
+                title="EPUB全体をエクスポート"
+              >
+                {isExporting ? 'エクスポート中...' : 'エクスポート'}
+              </button>
+              <label
+                className={`px-3 py-1 rounded text-sm font-medium cursor-pointer ${
+                  isImporting
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : 'bg-blue-500 text-white hover:bg-blue-600'
+                }`}
+              >
+                {isImporting ? 'インポート中...' : 'インポート'}
+                <input
+                  type="file"
+                  accept=".json,application/json"
+                  onChange={handleImport}
+                  disabled={isImporting}
+                  className="hidden"
+                />
+              </label>
+            </div>
+          )}
+          {/* 保存ボタンと状態表示 */}
+          <div className="flex items-center gap-2 border-l border-gray-300 pl-2 ml-2">
+            {/* インポートエラー表示 */}
+            {importError && (
+              <div className="flex items-center gap-1 text-sm text-red-600">
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+                <span>{importError}</span>
+              </div>
+            )}
+            {/* 保存状態インジケーター */}
+            {saveStatus === 'saving' && (
+              <div className="flex items-center gap-1 text-sm text-gray-600">
+                <svg
+                  className="animate-spin h-4 w-4 text-blue-500"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                <span>保存中...</span>
+              </div>
+            )}
+            {saveStatus === 'saved' && (
+              <div className="flex items-center gap-1 text-sm text-green-600">
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                <span>保存済み</span>
+              </div>
+            )}
+            {saveStatus === 'error' && (
+              <div className="flex items-center gap-1 text-sm text-red-600">
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+                <span>{saveError || '保存エラー'}</span>
+              </div>
+            )}
+            
+            {/* 手動保存ボタン */}
+            <button
+              onClick={handleManualSave}
+              disabled={isSaving || !chapterId}
+              className={`px-4 py-1 rounded text-sm font-medium ${
+                isSaving || !chapterId
                   ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                   : 'bg-blue-500 text-white hover:bg-blue-600'
               }`}
+              title={!chapterId ? '章を選択してから編集・保存してください' : '保存'}
             >
-              {isImporting ? 'インポート中...' : 'インポート'}
-              <input
-                type="file"
-                accept=".json,application/json"
-                onChange={handleImport}
-                disabled={isImporting}
-                className="hidden"
-              />
-            </label>
+              保存
+            </button>
+            {!chapterId && (
+              <div className="text-xs text-gray-500 px-2">
+                全章表示モード（編集するには章を選択してください）
+              </div>
+            )}
           </div>
-        )}
-
-        {/* 保存ボタンと状態表示 */}
-        <div className="ml-auto flex items-center gap-2">
-          {/* インポートエラー表示 */}
-          {importError && (
-            <div className="flex items-center gap-1 text-sm text-red-600">
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-              <span>{importError}</span>
-            </div>
-          )}
-          {/* 保存状態インジケーター */}
-          {saveStatus === 'saving' && (
-            <div className="flex items-center gap-1 text-sm text-gray-600">
-              <svg
-                className="animate-spin h-4 w-4 text-blue-500"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-              <span>保存中...</span>
-            </div>
-          )}
-          {saveStatus === 'saved' && (
-            <div className="flex items-center gap-1 text-sm text-green-600">
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-              <span>保存済み</span>
-            </div>
-          )}
-          {saveStatus === 'error' && (
-            <div className="flex items-center gap-1 text-sm text-red-600">
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-              <span>{saveError || '保存エラー'}</span>
-            </div>
-          )}
-          
-          {/* 手動保存ボタン */}
-          <button
-            onClick={handleManualSave}
-            disabled={isSaving || !chapterId}
-            className={`px-4 py-1 rounded text-sm font-medium ${
-              isSaving || !chapterId
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'bg-blue-500 text-white hover:bg-blue-600'
-            }`}
-            title={!chapterId ? '章を選択してから編集・保存してください' : '保存'}
-          >
-            保存
-          </button>
-          {!chapterId && (
-            <div className="text-xs text-gray-500 px-2">
-              全章表示モード（編集するには章を選択してください）
-            </div>
-          )}
         </div>
       </div>
-      <MaskControls editor={editor} />
       <div className="editor-content-wrapper flex-1 flex overflow-hidden">
         <div className="editor-content flex-1 p-4 overflow-y-auto relative">
           <EditorContent editor={editor} />

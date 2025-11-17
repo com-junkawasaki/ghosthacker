@@ -38,9 +38,9 @@
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
   "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation, AI node classification and reclassification, emotion analysis (Hume AI) with sidebar visualization and benchmark comparison, and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-01-27T12:00:00Z",
+  "updatedAt": "2025-01-27T18:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -94,7 +94,8 @@
     {"@id": "https://gftd.ai/activity/build-multi-agent-context"},
     {"@id": "https://gftd.ai/activity/generate-emotion-arc"},
     {"@id": "https://gftd.ai/activity/classify-node"},
-    {"@id": "https://gftd.ai/activity/reclassify-nodes"}
+    {"@id": "https://gftd.ai/activity/reclassify-nodes"},
+    {"@id": "https://gftd.ai/activity/manage-mask-context"}
   ],
   
   "hasPerformer": [
@@ -153,7 +154,19 @@
       "@id": "https://gftd.ai/resource/mask-types",
       "type": "cpm:Resource",
       "name": "Mask Types",
-      "description": "Content masking types (emotion, theme, context, notes, relationship, virtue, anchoredTo, emitsRepelsAvoids, phase, role)"
+      "description": "Content masking types (emotion, theme, context, notes, relationship, virtue, anchoredTo, emitsRepelsAvoids, phase, role). Mask controls are now integrated into FloatingToolbar context menu, accessible when text is selected. Supports toggle individual masks and toggle all masks functionality."
+    },
+    {
+      "@id": "https://gftd.ai/resource/editor-toolbar",
+      "type": "cpm:Resource",
+      "name": "Editor Toolbar",
+      "description": "Main editor toolbar organized by workflow phases: Phase 1 (Creation) - JSON-LD node insertion buttons and image generation; Phase 2 (Editing) - Format controls (Bold, Italic, H1, H2), AI generation, and node classification; Phase 4 (Export) - Export/import buttons and save status. Toolbar sections are visually separated with labels and border dividers."
+    },
+    {
+      "@id": "https://gftd.ai/resource/floating-toolbar",
+      "type": "cpm:Resource",
+      "name": "Floating Toolbar",
+      "description": "Floating toolbar that appears when text is selected in the editor. Provides context menu for mask operations (all 10 mask types with Toggle All functionality) and JSON-LD node insertion. Integrated mask controls moved from separate MaskControls component. Displays above selected text with visual feedback for active masks."
     },
     {
       "@id": "https://gftd.ai/resource/emotion-profile",
@@ -604,6 +617,14 @@
       "description": "Fixed CORS error when fetching generated images from Azure Blob Storage. Client-side fetch to Azure Blob Storage URLs was blocked by CORS policy (No 'Access-Control-Allow-Origin' header).",
       "status": "resolved",
       "resolution": "Changed OpenAI DALL-E API response_format from 'url' to 'b64_json' to receive Base64-encoded image data directly from API. Removed urlToBase64() function call that was fetching images from Azure Blob Storage. Images are now received as Base64 data URIs directly from OpenAI API, eliminating CORS issues and improving performance by removing additional fetch requests."
+    },
+    {
+      "@id": "https://gftd.ai/issue/button-layout-redesign",
+      "name": "Button Layout Redesign",
+      "description": "Redesigned editor toolbar button layout to follow workflow order (Creation → Editing → Export). Reorganized buttons into clear sections with visual separators and labels. Moved mask controls from separate component to FloatingToolbar context menu for better integration with text selection.",
+      "status": "resolved",
+      "priority": "medium",
+      "resolution": "Reorganized TiptapEditor toolbar into workflow phases: Phase 1 (Creation) - JSON-LD node insertion (10 types) and image generation; Phase 2 (Editing) - Format controls (Bold, Italic, H1, H2), AI generation, and node classification; Phase 4 (Export) - Export/import buttons and save status. Added visual section separators with labels. Integrated MaskControls functionality into FloatingToolbar component with all 10 mask types and Toggle All functionality. Removed standalone MaskControls component. Mask operations are now context-aware, appearing when text is selected."
     }
   ]
 }
