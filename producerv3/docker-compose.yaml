@@ -78,6 +78,11 @@ services:
       NEXT_PUBLIC_GRAPHQL_API_URL: ${NEXT_PUBLIC_GRAPHQL_API_URL:-http://localhost:25325/graphql}
       # Server-side: use container name for server-to-server communication
       GRAPHQL_API_URL: ${GRAPHQL_API_URL:-http://graphql:8080/graphql}
+      # Image Generation API Configuration
+      NEXT_PUBLIC_OPENAI_API_KEY: ${NEXT_PUBLIC_OPENAI_API_KEY:-}
+      NEXT_PUBLIC_HIGGSFIELD_API_KEY_ID: ${NEXT_PUBLIC_HIGGSFIELD_API_KEY_ID:-908d57b3-7dfd-41aa-9d3a-34efcc118e68}
+      NEXT_PUBLIC_HIGGSFIELD_API_KEY_SECRET: ${NEXT_PUBLIC_HIGGSFIELD_API_KEY_SECRET:-a5cb407b60e0513d7d5c94b50bb95ec9c9f9858bfb8d6b8754b8fcc47f0a4acd}
+      NEXT_PUBLIC_HIGGSFIELD_API_ENDPOINT: ${NEXT_PUBLIC_HIGGSFIELD_API_ENDPOINT:-https://api.higgsfield.ai}
     volumes:
       - .:/app
       - /app/node_modules

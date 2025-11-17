@@ -59,6 +59,7 @@ import { NodeSelectorDialog } from './NodeSelectorDialog';
 import { ChapterSelectorDialog } from './ChapterSelectorDialog';
 import { MaskControls } from './MaskControls';
 import { FloatingToolbar } from './FloatingToolbar';
+import { ImageGenerationDialog } from './ImageGenerationDialog';
 import '@/styles/editor.css';
 
 interface TiptapEditorProps {
@@ -125,6 +126,7 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
   const [isExporting, setIsExporting] = useState(false);
   const [isImporting, setIsImporting] = useState(false);
   const [importError, setImportError] = useState<string | null>(null);
+  const [showImageGenerationDialog, setShowImageGenerationDialog] = useState(false);
   const apolloClient = useApolloClient();
 
   const editor = useEditor({
@@ -435,6 +437,17 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
           H2
         </button>
         
+        {/* 画像生成ボタン */}
+        <div className="border-l border-gray-300 pl-2 ml-2">
+          <button
+            onClick={() => setShowImageGenerationDialog(true)}
+            className="px-3 py-1 rounded bg-green-100 text-green-800 hover:bg-green-200 text-sm font-medium"
+            title="画像を生成して挿入"
+          >
+            🖼️ 画像生成
+          </button>
+        </div>
+
         {/* JSON-LDノード挿入ボタン */}
         <div className="border-l border-gray-300 pl-2 ml-2 flex gap-1">
           <button
@@ -727,6 +740,17 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
           }}
         />
       )}
+
+      {/* 画像生成ダイアログ */}
+      <ImageGenerationDialog
+        isOpen={showImageGenerationDialog}
+        onClose={() => setShowImageGenerationDialog(false)}
+        onInsertImage={(imageBase64) => {
+          if (!editor) return;
+          // Base64画像をエディターに挿入
+          editor.chain().focus().setImage({ src: imageBase64 }).run();
+        }}
+      />
     </div>
   );
 }
