@@ -55,7 +55,19 @@ import {
   OccupationNode,
   SettingNode,
 } from './extensions/MetaNode';
-import { MaskExtension } from './extensions/MaskExtension';
+import { MarkExtension } from './extensions/MarkExtension';
+import {
+  EmotionMark,
+  ThemeMark,
+  ContextMark,
+  NotesMark,
+  RelationshipMark,
+  VirtueMark,
+  AnchoredToMark,
+  EmitsRepelsAvoidsMark,
+  PhaseMark,
+  RoleMark,
+} from './extensions/marks';
 import { SlashCommand } from './extensions/SlashCommand';
 import { AIContentGenerationExtension } from './extensions/AIContentGenerationExtension';
 import { EmotionAnalysisExtension } from './extensions/EmotionAnalysisExtension';
@@ -194,8 +206,19 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
       EventNode,
       OccupationNode,
       SettingNode,
-      // マスク拡張
-      MaskExtension,
+      // Mark拡張（10種類のマスクタイプ）
+      EmotionMark,
+      ThemeMark,
+      ContextMark,
+      NotesMark,
+      RelationshipMark,
+      VirtueMark,
+      AnchoredToMark,
+      EmitsRepelsAvoidsMark,
+      PhaseMark,
+      RoleMark,
+      // Mark統合制御Extension
+      MarkExtension,
       // 感情分析拡張
       EmotionAnalysisExtension,
       // 感情スタイル拡張（CSSで適用するため一時的に無効化）

@@ -89,11 +89,14 @@ export function getDominantEmotion(emotionScores: EmotionScore[]): EmotionScore 
 /**
  * Get color for a specific emotion
  */
-export function getEmotionColor(emotion: string): {
+export function getEmotionColor(emotion: string | null | undefined): {
   bg: string;
   border: string;
   text: string;
 } {
+  if (!emotion || typeof emotion !== 'string') {
+    return DEFAULT_COLORS;
+  }
   return EMOTION_COLORS[emotion.toLowerCase()] || DEFAULT_COLORS;
 }
 
@@ -128,6 +131,12 @@ export function calculateBlendedColor(emotionScores: EmotionScore[]): {
 
   // Use dominant emotion for primary color
   const dominant = topEmotions[0];
+  if (!dominant || !dominant.emotion) {
+    return {
+      ...DEFAULT_COLORS,
+      dominantEmotion: null,
+    };
+  }
   const dominantColor = getEmotionColor(dominant.emotion);
 
   // If dominant emotion has high score (>0.5), use it directly
@@ -150,6 +159,9 @@ export function calculateBlendedColor(emotionScores: EmotionScore[]): {
   let totalWeight = 0;
 
   topEmotions.forEach((emotion) => {
+    if (!emotion || !emotion.emotion) {
+      return;
+    }
     const color = getEmotionColor(emotion.emotion);
     const weight = emotion.score;
 
@@ -231,7 +243,7 @@ export function getEmotionClassName(emotionScores: EmotionScore[] | null | undef
   }
 
   const dominant = getDominantEmotion(emotionScores);
-  if (!dominant || dominant.score < 0.1) {
+  if (!dominant || dominant.score < 0.1 || !dominant.emotion) {
     return '';
   }
 

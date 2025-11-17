@@ -53,7 +53,19 @@ import {
   OccupationNode,
   SettingNode,
 } from '@/components/editor/extensions/MetaNode';
-import { MaskExtension } from '@/components/editor/extensions/MaskExtension';
+import { MarkExtension } from '@/components/editor/extensions/MarkExtension';
+import {
+  EmotionMark,
+  ThemeMark,
+  ContextMark,
+  NotesMark,
+  RelationshipMark,
+  VirtueMark,
+  AnchoredToMark,
+  EmitsRepelsAvoidsMark,
+  PhaseMark,
+  RoleMark,
+} from '@/components/editor/extensions/marks';
 import { EmotionAnalysisExtension } from '@/components/editor/extensions/EmotionAnalysisExtension';
 
 /**
@@ -100,7 +112,19 @@ const extensions = [
   EventNode,
   OccupationNode,
   SettingNode,
-  MaskExtension,
+  // Mark拡張（10種類のマスクタイプ）
+  EmotionMark,
+  ThemeMark,
+  ContextMark,
+  NotesMark,
+  RelationshipMark,
+  VirtueMark,
+  AnchoredToMark,
+  EmitsRepelsAvoidsMark,
+  PhaseMark,
+  RoleMark,
+  // Mark統合制御Extension
+  MarkExtension,
   EmotionAnalysisExtension,
 ];
 

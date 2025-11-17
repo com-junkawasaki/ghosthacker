@@ -81,29 +81,29 @@ export function FloatingToolbar({ editor, onInsertNode }: FloatingToolbarProps) 
     };
   }, [editor]);
 
-  const toggleMask = (maskType: MaskType['type']) => {
+  const toggleMark = (markType: MaskType['type']) => {
     const { from, to } = editor.state.selection;
     if (from === to) return;
 
-    // Toggle mask on selected text
-    editor.chain().focus().toggleMask(maskType).run();
+    // Toggle mark on selected text
+    editor.chain().focus().toggleMark(markType).run();
     setActiveMasks((prev) => {
       const next = new Set(prev);
-      if (next.has(maskType)) {
-        next.delete(maskType);
+      if (next.has(markType)) {
+        next.delete(markType);
       } else {
-        next.add(maskType);
+        next.add(markType);
       }
       return next;
     });
   };
 
-  const toggleAllMasks = () => {
+  const toggleAllMarks = () => {
     const { from, to } = editor.state.selection;
     if (from === to) return;
 
-    // Toggle all masks on selected text
-    editor.chain().focus().toggleAllMasks().run();
+    // Toggle all marks on selected text
+    editor.chain().focus().toggleAllMarks().run();
     setActiveMasks((prev) => {
       if (prev.size === MASK_TYPES.length) {
         return new Set();
@@ -137,13 +137,13 @@ export function FloatingToolbar({ editor, onInsertNode }: FloatingToolbarProps) 
         <div className="flex items-center gap-2">
           <span className="text-xs font-semibold text-gray-700">Masks:</span>
           <button
-            onClick={toggleAllMasks}
+            onClick={toggleAllMarks}
             className={`px-2 py-1 text-xs rounded ${
               activeMasks.size === MASK_TYPES.length
                 ? 'bg-blue-500 text-white'
                 : 'bg-gray-200 hover:bg-gray-300'
             }`}
-            title="Toggle all masks"
+            title="Toggle all marks"
           >
             Toggle All
           </button>
@@ -152,7 +152,7 @@ export function FloatingToolbar({ editor, onInsertNode }: FloatingToolbarProps) 
           {MASK_TYPES.map((mask) => (
             <button
               key={mask.type}
-              onClick={() => toggleMask(mask.type)}
+              onClick={() => toggleMark(mask.type)}
               className={`px-2 py-1 text-xs rounded transition-colors ${
                 activeMasks.has(mask.type)
                   ? 'bg-blue-500 text-white'

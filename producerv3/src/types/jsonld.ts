@@ -387,6 +387,9 @@ export type MaskType =
   | PhaseMask
   | RoleMask;
 
+// MarkType is an alias for MaskType for backward compatibility
+export type MarkType = MaskType;
+
 // ============================================================================
 // Tiptapノード属性型
 // ============================================================================
@@ -410,4 +413,7 @@ export interface TiptapMaskAttributes {
   phaseMask?: boolean;
   roleMask?: boolean;
 }
+
+// TiptapMarkAttributes is an alias for TiptapMaskAttributes for backward compatibility
+export interface TiptapMarkAttributes extends TiptapMaskAttributes {}
 
