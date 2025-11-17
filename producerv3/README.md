@@ -29,18 +29,21 @@ Tiptap editor based EPUB editing tool with AI Generator integration.
 │           │   └── ports/       # PostgreSQL, EPUB export, AI service
 └── src/                    # Next.js frontend
     ├── app/
-    │   ├── projects/[projectId]/
-    │   │   └── editor/     # Tiptap editor page
+    │   ├── projects/
+    │   │   ├── page.tsx    # Project list page
+    │   │   └── [projectId]/
+    │   │       └── editor/ # Tiptap editor page
     │   ├── api/
-    │   │   └── ai/          # AI Generator API routes
+    │   │   └── ai/          # AI Generator API routes (legacy, migrated to GraphQL)
     │   ├── layout.tsx       # Root layout
-    │   ├── page.tsx         # Landing page
+    │   ├── page.tsx         # Landing page (redirects to /projects/default/editor)
     │   └── globals.css      # Global styles with Tailwind
     ├── components/
-    │   ├── editor/         # Editor components
-    │   └── ai/             # AI Generator components
+    │   ├── editor/         # Editor components (TiptapEditor, ChapterTree, MetadataForm, MediaLibrary, ApolloProvider)
+    │   └── ai/             # AI Generator components (TextGenerator, Summarizer, Proofreader, Translator)
     └── lib/
-        └── graphql/        # GraphQL client and queries
+        ├── graphql/        # GraphQL client, queries, and mutations
+        └── utils/          # Utility functions (UUID normalization)
 ```
 
 ## Setup
@@ -107,21 +110,28 @@ PORT=8080
 - **EPUB Export**: Export edited content to EPUB 3.0 format
 - **Hot Module Replacement (HMR)**: Both Rust and Next.js support HMR in Docker for faster development
 
-## Recent Updates
-
-### HMR (Hot Module Replacement)
-- **Rust**: `cargo watch` configured with optimized file watching
-- **Next.js**: Fast Refresh enabled with webpack polling for Docker environments
-- Both services automatically reload on file changes
+## Recent Updates (v1.2.0)
 
 ### Project Management
-- Project list page at `/projects`
-- Default project support with UUID normalization
-- Chapter selection and auto-save functionality
+- **Project List Page**: Browse all EPUB projects at `/projects` with metadata display
+- **Default Project Support**: UUID normalization for "default" project ID (maps to `00000000-0000-0000-0000-000000000000`)
+- **Chapter Management**: Create, select, and edit chapters with visual feedback
+- **Auto-save**: Automatic saving with 1-second debounce after last change
 
-### GraphQL Field Naming
-- All GraphQL fields use camelCase (matching async-graphql conventions)
-- Automatic UUID normalization for "default" project ID
+### HMR (Hot Module Replacement)
+- **Rust**: `cargo watch` configured with optimized file watching (`--ignore target/**`, `--delay 0.5`, `--clear`)
+- **Next.js**: Fast Refresh enabled with webpack polling (1000ms interval) for Docker environments
+- Both services automatically reload on file changes for faster development
+
+### GraphQL Integration
+- **Field Naming**: All GraphQL fields use camelCase (matching async-graphql conventions)
+- **Type Safety**: GraphQL Codegen generates TypeScript types from schema
+- **Error Handling**: Improved error messages and validation
+
+### Technical Improvements
+- **TypeScript**: Fixed type errors related to `exactOptionalPropertyTypes`
+- **Dependencies**: Added `@types/react`, `@types/react-dom`, `@graphql-typed-document-node/core`
+- **Docker**: Optimized `.dockerignore` files for better build performance
 
 ## Development
 
