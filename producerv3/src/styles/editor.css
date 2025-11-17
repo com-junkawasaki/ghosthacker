@@ -36,7 +36,59 @@
 
 /* 感情タイプごとの背景色マッピング */
 [data-emotion-vector] {
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  position: relative;
+}
+
+/* 感情クラスごとのスタイル */
+.emotion-joy {
+  background-color: rgba(255, 235, 59, 0.3) !important;
+  border-color: rgba(255, 193, 7, 0.8) !important;
+}
+
+.emotion-sadness {
+  background-color: rgba(33, 150, 243, 0.3) !important;
+  border-color: rgba(25, 118, 210, 0.8) !important;
+}
+
+.emotion-fear {
+  background-color: rgba(156, 39, 176, 0.3) !important;
+  border-color: rgba(142, 36, 170, 0.8) !important;
+}
+
+.emotion-anger {
+  background-color: rgba(244, 67, 54, 0.3) !important;
+  border-color: rgba(211, 47, 47, 0.8) !important;
+}
+
+.emotion-surprise {
+  background-color: rgba(255, 152, 0, 0.3) !important;
+  border-color: rgba(255, 111, 0, 0.8) !important;
+}
+
+.emotion-trust {
+  background-color: rgba(76, 175, 80, 0.3) !important;
+  border-color: rgba(56, 142, 60, 0.8) !important;
+}
+
+.emotion-anticipation {
+  background-color: rgba(255, 193, 7, 0.3) !important;
+  border-color: rgba(255, 160, 0, 0.8) !important;
+}
+
+.emotion-disgust {
+  background-color: rgba(121, 85, 72, 0.3) !important;
+  border-color: rgba(93, 64, 55, 0.8) !important;
+}
+
+.emotion-relief {
+  background-color: rgba(129, 199, 132, 0.3) !important;
+  border-color: rgba(102, 187, 106, 0.8) !important;
+}
+
+.emotion-hope {
+  background-color: rgba(144, 202, 249, 0.3) !important;
+  border-color: rgba(100, 181, 246, 0.8) !important;
 }
 
 /* joy - 黄色 */
@@ -49,19 +101,19 @@
   background-color: rgba(33, 150, 243, 0.2);
 }
 
-/* fear - 赤 */
+/* fear - 紫 */
 [data-emotion-vector*='"emotion":"fear"'] {
+  background-color: rgba(156, 39, 176, 0.2);
+}
+
+/* anger - 赤 */
+[data-emotion-vector*='"emotion":"anger"'] {
   background-color: rgba(244, 67, 54, 0.2);
 }
 
-/* anger - オレンジ */
-[data-emotion-vector*='"emotion":"anger"'] {
-  background-color: rgba(255, 152, 0, 0.2);
-}
-
-/* surprise - ピンク */
+/* surprise - オレンジ */
 [data-emotion-vector*='"emotion":"surprise"'] {
-  background-color: rgba(233, 30, 99, 0.2);
+  background-color: rgba(255, 152, 0, 0.2);
 }
 
 /* trust - 緑 */
@@ -69,9 +121,9 @@
   background-color: rgba(76, 175, 80, 0.2);
 }
 
-/* anticipation - 紫 */
+/* anticipation - アンバー */
 [data-emotion-vector*='"emotion":"anticipation"'] {
-  background-color: rgba(156, 39, 176, 0.2);
+  background-color: rgba(255, 193, 7, 0.2);
 }
 
 /* disgust - 茶色 */
@@ -79,24 +131,14 @@
   background-color: rgba(121, 85, 72, 0.2);
 }
 
-/* relief - 水色 */
+/* relief - ライトグリーン */
 [data-emotion-vector*='"emotion":"relief"'] {
-  background-color: rgba(0, 188, 212, 0.2);
+  background-color: rgba(129, 199, 132, 0.2);
 }
 
-/* hope - ライムグリーン */
+/* hope - ライトブルー */
 [data-emotion-vector*='"emotion":"hope"'] {
-  background-color: rgba(205, 220, 57, 0.2);
-}
-
-/* 複数の感情が混在する場合のグラデーション */
-[data-emotion-vector]:has([data-emotion-score]) {
-  background: linear-gradient(
-    to right,
-    rgba(255, 235, 59, 0.1),
-    rgba(33, 150, 243, 0.1),
-    rgba(244, 67, 54, 0.1)
-  );
+  background-color: rgba(144, 202, 249, 0.2);
 }
 
 [data-theme-mask="true"] {

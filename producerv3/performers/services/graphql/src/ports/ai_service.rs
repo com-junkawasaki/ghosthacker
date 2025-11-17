@@ -9,6 +9,7 @@
 use crate::schema::ai::{
     GeneratedText, GenerateTextInput, SummarizeInput, ProofreadInput, TranslateInput,
     MultiAgentGenerateInput, GeneratedContent,
+    ClassifyNodeInput, NodeClassificationResult, ReclassifySelectedNodesInput, ReclassifyResult,
 };
 use crate::schema::emotion::EmotionProfile;
 use crate::ports::{postgres, emotion_service};
@@ -308,6 +309,180 @@ pub async fn generate_multi_agent_content(
             character_id: None,
             emotion_profile,
             confidence: Some(0.85),
+        });
+    }
+    
+    Ok(results)
+}
+
+// Node classification structures
+#[derive(Serialize)]
+struct ClassificationRequest {
+    model: String,
+    messages: Vec<OpenAIMessage>,
+    temperature: Option<f64>,
+    response_format: Option<serde_json::Value>,
+}
+
+#[derive(Deserialize)]
+struct ClassificationResponse {
+    choices: Vec<OpenAIChoice>,
+}
+
+#[derive(Deserialize)]
+struct ClassificationData {
+    #[serde(rename = "suggestedType")]
+    suggested_type: String,
+    confidence: f64,
+    reasoning: String,
+    #[serde(rename = "suggestedAttributes")]
+    suggested_attributes: Option<serde_json::Value>,
+    #[serde(rename = "suggestedMaskType")]
+    suggested_mask_type: Option<String>,
+}
+
+/// Classify a node using AI
+pub async fn classify_node(input: ClassifyNodeInput) -> anyhow::Result<NodeClassificationResult> {
+    let prompt = build_classification_prompt(&input)?;
+    
+    let classification_data = classify_with_openai(&prompt).await?;
+    
+    Ok(NodeClassificationResult {
+        suggested_type: classification_data.suggested_type,
+        confidence: classification_data.confidence,
+        reasoning: classification_data.reasoning,
+        suggested_attributes: classification_data.suggested_attributes,
+        suggested_mask_type: classification_data.suggested_mask_type,
+    })
+}
+
+/// Build classification prompt from input
+fn build_classification_prompt(input: &ClassifyNodeInput) -> anyhow::Result<String> {
+    let mut prompt_parts = Vec::new();
+    
+    prompt_parts.push("You are a node classification assistant for a narrative editing system. Analyze the following text and classify it into one of these node types:".to_string());
+    prompt_parts.push("".to_string());
+    prompt_parts.push("Node types:".to_string());
+    prompt_parts.push("- character: A person or character in the story".to_string());
+    prompt_parts.push("- location: A place or location".to_string());
+    prompt_parts.push("- scene: A scene or sequence of events".to_string());
+    prompt_parts.push("- technology: A technology, tool, or device".to_string());
+    prompt_parts.push("- organization: An organization, company, or group".to_string());
+    prompt_parts.push("- ghost: A ghost or supernatural entity".to_string());
+    prompt_parts.push("- episode: An episode or chapter".to_string());
+    prompt_parts.push("- arc: A story arc".to_string());
+    prompt_parts.push("- motif: A recurring theme or motif".to_string());
+    prompt_parts.push("- event: An event or occurrence".to_string());
+    prompt_parts.push("".to_string());
+    
+    prompt_parts.push(format!("Text to classify: {}", input.text));
+    
+    if let Some(ref current_type) = input.current_type {
+        prompt_parts.push(format!("Current type: {}", current_type));
+    }
+    
+    if let Some(ref attributes) = input.attributes {
+        prompt_parts.push(format!("Current attributes: {}", serde_json::to_string(attributes)?));
+    }
+    
+    if let Some(ref mask_info) = input.mask_info {
+        prompt_parts.push(format!("Mask information: {}", serde_json::to_string(mask_info)?));
+    }
+    
+    if let Some(ref context) = input.context {
+        prompt_parts.push(format!("Context: {}", context));
+    }
+    
+    prompt_parts.push("".to_string());
+    prompt_parts.push("Respond with a JSON object containing:".to_string());
+    prompt_parts.push("- suggestedType: The recommended node type".to_string());
+    prompt_parts.push("- confidence: A confidence score between 0 and 1".to_string());
+    prompt_parts.push("- reasoning: Explanation for the classification".to_string());
+    prompt_parts.push("- suggestedAttributes: Recommended attributes as JSON object (optional)".to_string());
+    prompt_parts.push("- suggestedMaskType: Recommended mask type if applicable (optional)".to_string());
+    
+    Ok(prompt_parts.join("\n"))
+}
+
+/// Classify node with OpenAI API
+async fn classify_with_openai(prompt: &str) -> anyhow::Result<ClassificationData> {
+    let api_key = std::env::var("OPENAI_API_KEY")
+        .map_err(|_| anyhow::anyhow!("OPENAI_API_KEY environment variable not set"))?;
+    
+    let client = reqwest::Client::new();
+    
+    let response_format = serde_json::json!({
+        "type": "json_object"
+    });
+    
+    let request = ClassificationRequest {
+        model: "gpt-4".to_string(),
+        messages: vec![
+            OpenAIMessage {
+                role: "system".to_string(),
+                content: "You are a node classification assistant. Always respond with valid JSON.".to_string(),
+            },
+            OpenAIMessage {
+                role: "user".to_string(),
+                content: prompt.to_string(),
+            },
+        ],
+        temperature: Some(0.3),
+        response_format: Some(response_format),
+    };
+    
+    let response = client
+        .post("https://api.openai.com/v1/chat/completions")
+        .header("Authorization", format!("Bearer {}", api_key))
+        .header("Content-Type", "application/json")
+        .json(&request)
+        .send()
+        .await
+        .map_err(|e| anyhow::anyhow!("Failed to call OpenAI API: {:?}", e))?;
+    
+    if !response.status().is_success() {
+        let error_text = response.text().await.unwrap_or_default();
+        return Err(anyhow::anyhow!("OpenAI API error: {}", error_text));
+    }
+    
+    let openai_response: ClassificationResponse = response
+        .json()
+        .await
+        .map_err(|e| anyhow::anyhow!("Failed to parse OpenAI response: {:?}", e))?;
+    
+    let content = openai_response
+        .choices
+        .first()
+        .and_then(|choice| Some(choice.message.content.clone()))
+        .ok_or_else(|| anyhow::anyhow!("No content in OpenAI response"))?;
+    
+    let classification_data: ClassificationData = serde_json::from_str(&content)
+        .map_err(|e| anyhow::anyhow!("Failed to parse classification data: {:?}", e))?;
+    
+    Ok(classification_data)
+}
+
+/// Reclassify multiple nodes
+pub async fn reclassify_nodes(
+    input: ReclassifySelectedNodesInput,
+) -> anyhow::Result<Vec<ReclassifyResult>> {
+    let mut results = Vec::new();
+    
+    // For now, return placeholder results
+    // In a real implementation, this would process each node
+    for node_id in input.node_ids {
+        // This would need to fetch node data from database and classify each one
+        // For now, return a placeholder
+        results.push(ReclassifyResult {
+            node_id,
+            classification: NodeClassificationResult {
+                suggested_type: "character".to_string(),
+                confidence: 0.8,
+                reasoning: "Placeholder classification".to_string(),
+                suggested_attributes: None,
+                suggested_mask_type: None,
+            },
+            applied: false,
         });
     }
     

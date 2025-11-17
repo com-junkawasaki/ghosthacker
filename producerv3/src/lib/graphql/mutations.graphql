@@ -176,3 +176,27 @@ mutation GenerateContentWithMultiAgent($input: MultiAgentGenerateInput!) {
     confidence
   }
 }
+
+mutation ClassifyNode($input: ClassifyNodeInput!) {
+  classifyNode(input: $input) {
+    suggestedType
+    confidence
+    reasoning
+    suggestedAttributes
+    suggestedMaskType
+  }
+}
+
+mutation ReclassifySelectedNodes($input: ReclassifySelectedNodesInput!) {
+  reclassifySelectedNodes(input: $input) {
+    nodeId
+    classification {
+      suggestedType
+      confidence
+      reasoning
+      suggestedAttributes
+      suggestedMaskType
+    }
+    applied
+  }
+}

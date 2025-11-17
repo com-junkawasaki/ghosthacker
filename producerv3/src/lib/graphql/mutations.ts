@@ -135,3 +135,31 @@ export const GENERATE_CONTENT_WITH_MULTI_AGENT = gql`
   }
 `;
 
+export const CLASSIFY_NODE = gql`
+  mutation ClassifyNode($input: ClassifyNodeInput!) {
+    classifyNode(input: $input) {
+      suggestedType
+      confidence
+      reasoning
+      suggestedAttributes
+      suggestedMaskType
+    }
+  }
+`;
+
+export const RECLASSIFY_SELECTED_NODES = gql`
+  mutation ReclassifySelectedNodes($input: ReclassifySelectedNodesInput!) {
+    reclassifySelectedNodes(input: $input) {
+      nodeId
+      classification {
+        suggestedType
+        confidence
+        reasoning
+        suggestedAttributes
+        suggestedMaskType
+      }
+      applied
+    }
+  }
+`;
+

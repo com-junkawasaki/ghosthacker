@@ -37,7 +37,19 @@ export function EmotionAnalysisControls() {
       return;
     }
 
-    const textToAnalyze = selectedText || paragraph?.textContent || '';
+    // Get text from selected node or selected text
+    let textToAnalyze = selectedText;
+    if (!textToAnalyze) {
+      // Try to get text from node at selection
+      editor.state.doc.nodesBetween(from, to, (node) => {
+        if (node.isText) {
+          textToAnalyze += node.textContent;
+        } else if (node.textContent) {
+          textToAnalyze += node.textContent;
+        }
+      });
+    }
+    
     if (!textToAnalyze.trim()) {
       return;
     }
@@ -84,24 +96,26 @@ export function EmotionAnalysisControls() {
     setCurrentProfile(null);
   };
 
-  // Get current paragraph's emotion profile
-  const getCurrentParagraphEmotions = (): EmotionScore[] | null => {
+  // Get current node's emotion profile (works for all node types)
+  const getCurrentNodeEmotions = (): EmotionScore[] | null => {
     if (!editor) return null;
     
     const { selection } = editor.state;
     const { from } = selection;
     
-    // Find paragraph node at selection
-    let paragraph: ProseMirrorNode | null = null;
+    // Find node at selection (any node type)
+    let selectedNode: ProseMirrorNode | null = null;
     editor.state.doc.nodesBetween(from, from, (node) => {
-      if (node.type.name === 'paragraph') {
-        paragraph = node;
+      // Check if node has emotionVector attribute (all node types support it now)
+      const attrs = node.attrs as Record<string, unknown>;
+      if (attrs.emotionVector) {
+        selectedNode = node;
       }
     });
     
-    if (paragraph) {
+    if (selectedNode) {
       // Type assertion to ensure attrs exists
-      const nodeWithAttrs = paragraph as ProseMirrorNode & { attrs: Record<string, unknown> };
+      const nodeWithAttrs = selectedNode as ProseMirrorNode & { attrs: Record<string, unknown> };
       const attrs = nodeWithAttrs.attrs;
       const vector = attrs.emotionVector as EmotionScore[] | null | undefined;
       return vector || null;
@@ -110,7 +124,7 @@ export function EmotionAnalysisControls() {
     return null;
   };
 
-  const currentEmotions = getCurrentParagraphEmotions();
+  const currentEmotions = getCurrentNodeEmotions();
 
   return (
     <div className="emotion-analysis-controls p-2 border-t border-gray-300 dark:border-gray-600">

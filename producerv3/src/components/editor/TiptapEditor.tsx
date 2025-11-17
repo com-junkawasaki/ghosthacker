@@ -58,12 +58,16 @@ import {
 import { MaskExtension } from './extensions/MaskExtension';
 import { SlashCommand } from './extensions/SlashCommand';
 import { AIContentGenerationExtension } from './extensions/AIContentGenerationExtension';
+import { EmotionAnalysisExtension } from './extensions/EmotionAnalysisExtension';
+import { EmotionStyleExtension } from './extensions/EmotionStyleExtension';
 import { NodeSelectorDialog } from './NodeSelectorDialog';
 import { ChapterSelectorDialog } from './ChapterSelectorDialog';
 import { MaskControls } from './MaskControls';
 import { FloatingToolbar } from './FloatingToolbar';
 import { ImageGenerationDialog } from './ImageGenerationDialog';
 import { AIContentGenerationControls } from './AIContentGenerationControls';
+import { NodeClassificationControls } from './NodeClassificationControls';
+import { EmotionalView } from './EmotionalView';
 import '@/styles/editor.css';
 
 interface TiptapEditorProps {
@@ -192,6 +196,10 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
       SettingNode,
       // マスク拡張
       MaskExtension,
+      // 感情分析拡張
+      EmotionAnalysisExtension,
+      // 感情スタイル拡張
+      EmotionStyleExtension,
       // AIコンテンツ生成拡張
       AIContentGenerationExtension.configure({
         onGenerateStart: () => {
@@ -462,6 +470,11 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
           <AIContentGenerationControls editor={editor} />
         </div>
 
+        {/* ノード分類ボタン */}
+        <div className="border-l border-gray-300 pl-2 ml-2">
+          <NodeClassificationControls editor={editor} />
+        </div>
+
         {/* 画像生成ボタン */}
         <div className="border-l border-gray-300 pl-2 ml-2">
           <button
@@ -685,6 +698,9 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
           onInsertNode={(nodeType) => setSelectedNodeType(nodeType)}
         />
       </div>
+      
+      {/* Emotional View */}
+      <EmotionalView />
       
       {/* ノード選択ダイアログ */}
       {selectedNodeType && (

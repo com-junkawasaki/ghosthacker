@@ -15,6 +15,7 @@ use crate::schema::epub::{
 use crate::schema::ai::{
     GeneratedText, GenerateTextInput, SummarizeInput, ProofreadInput, TranslateInput,
     MultiAgentGenerateInput, GeneratedContent,
+    ClassifyNodeInput, NodeClassificationResult, ReclassifySelectedNodesInput, ReclassifyResult,
 };
 use crate::schema::emotion::{EmotionProfile, AnalyzeEmotionsInput};
 use crate::schema::graph::{GraphLink, GraphIncidence, CreateGraphLinkInput, UpdateGraphLinkInput, CreateGraphIncidenceInput, UpdateGraphIncidenceInput};
@@ -184,6 +185,26 @@ impl MutationRoot {
         let pool = ctx.data::<postgres::PostgresPool>()?;
         ai_service::generate_content_with_multi_agent(pool, input).await
             .map_err(|e| async_graphql::Error::new(format!("Failed to generate content: {:?}", e)))
+    }
+
+    /// Classify a node using AI
+    async fn classify_node(
+        &self,
+        _ctx: &Context<'_>,
+        input: ClassifyNodeInput,
+    ) -> async_graphql::Result<NodeClassificationResult> {
+        ai_service::classify_node(input).await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to classify node: {:?}", e)))
+    }
+
+    /// Reclassify selected nodes
+    async fn reclassify_selected_nodes(
+        &self,
+        _ctx: &Context<'_>,
+        input: ReclassifySelectedNodesInput,
+    ) -> async_graphql::Result<Vec<ReclassifyResult>> {
+        ai_service::reclassify_nodes(input).await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to reclassify nodes: {:?}", e)))
     }
 }
 

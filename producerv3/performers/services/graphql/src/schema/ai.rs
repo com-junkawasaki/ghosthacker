@@ -66,3 +66,34 @@ pub struct GeneratedContent {
     pub confidence: Option<f64>,
 }
 
+#[derive(InputObject)]
+pub struct ClassifyNodeInput {
+    pub text: String,
+    pub current_type: Option<String>,
+    pub attributes: Option<serde_json::Value>,
+    pub mask_info: Option<serde_json::Value>,
+    pub context: Option<String>,
+}
+
+#[derive(SimpleObject)]
+pub struct NodeClassificationResult {
+    pub suggested_type: String,
+    pub confidence: f64,
+    pub reasoning: String,
+    pub suggested_attributes: Option<serde_json::Value>,
+    pub suggested_mask_type: Option<String>,
+}
+
+#[derive(InputObject)]
+pub struct ReclassifySelectedNodesInput {
+    pub node_ids: Vec<ID>,
+    pub context: Option<String>,
+}
+
+#[derive(SimpleObject)]
+pub struct ReclassifyResult {
+    pub node_id: ID,
+    pub classification: NodeClassificationResult,
+    pub applied: bool,
+}
+

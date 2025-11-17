@@ -4,7 +4,7 @@
  * @id https://gftd.ai/activity/analyze-emotions
  * 
  * Emotion Analysis Extension for Tiptap
- * Adds emotion analysis capabilities to paragraph nodes
+ * Adds emotion analysis capabilities to all node types (paragraph, character, scene, beat, etc.)
  */
 import { Extension } from '@tiptap/core';
 import { EmotionProfile, EmotionScore } from '@/types/jsonld';
@@ -44,9 +44,33 @@ export const EmotionAnalysisExtension = Extension.create<EmotionAnalysisExtensio
   },
 
   addGlobalAttributes() {
+    // Apply emotion attributes to all node types
+    const allNodeTypes = [
+      'paragraph',
+      'heading',
+      'character',
+      'ghost',
+      'location',
+      'organization',
+      'technology',
+      'episode',
+      'scene',
+      'arc',
+      'motif',
+      'season',
+      'timeline',
+      'pov',
+      'beat',
+      'sourceRef',
+      'event',
+      'occupation',
+      'setting',
+      'chapterLink',
+    ];
+
     return [
       {
-        types: ['paragraph'],
+        types: allNodeTypes,
         attributes: {
           emotionProfile: {
             default: null,
@@ -120,15 +144,14 @@ export const EmotionAnalysisExtension = Extension.create<EmotionAnalysisExtensio
             return true;
           }
 
+          // Apply to all node types (not just paragraph)
           state.doc.nodesBetween(from, to, (node: ProseMirrorNode, pos: number) => {
-            if (node.type.name === 'paragraph') {
-              const attrs = node.attrs as Record<string, unknown>;
-              tr.setNodeMarkup(pos, undefined, {
-                ...attrs,
-                emotionProfile: profile,
-                emotionVector: profile.emotionVector,
-              });
-            }
+            const attrs = node.attrs as Record<string, unknown>;
+            tr.setNodeMarkup(pos, undefined, {
+              ...attrs,
+              emotionProfile: profile,
+              emotionVector: profile.emotionVector,
+            });
           });
 
           return true;
@@ -143,15 +166,14 @@ export const EmotionAnalysisExtension = Extension.create<EmotionAnalysisExtensio
             return true;
           }
 
+          // Apply to all node types (not just paragraph)
           state.doc.nodesBetween(from, to, (node: ProseMirrorNode, pos: number) => {
-            if (node.type.name === 'paragraph') {
-              const attrs = node.attrs as Record<string, unknown>;
-              tr.setNodeMarkup(pos, undefined, {
-                ...attrs,
-                emotionProfile: null,
-                emotionVector: null,
-              });
-            }
+            const attrs = node.attrs as Record<string, unknown>;
+            tr.setNodeMarkup(pos, undefined, {
+              ...attrs,
+              emotionProfile: null,
+              emotionVector: null,
+            });
           });
 
           return true;
