@@ -415,17 +415,14 @@ async fn classify_with_openai(prompt: &str) -> anyhow::Result<ClassificationData
     let model = std::env::var("OPENAI_MODEL")
         .unwrap_or_else(|_| "gpt-4o".to_string());
     
-    // Check if model supports response_format (gpt-4-turbo, gpt-4o, gpt-3.5-turbo)
-    let supports_json_format = model.contains("gpt-4-turbo") 
-        || model.contains("gpt-4o") 
-        || model.contains("gpt-3.5-turbo");
-    
-    let mut request = ClassificationRequest {
+    // Don't use response_format to avoid model compatibility issues
+    // Instead, rely on prompt engineering to ensure JSON output
+    let request = ClassificationRequest {
         model: model.clone(),
         messages: vec![
             OpenAIMessage {
                 role: "system".to_string(),
-                content: "You are a node classification assistant. Always respond with valid JSON only, no additional text or explanation.".to_string(),
+                content: "You are a node classification assistant. You MUST respond with valid JSON only, no markdown code blocks, no additional text, no explanation. Return only the JSON object.".to_string(),
             },
             OpenAIMessage {
                 role: "user".to_string(),
@@ -433,16 +430,8 @@ async fn classify_with_openai(prompt: &str) -> anyhow::Result<ClassificationData
             },
         ],
         temperature: Some(0.3),
-        response_format: None,
+        response_format: None, // Not using response_format to ensure compatibility with all models
     };
-    
-    // Only add response_format if model supports it
-    if supports_json_format {
-        let response_format = serde_json::json!({
-            "type": "json_object"
-        });
-        request.response_format = Some(response_format);
-    }
     
     let response = client
         .post("https://api.openai.com/v1/chat/completions")
