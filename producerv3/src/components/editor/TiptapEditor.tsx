@@ -11,7 +11,7 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_CHAPTER } from '@/lib/graphql/queries';
 import { UPDATE_CHAPTER } from '@/lib/graphql/mutations';
@@ -27,7 +27,8 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
     skip: !chapterId,
   });
 
-  const [updateChapter] = useMutation(UPDATE_CHAPTER);
+  const [updateChapter, { error: updateError }] = useMutation(UPDATE_CHAPTER);
+  const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const editor = useEditor({
     extensions: [
@@ -44,14 +45,24 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
     immediatelyRender: false,
     onUpdate: ({ editor }) => {
       if (chapterId) {
-        updateChapter({
-          variables: {
-            input: {
-              id: chapterId,
-              contentHtml: editor.getHTML(),
+        // Clear existing timeout
+        if (saveTimeoutRef.current) {
+          clearTimeout(saveTimeoutRef.current);
+        }
+        
+        // Debounce save operation (wait 1 second after last change)
+        saveTimeoutRef.current = setTimeout(() => {
+          updateChapter({
+            variables: {
+              input: {
+                id: chapterId,
+                contentHtml: editor.getHTML(),
+              },
             },
-          },
-        });
+          }).catch((err) => {
+            console.error('Error saving chapter:', err);
+          });
+        }, 1000);
       }
     },
   });
@@ -60,7 +71,16 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
     if (editor && data?.chapter?.contentHtml) {
       editor.commands.setContent(data.chapter.contentHtml);
     }
-  }, [editor, data]);
+  }, [editor, data, chapterId]);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+    };
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -70,8 +90,21 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
     return null;
   }
 
+  if (!chapterId) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <div className="text-gray-500">Please select a chapter to edit</div>
+      </div>
+    );
+  }
+
   return (
     <div className="editor-container h-full flex flex-col">
+      {updateError && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-2">
+          Error saving: {updateError.message}
+        </div>
+      )}
       <div className="editor-toolbar flex gap-2 p-2 border-b border-gray-300">
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}

@@ -57,7 +57,10 @@ docker-compose up -d
 
 Services will be available at:
 - Frontend: http://localhost:25320
+- Projects List: http://localhost:25320/projects
+- Editor: http://localhost:25320/projects/default/editor
 - GraphQL API: http://localhost:25325/graphql
+- PostgreSQL: localhost:5433
 
 ### Manual Setup
 
@@ -96,10 +99,29 @@ PORT=8080
 
 - **EPUB Editing**: WYSIWYG editing with Tiptap editor
 - **Chapter Management**: Create, update, delete, and reorder chapters
+- **Auto-save**: Automatic saving with debounce (1 second after last change)
+- **Project List**: Browse and manage all EPUB projects
 - **Metadata Editing**: Edit EPUB metadata (title, author, ISBN, etc.)
 - **Media Management**: Upload and manage images and media assets
 - **AI Generator**: Text generation, summarization, proofreading, and translation
 - **EPUB Export**: Export edited content to EPUB 3.0 format
+- **Hot Module Replacement (HMR)**: Both Rust and Next.js support HMR in Docker for faster development
+
+## Recent Updates
+
+### HMR (Hot Module Replacement)
+- **Rust**: `cargo watch` configured with optimized file watching
+- **Next.js**: Fast Refresh enabled with webpack polling for Docker environments
+- Both services automatically reload on file changes
+
+### Project Management
+- Project list page at `/projects`
+- Default project support with UUID normalization
+- Chapter selection and auto-save functionality
+
+### GraphQL Field Naming
+- All GraphQL fields use camelCase (matching async-graphql conventions)
+- Automatic UUID normalization for "default" project ID
 
 ## Development
 

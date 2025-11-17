@@ -7,6 +7,7 @@
  */
 'use client';
 
+import { useState } from 'react';
 import { TiptapEditor } from '@/components/editor/TiptapEditor';
 import { ChapterTree } from '@/components/editor/ChapterTree';
 import { MetadataForm } from '@/components/editor/MetadataForm';
@@ -22,16 +23,26 @@ export function EditorLayout({ projectId }: EditorLayoutProps) {
   // Normalize projectId to UUID format for GraphQL ID type
   const normalizedEpubId = normalizeProjectId(projectId);
   
+  // State for selected chapter
+  const [selectedChapterId, setSelectedChapterId] = useState<string | undefined>(undefined);
+  
   return (
     <ApolloProvider>
       <div className="flex h-screen">
         <aside className="w-[300px] border-r border-gray-300 p-4 overflow-y-auto">
-          <ChapterTree epubId={normalizedEpubId} />
+          <ChapterTree 
+            epubId={normalizedEpubId} 
+            onChapterSelect={setSelectedChapterId}
+            selectedChapterId={selectedChapterId}
+          />
           <MetadataForm epubId={normalizedEpubId} />
-          <MediaLibrary chapterId="" />
+          <MediaLibrary chapterId={selectedChapterId || ''} />
         </aside>
         <main className="flex-1 p-4 overflow-y-auto">
-          <TiptapEditor projectId={projectId} />
+          <TiptapEditor 
+            projectId={projectId} 
+            chapterId={selectedChapterId}
+          />
         </main>
       </div>
     </ApolloProvider>
