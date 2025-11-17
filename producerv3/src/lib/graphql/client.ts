@@ -6,8 +6,9 @@
  * GraphQL client configuration for Apollo Client
  */
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import type { NormalizedCacheObject } from '@apollo/client';
 
-let client: ApolloClient<any> | null = null;
+let client: ApolloClient<NormalizedCacheObject> | null = null;
 
 function createClient() {
   if (typeof window === 'undefined') {

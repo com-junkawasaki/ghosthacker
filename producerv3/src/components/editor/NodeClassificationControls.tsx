@@ -80,8 +80,8 @@ export function NodeClassificationControls({ editor }: NodeClassificationControl
             const input: {
               text: string;
               currentType?: string;
-              attributes?: any;
-              maskInfo?: any;
+              attributes?: Record<string, unknown>;
+              maskInfo?: Record<string, unknown>;
               context?: string;
             } = {
               text: nodeInfo.text,
@@ -192,8 +192,8 @@ export function NodeClassificationControls({ editor }: NodeClassificationControl
       const input: {
         text: string;
         currentType?: string;
-        attributes?: any;
-        maskInfo?: any;
+        attributes?: Record<string, unknown>;
+        maskInfo?: Record<string, unknown>;
         context?: string;
       } = {
         text: nodeInfo.text,

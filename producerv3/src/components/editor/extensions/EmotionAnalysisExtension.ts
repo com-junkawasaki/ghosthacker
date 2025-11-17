@@ -6,7 +6,7 @@
  * Emotion Analysis Extension for Tiptap
  * Adds emotion analysis capabilities to all node types (paragraph, character, scene, beat, etc.)
  */
-import { Extension } from '@tiptap/core';
+import { Extension, type Chain } from '@tiptap/core';
 import { EmotionProfile, EmotionScore } from '@/types/jsonld';
 import type { Transaction, EditorState } from '@tiptap/pm/state';
 import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
@@ -136,7 +136,7 @@ export const EmotionAnalysisExtension = Extension.create<EmotionAnalysisExtensio
     return {
       analyzeEmotions:
         (text: string) =>
-        ({ chain }: { chain: any }) => {
+        ({ chain }: { chain: () => Chain }) => {
           // This command will be handled by the UI component that calls GraphQL mutation
           // The actual analysis is done via GraphQL, then setEmotionProfile is called
           return chain();

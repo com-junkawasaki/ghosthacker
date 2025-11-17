@@ -6,7 +6,7 @@
  * AI Content Generation Extension for Tiptap
  * Based on Tiptap AI Toolkit editDocument primitive
  */
-import { Extension, type RawCommands, type Editor } from '@tiptap/core';
+import { Extension, type RawCommands, type Editor, type Chain } from '@tiptap/core';
 import { extractEditorContext, extractContextAroundCursor } from '@/lib/editor/contextExtractor';
 import { buildMultiAgentContext } from '@/lib/ai/multiAgentContext';
 
@@ -64,7 +64,7 @@ export const AIContentGenerationExtension = Extension.create<AIContentGeneration
     return {
       generateContent:
         (options = {}) =>
-        ({ editor, chain }: { editor: Editor; chain: any }) => {
+        ({ editor, chain }: { editor: Editor; chain: () => Chain }) => {
           const {
             prompt = 'Continue the story',
             characterId,
@@ -149,7 +149,7 @@ export const AIContentGenerationExtension = Extension.create<AIContentGeneration
         },
       insertGeneratedContent:
         (text: string) =>
-        ({ editor, chain }: { editor: Editor; chain: any }) => {
+        ({ editor, chain }: { editor: Editor; chain: () => Chain }) => {
           // Call onGenerateComplete callback
           if (this.options.onGenerateComplete) {
             this.options.onGenerateComplete(text);

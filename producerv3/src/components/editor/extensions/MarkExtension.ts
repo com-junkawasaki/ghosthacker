@@ -5,7 +5,9 @@
  * 
  * Mark Extension - 10種類のMarkを統合的に制御するExtension
  */
-import { Extension, type RawCommands } from '@tiptap/core';
+import { Extension, type RawCommands, type CommandProps } from '@tiptap/core';
+import type { EditorState, Transaction } from '@tiptap/pm/state';
+import type { Node as ProseMirrorNode, Mark } from '@tiptap/pm/model';
 import type { MaskType } from '@/types/jsonld';
 
 export interface MarkExtensionOptions {
@@ -31,6 +33,13 @@ declare module '@tiptap/core' {
   }
 }
 
+// Type assertion helper to ensure RawCommands compatibility
+type MarkExtensionCommands = {
+  toggleMark: (markType: MaskType['type']) => (props: CommandProps) => boolean;
+  setMark: (markType: MaskType['type'], enabled: boolean) => (props: CommandProps) => boolean;
+  toggleAllMarks: () => (props: { state: EditorState; dispatch: ((tr: Transaction) => void) | undefined }) => boolean;
+};
+
 export const MarkExtension = Extension.create<MarkExtensionOptions>({
   name: 'markExtension',
 
@@ -41,8 +50,7 @@ export const MarkExtension = Extension.create<MarkExtensionOptions>({
   },
 
   addCommands(): Partial<RawCommands> {
-    // @ts-expect-error - Tiptap's RawCommands type is complex and our custom commands don't match exactly
-    return {
+    const commands: MarkExtensionCommands = {
       toggleMark:
         (markType: MaskType['type']) =>
         ({ commands }) => {
@@ -66,7 +74,6 @@ export const MarkExtension = Extension.create<MarkExtensionOptions>({
 
           return commands.toggleMark(markName) as boolean;
         },
-      // @ts-expect-error - setMark command signature doesn't match Tiptap's expected signature
       setMark:
         (markType: MaskType['type'], enabled: boolean) =>
         ({ commands }) => {
@@ -96,7 +103,7 @@ export const MarkExtension = Extension.create<MarkExtensionOptions>({
         },
       toggleAllMarks:
         () =>
-        ({ commands, state, dispatch }) => {
+        ({ state, dispatch }) => {
           const markTypes: MaskType['type'][] = [
             'emotion',
             'theme',
@@ -134,11 +141,11 @@ export const MarkExtension = Extension.create<MarkExtensionOptions>({
 
           // Check if any mark is active in the selection
           let hasAnyMark = false;
-          state.doc.nodesBetween(from, to, (node) => {
+          state.doc.nodesBetween(from, to, (node: ProseMirrorNode) => {
             if (node.isText && node.marks.length > 0) {
               markTypes.forEach((markType) => {
                 const markName = markNameMap[markType];
-                if (markName && node.marks.some((m) => m.type.name === markName)) {
+                if (markName && node.marks.some((m: Mark) => m.type.name === markName)) {
                   hasAnyMark = true;
                 }
               });
@@ -167,6 +174,7 @@ export const MarkExtension = Extension.create<MarkExtensionOptions>({
           return true;
         },
     };
+    return commands as unknown as Partial<RawCommands>;
   },
 });
 

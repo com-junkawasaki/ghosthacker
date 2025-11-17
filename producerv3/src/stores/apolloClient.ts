@@ -7,18 +7,19 @@
  */
 import { create } from 'zustand';
 import type { ApolloClient } from '@apollo/client';
+import type { NormalizedCacheObject } from '@apollo/client';
 import { getClient } from '@/lib/graphql/client';
 
 type ApolloClientState = 
   | { status: 'idle'; client: null }
   | { status: 'loading'; client: null }
-  | { status: 'ready'; client: ApolloClient<any> }
+  | { status: 'ready'; client: ApolloClient<NormalizedCacheObject> }
   | { status: 'error'; client: null; error: Error };
 
 interface ApolloClientStore {
   state: ApolloClientState;
   initialize: () => void;
-  getClient: () => ApolloClient<any> | null;
+  getClient: () => ApolloClient<NormalizedCacheObject> | null;
 }
 
 export const useApolloClientStore = create<ApolloClientStore>((set, get) => {

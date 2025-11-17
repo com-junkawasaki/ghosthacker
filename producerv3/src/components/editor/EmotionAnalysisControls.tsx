@@ -68,7 +68,7 @@ export function EmotionAnalysisControls() {
 
       if (data?.analyzeEmotions) {
         const profile: EmotionProfile = {
-          emotionVector: data.analyzeEmotions.emotionVector.map((ev: any) => ({
+          emotionVector: data.analyzeEmotions.emotionVector.map((ev: EmotionScore) => ({
             emotion: ev.emotion,
             score: ev.score,
           })),
