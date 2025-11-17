@@ -8,6 +8,8 @@
  */
 import type { Editor } from '@tiptap/react';
 import type { ExtractedNode } from '@/lib/editor/contextExtractor';
+import { extractStructuredContext } from '@/lib/editor/structuredContextExtractor';
+import type { StructuredContext } from '@/lib/editor/structuredContextExtractor';
 import type { CharacterNode, SceneNode, POVNode, EmotionMask } from '@/types/jsonld';
 
 /**
@@ -51,6 +53,7 @@ export interface MultiAgentContext {
   narrator?: NarratorContext;
   scene?: SceneContext;
   emotionArc?: Array<{ position: number; targetEmotions: Record<string, number> }>;
+  structuredContext?: StructuredContext;
 }
 
 /**
@@ -325,9 +328,10 @@ export function buildMultiAgentContext(
     characterIds?: string[];
     sceneId?: string;
     povId?: string;
+    includeStructuredContext?: boolean;
   }
 ): MultiAgentContext {
-  const { characterIds, sceneId, povId } = options;
+  const { characterIds, sceneId, povId, includeStructuredContext = true } = options;
   
   const characters: CharacterContext[] = [];
   
@@ -372,6 +376,107 @@ export function buildMultiAgentContext(
     },
     sceneId
   );
+  
+  // Add structured context if requested
+  if (includeStructuredContext) {
+    const { state } = editor;
+    const { selection } = state;
+    const { from, to } = selection;
+    
+    const structuredContext = extractStructuredContext(editor, {
+      from: selection.empty ? Math.max(0, from - 200) : from,
+      to: selection.empty ? Math.min(state.doc.content.size, from + 200) : to,
+    });
+    
+    // Merge structured context with multi-agent context
+    // Update characters with mark information from structured context
+    if (structuredContext.characters.length > 0) {
+      structuredContext.characters.forEach((charWithMarks) => {
+        const charId = charWithMarks.node.attributes.characterId as string;
+        const existingChar = filteredContext.characters.find(
+          (char) => char.characterId === charId
+        );
+        
+        if (existingChar) {
+          // Update character context with mark information
+          // Marks情報を既存のCharacterContextに統合
+          if (charWithMarks.marks.length > 0) {
+            // Emotion marksをemotionStateに統合
+            const emotionMarks = charWithMarks.marks.filter((mark) => mark.type === 'emotion');
+            if (emotionMarks.length > 0) {
+              emotionMarks.forEach((mark) => {
+                if (mark.attributes.emotionVector) {
+                  existingChar.attributes = {
+                    ...existingChar.attributes,
+                    emotionVector: mark.attributes.emotionVector,
+                  };
+                }
+              });
+            }
+          }
+        } else {
+          // 新規CharacterContextを作成
+          const newCharContext: CharacterContext = {
+            characterId: charId,
+            name: charWithMarks.node.name,
+            attributes: charWithMarks.node.attributes,
+            relationships: [],
+            dialogue: [],
+            scenePresence: sceneId ? true : false,
+          };
+          
+          // Marks情報を統合
+          charWithMarks.marks.forEach((mark) => {
+            if (mark.type === 'emotion' && mark.attributes.emotionVector) {
+              newCharContext.attributes = {
+                ...newCharContext.attributes,
+                emotionVector: mark.attributes.emotionVector,
+              };
+            }
+          });
+          
+          filteredContext.characters.push(newCharContext);
+        }
+      });
+    }
+    
+    // Update scene context with location from structured context
+    if (structuredContext.location && filteredContext.scene) {
+      filteredContext.scene.location = {
+        id: structuredContext.location.attributes.locationId as string || '',
+        name: structuredContext.location.name,
+      };
+    }
+    
+    // Add dialogue information from structured context
+    if (structuredContext.dialogue.length > 0 && filteredContext.scene) {
+      structuredContext.dialogue.forEach((dialogue) => {
+        if (dialogue.characterId) {
+          const charContext = filteredContext.characters.find(
+            (char) => char.characterId === dialogue.characterId
+          );
+          if (charContext) {
+            charContext.dialogue.push(dialogue.text);
+          }
+        }
+      });
+    }
+    
+    // Add emotion arc from structured context emotions
+    if (structuredContext.emotions.length > 0) {
+      const emotionArc = structuredContext.emotions.map((emotion, index) => {
+        const emotionVector = emotion.attributes.emotionVector as Record<string, number> | undefined;
+        return {
+          position: index + 1,
+          targetEmotions: emotionVector || {},
+        };
+      });
+      
+      filteredContext.emotionArc = emotionArc;
+    }
+    
+    filteredContext.structuredContext = structuredContext;
+  }
   
   return filteredContext;
 }

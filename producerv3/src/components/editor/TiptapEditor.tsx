@@ -8,7 +8,7 @@
 'use client';
 
 import { useEditor, EditorContent } from '@tiptap/react';
-import { useMemo } from 'react';
+import { useMemo, useCallback } from 'react';
 import Document from '@tiptap/extension-document';
 import Paragraph from '@tiptap/extension-paragraph';
 import Text from '@tiptap/extension-text';
@@ -275,7 +275,7 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
         },
       }),
     ],
-    content: combinedContent,
+    content: '', // Initialize with empty content, set via useEffect
     immediatelyRender: false,
     onUpdate: ({ editor }) => {
       // Only auto-save if a specific chapter is selected
@@ -305,15 +305,113 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
   });
 
   useEffect(() => {
-    if (editor && combinedContent) {
-      editor.commands.setContent(combinedContent);
+    if (!editor) {
+      return;
+    }
+
+    // Wait for editor to be fully initialized
+    if (!editor.view || !editor.view.state) {
+      // Retry after editor is ready
+      const timeoutId = setTimeout(() => {
+        if (editor.view && editor.view.state && combinedContent) {
+          setEditorContent(editor, combinedContent);
+        }
+      }, 100);
+      return () => clearTimeout(timeoutId);
+    }
+
+    if (combinedContent) {
+      setEditorContent(editor, combinedContent);
     }
   }, [editor, combinedContent, chapterId]);
 
+  // Helper function to safely set editor content
+  const setEditorContent = (editor: Editor, content: unknown) => {
+    try {
+      // Ensure content is a string
+      let contentString: string;
+      if (typeof content === 'string') {
+        contentString = content.trim() || '<p></p>';
+      } else if (Array.isArray(content)) {
+        console.warn('Content is an array, converting to string:', content);
+        contentString = '<p></p>';
+      } else if (content && typeof content === 'object') {
+        console.warn('Content is an object, converting to string:', content);
+        contentString = '<p></p>';
+      } else {
+        contentString = '<p></p>';
+      }
+
+      // Validate HTML string format
+      if (!contentString.startsWith('<') && !contentString.match(/^[\s\n]*$/)) {
+        // If it doesn't look like HTML, wrap it in a paragraph
+        contentString = `<p>${contentString}</p>`;
+      }
+
+      const currentContent = editor.getHTML();
+      
+      // Avoid unnecessary updates
+      if (currentContent !== contentString) {
+        editor.commands.setContent(contentString);
+      }
+    } catch (error) {
+      console.error('Error setting editor content:', error, 'Content:', content);
+      setEditorError(error instanceof Error ? error.message : 'エディタコンテンツの設定に失敗しました');
+      
+      // Fallback: try setting empty content
+      try {
+        editor.commands.setContent('<p></p>');
+      } catch (fallbackError) {
+        console.error('Error setting fallback content:', fallbackError);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!editor) {
+      return;
+    }
+
+    // Wait for editor to be fully initialized
+    if (!editor.view || !editor.view.state) {
+      // Retry after editor is ready
+      const timeoutId = setTimeout(() => {
+        if (editor.view && editor.view.state && combinedContent) {
+          setEditorContent(editor, combinedContent);
+        }
+      }, 100);
+      return () => clearTimeout(timeoutId);
+    }
+
+    if (combinedContent) {
+      setEditorContent(editor, combinedContent);
+    }
+  }, [editor, combinedContent, chapterId, setEditorContent]);
+
   // Set editor editable state based on chapterId
   useEffect(() => {
-    if (editor) {
-      editor.setEditable(!!chapterId);
+    if (!editor) {
+      return;
+    }
+
+    // Wait for editor to be fully initialized
+    try {
+      // Check if editor is ready by checking if it has a view
+      if (editor.view && editor.view.state) {
+        editor.setEditable(!!chapterId);
+      }
+    } catch (error) {
+      console.error('Error setting editor editable state:', error);
+      // Retry after a short delay
+      setTimeout(() => {
+        try {
+          if (editor.view && editor.view.state) {
+            editor.setEditable(!!chapterId);
+          }
+        } catch (retryError) {
+          console.error('Error retrying setEditable:', retryError);
+        }
+      }, 100);
     }
   }, [editor, chapterId]);
 

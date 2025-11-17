@@ -10,6 +10,7 @@
 import type { Editor } from '@tiptap/react';
 import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
 import type { MaskType } from '@/types/jsonld';
+import { extractStructuredContext, extractStructuredContextAroundCursor } from './structuredContextExtractor';
 
 /**
  * ノードタイプの定義
@@ -59,6 +60,7 @@ export interface EditorContext {
   maskedNodes: ExtractedNode[];
   masks: MaskInfo[];
   selectedText: string;
+  structuredContext?: import('./structuredContextExtractor').StructuredContext;
 }
 
 /**
@@ -154,7 +156,7 @@ function extractMasks(node: ProseMirrorNode): MaskInfo[] {
 /**
  * エディターからコンテキスト情報を抽出
  */
-export function extractEditorContext(editor: Editor): EditorContext {
+export function extractEditorContext(editor: Editor, includeStructuredContext: boolean = true): EditorContext {
   const { state } = editor;
   const { selection } = state;
   const { from, to } = selection;
@@ -202,7 +204,7 @@ export function extractEditorContext(editor: Editor): EditorContext {
   // 選択範囲のテキストを取得（ノード間のテキストも含む）
   const fullText = state.doc.textBetween(from, to);
 
-  return {
+  const context: EditorContext = {
     selectedNodes,
     maskedNodes,
     masks: Array.from(
@@ -210,12 +212,19 @@ export function extractEditorContext(editor: Editor): EditorContext {
     ), // 重複を除去
     selectedText: fullText || selectedText.join(' '),
   };
+
+  // 構造化コンテキストを追加（オプション）
+  if (includeStructuredContext) {
+    context.structuredContext = extractStructuredContext(editor, { from, to });
+  }
+
+  return context;
 }
 
 /**
  * 選択範囲が空の場合、カーソル位置周辺のノードを取得
  */
-export function extractContextAroundCursor(editor: Editor, range: number = 100): EditorContext {
+export function extractContextAroundCursor(editor: Editor, range: number = 100, includeStructuredContext: boolean = true): EditorContext {
   const { state } = editor;
   const { selection } = state;
   const { from } = selection;
@@ -257,12 +266,19 @@ export function extractContextAroundCursor(editor: Editor, range: number = 100):
 
   const text = state.doc.textBetween(contextFrom, contextTo);
 
-  return {
+  const context: EditorContext = {
     selectedNodes,
     maskedNodes,
     masks: Array.from(new Map(masks.map((mask) => [mask.type, mask])).values()),
     selectedText: text,
   };
+
+  // 構造化コンテキストを追加（オプション）
+  if (includeStructuredContext) {
+    context.structuredContext = extractStructuredContextAroundCursor(editor, range);
+  }
+
+  return context;
 }
 
 /**

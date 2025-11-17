@@ -7,6 +7,7 @@
  */
 
 import type { EditorContext, ExtractedNode, MaskInfo } from '@/lib/editor/contextExtractor';
+import type { StructuredContext } from '@/lib/editor/structuredContextExtractor';
 
 /**
  * プロンプト生成オプション
@@ -228,5 +229,280 @@ export function optimizePromptForImageGeneration(prompt: string): string {
   }
 
   return optimized;
+}
+
+/**
+ * 構造化コンテキストからプロンプトを生成
+ */
+export function generateStructuredPrompt(
+  context: StructuredContext,
+  options: PromptGenerationOptions = {}
+): string {
+  const {
+    style = 'descriptive',
+  } = options;
+
+  const promptParts: string[] = [];
+
+  // Scene情報
+  if (context.scene) {
+    promptParts.push(`シーン: ${context.scene.name}`);
+    if (style === 'detailed' && context.scene.attributes.description) {
+      promptParts.push(`シーン説明: ${context.scene.attributes.description}`);
+    }
+  }
+
+  // Location情報
+  if (context.location) {
+    promptParts.push(`場所: ${context.location.name}`);
+    if (style === 'detailed' && context.location.attributes.description) {
+      promptParts.push(`場所説明: ${context.location.attributes.description}`);
+    }
+  }
+
+  // Characters情報
+  if (context.characters.length > 0) {
+    const characterParts: string[] = [];
+    context.characters.forEach((charWithMarks) => {
+      let charText = `人物: ${charWithMarks.node.name}`;
+      
+      if (style === 'detailed') {
+        const attrs = charWithMarks.node.attributes;
+        if (attrs.description) {
+          charText += ` (${attrs.description})`;
+        }
+        if (attrs.role) {
+          charText += ` [役割: ${attrs.role}]`;
+        }
+        if (attrs.virtue) {
+          charText += ` [美徳: ${attrs.virtue}]`;
+        }
+      }
+
+      // Marks情報を追加
+      if (charWithMarks.marks.length > 0) {
+        const markTexts = charWithMarks.marks.map((mark) => {
+          const maskLabel = MASK_TYPE_LABELS[mark.type] || mark.type;
+          return maskLabel;
+        });
+        if (markTexts.length > 0) {
+          charText += ` [${markTexts.join(', ')}]`;
+        }
+      }
+
+      characterParts.push(charText);
+    });
+    promptParts.push(`登場人物: ${characterParts.join('; ')}`);
+  }
+
+  // Dialogue情報
+  if (context.dialogue.length > 0) {
+    const dialogueParts: string[] = [];
+    context.dialogue.forEach((dialogue) => {
+      let dialogueText = `「${dialogue.text}」`;
+      
+      // Character情報
+      if (dialogue.characterId) {
+        const character = context.characters.find(
+          (char) => (char.node.attributes.characterId as string) === dialogue.characterId
+        );
+        if (character) {
+          dialogueText = `${character.node.name}: ${dialogueText}`;
+        }
+      }
+
+      // Emotion Marks
+      const emotionMarks = dialogue.marks.filter((mark) => mark.type === 'emotion');
+      if (emotionMarks.length > 0) {
+        const emotionTexts = emotionMarks.map((mark) => {
+          if (mark.attributes.emotionVector) {
+            const emotions = Object.entries(mark.attributes.emotionVector as Record<string, number>)
+              .filter(([, score]) => score && score > 0)
+              .map(([emotion]) => emotion);
+            return emotions.join(', ');
+          }
+          return '感情';
+        });
+        dialogueText += ` [感情: ${emotionTexts.join(', ')}]`;
+      }
+
+      // Context Marks
+      const contextMarks = dialogue.marks.filter((mark) => mark.type === 'context');
+      if (contextMarks.length > 0) {
+        const contextTexts = contextMarks.map((mark) => {
+          if (mark.attributes.contextType) {
+            return `${mark.attributes.contextType}: ${mark.attributes.contextValue || ''}`;
+          }
+          return 'コンテキスト';
+        });
+        dialogueText += ` [文脈: ${contextTexts.join(', ')}]`;
+      }
+
+      dialogueParts.push(dialogueText);
+    });
+    promptParts.push(`会話: ${dialogueParts.join('\n')}`);
+  }
+
+  // Emotions情報（全体）
+  if (context.emotions.length > 0) {
+    const emotionTexts = context.emotions.map((emotion) => {
+      if (emotion.attributes.emotionVector) {
+        const emotions = Object.entries(emotion.attributes.emotionVector as Record<string, number>)
+          .filter(([, score]) => score && score > 0)
+          .map(([emotion]) => emotion);
+        return emotions.join(', ');
+      }
+      return '感情';
+    });
+    promptParts.push(`感情状態: ${emotionTexts.join('; ')}`);
+  }
+
+  // Contexts情報（全体）
+  if (context.contexts.length > 0) {
+    const contextTexts = context.contexts.map((ctx) => {
+      if (ctx.attributes.contextType) {
+        return `${ctx.attributes.contextType}: ${ctx.attributes.contextValue || ''}`;
+      }
+      return 'コンテキスト';
+    });
+    promptParts.push(`文脈情報: ${contextTexts.join('; ')}`);
+  }
+
+  // プロンプトを組み立て
+  let prompt = promptParts.join('\n');
+
+  // プロンプトが空の場合はデフォルトメッセージ
+  if (!prompt.trim()) {
+    prompt = 'このコンテキストに基づいたコンテンツを生成してください';
+  } else {
+    // AI生成用のプロンプトとして整形
+    prompt = `以下の構造化コンテキストを基にコンテンツを生成してください:\n\n${prompt}`;
+  }
+
+  return prompt;
+}
+
+/**
+ * 構造化コンテキストからマルチエージェント生成用プロンプトを生成
+ */
+export function generateMultiAgentPrompt(
+  context: StructuredContext,
+  characterId?: string,
+  options: PromptGenerationOptions = {}
+): string {
+  const {
+    style = 'detailed',
+  } = options;
+
+  const promptParts: string[] = [];
+
+  // Scene情報
+  if (context.scene) {
+    promptParts.push(`## シーン情報`);
+    promptParts.push(`シーン名: ${context.scene.name}`);
+    if (context.scene.attributes.description) {
+      promptParts.push(`説明: ${context.scene.attributes.description}`);
+    }
+    promptParts.push('');
+  }
+
+  // Location情報
+  if (context.location) {
+    promptParts.push(`## 場所情報`);
+    promptParts.push(`場所名: ${context.location.name}`);
+    if (context.location.attributes.description) {
+      promptParts.push(`説明: ${context.location.attributes.description}`);
+    }
+    promptParts.push('');
+  }
+
+  // Characters情報
+  if (context.characters.length > 0) {
+    promptParts.push(`## 登場人物`);
+    context.characters.forEach((charWithMarks) => {
+      const attrs = charWithMarks.node.attributes;
+      const charId = attrs.characterId as string;
+      const isTargetCharacter = characterId ? charId === characterId : false;
+      
+      if (isTargetCharacter) {
+        promptParts.push(`### [対象] ${charWithMarks.node.name}`);
+      } else {
+        promptParts.push(`### ${charWithMarks.node.name}`);
+      }
+      
+      if (attrs.description) {
+        promptParts.push(`説明: ${attrs.description}`);
+      }
+      if (attrs.role) {
+        promptParts.push(`役割: ${attrs.role}`);
+      }
+      if (attrs.virtue) {
+        promptParts.push(`美徳: ${attrs.virtue}`);
+      }
+      if (attrs.age) {
+        promptParts.push(`年齢: ${attrs.age}`);
+      }
+      
+      // Marks情報
+      if (charWithMarks.marks.length > 0) {
+        promptParts.push(`適用されたマーク: ${charWithMarks.marks.map(m => m.type).join(', ')}`);
+      }
+      
+      promptParts.push('');
+    });
+  }
+
+  // Dialogue情報
+  if (context.dialogue.length > 0) {
+    promptParts.push(`## 会話履歴`);
+    context.dialogue.forEach((dialogue) => {
+      const character = dialogue.characterId
+        ? context.characters.find(
+            (char) => (char.node.attributes.characterId as string) === dialogue.characterId
+          )
+        : null;
+      
+      if (character) {
+        promptParts.push(`${character.node.name}: 「${dialogue.text}」`);
+      } else {
+        promptParts.push(`「${dialogue.text}」`);
+      }
+      
+      // Emotion Marks
+      const emotionMarks = dialogue.marks.filter((mark) => mark.type === 'emotion');
+      if (emotionMarks.length > 0) {
+        emotionMarks.forEach((mark) => {
+          if (mark.attributes.emotionVector) {
+            const emotions = Object.entries(mark.attributes.emotionVector as Record<string, number>)
+              .filter(([, score]) => score && score > 0)
+              .map(([emotion, score]) => `${emotion}: ${score}`);
+            promptParts.push(`  感情: ${emotions.join(', ')}`);
+          }
+        });
+      }
+      
+      // Context Marks
+      const contextMarks = dialogue.marks.filter((mark) => mark.type === 'context');
+      if (contextMarks.length > 0) {
+        contextMarks.forEach((mark) => {
+          if (mark.attributes.contextType) {
+            promptParts.push(`  文脈: ${mark.attributes.contextType}: ${mark.attributes.contextValue || ''}`);
+          }
+        });
+      }
+      
+      promptParts.push('');
+    });
+  }
+
+  // プロンプトを組み立て
+  let prompt = promptParts.join('\n');
+
+  // プロンプトが空の場合はデフォルトメッセージ
+  if (!prompt.trim()) {
+    prompt = 'このコンテキストに基づいたコンテンツを生成してください';
+  }
+
+  return prompt;
 }
 

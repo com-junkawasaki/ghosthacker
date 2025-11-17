@@ -278,22 +278,26 @@ export function EmotionSidebar({ editor, selectedBenchmark, onBenchmarkChange }:
 
                   {/* Top emotions */}
                   <div className="flex flex-wrap gap-1 mb-1">
-                    {emotionData.emotions.slice(0, 3).map((emotion, idx) => {
-                      const emoColor = getEmotionColor(emotion.emotion);
-                      return (
-                        <span
-                          key={idx}
-                          className="text-xs px-1.5 py-0.5 rounded"
-                          style={{
-                            backgroundColor: emoColor.bg,
-                            color: emoColor.text,
-                          }}
-                          title={`Score: ${emotion.score.toFixed(3)}`}
-                        >
-                          {emotion.emotion}: {(emotion.score * 100).toFixed(0)}%
-                        </span>
-                      );
-                    })}
+                    {emotionData.emotions
+                      .filter((emotion) => emotion && emotion.score !== undefined && emotion.score !== null)
+                      .slice(0, 3)
+                      .map((emotion, idx) => {
+                        const emoColor = getEmotionColor(emotion.emotion);
+                        const score = emotion.score ?? 0;
+                        return (
+                          <span
+                            key={idx}
+                            className="text-xs px-1.5 py-0.5 rounded"
+                            style={{
+                              backgroundColor: emoColor.bg,
+                              color: emoColor.text,
+                            }}
+                            title={`Score: ${score.toFixed(3)}`}
+                          >
+                            {emotion.emotion}: {(score * 100).toFixed(0)}%
+                          </span>
+                        );
+                      })}
                   </div>
 
                   {/* Benchmark comparison details */}

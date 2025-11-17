@@ -12,7 +12,9 @@ import { useState } from 'react';
 import type { Editor } from '@tiptap/react';
 import { useMutation } from '@apollo/client';
 import { extractEditorContext, extractContextAroundCursor } from '@/lib/editor/contextExtractor';
+import { extractStructuredContext, extractStructuredContextAroundCursor } from '@/lib/editor/structuredContextExtractor';
 import { buildMultiAgentContext } from '@/lib/ai/multiAgentContext';
+import { generateMultiAgentPrompt } from '@/lib/ai/promptGenerator';
 import { GENERATE_CONTENT_WITH_MULTI_AGENT } from '@/lib/graphql/mutations';
 
 interface AIContentGenerationControlsProps {
@@ -50,19 +52,28 @@ export function AIContentGenerationControls({ editor }: AIContentGenerationContr
     setError(null);
 
     try {
-      // Extract context from editor
-      const editorContext = editor.state.selection.empty
-        ? extractContextAroundCursor(editor, 200)
-        : extractEditorContext(editor);
+      // Extract structured context from editor
+      const structuredContext = editor.state.selection.empty
+        ? extractStructuredContextAroundCursor(editor, 200)
+        : extractStructuredContext(editor, {
+            from: editor.state.selection.from,
+            to: editor.state.selection.to,
+          });
 
-      // Build multi-agent context
+      // Build multi-agent context with structured context
       const multiAgentContext = buildMultiAgentContext(editor, {
         characterIds: characterId ? [characterId] : undefined,
         sceneId,
         povId,
+        includeStructuredContext: true,
       });
 
-      // Build context string
+      // Generate prompt from structured context
+      const contextPrompt = generateMultiAgentPrompt(structuredContext, characterId || undefined, {
+        style: 'detailed',
+      });
+
+      // Build context string (backward compatibility)
       const contextParts: string[] = [];
 
       if (multiAgentContext.scene) {
@@ -91,11 +102,8 @@ export function AIContentGenerationControls({ editor }: AIContentGenerationContr
         }
       }
 
-      if (editorContext.selectedText) {
-        contextParts.push(`Selected text: ${editorContext.selectedText.substring(0, 500)}`);
-      }
-
-      const context = contextParts.join('\n');
+      // Use structured context prompt if available
+      const context = contextPrompt || contextParts.join('\n');
 
       // Prepare emotion arc
       const emotionArcInput = emotionArc.length > 0
