@@ -17,7 +17,7 @@ help:
 dev: build up
 	@echo "Development environment started!"
 	@echo "Frontend: http://localhost:25320"
-	@echo "GraphQL: http://localhost:8080/graphql"
+	@echo "GraphQL: http://localhost:25325/graphql"
 	@echo "Neo4j Browser: http://localhost:7474"
 
 build:

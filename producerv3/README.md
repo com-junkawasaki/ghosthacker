@@ -61,7 +61,7 @@ make neo4j-init
 
 Services will be available at:
 - Frontend: http://localhost:25320
-- GraphQL API: http://localhost:8080/graphql
+- GraphQL API: http://localhost:25325/graphql
 - Neo4j Browser: http://localhost:7474
 
 ### Manual Setup
@@ -94,7 +94,7 @@ cypher-shell -u neo4j -p password < neo4j-schema.cypher
 ### Frontend (.env)
 
 ```
-PUBLIC_GRAPHQL_API_URL=http://localhost:8080/graphql
+PUBLIC_GRAPHQL_API_URL=http://localhost:25325/graphql
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_key
 CLERK_SECRET_KEY=your_clerk_secret
 ```

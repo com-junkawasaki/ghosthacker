@@ -32,7 +32,7 @@ services:
       target: development
     container_name: epub-editor-graphql
     ports:
-      - "8080:8080"
+      - "25325:8080"
     environment:
       NODE_ENV: development
       # Neo4j Connection
@@ -75,7 +75,7 @@ services:
       NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:25320}
       # GraphQL API URL
       # Client-side: use localhost for browser access
-      NEXT_PUBLIC_GRAPHQL_API_URL: ${NEXT_PUBLIC_GRAPHQL_API_URL:-http://localhost:8080/graphql}
+      NEXT_PUBLIC_GRAPHQL_API_URL: ${NEXT_PUBLIC_GRAPHQL_API_URL:-http://localhost:25325/graphql}
       # Server-side: use container name for server-to-server communication
       GRAPHQL_API_URL: ${GRAPHQL_API_URL:-http://graphql:8080/graphql}
       # Clerk Authentication (hardcoded for development)
