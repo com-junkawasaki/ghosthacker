@@ -8,6 +8,7 @@
 import { Node, mergeAttributes, type CommandProps } from '@tiptap/core';
 import { OrganizationNode as OrganizationNodeType, CompanyNode } from '@/types/jsonld';
 import { getNodeClasses, getNodeLabelClasses, getNodeTypeDisplayName } from '@/lib/editor/nodeColors';
+import { sanitizeNodeAttributes } from '@/lib/editor/sanitizeAttributes';
 
 export interface OrganizationNodeOptions {
   HTMLAttributes: Record<string, unknown>;
@@ -208,6 +209,10 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
         (attributes: Partial<OrganizationNodeType>) =>
         ({ state, dispatch }: CommandProps) => {
           try {
+            // ts-patternを使用して型安全にattributesをサニタイズ
+            // ビルド時に型チェック可能で、配列やオブジェクトを適切に変換
+            const sanitizedAttributes = sanitizeNodeAttributes(attributes);
+            
             const { schema } = state;
             const paragraphNodeType = schema.nodes.paragraph;
             if (!paragraphNodeType) {
@@ -220,8 +225,9 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
               console.error(`Organization node type "${this.name}" not found in schema`);
               return false;
             }
+            // サニタイズされたattributesを使用（型安全）
             const organizationNode = organizationNodeType.create(
-              { ...attributes, 'data-type': 'organization' },
+              { ...sanitizedAttributes, 'data-type': 'organization' },
               [paragraphNode]
             );
             
@@ -246,6 +252,10 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
         (attributes: Partial<CompanyNode>) =>
         ({ state, dispatch }: CommandProps) => {
           try {
+            // ts-patternを使用して型安全にattributesをサニタイズ
+            // ビルド時に型チェック可能で、配列やオブジェクトを適切に変換
+            const sanitizedAttributes = sanitizeNodeAttributes(attributes);
+            
             const { schema } = state;
             const paragraphNodeType = schema.nodes.paragraph;
             if (!paragraphNodeType) {
@@ -258,8 +268,9 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
               console.error('Company node type not found in schema');
               return false;
             }
+            // サニタイズされたattributesを使用（型安全）
             const companyNode = companyNodeType.create(
-              { ...attributes, 'data-type': 'company' },
+              { ...sanitizedAttributes, 'data-type': 'company' },
               [paragraphNode]
             );
             

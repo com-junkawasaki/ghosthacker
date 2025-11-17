@@ -8,6 +8,7 @@
 import { Node, mergeAttributes, type CommandProps } from '@tiptap/core';
 import { LocationNode as LocationNodeType } from '@/types/jsonld';
 import { getNodeClasses, getNodeLabelClasses, getNodeTypeDisplayName } from '@/lib/editor/nodeColors';
+import { sanitizeNodeAttributes } from '@/lib/editor/sanitizeAttributes';
 
 export interface LocationNodeOptions {
   HTMLAttributes: Record<string, unknown>;
@@ -185,6 +186,10 @@ export const LocationNode = Node.create<LocationNodeOptions>({
         (attributes: Partial<LocationNodeType>) =>
         ({ state, dispatch }: CommandProps) => {
           try {
+            // ts-patternを使用して型安全にattributesをサニタイズ
+            // ビルド時に型チェック可能で、配列やオブジェクトを適切に変換
+            const sanitizedAttributes = sanitizeNodeAttributes(attributes);
+            
             const { schema } = state;
             const paragraphNodeType = schema.nodes.paragraph;
             if (!paragraphNodeType) {
@@ -197,7 +202,8 @@ export const LocationNode = Node.create<LocationNodeOptions>({
               console.error(`Location node type "${this.name}" not found in schema`);
               return false;
             }
-            const locationNode = locationNodeType.create(attributes, [paragraphNode]);
+            // サニタイズされたattributesを使用（型安全）
+            const locationNode = locationNodeType.create(sanitizedAttributes, [paragraphNode]);
             
             if (dispatch) {
               const { selection } = state;

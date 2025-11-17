@@ -8,10 +8,12 @@
 import { Node, mergeAttributes, type CommandProps } from '@tiptap/core';
 import { CharacterNode as CharacterNodeType } from '@/types/jsonld';
 import { getNodeClasses, getNodeLabelClasses, getNodeTypeDisplayName } from '@/lib/editor/nodeColors';
+import { sanitizeNodeAttributes } from '@/lib/editor/sanitizeAttributes';
 
 export interface CharacterNodeOptions {
   HTMLAttributes: Record<string, unknown>;
 }
+
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -218,6 +220,10 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
         (attributes: Partial<CharacterNodeType>) =>
         ({ state, dispatch }: CommandProps) => {
           try {
+            // ts-patternを使用して型安全にattributesをサニタイズ
+            // ビルド時に型チェック可能で、配列やオブジェクトを適切に変換
+            const sanitizedAttributes = sanitizeNodeAttributes(attributes);
+            
             const { schema } = state;
             const paragraphNodeType = schema.nodes.paragraph;
             if (!paragraphNodeType) {
@@ -230,7 +236,8 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
               console.error(`Character node type "${this.name}" not found in schema`);
               return false;
             }
-            const characterNode = characterNodeType.create(attributes, [paragraphNode]);
+            // サニタイズされたattributesを使用（型安全）
+            const characterNode = characterNodeType.create(sanitizedAttributes, [paragraphNode]);
             
             if (dispatch) {
               const { selection } = state;

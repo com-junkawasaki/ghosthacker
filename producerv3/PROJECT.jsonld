@@ -38,9 +38,9 @@
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
   "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation with structured context extraction (hierarchical hybrid approach: Node + Mark + Attribute), AI node classification and batch reclassification (single and multiple nodes), node content analysis (sub-node detection, mask recommendations, emotion analysis), emotion analysis (Hume AI) with current node analysis, sidebar visualization and benchmark comparison, and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "2.8.0",
+  "version": "2.9.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-01-27T22:00:00Z",
+  "updatedAt": "2025-01-27T23:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -719,12 +719,12 @@
       "resolution": "Updated CharacterNode, OrganizationNode, and LocationNode renderHTML methods to sanitize mergeAttributes results. Added array detection and conversion to strings (using join(' ')) for all attribute values. Added error handling in getHTML() calls to prevent editor crashes. All renderHTML methods now ensure attributes are objects with string values, not arrays."
     },
     {
-      "@id": "https://gftd.ai/issue/current-node-emotion-analysis",
-      "name": "Current Node Emotion Analysis Implementation",
-      "description": "Implemented emotion analysis for current node functionality. Users can analyze emotions for the currently selected node (Block Container Nodes: character, scene, location, organization, pov, or paragraph) via toolbar button. Extracts full text content from selected node including all child nodes, sends to Hume AI API, and applies emotion profile to the node.",
+      "@id": "https://gftd.ai/issue/hume-emotion-analysis-toolbar-button",
+      "name": "Hume Emotion Analysis Toolbar Button Integration",
+      "description": "Added Hume emotion analysis button to editor toolbar for analyzing current node emotions. Users can click the 'Hume感情分析' button in Phase 2 (Editing) section to analyze emotions for the currently selected node (Block Container Nodes: character, scene, location, organization, pov, or paragraph). Extracts full text content from selected node including all child nodes, sends to Hume AI API via GraphQL mutation, and applies emotion profile to the node.",
       "status": "resolved",
       "priority": "high",
-      "resolution": "Created getCurrentNodeFullText() function to extract text from current node (supports Block Container Nodes and paragraphs). Implemented handleAnalyzeCurrentNode() function using analyzeEmotions GraphQL mutation. Added Hume感情分析 button to editor toolbar with loading state and error handling. Added emotion analysis error banner for user feedback. Integrated with existing EmotionAnalysisExtension to apply emotion profiles to nodes. Error handling prevents editor crashes and provides user feedback."
+      "resolution": "Created getCurrentNodeFullText() function in TiptapEditor.tsx to extract text from current node (supports Block Container Nodes: character, scene, location, organization, pov, and paragraphs). Implemented handleAnalyzeCurrentNode() function using ANALYZE_EMOTIONS GraphQL mutation with error handling. Added 'Hume感情分析' button to editor toolbar Phase 2 section (next to NodeClassificationControls) with loading state ('分析中...') and disabled state. Added emotionAnalysisError state and error banner UI (yellow warning banner) for user feedback. Integrated with existing EmotionAnalysisExtension.setEmotionProfile() command to apply emotion profiles to nodes. Fixed duplicate useMutation import error. All functionality tested and build successful."
     }
   ]
 }

@@ -321,14 +321,6 @@ export function reclassifyNode(
     // Get current node content
     const nodeContent = node.textContent || '';
     
-    // Delete old node and insert new one
-    editor
-      .chain()
-      .focus()
-      .setTextSelection({ from, to })
-      .deleteSelection()
-      .run();
-    
     // Insert new node with new type and attributes
     // Filter out arrays and complex objects from attributes to prevent renderSpec errors
     // Tiptap node attributes only support primitive types (string, number, boolean, null)
@@ -392,12 +384,20 @@ export function reclassifyNode(
     }
     
     // Final validation: ensure all values in sanitizedAttributes are primitives
+    // Double-check to filter out any arrays that might have slipped through
     const finalAttributes: Record<string, string | number | boolean | null> = {};
     Object.entries(sanitizedAttributes).forEach(([key, value]) => {
+      // Skip arrays completely - they should have been converted to strings by sanitizeValue
+      if (Array.isArray(value)) {
+        console.warn(`Skipping array value for attribute ${key}:`, value);
+        return;
+      }
+      // Only include primitive types
       if (value === null || typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
         finalAttributes[key] = value as string | number | boolean | null;
+      } else {
+        console.warn(`Skipping non-primitive value for attribute ${key}:`, value, typeof value);
       }
-      // Skip any non-primitive values
     });
     
     // Type-safe dynamic access to TipTap chain commands
@@ -409,14 +409,34 @@ export function reclassifyNode(
     // Type guard: check if insertCommand is a function
     if (typeof insertCommand === 'function') {
       try {
-        (insertCommand as ChainCommand)({
-          ...finalAttributes,
+        // Create a safe attributes object with only primitives
+        // Validate one more time that no arrays are present
+        const safeAttributes: Record<string, string | number | boolean | null> = {
           name: nodeName,
-        }).run();
+        };
+        
+        // Add finalAttributes, ensuring no arrays slip through
+        Object.entries(finalAttributes).forEach(([key, value]) => {
+          if (Array.isArray(value)) {
+            console.error(`Array detected in finalAttributes for ${key}:`, value);
+            return; // Skip arrays
+          }
+          if (value === null || typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+            safeAttributes[key] = value;
+          }
+        });
+        
+        // Execute delete and insert in sequence
+        // First delete the old node, then insert the new one
+        editor.chain().focus().setTextSelection({ from, to }).deleteSelection().run();
+        // Then insert the new node
+        (insertCommand as ChainCommand)(safeAttributes).run();
       } catch (insertError) {
-        console.error('Error inserting node:', insertError, 'Attributes:', sanitizedAttributes);
+        console.error('Error inserting node:', insertError, 'Attributes:', finalAttributes);
         // Fallback: try with minimal attributes
+        // Create a new chain for fallback since the previous one was consumed
         try {
+          editor.chain().focus().setTextSelection({ from, to }).deleteSelection();
           (insertCommand as ChainCommand)({
             name: nodeName,
           }).run();
@@ -425,6 +445,9 @@ export function reclassifyNode(
           throw fallbackError;
         }
       }
+    } else {
+      // If insert command doesn't exist, just delete the selection
+      editor.chain().focus().setTextSelection({ from, to }).deleteSelection().run();
     }
     
     return true;

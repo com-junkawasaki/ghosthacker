@@ -161,9 +161,13 @@ export const GhostNode = Node.create<GhostNodeOptions>({
       insertGhost:
         (attributes: Partial<GhostNodeType>) =>
         ({ commands }: CommandProps) => {
+          // ts-patternを使用して型安全にattributesをサニタイズ
+          // ビルド時に型チェック可能で、配列やオブジェクトを適切に変換
+          const sanitizedAttributes = sanitizeNodeAttributes(attributes);
+          
           return commands.insertContent({
             type: this.name,
-            attrs: attributes,
+            attrs: sanitizedAttributes,
           });
         },
       updateGhost:

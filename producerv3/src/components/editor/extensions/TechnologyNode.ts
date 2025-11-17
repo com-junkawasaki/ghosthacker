@@ -8,6 +8,7 @@
 import { Node, mergeAttributes, type CommandProps } from '@tiptap/core';
 import { TechnologyNode as TechnologyNodeType } from '@/types/jsonld';
 import { getNodeLabelClasses, getNodeTypeDisplayName } from '@/lib/editor/nodeColors';
+import { sanitizeNodeAttributes } from '@/lib/editor/sanitizeAttributes';
 
 export interface TechnologyNodeOptions {
   HTMLAttributes: Record<string, unknown>;
@@ -166,9 +167,13 @@ export const TechnologyNode = Node.create<TechnologyNodeOptions>({
       insertTechnology:
         (attributes: Partial<TechnologyNodeType>) =>
         ({ commands }: CommandProps) => {
+          // ts-patternを使用して型安全にattributesをサニタイズ
+          // ビルド時に型チェック可能で、配列やオブジェクトを適切に変換
+          const sanitizedAttributes = sanitizeNodeAttributes(attributes);
+          
           return commands.insertContent({
             type: this.name,
-            attrs: attributes,
+            attrs: sanitizedAttributes,
           });
         },
       updateTechnology:
