@@ -134,8 +134,21 @@ PORT=8080
 - **JSON-LD Semantic Nodes**: Insert story elements (Character, Ghost, Location, Organization, Technology, Episode, Scene, Arc, Motif, Season, Timeline, Event, SourceRef, Occupation, Setting) as structured nodes
 - **Content Masking**: Visual masking of content with 10 mask types (emotion, theme, context, notes, relationship, virtue, anchoredTo, emitsRepelsAvoids, phase, role)
 - **Slash Commands**: Insert nodes via slash commands (`/character`, `/location`, etc.)
+- **Emotion Analysis**: Analyze emotions for all node types using Hume AI API with visual color coding
+- **Emotion Benchmark Comparison**: Compare emotion scores with reference works and calculate alignment scores
+- **Emotion Curve Visualization**: Visualize emotion flow across nodes with SVG-based graphs
 
-## Recent Updates (v1.4.1)
+## Recent Updates (v2.2.0)
+
+### Emotion Visualization & Benchmark Comparison
+- **Emotion Analysis for All Nodes**: Extended emotion analysis to all node types (paragraph, character, scene, beat, arc, etc.), not just paragraphs
+- **Visual Color Coding**: Nodes are color-coded based on dominant emotions with background colors and border colors
+- **Benchmark Comparison**: Compare actual emotion scores with reference works (君の名は。, ARIA, 聲の形, Arrival, Shawshank) and calculate alignment scores (0-100%)
+- **Emotion Curve Graph**: SVG-based graph visualizing emotion flow across nodes and comparing with benchmark targets
+- **EmotionalView Component**: Comprehensive UI showing node-by-node emotion scores, benchmark comparisons, and overall statistics
+- **Emotion Visualization Library**: Color mapping system for 10 emotion types with blended color calculation for multiple emotions
+
+## Previous Updates (v1.4.1)
 
 ### Bug Fixes
 - **GraphQL Compilation Error**: Fixed async_graphql::Error conversion issue in emotion_service.rs by using `.map_err()` instead of `.context()`

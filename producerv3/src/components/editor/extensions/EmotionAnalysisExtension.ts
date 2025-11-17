@@ -44,7 +44,7 @@ export const EmotionAnalysisExtension = Extension.create<EmotionAnalysisExtensio
   },
 
   addGlobalAttributes() {
-    // Apply emotion attributes to all node types
+    // Apply emotion attributes to all node types (excluding 'doc' which is the document root)
     const allNodeTypes = [
       'paragraph',
       'heading',
@@ -66,6 +66,13 @@ export const EmotionAnalysisExtension = Extension.create<EmotionAnalysisExtensio
       'occupation',
       'setting',
       'chapterLink',
+      'blockquote',
+      'bulletList',
+      'orderedList',
+      'listItem',
+      'hardBreak',
+      'image',
+      'link',
     ];
 
     return [

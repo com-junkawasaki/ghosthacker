@@ -23,65 +23,11 @@ export const EmotionStyleExtension = Extension.create<EmotionStyleExtensionOptio
     };
   },
 
+  // Note: EmotionStyleExtension is disabled because it causes schema issues
+  // Styles are applied via CSS using data-emotion-vector attribute instead
+  // This extension is kept for reference but not used
   addGlobalAttributes() {
-    return [
-      {
-        types: [
-          'paragraph',
-          'heading',
-          'character',
-          'ghost',
-          'location',
-          'organization',
-          'technology',
-          'episode',
-          'scene',
-          'arc',
-          'motif',
-          'season',
-          'timeline',
-          'pov',
-          'beat',
-          'sourceRef',
-          'event',
-          'occupation',
-          'setting',
-          'chapterLink',
-        ],
-        attributes: {
-          emotionStyle: {
-            default: null,
-            parseHTML: () => null, // Style is computed, not parsed
-            renderHTML: (attributes: Record<string, unknown>) => {
-              const emotionVector = attributes.emotionVector as EmotionScore[] | null | undefined;
-              if (!emotionVector || emotionVector.length === 0) {
-                return {};
-              }
-
-              const style = getEmotionStyle(emotionVector);
-              const className = getEmotionClassName(emotionVector);
-
-              const styleString = Object.entries(style)
-                .map(([key, value]) => {
-                  const cssKey = key.replace(/([A-Z])/g, '-$1').toLowerCase();
-                  return `${cssKey}: ${value}`;
-                })
-                .join('; ');
-
-              const result: Record<string, string> = {};
-              if (styleString) {
-                result.style = styleString;
-              }
-              if (className) {
-                result.class = className;
-              }
-
-              return result;
-            },
-          },
-        },
-      },
-    ];
+    return [];
   },
 });
 

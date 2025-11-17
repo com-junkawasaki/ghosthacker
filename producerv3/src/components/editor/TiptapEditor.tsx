@@ -59,7 +59,7 @@ import { MaskExtension } from './extensions/MaskExtension';
 import { SlashCommand } from './extensions/SlashCommand';
 import { AIContentGenerationExtension } from './extensions/AIContentGenerationExtension';
 import { EmotionAnalysisExtension } from './extensions/EmotionAnalysisExtension';
-import { EmotionStyleExtension } from './extensions/EmotionStyleExtension';
+// import { EmotionStyleExtension } from './extensions/EmotionStyleExtension'; // Disabled - using CSS instead
 import { NodeSelectorDialog } from './NodeSelectorDialog';
 import { ChapterSelectorDialog } from './ChapterSelectorDialog';
 import { MaskControls } from './MaskControls';
@@ -198,8 +198,8 @@ export function TiptapEditor({ projectId, chapterId, epubId, onChapterSelect }: 
       MaskExtension,
       // 感情分析拡張
       EmotionAnalysisExtension,
-      // 感情スタイル拡張
-      EmotionStyleExtension,
+      // 感情スタイル拡張（CSSで適用するため一時的に無効化）
+      // EmotionStyleExtension,
       // AIコンテンツ生成拡張
       AIContentGenerationExtension.configure({
         onGenerateStart: () => {

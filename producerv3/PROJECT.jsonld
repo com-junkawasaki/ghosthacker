@@ -37,10 +37,10 @@
   "id": "https://gftd.ai/project/epub-editor",
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
-  "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation, emotion analysis (Hume AI), and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "2.0.0",
+  "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation, AI node classification and reclassification, emotion analysis (Hume AI) with visualization and benchmark comparison, and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
+  "version": "2.2.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-01-17T14:00:00Z",
+  "updatedAt": "2025-01-17T16:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -58,7 +58,10 @@
     {"@id": "https://gftd.ai/capability/epub-export"},
     {"@id": "https://gftd.ai/capability/epub-import-export"},
     {"@id": "https://gftd.ai/capability/emotion-analysis"},
+    {"@id": "https://gftd.ai/capability/emotion-visualization"},
+    {"@id": "https://gftd.ai/capability/emotion-benchmark-comparison"},
     {"@id": "https://gftd.ai/capability/emotion-arc-generation"},
+    {"@id": "https://gftd.ai/capability/node-classification"},
     {"@id": "https://gftd.ai/capability/jsonld-data-management"},
     {"@id": "https://gftd.ai/capability/markdown-processing"},
     {"@id": "https://gftd.ai/capability/image-generation"}
@@ -78,6 +81,8 @@
     {"@id": "https://gftd.ai/activity/mask-content"},
     {"@id": "https://gftd.ai/activity/slash-commands"},
     {"@id": "https://gftd.ai/activity/analyze-emotions"},
+    {"@id": "https://gftd.ai/activity/emotion-visualization"},
+    {"@id": "https://gftd.ai/activity/emotion-benchmark-comparison"},
     {"@id": "https://gftd.ai/activity/manage-jsonld-nodes"},
     {"@id": "https://gftd.ai/activity/manage-graph-links"},
     {"@id": "https://gftd.ai/activity/manage-graph-incidences"},
@@ -87,7 +92,9 @@
     {"@id": "https://gftd.ai/activity/extract-editor-context"},
     {"@id": "https://gftd.ai/activity/ai-content-generation"},
     {"@id": "https://gftd.ai/activity/build-multi-agent-context"},
-    {"@id": "https://gftd.ai/activity/generate-emotion-arc"}
+    {"@id": "https://gftd.ai/activity/generate-emotion-arc"},
+    {"@id": "https://gftd.ai/activity/classify-node"},
+    {"@id": "https://gftd.ai/activity/reclassify-nodes"}
   ],
   
   "hasPerformer": [
@@ -152,7 +159,19 @@
       "@id": "https://gftd.ai/resource/emotion-profile",
       "type": "cpm:Resource",
       "name": "Emotion Profile",
-      "description": "Emotion analysis results (emotion vector with scores) attached to paragraph nodes, analyzed via Hume AI API"
+      "description": "Emotion analysis results (emotion vector with scores) attached to all node types (paragraph, character, scene, beat, etc.), analyzed via Hume AI API. Visualized with background colors and border colors based on dominant emotions."
+    },
+    {
+      "@id": "https://gftd.ai/resource/emotion-benchmark",
+      "type": "cpm:Resource",
+      "name": "Emotion Benchmark",
+      "description": "Emotional benchmark data (JSON-LD format) defining target emotion scores for reference works (e.g., 君の名は。, ARIA, 聲の形, Arrival, Shawshank). Used for comparing actual emotion scores with benchmarks and calculating alignment scores (0-100%)."
+    },
+    {
+      "@id": "https://gftd.ai/resource/emotion-curve-graph",
+      "type": "cpm:Resource",
+      "name": "Emotion Curve Graph",
+      "description": "SVG-based emotion curve graph visualizing emotion flow across nodes. Compares actual emotion scores with benchmark targets. Displays dominant emotions per node position with color-coded lines."
     },
     {
       "@id": "https://gftd.ai/resource/export-file",
@@ -207,6 +226,12 @@
       "type": "cpm:Resource",
       "name": "Emotion Arc",
       "description": "Emotional arc (EmotionalPlan) defining the emotional flow of a scene. Includes emotion beats with target emotions, actual emotion analysis results, deviation calculations, and alignment scores. Used to guide content generation and adjust generated text to match desired emotional progression."
+    },
+    {
+      "@id": "https://gftd.ai/resource/node-classification-result",
+      "type": "cpm:Resource",
+      "name": "Node Classification Result",
+      "description": "AI classification results for nodes including suggested node type (character, location, scene, technology, organization, etc.), confidence score, reasoning, suggested attributes, and suggested mask type. Used to reclassify existing nodes or classify new text selections."
     }
   ],
   
@@ -549,6 +574,21 @@
       "description": "Implemented AI content generation extension based on Tiptap AI Toolkit. Features multi-agent model where each character and narrator generates content based on their own context. Characters only have access to context from scenes they are present in. Integrated OpenAI GPT-4 API for text generation and Hume AI for emotion analysis. Includes emotion arc generation and adjustment capabilities.",
       "status": "resolved",
       "resolution": "Created AIContentGenerationExtension Tiptap extension with generateContent and generateWithContext commands. Implemented multi-agent context builder (src/lib/ai/multiAgentContext.ts) to extract character, scene, and narrator contexts from JSONLD nodes. Enhanced context extractor (src/lib/editor/contextExtractor.ts) with scene character extraction and dialogue extraction. Added GraphQL mutation generateContentWithMultiAgent with OpenAI API integration in Rust backend (performers/services/graphql/src/ports/ai_service.rs). Created AIContentGenerationControls UI component with agent selection and emotion arc configuration. Implemented emotion arc generator (src/lib/ai/emotionArcGenerator.ts) for generating and analyzing emotional flows. Integrated AI generation button into TiptapEditor toolbar."
+    },
+    {
+      "@id": "https://gftd.ai/issue/ai-node-classification",
+      "name": "AI Node Classification and Reclassification",
+      "description": "Implemented AI-powered node classification and reclassification feature. Users can select existing nodes or text ranges and use AI to classify them into appropriate node types (character, location, scene, technology, organization, etc.). Classification considers node text, current attributes, mask information, and surrounding context. Results include suggested type, confidence score, reasoning, suggested attributes, and suggested mask type. Users can review and apply classifications to reclassify nodes.",
+      "status": "resolved",
+      "resolution": "Created GraphQL schema types (ClassifyNodeInput, NodeClassificationResult, ReclassifySelectedNodesInput, ReclassifyResult) in performers/services/graphql/src/schema/ai.rs. Implemented classify_node() and reclassify_nodes() functions in Rust backend (performers/services/graphql/src/ports/ai_service.rs) using OpenAI GPT-4 API with JSON response format. Added GraphQL mutations classify_node and reclassify_selected_nodes. Created node classification utilities (src/lib/ai/nodeClassifier.ts) for extracting node information and reclassifying nodes in the editor. Implemented NodeClassificationDialog component to display classification results with confidence scores and reasoning. Created NodeClassificationControls toolbar component with classification button. Integrated classification controls into TiptapEditor toolbar. Added GraphQL mutations (ClassifyNode, ReclassifySelectedNodes) to frontend mutations.graphql and mutations.ts."
+    },
+    {
+      "@id": "https://gftd.ai/issue/emotion-visualization-implementation",
+      "name": "Emotion Visualization Implementation",
+      "description": "Implemented comprehensive emotion visualization system with Hume AI integration. Features include: emotion analysis for all node types (not just paragraphs), visual color coding based on dominant emotions, benchmark comparison with alignment scores, and emotion curve graph visualization.",
+      "status": "resolved",
+      "priority": "high",
+      "resolution": "Extended EmotionAnalysisExtension to support all node types (paragraph, character, scene, beat, arc, etc.). Created emotion visualization library (src/lib/editor/emotionVisualization.ts) with color mapping for 10 emotion types (joy, sadness, fear, anger, surprise, trust, anticipation, disgust, relief, hope). Implemented benchmark comparison system (src/lib/ai/emotionBenchmark.ts) loading JSON-LD benchmark data and calculating alignment scores (0-100%). Created EmotionalView component displaying node-by-node emotion scores, benchmark comparisons, and overall statistics. Implemented EmotionCurveGraph component (SVG-based) visualizing emotion flow and comparing with benchmark targets. Added CSS styles for emotion-based background and border colors. Integrated EmotionalView into TiptapEditor. EmotionStyleExtension was disabled due to schema issues, using CSS-based styling instead via data-emotion-vector attributes."
     }
   ]
 }
