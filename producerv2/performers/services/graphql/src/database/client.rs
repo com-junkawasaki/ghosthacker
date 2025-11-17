@@ -588,6 +588,22 @@ pub async fn get_paragraphs_by_parent(chapter_id: Option<&str>, section_id: Opti
     Ok(paragraphs)
 }
 
+/// EPUB DocumentのすべてのParagraphを取得（Chapterを経由）
+pub async fn get_paragraphs_by_epub_document(document_id: &str) -> Result<Vec<Paragraph>> {
+    let pool = get_pool()?;
+    let paragraphs = sqlx::query_as::<_, Paragraph>(
+        "SELECT p.id, p.chapter_id, p.section_id, p.\"order\", p.style, p.created_at, p.updated_at 
+         FROM paragraphs p
+         INNER JOIN chapters c ON p.chapter_id = c.id
+         WHERE c.epub_document_id = $1
+         ORDER BY c.\"order\" ASC, p.\"order\" ASC"
+    )
+    .bind(document_id)
+    .fetch_all(pool.as_ref())
+    .await?;
+    Ok(paragraphs)
+}
+
 /// Paragraphを作成
 pub async fn create_paragraph(paragraph: &Paragraph) -> Result<()> {
     let pool = get_pool()?;

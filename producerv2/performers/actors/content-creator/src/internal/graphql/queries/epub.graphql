@@ -32,8 +32,8 @@ query GetChapters($documentId: String!) {
   }
 }
 
-query GetParagraphs($chapterId: String!) {
-  paragraphs(chapterId: $chapterId) {
+query GetParagraphs($chapterId: String, $documentId: String) {
+  paragraphs(chapterId: $chapterId, documentId: $documentId) {
     id
     order
     textNodes

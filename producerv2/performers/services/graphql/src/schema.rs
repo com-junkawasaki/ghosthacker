@@ -23,7 +23,7 @@ use crate::database::{
     get_metadata, create_metadata, update_metadata,
     get_chapter, get_chapters_by_document, create_chapter, update_chapter,
     get_section, get_sections_by_chapter, create_section, update_section,
-    get_paragraph, get_paragraphs_by_parent, create_paragraph, update_paragraph,
+    get_paragraph, get_paragraphs_by_parent, get_paragraphs_by_epub_document, create_paragraph, update_paragraph,
     get_text_node, get_text_nodes_by_paragraph, create_text_node, update_text_node, delete_text_node,
     Chapter as DatabaseChapter, EPUBDocument as DatabaseEPUBDocument,
     KindleDocument as DatabaseKindleDocument, Metadata as DatabaseMetadata,
@@ -157,13 +157,25 @@ impl QueryRoot {
     ///   "ex:consumes": "ex:ChapterId",
     ///   "ex:produces": "ex:ParagraphList"
     /// }
-    async fn paragraphs(&self, chapter_id: String) -> Result<Vec<Paragraph>> {
-        match get_paragraphs_by_parent(Some(&chapter_id), None).await {
-            Ok(paragraphs) => Ok(paragraphs.into_iter().map(|p| p.into()).collect()),
-            Err(e) => {
-                error!("Failed to get paragraphs for chapter {}: {}", chapter_id, e);
-                Ok(vec![])
+    async fn paragraphs(&self, chapter_id: Option<String>, document_id: Option<String>) -> Result<Vec<Paragraph>> {
+        if let Some(cid) = chapter_id {
+            match get_paragraphs_by_parent(Some(&cid), None).await {
+                Ok(paragraphs) => Ok(paragraphs.into_iter().map(|p| p.into()).collect()),
+                Err(e) => {
+                    error!("Failed to get paragraphs for chapter {}: {}", cid, e);
+                    Ok(vec![])
+                }
             }
+        } else if let Some(did) = document_id {
+            match get_paragraphs_by_epub_document(&did).await {
+                Ok(paragraphs) => Ok(paragraphs.into_iter().map(|p| p.into()).collect()),
+                Err(e) => {
+                    error!("Failed to get paragraphs for document {}: {}", did, e);
+                    Ok(vec![])
+                }
+            }
+        } else {
+            Err(Error::new("Either chapter_id or document_id must be provided"))
         }
     }
 
