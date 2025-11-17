@@ -7,6 +7,7 @@
  * Automatically generates GraphLink and GraphIncidence from relationship fields
  */
 import { CharacterNode, GhostNode, OrganizationNode, TechnologyNode, EpisodeNode } from '@/types/jsonld';
+import { normalizeProjectId } from '@/lib/utils/uuid';
 
 export interface CreateGraphLinkInput {
   sourceNodeType: string;
@@ -206,18 +207,30 @@ export function extractGraphLinks(
 
 /**
  * Check if a link already exists (duplicate check)
+ * Uses normalizeProjectId to ensure consistent ID comparison
  */
 export function linkExists(
   existingLinks: Array<{ sourceNodeType: string; sourceNodeId: string; targetNodeType: string; targetNodeId: string; linkType: string }>,
   newLink: CreateGraphLinkInput
 ): boolean {
+  // Normalize IDs for the new link
+  const normalizedNewSourceId = normalizeProjectId(newLink.sourceNodeId);
+  const normalizedNewTargetId = normalizeProjectId(newLink.targetNodeId);
+
   return existingLinks.some(
-    (link) =>
-      link.sourceNodeType === newLink.sourceNodeType &&
-      link.sourceNodeId === newLink.sourceNodeId &&
-      link.targetNodeType === newLink.targetNodeType &&
-      link.targetNodeId === newLink.targetNodeId &&
-      link.linkType === newLink.linkType
+    (link) => {
+      // Normalize IDs for the existing link
+      const normalizedExistingSourceId = normalizeProjectId(link.sourceNodeId);
+      const normalizedExistingTargetId = normalizeProjectId(link.targetNodeId);
+
+      return (
+        link.sourceNodeType === newLink.sourceNodeType &&
+        normalizedExistingSourceId === normalizedNewSourceId &&
+        link.targetNodeType === newLink.targetNodeType &&
+        normalizedExistingTargetId === normalizedNewTargetId &&
+        link.linkType === newLink.linkType
+      );
+    }
   );
 }
 

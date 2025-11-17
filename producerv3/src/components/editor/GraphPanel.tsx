@@ -219,6 +219,10 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
   const [pendingConnection, setPendingConnection] = useState<Connection | null>(null);
   const [linkType, setLinkType] = useState('related');
   const [extractionDone, setExtractionDone] = useState(false);
+  
+  // Refs to store mutation functions to avoid unnecessary re-renders
+  const createLinkRef = useRef<((options?: { variables?: unknown; onCompleted?: (data: unknown) => void; onError?: (error: Error) => void }) => Promise<unknown>) | null>(null);
+  const createIncidenceRef = useRef<((options?: { variables?: unknown; onCompleted?: (data: unknown) => void; onError?: (error: Error) => void }) => Promise<unknown>) | null>(null);
 
   // Fetch graph data
   const { data: linksData, loading: linksLoading, refetch: refetchLinks } = useQuery(GET_GRAPH_LINKS);
@@ -238,7 +242,22 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
       refetchLinks();
       setPendingConnection(null);
     },
+    onError: (error) => {
+      // Ignore duplicate key constraint errors (unique_link)
+      // These can occur due to race conditions or concurrent requests
+      if (error.message.includes('unique_link') || error.message.includes('duplicate key')) {
+        console.warn('Link already exists, skipping creation:', error.message);
+        // Still refetch to ensure UI is up to date
+        refetchLinks();
+        return;
+      }
+      // Log other errors for debugging
+      console.error('Error creating graph link:', error);
+    },
   });
+  
+  // Store mutation functions in refs to avoid unnecessary re-renders
+  createLinkRef.current = createLink;
   const [updateLink] = useMutation(UPDATE_GRAPH_LINK, {
     onCompleted: () => refetchLinks(),
   });
@@ -251,6 +270,9 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
   const [createIncidence] = useMutation(CREATE_GRAPH_INCIDENCE, {
     onCompleted: () => refetchIncidences(),
   });
+  
+  // Store mutation functions in refs to avoid unnecessary re-renders
+  createIncidenceRef.current = createIncidence;
   const [updateIncidence] = useMutation(UPDATE_GRAPH_INCIDENCE, {
     onCompleted: () => refetchIncidences(),
   });
@@ -313,9 +335,17 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
       }));
 
       // Create links that don't exist yet
+      // Use refs to avoid dependency on mutation functions
+      const createLinkFn = createLinkRef.current;
+      const createIncidenceFn = createIncidenceRef.current;
+      
+      if (!createLinkFn || !createIncidenceFn) {
+        return;
+      }
+      
       links.forEach((link) => {
         if (!linkExists(existingLinks, link)) {
-          createLink({
+          createLinkFn({
             variables: {
               input: {
                 ...link,
@@ -329,7 +359,7 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
               incidences
                 .filter((inc) => inc.linkIndex === links.indexOf(link))
                 .forEach((inc) => {
-                  createIncidence({
+                  createIncidenceFn({
                     variables: {
                       input: {
                         nodeType: inc.nodeType,
@@ -341,6 +371,16 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
                     },
                   });
                 });
+            },
+            onError: (error) => {
+              // Ignore duplicate key constraint errors (unique_link)
+              // These can occur due to race conditions or concurrent requests
+              if (error.message.includes('unique_link') || error.message.includes('duplicate key')) {
+                console.warn('Link already exists, skipping creation:', error.message);
+                return;
+              }
+              // Log other errors for debugging
+              console.error('Error creating graph link:', error);
             },
           });
         }
@@ -354,8 +394,8 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
     organizationsData,
     linksData,
     extractionDone,
-    createLink,
-    createIncidence,
+    // Note: createLink and createIncidence are excluded from dependencies
+    // to prevent unnecessary re-executions. They are accessed via refs instead.
   ]);
 
   // Convert JSON-LD nodes to React Flow nodes
