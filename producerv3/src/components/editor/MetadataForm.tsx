@@ -57,20 +57,40 @@ export function MetadataForm({ epubId }: MetadataFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="metadata-form">
-      <div>
-        <label>Title:</label>
-        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+    <form onSubmit={handleSubmit} className="metadata-form mb-4">
+      <div className="mb-2">
+        <label className="block text-sm font-medium mb-1">Title:</label>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="w-full p-1 border border-gray-300 rounded"
+        />
       </div>
-      <div>
-        <label>Author:</label>
-        <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)} />
+      <div className="mb-2">
+        <label className="block text-sm font-medium mb-1">Author:</label>
+        <input
+          type="text"
+          value={author}
+          onChange={(e) => setAuthor(e.target.value)}
+          className="w-full p-1 border border-gray-300 rounded"
+        />
       </div>
-      <div>
-        <label>ISBN:</label>
-        <input type="text" value={isbn} onChange={(e) => setIsbn(e.target.value)} />
+      <div className="mb-2">
+        <label className="block text-sm font-medium mb-1">ISBN:</label>
+        <input
+          type="text"
+          value={isbn}
+          onChange={(e) => setIsbn(e.target.value)}
+          className="w-full p-1 border border-gray-300 rounded"
+        />
       </div>
-      <button type="submit">Save Metadata</button>
+      <button
+        type="submit"
+        className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+      >
+        Save Metadata
+      </button>
     </form>
   );
 }

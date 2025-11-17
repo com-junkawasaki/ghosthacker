@@ -38,9 +38,9 @@
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
   "description": "Tiptap editor based EPUB editing tool with AI Generator integration. Frontend: Next.js 14 App Router + Tiptap, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-11-17T05:22:21Z",
+  "updatedAt": "2025-11-17T07:08:42Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -71,13 +71,13 @@
       "@id": "https://gftd.ai/performer/actor/editor",
       "type": "cpm:Actor",
       "name": "Editor Actor",
-      "description": "Frontend actor providing EPUB editing UI, running on port 25320"
+      "description": "Frontend actor providing EPUB editing UI built with Next.js 14 App Router, Tailwind CSS, and Tiptap editor, running on port 25320"
     },
     {
       "@id": "https://gftd.ai/performer/service/graphql",
       "type": "cpm:Service",
       "name": "GraphQL Service",
-      "description": "GraphQL API service built with Poem v3/Rust, async-graphql v7, running on port 25325 (host) -> 8080 (container)"
+      "description": "GraphQL API service built with Poem v3/Rust, async-graphql v7, with CORS support, running on port 25325 (host) -> 8080 (container)"
     },
     {
       "@id": "https://gftd.ai/performer/system/postgresql",
@@ -110,9 +110,19 @@
   
   "dependsOn": [
     {
+      "@id": "https://gftd.ai/dependency/nextjs",
+      "name": "Next.js",
+      "description": "React framework with App Router, version 14.2"
+    },
+    {
       "@id": "https://gftd.ai/dependency/tiptap",
       "name": "Tiptap Editor",
-      "description": "Rich text editor framework"
+      "description": "Rich text editor framework, version 2.27"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/tailwindcss",
+      "name": "Tailwind CSS",
+      "description": "Utility-first CSS framework, version 3.4"
     },
     {
       "@id": "https://gftd.ai/dependency/postgresql",
@@ -161,6 +171,15 @@
       "poem_version": "3",
       "sqlx_version": "0.8",
       "postgresql_version": "16"
+    },
+    {
+      "@id": "https://gftd.ai/config/frontend",
+      "name": "Frontend Configuration",
+      "description": "Frontend framework and dependencies",
+      "nextjs_version": "14.2",
+      "react_version": "18.3",
+      "tailwindcss_version": "3.4",
+      "nodejs_version": "20"
     }
   ],
   
@@ -202,6 +221,41 @@
       "description": "Removed Clerk authentication integration to resolve white screen issue. Authentication will be re-implemented later if needed.",
       "status": "resolved",
       "resolution": "Removed @clerk/astro package and integration from astro.config.mjs, removed Clerk environment variables from docker-compose.yaml"
+    },
+    {
+      "@id": "https://gftd.ai/issue/astro-to-nextjs-migration",
+      "name": "Astro to Next.js 14 Migration",
+      "description": "Migrated frontend from Astro 5.15.8 to Next.js 14 App Router. Updated all pages, components, and API routes to Next.js format. Added Tailwind CSS for styling.",
+      "status": "resolved",
+      "resolution": "Converted Astro pages to Next.js Server/Client Components, updated API routes to Next.js Route Handlers, added Tailwind CSS configuration, updated Docker configuration"
+    },
+    {
+      "@id": "https://gftd.ai/issue/api-routes-to-graphql",
+      "name": "API Routes to GraphQL Integration",
+      "description": "Consolidated all API routes (generate, proofread, summarize, translate) into GraphQL mutations. Removed Next.js API routes and updated components to use GraphQL mutations.",
+      "status": "resolved",
+      "resolution": "Added AI mutations to GraphQL schema, updated frontend components to use GraphQL mutations, removed Next.js API route handlers"
+    },
+    {
+      "@id": "https://gftd.ai/issue/cors-error",
+      "name": "CORS Error Resolution",
+      "description": "Fixed CORS errors preventing GraphQL requests from frontend. Added CORS middleware to GraphQL server.",
+      "status": "resolved",
+      "resolution": "Added poem::middleware::Cors to GraphQL server with EndpointExt trait, enabled CORS for all origins"
+    },
+    {
+      "@id": "https://gftd.ai/issue/tiptap-ssr-error",
+      "name": "Tiptap SSR Error",
+      "description": "Fixed Tiptap editor SSR hydration mismatch errors by setting immediatelyRender to false.",
+      "status": "resolved",
+      "resolution": "Added immediatelyRender: false to useEditor configuration in TiptapEditor component"
+    },
+    {
+      "@id": "https://gftd.ai/issue/uiux-improvements",
+      "name": "UI/UX Improvements",
+      "description": "Improved UI styling with Tailwind CSS, enhanced error handling, and better component layouts.",
+      "status": "resolved",
+      "resolution": "Added Tailwind CSS classes to all components, improved error messages, enhanced form styling, updated editor toolbar design"
     }
   ]
 }

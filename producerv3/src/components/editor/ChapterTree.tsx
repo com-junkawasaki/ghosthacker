@@ -20,19 +20,27 @@ export function ChapterTree({ epubId, onChapterSelect }: ChapterTreeProps) {
     variables: { epubId },
   });
 
-  if (loading) return <div>Loading chapters...</div>;
-  if (error) return <div>Error loading chapters</div>;
+  if (loading) return <div className="p-2 text-gray-500">Loading chapters...</div>;
+  if (error) return <div className="p-2 text-red-500">Error loading chapters: {error.message}</div>;
 
   return (
-    <div className="chapter-tree">
-      <h3>Chapters</h3>
-      <ul>
-        {data?.chapters?.map((chapter: { id: string; title: string; order: number }) => (
-          <li key={chapter.id} onClick={() => onChapterSelect?.(chapter.id)}>
-            {chapter.order}. {chapter.title}
-          </li>
-        ))}
-      </ul>
+    <div className="chapter-tree mb-4">
+      <h3 className="font-bold mb-2">Chapters</h3>
+      {data?.chapters && data.chapters.length > 0 ? (
+        <ul className="list-none p-0">
+          {data.chapters.map((chapter: { id: string; title: string; order: number }) => (
+            <li
+              key={chapter.id}
+              onClick={() => onChapterSelect?.(chapter.id)}
+              className="p-2 cursor-pointer hover:bg-gray-100 rounded"
+            >
+              {chapter.order}. {chapter.title || 'Untitled'}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="text-gray-500 text-sm">No chapters found</p>
+      )}
     </div>
   );
 }

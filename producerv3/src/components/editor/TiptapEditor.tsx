@@ -41,6 +41,7 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
       }),
     ],
     content: data?.chapter?.content_html || '',
+    immediatelyRender: false,
     onUpdate: ({ editor }) => {
       if (chapterId) {
         updateChapter({
@@ -70,34 +71,52 @@ export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {
   }
 
   return (
-    <div className="editor-container">
-      <div className="editor-toolbar">
+    <div className="editor-container h-full flex flex-col">
+      <div className="editor-toolbar flex gap-2 p-2 border-b border-gray-300">
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
-          className={editor.isActive('bold') ? 'is-active' : ''}
+          className={`px-3 py-1 rounded ${
+            editor.isActive('bold')
+              ? 'bg-blue-500 text-white'
+              : 'bg-gray-200 hover:bg-gray-300'
+          }`}
         >
           Bold
         </button>
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={editor.isActive('italic') ? 'is-active' : ''}
+          className={`px-3 py-1 rounded ${
+            editor.isActive('italic')
+              ? 'bg-blue-500 text-white'
+              : 'bg-gray-200 hover:bg-gray-300'
+          }`}
         >
           Italic
         </button>
         <button
           onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-          className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
+          className={`px-3 py-1 rounded ${
+            editor.isActive('heading', { level: 1 })
+              ? 'bg-blue-500 text-white'
+              : 'bg-gray-200 hover:bg-gray-300'
+          }`}
         >
           H1
         </button>
         <button
           onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-          className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
+          className={`px-3 py-1 rounded ${
+            editor.isActive('heading', { level: 2 })
+              ? 'bg-blue-500 text-white'
+              : 'bg-gray-200 hover:bg-gray-300'
+          }`}
         >
           H2
         </button>
       </div>
-      <EditorContent editor={editor} />
+      <div className="editor-content flex-1 p-4 overflow-y-auto">
+        <EditorContent editor={editor} />
+      </div>
     </div>
   );
 }

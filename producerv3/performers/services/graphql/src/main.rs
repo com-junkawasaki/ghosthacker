@@ -9,7 +9,11 @@
  */
 use async_graphql::{EmptySubscription, Schema};
 use async_graphql_poem::GraphQL;
-use poem::{listener::TcpListener, Route, Server};
+use poem::{
+    listener::TcpListener,
+    middleware::Cors,
+    EndpointExt, Route, Server,
+};
 
 mod schema;
 mod resolvers;
@@ -32,9 +36,10 @@ async fn main() -> anyhow::Result<()> {
     .data(postgres_pool)
     .finish();
     
-    // Create routes using GraphQL endpoint
+    // Create routes using GraphQL endpoint with CORS
     let app = Route::new()
-        .nest("/graphql", GraphQL::new(schema));
+        .nest("/graphql", GraphQL::new(schema))
+        .with(Cors::new());
     
     // Start server
     let port = std::env::var("PORT")
