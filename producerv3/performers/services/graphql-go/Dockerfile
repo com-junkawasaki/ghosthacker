@@ -1,6 +1,6 @@
 # Go GraphQL Service Dockerfile
 # Development stage
-FROM golang:1.22-alpine as development
+FROM golang:1.23-alpine as development
 
 WORKDIR /app
 
@@ -20,7 +20,7 @@ EXPOSE 8080
 CMD ["air", "-c", ".air.toml"]
 
 # Production builder stage
-FROM golang:1.22-alpine as builder
+FROM golang:1.23-alpine as builder
 
 WORKDIR /app
 
