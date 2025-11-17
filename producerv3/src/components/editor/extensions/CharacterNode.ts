@@ -199,8 +199,16 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
         (attributes: Partial<CharacterNodeType>) =>
         ({ state, dispatch }: CommandProps) => {
           const { schema } = state;
-          const paragraphNode = schema.nodes.paragraph.create();
-          const characterNode = schema.nodes[this.name].create(attributes, [paragraphNode]);
+          const paragraphNodeType = schema.nodes.paragraph;
+          if (!paragraphNodeType) {
+            return false;
+          }
+          const paragraphNode = paragraphNodeType.create();
+          const characterNodeType = schema.nodes[this.name];
+          if (!characterNodeType) {
+            return false;
+          }
+          const characterNode = characterNodeType.create(attributes, [paragraphNode]);
           
           if (dispatch) {
             const { selection } = state;

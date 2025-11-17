@@ -166,8 +166,16 @@ export const LocationNode = Node.create<LocationNodeOptions>({
         (attributes: Partial<LocationNodeType>) =>
         ({ state, dispatch }: CommandProps) => {
           const { schema } = state;
-          const paragraphNode = schema.nodes.paragraph.create();
-          const locationNode = schema.nodes[this.name].create(attributes, [paragraphNode]);
+          const paragraphNodeType = schema.nodes.paragraph;
+          if (!paragraphNodeType) {
+            return false;
+          }
+          const paragraphNode = paragraphNodeType.create();
+          const locationNodeType = schema.nodes[this.name];
+          if (!locationNodeType) {
+            return false;
+          }
+          const locationNode = locationNodeType.create(attributes, [paragraphNode]);
           
           if (dispatch) {
             const { selection } = state;

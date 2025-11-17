@@ -189,8 +189,16 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
         (attributes: Partial<OrganizationNodeType>) =>
         ({ state, dispatch }: CommandProps) => {
           const { schema } = state;
-          const paragraphNode = schema.nodes.paragraph.create();
-          const organizationNode = schema.nodes[this.name].create(
+          const paragraphNodeType = schema.nodes.paragraph;
+          if (!paragraphNodeType) {
+            return false;
+          }
+          const paragraphNode = paragraphNodeType.create();
+          const organizationNodeType = schema.nodes[this.name];
+          if (!organizationNodeType) {
+            return false;
+          }
+          const organizationNode = organizationNodeType.create(
             { ...attributes, 'data-type': 'organization' },
             [paragraphNode]
           );
@@ -212,8 +220,16 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
         (attributes: Partial<CompanyNode>) =>
         ({ state, dispatch }: CommandProps) => {
           const { schema } = state;
-          const paragraphNode = schema.nodes.paragraph.create();
-          const companyNode = schema.nodes[this.name].create(
+          const paragraphNodeType = schema.nodes.paragraph;
+          if (!paragraphNodeType) {
+            return false;
+          }
+          const paragraphNode = paragraphNodeType.create();
+          const companyNodeType = schema.nodes.company;
+          if (!companyNodeType) {
+            return false;
+          }
+          const companyNode = companyNodeType.create(
             { ...attributes, 'data-type': 'company' },
             [paragraphNode]
           );
