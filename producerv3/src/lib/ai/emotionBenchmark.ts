@@ -7,7 +7,7 @@
  * Loads and parses benchmark JSON-LD, compares actual emotion scores with benchmarks
  */
 import type { EmotionScore } from '@/types/jsonld';
-import benchmarkData from '@/data/emotionalBenchmarks.jsonld';
+import benchmarkData from '@/data/emotionalBenchmarks.json';
 
 /**
  * Benchmark emotion score structure
