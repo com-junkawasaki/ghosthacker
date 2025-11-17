@@ -5,7 +5,7 @@
  * 
  * GraphQL client exports
  */
-export { client } from './client';
+export { getClient } from './client';
 export * from './queries';
 export * from './mutations';
 

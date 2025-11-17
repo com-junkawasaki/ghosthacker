@@ -60,6 +60,9 @@ importers:
       '@graphql-codegen/typescript-operations':
         specifier: ^4.0.0
         version: 4.6.1(graphql@16.12.0)
+      '@graphql-typed-document-node/core':
+        specifier: ^3.2.0
+        version: 3.2.0(graphql@16.12.0)
       '@testing-library/jest-dom':
         specifier: ^6.9.1
         version: 6.9.1
@@ -69,6 +72,12 @@ importers:
       '@types/node':
         specifier: ^20.0.0
         version: 20.19.25
+      '@types/react':
+        specifier: ^19.2.5
+        version: 19.2.5
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.5)
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.0.0
         version: 8.46.4(@typescript-eslint/parser@8.46.4(eslint@9.39.1(jiti@1.21.7))(typescript@5.9.3))(eslint@9.39.1(jiti@1.21.7))(typescript@5.9.3)
@@ -5710,12 +5719,10 @@ snapshots:
   '@types/react-dom@19.2.3(@types/react@19.2.5)':
     dependencies:
       '@types/react': 19.2.5
-    optional: true
 
   '@types/react@19.2.5':
     dependencies:
       csstype: 3.2.2
-    optional: true
 
   '@types/use-sync-external-store@0.0.6': {}
 
@@ -6400,8 +6407,7 @@ snapshots:
       '@asamuzakjp/css-color': 3.2.0
       rrweb-cssom: 0.8.0
 
-  csstype@3.2.2:
-    optional: true
+  csstype@3.2.2: {}
 
   damerau-levenshtein@1.0.8: {}
 

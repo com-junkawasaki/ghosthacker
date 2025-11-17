@@ -38,9 +38,9 @@
   "type": "cpm:Project",
   "name": "EPUB Editor Tool",
   "description": "Tiptap editor based EPUB editing tool with AI Generator integration. Frontend: Next.js 14 App Router + Tiptap, Backend: GraphQL (Poem/Rust) + PostgreSQL",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-11-17T07:08:42Z",
+  "updatedAt": "2025-11-17T08:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -58,6 +58,7 @@
   ],
   
   "hasActivity": [
+    {"@id": "https://gftd.ai/activity/list-projects"},
     {"@id": "https://gftd.ai/activity/edit-epub-content"},
     {"@id": "https://gftd.ai/activity/manage-chapters"},
     {"@id": "https://gftd.ai/activity/manage-metadata"},
@@ -105,6 +106,12 @@
       "type": "cpm:Resource",
       "name": "Media Asset",
       "description": "Images and media files in EPUB"
+    },
+    {
+      "@id": "https://gftd.ai/resource/project-list",
+      "type": "cpm:Resource",
+      "name": "Project List",
+      "description": "List of all EPUB projects with metadata"
     }
   ],
   
@@ -256,6 +263,48 @@
       "description": "Improved UI styling with Tailwind CSS, enhanced error handling, and better component layouts.",
       "status": "resolved",
       "resolution": "Added Tailwind CSS classes to all components, improved error messages, enhanced form styling, updated editor toolbar design"
+    },
+    {
+      "@id": "https://gftd.ai/issue/graphql-field-naming",
+      "name": "GraphQL Field Naming Convention",
+      "description": "Fixed GraphQL field naming mismatch between Rust (snake_case) and GraphQL schema (camelCase). async-graphql automatically converts snake_case to camelCase, so client-side queries and mutations were updated to use camelCase.",
+      "status": "resolved",
+      "resolution": "Updated all GraphQL queries and mutations to use camelCase field names (epubId, chapterId, contentHtml, createdAt, updatedAt, mimeType, fileSize, targetLanguage). Updated TypeScript components to use camelCase when calling GraphQL operations."
+    },
+    {
+      "@id": "https://gftd.ai/issue/uuid-normalization",
+      "name": "UUID Normalization for Default Project",
+      "description": "Fixed GraphQL ID validation error when using 'default' as project ID. GraphQL ID type expects UUID format, but 'default' string was being passed directly.",
+      "status": "resolved",
+      "resolution": "Created normalizeProjectId() utility function to map 'default' to fixed UUID (00000000-0000-0000-0000-000000000000). Added ensure_default_epub() function in Rust backend to create default EPUB on startup. Updated EditorLayout to normalize projectId before passing to GraphQL queries."
+    },
+    {
+      "@id": "https://gftd.ai/issue/auto-save",
+      "name": "Auto-save Functionality",
+      "description": "Implemented automatic saving for chapter content with debounce (1 second after last change). Added chapter selection state management and visual feedback.",
+      "status": "resolved",
+      "resolution": "Added debounced auto-save in TiptapEditor component using setTimeout. Implemented chapter selection state in EditorLayout. Added chapter creation functionality in ChapterTree component. Added error handling and visual feedback for save operations."
+    },
+    {
+      "@id": "https://gftd.ai/issue/project-list-page",
+      "name": "Project List Page",
+      "description": "Created project list page at /projects to browse and manage all EPUB projects.",
+      "status": "resolved",
+      "resolution": "Created src/app/projects/page.tsx with project list display, project cards with metadata, and navigation to editor. Integrated with LIST_EPUBS GraphQL query."
+    },
+    {
+      "@id": "https://gftd.ai/issue/hmr-configuration",
+      "name": "Hot Module Replacement (HMR) Configuration",
+      "description": "Configured HMR for both Rust and Next.js in Docker environment to enable faster development workflow.",
+      "status": "resolved",
+      "resolution": "Rust: Configured cargo watch with optimized options (--ignore target/**, --delay 0.5, --clear). Next.js: Added webpack watchOptions with polling (1000ms interval) and Fast Refresh enabled. Added CHOKIDAR_USEPOLLING and WATCHPACK_POLLING environment variables for macOS file watching."
+    },
+    {
+      "@id": "https://gftd.ai/issue/typescript-type-errors",
+      "name": "TypeScript Type Errors",
+      "description": "Fixed TypeScript type errors related to exactOptionalPropertyTypes and missing type definitions.",
+      "status": "resolved",
+      "resolution": "Added @types/react and @types/react-dom packages. Updated optional property types to explicitly include undefined (string | undefined). Fixed GraphQL client exports."
     }
   ]
 }

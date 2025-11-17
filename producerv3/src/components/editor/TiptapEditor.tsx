@@ -18,7 +18,7 @@ import { UPDATE_CHAPTER } from '@/lib/graphql/mutations';
 
 interface TiptapEditorProps {
   projectId: string;
-  chapterId?: string;
+  chapterId?: string | undefined;
 }
 
 export function TiptapEditor({ projectId, chapterId }: TiptapEditorProps) {

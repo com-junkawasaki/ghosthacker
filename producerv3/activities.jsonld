@@ -125,6 +125,20 @@
         {"@id": "https://gftd.ai/activity/manage-metadata"},
         {"@id": "https://gftd.ai/activity/manage-media"}
       ]
+    },
+    {
+      "id": "https://gftd.ai/activity/list-projects",
+      "type": "cpm:Activity",
+      "name": "List Projects",
+      "description": "Browse and list all EPUB projects with metadata (title, language, creation date, update date)",
+      "createdAt": "2025-11-17T08:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"}
+      ],
+      "consumes": [],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/project-list"}
+      ]
     }
   ]
 }

@@ -14,7 +14,7 @@ import { CREATE_CHAPTER } from '@/lib/graphql/mutations';
 interface ChapterTreeProps {
   epubId: string;
   onChapterSelect?: (chapterId: string) => void;
-  selectedChapterId?: string;
+  selectedChapterId?: string | undefined;
 }
 
 export function ChapterTree({ epubId, onChapterSelect, selectedChapterId }: ChapterTreeProps) {
