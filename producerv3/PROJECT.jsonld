@@ -40,7 +40,7 @@
   "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation, AI node classification and reclassification, emotion analysis (Hume AI) with visualization and benchmark comparison, and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
   "version": "2.2.0",
   "createdAt": "2025-01-27T00:00:00Z",
-  "updatedAt": "2025-01-17T16:00:00Z",
+  "updatedAt": "2025-11-17T09:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -201,7 +201,7 @@
       "@id": "https://gftd.ai/resource/generated-image",
       "type": "cpm:Resource",
       "name": "Generated Image",
-      "description": "AI-generated images created from editor context (selected nodes, masked nodes, mask information). Images are generated using OpenAI DALL-E or Higgsfield API and inserted into editor as Base64 data URIs."
+      "description": "AI-generated images created from editor context (selected nodes, masked nodes, mask information). Images are generated using OpenAI DALL-E (with b64_json response format) or Higgsfield API and inserted into editor as Base64 data URIs. OpenAI DALL-E API returns Base64-encoded image data directly to avoid CORS issues with Azure Blob Storage URLs."
     },
     {
       "@id": "https://gftd.ai/resource/editor-context",
@@ -589,6 +589,13 @@
       "status": "resolved",
       "priority": "high",
       "resolution": "Extended EmotionAnalysisExtension to support all node types (paragraph, character, scene, beat, arc, etc.). Created emotion visualization library (src/lib/editor/emotionVisualization.ts) with color mapping for 10 emotion types (joy, sadness, fear, anger, surprise, trust, anticipation, disgust, relief, hope). Implemented benchmark comparison system (src/lib/ai/emotionBenchmark.ts) loading JSON-LD benchmark data and calculating alignment scores (0-100%). Created EmotionalView component displaying node-by-node emotion scores, benchmark comparisons, and overall statistics. Implemented EmotionCurveGraph component (SVG-based) visualizing emotion flow and comparing with benchmark targets. Added CSS styles for emotion-based background and border colors. Integrated EmotionalView into TiptapEditor. EmotionStyleExtension was disabled due to schema issues, using CSS-based styling instead via data-emotion-vector attributes."
+    },
+    {
+      "@id": "https://gftd.ai/issue/openai-image-generation-cors-error",
+      "name": "OpenAI Image Generation CORS Error",
+      "description": "Fixed CORS error when fetching generated images from Azure Blob Storage. Client-side fetch to Azure Blob Storage URLs was blocked by CORS policy (No 'Access-Control-Allow-Origin' header).",
+      "status": "resolved",
+      "resolution": "Changed OpenAI DALL-E API response_format from 'url' to 'b64_json' to receive Base64-encoded image data directly from API. Removed urlToBase64() function call that was fetching images from Azure Blob Storage. Images are now received as Base64 data URIs directly from OpenAI API, eliminating CORS issues and improving performance by removing additional fetch requests."
     }
   ]
 }

@@ -325,3 +325,30 @@
   }
 }
 
+/* 感情分析ビュー（開閉可能パネル） */
+.emotional-view {
+  position: relative;
+}
+
+.emotional-view-content {
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.emotional-view-content[aria-hidden="true"] {
+  display: none;
+}
+
+/* 開閉ボタンのスタイル */
+.emotional-view button[aria-label] {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.emotional-view button[aria-label]:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark .emotional-view button[aria-label]:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
