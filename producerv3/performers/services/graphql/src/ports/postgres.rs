@@ -11,6 +11,11 @@ use std::sync::Arc;
 use uuid::Uuid;
 use chrono::{DateTime, Utc};
 use crate::schema::epub::{Epub, Chapter, Media, MetadataItem};
+use crate::schema::jsonld::{
+    Character, Ghost, Location, Organization, Company, Technology,
+    Episode, Scene, Motif, Season, Timeline, Event,
+    SourceRef, Occupation, Setting,
+};
 
 pub type PostgresPool = Arc<PgPool>;
 
@@ -570,6 +575,618 @@ struct MediaRow {
 struct MetadataRow {
     key: String,
     value: String,
+}
+
+// JSON-LD Node Row types
+
+#[derive(sqlx::FromRow)]
+struct CharacterRow {
+    id: Uuid,
+    character_id: String,
+    name: String,
+    callsign: Option<String>,
+    description: Option<String>,
+    age: Option<i32>,
+    occupation: Option<String>,
+    role: Option<String>,
+    virtue: Option<String>,
+    alternate_name: Option<String>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+#[derive(sqlx::FromRow)]
+struct GhostRow {
+    id: Uuid,
+    ghost_id: String,
+    name: String,
+    ghost_type: Option<String>,
+    description: Option<String>,
+    master: Option<String>,
+    created_by: Option<String>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+#[derive(sqlx::FromRow)]
+struct LocationRow {
+    id: Uuid,
+    location_id: String,
+    name: String,
+    description: Option<String>,
+    year: Option<i32>,
+    hazard_note: Option<String>,
+    operational_note: Option<String>,
+    security_note: Option<String>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+#[derive(sqlx::FromRow)]
+struct OrganizationRow {
+    id: Uuid,
+    organization_id: String,
+    name: String,
+    description: Option<String>,
+    founder: Option<String>,
+    company_type: Option<String>,
+    infra_note: Option<String>,
+    operational_note: Option<String>,
+    security_note: Option<String>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+#[derive(sqlx::FromRow)]
+struct CompanyRow {
+    id: Uuid,
+    company_id: String,
+    name: String,
+    description: Option<String>,
+    founder: Option<String>,
+    company_type: Option<String>,
+    infra_note: Option<String>,
+    operational_note: Option<String>,
+    security_note: Option<String>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+#[derive(sqlx::FromRow)]
+struct TechnologyRow {
+    id: Uuid,
+    technology_id: String,
+    name: String,
+    description: Option<String>,
+    certification: Option<String>,
+    infra_note: Option<String>,
+    operational_note: Option<String>,
+    security_note: Option<String>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+#[derive(sqlx::FromRow)]
+struct EpisodeRow {
+    id: Uuid,
+    episode_id: String,
+    episode_number: i32,
+    season: String,
+    name: String,
+    logline: Option<String>,
+    has_arc: Option<bool>,
+    has_scene: Option<bool>,
+    has_character: Option<bool>,
+    motif_refs: Option<serde_json::Value>,
+    antagonist: Option<String>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+#[derive(sqlx::FromRow)]
+struct SceneRow {
+    id: Uuid,
+    scene_id: String,
+    name: String,
+    same_as: Option<String>,
+    description: Option<String>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+#[derive(sqlx::FromRow)]
+struct ArcRow {
+    id: Uuid,
+    arc_id: String,
+    name: String,
+    spans_seasons: Option<serde_json::Value>,
+    phase: Option<String>,
+    description: Option<String>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+#[derive(sqlx::FromRow)]
+struct MotifRow {
+    id: Uuid,
+    motif_id: String,
+    name: String,
+    theme: Option<String>,
+    source: Option<String>,
+    description: Option<String>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+#[derive(sqlx::FromRow)]
+struct SeasonRow {
+    id: Uuid,
+    season_id: String,
+    name: String,
+    theme: Option<String>,
+    featured_themes: Option<serde_json::Value>,
+    source: Option<String>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+#[derive(sqlx::FromRow)]
+struct TimelineRow {
+    id: Uuid,
+    timeline_id: String,
+    name: String,
+    description: Option<String>,
+    influences: Option<serde_json::Value>,
+    source: Option<String>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+#[derive(sqlx::FromRow)]
+struct EventRow {
+    id: Uuid,
+    event_id: String,
+    name: String,
+    description: Option<String>,
+    start_date: Option<String>,
+    end_date: Option<String>,
+    temporal_coverage: Option<String>,
+    same_as: Option<serde_json::Value>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+#[derive(sqlx::FromRow)]
+struct SourceRefRow {
+    id: Uuid,
+    source_ref_id: String,
+    path: String,
+    lang: String,
+    selection_hint: Option<String>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+#[derive(sqlx::FromRow)]
+struct OccupationRow {
+    id: Uuid,
+    occupation_id: String,
+    name: String,
+    description: Option<String>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+#[derive(sqlx::FromRow)]
+struct SettingRow {
+    id: Uuid,
+    setting_id: String,
+    name: String,
+    description: Option<String>,
+    ghost_type: Option<String>,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+}
+
+// JSON-LD Node query functions
+
+/// List all characters
+pub async fn list_characters(pool: &PostgresPool) -> Result<Vec<Character>> {
+    let rows = sqlx::query_as::<_, CharacterRow>(
+        r#"
+        SELECT id, character_id, name, callsign, description, age, occupation, role, virtue, alternate_name, created_at, updated_at
+        FROM characters
+        ORDER BY name ASC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| Character {
+        id: async_graphql::ID::from(row.id.to_string()),
+        character_id: row.character_id,
+        name: row.name,
+        callsign: row.callsign,
+        description: row.description,
+        age: row.age,
+        occupation: row.occupation,
+        role: row.role,
+        virtue: row.virtue,
+        alternate_name: row.alternate_name,
+    }).collect())
+}
+
+/// List all ghosts
+pub async fn list_ghosts(pool: &PostgresPool) -> Result<Vec<Ghost>> {
+    let rows = sqlx::query_as::<_, GhostRow>(
+        r#"
+        SELECT id, ghost_id, name, ghost_type, description, master, created_by, created_at, updated_at
+        FROM ghosts
+        ORDER BY name ASC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| Ghost {
+        id: async_graphql::ID::from(row.id.to_string()),
+        ghost_id: row.ghost_id,
+        name: row.name,
+        ghost_type: row.ghost_type,
+        description: row.description,
+        master: row.master,
+        created_by: row.created_by,
+    }).collect())
+}
+
+/// List all locations
+pub async fn list_locations(pool: &PostgresPool) -> Result<Vec<Location>> {
+    let rows = sqlx::query_as::<_, LocationRow>(
+        r#"
+        SELECT id, location_id, name, description, year, hazard_note, operational_note, security_note, created_at, updated_at
+        FROM locations
+        ORDER BY name ASC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| Location {
+        id: async_graphql::ID::from(row.id.to_string()),
+        location_id: row.location_id,
+        name: row.name,
+        description: row.description,
+        year: row.year,
+        hazard_note: row.hazard_note,
+        operational_note: row.operational_note,
+        security_note: row.security_note,
+    }).collect())
+}
+
+/// List all organizations
+pub async fn list_organizations(pool: &PostgresPool) -> Result<Vec<Organization>> {
+    let rows = sqlx::query_as::<_, OrganizationRow>(
+        r#"
+        SELECT id, organization_id, name, description, founder, company_type, infra_note, operational_note, security_note, created_at, updated_at
+        FROM organizations
+        ORDER BY name ASC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| Organization {
+        id: async_graphql::ID::from(row.id.to_string()),
+        organization_id: row.organization_id,
+        name: row.name,
+        description: row.description,
+        founder: row.founder,
+        company_type: row.company_type,
+        infra_note: row.infra_note,
+        operational_note: row.operational_note,
+        security_note: row.security_note,
+    }).collect())
+}
+
+/// List all companies
+pub async fn list_companies(pool: &PostgresPool) -> Result<Vec<Company>> {
+    let rows = sqlx::query_as::<_, CompanyRow>(
+        r#"
+        SELECT id, company_id, name, description, founder, company_type, infra_note, operational_note, security_note, created_at, updated_at
+        FROM companies
+        ORDER BY name ASC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| Company {
+        id: async_graphql::ID::from(row.id.to_string()),
+        company_id: row.company_id,
+        name: row.name,
+        description: row.description,
+        founder: row.founder,
+        company_type: row.company_type,
+        infra_note: row.infra_note,
+        operational_note: row.operational_note,
+        security_note: row.security_note,
+    }).collect())
+}
+
+/// List all technologies
+pub async fn list_technologies(pool: &PostgresPool) -> Result<Vec<Technology>> {
+    let rows = sqlx::query_as::<_, TechnologyRow>(
+        r#"
+        SELECT id, technology_id, name, description, certification, infra_note, operational_note, security_note, created_at, updated_at
+        FROM technologies
+        ORDER BY name ASC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| Technology {
+        id: async_graphql::ID::from(row.id.to_string()),
+        technology_id: row.technology_id,
+        name: row.name,
+        description: row.description,
+        certification: row.certification,
+        infra_note: row.infra_note,
+        operational_note: row.operational_note,
+        security_note: row.security_note,
+    }).collect())
+}
+
+/// List all episodes
+pub async fn list_episodes(pool: &PostgresPool) -> Result<Vec<Episode>> {
+    let rows = sqlx::query_as::<_, EpisodeRow>(
+        r#"
+        SELECT id, episode_id, episode_number, season, name, logline, has_arc, has_scene, has_character, motif_refs, antagonist, created_at, updated_at
+        FROM episodes
+        ORDER BY episode_number ASC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| {
+        let motif_refs = row.motif_refs.and_then(|v| {
+            serde_json::from_value::<Vec<String>>(v).ok()
+        });
+        
+        Episode {
+            id: async_graphql::ID::from(row.id.to_string()),
+            episode_id: row.episode_id,
+            episode_number: row.episode_number,
+            season: row.season,
+            name: row.name,
+            logline: row.logline,
+            has_arc: row.has_arc,
+            has_scene: row.has_scene,
+            has_character: row.has_character,
+            motif_refs,
+            antagonist: row.antagonist,
+        }
+    }).collect())
+}
+
+/// List all scenes
+pub async fn list_scenes(pool: &PostgresPool) -> Result<Vec<Scene>> {
+    let rows = sqlx::query_as::<_, SceneRow>(
+        r#"
+        SELECT id, scene_id, name, same_as, description, created_at, updated_at
+        FROM scenes
+        ORDER BY name ASC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| Scene {
+        id: async_graphql::ID::from(row.id.to_string()),
+        scene_id: row.scene_id,
+        name: row.name,
+        same_as: row.same_as,
+        description: row.description,
+    }).collect())
+}
+
+/// List all arcs
+pub async fn list_arcs(pool: &PostgresPool) -> Result<Vec<crate::schema::jsonld::Arc>> {
+    let rows = sqlx::query_as::<_, ArcRow>(
+        r#"
+        SELECT id, arc_id, name, spans_seasons, phase, description, created_at, updated_at
+        FROM arcs
+        ORDER BY name ASC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| {
+        let spans_seasons = row.spans_seasons.and_then(|v| {
+            serde_json::from_value::<Vec<String>>(v).ok()
+        });
+        
+        crate::schema::jsonld::Arc {
+            id: async_graphql::ID::from(row.id.to_string()),
+            arc_id: row.arc_id,
+            name: row.name,
+            spans_seasons,
+            phase: row.phase,
+            description: row.description,
+        }
+    }).collect())
+}
+
+/// List all motifs
+pub async fn list_motifs(pool: &PostgresPool) -> Result<Vec<Motif>> {
+    let rows = sqlx::query_as::<_, MotifRow>(
+        r#"
+        SELECT id, motif_id, name, theme, source, description, created_at, updated_at
+        FROM motifs
+        ORDER BY name ASC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| Motif {
+        id: async_graphql::ID::from(row.id.to_string()),
+        motif_id: row.motif_id,
+        name: row.name,
+        theme: row.theme,
+        source: row.source,
+        description: row.description,
+    }).collect())
+}
+
+/// List all seasons
+pub async fn list_seasons(pool: &PostgresPool) -> Result<Vec<Season>> {
+    let rows = sqlx::query_as::<_, SeasonRow>(
+        r#"
+        SELECT id, season_id, name, theme, featured_themes, source, created_at, updated_at
+        FROM seasons
+        ORDER BY name ASC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| {
+        let featured_themes = row.featured_themes.and_then(|v| {
+            serde_json::from_value::<Vec<String>>(v).ok()
+        });
+        
+        Season {
+            id: async_graphql::ID::from(row.id.to_string()),
+            season_id: row.season_id,
+            name: row.name,
+            theme: row.theme,
+            featured_themes,
+            source: row.source,
+        }
+    }).collect())
+}
+
+/// List all timelines
+pub async fn list_timelines(pool: &PostgresPool) -> Result<Vec<Timeline>> {
+    let rows = sqlx::query_as::<_, TimelineRow>(
+        r#"
+        SELECT id, timeline_id, name, description, influences, source, created_at, updated_at
+        FROM timelines
+        ORDER BY name ASC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| {
+        let influences = row.influences.and_then(|v| {
+            serde_json::from_value::<Vec<String>>(v).ok()
+        });
+        
+        Timeline {
+            id: async_graphql::ID::from(row.id.to_string()),
+            timeline_id: row.timeline_id,
+            name: row.name,
+            description: row.description,
+            influences,
+            source: row.source,
+        }
+    }).collect())
+}
+
+/// List all events
+pub async fn list_events(pool: &PostgresPool) -> Result<Vec<Event>> {
+    let rows = sqlx::query_as::<_, EventRow>(
+        r#"
+        SELECT id, event_id, name, description, start_date, end_date, temporal_coverage, same_as, created_at, updated_at
+        FROM events
+        ORDER BY name ASC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| {
+        let same_as = row.same_as.and_then(|v| {
+            serde_json::from_value::<Vec<String>>(v).ok()
+        });
+        
+        Event {
+            id: async_graphql::ID::from(row.id.to_string()),
+            event_id: row.event_id,
+            name: row.name,
+            description: row.description,
+            start_date: row.start_date,
+            end_date: row.end_date,
+            temporal_coverage: row.temporal_coverage,
+            same_as,
+        }
+    }).collect())
+}
+
+/// List all source references
+pub async fn list_source_refs(pool: &PostgresPool) -> Result<Vec<SourceRef>> {
+    let rows = sqlx::query_as::<_, SourceRefRow>(
+        r#"
+        SELECT id, source_ref_id, path, lang, selection_hint, created_at, updated_at
+        FROM source_refs
+        ORDER BY path ASC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| SourceRef {
+        id: async_graphql::ID::from(row.id.to_string()),
+        source_ref_id: row.source_ref_id,
+        path: row.path,
+        lang: row.lang,
+        selection_hint: row.selection_hint,
+    }).collect())
+}
+
+/// List all occupations
+pub async fn list_occupations(pool: &PostgresPool) -> Result<Vec<Occupation>> {
+    let rows = sqlx::query_as::<_, OccupationRow>(
+        r#"
+        SELECT id, occupation_id, name, description, created_at, updated_at
+        FROM occupations
+        ORDER BY name ASC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| Occupation {
+        id: async_graphql::ID::from(row.id.to_string()),
+        occupation_id: row.occupation_id,
+        name: row.name,
+        description: row.description,
+    }).collect())
+}
+
+/// List all settings
+pub async fn list_settings(pool: &PostgresPool) -> Result<Vec<Setting>> {
+    let rows = sqlx::query_as::<_, SettingRow>(
+        r#"
+        SELECT id, setting_id, name, description, ghost_type, created_at, updated_at
+        FROM settings
+        ORDER BY name ASC
+        "#,
+    )
+    .fetch_all(pool.as_ref())
+    .await?;
+    
+    Ok(rows.into_iter().map(|row| Setting {
+        id: async_graphql::ID::from(row.id.to_string()),
+        setting_id: row.setting_id,
+        name: row.name,
+        description: row.description,
+        ghost_type: row.ghost_type,
+    }).collect())
 }
 
 #[cfg(test)]

@@ -10,7 +10,7 @@ import { ChapterLinkNode as ChapterLinkNodeType } from '@/types/jsonld';
 
 export interface ChapterLinkNodeOptions {
   HTMLAttributes: Record<string, unknown>;
-  onChapterSelect?: (chapterId: string) => void;
+  onChapterSelect?: ((chapterId: string) => void) | undefined;
 }
 
 declare module '@tiptap/core' {
@@ -34,7 +34,7 @@ export const ChapterLinkNode = Node.create<ChapterLinkNodeOptions>({
   addOptions(): ChapterLinkNodeOptions {
     return {
       HTMLAttributes: {},
-      onChapterSelect: undefined as (chapterId: string) => void | undefined,
+      onChapterSelect: undefined,
     };
   },
 

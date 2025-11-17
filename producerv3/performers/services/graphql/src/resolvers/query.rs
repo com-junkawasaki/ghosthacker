@@ -9,9 +9,10 @@ use async_graphql::{Context, Object, ID};
 use crate::schema::epub::{Epub, Chapter, Media, MetadataItem};
 use crate::schema::jsonld::{
     Character, Ghost, Location, Organization, Company, Technology,
-    Episode, Scene, Arc, Motif, Season, Timeline, Event,
+    Episode, Scene, Motif, Season, Timeline, Event,
     SourceRef, Occupation, Setting,
 };
+use crate::schema::jsonld::Arc as JsonldArc;
 use crate::ports::postgres;
 
 #[derive(Default)]
@@ -55,85 +56,101 @@ impl QueryRoot {
         postgres::get_metadata(pool, epub_id.to_string()).await
     }
 
-    // JSON-LD Node queries (temporary empty implementations until database schema is added)
+    // JSON-LD Node queries
     /// Get all characters
-    async fn characters(&self, _ctx: &Context<'_>) -> async_graphql::Result<Vec<Character>> {
-        Ok(vec![])
+    async fn characters(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<Character>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_characters(pool).await
     }
 
     /// Get all ghosts
-    async fn ghosts(&self, _ctx: &Context<'_>) -> async_graphql::Result<Vec<Ghost>> {
-        Ok(vec![])
+    async fn ghosts(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<Ghost>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_ghosts(pool).await
     }
 
     /// Get all locations
-    async fn locations(&self, _ctx: &Context<'_>) -> async_graphql::Result<Vec<Location>> {
-        Ok(vec![])
+    async fn locations(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<Location>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_locations(pool).await
     }
 
     /// Get all organizations
-    async fn organizations(&self, _ctx: &Context<'_>) -> async_graphql::Result<Vec<Organization>> {
-        Ok(vec![])
+    async fn organizations(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<Organization>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_organizations(pool).await
     }
 
     /// Get all companies
-    async fn companies(&self, _ctx: &Context<'_>) -> async_graphql::Result<Vec<Company>> {
-        Ok(vec![])
+    async fn companies(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<Company>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_companies(pool).await
     }
 
     /// Get all technologies
-    async fn technologies(&self, _ctx: &Context<'_>) -> async_graphql::Result<Vec<Technology>> {
-        Ok(vec![])
+    async fn technologies(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<Technology>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_technologies(pool).await
     }
 
     /// Get all episodes
-    async fn episodes(&self, _ctx: &Context<'_>) -> async_graphql::Result<Vec<Episode>> {
-        Ok(vec![])
+    async fn episodes(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<Episode>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_episodes(pool).await
     }
 
     /// Get all scenes
-    async fn scenes(&self, _ctx: &Context<'_>) -> async_graphql::Result<Vec<Scene>> {
-        Ok(vec![])
+    async fn scenes(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<Scene>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_scenes(pool).await
     }
 
     /// Get all arcs
-    async fn arcs(&self, _ctx: &Context<'_>) -> async_graphql::Result<Vec<Arc>> {
-        Ok(vec![])
+    async fn arcs(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<JsonldArc>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_arcs(pool).await
     }
 
     /// Get all motifs
-    async fn motifs(&self, _ctx: &Context<'_>) -> async_graphql::Result<Vec<Motif>> {
-        Ok(vec![])
+    async fn motifs(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<Motif>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_motifs(pool).await
     }
 
     /// Get all seasons
-    async fn seasons(&self, _ctx: &Context<'_>) -> async_graphql::Result<Vec<Season>> {
-        Ok(vec![])
+    async fn seasons(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<Season>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_seasons(pool).await
     }
 
     /// Get all timelines
-    async fn timelines(&self, _ctx: &Context<'_>) -> async_graphql::Result<Vec<Timeline>> {
-        Ok(vec![])
+    async fn timelines(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<Timeline>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_timelines(pool).await
     }
 
     /// Get all events
-    async fn events(&self, _ctx: &Context<'_>) -> async_graphql::Result<Vec<Event>> {
-        Ok(vec![])
+    async fn events(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<Event>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_events(pool).await
     }
 
     /// Get all source references
-    async fn source_refs(&self, _ctx: &Context<'_>) -> async_graphql::Result<Vec<SourceRef>> {
-        Ok(vec![])
+    async fn source_refs(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<SourceRef>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_source_refs(pool).await
     }
 
     /// Get all occupations
-    async fn occupations(&self, _ctx: &Context<'_>) -> async_graphql::Result<Vec<Occupation>> {
-        Ok(vec![])
+    async fn occupations(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<Occupation>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_occupations(pool).await
     }
 
     /// Get all settings
-    async fn settings(&self, _ctx: &Context<'_>) -> async_graphql::Result<Vec<Setting>> {
-        Ok(vec![])
+    async fn settings(&self, ctx: &Context<'_>) -> async_graphql::Result<Vec<Setting>> {
+        let pool = ctx.data::<postgres::PostgresPool>()?;
+        postgres::list_settings(pool).await
     }
 }
 

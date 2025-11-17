@@ -100,7 +100,9 @@ export function EmotionAnalysisControls() {
     });
     
     if (paragraph) {
-      const attrs = paragraph.attrs as Record<string, unknown>;
+      // Type assertion to ensure attrs exists
+      const nodeWithAttrs = paragraph as ProseMirrorNode & { attrs: Record<string, unknown> };
+      const attrs = nodeWithAttrs.attrs;
       const vector = attrs.emotionVector as EmotionScore[] | null | undefined;
       return vector || null;
     }
