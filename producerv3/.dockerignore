@@ -1,17 +1,36 @@
+# Dependencies
 node_modules
-.astro
-dist
+.next
 target
-.git
-.gitignore
+
+# Build outputs
+dist
+build
+*.log
+
+# Environment files
 .env
 .env.local
-*.log
-.DS_Store
-coverage
+.envrc
+
+# Git
+.git
+.gitignore
+
+# IDE
 .vscode
 .idea
 *.swp
 *.swo
-shaggy-raspberry
 
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage
+.nyc_output
+
+# Misc
+*.md
+!README.md

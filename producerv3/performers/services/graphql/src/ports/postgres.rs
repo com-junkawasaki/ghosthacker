@@ -496,6 +496,43 @@ pub async fn update_metadata(
     Ok(MetadataItem { key, value })
 }
 
+/// Ensure default EPUB exists (for "default" project ID)
+/// Creates the EPUB if it doesn't exist
+pub async fn ensure_default_epub(pool: &PostgresPool, default_epub_id: &str) -> anyhow::Result<()> {
+    let epub_uuid = Uuid::parse_str(default_epub_id)?;
+    
+    // Check if EPUB exists
+    let exists: bool = sqlx::query_scalar(
+        r#"
+        SELECT EXISTS(SELECT 1 FROM epubs WHERE id = $1)
+        "#,
+    )
+    .bind(epub_uuid)
+    .fetch_one(pool.as_ref())
+    .await?;
+    
+    if !exists {
+        // Create default EPUB
+        let now = Utc::now();
+        sqlx::query(
+            r#"
+            INSERT INTO epubs (id, title, language, created_at, updated_at)
+            VALUES ($1, $2, $3, $4, $5)
+            ON CONFLICT (id) DO NOTHING
+            "#,
+        )
+        .bind(epub_uuid)
+        .bind("Default Project")
+        .bind("en")
+        .bind(now)
+        .bind(now)
+        .execute(pool.as_ref())
+        .await?;
+    }
+    
+    Ok(())
+}
+
 // Internal row types for sqlx query_as!
 
 #[derive(sqlx::FromRow)]

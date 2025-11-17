@@ -36,6 +36,8 @@ services:
       # AI Service Configuration (for future integration)
       AI_SERVICE_API_KEY: ${AI_SERVICE_API_KEY:-}
       AI_SERVICE_ENDPOINT: ${AI_SERVICE_ENDPOINT:-}
+      # Cargo watch configuration for HMR
+      CARGO_WATCH_IGNORE: "target/**"
     volumes:
       - ./performers/services/graphql:/app
       - /app/target
@@ -44,7 +46,7 @@ services:
         condition: service_healthy
     networks:
       - epub-editor-network
-    command: cargo watch -x run
+    command: cargo watch -x "run" --ignore "target/**" --delay 0.5 --clear
 
   frontend:
     build:
@@ -58,8 +60,11 @@ services:
       NODE_ENV: development
       # Improve file watching reliability on macOS bind mounts
       CHOKIDAR_USEPOLLING: "true"
+      CHOKIDAR_INTERVAL: 1000
       WATCHPACK_POLLING: "true"
       WATCHPACK_POLLING_INTERVAL: 1000
+      # Next.js HMR configuration
+      FAST_REFRESH: "true"
       # App URLs (loaded from host env / .envrc)
       NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:25320}
       # GraphQL API URL (Rust implementation)

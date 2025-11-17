@@ -5,7 +5,7 @@
  * 
  * EPUB Document GraphQL schema definitions
  */
-use async_graphql::{Object, InputObject, SimpleObject, ID};
+use async_graphql::{InputObject, SimpleObject, ID};
 
 // Define nested types first to avoid forward reference issues
 #[derive(SimpleObject, Clone)]

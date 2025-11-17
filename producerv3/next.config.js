@@ -9,7 +9,7 @@
 const nextConfig = {
   reactStrictMode: true,
   // Webpack configuration if needed
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, dev }) => {
     // Optimize dependencies
     if (!isServer) {
       config.optimization = {
@@ -19,6 +19,16 @@ const nextConfig = {
         },
       };
     }
+    
+    // Improve HMR in Docker environment
+    if (dev) {
+      config.watchOptions = {
+        poll: 1000, // Check for changes every second
+        aggregateTimeout: 300, // Delay before rebuilding once the first file changed
+        ignored: ['**/node_modules', '**/.git', '**/.next'],
+      };
+    }
+    
     return config;
   },
 };

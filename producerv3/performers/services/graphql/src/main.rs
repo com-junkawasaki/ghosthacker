@@ -27,6 +27,10 @@ async fn main() -> anyhow::Result<()> {
     // Initialize PostgreSQL connection
     let postgres_pool = ports::postgres::create_pool().await?;
     
+    // Ensure default EPUB exists (for "default" project ID)
+    let default_epub_id = "00000000-0000-0000-0000-000000000000";
+    ports::postgres::ensure_default_epub(&postgres_pool, default_epub_id).await?;
+    
     // Create GraphQL schema
     let schema = Schema::build(
         QueryRoot::default(),
