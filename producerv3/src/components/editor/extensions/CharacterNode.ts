@@ -197,11 +197,18 @@ export const CharacterNode = Node.create<CharacterNodeOptions>({
     return {
       insertCharacter:
         (attributes: Partial<CharacterNodeType>) =>
-        ({ commands }: CommandProps) => {
-          return commands.insertContent({
-            type: this.name,
-            attrs: attributes,
-          });
+        ({ state, dispatch }: CommandProps) => {
+          const { schema } = state;
+          const paragraphNode = schema.nodes.paragraph.create();
+          const characterNode = schema.nodes[this.name].create(attributes, [paragraphNode]);
+          
+          if (dispatch) {
+            const { selection } = state;
+            const tr = state.tr.insert(selection.from, characterNode);
+            dispatch(tr);
+          }
+          
+          return true;
         },
       updateCharacter:
         (attributes: Partial<CharacterNodeType>) =>

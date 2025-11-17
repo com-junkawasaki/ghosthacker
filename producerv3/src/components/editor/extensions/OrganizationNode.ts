@@ -187,11 +187,21 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
     return {
       insertOrganization:
         (attributes: Partial<OrganizationNodeType>) =>
-        ({ commands }: CommandProps) => {
-          return commands.insertContent({
-            type: this.name,
-            attrs: { ...attributes, 'data-type': 'organization' },
-          });
+        ({ state, dispatch }: CommandProps) => {
+          const { schema } = state;
+          const paragraphNode = schema.nodes.paragraph.create();
+          const organizationNode = schema.nodes[this.name].create(
+            { ...attributes, 'data-type': 'organization' },
+            [paragraphNode]
+          );
+          
+          if (dispatch) {
+            const { selection } = state;
+            const tr = state.tr.insert(selection.from, organizationNode);
+            dispatch(tr);
+          }
+          
+          return true;
         },
       updateOrganization:
         (attributes: Partial<OrganizationNodeType>) =>
@@ -200,11 +210,21 @@ export const OrganizationNode = Node.create<OrganizationNodeOptions>({
         },
       insertCompany:
         (attributes: Partial<CompanyNode>) =>
-        ({ commands }: CommandProps) => {
-          return commands.insertContent({
-            type: this.name,
-            attrs: { ...attributes, 'data-type': 'company' },
-          });
+        ({ state, dispatch }: CommandProps) => {
+          const { schema } = state;
+          const paragraphNode = schema.nodes.paragraph.create();
+          const companyNode = schema.nodes[this.name].create(
+            { ...attributes, 'data-type': 'company' },
+            [paragraphNode]
+          );
+          
+          if (dispatch) {
+            const { selection } = state;
+            const tr = state.tr.insert(selection.from, companyNode);
+            dispatch(tr);
+          }
+          
+          return true;
         },
       updateCompany:
         (attributes: Partial<CompanyNode>) =>

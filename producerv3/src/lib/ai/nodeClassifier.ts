@@ -19,7 +19,7 @@ export interface NodeClassificationResult {
   confidence: number;
   reasoning: string;
   suggestedAttributes?: Record<string, unknown>;
-  suggestedMaskType?: string;
+  suggestedMarkType?: string;
 }
 
 /**
@@ -29,7 +29,7 @@ export interface NodeForClassification {
   text: string;
   currentType?: string;
   attributes?: Record<string, unknown>;
-  maskInfo?: MaskInfo[];
+  markInfo?: MaskInfo[];
   context?: string;
   position?: { from: number; to: number };
 }
@@ -51,7 +51,7 @@ export function extractNodeForClassification(
     const nodeType = node.type.name;
     
     // Extract mask information
-    const maskInfo: MaskInfo[] = [];
+    const markInfo: MaskInfo[] = [];
     const maskAttributes = [
       'emotionMask', 'themeMask', 'contextMask', 'notesMask',
       'relationshipMask', 'virtueMask', 'anchoredToMask',
@@ -61,7 +61,7 @@ export function extractNodeForClassification(
     maskAttributes.forEach((attr) => {
       if (attrs[attr] === true) {
         const maskType = attr.replace('Mask', '') as MaskInfo['type'];
-        maskInfo.push({
+        markInfo.push({
           type: maskType,
           enabled: true,
           attributes: attrs,
@@ -85,8 +85,8 @@ export function extractNodeForClassification(
     if (Object.keys(attrs).length > 0) {
       result.attributes = attrs;
     }
-    if (maskInfo.length > 0) {
-      result.maskInfo = maskInfo;
+    if (markInfo.length > 0) {
+      result.markInfo = markInfo;
     }
     if (context) {
       result.context = context;
@@ -118,9 +118,9 @@ export function extractNodeForClassification(
   if (firstNode?.attributes && Object.keys(firstNode.attributes).length > 0) {
     result.attributes = firstNode.attributes;
   }
-  if (editorContext.masks.length > 0) {
-    result.maskInfo = editorContext.masks;
-  }
+    if (editorContext.masks.length > 0) {
+      result.markInfo = editorContext.masks;
+    }
   if (editorContext.selectedText) {
     result.context = editorContext.selectedText;
   }
@@ -172,7 +172,7 @@ export function extractMultipleNodesFromSelection(
     );
 
     // Extract mask information from attributes
-    const maskInfo: MaskInfo[] = [];
+    const markInfo: MaskInfo[] = [];
     const maskAttributes = [
       'emotionMask', 'themeMask', 'contextMask', 'notesMask',
       'relationshipMask', 'virtueMask', 'anchoredToMask',
@@ -182,7 +182,7 @@ export function extractMultipleNodesFromSelection(
     maskAttributes.forEach((attr) => {
       if (extractedNode.attributes[attr] === true) {
         const maskType = attr.replace('Mask', '') as MaskInfo['type'];
-        maskInfo.push({
+        markInfo.push({
           type: maskType,
           enabled: true,
           attributes: extractedNode.attributes,
@@ -209,8 +209,8 @@ export function extractMultipleNodesFromSelection(
     if (Object.keys(extractedNode.attributes).length > 0) {
       result.attributes = extractedNode.attributes;
     }
-    if (maskInfo.length > 0) {
-      result.maskInfo = maskInfo;
+    if (markInfo.length > 0) {
+      result.markInfo = markInfo;
     }
     const finalContext = context || editorContext.selectedText;
     if (finalContext) {

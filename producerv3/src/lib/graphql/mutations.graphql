@@ -183,7 +183,7 @@ mutation ClassifyNode($input: ClassifyNodeInput!) {
     confidence
     reasoning
     suggestedAttributes
-    suggestedMaskType
+    suggestedMarkType
   }
 }
 
@@ -195,7 +195,7 @@ mutation ReclassifySelectedNodes($input: ReclassifySelectedNodesInput!) {
       confidence
       reasoning
       suggestedAttributes
-      suggestedMaskType
+      suggestedMarkType
     }
     applied
   }
@@ -222,7 +222,7 @@ mutation AnalyzeNodeContent($input: AnalyzeNodeContentInput!) {
       }
     }
     recommendedMasks {
-      maskType
+      markType
       confidence
     }
     emotionProfile {

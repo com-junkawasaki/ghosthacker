@@ -338,8 +338,8 @@ struct ClassificationData {
     reasoning: String,
     #[serde(rename = "suggestedAttributes")]
     suggested_attributes: Option<serde_json::Value>,
-    #[serde(rename = "suggestedMaskType")]
-    suggested_mask_type: Option<String>,
+    #[serde(rename = "suggestedMarkType")]
+    suggested_mark_type: Option<String>,
 }
 
 /// Classify a node using AI
@@ -353,7 +353,7 @@ pub async fn classify_node(input: ClassifyNodeInput) -> anyhow::Result<NodeClass
         confidence: classification_data.confidence,
         reasoning: classification_data.reasoning,
         suggested_attributes: classification_data.suggested_attributes,
-        suggested_mask_type: classification_data.suggested_mask_type,
+        suggested_mark_type: classification_data.suggested_mark_type,
     })
 }
 
@@ -389,7 +389,7 @@ pub async fn analyze_node_content(
             text: chunk.clone(),
             current_type: Some(input.node_type.clone()),
             attributes: None,
-            mask_info: None,
+            mark_info: None,
             context: input.context.clone(),
         };
         
@@ -458,35 +458,35 @@ fn recommend_masks_for_node_type(node_type: &str, content: &str) -> Vec<Recommen
     match node_type {
         "character" => {
             masks.push(RecommendedMask {
-                mask_type: "emotion".to_string(),
+                mark_type: "emotion".to_string(),
                 confidence: 0.9,
             });
             masks.push(RecommendedMask {
-                mask_type: "relationship".to_string(),
+                mark_type: "relationship".to_string(),
                 confidence: 0.8,
             });
             masks.push(RecommendedMask {
-                mask_type: "virtue".to_string(),
+                mark_type: "virtue".to_string(),
                 confidence: 0.7,
             });
         }
         "scene" => {
             masks.push(RecommendedMask {
-                mask_type: "emotion".to_string(),
+                mark_type: "emotion".to_string(),
                 confidence: 0.9,
             });
             masks.push(RecommendedMask {
-                mask_type: "theme".to_string(),
+                mark_type: "theme".to_string(),
                 confidence: 0.8,
             });
             masks.push(RecommendedMask {
-                mask_type: "context".to_string(),
+                mark_type: "context".to_string(),
                 confidence: 0.7,
             });
         }
         "location" => {
             masks.push(RecommendedMask {
-                mask_type: "context".to_string(),
+                mark_type: "context".to_string(),
                 confidence: 0.8,
             });
         }
@@ -494,7 +494,7 @@ fn recommend_masks_for_node_type(node_type: &str, content: &str) -> Vec<Recommen
             // Default: recommend emotion mask if content seems emotional
             if content.contains("感情") || content.contains("気持ち") || content.contains("感じ") {
                 masks.push(RecommendedMask {
-                    mask_type: "emotion".to_string(),
+                    mark_type: "emotion".to_string(),
                     confidence: 0.7,
                 });
             }
@@ -533,8 +533,8 @@ fn build_classification_prompt(input: &ClassifyNodeInput) -> anyhow::Result<Stri
         prompt_parts.push(format!("Current attributes: {}", serde_json::to_string(attributes)?));
     }
     
-    if let Some(ref mask_info) = input.mask_info {
-        prompt_parts.push(format!("Mask information: {}", serde_json::to_string(mask_info)?));
+    if let Some(ref mark_info) = input.mark_info {
+        prompt_parts.push(format!("Mask information: {}", serde_json::to_string(mark_info)?));
     }
     
     if let Some(ref context) = input.context {
@@ -547,7 +547,7 @@ fn build_classification_prompt(input: &ClassifyNodeInput) -> anyhow::Result<Stri
     prompt_parts.push("- confidence: A confidence score between 0 and 1".to_string());
     prompt_parts.push("- reasoning: Explanation for the classification".to_string());
     prompt_parts.push("- suggestedAttributes: Recommended attributes as JSON object (optional)".to_string());
-    prompt_parts.push("- suggestedMaskType: Recommended mask type if applicable (optional)".to_string());
+    prompt_parts.push("- suggestedMarkType: Recommended mark type if applicable (optional)".to_string());
     
     Ok(prompt_parts.join("\n"))
 }
@@ -664,7 +664,7 @@ pub async fn reclassify_nodes(
                 confidence: 0.8,
                 reasoning: "Placeholder classification".to_string(),
                 suggested_attributes: None,
-                suggested_mask_type: None,
+                suggested_mark_type: None,
             },
             applied: false,
         });

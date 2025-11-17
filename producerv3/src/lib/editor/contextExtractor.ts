@@ -88,7 +88,7 @@ const NODE_TYPE_MAP: Record<string, NodeType> = {
 /**
  * Mask属性のマッピング
  */
-const MASK_ATTRIBUTE_MAP: Record<string, MarkType['type']> = {
+const MARK_ATTRIBUTE_MAP: Record<string, MarkType['type']> = {
   emotionMask: 'emotion',
   themeMask: 'theme',
   contextMask: 'context',
@@ -130,7 +130,7 @@ function extractNodeInfo(node: ProseMirrorNode, pos: number): ExtractedNode | nu
  */
 function hasMask(node: ProseMirrorNode): boolean {
   const attrs = node.attrs as Record<string, unknown>;
-  return Object.keys(MASK_ATTRIBUTE_MAP).some((maskAttr) => attrs[maskAttr] === true);
+  return Object.keys(MARK_ATTRIBUTE_MAP).some((maskAttr) => attrs[maskAttr] === true);
 }
 
 /**
@@ -140,7 +140,7 @@ function extractMasks(node: ProseMirrorNode): MaskInfo[] {
   const attrs = node.attrs as Record<string, unknown>;
   const masks: MaskInfo[] = [];
 
-  Object.entries(MASK_ATTRIBUTE_MAP).forEach(([attrName, maskType]) => {
+  Object.entries(MARK_ATTRIBUTE_MAP).forEach(([attrName, maskType]) => {
     if (attrs[attrName] === true) {
       masks.push({
         type: maskType,

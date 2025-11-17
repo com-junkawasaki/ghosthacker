@@ -66,9 +66,9 @@ export function NodeClassificationControls({ editor }: NodeClassificationControl
         for (const nodeInfo of multipleNodes) {
           try {
             // Prepare mask info for API
-            const maskInfo = nodeInfo.maskInfo
+            const markInfo = nodeInfo.markInfo
               ? {
-                  masks: nodeInfo.maskInfo.map((mask) => ({
+                  masks: nodeInfo.markInfo.map((mask) => ({
                     type: mask.type,
                     enabled: mask.enabled,
                     attributes: mask.attributes,
@@ -81,7 +81,7 @@ export function NodeClassificationControls({ editor }: NodeClassificationControl
               text: string;
               currentType?: string;
               attributes?: Record<string, unknown>;
-              maskInfo?: Record<string, unknown>;
+              markInfo?: Record<string, unknown>;
               context?: string;
             } = {
               text: nodeInfo.text,
@@ -92,8 +92,8 @@ export function NodeClassificationControls({ editor }: NodeClassificationControl
             if (nodeInfo.attributes) {
               input.attributes = JSON.parse(JSON.stringify(nodeInfo.attributes));
             }
-            if (maskInfo) {
-              input.maskInfo = JSON.parse(JSON.stringify(maskInfo));
+            if (markInfo) {
+              input.markInfo = JSON.parse(JSON.stringify(markInfo));
             }
             if (nodeInfo.context) {
               input.context = nodeInfo.context;
@@ -113,8 +113,8 @@ export function NodeClassificationControls({ editor }: NodeClassificationControl
               if (data.classifyNode.suggestedAttributes) {
                 classificationResult.suggestedAttributes = data.classifyNode.suggestedAttributes;
               }
-              if (data.classifyNode.suggestedMaskType !== undefined && data.classifyNode.suggestedMaskType !== null) {
-                classificationResult.suggestedMaskType = data.classifyNode.suggestedMaskType;
+              if (data.classifyNode.suggestedMarkType !== undefined && data.classifyNode.suggestedMarkType !== null) {
+                classificationResult.suggestedMarkType = data.classifyNode.suggestedMarkType;
               }
               results.push({
                 result: classificationResult,
@@ -178,9 +178,9 @@ export function NodeClassificationControls({ editor }: NodeClassificationControl
       }
 
       // Prepare mask info for API
-      const maskInfo = nodeInfo.maskInfo
+      const markInfo = nodeInfo.markInfo
         ? {
-            masks: nodeInfo.maskInfo.map((mask) => ({
+            masks: nodeInfo.markInfo.map((mask) => ({
               type: mask.type,
               enabled: mask.enabled,
               attributes: mask.attributes,
@@ -193,7 +193,7 @@ export function NodeClassificationControls({ editor }: NodeClassificationControl
         text: string;
         currentType?: string;
         attributes?: Record<string, unknown>;
-        maskInfo?: Record<string, unknown>;
+        markInfo?: Record<string, unknown>;
         context?: string;
       } = {
         text: nodeInfo.text,
@@ -204,8 +204,8 @@ export function NodeClassificationControls({ editor }: NodeClassificationControl
       if (nodeInfo.attributes) {
         input.attributes = JSON.parse(JSON.stringify(nodeInfo.attributes));
       }
-      if (maskInfo) {
-        input.maskInfo = JSON.parse(JSON.stringify(maskInfo));
+      if (markInfo) {
+        input.markInfo = JSON.parse(JSON.stringify(markInfo));
       }
       if (nodeInfo.context) {
         input.context = nodeInfo.context;
@@ -225,8 +225,8 @@ export function NodeClassificationControls({ editor }: NodeClassificationControl
         if (data.classifyNode.suggestedAttributes) {
           classificationResult.suggestedAttributes = data.classifyNode.suggestedAttributes;
         }
-        if (data.classifyNode.suggestedMaskType !== undefined && data.classifyNode.suggestedMaskType !== null) {
-          classificationResult.suggestedMaskType = data.classifyNode.suggestedMaskType;
+        if (data.classifyNode.suggestedMarkType !== undefined && data.classifyNode.suggestedMarkType !== null) {
+          classificationResult.suggestedMarkType = data.classifyNode.suggestedMarkType;
         }
         setClassificationResult(classificationResult);
         setNodePosition(nodeInfo.position || { from, to });

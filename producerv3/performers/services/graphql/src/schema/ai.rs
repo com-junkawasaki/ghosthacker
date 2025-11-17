@@ -71,7 +71,7 @@ pub struct ClassifyNodeInput {
     pub text: String,
     pub current_type: Option<String>,
     pub attributes: Option<serde_json::Value>,
-    pub mask_info: Option<serde_json::Value>,
+    pub mark_info: Option<serde_json::Value>,
     pub context: Option<String>,
 }
 
@@ -81,7 +81,7 @@ pub struct NodeClassificationResult {
     pub confidence: f64,
     pub reasoning: String,
     pub suggested_attributes: Option<serde_json::Value>,
-    pub suggested_mask_type: Option<String>,
+    pub suggested_mark_type: Option<String>,
 }
 
 #[derive(InputObject)]
@@ -137,7 +137,7 @@ pub struct TextPosition {
 
 #[derive(SimpleObject)]
 pub struct RecommendedMask {
-    pub mask_type: String,
+    pub mark_type: String,
     pub confidence: f64,
 }
 

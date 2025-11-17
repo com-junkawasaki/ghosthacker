@@ -21,7 +21,7 @@ export interface DetectedNode {
 }
 
 export interface RecommendedMask {
-  maskType: string;
+  markType: string;
   confidence: number;
 }
 
@@ -140,7 +140,7 @@ export function applyRecommendedMasks(
 
   // Apply each mask
   for (const mask of highConfidenceMasks) {
-    editor.chain().focus().setMark(mask.maskType as MarkType['type'], true).run();
+    editor.chain().focus().setMark(mask.markType as MarkType['type'], true).run();
   }
 }
 

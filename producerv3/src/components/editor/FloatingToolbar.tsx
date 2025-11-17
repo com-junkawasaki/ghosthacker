@@ -13,7 +13,7 @@ import { useEffect, useState, useRef } from 'react';
 import { Editor } from '@tiptap/react';
 import { MarkType } from '@/types/jsonld';
 
-const MASK_TYPES: Array<{ type: MarkType['type']; label: string }> = [
+const MARK_TYPES: Array<{ type: MarkType['type']; label: string }> = [
   { type: 'emotion', label: 'Emotion' },
   { type: 'theme', label: 'Theme' },
   { type: 'context', label: 'Context' },
@@ -107,10 +107,10 @@ export function FloatingToolbar({ editor, onInsertNode }: FloatingToolbarProps) 
     // Toggle all marks on selected text using MarkExtension's toggleAllMarks command
     editor.chain().focus().toggleAllMarks().run();
     setActiveMasks((prev) => {
-      if (prev.size === MASK_TYPES.length) {
+      if (prev.size === MARK_TYPES.length) {
         return new Set();
       }
-      return new Set(MASK_TYPES.map((m) => m.type));
+      return new Set(MARK_TYPES.map((m) => m.type));
     });
   };
 
@@ -141,7 +141,7 @@ export function FloatingToolbar({ editor, onInsertNode }: FloatingToolbarProps) 
           <button
             onClick={toggleAllMarks}
             className={`px-2 py-1 text-xs rounded ${
-              activeMasks.size === MASK_TYPES.length
+              activeMasks.size === MARK_TYPES.length
                 ? 'bg-blue-500 text-white'
                 : 'bg-gray-200 hover:bg-gray-300'
             }`}
@@ -151,7 +151,7 @@ export function FloatingToolbar({ editor, onInsertNode }: FloatingToolbarProps) 
           </button>
         </div>
         <div className="flex flex-wrap gap-1">
-          {MASK_TYPES.map((mask) => (
+          {MARK_TYPES.map((mask) => (
             <button
               key={mask.type}
               onClick={() => toggleMark(mask.type)}

@@ -382,12 +382,12 @@ export function NodeClassificationDialog({
           )}
 
           {/* Suggested Mask Type */}
-          {classificationResult.suggestedMaskType && (
+          {classificationResult.suggestedMarkType && (
             <div>
               <label className="block text-sm font-medium mb-1">推奨マスクタイプ</label>
               <div className="p-3 bg-purple-50 rounded border border-purple-200">
                 <span className="text-sm font-medium text-purple-800">
-                  {classificationResult.suggestedMaskType}
+                  {classificationResult.suggestedMarkType}
                 </span>
               </div>
             </div>
@@ -638,7 +638,7 @@ export function NodeClassificationDialog({
                     key={idx}
                     className="px-3 py-1 bg-green-100 text-green-800 rounded text-sm"
                   >
-                    {mask.maskType} ({(mask.confidence * 100).toFixed(0)}%)
+                    {mask.markType} ({(mask.confidence * 100).toFixed(0)}%)
                   </div>
                 ))}
               </div>

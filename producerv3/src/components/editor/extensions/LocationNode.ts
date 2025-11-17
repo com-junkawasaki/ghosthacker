@@ -164,11 +164,18 @@ export const LocationNode = Node.create<LocationNodeOptions>({
     return {
       insertLocation:
         (attributes: Partial<LocationNodeType>) =>
-        ({ commands }: CommandProps) => {
-          return commands.insertContent({
-            type: this.name,
-            attrs: attributes,
-          });
+        ({ state, dispatch }: CommandProps) => {
+          const { schema } = state;
+          const paragraphNode = schema.nodes.paragraph.create();
+          const locationNode = schema.nodes[this.name].create(attributes, [paragraphNode]);
+          
+          if (dispatch) {
+            const { selection } = state;
+            const tr = state.tr.insert(selection.from, locationNode);
+            dispatch(tr);
+          }
+          
+          return true;
         },
       updateLocation:
         (attributes: Partial<LocationNodeType>) =>
