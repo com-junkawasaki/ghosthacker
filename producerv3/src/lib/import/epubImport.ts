@@ -7,6 +7,7 @@
  */
 import { ApolloClient } from '@apollo/client';
 import { CREATE_CHAPTER, UPDATE_CHAPTER, UPDATE_EPUB } from '@/lib/graphql/mutations';
+import { normalizeProjectId } from '@/lib/utils/uuid';
 import type { ExportFile, ExportChapter, TiptapJSON } from '@/types/export';
 import type {
   CreateChapterMutation,
@@ -206,6 +207,7 @@ export async function importEpub(
 ): Promise<void> {
   try {
     const { epub } = exportFile;
+    const normalizedEpubId = normalizeProjectId(epubId);
 
     // Update EPUB metadata
     if (epub.metadata.length > 0) {
@@ -213,7 +215,7 @@ export async function importEpub(
         mutation: UPDATE_EPUB,
         variables: {
           input: {
-            id: epubId,
+            id: normalizedEpubId,
             title: epub.title,
             language: epub.language,
           },
@@ -251,7 +253,7 @@ export async function importEpub(
             mutation: CREATE_CHAPTER,
             variables: {
               input: {
-                epubId,
+                epubId: normalizedEpubId,
                 title: exportChapter.title,
                 order: exportChapter.order,
                 contentHtml,

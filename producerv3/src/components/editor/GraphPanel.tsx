@@ -41,6 +41,7 @@ import {
   DELETE_GRAPH_INCIDENCE,
 } from '@/lib/graphql/mutations';
 import { extractGraphLinks, linkExists, type CreateGraphLinkInput, type JsonldNode } from '@/lib/graphql/extractGraph';
+import { normalizeProjectId } from '@/lib/utils/uuid';
 import type { CharacterNode, GhostNode, OrganizationNode } from '@/types/jsonld';
 
 interface GraphPanelProps {
@@ -315,7 +316,13 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
       links.forEach((link) => {
         if (!linkExists(existingLinks, link)) {
           createLink({
-            variables: { input: link },
+            variables: {
+              input: {
+                ...link,
+                sourceNodeId: normalizeProjectId(link.sourceNodeId),
+                targetNodeId: normalizeProjectId(link.targetNodeId),
+              },
+            },
             onCompleted: (data) => {
               // Create incidences for this link
               const linkId = data.createGraphLink.id;
@@ -326,7 +333,7 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
                     variables: {
                       input: {
                         nodeType: inc.nodeType,
-                        nodeId: inc.nodeId,
+                        nodeId: normalizeProjectId(inc.nodeId),
                         linkId,
                         role: inc.role,
                         properties: inc.properties,
@@ -482,14 +489,21 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
     const sourceParts = pendingConnection.source?.split('-');
     const targetParts = pendingConnection.target?.split('-');
 
-    if (sourceParts && targetParts && sourceParts.length === 2 && targetParts.length === 2) {
+    if (
+      sourceParts &&
+      targetParts &&
+      sourceParts.length === 2 &&
+      targetParts.length === 2 &&
+      sourceParts[1] &&
+      targetParts[1]
+    ) {
       createLink({
         variables: {
           input: {
             sourceNodeType: sourceParts[0],
-            sourceNodeId: sourceParts[1],
+            sourceNodeId: normalizeProjectId(sourceParts[1]),
             targetNodeType: targetParts[0],
-            targetNodeId: targetParts[1],
+            targetNodeId: normalizeProjectId(targetParts[1]),
             linkType,
             properties: {},
           },
@@ -647,7 +661,12 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
                   if (selectedEdge?.source && selectedEdge?.target) {
                     const sourceParts = selectedEdge.source.split('-');
                     const targetParts = selectedEdge.target.split('-');
-                    if (sourceParts.length === 2 && targetParts.length === 2) {
+                    if (
+                      sourceParts.length === 2 &&
+                      targetParts.length === 2 &&
+                      sourceParts[1] &&
+                      targetParts[1]
+                    ) {
                       // Create source incidence if it doesn't exist
                       const sourceExists = incidencesData?.graphIncidencesForLink?.some(
                         (inc: { nodeType: string; nodeId: string; role: string }) =>
@@ -658,7 +677,7 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
                           variables: {
                             input: {
                               nodeType: sourceParts[0],
-                              nodeId: sourceParts[1],
+                              nodeId: normalizeProjectId(sourceParts[1]),
                               linkId: selectedEdge.id,
                               role: 'source',
                               properties: {},
@@ -676,7 +695,7 @@ export function GraphPanel({ projectId }: GraphPanelProps) {
                           variables: {
                             input: {
                               nodeType: targetParts[0],
-                              nodeId: targetParts[1],
+                              nodeId: normalizeProjectId(targetParts[1]),
                               linkId: selectedEdge.id,
                               role: 'target',
                               properties: {},

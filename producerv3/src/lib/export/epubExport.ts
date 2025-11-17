@@ -7,6 +7,7 @@
  */
 import { ApolloClient } from '@apollo/client';
 import { GET_EPUB } from '@/lib/graphql/queries';
+import { normalizeProjectId } from '@/lib/utils/uuid';
 import type { ExportFile, ExportEpub, ExportChapter, TiptapJSON } from '@/types/export';
 import type { GetEpubQuery, GetEpubQueryVariables } from '@/generated/graphql';
 import { generateHTML, generateJSON } from '@tiptap/core';
@@ -131,10 +132,12 @@ export async function exportEpub(
   epubId: string
 ): Promise<void> {
   try {
+    const normalizedEpubId = normalizeProjectId(epubId);
+    
     // Fetch EPUB data
     const { data, error } = await client.query<GetEpubQuery, GetEpubQueryVariables>({
       query: GET_EPUB,
-      variables: { id: epubId },
+      variables: { id: normalizedEpubId },
       fetchPolicy: 'network-only', // Always fetch fresh data
     });
 
