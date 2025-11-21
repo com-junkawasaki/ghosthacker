@@ -60,7 +60,7 @@
       "gh:panels": [
         {
           "panel:id": 1,
-          "visual": "散らかった部屋。PCデスクの前にRenが椅子に仰向けでダラけている。",
+          "visual": "コンクリート打ちっぱなしの壁とウッドフローリングの清潔なオフィス。Renはモダンなデスクチェアに仰向けでダラけている。",
           "dialogue": [
             {"speaker": "Ren", "text": "あー、だりーなー。"}
           ]
@@ -70,14 +70,14 @@
           "visual": "部屋の隅でタブレットを操作しているNei。呆れた表情。",
           "dialogue": [
             {"speaker": "Ren", "text": "Neiちゃん、何してんの？"},
-            {"speaker": "Nei", "text": "なにって、仕事探してんの、見てわかんない？"}
+            {"speaker": "Nei", "text": "なにって、仕事を探しているに決まってるじゃないですか！"}
           ]
         },
         {
           "panel:id": 3,
           "visual": "Renの椅子に近づき、呆れた顔で覗き込むNei。",
           "dialogue": [
-            {"speaker": "Nei", "text": "てかサーバー代とかマジやばいんだって！マスターがもうちょい働けばさー…"}
+            {"speaker": "Nei", "text": "サーバー代もクラウド代もカツカツなんですよ！マスターがもっと働けば…"}
           ]
         },
         {
@@ -97,7 +97,7 @@
           "visual": "ドアのチャイムが鳴る。モニターに訪問者の映像（スーツ姿の若い男＝翔太）。",
           "dialogue": [
             {"speaker": "SE", "text": "ピンポーン"},
-            {"speaker": "Nei", "text": "あ！予約の人きた！サイトから連絡あった大門さん！"}
+            {"speaker": "Nei", "text": "あ！予約のお客様です！HPからコンタクトのあった大門さんです！"}
           ]
         },
         {
@@ -223,7 +223,7 @@
           "panel:id": 1,
           "visual": "Neiが画面に大きく表示される。「FOUND!!」",
           "dialogue": [
-            {"speaker": "Nei", "text": "マスター、特定した！アクセス元、ウケるんだけど…社内。あの総務部長のPCから！"}
+            {"speaker": "Nei", "text": "特定しましたマスター！アクセス元は…社内！総務部長の端末です！"}
           ]
         },
         {
@@ -291,7 +291,7 @@
           "panel:id": 2,
           "visual": "空間がデジタルノイズに包まれ、Ghostの質量が増す。",
           "dialogue": [
-            {"speaker": "Nei", "text": "りょ！SIPシークエンス、開始！"}
+            {"speaker": "Nei", "text": "了解！Information-Physical Transformation Sequence Start！"}
           ]
         },
         {
@@ -336,7 +336,7 @@
           "panel:id": 1,
           "visual": "Ghostの触手（LANケーブル）攻撃をRenがかわす。",
           "dialogue": [
-            {"speaker": "Nei", "text": "右30度！パケロス率上がってる！"}
+            {"speaker": "Nei", "text": "右30度！パケットロス率上昇！"}
           ]
         },
         {
@@ -454,7 +454,7 @@
           "panel:id": 2,
           "visual": "夕暮れの蒲田の雑踏。RenとNei。",
           "dialogue": [
-            {"speaker": "Nei", "text": "マスター、さっきの超イケてた！…けど、手数料とりすぎじゃない？ウケるんだけど"}
+            {"speaker": "Nei", "text": "マスター、かっこよかったです！でも手数料取りすぎじゃないですか？"}
           ]
         },
         {

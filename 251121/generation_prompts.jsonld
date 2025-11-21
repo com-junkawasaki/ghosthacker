@@ -23,8 +23,8 @@
     {
       "@id": "gh:scenePrompt/02_DailyLife",
       "sceneId": "scene:02_DailyLife",
-      "promptJa": "深夜の日本のワンルーム。部屋の照明は消えており、PCモニターの青白い光だけが散らかった部屋を照らしている。椅子にだらしなくもたれかかる17歳の男子高校生ハッカーRen、フード付きパーカー、少し寝ぐせ。彼の隣には、同じく16歳くらいの見た目の人型AIの少女Neiが立っており、口喧嘩するように表情豊かに喋っている。机の上にはグラフィックボードや基板、工具、エナジードリンク缶、配線ケーブルが散乱。現代日本アニメ風、クリーンな線画、やや俯瞰のカメラアングル、室内のみ、文字なし。",
-      "promptEn": "Late‑night Japanese one‑room apartment, lights off, illuminated only by the bluish glow of a PC monitor. Seventeen‑year‑old male high school hacker Ren slouches in his chair, wearing a hoodie, slightly messy hair. Beside him stands Nei, a humanoid AI girl who looks about 16, talking animatedly as if arguing with him. The desk is cluttered with a graphics card, circuit boards, tools, energy drink cans and tangled cables. Modern Japanese anime style, clean line art, slightly top‑down camera angle, interior only, no on‑screen text."
+      "promptJa": "深夜のモダンでミニマルなオフィス。コンクリート打ちっぱなしの壁、ウッドフローリング、白タイル。部屋の照明は消えており、大型PCモニターの青白い光だけが清潔な空間を照らしている。ハイスペックなオフィスチェアにだらしなくもたれかかる17歳のハッカーRen。彼の隣には、同じく16歳くらいの見た目の人型AIの少女Neiが立っている。デスクの上はプロ仕様だが、エナジードリンク缶など個人的なものが少し散らかっている。現代日本アニメ風、クリーンな線画、少し広角のカメラアングル。",
+      "promptEn": "A modern, minimalist office at night with exposed concrete walls, wood flooring, and white tiles. The room is dark, illuminated only by the bluish glow of a large PC monitor, casting light across the clean space. Ren, a 17-year-old hacker, slouches in a high-spec office chair. Beside him stands Nei, a humanoid AI girl who looks about 16. The desk is professional but has some personal clutter like energy drink cans. Modern Japanese anime style, clean line art, slightly wide camera angle."
     },
     {
       "@id": "gh:scenePrompt/03_Consultation",
@@ -76,8 +76,8 @@
       "@id": "gh:panelPrompt/p3-1",
       "pageId": "page:4",
       "panelIndex": 1,
-      "promptJa": "散らかったオタク部屋の全景。ロフトベッドの上には畳まれていない洗濯物、床にはエナジードリンク缶と段ボール、壁にはアニメポスター。PCデスクの前の椅子にRenが仰向けになるようにもたれかかり、天井を見て『あー、だりーなー』と言っている。自然なパース、室内の生活感を丁寧に描いたアニメ背景。",
-      "promptEn": "Full view of a messy otaku room. A loft bed with unfolded laundry, energy drink cans and cardboard boxes on the floor, anime posters on the walls. Ren slouches backwards in his chair in front of the PC desk, looking up at the ceiling as he says 'Ah, this is such a drag'. Natural perspective, detailed lived‑in anime room background."
+      "promptJa": "コンクリート打ちっぱなしのモダンなオフィスの全景。広々とした空間に、ミニマルなデスクやチェアが置かれている。床にはウッドフローリングと白タイル。PCデスクの前の椅子にRenが仰向けになるようにもたれかかり、天井を見ている。自然なパース、生活感はありつつも清潔感が保たれたアニメ背景。",
+      "promptEn": "Full view of a modern office with exposed concrete walls. A spacious room with minimalist desks and chairs. The floor is a mix of wood and white tiles. Ren slouches backwards in his chair in front of the PC desk, looking up at the ceiling. Natural perspective, a lived-in yet clean anime room background."
     },
     {
       "@id": "gh:panelPrompt/p3-2",
@@ -97,8 +97,8 @@
       "@id": "gh:panelPrompt/p3-4",
       "pageId": "page:4",
       "panelIndex": 4,
-      "promptJa": "Renのバストアップ。片手で耳をほじりながら、気の抜けた表情で喋っている。背景には散らかった部屋の一部（ベッドとポスター、PCデスク）がボケ味のある描写で入っており、前景のキャラクターにピントが合っているようなカメラ表現。現代アニメ塗り、自然な肌の陰影。",
-      "promptEn": "Bust‑up of Ren, lazily picking his ear with one hand while talking with a bored expression. In the background, parts of the messy room (bed, posters, PC desk) are softly blurred, as if the camera focus is on Ren in the foreground. Modern anime coloring, natural skin shading."
+      "promptJa": "Renのバストアップ。片手で耳をほじりながら、気の抜けた表情で喋っている。背景にはモダンなオフィスの一部（コンクリートの壁、トラック照明）がボケ味のある描写で入っており、前景のキャラクターにピントが合っているようなカメラ表現。現代アニメ塗り、自然な肌の陰影。",
+      "promptEn": "Bust‑up of Ren, lazily picking his ear with one hand while talking with a bored expression. In the background, parts of the modern office (concrete wall, track lighting) are softly blurred, as if the camera focus is on Ren in the foreground. Modern anime coloring, natural skin shading."
     }
     /* 以降のページ・パネルも同様のスタイルで、既存のvisualテキストをベースに
        プロンプトを拡張していく想定（必要なら続きも追加可能）。 */
