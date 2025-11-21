@@ -1,0 +1,74 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "character": "gh:character/",
+    "history": "gh:history/",
+    "context": "gh:context/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dct": "http://purl.org/dc/terms/"
+  },
+  "@id": "gh:profiles/episode01-characters-v2",
+  "@type": "gh:CharacterProfiles",
+  "dct:title": "Ghost Hacker Episode 1: Updated Character Profiles",
+  "gh:characters": [
+    {
+      "@id": "character:Shota",
+      "schema:name": "大門 翔太 (Shota Daimon)",
+      "schema:role": "Client / Successor",
+      "schema:age": 26,
+      "schema:jobTitle": "社長室長（名ばかり）/ 次期社長候補",
+      "gh:personality": "Rational, Slightly Arrogant but Responsible",
+      "gh:voiceStyle": "論理的で早口。IT用語を多用するが、父や古参社員には通じずイライラしている。Renに対しては最初は疑念を持つが、技術を見ると即座に敬意を表す。",
+      "gh:context": "大手ゼネコンで現場監督をしていたが、父（社長）の高齢化に伴い呼び戻された。会社の時代遅れな体質（FAX文化、安本の杜撰な管理）を改革しようと焦っており、古参社員との間に溝がある。",
+      "gh:motivation": "「親父の作ったこの会社を、俺がアップデートして守る」という気負い。警察の対応の遅さに痺れを切らし、独断でRenに依頼した。"
+    },
+    {
+      "@id": "character:President",
+      "schema:name": "大門 五郎 (Goro Daimon)",
+      "schema:role": "President / Spiritual Pillar",
+      "schema:age": 62,
+      "gh:personality": "Emotional, Traditional, Trusting",
+      "gh:voiceStyle": "重厚だが温かみがある。語尾は「〜だなぁ」「〜だよ」。謝罪や感謝はストレートに伝える。",
+      "gh:context": "息子（翔太）の改革案を理解しつつも、長年支えてくれた安本たちへの配慮から踏み切れずにいた。今回の事件で「信じること」と「甘やかすこと」の違いを突きつけられる。",
+      "gh:relationship": {
+        "character:Shota": "頼もしいが、少し急ぎすぎていると心配している。",
+        "character:Yasumoto": "戦友。彼がデジタル化についていけず苦しんでいることに気づいてやれなかったことを悔いている。"
+      }
+    },
+    {
+      "@id": "character:Yasumoto",
+      "schema:name": "安本 健治 (Kenji Yasumoto)",
+      "schema:role": "Antagonist / Victim",
+      "schema:age": 52,
+      "gh:personality": "Insecure, Defensive, Secretive",
+      "gh:voiceStyle": "言い訳がましい。「いや、それは…」「昔はこうだった」が口癖。焦ると声が裏返る。Renなどの若者に対しては虚勢を張る。",
+      "gh:context": "翔太が戻ってきたことで「自分の居場所がなくなる」という恐怖（Ghostの餌）が増幅。翔太の導入した新システムを理解できず、意図的に障害を起こそうとして、闇サイトで拾ったランサムウェアを手違いで拡散させてしまった（自爆）。",
+      "gh:ghostType": "Obsolescence & Jealousy (陳腐化への恐怖と嫉妬)"
+    },
+    {
+      "@id": "character:Matsuda",
+      "schema:name": "松田 ヨシ子 (Yoshiko Matsuda)",
+      "schema:role": "Accounting Manager",
+      "schema:age": 58,
+      "gh:personality": "Hysterical regarding IT, Strict with Money",
+      "gh:voiceStyle": "甲高い声。「ちょっと！どうなってんのよ！」「これじゃ給料払えないじゃない！」とパニックを煽る役割。",
+      "gh:context": "経理の主。そろばんと電卓の達人だが、会計ソフトの導入には反対していた。今回のシステムダウンで「やっぱり手書きが一番よ！」と主張する。"
+    },
+    {
+      "@id": "character:Sato",
+      "schema:name": "佐藤 健太 (Kenta Sato)",
+      "schema:role": "IT Support (unofficial)",
+      "schema:age": 24,
+      "gh:voiceStyle": "控えめだが的確。「あの…ログがおかしいんですけど…」「部長、そのケーブル抜いちゃダメです」と、常に誰かのフォローをしている。",
+      "gh:context": "翔太とは同世代で話が合う。安本と松田の間で板挟みになっていた苦労人。"
+    },
+    {
+      "@id": "character:Ren",
+      "schema:name": "蓮 (Ren)",
+      "schema:role": "Ghost Hacker",
+      "gh:voiceStyle": "気だるげだが核心を突く。「めんどくせぇ」「アンタのその感情、ノイズだね」。翔太の合理性には「話が早くて助かる」と好意的。",
+      "gh:contextUpdate": "依頼人が同世代（少し年上）の翔太になったことで、ビジネスライクな交渉が可能になった。"
+    }
+  ]
+}

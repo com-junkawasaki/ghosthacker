@@ -1,0 +1,36 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "company": "gh:company/",
+    "incident": "gh:incident/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dct": "http://purl.org/dc/terms/"
+  },
+  "@id": "gh:company/DaimonConstruction",
+  "@type": "gh:CompanyProfile",
+  "schema:name": "株式会社 大門建設 (Daimon Construction Co., Ltd.)",
+  "schema:location": {
+    "@type": "schema:Place",
+    "schema:address": "東京都大田区蒲田 4丁目 (Tokyo, Ota City, Kamata 4-chome)",
+    "schema:description": "町工場と住宅が混在する下町エリア。自社ビルは古いが手入れの行き届いた3階建て。"
+  },
+  "schema:employeeCount": 52,
+  "schema:foundingDate": "1965",
+  "gh:businessType": "総合建設業（主に地元の公共工事やマンション建設）",
+  "gh:atmosphere": "家族的経営。DX化は遅れており、連絡は電話とFAXが主流。壁には「安全第一」のポスターと歴代社長の写真。",
+  
+  "gh:incidentReport": {
+    "@id": "incident:251121-Ransomware",
+    "dct:title": "社内システム全停止およびランサムウェア感染疑義",
+    "gh:symptoms": [
+      "社内PCの一斉ロック（画面に『Pay or Delete』のガイダンス表示）",
+      "共有サーバー内のCAD図面データへのアクセス不可",
+      "会計システム停止による給与支払い遅延の危機",
+      "インターネットバンキングへの不正アクセス形跡"
+    ],
+    "gh:impact": "現場への図面供給ストップによる工期遅延。翌週に控えた給与振込の不能リスク（これが社員の士気に直結）。",
+    "gh:securityLevel": "Low (ルーターは家電量販店で購入したもの、パスワードはモニターに付箋貼り付け)"
+  }
+}
+
