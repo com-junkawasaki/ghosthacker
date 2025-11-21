@@ -3,7 +3,6 @@
     "gh": "https://ghosthacker.gftd.ai/ns/",
     "scene": "gh:scene/",
     "page": "gh:page/",
-    "promptJa": "gh:promptJa",
     "promptEn": "gh:promptEn",
     "pageId": "gh:pageId",
     "panelIndex": "gh:panelIndex",
@@ -11,49 +10,41 @@
   },
   "@id": "gh:generationPrompts/episode01",
   "@type": "gh:GenerationPrompts",
-  "gh:stylePromptJa": "線は精密で繊細、身体の重心や手のしぐさ、視線の向きによって内面の感情が静かに伝わる。衣服や装飾は機能と文脈に基づき、過剰な装飾はないが、世界との関係を象徴している。キャラクターは背景と同調し、空間に「居る」ということ自体が表現になっている。呼吸するように立ち、空間との距離や沈黙が感情の余韻を作り出す。言葉で語らず、存在そのものが語っている。",
   "gh:stylePromptEn": "Linework is precise and delicate; body weight, hand gestures, and the direction of the gaze quietly convey inner emotions. Clothing and accessories are functional and contextual, with no excessive decoration, each element symbolizing the character’s relationship with the world. Characters harmonize with the background so that simply existing in the space becomes an expression. They stand as if breathing, and spatial distance and silence create an emotional afterglow. They do not explain with words; their very presence tells the story.",
   "gh:scenePrompts": [
     {
       "@id": "gh:scenePrompt/01_Introduction",
       "sceneId": "scene:01_Introduction",
-      "promptJa": "劇場版SFアニメのオープニング。横長の画面に、猿から直立二足歩行の人類へと変化していくシルエット、その後ろに時代ごとの風景がレイヤー状に重なっていく。原始のジャングル、洞窟壁画、巨大な大仏、トーテムポール、シャーマンの儀式、最後に2026年の東京の超高層ビル群とサーバーファームが現れる。落ち着いたナレーションが『霊長類』『霊』『情報社会』を説明する。高コントラスト、フィルムライク、シネマティックライティング、16:9横長構図、アニメ塗り、ノイズ少なめ、文字やUIは入れない。",
       "promptEn": "Theatrical sci‑fi anime opening. A wide cinematic frame shows silhouettes evolving from apes to upright humans, with layered backgrounds of each era behind them: primordial jungle, cave paintings, a giant Buddha statue, totem poles, a shaman ritual, and finally Tokyo 2026 with skyscrapers and massive data centers. Calm narration talks about primates, spirits and the information society. High contrast, film‑like, cinematic lighting, 16:9 wide composition, clean anime shading, low noise, no text or UI on screen."
     },
     {
       "@id": "gh:scenePrompt/02_DailyLife",
       "sceneId": "scene:02_DailyLife",
-      "promptJa": "深夜のモダンでミニマルなオフィス。コンクリート打ちっぱなしの壁、ウッドフローリング、白タイル。部屋の照明は消えており、大型PCモニターの青白い光だけが清潔な空間を照らしている。ハイスペックなオフィスチェアにだらしなくもたれかかる17歳のハッカーRen。彼の隣には、同じく16歳くらいの見た目の人型AIの少女Neiが立っている。デスクの上はプロ仕様だが、エナジードリンク缶など個人的なものが少し散らかっている。現代日本アニメ風、クリーンな線画、少し広角のカメラアングル。",
       "promptEn": "A modern, minimalist office at night with exposed concrete walls, wood flooring, and white tiles. The room is dark, illuminated only by the bluish glow of a large PC monitor, casting light across the clean space. Ren, a 17-year-old hacker, slouches in a high-spec office chair. Beside him stands Nei, a humanoid AI girl who looks about 16. The desk is professional but has some personal clutter like energy drink cans. Modern Japanese anime style, clean line art, slightly wide camera angle."
     },
     {
       "@id": "gh:scenePrompt/03_Consultation",
       "sceneId": "scene:03_Consultation",
-      "promptJa": "薄暗いRenのハッカー部屋。奥の玄関ドアが開き、スーツ姿で少しヨレたネクタイの若手ビジネスマン大門翔太が立っている。表情は焦りと疲労が混ざった真剣な顔。手前には振り向くRenの後ろ姿と、モニターに映るNeiの顔が見え、二人とも半信半疑の目で翔太を見ている。部屋の内側はモニター光だけで青白く、廊下側からは暖色系の蛍光灯の光が差し込み、生活レベルや世界観のコントラストが強調されている。シネマティック構図、奥行き感重視、アニメ背景画風。",
       "promptEn": "Dim hacker room interior. At the far end, the entrance door is open and young businessman Shota Daimon stands there in a slightly rumpled suit and loosened tie, his face a mix of panic and exhaustion. In the foreground we see Ren from behind turning toward him, and Nei's face on the monitor, both looking at Shota skeptically. Inside the room everything is lit by cold monitor light, while warm fluorescent light spills in from the hallway, emphasizing the contrast between their worlds. Cinematic composition with depth, anime background style."
     },
     {
       "@id": "gh:scenePrompt/04_Investigation",
       "sceneId": "scene:04_Investigation",
-      "promptJa": "東京都大田区の古い建設会社オフィス。昭和感のある事務机とスチール棚が並び、FAXや固定電話が鳴り続けている。経理担当の中年女性・松田が受話器を両手で握りしめて叫び、若手社員・佐藤がサーバーラックの裏でケーブルを確認している。中央の島型デスクの一角でRenが自分のノートPCを開き、有線LANケーブルをつないでネットワークに侵入し始めている。奥には総務部長の安本が汗だくで立ち尽くし、落ち着きなくネクタイをいじっている。昼間のオフィス照明、少し雑然とした空気感、日本企業オフィスを忠実に再現したアニメ背景。",
       "promptEn": "Old small construction company office in Ota ward, Tokyo. Retro steel desks and shelves, fax machines and landline phones ringing nonstop. Middle‑aged accountant Matsuda clutches a handset and shouts, while young staffer Sato checks cables behind a small server rack. At one corner of the central desk island, Ren has set up his own laptop, plugging in a LAN cable and starting to hack into the network. In the back, general affairs manager Yasumoto stands sweating, nervously fidgeting with his tie. Daytime fluorescent office lighting, slightly cluttered atmosphere, faithful Japanese company office background in anime style."
     },
     {
       "@id": "gh:scenePrompt/05_Confrontation",
       "sceneId": "scene:05_Confrontation",
-      "promptJa": "オフィス中央にある壁のホワイトボード一面に、プロジェクターでログ画面が映し出されている。暗い青の端末画面に、暗号資産取引履歴や闇サイトアクセスログが英数字でズラリと並ぶ。その前に立つRenが、指先で特定の行を指し示して安本を追及している。手前にはショックを受けた社員たち、奥には膝を震わせる安本。その背後の空間には、黒い煙のような影が人型に集まり始めており、Ghostの輪郭がじわじわと浮かび上がるホラー寄りの演出。室内の照明は少し落とし気味、プロジェクター光が主な光源。",
       "promptEn": "In the center of the office, a wall‑mounted whiteboard is filled by a projected terminal screen showing transaction logs: cryptocurrency movements and dark web access logs in dense alphanumeric text. Ren stands in front, pointing at specific lines as he accuses Yasumoto. Shocked employees watch in the foreground, while Yasumoto trembles in the back. Behind him, black smoke‑like shadows begin to gather into a humanoid form, the outline of a Ghost slowly emerging in a horror‑like effect. Office lights are dimmed, projector light is the main source."
     },
     {
       "@id": "gh:scenePrompt/06_Combat",
       "sceneId": "scene:06_Combat",
-      "promptJa": "現実のオフィスに、サイバー空間のグリッドとコードが重なって見える超常的なシーン。床からはLANケーブルや紙の書類がうねるように立ち上がり、それらが絡み合って巨大な怪物（Ghost）の身体を形作っている。RenはGhostと対峙し、手には青白いデータの光で形成された巨大な斧（Digital Axe）を握っている。周囲の空間にはNeiのUIウィンドウやHUDがホログラムのように浮かび、『SIP DEVICE ONLINE』『LOCK ON』などのインジケーターが点灯しているが、画面内に読める文字は最小限。ハイテンションなアクションカット、ダイナミックなパース、アニメバトルシーン風。",
       "promptEn": "Surreal office where digital grids and scrolling code overlap the real environment. LAN cables and stacks of paper rise from the floor like tentacles, tangling together to form the massive body of a monster‑like Ghost. Ren faces it, gripping a huge axe made of bluish‑white glowing data (Digital Axe). All around, Nei's UI windows and HUD elements float as holograms, with indicators like 'SIP DEVICE ONLINE' and 'LOCK ON', but on‑screen readable text kept minimal. High‑energy action shot, dynamic perspective, anime battle scene style."
     },
     {
       "@id": "gh:scenePrompt/07_Resolution",
       "sceneId": "scene:07_Resolution",
-      "promptJa": "Ghostが消滅し、散らかっていた書類やケーブルも静かになった後のオフィス。画面中央に三角形構図で、作業着姿の社長・大門五郎、スーツ姿でまっすぐ立つ翔太、床に座り込んでうなだれる安本が配置されている。背景のモニターには復旧した業務システムのデスクトップ画面が穏やかな光を放っている。空気感は緊張から解放された静けさと、少しの寂しさ、そして前向きな決意。柔らかい逆光、アニメ映画のエピローグ風。",
       "promptEn": "After the Ghost has vanished, the once‑chaotic office is quiet, papers and cables settled. In the center, a triangular composition: CEO Goro Daimon in work clothes, son Shota standing straight in his suit, and Yasumoto sitting collapsed on the floor with his head bowed. In the background, restored business system desktops glow softly on the monitors. The atmosphere mixes relief from tension, a hint of sorrow, and forward‑looking resolve. Soft backlighting, like an anime movie epilogue."
     }
   ],
@@ -62,46 +53,308 @@
       "@id": "gh:panelPrompt/p1-3",
       "pageId": "page:1",
       "panelIndex": 3,
-      "promptJa": "2026年の東京上空からの俯瞰カット。高層ビル群が林立し、その間を小型配送ドローンが飛び交っている。空中にはデジタルデータを表す細い光のラインや半透明のアイコンが流れ、遠景には巨大なデータセンターやサーバーファームが見える。空は夕方〜夜にかけての青紫のグラデーション。近未来SFアニメ風、精細な背景画、高コントラスト、UIテキストは描かない。",
       "promptEn": "Bird's‑eye view of Tokyo 2026. Dense clusters of skyscrapers, small delivery drones flying between buildings, thin glowing lines and translucent icons in the sky representing data streams, with a massive data center and server farms in the distant background. The sky is a blue‑purple gradient of early night. Near‑future sci‑fi anime background, detailed, high contrast, no UI text."
     },
     {
       "@id": "gh:panelPrompt/p2-1",
       "pageId": "page:2-3",
       "panelIndex": 1,
-      "promptJa": "見開きタイトルページ。デジタルグリッドと物理的な都市の破片（ビル、道路標識）が融合・崩壊・再構築を繰り返す混沌としたサイバー空間。その中心に、重力に逆らって浮かぶRenとNei。Renは空中に投影された半透明のキーボードを高速でタイピングし、その視線は遠くのデータ構造を見つめている。彼のパーカーは少し乱れ、内なる集中力を示す。Neiは彼の隣に立ち、腕を組んで周囲を警戒するように浮遊。彼女はセーラー服風の機能的な衣服を着用し、その瞳には解析データが流れている。二人の背後、空間の歪みの向こうに『GHOST HACKER』の巨大なタイトルロゴが浮かび上がる。線は精密で繊細、キャラクターは背景と同調している。サイバーパンク、ハイコントラスト、ネオンブルーとパープル基調、高解像度イラスト。",
       "promptEn": "Double-page spread title image. A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, disintegrate, and reconfigure. In the center, Ren and Nei float against gravity. Ren is typing at high speed on a translucent keyboard projected in mid-air, his gaze fixed on a distant data structure. His hoodie is slightly disheveled, showing his inner focus. Nei stands beside him, floating with her arms crossed as if on guard. She wears a functional, sailor-uniform-inspired outfit, and streams of analytical data flow across her eyes. Behind them, through a distortion in space, the giant 'GHOST HACKER' title logo emerges. Linework is precise and delicate, characters harmonize with the background. Cyberpunk, high contrast, neon blue and purple palette, high-resolution illustration."
     },
     {
       "@id": "gh:panelPrompt/p3-1",
       "pageId": "page:4",
       "panelIndex": 1,
-      "promptJa": "コンクリート打ちっぱなしのモダンなオフィスの全景。広々とした空間に、ミニマルなデスクやチェアが置かれている。床にはウッドフローリングと白タイル。PCデスクの前の椅子にRenが仰向けになるようにもたれかかり、天井を見ている。自然なパース、生活感はありつつも清潔感が保たれたアニメ背景。",
       "promptEn": "Full view of a modern office with exposed concrete walls. A spacious room with minimalist desks and chairs. The floor is a mix of wood and white tiles. Ren slouches backwards in his chair in front of the PC desk, looking up at the ceiling. Natural perspective, a lived-in yet clean anime room background."
     },
     {
       "@id": "gh:panelPrompt/p3-2",
       "pageId": "page:4",
       "panelIndex": 2,
-      "promptJa": "部屋の隅でタブレットを操作しているNeiのバストアップ。呆れ顔で腕を組んでいる。セーラー服風の私服。背景は散らかった部屋の一部がボケている。",
       "promptEn": "Bust-up of Nei standing in the corner of the room, operating a tablet with her arms crossed and an exasperated look. She's wearing casual sailor-style clothes. Part of the messy room is blurred in the background."
     },
     {
       "@id": "gh:panelPrompt/p3-3",
       "pageId": "page:4",
       "panelIndex": 3,
-      "promptJa": "Renの椅子に近づき、呆れた顔で覗き込むNei。少しデフォルメされた等身でコミカルに前のめりになってRenに詰め寄っている。Renは椅子の背もたれから顔だけ出してNeiを見上げている。",
       "promptEn": "Nei walks up to Ren's chair and leans in with an exasperated look, drawn comically with slightly chibi proportions as she confronts him. Ren peeks his head over the back of the chair to look up at her."
     },
     {
       "@id": "gh:panelPrompt/p3-4",
       "pageId": "page:4",
       "panelIndex": 4,
-      "promptJa": "Renのバストアップ。片手で耳をほじりながら、気の抜けた表情で喋っている。背景にはモダンなオフィスの一部（コンクリートの壁、トラック照明）がボケ味のある描写で入っており、前景のキャラクターにピントが合っているようなカメラ表現。現代アニメ塗り、自然な肌の陰影。",
       "promptEn": "Bust‑up of Ren, lazily picking his ear with one hand while talking with a bored expression. In the background, parts of the modern office (concrete wall, track lighting) are softly blurred, as if the camera focus is on Ren in the foreground. Modern anime coloring, natural skin shading."
+    },
+    {
+      "@id": "gh:panelPrompt/p5-1",
+      "pageId": "page:5",
+      "panelIndex": 1,
+      "promptEn": "Close-up of the large wall-mounted monitor in the office. It displays the video intercom feed, showing a young man in a suit (Shota) standing there with a tense expression. The monitor frame has a minimalist design. Anime insert-cut style."
+    },
+    {
+      "@id": "gh:panelPrompt/p5-2",
+      "pageId": "page:5",
+      "panelIndex": 2,
+      "promptEn": "Full-body shot of Ren slowly getting up from his chair with a look of annoyance. His posture shifts from lazy to slightly work-focused. The background is the modern office."
+    },
+    {
+      "@id": "gh:panelPrompt/p5-3",
+      "pageId": "page:5",
+      "panelIndex": 3,
+      "promptEn": "Bust-up of Shota as he enters the office. His expression is a mix of panic and exhaustion, but his eyes are sharp, showing his determination to resolve the situation. The office entrance is visible in the background."
+    },
+    {
+      "@id": "gh:panelPrompt/p5-4",
+      "pageId": "page:5",
+      "panelIndex": 4,
+      "promptEn": "Ren, with his arms crossed, sizes up Shota. The shot is framed with his chin slightly down, emphasizing his sharp, observant gaze. The background is the minimalist office wall."
+    },
+    {
+      "@id": "gh:panelPrompt/p6-1",
+      "pageId": "page:6",
+      "panelIndex": 1,
+      "promptEn": "A full view of the Daimon Construction office. It's an old office with a Showa-era feel, cluttered with steel desks and piles of documents. The composition conveys a state of panic, with ringing phones and people shouting."
+    },
+    {
+      "@id": "gh:panelPrompt/p6-2",
+      "pageId": "page:6",
+      "panelIndex": 2,
+      "promptEn": "Close-up of Matsuda, the middle-aged accountant, screaming into the phone receiver with both hands, her face red with anger. Other employees are moving frantically in the background."
+    },
+    {
+      "@id": "gh:panelPrompt/p6-3",
+      "pageId": "page:6",
+      "panelIndex": 3,
+      "promptEn": "Young employee Sato struggles with a tangle of cables behind a small server rack. He is sweating and has a confused expression. Modern anime character design."
+    },
+    {
+      "@id": "gh:panelPrompt/p6-4",
+      "pageId": "page:6",
+      "panelIndex": 4,
+      "promptEn": "Ren, with his arms crossed, surveys the chaotic office with calm eyes. His expression shows a mix of composure and a hint of sarcasm, as if he sees the true nature of the situation."
+    },
+    {
+      "@id": "gh:panelPrompt/p7-1",
+      "pageId": "page:7",
+      "panelIndex": 1,
+      "promptEn": "General Affairs Manager Yasumoto appears, wiping away sweat. His eyes are filled with anxiety as he glares at Shota with hostility. The composition emphasizes his suspicious behavior."
+    },
+    {
+      "@id": "gh:panelPrompt/p7-2",
+      "pageId": "page:7",
+      "panelIndex": 2,
+      "promptEn": "Shota retorts to Yasumoto with a resolute attitude. His expression shows the responsibility and anger of a young successor. A confrontational composition that highlights the tension between them."
+    },
+    {
+      "@id": "gh:panelPrompt/p7-3",
+      "pageId": "page:7",
+      "panelIndex": 3,
+      "promptEn": "A point-of-view shot from Ren. Through what looks like AR glasses, the aura of a black, smoke-like Ghost clinging to Yasumoto's back is visualized. The aura represents negative emotions like jealousy and fear."
+    },
+    {
+      "@id": "gh:panelPrompt/p7-4",
+      "pageId": "page:7",
+      "panelIndex": 4,
+      "promptEn": "A scene where Ren casually sits at an empty desk and opens his laptop. His calm and purposeful action contrasts with the surrounding chaos."
+    },
+    {
+      "@id": "gh:panelPrompt/p8-1",
+      "pageId": "page:8",
+      "panelIndex": 1,
+      "promptEn": "Close-up on Ren's hands typing at incredible speed. Green text flows like a waterfall on the screen. In the background, Shota and Sato are peering over his shoulder with expressions of disbelief."
+    },
+    {
+      "@id": "gh:panelPrompt/p8-2",
+      "pageId": "page:8",
+      "panelIndex": 2,
+      "promptEn": "Ren, speaking from his side profile while remaining focused on the screen. His expression is dead serious. The lighting is slightly shadowed to express the weight of his words."
+    },
+    {
+      "@id": "gh:panelPrompt/p8-3",
+      "pageId": "page:8",
+      "panelIndex": 3,
+      "promptEn": "Yasumoto stumbles backward, his face drained of color. His shock and fear are expressed with a slightly distorted perspective, making the office background seem unstable to reflect his state of mind."
+    },
+    {
+      "@id": "gh:panelPrompt/p9-1",
+      "pageId": "page:9",
+      "panelIndex": 1,
+      "promptEn": "Close-up on Ren's laptop screen. The screen displays the large text 'FOUND!!' along with Yasumoto's internal company profile, complete with his photo. Nei stands beside him, pointing at the screen with a triumphant look."
+    },
+    {
+      "@id": "gh:panelPrompt/p9-2",
+      "pageId": "page:9",
+      "panelIndex": 2,
+      "promptEn": "Ren swivels in his chair to face Yasumoto, pointing a finger directly at him. His eyes are sharp, holding the power of someone revealing the truth."
+    },
+    {
+      "@id": "gh:panelPrompt/p9-3",
+      "pageId": "page:9",
+      "panelIndex": 3,
+      "promptEn": "All the employees in the office turn to look at Yasumoto with expressions of shock and accusation. The panel captures the shocked faces of Matsuda, Sato, and Shota."
+    },
+    {
+      "@id": "gh:panelPrompt/p9-4",
+      "pageId": "page:9",
+      "panelIndex": 4,
+      "promptEn": "Close-up on Yasumoto's face. He is breaking out in a cold sweat, his lips trembling. A slightly low angle shot to express his desperate situation."
+    },
+    {
+      "@id": "gh:panelPrompt/p10-1",
+      "pageId": "page:10",
+      "panelIndex": 1,
+      "promptEn": "Yasumoto screams like a wild animal. From his back, the black, smoke-like aura of the Ghost explosively expands, nearly reaching the office ceiling."
+    },
+    {
+      "@id": "gh:panelPrompt/p10-2",
+      "pageId": "page:10",
+      "panelIndex": 2,
+      "promptEn": "The Ghost, now fully separated from Yasumoto's body, forms into a giant monster made of tangled old documents, LAN cables, and PC parts. Sinister and detailed."
+    },
+    {
+      "@id": "gh:panelPrompt/p10-3",
+      "pageId": "page:10",
+      "panelIndex": 3,
+      "promptEn": "Matsuda and Sato are paralyzed with fear, while Shota stands stunned. Their expressions convey the immense size and terror of the monster they are witnessing."
+    },
+    {
+      "@id": "gh:panelPrompt/p11-1",
+      "pageId": "page:11",
+      "panelIndex": 1,
+      "promptEn": "Ren calmly takes out his smartphone and operates it. The screen displays a simple UI: 'SIP Device: ON'. His composure highlights the extraordinary situation."
+    },
+    {
+      "@id": "gh:panelPrompt/p11-2",
+      "pageId": "page:11",
+      "panelIndex": 2,
+      "promptEn": "Digital noise and grid lines run through the entire office space. The Ghost's body is rendered more clearly, as a being with physical mass. An effect as if the space itself is distorting."
+    },
+    {
+      "@id": "gh:panelPrompt/p11-3",
+      "pageId": "page:11",
+      "panelIndex": 3,
+      "promptEn": "The Ghost uses its massive body to knock over a steel shelf. Papers fly and sparks scatter. A powerful action scene that clearly shows its physical destructive power."
+    },
+    {
+      "@id": "gh:panelPrompt/p12-1",
+      "pageId": "page:12",
+      "panelIndex": 1,
+      "promptEn": "Shota shoves Matsuda out of the way to protect her from the falling shelf, using his own body as a shield. A close-up of his face, showing his sense of responsibility and determination."
+    },
+    {
+      "@id": "gh:panelPrompt/p12-2",
+      "pageId": "page:12",
+      "panelIndex": 2,
+      "promptEn": "In the palm of Ren's outstretched hand, particles of pale blue data light gather, gradually forming the shape of a giant axe (Digital Axe). Beautiful light particle effects."
+    },
+    {
+      "@id": "gh:panelPrompt/p12-3",
+      "pageId": "page:12",
+      "panelIndex": 3,
+      "promptEn": "Ren hefts the fully formed Digital Axe onto his shoulder and takes a quiet step toward the Ghost. His eyes are cold, showing the confidence of one who will dominate the coming battle."
+    },
+    {
+      "@id": "gh:panelPrompt/p13-1",
+      "pageId": "page:13",
+      "panelIndex": 1,
+      "promptEn": "Ren swiftly dodges the Ghost's swinging LAN-cable tentacles by ducking. A slanted composition to depict the sense of speed."
+    },
+    {
+      "@id": "gh:panelPrompt/p13-2",
+      "pageId": "page:13",
+      "panelIndex": 2,
+      "promptEn": "Ren leaps into the air and raises his Digital Axe. The command line string '/> /dev/null chop --force' appears around him as a special effect."
+    },
+    {
+      "@id": "gh:panelPrompt/p13-3",
+      "pageId": "page:13",
+      "panelIndex": 3,
+      "promptEn": "A full-page spread. Ren smashes the Digital Axe into the Ghost's core (a part that glows red like a PC's CPU). The impact causes an explosion of light and digital noise."
+    },
+    {
+      "@id": "gh:panelPrompt/p14-1",
+      "pageId": "page:14",
+      "panelIndex": 1,
+      "promptEn": "As the light subsides, the Ghost dissolves into digital particles. In the center, Yasumoto collapses to the floor as if his strings have been cut."
+    },
+    {
+      "@id": "gh:panelPrompt/p14-2",
+      "pageId": "page:14",
+      "panelIndex": 2,
+      "promptEn": "Silence returns to the office. The lock screens on the employees' PC monitors simultaneously disappear, replaced by their familiar desktop backgrounds. Sato has a look of relief."
+    },
+    {
+      "@id": "gh:panelPrompt/p14-3",
+      "pageId": "page:14",
+      "panelIndex": 3,
+      "promptEn": "Yasumoto sits on the floor, covering his face with both hands and sobbing. His back, which looks small and defeated, tells a story of regret and despair."
+    },
+    {
+      "@id": "gh:panelPrompt/p15-1",
+      "pageId": "page:15",
+      "panelIndex": 1,
+      "promptEn": "The company president, Goro Daimon, stands at the office entrance in his work clothes. He looks shocked and confused by the disastrous scene before him."
+    },
+    {
+      "@id": "gh:panelPrompt/p15-2",
+      "pageId": "page:15",
+      "panelIndex": 2,
+      "promptEn": "Shota glances back and forth between his father, the president, and Yasumoto, who is collapsed on the floor. After a moment of hesitation, his expression becomes firm with resolve."
+    },
+    {
+      "@id": "gh:panelPrompt/p15-3",
+      "pageId": "page:15",
+      "panelIndex": 3,
+      "promptEn": "Hearing Shota's words, Yasumoto looks up at him with a mixed expression of surprise and gratitude. Shota doesn't look at him, but stares straight at his father."
+    },
+    {
+      "@id": "gh:panelPrompt/p15-4",
+      "pageId": "page:15",
+      "panelIndex": 4,
+      "promptEn": "The president, sensing his son's growth and compassion for Yasumoto, gives a nod with a complex but gentle expression. A quiet depiction of a generational shift."
+    },
+    {
+      "@id": "gh:panelPrompt/p16-1",
+      "pageId": "page:16",
+      "panelIndex": 1,
+      "promptEn": "As if nothing happened, Ren closes his laptop, unplugs a USB drive, and prepares to leave. The scene highlights his cool and professional demeanor."
+    },
+    {
+      "@id": "gh:panelPrompt/p16-2",
+      "pageId": "page:16",
+      "panelIndex": 2,
+      "promptEn": "The accountant, Matsuda, looks at her PC's online banking screen, her expression changing from disbelief to joy. A comical scene."
+    },
+    {
+      "@id": "gh:panelPrompt/p16-3",
+      "pageId": "page:16",
+      "panelIndex": 3,
+      "promptEn": "Shota calls out to the departing Ren. His expression clearly shows his gratitude and respect."
+    },
+    {
+      "@id": "gh:panelPrompt/p17-1",
+      "pageId": "page:17",
+      "panelIndex": 1,
+      "promptEn": "As he leaves the office, Ren gives a slight wave with one hand without looking back. His back view conveys a sense of reliability without needing words."
+    },
+    {
+      "@id": "gh:panelPrompt/p17-2",
+      "pageId": "page:17",
+      "panelIndex": 2,
+      "promptEn": "Ren and Nei walk through the evening crowd of Kamata. Nei is looking up at Ren and talking. The two have returned to their daily life."
+    },
+    {
+      "@id": "gh:panelPrompt/p17-3",
+      "pageId": "page:17",
+      "panelIndex": 3,
+      "promptEn": "Close-up of Ren looking at his smartphone, confirming a payment, and smirking. It shows his (financial) side as a hacker."
+    },
+    {
+      "@id": "gh:panelPrompt/p17-4",
+      "pageId": "page:17",
+      "panelIndex": 4,
+      "promptEn": "The text 'Ghost Hacker - Episode 1 End' is displayed in white on a black background, leaving a quiet afterglow."
     }
-    /* 以降のページ・パネルも同様のスタイルで、既存のvisualテキストをベースに
-       プロンプトを拡張していく想定（必要なら続きも追加可能）。 */
   ]
 }
 
