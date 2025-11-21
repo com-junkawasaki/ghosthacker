@@ -30,7 +30,8 @@
     {
       "@id": "character:Nei",
       "@type": "gh:Assistant",
-      "schema:name": "Nei"
+      "schema:name": "Nei",
+      "schema:description": "Renが開発した自律人型AI。見た目は16歳の少女と変わらない。"
     },
     {
       "@id": "character:Shota",

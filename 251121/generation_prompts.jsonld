@@ -23,8 +23,8 @@
     {
       "@id": "gh:scenePrompt/02_DailyLife",
       "sceneId": "scene:02_DailyLife",
-      "promptJa": "深夜の日本のワンルーム。部屋の照明は消えており、PCモニターの青白い光だけが散らかった部屋を照らしている。椅子にだらしなくもたれかかる17歳の男子高校生ハッカーRen、フード付きパーカー、少し寝ぐせ。モニターの中には半透明なウィンドウとしてAI少女Neiのアバターが映り、口喧嘩するように表情豊かに喋っている。机の上にはグラフィックボードや基板、工具、エナジードリンク缶、配線ケーブルが散乱。現代日本アニメ風、クリーンな線画、やや俯瞰のカメラアングル、室内のみ、文字なし。",
-      "promptEn": "Late‑night Japanese one‑room apartment, lights off, illuminated only by the bluish glow of a PC monitor. Seventeen‑year‑old male high school hacker Ren slouches in his chair, wearing a hoodie, slightly messy hair. On the monitor, a semi‑transparent window shows the avatar of AI girl Nei, talking animatedly as if arguing with him. The desk is cluttered with a graphics card, circuit boards, tools, energy drink cans and tangled cables. Modern Japanese anime style, clean line art, slightly top‑down camera angle, interior only, no on‑screen text."
+      "promptJa": "深夜の日本のワンルーム。部屋の照明は消えており、PCモニターの青白い光だけが散らかった部屋を照らしている。椅子にだらしなくもたれかかる17歳の男子高校生ハッカーRen、フード付きパーカー、少し寝ぐせ。彼の隣には、同じく16歳くらいの見た目の人型AIの少女Neiが立っており、口喧嘩するように表情豊かに喋っている。机の上にはグラフィックボードや基板、工具、エナジードリンク缶、配線ケーブルが散乱。現代日本アニメ風、クリーンな線画、やや俯瞰のカメラアングル、室内のみ、文字なし。",
+      "promptEn": "Late‑night Japanese one‑room apartment, lights off, illuminated only by the bluish glow of a PC monitor. Seventeen‑year‑old male high school hacker Ren slouches in his chair, wearing a hoodie, slightly messy hair. Beside him stands Nei, a humanoid AI girl who looks about 16, talking animatedly as if arguing with him. The desk is cluttered with a graphics card, circuit boards, tools, energy drink cans and tangled cables. Modern Japanese anime style, clean line art, slightly top‑down camera angle, interior only, no on‑screen text."
     },
     {
       "@id": "gh:scenePrompt/03_Consultation",
@@ -59,20 +59,6 @@
   ],
   "gh:panelPrompts": [
     {
-      "@id": "gh:panelPrompt/p1-1",
-      "pageId": "page:1",
-      "panelIndex": 1,
-      "promptJa": "横長ワイドの1コマ。中央に直立した人間のシルエットが立ち、その左右にはライオン、鳥、魚、クジラ、昆虫、樹木など、さまざまな生物と植物のシルエットが並んでいる。「進化図」ではなく、多様な生命の中の一つとしての人間という構図。背景は荒々しい原始のジャングルと曇った空、少しセピアがかった色調。資料集イラスト風だが、線はアニメ調でクリーン、高解像度、ノイズ少なめ、文字やアイコンは描かない。",
-      "promptEn": "Wide horizontal panel. In the center stands a silhouette of an upright human, flanked on both sides by silhouettes of various lifeforms such as a lion, bird, fish, whale, insect, and a tree, emphasizing humans as just one species among many rather than an evolution chart. Background shows a wild primordial jungle and cloudy sky, slightly sepia‑toned. Illustration like a biology reference plate but in clean anime line art, high resolution, low noise, no text or icons."
-    },
-    {
-      "@id": "gh:panelPrompt/p1-2",
-      "pageId": "page:1",
-      "panelIndex": 2,
-      "promptJa": "洞窟の中の横長コマ。中央に焚き火、その周りに毛皮をまとった人類が座って暖を取っている。一人は壁に動物や手形の壁画を描いている。洞窟の奥の闇の中には、巨大な大仏像、トーテムポール、シャーマンの儀式シーンが、透かし絵のように薄く重なって見える歴史モンタージュ。焚き火のオレンジの光が人物と霊的な象徴の両方を照らし、陰影を強調する。アニメ背景風、柔らかいブラシ、文字なし。",
-      "promptEn": "Horizontal cave interior panel. A campfire in the center, people in furs sitting around it for warmth, one person painting animals and handprints on the wall. In the dark background, faint overlay images of a giant Buddha statue, a totem pole and a shaman ritual appear like ghostly silhouettes, forming a history montage. The orange firelight illuminates both the humans and these spiritual symbols, with strong light‑and‑shadow contrast. Anime background style, soft brushes, no text."
-    },
-    {
       "@id": "gh:panelPrompt/p1-3",
       "pageId": "page:1",
       "panelIndex": 3,
@@ -81,42 +67,35 @@
     },
     {
       "@id": "gh:panelPrompt/p2-1",
-      "pageId": "page:2",
+      "pageId": "page:2-3",
       "panelIndex": 1,
-      "promptJa": "見開きタイトルページ用。左右のページいっぱいに広がるサイバー空間と現実都市のコラージュ。中央付近に大きく『GHOST HACKER』の英字ロゴが浮かび、その背後でビル群と回路基板パターン、コードの流れがモザイク状に入り混じる。色味はネオンブルーとパープルを基調にしたサイバー感、ハイコントラスト。ロゴ以外の読める文字は入れない、高解像度イラスト。",
-      "promptEn": "Double‑page spread title image. A full‑bleed collage of real cityscape and cyberspace across both pages, with a large 'GHOST HACKER' English logo floating in the center. Behind the logo, skyscrapers, PCB patterns and flowing code blend together in a mosaic. Neon blue and purple color scheme, strong cyber vibe, high contrast. No other readable text besides the title, high‑resolution illustration."
-    },
-    {
-      "@id": "gh:panelPrompt/p2-2",
-      "pageId": "page:2",
-      "panelIndex": 2,
-      "promptJa": "モニターの青白い光だけに照らされたRenのクローズアップ。フード付きパーカーを着た17歳の少年、目の下にうっすらクマ、真剣で少しシニカルな横顔。背景は暗く落とし、Renの背後に半透明のコードの流れやウィンドウ枠のエフェクトだけを薄く重ねる。アニメ映画クオリティの表情描写、滑らかなグラデーション塗り。",
-      "promptEn": "Close‑up of Ren lit only by bluish monitor light. Seventeen‑year‑old boy in a hoodie, slight dark circles under his eyes, serious and slightly cynical side profile. The background is mostly dark, with only faint translucent streams of code and window frame effects behind him. Anime‑movie quality facial expression, smooth gradient shading."
+      "promptJa": "見開きタイトルページ。デジタルグリッドと物理的な都市の破片（ビル、道路標識）が融合・崩壊・再構築を繰り返す混沌としたサイバー空間。その中心に、重力に逆らって浮かぶRenとNei。Renは空中に投影された半透明のキーボードを高速でタイピングし、その視線は遠くのデータ構造を見つめている。彼のパーカーは少し乱れ、内なる集中力を示す。Neiは彼の隣に立ち、腕を組んで周囲を警戒するように浮遊。彼女はセーラー服風の機能的な衣服を着用し、その瞳には解析データが流れている。二人の背後、空間の歪みの向こうに『GHOST HACKER』の巨大なタイトルロゴが浮かび上がる。線は精密で繊細、キャラクターは背景と同調している。サイバーパンク、ハイコントラスト、ネオンブルーとパープル基調、高解像度イラスト。",
+      "promptEn": "Double-page spread title image. A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, disintegrate, and reconfigure. In the center, Ren and Nei float against gravity. Ren is typing at high speed on a translucent keyboard projected in mid-air, his gaze fixed on a distant data structure. His hoodie is slightly disheveled, showing his inner focus. Nei stands beside him, floating with her arms crossed as if on guard. She wears a functional, sailor-uniform-inspired outfit, and streams of analytical data flow across her eyes. Behind them, through a distortion in space, the giant 'GHOST HACKER' title logo emerges. Linework is precise and delicate, characters harmonize with the background. Cyberpunk, high contrast, neon blue and purple palette, high-resolution illustration."
     },
     {
       "@id": "gh:panelPrompt/p3-1",
-      "pageId": "page:3",
+      "pageId": "page:4",
       "panelIndex": 1,
       "promptJa": "散らかったオタク部屋の全景。ロフトベッドの上には畳まれていない洗濯物、床にはエナジードリンク缶と段ボール、壁にはアニメポスター。PCデスクの前の椅子にRenが仰向けになるようにもたれかかり、天井を見て『あー、だりーなー』と言っている。自然なパース、室内の生活感を丁寧に描いたアニメ背景。",
       "promptEn": "Full view of a messy otaku room. A loft bed with unfolded laundry, energy drink cans and cardboard boxes on the floor, anime posters on the walls. Ren slouches backwards in his chair in front of the PC desk, looking up at the ceiling as he says 'Ah, this is such a drag'. Natural perspective, detailed lived‑in anime room background."
     },
     {
       "@id": "gh:panelPrompt/p3-2",
-      "pageId": "page:3",
+      "pageId": "page:4",
       "panelIndex": 2,
-      "promptJa": "PCモニター画面のクローズアップ。中央に半透明ウィンドウとしてNeiのアバターが表示されており、呆れ顔で腕を組んでいる。UI枠やボタンは最低限のシンプルなデザインで、読める文字は入れない。モニター特有のわずかなRGBにじみを表現したアニメ調。",
-      "promptEn": "Close‑up of a PC monitor. In the center, a semi‑transparent window shows Nei's avatar with crossed arms and an exasperated expression. UI frames and buttons are minimalist, with no readable text. Slight RGB fringing to suggest a real monitor, anime style."
+      "promptJa": "部屋の隅でタブレットを操作しているNeiのバストアップ。呆れ顔で腕を組んでいる。セーラー服風の私服。背景は散らかった部屋の一部がボケている。",
+      "promptEn": "Bust-up of Nei standing in the corner of the room, operating a tablet with her arms crossed and an exasperated look. She's wearing casual sailor-style clothes. Part of the messy room is blurred in the background."
     },
     {
       "@id": "gh:panelPrompt/p3-3",
-      "pageId": "page:3",
+      "pageId": "page:4",
       "panelIndex": 3,
-      "promptJa": "モニター枠から上半身をニュッと乗り出すように描かれたNei。少しデフォルメされた等身で、コミカルに前のめりになってRenに詰め寄っている。背景にはモニターUIがぼかし気味に残り、非現実感を演出。ポップなアニメ表現、明るい色使い。",
-      "promptEn": "Nei drawn as if her upper body is popping out of the monitor frame, slightly chibi proportions, leaning forward comically as she confronts Ren. Blurred UI elements remain behind her to emphasize the surreal effect. Pop anime style, bright colors."
+      "promptJa": "Renの椅子に近づき、呆れた顔で覗き込むNei。少しデフォルメされた等身でコミカルに前のめりになってRenに詰め寄っている。Renは椅子の背もたれから顔だけ出してNeiを見上げている。",
+      "promptEn": "Nei walks up to Ren's chair and leans in with an exasperated look, drawn comically with slightly chibi proportions as she confronts him. Ren peeks his head over the back of the chair to look up at her."
     },
     {
       "@id": "gh:panelPrompt/p3-4",
-      "pageId": "page:3",
+      "pageId": "page:4",
       "panelIndex": 4,
       "promptJa": "Renのバストアップ。片手で耳をほじりながら、気の抜けた表情で喋っている。背景には散らかった部屋の一部（ベッドとポスター、PCデスク）がボケ味のある描写で入っており、前景のキャラクターにピントが合っているようなカメラ表現。現代アニメ塗り、自然な肌の陰影。",
       "promptEn": "Bust‑up of Ren, lazily picking his ear with one hand while talking with a bored expression. In the background, parts of the messy room (bed, posters, PC desk) are softly blurred, as if the camera focus is on Ren in the foreground. Modern anime coloring, natural skin shading."
