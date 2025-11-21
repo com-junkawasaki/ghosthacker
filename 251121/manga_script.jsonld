@@ -70,14 +70,14 @@
           "visual": "部屋の隅でタブレットを操作しているNei。呆れた表情。",
           "dialogue": [
             {"speaker": "Ren", "text": "Neiちゃん、何してんの？"},
-            {"speaker": "Nei", "text": "なにって、仕事を探しているに決まってるじゃないですか！"}
+            {"speaker": "Nei", "text": "お仕事を探しておりました。当然です、マスター。"}
           ]
         },
         {
           "panel:id": 3,
           "visual": "Renの椅子に近づき、呆れた顔で覗き込むNei。",
           "dialogue": [
-            {"speaker": "Nei", "text": "サーバー代もクラウド代もカツカツなんですよ！マスターがもっと働けば…"}
+            {"speaker": "Nei", "text": "サーバー及びクラウド費用が非常に逼迫しております。マスターがもう少し稼働くだされば…"}
           ]
         },
         {
@@ -97,7 +97,7 @@
           "visual": "ドアのチャイムが鳴る。モニターに訪問者の映像（スーツ姿の若い男＝翔太）。",
           "dialogue": [
             {"speaker": "SE", "text": "ピンポーン"},
-            {"speaker": "Nei", "text": "あ！予約のお客様です！HPからコンタクトのあった大門さんです！"}
+            {"speaker": "Nei", "text": "あ！ご予約のお客様です！ウェブサイトからご連絡のあった大門様です！"}
           ]
         },
         {
@@ -223,7 +223,7 @@
           "panel:id": 1,
           "visual": "Neiが画面に大きく表示される。「FOUND!!」",
           "dialogue": [
-            {"speaker": "Nei", "text": "特定しましたマスター！アクセス元は…社内！総務部長の端末です！"}
+            {"speaker": "Nei", "text": "特定いたしました、マスター。アクセス元は…社内。総務部長の端末からです。"}
           ]
         },
         {
@@ -291,7 +291,7 @@
           "panel:id": 2,
           "visual": "空間がデジタルノイズに包まれ、Ghostの質量が増す。",
           "dialogue": [
-            {"speaker": "Nei", "text": "了解！Information-Physical Transformation Sequence Start！"}
+            {"speaker": "Nei", "text": "承知いたしました。SIPシークエンスを開始します。"}
           ]
         },
         {
@@ -336,7 +336,7 @@
           "panel:id": 1,
           "visual": "Ghostの触手（LANケーブル）攻撃をRenがかわす。",
           "dialogue": [
-            {"speaker": "Nei", "text": "右30度！パケットロス率上昇！"}
+            {"speaker": "Nei", "text": "マスター、右30度！パケットロス率、上昇！"}
           ]
         },
         {
@@ -454,7 +454,7 @@
           "panel:id": 2,
           "visual": "夕暮れの蒲田の雑踏。RenとNei。",
           "dialogue": [
-            {"speaker": "Nei", "text": "マスター、かっこよかったです！でも手数料取りすぎじゃないですか？"}
+            {"speaker": "Nei", "text": "マスター、お見事でした。しかし、手数料をいただきすぎではありませんか？"}
           ]
         },
         {
