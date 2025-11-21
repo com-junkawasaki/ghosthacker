@@ -1,0 +1,471 @@
+{
+  "@context": {
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "script": "gh:script/",
+    "page": "gh:page/",
+    "panel": "gh:panel/",
+    "character": "gh:character/",
+    "dialogue": "gh:dialogue",
+    "visual": "gh:visual"
+  },
+  "@id": "gh:script/episode01",
+  "@type": "gh:MangaScript",
+  "gh:title": "Ghost Hacker: Episode 1",
+  "gh:pageCount": 16,
+  "gh:pages": [
+    {
+      "@id": "page:1",
+      "gh:panels": [
+        {
+          "panel:id": 1,
+          "visual": "猿からヒトへの進化図。背景には荒々しい自然。",
+          "dialogue": [
+            {"speaker": "Narration", "text": "霊長類。人は「霊」に特質性があり、霊によって進化した存在である。"}
+          ]
+        },
+        {
+          "panel:id": 2,
+          "visual": "火を発見する人類、壁画を描く人類。",
+          "dialogue": [
+            {"speaker": "Narration", "text": "古来より霊は様々な形で現れ、残っている。"}
+          ]
+        },
+        {
+          "panel:id": 3,
+          "visual": "巨大な大仏、トーテムポール、シャーマンの儀式。",
+          "dialogue": []
+        },
+        {
+          "panel:id": 4,
+          "visual": "現代の都市風景。高層ビル、飛び交う電子データ、サーバーファーム。",
+          "dialogue": [
+            {"speaker": "Narration", "text": "現代の情報社会において、人知れず「霊」をHackする者たちがいた。"}
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "page:2",
+      "gh:panels": [
+        {
+          "panel:id": 1,
+          "visual": "タイトルロゴ『GHOST HACKER』。背景にデジタル空間と現実が混ざり合うイメージ。",
+          "dialogue": []
+        },
+        {
+          "panel:id": 2,
+          "visual": "Renのアップ（影）。モニターの光に照らされている。",
+          "dialogue": [
+            {"speaker": "Narration", "text": "Ren - Ghost Hacker。17歳。"},
+            {"speaker": "Narration", "text": "世界的な腕前を持つコンピューターハッカー。だが、彼はGhostもハックできる。"}
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "page:3",
+      "gh:panels": [
+        {
+          "panel:id": 1,
+          "visual": "散らかった部屋。PCデスクの前にRenが椅子に仰向けでダラけている。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "あー、だりーなー。"}
+          ]
+        },
+        {
+          "panel:id": 2,
+          "visual": "モニターの中にいるNei。呆れた表情。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "Neiちゃん、何してんの？"},
+            {"speaker": "Nei", "text": "なにって、仕事を探しているに決まってるじゃないですか！"}
+          ]
+        },
+        {
+          "panel:id": 3,
+          "visual": "Neiがモニターから身を乗り出すような演出。",
+          "dialogue": [
+            {"speaker": "Nei", "text": "そういうコミットをマスターがしたんですから！もうご飯ないですよ！？"}
+          ]
+        },
+        {
+          "panel:id": 4,
+          "visual": "Ren、耳をほじりながら。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "ああ。そうだったね。ごめん。怠惰。怠惰が俺の美徳なんだよ。"}
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "page:4",
+      "gh:panels": [
+        {
+          "panel:id": 1,
+          "visual": "Nei、怒って頬を膨らませる。",
+          "dialogue": [
+            {"speaker": "Nei", "text": "それでもお腹が空いたら、生きていけませんよ！（それはお前がバカ喰いするからだろうが…）"}
+          ]
+        },
+        {
+          "panel:id": 2,
+          "visual": "PCの通知音。メールが届く。",
+          "dialogue": [
+            {"speaker": "SE", "text": "PING!"},
+            {"speaker": "Ren", "text": "ん？"}
+          ]
+        },
+        {
+          "panel:id": 3,
+          "visual": "メール画面。「至急依頼：システムダウン」の件名。",
+          "dialogue": [
+            {"speaker": "Nei", "text": "キタ！お仕事ですよマスター！建設会社からです！"}
+          ]
+        },
+        {
+          "panel:id": 4,
+          "visual": "Ren、ニヤリとする。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "お。はいはい。前金なら受けるよ。"}
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "page:5",
+      "gh:panels": [
+        {
+          "panel:id": 1,
+          "visual": "建設会社のオフィス。雑然としている。社員たちが電話対応に追われている。",
+          "dialogue": [
+            {"speaker": "Employee", "text": "すみません！現在システム障害で…！"}
+          ]
+        },
+        {
+          "panel:id": 2,
+          "visual": "社長（大門）が困った顔でRenを迎える。Renはラフな格好。",
+          "dialogue": [
+            {"speaker": "President", "text": "いやぁ、来てくれて助かったよ。君みたいな若者がハッカーとはねぇ。"},
+            {"speaker": "Ren", "text": "で、状況は？"}
+          ]
+        },
+        {
+          "panel:id": 3,
+          "visual": "社長、頭をかく。",
+          "dialogue": [
+            {"speaker": "President", "text": "父の代からの会社でね。突然すべてのシステムが止まってしまって…警察には証拠保全と言われるだけで…"}
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "page:6",
+      "gh:panels": [
+        {
+          "panel:id": 1,
+          "visual": "安本部長が登場。汗を拭きながら、挙動不審。",
+          "dialogue": [
+            {"speaker": "President", "text": "こちらは総務の安本部長。システムも兼任してもらっててね。"},
+            {"speaker": "Yasumoto", "text": "あ、どうも…安本です。"}
+          ]
+        },
+        {
+          "panel:id": 2,
+          "visual": "Ren、安本をじっと見る。ARのような視覚効果で安本の背後に「黒い靄」を見る。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "(…臭うな)"},
+            {"speaker": "Ren", "text": "バックアップは？"}
+          ]
+        },
+        {
+          "panel:id": 3,
+          "visual": "安本、目を逸らす。",
+          "dialogue": [
+            {"speaker": "Yasumoto", "text": "ええ、その、よくわからなくて…おそらくマルウェアかと…"}
+          ]
+        },
+        {
+          "panel:id": 4,
+          "visual": "Ren、PCにUSB（Nei）を挿す。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "ふーん。まあいいや。Nei、探知開始。"}
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "page:7",
+      "gh:panels": [
+        {
+          "panel:id": 1,
+          "visual": "Ren、超高速でキーボードを叩く。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "探知するのはウイルスじゃない。Ghostだ。"}
+          ]
+        },
+        {
+          "panel:id": 2,
+          "visual": "社長と安本、驚く。",
+          "dialogue": [
+            {"speaker": "Yasumoto", "text": "ゴ、ゴースト！？オカルトですか！？やっぱりこんな怪しいやつに頼むなんて…！"}
+          ]
+        },
+        {
+          "panel:id": 3,
+          "visual": "Ren、手を止めずに語る。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "「情報は物理量である」。IBMのランダウアーが発見した。サイバー攻撃は情報空間という物理空間での現象だ。"}
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "page:8",
+      "gh:panels": [
+        {
+          "panel:id": 1,
+          "visual": "PC画面に「FOUND」の文字。Neiが勝ち誇った顔。",
+          "dialogue": [
+            {"speaker": "Nei", "text": "見つけましたマスター！"}
+          ]
+        },
+        {
+          "panel:id": 2,
+          "visual": "Ren、安本の方を向く。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "あんた、持ってるね。株をだよ。"}
+          ]
+        },
+        {
+          "panel:id": 3,
+          "visual": "安本、青ざめる。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "会社の金を横領してギャンブル。穴埋めに暗号資産のロンダリング。その痕跡を消すために自作自演のハッキング騒ぎを起こした。"}
+          ]
+        },
+        {
+          "panel:id": 4,
+          "visual": "社長、愕然とする。",
+          "dialogue": [
+            {"speaker": "President", "text": "や、安本くん…本当なのか？"}
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "page:9",
+      "gh:panels": [
+        {
+          "panel:id": 1,
+          "visual": "安本、激昂する。背後の黒い靄が大きくなり、実体化し始める。",
+          "dialogue": [
+            {"speaker": "Yasumoto", "text": "うるさい！！私は知らんぞ！！"}
+          ]
+        },
+        {
+          "panel:id": 2,
+          "visual": "安本の背中から、彼の顔を模した醜い怪物が姿を現す。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "やっぱりな。「疎外感」から来る「自己中」なGhostだ。あんたに取り憑いてる。"}
+          ]
+        },
+        {
+          "panel:id": 3,
+          "visual": "怪物が叫び声を上げる。オフィス内の電子機器がスパークする。",
+          "dialogue": [
+            {"speaker": "Ghost", "text": "グアアアアア！！俺ヲ見ロ！！俺ヲ敬エ！！"}
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "page:10",
+      "gh:panels": [
+        {
+          "panel:id": 1,
+          "visual": "Ren、スマホを取り出しスワイプする。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "Nei、SIPデバイス起動！"}
+          ]
+        },
+        {
+          "panel:id": 2,
+          "visual": "空間が歪み、Ghostの姿がより鮮明に、物理的な実体を持つ。",
+          "dialogue": [
+            {"speaker": "Nei", "text": "了解！情報空間をTransform！Ghostを物理世界に固定します！"}
+          ]
+        },
+        {
+          "panel:id": 3,
+          "visual": "Ghostが完全に実体化し、安本の体を離れて暴れだす。",
+          "dialogue": [
+            {"speaker": "Ghost", "text": "コノ会社ハ俺ノモノダァァ！！"}
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "page:11",
+      "gh:panels": [
+        {
+          "panel:id": 1,
+          "visual": "Ghostの攻撃。デスクが吹き飛ぶ。社長を庇う安本（本体）。",
+          "dialogue": [
+            {"speaker": "Yasumoto", "text": "し、社長！逃げてください！"}
+          ]
+        },
+        {
+          "panel:id": 2,
+          "visual": "Ren、空中に浮かぶコードを掴む動作。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "情報生命体なら、物理的に削除（デリート）できる。"}
+          ]
+        },
+        {
+          "panel:id": 3,
+          "visual": "Renの手の中に、光るデータの斧（Digital Axe）が出現。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "行くぞ。"}
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "page:12",
+      "gh:panels": [
+        {
+          "panel:id": 1,
+          "visual": "Ren、跳躍。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "その歪んだ自我、ここで断ち切る。"}
+          ]
+        },
+        {
+          "panel:id": 2,
+          "visual": "Ren、斧を振りかぶる。コマンドラインのエフェクト。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "/> /dev/null chop"}
+          ]
+        },
+        {
+          "panel:id": 3,
+          "visual": "大ゴマ。RenがGhostを一刀両断にする。",
+          "dialogue": [
+            {"speaker": "SE", "text": "ZBAAAAAN!!"}
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "page:13",
+      "gh:panels": [
+        {
+          "panel:id": 1,
+          "visual": "Ghostが光の粒子となって消滅していく。",
+          "dialogue": [
+            {"speaker": "Ghost", "text": "ア、アァ……認めテ…欲シカッ…タ……"}
+          ]
+        },
+        {
+          "panel:id": 2,
+          "visual": "静寂。安本がへたり込んでいる。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "削除完了。あとはアンチウイルスがやってくれるさ。"}
+          ]
+        },
+        {
+          "panel:id": 3,
+          "visual": "安本、涙を流して社長に土下座する。",
+          "dialogue": [
+            {"speaker": "Yasumoto", "text": "社長…申し訳ありませんでした…私はなんてことを…"}
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "page:14",
+      "gh:panels": [
+        {
+          "panel:id": 1,
+          "visual": "社長、安本の肩に手を置く。",
+          "dialogue": [
+            {"speaker": "President", "text": "安本くん。君がいなければ会社は回らなかった。もっと早く相談してくれればよかったのに。"}
+          ]
+        },
+        {
+          "panel:id": 2,
+          "visual": "安本、顔を上げる。",
+          "dialogue": [
+            {"speaker": "Yasumoto", "text": "社長…"}
+          ]
+        },
+        {
+          "panel:id": 3,
+          "visual": "社長、微笑む。",
+          "dialogue": [
+            {"speaker": "President", "text": "君にしたことは許せないが、今は会社が大変な時だ。逃げずに働いて返してくれ。"}
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "page:15",
+      "gh:panels": [
+        {
+          "panel:id": 1,
+          "visual": "Ren、USBを回収する。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "データ復元できたよ。あと、あんたの隠してた暗号資産、爆上がりしてるから。それで会社の損害も埋まるんじゃない？"}
+          ]
+        },
+        {
+          "panel:id": 2,
+          "visual": "安本と社長、驚く。",
+          "dialogue": [
+            {"speaker": "Yasumoto", "text": "ええ！？"}
+          ]
+        },
+        {
+          "panel:id": 3,
+          "visual": "遠くからパトカーのサイレン音。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "おっと。事情聴取は面倒なんで、僕はこれにて。"}
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "page:16",
+      "gh:panels": [
+        {
+          "panel:id": 1,
+          "visual": "Ren、背を向けて歩き出す。手を振る。",
+          "dialogue": [
+            {"speaker": "President", "text": "蓮さん！ありがとうございました！"},
+            {"speaker": "Ren", "text": "おう。"}
+          ]
+        },
+        {
+          "panel:id": 2,
+          "visual": "夕日の中、帰路につくRenとNei（スマホ画面）。",
+          "dialogue": [
+            {"speaker": "Nei", "text": "マスター、いいことしましたね！報酬も弾みますよ！"}
+          ]
+        },
+        {
+          "panel:id": 3,
+          "visual": "Ren、あくびをする。",
+          "dialogue": [
+            {"speaker": "Ren", "text": "ふぁー…疲れた。これでしばらく寝て暮らせるな。"},
+            {"speaker": "Ren", "text": "ゴーストを抱えるのも大変だけど、生きるのも楽じゃないねぇ。"}
+          ]
+        },
+        {
+          "panel:id": 4,
+          "visual": "『Ghost Hacker - Episode 1 End』の文字。",
+          "dialogue": []
+        }
+      ]
+    }
+  ]
+}
+

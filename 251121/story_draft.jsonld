@@ -1,0 +1,159 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "character": "gh:character/",
+    "item": "gh:item/",
+    "concept": "gh:concept/",
+    "scene": "gh:scene/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dct": "http://purl.org/dc/terms/"
+  },
+  "@id": "gh:episode/draft-251121",
+  "@type": "gh:Episode",
+  "dct:title": "Ghost Hacker: Pilot Draft",
+  "dct:description": "霊長類の進化、そして情報生命体Ghostへの変遷を描く導入エピソード",
+  "gh:theme": [
+    "Spirit Evolution",
+    "Information Physics",
+    "Landauer's Principle"
+  ],
+  "gh:characters": [
+    {
+      "@id": "character:Ren",
+      "@type": "gh:Protagonist",
+      "schema:name": "Ren",
+      "schema:age": 17,
+      "schema:description": "世界的な腕前を持つコンピューターハッカーだが、Ghostもハックできる。怠惰を美徳とする。",
+      "gh:traits": [
+        "Lazy",
+        "Genius",
+        "GhostHacker"
+      ],
+      "gh:visual": "パーカーを着崩している。目の下にクマがあるが、ハッキング時は鋭い眼光。",
+      "gh:relationship": {
+        "gh:creatorOf": "character:Nei"
+      }
+    },
+    {
+      "@id": "character:Nei",
+      "@type": "gh:Assistant",
+      "schema:name": "Nei",
+      "schema:age": 16,
+      "schema:description": "Renが作ったAI。Renの生活管理を行い、仕事をさせる役割。",
+      "gh:traits": [
+        "AI",
+        "Energetic",
+        "Nagging"
+      ],
+      "gh:visual": "ホログラム、またはモニター上のアバターとして登場。表情豊か。",
+      "gh:relationship": {
+        "gh:master": "character:Ren"
+      }
+    },
+    {
+      "@id": "character:Yasumoto",
+      "@type": "gh:Antagonist",
+      "schema:name": "Kenji Yasumoto",
+      "schema:jobTitle": "General Affairs Manager",
+      "schema:age": 52,
+      "schema:description": "建設会社の古株社員。真面目だが、時代の変化とデジタル化についていけず、会社での居場所を失いつつあると感じている。",
+      "gh:visual": "疲れた中年男性。安価なスーツ。背中が少し丸まっている。常に汗を拭いている。",
+      "gh:role": "Possessed Victim",
+      "gh:motivation": "Alienation (疎外感) - 「自分は会社のために尽くしてきたのに、誰も認めてくれない」という歪んだ承認欲求。",
+      "gh:action": [
+        "Embezzlement (横領)",
+        "Crypto Laundering (暗号資産ロンダリング)",
+        "Installing Malware (自作自演のハッキング被害)"
+      ],
+      "gh:ghostType": "Selfishness/Alienation",
+      "gh:ghostVisual": "安本の背中に覆いかぶさる、粘着質の黒い影。彼の顔を模した仮面をつけている。"
+    },
+    {
+      "@id": "character:President",
+      "@type": "gh:Client",
+      "schema:name": "Goro Daimon",
+      "schema:jobTitle": "CEO",
+      "schema:age": 62,
+      "schema:description": "建設会社の二代目社長。先代からの義理人情を重んじる。ITには疎いが、社員を家族のように大切に思っている。",
+      "gh:visual": "作業着姿が似合う恰幅の良い男性。日に焼けた顔。温厚な笑顔だが、いざという時は腹が据わっている。",
+      "gh:traits": [
+        "Forgiving",
+        "Traditional",
+        "Compassionate"
+      ],
+      "gh:motivation": "To protect the company and its employees (family)."
+    }
+  ],
+  "gh:items": [
+    {
+      "@id": "item:SIPDevice",
+      "@type": "gh:Device",
+      "schema:name": "SIP Device (Spirit Information Physicalizer)",
+      "schema:description": "情報空間のGhostを物理世界に引きずり下ろす（実体化させる）デバイス。USBメモリのような形状か、Renのスマホから展開される。",
+      "gh:function": "Information-to-Physical Transformation"
+    },
+    {
+      "@id": "item:Axe",
+      "@type": "gh:Weapon",
+      "schema:name": "Digital Axe",
+      "gh:command": "/> /dev/null chop",
+      "schema:description": "実体化したGhostを物理的に削除（切断）するための武器。コードが集まって斧の形状を成す。",
+      "gh:visual": "Glowing data streams forming a battle axe."
+    }
+  ],
+  "gh:concepts": [
+    {
+      "@id": "concept:Ghost",
+      "schema:name": "Ghost",
+      "schema:description": "情報生命体。人間の強い感情（特に負の感情）やエントロピーが増大することで、情報空間に発生する。"
+    },
+    {
+      "@id": "concept:LandauerPrinciple",
+      "schema:name": "Landauer's Principle",
+      "schema:description": "「情報は物理量である」。この物語の物理法則の根幹。"
+    }
+  ],
+  "gh:scenes": [
+    {
+      "@id": "scene:01_Introduction",
+      "schema:name": "History of Spirit",
+      "gh:content": "猿から人、霊への進化。シャーマニズムから現代の情報社会（量子、核融合）への変遷。",
+      "gh:format": "Monologue/Visual Montage"
+    },
+    {
+      "@id": "scene:02_DailyLife",
+      "schema:name": "Ren's Room",
+      "gh:participants": ["character:Ren", "character:Nei"],
+      "gh:content": "怠惰なRenと、仕事を急かすNeiの掛け合い。金欠状態の提示。"
+    },
+    {
+      "@id": "scene:03_Consultation",
+      "schema:name": "Client Request",
+      "gh:participants": ["character:Ren", "character:Nei", "character:President"],
+      "gh:content": "建設会社のシステムダウン相談。Renは単なるサイバー攻撃ではなく'Ghost'の関与を見抜く。"
+    },
+    {
+      "@id": "scene:04_Investigation",
+      "schema:name": "Exposing the Truth",
+      "gh:participants": ["character:Ren", "character:Nei", "character:President", "character:Yasumoto"],
+      "gh:content": "安本部長の横領と暗号資産ロンダリング、マルウェア感染の事実を暴露。Ghost（疎外感）の特定。"
+    },
+    {
+      "@id": "scene:05_Combat",
+      "schema:name": "Physicalizing the Ghost",
+      "gh:participants": ["character:Ren", "character:Yasumoto", "concept:Ghost"],
+      "gh:action": [
+        "Ren activates SIP Device",
+        "Ghost materializes and attacks Yasumoto",
+        "Ren uses Axe to delete (chop) the Ghost"
+      ]
+    },
+    {
+      "@id": "scene:06_Resolution",
+      "schema:name": "Aftermath",
+      "gh:participants": ["character:Ren", "character:President", "character:Yasumoto"],
+      "gh:content": "データ復元。暗号資産の高騰。社長は安本を許し、再雇用する。Renは警察を避けて去る。"
+    }
+  ]
+}
