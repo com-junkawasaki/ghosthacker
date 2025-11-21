@@ -1,0 +1,134 @@
+{
+  "@context": {
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "scene": "gh:scene/",
+    "page": "gh:page/",
+    "promptJa": "gh:promptJa",
+    "promptEn": "gh:promptEn",
+    "pageId": "gh:pageId",
+    "panelIndex": "gh:panelIndex",
+    "sceneId": "gh:sceneId"
+  },
+  "@id": "gh:generationPrompts/episode01",
+  "@type": "gh:GenerationPrompts",
+  "gh:scenePrompts": [
+    {
+      "@id": "gh:scenePrompt/01_Introduction",
+      "sceneId": "scene:01_Introduction",
+      "promptJa": "歴史解説オープニング。猿から人類、シャーマンや大仏、トーテムポールを経て、2026年の東京の高層ビルとサーバーファームへと連続するモンタージュ。落ち着いたナレーションが『霊長類』『霊』『情報社会』を説明する、劇場版アニメのオープニングカット。",
+      "promptEn": "Cinematic anime opening montage showing evolution from apes to humans, shamans, giant Buddha statues and totem poles, then a hard cut to futuristic Tokyo 2026 with skyscrapers and data centers, narrated about spirits and information society."
+    },
+    {
+      "@id": "gh:scenePrompt/02_DailyLife",
+      "sceneId": "scene:02_DailyLife",
+      "promptJa": "Renの汚れたワンルーム。深夜のモニター光だけが部屋を照らし、椅子にだらしなくもたれかかる高校生ハッカーRenと、モニター内に映るAI少女Neiが口喧嘩している。生活感のある小物と、コードや基板が散乱した机。",
+      "promptEn": "Small messy one-room apartment lit only by monitor glow at night, teenage hacker Ren slouched in his chair arguing with AI girl Nei displayed inside the monitor, cables and circuit boards scattered on the desk."
+    },
+    {
+      "@id": "gh:scenePrompt/03_Consultation",
+      "sceneId": "scene:03_Consultation",
+      "promptJa": "Renの部屋のドアが開き、スーツ姿で疲れた表情の若手ビジネスマン大門翔太が立っている。RenとNeiは半信半疑の目で彼を見る。部屋の外とのコントラストが強いカット。",
+      "promptEn": "In Ren's dim hacker room, the door opens to reveal Shota Daimon, a tired young businessman in a suit, while Ren and Nei look at him skeptically, strong contrast between messy room and the outside world."
+    },
+    {
+      "@id": "gh:scenePrompt/04_Investigation",
+      "sceneId": "scene:04_Investigation",
+      "promptJa": "東京都大田区の古い建設会社オフィス。電話が鳴り止まず、経理担当の中年女性や若手社員が混乱している中、RenがノートPCを広げてネットワークに侵入し始める。総務部長の安本は汗だくで挙動不審。",
+      "promptEn": "Old small construction company office in Tokyo Ota ward, phones ringing off the hook, middle-aged accounting lady and young staff panicking while Ren opens his laptop and starts hacking into the network; general affairs manager Yasumoto sweats nervously."
+    },
+    {
+      "@id": "gh:scenePrompt/05_Confrontation",
+      "sceneId": "scene:05_Confrontation",
+      "promptJa": "オフィスの中央でRenが安本の不正ログを大画面に投影し、横領や闇サイトからのマルウェア入手履歴を突きつける。安本の背後に黒い影のようなGhostがじわじわと大きくなっているホラー寄り演出。",
+      "promptEn": "In the middle of the office, Ren projects logs exposing Yasumoto's embezzlement and malware from dark web, while a black shadowy Ghost gradually grows behind Yasumoto in a horror-like effect."
+    },
+    {
+      "@id": "gh:scenePrompt/06_Combat",
+      "sceneId": "scene:06_Combat",
+      "promptJa": "情報空間と現実が重なり合ったオフィスで、ケーブルと書類の塊のような巨大GhostとRenが対峙する。Renの手にはデータの光で形成された斧（Digital Axe）、NeiのUIが空間に浮かびSIPデバイス起動を示す。",
+      "promptEn": "Surreal office where digital space overlaps reality, Ren faces a huge Ghost made of tangled cables and papers, wielding a glowing data axe (Digital Axe) while Nei's UI floats, showing SIP device activation."
+    },
+    {
+      "@id": "gh:scenePrompt/07_Resolution",
+      "sceneId": "scene:07_Resolution",
+      "promptJa": "Ghostが消えた後の静かなオフィス。社長の大門五郎、翔太、崩れ落ちた安本が三角形に立つ（座る）構図で、世代交代と許しの空気が漂う。背景モニターには復旧したシステム画面。",
+      "promptEn": "Quiet office after the Ghost disappears, CEO Goro Daimon, his son Shota, and collapsed Yasumoto form a triangle composition, conveying succession and forgiveness, with restored system screens glowing in the background."
+    }
+  ],
+  "gh:panelPrompts": [
+    {
+      "@id": "gh:panelPrompt/p1-1",
+      "pageId": "page:1",
+      "panelIndex": 1,
+      "promptJa": "横長のコマ。猿から直立歩行する人類への進化図をシルエットで描き、背景には荒々しい自然と原始の空。教科書風だがアニメ調のタッチ。",
+      "promptEn": "Horizontal panel showing silhouette evolution from ape to upright human against a wild primordial landscape, anime style."
+    },
+    {
+      "@id": "gh:panelPrompt/p1-2",
+      "pageId": "page:1",
+      "panelIndex": 2,
+      "promptJa": "洞窟の中で火を囲む人類と、壁画を描く人物を同一コマに収めた歴史イラスト。暖色系の焚き火の光が強いコントラストを作る。",
+      "promptEn": "Cave interior where humans sit around a fire while one paints on the wall, warm firelight creating strong contrast."
+    },
+    {
+      "@id": "gh:panelPrompt/p1-3",
+      "pageId": "page:1",
+      "panelIndex": 3,
+      "promptJa": "巨大な大仏像、トーテムポール、シャーマンの儀式を縦にレイアウトした宗教シンボルのコラージュ。少し神秘的で厳かな空気。",
+      "promptEn": "Vertical collage of a giant Buddha statue, a totem pole, and a shaman performing a ritual, mystical and solemn atmosphere."
+    },
+    {
+      "@id": "gh:panelPrompt/p1-4",
+      "pageId": "page:1",
+      "panelIndex": 4,
+      "promptJa": "2026年の東京上空からの俯瞰。高層ビル群、ビル間を飛ぶドローン、空中を流れるデジタルデータのライン、巨大なサーバーファームを描いた近未来都市。",
+      "promptEn": "Bird's-eye view of Tokyo 2026 with skyscrapers, delivery drones, streams of digital data in the sky, and a massive server farm, near-future city."
+    },
+    {
+      "@id": "gh:panelPrompt/p2-1",
+      "pageId": "page:2",
+      "panelIndex": 1,
+      "promptJa": "見開き用のタイトルロゴカット。画面中央に『GHOST HACKER』のロゴ、その背後で現実世界とサイバー空間がモザイク状に入り混じるデザイン。",
+      "promptEn": "Spread title cut with the logo 'GHOST HACKER' in the center, behind it a mosaic blend of real city and cyberspace."
+    },
+    {
+      "@id": "gh:panelPrompt/p2-2",
+      "pageId": "page:2",
+      "panelIndex": 2,
+      "promptJa": "モニターの光だけに照らされたRenのアップ。フード付きパーカー、目の下にうっすらクマ、真剣な横顔。背景はコードが流れるエフェクト。",
+      "promptEn": "Close-up of Ren lit only by monitor glow, hoodie, slight eye bags, serious side profile, code flowing in the background."
+    },
+    {
+      "@id": "gh:panelPrompt/p3-1",
+      "pageId": "page:3",
+      "panelIndex": 1,
+      "promptJa": "散らかったオタク部屋全景。ベッドの上の洗濯物、床に落ちたエナジードリンク缶、PCデスク前の椅子に仰向けで座るRen。",
+      "promptEn": "Full view of a messy otaku room, laundry on the bed, energy drink cans on the floor, Ren slouching backwards in his chair before the PC desk."
+    },
+    {
+      "@id": "gh:panelPrompt/p3-2",
+      "pageId": "page:3",
+      "panelIndex": 2,
+      "promptJa": "モニターの中に、半透明なウィンドウとして表示されたNeiのアバター。呆れ顔で腕を組んでいる。",
+      "promptEn": "Monitor view with Nei's semi-transparent avatar in a window, arms crossed, looking exasperated."
+    },
+    {
+      "@id": "gh:panelPrompt/p3-3",
+      "pageId": "page:3",
+      "panelIndex": 3,
+      "promptJa": "モニター枠から身を乗り出すように描かれたNei。コミカルでデフォルメ気味の演出。",
+      "promptEn": "Nei drawn as if leaning out of the monitor frame, comedic, slightly chibi style."
+    },
+    {
+      "@id": "gh:panelPrompt/p3-4",
+      "pageId": "page:3",
+      "panelIndex": 4,
+      "promptJa": "Renが片手で耳をほじりながらダルそうに話すバストアップ。背景は散らかった部屋の一部だけをぼかして描く。",
+      "promptEn": "Bust-up of Ren lazily picking his ear with one hand while talking, blurred messy room background."
+    }
+    /* 以降のページ・パネルも同様のスタイルで、既存のvisualテキストをベースに
+       プロンプトを拡張していく想定（必要なら続きも追加可能）。 */
+  ]
+}
+
+
