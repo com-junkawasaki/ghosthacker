@@ -67,20 +67,13 @@
       "@id": "gh:panelPrompt/p1-2",
       "pageId": "page:1",
       "panelIndex": 2,
-      "promptJa": "洞窟の中で火を囲む人類と、壁画を描く人物を同一コマに収めた歴史イラスト。暖色系の焚き火の光が強いコントラストを作る。",
-      "promptEn": "Cave interior where humans sit around a fire while one paints on the wall, warm firelight creating strong contrast."
+      "promptJa": "洞窟の中で火を囲む人類と壁画を描く人物。その背後の闇に、巨大な大仏像やトーテムポール、シャーマンの儀式が薄く重なって見える歴史モンタージュ。焚き火の暖色の光が人類と「霊的な象徴」の両方を照らす。",
+      "promptEn": "Cave interior where humans sit around a fire and one paints on the wall, while in the darkness behind them faint images of a giant Buddha statue, a totem pole and a shaman ritual appear overlapped, a warm bonfire lighting both humans and these spiritual symbols."
     },
     {
       "@id": "gh:panelPrompt/p1-3",
       "pageId": "page:1",
       "panelIndex": 3,
-      "promptJa": "巨大な大仏像、トーテムポール、シャーマンの儀式を縦にレイアウトした宗教シンボルのコラージュ。少し神秘的で厳かな空気。",
-      "promptEn": "Vertical collage of a giant Buddha statue, a totem pole, and a shaman performing a ritual, mystical and solemn atmosphere."
-    },
-    {
-      "@id": "gh:panelPrompt/p1-4",
-      "pageId": "page:1",
-      "panelIndex": 4,
       "promptJa": "2026年の東京上空からの俯瞰。高層ビル群、ビル間を飛ぶドローン、空中を流れるデジタルデータのライン、巨大なサーバーファームを描いた近未来都市。",
       "promptEn": "Bird's-eye view of Tokyo 2026 with skyscrapers, delivery drones, streams of digital data in the sky, and a massive server farm, near-future city."
     },
