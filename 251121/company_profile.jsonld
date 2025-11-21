@@ -22,6 +22,7 @@
   
   "gh:incidentReport": {
     "@id": "incident:251121-Ransomware",
+    "dct:date": "2026-11-21",
     "dct:title": "社内システム全停止およびランサムウェア感染疑義",
     "gh:symptoms": [
       "社内PCの一斉ロック（画面に『Pay or Delete』のガイダンス表示）",

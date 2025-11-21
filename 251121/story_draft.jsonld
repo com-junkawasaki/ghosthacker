@@ -12,6 +12,7 @@
   "@id": "gh:episode/draft-251121",
   "@type": "gh:Episode",
   "dct:title": "Ghost Hacker: Pilot Draft (Updated)",
+  "dct:temporal": "2026",
   "dct:description": "霊長類の進化、そして情報生命体Ghostへの変遷を描く導入エピソード",
   "gh:theme": [
     "Spirit Evolution",
