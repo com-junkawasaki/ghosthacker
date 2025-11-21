@@ -16,9 +16,9 @@
     "schema:description": "町工場と住宅が混在する下町エリア。自社ビルは古いが手入れの行き届いた3階建て。"
   },
   "schema:employeeCount": 52,
-  "schema:foundingDate": "1965",
+  "schema:foundingDate": "1920",
   "gh:businessType": "総合建設業（主に地元の公共工事やマンション建設）",
-  "gh:atmosphere": "家族的経営。DX化は遅れており、連絡は電話とFAXが主流。壁には「安全第一」のポスターと歴代社長の写真。",
+  "gh:atmosphere": "家族的経営。DX化は遅れており、連絡は電話とFAXが主流。壁には「安全第一」のポスターと歴代社長（初代：大門辰五郎）のモノクロ写真。",
   
   "gh:incidentReport": {
     "@id": "incident:251121-Ransomware",

@@ -8,10 +8,10 @@
     "dialogue": "gh:dialogue",
     "visual": "gh:visual"
   },
-  "@id": "gh:script/episode01-v2",
+  "@id": "gh:script/episode01-v3",
   "@type": "gh:MangaScript",
-  "gh:title": "Ghost Hacker: Episode 1 (Updated)",
-  "gh:pageCount": 16,
+  "gh:title": "Ghost Hacker: Episode 1 (v3)",
+  "gh:pageCount": 17,
   "gh:pages": [
     {
       "@id": "page:1",
@@ -45,25 +45,23 @@
       ]
     },
     {
-      "@id": "page:2",
+      "@id": "page:2-3",
+      "gh:type": "gh:SpreadPage",
+      "gh:description": "見開きタイトルページ",
       "gh:panels": [
         {
           "panel:id": 1,
-          "visual": "タイトルロゴ『GHOST HACKER』。背景にデジタル空間と現実が混ざり合うイメージ。",
-          "dialogue": []
-        },
-        {
-          "panel:id": 2,
-          "visual": "Renのアップ（影）。モニターの光に照らされている。",
+          "gh:layout": "FullSpread",
+          "visual": "【見開き全体】デジタルデータと物理現実が融合・崩壊・再構築される混沌としたサイバー空間。その中心に浮遊するRen。彼は空中のキーボードを叩いている。背後にはNeiが巨大なホログラムとして守護霊のように浮かぶ。背景には『GHOST HACKER』の巨大なタイトルロゴ。",
           "dialogue": [
-            {"speaker": "Narration", "text": "Ren - Ghost Hacker。17歳。"},
-            {"speaker": "Narration", "text": "世界的な腕前を持つコンピューターハッカー。だが、彼はGhostもハックできる。"}
+            {"speaker": "Ren (Monologue)", "text": "世界はバグだらけだ。"},
+            {"speaker": "Narration", "text": "Ren - Ghost Hacker。17歳。世界的な腕前を持つコンピューターハッカー。だが、彼はGhostもハックできる。"}
           ]
         }
       ]
     },
     {
-      "@id": "page:3",
+      "@id": "page:4",
       "gh:panels": [
         {
           "panel:id": 1,
@@ -97,7 +95,7 @@
       ]
     },
     {
-      "@id": "page:4",
+      "@id": "page:5",
       "gh:panels": [
         {
           "panel:id": 1,
@@ -131,7 +129,7 @@
       ]
     },
     {
-      "@id": "page:5",
+      "@id": "page:6",
       "gh:panels": [
         {
           "panel:id": 1,
@@ -164,7 +162,7 @@
       ]
     },
     {
-      "@id": "page:6",
+      "@id": "page:7",
       "gh:panels": [
         {
           "panel:id": 1,
@@ -197,7 +195,7 @@
       ]
     },
     {
-      "@id": "page:7",
+      "@id": "page:8",
       "gh:panels": [
         {
           "panel:id": 1,
@@ -224,7 +222,7 @@
       ]
     },
     {
-      "@id": "page:8",
+      "@id": "page:9",
       "gh:panels": [
         {
           "panel:id": 1,
@@ -258,7 +256,7 @@
       ]
     },
     {
-      "@id": "page:9",
+      "@id": "page:10",
       "gh:panels": [
         {
           "panel:id": 1,
@@ -285,7 +283,7 @@
       ]
     },
     {
-      "@id": "page:10",
+      "@id": "page:11",
       "gh:panels": [
         {
           "panel:id": 1,
@@ -311,7 +309,7 @@
       ]
     },
     {
-      "@id": "page:11",
+      "@id": "page:12",
       "gh:panels": [
         {
           "panel:id": 1,
@@ -337,7 +335,7 @@
       ]
     },
     {
-      "@id": "page:12",
+      "@id": "page:13",
       "gh:panels": [
         {
           "panel:id": 1,
@@ -363,7 +361,7 @@
       ]
     },
     {
-      "@id": "page:13",
+      "@id": "page:14",
       "gh:panels": [
         {
           "panel:id": 1,
@@ -389,7 +387,7 @@
       ]
     },
     {
-      "@id": "page:14",
+      "@id": "page:15",
       "gh:panels": [
         {
           "panel:id": 1,
@@ -422,7 +420,7 @@
       ]
     },
     {
-      "@id": "page:15",
+      "@id": "page:16",
       "gh:panels": [
         {
           "panel:id": 1,
@@ -448,7 +446,7 @@
       ]
     },
     {
-      "@id": "page:16",
+      "@id": "page:17",
       "gh:panels": [
         {
           "panel:id": 1,
