@@ -7,9 +7,14 @@
  */
 use async_graphql::{Context, Object, ID, Result};
 use crate::ports::postgres::PostgresPool;
+use crate::ports::fal_service::{FalService, FalImageGenerationRequest};
+use crate::ports::deepinfra_service::{DeepInfraService, DeepInfraImageGenerationRequest};
+use uuid::Uuid;
+use base64::{Engine as _, engine::general_purpose};
 use crate::schema::manga::{
     MangaProject, MangaStory, MangaScene, MangaScript, MangaPage, MangaPanel,
     CharacterProfile, CompanyProfile, GenerationPrompt, Layer, SpeechBubble,
+    GeneratedImage,
     CreateMangaProjectInput, UpdateMangaProjectInput,
     CreateMangaStoryInput, UpdateMangaStoryInput,
     CreateMangaSceneInput, UpdateMangaSceneInput,
@@ -37,9 +42,28 @@ impl MutationRoot {
 
     /// Create manga project
     async fn create_manga_project(&self, ctx: &Context<'_>, input: CreateMangaProjectInput) -> Result<MangaProject> {
-        let _pool = ctx.data::<PostgresPool>()?;
-        // TODO: Implement database mutation
-        Err(async_graphql::Error::new("Not implemented"))
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let row = sqlx::query_as::<_, (Uuid, String, Option<String>, chrono::DateTime<chrono::Utc>, chrono::DateTime<chrono::Utc>)>(
+            r#"
+            INSERT INTO manga_projects (title, description)
+            VALUES ($1, $2)
+            RETURNING id, title, description, created_at, updated_at
+            "#,
+        )
+        .bind(&input.title)
+        .bind(&input.description)
+        .fetch_one(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to create manga project: {}", e)))?;
+        
+        Ok(MangaProject {
+            id: ID(row.0.to_string()),
+            title: row.1,
+            description: row.2,
+            created_at: row.3.to_rfc3339(),
+            updated_at: row.4.to_rfc3339(),
+        })
     }
 
     /// Update manga project
@@ -156,9 +180,137 @@ impl MutationRoot {
 
     /// Generate panel images
     async fn generate_panel_images(&self, ctx: &Context<'_>, input: GeneratePanelImagesInput) -> Result<GeneratePanelImagesResult> {
-        let _pool = ctx.data::<PostgresPool>()?;
-        // TODO: Implement AI image generation
-        Err(async_graphql::Error::new("Not implemented"))
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let project_uuid = Uuid::parse_str(&input.project_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid project ID: {}", e)))?;
+        
+        let mut generated_images = Vec::new();
+        
+        // Generate images based on provider
+        for panel_id_str in &input.panel_ids {
+            let image_data = match input.provider.as_str() {
+                "fal" => {
+                    let api_key = std::env::var("FAL_API_KEY")
+                        .map_err(|_| async_graphql::Error::new("FAL_API_KEY not set"))?;
+                    let fal_service = FalService::new(api_key);
+                    
+                    let fal_request = FalImageGenerationRequest {
+                        prompt: input.prompt.clone(),
+                        negative_prompt: input.negative_prompt.clone(),
+                        model_id: input.model_id.clone(),
+                        width: input.width.map(|w| w as u32),
+                        height: input.height.map(|h| h as u32),
+                        num_images: Some(1),
+                    };
+                    
+                    let fal_response = fal_service.generate_image(fal_request).await
+                        .map_err(|e| async_graphql::Error::new(format!("Failed to generate image with fal.ai: {}", e)))?;
+                    
+                    if fal_response.images.is_empty() {
+                        return Err(async_graphql::Error::new("No images returned from fal.ai"));
+                    }
+                    
+                    let image_url = &fal_response.images[0].url;
+                    let image_bytes = fal_service.download_image(image_url).await
+                        .map_err(|e| async_graphql::Error::new(format!("Failed to download image: {}", e)))?;
+                    
+                    Some(image_bytes)
+                },
+                "deepinfra" => {
+                    let api_key = std::env::var("DEEPINFRA_API_KEY")
+                        .map_err(|_| async_graphql::Error::new("DEEPINFRA_API_KEY not set"))?;
+                    let deepinfra_service = DeepInfraService::new(api_key);
+                    
+                    let deepinfra_request = DeepInfraImageGenerationRequest {
+                        prompt: input.prompt.clone(),
+                        negative_prompt: input.negative_prompt.clone(),
+                        model_id: input.model_id.clone(),
+                        width: input.width.map(|w| w as u32),
+                        height: input.height.map(|h| h as u32),
+                        num_inference_steps: None,
+                        guidance_scale: None,
+                    };
+                    
+                    let deepinfra_response = deepinfra_service.generate_image(deepinfra_request).await
+                        .map_err(|e| async_graphql::Error::new(format!("Failed to generate image with DeepInfra: {}", e)))?;
+                    
+                    if deepinfra_response.images.is_empty() {
+                        return Err(async_graphql::Error::new("No images returned from DeepInfra"));
+                    }
+                    
+                    let image_bytes = deepinfra_response.decode_images()
+                        .map_err(|e| async_graphql::Error::new(format!("Failed to decode DeepInfra image: {}", e)))?;
+                    
+                    if image_bytes.is_empty() {
+                        return Err(async_graphql::Error::new("No images decoded from DeepInfra"));
+                    }
+                    
+                    Some(image_bytes[0].clone())
+                },
+                _ => {
+                    return Err(async_graphql::Error::new(format!("Unsupported provider: {}", input.provider)));
+                }
+            };
+            
+            let image_data_bytes = image_data.ok_or_else(|| async_graphql::Error::new("Failed to generate image data"))?;
+            
+            // Parse panel_id
+            let panel_uuid = Uuid::parse_str(&panel_id_str.0)
+                .ok()
+                .or_else(|| {
+                    // If panel_id is not a UUID, create a new panel or use None
+                    None
+                });
+            
+            // Insert into database with bytea
+            let row = sqlx::query_as::<_, (Uuid, Uuid, Option<Uuid>, String, Option<String>, Option<String>, Option<String>, String, String, Option<String>, chrono::DateTime<chrono::Utc>)>(
+                r#"
+                INSERT INTO manga_generated_images (
+                    project_id, panel_id, prompt, negative_prompt, 
+                    image_url, image_base64, image_data, provider, model, model_id
+                )
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+                RETURNING id, project_id, panel_id, prompt, negative_prompt, 
+                          image_url, image_base64, provider, model, model_id, created_at
+                "#,
+            )
+            .bind(project_uuid)
+            .bind(panel_uuid)
+            .bind(&input.prompt)
+            .bind(&input.negative_prompt)
+            .bind::<Option<String>>(None) // image_url
+            .bind::<Option<String>>(None) // image_base64
+            .bind(&image_data_bytes) // image_data BYTEA
+            .bind(&input.provider)
+            .bind(&input.model_id) // Using model_id as model name for now
+            .bind(Some(&input.model_id))
+            .fetch_one(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to save generated image: {}", e)))?;
+            
+            // Encode image_data to base64 for GraphQL response
+            let image_data_base64 = general_purpose::STANDARD.encode(&image_data_bytes);
+            
+            generated_images.push(GeneratedImage {
+                id: ID(row.0.to_string()),
+                project_id: ID(row.1.to_string()),
+                panel_id: row.2.map(|u| ID(u.to_string())),
+                prompt: row.3,
+                negative_prompt: row.4,
+                image_url: row.5,
+                image_base64: row.6,
+                image_data: Some(image_data_base64),
+                provider: row.7,
+                model: row.8,
+                model_id: row.9,
+                created_at: row.10.to_rfc3339(),
+            });
+        }
+        
+        Ok(GeneratePanelImagesResult {
+            images: generated_images,
+        })
     }
 
     /// Create layer
@@ -190,14 +342,14 @@ impl MutationRoot {
     }
 
     /// Export page
-    async fn export_page(&self, ctx: &Context<'_>, id: ID, format: String) -> Result<ExportResult> {
+    async fn export_page(&self, ctx: &Context<'_>, id: ID, _format: String) -> Result<ExportResult> {
         let _pool = ctx.data::<PostgresPool>()?;
         // TODO: Implement export functionality
         Err(async_graphql::Error::new("Not implemented"))
     }
 
     /// Export all pages
-    async fn export_all_pages(&self, ctx: &Context<'_>, project_id: ID, format: String) -> Result<ExportResult> {
+    async fn export_all_pages(&self, ctx: &Context<'_>, project_id: ID, _format: String) -> Result<ExportResult> {
         let _pool = ctx.data::<PostgresPool>()?;
         // TODO: Implement export functionality
         Err(async_graphql::Error::new("Not implemented"))

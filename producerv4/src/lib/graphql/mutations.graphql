@@ -23,6 +23,7 @@ mutation GeneratePanelImages($input: GeneratePanelImagesInput!) {
       id
       imageUrl
       imageBase64
+      imageData
       provider
       model
       createdAt

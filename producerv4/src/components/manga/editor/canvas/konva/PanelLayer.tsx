@@ -18,6 +18,7 @@ interface PanelLayerProps {
     width: number;
     height: number;
     imageUrl?: string;
+    imageData?: string; // Base64 encoded bytea data
   }>;
 }
 
@@ -27,13 +28,14 @@ export function PanelLayer({ panels }: PanelLayerProps) {
       {panels.map((panel) => (
         <Group key={panel.id} x={panel.x} y={panel.y}>
           <Rect width={panel.width} height={panel.height} fill="#ffffff" stroke="#000000" strokeWidth={2} />
-          {panel.imageUrl && (
+          {(panel.imageUrl || panel.imageData) && (
             <PanelImage
               x={0}
               y={0}
               width={panel.width}
               height={panel.height}
               imageUrl={panel.imageUrl}
+              imageData={panel.imageData}
             />
           )}
         </Group>

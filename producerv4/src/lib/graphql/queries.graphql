@@ -52,6 +52,7 @@ query MangaPanels($pageId: ID!) {
     zIndex
     imageUrl
     imageBase64
+    imageData
     createdAt
     updatedAt
   }

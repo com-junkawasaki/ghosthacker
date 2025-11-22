@@ -25,6 +25,22 @@ pub struct DeepInfraImageGenerationResponse {
     pub images: Vec<String>, // Base64 encoded images
 }
 
+impl DeepInfraImageGenerationResponse {
+    /// Decode base64 images to bytes
+    pub fn decode_images(&self) -> Result<Vec<Vec<u8>>> {
+        use base64::{Engine as _, engine::general_purpose};
+        
+        self.images
+            .iter()
+            .map(|base64_str| {
+                general_purpose::STANDARD
+                    .decode(base64_str)
+                    .map_err(|e| anyhow::anyhow!("Failed to decode base64 image: {}", e))
+            })
+            .collect()
+    }
+}
+
 pub struct DeepInfraService {
     client: Client,
     api_key: String,

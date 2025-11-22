@@ -59,11 +59,22 @@ impl FalService {
         Ok(result)
     }
 
+    /// Download image from URL and return as bytes
+    pub async fn download_image(&self, image_url: &str) -> Result<Vec<u8>> {
+        let response = self.client
+            .get(image_url)
+            .send()
+            .await?;
+        
+        let bytes = response.bytes().await?;
+        Ok(bytes.to_vec())
+    }
+
     pub async fn list_models(&self) -> Result<Vec<FalModel>> {
         let url = "https://fal.run/models";
         
         let response = self.client
-            .get(&url)
+            .get(url)
             .header("Authorization", format!("Key {}", self.api_key))
             .send()
             .await?;

@@ -98,21 +98,48 @@ export default function MangaEditorPage({
     speaker?: string;
     bubbleType: 'speech' | 'thought' | 'shout';
   }) => {
-    setSpeechBubbles((prev) =>
+    setSpeechBubbles((prev: Array<{
+      id: string;
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+      text: string;
+      speaker?: string;
+      bubbleType: 'speech' | 'thought' | 'shout';
+    }>) =>
       prev.map((b) => (b.id === bubble.id ? { ...b, ...bubble } : b))
     );
     saveState();
   };
 
   const handleBubbleDelete = (id: string) => {
-    setSpeechBubbles((prev) => prev.filter((b) => b.id !== id));
+    setSpeechBubbles((prev: Array<{
+      id: string;
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+      text: string;
+      speaker?: string;
+      bubbleType: 'speech' | 'thought' | 'shout';
+    }>) => prev.filter((b) => b.id !== id));
     if (selectedNodeId === id) {
       setSelectedNodeId(undefined);
     }
     saveState();
   };
 
-  const selectedBubble = speechBubbles.find((b) => b.id === selectedNodeId);
+  const selectedBubble = speechBubbles.find((b: {
+    id: string;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    text: string;
+    speaker?: string;
+    bubbleType: 'speech' | 'thought' | 'shout';
+  }) => b.id === selectedNodeId);
 
   return (
     <div className="h-screen flex flex-col">

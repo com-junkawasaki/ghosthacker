@@ -26,7 +26,7 @@ async fn main() -> anyhow::Result<()> {
     
     // Run migrations
     sqlx::migrate!("./migrations")
-        .run(&postgres_pool)
+        .run(postgres_pool.as_ref())
         .await?;
     
     // Create GraphQL schema

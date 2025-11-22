@@ -1189,6 +1189,7 @@ dependencies = [
  "anyhow",
  "async-graphql",
  "async-graphql-poem",
+ "base64",
  "chrono",
  "poem",
  "reqwest",

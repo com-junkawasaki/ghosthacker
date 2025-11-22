@@ -261,6 +261,7 @@ pub struct MangaPanel {
     pub z_index: i32,
     pub image_url: Option<String>,
     pub image_base64: Option<String>,
+    pub image_data: Option<String>, // Base64 encoded bytea data
     pub panel_data: Value,
     pub created_at: String,
     pub updated_at: String,
@@ -412,6 +413,7 @@ pub struct GeneratedImage {
     pub negative_prompt: Option<String>,
     pub image_url: Option<String>,
     pub image_base64: Option<String>,
+    pub image_data: Option<String>, // Base64 encoded bytea data
     pub provider: String,
     pub model: String,
     pub model_id: Option<String>,
