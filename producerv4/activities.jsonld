@@ -1,0 +1,201 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://gftd.ai/ontology/manga-editor#",
+    "id": "@id",
+    "type": "@type",
+    "cpm": "https://example.org/cpm#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct": "http://purl.org/dc/terms/",
+    
+    "name": "dct:title",
+    "description": "dct:description",
+    "createdAt": {"@id": "dct:created", "@type": "xsd:dateTime"},
+    
+    "activity": {"@id": "cpm:Activity", "@container": "@set"},
+    "performedBy": {"@id": "cpm:performedBy", "@type": "@id", "@container": "@set"},
+    "consumes": {"@id": "cpm:consumes", "@type": "@id", "@container": "@set"},
+    "produces": {"@id": "cpm:produces", "@type": "@id", "@container": "@set"},
+    "dependsOn": {"@id": "cpm:dependsOn", "@type": "@id", "@container": "@set"}
+  },
+  
+  "@graph": [
+    {
+      "id": "https://gftd.ai/activity/list-manga-projects",
+      "type": "cpm:Activity",
+      "name": "List Manga Projects",
+      "description": "Browse and list all manga projects",
+      "createdAt": "2025-01-29T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+      ],
+      "consumes": [],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/manga-project-list"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/edit-manga-page",
+      "type": "cpm:Activity",
+      "name": "Edit Manga Page",
+      "description": "Edit manga page content using Konva.js canvas",
+      "createdAt": "2025-01-29T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/manga-page"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/manga-page"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/manage-panels",
+      "type": "cpm:Activity",
+      "name": "Manage Panels",
+      "description": "Create, update, delete, and arrange panels on manga pages",
+      "createdAt": "2025-01-29T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/manga-page"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/manga-panel"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/manage-layers",
+      "type": "cpm:Activity",
+      "name": "Manage Layers",
+      "description": "Create, update, delete, and reorder layers within panels",
+      "createdAt": "2025-01-29T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/manga-panel"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/manga-layer"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/generate-story",
+      "type": "cpm:Activity",
+      "name": "Generate Story",
+      "description": "Generate manga story and script from prompts using AI",
+      "createdAt": "2025-01-29T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/story-prompt"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/manga-script"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/generate-panel-images",
+      "type": "cpm:Activity",
+      "name": "Generate Panel Images",
+      "description": "Generate images for manga panels using AI models (fal.ai, DeepInfra)",
+      "createdAt": "2025-01-29T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/image-prompt"},
+        {"@id": "https://gftd.ai/resource/ai-model"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/generated-image"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/manage-speech-bubbles",
+      "type": "cpm:Activity",
+      "name": "Manage Speech Bubbles",
+      "description": "Create, update, delete, and position speech bubbles on panels",
+      "createdAt": "2025-01-29T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/manga-panel"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/speech-bubble"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/export-manga-page",
+      "type": "cpm:Activity",
+      "name": "Export Manga Page",
+      "description": "Export manga page to PNG/JPEG/PDF format",
+      "createdAt": "2025-01-29T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/manga-page"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/exported-image"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/browse-ai-models",
+      "type": "cpm:Activity",
+      "name": "Browse AI Models",
+      "description": "Browse and search AI models from fal.ai and DeepInfra",
+      "createdAt": "2025-01-29T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ],
+      "consumes": [],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/ai-model-list"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/manage-characters",
+      "type": "cpm:Activity",
+      "name": "Manage Characters",
+      "description": "Create, update, and delete character profiles",
+      "createdAt": "2025-01-29T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ],
+      "consumes": [],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/character-profile"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/manage-scenes",
+      "type": "cpm:Activity",
+      "name": "Manage Scenes",
+      "description": "Create, update, and delete story scenes",
+      "createdAt": "2025-01-29T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/manga-story"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/manga-scene"}
+      ]
+    }
+  ]
+}
+

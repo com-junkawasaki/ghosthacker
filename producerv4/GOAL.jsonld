@@ -1,0 +1,80 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://gftd.ai/ontology/manga-editor#",
+    "id": "@id",
+    "type": "@type",
+    "cpm": "https://example.org/cpm#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct": "http://purl.org/dc/terms/",
+    
+    "name": "dct:title",
+    "description": "dct:description",
+    "createdAt": {"@id": "dct:created", "@type": "xsd:dateTime"},
+    "updatedAt": {"@id": "dct:modified", "@type": "xsd:dateTime"},
+    
+    "goal": {"@id": "cpm:goal", "@type": "@id"},
+    "objective": {"@id": "cpm:objective", "@container": "@set"},
+    "successCriteria": {"@id": "cpm:successCriteria", "@container": "@set"},
+    "targetUser": {"@id": "cpm:targetUser", "@type": "@id"}
+  },
+  
+  "id": "https://gftd.ai/goal/manga-editor-wellbecoming",
+  "type": "cpm:Goal",
+  "name": "Enable users to create manga with AI assistance",
+  "description": "Users achieve well-becoming through intuitive manga creation experience with AI-powered image generation and story generation. The tool enables seamless creation of manga pages with panel layout, AI-generated images, speech bubbles, and export functionality.",
+  "createdAt": "2025-01-29T00:00:00Z",
+  "updatedAt": "2025-01-29T00:00:00Z",
+  
+  "targetUser": {
+    "@id": "https://gftd.ai/user/manga-creator",
+    "type": "cpm:PersonType",
+    "name": "Manga Creator",
+    "description": "User creating manga with AI assistance"
+  },
+  
+  "objective": [
+    {
+      "id": "https://gftd.ai/objective/intuitive-manga-editing",
+      "name": "Intuitive Manga Editing",
+      "description": "Provide intuitive editing experience for manga pages using Konva.js canvas"
+    },
+    {
+      "id": "https://gftd.ai/objective/ai-image-generation",
+      "name": "AI-Powered Image Generation",
+      "description": "Integrate fal.ai and DeepInfra for AI image generation with model selection"
+    },
+    {
+      "id": "https://gftd.ai/objective/story-generation",
+      "name": "Story Generation",
+      "description": "Enable AI-powered story generation from prompts"
+    },
+    {
+      "id": "https://gftd.ai/objective/manga-export",
+      "name": "Manga Export",
+      "description": "Export manga pages to PNG/JPEG/PDF formats"
+    }
+  ],
+  
+  "successCriteria": [
+    {
+      "id": "https://gftd.ai/criteria/editing-performance",
+      "name": "Editing Performance",
+      "description": "Smooth editing experience with <100ms response time for canvas operations"
+    },
+    {
+      "id": "https://gftd.ai/criteria/image-generation-quality",
+      "name": "Image Generation Quality",
+      "description": "AI-generated images meet user expectations for quality and relevance"
+    },
+    {
+      "id": "https://gftd.ai/criteria/export-quality",
+      "name": "Export Quality",
+      "description": "Exported images maintain high quality and resolution"
+    }
+  ]
+}
+

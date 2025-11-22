@@ -1,0 +1,72 @@
+query Health {
+  health
+}
+
+query MangaProjects {
+  mangaProjects {
+    id
+    title
+    description
+    createdAt
+    updatedAt
+  }
+}
+
+query MangaProject($id: ID!) {
+  mangaProject(id: $id) {
+    id
+    title
+    description
+    createdAt
+    updatedAt
+  }
+}
+
+query MangaPages($scriptId: ID!) {
+  mangaPages(scriptId: $scriptId) {
+    id
+    pageId
+    pageNumber
+    width
+    height
+    konvaStageJson
+    createdAt
+    updatedAt
+  }
+}
+
+query MangaPanels($pageId: ID!) {
+  mangaPanels(pageId: $pageId) {
+    id
+    panelId
+    layout
+    visual
+    dialogue {
+      speaker
+      text
+    }
+    x
+    y
+    width
+    height
+    zIndex
+    imageUrl
+    imageBase64
+    createdAt
+    updatedAt
+  }
+}
+
+query AIModels($provider: String) {
+  aiModels(provider: $provider) {
+    id
+    provider
+    modelId
+    modelName
+    modelType
+    previewImageUrl
+    description
+    isActive
+  }
+}
+
