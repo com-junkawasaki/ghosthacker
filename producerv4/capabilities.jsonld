@@ -131,6 +131,40 @@
         {"@id": "https://gftd.ai/performer/actor/manga-editor"},
         {"@id": "https://gftd.ai/performer/service/graphql"}
       ]
+    },
+    {
+      "id": "https://gftd.ai/capability/editing-tools",
+      "type": "cpm:Capability",
+      "name": "Editing Tools",
+      "description": "Capability to use various editing tools including selection, pen, eraser, shapes (rect/circle), text, and undo/redo functionality",
+      "createdAt": "2025-01-29T12:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/use-selection-tool"},
+        {"@id": "https://gftd.ai/activity/use-pen-tool"},
+        {"@id": "https://gftd.ai/activity/use-eraser-tool"},
+        {"@id": "https://gftd.ai/activity/use-shape-tool"},
+        {"@id": "https://gftd.ai/activity/use-text-tool"},
+        {"@id": "https://gftd.ai/activity/undo-redo"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/speech-bubble-system",
+      "type": "cpm:Capability",
+      "name": "Speech Bubble System",
+      "description": "Capability to add, edit, delete, and position speech bubbles with different shapes (speech/thought/shout) on manga panels",
+      "createdAt": "2025-01-29T12:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/add-speech-bubble"},
+        {"@id": "https://gftd.ai/activity/edit-speech-bubble"},
+        {"@id": "https://gftd.ai/activity/delete-speech-bubble"},
+        {"@id": "https://gftd.ai/activity/manage-speech-bubbles"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+      ]
     }
   ]
 }

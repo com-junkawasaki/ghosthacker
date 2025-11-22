@@ -27,7 +27,7 @@
   "name": "Enable users to create manga with AI assistance",
   "description": "Users achieve well-becoming through intuitive manga creation experience with AI-powered image generation and story generation. The tool enables seamless creation of manga pages with panel layout, AI-generated images, speech bubbles, and export functionality.",
   "createdAt": "2025-01-29T00:00:00Z",
-  "updatedAt": "2025-01-29T00:00:00Z",
+  "updatedAt": "2025-01-29T12:00:00Z",
   
   "targetUser": {
     "@id": "https://gftd.ai/user/manga-creator",
@@ -56,6 +56,16 @@
       "id": "https://gftd.ai/objective/manga-export",
       "name": "Manga Export",
       "description": "Export manga pages to PNG/JPEG/PDF formats"
+    },
+    {
+      "id": "https://gftd.ai/objective/editing-tools",
+      "name": "Comprehensive Editing Tools",
+      "description": "Provide comprehensive editing tools including selection, pen, eraser, shapes (rect/circle), text, and undo/redo functionality"
+    },
+    {
+      "id": "https://gftd.ai/objective/speech-bubble-system",
+      "name": "Speech Bubble System",
+      "description": "Enable intuitive speech bubble management with different shapes (speech/thought/shout), text editing, and positioning"
     }
   ],
   
@@ -74,6 +84,16 @@
       "id": "https://gftd.ai/criteria/export-quality",
       "name": "Export Quality",
       "description": "Exported images maintain high quality and resolution"
+    },
+    {
+      "id": "https://gftd.ai/criteria/editing-tools-usability",
+      "name": "Editing Tools Usability",
+      "description": "All editing tools (selection, pen, eraser, shapes, text) are intuitive and responsive with proper undo/redo support"
+    },
+    {
+      "id": "https://gftd.ai/criteria/speech-bubble-functionality",
+      "name": "Speech Bubble Functionality",
+      "description": "Speech bubbles can be added, edited, deleted, and positioned with different shapes and styles"
     }
   ]
 }

@@ -40,7 +40,7 @@
   "description": "AI Agentを使ったマンガ制作ウェブアプリ。単一Canvas（Konva.js）でページ全体を管理し、fal.ai/DeepInfraによるモデル選択機能を実装。Frontend: Next.js 14 App Router + React 18 + react-konva + Tailwind CSS, Backend: GraphQL (Poem 3/Rust) + PostgreSQL 16",
   "version": "0.1.0",
   "createdAt": "2025-01-29T00:00:00Z",
-  "updatedAt": "2025-01-29T00:00:00Z",
+  "updatedAt": "2025-01-29T12:00:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -59,7 +59,9 @@
     {"@id": "https://gftd.ai/capability/manga-export"},
     {"@id": "https://gftd.ai/capability/character-management"},
     {"@id": "https://gftd.ai/capability/scene-management"},
-    {"@id": "https://gftd.ai/capability/panel-management"}
+    {"@id": "https://gftd.ai/capability/panel-management"},
+    {"@id": "https://gftd.ai/capability/editing-tools"},
+    {"@id": "https://gftd.ai/capability/speech-bubble-system"}
   ],
   
   "hasActivity": [
@@ -70,7 +72,16 @@
     {"@id": "https://gftd.ai/activity/generate-story"},
     {"@id": "https://gftd.ai/activity/generate-panel-images"},
     {"@id": "https://gftd.ai/activity/manage-speech-bubbles"},
-    {"@id": "https://gftd.ai/activity/export-manga-page"}
+    {"@id": "https://gftd.ai/activity/export-manga-page"},
+    {"@id": "https://gftd.ai/activity/use-selection-tool"},
+    {"@id": "https://gftd.ai/activity/use-pen-tool"},
+    {"@id": "https://gftd.ai/activity/use-eraser-tool"},
+    {"@id": "https://gftd.ai/activity/use-shape-tool"},
+    {"@id": "https://gftd.ai/activity/use-text-tool"},
+    {"@id": "https://gftd.ai/activity/undo-redo"},
+    {"@id": "https://gftd.ai/activity/add-speech-bubble"},
+    {"@id": "https://gftd.ai/activity/edit-speech-bubble"},
+    {"@id": "https://gftd.ai/activity/delete-speech-bubble"}
   ],
   
   "hasPerformer": [

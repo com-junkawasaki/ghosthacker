@@ -195,6 +195,160 @@
       "produces": [
         {"@id": "https://gftd.ai/resource/manga-scene"}
       ]
+    },
+    {
+      "id": "https://gftd.ai/activity/use-selection-tool",
+      "type": "cpm:Activity",
+      "name": "Use Selection Tool",
+      "description": "Select, move, and resize objects on canvas using Konva Transformer",
+      "createdAt": "2025-01-29T12:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/konva-stage"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/konva-stage"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/use-pen-tool",
+      "type": "cpm:Activity",
+      "name": "Use Pen Tool",
+      "description": "Draw freehand lines on canvas using Konva Line",
+      "createdAt": "2025-01-29T12:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/konva-stage"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/drawing-layer"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/use-eraser-tool",
+      "type": "cpm:Activity",
+      "name": "Use Eraser Tool",
+      "description": "Erase drawings on canvas using composite operation",
+      "createdAt": "2025-01-29T12:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/drawing-layer"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/drawing-layer"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/use-shape-tool",
+      "type": "cpm:Activity",
+      "name": "Use Shape Tool",
+      "description": "Draw rectangles and circles on canvas using Konva Rect and Circle",
+      "createdAt": "2025-01-29T12:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/konva-stage"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/shape-layer"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/use-text-tool",
+      "type": "cpm:Activity",
+      "name": "Use Text Tool",
+      "description": "Add and edit text on canvas using Konva Text with double-click editing",
+      "createdAt": "2025-01-29T12:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/konva-stage"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/text-layer"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/undo-redo",
+      "type": "cpm:Activity",
+      "name": "Undo/Redo",
+      "description": "Undo and redo canvas operations using history management (max 50 steps)",
+      "createdAt": "2025-01-29T12:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/konva-stage-history"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/konva-stage"}
+      ],
+      "dependsOn": [
+        {"@id": "https://gftd.ai/activity/edit-manga-page"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/add-speech-bubble",
+      "type": "cpm:Activity",
+      "name": "Add Speech Bubble",
+      "description": "Add new speech bubble to canvas with default position and text",
+      "createdAt": "2025-01-29T12:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/manga-panel"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/speech-bubble"}
+      ],
+      "dependsOn": [
+        {"@id": "https://gftd.ai/activity/edit-manga-page"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/edit-speech-bubble",
+      "type": "cpm:Activity",
+      "name": "Edit Speech Bubble",
+      "description": "Edit speech bubble text, speaker, and shape type (speech/thought/shout)",
+      "createdAt": "2025-01-29T12:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/speech-bubble"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/speech-bubble"}
+      ],
+      "dependsOn": [
+        {"@id": "https://gftd.ai/activity/add-speech-bubble"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/delete-speech-bubble",
+      "type": "cpm:Activity",
+      "name": "Delete Speech Bubble",
+      "description": "Delete speech bubble from canvas",
+      "createdAt": "2025-01-29T12:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/speech-bubble"}
+      ],
+      "produces": [],
+      "dependsOn": [
+        {"@id": "https://gftd.ai/activity/add-speech-bubble"}
+      ]
     }
   ]
 }
