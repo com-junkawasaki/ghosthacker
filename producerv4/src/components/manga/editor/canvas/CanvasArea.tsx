@@ -8,8 +8,14 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { Stage, Layer } from 'react-konva';
-import { Stage as KonvaStage } from 'konva';
+import dynamic from 'next/dynamic';
+
+// Dynamically import Konva to avoid SSR issues
+const Stage = dynamic(() => import('react-konva').then((mod) => mod.Stage), { ssr: false });
+const Layer = dynamic(() => import('react-konva').then((mod) => mod.Layer), { ssr: false });
+
+// Import KonvaStage type separately
+import type { Stage as KonvaStageType } from 'konva';
 import { PanelLayer } from './konva/PanelLayer';
 import { DrawingLayer } from './konva/DrawingLayer';
 import { ShapeLayer } from './konva/ShapeLayer';
@@ -44,10 +50,10 @@ interface CanvasAreaProps {
   selectedNodeId?: string;
   onStageUpdate?: (stageJson: Record<string, unknown>) => void;
   onNodeSelect?: (nodeId: string | undefined) => void;
-  stageRef?: React.RefObject<KonvaStage>;
+  stageRef?: React.RefObject<KonvaStageType>;
 }
 
-export function CanvasArea({ 
+export default function CanvasArea({ 
   width, 
   height, 
   konvaStageJson, 
@@ -59,17 +65,21 @@ export function CanvasArea({
   onNodeSelect,
   stageRef: externalStageRef,
 }: CanvasAreaProps) {
-  const internalStageRef = useRef<KonvaStage>(null);
+  const internalStageRef = useRef<KonvaStageType>(null);
   const stageRef = externalStageRef || internalStageRef;
   const [nodes, setNodes] = useState<Array<{ id: string; node: any }>>([]);
 
   useEffect(() => {
-    if (konvaStageJson && stageRef.current) {
+    if (konvaStageJson && stageRef.current && typeof window !== 'undefined') {
       // Load stage from JSON
-      const stage = stageRef.current;
-      stage.destroy();
-      const newStage = KonvaStage.create(konvaStageJson);
-      Object.assign(stage, newStage);
+      import('konva').then(({ Stage: KonvaStage }) => {
+        const stage = stageRef.current;
+        if (stage) {
+          stage.destroy();
+          const newStage = KonvaStage.create(konvaStageJson);
+          Object.assign(stage, newStage);
+        }
+      });
     }
   }, [konvaStageJson]);
 
@@ -92,6 +102,10 @@ export function CanvasArea({
       }
     }
   };
+
+  if (typeof window === 'undefined') {
+    return <div className="flex items-center justify-center h-full">読み込み中...</div>;
+  }
 
   return (
     <div className="w-full h-full flex items-center justify-center bg-gray-50 overflow-auto p-4">

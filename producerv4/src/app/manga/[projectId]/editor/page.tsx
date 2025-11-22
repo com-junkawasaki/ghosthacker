@@ -8,11 +8,20 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { Stage } from 'konva';
 import { TopBar } from '@/components/manga/editor/header/TopBar';
 import { PageSidebar } from '@/components/manga/editor/sidebar/PageSidebar';
 import { RightSidebar } from '@/components/manga/editor/sidebar/RightSidebar';
-import { CanvasArea } from '@/components/manga/editor/canvas/CanvasArea';
+
+// Dynamically import CanvasArea to avoid SSR issues with Konva
+const CanvasArea = dynamic(
+  () => import('@/components/manga/editor/canvas/CanvasArea'),
+  { 
+    ssr: false,
+    loading: () => <div className="flex items-center justify-center h-full">読み込み中...</div>
+  }
+);
 import { BottomToolbar } from '@/components/manga/editor/toolbar/BottomToolbar';
 import { SaveLoadControls } from '@/components/manga/editor/bottom-right/SaveLoadControls';
 import { ZoomControls } from '@/components/manga/editor/bottom-right/ZoomControls';

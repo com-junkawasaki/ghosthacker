@@ -20,6 +20,27 @@ const nextConfig = {
       };
     }
     
+    // Ignore canvas and konva modules on server-side (Konva requires canvas only on client-side)
+    if (isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        canvas: false,
+        encoding: false,
+      };
+      
+      // Ignore konva imports on server-side using externals
+      config.externals = config.externals || [];
+      if (Array.isArray(config.externals)) {
+        config.externals.push('konva', 'react-konva');
+      } else {
+        config.externals = {
+          ...config.externals,
+          'konva': 'commonjs konva',
+          'react-konva': 'commonjs react-konva',
+        };
+      }
+    }
+    
     // Improve HMR in Docker environment
     if (dev) {
       config.watchOptions = {
