@@ -36,7 +36,7 @@ interface CanvasAreaProps {
     bubbleType: 'speech' | 'thought' | 'shout';
   }>;
   selectedTool?: ToolType;
-  selectedNodeId?: string;
+  selectedNodeId?: string | undefined;
   onStageUpdate?: (stageJson: Record<string, unknown>) => void;
   onNodeSelect?: (nodeId: string | undefined) => void;
   stageRef?: React.RefObject<KonvaStageType>;

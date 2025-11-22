@@ -39,9 +39,15 @@ export function PanelImage({ x, y, width, height, imageUrl, imageData }: PanelIm
     const img = new window.Image();
     img.crossOrigin = 'anonymous';
     
-    // Prefer imageData (bytea) over imageUrl
+    // Handle different image source types
     if (imageData) {
-      img.src = `data:image/png;base64,${imageData}`;
+      // imageData can be base64 encoded bytea or base64 string
+      // Check if it already includes data URL prefix
+      if (imageData.startsWith('data:')) {
+        img.src = imageData;
+      } else {
+        img.src = `data:image/png;base64,${imageData}`;
+      }
     } else if (imageUrl) {
       img.src = imageUrl;
     }

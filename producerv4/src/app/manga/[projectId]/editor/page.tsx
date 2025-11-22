@@ -3,13 +3,15 @@
  * @type cpm:Activity
  * @id https://gftd.ai/activity/edit-manga-page
  * 
- * Manga editor page
+ * Manga editor page with GraphQL data fetching and ts-pattern type safety
  */
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
-import type { Stage as KonvaStageType } from 'konva';
+import type Konva from 'konva';
+type KonvaStageType = Konva.Stage;
+import { useQuery, gql } from '@apollo/client';
 import { TopBar } from '@/components/manga/editor/header/TopBar';
 import { PageSidebar } from '@/components/manga/editor/sidebar/PageSidebar';
 import { RightSidebar } from '@/components/manga/editor/sidebar/RightSidebar';
@@ -30,6 +32,66 @@ import { useUndoRedo } from '@/hooks/useUndoRedo';
 import { exportStageAsPNG, exportStageAsJPEG, exportStageAsPDF } from '@/lib/export/imageExport';
 import { ToolType } from '@/lib/konva/tools';
 import { AIModel } from '@/lib/ai/modelBrowser';
+import type { 
+  MangaPage, 
+  MangaPanel, 
+  CanvasPanel, 
+  SpeechBubble,
+  DataState
+} from '@/types/manga';
+import { toPanelImageSource, matchDataState } from '@/types/manga';
+
+const MANGA_PROJECT_QUERY = gql`
+  query MangaProject($id: ID!) {
+    mangaProject(id: $id) {
+      id
+      title
+      description
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+const MANGA_PAGES_QUERY = gql`
+  query MangaPages($scriptId: ID!) {
+    mangaPages(scriptId: $scriptId) {
+      id
+      pageId
+      pageNumber
+      width
+      height
+      konvaStageJson
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+const MANGA_PANELS_QUERY = gql`
+  query MangaPanels($pageId: ID!) {
+    mangaPanels(pageId: $pageId) {
+      id
+      panelId
+      layout
+      visual
+      dialogue {
+        speaker
+        text
+      }
+      x
+      y
+      width
+      height
+      zIndex
+      imageUrl
+      imageBase64
+      imageData
+      createdAt
+      updatedAt
+    }
+  }
+`;
 
 export default function MangaEditorPage({
   params,
@@ -40,30 +102,123 @@ export default function MangaEditorPage({
   const [zoom, setZoom] = useState(1.0);
   const [selectedPageId, setSelectedPageId] = useState<string>();
   const [selectedNodeId, setSelectedNodeId] = useState<string>();
-  const [speechBubbles, setSpeechBubbles] = useState<Array<{
-    id: string;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    text: string;
-    speaker?: string;
-    bubbleType: 'speech' | 'thought' | 'shout';
-  }>>([]);
-  const [selectedModel, setSelectedModel] = useState<AIModel | null>(null);
+  const [speechBubbles, setSpeechBubbles] = useState<SpeechBubble[]>([]);
+  const [, setSelectedModel] = useState<AIModel | null>(null);
   const stageRef = useRef<KonvaStageType | null>(null);
   const { undo, redo, canUndo, canRedo, saveState } = useUndoRedo(stageRef);
 
-  // Mock data
-  const pages = [
-    { id: '1', pageNumber: 3 },
-    { id: '2', pageNumber: 4 },
-  ];
+  // Fetch project data
+  const { data: projectData, loading: projectLoading, error: projectError } = useQuery(MANGA_PROJECT_QUERY, {
+    variables: { id: params.projectId },
+    skip: !params.projectId,
+  });
 
-  const layers = [
-    { id: '1', name: 'Panel', visible: true },
-    { id: '2', name: 'Panel', visible: true },
-  ];
+  // For now, we'll use a mock scriptId. In production, this should come from the project data
+  const scriptId = projectData?.mangaProject?.id || params.projectId;
+
+  // Fetch pages data
+  const { data: pagesData, loading: pagesLoading, error: pagesError } = useQuery(MANGA_PAGES_QUERY, {
+    variables: { scriptId },
+    skip: !scriptId,
+  });
+
+  // Fetch panels data for selected page
+  const { data: panelsData, loading: panelsLoading, error: panelsError } = useQuery(MANGA_PANELS_QUERY, {
+    variables: { pageId: selectedPageId || '' },
+    skip: !selectedPageId,
+  });
+
+  // Convert pages data to component format
+  const pages = useMemo(() => {
+    if (!pagesData?.mangaPages) return [];
+    return pagesData.mangaPages.map((page: MangaPage) => ({
+      id: page.pageId,
+      pageNumber: page.pageNumber || 0,
+    }));
+  }, [pagesData]);
+
+  // Convert panels data to canvas format using union types
+  const canvasPanels: CanvasPanel[] = useMemo(() => {
+    if (!panelsData?.mangaPanels) return [];
+    
+    return panelsData.mangaPanels
+      .filter((panel: MangaPanel) => panel.x != null && panel.y != null && panel.width != null && panel.height != null)
+      .map((panel: MangaPanel) => {
+        const imageSource = toPanelImageSource(panel.imageUrl, panel.imageBase64, panel.imageData);
+        
+        // Convert dialogue to speech bubbles
+        panel.dialogue.forEach((dialogue, index) => {
+          const bubble: SpeechBubble = {
+            id: `bubble-${panel.id}-${index}`,
+            x: (panel.x || 0) + 20,
+            y: (panel.y || 0) + (panel.height || 0) - 80 - (index * 100),
+            width: (panel.width || 200) - 40,
+            height: 60,
+            text: dialogue.text,
+            speaker: dialogue.speaker,
+            bubbleType: 'speech',
+          };
+          setSpeechBubbles((prev) => {
+            const exists = prev.find((b) => b.id === bubble.id);
+            if (!exists) {
+              return [...prev, bubble];
+            }
+            return prev;
+          });
+        });
+
+        return {
+          id: panel.id,
+          x: panel.x || 0,
+          y: panel.y || 0,
+          width: panel.width || 200,
+          height: panel.height || 200,
+          imageSource,
+        };
+      });
+  }, [panelsData]);
+
+  // Derive layers from panels
+  const layers = useMemo(() => {
+    return canvasPanels.map((panel, index) => ({
+      id: panel.id,
+      name: `Panel ${index + 1}`,
+      visible: true,
+    }));
+  }, [canvasPanels]);
+
+  // Determine data loading state using ts-pattern
+  const dataState: DataState<{ pages: typeof pages; panels: typeof canvasPanels }> = useMemo(() => {
+    if (projectLoading || pagesLoading) {
+      return { status: 'loading' };
+    }
+    if (projectError || pagesError) {
+      return { 
+        status: 'error', 
+        error: new Error(projectError?.message || pagesError?.message || 'Failed to load data')
+      };
+    }
+    if (selectedPageId && panelsLoading) {
+      return { status: 'loading' };
+    }
+    if (selectedPageId && panelsError) {
+      return { 
+        status: 'error', 
+        error: new Error(panelsError.message || 'Failed to load panels')
+      };
+    }
+    return { 
+      status: 'success', 
+      data: { pages, panels: canvasPanels }
+    };
+  }, [projectLoading, pagesLoading, panelsLoading, projectError, pagesError, panelsError, pages, canvasPanels, selectedPageId]);
+
+  // Auto-select first page if available
+  useEffect(() => {
+    if (pages.length > 0 && !selectedPageId) {
+      setSelectedPageId(pages[0].id);
+    }
+  }, [pages, selectedPageId]);
 
   const handleExport = async (format: 'png' | 'jpeg' | 'pdf', resolution?: number) => {
     if (!stageRef.current) return;
@@ -107,73 +262,97 @@ export default function MangaEditorPage({
     speaker?: string;
     bubbleType: 'speech' | 'thought' | 'shout';
   }) => {
-    setSpeechBubbles((prev: Array<{
-      id: string;
-      x: number;
-      y: number;
-      width: number;
-      height: number;
-      text: string;
-      speaker?: string;
-      bubbleType: 'speech' | 'thought' | 'shout';
-    }>) =>
+    setSpeechBubbles((prev) =>
       prev.map((b) => (b.id === bubble.id ? { ...b, ...bubble } : b))
     );
     saveState();
   };
 
   const handleBubbleDelete = (id: string) => {
-    setSpeechBubbles((prev: Array<{
-      id: string;
-      x: number;
-      y: number;
-      width: number;
-      height: number;
-      text: string;
-      speaker?: string;
-      bubbleType: 'speech' | 'thought' | 'shout';
-    }>) => prev.filter((b) => b.id !== id));
+    setSpeechBubbles((prev) => prev.filter((b) => b.id !== id));
     if (selectedNodeId === id) {
       setSelectedNodeId(undefined);
     }
     saveState();
   };
 
-  const selectedBubble = speechBubbles.find((b: {
-    id: string;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    text: string;
-    speaker?: string;
-    bubbleType: 'speech' | 'thought' | 'shout';
-  }) => b.id === selectedNodeId);
+  const selectedBubble = speechBubbles.find((b) => b.id === selectedNodeId);
+
+  // Render based on data state using ts-pattern
+  const content = matchDataState(dataState, {
+    idle: () => (
+      <div className="flex items-center justify-center h-full">
+        <div className="text-gray-600">プロジェクトを読み込み中...</div>
+      </div>
+    ),
+    loading: () => (
+      <div className="flex items-center justify-center h-full">
+        <div className="text-gray-600">読み込み中...</div>
+      </div>
+    ),
+    error: (error: Error) => (
+      <div className="flex items-center justify-center h-full">
+        <div className="text-red-600">エラー: {error.message}</div>
+      </div>
+    ),
+    success: (data: { pages: typeof pages; panels: typeof canvasPanels }) => {
+      const pageSidebarProps = selectedPageId 
+        ? { pages: data.pages, selectedPageId, onPageSelect: setSelectedPageId, layers }
+        : { pages: data.pages, onPageSelect: setSelectedPageId, layers };
+      
+      const canvasAreaProps = {
+        width: 1200,
+        height: 1800,
+        panels: data.panels.map((panel: CanvasPanel) => {
+          const result: {
+            id: string;
+            x: number;
+            y: number;
+            width: number;
+            height: number;
+            imageUrl?: string;
+            imageData?: string;
+          } = {
+            id: panel.id,
+            x: panel.x,
+            y: panel.y,
+            width: panel.width,
+            height: panel.height,
+          };
+          if (panel.imageSource.type === 'url') {
+            result.imageUrl = panel.imageSource.value;
+          }
+          if (panel.imageSource.type === 'bytea' || panel.imageSource.type === 'base64') {
+            result.imageData = panel.imageSource.value;
+          }
+          return result;
+        }),
+        selectedTool,
+        selectedNodeId: selectedNodeId || undefined,
+        speechBubbles,
+        onStageUpdate: handleStageUpdate,
+        onNodeSelect: setSelectedNodeId,
+        stageRef: stageRef as React.RefObject<KonvaStageType>,
+      };
+
+      return (
+        <>
+          <PageSidebar {...pageSidebarProps} />
+          <div className="flex-1 relative">
+            <CanvasArea {...canvasAreaProps} />
+          </div>
+        </>
+      );
+    },
+  });
 
   return (
     <div className="h-screen flex flex-col">
       <TopBar onExport={handleExport} />
       <div className="flex-1 flex overflow-hidden">
-        <PageSidebar
-          pages={pages}
-          selectedPageId={selectedPageId}
-          onPageSelect={setSelectedPageId}
-          layers={layers}
-        />
-        <div className="flex-1 relative">
-          <CanvasArea
-            width={1200}
-            height={1800}
-            selectedTool={selectedTool}
-            selectedNodeId={selectedNodeId}
-            speechBubbles={speechBubbles}
-            onStageUpdate={handleStageUpdate}
-            onNodeSelect={setSelectedNodeId}
-            stageRef={stageRef}
-          />
-        </div>
+        {content}
         <RightSidebar
-          selectedBubble={selectedBubble}
+          {...(selectedBubble ? { selectedBubble } : {})}
           onBubbleSave={handleBubbleSave}
           onBubbleDelete={handleBubbleDelete}
           onModelSelect={(model) => {
@@ -189,6 +368,7 @@ export default function MangaEditorPage({
           <ZoomControls zoom={zoom} onZoomChange={setZoom} />
           <div className="flex items-center gap-2">
             <button
+              type="button"
               onClick={undo}
               disabled={!canUndo}
               className={`w-10 h-10 flex items-center justify-center rounded hover:bg-gray-300 ${
@@ -199,6 +379,7 @@ export default function MangaEditorPage({
               <span className="text-lg">↶</span>
             </button>
             <button
+              type="button"
               onClick={redo}
               disabled={!canRedo}
               className={`w-10 h-10 flex items-center justify-center rounded hover:bg-gray-300 ${
@@ -210,6 +391,7 @@ export default function MangaEditorPage({
             </button>
           </div>
           <button
+            type="button"
             onClick={handleAddSpeechBubble}
             className="px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700 text-sm"
           >
