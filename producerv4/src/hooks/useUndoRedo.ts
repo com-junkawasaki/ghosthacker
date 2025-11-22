@@ -6,9 +6,9 @@
  * Undo/Redo hook for Konva stage
  */
 import { useState, useCallback, useRef, useEffect } from 'react';
-import { Stage } from 'konva';
+import type { Stage as KonvaStageType } from 'konva';
 
-export function useUndoRedo(stageRef: React.RefObject<Stage> | null) {
+export function useUndoRedo(stageRef: React.RefObject<KonvaStageType> | null) {
   const [history, setHistory] = useState<Array<Record<string, unknown>>>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const isRestoringRef = useRef(false);
@@ -36,7 +36,7 @@ export function useUndoRedo(stageRef: React.RefObject<Stage> | null) {
   }, [stageRef, historyIndex]);
 
   const undo = useCallback(() => {
-    if (historyIndex <= 0 || !stageRef?.current) return;
+    if (historyIndex <= 0 || !stageRef?.current || typeof window === 'undefined') return;
 
     isRestoringRef.current = true;
     const newIndex = historyIndex - 1;
@@ -46,15 +46,21 @@ export function useUndoRedo(stageRef: React.RefObject<Stage> | null) {
       const layers = stage.getLayers();
       layers.forEach((layer) => layer.destroy());
       stage.destroy();
-      const newStage = Stage.create(state);
-      Object.assign(stage, newStage);
-      setHistoryIndex(newIndex);
+      // Dynamically import Konva to avoid SSR issues
+      if (typeof window !== 'undefined') {
+        import('konva').then((KonvaModule) => {
+          const Konva = KonvaModule.default;
+          const newStage = Konva.Stage.create(state);
+          Object.assign(stage, newStage);
+          setHistoryIndex(newIndex);
+        });
+      }
     }
     isRestoringRef.current = false;
   }, [stageRef, history, historyIndex]);
 
-  const redo = useCallback(() => {
-    if (historyIndex >= history.length - 1 || !stageRef?.current) return;
+  const redo = useCallback(async () => {
+    if (historyIndex >= history.length - 1 || !stageRef?.current || typeof window === 'undefined') return;
 
     isRestoringRef.current = true;
     const newIndex = historyIndex + 1;
@@ -64,7 +70,10 @@ export function useUndoRedo(stageRef: React.RefObject<Stage> | null) {
       const layers = stage.getLayers();
       layers.forEach((layer) => layer.destroy());
       stage.destroy();
-      const newStage = Stage.create(state);
+      // Dynamically import Konva to avoid SSR issues
+      const KonvaModule = await import('konva');
+      const Konva = KonvaModule.default;
+      const newStage = Konva.Stage.create(state);
       Object.assign(stage, newStage);
       setHistoryIndex(newIndex);
     }

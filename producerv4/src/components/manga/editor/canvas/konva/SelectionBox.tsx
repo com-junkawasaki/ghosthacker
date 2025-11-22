@@ -7,17 +7,25 @@
  */
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { Transformer } from 'react-konva';
-import { Group } from 'konva';
+import { useEffect, useRef, useState } from 'react';
+import type { Group as KonvaGroupType } from 'konva';
 
 interface SelectionBoxProps {
   selectedNodeId?: string;
-  nodes: Array<{ id: string; node: Group }>;
+  nodes: Array<{ id: string; node: KonvaGroupType }>;
 }
 
 export function SelectionBox({ selectedNodeId, nodes }: SelectionBoxProps) {
   const transformerRef = useRef<any>(null);
+  const [Transformer, setTransformer] = useState<any>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import('react-konva').then((mod) => {
+        setTransformer(() => mod.Transformer);
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (!transformerRef.current || !selectedNodeId) return;
@@ -31,8 +39,13 @@ export function SelectionBox({ selectedNodeId, nodes }: SelectionBoxProps) {
     }
   }, [selectedNodeId, nodes]);
 
+  if (!Transformer) {
+    return null;
+  }
+
+  const TransformerComponent = Transformer;
   return (
-    <Transformer
+    <TransformerComponent
       ref={transformerRef}
       boundBoxFunc={(oldBox, newBox) => {
         // Limit resize

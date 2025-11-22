@@ -8,8 +8,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { Layer, Text } from 'react-konva';
-import { Layer as KonvaLayer } from 'konva';
+import type { Layer as KonvaLayerType } from 'konva';
 
 interface TextLayerProps {
   fontSize?: number;
@@ -24,17 +23,29 @@ export function TextLayer({
   fillColor = '#000000',
   onTextComplete,
 }: TextLayerProps) {
-  const layerRef = useRef<KonvaLayer>(null);
+  const layerRef = useRef<KonvaLayerType | null>(null);
   const [isEditing, setIsEditing] = useState(false);
-  const currentText = useRef<Text | null>(null);
+  const currentText = useRef<any>(null);
+  const [Layer, setLayer] = useState<any>(null);
+  const [Text, setText] = useState<any>(null);
 
-  const handleMouseDown = (e: any) => {
-    if (isEditing) return;
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import('react-konva').then((mod) => {
+        setLayer(() => mod.Layer);
+        setText(() => mod.Text);
+      });
+    }
+  }, []);
+
+  const handleMouseDown = async (e: any) => {
+    if (isEditing || !Text || typeof window === 'undefined') return;
 
     const pos = e.target.getStage()?.getPointerPosition();
     if (!pos || !layerRef.current) return;
 
-    const text = new Text({
+    const TextClass = Text;
+    const text = new TextClass({
       x: pos.x,
       y: pos.y,
       text: 'テキストを入力',
@@ -45,7 +56,7 @@ export function TextLayer({
     });
 
     layerRef.current.add(text);
-    currentText.current = text as any;
+    currentText.current = text;
     setIsEditing(true);
 
     // Focus on text node for editing
@@ -110,6 +121,11 @@ export function TextLayer({
     };
   }, [isEditing, fontSize, fontFamily, fillColor]);
 
-  return <Layer ref={layerRef} />;
+  if (!Layer) {
+    return null;
+  }
+
+  const LayerComponent = Layer;
+  return <LayerComponent ref={layerRef} />;
 }
 

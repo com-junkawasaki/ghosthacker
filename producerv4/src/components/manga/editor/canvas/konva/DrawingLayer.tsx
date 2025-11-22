@@ -7,9 +7,8 @@
  */
 'use client';
 
-import { useRef, useEffect } from 'react';
-import { Layer, Line } from 'react-konva';
-import { Layer as KonvaLayer } from 'konva';
+import { useRef, useEffect, useState } from 'react';
+import type { Layer as KonvaLayerType } from 'konva';
 
 interface DrawingLayerProps {
   tool: 'pen' | 'eraser';
@@ -24,13 +23,24 @@ export function DrawingLayer({
   strokeWidth = 2,
   onDrawingComplete,
 }: DrawingLayerProps) {
-  const layerRef = useRef<KonvaLayer>(null);
+  const layerRef = useRef<KonvaLayerType | null>(null);
   const isDrawing = useRef(false);
-  const currentLine = useRef<Line | null>(null);
+  const currentLine = useRef<any>(null);
   const lines = useRef<Array<{ points: number[]; color: string; strokeWidth: number }>>([]);
+  const [Layer, setLayer] = useState<any>(null);
+  const [Line, setLine] = useState<any>(null);
 
-  const handleMouseDown = (e: any) => {
-    if (tool !== 'pen' && tool !== 'eraser') return;
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import('react-konva').then((mod) => {
+        setLayer(() => mod.Layer);
+        setLine(() => mod.Line);
+      });
+    }
+  }, []);
+
+  const handleMouseDown = async (e: any) => {
+    if (tool !== 'pen' && tool !== 'eraser' || !Line || typeof window === 'undefined') return;
 
     isDrawing.current = true;
     const pos = e.target.getStage()?.getPointerPosition();
@@ -39,7 +49,8 @@ export function DrawingLayer({
     const lineColor = tool === 'eraser' ? '#ffffff' : color;
     const lineWidth = tool === 'eraser' ? strokeWidth * 2 : strokeWidth;
 
-    const line = new Line({
+    const LineClass = Line;
+    const line = new LineClass({
       points: [pos.x, pos.y],
       stroke: lineColor,
       strokeWidth: lineWidth,
@@ -50,7 +61,7 @@ export function DrawingLayer({
 
     if (layerRef.current) {
       layerRef.current.add(line);
-      currentLine.current = line as any;
+      currentLine.current = line;
     }
   };
 
@@ -96,6 +107,11 @@ export function DrawingLayer({
     };
   }, [tool, color, strokeWidth]);
 
-  return <Layer ref={layerRef} />;
+  if (!Layer) {
+    return null;
+  }
+
+  const LayerComponent = Layer;
+  return <LayerComponent ref={layerRef} />;
 }
 

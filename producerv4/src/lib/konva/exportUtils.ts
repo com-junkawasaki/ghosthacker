@@ -5,9 +5,9 @@
  * 
  * Konva export utilities
  */
-import { Stage } from 'konva';
+import type { Stage as KonvaStageType } from 'konva';
 
-export async function exportStageAsPNG(stage: Stage, filename: string = 'manga-page.png'): Promise<void> {
+export async function exportStageAsPNG(stage: KonvaStageType, filename: string = 'manga-page.png'): Promise<void> {
   const dataURL = stage.toDataURL({ pixelRatio: 2 });
   const link = document.createElement('a');
   link.download = filename;
@@ -15,7 +15,7 @@ export async function exportStageAsPNG(stage: Stage, filename: string = 'manga-p
   link.click();
 }
 
-export async function exportStageAsJPEG(stage: Stage, filename: string = 'manga-page.jpg', quality: number = 0.9): Promise<void> {
+export async function exportStageAsJPEG(stage: KonvaStageType, filename: string = 'manga-page.jpg', quality: number = 0.9): Promise<void> {
   const dataURL = stage.toDataURL({ 
     mimeType: 'image/jpeg',
     quality,
@@ -27,13 +27,16 @@ export async function exportStageAsJPEG(stage: Stage, filename: string = 'manga-
   link.click();
 }
 
-export function exportStageAsJSON(stage: Stage): Record<string, unknown> {
+export function exportStageAsJSON(stage: KonvaStageType): Record<string, unknown> {
   return stage.toJSON();
 }
 
-export function loadStageFromJSON(stage: Stage, json: Record<string, unknown>): void {
+export async function loadStageFromJSON(stage: KonvaStageType, json: Record<string, unknown>): Promise<void> {
+  if (typeof window === 'undefined') return;
   stage.destroy();
-  const newStage = Stage.create(json);
+  const KonvaModule = await import('konva');
+  const Konva = KonvaModule.default;
+  const newStage = Konva.Stage.create(json);
   Object.assign(stage, newStage);
 }
 

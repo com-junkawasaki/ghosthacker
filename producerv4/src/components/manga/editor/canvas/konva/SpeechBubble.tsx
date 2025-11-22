@@ -7,8 +7,7 @@
  */
 'use client';
 
-import { Group, Text, Path, Circle } from 'react-konva';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 interface SpeechBubbleProps {
   id?: string;
@@ -42,6 +41,21 @@ export function SpeechBubble({
   onDragEnd,
 }: SpeechBubbleProps) {
   const groupRef = useRef<any>(null);
+  const [Group, setGroup] = useState<any>(null);
+  const [Text, setText] = useState<any>(null);
+  const [Path, setPath] = useState<any>(null);
+  const [Circle, setCircle] = useState<any>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import('react-konva').then((mod) => {
+        setGroup(() => mod.Group);
+        setText(() => mod.Text);
+        setPath(() => mod.Path);
+        setCircle(() => mod.Circle);
+      });
+    }
+  }, []);
 
   // Generate bubble path based on type
   const getBubblePath = () => {
@@ -96,8 +110,17 @@ export function SpeechBubble({
     }
   };
 
+  if (!Group || !Text || !Path || !Circle) {
+    return null;
+  }
+
+  const GroupComponent = Group;
+  const TextComponent = Text;
+  const PathComponent = Path;
+  const CircleComponent = Circle;
+
   return (
-    <Group
+    <GroupComponent
       ref={groupRef}
       id={id}
       x={x}
@@ -106,7 +129,7 @@ export function SpeechBubble({
       onClick={onClick}
       onDragEnd={handleDragEnd}
     >
-      <Path
+      <PathComponent
         data={getBubblePath()}
         fill="white"
         stroke="black"
@@ -114,20 +137,20 @@ export function SpeechBubble({
       />
       {bubbleType === 'thought' && (
         <>
-          <Circle x={width - 10} y={height - 5} radius={3} fill="black" />
-          <Circle x={width - 5} y={height + 2} radius={2} fill="black" />
-          <Circle x={width - 2} y={height + 5} radius={1.5} fill="black" />
+          <CircleComponent x={width - 10} y={height - 5} radius={3} fill="black" />
+          <CircleComponent x={width - 5} y={height + 2} radius={2} fill="black" />
+          <CircleComponent x={width - 2} y={height + 5} radius={1.5} fill="black" />
         </>
       )}
       {bubbleType === 'speech' && (
-        <Path
+        <PathComponent
           data={`M ${width - 30} ${height - 8} L ${width - 20} ${height} L ${width - 10} ${height - 8}`}
           stroke="black"
           strokeWidth={2}
           fill="white"
         />
       )}
-      <Text
+      <TextComponent
         x={8}
         y={8}
         width={width - 16}
@@ -141,7 +164,7 @@ export function SpeechBubble({
         wrap="word"
       />
       {speaker && (
-        <Text
+        <TextComponent
           x={8}
           y={-20}
           text={speaker}
@@ -151,7 +174,7 @@ export function SpeechBubble({
           fontStyle="bold"
         />
       )}
-    </Group>
+    </GroupComponent>
   );
 }
 

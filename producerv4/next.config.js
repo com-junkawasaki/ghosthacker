@@ -29,16 +29,30 @@ const nextConfig = {
       };
       
       // Ignore konva imports on server-side using externals
-      config.externals = config.externals || [];
-      if (Array.isArray(config.externals)) {
-        config.externals.push('konva', 'react-konva');
-      } else {
-        config.externals = {
-          ...config.externals,
-          'konva': 'commonjs konva',
-          'react-konva': 'commonjs react-konva',
-        };
-      }
+      const originalExternals = config.externals || [];
+      const externalsFunction = ({ request }, callback) => {
+        // Ignore konva and canvas modules on server-side
+        if (request === 'konva' || request === 'react-konva' || request === 'canvas') {
+          return callback(null, `commonjs ${request}`);
+        }
+        if (typeof originalExternals === 'function') {
+          return originalExternals({ request }, callback);
+        }
+        callback();
+      };
+      
+      config.externals = [
+        ...(Array.isArray(originalExternals) ? originalExternals : [originalExternals]),
+        externalsFunction,
+      ];
+      
+      // Also add to resolve.alias to prevent module resolution
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'konva': false,
+        'react-konva': false,
+        'canvas': false,
+      };
     }
     
     // Improve HMR in Docker environment

@@ -7,9 +7,8 @@
  */
 'use client';
 
-import { useRef, useEffect } from 'react';
-import { Layer, Rect, Circle } from 'react-konva';
-import { Layer as KonvaLayer } from 'konva';
+import { useRef, useEffect, useState } from 'react';
+import type { Layer as KonvaLayerType } from 'konva';
 
 interface ShapeLayerProps {
   tool: 'rect' | 'circle';
@@ -26,13 +25,26 @@ export function ShapeLayer({
   strokeWidth = 2,
   onShapeComplete,
 }: ShapeLayerProps) {
-  const layerRef = useRef<KonvaLayer>(null);
+  const layerRef = useRef<KonvaLayerType | null>(null);
   const isDrawing = useRef(false);
-  const currentShape = useRef<Rect | Circle | null>(null);
+  const currentShape = useRef<any>(null);
   const startPos = useRef<{ x: number; y: number } | null>(null);
+  const [Layer, setLayer] = useState<any>(null);
+  const [Rect, setRect] = useState<any>(null);
+  const [Circle, setCircle] = useState<any>(null);
 
-  const handleMouseDown = (e: any) => {
-    if (tool !== 'rect' && tool !== 'circle') return;
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import('react-konva').then((mod) => {
+        setLayer(() => mod.Layer);
+        setRect(() => mod.Rect);
+        setCircle(() => mod.Circle);
+      });
+    }
+  }, []);
+
+  const handleMouseDown = async (e: any) => {
+    if (tool !== 'rect' && tool !== 'circle' || !Rect || !Circle || typeof window === 'undefined') return;
 
     isDrawing.current = true;
     const pos = e.target.getStage()?.getPointerPosition();
@@ -41,7 +53,8 @@ export function ShapeLayer({
     startPos.current = { x: pos.x, y: pos.y };
 
     if (tool === 'rect') {
-      const rect = new Rect({
+      const RectClass = Rect;
+      const rect = new RectClass({
         x: pos.x,
         y: pos.y,
         width: 0,
@@ -51,9 +64,10 @@ export function ShapeLayer({
         strokeWidth,
       });
       layerRef.current.add(rect);
-      currentShape.current = rect as any;
+      currentShape.current = rect;
     } else {
-      const circle = new Circle({
+      const CircleClass = Circle;
+      const circle = new CircleClass({
         x: pos.x,
         y: pos.y,
         radius: 0,
@@ -62,7 +76,7 @@ export function ShapeLayer({
         strokeWidth,
       });
       layerRef.current.add(circle);
-      currentShape.current = circle as any;
+      currentShape.current = circle;
     }
   };
 
@@ -73,13 +87,13 @@ export function ShapeLayer({
     if (!pos) return;
 
     if (tool === 'rect') {
-      const rect = currentShape.current as Rect;
+      const rect = currentShape.current;
       rect.x(Math.min(startPos.current.x, pos.x));
       rect.y(Math.min(startPos.current.y, pos.y));
       rect.width(Math.abs(pos.x - startPos.current.x));
       rect.height(Math.abs(pos.y - startPos.current.y));
     } else {
-      const circle = currentShape.current as Circle;
+      const circle = currentShape.current;
       const radius = Math.sqrt(
         Math.pow(pos.x - startPos.current.x, 2) + Math.pow(pos.y - startPos.current.y, 2)
       );
@@ -90,7 +104,7 @@ export function ShapeLayer({
   const handleMouseUp = () => {
     if (isDrawing.current && currentShape.current && startPos.current) {
       if (tool === 'rect') {
-        const rect = currentShape.current as Rect;
+        const rect = currentShape.current;
         onShapeComplete?.({
           type: 'rect',
           x: rect.x(),
@@ -99,7 +113,7 @@ export function ShapeLayer({
           height: rect.height(),
         });
       } else {
-        const circle = currentShape.current as Circle;
+        const circle = currentShape.current;
         onShapeComplete?.({
           type: 'circle',
           x: circle.x(),
@@ -130,6 +144,11 @@ export function ShapeLayer({
     };
   }, [tool, strokeColor, fillColor, strokeWidth]);
 
-  return <Layer ref={layerRef} />;
+  if (!Layer) {
+    return null;
+  }
+
+  const LayerComponent = Layer;
+  return <LayerComponent ref={layerRef} />;
 }
 

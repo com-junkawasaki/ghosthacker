@@ -8,7 +8,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Image } from 'react-konva';
 
 interface PanelImageProps {
   x: number;
@@ -21,6 +20,15 @@ interface PanelImageProps {
 
 export function PanelImage({ x, y, width, height, imageUrl, imageData }: PanelImageProps) {
   const [image, setImage] = useState<HTMLImageElement | null>(null);
+  const [ImageComponent, setImageComponent] = useState<any>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import('react-konva').then((mod) => {
+        setImageComponent(() => mod.Image);
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (!imageUrl && !imageData) {
@@ -47,10 +55,11 @@ export function PanelImage({ x, y, width, height, imageUrl, imageData }: PanelIm
     };
   }, [imageUrl, imageData]);
 
-  if (!image) {
+  if (!image || !ImageComponent) {
     return null;
   }
 
-  return <Image x={x} y={y} width={width} height={height} image={image} />;
+  const ImageComp = ImageComponent;
+  return <ImageComp x={x} y={y} width={width} height={height} image={image} />;
 }
 

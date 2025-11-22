@@ -8,14 +8,8 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
-
-// Dynamically import Konva to avoid SSR issues
-const Stage = dynamic(() => import('react-konva').then((mod) => mod.Stage), { ssr: false });
-const Layer = dynamic(() => import('react-konva').then((mod) => mod.Layer), { ssr: false });
-
-// Import KonvaStage type separately
-import type { Stage as KonvaStageType } from 'konva';
+import type Konva from 'konva';
+type KonvaStageType = Konva.Stage;
 import { PanelLayer } from './konva/PanelLayer';
 import { DrawingLayer } from './konva/DrawingLayer';
 import { ShapeLayer } from './konva/ShapeLayer';
@@ -35,6 +29,7 @@ interface CanvasAreaProps {
     width: number;
     height: number;
     imageUrl?: string;
+    imageData?: string;
   }>;
   speechBubbles?: Array<{
     id: string;
@@ -53,7 +48,7 @@ interface CanvasAreaProps {
   stageRef?: React.RefObject<KonvaStageType>;
 }
 
-export default function CanvasArea({ 
+function CanvasAreaComponent({ 
   width, 
   height, 
   konvaStageJson, 
@@ -68,15 +63,28 @@ export default function CanvasArea({
   const internalStageRef = useRef<KonvaStageType>(null);
   const stageRef = externalStageRef || internalStageRef;
   const [nodes, setNodes] = useState<Array<{ id: string; node: any }>>([]);
+  const [Stage, setStage] = useState<any>(null);
+  const [Layer, setLayer] = useState<any>(null);
+
+  // Dynamically import react-konva on client-side only
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import('react-konva').then((mod) => {
+        setStage(() => mod.Stage);
+        setLayer(() => mod.Layer);
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (konvaStageJson && stageRef.current && typeof window !== 'undefined') {
       // Load stage from JSON
-      import('konva').then(({ Stage: KonvaStage }) => {
+      import('konva').then((KonvaModule) => {
         const stage = stageRef.current;
-        if (stage) {
+        if (stage && KonvaModule.default) {
+          const Konva = KonvaModule.default;
           stage.destroy();
-          const newStage = KonvaStage.create(konvaStageJson);
+          const newStage = Konva.Stage.create(konvaStageJson);
           Object.assign(stage, newStage);
         }
       });
@@ -103,13 +111,16 @@ export default function CanvasArea({
     }
   };
 
-  if (typeof window === 'undefined') {
+  if (typeof window === 'undefined' || !Stage || !Layer) {
     return <div className="flex items-center justify-center h-full">読み込み中...</div>;
   }
 
+  const StageComponent = Stage;
+  const LayerComponent = Layer;
+
   return (
     <div className="w-full h-full flex items-center justify-center bg-gray-50 overflow-auto p-4">
-      <Stage
+      <StageComponent
         ref={stageRef}
         width={width}
         height={height}
@@ -120,7 +131,7 @@ export default function CanvasArea({
         onTouchStart={handleStageUpdate}
         onTouchEnd={handleStageUpdate}
       >
-        <Layer>
+        <LayerComponent>
           <PanelLayer panels={panels} />
           {speechBubbles.map((bubble) => (
             <SpeechBubble
@@ -136,7 +147,7 @@ export default function CanvasArea({
               onClick={() => onNodeSelect?.(bubble.id)}
             />
           ))}
-        </Layer>
+        </LayerComponent>
         {(selectedTool === 'pen' || selectedTool === 'eraser') && (
           <DrawingLayer tool={selectedTool} />
         )}
@@ -147,12 +158,14 @@ export default function CanvasArea({
           <TextLayer />
         )}
         {selectedTool === 'select' && (
-          <Layer>
+          <LayerComponent>
             <SelectionBox selectedNodeId={selectedNodeId} nodes={nodes} />
-          </Layer>
+          </LayerComponent>
         )}
-      </Stage>
+      </StageComponent>
     </div>
   );
 }
 
+// Export with dynamic import to avoid SSR issues
+export default CanvasAreaComponent;

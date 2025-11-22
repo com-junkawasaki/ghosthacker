@@ -5,26 +5,26 @@
  * 
  * Konva editing tools utilities
  */
-import { Stage, Layer, Line, Rect, Circle, Text, Group, Path } from 'konva';
+import type { Stage as KonvaStageType, Layer as KonvaLayerType, Line as KonvaLineType, Rect as KonvaRectType, Circle as KonvaCircleType, Text as KonvaTextType, Group as KonvaGroupType, Path as KonvaPathType } from 'konva';
 
 export type ToolType = 'select' | 'pen' | 'eraser' | 'rect' | 'circle' | 'text';
 
 export interface DrawingState {
   isDrawing: boolean;
-  lastLine?: Line;
-  lastShape?: Rect | Circle | Text | Path;
+  lastLine?: KonvaLineType;
+  lastShape?: KonvaRectType | KonvaCircleType | KonvaTextType | KonvaPathType;
   startPos?: { x: number; y: number };
 }
 
 export class ToolManager {
-  private stage: Stage | null = null;
-  private layer: Layer | null = null;
+  private stage: KonvaStageType | null = null;
+  private layer: KonvaLayerType | null = null;
   private currentTool: ToolType = 'select';
   private drawingState: DrawingState = { isDrawing: false };
   private history: Array<Record<string, unknown>> = [];
   private historyIndex: number = -1;
 
-  setStage(stage: Stage, layer: Layer): void {
+  setStage(stage: KonvaStageType, layer: KonvaLayerType): void {
     this.stage = stage;
     this.layer = layer;
     this.saveState();
@@ -39,8 +39,8 @@ export class ToolManager {
     return this.currentTool;
   }
 
-  handleMouseDown(e: { evt: { preventDefault: () => void }; target: { getStage: () => Stage | null } }): void {
-    if (!this.stage || !this.layer) return;
+  async handleMouseDown(e: { evt: { preventDefault: () => void }; target: { getStage: () => KonvaStageType | null } }): Promise<void> {
+    if (!this.stage || !this.layer || typeof window === 'undefined') return;
 
     const stage = this.stage;
     const pos = stage.getPointerPosition();
@@ -48,14 +48,14 @@ export class ToolManager {
 
     switch (this.currentTool) {
       case 'pen':
-        this.startDrawing(pos.x, pos.y);
+        await this.startDrawing(pos.x, pos.y);
         break;
       case 'rect':
       case 'circle':
-        this.startShape(pos.x, pos.y);
+        await this.startShape(pos.x, pos.y);
         break;
       case 'text':
-        this.createText(pos.x, pos.y);
+        await this.createText(pos.x, pos.y);
         break;
     }
   }
@@ -85,10 +85,12 @@ export class ToolManager {
     }
   }
 
-  private startDrawing(x: number, y: number): void {
-    if (!this.layer) return;
+  private async startDrawing(x: number, y: number): Promise<void> {
+    if (!this.layer || typeof window === 'undefined') return;
+    const KonvaModule = await import('konva');
+    const Konva = KonvaModule.default;
 
-    const line = new Line({
+    const line = new Konva.Line({
       points: [x, y],
       stroke: '#000000',
       strokeWidth: 2,
@@ -112,12 +114,14 @@ export class ToolManager {
     this.drawingState.lastLine.points(newPoints);
   }
 
-  private startShape(x: number, y: number): void {
-    if (!this.layer) return;
+  private async startShape(x: number, y: number): Promise<void> {
+    if (!this.layer || typeof window === 'undefined') return;
+    const KonvaModule = await import('konva');
+    const Konva = KonvaModule.default;
 
-    let shape: Rect | Circle;
+    let shape: KonvaRectType | KonvaCircleType;
     if (this.currentTool === 'rect') {
-      shape = new Rect({
+      shape = new Konva.Rect({
         x,
         y,
         width: 0,
@@ -127,7 +131,7 @@ export class ToolManager {
         fill: 'transparent',
       });
     } else {
-      shape = new Circle({
+      shape = new Konva.Circle({
         x,
         y,
         radius: 0,
@@ -152,22 +156,24 @@ export class ToolManager {
     const startY = this.drawingState.startPos.y;
 
     if (this.currentTool === 'rect') {
-      const rect = this.drawingState.lastShape as Rect;
+      const rect = this.drawingState.lastShape as KonvaRectType;
       rect.x(Math.min(startX, x));
       rect.y(Math.min(startY, y));
       rect.width(Math.abs(x - startX));
       rect.height(Math.abs(y - startY));
     } else {
-      const circle = this.drawingState.lastShape as Circle;
+      const circle = this.drawingState.lastShape as KonvaCircleType;
       const radius = Math.sqrt(Math.pow(x - startX, 2) + Math.pow(y - startY, 2));
       circle.radius(radius);
     }
   }
 
-  private createText(x: number, y: number): void {
-    if (!this.layer) return;
+  private async createText(x: number, y: number): Promise<void> {
+    if (!this.layer || typeof window === 'undefined') return;
+    const KonvaModule = await import('konva');
+    const Konva = KonvaModule.default;
 
-    const text = new Text({
+    const text = new Konva.Text({
       x,
       y,
       text: 'テキストを入力',
@@ -185,16 +191,16 @@ export class ToolManager {
     this.drawingState = { isDrawing: false };
   }
 
-  undo(): void {
+  async undo(): Promise<void> {
     if (this.historyIndex <= 0) return;
     this.historyIndex--;
-    this.loadState(this.history[this.historyIndex]);
+    await this.loadState(this.history[this.historyIndex]);
   }
 
-  redo(): void {
+  async redo(): Promise<void> {
     if (this.historyIndex >= this.history.length - 1) return;
     this.historyIndex++;
-    this.loadState(this.history[this.historyIndex]);
+    await this.loadState(this.history[this.historyIndex]);
   }
 
   canUndo(): boolean {
@@ -218,10 +224,12 @@ export class ToolManager {
     }
   }
 
-  private loadState(state: Record<string, unknown>): void {
-    if (!this.stage) return;
+  private async loadState(state: Record<string, unknown>): Promise<void> {
+    if (!this.stage || typeof window === 'undefined') return;
     this.stage.destroy();
-    const newStage = Stage.create(state);
+    const KonvaModule = await import('konva');
+    const Konva = KonvaModule.default;
+    const newStage = Konva.Stage.create(state);
     Object.assign(this.stage, newStage);
   }
 }

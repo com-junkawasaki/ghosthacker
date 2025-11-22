@@ -9,7 +9,7 @@
 
 import { useState, useRef } from 'react';
 import dynamic from 'next/dynamic';
-import { Stage } from 'konva';
+import type { Stage as KonvaStageType } from 'konva';
 import { TopBar } from '@/components/manga/editor/header/TopBar';
 import { PageSidebar } from '@/components/manga/editor/sidebar/PageSidebar';
 import { RightSidebar } from '@/components/manga/editor/sidebar/RightSidebar';
@@ -51,7 +51,7 @@ export default function MangaEditorPage({
     bubbleType: 'speech' | 'thought' | 'shout';
   }>>([]);
   const [selectedModel, setSelectedModel] = useState<AIModel | null>(null);
-  const stageRef = useRef<Stage | null>(null);
+  const stageRef = useRef<KonvaStageType | null>(null);
   const { undo, redo, canUndo, canRedo, saveState } = useUndoRedo(stageRef);
 
   // Mock data

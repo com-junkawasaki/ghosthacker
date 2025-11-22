@@ -7,7 +7,7 @@
  */
 'use client';
 
-import { Group, Rect } from 'react-konva';
+import { useEffect, useState } from 'react';
 import { PanelImage } from './PanelImage';
 
 interface PanelLayerProps {
@@ -23,11 +23,30 @@ interface PanelLayerProps {
 }
 
 export function PanelLayer({ panels }: PanelLayerProps) {
+  const [Group, setGroup] = useState<any>(null);
+  const [Rect, setRect] = useState<any>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import('react-konva').then((mod) => {
+        setGroup(() => mod.Group);
+        setRect(() => mod.Rect);
+      });
+    }
+  }, []);
+
+  if (!Group || !Rect) {
+    return null;
+  }
+
+  const GroupComponent = Group;
+  const RectComponent = Rect;
+
   return (
-    <Group>
+    <GroupComponent>
       {panels.map((panel) => (
-        <Group key={panel.id} x={panel.x} y={panel.y}>
-          <Rect width={panel.width} height={panel.height} fill="#ffffff" stroke="#000000" strokeWidth={2} />
+        <GroupComponent key={panel.id} x={panel.x} y={panel.y}>
+          <RectComponent width={panel.width} height={panel.height} fill="#ffffff" stroke="#000000" strokeWidth={2} />
           {(panel.imageUrl || panel.imageData) && (
             <PanelImage
               x={0}
@@ -38,9 +57,9 @@ export function PanelLayer({ panels }: PanelLayerProps) {
               imageData={panel.imageData}
             />
           )}
-        </Group>
+        </GroupComponent>
       ))}
-    </Group>
+    </GroupComponent>
   );
 }
 
