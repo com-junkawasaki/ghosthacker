@@ -59,6 +59,7 @@ services:
       - "25321:3000"
     environment:
       NODE_ENV: development
+      CI: "true"
       # Improve file watching reliability on macOS bind mounts
       CHOKIDAR_USEPOLLING: "true"
       CHOKIDAR_INTERVAL: 1000
