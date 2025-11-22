@@ -22,13 +22,32 @@
   
   "@graph": [
     {
+      "id": "https://gftd.ai/activity/create-manga-project",
+      "type": "cpm:Activity",
+      "name": "Create Manga Project",
+      "description": "Create a new manga project with title and description",
+      "createdAt": "2025-01-29T13:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/project-title"},
+        {"@id": "https://gftd.ai/resource/project-description"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/manga-project"}
+      ]
+    },
+    {
       "id": "https://gftd.ai/activity/list-manga-projects",
       "type": "cpm:Activity",
       "name": "List Manga Projects",
       "description": "Browse and list all manga projects",
       "createdAt": "2025-01-29T00:00:00Z",
       "performedBy": [
-        {"@id": "https://gftd.ai/performer/actor/manga-editor"}
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
       ],
       "consumes": [],
       "produces": [
@@ -103,8 +122,9 @@
       "id": "https://gftd.ai/activity/generate-panel-images",
       "type": "cpm:Activity",
       "name": "Generate Panel Images",
-      "description": "Generate images for manga panels using AI models (fal.ai, DeepInfra)",
+      "description": "Generate images for manga panels using AI models (fal.ai, DeepInfra). Images are stored as bytea in PostgreSQL and returned as Base64-encoded data.",
       "createdAt": "2025-01-29T00:00:00Z",
+      "updatedAt": "2025-01-29T13:00:00Z",
       "performedBy": [
         {"@id": "https://gftd.ai/performer/actor/manga-editor"},
         {"@id": "https://gftd.ai/performer/service/graphql"}
@@ -114,7 +134,8 @@
         {"@id": "https://gftd.ai/resource/ai-model"}
       ],
       "produces": [
-        {"@id": "https://gftd.ai/resource/generated-image"}
+        {"@id": "https://gftd.ai/resource/generated-image"},
+        {"@id": "https://gftd.ai/resource/image-bytea-storage"}
       ]
     },
     {

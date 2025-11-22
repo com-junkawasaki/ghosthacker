@@ -40,10 +40,26 @@
       "id": "https://gftd.ai/capability/ai-image-generation",
       "type": "cpm:Capability",
       "name": "AI Image Generation",
-      "description": "Capability to generate images using AI models (fal.ai, DeepInfra, OpenAI) with model selection",
+      "description": "Capability to generate images using AI models (fal.ai, DeepInfra, OpenAI) with model selection. Generated images are stored as bytea in PostgreSQL and returned as Base64-encoded data.",
       "createdAt": "2025-01-29T00:00:00Z",
+      "updatedAt": "2025-01-29T13:00:00Z",
       "hasActivity": [
         {"@id": "https://gftd.ai/activity/generate-panel-images"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/manga-editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/project-management",
+      "type": "cpm:Capability",
+      "name": "Project Management",
+      "description": "Capability to create, list, and manage manga projects",
+      "createdAt": "2025-01-29T13:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/create-manga-project"},
+        {"@id": "https://gftd.ai/activity/list-manga-projects"}
       ],
       "realizedBy": [
         {"@id": "https://gftd.ai/performer/actor/manga-editor"},

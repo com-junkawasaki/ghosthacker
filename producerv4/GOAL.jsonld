@@ -25,9 +25,9 @@
   "id": "https://gftd.ai/goal/manga-editor-wellbecoming",
   "type": "cpm:Goal",
   "name": "Enable users to create manga with AI assistance",
-  "description": "Users achieve well-becoming through intuitive manga creation experience with AI-powered image generation and story generation. The tool enables seamless creation of manga pages with panel layout, AI-generated images, speech bubbles, and export functionality.",
+  "description": "Users achieve well-becoming through intuitive manga creation experience with AI-powered image generation and story generation. The tool enables seamless creation of manga pages with panel layout, AI-generated images (stored as bytea in PostgreSQL), speech bubbles, and export functionality. Konva.js components use dynamic imports for SSR compatibility.",
   "createdAt": "2025-01-29T00:00:00Z",
-  "updatedAt": "2025-01-29T12:00:00Z",
+  "updatedAt": "2025-01-29T13:00:00Z",
   
   "targetUser": {
     "@id": "https://gftd.ai/user/manga-creator",
@@ -45,7 +45,17 @@
     {
       "id": "https://gftd.ai/objective/ai-image-generation",
       "name": "AI-Powered Image Generation",
-      "description": "Integrate fal.ai and DeepInfra for AI image generation with model selection"
+      "description": "Integrate fal.ai and DeepInfra for AI image generation with model selection. Images are stored as bytea in PostgreSQL and returned as Base64-encoded data."
+    },
+    {
+      "id": "https://gftd.ai/objective/project-management",
+      "name": "Project Management",
+      "description": "Enable users to create and manage manga projects with intuitive project listing and creation interface"
+    },
+    {
+      "id": "https://gftd.ai/objective/ssr-compatibility",
+      "name": "SSR Compatibility",
+      "description": "Ensure Konva.js components work correctly with Next.js SSR by using dynamic imports for all react-konva components"
     },
     {
       "id": "https://gftd.ai/objective/story-generation",
@@ -94,6 +104,21 @@
       "id": "https://gftd.ai/criteria/speech-bubble-functionality",
       "name": "Speech Bubble Functionality",
       "description": "Speech bubbles can be added, edited, deleted, and positioned with different shapes and styles"
+    },
+    {
+      "id": "https://gftd.ai/criteria/project-creation",
+      "name": "Project Creation",
+      "description": "Users can create new manga projects with title and description, and navigate to the editor seamlessly"
+    },
+    {
+      "id": "https://gftd.ai/criteria/image-storage",
+      "name": "Image Storage",
+      "description": "Generated images are stored as bytea in PostgreSQL and efficiently retrieved as Base64-encoded data"
+    },
+    {
+      "id": "https://gftd.ai/criteria/ssr-compatibility",
+      "name": "SSR Compatibility",
+      "description": "All Konva.js components work correctly with Next.js SSR without canvas module errors"
     }
   ]
 }

@@ -10,12 +10,6 @@
 import { useRef, useEffect, useState } from 'react';
 import type Konva from 'konva';
 type KonvaStageType = Konva.Stage;
-import { PanelLayer } from './konva/PanelLayer';
-import { DrawingLayer } from './konva/DrawingLayer';
-import { ShapeLayer } from './konva/ShapeLayer';
-import { TextLayer } from './konva/TextLayer';
-import { SelectionBox } from './konva/SelectionBox';
-import { SpeechBubble } from './konva/SpeechBubble';
 import { ToolType } from '@/lib/konva/tools';
 
 interface CanvasAreaProps {
@@ -65,15 +59,67 @@ function CanvasAreaComponent({
   const [nodes, setNodes] = useState<Array<{ id: string; node: any }>>([]);
   const [Stage, setStage] = useState<any>(null);
   const [Layer, setLayer] = useState<any>(null);
+  const [PanelLayer, setPanelLayer] = useState<any>(null);
+  const [DrawingLayer, setDrawingLayer] = useState<any>(null);
+  const [ShapeLayer, setShapeLayer] = useState<any>(null);
+  const [TextLayer, setTextLayer] = useState<any>(null);
+  const [SelectionBox, setSelectionBox] = useState<any>(null);
+  const [SpeechBubble, setSpeechBubble] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Dynamically import react-konva on client-side only
+  // Dynamically import react-konva and child components on client-side only
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      import('react-konva').then((mod) => {
-        setStage(() => mod.Stage);
-        setLayer(() => mod.Layer);
-      });
+    if (typeof window === 'undefined') {
+      setIsLoading(false);
+      return;
     }
+
+    let isMounted = true;
+
+    const loadComponents = async () => {
+      try {
+        const [
+          reactKonvaMod,
+          panelLayerMod,
+          drawingLayerMod,
+          shapeLayerMod,
+          textLayerMod,
+          selectionBoxMod,
+          speechBubbleMod,
+        ] = await Promise.all([
+          import('react-konva'),
+          import('./konva/PanelLayer'),
+          import('./konva/DrawingLayer'),
+          import('./konva/ShapeLayer'),
+          import('./konva/TextLayer'),
+          import('./konva/SelectionBox'),
+          import('./konva/SpeechBubble'),
+        ]);
+
+        if (!isMounted) return;
+
+        setStage(() => reactKonvaMod.Stage);
+        setLayer(() => reactKonvaMod.Layer);
+        setPanelLayer(() => panelLayerMod.PanelLayer);
+        setDrawingLayer(() => drawingLayerMod.DrawingLayer);
+        setShapeLayer(() => shapeLayerMod.ShapeLayer);
+        setTextLayer(() => textLayerMod.TextLayer);
+        setSelectionBox(() => selectionBoxMod.SelectionBox);
+        setSpeechBubble(() => speechBubbleMod.SpeechBubble);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Failed to load Konva components:', error);
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadComponents();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   useEffect(() => {
@@ -111,60 +157,79 @@ function CanvasAreaComponent({
     }
   };
 
-  if (typeof window === 'undefined' || !Stage || !Layer) {
-    return <div className="flex items-center justify-center h-full">読み込み中...</div>;
+  if (typeof window === 'undefined' || isLoading || !Stage || !Layer || !PanelLayer || !SpeechBubble) {
+    return (
+      <div className="flex items-center justify-center h-full bg-gray-50">
+        <div className="text-gray-600">読み込み中...</div>
+      </div>
+    );
   }
 
   const StageComponent = Stage;
   const LayerComponent = Layer;
+  const PanelLayerComponent = PanelLayer;
+  const SpeechBubbleComponent = SpeechBubble;
+  const DrawingLayerComponent = DrawingLayer;
+  const ShapeLayerComponent = ShapeLayer;
+  const TextLayerComponent = TextLayer;
+  const SelectionBoxComponent = SelectionBox;
 
-  return (
-    <div className="w-full h-full flex items-center justify-center bg-gray-50 overflow-auto p-4">
-      <StageComponent
-        ref={stageRef}
-        width={width}
-        height={height}
-        className="bg-white shadow-lg"
-        onClick={handleStageClick}
-        onMouseDown={handleStageUpdate}
-        onMouseUp={handleStageUpdate}
-        onTouchStart={handleStageUpdate}
-        onTouchEnd={handleStageUpdate}
-      >
-        <LayerComponent>
-          <PanelLayer panels={panels} />
-          {speechBubbles.map((bubble) => (
-            <SpeechBubble
-              key={bubble.id}
-              id={bubble.id}
-              x={bubble.x}
-              y={bubble.y}
-              width={bubble.width}
-              height={bubble.height}
-              text={bubble.text}
-              speaker={bubble.speaker}
-              bubbleType={bubble.bubbleType}
-              onClick={() => onNodeSelect?.(bubble.id)}
-            />
-          ))}
-        </LayerComponent>
-        {(selectedTool === 'pen' || selectedTool === 'eraser') && (
-          <DrawingLayer tool={selectedTool} />
-        )}
-        {(selectedTool === 'rect' || selectedTool === 'circle') && (
-          <ShapeLayer tool={selectedTool} />
-        )}
-        {selectedTool === 'text' && (
-          <TextLayer />
-        )}
-        {selectedTool === 'select' && (
+  try {
+    return (
+      <div className="w-full h-full flex items-center justify-center bg-gray-50 overflow-auto p-4">
+        <StageComponent
+          ref={stageRef}
+          width={width}
+          height={height}
+          className="bg-white shadow-lg"
+          onClick={handleStageClick}
+          onMouseDown={handleStageUpdate}
+          onMouseUp={handleStageUpdate}
+          onTouchStart={handleStageUpdate}
+          onTouchEnd={handleStageUpdate}
+        >
           <LayerComponent>
-            <SelectionBox selectedNodeId={selectedNodeId} nodes={nodes} />
+            <PanelLayerComponent panels={panels} />
+            {speechBubbles.map((bubble) => (
+              <SpeechBubbleComponent
+                key={bubble.id}
+                id={bubble.id}
+                x={bubble.x}
+                y={bubble.y}
+                width={bubble.width}
+                height={bubble.height}
+                text={bubble.text}
+                speaker={bubble.speaker}
+                bubbleType={bubble.bubbleType}
+                onClick={() => onNodeSelect?.(bubble.id)}
+              />
+            ))}
           </LayerComponent>
-        )}
-      </StageComponent>
-    </div>
-  );
+          {(selectedTool === 'pen' || selectedTool === 'eraser') && DrawingLayerComponent && (
+            <DrawingLayerComponent tool={selectedTool} />
+          )}
+          {(selectedTool === 'rect' || selectedTool === 'circle') && ShapeLayerComponent && (
+            <ShapeLayerComponent tool={selectedTool} />
+          )}
+          {selectedTool === 'text' && TextLayerComponent && (
+            <TextLayerComponent />
+          )}
+          {selectedTool === 'select' && SelectionBoxComponent && (
+            <LayerComponent>
+              <SelectionBoxComponent selectedNodeId={selectedNodeId} nodes={nodes} />
+            </LayerComponent>
+          )}
+        </StageComponent>
+      </div>
+    );
+  } catch (error) {
+    console.error('CanvasArea render error:', error);
+    return (
+      <div className="flex items-center justify-center h-full bg-gray-50">
+        <div className="text-red-600">エラーが発生しました: {error instanceof Error ? error.message : 'Unknown error'}</div>
+      </div>
+    );
+  }
 }
 
 // Export with dynamic import to avoid SSR issues
