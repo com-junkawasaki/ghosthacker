@@ -51,7 +51,6 @@ export default function MangaEditorPage({
     bubbleType: 'speech' | 'thought' | 'shout';
   }>>([]);
   const [selectedModel, setSelectedModel] = useState<AIModel | null>(null);
-  const [selectedTool, setSelectedTool] = useState<ToolType>('select');
   const stageRef = useRef<KonvaStageType | null>(null);
   const { undo, redo, canUndo, canRedo, saveState } = useUndoRedo(stageRef);
 

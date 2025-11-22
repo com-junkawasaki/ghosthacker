@@ -43,10 +43,10 @@ export function PanelLayer({ panels }: PanelLayerProps) {
   const RectComponent = Rect;
 
   return (
-    <GroupComponent>
+    <GroupComponent name="PanelLayer">
       {panels.map((panel) => (
-        <GroupComponent key={panel.id} x={panel.x} y={panel.y}>
-          <RectComponent width={panel.width} height={panel.height} fill="#ffffff" stroke="#000000" strokeWidth={2} />
+        <GroupComponent key={panel.id} name={`Panel-${panel.id}`} x={panel.x} y={panel.y}>
+          <RectComponent name="PanelRect" width={panel.width} height={panel.height} fill="#ffffff" stroke="#000000" strokeWidth={2} />
           {(panel.imageUrl || panel.imageData) && (
             <PanelImage
               x={0}

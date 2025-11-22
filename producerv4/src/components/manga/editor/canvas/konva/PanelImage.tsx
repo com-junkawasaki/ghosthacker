@@ -60,6 +60,6 @@ export function PanelImage({ x, y, width, height, imageUrl, imageData }: PanelIm
   }
 
   const ImageComp = ImageComponent;
-  return <ImageComp x={x} y={y} width={width} height={height} image={image} />;
+  return <ImageComp name="PanelImage" x={x} y={y} width={width} height={height} image={image} />;
 }
 

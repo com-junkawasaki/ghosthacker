@@ -122,6 +122,7 @@ export function SpeechBubble({
   return (
     <GroupComponent
       ref={groupRef}
+      name="SpeechBubble"
       id={id}
       x={x}
       y={y}
@@ -130,6 +131,7 @@ export function SpeechBubble({
       onDragEnd={handleDragEnd}
     >
       <PathComponent
+        name="BubblePath"
         data={getBubblePath()}
         fill="white"
         stroke="black"
@@ -137,13 +139,14 @@ export function SpeechBubble({
       />
       {bubbleType === 'thought' && (
         <>
-          <CircleComponent x={width - 10} y={height - 5} radius={3} fill="black" />
-          <CircleComponent x={width - 5} y={height + 2} radius={2} fill="black" />
-          <CircleComponent x={width - 2} y={height + 5} radius={1.5} fill="black" />
+          <CircleComponent name="ThoughtCircle1" x={width - 10} y={height - 5} radius={3} fill="black" />
+          <CircleComponent name="ThoughtCircle2" x={width - 5} y={height + 2} radius={2} fill="black" />
+          <CircleComponent name="ThoughtCircle3" x={width - 2} y={height + 5} radius={1.5} fill="black" />
         </>
       )}
       {bubbleType === 'speech' && (
         <PathComponent
+          name="SpeechTail"
           data={`M ${width - 30} ${height - 8} L ${width - 20} ${height} L ${width - 10} ${height - 8}`}
           stroke="black"
           strokeWidth={2}
@@ -151,6 +154,7 @@ export function SpeechBubble({
         />
       )}
       <TextComponent
+        name="BubbleText"
         x={8}
         y={8}
         width={width - 16}
@@ -165,6 +169,7 @@ export function SpeechBubble({
       />
       {speaker && (
         <TextComponent
+          name="SpeakerText"
           x={8}
           y={-20}
           text={speaker}
