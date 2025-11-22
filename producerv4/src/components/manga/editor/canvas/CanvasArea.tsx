@@ -7,10 +7,16 @@
  */
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Stage, Layer } from 'react-konva';
 import { Stage as KonvaStage } from 'konva';
 import { PanelLayer } from './konva/PanelLayer';
+import { DrawingLayer } from './konva/DrawingLayer';
+import { ShapeLayer } from './konva/ShapeLayer';
+import { TextLayer } from './konva/TextLayer';
+import { SelectionBox } from './konva/SelectionBox';
+import { SpeechBubble } from './konva/SpeechBubble';
+import { ToolType } from '@/lib/konva/tools';
 
 interface CanvasAreaProps {
   width: number;
@@ -24,7 +30,21 @@ interface CanvasAreaProps {
     height: number;
     imageUrl?: string;
   }>;
+  speechBubbles?: Array<{
+    id: string;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    text: string;
+    speaker?: string;
+    bubbleType: 'speech' | 'thought' | 'shout';
+  }>;
+  selectedTool?: ToolType;
+  selectedNodeId?: string;
   onStageUpdate?: (stageJson: Record<string, unknown>) => void;
+  onNodeSelect?: (nodeId: string | undefined) => void;
+  stageRef?: React.RefObject<KonvaStage>;
 }
 
 export function CanvasArea({ 
@@ -32,9 +52,16 @@ export function CanvasArea({
   height, 
   konvaStageJson, 
   panels = [],
+  speechBubbles = [],
+  selectedTool = 'select',
+  selectedNodeId,
   onStageUpdate,
+  onNodeSelect,
+  stageRef: externalStageRef,
 }: CanvasAreaProps) {
-  const stageRef = useRef<KonvaStage>(null);
+  const internalStageRef = useRef<KonvaStage>(null);
+  const stageRef = externalStageRef || internalStageRef;
+  const [nodes, setNodes] = useState<Array<{ id: string; node: any }>>([]);
 
   useEffect(() => {
     if (konvaStageJson && stageRef.current) {
@@ -53,6 +80,19 @@ export function CanvasArea({
     }
   };
 
+  const handleStageClick = (e: any) => {
+    // Deselect when clicking on empty area
+    if (e.target === e.target.getStage()) {
+      onNodeSelect?.(undefined);
+    } else {
+      // Select clicked node
+      const nodeId = e.target.id();
+      if (nodeId) {
+        onNodeSelect?.(nodeId);
+      }
+    }
+  };
+
   return (
     <div className="w-full h-full flex items-center justify-center bg-gray-50 overflow-auto p-4">
       <Stage
@@ -60,6 +100,7 @@ export function CanvasArea({
         width={width}
         height={height}
         className="bg-white shadow-lg"
+        onClick={handleStageClick}
         onMouseDown={handleStageUpdate}
         onMouseUp={handleStageUpdate}
         onTouchStart={handleStageUpdate}
@@ -67,7 +108,35 @@ export function CanvasArea({
       >
         <Layer>
           <PanelLayer panels={panels} />
+          {speechBubbles.map((bubble) => (
+            <SpeechBubble
+              key={bubble.id}
+              id={bubble.id}
+              x={bubble.x}
+              y={bubble.y}
+              width={bubble.width}
+              height={bubble.height}
+              text={bubble.text}
+              speaker={bubble.speaker}
+              bubbleType={bubble.bubbleType}
+              onClick={() => onNodeSelect?.(bubble.id)}
+            />
+          ))}
         </Layer>
+        {(selectedTool === 'pen' || selectedTool === 'eraser') && (
+          <DrawingLayer tool={selectedTool} />
+        )}
+        {(selectedTool === 'rect' || selectedTool === 'circle') && (
+          <ShapeLayer tool={selectedTool} />
+        )}
+        {selectedTool === 'text' && (
+          <TextLayer />
+        )}
+        {selectedTool === 'select' && (
+          <Layer>
+            <SelectionBox selectedNodeId={selectedNodeId} nodes={nodes} />
+          </Layer>
+        )}
       </Stage>
     </div>
   );

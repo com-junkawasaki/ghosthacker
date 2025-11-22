@@ -10,12 +10,38 @@
 import { Tabs } from '@/components/shared/ui/Tabs';
 import { PromptTab } from './PromptTab';
 import { PageTab } from './PageTab';
+import { ModelBrowser } from './ModelBrowser';
+import { AIModel } from '@/lib/ai/modelBrowser';
 
 interface RightSidebarProps {
   activeTab?: string;
+  selectedBubble?: {
+    id: string;
+    text: string;
+    speaker?: string;
+    bubbleType: 'speech' | 'thought' | 'shout';
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  };
+  onBubbleSave?: (bubble: {
+    id: string;
+    text: string;
+    speaker?: string;
+    bubbleType: 'speech' | 'thought' | 'shout';
+  }) => void;
+  onBubbleDelete?: (id: string) => void;
+  onModelSelect?: (model: AIModel) => void;
 }
 
-export function RightSidebar({ activeTab }: RightSidebarProps) {
+export function RightSidebar({
+  activeTab,
+  selectedBubble,
+  onBubbleSave,
+  onBubbleDelete,
+  onModelSelect,
+}: RightSidebarProps) {
   return (
     <div className="w-80 bg-gray-100 border-l border-gray-200 h-full">
       <Tabs
@@ -28,7 +54,18 @@ export function RightSidebar({ activeTab }: RightSidebarProps) {
           {
             id: 'page',
             label: 'ページ',
-            content: <PageTab />,
+            content: (
+              <PageTab
+                selectedBubble={selectedBubble}
+                onBubbleSave={onBubbleSave}
+                onBubbleDelete={onBubbleDelete}
+              />
+            ),
+          },
+          {
+            id: 'models',
+            label: 'モデル',
+            content: <ModelBrowser onModelSelect={onModelSelect} />,
           },
         ]}
         defaultTab={activeTab || 'prompt'}
