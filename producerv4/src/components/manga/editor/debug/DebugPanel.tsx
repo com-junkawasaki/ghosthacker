@@ -32,6 +32,15 @@ interface DebugPanelProps {
     error?: Error;
     data?: unknown;
   };
+  canvasState?: {
+    panelsCount: number;
+    selectedNodeId?: string;
+    speechBubblesCount: number;
+    stageWidth?: number;
+    stageHeight?: number;
+    zoom?: number;
+    selectedTool?: string;
+  };
   scriptId?: string | null;
   selectedPageId?: string;
 }
@@ -41,10 +50,12 @@ export function DebugPanel({
   scriptsState,
   pagesState,
   panelsState,
+  canvasState,
   scriptId,
   selectedPageId,
 }: DebugPanelProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
   const renderState = (state: { loading: boolean; error?: Error; data?: unknown }, label: string) => {
     // Check loading first
@@ -197,6 +208,123 @@ export function DebugPanel({
               </pre>
             </details>
           )}
+        </div>
+
+        {/* ステップ5: Canvas状態 */}
+        <div className="border-b border-gray-200 pb-4">
+          <h3 className="font-semibold text-sm text-gray-700 mb-2">ステップ5: Canvas状態</h3>
+          {canvasState ? (
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full" />
+                <span className="text-sm text-green-600">Canvas: 初期化済み</span>
+              </div>
+              <div className="mt-2 space-y-1 text-xs text-gray-600">
+                <div>
+                  <span className="font-semibold">パネル数:</span>{' '}
+                  <span className="font-mono">{canvasState.panelsCount}</span>
+                </div>
+                <div>
+                  <span className="font-semibold">選択ノード:</span>{' '}
+                  {canvasState.selectedNodeId ? (
+                    <span className="font-mono text-green-600">{canvasState.selectedNodeId}</span>
+                  ) : (
+                    <span className="text-gray-400">なし</span>
+                  )}
+                </div>
+                <div>
+                  <span className="font-semibold">吹き出し数:</span>{' '}
+                  <span className="font-mono">{canvasState.speechBubblesCount}</span>
+                </div>
+                {canvasState.stageWidth && canvasState.stageHeight && (
+                  <div>
+                    <span className="font-semibold">ステージサイズ:</span>{' '}
+                    <span className="font-mono">
+                      {canvasState.stageWidth} × {canvasState.stageHeight}
+                    </span>
+                  </div>
+                )}
+                {canvasState.zoom !== undefined && (
+                  <div>
+                    <span className="font-semibold">ズーム:</span>{' '}
+                    <span className="font-mono">{Math.round(canvasState.zoom * 100)}%</span>
+                  </div>
+                )}
+                {canvasState.selectedTool && (
+                  <div>
+                    <span className="font-semibold">選択ツール:</span>{' '}
+                    <span className="font-mono">{canvasState.selectedTool}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-gray-400 rounded-full" />
+              <span className="text-sm text-gray-500">Canvas: 未初期化</span>
+            </div>
+          )}
+        </div>
+
+        {/* デバッグ用ステップコード */}
+        <div className="border-b border-gray-200 pb-4">
+          <h3 className="font-semibold text-sm text-gray-700 mb-2">デバッグ用ステップコード</h3>
+          <div className="space-y-2">
+            {[
+              {
+                label: 'Konvaステージを取得',
+                code: `// Konvaステージを取得\nconst stage = window.__KONVA_STAGE__;\nif (stage) {\n  console.log('Stage:', stage);\n  console.log('Stage size:', stage.width(), 'x', stage.height());\n  console.log('Stage children:', stage.children);\n} else {\n  console.warn('Stage not found. Canvas may not be initialized.');\n}`,
+              },
+              {
+                label: 'パネル情報を取得',
+                code: `// パネル情報を取得\nconst panelsCount = ${canvasState?.panelsCount || 0};\nconsole.log('Panels count:', panelsCount);\nconst stage = window.__KONVA_STAGE__;\nif (stage) {\n  const panelGroups = stage.find('Group[name^="Panel-"]');\n  console.log('Panel groups found:', panelGroups.length);\n  panelGroups.forEach((group, i) => {\n    console.log(\`Panel \${i + 1}:\`, {\n      id: group.id(),\n      x: group.x(),\n      y: group.y(),\n      width: group.width(),\n      height: group.height(),\n    });\n  });\n}`,
+              },
+              {
+                label: '選択ノードを確認',
+                code: `// 選択ノードを確認\nconst selectedNodeId = '${canvasState?.selectedNodeId || 'none'}';\nconsole.log('Selected node ID:', selectedNodeId);\nconst stage = window.__KONVA_STAGE__;\nif (stage && selectedNodeId !== 'none') {\n  const node = stage.findOne('#' + selectedNodeId);\n  if (node) {\n    console.log('Selected node:', node);\n    console.log('Node position:', { x: node.x(), y: node.y() });\n    console.log('Node size:', { width: node.width(), height: node.height() });\n  } else {\n    console.warn('Node not found:', selectedNodeId);\n  }\n}`,
+              },
+              {
+                label: 'Canvas要素を検索',
+                code: `// Canvas要素を検索\nconst canvas = document.querySelector('canvas');\nif (canvas) {\n  console.log('Canvas element:', canvas);\n  console.log('Canvas size:', canvas.width, 'x', canvas.height);\n  console.log('Canvas style:', window.getComputedStyle(canvas));\n} else {\n  console.warn('Canvas element not found');\n}`,
+              },
+              {
+                label: 'Konvaレイヤーを確認',
+                code: `// Konvaレイヤーを確認\nconst stage = window.__KONVA_STAGE__;\nif (stage) {\n  const layers = stage.children;\n  console.log('Layers count:', layers.length);\n  layers.forEach((layer, i) => {\n    console.log(\`Layer \${i + 1}:\`, {\n      name: layer.name(),\n      children: layer.children.length,\n      visible: layer.visible(),\n    });\n  });\n}`,
+              },
+              {
+                label: '吹き出しを確認',
+                code: `// 吹き出しを確認\nconst speechBubblesCount = ${canvasState?.speechBubblesCount || 0};\nconsole.log('Speech bubbles count:', speechBubblesCount);\nconst stage = window.__KONVA_STAGE__;\nif (stage) {\n  const bubbles = stage.find('Group[name="SpeechBubbleGroup"]');\n  console.log('Speech bubble groups found:', bubbles.length);\n  bubbles.forEach((bubble, i) => {\n    const textNode = bubble.findOne('Text');\n    console.log(\`Bubble \${i + 1}:\`, {\n      id: bubble.id(),\n      text: textNode?.text(),\n      position: { x: bubble.x(), y: bubble.y() },\n    });\n  });\n}`,
+              },
+              {
+                label: 'ステージの全ノードを一覧',
+                code: `// ステージの全ノードを一覧\nconst stage = window.__KONVA_STAGE__;\nif (stage) {\n  const allNodes = stage.find('*');\n  console.log('All nodes count:', allNodes.length);\n  allNodes.forEach((node, i) => {\n    console.log(\`Node \${i + 1}:\`, {\n      id: node.id(),\n      name: node.name(),\n      className: node.className,\n      position: { x: node.x(), y: node.y() },\n    });\n  });\n}`,
+              },
+              {
+                label: 'ステージのJSONをエクスポート',
+                code: `// ステージのJSONをエクスポート\nconst stage = window.__KONVA_STAGE__;\nif (stage) {\n  const json = stage.toJSON();\n  console.log('Stage JSON:', json);\n  // クリップボードにコピー\n  navigator.clipboard.writeText(JSON.stringify(json, null, 2));\n  console.log('JSON copied to clipboard');\n}`,
+              },
+            ].map((item, index) => (
+              <div key={index} className="border border-gray-200 rounded p-2">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-xs font-semibold text-gray-700">{item.label}</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigator.clipboard.writeText(item.code);
+                      setCopiedCode(`${index}`);
+                      setTimeout(() => setCopiedCode(null), 2000);
+                    }}
+                    className="text-xs px-2 py-1 bg-gray-100 hover:bg-gray-200 rounded text-gray-600"
+                  >
+                    {copiedCode === `${index}` ? '✓ コピー済み' : 'コピー'}
+                  </button>
+                </div>
+                <pre className="text-xs bg-gray-50 p-2 rounded overflow-x-auto font-mono">
+                  {item.code}
+                </pre>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* エラー詳細 */}

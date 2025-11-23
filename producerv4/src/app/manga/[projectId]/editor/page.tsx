@@ -536,6 +536,15 @@ export default function MangaEditorPage({
             error: panelsError ? new Error(panelsError.message || 'Unknown error') : undefined,
             data: panelsData?.mangaPanels,
           }}
+          canvasState={{
+            panelsCount: canvasPanels.length,
+            selectedNodeId: selectedNodeId,
+            speechBubblesCount: speechBubbles.length,
+            stageWidth: 1200,
+            stageHeight: 1800,
+            zoom: zoom,
+            selectedTool: selectedTool,
+          }}
           scriptId={scriptId}
           selectedPageId={selectedPageId}
         />

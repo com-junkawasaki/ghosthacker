@@ -137,6 +137,29 @@ function CanvasAreaComponent({
     }
   }, [konvaStageJson]);
 
+  // Expose stageRef globally for debugging
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const updateGlobalStage = () => {
+        if (stageRef.current) {
+          (window as any).__KONVA_STAGE__ = stageRef.current;
+        } else {
+          delete (window as any).__KONVA_STAGE__;
+        }
+      };
+      
+      updateGlobalStage();
+      
+      // Update when stageRef changes
+      const interval = setInterval(updateGlobalStage, 100);
+      
+      return () => {
+        clearInterval(interval);
+        delete (window as any).__KONVA_STAGE__;
+      };
+    }
+  }, []);
+
   const handleStageUpdate = () => {
     if (stageRef.current && onStageUpdate) {
       const stageJson = stageRef.current.toJSON();
