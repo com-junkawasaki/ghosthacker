@@ -17,6 +17,7 @@ export const mangaEditorPageMachine = setup({
   },
 }).createMachine({
   id: 'mangaEditorPage',
+  devTools: process.env.NODE_ENV === 'development',
   initial: 'initializing',
   context: ({ input }) => ({
     data: {

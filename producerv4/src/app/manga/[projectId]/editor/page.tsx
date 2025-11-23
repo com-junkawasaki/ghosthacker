@@ -119,14 +119,17 @@ export default function MangaEditorPage({
   // Use XState machine for state management
   const { snapshot, send, actions, data: machineData, editor: machineEditor } = useMangaEditorMachine(params.projectId);
   const stageRef = useRef<KonvaStageType | null>(null);
+  const prevStageRef = useRef<KonvaStageType | null>(null);
   const { undo, redo, canUndo, canRedo, saveState } = useUndoRedo(stageRef);
   
-  // Update stage ref in machine when it changes
+  // Update stage ref in machine when it changes (using previous value comparison to prevent infinite loops)
+  // actions is memoized, so it's safe to include in dependency array
   useEffect(() => {
-    if (stageRef.current) {
+    if (stageRef.current && stageRef.current !== prevStageRef.current) {
+      prevStageRef.current = stageRef.current;
       actions.setStageRef(stageRef.current);
     }
-  }, [stageRef.current, actions]);
+  }, [actions]);
 
   // Fetch project data
   const { data: projectData, loading: projectLoading, error: projectError } = useQuery(MANGA_PROJECT_QUERY, {
@@ -257,7 +260,7 @@ export default function MangaEditorPage({
           imageSource,
         };
       });
-  }, [panelsData]);
+  }, [panelsData, actions, machineEditor.speechBubbles]);
 
   // Derive layers from panels
   const layers = useMemo(() => {

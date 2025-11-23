@@ -5,7 +5,9 @@
  * 
  * Custom hook for using the manga editor page machine
  */
+import { useMemo, useEffect } from 'react';
 import { useMachine } from '@xstate/react';
+import { inspect } from '@xstate/inspector';
 import { mangaEditorPageMachine } from '@/machines/mangaEditorPageMachine';
 import type { MangaEditorPageEvent } from '@/types/mangaMachine';
 import type { ToolType } from '@/lib/konva/tools';
@@ -14,14 +16,28 @@ import type Konva from 'konva';
 type KonvaStageType = Konva.Stage;
 
 export function useMangaEditorMachine(projectId: string) {
+  // Initialize inspector only in development
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      const inspector = inspect({
+        iframe: false,
+        url: 'https://stately.ai/viz?inspect',
+      });
+      return () => {
+        inspector?.disconnect();
+      };
+    }
+  }, []);
+
   const [snapshot, send] = useMachine(mangaEditorPageMachine, {
     input: {
       projectId,
     },
+    inspect: process.env.NODE_ENV === 'development' ? inspect({ iframe: false }) : undefined,
   });
 
-  // Helper functions for common actions
-  const actions = {
+  // Helper functions for common actions - memoized to prevent infinite loops
+  const actions = useMemo(() => ({
     loadProject: (projectId: string) => {
       send({ type: 'LOAD_PROJECT', projectId } as MangaEditorPageEvent);
     },
@@ -119,7 +135,7 @@ export function useMangaEditorMachine(projectId: string) {
     clickStage: (x: number, y: number, targetId?: string) => {
       send({ type: 'KONVA_STAGE_CLICK', x, y, targetId } as MangaEditorPageEvent);
     },
-  };
+  }), [send]);
 
   return {
     snapshot,
