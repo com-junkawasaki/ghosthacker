@@ -7,9 +7,10 @@
  */
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { match } from 'ts-pattern';
-import type { DataState } from '@/types/manga';
+import type { DebugState, CanvasState } from '@/types/manga';
+import { matchDebugState as matchDebug, matchCanvasState as matchCanvas } from '@/types/manga';
 
 interface DebugPanelProps {
   projectState: {
@@ -57,53 +58,74 @@ export function DebugPanel({
   const [isOpen, setIsOpen] = useState(false);
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  const renderState = (state: { loading: boolean; error?: Error; data?: unknown }, label: string) => {
-    // Check loading first
+  // Convert state to DebugState union type
+  const toDebugState = (state: { loading: boolean; error?: Error; data?: unknown }): DebugState => {
     if (state.loading) {
-      return (
+      return { status: 'loading' };
+    }
+    if (state.error) {
+      return { status: 'error', error: state.error };
+    }
+    if (state.data != null) {
+      const count = Array.isArray(state.data) ? state.data.length : 1;
+      return { status: 'success', data: state.data, count };
+    }
+    return { status: 'idle' };
+  };
+
+  const renderState = (state: { loading: boolean; error?: Error; data?: unknown }, label: string) => {
+    const debugState = toDebugState(state);
+    
+    return matchDebug(debugState, {
+      loading: () => (
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
           <span className="text-sm text-gray-600">{label}: 読み込み中...</span>
         </div>
-      );
-    }
-    
-    // Check error
-    if (state.error) {
-      return (
+      ),
+      error: (error) => (
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-red-500 rounded-full" />
           <div className="flex-1">
             <span className="text-sm text-red-600">{label}: エラー</span>
-            <div className="text-xs text-red-500 mt-1">{state.error.message}</div>
+            <div className="text-xs text-red-500 mt-1">{error.message}</div>
           </div>
         </div>
-      );
-    }
-    
-    // Check data
-    if (state.data != null) {
-      const dataArray = Array.isArray(state.data) ? state.data : (state.data as Record<string, unknown>);
-      const count = Array.isArray(dataArray) ? dataArray.length : (dataArray ? 1 : 0);
-      return (
+      ),
+      success: (data, count) => (
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-green-500 rounded-full" />
           <span className="text-sm text-green-600">{label}: 成功</span>
           <span className="text-xs text-gray-500">
-            ({Array.isArray(state.data) ? `${state.data.length}件` : 'データあり'})
+            ({Array.isArray(data) ? `${data.length}件` : 'データあり'})
           </span>
         </div>
-      );
-    }
-    
-    // Default: not executed
-    return (
-      <div className="flex items-center gap-2">
-        <div className="w-2 h-2 bg-gray-400 rounded-full" />
-        <span className="text-sm text-gray-500">{label}: 未実行</span>
-      </div>
-    );
+      ),
+      idle: () => (
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 bg-gray-400 rounded-full" />
+          <span className="text-sm text-gray-500">{label}: 未実行</span>
+        </div>
+      ),
+    });
   };
+
+  // Convert canvasState to CanvasState union type
+  const canvasStateUnion: CanvasState = useMemo(() => {
+    if (!canvasState) {
+      return { status: 'uninitialized' };
+    }
+    return {
+      status: 'ready',
+      panelsCount: canvasState.panelsCount,
+      selectedNodeId: canvasState.selectedNodeId,
+      speechBubblesCount: canvasState.speechBubblesCount,
+      stageWidth: canvasState.stageWidth ?? 1200,
+      stageHeight: canvasState.stageHeight ?? 1800,
+      zoom: canvasState.zoom ?? 1.0,
+      selectedTool: canvasState.selectedTool ?? 'select',
+    };
+  }, [canvasState]);
 
   if (!isOpen) {
     return (
@@ -213,57 +235,54 @@ export function DebugPanel({
         {/* ステップ5: Canvas状態 */}
         <div className="border-b border-gray-200 pb-4">
           <h3 className="font-semibold text-sm text-gray-700 mb-2">ステップ5: Canvas状態</h3>
-          {canvasState ? (
-            <div className="space-y-2">
+          {matchCanvas(canvasStateUnion, {
+            uninitialized: () => (
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full" />
-                <span className="text-sm text-green-600">Canvas: 初期化済み</span>
+                <div className="w-2 h-2 bg-gray-400 rounded-full" />
+                <span className="text-sm text-gray-500">Canvas: 未初期化</span>
               </div>
-              <div className="mt-2 space-y-1 text-xs text-gray-600">
-                <div>
-                  <span className="font-semibold">パネル数:</span>{' '}
-                  <span className="font-mono">{canvasState.panelsCount}</span>
+            ),
+            ready: (state) => (
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full" />
+                  <span className="text-sm text-green-600">Canvas: 初期化済み</span>
                 </div>
-                <div>
-                  <span className="font-semibold">選択ノード:</span>{' '}
-                  {canvasState.selectedNodeId ? (
-                    <span className="font-mono text-green-600">{canvasState.selectedNodeId}</span>
-                  ) : (
-                    <span className="text-gray-400">なし</span>
-                  )}
-                </div>
-                <div>
-                  <span className="font-semibold">吹き出し数:</span>{' '}
-                  <span className="font-mono">{canvasState.speechBubblesCount}</span>
-                </div>
-                {canvasState.stageWidth && canvasState.stageHeight && (
+                <div className="mt-2 space-y-1 text-xs text-gray-600">
+                  <div>
+                    <span className="font-semibold">パネル数:</span>{' '}
+                    <span className="font-mono">{state.panelsCount}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold">選択ノード:</span>{' '}
+                    {state.selectedNodeId ? (
+                      <span className="font-mono text-green-600">{state.selectedNodeId}</span>
+                    ) : (
+                      <span className="text-gray-400">なし</span>
+                    )}
+                  </div>
+                  <div>
+                    <span className="font-semibold">吹き出し数:</span>{' '}
+                    <span className="font-mono">{state.speechBubblesCount}</span>
+                  </div>
                   <div>
                     <span className="font-semibold">ステージサイズ:</span>{' '}
                     <span className="font-mono">
-                      {canvasState.stageWidth} × {canvasState.stageHeight}
+                      {state.stageWidth} × {state.stageHeight}
                     </span>
                   </div>
-                )}
-                {canvasState.zoom !== undefined && (
                   <div>
                     <span className="font-semibold">ズーム:</span>{' '}
-                    <span className="font-mono">{Math.round(canvasState.zoom * 100)}%</span>
+                    <span className="font-mono">{Math.round(state.zoom * 100)}%</span>
                   </div>
-                )}
-                {canvasState.selectedTool && (
                   <div>
                     <span className="font-semibold">選択ツール:</span>{' '}
-                    <span className="font-mono">{canvasState.selectedTool}</span>
+                    <span className="font-mono">{state.selectedTool}</span>
                   </div>
-                )}
+                </div>
               </div>
-            </div>
-          ) : (
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-gray-400 rounded-full" />
-              <span className="text-sm text-gray-500">Canvas: 未初期化</span>
-            </div>
-          )}
+            ),
+          })}
         </div>
 
         {/* デバッグ用ステップコード */}

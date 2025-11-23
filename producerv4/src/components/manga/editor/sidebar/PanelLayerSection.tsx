@@ -7,10 +7,13 @@
  */
 'use client';
 
+import { match } from 'ts-pattern';
+import type { LayerType } from '@/types/manga';
+
 interface PanelLayer {
   id: string;
   name: string;
-  type: 'image' | 'dialogue';
+  type: LayerType;
   visible: boolean;
 }
 
@@ -24,9 +27,19 @@ export function PanelLayerSection({ layers = [], onLayerToggle }: PanelLayerSect
   const defaultLayers: PanelLayer[] = layers.length > 0 
     ? layers 
     : [
-        { id: 'image', name: 'Image', type: 'image', visible: true },
-        { id: 'dialogue', name: 'Dialogue', type: 'dialogue', visible: true },
+        { id: 'image', name: 'Image', type: 'image' as LayerType, visible: true },
+        { id: 'dialogue', name: 'Dialogue', type: 'dialogue' as LayerType, visible: true },
       ];
+
+  const renderLayerIcon = (layerType: LayerType) => {
+    return match(layerType)
+      .with('image', () => '🖼️')
+      .with('dialogue', () => '💬')
+      .with('drawing', () => '✏️')
+      .with('shape', () => '⬜')
+      .with('text', () => '📝')
+      .exhaustive();
+  };
 
   return (
     <div className="border-b border-gray-200 pb-4">
@@ -38,15 +51,20 @@ export function PanelLayerSection({ layers = [], onLayerToggle }: PanelLayerSect
             className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded cursor-pointer"
           >
             <button
+              type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 onLayerToggle?.(layer.id, !layer.visible);
               }}
               className="text-gray-400 hover:text-gray-600"
+              title={layer.visible ? '非表示にする' : '表示する'}
             >
               {layer.visible ? '👁' : '👁‍🗨'}
             </button>
-            <span className="flex-1 text-sm text-gray-700">{layer.name}</span>
+            <span className="flex-1 text-sm text-gray-700 flex items-center gap-2">
+              <span>{renderLayerIcon(layer.type)}</span>
+              <span>{layer.name}</span>
+            </span>
           </div>
         ))}
       </div>

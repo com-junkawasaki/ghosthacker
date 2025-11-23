@@ -38,9 +38,11 @@ import type {
   MangaPanel, 
   CanvasPanel, 
   SpeechBubble,
-  DataState
+  DataState,
+  BubbleSelectionState,
+  PanelSelectionState
 } from '@/types/manga';
-import { toPanelImageSource, matchDataState } from '@/types/manga';
+import { toPanelImageSource, matchDataState, matchBubbleSelection, matchPanelSelection } from '@/types/manga';
 
 const MANGA_PROJECT_QUERY = gql`
   query MangaProject($id: ID!) {
@@ -375,7 +377,35 @@ export default function MangaEditorPage({
     saveState();
   };
 
-  const selectedBubble = speechBubbles.find((b) => b.id === selectedNodeId);
+  // Convert selectedBubble to BubbleSelectionState union type
+  const bubbleSelectionState: BubbleSelectionState = useMemo(() => {
+    const bubble = speechBubbles.find((b) => b.id === selectedNodeId);
+    if (!bubble) {
+      return { type: 'none' };
+    }
+    return { type: 'selected', bubble };
+  }, [speechBubbles, selectedNodeId]);
+
+  // Convert selectedPanel to PanelSelectionState union type
+  const panelSelectionState: PanelSelectionState = useMemo(() => {
+    if (!selectedNodeId) {
+      return { type: 'none' };
+    }
+    // Check if selectedNodeId is a panel (not a bubble)
+    const isPanel = canvasPanels.some((p) => p.id === selectedNodeId);
+    if (!isPanel) {
+      return { type: 'none' };
+    }
+    return {
+      type: 'selected',
+      panel: {
+        id: selectedNodeId,
+        order: 1, // TODO: Get actual order from panel data
+        hideBorder: false, // TODO: Get actual value from panel data
+        ignoreNeighborPanels: false, // TODO: Get actual value from panel data
+      },
+    };
+  }, [selectedNodeId, canvasPanels]);
 
   // Render based on data state using ts-pattern
   const content = matchDataState(dataState, {
@@ -484,13 +514,14 @@ export default function MangaEditorPage({
         {content}
         <RightSidebar
           projectId={params.projectId}
-          {...(selectedBubble ? { selectedBubble } : {})}
-          selectedPanel={selectedNodeId ? {
-            id: selectedNodeId,
-            order: 1,
-            hideBorder: false,
-            ignoreNeighborPanels: false,
-          } : undefined}
+          selectedBubble={matchBubbleSelection(bubbleSelectionState, {
+            none: () => undefined,
+            selected: (bubble) => bubble,
+          })}
+          selectedPanel={matchPanelSelection(panelSelectionState, {
+            none: () => undefined,
+            selected: (panel) => panel,
+          })}
           panelLayers={[
             { id: 'image', name: 'Image', type: 'image', visible: true },
             { id: 'dialogue', name: 'Dialogue', type: 'dialogue', visible: true },

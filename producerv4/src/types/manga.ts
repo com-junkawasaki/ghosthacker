@@ -142,3 +142,122 @@ export interface SpeechBubble {
   speaker?: string;
   bubbleType: SpeechBubbleType;
 }
+
+// Union type for debug state
+export type DebugState = 
+  | { status: 'loading' }
+  | { status: 'error'; error: Error }
+  | { status: 'success'; data: unknown; count?: number }
+  | { status: 'idle' };
+
+// Union type for panel selection state
+export type PanelSelectionState =
+  | { type: 'none' }
+  | { type: 'selected'; panel: { id: string; order?: number; hideBorder?: boolean; ignoreNeighborPanels?: boolean } };
+
+// Union type for bubble selection state
+export type BubbleSelectionState =
+  | { type: 'none' }
+  | { type: 'selected'; bubble: SpeechBubble };
+
+// Union type for canvas state
+export type CanvasState =
+  | { status: 'uninitialized' }
+  | { 
+      status: 'ready';
+      panelsCount: number;
+      selectedNodeId?: string;
+      speechBubblesCount: number;
+      stageWidth: number;
+      stageHeight: number;
+      zoom: number;
+      selectedTool: string;
+    };
+
+// Union type for layer type
+export type LayerType = 'image' | 'dialogue' | 'drawing' | 'shape' | 'text';
+
+// Union type for layer visibility
+export type LayerVisibility = { visible: true } | { visible: false };
+
+// Union type for component load state
+export type ComponentLoadState =
+  | { status: 'loading' }
+  | { status: 'loaded'; components: { Stage: any; Layer: any; PanelLayer: any; DrawingLayer: any; ShapeLayer: any; TextLayer: any; SelectionBox: any; SpeechBubble: any } }
+  | { status: 'error'; error: Error };
+
+// Helper function to match debug state
+export const matchDebugState = <R>(
+  state: DebugState,
+  handlers: {
+    loading?: () => R;
+    error?: (error: Error) => R;
+    success?: (data: unknown, count?: number) => R;
+    idle?: () => R;
+  }
+): R => {
+  return match(state)
+    .with({ status: 'loading' }, () => handlers.loading?.() ?? (null as R))
+    .with({ status: 'error' }, ({ error }) => handlers.error?.(error) ?? (null as R))
+    .with({ status: 'success' }, ({ data, count }) => handlers.success?.(data, count) ?? (null as R))
+    .with({ status: 'idle' }, () => handlers.idle?.() ?? (null as R))
+    .exhaustive();
+};
+
+// Helper function to match panel selection state
+export const matchPanelSelection = <R>(
+  state: PanelSelectionState,
+  handlers: {
+    none?: () => R;
+    selected?: (panel: { id: string; order?: number; hideBorder?: boolean; ignoreNeighborPanels?: boolean }) => R;
+  }
+): R => {
+  return match(state)
+    .with({ type: 'none' }, () => handlers.none?.() ?? (null as R))
+    .with({ type: 'selected' }, ({ panel }) => handlers.selected?.(panel) ?? (null as R))
+    .exhaustive();
+};
+
+// Helper function to match bubble selection state
+export const matchBubbleSelection = <R>(
+  state: BubbleSelectionState,
+  handlers: {
+    none?: () => R;
+    selected?: (bubble: SpeechBubble) => R;
+  }
+): R => {
+  return match(state)
+    .with({ type: 'none' }, () => handlers.none?.() ?? (null as R))
+    .with({ type: 'selected' }, ({ bubble }) => handlers.selected?.(bubble) ?? (null as R))
+    .exhaustive();
+};
+
+// Helper function to match canvas state
+export const matchCanvasState = <R>(
+  state: CanvasState,
+  handlers: {
+    uninitialized?: () => R;
+    ready?: (state: { panelsCount: number; selectedNodeId?: string; speechBubblesCount: number; stageWidth: number; stageHeight: number; zoom: number; selectedTool: string }) => R;
+  }
+): R => {
+  return match(state)
+    .with({ status: 'uninitialized' }, () => handlers.uninitialized?.() ?? (null as R))
+    .with({ status: 'ready' }, (readyState) => handlers.ready?.(readyState) ?? (null as R))
+    .exhaustive();
+};
+
+// Helper function to match component load state
+export const matchComponentLoadState = <R>(
+  state: ComponentLoadState,
+  handlers: {
+    loading?: () => R;
+    loaded?: (components: { Stage: any; Layer: any; PanelLayer: any; DrawingLayer: any; ShapeLayer: any; TextLayer: any; SelectionBox: any; SpeechBubble: any }) => R;
+    error?: (error: Error) => R;
+  }
+): R => {
+  return match(state)
+    .with({ status: 'loading' }, () => handlers.loading?.() ?? (null as R))
+    .with({ status: 'loaded' }, ({ components }) => handlers.loaded?.(components) ?? (null as R))
+    .with({ status: 'error' }, ({ error }) => handlers.error?.(error) ?? (null as R))
+    .exhaustive();
+};
