@@ -249,6 +249,28 @@ impl MutationRoot {
             updated_at: page_row.11.to_rfc3339(),
         };
         
+        // Create a default panel for the page
+        let panel_id_str = format!("panel_1");
+        let _panel_row = sqlx::query(
+            r#"
+            INSERT INTO manga_panels (project_id, page_id, panel_id, layout, visual, x, y, width, height, z_index)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+            "#,
+        )
+        .bind(project_uuid)
+        .bind(page_row.0) // Use page UUID
+        .bind(&panel_id_str)
+        .bind::<Option<String>>(None) // layout
+        .bind::<Option<String>>(None) // visual
+        .bind(100i32) // x: default position
+        .bind(100i32) // y: default position
+        .bind(1000i32) // width: default size
+        .bind(800i32) // height: default size
+        .bind(1i32) // z_index: default layer
+        .execute(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to create default panel: {}", e)))?;
+        
         Ok(GenerateStoryResult {
             script,
             pages: vec![page],

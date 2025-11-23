@@ -182,6 +182,13 @@ export function DebugPanel({
         <div className="border-b border-gray-200 pb-4">
           <h3 className="font-semibold text-sm text-gray-700 mb-2">ステップ4: パネル取得</h3>
           {renderState(panelsState, 'パネル')}
+          <div className="mt-2 text-xs text-gray-600">
+            selectedPageId: {selectedPageId ? (
+              <span className="font-mono text-green-600">{selectedPageId}</span>
+            ) : (
+              <span className="text-red-500">未選択（パネル取得がスキップされます）</span>
+            )}
+          </div>
           {panelsState.data && (
             <details className="mt-2">
               <summary className="text-xs text-gray-500 cursor-pointer">データを表示</summary>

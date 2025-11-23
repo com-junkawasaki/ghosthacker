@@ -152,7 +152,20 @@ export default function MangaEditorPage({
   const { data: panelsData, loading: panelsLoading, error: panelsError } = useQuery(MANGA_PANELS_QUERY, {
     variables: { pageId: selectedPageId || '' },
     skip: !selectedPageId,
+    fetchPolicy: 'cache-and-network',
   });
+  
+  // Debug: Log selectedPageId and panels query state
+  useEffect(() => {
+    if (selectedPageId) {
+      console.log('Selected page ID:', selectedPageId);
+      console.log('Panels loading:', panelsLoading);
+      console.log('Panels data:', panelsData);
+      console.log('Panels error:', panelsError);
+    } else {
+      console.log('No page selected - panels query skipped');
+    }
+  }, [selectedPageId, panelsLoading, panelsData, panelsError]);
 
   // Convert pages data to component format
   const pages = useMemo(() => {
@@ -297,8 +310,12 @@ export default function MangaEditorPage({
 
   // Auto-select first page if available
   useEffect(() => {
-    if (pages.length > 0 && !selectedPageId) {
-      setSelectedPageId(pages[0].id);
+    if (pages.length > 0) {
+      const firstPageId = pages[0]?.id;
+      if (firstPageId && firstPageId !== selectedPageId) {
+        console.log('Auto-selecting first page:', firstPageId, 'Current:', selectedPageId);
+        setSelectedPageId(firstPageId);
+      }
     }
   }, [pages, selectedPageId]);
 
@@ -409,6 +426,7 @@ export default function MangaEditorPage({
         );
       }
       
+      // Always show PageSidebar and CanvasArea if pages exist
       const pageSidebarProps = selectedPageId 
         ? { pages: data.pages, selectedPageId, onPageSelect: setSelectedPageId, layers }
         : { pages: data.pages, onPageSelect: setSelectedPageId, layers };
