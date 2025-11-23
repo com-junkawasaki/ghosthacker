@@ -465,12 +465,18 @@ export default function MangaEditorPage({
       <div className="flex-1 flex overflow-hidden">
         {content}
         <RightSidebar
+          projectId={params.projectId}
           {...(selectedBubble ? { selectedBubble } : {})}
           onBubbleSave={handleBubbleSave}
           onBubbleDelete={handleBubbleDelete}
           onModelSelect={(model) => {
             setSelectedModel(model);
             console.log('Selected model:', model);
+          }}
+          onStoryGenerated={() => {
+            // Refetch queries to update the UI
+            // Apollo Client will automatically refetch due to refetchQueries in mutation
+            console.log('Story generated successfully');
           }}
         />
         <DebugPanel

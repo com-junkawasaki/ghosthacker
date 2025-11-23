@@ -173,9 +173,86 @@ impl MutationRoot {
 
     /// Generate story
     async fn generate_story(&self, ctx: &Context<'_>, input: GenerateStoryInput) -> Result<GenerateStoryResult> {
-        let _pool = ctx.data::<PostgresPool>()?;
-        // TODO: Implement AI story generation
-        Err(async_graphql::Error::new("Not implemented"))
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let project_uuid = Uuid::parse_str(&input.project_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid project ID: {}", e)))?;
+        
+        // Generate a script ID
+        let script_id = format!("script_{}", Uuid::new_v4());
+        
+        // Create manga script
+        let script_row = sqlx::query_as::<_, (Uuid, Uuid, String, String, Option<i32>, serde_json::Value, chrono::DateTime<chrono::Utc>, chrono::DateTime<chrono::Utc>)>(
+            r#"
+            INSERT INTO manga_scripts (project_id, script_id, title, page_count, script_data)
+            VALUES ($1, $2, $3, $4, $5)
+            RETURNING id, project_id, script_id, title, page_count, script_data, created_at, updated_at
+            "#,
+        )
+        .bind(project_uuid)
+        .bind(&script_id)
+        .bind(format!("Generated Story: {}", &input.story_prompt[..input.story_prompt.len().min(50)]))
+        .bind(1i32) // Default to 1 page for now
+        .bind(serde_json::json!({
+            "prompt": input.story_prompt,
+            "continue_from_previous": input.continue_from_previous.unwrap_or(false),
+            "preset": input.preset.clone().unwrap_or_default(),
+        }))
+        .fetch_one(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to create manga script: {}", e)))?;
+        
+        let script = MangaScript {
+            id: ID(script_row.0.to_string()),
+            project_id: ID(script_row.1.to_string()),
+            script_id: script_row.2,
+            title: script_row.3,
+            page_count: script_row.4,
+            script_data: script_row.5,
+            created_at: script_row.6.to_rfc3339(),
+            updated_at: script_row.7.to_rfc3339(),
+        };
+        
+        // Create a default page
+        let page_id_str = format!("page_1");
+        let page_row = sqlx::query_as::<_, (Uuid, Uuid, Uuid, String, Option<String>, Option<String>, Option<i32>, i32, i32, Option<serde_json::Value>, chrono::DateTime<chrono::Utc>, chrono::DateTime<chrono::Utc>)>(
+            r#"
+            INSERT INTO manga_pages (project_id, script_id, page_id, page_type, description, page_number, width, height)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            RETURNING id, project_id, script_id, page_id, page_type, description, page_number, width, height, konva_stage_json, created_at, updated_at
+            "#,
+        )
+        .bind(project_uuid)
+        .bind(script_row.0) // Use script UUID
+        .bind(&page_id_str)
+        .bind("default" as &str)
+        .bind::<Option<String>>(None)
+        .bind(1i32)
+        .bind(1200i32) // Default manga page width
+        .bind(1800i32) // Default manga page height
+        .fetch_one(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to create manga page: {}", e)))?;
+        
+        let page = MangaPage {
+            id: ID(page_row.0.to_string()),
+            project_id: ID(page_row.1.to_string()),
+            script_id: ID(page_row.2.to_string()),
+            page_id: page_row.3,
+            page_type: page_row.4,
+            description: page_row.5,
+            page_number: page_row.6,
+            width: page_row.7,
+            height: page_row.8,
+            konva_stage_json: page_row.9,
+            created_at: page_row.10.to_rfc3339(),
+            updated_at: page_row.11.to_rfc3339(),
+        };
+        
+        Ok(GenerateStoryResult {
+            script,
+            pages: vec![page],
+        })
     }
 
     /// Generate panel images

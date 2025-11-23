@@ -15,6 +15,7 @@ import { AIModel } from '@/lib/ai/modelBrowser';
 
 interface RightSidebarProps {
   activeTab?: string;
+  projectId?: string;
   selectedBubble?: {
     id: string;
     text: string;
@@ -33,14 +34,17 @@ interface RightSidebarProps {
   }) => void;
   onBubbleDelete?: (id: string) => void;
   onModelSelect?: (model: AIModel) => void;
+  onStoryGenerated?: () => void;
 }
 
 export function RightSidebar({
   activeTab,
+  projectId,
   selectedBubble,
   onBubbleSave,
   onBubbleDelete,
   onModelSelect,
+  onStoryGenerated,
 }: RightSidebarProps) {
   return (
     <div className="w-80 bg-gray-100 border-l border-gray-200 h-full">
@@ -49,7 +53,7 @@ export function RightSidebar({
           {
             id: 'prompt',
             label: 'プロンプト',
-            content: <PromptTab />,
+            content: <PromptTab projectId={projectId || ''} onStoryGenerated={onStoryGenerated} />,
           },
           {
             id: 'page',
