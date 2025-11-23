@@ -38,7 +38,7 @@
         {
           "@id": "gh:panelPrompt/p10-1",
           "panelIndex": 1,
-          "promptEn": "1man, solo, yasumoto, middle-aged man, overweight, screaming, agony, terror, horror, contorted face, rumpled gray suit, sweating, black smoke, dark energy, ghost emerging, monster, medium shot, low angle, claustrophobic, chaotic office background, flickering lights, cinematic, photorealistic, high contrast"
+          "promptEn": "solo, (Yasumoto: 52-year-old male, overweight, round anxious face, graying hair), screaming, agony, terror, horror, contorted face, rumpled gray suit, sweating, black smoke, dark energy, ghost emerging, monster, medium shot, low angle, claustrophobic, chaotic office background, flickering lights, cinematic, photorealistic, high contrast"
         },
         {
           "@id": "gh:panelPrompt/p10-2",
@@ -48,10 +48,10 @@
         {
           "@id": "gh:panelPrompt/p10-3",
           "panelIndex": 3,
-          "promptEn": "3people, 1man, 1woman, shouta, matsuda, sato, group shot, fear, terror, paralyzed, stunned, disbelief, vulnerable, high angle shot, shallow depth of field, looming monster in background, out of focus background, chaotic office, cinematic, photorealistic"
+          "promptEn": "3people, (Shouta: 26-year-old male, dark hair, navy suit), (Matsuda: 58-year-old female, short permed hair, conservative blouse and skirt), (Sato: 24-year-old male, slim, polo shirt), group shot, fear, terror, paralyzed, stunned, disbelief, vulnerable, high angle shot, shallow depth of field, looming monster in background, out of focus background, chaotic office, cinematic, photorealistic"
         }
       ],
-      "promptEn": "horror scene, yasumoto screaming, ghost emerging, black smoke, towering monster, made of cables and documents, menacing glow, shouta, matsuda, sato, terrified, paralyzed, cinematic, photorealistic, high contrast",
+      "promptEn": "horror scene, (Yasumoto: 52-year-old male) screaming, ghost emerging, black smoke, towering monster, made of cables and documents, menacing glow, (Shouta: 26-year-old male), (Matsuda: 58-year-old female), (Sato: 24-year-old male), terrified, paralyzed, cinematic, photorealistic, high contrast",
       "recommendedCutCount": 3,
       "promptCharCount": 468
     },
@@ -62,7 +62,7 @@
         {
           "@id": "gh:panelPrompt/p11-1",
           "panelIndex": 1,
-          "promptEn": "1man, solo, ren, calm, focused, dark gray hoodie, jeans, using smartphone, extreme close-up, razor sharp focus on screen, screen displays 'SIP Device: ON', blurred office background, cinematic, photorealistic"
+          "promptEn": "solo, (Ren: 17-year-old male, pale skin, messy dark hair, skinny build), calm, focused, dark gray hoodie, jeans, using smartphone, extreme close-up, razor sharp focus on screen, screen displays 'SIP Device: ON', blurred office background, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p11-2",
@@ -86,20 +86,20 @@
         {
           "@id": "gh:panelPrompt/p12-1",
           "panelIndex": 1,
-          "promptEn": "2people, 1man, 1woman, shouta, matsuda, action scene, saving, protecting, shielding, determination, terror, navy business suit, dramatic tight close-up, shallow depth of field, falling shelf, out of focus background, imminent danger, cinematic"
+          "promptEn": "2people, (Shouta: 26-year-old male, dark hair, fit build), (Matsuda: 58-year-old female, short, plump), action scene, saving, protecting, shielding, determination, terror, navy business suit, dramatic tight close-up, shallow depth of field, falling shelf, out of focus background, imminent danger, cinematic"
         },
         {
           "@id": "gh:panelPrompt/p12-2",
           "panelIndex": 2,
-          "promptEn": "1man, solo, ren, calm, focused power, hand outstretched, creating weapon, glowing blue particles, data light, forming digital axe, ethereal light, medium close-up, dramatic glow on face, abstract blurred background, VFX, cinematic, photorealistic"
+          "promptEn": "solo, (Ren: 17-year-old male, pale skin, skinny build), calm, focused power, hand outstretched, creating weapon, glowing blue particles, data light, forming digital axe, ethereal light, medium close-up, dramatic glow on face, abstract blurred background, VFX, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p12-3",
           "panelIndex": 3,
-          "promptEn": "1man, solo, ren, heroic pose, holding digital axe, glowing weapon, confident, predatory gaze, dark gray hoodie, jeans, full-body shot, low angle, looming ghost in background, duel, confrontation, cinematic, photorealistic"
+          "promptEn": "solo, (Ren: 17-year-old male, skinny build), heroic pose, holding digital axe, glowing weapon, confident, predatory gaze, dark gray hoodie, jeans, full-body shot, low angle, looming ghost in background, duel, confrontation, cinematic, photorealistic"
         }
       ],
-      "promptEn": "shouta saves matsuda from falling shelf, ren creates glowing digital axe from data particles, ren stands ready to fight ghost, heroic pose, cinematic action, photorealistic",
+      "promptEn": "(Shouta: 26-year-old male) saves (Matsuda: 58-year-old female) from falling shelf, (Ren: 17-year-old male) creates glowing digital axe from data particles, ren stands ready to fight ghost, heroic pose, cinematic action, photorealistic",
       "recommendedCutCount": 3,
       "promptCharCount": 544
     },
@@ -110,20 +110,20 @@
         {
           "@id": "gh:panelPrompt/p13-1",
           "panelIndex": 1,
-          "promptEn": "1man, solo, ren, action scene, dodging, ducking, whipping tentacles, LAN-cables, intense concentration, dynamic dutch angle, low angle, motion blur, cinematic, photorealistic"
+          "promptEn": "solo, (Ren: 17-year-old male, skinny build), action scene, dodging, ducking, whipping tentacles, LAN-cables, intense concentration, dynamic dutch angle, low angle, motion blur, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p13-2",
           "panelIndex": 2,
-          "promptEn": "1man, solo, ren, action scene, leaping, aerial, holding glowing digital axe, overhead strike, fierce aggression, dramatic low angle shot, suspended in air, VFX, heat-haze, command line text, cinematic, photorealistic"
+          "promptEn": "solo, (Ren: 17-year-old male, skinny build), action scene, leaping, aerial, holding glowing digital axe, overhead strike, fierce aggression, dramatic low angle shot, suspended in air, VFX, heat-haze, command line text, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p13-3",
           "panelIndex": 3,
-          "promptEn": "splash panel, widescreen ratio, action scene, ren, smashing, digital axe, monster core, glowing red CPU, massive explosion, white light, digital noise, vaporizing, cathartic, lens flares, particle effects, cinematic, photorealistic"
+          "promptEn": "splash panel, widescreen ratio, action scene, (Ren: 17-year-old male), smashing, digital axe, monster core, glowing red CPU, massive explosion, white light, digital noise, vaporizing, cathartic, lens flares, particle effects, cinematic, photorealistic"
         }
       ],
-      "promptEn": "action sequence, ren dodges tentacles, leaps into the air, smashes the ghost's core with a glowing axe, massive explosion of light and digital noise, cinematic, photorealistic, splash panel",
+      "promptEn": "action sequence, (Ren: 17-year-old male) dodges tentacles, leaps into the air, smashes the ghost's core with a glowing axe, massive explosion of light and digital noise, cinematic, photorealistic, splash panel",
       "recommendedCutCount": 3,
       "promptCharCount": 436
     },
@@ -134,20 +134,20 @@
         {
           "@id": "gh:panelPrompt/p14-1",
           "panelIndex": 1,
-          "promptEn": "aftermath, ghost dissolving, fading digital particles, dying light, yasumoto, collapsing, puppet with strings cut, exhaustion, somber release, wide static shot, soft fading glow, floating dust particles, cinematic, photorealistic"
+          "promptEn": "aftermath, ghost dissolving, fading digital particles, dying light, (Yasumoto: 52-year-old male, overweight), collapsing, puppet with strings cut, exhaustion, somber release, wide static shot, soft fading glow, floating dust particles, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p14-2",
           "panelIndex": 2,
-          "promptEn": "silence, office, computer monitor, lock screen vanishing, corporate desktop background, reflection, sato, weary face, profound relief, close-up, quiet, normalcy, cinematic, photorealistic"
+          "promptEn": "silence, office, computer monitor, lock screen vanishing, corporate desktop background, reflection, (Sato: 24-year-old male, slim build), weary face, profound relief, close-up, quiet, normalcy, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p14-3",
           "panelIndex": 3,
-          "promptEn": "1man, solo, yasumoto, hunched on floor, face in hands, sobbing, defeated, despair, shame, isolation, high-angle shot, looking down, messy office floor, debris, cinematic, photorealistic"
+          "promptEn": "solo, (Yasumoto: 52-year-old male, overweight), hunched on floor, face in hands, sobbing, defeated, despair, shame, isolation, high-angle shot, looking down, messy office floor, debris, cinematic, photorealistic"
         }
       ],
-      "promptEn": "aftermath of battle, ghost dissolves, yasumoto collapses in despair, office returns to silence, sato is relieved, cinematic, photorealistic, somber mood",
+      "promptEn": "aftermath of battle, ghost dissolves, (Yasumoto: 52-year-old male) collapses in despair, office returns to silence, (Sato: 24-year-old male) is relieved, cinematic, photorealistic, somber mood",
       "recommendedCutCount": 3,
       "promptCharCount": 479
     },
@@ -158,25 +158,25 @@
         {
           "@id": "gh:panelPrompt/p15-1",
           "panelIndex": 1,
-          "promptEn": "1man, solo, goro daimon, president, 62 years old, shocked, confused, work clothes, safety vest, silhouetted in doorway, medium shot, shallow depth of field, wrecked office background, cinematic, photorealistic"
+          "promptEn": "solo, (Goro Daimon: 62-year-old male, sturdy build, weathered face), shocked, confused, work clothes, safety vest, silhouetted in doorway, medium shot, shallow depth of field, wrecked office background, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p15-2",
           "panelIndex": 2,
-          "promptEn": "1man, solo, shouta, internal conflict, decision, grim resolve, navy suit, intense close-up on eyes, soft-focus background, cinematic, photorealistic"
+          "promptEn": "solo, (Shouta: 26-year-old male, dark hair, fit build), internal conflict, decision, grim resolve, navy suit, intense close-up on eyes, soft-focus background, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p15-3",
           "panelIndex": 3,
-          "promptEn": "2men, shouta, yasumoto, surprise, hope, unwavering determination, over-the-shoulder shot, focus on yasumoto's face, debris-strewn office floor, cinematic, photorealistic"
+          "promptEn": "2men, (Shouta: 26-year-old male), (Yasumoto: 52-year-old male), surprise, hope, unwavering determination, over-the-shoulder shot, focus on yasumoto's face, debris-strewn office floor, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p15-4",
           "panelIndex": 4,
-          "promptEn": "1man, solo, goro daimon, pride, sorrow, gentle expression, slow nod, extreme close-up, soft lighting, intimate, out of focus background, generational shift, cinematic, photorealistic"
+          "promptEn": "solo, (Goro Daimon: 62-year-old male, weathered face), pride, sorrow, gentle expression, slow nod, extreme close-up, soft lighting, intimate, out of focus background, generational shift, cinematic, photorealistic"
         }
       ],
-      "promptEn": "president goro arrives, shocked, shouta makes a difficult decision, shows compassion for yasumoto, goro nods with pride, generational shift, cinematic, emotional, photorealistic",
+      "promptEn": "president (Goro Daimon: 62-year-old male) arrives, shocked, (Shouta: 26-year-old male) makes a difficult decision, shows compassion for (Yasumoto: 52-year-old male), goro nods with pride, generational shift, cinematic, emotional, photorealistic",
       "recommendedCutCount": 4,
       "promptCharCount": 659
     },
@@ -187,20 +187,20 @@
         {
           "@id": "gh:panelPrompt/p16-1",
           "panelIndex": 1,
-          "promptEn": "1man, solo, ren, detached, professional, cool, closing laptop, unplugging USB drive, packing up, dark gray hoodie, medium shot, clean efficient movements, out of focus background, cinematic, photorealistic"
+          "promptEn": "solo, (Ren: 17-year-old male, pale skin, skinny build), detached, professional, cool, closing laptop, unplugging USB drive, packing up, dark gray hoodie, medium shot, clean efficient movements, out of focus background, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p16-2",
           "panelIndex": 2,
-          "promptEn": "1woman, solo, matsuda, disbelief, joy, comical relief, looking at computer screen, online banking, tight close-up, monitor glow, cluttered desk, cinematic, photorealistic"
+          "promptEn": "solo, (Matsuda: 58-year-old female, short, plump), disbelief, joy, comical relief, looking at computer screen, online banking, tight close-up, monitor glow, cluttered desk, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p16-3",
           "panelIndex": 3,
-          "promptEn": "2men, shouta, ren, gratitude, respect, calling out, over-the-shoulder shot, ren departing in background, office returning to normal, cinematic, photorealistic"
+          "promptEn": "2men, (Shouta: 26-year-old male), (Ren: 17-year-old male), gratitude, respect, calling out, over-the-shoulder shot, ren departing in background, office returning to normal, cinematic, photorealistic"
         }
       ],
-      "promptEn": "ren professionally packs up, matsuda is overjoyed at seeing the bank account, shouta thanks ren with respect, cinematic, photorealistic",
+      "promptEn": "(Ren: 17-year-old male) professionally packs up, (Matsuda: 58-year-old female) is overjoyed at seeing the bank account, (Shouta: 26-year-old male) thanks ren with respect, cinematic, photorealistic",
       "recommendedCutCount": 3,
       "promptCharCount": 372
     },
@@ -211,17 +211,17 @@
         {
           "@id": "gh:panelPrompt/p17-1",
           "panelIndex": 1,
-          "promptEn": "1man, solo, ren, from behind, exiting, dismissive wave, not looking back, cool confidence, dark gray hoodie, shot from inside office, framed by doorway, cinematic, photorealistic"
+          "promptEn": "solo, (Ren: 17-year-old male, skinny build), from behind, exiting, dismissive wave, not looking back, cool confidence, dark gray hoodie, shot from inside office, framed by doorway, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p17-2",
           "panelIndex": 2,
-          "promptEn": "2people, 1man, 1woman, ren, nei, walking, talking, companionship, normal life, kamata street at night, crowded, neon-soaked, tracking shot, vibrant, grimy, cinematic, photorealistic"
+          "promptEn": "2people, (Ren: 17-year-old male), (Nei: 16-year-old female android, sailor-style outfit), walking, talking, companionship, normal life, kamata street at night, crowded, neon-soaked, tracking shot, vibrant, grimy, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p17-3",
           "panelIndex": 3,
-          "promptEn": "1man, solo, ren, looking at smartphone, confirming payment, sly smirk, quiet satisfaction, intimate close-up, lit by phone screen, blurred bokeh background, kamata night lights, cinematic, photorealistic"
+          "promptEn": "solo, (Ren: 17-year-old male, pale skin), looking at smartphone, confirming payment, sly smirk, quiet satisfaction, intimate close-up, lit by phone screen, blurred bokeh background, kamata night lights, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p17-4",
@@ -229,7 +229,7 @@
           "promptEn": "title card, text only, 'Ghost Hacker - Episode 1 End', clean white font, sans-serif, solid black background, quiet, mystery, anticipation"
         }
       ],
-      "promptEn": "ren waves goodbye, ren and nei walk through neon-lit kamata street, ren gets paid and smirks, end title card, cinematic, photorealistic",
+      "promptEn": "(Ren: 17-year-old male) waves goodbye, ren and (Nei: 16-year-old female android) walk through neon-lit kamata street, ren gets paid and smirks, end title card, cinematic, photorealistic",
       "recommendedCutCount": 4,
       "promptCharCount": 521
     },
@@ -240,10 +240,10 @@
         {
           "@id": "gh:panelPrompt/p2-1",
           "panelIndex": 1,
-          "promptEn": "title page, vertical aspect ratio, 2people, ren, nei, floating, weightless, cyberspace, intense concentration, typing on holographic keyboard, guardian, glowing eyes, analytical data stream, dark gray hoodie, sailor-inspired outfit, chaotic background, digital grids, fragments of a city, 'GHOST HACKER' title logo, spatial distortion, gritty, high-contrast, cyberpunk realism, neon blue and purple palette, dramatic cinematic lighting, masterpiece"
+          "promptEn": "title page, vertical aspect ratio, 2people, (Ren: 17-year-old male, dark gray hoodie), (Nei: 16-year-old female android, sailor-inspired outfit), floating, weightless, cyberspace, intense concentration, typing on holographic keyboard, guardian, glowing eyes, analytical data stream, chaotic background, digital grids, fragments of a city, 'GHOST HACKER' title logo, spatial distortion, gritty, high-contrast, cyberpunk realism, neon blue and purple palette, dramatic cinematic lighting, masterpiece"
         }
       ],
-      "promptEn": "title page, vertical aspect ratio, 2people, ren, nei, floating, weightless, cyberspace, intense concentration, typing on holographic keyboard, guardian, glowing eyes, analytical data stream, dark gray hoodie, sailor-inspired outfit, chaotic background, digital grids, fragments of a city, 'GHOST HACKER' title logo, spatial distortion, gritty, high-contrast, cyberpunk realism, neon blue and purple palette, dramatic cinematic lighting, masterpiece",
+      "promptEn": "title page, vertical aspect ratio, 2people, (Ren: 17-year-old male), (Nei: 16-year-old female android), floating, weightless, cyberspace, intense concentration, typing on holographic keyboard, guardian, glowing eyes, analytical data stream, chaotic background, digital grids, fragments of a city, 'GHOST HACKER' title logo, spatial distortion, gritty, high-contrast, cyberpunk realism, neon blue and purple palette, dramatic cinematic lighting, masterpiece",
       "recommendedCutCount": 1,
       "promptCharCount": 927
     },
@@ -254,25 +254,25 @@
         {
           "@id": "gh:panelPrompt/p4-1",
           "panelIndex": 1,
-          "promptEn": "1man, solo, ren, bored, lazy, slouched in chair, staring at ceiling, dark gray hoodie, worn-in jeans, wide establishing shot, isolation, minimalist modern office, concrete walls, high ceilings, clean, sterile, cinematic, photorealistic"
+          "promptEn": "solo, (Ren: 17-year-old male, skinny build), bored, lazy, slouched in chair, staring at ceiling, dark gray hoodie, worn-in jeans, wide establishing shot, isolation, minimalist modern office, concrete walls, high ceilings, clean, sterile, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p4-2",
           "panelIndex": 2,
-          "promptEn": "1woman, solo, nei, android, exasperated, impatient, arms crossed, tapping on tablet, stylish sailor-inspired outfit, medium shot, out of focus background, messy office corner, cinematic, photorealistic"
+          "promptEn": "solo, (Nei: 16-year-old female android, slim build), exasperated, impatient, arms crossed, tapping on tablet, stylish sailor-inspired outfit, medium shot, out of focus background, messy office corner, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p4-3",
           "panelIndex": 3,
-          "promptEn": "2people, 1man, 1woman, ren, nei, confronting, comedic tension, frustration vs apathy, invading personal space, two-shot, ren's desk, multiple monitors, cinematic, photorealistic"
+          "promptEn": "2people, (Ren: 17-year-old male), (Nei: 16-year-old female android), confronting, comedic tension, frustration vs apathy, invading personal space, two-shot, ren's desk, multiple monitors, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p4-4",
           "panelIndex": 4,
-          "promptEn": "1man, solo, ren, bored, picking ear, distant gaze, tight close-up, razor-sharp focus on eyes, blurred background, concrete wall, strong sense of isolation, cinematic, naturalistic lighting"
+          "promptEn": "solo, (Ren: 17-year-old male, pale skin), bored, picking ear, distant gaze, tight close-up, razor-sharp focus on eyes, blurred background, concrete wall, strong sense of isolation, cinematic, naturalistic lighting"
         }
       ],
-      "promptEn": "ren is bored in his modern office, nei is exasperated with him, comedic confrontation, ren's apathy in close-up, cinematic, photorealistic, minimalist office",
+      "promptEn": "(Ren: 17-year-old male) is bored in his modern office, (Nei: 16-year-old female android) is exasperated with him, comedic confrontation, ren's apathy in close-up, cinematic, photorealistic, minimalist office",
       "recommendedCutCount": 4,
       "promptCharCount": 1006
     },
@@ -283,25 +283,25 @@
         {
           "@id": "gh:panelPrompt/p5-1",
           "panelIndex": 1,
-          "promptEn": "insert shot, video feed, monitor screen, 1man, shouta, tense, worried, jaw tight, navy business suit, close-up on sleek monitor, bright hallway background, cinematic, photorealistic"
+          "promptEn": "insert shot, video feed, monitor screen, (Shouta: 26-year-old male, dark hair), tense, worried, jaw tight, navy business suit, close-up on sleek monitor, bright hallway background, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p5-2",
           "panelIndex": 2,
-          "promptEn": "1man, solo, ren, getting up, slow deliberate movement, annoyed, alert, full-body shot, long shadow, modern minimalist office, cinematic, photorealistic"
+          "promptEn": "solo, (Ren: 17-year-old male, skinny build), getting up, slow deliberate movement, annoyed, alert, full-body shot, long shadow, modern minimalist office, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p5-3",
           "panelIndex": 3,
-          "promptEn": "1man, solo, ren, sitting on sofa, relaxed posture, sharp analytical eyes, casual authority, dark gray hoodie, jeans, three-quarter view, owning the space, cinematic, photorealistic"
+          "promptEn": "solo, (Ren: 17-year-old male, skinny build), sitting on sofa, relaxed posture, sharp analytical eyes, casual authority, dark gray hoodie, jeans, three-quarter view, owning the space, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p5-4",
           "panelIndex": 4,
-          "promptEn": "1man, solo, shouta, explaining, anxious, shoulders hunched, worried face, navy suit, loosened tie, bust-up shot, shallow depth of field, isolated, distressed, soft-focus background, cinematic, photorealistic"
+          "promptEn": "solo, (Shouta: 26-year-old male, dark hair, fit build), explaining, anxious, shoulders hunched, worried face, navy suit, loosened tie, bust-up shot, shallow depth of field, isolated, distressed, soft-focus background, cinematic, photorealistic"
         }
       ],
-      "promptEn": "shouta appears on video call, tense and worried, ren gets up, annoyed but alert, ren questions shouta with calm authority, shouta explains the situation, distressed, cinematic, photorealistic",
+      "promptEn": "(Shouta: 26-year-old male) appears on video call, tense and worried, (Ren: 17-year-old male) gets up, annoyed but alert, ren questions shouta with calm authority, shouta explains the situation, distressed, cinematic, photorealistic",
       "recommendedCutCount": 4,
       "promptCharCount": 1183
     },
@@ -317,20 +317,20 @@
         {
           "@id": "gh:panelPrompt/p6-2",
           "panelIndex": 2,
-          "promptEn": "1woman, solo, matsuda, middle-aged accountant, screaming into phone, rage, panic, flushed face, conservative blouse, glasses on chain, intense close-up, frantic motion blur background, cinematic"
+          "promptEn": "solo, (Matsuda: 58-year-old female, short, plump, permed hair), screaming into phone, rage, panic, flushed face, conservative blouse, glasses on chain, intense close-up, frantic motion blur background, cinematic"
         },
         {
           "@id": "gh:panelPrompt/p6-3",
           "panelIndex": 3,
-          "promptEn": "1man, solo, sato, young employee, sweating, confused, desperate, fumbling with cables, polo shirt, medium shot, crouched behind server rack, mess of cables, cinematic"
+          "promptEn": "solo, (Sato: 24-year-old male, slim build, short black hair), sweating, confused, desperate, fumbling with cables, polo shirt, medium shot, crouched behind server rack, mess of cables, cinematic"
         },
         {
           "@id": "gh:panelPrompt/p6-4",
           "panelIndex": 4,
-          "promptEn": "1man, solo, ren, island of calm, arms crossed, surveying chaos, cool, analytical, sarcastic smirk, amused, dark gray hoodie, medium shot, shallow depth of field, isolated from chaos, cinematic"
+          "promptEn": "solo, (Ren: 17-year-old male, pale skin, skinny build, messy dark hair), island of calm, arms crossed, surveying chaos, cool, analytical, sarcastic smirk, amused, dark gray hoodie, medium shot, shallow depth of field, isolated from chaos, cinematic"
         }
       ],
-      "promptEn": "panic in a cluttered old office, matsuda screaming on the phone, sato struggling with cables, ren calmly surveying the chaos with an amused smirk, cinematic, photorealistic",
+      "promptEn": "panic in a cluttered old office, (Matsuda: 58-year-old female) screaming on the phone, (Sato: 24-year-old male) struggling with cables, (Ren: 17-year-old male) calmly surveying the chaos with an amused smirk, cinematic, photorealistic",
       "recommendedCutCount": 4,
       "promptCharCount": 746
     },
@@ -341,25 +341,25 @@
         {
           "@id": "gh:panelPrompt/p7-1",
           "panelIndex": 1,
-          "promptEn": "cinematic still, high-contrast monochrome manga style, 1man, solo, yasumoto, 52, middle-aged, overweight, sweating, anxious face, dabbing brow, handkerchief, shifty eyes, glaring, hostility, rumpled gray business suit, loosened tie, tense medium shot, defensive posture, chaotic office background, out of focus, dramatic key lighting, photorealistic, hyper-detailed, sharp focus"
+          "promptEn": "cinematic still, high-contrast monochrome manga style, solo, (Yasumoto: 52-year-old male, overweight, perpetually sweating, anxious face), dabbing brow, handkerchief, shifty eyes, glaring, hostility, rumpled gray business suit, loosened tie, tense medium shot, defensive posture, chaotic office background, out of focus, dramatic key lighting, photorealistic, hyper-detailed, sharp focus"
         },
         {
           "@id": "gh:panelPrompt/p7-2",
           "panelIndex": 2,
-          "promptEn": "cinematic still, Japanese thriller, high-contrast monochrome, 1man, solo, shouta, 26, close-up on face, determined, cold fury, resolve, sharp eyes narrowed, jaw clenched, navy business suit, loosened tie, slightly low angle, authority, chiaroscuro lighting, deep shadows, blurred background, cowering yasumoto in background, photorealistic, incredibly detailed, sharp focus on eyes"
+          "promptEn": "cinematic still, Japanese thriller, high-contrast monochrome, solo, (Shouta: 26-year-old male, fit build, sharp eyes), close-up on face, determined, cold fury, resolve, eyes narrowed, jaw clenched, navy business suit, loosened tie, slightly low angle, authority, chiaroscuro lighting, deep shadows, blurred background, cowering yasumoto in background, photorealistic, incredibly detailed, sharp focus on eyes"
         },
         {
           "@id": "gh:panelPrompt/p7-3",
           "panelIndex": 3,
-          "promptEn": "cinematic POV shot, augmented reality view, from ren's perspective, yasumoto, back to camera, hunched over, terrifying, black, smoke-like, digital ghost, glowing jagged eyes, clinging to back, semi-translucent, glitching digital artifacts, dark energy, fear, jealousy, subtle HUD overlay, faint grid lines, dim lighting, menacing green-black glow, photorealistic, VFX, digital artifacting, volumetric smoke"
+          "promptEn": "cinematic POV shot, augmented reality view, from ren's perspective, (Yasumoto: 52-year-old male), back to camera, hunched over, terrifying, black, smoke-like, digital ghost, glowing jagged eyes, clinging to back, semi-translucent, glitching digital artifacts, dark energy, fear, jealousy, subtle HUD overlay, faint grid lines, dim lighting, menacing green-black glow, photorealistic, VFX, digital artifacting, volumetric smoke"
         },
         {
           "@id": "gh:panelPrompt/p7-4",
           "panelIndex": 4,
-          "promptEn": "cinematic still, wide shot, 1man, solo, ren, 17, pale, skinny, hacker, dark gray hoodie, jeans, calmly sitting, opening laptop, precise movements, cool, detached, island of calm, over-the-shoulder shot, chaotic office background, motion blur, stillness vs chaos, single light source, cool white light from laptop, deep shadows, high contrast, sharp focus on ren and laptop"
+          "promptEn": "cinematic still, wide shot, solo, (Ren: 17-year-old male, pale, skinny, hacker), dark gray hoodie, jeans, calmly sitting, opening laptop, precise movements, cool, detached, island of calm, over-the-shoulder shot, chaotic office background, motion blur, stillness vs chaos, single light source, cool white light from laptop, deep shadows, high contrast, sharp focus on ren and laptop"
         }
       ],
-      "promptEn": "tense confrontation, chaotic office, yasumoto, sweating, anxious, hostile, shouta, cold fury, determined, POV shot, terrifying digital ghost with glowing eyes on yasumoto's back, ren, calm, opens laptop amidst chaos, cinematic stills, high-contrast monochrome, photorealistic, dramatic lighting",
+      "promptEn": "tense confrontation, chaotic office, (Yasumoto: 52-year-old male), sweating, anxious, hostile, (Shouta: 26-year-old male), cold fury, determined, POV shot, terrifying digital ghost with glowing eyes on yasumoto's back, (Ren: 17-year-old male), calm, opens laptop amidst chaos, cinematic stills, high-contrast monochrome, photorealistic, dramatic lighting",
       "recommendedCutCount": 4,
       "promptCharCount": 731
     },
@@ -370,20 +370,20 @@
         {
           "@id": "gh:panelPrompt/p8-1",
           "panelIndex": 1,
-          "promptEn": "action, ren's hands, typing, blur of motion, incredible speed, laptop keyboard, green code, waterfall scroll, shouta and sato watching, awe, disbelief, tight close-up, shallow-focused background, glowing screen, cinematic, photorealistic"
+          "promptEn": "action, (Ren: 17-year-old male)'s hands, typing, blur of motion, incredible speed, laptop keyboard, green code, waterfall scroll, (Shouta: 26-year-old male) and (Sato: 24-year-old male) watching, awe, disbelief, tight close-up, shallow-focused background, glowing screen, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p8-2",
           "panelIndex": 2,
-          "promptEn": "1man, solo, ren, speaking, grim expression, serious, not looking from screen, side profile, half face in shadow, gravity, lit by monitor, cinematic, photorealistic"
+          "promptEn": "solo, (Ren: 17-year-old male, pale skin), speaking, grim expression, serious, not looking from screen, side profile, half face in shadow, gravity, lit by monitor, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p8-3",
           "panelIndex": 3,
-          "promptEn": "1man, solo, yasumoto, recoiling, shocked, ashen face, pure fear, gut-wrenching, disorienting dutch angle, distorted perspective, crumbling mental state, warping office background, cinematic, photorealistic"
+          "promptEn": "solo, (Yasumoto: 52-year-old male, anxious face), recoiling, shocked, ashen face, pure fear, gut-wrenching, disorienting dutch angle, distorted perspective, crumbling mental state, warping office background, cinematic, photorealistic"
         }
       ],
-      "promptEn": "ren typing at incredible speed, code scrolling, shouta and sato watch in awe, ren speaks grimly, yasumoto recoils in pure fear, cinematic, photorealistic, high-tension",
+      "promptEn": "(Ren: 17-year-old male) typing at incredible speed, code scrolling, (Shouta: 26-year-old male) and (Sato: 24-year-old male) watch in awe, ren speaks grimly, (Yasumoto: 52-year-old male) recoils in pure fear, cinematic, photorealistic, high-tension",
       "recommendedCutCount": 3,
       "promptCharCount": 573
     },
@@ -394,25 +394,25 @@
         {
           "@id": "gh:panelPrompt/p9-1",
           "panelIndex": 1,
-          "promptEn": "laptop screen, 'FOUND!!', yasumoto's corporate ID, photo, profile, nei, pointing at screen, triumphant, grim satisfaction, extreme close-up, incriminating evidence, cinematic"
+          "promptEn": "laptop screen, 'FOUND!!', (Yasumoto: 52-year-old male)'s corporate ID, photo, profile, (Nei: 16-year-old female android), pointing at screen, triumphant, grim satisfaction, extreme close-up, incriminating evidence, cinematic"
         },
         {
           "@id": "gh:panelPrompt/p9-2",
           "panelIndex": 2,
-          "promptEn": "1man, solo, ren, swiveling in chair, smooth movement, pointing, accusatory finger, cold hard eyes, judge, verdict, medium shot, powerful gesture, cinematic, photorealistic"
+          "promptEn": "solo, (Ren: 17-year-old male, sharp eyes), swiveling in chair, smooth movement, pointing, accusatory finger, cold hard eyes, judge, verdict, medium shot, powerful gesture, cinematic, photorealistic"
         },
         {
           "@id": "gh:panelPrompt/p9-3",
           "panelIndex": 3,
-          "promptEn": "group shot, office employees, matsuda, sato, shouta, shock, betrayal, all looking at yasumoto, wide panoramic shot, collective horror, cinematic"
+          "promptEn": "group shot, office employees, (Matsuda: 58-year-old female), (Sato: 24-year-old male), (Shouta: 26-year-old male), shock, betrayal, all looking at yasumoto, wide panoramic shot, collective horror, cinematic"
         },
         {
           "@id": "gh:panelPrompt/p9-4",
           "panelIndex": 4,
-          "promptEn": "1man, solo, yasumoto, trapped, cold sweat, trembling lips, broken, dramatic low-angle close-up, terror, guilt, blurred accusers in background, cinematic, photorealistic"
+          "promptEn": "solo, (Yasumoto: 52-year-old male, anxious face), trapped, cold sweat, trembling lips, broken, dramatic low-angle close-up, terror, guilt, blurred accusers in background, cinematic, photorealistic"
         }
       ],
-      "promptEn": "nei finds yasumoto's profile, ren accuses him, the office stares in shock, yasumoto breaks down in guilt and terror, cinematic, photorealistic, dramatic confrontation",
+      "promptEn": "(Nei: 16-year-old female android) finds (Yasumoto: 52-year-old male)'s profile, (Ren: 17-year-old male) accuses him, the office stares in shock, yasumoto breaks down in guilt and terror, cinematic, photorealistic, dramatic confrontation",
       "recommendedCutCount": 4,
       "promptCharCount": 681
     }
