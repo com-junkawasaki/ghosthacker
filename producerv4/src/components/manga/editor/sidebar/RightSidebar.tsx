@@ -26,6 +26,18 @@ interface RightSidebarProps {
     width: number;
     height: number;
   };
+  selectedPanel?: {
+    id: string;
+    order?: number;
+    hideBorder?: boolean;
+    ignoreNeighborPanels?: boolean;
+  };
+  panelLayers?: Array<{
+    id: string;
+    name: string;
+    type: 'image' | 'dialogue';
+    visible: boolean;
+  }>;
   onBubbleSave?: (bubble: {
     id: string;
     text: string;
@@ -33,6 +45,12 @@ interface RightSidebarProps {
     bubbleType: 'speech' | 'thought' | 'shout';
   }) => void;
   onBubbleDelete?: (id: string) => void;
+  onPanelSettingsChange?: (settings: {
+    order?: number;
+    hideBorder?: boolean;
+    ignoreNeighborPanels?: boolean;
+  }) => void;
+  onLayerToggle?: (layerId: string, visible: boolean) => void;
   onModelSelect?: (model: AIModel) => void;
   onStoryGenerated?: () => void;
 }
@@ -41,8 +59,12 @@ export function RightSidebar({
   activeTab,
   projectId,
   selectedBubble,
+  selectedPanel,
+  panelLayers,
   onBubbleSave,
   onBubbleDelete,
+  onPanelSettingsChange,
+  onLayerToggle,
   onModelSelect,
   onStoryGenerated,
 }: RightSidebarProps) {
@@ -61,8 +83,12 @@ export function RightSidebar({
             content: (
               <PageTab
                 selectedBubble={selectedBubble}
+                selectedPanel={selectedPanel}
+                panelLayers={panelLayers}
                 onBubbleSave={onBubbleSave}
                 onBubbleDelete={onBubbleDelete}
+                onPanelSettingsChange={onPanelSettingsChange}
+                onLayerToggle={onLayerToggle}
               />
             ),
           },

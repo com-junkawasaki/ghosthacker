@@ -176,7 +176,7 @@ function CanvasAreaComponent({
 
   try {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-gray-50 overflow-auto p-4">
+      <div className="w-full h-full flex items-center justify-center bg-white overflow-auto p-4 border-2 border-blue-200">
         <StageComponent
           ref={stageRef}
           width={width}

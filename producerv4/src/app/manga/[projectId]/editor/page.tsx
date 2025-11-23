@@ -485,8 +485,26 @@ export default function MangaEditorPage({
         <RightSidebar
           projectId={params.projectId}
           {...(selectedBubble ? { selectedBubble } : {})}
+          selectedPanel={selectedNodeId ? {
+            id: selectedNodeId,
+            order: 1,
+            hideBorder: false,
+            ignoreNeighborPanels: false,
+          } : undefined}
+          panelLayers={[
+            { id: 'image', name: 'Image', type: 'image', visible: true },
+            { id: 'dialogue', name: 'Dialogue', type: 'dialogue', visible: true },
+          ]}
           onBubbleSave={handleBubbleSave}
           onBubbleDelete={handleBubbleDelete}
+          onPanelSettingsChange={(settings) => {
+            console.log('Panel settings changed:', settings);
+            // TODO: Implement panel settings update mutation
+          }}
+          onLayerToggle={(layerId, visible) => {
+            console.log('Layer toggle:', layerId, visible);
+            // TODO: Implement layer visibility update
+          }}
           onModelSelect={(model) => {
             setSelectedModel(model);
             console.log('Selected model:', model);
