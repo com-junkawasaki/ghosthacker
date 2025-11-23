@@ -7,7 +7,10 @@
     "pageId": "gh:pageId",
     "panelIndex": "gh:panelIndex",
     "sceneId": "gh:sceneId",
-    "panels": "gh:panels"
+    "panels": "gh:panels",
+    "pagePrompts": "gh:pagePrompts",
+    "recommendedCutCount": "gh:recommendedCutCount",
+    "promptCharCount": "gh:promptCharCount"
   },
   "@id": "gh:generationPrompts/episode01",
   "@type": "gh:GenerationPrompts",
@@ -367,6 +370,120 @@
           "promptEn": "The text 'Ghost Hacker - Episode 1 End' is displayed in white on a black background, leaving a quiet afterglow."
         }
       ]
+    }
+  ],
+  "gh:pagePrompts": [
+    {
+      "@id": "gh:pagePrompt/page:1",
+      "pageId": "page:1",
+      "promptEn": "Bird's‑eye view of Tokyo 2026. Dense clusters of skyscrapers, small delivery drones flying between buildings, thin glowing lines and translucent icons in the sky representing data streams, with a massive data center and server farms in the distant background. The sky is a blue‑purple gradient of early night. Near‑future sci‑fi anime background, detailed, high contrast, no UI text.",
+      "recommendedCutCount": 1,
+      "promptCharCount": 383
+    },
+    {
+      "@id": "gh:pagePrompt/page:10",
+      "pageId": "page:10",
+      "promptEn": "Yasumoto screams like a wild animal. From his back, the black, smoke-like aura of the Ghost explosively expands, nearly reaching the office ceiling. The Ghost, now fully separated from Yasumoto's body, forms into a giant monster made of tangled old documents, LAN cables, and PC parts. Sinister and detailed. Matsuda and Sato are paralyzed with fear, while Shouta stands stunned. Their expressions convey the immense size and terror of the monster they are witnessing.",
+      "recommendedCutCount": 3,
+      "promptCharCount": 468
+    },
+    {
+      "@id": "gh:pagePrompt/page:11",
+      "pageId": "page:11",
+      "promptEn": "Ren calmly takes out his smartphone and operates it. The screen displays a simple UI: 'SIP Device: ON'. His composure highlights the extraordinary situation. Digital noise and grid lines run through the entire office space. The Ghost's body is rendered more clearly, as a being with physical mass. An effect as if the space itself is distorting. The Ghost uses its massive body to knock over a steel shelf. Papers fly and sparks scatter. A powerful action scene that clearly shows its physical destructive power.",
+      "recommendedCutCount": 3,
+      "promptCharCount": 512
+    },
+    {
+      "@id": "gh:pagePrompt/page:12",
+      "pageId": "page:12",
+      "promptEn": "Shouta shoves Matsuda out of the way to protect her from the falling shelf, using his own body as a shield. A close-up of his face, showing his sense of responsibility and determination. In the palm of Ren's outstretched hand, particles of pale blue data light gather, gradually forming the shape of a giant axe (Digital Axe). Beautiful light particle effects. Ren hefts the fully formed Digital Axe onto his shoulder and takes a quiet step toward the Ghost. His eyes are cold, showing the confidence of one who will dominate the coming battle.",
+      "recommendedCutCount": 3,
+      "promptCharCount": 544
+    },
+    {
+      "@id": "gh:pagePrompt/page:13",
+      "pageId": "page:13",
+      "promptEn": "Ren swiftly dodges the Ghost's swinging LAN-cable tentacles by ducking. A slanted composition to depict the sense of speed. Ren leaps into the air and raises his Digital Axe. The command line string '/> /dev/null chop --force' appears around him as a special effect. A full-page spread. Ren smashes the Digital Axe into the Ghost's core (a part that glows red like a PC's CPU). The impact causes an explosion of light and digital noise.",
+      "recommendedCutCount": 3,
+      "promptCharCount": 436
+    },
+    {
+      "@id": "gh:pagePrompt/page:14",
+      "pageId": "page:14",
+      "promptEn": "As the light subsides, the Ghost dissolves into digital particles. In the center, Yasumoto collapses to the floor as if his strings have been cut. Silence returns to the office. The lock screens on the employees' PC monitors simultaneously disappear, replaced by their familiar desktop backgrounds. Sato has a look of relief. Yasumoto sits on the floor, covering his face with both hands and sobbing. His back, which looks small and defeated, tells a story of regret and despair.",
+      "recommendedCutCount": 3,
+      "promptCharCount": 479
+    },
+    {
+      "@id": "gh:pagePrompt/page:15",
+      "pageId": "page:15",
+      "promptEn": "The company president, Goro Daimon, stands at the office entrance in his work clothes. He looks shocked and confused by the disastrous scene before him. Shouta glances back and forth between his father, the president, and Yasumoto, who is collapsed on the floor. After a moment of hesitation, his expression becomes firm with resolve. Hearing Shouta's words, Yasumoto looks up at him with a mixed expression of surprise and gratitude. Shouta doesn't look at him, but stares straight at his father. The president, sensing his son's growth and compassion for Yasumoto, gives a nod with a complex but gentle expression. A quiet depiction of a generational shift.",
+      "recommendedCutCount": 4,
+      "promptCharCount": 659
+    },
+    {
+      "@id": "gh:pagePrompt/page:16",
+      "pageId": "page:16",
+      "promptEn": "As if nothing happened, Ren closes his laptop, unplugs a USB drive, and prepares to leave. The scene highlights his cool and professional demeanor. The accountant, Matsuda, looks at her PC's online banking screen, her expression changing from disbelief to joy. A comical scene. Shouta calls out to the departing Ren. His expression clearly shows his gratitude and respect.",
+      "recommendedCutCount": 3,
+      "promptCharCount": 372
+    },
+    {
+      "@id": "gh:pagePrompt/page:17",
+      "pageId": "page:17",
+      "promptEn": "As he leaves the office, Ren gives a slight wave with one hand without looking back. His back view conveys a sense of reliability without needing words. Ren and Nei walk through the evening crowd of Kamata. Nei is looking up at Ren and talking. The two have returned to their daily life. Close-up of Ren looking at his smartphone, confirming a payment, and smirking. It shows his (financial) side as a hacker. The text 'Ghost Hacker - Episode 1 End' is displayed in white on a black background, leaving a quiet afterglow.",
+      "recommendedCutCount": 4,
+      "promptCharCount": 521
+    },
+    {
+      "@id": "gh:pagePrompt/page:2-3",
+      "pageId": "page:2-3",
+      "promptEn": "Double-page spread title image. A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, disintegrate, and reconfigure. In the center, Ren and Nei float against gravity. Ren is typing at high speed on a translucent keyboard projected in mid-air, his gaze fixed on a distant data structure. His hoodie is slightly disheveled, showing his inner focus. Nei stands beside him, floating with her arms crossed as if on guard. She wears a functional, sailor-uniform-inspired outfit, and streams of analytical data flow across her eyes. Behind them, through a distortion in space, the giant 'GHOST HACKER' title logo emerges. Linework is precise and delicate, characters harmonize with the background. Cyberpunk, high contrast, neon blue and purple palette, high-resolution illustration.",
+      "recommendedCutCount": 1,
+      "promptCharCount": 827
+    },
+    {
+      "@id": "gh:pagePrompt/page:4",
+      "pageId": "page:4",
+      "promptEn": "Full view of a modern office with exposed concrete walls. A spacious room with minimalist desks and chairs. The floor is a mix of wood and white tiles. Ren slouches backwards in his chair in front of the PC desk, looking up at the ceiling. Natural perspective, a lived-in yet clean anime room background. Bust-up of Nei standing in the corner of the room, operating a tablet with her arms crossed and an exasperated look. She's wearing casual sailor-style clothes. Part of the messy room is blurred in the background. Nei walks up to Ren's chair and leans in with an exasperated look, drawn comically with slightly chibi proportions as she confronts him. Ren peeks his head over the back of the chair to look up at her. Bust‑up of Ren, lazily picking his ear with one hand while talking with a bored expression. In the background, parts of the modern office (concrete wall, track lighting) are softly blurred, as if the camera focus is on Ren in the foreground. Modern anime coloring, natural skin shading.",
+      "recommendedCutCount": 4,
+      "promptCharCount": 1006
+    },
+    {
+      "@id": "gh:pagePrompt/page:5",
+      "pageId": "page:5",
+      "promptEn": "Close-up of the large wall-mounted monitor in the office. It displays the video intercom feed, showing a young man in a suit (Shouta) standing there with a tense expression. The monitor frame has a minimalist design. Anime insert-cut style. Full-body shot of Ren slowly getting up from his chair with a look of annoyance. His posture shifts from lazy to slightly work-focused. The background is the modern office. Bust-up of Shouta as he enters the office. His expression is a mix of panic and exhaustion, but his eyes are sharp, showing his determination to resolve the situation. The office entrance is visible in the background. Ren, with his arms crossed, sizes up Shouta. The shot is framed with his chin slightly down, emphasizing his sharp, observant gaze. The background is the minimalist office wall.",
+      "recommendedCutCount": 4,
+      "promptCharCount": 809
+    },
+    {
+      "@id": "gh:pagePrompt/page:6",
+      "pageId": "page:6",
+      "promptEn": "A full view of the Daimon Construction office. It's an old office with a Showa-era feel, cluttered with steel desks and piles of documents. The composition conveys a state of panic, with ringing phones and people shouting. Close-up of Matsuda, the middle-aged accountant, screaming into the phone receiver with both hands, her face red with anger. Other employees are moving frantically in the background. Young employee Sato struggles with a tangle of cables behind a small server rack. He is sweating and has a confused expression. Modern anime character design. Ren, with his arms crossed, surveys the chaotic office with calm eyes. His expression shows a mix of composure and a hint of sarcasm, as if he sees the true nature of the situation.",
+      "recommendedCutCount": 4,
+      "promptCharCount": 746
+    },
+    {
+      "@id": "gh:pagePrompt/page:7",
+      "pageId": "page:7",
+      "promptEn": "General Affairs Manager Yasumoto appears, wiping away sweat. His eyes are filled with anxiety as he glares at Shouta with hostility. The composition emphasizes his suspicious behavior. Shouta retorts to Yasumoto with a resolute attitude. His expression shows the responsibility and anger of a young successor. A confrontational composition that highlights the tension between them. A point-of-view shot from Ren. Through what looks like AR glasses, the aura of a black, smoke-like Ghost clinging to Yasumoto's back is visualized. The aura represents negative emotions like jealousy and fear. A scene where Ren casually sits at an empty desk and opens his laptop. His calm and purposeful action contrasts with the surrounding chaos.",
+      "recommendedCutCount": 4,
+      "promptCharCount": 731
+    },
+    {
+      "@id": "gh:pagePrompt/page:8",
+      "pageId": "page:8",
+      "promptEn": "Close-up on Ren's hands typing at incredible speed. Green text flows like a waterfall on the screen. In the background, Shouta and Sato are peering over his shoulder with expressions of disbelief. Ren, speaking from his side profile while remaining focused on the screen. His expression is dead serious. The lighting is slightly shadowed to express the weight of his words. Yasumoto stumbles backward, his face drained of color. His shock and fear are expressed with a slightly distorted perspective, making the office background seem unstable to reflect his state of mind.",
+      "recommendedCutCount": 3,
+      "promptCharCount": 573
+    },
+    {
+      "@id": "gh:pagePrompt/page:9",
+      "pageId": "page:9",
+      "promptEn": "Close-up on Ren's laptop screen. The screen displays the large text 'FOUND!!' along with Yasumoto's internal company profile, complete with his photo. Nei stands beside him, pointing at the screen with a triumphant look. Ren swivels in his chair to face Yasumoto, pointing a finger directly at him. His eyes are sharp, holding the power of someone revealing the truth. All the employees in the office turn to look at Yasumoto with expressions of shock and accusation. The panel captures the shocked faces of Matsuda, Sato, and Shouta. Close-up on Yasumoto's face. He is breaking out in a cold sweat, his lips trembling. A slightly low angle shot to express his desperate situation.",
+      "recommendedCutCount": 4,
+      "promptCharCount": 681
     }
   ]
 }
