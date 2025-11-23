@@ -45,20 +45,25 @@ export const toPanelImageSource = (
   imageBase64?: string | null,
   imageData?: string | null
 ): PanelImageSource => {
-  return match({ imageUrl, imageBase64, imageData })
-    .with({ imageData: (v) => v != null && v !== '' }, ({ imageData }) => ({
+  if (imageData != null && imageData !== '') {
+    return {
       type: 'bytea' as const,
       value: imageData,
-    }))
-    .with({ imageBase64: (v) => v != null && v !== '' }, ({ imageBase64 }) => ({
+    };
+  }
+  if (imageBase64 != null && imageBase64 !== '') {
+    return {
       type: 'base64' as const,
       value: imageBase64,
-    }))
-    .with({ imageUrl: (v) => v != null && v !== '' }, ({ imageUrl }) => ({
+    };
+  }
+  if (imageUrl != null && imageUrl !== '') {
+    return {
       type: 'url' as const,
       value: imageUrl,
-    }))
-    .otherwise(() => ({ type: 'none' as const }));
+    };
+  }
+  return { type: 'none' as const };
 };
 
 export interface Dialogue {

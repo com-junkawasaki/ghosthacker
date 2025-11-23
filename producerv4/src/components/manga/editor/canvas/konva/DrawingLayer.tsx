@@ -14,7 +14,10 @@ interface DrawingLayerProps {
   tool: 'pen' | 'eraser';
   color?: string;
   strokeWidth?: number;
-  onDrawingComplete?: (points: number[]) => void;
+  onDrawingComplete?: ((points: number[]) => void) | ((lineId: string, points: number[]) => void);
+  onDrawingStart?: (x: number, y: number, color?: string, strokeWidth?: number) => void;
+  onDrawingMove?: (x: number, y: number) => void;
+  onDrawingCancel?: () => void;
 }
 
 export function DrawingLayer({
@@ -22,6 +25,9 @@ export function DrawingLayer({
   color = '#000000',
   strokeWidth = 2,
   onDrawingComplete,
+  onDrawingStart,
+  onDrawingMove,
+  onDrawingCancel,
 }: DrawingLayerProps) {
   const layerRef = useRef<KonvaLayerType | null>(null);
   const isDrawing = useRef(false);
@@ -49,6 +55,9 @@ export function DrawingLayer({
     const lineColor = tool === 'eraser' ? '#ffffff' : color;
     const lineWidth = tool === 'eraser' ? strokeWidth * 2 : strokeWidth;
 
+    // Notify XState
+    onDrawingStart?.(pos.x, pos.y, lineColor, lineWidth);
+
     const LineClass = Line;
     const line = new LineClass({
       points: [pos.x, pos.y],
@@ -71,6 +80,9 @@ export function DrawingLayer({
     const pos = e.target.getStage()?.getPointerPosition();
     if (!pos) return;
 
+    // Notify XState
+    onDrawingMove?.(pos.x, pos.y);
+
     const oldPoints = currentLine.current.points();
     const newPoints = [...oldPoints, pos.x, pos.y];
     currentLine.current.points(newPoints);
@@ -79,14 +91,26 @@ export function DrawingLayer({
   const handleMouseUp = () => {
     if (isDrawing.current && currentLine.current) {
       const points = currentLine.current.points();
+      const lineId = currentLine.current.id();
       lines.current.push({
         points,
         color: tool === 'eraser' ? '#ffffff' : color,
         strokeWidth: tool === 'eraser' ? strokeWidth * 2 : strokeWidth,
       });
-      onDrawingComplete?.(points);
+      // Call callback with lineId and points for XState
+      if (onDrawingComplete) {
+        if (onDrawingComplete.length === 2) {
+          (onDrawingComplete as (lineId: string, points: number[]) => void)(lineId, points);
+        } else {
+          (onDrawingComplete as (points: number[]) => void)(points);
+        }
+      }
       isDrawing.current = false;
       currentLine.current = null;
+    } else if (isDrawing.current) {
+      // Cancel drawing if no line was created
+      onDrawingCancel?.();
+      isDrawing.current = false;
     }
   };
 
@@ -97,7 +121,12 @@ export function DrawingLayer({
     stage.on('mousedown', handleMouseDown);
     stage.on('mousemove', handleMouseMove);
     stage.on('mouseup', handleMouseUp);
-    stage.on('mouseleave', handleMouseUp);
+    stage.on('mouseleave', () => {
+      if (isDrawing.current) {
+        handleMouseUp();
+        onDrawingCancel?.();
+      }
+    });
 
     return () => {
       stage.off('mousedown', handleMouseDown);
@@ -105,7 +134,7 @@ export function DrawingLayer({
       stage.off('mouseup', handleMouseUp);
       stage.off('mouseleave', handleMouseUp);
     };
-  }, [tool, color, strokeWidth]);
+  }, [tool, color, strokeWidth, onDrawingStart, onDrawingMove, onDrawingComplete, onDrawingCancel]);
 
   if (!Layer) {
     return null;

@@ -528,7 +528,10 @@ export default function MangaEditorPage({
         selectedTool,
         selectedNodeId: selectedNodeId || undefined,
         speechBubbles,
-        onStageUpdate: handleStageUpdate,
+        onStageUpdate: (stageJson: Record<string, unknown>) => {
+          actions.updateStage(stageJson);
+          handleStageUpdate(stageJson);
+        },
         onNodeSelect: (nodeId: string | undefined) => {
           if (nodeId) {
             actions.selectNode(nodeId);
@@ -537,6 +540,20 @@ export default function MangaEditorPage({
           }
         },
         stageRef: stageRef as React.RefObject<KonvaStageType>,
+        // XState Konva actions
+        onDrawingStart: actions.startDrawing,
+        onDrawingMove: actions.moveDrawing,
+        onDrawingComplete: actions.completeDrawing,
+        onDrawingCancel: actions.cancelDrawing,
+        onShapeStart: actions.startShape,
+        onShapeMove: actions.moveShape,
+        onShapeComplete: actions.completeShape,
+        onShapeCancel: actions.cancelShape,
+        onTextStart: actions.startText,
+        onTextUpdate: actions.updateText,
+        onTextComplete: actions.completeText,
+        onTextCancel: actions.cancelText,
+        onStageClick: actions.clickStage,
       };
 
       return (

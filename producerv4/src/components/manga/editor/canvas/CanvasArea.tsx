@@ -42,6 +42,20 @@ interface CanvasAreaProps {
   onStageUpdate?: (stageJson: Record<string, unknown>) => void;
   onNodeSelect?: (nodeId: string | undefined) => void;
   stageRef?: React.RefObject<KonvaStageType>;
+  // XState actions
+  onDrawingStart?: (x: number, y: number, color?: string, strokeWidth?: number) => void;
+  onDrawingMove?: (x: number, y: number) => void;
+  onDrawingComplete?: (lineId: string, points: number[]) => void;
+  onDrawingCancel?: () => void;
+  onShapeStart?: (x: number, y: number, shapeType: 'rect' | 'circle', strokeColor?: string, fillColor?: string, strokeWidth?: number) => void;
+  onShapeMove?: (x: number, y: number) => void;
+  onShapeComplete?: (shapeId: string, shape: { type: 'rect' | 'circle'; x: number; y: number; width?: number; height?: number; radius?: number }) => void;
+  onShapeCancel?: () => void;
+  onTextStart?: (x: number, y: number, fontSize?: number, fontFamily?: string, fillColor?: string) => void;
+  onTextUpdate?: (textId: string, text: string) => void;
+  onTextComplete?: (textId: string) => void;
+  onTextCancel?: () => void;
+  onStageClick?: (x: number, y: number, targetId?: string) => void;
 }
 
 function CanvasAreaComponent({ 
@@ -55,6 +69,19 @@ function CanvasAreaComponent({
   onStageUpdate,
   onNodeSelect,
   stageRef: externalStageRef,
+  onDrawingStart,
+  onDrawingMove,
+  onDrawingComplete,
+  onDrawingCancel,
+  onShapeStart,
+  onShapeMove,
+  onShapeComplete,
+  onShapeCancel,
+  onTextStart,
+  onTextUpdate,
+  onTextComplete,
+  onTextCancel,
+  onStageClick,
 }: CanvasAreaProps) {
   const internalStageRef = useRef<KonvaStageType>(null);
   const stageRef = externalStageRef || internalStageRef;
@@ -168,14 +195,22 @@ function CanvasAreaComponent({
   };
 
   const handleStageClick = (e: any) => {
+    const stage = e.target.getStage();
+    if (!stage) return;
+    
+    const pos = stage.getPointerPosition();
+    if (!pos) return;
+    
     // Deselect when clicking on empty area
-    if (e.target === e.target.getStage()) {
+    if (e.target === stage) {
       onNodeSelect?.(undefined);
+      onStageClick?.(pos.x, pos.y);
     } else {
       // Select clicked node
       const nodeId = e.target.id();
       if (nodeId) {
         onNodeSelect?.(nodeId);
+        onStageClick?.(pos.x, pos.y, nodeId);
       }
     }
   };
@@ -235,13 +270,30 @@ function CanvasAreaComponent({
                 ))}
               </LayerComponent>
               {(selectedTool === 'pen' || selectedTool === 'eraser') && DrawingLayerComponent && (
-                <DrawingLayerComponent tool={selectedTool} />
+                <DrawingLayerComponent 
+                  tool={selectedTool}
+                  onDrawingStart={onDrawingStart}
+                  onDrawingMove={onDrawingMove}
+                  onDrawingComplete={onDrawingComplete}
+                  onDrawingCancel={onDrawingCancel}
+                />
               )}
               {(selectedTool === 'rect' || selectedTool === 'circle') && ShapeLayerComponent && (
-                <ShapeLayerComponent tool={selectedTool} />
+                <ShapeLayerComponent 
+                  tool={selectedTool}
+                  onShapeStart={onShapeStart}
+                  onShapeMove={onShapeMove}
+                  onShapeComplete={onShapeComplete}
+                  onShapeCancel={onShapeCancel}
+                />
               )}
               {selectedTool === 'text' && TextLayerComponent && (
-                <TextLayerComponent />
+                <TextLayerComponent
+                  onTextStart={onTextStart}
+                  onTextUpdate={onTextUpdate}
+                  onTextComplete={onTextComplete}
+                  onTextCancel={onTextCancel}
+                />
               )}
               {selectedTool === 'select' && SelectionBoxComponent && (
                 <LayerComponent>

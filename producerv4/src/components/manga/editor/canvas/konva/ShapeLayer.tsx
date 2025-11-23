@@ -15,7 +15,10 @@ interface ShapeLayerProps {
   strokeColor?: string;
   fillColor?: string;
   strokeWidth?: number;
-  onShapeComplete?: (shape: { type: 'rect' | 'circle'; x: number; y: number; width?: number; height?: number; radius?: number }) => void;
+  onShapeComplete?: ((shape: { type: 'rect' | 'circle'; x: number; y: number; width?: number; height?: number; radius?: number }) => void) | ((shapeId: string, shape: { type: 'rect' | 'circle'; x: number; y: number; width?: number; height?: number; radius?: number }) => void);
+  onShapeStart?: (x: number, y: number, shapeType: 'rect' | 'circle', strokeColor?: string, fillColor?: string, strokeWidth?: number) => void;
+  onShapeMove?: (x: number, y: number) => void;
+  onShapeCancel?: () => void;
 }
 
 export function ShapeLayer({
@@ -24,6 +27,9 @@ export function ShapeLayer({
   fillColor = 'transparent',
   strokeWidth = 2,
   onShapeComplete,
+  onShapeStart,
+  onShapeMove,
+  onShapeCancel,
 }: ShapeLayerProps) {
   const layerRef = useRef<KonvaLayerType | null>(null);
   const isDrawing = useRef(false);
@@ -51,6 +57,9 @@ export function ShapeLayer({
     if (!pos || !layerRef.current) return;
 
     startPos.current = { x: pos.x, y: pos.y };
+    
+    // Notify XState
+    onShapeStart?.(pos.x, pos.y, tool, strokeColor, fillColor, strokeWidth);
 
     if (tool === 'rect') {
       const RectClass = Rect;
@@ -85,6 +94,9 @@ export function ShapeLayer({
 
     const pos = e.target.getStage()?.getPointerPosition();
     if (!pos) return;
+    
+    // Notify XState
+    onShapeMove?.(pos.x, pos.y);
 
     if (tool === 'rect') {
       const rect = currentShape.current;
@@ -103,27 +115,46 @@ export function ShapeLayer({
 
   const handleMouseUp = () => {
     if (isDrawing.current && currentShape.current && startPos.current) {
+      const shapeId = currentShape.current.id();
       if (tool === 'rect') {
         const rect = currentShape.current;
-        onShapeComplete?.({
-          type: 'rect',
+        const shape = {
+          type: 'rect' as const,
           x: rect.x(),
           y: rect.y(),
           width: rect.width(),
           height: rect.height(),
-        });
+        };
+        if (onShapeComplete) {
+          if (onShapeComplete.length === 2) {
+            (onShapeComplete as (shapeId: string, shape: { type: 'rect' | 'circle'; x: number; y: number; width?: number; height?: number; radius?: number }) => void)(shapeId, shape);
+          } else {
+            (onShapeComplete as (shape: { type: 'rect' | 'circle'; x: number; y: number; width?: number; height?: number; radius?: number }) => void)(shape);
+          }
+        }
       } else {
         const circle = currentShape.current;
-        onShapeComplete?.({
-          type: 'circle',
+        const shape = {
+          type: 'circle' as const,
           x: circle.x(),
           y: circle.y(),
           radius: circle.radius(),
-        });
+        };
+        if (onShapeComplete) {
+          if (onShapeComplete.length === 2) {
+            (onShapeComplete as (shapeId: string, shape: { type: 'rect' | 'circle'; x: number; y: number; width?: number; height?: number; radius?: number }) => void)(shapeId, shape);
+          } else {
+            (onShapeComplete as (shape: { type: 'rect' | 'circle'; x: number; y: number; width?: number; height?: number; radius?: number }) => void)(shape);
+          }
+        }
       }
       isDrawing.current = false;
       currentShape.current = null;
       startPos.current = null;
+    } else if (isDrawing.current) {
+      // Cancel shape if no shape was created
+      onShapeCancel?.();
+      isDrawing.current = false;
     }
   };
 
@@ -134,7 +165,12 @@ export function ShapeLayer({
     stage.on('mousedown', handleMouseDown);
     stage.on('mousemove', handleMouseMove);
     stage.on('mouseup', handleMouseUp);
-    stage.on('mouseleave', handleMouseUp);
+    stage.on('mouseleave', () => {
+      if (isDrawing.current) {
+        handleMouseUp();
+        onShapeCancel?.();
+      }
+    });
 
     return () => {
       stage.off('mousedown', handleMouseDown);
@@ -142,7 +178,7 @@ export function ShapeLayer({
       stage.off('mouseup', handleMouseUp);
       stage.off('mouseleave', handleMouseUp);
     };
-  }, [tool, strokeColor, fillColor, strokeWidth]);
+  }, [tool, strokeColor, fillColor, strokeWidth, onShapeStart, onShapeMove, onShapeComplete, onShapeCancel]);
 
   if (!Layer) {
     return null;

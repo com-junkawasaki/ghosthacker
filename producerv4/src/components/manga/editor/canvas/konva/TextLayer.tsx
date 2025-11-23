@@ -15,6 +15,9 @@ interface TextLayerProps {
   fontFamily?: string;
   fillColor?: string;
   onTextComplete?: (text: { x: number; y: number; text: string }) => void;
+  onTextStart?: (x: number, y: number, fontSize?: number, fontFamily?: string, fillColor?: string) => void;
+  onTextUpdate?: (textId: string, text: string) => void;
+  onTextCancel?: () => void;
 }
 
 export function TextLayer({
@@ -22,6 +25,9 @@ export function TextLayer({
   fontFamily = 'sans-serif',
   fillColor = '#000000',
   onTextComplete,
+  onTextStart,
+  onTextUpdate,
+  onTextCancel,
 }: TextLayerProps) {
   const layerRef = useRef<KonvaLayerType | null>(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -43,6 +49,9 @@ export function TextLayer({
 
     const pos = e.target.getStage()?.getPointerPosition();
     if (!pos || !layerRef.current) return;
+
+    // Notify XState
+    onTextStart?.(pos.x, pos.y, fontSize, fontFamily, fillColor);
 
     const TextClass = Text;
     const text = new TextClass({
@@ -91,9 +100,13 @@ export function TextLayer({
 
       textarea.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
-          textNode.text(textarea.value);
+          const textValue = textarea.value;
+          textNode.text(textValue);
           document.body.removeChild(textarea);
           setIsEditing(false);
+          const textId = textNode.id();
+          onTextUpdate?.(textId, textValue);
+          onTextComplete?.(textId);
           onTextComplete?.({
             x: textNode.x(),
             y: textNode.y(),
@@ -103,6 +116,7 @@ export function TextLayer({
         if (e.key === 'Escape') {
           document.body.removeChild(textarea);
           setIsEditing(false);
+          onTextCancel?.();
         }
       });
     });
@@ -119,7 +133,7 @@ export function TextLayer({
     return () => {
       stage.off('mousedown', handleMouseDown);
     };
-  }, [isEditing, fontSize, fontFamily, fillColor]);
+  }, [isEditing, fontSize, fontFamily, fillColor, onTextStart, onTextUpdate, onTextComplete, onTextCancel]);
 
   if (!Layer) {
     return null;
