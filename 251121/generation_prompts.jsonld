@@ -37,9 +37,9 @@
       "panels": [
         {
           "@id": "gh:panelPrompt/p2-1",
-          "pageId": "page:2-3",
+          "pageId": "page:2",
           "panelIndex": 1,
-          "promptEn": "Double-page spread title image. A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, disintegrate, and reconfigure. In the center, Ren and Nei float against gravity. Ren is typing at high speed on a translucent keyboard projected in mid-air, his gaze fixed on a distant data structure. His hoodie is slightly disheveled, showing his inner focus. Nei stands beside him, floating with her arms crossed as if on guard. She wears a functional, sailor-uniform-inspired outfit, and streams of analytical data flow across her eyes. Behind them, through a distortion in space, the giant 'GHOST HACKER' title logo emerges. Linework is precise and delicate, characters harmonize with the background. Cyberpunk, high contrast, neon blue and purple palette, high-resolution illustration."
+          "promptEn": "Full-page title image (single smartphone page). A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, disintegrate, and reconfigure. In the center, Ren and Nei float against gravity. Ren is typing at high speed on a translucent keyboard projected in mid-air, his gaze fixed on a distant data structure. His hoodie is slightly disheveled, showing his inner focus. Nei stands beside him, floating with her arms crossed as if on guard. She wears a functional, sailor-uniform-inspired outfit, and streams of analytical data flow across her eyes. Behind them, through a distortion in space, the giant 'GHOST HACKER' title logo emerges. Linework is precise and delicate, characters harmonize with the background. Cyberpunk, high contrast, neon blue and purple palette, high-resolution illustration optimized for vertical smartphone viewing."
         },
         {
           "@id": "gh:panelPrompt/p4-1",
@@ -591,18 +591,18 @@
       "promptCharCount": 521
     },
     {
-      "@id": "gh:pagePrompt/page:2-3",
-      "pageId": "page:2-3",
+      "@id": "gh:pagePrompt/page:2",
+      "pageId": "page:2",
       "panelPrompts": [
         {
           "@id": "gh:panelPrompt/p2-1",
           "panelIndex": 1,
-          "promptEn": "Double-page spread title image. A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, disintegrate, and reconfigure. In the center, Ren and Nei float against gravity. Ren is typing at high speed on a translucent keyboard projected in mid-air, his gaze fixed on a distant data structure. His hoodie is slightly disheveled, showing his inner focus. Nei stands beside him, floating with her arms crossed as if on guard. She wears a functional, sailor-uniform-inspired outfit, and streams of analytical data flow across her eyes. Behind them, through a distortion in space, the giant 'GHOST HACKER' title logo emerges. Linework is precise and delicate, characters harmonize with the background. Cyberpunk, high contrast, neon blue and purple palette, high-resolution illustration."
+          "promptEn": "Full-page title image (single smartphone page). A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, disintegrate, and reconfigure. In the center, Ren and Nei float against gravity. Ren is typing at high speed on a translucent keyboard projected in mid-air, his gaze fixed on a distant data structure. His hoodie is slightly disheveled, showing his inner focus. Nei stands beside him, floating with her arms crossed as if on guard. She wears a functional, sailor-uniform-inspired outfit, and streams of analytical data flow across her eyes. Behind them, through a distortion in space, the giant 'GHOST HACKER' title logo emerges. Linework is precise and delicate, characters harmonize with the background. Cyberpunk, high contrast, neon blue and purple palette, high-resolution illustration optimized for vertical smartphone viewing."
         }
       ],
-      "promptEn": "Double-page spread title image. A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, disintegrate, and reconfigure. In the center, Ren and Nei float against gravity. Ren is typing at high speed on a translucent keyboard projected in mid-air, his gaze fixed on a distant data structure. His hoodie is slightly disheveled, showing his inner focus. Nei stands beside him, floating with her arms crossed as if on guard. She wears a functional, sailor-uniform-inspired outfit, and streams of analytical data flow across her eyes. Behind them, through a distortion in space, the giant 'GHOST HACKER' title logo emerges. Linework is precise and delicate, characters harmonize with the background. Cyberpunk, high contrast, neon blue and purple palette, high-resolution illustration.",
+      "promptEn": "Full-page title image (single smartphone page). A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, disintegrate, and reconfigure. In the center, Ren and Nei float against gravity. Ren is typing at high speed on a translucent keyboard projected in mid-air, his gaze fixed on a distant data structure. His hoodie is slightly disheveled, showing his inner focus. Nei stands beside him, floating with her arms crossed as if on guard. She wears a functional, sailor-uniform-inspired outfit, and streams of analytical data flow across her eyes. Behind them, through a distortion in space, the giant 'GHOST HACKER' title logo emerges. Linework is precise and delicate, characters harmonize with the background. Cyberpunk, high contrast, neon blue and purple palette, high-resolution illustration optimized for vertical smartphone viewing.",
       "recommendedCutCount": 1,
-      "promptCharCount": 827
+      "promptCharCount": 927
     },
     {
       "@id": "gh:pagePrompt/page:4",
