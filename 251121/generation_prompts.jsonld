@@ -25,7 +25,7 @@
     {
       "@id": "gh:scenePrompt/03_Consultation",
       "sceneId": "scene:03_Consultation",
-      "promptEn": "Dim hacker room interior. At the far end, the entrance door is open and young businessman Shota Daimon stands there in a slightly rumpled suit and loosened tie, his face a mix of panic and exhaustion. In the foreground we see Ren from behind turning toward him, and Nei's face on the monitor, both looking at Shota skeptically. Inside the room everything is lit by cold monitor light, while warm fluorescent light spills in from the hallway, emphasizing the contrast between their worlds. Cinematic composition with depth, anime background style."
+      "promptEn": "Dim hacker room interior. At the far end, the entrance door is open and young businessman Shouta Daimon stands there in a slightly rumpled suit and loosened tie, his face a mix of panic and exhaustion. In the foreground we see Ren from behind turning toward him, and Nei's face on the monitor, both looking at Shouta skeptically. Inside the room everything is lit by cold monitor light, while warm fluorescent light spills in from the hallway, emphasizing the contrast between their worlds. Cinematic composition with depth, anime background style."
     },
     {
       "@id": "gh:scenePrompt/04_Investigation",
@@ -45,7 +45,7 @@
     {
       "@id": "gh:scenePrompt/07_Resolution",
       "sceneId": "scene:07_Resolution",
-      "promptEn": "After the Ghost has vanished, the once‑chaotic office is quiet, papers and cables settled. In the center, a triangular composition: CEO Goro Daimon in work clothes, son Shota standing straight in his suit, and Yasumoto sitting collapsed on the floor with his head bowed. In the background, restored business system desktops glow softly on the monitors. The atmosphere mixes relief from tension, a hint of sorrow, and forward‑looking resolve. Soft backlighting, like an anime movie epilogue."
+      "promptEn": "After the Ghost has vanished, the once‑chaotic office is quiet, papers and cables settled. In the center, a triangular composition: CEO Goro Daimon in work clothes, son Shouta standing straight in his suit, and Yasumoto sitting collapsed on the floor with his head bowed. In the background, restored business system desktops glow softly on the monitors. The atmosphere mixes relief from tension, a hint of sorrow, and forward‑looking resolve. Soft backlighting, like an anime movie epilogue."
     }
   ],
   "gh:panelPrompts": [
@@ -89,7 +89,7 @@
       "@id": "gh:panelPrompt/p5-1",
       "pageId": "page:5",
       "panelIndex": 1,
-      "promptEn": "Close-up of the large wall-mounted monitor in the office. It displays the video intercom feed, showing a young man in a suit (Shota) standing there with a tense expression. The monitor frame has a minimalist design. Anime insert-cut style."
+      "promptEn": "Close-up of the large wall-mounted monitor in the office. It displays the video intercom feed, showing a young man in a suit (Shouta) standing there with a tense expression. The monitor frame has a minimalist design. Anime insert-cut style."
     },
     {
       "@id": "gh:panelPrompt/p5-2",
@@ -101,13 +101,13 @@
       "@id": "gh:panelPrompt/p5-3",
       "pageId": "page:5",
       "panelIndex": 3,
-      "promptEn": "Bust-up of Shota as he enters the office. His expression is a mix of panic and exhaustion, but his eyes are sharp, showing his determination to resolve the situation. The office entrance is visible in the background."
+      "promptEn": "Bust-up of Shouta as he enters the office. His expression is a mix of panic and exhaustion, but his eyes are sharp, showing his determination to resolve the situation. The office entrance is visible in the background."
     },
     {
       "@id": "gh:panelPrompt/p5-4",
       "pageId": "page:5",
       "panelIndex": 4,
-      "promptEn": "Ren, with his arms crossed, sizes up Shota. The shot is framed with his chin slightly down, emphasizing his sharp, observant gaze. The background is the minimalist office wall."
+      "promptEn": "Ren, with his arms crossed, sizes up Shouta. The shot is framed with his chin slightly down, emphasizing his sharp, observant gaze. The background is the minimalist office wall."
     },
     {
       "@id": "gh:panelPrompt/p6-1",
@@ -137,13 +137,13 @@
       "@id": "gh:panelPrompt/p7-1",
       "pageId": "page:7",
       "panelIndex": 1,
-      "promptEn": "General Affairs Manager Yasumoto appears, wiping away sweat. His eyes are filled with anxiety as he glares at Shota with hostility. The composition emphasizes his suspicious behavior."
+      "promptEn": "General Affairs Manager Yasumoto appears, wiping away sweat. His eyes are filled with anxiety as he glares at Shouta with hostility. The composition emphasizes his suspicious behavior."
     },
     {
       "@id": "gh:panelPrompt/p7-2",
       "pageId": "page:7",
       "panelIndex": 2,
-      "promptEn": "Shota retorts to Yasumoto with a resolute attitude. His expression shows the responsibility and anger of a young successor. A confrontational composition that highlights the tension between them."
+      "promptEn": "Shouta retorts to Yasumoto with a resolute attitude. His expression shows the responsibility and anger of a young successor. A confrontational composition that highlights the tension between them."
     },
     {
       "@id": "gh:panelPrompt/p7-3",
@@ -161,7 +161,7 @@
       "@id": "gh:panelPrompt/p8-1",
       "pageId": "page:8",
       "panelIndex": 1,
-      "promptEn": "Close-up on Ren's hands typing at incredible speed. Green text flows like a waterfall on the screen. In the background, Shota and Sato are peering over his shoulder with expressions of disbelief."
+      "promptEn": "Close-up on Ren's hands typing at incredible speed. Green text flows like a waterfall on the screen. In the background, Shouta and Sato are peering over his shoulder with expressions of disbelief."
     },
     {
       "@id": "gh:panelPrompt/p8-2",
@@ -191,7 +191,7 @@
       "@id": "gh:panelPrompt/p9-3",
       "pageId": "page:9",
       "panelIndex": 3,
-      "promptEn": "All the employees in the office turn to look at Yasumoto with expressions of shock and accusation. The panel captures the shocked faces of Matsuda, Sato, and Shota."
+      "promptEn": "All the employees in the office turn to look at Yasumoto with expressions of shock and accusation. The panel captures the shocked faces of Matsuda, Sato, and Shouta."
     },
     {
       "@id": "gh:panelPrompt/p9-4",
@@ -215,7 +215,7 @@
       "@id": "gh:panelPrompt/p10-3",
       "pageId": "page:10",
       "panelIndex": 3,
-      "promptEn": "Matsuda and Sato are paralyzed with fear, while Shota stands stunned. Their expressions convey the immense size and terror of the monster they are witnessing."
+      "promptEn": "Matsuda and Sato are paralyzed with fear, while Shouta stands stunned. Their expressions convey the immense size and terror of the monster they are witnessing."
     },
     {
       "@id": "gh:panelPrompt/p11-1",
@@ -239,7 +239,7 @@
       "@id": "gh:panelPrompt/p12-1",
       "pageId": "page:12",
       "panelIndex": 1,
-      "promptEn": "Shota shoves Matsuda out of the way to protect her from the falling shelf, using his own body as a shield. A close-up of his face, showing his sense of responsibility and determination."
+      "promptEn": "Shouta shoves Matsuda out of the way to protect her from the falling shelf, using his own body as a shield. A close-up of his face, showing his sense of responsibility and determination."
     },
     {
       "@id": "gh:panelPrompt/p12-2",
@@ -299,13 +299,13 @@
       "@id": "gh:panelPrompt/p15-2",
       "pageId": "page:15",
       "panelIndex": 2,
-      "promptEn": "Shota glances back and forth between his father, the president, and Yasumoto, who is collapsed on the floor. After a moment of hesitation, his expression becomes firm with resolve."
+      "promptEn": "Shouta glances back and forth between his father, the president, and Yasumoto, who is collapsed on the floor. After a moment of hesitation, his expression becomes firm with resolve."
     },
     {
       "@id": "gh:panelPrompt/p15-3",
       "pageId": "page:15",
       "panelIndex": 3,
-      "promptEn": "Hearing Shota's words, Yasumoto looks up at him with a mixed expression of surprise and gratitude. Shota doesn't look at him, but stares straight at his father."
+      "promptEn": "Hearing Shouta's words, Yasumoto looks up at him with a mixed expression of surprise and gratitude. Shouta doesn't look at him, but stares straight at his father."
     },
     {
       "@id": "gh:panelPrompt/p15-4",
@@ -329,7 +329,7 @@
       "@id": "gh:panelPrompt/p16-3",
       "pageId": "page:16",
       "panelIndex": 3,
-      "promptEn": "Shota calls out to the departing Ren. His expression clearly shows his gratitude and respect."
+      "promptEn": "Shouta calls out to the departing Ren. His expression clearly shows his gratitude and respect."
     },
     {
       "@id": "gh:panelPrompt/p17-1",

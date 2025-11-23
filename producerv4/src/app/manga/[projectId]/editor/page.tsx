@@ -7,7 +7,7 @@
  */
 'use client';
 
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useRef, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import type Konva from 'konva';
 type KonvaStageType = Konva.Stage;
@@ -15,6 +15,7 @@ import { useQuery, gql } from '@apollo/client';
 import { TopBar } from '@/components/manga/editor/header/TopBar';
 import { PageSidebar } from '@/components/manga/editor/sidebar/PageSidebar';
 import { RightSidebar } from '@/components/manga/editor/sidebar/RightSidebar';
+import { useMangaEditorMachine } from '@/hooks/useMangaEditorMachine';
 
 // Dynamically import CanvasArea to avoid SSR issues with Konva
 const CanvasArea = dynamic(
@@ -115,14 +116,17 @@ export default function MangaEditorPage({
 }: {
   params: { projectId: string };
 }) {
-  const [selectedTool, setSelectedTool] = useState<ToolType>('select');
-  const [zoom, setZoom] = useState(1.0);
-  const [selectedPageId, setSelectedPageId] = useState<string>();
-  const [selectedNodeId, setSelectedNodeId] = useState<string>();
-  const [speechBubbles, setSpeechBubbles] = useState<SpeechBubble[]>([]);
-  const [, setSelectedModel] = useState<AIModel | null>(null);
+  // Use XState machine for state management
+  const { snapshot, send, actions, data: machineData, editor: machineEditor } = useMangaEditorMachine(params.projectId);
   const stageRef = useRef<KonvaStageType | null>(null);
   const { undo, redo, canUndo, canRedo, saveState } = useUndoRedo(stageRef);
+  
+  // Update stage ref in machine when it changes
+  useEffect(() => {
+    if (stageRef.current) {
+      actions.setStageRef(stageRef.current);
+    }
+  }, [stageRef.current, actions]);
 
   // Fetch project data
   const { data: projectData, loading: projectLoading, error: projectError } = useQuery(MANGA_PROJECT_QUERY, {
@@ -130,19 +134,34 @@ export default function MangaEditorPage({
     skip: !params.projectId,
   });
 
+  // Send project loaded event to machine
+  useEffect(() => {
+    if (projectData?.mangaProject) {
+      send({ type: 'PROJECT_LOADED', project: projectData.mangaProject });
+    }
+    if (projectError) {
+      send({ type: 'PROJECT_ERROR', error: projectError });
+    }
+  }, [projectData, projectError, send]);
+
   // Fetch scripts for the project
   const { data: scriptsData, loading: scriptsLoading, error: scriptsError } = useQuery(MANGA_SCRIPTS_QUERY, {
     variables: { projectId: params.projectId },
     skip: !params.projectId,
   });
 
-  // Get the first script ID (or use projectId as fallback for now)
-  const scriptId = useMemo(() => {
-    if (scriptsData?.mangaScripts && scriptsData.mangaScripts.length > 0) {
-      return scriptsData.mangaScripts[0].id;
+  // Send scripts loaded event to machine
+  useEffect(() => {
+    if (scriptsData?.mangaScripts) {
+      send({ type: 'SCRIPTS_LOADED', scripts: scriptsData.mangaScripts });
     }
-    return null;
-  }, [scriptsData]);
+    if (scriptsError) {
+      send({ type: 'SCRIPTS_ERROR', error: scriptsError });
+    }
+  }, [scriptsData, scriptsError, send]);
+
+  // Get the first script ID from machine context
+  const scriptId = machineData.selectedScriptId;
 
   // Fetch pages data
   const { data: pagesData, loading: pagesLoading, error: pagesError } = useQuery(MANGA_PAGES_QUERY, {
@@ -150,12 +169,35 @@ export default function MangaEditorPage({
     skip: !scriptId,
   });
 
+  // Send pages loaded event to machine
+  useEffect(() => {
+    if (pagesData?.mangaPages) {
+      send({ type: 'PAGES_LOADED', pages: pagesData.mangaPages });
+    }
+    if (pagesError) {
+      send({ type: 'PAGES_ERROR', error: pagesError });
+    }
+  }, [pagesData, pagesError, send]);
+
+  // Get selected page ID from machine context
+  const selectedPageId = machineData.selectedPageId;
+
   // Fetch panels data for selected page
   const { data: panelsData, loading: panelsLoading, error: panelsError } = useQuery(MANGA_PANELS_QUERY, {
     variables: { pageId: selectedPageId || '' },
     skip: !selectedPageId,
     fetchPolicy: 'cache-and-network',
   });
+
+  // Send panels loaded event to machine
+  useEffect(() => {
+    if (panelsData?.mangaPanels) {
+      send({ type: 'PANELS_LOADED', panels: panelsData.mangaPanels });
+    }
+    if (panelsError) {
+      send({ type: 'PANELS_ERROR', error: panelsError });
+    }
+  }, [panelsData, panelsError, send]);
   
   // Debug: Log selectedPageId and panels query state
   useEffect(() => {
@@ -187,7 +229,7 @@ export default function MangaEditorPage({
       .map((panel: MangaPanel) => {
         const imageSource = toPanelImageSource(panel.imageUrl, panel.imageBase64, panel.imageData);
         
-        // Convert dialogue to speech bubbles
+        // Convert dialogue to speech bubbles and add to machine
         panel.dialogue.forEach((dialogue, index) => {
           const bubble: SpeechBubble = {
             id: `bubble-${panel.id}-${index}`,
@@ -199,13 +241,11 @@ export default function MangaEditorPage({
             speaker: dialogue.speaker,
             bubbleType: 'speech',
           };
-          setSpeechBubbles((prev) => {
-            const exists = prev.find((b) => b.id === bubble.id);
-            if (!exists) {
-              return [...prev, bubble];
-            }
-            return prev;
-          });
+          // Check if bubble already exists in machine context
+          const exists = machineEditor.speechBubbles.find((b) => b.id === bubble.id);
+          if (!exists) {
+            actions.addSpeechBubble(bubble);
+          }
         });
 
         return {
@@ -310,31 +350,28 @@ export default function MangaEditorPage({
     scriptId
   ]);
 
-  // Auto-select first page if available
-  useEffect(() => {
-    if (pages.length > 0) {
-      const firstPageId = pages[0]?.id;
-      if (firstPageId && firstPageId !== selectedPageId) {
-        console.log('Auto-selecting first page:', firstPageId, 'Current:', selectedPageId);
-        setSelectedPageId(firstPageId);
-      }
-    }
-  }, [pages, selectedPageId]);
+  // Auto-select first page if available (handled by machine when PAGES_LOADED event is sent)
 
   const handleExport = async (format: 'png' | 'jpeg' | 'pdf', resolution?: number) => {
     if (!stageRef.current) return;
 
-    const filename = `manga-page-${Date.now()}.${format === 'pdf' ? 'pdf' : format}`;
-    switch (format) {
-      case 'png':
-        await exportStageAsPNG(stageRef.current, filename);
-        break;
-      case 'jpeg':
-        await exportStageAsJPEG(stageRef.current, filename);
-        break;
-      case 'pdf':
-        await exportStageAsPDF(stageRef.current, filename, resolution);
-        break;
+    actions.startExport(format);
+    try {
+      const filename = `manga-page-${Date.now()}.${format === 'pdf' ? 'pdf' : format}`;
+      switch (format) {
+        case 'png':
+          await exportStageAsPNG(stageRef.current, filename);
+          break;
+        case 'jpeg':
+          await exportStageAsJPEG(stageRef.current, filename);
+          break;
+        case 'pdf':
+          await exportStageAsPDF(stageRef.current, filename, resolution);
+          break;
+      }
+      actions.completeExport();
+    } catch (error) {
+      actions.errorExport(error instanceof Error ? error : new Error('Export failed'));
     }
   };
 
@@ -343,17 +380,16 @@ export default function MangaEditorPage({
   };
 
   const handleAddSpeechBubble = () => {
-    const newBubble = {
+    const newBubble: SpeechBubble = {
       id: `bubble-${Date.now()}`,
       x: 100,
       y: 100,
       width: 200,
       height: 100,
       text: 'セリフを入力',
-      bubbleType: 'speech' as const,
+      bubbleType: 'speech',
     };
-    setSpeechBubbles([...speechBubbles, newBubble]);
-    setSelectedNodeId(newBubble.id);
+    actions.addSpeechBubble(newBubble);
     saveState();
   };
 
@@ -363,19 +399,20 @@ export default function MangaEditorPage({
     speaker?: string;
     bubbleType: 'speech' | 'thought' | 'shout';
   }) => {
-    setSpeechBubbles((prev) =>
-      prev.map((b) => (b.id === bubble.id ? { ...b, ...bubble } : b))
-    );
+    actions.updateSpeechBubble(bubble.id, bubble);
     saveState();
   };
 
   const handleBubbleDelete = (id: string) => {
-    setSpeechBubbles((prev) => prev.filter((b) => b.id !== id));
-    if (selectedNodeId === id) {
-      setSelectedNodeId(undefined);
-    }
+    actions.deleteSpeechBubble(id);
     saveState();
   };
+
+  // Get state from machine
+  const selectedNodeId = machineEditor.selectedNodeId;
+  const speechBubbles = machineEditor.speechBubbles;
+  const selectedTool = machineEditor.selectedTool;
+  const zoom = machineEditor.zoom;
 
   // Convert selectedBubble to BubbleSelectionState union type
   const bubbleSelectionState: BubbleSelectionState = useMemo(() => {
@@ -458,8 +495,8 @@ export default function MangaEditorPage({
       
       // Always show PageSidebar and CanvasArea if pages exist
       const pageSidebarProps = selectedPageId 
-        ? { pages: data.pages, selectedPageId, onPageSelect: setSelectedPageId, layers }
-        : { pages: data.pages, onPageSelect: setSelectedPageId, layers };
+        ? { pages: data.pages, selectedPageId, onPageSelect: (pageId: string) => actions.selectPage(pageId), layers }
+        : { pages: data.pages, onPageSelect: (pageId: string) => actions.selectPage(pageId), layers };
       
       const canvasAreaProps = {
         width: 1200,
@@ -492,7 +529,13 @@ export default function MangaEditorPage({
         selectedNodeId: selectedNodeId || undefined,
         speechBubbles,
         onStageUpdate: handleStageUpdate,
-        onNodeSelect: setSelectedNodeId,
+        onNodeSelect: (nodeId: string | undefined) => {
+          if (nodeId) {
+            actions.selectNode(nodeId);
+          } else {
+            actions.deselectNode();
+          }
+        },
         stageRef: stageRef as React.RefObject<KonvaStageType>,
       };
 
@@ -537,8 +580,8 @@ export default function MangaEditorPage({
             // TODO: Implement layer visibility update
           }}
           onModelSelect={(model) => {
-            setSelectedModel(model);
             console.log('Selected model:', model);
+            // Model selection is handled locally in the component
           }}
           onStoryGenerated={() => {
             // Refetch queries to update the UI
@@ -581,10 +624,10 @@ export default function MangaEditorPage({
         />
       </div>
       <div className="h-16 bg-gray-200 border-t border-gray-300 flex items-center justify-between px-4">
-        <BottomToolbar selectedTool={selectedTool} onToolSelect={(tool) => setSelectedTool(tool as ToolType)} />
+        <BottomToolbar selectedTool={selectedTool} onToolSelect={(tool) => actions.selectTool(tool as ToolType)} />
         <div className="flex items-center gap-4">
           <SaveLoadControls />
-          <ZoomControls zoom={zoom} onZoomChange={setZoom} />
+          <ZoomControls zoom={zoom} onZoomChange={(newZoom) => actions.setZoom(newZoom)} />
           <div className="flex items-center gap-2">
             <button
               type="button"

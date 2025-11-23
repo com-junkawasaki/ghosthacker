@@ -34,9 +34,9 @@
       "schema:description": "Renが開発した自律人型AI。見た目は16歳の少女と変わらない。"
     },
     {
-      "@id": "character:Shota",
+      "@id": "character:Shouta",
       "@type": "gh:Client",
-      "schema:name": "Shota Daimon",
+      "schema:name": "Shouta Daimon",
       "schema:description": "大門建設の社長の息子。26歳。会社の改革を志すが、古参社員との壁に悩む。",
       "gh:role": "Client / Successor"
     },
@@ -79,14 +79,14 @@
     },
     {
       "@id": "scene:03_Consultation",
-      "schema:name": "Shota's Request",
-      "gh:participants": ["character:Ren", "character:Nei", "character:Shota"],
+      "schema:name": "Shouta's Request",
+      "gh:participants": ["character:Ren", "character:Nei", "character:Shouta"],
       "gh:content": "翔太がRenの元を訪れる。父には内緒で、会社の危機（ランサムウェア感染疑義）を救ってほしいと依頼。"
     },
     {
       "@id": "scene:04_Investigation",
       "schema:name": "Daimon Construction",
-      "gh:participants": ["character:Ren", "character:Shota", "character:Yasumoto", "character:Matsuda", "character:Sato"],
+      "gh:participants": ["character:Ren", "character:Shouta", "character:Yasumoto", "character:Matsuda", "character:Sato"],
       "gh:content": "蒲田のオフィス。パニック状態の経理（松田）と挙動不審な安本。Renは安本に取り憑いたGhostを見抜く。"
     },
     {
@@ -100,14 +100,14 @@
       "gh:action": [
         "Ren activates SIP Device",
         "Ghost materializes completely",
-        "Shota protects Matsuda",
+        "Shouta protects Matsuda",
         "Ren uses Axe to delete the Ghost"
       ]
     },
     {
       "@id": "scene:07_Resolution",
       "schema:name": "Succession",
-      "gh:participants": ["character:Ren", "character:Shota", "character:President", "character:Yasumoto"],
+      "gh:participants": ["character:Ren", "character:Shouta", "character:President", "character:Yasumoto"],
       "gh:content": "事件解決。戻ってきた社長に対し、翔太は安本を庇いつつも、自分が会社を変えていく決意を固める。"
     }
   ]

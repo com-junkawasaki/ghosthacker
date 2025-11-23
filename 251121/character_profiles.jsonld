@@ -13,8 +13,8 @@
   "dct:title": "Ghost Hacker Episode 1: Updated Character Profiles",
   "gh:characters": [
     {
-      "@id": "character:Shota",
-      "schema:name": "大門 翔太 (Shota Daimon)",
+      "@id": "character:Shouta",
+      "schema:name": "大門 翔太 (Shouta Daimon)",
       "schema:role": "Client / Successor",
       "schema:age": 26,
       "schema:jobTitle": "社長室長（名ばかり）/ 次期社長候補",
@@ -32,7 +32,7 @@
       "gh:voiceStyle": "重厚だが温かみがある。語尾は「〜だなぁ」「〜だよ」。謝罪や感謝はストレートに伝える。",
       "gh:context": "息子（翔太）の改革案を理解しつつも、長年支えてくれた安本たちへの配慮から踏み切れずにいた。今回の事件で「信じること」と「甘やかすこと」の違いを突きつけられる。",
       "gh:relationship": {
-        "character:Shota": "頼もしいが、少し急ぎすぎていると心配している。",
+        "character:Shouta": "頼もしいが、少し急ぎすぎていると心配している。",
         "character:Yasumoto": "戦友。彼がデジタル化についていけず苦しんでいることに気づいてやれなかったことを悔いている。"
       }
     },

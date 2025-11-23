@@ -111,7 +111,7 @@
           "panel:id": 3,
           "visual": "翔太が入ってくる。焦燥しきった表情だが、目は鋭い。",
           "dialogue": [
-            {"speaker": "Shota", "text": "あなたがRenさんですか？大門建設の大門翔太です。話はメールで送った通りです。"}
+            {"speaker": "Shouta", "text": "あなたがRenさんですか？大門建設の大門翔太です。話はメールで送った通りです。"}
           ]
         },
         {
@@ -130,7 +130,7 @@
           "panel:id": 1,
           "visual": "大門建設のオフィス（蒲田）。古びたビルだが中は修羅場。電話が鳴り止まない。",
           "dialogue": [
-            {"speaker": "Shota", "text": "父…社長は現場への対応で手一杯で。僕の独断で依頼しました。とにかく急いでるんです。"}
+            {"speaker": "Shouta", "text": "父…社長は現場への対応で手一杯で。僕の独断で依頼しました。とにかく急いでるんです。"}
           ]
         },
         {
@@ -170,7 +170,7 @@
           "panel:id": 2,
           "visual": "翔太、強い口調で言い返す。",
           "dialogue": [
-            {"speaker": "Shota", "text": "安本さん！あんたの管理でこうなったんだろ！専門家に任せてください！"}
+            {"speaker": "Shouta", "text": "安本さん！あんたの管理でこうなったんだろ！専門家に任せてください！"}
           ]
         },
         {
@@ -197,7 +197,7 @@
           "visual": "Renの超高速タイピング。翔太と佐藤が後ろで驚く。",
           "dialogue": [
             {"speaker": "Sato", "text": "す、すごい…暗号化されたシェルをリアルタイムで解読してる…？"},
-            {"speaker": "Shota", "text": "これが、Ghost Hacker…"}
+            {"speaker": "Shouta", "text": "これが、Ghost Hacker…"}
           ]
         },
         {
@@ -238,7 +238,7 @@
           "visual": "社員一同、安本を見る。",
           "dialogue": [
             {"speaker": "Matsuda", "text": "えっ…安本さん、どういうこと？"},
-            {"speaker": "Shota", "text": "安本さん…まさか、自分の地位を守るために？"}
+            {"speaker": "Shouta", "text": "安本さん…まさか、自分の地位を守るために？"}
           ]
         },
         {
@@ -271,7 +271,7 @@
           "panel:id": 3,
           "visual": "松田と佐藤、腰を抜かす。翔太は呆然と立ち尽くす。",
           "dialogue": [
-            {"speaker": "Shota", "text": "なんだよこれ…VRか…？"},
+            {"speaker": "Shouta", "text": "なんだよこれ…VRか…？"},
             {"speaker": "Ren", "text": "現実だよ。あんたらの歪んだ情報が実体化した姿だ。"}
           ]
         }
@@ -310,7 +310,7 @@
           "panel:id": 1,
           "visual": "翔太、とっさに松田を庇う。",
           "dialogue": [
-            {"speaker": "Shota", "text": "くそっ！松田さん、下がって！"}
+            {"speaker": "Shouta", "text": "くそっ！松田さん、下がって！"}
           ]
         },
         {
@@ -395,14 +395,14 @@
           "panel:id": 2,
           "visual": "翔太、父と安本を見る。一瞬沈黙するが、決意した顔で。",
           "dialogue": [
-            {"speaker": "Shota", "text": "…親父。安本さんが、システムを直そうとして…怪我を。"}
+            {"speaker": "Shouta", "text": "…親父。安本さんが、システムを直そうとして…怪我を。"}
           ]
         },
         {
           "panel:id": 3,
           "visual": "安本、驚いて翔太を見る。",
           "dialogue": [
-            {"speaker": "Shota", "text": "（横領の件は後でケジメつけさせます。でも今は…）"}
+            {"speaker": "Shouta", "text": "（横領の件は後でケジメつけさせます。でも今は…）"}
           ]
         },
         {
@@ -435,7 +435,7 @@
           "panel:id": 3,
           "visual": "翔太、Renを呼び止める。",
           "dialogue": [
-            {"speaker": "Shota", "text": "Renさん！…ありがとう。あんたのおかげで、俺も目が覚めました。"}
+            {"speaker": "Shouta", "text": "Renさん！…ありがとう。あんたのおかげで、俺も目が覚めました。"}
           ]
         }
       ]
