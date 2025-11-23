@@ -6,7 +6,8 @@
     "promptEn": "gh:promptEn",
     "pageId": "gh:pageId",
     "panelIndex": "gh:panelIndex",
-    "sceneId": "gh:sceneId"
+    "sceneId": "gh:sceneId",
+    "panels": "gh:panels"
   },
   "@id": "gh:generationPrompts/episode01",
   "@type": "gh:GenerationPrompts",
@@ -15,347 +16,357 @@
     {
       "@id": "gh:scenePrompt/01_Introduction",
       "sceneId": "scene:01_Introduction",
-      "promptEn": "[Camera] Extreme wide shot, bird's-eye view, 24mm wide-angle lens. Cinematic 16:9 aspect ratio. Rule of thirds composition with layered depth: foreground silhouettes, midground historical elements, background modern Tokyo. Slow dolly forward movement through time layers. [Lighting] High contrast cinematic lighting. Key light: warm golden hour (3200K) from upper left, creating dramatic side lighting on silhouettes. Fill light: soft blue (5600K) from right, 30% intensity. Rim light: cool cyan (6500K) from behind, highlighting edges. Color grading: desaturated with high contrast, deep blacks. [Background] Layered historical montage: foreground shows ape-to-human evolution silhouettes in profile, midground contains primordial jungle with dense foliage, cave paintings on rock walls, a massive stone Buddha statue (side view), wooden totem poles with carved faces, shaman performing ritual dance around fire. Background transitions to Tokyo 2026: dense clusters of glass-and-steel skyscrapers, small delivery drones flying between buildings at various altitudes, translucent data stream lines glowing cyan/purple in the sky, massive data center complexes with cooling towers in the distance, server farms visible through glass walls. Sky transitions from warm orange sunset to cool blue-purple early night gradient. [Characters] Silhouettes only - no facial details. Ape figure crouched on all fours (left third), transitional figure half-upright (center), fully upright human figure (right third). All in profile view, facing right (forward in time). [Composition] Three distinct depth layers with atmospheric perspective. Foreground silhouettes sharp and high contrast. Midground historical elements slightly blurred (bokeh effect), 50% opacity overlay. Background Tokyo 2026 in sharp focus but smaller scale. Leading lines from cave paintings and data streams guide eye from left to right. [Mood] Epic, contemplative, philosophical. Sense of evolution and continuity. Calm narration implied through visual storytelling. No text or UI elements. [Style] Theatrical sci-fi anime opening sequence. Clean anime shading with cel-shading technique. Film-like grain texture, low noise. High resolution, cinematic quality."
+      "promptEn": "[Camera] Extreme wide shot, bird's-eye view, 24mm wide-angle lens. Cinematic 16:9 aspect ratio. Rule of thirds composition with layered depth: foreground silhouettes, midground historical elements, background modern Tokyo. Slow dolly forward movement through time layers. [Lighting] High contrast cinematic lighting. Key light: warm golden hour (3200K) from upper left, creating dramatic side lighting on silhouettes. Fill light: soft blue (5600K) from right, 30% intensity. Rim light: cool cyan (6500K) from behind, highlighting edges. Color grading: desaturated with high contrast, deep blacks. [Background] Layered historical montage: foreground shows ape-to-human evolution silhouettes in profile, midground contains primordial jungle with dense foliage, cave paintings on rock walls, a massive stone Buddha statue (side view), wooden totem poles with carved faces, shaman performing ritual dance around fire. Background transitions to Tokyo 2026: dense clusters of glass-and-steel skyscrapers, small delivery drones flying between buildings, translucent data stream lines glowing cyan/purple in the sky, massive data center complexes with cooling towers in the distance, server farms visible through glass walls. Sky transitions from warm orange sunset to cool blue-purple early night gradient. [Characters] Silhouettes only - no facial details. Ape figure crouched on all fours (left third), transitional figure half-upright (center), fully upright human figure (right third). All in profile view, facing right (forward in time). [Composition] Three distinct depth layers with atmospheric perspective. Foreground silhouettes sharp and high contrast. Midground historical elements slightly blurred (bokeh effect), 50% opacity overlay. Background Tokyo 2026 in sharp focus but smaller scale. Leading lines from cave paintings and data streams guide eye from left to right. [Mood] Epic, contemplative, philosophical. Sense of evolution and continuity. Calm narration implied through visual storytelling. No text or UI elements. [Style] Theatrical sci-fi anime opening sequence. Clean anime shading with cel-shading technique. Film-like grain texture, low noise. High resolution, cinematic quality.",
+      "panels": [
+        {
+          "@id": "gh:panelPrompt/p1-3",
+          "pageId": "page:1",
+          "panelIndex": 3,
+          "promptEn": "Bird's‑eye view of Tokyo 2026. Dense clusters of skyscrapers, small delivery drones flying between buildings, thin glowing lines and translucent icons in the sky representing data streams, with a massive data center and server farms in the distant background. The sky is a blue‑purple gradient of early night. Near‑future sci‑fi anime background, detailed, high contrast, no UI text."
+        }
+      ]
     },
     {
       "@id": "gh:scenePrompt/02_DailyLife",
       "sceneId": "scene:02_DailyLife",
-      "promptEn": "[Camera] Medium wide shot, eye-level angle, 35mm lens. 16:9 aspect ratio. Slightly off-center composition with Ren in left third, Nei in right third, creating visual balance. Camera positioned at slight diagonal angle to show depth. [Lighting] Low-key lighting dominated by monitor glow. Key light: large PC monitor (27-32 inch) emitting cool blue-white light (6500K) from center-left, casting harsh directional light on Ren's face and upper body, creating strong contrast. Fill light: minimal warm ambient (2800K) from ceiling track lights at 10% intensity, barely visible. Rim light: subtle cyan rim (6000K) from monitor edge on Ren's left side. Monitor light spills onto desk surface, creating pools of light and shadow. Background remains in deep shadow (exposure -2 stops). [Background] Modern minimalist office interior at night. Exposed concrete walls with visible formwork texture, matte gray finish. Wood flooring (light oak or birch) with visible grain, partially covered by white ceramic tiles in geometric pattern near desk area. Wall-mounted shelves with minimal items: a few books, small plants, tech gadgets. Large wall-mounted monitor (main light source) showing code or terminal interface. Desk: professional standing desk or large L-shaped desk, dark wood or black metal frame, clean lines. Personal clutter: 2-3 empty energy drink cans (red/blue branding visible), USB cables, wireless mouse, mechanical keyboard. Office chair: high-spec ergonomic chair (Herman Miller style), black mesh back, adjustable armrests. Room dimensions suggest spacious 20-30 square meters. [Characters] Ren (17 years old): Slouching deeply in office chair, leaning back at 45-degree angle, head tilted up toward ceiling. Wearing dark gray hoodie (hood down), black t-shirt underneath, dark jeans. Hair: messy black/dark brown, medium length, slightly unkempt. Face: bored, tired expression, eyes half-closed, mouth slightly open. Body language: completely relaxed, one arm hanging off chair armrest, other hand resting on stomach. Skin tone: pale from lack of sunlight. Nei (appears 16 years old): Standing beside desk, approximately 1.5 meters from Ren. Wearing functional sailor-uniform-inspired outfit: white sailor collar blouse, navy blue pleated skirt, white knee-high socks, black Mary Jane shoes. Hair: shoulder-length, styled neatly, dark color. Face: exasperated expression, eyebrows slightly furrowed, mouth in slight pout. Body language: arms crossed, weight on one leg, slightly leaning forward. Posture: alert and attentive despite expression. [Composition] Depth created by monitor light falloff. Foreground: Ren and chair in sharp focus. Midground: Nei slightly softer focus (f/2.8 equivalent). Background: walls and shelves heavily blurred (f/1.4 equivalent), creating separation. Leading lines from desk edge and monitor cables guide eye. [Mood] Lazy, relaxed, slightly melancholic. Sense of routine and familiarity. Quiet intimacy between Ren and Nei despite their different energy levels. [Style] Modern Japanese anime style, clean precise line art, naturalistic coloring. Subtle cel-shading on characters. Realistic material textures (concrete grain, wood grain, fabric folds). No text or UI overlays."
+      "promptEn": "[Camera] Medium wide shot, eye-level angle, 35mm lens. 16:9 aspect ratio. Slightly off-center composition with Ren in left third, Nei in right third, creating visual balance. Camera positioned at slight diagonal angle to show depth. [Lighting] Low-key lighting dominated by monitor glow. Key light: large PC monitor (27-32 inch) emitting cool blue-white light (6500K) from center-left, casting harsh directional light on Ren's face and upper body, creating strong contrast. Fill light: minimal warm ambient (2800K) from ceiling track lights at 10% intensity, barely visible. Rim light: subtle cyan rim (6000K) from monitor edge on Ren's left side. Monitor light spills onto desk surface, creating pools of light and shadow. Background remains in deep shadow (exposure -2 stops). [Background] Modern minimalist office interior at night. Exposed concrete walls with visible formwork texture, matte gray finish. Wood flooring (light oak or birch) with visible grain, partially covered by white ceramic tiles in geometric pattern near desk area. Wall-mounted shelves with minimal items: a few books, small plants, tech gadgets. Large wall-mounted monitor (main light source) showing code or terminal interface. Desk: professional standing desk or large L-shaped desk, dark wood or black metal frame, clean lines. Personal clutter: 2-3 empty energy drink cans (red/blue branding visible), USB cables, wireless mouse, mechanical keyboard. Office chair: high-spec ergonomic chair (Herman Miller style), black mesh back, adjustable armrests. Room dimensions suggest spacious 20-30 square meters. [Characters] Ren (17 years old): Slouching deeply in office chair, leaning back at 45-degree angle, head tilted up toward ceiling. Wearing dark gray hoodie (hood down), black t-shirt underneath, dark jeans. Hair: messy black/dark brown, medium length, slightly unkempt. Face: bored, tired expression, eyes half-closed, mouth slightly open. Body language: completely relaxed, one arm hanging off chair armrest, other hand resting on stomach. Skin tone: pale from lack of sunlight. Nei (appears 16 years old): Standing beside desk, approximately 1.5 meters from Ren. Wearing functional sailor-uniform-inspired outfit: white sailor collar blouse, navy blue pleated skirt, white knee-high socks, black Mary Jane shoes. Hair: shoulder-length, styled neatly, dark color. Face: exasperated expression, eyebrows slightly furrowed, mouth in slight pout. Body language: arms crossed, weight on one leg, slightly leaning forward. Posture: alert and attentive despite expression. [Composition] Depth created by monitor light falloff. Foreground: Ren and chair in sharp focus. Midground: Nei slightly softer focus (f/2.8 equivalent). Background: walls and shelves heavily blurred (f/1.4 equivalent), creating separation. Leading lines from desk edge and monitor cables guide eye. [Mood] Lazy, relaxed, slightly melancholic. Sense of routine and familiarity. Quiet intimacy between Ren and Nei despite their different energy levels. [Style] Modern Japanese anime style, clean precise line art, naturalistic coloring. Subtle cel-shading on characters. Realistic material textures (concrete grain, wood grain, fabric folds). No text or UI overlays.",
+      "panels": [
+        {
+          "@id": "gh:panelPrompt/p2-1",
+          "pageId": "page:2-3",
+          "panelIndex": 1,
+          "promptEn": "Double-page spread title image. A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, disintegrate, and reconfigure. In the center, Ren and Nei float against gravity. Ren is typing at high speed on a translucent keyboard projected in mid-air, his gaze fixed on a distant data structure. His hoodie is slightly disheveled, showing his inner focus. Nei stands beside him, floating with her arms crossed as if on guard. She wears a functional, sailor-uniform-inspired outfit, and streams of analytical data flow across her eyes. Behind them, through a distortion in space, the giant 'GHOST HACKER' title logo emerges. Linework is precise and delicate, characters harmonize with the background. Cyberpunk, high contrast, neon blue and purple palette, high-resolution illustration."
+        },
+        {
+          "@id": "gh:panelPrompt/p4-1",
+          "pageId": "page:4",
+          "panelIndex": 1,
+          "promptEn": "Full view of a modern office with exposed concrete walls. A spacious room with minimalist desks and chairs. The floor is a mix of wood and white tiles. Ren slouches backwards in his chair in front of the PC desk, looking up at the ceiling. Natural perspective, a lived-in yet clean anime room background."
+        },
+        {
+          "@id": "gh:panelPrompt/p4-2",
+          "pageId": "page:4",
+          "panelIndex": 2,
+          "promptEn": "Bust-up of Nei standing in the corner of the room, operating a tablet with her arms crossed and an exasperated look. She's wearing casual sailor-style clothes. Part of the messy room is blurred in the background."
+        },
+        {
+          "@id": "gh:panelPrompt/p4-3",
+          "pageId": "page:4",
+          "panelIndex": 3,
+          "promptEn": "Nei walks up to Ren's chair and leans in with an exasperated look, drawn comically with slightly chibi proportions as she confronts him. Ren peeks his head over the back of the chair to look up at her."
+        },
+        {
+          "@id": "gh:panelPrompt/p4-4",
+          "pageId": "page:4",
+          "panelIndex": 4,
+          "promptEn": "Bust‑up of Ren, lazily picking his ear with one hand while talking with a bored expression. In the background, parts of the modern office (concrete wall, track lighting) are softly blurred, as if the camera focus is on Ren in the foreground. Modern anime coloring, natural skin shading."
+        }
+      ]
     },
     {
       "@id": "gh:scenePrompt/03_Consultation",
       "sceneId": "scene:03_Consultation",
-      "promptEn": "[Camera] Wide shot, eye-level angle, 28mm lens. 16:9 aspect ratio. Deep focus composition showing foreground, midground, and background in sharp detail. Camera positioned inside room, looking toward entrance. [Lighting] Two-tone lighting creating visual contrast. Key light (interior): cold blue-white monitor light (6500K) from multiple screens, casting harsh directional light on Ren's back and Nei's face on monitor. Intensity: strong, creating high contrast. Fill light (exterior): warm fluorescent hallway light (4000K) spilling through open doorway, illuminating Shouta from front-left, creating softer, more natural look. Intensity: medium. Rim light: subtle warm edge (3500K) on Shouta's right side from hallway. Color contrast: cool interior (blue/cyan tones) vs warm exterior (yellow/white tones). [Background] Dim hacker room interior - same office as Scene 02. Exposed concrete walls visible in background, darker due to low lighting. Desk with multiple monitors visible in foreground/midground. Entrance door: modern minimalist design, white or light wood, open at 90-degree angle revealing hallway beyond. Hallway: standard office corridor with warm fluorescent ceiling lights, neutral beige walls, visible door frames. Room details: cables visible on floor, tech equipment on desk, dark atmosphere. [Characters] Shouta Daimon (26 years old): Standing in doorway, full body visible. Wearing navy blue business suit, slightly rumpled - jacket unbuttoned, tie loosened and pulled down, white dress shirt visible underneath, top button undone. Face: mix of panic (wide eyes, slightly open mouth) and exhaustion (dark circles under eyes, tense jaw, sweat on forehead). Body language: slightly hunched, one hand gripping door frame, other holding smartphone or briefcase. Hair: neat business cut, slightly disheveled. Expression: determined but overwhelmed. Ren (back view): Seated in office chair, turning upper body toward entrance. Wearing dark hoodie (back visible), slouched posture. Head turned in three-quarter profile view, showing side of face. Expression: skeptical, slightly annoyed (visible in eye and eyebrow). Body language: casual, unimpressed. Nei (on monitor): Face displayed on large wall-mounted monitor or main desktop screen. Appears as 16-year-old girl with sailor-uniform outfit. Expression: skeptical, analytical gaze, eyebrows slightly raised, mouth neutral. Eyes: sharp, observant. Display style: clean UI, Nei's face centered, possibly with subtle data overlay or HUD elements around edges (minimal, not distracting). [Composition] Deep space composition. Foreground: Ren's back and chair (sharp focus). Midground: Nei on monitor and desk area (sharp focus). Background: Shouta in doorway with hallway beyond (sharp focus due to deep focus technique). Visual contrast between dark interior and bright hallway creates depth. Doorway acts as frame-within-frame. Leading lines from desk edge and doorway guide eye. [Mood] Tense, uncertain, first encounter. Contrast between Shouta's formal business world and Ren's underground hacker space. Slight suspicion and wariness. [Style] Cinematic composition with depth. Anime background style with realistic lighting. Clean line art, naturalistic coloring. Emphasis on lighting contrast to show different worlds colliding."
+      "promptEn": "[Camera] Wide shot, eye-level angle, 28mm lens. 16:9 aspect ratio. Deep focus composition showing foreground, midground, and background in sharp detail. Camera positioned inside room, looking toward entrance. [Lighting] Two-tone lighting creating visual contrast. Key light (interior): cold blue-white monitor light (6500K) from multiple screens, casting harsh directional light on Ren's back and Nei's face on monitor. Intensity: strong, creating high contrast. Fill light (exterior): warm fluorescent hallway light (4000K) spilling through open doorway, illuminating Shouta from front-left, creating softer, more natural look. Intensity: medium. Rim light: subtle warm edge (3500K) on Shouta's right side from hallway. Color contrast: cool interior (blue/cyan tones) vs warm exterior (yellow/white tones). [Background] Dim hacker room interior - same office as Scene 02. Exposed concrete walls visible in background, darker due to low lighting. Desk with multiple monitors visible in foreground/midground. Entrance door: modern minimalist design, white or light wood, open at 90-degree angle revealing hallway beyond. Hallway: standard office corridor with warm fluorescent ceiling lights, neutral beige walls, visible door frames. Room details: cables visible on floor, tech equipment on desk, dark atmosphere. [Characters] Shouta Daimon (26 years old): Standing in doorway, full body visible. Wearing navy blue business suit, slightly rumpled - jacket unbuttoned, tie loosened and pulled down, white dress shirt visible underneath, top button undone. Face: mix of panic (wide eyes, slightly open mouth) and exhaustion (dark circles under eyes, tense jaw, sweat on forehead). Body language: slightly hunched, one hand gripping door frame, other hand holding smartphone or briefcase. Hair: neat business cut, slightly disheveled. Expression: determined but overwhelmed. Ren (back view): Seated in office chair, turning upper body toward entrance. Wearing dark hoodie (back visible), slouched posture. Head turned in three-quarter profile view, showing side of face. Expression: skeptical, slightly annoyed (visible in eye and eyebrow). Body language: casual, unimpressed. Nei (on monitor): Face displayed on large wall-mounted monitor or main desktop screen. Appears as 16-year-old girl with sailor-uniform outfit. Expression: skeptical, analytical gaze, eyebrows slightly raised, mouth neutral. Eyes: sharp, observant. Display style: clean UI, Nei's face centered, possibly with subtle data overlay or HUD elements around edges (minimal, not distracting). [Composition] Deep space composition. Foreground: Ren's back and chair (sharp focus). Midground: Nei on monitor and desk area (sharp focus). Background: Shouta in doorway with hallway beyond (sharp focus due to deep focus technique). Visual contrast between dark interior and bright hallway creates depth. Doorway acts as frame-within-frame. Leading lines from desk edge and doorway guide eye. [Mood] Tense, uncertain, first encounter. Contrast between Shouta's formal business world and Ren's underground hacker space. Slight suspicion and wariness. [Style] Cinematic composition with depth. Anime background style with realistic lighting. Clean line art, naturalistic coloring. Emphasis on lighting contrast to show different worlds colliding.",
+      "panels": [
+        {
+          "@id": "gh:panelPrompt/p5-1",
+          "pageId": "page:5",
+          "panelIndex": 1,
+          "promptEn": "Close-up of the large wall-mounted monitor in the office. It displays the video intercom feed, showing a young man in a suit (Shouta) standing there with a tense expression. The monitor frame has a minimalist design. Anime insert-cut style."
+        },
+        {
+          "@id": "gh:panelPrompt/p5-2",
+          "pageId": "page:5",
+          "panelIndex": 2,
+          "promptEn": "Full-body shot of Ren slowly getting up from his chair with a look of annoyance. His posture shifts from lazy to slightly work-focused. The background is the modern office."
+        },
+        {
+          "@id": "gh:panelPrompt/p5-3",
+          "pageId": "page:5",
+          "panelIndex": 3,
+          "promptEn": "Bust-up of Shouta as he enters the office. His expression is a mix of panic and exhaustion, but his eyes are sharp, showing his determination to resolve the situation. The office entrance is visible in the background."
+        },
+        {
+          "@id": "gh:panelPrompt/p5-4",
+          "pageId": "page:5",
+          "panelIndex": 4,
+          "promptEn": "Ren, with his arms crossed, sizes up Shouta. The shot is framed with his chin slightly down, emphasizing his sharp, observant gaze. The background is the minimalist office wall."
+        }
+      ]
     },
     {
       "@id": "gh:scenePrompt/04_Investigation",
       "sceneId": "scene:04_Investigation",
-      "promptEn": "[Camera] Wide shot to medium wide shot, eye-level angle, 24mm lens. 16:9 aspect ratio. High-angle view slightly (looking down at 10-degree angle) to show office layout. Deep focus to capture all characters and details. [Lighting] Harsh daytime fluorescent office lighting. Key light: overhead fluorescent fixtures (5000K cool white), creating flat, even illumination with minimal shadows. Intensity: bright, clinical. Fill light: secondary fluorescent fixtures, 80% intensity. No rim light - flat lighting typical of office environments. Color temperature: cool white (5000-5500K), slightly greenish tint common in old office fluorescents. Shadows: minimal, soft, directly below objects. [Background] Old small construction company office in Ota ward, Tokyo. Showa-era aesthetic (1980s-1990s). Steel desks: gray metal desks with visible wear, scratches, and dents. Arranged in island formation in center of room. Steel shelves: tall gray metal shelving units along walls, filled with binders, documents, blueprints rolled up. Fax machines: 2-3 old fax machines on desks, paper trays visible, some with paper sticking out. Landline phones: multiple desk phones, some off-hook, ringing indicators flashing. Walls: beige or light gray, possibly with \"安全第一\" (Safety First) posters, calendar, company photos. Floor: linoleum or worn carpet, neutral beige/gray. Windows: small windows high on walls, letting in daylight but not primary light source. Server rack: small black server rack in corner, approximately 1.5 meters tall, cables visible. Office size: cramped, approximately 15-20 square meters, cluttered but organized chaos. [Characters] Matsuda (58 years old, middle-aged accountant): Standing at desk, clutching phone handset with both hands, shouting into receiver. Wearing: conservative office blouse (beige or light blue), dark skirt, reading glasses on chain around neck. Face: red with anger, mouth wide open shouting, eyebrows furrowed, eyes wide. Body language: tense, leaning forward, one hand gripping desk edge. Expression: panicked, frustrated. Sato (24 years old, young staffer): Crouched behind server rack, checking cables. Wearing: casual office attire - polo shirt or button-down, dark pants, possibly company vest. Face: sweating, confused expression, eyebrows knitted, mouth slightly open. Body language: awkward crouch, one hand holding cable, other hand wiping sweat. Expression: overwhelmed, trying to help. Ren: Seated at corner of central desk island, laptop open. Wearing: dark hoodie, casual clothes. Face: calm, focused expression, eyes fixed on screen. Body language: relaxed but purposeful, one hand on keyboard, other hand plugging in LAN cable. Expression: analytical, slightly amused. Laptop: modern, sleek design, screen showing terminal/command line interface. Yasumoto (52 years old, general affairs manager): Standing in background, near wall or doorway. Wearing: business suit (gray or navy), tie loosened, suit jacket unbuttoned. Face: sweating profusely, anxious expression, eyes darting, lips pressed together. Body language: nervous fidgeting - one hand adjusting tie, other hand in pocket or clenched. Expression: guilty, defensive, panicked. [Composition] Deep focus showing all elements. Foreground: Ren and laptop (sharp). Midground: Matsuda at desk, Sato at server rack (sharp). Background: Yasumoto, office walls, shelves (sharp). Cluttered composition reflects chaotic atmosphere. Multiple focal points create visual tension. [Mood] Chaotic, panicked, tense. Sense of crisis and urgency. Contrast between Ren's calm professionalism and office panic. [Style] Faithful Japanese company office background in anime style. Realistic details of Showa-era office equipment. Clean line art, naturalistic coloring. Emphasis on authenticity of old office environment."
+      "promptEn": "[Camera] Wide shot to medium wide shot, eye-level angle, 24mm lens. 16:9 aspect ratio. High-angle view slightly (looking down at 10-degree angle) to show office layout. Deep focus to capture all characters and details. [Lighting] Harsh daytime fluorescent office lighting. Key light: overhead fluorescent fixtures (5000K cool white), creating flat, even illumination with minimal shadows. Intensity: bright, clinical. Fill light: secondary fluorescent fixtures, 80% intensity. No rim light - flat lighting typical of office environments. Color temperature: cool white (5000-5500K), slightly greenish tint common in old office fluorescents. Shadows: minimal, soft, directly below objects. [Background] Old small construction company office in Ota ward, Tokyo. Showa-era aesthetic (1980s-1990s). Steel desks: gray metal desks with visible wear, scratches, and dents. Arranged in island formation in center of room. Steel shelves: tall gray metal shelving units along walls, filled with binders, documents, blueprints rolled up. Fax machines: 2-3 old fax machines on desks, paper trays visible, some with paper sticking out. Landline phones: multiple desk phones, some off-hook, ringing indicators flashing. Walls: beige or light gray, possibly with \"安全第一\" (Safety First) posters, calendar, company photos. Floor: linoleum or worn carpet, neutral beige/gray. Windows: small windows high on walls, letting in daylight but not primary light source. Server rack: small black server rack in corner, approximately 1.5 meters tall, cables visible. Office size: cramped, approximately 15-20 square meters, cluttered but organized chaos. [Characters] Matsuda (58 years old, middle-aged accountant): Standing at desk, clutching phone handset with both hands, shouting into receiver. Wearing: conservative office blouse (beige or light blue), dark skirt, reading glasses on chain around neck. Face: red with anger, mouth wide open shouting, eyebrows furrowed, eyes wide. Body language: tense, leaning forward, one hand gripping desk edge. Expression: panicked, frustrated. Sato (24 years old, young staffer): Crouched behind server rack, checking cables. Wearing: casual office attire - polo shirt or button-down, dark pants, possibly company vest. Face: sweating, confused expression, eyebrows knitted, mouth slightly open. Body language: awkward crouch, one hand holding cable, other hand wiping sweat. Expression: overwhelmed, trying to help. Ren: Seated at corner of central desk island, laptop open. Wearing: dark hoodie, casual clothes. Face: calm, focused expression, eyes fixed on screen. Body language: relaxed but purposeful, one hand on keyboard, other hand plugging in LAN cable. Expression: analytical, slightly amused. Laptop: modern, sleek design, screen showing terminal/command line interface. Yasumoto (52 years old, general affairs manager): Standing in background, near wall or doorway. Wearing: business suit (gray or navy), tie loosened, suit jacket unbuttoned. Face: sweating profusely, anxious expression, eyes darting, lips pressed together. Body language: nervous fidgeting - one hand adjusting tie, other hand in pocket or clenched. Expression: guilty, defensive, panicked. [Composition] Deep focus showing all elements. Foreground: Ren and laptop (sharp). Midground: Matsuda at desk, Sato at server rack (sharp). Background: Yasumoto, office walls, shelves (sharp). Cluttered composition reflects chaotic atmosphere. Multiple focal points create visual tension. [Mood] Chaotic, panicked, tense. Sense of crisis and urgency. Contrast between Ren's calm professionalism and office panic. [Style] Faithful Japanese company office background in anime style. Realistic details of Showa-era office equipment. Clean line art, naturalistic coloring. Emphasis on authenticity of old office environment.",
+      "panels": [
+        {
+          "@id": "gh:panelPrompt/p6-1",
+          "pageId": "page:6",
+          "panelIndex": 1,
+          "promptEn": "A full view of the Daimon Construction office. It's an old office with a Showa-era feel, cluttered with steel desks and piles of documents. The composition conveys a state of panic, with ringing phones and people shouting."
+        },
+        {
+          "@id": "gh:panelPrompt/p6-2",
+          "pageId": "page:6",
+          "panelIndex": 2,
+          "promptEn": "Close-up of Matsuda, the middle-aged accountant, screaming into the phone receiver with both hands, her face red with anger. Other employees are moving frantically in the background."
+        },
+        {
+          "@id": "gh:panelPrompt/p6-3",
+          "pageId": "page:6",
+          "panelIndex": 3,
+          "promptEn": "Young employee Sato struggles with a tangle of cables behind a small server rack. He is sweating and has a confused expression. Modern anime character design."
+        },
+        {
+          "@id": "gh:panelPrompt/p6-4",
+          "pageId": "page:6",
+          "panelIndex": 4,
+          "promptEn": "Ren, with his arms crossed, surveys the chaotic office with calm eyes. His expression shows a mix of composure and a hint of sarcasm, as if he sees the true nature of the situation."
+        },
+        {
+          "@id": "gh:panelPrompt/p7-1",
+          "pageId": "page:7",
+          "panelIndex": 1,
+          "promptEn": "General Affairs Manager Yasumoto appears, wiping away sweat. His eyes are filled with anxiety as he glares at Shouta with hostility. The composition emphasizes his suspicious behavior."
+        },
+        {
+          "@id": "gh:panelPrompt/p7-2",
+          "pageId": "page:7",
+          "panelIndex": 2,
+          "promptEn": "Shouta retorts to Yasumoto with a resolute attitude. His expression shows the responsibility and anger of a young successor. A confrontational composition that highlights the tension between them."
+        },
+        {
+          "@id": "gh:panelPrompt/p7-3",
+          "pageId": "page:7",
+          "panelIndex": 3,
+          "promptEn": "A point-of-view shot from Ren. Through what looks like AR glasses, the aura of a black, smoke-like Ghost clinging to Yasumoto's back is visualized. The aura represents negative emotions like jealousy and fear."
+        },
+        {
+          "@id": "gh:panelPrompt/p7-4",
+          "pageId": "page:7",
+          "panelIndex": 4,
+          "promptEn": "A scene where Ren casually sits at an empty desk and opens his laptop. His calm and purposeful action contrasts with the surrounding chaos."
+        },
+        {
+          "@id": "gh:panelPrompt/p8-1",
+          "pageId": "page:8",
+          "panelIndex": 1,
+          "promptEn": "Close-up on Ren's hands typing at incredible speed. Green text flows like a waterfall on the screen. In the background, Shouta and Sato are peering over his shoulder with expressions of disbelief."
+        },
+        {
+          "@id": "gh:panelPrompt/p8-2",
+          "pageId": "page:8",
+          "panelIndex": 2,
+          "promptEn": "Ren, speaking from his side profile while remaining focused on the screen. His expression is dead serious. The lighting is slightly shadowed to express the weight of his words."
+        },
+        {
+          "@id": "gh:panelPrompt/p8-3",
+          "pageId": "page:8",
+          "panelIndex": 3,
+          "promptEn": "Yasumoto stumbles backward, his face drained of color. His shock and fear are expressed with a slightly distorted perspective, making the office background seem unstable to reflect his state of mind."
+        },
+        {
+          "@id": "gh:panelPrompt/p9-1",
+          "pageId": "page:9",
+          "panelIndex": 1,
+          "promptEn": "Close-up on Ren's laptop screen. The screen displays the large text 'FOUND!!' along with Yasumoto's internal company profile, complete with his photo. Nei stands beside him, pointing at the screen with a triumphant look."
+        }
+      ]
     },
     {
       "@id": "gh:scenePrompt/05_Confrontation",
       "sceneId": "scene:05_Confrontation",
-      "promptEn": "[Camera] Medium shot to wide shot, eye-level angle, 35mm lens. 16:9 aspect ratio. Slightly low angle (looking up at 5-degree angle) to emphasize Ren's authority. Deep focus composition. [Lighting] Dramatic low-key lighting. Key light: projector light (6000K cool white) from ceiling-mounted projector, casting bright rectangular beam onto whiteboard, creating harsh directional light. Intensity: very strong, creating high contrast. Fill light: dimmed overhead fluorescents at 20% intensity, providing minimal ambient. Rim light: subtle edge lighting on characters from projector spill. Ghost effect: black smoke-like shadows with subtle purple/cyan glow (6500K) around edges, self-illuminating. Color contrast: cool projector light vs warm dimmed office lights. Shadows: deep, dramatic, characters cast long shadows. [Background] Same construction company office as Scene 04. Wall-mounted whiteboard: large whiteboard (approximately 2x1.5 meters) filled with projected terminal screen display. Projection shows: dense alphanumeric text in green-on-black terminal style, cryptocurrency transaction logs (BTC addresses, amounts, timestamps), dark web access logs (URLs, timestamps, access codes), transaction flow diagrams. Text is small but readable, scrolling or static. Office details: steel desks visible in foreground, employees seated or standing around. Dimmed fluorescent lights overhead, creating dark atmosphere. [Characters] Ren: Standing in front of whiteboard, approximately 2 meters from it. Wearing: dark hoodie, casual clothes. Face: serious, determined expression, eyes sharp and focused. Body language: confident stance, one arm extended pointing at specific lines on projection, other hand at side or gesturing. Expression: accusatory but calm, analytical. Pointing gesture: index finger extended, indicating specific transaction or log entry. Yasumoto: Standing in background, approximately 5-6 meters from whiteboard. Wearing: business suit, tie loosened further, suit jacket possibly removed. Face: pale, drained of color, eyes wide with fear, mouth slightly open, sweat visible on forehead. Body language: trembling, one hand gripping desk or wall for support, other hand at chest or adjusting tie nervously. Expression: panicked, guilty, desperate. Ghost (emerging): Black smoke-like shadows gathering behind Yasumoto, approximately 2-3 meters tall. Form: humanoid outline slowly taking shape, amorphous and shifting. Color: deep black with subtle purple/cyan glow at edges, creating ethereal effect. Texture: wispy, smoke-like, semi-transparent. Position: directly behind Yasumoto, seeming to emerge from his shadow or back. Horror-like effect: distorted proportions, elongated limbs, featureless face area beginning to form. Employees (foreground): Matsuda, Sato, Shouta, and other office workers visible. Expressions: shocked, wide-eyed, mouths open in disbelief. Body language: various - some standing, some seated, all turned toward confrontation. Matsuda: hand over mouth, eyes wide. Sato: standing, leaning forward, confused expression. Shouta: standing straight, arms crossed, serious expression. [Composition] Deep space composition. Foreground: shocked employees (sharp focus). Midground: Ren pointing at projection (sharp focus, main subject). Background: Yasumoto and emerging Ghost (sharp focus). Whiteboard/projection acts as central focal point. Leading lines from Ren's pointing arm guide eye. Ghost creates visual tension in background. [Mood] Tense, dramatic, accusatory. Sense of revelation and confrontation. Horror-like atmosphere from Ghost emergence. Building tension before climax. [Style] Cinematic dramatic lighting. Anime style with realistic lighting effects. Clean line art, naturalistic coloring. Ghost effect: ethereal, supernatural, with subtle glow and transparency."
+      "promptEn": "[Camera] Medium shot to wide shot, eye-level angle, 35mm lens. 16:9 aspect ratio. Slightly low angle (looking up at 5-degree angle) to emphasize Ren's authority. Deep focus composition. [Lighting] Dramatic low-key lighting. Key light: projector light (6000K cool white) from ceiling-mounted projector, casting bright rectangular beam onto whiteboard, creating harsh directional light. Intensity: very strong, creating high contrast. Fill light: dimmed overhead fluorescents at 20% intensity, providing minimal ambient. Rim light: subtle edge lighting on characters from projector spill. Ghost effect: black smoke-like shadows with subtle purple/cyan glow (6500K) around edges, self-illuminating. Color contrast: cool projector light vs warm dimmed office lights. Shadows: deep, dramatic, characters cast long shadows. [Background] Same construction company office as Scene 04. Wall-mounted whiteboard: large whiteboard (approximately 2x1.5 meters) filled with projected terminal screen display. Projection shows: dense alphanumeric text in green-on-black terminal style, cryptocurrency transaction logs (BTC addresses, amounts, timestamps), dark web access logs (URLs, timestamps, access codes), transaction flow diagrams. Text is small but readable, scrolling or static. Office details: steel desks visible in foreground, employees seated or standing around. Dimmed fluorescent lights overhead, creating dark atmosphere. [Characters] Ren: Standing in front of whiteboard, approximately 2 meters from it. Wearing: dark hoodie, casual clothes. Face: serious, determined expression, eyes sharp and focused. Body language: confident stance, one arm extended pointing at specific lines on projection, other hand at side or gesturing. Expression: accusatory but calm, analytical. Pointing gesture: index finger extended, indicating specific transaction or log entry. Yasumoto: Standing in background, approximately 5-6 meters from whiteboard. Wearing: business suit, tie loosened further, suit jacket possibly removed. Face: pale, drained of color, eyes wide with fear, mouth slightly open, sweat visible on forehead. Body language: trembling, one hand gripping desk or wall for support, other hand at chest or adjusting tie nervously. Expression: panicked, guilty, desperate. Ghost (emerging): Black smoke-like shadows gathering behind Yasumoto, approximately 2-3 meters tall. Form: humanoid outline slowly taking shape, amorphous and shifting. Color: deep black with subtle purple/cyan glow at edges, creating ethereal effect. Texture: wispy, smoke-like, semi-transparent. Position: directly behind Yasumoto, seeming to emerge from his shadow or back. Horror-like effect: distorted proportions, elongated limbs, featureless face area beginning to form. Employees (foreground): Matsuda, Sato, Shouta, and other office workers visible. Expressions: shocked, wide-eyed, mouths open in disbelief. Body language: various - some standing, some seated, all turned toward confrontation. Matsuda: hand over mouth, eyes wide. Sato: standing, leaning forward, confused expression. Shouta: standing straight, arms crossed, serious expression. [Composition] Deep space composition. Foreground: shocked employees (sharp focus). Midground: Ren pointing at projection (sharp focus, main subject). Background: Yasumoto and emerging Ghost (sharp focus). Whiteboard/projection acts as central focal point. Leading lines from Ren's pointing arm guide eye. Ghost creates visual tension in background. [Mood] Tense, dramatic, accusatory. Sense of revelation and confrontation. Horror-like atmosphere from Ghost emergence. Building tension before climax. [Style] Cinematic dramatic lighting. Anime style with realistic lighting effects. Clean line art, naturalistic coloring. Ghost effect: ethereal, supernatural, with subtle glow and transparency.",
+      "panels": [
+        {
+          "@id": "gh:panelPrompt/p9-2",
+          "pageId": "page:9",
+          "panelIndex": 2,
+          "promptEn": "Ren swivels in his chair to face Yasumoto, pointing a finger directly at him. His eyes are sharp, holding the power of someone revealing the truth."
+        },
+        {
+          "@id": "gh:panelPrompt/p9-3",
+          "pageId": "page:9",
+          "panelIndex": 3,
+          "promptEn": "All the employees in the office turn to look at Yasumoto with expressions of shock and accusation. The panel captures the shocked faces of Matsuda, Sato, and Shouta."
+        },
+        {
+          "@id": "gh:panelPrompt/p9-4",
+          "pageId": "page:9",
+          "panelIndex": 4,
+          "promptEn": "Close-up on Yasumoto's face. He is breaking out in a cold sweat, his lips trembling. A slightly low angle shot to express his desperate situation."
+        },
+        {
+          "@id": "gh:panelPrompt/p10-1",
+          "pageId": "page:10",
+          "panelIndex": 1,
+          "promptEn": "Yasumoto screams like a wild animal. From his back, the black, smoke-like aura of the Ghost explosively expands, nearly reaching the office ceiling."
+        }
+      ]
     },
     {
       "@id": "gh:scenePrompt/06_Combat",
       "sceneId": "scene:06_Combat",
-      "promptEn": "[Camera] Dynamic action shot, low angle (looking up at 15-degree angle) to emphasize Ghost's size and Ren's heroism. 24mm wide-angle lens for dramatic perspective. 16:9 aspect ratio. Slightly tilted Dutch angle (5-degree tilt) for dynamic feel. Shallow depth of field (f/2.0) with Ren in sharp focus, background slightly blurred. [Lighting] High-contrast dramatic lighting with multiple sources. Key light: bluish-white glow (6500K) from Digital Axe, casting strong directional light on Ren's face and upper body. Intensity: very strong, creating rim lighting effect. Fill light: cool cyan/purple glow (6000K) from digital grid overlay, providing ambient illumination. Intensity: medium. Ghost illumination: self-illuminating with purple/cyan glow (6500K), creating eerie light source. Nei's UI elements: subtle glow (cyan, 6000K) providing additional fill. Color palette: cool tones dominate (blues, cyans, purples), warm tones minimal. Shadows: deep, dramatic, high contrast. [Background] Surreal hybrid environment - real office merged with digital space. Real elements: construction company office still visible - steel desks, shelves, walls, but distorted and warped. Digital overlay: translucent digital grids (cyan/purple) overlaying physical space, creating mesh-like pattern. Scrolling code: green alphanumeric text scrolling vertically and horizontally, semi-transparent. Depth: multiple layers - physical office (blurred), digital grid (sharp), code streams (semi-transparent). LAN cables: thick network cables rising from floor like tentacles, approximately 2-3 meters long, black/gray with visible connectors, tangling and writhing. Paper stacks: office documents and blueprints rising from floor, forming part of Ghost's body, papers fluttering and swirling. [Characters] Ghost (monster form): Massive creature, approximately 4-5 meters tall, filling center of office. Body composition: tangled LAN cables forming main structure, stacks of paper and documents forming bulk, old PC parts (motherboards, hard drives) visible within, office furniture (desk legs, chair parts) incorporated. Form: amorphous, shifting, tentacle-like appendages made of cables. Head area: featureless or distorted humanoid shape, possibly showing Yasumoto's face distorted within. Color: deep black with purple/cyan glow at edges. Texture: rough, mechanical, organic mix. Movement: dynamic, writhing, threatening. Position: center of office, looming over Ren. Ren: Standing in combat stance, facing Ghost. Wearing: dark hoodie, casual clothes, possibly disheveled from movement. Face: determined, focused expression, eyes sharp, mouth set in firm line. Body language: ready stance, weight on back foot, leaning slightly forward. Gripping Digital Axe: both hands on handle, axe held at ready position (across body or raised). Expression: calm confidence, ready for battle. Digital Axe: Huge weapon, approximately 1.5-2 meters long. Made of bluish-white glowing data particles, translucent, showing internal structure of flowing code/data streams. Handle: solid core with data particles swirling around. Blade: large, curved, glowing brightly. Particles: visible data fragments, code snippets, binary digits flowing within axe structure. Glow: strong bluish-white (6500K), casting light on surroundings. Nei's UI elements: Floating holographic displays around Ren and Ghost. Elements: 'SIP DEVICE ONLINE' indicator (cyan text, minimal), 'LOCK ON' targeting reticle (red/cyan), system status bars, connection indicators. Style: clean, futuristic UI, translucent, positioned around action. Text: minimal, readable but not distracting. Color: cyan/blue tones. [Composition] Dynamic action composition. Foreground: Ren and Digital Axe (sharp focus, main subject). Midground: Ghost's main body (slightly softer focus). Background: distorted office and digital grids (blurred). Leading lines from cables and axe guide eye. Diagonal composition for energy. Dutch angle adds dynamism. [Mood] High-energy action, intense battle. Sense of surreal reality merging with digital space. Epic confrontation. [Style] Anime battle scene style with dynamic perspective. High contrast, dramatic lighting. Clean line art for characters, more abstract/fluid for Ghost. Realistic material textures mixed with digital effects. Emphasis on motion and energy."
+      "promptEn": "[Camera] Dynamic action shot, low angle (looking up at 15-degree angle) to emphasize Ghost's size and Ren's heroism. 24mm wide-angle lens for dramatic perspective. 16:9 aspect ratio. Slightly tilted Dutch angle (5-degree tilt) for dynamic feel. Shallow depth of field (f/2.0) with Ren in sharp focus, background slightly blurred. [Lighting] High-contrast dramatic lighting with multiple sources. Key light: bluish-white glow (6500K) from Digital Axe, casting strong directional light on Ren's face and upper body. Intensity: very strong, creating rim lighting effect. Fill light: cool cyan/purple glow (6000K) from digital grid overlay, providing ambient illumination. Intensity: medium. Ghost illumination: self-illuminating with purple/cyan glow (6500K), creating eerie light source. Nei's UI elements: subtle glow (cyan, 6000K) providing additional fill. Color palette: cool tones dominate (blues, cyans, purples), warm tones minimal. Shadows: deep, dramatic, high contrast. [Background] Surreal hybrid environment - real office merged with digital space. Real elements: construction company office still visible - steel desks, shelves, walls, but distorted and warped. Digital overlay: translucent digital grids (cyan/purple) overlaying physical space, creating mesh-like pattern. Scrolling code: green alphanumeric text scrolling vertically and horizontally, semi-transparent. Depth: multiple layers - physical office (blurred), digital grid (sharp), code streams (semi-transparent). LAN cables: thick network cables rising from floor like tentacles, approximately 2-3 meters long, black/gray with visible connectors, tangling and writhing. Paper stacks: office documents and blueprints rising from floor, forming part of Ghost's body, papers fluttering and swirling. [Characters] Ghost (monster form): Massive creature, approximately 4-5 meters tall, filling center of office. Body composition: tangled LAN cables forming main structure, stacks of paper and documents forming bulk, old PC parts (motherboards, hard drives) visible within, office furniture (desk legs, chair parts) incorporated. Form: amorphous, shifting, tentacle-like appendages made of cables. Head area: featureless or distorted humanoid shape, possibly showing Yasumoto's face distorted within. Color: deep black with purple/cyan glow at edges. Texture: rough, mechanical, organic mix. Movement: dynamic, writhing, threatening. Position: center of office, looming over Ren. Ren: Standing in combat stance, facing Ghost. Wearing: dark hoodie, casual clothes, possibly disheveled from movement. Face: determined, focused expression, eyes sharp, mouth set in firm line. Body language: ready stance, weight on back foot, leaning slightly forward. Gripping Digital Axe: both hands on handle, axe held at ready position (across body or raised). Expression: calm confidence, ready for battle. Digital Axe: Huge weapon, approximately 1.5-2 meters long. Made of bluish-white glowing data particles, translucent, showing internal structure of flowing code/data streams. Handle: solid core with data particles swirling around. Blade: large, curved, glowing brightly. Particles: visible data fragments, code snippets, binary digits flowing within axe structure. Glow: strong bluish-white (6500K), casting light on surroundings. Nei's UI elements: Floating holographic displays around Ren and Ghost. Elements: 'SIP DEVICE ONLINE' indicator (cyan text, minimal), 'LOCK ON' targeting reticle (red/cyan), system status bars, connection indicators. Style: clean, futuristic UI, translucent, positioned around action. Text: minimal, readable but not distracting. Color: cyan/blue tones. [Composition] Dynamic action composition. Foreground: Ren and Digital Axe (sharp focus, main subject). Midground: Ghost's main body (slightly softer focus). Background: distorted office and digital grids (blurred). Leading lines from cables and axe guide eye. Diagonal composition for energy. Dutch angle adds dynamism. [Mood] High-energy action, intense battle. Sense of surreal reality merging with digital space. Epic confrontation. [Style] Anime battle scene style with dynamic perspective. High contrast, dramatic lighting. Clean line art for characters, more abstract/fluid for Ghost. Realistic material textures mixed with digital effects. Emphasis on motion and energy.",
+      "panels": [
+        {
+          "@id": "gh:panelPrompt/p10-2",
+          "pageId": "page:10",
+          "panelIndex": 2,
+          "promptEn": "The Ghost, now fully separated from Yasumoto's body, forms into a giant monster made of tangled old documents, LAN cables, and PC parts. Sinister and detailed."
+        },
+        {
+          "@id": "gh:panelPrompt/p10-3",
+          "pageId": "page:10",
+          "panelIndex": 3,
+          "promptEn": "Matsuda and Sato are paralyzed with fear, while Shouta stands stunned. Their expressions convey the immense size and terror of the monster they are witnessing."
+        },
+        {
+          "@id": "gh:panelPrompt/p11-1",
+          "pageId": "page:11",
+          "panelIndex": 1,
+          "promptEn": "Ren calmly takes out his smartphone and operates it. The screen displays a simple UI: 'SIP Device: ON'. His composure highlights the extraordinary situation."
+        },
+        {
+          "@id": "gh:panelPrompt/p11-2",
+          "pageId": "page:11",
+          "panelIndex": 2,
+          "promptEn": "Digital noise and grid lines run through the entire office space. The Ghost's body is rendered more clearly, as a being with physical mass. An effect as if the space itself is distorting."
+        },
+        {
+          "@id": "gh:panelPrompt/p11-3",
+          "pageId": "page:11",
+          "panelIndex": 3,
+          "promptEn": "The Ghost uses its massive body to knock over a steel shelf. Papers fly and sparks scatter. A powerful action scene that clearly shows its physical destructive power."
+        },
+        {
+          "@id": "gh:panelPrompt/p12-1",
+          "pageId": "page:12",
+          "panelIndex": 1,
+          "promptEn": "Shouta shoves Matsuda out of the way to protect her from the falling shelf, using his own body as a shield. A close-up of his face, showing his sense of responsibility and determination."
+        },
+        {
+          "@id": "gh:panelPrompt/p12-2",
+          "pageId": "page:12",
+          "panelIndex": 2,
+          "promptEn": "In the palm of Ren's outstretched hand, particles of pale blue data light gather, gradually forming the shape of a giant axe (Digital Axe). Beautiful light particle effects."
+        },
+        {
+          "@id": "gh:panelPrompt/p12-3",
+          "pageId": "page:12",
+          "panelIndex": 3,
+          "promptEn": "Ren hefts the fully formed Digital Axe onto his shoulder and takes a quiet step toward the Ghost. His eyes are cold, showing the confidence of one who will dominate the coming battle."
+        },
+        {
+          "@id": "gh:panelPrompt/p13-1",
+          "pageId": "page:13",
+          "panelIndex": 1,
+          "promptEn": "Ren swiftly dodges the Ghost's swinging LAN-cable tentacles by ducking. A slanted composition to depict the sense of speed."
+        },
+        {
+          "@id": "gh:panelPrompt/p13-2",
+          "pageId": "page:13",
+          "panelIndex": 2,
+          "promptEn": "Ren leaps into the air and raises his Digital Axe. The command line string '/> /dev/null chop --force' appears around him as a special effect."
+        },
+        {
+          "@id": "gh:panelPrompt/p13-3",
+          "pageId": "page:13",
+          "panelIndex": 3,
+          "promptEn": "A full-page spread. Ren smashes the Digital Axe into the Ghost's core (a part that glows red like a PC's CPU). The impact causes an explosion of light and digital noise."
+        },
+        {
+          "@id": "gh:panelPrompt/p14-1",
+          "pageId": "page:14",
+          "panelIndex": 1,
+          "promptEn": "As the light subsides, the Ghost dissolves into digital particles. In the center, Yasumoto collapses to the floor as if his strings have been cut."
+        }
+      ]
     },
     {
       "@id": "gh:scenePrompt/07_Resolution",
       "sceneId": "scene:07_Resolution",
-      "promptEn": "[Camera] Medium wide shot, eye-level angle, 50mm normal lens. 16:9 aspect ratio. Deep focus composition showing all characters clearly. Slightly elevated angle (looking down at 5-degree angle) to show triangular composition. [Lighting] Soft, gentle lighting indicating resolution. Key light: warm window light (4000K) from office windows, soft and diffused, coming from upper left. Intensity: medium, creating gentle illumination. Fill light: restored monitor screens emitting soft blue-white glow (6000K) at 40% intensity, providing ambient fill. Rim light: subtle warm edge (3500K) on characters from window light. Backlighting: soft warm glow (3800K) from behind, creating gentle rim on characters' edges. Color temperature: warm tones dominate (3500-4000K), creating peaceful atmosphere. Shadows: soft, minimal, low contrast. [Background] Same construction company office, now calm and restored. Papers: scattered documents and blueprints now settled on desks and floor, no longer animated. Cables: LAN cables lying flat on floor, no longer writhing, organized or coiled. Office furniture: desks and chairs in normal positions, some slightly displaced from battle but stable. Monitors: multiple PC monitors showing restored desktop backgrounds - familiar Windows/Mac desktops, business software interfaces, normal operation. Soft glow from screens provides ambient light. Walls: same beige/gray walls, possibly with some scuff marks or minor damage from battle, but overall intact. Atmosphere: quiet, peaceful, post-storm calm. [Characters] Triangular composition in center: Goro Daimon (CEO, 62 years old): Standing, positioned at apex of triangle (center-back). Wearing: work clothes - construction site attire, possibly safety vest, work pants, boots, company cap. Face: shocked and confused expression, eyes wide, mouth slightly open, eyebrows raised. Body language: standing straight but slightly hunched with age, one hand possibly on hip or adjusting cap. Expression: concerned, trying to understand situation. Shouta (26 years old): Standing, positioned at left point of triangle. Wearing: business suit (same as before), slightly disheveled from events, tie still loosened. Face: firm resolve, determined expression, eyes focused, mouth set. Body language: standing straight, shoulders back, arms at sides or one hand in pocket. Expression: mature, responsible, showing growth. Yasumoto (52 years old): Sitting collapsed on floor, positioned at right point of triangle. Wearing: business suit, completely disheveled - jacket removed or torn, shirt untucked, tie missing. Face: head bowed, face hidden or partially visible showing despair, eyes closed or downcast, mouth trembling. Body language: sitting on floor, legs folded or extended, one hand covering face or supporting head, other hand on floor. Expression: defeated, regretful, broken. Other employees: Matsuda, Sato, and others visible in background, standing or seated at desks. Expressions: relief, exhaustion, concern. Body language: various relaxed postures, some checking monitors, some talking quietly. [Composition] Triangular composition with three main characters forming points. Goro at apex (center-back, standing), Shouta at left point (standing), Yasumoto at right point (sitting). Deep focus shows all elements clearly. Leading lines from desk edges and monitor cables guide eye to triangle. Balanced composition with visual weight distributed. Background monitors create depth layers. [Mood] Relief from tension, hint of sorrow, forward-looking resolve. Peaceful resolution. Sense of closure and new beginning. Emotional complexity - not purely happy or sad, but nuanced. [Style] Anime movie epilogue style. Soft, gentle lighting. Clean line art, naturalistic coloring with warm tones. Emphasis on emotional expression and body language. Realistic material textures. Cinematic quality, contemplative pace."
-    }
-  ],
-  "gh:panelPrompts": [
-    {
-      "@id": "gh:panelPrompt/p1-3",
-      "pageId": "page:1",
-      "panelIndex": 3,
-      "promptEn": "Bird's‑eye view of Tokyo 2026. Dense clusters of skyscrapers, small delivery drones flying between buildings, thin glowing lines and translucent icons in the sky representing data streams, with a massive data center and server farms in the distant background. The sky is a blue‑purple gradient of early night. Near‑future sci‑fi anime background, detailed, high contrast, no UI text."
-    },
-    {
-      "@id": "gh:panelPrompt/p2-1",
-      "pageId": "page:2-3",
-      "panelIndex": 1,
-      "promptEn": "Double-page spread title image. A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, disintegrate, and reconfigure. In the center, Ren and Nei float against gravity. Ren is typing at high speed on a translucent keyboard projected in mid-air, his gaze fixed on a distant data structure. His hoodie is slightly disheveled, showing his inner focus. Nei stands beside him, floating with her arms crossed as if on guard. She wears a functional, sailor-uniform-inspired outfit, and streams of analytical data flow across her eyes. Behind them, through a distortion in space, the giant 'GHOST HACKER' title logo emerges. Linework is precise and delicate, characters harmonize with the background. Cyberpunk, high contrast, neon blue and purple palette, high-resolution illustration."
-    },
-    {
-      "@id": "gh:panelPrompt/p4-1",
-      "pageId": "page:4",
-      "panelIndex": 1,
-      "promptEn": "Full view of a modern office with exposed concrete walls. A spacious room with minimalist desks and chairs. The floor is a mix of wood and white tiles. Ren slouches backwards in his chair in front of the PC desk, looking up at the ceiling. Natural perspective, a lived-in yet clean anime room background."
-    },
-    {
-      "@id": "gh:panelPrompt/p4-2",
-      "pageId": "page:4",
-      "panelIndex": 2,
-      "promptEn": "Bust-up of Nei standing in the corner of the room, operating a tablet with her arms crossed and an exasperated look. She's wearing casual sailor-style clothes. Part of the messy room is blurred in the background."
-    },
-    {
-      "@id": "gh:panelPrompt/p4-3",
-      "pageId": "page:4",
-      "panelIndex": 3,
-      "promptEn": "Nei walks up to Ren's chair and leans in with an exasperated look, drawn comically with slightly chibi proportions as she confronts him. Ren peeks his head over the back of the chair to look up at her."
-    },
-    {
-      "@id": "gh:panelPrompt/p4-4",
-      "pageId": "page:4",
-      "panelIndex": 4,
-      "promptEn": "Bust‑up of Ren, lazily picking his ear with one hand while talking with a bored expression. In the background, parts of the modern office (concrete wall, track lighting) are softly blurred, as if the camera focus is on Ren in the foreground. Modern anime coloring, natural skin shading."
-    },
-    {
-      "@id": "gh:panelPrompt/p5-1",
-      "pageId": "page:5",
-      "panelIndex": 1,
-      "promptEn": "Close-up of the large wall-mounted monitor in the office. It displays the video intercom feed, showing a young man in a suit (Shouta) standing there with a tense expression. The monitor frame has a minimalist design. Anime insert-cut style."
-    },
-    {
-      "@id": "gh:panelPrompt/p5-2",
-      "pageId": "page:5",
-      "panelIndex": 2,
-      "promptEn": "Full-body shot of Ren slowly getting up from his chair with a look of annoyance. His posture shifts from lazy to slightly work-focused. The background is the modern office."
-    },
-    {
-      "@id": "gh:panelPrompt/p5-3",
-      "pageId": "page:5",
-      "panelIndex": 3,
-      "promptEn": "Bust-up of Shouta as he enters the office. His expression is a mix of panic and exhaustion, but his eyes are sharp, showing his determination to resolve the situation. The office entrance is visible in the background."
-    },
-    {
-      "@id": "gh:panelPrompt/p5-4",
-      "pageId": "page:5",
-      "panelIndex": 4,
-      "promptEn": "Ren, with his arms crossed, sizes up Shouta. The shot is framed with his chin slightly down, emphasizing his sharp, observant gaze. The background is the minimalist office wall."
-    },
-    {
-      "@id": "gh:panelPrompt/p6-1",
-      "pageId": "page:6",
-      "panelIndex": 1,
-      "promptEn": "A full view of the Daimon Construction office. It's an old office with a Showa-era feel, cluttered with steel desks and piles of documents. The composition conveys a state of panic, with ringing phones and people shouting."
-    },
-    {
-      "@id": "gh:panelPrompt/p6-2",
-      "pageId": "page:6",
-      "panelIndex": 2,
-      "promptEn": "Close-up of Matsuda, the middle-aged accountant, screaming into the phone receiver with both hands, her face red with anger. Other employees are moving frantically in the background."
-    },
-    {
-      "@id": "gh:panelPrompt/p6-3",
-      "pageId": "page:6",
-      "panelIndex": 3,
-      "promptEn": "Young employee Sato struggles with a tangle of cables behind a small server rack. He is sweating and has a confused expression. Modern anime character design."
-    },
-    {
-      "@id": "gh:panelPrompt/p6-4",
-      "pageId": "page:6",
-      "panelIndex": 4,
-      "promptEn": "Ren, with his arms crossed, surveys the chaotic office with calm eyes. His expression shows a mix of composure and a hint of sarcasm, as if he sees the true nature of the situation."
-    },
-    {
-      "@id": "gh:panelPrompt/p7-1",
-      "pageId": "page:7",
-      "panelIndex": 1,
-      "promptEn": "General Affairs Manager Yasumoto appears, wiping away sweat. His eyes are filled with anxiety as he glares at Shouta with hostility. The composition emphasizes his suspicious behavior."
-    },
-    {
-      "@id": "gh:panelPrompt/p7-2",
-      "pageId": "page:7",
-      "panelIndex": 2,
-      "promptEn": "Shouta retorts to Yasumoto with a resolute attitude. His expression shows the responsibility and anger of a young successor. A confrontational composition that highlights the tension between them."
-    },
-    {
-      "@id": "gh:panelPrompt/p7-3",
-      "pageId": "page:7",
-      "panelIndex": 3,
-      "promptEn": "A point-of-view shot from Ren. Through what looks like AR glasses, the aura of a black, smoke-like Ghost clinging to Yasumoto's back is visualized. The aura represents negative emotions like jealousy and fear."
-    },
-    {
-      "@id": "gh:panelPrompt/p7-4",
-      "pageId": "page:7",
-      "panelIndex": 4,
-      "promptEn": "A scene where Ren casually sits at an empty desk and opens his laptop. His calm and purposeful action contrasts with the surrounding chaos."
-    },
-    {
-      "@id": "gh:panelPrompt/p8-1",
-      "pageId": "page:8",
-      "panelIndex": 1,
-      "promptEn": "Close-up on Ren's hands typing at incredible speed. Green text flows like a waterfall on the screen. In the background, Shouta and Sato are peering over his shoulder with expressions of disbelief."
-    },
-    {
-      "@id": "gh:panelPrompt/p8-2",
-      "pageId": "page:8",
-      "panelIndex": 2,
-      "promptEn": "Ren, speaking from his side profile while remaining focused on the screen. His expression is dead serious. The lighting is slightly shadowed to express the weight of his words."
-    },
-    {
-      "@id": "gh:panelPrompt/p8-3",
-      "pageId": "page:8",
-      "panelIndex": 3,
-      "promptEn": "Yasumoto stumbles backward, his face drained of color. His shock and fear are expressed with a slightly distorted perspective, making the office background seem unstable to reflect his state of mind."
-    },
-    {
-      "@id": "gh:panelPrompt/p9-1",
-      "pageId": "page:9",
-      "panelIndex": 1,
-      "promptEn": "Close-up on Ren's laptop screen. The screen displays the large text 'FOUND!!' along with Yasumoto's internal company profile, complete with his photo. Nei stands beside him, pointing at the screen with a triumphant look."
-    },
-    {
-      "@id": "gh:panelPrompt/p9-2",
-      "pageId": "page:9",
-      "panelIndex": 2,
-      "promptEn": "Ren swivels in his chair to face Yasumoto, pointing a finger directly at him. His eyes are sharp, holding the power of someone revealing the truth."
-    },
-    {
-      "@id": "gh:panelPrompt/p9-3",
-      "pageId": "page:9",
-      "panelIndex": 3,
-      "promptEn": "All the employees in the office turn to look at Yasumoto with expressions of shock and accusation. The panel captures the shocked faces of Matsuda, Sato, and Shouta."
-    },
-    {
-      "@id": "gh:panelPrompt/p9-4",
-      "pageId": "page:9",
-      "panelIndex": 4,
-      "promptEn": "Close-up on Yasumoto's face. He is breaking out in a cold sweat, his lips trembling. A slightly low angle shot to express his desperate situation."
-    },
-    {
-      "@id": "gh:panelPrompt/p10-1",
-      "pageId": "page:10",
-      "panelIndex": 1,
-      "promptEn": "Yasumoto screams like a wild animal. From his back, the black, smoke-like aura of the Ghost explosively expands, nearly reaching the office ceiling."
-    },
-    {
-      "@id": "gh:panelPrompt/p10-2",
-      "pageId": "page:10",
-      "panelIndex": 2,
-      "promptEn": "The Ghost, now fully separated from Yasumoto's body, forms into a giant monster made of tangled old documents, LAN cables, and PC parts. Sinister and detailed."
-    },
-    {
-      "@id": "gh:panelPrompt/p10-3",
-      "pageId": "page:10",
-      "panelIndex": 3,
-      "promptEn": "Matsuda and Sato are paralyzed with fear, while Shouta stands stunned. Their expressions convey the immense size and terror of the monster they are witnessing."
-    },
-    {
-      "@id": "gh:panelPrompt/p11-1",
-      "pageId": "page:11",
-      "panelIndex": 1,
-      "promptEn": "Ren calmly takes out his smartphone and operates it. The screen displays a simple UI: 'SIP Device: ON'. His composure highlights the extraordinary situation."
-    },
-    {
-      "@id": "gh:panelPrompt/p11-2",
-      "pageId": "page:11",
-      "panelIndex": 2,
-      "promptEn": "Digital noise and grid lines run through the entire office space. The Ghost's body is rendered more clearly, as a being with physical mass. An effect as if the space itself is distorting."
-    },
-    {
-      "@id": "gh:panelPrompt/p11-3",
-      "pageId": "page:11",
-      "panelIndex": 3,
-      "promptEn": "The Ghost uses its massive body to knock over a steel shelf. Papers fly and sparks scatter. A powerful action scene that clearly shows its physical destructive power."
-    },
-    {
-      "@id": "gh:panelPrompt/p12-1",
-      "pageId": "page:12",
-      "panelIndex": 1,
-      "promptEn": "Shouta shoves Matsuda out of the way to protect her from the falling shelf, using his own body as a shield. A close-up of his face, showing his sense of responsibility and determination."
-    },
-    {
-      "@id": "gh:panelPrompt/p12-2",
-      "pageId": "page:12",
-      "panelIndex": 2,
-      "promptEn": "In the palm of Ren's outstretched hand, particles of pale blue data light gather, gradually forming the shape of a giant axe (Digital Axe). Beautiful light particle effects."
-    },
-    {
-      "@id": "gh:panelPrompt/p12-3",
-      "pageId": "page:12",
-      "panelIndex": 3,
-      "promptEn": "Ren hefts the fully formed Digital Axe onto his shoulder and takes a quiet step toward the Ghost. His eyes are cold, showing the confidence of one who will dominate the coming battle."
-    },
-    {
-      "@id": "gh:panelPrompt/p13-1",
-      "pageId": "page:13",
-      "panelIndex": 1,
-      "promptEn": "Ren swiftly dodges the Ghost's swinging LAN-cable tentacles by ducking. A slanted composition to depict the sense of speed."
-    },
-    {
-      "@id": "gh:panelPrompt/p13-2",
-      "pageId": "page:13",
-      "panelIndex": 2,
-      "promptEn": "Ren leaps into the air and raises his Digital Axe. The command line string '/> /dev/null chop --force' appears around him as a special effect."
-    },
-    {
-      "@id": "gh:panelPrompt/p13-3",
-      "pageId": "page:13",
-      "panelIndex": 3,
-      "promptEn": "A full-page spread. Ren smashes the Digital Axe into the Ghost's core (a part that glows red like a PC's CPU). The impact causes an explosion of light and digital noise."
-    },
-    {
-      "@id": "gh:panelPrompt/p14-1",
-      "pageId": "page:14",
-      "panelIndex": 1,
-      "promptEn": "As the light subsides, the Ghost dissolves into digital particles. In the center, Yasumoto collapses to the floor as if his strings have been cut."
-    },
-    {
-      "@id": "gh:panelPrompt/p14-2",
-      "pageId": "page:14",
-      "panelIndex": 2,
-      "promptEn": "Silence returns to the office. The lock screens on the employees' PC monitors simultaneously disappear, replaced by their familiar desktop backgrounds. Sato has a look of relief."
-    },
-    {
-      "@id": "gh:panelPrompt/p14-3",
-      "pageId": "page:14",
-      "panelIndex": 3,
-      "promptEn": "Yasumoto sits on the floor, covering his face with both hands and sobbing. His back, which looks small and defeated, tells a story of regret and despair."
-    },
-    {
-      "@id": "gh:panelPrompt/p15-1",
-      "pageId": "page:15",
-      "panelIndex": 1,
-      "promptEn": "The company president, Goro Daimon, stands at the office entrance in his work clothes. He looks shocked and confused by the disastrous scene before him."
-    },
-    {
-      "@id": "gh:panelPrompt/p15-2",
-      "pageId": "page:15",
-      "panelIndex": 2,
-      "promptEn": "Shouta glances back and forth between his father, the president, and Yasumoto, who is collapsed on the floor. After a moment of hesitation, his expression becomes firm with resolve."
-    },
-    {
-      "@id": "gh:panelPrompt/p15-3",
-      "pageId": "page:15",
-      "panelIndex": 3,
-      "promptEn": "Hearing Shouta's words, Yasumoto looks up at him with a mixed expression of surprise and gratitude. Shouta doesn't look at him, but stares straight at his father."
-    },
-    {
-      "@id": "gh:panelPrompt/p15-4",
-      "pageId": "page:15",
-      "panelIndex": 4,
-      "promptEn": "The president, sensing his son's growth and compassion for Yasumoto, gives a nod with a complex but gentle expression. A quiet depiction of a generational shift."
-    },
-    {
-      "@id": "gh:panelPrompt/p16-1",
-      "pageId": "page:16",
-      "panelIndex": 1,
-      "promptEn": "As if nothing happened, Ren closes his laptop, unplugs a USB drive, and prepares to leave. The scene highlights his cool and professional demeanor."
-    },
-    {
-      "@id": "gh:panelPrompt/p16-2",
-      "pageId": "page:16",
-      "panelIndex": 2,
-      "promptEn": "The accountant, Matsuda, looks at her PC's online banking screen, her expression changing from disbelief to joy. A comical scene."
-    },
-    {
-      "@id": "gh:panelPrompt/p16-3",
-      "pageId": "page:16",
-      "panelIndex": 3,
-      "promptEn": "Shouta calls out to the departing Ren. His expression clearly shows his gratitude and respect."
-    },
-    {
-      "@id": "gh:panelPrompt/p17-1",
-      "pageId": "page:17",
-      "panelIndex": 1,
-      "promptEn": "As he leaves the office, Ren gives a slight wave with one hand without looking back. His back view conveys a sense of reliability without needing words."
-    },
-    {
-      "@id": "gh:panelPrompt/p17-2",
-      "pageId": "page:17",
-      "panelIndex": 2,
-      "promptEn": "Ren and Nei walk through the evening crowd of Kamata. Nei is looking up at Ren and talking. The two have returned to their daily life."
-    },
-    {
-      "@id": "gh:panelPrompt/p17-3",
-      "pageId": "page:17",
-      "panelIndex": 3,
-      "promptEn": "Close-up of Ren looking at his smartphone, confirming a payment, and smirking. It shows his (financial) side as a hacker."
-    },
-    {
-      "@id": "gh:panelPrompt/p17-4",
-      "pageId": "page:17",
-      "panelIndex": 4,
-      "promptEn": "The text 'Ghost Hacker - Episode 1 End' is displayed in white on a black background, leaving a quiet afterglow."
+      "promptEn": "[Camera] Medium wide shot, eye-level angle, 50mm normal lens. 16:9 aspect ratio. Deep focus composition showing all characters clearly. Slightly elevated angle (looking down at 5-degree angle) to show triangular composition. [Lighting] Soft, gentle lighting indicating resolution. Key light: warm window light (4000K) from office windows, soft and diffused, coming from upper left. Intensity: medium, creating gentle illumination. Fill light: restored monitor screens emitting soft blue-white glow (6000K) at 40% intensity, providing ambient fill. Rim light: subtle warm edge (3500K) on characters from window light. Backlighting: soft warm glow (3800K) from behind, creating gentle rim on characters' edges. Color temperature: warm tones dominate (3500-4000K), creating peaceful atmosphere. Shadows: soft, minimal, low contrast. [Background] Same construction company office, now calm and restored. Papers: scattered documents and blueprints now settled on desks and floor, no longer animated. Cables: LAN cables lying flat on floor, no longer writhing, organized or coiled. Office furniture: desks and chairs in normal positions, some slightly displaced from battle but stable. Monitors: multiple PC monitors showing restored desktop backgrounds - familiar Windows/Mac desktops, business software interfaces, normal operation. Soft glow from screens provides ambient light. Walls: same beige/gray walls, possibly with some scuff marks or minor damage from battle, but overall intact. Atmosphere: quiet, peaceful, post-storm calm. [Characters] Triangular composition in center: Goro Daimon (CEO, 62 years old): Standing, positioned at apex of triangle (center-back). Wearing: work clothes - construction site attire, possibly safety vest, work pants, boots, company cap. Face: shocked and confused expression, eyes wide, mouth slightly open, eyebrows raised. Body language: standing straight, one hand possibly on hip or adjusting cap. Expression: concerned, trying to understand situation. Shouta (26 years old): Standing, positioned at left point of triangle. Wearing: business suit (same as before), slightly disheveled from events, tie still loosened. Face: firm resolve, determined expression, eyes focused, mouth set. Body language: standing straight, shoulders back, arms at sides or one hand in pocket. Expression: mature, responsible, showing growth. Yasumoto (52 years old): Sitting collapsed on floor, positioned at right point of triangle. Wearing: business suit, completely disheveled - jacket removed or torn, shirt untucked, tie missing. Face: head bowed, face hidden or partially visible showing despair, eyes closed or downcast, mouth trembling. Body language: sitting on floor, legs folded or extended, one hand covering face or supporting head, other hand on floor. Expression: defeated, regretful, broken. Other employees: Matsuda, Sato, and others visible in background, standing or seated at desks. Expressions: relief, exhaustion, concern. Body language: various relaxed postures, some checking monitors, some talking quietly. [Composition] Triangular composition with three main characters forming points. Goro at apex (center-back, standing), Shouta at left point (standing), Yasumoto at right point (sitting). Deep focus shows all elements clearly. Leading lines from desk edges and monitor cables guide eye to triangle. Balanced composition with visual weight distributed. Background monitors create depth layers. [Mood] Relief from tension, hint of sorrow, forward-looking resolve. Peaceful resolution. Sense of closure and new beginning. Emotional complexity - not purely happy or sad, but nuanced. [Style] Anime movie epilogue style. Soft, gentle lighting. Clean line art, naturalistic coloring with warm tones. Emphasis on emotional expression and body language. Realistic material textures. Cinematic quality, contemplative pace.",
+      "panels": [
+        {
+          "@id": "gh:panelPrompt/p14-2",
+          "pageId": "page:14",
+          "panelIndex": 2,
+          "promptEn": "Silence returns to the office. The lock screens on the employees' PC monitors simultaneously disappear, replaced by their familiar desktop backgrounds. Sato has a look of relief."
+        },
+        {
+          "@id": "gh:panelPrompt/p14-3",
+          "pageId": "page:14",
+          "panelIndex": 3,
+          "promptEn": "Yasumoto sits on the floor, covering his face with both hands and sobbing. His back, which looks small and defeated, tells a story of regret and despair."
+        },
+        {
+          "@id": "gh:panelPrompt/p15-1",
+          "pageId": "page:15",
+          "panelIndex": 1,
+          "promptEn": "The company president, Goro Daimon, stands at the office entrance in his work clothes. He looks shocked and confused by the disastrous scene before him."
+        },
+        {
+          "@id": "gh:panelPrompt/p15-2",
+          "pageId": "page:15",
+          "panelIndex": 2,
+          "promptEn": "Shouta glances back and forth between his father, the president, and Yasumoto, who is collapsed on the floor. After a moment of hesitation, his expression becomes firm with resolve."
+        },
+        {
+          "@id": "gh:panelPrompt/p15-3",
+          "pageId": "page:15",
+          "panelIndex": 3,
+          "promptEn": "Hearing Shouta's words, Yasumoto looks up at him with a mixed expression of surprise and gratitude. Shouta doesn't look at him, but stares straight at his father."
+        },
+        {
+          "@id": "gh:panelPrompt/p15-4",
+          "pageId": "page:15",
+          "panelIndex": 4,
+          "promptEn": "The president, sensing his son's growth and compassion for Yasumoto, gives a nod with a complex but gentle expression. A quiet depiction of a generational shift."
+        },
+        {
+          "@id": "gh:panelPrompt/p16-1",
+          "pageId": "page:16",
+          "panelIndex": 1,
+          "promptEn": "As if nothing happened, Ren closes his laptop, unplugs a USB drive, and prepares to leave. The scene highlights his cool and professional demeanor."
+        },
+        {
+          "@id": "gh:panelPrompt/p16-2",
+          "pageId": "page:16",
+          "panelIndex": 2,
+          "promptEn": "The accountant, Matsuda, looks at her PC's online banking screen, her expression changing from disbelief to joy. A comical scene."
+        },
+        {
+          "@id": "gh:panelPrompt/p16-3",
+          "pageId": "page:16",
+          "panelIndex": 3,
+          "promptEn": "Shouta calls out to the departing Ren. His expression clearly shows his gratitude and respect."
+        },
+        {
+          "@id": "gh:panelPrompt/p17-1",
+          "pageId": "page:17",
+          "panelIndex": 1,
+          "promptEn": "As he leaves the office, Ren gives a slight wave with one hand without looking back. His back view conveys a sense of reliability without needing words."
+        },
+        {
+          "@id": "gh:panelPrompt/p17-2",
+          "pageId": "page:17",
+          "panelIndex": 2,
+          "promptEn": "Ren and Nei walk through the evening crowd of Kamata. Nei is looking up at Ren and talking. The two have returned to their daily life."
+        },
+        {
+          "@id": "gh:panelPrompt/p17-3",
+          "pageId": "page:17",
+          "panelIndex": 3,
+          "promptEn": "Close-up of Ren looking at his smartphone, confirming a payment, and smirking. It shows his (financial) side as a hacker."
+        },
+        {
+          "@id": "gh:panelPrompt/p17-4",
+          "pageId": "page:17",
+          "panelIndex": 4,
+          "promptEn": "The text 'Ghost Hacker - Episode 1 End' is displayed in white on a black background, leaving a quiet afterglow."
+        }
+      ]
     }
   ]
 }
-
-
