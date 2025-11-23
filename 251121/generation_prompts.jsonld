@@ -9,6 +9,7 @@
     "sceneId": "gh:sceneId",
     "panels": "gh:panels",
     "pagePrompts": "gh:pagePrompts",
+    "panelPrompts": "gh:panelPrompts",
     "recommendedCutCount": "gh:recommendedCutCount",
     "promptCharCount": "gh:promptCharCount"
   },
@@ -87,13 +88,13 @@
           "@id": "gh:panelPrompt/p5-3",
           "pageId": "page:5",
           "panelIndex": 3,
-          "promptEn": "Bust-up of Shouta as he enters the office. His expression is a mix of panic and exhaustion, but his eyes are sharp, showing his determination to resolve the situation. The office entrance is visible in the background."
+          "promptEn": "Ren now sits on a low office sofa instead of his work chair, his posture relaxed but his eyes quietly sharp. He leans slightly toward Shouta with one hand resting on the back of the sofa, speaking casually yet firmly as he asks, \"で、どうしたんですか？\". The composition captures a three-quarter view of Ren on the sofa and part of the office around him, emphasizing his calm, professional attitude in contrast to the tense atmosphere."
         },
         {
           "@id": "gh:panelPrompt/p5-4",
           "pageId": "page:5",
           "panelIndex": 4,
-          "promptEn": "Ren, with his arms crossed, sizes up Shouta. The shot is framed with his chin slightly down, emphasizing his sharp, observant gaze. The background is the minimalist office wall."
+          "promptEn": "Bust-up of Shouta sitting across from Ren, his shoulders slightly hunched and his brows knit with worry. He begins to explain with a troubled expression, saying, \"うちの会社のシステムがハッキングされて、全てのシステムが止まってしまって…\". The background shows a hint of the modern office wall and furniture, softly blurred to focus on his anxious face and the weight of his words."
         }
       ]
     },
@@ -453,9 +454,9 @@
     {
       "@id": "gh:pagePrompt/page:5",
       "pageId": "page:5",
-      "promptEn": "Close-up of the large wall-mounted monitor in the office. It displays the video intercom feed, showing a young man in a suit (Shouta) standing there with a tense expression. The monitor frame has a minimalist design. Anime insert-cut style. Full-body shot of Ren slowly getting up from his chair with a look of annoyance. His posture shifts from lazy to slightly work-focused. The background is the modern office. Bust-up of Shouta as he enters the office. His expression is a mix of panic and exhaustion, but his eyes are sharp, showing his determination to resolve the situation. The office entrance is visible in the background. Ren, with his arms crossed, sizes up Shouta. The shot is framed with his chin slightly down, emphasizing his sharp, observant gaze. The background is the minimalist office wall.",
+      "promptEn": "Close-up of the large wall-mounted monitor in the office. It displays the video intercom feed, showing a young man in a suit (Shouta) standing there with a tense expression. The monitor frame has a minimalist design. Anime insert-cut style. Full-body shot of Ren slowly getting up from his chair with a look of annoyance. His posture shifts from lazy to slightly work-focused. The background is the modern office. Ren now sits on a low office sofa instead of his work chair, his posture relaxed but his eyes quietly sharp. He leans slightly toward Shouta with one hand resting on the back of the sofa, speaking casually yet firmly as he asks, \"で、どうしたんですか？\". The composition captures a three-quarter view of Ren on the sofa and part of the office around him, emphasizing his calm, professional attitude in contrast to the tense atmosphere. Bust-up of Shouta sitting across from Ren, his shoulders slightly hunched and his brows knit with worry. He begins to explain with a troubled expression, saying, \"うちの会社のシステムがハッキングされて、全てのシステムが止まってしまって…\". The background shows a hint of the modern office wall and furniture, softly blurred to focus on his anxious face and the weight of his words.",
       "recommendedCutCount": 4,
-      "promptCharCount": 809
+      "promptCharCount": 1183
     },
     {
       "@id": "gh:pagePrompt/page:6",
