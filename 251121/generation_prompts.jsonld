@@ -39,31 +39,31 @@
           "@id": "gh:panelPrompt/p2-1",
           "pageId": "page:2",
           "panelIndex": 1,
-          "promptEn": "Full-page title image (single smartphone page). A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, disintegrate, and reconfigure. In the center, Ren and Nei float against gravity. Ren is typing at high speed on a translucent keyboard projected in mid-air, his gaze fixed on a distant data structure. His hoodie is slightly disheveled, showing his inner focus. Nei stands beside him, floating with her arms crossed as if on guard. She wears a functional, sailor-uniform-inspired outfit, and streams of analytical data flow across her eyes. Behind them, through a distortion in space, the giant 'GHOST HACKER' title logo emerges. Linework is precise and delicate, characters harmonize with the background. Cyberpunk, high contrast, neon blue and purple palette, high-resolution illustration optimized for vertical smartphone viewing."
+          "promptEn": "Full-page title image (single smartphone page). A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, disintegrate, and reconfigure. In the center, Ren and Nei float against gravity. Ren is typing at high speed on a translucent keyboard projected in mid-air, his gaze fixed on a distant data structure. His hoodie is slightly disheveled, showing his inner focus. Nei stands beside him, floating with her arms crossed as if on guard. She wears a functional, sailor-uniform-inspired outfit, and streams of analytical data flow across her eyes. Behind them, through a distortion in space, the giant 'GHOST HACKER' title logo emerges. Linework is precise and delicate, characters harmonize with the background. Cyberpunk, high contrast, neon blue and purple palette, high-resolution illustration optimized for vertical smartphone viewing. Character details: Ren is a 17-year-old boy with pale skin, messy short black or dark brown hair, half-open tired eyes and a skinny build, always wearing a dark gray hoodie with the hood down over a black T-shirt, dark jeans and dark sneakers, giving off a bored but quietly sharp impression; Nei is a 16-year-old girl-like android with expressive, analytical eyes and neat shoulder-length black hair, dressed in a functional sailor-uniform-style outfit of a white sailor-collar blouse, navy pleated skirt, white knee-high socks and black Mary Jane shoes."
         },
         {
           "@id": "gh:panelPrompt/p4-1",
           "pageId": "page:4",
           "panelIndex": 1,
-          "promptEn": "Full view of a modern office with exposed concrete walls. A spacious room with minimalist desks and chairs. The floor is a mix of wood and white tiles. Ren slouches backwards in his chair in front of the PC desk, looking up at the ceiling. Natural perspective, a lived-in yet clean anime room background."
+          "promptEn": "Full view of a modern office with exposed concrete walls. A spacious room with minimalist desks and chairs. The floor is a mix of wood and white tiles. Ren slouches backwards in his chair in front of the PC desk, looking up at the ceiling. Natural perspective, a lived-in yet clean anime room background. Character details: Ren is a 17-year-old boy with pale skin, messy short black or dark brown hair, half-open tired eyes and a skinny build, always wearing a dark gray hoodie with the hood down over a black T-shirt, dark jeans and dark sneakers, radiating lazy boredom that hides his sharpness."
         },
         {
           "@id": "gh:panelPrompt/p4-2",
           "pageId": "page:4",
           "panelIndex": 2,
-          "promptEn": "Bust-up of Nei standing in the corner of the room, operating a tablet with her arms crossed and an exasperated look. She's wearing casual sailor-style clothes. Part of the messy room is blurred in the background."
+          "promptEn": "Bust-up of Nei standing in the corner of the room, operating a tablet with her arms crossed and an exasperated look. She's wearing casual sailor-style clothes. Part of the messy room is blurred in the background. Character details: Nei is a 16-year-old girl-like android with neat shoulder-length black hair and bright, analytical eyes, wearing a functional sailor-uniform-style outfit of a white sailor-collar blouse, navy pleated skirt, white knee-high socks and black Mary Jane shoes, her posture straight and vigilant even when she is exasperated at Ren."
         },
         {
           "@id": "gh:panelPrompt/p4-3",
           "pageId": "page:4",
           "panelIndex": 3,
-          "promptEn": "Nei walks up to Ren's chair and leans in with an exasperated look, drawn comically with slightly chibi proportions as she confronts him. Ren peeks his head over the back of the chair to look up at her."
+          "promptEn": "Nei walks up to Ren's chair and leans in with an exasperated look, drawn comically with slightly chibi proportions as she confronts him. Ren peeks his head over the back of the chair to look up at her. Character details: Nei keeps her white sailor-collar blouse and navy pleated skirt perfectly in order even in chibi proportions, her expressive face and sharp eyes emphasizing her nagging-but-caring personality; Ren remains a pale, skinny 17-year-old in a dark gray hoodie and dark jeans, his messy short dark hair and half-open eyes underscoring his laziness."
         },
         {
           "@id": "gh:panelPrompt/p4-4",
           "pageId": "page:4",
           "panelIndex": 4,
-          "promptEn": "Bust‑up of Ren, lazily picking his ear with one hand while talking with a bored expression. In the background, parts of the modern office (concrete wall, track lighting) are softly blurred, as if the camera focus is on Ren in the foreground. Modern anime coloring, natural skin shading."
+          "promptEn": "Bust‑up of Ren, lazily picking his ear with one hand while talking with a bored expression. In the background, parts of the modern office (concrete wall, track lighting) are softly blurred, as if the camera focus is on Ren in the foreground. Modern anime coloring, natural skin shading. Character details: Ren is consistently depicted as a 17-year-old boy with pale skin, messy short black or dark brown hair, half-closed bored eyes and a slim build, dressed in his signature dark gray hoodie over a black T-shirt with dark jeans and simple dark sneakers."
         }
       ]
     },
@@ -76,25 +76,25 @@
           "@id": "gh:panelPrompt/p5-1",
           "pageId": "page:5",
           "panelIndex": 1,
-          "promptEn": "Close-up of the large wall-mounted monitor in the office. It displays the video intercom feed, showing a young man in a suit (Shouta) standing there with a tense expression. The monitor frame has a minimalist design. Anime insert-cut style."
+          "promptEn": "Close-up of the large wall-mounted monitor in the office. It displays the video intercom feed, showing a young man in a suit (Shouta) standing there with a tense expression. The monitor frame has a minimalist design. Anime insert-cut style. Character details: Shouta is a 26-year-old man with sharp but tired eyes and a tense, overworked expression, wearing a slightly rumpled navy business suit with a loosened tie, a white dress shirt and polished black leather shoes, his neatly cut dark hair adding to his serious successor aura."
         },
         {
           "@id": "gh:panelPrompt/p5-2",
           "pageId": "page:5",
           "panelIndex": 2,
-          "promptEn": "Full-body shot of Ren slowly getting up from his chair with a look of annoyance. His posture shifts from lazy to slightly work-focused. The background is the modern office."
+          "promptEn": "Full-body shot of Ren slowly getting up from his chair with a look of annoyance. His posture shifts from lazy to slightly work-focused. The background is the modern office. Character details: Ren is a pale, skinny 17-year-old boy with messy short black or dark brown hair and half-open bored eyes, dressed in his usual dark gray hoodie with the hood down over a black T-shirt, dark jeans and dark sneakers, his body language changing from slouching laziness to a slightly more engaged stance."
         },
         {
           "@id": "gh:panelPrompt/p5-3",
           "pageId": "page:5",
           "panelIndex": 3,
-          "promptEn": "Ren now sits on a low office sofa instead of his work chair, his posture relaxed but his eyes quietly sharp. He leans slightly toward Shouta with one hand resting on the back of the sofa, speaking casually yet firmly as he asks, \"で、どうしたんですか？\". The composition captures a three-quarter view of Ren on the sofa and part of the office around him, emphasizing his calm, professional attitude in contrast to the tense atmosphere."
+          "promptEn": "Ren now sits on a low office sofa instead of his work chair, his posture relaxed but his eyes quietly sharp. He leans slightly toward Shouta with one hand resting on the back of the sofa, speaking casually yet firmly as he asks, \"で、どうしたんですか？\". The composition captures a three-quarter view of Ren on the sofa and part of the office around him, emphasizing his calm, professional attitude in contrast to the tense atmosphere. Character details: Ren keeps his dark gray hoodie, black T-shirt and dark jeans, his pale face framed by messy short dark hair and half-lidded eyes that now sharpen with professional focus; Shouta sits opposite as a 26-year-old in a navy business suit with loosened tie and white shirt, his shoulders tense and brows furrowed from the crisis."
         },
         {
           "@id": "gh:panelPrompt/p5-4",
           "pageId": "page:5",
           "panelIndex": 4,
-          "promptEn": "Bust-up of Shouta sitting across from Ren, his shoulders slightly hunched and his brows knit with worry. He begins to explain with a troubled expression, saying, \"うちの会社のシステムがハッキングされて、全てのシステムが止まってしまって…\". The background shows a hint of the modern office wall and furniture, softly blurred to focus on his anxious face and the weight of his words."
+          "promptEn": "Bust-up of Shouta sitting across from Ren, his shoulders slightly hunched and his brows knit with worry. He begins to explain with a troubled expression, saying, \"うちの会社のシステムがハッキングされて、全てのシステムが止まってしまって…\". The background shows a hint of the modern office wall and furniture, softly blurred to focus on his anxious face and the weight of his words. Character details: Shouta is consistently shown as a rational but pressured 26-year-old man with sharp, determined eyes underlined by dark circles, wearing a slightly rumpled navy suit, loosened tie and white dress shirt, his posture leaning forward with responsibility weighing on him; Ren remains a slim 17-year-old hacker in a dark gray hoodie and dark jeans, watching him with calm intensity from off-frame."
         }
       ]
     },
@@ -687,7 +687,7 @@
           "promptEn": "Ren, with his arms crossed, surveys the chaotic office with calm eyes. His expression shows a mix of composure and a hint of sarcasm, as if he sees the true nature of the situation."
         }
       ],
-      "promptEn": "A full view of the Daimon Construction office. It's an old office with a Showa-era feel, cluttered with steel desks and piles of documents. The composition conveys a state of panic, with ringing phones and people shouting. Close-up of Matsuda, the middle-aged accountant, screaming into the phone receiver with both hands, her face red with anger. Other employees are moving frantically in the background. Young employee Sato struggles with a tangle of cables behind a small server rack. He is sweating and has a confused expression. Modern anime character design. Ren, with his arms crossed, surveys the chaotic office with calm eyes. His expression shows a mix of composure and a hint of sarcasm, as if he sees the true nature of the situation.",
+      "promptEn": "A full view of the Daimon Construction office. It's an old office with a Showa-era feel, cluttered with steel desks and piles of documents. The composition conveys a state of panic, with ringing phones and people shouting. Close-up of Matsuda, the middle-aged accountant, screaming into the phone receiver with both hands, her face red with anger. Other employees are moving frantically in the background. Young employee Sato struggles with a tangle of cables behind a small server rack. He is sweating and has a confused expression. Modern anime character design. Ren, with his arms crossed, surveys the chaotic office with calm eyes. His expression shows a mix of composure and a hint of sarcasm, as if he sees the true nature of the situation. Character details: Matsuda is a small, slightly plump woman in her late fifties with permed short hair, glasses on a neck chain and conservative office clothes (light blouse and dark skirt), her face flushing bright red when she yells; Sato is a slim 24-year-old man in casual office wear (polo or button-down shirt and dark pants) with short black hair, gentle eyes and sweat beading on his brow as he crouches behind the server rack; Ren stands out as a pale, skinny 17-year-old in a dark gray hoodie over a black T-shirt, dark jeans and dark sneakers, messy short dark hair and half-open eyes giving him a lazy but quietly amused look amidst the chaos.",
       "recommendedCutCount": 4,
       "promptCharCount": 746
     },
@@ -716,7 +716,7 @@
           "promptEn": "A scene where Ren casually sits at an empty desk and opens his laptop. His calm and purposeful action contrasts with the surrounding chaos."
         }
       ],
-      "promptEn": "General Affairs Manager Yasumoto appears, wiping away sweat. His eyes are filled with anxiety as he glares at Shouta with hostility. The composition emphasizes his suspicious behavior. Shouta retorts to Yasumoto with a resolute attitude. His expression shows the responsibility and anger of a young successor. A confrontational composition that highlights the tension between them. A point-of-view shot from Ren. Through what looks like AR glasses, the aura of a black, smoke-like Ghost clinging to Yasumoto's back is visualized. The aura represents negative emotions like jealousy and fear. A scene where Ren casually sits at an empty desk and opens his laptop. His calm and purposeful action contrasts with the surrounding chaos.",
+      "promptEn": "General Affairs Manager Yasumoto appears, wiping away sweat. His eyes are filled with anxiety as he glares at Shouta with hostility. The composition emphasizes his suspicious behavior. Shouta retorts to Yasumoto with a resolute attitude. His expression shows the responsibility and anger of a young successor. A confrontational composition that highlights the tension between them. A point-of-view shot from Ren. Through what looks like AR glasses, the aura of a black, smoke-like Ghost clinging to Yasumoto's back is visualized. The aura represents negative emotions like jealousy and fear. A scene where Ren casually sits at an empty desk and opens his laptop. His calm and purposeful action contrasts with the surrounding chaos. Character details: Yasumoto is a 52-year-old general affairs manager with slightly overweight build, short dark hair threaded with gray and a perpetually sweating anxious face, wearing a gray or navy business suit with a loosened tie and wrinkled white shirt as he fidgets and glares; Shouta is a 26-year-old heir in a navy suit and loosened tie, neat short dark hair and sharp eyes that harden with resolve when he confronts Yasumoto; Ren remains the pale, skinny 17-year-old hacker in his dark gray hoodie, black T-shirt and dark jeans, seen from his AR-like point of view as he calmly opens his laptop while everyone else panics.",
       "recommendedCutCount": 4,
       "promptCharCount": 731
     },
@@ -740,7 +740,7 @@
           "promptEn": "Yasumoto stumbles_backward, his face drained of color. His shock and fear are expressed with a slightly distorted perspective, making the office background seem unstable to reflect his state of mind."
         }
       ],
-      "promptEn": "Close-up on Ren's hands typing at incredible speed. Green text flows like a waterfall on the screen. In the background, Shouta and Sato are peering over his shoulder with expressions of disbelief. Ren, speaking from his side profile while remaining focused on the screen. His expression is dead serious. The lighting is slightly shadowed to express the weight of his words. Yasumoto stumbles_backward, his face drained of color. His shock and fear are expressed with a slightly distorted perspective, making the office background seem unstable to reflect his state of mind.",
+      "promptEn": "Close-up on Ren's hands typing at incredible speed. Green text flows like a waterfall on the screen. In the background, Shouta and Sato are peering over his shoulder with expressions of disbelief. Ren, speaking from his side profile while remaining focused on the screen. His expression is dead serious. The lighting is slightly shadowed to express the weight of his words. Yasumoto stumbles_backward, his face drained of color. His shock and fear are expressed with a slightly distorted perspective, making the office background seem unstable to reflect his state of mind. Character details: Ren's thin fingers fly over a compact keyboard, sleeves of his dark gray hoodie pushed back to reveal his pale wrists, his messy short dark hair and half-lidded eyes now sharpened into a cold, serious gaze; Shouta leans in behind him in his navy suit and loosened tie, jaw clenched and sharp eyes wide in disbelief; Sato, in his simple polo or shirt and dark pants, peers over Ren's other shoulder with worried, gentle eyes and sweat on his brow; Yasumoto, a slightly heavy middle-aged man in a rumpled suit and crooked tie, reels back with wide, frightened eyes and a sweating, bloodless face as his world collapses.",
       "recommendedCutCount": 3,
       "promptCharCount": 573
     },
@@ -769,7 +769,7 @@
           "promptEn": "Close-up on Yasumoto's face. He is breaking out in a cold sweat, his lips trembling. A slightly low angle shot to express his desperate situation."
         }
       ],
-      "promptEn": "Close-up on Ren's laptop screen. The screen displays the large text 'FOUND!!' along with Yasumoto's internal company profile, complete with his photo. Nei stands beside him, pointing at the screen with a triumphant look. Ren swivels in his chair to face Yasumoto, pointing a finger directly at him. His eyes are sharp, holding the power of someone revealing the truth. All the employees in the office turn to look at Yasumoto with expressions of shock and accusation. The panel captures the shocked faces of Matsuda, Sato, and Shouta. Close-up on Yasumoto's face. He is breaking out in a cold sweat, his lips trembling. A slightly low angle shot to express his desperate situation.",
+      "promptEn": "Close-up on Ren's laptop screen. The screen displays the large text 'FOUND!!' along with Yasumoto's internal company profile, complete with his photo. Nei stands beside him, pointing at the screen with a triumphant look. Ren swivels in his chair to face Yasumoto, pointing a finger directly at him. His eyes are sharp, holding the power of someone revealing the truth. All the employees in the office turn to look at Yasumoto with expressions of shock and accusation. The panel captures the shocked faces of Matsuda, Sato, and Shouta. Close-up on Yasumoto's face. He is breaking out in a cold sweat, his lips trembling. A slightly low angle shot to express his desperate situation. Character details: Ren sits in his usual dark gray hoodie, black T-shirt and dark jeans, pale face and messy short dark hair now framed by piercing eyes as he points at Yasumoto; Nei appears as a 16-year-old android girl with neat shoulder-length black hair, sharp analytical eyes and her white-and-navy sailor-style outfit, her triumphant expression contrasting Ren's coolness; Matsuda's round face, permed short hair and conservative blouse-skirt outfit make her shock obvious as she stares; Sato's slim frame in casual office wear and gentle eyes widen in disbelief; Shouta, in his navy suit and loosened tie, glares with a mixture of anger and hurt; Yasumoto's sweating, slightly overweight face fills the close-up, his graying hair disheveled and his trembling lips emphasizing his collapse.",
       "recommendedCutCount": 4,
       "promptCharCount": 681
     }
