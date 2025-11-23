@@ -22,6 +22,18 @@ query MangaProject($id: ID!) {
   }
 }
 
+query MangaScripts($projectId: ID!) {
+  mangaScripts(projectId: $projectId) {
+    id
+    projectId
+    scriptId
+    title
+    pageCount
+    createdAt
+    updatedAt
+  }
+}
+
 query MangaPages($scriptId: ID!) {
   mangaPages(scriptId: $scriptId) {
     id

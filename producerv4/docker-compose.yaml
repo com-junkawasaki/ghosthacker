@@ -37,6 +37,7 @@ services:
       FAL_API_KEY: ${FAL_API_KEY:-}
       DEEPINFRA_API_KEY: ${DEEPINFRA_API_KEY:-}
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENROUTER_API_KEY_251025: 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
       # Cargo watch configuration for HMR
       CARGO_WATCH_IGNORE: "target/**"
     volumes:
@@ -78,6 +79,7 @@ services:
       NEXT_PUBLIC_FAL_API_KEY: ${NEXT_PUBLIC_FAL_API_KEY:-}
       NEXT_PUBLIC_DEEPINFRA_API_KEY: ${NEXT_PUBLIC_DEEPINFRA_API_KEY:-}
       NEXT_PUBLIC_OPENAI_API_KEY: ${NEXT_PUBLIC_OPENAI_API_KEY:-}
+      NEXT_PUBLIC_OPENROUTER_API_KEY_251025: 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
     volumes:
       - .:/app
       - /app/node_modules

@@ -144,9 +144,48 @@ impl QueryRoot {
 
     /// List manga scripts for a project
     async fn manga_scripts(&self, ctx: &Context<'_>, project_id: ID) -> Result<Vec<MangaScript>> {
-        let _pool = ctx.data::<PostgresPool>()?;
-        // TODO: Implement database query
-        Ok(vec![])
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let project_uuid = Uuid::parse_str(&project_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid project ID: {}", e)))?;
+        
+        let rows = sqlx::query(
+            r#"
+            SELECT id, project_id, script_id, title, page_count, script_data, created_at, updated_at
+            FROM manga_scripts
+            WHERE project_id = $1
+            ORDER BY created_at DESC
+            "#,
+        )
+        .bind(project_uuid)
+        .fetch_all(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch manga scripts: {}", e)))?;
+        
+        let mut scripts = Vec::new();
+        for row in rows {
+            let id: Uuid = row.try_get("id")?;
+            let project_id: Uuid = row.try_get("project_id")?;
+            let script_id: String = row.try_get("script_id")?;
+            let title: String = row.try_get("title")?;
+            let page_count: Option<i32> = row.try_get("page_count")?;
+            let script_data: serde_json::Value = row.try_get("script_data")?;
+            let created_at: chrono::DateTime<chrono::Utc> = row.try_get("created_at")?;
+            let updated_at: chrono::DateTime<chrono::Utc> = row.try_get("updated_at")?;
+            
+            scripts.push(MangaScript {
+                id: ID(id.to_string()),
+                project_id: ID(project_id.to_string()),
+                script_id,
+                title,
+                page_count,
+                script_data,
+                created_at: created_at.to_rfc3339(),
+                updated_at: updated_at.to_rfc3339(),
+            });
+        }
+        
+        Ok(scripts)
     }
 
     /// Get manga page by ID
@@ -158,9 +197,57 @@ impl QueryRoot {
 
     /// List manga pages for a script
     async fn manga_pages(&self, ctx: &Context<'_>, script_id: ID) -> Result<Vec<MangaPage>> {
-        let _pool = ctx.data::<PostgresPool>()?;
-        // TODO: Implement database query
-        Ok(vec![])
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let script_uuid = Uuid::parse_str(&script_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid script ID: {}", e)))?;
+        
+        let rows = sqlx::query(
+            r#"
+            SELECT id, project_id, script_id, page_id, page_type, description, page_number, 
+                   width, height, konva_stage_json, created_at, updated_at
+            FROM manga_pages
+            WHERE script_id = $1
+            ORDER BY page_number ASC, created_at ASC
+            "#,
+        )
+        .bind(script_uuid)
+        .fetch_all(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch manga pages: {}", e)))?;
+        
+        let mut pages = Vec::new();
+        for row in rows {
+            let id: Uuid = row.try_get("id")?;
+            let project_id: Uuid = row.try_get("project_id")?;
+            let script_id_uuid: Uuid = row.try_get("script_id")?;
+            let page_id: String = row.try_get("page_id")?;
+            let page_type: Option<String> = row.try_get("page_type")?;
+            let description: Option<String> = row.try_get("description")?;
+            let page_number: Option<i32> = row.try_get("page_number")?;
+            let width: i32 = row.try_get("width")?;
+            let height: i32 = row.try_get("height")?;
+            let konva_stage_json: Option<serde_json::Value> = row.try_get("konva_stage_json")?;
+            let created_at: chrono::DateTime<chrono::Utc> = row.try_get("created_at")?;
+            let updated_at: chrono::DateTime<chrono::Utc> = row.try_get("updated_at")?;
+            
+            pages.push(MangaPage {
+                id: ID(id.to_string()),
+                project_id: ID(project_id.to_string()),
+                script_id: ID(script_id_uuid.to_string()),
+                page_id,
+                page_type,
+                description,
+                page_number,
+                width,
+                height,
+                konva_stage_json,
+                created_at: created_at.to_rfc3339(),
+                updated_at: updated_at.to_rfc3339(),
+            });
+        }
+        
+        Ok(pages)
     }
 
     /// Get manga panel by ID
