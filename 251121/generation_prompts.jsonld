@@ -22,216 +22,24 @@
       "pageId": "page:1",
       "panelPrompts": [
         {
+          "@id": "gh:panelPrompt/p1-1",
+          "panelIndex": 1,
+          "promptEn": "Evolution chart from ape to man, against a backdrop of wild, rugged nature. cinematic manga, high contrast, monochrome."
+        },
+        {
+          "@id": "gh:panelPrompt/p1-2",
+          "panelIndex": 2,
+          "promptEn": "Historical montage: Early humans huddle around a fire in a cave, one is drawing on the wall. Faintly superimposed are images of a giant Buddha statue, totem poles, and shamanistic rituals. cinematic manga, high contrast, monochrome."
+        },
+        {
           "@id": "gh:panelPrompt/p1-3",
           "panelIndex": 3,
-          "promptEn": "epic establishing shot, tokyo 2026, cyberpunk cityscape, from above, helicopter view, wide angle, massive scale, towering skyscrapers, futuristic architecture, flying drones, holographic data streams, glowing lines, massive data center, twilight, blue-purple gradient sky, dramatic lighting, awe-inspiring, high contrast, anamorphic lens flare, photorealistic, cinematic, masterpiece"
+          "promptEn": "Modern cityscape of Tokyo in 2026. Towering skyscrapers, streams of electronic data, server farms, and delivery drones fill the scene. cinematic manga, high contrast, monochrome."
         }
       ],
-      "promptEn": "epic establishing shot, tokyo 2026, cyberpunk cityscape, from above, helicopter view, wide angle, massive scale, towering skyscrapers, futuristic architecture, flying drones, holographic data streams, glowing lines, massive data center, twilight, blue-purple gradient sky, dramatic lighting, awe-inspiring, high contrast, anamorphic lens flare, photorealistic, cinematic, masterpiece",
-      "recommendedCutCount": 1,
-      "promptCharCount": 383
-    },
-    {
-      "@id": "gh:pagePrompt/page:10",
-      "pageId": "page:10",
-      "panelPrompts": [
-        {
-          "@id": "gh:panelPrompt/p10-1",
-          "panelIndex": 1,
-          "promptEn": "solo, (Yasumoto: 52-year-old male, overweight, round anxious face, graying hair, rumpled gray suit), screaming, agony, terror, horror, contorted face, sweating, black smoke, dark energy, ghost emerging, monster, medium shot, low angle, claustrophobic, chaotic office background, flickering lights, cinematic manga, high contrast"
-        },
-        {
-          "@id": "gh:panelPrompt/p10-2",
-          "panelIndex": 2,
-          "promptEn": "monster, ghost, grotesque, towering, made of documents, made of LAN cables, made of computer parts, sinister, malevolent, glowing edges, purple glow, cyan glow, dramatic low angle, wide shot, terrifying scale, cluttered office background, dim lighting, cinematic horror manga"
-        },
-        {
-          "@id": "gh:panelPrompt/p10-3",
-          "panelIndex": 3,
-          "promptEn": "3people, (Shouta: 26-year-old male, sharp eyes, dark hair, navy suit), (Matsuda: 58-year-old female, short permed hair, glasses on chain, conservative blouse, skirt), (Sato: 24-year-old male, slim, short black hair, polo shirt), group shot, fear, terror, paralyzed, stunned, disbelief, vulnerable, high angle shot, shallow depth of field, looming monster in background, out of focus, chaotic office, cinematic manga"
-        }
-      ],
-      "promptEn": "horror scene, (Yasumoto: 52-year-old male) screaming, ghost emerging, black smoke, towering monster, made of cables and documents, menacing glow, (Shouta: 26-year-old male), (Matsuda: 58-year-old female), (Sato: 24-year-old male), terrified, paralyzed, cinematic manga, high contrast",
+      "promptEn": "A historical montage showing the evolution of humanity and spirituality, from cave paintings to the modern, highly-informationized society of Tokyo in 2026, where Ghost Hackers operate in secret. cinematic manga, high contrast, monochrome.",
       "recommendedCutCount": 3,
-      "promptCharCount": 468
-    },
-    {
-      "@id": "gh:pagePrompt/page:11",
-      "pageId": "page:11",
-      "panelPrompts": [
-        {
-          "@id": "gh:panelPrompt/p11-1",
-          "panelIndex": 1,
-          "promptEn": "solo, (Ren: 17-year-old male, pale skin, messy voluminous wavy black hair, sharp half-lidded eyes, skinny build, dark gray hoodie, black t-shirt), calm, focused, using smartphone, extreme close-up, razor sharp focus on screen, screen displays 'SIP Device: ON', blurred office background, cinematic manga"
-        },
-        {
-          "@id": "gh:panelPrompt/p11-2",
-          "panelIndex": 2,
-          "promptEn": "VFX, digital glitch effect, glowing grid lines, entire office, reality warping, disorienting, wide shot, dutch angle, tangible ghost, hyper-realistic texture, cinematic, sci-fi, horror"
-        },
-        {
-          "@id": "gh:panelPrompt/p11-3",
-          "panelIndex": 3,
-          "promptEn": "action scene, monster, ghost, smashing, destroying, steel shelf, papers flying, sparks, raw power, dynamic low angle shot, tracking shot, camera shake, dramatic lighting, cluttered office, zone of destruction, cinematic, photorealistic"
-        }
-      ],
-      "promptEn": "ren activates SIP device, digital grid overlays office, ghost becomes tangible, monster smashes shelf, sparks flying, action scene, cinematic, photorealistic, sci-fi horror",
-      "recommendedCutCount": 3,
-      "promptCharCount": 512
-    },
-    {
-      "@id": "gh:pagePrompt/page:12",
-      "pageId": "page:12",
-      "panelPrompts": [
-        {
-          "@id": "gh:panelPrompt/p12-1",
-          "panelIndex": 1,
-          "promptEn": "2people, (Shouta: 26-year-old male, fit build, neat dark hair, navy suit), (Matsuda: 58-year-old female, short, plump, permed hair, blouse, skirt), action scene, saving, protecting, shielding, determination, terror, dramatic tight close-up, shallow depth of field, falling shelf, out of focus background, imminent danger, cinematic manga"
-        },
-        {
-          "@id": "gh:panelPrompt/p12-2",
-          "panelIndex": 2,
-          "promptEn": "solo, (Ren: 17-year-old male, pale skin, messy voluminous wavy black hair, skinny build), calm, focused power, hand outstretched, creating weapon, glowing blue particles, data light, forming digital axe, ethereal light, medium close-up, dramatic glow on face, abstract blurred background, VFX, cinematic manga"
-        },
-        {
-          "@id": "gh:panelPrompt/p12-3",
-          "panelIndex": 3,
-          "promptEn": "solo, (Ren: 17-year-old male, skinny build, messy voluminous wavy black hair, dark gray hoodie, jeans), heroic pose, holding digital axe, glowing weapon, confident, predatory gaze, full-body shot, low angle, looming ghost in background, duel, confrontation, cinematic manga"
-        }
-      ],
-      "promptEn": "(Shouta: 26-year-old male) saves (Matsuda: 58-year-old female) from falling shelf, (Ren: 17-year-old male, messy wavy hair) creates glowing digital axe, ren stands ready to fight ghost, heroic pose, cinematic action manga",
-      "recommendedCutCount": 3,
-      "promptCharCount": 544
-    },
-    {
-      "@id": "gh:pagePrompt/page:13",
-      "pageId": "page:13",
-      "panelPrompts": [
-        {
-          "@id": "gh:panelPrompt/p13-1",
-          "panelIndex": 1,
-          "promptEn": "solo, (Ren: 17-year-old male, skinny build, messy voluminous wavy black hair), action scene, dodging, ducking, whipping tentacles, LAN-cables, intense concentration, dynamic dutch angle, low angle, motion blur, cinematic manga"
-        },
-        {
-          "@id": "gh:panelPrompt/p13-2",
-          "panelIndex": 2,
-          "promptEn": "solo, (Ren: 17-year-old male, skinny build, messy voluminous wavy black hair), action scene, leaping, aerial, holding glowing digital axe, overhead strike, fierce aggression, dramatic low angle shot, suspended in air, VFX, heat-haze, command line text, cinematic manga"
-        },
-        {
-          "@id": "gh:panelPrompt/p13-3",
-          "panelIndex": 3,
-          "promptEn": "splash panel, widescreen ratio, action scene, (Ren: 17-year-old male, messy voluminous wavy black hair), smashing, digital axe, monster core, glowing red CPU, massive explosion, white light, digital noise, vaporizing, cathartic, lens flares, particle effects, cinematic manga"
-        }
-      ],
-      "promptEn": "action sequence, (Ren: 17-year-old male, messy wavy hair) dodges tentacles, leaps, smashes the ghost's core with a glowing axe, massive explosion, cinematic manga, splash panel",
-      "recommendedCutCount": 3,
-      "promptCharCount": 436
-    },
-    {
-      "@id": "gh:pagePrompt/page:14",
-      "pageId": "page:14",
-      "panelPrompts": [
-        {
-          "@id": "gh:panelPrompt/p14-1",
-          "panelIndex": 1,
-          "promptEn": "aftermath, ghost dissolving, fading digital particles, dying light, (Yasumoto: 52-year-old male, overweight, rumpled suit), collapsing, puppet with strings cut, exhaustion, somber release, wide static shot, soft fading glow, floating dust particles, cinematic manga"
-        },
-        {
-          "@id": "gh:panelPrompt/p14-2",
-          "panelIndex": 2,
-          "promptEn": "silence, office, computer monitor, lock screen vanishing, corporate desktop background, reflection, (Sato: 24-year-old male, slim build, short black hair), weary face, profound relief, close-up, quiet, normalcy, cinematic manga"
-        },
-        {
-          "@id": "gh:panelPrompt/p14-3",
-          "panelIndex": 3,
-          "promptEn": "solo, (Yasumoto: 52-year-old male, overweight, graying hair, rumpled suit), hunched on floor, face in hands, sobbing, defeated, despair, shame, isolation, high-angle shot, looking down, messy office floor, debris, cinematic manga"
-        }
-      ],
-      "promptEn": "aftermath of battle, ghost dissolves, (Yasumoto: 52-year-old male) collapses in despair, office returns to silence, (Sato: 24-year-old male) is relieved, cinematic manga, somber mood",
-      "recommendedCutCount": 3,
-      "promptCharCount": 479
-    },
-    {
-      "@id": "gh:pagePrompt/page:15",
-      "pageId": "page:15",
-      "panelPrompts": [
-        {
-          "@id": "gh:panelPrompt/p15-1",
-          "panelIndex": 1,
-          "promptEn": "solo, (Goro Daimon: 62-year-old male, sturdy build, weathered face, short white hair, work clothes, safety vest), shocked, confused, silhouetted in doorway, medium shot, shallow depth of field, wrecked office background, cinematic manga"
-        },
-        {
-          "@id": "gh:panelPrompt/p15-2",
-          "panelIndex": 2,
-          "promptEn": "solo, (Shouta: 26-year-old male, sharp eyes, neat dark hair, fit build, navy suit), internal conflict, decision, grim resolve, intense close-up on eyes, soft-focus background, cinematic manga"
-        },
-        {
-          "@id": "gh:panelPrompt/p15-3",
-          "panelIndex": 3,
-          "promptEn": "2men, (Shouta: 26-year-old male), (Yasumoto: 52-year-old male, on floor), surprise, hope, unwavering determination, over-the-shoulder shot, focus on yasumoto's face, debris-strewn office floor, cinematic manga"
-        },
-        {
-          "@id": "gh:panelPrompt/p15-4",
-          "panelIndex": 4,
-          "promptEn": "solo, (Goro Daimon: 62-year-old male, weathered face, deep wrinkles), pride, sorrow, gentle expression, slow nod, extreme close-up, soft lighting, intimate, out of focus background, generational shift, cinematic manga"
-        }
-      ],
-      "promptEn": "president (Goro Daimon: 62-year-old male) arrives, shocked, (Shouta: 26-year-old male) makes a difficult decision, shows compassion for (Yasumoto: 52-year-old male), goro nods with pride, generational shift, cinematic, emotional manga",
-      "recommendedCutCount": 4,
-      "promptCharCount": 659
-    },
-    {
-      "@id": "gh:pagePrompt/page:16",
-      "pageId": "page:16",
-      "panelPrompts": [
-        {
-          "@id": "gh:panelPrompt/p16-1",
-          "panelIndex": 1,
-          "promptEn": "solo, (Ren: 17-year-old male, pale skin, skinny build, messy voluminous wavy black hair, dark gray hoodie), detached, professional, cool, closing laptop, unplugging USB drive, packing up, medium shot, clean efficient movements, out of focus background, cinematic manga"
-        },
-        {
-          "@id": "gh:panelPrompt/p16-2",
-          "panelIndex": 2,
-          "promptEn": "solo, (Matsuda: 58-year-old female, short, plump, permed hair, glasses on chain, blouse), disbelief, joy, comical relief, looking at computer screen, online banking, tight close-up, monitor glow, cluttered desk, cinematic manga"
-        },
-        {
-          "@id": "gh:panelPrompt/p16-3",
-          "panelIndex": 3,
-          "promptEn": "2men, (Shouta: 26-year-old male, neat dark hair, navy suit), (Ren: 17-year-old male, messy voluminous wavy black hair, dark gray hoodie), gratitude, respect, calling out, over-the-shoulder shot, ren departing in background, office returning to normal, cinematic manga"
-        }
-      ],
-      "promptEn": "(Ren: 17-year-old male, messy wavy hair) professionally packs up, (Matsuda: 58-year-old female) is overjoyed, (Shouta: 26-year-old male) thanks ren with respect, cinematic manga",
-      "recommendedCutCount": 3,
-      "promptCharCount": 372
-    },
-    {
-      "@id": "gh:pagePrompt/page:17",
-      "pageId": "page:17",
-      "panelPrompts": [
-        {
-          "@id": "gh:panelPrompt/p17-1",
-          "panelIndex": 1,
-          "promptEn": "solo, (Ren: 17-year-old male, skinny build, messy voluminous wavy black hair), from behind, exiting, dismissive wave, not looking back, cool confidence, dark gray hoodie, shot from inside office, framed by doorway, cinematic manga"
-        },
-        {
-          "@id": "gh:panelPrompt/p17-2",
-          "panelIndex": 2,
-          "promptEn": "2people, (Ren: 17-year-old male, messy voluminous wavy black hair, dark gray hoodie), (Nei: 16-year-old female android, shoulder-length black hair, sailor-style outfit), walking, talking, companionship, normal life, kamata street at night, crowded, neon-soaked, tracking shot, vibrant, grimy, cinematic manga"
-        },
-        {
-          "@id": "gh:panelPrompt/p17-3",
-          "panelIndex": 3,
-          "promptEn": "solo, (Ren: 17-year-old male, pale skin, messy voluminous wavy black hair, sharp half-lidded eyes), looking at smartphone, confirming payment, sly smirk, quiet satisfaction, intimate close-up, lit by phone screen, blurred bokeh background, kamata night lights, cinematic manga"
-        },
-        {
-          "@id": "gh:panelPrompt/p17-4",
-          "panelIndex": 4,
-          "promptEn": "title card, text only, 'Ghost Hacker - Episode 1 End', clean white font, sans-serif, solid black background, quiet, mystery, anticipation"
-        }
-      ],
-      "promptEn": "(Ren: 17-year-old male, messy wavy hair) waves goodbye, ren and (Nei: 16-year-old female android) walk through neon-lit kamata street, ren gets paid and smirks, end title card, cinematic manga",
-      "recommendedCutCount": 4,
-      "promptCharCount": 521
+      "promptCharCount": 269
     },
     {
       "@id": "gh:pagePrompt/page:2",
@@ -240,12 +48,12 @@
         {
           "@id": "gh:panelPrompt/p2-1",
           "panelIndex": 1,
-          "promptEn": "title page, vertical aspect ratio, 2people, (Ren: 17-year-old male, messy voluminous wavy black hair, dark gray hoodie), (Nei: 16-year-old female android, shoulder-length black hair, sailor-inspired outfit), floating, weightless, cyberspace, intense concentration, typing on holographic keyboard, guardian, glowing eyes, analytical data stream, chaotic background, digital grids, fragments of a city, 'GHOST HACKER' title logo, spatial distortion, gritty, high-contrast, cyberpunk, dramatic cinematic lighting, masterpiece, manga style"
+          "promptEn": "Full page vertical title shot. A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, collapse, and reconstruct. At the center, (Ren: 17-year-old male, pale skin, messy voluminous wavy black hair, sharp half-lidded eyes) and (Nei: 16-year-old female android, shoulder-length black hair, sailor-style outfit) float weightlessly. Ren types furiously on a translucent holographic keyboard, his gaze fixed on a distant data structure. Nei stands beside him, arms crossed, floating vigilantly, her eyes streaming analytical data. Behind them, through a distortion in space, the giant vertical title logo 'GHOST Hacker' emerges. cinematic manga, high contrast, cyberpunk."
         }
       ],
-      "promptEn": "title page, vertical aspect ratio, 2people, (Ren: 17-year-old male, messy wavy hair), (Nei: 16-year-old female android), floating, weightless, cyberspace, intense concentration, typing on holographic keyboard, guardian, glowing eyes, analytical data stream, chaotic background, digital grids, fragments of a city, 'GHOST HACKER' title logo, spatial distortion, gritty, high-contrast, cyberpunk, dramatic cinematic lighting, masterpiece, manga style",
+      "promptEn": "Title Page: In a chaotic cyberspace, Ren and Nei float at the center of a vortex of data and city fragments. Ren is hacking while Nei stands guard. The 'GHOST Hacker' title logo is prominent. cinematic manga, high contrast, cyberpunk.",
       "recommendedCutCount": 1,
-      "promptCharCount": 927
+      "promptCharCount": 290
     },
     {
       "@id": "gh:pagePrompt/page:4",
@@ -254,27 +62,27 @@
         {
           "@id": "gh:panelPrompt/p4-1",
           "panelIndex": 1,
-          "promptEn": "solo, (Ren: 17-year-old male, skinny build, messy voluminous wavy black hair, half-lidded eyes), bored, lazy, slouched in chair, staring at ceiling, dark gray hoodie, worn-in jeans, wide establishing shot, isolation, minimalist modern office, concrete walls, high ceilings, clean, sterile, cinematic manga"
+          "promptEn": "A clean office with concrete walls and wood flooring. (Ren: 17-year-old male, messy voluminous wavy black hair, skinny build, dark gray hoodie, jeans), slouches lazily backward in a modern desk chair, looking bored. cinematic manga, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p4-2",
           "panelIndex": 2,
-          "promptEn": "solo, (Nei: 16-year-old female android, slim build, shoulder-length black hair), exasperated, impatient, arms crossed, tapping on tablet, stylish sailor-inspired outfit, medium shot, out of focus background, messy office corner, cinematic manga"
+          "promptEn": "In a corner of the room, (Nei: 16-year-old female android, shoulder-length black hair, sailor-style outfit) operates a tablet with an exasperated expression. cinematic manga, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p4-3",
           "panelIndex": 3,
-          "promptEn": "2people, (Ren: 17-year-old male, messy voluminous wavy black hair), (Nei: 16-year-old female android, shoulder-length black hair), confronting, comedic tension, frustration vs apathy, invading personal space, two-shot, ren's desk, multiple monitors, cinematic manga"
+          "promptEn": "(Nei: 16-year-old female android) approaches Ren's chair, leaning in with an annoyed look on her face. cinematic manga, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p4-4",
           "panelIndex": 4,
-          "promptEn": "solo, (Ren: 17-year-old male, pale skin, messy voluminous wavy black hair, sharp half-lidded eyes), bored, picking ear, distant gaze, tight close-up, razor-sharp focus on eyes, blurred background, concrete wall, strong sense of isolation, cinematic manga, naturalistic lighting"
+          "promptEn": "Close-up of (Ren: 17-year-old male, pale skin, messy voluminous wavy black hair, sharp half-lidded eyes) picking his ear, looking utterly bored. cinematic manga, high contrast."
         }
       ],
-      "promptEn": "(Ren: 17-year-old male, messy wavy hair) is bored in his modern office, (Nei: 16-year-old female android) is exasperated with him, comedic confrontation, ren's apathy in close-up, cinematic manga, minimalist office",
+      "promptEn": "Ren is lazing about in his office, bored, while Nei nags him about their tight finances and the need to work. Ren dismisses her with a lazy philosophy on the virtue of sloth. cinematic manga, high contrast.",
       "recommendedCutCount": 4,
-      "promptCharCount": 1006
+      "promptCharCount": 250
     },
     {
       "@id": "gh:pagePrompt/page:5",
@@ -283,27 +91,27 @@
         {
           "@id": "gh:panelPrompt/p5-1",
           "panelIndex": 1,
-          "promptEn": "insert shot, video feed, monitor screen, (Shouta: 26-year-old male, neat dark hair, sharp eyes), tense, worried, jaw tight, navy business suit, close-up on sleek monitor, bright hallway background, cinematic manga"
+          "promptEn": "A doorbell chimes. A monitor shows a visitor: a young man in a suit (Shouta). cinematic manga, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p5-2",
           "panelIndex": 2,
-          "promptEn": "solo, (Ren: 17-year-old male, skinny build, messy voluminous wavy black hair), getting up, slow deliberate movement, annoyed, alert, full-body shot, long shadow, modern minimalist office, cinematic manga"
+          "promptEn": "(Ren: 17-year-old male, messy voluminous wavy black hair, skinny build, dark gray hoodie, jeans) gets up reluctantly, annoyed. cinematic manga, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p5-3",
           "panelIndex": 3,
-          "promptEn": "solo, (Ren: 17-year-old male, skinny build, messy voluminous wavy black hair), sitting on sofa, relaxed posture, sharp analytical eyes, casual authority, dark gray hoodie, jeans, three-quarter view, owning the space, cinematic manga"
+          "promptEn": "(Shouta: 26-year-old male, fit build, sharp eyes, navy suit) enters the office. His expression is frayed and desperate, but his eyes are sharp. cinematic manga, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p5-4",
           "panelIndex": 4,
-          "promptEn": "solo, (Shouta: 26-year-old male, neat dark hair, fit build, navy suit), explaining, anxious, shoulders hunched, worried face, loosened tie, bust-up shot, shallow depth of field, isolated, distressed, soft-focus background, cinematic manga"
+          "promptEn": "(Ren: 17-year-old male, sharp half-lidded eyes) sizes up Shouta coolly. cinematic manga, high contrast."
         }
       ],
-      "promptEn": "(Shouta: 26-year-old male) appears on video call, tense and worried, (Ren: 17-year-old male, messy wavy hair) gets up, annoyed but alert, ren questions shouta, shouta explains, distressed, cinematic manga",
+      "promptEn": "A client, Shouta Daimon, arrives. Ren reluctantly gets up to greet him. Shouta explains his desperate situation: his company's systems are all down and the police are no help. cinematic manga, high contrast.",
       "recommendedCutCount": 4,
-      "promptCharCount": 1183
+      "promptCharCount": 252
     },
     {
       "@id": "gh:pagePrompt/page:6",
@@ -312,27 +120,27 @@
         {
           "@id": "gh:panelPrompt/p6-1",
           "panelIndex": 1,
-          "promptEn": "panic, chaos, daimon construction office, cluttered, old, showa-era, steel desks, piles of paper, ringing phones, shouting, wide establishing shot, cinematic"
+          "promptEn": "The Daimon Construction office in Kamata. An old building in complete chaos. Phones are ringing off the hook. cinematic manga, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p6-2",
           "panelIndex": 2,
-          "promptEn": "solo, (Matsuda: 58-year-old female, short, plump, permed hair, glasses on chain, conservative blouse), screaming into phone, rage, panic, flushed face, intense close-up, frantic motion blur background, cinematic manga"
+          "promptEn": "The accountant (Matsuda: 58-year-old female, short permed hair, conservative blouse) is screaming into the phone, her face flushed with panic. cinematic manga, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p6-3",
           "panelIndex": 3,
-          "promptEn": "solo, (Sato: 24-year-old male, slim build, short black hair, polo shirt), sweating, confused, desperate, fumbling with cables, medium shot, crouched behind server rack, mess of cables, cinematic manga"
+          "promptEn": "A young employee, (Sato: 24-year-old male, slim build, polo shirt), is crouched behind a PC, fumbling with cables. cinematic manga, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p6-4",
           "panelIndex": 4,
-          "promptEn": "solo, (Ren: 17-year-old male, pale skin, skinny build, messy dark hair), looking at Sato with a worried expression, reaching out to take a LAN cable, dark gray hoodie, medium shot, shallow depth of field, cinematic"
+          "promptEn": "(Ren: 17-year-old male, messy voluminous wavy black hair, dark gray hoodie) surveys the chaotic office with a detached expression. cinematic manga, high contrast."
         }
       ],
-      "promptEn": "panic in a cluttered old office, (Matsuda: 58-year-old female) screaming, (Sato: 24-year-old male) struggling with cables, (Ren: 17-year-old male, messy wavy hair) calmly surveying the chaos with an amused smirk, cinematic manga",
+      "promptEn": "At the chaotic Daimon Construction office, Shouta explains he acted alone in hiring Ren. The employees are in a panic, especially Matsuda, the accountant. Ren observes the outdated office with disdain. cinematic manga, high contrast.",
       "recommendedCutCount": 4,
-      "promptCharCount": 746
+      "promptCharCount": 277
     },
     {
       "@id": "gh:pagePrompt/page:7",
@@ -341,27 +149,27 @@
         {
           "@id": "gh:panelPrompt/p7-1",
           "panelIndex": 1,
-          "promptEn": "cinematic manga, high-contrast monochrome, solo, (Yasumoto: 52-year-old male, overweight, perpetually sweating, anxious face, rumpled gray suit, loosened tie), dabbing brow, handkerchief, shifty eyes, glaring, hostility, tense medium shot, defensive posture, chaotic office background, out of focus, dramatic key lighting, hyper-detailed, sharp focus"
+          "promptEn": "Department head (Yasumoto: 52-year-old male, overweight, anxious face, rumpled gray suit) appears, sweating and agitated. He glares at Shouta. cinematic manga, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p7-2",
           "panelIndex": 2,
-          "promptEn": "cinematic manga, japanese thriller, high-contrast monochrome, solo, (Shouta: 26-year-old male, fit build, sharp eyes, neat dark hair, navy suit, loosened tie), close-up on face, determined, cold fury, resolve, eyes narrowed, jaw clenched, slightly low angle, authority, chiaroscuro lighting, deep shadows, blurred background, photorealistic, incredibly detailed, sharp focus on eyes"
+          "promptEn": "(Shouta: 26-year-old male, sharp eyes, navy suit) retorts forcefully to Yasumoto. cinematic manga, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p7-3",
           "panelIndex": 3,
-          "promptEn": "cinematic POV shot, from ren's perspective, augmented reality view, (Yasumoto: 52-year-old male), back to camera, hunched over, terrifying, black, smoke-like, digital ghost, glowing jagged eyes, clinging to back, semi-translucent, glitching digital artifacts, dark energy, fear, jealousy, subtle HUD overlay, faint grid lines, dim lighting, menacing green-black glow, VFX, volumetric smoke"
+          "promptEn": "Ren's POV with AR vision. He stares at (Yasumoto: 52-year-old male) and sees a dark, shadowy figure of jealousy and fear clinging to his back. cinematic manga, sci-fi."
         },
         {
           "@id": "gh:panelPrompt/p7-4",
           "panelIndex": 4,
-          "promptEn": "cinematic manga, wide shot, solo, (Ren: 17-year-old male, pale, skinny, messy voluminous wavy black hair, sharp half-lidded eyes, dark gray hoodie, jeans), calmly sitting, opening laptop, precise movements, cool, detached, island of calm, over-the-shoulder shot, chaotic office background, motion blur, stillness vs chaos, single light source, cool white light from laptop, deep shadows, high contrast, sharp focus"
+          "promptEn": "(Ren: 17-year-old male, messy voluminous wavy black hair, dark gray hoodie) casually sits down at a vacant desk and opens his own laptop. cinematic manga, high contrast."
         }
       ],
-      "promptEn": "tense confrontation, chaotic office, (Yasumoto: 52-year-old male), sweating, hostile, (Shouta: 26-year-old male), cold fury, POV shot, terrifying digital ghost on yasumoto's back, (Ren: 17-year-old male, messy wavy hair), calmly opens laptop, cinematic manga, high-contrast, dramatic lighting",
+      "promptEn": "A hostile manager, Yasumoto, confronts Shouta. As they argue, Ren uses his AR vision to see a 'Ghost' of jealousy clinging to Yasumoto. Realizing the problem isn't a simple malware, Ren prepares to hack. cinematic manga, high contrast.",
       "recommendedCutCount": 4,
-      "promptCharCount": 731
+      "promptCharCount": 288
     },
     {
       "@id": "gh:pagePrompt/page:8",
@@ -370,22 +178,22 @@
         {
           "@id": "gh:panelPrompt/p8-1",
           "panelIndex": 1,
-          "promptEn": "action, (Ren: 17-year-old male)'s hands, typing, blur of motion, incredible speed, laptop keyboard, green code, waterfall scroll, (Shouta: 26-year-old male, fit build) and (Sato: 24-year-old male, slim build) watching, awe, disbelief, tight close-up, shallow-focused background, glowing screen, cinematic manga"
+          "promptEn": "Ren's hands fly across the keyboard at incredible speed. (Shouta: 26-year-old male) and (Sato: 24-year-old male) watch from behind, amazed. cinematic manga, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p8-2",
           "panelIndex": 2,
-          "promptEn": "solo, (Ren: 17-year-old male, pale skin, messy voluminous wavy black hair, sharp half-lidded eyes), speaking, grim expression, serious, not looking from screen, side profile, half face in shadow, gravity, lit by monitor, cinematic manga"
+          "promptEn": "Close-up on (Ren: 17-year-old male, sharp half-lidded eyes), who speaks without looking away from his screen, his expression grim. cinematic manga, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p8-3",
           "panelIndex": 3,
-          "promptEn": "solo, (Yasumoto: 52-year-old male, overweight, anxious face), recoiling, shocked, ashen face, pure fear, gut-wrenching, disorienting dutch angle, distorted perspective, crumbling mental state, warping office background, cinematic manga"
+          "promptEn": "(Yasumoto: 52-year-old male, anxious face) recoils, his face paling with fear. cinematic manga, high contrast."
         }
       ],
-      "promptEn": "(Ren: 17-year-old male, messy wavy hair) typing at incredible speed, (Shouta: 26-year-old male) and (Sato: 24-year-old male) watch in awe, ren speaks grimly, (Yasumoto: 52-year-old male) recoils in pure fear, cinematic manga, high-tension",
+      "promptEn": "Ren hacks with blinding speed, impressing Shouta and Sato. He explains Landauer's principle, that this attack is not just data, but malice with mass. Yasumoto grows terrified. cinematic manga, high contrast.",
       "recommendedCutCount": 3,
-      "promptCharCount": 573
+      "promptCharCount": 249
     },
     {
       "@id": "gh:pagePrompt/page:9",
@@ -394,27 +202,229 @@
         {
           "@id": "gh:panelPrompt/p9-1",
           "panelIndex": 1,
-          "promptEn": "laptop screen, 'FOUND!!', (Yasumoto: 52-year-old male)'s corporate ID, photo, profile, (Nei: 16-year-old female android, shoulder-length black hair, sailor-style outfit), pointing at screen, triumphant, grim satisfaction, extreme close-up, incriminating evidence, cinematic manga"
+          "promptEn": "A large 'FOUND!!' message on a screen, displayed by (Nei: 16-year-old female android). The screen shows the access originated from the department head's terminal. cinematic manga, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p9-2",
           "panelIndex": 2,
-          "promptEn": "solo, (Ren: 17-year-old male, sharp half-lidded eyes, messy voluminous wavy black hair), swiveling in chair, smooth movement, pointing, accusatory finger, cold hard eyes, judge, verdict, medium shot, powerful gesture, cinematic manga"
+          "promptEn": "(Ren: 17-year-old male, sharp half-lidded eyes) swivels in his chair and points an accusatory finger at Yasumoto. cinematic manga, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p9-3",
           "panelIndex": 3,
-          "promptEn": "group shot, office employees, (Matsuda: 58-year-old female), (Sato: 24-year-old male), (Shouta: 26-year-old male), shock, betrayal, all looking at yasumoto, wide panoramic shot, collective horror, cinematic manga"
+          "promptEn": "The other employees, including (Matsuda: 58-year-old female) and (Shouta: 26-year-old male), turn to look at Yasumoto in shock. cinematic manga, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p9-4",
           "panelIndex": 4,
-          "promptEn": "solo, (Yasumoto: 52-year-old male, overweight, anxious face), trapped, cold sweat, trembling lips, broken, dramatic low-angle close-up, terror, guilt, blurred accusers in background, cinematic manga"
+          "promptEn": "(Yasumoto: 52-year-old male, anxious face) trembles as Ren reveals his embezzlement and gambling history as the motive. cinematic manga, high contrast."
         }
       ],
-      "promptEn": "(Nei: 16-year-old female android) finds (Yasumoto: 52-year-old male)'s profile, (Ren: 17-year-old male, messy wavy hair) accuses him, the office stares in shock, yasumoto breaks down, cinematic manga, dramatic confrontation",
+      "promptEn": "Nei finds the source of the attack: Yasumoto's terminal. Ren accuses him of sabotaging the new system to protect his position and cover up his embezzlement. The office is stunned. cinematic manga, high contrast.",
       "recommendedCutCount": 4,
-      "promptCharCount": 681
+      "promptCharCount": 269
+    },
+    {
+      "@id": "gh:pagePrompt/page:10",
+      "pageId": "page:10",
+      "panelPrompts": [
+        {
+          "@id": "gh:panelPrompt/p10-1",
+          "panelIndex": 1,
+          "promptEn": "(Yasumoto: 52-year-old male, contorted face) screams in denial, and the dark shadow behind him swells, engulfing the office. cinematic manga, horror."
+        },
+        {
+          "@id": "gh:panelPrompt/p10-2",
+          "panelIndex": 2,
+          "promptEn": "A monstrous Ghost, made of old documents and tangled cables, separates from Yasumoto's body. cinematic manga, horror."
+        },
+        {
+          "@id": "gh:panelPrompt/p10-3",
+          "panelIndex": 3,
+          "promptEn": "(Matsuda: 58-year-old female) and (Sato: 24-year-old male) collapse in fear. (Shouta: 26-year-old male) stands frozen in disbelief. cinematic manga, horror."
+        }
+      ],
+      "promptEn": "Yasumoto's denial and rage cause his Ghost to fully manifest, a monstrous entity of paper and cables that terrifies the onlookers. Ren explains this is the physical manifestation of their distorted information. cinematic manga, horror.",
+      "recommendedCutCount": 3,
+      "promptCharCount": 279
+    },
+    {
+      "@id": "gh:pagePrompt/page:11",
+      "pageId": "page:11",
+      "panelPrompts": [
+        {
+          "@id": "gh:panelPrompt/p11-1",
+          "panelIndex": 1,
+          "promptEn": "Close-up on Ren's smartphone screen: 'SIP Device: ON'. (Ren: 17-year-old male, calm, focused). cinematic manga."
+        },
+        {
+          "@id": "gh:panelPrompt/p11-2",
+          "panelIndex": 2,
+          "promptEn": "The space fills with digital noise and glitches as the Ghost gains tangible mass. cinematic manga, sci-fi, vfx."
+        },
+        {
+          "@id": "gh:panelPrompt/p11-3",
+          "panelIndex": 3,
+          "promptEn": "The now-physical Ghost smashes a shelf, demonstrating its destructive power. cinematic manga, action."
+        }
+      ],
+      "promptEn": "Ren activates his SIP Device to anchor the Ghost to the physical layer. As the space glitches, the Ghost becomes solid and starts wreaking havoc in the office. cinematic manga, sci-fi, action.",
+      "recommendedCutCount": 3,
+      "promptCharCount": 242
+    },
+    {
+      "@id": "gh:pagePrompt/page:12",
+      "pageId": "page:12",
+      "panelPrompts": [
+        {
+          "@id": "gh:panelPrompt/p12-1",
+          "panelIndex": 1,
+          "promptEn": "(Shouta: 26-year-old male, fit build, navy suit) instinctively shields (Matsuda: 58-year-old female) from falling debris. cinematic manga, action."
+        },
+        {
+          "@id": "gh:panelPrompt/p12-2",
+          "panelIndex": 2,
+          "promptEn": "Particles of data and light converge in (Ren: 17-year-old male)'s hand, forming a glowing Digital Axe. cinematic manga, vfx."
+        },
+        {
+          "@id": "gh:panelPrompt/p12-3",
+          "panelIndex": 3,
+          "promptEn": "(Ren: 17-year-old male, dark gray hoodie) steps forward, axe in hand, ready to fight. cinematic manga, action."
+        }
+      ],
+      "promptEn": "Shouta protects Matsuda from the Ghost's rampage. Ren materializes a Digital Axe from data, stating the Ghost's ego is just noise that he will delete. cinematic manga, action.",
+      "recommendedCutCount": 3,
+      "promptCharCount": 232
+    },
+    {
+      "@id": "gh:pagePrompt/page:13",
+      "pageId": "page:13",
+      "panelPrompts": [
+        {
+          "@id": "gh:panelPrompt/p13-1",
+          "panelIndex": 1,
+          "promptEn": "(Ren: 17-year-old male, skinny build, messy voluminous wavy black hair) dodges attacking tentacles made of LAN cables. cinematic manga, action."
+        },
+        {
+          "@id": "gh:panelPrompt/p13-2",
+          "panelIndex": 2,
+          "promptEn": "(Ren: 17-year-old male) leaps into the air, Digital Axe held high, with command-line text effects swirling around him. cinematic manga, action, vfx."
+        },
+        {
+          "@id": "gh:panelPrompt/p13-3",
+          "panelIndex": 3,
+          "promptEn": "Splash panel. Ren's axe strikes the Ghost's core (a symbol of Yasumoto's insecurities), causing a massive explosion of light and data. cinematic manga, action."
+        }
+      ],
+      "promptEn": "In a dynamic fight sequence, Ren dodges the Ghost's attacks and, with a powerful leap, smashes its core with his Digital Axe, causing a huge explosion. cinematic manga, action.",
+      "recommendedCutCount": 3,
+      "promptCharCount": 226
+    },
+    {
+      "@id": "gh:pagePrompt/page:14",
+      "pageId": "page:14",
+      "panelPrompts": [
+        {
+          "@id": "gh:panelPrompt/p14-1",
+          "panelIndex": 1,
+          "promptEn": "The Ghost dissipates into particles of light as (Yasumoto: 52-year-old male, overweight, rumpled suit) collapses to the floor, defeated. cinematic manga."
+        },
+        {
+          "@id": "gh:panelPrompt/p14-2",
+          "panelIndex": 2,
+          "promptEn": "Silence returns to the office. A computer monitor's lock screen vanishes, revealing the normal desktop. (Sato: 24-year-old male) looks relieved. cinematic manga."
+        },
+        {
+          "@id": "gh:panelPrompt/p14-3",
+          "panelIndex": 3,
+          "promptEn": "(Yasumoto: 52-year-old male) sobs on the floor, broken. cinematic manga."
+        }
+      ],
+      "promptEn": "The Ghost disintegrates, whispering its desire for recognition. Yasumoto collapses in tears. The systems come back online, and Sato confirms everything is working again. cinematic manga.",
+      "recommendedCutCount": 3,
+      "promptCharCount": 235
+    },
+    {
+      "@id": "gh:pagePrompt/page:15",
+      "pageId": "page:15",
+      "panelPrompts": [
+        {
+          "@id": "gh:panelPrompt/p15-1",
+          "panelIndex": 1,
+          "promptEn": "The president, (Goro Daimon: 62-year-old male, sturdy build, work clothes), returns to the chaotic office, shocked. cinematic manga."
+        },
+        {
+          "@id": "gh:panelPrompt/p15-2",
+          "panelIndex": 2,
+          "promptEn": "(Shouta: 26-year-old male, fit build, navy suit) looks at his father and then at the weeping Yasumoto, his face set with determination. cinematic manga."
+        },
+        {
+          "@id": "gh:panelPrompt/p15-3",
+          "panelIndex": 3,
+          "promptEn": "(Yasumoto: 52-year-old male) looks up at Shouta in surprise. cinematic manga."
+        },
+        {
+          "@id": "gh:panelPrompt/p15-4",
+          "panelIndex": 4,
+          "promptEn": "(Goro Daimon: 62-year-old male, weathered face) understands the situation and accepts it with a nod. cinematic manga."
+        }
+      ],
+      "promptEn": "The president, Goro, returns. Shouta makes a quick decision and covers for Yasumoto, claiming he was injured while trying to fix the system. Goro seems to understand and accepts the story. cinematic manga.",
+      "recommendedCutCount": 4,
+      "promptCharCount": 264
+    },
+    {
+      "@id": "gh:pagePrompt/page:16",
+      "pageId": "page:16",
+      "panelPrompts": [
+        {
+          "@id": "gh:panelPrompt/p16-1",
+          "panelIndex": 1,
+          "promptEn": "(Ren: 17-year-old male, dark gray hoodie) unplugs his USB drive, preparing to leave. cinematic manga."
+        },
+        {
+          "@id": "gh:panelPrompt/p16-2",
+          "panelIndex": 2,
+          "promptEn": "(Matsuda: 58-year-old female, short permed hair) looks at her screen (an online banking page) with joy and disbelief. cinematic manga."
+        },
+        {
+          "@id": "gh:panelPrompt/p16-3",
+          "panelIndex": 3,
+          "promptEn": "(Shouta: 26-year-old male, navy suit) calls out to Ren as he's leaving. cinematic manga."
+        }
+      ],
+      "promptEn": "Ren announces the data is restored and that he also recovered the embezzled money, minus his fee. Matsuda is overjoyed to see the company accounts are solvent. Shouta thanks Ren sincerely. cinematic manga.",
+      "recommendedCutCount": 3,
+      "promptCharCount": 260
+    },
+    {
+      "@id": "gh:pagePrompt/page:17",
+      "pageId": "page:17",
+      "panelPrompts": [
+        {
+          "@id": "gh:panelPrompt/p17-1",
+          "panelIndex": 1,
+          "promptEn": "(Ren: 17-year-old male, dark gray hoodie) gives a wave over his shoulder as he leaves, not looking back. cinematic manga."
+        },
+        {
+          "@id": "gh:panelPrompt/p17-2",
+          "panelIndex": 2,
+          "promptEn": "Ren and (Nei: 16-year-old female android, sailor-style outfit) walk through the crowded, neon-lit streets of Kamata at dusk. cinematic manga."
+        },
+        {
+          "@id": "gh:panelPrompt/p17-3",
+          "panelIndex": 3,
+          "promptEn": "Close-up of (Ren: 17-year-old male, pale skin, sharp half-lidded eyes) looking at his smartphone with a sly smirk, checking his payment. cinematic manga."
+        },
+        {
+          "@id": "gh:panelPrompt/p17-4",
+          "panelIndex": 4,
+          "promptEn": "Title Card: 'Ghost Hacker - Episode 1 End' in clean white font on a black background."
+        }
+      ],
+      "promptEn": "Ren leaves with a parting warning to Shouta. Later, walking through Kamata with Nei, he checks his payment and smirks, satisfied that he can afford to be lazy for a while longer. End of Episode 1. cinematic manga.",
+      "recommendedCutCount": 4,
+      "promptCharCount": 273
     }
   ]
 }
