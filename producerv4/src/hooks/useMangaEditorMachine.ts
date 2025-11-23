@@ -5,9 +5,8 @@
  * 
  * Custom hook for using the manga editor page machine
  */
-import { useMemo, useEffect } from 'react';
+import { useMemo } from 'react';
 import { useMachine } from '@xstate/react';
-import { inspect } from '@xstate/inspector';
 import { mangaEditorPageMachine } from '@/machines/mangaEditorPageMachine';
 import type { MangaEditorPageEvent } from '@/types/mangaMachine';
 import type { ToolType } from '@/lib/konva/tools';
@@ -15,25 +14,34 @@ import type { SpeechBubble } from '@/types/manga';
 import type Konva from 'konva';
 type KonvaStageType = Konva.Stage;
 
-export function useMangaEditorMachine(projectId: string) {
-  // Initialize inspector only in development
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      const inspector = inspect({
-        iframe: false,
-        url: 'https://stately.ai/viz?inspect',
-      });
-      return () => {
-        inspector?.disconnect();
-      };
-    }
-  }, []);
+// Conditionally import inspect for XState v5 compatibility
+let inspect: ((options?: { iframe?: boolean; url?: string }) => unknown) | undefined;
+if (process.env.NODE_ENV === 'development') {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const inspectModule = require('@xstate/inspect');
+    inspect = inspectModule.inspect;
+  } catch {
+    // @xstate/inspect may not be fully compatible with XState v5
+    // Inspector functionality will be disabled
+    inspect = undefined;
+  }
+}
 
+export function useMangaEditorMachine(projectId: string) {
   const [snapshot, send] = useMachine(mangaEditorPageMachine, {
     input: {
       projectId,
     },
-    inspect: process.env.NODE_ENV === 'development' ? inspect({ iframe: false }) : undefined,
+    // Only enable inspect if available and in development
+    ...(process.env.NODE_ENV === 'development' && inspect
+      ? {
+          inspect: inspect({
+            iframe: false,
+            url: 'https://stately.ai/viz?inspect',
+          }),
+        }
+      : {}),
   });
 
   // Helper functions for common actions - memoized to prevent infinite loops

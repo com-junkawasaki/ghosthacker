@@ -641,6 +641,9 @@ export default function MangaEditorPage({
           }}
           scriptId={scriptId}
           selectedPageId={selectedPageId}
+          snapshot={snapshot}
+          send={send}
+          projectId={params.projectId}
         />
       </div>
       <div className="h-16 bg-gray-200 border-t border-gray-300 flex items-center justify-between px-4">

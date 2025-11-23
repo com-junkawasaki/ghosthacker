@@ -3,14 +3,17 @@
  * @type cpm:Resource
  * @id https://gftd.ai/resource/debug-panel
  * 
- * Debug panel component for manga editor
+ * Debug panel component for manga editor with XState Inspector integration
  */
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { match } from 'ts-pattern';
+import type { ActorSnapshot } from 'xstate';
 import type { DebugState, CanvasState } from '@/types/manga';
 import { matchDebugState as matchDebug, matchCanvasState as matchCanvas } from '@/types/manga';
+import type { MangaEditorPageEvent } from '@/types/mangaMachine';
+import { FullTestRunner } from './FullTestRunner';
 
 interface DebugPanelProps {
   projectState: {
@@ -44,6 +47,10 @@ interface DebugPanelProps {
   };
   scriptId?: string | null;
   selectedPageId?: string;
+  // XState machine snapshot and send function
+  snapshot?: ActorSnapshot<unknown, MangaEditorPageEvent>;
+  send?: (event: MangaEditorPageEvent) => void;
+  projectId?: string;
 }
 
 export function DebugPanel({
@@ -54,9 +61,31 @@ export function DebugPanel({
   canvasState,
   scriptId,
   selectedPageId,
+  snapshot,
+  send,
+  projectId,
 }: DebugPanelProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
+  const [eventHistory, setEventHistory] = useState<Array<{ event: MangaEditorPageEvent; timestamp: number }>>([]);
+  const [previousState, setPreviousState] = useState<string | Record<string, unknown> | undefined>(undefined);
+
+  // Track state changes to infer events (simplified approach)
+  useEffect(() => {
+    if (snapshot) {
+      const currentState = snapshot.value;
+      if (previousState !== undefined && previousState !== currentState) {
+        // State changed - could add to history if needed
+      }
+      setPreviousState(currentState);
+    }
+  }, [snapshot, previousState]);
+
+  // Get current state from snapshot
+  const currentState = snapshot?.value ?? 'unknown';
+  const context = snapshot?.context as { data?: { error?: Error }; editor?: unknown } | undefined;
+  const machineError = context?.data?.error;
+  const stateDescription = typeof currentState === 'string' ? currentState : JSON.stringify(currentState);
 
   // Convert state to DebugState union type
   const toDebugState = (state: { loading: boolean; error?: Error; data?: unknown }): DebugState => {
@@ -155,6 +184,66 @@ export function DebugPanel({
       </div>
       
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        {/* XState Machine State */}
+        {snapshot && (
+          <div className="border-b border-gray-200 pb-4">
+            <h3 className="font-semibold text-sm text-gray-700 mb-2">XState Machine State</h3>
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <div className={`w-2 h-2 rounded-full ${machineError ? 'bg-red-500' : 'bg-green-500'}`} />
+                <span className="text-sm text-gray-600">
+                  現在の状態: <span className="font-mono text-blue-600">{stateDescription}</span>
+                </span>
+              </div>
+              {machineError && (
+                <div className="bg-red-50 p-2 rounded text-xs">
+                  <div className="font-semibold text-red-700">マシンエラー:</div>
+                  <div className="text-red-600">{machineError.message}</div>
+                </div>
+              )}
+              {snapshot.context && (
+                <details className="mt-2">
+                  <summary className="text-xs text-gray-500 cursor-pointer">コンテキストを表示</summary>
+                  <pre className="text-xs bg-gray-50 p-2 mt-1 rounded overflow-auto max-h-40">
+                    {JSON.stringify(snapshot.context, null, 2)}
+                  </pre>
+                </details>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Event History */}
+        {eventHistory.length > 0 && (
+          <div className="border-b border-gray-200 pb-4">
+            <h3 className="font-semibold text-sm text-gray-700 mb-2">イベント履歴 ({eventHistory.length})</h3>
+            <div className="max-h-40 overflow-y-auto space-y-1">
+              {eventHistory.slice().reverse().map((item, index) => (
+                <div key={index} className="text-xs bg-gray-50 p-2 rounded">
+                  <div className="font-mono text-gray-700">{item.event.type}</div>
+                  <div className="text-gray-500 text-xs mt-1">
+                    {new Date(item.timestamp).toLocaleTimeString()}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Full Test Runner */}
+        {send && projectId && snapshot && (
+          <div className="border-b border-gray-200 pb-4">
+            <FullTestRunner 
+              send={(event) => {
+                setEventHistory((prev) => [...prev, { event, timestamp: Date.now() }].slice(-50));
+                send(event);
+              }} 
+              currentState={currentState} 
+              projectId={projectId} 
+            />
+          </div>
+        )}
+
         {/* ステップ1: プロジェクト取得 */}
         <div className="border-b border-gray-200 pb-4">
           <h3 className="font-semibold text-sm text-gray-700 mb-2">ステップ1: プロジェクト取得</h3>
