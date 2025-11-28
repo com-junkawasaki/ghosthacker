@@ -148,11 +148,11 @@
           "schema:fileLocation": "examples/ghost-hacker-episode1.jsonld"
         },
         {
-          "@id": "artifact:workflow-doc",
+          "@id": "artifact:rag-openai-component",
           "@type": "prov:Entity",
-          "schema:name": "ワークフロードキュメント",
-          "schema:fileFormat": "text/markdown",
-          "schema:fileLocation": "examples/workflow.md"
+          "schema:name": "wasmCloudコンポーネント（rag-openai）",
+          "schema:fileFormat": "application/x-rust",
+          "schema:fileLocation": "actors/rag-openai-component/"
         }
       ]
     },
@@ -167,6 +167,27 @@
         "@type": "schema:Thing",
         "schema:description": "統合IRシステムが完成。Symbolic Layer（JSON-LD）、Graph Layer（関係性）、Vector Layer（pgvector）を統合し、OpenAI API（Embedding/LLM/画像生成/Vision）との統合を実現。"
       }
+    },
+    {
+      "@id": "task:wasmcloud-component",
+      "@type": "prov:Activity",
+      "schema:name": "wasmCloudコンポーネント実装",
+      "schema:description": "wasmCloudコンポーネントとしての実装とデプロイ",
+      "prov:startedAtTime": "2025-01-16T00:00:00Z",
+      "prov:endedAtTime": "2025-01-16T00:00:00Z",
+      "schema:result": {
+        "@type": "schema:Thing",
+        "schema:description": "wasmCloudコンポーネントの基本構造を作成。WITファイルとRust実装を準備。wasmCloud v1.8.0の新しいコンポーネントモデルに対応するため、WITファイルの構文を調整中。現在、wasmCloudのWITファイル構文エラーが発生しており、wasmCloudの公式テンプレートまたはドキュメントを参照して修正が必要。"
+      },
+      "prov:generated": [
+        {
+          "@id": "artifact:rag-openai-component",
+          "@type": "prov:Entity",
+          "schema:name": "wasmCloudコンポーネント（rag-openai）",
+          "schema:fileFormat": "application/x-rust",
+          "schema:fileLocation": "actors/rag-openai-component/"
+        }
+      ]
     }
   ]
 }

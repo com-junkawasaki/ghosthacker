@@ -4,26 +4,17 @@
 
 use anyhow::Result;
 use serde::{Deserialize, Serialize};
+use wasmcloud_interface_httpserver::{HttpRequest, HttpResponse, HttpError};
 
-wit_bindgen::generate!({
-    world: "rag-openai",
-    exports: {
-        "wasmcloud:http/handler@0.2.0": Component,
-    },
-});
+#[no_mangle]
+pub extern "C" fn wizer_initialize() {}
 
-struct Component;
-
-impl exports::wasmcloud::http::handler::Guest for Component {
-    fn handle(req: HttpRequest) -> Result<HttpResponse, HttpError> {
-        handle_request(req).map_err(|e| HttpError::InternalError(e.to_string()))
-    }
+#[no_mangle]
+pub extern "C" fn handle_request(req: HttpRequest) -> Result<HttpResponse, HttpError> {
+    handle_http_request(req).map_err(|e| HttpError::InternalError(e.to_string()))
 }
 
-// Import HTTP types from WIT
-use exports::wasmcloud::http::handler::{HttpRequest, HttpResponse, HttpError};
-
-fn handle_request(req: HttpRequest) -> Result<HttpResponse> {
+fn handle_http_request(req: HttpRequest) -> Result<HttpResponse> {
     let path = req.path.trim_start_matches('/');
     
     match (req.method.as_str(), path) {
