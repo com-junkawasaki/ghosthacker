@@ -7,10 +7,10 @@
   },
   "@id": "project:rag-typedb-pgvector",
   "@type": "prov:Activity",
-  "schema:name": "LLM RAG PostgreSQL Design with TypeDB ERA + pgvector",
-  "schema:description": "TypeDBのERAモデルとpgvectorを使ったLLM RAG用のPostgreSQLテーブル設計",
+  "schema:name": "統合IR（Symbolic + Graph + Vector）システム with OpenAI統合",
+  "schema:description": "JSON-LDベースの統合IR（Symbolic + Graph + Vector）の仕様と実装。TypeDB ERA + pgvector + OpenAI統合によるクロスモーダルRAGシステム",
   "prov:startedAtTime": "2025-01-16T00:00:00Z",
-  "schema:keywords": ["TypeDB", "ERA", "pgvector", "PostgreSQL", "RAG", "LLM", "wasmCloud"],
+  "schema:keywords": ["TypeDB", "ERA", "pgvector", "PostgreSQL", "RAG", "LLM", "wasmCloud", "JSON-LD", "OpenAI", "統合IR", "Symbolic", "Graph", "Vector"],
   "prov:wasAssociatedWith": {
     "@id": "agent:composer",
     "@type": "prov:SoftwareAgent"
@@ -76,8 +76,97 @@
           "schema:name": "Migration Guide",
           "schema:fileFormat": "text/markdown",
           "schema:fileLocation": "schema/migration-guide.md"
+        },
+        {
+          "@id": "artifact:ir-specification",
+          "@type": "prov:Entity",
+          "schema:name": "統合IR仕様書",
+          "schema:fileFormat": "text/markdown",
+          "schema:fileLocation": "specs/SPECIFICATION.md"
+        },
+        {
+          "@id": "artifact:ir-schema",
+          "@type": "prov:Entity",
+          "schema:name": "JSON-LDスキーマ定義",
+          "schema:fileFormat": "application/ld+json",
+          "schema:fileLocation": "specs/unified-ir-schema.jsonld"
+        },
+        {
+          "@id": "artifact:entity-types",
+          "@type": "prov:Entity",
+          "schema:name": "TypeScript型定義",
+          "schema:fileFormat": "application/typescript",
+          "schema:fileLocation": "specs/entity-types.ts"
+        },
+        {
+          "@id": "artifact:ghost-hacker-instance",
+          "@type": "prov:Entity",
+          "schema:name": "ゴーストハッカー2026インスタンス",
+          "schema:fileFormat": "application/ld+json",
+          "schema:fileLocation": "specs/ghost-hacker-2026-instance.jsonld"
+        },
+        {
+          "@id": "artifact:ir-extensions",
+          "@type": "prov:Entity",
+          "schema:name": "PostgreSQL IR拡張スキーマ",
+          "schema:fileFormat": "application/sql",
+          "schema:fileLocation": "schema/ir-extensions.sql"
+        },
+        {
+          "@id": "artifact:rag-openai",
+          "@type": "prov:Entity",
+          "schema:name": "OpenAI統合ライブラリ",
+          "schema:fileFormat": "application/x-rust",
+          "schema:fileLocation": "actors/rag-openai/"
+        },
+        {
+          "@id": "artifact:rag-pipeline",
+          "@type": "prov:Entity",
+          "schema:name": "IR処理パイプライン",
+          "schema:fileFormat": "application/x-rust",
+          "schema:fileLocation": "actors/rag-pipeline/"
+        },
+        {
+          "@id": "artifact:rag-storage",
+          "@type": "prov:Entity",
+          "schema:name": "PostgreSQL統合レイヤ",
+          "schema:fileFormat": "application/x-rust",
+          "schema:fileLocation": "actors/rag-storage/"
+        },
+        {
+          "@id": "artifact:rag-embedding",
+          "@type": "prov:Entity",
+          "schema:name": "自動Embedding生成",
+          "schema:fileFormat": "application/x-rust",
+          "schema:fileLocation": "actors/rag-embedding/"
+        },
+        {
+          "@id": "artifact:episode1-example",
+          "@type": "prov:Entity",
+          "schema:name": "第1話サンプルデータ",
+          "schema:fileFormat": "application/ld+json",
+          "schema:fileLocation": "examples/ghost-hacker-episode1.jsonld"
+        },
+        {
+          "@id": "artifact:workflow-doc",
+          "@type": "prov:Entity",
+          "schema:name": "ワークフロードキュメント",
+          "schema:fileFormat": "text/markdown",
+          "schema:fileLocation": "examples/workflow.md"
         }
       ]
+    },
+    {
+      "@id": "task:unified-ir-implementation",
+      "@type": "prov:Activity",
+      "schema:name": "統合IR実装とOpenAI統合",
+      "schema:description": "JSON-LDベースの統合IR（Symbolic + Graph + Vector）の仕様化とOpenAI統合実装",
+      "prov:startedAtTime": "2025-01-16T00:00:00Z",
+      "prov:endedAtTime": "2025-01-16T00:00:00Z",
+      "schema:result": {
+        "@type": "schema:Thing",
+        "schema:description": "統合IRシステムが完成。Symbolic Layer（JSON-LD）、Graph Layer（関係性）、Vector Layer（pgvector）を統合し、OpenAI API（Embedding/LLM/画像生成/Vision）との統合を実現。"
+      }
     }
   ]
 }

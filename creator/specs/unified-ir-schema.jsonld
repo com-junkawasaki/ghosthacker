@@ -1,0 +1,115 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://ghosthacker2026.com/ont/story#",
+    
+    "World": {
+      "@id": "https://ghosthacker2026.com/ont/story#World",
+      "@type": "@id"
+    },
+    "Character": {
+      "@id": "https://ghosthacker2026.com/ont/story#Character",
+      "@type": "@id"
+    },
+    "Scene": {
+      "@id": "https://ghosthacker2026.com/ont/story#Scene",
+      "@type": "@id"
+    },
+    "Shot": {
+      "@id": "https://ghosthacker2026.com/ont/story#Shot",
+      "@type": "@id"
+    },
+    "Location": {
+      "@id": "https://ghosthacker2026.com/ont/story#Location",
+      "@type": "@id"
+    },
+    "Organization": {
+      "@id": "https://ghosthacker2026.com/ont/story#Organization",
+      "@type": "@id"
+    },
+    "Object": {
+      "@id": "https://ghosthacker2026.com/ont/story#Object",
+      "@type": "@id"
+    },
+    "Concept": {
+      "@id": "https://ghosthacker2026.com/ont/story#Concept",
+      "@type": "@id"
+    },
+    "Relation": {
+      "@id": "https://ghosthacker2026.com/ont/story#Relation",
+      "@type": "@id"
+    },
+    
+    "llmLabel": {
+      "@id": "https://ghosthacker2026.com/ont/meta#llmLabel",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "embedHint": {
+      "@id": "https://ghosthacker2026.com/ont/meta#embedHint",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "imagePrompt": {
+      "@id": "https://ghosthacker2026.com/ont/meta#imagePrompt",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "videoPrompt": {
+      "@id": "https://ghosthacker2026.com/ont/meta#videoPrompt",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "embeddingId": {
+      "@id": "https://ghosthacker2026.com/ont/meta#embeddingId",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    
+    "name": "https://ghosthacker2026.com/ont/story#name",
+    "role": "https://ghosthacker2026.com/ont/story#role",
+    "traits": "https://ghosthacker2026.com/ont/story#traits",
+    "visualProfile": "https://ghosthacker2026.com/ont/story#visualProfile",
+    "age": "https://ghosthacker2026.com/ont/story#age",
+    "gender": "https://ghosthacker2026.com/ont/story#gender",
+    "appearance": "https://ghosthacker2026.com/ont/story#appearance",
+    "colorTheme": "https://ghosthacker2026.com/ont/story#colorTheme",
+    
+    "title": "https://ghosthacker2026.com/ont/story#title",
+    "summary": "https://ghosthacker2026.com/ont/story#summary",
+    "world": {
+      "@id": "https://ghosthacker2026.com/ont/story#world",
+      "@type": "@id"
+    },
+    "location": {
+      "@id": "https://ghosthacker2026.com/ont/story#location",
+      "@type": "@id"
+    },
+    "time": "https://ghosthacker2026.com/ont/story#time",
+    "beats": "https://ghosthacker2026.com/ont/story#beats",
+    "characters": {
+      "@id": "https://ghosthacker2026.com/ont/story#characters",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    
+    "scene": {
+      "@id": "https://ghosthacker2026.com/ont/story#scene",
+      "@type": "@id"
+    },
+    "order": "https://ghosthacker2026.com/ont/story#order",
+    "durationSec": "https://ghosthacker2026.com/ont/story#durationSec",
+    "camera": "https://ghosthacker2026.com/ont/story#camera",
+    "cameraType": "https://ghosthacker2026.com/ont/story#cameraType",
+    "cameraAngle": "https://ghosthacker2026.com/ont/story#cameraAngle",
+    "cameraDistance": "https://ghosthacker2026.com/ont/story#cameraDistance",
+    "action": "https://ghosthacker2026.com/ont/story#action",
+    "lighting": "https://ghosthacker2026.com/ont/story#lighting",
+    
+    "relationType": "https://ghosthacker2026.com/ont/story#relationType",
+    "from": {
+      "@id": "https://ghosthacker2026.com/ont/story#from",
+      "@type": "@id"
+    },
+    "to": {
+      "@id": "https://ghosthacker2026.com/ont/story#to",
+      "@type": "@id"
+    },
+    "strength": "https://ghosthacker2026.com/ont/story#strength"
+  }
+}

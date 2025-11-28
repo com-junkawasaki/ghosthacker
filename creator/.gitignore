@@ -1,0 +1,54 @@
+# Rust
+# Compiled files
+target/
+**/target/
+**/*.rs.bk
+*.pdb
+
+# Cargo
+# For library projects, Cargo.lock should be ignored
+# For binary projects, Cargo.lock should be committed
+# Uncomment the following line if this is a library project
+# Cargo.lock
+
+# Backup files
+*.orig
+*~
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# wasmCloud
+wasmcloud/
+*.wasm
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+
+# Test coverage
+tarpaulin-report.html
+cobertura.xml
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# PostgreSQL dumps
+*.sql.gz
+*.dump
