@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Apple Human Interface Guidelines inspired styles */
+@layer base {
+	body {
+		@apply bg-gray-50 text-gray-900;
+		font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+	}
+}
+
+@layer components {
+	/* iPad optimized layout */
+	.layout-container {
+		@apply flex h-screen overflow-hidden;
+	}
+	
+	.sidebar {
+		@apply w-64 bg-white border-r border-gray-200 flex-shrink-0;
+	}
+	
+	.main-content {
+		@apply flex-1 overflow-y-auto;
+	}
+	
+	.panel {
+		@apply w-80 bg-white border-l border-gray-200 flex-shrink-0;
+	}
+}

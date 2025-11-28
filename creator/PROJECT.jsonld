@@ -188,6 +188,34 @@
           "schema:fileLocation": "actors/rag-openai-component/"
         }
       ]
+    },
+    {
+      "@id": "task:ui-ux-pipeline",
+      "@type": "prov:Activity",
+      "schema:name": "統合IR制作パイプラインUI/UX実装",
+      "schema:description": "統合IRをベースに制作パイプラインを進めるためのUI/UXをwasmCloudコンポーネントとして実装",
+      "prov:startedAtTime": "2025-01-16T00:00:00Z",
+      "prov:endedAtTime": "2025-01-16T00:00:00Z",
+      "schema:result": {
+        "@type": "schema:Thing",
+        "schema:description": "統合IR制作パイプラインUI/UXの基本構造が完成。APIコンポーネント（wasmCloud HTTPコンポーネント）とWeb UI（SvelteKit）の基本実装が完了。Apple Human Interface Guidelinesに基づいたiPad最適化レイアウトを実装。"
+      },
+      "prov:generated": [
+        {
+          "@id": "artifact:rag-ui-api",
+          "@type": "prov:Entity",
+          "schema:name": "UI APIコンポーネント",
+          "schema:fileFormat": "application/x-rust",
+          "schema:fileLocation": "actors/rag-ui-api/"
+        },
+        {
+          "@id": "artifact:rag-pipeline-ui",
+          "@type": "prov:Entity",
+          "schema:name": "制作パイプラインWeb UI",
+          "schema:fileFormat": "application/javascript",
+          "schema:fileLocation": "ui/rag-pipeline/"
+        }
+      ]
     }
   ]
 }
