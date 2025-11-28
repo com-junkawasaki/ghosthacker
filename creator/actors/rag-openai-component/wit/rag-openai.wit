@@ -1,28 +1,6 @@
 package wasmcloud:rag-openai@0.1.0;
 
 world rag-openai {
-    export handler;
-}
-
-interface handler {
-    handle: func(req: request) -> result<response, error>;
-}
-
-type request = record {
-    method: string,
-    path: string,
-    query-string: option<string>,
-    header: list<tuple<string, string>>,
-    body: list<u8>,
-}
-
-type response = record {
-    status-code: u16,
-    header: list<tuple<string, string>>,
-    body: list<u8>,
-}
-
-variant error {
-    internal-error(string),
-    invalid-request(string),
+    import wasi:http/incoming-handler@0.2.0;
+    export wasi:http/incoming-handler@0.2.0;
 }

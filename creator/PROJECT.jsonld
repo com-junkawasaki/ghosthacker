@@ -177,7 +177,7 @@
       "prov:endedAtTime": "2025-01-16T00:00:00Z",
       "schema:result": {
         "@type": "schema:Thing",
-        "schema:description": "wasmCloudコンポーネントの基本構造を作成。WITファイルとRust実装を準備。wasmCloud v1.8.0の新しいコンポーネントモデルに対応するため、WITファイルの構文を調整中。現在、wasmCloudのWITファイル構文エラーが発生しており、wasmCloudの公式テンプレートまたはドキュメントを参照して修正が必要。"
+        "schema:description": "wasmCloudコンポーネントの実装とデプロイが完了。WITファイル構文を修正（wasi:http/incoming-handler@0.2.0を使用）、wash buildでビルド成功、wash start componentでデプロイ成功。コンポーネントはwasmCloudホスト上で実行中。"
       },
       "prov:generated": [
         {
