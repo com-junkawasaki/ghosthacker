@@ -314,6 +314,34 @@
           "schema:fileLocation": "actors/rag-openai-component/src/lib.rs"
         }
       ]
+    },
+    {
+      "@id": "task:http-routing-implementation",
+      "@type": "prov:Activity",
+      "schema:name": "HTTPルーティング実装",
+      "schema:description": "/api/ir/entitiesエンドポイントの実装とwash buildの出力確認",
+      "prov:startedAtTime": "2025-01-16T00:00:00Z",
+      "prov:endedAtTime": "2025-01-16T00:00:00Z",
+      "schema:result": {
+        "@type": "schema:Thing",
+        "schema:description": "HTTPルーティングの実装が完了。GET/POST/PUT/DELETEメソッドのサポート、リクエストボディのパース、JSONレスポンスの生成が実装済み。wash buildが正常に動作し、コンポーネントがビルド成功。Postgres capabilityの実装はwit_bindgen bindingsが利用可能になったら完成予定。"
+      },
+      "prov:generated": [
+        {
+          "@id": "artifact:http-routing",
+          "@type": "prov:Entity",
+          "schema:name": "HTTPルーティング実装",
+          "schema:fileFormat": "application/x-rust",
+          "schema:fileLocation": "actors/rag-ui-api/src/lib.rs"
+        },
+        {
+          "@id": "artifact:integration-test-structure",
+          "@type": "prov:Entity",
+          "schema:name": "統合テスト構造",
+          "schema:fileFormat": "application/x-rust",
+          "schema:fileLocation": "actors/rag-ui-api/tests/integration_test.rs"
+        }
+      ]
     }
   ]
 }
