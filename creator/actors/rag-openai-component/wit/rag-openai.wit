@@ -1,7 +1,9 @@
 package wasmcloud:rag-openai@0.1.0;
 
 world rag-openai {
-    import wasi:http/incoming-handler@0.2.0;
-    import wasi:http/outgoing-handler@0.2.0;
+    // HTTP Server - export incoming handler
     export wasi:http/incoming-handler@0.2.0;
+    
+    // HTTP Client - for calling OpenAI API
+    import wasi:http/outgoing-handler@0.2.0;
 }

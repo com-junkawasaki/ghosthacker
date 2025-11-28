@@ -216,6 +216,48 @@
           "schema:fileLocation": "ui/rag-pipeline/"
         }
       ]
+    },
+    {
+      "@id": "task:wasmcloud-capabilities",
+      "@type": "prov:Activity",
+      "schema:name": "wasmCloud Capabilities統合",
+      "schema:description": "wasmCloudのcapabilities（HTTP Client、Postgres）をWITファイルに追加し、コンポーネントから使用できるように実装",
+      "prov:startedAtTime": "2025-01-16T00:00:00Z",
+      "prov:endedAtTime": "2025-01-16T00:00:00Z",
+      "schema:result": {
+        "@type": "schema:Thing",
+        "schema:description": "wasmCloudのcapabilitiesをWITファイルに追加。HTTP Client capability（wasi:http/outgoing-handler@0.2.0）を両コンポーネントに追加。Postgres capabilityのバージョン確認が必要（wasmcloud:postgres/queryの正しいバージョンを確認中）。HTTP ClientとPostgres用のヘルパー関数のスケルトン実装を追加。"
+      },
+      "prov:generated": [
+        {
+          "@id": "artifact:rag-ui-api-wit-updated",
+          "@type": "prov:Entity",
+          "schema:name": "rag-ui-api WITファイル更新",
+          "schema:fileFormat": "text/plain",
+          "schema:fileLocation": "actors/rag-ui-api/wit/rag-ui-api.wit"
+        },
+        {
+          "@id": "artifact:rag-openai-wit-updated",
+          "@type": "prov:Entity",
+          "schema:name": "rag-openai-component WITファイル更新",
+          "schema:fileFormat": "text/plain",
+          "schema:fileLocation": "actors/rag-openai-component/wit/rag-openai.wit"
+        },
+        {
+          "@id": "artifact:postgres-handler",
+          "@type": "prov:Entity",
+          "schema:name": "Postgresハンドラー",
+          "schema:fileFormat": "application/x-rust",
+          "schema:fileLocation": "actors/rag-ui-api/src/handlers/postgres.rs"
+        },
+        {
+          "@id": "artifact:http-client-helper",
+          "@type": "prov:Entity",
+          "schema:name": "HTTP Clientヘルパー",
+          "schema:fileFormat": "application/x-rust",
+          "schema:fileLocation": "actors/rag-openai-component/src/http_client.rs"
+        }
+      ]
     }
   ]
 }

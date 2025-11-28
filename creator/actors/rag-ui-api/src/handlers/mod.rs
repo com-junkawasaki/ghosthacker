@@ -8,4 +8,5 @@ pub mod llm;
 pub mod image;
 pub mod video;
 pub mod pipeline;
+pub mod postgres;
 

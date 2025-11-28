@@ -12,8 +12,6 @@ use handlers::*;
 
 struct Component;
 
-http::export!(Component);
-
 impl http::Server for Component {
     fn handle(
         request: http::IncomingRequest,

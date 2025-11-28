@@ -1,0 +1,6 @@
+# WIT dependencies for rag-openai-component
+# Run `wit-deps` from the project root to download these dependencies
+
+# Currently no additional WIT dependencies needed
+# HTTP capabilities are provided by wasi:http interfaces
+

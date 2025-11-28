@@ -1,0 +1,6 @@
+# WIT dependencies for rag-ui-api component
+# Run `wit-deps` from the project root to download these dependencies
+
+# Postgres capability
+postgres = "https://github.com/wasmCloud/wasmCloud/releases/download/wit-wasmcloud-postgres-v0.1.0-draft/wit-wasmcloud-postgres-0.1.0-draft.tar.gz"
+
