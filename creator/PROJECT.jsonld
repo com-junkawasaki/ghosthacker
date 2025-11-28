@@ -1,0 +1,83 @@
+{
+  "@context": {
+    "prov": "http://www.w3.org/ns/prov#",
+    "schema": "http://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+  },
+  "@id": "project:rag-typedb-pgvector",
+  "@type": "prov:Activity",
+  "schema:name": "LLM RAG PostgreSQL Design with TypeDB ERA + pgvector",
+  "schema:description": "TypeDBのERAモデルとpgvectorを使ったLLM RAG用のPostgreSQLテーブル設計",
+  "prov:startedAtTime": "2025-01-16T00:00:00Z",
+  "schema:keywords": ["TypeDB", "ERA", "pgvector", "PostgreSQL", "RAG", "LLM", "wasmCloud"],
+  "prov:wasAssociatedWith": {
+    "@id": "agent:composer",
+    "@type": "prov:SoftwareAgent"
+  },
+  "schema:workPerformed": [
+    {
+      "@id": "task:design-schema",
+      "@type": "prov:Activity",
+      "schema:name": "データベーススキーマ設計",
+      "schema:description": "TypeDB ERAモデルとPostgreSQLテーブル設計の作成",
+      "prov:startedAtTime": "2025-01-16T00:00:00Z",
+      "prov:endedAtTime": "2025-01-16T00:00:00Z",
+      "schema:result": {
+        "@type": "schema:Thing",
+        "schema:description": "TypeDB ERAモデルに基づくPostgreSQL + pgvectorスキーマ設計が完成。wasmCloudでの運用を考慮したインターフェース定義とDocker Compose設定を含む。"
+      },
+      "prov:generated": [
+        {
+          "@id": "artifact:typedb-schema",
+          "@type": "prov:Entity",
+          "schema:name": "TypeDB ERA Schema",
+          "schema:fileFormat": "text/plain",
+          "schema:fileLocation": "schema/typedb-era-schema.tql"
+        },
+        {
+          "@id": "artifact:postgresql-schema",
+          "@type": "prov:Entity",
+          "schema:name": "PostgreSQL Schema with pgvector",
+          "schema:fileFormat": "application/sql",
+          "schema:fileLocation": "schema/postgresql-schema.sql"
+        },
+        {
+          "@id": "artifact:example-queries",
+          "@type": "prov:Entity",
+          "schema:name": "Example Queries",
+          "schema:fileFormat": "application/sql",
+          "schema:fileLocation": "schema/example-queries.sql"
+        },
+        {
+          "@id": "artifact:wasmcloud-interfaces",
+          "@type": "prov:Entity",
+          "schema:name": "wasmCloud Interface Definitions",
+          "schema:fileFormat": "text/plain",
+          "schema:fileLocation": "schema/wasmcloud-interfaces.wit"
+        },
+        {
+          "@id": "artifact:docker-compose",
+          "@type": "prov:Entity",
+          "schema:name": "Docker Compose Configuration",
+          "schema:fileFormat": "application/x-yaml",
+          "schema:fileLocation": "docker-compose.yml"
+        },
+        {
+          "@id": "artifact:readme",
+          "@type": "prov:Entity",
+          "schema:name": "Schema Documentation",
+          "schema:fileFormat": "text/markdown",
+          "schema:fileLocation": "schema/README.md"
+        },
+        {
+          "@id": "artifact:migration-guide",
+          "@type": "prov:Entity",
+          "schema:name": "Migration Guide",
+          "schema:fileFormat": "text/markdown",
+          "schema:fileLocation": "schema/migration-guide.md"
+        }
+      ]
+    }
+  ]
+}

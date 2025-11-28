@@ -1,0 +1,159 @@
+# TypeDB ERA Schema for LLM RAG System
+# Entity-Relationship-Attribute Model
+
+# ============================================
+# ENTITIES (実体)
+# ============================================
+
+# Document Entity: 元のドキュメント
+document sub entity,
+    owns document_id @key,
+    owns document_title,
+    owns document_source,
+    owns document_type,
+    owns document_uri,
+    owns created_at,
+    owns updated_at,
+    owns metadata_json;
+
+# Chunk Entity: ドキュメントのチャンク
+chunk sub entity,
+    owns chunk_id @key,
+    owns chunk_text,
+    owns chunk_index,
+    owns chunk_size,
+    owns created_at,
+    owns metadata_json;
+
+# Embedding Entity: ベクトル埋め込み
+embedding sub entity,
+    owns embedding_id @key,
+    owns embedding_model,
+    owns embedding_dimension,
+    owns created_at,
+    owns metadata_json;
+
+# Collection Entity: コレクション/名前空間
+collection sub entity,
+    owns collection_id @key,
+    owns collection_name,
+    owns collection_description,
+    owns created_at,
+    owns updated_at;
+
+# User Entity: ユーザー（wasmCloudアクター）
+user sub entity,
+    owns user_id @key,
+    owns actor_id,
+    owns actor_name,
+    owns created_at;
+
+# Query Entity: 検索クエリの記録
+query sub entity,
+    owns query_id @key,
+    owns query_text,
+    owns query_vector,
+    owns query_type,
+    owns created_at,
+    owns result_count;
+
+# ============================================
+# RELATIONS (関係)
+# ============================================
+
+# Document contains Chunk
+document_chunk sub relation,
+    relates document,
+    relates chunk,
+    owns chunk_order;
+
+# Chunk has Embedding
+chunk_embedding sub relation,
+    relates chunk,
+    relates embedding,
+    owns similarity_threshold;
+
+# Document belongs to Collection
+document_collection sub relation,
+    relates document,
+    relates collection,
+    owns added_at;
+
+# User owns Collection
+user_collection sub relation,
+    relates user,
+    relates collection,
+    owns permission_level,
+    owns granted_at;
+
+# Query searches Collection
+query_collection sub relation,
+    relates query,
+    relates collection,
+    owns search_params_json;
+
+# Query retrieves Chunk
+query_result sub relation,
+    relates query,
+    relates chunk,
+    owns similarity_score,
+    owns rank;
+
+# Chunk references Chunk (前後のチャンク関係)
+chunk_sequence sub relation,
+    relates previous_chunk,
+    relates next_chunk,
+    owns sequence_order;
+
+# ============================================
+# ATTRIBUTES (属性)
+# ============================================
+
+# Document Attributes
+document_id sub attribute, value string;
+document_title sub attribute, value string;
+document_source sub attribute, value string;
+document_type sub attribute, value string;
+document_uri sub attribute, value string;
+created_at sub attribute, value datetime;
+updated_at sub attribute, value datetime;
+metadata_json sub attribute, value string;
+
+# Chunk Attributes
+chunk_id sub attribute, value string;
+chunk_text sub attribute, value string;
+chunk_index sub attribute, value long;
+chunk_size sub attribute, value long;
+
+# Embedding Attributes
+embedding_id sub attribute, value string;
+embedding_model sub attribute, value string;
+embedding_dimension sub attribute, value long;
+
+# Collection Attributes
+collection_id sub attribute, value string;
+collection_name sub attribute, value string;
+collection_description sub attribute, value string;
+
+# User Attributes
+user_id sub attribute, value string;
+actor_id sub attribute, value string;
+actor_name sub attribute, value string;
+
+# Query Attributes
+query_id sub attribute, value string;
+query_text sub attribute, value string;
+query_vector sub attribute, value string;
+query_type sub attribute, value string;
+result_count sub attribute, value long;
+
+# Relation Attributes
+chunk_order sub attribute, value long;
+similarity_threshold sub attribute, value double;
+added_at sub attribute, value datetime;
+permission_level sub attribute, value string;
+granted_at sub attribute, value datetime;
+search_params_json sub attribute, value string;
+similarity_score sub attribute, value double;
+rank sub attribute, value long;
+sequence_order sub attribute, value long;

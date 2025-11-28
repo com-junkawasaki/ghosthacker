@@ -1,0 +1,219 @@
+// wasmCloud Interface Definition for RAG PostgreSQL Service
+// WIT format for wasmCloud actor communication
+
+package wasmcloud:rag:postgres;
+
+/// RAG PostgreSQL service interface
+interface rag-postgres {
+    /// Collection operations
+    
+    /// Create a new collection
+    create-collection: func(
+        name: string,
+        description: option<string>,
+        metadata: option<map<string, string>>
+    ) -> result<collection-id, error>;
+    
+    /// Get collection by ID
+    get-collection: func(collection-id: string) -> result<collection, error>;
+    
+    /// List collections accessible by the actor
+    list-collections: func() -> result<list<collection>, error>;
+    
+    /// Document operations
+    
+    /// Create a document in a collection
+    create-document: func(
+        collection-id: string,
+        title: string,
+        source: option<string>,
+        doc-type: option<string>,
+        uri: option<string>,
+        metadata: option<map<string, string>>
+    ) -> result<document-id, error>;
+    
+    /// Get document by ID
+    get-document: func(document-id: string) -> result<document, error>;
+    
+    /// List documents in a collection
+    list-documents: func(
+        collection-id: string,
+        limit: option<u32>,
+        offset: option<u32>
+    ) -> result<list<document>, error>;
+    
+    /// Chunk operations
+    
+    /// Create chunks for a document
+    create-chunks: func(
+        document-id: string,
+        chunks: list<chunk-input>
+    ) -> result<list<chunk-id>, error>;
+    
+    /// Get chunk by ID
+    get-chunk: func(chunk-id: string) -> result<chunk, error>;
+    
+    /// Embedding operations
+    
+    /// Create embeddings for chunks
+    create-embeddings: func(
+        chunk-embeddings: list<embedding-input>
+    ) -> result<list<embedding-id>, error>;
+    
+    /// Vector similarity search
+    
+    /// Find similar chunks by vector similarity
+    find-similar-chunks: func(
+        query-vector: list<f32>,
+        collection-id: option<string>,
+        limit: option<u32>,
+        threshold: option<f32>,
+        embedding-model: option<string>
+    ) -> result<list<similarity-result>, error>;
+    
+    /// Hybrid search (vector + metadata filtering)
+    hybrid-search: func(
+        query-vector: list<f32>,
+        collection-id: option<string>,
+        metadata-filter: option<map<string, string>>,
+        limit: option<u32>,
+        embedding-model: option<string>
+    ) -> result<list<similarity-result>, error>;
+    
+    /// Query logging
+    
+    /// Log a query
+    log-query: func(
+        collection-id: option<string>,
+        query-text: option<string>,
+        query-vector: list<f32>,
+        query-type: query-type,
+        result-count: option<u32>,
+        metadata: option<map<string, string>>
+    ) -> result<query-id, error>;
+    
+    /// Get query results
+    get-query-results: func(query-id: string) -> result<list<query-result>, error>;
+    
+    /// Analytics
+    
+    /// Get collection statistics
+    get-collection-stats: func(collection-id: string) -> result<collection-stats, error>;
+}
+
+/// Types
+
+/// Collection identifier
+type collection-id = string;
+
+/// Document identifier
+type document-id = string;
+
+/// Chunk identifier
+type chunk-id = string;
+
+/// Embedding identifier
+type embedding-id = string;
+
+/// Query identifier
+type query-id = string;
+
+/// Collection information
+record collection {
+    collection-id: collection-id,
+    name: string,
+    description: option<string>,
+    created-at: datetime,
+    updated-at: datetime,
+    metadata: map<string, string>,
+}
+
+/// Document information
+record document {
+    document-id: document-id,
+    collection-id: collection-id,
+    title: string,
+    source: option<string>,
+    doc-type: option<string>,
+    uri: option<string>,
+    created-at: datetime,
+    updated-at: datetime,
+    metadata: map<string, string>,
+}
+
+/// Chunk input for creation
+record chunk-input {
+    text: string,
+    index: u32,
+    size: option<u32>,
+    metadata: option<map<string, string>>,
+}
+
+/// Chunk information
+record chunk {
+    chunk-id: chunk-id,
+    document-id: document-id,
+    text: string,
+    index: u32,
+    size: option<u32>,
+    created-at: datetime,
+    metadata: map<string, string>,
+}
+
+/// Embedding input for creation
+record embedding-input {
+    chunk-id: chunk-id,
+    embedding-model: string,
+    embedding-dimension: u32,
+    embedding: list<f32>,
+    metadata: option<map<string, string>>,
+}
+
+/// Similarity search result
+record similarity-result {
+    chunk-id: chunk-id,
+    chunk-text: string,
+    document-id: document-id,
+    document-title: string,
+    similarity-score: f32,
+    metadata: map<string, string>,
+}
+
+/// Query type
+enum query-type {
+    similarity,
+    hybrid,
+    keyword,
+}
+
+/// Query result
+record query-result {
+    query-id: query-id,
+    chunk-id: chunk-id,
+    similarity-score: f32,
+    rank: u32,
+    created-at: datetime,
+}
+
+/// Collection statistics
+record collection-stats {
+    collection-id: collection-id,
+    collection-name: string,
+    document-count: u64,
+    chunk-count: u64,
+    embedding-count: u64,
+    user-count: u64,
+    last-document-added: option<datetime>,
+}
+
+/// Error type
+variant error {
+    not-found(string),
+    invalid-input(string),
+    database-error(string),
+    permission-denied(string),
+    internal-error(string),
+}
+
+/// Datetime type (RFC3339 string)
+type datetime = string;
