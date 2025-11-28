@@ -1,0 +1,11 @@
+language = "rust"
+type = "component"
+
+[package]
+name = "rag-openai-component"
+version = "0.1.0"
+edition = "2021"
+
+[component]
+wit-world = "rag-openai"
+wasm-target = "wasm32-wasip1"

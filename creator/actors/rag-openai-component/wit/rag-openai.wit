@@ -1,0 +1,8 @@
+// wasmCloud HTTP Component for OpenAI API Integration
+
+package wasmcloud:rag-openai@0.1.0;
+
+world rag-openai {
+    import wasmcloud:http/handler@0.2.0;
+    export wasmcloud:http/handler@0.2.0;
+}
