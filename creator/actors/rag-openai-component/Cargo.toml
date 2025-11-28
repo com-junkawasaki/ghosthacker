@@ -7,8 +7,10 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-# Use the existing library code
-# rag-openai = { path = "../rag-openai" }  # Temporarily disabled due to wasm compatibility issues
+wasmcloud-component = "0.2.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
 
 [profile.release]
 opt-level = "z"

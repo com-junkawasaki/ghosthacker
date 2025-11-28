@@ -177,7 +177,7 @@
       "prov:endedAtTime": "2025-01-16T00:00:00Z",
       "schema:result": {
         "@type": "schema:Thing",
-        "schema:description": "wasmCloudコンポーネントの実装とデプロイが完了。WITファイル構文を修正（wasi:http/incoming-handler@0.2.0を使用）、wash buildでビルド成功、wash start componentでデプロイ成功。コンポーネントはwasmCloudホスト上で実行中。"
+        "schema:description": "wasmCloudコンポーネントの実装が完了。wasmcloud-componentクレート（0.2.0）を使用してHTTPハンドラーを実装し、wash buildでビルド成功。wasm互換性の問題を解決するため、wasmCloudのHTTPクライアントインターフェースを使用してOpenAI APIを直接呼び出す実装に変更。現在は基本的なHTTPハンドラーの実装が完成し、次のステップとしてHTTPリクエストのパス取得とルーティング、OpenAI API呼び出しの実装が必要。"
       },
       "prov:generated": [
         {
