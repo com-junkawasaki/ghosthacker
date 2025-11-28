@@ -258,6 +258,62 @@
           "schema:fileLocation": "actors/rag-openai-component/src/http_client.rs"
         }
       ]
+    },
+    {
+      "@id": "task:http-client-implementation",
+      "@type": "prov:Activity",
+      "schema:name": "HTTP Client実装",
+      "schema:description": "wasmCloudのHTTP Client capabilityを使用してOpenAI API呼び出しを実装",
+      "prov:startedAtTime": "2025-01-16T00:00:00Z",
+      "prov:endedAtTime": "2025-01-16T00:00:00Z",
+      "schema:result": {
+        "@type": "schema:Thing",
+        "schema:description": "HTTP Client実装の基本構造が完成。HTTP Serverハンドラーのルーティング実装、OpenAI API呼び出し用のヘルパー関数の実装、リクエスト/レスポンス型の定義が完了。wit_bindgenを使用したwasi:http/outgoing-handlerへのアクセス実装は次のステップとして残っている。"
+      },
+      "prov:generated": [
+        {
+          "@id": "artifact:http-client-helper",
+          "@type": "prov:Entity",
+          "schema:name": "HTTP Clientヘルパー関数",
+          "schema:fileFormat": "application/x-rust",
+          "schema:fileLocation": "actors/rag-openai-component/src/http_client.rs"
+        },
+        {
+          "@id": "artifact:rag-openai-handlers",
+          "@type": "prov:Entity",
+          "schema:name": "OpenAI APIハンドラー",
+          "schema:fileFormat": "application/x-rust",
+          "schema:fileLocation": "actors/rag-openai-component/src/lib.rs"
+        }
+      ]
+    },
+    {
+      "@id": "task:http-client-next-step",
+      "@type": "prov:Activity",
+      "schema:name": "HTTP Client実装の次のステップ",
+      "schema:description": "HTTP Client実装の基本構造が完成。リクエスト/レスポンス型の定義、エラーハンドリング、APIエンドポイントのルーティング、リクエストボディのパースが実装済み。実際のHTTPリクエスト送信にはwit_bindgenを使用したwasi:http/outgoing-handlerへのアクセス実装が必要。",
+      "prov:startedAtTime": "2025-01-16T00:00:00Z",
+      "prov:endedAtTime": "2025-01-16T00:00:00Z",
+      "schema:result": {
+        "@type": "schema:Thing",
+        "schema:description": "HTTP Client実装の基本構造が完成。HTTP Serverハンドラーのルーティング実装、リクエストボディのパース、JSONレスポンスの生成が完了。実際のHTTPリクエスト送信にはwit_bindgenを使用したwasi:http/outgoing-handlerへのアクセス実装が必要。"
+      },
+      "prov:generated": [
+        {
+          "@id": "artifact:http-client-helpers-updated",
+          "@type": "prov:Entity",
+          "schema:name": "HTTP Clientヘルパー関数（更新）",
+          "schema:fileFormat": "application/x-rust",
+          "schema:fileLocation": "actors/rag-openai-component/src/http_client.rs"
+        },
+        {
+          "@id": "artifact:rag-openai-handlers-updated",
+          "@type": "prov:Entity",
+          "schema:name": "OpenAI APIハンドラー（更新）",
+          "schema:fileFormat": "application/x-rust",
+          "schema:fileLocation": "actors/rag-openai-component/src/lib.rs"
+        }
+      ]
     }
   ]
 }
