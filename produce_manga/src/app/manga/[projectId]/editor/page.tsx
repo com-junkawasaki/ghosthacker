@@ -61,6 +61,20 @@ export default function MangaEditorPage({
 }) {
   // Use XState machine for state management
   const { snapshot, send, actions, data: machineData, editor: machineEditor } = useMangaEditorMachine(params.projectId);
+  
+  // Subscribe to snapshot changes for debugging page selection
+  useEffect(() => {
+    const subscription = snapshot.subscribe((state) => {
+      if (state.context.data.selectedPageId !== machineData.selectedPageId) {
+        console.log('Machine selectedPageId changed:', {
+          old: machineData.selectedPageId,
+          new: state.context.data.selectedPageId,
+          state: state.value,
+        });
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [snapshot, machineData.selectedPageId]);
   const stageRef = useRef<KonvaStageType | null>(null);
   const prevStageRef = useRef<KonvaStageType | null>(null);
   const { undo, redo, canUndo, canRedo, saveState } = useUndoRedo(stageRef);
@@ -155,7 +169,8 @@ export default function MangaEditorPage({
   // Debug: Log selectedPageId changes
   useEffect(() => {
     console.log('selectedPageId changed in component:', selectedPageId);
-  }, [selectedPageId]);
+    console.log('Available pages:', pagesList?.map(p => ({ id: p.id, pageId: p.pageId })) || []);
+  }, [selectedPageId, pagesList]);
 
   // Fetch panels data for selected page using gRPC
   const { panels, loading: panelsLoading, error: panelsError, refetch: refetchPanels } = useGrpcPanels(selectedPageId);
@@ -632,42 +647,27 @@ export default function MangaEditorPage({
       };
 
       // Always show PageSidebar (even if no pages exist)
-      const pageSidebarProps = selectedPageId 
-        ? { 
-            pages: data.pages, 
-            selectedPageId, 
-            onPageSelect: (pageId: string) => {
-              console.log('Page selected in UI:', pageId);
-              console.log('Current selectedPageId before:', machineData.selectedPageId);
-              actions.selectPage(pageId);
-              // Check if the state was updated
-              setTimeout(() => {
-                console.log('Current selectedPageId after:', machineData.selectedPageId);
-              }, 100);
-            },
-            layerGroups,
-            layers, // Backward compatibility
-            onLayerToggle: handleLayerToggle,
-            onPageAdd: handlePageAdd,
-            pageAddLoading: createPageLoading,
-          }
-        : { 
-            pages: data.pages, 
-            onPageSelect: (pageId: string) => {
-              console.log('Page selected in UI:', pageId);
-              console.log('Current selectedPageId before:', machineData.selectedPageId);
-              actions.selectPage(pageId);
-              // Check if the state was updated
-              setTimeout(() => {
-                console.log('Current selectedPageId after:', machineData.selectedPageId);
-              }, 100);
-            },
-            layerGroups,
-            layers, // Backward compatibility
-            onLayerToggle: handleLayerToggle,
-            onPageAdd: handlePageAdd,
-            pageAddLoading: createPageLoading,
-          };
+      // Use the computed pages array, not data.pages
+      const pageSidebarProps = {
+        pages: pages, // Use the computed pages from useMemo
+        selectedPageId, 
+        onPageSelect: (pageId: string) => {
+          console.log('Page selected in UI:', pageId);
+          console.log('Current selectedPageId before:', machineData.selectedPageId);
+          console.log('Available pages:', pages.map(p => ({ id: p.id, pageId: p.pageId })));
+          console.log('Machine state before:', snapshot.value);
+          actions.selectPage(pageId);
+          // Use snapshot to check state immediately after action
+          // Note: snapshot is updated synchronously in XState v5
+          console.log('Machine state after:', snapshot.value);
+          console.log('SelectedPageId after (from snapshot):', snapshot.context.data.selectedPageId);
+        },
+        layerGroups,
+        layers, // Backward compatibility
+        onLayerToggle: handleLayerToggle,
+        onPageAdd: handlePageAdd,
+        pageAddLoading: createPageLoading,
+      };
       
       // Get selected page's konvaStageJson and dimensions
       const selectedPageData = pages.find((p) => p.id === selectedPageId || p.pageId === selectedPageId);

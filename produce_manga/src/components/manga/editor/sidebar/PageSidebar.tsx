@@ -55,14 +55,20 @@ export function PageSidebar({
         <div className="px-2 pb-2 max-h-64 overflow-y-auto">
           {pages.length > 0 ? (
             <div className="grid grid-cols-2 gap-2">
-              {pages.map((page) => (
-                <PageThumbnail
-                  key={page.id}
-                  page={page}
-                  isSelected={selectedPageId === page.id}
-                  onClick={() => onPageSelect?.(page.id)}
-                />
-              ))}
+              {pages.map((page) => {
+                const isSelected = selectedPageId === page.id;
+                return (
+                  <PageThumbnail
+                    key={page.id}
+                    page={page}
+                    isSelected={isSelected}
+                    onClick={() => {
+                      console.log('PageThumbnail clicked:', { pageId: page.id, selectedPageId });
+                      onPageSelect?.(page.id);
+                    }}
+                  />
+                );
+              })}
             </div>
           ) : (
             <div className="col-span-2 text-sm text-gray-500 p-4 text-center border border-dashed border-gray-300 rounded">
