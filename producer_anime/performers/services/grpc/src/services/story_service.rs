@@ -8,7 +8,7 @@ use crate::database::schema::Story as DatabaseStory;
 
 pub mod proto {
     pub mod common {
-        tonic::include_proto!("common");
+        tonic::include_proto!("producer.common");
     }
     tonic::include_proto!("producer");
 }
@@ -66,7 +66,8 @@ impl StoryService for StoryServiceImpl {
         let _req = request.into_inner();
         match get_all_stories().await {
             Ok(stories) => {
-                let proto_stories: Vec<Story> = stories
+                let stories_vec: Vec<DatabaseStory> = stories;
+                let proto_stories: Vec<Story> = stories_vec
                     .into_iter()
                     .map(database_to_proto)
                     .collect();

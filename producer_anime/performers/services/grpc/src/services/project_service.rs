@@ -10,7 +10,7 @@ use crate::database::schema::Project as DatabaseProject;
 pub mod proto {
     // commonモジュールを先に定義（producer.protoが依存）
     pub mod common {
-        tonic::include_proto!("common");
+        tonic::include_proto!("producer.common");
     }
     tonic::include_proto!("producer");
 }
@@ -76,7 +76,8 @@ impl ProjectService for ProjectServiceImpl {
         let _req = request.into_inner();
         match get_all_projects().await {
             Ok(projects) => {
-                let proto_projects: Vec<Project> = projects
+                let projects_vec: Vec<DatabaseProject> = projects;
+                let proto_projects: Vec<Project> = projects_vec
                     .into_iter()
                     .map(database_to_proto)
                     .collect();
@@ -120,7 +121,7 @@ impl ProjectService for ProjectServiceImpl {
         request: Request<UpdateProjectRequest>,
     ) -> Result<Response<UpdateProjectResponse>, Status> {
         let req = request.into_inner();
-        let mut project = get_project(&req.id).await
+        let mut project: DatabaseProject = get_project(&req.id).await
             .map_err(|e| Status::not_found(format!("Project not found: {}", e)))?
             .ok_or_else(|| Status::not_found(format!("Project not found: {}", req.id)))?;
 

@@ -18,10 +18,11 @@ use crate::database::schema::{
     Paragraph as DatabaseParagraph,
     TextNode as DatabaseTextNode,
 };
+use anyhow::Result as DatabaseResult;
 
 pub mod proto {
     pub mod common {
-        tonic::include_proto!("common");
+        tonic::include_proto!("producer.common");
     }
     tonic::include_proto!("producer");
 }
@@ -283,8 +284,9 @@ impl DocumentService for DocumentServiceImpl {
         };
 
         match paragraphs {
-            Ok(paragraphs) => {
-                let proto_paragraphs: Vec<Paragraph> = paragraphs
+            Ok(paragraphs_vec) => {
+                let paragraphs_vec: Vec<DatabaseParagraph> = paragraphs_vec;
+                let proto_paragraphs: Vec<Paragraph> = paragraphs_vec
                     .into_iter()
                     .map(database_to_proto_paragraph)
                     .collect();
@@ -327,7 +329,7 @@ impl DocumentService for DocumentServiceImpl {
         request: Request<UpdateParagraphRequest>,
     ) -> Result<Response<UpdateParagraphResponse>, Status> {
         let req = request.into_inner();
-        let mut paragraph = get_paragraph(&req.id).await
+        let mut paragraph: DatabaseParagraph = get_paragraph(&req.id).await
             .map_err(|e| Status::not_found(format!("Paragraph not found: {}", e)))?
             .ok_or_else(|| Status::not_found(format!("Paragraph not found: {}", req.id)))?;
 
@@ -397,7 +399,7 @@ impl DocumentService for DocumentServiceImpl {
         request: Request<UpdateTextNodeRequest>,
     ) -> Result<Response<UpdateTextNodeResponse>, Status> {
         let req = request.into_inner();
-        let mut text_node = get_text_node(&req.id).await
+        let mut text_node: DatabaseTextNode = get_text_node(&req.id).await
             .map_err(|e| Status::not_found(format!("Text node not found: {}", e)))?
             .ok_or_else(|| Status::not_found(format!("Text node not found: {}", req.id)))?;
 

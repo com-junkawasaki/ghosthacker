@@ -4,10 +4,12 @@ use serde_json::Value as JsonValue;
 
 use crate::graph::postgres::{get_client};
 use crate::graph::jsonld::JsonLdProcessor;
+use crate::graph::rag::SearchResult as DatabaseSearchResult;
 
 // GraphNodeとGraphEdgeはprotoファイルから生成されたものを使用
 type DatabaseGraphNode = producerv2_graphql::graph::postgres::GraphNode;
 type DatabaseGraphEdge = producerv2_graphql::graph::postgres::GraphEdge;
+type DatabaseVectorSearchResult = producerv2_graphql::graph::postgres::VectorSearchResult;
 
 pub mod proto {
     tonic::include_proto!("producer.graph");
@@ -158,7 +160,7 @@ impl GraphService for GraphServiceImpl {
         
         match client.update_node(&req.id, &node).await {
             Ok(_) => {
-                let updated_node = client.get_node(&req.id).await
+                let updated_node: DatabaseGraphNode = client.get_node(&req.id).await
                     .map_err(|e| Status::internal(format!("Failed to get updated node: {}", e)))?
                     .ok_or_else(|| Status::not_found("Node not found after update"))?;
                 Ok(Response::new(UpdateGraphNodeResponse {
@@ -232,7 +234,8 @@ impl GraphService for GraphServiceImpl {
         
         let limit = if req.limit > 0 { req.limit as usize } else { 10 };
         
-        match rag_service.semantic_search(&req.query, limit).await {
+        let search_results: Result<Vec<DatabaseSearchResult>, _> = rag_service.semantic_search(&req.query, limit).await;
+        match search_results {
             Ok(results) => {
                 let proto_results: Vec<VectorSearchResult> = results
                     .into_iter()
@@ -259,7 +262,8 @@ impl GraphService for GraphServiceImpl {
         
         let limit = if req.limit > 0 { req.limit as usize } else { 10 };
         
-        match client.vector_search(&req.query_vector, limit).await {
+        let vector_results: Result<Vec<DatabaseVectorSearchResult>, _> = client.vector_search(&req.query_vector, limit).await;
+        match vector_results {
             Ok(results) => {
                 let proto_results: Vec<VectorSearchResult> = results
                     .into_iter()
@@ -289,7 +293,7 @@ impl GraphService for GraphServiceImpl {
         match JsonLdProcessor::validate(&jsonld) {
             Ok(_) => Ok(Response::new(ValidateJsonLdResponse {
                 valid: true,
-                error: None,
+                error: None::<String>,
             })),
             Err(e) => Ok(Response::new(ValidateJsonLdResponse {
                 valid: false,

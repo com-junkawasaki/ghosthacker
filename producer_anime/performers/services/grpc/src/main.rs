@@ -9,6 +9,9 @@ use tonic::transport::Server;
 use tracing_subscriber;
 
 mod services;
+// lib.rsからモジュールをインポート
+#[path = "lib.rs"]
+mod lib;
 use services::{
     ProjectServiceImpl, StoryServiceImpl, ScriptServiceImpl, DocumentServiceImpl,
     GraphServiceImpl, GraphRagServiceImpl,

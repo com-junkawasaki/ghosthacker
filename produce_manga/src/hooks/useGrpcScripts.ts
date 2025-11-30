@@ -15,6 +15,7 @@ export function useGrpcScripts(projectId: string | undefined) {
   const [scripts, setScripts] = useState<Script[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     if (!projectId) {
@@ -50,8 +51,13 @@ export function useGrpcScripts(projectId: string | undefined) {
     return () => {
       cancelled = true;
     };
-  }, [projectId]);
+  }, [projectId, refreshKey]);
 
-  return { scripts, loading, error };
+  // Expose refetch function
+  const refetch = () => {
+    setRefreshKey(prev => prev + 1);
+  };
+
+  return { scripts, loading, error, refetch };
 }
 

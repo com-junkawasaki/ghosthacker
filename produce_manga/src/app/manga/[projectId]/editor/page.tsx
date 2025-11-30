@@ -21,6 +21,7 @@ import { useGrpcPages } from '@/hooks/useGrpcPages';
 import { useGrpcPanels } from '@/hooks/useGrpcPanels';
 import { useGrpcCreatePage } from '@/hooks/useGrpcCreatePage';
 import { useGrpcCreatePanel } from '@/hooks/useGrpcCreatePanel';
+import { mangaEditorServiceClient } from '@/lib/grpc/manga-editor';
 
 // Dynamically import CanvasArea to avoid SSR issues with Konva
 const CanvasArea = dynamic(
@@ -97,7 +98,7 @@ export default function MangaEditorPage({
   }, [project, projectError, send]);
 
   // Fetch scripts for the project using gRPC
-  const { scripts, loading: scriptsLoading, error: scriptsError } = useGrpcScripts(params.projectId);
+  const { scripts, loading: scriptsLoading, error: scriptsError, refetch: refetchScripts } = useGrpcScripts(params.projectId);
 
   // Send scripts loaded event to machine
   useEffect(() => {
@@ -162,12 +163,55 @@ export default function MangaEditorPage({
 
   // Handle page add
   const handlePageAdd = async () => {
-    if (!scriptId || !params.projectId) {
-      console.error('Cannot add page: scriptId or projectId is missing');
+    if (!params.projectId) {
+      console.error('Cannot add page: projectId is missing');
+      alert('プロジェクトIDがありません');
       return;
     }
 
     try {
+      let currentScriptId = scriptId;
+
+      // If no script exists, create one first
+      if (!currentScriptId) {
+        const scriptIdStr = `script_${Date.now()}`;
+        const newScript = await mangaEditorServiceClient.CreateScript({
+          projectId: params.projectId,
+          scriptId: scriptIdStr,
+          title: '新しいスクリプト',
+          pageCount: 0,
+          scriptData: JSON.stringify({}),
+        });
+        
+        currentScriptId = newScript.id || '';
+        
+        // Refetch scripts to update the list
+        await refetchScripts();
+        
+        // Wait a bit for scripts to be fetched, then update machine state
+        setTimeout(() => {
+          // Update machine state with new script
+          send({
+            type: 'SCRIPTS_LOADED',
+            scripts: [{
+              id: newScript.id || '',
+              projectId: newScript.projectId || '',
+              scriptId: newScript.scriptId || '',
+              title: newScript.title || '',
+              pageCount: newScript.pageCount || undefined,
+              createdAt: newScript.createdAt || '',
+              updatedAt: newScript.updatedAt || '',
+            }],
+          });
+          
+          // Select the new script
+          send({
+            type: 'SELECT_SCRIPT',
+            scriptId: currentScriptId,
+          });
+        }, 100);
+      }
+
       // Find the highest page number
       const maxPageNumber = pagesList.length > 0
         ? Math.max(...pagesList.map(p => p.pageNumber || 0))
@@ -175,20 +219,34 @@ export default function MangaEditorPage({
       
       const newPageNumber = maxPageNumber + 1;
       
-      await createPage({
+      console.log('Creating page with:', {
         projectId: params.projectId,
-        scriptId: scriptId,
+        scriptId: currentScriptId,
         pageId: `page_${newPageNumber}`,
         pageNumber: newPageNumber,
         width: 1200,
         height: 1800,
         pageType: 'default',
       });
+      
+      await createPage({
+        projectId: params.projectId,
+        scriptId: currentScriptId,
+        pageId: `page_${newPageNumber}`,
+        pageNumber: newPageNumber,
+        width: 1200,
+        height: 1800,
+        pageType: 'default',
+      });
+      
+      console.log('Page created successfully');
 
       // Refetch pages to update UI
       refetchPages();
     } catch (err) {
       console.error('Failed to create page:', err);
+      const errorMessage = err instanceof Error ? err.message : 'ページの作成に失敗しました';
+      alert(`エラー: ${errorMessage}`);
     }
   };
 
@@ -557,34 +615,6 @@ export default function MangaEditorPage({
       </div>
     ),
     success: (data: { pages: typeof pages; panels: typeof canvasPanels }) => {
-      // If no script exists, show message to generate story
-      if (!scriptId) {
-        return (
-          <div className="flex-1 flex items-center justify-center bg-gray-50">
-            <div className="text-center p-8 bg-white rounded-lg shadow">
-              <h2 className="text-xl font-semibold mb-4">ストーリーがまだ生成されていません</h2>
-              <p className="text-gray-600 mb-6">
-                右側のサイドバーから「ストーリーを生成」ボタンをクリックして、マンガのストーリーとページを生成してください。
-              </p>
-            </div>
-          </div>
-        );
-      }
-      
-      // If no pages exist, show message
-      if (data.pages.length === 0) {
-        return (
-          <div className="flex-1 flex items-center justify-center bg-gray-50">
-            <div className="text-center p-8 bg-white rounded-lg shadow">
-              <h2 className="text-xl font-semibold mb-4">ページがまだ生成されていません</h2>
-              <p className="text-gray-600 mb-6">
-                右側のサイドバーから「ストーリーを生成」ボタンをクリックして、マンガのページを生成してください。
-              </p>
-            </div>
-          </div>
-        );
-      }
-      
       // Handle layer visibility toggle
       const handleLayerToggle = (layerId: string, visible: boolean) => {
         // Update visibility in Konva stage
@@ -594,7 +624,7 @@ export default function MangaEditorPage({
         // This would require updating the stage JSON and calling a mutation
       };
 
-      // Always show PageSidebar and CanvasArea if pages exist
+      // Always show PageSidebar (even if no pages exist)
       const pageSidebarProps = selectedPageId 
         ? { 
             pages: data.pages, 
@@ -674,6 +704,49 @@ export default function MangaEditorPage({
         onStageClick: actions.clickStage,
       };
 
+      // If no script exists, show message but still show PageSidebar
+      if (!scriptId) {
+        return (
+          <>
+            <PageSidebar 
+              {...pageSidebarProps} 
+              onPageAdd={handlePageAdd}
+              pageAddLoading={createPageLoading}
+            />
+            <div className="flex-1 flex items-center justify-center bg-gray-50">
+              <div className="text-center p-8 bg-white rounded-lg shadow">
+                <h2 className="text-xl font-semibold mb-4">ストーリーがまだ生成されていません</h2>
+                <p className="text-gray-600 mb-6">
+                  右側のサイドバーから「ストーリーを生成」ボタンをクリックして、マンガのストーリーとページを生成してください。
+                </p>
+              </div>
+            </div>
+          </>
+        );
+      }
+      
+      // If no pages exist, show message but still show PageSidebar
+      if (data.pages.length === 0) {
+        return (
+          <>
+            <PageSidebar 
+              {...pageSidebarProps} 
+              onPageAdd={handlePageAdd}
+              pageAddLoading={createPageLoading}
+            />
+            <div className="flex-1 flex items-center justify-center bg-gray-50">
+              <div className="text-center p-8 bg-white rounded-lg shadow">
+                <h2 className="text-xl font-semibold mb-4">ページがまだ生成されていません</h2>
+                <p className="text-gray-600 mb-6">
+                  左側のサイドバーから「新しいページを追加」ボタンをクリックして、マンガのページを追加してください。
+                </p>
+              </div>
+            </div>
+          </>
+        );
+      }
+      
+      // Show PageSidebar and CanvasArea if pages exist
       return (
         <>
           <PageSidebar 
