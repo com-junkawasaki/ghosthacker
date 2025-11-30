@@ -239,16 +239,18 @@ export default function EPUBEditorPage() {
       const savedDocumentId = localStorage.getItem(`epub_document_${projectId}`);
       if (savedDocumentId) {
         try {
-          const result = await graphqlRequest<GetEpubDocumentQuery>(GetEpubDocumentDocument, {
-            variables: { id: savedDocumentId },
-          });
+          const response = await fetch(`/api/grpc/epub/${savedDocumentId}`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const result = await response.json();
 
           if (result.epubDocument) {
             const loadedDocument: EPUBDocument = {
               id: result.epubDocument.id,
               title: result.epubDocument.title,
-              metadata: result.epubDocument.metadata ?? null,
-              chapters: result.epubDocument.chapters ?? null,
+              metadata: result.epubDocument.metadata_id ?? null,
+              chapters: null,
               created_at: result.epubDocument.createdAt,
               updated_at: result.epubDocument.updatedAt,
             };

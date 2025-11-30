@@ -1,6 +1,6 @@
 /**
  * Query Editor Component
- * SPARQL/GraphQLクエリエディタコンポーネント
+ * SPARQL/gRPC Graph Queryエディタコンポーネント
  */
 
 'use client';

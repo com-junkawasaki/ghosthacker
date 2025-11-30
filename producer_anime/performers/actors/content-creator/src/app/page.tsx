@@ -265,7 +265,7 @@ export default function Home() {
               <ul className="list-disc list-inside text-yellow-900 space-y-1">
                 <li>RDF 1.2, RDFS, OWL 2</li>
                 <li>JSON-LD 1.1</li>
-                <li>GraphQL</li>
+                <li>gRPC</li>
                 <li>DoDAF 2.0</li>
                 <li>Dublin Core Metadata</li>
                 <li>EPUB 3.x, Kindle Format</li>

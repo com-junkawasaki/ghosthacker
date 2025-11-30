@@ -47,7 +47,7 @@ export async function exportEPUB(options: EPUBExportOptions): Promise<Blob> {
   // 各章の段落とテキストノードを取得
   const chapterContents = await Promise.all(
     chapters.map(async (chapter) => {
-      // TODO: 段落を取得するGraphQLクエリが必要
+      // TODO: 段落を取得するgRPC APIが必要
       // 現時点では簡易実装
       return {
         id: chapter.id,
