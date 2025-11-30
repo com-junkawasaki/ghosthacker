@@ -83,3 +83,59 @@ export async function GET(
   }
 }
 
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const { id } = params;
+    const body = await request.json();
+    const { label, properties, jsonld, vector } = body;
+    
+    if (!id) {
+      return NextResponse.json(
+        { error: 'Node ID is required' },
+        { status: 400 }
+      );
+    }
+    
+    if (!label || !properties || !jsonld) {
+      return NextResponse.json(
+        { error: 'label, properties, and jsonld are required' },
+        { status: 400 }
+      );
+    }
+
+    const grpcClient = getClient();
+    
+    return new Promise((resolve) => {
+      grpcClient.updateGraphNode(
+        {
+          id,
+          label,
+          properties: typeof properties === 'string' ? properties : JSON.stringify(properties),
+          jsonld: typeof jsonld === 'string' ? jsonld : JSON.stringify(jsonld),
+          vector: vector || [],
+        },
+        (error: any, response: any) => {
+          if (error) {
+            resolve(
+              NextResponse.json(
+                { error: error.message },
+                { status: 500 }
+              )
+            );
+          } else {
+            resolve(NextResponse.json(response));
+          }
+        }
+      );
+    });
+  } catch (error: any) {
+    return NextResponse.json(
+      { error: error.message || 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+

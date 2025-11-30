@@ -251,3 +251,29 @@ export async function deleteGraphEdge(edgeId: string): Promise<boolean> {
   return data.success === true;
 }
 
+/**
+ * グラフノードを更新
+ */
+export async function updateGraphNode(
+  id: string,
+  label: string,
+  properties: Record<string, any>,
+  jsonld: Record<string, any>,
+  vector?: number[]
+): Promise<void> {
+  const response = await fetch(`/api/grpc/graph/node/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      label,
+      properties: JSON.stringify(properties),
+      jsonld: JSON.stringify(jsonld),
+      vector: vector || [],
+    }),
+  });
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.error || `Failed to update graph node: ${response.statusText}`);
+  }
+}
+

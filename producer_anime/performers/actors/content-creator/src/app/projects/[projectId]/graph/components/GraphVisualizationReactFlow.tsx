@@ -31,29 +31,24 @@ import ReactFlow, {
   BackgroundVariant,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
-import { graphQuery, createGraphNode, createGraphEdge, deleteGraphEdge, getGraphNode } from '@/internal/grpc/services/graph_client';
+import { graphQuery, createGraphNode, createGraphEdge, deleteGraphEdge, getGraphNode, updateGraphNode } from '@/internal/grpc/services/graph_client';
 import ContextNode from './ContextNode';
 import ContextEdge from './ContextEdge';
+import StoryElementNode from './StoryElementNode';
+import StoryElementEdge from './StoryElementEdge';
+import StoryElementEditor from './StoryElementEditor';
+import StoryElementFAB from './StoryElementFAB';
+import StoryElementConnection from './StoryElementConnection';
 import ContextLayerBackground from './ContextLayerBackground';
 import { useForceDirectedLayout } from './useForceDirectedLayout';
+import { useStoryElementLayout } from './useStoryElementLayout';
+import { GraphNodeData, StoryElementNodeType, StoryElementEdgeType, ELEMENT_TYPE_LABELS } from './types';
 
 interface GraphVisualizationProps {
   projectId: string;
 }
 
-interface GraphNodeData {
-  label: string;
-  properties: Record<string, any>;
-  isContext?: boolean;
-  contextData?: {
-    version?: number;
-    prefixes?: Record<string, string>;
-  };
-  contextId?: string;
-  depth?: number;
-  parent?: string;
-  children?: string[];
-}
+// GraphNodeData is now imported from types.ts
 
 interface ContextLayer {
   contextNodeId: string;
@@ -66,17 +61,21 @@ type InteractionMode = 'normal' | 'addNode' | 'addEdge' | 'selectSource' | 'sele
 // カスタムノードタイプ
 const nodeTypes: NodeTypes = {
   context: ContextNode,
-  default: ContextNode,
+  storyElement: StoryElementNode,
+  default: StoryElementNode,
 };
 
 // カスタムエッジタイプ
 const edgeTypes: EdgeTypes = {
   context: ContextEdge,
+  storyElement: StoryElementEdge,
+  default: StoryElementEdge,
 };
 
 function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
   const [nodes, setNodes, onNodesChange] = useNodesState<Node<GraphNodeData>>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
+  const positionUpdateTimeoutRef = useRef<Map<string, NodeJS.Timeout>>(new Map());
   const [contextLayers, setContextLayers] = useState<ContextLayer[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -96,7 +95,10 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
     label: '',
     properties: '{}',
     jsonld: '{}',
+    nodeType: 'character' as StoryElementNodeType,
   });
+  const [editingNodeId, setEditingNodeId] = useState<string | null>(null);
+  const [editingLabel, setEditingLabel] = useState<string>('');
   const [edgeForm, setEdgeForm] = useState({
     label: '',
     properties: '{}',
@@ -104,6 +106,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
 
   const { fitView, getNodes, getEdges, getViewport } = useReactFlow();
   const { calculateLayout: calculateForceLayout } = useForceDirectedLayout();
+  const { calculateLayout: calculateStoryElementLayout } = useStoryElementLayout();
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Detect dark mode
@@ -321,16 +324,57 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
               }
             }
             
+            // Determine node type from properties or jsonld
+            const jsonld = properties.jsonld || {};
+            const isContext = jsonld['@type'] === 'gh:Context' || 
+                             properties.isContext === true ||
+                             jsonld['@type']?.includes('Context');
+            
+            let nodeType: StoryElementNodeType | undefined = properties.nodeType || jsonld.nodeType;
+            if (!nodeType && !isContext) {
+              // Infer node type from properties
+              if (properties.name || properties.role || properties.personality) {
+                nodeType = 'character';
+              } else if (properties.purpose || properties.targetLength) {
+                nodeType = 'beat';
+              } else if (properties.setting || properties.era || properties.rules) {
+                nodeType = 'worldview';
+              } else if (properties.startDate || properties.endDate) {
+                nodeType = 'timeline';
+              } else if (properties.location || properties.participants) {
+                nodeType = 'scene';
+              } else if (properties.type === 'event' || properties.description) {
+                nodeType = 'event';
+              } else if (properties.origin || properties.motivation) {
+                nodeType = 'background';
+              }
+            }
+            
+            // 保存された位置情報を復元
+            const savedPosition = properties.position || properties._position;
+            const position = savedPosition && typeof savedPosition === 'object' && 
+                           typeof savedPosition.x === 'number' && 
+                           typeof savedPosition.y === 'number'
+              ? { x: savedPosition.x, y: savedPosition.y }
+              : { 
+                  x: Math.random() * 400 + 100, 
+                  y: Math.random() * 300 + 100 
+                };
+            
             const node: Node<GraphNodeData> = {
               id: row.id,
-              type: 'default',
-              position: { 
-                x: Math.random() * 400 + 100, 
-                y: Math.random() * 300 + 100 
-              },
+              type: isContext ? 'context' : (nodeType ? 'storyElement' : 'default'),
+              position,
               data: {
                 label: row.label || '',
+                nodeType,
                 properties,
+                jsonld: jsonld,
+                isContext,
+                contextData: isContext ? {
+                  version: jsonld['@context']?.version || 1,
+                  prefixes: jsonld['@context']?.prefixes || {},
+                } : undefined,
               },
             };
             parsedNodes.push(node);
@@ -342,13 +386,43 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       if (Array.isArray(edgesResult)) {
         edgesResult.forEach((row: any) => {
           if (row.id && row.source_id && row.target_id) {
+            const edgeProperties = typeof row.properties === 'string'
+              ? JSON.parse(row.properties)
+              : (row.properties || {});
+            
+            // Determine edge type from properties or label
+            let edgeType: StoryElementEdgeType = edgeProperties.edgeType || 'relatesTo';
+            if (!edgeProperties.edgeType) {
+              const label = (row.label || '').toLowerCase();
+              if (label.includes('contains') || label === 'hasChild') {
+                edgeType = 'contains';
+              } else if (label.includes('belongs') || label === 'usesContext') {
+                edgeType = 'belongsTo';
+              } else if (label.includes('appears') || label.includes('participates')) {
+                edgeType = 'appearsIn';
+              } else if (label.includes('influence')) {
+                edgeType = 'influences';
+              } else if (label.includes('precedes') || label.includes('before')) {
+                edgeType = 'precedes';
+              } else if (label.includes('causes') || label.includes('leads')) {
+                edgeType = 'causes';
+              } else if (label.includes('conflict')) {
+                edgeType = 'conflictsWith';
+              }
+            }
+            
             parsedEdges.push({
               id: row.id,
               source: row.source_id,
               target: row.target_id,
               label: row.label || '',
-              type: 'default',
+              type: edgeType ? 'storyElement' : 'default',
               animated: false,
+              data: {
+                label: row.label || '',
+                edgeType,
+                properties: edgeProperties,
+              },
             });
           }
         });
@@ -383,37 +457,112 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
     loadGraphData();
   }, [projectId]);
 
+  // ノード位置変更を検出して保存
+  const handleNodesChange = useCallback((changes: any[]) => {
+    // React FlowのonNodesChangeを呼び出す
+    onNodesChange(changes);
+
+    // 位置変更を検出（ドラッグ終了時のみ保存）
+    changes.forEach((change) => {
+      if (change.type === 'position' && change.position && change.id && !change.dragging) {
+        const node = nodes.find(n => n.id === change.id);
+        if (!node) return;
+
+        // 位置が実際に変更されたか確認
+        const currentPosition = node.position;
+        const newPosition = change.position;
+        if (currentPosition.x === newPosition.x && currentPosition.y === newPosition.y) {
+          return; // 位置が変更されていない場合はスキップ
+        }
+
+        // 既存のタイムアウトをクリア
+        const existingTimeout = positionUpdateTimeoutRef.current.get(change.id);
+        if (existingTimeout) {
+          clearTimeout(existingTimeout);
+        }
+
+        // デバウンス: 500ms後に保存
+        const timeout = setTimeout(async () => {
+          try {
+            const updatedProperties = {
+              ...node.data.properties,
+              position: newPosition,
+            };
+
+            await updateGraphNode(
+              change.id,
+              node.data.label,
+              updatedProperties,
+              node.data.jsonld || {}
+            );
+
+            positionUpdateTimeoutRef.current.delete(change.id);
+          } catch (err) {
+            console.error('Failed to save node position:', err);
+            positionUpdateTimeoutRef.current.delete(change.id);
+          }
+        }, 500);
+
+        positionUpdateTimeoutRef.current.set(change.id, timeout);
+      }
+    });
+  }, [nodes, onNodesChange]);
+
+  // クリーンアップ
+  useEffect(() => {
+    return () => {
+      positionUpdateTimeoutRef.current.forEach((timeout) => {
+        clearTimeout(timeout);
+      });
+      positionUpdateTimeoutRef.current.clear();
+    };
+  }, []);
+
   // React Flowのイベントハンドラ
   const onConnect = useCallback(
     (params: Connection) => {
       if (params.source && params.target) {
-        const newEdge = {
-          ...params,
-          id: `edge-${params.source}-${params.target}`,
-          label: edgeForm.label || 'relatedTo',
-          type: 'default',
-        };
-        setEdges((eds) => addEdge(newEdge, eds));
-        
-        // データベースに保存
-        createGraphEdge(
-          params.source!,
-          params.target!,
-          edgeForm.label || 'relatedTo',
-          JSON.parse(edgeForm.properties || '{}')
-        ).catch(err => {
-          console.error('Failed to create edge:', err);
-        });
+        // 接続UIを表示（StoryElementConnectionコンポーネントで処理）
+        setEdgeSource(params.source);
+        setInteractionMode('selectTarget');
       }
     },
-    [edgeForm, setEdges]
+    [setEdges]
   );
 
+  const handleConnectWithType = useCallback(async (
+    sourceId: string,
+    targetId: string,
+    edgeType: StoryElementEdgeType,
+    label: string
+  ) => {
+    try {
+      const properties = {
+        edgeType,
+        ...JSON.parse(edgeForm.properties || '{}'),
+      };
+      
+      await createGraphEdge(sourceId, targetId, label, properties);
+      await loadGraphData();
+      setEdgeSource(null);
+      setInteractionMode('normal');
+      setSelectedNode(null);
+    } catch (err) {
+      console.error('Failed to create edge:', err);
+      setError(err instanceof Error ? err.message : 'Failed to create edge');
+    }
+  }, [edgeForm.properties, loadGraphData]);
+
   const onNodeClick = useCallback((_event: React.MouseEvent, node: Node<GraphNodeData>) => {
-    setSelectedNode(node.id);
-    setSelectedEdge(null);
-    setSidePanelOpen(true);
-  }, []);
+    if (interactionMode === 'selectTarget' && edgeSource) {
+      // ターゲットノード選択モード
+      handleConnectWithType(edgeSource, node.id, 'relatesTo', 'relatesTo');
+    } else {
+      setSelectedNode(node.id);
+      setSelectedEdge(null);
+      setSidePanelOpen(true);
+    }
+  }, [interactionMode, edgeSource, handleConnectWithType]);
 
   const onEdgeClick = useCallback((_event: React.MouseEvent, edge: Edge) => {
     setSelectedEdge(edge.id);
@@ -436,6 +585,45 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       nodeId: node.id,
     });
   }, []);
+
+  const handleUpdateNode = async (id: string, data: Partial<GraphNodeData>) => {
+    try {
+      const node = nodes.find(n => n.id === id);
+      if (!node) return;
+
+      const updatedProperties = { ...node.data.properties, ...data.properties };
+      const updatedJsonld = { ...node.data.jsonld, ...data.jsonld };
+
+      await createGraphNode(
+        data.label || node.data.label,
+        updatedProperties,
+        updatedJsonld
+      );
+
+      // Update local state
+      setNodes((nds) =>
+        nds.map((n) => {
+          if (n.id === id) {
+            return {
+              ...n,
+              data: {
+                ...n.data,
+                ...data,
+                properties: updatedProperties,
+                jsonld: updatedJsonld,
+              },
+            };
+          }
+          return n;
+        })
+      );
+
+      await loadGraphData();
+    } catch (err) {
+      console.error('Failed to update node:', err);
+      setError(err instanceof Error ? err.message : 'Failed to update node');
+    }
+  };
 
   const handleCreateNode = async () => {
     try {
@@ -479,12 +667,79 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
     }
   };
 
+  const handleNodeTypeSelect = async (type: StoryElementNodeType) => {
+    try {
+      const defaultProperties: Record<string, any> = {};
+      
+      // タイプに応じたデフォルトプロパティを設定
+      switch (type) {
+        case 'character':
+          defaultProperties.name = '';
+          defaultProperties.role = '';
+          break;
+        case 'beat':
+          defaultProperties.purpose = 'setup';
+          defaultProperties.targetLength = 200;
+          break;
+        case 'worldview':
+          defaultProperties.setting = '';
+          defaultProperties.era = '';
+          break;
+        case 'timeline':
+          defaultProperties.startDate = '';
+          defaultProperties.endDate = '';
+          break;
+        case 'scene':
+          defaultProperties.location = '';
+          defaultProperties.participants = [];
+          break;
+        case 'event':
+          defaultProperties.type = '';
+          defaultProperties.description = '';
+          break;
+        case 'background':
+          defaultProperties.origin = '';
+          defaultProperties.motivation = '';
+          break;
+      }
+
+      const nodeId = await createGraphNode(
+        `New ${ELEMENT_TYPE_LABELS[type]}`,
+        { ...defaultProperties, nodeType: type },
+        { nodeType: type }
+      );
+
+      await loadGraphData();
+      setSelectedNode(nodeId);
+      setSidePanelOpen(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to create node');
+    }
+  };
+
   // ドラッグ&ドロップ階層編集
   const onNodeDragStart = useCallback((_event: React.MouseEvent, node: Node<GraphNodeData>) => {
     setDraggedNodeId(node.id);
   }, []);
 
   const onNodeDragStop = useCallback(async (_event: React.MouseEvent, node: Node<GraphNodeData>) => {
+    // ドラッグ終了時に位置を保存
+    try {
+      const updatedProperties = {
+        ...node.data.properties,
+        position: node.position,
+      };
+
+      await updateGraphNode(
+        node.id,
+        node.data.label,
+        updatedProperties,
+        node.data.jsonld || {}
+      );
+    } catch (err) {
+      console.error('Failed to save node position after drag:', err);
+    }
+
     if (!draggedNodeId || draggedNodeId === node.id) {
       setDraggedNodeId(null);
       return;
@@ -574,8 +829,17 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       const width = containerRef.current.offsetWidth || 800;
       const height = containerRef.current.offsetHeight || 600;
       
-      const layoutedNodes = calculateForceLayout(
+      // まず要素タイプ別レイアウトを適用
+      const typeLayoutedNodes = calculateStoryElementLayout(
         nodes,
+        edges,
+        contextLayers,
+        { width, height }
+      );
+      
+      // その後、Force-directed layoutで微調整
+      const layoutedNodes = calculateForceLayout(
+        typeLayoutedNodes,
         edges,
         contextLayers,
         { width, height }
@@ -587,7 +851,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         fitView({ padding: 0.2 });
       }, 100);
     }
-  }, [showHierarchy, nodes.length, edges.length, contextLayers.length, calculateForceLayout, fitView, setNodes]);
+  }, [showHierarchy, nodes.length, edges.length, contextLayers.length, calculateStoryElementLayout, calculateForceLayout, fitView, setNodes]);
 
   if (loading) {
     return (
@@ -615,10 +879,14 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       <ReactFlow
         nodes={nodes}
         edges={edges}
-        onNodesChange={onNodesChange}
+        onNodesChange={handleNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         onNodeClick={onNodeClick}
+        onNodeDoubleClick={(_event, node) => {
+          setEditingNodeId(node.id);
+          setEditingLabel(node.data.label);
+        }}
         onEdgeClick={onEdgeClick}
         onPaneContextMenu={onPaneContextMenu}
         onNodeContextMenu={onNodeContextMenu}
@@ -641,6 +909,20 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
           <ContextLayerBackground layers={contextLayers} isDarkMode={isDarkMode} />
         )}
       </ReactFlow>
+
+      {/* Story Element Connection UI */}
+      {interactionMode === 'selectSource' || interactionMode === 'selectTarget' ? (
+        <StoryElementConnection
+          sourceId={edgeSource}
+          targetId={interactionMode === 'selectTarget' && selectedNode ? selectedNode : null}
+          onConnect={handleConnectWithType}
+          onCancel={() => {
+            setInteractionMode('normal');
+            setEdgeSource(null);
+            setSelectedNode(null);
+          }}
+        />
+      ) : null}
 
       {/* Toolbar */}
       <Panel position="top-left" className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-2 m-2">
@@ -691,107 +973,61 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         </div>
       </Panel>
 
-      {/* FAB */}
-      <Panel position="bottom-right" className="m-4">
-        <button
-          onClick={() => setFabOpen(!fabOpen)}
-          className="w-14 h-14 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 flex items-center justify-center text-2xl transition-transform"
-          style={{ transform: fabOpen ? 'rotate(45deg)' : 'rotate(0deg)' }}
-        >
-          +
-        </button>
-        {fabOpen && (
-          <div className="absolute bottom-16 right-0 flex flex-col gap-2">
-            <button
-              onClick={() => {
-                setFabOpen(false);
-                setInteractionMode('addNode');
-                setSidePanelOpen(true);
-              }}
-              className="w-12 h-12 bg-green-600 text-white rounded-full shadow-lg hover:bg-green-700 flex items-center justify-center"
-              title="Add Node"
-            >
-              <span className="text-xl">○</span>
-            </button>
-            <button
-              onClick={() => {
-                setFabOpen(false);
-                setInteractionMode('selectSource');
-              }}
-              className="w-12 h-12 bg-purple-600 text-white rounded-full shadow-lg hover:bg-purple-700 flex items-center justify-center"
-              title="Add Edge"
-            >
-              <span className="text-xl">→</span>
-            </button>
-          </div>
-        )}
-      </Panel>
+      {/* Story Element FAB */}
+      <StoryElementFAB
+        isOpen={fabOpen}
+        onToggle={() => setFabOpen(!fabOpen)}
+        onSelectType={handleNodeTypeSelect}
+      />
 
-      {/* Side Panel */}
+      {/* Side Panel - Story Element Editor */}
       {sidePanelOpen && (
-        <Panel position="top-right" className="w-80 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-4 m-4">
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-              {selectedNodeData ? 'Edit Node' : 'Create Node'}
-            </h3>
-            <button
-              onClick={() => {
-                setSidePanelOpen(false);
-                setSelectedNode(null);
-              }}
-              className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-            >
-              ✕
-            </button>
-          </div>
-          <form onSubmit={(e) => { e.preventDefault(); handleCreateNode(); }}>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Label *</label>
-              <input
-                type="text"
-                value={nodeForm.label}
-                onChange={(e) => setNodeForm({ ...nodeForm, label: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Properties (JSON)</label>
-              <textarea
-                value={nodeForm.properties}
-                onChange={(e) => setNodeForm({ ...nodeForm, properties: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg font-mono text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-                rows={4}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">JSON-LD (JSON)</label>
-              <textarea
-                value={nodeForm.jsonld}
-                onChange={(e) => setNodeForm({ ...nodeForm, jsonld: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg font-mono text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-                rows={4}
-                required
-              />
-            </div>
-            <div className="flex justify-end space-x-2">
-              <button
-                type="button"
-                onClick={() => setSidePanelOpen(false)}
-                className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-              >
-                {selectedNodeData ? 'Update Node' : 'Create Node'}
-              </button>
-            </div>
-          </form>
-        </Panel>
+        <div className="absolute top-0 right-0 w-96 h-full z-10">
+          <StoryElementEditor
+            node={selectedNodeData ? { id: selectedNodeData.id, data: selectedNodeData.data } : null}
+            onSave={handleUpdateNode}
+            onClose={() => {
+              setSidePanelOpen(false);
+              setSelectedNode(null);
+            }}
+          />
+        </div>
+      )}
+
+      {/* Inline Label Editor */}
+      {editingNodeId && (
+        <div
+          className="fixed bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-2 z-50"
+          style={{
+            left: nodes.find(n => n.id === editingNodeId)?.position.x || 0,
+            top: (nodes.find(n => n.id === editingNodeId)?.position.y || 0) - 40,
+          }}
+        >
+          <input
+            type="text"
+            value={editingLabel}
+            onChange={(e) => setEditingLabel(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleUpdateNode(editingNodeId, { label: editingLabel });
+                setEditingNodeId(null);
+                setEditingLabel('');
+              } else if (e.key === 'Escape') {
+                setEditingNodeId(null);
+                setEditingLabel('');
+              }
+            }}
+            onBlur={() => {
+              if (editingLabel) {
+                handleUpdateNode(editingNodeId, { label: editingLabel });
+              }
+              setEditingNodeId(null);
+              setEditingLabel('');
+            }}
+            autoFocus
+            className="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          />
+        </div>
       )}
 
       {/* Context Menu */}
