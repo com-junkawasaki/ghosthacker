@@ -32,6 +32,8 @@ export interface VectorSearchResult {
  * グラフクエリを実行
  */
 export async function graphQuery(query: string): Promise<any> {
+  console.log('[graph_client] graphQuery: Starting request', { query: query.substring(0, 100) });
+  
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 10000); // 10秒でタイムアウト
   
@@ -45,25 +47,67 @@ export async function graphQuery(query: string): Promise<any> {
     
     clearTimeout(timeoutId);
     
+    console.log('[graph_client] graphQuery: Response status:', response.status, response.statusText);
+    
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.error || `Graph query failed: ${response.statusText}`);
+      const errorText = await response.text();
+      console.error('[graph_client] graphQuery: Error response:', {
+        status: response.status,
+        statusText: response.statusText,
+        body: errorText,
+      });
+      
+      let errorMessage = `Graph query failed: ${response.statusText}`;
+      try {
+        const errorData = JSON.parse(errorText);
+        errorMessage = errorData.error || errorMessage;
+        console.error('[graph_client] graphQuery: Parsed error data:', errorData);
+      } catch (e) {
+        console.error('[graph_client] graphQuery: Could not parse error response as JSON');
+      }
+      
+      throw new Error(errorMessage);
     }
     
     const data = await response.json();
+    console.log('[graph_client] graphQuery: Success response:', {
+      hasResult: !!data.result,
+      hasResultJson: !!data.resultJson,
+      hasResult_json: !!data.result_json,
+      dataKeys: Object.keys(data),
+    });
+    
     // API Routeは { result: "..." } を返す（gRPC GraphQueryResponseのresultフィールド）
     const resultJson = data.result || data.resultJson || data.result_json;
     if (typeof resultJson === 'string' && resultJson.trim()) {
       try {
-        return JSON.parse(resultJson);
+        const parsed = JSON.parse(resultJson);
+        console.log('[graph_client] graphQuery: Parsed result:', {
+          isArray: Array.isArray(parsed),
+          length: Array.isArray(parsed) ? parsed.length : undefined,
+        });
+        return parsed;
       } catch (e) {
+        console.warn('[graph_client] graphQuery: JSON parse failed, returning string:', e);
         // JSONパースに失敗した場合は文字列のまま返す
         return resultJson;
       }
     }
+    
+    console.log('[graph_client] graphQuery: Returning resultJson or data:', {
+      resultJson: resultJson ? typeof resultJson : null,
+      data: data ? typeof data : null,
+    });
+    
     return resultJson || data;
   } catch (error: any) {
     clearTimeout(timeoutId);
+    console.error('[graph_client] graphQuery: Exception caught:', {
+      error: error,
+      errorMessage: error.message,
+      errorName: error.name,
+      errorStack: error.stack,
+    });
     if (error.name === 'AbortError') {
       throw new Error('Request timeout: Graph query took too long (10s)');
     }
@@ -95,21 +139,64 @@ export async function createGraphNode(
   jsonld: Record<string, any>,
   vector?: number[]
 ): Promise<string> {
-  const response = await fetch('/api/grpc/graph/node', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      label,
-      properties: JSON.stringify(properties),
-      jsonld: JSON.stringify(jsonld),
-      vector: vector || [],
-    }),
+  console.log('[graph_client] createGraphNode: Starting request', {
+    label,
+    properties,
+    jsonld,
+    hasVector: !!vector,
   });
-  if (!response.ok) {
-    throw new Error(`Failed to create graph node: ${response.statusText}`);
+
+  const requestBody = {
+    label,
+    properties: JSON.stringify(properties),
+    jsonld: JSON.stringify(jsonld),
+    vector: vector || [],
+  };
+
+  console.log('[graph_client] createGraphNode: Request body:', requestBody);
+
+  try {
+    const response = await fetch('/api/grpc/graph/node', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestBody),
+    });
+
+    console.log('[graph_client] createGraphNode: Response status:', response.status, response.statusText);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('[graph_client] createGraphNode: Error response:', {
+        status: response.status,
+        statusText: response.statusText,
+        body: errorText,
+      });
+      
+      let errorMessage = `Failed to create graph node: ${response.statusText}`;
+      try {
+        const errorData = JSON.parse(errorText);
+        errorMessage = errorData.error || errorMessage;
+        console.error('[graph_client] createGraphNode: Parsed error data:', errorData);
+      } catch (e) {
+        console.error('[graph_client] createGraphNode: Could not parse error response as JSON');
+      }
+      
+      throw new Error(errorMessage);
+    }
+
+    const data = await response.json();
+    console.log('[graph_client] createGraphNode: Success response:', data);
+    
+    if (!data.id) {
+      console.error('[graph_client] createGraphNode: No id in response:', data);
+      throw new Error('レスポンスにノードIDが含まれていません');
+    }
+
+    return data.id;
+  } catch (error) {
+    console.error('[graph_client] createGraphNode: Exception caught:', error);
+    throw error;
   }
-  const data = await response.json();
-  return data.id;
 }
 
 /**

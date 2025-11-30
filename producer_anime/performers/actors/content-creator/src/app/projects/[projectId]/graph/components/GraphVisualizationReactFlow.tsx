@@ -173,6 +173,13 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
     edges: Edge[]
   ): { nodes: Node<GraphNodeData>[]; contextLayers: ContextLayer[] } => {
     const contextNodes = nodes.filter(n => n.data.isContext);
+    console.log('[GraphVisualizationReactFlow] buildHierarchy: Starting', {
+      totalNodes: nodes.length,
+      contextNodesCount: contextNodes.length,
+      contextNodeIds: contextNodes.map(n => ({ id: n.id, label: n.data.label })),
+      edgesCount: edges.length,
+    });
+    
     const nodeMap = new Map<string, Node<GraphNodeData>>();
     nodes.forEach(n => {
       nodeMap.set(n.id, { ...n, data: { ...n.data, children: [], depth: 0 } });
@@ -278,13 +285,22 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         }
       });
       
-      return {
+      const layer = {
         contextNodeId: contextNode.id,
         containedNodeIds: Array.from(containedNodeIds),
         bounds: { minX: 0, minY: 0, maxX: 0, maxY: 0 },
         visible: true,
         order: index,
       };
+      
+      console.log('[GraphVisualizationReactFlow] buildHierarchy: Created layer', {
+        contextNodeId: layer.contextNodeId,
+        contextNodeLabel: contextNode.data.label,
+        containedNodeIdsCount: layer.containedNodeIds.length,
+        containedNodeIds: layer.containedNodeIds.slice(0, 5), // 最初の5つだけ表示
+      });
+      
+      return layer;
     });
 
     // Context IDsを各ノードに設定（複数のコンテクストレイヤーへの所属をサポート）
@@ -352,14 +368,27 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
   const loadGraphData = async () => {
     setLoading(true);
     setError(null);
+    console.log('[GraphVisualizationReactFlow] loadGraphData: Starting...', { projectId });
+    
     try {
       // Load nodes
       const nodesQuery = 'SELECT id, label, properties, jsonld FROM graph_nodes LIMIT 100';
+      console.log('[GraphVisualizationReactFlow] loadGraphData: Executing nodes query:', nodesQuery);
       const nodesResult = await graphQuery(nodesQuery) as any;
+      console.log('[GraphVisualizationReactFlow] loadGraphData: Nodes query result:', {
+        isArray: Array.isArray(nodesResult),
+        length: Array.isArray(nodesResult) ? nodesResult.length : 0,
+        firstNode: Array.isArray(nodesResult) && nodesResult.length > 0 ? nodesResult[0] : null,
+      });
       
       // Load edges
       const edgesQuery = 'SELECT id, source_id, target_id, label, properties FROM graph_edges LIMIT 200';
+      console.log('[GraphVisualizationReactFlow] loadGraphData: Executing edges query:', edgesQuery);
       const edgesResult = await graphQuery(edgesQuery) as any;
+      console.log('[GraphVisualizationReactFlow] loadGraphData: Edges query result:', {
+        isArray: Array.isArray(edgesResult),
+        length: Array.isArray(edgesResult) ? edgesResult.length : 0,
+      });
       
       const parsedNodes: Node<GraphNodeData>[] = [];
       const parsedEdges: Edge[] = [];
@@ -392,6 +421,17 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
               properties.isContext === true ||
               (typeof jsonld['@type'] === 'string' && jsonld['@type'].includes('Context')) ||
               (jsonld['@context'] && typeof jsonld['@context'] === 'object');
+            
+            // デバッグログ: コンテクストノードの検出
+            if (isContext) {
+              console.log('[GraphVisualizationReactFlow] loadGraphData: Context node detected', {
+                nodeId: row.id,
+                label: row.label,
+                jsonldType: jsonld['@type'],
+                propertiesIsContext: properties.isContext,
+                hasContext: !!jsonld['@context'],
+              });
+            }
             
             let nodeType: StoryElementNodeType | undefined = properties.nodeType || jsonld.nodeType;
             if (!nodeType && !isContext) {
@@ -494,8 +534,23 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       }
       
       // Context検出と階層構築
+      console.log('[GraphVisualizationReactFlow] loadGraphData: Analyzing context nodes', {
+        totalNodes: parsedNodes.length,
+        contextNodesCount: parsedNodes.filter(n => n.data.isContext).length,
+        contextNodeIds: parsedNodes.filter(n => n.data.isContext).map(n => ({ id: n.id, label: n.data.label })),
+      });
+      
       const nodesWithContext = analyzeContextNodes(parsedNodes);
       const { nodes: nodesWithHierarchy, contextLayers: builtLayers } = buildHierarchy(nodesWithContext, parsedEdges);
+      
+      console.log('[GraphVisualizationReactFlow] loadGraphData: Built context layers', {
+        layersCount: builtLayers.length,
+        layers: builtLayers.map(l => ({
+          contextNodeId: l.contextNodeId,
+          label: nodesWithHierarchy.find(n => n.id === l.contextNodeId)?.data.label,
+          containedNodeIds: l.containedNodeIds.length,
+        })),
+      });
       
       // Context検出後にエッジタイプを設定
       const updatedEdges = parsedEdges.map(edge => {
@@ -512,6 +567,12 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       setContextLayers(builtLayers);
       setLoading(false);
     } catch (err) {
+      console.error('[GraphVisualizationReactFlow] loadGraphData: Error caught', {
+        error: err,
+        errorMessage: err instanceof Error ? err.message : String(err),
+        errorStack: err instanceof Error ? err.stack : undefined,
+        errorName: err instanceof Error ? err.name : undefined,
+      });
       const appError = classifyError(err);
       logError(appError, 'GraphVisualizationReactFlow.loadGraphData');
       setError(formatErrorForDisplay(appError));

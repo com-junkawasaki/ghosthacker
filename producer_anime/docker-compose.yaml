@@ -40,6 +40,30 @@ services:
       timeout: 5s
       retries: 5
 
+  graphql:
+    build:
+      context: .
+      dockerfile: Dockerfile.graphql
+    container_name: producerv2-graphql
+    ports:
+      - "8080:8080"
+    environment:
+      # PostgreSQL Database
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
+      RUST_LOG: debug
+      
+      # OpenAI API (for embeddings and Graph RAG)
+      OPENAI_API_KEY: sk-placeholder-openai-api-key
+    command: ["/app/producerv2-graphql"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   app:
     build:
       context: .
@@ -58,6 +82,10 @@ services:
       # gRPC API
       NEXT_PUBLIC_GRPC_API_URL: http://localhost:50051
       GRPC_API_URL: grpc:50051
+      
+      # GraphQL API
+      NEXT_PUBLIC_GRAPHQL_API_URL: http://localhost:8080/graphql
+      GRAPHQL_API_URL: http://graphql:8080/graphql
       
       # Database
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
@@ -86,6 +114,7 @@ services:
     depends_on:
       - postgres
       - grpc
+      - graphql
 
 volumes:
   postgres-data:

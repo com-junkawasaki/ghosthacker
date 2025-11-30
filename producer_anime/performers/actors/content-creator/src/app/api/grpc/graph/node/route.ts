@@ -48,21 +48,38 @@ function getClient() {
 }
 
 export async function POST(request: NextRequest) {
+  console.log('[API] POST /api/grpc/graph/node: Request received');
+  
   try {
     const body = await request.json();
+    console.log('[API] POST /api/grpc/graph/node: Request body:', {
+      label: body.label,
+      hasProperties: !!body.properties,
+      hasJsonld: !!body.jsonld,
+      hasVector: !!body.vector,
+    });
+    
     const { label, properties, jsonld, vector } = body;
     
     if (!label || !properties || !jsonld) {
+      console.error('[API] POST /api/grpc/graph/node: Missing required fields', {
+        hasLabel: !!label,
+        hasProperties: !!properties,
+        hasJsonld: !!jsonld,
+      });
       return NextResponse.json(
         { error: 'label, properties, and jsonld are required' },
         { status: 400 }
       );
     }
 
+    console.log('[API] POST /api/grpc/graph/node: Getting gRPC client, URL:', GRPC_API_URL);
     const grpcClient = getClient();
+    console.log('[API] POST /api/grpc/graph/node: gRPC client obtained');
     
     return new Promise<NextResponse>((resolve) => {
       const timeoutId = setTimeout(() => {
+        console.error('[API] POST /api/grpc/graph/node: Request timeout after 30s');
         resolve(
           NextResponse.json(
             { error: 'gRPC request timeout: The graph service did not respond in time' },
@@ -71,22 +88,34 @@ export async function POST(request: NextRequest) {
         );
       }, 30000); // 30秒タイムアウト
 
+      const grpcRequest = {
+        label,
+        properties: typeof properties === 'string' ? properties : JSON.stringify(properties),
+        jsonld: typeof jsonld === 'string' ? jsonld : JSON.stringify(jsonld),
+        vector: vector || [],
+      };
+
+      console.log('[API] POST /api/grpc/graph/node: Calling gRPC createGraphNode with:', {
+        label: grpcRequest.label,
+        propertiesLength: grpcRequest.properties.length,
+        jsonldLength: grpcRequest.jsonld.length,
+        vectorLength: grpcRequest.vector.length,
+      });
+
       grpcClient.createGraphNode(
-        {
-          label,
-          properties: typeof properties === 'string' ? properties : JSON.stringify(properties),
-          jsonld: typeof jsonld === 'string' ? jsonld : JSON.stringify(jsonld),
-          vector: vector || [],
-        },
+        grpcRequest,
         (error: any, response: any) => {
           clearTimeout(timeoutId);
           if (error) {
-            console.error('gRPC createGraphNode error:', {
+            console.error('[API] POST /api/grpc/graph/node: gRPC error:', {
               code: error.code,
               message: error.message,
               details: error.details,
               grpcUrl: GRPC_API_URL,
+              stack: error.stack,
             });
+            const appError = classifyError(error);
+            logError(appError, 'CreateGraphNode.createGraphNode');
             const statusCode = error.code === grpc.status.UNAVAILABLE ? 503 : 500;
             resolve(
               NextResponse.json(
@@ -99,12 +128,22 @@ export async function POST(request: NextRequest) {
               )
             );
           } else {
+            console.log('[API] POST /api/grpc/graph/node: Success response:', {
+              id: response?.id,
+              hasId: !!response?.id,
+              responseKeys: response ? Object.keys(response) : [],
+            });
             resolve(NextResponse.json(response));
           }
         }
       );
     });
   } catch (error: any) {
+    console.error('[API] POST /api/grpc/graph/node: Exception caught:', {
+      message: error.message,
+      stack: error.stack,
+      name: error.name,
+    });
     return NextResponse.json(
       { error: error.message || 'Internal server error' },
       { status: 500 }

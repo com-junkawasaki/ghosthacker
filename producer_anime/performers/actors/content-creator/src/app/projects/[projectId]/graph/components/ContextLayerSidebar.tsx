@@ -160,6 +160,11 @@ export default function ContextLayerSidebar({
     setLoading(true);
     setError(null);
     
+    console.log('[ContextLayerSidebar] createNewLayer: Starting...', {
+      currentLayersCount: contextLayers.length,
+      projectId,
+    });
+    
     try {
       const label = `Context Layer ${contextLayers.length + 1}`;
       const jsonld = {
@@ -169,35 +174,50 @@ export default function ContextLayerSidebar({
         '@type': 'gh:Context',
       };
 
+      console.log('[ContextLayerSidebar] createNewLayer: Creating node with:', {
+        label,
+        properties: { isContext: true },
+        jsonld,
+      });
+
       const nodeId = await createGraphNode(
         label,
         { isContext: true },
         jsonld
       );
 
+      console.log('[ContextLayerSidebar] createNewLayer: Node created, nodeId:', nodeId);
+
       if (!nodeId) {
+        console.error('[ContextLayerSidebar] createNewLayer: No nodeId returned');
         throw new Error('ノードIDが返されませんでした');
       }
 
+      console.log('[ContextLayerSidebar] createNewLayer: Reloading graph data...');
       // データを再読み込み
       await onReload();
       
+      console.log('[ContextLayerSidebar] createNewLayer: Reload completed, waiting for DB sync...');
       // 再読み込み後に新しいレイヤーが含まれているか確認
       // 少し待ってから確認（データベースの反映を待つ）
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise(resolve => setTimeout(resolve, 500));
       
+      console.log('[ContextLayerSidebar] createNewLayer: Success! Closing modal.');
       setShowAddModal(false);
     } catch (error) {
+      console.error('[ContextLayerSidebar] createNewLayer: Error occurred:', error);
       const appError = classifyError(error);
       logError(appError, 'ContextLayerSidebar.createNewLayer');
       const errorMessage = formatErrorForDisplay(appError);
+      console.error('[ContextLayerSidebar] createNewLayer: Error message:', errorMessage);
       setError(errorMessage);
       // エラーが発生してもモーダルは閉じる（ユーザーが再試行できるように）
       setShowAddModal(false);
     } finally {
       setLoading(false);
+      console.log('[ContextLayerSidebar] createNewLayer: Finished, loading set to false');
     }
-  }, [contextLayers.length, onReload]);
+  }, [contextLayers.length, onReload, projectId]);
 
   // 既存のコンテクストノードをレイヤーとして追加
   const addExistingContextAsLayer = useCallback(async (nodeId: string) => {

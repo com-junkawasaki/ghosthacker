@@ -41,6 +41,7 @@ CREATE INDEX IF NOT EXISTS idx_graph_edges_properties ON graph_edges USING GIN(p
 -- 注意: pgvectorのHNSW/ivfflatインデックスは2000次元までサポート
 -- 3072次元（text-embedding-3-large）の場合はインデックスなしで検索
 -- 必要に応じて、text-embedding-3-small（1536次元）を使用することを推奨
+-- 3072次元のベクトルにはivfflatインデックスは使用できないため、コメントアウト
 -- CREATE INDEX IF NOT EXISTS idx_graph_nodes_vector ON graph_nodes 
 --     USING ivfflat (vector vector_cosine_ops)
 --     WITH (lists = 100);

@@ -1,16 +1,14 @@
-FROM rust:1.88-alpine AS builder
+FROM rustlang/rust:nightly-alpine AS builder
 
 WORKDIR /app
 
 # ビルドに必要な依存関係をインストール
 RUN apk add --no-cache musl-dev openssl-dev
 
-# GraphQLサービスディレクトリのみをコピー
-COPY performers/services/graphql/Cargo.toml performers/services/graphql/Cargo.lock* ./
-COPY performers/services/graphql/src ./src
-COPY performers/services/graphql/migrations ./migrations
+# GraphQLサービスディレクトリをコピー
+COPY performers/services/graphql/ ./performers/services/graphql/
 
-WORKDIR /app
+WORKDIR /app/performers/services/graphql
 
 # ビルド
 RUN cargo build --release
@@ -23,7 +21,7 @@ RUN apk add --no-cache ca-certificates curl
 WORKDIR /app
 
 # ビルドしたバイナリをコピー
-COPY --from=builder /app/target/release/producerv2-graphql /app/producerv2-graphql
+COPY --from=builder /app/performers/services/graphql/target/release/producerv2-graphql /app/producerv2-graphql
 
 # マイグレーションファイルをコピー
 COPY performers/services/graphql/migrations ./migrations
