@@ -11,7 +11,7 @@
 
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { Node, Edge } from 'reactflow';
 import { GraphNodeData, ContextLayer } from './types';
 import { createGraphNode, createGraphEdge, deleteGraphEdge, updateGraphNode } from '@/internal/grpc/services/graph_client';
@@ -48,9 +48,17 @@ export default function ContextLayerSidebar({
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  // iPad前提: 初期位置を左上に設定（DebugPanelが右下にあるため）
+  const [position, setPosition] = useState(() => {
+    // 初期位置は左上（画面サイズに応じて調整）
+    if (typeof window !== 'undefined') {
+      return { x: 16, y: 16 }; // 16px margin
+    }
+    return { x: 16, y: 16 }; // iPad のデフォルト値
+  });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const sidebarRef = useRef<HTMLDivElement>(null);
 
   // デバッグログを追加する関数
   const addDebugLog = useCallback((level: 'log' | 'error' | 'warn' | 'info', message: string, data?: any) => {
@@ -383,10 +391,17 @@ export default function ContextLayerSidebar({
   }, [position]);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (isDragging) {
+    if (isDragging && sidebarRef.current) {
+      const newX = e.clientX - dragStart.x;
+      const newY = e.clientY - dragStart.y;
+
+      // 境界チェック（iPad画面内に収める）
+      const maxX = window.innerWidth - (sidebarRef.current.offsetWidth || 0) - 16;
+      const maxY = window.innerHeight - (sidebarRef.current.offsetHeight || 0) - 16;
+
       setPosition({
-        x: e.clientX - dragStart.x,
-        y: e.clientY - dragStart.y,
+        x: Math.max(16, Math.min(newX, maxX)),
+        y: Math.max(16, Math.min(newY, maxY)),
       });
     }
   }, [isDragging, dragStart]);
@@ -407,11 +422,35 @@ export default function ContextLayerSidebar({
     }
   }, [isDragging, handleMouseMove, handleMouseUp]);
 
+  // 画面リサイズ時に位置を調整（iPad前提）
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    const handleResize = () => {
+      if (!sidebarRef.current) return;
+      const sidebarWidth = sidebarRef.current.offsetWidth || 320;
+      const sidebarHeight = sidebarRef.current.offsetHeight || 500;
+      const margin = 16;
+      // 画面外に出ないように位置を調整
+      setPosition(prev => ({
+        x: Math.max(margin, Math.min(prev.x, window.innerWidth - sidebarWidth - margin)),
+        y: Math.max(margin, Math.min(prev.y, window.innerHeight - sidebarHeight - margin)),
+      }));
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div 
-      className="w-80 max-h-[80vh] bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg flex flex-col"
-      style={{ 
-        transform: `translate(${position.x}px, ${position.y}px)`,
+      ref={sidebarRef}
+      className={`fixed bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg transition-all duration-300 ease-in-out ${
+        isCollapsed ? 'w-64 h-12' : 'w-[320px] max-h-[500px]'
+      } flex flex-col z-50`}
+      style={{
+        left: position.x,
+        top: position.y,
         cursor: isDragging ? 'grabbing' : 'default',
       }}
       onMouseDown={handleMouseDown}

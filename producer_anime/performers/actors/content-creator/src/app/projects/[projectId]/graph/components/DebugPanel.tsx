@@ -5,9 +5,10 @@
 
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Node, Edge } from 'reactflow';
 import { GraphNodeData, ContextLayer } from './types';
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 
 interface DebugPanelProps {
   projectId: string;
@@ -25,8 +26,26 @@ export default function DebugPanel({
   debugLogs,
 }: DebugPanelProps) {
   const [isOpen, setIsOpen] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const [autoScroll, setAutoScroll] = useState(true);
   const [filterLevel, setFilterLevel] = useState<'all' | 'log' | 'error' | 'warn' | 'info'>('all');
+  // iPad前提: 初期位置を右下に設定（ContextLayerSidebarが左上にあるため）
+  const [position, setPosition] = useState(() => {
+    // 初期位置は右下（画面サイズに応じて調整）
+    if (typeof window !== 'undefined') {
+      const panelWidth = 380;
+      const panelHeight = 500;
+      const margin = 16;
+      return { 
+        x: Math.max(margin, window.innerWidth - panelWidth - margin), 
+        y: Math.max(margin, window.innerHeight - panelHeight - margin)
+      };
+    }
+    return { x: 628, y: 252 }; // iPad landscape (1024x768) のデフォルト値: 1024-380-16=628, 768-500-16=252
+  });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const panelRef = useRef<HTMLDivElement>(null);
   const logsEndRef = useCallback((node: HTMLDivElement | null) => {
     if (node && autoScroll) {
       node.scrollIntoView({ behavior: 'smooth' });
@@ -36,6 +55,68 @@ export default function DebugPanel({
   const filteredLogs = debugLogs.filter(log => 
     filterLevel === 'all' || log.level === filterLevel
   );
+
+  // 画面リサイズ時に位置を調整（iPad前提）
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    const handleResize = () => {
+      const panelWidth = 380;
+      const panelHeight = 500;
+      const margin = 16;
+      // 画面外に出ないように位置を調整
+      setPosition(prev => ({
+        x: Math.max(margin, Math.min(prev.x, window.innerWidth - panelWidth - margin)),
+        y: Math.max(margin, Math.min(prev.y, window.innerHeight - panelHeight - margin)),
+      }));
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // ドラッグハンドラー
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    // ヘッダー領域をクリックした場合のみドラッグ開始
+    const target = e.target as HTMLElement;
+    if (target.closest('.header-drag-area') || target.closest('.drag-handle')) {
+      e.preventDefault();
+      setIsDragging(true);
+      setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
+    }
+  }, [position]);
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    if (isDragging && panelRef.current) {
+      const newX = e.clientX - dragStart.x;
+      const newY = e.clientY - dragStart.y;
+
+      // 境界チェック（iPad画面内に収める）
+      const maxX = window.innerWidth - (panelRef.current.offsetWidth || 0) - 16;
+      const maxY = window.innerHeight - (panelRef.current.offsetHeight || 0) - 16;
+
+      setPosition({
+        x: Math.max(16, Math.min(newX, maxX)),
+        y: Math.max(16, Math.min(newY, maxY)),
+      });
+    }
+  }, [isDragging, dragStart]);
+
+  const handleMouseUp = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
+  // マウスイベントの登録
+  useEffect(() => {
+    if (isDragging) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      return () => {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+      };
+    }
+  }, [isDragging, handleMouseMove, handleMouseUp]);
 
   // オーファンノード（コンテクストレイヤーに属していないノード）を計算
   const allNonContextNodeIds = new Set(
@@ -60,38 +141,78 @@ export default function DebugPanel({
 
   if (!isOpen) {
     return (
-      <div className="relative">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-l-lg shadow-lg transition-colors"
-          title="Open Debug Panel"
-        >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-      </div>
+      <button
+        onClick={() => setIsOpen(true)}
+        className="fixed bottom-4 right-4 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-colors z-50"
+        title="Open Debug Panel"
+      >
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      </button>
     );
   }
 
   return (
-    <div className="w-96 h-full bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 flex flex-col transition-all">
-      {/* Header */}
-      <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-          Debug Panel
-        </h2>
-        <button
-          onClick={() => setIsOpen(false)}
-          className="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-          title="Close Debug Panel"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+    <div
+      ref={panelRef}
+      className={`fixed bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg transition-all duration-300 ease-in-out ${
+        isCollapsed ? 'w-64 h-12' : 'w-[380px] max-h-[500px]'
+      } flex flex-col z-50`}
+      style={{
+        left: position.x,
+        top: position.y,
+        cursor: isDragging ? 'grabbing' : 'default',
+      }}
+      onMouseDown={handleMouseDown}
+    >
+      {/* Header with drag handle */}
+      <div
+        className="header-drag-area px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between cursor-move select-none"
+        onMouseDown={handleMouseDown}
+      >
+        <div className="flex items-center gap-2 flex-1">
+          <div className="drag-handle text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8h16M4 16h16" />
+            </svg>
+          </div>
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+            Debug Panel
+          </h2>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsCollapsed(!isCollapsed);
+            }}
+            className="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors cursor-pointer"
+            title={isCollapsed ? '展開' : '折りたたみ'}
+          >
+            {isCollapsed ? (
+              <ChevronUpIcon className="w-4 h-4" />
+            ) : (
+              <ChevronDownIcon className="w-4 h-4" />
+            )}
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsOpen(false);
+            }}
+            className="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors cursor-pointer"
+            title="Close Debug Panel"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
       </div>
 
+      {!isCollapsed && (
+        <>
       {/* Stats */}
       <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
         <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Statistics</h3>
@@ -328,6 +449,8 @@ export default function DebugPanel({
           </div>
         )}
       </div>
+        </>
+      )}
     </div>
   );
 }

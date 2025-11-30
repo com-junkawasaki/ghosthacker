@@ -1699,19 +1699,17 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       </div>
 
       {/* Floating Context Layer Sidebar */}
-      <div className="absolute top-4 left-4 z-10">
-        <ContextLayerSidebar
-          projectId={projectId}
-          nodes={nodes as unknown as Node<GraphNodeData>[]}
-          edges={edges}
-          contextLayers={contextLayers}
-          onLayersChange={handleLayersChange}
-          onNodesChange={handleNodesChange}
-          onEdgesChange={setEdges}
-          onReload={loadGraphData}
-          onDebugLog={addDebugLog}
-        />
-      </div>
+      <ContextLayerSidebar
+        projectId={projectId}
+        nodes={nodes as unknown as Node<GraphNodeData>[]}
+        edges={edges}
+        contextLayers={contextLayers}
+        onLayersChange={handleLayersChange}
+        onNodesChange={handleNodesChange}
+        onEdgesChange={setEdges}
+        onReload={loadGraphData}
+        onDebugLog={addDebugLog}
+      />
 
       {/* Debug Panel */}
       <DebugPanel
