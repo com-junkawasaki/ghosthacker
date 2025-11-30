@@ -75,6 +75,7 @@ function generateGridPosition(
 
 /**
  * レイヤー境界を考慮した重なり防止位置調整
+ * minDistanceは次数に基づいて調整される可能性があるため、パラメータとして受け取る
  */
 function adjustPositionForLayerBounds(
   position: { x: number; y: number },
@@ -420,6 +421,30 @@ export function useForceDirectedLayout() {
       }
     });
 
+    // ノードの次数（接続数）を計算
+    const nodeDegrees = new Map<string, number>();
+    nodes.forEach(node => {
+      nodeDegrees.set(node.id, 0);
+    });
+    edges.forEach(edge => {
+      const sourceDegree = nodeDegrees.get(edge.source) || 0;
+      const targetDegree = nodeDegrees.get(edge.target) || 0;
+      nodeDegrees.set(edge.source, sourceDegree + 1);
+      nodeDegrees.set(edge.target, targetDegree + 1);
+    });
+    
+    // 最大次数を取得（正規化用）
+    const maxDegree = Math.max(...Array.from(nodeDegrees.values()), 1);
+    
+    // ノードの重みを計算（次数に基づく）
+    const nodeWeights = new Map<string, number>();
+    nodes.forEach(node => {
+      const degree = nodeDegrees.get(node.id) || 0;
+      // 次数が0の場合は1、次数が多いほど重みが大きくなる（1.0 ~ 2.5の範囲）
+      const weight = 1.0 + (degree / maxDegree) * 1.5;
+      nodeWeights.set(node.id, weight);
+    });
+
     // Force-directed: 反復的に位置を更新
     const k = Math.sqrt((width * height) / nodes.length);
     let currentTemp = temperature;
@@ -431,7 +456,7 @@ export function useForceDirectedLayout() {
         forces.set(node.id, { fx: 0, fy: 0 });
       });
 
-      // 反発力（全ノード間）- 最小距離を考慮
+      // 反発力（全ノード間）- 次数に基づく重み付き最小距離を考慮
       nodes.forEach((node1, i) => {
         nodes.slice(i + 1).forEach(node2 => {
           const pos1 = positions.get(node1.id)!;
@@ -440,14 +465,21 @@ export function useForceDirectedLayout() {
           const dy = pos2.y - pos1.y;
           const distance = Math.sqrt(dx * dx + dy * dy) || 0.1;
           
+          // ノードの重みに基づいて最小距離を調整
+          const weight1 = nodeWeights.get(node1.id) || 1.0;
+          const weight2 = nodeWeights.get(node2.id) || 1.0;
+          const minDistance = MIN_NODE_DISTANCE * (weight1 + weight2) / 2;
+          
           // 最小距離未満の場合は強い反発力を適用
           let force: number;
-          if (distance < MIN_NODE_DISTANCE) {
-            // 衝突している場合は強制的に分離
-            force = (MIN_NODE_DISTANCE - distance) * 10; // 強い反発力
+          if (distance < minDistance) {
+            // 衝突している場合は強制的に分離（次数が多いほど強い反発力）
+            const repulsionStrength = 10 * (weight1 + weight2) / 2;
+            force = (minDistance - distance) * repulsionStrength;
           } else {
-            // 通常の反発力
-            force = k * k / distance;
+            // 通常の反発力（次数が多いほど強い反発力）
+            const repulsionMultiplier = (weight1 * weight2);
+            force = (k * k / distance) * repulsionMultiplier;
           }
           
           const fx1 = (dx / distance) * force;
@@ -464,7 +496,7 @@ export function useForceDirectedLayout() {
         });
       });
 
-      // 引力（エッジで接続されたノード間）
+      // 引力（エッジで接続されたノード間）- 次数に基づく重み付き
       edges.forEach(edge => {
         const pos1 = positions.get(edge.source);
         const pos2 = positions.get(edge.target);
@@ -473,10 +505,22 @@ export function useForceDirectedLayout() {
         const dx = pos2.x - pos1.x;
         const dy = pos2.y - pos1.y;
         const distance = Math.sqrt(dx * dx + dy * dy) || 1;
-        const force = distance / k;
+        
+        // ノードの重みに基づいて理想距離を調整
+        const weight1 = nodeWeights.get(edge.source) || 1.0;
+        const weight2 = nodeWeights.get(edge.target) || 1.0;
+        // 次数が多いノードはより多くのスペースを必要とするため、理想距離を長くする
+        const idealDistance = k * (weight1 + weight2) / 2;
+        
+        // 現在の距離と理想距離の差に基づいて引力を計算
+        const force = (distance - idealDistance) / k;
+        
+        // 次数が多いノード間の接続はより強い引力（ただし、距離が近すぎる場合は反発）
+        const attractionStrength = 1.0 + (weight1 + weight2) / 4;
+        const adjustedForce = force * attractionStrength;
 
-        const fx = (dx / distance) * force;
-        const fy = (dy / distance) * force;
+        const fx = (dx / distance) * adjustedForce;
+        const fy = (dy / distance) * adjustedForce;
 
         const f1 = forces.get(edge.source)!;
         const f2 = forces.get(edge.target)!;
@@ -486,22 +530,32 @@ export function useForceDirectedLayout() {
         f2.fy -= fy;
       });
 
-      // Contextノードとその下層ノード間の強い引力
+      // Contextノードとその下層ノード間の強い引力（次数に基づく重み付き）
       layers.forEach(layer => {
         const contextPos = positions.get(layer.contextNodeId);
         if (!contextPos) return;
+        
+        const contextWeight = nodeWeights.get(layer.contextNodeId) || 1.0;
 
         layer.containedNodeIds.forEach(nodeId => {
           const nodePos = positions.get(nodeId);
           if (!nodePos) return;
-
+          
+          const nodeWeight = nodeWeights.get(nodeId) || 1.0;
           const dx = nodePos.x - contextPos.x;
           const dy = nodePos.y - contextPos.y;
           const distance = Math.sqrt(dx * dx + dy * dy) || 1;
-          const force = (distance / k) * 2; // 2倍の引力
+          
+          // 次数に基づいて理想距離を調整
+          const idealDistance = k * (contextWeight + nodeWeight) / 2;
+          const force = (distance - idealDistance) / k;
+          
+          // Contextノードとの接続はより強い引力（次数が多いほど）
+          const attractionStrength = 2.0 + (contextWeight + nodeWeight) / 4;
+          const adjustedForce = force * attractionStrength;
 
-          const fx = (dx / distance) * force;
-          const fy = (dy / distance) * force;
+          const fx = (dx / distance) * adjustedForce;
+          const fy = (dy / distance) * adjustedForce;
 
           const fContext = forces.get(layer.contextNodeId)!;
           const fNode = forces.get(nodeId)!;
@@ -512,21 +566,25 @@ export function useForceDirectedLayout() {
         });
       });
 
-      // 位置を更新
+      // 位置を更新（次数に基づく重み付き）
       nodes.forEach(node => {
         const force = forces.get(node.id)!;
         const pos = positions.get(node.id)!;
+        const weight = nodeWeights.get(node.id) || 1.0;
         
-        pos.x += force.fx * currentTemp * damping;
-        pos.y += force.fy * currentTemp * damping;
+        // 次数が多いノードはより安定した動きをする（重みに基づいて温度を調整）
+        const adjustedTemp = currentTemp / weight;
+        pos.x += force.fx * adjustedTemp * damping;
+        pos.y += force.fy * adjustedTemp * damping;
 
-        // レイヤー境界を考慮した位置調整
+        // レイヤー境界を考慮した位置調整（次数に基づく最小距離）
+        const minDistance = MIN_NODE_DISTANCE * weight;
         const adjustedPos = adjustPositionForLayerBounds(
           pos,
           node.id,
           layers,
           positions,
-          MIN_NODE_DISTANCE
+          minDistance
         );
         pos.x = adjustedPos.x;
         pos.y = adjustedPos.y;
@@ -536,7 +594,7 @@ export function useForceDirectedLayout() {
         pos.y = Math.max(30, Math.min(height - 30, pos.y));
       });
 
-      // 衝突検出と強制的な分離（レイヤー境界を考慮）
+      // 衝突検出と強制的な分離（レイヤー境界を考慮、次数に基づく重み付き）
       const collisions = detectCollisions(positions, MIN_NODE_DISTANCE);
       collisions.forEach(collision => {
         const pos1 = positions.get(collision.node1)!;
@@ -546,30 +604,41 @@ export function useForceDirectedLayout() {
         const dy = pos2.y - pos1.y;
         const distance = Math.sqrt(dx * dx + dy * dy) || 0.1;
         
-        // 最小距離まで分離
-        const separation = (MIN_NODE_DISTANCE - distance) / 2;
-        const separationX = (dx / distance) * separation;
-        const separationY = (dy / distance) * separation;
+        // ノードの重みに基づいて最小距離を調整
+        const weight1 = nodeWeights.get(collision.node1) || 1.0;
+        const weight2 = nodeWeights.get(collision.node2) || 1.0;
+        const minDistance = MIN_NODE_DISTANCE * (weight1 + weight2) / 2;
         
-        pos1.x -= separationX;
-        pos1.y -= separationY;
-        pos2.x += separationX;
-        pos2.y += separationY;
+        // 最小距離まで分離（重みの比率に基づいて分離量を調整）
+        const totalWeight = weight1 + weight2;
+        const separation1 = (minDistance - distance) * (weight2 / totalWeight);
+        const separation2 = (minDistance - distance) * (weight1 / totalWeight);
+        const separationX1 = (dx / distance) * separation1;
+        const separationY1 = (dy / distance) * separation1;
+        const separationX2 = (dx / distance) * separation2;
+        const separationY2 = (dy / distance) * separation2;
         
-        // レイヤー境界を考慮した位置調整
+        pos1.x -= separationX1;
+        pos1.y -= separationY1;
+        pos2.x += separationX2;
+        pos2.y += separationY2;
+        
+        // レイヤー境界を考慮した位置調整（次数に基づく最小距離）
+        const minDistance1 = MIN_NODE_DISTANCE * weight1;
+        const minDistance2 = MIN_NODE_DISTANCE * weight2;
         const adjustedPos1 = adjustPositionForLayerBounds(
           pos1,
           collision.node1,
           layers,
           positions,
-          MIN_NODE_DISTANCE
+          minDistance1
         );
         const adjustedPos2 = adjustPositionForLayerBounds(
           pos2,
           collision.node2,
           layers,
           positions,
-          MIN_NODE_DISTANCE
+          minDistance2
         );
         
         pos1.x = adjustedPos1.x;
