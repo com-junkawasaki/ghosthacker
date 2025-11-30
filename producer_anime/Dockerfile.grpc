@@ -1,12 +1,30 @@
-FROM alpine:latest
-
-RUN apk add --no-cache ca-certificates curl
+FROM rustlang/rust:nightly-alpine AS builder
 
 WORKDIR /app
 
-# ローカルでビルドしたバイナリをコピー（開発用）
-# 注意: 本番環境では、マルチステージビルドを使用してビルドすることを推奨
-COPY performers/services/grpc/target/release/producerv2-grpc /app/producerv2-grpc
+# ビルドに必要な依存関係をインストール
+RUN apk add --no-cache musl-dev openssl-dev protobuf-dev
+
+# GraphQLサービス（依存関係）をコピー
+COPY performers/services/graphql/ ./performers/services/graphql/
+
+# gRPCサービスをコピー
+COPY performers/services/grpc/ ./performers/services/grpc/
+
+WORKDIR /app/performers/services/grpc
+
+# ビルド
+RUN cargo build --release
+
+# ランタイムイメージ
+FROM alpine:latest
+
+RUN apk add --no-cache ca-certificates curl netcat-openbsd
+
+WORKDIR /app
+
+# ビルドしたバイナリをコピー
+COPY --from=builder /app/performers/services/grpc/target/release/producerv2-grpc /app/producerv2-grpc
 
 # マイグレーションファイルをコピー
 COPY performers/services/graphql/migrations ./migrations
