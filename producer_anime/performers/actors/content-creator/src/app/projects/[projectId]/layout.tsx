@@ -54,6 +54,12 @@ export default function ProjectLayout({
             >
               Settings
             </Link>
+            <Link
+              href={`/projects/${params.projectId}/graph`}
+              className="text-blue-600 hover:underline"
+            >
+              Graph
+            </Link>
           </div>
         </div>
       </nav>

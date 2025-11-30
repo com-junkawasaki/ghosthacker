@@ -200,6 +200,18 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
             Configure project settings
           </p>
         </Link>
+
+        <Link
+          href={`/projects/${project.id}/graph`}
+          className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200"
+        >
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+            Graph
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400 text-sm">
+            Manage RDF graph with Graph RAG and vector search
+          </p>
+        </Link>
       </div>
     </div>
   );

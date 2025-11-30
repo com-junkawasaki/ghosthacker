@@ -5,6 +5,10 @@ export TERMINUSDB_SERVER_PASS=root
 # Database
 export DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
 
+# HelixDB
+export HELIXDB_URL=http://localhost:8080
+export HELIXDB_API_KEY=
+
 # Clerk Authentication
 export NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
 export CLERK_SECRET_KEY=sk_test_...
