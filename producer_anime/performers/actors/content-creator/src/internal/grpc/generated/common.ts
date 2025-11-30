@@ -181,8 +181,13 @@ class Error$Type extends MessageType<Error> {
         if (message.message !== "")
             writer.tag(2, WireType.LengthDelimited).string(message.message);
         /* map<string, string> details = 3; */
-        for (let k of globalThis.Object.keys(message.details))
-            writer.tag(3, WireType.LengthDelimited).fork().tag(1, WireType.LengthDelimited).string(k).tag(2, WireType.LengthDelimited).string(message.details[k]).join();
+        for (let k of globalThis.Object.keys(message.details)) {
+            const key = k as string;
+            const value = message.details[key];
+            if (value !== undefined) {
+              writer.tag(3, WireType.LengthDelimited).fork().tag(1, WireType.LengthDelimited).string(key).tag(2, WireType.LengthDelimited).string(value).join();
+            }
+        }
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

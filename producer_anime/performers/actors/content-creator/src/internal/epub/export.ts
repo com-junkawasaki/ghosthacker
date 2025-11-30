@@ -62,7 +62,10 @@ export async function exportEPUB(options: EPUBExportOptions): Promise<Blob> {
 
   // EPUB形式のZIPファイルを生成
   // 簡易実装: 実際のEPUB生成ライブラリ（例: epub-gen）を使用
-  const epubContent = generateEPUBContent(document, chapterContents);
+  const epubContent = generateEPUBContent({
+    ...document,
+    metadata: document.metadata ?? null,
+  }, chapterContents);
 
   return new Blob([epubContent], {
     type: format === 'epub' ? 'application/epub+zip' : 'application/x-mobipocket-ebook',

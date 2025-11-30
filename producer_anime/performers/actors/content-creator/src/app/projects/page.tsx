@@ -51,7 +51,11 @@ export default function ProjectsPage() {
     setError(null);
     try {
       const result = await graphqlRequest<GetProjectsQuery>(GetProjectsDocument, {});
-      setProjects(result.projects);
+      setProjects(result.projects.map(p => ({
+        ...p,
+        description: p.description ?? null,
+        status: p.status ?? null,
+      })));
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load projects');
       console.error('Failed to load projects:', err);

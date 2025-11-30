@@ -170,14 +170,14 @@ export function epubToTipTap(
         textContent.push({
           type: 'text',
           text: textNode.content,
-          marks: marks.length > 0 ? marks : undefined,
+          ...(marks.length > 0 && { marks }),
         });
       }
     }
 
     const node: JSONContent = {
       type: nodeType,
-      content: textContent.length > 0 ? textContent : undefined,
+      ...(textContent.length > 0 && { content: textContent }),
     };
 
     if (isHeading && level) {

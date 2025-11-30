@@ -1028,6 +1028,11 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
     }
   }, [showHierarchy, nodes.length, edges.length, contextLayers.length, calculateStoryElementLayout, calculateForceLayout, fitView, setNodes]);
 
+  // レイヤー変更ハンドラ
+  const handleLayersChange = useCallback((updatedLayers: ContextLayer[]) => {
+    setContextLayers(updatedLayers);
+  }, []);
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
@@ -1048,11 +1053,6 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
   }
 
   const selectedNodeData = selectedNode ? nodes.find(n => n.id === selectedNode) : null;
-
-  // レイヤー変更ハンドラ
-  const handleLayersChange = useCallback((updatedLayers: ContextLayer[]) => {
-    setContextLayers(updatedLayers);
-  }, []);
 
   return (
     <div className="flex h-[600px]">

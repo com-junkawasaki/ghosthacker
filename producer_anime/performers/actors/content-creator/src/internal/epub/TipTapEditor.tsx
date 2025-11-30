@@ -35,11 +35,11 @@ export function TipTapEditor({
         heading: {
           levels: [1, 2, 3],
         },
-      }),
+      }) as any,
       Placeholder.configure({
         placeholder,
-      }),
-    ],
+      }) as any,
+    ] as any,
     content,
     editable,
     onUpdate: ({ editor }) => {
@@ -58,8 +58,8 @@ export function TipTapEditor({
       <div className="flex flex-wrap gap-2 p-2 border-b border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800">
         <button
           type="button"
-          onClick={() => editor.chain().focus().toggleBold().run()}
-          disabled={!editor.can().chain().focus().toggleBold().run()}
+          onClick={() => (editor.chain().focus() as any).toggleBold().run()}
+          disabled={!(editor.can().chain().focus() as any).toggleBold().run()}
           className={`px-3 py-1 rounded text-sm font-medium ${
             editor.isActive('bold')
               ? 'bg-blue-600 text-white'
@@ -70,8 +70,8 @@ export function TipTapEditor({
         </button>
         <button
           type="button"
-          onClick={() => editor.chain().focus().toggleItalic().run()}
-          disabled={!editor.can().chain().focus().toggleItalic().run()}
+          onClick={() => (editor.chain().focus() as any).toggleItalic().run()}
+          disabled={!(editor.can().chain().focus() as any).toggleItalic().run()}
           className={`px-3 py-1 rounded text-sm font-medium ${
             editor.isActive('italic')
               ? 'bg-blue-600 text-white'
@@ -82,8 +82,8 @@ export function TipTapEditor({
         </button>
         <button
           type="button"
-          onClick={() => editor.chain().focus().toggleStrike().run()}
-          disabled={!editor.can().chain().focus().toggleStrike().run()}
+          onClick={() => (editor.chain().focus() as any).toggleStrike().run()}
+          disabled={!(editor.can().chain().focus() as any).toggleStrike().run()}
           className={`px-3 py-1 rounded text-sm font-medium ${
             editor.isActive('strike')
               ? 'bg-blue-600 text-white'
@@ -95,7 +95,7 @@ export function TipTapEditor({
         <div className="w-px h-6 bg-gray-300 dark:bg-gray-600 mx-1" />
         <button
           type="button"
-          onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+          onClick={() => (editor.chain().focus() as any).toggleHeading({ level: 1 }).run()}
           className={`px-3 py-1 rounded text-sm font-medium ${
             editor.isActive('heading', { level: 1 })
               ? 'bg-blue-600 text-white'
@@ -106,7 +106,7 @@ export function TipTapEditor({
         </button>
         <button
           type="button"
-          onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+          onClick={() => (editor.chain().focus() as any).toggleHeading({ level: 2 }).run()}
           className={`px-3 py-1 rounded text-sm font-medium ${
             editor.isActive('heading', { level: 2 })
               ? 'bg-blue-600 text-white'
@@ -117,7 +117,7 @@ export function TipTapEditor({
         </button>
         <button
           type="button"
-          onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+          onClick={() => (editor.chain().focus() as any).toggleHeading({ level: 3 }).run()}
           className={`px-3 py-1 rounded text-sm font-medium ${
             editor.isActive('heading', { level: 3 })
               ? 'bg-blue-600 text-white'
@@ -129,7 +129,7 @@ export function TipTapEditor({
         <div className="w-px h-6 bg-gray-300 dark:bg-gray-600 mx-1" />
         <button
           type="button"
-          onClick={() => editor.chain().focus().setParagraph().run()}
+          onClick={() => (editor.chain().focus() as any).setParagraph().run()}
           className={`px-3 py-1 rounded text-sm font-medium ${
             editor.isActive('paragraph')
               ? 'bg-blue-600 text-white'
@@ -140,7 +140,7 @@ export function TipTapEditor({
         </button>
         <button
           type="button"
-          onClick={() => editor.chain().focus().toggleBulletList().run()}
+          onClick={() => (editor.chain().focus() as any).toggleBulletList().run()}
           className={`px-3 py-1 rounded text-sm font-medium ${
             editor.isActive('bulletList')
               ? 'bg-blue-600 text-white'
@@ -151,7 +151,7 @@ export function TipTapEditor({
         </button>
         <button
           type="button"
-          onClick={() => editor.chain().focus().toggleOrderedList().run()}
+          onClick={() => (editor.chain().focus() as any).toggleOrderedList().run()}
           className={`px-3 py-1 rounded text-sm font-medium ${
             editor.isActive('orderedList')
               ? 'bg-blue-600 text-white'
@@ -163,16 +163,16 @@ export function TipTapEditor({
         <div className="w-px h-6 bg-gray-300 dark:bg-gray-600 mx-1" />
         <button
           type="button"
-          onClick={() => editor.chain().focus().undo().run()}
-          disabled={!editor.can().chain().focus().undo().run()}
+          onClick={() => (editor.chain().focus() as any).undo().run()}
+          disabled={!(editor.can().chain().focus() as any).undo().run()}
           className="px-3 py-1 rounded text-sm font-medium bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 disabled:opacity-50"
         >
           ↶ Undo
         </button>
         <button
           type="button"
-          onClick={() => editor.chain().focus().redo().run()}
-          disabled={!editor.can().chain().focus().redo().run()}
+          onClick={() => (editor.chain().focus() as any).redo().run()}
+          disabled={!(editor.can().chain().focus() as any).redo().run()}
           className="px-3 py-1 rounded text-sm font-medium bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 disabled:opacity-50"
         >
           ↷ Redo

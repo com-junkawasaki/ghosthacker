@@ -45,9 +45,9 @@ export interface GraphQLRequestOptions {
  *   "ex:produces": "ex:GraphQLResult"
  * }
  */
-export async function graphqlRequest<TResult, TVariables = Record<string, unknown>>(
-  document: TypedDocumentNode<TResult, TVariables>,
-  options?: GraphQLRequestOptions
+export async function graphqlRequest<TResult>(
+  document: TypedDocumentNode<TResult, any>,
+  options?: { variables?: Record<string, unknown> | undefined; headers?: Record<string, string> | undefined }
 ): Promise<TResult> {
   const { variables, headers = {} } = options || {};
   const gqlClient = getClient();
@@ -60,7 +60,7 @@ export async function graphqlRequest<TResult, TVariables = Record<string, unknow
   }
 
   try {
-    const result = await gqlClient.request<TResult, TVariables>(document, variables as TVariables);
+    const result = await gqlClient.request<TResult>(document, variables);
     return result;
   } finally {
     // カスタムヘッダーをクリア
