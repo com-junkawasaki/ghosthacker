@@ -515,7 +515,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
                   y: Math.random() * 300 + 100 
                 };
             
-            const node: Node<GraphNodeData> = {
+            const reactFlowNode: Node<GraphNodeData> = {
               id: node.id,
               type: isContext ? 'context' : (nodeType ? 'storyElement' : 'default'),
               position,
@@ -533,7 +533,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
                 }),
               },
             };
-            parsedNodes.push(node);
+            parsedNodes.push(reactFlowNode);
           }
         });
       }
