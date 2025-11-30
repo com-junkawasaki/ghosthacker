@@ -15,6 +15,7 @@ export function useGrpcPages(scriptId: string | undefined) {
   const [pages, setPages] = useState<Page[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     if (!scriptId) {
@@ -50,8 +51,13 @@ export function useGrpcPages(scriptId: string | undefined) {
     return () => {
       cancelled = true;
     };
-  }, [scriptId]);
+  }, [scriptId, refreshKey]);
 
-  return { pages, loading, error };
+  // Expose refetch function
+  const refetch = () => {
+    setRefreshKey(prev => prev + 1);
+  };
+
+  return { pages, loading, error, refetch };
 }
 

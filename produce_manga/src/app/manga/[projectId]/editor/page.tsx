@@ -19,6 +19,8 @@ import { useGrpcProject } from '@/hooks/useGrpcProject';
 import { useGrpcScripts } from '@/hooks/useGrpcScripts';
 import { useGrpcPages } from '@/hooks/useGrpcPages';
 import { useGrpcPanels } from '@/hooks/useGrpcPanels';
+import { useGrpcCreatePage } from '@/hooks/useGrpcCreatePage';
+import { useGrpcCreatePanel } from '@/hooks/useGrpcCreatePanel';
 
 // Dynamically import CanvasArea to avoid SSR issues with Konva
 const CanvasArea = dynamic(
@@ -121,13 +123,13 @@ export default function MangaEditorPage({
   const scriptId = machineData.selectedScriptId;
 
   // Fetch pages data using gRPC
-  const { pages, loading: pagesLoading, error: pagesError } = useGrpcPages(scriptId);
+  const { pages: pagesList, loading: pagesLoading, error: pagesError, refetch: refetchPages } = useGrpcPages(scriptId);
 
   // Send pages loaded event to machine
   useEffect(() => {
-    if (pages && pages.length > 0) {
+    if (pagesList && pagesList.length > 0) {
       // Convert gRPC Pages to machine format
-      const formattedPages = pages.map(page => ({
+      const formattedPages = pagesList.map(page => ({
         id: page.id || '',
         projectId: page.projectId || '',
         scriptId: page.scriptId || '',
@@ -144,13 +146,85 @@ export default function MangaEditorPage({
     if (pagesError) {
       send({ type: 'PAGES_ERROR', error: pagesError });
     }
-  }, [pages, pagesError, send]);
+  }, [pagesList, pagesError, send]);
 
   // Get selected page ID from machine context
   const selectedPageId = machineData.selectedPageId;
 
   // Fetch panels data for selected page using gRPC
-  const { panels, loading: panelsLoading, error: panelsError } = useGrpcPanels(selectedPageId);
+  const { panels, loading: panelsLoading, error: panelsError, refetch: refetchPanels } = useGrpcPanels(selectedPageId);
+
+  // Create page hook
+  const { createPage, loading: createPageLoading, error: createPageError } = useGrpcCreatePage();
+
+  // Create panel hook
+  const { createPanel, loading: createPanelLoading, error: createPanelError } = useGrpcCreatePanel();
+
+  // Handle page add
+  const handlePageAdd = async () => {
+    if (!scriptId || !params.projectId) {
+      console.error('Cannot add page: scriptId or projectId is missing');
+      return;
+    }
+
+    try {
+      // Find the highest page number
+      const maxPageNumber = pagesList.length > 0
+        ? Math.max(...pagesList.map(p => p.pageNumber || 0))
+        : 0;
+      
+      const newPageNumber = maxPageNumber + 1;
+      
+      await createPage({
+        projectId: params.projectId,
+        scriptId: scriptId,
+        pageId: `page_${newPageNumber}`,
+        pageNumber: newPageNumber,
+        width: 1200,
+        height: 1800,
+        pageType: 'default',
+      });
+
+      // Refetch pages to update UI
+      refetchPages();
+    } catch (err) {
+      console.error('Failed to create page:', err);
+    }
+  };
+
+  // Handle panel add
+  const handlePanelAdd = async () => {
+    if (!selectedPageId || !params.projectId) {
+      console.error('Cannot add panel: selectedPageId or projectId is missing');
+      return;
+    }
+
+    try {
+      // Find the highest panel_id for the selected page
+      const maxPanelId = panels && panels.length > 0
+        ? Math.max(...panels.map(p => p.panelId || 0))
+        : 0;
+      
+      const newPanelId = maxPanelId + 1;
+      
+      await createPanel({
+        projectId: params.projectId,
+        pageId: selectedPageId,
+        panelId: newPanelId,
+        x: 100,
+        y: 100,
+        width: 1000,
+        height: 800,
+        zIndex: 1,
+        panelData: '{}',
+      });
+
+      // Refetch panels to update UI
+      refetchPanels();
+    } catch (err) {
+      console.error('Failed to create panel:', err);
+    }
+  };
 
   // Send panels loaded event to machine
   useEffect(() => {
@@ -196,14 +270,14 @@ export default function MangaEditorPage({
 
   // Convert pages data to component format
   const pages = useMemo(() => {
-    if (!pages || pages.length === 0) return [];
-    return pages.map((page) => ({
+    if (!pagesList || pagesList.length === 0) return [];
+    return pagesList.map((page) => ({
       id: page.id || '', // Use UUID id, not pageId (TEXT)
       pageId: page.pageId || '',
       pageNumber: page.pageNumber || 0,
       konvaStageJson: page.konvaStageJson ? JSON.parse(page.konvaStageJson) : undefined,
     }));
-  }, [pages]);
+  }, [pagesList]);
 
   // Convert panels data to canvas format using union types
   const canvasPanels: CanvasPanel[] = useMemo(() => {
@@ -529,6 +603,8 @@ export default function MangaEditorPage({
             layerGroups,
             layers, // Backward compatibility
             onLayerToggle: handleLayerToggle,
+            onPageAdd: handlePageAdd,
+            pageAddLoading: createPageLoading,
           }
         : { 
             pages: data.pages, 
@@ -536,6 +612,8 @@ export default function MangaEditorPage({
             layerGroups,
             layers, // Backward compatibility
             onLayerToggle: handleLayerToggle,
+            onPageAdd: handlePageAdd,
+            pageAddLoading: createPageLoading,
           };
       
       const canvasAreaProps = {
@@ -598,7 +676,11 @@ export default function MangaEditorPage({
 
       return (
         <>
-          <PageSidebar {...pageSidebarProps} />
+          <PageSidebar 
+            {...pageSidebarProps} 
+            onPageAdd={handlePageAdd}
+            pageAddLoading={createPageLoading}
+          />
           <div className="flex-1 relative">
             <CanvasArea {...canvasAreaProps} />
           </div>
@@ -645,6 +727,8 @@ export default function MangaEditorPage({
             // Apollo Client will automatically refetch due to refetchQueries in mutation
             console.log('Story generated successfully');
           }}
+          onPanelAdd={handlePanelAdd}
+          panelAddLoading={createPanelLoading}
         />
         <DebugPanel
           projectState={{

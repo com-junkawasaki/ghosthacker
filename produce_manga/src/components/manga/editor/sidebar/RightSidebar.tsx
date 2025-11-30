@@ -53,6 +53,8 @@ interface RightSidebarProps {
   onLayerToggle?: (layerId: string, visible: boolean) => void;
   onModelSelect?: (model: AIModel) => void;
   onStoryGenerated?: () => void;
+  onPanelAdd?: () => void;
+  panelAddLoading?: boolean;
 }
 
 export function RightSidebar({
@@ -67,6 +69,8 @@ export function RightSidebar({
   onLayerToggle,
   onModelSelect,
   onStoryGenerated,
+  onPanelAdd,
+  panelAddLoading = false,
 }: RightSidebarProps) {
   return (
     <div className="w-80 bg-gray-100 border-l border-gray-200 h-full">
@@ -89,6 +93,8 @@ export function RightSidebar({
                 onBubbleDelete={onBubbleDelete}
                 onPanelSettingsChange={onPanelSettingsChange}
                 onLayerToggle={onLayerToggle}
+                onPanelAdd={onPanelAdd}
+                panelAddLoading={panelAddLoading}
               />
             ),
           },

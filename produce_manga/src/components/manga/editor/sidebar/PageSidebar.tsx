@@ -18,6 +18,8 @@ interface PageSidebarProps {
   layerGroups?: PanelLayerGroup[];
   layers?: Array<{ id: string; name: string; visible: boolean }>; // Backward compatibility
   onLayerToggle?: (layerId: string, visible: boolean) => void;
+  onPageAdd?: () => void;
+  pageAddLoading?: boolean;
 }
 
 export function PageSidebar({
@@ -27,13 +29,25 @@ export function PageSidebar({
   layerGroups,
   layers,
   onLayerToggle,
+  onPageAdd,
+  pageAddLoading = false,
 }: PageSidebarProps) {
   return (
     <div className="w-64 bg-gray-100 border-r border-gray-200 flex flex-col h-full">
       {/* Pages Section */}
       <div className="flex-shrink-0 border-b border-gray-200">
-        <div className="p-4">
-          <h2 className="font-semibold text-sm text-gray-700 mb-2">ページ</h2>
+        <div className="p-4 flex items-center justify-between">
+          <h2 className="font-semibold text-sm text-gray-700">ページ</h2>
+          {onPageAdd && (
+            <button
+              onClick={onPageAdd}
+              disabled={pageAddLoading}
+              className="px-2 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
+              title="ページを追加"
+            >
+              {pageAddLoading ? '...' : '+'}
+            </button>
+          )}
         </div>
         <div className="px-2 pb-2 max-h-64 overflow-y-auto">
           <div className="grid grid-cols-2 gap-2">

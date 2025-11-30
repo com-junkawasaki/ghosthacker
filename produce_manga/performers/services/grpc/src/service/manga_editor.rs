@@ -517,10 +517,74 @@ impl MangaEditorService for MangaEditorServiceImpl {
 
     async fn create_page(
         &self,
-        _request: Request<CreatePageRequest>,
+        request: Request<CreatePageRequest>,
     ) -> Result<Response<Page>, Status> {
-        // TODO: Implement create page
-        Err(Status::unimplemented("Create page not implemented"))
+        let req = request.into_inner();
+        let project_id = req.project_id;
+        if project_id.is_empty() {
+            return Err(Status::invalid_argument("Project ID is required"));
+        }
+        let project_uuid = Uuid::parse_str(&project_id)
+            .map_err(uuid_error_to_status)?;
+
+        let script_id = req.script_id;
+        if script_id.is_empty() {
+            return Err(Status::invalid_argument("Script ID is required"));
+        }
+        let script_uuid = Uuid::parse_str(&script_id)
+            .map_err(uuid_error_to_status)?;
+
+        // Generate page_id if not provided
+        let page_id = if req.page_id.is_empty() {
+            let page_number = req.page_number.unwrap_or(1);
+            format!("page_{}", page_number)
+        } else {
+            req.page_id
+        };
+
+        let page_type = req.page_type.unwrap_or_else(|| "default".to_string());
+        let page_number = req.page_number.unwrap_or(1);
+        let width = req.width.unwrap_or(1200);
+        let height = req.height.unwrap_or(1800);
+        let konva_stage_json = req.konva_stage_json.map(|s| {
+            serde_json::from_str::<serde_json::Value>(&s)
+                .unwrap_or_else(|_| serde_json::json!({}))
+        });
+
+        let page_row = sqlx::query_as::<_, (Uuid, Uuid, Uuid, String, Option<String>, Option<String>, Option<i32>, i32, i32, Option<serde_json::Value>, chrono::DateTime<chrono::Utc>, chrono::DateTime<chrono::Utc>)>(
+            r#"
+            INSERT INTO manga_pages (project_id, script_id, page_id, page_type, description, page_number, width, height, konva_stage_json)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+            RETURNING id, project_id, script_id, page_id, page_type, description, page_number, width, height, konva_stage_json, created_at, updated_at
+            "#,
+        )
+        .bind(project_uuid)
+        .bind(script_uuid)
+        .bind(&page_id)
+        .bind(&page_type)
+        .bind(&req.description)
+        .bind(page_number)
+        .bind(width)
+        .bind(height)
+        .bind(&konva_stage_json)
+        .fetch_one(self.pool.as_ref())
+        .await
+        .map_err(sqlx_error_to_status)?;
+
+        Ok(Response::new(Page {
+            id: page_row.0.to_string(),
+            project_id: page_row.1.to_string(),
+            script_id: page_row.2.to_string(),
+            page_id: page_row.3,
+            page_type: page_row.4,
+            description: page_row.5,
+            page_number: page_row.6,
+            width: page_row.7,
+            height: page_row.8,
+            konva_stage_json: page_row.9.map(|v| v.to_string()),
+            created_at: page_row.10.to_rfc3339(),
+            updated_at: page_row.11.to_rfc3339(),
+        }))
     }
 
     async fn update_page(
@@ -637,10 +701,126 @@ impl MangaEditorService for MangaEditorServiceImpl {
 
     async fn create_panel(
         &self,
-        _request: Request<CreatePanelRequest>,
+        request: Request<CreatePanelRequest>,
     ) -> Result<Response<Panel>, Status> {
-        // TODO: Implement create panel
-        Err(Status::unimplemented("Create panel not implemented"))
+        let req = request.into_inner();
+        let project_id = req.project_id;
+        if project_id.is_empty() {
+            return Err(Status::invalid_argument("Project ID is required"));
+        }
+        let project_uuid = Uuid::parse_str(&project_id)
+            .map_err(uuid_error_to_status)?;
+
+        let page_id = req.page_id;
+        if page_id.is_empty() {
+            return Err(Status::invalid_argument("Page ID is required"));
+        }
+        let page_uuid = Uuid::parse_str(&page_id)
+            .map_err(uuid_error_to_status)?;
+
+        let panel_id = req.panel_id;
+        let x = req.x.unwrap_or(100);
+        let y = req.y.unwrap_or(100);
+        let width = req.width.unwrap_or(1000);
+        let height = req.height.unwrap_or(800);
+        let z_index = req.z_index.unwrap_or(1);
+
+        // Parse panel_data or use empty JSON object as default
+        let panel_data: serde_json::Value = if req.panel_data.is_empty() {
+            serde_json::json!({})
+        } else {
+            serde_json::from_str(&req.panel_data)
+                .map_err(json_error_to_status)?
+        };
+
+        let panel_row = sqlx::query(
+            r#"
+            INSERT INTO manga_panels (project_id, page_id, panel_id, layout, visual, dialogue, x, y, width, height, z_index, image_url, image_base64, image_data, panel_data)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+            RETURNING id, project_id, page_id, panel_id, layout, visual, 
+                   panel_data, image_url, image_base64, image_data,
+                   x, y, width, height, z_index,
+                   created_at, updated_at
+            "#,
+        )
+        .bind(project_uuid)
+        .bind(page_uuid)
+        .bind(panel_id)
+        .bind(&req.layout)
+        .bind(&req.visual)
+        .bind(serde_json::to_value(req.dialogue.iter().map(|d| serde_json::json!({
+            "speaker": d.speaker,
+            "text": d.text,
+        })).collect::<Vec<_>>()).unwrap_or(serde_json::json!([])))
+        .bind(x)
+        .bind(y)
+        .bind(width)
+        .bind(height)
+        .bind(z_index)
+        .bind(&req.image_url)
+        .bind(&req.image_base64)
+        .bind::<Option<Vec<u8>>>(None) // image_data is not in CreatePanelRequest proto
+        .bind(&panel_data)
+        .fetch_one(self.pool.as_ref())
+        .await
+        .map_err(sqlx_error_to_status)?;
+
+        let id: Uuid = panel_row.try_get("id").map_err(|e| Status::internal(format!("Failed to parse id: {}", e)))?;
+        let project_id_db: Uuid = panel_row.try_get("project_id").map_err(|e| Status::internal(format!("Failed to parse project_id: {}", e)))?;
+        let page_id_db: Uuid = panel_row.try_get("page_id").map_err(|e| Status::internal(format!("Failed to parse page_id: {}", e)))?;
+        let panel_id_db: i32 = panel_row.try_get("panel_id").map_err(|e| Status::internal(format!("Failed to parse panel_id: {}", e)))?;
+        let layout: Option<String> = panel_row.try_get("layout").ok();
+        let visual: Option<String> = panel_row.try_get("visual").ok();
+        let panel_data_db: serde_json::Value = panel_row.try_get("panel_data").map_err(|e| Status::internal(format!("Failed to parse panel_data: {}", e)))?;
+        let image_url: Option<String> = panel_row.try_get("image_url").ok();
+        let image_base64: Option<String> = panel_row.try_get("image_base64").ok();
+        let image_data: Option<Vec<u8>> = panel_row.try_get("image_data").ok();
+        let x_db: i32 = panel_row.try_get("x").map_err(|e| Status::internal(format!("Failed to parse x: {}", e)))?;
+        let y_db: i32 = panel_row.try_get("y").map_err(|e| Status::internal(format!("Failed to parse y: {}", e)))?;
+        let width_db: i32 = panel_row.try_get("width").map_err(|e| Status::internal(format!("Failed to parse width: {}", e)))?;
+        let height_db: i32 = panel_row.try_get("height").map_err(|e| Status::internal(format!("Failed to parse height: {}", e)))?;
+        let z_index_db: i32 = panel_row.try_get("z_index").map_err(|e| Status::internal(format!("Failed to parse z_index: {}", e)))?;
+        let created_at: chrono::DateTime<chrono::Utc> = panel_row.try_get("created_at").map_err(|e| Status::internal(format!("Failed to parse created_at: {}", e)))?;
+        let updated_at: chrono::DateTime<chrono::Utc> = panel_row.try_get("updated_at").map_err(|e| Status::internal(format!("Failed to parse updated_at: {}", e)))?;
+
+        // Parse dialogue from panel_data or use empty array
+        let dialogue: Vec<Dialogue> = panel_data_db.get("dialogue")
+            .and_then(|d| {
+                if let Some(arr) = d.as_array() {
+                    Some(arr.iter().filter_map(|item| {
+                        Some(Dialogue {
+                            speaker: item.get("speaker")?.as_str()?.to_string(),
+                            text: item.get("text")?.as_str()?.to_string(),
+                        })
+                    }).collect())
+                } else {
+                    None
+                }
+            })
+            .unwrap_or_default();
+
+        let image_data_base64 = image_data.as_ref().map(|bytes| general_purpose::STANDARD.encode(bytes));
+
+        Ok(Response::new(Panel {
+            id: id.to_string(),
+            project_id: project_id_db.to_string(),
+            page_id: page_id_db.to_string(),
+            panel_id: panel_id_db,
+            layout,
+            visual,
+            dialogue,
+            x: Some(x_db),
+            y: Some(y_db),
+            width: Some(width_db),
+            height: Some(height_db),
+            z_index: z_index_db,
+            image_url,
+            image_base64,
+            image_data: image_data_base64,
+            panel_data: panel_data_db.to_string(),
+            created_at: created_at.to_rfc3339(),
+            updated_at: updated_at.to_rfc3339(),
+        }))
     }
 
     async fn update_panel(
@@ -653,10 +833,119 @@ impl MangaEditorService for MangaEditorServiceImpl {
 
     async fn generate_story(
         &self,
-        _request: Request<GenerateStoryRequest>,
+        request: Request<GenerateStoryRequest>,
     ) -> Result<Response<GenerateStoryResponse>, Status> {
-        // TODO: Implement generate story (similar to GraphQL mutation)
-        Err(Status::unimplemented("Generate story not implemented"))
+        let req = request.into_inner();
+        let project_id = req.project_id;
+        if project_id.is_empty() {
+            return Err(Status::invalid_argument("Project ID is required"));
+        }
+        let project_uuid = Uuid::parse_str(&project_id)
+            .map_err(uuid_error_to_status)?;
+
+        let story_prompt = req.story_prompt;
+        if story_prompt.is_empty() {
+            return Err(Status::invalid_argument("Story prompt is required"));
+        }
+
+        // Generate a script ID
+        let script_id = format!("script_{}", Uuid::new_v4());
+
+        // Create manga script
+        let script_row = sqlx::query_as::<_, (Uuid, Uuid, String, String, Option<i32>, serde_json::Value, chrono::DateTime<chrono::Utc>, chrono::DateTime<chrono::Utc>)>(
+            r#"
+            INSERT INTO manga_scripts (project_id, script_id, title, page_count, script_data)
+            VALUES ($1, $2, $3, $4, $5)
+            RETURNING id, project_id, script_id, title, page_count, script_data, created_at, updated_at
+            "#,
+        )
+        .bind(project_uuid)
+        .bind(&script_id)
+        .bind(format!("Generated Story: {}", &story_prompt[..story_prompt.len().min(50)]))
+        .bind(1i32) // Default to 1 page for now
+        .bind(serde_json::json!({
+            "prompt": story_prompt,
+            "continue_from_previous": req.continue_from_previous.unwrap_or(false),
+            "preset": req.preset.unwrap_or_default(),
+        }))
+        .fetch_one(self.pool.as_ref())
+        .await
+        .map_err(sqlx_error_to_status)?;
+
+        let script = Script {
+            id: script_row.0.to_string(),
+            project_id: script_row.1.to_string(),
+            script_id: script_row.2,
+            title: script_row.3,
+            page_count: script_row.4,
+            script_data: script_row.5.to_string(),
+            created_at: script_row.6.to_rfc3339(),
+            updated_at: script_row.7.to_rfc3339(),
+        };
+
+        // Create a default page
+        let page_id_str = format!("page_1");
+        let page_row = sqlx::query_as::<_, (Uuid, Uuid, Uuid, String, Option<String>, Option<String>, Option<i32>, i32, i32, Option<serde_json::Value>, chrono::DateTime<chrono::Utc>, chrono::DateTime<chrono::Utc>)>(
+            r#"
+            INSERT INTO manga_pages (project_id, script_id, page_id, page_type, description, page_number, width, height)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            RETURNING id, project_id, script_id, page_id, page_type, description, page_number, width, height, konva_stage_json, created_at, updated_at
+            "#,
+        )
+        .bind(project_uuid)
+        .bind(script_row.0) // Use script UUID
+        .bind(&page_id_str)
+        .bind("default" as &str)
+        .bind::<Option<String>>(None)
+        .bind(1i32)
+        .bind(1200i32) // Default manga page width
+        .bind(1800i32) // Default manga page height
+        .fetch_one(self.pool.as_ref())
+        .await
+        .map_err(sqlx_error_to_status)?;
+
+        let page = Page {
+            id: page_row.0.to_string(),
+            project_id: page_row.1.to_string(),
+            script_id: page_row.2.to_string(),
+            page_id: page_row.3,
+            page_type: page_row.4,
+            description: page_row.5,
+            page_number: page_row.6,
+            width: page_row.7,
+            height: page_row.8,
+            konva_stage_json: page_row.9.map(|v| v.to_string()),
+            created_at: page_row.10.to_rfc3339(),
+            updated_at: page_row.11.to_rfc3339(),
+        };
+
+        // Create a default panel for the page
+        let panel_id = 1i32;
+        let _panel_row = sqlx::query(
+            r#"
+            INSERT INTO manga_panels (project_id, page_id, panel_id, layout, visual, x, y, width, height, z_index, panel_data)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+            "#,
+        )
+        .bind(project_uuid)
+        .bind(page_row.0) // Use page UUID
+        .bind(panel_id)
+        .bind::<Option<String>>(None) // layout
+        .bind::<Option<String>>(None) // visual
+        .bind(100i32) // x: default position
+        .bind(100i32) // y: default position
+        .bind(1000i32) // width: default size
+        .bind(800i32) // height: default size
+        .bind(1i32) // z_index: default layer
+        .bind(serde_json::json!({})) // panel_data: empty JSON object
+        .execute(self.pool.as_ref())
+        .await
+        .map_err(sqlx_error_to_status)?;
+
+        Ok(Response::new(GenerateStoryResponse {
+            script: Some(script),
+            pages: vec![page],
+        }))
     }
 
     async fn generate_panel_images(

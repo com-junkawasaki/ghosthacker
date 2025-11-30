@@ -62,12 +62,10 @@ export class GrpcClient {
         metadata: this.createMetadata(metadata),
         onEnd: (response) => {
           if (response.status === grpc.Code.OK && response.message) {
-            // Deserialize response
-            const ResponseMessage = (method.responseType as any);
-            const deserialized = ResponseMessage.deserializeBinary 
-              ? ResponseMessage.deserializeBinary(response.message)
-              : response.message;
-            resolve(deserialized as Res);
+            // @improbable-eng/grpc-web automatically deserializes the response
+            // using method.responseType.deserializeBinary, so response.message
+            // is already a plain object (not a buffer)
+            resolve(response.message as Res);
           } else {
             // Convert gRPC status code to more descriptive error messages
             const errorMessage = this.getErrorMessage(response.status, response.statusMessage);

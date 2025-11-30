@@ -143,13 +143,38 @@ export async function createMethodDefinition<Req, Res>(
     this.data = data;
   } as any;
   RequestMessage.prototype.serializeBinary = function() {
-    return requestSerializer.serialize(this.data);
+    try {
+      return requestSerializer.serialize(this.data);
+    } catch (error) {
+      console.error('Failed to serialize request:', error, 'data:', this.data);
+      throw error;
+    }
   };
 
   // ResponseMessage needs to be a constructor with deserializeBinary static method
+  // @improbable-eng/grpc-web will call this automatically to deserialize the response
+  // The data parameter will be a Uint8Array (binary protobuf data)
   const ResponseMessage = function(this: any) {} as any;
-  (ResponseMessage as any).deserializeBinary = function(data: Uint8Array) {
-    return responseSerializer.deserialize(data);
+  (ResponseMessage as any).deserializeBinary = function(data: Uint8Array | Buffer | ArrayBuffer) {
+    try {
+      // Convert various buffer types to Uint8Array
+      let uint8Array: Uint8Array;
+      if (data instanceof Uint8Array) {
+        uint8Array = data;
+      } else if (Buffer.isBuffer(data)) {
+        uint8Array = new Uint8Array(data);
+      } else if (data instanceof ArrayBuffer) {
+        uint8Array = new Uint8Array(data);
+      } else {
+        // If it's already an object (shouldn't happen, but handle gracefully)
+        console.warn('Unexpected data type in deserializeBinary:', typeof data, data);
+        return data;
+      }
+      return responseSerializer.deserialize(uint8Array);
+    } catch (error) {
+      console.error('Failed to deserialize response:', error, 'data type:', typeof data, 'constructor:', data?.constructor?.name);
+      throw error;
+    }
   };
 
   // @improbable-eng/grpc-web expects the service name in the format "package.Service"

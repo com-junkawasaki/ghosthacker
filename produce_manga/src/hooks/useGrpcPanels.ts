@@ -15,6 +15,7 @@ export function useGrpcPanels(pageId: string | undefined) {
   const [panels, setPanels] = useState<Panel[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     if (!pageId) {
@@ -50,8 +51,13 @@ export function useGrpcPanels(pageId: string | undefined) {
     return () => {
       cancelled = true;
     };
-  }, [pageId]);
+  }, [pageId, refreshKey]);
 
-  return { panels, loading, error };
+  // Expose refetch function
+  const refetch = () => {
+    setRefreshKey(prev => prev + 1);
+  };
+
+  return { panels, loading, error, refetch };
 }
 
