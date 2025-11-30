@@ -5,10 +5,17 @@ WORKDIR /app
 # ビルドに必要な依存関係をインストール
 RUN apk add --no-cache musl-dev openssl-dev
 
+# rustupの自動更新を無効化（Dockerビルド時のエラーを防ぐ）
+ENV RUSTUP_UPDATE_ROOT=""
+ENV RUSTUP_DIST_SERVER=""
+
 # GraphQLサービスディレクトリをコピー
 COPY performers/services/graphql/ ./performers/services/graphql/
 
 WORKDIR /app/performers/services/graphql
+
+# rust-toolchain.tomlと.cargo/config.tomlを削除してrustupの自動更新を防ぐ（Dockerビルド時のエラー回避）
+RUN rm -f rust-toolchain.toml .cargo/config.toml || true
 
 # ビルド
 RUN cargo build --release

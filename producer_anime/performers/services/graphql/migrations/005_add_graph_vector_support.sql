@@ -47,11 +47,13 @@ CREATE INDEX IF NOT EXISTS idx_graph_edges_properties ON graph_edges USING GIN(p
 --     WITH (lists = 100);
 
 -- updated_at自動更新トリガー
+DROP TRIGGER IF EXISTS update_graph_nodes_updated_at ON graph_nodes;
 CREATE TRIGGER update_graph_nodes_updated_at
     BEFORE UPDATE ON graph_nodes
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_graph_edges_updated_at ON graph_edges;
 CREATE TRIGGER update_graph_edges_updated_at
     BEFORE UPDATE ON graph_edges
     FOR EACH ROW

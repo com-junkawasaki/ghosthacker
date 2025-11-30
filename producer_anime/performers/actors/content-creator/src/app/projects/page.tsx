@@ -13,17 +13,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { graphqlRequest } from '@/internal/graphql/client';
-import {
-  GetProjectsDocument,
-  GetProjectsQuery,
-  CreateProjectDocument,
-  CreateProjectMutation,
-  UpdateProjectDocument,
-  UpdateProjectMutation,
-  DeleteProjectDocument,
-  DeleteProjectMutation,
-} from '@/generated/graphql';
 
 interface Project {
   id: string;
@@ -50,8 +39,12 @@ export default function ProjectsPage() {
     setLoading(true);
     setError(null);
     try {
-      const result = await graphqlRequest<GetProjectsQuery>(GetProjectsDocument, {});
-      setProjects(result.projects.map(p => ({
+      const response = await fetch('/api/grpc/projects');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setProjects(data.projects.map((p: any) => ({
         ...p,
         description: p.description ?? null,
         status: p.status ?? null,
@@ -73,13 +66,21 @@ export default function ProjectsPage() {
     setLoading(true);
     setError(null);
     try {
-              const result = await graphqlRequest<CreateProjectMutation>(CreateProjectDocument, {
-                variables: {
-                  name: newProjectName,
-                  description: newProjectDescription || undefined,
-                },
-              });
-      const newProject = result.createProject;
+      const response = await fetch('/api/grpc/projects', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: newProjectName,
+          description: newProjectDescription || undefined,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      const newProject = data.project;
       if (newProject) {
         setProjects([...projects, {
           ...newProject,
@@ -106,9 +107,12 @@ export default function ProjectsPage() {
     setLoading(true);
     setError(null);
     try {
-      await graphqlRequest<DeleteProjectMutation>(DeleteProjectDocument, {
-        variables: { id },
+      const response = await fetch(`/api/grpc/projects/${id}`, {
+        method: 'DELETE',
       });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       setProjects(projects.filter((p) => p.id !== id));
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to delete project');
