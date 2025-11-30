@@ -1,22 +1,45 @@
 /**
- * Graph Query API Route (protobuf-ts version)
- * protobuf-ts + @grpc/grpc-jsを使用した実装
- * 
- * 生成されたコードを使用して型安全なgRPCクライアントを実装
+ * Graph Query API Route
+ * gRPC GraphServiceのgraphQueryをプロキシ
  */
 
 import { NextRequest, NextResponse } from 'next/server';
 import * as grpc from '@grpc/grpc-js';
-import { GraphServiceClient } from '@/internal/grpc/generated/graph.grpc-client';
-import { GraphQueryRequest, GraphQueryResponse } from '@/internal/grpc/generated/graph';
+import * as protoLoader from '@grpc/proto-loader';
+import path from 'path';
 
+// Dockerコンテナ内からホストのgRPCサービスに接続する場合は host.docker.internal:50051
+// ローカル開発環境では localhost:50051
 const GRPC_API_URL = process.env.GRPC_API_URL || 'host.docker.internal:50051';
 
-let client: GraphServiceClient | null = null;
+// protoファイルのパス
+// process.cwd()はNext.jsアプリのルート（/app/performers/actors/content-creator）を返す
+// Dockerコンテナ内では /app/performers/services/grpc/proto が正しいパス
+const PROTO_PATH = path.join(process.cwd(), '../../services/grpc/proto');
 
-function getClient(): GraphServiceClient {
+// protoファイルのロードオプション
+const packageDefinition = protoLoader.loadSync(
+  [
+    path.join(PROTO_PATH, 'common.proto'),
+    path.join(PROTO_PATH, 'graph.proto'),
+  ],
+  {
+    keepCase: true,
+    longs: String,
+    enums: String,
+    defaults: true,
+    oneofs: true,
+  }
+);
+
+const graphProto = grpc.loadPackageDefinition(packageDefinition) as any;
+const GraphService = graphProto.producer.graph.GraphService;
+
+let client: any = null;
+
+function getClient() {
   if (!client) {
-    client = new GraphServiceClient(
+    client = new GraphService(
       GRPC_API_URL,
       grpc.credentials.createInsecure()
     );
@@ -37,11 +60,6 @@ export async function POST(request: NextRequest) {
 
     const grpcClient = getClient();
     
-    // 生成された型を使用してリクエストを作成
-    const grpcRequest = GraphQueryRequest.create({
-      query,
-    });
-    
     return new Promise((resolve) => {
       // タイムアウト処理を追加（25秒）
       const timeoutId = setTimeout(() => {
@@ -53,8 +71,7 @@ export async function POST(request: NextRequest) {
         );
       }, 25000);
       
-      // 生成されたクライアントを使用してgRPC呼び出し
-      grpcClient.graphQuery(grpcRequest, (error: grpc.ServiceError | null, response?: GraphQueryResponse) => {
+      grpcClient.graphQuery({ query }, (error: any, response: any) => {
         clearTimeout(timeoutId);
         if (error) {
           resolve(
@@ -63,19 +80,12 @@ export async function POST(request: NextRequest) {
               { status: 500 }
             )
           );
-        } else if (response) {
+        } else {
           // gRPCレスポンスは { result: "..." } 形式（GraphQueryResponse）
           resolve(NextResponse.json({ 
             result: response.result || '',
             resultJson: response.result || '' // 後方互換性のため
           }));
-        } else {
-          resolve(
-            NextResponse.json(
-              { error: 'No response from server' },
-              { status: 500 }
-            )
-          );
         }
       });
     });

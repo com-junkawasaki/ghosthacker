@@ -33,3 +33,7 @@ tokio-test = "0.4"
 mockall = "0.12"
 sqlx = { version = "0.7", features = ["postgres", "runtime-tokio-rustls", "chrono", "uuid", "json", "migrate"] }
 
+[[bin]]
+name = "seed_251121"
+path = "src/bin/seed_251121.rs"
+

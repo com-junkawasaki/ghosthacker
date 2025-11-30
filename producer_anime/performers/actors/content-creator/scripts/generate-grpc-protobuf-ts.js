@@ -9,7 +9,9 @@ const { execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
-const PROTO_DIR = path.join(__dirname, '../../services/grpc/proto');
+// __dirnameはscriptsディレクトリなので、../../でcontent-creatorの親ディレクトリに移動
+// そこから services/grpc/proto にアクセス
+const PROTO_DIR = path.join(__dirname, '../../../services/grpc/proto');
 const OUT_DIR = path.join(__dirname, '../src/internal/grpc/generated');
 
 // 出力ディレクトリを作成
@@ -27,11 +29,16 @@ try {
 }
 
 // @protobuf-ts/pluginがインストールされているか確認
-const pluginPath = path.join(__dirname, '../node_modules/.bin/protoc-gen-ts');
+// pnpmの場合は、.pnpmディレクトリ内のパスを使用
+let pluginPath = path.join(__dirname, '../node_modules/.pnpm/@protobuf-ts+plugin@2.11.1/node_modules/@protobuf-ts/plugin/bin/protoc-gen-ts');
 if (!fs.existsSync(pluginPath)) {
-  console.error('Error: @protobuf-ts/plugin is not installed');
-  console.error('Run: pnpm install');
-  process.exit(1);
+  // フォールバック: node_modules/.binを使用
+  pluginPath = path.join(__dirname, '../node_modules/.bin/protoc-gen-ts');
+  if (!fs.existsSync(pluginPath)) {
+    console.error('Error: @protobuf-ts/plugin is not installed');
+    console.error('Run: pnpm install');
+    process.exit(1);
+  }
 }
 
 console.log('Generating TypeScript types from proto files using protobuf-ts...');
@@ -50,13 +57,12 @@ try {
     
     // protobuf-tsプラグインのオプション:
     // - generate_dependencies: 依存関係も生成
-    // - generate_all: すべてのメッセージとサービスを生成
-    // - client_grpc1: gRPC-Webクライアントを生成
+    // - client_grpc1: gRPC-Webクライアントを生成（gRPC-Web用）
     const command = [
       'protoc',
       `--plugin=protoc-gen-ts=${pluginPath}`,
       `--ts_out=${OUT_DIR}`,
-      `--ts_opt=generate_dependencies,generate_all,client_grpc1`,
+      `--ts_opt=generate_dependencies,client_grpc1`,
       `--proto_path=${PROTO_DIR}`,
       protoPath,
     ].join(' ');

@@ -16,4 +16,6 @@ pub mod rag;
 
 // 後方互換性のため、postgresモジュールからエクスポート
 pub use postgres::{GraphNode, GraphEdge, VectorSearchResult};
+// jsonldモジュールからエクスポート
+pub use jsonld::{GraphNodeData, GraphEdgeData};
 

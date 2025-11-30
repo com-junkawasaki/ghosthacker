@@ -20,6 +20,15 @@ importers:
       '@hookform/resolvers':
         specifier: ^3.9.0
         version: 3.10.0(react-hook-form@7.66.0(react@18.3.1))
+      '@protobuf-ts/grpcweb-transport':
+        specifier: ^2.9.0
+        version: 2.11.1
+      '@protobuf-ts/runtime':
+        specifier: ^2.9.0
+        version: 2.11.1
+      '@protobuf-ts/runtime-rpc':
+        specifier: ^2.9.0
+        version: 2.11.1
       '@tiptap/extension-character-count':
         specifier: ^2.1.13
         version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))(@tiptap/pm@2.27.1)
@@ -78,6 +87,9 @@ importers:
       '@graphql-codegen/typescript-operations':
         specifier: ^4.0.0
         version: 4.6.1(graphql@16.12.0)
+      '@protobuf-ts/plugin':
+        specifier: ^2.9.0
+        version: 2.11.1
       '@testing-library/jest-dom':
         specifier: ^6.4.0
         version: 6.9.1
@@ -449,6 +461,9 @@ packages:
 
   '@bufbuild/protobuf@2.10.1':
     resolution: {integrity: sha512-ckS3+vyJb5qGpEYv/s1OebUHDi/xSNtfgw1wqKZo7MR9F2z+qXr0q5XagafAG/9O0QPVIUfST0smluYSTpYFkg==}
+
+  '@bufbuild/protoplugin@2.10.1':
+    resolution: {integrity: sha512-imB8dKEjrOnG5+XqVS+CeYn924WGLU/g3wogKhk11XtX9y9NJ7432OS6h24asuBbLrQcPdEZ6QkfM7KeOCeeyQ==}
 
   '@clerk/backend@2.20.0':
     resolution: {integrity: sha512-RcZN7CAxGkkLydGtWpxCyq4C0pSo/1ch0LJMDQnckrt10Jx8mAjwce2nZQa2xRykxsOla4+boF9a5kDw3nUvVg==}
@@ -1142,6 +1157,23 @@ packages:
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
+  '@protobuf-ts/grpcweb-transport@2.11.1':
+    resolution: {integrity: sha512-1W4utDdvOB+RHMFQ0soL4JdnxjXV+ddeGIUg08DvZrA8Ms6k5NN6GBFU2oHZdTOcJVpPrDJ02RJlqtaoCMNBtw==}
+
+  '@protobuf-ts/plugin@2.11.1':
+    resolution: {integrity: sha512-HyuprDcw0bEEJqkOWe1rnXUP0gwYLij8YhPuZyZk6cJbIgc/Q0IFgoHQxOXNIXAcXM4Sbehh6kjVnCzasElw1A==}
+    hasBin: true
+
+  '@protobuf-ts/protoc@2.11.1':
+    resolution: {integrity: sha512-mUZJaV0daGO6HUX90o/atzQ6A7bbN2RSuHtdwo8SSF2Qoe3zHwa4IHyCN1evftTeHfLmdz+45qo47sL+5P8nyg==}
+    hasBin: true
+
+  '@protobuf-ts/runtime-rpc@2.11.1':
+    resolution: {integrity: sha512-4CqqUmNA+/uMz00+d3CYKgElXO9VrEbucjnBFEjqI4GuDrEQ32MaI3q+9qPBvIGOlL4PmHXrzM32vBPWRhQKWQ==}
+
+  '@protobuf-ts/runtime@2.11.1':
+    resolution: {integrity: sha512-KuDaT1IfHkugM2pyz+FwiY80ejWrkH1pAtOBOZFuR6SXEFTsnb/jiQWQ1rCIrcKx2BtyxnxW6BWwsVSA/Ie+WQ==}
+
   '@protobufjs/aspromise@1.1.2':
     resolution: {integrity: sha512-j+gKExEuLmKwvz3OgROXtrJ2UG2x8Ch2YZUxahh+s1F2HZ+wAceUNLkvy6zKCPVRkU++ZWQrdxsUeQXmcg4uoQ==}
 
@@ -1727,6 +1759,11 @@ packages:
   '@typescript-eslint/visitor-keys@8.46.3':
     resolution: {integrity: sha512-uk574k8IU0rOF/AjniX8qbLSGURJVUCeM5e4MIMKBFFi8weeiLrG1fyQejyLXQpRZbU/1BuQasleV/RfHC3hHg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@typescript/vfs@1.6.2':
+    resolution: {integrity: sha512-hoBwJwcbKHmvd2QVebiytN1aELvpk9B74B4L1mFm/XT1Q/VOYAWl2vQ9AWRFtQq8zmz6enTpfTV8WRc4ATjW/g==}
+    peerDependencies:
+      typescript: '*'
 
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
@@ -4261,6 +4298,16 @@ packages:
     resolution: {integrity: sha512-3KS2b+kL7fsuk/eJZ7EQdnEmQoaho/r6KUef7hxvltNA5DR8NAUM+8wJMbJyZ4G9/7i3v5zPBIMN5aybAh2/Jg==}
     engines: {node: '>= 0.4'}
 
+  typescript@3.9.10:
+    resolution: {integrity: sha512-w6fIxVE/H1PkLKcCPsFqKE7Kv7QUwhU8qQY2MueZXWx5cPZdwFupLgKK3vntcK98BtNHZtAF4LA/yl2a7k8R6Q==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+
+  typescript@5.4.5:
+    resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
   typescript@5.9.3:
     resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
     engines: {node: '>=14.17'}
@@ -4914,6 +4961,14 @@ snapshots:
   '@bcoe/v8-coverage@0.2.3': {}
 
   '@bufbuild/protobuf@2.10.1': {}
+
+  '@bufbuild/protoplugin@2.10.1':
+    dependencies:
+      '@bufbuild/protobuf': 2.10.1
+      '@typescript/vfs': 1.6.2(typescript@5.4.5)
+      typescript: 5.4.5
+    transitivePeerDependencies:
+      - supports-color
 
   '@clerk/backend@2.20.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -5784,6 +5839,30 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
+  '@protobuf-ts/grpcweb-transport@2.11.1':
+    dependencies:
+      '@protobuf-ts/runtime': 2.11.1
+      '@protobuf-ts/runtime-rpc': 2.11.1
+
+  '@protobuf-ts/plugin@2.11.1':
+    dependencies:
+      '@bufbuild/protobuf': 2.10.1
+      '@bufbuild/protoplugin': 2.10.1
+      '@protobuf-ts/protoc': 2.11.1
+      '@protobuf-ts/runtime': 2.11.1
+      '@protobuf-ts/runtime-rpc': 2.11.1
+      typescript: 3.9.10
+    transitivePeerDependencies:
+      - supports-color
+
+  '@protobuf-ts/protoc@2.11.1': {}
+
+  '@protobuf-ts/runtime-rpc@2.11.1':
+    dependencies:
+      '@protobuf-ts/runtime': 2.11.1
+
+  '@protobuf-ts/runtime@2.11.1': {}
+
   '@protobufjs/aspromise@1.1.2': {}
 
   '@protobufjs/base64@1.1.2': {}
@@ -6451,6 +6530,13 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.46.3
       eslint-visitor-keys: 4.2.1
+
+  '@typescript/vfs@1.6.2(typescript@5.4.5)':
+    dependencies:
+      debug: 4.4.3
+      typescript: 5.4.5
+    transitivePeerDependencies:
+      - supports-color
 
   '@ungap/structured-clone@1.3.0': {}
 
@@ -9362,6 +9448,10 @@ snapshots:
       is-typed-array: 1.1.15
       possible-typed-array-names: 1.1.0
       reflect.getprototypeof: 1.0.10
+
+  typescript@3.9.10: {}
+
+  typescript@5.4.5: {}
 
   typescript@5.9.3: {}
 

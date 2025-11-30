@@ -9,7 +9,8 @@
  * }
  */
 
-use serde_json::Value;
+use serde_json::{Value, Map};
+use nanoid::nanoid;
 
 /// JSON-LD処理エラー
 #[derive(Debug, thiserror::Error)]
@@ -342,6 +343,307 @@ impl JsonLdProcessor {
 
         Ok(normalized)
     }
+
+    /// JSON-LDからグラフノードとエッジを抽出
+    pub fn extract_graph_nodes_and_edges(jsonld: &Value) -> Result<(Vec<GraphNodeData>, Vec<GraphEdgeData>), JsonLdError> {
+        let mut nodes = Vec::new();
+        let mut edges = Vec::new();
+        let mut node_map: Map<String, Value> = Map::new();
+        
+        // ルート要素もノードとして扱う（@idがある場合）
+        let mut items = Vec::new();
+        if jsonld.is_object() {
+            if let Some(obj) = jsonld.as_object() {
+                if obj.get("@id").is_some() {
+                    items.push(jsonld);
+                }
+            }
+        }
+        
+        // 全てのノードを再帰的に収集
+        Self::collect_all_nodes(jsonld, &mut items);
+
+        // まず全てのノードを抽出
+        for item in &items {
+            if let Some(obj) = item.as_object() {
+                // @idがない場合でも、ルート要素や配列要素をノードとして扱う
+                let id_str = if let Some(id_val) = obj.get("@id") {
+                    if let Some(id) = id_val.as_str() {
+                        id.to_string()
+                    } else {
+                        continue;
+                    }
+                } else {
+                    // @idがない場合は生成
+                    format!("node:{}", nanoid::nanoid!())
+                };
+                
+                // ノードデータを作成
+                let mut node_props = Map::new();
+                let mut node_jsonld = Map::new();
+                
+                // @contextを保持
+                if let Some(context) = jsonld.get("@context") {
+                    node_jsonld.insert("@context".to_string(), context.clone());
+                }
+
+                // プロパティをコピー
+                for (key, value) in obj.iter() {
+                    if key == "@id" || key == "@context" {
+                        continue;
+                    }
+                    
+                    // @typeを処理
+                    if key == "@type" {
+                        node_jsonld.insert("@type".to_string(), value.clone());
+                        // ノードタイプをマッピング
+                        let node_type = Self::map_node_type(value);
+                        if let Some(nt) = node_type {
+                            node_props.insert("nodeType".to_string(), Value::String(nt));
+                        }
+                    } else {
+                        // 配列の場合、参照を含む可能性がある
+                        if let Some(array) = value.as_array() {
+                            // 配列内に参照があるかチェック
+                            let has_refs = array.iter().any(|v| Self::is_reference(v));
+                            if !has_refs {
+                                // 参照がない場合はプロパティとして保存
+                                node_props.insert(key.clone(), value.clone());
+                                node_jsonld.insert(key.clone(), value.clone());
+                            }
+                            // 参照がある場合は後でエッジとして処理
+                        } else if !Self::is_reference(value) {
+                            // リテラル値はpropertiesに
+                            node_props.insert(key.clone(), value.clone());
+                            node_jsonld.insert(key.clone(), value.clone());
+                        }
+                        // 参照は後でエッジとして処理
+                    }
+                }
+
+                // ラベルを抽出
+                let label = Self::extract_label(obj, &node_props);
+                
+                node_jsonld.insert("@id".to_string(), Value::String(id_str.clone()));
+                
+                nodes.push(GraphNodeData {
+                    id: id_str.clone(),
+                    label,
+                    properties: Value::Object(node_props),
+                    jsonld: Value::Object(node_jsonld),
+                });
+
+                node_map.insert(id_str, item.clone());
+            }
+        }
+
+        // エッジを抽出
+        for item in &items {
+            if let Some(obj) = item.as_object() {
+                if let Some(source_id_val) = obj.get("@id") {
+                    if let Some(source_id) = source_id_val.as_str() {
+                        // 各プロパティからエッジを抽出
+                        for (predicate, value) in obj.iter() {
+                            if predicate.starts_with('@') || predicate == "@context" {
+                                continue;
+                            }
+
+                            let edge_type = Self::map_edge_type(predicate);
+                            
+                            // 配列の場合
+                            if let Some(array) = value.as_array() {
+                                for item in array {
+                                    // オブジェクト参照を抽出
+                                    if let Some(target_id) = Self::extract_reference_id(item) {
+                                        // ターゲットノードが存在することを確認
+                                        if items.iter().any(|i| {
+                                            i.as_object()
+                                                .and_then(|o| o.get("@id"))
+                                                .and_then(|id| id.as_str())
+                                                .map(|id| id == target_id)
+                                                .unwrap_or(false)
+                                        }) {
+                                            edges.push(GraphEdgeData {
+                                                source: source_id.to_string(),
+                                                target: target_id,
+                                                label: predicate.clone(),
+                                                edge_type: edge_type.clone(),
+                                                properties: serde_json::json!({}),
+                                            });
+                                        }
+                                    }
+                                }
+                            } else if let Some(target_id) = Self::extract_reference_id(value) {
+                                // ターゲットノードが存在することを確認
+                                if items.iter().any(|i| {
+                                    i.as_object()
+                                        .and_then(|o| o.get("@id"))
+                                        .and_then(|id| id.as_str())
+                                        .map(|id| id == target_id)
+                                        .unwrap_or(false)
+                                }) {
+                                    edges.push(GraphEdgeData {
+                                        source: source_id.to_string(),
+                                        target: target_id,
+                                        label: predicate.clone(),
+                                        edge_type: edge_type.clone(),
+                                        properties: serde_json::json!({}),
+                                    });
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        Ok((nodes, edges))
+    }
+
+    /// ノードタイプをマッピング
+    fn map_node_type(type_value: &Value) -> Option<String> {
+        let type_str = type_value.as_str()?;
+        
+        // Ghost Hackerの名前空間をチェック
+        if type_str.contains("Character") || type_str.contains("character") {
+            Some("character".to_string())
+        } else if type_str.contains("Company") || type_str.contains("company") {
+            Some("worldview".to_string())
+        } else if type_str.contains("Episode") || type_str.contains("Story") {
+            Some("beat".to_string())
+        } else if type_str.contains("Scene") || type_str.contains("Page") {
+            Some("scene".to_string())
+        } else if type_str.contains("Script") || type_str.contains("Panel") {
+            Some("event".to_string())
+        } else if type_str.contains("Prompt") || type_str.contains("Generation") {
+            Some("process".to_string())
+        } else if type_str.contains("Context") {
+            Some("context".to_string())
+        } else {
+            None
+        }
+    }
+
+    /// エッジタイプをマッピング
+    fn map_edge_type(predicate: &str) -> String {
+        if predicate.contains("character") || predicate == "gh:characters" {
+            "appearsIn".to_string()
+        } else if predicate.contains("scene") || predicate == "gh:scenes" {
+            "contains".to_string()
+        } else if predicate.contains("page") || predicate == "gh:pages" {
+            "contains".to_string()
+        } else if predicate.contains("panel") || predicate == "gh:panels" {
+            "contains".to_string()
+        } else if predicate.contains("belongsTo") || predicate == "gh:belongsTo" {
+            "belongsTo".to_string()
+        } else if predicate.contains("influences") || predicate == "gh:influences" {
+            "influences".to_string()
+        } else {
+            "relatesTo".to_string()
+        }
+    }
+
+    /// 参照かどうかを判定
+    fn is_reference(value: &Value) -> bool {
+        if let Some(obj) = value.as_object() {
+            obj.get("@id").is_some()
+        } else if let Some(array) = value.as_array() {
+            array.iter().any(|item| Self::is_reference(item))
+        } else {
+            false
+        }
+    }
+
+    /// 参照からIDを抽出
+    fn extract_reference_id(value: &Value) -> Option<String> {
+        if let Some(obj) = value.as_object() {
+            obj.get("@id")?.as_str().map(|s| s.to_string())
+        } else if let Some(str_val) = value.as_str() {
+            // 文字列がID参照の可能性がある場合
+            if str_val.starts_with("character:") || 
+               str_val.starts_with("scene:") || 
+               str_val.starts_with("page:") ||
+               str_val.starts_with("gh:") {
+                Some(str_val.to_string())
+            } else {
+                None
+            }
+        } else {
+            None
+        }
+    }
+
+    /// 全てのノードを再帰的に収集
+    fn collect_all_nodes(value: &Value, items: &mut Vec<&Value>) {
+        if let Some(obj) = value.as_object() {
+            // @idがある場合はノードとして追加
+            if obj.get("@id").is_some() {
+                items.push(value);
+            }
+            
+            // 配列プロパティを再帰的に処理
+            for (_, val) in obj.iter() {
+                if let Some(array) = val.as_array() {
+                    for item in array {
+                        Self::collect_all_nodes(item, items);
+                    }
+                } else if val.is_object() {
+                    Self::collect_all_nodes(val, items);
+                }
+            }
+        } else if let Some(array) = value.as_array() {
+            for item in array {
+                Self::collect_all_nodes(item, items);
+            }
+        }
+    }
+
+    /// ラベルを抽出
+    fn extract_label(obj: &Map<String, Value>, props: &Map<String, Value>) -> String {
+        // schema:nameを優先
+        if let Some(name) = obj.get("schema:name").or_else(|| obj.get("name")) {
+            if let Some(name_str) = name.as_str() {
+                return name_str.to_string();
+            }
+        }
+        
+        // dct:titleを次に試す
+        if let Some(title) = obj.get("dct:title").or_else(|| obj.get("title")) {
+            if let Some(title_str) = title.as_str() {
+                return title_str.to_string();
+            }
+        }
+
+        // @idから最後の部分を抽出
+        if let Some(id_val) = obj.get("@id") {
+            if let Some(id_str) = id_val.as_str() {
+                if let Some(last_part) = id_str.split(':').last() {
+                    return last_part.to_string();
+                }
+            }
+        }
+
+        "Untitled".to_string()
+    }
+}
+
+/// グラフノードデータ
+#[derive(Debug, Clone)]
+pub struct GraphNodeData {
+    pub id: String,
+    pub label: String,
+    pub properties: Value,
+    pub jsonld: Value,
+}
+
+/// グラフエッジデータ
+#[derive(Debug, Clone)]
+pub struct GraphEdgeData {
+    pub source: String,
+    pub target: String,
+    pub label: String,
+    pub edge_type: String,
+    pub properties: Value,
 }
 
 /// RDFトリプル

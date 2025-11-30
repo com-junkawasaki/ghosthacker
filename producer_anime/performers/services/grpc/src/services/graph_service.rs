@@ -3,7 +3,7 @@ use nanoid::nanoid;
 use serde_json::Value as JsonValue;
 
 use producerv2_graphql::graph::postgres::{get_client};
-use producerv2_graphql::graph::jsonld::JsonLdProcessor;
+use producerv2_graphql::graph::jsonld::{JsonLdProcessor, GraphNodeData, GraphEdgeData};
 use producerv2_graphql::graph::rag::SearchResult as DatabaseSearchResult;
 
 // GraphNodeとGraphEdgeはprotoファイルから生成されたものを使用
@@ -315,9 +315,59 @@ impl GraphService for GraphServiceImpl {
         JsonLdProcessor::validate(&jsonld)
             .map_err(|e| Status::invalid_argument(format!("Invalid JSON-LD: {}", e)))?;
         
-        // TODO: JSON-LDからグラフノードとエッジを抽出してインポート
-        // 現在は簡易的な実装として、エラーを返す
-        Err(Status::unimplemented("Import JSON-LD not yet fully implemented"))
+        // JSON-LDからノードとエッジを抽出
+        let (node_data_list, edge_data_list) = JsonLdProcessor::extract_graph_nodes_and_edges(&jsonld)
+            .map_err(|e| Status::invalid_argument(format!("Failed to extract nodes and edges: {}", e)))?;
+        
+        let client = get_client()
+            .map_err(|e| Status::internal(format!("PostgreSQL graph client error: {}", e)))?;
+        
+        let mut nodes_created = 0;
+        let mut edges_created = 0;
+        
+        // ノードをインポート
+        for node_data in node_data_list {
+            let node = DatabaseGraphNode {
+                id: Some(node_data.id.clone()),
+                label: node_data.label,
+                properties: node_data.properties,
+                vector: None,
+                jsonld: node_data.jsonld,
+            };
+            
+            match client.create_node(&node).await {
+                Ok(_) => nodes_created += 1,
+                Err(e) => {
+                    tracing::warn!("Failed to create node {}: {}", node_data.id, e);
+                }
+            }
+        }
+        
+        // エッジをインポート
+        for edge_data in edge_data_list {
+            let mut edge_props = serde_json::Map::new();
+            edge_props.insert("edgeType".to_string(), JsonValue::String(edge_data.edge_type));
+            
+            let edge = DatabaseGraphEdge {
+                id: None,
+                source: edge_data.source,
+                target: edge_data.target,
+                label: edge_data.label,
+                properties: JsonValue::Object(edge_props),
+            };
+            
+            match client.create_edge(&edge).await {
+                Ok(_) => edges_created += 1,
+                Err(e) => {
+                    tracing::warn!("Failed to create edge {} -> {}: {}", edge.source, edge.target, e);
+                }
+            }
+        }
+        
+        Ok(Response::new(ImportJsonLdResponse {
+            nodes_created: nodes_created as i32,
+            edges_created: edges_created as i32,
+        }))
     }
 
     async fn export_json_ld(
