@@ -1,11 +1,11 @@
 /**
- * GraphQL Service Main
- * Rust async-graphqlサービス with Poem
+ * gRPC-Web Service Main
+ * Rust async-graphqlサービス with Poem (gRPC-Web互換)
  * 
  * @context {
- *   "@id": "ex:GraphQLServiceMain",
+ *   "@id": "ex:GrpcWebServiceMain",
  *   "@type": "ex:Service",
- *   "ex:provides": "ex:GraphQLAPI"
+ *   "ex:provides": "ex:GrpcWebAPI"
  * }
  */
 
@@ -84,7 +84,7 @@ async fn main() -> anyhow::Result<()> {
         .with(Cors::new());
 
     let listener = TcpListener::bind("0.0.0.0:8080");
-    tracing::info!("GraphQL server running on http://0.0.0.0:8080/graphql");
+    tracing::info!("gRPC-Web server running on http://0.0.0.0:8080");
     Server::new(listener).run(app).await?;
 
     Ok(())

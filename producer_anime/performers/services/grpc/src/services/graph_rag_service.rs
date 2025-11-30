@@ -1,6 +1,6 @@
 use tonic::{Request, Response, Status};
 
-use producerv2_graphql::graph::rag::get_rag_service;
+use producerv2_grpc_web::graph::rag::get_rag_service;
 
 pub mod proto {
     tonic::include_proto!("producer.graph");

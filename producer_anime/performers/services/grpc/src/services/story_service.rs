@@ -3,8 +3,8 @@ use prost_types::Timestamp;
 use chrono::{DateTime, Utc};
 use nanoid::nanoid;
 
-use producerv2_graphql::database::client::{get_story, get_all_stories, create_story, update_story, delete_story};
-use producerv2_graphql::database::schema::Story as DatabaseStory;
+use producerv2_grpc_web::database::client::{get_story, get_all_stories, create_story, update_story, delete_story};
+use producerv2_grpc_web::database::schema::Story as DatabaseStory;
 
 pub mod proto {
     pub mod common {

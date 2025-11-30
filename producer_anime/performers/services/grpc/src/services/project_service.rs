@@ -3,8 +3,8 @@ use prost_types::Timestamp;
 use chrono::{DateTime, Utc};
 use nanoid::nanoid;
 
-use producerv2_graphql::database::client::{get_project, get_all_projects, create_project, update_project, delete_project};
-use producerv2_graphql::database::schema::Project as DatabaseProject;
+use producerv2_grpc_web::database::client::{get_project, get_all_projects, create_project, update_project, delete_project};
+use producerv2_grpc_web::database::schema::Project as DatabaseProject;
 
 // protoファイルから生成されたコードをインポート
 pub mod proto {

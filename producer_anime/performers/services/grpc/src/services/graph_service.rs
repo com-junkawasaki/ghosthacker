@@ -2,14 +2,14 @@ use tonic::{Request, Response, Status};
 use nanoid::nanoid;
 use serde_json::Value as JsonValue;
 
-use producerv2_graphql::graph::postgres::{get_client};
-use producerv2_graphql::graph::jsonld::{JsonLdProcessor, GraphNodeData, GraphEdgeData};
-use producerv2_graphql::graph::rag::SearchResult as DatabaseSearchResult;
+use producerv2_grpc_web::graph::postgres::{get_client};
+use producerv2_grpc_web::graph::jsonld::{JsonLdProcessor, GraphNodeData, GraphEdgeData};
+use producerv2_grpc_web::graph::rag::SearchResult as DatabaseSearchResult;
 
 // GraphNodeとGraphEdgeはprotoファイルから生成されたものを使用
-type DatabaseGraphNode = producerv2_graphql::graph::postgres::GraphNode;
-type DatabaseGraphEdge = producerv2_graphql::graph::postgres::GraphEdge;
-type DatabaseVectorSearchResult = producerv2_graphql::graph::postgres::VectorSearchResult;
+type DatabaseGraphNode = producerv2_grpc_web::graph::postgres::GraphNode;
+type DatabaseGraphEdge = producerv2_grpc_web::graph::postgres::GraphEdge;
+type DatabaseVectorSearchResult = producerv2_grpc_web::graph::postgres::VectorSearchResult;
 
 pub mod proto {
     tonic::include_proto!("producer.graph");
@@ -230,7 +230,7 @@ impl GraphService for GraphServiceImpl {
         request: Request<SemanticSearchRequest>,
     ) -> Result<Response<SemanticSearchResponse>, Status> {
         let req = request.into_inner();
-        let rag_service = producerv2_graphql::graph::rag::get_rag_service()
+        let rag_service = producerv2_grpc_web::graph::rag::get_rag_service()
             .map_err(|e| Status::internal(format!("RAG service error: {}", e)))?;
         
         let limit = if req.limit > 0 { req.limit as usize } else { 10 };

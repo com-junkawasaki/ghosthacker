@@ -4,14 +4,14 @@ use chrono::{DateTime, Utc};
 use nanoid::nanoid;
 use serde_json::Value as JsonValue;
 
-use producerv2_graphql::database::client::{
+use producerv2_grpc_web::database::client::{
     get_epub_document, create_epub_document, update_epub_document,
     get_kindle_document, create_kindle_document,
     get_chapter, get_chapters_by_document, create_chapter, update_chapter,
     get_paragraph, get_paragraphs_by_parent, get_paragraphs_by_epub_document, create_paragraph, update_paragraph,
     get_text_node, get_text_nodes_by_paragraph, create_text_node, update_text_node, delete_text_node,
 };
-use producerv2_graphql::database::schema::{
+use producerv2_grpc_web::database::schema::{
     EPUBDocument as DatabaseEPUBDocument,
     KindleDocument as DatabaseKindleDocument,
     Chapter as DatabaseChapter,

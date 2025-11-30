@@ -13,7 +13,7 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import { graphqlRequest } from '@/internal/graphql/client';
 
 // 実際の GraphQL API が起動している必要がある
-const GRAPHQL_URL = process.env.NEXT_PUBLIC_GRAPHQL_API_URL || 'http://localhost:8080/graphql';
+const GRPC_WEB_URL = process.env.NEXT_PUBLIC_GRPC_WEB_API_URL || 'http://localhost:8080';
 
 describe('GraphQL Integration Tests', () => {
   beforeAll(() => {

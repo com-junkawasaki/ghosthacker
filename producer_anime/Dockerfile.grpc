@@ -5,8 +5,8 @@ WORKDIR /app
 # ビルドに必要な依存関係をインストール
 RUN apk add --no-cache musl-dev openssl-dev protobuf-dev
 
-# GraphQLサービス（依存関係）をコピー
-COPY performers/services/graphql/ ./performers/services/graphql/
+    # gRPC-Webサービス（依存関係）をコピー
+    COPY performers/services/grpc-web/ ./performers/services/grpc-web/
 
 # gRPCサービスをコピー
 COPY performers/services/grpc/ ./performers/services/grpc/
@@ -27,7 +27,7 @@ WORKDIR /app
 COPY --from=builder /app/performers/services/grpc/target/release/producerv2-grpc /app/producerv2-grpc
 
 # マイグレーションファイルをコピー
-COPY performers/services/graphql/migrations ./migrations
+COPY performers/services/grpc-web/migrations ./migrations
 
 EXPOSE 50051
 

@@ -22,8 +22,8 @@ if (typeof window !== 'undefined') {
 
 // 環境変数の設定
 if (typeof process !== 'undefined') {
-  process.env.NEXT_PUBLIC_GRAPHQL_API_URL = 'http://localhost:8080/graphql';
-  process.env.GRAPHQL_API_URL = 'http://localhost:8080/graphql';
+  process.env.NEXT_PUBLIC_GRPC_WEB_API_URL = 'http://localhost:8080';
+  process.env.GRPC_WEB_API_URL = 'http://localhost:8080';
 }
 
 // ブラウザ環境でのグローバル設定

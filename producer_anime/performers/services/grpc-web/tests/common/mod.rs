@@ -3,7 +3,7 @@
  * テスト共通ユーティリティ
  */
 
-use producerv2_graphql::database::client::initialize;
+use producerv2_grpc_web::database::client::initialize;
 
 /// テスト用データベースを初期化（一度だけ実行）
 pub async fn setup_test_database() {

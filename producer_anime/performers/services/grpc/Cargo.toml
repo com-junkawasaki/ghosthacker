@@ -27,8 +27,8 @@ thiserror = "1.0"
 tower = "0.4"
 tower-http = { version = "0.5", features = ["cors"] }
 
-# 既存のgraphqlサービスからモジュールを再利用
-producerv2-graphql = { path = "../graphql" }
+# 既存のgrpc-webサービスからモジュールを再利用
+producerv2-grpc-web = { path = "../grpc-web" }
 
 [build-dependencies]
 tonic-build = "0.11"

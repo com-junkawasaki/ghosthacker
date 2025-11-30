@@ -8,9 +8,9 @@ use std::fs;
 use std::path::PathBuf;
 use std::sync::Arc;
 use dotenv::dotenv;
-use producerv2_graphql::database::client::get_pool;
-use producerv2_graphql::graph::postgres::{PostgreSQLGraphClient, GraphNode, GraphEdge};
-use producerv2_graphql::graph::jsonld::JsonLdProcessor;
+use producerv2_grpc_web::database::client::get_pool;
+use producerv2_grpc_web::graph::postgres::{PostgreSQLGraphClient, GraphNode, GraphEdge};
+use producerv2_grpc_web::graph::jsonld::JsonLdProcessor;
 use serde_json::Value;
 
 #[tokio::main]
@@ -21,7 +21,7 @@ async fn main() -> Result<()> {
     tracing_subscriber::fmt::init();
     
     // データベース接続プールを初期化
-    producerv2_graphql::database::client::initialize().await?;
+    producerv2_grpc_web::database::client::initialize().await?;
     
     // データベースクライアントを取得
     let pool = get_pool()?;

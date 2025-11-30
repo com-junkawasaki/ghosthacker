@@ -16,10 +16,10 @@ use services::{
     GraphServiceImpl, GraphRagServiceImpl,
 };
 
-use producerv2_graphql::database::client::initialize as initialize_database;
-use producerv2_graphql::graph::postgres::initialize as initialize_postgres_graph;
-use producerv2_graphql::graph::embedding::initialize as initialize_embedding;
-use producerv2_graphql::graph::rag::initialize as initialize_rag;
+use producerv2_grpc_web::database::client::initialize as initialize_database;
+use producerv2_grpc_web::graph::postgres::initialize as initialize_postgres_graph;
+use producerv2_grpc_web::graph::embedding::initialize as initialize_embedding;
+use producerv2_grpc_web::graph::rag::initialize as initialize_rag;
 
 // protoファイルから生成されたサービスサーバーをインポート
 use services::project_service::proto::project_service_server::ProjectServiceServer;

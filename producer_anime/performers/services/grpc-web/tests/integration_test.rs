@@ -8,8 +8,8 @@
  * }
  */
 
-use producerv2_graphql::database::schema::{Project, ToJsonLd};
-use producerv2_graphql::validation::shacl::{get_default_shape_for_type, validate_with_shacl};
+use producerv2_grpc_web::database::schema::{Project, ToJsonLd};
+use producerv2_grpc_web::validation::shacl::{get_default_shape_for_type, validate_with_shacl};
 
 mod common;
 use common::setup_test_database;

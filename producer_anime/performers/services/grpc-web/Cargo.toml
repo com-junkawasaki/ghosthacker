@@ -1,5 +1,5 @@
 [package]
-name = "producerv2-graphql"
+name = "producerv2-grpc-web"
 version = "0.1.0"
 edition = "2021"
 
@@ -32,6 +32,10 @@ thiserror = "1.0"
 tokio-test = "0.4"
 mockall = "0.12"
 sqlx = { version = "0.7", features = ["postgres", "runtime-tokio-rustls", "chrono", "uuid", "json", "migrate"] }
+
+[[bin]]
+name = "producerv2-grpc-web"
+path = "src/main.rs"
 
 [[bin]]
 name = "seed_251121"

@@ -8,8 +8,8 @@
  * }
  */
 
-use producerv2_graphql::validation::shacl::{get_default_shape_for_type, validate_with_shacl};
-use producerv2_graphql::validation::{PropertyShape, ShaclShape};
+use producerv2_grpc_web::validation::shacl::{get_default_shape_for_type, validate_with_shacl};
+use producerv2_grpc_web::validation::{PropertyShape, ShaclShape};
 
 #[test]
 fn test_get_property_value_with_ex_prefix() {
@@ -60,7 +60,7 @@ fn test_shacl_max_count_validation() {
         properties: std::collections::HashMap::new(),
     };
     
-    use producerv2_graphql::validation::shacl::PropertyShape;
+    use producerv2_grpc_web::validation::shacl::PropertyShape;
     shape.properties.insert(
         "ex:tags".to_string(),
         PropertyShape {

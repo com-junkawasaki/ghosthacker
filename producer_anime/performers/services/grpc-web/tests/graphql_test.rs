@@ -9,8 +9,8 @@
  * }
  */
 
-use producerv2_graphql::database::schema::{insert_document_typed, get_document_typed, ToJsonLd, Project, Story};
-use producerv2_graphql::validation::shacl::{get_default_shape_for_type, validate_with_shacl};
+use producerv2_grpc_web::database::schema::{insert_document_typed, get_document_typed, ToJsonLd, Project, Story};
+use producerv2_grpc_web::validation::shacl::{get_default_shape_for_type, validate_with_shacl};
 
 mod common;
 use common::setup_test_database;
@@ -47,7 +47,7 @@ async fn test_create_project_mutation() {
     assert_eq!(retrieved_project.name, "GraphQL Test Project");
     
     // クリーンアップ
-    producerv2_graphql::database::client::delete_document("Project_graphql_test").await.unwrap();
+    producerv2_grpc_web::database::client::delete_document("Project_graphql_test").await.unwrap();
 }
 
 #[tokio::test]
@@ -81,7 +81,7 @@ async fn test_create_story_mutation() {
     assert_eq!(retrieved_story.content, "Test story content");
     
     // クリーンアップ
-    producerv2_graphql::database::client::delete_document("Story_graphql_test").await.unwrap();
+    producerv2_grpc_web::database::client::delete_document("Story_graphql_test").await.unwrap();
 }
 
 #[tokio::test]
@@ -115,13 +115,13 @@ async fn test_query_all_projects() {
     insert_document_typed(&project2).await.unwrap();
     
     // すべてのプロジェクトを取得
-    let all_projects = producerv2_graphql::database::client::get_all_resources(Some("ex:Project")).await.unwrap();
+    let all_projects = producerv2_grpc_web::database::client::get_all_resources(Some("ex:Project")).await.unwrap();
     assert!(all_projects.len() >= 2, "Should retrieve at least 2 projects");
     assert!(all_projects.contains(&"Project_query_test_1".to_string()));
     assert!(all_projects.contains(&"Project_query_test_2".to_string()));
     
     // クリーンアップ
-    producerv2_graphql::database::client::delete_document("Project_query_test_1").await.unwrap();
-    producerv2_graphql::database::client::delete_document("Project_query_test_2").await.unwrap();
+    producerv2_grpc_web::database::client::delete_document("Project_query_test_1").await.unwrap();
+    producerv2_grpc_web::database::client::delete_document("Project_query_test_2").await.unwrap();
 }
 

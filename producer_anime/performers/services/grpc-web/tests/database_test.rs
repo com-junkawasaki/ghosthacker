@@ -8,8 +8,8 @@
  * }
  */
 
-use producerv2_graphql::database::client::{get_document, insert_document, delete_document};
-use producerv2_graphql::database::schema::{get_document_typed, insert_document_typed, Project};
+use producerv2_grpc_web::database::client::{get_document, insert_document, delete_document};
+use producerv2_grpc_web::database::schema::{get_document_typed, insert_document_typed, Project};
 
 mod common;
 use common::setup_test_database;
