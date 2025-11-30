@@ -98,6 +98,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
   const [edgeSource, setEdgeSource] = useState<string | null>(null);
   const [showHierarchy, setShowHierarchy] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isLayouting, setIsLayouting] = useState(false);
   const [draggedNodeId, setDraggedNodeId] = useState<string | null>(null);
   
   // Form states
@@ -648,12 +649,32 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         };
       });
       
-      setNodes(nodesWithHierarchy as unknown as Parameters<typeof setNodes>[0]);
+      // 保存された位置を優先しつつ、レイアウトを適用
+      const containerWidth = containerRef.current?.clientWidth || 1200;
+      const containerHeight = containerRef.current?.clientHeight || 800;
+      
+      // まずStoryElementLayoutでタイプベースのレイアウトを適用
+      const typeLayoutedNodes = calculateStoryElementLayout(
+        nodesWithHierarchy as unknown as Node<GraphNodeData>[],
+        updatedEdges,
+        builtLayers,
+        { width: containerWidth, height: containerHeight }
+      );
+      
+      // その後、Force-directed layoutで重なりを防ぎながら微調整
+      const layoutedNodes = calculateForceLayout(
+        typeLayoutedNodes,
+        updatedEdges,
+        builtLayers,
+        { width: containerWidth, height: containerHeight }
+      );
+      
+      setNodes(layoutedNodes as unknown as Parameters<typeof setNodes>[0]);
       setEdges(updatedEdges);
       setContextLayers(builtLayers);
       
       addDebugLog('info', 'loadGraphData: Completed successfully', {
-        nodesCount: nodesWithHierarchy.length,
+        nodesCount: layoutedNodes.length,
         edgesCount: updatedEdges.length,
         contextLayersCount: builtLayers.length,
         contextLayers: builtLayers.map(l => ({
@@ -1210,11 +1231,22 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
     setDraggedNodeId(null);
   }, [draggedNodeId, nodes, edges, handleCreateEdge, loadGraphData, getViewport]);
 
-  // Force-directed + Layer layout適用（階層ビューが有効な場合）
-  useEffect(() => {
-    if (showHierarchy && nodes.length > 0 && containerRef.current) {
+  // 自動レイアウト実行関数
+  const applyAutoLayout = useCallback(async () => {
+    if (!containerRef.current || nodes.length === 0) return;
+    
+    setIsLayouting(true);
+    try {
       const width = containerRef.current.offsetWidth || 800;
       const height = containerRef.current.offsetHeight || 600;
+      
+      addDebugLog('info', 'Auto Layout: Starting layout calculation', {
+        nodesCount: nodes.length,
+        edgesCount: edges.length,
+        contextLayersCount: contextLayers.length,
+        width,
+        height,
+      });
       
       // まず要素タイプ別レイアウトを適用
       const typeLayoutedNodes = calculateStoryElementLayout(
@@ -1224,7 +1256,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         { width, height }
       );
       
-      // その後、Force-directed layoutで微調整
+      // その後、Force-directed layoutで重なりを防ぎながら微調整
       const layoutedNodes = calculateForceLayout(
         typeLayoutedNodes,
         edges,
@@ -1234,11 +1266,32 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       
       setNodes(layoutedNodes);
       
+      addDebugLog('info', 'Auto Layout: Layout calculation completed', {
+        nodesCount: layoutedNodes.length,
+      });
+      
+      // ビューをフィット
       setTimeout(() => {
         fitView({ padding: 0.2 });
       }, 100);
+    } catch (err) {
+      const appError = classifyError(err);
+      logError(appError, 'GraphVisualizationReactFlow.applyAutoLayout');
+      addDebugLog('error', 'Auto Layout: Error during layout calculation', {
+        error: appError.message,
+      });
+    } finally {
+      setIsLayouting(false);
     }
-  }, [showHierarchy, nodes.length, edges.length, contextLayers.length, calculateStoryElementLayout, calculateForceLayout, fitView, setNodes]);
+  }, [nodes, edges, contextLayers, calculateStoryElementLayout, calculateForceLayout, fitView, setNodes, addDebugLog]);
+
+  // Force-directed + Layer layout適用（階層ビューが有効な場合）
+  // 注意: loadGraphData内で既にレイアウトを適用しているため、ここでは初回ロード後のみ実行
+  useEffect(() => {
+    if (showHierarchy && nodes.length > 0 && containerRef.current && !loading) {
+      applyAutoLayout();
+    }
+  }, [showHierarchy, loading, applyAutoLayout]);
 
   // レイヤー変更ハンドラ
   const handleLayersChange = useCallback((updatedLayers: ContextLayer[]) => {
@@ -1411,6 +1464,33 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
             }`}
           >
             {showHierarchy ? 'Hide Hierarchy' : 'Show Hierarchy'}
+          </button>
+          <button
+            onClick={applyAutoLayout}
+            disabled={isLayouting || nodes.length === 0}
+            className={`px-4 py-2 rounded-lg ${
+              isLayouting
+                ? 'bg-gray-400 text-white cursor-not-allowed'
+                : 'bg-purple-600 text-white hover:bg-purple-700'
+            }`}
+            title="自動レイアウトを実行してノードを再配置します"
+          >
+            {isLayouting ? (
+              <span className="flex items-center gap-2">
+                <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Layouting...
+              </span>
+            ) : (
+              <span className="flex items-center gap-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Auto Layout
+              </span>
+            )}
           </button>
         </div>
       </Panel>
