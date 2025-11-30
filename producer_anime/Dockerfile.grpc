@@ -1,0 +1,43 @@
+FROM rust:1.88-alpine AS builder
+
+WORKDIR /app
+
+# ビルドに必要な依存関係をインストール
+RUN apk add --no-cache musl-dev openssl-dev protobuf-dev
+
+# gRPCサービスディレクトリをコピー
+COPY performers/services/grpc/Cargo.toml performers/services/grpc/Cargo.lock* ./
+COPY performers/services/grpc/src ./src
+COPY performers/services/grpc/build.rs ./build.rs
+COPY performers/services/grpc/proto ./proto
+
+# graphqlサービスのモジュールをコピー（再利用のため）
+COPY performers/services/graphql/Cargo.toml performers/services/graphql/Cargo.lock* ./graphql/
+COPY performers/services/graphql/src ./graphql/src
+COPY performers/services/graphql/migrations ./graphql/migrations
+
+WORKDIR /app
+
+# ビルド
+RUN cargo build --release
+
+# ランタイムイメージ
+FROM alpine:latest
+
+RUN apk add --no-cache ca-certificates curl
+
+WORKDIR /app
+
+# ビルドしたバイナリをコピー
+COPY --from=builder /app/target/release/producerv2-grpc /app/producerv2-grpc
+
+# マイグレーションファイルをコピー（graphqlサービスから）
+COPY performers/services/graphql/migrations ./migrations
+
+EXPOSE 50051
+
+HEALTHCHECK --interval=10s --timeout=5s --retries=3 \
+  CMD nc -z localhost 50051 || exit 1
+
+CMD ["/app/producerv2-grpc"]
+

@@ -1,0 +1,184 @@
+syntax = "proto3";
+
+package producer.graph;
+
+import "common.proto";
+
+// ==================== メッセージ定義 ====================
+
+message GraphNode {
+  string id = 1;
+  string label = 2;
+  string properties = 3; // JSON文字列
+  repeated float vector = 4; // ベクトル（オプション）
+  string jsonld = 5; // JSON文字列
+}
+
+message GraphEdge {
+  string id = 1;
+  string source = 2;
+  string target = 3;
+  string label = 4;
+  string properties = 5; // JSON文字列
+}
+
+message VectorSearchResult {
+  string node_id = 1;
+  string label = 2;
+  string properties = 3; // JSON文字列
+  float score = 4;
+}
+
+// ==================== リクエスト/レスポンス ====================
+
+message GraphQueryRequest {
+  string query = 1;
+}
+
+message GraphQueryResponse {
+  string result = 1; // JSON文字列
+}
+
+message GetGraphNodeRequest {
+  string id = 1;
+}
+
+message GetGraphNodeResponse {
+  optional GraphNode node = 1;
+}
+
+message GetGraphEdgeRequest {
+  string id = 1;
+}
+
+message GetGraphEdgeResponse {
+  optional GraphEdge edge = 1;
+}
+
+message CreateGraphNodeRequest {
+  optional string id = 1;
+  string label = 2;
+  string properties = 3; // JSON文字列
+  repeated float vector = 4;
+  string jsonld = 5; // JSON文字列
+}
+
+message CreateGraphNodeResponse {
+  string id = 1;
+}
+
+message UpdateGraphNodeRequest {
+  string id = 1;
+  string label = 2;
+  string properties = 3; // JSON文字列
+  repeated float vector = 4;
+  string jsonld = 5; // JSON文字列
+}
+
+message UpdateGraphNodeResponse {
+  GraphNode node = 1;
+}
+
+message DeleteGraphNodeRequest {
+  string id = 1;
+}
+
+message DeleteGraphNodeResponse {
+  bool success = 1;
+}
+
+message CreateGraphEdgeRequest {
+  optional string id = 1;
+  string source = 2;
+  string target = 3;
+  string label = 4;
+  string properties = 5; // JSON文字列
+}
+
+message CreateGraphEdgeResponse {
+  string id = 1;
+}
+
+message DeleteGraphEdgeRequest {
+  string id = 1;
+}
+
+message DeleteGraphEdgeResponse {
+  bool success = 1;
+}
+
+message SemanticSearchRequest {
+  string query = 1;
+  int32 limit = 2;
+}
+
+message SemanticSearchResponse {
+  repeated VectorSearchResult results = 1;
+}
+
+message VectorSearchRequest {
+  repeated float query_vector = 1;
+  int32 limit = 2;
+}
+
+message VectorSearchResponse {
+  repeated VectorSearchResult results = 1;
+}
+
+message GraphRagQueryRequest {
+  string query = 1;
+  optional string project_id = 2;
+}
+
+message GraphRagQueryResponse {
+  string response = 1;
+}
+
+message ValidateJsonLdRequest {
+  string jsonld = 1; // JSON文字列
+}
+
+message ValidateJsonLdResponse {
+  bool valid = 1;
+  optional string error = 2;
+}
+
+message ImportJsonLdRequest {
+  string jsonld = 1; // JSON文字列
+}
+
+message ImportJsonLdResponse {
+  int32 nodes_created = 1;
+  int32 edges_created = 2;
+}
+
+message ExportJsonLdRequest {
+  optional string project_id = 1;
+}
+
+message ExportJsonLdResponse {
+  string jsonld = 1; // JSON文字列
+}
+
+// ==================== サービス定義 ====================
+
+service GraphService {
+  rpc GraphQuery(GraphQueryRequest) returns (GraphQueryResponse);
+  rpc GetGraphNode(GetGraphNodeRequest) returns (GetGraphNodeResponse);
+  rpc GetGraphEdge(GetGraphEdgeRequest) returns (GetGraphEdgeResponse);
+  rpc CreateGraphNode(CreateGraphNodeRequest) returns (CreateGraphNodeResponse);
+  rpc UpdateGraphNode(UpdateGraphNodeRequest) returns (UpdateGraphNodeResponse);
+  rpc DeleteGraphNode(DeleteGraphNodeRequest) returns (DeleteGraphNodeResponse);
+  rpc CreateGraphEdge(CreateGraphEdgeRequest) returns (CreateGraphEdgeResponse);
+  rpc DeleteGraphEdge(DeleteGraphEdgeRequest) returns (DeleteGraphEdgeResponse);
+  rpc SemanticSearch(SemanticSearchRequest) returns (SemanticSearchResponse);
+  rpc VectorSearch(VectorSearchRequest) returns (VectorSearchResponse);
+  rpc ValidateJsonLd(ValidateJsonLdRequest) returns (ValidateJsonLdResponse);
+  rpc ImportJsonLd(ImportJsonLdRequest) returns (ImportJsonLdResponse);
+  rpc ExportJsonLd(ExportJsonLdRequest) returns (ExportJsonLdResponse);
+}
+
+service GraphRagService {
+  rpc Query(GraphRagQueryRequest) returns (GraphRagQueryResponse);
+}
+

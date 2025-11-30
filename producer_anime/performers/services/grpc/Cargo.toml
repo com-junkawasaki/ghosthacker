@@ -1,0 +1,36 @@
+[package]
+name = "producerv2-grpc"
+version = "0.1.0"
+edition = "2021"
+
+[package.metadata]
+rust-toolchain = "nightly"
+
+[dependencies]
+tonic = "0.11"
+prost = "0.13"
+prost-types = "0.13"
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+anyhow = "1"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+reqwest = { version = "0.11", features = ["json", "rustls-tls"], default-features = false }
+base64 = "0.21"
+dotenv = "0.15"
+nanoid = "0.4"
+chrono = { version = "0.4", features = ["serde"] }
+sqlx = { version = "0.7", features = ["postgres", "runtime-tokio-rustls", "chrono", "uuid", "json"] }
+thiserror = "1.0"
+
+# 既存のgraphqlサービスからモジュールを再利用
+producerv2-graphql = { path = "../graphql" }
+
+[build-dependencies]
+tonic-build = "0.11"
+
+[dev-dependencies]
+tokio-test = "0.4"
+mockall = "0.12"
+

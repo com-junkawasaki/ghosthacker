@@ -29,6 +29,8 @@
     "jose": "^5.9.6",
     "graphql-request": "^6.1.0",
     "graphql": "^16.8.1",
+    "@grpc/grpc-js": "^1.10.0",
+    "@grpc/proto-loader": "^0.7.10",
     "@tiptap/react": "^2.1.13",
     "@tiptap/starter-kit": "^2.1.13",
     "@tiptap/extension-placeholder": "^2.1.13",
@@ -50,6 +52,9 @@
     "@graphql-codegen/typescript": "^4.0.0",
     "@graphql-codegen/typescript-operations": "^4.0.0",
     "@graphql-codegen/typed-document-node": "^4.0.0",
+    "ts-proto": "^2.0.0",
+    "protoc-gen-ts": "^0.8.7",
+    "grpc-web": "^1.5.0"
     "vitest": "^2.0.0",
     "@vitest/ui": "^2.0.0",
     "@vitest/coverage-v8": "^2.0.0",

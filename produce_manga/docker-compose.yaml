@@ -50,6 +50,38 @@ services:
       - manga-editor-network
     command: cargo watch -x "run --bin manga-editor-graphql" --ignore "target/**" --delay 0.5 --clear --watch-when-idle
 
+  grpc:
+    build:
+      context: ./performers/services/grpc
+      dockerfile: Dockerfile
+      target: development
+    container_name: manga-editor-grpc
+    ports:
+      - "25327:8080"
+    environment:
+      NODE_ENV: development
+      # PostgreSQL Connection
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
+      # Server Configuration
+      PORT: 8080
+      HOST: 0.0.0.0
+      # AI Service Configuration
+      FAL_API_KEY: ${FAL_API_KEY:-}
+      DEEPINFRA_API_KEY: ${DEEPINFRA_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENROUTER_API_KEY_251025: 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
+      # Cargo watch configuration for HMR
+      CARGO_WATCH_IGNORE: "target/**"
+    volumes:
+      - ./performers/services/grpc:/app
+      - /app/target
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - manga-editor-network
+    command: cargo watch -x "run --bin manga-editor-grpc" --ignore "target/**" --delay 0.5 --clear --watch-when-idle
+
   frontend:
     build:
       context: .
@@ -75,6 +107,9 @@ services:
       NEXT_PUBLIC_GRAPHQL_API_URL: ${NEXT_PUBLIC_GRAPHQL_API_URL:-http://localhost:25326/graphql}
       # Server-side: use container name for server-to-server communication
       GRAPHQL_API_URL: ${GRAPHQL_API_URL:-http://graphql:8080/graphql}
+      # gRPC API URL
+      NEXT_PUBLIC_GRPC_API_URL: ${NEXT_PUBLIC_GRPC_API_URL:-http://localhost:25327}
+      GRPC_API_URL: ${GRPC_API_URL:-http://grpc:8080}
       # AI Service Configuration (hardcoded for development)
       NEXT_PUBLIC_FAL_API_KEY: ${NEXT_PUBLIC_FAL_API_KEY:-}
       NEXT_PUBLIC_DEEPINFRA_API_KEY: ${NEXT_PUBLIC_DEEPINFRA_API_KEY:-}
@@ -86,6 +121,7 @@ services:
       - /app/.next
     depends_on:
       - graphql
+      - grpc
     networks:
       - manga-editor-network
     command: sh -c "pnpm install && pnpm dev"
