@@ -8,10 +8,10 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 COPY . .
 
 # content-creatorディレクトリに移動して依存関係をインストール
-    WORKDIR /app/performers/actors/content-creator
-    
-    ENV CI=true
-    RUN pnpm install --no-frozen-lockfile
+WORKDIR /app/performers/actors/content-creator
+
+ENV CI=true
+RUN pnpm install --no-frozen-lockfile
 
 EXPOSE 3000
 
