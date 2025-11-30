@@ -37,10 +37,10 @@
   "id": "https://gftd.ai/project/manga-editor",
   "type": "cpm:Project",
   "name": "Manga Editor Tool",
-  "description": "AI Agentを使ったマンガ制作ウェブアプリ。単一Canvas（Konva.js）でページ全体を管理し、fal.ai/DeepInfraによるモデル選択機能を実装。画像はPostgreSQLのbytea型で保存。Frontend: Next.js 14 App Router + React 18 + react-konva (動的インポートでSSR対応) + Tailwind CSS, Backend: GraphQL (Poem 3/Rust) + PostgreSQL 16",
+  "description": "AI Agentを使ったマンガ制作ウェブアプリ。単一Canvas（Konva.js）でページ全体を管理し、fal.ai/DeepInfraによるモデル選択機能を実装。画像はPostgreSQLのbytea型で保存。Frontend: Next.js 14 App Router + React 18 + react-konva (動的インポートでSSR対応) + Tailwind CSS, Backend: gRPC (Tonic/Rust) + PostgreSQL 16。Apple Pencilの筆圧対応を実装（Pointer Events API使用）。ページ切り替え機能を修正し、konvaStageJsonの読み込み時にイベントリスナーが維持されるように改善。",
   "version": "0.1.0",
   "createdAt": "2025-01-29T00:00:00Z",
-  "updatedAt": "2025-01-29T13:00:00Z",
+  "updatedAt": "2025-11-30T04:41:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -62,7 +62,10 @@
     {"@id": "https://gftd.ai/capability/scene-management"},
     {"@id": "https://gftd.ai/capability/panel-management"},
     {"@id": "https://gftd.ai/capability/editing-tools"},
-    {"@id": "https://gftd.ai/capability/speech-bubble-system"}
+    {"@id": "https://gftd.ai/capability/speech-bubble-system"},
+    {"@id": "https://gftd.ai/capability/apple-pencil-pressure-support"},
+    {"@id": "https://gftd.ai/capability/page-switching"},
+    {"@id": "https://gftd.ai/capability/grpc-backend"}
   ],
   
   "hasActivity": [
@@ -83,7 +86,9 @@
     {"@id": "https://gftd.ai/activity/undo-redo"},
     {"@id": "https://gftd.ai/activity/add-speech-bubble"},
     {"@id": "https://gftd.ai/activity/edit-speech-bubble"},
-    {"@id": "https://gftd.ai/activity/delete-speech-bubble"}
+    {"@id": "https://gftd.ai/activity/delete-speech-bubble"},
+    {"@id": "https://gftd.ai/activity/switch-pages"},
+    {"@id": "https://gftd.ai/activity/draw-with-pressure-sensitivity"}
   ],
   
   "hasPerformer": [
@@ -98,6 +103,12 @@
       "type": "cpm:Service",
       "name": "GraphQL Service",
       "description": "Rust GraphQL service providing manga data management and AI integration"
+    },
+    {
+      "@id": "https://gftd.ai/performer/service/grpc",
+      "type": "cpm:Service",
+      "name": "gRPC Service",
+      "description": "Rust gRPC service (Tonic) providing manga data management with gRPC-Web support (tonic-web) for browser compatibility"
     }
   ],
   
