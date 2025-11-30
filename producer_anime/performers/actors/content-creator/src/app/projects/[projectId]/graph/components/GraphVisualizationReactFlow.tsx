@@ -41,20 +41,13 @@ import StoryElementFAB from './StoryElementFAB';
 import StoryElementConnection from './StoryElementConnection';
 import ProcessExecutionPanel from './ProcessExecutionPanel';
 import ContextLayerBackground from './ContextLayerBackground';
+import ContextLayerSidebar from './ContextLayerSidebar';
 import { useForceDirectedLayout } from './useForceDirectedLayout';
 import { useStoryElementLayout } from './useStoryElementLayout';
-import { GraphNodeData, StoryElementNodeType, StoryElementEdgeType, ELEMENT_TYPE_LABELS } from './types';
+import { GraphNodeData, StoryElementNodeType, StoryElementEdgeType, ELEMENT_TYPE_LABELS, ContextLayer } from './types';
 
 interface GraphVisualizationProps {
   projectId: string;
-}
-
-// GraphNodeData is now imported from types.ts
-
-interface ContextLayer {
-  contextNodeId: string;
-  containedNodeIds: string[];
-  bounds: { minX: number; minY: number; maxX: number; maxY: number };
 }
 
 type InteractionMode = 'normal' | 'addNode' | 'addEdge' | 'selectSource' | 'selectTarget';
@@ -236,8 +229,8 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       calculateDepth(nodeId);
     });
 
-    // Context layerの構築
-    const contextLayers: ContextLayer[] = contextNodes.map(contextNode => {
+    // Context layerの構築（複数のコンテクストレイヤーへの所属をサポート）
+    const contextLayers: ContextLayer[] = contextNodes.map((contextNode, index) => {
       const containedNodeIds = new Set<string>();
       const visited = new Set<string>();
       
@@ -261,9 +254,21 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       };
       
       // Contextノードから直接接続されているノードを探索
+      // usesContext または belongsTo エッジを検出
       edges.forEach(edge => {
+        const edgeData = edge.data as any;
+        const edgeType = edgeData?.edgeType || '';
+        const edgeLabel = edge.label || '';
+        
+        // Contextノードから出るエッジ、またはusesContext/belongsToエッジを検出
         if (edge.source === contextNode.id) {
           traverse(edge.target);
+        } else if (
+          edge.target === contextNode.id &&
+          (edgeType === 'belongsTo' || edgeLabel === 'usesContext' || edgeLabel === 'belongsTo')
+        ) {
+          // ノードからコンテクストノードへのエッジ（多対多の関係）
+          containedNodeIds.add(edge.source);
         }
       });
       
@@ -271,17 +276,61 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         contextNodeId: contextNode.id,
         containedNodeIds: Array.from(containedNodeIds),
         bounds: { minX: 0, minY: 0, maxX: 0, maxY: 0 },
+        visible: true,
+        order: index,
+        color: undefined,
       };
     });
 
-    // Context IDを各ノードに設定
+    // Context IDsを各ノードに設定（複数のコンテクストレイヤーへの所属をサポート）
+    const nodeContextMap = new Map<string, Set<string>>();
+    
+    // エッジから直接的なコンテクストレイヤーへの所属を検出
+    edges.forEach(edge => {
+      const edgeData = edge.data as any;
+      const edgeType = edgeData?.edgeType || '';
+      const edgeLabel = edge.label || '';
+      
+      // usesContext または belongsTo エッジを検出
+      if (edgeType === 'belongsTo' || edgeLabel === 'usesContext' || edgeLabel === 'belongsTo') {
+        const targetNode = nodeMap.get(edge.target);
+        if (targetNode?.data.isContext) {
+          // ノードからコンテクストノードへのエッジ
+          if (!nodeContextMap.has(edge.source)) {
+            nodeContextMap.set(edge.source, new Set());
+          }
+          nodeContextMap.get(edge.source)!.add(edge.target);
+        }
+      }
+      
+      // Contextノードから出るエッジ（階層構造）
+      const sourceNode = nodeMap.get(edge.source);
+      if (sourceNode?.data.isContext) {
+        // コンテクストノードから出るエッジのターゲットノードも所属とみなす
+        if (!nodeContextMap.has(edge.target)) {
+          nodeContextMap.set(edge.target, new Set());
+        }
+        nodeContextMap.get(edge.target)!.add(edge.source);
+      }
+    });
+    
+    // ノードにcontextIds配列を設定
     nodeMap.forEach((node, nodeId) => {
       if (!node.data.isContext) {
-        const contextLayer = contextLayers.find(layer => 
-          layer.containedNodeIds.includes(nodeId)
-        );
-        if (contextLayer) {
-          node.data.contextId = contextLayer.contextNodeId;
+        const contextIdsSet = nodeContextMap.get(nodeId);
+        if (contextIdsSet && contextIdsSet.size > 0) {
+          node.data.contextIds = Array.from(contextIdsSet);
+          // 後方互換性のため、最初のcontextIdも設定
+          node.data.contextId = Array.from(contextIdsSet)[0];
+        } else {
+          // 既存のロジック（階層構造から検出）
+          const contextLayer = contextLayers.find(layer => 
+            layer.containedNodeIds.includes(nodeId)
+          );
+          if (contextLayer) {
+            node.data.contextId = contextLayer.contextNodeId;
+            node.data.contextIds = [contextLayer.contextNodeId];
+          }
         }
       }
     });
@@ -836,20 +885,19 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
 
     if (closestNode) {
       try {
-        // Contextノードへのドロップ
+        // Contextノードへのドロップ（多対多をサポート）
         if (closestNode.data.isContext) {
-          // 既存のcontext関係を削除
+          // 既存のusesContextエッジをチェック（既に存在する場合は追加しない）
           const existingContextEdge = edges.find(
-            e => e.target === draggedNodeId && 
-                 nodes.find(n => n.id === e.source)?.data.isContext
+            e => e.source === draggedNodeId && 
+                 e.target === closestNode.id &&
+                 (e.label === 'usesContext' || e.label === 'belongsTo' || (e.data as any)?.edgeType === 'belongsTo')
           );
           
-          if (existingContextEdge) {
-            await deleteGraphEdge(existingContextEdge.id);
+          if (!existingContextEdge) {
+            // 新しいcontext関係を作成（多対多をサポート）
+            await handleCreateEdge(draggedNodeId, closestNode.id, 'usesContext');
           }
-
-          // 新しいcontext関係を作成
-          await handleCreateEdge(closestNode.id, draggedNodeId, 'usesContext');
         } else {
           // 通常ノードへのドロップ（親子関係）
           // 既存の親子関係を削除
@@ -926,8 +974,27 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
 
   const selectedNodeData = selectedNode ? nodes.find(n => n.id === selectedNode) : null;
 
+  // レイヤー変更ハンドラ
+  const handleLayersChange = useCallback((updatedLayers: ContextLayer[]) => {
+    setContextLayers(updatedLayers);
+  }, []);
+
   return (
-    <div ref={containerRef} className="w-full h-[600px] relative">
+    <div className="flex h-[600px]">
+      {/* Context Layer Sidebar */}
+      <ContextLayerSidebar
+        projectId={projectId}
+        nodes={nodes}
+        edges={edges}
+        contextLayers={contextLayers}
+        onLayersChange={handleLayersChange}
+        onNodesChange={setNodes}
+        onEdgesChange={setEdges}
+        onReload={loadGraphData}
+      />
+      
+      {/* Graph Visualization */}
+      <div ref={containerRef} className="flex-1 relative">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -1070,7 +1137,11 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         <div className="absolute top-0 right-0 w-96 h-full z-10">
           <StoryElementEditor
             node={selectedNodeData ? { id: selectedNodeData.id, data: selectedNodeData.data } : null}
+            nodes={nodes}
+            edges={edges}
+            contextLayers={contextLayers}
             onSave={handleUpdateNode}
+            onReload={loadGraphData}
             onClose={() => {
               setSidePanelOpen(false);
               setSelectedNode(null);

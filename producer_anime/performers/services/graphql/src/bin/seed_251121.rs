@@ -25,13 +25,14 @@ async fn main() -> Result<()> {
     
     // データベースクライアントを取得
     let pool = get_pool()?;
-    let client = PostgreSQLGraphClient::new(Arc::new(pool));
+    let client = PostgreSQLGraphClient::new(pool);
     
-    // 251121フォルダのパス
+    // 251121フォルダのパス（プロジェクトルートから）
     let base_path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-        .parent()
-        .and_then(|p| p.parent())
-        .and_then(|p| p.parent())
+        .parent()  // services
+        .and_then(|p| p.parent())  // performers
+        .and_then(|p| p.parent())  // producer_anime
+        .and_then(|p| p.parent())  // ghosthacker
         .ok_or_else(|| anyhow::anyhow!("Failed to find project root"))?
         .join("251121");
     

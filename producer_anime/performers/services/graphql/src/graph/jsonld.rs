@@ -374,7 +374,7 @@ impl JsonLdProcessor {
                         continue;
                     }
                 } else {
-                    // @idがない場合は生成
+                    // @idがない場合は生成（通常は発生しない）
                     format!("node:{}", nanoid::nanoid!())
                 };
                 
@@ -433,7 +433,7 @@ impl JsonLdProcessor {
                     jsonld: Value::Object(node_jsonld),
                 });
 
-                node_map.insert(id_str, item.clone());
+                node_map.insert(id_str, (*item).clone());
             }
         }
 
@@ -574,7 +574,7 @@ impl JsonLdProcessor {
     }
 
     /// 全てのノードを再帰的に収集
-    fn collect_all_nodes(value: &Value, items: &mut Vec<&Value>) {
+    fn collect_all_nodes<'a>(value: &'a Value, items: &mut Vec<&'a Value>) {
         if let Some(obj) = value.as_object() {
             // @idがある場合はノードとして追加
             if obj.get("@id").is_some() {
@@ -599,7 +599,7 @@ impl JsonLdProcessor {
     }
 
     /// ラベルを抽出
-    fn extract_label(obj: &Map<String, Value>, props: &Map<String, Value>) -> String {
+    fn extract_label(obj: &Map<String, Value>, _props: &Map<String, Value>) -> String {
         // schema:nameを優先
         if let Some(name) = obj.get("schema:name").or_else(|| obj.get("name")) {
             if let Some(name_str) = name.as_str() {

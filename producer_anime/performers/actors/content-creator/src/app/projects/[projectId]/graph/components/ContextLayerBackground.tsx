@@ -6,12 +6,7 @@
 import { useMemo } from 'react';
 import { useReactFlow, ReactFlowState, useViewport } from 'reactflow';
 import { useStore } from 'reactflow';
-
-interface ContextLayer {
-  contextNodeId: string;
-  containedNodeIds: string[];
-  bounds: { minX: number; minY: number; maxX: number; maxY: number };
-}
+import { ContextLayer } from './types';
 
 interface ContextLayerBackgroundProps {
   layers: ContextLayer[];
@@ -26,7 +21,10 @@ function ContextLayerBackground({ layers, isDarkMode }: ContextLayerBackgroundPr
   const viewport = useViewport();
 
   const layerRects = useMemo(() => {
-    return layers.map(layer => {
+    // visibleフラグでフィルタリング
+    const visibleLayers = layers.filter(layer => layer.visible !== false);
+    
+    return visibleLayers.map((layer, index) => {
       const contextNode = nodes.find(n => n.id === layer.contextNodeId);
       if (!contextNode) return null;
 
@@ -35,6 +33,10 @@ function ContextLayerBackground({ layers, isDarkMode }: ContextLayerBackgroundPr
       );
 
       if (layerNodes.length === 0) return null;
+      
+      // レイヤーの色を決定（複数レイヤーに属するノードの重複表示に対応）
+      const layerColor = layer.color || (isDarkMode ? 'rgba(245, 158, 11, 0.1)' : 'rgba(245, 158, 11, 0.15)');
+      const layerStrokeColor = layer.color || (isDarkMode ? 'rgba(245, 158, 11, 0.4)' : 'rgba(245, 158, 11, 0.5)');
 
       // すべてのノード位置を含む境界を計算
       const allNodes = [contextNode, ...layerNodes];
@@ -54,13 +56,19 @@ function ContextLayerBackground({ layers, isDarkMode }: ContextLayerBackgroundPr
         layer,
         bounds: { minX, minY, maxX, maxY },
         contextNode,
+        layerColor,
+        layerStrokeColor,
+        zIndex: index,
       };
     }).filter(Boolean) as Array<{
       layer: ContextLayer;
       bounds: { minX: number; minY: number; maxX: number; maxY: number };
       contextNode: typeof nodes[0];
+      layerColor: string;
+      layerStrokeColor: string;
+      zIndex: number;
     }>;
-  }, [layers, nodes]);
+  }, [layers, nodes, isDarkMode]);
 
   if (layerRects.length === 0) return null;
 
@@ -81,20 +89,21 @@ function ContextLayerBackground({ layers, isDarkMode }: ContextLayerBackgroundPr
           <line x1="0" y1="0" x2="10" y2="10" stroke={isDarkMode ? 'rgba(245, 158, 11, 0.2)' : 'rgba(245, 158, 11, 0.3)'} strokeWidth="1" />
         </pattern>
       </defs>
-      {layerRects.map(({ layer, bounds, contextNode }) => (
-        <g key={layer.contextNodeId}>
+      {layerRects.map(({ layer, bounds, contextNode, layerColor, layerStrokeColor, zIndex }) => (
+        <g key={layer.contextNodeId} style={{ zIndex }}>
           {/* 背景矩形 */}
           <rect
             x={bounds.minX * viewport.zoom + viewport.x}
             y={bounds.minY * viewport.zoom + viewport.y}
             width={(bounds.maxX - bounds.minX) * viewport.zoom}
             height={(bounds.maxY - bounds.minY) * viewport.zoom}
-            fill={isDarkMode ? 'rgba(245, 158, 11, 0.1)' : 'rgba(245, 158, 11, 0.15)'}
-            stroke={isDarkMode ? 'rgba(245, 158, 11, 0.4)' : 'rgba(245, 158, 11, 0.5)'}
+            fill={layerColor}
+            stroke={layerStrokeColor}
             strokeWidth={2 * viewport.zoom}
             strokeDasharray={`${5 * viewport.zoom} ${5 * viewport.zoom}`}
             rx={8 * viewport.zoom}
             ry={8 * viewport.zoom}
+            opacity={0.8}
           />
           {/* ラベル */}
           <text

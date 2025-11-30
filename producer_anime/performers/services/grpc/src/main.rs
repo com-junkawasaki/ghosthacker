@@ -6,9 +6,8 @@
 use dotenv::dotenv;
 use std::net::SocketAddr;
 use tonic::transport::Server;
-use tonic_web::GrpcWebLayer;
 use tower::ServiceBuilder;
-use tower_http::cors::CorsLayer;
+use tower_http::cors::{CorsLayer, Any};
 use tracing_subscriber;
 
 mod services;
@@ -66,24 +65,22 @@ async fn main() -> anyhow::Result<()> {
     let graph_service = GraphServiceServer::new(GraphServiceImpl::default());
     let graph_rag_service = GraphRagServiceServer::new(GraphRagServiceImpl::default());
 
-    // gRPC-Web対応のためのCORSレイヤーを追加
-    let cors = CorsLayer::new()
-        .allow_origin(tower_http::cors::Any)
-        .allow_methods(tower_http::cors::Any)
-        .allow_headers(tower_http::cors::Any);
+    // gRPC-Web対応のためのサービスを有効化（CORSは後で追加）
+    let project_service_web = tonic_web::enable(project_service);
+    let story_service_web = tonic_web::enable(story_service);
+    let script_service_web = tonic_web::enable(script_service);
+    let document_service_web = tonic_web::enable(document_service);
+    let graph_service_web = tonic_web::enable(graph_service);
+    let graph_rag_service_web = tonic_web::enable(graph_rag_service);
 
     Server::builder()
-        .layer(
-            ServiceBuilder::new()
-                .layer(cors)
-                .layer(GrpcWebLayer::new())
-        )
-        .add_service(project_service)
-        .add_service(story_service)
-        .add_service(script_service)
-        .add_service(document_service)
-        .add_service(graph_service)
-        .add_service(graph_rag_service)
+        .accept_http1(true) // HTTP/1.1を有効化（gRPC-Web用）
+        .add_service(project_service_web)
+        .add_service(story_service_web)
+        .add_service(script_service_web)
+        .add_service(document_service_web)
+        .add_service(graph_service_web)
+        .add_service(graph_rag_service_web)
         .serve(addr)
         .await?;
 

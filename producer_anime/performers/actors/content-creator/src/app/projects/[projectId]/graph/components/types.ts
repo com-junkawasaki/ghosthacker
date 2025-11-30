@@ -34,10 +34,20 @@ export interface GraphNodeData {
     version?: number;
     prefixes?: Record<string, string>;
   };
-  contextId?: string;
+  contextId?: string; // 後方互換性のため残す
+  contextIds?: string[]; // 複数のコンテクストレイヤーへの所属をサポート
   depth?: number;
   parent?: string;
   children?: string[];
+}
+
+export interface ContextLayer {
+  contextNodeId: string;
+  containedNodeIds: string[];
+  bounds: { minX: number; minY: number; maxX: number; maxY: number };
+  visible?: boolean;
+  order?: number;
+  color?: string;
 }
 
 export interface StoryElementProperties {

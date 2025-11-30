@@ -5,13 +5,7 @@
 
 import { useCallback } from 'react';
 import { Node, Edge } from 'reactflow';
-import { GraphNodeData, StoryElementNodeType } from './types';
-
-interface ContextLayer {
-  contextNodeId: string;
-  containedNodeIds: string[];
-  bounds: { minX: number; minY: number; maxX: number; maxY: number };
-}
+import { GraphNodeData, StoryElementNodeType, ContextLayer } from './types';
 
 interface LayoutOptions {
   width: number;
@@ -100,10 +94,15 @@ export function useStoryElementLayout() {
     });
 
     // 各Contextレイヤー内で要素タイプ別にグループ化
+    // 複数のコンテクストレイヤーへの所属をサポート
     layers.forEach((layer, layerIndex) => {
-      const layerNodes = nodes.filter(n => 
-        layer.containedNodeIds.includes(n.id) && !n.data.isContext
-      );
+      const layerNodes = nodes.filter(n => {
+        if (n.data.isContext) return false;
+        // containedNodeIdsに含まれるか、contextIds/contextIdで所属を確認
+        return layer.containedNodeIds.includes(n.id) ||
+               (n.data.contextIds && n.data.contextIds.includes(layer.contextNodeId)) ||
+               n.data.contextId === layer.contextNodeId;
+      });
       
       // 要素タイプごとにグループ化
       const typeGroups = new Map<StoryElementNodeType | 'default', Node<GraphNodeData>[]>();

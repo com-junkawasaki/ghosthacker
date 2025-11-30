@@ -4,11 +4,17 @@
  */
 
 import { useState, useEffect } from 'react';
-import { GraphNodeData, StoryElementNodeType, StoryElementProperties } from './types';
+import { Node, Edge } from 'reactflow';
+import { GraphNodeData, StoryElementNodeType, StoryElementProperties, ContextLayer } from './types';
+import { createGraphEdge, deleteGraphEdge } from '@/internal/grpc/services/graph_client';
 
 interface StoryElementEditorProps {
   node: { id: string; data: GraphNodeData } | null;
+  nodes: Node<GraphNodeData>[];
+  edges: Edge[];
+  contextLayers: ContextLayer[];
   onSave: (id: string, data: Partial<GraphNodeData>) => Promise<void>;
+  onReload: () => Promise<void>;
   onClose: () => void;
 }
 
@@ -24,17 +30,28 @@ const ELEMENT_TYPE_LABELS: Record<StoryElementNodeType, string> = {
   process: 'プロセス',
 };
 
-export default function StoryElementEditor({ node, onSave, onClose }: StoryElementEditorProps) {
+export default function StoryElementEditor({ 
+  node, 
+  nodes, 
+  edges, 
+  contextLayers, 
+  onSave, 
+  onReload, 
+  onClose 
+}: StoryElementEditorProps) {
   const [formData, setFormData] = useState<Partial<GraphNodeData>>({});
   const [properties, setProperties] = useState<StoryElementProperties>({});
   const [jsonld, setJsonld] = useState<Record<string, any>>({});
   const [isSaving, setIsSaving] = useState(false);
+  const [selectedLayerIds, setSelectedLayerIds] = useState<string[]>([]);
 
   useEffect(() => {
     if (node) {
       setFormData(node.data);
       setProperties(node.data.properties || {});
       setJsonld(node.data.jsonld || {});
+      // 現在のコンテクストレイヤーへの所属を取得
+      setSelectedLayerIds(node.data.contextIds || (node.data.contextId ? [node.data.contextId] : []));
     }
   }, [node]);
 
@@ -53,6 +70,48 @@ export default function StoryElementEditor({ node, onSave, onClose }: StoryEleme
       setJsonld(parsed);
     } catch (e) {
       // Invalid JSON, keep as string for now
+    }
+  };
+
+  // コンテクストレイヤーの選択を変更
+  const handleLayerToggle = async (layerId: string, checked: boolean) => {
+    if (!node) return;
+
+    try {
+      if (checked) {
+        // レイヤーに追加（エッジを作成）
+        const existingEdge = edges.find(
+          e => e.source === node.id && 
+               e.target === layerId &&
+               (e.label === 'usesContext' || e.label === 'belongsTo' || (e.data as any)?.edgeType === 'belongsTo')
+        );
+        
+        if (!existingEdge) {
+          await createGraphEdge(node.id, layerId, 'usesContext', { edgeType: 'belongsTo' });
+          await onReload();
+        }
+      } else {
+        // レイヤーから削除（エッジを削除）
+        const edgeToDelete = edges.find(
+          e => e.source === node.id && 
+               e.target === layerId &&
+               (e.label === 'usesContext' || e.label === 'belongsTo' || (e.data as any)?.edgeType === 'belongsTo')
+        );
+        
+        if (edgeToDelete) {
+          await deleteGraphEdge(edgeToDelete.id);
+          await onReload();
+        }
+      }
+      
+      // 選択状態を更新
+      setSelectedLayerIds(prev => 
+        checked 
+          ? [...prev, layerId]
+          : prev.filter(id => id !== layerId)
+      );
+    } catch (error) {
+      console.error('Failed to update layer association:', error);
     }
   };
 
@@ -507,6 +566,47 @@ export default function StoryElementEditor({ node, onSave, onClose }: StoryEleme
 
         {/* Properties */}
         {renderPropertyFields()}
+
+        {/* Context Layers Selection (非コンテクストノードの場合のみ) */}
+        {!isContext && (
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              コンテクストレイヤー
+            </label>
+            <div className="space-y-2 max-h-48 overflow-y-auto border border-gray-200 dark:border-gray-700 rounded-md p-2">
+              {contextLayers.length === 0 ? (
+                <p className="text-sm text-gray-500 dark:text-gray-400 py-2">
+                  コンテクストレイヤーがありません
+                </p>
+              ) : (
+                contextLayers.map((layer) => {
+                  const contextNode = nodes.find(n => n.id === layer.contextNodeId);
+                  const isChecked = selectedLayerIds.includes(layer.contextNodeId);
+                  
+                  return (
+                    <label
+                      key={layer.contextNodeId}
+                      className="flex items-center gap-2 p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={isChecked}
+                        onChange={(e) => handleLayerToggle(layer.contextNodeId, e.target.checked)}
+                        className="rounded border-gray-300 dark:border-gray-600 text-blue-600 focus:ring-blue-500"
+                      />
+                      <span className="text-sm text-gray-700 dark:text-gray-300 flex-1">
+                        {contextNode?.data.label || 'Unknown'}
+                      </span>
+                      <span className="text-xs text-gray-500 dark:text-gray-400">
+                        {layer.containedNodeIds.length} nodes
+                      </span>
+                    </label>
+                  );
+                })
+              )}
+            </div>
+          </div>
+        )}
 
         {/* JSON-LD Editor */}
         <div>

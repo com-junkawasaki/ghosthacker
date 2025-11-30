@@ -5,12 +5,7 @@
 
 import { useCallback } from 'react';
 import { Node, Edge } from 'reactflow';
-
-interface ContextLayer {
-  contextNodeId: string;
-  containedNodeIds: string[];
-  bounds: { minX: number; minY: number; maxX: number; maxY: number };
-}
+import { GraphNodeData, ContextLayer } from './types';
 
 interface LayoutOptions {
   width: number;
@@ -107,8 +102,16 @@ export function useForceDirectedLayout() {
     });
 
     // 各context layer内のノードを配置（グリッドベース、重なりなし）
+    // 複数のコンテクストレイヤーへの所属をサポート
     layers.forEach((layer) => {
-      const layerNodes = nonContextNodes.filter(n => (n.data as any).contextId === layer.contextNodeId);
+      const layerNodes = nonContextNodes.filter(n => {
+        const nodeData = n.data as GraphNodeData;
+        // contextIds配列を優先、なければcontextIdを使用
+        if (nodeData.contextIds && nodeData.contextIds.length > 0) {
+          return nodeData.contextIds.includes(layer.contextNodeId);
+        }
+        return nodeData.contextId === layer.contextNodeId;
+      });
       const contextNode = nodes.find(n => n.id === layer.contextNodeId);
       if (!contextNode) return;
 
