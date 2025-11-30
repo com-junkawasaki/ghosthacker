@@ -12,11 +12,28 @@
 use anyhow::{Context, Result};
 use serde_json::Value;
 use tracing::{info, error};
+use sqlx::FromRow;
 
 use crate::database::client::get_pool;
 use crate::graph::helixdb::{get_client, GraphNode, GraphEdge};
 use crate::graph::jsonld::JsonLdProcessor;
 use crate::graph::embedding::get_service as get_embedding_service;
+
+#[derive(FromRow)]
+struct TripleRow {
+    subject: String,
+    predicate: String,
+    object: String,
+    object_type: String,
+    graph: Option<String>,
+}
+
+#[derive(FromRow)]
+struct ContextRow {
+    id: String,
+    #[sqlx(json)]
+    context: Value,
+}
 
 /// PostgreSQLからHelixDBへのRDFトリプルデータを移行
 pub async fn migrate_rdf_triples() -> Result<()> {
@@ -27,7 +44,7 @@ pub async fn migrate_rdf_triples() -> Result<()> {
     let embedding_service = get_embedding_service()?;
 
     // RDFトリプルを取得
-    let triples = sqlx::query!(
+    let triples: Vec<TripleRow> = sqlx::query_as::<_, TripleRow>(
         r#"
         SELECT subject, predicate, object, object_type, graph
         FROM rdf_triples
@@ -111,7 +128,7 @@ pub async fn migrate_jsonld_data() -> Result<()> {
     let embedding_service = get_embedding_service()?;
 
     // JSON-LDコンテキストを取得
-    let contexts = sqlx::query!(
+    let contexts: Vec<ContextRow> = sqlx::query_as::<_, ContextRow>(
         r#"
         SELECT id, context
         FROM rdf_contexts

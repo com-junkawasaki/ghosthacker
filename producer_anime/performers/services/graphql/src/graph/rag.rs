@@ -18,7 +18,6 @@ use tracing::{error, info};
 
 use super::helixdb::{get_client, HelixDBClient};
 use super::embedding::{get_service, EmbeddingService};
-use super::jsonld::JsonLdProcessor;
 
 static SERVICE: OnceLock<Arc<GraphRagService>> = OnceLock::new();
 
@@ -145,7 +144,7 @@ Return only the graph query, no additional explanation."#,
         &self,
         query: &str,
         graph_query: &str,
-        project_id: Option<&str>,
+        _project_id: Option<&str>,
     ) -> Result<Vec<ContextNode>> {
         let mut context_nodes = Vec::new();
 

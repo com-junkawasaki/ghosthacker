@@ -9,9 +9,7 @@
  * }
  */
 
-use anyhow::{Context, Result};
 use serde_json::Value;
-use std::collections::HashMap;
 
 /// JSON-LD処理エラー
 #[derive(Debug, thiserror::Error)]
@@ -22,6 +20,8 @@ pub enum JsonLdError {
     MissingContext,
     #[error("Parse error: {0}")]
     ParseError(String),
+    #[error("JSON error: {0}")]
+    JsonError(#[from] serde_json::Error),
 }
 
 /// JSON-LDプロセッサ
@@ -61,8 +61,9 @@ impl JsonLdProcessor {
         let mut expanded = jsonld.clone();
         
         // @contextを展開
-        if let Some(context) = expanded.get("@context") {
-            Self::expand_context(&mut expanded, context)?;
+        if let Some(context) = jsonld.get("@context") {
+            let context_clone = context.clone();
+            Self::expand_context(&mut expanded, &context_clone)?;
         }
 
         Ok(expanded)
@@ -81,25 +82,14 @@ impl JsonLdProcessor {
     }
 
     /// @contextを展開
-    fn expand_context(value: &mut Value, context: &Value) -> Result<(), JsonLdError> {
-        if let Some(obj) = value.as_object_mut() {
-            // 簡易的な展開（実際の実装ではより完全な処理が必要）
-            if let Some(context_obj) = context.as_object() {
-                for (key, val) in context_obj.iter() {
-                    if !key.starts_with('@') {
-                        // プレフィックスの展開
-                        if let Some(expanded) = Self::expand_term(key, val) {
-                            // 実際の展開処理は簡略化
-                        }
-                    }
-                }
-            }
-        }
+    fn expand_context(_value: &mut Value, _context: &Value) -> Result<(), JsonLdError> {
+        // 簡易的な展開（実際の実装ではより完全な処理が必要）
+        // 現在は簡略化された実装
         Ok(())
     }
 
     /// 用語を展開
-    fn expand_term(term: &str, definition: &Value) -> Option<String> {
+    fn expand_term(_term: &str, definition: &Value) -> Option<String> {
         if let Some(iri) = definition.as_str() {
             Some(iri.to_string())
         } else if let Some(obj) = definition.as_object() {
@@ -173,7 +163,7 @@ impl JsonLdProcessor {
                 continue; // @id, @type, @contextはスキップ
             }
 
-            let predicate = Self::expand_predicate(key, jsonld)?;
+            let predicate = Self::expand_predicate(key, node)?;
             
             if let Some(array) = value.as_array() {
                 for item in array {
@@ -235,9 +225,9 @@ impl JsonLdProcessor {
     }
 
     /// 述語を展開
-    fn expand_predicate(key: &str, jsonld: &Value) -> Result<String, JsonLdError> {
+    fn expand_predicate(key: &str, node: &Value) -> Result<String, JsonLdError> {
         // @contextから展開を試みる
-        if let Some(context) = jsonld.get("@context") {
+        if let Some(context) = node.get("@context") {
             if let Some(context_obj) = context.as_object() {
                 if let Some(definition) = context_obj.get(key) {
                     if let Some(iri) = definition.as_str() {
@@ -308,12 +298,12 @@ impl JsonLdProcessor {
                     for item in array {
                         if let Some(str_val) = item.as_str() {
                             parts.push(format!("{}: {}", key, str_val));
-                        } else if let Some(obj_val) = item.as_object() {
-                            parts.push(Self::extract_text_from_node(obj_val));
+                        } else {
+                            parts.push(Self::extract_text_from_node(item));
                         }
                     }
-                } else if let Some(obj_val) = value.as_object() {
-                    parts.push(Self::extract_text_from_node(obj_val));
+                } else {
+                    parts.push(Self::extract_text_from_node(value));
                 }
             }
         }
@@ -341,6 +331,12 @@ impl JsonLdProcessor {
 
             if let Some(obj) = normalized.as_object_mut() {
                 obj.insert("@context".to_string(), default_context);
+            } else {
+                // オブジェクトでない場合はオブジェクトにラップ
+                normalized = serde_json::json!({
+                    "@context": default_context,
+                    "@graph": [normalized]
+                });
             }
         }
 

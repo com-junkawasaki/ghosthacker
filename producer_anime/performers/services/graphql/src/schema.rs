@@ -33,10 +33,82 @@ use crate::database::{
 };
 use crate::graph::{
     helixdb::{get_client, GraphNode, GraphEdge},
-    jsonld::{JsonLdProcessor, JsonLdError},
-    embedding::get_service as get_embedding_service,
+    jsonld::JsonLdProcessor,
     rag::{get_rag_service, SearchResult},
 };
+
+// ==================== Graph Operations Types ====================
+
+#[derive(SimpleObject, Serialize, Deserialize, Clone)]
+pub struct GraphNodeType {
+    pub id: String,
+    pub label: String,
+    pub properties: serde_json::Value,
+}
+
+impl From<GraphNode> for GraphNodeType {
+    fn from(node: GraphNode) -> Self {
+        GraphNodeType {
+            id: node.id.unwrap_or_default(),
+            label: node.label,
+            properties: node.properties,
+        }
+    }
+}
+
+#[derive(SimpleObject, Serialize, Deserialize, Clone)]
+pub struct GraphEdgeType {
+    pub id: String,
+    pub source: String,
+    pub target: String,
+    pub label: String,
+    pub properties: serde_json::Value,
+}
+
+impl From<GraphEdge> for GraphEdgeType {
+    fn from(edge: GraphEdge) -> Self {
+        GraphEdgeType {
+            id: edge.id.unwrap_or_default(),
+            source: edge.source,
+            target: edge.target,
+            label: edge.label,
+            properties: edge.properties,
+        }
+    }
+}
+
+#[derive(InputObject)]
+pub struct GraphNodeInput {
+    pub label: String,
+    pub properties: serde_json::Value,
+}
+
+#[derive(InputObject)]
+pub struct GraphEdgeInput {
+    pub source: String,
+    pub target: String,
+    pub label: String,
+    pub properties: serde_json::Value,
+}
+
+#[derive(SimpleObject, Serialize, Deserialize, Clone)]
+pub struct SemanticSearchResult {
+    pub node_id: String,
+    pub label: String,
+    pub properties: serde_json::Value,
+    pub score: f32,
+}
+
+impl From<SearchResult> for SemanticSearchResult {
+    fn from(result: SearchResult) -> Self {
+        SemanticSearchResult {
+            node_id: result.node_id,
+            label: result.label,
+            properties: result.properties,
+            score: result.score,
+        }
+    }
+}
 
 #[derive(Default)]
 pub struct QueryRoot;
@@ -235,6 +307,106 @@ impl QueryRoot {
             Err(e) => {
                 error!("Failed to get projects: {}", e);
                 Ok(vec![])
+            }
+        }
+    }
+
+    /// グラフクエリを実行
+    async fn graph_query(&self, query: String) -> Result<serde_json::Value> {
+        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
+        match client.query(&query).await {
+            Ok(result) => Ok(result),
+            Err(e) => {
+                error!("Graph query failed: {}", e);
+                Err(Error::new(format!("Graph query failed: {}", e)))
+            }
+        }
+    }
+
+    /// グラフノードを取得
+    async fn graph_node(&self, id: String) -> Result<Option<GraphNodeType>> {
+        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
+        match client.get_node(&id).await {
+            Ok(Some(node)) => Ok(Some(node.into())),
+            Ok(None) => Ok(None),
+            Err(e) => {
+                error!("Failed to get graph node {}: {}", id, e);
+                Err(Error::new(format!("Failed to get graph node: {}", e)))
+            }
+        }
+    }
+
+    /// グラフエッジを取得
+    async fn graph_edge(&self, id: String) -> Result<Option<GraphEdgeType>> {
+        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
+        match client.get_edge(&id).await {
+            Ok(Some(edge)) => Ok(Some(edge.into())),
+            Ok(None) => Ok(None),
+            Err(e) => {
+                error!("Failed to get graph edge {}: {}", id, e);
+                Err(Error::new(format!("Failed to get graph edge: {}", e)))
+            }
+        }
+    }
+
+    /// セマンティック検索
+    async fn semantic_search(&self, query: String, limit: Option<usize>) -> Result<Vec<SemanticSearchResult>> {
+        let rag_service = get_rag_service().map_err(|e| Error::new(format!("RAG service error: {}", e)))?;
+        let limit = limit.unwrap_or(10);
+        match rag_service.semantic_search(&query, limit).await {
+            Ok(results) => Ok(results.into_iter().map(|r| r.into()).collect()),
+            Err(e) => {
+                error!("Semantic search failed: {}", e);
+                Err(Error::new(format!("Semantic search failed: {}", e)))
+            }
+        }
+    }
+
+    /// ベクトル検索
+    async fn vector_search(&self, query_vector: Vec<f32>, limit: Option<usize>) -> Result<Vec<SemanticSearchResult>> {
+        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
+        let limit = limit.unwrap_or(10);
+        match client.vector_search(&query_vector, limit).await {
+            Ok(results) => {
+                let mut search_results = Vec::new();
+                for result in results {
+                    if let Ok(Some(node)) = client.get_node(&result.node_id).await {
+                        search_results.push(SemanticSearchResult {
+                            node_id: result.node_id,
+                            label: node.label,
+                            properties: node.properties,
+                            score: result.score,
+                        });
+                    }
+                }
+                Ok(search_results)
+            }
+            Err(e) => {
+                error!("Vector search failed: {}", e);
+                Err(Error::new(format!("Vector search failed: {}", e)))
+            }
+        }
+    }
+
+    /// Graph RAGクエリ
+    async fn graph_rag_query(&self, query: String, project_id: Option<String>) -> Result<String> {
+        let rag_service = get_rag_service().map_err(|e| Error::new(format!("RAG service error: {}", e)))?;
+        match rag_service.query(&query, project_id.as_deref()).await {
+            Ok(response) => Ok(response),
+            Err(e) => {
+                error!("Graph RAG query failed: {}", e);
+                Err(Error::new(format!("Graph RAG query failed: {}", e)))
+            }
+        }
+    }
+
+    /// JSON-LDを検証
+    async fn validate_json_ld(&self, jsonld: serde_json::Value) -> Result<bool> {
+        match JsonLdProcessor::validate(&jsonld) {
+            Ok(_) => Ok(true),
+            Err(e) => {
+                error!("JSON-LD validation failed: {}", e);
+                Err(Error::new(format!("JSON-LD validation failed: {}", e)))
             }
         }
     }
@@ -1060,358 +1232,5 @@ impl From<DatabaseProject> for Project {
     }
 }
 
-// ==================== Graph Operations ====================
 
-#[derive(SimpleObject, Serialize, Deserialize, Clone)]
-pub struct GraphNodeType {
-    pub id: String,
-    pub label: String,
-    pub properties: serde_json::Value,
-}
-
-impl From<GraphNode> for GraphNodeType {
-    fn from(node: GraphNode) -> Self {
-        GraphNodeType {
-            id: node.id.unwrap_or_default(),
-            label: node.label,
-            properties: node.properties,
-        }
-    }
-}
-
-#[derive(SimpleObject, Serialize, Deserialize, Clone)]
-pub struct GraphEdgeType {
-    pub id: String,
-    pub source: String,
-    pub target: String,
-    pub label: String,
-    pub properties: serde_json::Value,
-}
-
-impl From<GraphEdge> for GraphEdgeType {
-    fn from(edge: GraphEdge) -> Self {
-        GraphEdgeType {
-            id: edge.id.unwrap_or_default(),
-            source: edge.source,
-            target: edge.target,
-            label: edge.label,
-            properties: edge.properties,
-        }
-    }
-}
-
-#[derive(InputObject)]
-pub struct GraphNodeInput {
-    pub label: String,
-    pub properties: serde_json::Value,
-}
-
-#[derive(InputObject)]
-pub struct GraphEdgeInput {
-    pub source: String,
-    pub target: String,
-    pub label: String,
-    pub properties: serde_json::Value,
-}
-
-#[derive(SimpleObject, Serialize, Deserialize, Clone)]
-pub struct SemanticSearchResult {
-    pub node_id: String,
-    pub label: String,
-    pub properties: serde_json::Value,
-    pub score: f32,
-}
-
-impl From<SearchResult> for SemanticSearchResult {
-    fn from(result: SearchResult) -> Self {
-        SemanticSearchResult {
-            node_id: result.node_id,
-            label: result.label,
-            properties: result.properties,
-            score: result.score,
-        }
-    }
-}
-
-// QueryRootにGraph操作を追加
-#[Object]
-impl QueryRoot {
-    /// グラフクエリを実行
-    async fn graph_query(&self, query: String) -> Result<serde_json::Value> {
-        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
-        match client.query(&query).await {
-            Ok(result) => Ok(result),
-            Err(e) => {
-                error!("Graph query failed: {}", e);
-                Err(Error::new(format!("Graph query failed: {}", e)))
-            }
-        }
-    }
-
-    /// グラフノードを取得
-    async fn graph_node(&self, id: String) -> Result<Option<GraphNodeType>> {
-        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
-        match client.get_node(&id).await {
-            Ok(Some(node)) => Ok(Some(node.into())),
-            Ok(None) => Ok(None),
-            Err(e) => {
-                error!("Failed to get graph node {}: {}", id, e);
-                Err(Error::new(format!("Failed to get graph node: {}", e)))
-            }
-        }
-    }
-
-    /// グラフエッジを取得
-    async fn graph_edge(&self, id: String) -> Result<Option<GraphEdgeType>> {
-        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
-        match client.get_edge(&id).await {
-            Ok(Some(edge)) => Ok(Some(edge.into())),
-            Ok(None) => Ok(None),
-            Err(e) => {
-                error!("Failed to get graph edge {}: {}", id, e);
-                Err(Error::new(format!("Failed to get graph edge: {}", e)))
-            }
-        }
-    }
-
-    /// セマンティック検索
-    async fn semantic_search(&self, query: String, limit: Option<usize>) -> Result<Vec<SemanticSearchResult>> {
-        let rag_service = get_rag_service().map_err(|e| Error::new(format!("RAG service error: {}", e)))?;
-        let limit = limit.unwrap_or(10);
-        match rag_service.semantic_search(&query, limit).await {
-            Ok(results) => Ok(results.into_iter().map(|r| r.into()).collect()),
-            Err(e) => {
-                error!("Semantic search failed: {}", e);
-                Err(Error::new(format!("Semantic search failed: {}", e)))
-            }
-        }
-    }
-
-    /// ベクトル検索
-    async fn vector_search(&self, query_vector: Vec<f32>, limit: Option<usize>) -> Result<Vec<SemanticSearchResult>> {
-        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
-        let limit = limit.unwrap_or(10);
-        match client.vector_search(&query_vector, limit).await {
-            Ok(results) => {
-                let mut search_results = Vec::new();
-                for result in results {
-                    if let Ok(Some(node)) = client.get_node(&result.node_id).await {
-                        search_results.push(SemanticSearchResult {
-                            node_id: result.node_id,
-                            label: node.label,
-                            properties: node.properties,
-                            score: result.score,
-                        });
-                    }
-                }
-                Ok(search_results)
-            }
-            Err(e) => {
-                error!("Vector search failed: {}", e);
-                Err(Error::new(format!("Vector search failed: {}", e)))
-            }
-        }
-    }
-
-    /// Graph RAGクエリ
-    async fn graph_rag_query(&self, query: String, project_id: Option<String>) -> Result<String> {
-        let rag_service = get_rag_service().map_err(|e| Error::new(format!("RAG service error: {}", e)))?;
-        match rag_service.query(&query, project_id.as_deref()).await {
-            Ok(response) => Ok(response),
-            Err(e) => {
-                error!("Graph RAG query failed: {}", e);
-                Err(Error::new(format!("Graph RAG query failed: {}", e)))
-            }
-        }
-    }
-
-    /// JSON-LDを検証
-    async fn validate_json_ld(&self, jsonld: serde_json::Value) -> Result<bool> {
-        match JsonLdProcessor::validate(&jsonld) {
-            Ok(_) => Ok(true),
-            Err(e) => {
-                error!("JSON-LD validation failed: {}", e);
-                Err(Error::new(format!("JSON-LD validation failed: {}", e)))
-            }
-        }
-    }
-}
-
-// MutationRootにGraph操作を追加
-#[Object]
-impl MutationRoot {
-    /// グラフノードを作成
-    async fn create_graph_node(&self, input: GraphNodeInput) -> Result<String> {
-        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
-        let node = GraphNode {
-            id: None,
-            label: input.label,
-            properties: input.properties,
-            vector: None,
-        };
-        match client.create_node(&node).await {
-            Ok(id) => Ok(id),
-            Err(e) => {
-                error!("Failed to create graph node: {}", e);
-                Err(Error::new(format!("Failed to create graph node: {}", e)))
-            }
-        }
-    }
-
-    /// グラフノードを更新
-    async fn update_graph_node(&self, id: String, input: GraphNodeInput) -> Result<GraphNodeType> {
-        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
-        let node = GraphNode {
-            id: Some(id.clone()),
-            label: input.label,
-            properties: input.properties,
-            vector: None,
-        };
-        match client.update_node(&id, &node).await {
-            Ok(_) => {
-                match client.get_node(&id).await {
-                    Ok(Some(updated_node)) => Ok(updated_node.into()),
-                    Ok(None) => Err(Error::new("Node not found after update")),
-                    Err(e) => Err(Error::new(format!("Failed to get updated node: {}", e))),
-                }
-            }
-            Err(e) => {
-                error!("Failed to update graph node: {}", e);
-                Err(Error::new(format!("Failed to update graph node: {}", e)))
-            }
-        }
-    }
-
-    /// グラフノードを削除
-    async fn delete_graph_node(&self, id: String) -> Result<bool> {
-        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
-        match client.delete_node(&id).await {
-            Ok(_) => Ok(true),
-            Err(e) => {
-                error!("Failed to delete graph node: {}", e);
-                Err(Error::new(format!("Failed to delete graph node: {}", e)))
-            }
-        }
-    }
-
-    /// グラフエッジを作成
-    async fn create_graph_edge(&self, input: GraphEdgeInput) -> Result<String> {
-        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
-        let edge = GraphEdge {
-            id: None,
-            source: input.source,
-            target: input.target,
-            label: input.label,
-            properties: input.properties,
-        };
-        match client.create_edge(&edge).await {
-            Ok(id) => Ok(id),
-            Err(e) => {
-                error!("Failed to create graph edge: {}", e);
-                Err(Error::new(format!("Failed to create graph edge: {}", e)))
-            }
-        }
-    }
-
-    /// グラフエッジを削除
-    async fn delete_graph_edge(&self, id: String) -> Result<bool> {
-        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
-        match client.delete_edge(&id).await {
-            Ok(_) => Ok(true),
-            Err(e) => {
-                error!("Failed to delete graph edge: {}", e);
-                Err(Error::new(format!("Failed to delete graph edge: {}", e)))
-            }
-        }
-    }
-
-    /// JSON-LDをインポート
-    async fn import_json_ld(&self, jsonld: serde_json::Value, project_id: Option<String>) -> Result<Vec<String>> {
-        // JSON-LDを検証
-        JsonLdProcessor::validate(&jsonld)
-            .map_err(|e| Error::new(format!("JSON-LD validation failed: {}", e)))?;
-
-        // RDFトリプルに変換
-        let triples = JsonLdProcessor::to_triples(&jsonld)
-            .map_err(|e| Error::new(format!("Failed to convert to triples: {}", e)))?;
-
-        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
-        let embedding_service = get_embedding_service().map_err(|e| Error::new(format!("Embedding service error: {}", e)))?;
-
-        let mut node_ids = Vec::new();
-
-        // ノードを作成
-        for triple in &triples {
-            // ノードが存在しない場合は作成
-            if client.get_node(&triple.subject).await?.is_none() {
-                let node = GraphNode {
-                    id: Some(triple.subject.clone()),
-                    label: format!("Node: {}", triple.subject),
-                    properties: serde_json::json!({
-                        "type": triple.object_type,
-                        "rdf_type": triple.predicate
-                    }),
-                    vector: None,
-                };
-                let node_id = client.create_node(&node).await?;
-                node_ids.push(node_id.clone());
-
-                // ベクトル埋め込みを追加
-                let embedding = embedding_service.embed_jsonld(&jsonld).await?;
-                client.add_vector_to_node(&node_id, &embedding).await?;
-            }
-        }
-
-        // エッジを作成
-        for triple in &triples {
-            if triple.object_type == "uri" {
-                let edge = GraphEdge {
-                    id: None,
-                    source: triple.subject.clone(),
-                    target: triple.object.clone(),
-                    label: triple.predicate.clone(),
-                    properties: serde_json::json!({}),
-                };
-                client.create_edge(&edge).await?;
-            }
-        }
-
-        Ok(node_ids)
-    }
-
-    /// JSON-LDをエクスポート
-    async fn export_json_ld(&self, node_ids: Vec<String>) -> Result<serde_json::Value> {
-        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
-        
-        let mut graph = Vec::new();
-        
-        for node_id in &node_ids {
-            if let Ok(Some(node)) = client.get_node(node_id).await {
-                let mut node_obj = serde_json::json!({
-                    "@id": node_id,
-                    "@type": node.label,
-                });
-                
-                // プロパティを追加
-                if let Some(props) = node.properties.as_object() {
-                    for (key, value) in props {
-                        node_obj[key] = value.clone();
-                    }
-                }
-                
-                graph.push(node_obj);
-            }
-        }
-
-        Ok(serde_json::json!({
-            "@context": {
-                "@version": 1.1,
-                "id": "@id",
-                "type": "@type",
-                "ex": "https://gftd.ai/producerv2#"
-            },
-            "@graph": graph
-        }))
-    }
-}
 
