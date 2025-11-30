@@ -450,7 +450,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
             // デバッグログ: コンテクストノードの検出（詳細版）
             const checkResults = { check1, check2, check3, check4, check5 };
             if (isContext) {
-              addDebugLog('info', `loadGraphData: ✅ Context node detected for ${row.id}`, {
+              addDebugLog('info', `loadGraphData: ✅ Context node detected for ${node.id}`, {
                 ...debugData,
                 checkResults,
                 isContext: true,
@@ -468,15 +468,15 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
                 failureReasons.push('@context is missing');
               }
               
-              addDebugLog('log', `loadGraphData: ❌ Node ${row.id} is NOT a context node`, {
+              addDebugLog('log', `loadGraphData: ❌ Node ${node.id} is NOT a context node`, {
                 ...debugData,
                 checkResults,
                 isContext: false,
                 failureReasons: failureReasons.length > 0 ? failureReasons : ['All checks failed'],
                 // クイックデバッグ用の要約
                 summary: {
-                  label: row.label,
-                  hasJsonld: !!row.jsonld,
+                  label: node.label,
+                  hasJsonld: !!node.jsonld,
                   jsonldType: jsonld['@type'],
                   propertiesIsContext: properties.isContext,
                   hasContext: !!jsonld['@context'],
@@ -664,10 +664,36 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       
       setLoading(false);
     } catch (err) {
+      // エラーオブジェクトの詳細を取得
+      let errorMessage = 'Unknown error';
+      let errorStack: string | undefined;
+      let errorName: string | undefined;
+      let errorDetails: any = null;
+      
+      if (err instanceof Error) {
+        errorMessage = err.message;
+        errorStack = err.stack;
+        errorName = err.name;
+        errorDetails = {
+          message: err.message,
+          name: err.name,
+          stack: err.stack,
+          ...(err as any).cause && { cause: (err as any).cause },
+        };
+      } else if (typeof err === 'object' && err !== null) {
+        errorMessage = JSON.stringify(err, null, 2);
+        errorDetails = err;
+      } else {
+        errorMessage = String(err);
+      }
+      
       addDebugLog('error', 'loadGraphData: Error caught', {
-        error: err instanceof Error ? err.message : String(err),
-        errorStack: err instanceof Error ? err.stack : undefined,
-        errorName: err instanceof Error ? err.name : undefined,
+        error: errorMessage,
+        errorStack,
+        errorName,
+        errorDetails,
+        errorType: typeof err,
+        errorConstructor: err?.constructor?.name,
       });
       const appError = classifyError(err);
       logError(appError, 'GraphVisualizationReactFlow.loadGraphData');
