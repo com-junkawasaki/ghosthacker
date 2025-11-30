@@ -89,6 +89,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
   const [edgeSource, setEdgeSource] = useState<string | null>(null);
   const [showHierarchy, setShowHierarchy] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [draggedNodeId, setDraggedNodeId] = useState<string | null>(null);
   
   // Form states
   const [nodeForm, setNodeForm] = useState({
@@ -478,50 +479,6 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
     }
   };
 
-  // Force-directed + Layer layout適用（階層ビューが有効な場合）
-  useEffect(() => {
-    if (showHierarchy && nodes.length > 0 && containerRef.current) {
-      const width = containerRef.current.offsetWidth || 800;
-      const height = containerRef.current.offsetHeight || 600;
-      
-      const layoutedNodes = calculateForceLayout(
-        nodes,
-        edges,
-        contextLayers,
-        { width, height }
-      );
-      
-      setNodes(layoutedNodes);
-      
-      setTimeout(() => {
-        fitView({ padding: 0.2 });
-      }, 100);
-    }
-  }, [showHierarchy, nodes.length, edges.length, contextLayers.length, calculateForceLayout, fitView]);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-96">
-        <div className="text-gray-500 dark:text-gray-400">Loading graph...</div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="w-full">
-        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-4">
-          <h3 className="text-red-800 dark:text-red-200 font-semibold mb-2">Error</h3>
-          <p className="text-red-600 dark:text-red-400 text-sm">{error}</p>
-        </div>
-      </div>
-    );
-  }
-
-  const selectedNodeData = selectedNode ? nodes.find(n => n.id === selectedNode) : null;
-
-  const [draggedNodeId, setDraggedNodeId] = useState<string | null>(null);
-
   // ドラッグ&ドロップ階層編集
   const onNodeDragStart = useCallback((_event: React.MouseEvent, node: Node<GraphNodeData>) => {
     setDraggedNodeId(node.id);
@@ -610,6 +567,48 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
 
     setDraggedNodeId(null);
   }, [draggedNodeId, nodes, edges, handleCreateEdge, loadGraphData, getViewport]);
+
+  // Force-directed + Layer layout適用（階層ビューが有効な場合）
+  useEffect(() => {
+    if (showHierarchy && nodes.length > 0 && containerRef.current) {
+      const width = containerRef.current.offsetWidth || 800;
+      const height = containerRef.current.offsetHeight || 600;
+      
+      const layoutedNodes = calculateForceLayout(
+        nodes,
+        edges,
+        contextLayers,
+        { width, height }
+      );
+      
+      setNodes(layoutedNodes);
+      
+      setTimeout(() => {
+        fitView({ padding: 0.2 });
+      }, 100);
+    }
+  }, [showHierarchy, nodes.length, edges.length, contextLayers.length, calculateForceLayout, fitView, setNodes]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-96">
+        <div className="text-gray-500 dark:text-gray-400">Loading graph...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-full">
+        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-4">
+          <h3 className="text-red-800 dark:text-red-200 font-semibold mb-2">Error</h3>
+          <p className="text-red-600 dark:text-red-400 text-sm">{error}</p>
+        </div>
+      </div>
+    );
+  }
+
+  const selectedNodeData = selectedNode ? nodes.find(n => n.id === selectedNode) : null;
 
   return (
     <div ref={containerRef} className="w-full h-[600px] relative">
