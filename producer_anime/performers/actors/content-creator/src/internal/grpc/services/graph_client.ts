@@ -38,10 +38,21 @@ export async function graphQuery(query: string): Promise<any> {
     body: JSON.stringify({ query }),
   });
   if (!response.ok) {
-    throw new Error(`Graph query failed: ${response.statusText}`);
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.error || `Graph query failed: ${response.statusText}`);
   }
   const data = await response.json();
-  return JSON.parse(data.result_json);
+  // API Routeは { result: "..." } を返す（gRPC GraphQueryResponseのresultフィールド）
+  const resultJson = data.result || data.resultJson || data.result_json;
+  if (typeof resultJson === 'string' && resultJson.trim()) {
+    try {
+      return JSON.parse(resultJson);
+    } catch (e) {
+      // JSONパースに失敗した場合は文字列のまま返す
+      return resultJson;
+    }
+  }
+  return resultJson || data;
 }
 
 /**

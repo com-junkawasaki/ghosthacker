@@ -8,11 +8,14 @@ import * as grpc from '@grpc/grpc-js';
 import * as protoLoader from '@grpc/proto-loader';
 import path from 'path';
 
-const GRPC_API_URL = process.env.GRPC_API_URL || 'grpc:50051';
+// Dockerコンテナ内からホストのgRPCサービスに接続する場合は host.docker.internal:50051
+// ローカル開発環境では localhost:50051
+const GRPC_API_URL = process.env.GRPC_API_URL || 'host.docker.internal:50051';
 
 // protoファイルのパス
-// process.cwd()はNext.jsアプリのルート（performers/actors/content-creator）を返す
-const PROTO_PATH = path.join(process.cwd(), '../../../services/grpc/proto');
+// process.cwd()はNext.jsアプリのルート（/app/performers/actors/content-creator）を返す
+// Dockerコンテナ内では /app/performers/services/grpc/proto が正しいパス
+const PROTO_PATH = path.join(process.cwd(), '../../services/grpc/proto');
 
 // protoファイルのロードオプション
 const packageDefinition = protoLoader.loadSync(
@@ -67,7 +70,11 @@ export async function POST(request: NextRequest) {
             )
           );
         } else {
-          resolve(NextResponse.json(response));
+          // gRPCレスポンスは { result: "..." } 形式（GraphQueryResponse）
+          resolve(NextResponse.json({ 
+            result: response.result || '',
+            resultJson: response.result || '' // 後方互換性のため
+          }));
         }
       });
     });

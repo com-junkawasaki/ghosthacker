@@ -41,33 +41,57 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
     setError(null);
     try {
       // gRPC API Route経由でグラフクエリを実行
-      const query = 'MATCH (n) RETURN n LIMIT 100';
+      // PostgreSQLのクエリ構文を使用（MATCHはCypher構文なので、PostgreSQLのSELECTに変更）
+      const query = 'SELECT id, label, properties, jsonld FROM graph_nodes LIMIT 100';
       const result = await graphQuery(query);
       
       // 結果のパース処理（PostgreSQLクエリ結果からノードとエッジを抽出）
-      // 実際の実装では、クエリ結果の構造に応じて処理
       const parsedNodes: GraphNode[] = [];
       const parsedEdges: GraphEdge[] = [];
       
+      // 結果が配列の場合
       if (Array.isArray(result)) {
         result.forEach((row: any) => {
-          if (row.n) {
-            const nodeData = row.n;
+          if (row.id || row.label) {
             parsedNodes.push({
-              id: nodeData.id || '',
-              label: nodeData.label || '',
-              properties: typeof nodeData.properties === 'string' 
-                ? JSON.parse(nodeData.properties) 
-                : nodeData.properties || {},
+              id: row.id || '',
+              label: row.label || '',
+              properties: typeof row.properties === 'string' 
+                ? JSON.parse(row.properties) 
+                : row.properties || {},
             });
           }
         });
+      } else if (result && typeof result === 'object') {
+        // 結果がオブジェクトの場合（PostgreSQLのクエリ結果形式）
+        if (Array.isArray(result.rows)) {
+          result.rows.forEach((row: any) => {
+            parsedNodes.push({
+              id: row.id || '',
+              label: row.label || '',
+              properties: typeof row.properties === 'string' 
+                ? JSON.parse(row.properties) 
+                : row.properties || {},
+            });
+          });
+        } else {
+          // 単一のオブジェクトの場合
+          parsedNodes.push({
+            id: result.id || '',
+            label: result.label || '',
+            properties: typeof result.properties === 'string' 
+              ? JSON.parse(result.properties) 
+              : result.properties || {},
+          });
+        }
       }
       
       setNodes(parsedNodes);
       setEdges(parsedEdges);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load graph data');
+      console.error('Graph data load error:', err);
+      const errorMessage = err instanceof Error ? err.message : 'Failed to load graph data';
+      setError(`${errorMessage} (詳細はコンソールを確認してください)`);
     } finally {
       setLoading(false);
     }
