@@ -142,14 +142,14 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
         <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6">
           <h3 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">Error</h3>
           <p className="text-red-700 dark:text-red-300">{error}</p>
-          <p className="text-sm text-red-600 dark:text-red-400 mt-2">
-            Please check:
-            <ul className="list-disc list-inside mt-1">
+          <div className="text-sm text-red-600 dark:text-red-400 mt-2">
+            <p className="mb-1">Please check:</p>
+            <ul className="list-disc list-inside mt-1 ml-4">
               <li>gRPC service is running on port 50051</li>
               <li>Docker containers are running (if using Docker)</li>
               <li>Network connectivity between Next.js app and gRPC service</li>
             </ul>
-          </p>
+          </div>
         </div>
       </div>
     );
