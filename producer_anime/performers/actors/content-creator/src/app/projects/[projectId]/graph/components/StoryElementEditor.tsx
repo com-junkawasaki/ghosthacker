@@ -21,6 +21,7 @@ const ELEMENT_TYPE_LABELS: Record<StoryElementNodeType, string> = {
   scene: 'シーン',
   event: 'イベント',
   context: 'コンテキスト',
+  process: 'プロセス',
 };
 
 export default function StoryElementEditor({ node, onSave, onClose }: StoryElementEditorProps) {
@@ -372,6 +373,98 @@ export default function StoryElementEditor({ node, onSave, onClose }: StoryEleme
                 rows={3}
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                 placeholder="1行に1つずつ"
+              />
+            </div>
+          </div>
+        );
+
+      case 'process':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                生成タイプ
+              </label>
+              <select
+                value={properties.generationType || 'document'}
+                onChange={(e) => handlePropertyChange('generationType', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              >
+                <option value="document">文書</option>
+                <option value="image">画像</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                LLMプロバイダー
+              </label>
+              <select
+                value={properties.llmProvider || 'openai'}
+                onChange={(e) => handlePropertyChange('llmProvider', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              >
+                <option value="openai">OpenAI</option>
+                <option value="anthropic">Anthropic</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                モデルID
+              </label>
+              <input
+                type="text"
+                value={properties.modelId || ''}
+                onChange={(e) => handlePropertyChange('modelId', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                placeholder={properties.generationType === 'document' ? 'gpt-4' : 'dall-e-3'}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                プロンプトテンプレート
+              </label>
+              <textarea
+                value={properties.promptTemplate || 'Generate content based on:\n\n{{context}}\n\nRelated nodes:\n{{relatedNodes}}'}
+                onChange={(e) => handlePropertyChange('promptTemplate', e.target.value)}
+                rows={6}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono text-sm"
+                placeholder="{{context}} と {{relatedNodes}} が置換されます"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                出力形式
+              </label>
+              <input
+                type="text"
+                value={properties.outputFormat || (properties.generationType === 'document' ? 'markdown' : 'png')}
+                onChange={(e) => handlePropertyChange('outputFormat', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                placeholder={properties.generationType === 'document' ? 'markdown, html' : 'png, jpg'}
+              />
+            </div>
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                checked={properties.autoExecute || false}
+                onChange={(e) => handlePropertyChange('autoExecute', e.target.checked)}
+                className="mr-2"
+              />
+              <label className="text-sm text-gray-700 dark:text-gray-300">
+                自動実行（条件満たした時に自動実行）
+              </label>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                入力ノードID（カンマ区切り）
+              </label>
+              <input
+                type="text"
+                value={Array.isArray(properties.inputNodes) ? properties.inputNodes.join(', ') : ''}
+                onChange={(e) => handlePropertyChange('inputNodes', e.target.value.split(',').map(s => s.trim()).filter(Boolean))}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                placeholder="node-id-1, node-id-2"
               />
             </div>
           </div>

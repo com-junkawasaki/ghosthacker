@@ -21,6 +21,7 @@ const ELEMENT_TYPE_ICONS: Record<StoryElementNodeType, string> = {
   scene: '🎭',
   event: '⚡',
   context: '@',
+  process: '⚙️',
 };
 
 export default function StoryElementFAB({ onSelectType, isOpen, onToggle }: StoryElementFABProps) {
@@ -34,6 +35,7 @@ export default function StoryElementFAB({ onSelectType, isOpen, onToggle }: Stor
     'character',
     'scene',
     'event',
+    'process',
   ];
 
   return (

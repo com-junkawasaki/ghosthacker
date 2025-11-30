@@ -11,7 +11,8 @@ export type StoryElementNodeType =
   | 'character'
   | 'scene'
   | 'event'
-  | 'context';
+  | 'context'
+  | 'process';
 
 export type StoryElementEdgeType =
   | 'contains'
@@ -75,6 +76,33 @@ export interface StoryElementProperties {
   type?: string;
   description?: string;
   consequences?: string[];
+  
+  // Process
+  generationType?: 'document' | 'image';
+  llmProvider?: 'openai' | 'anthropic' | 'custom';
+  modelId?: string;
+  promptTemplate?: string;
+  autoExecute?: boolean;
+  inputNodes?: string[];
+  outputFormat?: string;
+  lastExecutionTime?: string;
+  lastExecutionResult?: string;
+  executionStatus?: 'idle' | 'running' | 'completed' | 'error';
+  generatedContent?: string;
+}
+
+export interface ProcessNodeProperties {
+  generationType: 'document' | 'image';
+  llmProvider: 'openai' | 'anthropic' | 'custom';
+  modelId: string;
+  promptTemplate: string;
+  autoExecute: boolean;
+  inputNodes: string[];
+  outputFormat: string;
+  lastExecutionTime?: string;
+  lastExecutionResult?: string;
+  executionStatus?: 'idle' | 'running' | 'completed' | 'error';
+  generatedContent?: string;
 }
 
 export const NODE_TYPE_COLORS: Record<StoryElementNodeType, string> = {
@@ -86,6 +114,7 @@ export const NODE_TYPE_COLORS: Record<StoryElementNodeType, string> = {
   scene: '#ec4899', // pink
   event: '#ef4444', // red
   context: '#f59e0b', // amber (existing)
+  process: '#8b5cf6', // purple
 };
 
 export const EDGE_TYPE_COLORS: Record<StoryElementEdgeType, string> = {
@@ -108,5 +137,6 @@ export const ELEMENT_TYPE_LABELS: Record<StoryElementNodeType, string> = {
   scene: 'シーン',
   event: 'イベント',
   context: 'コンテキスト',
+  process: 'プロセス',
 };
 

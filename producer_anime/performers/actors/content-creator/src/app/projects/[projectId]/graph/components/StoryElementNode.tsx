@@ -6,6 +6,7 @@
 import { memo } from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
 import { GraphNodeData, NODE_TYPE_COLORS, StoryElementNodeType } from './types';
+import ProcessNode from './ProcessNode';
 
 interface StoryElementNodeData extends GraphNodeData {
   nodeType?: StoryElementNodeType;
@@ -328,6 +329,11 @@ function StoryElementNode({ data, selected }: NodeProps<StoryElementNodeData>) {
         />
       </div>
     );
+  }
+
+  // Process: Octagon (use ProcessNode component)
+  if (nodeType === 'process') {
+    return <ProcessNode data={data as any} selected={selected} />;
   }
 
   // Default node (circle) - fallback

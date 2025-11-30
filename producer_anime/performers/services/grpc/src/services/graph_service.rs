@@ -30,6 +30,7 @@ use proto::{
     ValidateJsonLdRequest, ValidateJsonLdResponse,
     ImportJsonLdRequest, ImportJsonLdResponse,
     ExportJsonLdRequest, ExportJsonLdResponse,
+    ProcessGenerationRequest, ProcessGenerationResponse,
     GraphNode, GraphEdge, VectorSearchResult,
 };
 
@@ -326,6 +327,17 @@ impl GraphService for GraphServiceImpl {
         let _req = request.into_inner();
         // TODO: 実装（プロジェクトIDに基づいてグラフをエクスポート）
         Err(Status::unimplemented("Export JSON-LD not yet implemented"))
+    }
+
+    async fn execute_process_generation(
+        &self,
+        request: Request<ProcessGenerationRequest>,
+    ) -> Result<Response<ProcessGenerationResponse>, Status> {
+        let req = request.into_inner();
+        // Process generationはNext.js API Routeで実装されているため、
+        // ここでは簡易的な実装としてエラーを返す
+        // 実際の実装は /api/grpc/graph/process/[id]/generate で行われる
+        Err(Status::unimplemented("Process generation should be called via Next.js API route"))
     }
 }
 

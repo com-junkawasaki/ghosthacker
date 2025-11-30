@@ -107,6 +107,19 @@ message DeleteGraphEdgeResponse {
   bool success = 1;
 }
 
+// Process Generation Messages
+message ProcessGenerationRequest {
+  string process_node_id = 1;
+  string generation_type = 2; // "document" or "image"
+  map<string, string> options = 3; // Generation options (maxTokens, temperature, size, etc.)
+}
+
+message ProcessGenerationResponse {
+  bool success = 1;
+  string result = 2; // JSON string containing generation result
+  string error = 3;
+}
+
 message SemanticSearchRequest {
   string query = 1;
   int32 limit = 2;
@@ -160,6 +173,19 @@ message ExportJsonLdResponse {
   string jsonld = 1; // JSON文字列
 }
 
+// Process Generation Messages
+message ProcessGenerationRequest {
+  string process_node_id = 1;
+  string generation_type = 2; // "document" or "image"
+  map<string, string> options = 3; // Generation options (maxTokens, temperature, size, etc.)
+}
+
+message ProcessGenerationResponse {
+  bool success = 1;
+  string result = 2; // JSON string containing generation result
+  string error = 3;
+}
+
 // ==================== サービス定義 ====================
 
 service GraphService {
@@ -176,6 +202,7 @@ service GraphService {
   rpc ValidateJsonLd(ValidateJsonLdRequest) returns (ValidateJsonLdResponse);
   rpc ImportJsonLd(ImportJsonLdRequest) returns (ImportJsonLdResponse);
   rpc ExportJsonLd(ExportJsonLdRequest) returns (ExportJsonLdResponse);
+  rpc ExecuteProcessGeneration(ProcessGenerationRequest) returns (ProcessGenerationResponse);
 }
 
 service GraphRagService {

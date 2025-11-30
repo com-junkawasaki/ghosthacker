@@ -39,6 +39,7 @@ import StoryElementEdge from './StoryElementEdge';
 import StoryElementEditor from './StoryElementEditor';
 import StoryElementFAB from './StoryElementFAB';
 import StoryElementConnection from './StoryElementConnection';
+import ProcessExecutionPanel from './ProcessExecutionPanel';
 import ContextLayerBackground from './ContextLayerBackground';
 import { useForceDirectedLayout } from './useForceDirectedLayout';
 import { useStoryElementLayout } from './useStoryElementLayout';
@@ -99,6 +100,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
   });
   const [editingNodeId, setEditingNodeId] = useState<string | null>(null);
   const [editingLabel, setEditingLabel] = useState<string>('');
+  const [processExecutionNode, setProcessExecutionNode] = useState<string | null>(null);
   const [edgeForm, setEdgeForm] = useState({
     label: '',
     properties: '{}',
@@ -457,6 +459,38 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
     loadGraphData();
   }, [projectId]);
 
+  // 自動実行チェック（processノードのautoExecuteがtrueの場合）
+  useEffect(() => {
+    if (nodes.length === 0) return;
+
+    const autoExecuteProcesses = nodes.filter(node => {
+      const props = node.data.properties as any;
+      return node.data.nodeType === 'process' &&
+             props.autoExecute === true &&
+             props.executionStatus !== 'running' &&
+             props.executionStatus !== 'completed';
+    });
+
+    autoExecuteProcesses.forEach(async (processNode) => {
+      try {
+        const response = await fetch(`/api/grpc/graph/process/${processNode.id}/generate`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            generationType: processNode.data.properties.generationType || 'document',
+            options: {},
+          }),
+        });
+
+        if (response.ok) {
+          await loadGraphData();
+        }
+      } catch (err) {
+        console.error('Auto-execution failed:', err);
+      }
+    });
+  }, [nodes.length]); // 初回ロード時のみ実行
+
   // ノード位置変更を検出して保存
   const handleNodesChange = useCallback((changes: any[]) => {
     // React FlowのonNodesChangeを呼び出す
@@ -557,6 +591,10 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
     if (interactionMode === 'selectTarget' && edgeSource) {
       // ターゲットノード選択モード
       handleConnectWithType(edgeSource, node.id, 'relatesTo', 'relatesTo');
+    } else if (node.data.nodeType === 'process') {
+      // Processノードの場合は実行パネルを表示
+      setProcessExecutionNode(node.id);
+      setSelectedNode(node.id);
     } else {
       setSelectedNode(node.id);
       setSelectedEdge(null);
@@ -701,6 +739,16 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
           defaultProperties.origin = '';
           defaultProperties.motivation = '';
           break;
+        case 'process':
+          defaultProperties.generationType = 'document';
+          defaultProperties.llmProvider = 'openai';
+          defaultProperties.modelId = 'gpt-4';
+          defaultProperties.promptTemplate = 'Generate content based on:\n\n{{context}}\n\nRelated nodes:\n{{relatedNodes}}';
+          defaultProperties.autoExecute = false;
+          defaultProperties.inputNodes = [];
+          defaultProperties.outputFormat = 'markdown';
+          defaultProperties.executionStatus = 'idle';
+          break;
       }
 
       const nodeId = await createGraphNode(
@@ -711,7 +759,11 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
 
       await loadGraphData();
       setSelectedNode(nodeId);
-      setSidePanelOpen(true);
+      if (type === 'process') {
+        setProcessExecutionNode(nodeId);
+      } else {
+        setSidePanelOpen(true);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create node');
     }
@@ -923,6 +975,39 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
           }}
         />
       ) : null}
+
+      {/* Process Execution Panel */}
+      {processExecutionNode && (
+        <ProcessExecutionPanel
+          node={nodes.find(n => n.id === processExecutionNode) || null}
+          onClose={() => {
+            setProcessExecutionNode(null);
+            setSelectedNode(null);
+          }}
+          onExecute={async (nodeId, generationType, execOptions) => {
+            try {
+              const response = await fetch(`/api/grpc/graph/process/${nodeId}/generate`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  generationType,
+                  options: execOptions,
+                }),
+              });
+
+              if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.error || 'Process execution failed');
+              }
+
+              await loadGraphData();
+            } catch (err) {
+              console.error('Process execution error:', err);
+              throw err;
+            }
+          }}
+        />
+      )}
 
       {/* Toolbar */}
       <Panel position="top-left" className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-2 m-2">
