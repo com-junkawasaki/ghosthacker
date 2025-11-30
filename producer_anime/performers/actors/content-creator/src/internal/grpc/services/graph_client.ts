@@ -236,3 +236,18 @@ export async function createGraphEdge(
   return data.id;
 }
 
+/**
+ * グラフエッジを削除
+ */
+export async function deleteGraphEdge(edgeId: string): Promise<boolean> {
+  const response = await fetch(`/api/grpc/graph/edge/${edgeId}`, {
+    method: 'DELETE',
+  });
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.error || `Failed to delete graph edge: ${response.statusText}`);
+  }
+  const data = await response.json();
+  return data.success === true;
+}
+

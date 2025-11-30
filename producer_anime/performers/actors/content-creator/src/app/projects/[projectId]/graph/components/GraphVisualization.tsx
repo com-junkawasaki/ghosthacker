@@ -24,6 +24,15 @@ interface GraphNode {
   properties: Record<string, any>;
   x?: number;
   y?: number;
+  isContext?: boolean;
+  contextData?: {
+    version?: number;
+    prefixes?: Record<string, string>;
+  };
+  contextId?: string;
+  depth?: number;
+  parent?: string;
+  children?: string[];
 }
 
 interface GraphEdge {
@@ -33,11 +42,18 @@ interface GraphEdge {
   label: string;
 }
 
+interface ContextLayer {
+  contextNodeId: string;
+  containedNodeIds: string[];
+  bounds: { minX: number; minY: number; maxX: number; maxY: number };
+}
+
 type InteractionMode = 'normal' | 'addNode' | 'addEdge' | 'selectSource' | 'selectTarget';
 
 export default function GraphVisualization({ projectId }: GraphVisualizationProps) {
   const [nodes, setNodes] = useState<GraphNode[]>([]);
   const [edges, setEdges] = useState<GraphEdge[]>([]);
+  const [contextLayers, setContextLayers] = useState<ContextLayer[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
@@ -48,6 +64,7 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number; nodeId?: string; edgeId?: string } | null>(null);
   const [draggedNode, setDraggedNode] = useState<string | null>(null);
   const [edgeSource, setEdgeSource] = useState<string | null>(null);
+  const [showHierarchy, setShowHierarchy] = useState(true);
   
   // Form states
   const [nodeForm, setNodeForm] = useState({
@@ -63,10 +80,268 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const layoutCalculatedRef = useRef(false);
+
+  // Force-directed + Layer layout計算
+  const calculateLayout = useCallback((
+    nodes: GraphNode[],
+    edges: GraphEdge[],
+    layers: ContextLayer[],
+    width: number,
+    height: number
+  ): { positions: Map<string, { x: number; y: number }>; layerBounds: Map<string, ContextLayer> } => {
+    const positions = new Map<string, { x: number; y: number }>();
+    const layerBounds = new Map<string, ContextLayer>();
+    
+    if (nodes.length === 0) return { positions, layerBounds };
+
+    // 1. Layer layout: 階層に基づいてY座標を初期化
+    const maxDepth = Math.max(...nodes.map(n => n.depth || 0));
+    const layerHeight = maxDepth > 0 ? height / (maxDepth + 1) : height;
+    const layerPadding = 50;
+
+    // Contextノードを各レイヤーの最上部に配置
+    const contextNodes = nodes.filter(n => n.isContext);
+    const nonContextNodes = nodes.filter(n => !n.isContext);
+
+    // Contextノードの配置
+    const contextSpacing = width / (contextNodes.length + 1);
+    contextNodes.forEach((node, index) => {
+      positions.set(node.id, {
+        x: contextSpacing * (index + 1),
+        y: layerPadding,
+      });
+    });
+
+    // 各context layer内のノードを配置
+    layers.forEach((layer, layerIndex) => {
+      const layerNodes = nonContextNodes.filter(n => n.contextId === layer.contextNodeId);
+      const contextNode = nodes.find(n => n.id === layer.contextNodeId);
+      if (!contextNode) return;
+
+      const contextX = positions.get(contextNode.id)?.x || width / 2;
+      const nodesPerRow = Math.ceil(Math.sqrt(layerNodes.length));
+      const nodeSpacing = Math.min(150, (width - 200) / nodesPerRow);
+
+      layerNodes.forEach((node, index) => {
+        const row = Math.floor(index / nodesPerRow);
+        const col = index % nodesPerRow;
+        const depth = node.depth || 1;
+        
+        positions.set(node.id, {
+          x: contextX - (nodesPerRow * nodeSpacing) / 2 + col * nodeSpacing + (Math.random() - 0.5) * 20,
+          y: layerPadding + depth * layerHeight + row * 40 + (Math.random() - 0.5) * 20,
+        });
+      });
+
+      // Context layerの境界を計算
+      const layerNodePositions = layerNodes.map(n => positions.get(n.id)).filter(Boolean) as { x: number; y: number }[];
+      if (layerNodePositions.length > 0) {
+        const minX = Math.min(...layerNodePositions.map(p => p.x)) - 30;
+        const maxX = Math.max(...layerNodePositions.map(p => p.x)) + 30;
+        const minY = Math.min(...layerNodePositions.map(p => p.y)) - 30;
+        const maxY = Math.max(...layerNodePositions.map(p => p.y)) + 30;
+        
+        layerBounds.set(layer.contextNodeId, {
+          ...layer,
+          bounds: { minX, minY, maxX, maxY },
+        });
+      }
+    });
+
+    // Contextに属さないノードの配置
+    const orphanNodes = nonContextNodes.filter(n => !n.contextId);
+    orphanNodes.forEach((node, index) => {
+      if (!positions.has(node.id)) {
+        positions.set(node.id, {
+          x: Math.random() * width,
+          y: layerPadding + (node.depth || 1) * layerHeight,
+        });
+      }
+    });
+
+    // 2. Force-directed: 反復的に位置を更新
+    const iterations = 100;
+    const k = Math.sqrt((width * height) / nodes.length);
+    const temperature = width / 10;
+    let currentTemp = temperature;
+
+    for (let iter = 0; iter < iterations; iter++) {
+      const forces = new Map<string, { fx: number; fy: number }>();
+      
+      nodes.forEach(node => {
+        forces.set(node.id, { fx: 0, fy: 0 });
+      });
+
+      // 反発力（全ノード間）
+      nodes.forEach((node1, i) => {
+        nodes.slice(i + 1).forEach(node2 => {
+          const pos1 = positions.get(node1.id)!;
+          const pos2 = positions.get(node2.id)!;
+          const dx = pos2.x - pos1.x;
+          const dy = pos2.y - pos1.y;
+          const distance = Math.sqrt(dx * dx + dy * dy) || 1;
+          const force = k * k / distance;
+          
+          const fx1 = (dx / distance) * force;
+          const fy1 = (dy / distance) * force;
+          const fx2 = -fx1;
+          const fy2 = -fy1;
+
+          const f1 = forces.get(node1.id)!;
+          const f2 = forces.get(node2.id)!;
+          f1.fx -= fx1;
+          f1.fy -= fy1;
+          f2.fx -= fx2;
+          f2.fy -= fy2;
+        });
+      });
+
+      // 引力（エッジで接続されたノード間）
+      edges.forEach(edge => {
+        const pos1 = positions.get(edge.source);
+        const pos2 = positions.get(edge.target);
+        if (!pos1 || !pos2) return;
+
+        const dx = pos2.x - pos1.x;
+        const dy = pos2.y - pos1.y;
+        const distance = Math.sqrt(dx * dx + dy * dy) || 1;
+        const force = distance / k;
+
+        const fx = (dx / distance) * force;
+        const fy = (dy / distance) * force;
+
+        const f1 = forces.get(edge.source)!;
+        const f2 = forces.get(edge.target)!;
+        f1.fx += fx;
+        f1.fy += fy;
+        f2.fx -= fx;
+        f2.fy -= fy;
+      });
+
+      // Contextノードとその下層ノード間の強い引力
+      layers.forEach(layer => {
+        const contextPos = positions.get(layer.contextNodeId);
+        if (!contextPos) return;
+
+        layer.containedNodeIds.forEach(nodeId => {
+          const nodePos = positions.get(nodeId);
+          if (!nodePos) return;
+
+          const dx = nodePos.x - contextPos.x;
+          const dy = nodePos.y - contextPos.y;
+          const distance = Math.sqrt(dx * dx + dy * dy) || 1;
+          const force = (distance / k) * 2; // 2倍の引力
+
+          const fx = (dx / distance) * force;
+          const fy = (dy / distance) * force;
+
+          const fContext = forces.get(layer.contextNodeId)!;
+          const fNode = forces.get(nodeId)!;
+          fContext.fx += fx;
+          fContext.fy += fy;
+          fNode.fx -= fx;
+          fNode.fy -= fy;
+        });
+      });
+
+      // 位置を更新
+      nodes.forEach(node => {
+        const force = forces.get(node.id)!;
+        const pos = positions.get(node.id)!;
+        
+        // 温度による減衰
+        const damping = 0.9;
+        pos.x += force.fx * currentTemp * damping;
+        pos.y += force.fy * currentTemp * damping;
+
+        // 境界制約
+        pos.x = Math.max(30, Math.min(width - 30, pos.x));
+        pos.y = Math.max(30, Math.min(height - 30, pos.y));
+
+        // Context layer内のノードが境界を超えないように制約
+        if (node.contextId && !node.isContext) {
+          const layer = layerBounds.get(node.contextId);
+          if (layer) {
+            const bounds = layer.bounds;
+            if (bounds.minX > 0 && bounds.maxX > 0) {
+              pos.x = Math.max(bounds.minX, Math.min(bounds.maxX, pos.x));
+              pos.y = Math.max(bounds.minY, Math.min(bounds.maxY, pos.y));
+            }
+          }
+        }
+      });
+
+      currentTemp *= 0.95; // 温度を下げる
+    }
+
+    // Context layerの境界を再計算
+    layers.forEach(layer => {
+      const layerNodes = nonContextNodes.filter(n => n.contextId === layer.contextNodeId);
+      const layerNodePositions = layerNodes.map(n => positions.get(n.id)).filter(Boolean) as { x: number; y: number }[];
+      const contextPos = positions.get(layer.contextNodeId);
+      
+      if (layerNodePositions.length > 0 && contextPos) {
+        const allPositions = [contextPos, ...layerNodePositions];
+        const minX = Math.min(...allPositions.map(p => p.x)) - 40;
+        const maxX = Math.max(...allPositions.map(p => p.x)) + 40;
+        const minY = Math.min(...allPositions.map(p => p.y)) - 40;
+        const maxY = Math.max(...allPositions.map(p => p.y)) + 40;
+        
+        layerBounds.set(layer.contextNodeId, {
+          ...layer,
+          bounds: { minX, minY, maxX, maxY },
+        });
+      }
+    });
+
+    return { positions, layerBounds };
+  }, []);
 
   useEffect(() => {
     loadGraphData();
   }, [projectId]);
+
+  // レイアウト計算（階層ビューが有効な場合）
+  useEffect(() => {
+    if (showHierarchy && nodes.length > 0 && containerRef.current && !layoutCalculatedRef.current) {
+      layoutCalculatedRef.current = true;
+      
+      const width = containerRef.current.offsetWidth;
+      const height = containerRef.current.offsetHeight || 600;
+      
+      const { positions, layerBounds } = calculateLayout(
+        nodes,
+        edges,
+        contextLayers,
+        width,
+        height
+      );
+
+      // 位置を更新
+      const updatedNodes = nodes.map(node => {
+        const pos = positions.get(node.id);
+        if (pos) {
+          return { ...node, x: pos.x, y: pos.y };
+        }
+        return node;
+      });
+      setNodes(updatedNodes);
+
+      // Context layerの境界を更新
+      const updatedLayers = contextLayers.map(layer => {
+        const updated = layerBounds.get(layer.contextNodeId);
+        return updated || layer;
+      });
+      setContextLayers(updatedLayers);
+      
+      setTimeout(() => {
+        layoutCalculatedRef.current = false;
+      }, 100);
+    } else if (!showHierarchy) {
+      layoutCalculatedRef.current = false;
+    }
+  }, [showHierarchy, nodes.length, edges.length, contextLayers.length, calculateLayout]);
 
   // Detect dark mode
   useEffect(() => {
@@ -83,6 +358,169 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
     return () => mediaQuery.removeEventListener('change', checkDarkMode);
   }, []);
 
+  // Context検出関数
+  const analyzeContextNodes = (nodes: GraphNode[]): GraphNode[] => {
+    return nodes.map(node => {
+      let jsonld: any = null;
+      try {
+        jsonld = typeof node.properties.jsonld === 'string' 
+          ? JSON.parse(node.properties.jsonld) 
+          : node.properties.jsonld || node.properties;
+      } catch (e) {
+        // JSON parse error - skip
+      }
+
+      const hasContext = jsonld && jsonld['@context'];
+      
+      let contextData: { version?: number; prefixes?: Record<string, string> } | undefined;
+      if (hasContext) {
+        const context = jsonld['@context'];
+        if (typeof context === 'object' && context !== null) {
+          contextData = {
+            version: context['@version'],
+            prefixes: Object.keys(context).reduce((acc, key) => {
+              if (!key.startsWith('@') && typeof context[key] === 'string') {
+                acc[key] = context[key];
+              }
+              return acc;
+            }, {} as Record<string, string>),
+          };
+        }
+      }
+
+      return {
+        ...node,
+        isContext: !!hasContext,
+        contextData,
+      };
+    });
+  };
+
+  // 階層構築関数
+  const buildHierarchy = (
+    nodes: GraphNode[],
+    edges: GraphEdge[]
+  ): { nodes: GraphNode[]; contextLayers: ContextLayer[] } => {
+    const contextNodes = nodes.filter(n => n.isContext);
+    const nodeMap = new Map<string, GraphNode>();
+    nodes.forEach(n => {
+      nodeMap.set(n.id, { ...n, children: [], depth: 0 });
+    });
+
+    // エッジから親子関係を構築
+    edges.forEach(edge => {
+      const source = nodeMap.get(edge.source);
+      const target = nodeMap.get(edge.target);
+      if (source && target) {
+        if (!source.children) source.children = [];
+        source.children.push(target.id);
+        if (!target.parent) target.parent = source.id;
+      }
+    });
+
+    // Contextノードをルートとして階層の深さを計算
+    const calculateDepth = (nodeId: string, visited: Set<string> = new Set()): number => {
+      if (visited.has(nodeId)) return 0;
+      visited.add(nodeId);
+      
+      const node = nodeMap.get(nodeId);
+      if (!node) return 0;
+      
+      if (node.isContext) {
+        node.depth = 0;
+        return 0;
+      }
+
+      if (node.parent) {
+        const parentDepth = calculateDepth(node.parent, visited);
+        node.depth = parentDepth + 1;
+        return node.depth;
+      }
+
+      // Contextノードを探す（エッジを辿って）
+      const findContextDepth = (currentId: string, depth: number, path: Set<string>): number => {
+        if (path.has(currentId)) return depth;
+        path.add(currentId);
+        
+        const currentNode = nodeMap.get(currentId);
+        if (currentNode?.isContext) return depth;
+        
+        // 親を探す
+        const parentEdge = edges.find(e => e.target === currentId);
+        if (parentEdge) {
+          return findContextDepth(parentEdge.source, depth + 1, path);
+        }
+        
+        return depth;
+      };
+
+      const depth = findContextDepth(nodeId, 0, new Set());
+      node.depth = depth;
+      return depth;
+    };
+
+    // 各ノードの深さを計算
+    nodeMap.forEach((_, nodeId) => {
+      calculateDepth(nodeId);
+    });
+
+    // Context layerの構築
+    const contextLayers: ContextLayer[] = contextNodes.map(contextNode => {
+      // このcontextに属するノードを探す（エッジを辿って）
+      const containedNodeIds = new Set<string>();
+      const visited = new Set<string>();
+      
+      const traverse = (nodeId: string) => {
+        if (visited.has(nodeId)) return;
+        visited.add(nodeId);
+        
+        const node = nodeMap.get(nodeId);
+        if (!node) return;
+        
+        if (nodeId !== contextNode.id) {
+          containedNodeIds.add(nodeId);
+        }
+        
+        // 子ノードを探索
+        if (node.children) {
+          node.children.forEach(childId => {
+            traverse(childId);
+          });
+        }
+      };
+      
+      // Contextノードから直接接続されているノードを探索
+      edges.forEach(edge => {
+        if (edge.source === contextNode.id) {
+          traverse(edge.target);
+        }
+      });
+      
+      return {
+        contextNodeId: contextNode.id,
+        containedNodeIds: Array.from(containedNodeIds),
+        bounds: { minX: 0, minY: 0, maxX: 0, maxY: 0 }, // 後で計算
+      };
+    });
+
+    // Context IDを各ノードに設定
+    nodeMap.forEach((node, nodeId) => {
+      if (!node.isContext) {
+        const contextLayer = contextLayers.find(layer => 
+          layer.containedNodeIds.includes(nodeId)
+        );
+        if (contextLayer) {
+          node.contextId = contextLayer.contextNodeId;
+        }
+      }
+    });
+
+    return {
+      nodes: Array.from(nodeMap.values()),
+      contextLayers,
+    };
+  };
+
   const loadGraphData = async () => {
     setLoading(true);
     setError(null);
@@ -97,22 +535,33 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
       
       const parsedNodes: GraphNode[] = [];
       const parsedEdges: GraphEdge[] = [];
-      const nodeMap = new Map<string, GraphNode>();
 
       // Parse nodes
       if (Array.isArray(nodesResult)) {
         nodesResult.forEach((row: any) => {
           if (row.id) {
+            const properties = typeof row.properties === 'string' 
+              ? JSON.parse(row.properties) 
+              : row.properties || {};
+            
+            // jsonldフィールドも追加
+            if (row.jsonld) {
+              try {
+                properties.jsonld = typeof row.jsonld === 'string' 
+                  ? JSON.parse(row.jsonld) 
+                  : row.jsonld;
+              } catch (e) {
+                properties.jsonld = row.jsonld;
+              }
+            }
+            
             const node: GraphNode = {
               id: row.id,
               label: row.label || '',
-              properties: typeof row.properties === 'string' 
-                ? JSON.parse(row.properties) 
-                : row.properties || {},
+              properties,
               x: Math.random() * 400 + 100,
               y: Math.random() * 300 + 100,
             };
-            nodeMap.set(row.id, node);
             parsedNodes.push(node);
           }
         });
@@ -132,8 +581,13 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
         });
       }
       
-      setNodes(parsedNodes);
+      // Context検出と階層構築
+      const nodesWithContext = analyzeContextNodes(parsedNodes);
+      const { nodes: nodesWithHierarchy, contextLayers: builtLayers } = buildHierarchy(nodesWithContext, parsedEdges);
+      
+      setNodes(nodesWithHierarchy);
       setEdges(parsedEdges);
+      setContextLayers(builtLayers);
       setLoading(false);
     } catch (err) {
       console.error('Graph data load error:', err);
@@ -313,6 +767,39 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    // Draw context layers (背景として最初に描画)
+    if (showHierarchy) {
+      contextLayers.forEach((layer, index) => {
+        const bounds = layer.bounds;
+        if (bounds.minX > 0 && bounds.maxX > 0 && bounds.minY > 0 && bounds.maxY > 0) {
+          // 半透明の背景
+          ctx.fillStyle = isDarkMode 
+            ? `rgba(245, 158, 11, 0.1)` 
+            : `rgba(245, 158, 11, 0.15)`;
+          ctx.fillRect(bounds.minX, bounds.minY, bounds.maxX - bounds.minX, bounds.maxY - bounds.minY);
+          
+          // 境界線
+          ctx.strokeStyle = isDarkMode ? 'rgba(245, 158, 11, 0.4)' : 'rgba(245, 158, 11, 0.5)';
+          ctx.lineWidth = 2;
+          ctx.setLineDash([5, 5]);
+          ctx.strokeRect(bounds.minX, bounds.minY, bounds.maxX - bounds.minX, bounds.maxY - bounds.minY);
+          ctx.setLineDash([]);
+          
+          // Contextノードのラベル
+          const contextNode = nodes.find(n => n.id === layer.contextNodeId);
+          if (contextNode) {
+            ctx.fillStyle = isDarkMode ? 'rgba(245, 158, 11, 0.8)' : 'rgba(245, 158, 11, 0.9)';
+            ctx.font = 'bold 11px sans-serif';
+            ctx.fillText(
+              `Context: ${contextNode.label}`,
+              bounds.minX + 5,
+              bounds.minY - 5
+            );
+          }
+        }
+      });
+    }
+
     // Draw edges
     edges.forEach(edge => {
       const sourceNode = nodes.find(n => n.id === edge.source);
@@ -324,14 +811,25 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
         const x2 = targetNode.x || 0;
         const y2 = targetNode.y || 0;
 
+        // Context関係のエッジは点線で
+        const isContextEdge = sourceNode.isContext || targetNode.isContext;
+        
         ctx.strokeStyle = edge.id === selectedEdge 
           ? '#3b82f6' 
           : isDarkMode ? '#9ca3af' : '#6b7280';
-        ctx.lineWidth = edge.id === selectedEdge ? 3 : 1;
+        ctx.lineWidth = edge.id === selectedEdge ? 3 : (isContextEdge ? 2 : 1);
+        
+        if (isContextEdge) {
+          ctx.setLineDash([5, 5]);
+        } else {
+          ctx.setLineDash([]);
+        }
+        
         ctx.beginPath();
         ctx.moveTo(x1, y1);
         ctx.lineTo(x2, y2);
         ctx.stroke();
+        ctx.setLineDash([]);
 
         // Draw edge label
         if (edge.label) {
@@ -352,24 +850,57 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
       const y = node.y || 0;
       const isSelected = node.id === selectedNode;
       const isSource = node.id === edgeSource;
+      const isContext = node.isContext || false;
 
-      ctx.fillStyle = isSelected ? '#3b82f6' : isSource ? '#10b981' : '#6366f1';
-      ctx.strokeStyle = isSelected ? '#1e40af' : '#4f46e5';
-      ctx.lineWidth = isSelected ? 3 : 2;
+      // Contextノードは特別な色と形状
+      if (isContext) {
+        // 六角形を描画
+        const radius = 25;
+        ctx.fillStyle = isSelected ? '#f59e0b' : '#f59e0b';
+        ctx.strokeStyle = isSelected ? '#d97706' : '#d97706';
+        ctx.lineWidth = isSelected ? 4 : 3;
+        
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+          const angle = (Math.PI / 3) * i - Math.PI / 2;
+          const px = x + radius * Math.cos(angle);
+          const py = y + radius * Math.sin(angle);
+          if (i === 0) {
+            ctx.moveTo(px, py);
+          } else {
+            ctx.lineTo(px, py);
+          }
+        }
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        
+        // Contextアイコン
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 16px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('@', x, y + 6);
+      } else {
+        // 通常のノード
+        ctx.fillStyle = isSelected ? '#3b82f6' : isSource ? '#10b981' : '#6366f1';
+        ctx.strokeStyle = isSelected ? '#1e40af' : '#4f46e5';
+        ctx.lineWidth = isSelected ? 3 : 2;
 
-      ctx.beginPath();
-      ctx.arc(x, y, 20, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(x, y, 20, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+      }
 
       // Draw node label
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 12px sans-serif';
+      ctx.fillStyle = isContext ? '#ffffff' : '#ffffff';
+      ctx.font = isContext ? 'bold 11px sans-serif' : 'bold 12px sans-serif';
       ctx.textAlign = 'center';
+      const labelY = isContext ? y + 40 : y + 5;
       ctx.fillText(
-        node.label.substring(0, 8),
+        node.label.substring(0, isContext ? 12 : 8),
         x,
-        y + 5
+        labelY
       );
     });
 
@@ -387,7 +918,7 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
         '';
       ctx.fillText(modeText, 20, 35);
     }
-  }, [nodes, edges, selectedNode, selectedEdge, edgeSource, interactionMode, isDarkMode]);
+  }, [nodes, edges, selectedNode, selectedEdge, edgeSource, interactionMode, isDarkMode, showHierarchy, contextLayers, calculateLayout]);
 
   useEffect(() => {
     drawGraph();
@@ -461,12 +992,22 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
           >
             {interactionMode === 'addEdge' || interactionMode === 'selectSource' || interactionMode === 'selectTarget' ? 'Cancel Edge' : 'Add Edge'}
           </button>
-          <button
-            onClick={loadGraphData}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-          >
-            Refresh
-          </button>
+                <button
+                  onClick={loadGraphData}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                >
+                  Refresh
+                </button>
+                <button
+                  onClick={() => setShowHierarchy(!showHierarchy)}
+                  className={`px-4 py-2 rounded-lg ${
+                    showHierarchy
+                      ? 'bg-orange-600 text-white'
+                      : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+                  }`}
+                >
+                  {showHierarchy ? 'Hide Hierarchy' : 'Show Hierarchy'}
+                </button>
         </div>
       </div>
 

@@ -12,7 +12,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import GraphVisualization from './components/GraphVisualization';
+import GraphVisualization from './components/GraphVisualizationReactFlow';
 import SemanticSearch from './components/SemanticSearch';
 import RagChat from './components/RagChat';
 import JsonLdEditor from './components/JsonLdEditor';

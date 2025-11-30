@@ -26,3 +26,80 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+/* React Flow Custom Node Styles */
+.context-node-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.context-node-svg {
+  display: block;
+}
+
+.context-node-label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #374151;
+  text-align: center;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dark .context-node-label {
+  color: #d1d5db;
+}
+
+.default-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.default-node-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #6366f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.default-node.selected .default-node-circle {
+  background: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.dark .default-node-circle {
+  background: #6366f1;
+}
+
+.dark .default-node.selected .default-node-circle {
+  background: #3b82f6;
+}
+
+.default-node-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #374151;
+  text-align: center;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.dark .default-node-label {
+  color: #d1d5db;
+}
+
