@@ -250,10 +250,8 @@ function generateServiceClient(root) {
    * ${methodName}
    */
   async ${methodName}(request: types.${requestType}): Promise<types.${responseType}> {
-    return this.unaryCall(
-      createMethodDef('${methodName}'),
-      request
-    );
+    const method = await getMethodDef('${methodName}', '${requestType}', '${responseType}');
+    return this.unaryCall(method, request);
   }`;
   }).join('\n');
 
@@ -270,6 +268,7 @@ function generateServiceClient(root) {
 
 import { grpcClient } from '../client';
 import { grpc } from '@improbable-eng/grpc-web';
+import { createMethodDefinition } from '../message-serializer';
 import type * as types from './types';
 
 // Re-export types for convenience
@@ -277,21 +276,25 @@ export type {
   ${Array.from(typeNames).join(',\n  ')}
 } from './types';
 
+// Method definitions cache
+const methodDefCache = new Map<string, Promise<grpc.MethodDefinition<any, any>>>();
+
 /**
- * Helper to create method definition for gRPC-Web
- * Note: This is a simplified implementation. For production, use proper proto code generation.
+ * Get or create method definition for gRPC-Web
  */
-function createMethodDef(methodName: string): grpc.MethodDefinition<any, any> {
-  return {
-    methodName,
-    service: {
-      serviceName: 'MangaEditorService',
-    },
-    requestStream: false,
-    responseStream: false,
-    requestType: {} as any,
-    responseType: {} as any,
-  } as grpc.MethodDefinition<any, any>;
+async function getMethodDef(
+  methodName: string,
+  requestTypeName: string,
+  responseTypeName: string
+): Promise<grpc.MethodDefinition<any, any>> {
+  const cacheKey = \`\${methodName}:\${requestTypeName}:\${responseTypeName}\`;
+  if (!methodDefCache.has(cacheKey)) {
+    methodDefCache.set(
+      cacheKey,
+      createMethodDefinition('MangaEditorService', methodName, requestTypeName, responseTypeName)
+    );
+  }
+  return methodDefCache.get(cacheKey)!;
 }
 
 export class MangaEditorServiceClient {

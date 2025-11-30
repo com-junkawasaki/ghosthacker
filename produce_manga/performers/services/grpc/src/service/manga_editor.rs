@@ -517,7 +517,7 @@ impl MangaEditorService for MangaEditorServiceImpl {
 
     async fn create_page(
         &self,
-        request: Request<CreatePageRequest>,
+        _request: Request<CreatePageRequest>,
     ) -> Result<Response<Page>, Status> {
         // TODO: Implement create page
         Err(Status::unimplemented("Create page not implemented"))
@@ -525,7 +525,7 @@ impl MangaEditorService for MangaEditorServiceImpl {
 
     async fn update_page(
         &self,
-        request: Request<UpdatePageRequest>,
+        _request: Request<UpdatePageRequest>,
     ) -> Result<Response<Page>, Status> {
         // TODO: Implement update page
         Err(Status::unimplemented("Update page not implemented"))
@@ -533,7 +533,7 @@ impl MangaEditorService for MangaEditorServiceImpl {
 
     async fn get_panel(
         &self,
-        request: Request<GetPanelRequest>,
+        _request: Request<GetPanelRequest>,
     ) -> Result<Response<Panel>, Status> {
         // TODO: Implement get panel
         Err(Status::unimplemented("Get panel not implemented"))
@@ -637,7 +637,7 @@ impl MangaEditorService for MangaEditorServiceImpl {
 
     async fn create_panel(
         &self,
-        request: Request<CreatePanelRequest>,
+        _request: Request<CreatePanelRequest>,
     ) -> Result<Response<Panel>, Status> {
         // TODO: Implement create panel
         Err(Status::unimplemented("Create panel not implemented"))
@@ -645,7 +645,7 @@ impl MangaEditorService for MangaEditorServiceImpl {
 
     async fn update_panel(
         &self,
-        request: Request<UpdatePanelRequest>,
+        _request: Request<UpdatePanelRequest>,
     ) -> Result<Response<Panel>, Status> {
         // TODO: Implement update panel
         Err(Status::unimplemented("Update panel not implemented"))
@@ -653,7 +653,7 @@ impl MangaEditorService for MangaEditorServiceImpl {
 
     async fn generate_story(
         &self,
-        request: Request<GenerateStoryRequest>,
+        _request: Request<GenerateStoryRequest>,
     ) -> Result<Response<GenerateStoryResponse>, Status> {
         // TODO: Implement generate story (similar to GraphQL mutation)
         Err(Status::unimplemented("Generate story not implemented"))
@@ -661,7 +661,7 @@ impl MangaEditorService for MangaEditorServiceImpl {
 
     async fn generate_panel_images(
         &self,
-        request: Request<GeneratePanelImagesRequest>,
+        _request: Request<GeneratePanelImagesRequest>,
     ) -> Result<Response<GeneratePanelImagesResponse>, Status> {
         // TODO: Implement generate panel images (similar to GraphQL mutation)
         Err(Status::unimplemented("Generate panel images not implemented"))

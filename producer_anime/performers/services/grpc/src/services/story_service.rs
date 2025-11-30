@@ -7,6 +7,9 @@ use crate::database::client::{get_story, get_all_stories, create_story, update_s
 use crate::database::schema::Story as DatabaseStory;
 
 pub mod proto {
+    pub mod common {
+        tonic::include_proto!("common");
+    }
     tonic::include_proto!("producer");
 }
 

@@ -7,6 +7,9 @@ use crate::database::client::{get_script, create_script, update_script, delete_s
 use crate::database::schema::Script as DatabaseScript;
 
 pub mod proto {
+    pub mod common {
+        tonic::include_proto!("common");
+    }
     tonic::include_proto!("producer");
 }
 

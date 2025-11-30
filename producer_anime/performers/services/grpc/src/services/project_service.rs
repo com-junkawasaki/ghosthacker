@@ -8,6 +8,10 @@ use crate::database::schema::Project as DatabaseProject;
 
 // protoファイルから生成されたコードをインポート
 pub mod proto {
+    // commonモジュールを先に定義（producer.protoが依存）
+    pub mod common {
+        tonic::include_proto!("common");
+    }
     tonic::include_proto!("producer");
 }
 

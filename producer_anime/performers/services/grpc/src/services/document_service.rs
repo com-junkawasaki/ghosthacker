@@ -20,6 +20,9 @@ use crate::database::schema::{
 };
 
 pub mod proto {
+    pub mod common {
+        tonic::include_proto!("common");
+    }
     tonic::include_proto!("producer");
 }
 

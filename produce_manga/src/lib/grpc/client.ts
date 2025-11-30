@@ -44,6 +44,7 @@ export class GrpcClient {
 
   /**
    * Create a unary RPC call
+   * Note: request should be a plain object, not a protobuf message instance
    */
   async unaryCall<Req, Res>(
     method: grpc.MethodDefinition<Req, Res>,
@@ -51,13 +52,22 @@ export class GrpcClient {
     metadata?: Record<string, string>
   ): Promise<Res> {
     return new Promise((resolve, reject) => {
+      // Create a message instance that has serializeBinary method
+      const RequestMessage = (method.requestType as any);
+      const requestMessage = new RequestMessage(request);
+
       grpc.unary(method, {
-        request,
+        request: requestMessage,
         host: this.baseUrl,
         metadata: this.createMetadata(metadata),
         onEnd: (response) => {
           if (response.status === grpc.Code.OK && response.message) {
-            resolve(response.message);
+            // Deserialize response
+            const ResponseMessage = (method.responseType as any);
+            const deserialized = ResponseMessage.deserializeBinary 
+              ? ResponseMessage.deserializeBinary(response.message)
+              : response.message;
+            resolve(deserialized as Res);
           } else {
             // Convert gRPC status code to more descriptive error messages
             const errorMessage = this.getErrorMessage(response.status, response.statusMessage);
