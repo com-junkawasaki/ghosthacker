@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
       query,
     });
     
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       // タイムアウト処理を追加（25秒）
       const timeoutId = setTimeout(() => {
         resolve(

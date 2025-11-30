@@ -211,6 +211,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
           </p>
         </Link>
       </div>
+      </div>
     </div>
   );
 }

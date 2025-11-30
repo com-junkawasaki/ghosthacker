@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
       projectId: project_id || undefined,
     });
     
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       // タイムアウト処理を追加（60秒 - RAG処理は時間がかかる可能性がある）
       const timeoutId = setTimeout(() => {
         resolve(

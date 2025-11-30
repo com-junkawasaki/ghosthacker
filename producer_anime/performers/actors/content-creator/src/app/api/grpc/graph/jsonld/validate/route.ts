@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
 
     const grpcClient = getClient();
     
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       grpcClient.validateJsonLd(
         { jsonld: typeof jsonld === 'string' ? jsonld : JSON.stringify(jsonld) },
         (error: any, response: any) => {

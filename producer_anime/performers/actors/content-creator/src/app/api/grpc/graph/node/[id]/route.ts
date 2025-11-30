@@ -57,7 +57,7 @@ export async function GET(
 
     const grpcClient = getClient();
     
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       grpcClient.getGraphNode({ id }, (error: any, response: any) => {
         if (error) {
           if (error.code === grpc.status.NOT_FOUND) {
@@ -108,7 +108,7 @@ export async function PUT(
 
     const grpcClient = getClient();
     
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       grpcClient.updateGraphNode(
         {
           id,

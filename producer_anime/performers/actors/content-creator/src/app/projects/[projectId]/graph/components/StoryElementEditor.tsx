@@ -19,12 +19,17 @@ interface StoryElementEditorProps {
 }
 
 const ELEMENT_TYPE_LABELS: Record<StoryElementNodeType, string> = {
+  logline: 'ログライン',
+  story: 'ストーリー',
   worldview: '世界観',
   background: '背景',
   timeline: '時間軸',
   beat: 'ビート',
   character: 'キャラクター',
   scene: 'シーン',
+  cut: 'カット',
+  costume: '服装',
+  'camera-angle': 'カメラアングル',
   event: 'イベント',
   context: 'コンテキスト',
   process: 'プロセス',
@@ -432,6 +437,208 @@ export default function StoryElementEditor({
                 rows={3}
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                 placeholder="1行に1つずつ"
+              />
+            </div>
+          </div>
+        );
+
+      case 'logline':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                核心概念
+              </label>
+              <textarea
+                value={properties.coreConcept || ''}
+                onChange={(e) => handlePropertyChange('coreConcept', e.target.value)}
+                rows={3}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                placeholder="ストーリーの核心となる概念"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                フック
+              </label>
+              <textarea
+                value={properties.hook || ''}
+                onChange={(e) => handlePropertyChange('hook', e.target.value)}
+                rows={2}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                placeholder="読者の興味を引く要素"
+              />
+            </div>
+          </div>
+        );
+
+      case 'story':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                構造
+              </label>
+              <input
+                type="text"
+                value={properties.structure || ''}
+                onChange={(e) => handlePropertyChange('structure', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                placeholder="三幕構造、五幕構造など"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                テーマ
+              </label>
+              <input
+                type="text"
+                value={properties.theme || ''}
+                onChange={(e) => handlePropertyChange('theme', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                ジャンル
+              </label>
+              <input
+                type="text"
+                value={properties.genre || ''}
+                onChange={(e) => handlePropertyChange('genre', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              />
+            </div>
+          </div>
+        );
+
+      case 'cut':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                ショットタイプ
+              </label>
+              <input
+                type="text"
+                value={properties.shotType || ''}
+                onChange={(e) => handlePropertyChange('shotType', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                placeholder="close-up, medium, wideなど"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                継続時間（秒）
+              </label>
+              <input
+                type="number"
+                value={properties.duration || 0}
+                onChange={(e) => handlePropertyChange('duration', parseInt(e.target.value) || 0)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                トランジション
+              </label>
+              <input
+                type="text"
+                value={properties.transition || ''}
+                onChange={(e) => handlePropertyChange('transition', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                placeholder="cut, fade, dissolveなど"
+              />
+            </div>
+          </div>
+        );
+
+      case 'costume':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                キャラクターID
+              </label>
+              <input
+                type="text"
+                value={properties.characterId || ''}
+                onChange={(e) => handlePropertyChange('characterId', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                季節
+              </label>
+              <input
+                type="text"
+                value={properties.season || ''}
+                onChange={(e) => handlePropertyChange('season', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                場面
+              </label>
+              <input
+                type="text"
+                value={properties.occasion || ''}
+                onChange={(e) => handlePropertyChange('occasion', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              />
+            </div>
+          </div>
+        );
+
+      case 'camera-angle':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                アングル
+              </label>
+              <select
+                value={properties.angle || 'medium'}
+                onChange={(e) => handlePropertyChange('angle', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              >
+                <option value="close-up">クローズアップ</option>
+                <option value="medium">ミディアム</option>
+                <option value="wide">ワイド</option>
+                <option value="extreme-wide">エクストリームワイド</option>
+                <option value="bird-eye">鳥瞰</option>
+                <option value="worm-eye">虫瞰</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                カメラムーブメント
+              </label>
+              <select
+                value={properties.movement || 'static'}
+                onChange={(e) => handlePropertyChange('movement', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              >
+                <option value="static">静止</option>
+                <option value="pan">パン</option>
+                <option value="tilt">ティルト</option>
+                <option value="dolly">ドリー</option>
+                <option value="track">トラッキング</option>
+                <option value="crane">クレーン</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                フォーカス
+              </label>
+              <input
+                type="text"
+                value={properties.focus || ''}
+                onChange={(e) => handlePropertyChange('focus', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                placeholder="被写体や焦点の説明"
               />
             </div>
           </div>

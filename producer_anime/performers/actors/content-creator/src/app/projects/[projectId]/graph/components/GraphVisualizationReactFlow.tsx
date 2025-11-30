@@ -45,6 +45,7 @@ import ContextLayerSidebar from './ContextLayerSidebar';
 import { useForceDirectedLayout } from './useForceDirectedLayout';
 import { useStoryElementLayout } from './useStoryElementLayout';
 import { GraphNodeData, StoryElementNodeType, StoryElementEdgeType, ELEMENT_TYPE_LABELS, ContextLayer } from './types';
+import { getNodeTypeMetadata, getDefaultContextLayerIds, validateRequiredContextLayers } from './nodeTypeDependencies';
 
 interface GraphVisualizationProps {
   projectId: string;
@@ -760,6 +761,15 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       
       // タイプに応じたデフォルトプロパティを設定
       switch (type) {
+        case 'logline':
+          defaultProperties.coreConcept = '';
+          defaultProperties.hook = '';
+          break;
+        case 'story':
+          defaultProperties.structure = '';
+          defaultProperties.theme = '';
+          defaultProperties.genre = '';
+          break;
         case 'character':
           defaultProperties.name = '';
           defaultProperties.role = '';
@@ -779,6 +789,21 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         case 'scene':
           defaultProperties.location = '';
           defaultProperties.participants = [];
+          break;
+        case 'cut':
+          defaultProperties.shotType = '';
+          defaultProperties.duration = 0;
+          defaultProperties.transition = '';
+          break;
+        case 'costume':
+          defaultProperties.characterId = '';
+          defaultProperties.season = '';
+          defaultProperties.occasion = '';
+          break;
+        case 'camera-angle':
+          defaultProperties.angle = 'medium';
+          defaultProperties.movement = 'static';
+          defaultProperties.focus = '';
           break;
         case 'event':
           defaultProperties.type = '';
@@ -805,6 +830,34 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         { ...defaultProperties, nodeType: type },
         { nodeType: type }
       );
+
+      // ノードタイプに基づいてデフォルトのコンテクストレイヤーを自動的に割り当て
+      const metadata = getNodeTypeMetadata(type);
+      const contextNodeArray = nodes.filter(n => n.data.isContext).map(n => ({
+        id: n.id,
+        label: n.data.label,
+        data: { isContext: n.data.isContext },
+      }));
+      
+      // 必須のコンテクストレイヤーをチェック
+      const validation = validateRequiredContextLayers(type, contextNodeArray);
+      if (!validation.valid) {
+        console.warn(`Required context layers missing for ${type}:`, validation.missingLayers);
+        // 警告を表示（UIで表示することも可能）
+        setError(`必須のコンテクストレイヤーが存在しません: ${validation.missingLayers.join(', ')}`);
+      }
+      
+      // デフォルトのコンテクストレイヤーIDを取得
+      const defaultLayerIds = getDefaultContextLayerIds(type, contextNodeArray);
+      
+      // コンテクストレイヤーへのエッジを作成
+      for (const layerId of defaultLayerIds) {
+        try {
+          await createGraphEdge(nodeId, layerId, 'usesContext', { edgeType: 'belongsTo' });
+        } catch (err) {
+          console.warn(`Failed to create edge to context layer ${layerId}:`, err);
+        }
+      }
 
       await loadGraphData();
       setSelectedNode(nodeId);
@@ -1241,6 +1294,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
           )}
         </div>
       )}
+      </div>
     </div>
   );
 }

@@ -56,7 +56,7 @@ export async function DELETE(
 
     const grpcClient = getClient();
     
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       grpcClient.deleteGraphEdge(
         { id: edgeId },
         (error: any, response: any) => {

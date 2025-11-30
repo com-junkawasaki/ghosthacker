@@ -13,12 +13,17 @@ interface StoryElementFABProps {
 }
 
 const ELEMENT_TYPE_ICONS: Record<StoryElementNodeType, string> = {
+  logline: '📝',
+  story: '📚',
   worldview: '🌍',
   background: '📖',
   timeline: '⏱️',
   beat: '🎬',
   character: '👤',
   scene: '🎭',
+  cut: '🎞️',
+  costume: '👗',
+  'camera-angle': '📷',
   event: '⚡',
   context: '@',
   process: '⚙️',
@@ -28,12 +33,17 @@ export default function StoryElementFAB({ onSelectType, isOpen, onToggle }: Stor
   const [hoveredType, setHoveredType] = useState<StoryElementNodeType | null>(null);
 
   const elementTypes: StoryElementNodeType[] = [
+    'logline',
+    'story',
     'worldview',
     'background',
     'timeline',
     'beat',
     'character',
     'scene',
+    'cut',
+    'costume',
+    'camera-angle',
     'event',
     'process',
   ];

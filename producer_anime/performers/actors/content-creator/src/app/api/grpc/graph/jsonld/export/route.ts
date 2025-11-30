@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
 
     const grpcClient = getClient();
     
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       grpcClient.exportJsonLd(
         { project_id: projectId },
         (error: any, response: any) => {

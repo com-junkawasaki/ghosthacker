@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
 
     const grpcClient = getClient();
     
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       grpcClient.semanticSearch(
         { query, limit: limit || 10 },
         (error: any, response: any) => {

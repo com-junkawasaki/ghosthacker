@@ -3,7 +3,7 @@ const path = require('path');
 
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['reactflow'],
+  transpilePackages: ['reactflow', '@protobuf-ts/runtime', '@protobuf-ts/runtime-rpc', '@protobuf-ts/grpcweb-transport'],
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
@@ -21,6 +21,12 @@ const nextConfig = {
     config.resolve.extensionAlias = {
       '.js': ['.js', '.ts', '.tsx'],
       '.mjs': ['.mjs', '.js'],
+    };
+    
+    // @protobuf-tsパッケージを正しく解決
+    config.resolve.extensionAlias = {
+      ...config.resolve.extensionAlias,
+      '.js': ['.js', '.ts', '.tsx', '.mjs'],
     };
     
     return config;

@@ -150,9 +150,16 @@ export async function POST(
       traverseUp(id);
 
       // 3. 同じcontext内のノードを取得
-      const processNode = nodeMap.get(id);
-      if (processNode && processNode.data.contextId) {
-        const contextId = processNode.data.contextId;
+      const processNodeFromGraph = nodeMap.get(id);
+      if (!processNodeFromGraph) {
+        return NextResponse.json(
+          { error: 'Process node not found in graph' },
+          { status: 404 }
+        );
+      }
+      
+      if (processNodeFromGraph.data.contextId) {
+        const contextId = processNodeFromGraph.data.contextId;
         parsedNodes.forEach(node => {
           if (node.id !== id && 
               node.data.contextId === contextId &&
@@ -203,7 +210,7 @@ export async function POST(
 
       prompt = prompt.replace(/\{\{context\}\}/g, contextInfo);
       prompt = prompt.replace(/\{\{relatedNodes\}\}/g, relatedInfo);
-      prompt = prompt.replace(/\{\{processLabel\}\}/g, processNode.label);
+      prompt = prompt.replace(/\{\{processLabel\}\}/g, processNodeFromGraph.data.label || '');
       prompt = prompt.replace(/\{\{processProperties\}\}/g, JSON.stringify(properties, null, 2));
 
       // 生成実行

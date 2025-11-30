@@ -4,12 +4,17 @@
  */
 
 export type StoryElementNodeType =
+  | 'logline'
+  | 'story'
   | 'worldview'
   | 'background'
   | 'timeline'
   | 'beat'
   | 'character'
   | 'scene'
+  | 'cut'
+  | 'costume'
+  | 'camera-angle'
   | 'event'
   | 'context'
   | 'process';
@@ -48,6 +53,23 @@ export interface ContextLayer {
   visible?: boolean;
   order?: number;
   color?: string;
+}
+
+export interface NodeTypeMetadata {
+  defaultContextLayers: string[];
+  requiredContextLayers: string[];
+  parentNodeTypes: StoryElementNodeType[];
+  childNodeTypes: StoryElementNodeType[];
+  metadata?: {
+    label?: string;
+    description?: string;
+    [key: string]: any;
+  };
+}
+
+export interface ContextLayerDependency {
+  nodeType: StoryElementNodeType;
+  metadata: NodeTypeMetadata;
 }
 
 export interface StoryElementProperties {
@@ -99,6 +121,30 @@ export interface StoryElementProperties {
   lastExecutionResult?: string;
   executionStatus?: 'idle' | 'running' | 'completed' | 'error';
   generatedContent?: string;
+  
+  // Logline
+  coreConcept?: string;
+  hook?: string;
+  
+  // Story
+  structure?: string;
+  theme?: string;
+  genre?: string;
+  
+  // Cut
+  shotType?: string;
+  duration?: number;
+  transition?: string;
+  
+  // Costume
+  characterId?: string;
+  season?: string;
+  occasion?: string;
+  
+  // Camera Angle
+  angle?: 'close-up' | 'medium' | 'wide' | 'extreme-wide' | 'bird-eye' | 'worm-eye';
+  movement?: 'static' | 'pan' | 'tilt' | 'dolly' | 'track' | 'crane';
+  focus?: string;
 }
 
 export interface ProcessNodeProperties {
@@ -116,14 +162,19 @@ export interface ProcessNodeProperties {
 }
 
 export const NODE_TYPE_COLORS: Record<StoryElementNodeType, string> = {
-  worldview: '#3b82f6', // blue
+  logline: '#10b981', // emerald
+  story: '#3b82f6', // blue
+  worldview: '#6366f1', // indigo
   background: '#a855f7', // purple
   timeline: '#6b7280', // gray
   beat: '#f97316', // orange
   character: '#22c55e', // green
   scene: '#ec4899', // pink
+  cut: '#f43f5e', // rose
+  costume: '#8b5cf6', // violet
+  'camera-angle': '#06b6d4', // cyan
   event: '#ef4444', // red
-  context: '#f59e0b', // amber (existing)
+  context: '#f59e0b', // amber
   process: '#8b5cf6', // purple
 };
 
@@ -139,12 +190,17 @@ export const EDGE_TYPE_COLORS: Record<StoryElementEdgeType, string> = {
 };
 
 export const ELEMENT_TYPE_LABELS: Record<StoryElementNodeType, string> = {
+  logline: 'ログライン',
+  story: 'ストーリー',
   worldview: '世界観',
   background: '背景',
   timeline: '時間軸',
   beat: 'ビート',
   character: 'キャラクター',
   scene: 'シーン',
+  cut: 'カット',
+  costume: '服装',
+  'camera-angle': 'カメラアングル',
   event: 'イベント',
   context: 'コンテキスト',
   process: 'プロセス',
