@@ -9,6 +9,7 @@
 
 import { useState } from 'react';
 import { mangaEditorServiceClient } from '@/lib/grpc/manga-editor';
+import { getGrpcErrorMessage, isNetworkError, isClientError } from '@/lib/grpc/error';
 
 interface CreateProjectDialogProps {
   isOpen: boolean;
@@ -49,8 +50,16 @@ export function CreateProjectDialog({
         setDescription('');
       }
     } catch (err) {
-      setError(err instanceof Error ? err : new Error('Failed to create project'));
+      const errorMessage = getGrpcErrorMessage(err);
+      setError(new Error(errorMessage));
       console.error('Failed to create project:', err);
+      
+      // Log additional context for debugging
+      if (isNetworkError(err)) {
+        console.error('Network error detected - check gRPC server connection');
+      } else if (isClientError(err)) {
+        console.error('Client error - check request parameters');
+      }
     } finally {
       setLoading(false);
     }

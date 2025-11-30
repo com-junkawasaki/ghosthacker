@@ -178,24 +178,21 @@ export default function MangaEditorPage({
       send({ type: 'PANELS_LOADED', panels: formattedPanels });
     }
     if (panelsError) {
-      send({ type: 'PANELS_LOADED', panels: panelsData.mangaPanels });
-    }
-    if (panelsError) {
       send({ type: 'PANELS_ERROR', error: panelsError });
     }
-  }, [panelsData, panelsError, send]);
+  }, [panels, panelsError, send]);
   
   // Debug: Log selectedPageId and panels query state
   useEffect(() => {
     if (selectedPageId) {
       console.log('Selected page ID:', selectedPageId);
       console.log('Panels loading:', panelsLoading);
-      console.log('Panels data:', panelsData);
+      console.log('Panels data:', panels);
       console.log('Panels error:', panelsError);
     } else {
       console.log('No page selected - panels query skipped');
     }
-  }, [selectedPageId, panelsLoading, panelsData, panelsError]);
+  }, [selectedPageId, panelsLoading, panels, panelsError]);
 
   // Convert pages data to component format
   const pages = useMemo(() => {
@@ -218,26 +215,28 @@ export default function MangaEditorPage({
         const imageSource = toPanelImageSource(panel.imageUrl, panel.imageBase64, panel.imageData);
         
         // Convert dialogue to speech bubbles and add to machine
-        panel.dialogue.forEach((dialogue, index) => {
-          const bubble: SpeechBubble = {
-            id: `bubble-${panel.id}-${index}`,
-            x: (panel.x || 0) + 20,
-            y: (panel.y || 0) + (panel.height || 0) - 80 - (index * 100),
-            width: (panel.width || 200) - 40,
-            height: 60,
-            text: dialogue.text,
-            speaker: dialogue.speaker,
-            bubbleType: 'speech',
-          };
-          // Check if bubble already exists in machine context
-          const exists = machineEditor.speechBubbles.find((b) => b.id === bubble.id);
-          if (!exists) {
-            actions.addSpeechBubble(bubble);
-          }
-        });
+        if (panel.dialogue) {
+          panel.dialogue.forEach((dialogue, index) => {
+            const bubble: SpeechBubble = {
+              id: `bubble-${panel.id}-${index}`,
+              x: (panel.x || 0) + 20,
+              y: (panel.y || 0) + (panel.height || 0) - 80 - (index * 100),
+              width: (panel.width || 200) - 40,
+              height: 60,
+              text: dialogue.text || '',
+              speaker: dialogue.speaker || '',
+              bubbleType: 'speech',
+            };
+            // Check if bubble already exists in machine context
+            const exists = machineEditor.speechBubbles.find((b) => b.id === bubble.id);
+            if (!exists) {
+              actions.addSpeechBubble(bubble);
+            }
+          });
+        }
 
         return {
-          id: panel.id,
+          id: panel.id || '',
           x: panel.x || 0,
           y: panel.y || 0,
           width: panel.width || 200,
@@ -245,17 +244,17 @@ export default function MangaEditorPage({
           imageSource,
         };
       });
-  }, [panelsData, actions, machineEditor.speechBubbles]);
+  }, [panels, actions, machineEditor.speechBubbles]);
 
   // Extract layer groups from konvaStageJson of selected page
   const layerGroups = useMemo(() => {
-    if (!selectedPageId) {
+    if (!selectedPageId || !pages || pages.length === 0) {
       return [];
     }
     
-    // Find selected page from pagesData (has konvaStageJson)
-    const selectedPageData = pagesData?.mangaPages?.find(
-      (p: MangaPage) => p.id === selectedPageId || p.pageId === selectedPageId
+    // Find selected page from pages (has konvaStageJson)
+    const selectedPageData = pages.find(
+      (p) => p.id === selectedPageId || p.pageId === selectedPageId
     );
     
     if (!selectedPageData?.konvaStageJson) {
@@ -263,8 +262,8 @@ export default function MangaEditorPage({
     }
     
     // Extract layer groups from konvaStageJson
-    return extractPanelLayers(selectedPageData.konvaStageJson, panelsData?.mangaPanels || []);
-  }, [selectedPageId, pagesData, panelsData]);
+    return extractPanelLayers(selectedPageData.konvaStageJson, panels || []);
+  }, [selectedPageId, pages, panels]);
 
   // Derive layers from panels (backward compatibility)
   const layers = useMemo(() => {
@@ -651,22 +650,22 @@ export default function MangaEditorPage({
           projectState={{
             loading: projectLoading,
             error: projectError ? new Error(projectError.message || 'Unknown error') : undefined,
-            data: projectData?.mangaProject,
+            data: project,
           }}
           scriptsState={{
             loading: scriptsLoading,
             error: scriptsError ? new Error(scriptsError.message || 'Unknown error') : undefined,
-            data: scriptsData?.mangaScripts,
+            data: scripts,
           }}
           pagesState={{
             loading: pagesLoading,
             error: pagesError ? new Error(pagesError.message || 'Unknown error') : undefined,
-            data: pagesData?.mangaPages,
+            data: pages,
           }}
           panelsState={{
             loading: panelsLoading,
             error: panelsError ? new Error(panelsError.message || 'Unknown error') : undefined,
-            data: panelsData?.mangaPanels,
+            data: panels,
           }}
           canvasState={{
             panelsCount: canvasPanels.length,

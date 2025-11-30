@@ -34,7 +34,9 @@ export function useGrpcProject(projectId: string | undefined) {
         }
       } catch (err) {
         if (!cancelled) {
-          setError(err instanceof Error ? err : new Error('Failed to fetch project'));
+          const error = err instanceof Error ? err : new Error('Failed to fetch project');
+          console.error('Failed to fetch project:', error);
+          setError(error);
         }
       } finally {
         if (!cancelled) {

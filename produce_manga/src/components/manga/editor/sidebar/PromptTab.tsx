@@ -8,46 +8,13 @@
 'use client';
 
 import { useState } from 'react';
-import { useMutation, gql } from '@apollo/client';
+import { mangaEditorServiceClient } from '@/lib/grpc/manga-editor';
 import { Toggle } from '@/components/shared/ui/Toggle';
 import { StoryPromptInput } from './StoryPromptInput';
 import { ContinueFromPreviousToggle } from './ContinueFromPreviousToggle';
 import { PageGenerationSection } from './PageGenerationSection';
 import { PanelLayoutSection } from './PanelLayoutSection';
 import { GenerateStoryButton } from './GenerateStoryButton';
-
-const GENERATE_STORY_MUTATION = gql`
-  mutation GenerateStory($input: GenerateStoryInput!) {
-    generateStory(input: $input) {
-      script {
-        id
-        projectId
-        scriptId
-        title
-        pageCount
-      }
-      pages {
-        id
-        projectId
-        scriptId
-        pageId
-        pageNumber
-      }
-    }
-  }
-`;
-
-const MANGA_SCRIPTS_QUERY_FOR_REFETCH = gql`
-  query MangaScriptsForRefetch($projectId: ID!) {
-    mangaScripts(projectId: $projectId) {
-      id
-      projectId
-      scriptId
-      title
-      pageCount
-    }
-  }
-`;
 
 interface PromptTabProps {
   projectId: string;
@@ -60,24 +27,6 @@ export function PromptTab({ projectId, onStoryGenerated }: PromptTabProps) {
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const [generateStory] = useMutation(GENERATE_STORY_MUTATION, {
-    refetchQueries: [
-      { query: MANGA_SCRIPTS_QUERY_FOR_REFETCH, variables: { projectId } },
-    ],
-    awaitRefetchQueries: true,
-    onCompleted: () => {
-      setIsGenerating(false);
-      setError(null);
-      if (onStoryGenerated) {
-        onStoryGenerated();
-      }
-    },
-    onError: (err) => {
-      setIsGenerating(false);
-      setError(err.message || 'ストーリー生成に失敗しました');
-    },
-  });
-
   const handleGenerateStory = async () => {
     if (!storyPrompt.trim()) {
       setError('ストーリープロンプトを入力してください');
@@ -88,18 +37,21 @@ export function PromptTab({ projectId, onStoryGenerated }: PromptTabProps) {
     setError(null);
 
     try {
-      await generateStory({
-        variables: {
-          input: {
-            projectId,
-            storyPrompt: storyPrompt,
-            continueFromPrevious: continueFromPrevious,
-            preset: 'Comic Style (Schnell)', // TODO: Get from PageGenerationSection
-          },
-        },
+      const result = await mangaEditorServiceClient.GenerateStory({
+        projectId,
+        storyPrompt: storyPrompt.trim(),
+        continueFromPrevious,
+        preset: 'Comic Style (Schnell)', // TODO: Get from PageGenerationSection
       });
+
+      setIsGenerating(false);
+      setError(null);
+      if (onStoryGenerated) {
+        onStoryGenerated();
+      }
     } catch (err) {
-      // Error is handled by onError callback
+      setIsGenerating(false);
+      setError(err instanceof Error ? err.message : 'ストーリー生成に失敗しました');
       console.error('Failed to generate story:', err);
     }
   };

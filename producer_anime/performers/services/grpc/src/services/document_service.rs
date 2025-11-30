@@ -25,9 +25,9 @@ pub mod proto {
 
 use proto::{
     document_service_server::DocumentService,
-    GetEPUBDocumentRequest, GetEPUBDocumentResponse,
-    CreateEPUBDocumentRequest, CreateEPUBDocumentResponse,
-    UpdateEPUBDocumentRequest, UpdateEPUBDocumentResponse,
+    GetEpubDocumentRequest, GetEpubDocumentResponse,
+    CreateEpubDocumentRequest, CreateEpubDocumentResponse,
+    UpdateEpubDocumentRequest, UpdateEpubDocumentResponse,
     GetKindleDocumentRequest, GetKindleDocumentResponse,
     GetChaptersRequest, GetChaptersResponse,
     CreateChapterRequest, CreateChapterResponse,
@@ -39,7 +39,7 @@ use proto::{
     CreateTextNodeRequest, CreateTextNodeResponse,
     UpdateTextNodeRequest, UpdateTextNodeResponse,
     DeleteTextNodeRequest, DeleteTextNodeResponse,
-    EPUBDocument, KindleDocument, Chapter, Paragraph, TextNode,
+    EpubDocument, KindleDocument, Chapter, Paragraph, TextNode,
 };
 
 fn chrono_to_prost(dt: DateTime<Utc>) -> Timestamp {
@@ -49,8 +49,8 @@ fn chrono_to_prost(dt: DateTime<Utc>) -> Timestamp {
     }
 }
 
-fn database_to_proto_epub(db: DatabaseEPUBDocument) -> EPUBDocument {
-    EPUBDocument {
+fn database_to_proto_epub(db: DatabaseEPUBDocument) -> EpubDocument {
+    EpubDocument {
         id: db.id,
         title: db.title,
         metadata_id: db.metadata_id,
@@ -114,22 +114,22 @@ pub struct DocumentServiceImpl;
 impl DocumentService for DocumentServiceImpl {
     async fn get_epub_document(
         &self,
-        request: Request<GetEPUBDocumentRequest>,
-    ) -> Result<Response<GetEPUBDocumentResponse>, Status> {
+        request: Request<GetEpubDocumentRequest>,
+    ) -> Result<Response<GetEpubDocumentResponse>, Status> {
         let req = request.into_inner();
         match get_epub_document(&req.id).await {
-            Ok(Some(doc)) => Ok(Response::new(GetEPUBDocumentResponse {
+            Ok(Some(doc)) => Ok(Response::new(GetEpubDocumentResponse {
                 document: Some(database_to_proto_epub(doc)),
             })),
-            Ok(None) => Ok(Response::new(GetEPUBDocumentResponse { document: None })),
+            Ok(None) => Ok(Response::new(GetEpubDocumentResponse { document: None })),
             Err(e) => Err(Status::internal(format!("Failed to get EPUB document: {}", e))),
         }
     }
 
     async fn create_epub_document(
         &self,
-        request: Request<CreateEPUBDocumentRequest>,
-    ) -> Result<Response<CreateEPUBDocumentResponse>, Status> {
+        request: Request<CreateEpubDocumentRequest>,
+    ) -> Result<Response<CreateEpubDocumentResponse>, Status> {
         let req = request.into_inner();
         let now = Utc::now();
         let doc_id = format!("EPUB_{}", nanoid!());
@@ -147,7 +147,7 @@ impl DocumentService for DocumentServiceImpl {
         };
 
         match create_epub_document(&doc).await {
-            Ok(_) => Ok(Response::new(CreateEPUBDocumentResponse {
+            Ok(_) => Ok(Response::new(CreateEpubDocumentResponse {
                 document: Some(database_to_proto_epub(doc)),
             })),
             Err(e) => Err(Status::internal(format!("Failed to create EPUB document: {}", e))),
@@ -156,8 +156,8 @@ impl DocumentService for DocumentServiceImpl {
 
     async fn update_epub_document(
         &self,
-        request: Request<UpdateEPUBDocumentRequest>,
-    ) -> Result<Response<UpdateEPUBDocumentResponse>, Status> {
+        request: Request<UpdateEpubDocumentRequest>,
+    ) -> Result<Response<UpdateEpubDocumentResponse>, Status> {
         let req = request.into_inner();
         let mut doc = get_epub_document(&req.id).await
             .map_err(|e| Status::not_found(format!("EPUB document not found: {}", e)))?
@@ -175,7 +175,7 @@ impl DocumentService for DocumentServiceImpl {
         doc.updated_at = Utc::now();
 
         match update_epub_document(&doc).await {
-            Ok(_) => Ok(Response::new(UpdateEPUBDocumentResponse {
+            Ok(_) => Ok(Response::new(UpdateEpubDocumentResponse {
                 document: Some(database_to_proto_epub(doc)),
             })),
             Err(e) => Err(Status::internal(format!("Failed to update EPUB document: {}", e))),

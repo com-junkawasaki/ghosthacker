@@ -34,7 +34,9 @@ export function useGrpcPanels(pageId: string | undefined) {
         }
       } catch (err) {
         if (!cancelled) {
-          setError(err instanceof Error ? err : new Error('Failed to fetch panels'));
+          const error = err instanceof Error ? err : new Error('Failed to fetch panels');
+          console.error('Failed to fetch panels:', error);
+          setError(error);
         }
       } finally {
         if (!cancelled) {

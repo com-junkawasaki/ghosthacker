@@ -59,11 +59,58 @@ export class GrpcClient {
           if (response.status === grpc.Code.OK && response.message) {
             resolve(response.message);
           } else {
-            reject(new Error(response.statusMessage || `gRPC error: ${response.status}`));
+            // Convert gRPC status code to more descriptive error messages
+            const errorMessage = this.getErrorMessage(response.status, response.statusMessage);
+            const error = new Error(errorMessage);
+            (error as any).code = response.status;
+            (error as any).statusMessage = response.statusMessage;
+            reject(error);
           }
         },
       });
     });
+  }
+
+  /**
+   * Convert gRPC status code to user-friendly error message
+   */
+  private getErrorMessage(status: grpc.Code, statusMessage?: string): string {
+    if (statusMessage) {
+      return statusMessage;
+    }
+
+    switch (status) {
+      case grpc.Code.NotFound:
+        return 'Resource not found';
+      case grpc.Code.InvalidArgument:
+        return 'Invalid request parameters';
+      case grpc.Code.AlreadyExists:
+        return 'Resource already exists';
+      case grpc.Code.PermissionDenied:
+        return 'Permission denied';
+      case grpc.Code.Unauthenticated:
+        return 'Authentication required';
+      case grpc.Code.ResourceExhausted:
+        return 'Resource limit exceeded';
+      case grpc.Code.FailedPrecondition:
+        return 'Operation cannot be performed in current state';
+      case grpc.Code.Aborted:
+        return 'Operation was aborted';
+      case grpc.Code.OutOfRange:
+        return 'Value out of range';
+      case grpc.Code.Unimplemented:
+        return 'Operation not implemented';
+      case grpc.Code.Internal:
+        return 'Internal server error';
+      case grpc.Code.Unavailable:
+        return 'Service unavailable';
+      case grpc.Code.DataLoss:
+        return 'Data loss occurred';
+      case grpc.Code.DeadlineExceeded:
+        return 'Request timeout';
+      default:
+        return `gRPC error: ${status}`;
+    }
   }
 
   /**

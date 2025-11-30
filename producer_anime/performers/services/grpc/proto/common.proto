@@ -1,8 +1,7 @@
 syntax = "proto3";
 
-package producer.common;
+package common;
 
-import "google/protobuf/timestamp.proto";
 
 // 空のメッセージ（Delete等で使用）
 message Empty {}

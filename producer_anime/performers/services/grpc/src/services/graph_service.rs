@@ -121,7 +121,7 @@ impl GraphService for GraphServiceImpl {
         let jsonld: JsonValue = serde_json::from_str(&req.jsonld)
             .map_err(|e| Status::invalid_argument(format!("Invalid jsonld JSON: {}", e)))?;
         
-        let node = GraphNode {
+        let node = DatabaseGraphNode {
             id: req.id,
             label: req.label,
             properties,
@@ -148,7 +148,7 @@ impl GraphService for GraphServiceImpl {
         let jsonld: JsonValue = serde_json::from_str(&req.jsonld)
             .map_err(|e| Status::invalid_argument(format!("Invalid jsonld JSON: {}", e)))?;
         
-        let node = GraphNode {
+        let node = DatabaseGraphNode {
             id: Some(req.id.clone()),
             label: req.label,
             properties,
@@ -194,7 +194,7 @@ impl GraphService for GraphServiceImpl {
         let properties: JsonValue = serde_json::from_str(&req.properties)
             .map_err(|e| Status::invalid_argument(format!("Invalid properties JSON: {}", e)))?;
         
-        let edge = GraphEdge {
+        let edge = DatabaseGraphEdge {
             id: req.id,
             source: req.source,
             target: req.target,

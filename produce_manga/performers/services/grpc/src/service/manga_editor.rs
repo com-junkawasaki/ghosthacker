@@ -10,6 +10,7 @@ use uuid::Uuid;
 use base64::{Engine as _, engine::general_purpose};
 use sqlx::Row;
 use crate::ports::postgres::PostgresPool;
+use crate::service::error::{sqlx_error_to_status, uuid_error_to_status, json_error_to_status};
 
 // Include generated proto code
 pub mod proto {
@@ -45,8 +46,12 @@ impl MangaEditorService for MangaEditorServiceImpl {
         request: Request<GetProjectRequest>,
     ) -> Result<Response<Project>, Status> {
         let req = request.into_inner();
-        let uuid = Uuid::parse_str(&req.id)
-            .map_err(|e| Status::invalid_argument(format!("Invalid project ID: {}", e)))?;
+        let id = req.id;
+        if id.is_empty() {
+            return Err(Status::invalid_argument("Project ID is required"));
+        }
+        let uuid = Uuid::parse_str(&id)
+            .map_err(uuid_error_to_status)?;
 
         let row = sqlx::query_as::<_, (Uuid, String, Option<String>, chrono::DateTime<chrono::Utc>, chrono::DateTime<chrono::Utc>)>(
             r#"
@@ -58,7 +63,7 @@ impl MangaEditorService for MangaEditorServiceImpl {
         .bind(uuid)
         .fetch_optional(self.pool.as_ref())
         .await
-        .map_err(|e| Status::internal(format!("Failed to fetch project: {}", e)))?;
+        .map_err(sqlx_error_to_status)?;
 
         match row {
             Some(row) => Ok(Response::new(Project {
@@ -85,7 +90,7 @@ impl MangaEditorService for MangaEditorServiceImpl {
         )
         .fetch_all(self.pool.as_ref())
         .await
-        .map_err(|e| Status::internal(format!("Failed to fetch projects: {}", e)))?;
+        .map_err(sqlx_error_to_status)?;
 
         let projects = rows
             .into_iter()
@@ -106,6 +111,14 @@ impl MangaEditorService for MangaEditorServiceImpl {
         request: Request<CreateProjectRequest>,
     ) -> Result<Response<Project>, Status> {
         let req = request.into_inner();
+        
+        let title = req.title;
+        if title.is_empty() {
+            return Err(Status::invalid_argument("Title is required"));
+        }
+        if title.trim().is_empty() {
+            return Err(Status::invalid_argument("Title cannot be empty"));
+        }
 
         let row = sqlx::query_as::<_, (Uuid, String, Option<String>, chrono::DateTime<chrono::Utc>, chrono::DateTime<chrono::Utc>)>(
             r#"
@@ -114,11 +127,11 @@ impl MangaEditorService for MangaEditorServiceImpl {
             RETURNING id, title, description, created_at, updated_at
             "#,
         )
-        .bind(&req.title)
+        .bind(&title)
         .bind(&req.description)
         .fetch_one(self.pool.as_ref())
         .await
-        .map_err(|e| Status::internal(format!("Failed to create project: {}", e)))?;
+        .map_err(sqlx_error_to_status)?;
 
         Ok(Response::new(Project {
             id: row.0.to_string(),
@@ -134,8 +147,12 @@ impl MangaEditorService for MangaEditorServiceImpl {
         request: Request<UpdateProjectRequest>,
     ) -> Result<Response<Project>, Status> {
         let req = request.into_inner();
-        let uuid = Uuid::parse_str(&req.id)
-            .map_err(|e| Status::invalid_argument(format!("Invalid project ID: {}", e)))?;
+        let id = req.id;
+        if id.is_empty() {
+            return Err(Status::invalid_argument("Project ID is required"));
+        }
+        let uuid = Uuid::parse_str(&id)
+            .map_err(uuid_error_to_status)?;
 
         // Build update query dynamically
         let mut updates = Vec::new();
@@ -167,7 +184,7 @@ impl MangaEditorService for MangaEditorServiceImpl {
         let row = query_builder
             .fetch_optional(self.pool.as_ref())
             .await
-            .map_err(|e| Status::internal(format!("Failed to update project: {}", e)))?;
+            .map_err(sqlx_error_to_status)?;
 
         match row {
             Some(row) => Ok(Response::new(Project {
@@ -186,14 +203,18 @@ impl MangaEditorService for MangaEditorServiceImpl {
         request: Request<DeleteProjectRequest>,
     ) -> Result<Response<DeleteProjectResponse>, Status> {
         let req = request.into_inner();
-        let uuid = Uuid::parse_str(&req.id)
-            .map_err(|e| Status::invalid_argument(format!("Invalid project ID: {}", e)))?;
+        let id = req.id;
+        if id.is_empty() {
+            return Err(Status::invalid_argument("Project ID is required"));
+        }
+        let uuid = Uuid::parse_str(&id)
+            .map_err(uuid_error_to_status)?;
 
         let rows_affected = sqlx::query("DELETE FROM manga_projects WHERE id = $1")
             .bind(uuid)
             .execute(self.pool.as_ref())
             .await
-            .map_err(|e| Status::internal(format!("Failed to delete project: {}", e)))?
+            .map_err(sqlx_error_to_status)?
             .rows_affected();
 
         Ok(Response::new(DeleteProjectResponse {
@@ -206,8 +227,12 @@ impl MangaEditorService for MangaEditorServiceImpl {
         request: Request<GetScriptRequest>,
     ) -> Result<Response<Script>, Status> {
         let req = request.into_inner();
-        let uuid = Uuid::parse_str(&req.id)
-            .map_err(|e| Status::invalid_argument(format!("Invalid script ID: {}", e)))?;
+        let id = req.id;
+        if id.is_empty() {
+            return Err(Status::invalid_argument("Script ID is required"));
+        }
+        let uuid = Uuid::parse_str(&id)
+            .map_err(uuid_error_to_status)?;
 
         let row = sqlx::query(
             r#"
@@ -219,7 +244,7 @@ impl MangaEditorService for MangaEditorServiceImpl {
         .bind(uuid)
         .fetch_optional(self.pool.as_ref())
         .await
-        .map_err(|e| Status::internal(format!("Failed to fetch script: {}", e)))?;
+        .map_err(sqlx_error_to_status)?;
 
         match row {
             Some(row) => {
@@ -252,8 +277,12 @@ impl MangaEditorService for MangaEditorServiceImpl {
         request: Request<ListScriptsRequest>,
     ) -> Result<Response<ListScriptsResponse>, Status> {
         let req = request.into_inner();
-        let project_uuid = Uuid::parse_str(&req.project_id)
-            .map_err(|e| Status::invalid_argument(format!("Invalid project ID: {}", e)))?;
+        let project_id = req.project_id;
+        if project_id.is_empty() {
+            return Err(Status::invalid_argument("Project ID is required"));
+        }
+        let project_uuid = Uuid::parse_str(&project_id)
+            .map_err(uuid_error_to_status)?;
 
         let rows = sqlx::query(
             r#"
@@ -266,7 +295,7 @@ impl MangaEditorService for MangaEditorServiceImpl {
         .bind(project_uuid)
         .fetch_all(self.pool.as_ref())
         .await
-        .map_err(|e| Status::internal(format!("Failed to fetch scripts: {}", e)))?;
+        .map_err(sqlx_error_to_status)?;
 
         let mut scripts = Vec::new();
         for row in rows {
@@ -299,11 +328,28 @@ impl MangaEditorService for MangaEditorServiceImpl {
         request: Request<CreateScriptRequest>,
     ) -> Result<Response<Script>, Status> {
         let req = request.into_inner();
-        let project_uuid = Uuid::parse_str(&req.project_id)
-            .map_err(|e| Status::invalid_argument(format!("Invalid project ID: {}", e)))?;
+        let project_id = req.project_id;
+        if project_id.is_empty() {
+            return Err(Status::invalid_argument("Project ID is required"));
+        }
+        let project_uuid = Uuid::parse_str(&project_id)
+            .map_err(uuid_error_to_status)?;
 
-        let script_data: serde_json::Value = serde_json::from_str(&req.script_data)
-            .map_err(|e| Status::invalid_argument(format!("Invalid script_data JSON: {}", e)))?;
+        let script_id = req.script_id;
+        if script_id.is_empty() {
+            return Err(Status::invalid_argument("Script ID is required"));
+        }
+        let title = req.title;
+        if title.is_empty() {
+            return Err(Status::invalid_argument("Title is required"));
+        }
+        let script_data_str = req.script_data;
+        if script_data_str.is_empty() {
+            return Err(Status::invalid_argument("Script data is required"));
+        }
+        
+        let script_data: serde_json::Value = serde_json::from_str(&script_data_str)
+            .map_err(json_error_to_status)?;
 
         let row = sqlx::query(
             r#"
@@ -313,13 +359,13 @@ impl MangaEditorService for MangaEditorServiceImpl {
             "#,
         )
         .bind(project_uuid)
-        .bind(&req.script_id)
-        .bind(&req.title)
+        .bind(&script_id)
+        .bind(&title)
         .bind(&req.page_count)
         .bind(&script_data)
         .fetch_one(self.pool.as_ref())
         .await
-        .map_err(|e| Status::internal(format!("Failed to create script: {}", e)))?;
+        .map_err(sqlx_error_to_status)?;
 
         let id: Uuid = row.try_get("id").map_err(|e| Status::internal(format!("Failed to parse id: {}", e)))?;
         let project_id: Uuid = row.try_get("project_id").map_err(|e| Status::internal(format!("Failed to parse project_id: {}", e)))?;
@@ -355,8 +401,12 @@ impl MangaEditorService for MangaEditorServiceImpl {
         request: Request<GetPageRequest>,
     ) -> Result<Response<Page>, Status> {
         let req = request.into_inner();
-        let uuid = Uuid::parse_str(&req.id)
-            .map_err(|e| Status::invalid_argument(format!("Invalid page ID: {}", e)))?;
+        let id = req.id;
+        if id.is_empty() {
+            return Err(Status::invalid_argument("Page ID is required"));
+        }
+        let uuid = Uuid::parse_str(&id)
+            .map_err(uuid_error_to_status)?;
 
         let row = sqlx::query(
             r#"
@@ -369,7 +419,7 @@ impl MangaEditorService for MangaEditorServiceImpl {
         .bind(uuid)
         .fetch_optional(self.pool.as_ref())
         .await
-        .map_err(|e| Status::internal(format!("Failed to fetch page: {}", e)))?;
+        .map_err(sqlx_error_to_status)?;
 
         match row {
             Some(row) => {
@@ -410,8 +460,12 @@ impl MangaEditorService for MangaEditorServiceImpl {
         request: Request<ListPagesRequest>,
     ) -> Result<Response<ListPagesResponse>, Status> {
         let req = request.into_inner();
-        let script_uuid = Uuid::parse_str(&req.script_id)
-            .map_err(|e| Status::invalid_argument(format!("Invalid script ID: {}", e)))?;
+        let script_id = req.script_id;
+        if script_id.is_empty() {
+            return Err(Status::invalid_argument("Script ID is required"));
+        }
+        let script_uuid = Uuid::parse_str(&script_id)
+            .map_err(uuid_error_to_status)?;
 
         let rows = sqlx::query(
             r#"
@@ -425,7 +479,7 @@ impl MangaEditorService for MangaEditorServiceImpl {
         .bind(script_uuid)
         .fetch_all(self.pool.as_ref())
         .await
-        .map_err(|e| Status::internal(format!("Failed to fetch pages: {}", e)))?;
+        .map_err(sqlx_error_to_status)?;
 
         let mut pages = Vec::new();
         for row in rows {
@@ -490,8 +544,12 @@ impl MangaEditorService for MangaEditorServiceImpl {
         request: Request<ListPanelsRequest>,
     ) -> Result<Response<ListPanelsResponse>, Status> {
         let req = request.into_inner();
-        let page_uuid = Uuid::parse_str(&req.page_id)
-            .map_err(|e| Status::invalid_argument(format!("Invalid page ID: {}", e)))?;
+        let page_id = req.page_id;
+        if page_id.is_empty() {
+            return Err(Status::invalid_argument("Page ID is required"));
+        }
+        let page_uuid = Uuid::parse_str(&page_id)
+            .map_err(uuid_error_to_status)?;
 
         let rows = sqlx::query(
             r#"
@@ -507,7 +565,7 @@ impl MangaEditorService for MangaEditorServiceImpl {
         .bind(page_uuid)
         .fetch_all(self.pool.as_ref())
         .await
-        .map_err(|e| Status::internal(format!("Failed to fetch panels: {}", e)))?;
+        .map_err(sqlx_error_to_status)?;
 
         let mut panels = Vec::new();
         for row in rows {
@@ -611,10 +669,10 @@ impl MangaEditorService for MangaEditorServiceImpl {
 
     async fn list_ai_models(
         &self,
-        request: Request<ListAIModelsRequest>,
-    ) -> Result<Response<ListAIModelsResponse>, Status> {
+        _request: Request<ListAiModelsRequest>,
+    ) -> Result<Response<ListAiModelsResponse>, Status> {
         // TODO: Implement list AI models
-        Ok(Response::new(ListAIModelsResponse { models: vec![] }))
+        Ok(Response::new(ListAiModelsResponse { models: vec![] }))
     }
 
     async fn list_generated_images(
@@ -622,12 +680,16 @@ impl MangaEditorService for MangaEditorServiceImpl {
         request: Request<ListGeneratedImagesRequest>,
     ) -> Result<Response<ListGeneratedImagesResponse>, Status> {
         let req = request.into_inner();
-        let project_uuid = Uuid::parse_str(&req.project_id)
-            .map_err(|e| Status::invalid_argument(format!("Invalid project ID: {}", e)))?;
+        let project_id = req.project_id;
+        if project_id.is_empty() {
+            return Err(Status::invalid_argument("Project ID is required"));
+        }
+        let project_uuid = Uuid::parse_str(&project_id)
+            .map_err(uuid_error_to_status)?;
 
         let query = if let Some(panel_id) = req.panel_id {
             let panel_uuid = Uuid::parse_str(&panel_id)
-                .map_err(|e| Status::invalid_argument(format!("Invalid panel ID: {}", e)))?;
+                .map_err(uuid_error_to_status)?;
             sqlx::query(
                 r#"
                 SELECT id, project_id, panel_id, prompt, negative_prompt, 
@@ -655,7 +717,7 @@ impl MangaEditorService for MangaEditorServiceImpl {
         let rows = query
             .fetch_all(self.pool.as_ref())
             .await
-            .map_err(|e| Status::internal(format!("Failed to fetch generated images: {}", e)))?;
+            .map_err(sqlx_error_to_status)?;
 
         let mut images = Vec::new();
         for row in rows {

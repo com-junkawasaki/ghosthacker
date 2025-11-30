@@ -34,7 +34,9 @@ export function useGrpcPages(scriptId: string | undefined) {
         }
       } catch (err) {
         if (!cancelled) {
-          setError(err instanceof Error ? err : new Error('Failed to fetch pages'));
+          const error = err instanceof Error ? err : new Error('Failed to fetch pages');
+          console.error('Failed to fetch pages:', error);
+          setError(error);
         }
       } finally {
         if (!cancelled) {

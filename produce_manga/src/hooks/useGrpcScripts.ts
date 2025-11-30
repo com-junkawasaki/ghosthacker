@@ -34,7 +34,9 @@ export function useGrpcScripts(projectId: string | undefined) {
         }
       } catch (err) {
         if (!cancelled) {
-          setError(err instanceof Error ? err : new Error('Failed to fetch scripts'));
+          const error = err instanceof Error ? err : new Error('Failed to fetch scripts');
+          console.error('Failed to fetch scripts:', error);
+          setError(error);
         }
       } finally {
         if (!cancelled) {

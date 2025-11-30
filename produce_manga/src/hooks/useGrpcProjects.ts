@@ -29,7 +29,9 @@ export function useGrpcProjects() {
         }
       } catch (err) {
         if (!cancelled) {
-          setError(err instanceof Error ? err : new Error('Failed to fetch projects'));
+          const error = err instanceof Error ? err : new Error('Failed to fetch projects');
+          console.error('Failed to fetch projects:', error);
+          setError(error);
         }
       } finally {
         if (!cancelled) {
@@ -52,7 +54,9 @@ export function useGrpcProjects() {
       const response = await mangaEditorServiceClient.ListProjects({});
       setProjects(response.projects || []);
     } catch (err) {
-      setError(err instanceof Error ? err : new Error('Failed to fetch projects'));
+      const error = err instanceof Error ? err : new Error('Failed to fetch projects');
+      console.error('Failed to refetch projects:', error);
+      setError(error);
     } finally {
       setLoading(false);
     }
