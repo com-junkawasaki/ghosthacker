@@ -37,10 +37,13 @@ CREATE INDEX IF NOT EXISTS idx_graph_edges_target ON graph_edges(target_id);
 CREATE INDEX IF NOT EXISTS idx_graph_edges_label ON graph_edges(label);
 CREATE INDEX IF NOT EXISTS idx_graph_edges_properties ON graph_edges USING GIN(properties);
 
--- ベクトル検索用HNSWインデックス（大量データでの高速検索）
-CREATE INDEX IF NOT EXISTS idx_graph_nodes_vector ON graph_nodes 
-    USING hnsw (vector vector_cosine_ops)
-    WITH (m = 16, ef_construction = 64);
+-- ベクトル検索用インデックス
+-- 注意: pgvectorのHNSW/ivfflatインデックスは2000次元までサポート
+-- 3072次元（text-embedding-3-large）の場合はインデックスなしで検索
+-- 必要に応じて、text-embedding-3-small（1536次元）を使用することを推奨
+-- CREATE INDEX IF NOT EXISTS idx_graph_nodes_vector ON graph_nodes 
+--     USING ivfflat (vector vector_cosine_ops)
+--     WITH (lists = 100);
 
 -- updated_at自動更新トリガー
 CREATE TRIGGER update_graph_nodes_updated_at

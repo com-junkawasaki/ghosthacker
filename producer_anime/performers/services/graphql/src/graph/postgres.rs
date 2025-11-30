@@ -12,7 +12,7 @@
 use anyhow::Result;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
-use sqlx::{postgres::PgPool, Row};
+use sqlx::{postgres::PgPool, Column, Row};
 use std::sync::{Arc, OnceLock};
 use tracing::{error, info};
 
@@ -86,26 +86,24 @@ impl PostgreSQLGraphClient {
 
     /// ノードを取得
     pub async fn get_node(&self, id: &str) -> Result<Option<GraphNode>> {
-        let row = sqlx::query!(
+        let row = sqlx::query(
             r#"
             SELECT id, label, properties, vector, jsonld
             FROM graph_nodes
             WHERE id = $1
             "#,
-            id
         )
+        .bind(id)
         .fetch_optional(&*self.pool)
         .await?;
 
         if let Some(row) = row {
-            // ベクトルは必要に応じて取得（現時点ではNone）
-            // pgvectorのvector型からVec<f32>への変換は、必要になったら実装
             Ok(Some(GraphNode {
-                id: Some(row.id),
-                label: row.label,
-                properties: row.properties,
-                vector: None, // 必要に応じて取得
-                jsonld: row.jsonld,
+                id: Some(row.try_get("id")?),
+                label: row.try_get("label")?,
+                properties: row.try_get("properties")?,
+                vector: None, // ベクトルは必要に応じて取得
+                jsonld: row.try_get("jsonld")?,
             }))
         } else {
             Ok(None)
@@ -145,13 +143,13 @@ impl PostgreSQLGraphClient {
 
     /// ノードを削除
     pub async fn delete_node(&self, id: &str) -> Result<()> {
-        sqlx::query!(
+        sqlx::query(
             r#"
             DELETE FROM graph_nodes
             WHERE id = $1
             "#,
-            id
         )
+        .bind(id)
         .execute(&*self.pool)
         .await?;
 
@@ -162,7 +160,7 @@ impl PostgreSQLGraphClient {
     pub async fn create_edge(&self, edge: &GraphEdge) -> Result<String> {
         let id = edge.id.clone().unwrap_or_else(|| nanoid::nanoid!());
         
-        sqlx::query!(
+        sqlx::query(
             r#"
             INSERT INTO graph_edges (id, source_id, target_id, label, properties)
             VALUES ($1, $2, $3, $4, $5)
@@ -173,12 +171,12 @@ impl PostgreSQLGraphClient {
                 properties = EXCLUDED.properties,
                 updated_at = NOW()
             "#,
-            id,
-            edge.source,
-            edge.target,
-            edge.label,
-            &edge.properties as _
         )
+        .bind(&id)
+        .bind(&edge.source)
+        .bind(&edge.target)
+        .bind(&edge.label)
+        .bind(&edge.properties)
         .execute(&*self.pool)
         .await?;
 
@@ -187,24 +185,24 @@ impl PostgreSQLGraphClient {
 
     /// エッジを取得
     pub async fn get_edge(&self, id: &str) -> Result<Option<GraphEdge>> {
-        let row = sqlx::query!(
+        let row = sqlx::query(
             r#"
             SELECT id, source_id, target_id, label, properties
             FROM graph_edges
             WHERE id = $1
             "#,
-            id
         )
+        .bind(id)
         .fetch_optional(&*self.pool)
         .await?;
 
         if let Some(row) = row {
             Ok(Some(GraphEdge {
-                id: Some(row.id),
-                source: row.source_id,
-                target: row.target_id,
-                label: row.label,
-                properties: row.properties,
+                id: Some(row.try_get("id")?),
+                source: row.try_get("source_id")?,
+                target: row.try_get("target_id")?,
+                label: row.try_get("label")?,
+                properties: row.try_get("properties")?,
             }))
         } else {
             Ok(None)
@@ -213,13 +211,13 @@ impl PostgreSQLGraphClient {
 
     /// エッジを削除
     pub async fn delete_edge(&self, id: &str) -> Result<()> {
-        sqlx::query!(
+        sqlx::query(
             r#"
             DELETE FROM graph_edges
             WHERE id = $1
             "#,
-            id
         )
+        .bind(id)
         .execute(&*self.pool)
         .await?;
 

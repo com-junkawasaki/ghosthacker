@@ -15,7 +15,7 @@ use tracing::{info, error};
 use sqlx::FromRow;
 
 use crate::database::client::get_pool;
-use crate::graph::helixdb::{get_client, GraphNode, GraphEdge};
+use crate::graph::postgres::{get_client, GraphNode, GraphEdge};
 use crate::graph::jsonld::JsonLdProcessor;
 use crate::graph::embedding::get_service as get_embedding_service;
 
@@ -72,6 +72,7 @@ pub async fn migrate_rdf_triples() -> Result<()> {
                         "source": "postgresql_migration"
                     }),
                     vector: None,
+                    jsonld: serde_json::json!({}),
                 };
 
                 let node_id = helixdb.create_node(&node).await?;
@@ -159,8 +160,9 @@ pub async fn migrate_jsonld_data() -> Result<()> {
         let node = GraphNode {
             id: Some(ctx.id.clone()),
             label: format!("JSON-LD Context: {}", ctx.id),
-            properties: normalized,
+            properties: normalized.clone(),
             vector: Some(embedding),
+            jsonld: normalized,
         };
 
         if helixdb.get_node(&ctx.id).await?.is_none() {
