@@ -43,6 +43,7 @@ import StoryElementConnection from './StoryElementConnection';
 import ProcessExecutionPanel from './ProcessExecutionPanel';
 import ContextLayerBackground from './ContextLayerBackground';
 import ContextLayerSidebar from './ContextLayerSidebar';
+import DebugPanel from './DebugPanel';
 import { useForceDirectedLayout } from './useForceDirectedLayout';
 import { useStoryElementLayout } from './useStoryElementLayout';
 import { GraphNodeData, StoryElementNodeType, StoryElementEdgeType, ELEMENT_TYPE_LABELS, ContextLayer } from './types';
@@ -73,6 +74,19 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
   const positionUpdateTimeoutRef = useRef<Map<string, NodeJS.Timeout>>(new Map());
   const [contextLayers, setContextLayers] = useState<ContextLayer[]>([]);
+  const [debugLogs, setDebugLogs] = useState<Array<{ timestamp: number; level: 'log' | 'error' | 'warn' | 'info'; message: string; data?: any }>>([]);
+
+  // デバッグログを追加する関数
+  const addDebugLog = useCallback((level: 'log' | 'error' | 'warn' | 'info', message: string, data?: any) => {
+    const log = {
+      timestamp: Date.now(),
+      level,
+      message,
+      data,
+    };
+    setDebugLogs(prev => [...prev, log].slice(-200)); // 最新200件まで保持
+    console[level](`[GraphVisualizationReactFlow] ${message}`, data || '');
+  }, []);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
@@ -368,7 +382,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
   const loadGraphData = async () => {
     setLoading(true);
     setError(null);
-    console.log('[GraphVisualizationReactFlow] loadGraphData: Starting...', { projectId });
+    addDebugLog('info', 'loadGraphData: Starting...', { projectId });
     
     try {
       // Load nodes
@@ -379,7 +393,14 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         isArray: Array.isArray(nodesResult),
         length: Array.isArray(nodesResult) ? nodesResult.length : 0,
         firstNode: Array.isArray(nodesResult) && nodesResult.length > 0 ? nodesResult[0] : null,
+        resultType: typeof nodesResult,
+        resultValue: nodesResult,
       });
+      
+      // 空の結果やnullの場合は空配列として扱う
+      if (!nodesResult || (typeof nodesResult === 'object' && !Array.isArray(nodesResult) && Object.keys(nodesResult).length === 0)) {
+        console.warn('[GraphVisualizationReactFlow] loadGraphData: Empty or invalid nodes result, using empty array');
+      }
       
       // Load edges
       const edgesQuery = 'SELECT id, source_id, target_id, label, properties FROM graph_edges LIMIT 200';
@@ -388,48 +409,128 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       console.log('[GraphVisualizationReactFlow] loadGraphData: Edges query result:', {
         isArray: Array.isArray(edgesResult),
         length: Array.isArray(edgesResult) ? edgesResult.length : 0,
+        resultType: typeof edgesResult,
+        resultValue: edgesResult,
       });
+      
+      // 空の結果やnullの場合は空配列として扱う
+      if (!edgesResult || (typeof edgesResult === 'object' && !Array.isArray(edgesResult) && Object.keys(edgesResult).length === 0)) {
+        console.warn('[GraphVisualizationReactFlow] loadGraphData: Empty or invalid edges result, using empty array');
+      }
       
       const parsedNodes: Node<GraphNodeData>[] = [];
       const parsedEdges: Edge[] = [];
 
       // Parse nodes
-      if (Array.isArray(nodesResult)) {
-        nodesResult.forEach((row: any, index: number) => {
+      // nodesResultが配列でない場合や空の場合は空配列として扱う
+      const nodesArray = Array.isArray(nodesResult) ? nodesResult : [];
+      if (nodesArray.length === 0) {
+        console.log('[GraphVisualizationReactFlow] loadGraphData: No nodes found in database');
+      }
+      
+      if (nodesArray.length > 0) {
+        nodesArray.forEach((row: any, index: number) => {
           if (row.id) {
-            const properties = typeof row.properties === 'string' 
-              ? JSON.parse(row.properties) 
-              : row.properties || {};
-            
-            // jsonldフィールドも追加
-            if (row.jsonld) {
-              try {
-                properties.jsonld = typeof row.jsonld === 'string' 
-                  ? JSON.parse(row.jsonld) 
-                  : row.jsonld;
-              } catch (e) {
-                properties.jsonld = row.jsonld;
+            // propertiesのパース
+            let properties: any = {};
+            try {
+              if (typeof row.properties === 'string') {
+                properties = JSON.parse(row.properties);
+              } else if (row.properties) {
+                properties = row.properties;
               }
+            } catch (e) {
+              console.warn('[GraphVisualizationReactFlow] loadGraphData: Failed to parse properties', {
+                nodeId: row.id,
+                properties: row.properties,
+                error: e,
+              });
+              properties = {};
+            }
+            
+            // jsonldフィールドのパース
+            let parsedJsonld: any = {};
+            try {
+              if (row.jsonld) {
+                if (typeof row.jsonld === 'string') {
+                  parsedJsonld = JSON.parse(row.jsonld);
+                } else {
+                  parsedJsonld = row.jsonld;
+                }
+              }
+              // properties.jsonldにも設定（後方互換性のため）
+              properties.jsonld = parsedJsonld;
+            } catch (e) {
+              console.warn('[GraphVisualizationReactFlow] loadGraphData: Failed to parse jsonld', {
+                nodeId: row.id,
+                jsonld: row.jsonld,
+                error: e,
+              });
+              parsedJsonld = {};
             }
             
             // Determine node type from properties or jsonld
-            const jsonld = properties.jsonld || {};
-            // コンテクストノードの検出を改善
-            const isContext = 
-              jsonld['@type'] === 'gh:Context' || 
-              (Array.isArray(jsonld['@type']) && jsonld['@type'].includes('gh:Context')) ||
-              properties.isContext === true ||
-              (typeof jsonld['@type'] === 'string' && jsonld['@type'].includes('Context')) ||
-              (jsonld['@context'] && typeof jsonld['@context'] === 'object');
+            const jsonld = parsedJsonld || properties.jsonld || {};
             
-            // デバッグログ: コンテクストノードの検出
+            // デバッグログ: ノードデータの確認（詳細版）
+            const debugData = {
+              nodeId: row.id,
+              label: row.label,
+              rawProperties: typeof row.properties === 'string' ? row.properties.substring(0, 200) : row.properties,
+              parsedProperties: properties,
+              rawJsonld: typeof row.jsonld === 'string' ? row.jsonld.substring(0, 200) : row.jsonld,
+              parsedJsonld: jsonld,
+              jsonldType: jsonld['@type'],
+              jsonldTypeType: typeof jsonld['@type'],
+              propertiesIsContext: properties.isContext,
+              propertiesIsContextType: typeof properties.isContext,
+              hasContext: !!jsonld['@context'],
+              jsonldKeys: Object.keys(jsonld),
+            };
+            
+            // コンテクストノードの検出を改善
+            const check1 = jsonld['@type'] === 'gh:Context';
+            const check2 = Array.isArray(jsonld['@type']) && jsonld['@type'].includes('gh:Context');
+            const check3 = properties.isContext === true;
+            const check4 = typeof jsonld['@type'] === 'string' && jsonld['@type'].includes('Context');
+            const check5 = jsonld['@context'] && typeof jsonld['@context'] === 'object';
+            
+            const isContext = check1 || check2 || check3 || check4 || check5;
+            
+            // デバッグログ: コンテクストノードの検出（詳細版）
+            const checkResults = { check1, check2, check3, check4, check5 };
             if (isContext) {
-              console.log('[GraphVisualizationReactFlow] loadGraphData: Context node detected', {
-                nodeId: row.id,
-                label: row.label,
-                jsonldType: jsonld['@type'],
-                propertiesIsContext: properties.isContext,
-                hasContext: !!jsonld['@context'],
+              addDebugLog('info', `loadGraphData: ✅ Context node detected for ${row.id}`, {
+                ...debugData,
+                checkResults,
+                isContext: true,
+              });
+            } else {
+              // コンテクストノードとして検出されなかった理由を詳しく記録
+              const failureReasons: string[] = [];
+              if (!check1 && jsonld['@type']) {
+                failureReasons.push(`@type is "${jsonld['@type']}" (expected "gh:Context")`);
+              }
+              if (!check3 && properties.isContext !== undefined) {
+                failureReasons.push(`properties.isContext is ${properties.isContext} (expected true)`);
+              }
+              if (!check5 && !jsonld['@context']) {
+                failureReasons.push('@context is missing');
+              }
+              
+              addDebugLog('log', `loadGraphData: ❌ Node ${row.id} is NOT a context node`, {
+                ...debugData,
+                checkResults,
+                isContext: false,
+                failureReasons: failureReasons.length > 0 ? failureReasons : ['All checks failed'],
+                // クイックデバッグ用の要約
+                summary: {
+                  label: row.label,
+                  hasJsonld: !!row.jsonld,
+                  jsonldType: jsonld['@type'],
+                  propertiesIsContext: properties.isContext,
+                  hasContext: !!jsonld['@context'],
+                },
               });
             }
             
@@ -488,8 +589,14 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       }
 
       // Parse edges
-      if (Array.isArray(edgesResult)) {
-        edgesResult.forEach((row: any) => {
+      // edgesResultが配列でない場合や空の場合は空配列として扱う
+      const edgesArray = Array.isArray(edgesResult) ? edgesResult : [];
+      if (edgesArray.length === 0) {
+        console.log('[GraphVisualizationReactFlow] loadGraphData: No edges found in database');
+      }
+      
+      if (edgesArray.length > 0) {
+        edgesArray.forEach((row: any) => {
           if (row.id && row.source_id && row.target_id) {
             const edgeProperties = typeof row.properties === 'string'
               ? JSON.parse(row.properties)
@@ -533,23 +640,55 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         });
       }
       
+      // ノードが0件の場合でもエラーにしない（初期状態として正常）
+      if (parsedNodes.length === 0) {
+        console.log('[GraphVisualizationReactFlow] loadGraphData: No nodes parsed, initializing empty graph');
+      }
+      
       // Context検出と階層構築
-      console.log('[GraphVisualizationReactFlow] loadGraphData: Analyzing context nodes', {
+      const contextNodesBeforeAnalysis = parsedNodes.filter(n => n.data.isContext);
+      addDebugLog('info', 'loadGraphData: Analyzing context nodes', {
         totalNodes: parsedNodes.length,
-        contextNodesCount: parsedNodes.filter(n => n.data.isContext).length,
-        contextNodeIds: parsedNodes.filter(n => n.data.isContext).map(n => ({ id: n.id, label: n.data.label })),
+        contextNodesCount: contextNodesBeforeAnalysis.length,
+        contextNodeIds: contextNodesBeforeAnalysis.map(n => ({ 
+          id: n.id, 
+          label: n.data.label,
+          isContext: n.data.isContext,
+          jsonld: (n.data as GraphNodeData).jsonld,
+        })),
       });
       
       const nodesWithContext = analyzeContextNodes(parsedNodes);
+      const contextNodesAfterAnalysis = nodesWithContext.filter(n => {
+        const nodeData = n.data as unknown as GraphNodeData;
+        return nodeData.isContext === true;
+      });
+      
+      addDebugLog('info', 'loadGraphData: After analyzeContextNodes', {
+        totalNodes: nodesWithContext.length,
+        contextNodesCount: contextNodesAfterAnalysis.length,
+        contextNodeIds: contextNodesAfterAnalysis.map(n => ({ 
+          id: n.id, 
+          label: (n.data as unknown as GraphNodeData).label,
+          isContext: (n.data as unknown as GraphNodeData).isContext,
+        })),
+      });
+      
       const { nodes: nodesWithHierarchy, contextLayers: builtLayers } = buildHierarchy(nodesWithContext, parsedEdges);
       
-      console.log('[GraphVisualizationReactFlow] loadGraphData: Built context layers', {
+      addDebugLog('info', 'loadGraphData: Built context layers', {
         layersCount: builtLayers.length,
         layers: builtLayers.map(l => ({
           contextNodeId: l.contextNodeId,
           label: nodesWithHierarchy.find(n => n.id === l.contextNodeId)?.data.label,
           containedNodeIds: l.containedNodeIds.length,
         })),
+        allContextNodeIds: nodesWithHierarchy
+          .filter(n => {
+            const nodeData = n.data as unknown as GraphNodeData;
+            return nodeData.isContext === true;
+          })
+          .map(n => n.id),
       });
       
       // Context検出後にエッジタイプを設定
@@ -565,11 +704,21 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       setNodes(nodesWithHierarchy as unknown as Parameters<typeof setNodes>[0]);
       setEdges(updatedEdges);
       setContextLayers(builtLayers);
+      
+      addDebugLog('info', 'loadGraphData: Completed successfully', {
+        nodesCount: nodesWithHierarchy.length,
+        edgesCount: updatedEdges.length,
+        contextLayersCount: builtLayers.length,
+        contextLayers: builtLayers.map(l => ({
+          contextNodeId: l.contextNodeId,
+          containedNodeIds: l.containedNodeIds.length,
+        })),
+      });
+      
       setLoading(false);
     } catch (err) {
-      console.error('[GraphVisualizationReactFlow] loadGraphData: Error caught', {
-        error: err,
-        errorMessage: err instanceof Error ? err.message : String(err),
+      addDebugLog('error', 'loadGraphData: Error caught', {
+        error: err instanceof Error ? err.message : String(err),
         errorStack: err instanceof Error ? err.stack : undefined,
         errorName: err instanceof Error ? err.name : undefined,
       });
@@ -1156,6 +1305,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         onNodesChange={handleNodesChange}
         onEdgesChange={setEdges}
         onReload={loadGraphData}
+        onDebugLog={addDebugLog}
       />
       
       {/* Graph Visualization */}
@@ -1409,6 +1559,15 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         </div>
       )}
       </div>
+
+      {/* Debug Panel */}
+      <DebugPanel
+        projectId={projectId}
+        nodes={nodes as unknown as Node<GraphNodeData>[]}
+        edges={edges}
+        contextLayers={contextLayers}
+        debugLogs={debugLogs}
+      />
     </div>
   );
 }

@@ -26,6 +26,7 @@ interface ContextLayerSidebarProps {
   onNodesChange: (nodes: Node<GraphNodeData>[]) => void;
   onEdgesChange: (edges: Edge[]) => void;
   onReload: () => Promise<void>;
+  onDebugLog?: (level: 'log' | 'error' | 'warn' | 'info', message: string, data?: any) => void;
 }
 
 export default function ContextLayerSidebar({
@@ -37,6 +38,7 @@ export default function ContextLayerSidebar({
   onNodesChange,
   onEdgesChange,
   onReload,
+  onDebugLog,
 }: ContextLayerSidebarProps) {
   const [editingLayerId, setEditingLayerId] = useState<string | null>(null);
   const [editingLabel, setEditingLabel] = useState<string>('');
@@ -44,6 +46,14 @@ export default function ContextLayerSidebar({
   const [draggedLayerId, setDraggedLayerId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  // デバッグログを追加する関数
+  const addDebugLog = useCallback((level: 'log' | 'error' | 'warn' | 'info', message: string, data?: any) => {
+    console[level](`[ContextLayerSidebar] ${message}`, data || '');
+    if (onDebugLog) {
+      onDebugLog(level, `[ContextLayerSidebar] ${message}`, data);
+    }
+  }, [onDebugLog]);
 
   // レイヤーの表示/非表示を切り替え
   const toggleLayerVisibility = useCallback((layerId: string) => {
@@ -160,7 +170,7 @@ export default function ContextLayerSidebar({
     setLoading(true);
     setError(null);
     
-    console.log('[ContextLayerSidebar] createNewLayer: Starting...', {
+    addDebugLog('info', 'createNewLayer: Starting...', {
       currentLayersCount: contextLayers.length,
       projectId,
     });
@@ -174,7 +184,7 @@ export default function ContextLayerSidebar({
         '@type': 'gh:Context',
       };
 
-      console.log('[ContextLayerSidebar] createNewLayer: Creating node with:', {
+      addDebugLog('info', 'createNewLayer: Creating node with:', {
         label,
         properties: { isContext: true },
         jsonld,
@@ -186,38 +196,56 @@ export default function ContextLayerSidebar({
         jsonld
       );
 
-      console.log('[ContextLayerSidebar] createNewLayer: Node created, nodeId:', nodeId);
+      addDebugLog('info', 'createNewLayer: Node created', { nodeId });
 
       if (!nodeId) {
-        console.error('[ContextLayerSidebar] createNewLayer: No nodeId returned');
+        addDebugLog('error', 'createNewLayer: No nodeId returned');
         throw new Error('ノードIDが返されませんでした');
       }
 
-      console.log('[ContextLayerSidebar] createNewLayer: Reloading graph data...');
+      addDebugLog('info', 'createNewLayer: Reloading graph data...');
       // データを再読み込み
+      const reloadStartTime = Date.now();
       await onReload();
+      const reloadDuration = Date.now() - reloadStartTime;
       
-      console.log('[ContextLayerSidebar] createNewLayer: Reload completed, waiting for DB sync...');
+      addDebugLog('info', 'createNewLayer: Reload completed', { 
+        duration: `${reloadDuration}ms`,
+        waitingForDBSync: true,
+      });
+      
       // 再読み込み後に新しいレイヤーが含まれているか確認
       // 少し待ってから確認（データベースの反映を待つ）
       await new Promise(resolve => setTimeout(resolve, 500));
       
-      console.log('[ContextLayerSidebar] createNewLayer: Success! Closing modal.');
+      // 再読み込み後の状態を確認
+      addDebugLog('info', 'createNewLayer: Checking if new layer appears in contextLayers', {
+        expectedNodeId: nodeId,
+        currentContextLayers: contextLayers.map(l => ({
+          contextNodeId: l.contextNodeId,
+          containedNodeIds: l.containedNodeIds.length,
+        })),
+      });
+      
+      addDebugLog('info', 'createNewLayer: Success! Closing modal.');
       setShowAddModal(false);
     } catch (error) {
-      console.error('[ContextLayerSidebar] createNewLayer: Error occurred:', error);
+      addDebugLog('error', 'createNewLayer: Error occurred', {
+        error: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : undefined,
+      });
       const appError = classifyError(error);
       logError(appError, 'ContextLayerSidebar.createNewLayer');
       const errorMessage = formatErrorForDisplay(appError);
-      console.error('[ContextLayerSidebar] createNewLayer: Error message:', errorMessage);
+      addDebugLog('error', 'createNewLayer: Error message', { errorMessage });
       setError(errorMessage);
       // エラーが発生してもモーダルは閉じる（ユーザーが再試行できるように）
       setShowAddModal(false);
     } finally {
       setLoading(false);
-      console.log('[ContextLayerSidebar] createNewLayer: Finished, loading set to false');
+      addDebugLog('info', 'createNewLayer: Finished, loading set to false');
     }
-  }, [contextLayers.length, onReload, projectId]);
+  }, [contextLayers, onReload, projectId, addDebugLog]);
 
   // 既存のコンテクストノードをレイヤーとして追加
   const addExistingContextAsLayer = useCallback(async (nodeId: string) => {
