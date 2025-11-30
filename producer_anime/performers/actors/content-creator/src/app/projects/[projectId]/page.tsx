@@ -86,47 +86,45 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-6">
-        <Link
-          href="/projects"
-          className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 mb-4 inline-block"
-        >
-          ← Back to Projects
-        </Link>
+    <div className="h-full flex flex-col">
+      {/* Header */}
+      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">
+          {project.name}
+        </h1>
+        {project.description && (
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            {project.description}
+          </p>
+        )}
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex-1">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-              {project.name}
-            </h1>
-            {project.description && (
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                {project.description}
-              </p>
-            )}
-            <div className="flex items-center gap-4">
-              {project.status && (
-                <span
-                  className={`inline-block px-3 py-1 text-sm font-semibold rounded ${
-                    project.status === 'active'
-                      ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                      : 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
-                  }`}
-                >
-                  {project.status}
-                </span>
-              )}
-              <div className="text-sm text-gray-500 dark:text-gray-400">
-                <div>Created: {new Date(project.createdAt).toLocaleString()}</div>
-                <div>Updated: {new Date(project.updatedAt).toLocaleString()}</div>
+      {/* Content */}
+      <div className="flex-1 overflow-y-auto p-6">
+
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex-1">
+              <div className="flex items-center gap-4 mb-4">
+                {project.status && (
+                  <span
+                    className={`inline-block px-3 py-1 text-sm font-semibold rounded ${
+                      project.status === 'active'
+                        ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                        : 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
+                    }`}
+                  >
+                    {project.status}
+                  </span>
+                )}
+                <div className="text-sm text-gray-500 dark:text-gray-400">
+                  <div>Created: {new Date(project.createdAt).toLocaleString()}</div>
+                  <div>Updated: {new Date(project.updatedAt).toLocaleString()}</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <Link

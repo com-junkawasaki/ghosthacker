@@ -62,10 +62,26 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     loadGraphData();
   }, [projectId]);
+
+  // Detect dark mode
+  useEffect(() => {
+    const checkDarkMode = () => {
+      setIsDarkMode(
+        window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      );
+    };
+    
+    checkDarkMode();
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', checkDarkMode);
+    
+    return () => mediaQuery.removeEventListener('change', checkDarkMode);
+  }, []);
 
   const loadGraphData = async () => {
     setLoading(true);
@@ -308,7 +324,9 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
         const x2 = targetNode.x || 0;
         const y2 = targetNode.y || 0;
 
-        ctx.strokeStyle = edge.id === selectedEdge ? '#3b82f6' : '#6b7280';
+        ctx.strokeStyle = edge.id === selectedEdge 
+          ? '#3b82f6' 
+          : isDarkMode ? '#9ca3af' : '#6b7280';
         ctx.lineWidth = edge.id === selectedEdge ? 3 : 1;
         ctx.beginPath();
         ctx.moveTo(x1, y1);
@@ -317,7 +335,7 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
 
         // Draw edge label
         if (edge.label) {
-          ctx.fillStyle = '#374151';
+          ctx.fillStyle = isDarkMode ? '#d1d5db' : '#374151';
           ctx.font = '12px sans-serif';
           ctx.fillText(
             edge.label,
@@ -357,9 +375,9 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
 
     // Draw mode indicator
     if (interactionMode !== 'normal') {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+      ctx.fillStyle = isDarkMode ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.7)';
       ctx.fillRect(10, 10, 200, 40);
-      ctx.fillStyle = '#ffffff';
+      ctx.fillStyle = isDarkMode ? '#f3f4f6' : '#ffffff';
       ctx.font = '14px sans-serif';
       ctx.textAlign = 'left';
       const modeText = 
@@ -369,7 +387,7 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
         '';
       ctx.fillText(modeText, 20, 35);
     }
-  }, [nodes, edges, selectedNode, selectedEdge, edgeSource, interactionMode]);
+  }, [nodes, edges, selectedNode, selectedEdge, edgeSource, interactionMode, isDarkMode]);
 
   useEffect(() => {
     drawGraph();
@@ -383,29 +401,7 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
     );
   }
 
-  if (!loading && !error && nodes.length === 0 && edges.length === 0) {
-    return (
-      <div className="w-full">
-        <div className="mb-4 flex justify-between items-center">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-            Graph Visualization
-          </h2>
-          <button
-            onClick={loadGraphData}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-          >
-            Refresh
-          </button>
-        </div>
-        <div className="bg-gray-50 dark:bg-gray-900/20 border border-gray-200 dark:border-gray-700 rounded-lg p-6 text-center">
-          <p className="text-gray-600 dark:text-gray-400 mb-2">No graph data found.</p>
-          <p className="text-sm text-gray-500 dark:text-gray-500">
-            Click the + button to add your first node.
-          </p>
-        </div>
-      </div>
-    );
-  }
+  // Don't early return - show empty state with FAB and UI elements
 
   if (error) {
     return (
@@ -484,31 +480,47 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
           onDragOver={handleDragOver}
           onDrop={handleDrop}
         >
-          <canvas
-            ref={canvasRef}
-            className="w-full h-[600px] cursor-crosshair"
-            onContextMenu={(e) => handleContextMenu(e)}
-          />
-          
-          {/* Node overlays for interaction */}
-          {nodes.map(node => (
-            <div
-              key={node.id}
-              draggable
-              onDragStart={() => handleDragStart(node.id)}
-              onDrop={(e) => handleDrop(e, node.id)}
-              onDragOver={handleDragOver}
-              onClick={(e) => handleNodeClick(node.id, e)}
-              onContextMenu={(e) => handleContextMenu(e, node.id)}
-              className="absolute cursor-pointer"
-              style={{
-                left: (node.x || 0) - 20,
-                top: (node.y || 0) - 20,
-                width: 40,
-                height: 40,
-              }}
-            />
-          ))}
+          {nodes.length === 0 && edges.length === 0 && !loading ? (
+            <div className="w-full h-[600px] flex items-center justify-center relative">
+              <div className="text-center z-10">
+                <p className="text-gray-600 dark:text-gray-400 mb-2 text-lg font-medium">No graph data found.</p>
+                <p className="text-sm text-gray-500 dark:text-gray-500 mb-4">
+                  Click the <span className="inline-block w-6 h-6 bg-blue-600 text-white rounded-full text-xs leading-6">+</span> button below to add your first node.
+                </p>
+                <p className="text-xs text-gray-400 dark:text-gray-600">
+                  Or use the toolbar buttons above to add nodes and edges.
+                </p>
+              </div>
+            </div>
+          ) : (
+            <>
+              <canvas
+                ref={canvasRef}
+                className="w-full h-[600px] cursor-crosshair"
+                onContextMenu={(e) => handleContextMenu(e)}
+              />
+              
+              {/* Node overlays for interaction */}
+              {nodes.map(node => (
+                <div
+                  key={node.id}
+                  draggable
+                  onDragStart={() => handleDragStart(node.id)}
+                  onDrop={(e) => handleDrop(e, node.id)}
+                  onDragOver={handleDragOver}
+                  onClick={(e) => handleNodeClick(node.id, e)}
+                  onContextMenu={(e) => handleContextMenu(e, node.id)}
+                  className="absolute cursor-pointer"
+                  style={{
+                    left: (node.x || 0) - 20,
+                    top: (node.y || 0) - 20,
+                    width: 40,
+                    height: 40,
+                  }}
+                />
+              ))}
+            </>
+          )}
 
           {/* FAB (Floating Action Button) */}
           <div className="absolute bottom-4 right-4">
@@ -562,7 +574,7 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
         {sidePanelOpen && (
           <div className="w-80 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 p-4">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                 {selectedNode ? 'Edit Node' : 'Create Node'}
               </h3>
               <button
@@ -570,7 +582,7 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
                   setSidePanelOpen(false);
                   setSelectedNode(null);
                 }}
-                className="text-gray-500 hover:text-gray-700"
+                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
               >
                 ✕
               </button>
@@ -579,19 +591,19 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
             {selectedNode ? (
               <div>
                 <div className="mb-4">
-                  <label className="block text-sm font-medium mb-1">Label</label>
+                  <label className="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Label</label>
                   <input
                     type="text"
                     value={selectedNodeData?.label || ''}
-                    className="w-full px-3 py-2 border rounded-lg"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                     readOnly
                   />
                 </div>
                 <div className="mb-4">
-                  <label className="block text-sm font-medium mb-1">Properties</label>
+                  <label className="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Properties</label>
                   <textarea
                     value={JSON.stringify(selectedNodeData?.properties || {}, null, 2)}
-                    className="w-full px-3 py-2 border rounded-lg font-mono text-sm"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg font-mono text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                     rows={6}
                     readOnly
                   />
@@ -600,31 +612,31 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
             ) : (
               <div>
                 <div className="mb-4">
-                  <label className="block text-sm font-medium mb-1">Label *</label>
+                  <label className="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Label *</label>
                   <input
                     type="text"
                     value={nodeForm.label}
                     onChange={(e) => setNodeForm({ ...nodeForm, label: e.target.value })}
-                    className="w-full px-3 py-2 border rounded-lg"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
                     placeholder="Node label"
                   />
                 </div>
                 <div className="mb-4">
-                  <label className="block text-sm font-medium mb-1">Properties (JSON)</label>
+                  <label className="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Properties (JSON)</label>
                   <textarea
                     value={nodeForm.properties}
                     onChange={(e) => setNodeForm({ ...nodeForm, properties: e.target.value })}
-                    className="w-full px-3 py-2 border rounded-lg font-mono text-sm"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg font-mono text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
                     rows={4}
                     placeholder='{"key": "value"}'
                   />
                 </div>
                 <div className="mb-4">
-                  <label className="block text-sm font-medium mb-1">JSON-LD (JSON)</label>
+                  <label className="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">JSON-LD (JSON)</label>
                   <textarea
                     value={nodeForm.jsonld}
                     onChange={(e) => setNodeForm({ ...nodeForm, jsonld: e.target.value })}
-                    className="w-full px-3 py-2 border rounded-lg font-mono text-sm"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg font-mono text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
                     rows={4}
                     placeholder='{"@type": "Person"}'
                   />
@@ -644,7 +656,7 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
       {/* Context Menu */}
       {contextMenu && (
         <div
-          className="fixed bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-2 z-50"
+          className="fixed bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-2 z-50 min-w-[160px]"
           style={{ left: contextMenu.x, top: contextMenu.y }}
           onClick={() => setContextMenu(null)}
         >
@@ -656,7 +668,7 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
                   setSidePanelOpen(true);
                   setContextMenu(null);
                 }}
-                className="w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="w-full px-4 py-2 text-left text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 Edit Node
               </button>
@@ -666,7 +678,7 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
                   setInteractionMode('selectTarget');
                   setContextMenu(null);
                 }}
-                className="w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="w-full px-4 py-2 text-left text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 Connect to Node
               </button>
@@ -679,7 +691,7 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
                   setSidePanelOpen(true);
                   setContextMenu(null);
                 }}
-                className="w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="w-full px-4 py-2 text-left text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 Add Node
               </button>
@@ -688,7 +700,7 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
                   setInteractionMode('selectSource');
                   setContextMenu(null);
                 }}
-                className="w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="w-full px-4 py-2 text-left text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 Add Edge
               </button>
@@ -703,8 +715,8 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
           setInteractionMode('normal');
           setEdgeSource(null);
         }}>
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-96" onClick={(e) => e.stopPropagation()}>
-            <h3 className="text-lg font-semibold mb-4">Create Edge</h3>
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-96 shadow-xl" onClick={(e) => e.stopPropagation()}>
+            <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">Create Edge</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
               Source: {nodes.find(n => n.id === edgeSource)?.label || edgeSource}
             </p>
@@ -712,22 +724,22 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
               Click on a target node to create the edge, or enter label below and click a node.
             </p>
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-1">Label *</label>
+              <label className="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Label *</label>
               <input
                 type="text"
                 value={edgeForm.label}
                 onChange={(e) => setEdgeForm({ ...edgeForm, label: e.target.value })}
-                className="w-full px-3 py-2 border rounded-lg"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
                 placeholder="Edge label (e.g., relatedTo, knows)"
                 autoFocus
               />
             </div>
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-1">Properties (JSON)</label>
+              <label className="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Properties (JSON)</label>
               <textarea
                 value={edgeForm.properties}
                 onChange={(e) => setEdgeForm({ ...edgeForm, properties: e.target.value })}
-                className="w-full px-3 py-2 border rounded-lg font-mono text-sm"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg font-mono text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
                 rows={3}
                 placeholder='{"key": "value"}'
               />
@@ -739,7 +751,7 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
                   setEdgeSource(null);
                   setEdgeForm({ label: '', properties: '{}' });
                 }}
-                className="flex-1 px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg"
+                className="flex-1 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600"
               >
                 Cancel
               </button>
@@ -751,7 +763,7 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
       <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
         Nodes: {nodes.length} | Edges: {edges.length}
         {interactionMode !== 'normal' && (
-          <span className="ml-4 text-blue-600">
+          <span className="ml-4 text-blue-600 dark:text-blue-400">
             Mode: {interactionMode}
           </span>
         )}
