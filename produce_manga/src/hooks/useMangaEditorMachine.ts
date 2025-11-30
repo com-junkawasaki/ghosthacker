@@ -53,6 +53,7 @@ export function useMangaEditorMachine(projectId: string) {
       send({ type: 'DELETE_SPEECH_BUBBLE', bubbleId } as MangaEditorPageEvent);
     },
     selectPage: (pageId: string) => {
+      console.log('selectPage action called with pageId:', pageId);
       send({ type: 'SELECT_PAGE', pageId } as MangaEditorPageEvent);
     },
     selectScript: (scriptId: string) => {

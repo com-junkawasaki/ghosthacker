@@ -151,6 +151,11 @@ export default function MangaEditorPage({
 
   // Get selected page ID from machine context
   const selectedPageId = machineData.selectedPageId;
+  
+  // Debug: Log selectedPageId changes
+  useEffect(() => {
+    console.log('selectedPageId changed in component:', selectedPageId);
+  }, [selectedPageId]);
 
   // Fetch panels data for selected page using gRPC
   const { panels, loading: panelsLoading, error: panelsError, refetch: refetchPanels } = useGrpcPanels(selectedPageId);
@@ -632,8 +637,13 @@ export default function MangaEditorPage({
             pages: data.pages, 
             selectedPageId, 
             onPageSelect: (pageId: string) => {
-              console.log('Page selected:', pageId);
+              console.log('Page selected in UI:', pageId);
+              console.log('Current selectedPageId before:', machineData.selectedPageId);
               actions.selectPage(pageId);
+              // Check if the state was updated
+              setTimeout(() => {
+                console.log('Current selectedPageId after:', machineData.selectedPageId);
+              }, 100);
             },
             layerGroups,
             layers, // Backward compatibility
@@ -644,8 +654,13 @@ export default function MangaEditorPage({
         : { 
             pages: data.pages, 
             onPageSelect: (pageId: string) => {
-              console.log('Page selected:', pageId);
+              console.log('Page selected in UI:', pageId);
+              console.log('Current selectedPageId before:', machineData.selectedPageId);
               actions.selectPage(pageId);
+              // Check if the state was updated
+              setTimeout(() => {
+                console.log('Current selectedPageId after:', machineData.selectedPageId);
+              }, 100);
             },
             layerGroups,
             layers, // Backward compatibility

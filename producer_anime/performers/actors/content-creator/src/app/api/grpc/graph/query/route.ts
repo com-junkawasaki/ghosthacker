@@ -61,11 +61,22 @@ export async function POST(request: NextRequest) {
     const grpcClient = getClient();
     
     return new Promise((resolve) => {
+      // タイムアウト処理を追加（25秒）
+      const timeoutId = setTimeout(() => {
+        resolve(
+          NextResponse.json(
+            { error: 'gRPC request timeout: The graph service did not respond in time' },
+            { status: 504 }
+          )
+        );
+      }, 25000);
+      
       grpcClient.graphQuery({ query }, (error: any, response: any) => {
+        clearTimeout(timeoutId);
         if (error) {
           resolve(
             NextResponse.json(
-              { error: error.message },
+              { error: error.message || 'gRPC request failed' },
               { status: 500 }
             )
           );

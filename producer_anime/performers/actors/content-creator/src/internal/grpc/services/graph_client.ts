@@ -32,27 +32,43 @@ export interface VectorSearchResult {
  * グラフクエリを実行
  */
 export async function graphQuery(query: string): Promise<any> {
-  const response = await fetch('/api/grpc/graph/query', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query }),
-  });
-  if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    throw new Error(errorData.error || `Graph query failed: ${response.statusText}`);
-  }
-  const data = await response.json();
-  // API Routeは { result: "..." } を返す（gRPC GraphQueryResponseのresultフィールド）
-  const resultJson = data.result || data.resultJson || data.result_json;
-  if (typeof resultJson === 'string' && resultJson.trim()) {
-    try {
-      return JSON.parse(resultJson);
-    } catch (e) {
-      // JSONパースに失敗した場合は文字列のまま返す
-      return resultJson;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10000); // 10秒でタイムアウト
+  
+  try {
+    const response = await fetch('/api/grpc/graph/query', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query }),
+      signal: controller.signal,
+    });
+    
+    clearTimeout(timeoutId);
+    
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || `Graph query failed: ${response.statusText}`);
     }
+    
+    const data = await response.json();
+    // API Routeは { result: "..." } を返す（gRPC GraphQueryResponseのresultフィールド）
+    const resultJson = data.result || data.resultJson || data.result_json;
+    if (typeof resultJson === 'string' && resultJson.trim()) {
+      try {
+        return JSON.parse(resultJson);
+      } catch (e) {
+        // JSONパースに失敗した場合は文字列のまま返す
+        return resultJson;
+      }
+    }
+    return resultJson || data;
+  } catch (error: any) {
+    clearTimeout(timeoutId);
+    if (error.name === 'AbortError') {
+      throw new Error('Request timeout: Graph query took too long (10s)');
+    }
+    throw error;
   }
-  return resultJson || data;
 }
 
 /**
@@ -109,10 +125,17 @@ export async function semanticSearch(
     body: JSON.stringify({ query, limit }),
   });
   if (!response.ok) {
-    throw new Error(`Semantic search failed: ${response.statusText}`);
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.error || `Semantic search failed: ${response.statusText}`);
   }
   const data = await response.json();
-  return data.results || [];
+  // gRPCレスポンスは { results: [...] } 形式
+  return (data.results || []).map((r: any) => ({
+    node_id: r.node_id || r.nodeId || '',
+    score: r.score || 0,
+    label: r.label || '',
+    properties: r.properties || '',
+  }));
 }
 
 /**
@@ -128,10 +151,17 @@ export async function vectorSearch(
     body: JSON.stringify({ query_vector: queryVector, limit }),
   });
   if (!response.ok) {
-    throw new Error(`Vector search failed: ${response.statusText}`);
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.error || `Vector search failed: ${response.statusText}`);
   }
   const data = await response.json();
-  return data.results || [];
+  // gRPCレスポンスは { results: [...] } 形式
+  return (data.results || []).map((r: any) => ({
+    node_id: r.node_id || r.nodeId || '',
+    score: r.score || 0,
+    label: r.label || '',
+    properties: r.properties || '',
+  }));
 }
 
 /**

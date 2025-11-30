@@ -13,7 +13,7 @@ interface QueryEditorProps {
 }
 
 export default function QueryEditor({ projectId }: QueryEditorProps) {
-  const [query, setQuery] = useState('MATCH (n) RETURN n LIMIT 10');
+  const [query, setQuery] = useState('SELECT id, label, properties, jsonld FROM graph_nodes LIMIT 10');
   const [results, setResults] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

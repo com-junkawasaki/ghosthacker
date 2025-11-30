@@ -8,7 +8,7 @@ import * as grpc from '@grpc/grpc-js';
 import * as protoLoader from '@grpc/proto-loader';
 import path from 'path';
 
-const GRPC_API_URL = process.env.GRPC_API_URL || 'grpc:50051';
+const GRPC_API_URL = process.env.GRPC_API_URL || 'host.docker.internal:50051';
 
 const PROTO_PATH = path.join(process.cwd(), '../../services/grpc/proto');
 
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     const grpcClient = getClient();
     
     return new Promise((resolve) => {
-      grpcClient.query(
+      grpcClient.graphRagQuery(
         { query, project_id },
         (error: any, response: any) => {
           if (error) {
@@ -66,7 +66,10 @@ export async function POST(request: NextRequest) {
               )
             );
           } else {
-            resolve(NextResponse.json(response));
+            // gRPCレスポンスは { response: "..." } 形式（GraphRagQueryResponse）
+            resolve(NextResponse.json({ 
+              response: response.response || response 
+            }));
           }
         }
       );
