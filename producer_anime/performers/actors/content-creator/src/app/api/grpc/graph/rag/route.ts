@@ -55,13 +55,25 @@ export async function POST(request: NextRequest) {
     const grpcClient = getClient();
     
     return new Promise((resolve) => {
-      grpcClient.graphRagQuery(
+      // タイムアウト処理を追加（60秒 - RAG処理は時間がかかる可能性がある）
+      const timeoutId = setTimeout(() => {
+        resolve(
+          NextResponse.json(
+            { error: 'gRPC request timeout: The graph RAG service did not respond in time' },
+            { status: 504 }
+          )
+        );
+      }, 60000);
+      
+      // proto定義では rpc Query なので、query メソッドを使用
+      grpcClient.query(
         { query, project_id },
         (error: any, response: any) => {
+          clearTimeout(timeoutId);
           if (error) {
             resolve(
               NextResponse.json(
-                { error: error.message },
+                { error: error.message || 'Graph RAG query failed' },
                 { status: 500 }
               )
             );

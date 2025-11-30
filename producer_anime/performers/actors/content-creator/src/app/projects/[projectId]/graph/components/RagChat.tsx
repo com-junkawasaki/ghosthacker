@@ -49,11 +49,17 @@ export default function RagChat({ projectId }: RagChatProps) {
         body: JSON.stringify({ query: input, project_id: projectId }),
       });
       
+      const data = await response.json();
+      
       if (!response.ok) {
-        throw new Error(`Graph RAG query failed: ${response.statusText}`);
+        const errorMsg = data.error || `Graph RAG query failed: ${response.statusText}`;
+        throw new Error(errorMsg);
       }
       
-      const data = await response.json();
+      if (data.error) {
+        throw new Error(data.error);
+      }
+      
       if (data.response) {
         const assistantMessage: Message = {
           role: 'assistant',
@@ -61,12 +67,15 @@ export default function RagChat({ projectId }: RagChatProps) {
           timestamp: new Date(),
         };
         setMessages((prev) => [...prev, assistantMessage]);
+      } else {
+        throw new Error('No response from server');
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to get response');
+      const errorMsg = err instanceof Error ? err.message : 'Failed to get response';
+      setError(errorMsg);
       const errorMessage: Message = {
         role: 'assistant',
-        content: `Error: ${err instanceof Error ? err.message : 'Unknown error'}`,
+        content: `Error: ${errorMsg}`,
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, errorMessage]);

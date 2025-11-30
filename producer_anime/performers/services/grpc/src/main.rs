@@ -6,6 +6,9 @@
 use dotenv::dotenv;
 use std::net::SocketAddr;
 use tonic::transport::Server;
+use tonic_web::GrpcWebLayer;
+use tower::ServiceBuilder;
+use tower_http::cors::CorsLayer;
 use tracing_subscriber;
 
 mod services;
@@ -53,7 +56,7 @@ async fn main() -> anyhow::Result<()> {
     }
 
     let addr: SocketAddr = "0.0.0.0:50051".parse()?;
-    tracing::info!("gRPC server listening on {}", addr);
+    tracing::info!("gRPC server listening on {} (gRPC + gRPC-Web)", addr);
 
     // サービス実装を構築
     let project_service = ProjectServiceServer::new(ProjectServiceImpl::default());
@@ -63,7 +66,18 @@ async fn main() -> anyhow::Result<()> {
     let graph_service = GraphServiceServer::new(GraphServiceImpl::default());
     let graph_rag_service = GraphRagServiceServer::new(GraphRagServiceImpl::default());
 
+    // gRPC-Web対応のためのCORSレイヤーを追加
+    let cors = CorsLayer::new()
+        .allow_origin(tower_http::cors::Any)
+        .allow_methods(tower_http::cors::Any)
+        .allow_headers(tower_http::cors::Any);
+
     Server::builder()
+        .layer(
+            ServiceBuilder::new()
+                .layer(cors)
+                .layer(GrpcWebLayer::new())
+        )
         .add_service(project_service)
         .add_service(story_service)
         .add_service(script_service)

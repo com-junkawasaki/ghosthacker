@@ -20,6 +20,63 @@ interface LayoutOptions {
   damping?: number;
 }
 
+const MIN_NODE_DISTANCE = 100; // ノード間の最小距離（ノードサイズ50px + 余白50px）
+const NODE_SIZE = 50; // ノードのサイズ
+
+/**
+ * 衝突を検出する関数
+ */
+function detectCollisions(
+  positions: Map<string, { x: number; y: number }>,
+  minDistance: number
+): Array<{ node1: string; node2: string; distance: number }> {
+  const collisions: Array<{ node1: string; node2: string; distance: number }> = [];
+  const nodeIds = Array.from(positions.keys());
+
+  for (let i = 0; i < nodeIds.length; i++) {
+    for (let j = i + 1; j < nodeIds.length; j++) {
+      const node1 = nodeIds[i];
+      const node2 = nodeIds[j];
+      const pos1 = positions.get(node1);
+      const pos2 = positions.get(node2);
+
+      if (!pos1 || !pos2) continue;
+
+      const dx = pos2.x - pos1.x;
+      const dy = pos2.y - pos1.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < minDistance) {
+        collisions.push({ node1, node2, distance });
+      }
+    }
+  }
+
+  return collisions;
+}
+
+/**
+ * グリッドベースの初期配置を生成
+ */
+function generateGridPosition(
+  index: number,
+  totalNodes: number,
+  width: number,
+  height: number,
+  startY: number,
+  minDistance: number
+): { x: number; y: number } {
+  const nodesPerRow = Math.ceil(Math.sqrt(totalNodes));
+  const row = Math.floor(index / nodesPerRow);
+  const col = index % nodesPerRow;
+  
+  const spacing = Math.max(minDistance, (width - 100) / nodesPerRow);
+  const x = 50 + col * spacing;
+  const y = startY + row * spacing;
+
+  return { x, y };
+}
+
 export function useForceDirectedLayout() {
   const calculateLayout = useCallback((
     nodes: Node[],
@@ -49,36 +106,48 @@ export function useForceDirectedLayout() {
       });
     });
 
-    // 各context layer内のノードを配置
+    // 各context layer内のノードを配置（グリッドベース、重なりなし）
     layers.forEach((layer) => {
       const layerNodes = nonContextNodes.filter(n => (n.data as any).contextId === layer.contextNodeId);
       const contextNode = nodes.find(n => n.id === layer.contextNodeId);
       if (!contextNode) return;
 
       const contextX = positions.get(contextNode.id)?.x || width / 2;
-      const nodesPerRow = Math.ceil(Math.sqrt(layerNodes.length));
-      const nodeSpacing = Math.min(150, (width - 200) / nodesPerRow);
-
+      const contextY = positions.get(contextNode.id)?.y || layerPadding;
+      const depth = Math.max(1, (layerNodes[0]?.data as any)?.depth || 1);
+      
+      // グリッドベースの配置
       layerNodes.forEach((node, index) => {
-        const row = Math.floor(index / nodesPerRow);
-        const col = index % nodesPerRow;
-        const depth = (node.data as any).depth || 1;
+        const gridPos = generateGridPosition(
+          index,
+          layerNodes.length,
+          width * 0.8, // コンテキスト周辺の80%の幅を使用
+          layerHeight,
+          contextY + 80,
+          MIN_NODE_DISTANCE
+        );
         
+        // コンテキストノードを中心に配置
         positions.set(node.id, {
-          x: contextX - (nodesPerRow * nodeSpacing) / 2 + col * nodeSpacing + (Math.random() - 0.5) * 20,
-          y: layerPadding + depth * layerHeight + row * 40 + (Math.random() - 0.5) * 20,
+          x: contextX - (width * 0.4) + gridPos.x,
+          y: contextY + depth * layerHeight + gridPos.y - 80,
         });
       });
     });
 
-    // Contextに属さないノードの配置
+    // Contextに属さないノードの配置（グリッドベース、重なりなし）
     const orphanNodes = nonContextNodes.filter(n => !(n.data as any).contextId);
-    orphanNodes.forEach((node) => {
+    orphanNodes.forEach((node, index) => {
       if (!positions.has(node.id)) {
-        positions.set(node.id, {
-          x: Math.random() * width,
-          y: layerPadding + ((node.data as any).depth || 1) * layerHeight,
-        });
+        const gridPos = generateGridPosition(
+          index,
+          orphanNodes.length,
+          width,
+          height - layerPadding - 100,
+          layerPadding + ((node.data as any).depth || 1) * layerHeight,
+          MIN_NODE_DISTANCE
+        );
+        positions.set(node.id, gridPos);
       }
     });
 
@@ -93,15 +162,24 @@ export function useForceDirectedLayout() {
         forces.set(node.id, { fx: 0, fy: 0 });
       });
 
-      // 反発力（全ノード間）
+      // 反発力（全ノード間）- 最小距離を考慮
       nodes.forEach((node1, i) => {
         nodes.slice(i + 1).forEach(node2 => {
           const pos1 = positions.get(node1.id)!;
           const pos2 = positions.get(node2.id)!;
           const dx = pos2.x - pos1.x;
           const dy = pos2.y - pos1.y;
-          const distance = Math.sqrt(dx * dx + dy * dy) || 1;
-          const force = k * k / distance;
+          const distance = Math.sqrt(dx * dx + dy * dy) || 0.1;
+          
+          // 最小距離未満の場合は強い反発力を適用
+          let force: number;
+          if (distance < MIN_NODE_DISTANCE) {
+            // 衝突している場合は強制的に分離
+            force = (MIN_NODE_DISTANCE - distance) * 10; // 強い反発力
+          } else {
+            // 通常の反発力
+            force = k * k / distance;
+          }
           
           const fx1 = (dx / distance) * force;
           const fy1 = (dy / distance) * force;
@@ -176,6 +254,33 @@ export function useForceDirectedLayout() {
         // 境界制約
         pos.x = Math.max(30, Math.min(width - 30, pos.x));
         pos.y = Math.max(30, Math.min(height - 30, pos.y));
+      });
+
+      // 衝突検出と強制的な分離
+      const collisions = detectCollisions(positions, MIN_NODE_DISTANCE);
+      collisions.forEach(collision => {
+        const pos1 = positions.get(collision.node1)!;
+        const pos2 = positions.get(collision.node2)!;
+        
+        const dx = pos2.x - pos1.x;
+        const dy = pos2.y - pos1.y;
+        const distance = Math.sqrt(dx * dx + dy * dy) || 0.1;
+        
+        // 最小距離まで分離
+        const separation = (MIN_NODE_DISTANCE - distance) / 2;
+        const separationX = (dx / distance) * separation;
+        const separationY = (dy / distance) * separation;
+        
+        pos1.x -= separationX;
+        pos1.y -= separationY;
+        pos2.x += separationX;
+        pos2.y += separationY;
+        
+        // 境界制約を再適用
+        pos1.x = Math.max(30, Math.min(width - 30, pos1.x));
+        pos1.y = Math.max(30, Math.min(height - 30, pos1.y));
+        pos2.x = Math.max(30, Math.min(width - 30, pos2.x));
+        pos2.y = Math.max(30, Math.min(height - 30, pos2.y));
       });
 
       currentTemp *= 0.95; // 温度を下げる

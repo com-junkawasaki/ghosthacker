@@ -18,6 +18,51 @@ interface LayoutOptions {
   height: number;
 }
 
+const MIN_NODE_DISTANCE = 100; // ノード間の最小距離
+const NODE_SIZE = 50; // ノードのサイズ
+
+/**
+ * ノード間の距離をチェックし、重なりのない位置を返す
+ */
+function findNonOverlappingPosition(
+  x: number,
+  y: number,
+  existingPositions: Map<string, { x: number; y: number }>,
+  minDistance: number
+): { x: number; y: number } {
+  let newX = x;
+  let newY = y;
+  let attempts = 0;
+  const maxAttempts = 100;
+
+  while (attempts < maxAttempts) {
+    let hasOverlap = false;
+
+    for (const [_, pos] of existingPositions) {
+      const dx = pos.x - newX;
+      const dy = pos.y - newY;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < minDistance) {
+        hasOverlap = true;
+        // 重なっている場合、距離を保つ方向に移動
+        const angle = Math.atan2(dy, dx);
+        newX = pos.x - Math.cos(angle) * minDistance;
+        newY = pos.y - Math.sin(angle) * minDistance;
+        break;
+      }
+    }
+
+    if (!hasOverlap) {
+      break;
+    }
+
+    attempts++;
+  }
+
+  return { x: newX, y: newY };
+}
+
 /**
  * 要素タイプごとの初期配置を計算
  */
@@ -90,8 +135,12 @@ export function useStoryElementLayout() {
       ];
 
       let currentY = contextY + 100;
-      const horizontalSpacing = 120;
-      const verticalSpacing = 100;
+      const horizontalSpacing = Math.max(MIN_NODE_DISTANCE, 120);
+      const verticalSpacing = Math.max(MIN_NODE_DISTANCE, 100);
+      const existingPositions = new Map<string, { x: number; y: number }>();
+
+      // Contextノードの位置を記録
+      existingPositions.set(contextNode.id, { x: contextX, y: contextY });
 
       typeOrder.forEach((type, typeIndex) => {
         const typeNodes = typeGroups.get(type) || [];
@@ -105,10 +154,20 @@ export function useStoryElementLayout() {
           const row = Math.floor(nodeIndex / nodesPerRow);
           const col = nodeIndex % nodesPerRow;
           
-          node.position = {
-            x: startX + col * horizontalSpacing + (Math.random() - 0.5) * 20,
-            y: currentY + row * verticalSpacing + (Math.random() - 0.5) * 20,
-          };
+          // グリッドベースの位置を計算
+          const gridX = startX + col * horizontalSpacing;
+          const gridY = currentY + row * verticalSpacing;
+          
+          // 重なりのない位置を確保
+          const position = findNonOverlappingPosition(
+            gridX,
+            gridY,
+            existingPositions,
+            MIN_NODE_DISTANCE
+          );
+          
+          node.position = position;
+          existingPositions.set(node.id, position);
         });
 
         // 次のタイプグループのY位置を更新
@@ -117,19 +176,37 @@ export function useStoryElementLayout() {
       });
     });
 
-    // Contextに属さないノードを配置
+    // Contextに属さないノードを配置（重なりなし）
     const orphanNodes = nodes.filter(n => 
       !n.data.isContext && 
       !layers.some(layer => layer.containedNodeIds.includes(n.id))
     );
 
     if (orphanNodes.length > 0) {
-      const orphanSpacing = width / (orphanNodes.length + 1);
+      const orphanSpacing = Math.max(MIN_NODE_DISTANCE, width / (orphanNodes.length + 1));
+      const existingPositions = new Map<string, { x: number; y: number }>();
+      
+      // 既存のノード位置を記録
+      nodes.forEach(n => {
+        if (n.position && !orphanNodes.includes(n)) {
+          existingPositions.set(n.id, n.position);
+        }
+      });
+
       orphanNodes.forEach((node, index) => {
-        node.position = {
-          x: orphanSpacing * (index + 1),
-          y: height - 150,
-        };
+        const gridX = orphanSpacing * (index + 1);
+        const gridY = height - 150;
+        
+        // 重なりのない位置を確保
+        const position = findNonOverlappingPosition(
+          gridX,
+          gridY,
+          existingPositions,
+          MIN_NODE_DISTANCE
+        );
+        
+        node.position = position;
+        existingPositions.set(node.id, position);
       });
     }
 
