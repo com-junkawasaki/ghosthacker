@@ -8,8 +8,8 @@ rust-toolchain = "nightly"
 
 [dependencies]
 tonic = "0.11"
-prost = "0.13"
-prost-types = "0.13"
+prost = "0.12"
+prost-types = "0.12"
 tokio = { version = "1", features = ["full"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"

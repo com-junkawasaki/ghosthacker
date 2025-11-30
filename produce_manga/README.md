@@ -7,10 +7,20 @@ producerv3のアーキテクチャを基盤に、マンガ制作に特化した�
 ## アーキテクチャ概要
 
 - **Frontend**: Next.js 14 App Router + React 18 + react-konva + Tailwind CSS
-- **Backend**: GraphQL (Poem 3/Rust) + PostgreSQL 16
+- **Backend**: gRPC (Tonic/Rust) + GraphQL (Poem 3/Rust) + PostgreSQL 16
 - **AI Integration**: fal.ai / DeepInfra（モデル選択）、OpenAI DALL-E（オプション）
 - **Canvas**: Konva.js（単一Canvas + レイヤー管理）
 - **Data Model**: OWL/SHACL + RDF (JSON-LD) でマンガ構造を定義
+
+## gRPC型生成
+
+protoファイルからTypeScript型定義を生成するには：
+
+```bash
+pnpm grpc:generate
+```
+
+生成されたファイルは `src/lib/grpc/generated/` に出力されます。
 
 ## 実装済み機能
 

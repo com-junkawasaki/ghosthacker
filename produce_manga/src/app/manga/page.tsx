@@ -8,27 +8,14 @@
 'use client';
 
 import { useState } from 'react';
-import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { gql } from '@apollo/client';
 import { CreateProjectDialog } from '@/components/manga/dialogs/CreateProjectDialog';
-
-const MANGA_PROJECTS_QUERY = gql`
-  query MangaProjects {
-    mangaProjects {
-      id
-      title
-      description
-      createdAt
-      updatedAt
-    }
-  }
-`;
+import { useGrpcProjects } from '@/hooks/useGrpcProjects';
 
 export default function MangaProjectsPage() {
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
-  const { data, loading, error, refetch } = useQuery(MANGA_PROJECTS_QUERY);
+  const { projects, loading, error, refetch } = useGrpcProjects();
   const router = useRouter();
 
   const handleProjectCreated = (projectId: string) => {
@@ -53,8 +40,6 @@ export default function MangaProjectsPage() {
     );
   }
 
-  const projects = data?.mangaProjects || [];
-
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-7xl mx-auto">
@@ -68,18 +53,18 @@ export default function MangaProjectsPage() {
           </button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project: any) => (
+          {projects.map((project) => (
             <Link
               key={project.id}
               href={`/manga/${project.id}/editor`}
               className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow"
             >
-              <h2 className="text-xl font-semibold mb-2">{project.title}</h2>
+              <h2 className="text-xl font-semibold mb-2">{project.title || 'Untitled'}</h2>
               {project.description && (
                 <p className="text-gray-600 mb-4 line-clamp-2">{project.description}</p>
               )}
               <div className="text-sm text-gray-500">
-                作成日: {new Date(project.createdAt).toLocaleDateString('ja-JP')}
+                作成日: {project.createdAt ? new Date(project.createdAt).toLocaleDateString('ja-JP') : 'N/A'}
               </div>
             </Link>
           ))}

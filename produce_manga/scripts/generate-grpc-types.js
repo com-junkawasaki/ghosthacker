@@ -251,16 +251,7 @@ function generateServiceClient(root) {
    */
   async ${methodName}(request: types.${requestType}): Promise<types.${responseType}> {
     return this.unaryCall(
-      {
-        methodName: '${methodName}',
-        service: {
-          serviceName: '${serviceName}',
-        },
-        requestStream: ${method.requestStream},
-        responseStream: ${method.responseStream},
-        requestType: types.${requestType} as any,
-        responseType: types.${responseType} as any,
-      } as any,
+      createMethodDef('${methodName}'),
       request
     );
   }`;
@@ -278,6 +269,7 @@ function generateServiceClient(root) {
  */
 
 import { grpcClient } from '../client';
+import { grpc } from '@improbable-eng/grpc-web';
 import type * as types from './types';
 
 // Re-export types for convenience
@@ -285,11 +277,28 @@ export type {
   ${Array.from(typeNames).join(',\n  ')}
 } from './types';
 
+/**
+ * Helper to create method definition for gRPC-Web
+ * Note: This is a simplified implementation. For production, use proper proto code generation.
+ */
+function createMethodDef(methodName: string): grpc.MethodDefinition<any, any> {
+  return {
+    methodName,
+    service: {
+      serviceName: 'MangaEditorService',
+    },
+    requestStream: false,
+    responseStream: false,
+    requestType: {} as any,
+    responseType: {} as any,
+  } as grpc.MethodDefinition<any, any>;
+}
+
 export class MangaEditorServiceClient {
   constructor(private client = grpcClient) {}
 
   private async unaryCall<Req, Res>(
-    method: any,
+    method: grpc.MethodDefinition<Req, Res>,
     request: Req
   ): Promise<Res> {
     return this.client.unaryCall(method, request);

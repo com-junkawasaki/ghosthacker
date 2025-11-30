@@ -8,20 +8,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { gql } from '@apollo/client';
-
-const CREATE_MANGA_PROJECT_MUTATION = gql`
-  mutation CreateMangaProject($input: CreateMangaProjectInput!) {
-    createMangaProject(input: $input) {
-      id
-      title
-      description
-      createdAt
-      updatedAt
-    }
-  }
-`;
+import { mangaEditorServiceClient } from '@/lib/grpc/manga-editor';
 
 interface CreateProjectDialogProps {
   isOpen: boolean;
@@ -36,7 +23,8 @@ export function CreateProjectDialog({
 }: CreateProjectDialogProps) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [createProject, { loading, error }] = useMutation(CREATE_MANGA_PROJECT_MUTATION);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
 
   if (!isOpen) return null;
 
@@ -48,22 +36,23 @@ export function CreateProjectDialog({
     }
 
     try {
-      const result = await createProject({
-        variables: {
-          input: {
-            title: title.trim(),
-            description: description.trim() || null,
-          },
-        },
+      setLoading(true);
+      setError(null);
+      const result = await mangaEditorServiceClient.CreateProject({
+        title: title.trim(),
+        description: description.trim() || undefined,
       });
 
-      if (result.data?.createMangaProject) {
-        onProjectCreated(result.data.createMangaProject.id);
+      if (result.id) {
+        onProjectCreated(result.id);
         setTitle('');
         setDescription('');
       }
     } catch (err) {
+      setError(err instanceof Error ? err : new Error('Failed to create project'));
       console.error('Failed to create project:', err);
+    } finally {
+      setLoading(false);
     }
   };
 

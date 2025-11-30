@@ -115,12 +115,12 @@ message GetProjectResponse {
 }
 
 message ListProjectsRequest {
-  common.PaginationRequest pagination = 1;
+  producer.common.PaginationRequest pagination = 1;
 }
 
 message ListProjectsResponse {
   repeated Project projects = 1;
-  common.PaginationResponse pagination = 2;
+  producer.common.PaginationResponse pagination = 2;
 }
 
 message CreateProjectRequest {
@@ -160,12 +160,12 @@ message GetStoryResponse {
 }
 
 message ListStoriesRequest {
-  common.PaginationRequest pagination = 1;
+  producer.common.PaginationRequest pagination = 1;
 }
 
 message ListStoriesResponse {
   repeated Story stories = 1;
-  common.PaginationResponse pagination = 2;
+  producer.common.PaginationResponse pagination = 2;
 }
 
 message CreateStoryRequest {

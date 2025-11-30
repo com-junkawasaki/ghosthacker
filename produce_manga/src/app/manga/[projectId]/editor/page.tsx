@@ -11,11 +11,14 @@ import { useRef, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import type Konva from 'konva';
 type KonvaStageType = Konva.Stage;
-import { useQuery, gql } from '@apollo/client';
 import { TopBar } from '@/components/manga/editor/header/TopBar';
 import { PageSidebar } from '@/components/manga/editor/sidebar/PageSidebar';
 import { RightSidebar } from '@/components/manga/editor/sidebar/RightSidebar';
 import { useMangaEditorMachine } from '@/hooks/useMangaEditorMachine';
+import { useGrpcProject } from '@/hooks/useGrpcProject';
+import { useGrpcScripts } from '@/hooks/useGrpcScripts';
+import { useGrpcPages } from '@/hooks/useGrpcPages';
+import { useGrpcPanels } from '@/hooks/useGrpcPanels';
 
 // Dynamically import CanvasArea to avoid SSR issues with Konva
 const CanvasArea = dynamic(
@@ -47,71 +50,6 @@ import type {
 } from '@/types/manga';
 import { toPanelImageSource, matchDataState, matchBubbleSelection, matchPanelSelection } from '@/types/manga';
 
-const MANGA_PROJECT_QUERY = gql`
-  query MangaProject($id: ID!) {
-    mangaProject(id: $id) {
-      id
-      title
-      description
-      createdAt
-      updatedAt
-    }
-  }
-`;
-
-const MANGA_SCRIPTS_QUERY = gql`
-  query MangaScripts($projectId: ID!) {
-    mangaScripts(projectId: $projectId) {
-      id
-      projectId
-      scriptId
-      title
-      pageCount
-      createdAt
-      updatedAt
-    }
-  }
-`;
-
-const MANGA_PAGES_QUERY = gql`
-  query MangaPages($scriptId: ID!) {
-    mangaPages(scriptId: $scriptId) {
-      id
-      pageId
-      pageNumber
-      width
-      height
-      konvaStageJson
-      createdAt
-      updatedAt
-    }
-  }
-`;
-
-const MANGA_PANELS_QUERY = gql`
-  query MangaPanels($pageId: ID!) {
-    mangaPanels(pageId: $pageId) {
-      id
-      panelId
-      layout
-      visual
-      dialogue {
-        speaker
-        text
-      }
-      x
-      y
-      width
-      height
-      zIndex
-      imageUrl
-      imageBase64
-      imageData
-      createdAt
-      updatedAt
-    }
-  }
-`;
 
 export default function MangaEditorPage({
   params,
@@ -133,70 +71,113 @@ export default function MangaEditorPage({
     }
   }, [actions]);
 
-  // Fetch project data
-  const { data: projectData, loading: projectLoading, error: projectError } = useQuery(MANGA_PROJECT_QUERY, {
-    variables: { id: params.projectId },
-    skip: !params.projectId,
-  });
+  // Fetch project data using gRPC
+  const { project, loading: projectLoading, error: projectError } = useGrpcProject(params.projectId);
 
   // Send project loaded event to machine
   useEffect(() => {
-    if (projectData?.mangaProject) {
-      send({ type: 'PROJECT_LOADED', project: projectData.mangaProject });
+    if (project) {
+      // Convert gRPC Project to machine format
+      send({ 
+        type: 'PROJECT_LOADED', 
+        project: {
+          id: project.id || '',
+          title: project.title || '',
+          description: project.description || undefined,
+          createdAt: project.createdAt || '',
+          updatedAt: project.updatedAt || '',
+        }
+      });
     }
     if (projectError) {
       send({ type: 'PROJECT_ERROR', error: projectError });
     }
-  }, [projectData, projectError, send]);
+  }, [project, projectError, send]);
 
-  // Fetch scripts for the project
-  const { data: scriptsData, loading: scriptsLoading, error: scriptsError } = useQuery(MANGA_SCRIPTS_QUERY, {
-    variables: { projectId: params.projectId },
-    skip: !params.projectId,
-  });
+  // Fetch scripts for the project using gRPC
+  const { scripts, loading: scriptsLoading, error: scriptsError } = useGrpcScripts(params.projectId);
 
   // Send scripts loaded event to machine
   useEffect(() => {
-    if (scriptsData?.mangaScripts) {
-      send({ type: 'SCRIPTS_LOADED', scripts: scriptsData.mangaScripts });
+    if (scripts && scripts.length > 0) {
+      // Convert gRPC Scripts to machine format
+      const formattedScripts = scripts.map(script => ({
+        id: script.id || '',
+        projectId: script.projectId || '',
+        scriptId: script.scriptId || '',
+        title: script.title || '',
+        pageCount: script.pageCount || undefined,
+        createdAt: script.createdAt || '',
+        updatedAt: script.updatedAt || '',
+      }));
+      send({ type: 'SCRIPTS_LOADED', scripts: formattedScripts });
     }
     if (scriptsError) {
       send({ type: 'SCRIPTS_ERROR', error: scriptsError });
     }
-  }, [scriptsData, scriptsError, send]);
+  }, [scripts, scriptsError, send]);
 
   // Get the first script ID from machine context
   const scriptId = machineData.selectedScriptId;
 
-  // Fetch pages data
-  const { data: pagesData, loading: pagesLoading, error: pagesError } = useQuery(MANGA_PAGES_QUERY, {
-    variables: { scriptId: scriptId || '' },
-    skip: !scriptId,
-  });
+  // Fetch pages data using gRPC
+  const { pages, loading: pagesLoading, error: pagesError } = useGrpcPages(scriptId);
 
   // Send pages loaded event to machine
   useEffect(() => {
-    if (pagesData?.mangaPages) {
-      send({ type: 'PAGES_LOADED', pages: pagesData.mangaPages });
+    if (pages && pages.length > 0) {
+      // Convert gRPC Pages to machine format
+      const formattedPages = pages.map(page => ({
+        id: page.id || '',
+        projectId: page.projectId || '',
+        scriptId: page.scriptId || '',
+        pageId: page.pageId || '',
+        pageNumber: page.pageNumber || undefined,
+        width: page.width || 0,
+        height: page.height || 0,
+        konvaStageJson: page.konvaStageJson ? JSON.parse(page.konvaStageJson) : undefined,
+        createdAt: page.createdAt || '',
+        updatedAt: page.updatedAt || '',
+      }));
+      send({ type: 'PAGES_LOADED', pages: formattedPages });
     }
     if (pagesError) {
       send({ type: 'PAGES_ERROR', error: pagesError });
     }
-  }, [pagesData, pagesError, send]);
+  }, [pages, pagesError, send]);
 
   // Get selected page ID from machine context
   const selectedPageId = machineData.selectedPageId;
 
-  // Fetch panels data for selected page
-  const { data: panelsData, loading: panelsLoading, error: panelsError } = useQuery(MANGA_PANELS_QUERY, {
-    variables: { pageId: selectedPageId || '' },
-    skip: !selectedPageId,
-    fetchPolicy: 'cache-and-network',
-  });
+  // Fetch panels data for selected page using gRPC
+  const { panels, loading: panelsLoading, error: panelsError } = useGrpcPanels(selectedPageId);
 
   // Send panels loaded event to machine
   useEffect(() => {
-    if (panelsData?.mangaPanels) {
+    if (panels && panels.length > 0) {
+      // Convert gRPC Panels to machine format
+      const formattedPanels = panels.map(panel => ({
+        id: panel.id || '',
+        projectId: panel.projectId || '',
+        pageId: panel.pageId || '',
+        panelId: panel.panelId || 0,
+        layout: panel.layout || undefined,
+        visual: panel.visual || undefined,
+        dialogue: panel.dialogue || [],
+        x: panel.x || undefined,
+        y: panel.y || undefined,
+        width: panel.width || undefined,
+        height: panel.height || undefined,
+        zIndex: panel.zIndex || 0,
+        imageUrl: panel.imageUrl || undefined,
+        imageBase64: panel.imageBase64 || undefined,
+        imageData: panel.imageData || undefined,
+        createdAt: panel.createdAt || '',
+        updatedAt: panel.updatedAt || '',
+      }));
+      send({ type: 'PANELS_LOADED', panels: formattedPanels });
+    }
+    if (panelsError) {
       send({ type: 'PANELS_LOADED', panels: panelsData.mangaPanels });
     }
     if (panelsError) {
@@ -218,22 +199,22 @@ export default function MangaEditorPage({
 
   // Convert pages data to component format
   const pages = useMemo(() => {
-    if (!pagesData?.mangaPages) return [];
-    return pagesData.mangaPages.map((page: MangaPage) => ({
-      id: page.id, // Use UUID id, not pageId (TEXT)
-      pageId: page.pageId,
+    if (!pages || pages.length === 0) return [];
+    return pages.map((page) => ({
+      id: page.id || '', // Use UUID id, not pageId (TEXT)
+      pageId: page.pageId || '',
       pageNumber: page.pageNumber || 0,
-      konvaStageJson: page.konvaStageJson,
+      konvaStageJson: page.konvaStageJson ? JSON.parse(page.konvaStageJson) : undefined,
     }));
-  }, [pagesData]);
+  }, [pages]);
 
   // Convert panels data to canvas format using union types
   const canvasPanels: CanvasPanel[] = useMemo(() => {
-    if (!panelsData?.mangaPanels) return [];
+    if (!panels || panels.length === 0) return [];
     
-    return panelsData.mangaPanels
-      .filter((panel: MangaPanel) => panel.x != null && panel.y != null && panel.width != null && panel.height != null)
-      .map((panel: MangaPanel) => {
+    return panels
+      .filter((panel) => panel.x != null && panel.y != null && panel.width != null && panel.height != null)
+      .map((panel) => {
         const imageSource = toPanelImageSource(panel.imageUrl, panel.imageBase64, panel.imageData);
         
         // Convert dialogue to speech bubbles and add to machine

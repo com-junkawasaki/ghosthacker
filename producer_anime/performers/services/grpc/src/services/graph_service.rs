@@ -2,8 +2,12 @@ use tonic::{Request, Response, Status};
 use nanoid::nanoid;
 use serde_json::Value as JsonValue;
 
-use crate::graph::postgres::{get_client, GraphNode, GraphEdge};
+use crate::graph::postgres::{get_client};
 use crate::graph::jsonld::JsonLdProcessor;
+
+// GraphNodeとGraphEdgeはprotoファイルから生成されたものを使用
+type DatabaseGraphNode = producerv2_graphql::graph::postgres::GraphNode;
+type DatabaseGraphEdge = producerv2_graphql::graph::postgres::GraphEdge;
 
 pub mod proto {
     tonic::include_proto!("producer.graph");
@@ -27,7 +31,7 @@ use proto::{
     GraphNode, GraphEdge, VectorSearchResult,
 };
 
-fn database_to_proto_node(db: crate::graph::postgres::GraphNode) -> GraphNode {
+fn database_to_proto_node(db: DatabaseGraphNode) -> GraphNode {
     GraphNode {
         id: db.id.unwrap_or_default(),
         label: db.label,
@@ -37,7 +41,7 @@ fn database_to_proto_node(db: crate::graph::postgres::GraphNode) -> GraphNode {
     }
 }
 
-fn database_to_proto_edge(db: crate::graph::postgres::GraphEdge) -> GraphEdge {
+fn database_to_proto_edge(db: DatabaseGraphEdge) -> GraphEdge {
     GraphEdge {
         id: db.id.unwrap_or_default(),
         source: db.source,
