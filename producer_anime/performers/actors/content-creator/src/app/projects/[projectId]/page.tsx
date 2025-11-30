@@ -13,8 +13,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { graphqlRequest } from '@/internal/graphql/client';
-import { GetProjectDocument, GetProjectQuery } from '@/generated/graphql';
 
 interface Project {
   id: string;
@@ -39,14 +37,16 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
       setLoading(true);
       setError(null);
       try {
-        const result = await graphqlRequest<GetProjectQuery>(GetProjectDocument, {
-          variables: { id: params.projectId },
-        });
-        if (result?.project) {
+        const response = await fetch(`/api/grpc/projects/${params.projectId}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        if (data?.project) {
           setProject({
-            ...result.project,
-            description: result.project.description ?? null,
-            status: result.project.status ?? null,
+            ...data.project,
+            description: data.project.description ?? null,
+            status: data.project.status ?? null,
           });
         } else {
           setError('Project not found');

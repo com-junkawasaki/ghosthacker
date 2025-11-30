@@ -7,8 +7,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { graphqlRequest } from '@/internal/graphql/client';
-import { GetStoryDocument, GetStoryQuery, CreateScriptDocument, CreateScriptMutation } from '@/generated/graphql';
 
 type PipelineStatus = 'pending' | 'running' | 'completed' | 'failed' | 'cancelled';
 type PipelineStep = 'ingest_story' | 'generate_script' | 'generate_image' | 'generate_audio' | 'compose_video' | 'upload_youtube';
@@ -49,11 +47,13 @@ export default function PipelineMonitorPage({ params }: { params: { projectId: s
 
     try {
       // Step 1: Storyを取得
-      const storyResult = await graphqlRequest<GetStoryQuery>(GetStoryDocument, {
-        variables: { id: storyId },
-      });
+      const storyResponse = await fetch(`/api/grpc/stories/${storyId}`);
+      if (!storyResponse.ok) {
+        throw new Error(`HTTP error! status: ${storyResponse.status}`);
+      }
+      const storyData = await storyResponse.json();
 
-      if (!storyResult.story) {
+      if (!storyData.story) {
         throw new Error('Story not found');
       }
 
@@ -63,23 +63,32 @@ export default function PipelineMonitorPage({ params }: { params: { projectId: s
       }));
 
       // Step 2: Scriptを生成（仮実装 - 実際のLLM処理は後で実装）
-      const scriptText = `Script generated from story: ${storyResult.story.title}\n\n${storyResult.story.content.substring(0, 500)}...`;
+      const scriptText = `Script generated from story: ${storyData.story.title}\n\n${storyData.story.content.substring(0, 500)}...`;
 
-      const scriptResult = await graphqlRequest<CreateScriptMutation>(CreateScriptDocument, {
-        variables: {
-          scriptText,
-          derivedFromStory: storyId,
-          status: 'draft',
+      const scriptResponse = await fetch('/api/grpc/scripts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify({
+          script_text: scriptText,
+          derived_from_story: storyId,
+          status: 'draft',
+        }),
       });
 
-      if (!scriptResult.createScript) {
+      if (!scriptResponse.ok) {
+        throw new Error(`HTTP error! status: ${scriptResponse.status}`);
+      }
+      const scriptData = await scriptResponse.json();
+
+      if (!scriptData.script) {
         throw new Error('Failed to create script');
       }
 
       setContext((prev) => ({
         ...(prev ?? { storyId, status: 'running', currentStep: 'generate_script' }),
-        scriptId: scriptResult.createScript.id,
+        scriptId: scriptData.script.id,
         currentStep: 'generate_image',
         status: 'completed', // 仮実装のため、ここで完了とする
       }));

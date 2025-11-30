@@ -13,19 +13,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
-import { graphqlRequest } from '@/internal/graphql/client';
-import {
-  CreateEpubDocumentDocument,
-  CreateEpubDocumentMutation,
-  CreateChapterDocument,
-  CreateChapterMutation,
-  GetEpubDocumentDocument,
-  GetEpubDocumentQuery,
-  GetChaptersDocument,
-  GetChaptersQuery,
-  UpdateEpubDocumentDocument,
-  UpdateEpubDocumentMutation,
-} from '@/generated/graphql';
 import { exportEPUB } from '@/internal/epub/export';
 import { TipTapEditor } from '@/internal/epub/TipTapEditor';
 import { JSONContent } from '@tiptap/core';
@@ -76,13 +63,15 @@ export default function EPUBEditorPage() {
   const getOrCreateDefaultChapter = useCallback(async (docId: string): Promise<string> => {
     try {
       // 既存のChapterを取得
-      const chaptersResult = await graphqlRequest<GetChaptersQuery>(GetChaptersDocument, {
-        variables: { documentId: docId },
-      });
+      const chaptersResponse = await fetch(`/api/grpc/epub/chapters?document_id=${docId}&is_epub=true`);
+      if (!chaptersResponse.ok) {
+        throw new Error(`HTTP error! status: ${chaptersResponse.status}`);
+      }
+      const chaptersData = await chaptersResponse.json();
 
-      if (chaptersResult.chapters && chaptersResult.chapters.length > 0) {
+      if (chaptersData.chapters && chaptersData.chapters.length > 0) {
         // 最初のChapterを使用（またはorder=1のChapter）
-        const defaultChapter = chaptersResult.chapters.find((c) => c.order === 1) || chaptersResult.chapters[0];
+        const defaultChapter = chaptersData.chapters.find((c: any) => c.order === 1) || chaptersData.chapters[0];
         if (!defaultChapter) {
           throw new Error('No chapter found');
         }
@@ -90,19 +79,27 @@ export default function EPUBEditorPage() {
       }
 
       // Chapterが存在しない場合は作成
-      const chapterResult = await graphqlRequest<CreateChapterMutation>(CreateChapterDocument, {
-        variables: {
-          documentId: docId,
-          isEpub: true,
+      const chapterResponse = await fetch('/api/grpc/epub/chapters', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          epub_document_id: docId,
           title: 'Content',
           order: 1,
-        },
+        }),
       });
 
-      if (!chapterResult.createChapter) {
+      if (!chapterResponse.ok) {
+        throw new Error(`HTTP error! status: ${chapterResponse.status}`);
+      }
+      const chapterData = await chapterResponse.json();
+
+      if (!chapterData.chapter) {
         throw new Error('Failed to create chapter');
       }
-      return chapterResult.createChapter.id;
+      return chapterData.chapter.id;
     } catch (err) {
       console.error('Failed to get or create default chapter:', err);
       throw err;
@@ -115,20 +112,29 @@ export default function EPUBEditorPage() {
     setError(null);
 
     try {
-      const result = await graphqlRequest<CreateEpubDocumentMutation>(CreateEpubDocumentDocument, {
-        variables: {
-          title: metadata.title || 'New EPUB Document',
-          metadata: Object.keys(metadata).length > 0 ? metadata : undefined,
+      const response = await fetch('/api/grpc/epub', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify({
+          title: metadata.title || 'New EPUB Document',
+          metadata_id: Object.keys(metadata).length > 0 ? JSON.stringify(metadata) : undefined,
+        }),
       });
 
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+
       const newDocument: EPUBDocument = {
-        id: result.createEpubDocument.id,
-        title: result.createEpubDocument.title,
-        metadata: result.createEpubDocument.metadata ?? null,
-        chapters: result.createEpubDocument.chapters ?? null,
-        created_at: result.createEpubDocument.createdAt,
-        updated_at: result.createEpubDocument.updatedAt,
+        id: data.epubDocument.id,
+        title: data.epubDocument.title,
+        metadata: data.epubDocument.metadata_id ?? null,
+        chapters: null,
+        created_at: data.epubDocument.createdAt,
+        updated_at: data.epubDocument.updatedAt,
       };
 
       setDocument(newDocument);
@@ -141,8 +147,12 @@ export default function EPUBEditorPage() {
       setDefaultChapterId(chapterId);
 
       // TipTapコンテンツを読み込む（存在する場合）
-      if (result.createEpubDocument.tiptapContent) {
-        setTipTapContent(result.createEpubDocument.tiptapContent as JSONContent);
+      if (data.epubDocument.tiptap_content) {
+        try {
+          setTipTapContent(JSON.parse(data.epubDocument.tiptap_content) as JSONContent);
+        } catch {
+          setTipTapContent({ type: 'doc', content: [] });
+        }
       } else {
         setTipTapContent({ type: 'doc', content: [] });
       }
@@ -158,13 +168,19 @@ export default function EPUBEditorPage() {
     try {
       setLoading(true);
       // EPUBDocumentを取得（tiptapContentを含む）
-      const result = await graphqlRequest<GetEpubDocumentQuery>(GetEpubDocumentDocument, {
-        variables: { id: documentId },
-      });
+      const response = await fetch(`/api/grpc/epub/${documentId}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
 
-      if (result.epubDocument?.tiptapContent) {
-        // TipTap JSONを直接使用
-        setTipTapContent(result.epubDocument.tiptapContent as JSONContent);
+      if (data.epubDocument?.tiptap_content) {
+        try {
+          // TipTap JSONを直接使用
+          setTipTapContent(JSON.parse(data.epubDocument.tiptap_content) as JSONContent);
+        } catch {
+          setTipTapContent({ type: 'doc', content: [] });
+        }
       } else {
         // TipTapコンテンツが存在しない場合は空のドキュメントを設定
         setTipTapContent({ type: 'doc', content: [] });
@@ -192,11 +208,14 @@ export default function EPUBEditorPage() {
 
         try {
           // TipTap JSONを直接データベースに保存
-          await graphqlRequest<UpdateEpubDocumentMutation>(UpdateEpubDocumentDocument, {
-            variables: {
-              id: document.id,
-              tiptapContent: content,
+          await fetch(`/api/grpc/epub/${document.id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
             },
+            body: JSON.stringify({
+              tiptap_content: content,
+            }),
           });
 
           // データを再読み込み（オプション）

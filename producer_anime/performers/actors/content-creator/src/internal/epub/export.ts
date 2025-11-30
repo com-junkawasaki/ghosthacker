@@ -10,12 +10,6 @@
  * }
  */
 
-import { graphqlRequest } from '@/internal/graphql/client';
-import {
-  GetEpubDocumentDocument,
-  GetChaptersDocument,
-  GetTextNodesDocument,
-} from '@/generated/graphql';
 
 interface EPUBExportOptions {
   documentId: string;
@@ -29,22 +23,26 @@ export async function exportEPUB(options: EPUBExportOptions): Promise<Blob> {
   const { documentId, format } = options;
 
   // ドキュメントを取得
-  const docResult = await graphqlRequest(GetEpubDocumentDocument, {
-    variables: { id: documentId },
-  });
+  const docResponse = await fetch(`/api/grpc/epub/${documentId}`);
+  if (!docResponse.ok) {
+    throw new Error(`HTTP error! status: ${docResponse.status}`);
+  }
+  const docData = await docResponse.json();
 
-  if (!docResult.epubDocument) {
+  if (!docData.epubDocument) {
     throw new Error('Document not found');
   }
 
-  const document = docResult.epubDocument;
+  const document = docData.epubDocument;
 
   // 章を取得
-  const chaptersResult = await graphqlRequest(GetChaptersDocument, {
-    variables: { documentId },
-  });
+  const chaptersResponse = await fetch(`/api/grpc/epub/chapters?document_id=${documentId}&is_epub=true`);
+  if (!chaptersResponse.ok) {
+    throw new Error(`HTTP error! status: ${chaptersResponse.status}`);
+  }
+  const chaptersData = await chaptersResponse.json();
 
-  const chapters = chaptersResult.chapters;
+  const chapters = chaptersData.chapters || [];
 
   // 各章の段落とテキストノードを取得
   const chapterContents = await Promise.all(

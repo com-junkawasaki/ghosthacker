@@ -7,8 +7,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { graphqlRequest } from '@/internal/graphql/client';
-import { CreateStoryDocument, CreateStoryMutation } from '@/generated/graphql';
 
 export default function StoryInputPage({ params }: { params: { projectId: string } }) {
   const router = useRouter();
@@ -23,18 +21,27 @@ export default function StoryInputPage({ params }: { params: { projectId: string
     setError(null);
 
     try {
-      const result = await graphqlRequest<CreateStoryMutation>(CreateStoryDocument, {
-        variables: {
+      const response = await fetch('/api/grpc/stories', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           title,
           content,
-        },
+        }),
       });
 
-      if (!result.createStory) {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (!data.story) {
         throw new Error('Failed to create story');
       }
 
-      router.push(`/projects/${params.projectId}/pipeline?storyId=${result.createStory.id}`);
+      router.push(`/projects/${params.projectId}/pipeline?storyId=${data.story.id}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {

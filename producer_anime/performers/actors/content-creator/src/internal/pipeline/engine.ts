@@ -9,8 +9,6 @@
  */
 
 import type { PipelineConfig, PipelineContext } from './types';
-import { graphqlRequest } from '../graphql/client';
-import { CreateStoryDocument, CreateScriptDocument } from '@/generated/graphql';
 
 export class PipelineEngine {
   private config: PipelineConfig;
@@ -34,37 +32,55 @@ export class PipelineEngine {
 
     try {
       // Step 1: Storyを保存
-      const storyResult = await graphqlRequest(CreateStoryDocument, {
-        variables: {
+      const storyResponse = await fetch('/api/grpc/stories', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           title: storyData.title,
           content: storyData.content,
-        },
+        }),
       });
 
-      if (!storyResult.createStory) {
+      if (!storyResponse.ok) {
+        throw new Error(`HTTP error! status: ${storyResponse.status}`);
+      }
+      const storyData_result = await storyResponse.json();
+
+      if (!storyData_result.story) {
         throw new Error('Failed to create story');
       }
 
-      context.storyId = storyResult.createStory.id;
+      context.storyId = storyData_result.story.id;
       context.currentStep = 'generate_script';
       context.updatedAt = new Date().toISOString();
 
       // Step 2: Scriptを生成（仮実装 - 実際のLLM処理は後で実装）
       const scriptText = `Script generated from story: ${storyData.title}\n\n${storyData.content.substring(0, 500)}...`;
 
-      const scriptResult = await graphqlRequest(CreateScriptDocument, {
-        variables: {
-          scriptText,
-          derivedFromStory: context.storyId,
-          status: 'draft',
+      const scriptResponse = await fetch('/api/grpc/scripts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify({
+          script_text: scriptText,
+          derived_from_story: context.storyId,
+          status: 'draft',
+        }),
       });
 
-      if (!scriptResult.createScript) {
+      if (!scriptResponse.ok) {
+        throw new Error(`HTTP error! status: ${scriptResponse.status}`);
+      }
+      const scriptData = await scriptResponse.json();
+
+      if (!scriptData.script) {
         throw new Error('Failed to create script');
       }
 
-      context.scriptId = scriptResult.createScript.id;
+      context.scriptId = scriptData.script.id;
       context.currentStep = 'generate_image';
       context.updatedAt = new Date().toISOString();
 
