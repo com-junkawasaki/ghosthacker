@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package producer.common;
 
+import "google/protobuf/timestamp.proto";
+
 // 空のメッセージ（Delete等で使用）
 message Empty {}
 
@@ -24,11 +26,5 @@ message PaginationResponse {
   int32 page = 2;
   int32 page_size = 3;
   int32 total_pages = 4;
-}
-
-// タイムスタンプ
-message Timestamp {
-  int64 seconds = 1;
-  int32 nanos = 2;
 }
 

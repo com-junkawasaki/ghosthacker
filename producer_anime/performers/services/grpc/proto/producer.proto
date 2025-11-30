@@ -3,6 +3,7 @@ syntax = "proto3";
 package producer;
 
 import "common.proto";
+import "google/protobuf/timestamp.proto";
 
 // ==================== メッセージ定義 ====================
 
@@ -12,16 +13,16 @@ message Project {
   optional string author = 3;
   optional string description = 4;
   optional string status = 5;
-  common.Timestamp created_at = 6;
-  common.Timestamp updated_at = 7;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
 }
 
 message Story {
   string id = 1;
   string title = 2;
   string content = 3;
-  common.Timestamp created_at = 4;
-  common.Timestamp updated_at = 5;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
 }
 
 message Script {
@@ -29,8 +30,8 @@ message Script {
   string script_text = 2;
   string derived_from_story = 3;
   string status = 4;
-  common.Timestamp created_at = 5;
-  common.Timestamp updated_at = 6;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
 }
 
 message Metadata {
@@ -42,8 +43,8 @@ message Metadata {
   optional string publisher = 6;
   optional string date = 7;
   optional string description = 8;
-  common.Timestamp created_at = 9;
-  common.Timestamp updated_at = 10;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
 }
 
 message EPUBDocument {
@@ -51,8 +52,8 @@ message EPUBDocument {
   string title = 2;
   optional string metadata_id = 3;
   optional string tiptap_content = 4; // JSON文字列
-  common.Timestamp created_at = 5;
-  common.Timestamp updated_at = 6;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
 }
 
 message KindleDocument {
@@ -60,8 +61,8 @@ message KindleDocument {
   string title = 2;
   optional string metadata_id = 3;
   optional string tiptap_content = 4; // JSON文字列
-  common.Timestamp created_at = 5;
-  common.Timestamp updated_at = 6;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
 }
 
 message Chapter {
@@ -70,8 +71,8 @@ message Chapter {
   optional string kindle_document_id = 3;
   string title = 4;
   int32 order = 5;
-  common.Timestamp created_at = 6;
-  common.Timestamp updated_at = 7;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
 }
 
 message Section {
@@ -79,8 +80,8 @@ message Section {
   string chapter_id = 2;
   string title = 3;
   int32 order = 4;
-  common.Timestamp created_at = 5;
-  common.Timestamp updated_at = 6;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
 }
 
 message Paragraph {
@@ -89,8 +90,8 @@ message Paragraph {
   optional string section_id = 3;
   int32 order = 4;
   optional string style = 5;
-  common.Timestamp created_at = 6;
-  common.Timestamp updated_at = 7;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
 }
 
 message TextNode {
@@ -99,8 +100,8 @@ message TextNode {
   string content = 3;
   int32 order = 4;
   optional string style = 5;
-  common.Timestamp created_at = 6;
-  common.Timestamp updated_at = 7;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
 }
 
 // ==================== リクエスト/レスポンス ====================

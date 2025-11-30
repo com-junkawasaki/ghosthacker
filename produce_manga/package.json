@@ -13,16 +13,22 @@
     "test:coverage": "vitest run --coverage",
     "codegen": "graphql-codegen --config codegen.yaml",
     "codegen:watch": "graphql-codegen --config codegen.yaml --watch",
-    "codegen:docker": "graphql-codegen --config codegen.yaml"
+    "codegen:docker": "graphql-codegen --config codegen.yaml",
+    "grpc:generate": "node scripts/generate-grpc-types.js",
+    "grpc:generate:watch": "node scripts/generate-grpc-types.js --watch"
   },
   "dependencies": {
     "@apollo/client": "^3.11.0",
+    "@improbable-eng/grpc-web": "^0.15.0",
+    "@improbable-eng/grpc-web-node-http-transport": "^0.15.0",
     "@xstate/inspect": "^0.8.0",
     "@xstate/react": "^4.0.0",
+    "google-protobuf": "^3.21.2",
     "graphql": "^16.9.0",
     "graphql-tag": "^2.12.6",
     "konva": "^9.2.3",
     "next": "^14.2.0",
+    "protobufjs": "^7.2.5",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "react-konva": "^18.2.10",
@@ -54,6 +60,7 @@
     "tailwindcss": "^3.4.13",
     "typescript": "^5.6.0",
     "typescript-eslint": "^8.46.4",
-    "vitest": "^2.1.9"
+    "vitest": "^2.1.9",
+    "ts-proto": "^2.4.0"
   }
 }

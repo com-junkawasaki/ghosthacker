@@ -6,11 +6,14 @@
  * gRPC API service for Manga Editor Tool
  * Provides gRPC operations for manga editing
  * Uses PostgreSQL database with sqlx for data persistence
+ * Supports both gRPC and gRPC-Web protocols
  */
 use manga_editor_grpc::ports::postgres::create_pool;
 use manga_editor_grpc::service::manga_editor::MangaEditorServiceImpl;
 use manga_editor_grpc::service::manga_editor::proto::manga_editor_service_server::MangaEditorServiceServer;
 use tonic::transport::Server;
+use tower::ServiceBuilder;
+use tower_http::cors::{CorsLayer, Any};
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
@@ -36,10 +39,23 @@ async fn main() -> anyhow::Result<()> {
     
     println!("gRPC server running on http://{}", addr);
     println!("gRPC endpoint: http://{}:{}/manga_editor.MangaEditorService", host, port);
+    println!("gRPC-Web endpoint: http://{}:{}/manga_editor.MangaEditorService", host, port);
     
-    // Build and start server
+    // Create gRPC-Web service with CORS
+    let grpc_web_service = tonic_web::enable(MangaEditorServiceServer::new(manga_editor_service));
+    
+    // Build and start server with CORS for gRPC-Web
     Server::builder()
-        .add_service(MangaEditorServiceServer::new(manga_editor_service))
+        .accept_http1(true) // Enable HTTP/1.1 for gRPC-Web
+        .layer(
+            ServiceBuilder::new()
+                .layer(CorsLayer::new()
+                    .allow_origin(Any)
+                    .allow_methods(Any)
+                    .allow_headers(Any)
+                    .expose_headers(Any))
+        )
+        .add_service(grpc_web_service)
         .serve(addr)
         .await?;
     

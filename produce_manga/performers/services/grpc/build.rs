@@ -3,10 +3,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .build_server(true)
         .build_client(true)
         .protoc_arg("--experimental_allow_proto3_optional")
-        .compile(
-            &["proto/manga.proto"],
-            &["proto"],
-        )?;
+        .compile_protos(&["proto/manga.proto"])?;
     Ok(())
 }
 
