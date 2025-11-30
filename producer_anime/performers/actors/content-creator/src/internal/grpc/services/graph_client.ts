@@ -209,3 +209,30 @@ export async function exportJsonLd(projectId?: string): Promise<Record<string, a
   return JSON.parse(data.jsonld);
 }
 
+/**
+ * グラフエッジを作成
+ */
+export async function createGraphEdge(
+  source: string,
+  target: string,
+  label: string,
+  properties?: Record<string, any>
+): Promise<string> {
+  const response = await fetch('/api/grpc/graph/edge', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      source,
+      target,
+      label,
+      properties: properties ? JSON.stringify(properties) : '{}',
+    }),
+  });
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.error || `Failed to create graph edge: ${response.statusText}`);
+  }
+  const data = await response.json();
+  return data.id;
+}
+
