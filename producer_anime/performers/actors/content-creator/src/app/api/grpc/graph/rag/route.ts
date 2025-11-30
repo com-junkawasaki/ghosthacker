@@ -10,7 +10,7 @@ import path from 'path';
 
 const GRPC_API_URL = process.env.GRPC_API_URL || 'grpc:50051';
 
-const PROTO_PATH = path.join(process.cwd(), '../../../../services/grpc/proto');
+const PROTO_PATH = path.join(process.cwd(), '../../../services/grpc/proto');
 
 const packageDefinition = protoLoader.loadSync(
   [

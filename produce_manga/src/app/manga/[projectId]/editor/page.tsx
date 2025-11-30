@@ -333,6 +333,8 @@ export default function MangaEditorPage({
       id: page.id || '', // Use UUID id, not pageId (TEXT)
       pageId: page.pageId || '',
       pageNumber: page.pageNumber || 0,
+      width: page.width || 800,
+      height: page.height || 1200,
       konvaStageJson: page.konvaStageJson ? JSON.parse(page.konvaStageJson) : undefined,
     }));
   }, [pagesList]);
@@ -629,7 +631,10 @@ export default function MangaEditorPage({
         ? { 
             pages: data.pages, 
             selectedPageId, 
-            onPageSelect: (pageId: string) => actions.selectPage(pageId),
+            onPageSelect: (pageId: string) => {
+              console.log('Page selected:', pageId);
+              actions.selectPage(pageId);
+            },
             layerGroups,
             layers, // Backward compatibility
             onLayerToggle: handleLayerToggle,
@@ -638,7 +643,10 @@ export default function MangaEditorPage({
           }
         : { 
             pages: data.pages, 
-            onPageSelect: (pageId: string) => actions.selectPage(pageId),
+            onPageSelect: (pageId: string) => {
+              console.log('Page selected:', pageId);
+              actions.selectPage(pageId);
+            },
             layerGroups,
             layers, // Backward compatibility
             onLayerToggle: handleLayerToggle,
@@ -646,9 +654,25 @@ export default function MangaEditorPage({
             pageAddLoading: createPageLoading,
           };
       
+      // Get selected page's konvaStageJson and dimensions
+      const selectedPageData = pages.find((p) => p.id === selectedPageId || p.pageId === selectedPageId);
+      const selectedPageKonvaJson = selectedPageData?.konvaStageJson;
+      const selectedPageWidth = selectedPageData?.width || 800;
+      const selectedPageHeight = selectedPageData?.height || 1200;
+
+      console.log('CanvasArea props:', {
+        selectedPageId,
+        selectedPageData: selectedPageData ? { id: selectedPageData.id, pageId: selectedPageData.pageId } : null,
+        hasKonvaJson: !!selectedPageKonvaJson,
+        width: selectedPageWidth,
+        height: selectedPageHeight,
+        panelsCount: data.panels.length,
+      });
+
       const canvasAreaProps = {
-        width: 800,
-        height: 1200,
+        width: selectedPageWidth,
+        height: selectedPageHeight,
+        konvaStageJson: selectedPageKonvaJson,
         panels: data.panels.map((panel: CanvasPanel) => {
           const result: {
             id: string;

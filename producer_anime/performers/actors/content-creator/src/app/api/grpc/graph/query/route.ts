@@ -11,7 +11,8 @@ import path from 'path';
 const GRPC_API_URL = process.env.GRPC_API_URL || 'grpc:50051';
 
 // protoファイルのパス
-const PROTO_PATH = path.join(process.cwd(), '../../../../services/grpc/proto');
+// process.cwd()はNext.jsアプリのルート（performers/actors/content-creator）を返す
+const PROTO_PATH = path.join(process.cwd(), '../../../services/grpc/proto');
 
 // protoファイルのロードオプション
 const packageDefinition = protoLoader.loadSync(

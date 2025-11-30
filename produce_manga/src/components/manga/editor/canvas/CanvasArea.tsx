@@ -152,13 +152,46 @@ function CanvasAreaComponent({
   useEffect(() => {
     if (konvaStageJson && stageRef.current && typeof window !== 'undefined') {
       // Load stage from JSON
+      // Note: We need to be careful not to destroy the stage as it breaks event listeners
+      // Instead, we'll update the stage content by clearing and rebuilding layers
       import('konva').then((KonvaModule) => {
         const stage = stageRef.current;
         if (stage && KonvaModule.default) {
           const Konva = KonvaModule.default;
-          stage.destroy();
-          const newStage = Konva.Stage.create(konvaStageJson);
-          Object.assign(stage, newStage);
+          try {
+            // Clear existing layers first (but keep the stage itself)
+            const layers = stage.getLayers();
+            layers.forEach((layer) => {
+              layer.destroy();
+            });
+            
+            // Create a temporary stage from JSON to extract its layers
+            const tempStage = Konva.Stage.create(konvaStageJson);
+            
+            // Copy layers from temp stage to actual stage
+            const tempLayers = tempStage.getLayers();
+            tempLayers.forEach((tempLayer) => {
+              // Clone the layer to avoid destroying it when tempStage is destroyed
+              const newLayer = tempLayer.clone();
+              stage.add(newLayer);
+            });
+            
+            // Update stage dimensions if they changed
+            if (tempStage.width() !== stage.width() || tempStage.height() !== stage.height()) {
+              stage.width(tempStage.width());
+              stage.height(tempStage.height());
+            }
+            
+            // Destroy the temporary stage (this won't affect the cloned layers)
+            tempStage.destroy();
+            
+            // Force redraw
+            stage.draw();
+            
+            console.log('konvaStageJson loaded successfully');
+          } catch (error) {
+            console.error('Failed to load konvaStageJson:', error);
+          }
         }
       });
     }
@@ -196,18 +229,28 @@ function CanvasAreaComponent({
 
   const handleStageClick = (e: any) => {
     const stage = e.target.getStage();
-    if (!stage) return;
+    if (!stage) {
+      console.warn('Stage not found in handleStageClick');
+      return;
+    }
     
     const pos = stage.getPointerPosition();
-    if (!pos) return;
+    if (!pos) {
+      console.warn('Pointer position not found in handleStageClick');
+      return;
+    }
+    
+    console.log('Stage clicked:', { target: e.target, pos, selectedTool });
     
     // Deselect when clicking on empty area
-    if (e.target === stage) {
+    if (e.target === stage || e.target === stage.getContent()) {
+      console.log('Clicked on stage background, deselecting');
       onNodeSelect?.(undefined);
       onStageClick?.(pos.x, pos.y);
     } else {
       // Select clicked node
       const nodeId = e.target.id();
+      console.log('Clicked on node:', { nodeId, targetType: e.target.getType() });
       if (nodeId) {
         onNodeSelect?.(nodeId);
         onStageClick?.(pos.x, pos.y, nodeId);
@@ -247,10 +290,25 @@ function CanvasAreaComponent({
               height={height}
               className="bg-white shadow-lg"
               onClick={handleStageClick}
-              onMouseDown={handleStageUpdate}
-              onMouseUp={handleStageUpdate}
+              onMouseDown={(e) => {
+                console.log('Stage onMouseDown:', { selectedTool });
+                handleStageUpdate();
+              }}
+              onMouseUp={(e) => {
+                console.log('Stage onMouseUp:', { selectedTool });
+                handleStageUpdate();
+              }}
               onTouchStart={handleStageUpdate}
               onTouchEnd={handleStageUpdate}
+              // Enable pointer events for Apple Pencil pressure support
+              onPointerDown={(e) => {
+                console.log('Stage onPointerDown:', { selectedTool, pressure: e.evt?.pressure });
+                handleStageUpdate();
+              }}
+              onPointerUp={(e) => {
+                console.log('Stage onPointerUp:', { selectedTool });
+                handleStageUpdate();
+              }}
             >
               <LayerComponent>
                 <PanelLayerComponent panels={panels} />
