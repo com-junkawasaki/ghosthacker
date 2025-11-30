@@ -9,10 +9,10 @@ RUN apk add --no-cache musl-dev openssl-dev
 ENV RUSTUP_UPDATE_ROOT=""
 ENV RUSTUP_DIST_SERVER=""
 
-# GraphQLサービスディレクトリをコピー
-COPY performers/services/graphql/ ./performers/services/graphql/
+# gRPC-Webサービスディレクトリをコピー
+COPY performers/services/grpc-web/ ./performers/services/grpc-web/
 
-WORKDIR /app/performers/services/graphql
+WORKDIR /app/performers/services/grpc-web
 
 # rust-toolchain.tomlと.cargo/config.tomlを削除してrustupの自動更新を防ぐ（Dockerビルド時のエラー回避）
 RUN rm -f rust-toolchain.toml .cargo/config.toml || true
@@ -28,15 +28,15 @@ RUN apk add --no-cache ca-certificates curl
 WORKDIR /app
 
 # ビルドしたバイナリをコピー
-COPY --from=builder /app/performers/services/graphql/target/release/producerv2-graphql /app/producerv2-graphql
+COPY --from=builder /app/performers/services/grpc-web/target/release/producerv2-grpc-web /app/producerv2-grpc-web
 
 # マイグレーションファイルをコピー
-COPY performers/services/graphql/migrations ./migrations
+COPY performers/services/grpc-web/migrations ./migrations
 
 EXPOSE 8080
 
 HEALTHCHECK --interval=10s --timeout=5s --retries=3 \
   CMD curl -f http://localhost:8080/health || exit 1
 
-CMD ["/app/producerv2-graphql"]
+CMD ["/app/producerv2-grpc-web"]
 

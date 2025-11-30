@@ -12,7 +12,7 @@
 use anyhow::Result;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
-use sqlx::{postgres::PgPool, Column, Row};
+use sqlx::{postgres::PgPool, Column, Row, types::Json};
 use std::sync::{Arc, OnceLock};
 use tracing::{error, info};
 
@@ -243,15 +243,59 @@ impl PostgreSQLGraphClient {
         for row in rows {
             let mut map = serde_json::Map::new();
             for (i, column) in row.columns().iter().enumerate() {
-                let value: Value = match row.try_get::<Option<String>, _>(i) {
-                    Ok(Some(v)) => Value::String(v),
-                    Ok(None) => Value::Null,
-                    Err(_) => {
-                        // 他の型も試す
-                        Value::Null
+                let column_name = column.name();
+                let value: Value = {
+                    // JSONB型のカラム（properties, jsonld）を優先的に処理
+                    if column_name == "properties" || column_name == "jsonld" {
+                        match row.try_get::<Option<Json<Value>>, _>(i) {
+                            Ok(Some(json)) => json.0,
+                            Ok(None) => Value::Null,
+                            Err(_) => {
+                                // JSONBとして取得できない場合は、文字列として試す
+                                match row.try_get::<Option<String>, _>(i) {
+                                    Ok(Some(s)) => {
+                                        // 文字列をJSONとしてパース
+                                        serde_json::from_str(&s).unwrap_or(Value::String(s))
+                                    }
+                                    Ok(None) => Value::Null,
+                                    Err(_) => Value::Null,
+                                }
+                            }
+                        }
+                    } else {
+                        // その他のカラムは型を判定して取得
+                        // まず文字列として試す
+                        match row.try_get::<Option<String>, _>(i) {
+                            Ok(Some(v)) => Value::String(v),
+                            Ok(None) => Value::Null,
+                            Err(_) => {
+                                // 整数として試す
+                                match row.try_get::<Option<i64>, _>(i) {
+                                    Ok(Some(v)) => Value::Number(v.into()),
+                                    Ok(None) => Value::Null,
+                                    Err(_) => {
+                                        // 浮動小数点として試す
+                                        match row.try_get::<Option<f64>, _>(i) {
+                                            Ok(Some(v)) => {
+                                                Value::Number(serde_json::Number::from_f64(v).unwrap_or(0.into()))
+                                            }
+                                            Ok(None) => Value::Null,
+                                            Err(_) => {
+                                                // ブール値として試す
+                                                match row.try_get::<Option<bool>, _>(i) {
+                                                    Ok(Some(v)) => Value::Bool(v),
+                                                    Ok(None) => Value::Null,
+                                                    Err(_) => Value::Null,
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 };
-                map.insert(column.name().to_string(), value);
+                map.insert(column_name.to_string(), value);
             }
             results.push(Value::Object(map));
         }
