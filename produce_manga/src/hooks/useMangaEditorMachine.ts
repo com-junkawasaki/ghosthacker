@@ -14,34 +14,16 @@ import type { SpeechBubble } from '@/types/manga';
 import type Konva from 'konva';
 type KonvaStageType = Konva.Stage;
 
-// Conditionally import inspect for XState v5 compatibility
-let inspect: ((options?: { iframe?: boolean; url?: string }) => unknown) | undefined;
-if (process.env.NODE_ENV === 'development') {
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const inspectModule = require('@xstate/inspect');
-    inspect = inspectModule.inspect;
-  } catch {
-    // @xstate/inspect may not be fully compatible with XState v5
-    // Inspector functionality will be disabled
-    inspect = undefined;
-  }
-}
+// XState inspect is disabled due to compatibility issues with XState v5
+// @xstate/inspect v0.8.0 has known issues accessing 'client' property
+// TODO: Re-enable when @xstate/inspect is updated for XState v5 compatibility
 
 export function useMangaEditorMachine(projectId: string) {
   const [snapshot, send] = useMachine(mangaEditorPageMachine, {
     input: {
       projectId,
     },
-    // Only enable inspect if available and in development
-    ...(process.env.NODE_ENV === 'development' && inspect
-      ? {
-          inspect: inspect({
-            iframe: false,
-            url: 'https://stately.ai/viz?inspect',
-          }),
-        }
-      : {}),
+    // Inspect disabled due to XState v5 compatibility issues
   });
 
   // Helper functions for common actions - memoized to prevent infinite loops

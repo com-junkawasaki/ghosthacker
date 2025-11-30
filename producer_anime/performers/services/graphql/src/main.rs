@@ -22,10 +22,14 @@ use poem::{
 
 mod schema;
 mod database;
+mod graph;
 mod validation;
 
 use schema::{MutationRoot, QueryRoot};
 use async_graphql::EmptySubscription;
+use graph::helixdb::initialize as initialize_helixdb;
+use graph::embedding::initialize as initialize_embedding;
+use graph::rag::initialize as initialize_rag;
 
 #[handler]
 async fn graphql_playground() -> Html<String> {
@@ -46,6 +50,15 @@ async fn main() -> anyhow::Result<()> {
 
     // PostgreSQL データベースクライアントを初期化
     database::client::initialize().await?;
+
+    // HelixDBクライアントを初期化
+    initialize_helixdb().await?;
+
+    // Embeddingサービスを初期化
+    initialize_embedding().await?;
+
+    // Graph RAGサービスを初期化
+    initialize_rag().await?;
 
     // GraphQLスキーマを構築
     let schema = Schema::build(
