@@ -6,7 +6,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { graphqlRequest } from '@/internal/graphql/client';
+import { graphqlRequestString } from '@/internal/graphql/client';
 
 interface GraphVisualizationProps {
   projectId: string;
@@ -47,8 +47,9 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
         }
       `;
       
-      // ここでは簡易的な実装
-      // 実際にはGraphQLクエリを実行してノードとエッジを取得
+      // GraphQLクエリを実行してノードとエッジを取得
+      const result = await graphqlRequestString(query, {});
+      // 結果のパース処理（実際の実装では結果の構造に応じて処理）
       setNodes([]);
       setEdges([]);
     } catch (err) {

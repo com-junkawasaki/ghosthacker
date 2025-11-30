@@ -6,7 +6,7 @@
 'use client';
 
 import { useState } from 'react';
-import { graphqlRequest } from '@/internal/graphql/client';
+import { graphqlRequestString } from '@/internal/graphql/client';
 
 interface ImportExportProps {
   projectId: string;
@@ -40,8 +40,8 @@ export default function ImportExport({ projectId }: ImportExportProps) {
         }
       `;
 
-      const result = await graphqlRequest(query, {
-        variables: { nodeIds: ids },
+      const result = await graphqlRequestString(query, {
+        nodeIds: ids,
       });
 
       if (result?.exportJsonLd) {
@@ -80,8 +80,9 @@ export default function ImportExport({ projectId }: ImportExportProps) {
         }
       `;
 
-      const result = await graphqlRequest(mutation, {
-        variables: { jsonld, projectId },
+      const result = await graphqlRequestString(mutation, {
+        jsonld,
+        projectId,
       });
 
       if (result?.importJsonLd) {

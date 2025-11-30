@@ -80,8 +80,9 @@ export default function JsonLdEditor({ projectId }: JsonLdEditorProps) {
         }
       `;
 
-      const result = await graphqlRequest(mutation, {
-        variables: { jsonld: parsed, projectId },
+      const result = await graphqlRequestString(mutation, {
+        jsonld: parsed,
+        projectId,
       });
 
       if (result?.importJsonLd) {

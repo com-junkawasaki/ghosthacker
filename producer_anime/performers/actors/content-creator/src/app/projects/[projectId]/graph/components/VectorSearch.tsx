@@ -6,7 +6,7 @@
 'use client';
 
 import { useState } from 'react';
-import { graphqlRequest } from '@/internal/graphql/client';
+import { graphqlRequestString } from '@/internal/graphql/client';
 
 interface VectorSearchProps {
   projectId: string;
@@ -55,8 +55,9 @@ export default function VectorSearch({ projectId }: VectorSearchProps) {
         }
       `;
 
-      const result = await graphqlRequest(query, {
-        variables: { queryVector: vector, limit },
+      const result = await graphqlRequestString(query, {
+        queryVector: vector,
+        limit,
       });
 
       if (result?.vectorSearch) {

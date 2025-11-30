@@ -6,7 +6,7 @@
 'use client';
 
 import { useState } from 'react';
-import { graphqlRequest } from '@/internal/graphql/client';
+import { graphqlRequestString } from '@/internal/graphql/client';
 
 interface SemanticSearchProps {
   projectId: string;
@@ -43,8 +43,9 @@ export default function SemanticSearch({ projectId }: SemanticSearchProps) {
         }
       `;
 
-      const result = await graphqlRequest(searchQuery, {
-        variables: { query, limit: 10 },
+      const result = await graphqlRequestString(searchQuery, {
+        query,
+        limit: 10,
       });
 
       if (result?.semanticSearch) {

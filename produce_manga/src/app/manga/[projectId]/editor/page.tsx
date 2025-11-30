@@ -34,6 +34,8 @@ import { useUndoRedo } from '@/hooks/useUndoRedo';
 import { exportStageAsPNG, exportStageAsJPEG, exportStageAsPDF } from '@/lib/export/imageExport';
 import { ToolType } from '@/lib/konva/tools';
 import { AIModel } from '@/lib/ai/modelBrowser';
+import { extractPanelLayers } from '@/lib/konva/layerExtractor';
+import { updateLayerVisibility } from '@/lib/konva/layerVisibility';
 import type { 
   MangaPage, 
   MangaPanel, 
@@ -219,7 +221,9 @@ export default function MangaEditorPage({
     if (!pagesData?.mangaPages) return [];
     return pagesData.mangaPages.map((page: MangaPage) => ({
       id: page.id, // Use UUID id, not pageId (TEXT)
+      pageId: page.pageId,
       pageNumber: page.pageNumber || 0,
+      konvaStageJson: page.konvaStageJson,
     }));
   }, [pagesData]);
 
@@ -262,14 +266,45 @@ export default function MangaEditorPage({
       });
   }, [panelsData, actions, machineEditor.speechBubbles]);
 
-  // Derive layers from panels
+  // Extract layer groups from konvaStageJson of selected page
+  const layerGroups = useMemo(() => {
+    if (!selectedPageId) {
+      return [];
+    }
+    
+    // Find selected page from pagesData (has konvaStageJson)
+    const selectedPageData = pagesData?.mangaPages?.find(
+      (p: MangaPage) => p.id === selectedPageId || p.pageId === selectedPageId
+    );
+    
+    if (!selectedPageData?.konvaStageJson) {
+      return [];
+    }
+    
+    // Extract layer groups from konvaStageJson
+    return extractPanelLayers(selectedPageData.konvaStageJson, panelsData?.mangaPanels || []);
+  }, [selectedPageId, pagesData, panelsData]);
+
+  // Derive layers from panels (backward compatibility)
   const layers = useMemo(() => {
+    // If we have layer groups, flatten them for backward compatibility
+    if (layerGroups.length > 0) {
+      return layerGroups.flatMap((group) =>
+        group.layers.map((layer) => ({
+          id: layer.id,
+          name: layer.name,
+          visible: layer.visible,
+        }))
+      );
+    }
+    
+    // Fallback to simple panel-based layers
     return canvasPanels.map((panel, index) => ({
       id: panel.id,
       name: `Panel ${index + 1}`,
       visible: true,
     }));
-  }, [canvasPanels]);
+  }, [layerGroups, canvasPanels]);
 
   // Determine data loading state using ts-pattern
   const dataState: DataState<{ pages: typeof pages; panels: typeof canvasPanels }> = useMemo(() => {
@@ -496,10 +531,32 @@ export default function MangaEditorPage({
         );
       }
       
+      // Handle layer visibility toggle
+      const handleLayerToggle = (layerId: string, visible: boolean) => {
+        // Update visibility in Konva stage
+        updateLayerVisibility(stageRef, layerId, visible);
+        
+        // TODO: Update konvaStageJson and save to database
+        // This would require updating the stage JSON and calling a mutation
+      };
+
       // Always show PageSidebar and CanvasArea if pages exist
       const pageSidebarProps = selectedPageId 
-        ? { pages: data.pages, selectedPageId, onPageSelect: (pageId: string) => actions.selectPage(pageId), layers }
-        : { pages: data.pages, onPageSelect: (pageId: string) => actions.selectPage(pageId), layers };
+        ? { 
+            pages: data.pages, 
+            selectedPageId, 
+            onPageSelect: (pageId: string) => actions.selectPage(pageId),
+            layerGroups,
+            layers, // Backward compatibility
+            onLayerToggle: handleLayerToggle,
+          }
+        : { 
+            pages: data.pages, 
+            onPageSelect: (pageId: string) => actions.selectPage(pageId),
+            layerGroups,
+            layers, // Backward compatibility
+            onLayerToggle: handleLayerToggle,
+          };
       
       const canvasAreaProps = {
         width: 1200,

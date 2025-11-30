@@ -27,6 +27,13 @@ services:
       # PostgreSQL Database
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
       RUST_LOG: debug
+      
+      # HelixDB
+      HELIXDB_URL: http://helixdb:8080
+      HELIXDB_API_KEY: ""
+      
+      # OpenAI API (for embeddings and Graph RAG)
+      OPENAI_API_KEY: sk-placeholder-openai-api-key
     command: ["/app/producerv2-graphql"]
     # volumes:
     #   - ./performers/services/graphql:/app
@@ -69,6 +76,10 @@ services:
       OPENAI_API_KEY: sk-placeholder-openai-api-key
       ANTHROPIC_API_KEY: sk-ant-placeholder-anthropic-api-key
       OLLAMA_BASE_URL: http://host.docker.internal:11434
+      
+      # HelixDB
+      HELIXDB_URL: http://helixdb:8080
+      HELIXDB_API_KEY: ""
       
       # Media Providers (開発用のプレースホルダー)
       HUME_API_KEY: placeholder-hume-api-key

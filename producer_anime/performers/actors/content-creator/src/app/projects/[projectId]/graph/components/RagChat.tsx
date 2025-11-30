@@ -6,7 +6,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { graphqlRequest } from '@/internal/graphql/client';
+import { graphqlRequestString } from '@/internal/graphql/client';
 
 interface RagChatProps {
   projectId: string;
@@ -50,8 +50,9 @@ export default function RagChat({ projectId }: RagChatProps) {
         }
       `;
 
-      const result = await graphqlRequest(query, {
-        variables: { query: input, projectId },
+      const result = await graphqlRequestString(query, {
+        query: input,
+        projectId,
       });
 
       if (result?.graphRagQuery) {

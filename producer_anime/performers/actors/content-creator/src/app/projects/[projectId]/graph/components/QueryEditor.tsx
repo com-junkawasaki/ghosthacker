@@ -6,7 +6,7 @@
 'use client';
 
 import { useState } from 'react';
-import { graphqlRequest } from '@/internal/graphql/client';
+import { graphqlRequestString } from '@/internal/graphql/client';
 
 interface QueryEditorProps {
   projectId: string;
@@ -32,8 +32,8 @@ export default function QueryEditor({ projectId }: QueryEditorProps) {
         }
       `;
 
-      const result = await graphqlRequest(graphqlQuery, {
-        variables: { query },
+      const result = await graphqlRequestString(graphqlQuery, {
+        query,
       });
 
       if (result?.graphQuery) {

@@ -72,3 +72,14 @@ export async function graphqlRequest<TResult, TVariables = Record<string, unknow
   }
 }
 
+/**
+ * 文字列クエリを実行（動的クエリ用）
+ */
+export async function graphqlRequestString<TResult = any>(
+  query: string,
+  variables?: Record<string, unknown>
+): Promise<TResult> {
+  const gqlClient = getClient();
+  return gqlClient.request<TResult>(query, variables);
+}
+
