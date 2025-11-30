@@ -20,6 +20,8 @@ use proto::{
     GraphQueryRequest, GraphQueryResponse,
     GetGraphNodeRequest, GetGraphNodeResponse,
     GetGraphEdgeRequest, GetGraphEdgeResponse,
+    ListGraphNodesRequest, ListGraphNodesResponse,
+    ListGraphEdgesRequest, ListGraphEdgesResponse,
     CreateGraphNodeRequest, CreateGraphNodeResponse,
     UpdateGraphNodeRequest, UpdateGraphNodeResponse,
     DeleteGraphNodeRequest, DeleteGraphNodeResponse,
@@ -108,6 +110,54 @@ impl GraphService for GraphServiceImpl {
             })),
             Ok(None) => Ok(Response::new(GetGraphEdgeResponse { edge: None })),
             Err(e) => Err(Status::internal(format!("Failed to get graph edge: {}", e))),
+        }
+    }
+
+    async fn list_graph_nodes(
+        &self,
+        request: Request<ListGraphNodesRequest>,
+    ) -> Result<Response<ListGraphNodesResponse>, Status> {
+        let req = request.into_inner();
+        let client = get_client()
+            .map_err(|e| Status::internal(format!("PostgreSQL graph client error: {}", e)))?;
+        
+        let limit = if req.limit > 0 { Some(req.limit as usize) } else { Some(100) };
+        let offset = if req.offset > 0 { Some(req.offset as usize) } else { Some(0) };
+        
+        match client.list_nodes(limit, offset).await {
+            Ok(nodes) => {
+                let proto_nodes: Vec<GraphNode> = nodes.into_iter()
+                    .map(|node| database_to_proto_node(node))
+                    .collect();
+                Ok(Response::new(ListGraphNodesResponse {
+                    nodes: proto_nodes,
+                }))
+            }
+            Err(e) => Err(Status::internal(format!("Failed to list graph nodes: {}", e))),
+        }
+    }
+
+    async fn list_graph_edges(
+        &self,
+        request: Request<ListGraphEdgesRequest>,
+    ) -> Result<Response<ListGraphEdgesResponse>, Status> {
+        let req = request.into_inner();
+        let client = get_client()
+            .map_err(|e| Status::internal(format!("PostgreSQL graph client error: {}", e)))?;
+        
+        let limit = if req.limit > 0 { Some(req.limit as usize) } else { Some(200) };
+        let offset = if req.offset > 0 { Some(req.offset as usize) } else { Some(0) };
+        
+        match client.list_edges(limit, offset).await {
+            Ok(edges) => {
+                let proto_edges: Vec<GraphEdge> = edges.into_iter()
+                    .map(|edge| database_to_proto_edge(edge))
+                    .collect();
+                Ok(Response::new(ListGraphEdgesResponse {
+                    edges: proto_edges,
+                }))
+            }
+            Err(e) => Err(Status::internal(format!("Failed to list graph edges: {}", e))),
         }
     }
 

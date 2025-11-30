@@ -173,12 +173,32 @@ message ExportJsonLdResponse {
   string jsonld = 1; // JSON文字列
 }
 
+message ListGraphNodesRequest {
+  int32 limit = 1; // 最大取得数（デフォルト: 100）
+  int32 offset = 2; // オフセット（デフォルト: 0）
+}
+
+message ListGraphNodesResponse {
+  repeated GraphNode nodes = 1;
+}
+
+message ListGraphEdgesRequest {
+  int32 limit = 1; // 最大取得数（デフォルト: 200）
+  int32 offset = 2; // オフセット（デフォルト: 0）
+}
+
+message ListGraphEdgesResponse {
+  repeated GraphEdge edges = 1;
+}
+
 // ==================== サービス定義 ====================
 
 service GraphService {
   rpc GraphQuery(GraphQueryRequest) returns (GraphQueryResponse);
   rpc GetGraphNode(GetGraphNodeRequest) returns (GetGraphNodeResponse);
   rpc GetGraphEdge(GetGraphEdgeRequest) returns (GetGraphEdgeResponse);
+  rpc ListGraphNodes(ListGraphNodesRequest) returns (ListGraphNodesResponse);
+  rpc ListGraphEdges(ListGraphEdgesRequest) returns (ListGraphEdgesResponse);
   rpc CreateGraphNode(CreateGraphNodeRequest) returns (CreateGraphNodeResponse);
   rpc UpdateGraphNode(UpdateGraphNodeRequest) returns (UpdateGraphNodeResponse);
   rpc DeleteGraphNode(DeleteGraphNodeRequest) returns (DeleteGraphNodeResponse);

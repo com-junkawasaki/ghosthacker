@@ -224,6 +224,70 @@ impl PostgreSQLGraphClient {
         Ok(())
     }
 
+    /// すべてのノードを取得
+    pub async fn list_nodes(&self, limit: Option<usize>, offset: Option<usize>) -> Result<Vec<GraphNode>> {
+        let limit = limit.unwrap_or(100);
+        let offset = offset.unwrap_or(0);
+        
+        let rows = sqlx::query(
+            r#"
+            SELECT id, label, properties, vector, jsonld
+            FROM graph_nodes
+            ORDER BY created_at DESC
+            LIMIT $1 OFFSET $2
+            "#,
+        )
+        .bind(limit as i64)
+        .bind(offset as i64)
+        .fetch_all(&*self.pool)
+        .await?;
+
+        let mut nodes = Vec::new();
+        for row in rows {
+            nodes.push(GraphNode {
+                id: Some(row.try_get("id")?),
+                label: row.try_get("label")?,
+                properties: row.try_get("properties")?,
+                vector: None, // ベクトルは必要に応じて取得
+                jsonld: row.try_get("jsonld")?,
+            });
+        }
+
+        Ok(nodes)
+    }
+
+    /// すべてのエッジを取得
+    pub async fn list_edges(&self, limit: Option<usize>, offset: Option<usize>) -> Result<Vec<GraphEdge>> {
+        let limit = limit.unwrap_or(200);
+        let offset = offset.unwrap_or(0);
+        
+        let rows = sqlx::query(
+            r#"
+            SELECT id, source_id, target_id, label, properties
+            FROM graph_edges
+            ORDER BY created_at DESC
+            LIMIT $1 OFFSET $2
+            "#,
+        )
+        .bind(limit as i64)
+        .bind(offset as i64)
+        .fetch_all(&*self.pool)
+        .await?;
+
+        let mut edges = Vec::new();
+        for row in rows {
+            edges.push(GraphEdge {
+                id: Some(row.try_get("id")?),
+                source: row.try_get("source_id")?,
+                target: row.try_get("target_id")?,
+                label: row.try_get("label")?,
+                properties: row.try_get("properties")?,
+            });
+        }
+
+        Ok(edges)
+    }
+
     /// グラフクエリを実行（簡易的なSPARQL風クエリ）
     /// 実際の実装では、より高度なクエリパーサーが必要
     pub async fn query(&self, query: &str) -> Result<Value> {

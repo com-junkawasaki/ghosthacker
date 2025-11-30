@@ -31,7 +31,7 @@ import ReactFlow, {
   BackgroundVariant,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
-import { graphQuery, createGraphNode, createGraphEdge, deleteGraphEdge, getGraphNode, updateGraphNode } from '@/internal/grpc/services/graph_client';
+import { listGraphNodes, listGraphEdges, createGraphNode, createGraphEdge, deleteGraphEdge, getGraphNode, updateGraphNode } from '@/internal/grpc/services/graph_client';
 import { classifyError, formatErrorForDisplay, logError, ErrorType } from '@/utils/errorHandling';
 import ContextNode from './ContextNode';
 import ContextEdge from './ContextEdge';
@@ -385,100 +385,50 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
     addDebugLog('info', 'loadGraphData: Starting...', { projectId });
     
     try {
-      // Load nodes
-      const nodesQuery = 'SELECT id, label, properties, jsonld FROM graph_nodes LIMIT 100';
-      console.log('[GraphVisualizationReactFlow] loadGraphData: Executing nodes query:', nodesQuery);
-      const nodesResult = await graphQuery(nodesQuery) as any;
-      console.log('[GraphVisualizationReactFlow] loadGraphData: Nodes query result:', {
-        isArray: Array.isArray(nodesResult),
-        length: Array.isArray(nodesResult) ? nodesResult.length : 0,
-        firstNode: Array.isArray(nodesResult) && nodesResult.length > 0 ? nodesResult[0] : null,
-        resultType: typeof nodesResult,
-        resultValue: nodesResult,
+      // Load nodes using listGraphNodes API
+      console.log('[GraphVisualizationReactFlow] loadGraphData: Loading nodes...');
+      const nodesList = await listGraphNodes(100, 0);
+      console.log('[GraphVisualizationReactFlow] loadGraphData: Nodes loaded:', {
+        count: nodesList.length,
+        firstNode: nodesList.length > 0 ? nodesList[0] : null,
       });
       
-      // 空の結果やnullの場合は空配列として扱う
-      if (!nodesResult || (typeof nodesResult === 'object' && !Array.isArray(nodesResult) && Object.keys(nodesResult).length === 0)) {
-        console.warn('[GraphVisualizationReactFlow] loadGraphData: Empty or invalid nodes result, using empty array');
-      }
-      
-      // Load edges
-      const edgesQuery = 'SELECT id, source_id, target_id, label, properties FROM graph_edges LIMIT 200';
-      console.log('[GraphVisualizationReactFlow] loadGraphData: Executing edges query:', edgesQuery);
-      const edgesResult = await graphQuery(edgesQuery) as any;
-      console.log('[GraphVisualizationReactFlow] loadGraphData: Edges query result:', {
-        isArray: Array.isArray(edgesResult),
-        length: Array.isArray(edgesResult) ? edgesResult.length : 0,
-        resultType: typeof edgesResult,
-        resultValue: edgesResult,
+      // Load edges using listGraphEdges API
+      console.log('[GraphVisualizationReactFlow] loadGraphData: Loading edges...');
+      const edgesList = await listGraphEdges(200, 0);
+      console.log('[GraphVisualizationReactFlow] loadGraphData: Edges loaded:', {
+        count: edgesList.length,
+        firstEdge: edgesList.length > 0 ? edgesList[0] : null,
       });
-      
-      // 空の結果やnullの場合は空配列として扱う
-      if (!edgesResult || (typeof edgesResult === 'object' && !Array.isArray(edgesResult) && Object.keys(edgesResult).length === 0)) {
-        console.warn('[GraphVisualizationReactFlow] loadGraphData: Empty or invalid edges result, using empty array');
-      }
       
       const parsedNodes: Node<GraphNodeData>[] = [];
       const parsedEdges: Edge[] = [];
 
       // Parse nodes
-      // nodesResultが配列でない場合や空の場合は空配列として扱う
-      const nodesArray = Array.isArray(nodesResult) ? nodesResult : [];
-      if (nodesArray.length === 0) {
+      if (nodesList.length === 0) {
         console.log('[GraphVisualizationReactFlow] loadGraphData: No nodes found in database');
       }
       
-      if (nodesArray.length > 0) {
-        nodesArray.forEach((row: any, index: number) => {
-          if (row.id) {
-            // propertiesのパース
-            let properties: any = {};
-            try {
-              if (typeof row.properties === 'string') {
-                properties = JSON.parse(row.properties);
-              } else if (row.properties) {
-                properties = row.properties;
-              }
-            } catch (e) {
-              console.warn('[GraphVisualizationReactFlow] loadGraphData: Failed to parse properties', {
-                nodeId: row.id,
-                properties: row.properties,
-                error: e,
-              });
-              properties = {};
-            }
+      if (nodesList.length > 0) {
+        nodesList.forEach((node: any, index: number) => {
+          if (node.id) {
+            // propertiesとjsonldは既にパース済み
+            const properties = node.properties || {};
+            const parsedJsonld = node.jsonld || {};
             
-            // jsonldフィールドのパース
-            let parsedJsonld: any = {};
-            try {
-              if (row.jsonld) {
-                if (typeof row.jsonld === 'string') {
-                  parsedJsonld = JSON.parse(row.jsonld);
-                } else {
-                  parsedJsonld = row.jsonld;
-                }
-              }
-              // properties.jsonldにも設定（後方互換性のため）
-              properties.jsonld = parsedJsonld;
-            } catch (e) {
-              console.warn('[GraphVisualizationReactFlow] loadGraphData: Failed to parse jsonld', {
-                nodeId: row.id,
-                jsonld: row.jsonld,
-                error: e,
-              });
-              parsedJsonld = {};
-            }
+            // properties.jsonldにも設定（後方互換性のため）
+            properties.jsonld = parsedJsonld;
             
             // Determine node type from properties or jsonld
             const jsonld = parsedJsonld || properties.jsonld || {};
             
             // デバッグログ: ノードデータの確認（詳細版）
             const debugData = {
-              nodeId: row.id,
-              label: row.label,
-              rawProperties: typeof row.properties === 'string' ? row.properties.substring(0, 200) : row.properties,
+              nodeId: node.id,
+              label: node.label,
+              rawProperties: JSON.stringify(properties).substring(0, 200),
               parsedProperties: properties,
-              rawJsonld: typeof row.jsonld === 'string' ? row.jsonld.substring(0, 200) : row.jsonld,
+              rawJsonld: JSON.stringify(parsedJsonld).substring(0, 200),
               parsedJsonld: jsonld,
               jsonldType: jsonld['@type'],
               jsonldTypeType: typeof jsonld['@type'],
@@ -566,11 +516,11 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
                 };
             
             const node: Node<GraphNodeData> = {
-              id: row.id,
+              id: node.id,
               type: isContext ? 'context' : (nodeType ? 'storyElement' : 'default'),
               position,
               data: {
-                label: row.label || '',
+                label: node.label || '',
                 ...(nodeType && { nodeType }),
                 properties,
                 jsonld: jsonld,
@@ -589,23 +539,20 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       }
 
       // Parse edges
-      // edgesResultが配列でない場合や空の場合は空配列として扱う
-      const edgesArray = Array.isArray(edgesResult) ? edgesResult : [];
-      if (edgesArray.length === 0) {
+      if (edgesList.length === 0) {
         console.log('[GraphVisualizationReactFlow] loadGraphData: No edges found in database');
       }
       
-      if (edgesArray.length > 0) {
-        edgesArray.forEach((row: any) => {
-          if (row.id && row.source_id && row.target_id) {
-            const edgeProperties = typeof row.properties === 'string'
-              ? JSON.parse(row.properties)
-              : (row.properties || {});
+      if (edgesList.length > 0) {
+        edgesList.forEach((edge: any) => {
+          if (edge.id && edge.source && edge.target) {
+            // propertiesは既にパース済み
+            const edgeProperties = edge.properties || {};
             
             // Determine edge type from properties or label
             let edgeType: StoryElementEdgeType = edgeProperties.edgeType || 'relatesTo';
             if (!edgeProperties.edgeType) {
-              const label = (row.label || '').toLowerCase();
+              const label = (edge.label || '').toLowerCase();
               if (label.includes('contains') || label === 'hasChild') {
                 edgeType = 'contains';
               } else if (label.includes('belongs') || label === 'usesContext') {
@@ -624,14 +571,14 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
             }
             
             parsedEdges.push({
-              id: row.id,
-              source: row.source_id,
-              target: row.target_id,
-              label: row.label || '',
+              id: edge.id,
+              source: edge.source,
+              target: edge.target,
+              label: edge.label || '',
               type: edgeType ? 'storyElement' : 'default',
               animated: false,
               data: {
-                label: row.label || '',
+                label: edge.label || '',
                 edgeType,
                 properties: edgeProperties,
               },

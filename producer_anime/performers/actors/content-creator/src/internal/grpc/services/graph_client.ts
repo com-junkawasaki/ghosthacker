@@ -131,6 +131,50 @@ export async function getGraphNode(id: string): Promise<GraphNode | null> {
 }
 
 /**
+ * すべてのグラフノードを取得
+ */
+export async function listGraphNodes(limit: number = 100, offset: number = 0): Promise<GraphNode[]> {
+  const response = await fetch(`/api/grpc/graph/nodes?limit=${limit}&offset=${offset}`, {
+    method: 'GET',
+  });
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.error || `Failed to list graph nodes: ${response.statusText}`);
+  }
+  const data = await response.json();
+  // gRPCレスポンスは { nodes: [...] } 形式
+  return (data.nodes || []).map((node: any) => ({
+    id: node.id || '',
+    label: node.label || '',
+    properties: typeof node.properties === 'string' ? JSON.parse(node.properties) : (node.properties || {}),
+    jsonld: typeof node.jsonld === 'string' ? JSON.parse(node.jsonld) : (node.jsonld || {}),
+    vector: node.vector || [],
+  }));
+}
+
+/**
+ * すべてのグラフエッジを取得
+ */
+export async function listGraphEdges(limit: number = 200, offset: number = 0): Promise<GraphEdge[]> {
+  const response = await fetch(`/api/grpc/graph/edges?limit=${limit}&offset=${offset}`, {
+    method: 'GET',
+  });
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.error || `Failed to list graph edges: ${response.statusText}`);
+  }
+  const data = await response.json();
+  // gRPCレスポンスは { edges: [...] } 形式
+  return (data.edges || []).map((edge: any) => ({
+    id: edge.id || '',
+    source: edge.source || '',
+    target: edge.target || '',
+    label: edge.label || '',
+    properties: typeof edge.properties === 'string' ? JSON.parse(edge.properties) : (edge.properties || {}),
+  }));
+}
+
+/**
  * グラフノードを作成
  */
 export async function createGraphNode(
