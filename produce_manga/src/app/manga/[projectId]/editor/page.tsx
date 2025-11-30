@@ -224,8 +224,8 @@ export default function MangaEditorPage({
         scriptId: currentScriptId,
         pageId: `page_${newPageNumber}`,
         pageNumber: newPageNumber,
-        width: 1200,
-        height: 1800,
+        width: 800,
+        height: 1200,
         pageType: 'default',
       });
       
@@ -234,8 +234,8 @@ export default function MangaEditorPage({
         scriptId: currentScriptId,
         pageId: `page_${newPageNumber}`,
         pageNumber: newPageNumber,
-        width: 1200,
-        height: 1800,
+        width: 800,
+        height: 1200,
         pageType: 'default',
       });
       
@@ -269,10 +269,10 @@ export default function MangaEditorPage({
         projectId: params.projectId,
         pageId: selectedPageId,
         panelId: newPanelId,
-        x: 100,
-        y: 100,
-        width: 1000,
-        height: 800,
+        x: 50,
+        y: 50,
+        width: 700,
+        height: 1000,
         zIndex: 1,
         panelData: '{}',
       });
@@ -647,8 +647,8 @@ export default function MangaEditorPage({
           };
       
       const canvasAreaProps = {
-        width: 1200,
-        height: 1800,
+        width: 800,
+        height: 1200,
         panels: data.panels.map((panel: CanvasPanel) => {
           const result: {
             id: string;

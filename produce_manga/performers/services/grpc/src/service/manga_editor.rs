@@ -544,8 +544,8 @@ impl MangaEditorService for MangaEditorServiceImpl {
 
         let page_type = req.page_type.unwrap_or_else(|| "default".to_string());
         let page_number = req.page_number.unwrap_or(1);
-        let width = req.width.unwrap_or(1200);
-        let height = req.height.unwrap_or(1800);
+        let width = req.width.unwrap_or(800);
+        let height = req.height.unwrap_or(1200);
         let konva_stage_json = req.konva_stage_json.map(|s| {
             serde_json::from_str::<serde_json::Value>(&s)
                 .unwrap_or_else(|_| serde_json::json!({}))
@@ -719,10 +719,10 @@ impl MangaEditorService for MangaEditorServiceImpl {
             .map_err(uuid_error_to_status)?;
 
         let panel_id = req.panel_id;
-        let x = req.x.unwrap_or(100);
-        let y = req.y.unwrap_or(100);
-        let width = req.width.unwrap_or(1000);
-        let height = req.height.unwrap_or(800);
+        let x = req.x.unwrap_or(50);
+        let y = req.y.unwrap_or(50);
+        let width = req.width.unwrap_or(700);
+        let height = req.height.unwrap_or(1000);
         let z_index = req.z_index.unwrap_or(1);
 
         // Parse panel_data or use empty JSON object as default
@@ -898,8 +898,8 @@ impl MangaEditorService for MangaEditorServiceImpl {
         .bind("default" as &str)
         .bind::<Option<String>>(None)
         .bind(1i32)
-        .bind(1200i32) // Default manga page width
-        .bind(1800i32) // Default manga page height
+        .bind(800i32) // Default manga page width (原稿用紙サイズ)
+        .bind(1200i32) // Default manga page height (原稿用紙サイズ)
         .fetch_one(self.pool.as_ref())
         .await
         .map_err(sqlx_error_to_status)?;
@@ -932,10 +932,10 @@ impl MangaEditorService for MangaEditorServiceImpl {
         .bind(panel_id)
         .bind::<Option<String>>(None) // layout
         .bind::<Option<String>>(None) // visual
-        .bind(100i32) // x: default position
-        .bind(100i32) // y: default position
-        .bind(1000i32) // width: default size
-        .bind(800i32) // height: default size
+        .bind(50i32) // x: default position
+        .bind(50i32) // y: default position
+        .bind(700i32) // width: default size (原稿用紙サイズに合わせて調整)
+        .bind(1000i32) // height: default size (原稿用紙サイズに合わせて調整)
         .bind(1i32) // z_index: default layer
         .bind(serde_json::json!({})) // panel_data: empty JSON object
         .execute(self.pool.as_ref())

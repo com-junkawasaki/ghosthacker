@@ -64,18 +64,16 @@ export default function JsonLdEditor({ projectId }: JsonLdEditorProps) {
     try {
       const parsed = JSON.parse(jsonld);
       const result = await importJsonLd(parsed);
-      `;
-
-      const result = await graphqlRequestString(mutation, {
-        jsonld: parsed,
-        projectId,
-      });
-
-      if (result?.importJsonLd) {
-        alert(`Successfully imported ${result.importJsonLd.length} nodes`);
+      if (result.success) {
+        alert('Successfully imported JSON-LD');
         setValidationResult({
           valid: true,
-          message: `Imported ${result.importJsonLd.length} nodes`,
+          message: 'JSON-LD imported successfully',
+        });
+      } else {
+        setValidationResult({
+          valid: false,
+          message: result.error || 'Import failed',
         });
       }
     } catch (err) {
