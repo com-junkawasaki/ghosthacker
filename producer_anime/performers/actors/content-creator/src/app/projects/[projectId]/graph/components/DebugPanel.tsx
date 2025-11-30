@@ -37,6 +37,17 @@ export default function DebugPanel({
     filterLevel === 'all' || log.level === filterLevel
   );
 
+  // オーファンノード（コンテクストレイヤーに属していないノード）を計算
+  const allNonContextNodeIds = new Set(
+    nodes.filter(n => !n.data.isContext).map(n => n.id)
+  );
+  const nodesInLayers = new Set(
+    contextLayers.flatMap(layer => layer.containedNodeIds)
+  );
+  const orphanNodes = Array.from(allNonContextNodeIds).filter(
+    nodeId => !nodesInLayers.has(nodeId)
+  );
+
   const stats = {
     totalNodes: nodes.length,
     contextNodes: nodes.filter(n => n.data.isContext).length,
@@ -44,6 +55,7 @@ export default function DebugPanel({
     totalEdges: edges.length,
     contextLayers: contextLayers.length,
     layersWithNodes: contextLayers.filter(l => l.containedNodeIds.length > 0).length,
+    orphanNodes: orphanNodes.length,
   };
 
   if (!isOpen) {
@@ -108,6 +120,19 @@ export default function DebugPanel({
             <span className="text-gray-600 dark:text-gray-400">Layers with Nodes:</span>
             <span className="font-mono text-gray-900 dark:text-gray-100">{stats.layersWithNodes}</span>
           </div>
+          <div className="flex justify-between">
+            <span className={`text-gray-600 dark:text-gray-400 ${stats.orphanNodes > 0 ? 'text-orange-600 dark:text-orange-400' : ''}`}>
+              Orphan Nodes:
+            </span>
+            <span className={`font-mono ${stats.orphanNodes > 0 ? 'text-orange-600 dark:text-orange-400 font-bold' : 'text-gray-900 dark:text-gray-100'}`}>
+              {stats.orphanNodes}
+            </span>
+          </div>
+          {stats.orphanNodes > 0 && (
+            <div className="mt-2 p-2 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded text-xs text-orange-700 dark:text-orange-300">
+              ⚠️ {stats.orphanNodes} node(s) are not in any context layer
+            </div>
+          )}
         </div>
       </div>
 

@@ -318,6 +318,44 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       return layer;
     });
 
+    // 全てのノードがコンテクストレイヤーに属しているか確認
+    const allNonContextNodeIds = new Set(
+      nodes.filter(n => !n.data.isContext).map(n => n.id)
+    );
+    const nodesInLayers = new Set(
+      contextLayers.flatMap(layer => layer.containedNodeIds)
+    );
+    const orphanNodes = Array.from(allNonContextNodeIds).filter(
+      nodeId => !nodesInLayers.has(nodeId)
+    );
+
+    if (orphanNodes.length > 0) {
+      console.warn('[buildHierarchy] Orphan nodes found (nodes not in any context layer):', {
+        orphanNodeIds: orphanNodes,
+        orphanNodeLabels: orphanNodes.map(id => {
+          const node = nodeMap.get(id);
+          return node ? node.data.label : 'Unknown';
+        }),
+        totalNodes: allNonContextNodeIds.size,
+        nodesInLayers: nodesInLayers.size,
+        orphanCount: orphanNodes.length,
+      });
+      
+      // デバッグログに記録
+      if (addDebugLog) {
+        addDebugLog('warn', 'buildHierarchy: Orphan nodes detected', {
+          orphanNodeIds: orphanNodes,
+          orphanNodeLabels: orphanNodes.map(id => {
+            const node = nodeMap.get(id);
+            return node ? node.data.label : 'Unknown';
+          }),
+          totalNodes: allNonContextNodeIds.size,
+          nodesInLayers: nodesInLayers.size,
+          orphanCount: orphanNodes.length,
+        });
+      }
+    }
+
     // Context IDsを各ノードに設定（複数のコンテクストレイヤーへの所属をサポート）
     const nodeContextMap = new Map<string, Set<string>>();
     
@@ -378,7 +416,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       nodes: Array.from(nodeMap.values()),
       contextLayers,
     };
-  }, []);
+  }, [addDebugLog]);
 
   const loadGraphData = async () => {
     setLoading(true);
@@ -1134,6 +1172,11 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
   // ドラッグ&ドロップ階層編集
   const onNodeDragStart = useCallback((_event: React.MouseEvent, node: Node<GraphNodeData>) => {
     setDraggedNodeId(node.id);
+    // HTML5 Drag and Drop API用のデータ転送設定
+    if (_event.dataTransfer) {
+      _event.dataTransfer.effectAllowed = 'move';
+      _event.dataTransfer.setData('application/reactflow-node-id', node.id);
+    }
   }, []);
 
   const onNodeDragStop = useCallback(async (_event: React.MouseEvent, node: Node<GraphNodeData>) => {
@@ -1375,23 +1418,10 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
   const selectedNodeData = selectedNode ? nodes.find(n => n.id === selectedNode) : null;
 
   return (
-    <div className="flex h-[600px]">
-      {/* Context Layer Sidebar */}
-      <ContextLayerSidebar
-        projectId={projectId}
-        nodes={nodes as unknown as Node<GraphNodeData>[]}
-        edges={edges}
-        contextLayers={contextLayers}
-        onLayersChange={handleLayersChange}
-        onNodesChange={handleNodesChange}
-        onEdgesChange={setEdges}
-        onReload={loadGraphData}
-        onDebugLog={addDebugLog}
-      />
-      
+    <div className="h-[600px] relative">
       {/* Graph Visualization */}
-      <div ref={containerRef} className="flex-1 relative">
-      <ReactFlow
+      <div ref={containerRef} className="w-full h-full relative">
+        <ReactFlow
         nodes={nodes}
         edges={edges}
         onNodesChange={handleNodesChange}
@@ -1666,6 +1696,21 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
           )}
         </div>
       )}
+      </div>
+
+      {/* Floating Context Layer Sidebar */}
+      <div className="absolute top-4 left-4 z-10">
+        <ContextLayerSidebar
+          projectId={projectId}
+          nodes={nodes as unknown as Node<GraphNodeData>[]}
+          edges={edges}
+          contextLayers={contextLayers}
+          onLayersChange={handleLayersChange}
+          onNodesChange={handleNodesChange}
+          onEdgesChange={setEdges}
+          onReload={loadGraphData}
+          onDebugLog={addDebugLog}
+        />
       </div>
 
       {/* Debug Panel */}

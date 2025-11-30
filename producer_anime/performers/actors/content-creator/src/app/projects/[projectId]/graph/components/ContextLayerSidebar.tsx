@@ -11,7 +11,7 @@
 
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Node, Edge } from 'reactflow';
 import { GraphNodeData, ContextLayer } from './types';
 import { createGraphNode, createGraphEdge, deleteGraphEdge, updateGraphNode } from '@/internal/grpc/services/graph_client';
@@ -44,8 +44,13 @@ export default function ContextLayerSidebar({
   const [editingLabel, setEditingLabel] = useState<string>('');
   const [showAddModal, setShowAddModal] = useState(false);
   const [draggedLayerId, setDraggedLayerId] = useState<string | null>(null);
+  const [dragOverLayerId, setDragOverLayerId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
   // デバッグログを追加する関数
   const addDebugLog = useCallback((level: 'log' | 'error' | 'warn' | 'info', message: string, data?: any) => {
@@ -165,6 +170,104 @@ export default function ContextLayerSidebar({
     return layer.containedNodeIds.length;
   }, []);
 
+  // ドラッグオーバー時の処理
+  const handleDragOver = useCallback((e: React.DragEvent, layerId: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.dataTransfer.dropEffect = 'move';
+    setDragOverLayerId(layerId);
+  }, []);
+
+  // ドラッグエンター時の処理
+  const handleDragEnter = useCallback((e: React.DragEvent, layerId: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragOverLayerId(layerId);
+  }, []);
+
+  // ドラッグリーブ時の処理
+  const handleDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // 子要素への移動の場合はリセットしない
+    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+    const x = e.clientX;
+    const y = e.clientY;
+    if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
+      setDragOverLayerId(null);
+    }
+  }, []);
+
+  // ドロップ時の処理
+  const handleDrop = useCallback(async (e: React.DragEvent, layerId: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragOverLayerId(null);
+
+    const draggedNodeId = e.dataTransfer.getData('application/reactflow-node-id');
+    if (!draggedNodeId) {
+      addDebugLog('warn', 'handleDrop: No node ID in dataTransfer');
+      return;
+    }
+
+    // Contextノード自体はドロップできない
+    const draggedNode = nodes.find(n => n.id === draggedNodeId);
+    if (!draggedNode) {
+      addDebugLog('warn', 'handleDrop: Dragged node not found', { draggedNodeId });
+      return;
+    }
+
+    if (draggedNode.data.isContext) {
+      addDebugLog('warn', 'handleDrop: Cannot drop context node onto layer');
+      return;
+    }
+
+    // 既存のusesContextエッジをチェック
+    const existingEdge = edges.find(
+      e => e.source === draggedNodeId && 
+           e.target === layerId &&
+           (e.label === 'usesContext' || e.label === 'belongsTo' || (e.data as any)?.edgeType === 'belongsTo')
+    );
+
+    if (existingEdge) {
+      addDebugLog('info', 'handleDrop: Edge already exists', { 
+        draggedNodeId, 
+        layerId,
+        edgeId: existingEdge.id 
+      });
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      addDebugLog('info', 'handleDrop: Creating usesContext edge', {
+        sourceId: draggedNodeId,
+        targetId: layerId,
+      });
+
+      await createGraphEdge(
+        draggedNodeId,
+        layerId,
+        'usesContext',
+        { edgeType: 'belongsTo' }
+      );
+
+      addDebugLog('info', 'handleDrop: Edge created successfully, reloading...');
+      await onReload();
+    } catch (error) {
+      const appError = classifyError(error);
+      logError(appError, 'ContextLayerSidebar.handleDrop');
+      setError(formatErrorForDisplay(appError));
+      addDebugLog('error', 'handleDrop: Error occurred', {
+        error: appError.message,
+      });
+    } finally {
+      setLoading(false);
+    }
+  }, [nodes, edges, onReload, addDebugLog]);
+
   // 新しいコンテクストレイヤーの作成
   const createNewLayer = useCallback(async () => {
     setLoading(true);
@@ -268,15 +371,88 @@ export default function ContextLayerSidebar({
     return orderA - orderB;
   });
 
+  // ドラッグハンドラー
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    // ヘッダー領域またはドラッグハンドルをクリックした場合のみドラッグ開始
+    const target = e.target as HTMLElement;
+    if (target.closest('.drag-handle') || target.closest('.header-drag-area')) {
+      e.preventDefault();
+      setIsDragging(true);
+      setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
+    }
+  }, [position]);
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    if (isDragging) {
+      setPosition({
+        x: e.clientX - dragStart.x,
+        y: e.clientY - dragStart.y,
+      });
+    }
+  }, [isDragging, dragStart]);
+
+  const handleMouseUp = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
+  // マウスイベントの登録
+  useEffect(() => {
+    if (isDragging) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      return () => {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+      };
+    }
+  }, [isDragging, handleMouseMove, handleMouseUp]);
+
   return (
-    <div className="w-80 h-full bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col">
-      {/* Header */}
-      <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
-        <div className="flex items-center justify-between mb-2">
+    <div 
+      className="w-80 max-h-[80vh] bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg flex flex-col"
+      style={{ 
+        transform: `translate(${position.x}px, ${position.y}px)`,
+        cursor: isDragging ? 'grabbing' : 'default',
+      }}
+      onMouseDown={handleMouseDown}
+    >
+      {/* Header with drag handle */}
+      <div 
+        className="header-drag-area px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between cursor-move select-none"
+        onMouseDown={handleMouseDown}
+      >
+        <div className="flex items-center gap-2 flex-1">
+          <div className="drag-handle text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8h16M4 16h16" />
+            </svg>
+          </div>
           <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
             コンテクストレイヤー
           </h2>
         </div>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsCollapsed(!isCollapsed);
+          }}
+          className="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors cursor-pointer"
+          title={isCollapsed ? '展開' : '折りたたみ'}
+        >
+          <svg 
+            className={`w-4 h-4 transition-transform ${isCollapsed ? '' : 'rotate-180'}`} 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      </div>
+      
+      {!isCollapsed && (
+        <>
+      <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
         <button
           onClick={() => {
             setError(null);
@@ -312,10 +488,16 @@ export default function ContextLayerSidebar({
                   key={layer.contextNodeId}
                   className={`group bg-gray-50 dark:bg-gray-900 rounded-lg p-3 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors ${
                     draggedLayerId === layer.contextNodeId ? 'opacity-50' : ''
+                  } ${
+                    dragOverLayerId === layer.contextNodeId ? 'ring-2 ring-blue-500 bg-blue-50 dark:bg-blue-900/20' : ''
                   }`}
                   draggable
                   onDragStart={() => setDraggedLayerId(layer.contextNodeId)}
                   onDragEnd={() => setDraggedLayerId(null)}
+                  onDragOver={(e) => handleDragOver(e, layer.contextNodeId)}
+                  onDragEnter={(e) => handleDragEnter(e, layer.contextNodeId)}
+                  onDragLeave={handleDragLeave}
+                  onDrop={(e) => handleDrop(e, layer.contextNodeId)}
                 >
                   <div className="flex items-start gap-2">
                     {/* Drag Handle */}
@@ -489,6 +671,8 @@ export default function ContextLayerSidebar({
             </div>
           </div>
         </div>
+      )}
+        </>
       )}
     </div>
   );
