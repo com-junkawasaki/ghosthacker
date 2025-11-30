@@ -1,7 +1,7 @@
 
 services:
   postgres:
-    image: postgres:16-alpine
+    image: pgvector/pgvector:pg16
     container_name: ghosthacker-postgres
     ports:
       - "5433:5432"
@@ -26,7 +26,7 @@ services:
       dockerfile: Dockerfile.grpc
     container_name: ghosthacker-grpc
     ports:
-      - "50051:50051"
+      - "50052:50051"
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres
       - RUST_LOG=info
@@ -50,15 +50,15 @@ services:
       dockerfile: Dockerfile.dev
     container_name: ghosthacker-producer
     ports:
-      - "3000:3000"
+      - "3001:3000"
     environment:
       # Database
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres
       # gRPC API
-      - NEXT_PUBLIC_GRPC_API_URL=http://localhost:50051
+      - NEXT_PUBLIC_GRPC_API_URL=http://localhost:50052
       - GRPC_API_URL=grpc:50051
       # Next.js App
-      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+      - NEXT_PUBLIC_APP_URL=http://localhost:3001
       - NODE_ENV=development
       # Improve file watching reliability on macOS bind mounts
       - CHOKIDAR_USEPOLLING=true

@@ -7,6 +7,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import * as grpc from '@grpc/grpc-js';
 import * as protoLoader from '@grpc/proto-loader';
 import path from 'path';
+import { classifyError, logError } from '@/utils/errorHandling';
 
 const GRPC_API_URL = process.env.GRPC_API_URL || 'grpc:50051';
 
@@ -33,10 +34,15 @@ let client: any = null;
 
 function getClient() {
   if (!client) {
-    client = new GraphService(
-      GRPC_API_URL,
-      grpc.credentials.createInsecure()
-    );
+    try {
+      client = new GraphService(
+        GRPC_API_URL,
+        grpc.credentials.createInsecure()
+      );
+    } catch (error) {
+      console.error('Failed to create gRPC client:', error);
+      throw new Error(`Failed to connect to gRPC service at ${GRPC_API_URL}`);
+    }
   }
   return client;
 }
@@ -56,6 +62,15 @@ export async function POST(request: NextRequest) {
     const grpcClient = getClient();
     
     return new Promise<NextResponse>((resolve) => {
+      const timeoutId = setTimeout(() => {
+        resolve(
+          NextResponse.json(
+            { error: 'gRPC request timeout: The graph service did not respond in time' },
+            { status: 504 }
+          )
+        );
+      }, 30000); // 30秒タイムアウト
+
       grpcClient.createGraphNode(
         {
           label,
@@ -64,11 +79,23 @@ export async function POST(request: NextRequest) {
           vector: vector || [],
         },
         (error: any, response: any) => {
+          clearTimeout(timeoutId);
           if (error) {
+            console.error('gRPC createGraphNode error:', {
+              code: error.code,
+              message: error.message,
+              details: error.details,
+              grpcUrl: GRPC_API_URL,
+            });
+            const statusCode = error.code === grpc.status.UNAVAILABLE ? 503 : 500;
             resolve(
               NextResponse.json(
-                { error: error.message },
-                { status: 500 }
+                { 
+                  error: error.message || 'Failed to create graph node',
+                  code: error.code,
+                  details: error.details,
+                },
+                { status: statusCode }
               )
             );
           } else {

@@ -9,17 +9,25 @@ import { NextRequest, NextResponse } from 'next/server';
 import * as grpc from '@grpc/grpc-js';
 import { GraphServiceClient } from '@/internal/grpc/generated/graph.grpc-client';
 import { GraphQueryRequest, GraphQueryResponse } from '@/internal/grpc/generated/graph';
+import { classifyError, logError } from '@/utils/errorHandling';
 
-const GRPC_API_URL = process.env.GRPC_API_URL || 'host.docker.internal:50051';
+const GRPC_API_URL = process.env.GRPC_API_URL || 'grpc:50051';
 
 let client: GraphServiceClient | null = null;
 
 function getClient(): GraphServiceClient {
   if (!client) {
-    client = new GraphServiceClient(
-      GRPC_API_URL,
-      grpc.credentials.createInsecure()
-    );
+    try {
+      client = new GraphServiceClient(
+        GRPC_API_URL,
+        grpc.credentials.createInsecure()
+      );
+    } catch (error) {
+      console.error('Failed to create gRPC client:', error);
+      const appError = classifyError(error);
+      logError(appError, 'GraphQuery.getClient');
+      throw new Error(`Failed to connect to gRPC service at ${GRPC_API_URL}`);
+    }
   }
   return client;
 }
@@ -57,10 +65,23 @@ export async function POST(request: NextRequest) {
       grpcClient.graphQuery(grpcRequest, (error: grpc.ServiceError | null, response?: GraphQueryResponse) => {
         clearTimeout(timeoutId);
         if (error) {
+          console.error('gRPC graphQuery error:', {
+            code: error.code,
+            message: error.message,
+            details: error.details,
+            grpcUrl: GRPC_API_URL,
+          });
+          const appError = classifyError(error);
+          logError(appError, 'GraphQuery.graphQuery');
+          const statusCode = error.code === grpc.status.UNAVAILABLE ? 503 : 500;
           resolve(
             NextResponse.json(
-              { error: error.message || 'gRPC request failed' },
-              { status: 500 }
+              { 
+                error: error.message || 'gRPC request failed',
+                code: error.code,
+                details: error.details,
+              },
+              { status: statusCode }
             )
           );
         } else if (response) {

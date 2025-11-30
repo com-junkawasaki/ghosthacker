@@ -10,7 +10,7 @@ import * as grpc from '@grpc/grpc-js';
 import { GraphRagServiceClient } from '@/internal/grpc/generated/graph.grpc-client';
 import { GraphRagQueryRequest, GraphRagQueryResponse } from '@/internal/grpc/generated/graph';
 
-const GRPC_API_URL = process.env.GRPC_API_URL || 'host.docker.internal:50051';
+const GRPC_API_URL = process.env.GRPC_API_URL || 'grpc:50051';
 
 let client: GraphRagServiceClient | null = null;
 
