@@ -15,8 +15,10 @@ interface LayoutOptions {
   damping?: number;
 }
 
-const MIN_NODE_DISTANCE = 100; // ノード間の最小距離（ノードサイズ50px + 余白50px）
+const MIN_NODE_DISTANCE = 120; // ノード間の最小距離（ノードサイズ50px + 余白70px）- より広い間隔
 const NODE_SIZE = 50; // ノードのサイズ
+const DEFAULT_ITERATIONS = 150; // デフォルトの反復回数（より多くの反復で安定した配置）
+const DEFAULT_DAMPING = 0.85; // ダンピング係数（より滑らかな動き）
 
 /**
  * 衝突を検出する関数
@@ -138,7 +140,7 @@ export function useForceDirectedLayout() {
     layers: ContextLayer[],
     options: LayoutOptions
   ): Node[] => {
-    const { width, height, iterations = 100, temperature = width / 10, damping = 0.9 } = options;
+    const { width, height, iterations = DEFAULT_ITERATIONS, temperature = width / 8, damping = DEFAULT_DAMPING } = options;
     
     if (nodes.length === 0) return nodes;
 
@@ -181,13 +183,34 @@ export function useForceDirectedLayout() {
     });
 
     // Contextノードの配置（保存位置がない場合のみ、重なりチェック付き）
-    const contextSpacing = width / (contextNodes.length + 1);
+    // より良い間隔で配置（円形配置の考慮）
+    const contextCount = contextNodes.length;
+    const contextRadius = Math.min(width * 0.3, height * 0.2); // 円の半径
+    const contextCenterX = width / 2;
+    const contextCenterY = layerPadding + 80; // 少し下に配置
+    
     contextNodes.forEach((node, index) => {
       if (!positions.has(node.id)) {
-        const initialPos = {
-          x: contextSpacing * (index + 1),
-          y: layerPadding,
-        };
+        let initialPos: { x: number; y: number };
+        
+        if (contextCount === 1) {
+          // 1つの場合は中央に配置
+          initialPos = { x: contextCenterX, y: contextCenterY };
+        } else if (contextCount <= 3) {
+          // 3つ以下の場合は横並び
+          const spacing = Math.min(width / (contextCount + 1), 300);
+          initialPos = {
+            x: spacing * (index + 1),
+            y: contextCenterY,
+          };
+        } else {
+          // 4つ以上の場合は円形配置
+          const angle = (2 * Math.PI * index) / contextCount - Math.PI / 2; // 上から開始
+          initialPos = {
+            x: contextCenterX + Math.cos(angle) * contextRadius,
+            y: contextCenterY + Math.sin(angle) * contextRadius * 0.6, // 縦方向は少し圧縮
+          };
+        }
         
         // 重なりのない位置を確保
         let finalPos = initialPos;
@@ -228,11 +251,24 @@ export function useForceDirectedLayout() {
         });
         
         if (hasOverlap) {
-          // 重なっている場合は、グリッドベースの位置を使用
-          positions.set(node.id, {
-            x: contextSpacing * (index + 1),
-            y: layerPadding,
-          });
+          // 重なっている場合は、円形配置を使用
+          let fallbackPos: { x: number; y: number };
+          if (contextCount === 1) {
+            fallbackPos = { x: contextCenterX, y: contextCenterY };
+          } else if (contextCount <= 3) {
+            const spacing = Math.min(width / (contextCount + 1), 300);
+            fallbackPos = {
+              x: spacing * (index + 1),
+              y: contextCenterY,
+            };
+          } else {
+            const angle = (2 * Math.PI * index) / contextCount - Math.PI / 2;
+            fallbackPos = {
+              x: contextCenterX + Math.cos(angle) * contextRadius,
+              y: contextCenterY + Math.sin(angle) * contextRadius * 0.6,
+            };
+          }
+          positions.set(node.id, fallbackPos);
         }
       }
     });
@@ -255,23 +291,42 @@ export function useForceDirectedLayout() {
       const contextY = positions.get(contextNode.id)?.y || layerPadding;
       const depth = Math.max(1, (layerNodes[0]?.data as any)?.depth || 1);
       
+      // レイヤー内ノードの配置半径を計算（ノード数に基づいて調整）
+      const layerNodeCount = layerNodes.length;
+      const layerRadius = Math.min(
+        Math.sqrt(layerNodeCount) * MIN_NODE_DISTANCE * 1.5,
+        Math.min(width, height) * 0.25
+      );
+      
       // グリッドベースの配置（保存位置がない場合のみ）
       layerNodes.forEach((node, index) => {
         if (!positions.has(node.id)) {
-          const gridPos = generateGridPosition(
-            index,
-            layerNodes.length,
-            width * 0.8, // コンテキスト周辺の80%の幅を使用
-            layerHeight,
-            contextY + 80,
-            MIN_NODE_DISTANCE
-          );
+          // ノード数が少ない場合は円形配置、多い場合はグリッド配置
+          let initialPos: { x: number; y: number };
           
-          // コンテキストノードを中心に配置
-          const initialPos = {
-            x: contextX - (width * 0.4) + gridPos.x,
-            y: contextY + depth * layerHeight + gridPos.y - 80,
-          };
+          if (layerNodeCount <= 8) {
+            // 8個以下の場合は円形配置
+            const angle = (2 * Math.PI * index) / layerNodeCount;
+            const radius = Math.max(layerRadius, MIN_NODE_DISTANCE * 1.5);
+            initialPos = {
+              x: contextX + Math.cos(angle) * radius,
+              y: contextY + 100 + Math.sin(angle) * radius * 0.8, // 縦方向は少し圧縮
+            };
+          } else {
+            // 9個以上の場合はグリッド配置
+            const gridPos = generateGridPosition(
+              index,
+              layerNodeCount,
+              layerRadius * 2,
+              layerRadius * 2,
+              contextY + 100,
+              MIN_NODE_DISTANCE
+            );
+            initialPos = {
+              x: contextX - layerRadius + gridPos.x,
+              y: gridPos.y,
+            };
+          }
           
           // レイヤー境界を考慮した位置調整
           const adjustedPos = adjustPositionForLayerBounds(
@@ -300,21 +355,32 @@ export function useForceDirectedLayout() {
           });
           
           if (hasOverlap) {
-            // 重なっている場合は、グリッドベースの位置を生成
-            const gridPos = generateGridPosition(
-              index,
-              layerNodes.length,
-              width * 0.8,
-              layerHeight,
-              contextY + 80,
-              MIN_NODE_DISTANCE
-            );
-            const initialPos = {
-              x: contextX - (width * 0.4) + gridPos.x,
-              y: contextY + depth * layerHeight + gridPos.y - 80,
-            };
+            // 重なっている場合は、円形またはグリッド配置を使用
+            let fallbackPos: { x: number; y: number };
+            
+            if (layerNodeCount <= 8) {
+              const angle = (2 * Math.PI * index) / layerNodeCount;
+              const radius = Math.max(layerRadius, MIN_NODE_DISTANCE * 1.5);
+              fallbackPos = {
+                x: contextX + Math.cos(angle) * radius,
+                y: contextY + 100 + Math.sin(angle) * radius * 0.8,
+              };
+            } else {
+              const gridPos = generateGridPosition(
+                index,
+                layerNodeCount,
+                layerRadius * 2,
+                layerRadius * 2,
+                contextY + 100,
+                MIN_NODE_DISTANCE
+              );
+              fallbackPos = {
+                x: contextX - layerRadius + gridPos.x,
+                y: gridPos.y,
+              };
+            }
             const adjustedPos = adjustPositionForLayerBounds(
-              initialPos,
+              fallbackPos,
               node.id,
               layers,
               positions,
@@ -446,8 +512,13 @@ export function useForceDirectedLayout() {
     });
 
     // Force-directed: 反復的に位置を更新
-    const k = Math.sqrt((width * height) / nodes.length);
+    // 理想的なノード間距離を計算（より広いスペースを確保）
+    const k = Math.sqrt((width * height) / Math.max(nodes.length, 1)) * 1.2; // 1.2倍のスペース
     let currentTemp = temperature;
+    
+    // 中心点を計算（グラフの中心に配置するため）
+    const graphCenterX = width / 2;
+    const graphCenterY = height / 2;
 
     for (let iter = 0; iter < iterations; iter++) {
       const forces = new Map<string, { fx: number; fy: number }>();
@@ -478,8 +549,9 @@ export function useForceDirectedLayout() {
             force = (minDistance - distance) * repulsionStrength;
           } else {
             // 通常の反発力（次数が多いほど強い反発力）
+            // 距離の2乗に反比例する反発力（より自然な配置）
             const repulsionMultiplier = (weight1 * weight2);
-            force = (k * k / distance) * repulsionMultiplier;
+            force = (k * k / (distance * distance)) * repulsionMultiplier;
           }
           
           const fx1 = (dx / distance) * force;
@@ -513,10 +585,13 @@ export function useForceDirectedLayout() {
         const idealDistance = k * (weight1 + weight2) / 2;
         
         // 現在の距離と理想距離の差に基づいて引力を計算
-        const force = (distance - idealDistance) / k;
+        // 理想距離に近づくほど弱くなる（フックの法則に基づく）
+        const distanceDiff = distance - idealDistance;
+        const force = distanceDiff / k;
         
         // 次数が多いノード間の接続はより強い引力（ただし、距離が近すぎる場合は反発）
         const attractionStrength = 1.0 + (weight1 + weight2) / 4;
+        // 距離が理想距離より遠い場合は引力、近い場合は反発
         const adjustedForce = force * attractionStrength;
 
         const fx = (dx / distance) * adjustedForce;
@@ -574,8 +649,25 @@ export function useForceDirectedLayout() {
         
         // 次数が多いノードはより安定した動きをする（重みに基づいて温度を調整）
         const adjustedTemp = currentTemp / weight;
-        pos.x += force.fx * adjustedTemp * damping;
-        pos.y += force.fy * adjustedTemp * damping;
+        
+        // 力の大きさを制限（急激な動きを防ぐ）
+        const forceMagnitude = Math.sqrt(force.fx * force.fx + force.fy * force.fy);
+        const maxForce = width / 20; // 最大力を制限
+        const forceScale = forceMagnitude > maxForce ? maxForce / forceMagnitude : 1.0;
+        
+        pos.x += force.fx * adjustedTemp * damping * forceScale;
+        pos.y += force.fy * adjustedTemp * damping * forceScale;
+        
+        // 中心への弱い引力（グラフが画面外に広がりすぎないように）
+        const dxFromCenter = pos.x - graphCenterX;
+        const dyFromCenter = pos.y - graphCenterY;
+        const distanceFromCenter = Math.sqrt(dxFromCenter * dxFromCenter + dyFromCenter * dyFromCenter);
+        if (distanceFromCenter > width * 0.4) {
+          // 中心から離れすぎている場合は弱い引力を適用
+          const centerForce = 0.01; // 非常に弱い引力
+          pos.x -= (dxFromCenter / distanceFromCenter) * centerForce * currentTemp;
+          pos.y -= (dyFromCenter / distanceFromCenter) * centerForce * currentTemp;
+        }
 
         // レイヤー境界を考慮した位置調整（次数に基づく最小距離）
         const minDistance = MIN_NODE_DISTANCE * weight;
@@ -653,7 +745,40 @@ export function useForceDirectedLayout() {
         pos2.y = Math.max(30, Math.min(height - 30, pos2.y));
       });
 
-      currentTemp *= 0.95; // 温度を下げる
+      // 温度を下げる（より滑らかな減衰）
+      // 初期は速く、後半はゆっくり減衰
+      const decayRate = iter < iterations / 2 ? 0.92 : 0.98;
+      currentTemp *= decayRate;
+      
+      // 後半の反復では、エッジの長さを均一化する処理を追加
+      if (iter > iterations * 0.7) {
+        edges.forEach(edge => {
+          const pos1 = positions.get(edge.source);
+          const pos2 = positions.get(edge.target);
+          if (!pos1 || !pos2) return;
+          
+          const dx = pos2.x - pos1.x;
+          const dy = pos2.y - pos1.y;
+          const distance = Math.sqrt(dx * dx + dy * dy) || 1;
+          const weight1 = nodeWeights.get(edge.source) || 1.0;
+          const weight2 = nodeWeights.get(edge.target) || 1.0;
+          const idealDistance = k * (weight1 + weight2) / 2;
+          
+          // 理想距離との差を小さくする微調整
+          if (Math.abs(distance - idealDistance) > idealDistance * 0.2) {
+            const adjustment = (idealDistance - distance) * 0.05; // 非常に弱い調整
+            const fx = (dx / distance) * adjustment;
+            const fy = (dy / distance) * adjustment;
+            
+            const f1 = forces.get(edge.source)!;
+            const f2 = forces.get(edge.target)!;
+            f1.fx += fx;
+            f1.fy += fy;
+            f2.fx -= fx;
+            f2.fy -= fy;
+          }
+        });
+      }
     }
 
     // レイヤー境界を再計算
