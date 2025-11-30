@@ -6,7 +6,7 @@
 'use client';
 
 import { useState } from 'react';
-import { graphqlRequestString } from '@/internal/graphql/client';
+import { graphQuery } from '@/internal/grpc/services/graph_client';
 
 interface QueryEditorProps {
   projectId: string;
@@ -26,19 +26,8 @@ export default function QueryEditor({ projectId }: QueryEditorProps) {
     setResults(null);
 
     try {
-      const graphqlQuery = `
-        query GraphQuery($query: String!) {
-          graphQuery(query: $query)
-        }
-      `;
-
-      const result = await graphqlRequestString(graphqlQuery, {
-        query,
-      });
-
-      if (result?.graphQuery) {
-        setResults(result.graphQuery);
-      }
+      const result = await graphQuery(query);
+      setResults(result);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Query execution failed');
     } finally {

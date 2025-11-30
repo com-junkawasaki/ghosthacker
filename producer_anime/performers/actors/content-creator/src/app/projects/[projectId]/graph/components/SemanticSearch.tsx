@@ -6,7 +6,7 @@
 'use client';
 
 import { useState } from 'react';
-import { graphqlRequestString } from '@/internal/graphql/client';
+import { semanticSearch } from '@/internal/grpc/services/graph_client';
 
 interface SemanticSearchProps {
   projectId: string;
@@ -32,25 +32,15 @@ export default function SemanticSearch({ projectId }: SemanticSearchProps) {
     setError(null);
 
     try {
-      const searchQuery = `
-        query SemanticSearch($query: String!, $limit: Int) {
-          semanticSearch(query: $query, limit: $limit) {
-            node_id
-            label
-            properties
-            score
-          }
-        }
-      `;
-
-      const result = await graphqlRequestString(searchQuery, {
-        query,
-        limit: 10,
-      });
-
-      if (result?.semanticSearch) {
-        setResults(result.semanticSearch);
-      }
+      const searchResults = await semanticSearch(query, 10);
+      // propertiesをJSON文字列からオブジェクトに変換
+      const parsedResults = searchResults.map((r) => ({
+        ...r,
+        properties: typeof r.properties === 'string' 
+          ? JSON.parse(r.properties) 
+          : r.properties || {},
+      }));
+      setResults(parsedResults);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Search failed');
     } finally {

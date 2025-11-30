@@ -9,18 +9,15 @@ use tonic::transport::Server;
 use tracing_subscriber;
 
 mod services;
-// lib.rsからモジュールをインポート
-#[path = "lib.rs"]
-mod lib;
 use services::{
     ProjectServiceImpl, StoryServiceImpl, ScriptServiceImpl, DocumentServiceImpl,
     GraphServiceImpl, GraphRagServiceImpl,
 };
 
-use crate::database::client::initialize as initialize_database;
-use crate::graph::postgres::initialize as initialize_postgres_graph;
-use crate::graph::embedding::initialize as initialize_embedding;
-use crate::graph::rag::initialize as initialize_rag;
+use producerv2_graphql::database::client::initialize as initialize_database;
+use producerv2_graphql::graph::postgres::initialize as initialize_postgres_graph;
+use producerv2_graphql::graph::embedding::initialize as initialize_embedding;
+use producerv2_graphql::graph::rag::initialize as initialize_rag;
 
 // protoファイルから生成されたサービスサーバーをインポート
 use services::project_service::proto::project_service_server::ProjectServiceServer;

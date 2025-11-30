@@ -6,7 +6,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { graphqlRequestString } from '@/internal/graphql/client';
+import { graphQuery } from '@/internal/grpc/services/graph_client';
 
 interface GraphVisualizationProps {
   projectId: string;
@@ -40,18 +40,32 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
     setLoading(true);
     setError(null);
     try {
-      // 簡易的なグラフクエリ（実際の実装ではGraphQLクエリを使用）
-      const query = `
-        query {
-          graphQuery(query: "MATCH (n) RETURN n LIMIT 100")
-        }
-      `;
+      // gRPC API Route経由でグラフクエリを実行
+      const query = 'MATCH (n) RETURN n LIMIT 100';
+      const result = await graphQuery(query);
       
-      // GraphQLクエリを実行してノードとエッジを取得
-      const result = await graphqlRequestString(query, {});
-      // 結果のパース処理（実際の実装では結果の構造に応じて処理）
-      setNodes([]);
-      setEdges([]);
+      // 結果のパース処理（PostgreSQLクエリ結果からノードとエッジを抽出）
+      // 実際の実装では、クエリ結果の構造に応じて処理
+      const parsedNodes: GraphNode[] = [];
+      const parsedEdges: GraphEdge[] = [];
+      
+      if (Array.isArray(result)) {
+        result.forEach((row: any) => {
+          if (row.n) {
+            const nodeData = row.n;
+            parsedNodes.push({
+              id: nodeData.id || '',
+              label: nodeData.label || '',
+              properties: typeof nodeData.properties === 'string' 
+                ? JSON.parse(nodeData.properties) 
+                : nodeData.properties || {},
+            });
+          }
+        });
+      }
+      
+      setNodes(parsedNodes);
+      setEdges(parsedEdges);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load graph data');
     } finally {

@@ -6,7 +6,7 @@
 'use client';
 
 import { useState } from 'react';
-import { graphqlRequestString } from '@/internal/graphql/client';
+import { validateJsonLd, importJsonLd } from '@/internal/grpc/services/graph_client';
 
 interface JsonLdEditorProps {
   projectId: string;
@@ -42,24 +42,13 @@ export default function JsonLdEditor({ projectId }: JsonLdEditorProps) {
         return;
       }
 
-      const query = `
-        query ValidateJsonLd($jsonld: JSON!) {
-          validateJsonLd(jsonld: $jsonld)
-        }
-      `;
-
-      const result = await graphqlRequestString(query, {
-        jsonld: parsed,
+      const result = await validateJsonLd(parsed);
+      setValidationResult({
+        valid: result.valid,
+        message: result.valid
+          ? 'JSON-LD is valid'
+          : result.error || 'JSON-LD validation failed',
       });
-
-      if (result?.validateJsonLd !== undefined) {
-        setValidationResult({
-          valid: result.validateJsonLd,
-          message: result.validateJsonLd
-            ? 'JSON-LD is valid'
-            : 'JSON-LD validation failed',
-        });
-      }
     } catch (err) {
       setValidationResult({
         valid: false,
@@ -74,10 +63,7 @@ export default function JsonLdEditor({ projectId }: JsonLdEditorProps) {
     setLoading(true);
     try {
       const parsed = JSON.parse(jsonld);
-      const mutation = `
-        mutation ImportJsonLd($jsonld: JSON!, $projectId: String) {
-          importJsonLd(jsonld: $jsonld, projectId: $projectId)
-        }
+      const result = await importJsonLd(parsed);
       `;
 
       const result = await graphqlRequestString(mutation, {

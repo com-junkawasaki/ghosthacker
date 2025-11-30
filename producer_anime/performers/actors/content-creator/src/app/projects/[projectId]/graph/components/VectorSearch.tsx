@@ -6,7 +6,7 @@
 'use client';
 
 import { useState } from 'react';
-import { graphqlRequestString } from '@/internal/graphql/client';
+import { vectorSearch } from '@/internal/grpc/services/graph_client';
 
 interface VectorSearchProps {
   projectId: string;
@@ -41,28 +41,19 @@ export default function VectorSearch({ projectId }: VectorSearchProps) {
 
       if (vector.length === 0) {
         setError('Invalid vector format. Please provide comma-separated numbers.');
+        setLoading(false);
         return;
       }
 
-      const query = `
-        query VectorSearch($queryVector: [Float!]!, $limit: Int) {
-          vectorSearch(queryVector: $queryVector, limit: $limit) {
-            node_id
-            label
-            properties
-            score
-          }
-        }
-      `;
-
-      const result = await graphqlRequestString(query, {
-        queryVector: vector,
-        limit,
-      });
-
-      if (result?.vectorSearch) {
-        setResults(result.vectorSearch);
-      }
+      const searchResults = await vectorSearch(vector, limit);
+      // propertiesをJSON文字列からオブジェクトに変換
+      const parsedResults = searchResults.map((r) => ({
+        ...r,
+        properties: typeof r.properties === 'string' 
+          ? JSON.parse(r.properties) 
+          : r.properties || {},
+      }));
+      setResults(parsedResults);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Vector search failed');
     } finally {

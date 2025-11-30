@@ -6,7 +6,7 @@
 'use client';
 
 import { useState } from 'react';
-import { graphqlRequestString } from '@/internal/graphql/client';
+import { exportJsonLd, importJsonLd } from '@/internal/grpc/services/graph_client';
 
 interface ImportExportProps {
   projectId: string;
@@ -20,33 +20,13 @@ export default function ImportExport({ projectId }: ImportExportProps) {
   const [file, setFile] = useState<File | null>(null);
 
   const handleExport = async () => {
-    if (!nodeIds.trim()) {
-      setError('Please enter node IDs');
-      return;
-    }
-
     setLoading(true);
     setError(null);
 
     try {
-      const ids = nodeIds
-        .split(',')
-        .map((id) => id.trim())
-        .filter((id) => id.length > 0);
-
-      const query = `
-        mutation ExportJsonLd($nodeIds: [String!]!) {
-          exportJsonLd(nodeIds: $nodeIds)
-        }
-      `;
-
-      const result = await graphqlRequestString(query, {
-        nodeIds: ids,
-      });
-
-      if (result?.exportJsonLd) {
-        setExportedJsonld(result.exportJsonLd);
-      }
+      // projectIdを使用してエクスポート（nodeIdsは現在のAPIでは使用しない）
+      const jsonld = await exportJsonLd(projectId);
+      setExportedJsonld(jsonld);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Export failed');
     } finally {
@@ -74,20 +54,12 @@ export default function ImportExport({ projectId }: ImportExportProps) {
       const text = await file.text();
       const jsonld = JSON.parse(text);
 
-      const mutation = `
-        mutation ImportJsonLd($jsonld: JSON!, $projectId: String) {
-          importJsonLd(jsonld: $jsonld, projectId: $projectId)
-        }
-      `;
-
-      const result = await graphqlRequestString(mutation, {
-        jsonld,
-        projectId,
-      });
-
-      if (result?.importJsonLd) {
-        alert(`Successfully imported ${result.importJsonLd.length} nodes`);
+      const result = await importJsonLd(jsonld);
+      if (result.success) {
+        alert('Successfully imported JSON-LD');
         setFile(null);
+      } else {
+        setError(result.error || 'Import failed');
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Import failed');

@@ -6,7 +6,6 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { graphqlRequestString } from '@/internal/graphql/client';
 
 interface RagChatProps {
   projectId: string;
@@ -44,21 +43,21 @@ export default function RagChat({ projectId }: RagChatProps) {
     setError(null);
 
     try {
-      const query = `
-        query GraphRagQuery($query: String!, $projectId: String) {
-          graphRagQuery(query: $query, projectId: $projectId)
-        }
-      `;
-
-      const result = await graphqlRequestString(query, {
-        query: input,
-        projectId,
+      const response = await fetch('/api/grpc/graph/rag', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: input, project_id: projectId }),
       });
-
-      if (result?.graphRagQuery) {
+      
+      if (!response.ok) {
+        throw new Error(`Graph RAG query failed: ${response.statusText}`);
+      }
+      
+      const data = await response.json();
+      if (data.response) {
         const assistantMessage: Message = {
           role: 'assistant',
-          content: result.graphRagQuery,
+          content: data.response,
           timestamp: new Date(),
         };
         setMessages((prev) => [...prev, assistantMessage]);
