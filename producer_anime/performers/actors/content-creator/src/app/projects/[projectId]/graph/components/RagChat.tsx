@@ -6,6 +6,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { classifyError, formatErrorForDisplay, logError } from '@/utils/errorHandling';
 
 interface RagChatProps {
   projectId: string;
@@ -67,15 +68,18 @@ export default function RagChat({ projectId }: RagChatProps) {
           timestamp: new Date(),
         };
         setMessages((prev) => [...prev, assistantMessage]);
+        setError(null);
       } else {
         throw new Error('No response from server');
       }
     } catch (err) {
-      const errorMsg = err instanceof Error ? err.message : 'Failed to get response';
+      const appError = classifyError(err);
+      logError(appError, 'RagChat.handleSend');
+      const errorMsg = formatErrorForDisplay(appError);
       setError(errorMsg);
       const errorMessage: Message = {
         role: 'assistant',
-        content: `Error: ${errorMsg}`,
+        content: `エラー: ${errorMsg}`,
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, errorMessage]);
@@ -152,8 +156,8 @@ export default function RagChat({ projectId }: RagChatProps) {
       </div>
 
       {error && (
-        <div className="mt-2 bg-red-50 border border-red-200 rounded-lg p-2">
-          <p className="text-sm text-red-700">{error}</p>
+        <div className="mt-2 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-2">
+          <p className="text-sm text-red-700 dark:text-red-400">{error}</p>
         </div>
       )}
     </div>

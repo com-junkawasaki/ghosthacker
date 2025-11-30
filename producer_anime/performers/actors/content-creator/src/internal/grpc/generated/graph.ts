@@ -515,7 +515,7 @@ class GraphNode$Type extends MessageType<GraphNode> {
         if (message.vector.length) {
             writer.tag(4, WireType.LengthDelimited).fork();
             for (let i = 0; i < message.vector.length; i++)
-                writer.float(message.vector[i]);
+                writer.float(message.vector[i]!);
             writer.join();
         }
         /* string jsonld = 5; */
@@ -1031,7 +1031,7 @@ class CreateGraphNodeRequest$Type extends MessageType<CreateGraphNodeRequest> {
         if (message.vector.length) {
             writer.tag(4, WireType.LengthDelimited).fork();
             for (let i = 0; i < message.vector.length; i++)
-                writer.float(message.vector[i]);
+                writer.float(message.vector[i]!);
             writer.join();
         }
         /* string jsonld = 5; */
@@ -1165,7 +1165,7 @@ class UpdateGraphNodeRequest$Type extends MessageType<UpdateGraphNodeRequest> {
         if (message.vector.length) {
             writer.tag(4, WireType.LengthDelimited).fork();
             for (let i = 0; i < message.vector.length; i++)
-                writer.float(message.vector[i]);
+                writer.float(message.vector[i]!);
             writer.join();
         }
         /* string jsonld = 5; */
@@ -1607,8 +1607,12 @@ class ProcessGenerationRequest$Type extends MessageType<ProcessGenerationRequest
         if (message.generationType !== "")
             writer.tag(2, WireType.LengthDelimited).string(message.generationType);
         /* map<string, string> options = 3; */
-        for (let k of globalThis.Object.keys(message.options))
-            writer.tag(3, WireType.LengthDelimited).fork().tag(1, WireType.LengthDelimited).string(k).tag(2, WireType.LengthDelimited).string(message.options[k]).join();
+        for (let k of globalThis.Object.keys(message.options)) {
+            const value = message.options[k];
+            if (value !== undefined) {
+                writer.tag(3, WireType.LengthDelimited).fork().tag(1, WireType.LengthDelimited).string(k).tag(2, WireType.LengthDelimited).string(value).join();
+            }
+        }
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -1773,7 +1777,7 @@ class SemanticSearchResponse$Type extends MessageType<SemanticSearchResponse> {
     internalBinaryWrite(message: SemanticSearchResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
         /* repeated producer.graph.VectorSearchResult results = 1; */
         for (let i = 0; i < message.results.length; i++)
-            VectorSearchResult.internalBinaryWrite(message.results[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+            VectorSearchResult.internalBinaryWrite(message.results[i]!, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -1831,7 +1835,7 @@ class VectorSearchRequest$Type extends MessageType<VectorSearchRequest> {
         if (message.queryVector.length) {
             writer.tag(1, WireType.LengthDelimited).fork();
             for (let i = 0; i < message.queryVector.length; i++)
-                writer.float(message.queryVector[i]);
+                writer.float(message.queryVector[i]!);
             writer.join();
         }
         /* int32 limit = 2; */
@@ -1883,7 +1887,7 @@ class VectorSearchResponse$Type extends MessageType<VectorSearchResponse> {
     internalBinaryWrite(message: VectorSearchResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
         /* repeated producer.graph.VectorSearchResult results = 1; */
         for (let i = 0; i < message.results.length; i++)
-            VectorSearchResult.internalBinaryWrite(message.results[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+            VectorSearchResult.internalBinaryWrite(message.results[i]!, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

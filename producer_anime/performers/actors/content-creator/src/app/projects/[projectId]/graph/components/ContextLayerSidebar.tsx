@@ -15,6 +15,7 @@ import { useState, useCallback } from 'react';
 import { Node, Edge } from 'reactflow';
 import { GraphNodeData, ContextLayer } from './types';
 import { createGraphNode, createGraphEdge, deleteGraphEdge, updateGraphNode } from '@/internal/grpc/services/graph_client';
+import { classifyError, formatErrorForDisplay, logError, type AppError } from '@/utils/errorHandling';
 
 interface ContextLayerSidebarProps {
   projectId: string;
@@ -41,6 +42,8 @@ export default function ContextLayerSidebar({
   const [editingLabel, setEditingLabel] = useState<string>('');
   const [showAddModal, setShowAddModal] = useState(false);
   const [draggedLayerId, setDraggedLayerId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   // レイヤーの表示/非表示を切り替え
   const toggleLayerVisibility = useCallback((layerId: string) => {
@@ -61,9 +64,14 @@ export default function ContextLayerSidebar({
 
   // レイヤー名の保存
   const saveLayerLabel = useCallback(async (layerId: string, newLabel: string) => {
+    setLoading(true);
+    setError(null);
+    
     try {
       const contextNode = nodes.find(n => n.id === layerId);
-      if (!contextNode) return;
+      if (!contextNode) {
+        throw new Error('コンテクストノードが見つかりません');
+      }
 
       await updateGraphNode(
         layerId,
@@ -76,7 +84,11 @@ export default function ContextLayerSidebar({
       setEditingLayerId(null);
       setEditingLabel('');
     } catch (error) {
-      console.error('Failed to update layer label:', error);
+      const appError = classifyError(error);
+      logError(appError, 'ContextLayerSidebar.saveLayerLabel');
+      setError(formatErrorForDisplay(appError));
+    } finally {
+      setLoading(false);
     }
   }, [nodes, onReload]);
 
@@ -85,6 +97,9 @@ export default function ContextLayerSidebar({
     if (!confirm('このレイヤーを削除しますか？ノード間の関連付けのみが削除され、コンテクストノード自体は残ります。')) {
       return;
     }
+
+    setLoading(true);
+    setError(null);
 
     try {
       // このレイヤーに関連するエッジを削除
@@ -105,7 +120,11 @@ export default function ContextLayerSidebar({
 
       await onReload();
     } catch (error) {
-      console.error('Failed to delete layer:', error);
+      const appError = classifyError(error);
+      logError(appError, 'ContextLayerSidebar.deleteLayer');
+      setError(formatErrorForDisplay(appError));
+    } finally {
+      setLoading(false);
     }
   }, [edges, onReload]);
 
@@ -138,12 +157,16 @@ export default function ContextLayerSidebar({
 
   // 新しいコンテクストレイヤーの作成
   const createNewLayer = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    
     try {
       const label = `Context Layer ${contextLayers.length + 1}`;
       const jsonld = {
         '@context': {
           '@version': 1.1,
         },
+        '@type': 'gh:Context',
       };
 
       const nodeId = await createGraphNode(
@@ -152,10 +175,27 @@ export default function ContextLayerSidebar({
         jsonld
       );
 
+      if (!nodeId) {
+        throw new Error('ノードIDが返されませんでした');
+      }
+
+      // データを再読み込み
       await onReload();
+      
+      // 再読み込み後に新しいレイヤーが含まれているか確認
+      // 少し待ってから確認（データベースの反映を待つ）
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
       setShowAddModal(false);
     } catch (error) {
-      console.error('Failed to create layer:', error);
+      const appError = classifyError(error);
+      logError(appError, 'ContextLayerSidebar.createNewLayer');
+      const errorMessage = formatErrorForDisplay(appError);
+      setError(errorMessage);
+      // エラーが発生してもモーダルは閉じる（ユーザーが再試行できるように）
+      setShowAddModal(false);
+    } finally {
+      setLoading(false);
     }
   }, [contextLayers.length, onReload]);
 
@@ -190,11 +230,20 @@ export default function ContextLayerSidebar({
           </h2>
         </div>
         <button
-          onClick={() => setShowAddModal(true)}
-          className="w-full px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium"
+          onClick={() => {
+            setError(null);
+            setShowAddModal(true);
+          }}
+          disabled={loading}
+          className="w-full px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
         >
-          + レイヤーを追加
+          {loading ? '処理中...' : '+ レイヤーを追加'}
         </button>
+        {error && (
+          <div className="mt-2 p-2 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md">
+            <p className="text-xs text-red-600 dark:text-red-400">{error}</p>
+          </div>
+        )}
       </div>
 
       {/* Layer List */}

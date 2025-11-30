@@ -2049,7 +2049,7 @@ class ListProjectsResponse$Type extends MessageType<ListProjectsResponse> {
     internalBinaryWrite(message: ListProjectsResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
         /* repeated producer.Project projects = 1; */
         for (let i = 0; i < message.projects.length; i++)
-            Project.internalBinaryWrite(message.projects[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+            Project.internalBinaryWrite(message.projects[i]!, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         /* producer.common.PaginationResponse pagination = 2; */
         if (message.pagination)
             PaginationResponse.internalBinaryWrite(message.pagination, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
@@ -2550,7 +2550,7 @@ class ListStoriesResponse$Type extends MessageType<ListStoriesResponse> {
     internalBinaryWrite(message: ListStoriesResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
         /* repeated producer.Story stories = 1; */
         for (let i = 0; i < message.stories.length; i++)
-            Story.internalBinaryWrite(message.stories[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+            Story.internalBinaryWrite(message.stories[i]!, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         /* producer.common.PaginationResponse pagination = 2; */
         if (message.pagination)
             PaginationResponse.internalBinaryWrite(message.pagination, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
@@ -3767,7 +3767,7 @@ class GetChaptersResponse$Type extends MessageType<GetChaptersResponse> {
     internalBinaryWrite(message: GetChaptersResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
         /* repeated producer.Chapter chapters = 1; */
         for (let i = 0; i < message.chapters.length; i++)
-            Chapter.internalBinaryWrite(message.chapters[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+            Chapter.internalBinaryWrite(message.chapters[i]!, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -4089,7 +4089,7 @@ class GetParagraphsResponse$Type extends MessageType<GetParagraphsResponse> {
     internalBinaryWrite(message: GetParagraphsResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
         /* repeated producer.Paragraph paragraphs = 1; */
         for (let i = 0; i < message.paragraphs.length; i++)
-            Paragraph.internalBinaryWrite(message.paragraphs[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+            Paragraph.internalBinaryWrite(message.paragraphs[i]!, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -4404,7 +4404,7 @@ class GetTextNodesResponse$Type extends MessageType<GetTextNodesResponse> {
     internalBinaryWrite(message: GetTextNodesResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
         /* repeated producer.TextNode text_nodes = 1; */
         for (let i = 0; i < message.textNodes.length; i++)
-            TextNode.internalBinaryWrite(message.textNodes[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+            TextNode.internalBinaryWrite(message.textNodes[i]!, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

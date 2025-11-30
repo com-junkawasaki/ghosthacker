@@ -6,6 +6,7 @@
 import { useState, useEffect } from 'react';
 import { Node } from 'reactflow';
 import { GraphNodeData, ProcessNodeProperties } from './types';
+import { classifyError, formatErrorForDisplay, logError } from '@/utils/errorHandling';
 
 interface ProcessExecutionPanelProps {
   node: Node<GraphNodeData> | null;
@@ -81,12 +82,16 @@ export default function ProcessExecutionPanel({
             }
           }
         } catch (e) {
-          console.error('Failed to fetch execution result:', e);
+          const appError = classifyError(e);
+          logError(appError, 'ProcessExecutionPanel.handleExecute.fetchResult');
+          // 実行結果の取得エラーは警告のみ
         }
         setIsExecuting(false);
       }, 2000);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Execution failed');
+      const appError = classifyError(err);
+      logError(appError, 'ProcessExecutionPanel.handleExecute');
+      setError(formatErrorForDisplay(appError));
       setIsExecuting(false);
     }
   };

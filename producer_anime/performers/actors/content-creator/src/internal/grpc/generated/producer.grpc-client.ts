@@ -122,6 +122,9 @@ export class ProjectServiceClient extends grpc.Client implements IProjectService
      */
     getProject(input: GetProjectRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetProjectResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetProjectResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: GetProjectResponse) => void)): grpc.ClientUnaryCall {
         const method = ProjectService.methods[0];
+        if (!method) {
+          throw new Error('ProjectService method not found');
+        }
         return this.makeUnaryRequest<GetProjectRequest, GetProjectResponse>(`/${ProjectService.typeName}/${method.name}`, (value: GetProjectRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): GetProjectResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -129,6 +132,9 @@ export class ProjectServiceClient extends grpc.Client implements IProjectService
      */
     listProjects(input: ListProjectsRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: ListProjectsResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: ListProjectsResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: ListProjectsResponse) => void)): grpc.ClientUnaryCall {
         const method = ProjectService.methods[1];
+        if (!method) {
+          throw new Error('ProjectService method not found');
+        }
         return this.makeUnaryRequest<ListProjectsRequest, ListProjectsResponse>(`/${ProjectService.typeName}/${method.name}`, (value: ListProjectsRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): ListProjectsResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -136,6 +142,9 @@ export class ProjectServiceClient extends grpc.Client implements IProjectService
      */
     createProject(input: CreateProjectRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateProjectResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateProjectResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: CreateProjectResponse) => void)): grpc.ClientUnaryCall {
         const method = ProjectService.methods[2];
+        if (!method) {
+          throw new Error('ProjectService method not found');
+        }
         return this.makeUnaryRequest<CreateProjectRequest, CreateProjectResponse>(`/${ProjectService.typeName}/${method.name}`, (value: CreateProjectRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): CreateProjectResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -143,6 +152,9 @@ export class ProjectServiceClient extends grpc.Client implements IProjectService
      */
     updateProject(input: UpdateProjectRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UpdateProjectResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UpdateProjectResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: UpdateProjectResponse) => void)): grpc.ClientUnaryCall {
         const method = ProjectService.methods[3];
+        if (!method) {
+          throw new Error('ProjectService method not found');
+        }
         return this.makeUnaryRequest<UpdateProjectRequest, UpdateProjectResponse>(`/${ProjectService.typeName}/${method.name}`, (value: UpdateProjectRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): UpdateProjectResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -150,6 +162,9 @@ export class ProjectServiceClient extends grpc.Client implements IProjectService
      */
     deleteProject(input: DeleteProjectRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: DeleteProjectResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: DeleteProjectResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: DeleteProjectResponse) => void)): grpc.ClientUnaryCall {
         const method = ProjectService.methods[4];
+        if (!method) {
+          throw new Error('ProjectService method not found');
+        }
         return this.makeUnaryRequest<DeleteProjectRequest, DeleteProjectResponse>(`/${ProjectService.typeName}/${method.name}`, (value: DeleteProjectRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): DeleteProjectResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
 }
@@ -207,6 +222,9 @@ export class StoryServiceClient extends grpc.Client implements IStoryServiceClie
      */
     getStory(input: GetStoryRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetStoryResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetStoryResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: GetStoryResponse) => void)): grpc.ClientUnaryCall {
         const method = StoryService.methods[0];
+        if (!method) {
+          throw new Error('StoryService method not found');
+        }
         return this.makeUnaryRequest<GetStoryRequest, GetStoryResponse>(`/${StoryService.typeName}/${method.name}`, (value: GetStoryRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): GetStoryResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -214,6 +232,9 @@ export class StoryServiceClient extends grpc.Client implements IStoryServiceClie
      */
     listStories(input: ListStoriesRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: ListStoriesResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: ListStoriesResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: ListStoriesResponse) => void)): grpc.ClientUnaryCall {
         const method = StoryService.methods[1];
+        if (!method) {
+          throw new Error('StoryService method not found');
+        }
         return this.makeUnaryRequest<ListStoriesRequest, ListStoriesResponse>(`/${StoryService.typeName}/${method.name}`, (value: ListStoriesRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): ListStoriesResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -221,6 +242,9 @@ export class StoryServiceClient extends grpc.Client implements IStoryServiceClie
      */
     createStory(input: CreateStoryRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateStoryResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateStoryResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: CreateStoryResponse) => void)): grpc.ClientUnaryCall {
         const method = StoryService.methods[2];
+        if (!method) {
+          throw new Error('StoryService method not found');
+        }
         return this.makeUnaryRequest<CreateStoryRequest, CreateStoryResponse>(`/${StoryService.typeName}/${method.name}`, (value: CreateStoryRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): CreateStoryResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -228,6 +252,9 @@ export class StoryServiceClient extends grpc.Client implements IStoryServiceClie
      */
     updateStory(input: UpdateStoryRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UpdateStoryResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UpdateStoryResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: UpdateStoryResponse) => void)): grpc.ClientUnaryCall {
         const method = StoryService.methods[3];
+        if (!method) {
+          throw new Error('StoryService method not found');
+        }
         return this.makeUnaryRequest<UpdateStoryRequest, UpdateStoryResponse>(`/${StoryService.typeName}/${method.name}`, (value: UpdateStoryRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): UpdateStoryResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -235,6 +262,9 @@ export class StoryServiceClient extends grpc.Client implements IStoryServiceClie
      */
     deleteStory(input: DeleteStoryRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: DeleteStoryResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: DeleteStoryResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: DeleteStoryResponse) => void)): grpc.ClientUnaryCall {
         const method = StoryService.methods[4];
+        if (!method) {
+          throw new Error('StoryService method not found');
+        }
         return this.makeUnaryRequest<DeleteStoryRequest, DeleteStoryResponse>(`/${StoryService.typeName}/${method.name}`, (value: DeleteStoryRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): DeleteStoryResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
 }
@@ -285,6 +315,9 @@ export class ScriptServiceClient extends grpc.Client implements IScriptServiceCl
      */
     getScript(input: GetScriptRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetScriptResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetScriptResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: GetScriptResponse) => void)): grpc.ClientUnaryCall {
         const method = ScriptService.methods[0];
+        if (!method) {
+          throw new Error('ScriptService method not found');
+        }
         return this.makeUnaryRequest<GetScriptRequest, GetScriptResponse>(`/${ScriptService.typeName}/${method.name}`, (value: GetScriptRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): GetScriptResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -292,6 +325,9 @@ export class ScriptServiceClient extends grpc.Client implements IScriptServiceCl
      */
     createScript(input: CreateScriptRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateScriptResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateScriptResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: CreateScriptResponse) => void)): grpc.ClientUnaryCall {
         const method = ScriptService.methods[1];
+        if (!method) {
+          throw new Error('ScriptService method not found');
+        }
         return this.makeUnaryRequest<CreateScriptRequest, CreateScriptResponse>(`/${ScriptService.typeName}/${method.name}`, (value: CreateScriptRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): CreateScriptResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -299,6 +335,9 @@ export class ScriptServiceClient extends grpc.Client implements IScriptServiceCl
      */
     updateScript(input: UpdateScriptRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UpdateScriptResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UpdateScriptResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: UpdateScriptResponse) => void)): grpc.ClientUnaryCall {
         const method = ScriptService.methods[2];
+        if (!method) {
+          throw new Error('ScriptService method not found');
+        }
         return this.makeUnaryRequest<UpdateScriptRequest, UpdateScriptResponse>(`/${ScriptService.typeName}/${method.name}`, (value: UpdateScriptRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): UpdateScriptResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -306,6 +345,9 @@ export class ScriptServiceClient extends grpc.Client implements IScriptServiceCl
      */
     deleteScript(input: DeleteScriptRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: DeleteScriptResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: DeleteScriptResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: DeleteScriptResponse) => void)): grpc.ClientUnaryCall {
         const method = ScriptService.methods[3];
+        if (!method) {
+          throw new Error('ScriptService method not found');
+        }
         return this.makeUnaryRequest<DeleteScriptRequest, DeleteScriptResponse>(`/${ScriptService.typeName}/${method.name}`, (value: DeleteScriptRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): DeleteScriptResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
 }
@@ -426,6 +468,9 @@ export class DocumentServiceClient extends grpc.Client implements IDocumentServi
      */
     getEPUBDocument(input: GetEPUBDocumentRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetEPUBDocumentResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetEPUBDocumentResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: GetEPUBDocumentResponse) => void)): grpc.ClientUnaryCall {
         const method = DocumentService.methods[0];
+        if (!method) {
+          throw new Error('DocumentService method not found');
+        }
         return this.makeUnaryRequest<GetEPUBDocumentRequest, GetEPUBDocumentResponse>(`/${DocumentService.typeName}/${method.name}`, (value: GetEPUBDocumentRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): GetEPUBDocumentResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -433,6 +478,9 @@ export class DocumentServiceClient extends grpc.Client implements IDocumentServi
      */
     createEPUBDocument(input: CreateEPUBDocumentRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateEPUBDocumentResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateEPUBDocumentResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: CreateEPUBDocumentResponse) => void)): grpc.ClientUnaryCall {
         const method = DocumentService.methods[1];
+        if (!method) {
+          throw new Error('DocumentService method not found');
+        }
         return this.makeUnaryRequest<CreateEPUBDocumentRequest, CreateEPUBDocumentResponse>(`/${DocumentService.typeName}/${method.name}`, (value: CreateEPUBDocumentRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): CreateEPUBDocumentResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -440,6 +488,9 @@ export class DocumentServiceClient extends grpc.Client implements IDocumentServi
      */
     updateEPUBDocument(input: UpdateEPUBDocumentRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UpdateEPUBDocumentResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UpdateEPUBDocumentResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: UpdateEPUBDocumentResponse) => void)): grpc.ClientUnaryCall {
         const method = DocumentService.methods[2];
+        if (!method) {
+          throw new Error('DocumentService method not found');
+        }
         return this.makeUnaryRequest<UpdateEPUBDocumentRequest, UpdateEPUBDocumentResponse>(`/${DocumentService.typeName}/${method.name}`, (value: UpdateEPUBDocumentRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): UpdateEPUBDocumentResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -447,6 +498,9 @@ export class DocumentServiceClient extends grpc.Client implements IDocumentServi
      */
     getKindleDocument(input: GetKindleDocumentRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetKindleDocumentResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetKindleDocumentResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: GetKindleDocumentResponse) => void)): grpc.ClientUnaryCall {
         const method = DocumentService.methods[3];
+        if (!method) {
+          throw new Error('DocumentService method not found');
+        }
         return this.makeUnaryRequest<GetKindleDocumentRequest, GetKindleDocumentResponse>(`/${DocumentService.typeName}/${method.name}`, (value: GetKindleDocumentRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): GetKindleDocumentResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -454,6 +508,9 @@ export class DocumentServiceClient extends grpc.Client implements IDocumentServi
      */
     getChapters(input: GetChaptersRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetChaptersResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetChaptersResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: GetChaptersResponse) => void)): grpc.ClientUnaryCall {
         const method = DocumentService.methods[4];
+        if (!method) {
+          throw new Error('DocumentService method not found');
+        }
         return this.makeUnaryRequest<GetChaptersRequest, GetChaptersResponse>(`/${DocumentService.typeName}/${method.name}`, (value: GetChaptersRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): GetChaptersResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -461,6 +518,9 @@ export class DocumentServiceClient extends grpc.Client implements IDocumentServi
      */
     createChapter(input: CreateChapterRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateChapterResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateChapterResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: CreateChapterResponse) => void)): grpc.ClientUnaryCall {
         const method = DocumentService.methods[5];
+        if (!method) {
+          throw new Error('DocumentService method not found');
+        }
         return this.makeUnaryRequest<CreateChapterRequest, CreateChapterResponse>(`/${DocumentService.typeName}/${method.name}`, (value: CreateChapterRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): CreateChapterResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -468,6 +528,9 @@ export class DocumentServiceClient extends grpc.Client implements IDocumentServi
      */
     updateChapter(input: UpdateChapterRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UpdateChapterResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UpdateChapterResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: UpdateChapterResponse) => void)): grpc.ClientUnaryCall {
         const method = DocumentService.methods[6];
+        if (!method) {
+          throw new Error('DocumentService method not found');
+        }
         return this.makeUnaryRequest<UpdateChapterRequest, UpdateChapterResponse>(`/${DocumentService.typeName}/${method.name}`, (value: UpdateChapterRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): UpdateChapterResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -475,6 +538,9 @@ export class DocumentServiceClient extends grpc.Client implements IDocumentServi
      */
     getParagraphs(input: GetParagraphsRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetParagraphsResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetParagraphsResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: GetParagraphsResponse) => void)): grpc.ClientUnaryCall {
         const method = DocumentService.methods[7];
+        if (!method) {
+          throw new Error('DocumentService method not found');
+        }
         return this.makeUnaryRequest<GetParagraphsRequest, GetParagraphsResponse>(`/${DocumentService.typeName}/${method.name}`, (value: GetParagraphsRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): GetParagraphsResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -482,6 +548,9 @@ export class DocumentServiceClient extends grpc.Client implements IDocumentServi
      */
     createParagraph(input: CreateParagraphRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateParagraphResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateParagraphResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: CreateParagraphResponse) => void)): grpc.ClientUnaryCall {
         const method = DocumentService.methods[8];
+        if (!method) {
+          throw new Error('DocumentService method not found');
+        }
         return this.makeUnaryRequest<CreateParagraphRequest, CreateParagraphResponse>(`/${DocumentService.typeName}/${method.name}`, (value: CreateParagraphRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): CreateParagraphResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -489,6 +558,9 @@ export class DocumentServiceClient extends grpc.Client implements IDocumentServi
      */
     updateParagraph(input: UpdateParagraphRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UpdateParagraphResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UpdateParagraphResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: UpdateParagraphResponse) => void)): grpc.ClientUnaryCall {
         const method = DocumentService.methods[9];
+        if (!method) {
+          throw new Error('DocumentService method not found');
+        }
         return this.makeUnaryRequest<UpdateParagraphRequest, UpdateParagraphResponse>(`/${DocumentService.typeName}/${method.name}`, (value: UpdateParagraphRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): UpdateParagraphResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -496,6 +568,9 @@ export class DocumentServiceClient extends grpc.Client implements IDocumentServi
      */
     getTextNodes(input: GetTextNodesRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetTextNodesResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetTextNodesResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: GetTextNodesResponse) => void)): grpc.ClientUnaryCall {
         const method = DocumentService.methods[10];
+        if (!method) {
+          throw new Error('DocumentService method not found');
+        }
         return this.makeUnaryRequest<GetTextNodesRequest, GetTextNodesResponse>(`/${DocumentService.typeName}/${method.name}`, (value: GetTextNodesRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): GetTextNodesResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -503,6 +578,9 @@ export class DocumentServiceClient extends grpc.Client implements IDocumentServi
      */
     createTextNode(input: CreateTextNodeRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateTextNodeResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateTextNodeResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: CreateTextNodeResponse) => void)): grpc.ClientUnaryCall {
         const method = DocumentService.methods[11];
+        if (!method) {
+          throw new Error('DocumentService method not found');
+        }
         return this.makeUnaryRequest<CreateTextNodeRequest, CreateTextNodeResponse>(`/${DocumentService.typeName}/${method.name}`, (value: CreateTextNodeRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): CreateTextNodeResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -510,6 +588,9 @@ export class DocumentServiceClient extends grpc.Client implements IDocumentServi
      */
     updateTextNode(input: UpdateTextNodeRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UpdateTextNodeResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UpdateTextNodeResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: UpdateTextNodeResponse) => void)): grpc.ClientUnaryCall {
         const method = DocumentService.methods[12];
+        if (!method) {
+          throw new Error('DocumentService method not found');
+        }
         return this.makeUnaryRequest<UpdateTextNodeRequest, UpdateTextNodeResponse>(`/${DocumentService.typeName}/${method.name}`, (value: UpdateTextNodeRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): UpdateTextNodeResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -517,6 +598,9 @@ export class DocumentServiceClient extends grpc.Client implements IDocumentServi
      */
     deleteTextNode(input: DeleteTextNodeRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: DeleteTextNodeResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: DeleteTextNodeResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: DeleteTextNodeResponse) => void)): grpc.ClientUnaryCall {
         const method = DocumentService.methods[13];
+        if (!method) {
+          throw new Error('DocumentService method not found');
+        }
         return this.makeUnaryRequest<DeleteTextNodeRequest, DeleteTextNodeResponse>(`/${DocumentService.typeName}/${method.name}`, (value: DeleteTextNodeRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): DeleteTextNodeResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
 }

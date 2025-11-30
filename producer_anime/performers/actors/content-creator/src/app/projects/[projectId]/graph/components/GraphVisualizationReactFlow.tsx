@@ -32,6 +32,7 @@ import ReactFlow, {
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { graphQuery, createGraphNode, createGraphEdge, deleteGraphEdge, getGraphNode, updateGraphNode } from '@/internal/grpc/services/graph_client';
+import { classifyError, formatErrorForDisplay, logError, ErrorType } from '@/utils/errorHandling';
 import ContextNode from './ContextNode';
 import ContextEdge from './ContextEdge';
 import StoryElementNode from './StoryElementNode';
@@ -384,9 +385,13 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
             
             // Determine node type from properties or jsonld
             const jsonld = properties.jsonld || {};
-            const isContext = jsonld['@type'] === 'gh:Context' || 
-                             properties.isContext === true ||
-                             jsonld['@type']?.includes('Context');
+            // コンテクストノードの検出を改善
+            const isContext = 
+              jsonld['@type'] === 'gh:Context' || 
+              (Array.isArray(jsonld['@type']) && jsonld['@type'].includes('gh:Context')) ||
+              properties.isContext === true ||
+              (typeof jsonld['@type'] === 'string' && jsonld['@type'].includes('Context')) ||
+              (jsonld['@context'] && typeof jsonld['@context'] === 'object');
             
             let nodeType: StoryElementNodeType | undefined = properties.nodeType || jsonld.nodeType;
             if (!nodeType && !isContext) {
@@ -507,8 +512,9 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       setContextLayers(builtLayers);
       setLoading(false);
     } catch (err) {
-      console.error('Graph data load error:', err);
-      setError(err instanceof Error ? err.message : 'Failed to load graph data');
+      const appError = classifyError(err);
+      logError(appError, 'GraphVisualizationReactFlow.loadGraphData');
+      setError(formatErrorForDisplay(appError));
       setLoading(false);
     }
   };
@@ -544,9 +550,11 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         if (response.ok) {
           await loadGraphData();
         }
-      } catch (err) {
-        console.error('Auto-execution failed:', err);
-      }
+    } catch (err) {
+      const appError = classifyError(err);
+      logError(appError, 'GraphVisualizationReactFlow.autoExecuteProcesses');
+      // 自動実行のエラーは警告のみ（ユーザーに表示しない）
+    }
     });
   }, [nodes.length]); // 初回ロード時のみ実行
 
@@ -592,7 +600,8 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
 
             positionUpdateTimeoutRef.current.delete(change.id);
           } catch (err) {
-            console.error('Failed to save node position:', err);
+            const appError = classifyError(err);
+            logError(appError, 'GraphVisualizationReactFlow.handleNodesChange');
             positionUpdateTimeoutRef.current.delete(change.id);
           }
         }, 500);
@@ -642,8 +651,9 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       setInteractionMode('normal');
       setSelectedNode(null);
     } catch (err) {
-      console.error('Failed to create edge:', err);
-      setError(err instanceof Error ? err.message : 'Failed to create edge');
+      const appError = classifyError(err);
+      logError(appError, 'GraphVisualizationReactFlow.handleConnectWithType');
+      setError(formatErrorForDisplay(appError));
     }
   }, [edgeForm.properties, loadGraphData]);
 
@@ -719,8 +729,9 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
 
       await loadGraphData();
     } catch (err) {
-      console.error('Failed to update node:', err);
-      setError(err instanceof Error ? err.message : 'Failed to update node');
+      const appError = classifyError(err);
+      logError(appError, 'GraphVisualizationReactFlow.handleUpdateNode');
+      setError(formatErrorForDisplay(appError));
     }
   };
 
@@ -741,7 +752,9 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       setSelectedNode(nodeId);
       setSidePanelOpen(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create node');
+      const appError = classifyError(err);
+      logError(appError, 'GraphVisualizationReactFlow.handleCreateNode');
+      setError(formatErrorForDisplay(appError));
     }
   };
 
@@ -762,7 +775,9 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       setEdgeSource(null);
       setInteractionMode('normal');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create edge');
+      const appError = classifyError(err);
+      logError(appError, 'GraphVisualizationReactFlow.handleCreateEdge');
+      setError(formatErrorForDisplay(appError));
     }
   };
 
@@ -863,7 +878,16 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       if (!validation.valid) {
         console.warn(`Required context layers missing for ${type}:`, validation.missingLayers);
         // 警告を表示（UIで表示することも可能）
-        setError(`必須のコンテクストレイヤーが存在しません: ${validation.missingLayers.join(', ')}`);
+        const errorMessage = `必須のコンテクストレイヤーが存在しません: ${validation.missingLayers.join(', ')}`;
+        setError(errorMessage);
+        logError(
+          {
+            type: ErrorType.VALIDATION,
+            message: errorMessage,
+            details: { missingLayers: validation.missingLayers },
+          },
+          'GraphVisualizationReactFlow.handleNodeTypeSelect'
+        );
       }
       
       // デフォルトのコンテクストレイヤーIDを取得
@@ -886,7 +910,9 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         setSidePanelOpen(true);
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create node');
+      const appError = classifyError(err);
+      logError(appError, 'GraphVisualizationReactFlow.handleNodeTypeSelect');
+      setError(formatErrorForDisplay(appError));
     }
   };
 
@@ -911,7 +937,9 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         (nodeData?.jsonld as Record<string, unknown>) || {}
       );
     } catch (err) {
-      console.error('Failed to save node position after drag:', err);
+      const appError = classifyError(err);
+      logError(appError, 'GraphVisualizationReactFlow.onNodeDragStop');
+      // ドラッグ終了時のエラーは警告のみ（ユーザーに表示しない）
     }
 
     if (!draggedNodeId || draggedNodeId === node.id) {
@@ -990,8 +1018,9 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
 
         await loadGraphData();
       } catch (err) {
-        console.error('Failed to update hierarchy:', err);
-        setError(err instanceof Error ? err.message : 'Failed to update hierarchy');
+        const appError = classifyError(err);
+        logError(appError, 'GraphVisualizationReactFlow.onNodeDragStop');
+        setError(formatErrorForDisplay(appError));
       }
     }
 
@@ -1145,7 +1174,8 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
 
               await loadGraphData();
             } catch (err) {
-              console.error('Process execution error:', err);
+              const appError = classifyError(err);
+              logError(appError, 'GraphVisualizationReactFlow.ProcessExecutionPanel.onExecute');
               throw err;
             }
           }}

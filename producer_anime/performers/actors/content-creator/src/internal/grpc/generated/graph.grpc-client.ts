@@ -157,6 +157,9 @@ export class GraphServiceClient extends grpc.Client implements IGraphServiceClie
      */
     graphQuery(input: GraphQueryRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GraphQueryResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GraphQueryResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: GraphQueryResponse) => void)): grpc.ClientUnaryCall {
         const method = GraphService.methods[0];
+        if (!method) {
+          throw new Error('GraphService method not found');
+        }
         return this.makeUnaryRequest<GraphQueryRequest, GraphQueryResponse>(`/${GraphService.typeName}/${method.name}`, (value: GraphQueryRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): GraphQueryResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -164,6 +167,9 @@ export class GraphServiceClient extends grpc.Client implements IGraphServiceClie
      */
     getGraphNode(input: GetGraphNodeRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetGraphNodeResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetGraphNodeResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: GetGraphNodeResponse) => void)): grpc.ClientUnaryCall {
         const method = GraphService.methods[1];
+        if (!method) {
+          throw new Error('GraphService method not found');
+        }
         return this.makeUnaryRequest<GetGraphNodeRequest, GetGraphNodeResponse>(`/${GraphService.typeName}/${method.name}`, (value: GetGraphNodeRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): GetGraphNodeResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -171,6 +177,9 @@ export class GraphServiceClient extends grpc.Client implements IGraphServiceClie
      */
     getGraphEdge(input: GetGraphEdgeRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetGraphEdgeResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GetGraphEdgeResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: GetGraphEdgeResponse) => void)): grpc.ClientUnaryCall {
         const method = GraphService.methods[2];
+        if (!method) {
+          throw new Error('GraphService method not found');
+        }
         return this.makeUnaryRequest<GetGraphEdgeRequest, GetGraphEdgeResponse>(`/${GraphService.typeName}/${method.name}`, (value: GetGraphEdgeRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): GetGraphEdgeResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -178,6 +187,9 @@ export class GraphServiceClient extends grpc.Client implements IGraphServiceClie
      */
     createGraphNode(input: CreateGraphNodeRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateGraphNodeResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateGraphNodeResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: CreateGraphNodeResponse) => void)): grpc.ClientUnaryCall {
         const method = GraphService.methods[3];
+        if (!method) {
+          throw new Error('GraphService method not found');
+        }
         return this.makeUnaryRequest<CreateGraphNodeRequest, CreateGraphNodeResponse>(`/${GraphService.typeName}/${method.name}`, (value: CreateGraphNodeRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): CreateGraphNodeResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -185,6 +197,9 @@ export class GraphServiceClient extends grpc.Client implements IGraphServiceClie
      */
     updateGraphNode(input: UpdateGraphNodeRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UpdateGraphNodeResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: UpdateGraphNodeResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: UpdateGraphNodeResponse) => void)): grpc.ClientUnaryCall {
         const method = GraphService.methods[4];
+        if (!method) {
+          throw new Error('GraphService method not found');
+        }
         return this.makeUnaryRequest<UpdateGraphNodeRequest, UpdateGraphNodeResponse>(`/${GraphService.typeName}/${method.name}`, (value: UpdateGraphNodeRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): UpdateGraphNodeResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -192,6 +207,9 @@ export class GraphServiceClient extends grpc.Client implements IGraphServiceClie
      */
     deleteGraphNode(input: DeleteGraphNodeRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: DeleteGraphNodeResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: DeleteGraphNodeResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: DeleteGraphNodeResponse) => void)): grpc.ClientUnaryCall {
         const method = GraphService.methods[5];
+        if (!method) {
+          throw new Error('GraphService method not found');
+        }
         return this.makeUnaryRequest<DeleteGraphNodeRequest, DeleteGraphNodeResponse>(`/${GraphService.typeName}/${method.name}`, (value: DeleteGraphNodeRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): DeleteGraphNodeResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -199,6 +217,9 @@ export class GraphServiceClient extends grpc.Client implements IGraphServiceClie
      */
     createGraphEdge(input: CreateGraphEdgeRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateGraphEdgeResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: CreateGraphEdgeResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: CreateGraphEdgeResponse) => void)): grpc.ClientUnaryCall {
         const method = GraphService.methods[6];
+        if (!method) {
+          throw new Error('GraphService method not found');
+        }
         return this.makeUnaryRequest<CreateGraphEdgeRequest, CreateGraphEdgeResponse>(`/${GraphService.typeName}/${method.name}`, (value: CreateGraphEdgeRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): CreateGraphEdgeResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -206,6 +227,9 @@ export class GraphServiceClient extends grpc.Client implements IGraphServiceClie
      */
     deleteGraphEdge(input: DeleteGraphEdgeRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: DeleteGraphEdgeResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: DeleteGraphEdgeResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: DeleteGraphEdgeResponse) => void)): grpc.ClientUnaryCall {
         const method = GraphService.methods[7];
+        if (!method) {
+          throw new Error('GraphService method not found');
+        }
         return this.makeUnaryRequest<DeleteGraphEdgeRequest, DeleteGraphEdgeResponse>(`/${GraphService.typeName}/${method.name}`, (value: DeleteGraphEdgeRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): DeleteGraphEdgeResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -213,6 +237,9 @@ export class GraphServiceClient extends grpc.Client implements IGraphServiceClie
      */
     semanticSearch(input: SemanticSearchRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: SemanticSearchResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: SemanticSearchResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: SemanticSearchResponse) => void)): grpc.ClientUnaryCall {
         const method = GraphService.methods[8];
+        if (!method) {
+          throw new Error('GraphService method not found');
+        }
         return this.makeUnaryRequest<SemanticSearchRequest, SemanticSearchResponse>(`/${GraphService.typeName}/${method.name}`, (value: SemanticSearchRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): SemanticSearchResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -220,6 +247,9 @@ export class GraphServiceClient extends grpc.Client implements IGraphServiceClie
      */
     vectorSearch(input: VectorSearchRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: VectorSearchResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: VectorSearchResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: VectorSearchResponse) => void)): grpc.ClientUnaryCall {
         const method = GraphService.methods[9];
+        if (!method) {
+          throw new Error('GraphService method not found');
+        }
         return this.makeUnaryRequest<VectorSearchRequest, VectorSearchResponse>(`/${GraphService.typeName}/${method.name}`, (value: VectorSearchRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): VectorSearchResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -227,6 +257,9 @@ export class GraphServiceClient extends grpc.Client implements IGraphServiceClie
      */
     validateJsonLd(input: ValidateJsonLdRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: ValidateJsonLdResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: ValidateJsonLdResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: ValidateJsonLdResponse) => void)): grpc.ClientUnaryCall {
         const method = GraphService.methods[10];
+        if (!method) {
+          throw new Error('GraphService method not found');
+        }
         return this.makeUnaryRequest<ValidateJsonLdRequest, ValidateJsonLdResponse>(`/${GraphService.typeName}/${method.name}`, (value: ValidateJsonLdRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): ValidateJsonLdResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -234,6 +267,9 @@ export class GraphServiceClient extends grpc.Client implements IGraphServiceClie
      */
     importJsonLd(input: ImportJsonLdRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: ImportJsonLdResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: ImportJsonLdResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: ImportJsonLdResponse) => void)): grpc.ClientUnaryCall {
         const method = GraphService.methods[11];
+        if (!method) {
+          throw new Error('GraphService method not found');
+        }
         return this.makeUnaryRequest<ImportJsonLdRequest, ImportJsonLdResponse>(`/${GraphService.typeName}/${method.name}`, (value: ImportJsonLdRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): ImportJsonLdResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -241,6 +277,9 @@ export class GraphServiceClient extends grpc.Client implements IGraphServiceClie
      */
     exportJsonLd(input: ExportJsonLdRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: ExportJsonLdResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: ExportJsonLdResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: ExportJsonLdResponse) => void)): grpc.ClientUnaryCall {
         const method = GraphService.methods[12];
+        if (!method) {
+          throw new Error('GraphService method not found');
+        }
         return this.makeUnaryRequest<ExportJsonLdRequest, ExportJsonLdResponse>(`/${GraphService.typeName}/${method.name}`, (value: ExportJsonLdRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): ExportJsonLdResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
     /**
@@ -248,6 +287,9 @@ export class GraphServiceClient extends grpc.Client implements IGraphServiceClie
      */
     executeProcessGeneration(input: ProcessGenerationRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: ProcessGenerationResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: ProcessGenerationResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: ProcessGenerationResponse) => void)): grpc.ClientUnaryCall {
         const method = GraphService.methods[13];
+        if (!method) {
+          throw new Error('GraphService method not found');
+        }
         return this.makeUnaryRequest<ProcessGenerationRequest, ProcessGenerationResponse>(`/${GraphService.typeName}/${method.name}`, (value: ProcessGenerationRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): ProcessGenerationResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
 }
@@ -277,6 +319,9 @@ export class GraphRagServiceClient extends grpc.Client implements IGraphRagServi
      */
     query(input: GraphRagQueryRequest, metadata: grpc.Metadata | grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GraphRagQueryResponse) => void), options?: grpc.CallOptions | ((err: grpc.ServiceError | null, value?: GraphRagQueryResponse) => void), callback?: ((err: grpc.ServiceError | null, value?: GraphRagQueryResponse) => void)): grpc.ClientUnaryCall {
         const method = GraphRagService.methods[0];
+        if (!method) {
+          throw new Error('GraphRagService method not found');
+        }
         return this.makeUnaryRequest<GraphRagQueryRequest, GraphRagQueryResponse>(`/${GraphRagService.typeName}/${method.name}`, (value: GraphRagQueryRequest): Buffer => Buffer.from(method.I.toBinary(value, this._binaryOptions)), (value: Buffer): GraphRagQueryResponse => method.O.fromBinary(value, this._binaryOptions), input, (metadata as any), (options as any), (callback as any));
     }
 }

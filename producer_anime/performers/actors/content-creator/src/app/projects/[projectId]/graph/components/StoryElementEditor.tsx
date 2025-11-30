@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { Node, Edge } from 'reactflow';
 import { GraphNodeData, StoryElementNodeType, StoryElementProperties, ContextLayer } from './types';
 import { createGraphEdge, deleteGraphEdge } from '@/internal/grpc/services/graph_client';
+import { classifyError, formatErrorForDisplay, logError } from '@/utils/errorHandling';
 
 interface StoryElementEditorProps {
   node: { id: string; data: GraphNodeData } | null;
@@ -49,6 +50,7 @@ export default function StoryElementEditor({
   const [jsonld, setJsonld] = useState<Record<string, any>>({});
   const [isSaving, setIsSaving] = useState(false);
   const [selectedLayerIds, setSelectedLayerIds] = useState<string[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (node) {
@@ -115,13 +117,17 @@ export default function StoryElementEditor({
           ? [...prev, layerId]
           : prev.filter(id => id !== layerId)
       );
+      setError(null);
     } catch (error) {
-      console.error('Failed to update layer association:', error);
+      const appError = classifyError(error);
+      logError(appError, 'StoryElementEditor.handleLayerToggle');
+      setError(formatErrorForDisplay(appError));
     }
   };
 
   const handleSave = async () => {
     setIsSaving(true);
+    setError(null);
     try {
       await onSave(node.id, {
         ...formData,
@@ -131,7 +137,9 @@ export default function StoryElementEditor({
       });
       onClose();
     } catch (error) {
-      console.error('Failed to save:', error);
+      const appError = classifyError(error);
+      logError(appError, 'StoryElementEditor.handleSave');
+      setError(formatErrorForDisplay(appError));
     } finally {
       setIsSaving(false);
     }
@@ -827,6 +835,13 @@ export default function StoryElementEditor({
             className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono text-xs"
           />
         </div>
+
+        {/* Error Display */}
+        {error && (
+          <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md">
+            <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+          </div>
+        )}
       </div>
 
       {/* Footer */}

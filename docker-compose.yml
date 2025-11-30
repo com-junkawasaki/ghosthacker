@@ -20,79 +20,68 @@ services:
       timeout: 5s
       retries: 5
 
-  graphql:
+  grpc:
     build:
-      context: ./producer/performers/services/graphql
-      dockerfile: Dockerfile.dev
-    container_name: ghosthacker-graphql
+      context: ./producer_anime
+      dockerfile: Dockerfile.grpc
+    container_name: ghosthacker-grpc
     ports:
-      - "8081:8080"
+      - "50051:50051"
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres
-      - NEXT_PUBLIC_GRAPHQL_API_URL=http://localhost:8081/graphql
       - RUST_LOG=info
       - RUST_BACKTRACE=1
-      # Hume AI (for emotion analysis)
-      - HUME_API=
-      - HUME_API_KEY=
-      - HUME_LANGUAGE_URL=https://api.hume.ai/v0/batch/jobs
-      - DRY_RUN=1
+      - OPENAI_API_KEY=
     depends_on:
       postgres:
         condition: service_healthy
     networks:
       - ghosthacker-network
     restart: unless-stopped
-    volumes:
-      - ./producer/performers/services/graphql:/app
-      - graphql_target:/app/target
-    working_dir: /app
-    command: cargo run
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "50051"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   producer:
     build:
-      context: ./producer
+      context: ./producer_anime
       dockerfile: Dockerfile.dev
     container_name: ghosthacker-producer
     ports:
-      - "1016:1016"
+      - "3000:3000"
     environment:
       # Database
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres
-      - SUPABASE_URL=http://localhost:54321
-      - SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-      # GraphQL API
-      - NEXT_PUBLIC_GRAPHQL_API_URL=http://localhost:8081/graphql
+      # gRPC API
+      - NEXT_PUBLIC_GRPC_API_URL=http://localhost:50051
+      - GRPC_API_URL=grpc:50051
       # Next.js App
-      - NEXT_PUBLIC_APP_URL=http://localhost:1016
-      # AI APIs (optional)
-      - OPENROUTER_API_KEY=
-      - OPENAI_API_KEY=
-      - SORA_API_KEY=
-      # YouTube (optional)
-      - YOUTUBE_CLIENT_ID=
-      - YOUTUBE_CLIENT_SECRET=
-      # Hume AI
-      - HUME_API=
-      - HUME_API_KEY=
-      - HUME_LANGUAGE_URL=https://api.hume.ai/v0/batch/jobs
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+      - NODE_ENV=development
       # Improve file watching reliability on macOS bind mounts
       - CHOKIDAR_USEPOLLING=true
       - WATCHPACK_POLLING=true
       - WATCHPACK_POLLING_INTERVAL=1000
+      # AI APIs (optional)
+      - OPENAI_API_KEY=
+      # Clerk Authentication (開発用のプレースホルダー)
+      - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_ZW5vdWdoLWNoaXBtdW5rLTkyLmNsZXJrLmFjY291bnRzLmRldiQ
+      - CLERK_SECRET_KEY=sk_test_FmPI35dNxAij0tuaX7rV5PDIDVmVvx8J11nyVyxEGu
     depends_on:
       postgres:
         condition: service_healthy
-      graphql:
-        condition: service_started
+      grpc:
+        condition: service_healthy
     networks:
       - ghosthacker-network
     restart: unless-stopped
     volumes:
-      - ./producer:/app
-      - /app/node_modules
+      - ./producer_anime:/app
+      - /app/performers/actors/content-creator/node_modules
       - /app/.next
-    working_dir: /app
+    working_dir: /app/performers/actors/content-creator
 
   # neo4j:
   #   image: neo4j:5.23
@@ -122,11 +111,6 @@ services:
 
 volumes:
   postgres_data:
-  # neo4j_data:
-  # neo4j_logs:
-  # neo4j_import:
-  # neo4j_plugins:
-  graphql_target:
 
 networks:
   ghosthacker-network:
