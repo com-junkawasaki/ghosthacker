@@ -507,14 +507,25 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
             
             // 保存された位置情報を復元
             const savedPosition = properties.position || properties._position;
-            const position = savedPosition && typeof savedPosition === 'object' && 
-                           typeof savedPosition.x === 'number' && 
-                           typeof savedPosition.y === 'number'
-              ? { x: savedPosition.x, y: savedPosition.y }
-              : { 
-                  x: Math.random() * 400 + 100, 
-                  y: Math.random() * 300 + 100 
-                };
+            let position: { x: number; y: number };
+            
+            if (savedPosition && typeof savedPosition === 'object' && 
+                typeof savedPosition.x === 'number' && 
+                typeof savedPosition.y === 'number') {
+              // 保存位置がある場合は使用（後でレイアウトアルゴリズムで重なりチェックされる）
+              position = { x: savedPosition.x, y: savedPosition.y };
+            } else {
+              // 保存位置がない場合、グリッドベースの初期位置を生成
+              // ノードのインデックスに基づいて配置（後でレイアウトアルゴリズムで調整される）
+              const nodesPerRow = Math.ceil(Math.sqrt(nodesList.length));
+              const row = Math.floor(index / nodesPerRow);
+              const col = index % nodesPerRow;
+              const spacing = 150; // ノード間の間隔
+              position = {
+                x: 100 + col * spacing,
+                y: 100 + row * spacing
+              };
+            }
             
             const reactFlowNode: Node<GraphNodeData> = {
               id: node.id,
@@ -1233,7 +1244,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
 
   // 自動レイアウト実行関数
   const applyAutoLayout = useCallback(async () => {
-    if (!containerRef.current || nodes.length === 0) return;
+    if (!containerRef.current || nodes.length === 0 || isLayouting) return;
     
     setIsLayouting(true);
     try {
@@ -1248,9 +1259,12 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         height,
       });
       
+      // 現在のノードを取得（最新の状態を保証）
+      const currentNodes = nodes as unknown as Node<GraphNodeData>[];
+      
       // まず要素タイプ別レイアウトを適用
       const typeLayoutedNodes = calculateStoryElementLayout(
-        nodes as unknown as Node<GraphNodeData>[],
+        currentNodes,
         edges,
         contextLayers,
         { width, height }
@@ -1283,15 +1297,56 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
     } finally {
       setIsLayouting(false);
     }
-  }, [nodes, edges, contextLayers, calculateStoryElementLayout, calculateForceLayout, fitView, setNodes, addDebugLog]);
+  }, [nodes, edges, contextLayers, calculateStoryElementLayout, calculateForceLayout, fitView, setNodes, addDebugLog, isLayouting]);
 
   // Force-directed + Layer layout適用（階層ビューが有効な場合）
   // 注意: loadGraphData内で既にレイアウトを適用しているため、ここでは初回ロード後のみ実行
+  // 初回ロード時のみ実行するため、loadingがfalseになった直後のみ実行
+  const hasInitialLayoutRun = useRef(false);
   useEffect(() => {
-    if (showHierarchy && nodes.length > 0 && containerRef.current && !loading) {
-      applyAutoLayout();
+    if (showHierarchy && nodes.length > 0 && containerRef.current && !loading && !hasInitialLayoutRun.current && !isLayouting) {
+      hasInitialLayoutRun.current = true;
+      // 初回レイアウトは少し遅延させて、コンテナのサイズが確定してから実行
+      const timer = setTimeout(() => {
+        if (containerRef.current && nodes.length > 0) {
+          const width = containerRef.current.offsetWidth || 800;
+          const height = containerRef.current.offsetHeight || 600;
+          
+          setIsLayouting(true);
+          try {
+            // まず要素タイプ別レイアウトを適用
+            const typeLayoutedNodes = calculateStoryElementLayout(
+              nodes as unknown as Node<GraphNodeData>[],
+              edges,
+              contextLayers,
+              { width, height }
+            );
+            
+            // その後、Force-directed layoutで重なりを防ぎながら微調整
+            const layoutedNodes = calculateForceLayout(
+              typeLayoutedNodes,
+              edges,
+              contextLayers,
+              { width, height }
+            );
+            
+            setNodes(layoutedNodes);
+            
+            setTimeout(() => {
+              fitView({ padding: 0.2 });
+            }, 100);
+          } catch (err) {
+            const appError = classifyError(err);
+            logError(appError, 'GraphVisualizationReactFlow.initialLayout');
+          } finally {
+            setIsLayouting(false);
+          }
+        }
+      }, 200);
+      
+      return () => clearTimeout(timer);
     }
-  }, [showHierarchy, loading, applyAutoLayout]);
+  }, [showHierarchy, loading, nodes.length, edges.length, contextLayers.length, calculateStoryElementLayout, calculateForceLayout, fitView, setNodes, isLayouting]);
 
   // レイヤー変更ハンドラ
   const handleLayersChange = useCallback((updatedLayers: ContextLayer[]) => {

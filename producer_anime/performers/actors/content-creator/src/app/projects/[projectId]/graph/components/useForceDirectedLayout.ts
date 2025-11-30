@@ -150,23 +150,89 @@ export function useForceDirectedLayout() {
     const contextNodes = nodes.filter(n => (n.data as any).isContext);
     const nonContextNodes = nodes.filter(n => !(n.data as any).isContext);
 
-    // 保存された位置を優先して読み込む
+    // 保存された位置を読み込む（重なりチェック付き）
+    const savedPositions = new Map<string, { x: number; y: number }>();
     nodes.forEach(node => {
       const nodeData = node.data as GraphNodeData;
       const savedPosition = nodeData.properties?.position || nodeData.properties?._position;
       if (savedPosition && typeof savedPosition.x === 'number' && typeof savedPosition.y === 'number') {
-        positions.set(node.id, { x: savedPosition.x, y: savedPosition.y });
+        savedPositions.set(node.id, { x: savedPosition.x, y: savedPosition.y });
       }
     });
 
-    // Contextノードの配置（保存位置がない場合のみ）
+    // 保存位置の重なりをチェックし、重なっていないもののみ使用
+    savedPositions.forEach((savedPos, nodeId) => {
+      let hasOverlap = false;
+      savedPositions.forEach((otherPos, otherId) => {
+        if (nodeId === otherId) return;
+        const dx = otherPos.x - savedPos.x;
+        const dy = otherPos.y - savedPos.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < MIN_NODE_DISTANCE) {
+          hasOverlap = true;
+        }
+      });
+      
+      // 重なっていない場合のみ保存位置を使用
+      if (!hasOverlap) {
+        positions.set(nodeId, savedPos);
+      }
+    });
+
+    // Contextノードの配置（保存位置がない場合のみ、重なりチェック付き）
     const contextSpacing = width / (contextNodes.length + 1);
     contextNodes.forEach((node, index) => {
       if (!positions.has(node.id)) {
-        positions.set(node.id, {
+        const initialPos = {
           x: contextSpacing * (index + 1),
           y: layerPadding,
+        };
+        
+        // 重なりのない位置を確保
+        let finalPos = initialPos;
+        let attempts = 0;
+        while (attempts < 10) {
+          let hasOverlap = false;
+          positions.forEach((otherPos) => {
+            const dx = otherPos.x - finalPos.x;
+            const dy = otherPos.y - finalPos.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < MIN_NODE_DISTANCE) {
+              hasOverlap = true;
+              // 重なっている場合、距離を保つ方向に移動
+              const angle = Math.atan2(dy, dx);
+              finalPos = {
+                x: otherPos.x - Math.cos(angle) * MIN_NODE_DISTANCE,
+                y: otherPos.y - Math.sin(angle) * MIN_NODE_DISTANCE,
+              };
+            }
+          });
+          if (!hasOverlap) break;
+          attempts++;
+        }
+        
+        positions.set(node.id, finalPos);
+      } else {
+        // 保存位置がある場合も重なりチェック
+        const savedPos = positions.get(node.id)!;
+        let hasOverlap = false;
+        positions.forEach((otherPos, otherId) => {
+          if (node.id === otherId) return;
+          const dx = otherPos.x - savedPos.x;
+          const dy = otherPos.y - savedPos.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < MIN_NODE_DISTANCE) {
+            hasOverlap = true;
+          }
         });
+        
+        if (hasOverlap) {
+          // 重なっている場合は、グリッドベースの位置を使用
+          positions.set(node.id, {
+            x: contextSpacing * (index + 1),
+            y: layerPadding,
+          });
+        }
       }
     });
 
@@ -217,16 +283,54 @@ export function useForceDirectedLayout() {
           
           positions.set(node.id, adjustedPos);
         } else {
-          // 保存位置がある場合も、レイヤー境界を考慮して調整
+          // 保存位置がある場合も、重なりチェックとレイヤー境界を考慮して調整
           const savedPos = positions.get(node.id)!;
-          const adjustedPos = adjustPositionForLayerBounds(
-            savedPos,
-            node.id,
-            layers,
-            positions,
-            MIN_NODE_DISTANCE
-          );
-          positions.set(node.id, adjustedPos);
+          
+          // 他のノードとの重なりをチェック
+          let hasOverlap = false;
+          positions.forEach((otherPos, otherId) => {
+            if (node.id === otherId) return;
+            const dx = otherPos.x - savedPos.x;
+            const dy = otherPos.y - savedPos.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < MIN_NODE_DISTANCE) {
+              hasOverlap = true;
+            }
+          });
+          
+          if (hasOverlap) {
+            // 重なっている場合は、グリッドベースの位置を生成
+            const gridPos = generateGridPosition(
+              index,
+              layerNodes.length,
+              width * 0.8,
+              layerHeight,
+              contextY + 80,
+              MIN_NODE_DISTANCE
+            );
+            const initialPos = {
+              x: contextX - (width * 0.4) + gridPos.x,
+              y: contextY + depth * layerHeight + gridPos.y - 80,
+            };
+            const adjustedPos = adjustPositionForLayerBounds(
+              initialPos,
+              node.id,
+              layers,
+              positions,
+              MIN_NODE_DISTANCE
+            );
+            positions.set(node.id, adjustedPos);
+          } else {
+            // 重なっていない場合は、レイヤー境界を考慮して調整
+            const adjustedPos = adjustPositionForLayerBounds(
+              savedPos,
+              node.id,
+              layers,
+              positions,
+              MIN_NODE_DISTANCE
+            );
+            positions.set(node.id, adjustedPos);
+          }
         }
       });
     });
@@ -243,7 +347,76 @@ export function useForceDirectedLayout() {
           layerPadding + ((node.data as any).depth || 1) * layerHeight,
           MIN_NODE_DISTANCE
         );
-        positions.set(node.id, gridPos);
+        
+        // 重なりのない位置を確保
+        let finalPos = gridPos;
+        let attempts = 0;
+        while (attempts < 10) {
+          let hasOverlap = false;
+          positions.forEach((otherPos) => {
+            const dx = otherPos.x - finalPos.x;
+            const dy = otherPos.y - finalPos.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < MIN_NODE_DISTANCE) {
+              hasOverlap = true;
+              // 重なっている場合、距離を保つ方向に移動
+              const angle = Math.atan2(dy, dx);
+              finalPos = {
+                x: otherPos.x - Math.cos(angle) * MIN_NODE_DISTANCE,
+                y: otherPos.y - Math.sin(angle) * MIN_NODE_DISTANCE,
+              };
+            }
+          });
+          if (!hasOverlap) break;
+          attempts++;
+        }
+        
+        positions.set(node.id, finalPos);
+      } else {
+        // 保存位置がある場合も重なりチェック
+        const savedPos = positions.get(node.id)!;
+        let hasOverlap = false;
+        positions.forEach((otherPos, otherId) => {
+          if (node.id === otherId) return;
+          const dx = otherPos.x - savedPos.x;
+          const dy = otherPos.y - savedPos.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < MIN_NODE_DISTANCE) {
+            hasOverlap = true;
+          }
+        });
+        
+        if (hasOverlap) {
+          // 重なっている場合は、グリッドベースの位置を使用
+          const gridPos = generateGridPosition(
+            index,
+            orphanNodes.length,
+            width,
+            height - layerPadding - 100,
+            layerPadding + ((node.data as any).depth || 1) * layerHeight,
+            MIN_NODE_DISTANCE
+          );
+          positions.set(node.id, gridPos);
+        }
+      }
+    });
+
+    // レイヤー境界を事前計算（初期位置に基づく）
+    layers.forEach(layer => {
+      const layerNodePositions = layer.containedNodeIds
+        .map(nodeId => positions.get(nodeId))
+        .filter((pos): pos is { x: number; y: number } => pos !== undefined);
+      
+      if (layerNodePositions.length > 0) {
+        const minX = Math.min(...layerNodePositions.map(p => p.x)) - MIN_NODE_DISTANCE;
+        const maxX = Math.max(...layerNodePositions.map(p => p.x)) + MIN_NODE_DISTANCE;
+        const minY = Math.min(...layerNodePositions.map(p => p.y)) - MIN_NODE_DISTANCE;
+        const maxY = Math.max(...layerNodePositions.map(p => p.y)) + MIN_NODE_DISTANCE;
+        
+        layer.bounds = { minX, minY, maxX, maxY };
+      } else {
+        // ノードがない場合はデフォルト境界を設定
+        layer.bounds = { minX: 0, minY: 0, maxX: width, maxY: height };
       }
     });
 

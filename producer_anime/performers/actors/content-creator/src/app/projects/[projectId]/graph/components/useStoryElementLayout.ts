@@ -82,15 +82,21 @@ export function useStoryElementLayout() {
       nodesByType.get(type)!.push(node);
     });
 
-    // Contextノードを最上部に配置
+    // Contextノードを最上部に配置（保存位置がある場合は使用）
     const contextNodes = nodesByType.get('context') || [];
     const contextSpacing = contextNodes.length > 0 ? width / (contextNodes.length + 1) : width / 2;
     
     contextNodes.forEach((node, index) => {
-      node.position = {
-        x: contextSpacing * (index + 1),
-        y: 50,
-      };
+      // 保存位置がある場合は使用
+      const savedPosition = node.data.properties?.position || node.data.properties?._position;
+      if (savedPosition && typeof savedPosition.x === 'number' && typeof savedPosition.y === 'number') {
+        node.position = { x: savedPosition.x, y: savedPosition.y };
+      } else {
+        node.position = {
+          x: contextSpacing * (index + 1),
+          y: 50,
+        };
+      }
     });
 
     // 各Contextレイヤー内で要素タイプ別にグループ化
@@ -150,20 +156,50 @@ export function useStoryElementLayout() {
         const startX = contextX - ((nodesPerRow - 1) * horizontalSpacing) / 2;
 
         typeNodes.forEach((node, nodeIndex) => {
-          const row = Math.floor(nodeIndex / nodesPerRow);
-          const col = nodeIndex % nodesPerRow;
+          // 保存位置がある場合は使用（重なりチェック付き）
+          const savedPosition = node.data.properties?.position || node.data.properties?._position;
+          let position: { x: number; y: number };
           
-          // グリッドベースの位置を計算
-          const gridX = startX + col * horizontalSpacing;
-          const gridY = currentY + row * verticalSpacing;
-          
-          // 重なりのない位置を確保
-          const position = findNonOverlappingPosition(
-            gridX,
-            gridY,
-            existingPositions,
-            MIN_NODE_DISTANCE
-          );
+          if (savedPosition && typeof savedPosition.x === 'number' && typeof savedPosition.y === 'number') {
+            // 保存位置が既存位置と重なっていないかチェック
+            let hasOverlap = false;
+            existingPositions.forEach((existingPos) => {
+              const dx = existingPos.x - savedPosition.x;
+              const dy = existingPos.y - savedPosition.y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+              if (distance < MIN_NODE_DISTANCE) {
+                hasOverlap = true;
+              }
+            });
+            
+            if (!hasOverlap) {
+              position = { x: savedPosition.x, y: savedPosition.y };
+            } else {
+              // 重なっている場合はグリッドベースの位置を計算
+              const row = Math.floor(nodeIndex / nodesPerRow);
+              const col = nodeIndex % nodesPerRow;
+              const gridX = startX + col * horizontalSpacing;
+              const gridY = currentY + row * verticalSpacing;
+              position = findNonOverlappingPosition(
+                gridX,
+                gridY,
+                existingPositions,
+                MIN_NODE_DISTANCE
+              );
+            }
+          } else {
+            // 保存位置がない場合はグリッドベースの位置を計算
+            const row = Math.floor(nodeIndex / nodesPerRow);
+            const col = nodeIndex % nodesPerRow;
+            const gridX = startX + col * horizontalSpacing;
+            const gridY = currentY + row * verticalSpacing;
+            position = findNonOverlappingPosition(
+              gridX,
+              gridY,
+              existingPositions,
+              MIN_NODE_DISTANCE
+            );
+          }
           
           node.position = position;
           existingPositions.set(node.id, position);
@@ -193,16 +229,46 @@ export function useStoryElementLayout() {
       });
 
       orphanNodes.forEach((node, index) => {
-        const gridX = orphanSpacing * (index + 1);
-        const gridY = height - 150;
+        // 保存位置がある場合は使用（重なりチェック付き）
+        const savedPosition = node.data.properties?.position || node.data.properties?._position;
+        let position: { x: number; y: number };
         
-        // 重なりのない位置を確保
-        const position = findNonOverlappingPosition(
-          gridX,
-          gridY,
-          existingPositions,
-          MIN_NODE_DISTANCE
-        );
+        if (savedPosition && typeof savedPosition.x === 'number' && typeof savedPosition.y === 'number') {
+          // 保存位置が既存位置と重なっていないかチェック
+          let hasOverlap = false;
+          existingPositions.forEach((existingPos) => {
+            const dx = existingPos.x - savedPosition.x;
+            const dy = existingPos.y - savedPosition.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < MIN_NODE_DISTANCE) {
+              hasOverlap = true;
+            }
+          });
+          
+          if (!hasOverlap) {
+            position = { x: savedPosition.x, y: savedPosition.y };
+          } else {
+            // 重なっている場合はグリッドベースの位置を計算
+            const gridX = orphanSpacing * (index + 1);
+            const gridY = height - 150;
+            position = findNonOverlappingPosition(
+              gridX,
+              gridY,
+              existingPositions,
+              MIN_NODE_DISTANCE
+            );
+          }
+        } else {
+          // 保存位置がない場合はグリッドベースの位置を計算
+          const gridX = orphanSpacing * (index + 1);
+          const gridY = height - 150;
+          position = findNonOverlappingPosition(
+            gridX,
+            gridY,
+            existingPositions,
+            MIN_NODE_DISTANCE
+          );
+        }
         
         node.position = position;
         existingPositions.set(node.id, position);
