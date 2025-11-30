@@ -47,12 +47,17 @@ export default function VectorSearch({ projectId }: VectorSearchProps) {
 
       const searchResults = await vectorSearch(vector, limit);
       // propertiesをJSON文字列からオブジェクトに変換
-      const parsedResults = searchResults.map((r) => ({
-        ...r,
-        properties: typeof r.properties === 'string' 
-          ? JSON.parse(r.properties) 
-          : r.properties || {},
-      }));
+      const parsedResults = searchResults.map((r) => {
+        const result = r as { properties?: string | Record<string, unknown>; node_id?: string; nodeId?: string; label?: string; score?: number };
+        return {
+          node_id: result.node_id || result.nodeId || '',
+          label: result.label || '',
+          properties: typeof result.properties === 'string' 
+            ? JSON.parse(result.properties) 
+            : (result.properties as Record<string, unknown>) || {},
+          score: result.score || 0,
+        };
+      });
       setResults(parsedResults);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Vector search failed');

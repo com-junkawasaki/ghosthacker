@@ -16,9 +16,13 @@ import Link from 'next/link';
 import { graphqlRequest } from '@/internal/graphql/client';
 import {
   GetProjectsDocument,
+  GetProjectsQuery,
   CreateProjectDocument,
+  CreateProjectMutation,
   UpdateProjectDocument,
+  UpdateProjectMutation,
   DeleteProjectDocument,
+  DeleteProjectMutation,
 } from '@/generated/graphql';
 
 interface Project {
@@ -46,7 +50,7 @@ export default function ProjectsPage() {
     setLoading(true);
     setError(null);
     try {
-      const result = await graphqlRequest(GetProjectsDocument, {});
+      const result = await graphqlRequest<GetProjectsQuery>(GetProjectsDocument, {});
       setProjects(result.projects);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load projects');
@@ -65,13 +69,20 @@ export default function ProjectsPage() {
     setLoading(true);
     setError(null);
     try {
-              const result = await graphqlRequest(CreateProjectDocument, {
+              const result = await graphqlRequest<CreateProjectMutation>(CreateProjectDocument, {
                 variables: {
                   name: newProjectName,
                   description: newProjectDescription || undefined,
                 },
               });
-      setProjects([...projects, result.createProject]);
+      const newProject = result.createProject;
+      if (newProject) {
+        setProjects([...projects, {
+          ...newProject,
+          description: newProject.description ?? null,
+          status: newProject.status ?? null,
+        }]);
+      }
       setNewProjectName('');
       setNewProjectDescription('');
       setShowCreateModal(false);
@@ -91,7 +102,7 @@ export default function ProjectsPage() {
     setLoading(true);
     setError(null);
     try {
-      await graphqlRequest(DeleteProjectDocument, {
+      await graphqlRequest<DeleteProjectMutation>(DeleteProjectDocument, {
         variables: { id },
       });
       setProjects(projects.filter((p) => p.id !== id));

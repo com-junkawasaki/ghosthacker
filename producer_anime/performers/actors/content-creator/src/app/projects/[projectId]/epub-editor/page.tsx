@@ -16,10 +16,15 @@ import { useParams } from 'next/navigation';
 import { graphqlRequest } from '@/internal/graphql/client';
 import {
   CreateEpubDocumentDocument,
+  CreateEpubDocumentMutation,
   CreateChapterDocument,
+  CreateChapterMutation,
   GetEpubDocumentDocument,
+  GetEpubDocumentQuery,
   GetChaptersDocument,
+  GetChaptersQuery,
   UpdateEpubDocumentDocument,
+  UpdateEpubDocumentMutation,
 } from '@/generated/graphql';
 import { exportEPUB } from '@/internal/epub/export';
 import { TipTapEditor } from '@/internal/epub/TipTapEditor';
@@ -71,18 +76,21 @@ export default function EPUBEditorPage() {
   const getOrCreateDefaultChapter = useCallback(async (docId: string): Promise<string> => {
     try {
       // 既存のChapterを取得
-      const chaptersResult = await graphqlRequest(GetChaptersDocument, {
+      const chaptersResult = await graphqlRequest<GetChaptersQuery>(GetChaptersDocument, {
         variables: { documentId: docId },
       });
 
       if (chaptersResult.chapters && chaptersResult.chapters.length > 0) {
         // 最初のChapterを使用（またはorder=1のChapter）
         const defaultChapter = chaptersResult.chapters.find((c) => c.order === 1) || chaptersResult.chapters[0];
+        if (!defaultChapter) {
+          throw new Error('No chapter found');
+        }
         return defaultChapter.id;
       }
 
       // Chapterが存在しない場合は作成
-      const chapterResult = await graphqlRequest(CreateChapterDocument, {
+      const chapterResult = await graphqlRequest<CreateChapterMutation>(CreateChapterDocument, {
         variables: {
           documentId: docId,
           isEpub: true,
@@ -91,6 +99,9 @@ export default function EPUBEditorPage() {
         },
       });
 
+      if (!chapterResult.createChapter) {
+        throw new Error('Failed to create chapter');
+      }
       return chapterResult.createChapter.id;
     } catch (err) {
       console.error('Failed to get or create default chapter:', err);
@@ -104,7 +115,7 @@ export default function EPUBEditorPage() {
     setError(null);
 
     try {
-      const result = await graphqlRequest(CreateEpubDocumentDocument, {
+      const result = await graphqlRequest<CreateEpubDocumentMutation>(CreateEpubDocumentDocument, {
         variables: {
           title: metadata.title || 'New EPUB Document',
           metadata: Object.keys(metadata).length > 0 ? metadata : undefined,
@@ -114,8 +125,8 @@ export default function EPUBEditorPage() {
       const newDocument: EPUBDocument = {
         id: result.createEpubDocument.id,
         title: result.createEpubDocument.title,
-        metadata: result.createEpubDocument.metadata,
-        chapters: result.createEpubDocument.chapters,
+        metadata: result.createEpubDocument.metadata ?? null,
+        chapters: result.createEpubDocument.chapters ?? null,
         created_at: result.createEpubDocument.createdAt,
         updated_at: result.createEpubDocument.updatedAt,
       };
@@ -147,7 +158,7 @@ export default function EPUBEditorPage() {
     try {
       setLoading(true);
       // EPUBDocumentを取得（tiptapContentを含む）
-      const result = await graphqlRequest(GetEpubDocumentDocument, {
+      const result = await graphqlRequest<GetEpubDocumentQuery>(GetEpubDocumentDocument, {
         variables: { id: documentId },
       });
 
@@ -181,7 +192,7 @@ export default function EPUBEditorPage() {
 
         try {
           // TipTap JSONを直接データベースに保存
-          await graphqlRequest(UpdateEpubDocumentDocument, {
+          await graphqlRequest<UpdateEpubDocumentMutation>(UpdateEpubDocumentDocument, {
             variables: {
               id: document.id,
               tiptapContent: content,
@@ -209,7 +220,7 @@ export default function EPUBEditorPage() {
       const savedDocumentId = localStorage.getItem(`epub_document_${projectId}`);
       if (savedDocumentId) {
         try {
-          const result = await graphqlRequest(GetEpubDocumentDocument, {
+          const result = await graphqlRequest<GetEpubDocumentQuery>(GetEpubDocumentDocument, {
             variables: { id: savedDocumentId },
           });
 
@@ -217,8 +228,8 @@ export default function EPUBEditorPage() {
             const loadedDocument: EPUBDocument = {
               id: result.epubDocument.id,
               title: result.epubDocument.title,
-              metadata: result.epubDocument.metadata,
-              chapters: result.epubDocument.chapters,
+              metadata: result.epubDocument.metadata ?? null,
+              chapters: result.epubDocument.chapters ?? null,
               created_at: result.epubDocument.createdAt,
               updated_at: result.epubDocument.updatedAt,
             };
@@ -332,7 +343,7 @@ export default function EPUBEditorPage() {
                           format: 'epub',
                         });
                         const url = URL.createObjectURL(blob);
-                        const a = document.createElement('a');
+                        const a = window.document.createElement('a');
                         a.href = url;
                         a.download = `${document.title}.epub`;
                         a.click();
@@ -353,7 +364,7 @@ export default function EPUBEditorPage() {
                           format: 'kindle',
                         });
                         const url = URL.createObjectURL(blob);
-                        const a = document.createElement('a');
+                        const a = window.document.createElement('a');
                         a.href = url;
                         a.download = `${document.title}.mobi`;
                         a.click();

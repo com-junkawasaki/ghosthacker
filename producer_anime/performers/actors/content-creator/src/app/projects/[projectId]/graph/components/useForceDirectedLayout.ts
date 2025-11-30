@@ -32,6 +32,7 @@ function detectCollisions(
     for (let j = i + 1; j < nodeIds.length; j++) {
       const node1 = nodeIds[i];
       const node2 = nodeIds[j];
+      if (!node1 || !node2) continue;
       const pos1 = positions.get(node1);
       const pos2 = positions.get(node2);
 

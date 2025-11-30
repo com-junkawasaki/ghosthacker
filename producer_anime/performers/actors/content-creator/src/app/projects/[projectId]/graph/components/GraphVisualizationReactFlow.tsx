@@ -123,11 +123,13 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
   // Context検出関数
   const analyzeContextNodes = useCallback((nodes: Node<GraphNodeData>[]): Node<GraphNodeData>[] => {
     return nodes.map(node => {
-      let jsonld: any = null;
+      let jsonld: Record<string, unknown> | null = null;
       try {
-        jsonld = typeof node.data.properties.jsonld === 'string' 
-          ? JSON.parse(node.data.properties.jsonld) 
-          : node.data.properties.jsonld || node.data.properties;
+        const nodeData = node.data as unknown as GraphNodeData;
+        const props = nodeData?.properties as Record<string, unknown> | undefined;
+        jsonld = typeof props?.jsonld === 'string' 
+          ? JSON.parse(props.jsonld as string) 
+          : (props?.jsonld as Record<string, unknown>) || props;
       } catch (e) {
         // JSON parse error - skip
       }
@@ -135,17 +137,19 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       const hasContext = jsonld && jsonld['@context'];
       
       let contextData: { version?: number; prefixes?: Record<string, string> } | undefined;
-      if (hasContext) {
-        const context = jsonld['@context'];
+      if (hasContext && jsonld) {
+        const context = jsonld['@context'] as Record<string, unknown> | undefined;
         if (typeof context === 'object' && context !== null) {
+          const version = context['@version'] as number | undefined;
+          const prefixes = Object.keys(context).reduce((acc, key) => {
+            if (!key.startsWith('@') && typeof context[key] === 'string') {
+              acc[key] = context[key] as string;
+            }
+            return acc;
+          }, {} as Record<string, string>);
           contextData = {
-            version: context['@version'],
-            prefixes: Object.keys(context).reduce((acc, key) => {
-              if (!key.startsWith('@') && typeof context[key] === 'string') {
-                acc[key] = context[key];
-              }
-              return acc;
-            }, {} as Record<string, string>),
+            ...(version !== undefined && { version }),
+            ...(Object.keys(prefixes).length > 0 && { prefixes }),
           };
         }
       }
@@ -156,7 +160,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         data: {
           ...node.data,
           isContext: !!hasContext,
-          contextData,
+          ...(contextData && { contextData }),
         },
       };
     });
@@ -257,7 +261,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       // Contextノードから直接接続されているノードを探索
       // usesContext または belongsTo エッジを検出
       edges.forEach(edge => {
-        const edgeData = edge.data as any;
+        const edgeData = edge.data as { edgeType?: string } | undefined;
         const edgeType = edgeData?.edgeType || '';
         const edgeLabel = edge.label || '';
         
@@ -279,7 +283,6 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         bounds: { minX: 0, minY: 0, maxX: 0, maxY: 0 },
         visible: true,
         order: index,
-        color: undefined,
       };
     });
 
@@ -322,7 +325,10 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         if (contextIdsSet && contextIdsSet.size > 0) {
           node.data.contextIds = Array.from(contextIdsSet);
           // 後方互換性のため、最初のcontextIdも設定
-          node.data.contextId = Array.from(contextIdsSet)[0];
+          const firstContextId = Array.from(contextIdsSet)[0];
+          if (firstContextId) {
+            node.data.contextId = firstContextId;
+          }
         } else {
           // 既存のロジック（階層構造から検出）
           const contextLayer = contextLayers.find(layer => 
@@ -419,14 +425,16 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
               position,
               data: {
                 label: row.label || '',
-                nodeType,
+                ...(nodeType && { nodeType }),
                 properties,
                 jsonld: jsonld,
                 isContext,
-                contextData: isContext ? {
-                  version: jsonld['@context']?.version || 1,
-                  prefixes: jsonld['@context']?.prefixes || {},
-                } : undefined,
+                ...(isContext && jsonld && jsonld['@context'] && {
+                  contextData: {
+                    version: (jsonld['@context'] as Record<string, unknown>)['@version'] as number || 1,
+                    prefixes: (jsonld['@context'] as Record<string, unknown>)['prefixes'] as Record<string, string> || {},
+                  },
+                }),
               },
             };
             parsedNodes.push(node);
@@ -494,7 +502,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         };
       });
       
-      setNodes(nodesWithHierarchy);
+      setNodes(nodesWithHierarchy as unknown as Parameters<typeof setNodes>[0]);
       setEdges(updatedEdges);
       setContextLayers(builtLayers);
       setLoading(false);
@@ -514,11 +522,12 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
     if (nodes.length === 0) return;
 
     const autoExecuteProcesses = nodes.filter(node => {
-      const props = node.data.properties as any;
-      return node.data.nodeType === 'process' &&
-             props.autoExecute === true &&
-             props.executionStatus !== 'running' &&
-             props.executionStatus !== 'completed';
+      const nodeData = node.data as unknown as GraphNodeData;
+      const props = nodeData?.properties as Record<string, unknown> | undefined;
+      return nodeData?.nodeType === 'process' &&
+             props?.autoExecute === true &&
+             props?.executionStatus !== 'running' &&
+             props?.executionStatus !== 'completed';
     });
 
     autoExecuteProcesses.forEach(async (processNode) => {
@@ -527,7 +536,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            generationType: processNode.data.properties.generationType || 'document',
+            generationType: ((processNode.data as unknown as GraphNodeData)?.properties as Record<string, unknown>)?.generationType as string || 'document',
             options: {},
           }),
         });
@@ -568,16 +577,17 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         // デバウンス: 500ms後に保存
         const timeout = setTimeout(async () => {
           try {
+            const nodeData = node.data as unknown as GraphNodeData;
             const updatedProperties = {
-              ...node.data.properties,
+              ...(nodeData?.properties as Record<string, unknown> || {}),
               position: newPosition,
             };
 
             await updateGraphNode(
               change.id,
-              node.data.label,
+              nodeData?.label || '',
               updatedProperties,
-              node.data.jsonld || {}
+              (nodeData?.jsonld as Record<string, unknown>) || {}
             );
 
             positionUpdateTimeoutRef.current.delete(change.id);
@@ -679,11 +689,12 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       const node = nodes.find(n => n.id === id);
       if (!node) return;
 
-      const updatedProperties = { ...node.data.properties, ...data.properties };
-      const updatedJsonld = { ...node.data.jsonld, ...data.jsonld };
+      const nodeData = node.data as unknown as GraphNodeData;
+      const updatedProperties = { ...(nodeData?.properties as Record<string, unknown> || {}), ...data.properties };
+      const updatedJsonld = { ...(nodeData?.jsonld as Record<string, unknown> || {}), ...data.jsonld };
 
       await createGraphNode(
-        data.label || node.data.label,
+        data.label || nodeData?.label || '',
         updatedProperties,
         updatedJsonld
       );
@@ -726,7 +737,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       
       await loadGraphData();
       setFabOpen(false);
-      setNodeForm({ label: '', properties: '{}', jsonld: '{}' });
+      setNodeForm({ label: '', properties: '{}', jsonld: '{}', nodeType: 'character' });
       setSelectedNode(nodeId);
       setSidePanelOpen(true);
     } catch (err) {
@@ -833,11 +844,19 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
 
       // ノードタイプに基づいてデフォルトのコンテクストレイヤーを自動的に割り当て
       const metadata = getNodeTypeMetadata(type);
-      const contextNodeArray = nodes.filter(n => n.data.isContext).map(n => ({
-        id: n.id,
-        label: n.data.label,
-        data: { isContext: n.data.isContext },
-      }));
+      const contextNodeArray = nodes.filter(n => {
+        const nodeData = n.data as unknown as GraphNodeData;
+        return nodeData?.isContext === true;
+      }).map(n => {
+        const nodeData = n.data as unknown as GraphNodeData;
+        return {
+          id: n.id,
+          label: nodeData?.label || '',
+          data: { 
+            ...(nodeData?.isContext !== undefined && { isContext: nodeData.isContext }),
+          },
+        };
+      });
       
       // 必須のコンテクストレイヤーをチェック
       const validation = validateRequiredContextLayers(type, contextNodeArray);
@@ -879,16 +898,17 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
   const onNodeDragStop = useCallback(async (_event: React.MouseEvent, node: Node<GraphNodeData>) => {
     // ドラッグ終了時に位置を保存
     try {
+      const nodeData = node.data as unknown as GraphNodeData;
       const updatedProperties = {
-        ...node.data.properties,
+        ...(nodeData?.properties as Record<string, unknown> || {}),
         position: node.position,
       };
 
       await updateGraphNode(
         node.id,
-        node.data.label,
+        nodeData?.label || '',
         updatedProperties,
-        node.data.jsonld || {}
+        (nodeData?.jsonld as Record<string, unknown>) || {}
       );
     } catch (err) {
       console.error('Failed to save node position after drag:', err);
@@ -932,30 +952,32 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       // ノードの半径（約30px）以内ならドロップ可能
       if (distance < 60 && distance < minDistance) {
         minDistance = distance;
-        closestNode = n;
+        closestNode = n as unknown as Node<GraphNodeData>;
       }
     });
 
     if (closestNode) {
       try {
         // Contextノードへのドロップ（多対多をサポート）
-        if (closestNode.data.isContext) {
+        const closestNodeTyped = closestNode as Node<GraphNodeData>;
+        const closestNodeData = closestNodeTyped.data as unknown as GraphNodeData;
+        if (closestNodeData?.isContext) {
           // 既存のusesContextエッジをチェック（既に存在する場合は追加しない）
           const existingContextEdge = edges.find(
             e => e.source === draggedNodeId && 
-                 e.target === closestNode.id &&
+                 e.target === closestNodeTyped.id &&
                  (e.label === 'usesContext' || e.label === 'belongsTo' || (e.data as any)?.edgeType === 'belongsTo')
           );
           
           if (!existingContextEdge) {
             // 新しいcontext関係を作成（多対多をサポート）
-            await handleCreateEdge(draggedNodeId, closestNode.id, 'usesContext');
+            await handleCreateEdge(draggedNodeId, closestNodeTyped.id, 'usesContext');
           }
         } else {
           // 通常ノードへのドロップ（親子関係）
           // 既存の親子関係を削除
           const existingParentEdge = edges.find(
-            e => e.target === draggedNodeId && e.source !== closestNode.id
+            e => e.target === draggedNodeId && e.source !== closestNodeTyped.id
           );
           
           if (existingParentEdge) {
@@ -963,7 +985,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
           }
 
           // 新しい親子関係を作成
-          await handleCreateEdge(closestNode.id, draggedNodeId, 'hasChild');
+          await handleCreateEdge(closestNodeTyped.id, draggedNodeId, 'hasChild');
         }
 
         await loadGraphData();
@@ -984,7 +1006,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       
       // まず要素タイプ別レイアウトを適用
       const typeLayoutedNodes = calculateStoryElementLayout(
-        nodes,
+        nodes as unknown as Node<GraphNodeData>[],
         edges,
         contextLayers,
         { width, height }
@@ -1037,11 +1059,11 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       {/* Context Layer Sidebar */}
       <ContextLayerSidebar
         projectId={projectId}
-        nodes={nodes}
+        nodes={nodes as unknown as Node<GraphNodeData>[]}
         edges={edges}
         contextLayers={contextLayers}
         onLayersChange={handleLayersChange}
-        onNodesChange={setNodes}
+        onNodesChange={handleNodesChange}
         onEdgesChange={setEdges}
         onReload={loadGraphData}
       />
@@ -1057,7 +1079,8 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
         onNodeClick={onNodeClick}
         onNodeDoubleClick={(_event, node) => {
           setEditingNodeId(node.id);
-          setEditingLabel(node.data.label);
+          const nodeData = node.data as unknown as GraphNodeData;
+          setEditingLabel(nodeData?.label || '');
         }}
         onEdgeClick={onEdgeClick}
         onPaneContextMenu={onPaneContextMenu}
@@ -1099,7 +1122,7 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       {/* Process Execution Panel */}
       {processExecutionNode && (
         <ProcessExecutionPanel
-          node={nodes.find(n => n.id === processExecutionNode) || null}
+          node={(nodes.find(n => n.id === processExecutionNode) as unknown as Node<GraphNodeData>) || null}
           onClose={() => {
             setProcessExecutionNode(null);
             setSelectedNode(null);
@@ -1189,8 +1212,8 @@ function GraphVisualizationInner({ projectId }: GraphVisualizationProps) {
       {sidePanelOpen && (
         <div className="absolute top-0 right-0 w-96 h-full z-10">
           <StoryElementEditor
-            node={selectedNodeData ? { id: selectedNodeData.id, data: selectedNodeData.data } : null}
-            nodes={nodes}
+            node={selectedNodeData ? { id: selectedNodeData.id, data: selectedNodeData.data as unknown as GraphNodeData } : null}
+            nodes={nodes as unknown as Node<GraphNodeData>[]}
             edges={edges}
             contextLayers={contextLayers}
             onSave={handleUpdateNode}

@@ -391,7 +391,7 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
       return {
         ...node,
         isContext: !!hasContext,
-        contextData,
+        ...(contextData && { contextData }),
       };
     });
   };
@@ -713,8 +713,8 @@ export default function GraphVisualization({ projectId }: GraphVisualizationProp
     setContextMenu({
       x: e.clientX,
       y: e.clientY,
-      nodeId,
-      edgeId,
+      ...(nodeId && { nodeId }),
+      ...(edgeId && { edgeId }),
     });
   };
 

@@ -8,7 +8,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { graphqlRequest } from '@/internal/graphql/client';
-import { CreateStoryDocument } from '@/generated/graphql';
+import { CreateStoryDocument, CreateStoryMutation } from '@/generated/graphql';
 
 export default function StoryInputPage({ params }: { params: { projectId: string } }) {
   const router = useRouter();
@@ -23,7 +23,7 @@ export default function StoryInputPage({ params }: { params: { projectId: string
     setError(null);
 
     try {
-      const result = await graphqlRequest(CreateStoryDocument, {
+      const result = await graphqlRequest<CreateStoryMutation>(CreateStoryDocument, {
         variables: {
           title,
           content,

@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { graphqlRequest } from '@/internal/graphql/client';
-import { GetStoryDocument, CreateScriptDocument } from '@/generated/graphql';
+import { GetStoryDocument, GetStoryQuery, CreateScriptDocument, CreateScriptMutation } from '@/generated/graphql';
 
 type PipelineStatus = 'pending' | 'running' | 'completed' | 'failed' | 'cancelled';
 type PipelineStep = 'ingest_story' | 'generate_script' | 'generate_image' | 'generate_audio' | 'compose_video' | 'upload_youtube';
@@ -49,7 +49,7 @@ export default function PipelineMonitorPage({ params }: { params: { projectId: s
 
     try {
       // Step 1: Storyを取得
-      const storyResult = await graphqlRequest(GetStoryDocument, {
+      const storyResult = await graphqlRequest<GetStoryQuery>(GetStoryDocument, {
         variables: { id: storyId },
       });
 
@@ -65,7 +65,7 @@ export default function PipelineMonitorPage({ params }: { params: { projectId: s
       // Step 2: Scriptを生成（仮実装 - 実際のLLM処理は後で実装）
       const scriptText = `Script generated from story: ${storyResult.story.title}\n\n${storyResult.story.content.substring(0, 500)}...`;
 
-      const scriptResult = await graphqlRequest(CreateScriptDocument, {
+      const scriptResult = await graphqlRequest<CreateScriptMutation>(CreateScriptDocument, {
         variables: {
           scriptText,
           derivedFromStory: storyId,

@@ -65,7 +65,7 @@ function StoryElementEdge({
       <BaseEdge
         id={id}
         path={edgePath}
-        markerEnd={markerEnd}
+        {...(markerEnd && { markerEnd })}
         style={{
           ...style,
           stroke: color,

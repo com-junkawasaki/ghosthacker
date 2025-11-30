@@ -106,7 +106,7 @@ export interface StoryElementProperties {
   
   // Event
   type?: string;
-  description?: string;
+  eventDescription?: string;
   consequences?: string[];
   
   // Process

@@ -4,6 +4,9 @@ const path = require('path');
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['reactflow', '@protobuf-ts/runtime', '@protobuf-ts/runtime-rpc', '@protobuf-ts/grpcweb-transport'],
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {

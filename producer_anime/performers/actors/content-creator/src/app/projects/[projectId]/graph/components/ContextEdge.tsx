@@ -30,7 +30,7 @@ function ContextEdge({
       <BaseEdge
         id={id}
         path={edgePath}
-        markerEnd={markerEnd}
+        {...(markerEnd && { markerEnd })}
         style={{
           ...style,
           stroke: style.stroke || '#9ca3af',

@@ -14,7 +14,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { graphqlRequest } from '@/internal/graphql/client';
-import { GetProjectDocument } from '@/generated/graphql';
+import { GetProjectDocument, GetProjectQuery } from '@/generated/graphql';
 
 interface Project {
   id: string;
@@ -39,11 +39,15 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
       setLoading(true);
       setError(null);
       try {
-        const result = await graphqlRequest(GetProjectDocument, {
+        const result = await graphqlRequest<GetProjectQuery>(GetProjectDocument, {
           variables: { id: params.projectId },
         });
         if (result?.project) {
-          setProject(result.project);
+          setProject({
+            ...result.project,
+            description: result.project.description ?? null,
+            status: result.project.status ?? null,
+          });
         } else {
           setError('Project not found');
         }

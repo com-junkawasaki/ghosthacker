@@ -12,7 +12,7 @@ interface StoryElementNodeData extends GraphNodeData {
   nodeType?: StoryElementNodeType;
 }
 
-function StoryElementNode({ data, selected }: NodeProps<StoryElementNodeData>) {
+function StoryElementNode({ id, type, data, selected, zIndex, isConnectable, xPos, yPos, dragHandle, dragging, targetPosition, sourcePosition }: NodeProps<StoryElementNodeData>) {
   const { label, nodeType, isContext } = data;
   const radius = 25;
   const size = 50;
@@ -333,7 +333,7 @@ function StoryElementNode({ data, selected }: NodeProps<StoryElementNodeData>) {
 
   // Process: Octagon (use ProcessNode component)
   if (nodeType === 'process') {
-    return <ProcessNode data={data as any} selected={selected} />;
+    return <ProcessNode id={id} type={type} data={data as any} selected={selected} zIndex={zIndex} isConnectable={isConnectable} xPos={xPos} yPos={yPos} dragging={dragging} {...(dragHandle && { dragHandle })} {...(targetPosition && { targetPosition })} {...(sourcePosition && { sourcePosition })} />;
   }
 
   // Default node (circle) - fallback

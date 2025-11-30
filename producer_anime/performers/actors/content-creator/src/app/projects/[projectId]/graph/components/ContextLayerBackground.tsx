@@ -4,8 +4,7 @@
  */
 
 import { useMemo } from 'react';
-import { useReactFlow, ReactFlowState, useViewport } from 'reactflow';
-import { useStore } from 'reactflow';
+import { useReactFlow, useViewport } from 'reactflow';
 import { ContextLayer } from './types';
 
 interface ContextLayerBackgroundProps {
@@ -13,11 +12,9 @@ interface ContextLayerBackgroundProps {
   isDarkMode: boolean;
 }
 
-// ノードの位置を取得するセレクタ
-const nodesSelector = (state: ReactFlowState) => state.nodes;
-
 function ContextLayerBackground({ layers, isDarkMode }: ContextLayerBackgroundProps) {
-  const nodes = useStore(nodesSelector);
+  const { getNodes } = useReactFlow();
+  const nodes = getNodes();
   const viewport = useViewport();
 
   const layerRects = useMemo(() => {

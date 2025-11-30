@@ -119,7 +119,9 @@ export default function ContextLayerSidebar({
 
     const updatedLayers = [...contextLayers];
     const [movedLayer] = updatedLayers.splice(currentIndex, 1);
-    updatedLayers.splice(newIndex, 0, { ...movedLayer, order: newIndex });
+    if (movedLayer) {
+      updatedLayers.splice(newIndex, 0, { ...movedLayer, order: newIndex });
+    }
 
     // orderを更新
     updatedLayers.forEach((layer, index) => {

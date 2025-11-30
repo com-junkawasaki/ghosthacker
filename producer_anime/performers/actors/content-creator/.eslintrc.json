@@ -18,5 +18,9 @@
     "@typescript-eslint/require-await": "warn",
     "@typescript-eslint/no-misused-promises": "warn",
     "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
-  }
+  },
+  "ignorePatterns": [
+    "src/internal/grpc/generated/**/*",
+    "src/generated/**/*"
+  ]
 }
