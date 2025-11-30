@@ -32,7 +32,7 @@ use crate::database::{
     TextNode as DatabaseTextNode,
 };
 use crate::graph::{
-    helixdb::{get_client, GraphNode, GraphEdge},
+    postgres::{get_client, GraphNode, GraphEdge},
     jsonld::JsonLdProcessor,
     rag::{get_rag_service, SearchResult},
 };
@@ -313,7 +313,7 @@ impl QueryRoot {
 
     /// グラフクエリを実行
     async fn graph_query(&self, query: String) -> Result<serde_json::Value> {
-        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
+        let client = get_client().map_err(|e| Error::new(format!("PostgreSQL graph client error: {}", e)))?;
         match client.query(&query).await {
             Ok(result) => Ok(result),
             Err(e) => {
@@ -325,7 +325,7 @@ impl QueryRoot {
 
     /// グラフノードを取得
     async fn graph_node(&self, id: String) -> Result<Option<GraphNodeType>> {
-        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
+        let client = get_client().map_err(|e| Error::new(format!("PostgreSQL graph client error: {}", e)))?;
         match client.get_node(&id).await {
             Ok(Some(node)) => Ok(Some(node.into())),
             Ok(None) => Ok(None),
@@ -338,7 +338,7 @@ impl QueryRoot {
 
     /// グラフエッジを取得
     async fn graph_edge(&self, id: String) -> Result<Option<GraphEdgeType>> {
-        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
+        let client = get_client().map_err(|e| Error::new(format!("PostgreSQL graph client error: {}", e)))?;
         match client.get_edge(&id).await {
             Ok(Some(edge)) => Ok(Some(edge.into())),
             Ok(None) => Ok(None),
@@ -364,17 +364,17 @@ impl QueryRoot {
 
     /// ベクトル検索
     async fn vector_search(&self, query_vector: Vec<f32>, limit: Option<usize>) -> Result<Vec<SemanticSearchResult>> {
-        let client = get_client().map_err(|e| Error::new(format!("HelixDB client error: {}", e)))?;
+        let client = get_client().map_err(|e| Error::new(format!("PostgreSQL graph client error: {}", e)))?;
         let limit = limit.unwrap_or(10);
         match client.vector_search(&query_vector, limit).await {
             Ok(results) => {
                 let mut search_results = Vec::new();
                 for result in results {
-                    if let Ok(Some(node)) = client.get_node(&result.node_id).await {
+                    if let Some(ref node) = result.node {
                         search_results.push(SemanticSearchResult {
-                            node_id: result.node_id,
-                            label: node.label,
-                            properties: node.properties,
+                            node_id: result.node_id.clone(),
+                            label: node.label.clone(),
+                            properties: node.properties.clone(),
                             score: result.score,
                         });
                     }

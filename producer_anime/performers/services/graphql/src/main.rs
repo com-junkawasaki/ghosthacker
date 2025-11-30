@@ -27,7 +27,7 @@ mod validation;
 
 use schema::{MutationRoot, QueryRoot};
 use async_graphql::EmptySubscription;
-use graph::helixdb::initialize as initialize_helixdb;
+use graph::postgres::initialize as initialize_postgres_graph;
 use graph::embedding::initialize as initialize_embedding;
 use graph::rag::initialize as initialize_rag;
 
@@ -51,14 +51,22 @@ async fn main() -> anyhow::Result<()> {
     // PostgreSQL データベースクライアントを初期化
     database::client::initialize().await?;
 
-    // HelixDBクライアントを初期化
-    initialize_helixdb().await?;
+    // PostgreSQLグラフクライアントを初期化
+    initialize_postgres_graph().await?;
 
-    // Embeddingサービスを初期化
-    initialize_embedding().await?;
+    // Embeddingサービスを初期化（オプショナル）
+    if let Err(e) = initialize_embedding().await {
+        tracing::warn!("Embedding service initialization failed (optional): {}", e);
+    } else {
+        tracing::info!("Embedding service initialized successfully");
+    }
 
-    // Graph RAGサービスを初期化
-    initialize_rag().await?;
+    // Graph RAGサービスを初期化（オプショナル）
+    if let Err(e) = initialize_rag().await {
+        tracing::warn!("Graph RAG service initialization failed (optional): {}", e);
+    } else {
+        tracing::info!("Graph RAG service initialized successfully");
+    }
 
     // GraphQLスキーマを構築
     let schema = Schema::build(

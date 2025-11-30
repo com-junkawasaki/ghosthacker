@@ -16,17 +16,17 @@ use serde_json::Value;
 use std::sync::{Arc, OnceLock};
 use tracing::{error, info};
 
-use super::helixdb::{get_client, HelixDBClient};
+use super::postgres::{get_client, PostgreSQLGraphClient};
 use super::embedding::{get_service, EmbeddingService};
 
 static SERVICE: OnceLock<Arc<GraphRagService>> = OnceLock::new();
 
 /// Graph RAGサービスを初期化
 pub async fn initialize() -> Result<()> {
-    let helixdb = get_client()?;
+    let postgres_client = get_client()?;
     let embedding = get_service()?;
     
-    let service = GraphRagService::new(helixdb, embedding)?;
+    let service = GraphRagService::new(postgres_client, embedding)?;
     
     SERVICE.set(Arc::new(service)).map_err(|_| {
         anyhow::anyhow!("Graph RAG service already initialized")
@@ -45,14 +45,14 @@ pub fn get_rag_service() -> Result<Arc<GraphRagService>> {
 
 /// Graph RAGサービス
 pub struct GraphRagService {
-    helixdb: Arc<HelixDBClient>,
+    postgres_client: Arc<PostgreSQLGraphClient>,
     embedding: Arc<EmbeddingService>,
     openai_client: Client,
     openai_api_key: String,
 }
 
 impl GraphRagService {
-    pub fn new(helixdb: Arc<HelixDBClient>, embedding: Arc<EmbeddingService>) -> Result<Self> {
+    pub fn new(postgres_client: Arc<PostgreSQLGraphClient>, embedding: Arc<EmbeddingService>) -> Result<Self> {
         let openai_api_key = std::env::var("OPENAI_API_KEY")
             .context("OPENAI_API_KEY environment variable not set")?;
 
@@ -61,7 +61,7 @@ impl GraphRagService {
             .build()?;
 
         Ok(Self {
-            helixdb,
+            postgres_client,
             embedding,
             openai_client,
             openai_api_key,
@@ -149,13 +149,13 @@ Return only the graph query, no additional explanation."#,
         let mut context_nodes = Vec::new();
 
         // 1. グラフクエリを実行
-        if let Ok(result) = self.helixdb.query(graph_query).await {
+        if let Ok(result) = self.postgres_client.query(graph_query).await {
             // クエリ結果からノードを抽出
-            if let Some(nodes) = result.get("nodes").and_then(|n| n.as_array()) {
+            if let Some(nodes) = result.as_array() {
                 for node in nodes {
                     if let Some(node_obj) = node.as_object() {
                         if let Some(id) = node_obj.get("id").and_then(|v| v.as_str()) {
-                            if let Ok(Some(graph_node)) = self.helixdb.get_node(id).await {
+                            if let Ok(Some(graph_node)) = self.postgres_client.get_node(id).await {
                                 context_nodes.push(ContextNode {
                                     id: id.to_string(),
                                     label: graph_node.label.clone(),
@@ -171,10 +171,10 @@ Return only the graph query, no additional explanation."#,
 
         // 2. ベクトル検索
         let query_vector = self.embedding.embed_text(query).await?;
-        let vector_results = self.helixdb.vector_search(&query_vector, 10).await?;
+        let vector_results = self.postgres_client.vector_search(&query_vector, 10).await?;
 
         for result in vector_results {
-            if let Ok(Some(node)) = self.helixdb.get_node(&result.node_id).await {
+            if let Some(ref node) = result.node {
                 // 既に追加されているノードはスキップ
                 if !context_nodes.iter().any(|n| n.id == result.node_id) {
                     context_nodes.push(ContextNode {
@@ -266,11 +266,11 @@ Please provide a comprehensive answer based on the graph context. If the context
     pub async fn semantic_search(&self, query: &str, limit: usize) -> Result<Vec<SearchResult>> {
         // ベクトル検索を実行
         let query_vector = self.embedding.embed_text(query).await?;
-        let vector_results = self.helixdb.vector_search(&query_vector, limit).await?;
+        let vector_results = self.postgres_client.vector_search(&query_vector, limit).await?;
 
         let mut results = Vec::new();
         for result in vector_results {
-            if let Ok(Some(node)) = self.helixdb.get_node(&result.node_id).await {
+            if let Some(ref node) = result.node {
                 results.push(SearchResult {
                     node_id: result.node_id.clone(),
                     label: node.label.clone(),
