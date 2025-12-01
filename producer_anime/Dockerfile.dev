@@ -15,5 +15,15 @@ RUN pnpm install --no-frozen-lockfile
 
 EXPOSE 3000
 
-CMD ["pnpm", "dev"]
+# Entrypoint script to ensure node_modules exists after volume mount
+RUN echo '#!/bin/sh' > /usr/local/bin/entrypoint.sh && \
+    echo 'cd /app/performers/actors/content-creator' >> /usr/local/bin/entrypoint.sh && \
+    echo 'if [ ! -f "node_modules/.bin/next" ]; then' >> /usr/local/bin/entrypoint.sh && \
+    echo '  echo "Installing dependencies..."' >> /usr/local/bin/entrypoint.sh && \
+    echo '  pnpm install --no-frozen-lockfile' >> /usr/local/bin/entrypoint.sh && \
+    echo 'fi' >> /usr/local/bin/entrypoint.sh && \
+    echo 'exec sh node_modules/.bin/next dev' >> /usr/local/bin/entrypoint.sh && \
+    chmod +x /usr/local/bin/entrypoint.sh
+
+CMD ["/usr/local/bin/entrypoint.sh"]
 

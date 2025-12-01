@@ -15,22 +15,28 @@ const nextConfig = {
       };
     }
     
-    // reactflowの解決を明示的に設定
+    // pnpmのシンボリックリンクを正しく解決
+    config.resolve.symlinks = true;
+    
+    // @protobuf-tsパッケージを明示的にエイリアス設定
     config.resolve.alias = {
       ...config.resolve.alias,
+      '@protobuf-ts/runtime': path.resolve(__dirname, 'node_modules/@protobuf-ts/runtime'),
+      '@protobuf-ts/runtime-rpc': path.resolve(__dirname, 'node_modules/@protobuf-ts/runtime-rpc'),
+      '@protobuf-ts/grpcweb-transport': path.resolve(__dirname, 'node_modules/@protobuf-ts/grpcweb-transport'),
     };
     
     // reactflowをESMとして解決
     config.resolve.extensionAlias = {
-      '.js': ['.js', '.ts', '.tsx'],
+      '.js': ['.js', '.ts', '.tsx', '.mjs'],
       '.mjs': ['.mjs', '.js'],
     };
     
-    // @protobuf-tsパッケージを正しく解決
-    config.resolve.extensionAlias = {
-      ...config.resolve.extensionAlias,
-      '.js': ['.js', '.ts', '.tsx', '.mjs'],
-    };
+    // node_modulesの解決パスを明示的に設定（pnpmの.pnpmディレクトリも含める）
+    config.resolve.modules = [
+      path.resolve(__dirname, 'node_modules'),
+      ...(config.resolve.modules || []),
+    ];
     
     return config;
   },

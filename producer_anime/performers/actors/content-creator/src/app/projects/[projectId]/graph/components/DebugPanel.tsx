@@ -8,7 +8,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Node, Edge } from 'reactflow';
 import { GraphNodeData, ContextLayer } from './types';
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 
 interface DebugPanelProps {
   projectId: string;
@@ -190,11 +189,14 @@ export default function DebugPanel({
             className="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors cursor-pointer"
             title={isCollapsed ? '展開' : '折りたたみ'}
           >
-            {isCollapsed ? (
-              <ChevronUpIcon className="w-4 h-4" />
-            ) : (
-              <ChevronDownIcon className="w-4 h-4" />
-            )}
+            <svg 
+              className={`w-4 h-4 transition-transform ${isCollapsed ? '' : 'rotate-180'}`} 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
           </button>
           <button
             onClick={(e) => {
