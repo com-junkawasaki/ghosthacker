@@ -1,14 +1,14 @@
-import { ListProjectsStore } from "../plugins/houdini-svelte/stores/ListProjects";
+import { UpdateSceneStore } from "../plugins/houdini-svelte/stores/UpdateScene";
 import { CreateProjectStore } from "../plugins/houdini-svelte/stores/CreateProject";
 import { CreateSceneStore } from "../plugins/houdini-svelte/stores/CreateScene";
 import { DeleteSceneStore } from "../plugins/houdini-svelte/stores/DeleteScene";
 import { GenerateSceneImageStore } from "../plugins/houdini-svelte/stores/GenerateSceneImage";
 import { GenerateVideoStore } from "../plugins/houdini-svelte/stores/GenerateVideo";
 import { ReorderScenesStore } from "../plugins/houdini-svelte/stores/ReorderScenes";
-import { UpdateSceneStore } from "../plugins/houdini-svelte/stores/UpdateScene";
-import { GetGeneratedImagesStore } from "../plugins/houdini-svelte/stores/GetGeneratedImages";
 import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
+import { GetGeneratedImagesStore } from "../plugins/houdini-svelte/stores/GetGeneratedImages";
 import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
+import { ListProjectsStore } from "../plugins/houdini-svelte/stores/ListProjects";
 import { ListScenesStore } from "../plugins/houdini-svelte/stores/ListScenes";
 import { ListStoryboardsStore } from "../plugins/houdini-svelte/stores/ListStoryboards";
 import type { Cache as InternalCache } from "./cache/cache";
@@ -18,8 +18,8 @@ export * from "./client";
 export * from "./lib";
 
 export function graphql(
-    str: "query ListProjects {\n\tprojects {\n\t\tid\n\t\ttitle\n\t\tdescription\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"
-): ListProjectsStore;
+    str: "mutation UpdateScene($input: UpdateSceneInput!) {\n\tupdateScene(input: $input) {\n\t\tid\n\t\tstoryboardId\n\t\tsceneNumber\n\t\ttextDescription\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\ttransitionType\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n\n"
+): UpdateSceneStore;
 
 export function graphql(
     str: "mutation CreateProject($input: CreateProjectInput!) {\n\tcreateProject(input: $input) {\n\t\tid\n\t\ttitle\n\t\tdescription\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"
@@ -44,20 +44,20 @@ export function graphql(
 ): ReorderScenesStore;
 
 export function graphql(
-    str: "mutation UpdateScene($input: UpdateSceneInput!) {\n\tupdateScene(input: $input) {\n\t\tid\n\t\tstoryboardId\n\t\tsceneNumber\n\t\ttextDescription\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\ttransitionType\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n\n"
-): UpdateSceneStore;
+    str: "query GetScene($id: ID!) {\n\tscene(id: $id) {\n\t\tid\n\t\tstoryboardId\n\t\tsceneNumber\n\t\ttextDescription\n\t\tmediaType\n\t\tmediaUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\ttransitionType\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"
+): GetSceneStore;
 
 export function graphql(
     str: "query GetGeneratedImages($sceneId: ID!) {\n\tgeneratedImages(sceneId: $sceneId) {\n\t\tid\n\t\tsceneId\n\t\topenaiImageId\n\t\timageFormat\n\t\timageType\n\t\tprompt\n\t\tmodel\n\t\tcreatedAt\n\t}\n}\n\n"
 ): GetGeneratedImagesStore;
 
 export function graphql(
-    str: "query GetScene($id: ID!) {\n\tscene(id: $id) {\n\t\tid\n\t\tstoryboardId\n\t\tsceneNumber\n\t\ttextDescription\n\t\tmediaType\n\t\tmediaUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\ttransitionType\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"
-): GetSceneStore;
-
-export function graphql(
     str: "query ListGeneratedVideos($storyboardId: ID!) {\n\tgeneratedVideos(storyboardId: $storyboardId) {\n\t\tid\n\t\tstoryboardId\n\t\tvariationNumber\n\t\tvideoUrl\n\t\tstatus\n\t\terrorMessage\n\t\tcreatedAt\n\t}\n}\n"
 ): ListGeneratedVideosStore;
+
+export function graphql(
+    str: "query ListProjects {\n\tprojects {\n\t\tid\n\t\ttitle\n\t\tdescription\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"
+): ListProjectsStore;
 
 export function graphql(
     str: "query ListScenes($storyboardId: ID!) {\n\tscenes(storyboardId: $storyboardId) {\n\t\tid\n\t\tstoryboardId\n\t\tsceneNumber\n\t\ttextDescription\n\t\tmediaType\n\t\tmediaUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\ttransitionType\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"
