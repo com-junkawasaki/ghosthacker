@@ -7,7 +7,7 @@
  */
 use async_graphql::{Context, Object, ID, Result};
 use crate::ports::postgres::PostgresPool;
-use crate::schema::storyboard::{Project, Storyboard, Scene, VideoStatus};
+use crate::schema::storyboard::{Project, Storyboard, Scene, VideoStatus, GeneratedImage, OperationHistory};
 use uuid::Uuid;
 use rust_decimal::prelude::*;
 use sqlx::Row;
@@ -206,6 +206,115 @@ impl QueryRoot {
             status: row.4,
             error_message: row.5,
             created_at: row.6.to_rfc3339(),
+        }).collect())
+    }
+
+    /// List generated images for a scene
+    async fn generated_images(&self, ctx: &Context<'_>, scene_id: ID) -> Result<Vec<GeneratedImage>> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let scene_uuid = Uuid::parse_str(&scene_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid scene ID: {}", e)))?;
+        
+        let rows = sqlx::query(
+            r#"
+            SELECT id, scene_id, openai_image_id, image_format, prompt, model, created_at
+            FROM generated_images
+            WHERE scene_id = $1
+            ORDER BY created_at DESC
+            "#,
+        )
+        .bind(scene_uuid)
+        .fetch_all(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch generated images: {}", e)))?;
+        
+        Ok(rows.into_iter().map(|row| {
+            let id: Uuid = row.get("id");
+            let scene_id: Uuid = row.get("scene_id");
+            
+            GeneratedImage {
+                id: ID(id.to_string()),
+                scene_id: ID(scene_id.to_string()),
+                openai_image_id: row.get("openai_image_id"),
+                image_format: row.get("image_format"),
+                prompt: row.get("prompt"),
+                model: row.get("model"),
+                created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
+            }
+        }).collect())
+    }
+
+    /// List operation history
+    async fn operation_history(
+        &self,
+        ctx: &Context<'_>,
+        entity_type: Option<String>,
+        entity_id: Option<ID>,
+    ) -> Result<Vec<OperationHistory>> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let rows = if let Some(entity_id) = entity_id {
+            let entity_uuid = Uuid::parse_str(&entity_id.0)
+                .map_err(|e| async_graphql::Error::new(format!("Invalid entity ID: {}", e)))?;
+            
+            let entity_type_filter = entity_type.as_deref().unwrap_or("%");
+            
+            sqlx::query(
+                r#"
+                SELECT id, entity_type, entity_id, operation_type, operation_data, user_id, created_at
+                FROM operation_history
+                WHERE entity_id = $1 AND ($2::text IS NULL OR entity_type = $2)
+                ORDER BY created_at DESC
+                LIMIT 100
+                "#,
+            )
+            .bind(entity_uuid)
+            .bind(entity_type)
+            .fetch_all(pool.as_ref())
+            .await
+        } else if let Some(entity_type) = entity_type {
+            sqlx::query(
+                r#"
+                SELECT id, entity_type, entity_id, operation_type, operation_data, user_id, created_at
+                FROM operation_history
+                WHERE entity_type = $1
+                ORDER BY created_at DESC
+                LIMIT 100
+                "#,
+            )
+            .bind(entity_type)
+            .fetch_all(pool.as_ref())
+            .await
+        } else {
+            sqlx::query(
+                r#"
+                SELECT id, entity_type, entity_id, operation_type, operation_data, user_id, created_at
+                FROM operation_history
+                ORDER BY created_at DESC
+                LIMIT 100
+                "#,
+            )
+            .fetch_all(pool.as_ref())
+            .await
+        }
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch operation history: {}", e)))?;
+        
+        Ok(rows.into_iter().map(|row| {
+            let id: Uuid = row.get("id");
+            let entity_id: Uuid = row.get("entity_id");
+            let user_id: Option<Uuid> = row.get("user_id");
+            let operation_data: serde_json::Value = row.get("operation_data");
+            
+            OperationHistory {
+                id: ID(id.to_string()),
+                entity_type: row.get("entity_type"),
+                entity_id: ID(entity_id.to_string()),
+                operation_type: row.get("operation_type"),
+                operation_data: operation_data.to_string(),
+                user_id: user_id.map(|u| ID(u.to_string())),
+                created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
+            }
         }).collect())
     }
 }

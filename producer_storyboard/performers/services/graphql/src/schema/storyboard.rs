@@ -77,3 +77,35 @@ pub struct VideoStatus {
     #[graphql(name = "createdAt")]
     pub created_at: String,
 }
+
+#[derive(SimpleObject, Clone)]
+pub struct GeneratedImage {
+    pub id: ID,
+    #[graphql(name = "sceneId")]
+    pub scene_id: ID,
+    #[graphql(name = "openaiImageId")]
+    pub openai_image_id: Option<String>,
+    #[graphql(name = "imageFormat")]
+    pub image_format: Option<String>,
+    pub prompt: Option<String>,
+    pub model: Option<String>,
+    #[graphql(name = "createdAt")]
+    pub created_at: String,
+}
+
+#[derive(SimpleObject, Clone)]
+pub struct OperationHistory {
+    pub id: ID,
+    #[graphql(name = "entityType")]
+    pub entity_type: String,
+    #[graphql(name = "entityId")]
+    pub entity_id: ID,
+    #[graphql(name = "operationType")]
+    pub operation_type: String,
+    #[graphql(name = "operationData")]
+    pub operation_data: String,
+    #[graphql(name = "userId")]
+    pub user_id: Option<ID>,
+    #[graphql(name = "createdAt")]
+    pub created_at: String,
+}

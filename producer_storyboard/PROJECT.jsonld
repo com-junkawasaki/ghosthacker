@@ -40,7 +40,7 @@
   "description": "Soraのストーリーボード機能を参考に、シーン単位で動画を生成・結合する動画生成サービス。Frontend: SvelteKit 2.x + Houdini 1.5.x, Backend: Rust (async-graphql/Poem) + PostgreSQL 16, AI: OpenAI API (動画生成)。ストーリーボード→動画生成のワークフローを実現。",
   "version": "0.1.0",
   "createdAt": "2025-01-30T00:00:00Z",
-  "updatedAt": "2025-01-30T00:00:00Z",
+  "updatedAt": "2025-12-08T20:59:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -68,9 +68,15 @@
     {"@id": "https://gftd.ai/activity/create-storyboard"},
     {"@id": "https://gftd.ai/activity/edit-storyboard"},
     {"@id": "https://gftd.ai/activity/manage-scenes"},
+    {"@id": "https://gftd.ai/activity/create-scene"},
+    {"@id": "https://gftd.ai/activity/update-scene"},
+    {"@id": "https://gftd.ai/activity/delete-scene"},
+    {"@id": "https://gftd.ai/activity/reorder-scenes"},
+    {"@id": "https://gftd.ai/activity/generate-scene-image"},
     {"@id": "https://gftd.ai/activity/generate-video"},
     {"@id": "https://gftd.ai/activity/edit-timeline"},
-    {"@id": "https://gftd.ai/activity/preview-video"}
+    {"@id": "https://gftd.ai/activity/preview-video"},
+    {"@id": "https://gftd.ai/activity/save-operation-history"}
   ],
   
   "hasPerformer": [
@@ -93,11 +99,96 @@
     {"@id": "https://gftd.ai/resource/storyboard"},
     {"@id": "https://gftd.ai/resource/scene"},
     {"@id": "https://gftd.ai/resource/generated-video"},
-    {"@id": "https://gftd.ai/resource/video-bytea-storage"}
+    {"@id": "https://gftd.ai/resource/generated-image"},
+    {"@id": "https://gftd.ai/resource/video-bytea-storage"},
+    {"@id": "https://gftd.ai/resource/image-bytea-storage"},
+    {"@id": "https://gftd.ai/resource/operation-history"}
   ],
   
   "dependsOn": [
     {"@id": "https://gftd.ai/dependency/postgresql"},
-    {"@id": "https://gftd.ai/dependency/openai-api"}
+    {"@id": "https://gftd.ai/dependency/openai-api"},
+    {"@id": "https://gftd.ai/dependency/openai-dalle"},
+    {"@id": "https://gftd.ai/dependency/openai-gpt4"}
+  ],
+  
+  "configuration": [
+    {
+      "id": "https://gftd.ai/config/ui-implementation",
+      "type": "cpm:Configuration",
+      "name": "UI Implementation Status",
+      "description": "Sora-style storyboard UI with scene management features",
+      "status": "completed",
+      "details": {
+        "sceneManagement": {
+          "addScene": "Implemented with multiple insertion points (between panels, end, toolbar)",
+          "deleteScene": "Implemented with confirmation dialog",
+          "moveScene": "Implemented with HTML5 Drag and Drop",
+          "keyboardShortcuts": "Delete/Backspace, +/=, Arrow keys",
+          "visualFeedback": "Drag states, drop zones, animations"
+        },
+        "layout": {
+          "horizontalScroll": "Implemented with flex layout",
+          "scenePanelWidth": "400px fixed width",
+          "insertButtonWidth": "60px"
+        }
+      }
+    },
+    {
+      "id": "https://gftd.ai/config/graphql-postgresql-integration",
+      "type": "cpm:Configuration",
+      "name": "GraphQL PostgreSQL Integration Plan",
+      "description": "Plan for implementing scene CRUD operations, OpenAI integration, and operation history",
+      "status": "planned",
+      "details": {
+        "databaseSchema": {
+          "operationHistory": "Table for storing all operation history",
+          "generatedImages": "Table for storing generated images as BYTEA"
+        },
+        "graphqlMutations": [
+          "createScene",
+          "updateScene",
+          "deleteScene",
+          "reorderScenes",
+          "generateSceneImage"
+        ],
+        "openaiIntegration": {
+          "dalle3": "Image generation",
+          "gpt4": "Scene text description generation",
+          "imageStorage": "Download and store as BYTEA in PostgreSQL"
+        },
+        "historyTracking": {
+          "allOperations": "CREATE, UPDATE, DELETE, REORDER, GENERATE_IMAGE",
+          "storageFormat": "JSONB for operation data"
+        }
+      }
+    }
+  ],
+  
+  "issue": [
+    {
+      "id": "https://gftd.ai/issue/graphql-createproject-implementation",
+      "type": "cpm:Issue",
+      "name": "CreateProject Mutation Implementation",
+      "description": "Implemented createProject mutation in GraphQL backend",
+      "status": "resolved",
+      "resolvedAt": "2025-12-08T20:57:00Z"
+    },
+    {
+      "id": "https://gftd.ai/issue/scene-management-ui",
+      "type": "cpm:Issue",
+      "name": "Scene Management UI/UX Implementation",
+      "description": "Implemented intuitive scene add/delete/move functionality with drag and drop",
+      "status": "completed",
+      "resolvedAt": "2025-12-08T20:59:00Z"
+    },
+    {
+      "id": "https://gftd.ai/issue/horizontal-scroll-layout",
+      "type": "cpm:Issue",
+      "name": "Horizontal Scroll Layout",
+      "description": "Changed from grid layout to horizontal scrollable flex layout for scene panels",
+      "status": "resolved",
+      "resolvedAt": "2025-12-08T21:00:00Z"
+    }
   ]
 }

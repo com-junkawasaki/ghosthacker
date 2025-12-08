@@ -1,0 +1,14 @@
+mutation ReorderScenes($input: ReorderScenesInput!) {
+	reorderScenes(input: $input) {
+		id
+		storyboardId
+		sceneNumber
+		textDescription
+		startTimeSeconds
+		durationSeconds
+		transitionType
+		createdAt
+		updatedAt
+	}
+}
+

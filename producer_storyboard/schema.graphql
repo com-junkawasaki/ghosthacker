@@ -46,12 +46,34 @@ type VideoStatus {
 	createdAt: String!
 }
 
+type GeneratedImage {
+	id: ID!
+	sceneId: ID!
+	openaiImageId: String
+	imageFormat: String
+	prompt: String
+	model: String
+	createdAt: String!
+}
+
+type OperationHistory {
+	id: ID!
+	entityType: String!
+	entityId: ID!
+	operationType: String!
+	operationData: String!
+	userId: ID
+	createdAt: String!
+}
+
 type Query {
 	projects: [Project!]!
 	storyboards(projectId: ID!): [Storyboard!]!
 	scenes(storyboardId: ID!): [Scene!]!
 	scene(id: ID!): Scene
 	generatedVideos(storyboardId: ID!): [VideoStatus!]!
+	generatedImages(sceneId: ID!): [GeneratedImage!]!
+	operationHistory(entityType: String, entityId: ID): [OperationHistory!]!
 }
 
 input CreateProjectInput {
@@ -59,7 +81,40 @@ input CreateProjectInput {
 	description: String
 }
 
+input CreateSceneInput {
+	storyboardId: ID!
+	sceneNumber: Int!
+	textDescription: String
+	durationSeconds: Float
+	startTimeSeconds: Float
+	transitionType: String
+}
+
+input UpdateSceneInput {
+	id: ID!
+	textDescription: String
+	durationSeconds: Float
+	startTimeSeconds: Float
+	transitionType: String
+}
+
+input ReorderScenesInput {
+	storyboardId: ID!
+	sceneIds: [ID!]!
+}
+
+input GenerateSceneImageInput {
+	sceneId: ID!
+	prompt: String
+	model: String
+}
+
 type Mutation {
 	createProject(input: CreateProjectInput!): Project!
+	createScene(input: CreateSceneInput!): Scene!
+	updateScene(input: UpdateSceneInput!): Scene!
+	deleteScene(id: ID!): Boolean!
+	reorderScenes(input: ReorderScenesInput!): [Scene!]!
+	generateSceneImage(input: GenerateSceneImageInput!): GeneratedImage!
 	generateVideo(storyboardId: ID!): VideoStatus!
 }

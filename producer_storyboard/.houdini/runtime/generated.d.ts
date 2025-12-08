@@ -1,14 +1,14 @@
 import type { Record } from "./public/record";
-import { GetScene$result, GetScene$input } from "$houdini/artifacts/GetScene";
-import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
 import { ListGeneratedVideos$result, ListGeneratedVideos$input } from "$houdini/artifacts/ListGeneratedVideos";
 import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
+import { GetScene$result, GetScene$input } from "$houdini/artifacts/GetScene";
+import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
+import { ListScenes$result, ListScenes$input } from "$houdini/artifacts/ListScenes";
+import { ListScenesStore } from "../plugins/houdini-svelte/stores/ListScenes";
 import { ListProjects$result, ListProjects$input } from "$houdini/artifacts/ListProjects";
 import { ListProjectsStore } from "../plugins/houdini-svelte/stores/ListProjects";
 import { ListStoryboards$result, ListStoryboards$input } from "$houdini/artifacts/ListStoryboards";
 import { ListStoryboardsStore } from "../plugins/houdini-svelte/stores/ListStoryboards";
-import { ListScenes$result, ListScenes$input } from "$houdini/artifacts/ListScenes";
-import { ListScenesStore } from "../plugins/houdini-svelte/stores/ListScenes";
 
 export declare type CacheTypeDef = {
     types: {
@@ -172,6 +172,78 @@ export declare type CacheTypeDef = {
             };
             fragments: [];
         };
+        GeneratedImage: {
+            idFields: {
+                id: string;
+            };
+            fields: {
+                id: {
+                    type: string;
+                    args: never;
+                };
+                sceneId: {
+                    type: string;
+                    args: never;
+                };
+                openaiImageId: {
+                    type: string | null;
+                    args: never;
+                };
+                imageFormat: {
+                    type: string | null;
+                    args: never;
+                };
+                prompt: {
+                    type: string | null;
+                    args: never;
+                };
+                model: {
+                    type: string | null;
+                    args: never;
+                };
+                createdAt: {
+                    type: string;
+                    args: never;
+                };
+            };
+            fragments: [];
+        };
+        OperationHistory: {
+            idFields: {
+                id: string;
+            };
+            fields: {
+                id: {
+                    type: string;
+                    args: never;
+                };
+                entityType: {
+                    type: string;
+                    args: never;
+                };
+                entityId: {
+                    type: string;
+                    args: never;
+                };
+                operationType: {
+                    type: string;
+                    args: never;
+                };
+                operationData: {
+                    type: string;
+                    args: never;
+                };
+                userId: {
+                    type: string | null;
+                    args: never;
+                };
+                createdAt: {
+                    type: string;
+                    args: never;
+                };
+            };
+            fragments: [];
+        };
         __ROOT__: {
             idFields: {};
             fields: {
@@ -203,10 +275,23 @@ export declare type CacheTypeDef = {
                         storyboardId: string | number;
                     };
                 };
+                generatedImages: {
+                    type: (Record<CacheTypeDef, "GeneratedImage">)[];
+                    args: {
+                        sceneId: string | number;
+                    };
+                };
+                operationHistory: {
+                    type: (Record<CacheTypeDef, "OperationHistory">)[];
+                    args: {
+                        entityType?: string | null | undefined;
+                        entityId?: string | number | null | undefined;
+                    };
+                };
             };
             fragments: [];
         };
     };
     lists: {};
-    queries: [[ListScenesStore, ListScenes$result, ListScenes$input], [ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListProjectsStore, ListProjects$result, ListProjects$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input], [GetSceneStore, GetScene$result, GetScene$input]];
+    queries: [[ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListProjectsStore, ListProjects$result, ListProjects$input], [ListScenesStore, ListScenes$result, ListScenes$input], [GetSceneStore, GetScene$result, GetScene$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input]];
 };

@@ -1,43 +1,40 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
+	import {
+		ListStoryboardsStore,
+		ListScenesStore,
+		CreateSceneStore,
+		UpdateSceneStore,
+		DeleteSceneStore,
+		ReorderScenesStore,
+	} from '$houdini';
 
 	type Scene = {
 		id: string;
 		sceneNumber: number;
-		textDescription: string;
-		startTimeSeconds: number;
-		durationSeconds: number;
+		textDescription: string | null;
+		startTimeSeconds: number | null;
+		durationSeconds: number | null;
 		mediaUrl: string | null;
 	};
 
+	const projectId: string = $page.params.projectId || '';
+	
+	// Houdini stores
+	const storyboardsStore = new ListStoryboardsStore();
+	const scenesStore = new ListScenesStore();
+	const createSceneStore = new CreateSceneStore();
+	const updateSceneStore = new UpdateSceneStore();
+	const deleteSceneStore = new DeleteSceneStore();
+	const reorderScenesStore = new ReorderScenesStore();
+
 	// State management with $state for reactive updates
-	let scenes = $state<Scene[]>([
-		{
-			id: '1',
-			sceneNumber: 1,
-			textDescription: 'Wide-angle view of a city street. Pleasant blue sky and birds flying. Street is filled with trees and morning joggers and bike riders.',
-			startTimeSeconds: 0,
-			durationSeconds: 2.12,
-			mediaUrl: null,
-		},
-		{
-			id: '2',
-			sceneNumber: 2,
-			textDescription: 'Cut to a close-up of a person walking on the same street. Person wearing a blue t-shirt and the sky is still blue and pleasant with birds.',
-			startTimeSeconds: 2.12,
-			durationSeconds: 1.14,
-			mediaUrl: null,
-		},
-		{
-			id: '3',
-			sceneNumber: 3,
-			textDescription: 'Sky turns dark all of the sudden and it starts raining. The person becomes wet but still proceeds to walk casually.',
-			startTimeSeconds: 3.26,
-			durationSeconds: 1.74,
-			mediaUrl: null,
-		},
-	]);
+	let scenes = $state<Scene[]>([]);
+	let storyboardId = $state<string | null>(null);
+	let loading = $state(true);
+	let error = $state<string | null>(null);
 
 	let generating = $state(false);
 	let draggedSceneId = $state<string | null>(null);
@@ -58,9 +55,77 @@
 		return scenes.reduce((sum, scene) => sum + (scene.durationSeconds || 0), 0) || 5;
 	});
 
-	// Generate unique ID
-	function generateId(): string {
-		return Date.now().toString(36) + Math.random().toString(36).substr(2);
+	// Load storyboards and scenes
+	async function loadData() {
+		if (!projectId) {
+			error = 'Project ID is required';
+			loading = false;
+			return;
+		}
+
+		try {
+			loading = true;
+			error = null;
+
+			// Load storyboards for the project
+			const storyboardsResult = await storyboardsStore.fetch({ variables: { projectId } });
+			
+			if (storyboardsResult.errors && storyboardsResult.errors.length > 0) {
+				throw new Error(storyboardsResult.errors[0].message);
+			}
+
+			const storyboards = storyboardsResult.data?.storyboards || [];
+			
+			if (storyboards.length === 0) {
+				error = 'No storyboard found for this project. Please create a storyboard first.';
+				loading = false;
+				return;
+			}
+
+			// Use the first storyboard (or we could let user select)
+			const firstStoryboard = storyboards[0];
+			storyboardId = firstStoryboard.id;
+
+			// Load scenes for the storyboard
+			await loadScenes(firstStoryboard.id);
+		} catch (err) {
+			console.error('[Editor] Error loading data:', err);
+			error = err instanceof Error ? err.message : 'Failed to load data';
+			loading = false;
+		}
+	}
+
+	// Load scenes for a storyboard
+	async function loadScenes(sbId: string) {
+		try {
+			const scenesResult = await scenesStore.fetch({ variables: { storyboardId: sbId } });
+			
+			if (scenesResult.errors && scenesResult.errors.length > 0) {
+				throw new Error(scenesResult.errors[0].message);
+			}
+
+			const loadedScenes = scenesResult.data?.scenes || [];
+			
+			// Convert GraphQL scenes to local Scene type
+			scenes = loadedScenes.map((s) => ({
+				id: s.id,
+				sceneNumber: s.sceneNumber,
+				textDescription: s.textDescription || '',
+				startTimeSeconds: s.startTimeSeconds || 0,
+				durationSeconds: s.durationSeconds || 2.0,
+				mediaUrl: s.mediaUrl || null,
+			}));
+
+			if (scenes.length > 0 && !selectedSceneId) {
+				selectedSceneId = scenes[0].id;
+			}
+
+			loading = false;
+		} catch (err) {
+			console.error('[Editor] Error loading scenes:', err);
+			error = err instanceof Error ? err.message : 'Failed to load scenes';
+			loading = false;
+		}
 	}
 
 	// Recalculate scene numbers and timestamps
@@ -72,49 +137,136 @@
 				sceneNumber: index + 1,
 				startTimeSeconds: currentTime,
 			};
-			currentTime += scene.durationSeconds;
+			currentTime += scene.durationSeconds || 0;
 			return updated;
 		});
 		scenes = updatedScenes;
 	}
 
 	// Add scene at specific index
-	function addScene(index: number) {
+	async function addScene(index: number) {
+		if (!storyboardId) {
+			alert('Storyboard ID is required');
+			return;
+		}
+
 		const defaultDuration = 2.0;
-		const newScene: Scene = {
-			id: generateId(),
-			sceneNumber: index + 1,
-			textDescription: '',
-			startTimeSeconds: scenes.slice(0, index).reduce((sum, s) => sum + s.durationSeconds, 0),
-			durationSeconds: defaultDuration,
-			mediaUrl: null,
-		};
-		const newScenes = [...scenes.slice(0, index), newScene, ...scenes.slice(index)];
-		scenes = newScenes;
-		recalculateScenes();
-		selectedSceneId = newScene.id;
+		const startTime = scenes.slice(0, index).reduce((sum, s) => sum + (s.durationSeconds || 0), 0);
+
+		try {
+			const result = await createSceneStore.mutate({
+				input: {
+					storyboardId,
+					sceneNumber: index + 1,
+					textDescription: '',
+					durationSeconds: defaultDuration,
+					startTimeSeconds: startTime,
+				},
+			});
+
+			if (result?.errors && result.errors.length > 0) {
+				throw new Error(result.errors[0].message);
+			}
+
+			if (result?.data?.createScene) {
+				// Reload scenes to get the updated list
+				await loadScenes(storyboardId);
+				selectedSceneId = result.data.createScene.id;
+			}
+		} catch (err) {
+			console.error('[Editor] Error creating scene:', err);
+			alert(err instanceof Error ? err.message : 'Failed to create scene');
+		}
 	}
 
 	// Delete scene
-	function deleteScene(sceneId: string) {
-		if (confirm('Are you sure you want to delete this scene?')) {
-			scenes = scenes.filter(s => s.id !== sceneId);
-			recalculateScenes();
-			if (selectedSceneId === sceneId) {
-				selectedSceneId = scenes[0]?.id || null;
+	async function deleteScene(sceneId: string) {
+		if (!confirm('Are you sure you want to delete this scene?')) {
+			return;
+		}
+
+		try {
+			const result = await deleteSceneStore.mutate({
+				id: sceneId,
+			});
+
+			if (result?.errors && result.errors.length > 0) {
+				throw new Error(result.errors[0].message);
 			}
+
+			if (result?.data?.deleteScene) {
+				// Reload scenes to get the updated list
+				if (storyboardId) {
+					await loadScenes(storyboardId);
+				}
+				if (selectedSceneId === sceneId) {
+					selectedSceneId = scenes[0]?.id || null;
+				}
+			}
+		} catch (err) {
+			console.error('[Editor] Error deleting scene:', err);
+			alert(err instanceof Error ? err.message : 'Failed to delete scene');
 		}
 	}
 
 	// Move scene from one index to another
-	function moveScene(fromIndex: number, toIndex: number) {
-		if (fromIndex === toIndex) return;
+	async function moveScene(fromIndex: number, toIndex: number) {
+		if (fromIndex === toIndex || !storyboardId) return;
+
 		const currentScenes = [...scenes];
 		const [moved] = currentScenes.splice(fromIndex, 1);
-		if (moved) {
-			currentScenes.splice(toIndex, 0, moved);
-			scenes = currentScenes;
-			recalculateScenes();
+		if (!moved) return;
+
+		currentScenes.splice(toIndex, 0, moved);
+		
+		// Update scene numbers
+		const sceneIds = currentScenes.map((s) => s.id);
+
+		try {
+			const result = await reorderScenesStore.mutate({
+				input: {
+					storyboardId,
+					sceneIds,
+				},
+			});
+
+			if (result?.errors && result.errors.length > 0) {
+				throw new Error(result.errors[0].message);
+			}
+
+			if (result?.data?.reorderScenes) {
+				// Reload scenes to get the updated list
+				await loadScenes(storyboardId);
+			}
+		} catch (err) {
+			console.error('[Editor] Error reordering scenes:', err);
+			alert(err instanceof Error ? err.message : 'Failed to reorder scenes');
+		}
+	}
+
+	// Update scene
+	async function updateScene(sceneId: string, updates: Partial<Scene>) {
+		try {
+			const result = await updateSceneStore.mutate({
+				input: {
+					id: sceneId,
+					textDescription: updates.textDescription !== undefined ? updates.textDescription : undefined,
+					durationSeconds: updates.durationSeconds !== undefined ? updates.durationSeconds : undefined,
+					startTimeSeconds: updates.startTimeSeconds !== undefined ? updates.startTimeSeconds : undefined,
+				},
+			});
+
+			if (result?.errors && result.errors.length > 0) {
+				throw new Error(result.errors[0].message);
+			}
+
+			if (result?.data?.updateScene && storyboardId) {
+				// Reload scenes to get the updated list
+				await loadScenes(storyboardId);
+			}
+		} catch (err) {
+			console.error('[Editor] Error updating scene:', err);
+			alert(err instanceof Error ? err.message : 'Failed to update scene');
 		}
 	}
 
@@ -198,8 +350,11 @@
 	}
 
 	// Keyboard shortcuts
-	onMount(() => {
+	onMount(async () => {
 		if (!browser) return;
+		
+		// Load initial data
+		await loadData();
 		
 		const handleKeyDown = (e: KeyboardEvent) => {
 			// Prevent shortcuts when typing in inputs
@@ -290,7 +445,19 @@
 		</div>
 	</header>
 
+	<!-- Loading State -->
+	{#if loading}
+		<div class="loading-container">
+			<p>Loading storyboard...</p>
+		</div>
+	<!-- Error State -->
+	{:else if error}
+		<div class="error-container">
+			<p class="error-message">{error}</p>
+			<button onclick={loadData} class="retry-button">Retry</button>
+		</div>
 	<!-- Main Content: Scene Panels -->
+	{:else}
 	<main class="scene-panels-container">
 		<div class="scene-panels-wrapper">
 			{#each scenes as scene, index}
@@ -417,8 +584,10 @@
 			</div>
 		</div>
 	</main>
+	{/if}
 
 	<!-- Timeline -->
+	{#if !loading && !error}
 	<div class="timeline-container">
 		<div class="timeline">
 			<!-- Time Markers -->
@@ -502,6 +671,7 @@
 			Create
 		</button>
 	</div>
+	{/if}
 </div>
 
 <style>

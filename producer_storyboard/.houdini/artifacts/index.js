@@ -1,8 +1,13 @@
 
  export { default as CreateProject} from './CreateProject'
+ export { default as CreateScene} from './CreateScene'
+ export { default as DeleteScene} from './DeleteScene'
+ export { default as GenerateSceneImage} from './GenerateSceneImage'
  export { default as GenerateVideo} from './GenerateVideo'
  export { default as GetScene} from './GetScene'
  export { default as ListGeneratedVideos} from './ListGeneratedVideos'
  export { default as ListProjects} from './ListProjects'
  export { default as ListScenes} from './ListScenes'
  export { default as ListStoryboards} from './ListStoryboards'
+ export { default as ReorderScenes} from './ReorderScenes'
+ export { default as UpdateScene} from './UpdateScene'

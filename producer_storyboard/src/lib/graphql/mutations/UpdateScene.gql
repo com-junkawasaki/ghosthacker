@@ -1,0 +1,14 @@
+mutation UpdateScene($input: UpdateSceneInput!) {
+	updateScene(input: $input) {
+		id
+		storyboardId
+		sceneNumber
+		textDescription
+		startTimeSeconds
+		durationSeconds
+		transitionType
+		createdAt
+		updatedAt
+	}
+}
+

@@ -8,9 +8,14 @@ export type Result<DataType> = {
 	error?: Error | null
 }
 export * from './CreateProject'
+export * from './CreateScene'
+export * from './DeleteScene'
+export * from './GenerateSceneImage'
 export * from './GenerateVideo'
 export * from './GetScene'
 export * from './ListGeneratedVideos'
 export * from './ListProjects'
 export * from './ListScenes'
 export * from './ListStoryboards'
+export * from './ReorderScenes'
+export * from './UpdateScene'
