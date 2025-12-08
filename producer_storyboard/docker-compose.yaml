@@ -18,35 +18,6 @@ services:
     networks:
       - storyboard-editor-network
 
-  grpc:
-    build:
-      context: ./performers/services/grpc
-      dockerfile: Dockerfile
-      target: development
-    container_name: storyboard-editor-grpc
-    ports:
-      - "25328:8080"
-    environment:
-      NODE_ENV: development
-      # PostgreSQL Connection
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
-      # Server Configuration
-      PORT: 8080
-      HOST: 0.0.0.0
-      # AI Service Configuration
-      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
-      # Cargo watch configuration for HMR
-      CARGO_WATCH_IGNORE: "target/**"
-    volumes:
-      - ./performers/services/grpc:/app
-      - /app/target
-    depends_on:
-      postgres:
-        condition: service_healthy
-    networks:
-      - storyboard-editor-network
-    command: cargo watch -x "run --bin storyboard-editor-grpc" --ignore "target/**" --delay 0.5 --clear --watch-when-idle
-
   graphql:
     build:
       context: ./performers/services/graphql
@@ -97,9 +68,6 @@ services:
       # GraphQL API URL
       PUBLIC_GRAPHQL_API_URL: ${PUBLIC_GRAPHQL_API_URL:-http://localhost:25325/graphql}
       GRAPHQL_API_URL: ${GRAPHQL_API_URL:-http://graphql:8080/graphql}
-      # Legacy gRPC API URL (deprecated)
-      PUBLIC_GRPC_API_URL: ${PUBLIC_GRPC_API_URL:-http://localhost:25328}
-      GRPC_API_URL: ${GRPC_API_URL:-http://grpc:8080}
     volumes:
       - .:/app
       - /app/node_modules

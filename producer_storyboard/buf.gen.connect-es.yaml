@@ -1,7 +1,0 @@
-version: v2
-plugins:
-  - plugin: buf.build/connect-es
-    out: src/lib/grpc/generated
-    opt:
-      - target=ts
-      - import_extension=.js
