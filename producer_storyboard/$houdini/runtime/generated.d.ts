@@ -1,14 +1,14 @@
 import type { Record } from "./public/record";
+import { ListGeneratedVideos$result, ListGeneratedVideos$input } from "../artifacts/ListGeneratedVideos";
+import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
 import { GetScene$result, GetScene$input } from "../artifacts/GetScene";
 import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
 import { ListProjects$result, ListProjects$input } from "../artifacts/ListProjects";
 import { ListProjectsStore } from "../plugins/houdini-svelte/stores/ListProjects";
-import { ListGeneratedVideos$result, ListGeneratedVideos$input } from "../artifacts/ListGeneratedVideos";
-import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
-import { ListStoryboards$result, ListStoryboards$input } from "../artifacts/ListStoryboards";
-import { ListStoryboardsStore } from "../plugins/houdini-svelte/stores/ListStoryboards";
 import { ListScenes$result, ListScenes$input } from "../artifacts/ListScenes";
 import { ListScenesStore } from "../plugins/houdini-svelte/stores/ListScenes";
+import { ListStoryboards$result, ListStoryboards$input } from "../artifacts/ListStoryboards";
+import { ListStoryboardsStore } from "../plugins/houdini-svelte/stores/ListStoryboards";
 
 export declare type CacheTypeDef = {
     types: {
@@ -208,5 +208,5 @@ export declare type CacheTypeDef = {
         };
     };
     lists: {};
-    queries: [[ListScenesStore, ListScenes$result, ListScenes$input], [ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input], [ListProjectsStore, ListProjects$result, ListProjects$input], [GetSceneStore, GetScene$result, GetScene$input]];
+    queries: [[ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListScenesStore, ListScenes$result, ListScenes$input], [ListProjectsStore, ListProjects$result, ListProjects$input], [GetSceneStore, GetScene$result, GetScene$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input]];
 };

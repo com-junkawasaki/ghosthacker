@@ -1,0 +1,34 @@
+/* Global styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Sora Storyboard UI Theme */
+:root {
+	--sb-bg-primary: #363636;
+	--sb-bg-secondary: #2a2a2a;
+	--sb-text-primary: #ffffff;
+	--sb-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+	background-color: var(--sb-bg-primary);
+	color: var(--sb-text-primary);
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+	height: 100%;
+	width: 100%;
+}

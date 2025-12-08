@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { query } from '$houdini';
-	import ListGeneratedVideos from '$lib/graphql/queries/ListGeneratedVideos.gql';
+	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
+	import { ListGeneratedVideosStore } from '$houdini';
 
 	type Props = {
 		storyboardId: string;
@@ -8,9 +9,13 @@
 
 	let { storyboardId }: Props = $props();
 
-	const data = query(ListGeneratedVideos, {
-		variables: { storyboardId },
-	});
+	const data = new ListGeneratedVideosStore();
+
+	$: {
+		if (browser && storyboardId) {
+			data.fetch({ variables: { storyboardId } });
+		}
+	}
 </script>
 
 <div class="h-full">

@@ -1,42 +1,30 @@
-.PHONY: help install dev build test clean docker-up docker-down
+.PHONY: help test test-unit test-integration test-bdd test-coverage docker-up docker-down docker-logs
 
 help:
 	@echo "Available commands:"
-	@echo "  make install     - Install dependencies (pnpm + cargo)"
-	@echo "  make dev         - Start development servers"
-	@echo "  make build       - Build all services"
-	@echo "  make test        - Run tests"
-	@echo "  make clean       - Clean build artifacts"
-	@echo "  make docker-up   - Start services with Docker Compose"
-	@echo "  make docker-down - Stop Docker Compose services"
-
-install:
-	@echo "Installing frontend dependencies..."
-	pnpm install
-	@echo "Installing backend dependencies..."
-	cd performers/services/grpc && cargo fetch
-
-dev:
-	@echo "Starting development servers..."
-	docker-compose up
-
-build:
-	@echo "Building frontend..."
-	pnpm build
-	@echo "Building backend..."
-	cd performers/services/grpc && cargo build --release
+	@echo "  make test              - Run all TDD tests"
+	@echo "  make test-unit         - Run unit tests only"
+	@echo "  make test-integration  - Run integration tests only"
+	@echo "  make test-bdd          - Run BDD tests (requires GraphQL API)"
+	@echo "  make test-coverage     - Generate test coverage report"
+	@echo "  make docker-up         - Start all Docker services"
+	@echo "  make docker-down       - Stop all Docker services"
+	@echo "  make docker-logs       - Show Docker logs"
 
 test:
-	@echo "Running frontend tests..."
 	pnpm test
-	@echo "Running backend tests..."
-	cd performers/services/grpc && cargo test
 
-clean:
-	@echo "Cleaning frontend..."
-	rm -rf node_modules .svelte-kit build
-	@echo "Cleaning backend..."
-	cd performers/services/grpc && cargo clean
+test-unit:
+	pnpm test -- tests/tdd/unit
+
+test-integration:
+	pnpm test:integration
+
+test-bdd:
+	pnpm test:bdd
+
+test-coverage:
+	pnpm test:coverage
 
 docker-up:
 	docker-compose up -d

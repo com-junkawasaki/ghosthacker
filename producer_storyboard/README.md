@@ -128,6 +128,89 @@ producer_storyboard/
 - 動画生成（OpenAI API）
 - 動画ステータス確認
 
+## テスト
+
+### テスト構造
+
+- **BDDテスト**: `tests/bdd/` - Cucumberを使用したビヘイビア駆動テスト
+  - `features/` - Gherkin形式のフィーチャーファイル（capabilities.jsonldベース）
+  - `step_definitions/` - ステップ定義（TypeScript）
+- **TDDテスト**: `tests/tdd/` - Vitestを使用したテスト駆動開発テスト
+  - `unit/` - ユニットテスト（コンポーネントなど）
+  - `integration/` - 統合テスト（GraphQL APIなど）
+
+### テストの実行
+
+```bash
+# TDD: ユニットテストとコンポーネントテスト
+pnpm test
+
+# TDD: ウォッチモード
+pnpm test:watch
+
+# TDD: カバレッジレポート生成
+pnpm test:coverage
+
+# TDD: 統合テスト（GraphQL APIが必要）
+pnpm test:integration
+
+# BDD: Cucumberテスト（GraphQL APIが必要）
+pnpm test:bdd
+```
+
+### テストカバレッジ
+
+カバレッジレポートは `coverage/` ディレクトリに生成されます。
+
+```bash
+# カバレッジレポートを開く
+open coverage/index.html
+```
+
+### テストの書き方
+
+#### TDDユニットテスト例
+
+```typescript
+import { describe, it, expect } from 'vitest';
+import { render, screen } from '@testing-library/svelte';
+import MyComponent from '$lib/components/MyComponent.svelte';
+
+describe('MyComponent', () => {
+  it('should render', () => {
+    render(MyComponent, { props: { title: 'Test' } });
+    expect(screen.getByText('Test')).toBeDefined();
+  });
+});
+```
+
+#### TDD統合テスト例
+
+```typescript
+import { describe, it, expect } from 'vitest';
+import { GraphQLClient } from 'graphql-request';
+
+const client = new GraphQLClient('http://localhost:25325/graphql');
+
+describe('GraphQL API', () => {
+  it('should query projects', async () => {
+    const query = `query { projects { id title } }`;
+    const result = await client.request(query);
+    expect(result.projects).toBeDefined();
+  });
+});
+```
+
+#### BDDフィーチャーファイル例
+
+```gherkin
+機能: プロジェクト管理
+  シナリオ: プロジェクト一覧を取得する
+    前提 GraphQL APIが起動している
+    もし ユーザーがプロジェクト一覧をリクエストする
+    ならば プロジェクトのリストが返される
+```
+
 ## ライセンス
 
 Private

@@ -9,7 +9,8 @@ use async_graphql::{Context, Object, ID, Result};
 use crate::ports::postgres::PostgresPool;
 use crate::schema::storyboard::{Project, Storyboard, Scene, VideoStatus};
 use uuid::Uuid;
-use std::convert::TryInto;
+use rust_decimal::prelude::*;
+use sqlx::Row;
 
 #[derive(Default)]
 pub struct QueryRoot;
@@ -85,10 +86,10 @@ impl QueryRoot {
         let storyboard_uuid = Uuid::parse_str(&storyboard_id.0)
             .map_err(|e| async_graphql::Error::new(format!("Invalid storyboard ID: {}", e)))?;
         
-        let rows = sqlx::query_as::<_, (Uuid, Uuid, i32, Option<String>, Option<String>, Option<String>, Option<rust_decimal::Decimal>, Option<rust_decimal::Decimal>, Option<String>, chrono::DateTime<chrono::Utc>, chrono::DateTime<chrono::Utc>)>(
+        let rows = sqlx::query(
             r#"
             SELECT id, storyboard_id, scene_number, text_description, media_type, media_url,
-                   start_time_seconds, duration_seconds, transition_type, created_at, updated_at
+                   start_time_seconds::text, duration_seconds::text, transition_type, created_at, updated_at
             FROM scenes
             WHERE storyboard_id = $1
             ORDER BY scene_number ASC
@@ -99,18 +100,32 @@ impl QueryRoot {
         .await
         .map_err(|e| async_graphql::Error::new(format!("Failed to fetch scenes: {}", e)))?;
         
-        Ok(rows.into_iter().map(|row| Scene {
-            id: ID(row.0.to_string()),
-            storyboard_id: ID(row.1.to_string()),
-            scene_number: row.2,
-            text_description: row.3,
-            media_type: row.4,
-            media_url: row.5,
-            start_time_seconds: row.6.and_then(|d| d.try_into().ok()),
-            duration_seconds: row.7.and_then(|d| d.try_into().ok()),
-            transition_type: row.8,
-            created_at: row.9.to_rfc3339(),
-            updated_at: row.10.to_rfc3339(),
+        Ok(rows.into_iter().map(|row| {
+            let id: Uuid = row.get("id");
+            let storyboard_id: Uuid = row.get("storyboard_id");
+            let scene_number: i32 = row.get("scene_number");
+            let text_description: Option<String> = row.get("text_description");
+            let media_type: Option<String> = row.get("media_type");
+            let media_url: Option<String> = row.get("media_url");
+            let start_time_seconds: Option<f64> = row.try_get::<Option<String>, _>("start_time_seconds").ok().flatten().and_then(|s| s.parse::<f64>().ok());
+            let duration_seconds: Option<f64> = row.try_get::<Option<String>, _>("duration_seconds").ok().flatten().and_then(|s| s.parse::<f64>().ok());
+            let transition_type: Option<String> = row.get("transition_type");
+            let created_at: chrono::DateTime<chrono::Utc> = row.get("created_at");
+            let updated_at: chrono::DateTime<chrono::Utc> = row.get("updated_at");
+            
+            Scene {
+                id: ID(id.to_string()),
+                storyboard_id: ID(storyboard_id.to_string()),
+                scene_number,
+                text_description,
+                media_type,
+                media_url,
+                start_time_seconds,
+                duration_seconds,
+                transition_type,
+                created_at: created_at.to_rfc3339(),
+                updated_at: updated_at.to_rfc3339(),
+            }
         }).collect())
     }
 
@@ -121,10 +136,10 @@ impl QueryRoot {
         let scene_uuid = Uuid::parse_str(&id.0)
             .map_err(|e| async_graphql::Error::new(format!("Invalid scene ID: {}", e)))?;
         
-        let row = sqlx::query_as::<_, (Uuid, Uuid, i32, Option<String>, Option<String>, Option<String>, Option<rust_decimal::Decimal>, Option<rust_decimal::Decimal>, Option<String>, chrono::DateTime<chrono::Utc>, chrono::DateTime<chrono::Utc>)>(
+        let row = sqlx::query(
             r#"
             SELECT id, storyboard_id, scene_number, text_description, media_type, media_url,
-                   start_time_seconds, duration_seconds, transition_type, created_at, updated_at
+                   start_time_seconds::text, duration_seconds::text, transition_type, created_at, updated_at
             FROM scenes
             WHERE id = $1
             "#,
@@ -134,18 +149,32 @@ impl QueryRoot {
         .await
         .map_err(|e| async_graphql::Error::new(format!("Failed to fetch scene: {}", e)))?;
         
-        Ok(row.map(|row| Scene {
-            id: ID(row.0.to_string()),
-            storyboard_id: ID(row.1.to_string()),
-            scene_number: row.2,
-            text_description: row.3,
-            media_type: row.4,
-            media_url: row.5,
-            start_time_seconds: row.6.and_then(|d| d.try_into().ok()),
-            duration_seconds: row.7.and_then(|d| d.try_into().ok()),
-            transition_type: row.8,
-            created_at: row.9.to_rfc3339(),
-            updated_at: row.10.to_rfc3339(),
+        Ok(row.map(|row| {
+            let id: Uuid = row.get("id");
+            let storyboard_id: Uuid = row.get("storyboard_id");
+            let scene_number: i32 = row.get("scene_number");
+            let text_description: Option<String> = row.get("text_description");
+            let media_type: Option<String> = row.get("media_type");
+            let media_url: Option<String> = row.get("media_url");
+            let start_time_seconds: Option<f64> = row.try_get::<Option<String>, _>("start_time_seconds").ok().flatten().and_then(|s| s.parse::<f64>().ok());
+            let duration_seconds: Option<f64> = row.try_get::<Option<String>, _>("duration_seconds").ok().flatten().and_then(|s| s.parse::<f64>().ok());
+            let transition_type: Option<String> = row.get("transition_type");
+            let created_at: chrono::DateTime<chrono::Utc> = row.get("created_at");
+            let updated_at: chrono::DateTime<chrono::Utc> = row.get("updated_at");
+            
+            Scene {
+                id: ID(id.to_string()),
+                storyboard_id: ID(storyboard_id.to_string()),
+                scene_number,
+                text_description,
+                media_type,
+                media_url,
+                start_time_seconds,
+                duration_seconds,
+                transition_type,
+                created_at: created_at.to_rfc3339(),
+                updated_at: updated_at.to_rfc3339(),
+            }
         }))
     }
 

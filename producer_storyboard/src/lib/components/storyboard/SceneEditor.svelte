@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { query } from '$houdini';
-	import GetScene from '$lib/graphql/queries/GetScene.gql';
+	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
+	import { GetSceneStore } from '$houdini';
 
 	type Props = {
 		sceneId: string;
@@ -8,9 +9,13 @@
 
 	let { sceneId }: Props = $props();
 
-	const data = query(GetScene, {
-		variables: { id: sceneId },
-	});
+	const data = new GetSceneStore();
+
+	$: {
+		if (browser && sceneId) {
+			data.fetch({ variables: { id: sceneId } });
+		}
+	}
 </script>
 
 <div class="h-full">

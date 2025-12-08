@@ -14,20 +14,16 @@ dist/
 .output/
 .vercel/
 .netlify/
-
 # Environment variables
 .env
 .envrc
 .env.local
 .env.*.local
 !.envrc.example
-
 # Rust
 target/
 **/*.rs.bk
 Cargo.lock
-
-
 # IDE
 .vscode/
 .idea/
@@ -36,41 +32,35 @@ Cargo.lock
 *~
 .DS_Store
 Thumbs.db
-
 # Testing
 coverage/
 .nyc_output/
 *.lcov
-
+tests/bdd/reports/
+tests/bdd/reports/
 # Logs
 logs/
 *.log
-
 # Temporary files
 *.tmp
 *.temp
 .cache/
-
 # OS
-.DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-Thumbs.db
-
 # Docker
 .dockerignore
-
 # Build artifacts
 *.o
 *.so
 *.dylib
 *.dll
 *.exe
-
 # Backup files
 *.bak
 *.backup
-*~
+# Test coverage
+# BDD reports
