@@ -40,7 +40,7 @@
   "description": "Soraのストーリーボード機能を参考に、シーン単位で動画を生成・結合する動画生成サービス。Frontend: SvelteKit 2.x + Houdini 1.5.x, Backend: Rust (async-graphql/Poem) + PostgreSQL 16, AI: OpenAI API (動画生成)。ストーリーボード→動画生成のワークフローを実現。",
   "version": "0.1.0",
   "createdAt": "2025-01-30T00:00:00Z",
-  "updatedAt": "2025-12-08T20:59:00Z",
+  "updatedAt": "2025-12-08T22:30:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -137,29 +137,43 @@
     {
       "id": "https://gftd.ai/config/graphql-postgresql-integration",
       "type": "cpm:Configuration",
-      "name": "GraphQL PostgreSQL Integration Plan",
-      "description": "Plan for implementing scene CRUD operations, OpenAI integration, and operation history",
-      "status": "planned",
+      "name": "GraphQL PostgreSQL Integration",
+      "description": "Implemented scene CRUD operations, OpenAI integration, and operation history",
+      "status": "completed",
+      "completedAt": "2025-12-08T22:30:00Z",
       "details": {
         "databaseSchema": {
-          "operationHistory": "Table for storing all operation history",
-          "generatedImages": "Table for storing generated images as BYTEA"
+          "operationHistory": "Table created for storing all operation history",
+          "generatedImages": "Table created for storing generated images as BYTEA",
+          "migration": "002_add_history.sql"
         },
-        "graphqlMutations": [
-          "createScene",
-          "updateScene",
-          "deleteScene",
-          "reorderScenes",
-          "generateSceneImage"
-        ],
+        "graphqlMutations": {
+          "createScene": "Implemented with operation history tracking",
+          "updateScene": "Implemented with before/after state tracking",
+          "deleteScene": "Implemented with confirmation and history",
+          "reorderScenes": "Implemented with scene ID reordering",
+          "generateSceneImage": "Implemented with OpenAI DALL-E integration"
+        },
+        "graphqlQueries": {
+          "generatedImages": "Query for fetching generated images by scene ID",
+          "operationHistory": "Query for fetching operation history with filters"
+        },
         "openaiIntegration": {
-          "dalle3": "Image generation",
-          "gpt4": "Scene text description generation",
-          "imageStorage": "Download and store as BYTEA in PostgreSQL"
+          "dalle3": "Image generation implemented",
+          "gpt4": "Scene text description generation implemented",
+          "imageStorage": "Download and store as BYTEA in PostgreSQL",
+          "service": "performers/services/graphql/src/ports/openai_service.rs"
         },
         "historyTracking": {
           "allOperations": "CREATE, UPDATE, DELETE, REORDER, GENERATE_IMAGE",
-          "storageFormat": "JSONB for operation data"
+          "storageFormat": "JSONB for operation data",
+          "service": "performers/services/graphql/src/ports/history.rs"
+        },
+        "frontendIntegration": {
+          "houdiniStores": "ListScenesStore, CreateSceneStore, UpdateSceneStore, DeleteSceneStore, ReorderScenesStore",
+          "dataLoading": "Load storyboards from project, then scenes from storyboard",
+          "realTimeSync": "Auto-reload scenes after mutations",
+          "errorHandling": "Loading and error states implemented"
         }
       }
     }
@@ -189,6 +203,29 @@
       "description": "Changed from grid layout to horizontal scrollable flex layout for scene panels",
       "status": "resolved",
       "resolvedAt": "2025-12-08T21:00:00Z"
+    },
+    {
+      "id": "https://gftd.ai/issue/graphql-postgresql-integration",
+      "type": "cpm:Issue",
+      "name": "GraphQL PostgreSQL Integration with OpenAI",
+      "description": "Implemented complete GraphQL API for scene CRUD operations, OpenAI integration for image generation, and operation history tracking",
+      "status": "completed",
+      "resolvedAt": "2025-12-08T22:30:00Z",
+      "details": {
+        "databaseMigrations": ["002_add_history.sql"],
+        "graphqlMutations": 5,
+        "graphqlQueries": 2,
+        "rustServices": ["openai_service.rs", "history.rs"],
+        "frontendStores": 5
+      }
+    },
+    {
+      "id": "https://gftd.ai/issue/frontend-graphql-integration",
+      "type": "cpm:Issue",
+      "name": "Frontend GraphQL Integration",
+      "description": "Integrated editor page with GraphQL API for real-time scene management",
+      "status": "completed",
+      "resolvedAt": "2025-12-08T22:30:00Z"
     }
   ]
 }

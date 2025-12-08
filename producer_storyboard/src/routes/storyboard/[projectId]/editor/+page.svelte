@@ -5,11 +5,11 @@
 	import {
 		ListStoryboardsStore,
 		ListScenesStore,
-		CreateSceneStore,
-		UpdateSceneStore,
-		DeleteSceneStore,
-		ReorderScenesStore,
 	} from '$houdini';
+	import { CreateSceneStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/CreateScene.js';
+	import { UpdateSceneStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/UpdateScene.js';
+	import { DeleteSceneStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/DeleteScene.js';
+	import { ReorderScenesStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/ReorderScenes.js';
 
 	type Scene = {
 		id: string;
@@ -22,13 +22,22 @@
 
 	const projectId: string = $page.params.projectId || '';
 	
-	// Houdini stores
-	const storyboardsStore = new ListStoryboardsStore();
-	const scenesStore = new ListScenesStore();
-	const createSceneStore = new CreateSceneStore();
-	const updateSceneStore = new UpdateSceneStore();
-	const deleteSceneStore = new DeleteSceneStore();
-	const reorderScenesStore = new ReorderScenesStore();
+	// Houdini stores - initialize only in browser
+	let storyboardsStore: ListStoryboardsStore | null = null;
+	let scenesStore: ListScenesStore | null = null;
+	let createSceneStore: CreateSceneStore | null = null;
+	let updateSceneStore: UpdateSceneStore | null = null;
+	let deleteSceneStore: DeleteSceneStore | null = null;
+	let reorderScenesStore: ReorderScenesStore | null = null;
+
+	if (browser) {
+		storyboardsStore = new ListStoryboardsStore();
+		scenesStore = new ListScenesStore();
+		createSceneStore = new CreateSceneStore();
+		updateSceneStore = new UpdateSceneStore();
+		deleteSceneStore = new DeleteSceneStore();
+		reorderScenesStore = new ReorderScenesStore();
+	}
 
 	// State management with $state for reactive updates
 	let scenes = $state<Scene[]>([]);
@@ -57,8 +66,14 @@
 
 	// Load storyboards and scenes
 	async function loadData() {
-		if (!projectId) {
-			error = 'Project ID is required';
+		if (!projectId || !browser || !storyboardsStore || !scenesStore) {
+			if (!browser) {
+				error = 'This page requires browser environment';
+			} else if (!storyboardsStore || !scenesStore) {
+				error = 'Stores not initialized';
+			} else {
+				error = 'Project ID is required';
+			}
 			loading = false;
 			return;
 		}
@@ -97,6 +112,10 @@
 
 	// Load scenes for a storyboard
 	async function loadScenes(sbId: string) {
+		if (!browser || !scenesStore) {
+			return;
+		}
+
 		try {
 			const scenesResult = await scenesStore.fetch({ variables: { storyboardId: sbId } });
 			
@@ -145,8 +164,9 @@
 
 	// Add scene at specific index
 	async function addScene(index: number) {
-		if (!storyboardId) {
-			alert('Storyboard ID is required');
+		if (!storyboardId || !browser || !createSceneStore) {
+			if (!browser) return;
+			alert('Storyboard ID is required or stores not initialized');
 			return;
 		}
 
@@ -181,6 +201,10 @@
 
 	// Delete scene
 	async function deleteScene(sceneId: string) {
+		if (!browser || !deleteSceneStore) {
+			return;
+		}
+
 		if (!confirm('Are you sure you want to delete this scene?')) {
 			return;
 		}
@@ -211,7 +235,7 @@
 
 	// Move scene from one index to another
 	async function moveScene(fromIndex: number, toIndex: number) {
-		if (fromIndex === toIndex || !storyboardId) return;
+		if (fromIndex === toIndex || !storyboardId || !browser || !reorderScenesStore) return;
 
 		const currentScenes = [...scenes];
 		const [moved] = currentScenes.splice(fromIndex, 1);
@@ -246,6 +270,10 @@
 
 	// Update scene
 	async function updateScene(sceneId: string, updates: Partial<Scene>) {
+		if (!browser || !updateSceneStore) {
+			return;
+		}
+
 		try {
 			const result = await updateSceneStore.mutate({
 				input: {
