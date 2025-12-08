@@ -40,7 +40,7 @@
   "description": "Soraのストーリーボード機能を参考に、シーン単位で動画を生成・結合する動画生成サービス。Frontend: SvelteKit 2.x + Houdini 1.5.x, Backend: Rust (async-graphql/Poem) + PostgreSQL 16, AI: OpenAI API (動画生成)。ストーリーボード→動画生成のワークフローを実現。",
   "version": "0.1.0",
   "createdAt": "2025-01-30T00:00:00Z",
-  "updatedAt": "2025-12-08T22:30:00Z",
+  "updatedAt": "2025-12-08T23:30:00Z",
   "status": "in_progress",
   "priority": "high",
   
@@ -59,7 +59,9 @@
     {"@id": "https://gftd.ai/capability/video-composition"},
     {"@id": "https://gftd.ai/capability/timeline-editing"},
     {"@id": "https://gftd.ai/capability/video-preview"},
-    {"@id": "https://gftd.ai/capability/graphql-backend"}
+    {"@id": "https://gftd.ai/capability/graphql-backend"},
+    {"@id": "https://gftd.ai/capability/image-generation"},
+    {"@id": "https://gftd.ai/capability/image-display"}
   ],
   
   "hasActivity": [
@@ -73,6 +75,10 @@
     {"@id": "https://gftd.ai/activity/delete-scene"},
     {"@id": "https://gftd.ai/activity/reorder-scenes"},
     {"@id": "https://gftd.ai/activity/generate-scene-image"},
+    {"@id": "https://gftd.ai/activity/generate-scene-start-image"},
+    {"@id": "https://gftd.ai/activity/generate-scene-end-image"},
+    {"@id": "https://gftd.ai/activity/update-scene-duration"},
+    {"@id": "https://gftd.ai/activity/display-generated-images"},
     {"@id": "https://gftd.ai/activity/generate-video"},
     {"@id": "https://gftd.ai/activity/edit-timeline"},
     {"@id": "https://gftd.ai/activity/preview-video"},
@@ -144,18 +150,19 @@
       "details": {
         "databaseSchema": {
           "operationHistory": "Table created for storing all operation history",
-          "generatedImages": "Table created for storing generated images as BYTEA",
-          "migration": "002_add_history.sql"
+          "generatedImages": "Table created for storing generated images as BYTEA with image_type column (start/end)",
+          "migrations": ["002_add_history.sql", "004_add_image_type.sql"]
         },
         "graphqlMutations": {
-          "createScene": "Implemented with operation history tracking",
+          "createScene": "Implemented with operation history tracking and scene number conflict resolution",
           "updateScene": "Implemented with before/after state tracking",
           "deleteScene": "Implemented with confirmation and history",
-          "reorderScenes": "Implemented with scene ID reordering",
-          "generateSceneImage": "Implemented with OpenAI DALL-E integration"
+          "reorderScenes": "Implemented with transactional scene ID reordering (two-phase update)",
+          "generateSceneImage": "Implemented with OpenAI DALL-E integration, image type support (start/end), and prompt enhancement"
         },
         "graphqlQueries": {
-          "generatedImages": "Query for fetching generated images by scene ID",
+          "generatedImages": "Query for fetching generated images by scene ID with image_type filtering",
+          "imageData": "Query for fetching image data as base64 string",
           "operationHistory": "Query for fetching operation history with filters"
         },
         "openaiIntegration": {
@@ -170,10 +177,22 @@
           "service": "performers/services/graphql/src/ports/history.rs"
         },
         "frontendIntegration": {
-          "houdiniStores": "ListScenesStore, CreateSceneStore, UpdateSceneStore, DeleteSceneStore, ReorderScenesStore",
+          "houdiniStores": "ListScenesStore, CreateSceneStore, UpdateSceneStore, DeleteSceneStore, ReorderScenesStore, GenerateSceneImageStore, GetGeneratedImagesStore",
           "dataLoading": "Load storyboards from project, then scenes from storyboard",
-          "realTimeSync": "Auto-reload scenes after mutations",
-          "errorHandling": "Loading and error states implemented"
+          "realTimeSync": "Auto-reload scenes after mutations, optimistic UI updates for drag-and-drop",
+          "errorHandling": "Loading and error states implemented",
+          "imageDisplay": "Display generated start/end images in scene panels with lazy loading"
+        },
+        "imageGeneration": {
+          "imageTypes": "start and end images per scene",
+          "promptEnhancement": "Automatic prompt enhancement based on image type (opening/final frame)",
+          "storage": "BYTEA storage in PostgreSQL with image_type column",
+          "apiEndpoint": "/api/images/[imageId] for serving images"
+        },
+        "sceneDurationEditing": {
+          "ui": "Slider control (0.5s - 10s range) for intuitive duration editing",
+          "optimisticUpdate": "Immediate UI update with server sync",
+          "recalculation": "Automatic start time recalculation after duration changes"
         }
       }
     }
@@ -226,6 +245,42 @@
       "description": "Integrated editor page with GraphQL API for real-time scene management",
       "status": "completed",
       "resolvedAt": "2025-12-08T22:30:00Z"
+    },
+    {
+      "id": "https://gftd.ai/issue/scene-image-generation",
+      "type": "cpm:Issue",
+      "name": "Scene Image Generation and Display",
+      "description": "Implemented OpenAI DALL-E integration for generating start/end images per scene, with image display in scene panels",
+      "status": "completed",
+      "resolvedAt": "2025-12-08T23:30:00Z",
+      "details": {
+        "imageTypes": "start and end images",
+        "promptEnhancement": "Automatic prompt modification based on image type",
+        "storage": "BYTEA in PostgreSQL with image_type column",
+        "display": "Image display in scene panels with lazy loading",
+        "apiEndpoint": "/api/images/[imageId]"
+      }
+    },
+    {
+      "id": "https://gftd.ai/issue/scene-duration-editing",
+      "type": "cpm:Issue",
+      "name": "Scene Duration Editing",
+      "description": "Implemented intuitive slider-based duration editing with optimistic UI updates",
+      "status": "completed",
+      "resolvedAt": "2025-12-08T23:30:00Z",
+      "details": {
+        "ui": "Slider control (0.5s - 10s)",
+        "optimisticUpdate": "Immediate UI feedback",
+        "autoRecalculation": "Start times recalculated automatically"
+      }
+    },
+    {
+      "id": "https://gftd.ai/issue/drag-drop-reordering",
+      "type": "cpm:Issue",
+      "name": "Drag and Drop Scene Reordering",
+      "description": "Fixed unique constraint violation during scene reordering with transactional two-phase update",
+      "status": "resolved",
+      "resolvedAt": "2025-12-08T23:00:00Z"
     }
   ]
 }
