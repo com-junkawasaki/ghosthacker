@@ -4,7 +4,7 @@ import { browser } from '$app/environment';
 // Use relative URL for browser to avoid CORS/Mixed Content issues
 const graphqlApiUrl = browser
 	? (import.meta.env.PUBLIC_GRAPHQL_API_URL || '/api/graphql')
-	: (import.meta.env.GRAPHQL_API_URL || 'http://graphql:8080/graphql');
+	: (import.meta.env.GRAPHQL_API_URL || 'http://localhost:25325/graphql');
 
 if (browser) {
 	console.log('[GraphQL Client] Initializing with URL:', graphqlApiUrl);

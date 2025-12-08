@@ -5,7 +5,7 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-const GRAPHQL_API_URL = process.env.GRAPHQL_API_URL || 'http://graphql:8080/graphql';
+const GRAPHQL_API_URL = process.env.GRAPHQL_API_URL || 'http://localhost:25325/graphql';
 
 export const POST: RequestHandler = async ({ request }) => {
 	try {

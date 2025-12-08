@@ -18,7 +18,7 @@ export default defineConfig({
 		},
 		proxy: {
 			'/api/graphql': {
-				target: process.env.GRAPHQL_API_URL || 'http://graphql:8080/graphql',
+				target: process.env.GRAPHQL_API_URL || 'http://localhost:25325/graphql',
 				changeOrigin: true,
 				rewrite: (path) => path.replace(/^\/api\/graphql/, '/graphql'),
 			},

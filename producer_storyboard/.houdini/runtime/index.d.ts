@@ -1,6 +1,6 @@
+import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
 import { CreateProjectStore } from "../plugins/houdini-svelte/stores/CreateProject";
 import { GenerateVideoStore } from "../plugins/houdini-svelte/stores/GenerateVideo";
-import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
 import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
 import { ListProjectsStore } from "../plugins/houdini-svelte/stores/ListProjects";
 import { ListScenesStore } from "../plugins/houdini-svelte/stores/ListScenes";
@@ -12,16 +12,16 @@ export * from "./client";
 export * from "./lib";
 
 export function graphql(
+    str: "query ListGeneratedVideos($storyboardId: ID!) {\n\tgeneratedVideos(storyboardId: $storyboardId) {\n\t\tid\n\t\tstoryboardId\n\t\tvariationNumber\n\t\tvideoUrl\n\t\tstatus\n\t\terrorMessage\n\t\tcreatedAt\n\t}\n}\n"
+): ListGeneratedVideosStore;
+
+export function graphql(
     str: "mutation CreateProject($input: CreateProjectInput!) {\n\tcreateProject(input: $input) {\n\t\tid\n\t\ttitle\n\t\tdescription\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"
 ): CreateProjectStore;
 
 export function graphql(
     str: "mutation GenerateVideo($storyboardId: ID!) {\n\tgenerateVideo(storyboardId: $storyboardId) {\n\t\tid\n\t\tstoryboardId\n\t\tvariationNumber\n\t\tstatus\n\t\tcreatedAt\n\t}\n}\n"
 ): GenerateVideoStore;
-
-export function graphql(
-    str: "query ListGeneratedVideos($storyboardId: ID!) {\n\tgeneratedVideos(storyboardId: $storyboardId) {\n\t\tid\n\t\tstoryboardId\n\t\tvariationNumber\n\t\tvideoUrl\n\t\tstatus\n\t\terrorMessage\n\t\tcreatedAt\n\t}\n}\n"
-): ListGeneratedVideosStore;
 
 export function graphql(
     str: "query GetScene($id: ID!) {\n\tscene(id: $id) {\n\t\tid\n\t\tstoryboardId\n\t\tsceneNumber\n\t\ttextDescription\n\t\tmediaType\n\t\tmediaUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\ttransitionType\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"
