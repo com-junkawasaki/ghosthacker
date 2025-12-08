@@ -1,0 +1,59 @@
+# GraphQL Schema for Storyboard Editor
+# This file should be generated from the backend GraphQL schema
+# For now, it's a placeholder that matches the expected structure
+
+type Project {
+	id: ID!
+	title: String!
+	description: String
+	createdAt: String!
+	updatedAt: String!
+}
+
+type Storyboard {
+	id: ID!
+	projectId: ID!
+	title: String!
+	aspectRatio: String!
+	resolution: String!
+	durationSeconds: Int
+	numVariations: Int!
+	createdAt: String!
+	updatedAt: String!
+}
+
+type Scene {
+	id: ID!
+	storyboardId: ID!
+	sceneNumber: Int!
+	textDescription: String
+	mediaType: String
+	mediaUrl: String
+	startTimeSeconds: Float
+	durationSeconds: Float
+	transitionType: String
+	createdAt: String!
+	updatedAt: String!
+}
+
+type VideoStatus {
+	id: ID!
+	storyboardId: ID!
+	variationNumber: Int!
+	videoUrl: String
+	status: String!
+	errorMessage: String
+	createdAt: String!
+}
+
+type Query {
+	projects: [Project!]!
+	storyboards(projectId: ID!): [Storyboard!]!
+	scenes(storyboardId: ID!): [Scene!]!
+	scene(id: ID!): Scene
+	generatedVideos(storyboardId: ID!): [VideoStatus!]!
+}
+
+type Mutation {
+	generateVideo(storyboardId: ID!): VideoStatus!
+}

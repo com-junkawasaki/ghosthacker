@@ -15,8 +15,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "grpc:generate": "node scripts/generate-grpc-types.js",
-    "grpc:generate:watch": "node scripts/generate-grpc-types.js --watch"
+    "graphql:generate": "houdini generate",
+    "graphql:typegen": "houdini generate"
   },
   "dependencies": {
     "@connectrpc/connect": "^2.1.1",
@@ -28,6 +28,7 @@
     "graphql": "^16.9.0",
     "graphql-request": "^6.1.0",
     "houdini": "^1.5.10",
+    "houdini-svelte": "^1.5.10",
     "svelte": "^5.0.0",
     "svelte-check": "^4.0.0",
     "typescript": "^5.6.0"

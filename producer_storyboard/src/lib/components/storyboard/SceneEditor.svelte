@@ -1,59 +1,53 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { grpcClient } from '$lib/grpc/client';
-	import type { Scene } from '$lib/grpc/generated/types';
-	
-	export let sceneId: string;
-	
-	let scene: Scene | null = null;
-	let loading = true;
-	let error: string | null = null;
-	
-	onMount(async () => {
-		try {
-			const response = await grpcClient.getScene({ id: sceneId });
-			scene = response;
-			loading = false;
-		} catch (e) {
-			error = e instanceof Error ? e.message : 'Failed to load scene';
-			loading = false;
-		}
+	import { query } from '$houdini';
+	import GetScene from '$lib/graphql/queries/GetScene.gql';
+
+	type Props = {
+		sceneId: string;
+	};
+
+	let { sceneId }: Props = $props();
+
+	const data = query(GetScene, {
+		variables: { id: sceneId },
 	});
 </script>
 
 <div class="h-full">
-	{#if loading}
+	{#if $data.loading}
 		<p>Loading scene...</p>
-	{:else if error}
-		<div class="text-red-600">Error: {error}</div>
-	{:else if scene}
+	{:else if $data.error}
+		<div class="text-red-600">Error: {$data.error.message}</div>
+	{:else if $data.data?.scene}
+		{@const scene = $data.data.scene}
 		<div class="space-y-4">
 			<h3 class="text-lg font-semibold">Scene {scene.sceneNumber}</h3>
-			
+
 			<div>
-				<label class="block text-sm font-medium mb-1">Description</label>
+				<label for="description" class="block text-sm font-medium mb-1">Description</label>
 				<textarea
+					id="description"
 					value={scene.textDescription || ''}
 					class="w-full p-2 border rounded"
 					readonly
-				/>
+				></textarea>
 			</div>
-			
+
 			{#if scene.mediaType}
 				<div>
 					<label class="block text-sm font-medium mb-1">Media Type</label>
 					<p class="text-sm">{scene.mediaType}</p>
 				</div>
 			{/if}
-			
-			{#if scene.startTimeSeconds !== undefined}
+
+			{#if scene.startTimeSeconds !== null && scene.startTimeSeconds !== undefined}
 				<div>
 					<label class="block text-sm font-medium mb-1">Start Time</label>
 					<p class="text-sm">{scene.startTimeSeconds.toFixed(2)}s</p>
 				</div>
 			{/if}
-			
-			{#if scene.durationSeconds !== undefined}
+
+			{#if scene.durationSeconds !== null && scene.durationSeconds !== undefined}
 				<div>
 					<label class="block text-sm font-medium mb-1">Duration</label>
 					<p class="text-sm">{scene.durationSeconds.toFixed(2)}s</p>

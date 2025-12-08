@@ -1,48 +1,36 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import { grpcClient } from '$lib/grpc/client';
+	import { query, mutation, graphql } from '$houdini';
+	import ListStoryboards from '$lib/graphql/queries/ListStoryboards.gql';
+	import ListScenes from '$lib/graphql/queries/ListScenes.gql';
+	import GenerateVideo from '$lib/graphql/mutations/GenerateVideo.gql';
 	import TimelineEditor from '$lib/components/storyboard/TimelineEditor.svelte';
 	import SceneEditor from '$lib/components/storyboard/SceneEditor.svelte';
 	import VideoPreview from '$lib/components/storyboard/VideoPreview.svelte';
 	import GenerationSettings from '$lib/components/storyboard/GenerationSettings.svelte';
-	import type { Storyboard, Scene } from '$lib/grpc/generated/types';
-	
+
 	const projectId = $page.params.projectId;
-	
-	let storyboard: Storyboard | null = null;
-	let scenes: Scene[] = [];
-	let loading = true;
-	let error: string | null = null;
+
+	const storyboards = query(ListStoryboards, { variables: { projectId } });
+	const generateVideo = mutation(GenerateVideo);
+
 	let selectedSceneId: string | null = null;
-	
-	onMount(async () => {
-		try {
-			// Get project's storyboards (for now, get first one or create)
-			const storyboardsResponse = await grpcClient.listStoryboards({ projectId });
-			if (storyboardsResponse.storyboards.length > 0) {
-				storyboard = storyboardsResponse.storyboards[0];
-				const scenesResponse = await grpcClient.listScenes({ storyboardId: storyboard.id });
-				scenes = scenesResponse.scenes;
-			}
-			loading = false;
-		} catch (e) {
-			error = e instanceof Error ? e.message : 'Failed to load storyboard';
-			loading = false;
-		}
+
+	$: storyboard = $storyboards.data?.storyboards?.[0] || null;
+	$: storyboardId = storyboard?.id;
+
+	const scenes = query(ListScenes, {
+		variables: { storyboardId: storyboardId || '' },
+		pause: !storyboardId,
 	});
-	
+
 	async function handleGenerateVideo() {
-		if (!storyboard) return;
-		
-		try {
-			const response = await grpcClient.generateVideo({
-				storyboardId: storyboard.id,
-			});
-			console.log('Video generation started:', response);
-		} catch (e) {
-			error = e instanceof Error ? e.message : 'Failed to generate video';
-		}
+		if (!storyboardId) return;
+
+		await generateVideo.mutate({
+			storyboardId,
+		});
 	}
 </script>
 
@@ -53,14 +41,14 @@
 			<p class="text-sm">{storyboard.title}</p>
 		{/if}
 	</header>
-	
-	{#if loading}
+
+	{#if $storyboards.loading}
 		<div class="flex-1 flex items-center justify-center">
 			<p>Loading...</p>
 		</div>
-	{:else if error}
+	{:else if $storyboards.error}
 		<div class="flex-1 flex items-center justify-center">
-			<div class="text-red-600">Error: {error}</div>
+			<div class="text-red-600">Error: {$storyboards.error.message}</div>
 		</div>
 	{:else if storyboard}
 		<div class="flex-1 flex">
@@ -68,17 +56,22 @@
 				<GenerationSettings {storyboard} />
 				<button
 					on:click={handleGenerateVideo}
-					class="mt-4 w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+					disabled={$generateVideo.fetching}
+					class="mt-4 w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
 				>
-					Generate Video
+					{$generateVideo.fetching ? 'Generating...' : 'Generate Video'}
 				</button>
 			</aside>
-			
+
 			<main class="flex-1 flex flex-col">
 				<div class="flex-1 p-4">
-					<TimelineEditor {scenes} bind:selectedSceneId />
+					{#if $scenes.data?.scenes}
+						<TimelineEditor scenes={$scenes.data.scenes} bind:selectedSceneId />
+					{:else if $scenes.loading}
+						<p>Loading scenes...</p>
+					{/if}
 				</div>
-				
+
 				<div class="h-64 border-t p-4">
 					{#if selectedSceneId}
 						<SceneEditor sceneId={selectedSceneId} />
@@ -87,9 +80,11 @@
 					{/if}
 				</div>
 			</main>
-			
+
 			<aside class="w-64 bg-gray-100 p-4">
-				<VideoPreview storyboardId={storyboard.id} />
+				{#if storyboardId}
+					<VideoPreview {storyboardId} />
+				{/if}
 			</aside>
 		</div>
 	{:else}

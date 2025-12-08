@@ -1,9 +1,18 @@
 <script lang="ts">
-	import type { Scene } from '$lib/grpc/generated/types';
-	
-	export let scenes: Scene[] = [];
-	export let selectedSceneId: string | null = $bindable(null);
-	
+	type Scene = {
+		id: string;
+		sceneNumber: number;
+		textDescription?: string | null;
+		durationSeconds?: number | null;
+	};
+
+	type Props = {
+		scenes: Scene[];
+		selectedSceneId: string | null;
+	};
+
+	let { scenes = [], selectedSceneId = $bindable(null) }: Props = $props();
+
 	function selectScene(sceneId: string) {
 		selectedSceneId = sceneId;
 	}
@@ -11,7 +20,7 @@
 
 <div class="h-full overflow-auto">
 	<h2 class="text-lg font-semibold mb-4">Timeline</h2>
-	
+
 	<div class="space-y-2">
 		{#each scenes as scene (scene.id)}
 			<button

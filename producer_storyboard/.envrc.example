@@ -9,8 +9,11 @@ export OPENAI_API_KEY="your-openai-api-key-here"
 
 # Application URLs
 export PUBLIC_APP_URL="http://localhost:25322"
-export PUBLIC_GRPC_API_URL="http://localhost:25328"
-export GRPC_API_URL="http://localhost:25328"
+export PUBLIC_GRAPHQL_API_URL="http://localhost:25325/graphql"
+export GRAPHQL_API_URL="http://localhost:25325/graphql"
+# Legacy gRPC URLs (deprecated)
+# export PUBLIC_GRPC_API_URL="http://localhost:25328"
+# export GRPC_API_URL="http://localhost:25328"
 
 # Development Configuration
 export NODE_ENV="development"

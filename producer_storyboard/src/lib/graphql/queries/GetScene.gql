@@ -1,0 +1,15 @@
+query GetScene($id: ID!) {
+	scene(id: $id) {
+		id
+		storyboardId
+		sceneNumber
+		textDescription
+		mediaType
+		mediaUrl
+		startTimeSeconds
+		durationSeconds
+		transitionType
+		createdAt
+		updatedAt
+	}
+}
