@@ -9,6 +9,8 @@ export type ReorderScenes$result = {
         readonly storyboardId: string;
         readonly sceneNumber: number;
         readonly textDescription: string | null;
+        readonly mediaType: string | null;
+        readonly mediaUrl: string | null;
         readonly startTimeSeconds: number | null;
         readonly durationSeconds: number | null;
         readonly transitionType: string | null;
@@ -32,6 +34,8 @@ export type ReorderScenes$optimistic = {
         readonly storyboardId?: string;
         readonly sceneNumber?: number;
         readonly textDescription?: string | null;
+        readonly mediaType?: string | null;
+        readonly mediaUrl?: string | null;
         readonly startTimeSeconds?: number | null;
         readonly durationSeconds?: number | null;
         readonly transitionType?: string | null;
@@ -43,13 +47,15 @@ export type ReorderScenes$optimistic = {
 export type ReorderScenes$artifact = {
     "name": "ReorderScenes";
     "kind": "HoudiniMutation";
-    "hash": "12994559694876962a3784c4cc8090f745ce0b46eea3002ef77491941337e574";
+    "hash": "020714cd4c3857355d66b504f0d780980c7de495063c40205a9a013ec87ce557";
     "raw": `mutation ReorderScenes($input: ReorderScenesInput!) {
   reorderScenes(input: $input) {
     id
     storyboardId
     sceneNumber
     textDescription
+    mediaType
+    mediaUrl
     startTimeSeconds
     durationSeconds
     transitionType
@@ -84,6 +90,18 @@ export type ReorderScenes$artifact = {
                         "textDescription": {
                             "type": "String";
                             "keyRaw": "textDescription";
+                            "nullable": true;
+                            "visible": true;
+                        };
+                        "mediaType": {
+                            "type": "String";
+                            "keyRaw": "mediaType";
+                            "nullable": true;
+                            "visible": true;
+                        };
+                        "mediaUrl": {
+                            "type": "String";
+                            "keyRaw": "mediaUrl";
                             "nullable": true;
                             "visible": true;
                         };

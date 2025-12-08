@@ -4,6 +4,7 @@
  export { default as DeleteScene} from './DeleteScene'
  export { default as GenerateSceneImage} from './GenerateSceneImage'
  export { default as GenerateVideo} from './GenerateVideo'
+ export { default as GetGeneratedImages} from './GetGeneratedImages'
  export { default as GetScene} from './GetScene'
  export { default as ListGeneratedVideos} from './ListGeneratedVideos'
  export { default as ListProjects} from './ListProjects'

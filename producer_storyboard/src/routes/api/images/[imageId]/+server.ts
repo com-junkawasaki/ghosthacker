@@ -1,7 +1,7 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-const GRAPHQL_API_URL = import.meta.env.VITE_GRAPHQL_API_URL || 'http://localhost:25325/graphql';
+const GRAPHQL_API_URL = import.meta.env.GRAPHQL_API_URL || process.env.GRAPHQL_API_URL || 'http://localhost:25325/graphql';
 
 export const GET: RequestHandler = async ({ params }) => {
 	const imageId = params.imageId;
@@ -44,14 +44,43 @@ export const GET: RequestHandler = async ({ params }) => {
 			return json({ error: 'Image not found' }, { status: 404 });
 		}
 
+		// Get image format from a separate query
+		const formatResponse = await fetch(GRAPHQL_API_URL, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				query: `
+					query GetImageFormat($imageId: ID!) {
+						generatedImages(sceneId: $imageId) {
+							imageFormat
+						}
+					}
+				`,
+				variables: {
+					imageId,
+				},
+			}),
+		});
+
+		let contentType = 'image/png';
+		if (formatResponse.ok) {
+			const formatResult = await formatResponse.json();
+			const format = formatResult.data?.generatedImages?.[0]?.imageFormat;
+			if (format === 'jpeg' || format === 'jpg') {
+				contentType = 'image/jpeg';
+			} else if (format === 'png') {
+				contentType = 'image/png';
+			}
+		}
+
 		// Decode base64 image data
 		const imageBuffer = Buffer.from(imageData, 'base64');
 		
-		// Determine content type from image format (we'll need to query this)
-		// For now, default to PNG
 		return new Response(imageBuffer, {
 			headers: {
-				'Content-Type': 'image/png',
+				'Content-Type': contentType,
 				'Cache-Control': 'public, max-age=31536000',
 			},
 		});

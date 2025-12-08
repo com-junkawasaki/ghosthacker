@@ -22,6 +22,14 @@
 		mediaUrl: string | null;
 	};
 
+	type GeneratedImage = {
+		id: string;
+		sceneId: string;
+		imageType: string | null;
+		imageFormat: string | null;
+		createdAt: string;
+	};
+
 	const projectId: string = $page.params.projectId || '';
 	
 	// Houdini stores - initialize only in browser
@@ -57,6 +65,9 @@
 	let hoveredInsertIndex = $state<number | null>(null);
 
 	let selectedSceneId = $state<string | null>(null);
+	
+	// Store generated images by scene ID
+	let sceneImages = $state<Record<string, GeneratedImage[]>>({});
 	
 	// Initialize selected scene
 	$effect(() => {
@@ -144,6 +155,11 @@
 			if (scenes.length > 0 && !selectedSceneId) {
 				selectedSceneId = scenes[0].id;
 			}
+
+			// Load images for all scenes (don't await to avoid blocking)
+			Promise.all(loadedScenes.map(s => loadSceneImages(s.id))).catch(err => {
+				console.error('[Editor] Error loading scene images:', err);
+			});
 
 			loading = false;
 		} catch (err) {
@@ -364,6 +380,47 @@
 		selectedSceneId = sceneId;
 	}
 
+	// Load generated images for a scene
+	async function loadSceneImages(sceneId: string) {
+		if (!browser || !getGeneratedImagesStore) {
+			return;
+		}
+
+		try {
+			const result = await getGeneratedImagesStore.fetch({ variables: { sceneId } });
+			
+			if (result.errors && result.errors.length > 0) {
+				console.error('[Editor] Error loading images:', result.errors[0].message);
+				return;
+			}
+
+			const images = result.data?.generatedImages || [];
+			sceneImages = {
+				...sceneImages,
+				[sceneId]: images.map((img: any) => ({
+					id: img.id,
+					sceneId: img.sceneId,
+					imageType: img.imageType || null,
+					imageFormat: img.imageFormat || null,
+					createdAt: img.createdAt || '',
+				})),
+			};
+		} catch (err) {
+			console.error('[Editor] Error loading scene images:', err);
+		}
+	}
+
+	// Get image URL for display
+	function getImageUrl(imageId: string): string {
+		return `/api/images/${imageId}`;
+	}
+
+	// Get images for a scene by type
+	function getSceneImagesByType(sceneId: string, imageType: 'start' | 'end'): GeneratedImage | null {
+		const images = sceneImages[sceneId] || [];
+		return images.find(img => img.imageType === imageType) || null;
+	}
+
 	// Generate image for a scene
 	async function generateSceneImage(sceneId: string, imageType: 'start' | 'end') {
 		if (!browser || !generateSceneImageStore) {
@@ -384,10 +441,8 @@
 			}
 
 			if (result?.data?.generateSceneImage) {
-				// Reload scenes to refresh UI
-				if (storyboardId) {
-					await loadScenes(storyboardId);
-				}
+				// Reload images for this scene
+				await loadSceneImages(sceneId);
 			}
 		} catch (err) {
 			console.error('[Editor] Error generating image:', err);
@@ -725,6 +780,38 @@
 				>
 					<!-- Scene Content Area (Dark) -->
 					<div class="scene-content">
+						<!-- Generated Images -->
+						{#if sceneImages[scene.id]}
+							{@const images = sceneImages[scene.id] || []}
+							{@const startImage = images.find(img => img.imageType === 'start') || null}
+							{@const endImage = images.find(img => img.imageType === 'end') || null}
+							<div class="scene-images">
+								{#if startImage}
+									<div class="scene-image-container">
+										<img
+											src={getImageUrl(startImage.id)}
+											alt="Start image"
+											class="scene-image"
+											loading="lazy"
+										/>
+										<span class="image-label">Start</span>
+									</div>
+								{/if}
+								
+								{#if endImage}
+									<div class="scene-image-container">
+										<img
+											src={getImageUrl(endImage.id)}
+											alt="End image"
+											class="scene-image"
+											loading="lazy"
+										/>
+										<span class="image-label">End</span>
+									</div>
+								{/if}
+							</div>
+						{/if}
+						
 						<div class="scene-description">{scene.textDescription || 'Click to edit description'}</div>
 					</div>
 					
@@ -1073,8 +1160,11 @@
 		min-height: 300px;
 		padding: 1rem;
 		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
 		align-items: flex-start;
 		position: relative;
+		overflow-y: auto;
 	}
 
 	.scene-description {

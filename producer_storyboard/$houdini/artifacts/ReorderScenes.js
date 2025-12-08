@@ -1,7 +1,7 @@
 export default {
     "name": "ReorderScenes",
     "kind": "HoudiniMutation",
-    "hash": "12994559694876962a3784c4cc8090f745ce0b46eea3002ef77491941337e574",
+    "hash": "020714cd4c3857355d66b504f0d780980c7de495063c40205a9a013ec87ce557",
 
     "raw": `mutation ReorderScenes($input: ReorderScenesInput!) {
   reorderScenes(input: $input) {
@@ -9,6 +9,8 @@ export default {
     storyboardId
     sceneNumber
     textDescription
+    mediaType
+    mediaUrl
     startTimeSeconds
     durationSeconds
     transitionType
@@ -49,6 +51,20 @@ export default {
                         "textDescription": {
                             "type": "String",
                             "keyRaw": "textDescription",
+                            "nullable": true,
+                            "visible": true
+                        },
+
+                        "mediaType": {
+                            "type": "String",
+                            "keyRaw": "mediaType",
+                            "nullable": true,
+                            "visible": true
+                        },
+
+                        "mediaUrl": {
+                            "type": "String",
+                            "keyRaw": "mediaUrl",
                             "nullable": true,
                             "visible": true
                         },
@@ -114,4 +130,4 @@ export default {
     }
 };
 
-"HoudiniHash=62e0ad4c65a728b5e16c116116ada2597ae473c0e8ebc612f40ce602d7e673da";
+"HoudiniHash=9e8127134682fe49dfd4fdf747493a43461e447c82c40f8a25519ecf0f7cbc00";
