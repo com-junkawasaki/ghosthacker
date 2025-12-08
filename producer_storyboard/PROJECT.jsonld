@@ -37,7 +37,7 @@
   "id": "https://gftd.ai/project/storyboard-editor",
   "type": "cpm:Project",
   "name": "Sora Storyboard Video Generator",
-  "description": "Soraのストーリーボード機能を参考に、シーン単位で動画を生成・結合する動画生成サービス。Frontend: SvelteKit 2.x + Houdini 2.x, Backend: Rust (Tonic/gRPC) + PostgreSQL 16, AI: OpenAI API (動画生成)。ストーリーボード→動画生成のワークフローを実現。",
+  "description": "Soraのストーリーボード機能を参考に、シーン単位で動画を生成・結合する動画生成サービス。Frontend: SvelteKit 2.x + Houdini 1.5.x, Backend: Rust (async-graphql/Poem) + PostgreSQL 16, AI: OpenAI API (動画生成)。ストーリーボード→動画生成のワークフローを実現。",
   "version": "0.1.0",
   "createdAt": "2025-01-30T00:00:00Z",
   "updatedAt": "2025-01-30T00:00:00Z",
@@ -59,7 +59,7 @@
     {"@id": "https://gftd.ai/capability/video-composition"},
     {"@id": "https://gftd.ai/capability/timeline-editing"},
     {"@id": "https://gftd.ai/capability/video-preview"},
-    {"@id": "https://gftd.ai/capability/grpc-backend"}
+    {"@id": "https://gftd.ai/capability/graphql-backend"}
   ],
   
   "hasActivity": [
@@ -81,10 +81,10 @@
       "description": "Frontend actor providing storyboard editing UI"
     },
     {
-      "@id": "https://gftd.ai/performer/service/grpc",
+      "@id": "https://gftd.ai/performer/service/graphql",
       "type": "cpm:Service",
-      "name": "gRPC Service",
-      "description": "Rust gRPC service (Tonic) providing storyboard data management and OpenAI video generation integration with gRPC-Web support (tonic-web) for browser compatibility"
+      "name": "GraphQL Service",
+      "description": "Rust GraphQL service (async-graphql/Poem) providing storyboard data management and OpenAI video generation integration with GraphQL API for browser compatibility"
     }
   ],
   

@@ -31,7 +31,7 @@
       ],
       "realizedBy": [
         {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
-        {"@id": "https://gftd.ai/performer/service/grpc"}
+        {"@id": "https://gftd.ai/performer/service/graphql"}
       ]
     },
     {
@@ -46,7 +46,7 @@
       ],
       "realizedBy": [
         {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
-        {"@id": "https://gftd.ai/performer/service/grpc"}
+        {"@id": "https://gftd.ai/performer/service/graphql"}
       ]
     },
     {
@@ -60,7 +60,7 @@
       ],
       "realizedBy": [
         {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
-        {"@id": "https://gftd.ai/performer/service/grpc"}
+        {"@id": "https://gftd.ai/performer/service/graphql"}
       ]
     },
     {
@@ -73,7 +73,7 @@
         {"@id": "https://gftd.ai/activity/generate-video"}
       ],
       "realizedBy": [
-        {"@id": "https://gftd.ai/performer/service/grpc"}
+        {"@id": "https://gftd.ai/performer/service/graphql"}
       ]
     },
     {
@@ -86,7 +86,7 @@
         {"@id": "https://gftd.ai/activity/generate-video"}
       ],
       "realizedBy": [
-        {"@id": "https://gftd.ai/performer/service/grpc"}
+        {"@id": "https://gftd.ai/performer/service/graphql"}
       ]
     },
     {

@@ -27,9 +27,6 @@ target/
 **/*.rs.bk
 Cargo.lock
 
-# Generated files (gRPC types)
-src/lib/grpc/generated/*
-!src/lib/grpc/generated/.gitkeep
 
 # IDE
 .vscode/

@@ -40,8 +40,8 @@ docker-compose logs -f
 # ターミナル1: PostgreSQL
 docker-compose up postgres
 
-# ターミナル2: gRPC Backend
-cd performers/services/grpc
+# ターミナル2: GraphQL Backend
+cd performers/services/graphql
 cargo run
 
 # ターミナル3: Frontend
@@ -51,7 +51,7 @@ pnpm dev
 ## 4. アクセス
 
 - Frontend: http://localhost:25322
-- gRPC Backend: http://localhost:25328
+- GraphQL Backend: http://localhost:25325/graphql
 - PostgreSQL: localhost:5435
 
 ## 5. 使い方
@@ -64,15 +64,14 @@ pnpm dev
 
 ## トラブルシューティング
 
-### gRPCコード生成エラー
+### GraphQLスキーマ生成エラー
 
 ```bash
-# buf CLIをインストール
-# macOS
-brew install bufbuild/buf/buf
+# GraphQLバックエンドが起動していることを確認
+docker-compose ps
 
-# その後、コード生成を再実行
-pnpm grpc:generate
+# スキーマを再生成
+pnpm graphql:generate
 ```
 
 ### ポートが既に使用されている

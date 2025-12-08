@@ -4,8 +4,8 @@ Soraのストーリーボード機能を参考に、シーン単位で動画を�
 
 ## アーキテクチャ
 
-- **Backend**: Rust (Tonic/gRPC) + PostgreSQL 16
-- **Frontend**: SvelteKit 2.x + Connect-ES (gRPC-Web)
+- **Backend**: Rust (async-graphql/Poem) + PostgreSQL 16
+- **Frontend**: SvelteKit 2.x + Houdini (GraphQL)
 - **AI**: OpenAI API (動画生成)
 
 ## セットアップ
@@ -15,7 +15,6 @@ Soraのストーリーボード機能を参考に、シーン単位で動画を�
 - Docker & Docker Compose
 - Rust (latest)
 - Node.js 20+ & pnpm
-- buf CLI (gRPCコード生成用、オプション)
 
 ### クイックスタート
 
@@ -43,7 +42,8 @@ pnpm dev
 ```bash
 export OPENAI_API_KEY=your_openai_api_key_here
 export DATABASE_URL=postgresql://postgres:postgres@localhost:5435/postgres
-export PUBLIC_GRPC_API_URL=http://localhost:25328
+export PUBLIC_GRAPHQL_API_URL=http://localhost:25325/graphql
+export GRAPHQL_API_URL=http://localhost:25325/graphql
 ```
 
 ### 手動セットアップ
@@ -51,17 +51,17 @@ export PUBLIC_GRPC_API_URL=http://localhost:25328
 ```bash
 # 依存関係のインストール
 pnpm install
-cd performers/services/grpc && cargo fetch && cd ../../..
+cd performers/services/graphql && cargo fetch && cd ../../..
 
-# gRPCコード生成（buf CLIが必要）
-pnpm grpc:generate
+# GraphQLスキーマ生成（Houdini）
+pnpm graphql:generate
 
 # Docker Composeで全サービスを起動
 docker-compose up
 
 # 個別に起動する場合
 # Backend
-cd performers/services/grpc
+cd performers/services/graphql
 cargo run
 
 # Frontend
@@ -70,11 +70,14 @@ pnpm dev
 
 ## 開発
 
-### gRPCコード生成
+### GraphQLスキーマ生成
 
 ```bash
-# TypeScript型を生成
-pnpm grpc:generate
+# HoudiniでGraphQL型を生成
+pnpm graphql:generate
+
+# バックエンドからスキーマを取得
+pnpm graphql:fetch-schema
 ```
 
 ### データベースマイグレーション
@@ -84,7 +87,7 @@ pnpm grpc:generate
 手動実行:
 
 ```bash
-cd performers/services/grpc
+cd performers/services/graphql
 sqlx migrate run
 ```
 
@@ -97,23 +100,25 @@ producer_storyboard/
 ├── activities.jsonld       # Activity定義
 ├── performers/
 │   └── services/
-│       └── grpc/           # Rust gRPCサービス
-│           ├── proto/
-│           │   └── storyboard.proto
+│       └── graphql/        # Rust GraphQLサービス
 │           ├── migrations/
 │           │   └── 001_storyboard_schema.sql
 │           └── src/
+│               ├── schema/     # GraphQLスキーマ定義
+│               ├── resolvers/  # GraphQLリゾルバー
+│               └── ports/      # データベース接続
 └── src/                    # SvelteKit frontend
     ├── app/
     ├── components/
     └── lib/
+        └── graphql/        # GraphQLクエリ・ミューテーション
 ```
 
 ## API
 
-### gRPC エンドポイント
+### GraphQL エンドポイント
 
-- `http://localhost:25328` (gRPC-Web)
+- `http://localhost:25325/graphql` (GraphQL)
 
 ### 主要な操作
 
