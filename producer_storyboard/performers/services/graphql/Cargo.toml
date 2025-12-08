@@ -1,0 +1,33 @@
+[package]
+name = "storyboard-editor-graphql"
+version = "0.1.0"
+edition = "2021"
+default-run = "storyboard-editor-graphql"
+
+[lib]
+name = "storyboard_editor_graphql"
+path = "src/lib.rs"
+
+[[bin]]
+name = "storyboard-editor-graphql"
+path = "src/main.rs"
+
+[dependencies]
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "fs"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+async-graphql = "7"
+async-graphql-poem = "7"
+poem = "3"
+sqlx = { version = "0.8", features = ["runtime-tokio-rustls", "postgres", "uuid", "chrono", "migrate"] }
+rust_decimal = { version = "1", features = ["serde-with-str"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+anyhow = "1"
+thiserror = "1"
+reqwest = { version = "0.12", features = ["json"] }
+base64 = "0.22"
+
+[dev-dependencies]
+tokio-test = "0.4"
+sqlx = { version = "0.8", features = ["runtime-tokio-rustls", "postgres", "migrate"] }

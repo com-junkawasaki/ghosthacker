@@ -47,6 +47,34 @@ services:
       - storyboard-editor-network
     command: cargo watch -x "run --bin storyboard-editor-grpc" --ignore "target/**" --delay 0.5 --clear --watch-when-idle
 
+  graphql:
+    build:
+      context: ./performers/services/graphql
+      dockerfile: Dockerfile
+      target: development
+    container_name: storyboard-editor-graphql
+    ports:
+      - "25325:8080"
+    environment:
+      NODE_ENV: development
+      # PostgreSQL Connection
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
+      # Server Configuration
+      PORT: 8080
+      HOST: 0.0.0.0
+      # AI Service Configuration
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      # Cargo watch configuration for HMR
+      CARGO_WATCH_IGNORE: "target/**"
+    volumes:
+      - ./performers/services/graphql:/app
+      - /app/target
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - storyboard-editor-network
+
   frontend:
     build:
       context: .
@@ -66,7 +94,10 @@ services:
       # SvelteKit HMR configuration
       # App URLs (loaded from host env / .envrc)
       PUBLIC_APP_URL: ${PUBLIC_APP_URL:-http://localhost:25322}
-      # gRPC API URL
+      # GraphQL API URL
+      PUBLIC_GRAPHQL_API_URL: ${PUBLIC_GRAPHQL_API_URL:-http://localhost:25325/graphql}
+      GRAPHQL_API_URL: ${GRAPHQL_API_URL:-http://graphql:8080/graphql}
+      # Legacy gRPC API URL (deprecated)
       PUBLIC_GRPC_API_URL: ${PUBLIC_GRPC_API_URL:-http://localhost:25328}
       GRPC_API_URL: ${GRPC_API_URL:-http://grpc:8080}
     volumes:
@@ -74,7 +105,7 @@ services:
       - /app/node_modules
       - /app/.svelte-kit
     depends_on:
-      - grpc
+      - graphql
     networks:
       - storyboard-editor-network
     command: sh -c "pnpm install --no-frozen-lockfile && pnpm dev --host 0.0.0.0"

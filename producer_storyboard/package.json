@@ -16,7 +16,8 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "graphql:generate": "houdini generate",
-    "graphql:typegen": "houdini generate"
+    "graphql:typegen": "houdini generate",
+    "graphql:fetch-schema": "node scripts/fetch-schema.js"
   },
   "dependencies": {
     "@connectrpc/connect": "^2.1.1",

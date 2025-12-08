@@ -18,6 +18,8 @@ const config = {
 			client: './src/lib/graphql/client.ts',
 		},
 	},
+	// Fetch schema from GraphQL endpoint
+	schemaPollInterval: 20000, // Poll every 20 seconds in development
 };
 
 export default config;
