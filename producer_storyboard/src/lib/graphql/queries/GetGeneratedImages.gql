@@ -1,0 +1,13 @@
+query GetGeneratedImages($sceneId: ID!) {
+	generatedImages(sceneId: $sceneId) {
+		id
+		sceneId
+		openaiImageId
+		imageFormat
+		imageType
+		prompt
+		model
+		createdAt
+	}
+}
+

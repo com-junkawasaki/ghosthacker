@@ -4,6 +4,7 @@ mutation GenerateSceneImage($input: GenerateSceneImageInput!) {
 		sceneId
 		openaiImageId
 		imageFormat
+		imageType
 		prompt
 		model
 		createdAt

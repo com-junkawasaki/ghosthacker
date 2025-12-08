@@ -1,10 +1,10 @@
-export type GenerateSceneImage = {
-    readonly "input": GenerateSceneImage$input;
-    readonly "result": GenerateSceneImage$result;
+export type GetGeneratedImages = {
+    readonly "input": GetGeneratedImages$input;
+    readonly "result": GetGeneratedImages$result | undefined;
 };
 
-export type GenerateSceneImage$result = {
-    readonly generateSceneImage: {
+export type GetGeneratedImages$result = {
+    readonly generatedImages: ({
         readonly id: string;
         readonly sceneId: string;
         readonly openaiImageId: string | null;
@@ -13,39 +13,19 @@ export type GenerateSceneImage$result = {
         readonly prompt: string | null;
         readonly model: string | null;
         readonly createdAt: string;
-    };
+    })[];
 };
 
-type GenerateSceneImageInput = {
+export type GetGeneratedImages$input = {
     sceneId: string | number;
-    prompt?: string | null | undefined;
-    model?: string | null | undefined;
-    imageType?: string | null | undefined;
 };
 
-export type GenerateSceneImage$input = {
-    input: GenerateSceneImageInput;
-};
-
-export type GenerateSceneImage$optimistic = {
-    readonly generateSceneImage?: {
-        readonly id?: string;
-        readonly sceneId?: string;
-        readonly openaiImageId?: string | null;
-        readonly imageFormat?: string | null;
-        readonly imageType?: string | null;
-        readonly prompt?: string | null;
-        readonly model?: string | null;
-        readonly createdAt?: string;
-    };
-};
-
-export type GenerateSceneImage$artifact = {
-    "name": "GenerateSceneImage";
-    "kind": "HoudiniMutation";
-    "hash": "aecc40ac53cce9b7ddcd941cab5214eef37277654d68844c2c71af5f5cd27c6c";
-    "raw": `mutation GenerateSceneImage($input: GenerateSceneImageInput!) {
-  generateSceneImage(input: $input) {
+export type GetGeneratedImages$artifact = {
+    "name": "GetGeneratedImages";
+    "kind": "HoudiniQuery";
+    "hash": "40d83904bdfaf24f16d80b14e49f671320167a050c421bf0f61c52051c7a11b3";
+    "raw": `query GetGeneratedImages($sceneId: ID!) {
+  generatedImages(sceneId: $sceneId) {
     id
     sceneId
     openaiImageId
@@ -56,13 +36,13 @@ export type GenerateSceneImage$artifact = {
     createdAt
   }
 }`;
-    "rootType": "Mutation";
+    "rootType": "Query";
     "stripVariables": [];
     "selection": {
         "fields": {
-            "generateSceneImage": {
+            "generatedImages": {
                 "type": "GeneratedImage";
-                "keyRaw": "generateSceneImage(input: $input)";
+                "keyRaw": "generatedImages(sceneId: $sceneId)";
                 "selection": {
                     "fields": {
                         "id": {
@@ -121,17 +101,12 @@ export type GenerateSceneImage$artifact = {
     };
     "input": {
         "fields": {
-            "input": "GenerateSceneImageInput";
+            "sceneId": "ID";
         };
-        "types": {
-            "GenerateSceneImageInput": {
-                "sceneId": "ID";
-                "prompt": "String";
-                "model": "String";
-                "imageType": "String";
-            };
-        };
+        "types": {};
         "defaults": {};
         "runtimeScalars": {};
     };
+    "policy": "CacheOrNetwork";
+    "partial": false;
 };

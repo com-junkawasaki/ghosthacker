@@ -87,6 +87,8 @@ pub struct GeneratedImage {
     pub openai_image_id: Option<String>,
     #[graphql(name = "imageFormat")]
     pub image_format: Option<String>,
+    #[graphql(name = "imageType")]
+    pub image_type: Option<String>,
     pub prompt: Option<String>,
     pub model: Option<String>,
     #[graphql(name = "createdAt")]

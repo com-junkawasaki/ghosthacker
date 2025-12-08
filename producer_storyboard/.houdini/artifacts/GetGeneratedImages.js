@@ -1,10 +1,10 @@
 export default {
-    "name": "GenerateSceneImage",
-    "kind": "HoudiniMutation",
-    "hash": "aecc40ac53cce9b7ddcd941cab5214eef37277654d68844c2c71af5f5cd27c6c",
+    "name": "GetGeneratedImages",
+    "kind": "HoudiniQuery",
+    "hash": "40d83904bdfaf24f16d80b14e49f671320167a050c421bf0f61c52051c7a11b3",
 
-    "raw": `mutation GenerateSceneImage($input: GenerateSceneImageInput!) {
-  generateSceneImage(input: $input) {
+    "raw": `query GetGeneratedImages($sceneId: ID!) {
+  generatedImages(sceneId: $sceneId) {
     id
     sceneId
     openaiImageId
@@ -16,14 +16,14 @@ export default {
   }
 }`,
 
-    "rootType": "Mutation",
+    "rootType": "Query",
     "stripVariables": [],
 
     "selection": {
         "fields": {
-            "generateSceneImage": {
+            "generatedImages": {
                 "type": "GeneratedImage",
-                "keyRaw": "generateSceneImage(input: $input)",
+                "keyRaw": "generatedImages(sceneId: $sceneId)",
 
                 "selection": {
                     "fields": {
@@ -93,21 +93,16 @@ export default {
 
     "input": {
         "fields": {
-            "input": "GenerateSceneImageInput"
+            "sceneId": "ID"
         },
 
-        "types": {
-            "GenerateSceneImageInput": {
-                "sceneId": "ID",
-                "prompt": "String",
-                "model": "String",
-                "imageType": "String"
-            }
-        },
-
+        "types": {},
         "defaults": {},
         "runtimeScalars": {}
-    }
+    },
+
+    "policy": "CacheOrNetwork",
+    "partial": false
 };
 
-"HoudiniHash=f7a3117d5732cf1d73173db430430b17da186806cf2e94410246e659ea35edd4";
+"HoudiniHash=b633f799e344bcfaa5fee591f8a2a47de820083a479a399017dbaa56b38d9c82";

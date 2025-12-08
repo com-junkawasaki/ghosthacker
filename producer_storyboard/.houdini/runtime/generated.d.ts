@@ -1,14 +1,16 @@
 import type { Record } from "./public/record";
-import { ListGeneratedVideos$result, ListGeneratedVideos$input } from "$houdini/artifacts/ListGeneratedVideos";
-import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
+import { GetGeneratedImages$result, GetGeneratedImages$input } from "$houdini/artifacts/GetGeneratedImages";
+import { GetGeneratedImagesStore } from "../plugins/houdini-svelte/stores/GetGeneratedImages";
 import { GetScene$result, GetScene$input } from "$houdini/artifacts/GetScene";
 import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
+import { ListGeneratedVideos$result, ListGeneratedVideos$input } from "$houdini/artifacts/ListGeneratedVideos";
+import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
 import { ListProjects$result, ListProjects$input } from "$houdini/artifacts/ListProjects";
 import { ListProjectsStore } from "../plugins/houdini-svelte/stores/ListProjects";
-import { ListScenes$result, ListScenes$input } from "$houdini/artifacts/ListScenes";
-import { ListScenesStore } from "../plugins/houdini-svelte/stores/ListScenes";
 import { ListStoryboards$result, ListStoryboards$input } from "$houdini/artifacts/ListStoryboards";
 import { ListStoryboardsStore } from "../plugins/houdini-svelte/stores/ListStoryboards";
+import { ListScenes$result, ListScenes$input } from "$houdini/artifacts/ListScenes";
+import { ListScenesStore } from "../plugins/houdini-svelte/stores/ListScenes";
 
 export declare type CacheTypeDef = {
     types: {
@@ -193,6 +195,10 @@ export declare type CacheTypeDef = {
                     type: string | null;
                     args: never;
                 };
+                imageType: {
+                    type: string | null;
+                    args: never;
+                };
                 prompt: {
                     type: string | null;
                     args: never;
@@ -281,6 +287,12 @@ export declare type CacheTypeDef = {
                         sceneId: string | number;
                     };
                 };
+                imageData: {
+                    type: string;
+                    args: {
+                        imageId: string | number;
+                    };
+                };
                 operationHistory: {
                     type: (Record<CacheTypeDef, "OperationHistory">)[];
                     args: {
@@ -293,5 +305,5 @@ export declare type CacheTypeDef = {
         };
     };
     lists: {};
-    queries: [[ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListScenesStore, ListScenes$result, ListScenes$input], [ListProjectsStore, ListProjects$result, ListProjects$input], [GetSceneStore, GetScene$result, GetScene$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input]];
+    queries: [[ListScenesStore, ListScenes$result, ListScenes$input], [ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListProjectsStore, ListProjects$result, ListProjects$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input], [GetSceneStore, GetScene$result, GetScene$input], [GetGeneratedImagesStore, GetGeneratedImages$result, GetGeneratedImages$input]];
 };

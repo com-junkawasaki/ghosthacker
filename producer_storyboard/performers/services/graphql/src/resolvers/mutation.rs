@@ -63,6 +63,8 @@ pub struct GenerateSceneImageInput {
     pub scene_id: ID,
     pub prompt: Option<String>,
     pub model: Option<String>,
+    #[graphql(name = "imageType")]
+    pub image_type: Option<String>,
 }
 
 #[derive(Default)]
@@ -518,10 +520,23 @@ impl MutationRoot {
             .map_err(|_| async_graphql::Error::new("OPENAI_API_KEY not configured"))?;
         let openai_service = OpenAIService::new(openai_api_key);
         
+        // Determine image type (start or end)
+        let image_type = input.image_type.as_deref().unwrap_or("start");
+        if image_type != "start" && image_type != "end" {
+            return Err(async_graphql::Error::new("imageType must be 'start' or 'end'"));
+        }
+        
         // Generate prompt from scene description or use provided prompt
-        let prompt = input.prompt.unwrap_or_else(|| {
+        let base_prompt = input.prompt.unwrap_or_else(|| {
             text_description.unwrap_or_else(|| "A beautiful scene".to_string())
         });
+        
+        // Modify prompt based on image type
+        let prompt = if image_type == "end" {
+            format!("{} - Final frame, conclusion, ending moment", base_prompt)
+        } else {
+            format!("{} - Opening frame, beginning, starting moment", base_prompt)
+        };
         
         let model = input.model.clone().unwrap_or_else(|| "dall-e-3".to_string());
         
@@ -556,14 +571,15 @@ impl MutationRoot {
         
         sqlx::query(
             r#"
-            INSERT INTO generated_images (id, scene_id, image_data, image_format, prompt, model, created_at)
-            VALUES ($1, $2, $3, $4, $5, $6, $7)
+            INSERT INTO generated_images (id, scene_id, image_data, image_format, image_type, prompt, model, created_at)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
             "#,
         )
         .bind(id)
         .bind(scene_uuid)
         .bind(image_bytes)
         .bind(image_format)
+        .bind(image_type)
         .bind(&prompt)
         .bind(&model)
         .bind(now)
@@ -579,6 +595,7 @@ impl MutationRoot {
             OperationType::GenerateImage,
             json!({
                 "image_id": id.to_string(),
+                "image_type": image_type,
                 "prompt": prompt,
                 "model": model,
             }),
@@ -590,6 +607,7 @@ impl MutationRoot {
             scene_id: input.scene_id,
             openai_image_id: None,
             image_format: Some(image_format.to_string()),
+            image_type: Some(image_type.to_string()),
             prompt: Some(prompt),
             model: Some(model),
             created_at: now.to_rfc3339(),

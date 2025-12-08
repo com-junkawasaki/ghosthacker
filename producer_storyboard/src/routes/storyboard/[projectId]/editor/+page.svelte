@@ -10,6 +10,8 @@
 	import { UpdateSceneStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/UpdateScene.js';
 	import { DeleteSceneStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/DeleteScene.js';
 	import { ReorderScenesStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/ReorderScenes.js';
+	import { GenerateSceneImageStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/GenerateSceneImage.js';
+	import { GetGeneratedImagesStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/GetGeneratedImages.js';
 
 	type Scene = {
 		id: string;
@@ -29,6 +31,8 @@
 	let updateSceneStore: UpdateSceneStore | null = null;
 	let deleteSceneStore: DeleteSceneStore | null = null;
 	let reorderScenesStore: ReorderScenesStore | null = null;
+	let generateSceneImageStore: GenerateSceneImageStore | null = null;
+	let getGeneratedImagesStore: GetGeneratedImagesStore | null = null;
 
 	if (browser) {
 		storyboardsStore = new ListStoryboardsStore();
@@ -37,6 +41,8 @@
 		updateSceneStore = new UpdateSceneStore();
 		deleteSceneStore = new DeleteSceneStore();
 		reorderScenesStore = new ReorderScenesStore();
+		generateSceneImageStore = new GenerateSceneImageStore();
+		getGeneratedImagesStore = new GetGeneratedImagesStore();
 	}
 
 	// State management with $state for reactive updates
@@ -358,6 +364,95 @@
 		selectedSceneId = sceneId;
 	}
 
+	// Generate image for a scene
+	async function generateSceneImage(sceneId: string, imageType: 'start' | 'end') {
+		if (!browser || !generateSceneImageStore) {
+			return;
+		}
+
+		try {
+			generating = true;
+			const result = await generateSceneImageStore.mutate({
+				input: {
+					sceneId,
+					imageType,
+				},
+			});
+
+			if (result?.errors && result.errors.length > 0) {
+				throw new Error(result.errors[0].message);
+			}
+
+			if (result?.data?.generateSceneImage) {
+				// Reload scenes to refresh UI
+				if (storyboardId) {
+					await loadScenes(storyboardId);
+				}
+			}
+		} catch (err) {
+			console.error('[Editor] Error generating image:', err);
+			alert(err instanceof Error ? err.message : 'Failed to generate image');
+		} finally {
+			generating = false;
+		}
+	}
+
+	// Update scene duration
+	async function updateSceneDuration(sceneId: string, newDuration: number) {
+		if (!browser || !updateSceneStore) {
+			return;
+		}
+
+		const scene = scenes.find(s => s.id === sceneId);
+		if (!scene) return;
+
+		// Optimistically update UI
+		const sceneIndex = scenes.findIndex(s => s.id === sceneId);
+		if (sceneIndex >= 0) {
+			const updatedScenes = [...scenes];
+			updatedScenes[sceneIndex] = {
+				...updatedScenes[sceneIndex]!,
+				durationSeconds: newDuration,
+			};
+			// Recalculate start times
+			let currentTime = 0;
+			const recalculatedScenes = updatedScenes.map((s) => {
+				const updated = {
+					...s,
+					startTimeSeconds: currentTime,
+				};
+				currentTime += s.durationSeconds || 0;
+				return updated;
+			});
+			scenes = recalculatedScenes;
+		}
+
+		try {
+			const result = await updateSceneStore.mutate({
+				input: {
+					id: sceneId,
+					durationSeconds: newDuration,
+				},
+			});
+
+			if (result?.errors && result.errors.length > 0) {
+				// Revert on error
+				if (storyboardId) {
+					await loadScenes(storyboardId);
+				}
+				throw new Error(result.errors[0].message);
+			}
+
+			if (result?.data?.updateScene && storyboardId) {
+				// Reload scenes to get the updated list
+				await loadScenes(storyboardId);
+			}
+		} catch (err) {
+			console.error('[Editor] Error updating scene duration:', err);
+			alert(err instanceof Error ? err.message : 'Failed to update scene duration');
+		}
+	}
+
 	function handleGenerateVideo() {
 		generating = true;
 		// Simulate generation
@@ -636,6 +731,53 @@
 					<!-- Scene Controls -->
 					<div class="scene-controls">
 						<span class="timestamp">{formatTime(scene.startTimeSeconds)}</span>
+						
+						<!-- Duration Slider -->
+						<div class="duration-control" onclick={(e) => e.stopPropagation()}>
+							<label class="duration-label">Duration: {scene.durationSeconds?.toFixed(1)}s</label>
+							<input
+								type="range"
+								min="0.5"
+								max="10"
+								step="0.1"
+								value={scene.durationSeconds || 2.0}
+								oninput={(e) => {
+									const value = parseFloat((e.target as HTMLInputElement).value);
+									updateSceneDuration(scene.id, value);
+								}}
+								class="duration-slider"
+								aria-label="Scene duration"
+							/>
+						</div>
+						
+						<!-- Image Generation Buttons -->
+						<div class="image-generation-controls" onclick={(e) => e.stopPropagation()}>
+							<button
+								class="image-gen-button"
+								onclick={() => generateSceneImage(scene.id, 'start')}
+								disabled={generating}
+								aria-label="Generate start image"
+								title="Generate start image"
+							>
+								<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+									<path d="M7 2V12M2 7H12" stroke-width="1.5" stroke-linecap="round"/>
+								</svg>
+								Start
+							</button>
+							<button
+								class="image-gen-button"
+								onclick={() => generateSceneImage(scene.id, 'end')}
+								disabled={generating}
+								aria-label="Generate end image"
+								title="Generate end image"
+							>
+								<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+									<path d="M7 2V12M2 7H12" stroke-width="1.5" stroke-linecap="round"/>
+								</svg>
+								End
+							</button>
+						</div>
+						
 						<div class="scene-actions">
 							<button class="action-button" onclick={(e) => { e.stopPropagation(); }} aria-label="Edit scene">
 								<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
@@ -944,11 +1086,17 @@
 
 	.scene-controls {
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		flex-direction: column;
+		gap: 0.5rem;
 		padding: 0.75rem 1rem;
 		background-color: #2a2a2a;
 		border-top: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.scene-controls > *:first-child {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 	}
 
 	.timestamp {
@@ -957,9 +1105,83 @@
 		font-weight: 500;
 	}
 
+	.duration-control {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		width: 100%;
+	}
+
+	.duration-label {
+		font-size: 0.75rem;
+		color: rgba(255, 255, 255, 0.7);
+	}
+
+	.duration-slider {
+		width: 100%;
+		height: 4px;
+		border-radius: 2px;
+		background: rgba(255, 255, 255, 0.2);
+		outline: none;
+		-webkit-appearance: none;
+	}
+
+	.duration-slider::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		background: #ffffff;
+		cursor: pointer;
+	}
+
+	.duration-slider::-moz-range-thumb {
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		background: #ffffff;
+		cursor: pointer;
+		border: none;
+	}
+
+	.image-generation-controls {
+		display: flex;
+		gap: 0.5rem;
+		width: 100%;
+	}
+
+	.image-gen-button {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.25rem;
+		padding: 0.375rem 0.5rem;
+		background-color: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 4px;
+		color: rgba(255, 255, 255, 0.9);
+		font-size: 0.75rem;
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+
+	.image-gen-button:hover:not(:disabled) {
+		background-color: rgba(255, 255, 255, 0.2);
+		border-color: rgba(255, 255, 255, 0.3);
+		color: #ffffff;
+	}
+
+	.image-gen-button:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
 	.scene-actions {
 		display: flex;
 		gap: 0.5rem;
+		margin-left: auto;
 	}
 
 	.action-button {

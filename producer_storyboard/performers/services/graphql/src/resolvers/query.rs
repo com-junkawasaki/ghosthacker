@@ -218,7 +218,7 @@ impl QueryRoot {
         
         let rows = sqlx::query(
             r#"
-            SELECT id, scene_id, openai_image_id, image_format, prompt, model, created_at
+            SELECT id, scene_id, openai_image_id, image_format, image_type, prompt, model, created_at
             FROM generated_images
             WHERE scene_id = $1
             ORDER BY created_at DESC
@@ -238,11 +238,40 @@ impl QueryRoot {
                 scene_id: ID(scene_id.to_string()),
                 openai_image_id: row.get("openai_image_id"),
                 image_format: row.get("image_format"),
+                image_type: row.get("image_type"),
                 prompt: row.get("prompt"),
                 model: row.get("model"),
                 created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
             }
         }).collect())
+    }
+
+    /// Get image data as base64 string
+    async fn image_data(&self, ctx: &Context<'_>, image_id: ID) -> Result<String> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let image_uuid = Uuid::parse_str(&image_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid image ID: {}", e)))?;
+        
+        let row = sqlx::query(
+            r#"
+            SELECT image_data, image_format
+            FROM generated_images
+            WHERE id = $1
+            "#,
+        )
+        .bind(image_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch image: {}", e)))?;
+        
+        let row = row.ok_or_else(|| async_graphql::Error::new("Image not found"))?;
+        
+        let image_bytes: Vec<u8> = row.get("image_data");
+        use base64::Engine;
+        let base64_data = base64::engine::general_purpose::STANDARD.encode(&image_bytes);
+        
+        Ok(base64_data)
     }
 
     /// List operation history

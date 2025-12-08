@@ -3,6 +3,7 @@ export * from "./artifacts/CreateScene";
 export * from "./artifacts/DeleteScene";
 export * from "./artifacts/GenerateSceneImage";
 export * from "./artifacts/GenerateVideo";
+export * from "./artifacts/GetGeneratedImages";
 export * from "./artifacts/GetScene";
 export * from "./artifacts/ListGeneratedVideos";
 export * from "./artifacts/ListProjects";
