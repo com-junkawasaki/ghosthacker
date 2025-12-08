@@ -24,7 +24,7 @@
 	<div class="space-y-2">
 		{#each scenes as scene (scene.id)}
 			<button
-				on:click={() => selectScene(scene.id)}
+				onclick={() => selectScene(scene.id)}
 				class="w-full p-3 border rounded text-left hover:bg-gray-50 {selectedSceneId === scene.id ? 'bg-blue-50 border-blue-500' : ''}"
 			>
 				<div class="flex items-center justify-between">

@@ -1,8 +1,8 @@
 import type { Record } from "./public/record";
-import { ListGeneratedVideos$result, ListGeneratedVideos$input } from "../artifacts/ListGeneratedVideos";
-import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
 import { GetScene$result, GetScene$input } from "../artifacts/GetScene";
 import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
+import { ListGeneratedVideos$result, ListGeneratedVideos$input } from "../artifacts/ListGeneratedVideos";
+import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
 import { ListProjects$result, ListProjects$input } from "../artifacts/ListProjects";
 import { ListProjectsStore } from "../plugins/houdini-svelte/stores/ListProjects";
 import { ListScenes$result, ListScenes$input } from "../artifacts/ListScenes";
@@ -208,5 +208,5 @@ export declare type CacheTypeDef = {
         };
     };
     lists: {};
-    queries: [[ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListScenesStore, ListScenes$result, ListScenes$input], [ListProjectsStore, ListProjects$result, ListProjects$input], [GetSceneStore, GetScene$result, GetScene$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input]];
+    queries: [[ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListScenesStore, ListScenes$result, ListScenes$input], [ListProjectsStore, ListProjects$result, ListProjects$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input], [GetSceneStore, GetScene$result, GetScene$input]];
 };

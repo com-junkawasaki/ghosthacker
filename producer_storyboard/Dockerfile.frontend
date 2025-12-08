@@ -38,8 +38,8 @@ RUN pnpm install --frozen-lockfile
 # Copy source code
 COPY . .
 
-# Build the application
-RUN pnpm build
+# Sync SvelteKit and build the application
+RUN pnpm svelte-kit sync && pnpm build
 
 # Production runtime stage
 FROM node:20-alpine as production

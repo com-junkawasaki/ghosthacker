@@ -24,7 +24,7 @@ export function formatTime(seconds: number): string {
 
 export function parseAspectRatio(ratio: string): { width: number; height: number } | null {
 	const match = ratio.match(/^(\d+):(\d+)$/);
-	if (!match) {
+	if (!match || !match[1] || !match[2]) {
 		return null;
 	}
 	return {
@@ -35,7 +35,7 @@ export function parseAspectRatio(ratio: string): { width: number; height: number
 
 export function parseResolution(resolution: string): { width: number; height: number } | null {
 	const match = resolution.match(/^(\d+)x(\d+)$/);
-	if (!match) {
+	if (!match || !match[1] || !match[2]) {
 		return null;
 	}
 	return {

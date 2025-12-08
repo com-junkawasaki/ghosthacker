@@ -7,35 +7,36 @@
 	import Timeline from '$lib/components/storyboard/Timeline.svelte';
 	import Toolbar from '$lib/components/storyboard/Toolbar.svelte';
 
-	const projectId = $page.params.projectId;
+	const projectId: string = $page.params.projectId || '';
 
 	const storyboards = new ListStoryboardsStore();
 	const generateVideo = new GenerateVideoStore();
 
-	let selectedSceneId: string | null = null;
+	let selectedSceneId = $state<string | null>(null);
 
-	$: storyboard = $storyboards.data?.storyboards?.[0] || null;
-	$: storyboardId = storyboard?.id;
+	const storyboard = $derived($storyboards.data?.storyboards?.[0] || null);
+	const storyboardId = $derived(storyboard?.id);
+
+	const storyboardsLoading = $derived($storyboards.fetching && !$storyboards.data);
+	const storyboardsError = $derived($storyboards.errors?.[0] ? new Error($storyboards.errors[0].message) : null);
 
 	const scenes = new ListScenesStore();
 
 	onMount(() => {
-		if (browser) {
+		if (browser && projectId) {
 			storyboards.fetch({ variables: { projectId } });
 		}
 	});
 
-	$: {
+	$effect(() => {
 		if (browser && storyboardId) {
 			scenes.fetch({ variables: { storyboardId } });
 		}
-	}
+	});
 
 	async function handleGenerateVideo() {
 		if (!storyboardId) return;
-		await generateVideo.mutate({
-			variables: { storyboardId },
-		});
+		await generateVideo.mutate({ storyboardId });
 	}
 
 	function handleSceneSelect(sceneId: string) {
@@ -49,24 +50,24 @@
 		<h1 class="title">Storyboard</h1>
 	</header>
 
-	{#if $storyboards.loading}
+	{#if storyboardsLoading}
 		<div class="loading-container">
 			<p>Loading...</p>
 		</div>
-	{:else if $storyboards.error}
+	{:else if storyboardsError}
 		<div class="error-container">
-			<div class="error">Error: {$storyboards.error.message}</div>
+			<div class="error">Error: {storyboardsError.message}</div>
 		</div>
 	{:else if storyboard && $scenes.data?.scenes}
 		<!-- Main Content: Scene Panels -->
 		<main class="scene-panels-container">
-			{#each $scenes.data.scenes as scene, index}
-				<ScenePanel
-					{scene}
-					selected={selectedSceneId === scene.id}
-					on:select={() => handleSceneSelect(scene.id)}
-				/>
-			{/each}
+		{#each $scenes.data.scenes as scene}
+			<ScenePanel
+				{scene}
+				selected={selectedSceneId === scene.id}
+				on:select={() => handleSceneSelect(scene.id)}
+			/>
+		{/each}
 		</main>
 
 		<!-- Timeline -->

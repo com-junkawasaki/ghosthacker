@@ -1,14 +1,10 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
-	import { setClient } from '$houdini';
-	import client from '$lib/graphql/client';
 	import './globals.css';
 
+	// Houdini client is automatically initialized via houdini.config.js
 	if (browser) {
-		console.log('[Layout] Setting Houdini client...');
-		setClient(client);
-		console.log('[Layout] Houdini client set successfully');
+		console.log('[Layout] Houdini client will be auto-initialized');
 	}
 </script>
 

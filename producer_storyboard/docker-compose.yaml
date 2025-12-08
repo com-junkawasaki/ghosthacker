@@ -66,17 +66,17 @@ services:
       # App URLs (loaded from host env / .envrc)
       PUBLIC_APP_URL: ${PUBLIC_APP_URL:-http://localhost:25322}
       # GraphQL API URL
-      PUBLIC_GRAPHQL_API_URL: ${PUBLIC_GRAPHQL_API_URL:-http://localhost:25325/graphql}
+      # Use relative URL or same-origin proxy for browser requests
+      PUBLIC_GRAPHQL_API_URL: ${PUBLIC_GRAPHQL_API_URL:-/api/graphql}
       GRAPHQL_API_URL: ${GRAPHQL_API_URL:-http://graphql:8080/graphql}
     volumes:
       - .:/app
       - /app/node_modules
-      - /app/.svelte-kit
     depends_on:
       - graphql
     networks:
       - storyboard-editor-network
-    command: sh -c "pnpm install --no-frozen-lockfile && pnpm dev --host 0.0.0.0"
+    command: sh -c "pnpm install --no-frozen-lockfile && pnpm svelte-kit sync && pnpm dev"
 
 volumes:
   postgres-data:

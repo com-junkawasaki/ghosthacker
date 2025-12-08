@@ -10,9 +10,7 @@
 		totalDuration: number;
 	};
 
-	let { scenes, selectedSceneId, totalDuration }: Props = $props();
-
-	$: selectedSceneId = $props.selectedSceneId;
+	let { scenes, selectedSceneId = $bindable<string | null>(null), totalDuration }: Props = $props();
 
 	function getScenePosition(scene: typeof scenes[0]): { left: number; width: number } {
 		const start = (scene.startTimeSeconds || 0) / totalDuration;
@@ -57,10 +55,10 @@
 				class="scene-block"
 				class:selected={selectedSceneId === scene.id}
 				style="left: {position.left}%; width: {position.width}%"
-				on:click={() => handleSceneClick(scene.id)}
+				onclick={() => handleSceneClick(scene.id)}
 				role="button"
 				tabindex="0"
-				on:keydown={(e) => {
+				onkeydown={(e) => {
 					if (e.key === 'Enter' || e.key === ' ') {
 						e.preventDefault();
 						handleSceneClick(scene.id);

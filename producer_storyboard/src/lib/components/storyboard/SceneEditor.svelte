@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { GetSceneStore } from '$houdini';
 
@@ -11,18 +10,21 @@
 
 	const data = new GetSceneStore();
 
-	$: {
+	const loading = $derived($data.fetching && !$data.data);
+	const error = $derived($data.errors?.[0] ? new Error($data.errors[0].message) : null);
+
+	$effect(() => {
 		if (browser && sceneId) {
 			data.fetch({ variables: { id: sceneId } });
 		}
-	}
+	});
 </script>
 
 <div class="h-full">
-	{#if $data.loading}
+	{#if loading}
 		<p>Loading scene...</p>
-	{:else if $data.error}
-		<div class="text-red-600">Error: {$data.error.message}</div>
+	{:else if error}
+		<div class="text-red-600">Error: {error.message}</div>
 	{:else if $data.data?.scene}
 		{@const scene = $data.data.scene}
 		<div class="space-y-4">

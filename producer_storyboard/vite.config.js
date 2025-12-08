@@ -16,5 +16,12 @@ export default defineConfig({
 			usePolling: true,
 			interval: 1000,
 		},
+		proxy: {
+			'/api/graphql': {
+				target: process.env.GRAPHQL_API_URL || 'http://graphql:8080/graphql',
+				changeOrigin: true,
+				rewrite: (path) => path.replace(/^\/api\/graphql/, '/graphql'),
+			},
+		},
 	},
 });

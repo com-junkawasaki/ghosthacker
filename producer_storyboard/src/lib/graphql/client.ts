@@ -1,16 +1,19 @@
 import { HoudiniClient } from '$houdini';
 import { browser } from '$app/environment';
 
-const graphqlApiUrl =
-	(browser ? import.meta.env.PUBLIC_GRAPHQL_API_URL : import.meta.env.GRAPHQL_API_URL) ||
-	'http://localhost:25325/graphql';
+// Use relative URL for browser to avoid CORS/Mixed Content issues
+const graphqlApiUrl = browser
+	? (import.meta.env.PUBLIC_GRAPHQL_API_URL || '/api/graphql')
+	: (import.meta.env.GRAPHQL_API_URL || 'http://graphql:8080/graphql');
 
 if (browser) {
 	console.log('[GraphQL Client] Initializing with URL:', graphqlApiUrl);
 	console.log('[GraphQL Client] Environment:', {
 		PUBLIC_GRAPHQL_API_URL: import.meta.env.PUBLIC_GRAPHQL_API_URL,
 		GRAPHQL_API_URL: import.meta.env.GRAPHQL_API_URL,
+		browser,
 	});
+	console.log('[GraphQL Client] Final URL:', graphqlApiUrl);
 }
 
 const client = new HoudiniClient({
@@ -28,10 +31,9 @@ const client = new HoudiniClient({
 			headers,
 		};
 	},
-	// Temporarily disable throwOnError to debug fetching state
-	// throwOnError: {
-	// 	operations: ['all'],
-	// },
+	throwOnError: {
+		operations: ['all'],
+	},
 });
 
 if (browser) {
@@ -59,7 +61,15 @@ if (browser) {
 			if (requestInfo.url.includes('/graphql')) {
 				const clonedResponse = response.clone();
 				
-				const responseInfo = {
+				const responseInfo: {
+					url: string;
+					status: number;
+					statusText: string;
+					headers: Record<string, string>;
+					timestamp: number;
+					body?: unknown;
+					bodyError?: string;
+				} = {
 					url: requestInfo.url,
 					status: response.status,
 					statusText: response.statusText,

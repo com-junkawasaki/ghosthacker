@@ -37,7 +37,12 @@
 	}
 </script>
 
-<div class="scene-panel" class:selected on:click={handleClick}>
+<div class="scene-panel" class:selected onclick={handleClick} role="button" tabindex="0" onkeydown={(e) => {
+	if (e.key === 'Enter' || e.key === ' ') {
+		e.preventDefault();
+		handleClick();
+	}
+}}>
 	<!-- Scene Number -->
 	<div class="scene-number">{scene.sceneNumber}</div>
 
@@ -59,12 +64,12 @@
 	<div class="controls">
 		<span class="timestamp">{formatTime(scene.startTimeSeconds)}</span>
 		<div class="actions">
-			<button class="icon-button" on:click|stopPropagation={handleEdit} aria-label="Edit scene">
+			<button class="icon-button" onclick={(e) => { e.stopPropagation(); handleEdit(); }} aria-label="Edit scene">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
 					<path d="M11 2L14 5L5 14H2V11L11 2Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 				</svg>
 			</button>
-			<button class="icon-button" on:click|stopPropagation={handleDelete} aria-label="Delete scene">
+			<button class="icon-button" onclick={(e) => { e.stopPropagation(); handleDelete(); }} aria-label="Delete scene">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
 					<path d="M3 4H13M5 4V3C5 2.44772 5.44772 2 6 2H10C10.5523 2 11 2.44772 11 3V4M13 4V13C13 13.5523 12.5523 14 12 14H4C3.44772 14 3 13.5523 3 13V4H13Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 				</svg>

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { ListGeneratedVideosStore } from '$houdini';
 
@@ -11,20 +10,23 @@
 
 	const data = new ListGeneratedVideosStore();
 
-	$: {
+	const loading = $derived($data.fetching && !$data.data);
+	const error = $derived($data.errors?.[0] ? new Error($data.errors[0].message) : null);
+
+	$effect(() => {
 		if (browser && storyboardId) {
 			data.fetch({ variables: { storyboardId } });
 		}
-	}
+	});
 </script>
 
 <div class="h-full">
 	<h2 class="text-lg font-semibold mb-4">Generated Videos</h2>
 
-	{#if $data.loading}
+	{#if loading}
 		<p>Loading videos...</p>
-	{:else if $data.error}
-		<div class="text-red-600">Error: {$data.error.message}</div>
+	{:else if error}
+		<div class="text-red-600">Error: {error.message}</div>
 	{:else if $data.data?.generatedVideos}
 		{#if $data.data.generatedVideos.length === 0}
 			<p class="text-sm text-gray-500">No videos generated yet</p>

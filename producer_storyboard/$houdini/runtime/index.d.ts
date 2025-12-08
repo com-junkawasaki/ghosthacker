@@ -1,6 +1,6 @@
 import { GenerateVideoStore } from "../plugins/houdini-svelte/stores/GenerateVideo";
-import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
 import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
+import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
 import { ListProjectsStore } from "../plugins/houdini-svelte/stores/ListProjects";
 import { ListScenesStore } from "../plugins/houdini-svelte/stores/ListScenes";
 import { ListStoryboardsStore } from "../plugins/houdini-svelte/stores/ListStoryboards";
@@ -15,12 +15,12 @@ export function graphql(
 ): GenerateVideoStore;
 
 export function graphql(
-    str: "query ListGeneratedVideos($storyboardId: ID!) {\n\tgeneratedVideos(storyboardId: $storyboardId) {\n\t\tid\n\t\tstoryboardId\n\t\tvariationNumber\n\t\tvideoUrl\n\t\tstatus\n\t\terrorMessage\n\t\tcreatedAt\n\t}\n}\n"
-): ListGeneratedVideosStore;
-
-export function graphql(
     str: "query GetScene($id: ID!) {\n\tscene(id: $id) {\n\t\tid\n\t\tstoryboardId\n\t\tsceneNumber\n\t\ttextDescription\n\t\tmediaType\n\t\tmediaUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\ttransitionType\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"
 ): GetSceneStore;
+
+export function graphql(
+    str: "query ListGeneratedVideos($storyboardId: ID!) {\n\tgeneratedVideos(storyboardId: $storyboardId) {\n\t\tid\n\t\tstoryboardId\n\t\tvariationNumber\n\t\tvideoUrl\n\t\tstatus\n\t\terrorMessage\n\t\tcreatedAt\n\t}\n}\n"
+): ListGeneratedVideosStore;
 
 export function graphql(
     str: "query ListProjects {\n\tprojects {\n\t\tid\n\t\ttitle\n\t\tdescription\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"

@@ -65,7 +65,7 @@
 
 	<button
 		class="toolbar-button create-button"
-		on:click={handleGenerate}
+		onclick={handleGenerate}
 		disabled={generating}
 		aria-label="Create video"
 	>
