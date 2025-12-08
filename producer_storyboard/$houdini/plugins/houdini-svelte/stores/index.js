@@ -1,3 +1,4 @@
+export * from './CreateProject'
 export * from './GenerateVideo'
 export * from './GetScene'
 export * from './ListGeneratedVideos'

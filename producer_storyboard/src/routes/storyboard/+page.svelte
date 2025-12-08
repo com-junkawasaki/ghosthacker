@@ -2,9 +2,7 @@
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
-	import { ListProjectsStore } from '$houdini';
-	// @ts-ignore - CreateProjectStore is generated but not exported from $houdini
-	import { CreateProjectStore } from '$houdini/plugins/houdini-svelte/stores/CreateProject';
+	import { ListProjectsStore, CreateProjectStore } from '$houdini';
 	import DebugPanel from '$lib/components/debug/DebugPanel.svelte';
 
 	// Use Houdini 2.x with Svelte 5 runes mode
