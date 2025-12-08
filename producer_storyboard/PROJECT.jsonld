@@ -1,0 +1,103 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://gftd.ai/ontology/storyboard-editor#",
+    "id": "@id",
+    "type": "@type",
+    "cpm": "https://example.org/cpm#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct": "http://purl.org/dc/terms/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    
+    "name": "dct:title",
+    "description": "dct:description",
+    "createdAt": {"@id": "dct:created", "@type": "xsd:dateTime"},
+    "updatedAt": {"@id": "dct:modified", "@type": "xsd:dateTime"},
+    "version": "dct:hasVersion",
+    
+    "hasCapability": {"@id": "cpm:hasCapability", "@type": "@id", "@container": "@set"},
+    "hasActivity": {"@id": "cpm:hasActivity", "@type": "@id", "@container": "@set"},
+    "hasPerformer": {"@id": "cpm:hasPerformer", "@type": "@id", "@container": "@set"},
+    "hasResource": {"@id": "cpm:hasResource", "@type": "@id", "@container": "@set"},
+    "dependsOn": {"@id": "cpm:dependsOn", "@type": "@id", "@container": "@set"},
+    "produces": {"@id": "cpm:produces", "@type": "@id", "@container": "@set"},
+    "consumes": {"@id": "cpm:consumes", "@type": "@id", "@container": "@set"},
+    
+    "goal": {"@id": "cpm:goal", "@type": "@id"},
+    "status": "cpm:status",
+    "priority": "cpm:priority",
+    "configuration": {"@id": "cpm:configuration", "@container": "@set"},
+    "issue": {"@id": "cpm:issue", "@container": "@set"}
+  },
+  
+  "id": "https://gftd.ai/project/storyboard-editor",
+  "type": "cpm:Project",
+  "name": "Sora Storyboard Video Generator",
+  "description": "Soraのストーリーボード機能を参考に、シーン単位で動画を生成・結合する動画生成サービス。Frontend: SvelteKit 2.x + Houdini 2.x, Backend: Rust (Tonic/gRPC) + PostgreSQL 16, AI: OpenAI API (動画生成)。ストーリーボード→動画生成のワークフローを実現。",
+  "version": "0.1.0",
+  "createdAt": "2025-01-30T00:00:00Z",
+  "updatedAt": "2025-01-30T00:00:00Z",
+  "status": "in_progress",
+  "priority": "high",
+  
+  "goal": {
+    "id": "https://gftd.ai/goal/storyboard-editor-wellbecoming",
+    "type": "cpm:Goal",
+    "name": "Enable users to create videos from storyboards with AI assistance",
+    "description": "Users achieve well-becoming through intuitive video creation experience with AI-powered video generation from storyboards"
+  },
+  
+  "hasCapability": [
+    {"@id": "https://gftd.ai/capability/project-management"},
+    {"@id": "https://gftd.ai/capability/storyboard-editing"},
+    {"@id": "https://gftd.ai/capability/scene-management"},
+    {"@id": "https://gftd.ai/capability/ai-video-generation"},
+    {"@id": "https://gftd.ai/capability/video-composition"},
+    {"@id": "https://gftd.ai/capability/timeline-editing"},
+    {"@id": "https://gftd.ai/capability/video-preview"},
+    {"@id": "https://gftd.ai/capability/grpc-backend"}
+  ],
+  
+  "hasActivity": [
+    {"@id": "https://gftd.ai/activity/create-storyboard-project"},
+    {"@id": "https://gftd.ai/activity/list-storyboard-projects"},
+    {"@id": "https://gftd.ai/activity/create-storyboard"},
+    {"@id": "https://gftd.ai/activity/edit-storyboard"},
+    {"@id": "https://gftd.ai/activity/manage-scenes"},
+    {"@id": "https://gftd.ai/activity/generate-video"},
+    {"@id": "https://gftd.ai/activity/edit-timeline"},
+    {"@id": "https://gftd.ai/activity/preview-video"}
+  ],
+  
+  "hasPerformer": [
+    {
+      "@id": "https://gftd.ai/performer/actor/storyboard-editor",
+      "type": "cpm:Actor",
+      "name": "Storyboard Editor Actor",
+      "description": "Frontend actor providing storyboard editing UI"
+    },
+    {
+      "@id": "https://gftd.ai/performer/service/grpc",
+      "type": "cpm:Service",
+      "name": "gRPC Service",
+      "description": "Rust gRPC service (Tonic) providing storyboard data management and OpenAI video generation integration with gRPC-Web support (tonic-web) for browser compatibility"
+    }
+  ],
+  
+  "hasResource": [
+    {"@id": "https://gftd.ai/resource/storyboard-project"},
+    {"@id": "https://gftd.ai/resource/storyboard"},
+    {"@id": "https://gftd.ai/resource/scene"},
+    {"@id": "https://gftd.ai/resource/generated-video"},
+    {"@id": "https://gftd.ai/resource/video-bytea-storage"}
+  ],
+  
+  "dependsOn": [
+    {"@id": "https://gftd.ai/dependency/postgresql"},
+    {"@id": "https://gftd.ai/dependency/openai-api"}
+  ]
+}

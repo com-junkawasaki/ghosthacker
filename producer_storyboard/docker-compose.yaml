@@ -1,0 +1,88 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: storyboard-editor-postgres
+    ports:
+      - "5435:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - storyboard-editor-network
+
+  grpc:
+    build:
+      context: ./performers/services/grpc
+      dockerfile: Dockerfile
+      target: development
+    container_name: storyboard-editor-grpc
+    ports:
+      - "25328:8080"
+    environment:
+      NODE_ENV: development
+      # PostgreSQL Connection
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
+      # Server Configuration
+      PORT: 8080
+      HOST: 0.0.0.0
+      # AI Service Configuration
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      # Cargo watch configuration for HMR
+      CARGO_WATCH_IGNORE: "target/**"
+    volumes:
+      - ./performers/services/grpc:/app
+      - /app/target
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - storyboard-editor-network
+    command: cargo watch -x "run --bin storyboard-editor-grpc" --ignore "target/**" --delay 0.5 --clear --watch-when-idle
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      target: development
+    container_name: storyboard-editor-frontend
+    ports:
+      - "25322:5173"
+    environment:
+      NODE_ENV: development
+      CI: "true"
+      # Improve file watching reliability on macOS bind mounts
+      CHOKIDAR_USEPOLLING: "true"
+      CHOKIDAR_INTERVAL: 1000
+      WATCHPACK_POLLING: "true"
+      WATCHPACK_POLLING_INTERVAL: 1000
+      # SvelteKit HMR configuration
+      # App URLs (loaded from host env / .envrc)
+      PUBLIC_APP_URL: ${PUBLIC_APP_URL:-http://localhost:25322}
+      # gRPC API URL
+      PUBLIC_GRPC_API_URL: ${PUBLIC_GRPC_API_URL:-http://localhost:25328}
+      GRPC_API_URL: ${GRPC_API_URL:-http://grpc:8080}
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.svelte-kit
+    depends_on:
+      - grpc
+    networks:
+      - storyboard-editor-network
+    command: sh -c "pnpm install && pnpm dev --host 0.0.0.0"
+
+volumes:
+  postgres-data:
+
+networks:
+  storyboard-editor-network:
+    name: storyboard-editor-network
+    driver: bridge
