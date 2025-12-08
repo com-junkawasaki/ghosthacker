@@ -1,9 +1,18 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
 
-	// Mock data for Sora-style storyboard
-	const mockScenes = [
+	type Scene = {
+		id: string;
+		sceneNumber: number;
+		textDescription: string;
+		startTimeSeconds: number;
+		durationSeconds: number;
+		mediaUrl: string | null;
+	};
+
+	// State management with $state for reactive updates
+	let scenes = $state<Scene[]>([
 		{
 			id: '1',
 			sceneNumber: 1,
@@ -28,20 +37,86 @@
 			durationSeconds: 1.74,
 			mediaUrl: null,
 		},
-	];
+	]);
 
-	const mockStoryboard = {
-		id: 'mock-storyboard',
-		aspectRatio: '16:9',
-		resolution: '480p',
-		durationSeconds: 5,
-		numVariations: 1,
-	};
-
-	const projectId: string = $page.params.projectId || '';
-
-	let selectedSceneId = $state<string | null>(mockScenes[0]?.id || null);
 	let generating = $state(false);
+	let draggedSceneId = $state<string | null>(null);
+	let dragOverIndex = $state<number | null>(null);
+	let hoveredInsertIndex = $state<number | null>(null);
+
+	let selectedSceneId = $state<string | null>(null);
+	
+	// Initialize selected scene
+	$effect(() => {
+		if (!selectedSceneId && scenes.length > 0 && scenes[0]) {
+			selectedSceneId = scenes[0].id;
+		}
+	});
+
+	// Calculate total duration from scenes
+	const totalDuration = $derived.by(() => {
+		return scenes.reduce((sum, scene) => sum + (scene.durationSeconds || 0), 0) || 5;
+	});
+
+	// Generate unique ID
+	function generateId(): string {
+		return Date.now().toString(36) + Math.random().toString(36).substr(2);
+	}
+
+	// Recalculate scene numbers and timestamps
+	function recalculateScenes() {
+		let currentTime = 0;
+		const updatedScenes = scenes.map((scene, index) => {
+			const updated = {
+				...scene,
+				sceneNumber: index + 1,
+				startTimeSeconds: currentTime,
+			};
+			currentTime += scene.durationSeconds;
+			return updated;
+		});
+		scenes = updatedScenes;
+	}
+
+	// Add scene at specific index
+	function addScene(index: number) {
+		const defaultDuration = 2.0;
+		const newScene: Scene = {
+			id: generateId(),
+			sceneNumber: index + 1,
+			textDescription: '',
+			startTimeSeconds: scenes.slice(0, index).reduce((sum, s) => sum + s.durationSeconds, 0),
+			durationSeconds: defaultDuration,
+			mediaUrl: null,
+		};
+		const newScenes = [...scenes.slice(0, index), newScene, ...scenes.slice(index)];
+		scenes = newScenes;
+		recalculateScenes();
+		selectedSceneId = newScene.id;
+	}
+
+	// Delete scene
+	function deleteScene(sceneId: string) {
+		if (confirm('Are you sure you want to delete this scene?')) {
+			scenes = scenes.filter(s => s.id !== sceneId);
+			recalculateScenes();
+			if (selectedSceneId === sceneId) {
+				selectedSceneId = scenes[0]?.id || null;
+			}
+		}
+	}
+
+	// Move scene from one index to another
+	function moveScene(fromIndex: number, toIndex: number) {
+		if (fromIndex === toIndex) return;
+		const currentScenes = [...scenes];
+		const [moved] = currentScenes.splice(fromIndex, 1);
+		if (moved) {
+			currentScenes.splice(toIndex, 0, moved);
+			scenes = currentScenes;
+			recalculateScenes();
+		}
+	}
 
 	function handleSceneSelect(sceneId: string) {
 		selectedSceneId = sceneId;
@@ -65,6 +140,111 @@
 		}
 		return `${mins.toString().padStart(2, '0')}.${secs}`;
 	}
+
+	// Drag and Drop handlers
+	function handleDragStart(e: DragEvent, sceneId: string, index: number) {
+		if (e.dataTransfer) {
+			e.dataTransfer.effectAllowed = 'move';
+			e.dataTransfer.setData('text/plain', JSON.stringify({ sceneId, index }));
+			draggedSceneId = sceneId;
+		}
+	}
+
+	function handleDragOver(e: DragEvent, index: number) {
+		e.preventDefault();
+		e.stopPropagation();
+		if (e.dataTransfer) {
+			e.dataTransfer.dropEffect = 'move';
+		}
+		dragOverIndex = index;
+	}
+
+	function handleDragLeave(e: DragEvent) {
+		// Only clear if we're actually leaving the element
+		const rect = (e.currentTarget as HTMLElement)?.getBoundingClientRect();
+		if (rect) {
+			const x = e.clientX;
+			const y = e.clientY;
+			if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
+				dragOverIndex = null;
+			}
+		}
+	}
+
+	function handleDrop(e: DragEvent, dropIndex: number) {
+		e.preventDefault();
+		e.stopPropagation();
+		dragOverIndex = null;
+		
+		if (e.dataTransfer) {
+			const data = e.dataTransfer.getData('text/plain');
+			if (data) {
+				try {
+					const { index: dragIndex } = JSON.parse(data);
+					if (dragIndex !== undefined && dragIndex !== dropIndex) {
+						moveScene(dragIndex, dropIndex);
+					}
+				} catch (err) {
+					console.error('Failed to parse drag data:', err);
+				}
+			}
+		}
+		draggedSceneId = null;
+	}
+
+	function handleDragEnd() {
+		draggedSceneId = null;
+		dragOverIndex = null;
+	}
+
+	// Keyboard shortcuts
+	onMount(() => {
+		if (!browser) return;
+		
+		const handleKeyDown = (e: KeyboardEvent) => {
+			// Prevent shortcuts when typing in inputs
+			if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+				return;
+			}
+
+			if ((e.key === 'Delete' || e.key === 'Backspace') && selectedSceneId) {
+				e.preventDefault();
+				deleteScene(selectedSceneId);
+			} else if ((e.key === '+' || e.key === '=') && !e.shiftKey) {
+				e.preventDefault();
+				const selectedIndex = scenes.findIndex(s => s.id === selectedSceneId);
+				const insertIndex = selectedIndex >= 0 ? selectedIndex + 1 : scenes.length;
+				addScene(insertIndex);
+			} else if (e.key === 'ArrowLeft' && selectedSceneId) {
+				e.preventDefault();
+				const selectedIndex = scenes.findIndex(s => s.id === selectedSceneId);
+				if (selectedIndex > 0) {
+					const sceneToMove = scenes[selectedIndex];
+					if (sceneToMove) {
+						moveScene(selectedIndex, selectedIndex - 1);
+						// After move, the scene is now at selectedIndex - 1
+						selectedSceneId = sceneToMove.id;
+					}
+				}
+			} else if (e.key === 'ArrowRight' && selectedSceneId) {
+				e.preventDefault();
+				const selectedIndex = scenes.findIndex(s => s.id === selectedSceneId);
+				if (selectedIndex < scenes.length - 1) {
+					const sceneToMove = scenes[selectedIndex];
+					if (sceneToMove) {
+						moveScene(selectedIndex, selectedIndex + 1);
+						// After move, the scene is now at selectedIndex + 1
+						selectedSceneId = sceneToMove.id;
+					}
+				}
+			}
+		};
+
+		window.addEventListener('keydown', handleKeyDown);
+		return () => {
+			window.removeEventListener('keydown', handleKeyDown);
+		};
+	});
 </script>
 
 <div class="storyboard-editor">
@@ -112,36 +292,130 @@
 
 	<!-- Main Content: Scene Panels -->
 	<main class="scene-panels-container">
-		{#each mockScenes as scene}
-			<div class="scene-panel" class:selected={selectedSceneId === scene.id} onclick={() => handleSceneSelect(scene.id)} role="button" tabindex="0" onkeydown={(e) => {
-				if (e.key === 'Enter' || e.key === ' ') {
+		<div class="scene-panels-wrapper">
+			{#each scenes as scene, index}
+			<!-- Insert button before scene (shown on hover) -->
+			<div
+				class="insert-button-container"
+				class:hovered={hoveredInsertIndex === index}
+				class:drag-over={dragOverIndex === index}
+				onmouseenter={() => hoveredInsertIndex = index}
+				onmouseleave={() => hoveredInsertIndex = null}
+				role="button"
+				tabindex="0"
+				ondragover={(e) => {
 					e.preventDefault();
-					handleSceneSelect(scene.id);
-				}
-			}}>
-				<!-- Scene Content Area (Dark) -->
-				<div class="scene-content">
-					<div class="scene-description">{scene.textDescription}</div>
+					e.stopPropagation();
+					if (e.dataTransfer) {
+						e.dataTransfer.dropEffect = 'move';
+					}
+					dragOverIndex = index;
+				}}
+				ondragleave={(e) => {
+					const rect = (e.currentTarget as HTMLElement)?.getBoundingClientRect();
+					if (rect) {
+						const x = e.clientX;
+						const y = e.clientY;
+						if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
+							if (dragOverIndex === index) {
+								dragOverIndex = null;
+							}
+						}
+					}
+				}}
+				ondrop={(e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					dragOverIndex = null;
+					if (e.dataTransfer) {
+						const data = e.dataTransfer.getData('text/plain');
+						if (data) {
+							try {
+								const { index: dragIndex } = JSON.parse(data);
+								if (dragIndex !== undefined && dragIndex !== index) {
+									moveScene(dragIndex, index);
+								}
+							} catch (err) {
+								console.error('Failed to parse drag data:', err);
+							}
+						}
+					}
+					draggedSceneId = null;
+				}}
+			>
+					<button
+						class="insert-button"
+						onclick={() => addScene(index)}
+						aria-label="Insert scene before"
+						title="Insert scene before"
+					>
+						<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+							<path d="M10 4V16M4 10H16" stroke-width="2" stroke-linecap="round"/>
+						</svg>
+					</button>
 				</div>
-				
-				<!-- Scene Controls -->
-				<div class="scene-controls">
-					<span class="timestamp">{formatTime(scene.startTimeSeconds)}</span>
-					<div class="scene-actions">
-						<button class="action-button" onclick={(e) => { e.stopPropagation(); }} aria-label="Edit scene">
-							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
-								<path d="M11 2L14 5L5 14H2V11L11 2Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-							</svg>
-						</button>
-						<button class="action-button" onclick={(e) => { e.stopPropagation(); }} aria-label="Delete scene">
-							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
-								<path d="M3 4H13M5 4V3C5 2.44772 5.44772 2 6 2H10C10.5523 2 11 2.44772 11 3V4M13 4V13C13 13.5523 12.5523 14 12 14H4C3.44772 14 3 13.5523 3 13V4H13Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-							</svg>
-						</button>
+
+				<!-- Scene Panel -->
+				<div
+					class="scene-panel"
+					class:selected={selectedSceneId === scene.id}
+					class:dragging={draggedSceneId === scene.id}
+					class:drag-over={dragOverIndex === index}
+					draggable="true"
+					ondragstart={(e) => handleDragStart(e, scene.id, index)}
+					ondragover={(e) => handleDragOver(e, index)}
+					ondragleave={handleDragLeave}
+					ondrop={(e) => handleDrop(e, index)}
+					ondragend={handleDragEnd}
+					onclick={() => handleSceneSelect(scene.id)}
+					role="button"
+					tabindex="0"
+					onkeydown={(e) => {
+						if (e.key === 'Enter' || e.key === ' ') {
+							e.preventDefault();
+							handleSceneSelect(scene.id);
+						}
+					}}
+				>
+					<!-- Scene Content Area (Dark) -->
+					<div class="scene-content">
+						<div class="scene-description">{scene.textDescription || 'Click to edit description'}</div>
+					</div>
+					
+					<!-- Scene Controls -->
+					<div class="scene-controls">
+						<span class="timestamp">{formatTime(scene.startTimeSeconds)}</span>
+						<div class="scene-actions">
+							<button class="action-button" onclick={(e) => { e.stopPropagation(); }} aria-label="Edit scene">
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+									<path d="M11 2L14 5L5 14H2V11L11 2Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+							</button>
+							<button class="action-button" onclick={(e) => { e.stopPropagation(); deleteScene(scene.id); }} aria-label="Delete scene">
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+									<path d="M3 4H13M5 4V3C5 2.44772 5.44772 2 6 2H10C10.5523 2 11 2.44772 11 3V4M13 4V13C13 13.5523 12.5523 14 12 14H4C3.44772 14 3 13.5523 3 13V4H13Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+							</button>
+						</div>
 					</div>
 				</div>
+			{/each}
+
+			<!-- Add button at the end -->
+			<div class="add-scene-end">
+				<button
+					class="add-scene-button"
+					onclick={() => addScene(scenes.length)}
+					aria-label="Add scene at end"
+					title="Add scene at end"
+				>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+						<path d="M12 5V19M5 12H19" stroke-width="2" stroke-linecap="round"/>
+					</svg>
+					<span>Add Scene</span>
+				</button>
 			</div>
-		{/each}
+		</div>
 	</main>
 
 	<!-- Timeline -->
@@ -149,8 +423,8 @@
 		<div class="timeline">
 			<!-- Time Markers -->
 			<div class="time-markers">
-				{#each Array(Math.ceil(mockStoryboard.durationSeconds) + 1) as _, i}
-					<div class="time-marker" style="left: {(i / mockStoryboard.durationSeconds) * 100}%">
+				{#each Array(Math.ceil(totalDuration) + 1) as _, i}
+					<div class="time-marker" style="left: {(i / totalDuration) * 100}%">
 						<span class="time-label">{i.toString().padStart(2, '0')}</span>
 					</div>
 				{/each}
@@ -158,12 +432,19 @@
 
 			<!-- Scene Blocks -->
 			<div class="scene-blocks">
-				{#each mockScenes as scene}
-					{@const startPercent = ((scene.startTimeSeconds || 0) / mockStoryboard.durationSeconds) * 100}
-					{@const widthPercent = ((scene.durationSeconds || 0) / mockStoryboard.durationSeconds) * 100}
+				{#each scenes as scene, index}
+					{@const startPercent = ((scene.startTimeSeconds || 0) / totalDuration) * 100}
+					{@const widthPercent = ((scene.durationSeconds || 0) / totalDuration) * 100}
 					<div
 						class="scene-block"
 						class:selected={selectedSceneId === scene.id}
+						class:dragging={draggedSceneId === scene.id}
+						draggable="true"
+						ondragstart={(e) => handleDragStart(e, scene.id, index)}
+						ondragover={(e) => handleDragOver(e, index)}
+						ondragleave={handleDragLeave}
+						ondrop={(e) => handleDrop(e, index)}
+						ondragend={handleDragEnd}
 						style="left: {startPercent}%; width: {widthPercent}%"
 						onclick={() => handleSceneSelect(scene.id)}
 						role="button"
@@ -191,13 +472,23 @@
 			480p
 		</button>
 		<button class="toolbar-button" aria-label="Segment Duration">
-			{Math.max(...mockScenes.map(s => s.durationSeconds || 0)).toFixed(0)}s
+			{Math.max(...scenes.map(s => s.durationSeconds || 0)).toFixed(0)}s
 		</button>
 		<button class="toolbar-button" aria-label="Video Track">
 			1v
 		</button>
 		<button class="toolbar-button" aria-label="Filter">
 			None
+		</button>
+		<button
+			class="toolbar-button add-scene-toolbar-button"
+			onclick={() => addScene(scenes.length)}
+			aria-label="Add scene"
+		>
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+				<path d="M8 3V13M3 8H13" stroke-width="1.5" stroke-linecap="round"/>
+			</svg>
+			Add Scene
 		</button>
 		<button class="toolbar-button help-button" aria-label="Help">
 			Help
@@ -296,28 +587,88 @@
 	/* Scene Panels Container */
 	.scene-panels-container {
 		flex: 1;
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		overflow-x: auto;
+		overflow-y: hidden;
+		min-height: 0;
+		position: relative;
+	}
+
+	.scene-panels-wrapper {
+		display: flex;
+		flex-direction: row;
 		gap: 1rem;
 		padding: 1.5rem;
-		overflow-y: auto;
-		min-height: 0;
+		min-width: min-content;
+		height: 100%;
+		align-items: stretch;
+	}
+
+	/* Insert Button Container */
+	.insert-button-container {
+		flex-shrink: 0;
+		width: 60px;
+		opacity: 0;
+		transition: opacity 0.2s;
+		pointer-events: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.insert-button-container:hovered,
+	.insert-button-container.drag-over {
+		opacity: 1;
+		pointer-events: all;
+	}
+
+	.insert-button {
+		width: 100%;
+		height: 100%;
+		min-height: 300px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: rgba(255, 255, 255, 0.05);
+		border: 2px dashed rgba(255, 255, 255, 0.3);
+		border-radius: 8px;
+		color: rgba(255, 255, 255, 0.7);
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+
+	.insert-button:hover {
+		background-color: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.5);
+		color: #ffffff;
 	}
 
 	/* Scene Panel */
 	.scene-panel {
+		flex-shrink: 0;
+		width: 400px;
 		display: flex;
 		flex-direction: column;
 		background-color: #2a2a2a;
 		border-radius: 8px;
 		overflow: hidden;
-		cursor: pointer;
-		transition: border-color 0.2s;
+		cursor: move;
+		transition: all 0.2s;
 		border: 2px solid transparent;
+		position: relative;
 	}
 
 	.scene-panel.selected {
 		border-color: #ffffff;
+	}
+
+	.scene-panel.dragging {
+		opacity: 0.5;
+		transform: scale(0.95);
+	}
+
+	.scene-panel.drag-over {
+		border-color: #ffffff;
+		box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
 	}
 
 	.scene-content {
@@ -376,6 +727,39 @@
 		color: #ffffff;
 	}
 
+	/* Add Scene End Button */
+	.add-scene-end {
+		flex-shrink: 0;
+		width: 400px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.add-scene-button {
+		width: 100%;
+		height: 100%;
+		min-height: 300px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		background-color: rgba(255, 255, 255, 0.05);
+		border: 2px dashed rgba(255, 255, 255, 0.3);
+		border-radius: 8px;
+		color: rgba(255, 255, 255, 0.7);
+		cursor: pointer;
+		transition: all 0.2s;
+		font-size: 0.875rem;
+	}
+
+	.add-scene-button:hover {
+		background-color: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.5);
+		color: #ffffff;
+	}
+
 	/* Timeline Container */
 	.timeline-container {
 		padding: 1rem 2rem;
@@ -431,8 +815,8 @@
 		height: 100%;
 		background-color: #000000;
 		border-radius: 2px;
-		cursor: pointer;
-		transition: border-color 0.2s;
+		cursor: move;
+		transition: all 0.2s;
 		border: 2px solid transparent;
 		display: flex;
 		align-items: center;
@@ -441,6 +825,11 @@
 
 	.scene-block.selected {
 		border-color: #ffffff;
+	}
+
+	.scene-block.dragging {
+		opacity: 0.5;
+		transform: scale(0.9);
 	}
 
 	.scene-block-number {
@@ -488,8 +877,12 @@
 		cursor: not-allowed;
 	}
 
-	.help-button {
+	.add-scene-toolbar-button {
 		margin-left: auto;
+	}
+
+	.help-button {
+		margin-left: 0;
 	}
 
 	.create-button {
