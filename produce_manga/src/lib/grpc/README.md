@@ -89,3 +89,4 @@ pnpm grpc:generate
 
 - `NEXT_PUBLIC_GRPC_API_URL` - gRPCサーバーのURL（デフォルト: `http://localhost:25327`）
 
+

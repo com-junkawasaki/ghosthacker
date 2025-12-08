@@ -34,3 +34,4 @@ protoc \
 
 echo "Generated TypeScript types in $OUT_DIR"
 
+

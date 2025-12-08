@@ -17,3 +17,4 @@ cargo run --bin seed_251121
 
 echo "✅ Seed data import completed!"
 
+
