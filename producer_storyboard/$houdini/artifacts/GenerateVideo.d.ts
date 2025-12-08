@@ -81,7 +81,9 @@ export type GenerateVideo$artifact = {
             };
         };
     };
-    "pluginData": {};
+    "pluginData": {
+        "houdini-svelte": {};
+    };
     "input": {
         "fields": {
             "storyboardId": "ID";

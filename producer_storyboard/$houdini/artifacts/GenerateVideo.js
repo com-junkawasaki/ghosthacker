@@ -62,7 +62,9 @@ export default {
         }
     },
 
-    "pluginData": {},
+    "pluginData": {
+        "houdini-svelte": {}
+    },
 
     "input": {
         "fields": {

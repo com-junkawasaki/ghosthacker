@@ -70,7 +70,9 @@ export type ListProjects$artifact = {
             };
         };
     };
-    "pluginData": {};
+    "pluginData": {
+        "houdini-svelte": {};
+    };
     "policy": "CacheOrNetwork";
     "partial": false;
 };

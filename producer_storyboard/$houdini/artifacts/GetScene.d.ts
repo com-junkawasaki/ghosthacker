@@ -120,7 +120,9 @@ export type GetScene$artifact = {
             };
         };
     };
-    "pluginData": {};
+    "pluginData": {
+        "houdini-svelte": {};
+    };
     "input": {
         "fields": {
             "id": "ID";

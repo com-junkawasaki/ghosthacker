@@ -14,9 +14,10 @@ const config = {
 		},
 	},
 	plugins: {
-		'houdini-svelte': {},
+		'houdini-svelte': {
+			client: './src/lib/graphql/client.ts',
+		},
 	},
-	client: './src/lib/graphql/client.ts',
 };
 
 export default config;

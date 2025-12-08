@@ -100,7 +100,9 @@ export type ListStoryboards$artifact = {
             };
         };
     };
-    "pluginData": {};
+    "pluginData": {
+        "houdini-svelte": {};
+    };
     "input": {
         "fields": {
             "projectId": "ID";

@@ -64,6 +64,15 @@ directive @loading(count: Int, cascade: Boolean) on QUERY | FRAGMENT_DEFINITION 
 """@required makes a nullable field always non-null by making the parent null when the field is"""
 directive @required on FIELD
 
+"""@load is used to enable automatic fetch on inline queries."""
+directive @load on QUERY
+
+"""@blocking is used to always await the fetch."""
+directive @blocking on QUERY
+
+"""@blocking_disable is used to not always await the fetch (in CSR for example). Note that "throwOnError" will not throw in this case."""
+directive @blocking_disable on QUERY
+
 enum CachePolicy {
   CacheAndNetwork
   CacheOnly

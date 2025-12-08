@@ -77,7 +77,7 @@ services:
       - grpc
     networks:
       - storyboard-editor-network
-    command: sh -c "pnpm install && pnpm dev --host 0.0.0.0"
+    command: sh -c "pnpm install --no-frozen-lockfile && pnpm dev --host 0.0.0.0"
 
 volumes:
   postgres-data:

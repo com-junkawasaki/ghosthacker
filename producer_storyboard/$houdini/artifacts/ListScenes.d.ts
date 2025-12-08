@@ -119,7 +119,9 @@ export type ListScenes$artifact = {
             };
         };
     };
-    "pluginData": {};
+    "pluginData": {
+        "houdini-svelte": {};
+    };
     "input": {
         "fields": {
             "storyboardId": "ID";
