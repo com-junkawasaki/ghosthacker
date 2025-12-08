@@ -7,6 +7,7 @@ export type Result<DataType> = {
 	data?: DataType | null
 	error?: Error | null
 }
+export * from './CreateProject'
 export * from './GenerateVideo'
 export * from './GetScene'
 export * from './ListGeneratedVideos'

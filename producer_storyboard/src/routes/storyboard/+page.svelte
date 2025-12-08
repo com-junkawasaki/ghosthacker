@@ -1,14 +1,22 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
 	import { ListProjectsStore } from '$houdini';
+	// @ts-ignore - CreateProjectStore is generated but not exported from $houdini
+	import { CreateProjectStore } from '$houdini/plugins/houdini-svelte/stores/CreateProject';
 	import DebugPanel from '$lib/components/debug/DebugPanel.svelte';
 
 	// Use Houdini 2.x with Svelte 5 runes mode
 	// Create store instance - it will auto-fetch if isManualLoad is false
 	const projects: ListProjectsStore = new ListProjectsStore();
+	const createProject = new CreateProjectStore();
 
 	let debugVisible = $state(true);
+	let isCreating = $state(false);
+	let showCreateDialog = $state(false);
+	let newProjectTitle = $state('');
+	let newProjectDescription = $state('');
 
 	// Computed properties for compatibility
 	const loading = $derived($projects.fetching && !$projects.data);
@@ -73,6 +81,48 @@
 			});
 		}
 	});
+
+	async function handleCreateProject() {
+		if (!newProjectTitle.trim()) {
+			alert('Please enter a project title');
+			return;
+		}
+
+		isCreating = true;
+		try {
+			console.log('[Storyboard] Creating project:', {
+				title: newProjectTitle,
+				description: newProjectDescription,
+			});
+
+			const result = await createProject.mutate({
+				input: {
+					title: newProjectTitle.trim(),
+					description: newProjectDescription.trim() || null,
+				},
+			});
+
+			console.log('[Storyboard] Project created:', result);
+
+			if (result?.data?.createProject) {
+				// Refresh projects list
+				await projects.fetch({ blocking: true });
+				
+				// Navigate to the new project's editor
+				goto(`/storyboard/${result.data.createProject.id}/editor`);
+			} else {
+				throw new Error('Failed to create project: No data returned');
+			}
+		} catch (error) {
+			console.error('[Storyboard] Failed to create project:', error);
+			alert(`Failed to create project: ${error instanceof Error ? error.message : String(error)}`);
+		} finally {
+			isCreating = false;
+			showCreateDialog = false;
+			newProjectTitle = '';
+			newProjectDescription = '';
+		}
+	}
 </script>
 
 <div class="projects-page">
@@ -106,9 +156,26 @@
 			{#if $projects.data.projects.length === 0}
 				<div class="empty-state">
 					<p>No projects found. Create a new project to get started.</p>
-					<button class="create-button">Create Project</button>
+					<button 
+						class="create-button" 
+						onclick={() => showCreateDialog = true}
+						disabled={isCreating}
+					>
+						{isCreating ? 'Creating...' : 'Create Project'}
+					</button>
 				</div>
 			{:else}
+				<div class="projects-header">
+					<button 
+						class="create-button" 
+						onclick={() => showCreateDialog = true}
+						disabled={isCreating}
+					>
+						{isCreating ? 'Creating...' : '+ Create Project'}
+					</button>
+				</div>
+			{/if}
+			{#if $projects.data.projects.length > 0}
 				<div class="projects-grid">
 					{#each $projects.data.projects as project (project.id)}
 						<a href="/storyboard/{project.id}/editor" class="project-card">
@@ -167,6 +234,64 @@
 			</div>
 		{/if}
 	</div>
+
+		<!-- Create Project Dialog -->
+		{#if showCreateDialog}
+			<div class="dialog-overlay" onclick={() => showCreateDialog = false}>
+				<div class="dialog" onclick={(e) => e.stopPropagation()}>
+					<h2>Create New Project</h2>
+					<form
+						onsubmit={(e) => {
+							e.preventDefault();
+							handleCreateProject();
+						}}
+					>
+						<div class="form-group">
+							<label for="project-title">Title *</label>
+							<input
+								id="project-title"
+								type="text"
+								bind:value={newProjectTitle}
+								placeholder="Enter project title"
+								required
+								disabled={isCreating}
+							/>
+						</div>
+						<div class="form-group">
+							<label for="project-description">Description</label>
+							<textarea
+								id="project-description"
+								bind:value={newProjectDescription}
+								placeholder="Enter project description (optional)"
+								disabled={isCreating}
+								rows="3"
+							></textarea>
+						</div>
+						<div class="dialog-actions">
+							<button
+								type="button"
+								class="cancel-button"
+								onclick={() => {
+									showCreateDialog = false;
+									newProjectTitle = '';
+									newProjectDescription = '';
+								}}
+								disabled={isCreating}
+							>
+								Cancel
+							</button>
+							<button
+								type="submit"
+								class="create-button"
+								disabled={isCreating || !newProjectTitle.trim()}
+							>
+								{isCreating ? 'Creating...' : 'Create'}
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		{/if}
 
 		<!-- Debug Panel -->
 		<DebugPanel store={{ ...$projects, loading, error }} storeName="ListProjectsStore" visible={debugVisible} />
@@ -258,5 +383,108 @@
 		font-size: 0.875rem;
 		color: rgba(255, 255, 255, 0.7);
 		line-height: 1.5;
+	}
+
+	.projects-header {
+		display: flex;
+		justify-content: flex-end;
+		margin-bottom: 2rem;
+	}
+
+	.dialog-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.7);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 1000;
+	}
+
+	.dialog {
+		background-color: var(--sb-bg-secondary, #2a2a2a);
+		border: 1px solid var(--sb-border, rgba(255, 255, 255, 0.1));
+		border-radius: 8px;
+		padding: 2rem;
+		min-width: 400px;
+		max-width: 600px;
+		color: var(--sb-text-primary, #ffffff);
+	}
+
+	.dialog h2 {
+		margin-top: 0;
+		margin-bottom: 1.5rem;
+		font-size: 1.5rem;
+	}
+
+	.form-group {
+		margin-bottom: 1.5rem;
+	}
+
+	.form-group label {
+		display: block;
+		margin-bottom: 0.5rem;
+		font-weight: 500;
+		color: var(--sb-text-primary, #ffffff);
+	}
+
+	.form-group input,
+	.form-group textarea {
+		width: 100%;
+		padding: 0.75rem;
+		background-color: rgba(255, 255, 255, 0.1);
+		border: 1px solid var(--sb-border, rgba(255, 255, 255, 0.2));
+		border-radius: 4px;
+		color: var(--sb-text-primary, #ffffff);
+		font-size: 1rem;
+		font-family: inherit;
+	}
+
+	.form-group input:focus,
+	.form-group textarea:focus {
+		outline: none;
+		border-color: rgba(255, 255, 255, 0.5);
+	}
+
+	.form-group input:disabled,
+	.form-group textarea:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	.dialog-actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 1rem;
+		margin-top: 2rem;
+	}
+
+	.cancel-button {
+		padding: 0.75rem 1.5rem;
+		background-color: transparent;
+		color: var(--sb-text-primary, #ffffff);
+		border: 1px solid var(--sb-border, rgba(255, 255, 255, 0.2));
+		border-radius: 4px;
+		font-size: 1rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+
+	.cancel-button:hover:not(:disabled) {
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+
+	.cancel-button:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	.create-button:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
 	}
 </style>

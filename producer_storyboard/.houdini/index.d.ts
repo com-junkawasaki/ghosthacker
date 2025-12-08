@@ -1,3 +1,4 @@
+export * from "./artifacts/CreateProject";
 export * from "./artifacts/GenerateVideo";
 export * from "./artifacts/GetScene";
 export * from "./artifacts/ListGeneratedVideos";

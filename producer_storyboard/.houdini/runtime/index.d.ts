@@ -1,3 +1,4 @@
+import { CreateProjectStore } from "../plugins/houdini-svelte/stores/CreateProject";
 import { GenerateVideoStore } from "../plugins/houdini-svelte/stores/GenerateVideo";
 import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
 import { ListProjectsStore } from "../plugins/houdini-svelte/stores/ListProjects";
@@ -9,6 +10,10 @@ import type { CacheTypeDef } from "./generated";
 import { Cache } from "./public";
 export * from "./client";
 export * from "./lib";
+
+export function graphql(
+    str: "mutation CreateProject($input: CreateProjectInput!) {\n\tcreateProject(input: $input) {\n\t\tid\n\t\ttitle\n\t\tdescription\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"
+): CreateProjectStore;
 
 export function graphql(
     str: "mutation GenerateVideo($storyboardId: ID!) {\n\tgenerateVideo(storyboardId: $storyboardId) {\n\t\tid\n\t\tstoryboardId\n\t\tvariationNumber\n\t\tstatus\n\t\tcreatedAt\n\t}\n}\n"

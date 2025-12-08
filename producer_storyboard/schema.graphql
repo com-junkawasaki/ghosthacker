@@ -54,6 +54,12 @@ type Query {
 	generatedVideos(storyboardId: ID!): [VideoStatus!]!
 }
 
+input CreateProjectInput {
+	title: String!
+	description: String
+}
+
 type Mutation {
+	createProject(input: CreateProjectInput!): Project!
 	generateVideo(storyboardId: ID!): VideoStatus!
 }
