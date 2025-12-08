@@ -160,6 +160,40 @@ impl MutationRoot {
         let storyboard_uuid = Uuid::parse_str(&input.storyboard_id.0)
             .map_err(|e| async_graphql::Error::new(format!("Invalid storyboard ID: {}", e)))?;
         
+        // Check if the scene_number already exists for this storyboard
+        let existing_scene = sqlx::query(
+            r#"
+            SELECT id FROM scenes
+            WHERE storyboard_id = $1 AND scene_number = $2
+            "#,
+        )
+        .bind(storyboard_uuid)
+        .bind(input.scene_number)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to check existing scene: {}", e)))?;
+        
+        // If scene_number exists, shift existing scenes
+        let scene_number = if existing_scene.is_some() {
+            // Shift all scenes with scene_number >= input.scene_number
+            sqlx::query(
+                r#"
+                UPDATE scenes
+                SET scene_number = scene_number + 1, updated_at = NOW()
+                WHERE storyboard_id = $1 AND scene_number >= $2
+                "#,
+            )
+            .bind(storyboard_uuid)
+            .bind(input.scene_number)
+            .execute(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to shift scenes: {}", e)))?;
+            
+            input.scene_number
+        } else {
+            input.scene_number
+        };
+        
         let id = Uuid::new_v4();
         let now = chrono::Utc::now();
         
@@ -174,7 +208,7 @@ impl MutationRoot {
         )
         .bind(id)
         .bind(storyboard_uuid)
-        .bind(input.scene_number)
+        .bind(scene_number)
         .bind(&input.text_description)
         .bind(start_time)
         .bind(duration)
@@ -366,7 +400,24 @@ impl MutationRoot {
         let storyboard_uuid = Uuid::parse_str(&input.storyboard_id.0)
             .map_err(|e| async_graphql::Error::new(format!("Invalid storyboard ID: {}", e)))?;
         
-        // Update scene numbers based on new order
+        // Use a transaction to avoid unique constraint violations
+        let mut tx = pool.begin().await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to start transaction: {}", e)))?;
+        
+        // First, set all scene numbers to negative values to avoid conflicts
+        sqlx::query(
+            r#"
+            UPDATE scenes
+            SET scene_number = -scene_number, updated_at = NOW()
+            WHERE storyboard_id = $1
+            "#,
+        )
+        .bind(storyboard_uuid)
+        .execute(&mut *tx)
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to prepare scenes for reordering: {}", e)))?;
+        
+        // Then update scene numbers based on new order
         for (index, scene_id) in input.scene_ids.iter().enumerate() {
             let scene_uuid = Uuid::parse_str(&scene_id.0)
                 .map_err(|e| async_graphql::Error::new(format!("Invalid scene ID: {}", e)))?;
@@ -381,10 +432,14 @@ impl MutationRoot {
             .bind((index + 1) as i32)
             .bind(scene_uuid)
             .bind(storyboard_uuid)
-            .execute(pool.as_ref())
+            .execute(&mut *tx)
             .await
             .map_err(|e| async_graphql::Error::new(format!("Failed to reorder scenes: {}", e)))?;
         }
+        
+        // Commit the transaction
+        tx.commit().await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to commit transaction: {}", e)))?;
         
         // Save operation history
         let _ = HistoryService::save_operation(

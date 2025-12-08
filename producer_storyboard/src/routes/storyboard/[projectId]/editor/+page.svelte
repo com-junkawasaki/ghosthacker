@@ -172,12 +172,18 @@
 
 		const defaultDuration = 2.0;
 		const startTime = scenes.slice(0, index).reduce((sum, s) => sum + (s.durationSeconds || 0), 0);
+		
+		// Calculate scene number: insert at index means the new scene will be at position index + 1
+		// But we need to check existing scenes to avoid conflicts
+		// If inserting at index 0, new scene_number should be 1
+		// If inserting at index 1, new scene_number should be 2, etc.
+		const sceneNumber = index + 1;
 
 		try {
 			const result = await createSceneStore.mutate({
 				input: {
 					storyboardId,
-					sceneNumber: index + 1,
+					sceneNumber: sceneNumber,
 					textDescription: '',
 					durationSeconds: defaultDuration,
 					startTimeSeconds: startTime,
