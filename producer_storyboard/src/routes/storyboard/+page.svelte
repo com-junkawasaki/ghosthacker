@@ -1,10 +1,24 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
-	import { ListProjectsStore } from '$houdini';
+	import { graphql } from '$houdini';
 	import DebugPanel from '$lib/components/debug/DebugPanel.svelte';
 
-	const data = new ListProjectsStore();
+	// Use Houdini 2.x with Svelte 5 runes mode
+	const data = $derived(
+		graphql(`
+			query ListProjects {
+				projects {
+					id
+					title
+					description
+					createdAt
+					updatedAt
+				}
+			}
+		`)
+	);
+
 	let debugVisible = $state(true);
 	let fetchAttempted = $state(false);
 
@@ -35,8 +49,8 @@
 				if (!$data.fetching && !$data.data && !error) {
 					console.log('[Storyboard] Manually fetching projects...');
 					fetchAttempted = true;
-					const result = await data.fetch({ blocking: true });
-					console.log('[Storyboard] Fetch result:', result);
+					await $data.fetch({ blocking: true });
+					console.log('[Storyboard] Fetch completed');
 					
 					// Wait a bit for store to update
 					await new Promise(resolve => setTimeout(resolve, 200));
@@ -93,7 +107,7 @@
 				<button
 					onclick={async () => {
 						try {
-							await data.fetch();
+							await $data.fetch();
 						} catch (error) {
 							console.error('Failed to retry:', error);
 						}
@@ -157,7 +171,7 @@
 						try {
 							console.log('[Storyboard] Manual retry...');
 							fetchAttempted = false;
-							await data.fetch({ blocking: true });
+							await $data.fetch({ blocking: true });
 							await new Promise(resolve => setTimeout(resolve, 200));
 							fetchAttempted = true;
 						} catch (error) {

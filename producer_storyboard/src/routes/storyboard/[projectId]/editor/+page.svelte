@@ -14,11 +14,19 @@
 
 	let selectedSceneId = $state<string | null>(null);
 
-	const storyboard = $derived($storyboards.data?.storyboards?.[0] || null);
-	const storyboardId = $derived(storyboard?.id);
-
-	const storyboardsLoading = $derived($storyboards.fetching && !$storyboards.data);
-	const storyboardsError = $derived($storyboards.errors?.[0] ? new Error($storyboards.errors[0].message) : null);
+	// Use reactive statements for Houdini store compatibility
+	let storyboard = $state(null);
+	let storyboardId = $state<string | undefined>(undefined);
+	let storyboardsLoading = $state(false);
+	let storyboardsError = $state<Error | null>(null);
+	
+	$: {
+		storyboard = $storyboards.data?.storyboards?.[0] || null;
+		storyboardId = storyboard?.id;
+		storyboardsLoading = $storyboards.fetching && !$storyboards.data;
+		const firstError = $storyboards.errors?.[0];
+		storyboardsError = firstError ? new Error(firstError.message) : null;
+	}
 
 	const scenes = new ListScenesStore();
 

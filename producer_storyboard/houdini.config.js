@@ -16,6 +16,7 @@ const config = {
 	plugins: {
 		'houdini-svelte': {
 			client: './src/lib/graphql/client.ts',
+			forceRunesMode: true, // Enable Svelte 5 runes mode
 		},
 	},
 	// Fetch schema from GraphQL endpoint
