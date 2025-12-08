@@ -4,6 +4,8 @@ mutation ReorderScenes($input: ReorderScenesInput!) {
 		storyboardId
 		sceneNumber
 		textDescription
+		mediaType
+		mediaUrl
 		startTimeSeconds
 		durationSeconds
 		transitionType

@@ -249,6 +249,21 @@
 
 		currentScenes.splice(toIndex, 0, moved);
 		
+		// Update scene numbers locally for immediate UI update
+		let currentTime = 0;
+		const updatedScenes = currentScenes.map((scene, index) => {
+			const updated = {
+				...scene,
+				sceneNumber: index + 1,
+				startTimeSeconds: currentTime,
+			};
+			currentTime += scene.durationSeconds || 0;
+			return updated;
+		});
+		
+		// Optimistically update UI
+		scenes = updatedScenes;
+		
 		// Update scene numbers
 		const sceneIds = currentScenes.map((s) => s.id);
 
@@ -261,15 +276,50 @@
 			});
 
 			if (result?.errors && result.errors.length > 0) {
+				// Revert on error
+				await loadScenes(storyboardId);
 				throw new Error(result.errors[0].message);
 			}
 
-			if (result?.data?.reorderScenes) {
-				// Reload scenes to get the updated list
+			if (result?.data?.reorderScenes && result.data.reorderScenes.length > 0) {
+				// Update with server response to ensure consistency
+				// Map server response to local scene format
+				const serverScenes: Scene[] = result.data.reorderScenes.map((s: {
+					id: string;
+					sceneNumber: number;
+					textDescription: string | null;
+					startTimeSeconds: number | null;
+					durationSeconds: number | null;
+					mediaUrl?: string | null;
+				}) => ({
+					id: s.id,
+					sceneNumber: s.sceneNumber,
+					textDescription: s.textDescription || '',
+					startTimeSeconds: s.startTimeSeconds || 0,
+					durationSeconds: s.durationSeconds || 0,
+					mediaUrl: s.mediaUrl || null,
+				}));
+				
+				// Recalculate timestamps
+				let time = 0;
+				const finalScenes: Scene[] = serverScenes.map((scene) => {
+					const updated: Scene = {
+						...scene,
+						startTimeSeconds: time,
+					};
+					time += scene.durationSeconds || 0;
+					return updated;
+				});
+				
+				scenes = finalScenes;
+			} else {
+				// Fallback: reload from server
 				await loadScenes(storyboardId);
 			}
 		} catch (err) {
 			console.error('[Editor] Error reordering scenes:', err);
+			// Revert on error
+			await loadScenes(storyboardId);
 			alert(err instanceof Error ? err.message : 'Failed to reorder scenes');
 		}
 	}
