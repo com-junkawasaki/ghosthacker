@@ -10,15 +10,9 @@
 
 	const data = new GetSceneStore();
 
-	// Use reactive statements for Houdini store compatibility
-	let loading = $state(false);
-	let error = $state<Error | null>(null);
-	
-	$: {
-		loading = $data.fetching && !$data.data;
-		const firstError = $data.errors?.[0];
-		error = firstError ? new Error(firstError.message) : null;
-	}
+	// Use Svelte 5 runes mode
+	const loading = $derived($data.fetching && !$data.data);
+	const error = $derived($data.errors?.[0] ? new Error($data.errors[0].message) : null);
 
 	$effect(() => {
 		if (browser && sceneId) {

@@ -1,70 +1,43 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
-	import { graphql } from '$houdini';
+	import { ListProjectsStore } from '$houdini';
 	import DebugPanel from '$lib/components/debug/DebugPanel.svelte';
 
 	// Use Houdini 2.x with Svelte 5 runes mode
-	const data = $derived(
-		graphql(`
-			query ListProjects {
-				projects {
-					id
-					title
-					description
-					createdAt
-					updatedAt
-				}
-			}
-		`)
-	);
+	// Create store instance - it will auto-fetch if isManualLoad is false
+	const projects: ListProjectsStore = new ListProjectsStore();
 
 	let debugVisible = $state(true);
-	let fetchAttempted = $state(false);
 
 	// Computed properties for compatibility
-	const loading = $derived($data.fetching && !$data.data);
-	const error = $derived($data.errors?.[0] ? new Error($data.errors[0].message) : null);
-
-	// Track if store automatically starts fetching (before onMount)
-	$effect(() => {
-		if (browser && $data.fetching && !fetchAttempted) {
-			console.log('[Storyboard] Store auto-started fetching, marking as attempted');
-			fetchAttempted = true;
-		}
-	});
+	const loading = $derived($projects.fetching && !$projects.data);
+	const error = $derived($projects.errors?.[0] ? new Error($projects.errors[0].message) : null);
 
 	onMount(async () => {
 		if (browser) {
 			try {
 				console.log('[Storyboard] onMount - Initial store state:', {
 					loading,
-					fetching: $data.fetching,
+					fetching: $projects.fetching,
 					error,
-					data: $data.data,
-					fetchAttempted,
+					data: $projects.data,
 				});
 				
-				// Only fetch if not already fetching
-				if (!$data.fetching && !$data.data && !error) {
+				// Fetch if not already fetching and no data
+				if (!$projects.fetching && !$projects.data && !error) {
 					console.log('[Storyboard] Manually fetching projects...');
-					fetchAttempted = true;
-					await $data.fetch({ blocking: true });
+					await projects.fetch({ blocking: true });
 					console.log('[Storyboard] Fetch completed');
-					
-					// Wait a bit for store to update
-					await new Promise(resolve => setTimeout(resolve, 200));
 				} else {
 					console.log('[Storyboard] Store already fetching or has data, skipping manual fetch');
-					fetchAttempted = true;
 				}
 				
 				console.log('[Storyboard] Store state after onMount:', {
 					loading,
 					error,
-					data: $data.data,
-					fetching: $data.fetching,
-					fetchAttempted,
+					data: $projects.data,
+					fetching: $projects.fetching,
 				});
 			} catch (err) {
 				console.error('[Storyboard] Failed to fetch projects:', err);
@@ -72,7 +45,6 @@
 					message: err instanceof Error ? err.message : String(err),
 					stack: err instanceof Error ? err.stack : undefined,
 				});
-				fetchAttempted = true;
 			}
 		}
 	});
@@ -82,9 +54,8 @@
 			console.log('[Storyboard] Store reactive update:', {
 				loading,
 				error,
-				data: $data.data,
-				fetching: $data.fetching,
-				fetchAttempted,
+				data: $projects.data,
+				fetching: $projects.fetching,
 			});
 		}
 	});
@@ -94,11 +65,11 @@
 	<div class="container">
 		<h1 class="page-title">Storyboard Projects</h1>
 
-		{#if loading || ($data.fetching && !fetchAttempted)}
+		{#if loading}
 			<div class="loading-state">
 				<p>Loading projects...</p>
 				<div class="debug-info" style="margin-top: 1rem; font-size: 0.875rem; opacity: 0.7;">
-					<p>Store State: loading={loading ? 'true' : 'false'}, fetching={$data.fetching ? 'true' : 'false'}, fetchAttempted={fetchAttempted ? 'true' : 'false'}</p>
+					<p>Store State: loading={loading ? 'true' : 'false'}, fetching={$projects.fetching ? 'true' : 'false'}</p>
 				</div>
 			</div>
 		{:else if error}
@@ -107,7 +78,7 @@
 				<button
 					onclick={async () => {
 						try {
-							await $data.fetch();
+							await projects.fetch();
 						} catch (error) {
 							console.error('Failed to retry:', error);
 						}
@@ -117,15 +88,15 @@
 					Retry
 				</button>
 			</div>
-		{:else if $data.data && $data.data.projects !== undefined}
-			{#if $data.data.projects.length === 0}
+		{:else if $projects.data && $projects.data.projects !== undefined}
+			{#if $projects.data.projects.length === 0}
 				<div class="empty-state">
 					<p>No projects found. Create a new project to get started.</p>
 					<button class="create-button">Create Project</button>
 				</div>
 			{:else}
 				<div class="projects-grid">
-					{#each $data.data.projects as project (project.id)}
+					{#each $projects.data.projects as project (project.id)}
 						<a href="/storyboard/{project.id}/editor" class="project-card">
 							<h2 class="project-title">{project.title}</h2>
 							{#if project.description}
@@ -135,16 +106,16 @@
 					{/each}
 				</div>
 			{/if}
-		{:else if $data.fetching}
+		{:else if $projects.fetching}
 			<div class="loading-state">
 				<p>Fetching projects...</p>
 				<div class="debug-info">
 					<p>Debug Info:</p>
 					<ul>
 						<li>Loading: {loading ? 'true' : 'false'}</li>
-						<li>Fetching: {$data.fetching ? 'true' : 'false'}</li>
+						<li>Fetching: {$projects.fetching ? 'true' : 'false'}</li>
 						<li>Has Error: {error ? 'true' : 'false'}</li>
-						<li>Has Data: {$data.data ? 'true' : 'false'}</li>
+						<li>Has Data: {$projects.data ? 'true' : 'false'}</li>
 						{#if error}
 							<li>Error: {(error as Error).message}</li>
 						{/if}
@@ -158,9 +129,9 @@
 					<p>Debug Info:</p>
 					<ul>
 						<li>Loading: {loading ? 'true' : 'false'}</li>
-						<li>Fetching: {$data.fetching ? 'true' : 'false'}</li>
+						<li>Fetching: {$projects.fetching ? 'true' : 'false'}</li>
 						<li>Has Error: {error ? 'true' : 'false'}</li>
-						<li>Has Data: {$data.data ? 'true' : 'false'}</li>
+						<li>Has Data: {$projects.data ? 'true' : 'false'}</li>
 						{#if error}
 							<li>Error: {(error as Error).message}</li>
 						{/if}
@@ -170,13 +141,9 @@
 					onclick={async () => {
 						try {
 							console.log('[Storyboard] Manual retry...');
-							fetchAttempted = false;
-							await $data.fetch({ blocking: true });
-							await new Promise(resolve => setTimeout(resolve, 200));
-							fetchAttempted = true;
+							await projects.fetch({ blocking: true });
 						} catch (error) {
 							console.error('[Storyboard] Failed to retry:', error);
-							fetchAttempted = true;
 						}
 					}}
 					class="retry-button"
@@ -188,7 +155,7 @@
 	</div>
 
 		<!-- Debug Panel -->
-		<DebugPanel store={{ ...$data, loading, error }} storeName="ListProjectsStore" visible={debugVisible} />
+		<DebugPanel store={{ ...$projects, loading, error }} storeName="ListProjectsStore" visible={debugVisible} />
 </div>
 
 <style>
