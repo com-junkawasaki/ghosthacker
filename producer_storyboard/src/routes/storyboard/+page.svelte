@@ -24,13 +24,27 @@
 					data: $projects.data,
 				});
 				
-				// Fetch if not already fetching and no data
-				if (!$projects.fetching && !$projects.data && !error) {
+				// Wait a bit for auto-fetch to complete if it's in progress
+				if ($projects.fetching) {
+					console.log('[Storyboard] Store is auto-fetching, waiting...');
+					// Wait up to 5 seconds for auto-fetch to complete
+					let waitCount = 0;
+					while ($projects.fetching && waitCount < 50) {
+						await new Promise(resolve => setTimeout(resolve, 100));
+						waitCount++;
+					}
+					
+					if ($projects.fetching) {
+						console.warn('[Storyboard] Auto-fetch timed out, forcing manual fetch');
+						// Force manual fetch if auto-fetch is stuck
+						await projects.fetch({ blocking: true });
+					}
+				} else if (!$projects.data && !error) {
 					console.log('[Storyboard] Manually fetching projects...');
 					await projects.fetch({ blocking: true });
 					console.log('[Storyboard] Fetch completed');
 				} else {
-					console.log('[Storyboard] Store already fetching or has data, skipping manual fetch');
+					console.log('[Storyboard] Store already has data or error, skipping manual fetch');
 				}
 				
 				console.log('[Storyboard] Store state after onMount:', {

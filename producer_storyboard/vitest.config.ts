@@ -10,7 +10,7 @@ export default defineConfig({
 		},
 	},
 	test: {
-		include: ['src/**/*.{test,spec}.{js,ts}', 'tests/tdd/unit/**/*.test.ts'],
+		include: ['src/**/*.{test,spec}.{js,ts}', 'tests/tdd/unit/**/*.test.ts', 'tests/tdd/integration/**/*.test.ts'],
 		environment: 'jsdom',
 		globals: true,
 		coverage: {
