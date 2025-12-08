@@ -2,10 +2,10 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { grpcClient } from '$lib/grpc/client';
-	import TimelineEditor from '$components/storyboard/TimelineEditor.svelte';
-	import SceneEditor from '$components/storyboard/SceneEditor.svelte';
-	import VideoPreview from '$components/storyboard/VideoPreview.svelte';
-	import GenerationSettings from '$components/storyboard/GenerationSettings.svelte';
+	import TimelineEditor from '$lib/components/storyboard/TimelineEditor.svelte';
+	import SceneEditor from '$lib/components/storyboard/SceneEditor.svelte';
+	import VideoPreview from '$lib/components/storyboard/VideoPreview.svelte';
+	import GenerationSettings from '$lib/components/storyboard/GenerationSettings.svelte';
 	import type { Storyboard, Scene } from '$lib/grpc/generated/types';
 	
 	const projectId = $page.params.projectId;

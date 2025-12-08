@@ -15,7 +15,26 @@ Soraのストーリーボード機能を参考に、シーン単位で動画を�
 - Docker & Docker Compose
 - Rust (latest)
 - Node.js 20+ & pnpm
-- buf CLI (gRPCコード生成用)
+- buf CLI (gRPCコード生成用、オプション)
+
+### クイックスタート
+
+```bash
+# 1. セットアップスクリプトを実行
+./scripts/setup.sh
+
+# 2. 環境変数を設定
+cp .envrc.example .envrc
+# .envrcを編集してOPENAI_API_KEYを設定
+
+# 3. Docker Composeで全サービスを起動
+make docker-up
+# または
+docker-compose up
+
+# 4. 別ターミナルでフロントエンドを起動（開発モード）
+pnpm dev
+```
 
 ### 環境変数
 
@@ -27,9 +46,16 @@ export DATABASE_URL=postgresql://postgres:postgres@localhost:5435/postgres
 export PUBLIC_GRPC_API_URL=http://localhost:25328
 ```
 
-### 起動
+### 手動セットアップ
 
 ```bash
+# 依存関係のインストール
+pnpm install
+cd performers/services/grpc && cargo fetch && cd ../../..
+
+# gRPCコード生成（buf CLIが必要）
+pnpm grpc:generate
+
 # Docker Composeで全サービスを起動
 docker-compose up
 
@@ -39,7 +65,6 @@ cd performers/services/grpc
 cargo run
 
 # Frontend
-pnpm install
 pnpm dev
 ```
 
