@@ -16,7 +16,9 @@
 	.app-layout {
 		min-height: 100vh;
 		width: 100%;
-		background-color: var(--sb-bg-primary, #363636);
+		height: 100vh;
+		background-color: var(--sb-bg-primary, #1a1a1a);
 		color: var(--sb-text-primary, #ffffff);
+		overflow: hidden;
 	}
 </style>

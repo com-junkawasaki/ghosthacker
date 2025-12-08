@@ -5,16 +5,52 @@
  * 
  * GraphQL Mutation resolvers
  */
-use async_graphql::{Context, Object, ID, Result};
+use async_graphql::{Context, InputObject, Object, ID, Result};
 use crate::ports::postgres::PostgresPool;
-use crate::schema::storyboard::VideoStatus;
+use crate::schema::storyboard::{Project, VideoStatus};
 use uuid::Uuid;
+
+#[derive(InputObject)]
+pub struct CreateProjectInput {
+    pub title: String,
+    pub description: Option<String>,
+}
 
 #[derive(Default)]
 pub struct MutationRoot;
 
 #[Object]
 impl MutationRoot {
+    /// Create a new project
+    async fn create_project(&self, ctx: &Context<'_>, input: CreateProjectInput) -> Result<Project> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let id = Uuid::new_v4();
+        let now = chrono::Utc::now();
+        
+        sqlx::query(
+            r#"
+            INSERT INTO storyboard_projects (id, title, description, created_at, updated_at)
+            VALUES ($1, $2, $3, $4, $4)
+            "#,
+        )
+        .bind(id)
+        .bind(&input.title)
+        .bind(&input.description)
+        .bind(now)
+        .execute(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to create project: {}", e)))?;
+        
+        Ok(Project {
+            id: ID(id.to_string()),
+            title: input.title,
+            description: input.description,
+            created_at: now.to_rfc3339(),
+            updated_at: now.to_rfc3339(),
+        })
+    }
+
     /// Generate a video for a storyboard
     async fn generate_video(&self, ctx: &Context<'_>, storyboard_id: ID) -> Result<VideoStatus> {
         let pool = ctx.data::<PostgresPool>()?;
