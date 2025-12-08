@@ -131,7 +131,7 @@ impl OpenAIService {
     }
 
     /// Convert storyboard scenes to video generation prompt
-    pub fn storyboard_to_prompt(_scenes: &[crate::service::storyboard_editor::SceneData]) -> String {
+    pub fn storyboard_to_prompt(scenes: &[crate::service::storyboard_editor::SceneData]) -> String {
         // Combine scene descriptions into a coherent video prompt
         let scene_descriptions: Vec<String> = scenes
             .iter()

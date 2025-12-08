@@ -1,0 +1,4 @@
+version: v2
+modules:
+  - path: performers/services/grpc/proto
+    name: storyboard_editor
