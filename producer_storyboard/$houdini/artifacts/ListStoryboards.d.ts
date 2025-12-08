@@ -18,13 +18,13 @@ export type ListStoryboards$result = {
 };
 
 export type ListStoryboards$input = {
-    projectId: string;
+    projectId: string | number;
 };
 
 export type ListStoryboards$artifact = {
     "name": "ListStoryboards";
     "kind": "HoudiniQuery";
-    "hash": "657f6ed5820df749ab3c51bc7c1bde1013ec52b543c1b9792021e411dfa4945b";
+    "hash": "8b7c4bbab0baacb523303342889bbb66db74d807cf8e03bff06aeb4f8c9a4927";
     "raw": `query ListStoryboards($projectId: ID!) {
   storyboards(projectId: $projectId) {
     id
@@ -37,8 +37,7 @@ export type ListStoryboards$artifact = {
     createdAt
     updatedAt
   }
-}
-`;
+}`;
     "rootType": "Query";
     "stripVariables": [];
     "selection": {

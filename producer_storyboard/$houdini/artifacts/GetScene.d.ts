@@ -20,13 +20,13 @@ export type GetScene$result = {
 };
 
 export type GetScene$input = {
-    id: string;
+    id: string | number;
 };
 
 export type GetScene$artifact = {
     "name": "GetScene";
     "kind": "HoudiniQuery";
-    "hash": "e4467cc30c1f0d91102f0a90f8dcd9b9a5379703a96e690cb40767c990a773d9";
+    "hash": "19626e605bc5663fb2a694727b960ae073d04e95e23c90e52ba29f4e158f5381";
     "raw": `query GetScene($id: ID!) {
   scene(id: $id) {
     id
@@ -41,8 +41,7 @@ export type GetScene$artifact = {
     createdAt
     updatedAt
   }
-}
-`;
+}`;
     "rootType": "Query";
     "stripVariables": [];
     "selection": {

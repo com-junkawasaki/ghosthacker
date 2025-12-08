@@ -1,7 +1,7 @@
 export default {
     "name": "ListScenes",
     "kind": "HoudiniQuery",
-    "hash": "6cb56f0169f2c06b335e6724fefd4266e7995de7f759c0771d7896ab3b07aa6f",
+    "hash": "cee806ed390ca8807ba01f7930ed4643f1ca33c6003b6c1747c9be0614a0813c",
 
     "raw": `query ListScenes($storyboardId: ID!) {
   scenes(storyboardId: $storyboardId) {
@@ -17,8 +17,7 @@ export default {
     createdAt
     updatedAt
   }
-}
-`,
+}`,
 
     "rootType": "Query",
     "stripVariables": [],

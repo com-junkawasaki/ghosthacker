@@ -1,7 +1,7 @@
 export default {
     "name": "ListProjects",
     "kind": "HoudiniQuery",
-    "hash": "3129f16f9599c6309c13e8e5a2a9343a91d949d12522f7a567f54927c3895a4e",
+    "hash": "b683e586c1f15aec4ffa5beb48bcaf18806767092e3e4f5eeffcfe5d6d11a07c",
 
     "raw": `query ListProjects {
   projects {
@@ -11,8 +11,7 @@ export default {
     createdAt
     updatedAt
   }
-}
-`,
+}`,
 
     "rootType": "Query",
     "stripVariables": [],

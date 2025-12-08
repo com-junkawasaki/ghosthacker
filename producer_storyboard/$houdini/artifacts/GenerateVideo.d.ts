@@ -14,7 +14,7 @@ export type GenerateVideo$result = {
 };
 
 export type GenerateVideo$input = {
-    storyboardId: string;
+    storyboardId: string | number;
 };
 
 export type GenerateVideo$optimistic = {
@@ -30,7 +30,7 @@ export type GenerateVideo$optimistic = {
 export type GenerateVideo$artifact = {
     "name": "GenerateVideo";
     "kind": "HoudiniMutation";
-    "hash": "258969b154ef9041e3bd2bfed991daf56fbcdef588127de42c90e0193d11e142";
+    "hash": "673897b05eccba6be0901c04fec3e19a33a1104ad52b24b7e3284dcfaf0ef2aa";
     "raw": `mutation GenerateVideo($storyboardId: ID!) {
   generateVideo(storyboardId: $storyboardId) {
     id
@@ -39,8 +39,7 @@ export type GenerateVideo$artifact = {
     status
     createdAt
   }
-}
-`;
+}`;
     "rootType": "Mutation";
     "stripVariables": [];
     "selection": {

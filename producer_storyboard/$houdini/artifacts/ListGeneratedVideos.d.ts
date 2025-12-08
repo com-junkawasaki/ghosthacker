@@ -16,13 +16,13 @@ export type ListGeneratedVideos$result = {
 };
 
 export type ListGeneratedVideos$input = {
-    storyboardId: string;
+    storyboardId: string | number;
 };
 
 export type ListGeneratedVideos$artifact = {
     "name": "ListGeneratedVideos";
     "kind": "HoudiniQuery";
-    "hash": "e8fc4e084925f66f440b710693d01312d25ea576c3f93a2491b1549052b35cd0";
+    "hash": "d238c8b099c21229d1990f30bb53e3cb251f014a93c653acaf1480b123a99b38";
     "raw": `query ListGeneratedVideos($storyboardId: ID!) {
   generatedVideos(storyboardId: $storyboardId) {
     id
@@ -33,8 +33,7 @@ export type ListGeneratedVideos$artifact = {
     errorMessage
     createdAt
   }
-}
-`;
+}`;
     "rootType": "Query";
     "stripVariables": [];
     "selection": {
