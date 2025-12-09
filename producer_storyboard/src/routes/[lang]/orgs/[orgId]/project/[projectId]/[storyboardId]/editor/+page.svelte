@@ -20,6 +20,8 @@
 	import CharacterManager from '$lib/components/storyboard/CharacterManager.svelte';
 	import DialogueEditor from '$lib/components/storyboard/DialogueEditor.svelte';
 	import ProjectSidebar from '$lib/components/storyboard/ProjectSidebar.svelte';
+	import OrganizationSwitcher from '$lib/components/clerk/OrganizationSwitcher.svelte';
+	import UserAccountMenu from '$lib/components/clerk/UserAccountMenu.svelte';
 
 	type Scene = {
 		id: string;
@@ -1047,12 +1049,10 @@
 					<path d="M8 13C8 14.1046 8.89543 15 10 15C11.1046 15 12 14.1046 12 13" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg>
 			</button>
-			<button class="icon-button user-button" aria-label="User profile">
-				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
-					<circle cx="10" cy="7" r="3" stroke-width="1.5"/>
-					<path d="M5 17C5 14.2386 7.23858 12 10 12C12.7614 12 15 14.2386 15 17" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-				</svg>
-			</button>
+			<div class="header-clerk-controls">
+				<OrganizationSwitcher />
+				<UserAccountMenu />
+			</div>
 		</div>
 	</header>
 
@@ -1890,6 +1890,15 @@
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
+	}
+
+	.header-clerk-controls {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-left: 0.5rem;
+		padding-left: 0.75rem;
+		border-left: 1px solid var(--sb-border-color, #404040);
 	}
 
 	.icon-button {

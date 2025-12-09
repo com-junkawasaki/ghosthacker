@@ -65,3 +65,4 @@ ehthumbs.db
 # Test coverage
 # BDD reports
 .vercel
+.env*.local
