@@ -1,5 +1,6 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
+import { Buffer } from 'buffer'; // Import Buffer for Node.js environment
 
 const GRAPHQL_API_URL = import.meta.env.VITE_GRAPHQL_API_URL || 'http://localhost:25325/graphql';
 
@@ -52,6 +53,9 @@ export const GET: RequestHandler = async ({ params }) => {
 			headers: {
 				'Content-Type': 'audio/mpeg',
 				'Cache-Control': 'public, max-age=31536000',
+				// Add CORS headers for Web Audio API / Etro
+				'Access-Control-Allow-Origin': '*',
+				'Cross-Origin-Resource-Policy': 'cross-origin'
 			},
 		});
 	} catch (error) {
@@ -62,4 +66,3 @@ export const GET: RequestHandler = async ({ params }) => {
 		);
 	}
 };
-

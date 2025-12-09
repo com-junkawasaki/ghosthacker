@@ -1,286 +1,181 @@
 {
-  "@context": {
-    "@version": 1.1,
-    "@vocab": "https://gftd.ai/ontology/storyboard-editor#",
-    "id": "@id",
-    "type": "@type",
-    "cpm": "https://example.org/cpm#",
-    "prov": "http://www.w3.org/ns/prov#",
-    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "owl": "http://www.w3.org/2002/07/owl#",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dct": "http://purl.org/dc/terms/",
-    "skos": "http://www.w3.org/2004/02/skos/core#",
-    "sh": "http://www.w3.org/ns/shacl#",
-    
-    "name": "dct:title",
-    "description": "dct:description",
-    "createdAt": {"@id": "dct:created", "@type": "xsd:dateTime"},
-    "updatedAt": {"@id": "dct:modified", "@type": "xsd:dateTime"},
-    "version": "dct:hasVersion",
-    
-    "hasCapability": {"@id": "cpm:hasCapability", "@type": "@id", "@container": "@set"},
-    "hasActivity": {"@id": "cpm:hasActivity", "@type": "@id", "@container": "@set"},
-    "hasPerformer": {"@id": "cpm:hasPerformer", "@type": "@id", "@container": "@set"},
-    "hasResource": {"@id": "cpm:hasResource", "@type": "@id", "@container": "@set"},
-    "dependsOn": {"@id": "cpm:dependsOn", "@type": "@id", "@container": "@set"},
-    "produces": {"@id": "cpm:produces", "@type": "@id", "@container": "@set"},
-    "consumes": {"@id": "cpm:consumes", "@type": "@id", "@container": "@set"},
-    
-    "goal": {"@id": "cpm:goal", "@type": "@id"},
-    "status": "cpm:status",
-    "priority": "cpm:priority",
-    "configuration": {"@id": "cpm:configuration", "@container": "@set"},
-    "issue": {"@id": "cpm:issue", "@container": "@set"}
-  },
-  
-  "id": "https://gftd.ai/project/storyboard-editor",
-  "type": "cpm:Project",
-  "name": "Sora Storyboard Video Generator",
-  "description": "Soraのストーリーボード機能を参考に、シーン単位で動画を生成・結合する動画生成サービス。Frontend: SvelteKit 2.x + Houdini 1.5.x, Backend: Rust (async-graphql/Poem) + PostgreSQL 16, AI: OpenAI API (動画生成)。ストーリーボード→動画生成のワークフローを実現。",
+  "@context": [
+    "https://schema.org",
+    "https://gftd.ai/ontology/project.jsonld"
+  ],
+  "@type": "Project",
+  "name": "Producer Storyboard",
+  "description": "AI-powered storyboard editor for video production, referencing Sora's storyboard UI/UX",
+  "url": "https://github.com/ghosthacker/producer_storyboard",
   "version": "0.1.0",
-  "createdAt": "2025-01-30T00:00:00Z",
-  "updatedAt": "2025-12-08T23:30:00Z",
-  "status": "in_progress",
-  "priority": "high",
-  
-  "goal": {
-    "id": "https://gftd.ai/goal/storyboard-editor-wellbecoming",
-    "type": "cpm:Goal",
-    "name": "Enable users to create videos from storyboards with AI assistance",
-    "description": "Users achieve well-becoming through intuitive video creation experience with AI-powered video generation from storyboards"
+  "createdAt": "2025-12-09T00:00:00Z",
+  "updatedAt": "2025-12-09T14:30:00Z",
+  "status": "InDevelopment",
+  "maintainer": {
+    "@type": "Person",
+    "name": "Jun Kawasaki"
   },
-  
-  "hasCapability": [
-    {"@id": "https://gftd.ai/capability/project-management"},
-    {"@id": "https://gftd.ai/capability/storyboard-editing"},
-    {"@id": "https://gftd.ai/capability/scene-management"},
-    {"@id": "https://gftd.ai/capability/ai-video-generation"},
-    {"@id": "https://gftd.ai/capability/video-composition"},
-    {"@id": "https://gftd.ai/capability/timeline-editing"},
-    {"@id": "https://gftd.ai/capability/video-preview"},
-    {"@id": "https://gftd.ai/capability/graphql-backend"},
-    {"@id": "https://gftd.ai/capability/image-generation"},
-    {"@id": "https://gftd.ai/capability/image-display"}
+  "keywords": [
+    "storyboard",
+    "video-production",
+    "ai",
+    "openai",
+    "hume-ai",
+    "svelte",
+    "rust",
+    "graphql",
+    "postgres"
   ],
-  
-  "hasActivity": [
-    {"@id": "https://gftd.ai/activity/create-storyboard-project"},
-    {"@id": "https://gftd.ai/activity/list-storyboard-projects"},
-    {"@id": "https://gftd.ai/activity/create-storyboard"},
-    {"@id": "https://gftd.ai/activity/edit-storyboard"},
-    {"@id": "https://gftd.ai/activity/manage-scenes"},
-    {"@id": "https://gftd.ai/activity/create-scene"},
-    {"@id": "https://gftd.ai/activity/update-scene"},
-    {"@id": "https://gftd.ai/activity/delete-scene"},
-    {"@id": "https://gftd.ai/activity/reorder-scenes"},
-    {"@id": "https://gftd.ai/activity/generate-scene-image"},
-    {"@id": "https://gftd.ai/activity/generate-scene-start-image"},
-    {"@id": "https://gftd.ai/activity/generate-scene-end-image"},
-    {"@id": "https://gftd.ai/activity/update-scene-duration"},
-    {"@id": "https://gftd.ai/activity/display-generated-images"},
-    {"@id": "https://gftd.ai/activity/generate-video"},
-    {"@id": "https://gftd.ai/activity/edit-timeline"},
-    {"@id": "https://gftd.ai/activity/preview-video"},
-    {"@id": "https://gftd.ai/activity/save-operation-history"}
-  ],
-  
-  "hasPerformer": [
+  "license": "MIT",
+  "repository": {
+    "@type": "SoftwareSourceCode",
+    "codeRepository": "https://github.com/ghosthacker/producer_storyboard",
+    "programmingLanguage": [
+      "TypeScript",
+      "Rust",
+      "Svelte",
+      "GraphQL",
+      "SQL"
+    ]
+  },
+  "activity": [
     {
-      "@id": "https://gftd.ai/performer/actor/storyboard-editor",
-      "type": "cpm:Actor",
-      "name": "Storyboard Editor Actor",
-      "description": "Frontend actor providing storyboard editing UI"
+      "@type": "CreateAction",
+      "name": "setup-project",
+      "description": "Initialize project structure with SvelteKit, Rust GraphQL, and PostgreSQL",
+      "startTime": "2025-12-09T00:00:00Z",
+      "endTime": "2025-12-09T01:00:00Z",
+      "status": "Completed"
     },
     {
-      "@id": "https://gftd.ai/performer/service/graphql",
-      "type": "cpm:Service",
-      "name": "GraphQL Service",
-      "description": "Rust GraphQL service (async-graphql/Poem) providing storyboard data management and OpenAI video generation integration with GraphQL API for browser compatibility"
+      "@type": "UpdateAction",
+      "name": "redesign-ui",
+      "description": "Update UI/UX to match Sora's storyboard design",
+      "startTime": "2025-12-09T02:00:00Z",
+      "endTime": "2025-12-09T04:00:00Z",
+      "status": "Completed"
+    },
+    {
+      "@type": "AddAction",
+      "name": "backend-integration",
+      "description": "Implement GraphQL backend with PostgreSQL persistence and OpenAI integration",
+      "startTime": "2025-12-09T04:00:00Z",
+      "endTime": "2025-12-09T06:00:00Z",
+      "status": "Completed"
+    },
+    {
+      "@type": "AddAction",
+      "name": "generate-scene-start-image",
+      "description": "Add functionality to generate start image for scenes using OpenAI DALL-E 3",
+      "startTime": "2025-12-09T08:00:00Z",
+      "endTime": "2025-12-09T09:00:00Z",
+      "status": "Completed"
+    },
+    {
+      "@type": "AddAction",
+      "name": "generate-scene-end-image",
+      "description": "Add functionality to generate end image for scenes using OpenAI DALL-E 3",
+      "startTime": "2025-12-09T09:00:00Z",
+      "endTime": "2025-12-09T10:00:00Z",
+      "status": "Completed"
+    },
+    {
+      "@type": "UpdateAction",
+      "name": "update-scene-duration",
+      "description": "Add intuitive slider UI for updating scene duration",
+      "startTime": "2025-12-09T10:00:00Z",
+      "endTime": "2025-12-09T11:00:00Z",
+      "status": "Completed"
+    },
+    {
+      "@type": "AddAction",
+      "name": "display-generated-images",
+      "description": "Implement functionality to display generated images in the scene panel",
+      "startTime": "2025-12-09T11:00:00Z",
+      "endTime": "2025-12-09T12:00:00Z",
+      "status": "Completed"
+    },
+    {
+      "@type": "AddAction",
+      "name": "character-management",
+      "description": "Implement character management system shared across the project",
+      "startTime": "2025-12-09T12:00:00Z",
+      "endTime": "2025-12-09T13:00:00Z",
+      "status": "Completed"
+    },
+    {
+      "@type": "AddAction",
+      "name": "dialogue-management",
+      "description": "Implement multi-language dialogue management for scenes",
+      "startTime": "2025-12-09T13:00:00Z",
+      "endTime": "2025-12-09T14:00:00Z",
+      "status": "Completed"
+    },
+    {
+      "@type": "AddAction",
+      "name": "hume-ai-integration",
+      "description": "Integrate Hume AI for voice listing and speech generation",
+      "startTime": "2025-12-09T14:00:00Z",
+      "endTime": "2025-12-09T14:30:00Z",
+      "status": "Completed"
     }
   ],
-  
-  "hasResource": [
-    {"@id": "https://gftd.ai/resource/storyboard-project"},
-    {"@id": "https://gftd.ai/resource/storyboard"},
-    {"@id": "https://gftd.ai/resource/scene"},
-    {"@id": "https://gftd.ai/resource/generated-video"},
-    {"@id": "https://gftd.ai/resource/generated-image"},
-    {"@id": "https://gftd.ai/resource/video-bytea-storage"},
-    {"@id": "https://gftd.ai/resource/image-bytea-storage"},
-    {"@id": "https://gftd.ai/resource/operation-history"}
-  ],
-  
-  "dependsOn": [
-    {"@id": "https://gftd.ai/dependency/postgresql"},
-    {"@id": "https://gftd.ai/dependency/openai-api"},
-    {"@id": "https://gftd.ai/dependency/openai-dalle"},
-    {"@id": "https://gftd.ai/dependency/openai-gpt4"}
-  ],
-  
-  "configuration": [
+  "capability": [
     {
-      "id": "https://gftd.ai/config/ui-implementation",
-      "type": "cpm:Configuration",
-      "name": "UI Implementation Status",
-      "description": "Sora-style storyboard UI with scene management features",
-      "status": "completed",
-      "details": {
-        "sceneManagement": {
-          "addScene": "Implemented with multiple insertion points (between panels, end, toolbar)",
-          "deleteScene": "Implemented with confirmation dialog",
-          "moveScene": "Implemented with HTML5 Drag and Drop",
-          "keyboardShortcuts": "Delete/Backspace, +/=, Arrow keys",
-          "visualFeedback": "Drag states, drop zones, animations"
-        },
-        "layout": {
-          "horizontalScroll": "Implemented with flex layout",
-          "scenePanelWidth": "400px fixed width",
-          "insertButtonWidth": "60px"
-        }
-      }
+      "@type": "Service",
+      "name": "storyboard-editor",
+      "description": "Drag-and-drop storyboard editor with scene management",
+      "status": "Operational"
     },
     {
-      "id": "https://gftd.ai/config/graphql-postgresql-integration",
-      "type": "cpm:Configuration",
-      "name": "GraphQL PostgreSQL Integration",
-      "description": "Implemented scene CRUD operations, OpenAI integration, and operation history",
-      "status": "completed",
-      "completedAt": "2025-12-08T22:30:00Z",
-      "details": {
-        "databaseSchema": {
-          "operationHistory": "Table created for storing all operation history",
-          "generatedImages": "Table created for storing generated images as BYTEA with image_type column (start/end)",
-          "migrations": ["002_add_history.sql", "004_add_image_type.sql"]
-        },
-        "graphqlMutations": {
-          "createScene": "Implemented with operation history tracking and scene number conflict resolution",
-          "updateScene": "Implemented with before/after state tracking",
-          "deleteScene": "Implemented with confirmation and history",
-          "reorderScenes": "Implemented with transactional scene ID reordering (two-phase update)",
-          "generateSceneImage": "Implemented with OpenAI DALL-E integration, image type support (start/end), and prompt enhancement"
-        },
-        "graphqlQueries": {
-          "generatedImages": "Query for fetching generated images by scene ID with image_type filtering",
-          "imageData": "Query for fetching image data as base64 string",
-          "operationHistory": "Query for fetching operation history with filters"
-        },
-        "openaiIntegration": {
-          "dalle3": "Image generation implemented",
-          "gpt4": "Scene text description generation implemented",
-          "imageStorage": "Download and store as BYTEA in PostgreSQL",
-          "service": "performers/services/graphql/src/ports/openai_service.rs"
-        },
-        "historyTracking": {
-          "allOperations": "CREATE, UPDATE, DELETE, REORDER, GENERATE_IMAGE",
-          "storageFormat": "JSONB for operation data",
-          "service": "performers/services/graphql/src/ports/history.rs"
-        },
-        "frontendIntegration": {
-          "houdiniStores": "ListScenesStore, CreateSceneStore, UpdateSceneStore, DeleteSceneStore, ReorderScenesStore, GenerateSceneImageStore, GetGeneratedImagesStore",
-          "dataLoading": "Load storyboards from project, then scenes from storyboard",
-          "realTimeSync": "Auto-reload scenes after mutations, optimistic UI updates for drag-and-drop",
-          "errorHandling": "Loading and error states implemented",
-          "imageDisplay": "Display generated start/end images in scene panels with lazy loading"
-        },
-        "imageGeneration": {
-          "imageTypes": "start and end images per scene",
-          "promptEnhancement": "Automatic prompt enhancement based on image type (opening/final frame)",
-          "storage": "BYTEA storage in PostgreSQL with image_type column",
-          "apiEndpoint": "/api/images/[imageId] for serving images"
-        },
-        "sceneDurationEditing": {
-          "ui": "Slider control (0.5s - 10s range) for intuitive duration editing",
-          "optimisticUpdate": "Immediate UI update with server sync",
-          "recalculation": "Automatic start time recalculation after duration changes"
-        }
-      }
+      "@type": "Service",
+      "name": "data-persistence",
+      "description": "PostgreSQL database for storing projects, storyboards, and scenes",
+      "status": "Operational"
+    },
+    {
+      "@type": "Service",
+      "name": "image-generation",
+      "description": "OpenAI DALL-E 3 integration for generating scene images (start/end)",
+      "status": "Operational"
+    },
+    {
+      "@type": "Service",
+      "name": "image-display",
+      "description": "Secure serving of generated images from database via API",
+      "status": "Operational"
+    },
+    {
+      "@type": "Service",
+      "name": "multi-language-dialogue",
+      "description": "Dialogue management with support for multiple languages (Japanese, English, Hindi) and auto-translation",
+      "status": "Operational"
+    },
+    {
+      "@type": "Service",
+      "name": "voice-synthesis",
+      "description": "Hume AI integration for generating character voices",
+      "status": "Operational"
     }
   ],
-  
-  "issue": [
-    {
-      "id": "https://gftd.ai/issue/graphql-createproject-implementation",
-      "type": "cpm:Issue",
-      "name": "CreateProject Mutation Implementation",
-      "description": "Implemented createProject mutation in GraphQL backend",
-      "status": "resolved",
-      "resolvedAt": "2025-12-08T20:57:00Z"
+  "configuration": {
+    "frontend": {
+      "framework": "SvelteKit",
+      "styling": "Tailwind CSS",
+      "state": "Houdini GraphQL + Svelte 5 Runes"
     },
-    {
-      "id": "https://gftd.ai/issue/scene-management-ui",
-      "type": "cpm:Issue",
-      "name": "Scene Management UI/UX Implementation",
-      "description": "Implemented intuitive scene add/delete/move functionality with drag and drop",
-      "status": "completed",
-      "resolvedAt": "2025-12-08T20:59:00Z"
+    "backend": {
+      "framework": "Rust (Poem + Async-GraphQL)",
+      "database": "PostgreSQL (SQLx)",
+      "ai": "OpenAI API (GPT-4, DALL-E 3), Hume AI (TTS)"
     },
-    {
-      "id": "https://gftd.ai/issue/horizontal-scroll-layout",
-      "type": "cpm:Issue",
-      "name": "Horizontal Scroll Layout",
-      "description": "Changed from grid layout to horizontal scrollable flex layout for scene panels",
-      "status": "resolved",
-      "resolvedAt": "2025-12-08T21:00:00Z"
-    },
-    {
-      "id": "https://gftd.ai/issue/graphql-postgresql-integration",
-      "type": "cpm:Issue",
-      "name": "GraphQL PostgreSQL Integration with OpenAI",
-      "description": "Implemented complete GraphQL API for scene CRUD operations, OpenAI integration for image generation, and operation history tracking",
-      "status": "completed",
-      "resolvedAt": "2025-12-08T22:30:00Z",
-      "details": {
-        "databaseMigrations": ["002_add_history.sql"],
-        "graphqlMutations": 5,
-        "graphqlQueries": 2,
-        "rustServices": ["openai_service.rs", "history.rs"],
-        "frontendStores": 5
+    "infrastructure": {
+      "containerization": "Docker Compose",
+      "ports": {
+        "frontend": 5173,
+        "backend": 8080,
+        "database": 5432
       }
-    },
-    {
-      "id": "https://gftd.ai/issue/frontend-graphql-integration",
-      "type": "cpm:Issue",
-      "name": "Frontend GraphQL Integration",
-      "description": "Integrated editor page with GraphQL API for real-time scene management",
-      "status": "completed",
-      "resolvedAt": "2025-12-08T22:30:00Z"
-    },
-    {
-      "id": "https://gftd.ai/issue/scene-image-generation",
-      "type": "cpm:Issue",
-      "name": "Scene Image Generation and Display",
-      "description": "Implemented OpenAI DALL-E integration for generating start/end images per scene, with image display in scene panels",
-      "status": "completed",
-      "resolvedAt": "2025-12-08T23:30:00Z",
-      "details": {
-        "imageTypes": "start and end images",
-        "promptEnhancement": "Automatic prompt modification based on image type",
-        "storage": "BYTEA in PostgreSQL with image_type column",
-        "display": "Image display in scene panels with lazy loading",
-        "apiEndpoint": "/api/images/[imageId]"
-      }
-    },
-    {
-      "id": "https://gftd.ai/issue/scene-duration-editing",
-      "type": "cpm:Issue",
-      "name": "Scene Duration Editing",
-      "description": "Implemented intuitive slider-based duration editing with optimistic UI updates",
-      "status": "completed",
-      "resolvedAt": "2025-12-08T23:30:00Z",
-      "details": {
-        "ui": "Slider control (0.5s - 10s)",
-        "optimisticUpdate": "Immediate UI feedback",
-        "autoRecalculation": "Start times recalculated automatically"
-      }
-    },
-    {
-      "id": "https://gftd.ai/issue/drag-drop-reordering",
-      "type": "cpm:Issue",
-      "name": "Drag and Drop Scene Reordering",
-      "description": "Fixed unique constraint violation during scene reordering with transactional two-phase update",
-      "status": "resolved",
-      "resolvedAt": "2025-12-08T23:00:00Z"
     }
-  ]
+  }
 }

@@ -16,6 +16,7 @@
 	import { ListDialoguesStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/ListDialogues.js';
 	import CharacterManager from '$lib/components/storyboard/CharacterManager.svelte';
 	import DialogueEditor from '$lib/components/storyboard/DialogueEditor.svelte';
+	import VideoPreview from '$lib/components/storyboard/VideoPreview.svelte';
 
 	type Scene = {
 		id: string;
@@ -24,6 +25,8 @@
 		startTimeSeconds: number | null;
 		durationSeconds: number | null;
 		mediaUrl: string | null;
+		// Include generated images for preview
+		generatedImages?: GeneratedImage[];
 	};
 
 	type GeneratedImage = {

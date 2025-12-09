@@ -24,9 +24,12 @@
     "graphql:fetch-schema": "node scripts/fetch-schema.js"
   },
   "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.12.15",
+    "@ffmpeg/util": "^0.12.2",
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/kit": "^2.22.0",
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
+    "etro": "^0.12.1",
     "graphql": "^16.9.0",
     "graphql-request": "^6.1.0",
     "houdini": "next",

@@ -126,11 +126,19 @@ impl HumeService {
         _language: Option<&str>,
     ) -> Result<Vec<u8>> {
         // Endpoint for text-to-speech generation
-        let url = format!("{}/v0/synthesize", self.api_url);
+        // Based on API response analysis, /v0/tts seems to be the correct endpoint
+        // accepting a payload with "utterances" array.
+        let url = format!("{}/v0/tts", self.api_url);
         
         let request_body = json!({
-            "text": text,
-            "voice_id": voice_id,
+            "utterances": [
+                {
+                    "text": text,
+                    "voice": {
+                        "id": voice_id
+                    }
+                }
+            ]
         });
 
         let response = self.client
