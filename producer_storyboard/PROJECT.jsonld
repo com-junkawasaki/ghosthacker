@@ -9,7 +9,7 @@
   "url": "https://github.com/ghosthacker/producer_storyboard",
   "version": "0.1.0",
   "createdAt": "2025-12-09T00:00:00Z",
-  "updatedAt": "2025-12-09T21:00:00Z",
+  "updatedAt": "2025-12-09T22:40:00Z",
   "status": "InDevelopment",
   "maintainer": {
     "@type": "Person",
@@ -320,6 +320,147 @@
           "src/routes/storyboard/[projectId]/[storyboardId]/editor/+page.ts"
         ]
       }
+    },
+    {
+      "@type": "AddAction",
+      "name": "clerk-organization-routing",
+      "description": "Integrate Clerk for user and organization management with organization-scoped routing",
+      "startTime": "2025-12-09T21:00:00Z",
+      "endTime": "2025-12-09T21:30:00Z",
+      "status": "Completed",
+      "result": {
+        "routing": {
+          "pattern": "/[lang]/orgs/[orgId]/project/[viewNames]",
+          "features": [
+            "Organization-scoped data access",
+            "Server-side Clerk verification",
+            "Organization selection page",
+            "Error handling for invalid organization IDs"
+          ]
+        },
+        "backend": {
+          "sdk": "@clerk/backend",
+          "functions": [
+            "verifyClerkSession",
+            "getUserOrganizations",
+            "verifyOrgAccess"
+          ]
+        },
+        "frontend": {
+          "sdk": "svelte-clerk",
+          "components": [
+            "ClerkProvider",
+            "useClerkContext"
+          ]
+        }
+      }
+    },
+    {
+      "@type": "FixAction",
+      "name": "svelte-5-runes-mode-compatibility",
+      "description": "Fix Svelte 5 runes mode compatibility issues (export let -> $props(), slot -> {@render}, on:click -> onclick)",
+      "startTime": "2025-12-09T21:30:00Z",
+      "endTime": "2025-12-09T22:00:00Z",
+      "status": "Completed",
+      "result": {
+        "fixes": [
+          "Replaced export let with $props() in all components",
+          "Replaced <slot /> with {@render children()} in layouts",
+          "Replaced on:click with onclick event handlers",
+          "Fixed store_invalid_shape error for auth/organization (removed $derived wrapper)",
+          "Updated auth?.isAuthenticated to auth?.userId != null"
+        ],
+        "files": [
+          "src/routes/+layout.svelte",
+          "src/routes/[lang]/orgs/[orgId]/+layout.svelte",
+          "src/routes/[lang]/orgs/[orgId]/+error.svelte",
+          "src/routes/[lang]/orgs/select/+page.svelte"
+        ]
+      }
+    },
+    {
+      "@type": "AddAction",
+      "name": "vercel-production-deployment-complete",
+      "description": "Deploy application to Vercel production environment",
+      "startTime": "2025-12-09T22:00:00Z",
+      "endTime": "2025-12-09T22:10:00Z",
+      "status": "Completed",
+      "result": {
+        "deployment": {
+          "environment": "production",
+          "platform": "Vercel",
+          "url": "https://ai-gftd-producer.vercel.app",
+          "deploymentId": "dpl_2HfoztUhqJFguHys5L5TTKxqMruk",
+          "region": "iad1",
+          "status": "Ready"
+        },
+        "configuration": {
+          "vercelJson": {
+            "buildCommand": "pnpm prebuild && pnpm build",
+            "devCommand": "pnpm dev",
+            "installCommand": "pnpm install",
+            "framework": "sveltekit",
+            "regions": ["iad1"]
+          },
+          "svelteConfig": {
+            "adapter": "@sveltejs/adapter-vercel",
+            "runtime": "nodejs20.x",
+            "functions": {
+              "maxDuration": 30
+            }
+          }
+        }
+      }
+    },
+    {
+      "@type": "AddAction",
+      "name": "clerk-ui-components-integration",
+      "description": "Create Clerk-based UI components for organization switching and user account management",
+      "startTime": "2025-12-09T22:10:00Z",
+      "endTime": "2025-12-09T22:40:00Z",
+      "status": "Completed",
+      "result": {
+        "components": [
+          {
+            "name": "UserAccountMenu",
+            "path": "src/lib/components/clerk/UserAccountMenu.svelte",
+            "features": [
+              "User avatar display with initials fallback",
+              "User profile information display",
+              "Account management link",
+              "Sign out functionality",
+              "Dropdown menu with click-outside handling"
+            ]
+          },
+          {
+            "name": "OrganizationSwitcher",
+            "path": "src/lib/components/clerk/OrganizationSwitcher.svelte",
+            "features": [
+              "Current organization display with avatar",
+              "Organization list dropdown",
+              "Organization switching with navigation",
+              "Create organization link",
+              "Manage organization link",
+              "Loading states for organization fetching"
+            ]
+          }
+        ],
+        "api": {
+          "endpoint": "/api/organizations",
+          "path": "src/routes/api/organizations/+server.ts",
+          "function": "GET",
+          "description": "Returns user's organizations list for OrganizationSwitcher component"
+        },
+        "integration": {
+          "header": "src/routes/[lang]/orgs/[orgId]/project/[projectId]/[storyboardId]/editor/+page.svelte",
+          "location": "header-right section",
+          "styling": "header-clerk-controls wrapper with border separator"
+        },
+        "environment": {
+          "vercelEnvPull": "Completed",
+          "databaseUrl": "Configured from Vercel environment variables"
+        }
+      }
     }
   ],
   "capability": [
@@ -405,6 +546,27 @@
         "Double confirmation for deletion",
         "Profile image support"
       ]
+    },
+    {
+      "@type": "Service",
+      "name": "clerk-authentication",
+      "description": "Clerk-based authentication and organization management with UI components",
+      "status": "Operational",
+      "features": [
+        "User authentication with Clerk",
+        "Organization-scoped routing",
+        "Organization switching UI",
+        "User account menu",
+        "Server-side session verification",
+        "Organization access validation"
+      ],
+      "components": [
+        "UserAccountMenu",
+        "OrganizationSwitcher"
+      ],
+      "api": {
+        "organizations": "/api/organizations"
+      }
     }
   ],
   "configuration": {
@@ -446,12 +608,41 @@
       "deployment": {
         "production": "Vercel",
         "adapter": "@sveltejs/adapter-vercel",
-        "runtime": "nodejs20.x"
+        "runtime": "nodejs20.x",
+        "url": "https://ai-gftd-producer.vercel.app",
+        "region": "iad1"
       },
       "ports": {
         "frontend": 5173,
         "backend": 8080,
         "database": 5432
+      },
+      "environment": {
+        "vercelEnvPull": "Configured",
+        "databaseUrl": "From Vercel environment variables"
+      }
+    },
+    "authentication": {
+      "provider": "Clerk",
+      "frontend": {
+        "sdk": "svelte-clerk",
+        "components": [
+          "ClerkProvider",
+          "UserAccountMenu",
+          "OrganizationSwitcher"
+        ]
+      },
+      "backend": {
+        "sdk": "@clerk/backend",
+        "functions": [
+          "verifyClerkSession",
+          "getUserOrganizations",
+          "verifyOrgAccess"
+        ]
+      },
+      "routing": {
+        "pattern": "/[lang]/orgs/[orgId]/project/[viewNames]",
+        "organizationScoped": true
       }
     }
   }
