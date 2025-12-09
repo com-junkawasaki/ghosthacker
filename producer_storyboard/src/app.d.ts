@@ -3,10 +3,16 @@
 declare global {
 	namespace App {
 		// interface Error {}
-		// interface Locals {}
+		interface Locals {
+			clerkSession?: string;
+		}
 		// interface PageData {}
 		// interface Platform {}
 	}
+}
+
+declare module '$env/static/public' {
+	export const CLERK_PUBLISHABLE_KEY: string;
 }
 
 export {};

@@ -1,16 +1,22 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
+	import { ClerkProvider } from 'svelte-clerk';
 	import './globals.css';
+	import type { LayoutData } from './$types';
 
 	// Houdini client is automatically initialized via houdini.config.js
 	if (browser) {
 		console.log('[Layout] Houdini client will be auto-initialized');
 	}
+
+	export let data: LayoutData;
 </script>
 
-<div class="app-layout">
-	<slot />
-</div>
+<ClerkProvider publishableKey={data.clerkPublishableKey}>
+	<div class="app-layout">
+		<slot />
+	</div>
+</ClerkProvider>
 
 <style>
 	.app-layout {

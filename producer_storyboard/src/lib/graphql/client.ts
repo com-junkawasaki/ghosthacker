@@ -48,6 +48,9 @@ const client = new HoudiniClient({
 			'Content-Type': 'application/json',
 		};
 		
+		// Clerk authentication is handled by the API proxy (/api/graphql/+server.ts)
+		// The proxy forwards Clerk session tokens from cookies/headers to the backend
+		
 		if (browser) {
 			console.log('[GraphQL Client] Fetch params:', { session, headers });
 		}

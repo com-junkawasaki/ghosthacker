@@ -15,5 +15,12 @@ export GRAPHQL_API_URL="http://localhost:25325/graphql"
 # export PUBLIC_GRPC_API_URL="http://localhost:25328"
 # export GRPC_API_URL="http://localhost:25328"
 
+# Clerk Authentication Configuration
+# Get these from https://dashboard.clerk.com
+export CLERK_PUBLISHABLE_KEY="pk_test_..."
+export CLERK_SECRET_KEY="sk_test_..."
+# Optional: Clerk API URL (defaults to production)
+# export CLERK_API_URL="https://api.clerk.com"
+
 # Development Configuration
 export NODE_ENV="development"

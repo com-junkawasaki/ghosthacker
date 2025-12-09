@@ -27,6 +27,7 @@ anyhow = "1"
 thiserror = "1"
 reqwest = { version = "0.12", features = ["json"] }
 base64 = "0.22"
+clerk-rs = { version = "0.4.1", features = ["poem"] }
 
 [dev-dependencies]
 tokio-test = "0.4"

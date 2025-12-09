@@ -6,6 +6,7 @@
  * GraphQL API service for Storyboard Editor Tool
  * Provides Query and Mutation operations for storyboard editing
  * Uses PostgreSQL database with sqlx for data persistence
+ * Integrates Clerk authentication for user and organization management
  */
 use async_graphql::{EmptySubscription, Schema};
 use async_graphql_poem::GraphQL;
@@ -13,11 +14,13 @@ use poem::{
     listener::TcpListener,
     middleware::Cors,
     EndpointExt, Route, Server,
+    Request, Result as PoemResult,
 };
 
 use storyboard_editor_graphql::resolvers::query::QueryRoot;
 use storyboard_editor_graphql::resolvers::mutation::MutationRoot;
 use storyboard_editor_graphql::ports;
+use storyboard_editor_graphql::ports::clerk::{extract_clerk_auth, ClerkAuth};
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
@@ -38,9 +41,19 @@ async fn main() -> anyhow::Result<()> {
     .data(postgres_pool)
     .finish();
     
+    // Create GraphQL endpoint
+    let graphql_endpoint = GraphQL::new(schema);
+    
+    // Wrap GraphQL endpoint with Clerk authentication middleware
+    let graphql_with_auth = graphql_endpoint.data_fn(|req: &Request| {
+        // Extract Clerk authentication from request headers
+        let clerk_auth = extract_clerk_auth(req.headers());
+        async_graphql::Data(clerk_auth)
+    });
+    
     // Create routes using GraphQL endpoint with CORS
     let app = Route::new()
-        .nest("/graphql", GraphQL::new(schema))
+        .nest("/graphql", graphql_with_auth)
         .with(Cors::new());
     
     // Start server
