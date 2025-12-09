@@ -2,15 +2,14 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 
-	export let status: number;
-	export let error: App.Error;
+	const { status, error: errorProp }: { status: number; error: App.Error } = $props();
 
 	const { lang } = $page.params;
 	const DEFAULT_LANG = 'ja';
 	const currentLang = lang || DEFAULT_LANG;
 
-	const errorOrgId = (error as { orgId?: string })?.orgId || $page.params.orgId;
-	const errorMessage = error?.message || '組織へのアクセスが拒否されました';
+	const errorOrgId = $derived((errorProp as { orgId?: string })?.orgId || $page.params.orgId);
+	const errorMessage = $derived(errorProp?.message || '組織へのアクセスが拒否されました');
 
 	function goToSelectOrg() {
 		goto(`/${currentLang}/orgs/select/project`);
@@ -38,12 +37,12 @@
 			</p>
 		{/if}
 		<div class="error-actions">
-			<button class="btn-primary" on:click={goToSelectOrg}>
-				組織を選択
-			</button>
-			<button class="btn-secondary" on:click={goToHome}>
-				ホームに戻る
-			</button>
+		<button class="btn-primary" onclick={goToSelectOrg}>
+			組織を選択
+		</button>
+		<button class="btn-secondary" onclick={goToHome}>
+			ホームに戻る
+		</button>
 		</div>
 	</div>
 </div>

@@ -8,7 +8,7 @@ import { verifyClerkSession, getUserOrganizations, verifyOrgAccess } from '$lib/
 
 const DEFAULT_LANG = 'ja';
 
-export const load: LayoutServerLoad = async ({ params, url, event }) => {
+export const load: LayoutServerLoad = async ({ params, url, cookies, request }) => {
 	const { lang, orgId } = params;
 
 	// Validate and set default lang
@@ -20,7 +20,7 @@ export const load: LayoutServerLoad = async ({ params, url, event }) => {
 	}
 
 	// Verify Clerk session
-	const authResult = await verifyClerkSession(event);
+	const authResult = await verifyClerkSession(cookies, request);
 
 	// If user is not authenticated and trying to access org-scoped route
 	// Allow access but don't validate orgId (user might be signing in)

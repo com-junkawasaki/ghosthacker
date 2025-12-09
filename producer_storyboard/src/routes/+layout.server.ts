@@ -2,10 +2,14 @@
  * Server-side layout load function
  * Initializes Clerk configuration
  */
-import { CLERK_PUBLISHABLE_KEY } from '$env/static/public';
-
 export const load = async () => {
+	// Use process.env for server-side access to environment variables
+	const clerkPublishableKey =
+		process.env.PUBLIC_CLERK_PUBLISHABLE_KEY ||
+		process.env.CLERK_PUBLISHABLE_KEY ||
+		'';
+
 	return {
-		clerkPublishableKey: CLERK_PUBLISHABLE_KEY || '',
+		clerkPublishableKey,
 	};
 };

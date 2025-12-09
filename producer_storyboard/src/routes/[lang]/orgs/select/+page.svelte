@@ -6,7 +6,7 @@
 	import { getAuth, getOrganization } from 'svelte-clerk';
 	import type { PageData } from './$types';
 
-	export let data: PageData;
+	const { data }: { data: PageData } = $props();
 
 	const auth = getAuth();
 	const org = getOrganization();
@@ -58,7 +58,7 @@
 					<button
 						class="org-card"
 						class:selected={selectedOrgId === org.id}
-						on:click={() => selectOrganization(org.id)}
+						onclick={() => selectOrganization(org.id)}
 						disabled={isRedirecting}
 					>
 						<div class="org-info">

@@ -13,6 +13,7 @@ declare global {
 
 declare module '$env/static/public' {
 	export const CLERK_PUBLISHABLE_KEY: string;
+	export const PUBLIC_CLERK_PUBLISHABLE_KEY: string;
 }
 
 declare module '$env/static/private' {

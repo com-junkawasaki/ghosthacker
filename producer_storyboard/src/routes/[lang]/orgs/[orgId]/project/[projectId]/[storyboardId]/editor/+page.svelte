@@ -6,17 +6,17 @@
 	import {
 		ListStoryboardsStore,
 		ListScenesStore,
+		CreateStoryboardStore,
+		CreateSceneStore,
+		UpdateSceneStore,
+		DeleteSceneStore,
+		ReorderScenesStore,
+		GenerateSceneImageStore,
+		GetGeneratedImagesStore,
+		UploadSceneImageStore,
+		ListCharactersStore,
+		ListDialoguesStore,
 	} from '$houdini';
-	import { CreateStoryboardStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/CreateStoryboard.js';
-	import { CreateSceneStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/CreateScene.js';
-	import { UpdateSceneStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/UpdateScene.js';
-	import { DeleteSceneStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/DeleteScene.js';
-	import { ReorderScenesStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/ReorderScenes.js';
-	import { GenerateSceneImageStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/GenerateSceneImage.js';
-	import { GetGeneratedImagesStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/GetGeneratedImages.js';
-	import { UploadSceneImageStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/UploadSceneImage.js';
-	import { ListCharactersStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/ListCharacters.js';
-	import { ListDialoguesStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/ListDialogues.js';
 	import CharacterManager from '$lib/components/storyboard/CharacterManager.svelte';
 	import DialogueEditor from '$lib/components/storyboard/DialogueEditor.svelte';
 	import ProjectSidebar from '$lib/components/storyboard/ProjectSidebar.svelte';

@@ -9,7 +9,7 @@
 		console.log('[Layout] Houdini client will be auto-initialized');
 	}
 
-	export let data: LayoutData;
+	const { data }: { data: LayoutData } = $props();
 </script>
 
 <ClerkProvider publishableKey={data.clerkPublishableKey}>

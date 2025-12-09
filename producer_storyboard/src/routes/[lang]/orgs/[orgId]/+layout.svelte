@@ -2,10 +2,12 @@
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	// @ts-expect-error - svelte-clerk types may not be available
 	import { getAuth, getOrganization } from 'svelte-clerk';
 	import type { LayoutData } from './$types';
 
-	export let data: LayoutData;
+	const { data: _data }: { data: LayoutData } = $props();
+	// data is available through $page.data, but we keep it for type safety
 
 	const auth = getAuth();
 	const org = getOrganization();
@@ -17,7 +19,7 @@
 	$effect(() => {
 		if (!browser) return;
 
-		const { lang, orgId: urlOrgId } = $page.params;
+		const { orgId: urlOrgId } = $page.params;
 		const currentOrgId = $org?.id;
 		const isAuthenticated = $auth?.isAuthenticated;
 

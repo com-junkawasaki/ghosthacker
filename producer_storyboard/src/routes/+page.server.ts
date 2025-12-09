@@ -10,11 +10,11 @@ import { verifyClerkSession } from '$lib/server/clerk';
 
 const DEFAULT_LANG = 'ja';
 
-export const load: PageServerLoad = async ({ url, event, cookies }) => {
+export const load: PageServerLoad = async ({ url, cookies, request }) => {
 	// If user is accessing root, redirect to default lang route
 	if (url.pathname === '/') {
 		// Verify Clerk session
-		const authResult = await verifyClerkSession(event);
+		const authResult = await verifyClerkSession(cookies, request);
 		
 		if (authResult.isAuthenticated && authResult.orgId) {
 			// User is authenticated and has an organization

@@ -2,9 +2,10 @@
  * Server-side Clerk authentication utilities
  * Uses @clerk/backend to verify sessions and organization access
  */
-import { createClerkClient } from '@clerk/backend';
+import { createClerkClient, verifyToken } from '@clerk/backend';
+// clerkClient is used in getUserOrganizations
 import { CLERK_SECRET_KEY } from '$env/static/private';
-import type { RequestEvent } from '@sveltejs/kit';
+import type { Cookies, RequestEvent } from '@sveltejs/kit';
 
 const clerkClient = createClerkClient({ secretKey: CLERK_SECRET_KEY });
 
@@ -18,15 +19,36 @@ export interface ClerkAuthResult {
 /**
  * Verify Clerk session from request cookies or headers
  * Returns authentication and organization information
+ * 
+ * Can accept either a RequestEvent or individual cookies and request
  */
 export async function verifyClerkSession(
-	event: RequestEvent
+	eventOrCookies: RequestEvent | Cookies,
+	request?: Request
 ): Promise<ClerkAuthResult> {
 	try {
+		// Handle both RequestEvent and individual cookies/request
+		let cookies: Cookies;
+		let req: Request;
+		
+		if ('cookies' in eventOrCookies && 'request' in eventOrCookies) {
+			// It's a RequestEvent
+			cookies = eventOrCookies.cookies;
+			req = eventOrCookies.request;
+		} else if (request) {
+			// It's Cookies and Request separately
+			cookies = eventOrCookies as Cookies;
+			req = request;
+		} else {
+			// Fallback: try to use as Cookies only
+			cookies = eventOrCookies as Cookies;
+			req = new Request('http://localhost');
+		}
+
 		// Get session token from cookie or Authorization header
 		const sessionToken =
-			event.cookies.get('__session') ||
-			event.request.headers.get('authorization')?.replace('Bearer ', '');
+			cookies.get('__session') ||
+			req.headers.get('authorization')?.replace('Bearer ', '');
 
 		if (!sessionToken) {
 			return {
@@ -39,11 +61,11 @@ export async function verifyClerkSession(
 
 		// Verify the session token using verifyToken
 		// Clerk session tokens are JWTs that need to be verified
-		const payload = await clerkClient.verifyToken(sessionToken, {
+		const { data: payload, errors } = await verifyToken(sessionToken, {
 			secretKey: CLERK_SECRET_KEY,
 		});
 
-		if (!payload || !payload.sub) {
+		if (errors || !payload || !payload.sub) {
 			return {
 				userId: null,
 				orgId: null,
@@ -58,7 +80,7 @@ export async function verifyClerkSession(
 		// Clerk JWT tokens can contain organization information
 		const orgId =
 			(payload.org_id as string | undefined) ||
-			event.request.headers.get('x-org-id') ||
+			req.headers.get('x-org-id') ||
 			null;
 
 		// If orgId is provided, verify the user has access to it
