@@ -15,4 +15,8 @@ declare module '$env/static/public' {
 	export const CLERK_PUBLISHABLE_KEY: string;
 }
 
+declare module '$env/static/private' {
+	export const CLERK_SECRET_KEY: string;
+}
+
 export {};

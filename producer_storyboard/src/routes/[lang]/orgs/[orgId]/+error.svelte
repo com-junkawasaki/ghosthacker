@@ -1,0 +1,120 @@
+<script lang="ts">
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
+
+	export let status: number;
+	export let error: App.Error;
+
+	const { lang } = $page.params;
+	const DEFAULT_LANG = 'ja';
+	const currentLang = lang || DEFAULT_LANG;
+
+	const errorOrgId = (error as { orgId?: string })?.orgId || $page.params.orgId;
+	const errorMessage = error?.message || '組織へのアクセスが拒否されました';
+
+	function goToSelectOrg() {
+		goto(`/${currentLang}/orgs/select/project`);
+	}
+
+	function goToHome() {
+		goto(`/${currentLang}/orgs/select/project`);
+	}
+</script>
+
+<div class="error-container">
+	<div class="error-content">
+		<h1>組織へのアクセスが拒否されました</h1>
+		<p class="error-message">
+			{errorMessage}
+		</p>
+		{#if errorOrgId}
+			<p class="error-description">
+				指定された組織（{errorOrgId}）にアクセスする権限がありません。
+				この組織のメンバーではないか、組織IDが無効です。
+			</p>
+		{:else}
+			<p class="error-description">
+				組織へのアクセス権限がありません。
+			</p>
+		{/if}
+		<div class="error-actions">
+			<button class="btn-primary" on:click={goToSelectOrg}>
+				組織を選択
+			</button>
+			<button class="btn-secondary" on:click={goToHome}>
+				ホームに戻る
+			</button>
+		</div>
+	</div>
+</div>
+
+<style>
+	.error-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 100vh;
+		background-color: var(--sb-bg-primary, #1a1a1a);
+		color: var(--sb-text-primary, #ffffff);
+		padding: 2rem;
+	}
+
+	.error-content {
+		max-width: 600px;
+		text-align: center;
+	}
+
+	h1 {
+		font-size: 2rem;
+		margin-bottom: 1rem;
+		color: var(--sb-text-primary, #ffffff);
+	}
+
+	.error-message {
+		font-size: 1.25rem;
+		margin-bottom: 0.5rem;
+		color: var(--sb-text-secondary, #cccccc);
+	}
+
+	.error-description {
+		font-size: 1rem;
+		margin-bottom: 2rem;
+		color: var(--sb-text-tertiary, #999999);
+	}
+
+	.error-actions {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.btn-primary,
+	.btn-secondary {
+		padding: 0.75rem 1.5rem;
+		border: none;
+		border-radius: 0.5rem;
+		font-size: 1rem;
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+
+	.btn-primary {
+		background-color: var(--sb-accent-primary, #3b82f6);
+		color: white;
+	}
+
+	.btn-primary:hover {
+		background-color: var(--sb-accent-primary-hover, #2563eb);
+	}
+
+	.btn-secondary {
+		background-color: var(--sb-bg-secondary, #2a2a2a);
+		color: var(--sb-text-primary, #ffffff);
+		border: 1px solid var(--sb-border-color, #404040);
+	}
+
+	.btn-secondary:hover {
+		background-color: var(--sb-bg-tertiary, #3a3a3a);
+	}
+</style>

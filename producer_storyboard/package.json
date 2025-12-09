@@ -24,6 +24,7 @@
     "graphql:fetch-schema": "node scripts/fetch-schema.js"
   },
   "dependencies": {
+    "@clerk/backend": "^2.26.0",
     "@ffmpeg/ffmpeg": "^0.12.15",
     "@ffmpeg/util": "^0.12.2",
     "@sveltejs/adapter-auto": "^3.0.0",

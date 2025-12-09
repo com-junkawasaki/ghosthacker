@@ -1,0 +1,40 @@
+/**
+ * Organization selection page server load function
+ * Fetches user's organizations from Clerk
+ */
+import { redirect } from '@sveltejs/kit';
+import type { PageServerLoad } from './$types';
+import { verifyClerkSession, getUserOrganizations } from '$lib/server/clerk';
+
+const DEFAULT_LANG = 'ja';
+
+export const load: PageServerLoad = async ({ params, event }) => {
+	const { lang } = params;
+	const validLang = lang || DEFAULT_LANG;
+
+	// Verify Clerk session
+	const authResult = await verifyClerkSession(event);
+
+	// If user is not authenticated, still allow access (they can sign in)
+	if (!authResult.isAuthenticated) {
+		return {
+			lang: validLang,
+			organizations: [],
+			authResult,
+		};
+	}
+
+	// Get user's organizations
+	const organizations = await getUserOrganizations(authResult.userId!);
+
+	// If user has only one organization, redirect to it
+	if (organizations.length === 1) {
+		throw redirect(302, `/${validLang}/orgs/${organizations[0].id}/project`);
+	}
+
+	return {
+		lang: validLang,
+		organizations,
+		authResult,
+	};
+};
