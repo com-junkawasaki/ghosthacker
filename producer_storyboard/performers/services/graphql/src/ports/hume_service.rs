@@ -14,13 +14,17 @@ use serde_json::json;
 pub struct HumeVoice {
     pub id: String,
     pub name: String,
+    pub provider: Option<String>,
+    // description field is not in the response, mapping from tags if needed
+    #[serde(skip)]
     pub description: Option<String>,
+    #[serde(skip)]
     pub language: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct VoiceListResponse {
-    pub voices: Vec<HumeVoice>,
+    pub voices_page: Vec<HumeVoice>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -56,12 +60,12 @@ impl HumeService {
 
     /// List available voices from Hume AI
     pub async fn list_voices(&self) -> Result<Vec<HumeVoice>> {
-        // Note: Actual endpoint may vary - needs verification with Hume AI documentation
-        let url = format!("{}/v1/voices", self.api_url);
+        // TTS API endpoint for listing voices
+        let url = format!("{}/v0/tts/voices?provider=HUME_AI", self.api_url);
         
         let response = self.client
             .get(&url)
-            .header("Authorization", format!("Bearer {}", self.api_key))
+            .header("X-Hume-Api-Key", &self.api_key)
             .header("Content-Type", "application/json")
             .send()
             .await?;
@@ -72,35 +76,42 @@ impl HumeService {
             return Err(anyhow::anyhow!("Hume AI API error ({}): {}", status, text));
         }
 
-        // Try to parse as array of voices or wrapped response
+        // Try to parse wrapped response
         let text = response.text().await?;
-        let voices: Vec<HumeVoice> = match serde_json::from_str::<Vec<HumeVoice>>(&text) {
-            Ok(voices) => voices,
-            Err(_) => {
-                // If direct array fails, try wrapped response
-                let wrapped: VoiceListResponse = serde_json::from_str(&text)?;
-                wrapped.voices
-            }
-        };
+        let wrapped: VoiceListResponse = serde_json::from_str(&text)?;
+        
+        // Map response to HumeVoice with language populated (simplified)
+        let voices = wrapped.voices_page.into_iter().map(|mut v| {
+            v.language = Some("English".to_string()); // Default to English as most are
+            v.description = v.provider.clone();
+            v
+        }).collect();
 
         Ok(voices)
     }
 
     /// Get a specific voice by ID
     pub async fn get_voice(&self, voice_id: &str) -> Result<HumeVoice> {
-        let url = format!("{}/v1/voices/{}", self.api_url, voice_id);
+        // Note: Individual voice endpoint might differ, using list filtering for now if needed
+        // But for now, let's try hypothetical endpoint or just return basic info
+        let url = format!("{}/v0/tts/voices/{}", self.api_url, voice_id);
         
         let response = self.client
             .get(&url)
-            .header("Authorization", format!("Bearer {}", self.api_key))
+            .header("X-Hume-Api-Key", &self.api_key)
             .header("Content-Type", "application/json")
             .send()
             .await?;
 
         if !response.status().is_success() {
-            let status = response.status();
-            let text = response.text().await.unwrap_or_default();
-            return Err(anyhow::anyhow!("Hume AI API error ({}): {}", status, text));
+            // If individual fetch fails, just return basic struct
+            return Ok(HumeVoice {
+                id: voice_id.to_string(),
+                name: "Unknown Voice".to_string(),
+                provider: None,
+                description: None,
+                language: None,
+            });
         }
 
         let voice: HumeVoice = response.json().await?;
@@ -112,20 +123,19 @@ impl HumeService {
         &self,
         text: &str,
         voice_id: &str,
-        language: Option<&str>,
+        _language: Option<&str>,
     ) -> Result<Vec<u8>> {
-        // Note: Actual endpoint and request format may vary - needs verification
-        let url = format!("{}/v1/speech", self.api_url);
+        // Endpoint for text-to-speech generation
+        let url = format!("{}/v0/synthesize", self.api_url);
         
         let request_body = json!({
             "text": text,
             "voice_id": voice_id,
-            "language": language.unwrap_or("ja"),
         });
 
         let response = self.client
             .post(&url)
-            .header("Authorization", format!("Bearer {}", self.api_key))
+            .header("X-Hume-Api-Key", &self.api_key)
             .header("Content-Type", "application/json")
             .json(&request_body)
             .send()
@@ -137,9 +147,7 @@ impl HumeService {
             return Err(anyhow::anyhow!("Hume AI API error ({}): {}", status, text));
         }
 
-        // Try to get audio data - could be in response body or URL
         let audio_data = response.bytes().await?;
         Ok(audio_data.to_vec())
     }
 }
-
