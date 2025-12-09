@@ -2,20 +2,21 @@
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 	import {
 		ListStoryboardsStore,
 		ListScenesStore,
 	} from '$houdini';
-	import { CreateStoryboardStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/CreateStoryboard.js';
-	import { CreateSceneStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/CreateScene.js';
-	import { UpdateSceneStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/UpdateScene.js';
-	import { DeleteSceneStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/DeleteScene.js';
-	import { ReorderScenesStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/ReorderScenes.js';
-	import { GenerateSceneImageStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/GenerateSceneImage.js';
-	import { GetGeneratedImagesStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/GetGeneratedImages.js';
-	import { UploadSceneImageStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/UploadSceneImage.js';
-	import { ListCharactersStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/ListCharacters.js';
-	import { ListDialoguesStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/ListDialogues.js';
+	import { CreateStoryboardStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/CreateStoryboard.js';
+	import { CreateSceneStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/CreateScene.js';
+	import { UpdateSceneStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/UpdateScene.js';
+	import { DeleteSceneStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/DeleteScene.js';
+	import { ReorderScenesStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/ReorderScenes.js';
+	import { GenerateSceneImageStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/GenerateSceneImage.js';
+	import { GetGeneratedImagesStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/GetGeneratedImages.js';
+	import { UploadSceneImageStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/UploadSceneImage.js';
+	import { ListCharactersStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/ListCharacters.js';
+	import { ListDialoguesStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/ListDialogues.js';
 	import CharacterManager from '$lib/components/storyboard/CharacterManager.svelte';
 	import DialogueEditor from '$lib/components/storyboard/DialogueEditor.svelte';
 	import ProjectSidebar from '$lib/components/storyboard/ProjectSidebar.svelte';
@@ -60,7 +61,29 @@
 	const urlStoryboardId: string | undefined = $page.params.storyboardId;
 	
 	// Handle "new" placeholder for when no storyboard exists yet
-	const isNewPlaceholder = urlStoryboardId === 'new';
+	const isNewPlaceholder = $derived(urlStoryboardId === 'new');
+	
+	// React to URL parameter changes
+	$effect(() => {
+		if (!browser || !projectId) return;
+		
+		console.log('[Editor] URL storyboardId changed:', urlStoryboardId, 'current storyboardId:', storyboardId);
+		
+		// If URL storyboardId changes and is valid, load scenes for it
+		if (urlStoryboardId && urlStoryboardId !== 'new' && urlStoryboardId !== storyboardId) {
+			// Check if this storyboardId exists in our loaded storyboards
+			const storyboardExists = storyboards.find(sb => sb.id === urlStoryboardId);
+			if (storyboardExists) {
+				console.log('[Editor] URL storyboardId exists in loaded storyboards, loading scenes');
+				storyboardId = urlStoryboardId;
+				loadScenes(urlStoryboardId).catch(err => {
+					console.error('[Editor] Error loading scenes from URL change:', err);
+				});
+			} else if (storyboards.length > 0) {
+				console.log('[Editor] URL storyboardId not found in loaded storyboards, storyboards:', storyboards.map(sb => sb.id));
+			}
+		}
+	});
 	
 	// Houdini stores - initialize only in browser
 	let storyboardsStore: ListStoryboardsStore | null = null;
@@ -214,21 +237,32 @@
 
 	// Handle storyboard selection change
 	async function handleStoryboardChange(selectedId: string) {
-		if (selectedId === storyboardId) return;
-		
-		// Update URL
-		if (selectedId && projectId) {
-			await goto(`/storyboard/${projectId}/${selectedId}/editor`, { replaceState: true });
+		if (selectedId === storyboardId) {
+			console.log('[Editor] Storyboard already selected:', selectedId);
+			return;
 		}
 		
-		storyboardId = selectedId;
-		scenes = [];
-		selectedSceneId = null;
-		sceneDialogues = {};
-		sceneImages = {};
+		console.log('[Editor] Changing storyboard from', storyboardId, 'to', selectedId);
 		
-		if (selectedId) {
-			await loadScenes(selectedId);
+		// Update URL first - this will trigger a reactive update
+		if (selectedId && projectId) {
+			const newUrl = `/storyboard/${projectId}/${selectedId}/editor`;
+			console.log('[Editor] Navigating to:', newUrl);
+			await goto(newUrl, { replaceState: true });
+			
+			// Update state immediately for better UX
+			storyboardId = selectedId;
+			scenes = [];
+			selectedSceneId = null;
+			sceneDialogues = {};
+			sceneImages = {};
+			
+			if (selectedId) {
+				console.log('[Editor] Loading scenes for storyboard:', selectedId);
+				await loadScenes(selectedId);
+			}
+		} else {
+			console.warn('[Editor] Cannot change storyboard: missing selectedId or projectId', { selectedId, projectId });
 		}
 	}
 
