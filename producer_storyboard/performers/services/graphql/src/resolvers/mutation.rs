@@ -607,19 +607,19 @@ impl MutationRoot {
             n: Some(1),
         };
         
-        eprintln!("[GraphQL Mutation] generate_scene_image: Starting image generation");
-        eprintln!("[GraphQL Mutation] Scene ID: {}", scene_uuid);
-        eprintln!("[GraphQL Mutation] Image type: {}", image_type);
-        eprintln!("[GraphQL Mutation] Prompt: {}", prompt);
-        eprintln!("[GraphQL Mutation] Model: {}", model);
+        println!("[GraphQL Mutation] generate_scene_image: Starting image generation");
+        println!("[GraphQL Mutation] Scene ID: {}", scene_uuid);
+        println!("[GraphQL Mutation] Image type: {}", image_type);
+        println!("[GraphQL Mutation] Prompt: {}", prompt);
+        println!("[GraphQL Mutation] Model: {}", model);
         
         let image_response = openai_service.generate_image(image_request).await
             .map_err(|e| {
-                eprintln!("[GraphQL Mutation] Image generation failed: {}", e);
+                println!("[GraphQL Mutation] Image generation failed: {}", e);
                 async_graphql::Error::new(format!("Failed to generate image: {}", e))
             })?;
         
-        eprintln!("[GraphQL Mutation] Image generation successful. Image URL: {}", image_response.image_url);
+        println!("[GraphQL Mutation] Image generation successful. Image URL: {}", image_response.image_url);
         
         // Download image
         let image_bytes = openai_service.download_image(&image_response.image_url).await

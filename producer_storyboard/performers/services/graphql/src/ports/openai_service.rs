@@ -7,7 +7,7 @@
  * Provides image generation (DALL-E) and scene description generation (GPT-4)
  */
 use anyhow::Result;
-use serde_json::json;
+use serde_json::{json, Value as JsonValue};
 
 #[derive(Debug, Clone)]
 pub struct ImageGenerationRequest {
@@ -64,8 +64,8 @@ impl OpenAIService {
             // Default to a model that supports image generation
             let model = request.model.as_deref().unwrap_or("google/gemini-2.0-flash-exp:free");
             
-            eprintln!("[OpenAI Service] Using OpenRouter endpoint: {}", url);
-            eprintln!("[OpenAI Service] Using model: {}", model);
+            println!("[OpenAI Service] Using OpenRouter endpoint: {}", url);
+            println!("[OpenAI Service] Using model: {}", model);
             
             let mut body = json!({
                 "model": model,
@@ -91,10 +91,10 @@ impl OpenAIService {
                 body["image_config"] = json!({
                     "aspect_ratio": aspect_ratio
                 });
-                eprintln!("[OpenAI Service] Aspect ratio: {}", aspect_ratio);
+                println!("[OpenAI Service] Aspect ratio: {}", aspect_ratio);
             }
             
-            eprintln!("[OpenAI Service] Request body: {}", serde_json::to_string(&body).unwrap_or_default());
+            println!("[OpenAI Service] Request body: {}", serde_json::to_string(&body).unwrap_or_default());
             
             let response = self.client
                 .post(url)
@@ -107,17 +107,17 @@ impl OpenAIService {
                 .await?;
 
             let status = response.status();
-            eprintln!("[OpenAI Service] Response status: {}", status.as_u16());
+            println!("[OpenAI Service] Response status: {}", status.as_u16());
             
             // Read response body before checking status to ensure we can read it
             let response_text = response.text().await.unwrap_or_else(|e| {
                 format!("Failed to read response body: {}", e)
             });
             
-            eprintln!("[OpenAI Service] Response body length: {} bytes", response_text.len());
-            eprintln!("[OpenAI Service] Response body (first 500 chars): {}", 
-                if response_text.len() > 500 { 
-                    format!("{}...", &response_text[..500]) 
+            println!("[OpenAI Service] Response body length: {} bytes", response_text.len());
+            println!("[OpenAI Service] Response body (first 1000 chars): {}", 
+                if response_text.len() > 1000 { 
+                    format!("{}...", &response_text[..1000]) 
                 } else { 
                     response_text.clone() 
                 }
@@ -125,7 +125,7 @@ impl OpenAIService {
             
             if !status.is_success() {
                 let detailed_error = if let Ok(json_err) = serde_json::from_str::<serde_json::Value>(&response_text) {
-                    eprintln!("[OpenAI Service] Parsed error JSON: {}", serde_json::to_string(&json_err).unwrap_or_default());
+                    println!("[OpenAI Service] Parsed error JSON: {}", serde_json::to_string(&json_err).unwrap_or_default());
                     if let Some(error_obj) = json_err.get("error") {
                         if let Some(message) = error_obj.get("message").and_then(|v| v.as_str()) {
                             format!("{}", message)
@@ -141,15 +141,15 @@ impl OpenAIService {
                     response_text.clone()
                 };
                 
-                eprintln!("[OpenAI Service] Error details: {}", detailed_error);
+                println!("[OpenAI Service] Error details: {}", detailed_error);
                 anyhow::bail!("OpenRouter API error (HTTP {}): {}", status.as_u16(), detailed_error);
             }
 
             let json: serde_json::Value = serde_json::from_str(&response_text)
                 .map_err(|e| anyhow::anyhow!("Failed to parse response JSON: {}. Response: {}", e, response_text))?;
             
-            eprintln!("[OpenAI Service] Parsed response JSON successfully");
-            eprintln!("[OpenAI Service] Response structure: choices={}, message={}, images={}", 
+            println!("[OpenAI Service] Parsed response JSON successfully");
+            println!("[OpenAI Service] Response structure: choices={}, message={}, images={}", 
                 json.get("choices").is_some(),
                 json.get("choices").and_then(|v| v.as_array()).and_then(|arr| arr.get(0)).and_then(|c| c.get("message")).is_some(),
                 json.get("choices").and_then(|v| v.as_array()).and_then(|arr| arr.get(0)).and_then(|c| c.get("message")).and_then(|m| m.get("images")).is_some()
@@ -168,12 +168,12 @@ impl OpenAIService {
                 .and_then(|v| v.as_str())
                 .ok_or_else(|| {
                     let full_response = serde_json::to_string(&json).unwrap_or_default();
-                    eprintln!("[OpenAI Service] Full response: {}", full_response);
+                    println!("[OpenAI Service] Full response: {}", full_response);
                     anyhow::anyhow!("No image URL in OpenRouter response. Response structure: {}", full_response)
                 })?
                 .to_string();
             
-            eprintln!("[OpenAI Service] Image URL extracted: {}", image_url);
+            println!("[OpenAI Service] Image URL extracted: {}", image_url);
             
             // OpenRouter doesn't provide revised_prompt in the same format
             let revised_prompt = None;
@@ -200,8 +200,8 @@ impl OpenAIService {
                 }
             }
 
-            eprintln!("[OpenAI Service] Using OpenAI direct endpoint: {}", url);
-            eprintln!("[OpenAI Service] Request body: {}", serde_json::to_string(&body).unwrap_or_default());
+            println!("[OpenAI Service] Using OpenAI direct endpoint: {}", url);
+            println!("[OpenAI Service] Request body: {}", serde_json::to_string(&body).unwrap_or_default());
             
             let response = self.client
                 .post(url)
@@ -212,18 +212,25 @@ impl OpenAIService {
                 .await?;
 
             let status = response.status();
-            eprintln!("[OpenAI Service] Response status: {}", status.as_u16());
+            println!("[OpenAI Service] Response status: {}", status.as_u16());
             
             // Read response body before checking status
             let response_text = response.text().await.unwrap_or_else(|e| {
                 format!("Failed to read response body: {}", e)
             });
             
-            eprintln!("[OpenAI Service] Response body length: {} bytes", response_text.len());
+            println!("[OpenAI Service] Response body length: {} bytes", response_text.len());
+            println!("[OpenAI Service] Response body (first 1000 chars): {}", 
+                if response_text.len() > 1000 { 
+                    format!("{}...", &response_text[..1000]) 
+                } else { 
+                    response_text.clone() 
+                }
+            );
             
             if !status.is_success() {
                 let detailed_error = if let Ok(json_err) = serde_json::from_str::<serde_json::Value>(&response_text) {
-                    eprintln!("[OpenAI Service] Parsed error JSON: {}", serde_json::to_string(&json_err).unwrap_or_default());
+                    println!("[OpenAI Service] Parsed error JSON: {}", serde_json::to_string(&json_err).unwrap_or_default());
                     if let Some(error_obj) = json_err.get("error") {
                         if let Some(message) = error_obj.get("message").and_then(|v| v.as_str()) {
                             format!("{}", message)
@@ -239,14 +246,14 @@ impl OpenAIService {
                     response_text.clone()
                 };
                 
-                eprintln!("[OpenAI Service] Error details: {}", detailed_error);
+                println!("[OpenAI Service] Error details: {}", detailed_error);
                 anyhow::bail!("OpenAI API error (HTTP {}): {}", status.as_u16(), detailed_error);
             }
 
             let json: serde_json::Value = serde_json::from_str(&response_text)
                 .map_err(|e| anyhow::anyhow!("Failed to parse response JSON: {}. Response: {}", e, response_text))?;
             
-            eprintln!("[OpenAI Service] Parsed response JSON successfully");
+            println!("[OpenAI Service] Parsed response JSON successfully");
             
             let data = json.get("data")
                 .and_then(|v| v.as_array())
