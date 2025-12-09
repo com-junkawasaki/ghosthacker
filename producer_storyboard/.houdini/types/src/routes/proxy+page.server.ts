@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Root page server load function
  * Redirects to default lang and organization route
@@ -10,7 +11,7 @@ import type { PageServerLoad } from './$types';
 
 const DEFAULT_LANG = 'ja';
 
-export const load: PageServerLoad = async ({ url, cookies }) => {
+export const load = async ({ url, cookies }: Parameters<PageServerLoad>[0]) => {
 	// If user is accessing root, redirect to default lang route
 	// The organization ID will be determined client-side from Clerk session
 	if (url.pathname === '/') {

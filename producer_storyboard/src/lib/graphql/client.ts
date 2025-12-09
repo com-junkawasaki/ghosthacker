@@ -48,6 +48,22 @@ const client = new HoudiniClient({
 			'Content-Type': 'application/json',
 		};
 		
+		// Extract orgId from URL params and add to headers
+		// This allows the API proxy to forward it to the backend
+		if (browser) {
+			try {
+				// Try to get orgId from current URL path
+				const currentPath = window.location.pathname;
+				const orgIdMatch = currentPath.match(/\/orgs\/([^/]+)/);
+				if (orgIdMatch && orgIdMatch[1]) {
+					headers['X-Org-Id'] = orgIdMatch[1];
+				}
+			} catch (e) {
+				// If window is not available, skip orgId header
+				console.warn('[GraphQL Client] Could not extract orgId from URL:', e);
+			}
+		}
+		
 		// Clerk authentication is handled by the API proxy (/api/graphql/+server.ts)
 		// The proxy forwards Clerk session tokens from cookies/headers to the backend
 		

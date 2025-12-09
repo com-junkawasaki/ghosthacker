@@ -9,6 +9,11 @@
 	let { projectId }: Props = $props();
 
 	const currentPath = $derived($page.url.pathname);
+	const { lang, orgId } = $page.params;
+
+	function buildPath(viewName: string): string {
+		return `/${lang}/orgs/${orgId}/project/${projectId}/${viewName}`;
+	}
 
 	type MenuItem = {
 		id: string;
@@ -25,27 +30,27 @@
 				id: 'storyboard',
 				label: 'Storyboard',
 				icon: 'film',
-				path: `/storyboard/${projectId}/editor`,
+				path: buildPath('editor'),
 			},
 			{
 				id: 'characters',
 				label: 'Characters',
 				icon: 'users',
-				path: `/storyboard/${projectId}/characters`,
+				path: buildPath('characters'),
 				group: 'Resources',
 			},
 			{
 				id: 'world',
 				label: 'World',
 				icon: 'globe',
-				path: `/storyboard/${projectId}/world`,
+				path: buildPath('world'),
 				group: 'Resources',
 			},
 			{
 				id: 'scenario',
 				label: 'Scenario',
 				icon: 'book',
-				path: `/storyboard/${projectId}/scenario`,
+				path: buildPath('scenario'),
 				group: 'Resources',
 			},
 		];
