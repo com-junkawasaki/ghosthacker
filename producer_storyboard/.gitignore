@@ -64,3 +64,4 @@ ehthumbs.db
 *.backup
 # Test coverage
 # BDD reports
+.vercel

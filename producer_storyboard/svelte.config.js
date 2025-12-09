@@ -9,6 +9,11 @@ const config = {
 	kit: {
 		adapter: adapter({
 			runtime: 'nodejs20.x',
+			functions: {
+				'src/routes/**/*.ts': {
+					maxDuration: 30
+				}
+			}
 		}),
 		alias: {
 			$lib: './src/lib',
