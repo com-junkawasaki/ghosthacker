@@ -9,7 +9,7 @@
   "url": "https://github.com/ghosthacker/producer_storyboard",
   "version": "0.1.0",
   "createdAt": "2025-12-09T00:00:00Z",
-  "updatedAt": "2025-12-09T17:00:00Z",
+  "updatedAt": "2025-12-09T21:00:00Z",
   "status": "InDevelopment",
   "maintainer": {
     "@type": "Person",
@@ -256,6 +256,70 @@
           "stores": "CreateStoryboardStore"
         }
       }
+    },
+    {
+      "@type": "FixAction",
+      "name": "character-graphql-schema-fix",
+      "description": "Fix GraphQL schema errors for Character type fields (personality, background, defaultHumeVoiceId, profileImageId, assets)",
+      "startTime": "2025-12-09T20:00:00Z",
+      "endTime": "2025-12-09T20:30:00Z",
+      "status": "Completed",
+      "result": {
+        "fixes": [
+          "Removed assets field from Character struct initialization (assets is a ComplexObject resolver)",
+          "Updated query.rs and mutation.rs to remove assets: vec![] assignments",
+          "Verified backend GraphQL schema exposes all Character fields correctly",
+          "Regenerated Houdini artifacts to sync with backend schema"
+        ],
+        "files": [
+          "performers/services/graphql/src/resolvers/query.rs",
+          "performers/services/graphql/src/resolvers/mutation.rs"
+        ]
+      }
+    },
+    {
+      "@type": "AddAction",
+      "name": "character-delete-confirmation",
+      "description": "Add double confirmation dialog for character deletion in CharacterManager modal",
+      "startTime": "2025-12-09T20:30:00Z",
+      "endTime": "2025-12-09T21:00:00Z",
+      "status": "Completed",
+      "result": {
+        "features": [
+          "Delete confirmation dialog overlay",
+          "Two-step deletion process (requestDelete -> confirmDelete)",
+          "Cancel functionality with background click support",
+          "Visual warning styling for destructive action"
+        ],
+        "components": [
+          "CharacterManager.svelte with delete confirmation dialog"
+        ]
+      }
+    },
+    {
+      "@type": "UpdateAction",
+      "name": "storyboard-url-routing",
+      "description": "Update URL routing to include storyboardId in path and sync URL when storyboard is selected",
+      "startTime": "2025-12-09T20:00:00Z",
+      "endTime": "2025-12-09T20:15:00Z",
+      "status": "Completed",
+      "result": {
+        "routing": {
+          "old": "/storyboard/[projectId]/editor",
+          "new": "/storyboard/[projectId]/[storyboardId]/editor"
+        },
+        "features": [
+          "URL updates when storyboard is selected",
+          "Redirect page for backward compatibility",
+          "Reactive URL parameter handling with $effect",
+          "SSR disabled for editor page (+page.ts)"
+        ],
+        "files": [
+          "src/routes/storyboard/[projectId]/editor/+page.svelte (redirect)",
+          "src/routes/storyboard/[projectId]/[storyboardId]/editor/+page.svelte",
+          "src/routes/storyboard/[projectId]/[storyboardId]/editor/+page.ts"
+        ]
+      }
     }
   ],
   "capability": [
@@ -322,8 +386,25 @@
     {
       "@type": "Service",
       "name": "storyboard-management",
-      "description": "Multi-storyboard creation and management within projects with selection UI",
-      "status": "Operational"
+      "description": "Multi-storyboard creation and management within projects with selection UI and URL-based routing",
+      "status": "Operational",
+      "features": [
+        "Storyboard selection with URL synchronization",
+        "Bookmarkable storyboard URLs",
+        "Reactive routing with SvelteKit"
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "character-management",
+      "description": "Character management with extended fields (personality, background, voice, assets) and safe deletion",
+      "status": "Operational",
+      "features": [
+        "Character CRUD operations",
+        "Character asset management",
+        "Double confirmation for deletion",
+        "Profile image support"
+      ]
     }
   ],
   "configuration": {
@@ -335,7 +416,8 @@
         "dragDrop": "HTML5 Drag and Drop API",
         "loadingStates": "Scene-specific loading overlays with spinner animations",
         "timeoutHandling": "Adaptive timeouts based on request type",
-        "storyboardManagement": "Multi-storyboard creation and selection within projects"
+        "storyboardManagement": "Multi-storyboard creation and selection within projects with URL-based routing",
+        "characterManagement": "Character management with double confirmation for destructive actions"
       }
     },
     "backend": {
@@ -349,6 +431,14 @@
       "imageStorage": "PostgreSQL BYTEA",
       "mutations": {
         "createStoryboard": "Create new storyboard with project association and default settings"
+      },
+      "schema": {
+        "character": {
+          "fields": ["personality", "background", "defaultHumeVoiceId", "profileImageId"],
+          "complexFields": {
+            "assets": "ComplexObject resolver for character assets"
+          }
+        }
       }
     },
     "infrastructure": {
