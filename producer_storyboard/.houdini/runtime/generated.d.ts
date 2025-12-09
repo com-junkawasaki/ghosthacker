@@ -1,26 +1,26 @@
 import type { Record } from "./public/record";
-import { ListGeneratedVideos$result, ListGeneratedVideos$input } from "$houdini/artifacts/ListGeneratedVideos";
-import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
-import { ListCharacters$result, ListCharacters$input } from "$houdini/artifacts/ListCharacters";
-import { ListCharactersStore } from "../plugins/houdini-svelte/stores/ListCharacters";
 import { GetGeneratedImages$result, GetGeneratedImages$input } from "$houdini/artifacts/GetGeneratedImages";
 import { GetGeneratedImagesStore } from "../plugins/houdini-svelte/stores/GetGeneratedImages";
-import { GetCharacterAssetData$result, GetCharacterAssetData$input } from "$houdini/artifacts/GetCharacterAssetData";
-import { GetCharacterAssetDataStore } from "../plugins/houdini-svelte/stores/GetCharacterAssetData";
 import { GetScene$result, GetScene$input } from "$houdini/artifacts/GetScene";
 import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
+import { GetCharacterAssetData$result, GetCharacterAssetData$input } from "$houdini/artifacts/GetCharacterAssetData";
+import { GetCharacterAssetDataStore } from "../plugins/houdini-svelte/stores/GetCharacterAssetData";
 import { ListDialogues$result, ListDialogues$input } from "$houdini/artifacts/ListDialogues";
 import { ListDialoguesStore } from "../plugins/houdini-svelte/stores/ListDialogues";
+import { ListGeneratedVideos$result, ListGeneratedVideos$input } from "$houdini/artifacts/ListGeneratedVideos";
+import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
 import { ListCharacterAssets$result, ListCharacterAssets$input } from "$houdini/artifacts/ListCharacterAssets";
 import { ListCharacterAssetsStore } from "../plugins/houdini-svelte/stores/ListCharacterAssets";
+import { ListProjects$result, ListProjects$input } from "$houdini/artifacts/ListProjects";
+import { ListProjectsStore } from "../plugins/houdini-svelte/stores/ListProjects";
 import { ListHumeVoices$result, ListHumeVoices$input } from "$houdini/artifacts/ListHumeVoices";
 import { ListHumeVoicesStore } from "../plugins/houdini-svelte/stores/ListHumeVoices";
+import { ListCharacters$result, ListCharacters$input } from "$houdini/artifacts/ListCharacters";
+import { ListCharactersStore } from "../plugins/houdini-svelte/stores/ListCharacters";
 import { ListScenes$result, ListScenes$input } from "$houdini/artifacts/ListScenes";
 import { ListScenesStore } from "../plugins/houdini-svelte/stores/ListScenes";
 import { ListStoryboards$result, ListStoryboards$input } from "$houdini/artifacts/ListStoryboards";
 import { ListStoryboardsStore } from "../plugins/houdini-svelte/stores/ListStoryboards";
-import { ListProjects$result, ListProjects$input } from "$houdini/artifacts/ListProjects";
-import { ListProjectsStore } from "../plugins/houdini-svelte/stores/ListProjects";
 
 export declare type CacheTypeDef = {
     types: {
@@ -517,5 +517,5 @@ export declare type CacheTypeDef = {
         };
     };
     lists: {};
-    queries: [[ListProjectsStore, ListProjects$result, ListProjects$input], [ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListScenesStore, ListScenes$result, ListScenes$input], [ListHumeVoicesStore, ListHumeVoices$result, ListHumeVoices$input], [ListCharacterAssetsStore, ListCharacterAssets$result, ListCharacterAssets$input], [ListDialoguesStore, ListDialogues$result, ListDialogues$input], [GetSceneStore, GetScene$result, GetScene$input], [GetCharacterAssetDataStore, GetCharacterAssetData$result, GetCharacterAssetData$input], [GetGeneratedImagesStore, GetGeneratedImages$result, GetGeneratedImages$input], [ListCharactersStore, ListCharacters$result, ListCharacters$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input]];
+    queries: [[ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListScenesStore, ListScenes$result, ListScenes$input], [ListCharactersStore, ListCharacters$result, ListCharacters$input], [ListHumeVoicesStore, ListHumeVoices$result, ListHumeVoices$input], [ListProjectsStore, ListProjects$result, ListProjects$input], [ListCharacterAssetsStore, ListCharacterAssets$result, ListCharacterAssets$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input], [ListDialoguesStore, ListDialogues$result, ListDialogues$input], [GetCharacterAssetDataStore, GetCharacterAssetData$result, GetCharacterAssetData$input], [GetSceneStore, GetScene$result, GetScene$input], [GetGeneratedImagesStore, GetGeneratedImages$result, GetGeneratedImages$input]];
 };

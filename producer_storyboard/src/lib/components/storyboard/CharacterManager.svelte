@@ -33,6 +33,8 @@
 	let editingCharacter: Character | null = $state(null);
 	let showForm = $state(false);
 	let selectedCharacterId = $state<string | null>(null);
+	let deletingCharacterId = $state<string | null>(null);
+	let showDeleteConfirm = $state(false);
 
 	let listCharactersStore: ListCharactersStore | null = null;
 	let createCharacterStore: CreateCharacterStore | null = null;
@@ -135,21 +137,34 @@
 		}
 	}
 
-	async function deleteCharacter(id: string) {
-		if (!browser || !deleteCharacterStore) return;
-		if (!confirm('Are you sure you want to delete this character?')) return;
+	function requestDelete(id: string) {
+		deletingCharacterId = id;
+		showDeleteConfirm = true;
+	}
+
+	function cancelDelete() {
+		deletingCharacterId = null;
+		showDeleteConfirm = false;
+	}
+
+	async function confirmDelete() {
+		if (!browser || !deleteCharacterStore || !deletingCharacterId) return;
 
 		try {
-			const result = await deleteCharacterStore.mutate({ id });
+			const result = await deleteCharacterStore.mutate({ id: deletingCharacterId });
 
 			if (result?.errors && result.errors.length > 0) {
 				throw new Error(result.errors[0].message);
 			}
 
 			await loadCharacters();
+			deletingCharacterId = null;
+			showDeleteConfirm = false;
 		} catch (err) {
 			console.error('[CharacterManager] Error deleting character:', err);
 			error = err instanceof Error ? err.message : 'Failed to delete character';
+			deletingCharacterId = null;
+			showDeleteConfirm = false;
 		}
 	}
 
@@ -263,7 +278,7 @@
 								<button
 									type="button"
 									class="delete-button"
-									onclick={() => deleteCharacter(character.id)}
+									onclick={() => requestDelete(character.id)}
 								>
 									Delete
 								</button>
@@ -280,6 +295,35 @@
 							</div>
 						{/if}
 					{/each}
+				</div>
+			{/if}
+
+			{#if showDeleteConfirm && deletingCharacterId}
+				<div class="delete-confirm-overlay" onclick={(e) => {
+					if (e.target === e.currentTarget) {
+						cancelDelete();
+					}
+				}}>
+					<div class="delete-confirm-dialog" onclick={(e) => e.stopPropagation()}>
+						<h3>Delete Character</h3>
+						<p>Are you sure you want to delete this character? This action cannot be undone.</p>
+						<div class="delete-confirm-actions">
+							<button
+								type="button"
+								class="cancel-button"
+								onclick={() => cancelDelete()}
+							>
+								Cancel
+							</button>
+							<button
+								type="button"
+								class="confirm-delete-button"
+								onclick={() => confirmDelete()}
+							>
+								Delete
+							</button>
+						</div>
+					</div>
 				</div>
 			{/if}
 		</div>
@@ -471,6 +515,74 @@
 		color: rgba(255, 255, 255, 0.7);
 		text-align: center;
 		padding: 2rem;
+	}
+
+	.delete-confirm-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, 0.8);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 2000;
+	}
+
+	.delete-confirm-dialog {
+		background: #1a1a1a;
+		border-radius: 0.5rem;
+		padding: 1.5rem;
+		max-width: 400px;
+		width: 90%;
+		border: 1px solid rgba(239, 68, 68, 0.3);
+	}
+
+	.delete-confirm-dialog h3 {
+		margin: 0 0 1rem 0;
+		color: #fca5a5;
+		font-size: 1.25rem;
+	}
+
+	.delete-confirm-dialog p {
+		margin: 0 0 1.5rem 0;
+		color: rgba(255, 255, 255, 0.8);
+		line-height: 1.5;
+	}
+
+	.delete-confirm-actions {
+		display: flex;
+		gap: 0.75rem;
+		justify-content: flex-end;
+	}
+
+	.cancel-button,
+	.confirm-delete-button {
+		padding: 0.5rem 1rem;
+		border-radius: 0.25rem;
+		cursor: pointer;
+		font-size: 0.875rem;
+		border: none;
+	}
+
+	.cancel-button {
+		background: rgba(255, 255, 255, 0.1);
+		color: white;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+	}
+
+	.cancel-button:hover {
+		background: rgba(255, 255, 255, 0.2);
+	}
+
+	.confirm-delete-button {
+		background: #ef4444;
+		color: white;
+	}
+
+	.confirm-delete-button:hover {
+		background: #dc2626;
 	}
 </style>
 

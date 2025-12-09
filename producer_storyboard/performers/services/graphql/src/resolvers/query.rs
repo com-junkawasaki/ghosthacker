@@ -308,7 +308,6 @@ impl QueryRoot {
                 background: row.get("background"),
                 default_hume_voice_id: row.get("default_hume_voice_id"),
                 profile_image_id: profile_image_id.map(|id| ID(id.to_string())),
-                assets: vec![], // Will be populated by resolver if needed
                 created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
                 updated_at: row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
             }

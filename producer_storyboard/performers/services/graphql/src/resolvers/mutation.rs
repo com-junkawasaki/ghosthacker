@@ -1002,7 +1002,6 @@ impl MutationRoot {
             background: input.background,
             default_hume_voice_id: input.default_hume_voice_id,
             profile_image_id: input.profile_image_id,
-            assets: vec![],
             created_at: now.to_rfc3339(),
             updated_at: now.to_rfc3339(),
         })
@@ -1139,7 +1138,6 @@ impl MutationRoot {
             background: row.get("background"),
             default_hume_voice_id: row.get("default_hume_voice_id"),
             profile_image_id: profile_image_id.map(|id| ID(id.to_string())),
-            assets: vec![],
             created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
             updated_at: row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
         })
