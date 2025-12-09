@@ -89,9 +89,12 @@
 
 	// State management with $state for reactive updates
 	let scenes = $state<Scene[]>([]);
+	let storyboards = $state<Array<{ id: string; title: string; projectId: string }>>([]);
 	let storyboardId = $state<string | null>(null);
 	let loading = $state(true);
 	let error = $state<string | null>(null);
+	let showCreateStoryboardDialog = $state(false);
+	let newStoryboardTitle = $state('');
 
 	let generating = $state(false);
 	// Track which scene and image type is being generated
@@ -158,6 +161,11 @@
 			return;
 		}
 
+		if (!newStoryboardTitle.trim()) {
+			alert('Please enter a storyboard title');
+			return;
+		}
+
 		try {
 			loading = true;
 			error = null;
@@ -165,7 +173,7 @@
 			const result = await createStoryboardStore.mutate({
 				input: {
 					projectId,
-					title: 'New Storyboard',
+					title: newStoryboardTitle.trim(),
 					aspectRatio: '16:9',
 					resolution: '1920x1080',
 				},
@@ -178,6 +186,13 @@
 			if (result?.data?.createStoryboard) {
 				// Reload data to get the new storyboard
 				await loadData();
+				// Select the newly created storyboard
+				if (result.data.createStoryboard.id) {
+					storyboardId = result.data.createStoryboard.id;
+					await loadScenes(result.data.createStoryboard.id);
+				}
+				showCreateStoryboardDialog = false;
+				newStoryboardTitle = '';
 			} else {
 				throw new Error('Failed to create storyboard: No data returned');
 			}
@@ -185,6 +200,21 @@
 			console.error('[Editor] Error creating storyboard:', err);
 			error = err instanceof Error ? err.message : 'Failed to create storyboard';
 			loading = false;
+		}
+	}
+
+	// Handle storyboard selection change
+	async function handleStoryboardChange(selectedId: string) {
+		if (selectedId === storyboardId) return;
+		
+		storyboardId = selectedId;
+		scenes = [];
+		selectedSceneId = null;
+		sceneDialogues = {};
+		sceneImages = {};
+		
+		if (selectedId) {
+			await loadScenes(selectedId);
 		}
 	}
 
@@ -213,7 +243,12 @@
 				throw new Error(storyboardsResult.errors[0].message);
 			}
 
-			const storyboards = storyboardsResult.data?.storyboards || [];
+			const loadedStoryboards = storyboardsResult.data?.storyboards || [];
+			storyboards = loadedStoryboards.map((sb: any) => ({
+				id: sb.id,
+				title: sb.title || 'Untitled Storyboard',
+				projectId: sb.projectId,
+			}));
 			
 			if (storyboards.length === 0) {
 				loading = false;
@@ -221,16 +256,20 @@
 				return;
 			}
 
-			// Use the first storyboard (or we could let user select)
-			const firstStoryboard = storyboards[0];
-			if (!firstStoryboard) {
-				loading = false;
-				return;
+			// Use the first storyboard if none is selected, or keep the current selection
+			if (!storyboardId || !storyboards.find(sb => sb.id === storyboardId)) {
+				const firstStoryboard = storyboards[0];
+				if (!firstStoryboard) {
+					loading = false;
+					return;
+				}
+				storyboardId = firstStoryboard.id;
 			}
-			storyboardId = firstStoryboard.id;
 
-			// Load scenes for the storyboard
-			await loadScenes(firstStoryboard.id);
+			// Load scenes for the selected storyboard
+			if (storyboardId) {
+				await loadScenes(storyboardId);
+			}
 		} catch (err) {
 			console.error('[Editor] Error loading data:', err);
 			error = err instanceof Error ? err.message : 'Failed to load data';
@@ -873,6 +912,37 @@
 	<header class="header-bar">
 		<div class="header-left">
 			<h1 class="title">Storyboard</h1>
+			{#if storyboards.length > 0}
+				<div class="storyboard-selector">
+					<select
+						value={storyboardId || ''}
+						onchange={(e) => {
+							const selectedId = (e.target as HTMLSelectElement).value;
+							if (selectedId) {
+								handleStoryboardChange(selectedId);
+							}
+						}}
+						class="storyboard-select"
+						aria-label="Select storyboard"
+					>
+						{#each storyboards as sb}
+							<option value={sb.id}>{sb.title}</option>
+						{/each}
+					</select>
+					<button
+						class="add-storyboard-button"
+						onclick={() => {
+							showCreateStoryboardDialog = true;
+						}}
+						aria-label="Create new storyboard"
+						title="Create new storyboard"
+					>
+						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+							<path d="M8 3V13M3 8H13" stroke-width="1.5" stroke-linecap="round"/>
+						</svg>
+					</button>
+				</div>
+			{/if}
 		</div>
 		<div class="header-center">
 		</div>
@@ -931,7 +1001,13 @@
 				</svg>
 				<h2>No Storyboard Found</h2>
 				<p>Create a new storyboard to get started with your project.</p>
-				<button onclick={createStoryboard} class="create-storyboard-button" disabled={loading}>
+				<button 
+					onclick={() => {
+						showCreateStoryboardDialog = true;
+					}} 
+					class="create-storyboard-button" 
+					disabled={loading}
+				>
 					{loading ? 'Creating...' : 'Create Storyboard'}
 				</button>
 			</div>
@@ -1322,6 +1398,54 @@
 	<!-- Character Manager -->
 	<CharacterManager projectId={projectId} bind:open={showCharacterManager} />
 
+	<!-- Create Storyboard Dialog -->
+	{#if showCreateStoryboardDialog}
+		<div class="dialog-overlay" onclick={() => {
+			if (!loading) {
+				showCreateStoryboardDialog = false;
+				newStoryboardTitle = '';
+			}
+		}}>
+			<div class="dialog" onclick={(e) => e.stopPropagation()}>
+				<h2>Create New Storyboard</h2>
+				<div class="dialog-content">
+					<label for="storyboard-title">Title</label>
+					<input
+						id="storyboard-title"
+						type="text"
+						bind:value={newStoryboardTitle}
+						placeholder="Enter storyboard title"
+						disabled={loading}
+						onkeydown={(e) => {
+							if (e.key === 'Enter' && !loading && newStoryboardTitle.trim()) {
+								createStoryboard();
+							}
+						}}
+					/>
+				</div>
+				<div class="dialog-actions">
+					<button
+						class="dialog-button cancel"
+						onclick={() => {
+							showCreateStoryboardDialog = false;
+							newStoryboardTitle = '';
+						}}
+						disabled={loading}
+					>
+						Cancel
+					</button>
+					<button
+						class="dialog-button primary"
+						onclick={createStoryboard}
+						disabled={loading || !newStoryboardTitle.trim()}
+					>
+						{loading ? 'Creating...' : 'Create'}
+					</button>
+				</div>
+			</div>
+		</div>
+	{/if}
+
 	<!-- Bottom Toolbar -->
 	<div class="toolbar">
 		<!-- Character Manager Button -->
@@ -1405,6 +1529,65 @@
 		padding: 1rem 2rem;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 		background-color: #1a1a1a;
+	}
+
+	.header-left {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
+	.storyboard-selector {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.storyboard-select {
+		padding: 0.5rem 1rem;
+		background-color: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 6px;
+		color: #ffffff;
+		font-size: 0.875rem;
+		cursor: pointer;
+		min-width: 200px;
+		transition: background-color 0.2s, border-color 0.2s;
+	}
+
+	.storyboard-select:hover {
+		background-color: rgba(255, 255, 255, 0.15);
+		border-color: rgba(255, 255, 255, 0.3);
+	}
+
+	.storyboard-select:focus {
+		outline: none;
+		border-color: #3b82f6;
+		background-color: rgba(255, 255, 255, 0.15);
+	}
+
+	.add-storyboard-button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		padding: 0;
+		background-color: rgba(59, 130, 246, 0.1);
+		border: 1px solid rgba(59, 130, 246, 0.3);
+		border-radius: 6px;
+		color: #3b82f6;
+		cursor: pointer;
+		transition: background-color 0.2s, border-color 0.2s;
+	}
+
+	.add-storyboard-button:hover {
+		background-color: rgba(59, 130, 246, 0.2);
+		border-color: rgba(59, 130, 246, 0.5);
+	}
+
+	.add-storyboard-button:active {
+		background-color: rgba(59, 130, 246, 0.3);
 	}
 
 	/* Empty State */
@@ -1494,6 +1677,117 @@
 
 	.retry-button:hover {
 		background-color: rgba(255, 255, 255, 0.15);
+	}
+
+	/* Dialog Styles */
+	.dialog-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.7);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 1000;
+		backdrop-filter: blur(4px);
+	}
+
+	.dialog {
+		background-color: #2a2a2a;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 8px;
+		padding: 1.5rem;
+		min-width: 400px;
+		max-width: 90vw;
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+	}
+
+	.dialog h2 {
+		margin: 0 0 1.5rem 0;
+		font-size: 1.25rem;
+		font-weight: 500;
+		color: #ffffff;
+	}
+
+	.dialog-content {
+		margin-bottom: 1.5rem;
+	}
+
+	.dialog-content label {
+		display: block;
+		margin-bottom: 0.5rem;
+		font-size: 0.875rem;
+		color: rgba(255, 255, 255, 0.8);
+		font-weight: 500;
+	}
+
+	.dialog-content input {
+		width: 100%;
+		padding: 0.75rem;
+		background-color: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 6px;
+		color: #ffffff;
+		font-size: 0.875rem;
+		transition: background-color 0.2s, border-color 0.2s;
+		box-sizing: border-box;
+	}
+
+	.dialog-content input:focus {
+		outline: none;
+		border-color: #3b82f6;
+		background-color: rgba(255, 255, 255, 0.15);
+	}
+
+	.dialog-content input:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	.dialog-content input::placeholder {
+		color: rgba(255, 255, 255, 0.4);
+	}
+
+	.dialog-actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 0.75rem;
+	}
+
+	.dialog-button {
+		padding: 0.5rem 1rem;
+		border-radius: 6px;
+		font-size: 0.875rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition: background-color 0.2s, border-color 0.2s;
+		border: 1px solid transparent;
+	}
+
+	.dialog-button.cancel {
+		background-color: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.2);
+		color: #ffffff;
+	}
+
+	.dialog-button.cancel:hover:not(:disabled) {
+		background-color: rgba(255, 255, 255, 0.15);
+	}
+
+	.dialog-button.primary {
+		background-color: #3b82f6;
+		color: #ffffff;
+	}
+
+	.dialog-button.primary:hover:not(:disabled) {
+		background-color: #2563eb;
+	}
+
+	.dialog-button:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
 	}
 
 	.header-left {

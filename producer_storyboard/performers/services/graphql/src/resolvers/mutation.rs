@@ -11,7 +11,7 @@ use crate::ports::openai_service::{OpenAIService, ImageGenerationRequest};
 use crate::ports::history::{HistoryService, OperationType};
 use crate::ports::hume_service::HumeService;
 use crate::ports::translation_service::TranslationService;
-use crate::schema::storyboard::{Project, VideoStatus, Scene, GeneratedImage, Character, Dialogue};
+use crate::schema::storyboard::{Project, Storyboard, VideoStatus, Scene, GeneratedImage, Character, Dialogue};
 use uuid::Uuid;
 use serde_json::json;
 use sqlx::Row;
@@ -21,6 +21,16 @@ use base64::{Engine as _, engine::general_purpose};
 pub struct CreateProjectInput {
     pub title: String,
     pub description: Option<String>,
+}
+
+#[derive(InputObject)]
+pub struct CreateStoryboardInput {
+    #[graphql(name = "projectId")]
+    pub project_id: ID,
+    pub title: Option<String>,
+    #[graphql(name = "aspectRatio")]
+    pub aspect_ratio: Option<String>,
+    pub resolution: Option<String>,
 }
 
 #[derive(InputObject)]
@@ -168,6 +178,65 @@ impl MutationRoot {
             id: ID(id.to_string()),
             title: input.title,
             description: input.description,
+            created_at: now.to_rfc3339(),
+            updated_at: now.to_rfc3339(),
+        })
+    }
+
+    /// Create a new storyboard
+    async fn create_storyboard(&self, ctx: &Context<'_>, input: CreateStoryboardInput) -> Result<Storyboard> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let project_uuid = Uuid::parse_str(&input.project_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid project ID: {}", e)))?;
+        
+        // Verify project exists
+        let project_exists = sqlx::query_scalar::<_, bool>(
+            r#"
+            SELECT EXISTS(SELECT 1 FROM storyboard_projects WHERE id = $1)
+            "#,
+        )
+        .bind(project_uuid)
+        .fetch_one(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to verify project: {}", e)))?;
+        
+        if !project_exists {
+            return Err(async_graphql::Error::new("Project not found"));
+        }
+        
+        let id = Uuid::new_v4();
+        let now = chrono::Utc::now();
+        let title = input.title.unwrap_or_else(|| "New Storyboard".to_string());
+        let aspect_ratio = input.aspect_ratio.unwrap_or_else(|| "16:9".to_string());
+        let resolution = input.resolution.unwrap_or_else(|| "1920x1080".to_string());
+        
+        sqlx::query(
+            r#"
+            INSERT INTO storyboards (id, project_id, title, aspect_ratio, resolution, num_variations, storyboard_data, created_at, updated_at)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $8)
+            "#,
+        )
+        .bind(id)
+        .bind(project_uuid)
+        .bind(&title)
+        .bind(&aspect_ratio)
+        .bind(&resolution)
+        .bind(1i32) // num_variations default
+        .bind(json!({})) // storyboard_data default empty object
+        .bind(now)
+        .execute(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to create storyboard: {}", e)))?;
+        
+        Ok(Storyboard {
+            id: ID(id.to_string()),
+            project_id: input.project_id,
+            title,
+            aspect_ratio,
+            resolution,
+            duration_seconds: None,
+            num_variations: 1,
             created_at: now.to_rfc3339(),
             updated_at: now.to_rfc3339(),
         })
