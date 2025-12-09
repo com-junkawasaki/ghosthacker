@@ -8,6 +8,7 @@
  */
 use anyhow::Result;
 use serde_json::json;
+use base64::{Engine as _, engine::general_purpose};
 
 #[derive(Debug, Clone)]
 pub struct ImageGenerationRequest {
@@ -164,7 +165,7 @@ impl OpenAIService {
                     });
                 } else {
                     // Try alternative response format (base64 encoded)
-                    if json.get("choices")
+                    if let Some(base64_data) = json.get("choices")
                         .and_then(|v| v.as_array())
                         .and_then(|arr| arr.get(0))
                         .and_then(|choice| choice.get("message"))
@@ -172,12 +173,14 @@ impl OpenAIService {
                         .and_then(|v| v.as_array())
                         .and_then(|arr| arr.get(0))
                         .and_then(|img| img.get("image_data"))
-                        .is_some()
+                        .and_then(|v| v.as_str())
                     {
-                        // If image is base64 encoded, we'd need to save it and return a URL
-                        // For now, return an error suggesting to use image upload instead
-                        println!("[OpenAI Service] Received base64 image data, but URL format expected");
-                        anyhow::bail!("OpenRouter returned base64 image data. Please use image upload feature instead, or implement base64 handling.");
+                        // Return base64 data URL format
+                        println!("[OpenAI Service] Received base64 image data from OpenRouter");
+                        return Ok(ImageGenerationResponse {
+                            image_url: format!("data:image/png;base64,{}", base64_data),
+                            revised_prompt: None,
+                        });
                     }
                     
                     let full_response = serde_json::to_string(&json).unwrap_or_default();
@@ -352,8 +355,25 @@ impl OpenAIService {
         }
     }
 
-    /// Download image from URL and return as bytes
+    /// Download image from URL or decode base64 data URL and return as bytes
     pub async fn download_image(&self, image_url: &str) -> Result<Vec<u8>> {
+        // Check if this is a data URL (base64 encoded)
+        if image_url.starts_with("data:image/") {
+            println!("[OpenAI Service] Detected base64 data URL, decoding...");
+            // Extract base64 part after comma
+            if let Some(comma_pos) = image_url.find(',') {
+                let base64_data = &image_url[comma_pos + 1..];
+                let bytes = general_purpose::STANDARD.decode(base64_data)
+                    .map_err(|e| anyhow::anyhow!("Failed to decode base64 image data: {}", e))?;
+                println!("[OpenAI Service] Successfully decoded base64 image data ({} bytes)", bytes.len());
+                return Ok(bytes);
+            } else {
+                anyhow::bail!("Invalid data URL format: missing comma separator");
+            }
+        }
+        
+        // Regular HTTP URL - download it
+        println!("[OpenAI Service] Downloading image from URL: {}", image_url);
         let response = self.client
             .get(image_url)
             .send()
@@ -364,6 +384,7 @@ impl OpenAIService {
         }
 
         let bytes = response.bytes().await?;
+        println!("[OpenAI Service] Successfully downloaded image ({} bytes)", bytes.len());
         Ok(bytes.to_vec())
     }
 

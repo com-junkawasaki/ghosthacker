@@ -635,24 +635,53 @@ impl MutationRoot {
                 async_graphql::Error::new(format!("Failed to generate image: {}", e))
             })?;
         
-        println!("[GraphQL Mutation] Image generation successful. Image URL: {}", image_response.image_url);
+        println!("[GraphQL Mutation] Image generation successful. Image URL: {}", 
+            if image_response.image_url.len() > 100 {
+                format!("{}...", &image_response.image_url[..100])
+            } else {
+                image_response.image_url.clone()
+            }
+        );
         
-        // Download image
+        // Download image (handles both HTTP URLs and base64 data URLs)
+        println!("[GraphQL Mutation] Downloading/decoding image...");
         let image_bytes = openai_service.download_image(&image_response.image_url).await
-            .map_err(|e| async_graphql::Error::new(format!("Failed to download image: {}", e)))?;
+            .map_err(|e| {
+                println!("[GraphQL Mutation] Failed to download/decode image: {}", e);
+                async_graphql::Error::new(format!("Failed to download image: {}", e))
+            })?;
         
-        // Determine image format from URL or default to png
-        let image_format = if image_response.image_url.contains(".png") {
+        println!("[GraphQL Mutation] Image downloaded/decoded successfully ({} bytes)", image_bytes.len());
+        
+        // Determine image format from URL or data URL MIME type
+        let image_format = if image_response.image_url.starts_with("data:image/") {
+            // Extract format from data URL MIME type
+            if image_response.image_url.contains("data:image/png") {
+                "png"
+            } else if image_response.image_url.contains("data:image/jpeg") || image_response.image_url.contains("data:image/jpg") {
+                "jpeg"
+            } else if image_response.image_url.contains("data:image/webp") {
+                "webp"
+            } else {
+                "png" // Default for data URLs
+            }
+        } else if image_response.image_url.contains(".png") {
             "png"
         } else if image_response.image_url.contains(".jpg") || image_response.image_url.contains(".jpeg") {
             "jpeg"
+        } else if image_response.image_url.contains(".webp") {
+            "webp"
         } else {
-            "png"
+            "png" // Default
         };
         
-        // Save image to database
+        println!("[GraphQL Mutation] Determined image format: {}", image_format);
+        
+        // Save image to database FIRST (before returning response)
         let id = Uuid::new_v4();
         let now = chrono::Utc::now();
+        
+        println!("[GraphQL Mutation] Saving image to PostgreSQL (BYTEA)...");
         
         sqlx::query(
             r#"
@@ -662,7 +691,7 @@ impl MutationRoot {
         )
         .bind(id)
         .bind(scene_uuid)
-        .bind(image_bytes)
+        .bind(&image_bytes)
         .bind(image_format)
         .bind(image_type)
         .bind(&prompt)
@@ -670,7 +699,12 @@ impl MutationRoot {
         .bind(now)
         .execute(pool.as_ref())
         .await
-        .map_err(|e| async_graphql::Error::new(format!("Failed to save image: {}", e)))?;
+        .map_err(|e| {
+            println!("[GraphQL Mutation] Failed to save image to database: {}", e);
+            async_graphql::Error::new(format!("Failed to save image to database: {}", e))
+        })?;
+        
+        println!("[GraphQL Mutation] Image saved to PostgreSQL successfully (ID: {})", id);
         
         // Save operation history
         let _ = HistoryService::save_operation(
@@ -683,9 +717,13 @@ impl MutationRoot {
                 "image_type": image_type,
                 "prompt": prompt,
                 "model": model,
+                "image_format": image_format,
+                "image_size_bytes": image_bytes.len(),
             }),
             None,
         ).await;
+        
+        println!("[GraphQL Mutation] Image generation completed successfully");
         
         Ok(GeneratedImage {
             id: ID(id.to_string()),

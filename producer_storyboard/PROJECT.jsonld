@@ -9,7 +9,7 @@
   "url": "https://github.com/ghosthacker/producer_storyboard",
   "version": "0.1.0",
   "createdAt": "2025-12-09T00:00:00Z",
-  "updatedAt": "2025-12-09T15:00:00Z",
+  "updatedAt": "2025-12-09T16:30:00Z",
   "status": "InDevelopment",
   "maintainer": {
     "@type": "Person",
@@ -141,6 +141,69 @@
           "PUBLIC_APP_URL"
         ]
       }
+    },
+    {
+      "@type": "AddAction",
+      "name": "drag-drop-image-upload",
+      "description": "Implement drag-and-drop image upload functionality with BYTEA storage",
+      "startTime": "2025-12-09T15:00:00Z",
+      "endTime": "2025-12-09T15:30:00Z",
+      "status": "Completed"
+    },
+    {
+      "@type": "UpdateAction",
+      "name": "openrouter-image-generation",
+      "description": "Update image generation to use OpenRouter API with Flux 2 Pro model support",
+      "startTime": "2025-12-09T15:30:00Z",
+      "endTime": "2025-12-09T16:00:00Z",
+      "status": "Completed",
+      "result": {
+        "provider": "OpenRouter",
+        "models": {
+          "imageGeneration": "black-forest-labs/flux.2-pro",
+          "fallback": "black-forest-labs/flux.2-flex"
+        },
+        "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+        "modalities": ["image", "text"]
+      }
+    },
+    {
+      "@type": "UpdateAction",
+      "name": "graphql-timeout-handling",
+      "description": "Extend GraphQL request timeouts for image generation (120s) and other requests (30s)",
+      "startTime": "2025-12-09T16:00:00Z",
+      "endTime": "2025-12-09T16:15:00Z",
+      "status": "Completed",
+      "result": {
+        "timeouts": {
+          "imageGeneration": 120000,
+          "default": 30000
+        }
+      }
+    },
+    {
+      "@type": "FixAction",
+      "name": "image-api-base64-handling",
+      "description": "Fix image API endpoint to handle base64 data URL prefixes correctly",
+      "startTime": "2025-12-09T16:15:00Z",
+      "endTime": "2025-12-09T16:20:00Z",
+      "status": "Completed"
+    },
+    {
+      "@type": "AddAction",
+      "name": "image-generation-loading-ui",
+      "description": "Add loading state UI for image generation with overlay and spinner animations",
+      "startTime": "2025-12-09T16:20:00Z",
+      "endTime": "2025-12-09T16:30:00Z",
+      "status": "Completed",
+      "result": {
+        "features": [
+          "Scene-specific loading overlay",
+          "Button loading states with spinner",
+          "Multi-language loading messages",
+          "Visual feedback for generation progress"
+        ]
+      }
     }
   ],
   "capability": [
@@ -170,6 +233,24 @@
     },
     {
       "@type": "Service",
+      "name": "image-upload",
+      "description": "Drag-and-drop image upload with BYTEA storage in PostgreSQL",
+      "status": "Operational"
+    },
+    {
+      "@type": "Service",
+      "name": "request-timeout-management",
+      "description": "Adaptive timeout handling for GraphQL requests (120s for image generation, 30s for others)",
+      "status": "Operational"
+    },
+    {
+      "@type": "Service",
+      "name": "loading-state-ui",
+      "description": "Visual feedback system for image generation progress with scene-specific overlays",
+      "status": "Operational"
+    },
+    {
+      "@type": "Service",
       "name": "multi-language-dialogue",
       "description": "Dialogue management with support for multiple languages (Japanese, English, Hindi) and auto-translation",
       "status": "Operational"
@@ -185,12 +266,22 @@
     "frontend": {
       "framework": "SvelteKit",
       "styling": "Tailwind CSS",
-      "state": "Houdini GraphQL + Svelte 5 Runes"
+      "state": "Houdini GraphQL + Svelte 5 Runes",
+      "features": {
+        "dragDrop": "HTML5 Drag and Drop API",
+        "loadingStates": "Scene-specific loading overlays with spinner animations",
+        "timeoutHandling": "Adaptive timeouts based on request type"
+      }
     },
     "backend": {
       "framework": "Rust (Poem + Async-GraphQL)",
       "database": "PostgreSQL (SQLx)",
-      "ai": "OpenAI API (GPT-4, DALL-E 3), Hume AI (TTS)"
+      "ai": {
+        "imageGeneration": "OpenRouter API (Flux 2 Pro)",
+        "textGeneration": "OpenRouter API (GPT-4)",
+        "voiceSynthesis": "Hume AI (TTS)"
+      },
+      "imageStorage": "PostgreSQL BYTEA"
     },
     "infrastructure": {
       "containerization": "Docker Compose",

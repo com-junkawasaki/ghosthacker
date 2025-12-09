@@ -17,7 +17,7 @@
 	import { ListDialoguesStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/ListDialogues.js';
 	import CharacterManager from '$lib/components/storyboard/CharacterManager.svelte';
 	import DialogueEditor from '$lib/components/storyboard/DialogueEditor.svelte';
-	import VideoPreview from '$lib/components/storyboard/VideoPreview.svelte';
+	import ProjectSidebar from '$lib/components/storyboard/ProjectSidebar.svelte';
 
 	type Scene = {
 		id: string;
@@ -820,13 +820,17 @@
 </script>
 
 <div class="storyboard-editor">
+	<!-- Sidebar -->
+	<ProjectSidebar projectId={projectId} />
+	
+	<!-- Main Content Area -->
+	<div class="main-content">
 	<!-- Header Bar -->
 	<header class="header-bar">
 		<div class="header-left">
-			<div class="logo">S</div>
+			<h1 class="title">Storyboard</h1>
 		</div>
 		<div class="header-center">
-			<h1 class="title">Storyboard</h1>
 		</div>
 		<div class="header-right">
 			<button class="icon-button" aria-label="Undo">
@@ -1313,15 +1317,24 @@
 		</button>
 	</div>
 	{/if}
+	</div>
 </div>
 
 <style>
 	.storyboard-editor {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		height: 100vh;
 		background-color: #1a1a1a;
 		color: #ffffff;
+		overflow: hidden;
+	}
+
+	.main-content {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
 		overflow: hidden;
 	}
 
@@ -1338,20 +1351,9 @@
 	.header-left {
 		display: flex;
 		align-items: center;
+		gap: 1rem;
 	}
 
-	.logo {
-		width: 32px;
-		height: 32px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 1.25rem;
-		font-weight: 600;
-		color: #ffffff;
-		background-color: rgba(255, 255, 255, 0.1);
-		border-radius: 4px;
-	}
 
 	.header-center {
 		flex: 1;
