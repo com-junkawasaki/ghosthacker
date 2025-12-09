@@ -34,8 +34,8 @@ services:
       PORT: 8080
       HOST: 0.0.0.0
       # AI Service Configuration
-      OPENAI_API_KEY: ${OPENAI_API_KEY:-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}
-      HUME_API_KEY: ${HUME_API_KEY:-xWvZpzP8KzNfQqBIadWnjKcy7JWQmBifwW36zVJkX90MxRt2}
+      OPENAI_API_KEY: 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
+      HUME_API_KEY: xWvZpzP8KzNfQqBIadWnjKcy7JWQmBifwW36zVJkX90MxRt2
       HUME_API_URL: ${HUME_API_URL:-https://api.hume.ai}
       # Cargo watch configuration for HMR
       CARGO_WATCH_IGNORE: "target/**"
