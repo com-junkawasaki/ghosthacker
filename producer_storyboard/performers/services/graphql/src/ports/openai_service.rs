@@ -68,11 +68,12 @@ impl OpenAIService {
             }
             
             // Use OpenRouter-supported image generation models
-            // Default to Gemini 2.5 Flash Image if no model specified or DALL-E requested
+            // Default to Flux 2 Pro (paid model) if no model specified or DALL-E requested
+            // Supported paid models: black-forest-labs/flux.2-pro, black-forest-labs/flux.2-flex
             let model = if is_dalle_model || request.model.is_none() {
-                "google/gemini-2.5-flash-image-preview".to_string()
+                "black-forest-labs/flux.2-pro".to_string()
             } else {
-                request.model.clone().unwrap_or_else(|| "google/gemini-2.5-flash-image-preview".to_string())
+                request.model.clone().unwrap_or_else(|| "black-forest-labs/flux.2-pro".to_string())
             };
             
             println!("[OpenAI Service] Using OpenRouter image generation model: {}", model);
