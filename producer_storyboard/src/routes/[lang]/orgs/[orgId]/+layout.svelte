@@ -5,7 +5,7 @@
 	import { useClerkContext } from 'svelte-clerk';
 	import type { LayoutData } from './$types';
 
-	const { data: _data }: { data: LayoutData } = $props();
+	const { data: _data, children }: { data: LayoutData; children: import('svelte').Snippet } = $props();
 	// data is available through $page.data, but we keep it for type safety
 
 	const clerk = useClerkContext();
@@ -79,4 +79,4 @@
 	});
 </script>
 
-<slot />
+{@render children()}

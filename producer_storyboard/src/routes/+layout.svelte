@@ -9,12 +9,12 @@
 		console.log('[Layout] Houdini client will be auto-initialized');
 	}
 
-	const { data }: { data: LayoutData } = $props();
+	const { data, children }: { data: LayoutData; children: import('svelte').Snippet } = $props();
 </script>
 
 <ClerkProvider publishableKey={data.clerkPublishableKey}>
 	<div class="app-layout">
-		<slot />
+		{@render children()}
 	</div>
 </ClerkProvider>
 
