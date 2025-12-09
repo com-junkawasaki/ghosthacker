@@ -3,13 +3,14 @@
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { getAuth, getOrganization } from 'svelte-clerk';
+	import { useClerkContext } from 'svelte-clerk';
 	import type { PageData } from './$types';
 
 	const { data }: { data: PageData } = $props();
 
-	const auth = getAuth();
-	const org = getOrganization();
+	const clerk = useClerkContext();
+	const auth = $derived(clerk?.auth);
+	const org = $derived(clerk?.organization);
 
 	const { lang } = $page.params;
 	const DEFAULT_LANG = 'ja';

@@ -3,9 +3,14 @@
  * Uses @clerk/backend to verify sessions and organization access
  */
 import { createClerkClient, verifyToken } from '@clerk/backend';
-// clerkClient is used in getUserOrganizations
-import { CLERK_SECRET_KEY } from '$env/static/private';
 import type { Cookies, RequestEvent } from '@sveltejs/kit';
+
+// Use process.env for server-side access to environment variables
+const CLERK_SECRET_KEY = process.env.CLERK_SECRET_KEY || '';
+
+if (!CLERK_SECRET_KEY) {
+	console.warn('[Clerk] CLERK_SECRET_KEY is not set. Clerk authentication will not work.');
+}
 
 const clerkClient = createClerkClient({ secretKey: CLERK_SECRET_KEY });
 

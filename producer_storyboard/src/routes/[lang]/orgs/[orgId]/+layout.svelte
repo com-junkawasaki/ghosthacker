@@ -2,15 +2,15 @@
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	// @ts-expect-error - svelte-clerk types may not be available
-	import { getAuth, getOrganization } from 'svelte-clerk';
+	import { useClerkContext } from 'svelte-clerk';
 	import type { LayoutData } from './$types';
 
 	const { data: _data }: { data: LayoutData } = $props();
 	// data is available through $page.data, but we keep it for type safety
 
-	const auth = getAuth();
-	const org = getOrganization();
+	const clerk = useClerkContext();
+	const auth = $derived(clerk?.auth);
+	const org = $derived(clerk?.organization);
 
 	// Default language
 	const DEFAULT_LANG = 'ja';
