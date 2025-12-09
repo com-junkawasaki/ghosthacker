@@ -5,6 +5,7 @@
 	import { UpdateCharacterStore } from '../../../../.houdini/plugins/houdini-svelte/stores/UpdateCharacter.js';
 	import { DeleteCharacterStore } from '../../../../.houdini/plugins/houdini-svelte/stores/DeleteCharacter.js';
 	import CharacterForm from './CharacterForm.svelte';
+	import CharacterAssetManager from './CharacterAssetManager.svelte';
 
 	type Props = {
 		projectId: string;
@@ -18,6 +19,10 @@
 		projectId: string;
 		name: string;
 		description: string | null;
+		personality: string | null;
+		background: string | null;
+		defaultHumeVoiceId: string | null;
+		profileImageId: string | null;
 		createdAt: string;
 		updatedAt: string;
 	};
@@ -27,6 +32,7 @@
 	let error = $state<string | null>(null);
 	let editingCharacter: Character | null = $state(null);
 	let showForm = $state(false);
+	let selectedCharacterId = $state<string | null>(null);
 
 	let listCharactersStore: ListCharactersStore | null = null;
 	let createCharacterStore: CreateCharacterStore | null = null;
@@ -58,7 +64,14 @@
 		}
 	}
 
-	async function createCharacter(name: string, description: string | null) {
+	async function createCharacter(
+		name: string,
+		description: string | null,
+		personality: string | null,
+		background: string | null,
+		defaultHumeVoiceId: string | null,
+		profileImageId: string | null
+	) {
 		if (!browser || !createCharacterStore || !projectId) return;
 
 		try {
@@ -67,6 +80,10 @@
 					projectId,
 					name,
 					description: description || null,
+					personality: personality || null,
+					background: background || null,
+					defaultHumeVoiceId: defaultHumeVoiceId || null,
+					profileImageId: profileImageId || null,
 				},
 			});
 
@@ -82,7 +99,15 @@
 		}
 	}
 
-	async function updateCharacter(id: string, name: string, description: string | null) {
+	async function updateCharacter(
+		id: string,
+		name: string,
+		description: string | null,
+		personality: string | null,
+		background: string | null,
+		defaultHumeVoiceId: string | null,
+		profileImageId: string | null
+	) {
 		if (!browser || !updateCharacterStore) return;
 
 		try {
@@ -91,6 +116,10 @@
 					id,
 					name,
 					description: description || null,
+					personality: personality || null,
+					background: background || null,
+					defaultHumeVoiceId: defaultHumeVoiceId || null,
+					profileImageId: profileImageId || null,
 				},
 			});
 
@@ -163,11 +192,11 @@
 			{#if showForm}
 				<CharacterForm
 					character={editingCharacter}
-					onSave={(name, description) => {
+					onSave={(name, description, personality, background, defaultHumeVoiceId, profileImageId) => {
 						if (editingCharacter) {
-							updateCharacter(editingCharacter.id, name, description);
+							updateCharacter(editingCharacter.id, name, description, personality, background, defaultHumeVoiceId, profileImageId);
 						} else {
-							createCharacter(name, description);
+							createCharacter(name, description, personality, background, defaultHumeVoiceId, profileImageId);
 						}
 					}}
 					onCancel={() => {
@@ -184,10 +213,29 @@
 					{#each characters as character (character.id)}
 						<div class="character-item">
 							<div class="character-info">
-								<h3>{character.name}</h3>
-								{#if character.description}
-									<p>{character.description}</p>
+								{#if character.profileImageId}
+									<img
+										src={`/api/character-assets/${character.profileImageId}`}
+										alt={character.name}
+										class="character-avatar"
+									/>
+								{:else}
+									<div class="character-avatar-placeholder">
+										{character.name.charAt(0).toUpperCase()}
+									</div>
 								{/if}
+								<div class="character-details">
+									<h3>{character.name}</h3>
+									{#if character.description}
+										<p class="character-description">{character.description}</p>
+									{/if}
+									{#if character.personality}
+										<p class="character-meta"><strong>Personality:</strong> {character.personality}</p>
+									{/if}
+									{#if character.background}
+										<p class="character-meta"><strong>Background:</strong> {character.background}</p>
+									{/if}
+								</div>
 							</div>
 							<div class="character-actions">
 								<button
@@ -196,9 +244,21 @@
 									onclick={() => {
 										editingCharacter = character;
 										showForm = true;
+										selectedCharacterId = null;
 									}}
 								>
 									Edit
+								</button>
+								<button
+									type="button"
+									class="assets-button"
+									onclick={() => {
+										selectedCharacterId = selectedCharacterId === character.id ? null : character.id;
+										editingCharacter = null;
+										showForm = false;
+									}}
+								>
+									Assets
 								</button>
 								<button
 									type="button"
@@ -209,6 +269,16 @@
 								</button>
 							</div>
 						</div>
+						{#if selectedCharacterId === character.id}
+							<div class="character-assets-section">
+								<CharacterAssetManager
+									characterId={character.id}
+									onAssetChange={() => {
+										loadCharacters();
+									}}
+								/>
+							</div>
+						{/if}
 					{/each}
 				</div>
 			{/if}
@@ -301,28 +371,73 @@
 		background: rgba(255, 255, 255, 0.05);
 		padding: 1rem;
 		border-radius: 0.25rem;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		margin-bottom: 0.75rem;
 	}
 
-	.character-info h3 {
+	.character-info {
+		display: flex;
+		gap: 1rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.character-avatar,
+	.character-avatar-placeholder {
+		width: 60px;
+		height: 60px;
+		border-radius: 0.25rem;
+		object-fit: cover;
+		flex-shrink: 0;
+	}
+
+	.character-avatar-placeholder {
+		background: rgba(59, 130, 246, 0.3);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		font-size: 1.5rem;
+		font-weight: bold;
+	}
+
+	.character-details {
+		flex: 1;
+	}
+
+	.character-details h3 {
 		margin: 0 0 0.5rem 0;
 		color: white;
 	}
 
-	.character-info p {
-		margin: 0;
+	.character-description {
+		margin: 0 0 0.5rem 0;
 		color: rgba(255, 255, 255, 0.7);
 		font-size: 0.875rem;
+	}
+
+	.character-meta {
+		margin: 0.25rem 0;
+		color: rgba(255, 255, 255, 0.6);
+		font-size: 0.75rem;
+	}
+
+	.character-meta strong {
+		color: rgba(255, 255, 255, 0.8);
+	}
+
+	.character-assets-section {
+		margin-top: 0.75rem;
+		padding-top: 0.75rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
 	.character-actions {
 		display: flex;
 		gap: 0.5rem;
+		justify-content: flex-end;
 	}
 
 	.edit-button,
+	.assets-button,
 	.delete-button {
 		background: rgba(255, 255, 255, 0.1);
 		color: white;
@@ -333,8 +448,18 @@
 		font-size: 0.875rem;
 	}
 
-	.edit-button:hover {
+	.edit-button:hover,
+	.assets-button:hover {
 		background: rgba(255, 255, 255, 0.2);
+	}
+
+	.assets-button {
+		background: rgba(59, 130, 246, 0.2);
+		border-color: rgba(59, 130, 246, 0.4);
+	}
+
+	.assets-button:hover {
+		background: rgba(59, 130, 246, 0.3);
 	}
 
 	.delete-button:hover {

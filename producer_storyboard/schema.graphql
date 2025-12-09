@@ -72,6 +72,20 @@ type Character {
 	projectId: ID!
 	name: String!
 	description: String
+	personality: String
+	background: String
+	defaultHumeVoiceId: String
+	profileImageId: ID
+	assets: [CharacterAsset!]!
+	createdAt: String!
+	updatedAt: String!
+}
+
+type CharacterAsset {
+	id: ID!
+	characterId: ID!
+	assetType: String!
+	assetFormat: String
 	createdAt: String!
 	updatedAt: String!
 }
@@ -105,6 +119,8 @@ type Query {
 	dialogues(sceneId: ID!): [Dialogue!]!
 	humeVoices: [HumeVoice!]!
 	audioData(dialogueId: ID!): String!
+	characterAssets(characterId: ID!): [CharacterAsset!]!
+	characterAssetData(assetId: ID!): String!
 }
 
 input CreateProjectInput {
@@ -159,12 +175,27 @@ input CreateCharacterInput {
 	projectId: ID!
 	name: String!
 	description: String
+	personality: String
+	background: String
+	defaultHumeVoiceId: String
+	profileImageId: ID
 }
 
 input UpdateCharacterInput {
 	id: ID!
 	name: String
 	description: String
+	personality: String
+	background: String
+	defaultHumeVoiceId: String
+	profileImageId: ID
+}
+
+input UploadCharacterAssetInput {
+	characterId: ID!
+	assetData: String!
+	assetType: String!
+	assetFormat: String
 }
 
 input CreateDialogueInput {
@@ -213,6 +244,8 @@ type Mutation {
 	createCharacter(input: CreateCharacterInput!): Character!
 	updateCharacter(input: UpdateCharacterInput!): Character!
 	deleteCharacter(id: ID!): Boolean!
+	uploadCharacterAsset(input: UploadCharacterAssetInput!): CharacterAsset!
+	deleteCharacterAsset(assetId: ID!): Boolean!
 	createDialogue(input: CreateDialogueInput!): Dialogue!
 	updateDialogue(input: UpdateDialogueInput!): Dialogue!
 	deleteDialogue(id: ID!): Boolean!

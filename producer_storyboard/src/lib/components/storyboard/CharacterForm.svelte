@@ -1,11 +1,26 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
+	import { ListHumeVoicesStore } from '../../../../.houdini/plugins/houdini-svelte/stores/ListHumeVoices.js';
+	import { ListCharacterAssetsStore } from '../../../../.houdini/plugins/houdini-svelte/stores/ListCharacterAssets.js';
+
 	type Props = {
 		character: {
 			id: string;
 			name: string;
 			description: string | null;
+			personality: string | null;
+			background: string | null;
+			defaultHumeVoiceId: string | null;
+			profileImageId: string | null;
 		} | null;
-		onSave: (name: string, description: string | null) => void;
+		onSave: (
+			name: string,
+			description: string | null,
+			personality: string | null,
+			background: string | null,
+			defaultHumeVoiceId: string | null,
+			profileImageId: string | null
+		) => void;
 		onCancel: () => void;
 	};
 
@@ -13,13 +28,91 @@
 
 	let name = $state(character?.name || '');
 	let description = $state(character?.description || '');
+	let personality = $state(character?.personality || '');
+	let background = $state(character?.background || '');
+	let defaultHumeVoiceId = $state(character?.defaultHumeVoiceId || '');
+	let profileImageId = $state(character?.profileImageId || '');
+
+	type HumeVoice = {
+		id: string;
+		name: string;
+		description: string | null;
+		language: string | null;
+	};
+
+	type CharacterAsset = {
+		id: string;
+		assetType: string;
+		assetFormat: string | null;
+	};
+
+	let humeVoices = $state<HumeVoice[]>([]);
+	let characterAssets = $state<CharacterAsset[]>([]);
+	let loadingVoices = $state(false);
+	let loadingAssets = $state(false);
+
+	let listHumeVoicesStore: ListHumeVoicesStore | null = null;
+	let listCharacterAssetsStore: ListCharacterAssetsStore | null = null;
+
+	if (browser) {
+		listHumeVoicesStore = new ListHumeVoicesStore();
+		listCharacterAssetsStore = new ListCharacterAssetsStore();
+	}
+
+	async function loadHumeVoices() {
+		if (!browser || !listHumeVoicesStore) return;
+
+		try {
+			loadingVoices = true;
+			const result = await listHumeVoicesStore.fetch();
+			if (result?.data?.humeVoices) {
+				humeVoices = result.data.humeVoices as HumeVoice[];
+			}
+		} catch (err) {
+			console.error('[CharacterForm] Error loading Hume voices:', err);
+		} finally {
+			loadingVoices = false;
+		}
+	}
+
+	async function loadCharacterAssets() {
+		if (!browser || !listCharacterAssetsStore || !character?.id) return;
+
+		try {
+			loadingAssets = true;
+			const result = await listCharacterAssetsStore.fetch({ variables: { characterId: character.id } });
+			if (result?.data?.characterAssets) {
+				characterAssets = result.data.characterAssets.filter((asset: CharacterAsset) => asset.assetType === 'image') as CharacterAsset[];
+			}
+		} catch (err) {
+			console.error('[CharacterForm] Error loading character assets:', err);
+		} finally {
+			loadingAssets = false;
+		}
+	}
+
+	$effect(() => {
+		if (browser) {
+			loadHumeVoices();
+			if (character?.id) {
+				loadCharacterAssets();
+			}
+		}
+	});
 
 	function handleSubmit() {
 		if (!name.trim()) {
 			alert('Character name is required');
 			return;
 		}
-		onSave(name.trim(), description.trim() || null);
+		onSave(
+			name.trim(),
+			description.trim() || null,
+			personality.trim() || null,
+			background.trim() || null,
+			defaultHumeVoiceId || null,
+			profileImageId || null
+		);
 	}
 </script>
 
@@ -44,6 +137,56 @@
 			rows="3"
 		></textarea>
 	</div>
+	<div class="form-group">
+		<label for="character-personality">Personality</label>
+		<textarea
+			id="character-personality"
+			bind:value={personality}
+			placeholder="Character personality traits"
+			rows="3"
+		></textarea>
+	</div>
+	<div class="form-group">
+		<label for="character-background">Background</label>
+		<textarea
+			id="character-background"
+			bind:value={background}
+			placeholder="Character background story"
+			rows="4"
+		></textarea>
+	</div>
+	<div class="form-group">
+		<label for="character-hume-voice">Default Hume Voice</label>
+		{#if loadingVoices}
+			<select id="character-hume-voice" disabled>
+				<option>Loading voices...</option>
+			</select>
+		{:else}
+			<select id="character-hume-voice" bind:value={defaultHumeVoiceId}>
+				<option value="">None</option>
+				{#each humeVoices as voice}
+					<option value={voice.id}>{voice.name} {voice.language ? `(${voice.language})` : ''}</option>
+				{/each}
+			</select>
+		{/if}
+	</div>
+	{#if character?.id}
+		<div class="form-group">
+			<label for="character-profile-image">Profile Image</label>
+			{#if loadingAssets}
+				<select id="character-profile-image" disabled>
+					<option>Loading images...</option>
+				</select>
+			{:else}
+				<select id="character-profile-image" bind:value={profileImageId}>
+					<option value="">None</option>
+					{#each characterAssets as asset}
+						<option value={asset.id}>Image ({asset.assetFormat || 'unknown'})</option>
+					{/each}
+				</select>
+			{/if}
+		</div>
+	{/if}
 	<div class="form-actions">
 		<button type="button" class="save-button" onclick={handleSubmit}>
 			Save
@@ -79,7 +222,8 @@
 	}
 
 	.form-group input,
-	.form-group textarea {
+	.form-group textarea,
+	.form-group select {
 		width: 100%;
 		background: rgba(0, 0, 0, 0.3);
 		border: 1px solid rgba(255, 255, 255, 0.2);
@@ -90,9 +234,15 @@
 	}
 
 	.form-group input:focus,
-	.form-group textarea:focus {
+	.form-group textarea:focus,
+	.form-group select:focus {
 		outline: none;
 		border-color: #3b82f6;
+	}
+
+	.form-group select option {
+		background: #1a1a1a;
+		color: white;
 	}
 
 	.form-actions {

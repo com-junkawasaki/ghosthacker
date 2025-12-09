@@ -11,7 +11,7 @@ use crate::ports::openai_service::{OpenAIService, ImageGenerationRequest};
 use crate::ports::history::{HistoryService, OperationType};
 use crate::ports::hume_service::HumeService;
 use crate::ports::translation_service::TranslationService;
-use crate::schema::storyboard::{Project, Storyboard, VideoStatus, Scene, GeneratedImage, Character, Dialogue};
+use crate::schema::storyboard::{Project, Storyboard, VideoStatus, Scene, GeneratedImage, Character, Dialogue, CharacterAsset};
 use uuid::Uuid;
 use serde_json::json;
 use sqlx::Row;
@@ -98,6 +98,12 @@ pub struct CreateCharacterInput {
     pub project_id: ID,
     pub name: String,
     pub description: Option<String>,
+    pub personality: Option<String>,
+    pub background: Option<String>,
+    #[graphql(name = "defaultHumeVoiceId")]
+    pub default_hume_voice_id: Option<String>,
+    #[graphql(name = "profileImageId")]
+    pub profile_image_id: Option<ID>,
 }
 
 #[derive(InputObject)]
@@ -105,6 +111,24 @@ pub struct UpdateCharacterInput {
     pub id: ID,
     pub name: Option<String>,
     pub description: Option<String>,
+    pub personality: Option<String>,
+    pub background: Option<String>,
+    #[graphql(name = "defaultHumeVoiceId")]
+    pub default_hume_voice_id: Option<String>,
+    #[graphql(name = "profileImageId")]
+    pub profile_image_id: Option<ID>,
+}
+
+#[derive(InputObject)]
+pub struct UploadCharacterAssetInput {
+    #[graphql(name = "characterId")]
+    pub character_id: ID,
+    #[graphql(name = "assetData")]
+    pub asset_data: String, // Base64 encoded asset data
+    #[graphql(name = "assetType")]
+    pub asset_type: String, // 'image' or 'audio'
+    #[graphql(name = "assetFormat")]
+    pub asset_format: Option<String>, // 'png', 'jpeg', 'webp', 'mp3', 'wav', etc.
 }
 
 #[derive(InputObject)]
@@ -927,19 +951,26 @@ impl MutationRoot {
         let project_uuid = Uuid::parse_str(&input.project_id.0)
             .map_err(|e| async_graphql::Error::new(format!("Invalid project ID: {}", e)))?;
         
+        let profile_image_uuid = input.profile_image_id.as_ref()
+            .and_then(|id| Uuid::parse_str(&id.0).ok());
+        
         let id = Uuid::new_v4();
         let now = chrono::Utc::now();
         
         sqlx::query(
             r#"
-            INSERT INTO characters (id, project_id, name, description, created_at, updated_at)
-            VALUES ($1, $2, $3, $4, $5, $5)
+            INSERT INTO characters (id, project_id, name, description, personality, background, default_hume_voice_id, profile_image_id, created_at, updated_at)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $9)
             "#,
         )
         .bind(id)
         .bind(project_uuid)
         .bind(&input.name)
         .bind(&input.description)
+        .bind(&input.personality)
+        .bind(&input.background)
+        .bind(&input.default_hume_voice_id)
+        .bind(profile_image_uuid)
         .bind(now)
         .execute(pool.as_ref())
         .await
@@ -955,6 +986,9 @@ impl MutationRoot {
                 "project_id": input.project_id.0,
                 "name": input.name,
                 "description": input.description,
+                "personality": input.personality,
+                "background": input.background,
+                "default_hume_voice_id": input.default_hume_voice_id,
             }),
             None,
         ).await;
@@ -964,6 +998,11 @@ impl MutationRoot {
             project_id: input.project_id,
             name: input.name,
             description: input.description,
+            personality: input.personality,
+            background: input.background,
+            default_hume_voice_id: input.default_hume_voice_id,
+            profile_image_id: input.profile_image_id,
+            assets: vec![],
             created_at: now.to_rfc3339(),
             updated_at: now.to_rfc3339(),
         })
@@ -975,6 +1014,9 @@ impl MutationRoot {
         
         let character_uuid = Uuid::parse_str(&input.id.0)
             .map_err(|e| async_graphql::Error::new(format!("Invalid character ID: {}", e)))?;
+        
+        let profile_image_uuid = input.profile_image_id.as_ref()
+            .and_then(|id| Uuid::parse_str(&id.0).ok());
         
         // Update fields individually
         if let Some(ref name) = input.name {
@@ -1007,14 +1049,75 @@ impl MutationRoot {
             .map_err(|e| async_graphql::Error::new(format!("Failed to update character description: {}", e)))?;
         }
         
-        if input.name.is_none() && input.description.is_none() {
+        if let Some(ref personality) = input.personality {
+            sqlx::query(
+                r#"
+                UPDATE characters
+                SET personality = $1, updated_at = NOW()
+                WHERE id = $2
+                "#,
+            )
+            .bind(personality)
+            .bind(character_uuid)
+            .execute(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to update character personality: {}", e)))?;
+        }
+        
+        if let Some(ref background) = input.background {
+            sqlx::query(
+                r#"
+                UPDATE characters
+                SET background = $1, updated_at = NOW()
+                WHERE id = $2
+                "#,
+            )
+            .bind(background)
+            .bind(character_uuid)
+            .execute(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to update character background: {}", e)))?;
+        }
+        
+        if let Some(ref default_hume_voice_id) = input.default_hume_voice_id {
+            sqlx::query(
+                r#"
+                UPDATE characters
+                SET default_hume_voice_id = $1, updated_at = NOW()
+                WHERE id = $2
+                "#,
+            )
+            .bind(default_hume_voice_id)
+            .bind(character_uuid)
+            .execute(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to update character default_hume_voice_id: {}", e)))?;
+        }
+        
+        if input.profile_image_id.is_some() {
+            sqlx::query(
+                r#"
+                UPDATE characters
+                SET profile_image_id = $1, updated_at = NOW()
+                WHERE id = $2
+                "#,
+            )
+            .bind(profile_image_uuid)
+            .bind(character_uuid)
+            .execute(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to update character profile_image_id: {}", e)))?;
+        }
+        
+        if input.name.is_none() && input.description.is_none() && input.personality.is_none() 
+            && input.background.is_none() && input.default_hume_voice_id.is_none() && input.profile_image_id.is_none() {
             return Err(async_graphql::Error::new("No fields to update"));
         }
         
         // Fetch updated character
         let row = sqlx::query(
             r#"
-            SELECT id, project_id, name, description, created_at, updated_at
+            SELECT id, project_id, name, description, personality, background, default_hume_voice_id, profile_image_id, created_at, updated_at
             FROM characters
             WHERE id = $1
             "#,
@@ -1025,12 +1128,18 @@ impl MutationRoot {
         .map_err(|e| async_graphql::Error::new(format!("Failed to fetch updated character: {}", e)))?;
         
         let project_id: Uuid = row.get("project_id");
+        let profile_image_id: Option<Uuid> = row.get("profile_image_id");
         
         Ok(Character {
             id: input.id,
             project_id: ID(project_id.to_string()),
             name: row.get("name"),
             description: row.get("description"),
+            personality: row.get("personality"),
+            background: row.get("background"),
+            default_hume_voice_id: row.get("default_hume_voice_id"),
+            profile_image_id: profile_image_id.map(|id| ID(id.to_string())),
+            assets: vec![],
             created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
             updated_at: row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
         })
@@ -1071,6 +1180,144 @@ impl MutationRoot {
                 OperationType::Delete,
                 json!({
                     "character_id": id.0,
+                }),
+                None,
+            ).await;
+            
+            Ok(true)
+        } else {
+            Ok(false)
+        }
+    }
+
+    /// Upload a character asset (image or audio)
+    async fn upload_character_asset(&self, ctx: &Context<'_>, input: UploadCharacterAssetInput) -> Result<CharacterAsset> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let character_uuid = Uuid::parse_str(&input.character_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid character ID: {}", e)))?;
+        
+        // Validate asset type
+        if input.asset_type != "image" && input.asset_type != "audio" {
+            return Err(async_graphql::Error::new("assetType must be 'image' or 'audio'"));
+        }
+        
+        // Decode base64 data
+        let asset_bytes = if input.asset_data.starts_with("data:") {
+            // Handle data URL format (data:image/png;base64,...)
+            let parts: Vec<&str> = input.asset_data.splitn(2, ',').collect();
+            if parts.len() < 2 {
+                return Err(async_graphql::Error::new("Invalid base64 data URL format"));
+            }
+            general_purpose::STANDARD.decode(parts[1])
+                .map_err(|e| async_graphql::Error::new(format!("Failed to decode base64 data: {}", e)))?
+        } else {
+            // Handle plain base64 string
+            general_purpose::STANDARD.decode(&input.asset_data)
+                .map_err(|e| async_graphql::Error::new(format!("Failed to decode base64 data: {}", e)))?
+        };
+        
+        // Detect asset format from MIME type or use provided format
+        let asset_format = if let Some(format) = input.asset_format {
+            format
+        } else if input.asset_data.starts_with("data:") {
+            let mime_part = input.asset_data.splitn(2, ',').next().unwrap_or("");
+            if mime_part.contains("image/png") {
+                "png".to_string()
+            } else if mime_part.contains("image/jpeg") || mime_part.contains("image/jpg") {
+                "jpeg".to_string()
+            } else if mime_part.contains("image/webp") {
+                "webp".to_string()
+            } else if mime_part.contains("audio/mpeg") || mime_part.contains("audio/mp3") {
+                "mp3".to_string()
+            } else if mime_part.contains("audio/wav") || mime_part.contains("audio/wave") {
+                "wav".to_string()
+            } else {
+                "unknown".to_string()
+            }
+        } else {
+            "unknown".to_string()
+        };
+        
+        let id = Uuid::new_v4();
+        let now = chrono::Utc::now();
+        
+        // Insert asset into database
+        sqlx::query(
+            r#"
+            INSERT INTO character_assets (id, character_id, asset_type, asset_data, asset_format, created_at, updated_at)
+            VALUES ($1, $2, $3, $4, $5, $6, $6)
+            "#,
+        )
+        .bind(id)
+        .bind(character_uuid)
+        .bind(&input.asset_type)
+        .bind(asset_bytes)
+        .bind(&asset_format)
+        .bind(now)
+        .execute(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to save character asset: {}", e)))?;
+        
+        // Save operation history
+        let _ = HistoryService::save_operation(
+            pool,
+            "character_asset",
+            id,
+            OperationType::Create,
+            json!({
+                "character_id": input.character_id.0,
+                "asset_type": input.asset_type,
+                "asset_format": asset_format,
+            }),
+            None,
+        ).await;
+        
+        Ok(CharacterAsset {
+            id: ID(id.to_string()),
+            character_id: input.character_id,
+            asset_type: input.asset_type,
+            asset_format: Some(asset_format),
+            created_at: now.to_rfc3339(),
+            updated_at: now.to_rfc3339(),
+        })
+    }
+
+    /// Delete a character asset
+    async fn delete_character_asset(&self, ctx: &Context<'_>, asset_id: ID) -> Result<bool> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let asset_uuid = Uuid::parse_str(&asset_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid asset ID: {}", e)))?;
+        
+        // Get asset data for history before deletion
+        let asset_row = sqlx::query(
+            r#"
+            SELECT character_id, asset_type
+            FROM character_assets
+            WHERE id = $1
+            "#,
+        )
+        .bind(asset_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch character asset: {}", e)))?;
+        
+        if let Some(_row) = asset_row {
+            sqlx::query("DELETE FROM character_assets WHERE id = $1")
+                .bind(asset_uuid)
+                .execute(pool.as_ref())
+                .await
+                .map_err(|e| async_graphql::Error::new(format!("Failed to delete character asset: {}", e)))?;
+            
+            // Save operation history
+            let _ = HistoryService::save_operation(
+                pool,
+                "character_asset",
+                asset_uuid,
+                OperationType::Delete,
+                json!({
+                    "asset_id": asset_id.0,
                 }),
                 None,
             ).await;

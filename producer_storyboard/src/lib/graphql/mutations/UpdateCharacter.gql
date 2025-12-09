@@ -4,6 +4,18 @@ mutation UpdateCharacter($input: UpdateCharacterInput!) {
 		projectId
 		name
 		description
+		personality
+		background
+		defaultHumeVoiceId
+		profileImageId
+		assets {
+			id
+			characterId
+			assetType
+			assetFormat
+			createdAt
+			updatedAt
+		}
 		createdAt
 		updatedAt
 	}

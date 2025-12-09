@@ -1,0 +1,11 @@
+mutation UploadCharacterAsset($input: UploadCharacterAssetInput!) {
+	uploadCharacterAsset(input: $input) {
+		id
+		characterId
+		assetType
+		assetFormat
+		createdAt
+		updatedAt
+	}
+}
+

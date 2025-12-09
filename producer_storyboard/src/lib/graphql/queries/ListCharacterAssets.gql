@@ -1,0 +1,11 @@
+query ListCharacterAssets($characterId: ID!) {
+	characterAssets(characterId: $characterId) {
+		id
+		characterId
+		assetType
+		assetFormat
+		createdAt
+		updatedAt
+	}
+}
+

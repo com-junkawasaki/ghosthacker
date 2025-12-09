@@ -5,7 +5,10 @@
  * 
  * GraphQL schema types for Storyboard Editor
  */
-use async_graphql::{SimpleObject, ID};
+use async_graphql::{SimpleObject, ComplexObject, Context, ID, Result};
+use crate::ports::postgres::PostgresPool;
+use uuid::Uuid;
+use sqlx::Row;
 
 #[derive(SimpleObject, Clone)]
 pub struct Project {
@@ -113,12 +116,72 @@ pub struct OperationHistory {
 }
 
 #[derive(SimpleObject, Clone)]
+#[graphql(complex)]
 pub struct Character {
     pub id: ID,
     #[graphql(name = "projectId")]
     pub project_id: ID,
     pub name: String,
     pub description: Option<String>,
+    pub personality: Option<String>,
+    pub background: Option<String>,
+    #[graphql(name = "defaultHumeVoiceId")]
+    pub default_hume_voice_id: Option<String>,
+    #[graphql(name = "profileImageId")]
+    pub profile_image_id: Option<ID>,
+    #[graphql(name = "createdAt")]
+    pub created_at: String,
+    #[graphql(name = "updatedAt")]
+    pub updated_at: String,
+}
+
+#[ComplexObject]
+impl Character {
+    /// Get assets for this character
+    async fn assets(&self, ctx: &Context<'_>) -> Result<Vec<CharacterAsset>> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let character_uuid = Uuid::parse_str(&self.id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid character ID: {}", e)))?;
+        
+        let rows = sqlx::query(
+            r#"
+            SELECT id, character_id, asset_type, asset_format, created_at, updated_at
+            FROM character_assets
+            WHERE character_id = $1
+            ORDER BY created_at DESC
+            "#,
+        )
+        .bind(character_uuid)
+        .fetch_all(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch character assets: {}", e)))?;
+        
+        Ok(rows.into_iter().map(|row| {
+            let id: Uuid = row.get("id");
+            let character_id: Uuid = row.get("character_id");
+            
+            CharacterAsset {
+                id: ID(id.to_string()),
+                character_id: ID(character_id.to_string()),
+                asset_type: row.get("asset_type"),
+                asset_format: row.get("asset_format"),
+                created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
+                updated_at: row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
+            }
+        }).collect())
+    }
+}
+
+#[derive(SimpleObject, Clone)]
+pub struct CharacterAsset {
+    pub id: ID,
+    #[graphql(name = "characterId")]
+    pub character_id: ID,
+    #[graphql(name = "assetType")]
+    pub asset_type: String,
+    #[graphql(name = "assetFormat")]
+    pub asset_format: Option<String>,
     #[graphql(name = "createdAt")]
     pub created_at: String,
     #[graphql(name = "updatedAt")]

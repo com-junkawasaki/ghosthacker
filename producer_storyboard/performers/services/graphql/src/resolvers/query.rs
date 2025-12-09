@@ -7,7 +7,7 @@
  */
 use async_graphql::{Context, Object, ID, Result};
 use crate::ports::postgres::PostgresPool;
-use crate::schema::storyboard::{Project, Storyboard, Scene, VideoStatus, GeneratedImage, OperationHistory, Character, Dialogue, HumeVoice};
+use crate::schema::storyboard::{Project, Storyboard, Scene, VideoStatus, GeneratedImage, OperationHistory, Character, Dialogue, HumeVoice, CharacterAsset};
 use crate::ports::hume_service::HumeService;
 use uuid::Uuid;
 use sqlx::Row;
@@ -283,7 +283,7 @@ impl QueryRoot {
         
         let rows = sqlx::query(
             r#"
-            SELECT id, project_id, name, description, created_at, updated_at
+            SELECT id, project_id, name, description, personality, background, default_hume_voice_id, profile_image_id, created_at, updated_at
             FROM characters
             WHERE project_id = $1
             ORDER BY created_at ASC
@@ -297,12 +297,18 @@ impl QueryRoot {
         Ok(rows.into_iter().map(|row| {
             let id: Uuid = row.get("id");
             let project_id: Uuid = row.get("project_id");
+            let profile_image_id: Option<Uuid> = row.get("profile_image_id");
             
             Character {
                 id: ID(id.to_string()),
                 project_id: ID(project_id.to_string()),
                 name: row.get("name"),
                 description: row.get("description"),
+                personality: row.get("personality"),
+                background: row.get("background"),
+                default_hume_voice_id: row.get("default_hume_voice_id"),
+                profile_image_id: profile_image_id.map(|id| ID(id.to_string())),
+                assets: vec![], // Will be populated by resolver if needed
                 created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
                 updated_at: row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
             }
@@ -401,6 +407,69 @@ impl QueryRoot {
         let audio_bytes: Vec<u8> = row.get("audio_data");
         use base64::Engine;
         let base64_data = base64::engine::general_purpose::STANDARD.encode(&audio_bytes);
+        
+        Ok(base64_data)
+    }
+
+    /// List character assets for a character
+    async fn character_assets(&self, ctx: &Context<'_>, character_id: ID) -> Result<Vec<CharacterAsset>> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let character_uuid = Uuid::parse_str(&character_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid character ID: {}", e)))?;
+        
+        let rows = sqlx::query(
+            r#"
+            SELECT id, character_id, asset_type, asset_format, created_at, updated_at
+            FROM character_assets
+            WHERE character_id = $1
+            ORDER BY created_at DESC
+            "#,
+        )
+        .bind(character_uuid)
+        .fetch_all(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch character assets: {}", e)))?;
+        
+        Ok(rows.into_iter().map(|row| {
+            let id: Uuid = row.get("id");
+            let character_id: Uuid = row.get("character_id");
+            
+            CharacterAsset {
+                id: ID(id.to_string()),
+                character_id: ID(character_id.to_string()),
+                asset_type: row.get("asset_type"),
+                asset_format: row.get("asset_format"),
+                created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
+                updated_at: row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
+            }
+        }).collect())
+    }
+
+    /// Get character asset data as base64 string
+    async fn character_asset_data(&self, ctx: &Context<'_>, asset_id: ID) -> Result<String> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let asset_uuid = Uuid::parse_str(&asset_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid asset ID: {}", e)))?;
+        
+        let row = sqlx::query(
+            r#"
+            SELECT asset_data
+            FROM character_assets
+            WHERE id = $1
+            "#,
+        )
+        .bind(asset_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch character asset: {}", e)))?;
+        
+        let row = row.ok_or_else(|| async_graphql::Error::new("Character asset not found"))?;
+        
+        let asset_bytes: Vec<u8> = row.get("asset_data");
+        use base64::Engine;
+        let base64_data = base64::engine::general_purpose::STANDARD.encode(&asset_bytes);
         
         Ok(base64_data)
     }
