@@ -3,6 +3,7 @@
  export { default as CreateDialogue} from './CreateDialogue'
  export { default as CreateProject} from './CreateProject'
  export { default as CreateScene} from './CreateScene'
+ export { default as CreateStoryboard} from './CreateStoryboard'
  export { default as DeleteCharacter} from './DeleteCharacter'
  export { default as DeleteDialogue} from './DeleteDialogue'
  export { default as DeleteScene} from './DeleteScene'

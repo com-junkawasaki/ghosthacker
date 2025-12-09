@@ -6,6 +6,7 @@
 		ListStoryboardsStore,
 		ListScenesStore,
 	} from '$houdini';
+	import { CreateStoryboardStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/CreateStoryboard.js';
 	import { CreateSceneStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/CreateScene.js';
 	import { UpdateSceneStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/UpdateScene.js';
 	import { DeleteSceneStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/DeleteScene.js';
@@ -60,6 +61,7 @@
 	// Houdini stores - initialize only in browser
 	let storyboardsStore: ListStoryboardsStore | null = null;
 	let scenesStore: ListScenesStore | null = null;
+	let createStoryboardStore: CreateStoryboardStore | null = null;
 	let createSceneStore: CreateSceneStore | null = null;
 	let updateSceneStore: UpdateSceneStore | null = null;
 	let deleteSceneStore: DeleteSceneStore | null = null;
@@ -73,6 +75,7 @@
 	if (browser) {
 		storyboardsStore = new ListStoryboardsStore();
 		scenesStore = new ListScenesStore();
+		createStoryboardStore = new CreateStoryboardStore();
 		createSceneStore = new CreateSceneStore();
 		updateSceneStore = new UpdateSceneStore();
 		deleteSceneStore = new DeleteSceneStore();
@@ -148,6 +151,43 @@
 		}
 	}
 
+	// Create a new storyboard
+	async function createStoryboard() {
+		if (!projectId || !browser || !createStoryboardStore) {
+			alert('Cannot create storyboard: stores not initialized');
+			return;
+		}
+
+		try {
+			loading = true;
+			error = null;
+
+			const result = await createStoryboardStore.mutate({
+				input: {
+					projectId,
+					title: 'New Storyboard',
+					aspectRatio: '16:9',
+					resolution: '1920x1080',
+				},
+			});
+
+			if (result?.errors && result.errors.length > 0) {
+				throw new Error(result.errors[0].message);
+			}
+
+			if (result?.data?.createStoryboard) {
+				// Reload data to get the new storyboard
+				await loadData();
+			} else {
+				throw new Error('Failed to create storyboard: No data returned');
+			}
+		} catch (err) {
+			console.error('[Editor] Error creating storyboard:', err);
+			error = err instanceof Error ? err.message : 'Failed to create storyboard';
+			loading = false;
+		}
+	}
+
 	// Load storyboards and scenes
 	async function loadData() {
 		if (!projectId || !browser || !storyboardsStore || !scenesStore) {
@@ -176,13 +216,17 @@
 			const storyboards = storyboardsResult.data?.storyboards || [];
 			
 			if (storyboards.length === 0) {
-				error = 'No storyboard found for this project. Please create a storyboard first.';
 				loading = false;
+				// Don't set error, show create storyboard button instead
 				return;
 			}
 
 			// Use the first storyboard (or we could let user select)
 			const firstStoryboard = storyboards[0];
+			if (!firstStoryboard) {
+				loading = false;
+				return;
+			}
 			storyboardId = firstStoryboard.id;
 
 			// Load scenes for the storyboard
@@ -877,6 +921,21 @@
 			<p class="error-message">{error}</p>
 			<button onclick={loadData} class="retry-button">Retry</button>
 		</div>
+	<!-- No Storyboard State -->
+	{:else if !storyboardId}
+		<div class="empty-state-container">
+			<div class="empty-state">
+				<svg width="64" height="64" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5">
+					<path d="M2 4C2 3.44772 2.44772 3 3 3H17C17.5523 3 18 3.44772 18 4V16C18 16.5523 17.5523 17 17 17H3C2.44772 17 2 16.5523 2 16V4Z"/>
+					<path d="M7 3V17M13 3V17"/>
+				</svg>
+				<h2>No Storyboard Found</h2>
+				<p>Create a new storyboard to get started with your project.</p>
+				<button onclick={createStoryboard} class="create-storyboard-button" disabled={loading}>
+					{loading ? 'Creating...' : 'Create Storyboard'}
+				</button>
+			</div>
+		</div>
 	<!-- Main Content: Scene Panels -->
 	{:else}
 	<main class="scene-panels-container">
@@ -1346,6 +1405,95 @@
 		padding: 1rem 2rem;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 		background-color: #1a1a1a;
+	}
+
+	/* Empty State */
+	.empty-state-container {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+	}
+
+	.empty-state {
+		text-align: center;
+		color: rgba(255, 255, 255, 0.7);
+		max-width: 400px;
+	}
+
+	.empty-state svg {
+		margin-bottom: 1.5rem;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.empty-state h2 {
+		font-size: 1.5rem;
+		font-weight: 500;
+		margin: 0 0 0.5rem 0;
+		color: #ffffff;
+	}
+
+	.empty-state p {
+		font-size: 0.875rem;
+		margin: 0 0 2rem 0;
+		color: rgba(255, 255, 255, 0.6);
+	}
+
+	.create-storyboard-button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.75rem 1.5rem;
+		background-color: #3b82f6;
+		color: #ffffff;
+		border: none;
+		border-radius: 6px;
+		font-size: 0.875rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+
+	.create-storyboard-button:hover:not(:disabled) {
+		background-color: #2563eb;
+	}
+
+	.create-storyboard-button:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	/* Loading and Error States */
+	.loading-container,
+	.error-container {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+	}
+
+	.error-message {
+		color: #ef4444;
+		margin-bottom: 1rem;
+		font-size: 0.875rem;
+	}
+
+	.retry-button {
+		padding: 0.5rem 1rem;
+		background-color: rgba(255, 255, 255, 0.1);
+		color: #ffffff;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 0.875rem;
+		transition: background-color 0.2s;
+	}
+
+	.retry-button:hover {
+		background-color: rgba(255, 255, 255, 0.15);
 	}
 
 	.header-left {

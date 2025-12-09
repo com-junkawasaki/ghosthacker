@@ -1,22 +1,22 @@
 import type { Record } from "./public/record";
-import { GetScene$result, GetScene$input } from "$houdini/artifacts/GetScene";
-import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
-import { GetGeneratedImages$result, GetGeneratedImages$input } from "$houdini/artifacts/GetGeneratedImages";
-import { GetGeneratedImagesStore } from "../plugins/houdini-svelte/stores/GetGeneratedImages";
-import { ListGeneratedVideos$result, ListGeneratedVideos$input } from "$houdini/artifacts/ListGeneratedVideos";
-import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
-import { ListCharacters$result, ListCharacters$input } from "$houdini/artifacts/ListCharacters";
-import { ListCharactersStore } from "../plugins/houdini-svelte/stores/ListCharacters";
-import { ListDialogues$result, ListDialogues$input } from "$houdini/artifacts/ListDialogues";
-import { ListDialoguesStore } from "../plugins/houdini-svelte/stores/ListDialogues";
-import { ListStoryboards$result, ListStoryboards$input } from "$houdini/artifacts/ListStoryboards";
-import { ListStoryboardsStore } from "../plugins/houdini-svelte/stores/ListStoryboards";
 import { ListHumeVoices$result, ListHumeVoices$input } from "$houdini/artifacts/ListHumeVoices";
 import { ListHumeVoicesStore } from "../plugins/houdini-svelte/stores/ListHumeVoices";
+import { GetGeneratedImages$result, GetGeneratedImages$input } from "$houdini/artifacts/GetGeneratedImages";
+import { GetGeneratedImagesStore } from "../plugins/houdini-svelte/stores/GetGeneratedImages";
+import { ListCharacters$result, ListCharacters$input } from "$houdini/artifacts/ListCharacters";
+import { ListCharactersStore } from "../plugins/houdini-svelte/stores/ListCharacters";
+import { GetScene$result, GetScene$input } from "$houdini/artifacts/GetScene";
+import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
+import { ListDialogues$result, ListDialogues$input } from "$houdini/artifacts/ListDialogues";
+import { ListDialoguesStore } from "../plugins/houdini-svelte/stores/ListDialogues";
 import { ListProjects$result, ListProjects$input } from "$houdini/artifacts/ListProjects";
 import { ListProjectsStore } from "../plugins/houdini-svelte/stores/ListProjects";
+import { ListGeneratedVideos$result, ListGeneratedVideos$input } from "$houdini/artifacts/ListGeneratedVideos";
+import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
 import { ListScenes$result, ListScenes$input } from "$houdini/artifacts/ListScenes";
 import { ListScenesStore } from "../plugins/houdini-svelte/stores/ListScenes";
+import { ListStoryboards$result, ListStoryboards$input } from "$houdini/artifacts/ListStoryboards";
+import { ListStoryboardsStore } from "../plugins/houdini-svelte/stores/ListStoryboards";
 
 export declare type CacheTypeDef = {
     types: {
@@ -449,5 +449,5 @@ export declare type CacheTypeDef = {
         };
     };
     lists: {};
-    queries: [[ListScenesStore, ListScenes$result, ListScenes$input], [ListProjectsStore, ListProjects$result, ListProjects$input], [ListHumeVoicesStore, ListHumeVoices$result, ListHumeVoices$input], [ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListDialoguesStore, ListDialogues$result, ListDialogues$input], [ListCharactersStore, ListCharacters$result, ListCharacters$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input], [GetGeneratedImagesStore, GetGeneratedImages$result, GetGeneratedImages$input], [GetSceneStore, GetScene$result, GetScene$input]];
+    queries: [[ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListScenesStore, ListScenes$result, ListScenes$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input], [ListProjectsStore, ListProjects$result, ListProjects$input], [ListDialoguesStore, ListDialogues$result, ListDialogues$input], [GetSceneStore, GetScene$result, GetScene$input], [ListCharactersStore, ListCharacters$result, ListCharacters$input], [GetGeneratedImagesStore, GetGeneratedImages$result, GetGeneratedImages$input], [ListHumeVoicesStore, ListHumeVoices$result, ListHumeVoices$input]];
 };

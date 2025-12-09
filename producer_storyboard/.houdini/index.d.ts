@@ -2,6 +2,7 @@ export * from "./artifacts/CreateCharacter";
 export * from "./artifacts/CreateDialogue";
 export * from "./artifacts/CreateProject";
 export * from "./artifacts/CreateScene";
+export * from "./artifacts/CreateStoryboard";
 export * from "./artifacts/DeleteCharacter";
 export * from "./artifacts/DeleteDialogue";
 export * from "./artifacts/DeleteScene";

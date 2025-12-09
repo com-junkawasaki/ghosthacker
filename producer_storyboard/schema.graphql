@@ -112,6 +112,13 @@ input CreateProjectInput {
 	description: String
 }
 
+input CreateStoryboardInput {
+	projectId: ID!
+	title: String
+	aspectRatio: String
+	resolution: String
+}
+
 input CreateSceneInput {
 	storyboardId: ID!
 	sceneNumber: Int!
@@ -195,6 +202,7 @@ type HumeVoice {
 
 type Mutation {
 	createProject(input: CreateProjectInput!): Project!
+	createStoryboard(input: CreateStoryboardInput!): Storyboard!
 	createScene(input: CreateSceneInput!): Scene!
 	updateScene(input: UpdateSceneInput!): Scene!
 	deleteScene(id: ID!): Boolean!
