@@ -56,56 +56,31 @@ impl OpenAIService {
         println!("[OpenAI Service] Prompt: {}", request.prompt);
         println!("[OpenAI Service] Model: {:?}", request.model);
         
-        if is_openrouter {
-            // OpenRouter uses chat/completions endpoint with modalities=["image", "text"]
-            let url = "https://openrouter.ai/api/v1/chat/completions";
-            
-            // Use a model that supports image generation via OpenRouter
-            // OpenRouter's chat/completions endpoint doesn't support DALL-E models
-            // Must use a model that supports image generation (e.g., Google Gemini)
-            let model = if let Some(req_model) = &request.model {
-                // If user specified a model, check if it's DALL-E
-                if req_model.starts_with("dall-e") {
-                    // DALL-E models are not supported in chat/completions, use Gemini instead
-                    println!("[OpenAI Service] DALL-E model '{}' not supported in OpenRouter chat/completions, using Gemini instead", req_model);
-                    "google/gemini-2.0-flash-exp:free"
-                } else {
-                    req_model.as_str()
-                }
-            } else {
-                "google/gemini-2.0-flash-exp:free"
-            };
-            
-            println!("[OpenAI Service] Using OpenRouter endpoint: {}", url);
-            println!("[OpenAI Service] Using model: {}", model);
+        // Check if DALL-E model is requested
+        let is_dalle_model = request.model.as_deref().map(|m| m.starts_with("dall-e")).unwrap_or(false);
+        
+        // Try OpenRouter proxy endpoint for DALL-E if using OpenRouter key
+        // Note: OpenRouter typically doesn't support DALL-E, but we'll try anyway
+        if is_openrouter && is_dalle_model {
+            println!("[OpenAI Service] Attempting DALL-E via OpenRouter proxy endpoint");
+            let url = "https://openrouter.ai/api/v1/images/generations";
             
             let mut body = json!({
-                "model": model,
-                "messages": [
-                    {
-                        "role": "user",
-                        "content": request.prompt
-                    }
-                ],
-                "modalities": ["image", "text"],
-                "stream": false
+                "prompt": request.prompt,
+                "n": request.n.unwrap_or(1),
+                "size": request.size.unwrap_or_else(|| "1024x1024".to_string()),
             });
-            
-            // Add image config for aspect ratio if specified
-            if let Some(size) = &request.size {
-                // Parse size like "1024x1024" to aspect ratio
-                let aspect_ratio = match size.as_str() {
-                    "1024x1024" => "1:1",
-                    "1024x1792" => "2:3",
-                    "1792x1024" => "3:2",
-                    _ => "1:1", // Default
-                };
-                body["image_config"] = json!({
-                    "aspect_ratio": aspect_ratio
-                });
-                println!("[OpenAI Service] Aspect ratio: {}", aspect_ratio);
+
+            if let Some(model) = &request.model {
+                body["model"] = json!(model);
+                if model == "dall-e-3" {
+                    body["quality"] = json!(request.quality.unwrap_or_else(|| "standard".to_string()));
+                }
+            } else {
+                body["model"] = json!("dall-e-3");
+                body["quality"] = json!("standard");
             }
-            
+
             println!("[OpenAI Service] Request body: {}", serde_json::to_string(&body).unwrap_or_default());
             
             let response = self.client
@@ -119,201 +94,137 @@ impl OpenAIService {
                 .await?;
 
             let status = response.status();
-            println!("[OpenAI Service] Response status: {}", status.as_u16());
+            println!("[OpenAI Service] OpenRouter proxy response status: {}", status.as_u16());
             
-            // Read response body before checking status to ensure we can read it
-            let response_text = response.text().await.unwrap_or_else(|e| {
-                format!("Failed to read response body: {}", e)
-            });
-            
-            println!("[OpenAI Service] Response body length: {} bytes", response_text.len());
-            println!("[OpenAI Service] Response body (first 1000 chars): {}", 
-                if response_text.len() > 1000 { 
-                    format!("{}...", &response_text[..1000]) 
-                } else { 
-                    response_text.clone() 
-                }
-            );
-            
-            if !status.is_success() {
-                let detailed_error = if let Ok(json_err) = serde_json::from_str::<serde_json::Value>(&response_text) {
-                    println!("[OpenAI Service] Parsed error JSON: {}", serde_json::to_string(&json_err).unwrap_or_default());
-                    if let Some(error_obj) = json_err.get("error") {
-                        let mut error_parts = Vec::new();
-                        
-                        if let Some(message) = error_obj.get("message").and_then(|v| v.as_str()) {
-                            error_parts.push(format!("Message: {}", message));
-                        }
-                        
-                        if let Some(code) = error_obj.get("code") {
-                            if let Some(code_str) = code.as_str() {
-                                error_parts.push(format!("Code: {}", code_str));
-                            } else if let Some(code_num) = code.as_u64() {
-                                error_parts.push(format!("Code: {}", code_num));
-                            }
-                        }
-                        
-                        // Extract metadata for more details (e.g., rate limit info)
-                        if let Some(metadata) = error_obj.get("metadata") {
-                            if let Some(raw) = metadata.get("raw").and_then(|v| v.as_str()) {
-                                error_parts.push(format!("Details: {}", raw));
-                            }
-                            if let Some(provider) = metadata.get("provider_name").and_then(|v| v.as_str()) {
-                                error_parts.push(format!("Provider: {}", provider));
-                            }
-                        }
-                        
-                        if error_parts.is_empty() {
-                            format!("Error object: {}", serde_json::to_string(error_obj).unwrap_or_default())
-                        } else {
-                            error_parts.join(". ")
-                        }
-                    } else {
-                        response_text.clone()
-                    }
-                } else {
-                    response_text.clone()
-                };
+            if status.is_success() {
+                let response_text = response.text().await.unwrap_or_else(|e| {
+                    format!("Failed to read response body: {}", e)
+                });
                 
-                println!("[OpenAI Service] Error details: {}", detailed_error);
-                anyhow::bail!("OpenRouter API error (HTTP {}): {}", status.as_u16(), detailed_error);
-            }
-
-            let json: serde_json::Value = serde_json::from_str(&response_text)
-                .map_err(|e| anyhow::anyhow!("Failed to parse response JSON: {}. Response: {}", e, response_text))?;
-            
-            println!("[OpenAI Service] Parsed response JSON successfully");
-            println!("[OpenAI Service] Response structure: choices={}, message={}, images={}", 
-                json.get("choices").is_some(),
-                json.get("choices").and_then(|v| v.as_array()).and_then(|arr| arr.get(0)).and_then(|c| c.get("message")).is_some(),
-                json.get("choices").and_then(|v| v.as_array()).and_then(|arr| arr.get(0)).and_then(|c| c.get("message")).and_then(|m| m.get("images")).is_some()
-            );
-            
-            // OpenRouter response format: choices[0].message.images[0].image_url.url
-            let image_url = json.get("choices")
-                .and_then(|v| v.as_array())
-                .and_then(|arr| arr.get(0))
-                .and_then(|choice| choice.get("message"))
-                .and_then(|msg| msg.get("images"))
-                .and_then(|v| v.as_array())
-                .and_then(|arr| arr.get(0))
-                .and_then(|img| img.get("image_url"))
-                .and_then(|url_obj| url_obj.get("url"))
-                .and_then(|v| v.as_str())
-                .ok_or_else(|| {
-                    let full_response = serde_json::to_string(&json).unwrap_or_default();
-                    println!("[OpenAI Service] Full response: {}", full_response);
-                    anyhow::anyhow!("No image URL in OpenRouter response. Response structure: {}", full_response)
-                })?
-                .to_string();
-            
-            println!("[OpenAI Service] Image URL extracted: {}", image_url);
-            
-            // OpenRouter doesn't provide revised_prompt in the same format
-            let revised_prompt = None;
-
-            Ok(ImageGenerationResponse {
-                image_url,
-                revised_prompt,
-            })
-        } else {
-            // OpenAI direct endpoint
-            let url = "https://api.openai.com/v1/images/generations";
-            
-            let mut body = json!({
-                "prompt": request.prompt,
-                "n": request.n.unwrap_or(1),
-                "size": request.size.unwrap_or_else(|| "1024x1024".to_string()),
-            });
-
-            // DALL-E 3 specific parameters
-            if let Some(model) = &request.model {
-                body["model"] = json!(model);
-                if model == "dall-e-3" {
-                    body["quality"] = json!(request.quality.unwrap_or_else(|| "standard".to_string()));
-                }
-            }
-
-            println!("[OpenAI Service] Using OpenAI direct endpoint: {}", url);
-            println!("[OpenAI Service] Request body: {}", serde_json::to_string(&body).unwrap_or_default());
-            
-            let response = self.client
-                .post(url)
-                .header("Authorization", format!("Bearer {}", self.api_key))
-                .header("Content-Type", "application/json")
-                .json(&body)
-                .send()
-                .await?;
-
-            let status = response.status();
-            println!("[OpenAI Service] Response status: {}", status.as_u16());
-            
-            // Read response body before checking status
-            let response_text = response.text().await.unwrap_or_else(|e| {
-                format!("Failed to read response body: {}", e)
-            });
-            
-            println!("[OpenAI Service] Response body length: {} bytes", response_text.len());
-            println!("[OpenAI Service] Response body (first 1000 chars): {}", 
-                if response_text.len() > 1000 { 
-                    format!("{}...", &response_text[..1000]) 
-                } else { 
-                    response_text.clone() 
-                }
-            );
-            
-            if !status.is_success() {
-                let detailed_error = if let Ok(json_err) = serde_json::from_str::<serde_json::Value>(&response_text) {
-                    println!("[OpenAI Service] Parsed error JSON: {}", serde_json::to_string(&json_err).unwrap_or_default());
-                    if let Some(error_obj) = json_err.get("error") {
-                        if let Some(message) = error_obj.get("message").and_then(|v| v.as_str()) {
-                            format!("{}", message)
-                        } else if let Some(code) = error_obj.get("code").and_then(|v| v.as_str()) {
-                            format!("Error code: {}", code)
-                        } else {
-                            format!("Error object: {}", serde_json::to_string(error_obj).unwrap_or_default())
-                        }
-                    } else {
-                        response_text.clone()
-                    }
-                } else {
-                    response_text.clone()
-                };
+                let json: serde_json::Value = serde_json::from_str(&response_text)
+                    .map_err(|e| anyhow::anyhow!("Failed to parse response JSON: {}. Response: {}", e, response_text))?;
                 
-                println!("[OpenAI Service] Error details: {}", detailed_error);
-                anyhow::bail!("OpenAI API error (HTTP {}): {}", status.as_u16(), detailed_error);
-            }
-
-            let json: serde_json::Value = serde_json::from_str(&response_text)
-                .map_err(|e| anyhow::anyhow!("Failed to parse response JSON: {}. Response: {}", e, response_text))?;
-            
-            println!("[OpenAI Service] Parsed response JSON successfully");
-            
-            let data = json.get("data")
-                .and_then(|v| v.as_array())
-                .and_then(|arr| arr.get(0))
-                .ok_or_else(|| {
-                    if let Some(error) = json.get("error") {
-                        anyhow::anyhow!("API error: {}", serde_json::to_string(error).unwrap_or_default())
-                    } else {
-                        anyhow::anyhow!("No image data in response. Response: {}", serde_json::to_string(&json).unwrap_or_default())
+                if let Some(data) = json.get("data").and_then(|v| v.as_array()).and_then(|arr| arr.get(0)) {
+                    if let Some(image_url) = data.get("url").and_then(|v| v.as_str()) {
+                        println!("[OpenAI Service] Successfully generated image via OpenRouter proxy");
+                        let revised_prompt = data.get("revised_prompt").and_then(|v| v.as_str()).map(|s| s.to_string());
+                        return Ok(ImageGenerationResponse {
+                            image_url: image_url.to_string(),
+                            revised_prompt,
+                        });
                     }
-                })?;
+                }
+            }
             
-            let image_url = data.get("url")
-                .and_then(|v| v.as_str())
-                .ok_or_else(|| anyhow::anyhow!("No image URL in response"))?
-                .to_string();
-            
-            let revised_prompt = data.get("revised_prompt")
-                .and_then(|v| v.as_str())
-                .map(|s| s.to_string());
-
-            Ok(ImageGenerationResponse {
-                image_url,
-                revised_prompt,
-            })
+            // If OpenRouter proxy failed, fall through to error message
+            println!("[OpenAI Service] OpenRouter doesn't support DALL-E image generation");
         }
+        
+        // OpenAI direct endpoint for DALL-E
+        // For OpenAI direct endpoint, we need a direct OpenAI API key (not OpenRouter key)
+        if is_openrouter {
+            anyhow::bail!("DALL-E image generation is not supported via OpenRouter. OpenRouter keys (sk-or-*) cannot be used with OpenAI direct endpoint (api.openai.com). Please set OPENAI_DIRECT_API_KEY environment variable with a direct OpenAI API key (sk-*), or use the image upload feature instead.");
+        }
+        
+        let url = "https://api.openai.com/v1/images/generations";
+        
+        let mut body = json!({
+            "prompt": request.prompt,
+            "n": request.n.unwrap_or(1),
+            "size": request.size.unwrap_or_else(|| "1024x1024".to_string()),
+        });
+
+        // DALL-E 3 specific parameters
+        if let Some(model) = &request.model {
+            body["model"] = json!(model);
+            if model == "dall-e-3" {
+                body["quality"] = json!(request.quality.unwrap_or_else(|| "standard".to_string()));
+            }
+        } else {
+            // Default to DALL-E 3
+            body["model"] = json!("dall-e-3");
+            body["quality"] = json!("standard");
+        }
+
+        println!("[OpenAI Service] Using OpenAI direct endpoint: {}", url);
+        println!("[OpenAI Service] Request body: {}", serde_json::to_string(&body).unwrap_or_default());
+        
+        let response = self.client
+            .post(url)
+            .header("Authorization", format!("Bearer {}", self.api_key))
+            .header("Content-Type", "application/json")
+            .json(&body)
+            .send()
+            .await?;
+
+        let status = response.status();
+        println!("[OpenAI Service] Response status: {}", status.as_u16());
+        
+        // Read response body before checking status
+        let response_text = response.text().await.unwrap_or_else(|e| {
+            format!("Failed to read response body: {}", e)
+        });
+        
+        println!("[OpenAI Service] Response body length: {} bytes", response_text.len());
+        println!("[OpenAI Service] Response body (first 1000 chars): {}", 
+            if response_text.len() > 1000 { 
+                format!("{}...", &response_text[..1000]) 
+            } else { 
+                response_text.clone() 
+            }
+        );
+        
+        if !status.is_success() {
+            let detailed_error = if let Ok(json_err) = serde_json::from_str::<serde_json::Value>(&response_text) {
+                println!("[OpenAI Service] Parsed error JSON: {}", serde_json::to_string(&json_err).unwrap_or_default());
+                if let Some(error_obj) = json_err.get("error") {
+                    if let Some(message) = error_obj.get("message").and_then(|v| v.as_str()) {
+                        format!("{}", message)
+                    } else if let Some(code) = error_obj.get("code").and_then(|v| v.as_str()) {
+                        format!("Error code: {}", code)
+                    } else {
+                        format!("Error object: {}", serde_json::to_string(error_obj).unwrap_or_default())
+                    }
+                } else {
+                    response_text.clone()
+                }
+            } else {
+                response_text.clone()
+            };
+            
+            println!("[OpenAI Service] Error details: {}", detailed_error);
+            anyhow::bail!("OpenAI API error (HTTP {}): {}", status.as_u16(), detailed_error);
+        }
+
+        let json: serde_json::Value = serde_json::from_str(&response_text)
+            .map_err(|e| anyhow::anyhow!("Failed to parse response JSON: {}. Response: {}", e, response_text))?;
+        
+        println!("[OpenAI Service] Parsed response JSON successfully");
+        
+        let data = json.get("data")
+            .and_then(|v| v.as_array())
+            .and_then(|arr| arr.get(0))
+            .ok_or_else(|| {
+                if let Some(error) = json.get("error") {
+                    anyhow::anyhow!("API error: {}", serde_json::to_string(error).unwrap_or_default())
+                } else {
+                    anyhow::anyhow!("No image data in response. Response: {}", serde_json::to_string(&json).unwrap_or_default())
+                }
+            })?;
+        
+        let image_url = data.get("url")
+            .and_then(|v| v.as_str())
+            .ok_or_else(|| anyhow::anyhow!("No image URL in response"))?
+            .to_string();
+        
+        let revised_prompt = data.get("revised_prompt")
+            .and_then(|v| v.as_str())
+            .map(|s| s.to_string());
+
+        Ok(ImageGenerationResponse {
+            image_url,
+            revised_prompt,
+        })
     }
 
     /// Download image from URL and return as bytes

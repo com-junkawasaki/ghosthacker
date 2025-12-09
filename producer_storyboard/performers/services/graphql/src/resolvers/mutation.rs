@@ -587,8 +587,11 @@ impl MutationRoot {
         let text_description: Option<String> = scene.get("text_description");
         
         // Get OpenAI service from context or create new one
-        let openai_api_key = std::env::var("OPENAI_API_KEY")
-            .map_err(|_| async_graphql::Error::new("OPENAI_API_KEY not configured"))?;
+        // For DALL-E image generation, we need OpenAI direct API key (not OpenRouter key)
+        // Check for OPENAI_DIRECT_API_KEY first, fallback to OPENAI_API_KEY
+        let openai_api_key = std::env::var("OPENAI_DIRECT_API_KEY")
+            .or_else(|_| std::env::var("OPENAI_API_KEY"))
+            .map_err(|_| async_graphql::Error::new("OPENAI_API_KEY or OPENAI_DIRECT_API_KEY not configured. For DALL-E image generation, please set OPENAI_DIRECT_API_KEY with a direct OpenAI API key (not OpenRouter key)."))?;
         let openai_service = OpenAIService::new(openai_api_key);
         
         // Determine image type (start or end)
