@@ -91,6 +91,9 @@
 	let error = $state<string | null>(null);
 
 	let generating = $state(false);
+	// Track which scene and image type is being generated
+	let generatingSceneId = $state<string | null>(null);
+	let generatingImageType = $state<'start' | 'end' | 'upload' | null>(null);
 	let draggedSceneId = $state<string | null>(null);
 	let dragOverIndex = $state<number | null>(null);
 	let hoveredInsertIndex = $state<number | null>(null);
@@ -496,6 +499,8 @@
 
 		try {
 			generating = true;
+			generatingSceneId = sceneId;
+			generatingImageType = imageType;
 			const result = await generateSceneImageStore.mutate({
 				input: {
 					sceneId,
@@ -516,6 +521,8 @@
 			alert(err instanceof Error ? err.message : 'Failed to generate image');
 		} finally {
 			generating = false;
+			generatingSceneId = null;
+			generatingImageType = null;
 		}
 	}
 
@@ -527,6 +534,8 @@
 
 		try {
 			generating = true;
+			generatingSceneId = sceneId;
+			generatingImageType = 'upload';
 			
 			// Validate file type
 			if (!file.type.startsWith('image/')) {
@@ -573,6 +582,8 @@
 			alert(err instanceof Error ? err.message : 'Failed to upload image');
 		} finally {
 			generating = false;
+			generatingSceneId = null;
+			generatingImageType = null;
 		}
 	}
 
@@ -960,6 +971,29 @@
 					role="region"
 					aria-label="Scene content area"
 				>
+					<!-- Loading Overlay for Image Generation -->
+					{#if generatingSceneId === scene.id && generatingImageType}
+						<div class="generating-overlay">
+							<div class="generating-spinner">
+								<svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor">
+									<circle cx="16" cy="16" r="14" stroke-width="2" stroke-opacity="0.3"/>
+									<circle cx="16" cy="16" r="14" stroke-width="2" stroke-dasharray="44" stroke-dashoffset="22" stroke-linecap="round">
+										<animate attributeName="stroke-dashoffset" values="44;0;44" dur="1.5s" repeatCount="indefinite"/>
+									</circle>
+								</svg>
+							</div>
+							<p class="generating-text">
+								{#if generatingImageType === 'start'}
+									開始画像を生成中...
+								{:else if generatingImageType === 'end'}
+									終了画像を生成中...
+								{:else if generatingImageType === 'upload'}
+									画像をアップロード中...
+								{/if}
+							</p>
+						</div>
+					{/if}
+					
 					<!-- Generated Images -->
 					{#if sceneImages[scene.id]}
 						{@const images = sceneImages[scene.id] || []}
@@ -1017,15 +1051,22 @@
 						
 						<div class="scene-description">{scene.textDescription || 'Click to edit description'}</div>
 						
-						<!-- Dialogue Editor -->
-						{#if selectedSceneId === scene.id}
+					<!-- Dialogue Editor -->
+					{#if selectedSceneId === scene.id && scene?.id}
+						{@const currentSceneId = scene.id}
+						{#if currentSceneId}
 							<DialogueEditor
-								sceneId={scene.id}
+								sceneId={currentSceneId}
 								characters={characters}
-								dialogues={sceneDialogues[scene.id] || []}
-								onDialogueChange={() => loadDialogues(scene.id)}
+								dialogues={sceneDialogues[currentSceneId] || []}
+								onDialogueChange={() => {
+									if (currentSceneId) {
+										loadDialogues(currentSceneId);
+									}
+								}}
 							/>
 						{/if}
+					{/if}
 					</div>
 					
 					<!-- Scene Controls -->
@@ -1055,33 +1096,61 @@
 						<div class="image-generation-controls" onclick={(e) => e.stopPropagation()} role="group" aria-label="Image generation controls">
 							<button
 								class="image-gen-button"
+								class:generating={generatingSceneId === scene.id && generatingImageType === 'start'}
 								onclick={() => generateSceneImage(scene.id, 'start')}
 								disabled={generating}
 								aria-label="Generate start image"
 								title="Generate start image"
 							>
-								<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
-									<path d="M7 2V12M2 7H12" stroke-width="1.5" stroke-linecap="round"/>
-								</svg>
-								Start
+								{#if generatingSceneId === scene.id && generatingImageType === 'start'}
+									<svg class="spinner" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+										<circle cx="7" cy="7" r="6" stroke-width="1.5" stroke-opacity="0.3"/>
+										<circle cx="7" cy="7" r="6" stroke-width="1.5" stroke-dasharray="19" stroke-dashoffset="9.5" stroke-linecap="round">
+											<animate attributeName="stroke-dashoffset" values="19;0;19" dur="1s" repeatCount="indefinite"/>
+										</circle>
+									</svg>
+									Generating...
+								{:else}
+									<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+										<path d="M7 2V12M2 7H12" stroke-width="1.5" stroke-linecap="round"/>
+									</svg>
+									Start
+								{/if}
 							</button>
 							<button
 								class="image-gen-button"
+								class:generating={generatingSceneId === scene.id && generatingImageType === 'end'}
 								onclick={() => generateSceneImage(scene.id, 'end')}
 								disabled={generating}
 								aria-label="Generate end image"
 								title="Generate end image"
 							>
-								<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
-									<path d="M7 2V12M2 7H12" stroke-width="1.5" stroke-linecap="round"/>
-								</svg>
-								End
+								{#if generatingSceneId === scene.id && generatingImageType === 'end'}
+									<svg class="spinner" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+										<circle cx="7" cy="7" r="6" stroke-width="1.5" stroke-opacity="0.3"/>
+										<circle cx="7" cy="7" r="6" stroke-width="1.5" stroke-dasharray="19" stroke-dashoffset="9.5" stroke-linecap="round">
+											<animate attributeName="stroke-dashoffset" values="19;0;19" dur="1s" repeatCount="indefinite"/>
+										</circle>
+									</svg>
+									Generating...
+								{:else}
+									<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+										<path d="M7 2V12M2 7H12" stroke-width="1.5" stroke-linecap="round"/>
+									</svg>
+									End
+								{/if}
 							</button>
-							<label class="image-gen-button" tabindex="0" title="Upload image">
+							<label 
+								class="image-gen-button" 
+								class:generating={generatingSceneId === scene.id && generatingImageType === 'upload'}
+								tabindex="0" 
+								title="Upload image"
+							>
 								<input
 									type="file"
 									accept="image/*"
 									style="display: none;"
+									disabled={generating}
 									onchange={(e) => handleFileInputChange(e, scene.id)}
 									onkeydown={(e) => {
 										if (e.key === 'Enter' || e.key === ' ') {
@@ -1090,10 +1159,20 @@
 										}
 									}}
 								/>
-								<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
-									<path d="M7 2V12M2 7H12" stroke-width="1.5" stroke-linecap="round"/>
-								</svg>
-								Upload
+								{#if generatingSceneId === scene.id && generatingImageType === 'upload'}
+									<svg class="spinner" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+										<circle cx="7" cy="7" r="6" stroke-width="1.5" stroke-opacity="0.3"/>
+										<circle cx="7" cy="7" r="6" stroke-width="1.5" stroke-dasharray="19" stroke-dashoffset="9.5" stroke-linecap="round">
+											<animate attributeName="stroke-dashoffset" values="19;0;19" dur="1s" repeatCount="indefinite"/>
+										</circle>
+									</svg>
+									Uploading...
+								{:else}
+									<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+										<path d="M7 2V12M2 7H12" stroke-width="1.5" stroke-linecap="round"/>
+									</svg>
+									Upload
+								{/if}
 							</label>
 						</div>
 						
@@ -1417,6 +1496,43 @@
 		transition: background-color 0.2s, border-color 0.2s;
 	}
 
+	.generating-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.8);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+		z-index: 10;
+		border-radius: 4px;
+	}
+
+	.generating-spinner {
+		color: #3b82f6;
+		animation: pulse 2s ease-in-out infinite;
+	}
+
+	.generating-text {
+		color: #ffffff;
+		font-size: 0.875rem;
+		font-weight: 500;
+		margin: 0;
+	}
+
+	@keyframes pulse {
+		0%, 100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0.7;
+		}
+	}
+
 	.scene-content.drag-over {
 		background-color: rgba(59, 130, 246, 0.1);
 		border: 2px dashed rgba(59, 130, 246, 0.5);
@@ -1550,6 +1666,25 @@
 	.image-gen-button:disabled {
 		opacity: 0.5;
 		cursor: not-allowed;
+	}
+
+	.image-gen-button.generating {
+		background-color: rgba(59, 130, 246, 0.2);
+		border-color: rgba(59, 130, 246, 0.5);
+		color: #93c5fd;
+	}
+
+	.image-gen-button.generating .spinner {
+		animation: spin 1s linear infinite;
+	}
+
+	@keyframes spin {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(360deg);
+		}
 	}
 
 	.scene-actions {

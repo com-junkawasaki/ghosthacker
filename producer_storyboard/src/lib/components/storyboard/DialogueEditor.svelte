@@ -82,7 +82,16 @@
 	}
 
 	async function saveDialogue() {
-		if (!browser || !createDialogueStore || !sceneId || !selectedCharacterId || !dialogueText.trim()) {
+		if (!browser || !createDialogueStore) {
+			return;
+		}
+		
+		if (!sceneId || !selectedCharacterId || !dialogueText.trim()) {
+			console.warn('[DialogueEditor] Cannot save dialogue: missing required fields', {
+				hasSceneId: !!sceneId,
+				hasCharacterId: !!selectedCharacterId,
+				hasText: !!dialogueText.trim()
+			});
 			return;
 		}
 

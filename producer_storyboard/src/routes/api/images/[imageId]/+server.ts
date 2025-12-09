@@ -40,9 +40,14 @@ export const GET: RequestHandler = async ({ params }) => {
 			throw new Error(result.errors[0].message);
 		}
 
-		const imageData = result.data?.imageData;
+		let imageData = result.data?.imageData;
 		if (!imageData) {
 			return json({ error: 'Image not found' }, { status: 404 });
+		}
+
+		// Remove data URL prefix if present (e.g., "data:image/png;base64,")
+		if (typeof imageData === 'string' && imageData.includes(',')) {
+			imageData = imageData.split(',')[1];
 		}
 
 		// Get image format from a separate query
@@ -73,6 +78,8 @@ export const GET: RequestHandler = async ({ params }) => {
 				contentType = 'image/jpeg';
 			} else if (format === 'png') {
 				contentType = 'image/png';
+			} else if (format === 'webp') {
+				contentType = 'image/webp';
 			}
 		}
 
