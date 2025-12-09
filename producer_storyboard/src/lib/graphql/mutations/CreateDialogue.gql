@@ -1,0 +1,18 @@
+mutation CreateDialogue($input: CreateDialogueInput!) {
+	createDialogue(input: $input) {
+		id
+		sceneId
+		characterId
+		language
+		text
+		translatedText
+		humeVoiceId
+		audioUrl
+		startTimeSeconds
+		durationSeconds
+		orderIndex
+		createdAt
+		updatedAt
+	}
+}
+

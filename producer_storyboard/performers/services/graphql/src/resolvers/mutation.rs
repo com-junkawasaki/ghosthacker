@@ -9,7 +9,9 @@ use async_graphql::{Context, InputObject, Object, ID, Result};
 use crate::ports::postgres::PostgresPool;
 use crate::ports::openai_service::{OpenAIService, ImageGenerationRequest};
 use crate::ports::history::{HistoryService, OperationType};
-use crate::schema::storyboard::{Project, VideoStatus, Scene, GeneratedImage};
+use crate::ports::hume_service::HumeService;
+use crate::ports::translation_service::TranslationService;
+use crate::schema::storyboard::{Project, VideoStatus, Scene, GeneratedImage, Character, Dialogue, HumeVoice};
 use uuid::Uuid;
 use serde_json::json;
 use sqlx::Row;
@@ -65,6 +67,62 @@ pub struct GenerateSceneImageInput {
     pub model: Option<String>,
     #[graphql(name = "imageType")]
     pub image_type: Option<String>,
+}
+
+#[derive(InputObject)]
+pub struct CreateCharacterInput {
+    #[graphql(name = "projectId")]
+    pub project_id: ID,
+    pub name: String,
+    pub description: Option<String>,
+}
+
+#[derive(InputObject)]
+pub struct UpdateCharacterInput {
+    pub id: ID,
+    pub name: Option<String>,
+    pub description: Option<String>,
+}
+
+#[derive(InputObject)]
+pub struct CreateDialogueInput {
+    #[graphql(name = "sceneId")]
+    pub scene_id: ID,
+    #[graphql(name = "characterId")]
+    pub character_id: ID,
+    pub language: String,
+    pub text: String,
+    #[graphql(name = "humeVoiceId")]
+    pub hume_voice_id: Option<String>,
+    #[graphql(name = "startTimeSeconds")]
+    pub start_time_seconds: Option<f64>,
+    #[graphql(name = "durationSeconds")]
+    pub duration_seconds: Option<f64>,
+    #[graphql(name = "orderIndex")]
+    pub order_index: Option<i32>,
+}
+
+#[derive(InputObject)]
+pub struct UpdateDialogueInput {
+    pub id: ID,
+    pub language: Option<String>,
+    pub text: Option<String>,
+    #[graphql(name = "humeVoiceId")]
+    pub hume_voice_id: Option<String>,
+    #[graphql(name = "startTimeSeconds")]
+    pub start_time_seconds: Option<f64>,
+    #[graphql(name = "durationSeconds")]
+    pub duration_seconds: Option<f64>,
+    #[graphql(name = "orderIndex")]
+    pub order_index: Option<i32>,
+}
+
+#[derive(InputObject)]
+pub struct TranslateDialogueInput {
+    #[graphql(name = "dialogueId")]
+    pub dialogue_id: ID,
+    #[graphql(name = "targetLanguage")]
+    pub target_language: String,
 }
 
 #[derive(Default)]
@@ -611,6 +669,626 @@ impl MutationRoot {
             prompt: Some(prompt),
             model: Some(model),
             created_at: now.to_rfc3339(),
+        })
+    }
+
+    /// Create a new character
+    async fn create_character(&self, ctx: &Context<'_>, input: CreateCharacterInput) -> Result<Character> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let project_uuid = Uuid::parse_str(&input.project_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid project ID: {}", e)))?;
+        
+        let id = Uuid::new_v4();
+        let now = chrono::Utc::now();
+        
+        sqlx::query(
+            r#"
+            INSERT INTO characters (id, project_id, name, description, created_at, updated_at)
+            VALUES ($1, $2, $3, $4, $5, $5)
+            "#,
+        )
+        .bind(id)
+        .bind(project_uuid)
+        .bind(&input.name)
+        .bind(&input.description)
+        .bind(now)
+        .execute(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to create character: {}", e)))?;
+        
+        // Save operation history
+        let _ = HistoryService::save_operation(
+            pool,
+            "character",
+            id,
+            OperationType::Create,
+            json!({
+                "project_id": input.project_id.0,
+                "name": input.name,
+                "description": input.description,
+            }),
+            None,
+        ).await;
+        
+        Ok(Character {
+            id: ID(id.to_string()),
+            project_id: input.project_id,
+            name: input.name,
+            description: input.description,
+            created_at: now.to_rfc3339(),
+            updated_at: now.to_rfc3339(),
+        })
+    }
+
+    /// Update a character
+    async fn update_character(&self, ctx: &Context<'_>, input: UpdateCharacterInput) -> Result<Character> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let character_uuid = Uuid::parse_str(&input.id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid character ID: {}", e)))?;
+        
+        // Update fields individually
+        if let Some(ref name) = input.name {
+            sqlx::query(
+                r#"
+                UPDATE characters
+                SET name = $1, updated_at = NOW()
+                WHERE id = $2
+                "#,
+            )
+            .bind(name)
+            .bind(character_uuid)
+            .execute(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to update character name: {}", e)))?;
+        }
+        
+        if input.description.is_some() {
+            sqlx::query(
+                r#"
+                UPDATE characters
+                SET description = $1, updated_at = NOW()
+                WHERE id = $2
+                "#,
+            )
+            .bind(&input.description)
+            .bind(character_uuid)
+            .execute(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to update character description: {}", e)))?;
+        }
+        
+        if input.name.is_none() && input.description.is_none() {
+            return Err(async_graphql::Error::new("No fields to update"));
+        }
+        
+        // Fetch updated character
+        let row = sqlx::query(
+            r#"
+            SELECT id, project_id, name, description, created_at, updated_at
+            FROM characters
+            WHERE id = $1
+            "#,
+        )
+        .bind(character_uuid)
+        .fetch_one(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch updated character: {}", e)))?;
+        
+        let project_id: Uuid = row.get("project_id");
+        
+        Ok(Character {
+            id: input.id,
+            project_id: ID(project_id.to_string()),
+            name: row.get("name"),
+            description: row.get("description"),
+            created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
+            updated_at: row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
+        })
+    }
+
+    /// Delete a character
+    async fn delete_character(&self, ctx: &Context<'_>, id: ID) -> Result<bool> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let character_uuid = Uuid::parse_str(&id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid character ID: {}", e)))?;
+        
+        // Get character data for history before deletion
+        let character_row = sqlx::query(
+            r#"
+            SELECT project_id, name
+            FROM characters
+            WHERE id = $1
+            "#,
+        )
+        .bind(character_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch character: {}", e)))?;
+        
+        if let Some(_row) = character_row {
+            sqlx::query("DELETE FROM characters WHERE id = $1")
+                .bind(character_uuid)
+                .execute(pool.as_ref())
+                .await
+                .map_err(|e| async_graphql::Error::new(format!("Failed to delete character: {}", e)))?;
+            
+            // Save operation history
+            let _ = HistoryService::save_operation(
+                pool,
+                "character",
+                character_uuid,
+                OperationType::Delete,
+                json!({
+                    "character_id": id.0,
+                }),
+                None,
+            ).await;
+            
+            Ok(true)
+        } else {
+            Ok(false)
+        }
+    }
+
+    /// Create a new dialogue
+    async fn create_dialogue(&self, ctx: &Context<'_>, input: CreateDialogueInput) -> Result<Dialogue> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let scene_uuid = Uuid::parse_str(&input.scene_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid scene ID: {}", e)))?;
+        let character_uuid = Uuid::parse_str(&input.character_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid character ID: {}", e)))?;
+        
+        let id = Uuid::new_v4();
+        let now = chrono::Utc::now();
+        let order_index = input.order_index.unwrap_or(0);
+        
+        let start_time: Option<rust_decimal::Decimal> = input.start_time_seconds.and_then(|d| rust_decimal::Decimal::from_f64_retain(d));
+        let duration: Option<rust_decimal::Decimal> = input.duration_seconds.and_then(|d| rust_decimal::Decimal::from_f64_retain(d));
+        
+        sqlx::query(
+            r#"
+            INSERT INTO dialogues (id, scene_id, character_id, language, text, hume_voice_id, start_time_seconds, duration_seconds, order_index, created_at, updated_at)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $10)
+            "#,
+        )
+        .bind(id)
+        .bind(scene_uuid)
+        .bind(character_uuid)
+        .bind(&input.language)
+        .bind(&input.text)
+        .bind(&input.hume_voice_id)
+        .bind(start_time)
+        .bind(duration)
+        .bind(order_index)
+        .bind(now)
+        .execute(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to create dialogue: {}", e)))?;
+        
+        // Save operation history
+        let _ = HistoryService::save_operation(
+            pool,
+            "dialogue",
+            id,
+            OperationType::Create,
+            json!({
+                "scene_id": input.scene_id.0,
+                "character_id": input.character_id.0,
+                "language": input.language,
+                "text": input.text,
+            }),
+            None,
+        ).await;
+        
+        Ok(Dialogue {
+            id: ID(id.to_string()),
+            scene_id: input.scene_id,
+            character_id: input.character_id,
+            language: input.language,
+            text: input.text,
+            translated_text: None,
+            hume_voice_id: input.hume_voice_id,
+            audio_url: None,
+            start_time_seconds: input.start_time_seconds,
+            duration_seconds: input.duration_seconds,
+            order_index,
+            created_at: now.to_rfc3339(),
+            updated_at: now.to_rfc3339(),
+        })
+    }
+
+    /// Update a dialogue
+    async fn update_dialogue(&self, ctx: &Context<'_>, input: UpdateDialogueInput) -> Result<Dialogue> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let dialogue_uuid = Uuid::parse_str(&input.id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid dialogue ID: {}", e)))?;
+        
+        // Update fields individually
+        if let Some(ref language) = input.language {
+            sqlx::query(
+                r#"
+                UPDATE dialogues
+                SET language = $1, updated_at = NOW()
+                WHERE id = $2
+                "#,
+            )
+            .bind(language)
+            .bind(dialogue_uuid)
+            .execute(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to update dialogue language: {}", e)))?;
+        }
+        
+        if let Some(ref text) = input.text {
+            sqlx::query(
+                r#"
+                UPDATE dialogues
+                SET text = $1, updated_at = NOW()
+                WHERE id = $2
+                "#,
+            )
+            .bind(text)
+            .bind(dialogue_uuid)
+            .execute(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to update dialogue text: {}", e)))?;
+        }
+        
+        if input.hume_voice_id.is_some() {
+            sqlx::query(
+                r#"
+                UPDATE dialogues
+                SET hume_voice_id = $1, updated_at = NOW()
+                WHERE id = $2
+                "#,
+            )
+            .bind(&input.hume_voice_id)
+            .bind(dialogue_uuid)
+            .execute(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to update dialogue voice: {}", e)))?;
+        }
+        
+        if let Some(start_time) = input.start_time_seconds {
+            let start_time_decimal = rust_decimal::Decimal::from_f64_retain(start_time);
+            sqlx::query(
+                r#"
+                UPDATE dialogues
+                SET start_time_seconds = $1, updated_at = NOW()
+                WHERE id = $2
+                "#,
+            )
+            .bind(start_time_decimal)
+            .bind(dialogue_uuid)
+            .execute(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to update dialogue start time: {}", e)))?;
+        }
+        
+        if let Some(duration) = input.duration_seconds {
+            let duration_decimal = rust_decimal::Decimal::from_f64_retain(duration);
+            sqlx::query(
+                r#"
+                UPDATE dialogues
+                SET duration_seconds = $1, updated_at = NOW()
+                WHERE id = $2
+                "#,
+            )
+            .bind(duration_decimal)
+            .bind(dialogue_uuid)
+            .execute(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to update dialogue duration: {}", e)))?;
+        }
+        
+        if let Some(order_index) = input.order_index {
+            sqlx::query(
+                r#"
+                UPDATE dialogues
+                SET order_index = $1, updated_at = NOW()
+                WHERE id = $2
+                "#,
+            )
+            .bind(order_index)
+            .bind(dialogue_uuid)
+            .execute(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to update dialogue order: {}", e)))?;
+        }
+        
+        if input.language.is_none() && input.text.is_none() && input.hume_voice_id.is_none() 
+            && input.start_time_seconds.is_none() && input.duration_seconds.is_none() && input.order_index.is_none() {
+            return Err(async_graphql::Error::new("No fields to update"));
+        }
+        
+        // Fetch updated dialogue
+        let row = sqlx::query(
+            r#"
+            SELECT id, scene_id, character_id, language, text, translated_text, hume_voice_id, audio_url,
+                   start_time_seconds::text, duration_seconds::text, order_index, created_at, updated_at
+            FROM dialogues
+            WHERE id = $1
+            "#,
+        )
+        .bind(dialogue_uuid)
+        .fetch_one(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch updated dialogue: {}", e)))?;
+        
+        let scene_id: Uuid = row.get("scene_id");
+        let character_id: Uuid = row.get("character_id");
+        let start_time_seconds: Option<String> = row.get("start_time_seconds");
+        let duration_seconds: Option<String> = row.get("duration_seconds");
+        let translated_text_json: Option<serde_json::Value> = row.get("translated_text");
+        
+        // Extract translated text as string (simplified - could be more sophisticated)
+        let translated_text = translated_text_json
+            .and_then(|v| v.as_object()?.values().next()?.as_str().map(|s| s.to_string()));
+        
+        Ok(Dialogue {
+            id: input.id,
+            scene_id: ID(scene_id.to_string()),
+            character_id: ID(character_id.to_string()),
+            language: row.get("language"),
+            text: row.get("text"),
+            translated_text,
+            hume_voice_id: row.get("hume_voice_id"),
+            audio_url: row.get("audio_url"),
+            start_time_seconds: start_time_seconds.and_then(|s| s.parse::<f64>().ok()),
+            duration_seconds: duration_seconds.and_then(|s| s.parse::<f64>().ok()),
+            order_index: row.get("order_index"),
+            created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
+            updated_at: row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
+        })
+    }
+
+    /// Delete a dialogue
+    async fn delete_dialogue(&self, ctx: &Context<'_>, id: ID) -> Result<bool> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let dialogue_uuid = Uuid::parse_str(&id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid dialogue ID: {}", e)))?;
+        
+        // Get dialogue data for history before deletion
+        let dialogue_row = sqlx::query(
+            r#"
+            SELECT scene_id, character_id, text
+            FROM dialogues
+            WHERE id = $1
+            "#,
+        )
+        .bind(dialogue_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch dialogue: {}", e)))?;
+        
+        if let Some(_row) = dialogue_row {
+            sqlx::query("DELETE FROM dialogues WHERE id = $1")
+                .bind(dialogue_uuid)
+                .execute(pool.as_ref())
+                .await
+                .map_err(|e| async_graphql::Error::new(format!("Failed to delete dialogue: {}", e)))?;
+            
+            // Save operation history
+            let _ = HistoryService::save_operation(
+                pool,
+                "dialogue",
+                dialogue_uuid,
+                OperationType::Delete,
+                json!({
+                    "dialogue_id": id.0,
+                }),
+                None,
+            ).await;
+            
+            Ok(true)
+        } else {
+            Ok(false)
+        }
+    }
+
+    /// Translate a dialogue to target language
+    async fn translate_dialogue(&self, ctx: &Context<'_>, input: TranslateDialogueInput) -> Result<Dialogue> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let dialogue_uuid = Uuid::parse_str(&input.dialogue_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid dialogue ID: {}", e)))?;
+        
+        // Get dialogue
+        let row = sqlx::query(
+            r#"
+            SELECT id, scene_id, character_id, language, text, translated_text
+            FROM dialogues
+            WHERE id = $1
+            "#,
+        )
+        .bind(dialogue_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch dialogue: {}", e)))?;
+        
+        let row = row.ok_or_else(|| async_graphql::Error::new("Dialogue not found"))?;
+        
+        let source_language: String = row.get("language");
+        let text: String = row.get("text");
+        
+        if source_language == input.target_language {
+            return Err(async_graphql::Error::new("Source and target languages are the same"));
+        }
+        
+        // Get OpenAI API key
+        let openai_api_key = std::env::var("OPENAI_API_KEY")
+            .map_err(|_| async_graphql::Error::new("OPENAI_API_KEY not configured"))?;
+        let translation_service = TranslationService::new(openai_api_key);
+        
+        // Translate text
+        let translated_text = translation_service.translate_text(
+            &text,
+            &source_language,
+            &input.target_language,
+        ).await
+        .map_err(|e| async_graphql::Error::new(format!("Translation failed: {}", e)))?;
+        
+        // Update translated_text JSONB field
+        let mut translated_json: serde_json::Value = row.get("translated_text");
+        if translated_json.is_null() {
+            translated_json = json!({});
+        }
+        
+        if let Some(obj) = translated_json.as_object_mut() {
+            obj.insert(input.target_language.clone(), json!(translated_text));
+        }
+        
+        sqlx::query(
+            r#"
+            UPDATE dialogues
+            SET translated_text = $1, updated_at = NOW()
+            WHERE id = $2
+            "#,
+        )
+        .bind(&translated_json)
+        .bind(dialogue_uuid)
+        .execute(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to update dialogue translation: {}", e)))?;
+        
+        // Fetch updated dialogue
+        let updated_row = sqlx::query(
+            r#"
+            SELECT id, scene_id, character_id, language, text, translated_text, hume_voice_id, audio_url,
+                   start_time_seconds::text, duration_seconds::text, order_index, created_at, updated_at
+            FROM dialogues
+            WHERE id = $1
+            "#,
+        )
+        .bind(dialogue_uuid)
+        .fetch_one(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch updated dialogue: {}", e)))?;
+        
+        let scene_id: Uuid = updated_row.get("scene_id");
+        let character_id: Uuid = updated_row.get("character_id");
+        let start_time_seconds: Option<String> = updated_row.get("start_time_seconds");
+        let duration_seconds: Option<String> = updated_row.get("duration_seconds");
+        let translated_text_json: Option<serde_json::Value> = updated_row.get("translated_text");
+        
+        let translated_text_str = translated_text_json
+            .and_then(|v| v.as_object()?.get(&input.target_language)?.as_str().map(|s| s.to_string()));
+        
+        Ok(Dialogue {
+            id: input.dialogue_id,
+            scene_id: ID(scene_id.to_string()),
+            character_id: ID(character_id.to_string()),
+            language: updated_row.get("language"),
+            text: updated_row.get("text"),
+            translated_text: translated_text_str,
+            hume_voice_id: updated_row.get("hume_voice_id"),
+            audio_url: updated_row.get("audio_url"),
+            start_time_seconds: start_time_seconds.and_then(|s| s.parse::<f64>().ok()),
+            duration_seconds: duration_seconds.and_then(|s| s.parse::<f64>().ok()),
+            order_index: updated_row.get("order_index"),
+            created_at: updated_row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
+            updated_at: updated_row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
+        })
+    }
+
+    /// Generate audio for a dialogue using Hume AI
+    async fn generate_dialogue_audio(&self, ctx: &Context<'_>, dialogue_id: ID) -> Result<Dialogue> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let dialogue_uuid = Uuid::parse_str(&dialogue_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid dialogue ID: {}", e)))?;
+        
+        // Get dialogue
+        let row = sqlx::query(
+            r#"
+            SELECT id, scene_id, character_id, language, text, hume_voice_id
+            FROM dialogues
+            WHERE id = $1
+            "#,
+        )
+        .bind(dialogue_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch dialogue: {}", e)))?;
+        
+        let row = row.ok_or_else(|| async_graphql::Error::new("Dialogue not found"))?;
+        
+        let text: String = row.get("text");
+        let language: String = row.get("language");
+        let hume_voice_id: Option<String> = row.get("hume_voice_id");
+        
+        let voice_id = hume_voice_id.ok_or_else(|| async_graphql::Error::new("Hume voice ID is required"))?;
+        
+        // Get Hume API key
+        let hume_api_key = std::env::var("HUME_API_KEY")
+            .map_err(|_| async_graphql::Error::new("HUME_API_KEY not configured"))?;
+        let hume_service = HumeService::new(hume_api_key);
+        
+        // Generate speech
+        let audio_data = hume_service.generate_speech(
+            &text,
+            &voice_id,
+            Some(&language),
+        ).await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to generate speech: {}", e)))?;
+        
+        // Save audio data
+        sqlx::query(
+            r#"
+            UPDATE dialogues
+            SET audio_data = $1, updated_at = NOW()
+            WHERE id = $2
+            "#,
+        )
+        .bind(audio_data)
+        .bind(dialogue_uuid)
+        .execute(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to save audio data: {}", e)))?;
+        
+        // Fetch updated dialogue
+        let updated_row = sqlx::query(
+            r#"
+            SELECT id, scene_id, character_id, language, text, translated_text, hume_voice_id, audio_url,
+                   start_time_seconds::text, duration_seconds::text, order_index, created_at, updated_at
+            FROM dialogues
+            WHERE id = $1
+            "#,
+        )
+        .bind(dialogue_uuid)
+        .fetch_one(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch updated dialogue: {}", e)))?;
+        
+        let scene_id: Uuid = updated_row.get("scene_id");
+        let character_id: Uuid = updated_row.get("character_id");
+        let start_time_seconds: Option<String> = updated_row.get("start_time_seconds");
+        let duration_seconds: Option<String> = updated_row.get("duration_seconds");
+        let translated_text_json: Option<serde_json::Value> = updated_row.get("translated_text");
+        
+        let translated_text = translated_text_json
+            .and_then(|v| v.as_object()?.values().next()?.as_str().map(|s| s.to_string()));
+        
+        Ok(Dialogue {
+            id: dialogue_id,
+            scene_id: ID(scene_id.to_string()),
+            character_id: ID(character_id.to_string()),
+            language: updated_row.get("language"),
+            text: updated_row.get("text"),
+            translated_text,
+            hume_voice_id: updated_row.get("hume_voice_id"),
+            audio_url: updated_row.get("audio_url"),
+            start_time_seconds: start_time_seconds.and_then(|s| s.parse::<f64>().ok()),
+            duration_seconds: duration_seconds.and_then(|s| s.parse::<f64>().ok()),
+            order_index: updated_row.get("order_index"),
+            created_at: updated_row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
+            updated_at: updated_row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
         })
     }
 }

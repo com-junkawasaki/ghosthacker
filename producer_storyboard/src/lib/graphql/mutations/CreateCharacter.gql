@@ -1,0 +1,11 @@
+mutation CreateCharacter($input: CreateCharacterInput!) {
+	createCharacter(input: $input) {
+		id
+		projectId
+		name
+		description
+		createdAt
+		updatedAt
+	}
+}
+

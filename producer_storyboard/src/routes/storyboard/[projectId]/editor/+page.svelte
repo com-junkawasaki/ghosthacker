@@ -12,6 +12,10 @@
 	import { ReorderScenesStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/ReorderScenes.js';
 	import { GenerateSceneImageStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/GenerateSceneImage.js';
 	import { GetGeneratedImagesStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/GetGeneratedImages.js';
+	import { ListCharactersStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/ListCharacters.js';
+	import { ListDialoguesStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/ListDialogues.js';
+	import CharacterManager from '$lib/components/storyboard/CharacterManager.svelte';
+	import DialogueEditor from '$lib/components/storyboard/DialogueEditor.svelte';
 
 	type Scene = {
 		id: string;
@@ -30,6 +34,23 @@
 		createdAt: string;
 	};
 
+	type Character = {
+		id: string;
+		projectId: string;
+		name: string;
+		description: string | null;
+	};
+
+	type Dialogue = {
+		id: string;
+		sceneId: string;
+		characterId: string;
+		language: string;
+		text: string;
+		humeVoiceId: string | null;
+		audioUrl: string | null;
+	};
+
 	const projectId: string = $page.params.projectId || '';
 	
 	// Houdini stores - initialize only in browser
@@ -41,6 +62,8 @@
 	let reorderScenesStore: ReorderScenesStore | null = null;
 	let generateSceneImageStore: GenerateSceneImageStore | null = null;
 	let getGeneratedImagesStore: GetGeneratedImagesStore | null = null;
+	let listCharactersStore: ListCharactersStore | null = null;
+	let listDialoguesStore: ListDialoguesStore | null = null;
 
 	if (browser) {
 		storyboardsStore = new ListStoryboardsStore();
@@ -51,6 +74,8 @@
 		reorderScenesStore = new ReorderScenesStore();
 		generateSceneImageStore = new GenerateSceneImageStore();
 		getGeneratedImagesStore = new GetGeneratedImagesStore();
+		listCharactersStore = new ListCharactersStore();
+		listDialoguesStore = new ListDialoguesStore();
 	}
 
 	// State management with $state for reactive updates
@@ -69,6 +94,11 @@
 	// Store generated images by scene ID
 	let sceneImages = $state<Record<string, GeneratedImage[]>>({});
 	
+	// Characters and dialogues
+	let characters = $state<Character[]>([]);
+	let sceneDialogues = $state<Record<string, Dialogue[]>>({});
+	let showCharacterManager = $state(false);
+	
 	// Initialize selected scene
 	$effect(() => {
 		if (!selectedSceneId && scenes.length > 0 && scenes[0]) {
@@ -80,6 +110,34 @@
 	const totalDuration = $derived.by(() => {
 		return scenes.reduce((sum, scene) => sum + (scene.durationSeconds || 0), 0) || 5;
 	});
+
+	// Load characters
+	async function loadCharacters() {
+		if (!browser || !listCharactersStore || !projectId) return;
+
+		try {
+			const result = await listCharactersStore.fetch({ variables: { projectId } });
+			if (result?.data?.characters) {
+				characters = result.data.characters as Character[];
+			}
+		} catch (err) {
+			console.error('[Editor] Error loading characters:', err);
+		}
+	}
+
+	// Load dialogues for a scene
+	async function loadDialogues(sceneId: string) {
+		if (!browser || !listDialoguesStore) return;
+
+		try {
+			const result = await listDialoguesStore.fetch({ variables: { sceneId } });
+			if (result?.data?.dialogues) {
+				sceneDialogues[sceneId] = result.data.dialogues as Dialogue[];
+			}
+		} catch (err) {
+			console.error('[Editor] Error loading dialogues:', err);
+		}
+	}
 
 	// Load storyboards and scenes
 	async function loadData() {
@@ -378,6 +436,9 @@
 
 	function handleSceneSelect(sceneId: string) {
 		selectedSceneId = sceneId;
+		if (sceneId && !sceneDialogues[sceneId]) {
+			loadDialogues(sceneId);
+		}
 	}
 
 	// Load generated images for a scene
@@ -813,6 +874,16 @@
 						{/if}
 						
 						<div class="scene-description">{scene.textDescription || 'Click to edit description'}</div>
+						
+						<!-- Dialogue Editor -->
+						{#if selectedSceneId === scene.id}
+							<DialogueEditor
+								sceneId={scene.id}
+								characters={characters}
+								dialogues={sceneDialogues[scene.id] || []}
+								onDialogueChange={() => loadDialogues(scene.id)}
+							/>
+						{/if}
 					</div>
 					
 					<!-- Scene Controls -->
@@ -821,8 +892,9 @@
 						
 						<!-- Duration Slider -->
 						<div class="duration-control" onclick={(e) => e.stopPropagation()}>
-							<label class="duration-label">Duration: {scene.durationSeconds?.toFixed(1)}s</label>
+							<label for="duration-{scene.id}" class="duration-label">Duration: {scene.durationSeconds?.toFixed(1)}s</label>
 							<input
+								id="duration-{scene.id}"
 								type="range"
 								min="0.5"
 								max="10"
@@ -838,7 +910,7 @@
 						</div>
 						
 						<!-- Image Generation Buttons -->
-						<div class="image-generation-controls" onclick={(e) => e.stopPropagation()}>
+						<div class="image-generation-controls" onclick={(e) => e.stopPropagation()} role="group" aria-label="Image generation controls">
 							<button
 								class="image-gen-button"
 								onclick={() => generateSceneImage(scene.id, 'start')}
@@ -945,8 +1017,25 @@
 		</div>
 	</div>
 
+	<!-- Character Manager -->
+	<CharacterManager projectId={projectId} bind:open={showCharacterManager} />
+
 	<!-- Bottom Toolbar -->
 	<div class="toolbar">
+		<!-- Character Manager Button -->
+		<button
+			class="toolbar-button"
+			onclick={() => showCharacterManager = true}
+			aria-label="Manage characters"
+			title="Manage characters"
+		>
+			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+				<path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" stroke-width="1.5"/>
+				<path d="M10 12C5.58172 12 2 15.5817 2 20H18C18 15.5817 14.4183 12 10 12Z" stroke-width="1.5"/>
+			</svg>
+			<span>Characters</span>
+		</button>
+		
 		<button class="toolbar-button" aria-label="Aspect Ratio">
 			16:9
 		</button>

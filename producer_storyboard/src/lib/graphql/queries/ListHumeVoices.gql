@@ -1,0 +1,9 @@
+query ListHumeVoices {
+	humeVoices {
+		id
+		name
+		description
+		language
+	}
+}
+

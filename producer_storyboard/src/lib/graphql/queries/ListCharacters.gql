@@ -1,0 +1,11 @@
+query ListCharacters($projectId: ID!) {
+	characters(projectId: $projectId) {
+		id
+		projectId
+		name
+		description
+		createdAt
+		updatedAt
+	}
+}
+

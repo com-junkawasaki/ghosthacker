@@ -1,0 +1,18 @@
+query ListDialogues($sceneId: ID!) {
+	dialogues(sceneId: $sceneId) {
+		id
+		sceneId
+		characterId
+		language
+		text
+		translatedText
+		humeVoiceId
+		audioUrl
+		startTimeSeconds
+		durationSeconds
+		orderIndex
+		createdAt
+		updatedAt
+	}
+}
+

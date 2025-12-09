@@ -1,0 +1,18 @@
+mutation GenerateDialogueAudio($dialogueId: ID!) {
+	generateDialogueAudio(dialogueId: $dialogueId) {
+		id
+		sceneId
+		characterId
+		language
+		text
+		translatedText
+		humeVoiceId
+		audioUrl
+		startTimeSeconds
+		durationSeconds
+		orderIndex
+		createdAt
+		updatedAt
+	}
+}
+

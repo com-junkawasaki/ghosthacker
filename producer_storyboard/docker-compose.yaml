@@ -35,6 +35,8 @@ services:
       HOST: 0.0.0.0
       # AI Service Configuration
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      HUME_API_KEY: ${HUME_API_KEY:-}
+      HUME_API_URL: ${HUME_API_URL:-https://api.hume.ai}
       # Cargo watch configuration for HMR
       CARGO_WATCH_IGNORE: "target/**"
     volumes:

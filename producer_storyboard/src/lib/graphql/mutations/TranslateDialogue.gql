@@ -1,0 +1,18 @@
+mutation TranslateDialogue($input: TranslateDialogueInput!) {
+	translateDialogue(input: $input) {
+		id
+		sceneId
+		characterId
+		language
+		text
+		translatedText
+		humeVoiceId
+		audioUrl
+		startTimeSeconds
+		durationSeconds
+		orderIndex
+		createdAt
+		updatedAt
+	}
+}
+

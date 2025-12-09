@@ -111,3 +111,51 @@ pub struct OperationHistory {
     #[graphql(name = "createdAt")]
     pub created_at: String,
 }
+
+#[derive(SimpleObject, Clone)]
+pub struct Character {
+    pub id: ID,
+    #[graphql(name = "projectId")]
+    pub project_id: ID,
+    pub name: String,
+    pub description: Option<String>,
+    #[graphql(name = "createdAt")]
+    pub created_at: String,
+    #[graphql(name = "updatedAt")]
+    pub updated_at: String,
+}
+
+#[derive(SimpleObject, Clone)]
+pub struct Dialogue {
+    pub id: ID,
+    #[graphql(name = "sceneId")]
+    pub scene_id: ID,
+    #[graphql(name = "characterId")]
+    pub character_id: ID,
+    pub language: String,
+    pub text: String,
+    #[graphql(name = "translatedText")]
+    pub translated_text: Option<String>,
+    #[graphql(name = "humeVoiceId")]
+    pub hume_voice_id: Option<String>,
+    #[graphql(name = "audioUrl")]
+    pub audio_url: Option<String>,
+    #[graphql(name = "startTimeSeconds")]
+    pub start_time_seconds: Option<f64>,
+    #[graphql(name = "durationSeconds")]
+    pub duration_seconds: Option<f64>,
+    #[graphql(name = "orderIndex")]
+    pub order_index: i32,
+    #[graphql(name = "createdAt")]
+    pub created_at: String,
+    #[graphql(name = "updatedAt")]
+    pub updated_at: String,
+}
+
+#[derive(SimpleObject, Clone)]
+pub struct HumeVoice {
+    pub id: String,
+    pub name: String,
+    pub description: Option<String>,
+    pub language: Option<String>,
+}

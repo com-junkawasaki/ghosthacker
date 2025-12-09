@@ -1,0 +1,18 @@
+mutation UpdateDialogue($input: UpdateDialogueInput!) {
+	updateDialogue(input: $input) {
+		id
+		sceneId
+		characterId
+		language
+		text
+		translatedText
+		humeVoiceId
+		audioUrl
+		startTimeSeconds
+		durationSeconds
+		orderIndex
+		createdAt
+		updatedAt
+	}
+}
+

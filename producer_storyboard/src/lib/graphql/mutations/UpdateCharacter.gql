@@ -1,0 +1,11 @@
+mutation UpdateCharacter($input: UpdateCharacterInput!) {
+	updateCharacter(input: $input) {
+		id
+		projectId
+		name
+		description
+		createdAt
+		updatedAt
+	}
+}
+

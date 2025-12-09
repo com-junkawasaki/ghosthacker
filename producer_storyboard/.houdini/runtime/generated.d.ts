@@ -1,16 +1,22 @@
 import type { Record } from "./public/record";
-import { GetScene$result, GetScene$input } from "$houdini/artifacts/GetScene";
-import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
 import { GetGeneratedImages$result, GetGeneratedImages$input } from "$houdini/artifacts/GetGeneratedImages";
 import { GetGeneratedImagesStore } from "../plugins/houdini-svelte/stores/GetGeneratedImages";
+import { GetScene$result, GetScene$input } from "$houdini/artifacts/GetScene";
+import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
+import { ListCharacters$result, ListCharacters$input } from "$houdini/artifacts/ListCharacters";
+import { ListCharactersStore } from "../plugins/houdini-svelte/stores/ListCharacters";
+import { ListDialogues$result, ListDialogues$input } from "$houdini/artifacts/ListDialogues";
+import { ListDialoguesStore } from "../plugins/houdini-svelte/stores/ListDialogues";
 import { ListGeneratedVideos$result, ListGeneratedVideos$input } from "$houdini/artifacts/ListGeneratedVideos";
 import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
+import { ListHumeVoices$result, ListHumeVoices$input } from "$houdini/artifacts/ListHumeVoices";
+import { ListHumeVoicesStore } from "../plugins/houdini-svelte/stores/ListHumeVoices";
 import { ListProjects$result, ListProjects$input } from "$houdini/artifacts/ListProjects";
 import { ListProjectsStore } from "../plugins/houdini-svelte/stores/ListProjects";
-import { ListScenes$result, ListScenes$input } from "$houdini/artifacts/ListScenes";
-import { ListScenesStore } from "../plugins/houdini-svelte/stores/ListScenes";
 import { ListStoryboards$result, ListStoryboards$input } from "$houdini/artifacts/ListStoryboards";
 import { ListStoryboardsStore } from "../plugins/houdini-svelte/stores/ListStoryboards";
+import { ListScenes$result, ListScenes$input } from "$houdini/artifacts/ListScenes";
+import { ListScenesStore } from "../plugins/houdini-svelte/stores/ListScenes";
 
 export declare type CacheTypeDef = {
     types: {
@@ -250,6 +256,98 @@ export declare type CacheTypeDef = {
             };
             fragments: [];
         };
+        Character: {
+            idFields: {
+                id: string;
+            };
+            fields: {
+                id: {
+                    type: string;
+                    args: never;
+                };
+                projectId: {
+                    type: string;
+                    args: never;
+                };
+                name: {
+                    type: string;
+                    args: never;
+                };
+                description: {
+                    type: string | null;
+                    args: never;
+                };
+                createdAt: {
+                    type: string;
+                    args: never;
+                };
+                updatedAt: {
+                    type: string;
+                    args: never;
+                };
+            };
+            fragments: [];
+        };
+        Dialogue: {
+            idFields: {
+                id: string;
+            };
+            fields: {
+                id: {
+                    type: string;
+                    args: never;
+                };
+                sceneId: {
+                    type: string;
+                    args: never;
+                };
+                characterId: {
+                    type: string;
+                    args: never;
+                };
+                language: {
+                    type: string;
+                    args: never;
+                };
+                text: {
+                    type: string;
+                    args: never;
+                };
+                translatedText: {
+                    type: string | null;
+                    args: never;
+                };
+                humeVoiceId: {
+                    type: string | null;
+                    args: never;
+                };
+                audioUrl: {
+                    type: string | null;
+                    args: never;
+                };
+                startTimeSeconds: {
+                    type: number | null;
+                    args: never;
+                };
+                durationSeconds: {
+                    type: number | null;
+                    args: never;
+                };
+                orderIndex: {
+                    type: number;
+                    args: never;
+                };
+                createdAt: {
+                    type: string;
+                    args: never;
+                };
+                updatedAt: {
+                    type: string;
+                    args: never;
+                };
+            };
+            fragments: [];
+        };
         __ROOT__: {
             idFields: {};
             fields: {
@@ -300,10 +398,56 @@ export declare type CacheTypeDef = {
                         entityId?: string | number | null | undefined;
                     };
                 };
+                characters: {
+                    type: (Record<CacheTypeDef, "Character">)[];
+                    args: {
+                        projectId: string | number;
+                    };
+                };
+                dialogues: {
+                    type: (Record<CacheTypeDef, "Dialogue">)[];
+                    args: {
+                        sceneId: string | number;
+                    };
+                };
+                humeVoices: {
+                    type: (Record<CacheTypeDef, "HumeVoice">)[];
+                    args: never;
+                };
+                audioData: {
+                    type: string;
+                    args: {
+                        dialogueId: string | number;
+                    };
+                };
+            };
+            fragments: [];
+        };
+        HumeVoice: {
+            idFields: {
+                id: string;
+            };
+            fields: {
+                id: {
+                    type: string;
+                    args: never;
+                };
+                name: {
+                    type: string;
+                    args: never;
+                };
+                description: {
+                    type: string | null;
+                    args: never;
+                };
+                language: {
+                    type: string | null;
+                    args: never;
+                };
             };
             fragments: [];
         };
     };
     lists: {};
-    queries: [[ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListScenesStore, ListScenes$result, ListScenes$input], [ListProjectsStore, ListProjects$result, ListProjects$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input], [GetGeneratedImagesStore, GetGeneratedImages$result, GetGeneratedImages$input], [GetSceneStore, GetScene$result, GetScene$input]];
+    queries: [[ListScenesStore, ListScenes$result, ListScenes$input], [ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListProjectsStore, ListProjects$result, ListProjects$input], [ListHumeVoicesStore, ListHumeVoices$result, ListHumeVoices$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input], [ListDialoguesStore, ListDialogues$result, ListDialogues$input], [ListCharactersStore, ListCharacters$result, ListCharacters$input], [GetSceneStore, GetScene$result, GetScene$input], [GetGeneratedImagesStore, GetGeneratedImages$result, GetGeneratedImages$input]];
 };

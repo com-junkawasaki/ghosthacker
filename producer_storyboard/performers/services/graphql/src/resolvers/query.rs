@@ -7,7 +7,8 @@
  */
 use async_graphql::{Context, Object, ID, Result};
 use crate::ports::postgres::PostgresPool;
-use crate::schema::storyboard::{Project, Storyboard, Scene, VideoStatus, GeneratedImage, OperationHistory};
+use crate::schema::storyboard::{Project, Storyboard, Scene, VideoStatus, GeneratedImage, OperationHistory, Character, Dialogue, HumeVoice};
+use crate::ports::hume_service::HumeService;
 use uuid::Uuid;
 use rust_decimal::prelude::*;
 use sqlx::Row;
@@ -274,6 +275,137 @@ impl QueryRoot {
         Ok(base64_data)
     }
 
+    /// List characters for a project
+    async fn characters(&self, ctx: &Context<'_>, project_id: ID) -> Result<Vec<Character>> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let project_uuid = Uuid::parse_str(&project_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid project ID: {}", e)))?;
+        
+        let rows = sqlx::query(
+            r#"
+            SELECT id, project_id, name, description, created_at, updated_at
+            FROM characters
+            WHERE project_id = $1
+            ORDER BY created_at ASC
+            "#,
+        )
+        .bind(project_uuid)
+        .fetch_all(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch characters: {}", e)))?;
+        
+        Ok(rows.into_iter().map(|row| {
+            let id: Uuid = row.get("id");
+            let project_id: Uuid = row.get("project_id");
+            
+            Character {
+                id: ID(id.to_string()),
+                project_id: ID(project_id.to_string()),
+                name: row.get("name"),
+                description: row.get("description"),
+                created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
+                updated_at: row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
+            }
+        }).collect())
+    }
+
+    /// List dialogues for a scene
+    async fn dialogues(&self, ctx: &Context<'_>, scene_id: ID) -> Result<Vec<Dialogue>> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let scene_uuid = Uuid::parse_str(&scene_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid scene ID: {}", e)))?;
+        
+        let rows = sqlx::query(
+            r#"
+            SELECT id, scene_id, character_id, language, text, translated_text, hume_voice_id, audio_url,
+                   start_time_seconds::text, duration_seconds::text, order_index, created_at, updated_at
+            FROM dialogues
+            WHERE scene_id = $1
+            ORDER BY order_index ASC, created_at ASC
+            "#,
+        )
+        .bind(scene_uuid)
+        .fetch_all(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch dialogues: {}", e)))?;
+        
+        Ok(rows.into_iter().map(|row| {
+            let id: Uuid = row.get("id");
+            let scene_id: Uuid = row.get("scene_id");
+            let character_id: Uuid = row.get("character_id");
+            let start_time_seconds: Option<String> = row.get("start_time_seconds");
+            let duration_seconds: Option<String> = row.get("duration_seconds");
+            let translated_text_json: Option<serde_json::Value> = row.get("translated_text");
+            
+            // Extract first translated text as string (simplified)
+            let translated_text = translated_text_json
+                .and_then(|v| v.as_object()?.values().next()?.as_str().map(|s| s.to_string()));
+            
+            Dialogue {
+                id: ID(id.to_string()),
+                scene_id: ID(scene_id.to_string()),
+                character_id: ID(character_id.to_string()),
+                language: row.get("language"),
+                text: row.get("text"),
+                translated_text,
+                hume_voice_id: row.get("hume_voice_id"),
+                audio_url: row.get("audio_url"),
+                start_time_seconds: start_time_seconds.and_then(|s| s.parse::<f64>().ok()),
+                duration_seconds: duration_seconds.and_then(|s| s.parse::<f64>().ok()),
+                order_index: row.get("order_index"),
+                created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
+                updated_at: row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
+            }
+        }).collect())
+    }
+
+    /// List available Hume AI voices
+    async fn hume_voices(&self, _ctx: &Context<'_>) -> Result<Vec<HumeVoice>> {
+        let hume_api_key = std::env::var("HUME_API_KEY")
+            .map_err(|_| async_graphql::Error::new("HUME_API_KEY not configured"))?;
+        let hume_service = HumeService::new(hume_api_key);
+        
+        let voices = hume_service.list_voices().await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to fetch Hume voices: {}", e)))?;
+        
+        Ok(voices.into_iter().map(|v| HumeVoice {
+            id: v.id,
+            name: v.name,
+            description: v.description,
+            language: v.language,
+        }).collect())
+    }
+
+    /// Get audio data for a dialogue as base64 string
+    async fn audio_data(&self, ctx: &Context<'_>, dialogue_id: ID) -> Result<String> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let dialogue_uuid = Uuid::parse_str(&dialogue_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid dialogue ID: {}", e)))?;
+        
+        let row = sqlx::query(
+            r#"
+            SELECT audio_data
+            FROM dialogues
+            WHERE id = $1 AND audio_data IS NOT NULL
+            "#,
+        )
+        .bind(dialogue_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch audio data: {}", e)))?;
+        
+        let row = row.ok_or_else(|| async_graphql::Error::new("Audio data not found"))?;
+        
+        let audio_bytes: Vec<u8> = row.get("audio_data");
+        use base64::Engine;
+        let base64_data = base64::engine::general_purpose::STANDARD.encode(&audio_bytes);
+        
+        Ok(base64_data)
+    }
+
     /// List operation history
     async fn operation_history(
         &self,
@@ -287,7 +419,7 @@ impl QueryRoot {
             let entity_uuid = Uuid::parse_str(&entity_id.0)
                 .map_err(|e| async_graphql::Error::new(format!("Invalid entity ID: {}", e)))?;
             
-            let entity_type_filter = entity_type.as_deref().unwrap_or("%");
+            let _entity_type_filter = entity_type.as_deref().unwrap_or("%");
             
             sqlx::query(
                 r#"

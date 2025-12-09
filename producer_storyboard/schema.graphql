@@ -67,6 +67,31 @@ type OperationHistory {
 	createdAt: String!
 }
 
+type Character {
+	id: ID!
+	projectId: ID!
+	name: String!
+	description: String
+	createdAt: String!
+	updatedAt: String!
+}
+
+type Dialogue {
+	id: ID!
+	sceneId: ID!
+	characterId: ID!
+	language: String!
+	text: String!
+	translatedText: String
+	humeVoiceId: String
+	audioUrl: String
+	startTimeSeconds: Float
+	durationSeconds: Float
+	orderIndex: Int!
+	createdAt: String!
+	updatedAt: String!
+}
+
 type Query {
 	projects: [Project!]!
 	storyboards(projectId: ID!): [Storyboard!]!
@@ -76,6 +101,10 @@ type Query {
 	generatedImages(sceneId: ID!): [GeneratedImage!]!
 	imageData(imageId: ID!): String!
 	operationHistory(entityType: String, entityId: ID): [OperationHistory!]!
+	characters(projectId: ID!): [Character!]!
+	dialogues(sceneId: ID!): [Dialogue!]!
+	humeVoices: [HumeVoice!]!
+	audioData(dialogueId: ID!): String!
 }
 
 input CreateProjectInput {
@@ -112,6 +141,51 @@ input GenerateSceneImageInput {
 	imageType: String
 }
 
+input CreateCharacterInput {
+	projectId: ID!
+	name: String!
+	description: String
+}
+
+input UpdateCharacterInput {
+	id: ID!
+	name: String
+	description: String
+}
+
+input CreateDialogueInput {
+	sceneId: ID!
+	characterId: ID!
+	language: String!
+	text: String!
+	humeVoiceId: String
+	startTimeSeconds: Float
+	durationSeconds: Float
+	orderIndex: Int
+}
+
+input UpdateDialogueInput {
+	id: ID!
+	language: String
+	text: String
+	humeVoiceId: String
+	startTimeSeconds: Float
+	durationSeconds: Float
+	orderIndex: Int
+}
+
+input TranslateDialogueInput {
+	dialogueId: ID!
+	targetLanguage: String!
+}
+
+type HumeVoice {
+	id: String!
+	name: String!
+	description: String
+	language: String
+}
+
 type Mutation {
 	createProject(input: CreateProjectInput!): Project!
 	createScene(input: CreateSceneInput!): Scene!
@@ -120,4 +194,12 @@ type Mutation {
 	reorderScenes(input: ReorderScenesInput!): [Scene!]!
 	generateSceneImage(input: GenerateSceneImageInput!): GeneratedImage!
 	generateVideo(storyboardId: ID!): VideoStatus!
+	createCharacter(input: CreateCharacterInput!): Character!
+	updateCharacter(input: UpdateCharacterInput!): Character!
+	deleteCharacter(id: ID!): Boolean!
+	createDialogue(input: CreateDialogueInput!): Dialogue!
+	updateDialogue(input: UpdateDialogueInput!): Dialogue!
+	deleteDialogue(id: ID!): Boolean!
+	translateDialogue(input: TranslateDialogueInput!): Dialogue!
+	generateDialogueAudio(dialogueId: ID!): Dialogue!
 }
