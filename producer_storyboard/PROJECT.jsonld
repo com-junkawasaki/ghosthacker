@@ -9,7 +9,7 @@
   "url": "https://github.com/ghosthacker/producer_storyboard",
   "version": "0.1.0",
   "createdAt": "2025-12-09T00:00:00Z",
-  "updatedAt": "2025-12-09T16:30:00Z",
+  "updatedAt": "2025-12-09T17:00:00Z",
   "status": "InDevelopment",
   "maintainer": {
     "@type": "Person",
@@ -204,6 +204,58 @@
           "Visual feedback for generation progress"
         ]
       }
+    },
+    {
+      "@type": "FixAction",
+      "name": "image-generation-base64-handling",
+      "description": "Fix image generation to handle base64 data URLs from OpenRouter and save images to PostgreSQL first",
+      "startTime": "2025-12-09T16:30:00Z",
+      "endTime": "2025-12-09T17:00:00Z",
+      "status": "Completed",
+      "result": {
+        "fixes": [
+          "OpenRouter base64 data URL support",
+          "Image saved to PostgreSQL before response",
+          "Improved error handling and logging",
+          "Image format detection from MIME types"
+        ]
+      }
+    },
+    {
+      "@type": "AddAction",
+      "name": "storyboard-creation-management",
+      "description": "Implement storyboard creation and multi-storyboard management functionality",
+      "startTime": "2025-12-09T19:00:00Z",
+      "endTime": "2025-12-09T20:00:00Z",
+      "status": "Completed",
+      "result": {
+        "features": [
+          "GraphQL mutation for creating storyboards",
+          "Storyboard selection dropdown in editor header",
+          "Create storyboard dialog with title input",
+          "Empty state UI when no storyboard exists",
+          "Multi-storyboard management within a project",
+          "Automatic storyboard loading after creation"
+        ],
+        "backend": {
+          "mutation": "createStoryboard",
+          "inputType": "CreateStoryboardInput",
+          "defaults": {
+            "aspectRatio": "16:9",
+            "resolution": "1920x1080",
+            "title": "New Storyboard"
+          }
+        },
+        "frontend": {
+          "components": [
+            "Storyboard selector dropdown",
+            "Create storyboard button",
+            "Create storyboard dialog",
+            "Empty state component"
+          ],
+          "stores": "CreateStoryboardStore"
+        }
+      }
     }
   ],
   "capability": [
@@ -222,8 +274,14 @@
     {
       "@type": "Service",
       "name": "image-generation",
-      "description": "OpenAI DALL-E 3 integration for generating scene images (start/end)",
-      "status": "Operational"
+      "description": "OpenRouter API (Flux 2 Pro) integration for generating scene images (start/end) with base64 data URL support",
+      "status": "Operational",
+      "features": [
+        "Base64 data URL handling",
+        "PostgreSQL BYTEA storage",
+        "Image format detection from MIME types",
+        "Comprehensive error handling"
+      ]
     },
     {
       "@type": "Service",
@@ -260,6 +318,12 @@
       "name": "voice-synthesis",
       "description": "Hume AI integration for generating character voices",
       "status": "Operational"
+    },
+    {
+      "@type": "Service",
+      "name": "storyboard-management",
+      "description": "Multi-storyboard creation and management within projects with selection UI",
+      "status": "Operational"
     }
   ],
   "configuration": {
@@ -270,7 +334,8 @@
       "features": {
         "dragDrop": "HTML5 Drag and Drop API",
         "loadingStates": "Scene-specific loading overlays with spinner animations",
-        "timeoutHandling": "Adaptive timeouts based on request type"
+        "timeoutHandling": "Adaptive timeouts based on request type",
+        "storyboardManagement": "Multi-storyboard creation and selection within projects"
       }
     },
     "backend": {
@@ -281,7 +346,10 @@
         "textGeneration": "OpenRouter API (GPT-4)",
         "voiceSynthesis": "Hume AI (TTS)"
       },
-      "imageStorage": "PostgreSQL BYTEA"
+      "imageStorage": "PostgreSQL BYTEA",
+      "mutations": {
+        "createStoryboard": "Create new storyboard with project association and default settings"
+      }
     },
     "infrastructure": {
       "containerization": "Docker Compose",
