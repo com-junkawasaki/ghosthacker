@@ -9,6 +9,7 @@ use async_graphql::{Context, Object, ID, Result};
 use crate::ports::postgres::PostgresPool;
 use crate::schema::storyboard::{Project, Storyboard, Scene, VideoStatus, GeneratedImage, OperationHistory, Character, Dialogue, HumeVoice, CharacterAsset};
 use crate::ports::hume_service::HumeService;
+use crate::ports::clerk::get_clerk_auth_from_context;
 use uuid::Uuid;
 use sqlx::Row;
 
@@ -22,20 +23,42 @@ impl QueryRoot {
         "ok".to_string()
     }
 
-    /// List all projects
+    /// List all projects (filtered by organization if authenticated)
     async fn projects(&self, ctx: &Context<'_>) -> Result<Vec<Project>> {
         let pool = ctx.data::<PostgresPool>()?;
         
-        let rows = sqlx::query_as::<_, (Uuid, String, Option<String>, chrono::DateTime<chrono::Utc>, chrono::DateTime<chrono::Utc>)>(
-            r#"
-            SELECT id, title, description, created_at, updated_at
-            FROM storyboard_projects
-            ORDER BY created_at DESC
-            "#,
-        )
-        .fetch_all(pool.as_ref())
-        .await
-        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch projects: {}", e)))?;
+        // Get organization context if available
+        let org_filter = if let Ok(auth) = get_clerk_auth_from_context(ctx) {
+            auth.org.map(|org| org.id)
+        } else {
+            None
+        };
+        
+        let query = if let Some(org_id) = org_filter {
+            sqlx::query_as::<_, (Uuid, String, Option<String>, chrono::DateTime<chrono::Utc>, chrono::DateTime<chrono::Utc>)>(
+                r#"
+                SELECT id, title, description, created_at, updated_at
+                FROM storyboard_projects
+                WHERE org_id = $1
+                ORDER BY created_at DESC
+                "#,
+            )
+            .bind(org_id)
+        } else {
+            // If no org context, return all projects (for backward compatibility or admin access)
+            sqlx::query_as::<_, (Uuid, String, Option<String>, chrono::DateTime<chrono::Utc>, chrono::DateTime<chrono::Utc>)>(
+                r#"
+                SELECT id, title, description, created_at, updated_at
+                FROM storyboard_projects
+                ORDER BY created_at DESC
+                "#,
+            )
+        };
+        
+        let rows = query
+            .fetch_all(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to fetch projects: {}", e)))?;
         
         Ok(rows.into_iter().map(|row| Project {
             id: ID(row.0.to_string()),
@@ -46,12 +69,34 @@ impl QueryRoot {
         }).collect())
     }
 
-    /// List storyboards for a project
+    /// List storyboards for a project (with organization access control)
     async fn storyboards(&self, ctx: &Context<'_>, project_id: ID) -> Result<Vec<Storyboard>> {
         let pool = ctx.data::<PostgresPool>()?;
         
         let project_uuid = Uuid::parse_str(&project_id.0)
             .map_err(|e| async_graphql::Error::new(format!("Invalid project ID: {}", e)))?;
+        
+        // Check organization access - verify project belongs to user's organization
+        if let Ok(auth) = get_clerk_auth_from_context(ctx) {
+            if let Some(org) = auth.org {
+                // Verify project belongs to organization
+                let project_org: Option<String> = sqlx::query_scalar(
+                    "SELECT org_id FROM storyboard_projects WHERE id = $1"
+                )
+                .bind(project_uuid)
+                .fetch_optional(pool.as_ref())
+                .await
+                .map_err(|e| async_graphql::Error::new(format!("Failed to verify project access: {}", e)))?;
+                
+                if let Some(project_org_id) = project_org {
+                    if project_org_id != org.id {
+                        return Err(async_graphql::Error::new("Access denied: Project does not belong to your organization"));
+                    }
+                } else {
+                    return Err(async_graphql::Error::new("Project not found"));
+                }
+            }
+        }
         
         let rows = sqlx::query_as::<_, (Uuid, Uuid, String, String, String, Option<i32>, i32, chrono::DateTime<chrono::Utc>, chrono::DateTime<chrono::Utc>)>(
             r#"

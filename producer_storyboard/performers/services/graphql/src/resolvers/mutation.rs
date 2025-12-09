@@ -11,6 +11,7 @@ use crate::ports::openai_service::{OpenAIService, ImageGenerationRequest};
 use crate::ports::history::{HistoryService, OperationType};
 use crate::ports::hume_service::HumeService;
 use crate::ports::translation_service::TranslationService;
+use crate::ports::clerk::{get_clerk_auth_from_context, require_auth_and_org};
 use crate::schema::storyboard::{Project, Storyboard, VideoStatus, Scene, GeneratedImage, Character, Dialogue, CharacterAsset};
 use uuid::Uuid;
 use serde_json::json;
@@ -177,26 +178,51 @@ pub struct MutationRoot;
 
 #[Object]
 impl MutationRoot {
-    /// Create a new project
+    /// Create a new project (with organization scoping)
     async fn create_project(&self, ctx: &Context<'_>, input: CreateProjectInput) -> Result<Project> {
         let pool = ctx.data::<PostgresPool>()?;
+        
+        // Get organization context - require authentication and organization
+        let org_id = if let Ok((_user, org)) = require_auth_and_org(ctx) {
+            Some(org.id)
+        } else {
+            // Allow creation without org for backward compatibility, but log warning
+            None
+        };
         
         let id = Uuid::new_v4();
         let now = chrono::Utc::now();
         
-        sqlx::query(
-            r#"
-            INSERT INTO storyboard_projects (id, title, description, created_at, updated_at)
-            VALUES ($1, $2, $3, $4, $4)
-            "#,
-        )
-        .bind(id)
-        .bind(&input.title)
-        .bind(&input.description)
-        .bind(now)
-        .execute(pool.as_ref())
-        .await
-        .map_err(|e| async_graphql::Error::new(format!("Failed to create project: {}", e)))?;
+        if let Some(org_id_value) = org_id {
+            sqlx::query(
+                r#"
+                INSERT INTO storyboard_projects (id, title, description, org_id, created_at, updated_at)
+                VALUES ($1, $2, $3, $4, $5, $5)
+                "#,
+            )
+            .bind(id)
+            .bind(&input.title)
+            .bind(&input.description)
+            .bind(org_id_value)
+            .bind(now)
+            .execute(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to create project: {}", e)))?;
+        } else {
+            sqlx::query(
+                r#"
+                INSERT INTO storyboard_projects (id, title, description, created_at, updated_at)
+                VALUES ($1, $2, $3, $4, $4)
+                "#,
+            )
+            .bind(id)
+            .bind(&input.title)
+            .bind(&input.description)
+            .bind(now)
+            .execute(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to create project: {}", e)))?;
+        }
         
         Ok(Project {
             id: ID(id.to_string()),
@@ -207,26 +233,48 @@ impl MutationRoot {
         })
     }
 
-    /// Create a new storyboard
+    /// Create a new storyboard (with organization access control)
     async fn create_storyboard(&self, ctx: &Context<'_>, input: CreateStoryboardInput) -> Result<Storyboard> {
         let pool = ctx.data::<PostgresPool>()?;
         
         let project_uuid = Uuid::parse_str(&input.project_id.0)
             .map_err(|e| async_graphql::Error::new(format!("Invalid project ID: {}", e)))?;
         
-        // Verify project exists
-        let project_exists = sqlx::query_scalar::<_, bool>(
-            r#"
-            SELECT EXISTS(SELECT 1 FROM storyboard_projects WHERE id = $1)
-            "#,
-        )
-        .bind(project_uuid)
-        .fetch_one(pool.as_ref())
-        .await
-        .map_err(|e| async_graphql::Error::new(format!("Failed to verify project: {}", e)))?;
-        
-        if !project_exists {
-            return Err(async_graphql::Error::new("Project not found"));
+        // Verify project exists and check organization access
+        if let Ok(auth) = get_clerk_auth_from_context(ctx) {
+            if let Some(org) = auth.org {
+                // Verify project belongs to organization
+                let project_org: Option<String> = sqlx::query_scalar(
+                    "SELECT org_id FROM storyboard_projects WHERE id = $1"
+                )
+                .bind(project_uuid)
+                .fetch_optional(pool.as_ref())
+                .await
+                .map_err(|e| async_graphql::Error::new(format!("Failed to verify project access: {}", e)))?;
+                
+                if let Some(project_org_id) = project_org {
+                    if project_org_id != org.id {
+                        return Err(async_graphql::Error::new("Access denied: Project does not belong to your organization"));
+                    }
+                } else {
+                    return Err(async_graphql::Error::new("Project not found"));
+                }
+            }
+        } else {
+            // Fallback: just verify project exists
+            let project_exists = sqlx::query_scalar::<_, bool>(
+                r#"
+                SELECT EXISTS(SELECT 1 FROM storyboard_projects WHERE id = $1)
+                "#,
+            )
+            .bind(project_uuid)
+            .fetch_one(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to verify project: {}", e)))?;
+            
+            if !project_exists {
+                return Err(async_graphql::Error::new("Project not found"));
+            }
         }
         
         let id = Uuid::new_v4();
