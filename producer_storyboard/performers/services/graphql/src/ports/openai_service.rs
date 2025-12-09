@@ -60,9 +60,21 @@ impl OpenAIService {
             // OpenRouter uses chat/completions endpoint with modalities=["image", "text"]
             let url = "https://openrouter.ai/api/v1/chat/completions";
             
-            // Use a model that supports image generation (e.g., google/gemini-pro-vision or similar)
-            // Default to a model that supports image generation
-            let model = request.model.as_deref().unwrap_or("google/gemini-2.0-flash-exp:free");
+            // Use a model that supports image generation via OpenRouter
+            // OpenRouter's chat/completions endpoint doesn't support DALL-E models
+            // Must use a model that supports image generation (e.g., Google Gemini)
+            let model = if let Some(req_model) = &request.model {
+                // If user specified a model, check if it's DALL-E
+                if req_model.starts_with("dall-e") {
+                    // DALL-E models are not supported in chat/completions, use Gemini instead
+                    println!("[OpenAI Service] DALL-E model '{}' not supported in OpenRouter chat/completions, using Gemini instead", req_model);
+                    "google/gemini-2.0-flash-exp:free"
+                } else {
+                    req_model.as_str()
+                }
+            } else {
+                "google/gemini-2.0-flash-exp:free"
+            };
             
             println!("[OpenAI Service] Using OpenRouter endpoint: {}", url);
             println!("[OpenAI Service] Using model: {}", model);
@@ -127,12 +139,34 @@ impl OpenAIService {
                 let detailed_error = if let Ok(json_err) = serde_json::from_str::<serde_json::Value>(&response_text) {
                     println!("[OpenAI Service] Parsed error JSON: {}", serde_json::to_string(&json_err).unwrap_or_default());
                     if let Some(error_obj) = json_err.get("error") {
+                        let mut error_parts = Vec::new();
+                        
                         if let Some(message) = error_obj.get("message").and_then(|v| v.as_str()) {
-                            format!("{}", message)
-                        } else if let Some(code) = error_obj.get("code").and_then(|v| v.as_str()) {
-                            format!("Error code: {}", code)
-                        } else {
+                            error_parts.push(format!("Message: {}", message));
+                        }
+                        
+                        if let Some(code) = error_obj.get("code") {
+                            if let Some(code_str) = code.as_str() {
+                                error_parts.push(format!("Code: {}", code_str));
+                            } else if let Some(code_num) = code.as_u64() {
+                                error_parts.push(format!("Code: {}", code_num));
+                            }
+                        }
+                        
+                        // Extract metadata for more details (e.g., rate limit info)
+                        if let Some(metadata) = error_obj.get("metadata") {
+                            if let Some(raw) = metadata.get("raw").and_then(|v| v.as_str()) {
+                                error_parts.push(format!("Details: {}", raw));
+                            }
+                            if let Some(provider) = metadata.get("provider_name").and_then(|v| v.as_str()) {
+                                error_parts.push(format!("Provider: {}", provider));
+                            }
+                        }
+                        
+                        if error_parts.is_empty() {
                             format!("Error object: {}", serde_json::to_string(error_obj).unwrap_or_default())
+                        } else {
+                            error_parts.join(". ")
                         }
                     } else {
                         response_text.clone()
