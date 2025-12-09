@@ -10,7 +10,6 @@ use crate::ports::postgres::PostgresPool;
 use crate::schema::storyboard::{Project, Storyboard, Scene, VideoStatus, GeneratedImage, OperationHistory, Character, Dialogue, HumeVoice};
 use crate::ports::hume_service::HumeService;
 use uuid::Uuid;
-use rust_decimal::prelude::*;
 use sqlx::Row;
 
 #[derive(Default)]

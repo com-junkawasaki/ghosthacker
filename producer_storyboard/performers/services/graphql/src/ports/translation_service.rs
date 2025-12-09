@@ -7,7 +7,6 @@
  * Provides multi-language translation for dialogues
  */
 use anyhow::Result;
-use serde::{Deserialize, Serialize};
 use serde_json::json;
 
 pub struct TranslationService {

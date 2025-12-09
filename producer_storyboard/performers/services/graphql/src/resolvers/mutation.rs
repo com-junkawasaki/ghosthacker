@@ -11,7 +11,7 @@ use crate::ports::openai_service::{OpenAIService, ImageGenerationRequest};
 use crate::ports::history::{HistoryService, OperationType};
 use crate::ports::hume_service::HumeService;
 use crate::ports::translation_service::TranslationService;
-use crate::schema::storyboard::{Project, VideoStatus, Scene, GeneratedImage, Character, Dialogue, HumeVoice};
+use crate::schema::storyboard::{Project, VideoStatus, Scene, GeneratedImage, Character, Dialogue};
 use uuid::Uuid;
 use serde_json::json;
 use sqlx::Row;
@@ -607,8 +607,19 @@ impl MutationRoot {
             n: Some(1),
         };
         
+        eprintln!("[GraphQL Mutation] generate_scene_image: Starting image generation");
+        eprintln!("[GraphQL Mutation] Scene ID: {}", scene_uuid);
+        eprintln!("[GraphQL Mutation] Image type: {}", image_type);
+        eprintln!("[GraphQL Mutation] Prompt: {}", prompt);
+        eprintln!("[GraphQL Mutation] Model: {}", model);
+        
         let image_response = openai_service.generate_image(image_request).await
-            .map_err(|e| async_graphql::Error::new(format!("Failed to generate image: {}", e)))?;
+            .map_err(|e| {
+                eprintln!("[GraphQL Mutation] Image generation failed: {}", e);
+                async_graphql::Error::new(format!("Failed to generate image: {}", e))
+            })?;
+        
+        eprintln!("[GraphQL Mutation] Image generation successful. Image URL: {}", image_response.image_url);
         
         // Download image
         let image_bytes = openai_service.download_image(&image_response.image_url).await
