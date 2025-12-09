@@ -9,8 +9,8 @@
 	// data is available through $page.data, but we keep it for type safety
 
 	const clerk = useClerkContext();
-	const auth = $derived(clerk?.auth);
-	const org = $derived(clerk?.organization);
+	const auth = clerk?.auth;
+	const organization = clerk?.organization;
 
 	// Default language
 	const DEFAULT_LANG = 'ja';
@@ -20,8 +20,8 @@
 		if (!browser) return;
 
 		const { orgId: urlOrgId } = $page.params;
-		const currentOrgId = $org?.id;
-		const isAuthenticated = $auth?.isAuthenticated;
+		const currentOrgId = organization?.id || auth?.orgId;
+		const isAuthenticated = auth?.userId != null;
 
 		// Only redirect if user is authenticated and has an organization
 		if (!isAuthenticated || !currentOrgId) {

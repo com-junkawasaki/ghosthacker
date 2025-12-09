@@ -9,8 +9,8 @@
 	const { data }: { data: PageData } = $props();
 
 	const clerk = useClerkContext();
-	const auth = $derived(clerk?.auth);
-	const org = $derived(clerk?.organization);
+	const auth = clerk?.auth;
+	const organization = clerk?.organization;
 
 	const { lang } = $page.params;
 	const DEFAULT_LANG = 'ja';
@@ -23,7 +23,7 @@
 	$effect(() => {
 		if (!browser) return;
 
-		const currentOrgId = $org?.id;
+		const currentOrgId = organization?.id || auth?.orgId;
 		if (currentOrgId && currentOrgId !== 'select') {
 			goto(`/${currentLang}/orgs/${currentOrgId}/project`, { replaceState: true });
 		}
@@ -46,7 +46,7 @@
 <div class="org-select-container">
 	<div class="org-select-content">
 		<h1>組織を選択</h1>
-		{#if !$auth?.isAuthenticated}
+		{#if auth?.userId == null}
 			<p class="auth-message">組織を選択するには、まずログインしてください。</p>
 		{:else if data.organizations.length === 0}
 			<p class="no-orgs-message">
