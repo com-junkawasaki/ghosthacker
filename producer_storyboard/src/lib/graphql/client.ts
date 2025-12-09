@@ -17,9 +17,13 @@ if (browser) {
 }
 
 // Custom fetch with timeout
+// Image generation can take 30-60 seconds, so use longer timeout
 const fetchWithTimeout = async (url: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
 	const controller = new AbortController();
-	const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+	// Check if this is an image generation request (longer timeout)
+	const isImageGeneration = typeof init?.body === 'string' && init.body.includes('generateSceneImage');
+	const timeoutMs = isImageGeneration ? 120000 : 30000; // 120 seconds for image generation, 30 seconds for others
+	const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
 	try {
 		const response = await fetch(url, {
@@ -79,11 +83,14 @@ if (browser) {
 		// Add timeout for GraphQL requests
 		const isGraphQLRequest = requestInfo.url.includes('/graphql');
 		const controller = new AbortController();
+		// Check if this is an image generation request (longer timeout)
+		const isImageGeneration = typeof requestInfo.body === 'string' && requestInfo.body.includes('generateSceneImage');
+		const timeoutMs = isImageGeneration ? 120000 : 30000; // 120 seconds for image generation, 30 seconds for others
 		const timeoutId = isGraphQLRequest 
 			? setTimeout(() => {
 				console.warn('[GraphQL Client] Request timeout:', requestInfo.url);
 				controller.abort();
-			}, 10000) // 10 second timeout
+			}, timeoutMs)
 			: null;
 
 		try {
