@@ -1,27 +1,28 @@
-import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
-import { CreateCharacterStore } from "../plugins/houdini-svelte/stores/CreateCharacter";
 import { CreateDialogueStore } from "../plugins/houdini-svelte/stores/CreateDialogue";
+import { GenerateVideoStore } from "../plugins/houdini-svelte/stores/GenerateVideo";
 import { CreateProjectStore } from "../plugins/houdini-svelte/stores/CreateProject";
+import { UpdateDialogueStore } from "../plugins/houdini-svelte/stores/UpdateDialogue";
+import { CreateCharacterStore } from "../plugins/houdini-svelte/stores/CreateCharacter";
 import { CreateSceneStore } from "../plugins/houdini-svelte/stores/CreateScene";
 import { DeleteCharacterStore } from "../plugins/houdini-svelte/stores/DeleteCharacter";
 import { DeleteDialogueStore } from "../plugins/houdini-svelte/stores/DeleteDialogue";
+import { ReorderScenesStore } from "../plugins/houdini-svelte/stores/ReorderScenes";
 import { DeleteSceneStore } from "../plugins/houdini-svelte/stores/DeleteScene";
 import { GenerateDialogueAudioStore } from "../plugins/houdini-svelte/stores/GenerateDialogueAudio";
 import { GenerateSceneImageStore } from "../plugins/houdini-svelte/stores/GenerateSceneImage";
-import { GenerateVideoStore } from "../plugins/houdini-svelte/stores/GenerateVideo";
-import { ReorderScenesStore } from "../plugins/houdini-svelte/stores/ReorderScenes";
-import { UpdateCharacterStore } from "../plugins/houdini-svelte/stores/UpdateCharacter";
 import { TranslateDialogueStore } from "../plugins/houdini-svelte/stores/TranslateDialogue";
-import { UpdateDialogueStore } from "../plugins/houdini-svelte/stores/UpdateDialogue";
-import { UpdateSceneStore } from "../plugins/houdini-svelte/stores/UpdateScene";
+import { UpdateCharacterStore } from "../plugins/houdini-svelte/stores/UpdateCharacter";
 import { GetGeneratedImagesStore } from "../plugins/houdini-svelte/stores/GetGeneratedImages";
-import { ListDialoguesStore } from "../plugins/houdini-svelte/stores/ListDialogues";
-import { ListCharactersStore } from "../plugins/houdini-svelte/stores/ListCharacters";
+import { UpdateSceneStore } from "../plugins/houdini-svelte/stores/UpdateScene";
 import { ListHumeVoicesStore } from "../plugins/houdini-svelte/stores/ListHumeVoices";
+import { UploadSceneImageStore } from "../plugins/houdini-svelte/stores/UploadSceneImage";
+import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
+import { ListCharactersStore } from "../plugins/houdini-svelte/stores/ListCharacters";
+import { ListDialoguesStore } from "../plugins/houdini-svelte/stores/ListDialogues";
 import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
-import { ListScenesStore } from "../plugins/houdini-svelte/stores/ListScenes";
 import { ListProjectsStore } from "../plugins/houdini-svelte/stores/ListProjects";
 import { ListStoryboardsStore } from "../plugins/houdini-svelte/stores/ListStoryboards";
+import { ListScenesStore } from "../plugins/houdini-svelte/stores/ListScenes";
 import type { Cache as InternalCache } from "./cache/cache";
 import type { CacheTypeDef } from "./generated";
 import { Cache } from "./public";
@@ -29,20 +30,24 @@ export * from "./client";
 export * from "./lib";
 
 export function graphql(
-    str: "query GetScene($id: ID!) {\n\tscene(id: $id) {\n\t\tid\n\t\tstoryboardId\n\t\tsceneNumber\n\t\ttextDescription\n\t\tmediaType\n\t\tmediaUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\ttransitionType\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"
-): GetSceneStore;
-
-export function graphql(
-    str: "mutation CreateCharacter($input: CreateCharacterInput!) {\n\tcreateCharacter(input: $input) {\n\t\tid\n\t\tprojectId\n\t\tname\n\t\tdescription\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n\n"
-): CreateCharacterStore;
-
-export function graphql(
     str: "mutation CreateDialogue($input: CreateDialogueInput!) {\n\tcreateDialogue(input: $input) {\n\t\tid\n\t\tsceneId\n\t\tcharacterId\n\t\tlanguage\n\t\ttext\n\t\ttranslatedText\n\t\thumeVoiceId\n\t\taudioUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\torderIndex\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n\n"
 ): CreateDialogueStore;
 
 export function graphql(
+    str: "mutation GenerateVideo($storyboardId: ID!) {\n\tgenerateVideo(storyboardId: $storyboardId) {\n\t\tid\n\t\tstoryboardId\n\t\tvariationNumber\n\t\tstatus\n\t\tcreatedAt\n\t}\n}\n"
+): GenerateVideoStore;
+
+export function graphql(
     str: "mutation CreateProject($input: CreateProjectInput!) {\n\tcreateProject(input: $input) {\n\t\tid\n\t\ttitle\n\t\tdescription\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"
 ): CreateProjectStore;
+
+export function graphql(
+    str: "mutation UpdateDialogue($input: UpdateDialogueInput!) {\n\tupdateDialogue(input: $input) {\n\t\tid\n\t\tsceneId\n\t\tcharacterId\n\t\tlanguage\n\t\ttext\n\t\ttranslatedText\n\t\thumeVoiceId\n\t\taudioUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\torderIndex\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n\n"
+): UpdateDialogueStore;
+
+export function graphql(
+    str: "mutation CreateCharacter($input: CreateCharacterInput!) {\n\tcreateCharacter(input: $input) {\n\t\tid\n\t\tprojectId\n\t\tname\n\t\tdescription\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n\n"
+): CreateCharacterStore;
 
 export function graphql(
     str: "mutation CreateScene($input: CreateSceneInput!) {\n\tcreateScene(input: $input) {\n\t\tid\n\t\tstoryboardId\n\t\tsceneNumber\n\t\ttextDescription\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\ttransitionType\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n\n"
@@ -56,6 +61,10 @@ export function graphql(
     str: "mutation DeleteDialogue($id: ID!) {\n\tdeleteDialogue(id: $id)\n}\n\n"
 ): DeleteDialogueStore;
 
+export function graphql(
+    str: "mutation ReorderScenes($input: ReorderScenesInput!) {\n\treorderScenes(input: $input) {\n\t\tid\n\t\tstoryboardId\n\t\tsceneNumber\n\t\ttextDescription\n\t\tmediaType\n\t\tmediaUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\ttransitionType\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n\n"
+): ReorderScenesStore;
+
 export function graphql(str: "mutation DeleteScene($id: ID!) {\n\tdeleteScene(id: $id)\n}\n\n"): DeleteSceneStore;
 
 export function graphql(
@@ -67,52 +76,44 @@ export function graphql(
 ): GenerateSceneImageStore;
 
 export function graphql(
-    str: "mutation GenerateVideo($storyboardId: ID!) {\n\tgenerateVideo(storyboardId: $storyboardId) {\n\t\tid\n\t\tstoryboardId\n\t\tvariationNumber\n\t\tstatus\n\t\tcreatedAt\n\t}\n}\n"
-): GenerateVideoStore;
-
-export function graphql(
-    str: "mutation ReorderScenes($input: ReorderScenesInput!) {\n\treorderScenes(input: $input) {\n\t\tid\n\t\tstoryboardId\n\t\tsceneNumber\n\t\ttextDescription\n\t\tmediaType\n\t\tmediaUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\ttransitionType\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n\n"
-): ReorderScenesStore;
+    str: "mutation TranslateDialogue($input: TranslateDialogueInput!) {\n\ttranslateDialogue(input: $input) {\n\t\tid\n\t\tsceneId\n\t\tcharacterId\n\t\tlanguage\n\t\ttext\n\t\ttranslatedText\n\t\thumeVoiceId\n\t\taudioUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\torderIndex\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n\n"
+): TranslateDialogueStore;
 
 export function graphql(
     str: "mutation UpdateCharacter($input: UpdateCharacterInput!) {\n\tupdateCharacter(input: $input) {\n\t\tid\n\t\tprojectId\n\t\tname\n\t\tdescription\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n\n"
 ): UpdateCharacterStore;
 
 export function graphql(
-    str: "mutation TranslateDialogue($input: TranslateDialogueInput!) {\n\ttranslateDialogue(input: $input) {\n\t\tid\n\t\tsceneId\n\t\tcharacterId\n\t\tlanguage\n\t\ttext\n\t\ttranslatedText\n\t\thumeVoiceId\n\t\taudioUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\torderIndex\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n\n"
-): TranslateDialogueStore;
-
-export function graphql(
-    str: "mutation UpdateDialogue($input: UpdateDialogueInput!) {\n\tupdateDialogue(input: $input) {\n\t\tid\n\t\tsceneId\n\t\tcharacterId\n\t\tlanguage\n\t\ttext\n\t\ttranslatedText\n\t\thumeVoiceId\n\t\taudioUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\torderIndex\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n\n"
-): UpdateDialogueStore;
+    str: "query GetGeneratedImages($sceneId: ID!) {\n\tgeneratedImages(sceneId: $sceneId) {\n\t\tid\n\t\tsceneId\n\t\topenaiImageId\n\t\timageFormat\n\t\timageType\n\t\tprompt\n\t\tmodel\n\t\tcreatedAt\n\t}\n}\n\n"
+): GetGeneratedImagesStore;
 
 export function graphql(
     str: "mutation UpdateScene($input: UpdateSceneInput!) {\n\tupdateScene(input: $input) {\n\t\tid\n\t\tstoryboardId\n\t\tsceneNumber\n\t\ttextDescription\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\ttransitionType\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n\n"
 ): UpdateSceneStore;
 
 export function graphql(
-    str: "query GetGeneratedImages($sceneId: ID!) {\n\tgeneratedImages(sceneId: $sceneId) {\n\t\tid\n\t\tsceneId\n\t\topenaiImageId\n\t\timageFormat\n\t\timageType\n\t\tprompt\n\t\tmodel\n\t\tcreatedAt\n\t}\n}\n\n"
-): GetGeneratedImagesStore;
+    str: "query ListHumeVoices {\n\thumeVoices {\n\t\tid\n\t\tname\n\t\tdescription\n\t\tlanguage\n\t}\n}\n\n"
+): ListHumeVoicesStore;
 
 export function graphql(
-    str: "query ListDialogues($sceneId: ID!) {\n\tdialogues(sceneId: $sceneId) {\n\t\tid\n\t\tsceneId\n\t\tcharacterId\n\t\tlanguage\n\t\ttext\n\t\ttranslatedText\n\t\thumeVoiceId\n\t\taudioUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\torderIndex\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n\n"
-): ListDialoguesStore;
+    str: "mutation UploadSceneImage($sceneId: ID!, $imageData: String!, $imageType: String, $imageFormat: String) {\n\tuploadSceneImage(input: { sceneId: $sceneId, imageData: $imageData, imageType: $imageType, imageFormat: $imageFormat }) {\n\t\tid\n\t\tsceneId\n\t\timageType\n\t\timageFormat\n\t\tcreatedAt\n\t}\n}\n\n"
+): UploadSceneImageStore;
+
+export function graphql(
+    str: "query GetScene($id: ID!) {\n\tscene(id: $id) {\n\t\tid\n\t\tstoryboardId\n\t\tsceneNumber\n\t\ttextDescription\n\t\tmediaType\n\t\tmediaUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\ttransitionType\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"
+): GetSceneStore;
 
 export function graphql(
     str: "query ListCharacters($projectId: ID!) {\n\tcharacters(projectId: $projectId) {\n\t\tid\n\t\tprojectId\n\t\tname\n\t\tdescription\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n\n"
 ): ListCharactersStore;
 
 export function graphql(
-    str: "query ListHumeVoices {\n\thumeVoices {\n\t\tid\n\t\tname\n\t\tdescription\n\t\tlanguage\n\t}\n}\n\n"
-): ListHumeVoicesStore;
+    str: "query ListDialogues($sceneId: ID!) {\n\tdialogues(sceneId: $sceneId) {\n\t\tid\n\t\tsceneId\n\t\tcharacterId\n\t\tlanguage\n\t\ttext\n\t\ttranslatedText\n\t\thumeVoiceId\n\t\taudioUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\torderIndex\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n\n"
+): ListDialoguesStore;
 
 export function graphql(
     str: "query ListGeneratedVideos($storyboardId: ID!) {\n\tgeneratedVideos(storyboardId: $storyboardId) {\n\t\tid\n\t\tstoryboardId\n\t\tvariationNumber\n\t\tvideoUrl\n\t\tstatus\n\t\terrorMessage\n\t\tcreatedAt\n\t}\n}\n"
 ): ListGeneratedVideosStore;
-
-export function graphql(
-    str: "query ListScenes($storyboardId: ID!) {\n\tscenes(storyboardId: $storyboardId) {\n\t\tid\n\t\tstoryboardId\n\t\tsceneNumber\n\t\ttextDescription\n\t\tmediaType\n\t\tmediaUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\ttransitionType\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"
-): ListScenesStore;
 
 export function graphql(
     str: "query ListProjects {\n\tprojects {\n\t\tid\n\t\ttitle\n\t\tdescription\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"
@@ -121,6 +122,10 @@ export function graphql(
 export function graphql(
     str: "query ListStoryboards($projectId: ID!) {\n\tstoryboards(projectId: $projectId) {\n\t\tid\n\t\tprojectId\n\t\ttitle\n\t\taspectRatio\n\t\tresolution\n\t\tdurationSeconds\n\t\tnumVariations\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"
 ): ListStoryboardsStore;
+
+export function graphql(
+    str: "query ListScenes($storyboardId: ID!) {\n\tscenes(storyboardId: $storyboardId) {\n\t\tid\n\t\tstoryboardId\n\t\tsceneNumber\n\t\ttextDescription\n\t\tmediaType\n\t\tmediaUrl\n\t\tstartTimeSeconds\n\t\tdurationSeconds\n\t\ttransitionType\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}\n"
+): ListScenesStore;
 
 export declare function graphql<_Payload, _Result = _Payload>(str: TemplateStringsArray): _Result;
 export declare const cache: Cache<CacheTypeDef>;

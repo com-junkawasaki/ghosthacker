@@ -1,0 +1,10 @@
+mutation UploadSceneImage($sceneId: ID!, $imageData: String!, $imageType: String, $imageFormat: String) {
+	uploadSceneImage(input: { sceneId: $sceneId, imageData: $imageData, imageType: $imageType, imageFormat: $imageFormat }) {
+		id
+		sceneId
+		imageType
+		imageFormat
+		createdAt
+	}
+}
+

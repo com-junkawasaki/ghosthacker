@@ -23,3 +23,4 @@
  export { default as UpdateCharacter} from './UpdateCharacter'
  export { default as UpdateDialogue} from './UpdateDialogue'
  export { default as UpdateScene} from './UpdateScene'
+ export { default as UploadSceneImage} from './UploadSceneImage'

@@ -12,6 +12,7 @@
 	import { ReorderScenesStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/ReorderScenes.js';
 	import { GenerateSceneImageStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/GenerateSceneImage.js';
 	import { GetGeneratedImagesStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/GetGeneratedImages.js';
+	import { UploadSceneImageStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/UploadSceneImage.js';
 	import { ListCharactersStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/ListCharacters.js';
 	import { ListDialoguesStore } from '../../../../../.houdini/plugins/houdini-svelte/stores/ListDialogues.js';
 	import CharacterManager from '$lib/components/storyboard/CharacterManager.svelte';
@@ -65,6 +66,7 @@
 	let reorderScenesStore: ReorderScenesStore | null = null;
 	let generateSceneImageStore: GenerateSceneImageStore | null = null;
 	let getGeneratedImagesStore: GetGeneratedImagesStore | null = null;
+	let uploadSceneImageStore: UploadSceneImageStore | null = null;
 	let listCharactersStore: ListCharactersStore | null = null;
 	let listDialoguesStore: ListDialoguesStore | null = null;
 
@@ -77,6 +79,7 @@
 		reorderScenesStore = new ReorderScenesStore();
 		generateSceneImageStore = new GenerateSceneImageStore();
 		getGeneratedImagesStore = new GetGeneratedImagesStore();
+		uploadSceneImageStore = new UploadSceneImageStore();
 		listCharactersStore = new ListCharactersStore();
 		listDialoguesStore = new ListDialoguesStore();
 	}
@@ -516,6 +519,111 @@
 		}
 	}
 
+	// Upload image for a scene
+	async function uploadSceneImage(sceneId: string, file: File, imageType: string = 'uploaded') {
+		if (!browser || !uploadSceneImageStore) {
+			return;
+		}
+
+		try {
+			generating = true;
+			
+			// Validate file type
+			if (!file.type.startsWith('image/')) {
+				throw new Error('File must be an image');
+			}
+
+			// Read file as base64
+			const reader = new FileReader();
+			const base64Promise = new Promise<string>((resolve, reject) => {
+				reader.onload = () => {
+					const result = reader.result as string;
+					// Remove data URL prefix if present
+					const base64 = result.includes(',') ? result.split(',')[1] : result;
+					resolve(base64);
+				};
+				reader.onerror = reject;
+				reader.readAsDataURL(file);
+			});
+
+			const imageData = await base64Promise;
+			
+			// Determine image format from file type
+			const imageFormat = file.type.split('/')[1] || 'png';
+			
+			const result = await uploadSceneImageStore.mutate({
+				input: {
+					sceneId,
+					imageData,
+					imageType,
+					imageFormat,
+				},
+			});
+
+			if (result?.errors && result.errors.length > 0) {
+				throw new Error(result.errors[0].message);
+			}
+
+			if (result?.data?.uploadSceneImage) {
+				// Reload images for this scene
+				await loadSceneImages(sceneId);
+			}
+		} catch (err) {
+			console.error('[Editor] Error uploading image:', err);
+			alert(err instanceof Error ? err.message : 'Failed to upload image');
+		} finally {
+			generating = false;
+		}
+	}
+
+	// Handle drag and drop for image upload
+	let dragOverSceneId = $state<string | null>(null);
+
+	function handleImageDragOver(e: DragEvent, sceneId: string) {
+		e.preventDefault();
+		e.stopPropagation();
+		if (e.dataTransfer) {
+			e.dataTransfer.dropEffect = 'copy';
+		}
+		dragOverSceneId = sceneId;
+	}
+
+	function handleImageDragLeave(e: DragEvent) {
+		e.preventDefault();
+		e.stopPropagation();
+		dragOverSceneId = null;
+	}
+
+	async function handleImageDrop(e: DragEvent, sceneId: string) {
+		e.preventDefault();
+		e.stopPropagation();
+		dragOverSceneId = null;
+
+		if (!e.dataTransfer?.files || e.dataTransfer.files.length === 0) {
+			return;
+		}
+
+		const file = e.dataTransfer.files[0];
+		if (file && file.type.startsWith('image/')) {
+			await uploadSceneImage(sceneId, file);
+		} else {
+			alert('Please drop an image file');
+		}
+	}
+
+	// Handle file input change
+	function handleFileInputChange(e: Event, sceneId: string) {
+		const target = e.target as HTMLInputElement;
+		if (target.files && target.files.length > 0) {
+			const file = target.files[0];
+			if (file) {
+				uploadSceneImage(sceneId, file);
+				// Reset input
+				target.value = '';
+			}
+		}
+	}
+
 	// Update scene duration
 	async function updateSceneDuration(sceneId: string, newDuration: number) {
 		if (!browser || !updateSceneStore) {
@@ -842,39 +950,70 @@
 						}
 					}}
 				>
-					<!-- Scene Content Area (Dark) -->
-					<div class="scene-content">
-						<!-- Generated Images -->
-						{#if sceneImages[scene.id]}
-							{@const images = sceneImages[scene.id] || []}
-							{@const startImage = images.find(img => img.imageType === 'start') || null}
-							{@const endImage = images.find(img => img.imageType === 'end') || null}
-							<div class="scene-images">
-								{#if startImage}
-									<div class="scene-image-container">
-										<img
-											src={getImageUrl(startImage.id)}
-											alt="Start image"
-											class="scene-image"
-											loading="lazy"
-										/>
-										<span class="image-label">Start</span>
-									</div>
-								{/if}
-								
-								{#if endImage}
-									<div class="scene-image-container">
-										<img
-											src={getImageUrl(endImage.id)}
-											alt="End image"
-											class="scene-image"
-											loading="lazy"
-										/>
-										<span class="image-label">End</span>
-									</div>
-								{/if}
-							</div>
-						{/if}
+				<!-- Scene Content Area (Dark) -->
+				<div 
+					class="scene-content"
+					class:drag-over={dragOverSceneId === scene.id}
+					ondragover={(e) => handleImageDragOver(e, scene.id)}
+					ondragleave={handleImageDragLeave}
+					ondrop={(e) => handleImageDrop(e, scene.id)}
+					role="region"
+					aria-label="Scene content area"
+				>
+					<!-- Generated Images -->
+					{#if sceneImages[scene.id]}
+						{@const images = sceneImages[scene.id] || []}
+						{@const startImage = images.find(img => img.imageType === 'start') || null}
+						{@const endImage = images.find(img => img.imageType === 'end') || null}
+						{@const uploadedImages = images.filter(img => img.imageType === 'uploaded' || (!img.imageType && img.imageType !== 'start' && img.imageType !== 'end'))}
+						<div class="scene-images">
+							{#if startImage}
+								<div class="scene-image-container">
+									<img
+										src={getImageUrl(startImage.id)}
+										alt="Start image"
+										class="scene-image"
+										loading="lazy"
+									/>
+									<span class="image-label">Start</span>
+								</div>
+							{/if}
+							
+							{#if endImage}
+								<div class="scene-image-container">
+									<img
+										src={getImageUrl(endImage.id)}
+										alt="End image"
+										class="scene-image"
+										loading="lazy"
+									/>
+									<span class="image-label">End</span>
+								</div>
+							{/if}
+							
+							{#each uploadedImages as uploadedImage}
+								<div class="scene-image-container">
+									<img
+										src={getImageUrl(uploadedImage.id)}
+										alt="Uploaded image"
+										class="scene-image"
+										loading="lazy"
+									/>
+									<span class="image-label">Uploaded</span>
+								</div>
+							{/each}
+						</div>
+					{:else}
+						<!-- Drop zone hint when no images -->
+						<div class="drop-zone-hint">
+							<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+								<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+								<polyline points="17 8 12 3 7 8"/>
+								<line x1="12" y1="3" x2="12" y2="15"/>
+							</svg>
+							<p>Drop image here or click to upload</p>
+						</div>
+					{/if}
 						
 						<div class="scene-description">{scene.textDescription || 'Click to edit description'}</div>
 						
@@ -938,6 +1077,24 @@
 								</svg>
 								End
 							</button>
+							<label class="image-gen-button" tabindex="0" title="Upload image">
+								<input
+									type="file"
+									accept="image/*"
+									style="display: none;"
+									onchange={(e) => handleFileInputChange(e, scene.id)}
+									onkeydown={(e) => {
+										if (e.key === 'Enter' || e.key === ' ') {
+											e.preventDefault();
+											(e.target as HTMLElement).click();
+										}
+									}}
+								/>
+								<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+									<path d="M7 2V12M2 7H12" stroke-width="1.5" stroke-linecap="round"/>
+								</svg>
+								Upload
+							</label>
 						</div>
 						
 						<div class="scene-actions">
@@ -1257,6 +1414,41 @@
 		align-items: flex-start;
 		position: relative;
 		overflow-y: auto;
+		transition: background-color 0.2s, border-color 0.2s;
+	}
+
+	.scene-content.drag-over {
+		background-color: rgba(59, 130, 246, 0.1);
+		border: 2px dashed rgba(59, 130, 246, 0.5);
+		border-radius: 4px;
+	}
+
+	.drop-zone-hint {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		width: 100%;
+		height: 100%;
+		min-height: 200px;
+		color: rgba(255, 255, 255, 0.5);
+		font-size: 0.875rem;
+		text-align: center;
+		padding: 2rem;
+	}
+
+	.drop-zone-hint svg {
+		opacity: 0.5;
+	}
+
+	.scene-content.drag-over .drop-zone-hint {
+		color: rgba(59, 130, 246, 0.8);
+	}
+
+	.scene-content.drag-over .drop-zone-hint svg {
+		opacity: 1;
+		color: rgba(59, 130, 246, 0.8);
 	}
 
 	.scene-description {

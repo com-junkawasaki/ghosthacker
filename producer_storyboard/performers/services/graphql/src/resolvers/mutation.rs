@@ -15,6 +15,7 @@ use crate::schema::storyboard::{Project, VideoStatus, Scene, GeneratedImage, Cha
 use uuid::Uuid;
 use serde_json::json;
 use sqlx::Row;
+use base64::{Engine as _, engine::general_purpose};
 
 #[derive(InputObject)]
 pub struct CreateProjectInput {
@@ -67,6 +68,18 @@ pub struct GenerateSceneImageInput {
     pub model: Option<String>,
     #[graphql(name = "imageType")]
     pub image_type: Option<String>,
+}
+
+#[derive(InputObject)]
+pub struct UploadSceneImageInput {
+    #[graphql(name = "sceneId")]
+    pub scene_id: ID,
+    #[graphql(name = "imageData")]
+    pub image_data: String, // Base64 encoded image data
+    #[graphql(name = "imageType")]
+    pub image_type: Option<String>, // 'start', 'end', or 'uploaded'
+    #[graphql(name = "imageFormat")]
+    pub image_format: Option<String>, // 'png', 'jpeg', 'webp'
 }
 
 #[derive(InputObject)]
@@ -679,6 +692,120 @@ impl MutationRoot {
             image_type: Some(image_type.to_string()),
             prompt: Some(prompt),
             model: Some(model),
+            created_at: now.to_rfc3339(),
+        })
+    }
+
+    /// Upload an image for a scene
+    async fn upload_scene_image(&self, ctx: &Context<'_>, input: UploadSceneImageInput) -> Result<GeneratedImage> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let scene_uuid = Uuid::parse_str(&input.scene_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid scene ID: {}", e)))?;
+        
+        // Verify scene exists
+        let scene_exists = sqlx::query(
+            r#"
+            SELECT id FROM scenes WHERE id = $1
+            "#,
+        )
+        .bind(scene_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to verify scene: {}", e)))?;
+        
+        if scene_exists.is_none() {
+            return Err(async_graphql::Error::new("Scene not found"));
+        }
+        
+        // Decode base64 image data
+        let image_bytes = general_purpose::STANDARD.decode(&input.image_data)
+            .map_err(|e| async_graphql::Error::new(format!("Failed to decode base64 image data: {}", e)))?;
+        
+        // Determine image format from input or detect from data
+        let image_format = input.image_format.unwrap_or_else(|| {
+            // Try to detect format from base64 data prefix or default to png
+            if input.image_data.starts_with("data:image/") {
+                if input.image_data.contains("data:image/png") {
+                    "png"
+                } else if input.image_data.contains("data:image/jpeg") || input.image_data.contains("data:image/jpg") {
+                    "jpeg"
+                } else if input.image_data.contains("data:image/webp") {
+                    "webp"
+                } else {
+                    "png"
+                }
+            } else {
+                "png" // Default
+            }
+        });
+        
+        // Clean base64 data (remove data URL prefix if present)
+        let clean_image_data = if input.image_data.starts_with("data:") {
+            if let Some(base64_part) = input.image_data.split(',').nth(1) {
+                general_purpose::STANDARD.decode(base64_part)
+                    .map_err(|e| async_graphql::Error::new(format!("Failed to decode base64 image data: {}", e)))?
+            } else {
+                image_bytes
+            }
+        } else {
+            image_bytes
+        };
+        
+        // Determine image type (default to 'uploaded')
+        let image_type = input.image_type.as_deref().unwrap_or("uploaded");
+        
+        println!("[GraphQL Mutation] upload_scene_image: Uploading image");
+        println!("[GraphQL Mutation] Scene ID: {}", scene_uuid);
+        println!("[GraphQL Mutation] Image type: {}", image_type);
+        println!("[GraphQL Mutation] Image format: {}", image_format);
+        println!("[GraphQL Mutation] Image size: {} bytes", clean_image_data.len());
+        
+        // Save image to database
+        let id = Uuid::new_v4();
+        let now = chrono::Utc::now();
+        
+        sqlx::query(
+            r#"
+            INSERT INTO generated_images (id, scene_id, image_data, image_format, image_type, prompt, model, created_at)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            "#,
+        )
+        .bind(id)
+        .bind(scene_uuid)
+        .bind(clean_image_data)
+        .bind(image_format)
+        .bind(image_type)
+        .bind(None::<String>) // No prompt for uploaded images
+        .bind(None::<String>) // No model for uploaded images
+        .bind(now)
+        .execute(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to save uploaded image: {}", e)))?;
+        
+        // Save operation history
+        let _ = HistoryService::save_operation(
+            pool,
+            "scene",
+            scene_uuid,
+            OperationType::GenerateImage,
+            json!({
+                "image_id": id.to_string(),
+                "image_type": image_type,
+                "image_format": image_format,
+                "source": "upload",
+            }),
+            None,
+        ).await;
+        
+        Ok(GeneratedImage {
+            id: ID(id.to_string()),
+            scene_id: input.scene_id,
+            openai_image_id: None,
+            image_format: Some(image_format.to_string()),
+            image_type: Some(image_type.to_string()),
+            prompt: None,
+            model: None,
             created_at: now.to_rfc3339(),
         })
     }

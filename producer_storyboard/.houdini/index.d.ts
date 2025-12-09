@@ -22,6 +22,7 @@ export * from "./artifacts/TranslateDialogue";
 export * from "./artifacts/UpdateCharacter";
 export * from "./artifacts/UpdateDialogue";
 export * from "./artifacts/UpdateScene";
+export * from "./artifacts/UploadSceneImage";
 export * from "./runtime";
 export * from "./graphql";
 export * from "./plugins/houdini-svelte/stores"

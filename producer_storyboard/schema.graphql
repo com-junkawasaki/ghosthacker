@@ -141,6 +141,13 @@ input GenerateSceneImageInput {
 	imageType: String
 }
 
+input UploadSceneImageInput {
+	sceneId: ID!
+	imageData: String! # Base64 encoded image data
+	imageType: String # 'start', 'end', or 'uploaded'
+	imageFormat: String # 'png', 'jpeg', 'webp'
+}
+
 input CreateCharacterInput {
 	projectId: ID!
 	name: String!
@@ -193,6 +200,7 @@ type Mutation {
 	deleteScene(id: ID!): Boolean!
 	reorderScenes(input: ReorderScenesInput!): [Scene!]!
 	generateSceneImage(input: GenerateSceneImageInput!): GeneratedImage!
+	uploadSceneImage(input: UploadSceneImageInput!): GeneratedImage!
 	generateVideo(storyboardId: ID!): VideoStatus!
 	createCharacter(input: CreateCharacterInput!): Character!
 	updateCharacter(input: UpdateCharacterInput!): Character!
