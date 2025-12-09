@@ -1,7 +1,7 @@
 export default {
     "name": "UpdateCharacter",
     "kind": "HoudiniMutation",
-    "hash": "b75484c2ba413e190bf21daaddd3fc72f79d2efb40cb7f7f258bb935e685f798",
+    "hash": "b1d73f746961fa65d2ea5122c3fdeaf0f627645d2c755ec932ea1f572c28b3b8",
 
     "raw": `mutation UpdateCharacter($input: UpdateCharacterInput!) {
   updateCharacter(input: $input) {
@@ -9,6 +9,18 @@ export default {
     projectId
     name
     description
+    personality
+    background
+    defaultHumeVoiceId
+    profileImageId
+    assets {
+      id
+      characterId
+      assetType
+      assetFormat
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -50,6 +62,82 @@ export default {
                             "visible": true
                         },
 
+                        "personality": {
+                            "type": "String",
+                            "keyRaw": "personality",
+                            "nullable": true,
+                            "visible": true
+                        },
+
+                        "background": {
+                            "type": "String",
+                            "keyRaw": "background",
+                            "nullable": true,
+                            "visible": true
+                        },
+
+                        "defaultHumeVoiceId": {
+                            "type": "String",
+                            "keyRaw": "defaultHumeVoiceId",
+                            "nullable": true,
+                            "visible": true
+                        },
+
+                        "profileImageId": {
+                            "type": "ID",
+                            "keyRaw": "profileImageId",
+                            "nullable": true,
+                            "visible": true
+                        },
+
+                        "assets": {
+                            "type": "CharacterAsset",
+                            "keyRaw": "assets",
+
+                            "selection": {
+                                "fields": {
+                                    "id": {
+                                        "type": "ID",
+                                        "keyRaw": "id",
+                                        "visible": true
+                                    },
+
+                                    "characterId": {
+                                        "type": "ID",
+                                        "keyRaw": "characterId",
+                                        "visible": true
+                                    },
+
+                                    "assetType": {
+                                        "type": "String",
+                                        "keyRaw": "assetType",
+                                        "visible": true
+                                    },
+
+                                    "assetFormat": {
+                                        "type": "String",
+                                        "keyRaw": "assetFormat",
+                                        "nullable": true,
+                                        "visible": true
+                                    },
+
+                                    "createdAt": {
+                                        "type": "String",
+                                        "keyRaw": "createdAt",
+                                        "visible": true
+                                    },
+
+                                    "updatedAt": {
+                                        "type": "String",
+                                        "keyRaw": "updatedAt",
+                                        "visible": true
+                                    }
+                                }
+                            },
+
+                            "visible": true
+                        },
+
                         "createdAt": {
                             "type": "String",
                             "keyRaw": "createdAt",
@@ -82,7 +170,11 @@ export default {
             "UpdateCharacterInput": {
                 "id": "ID",
                 "name": "String",
-                "description": "String"
+                "description": "String",
+                "personality": "String",
+                "background": "String",
+                "defaultHumeVoiceId": "String",
+                "profileImageId": "ID"
             }
         },
 
@@ -91,4 +183,4 @@ export default {
     }
 };
 
-"HoudiniHash=a4ca7746cbab27fa837c544db1828b9f1fc2c0161385b42a894b46aa91f371fc";
+"HoudiniHash=f9de88a89fbe3f8f0eb25b770bfa699794a3eb938c6af3cdbd91f256b529a78b";

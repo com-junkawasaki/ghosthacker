@@ -9,6 +9,18 @@ export type ListCharacters$result = {
         readonly projectId: string;
         readonly name: string;
         readonly description: string | null;
+        readonly personality: string | null;
+        readonly background: string | null;
+        readonly defaultHumeVoiceId: string | null;
+        readonly profileImageId: string | null;
+        readonly assets: ({
+            readonly id: string;
+            readonly characterId: string;
+            readonly assetType: string;
+            readonly assetFormat: string | null;
+            readonly createdAt: string;
+            readonly updatedAt: string;
+        })[];
         readonly createdAt: string;
         readonly updatedAt: string;
     })[];
@@ -21,13 +33,25 @@ export type ListCharacters$input = {
 export type ListCharacters$artifact = {
     "name": "ListCharacters";
     "kind": "HoudiniQuery";
-    "hash": "d38ac547c06d838ba8a0aa7de6eed43bde37e3afdcba8e0ff6843114bdb9ac16";
+    "hash": "73509539325e660c11611f7555ebab1b185ad2c210e5df4d39fb2e2ff6e4714c";
     "raw": `query ListCharacters($projectId: ID!) {
   characters(projectId: $projectId) {
     id
     projectId
     name
     description
+    personality
+    background
+    defaultHumeVoiceId
+    profileImageId
+    assets {
+      id
+      characterId
+      assetType
+      assetFormat
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -60,6 +84,70 @@ export type ListCharacters$artifact = {
                             "type": "String";
                             "keyRaw": "description";
                             "nullable": true;
+                            "visible": true;
+                        };
+                        "personality": {
+                            "type": "String";
+                            "keyRaw": "personality";
+                            "nullable": true;
+                            "visible": true;
+                        };
+                        "background": {
+                            "type": "String";
+                            "keyRaw": "background";
+                            "nullable": true;
+                            "visible": true;
+                        };
+                        "defaultHumeVoiceId": {
+                            "type": "String";
+                            "keyRaw": "defaultHumeVoiceId";
+                            "nullable": true;
+                            "visible": true;
+                        };
+                        "profileImageId": {
+                            "type": "ID";
+                            "keyRaw": "profileImageId";
+                            "nullable": true;
+                            "visible": true;
+                        };
+                        "assets": {
+                            "type": "CharacterAsset";
+                            "keyRaw": "assets";
+                            "selection": {
+                                "fields": {
+                                    "id": {
+                                        "type": "ID";
+                                        "keyRaw": "id";
+                                        "visible": true;
+                                    };
+                                    "characterId": {
+                                        "type": "ID";
+                                        "keyRaw": "characterId";
+                                        "visible": true;
+                                    };
+                                    "assetType": {
+                                        "type": "String";
+                                        "keyRaw": "assetType";
+                                        "visible": true;
+                                    };
+                                    "assetFormat": {
+                                        "type": "String";
+                                        "keyRaw": "assetFormat";
+                                        "nullable": true;
+                                        "visible": true;
+                                    };
+                                    "createdAt": {
+                                        "type": "String";
+                                        "keyRaw": "createdAt";
+                                        "visible": true;
+                                    };
+                                    "updatedAt": {
+                                        "type": "String";
+                                        "keyRaw": "updatedAt";
+                                        "visible": true;
+                                    };
+                                };
+                            };
                             "visible": true;
                         };
                         "createdAt": {

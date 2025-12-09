@@ -1,7 +1,7 @@
 export default {
     "name": "ListCharacters",
     "kind": "HoudiniQuery",
-    "hash": "d38ac547c06d838ba8a0aa7de6eed43bde37e3afdcba8e0ff6843114bdb9ac16",
+    "hash": "73509539325e660c11611f7555ebab1b185ad2c210e5df4d39fb2e2ff6e4714c",
 
     "raw": `query ListCharacters($projectId: ID!) {
   characters(projectId: $projectId) {
@@ -9,6 +9,18 @@ export default {
     projectId
     name
     description
+    personality
+    background
+    defaultHumeVoiceId
+    profileImageId
+    assets {
+      id
+      characterId
+      assetType
+      assetFormat
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -50,6 +62,82 @@ export default {
                             "visible": true
                         },
 
+                        "personality": {
+                            "type": "String",
+                            "keyRaw": "personality",
+                            "nullable": true,
+                            "visible": true
+                        },
+
+                        "background": {
+                            "type": "String",
+                            "keyRaw": "background",
+                            "nullable": true,
+                            "visible": true
+                        },
+
+                        "defaultHumeVoiceId": {
+                            "type": "String",
+                            "keyRaw": "defaultHumeVoiceId",
+                            "nullable": true,
+                            "visible": true
+                        },
+
+                        "profileImageId": {
+                            "type": "ID",
+                            "keyRaw": "profileImageId",
+                            "nullable": true,
+                            "visible": true
+                        },
+
+                        "assets": {
+                            "type": "CharacterAsset",
+                            "keyRaw": "assets",
+
+                            "selection": {
+                                "fields": {
+                                    "id": {
+                                        "type": "ID",
+                                        "keyRaw": "id",
+                                        "visible": true
+                                    },
+
+                                    "characterId": {
+                                        "type": "ID",
+                                        "keyRaw": "characterId",
+                                        "visible": true
+                                    },
+
+                                    "assetType": {
+                                        "type": "String",
+                                        "keyRaw": "assetType",
+                                        "visible": true
+                                    },
+
+                                    "assetFormat": {
+                                        "type": "String",
+                                        "keyRaw": "assetFormat",
+                                        "nullable": true,
+                                        "visible": true
+                                    },
+
+                                    "createdAt": {
+                                        "type": "String",
+                                        "keyRaw": "createdAt",
+                                        "visible": true
+                                    },
+
+                                    "updatedAt": {
+                                        "type": "String",
+                                        "keyRaw": "updatedAt",
+                                        "visible": true
+                                    }
+                                }
+                            },
+
+                            "visible": true
+                        },
+
                         "createdAt": {
                             "type": "String",
                             "keyRaw": "createdAt",
@@ -87,4 +175,4 @@ export default {
     "partial": false
 };
 
-"HoudiniHash=67b3a47a195a0c0eece6999a71cc33d0f382d2029060897145c7e474612515bb";
+"HoudiniHash=13ee1e02395a7b9e0b72e7fa5e6d10197d815073cce4dc401ea848595033f799";
