@@ -730,16 +730,16 @@ impl MutationRoot {
             // Try to detect format from base64 data prefix or default to png
             if input.image_data.starts_with("data:image/") {
                 if input.image_data.contains("data:image/png") {
-                    "png"
+                    "png".to_string()
                 } else if input.image_data.contains("data:image/jpeg") || input.image_data.contains("data:image/jpg") {
-                    "jpeg"
+                    "jpeg".to_string()
                 } else if input.image_data.contains("data:image/webp") {
-                    "webp"
+                    "webp".to_string()
                 } else {
-                    "png"
+                    "png".to_string()
                 }
             } else {
-                "png" // Default
+                "png".to_string() // Default
             }
         });
         
@@ -777,7 +777,7 @@ impl MutationRoot {
         .bind(id)
         .bind(scene_uuid)
         .bind(clean_image_data)
-        .bind(image_format)
+        .bind(&image_format)
         .bind(image_type)
         .bind(None::<String>) // No prompt for uploaded images
         .bind(None::<String>) // No model for uploaded images
@@ -795,7 +795,7 @@ impl MutationRoot {
             json!({
                 "image_id": id.to_string(),
                 "image_type": image_type,
-                "image_format": image_format,
+                "image_format": image_format.clone(),
                 "source": "upload",
             }),
             None,

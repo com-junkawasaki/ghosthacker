@@ -2,7 +2,7 @@ import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { Buffer } from 'buffer'; // Import Buffer for Node.js environment
 
-const GRAPHQL_API_URL = import.meta.env.GRAPHQL_API_URL || process.env.GRAPHQL_API_URL || 'http://localhost:25325/graphql';
+const GRAPHQL_API_URL = process.env.GRAPHQL_API_URL || 'http://localhost:25325/graphql';
 
 export const GET: RequestHandler = async ({ params }) => {
 	const imageId = params.imageId;

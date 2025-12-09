@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import path from 'path';
 
@@ -7,7 +7,9 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			runtime: 'nodejs20.x',
+		}),
 		alias: {
 			$lib: './src/lib',
 			$houdini: path.resolve('.', '$houdini'),

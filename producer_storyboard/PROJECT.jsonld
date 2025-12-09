@@ -9,7 +9,7 @@
   "url": "https://github.com/ghosthacker/producer_storyboard",
   "version": "0.1.0",
   "createdAt": "2025-12-09T00:00:00Z",
-  "updatedAt": "2025-12-09T14:30:00Z",
+  "updatedAt": "2025-12-09T15:00:00Z",
   "status": "InDevelopment",
   "maintainer": {
     "@type": "Person",
@@ -118,6 +118,29 @@
       "startTime": "2025-12-09T14:00:00Z",
       "endTime": "2025-12-09T14:30:00Z",
       "status": "Completed"
+    },
+    {
+      "@type": "AddAction",
+      "name": "vercel-production-deployment",
+      "description": "Configure Vercel adapter for SvelteKit production deployment with Node.js 20 runtime",
+      "startTime": "2025-12-09T14:30:00Z",
+      "endTime": "2025-12-09T15:00:00Z",
+      "status": "Completed",
+      "result": {
+        "adapter": "@sveltejs/adapter-vercel",
+        "runtime": "nodejs20.x",
+        "configuration": {
+          "buildCommand": "pnpm prebuild && pnpm build",
+          "installCommand": "pnpm install",
+          "regions": ["iad1"],
+          "maxDuration": 30
+        },
+        "environmentVariables": [
+          "GRAPHQL_API_URL",
+          "PUBLIC_GRAPHQL_API_URL",
+          "PUBLIC_APP_URL"
+        ]
+      }
     }
   ],
   "capability": [
@@ -171,6 +194,11 @@
     },
     "infrastructure": {
       "containerization": "Docker Compose",
+      "deployment": {
+        "production": "Vercel",
+        "adapter": "@sveltejs/adapter-vercel",
+        "runtime": "nodejs20.x"
+      },
       "ports": {
         "frontend": 5173,
         "backend": 8080,

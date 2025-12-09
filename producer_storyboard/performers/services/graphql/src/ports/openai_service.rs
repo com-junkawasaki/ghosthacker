@@ -7,7 +7,7 @@
  * Provides image generation (DALL-E) and scene description generation (GPT-4)
  */
 use anyhow::Result;
-use serde_json::{json, Value as JsonValue};
+use serde_json::json;
 
 #[derive(Debug, Clone)]
 pub struct ImageGenerationRequest {
@@ -59,28 +59,53 @@ impl OpenAIService {
         // Check if DALL-E model is requested
         let is_dalle_model = request.model.as_deref().map(|m| m.starts_with("dall-e")).unwrap_or(false);
         
-        // Try OpenRouter proxy endpoint for DALL-E if using OpenRouter key
-        // Note: OpenRouter typically doesn't support DALL-E, but we'll try anyway
-        if is_openrouter && is_dalle_model {
-            println!("[OpenAI Service] Attempting DALL-E via OpenRouter proxy endpoint");
-            let url = "https://openrouter.ai/api/v1/images/generations";
+        // OpenRouter supports image generation via chat/completions endpoint with modalities parameter
+        // Supported models: google/gemini-2.5-flash-image-preview, black-forest-labs/flux.2-pro, black-forest-labs/flux.2-flex
+        if is_openrouter {
+            // If DALL-E is requested, try OpenRouter proxy first (will likely fail)
+            if is_dalle_model {
+                println!("[OpenAI Service] DALL-E requested, but OpenRouter doesn't support DALL-E. Trying OpenRouter-supported models instead.");
+            }
+            
+            // Use OpenRouter-supported image generation models
+            // Default to Gemini 2.5 Flash Image if no model specified or DALL-E requested
+            let model = if is_dalle_model || request.model.is_none() {
+                "google/gemini-2.5-flash-image-preview".to_string()
+            } else {
+                request.model.clone().unwrap_or_else(|| "google/gemini-2.5-flash-image-preview".to_string())
+            };
+            
+            println!("[OpenAI Service] Using OpenRouter image generation model: {}", model);
+            
+            let url = "https://openrouter.ai/api/v1/chat/completions";
             
             let mut body = json!({
-                "prompt": request.prompt,
-                "n": request.n.unwrap_or(1),
-                "size": request.size.unwrap_or_else(|| "1024x1024".to_string()),
+                "model": model,
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": request.prompt
+                    }
+                ],
+                "modalities": ["image", "text"],
+                "stream": false
             });
-
-            if let Some(model) = &request.model {
-                body["model"] = json!(model);
-                if model == "dall-e-3" {
-                    body["quality"] = json!(request.quality.unwrap_or_else(|| "standard".to_string()));
-                }
-            } else {
-                body["model"] = json!("dall-e-3");
-                body["quality"] = json!("standard");
+            
+            // Add image config for aspect ratio if specified
+            if let Some(size) = &request.size {
+                // Parse size like "1024x1024" to aspect ratio
+                let aspect_ratio = match size.as_str() {
+                    "1024x1024" => "1:1",
+                    "1024x1792" => "2:3",
+                    "1792x1024" => "3:2",
+                    _ => "1:1", // Default
+                };
+                body["image_config"] = json!({
+                    "aspect_ratio": aspect_ratio
+                });
+                println!("[OpenAI Service] Aspect ratio: {}", aspect_ratio);
             }
-
+            
             println!("[OpenAI Service] Request body: {}", serde_json::to_string(&body).unwrap_or_default());
             
             let response = self.client
@@ -94,39 +119,134 @@ impl OpenAIService {
                 .await?;
 
             let status = response.status();
-            println!("[OpenAI Service] OpenRouter proxy response status: {}", status.as_u16());
+            println!("[OpenAI Service] OpenRouter response status: {}", status.as_u16());
+            
+            let response_text = response.text().await.unwrap_or_else(|e| {
+                format!("Failed to read response body: {}", e)
+            });
+            
+            println!("[OpenAI Service] Response body (first 1000 chars): {}", 
+                if response_text.len() > 1000 { 
+                    format!("{}...", &response_text[..1000]) 
+                } else { 
+                    response_text.clone() 
+                }
+            );
             
             if status.is_success() {
-                let response_text = response.text().await.unwrap_or_else(|e| {
-                    format!("Failed to read response body: {}", e)
-                });
-                
                 let json: serde_json::Value = serde_json::from_str(&response_text)
                     .map_err(|e| anyhow::anyhow!("Failed to parse response JSON: {}. Response: {}", e, response_text))?;
                 
-                if let Some(data) = json.get("data").and_then(|v| v.as_array()).and_then(|arr| arr.get(0)) {
-                    if let Some(image_url) = data.get("url").and_then(|v| v.as_str()) {
-                        println!("[OpenAI Service] Successfully generated image via OpenRouter proxy");
-                        let revised_prompt = data.get("revised_prompt").and_then(|v| v.as_str()).map(|s| s.to_string());
-                        return Ok(ImageGenerationResponse {
-                            image_url: image_url.to_string(),
-                            revised_prompt,
-                        });
+                println!("[OpenAI Service] Parsed response JSON successfully");
+                println!("[OpenAI Service] Response structure: choices={}, message={}, images={}", 
+                    json.get("choices").is_some(),
+                    json.get("choices").and_then(|v| v.as_array()).and_then(|arr| arr.get(0)).and_then(|c| c.get("message")).is_some(),
+                    json.get("choices").and_then(|v| v.as_array()).and_then(|arr| arr.get(0)).and_then(|c| c.get("message")).and_then(|m| m.get("images")).is_some()
+                );
+                
+                // OpenRouter response format: choices[0].message.images[0].image_url.url
+                if let Some(image_url) = json.get("choices")
+                    .and_then(|v| v.as_array())
+                    .and_then(|arr| arr.get(0))
+                    .and_then(|choice| choice.get("message"))
+                    .and_then(|msg| msg.get("images"))
+                    .and_then(|v| v.as_array())
+                    .and_then(|arr| arr.get(0))
+                    .and_then(|img| img.get("image_url"))
+                    .and_then(|url_obj| url_obj.get("url"))
+                    .and_then(|v| v.as_str())
+                {
+                    println!("[OpenAI Service] Successfully generated image via OpenRouter");
+                    return Ok(ImageGenerationResponse {
+                        image_url: image_url.to_string(),
+                        revised_prompt: None, // OpenRouter doesn't provide revised_prompt
+                    });
+                } else {
+                    // Try alternative response format (base64 encoded)
+                    if json.get("choices")
+                        .and_then(|v| v.as_array())
+                        .and_then(|arr| arr.get(0))
+                        .and_then(|choice| choice.get("message"))
+                        .and_then(|msg| msg.get("images"))
+                        .and_then(|v| v.as_array())
+                        .and_then(|arr| arr.get(0))
+                        .and_then(|img| img.get("image_data"))
+                        .is_some()
+                    {
+                        // If image is base64 encoded, we'd need to save it and return a URL
+                        // For now, return an error suggesting to use image upload instead
+                        println!("[OpenAI Service] Received base64 image data, but URL format expected");
+                        anyhow::bail!("OpenRouter returned base64 image data. Please use image upload feature instead, or implement base64 handling.");
                     }
+                    
+                    let full_response = serde_json::to_string(&json).unwrap_or_default();
+                    println!("[OpenAI Service] Full response: {}", full_response);
+                    anyhow::bail!("No image URL in OpenRouter response. Response structure: {}", full_response);
                 }
+            } else {
+                // OpenRouter API error
+                let detailed_error = if let Ok(json_err) = serde_json::from_str::<serde_json::Value>(&response_text) {
+                    println!("[OpenAI Service] Parsed error JSON: {}", serde_json::to_string(&json_err).unwrap_or_default());
+                    if let Some(error_obj) = json_err.get("error") {
+                        let mut error_parts = Vec::new();
+                        
+                        if let Some(message) = error_obj.get("message").and_then(|v| v.as_str()) {
+                            error_parts.push(message.to_string());
+                        }
+                        
+                        // Extract metadata for more details (e.g., rate limit info)
+                        if let Some(metadata) = error_obj.get("metadata") {
+                            if let Some(raw) = metadata.get("raw").and_then(|v| v.as_str()) {
+                                if status.as_u16() == 429 {
+                                    error_parts.push(raw.to_string());
+                                } else {
+                                    error_parts.push(format!("Details: {}", raw));
+                                }
+                            }
+                            if let Some(provider) = metadata.get("provider_name").and_then(|v| v.as_str()) {
+                                error_parts.push(format!("Provider: {}", provider));
+                            }
+                        }
+                        
+                        if error_parts.is_empty() {
+                            if let Some(code) = error_obj.get("code") {
+                                if let Some(code_str) = code.as_str() {
+                                    format!("Error code: {}", code_str)
+                                } else if let Some(code_num) = code.as_u64() {
+                                    format!("Error code: {}", code_num)
+                                } else {
+                                    format!("Error object: {}", serde_json::to_string(error_obj).unwrap_or_default())
+                                }
+                            } else {
+                                format!("Error object: {}", serde_json::to_string(error_obj).unwrap_or_default())
+                            }
+                        } else {
+                            error_parts.join(". ")
+                        }
+                    } else {
+                        response_text.clone()
+                    }
+                } else {
+                    response_text.clone()
+                };
+                
+                println!("[OpenAI Service] Error details: {}", detailed_error);
+                
+                let final_error = if status.as_u16() == 429 {
+                    format!("Rate limit exceeded. {}", detailed_error)
+                } else {
+                    format!("OpenRouter API error (HTTP {}): {}", status.as_u16(), detailed_error)
+                };
+                
+                anyhow::bail!("{}", final_error);
             }
-            
-            // If OpenRouter proxy failed, fall through to error message
-            println!("[OpenAI Service] OpenRouter doesn't support DALL-E image generation");
         }
         
-        // OpenAI direct endpoint for DALL-E
+        // OpenAI direct endpoint for DALL-E (only if not using OpenRouter)
         // For OpenAI direct endpoint, we need a direct OpenAI API key (not OpenRouter key)
-        if is_openrouter {
-            anyhow::bail!("DALL-E image generation is not supported via OpenRouter. OpenRouter keys (sk-or-*) cannot be used with OpenAI direct endpoint (api.openai.com). Please set OPENAI_DIRECT_API_KEY environment variable with a direct OpenAI API key (sk-*), or use the image upload feature instead.");
-        }
-        
-        let url = "https://api.openai.com/v1/images/generations";
+        if is_dalle_model {
+            // DALL-E requires OpenAI direct endpoint
+            let url = "https://api.openai.com/v1/images/generations";
         
         let mut body = json!({
             "prompt": request.prompt,
@@ -221,10 +341,14 @@ impl OpenAIService {
             .and_then(|v| v.as_str())
             .map(|s| s.to_string());
 
-        Ok(ImageGenerationResponse {
-            image_url,
-            revised_prompt,
-        })
+            Ok(ImageGenerationResponse {
+                image_url,
+                revised_prompt,
+            })
+        } else {
+            // Non-DALL-E model with non-OpenRouter key - not supported
+            anyhow::bail!("Image generation requires either OpenRouter key (for Gemini/Flux models) or OpenAI direct key (for DALL-E models). Please set OPENAI_DIRECT_API_KEY for DALL-E or use OpenRouter key for supported models.");
+        }
     }
 
     /// Download image from URL and return as bytes
