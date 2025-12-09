@@ -1,0 +1,24 @@
+# Rust build artifacts
+target/
+Cargo.lock
+
+# Node.js build artifacts
+node_modules/
+.svelte-kit/
+build/
+dist/
+.output/
+
+# Environment files
+.env
+.envrc
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
