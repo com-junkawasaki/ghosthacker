@@ -4,10 +4,12 @@
  */
 export const load = async () => {
 	// Use process.env for server-side access to environment variables
+	// Fallback to hardcoded value from /gftd env clerk
 	const clerkPublishableKey =
 		process.env.PUBLIC_CLERK_PUBLISHABLE_KEY ||
 		process.env.CLERK_PUBLISHABLE_KEY ||
-		'';
+		process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
+		'pk_test_ZW5vdWdoLWNoaXBtdW5rLTkyLmNsZXJrLmFjY291bnRzLmRldiQ'; // Hardcoded from /gftd env clerk
 
 	if (!clerkPublishableKey) {
 		console.error(

@@ -6,7 +6,10 @@ import { createClerkClient, verifyToken } from '@clerk/backend';
 import type { Cookies, RequestEvent } from '@sveltejs/kit';
 
 // Use process.env for server-side access to environment variables
-const CLERK_SECRET_KEY = process.env.CLERK_SECRET_KEY || '';
+// Fallback to hardcoded value from /gftd env clerk
+const CLERK_SECRET_KEY =
+	process.env.CLERK_SECRET_KEY ||
+	'sk_test_FmPI35dNxAij0tuaX7rV5PDIDVmVvx8J11nyVyxEGu'; // Hardcoded from /gftd env clerk
 
 if (!CLERK_SECRET_KEY) {
 	console.warn('[Clerk] CLERK_SECRET_KEY is not set. Clerk authentication will not work.');
