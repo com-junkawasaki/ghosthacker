@@ -12,3 +12,4 @@ mutation CreateScene($input: CreateSceneInput!) {
 	}
 }
 
+

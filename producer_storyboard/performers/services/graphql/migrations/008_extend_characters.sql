@@ -29,3 +29,4 @@ CREATE INDEX IF NOT EXISTS idx_character_assets_character_id ON character_assets
 CREATE INDEX IF NOT EXISTS idx_character_assets_asset_type ON character_assets(asset_type);
 CREATE INDEX IF NOT EXISTS idx_character_assets_created_at ON character_assets(created_at DESC);
 
+

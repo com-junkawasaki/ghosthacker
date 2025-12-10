@@ -74,3 +74,4 @@ export const load: LayoutServerLoad = async ({ params, url, cookies, request }) 
 		organizations,
 	};
 };
+

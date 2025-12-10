@@ -11,3 +11,4 @@ mutation GenerateSunoMusic($input: GenerateSunoMusicInput!) {
 		updatedAt
 	}
 }
+

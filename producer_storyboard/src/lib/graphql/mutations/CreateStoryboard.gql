@@ -11,3 +11,4 @@ mutation CreateStoryboard($input: CreateStoryboardInput!) {
 		updatedAt
 	}
 }
+

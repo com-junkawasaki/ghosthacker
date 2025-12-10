@@ -85,3 +85,4 @@ CREATE TRIGGER update_audio_clips_updated_at BEFORE UPDATE ON audio_clips
 
 CREATE TRIGGER update_suno_music_updated_at BEFORE UPDATE ON suno_music
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+

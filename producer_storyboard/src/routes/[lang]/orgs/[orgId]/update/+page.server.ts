@@ -13,3 +13,4 @@ export const load: PageServerLoad = async ({ params }) => {
 	// Redirect to profile page
 	throw redirect(302, `/${validLang}/orgs/${orgId}/profile`);
 };
+

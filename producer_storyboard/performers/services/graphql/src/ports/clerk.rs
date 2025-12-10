@@ -107,3 +107,4 @@ pub fn require_auth_and_org(ctx: &async_graphql::Context<'_>) -> async_graphql::
     let org = auth.org.ok_or_else(|| async_graphql::Error::new("Organization context required"))?;
     Ok((user, org))
 }
+

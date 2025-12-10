@@ -276,3 +276,4 @@ describe('GraphQL API Performance', () => {
 		expect(avgTimePerOperation).toBeLessThan(Math.max(MAX_RESPONSE_TIME_MS, MAX_MUTATION_TIME_MS));
 	});
 });
+

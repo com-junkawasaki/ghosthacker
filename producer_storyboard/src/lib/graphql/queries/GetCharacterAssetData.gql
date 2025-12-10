@@ -2,3 +2,4 @@ query GetCharacterAssetData($assetId: ID!) {
 	characterAssetData(assetId: $assetId)
 }
 
+

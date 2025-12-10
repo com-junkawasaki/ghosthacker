@@ -30,3 +30,4 @@ CREATE TABLE IF NOT EXISTS generated_images (
 CREATE INDEX IF NOT EXISTS idx_generated_images_scene_id ON generated_images(scene_id);
 CREATE INDEX IF NOT EXISTS idx_generated_images_created_at ON generated_images(created_at DESC);
 
+

@@ -118,3 +118,4 @@ impl QueryRoot {
 - [clerk-rs Documentation](https://docs.rs/clerk-rs/)
 - [Clerk Dashboard](https://dashboard.clerk.com)
 - [CLERK_INTEGRATION.md](./CLERK_INTEGRATION.md) - 詳細な使用方法
+

@@ -8,3 +8,4 @@ mutation CreateComposer($input: CreateComposerInput!) {
 		updatedAt
 	}
 }
+

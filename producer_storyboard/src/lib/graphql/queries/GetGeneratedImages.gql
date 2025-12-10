@@ -11,3 +11,4 @@ query GetGeneratedImages($sceneId: ID!) {
 	}
 }
 
+

@@ -406,3 +406,4 @@
 		background-color: #2563eb;
 	}
 </style>
+

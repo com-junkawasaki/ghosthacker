@@ -24,3 +24,4 @@ export const GET: RequestHandler = async ({ cookies, request }) => {
 		return json({ organizations: [] }, { status: 500 });
 	}
 };
+

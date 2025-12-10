@@ -8,3 +8,4 @@ mutation UploadSceneImage($sceneId: ID!, $imageData: String!, $imageType: String
 	}
 }
 
+

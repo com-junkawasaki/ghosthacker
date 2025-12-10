@@ -26,3 +26,4 @@ export const load: PageServerLoad = async ({ params, cookies, request }) => {
 		authResult,
 	};
 };
+

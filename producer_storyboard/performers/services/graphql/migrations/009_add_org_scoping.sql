@@ -128,3 +128,4 @@ COMMENT ON COLUMN scenes.org_id IS 'Clerk organization ID (inherited from projec
 COMMENT ON COLUMN generated_videos.org_id IS 'Clerk organization ID (inherited from project)';
 COMMENT ON COLUMN characters.org_id IS 'Clerk organization ID (inherited from project)';
 COMMENT ON COLUMN dialogues.org_id IS 'Clerk organization ID (inherited from project)';
+

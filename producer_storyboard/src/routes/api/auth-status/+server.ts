@@ -17,3 +17,4 @@ export const GET: RequestHandler = async ({ cookies, request }) => {
 		timestamp: new Date().toISOString(),
 	});
 };
+

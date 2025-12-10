@@ -77,3 +77,4 @@ pub struct SunoMusic {
     #[graphql(name = "updatedAt")]
     pub updated_at: String,
 }
+

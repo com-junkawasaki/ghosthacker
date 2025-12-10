@@ -36,3 +36,4 @@ CREATE INDEX IF NOT EXISTS idx_dialogues_character_id ON dialogues(character_id)
 CREATE INDEX IF NOT EXISTS idx_dialogues_language ON dialogues(language);
 CREATE INDEX IF NOT EXISTS idx_dialogues_scene_order ON dialogues(scene_id, order_index);
 
+
