@@ -14,6 +14,21 @@
 	const orgId = $derived(auth?.orgId || organization?.id);
 	const isLoaded = $derived(clerk?.isLoaded);
 
+	async function handleSignOut() {
+		if (!clerk?.clerk) {
+			console.error('[SignIn] Clerk instance not available');
+			return;
+		}
+		try {
+			console.log('[SignIn] Attempting to sign out...');
+			await clerk.clerk.signOut();
+			console.log('[SignIn] Sign out successful, redirecting to /sign-in');
+			goto('/sign-in', { replaceState: true });
+		} catch (error) {
+			console.error('[SignIn] Sign out error:', error);
+		}
+	}
+
 	const DEFAULT_LANG = 'ja';
 
 	// Get fallback redirect URL from query parameter or use default
@@ -67,9 +82,14 @@
 		{:else if userId}
 			<div class="authenticated-section">
 				<p>既にログインしています</p>
-				<a href={projectManagementUrl()} class="project-link">
-					プロジェクト管理ページへ
-				</a>
+				<div class="action-buttons">
+					<a href={projectManagementUrl()} class="project-link">
+						プロジェクト管理ページへ
+					</a>
+					<button onclick={handleSignOut} class="logout-button">
+						ログアウト
+					</button>
+				</div>
 			</div>
 		{:else}
 			<h1>ログイン</h1>
@@ -112,6 +132,13 @@
 		gap: 1rem;
 	}
 
+	.action-buttons {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
 	.project-link {
 		display: inline-block;
 		padding: 0.75rem 1.5rem;
@@ -125,5 +152,23 @@
 
 	.project-link:hover {
 		background-color: var(--sb-accent-hover, #0056b3);
+	}
+
+	.logout-button {
+		padding: 0.75rem 1.5rem;
+		background-color: transparent;
+		color: var(--sb-text-secondary, #cccccc);
+		border: 1px solid var(--sb-border-color, #404040);
+		border-radius: 0.5rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition: all 0.2s ease;
+		font-size: 1rem;
+	}
+
+	.logout-button:hover {
+		background-color: var(--sb-bg-secondary, #2a2a2a);
+		border-color: var(--sb-accent, #007bff);
+		color: var(--sb-text-primary, #ffffff);
 	}
 </style>
