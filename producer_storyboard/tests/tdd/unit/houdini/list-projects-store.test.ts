@@ -6,7 +6,7 @@
  * TDD Unit Tests for Houdini ListProjectsStore
  * Tests the actual Houdini store behavior with GraphQL queries
  */
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { GraphQLClient } from 'graphql-request';
 
 // Mock the Houdini client module

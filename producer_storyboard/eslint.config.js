@@ -31,6 +31,14 @@ export default [
 		},
 	},
 	{
+		files: ['src/lib/graphql/client.ts'],
+		languageOptions: {
+			globals: {
+				...globals.browser,
+			},
+		},
+	},
+	{
 		files: ['**/*.svelte'],
 		languageOptions: {
 			parser: svelteParser,
@@ -55,6 +63,21 @@ export default [
 			globals: {
 				...globals.node,
 			},
+		},
+	},
+	{
+		files: ['tests/**/*.ts', 'tests/**/*.js'],
+		languageOptions: {
+			globals: {
+				...globals.node,
+				...globals.browser,
+			},
+		},
+		rules: {
+			'@typescript-eslint/no-unused-vars': ['error', { 
+				argsIgnorePattern: '^_',
+				varsIgnorePattern: '^(beforeEach|afterEach|describe|it|expect|vi)$'
+			}],
 		},
 	},
 	{

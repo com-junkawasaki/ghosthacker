@@ -157,7 +157,7 @@ describe('Storyboard Page Route Logic', () => {
 			}
 		};
 
-		const result = await retry();
+		await retry();
 		expect(attempts).toBe(2);
 		expect(mockFetch).toHaveBeenCalledTimes(2);
 	});

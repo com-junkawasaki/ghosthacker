@@ -9,7 +9,7 @@
 		currentTime: number;
 	};
 
-	let { track, currentTime }: Props = $props();
+	let { track, currentTime: _currentTime }: Props = $props();
 
 	// Mock clips data
 	const clips = track.type === 'audio' ? [
@@ -19,7 +19,6 @@
 
 	let isVisible = $state(true);
 	let isLocked = $state(false);
-	let volume = $state(100);
 </script>
 
 <div class="audio-track">
@@ -50,7 +49,7 @@
 			{/if}
 		</button>
 		{#if track.type === 'audio'}
-			<button class="control-icon">
+			<button class="control-icon" aria-label="Audio waveform">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
 					<path d="M3 8L6 5L6 11L3 8Z" stroke-width="1.5"/>
 					<path d="M8 4L8 12" stroke-width="1.5"/>
@@ -74,9 +73,9 @@
 		{:else if track.type === 'video'}
 			<div class="video-clip">
 				<div class="clip-thumbnails">
-					{#each Array(5) as _, i}
-						<div class="thumbnail"></div>
-					{/each}
+				{#each Array(5) as _}
+					<div class="thumbnail"></div>
+				{/each}
 				</div>
 			</div>
 		{:else}

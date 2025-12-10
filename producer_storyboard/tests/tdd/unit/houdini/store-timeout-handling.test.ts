@@ -6,7 +6,7 @@
  * TDD Unit Tests for Houdini Store Timeout Handling
  * Tests the timeout handling logic for stuck fetching states
  */
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 
 describe('Houdini Store Timeout Handling', () => {
 	describe('Auto-fetch Timeout Detection', () => {

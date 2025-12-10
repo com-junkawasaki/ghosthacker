@@ -6,7 +6,7 @@
  * TDD Unit Tests for Houdini ListProjectsStore Behavior
  * Tests the store's fetching behavior and state management
  */
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 
 describe('Houdini ListProjectsStore Behavior', () => {
 	describe('Store Initialization', () => {

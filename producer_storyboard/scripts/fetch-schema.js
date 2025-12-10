@@ -2,11 +2,12 @@
 /**
  * Fetch GraphQL schema from the backend endpoint and save it to schema.graphql
  */
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+// No longer needed: __dirname
+// import { fileURLToPath } from 'url';
+// import { dirname } from 'path';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
 
 const GRAPHQL_API_URL = process.env.PUBLIC_GRAPHQL_API_URL || process.env.GRAPHQL_API_URL || 'http://localhost:25325/graphql';
 
