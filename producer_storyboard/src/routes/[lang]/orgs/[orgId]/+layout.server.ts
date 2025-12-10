@@ -1,14 +1,15 @@
 /**
  * Server-side layout load function for organization-scoped routes
  * Handles lang and orgId parameter validation and Clerk organization mapping
+ * Uses svelte-clerk v0.20.1+ with withClerkHandler
  */
 import { redirect, error } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
-import { verifyClerkSession, getUserOrganizations, verifyOrgAccess } from '$lib/server/clerk';
+import { clerkClient } from 'svelte-clerk/server';
 
 const DEFAULT_LANG = 'ja';
 
-export const load: LayoutServerLoad = async ({ params, url, cookies, request }) => {
+export const load: LayoutServerLoad = async ({ params, url, locals }) => {
 	const { lang, orgId } = params;
 
 	// Validate and set default lang
@@ -19,11 +20,17 @@ export const load: LayoutServerLoad = async ({ params, url, cookies, request }) 
 		throw redirect(302, newUrl);
 	}
 
-	// Verify Clerk session
-	const authResult = await verifyClerkSession(cookies, request);
+	// Get auth from locals (set by withClerkHandler)
+	const auth = locals.auth();
+	
+	console.log('[OrgLayout Server] Auth state:', {
+		userId: auth.userId,
+		orgId: auth.orgId,
+		sessionId: auth.sessionId,
+	});
 
 	// Require authentication - redirect to sign-in if not authenticated
-	if (!authResult.isAuthenticated) {
+	if (!auth.userId) {
 		// If orgId is 'select', redirect to sign-in (authentication required)
 		if (orgId === 'select') {
 			throw redirect(302, '/sign-in');
@@ -35,11 +42,15 @@ export const load: LayoutServerLoad = async ({ params, url, cookies, request }) 
 	// User is authenticated
 	// If orgId is 'select', show organization selection
 	if (orgId === 'select') {
-		const organizations = await getUserOrganizations(authResult.userId!);
+		const organizations = await getUserOrganizations(auth.userId);
 		return {
 			lang: validLang,
 			orgId: null,
-			authResult,
+			authResult: {
+				isAuthenticated: true,
+				userId: auth.userId,
+				orgId: auth.orgId,
+			},
 			organizations,
 		};
 	}
@@ -47,7 +58,7 @@ export const load: LayoutServerLoad = async ({ params, url, cookies, request }) 
 	// Validate orgId if provided
 	if (orgId) {
 		// Verify user has access to this organization
-		const hasAccess = await verifyOrgAccess(authResult.userId!, orgId);
+		const hasAccess = await verifyOrgAccess(auth.userId, orgId);
 		
 		if (!hasAccess) {
 			// User doesn't have access to this organization
@@ -57,21 +68,58 @@ export const load: LayoutServerLoad = async ({ params, url, cookies, request }) 
 	} else {
 		// No orgId in URL, but user is authenticated
 		// If user has a default org, redirect to it
-		if (authResult.orgId) {
-			throw redirect(302, `/${validLang}/orgs/${authResult.orgId}${url.pathname.replace(/^\/[^/]+\/orgs\/[^/]+/, '') || '/project'}`);
+		if (auth.orgId) {
+			throw redirect(302, `/${validLang}/orgs/${auth.orgId}${url.pathname.replace(/^\/[^/]+\/orgs\/[^/]+/, '') || '/project'}`);
 		}
 		// Otherwise, redirect to select page
 		throw redirect(302, `/${validLang}/orgs/select/project`);
 	}
 
 	// Get user's organizations for navigation
-	const organizations = await getUserOrganizations(authResult.userId!);
+	const organizations = await getUserOrganizations(auth.userId);
 
 	return {
 		lang: validLang,
 		orgId: orgId || null,
-		authResult,
+		authResult: {
+			isAuthenticated: true,
+			userId: auth.userId,
+			orgId: auth.orgId,
+		},
 		organizations,
 	};
 };
 
+/**
+ * Helper function to get user's organizations using clerkClient
+ */
+async function getUserOrganizations(userId: string) {
+	try {
+		const orgMemberships = await clerkClient.users.getOrganizationMembershipList({
+			userId,
+		});
+
+		return orgMemberships.data?.map((membership) => ({
+			id: membership.organization.id,
+			name: membership.organization.name,
+			slug: membership.organization.slug,
+			role: membership.role,
+		})) || [];
+	} catch (error) {
+		console.error('[OrgLayout] Error fetching organizations:', error);
+		return [];
+	}
+}
+
+/**
+ * Helper function to verify user has access to an organization
+ */
+async function verifyOrgAccess(userId: string, orgId: string): Promise<boolean> {
+	try {
+		const organizations = await getUserOrganizations(userId);
+		return organizations.some(org => org.id === orgId);
+	} catch (error) {
+		console.error('[OrgLayout] Error verifying org access:', error);
+		return false;
+	}
+}

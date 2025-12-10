@@ -1,20 +1,20 @@
 /**
  * API endpoint to get server-side authentication status
  * Used for debugging authentication state
+ * Uses svelte-clerk v0.20.1+ with withClerkHandler
  */
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { verifyClerkSession } from '$lib/server/clerk';
 
-export const GET: RequestHandler = async ({ cookies, request }) => {
-	const authResult = await verifyClerkSession(cookies, request);
+export const GET: RequestHandler = async ({ locals }) => {
+	// Get auth from locals (set by withClerkHandler)
+	const auth = locals.auth();
 
 	return json({
-		isAuthenticated: authResult.isAuthenticated,
-		userId: authResult.userId,
-		orgId: authResult.orgId,
-		hasOrg: authResult.hasOrg,
+		isAuthenticated: !!auth.userId,
+		userId: auth.userId,
+		orgId: auth.orgId,
+		sessionId: auth.sessionId,
 		timestamp: new Date().toISOString(),
 	});
 };
-

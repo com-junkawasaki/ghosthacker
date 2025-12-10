@@ -1,22 +1,32 @@
 /**
  * API endpoint to get user's organizations
  * Used by OrganizationSwitcher component
+ * Uses svelte-clerk v0.20.1+ with withClerkHandler
  */
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { verifyClerkSession, getUserOrganizations } from '$lib/server/clerk';
+import { clerkClient } from 'svelte-clerk/server';
 
-export const GET: RequestHandler = async ({ cookies, request }) => {
+export const GET: RequestHandler = async ({ locals }) => {
 	try {
-		// Verify Clerk session
-		const authResult = await verifyClerkSession(cookies, request);
+		// Get auth from locals (set by withClerkHandler)
+		const auth = locals.auth();
 
-		if (!authResult.isAuthenticated || !authResult.userId) {
+		if (!auth.userId) {
 			return json({ organizations: [] }, { status: 401 });
 		}
 
 		// Get user's organizations
-		const organizations = await getUserOrganizations(authResult.userId);
+		const orgMemberships = await clerkClient.users.getOrganizationMembershipList({
+			userId: auth.userId,
+		});
+
+		const organizations = orgMemberships.data?.map((membership) => ({
+			id: membership.organization.id,
+			name: membership.organization.name,
+			slug: membership.organization.slug,
+			role: membership.role,
+		})) || [];
 
 		return json({ organizations });
 	} catch (error) {
@@ -24,4 +34,3 @@ export const GET: RequestHandler = async ({ cookies, request }) => {
 		return json({ organizations: [] }, { status: 500 });
 	}
 };
-
