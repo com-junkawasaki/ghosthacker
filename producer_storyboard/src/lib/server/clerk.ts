@@ -73,12 +73,26 @@ export async function verifyClerkSession(
 		const cookieNames = Array.isArray(allCookies) 
 			? allCookies.map((c: { name: string }) => c.name) 
 			: Object.keys(allCookies);
+		
+		// Get all Clerk-related cookies for debugging
+		const clerkCookies: Record<string, string | undefined> = {};
+		cookieNames.forEach((name: string) => {
+			if (name.includes('clerk') || name.includes('__session') || name.includes('__client')) {
+				const value = cookies.get(name);
+				clerkCookies[name] = value ? (value.length > 50 ? value.substring(0, 50) + '...' : value) : undefined;
+			}
+		});
+		
 		console.log('[Clerk verifySession] Cookie check:', {
 			hasSessionCookie: !!cookies.get('__session'),
 			sessionTokenPreview: sessionToken?.substring(0, 50) + '...',
+			sessionTokenLength: sessionToken?.length || 0,
 			hasAuthHeader: !!req.headers.get('authorization'),
 			hasSessionToken: !!sessionToken,
 			allCookieNames: cookieNames,
+			clerkCookies,
+			requestUrl: req.url,
+			requestMethod: req.method,
 		});
 
 		if (!sessionToken) {
@@ -92,22 +106,30 @@ export async function verifyClerkSession(
 
 		// Verify the session token using verifyToken
 		// Clerk session tokens are JWTs that need to be verified
+		console.log('[Clerk verifySession] Attempting token verification...', {
+			tokenLength: sessionToken.length,
+			tokenPrefix: sessionToken.substring(0, 20),
+			secretKeyPrefix: CLERK_SECRET_KEY.substring(0, 20),
+		});
+		
 		const verifyResult = await verifyToken(sessionToken, {
 			secretKey: CLERK_SECRET_KEY,
 		});
 		const { data: payload, errors } = verifyResult || {};
 
 		// Type guard for payload with sub property
-		type PayloadWithSub = { sub: string; org_id?: string };
+		type PayloadWithSub = { sub: string; org_id?: string; [key: string]: unknown };
 		const typedPayload = payload as PayloadWithSub | null;
 
-		// Log verification result
+		// Log verification result with full details
 		console.log('[Clerk verifySession] Token verification result:', {
 			hasPayload: !!typedPayload,
 			hasErrors: !!errors,
-			errors: errors ? JSON.stringify(errors) : null,
+			errors: errors ? JSON.stringify(errors, null, 2) : null,
+			payloadKeys: typedPayload ? Object.keys(typedPayload) : [],
 			userId: typedPayload?.sub || null,
 			orgId: typedPayload?.org_id || null,
+			fullPayload: typedPayload ? JSON.stringify(typedPayload, null, 2) : null,
 		});
 
 		if (errors || !typedPayload || !typedPayload.sub) {

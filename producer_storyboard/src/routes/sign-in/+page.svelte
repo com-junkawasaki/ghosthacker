@@ -1,23 +1,82 @@
 <script lang="ts">
 	import { SignIn, SignedOut, SignedIn, useClerkContext } from 'svelte-clerk';
 	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
 
 	const clerk = useClerkContext();
 	const auth = clerk?.auth;
 	const organization = clerk?.organization;
-	const orgId = $derived(auth?.orgId || organization?.id);
+	const user = clerk?.user;
+	const session = clerk?.session;
+	
+	// Try multiple sources for userId and orgId
+	// auth.user might contain the user object with id
+	const authUser = $derived(auth?.user);
+	const orgId = $derived(
+		auth?.orgId || 
+		organization?.id || 
+		session?.lastActiveOrganizationId ||
+		null
+	);
 	const isLoaded = $derived(clerk?.isLoaded);
-	const userId = $derived(auth?.userId);
+	const userId = $derived(
+		auth?.userId || 
+		authUser?.id ||
+		user?.id || 
+		session?.userId ||
+		clerk?.clerk?.user?.id ||
+		null
+	);
 
 	// Debug: Log auth state when it changes
 	$effect(() => {
-		if (isLoaded) {
-			console.log('[SignIn] Client auth state:', {
-				userId,
-				orgId,
-				hasAuth: !!auth,
-				hasOrganization: !!organization,
-			});
+		if (isLoaded && clerk) {
+			try {
+				// Get cookies for debugging
+				const cookies = typeof document !== 'undefined' ? document.cookie.split(';').reduce((acc, cookie) => {
+					const [name, value] = cookie.trim().split('=');
+					if (name && (name.includes('clerk') || name.includes('__session') || name.includes('__client'))) {
+						acc[name] = value ? (value.length > 50 ? value.substring(0, 50) + '...' : value) : '';
+					}
+					return acc;
+				}, {} as Record<string, string>) : {};
+				
+				console.log('[SignIn] Client auth state:', {
+					timestamp: new Date().toISOString(),
+					clerkExists: !!clerk,
+					clerkKeys: Object.keys(clerk),
+					authExists: !!auth,
+					authKeys: auth ? Object.keys(auth) : [],
+					authUserExists: !!authUser,
+					authUserKeys: authUser ? Object.keys(authUser) : [],
+					userExists: !!user,
+					userKeys: user ? Object.keys(user) : [],
+					sessionExists: !!session,
+					sessionKeys: session ? Object.keys(session) : [],
+					organizationExists: !!organization,
+					organizationKeys: organization ? Object.keys(organization) : [],
+					// Direct access
+					authUserId: auth?.userId ?? null,
+					authOrgId: auth?.orgId ?? null,
+					authUserUserId: authUser?.id ?? null,
+					userUserId: user?.id ?? null,
+					sessionUserId: session?.userId ?? null,
+					sessionOrgId: session?.lastActiveOrganizationId ?? null,
+					organizationId: organization?.id ?? null,
+					// Derived values
+					derivedUserId: userId,
+					derivedOrgId: orgId,
+					sessionId: auth?.sessionId ?? session?.id ?? null,
+					// Try to get from clerk instance
+					clerkUserId: clerk?.clerk?.user?.id ?? null,
+					// Cookies
+					cookies,
+					// Server-side auth state (from layout)
+					serverAuthState: $page.data?.initialAuthState ?? null,
+				});
+			} catch (error) {
+				console.error('[SignIn] Error logging auth state:', error);
+			}
 		}
 	});
 
@@ -45,15 +104,41 @@
 
 	async function goToProject(e?: Event) {
 		e?.preventDefault();
+		
+		// Use derived values instead of direct auth access
+		const currentUserId = userId;
+		const currentOrgId = orgId;
 		const url = projectManagementUrl;
-		console.log('[SignIn] Navigating to project page:', url, { orgId, userId: auth?.userId });
-		try {
-			await goto(url, { replaceState: true });
-		} catch (error) {
-			console.error('[SignIn] Navigation error:', error);
-			// Fallback to window.location if goto fails
-			if (typeof window !== 'undefined') {
-				window.location.href = url;
+		
+		console.log('[SignIn] Navigating to project page:', {
+			url,
+			userId: currentUserId,
+			orgId: currentOrgId,
+			authExists: !!auth,
+			organizationExists: !!organization,
+			clerkLoaded: isLoaded,
+			currentPath: typeof window !== 'undefined' ? window.location.pathname : null,
+		});
+		
+		// If SignedIn component is rendered, we trust Clerk's authentication state
+		// Even if userId is null, we can still navigate to org selection page
+		// The org selection page will handle the case where user needs to select/create an org
+		
+		// Wait a bit for auth state to sync, then navigate
+		// This ensures the session cookie is properly set before navigation
+		if (typeof window !== 'undefined') {
+			// Small delay to ensure auth state is synced
+			await new Promise(resolve => setTimeout(resolve, 100));
+			
+			console.log('[SignIn] Using window.location.href for navigation');
+			// Use full page reload to ensure server-side auth check works
+			window.location.href = url;
+		} else {
+			// Fallback to goto for SSR (though this shouldn't happen in a click handler)
+			try {
+				await goto(url, { replaceState: true });
+			} catch (error) {
+				console.error('[SignIn] Navigation error:', error);
 			}
 		}
 	}

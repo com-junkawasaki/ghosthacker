@@ -27,8 +27,12 @@
 	$effect(() => {
 		if (!browser || !isLoaded || hasRedirected) return;
 
-		// If user is authenticated, handle redirect logic
-		if (userId) {
+		// Check server-side authentication first
+		// If server says user is authenticated, trust it even if client-side userId is not yet available
+		const serverAuthenticated = data.authResult?.isAuthenticated === true;
+		
+		// If user is authenticated (client-side or server-side), handle redirect logic
+		if (userId || serverAuthenticated) {
 			// If server-side already provided organizations, use them
 			if (data.organizations.length > 0) {
 				// If user has only one organization, redirect to it
@@ -48,24 +52,25 @@
 					hasRedirected = true;
 					goto(`/${currentLang}/orgs/${currentOrgId}/project`, { replaceState: true });
 				}
-			} else {
-				// Server-side didn't have organizations (auth not established yet)
-				// Wait a bit and reload the page to get organizations from server
-				// This handles the case where session cookie is being set
+			} else if (serverAuthenticated) {
+				// Server-side says user is authenticated but no organizations yet
+				// Wait a bit for client-side auth to sync, then reload to get organizations
 				setTimeout(() => {
-					if (!hasRedirected && userId) {
+					if (!hasRedirected) {
 						// Reload to get fresh data from server
 						window.location.reload();
 					}
-				}, 500);
+				}, 1000);
 			}
-		} else if (isLoaded && !userId) {
-			// User is not authenticated, redirect to sign-in
-			// But only if we're sure Clerk has finished loading
-			if (!hasRedirected) {
-				hasRedirected = true;
-				goto('/sign-in', { replaceState: true });
-			}
+		} else if (isLoaded && !userId && !serverAuthenticated) {
+			// User is not authenticated on both client and server, redirect to sign-in
+			// But wait a bit to ensure auth state is fully loaded
+			setTimeout(() => {
+				if (!hasRedirected && !userId && !data.authResult?.isAuthenticated) {
+					hasRedirected = true;
+					goto('/sign-in', { replaceState: true });
+				}
+			}, 500);
 		}
 	});
 

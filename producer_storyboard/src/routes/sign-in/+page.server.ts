@@ -10,8 +10,20 @@ import { verifyClerkSession, getUserOrganizations } from '$lib/server/clerk';
 const DEFAULT_LANG = 'ja';
 
 export const load: PageServerLoad = async ({ cookies, request }) => {
+	console.log('[SignIn Server] Load function called', {
+		url: request.url,
+		method: request.method,
+	});
+	
 	// Verify Clerk session
 	const authResult = await verifyClerkSession(cookies, request);
+	
+	console.log('[SignIn Server] Auth result:', {
+		isAuthenticated: authResult.isAuthenticated,
+		userId: authResult.userId,
+		orgId: authResult.orgId,
+		hasOrg: authResult.hasOrg,
+	});
 
 	// If user is already authenticated, redirect to project management page
 	if (authResult.isAuthenticated && authResult.userId) {

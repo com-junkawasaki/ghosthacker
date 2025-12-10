@@ -19,7 +19,19 @@ export const load: LayoutServerLoad = async ({ cookies, request }) => {
 		HARDCODED_PUBLISHABLE_KEY;
 
 	// Verify Clerk session to get initial auth state
+	console.log('[Layout Server] Verifying Clerk session...', {
+		url: request.url,
+		method: request.method,
+	});
+	
 	const authResult = await verifyClerkSession(cookies, request);
+	
+	console.log('[Layout Server] Auth result:', {
+		isAuthenticated: authResult.isAuthenticated,
+		userId: authResult.userId,
+		orgId: authResult.orgId,
+		hasOrg: authResult.hasOrg,
+	});
 
 	if (!clerkPublishableKey || clerkPublishableKey === '') {
 		console.error(
