@@ -11,6 +11,8 @@
 	const clerk = useClerkContext();
 	const auth = clerk?.auth;
 	const organization = clerk?.organization;
+	const isLoaded = $derived(clerk?.isLoaded);
+	const userId = $derived(auth?.userId);
 
 	const { lang } = $page.params;
 	const DEFAULT_LANG = 'ja';
@@ -19,23 +21,42 @@
 	let selectedOrgId = $state<string | null>(null);
 	let isRedirecting = $state(false);
 	let hasRedirected = $state(false);
+	let isWaitingForAuth = $state(data.isFromSignIn || false);
 
-	// If user already has an organization selected, redirect to it
-	// Only redirect once to prevent loops
+	// Handle post-sign-in redirect: wait for authentication to be established
 	$effect(() => {
-		if (!browser || hasRedirected) return;
+		if (!browser || !isLoaded || hasRedirected) return;
 
-		const currentOrgId = organization?.id || auth?.orgId;
-		// Only redirect if we have a valid orgId and it's not 'select'
-		// Also check that we have organizations data from server
-		if (
-			currentOrgId &&
-			currentOrgId !== 'select' &&
-			data.organizations.length > 0 &&
-			data.organizations.some((org) => org.id === currentOrgId)
-		) {
-			hasRedirected = true;
-			goto(`/${currentLang}/orgs/${currentOrgId}/project`, { replaceState: true });
+		// If coming from sign-in and not authenticated yet, wait
+		if (isWaitingForAuth && !userId) {
+			console.log('[OrgSelect] Waiting for authentication to be established...');
+			return;
+		}
+
+		// Once authenticated (or if already authenticated), proceed
+		if (userId) {
+			isWaitingForAuth = false;
+			
+			// If user has only one organization, redirect to it
+			if (data.organizations.length === 1 && data.organizations[0]) {
+				hasRedirected = true;
+				console.log('[OrgSelect] User has one org, redirecting to:', `/${currentLang}/orgs/${data.organizations[0].id}/project`);
+				goto(`/${currentLang}/orgs/${data.organizations[0].id}/project`, { replaceState: true });
+				return;
+			}
+
+			// If user has an organization selected in Clerk context, redirect to it
+			const currentOrgId = organization?.id || auth?.orgId;
+			if (
+				currentOrgId &&
+				currentOrgId !== 'select' &&
+				data.organizations.length > 0 &&
+				data.organizations.some((org) => org.id === currentOrgId)
+			) {
+				hasRedirected = true;
+				console.log('[OrgSelect] User has org in context, redirecting to:', `/${currentLang}/orgs/${currentOrgId}/project`);
+				goto(`/${currentLang}/orgs/${currentOrgId}/project`, { replaceState: true });
+			}
 		}
 	});
 

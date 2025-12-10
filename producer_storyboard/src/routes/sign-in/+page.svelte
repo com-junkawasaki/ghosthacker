@@ -31,36 +31,66 @@
 
 	const DEFAULT_LANG = 'ja';
 
-	// Get fallback redirect URL from query parameter or use default
-	const fallbackRedirectUrl = $derived(() => {
-		const urlParams = new URLSearchParams($page.url.search);
-		const redirect = urlParams.get('redirect_url');
-		// Default to organization selection, which will redirect to project list if user has one org
-		return redirect || `/${DEFAULT_LANG}/orgs/select/project`;
-	});
-
 	// Track if we've already attempted a redirect to prevent loops
 	let hasRedirected = $state(false);
+	let isHandlingSignIn = $state(false);
 	
-	// Compute project management page URL
+	// Compute project management page URL based on organization
 	const projectManagementUrl = $derived(() => {
 		if (orgId) {
 			return `/${DEFAULT_LANG}/orgs/${orgId}/project`;
 		}
 		return `/${DEFAULT_LANG}/orgs/select/project`;
 	});
-	
-	// Redirect if already authenticated (client-side check as fallback)
-	// Note: Server-side redirect should handle this first, but this is a fallback
+
+	// Get redirect URL from query parameter or use default
+	const redirectUrl = $derived(() => {
+		const urlParams = new URLSearchParams($page.url.search);
+		const redirect = urlParams.get('redirect_url');
+		// Default to organization selection, which will redirect to project list if user has one org
+		return redirect || `/${DEFAULT_LANG}/orgs/select/project`;
+	});
+
+	// Handle successful sign-in by monitoring auth state
+	// This ensures the session is established before redirecting
 	$effect(() => {
-		if (!browser || hasRedirected || !isLoaded) return;
+		if (!browser || !isLoaded || isHandlingSignIn) return;
 		
 		const currentUserId = userId;
 		const currentOrgId = orgId;
 		
-		// If user is authenticated, redirect to project management page
+		// If user just signed in (was not authenticated before, now is)
+		if (currentUserId && !hasRedirected) {
+			isHandlingSignIn = true;
+			hasRedirected = true;
+			
+			// Wait a bit for the session to be fully established
+			setTimeout(() => {
+				if (currentOrgId) {
+					// User has an organization, redirect to project list
+					console.log('[SignIn] Post-login redirect: User authenticated with org, redirecting to:', `/${DEFAULT_LANG}/orgs/${currentOrgId}/project`);
+					goto(`/${DEFAULT_LANG}/orgs/${currentOrgId}/project`, { replaceState: true });
+				} else {
+					// User authenticated but no org, redirect to organization selection
+					console.log('[SignIn] Post-login redirect: User authenticated without org, redirecting to organization selection');
+					goto(`/${DEFAULT_LANG}/orgs/select/project`, { replaceState: true });
+				}
+				isHandlingSignIn = false;
+			}, 100); // Small delay to ensure session cookie is set
+		}
+	});
+	
+	// Redirect if already authenticated when page loads (client-side check as fallback)
+	// Note: Server-side redirect should handle this first, but this is a fallback
+	$effect(() => {
+		if (!browser || hasRedirected || !isLoaded || isHandlingSignIn) return;
+		
+		const currentUserId = userId;
+		const currentOrgId = orgId;
+		
+		// If user is already authenticated, redirect to project management page
 		if (currentUserId) {
-			hasRedirected = true; // Set flag before redirecting
+			hasRedirected = true;
 			
 			if (currentOrgId) {
 				// User has an organization, redirect to project list
@@ -93,7 +123,7 @@
 			</div>
 		{:else}
 			<h1>ログイン</h1>
-			<SignIn fallbackRedirectUrl={fallbackRedirectUrl()} />
+			<SignIn redirectUrl={redirectUrl()} />
 		{/if}
 	</div>
 </div>
