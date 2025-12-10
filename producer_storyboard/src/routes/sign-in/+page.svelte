@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { SignIn, useClerkContext } from 'svelte-clerk';
+	import { SignIn, useClerkContext, ClerkLoading, ClerkLoaded } from 'svelte-clerk';
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 
 	// Do not destructure context to avoid losing reactivity
 	const ctx = useClerkContext();
-	const userId = $derived(ctx.auth.userId);
+	const userId = $derived(ctx?.auth?.userId);
 
 	// Redirect to organization selection if already authenticated
 	$effect(() => {
@@ -16,18 +16,28 @@
 	});
 </script>
 
-<div class="sign-in-container">
-	<div class="sign-in-content">
-		{#if userId === undefined}
+<ClerkLoading>
+	<div class="sign-in-container">
+		<div class="sign-in-content">
 			<p>読み込み中...</p>
-		{:else if userId === null}
-			<h1>ログイン</h1>
-			<SignIn redirectUrl="/ja/orgs/select/project" />
-		{:else}
-			<p>リダイレクト中...</p>
-		{/if}
+		</div>
 	</div>
-</div>
+</ClerkLoading>
+
+<ClerkLoaded>
+	<div class="sign-in-container">
+		<div class="sign-in-content">
+			{#if userId === undefined}
+				<p>読み込み中...</p>
+			{:else if userId === null}
+				<h1>ログイン</h1>
+				<SignIn redirectUrl="/ja/orgs/select/project" />
+			{:else}
+				<p>リダイレクト中...</p>
+			{/if}
+		</div>
+	</div>
+</ClerkLoaded>
 
 <style>
 	.sign-in-container {
