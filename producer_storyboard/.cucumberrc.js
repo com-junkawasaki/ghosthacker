@@ -1,5 +1,6 @@
 module.exports = {
 	default: {
+		requireModule: ['tsx/cjs'],
 		require: ['tests/bdd/step_definitions/**/*.ts'],
 		format: [
 			'progress-bar',

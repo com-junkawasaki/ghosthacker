@@ -400,7 +400,7 @@ Then('プロジェクトが作成される', () => {
 });
 
 Then('プロジェクトIDが返される', () => {
-	expect(response.createProject.id).toBeDefined();
+	expect(response.createProject.id).to.exist;
 	projectId = response.createProject.id;
 });
 
@@ -423,12 +423,12 @@ Then('各ストーリーボードにid、title、aspectRatio、resolutionが含�
 });
 
 Then('ストーリーボードが作成される', () => {
-	expect(response.createStoryboard).toBeDefined();
-	expect(response.createStoryboard.id).toBeDefined();
+	expect(response.createStoryboard).to.exist;
+	expect(response.createStoryboard.id).to.exist;
 });
 
 Then('ストーリーボードIDが返される', () => {
-	expect(response.createStoryboard.id).toBeDefined();
+	expect(response.createStoryboard.id).to.exist;
 	storyboardId = response.createStoryboard.id;
 });
 
@@ -473,8 +473,15 @@ Then('動画生成ジョブが作成される', () => {
 Then('ステータスが{string}である', (status: string) => {
 	expect(response.generateVideo.status).to.equal(status);
 });
-// Also support "かつ" (And) keyword
+// Also support "かつ" (And) keyword - Cucumber treats "かつ" as the same type as the previous step (Then)
 Then('かつステータスが{string}である', (status: string) => {
+	expect(response.generateVideo.status).to.equal(status);
+});
+// Also support regex pattern for debugging
+Then(/^ステータスが「(.+)」である$/, (status: string) => {
+	expect(response.generateVideo.status).to.equal(status);
+});
+Then(/^かつステータスが「(.+)」である$/, (status: string) => {
 	expect(response.generateVideo.status).to.equal(status);
 });
 
@@ -496,30 +503,40 @@ Then('各動画にid、status、variationNumberが含まれる', () => {
 	expect(video.variationNumber).to.exist;
 });
 
-// Additional When/Given steps for setting values
-// These steps can be used as both Given and When (Cucumber treats "かつ" as the same type as the previous step)
+// Additional Given steps for setting values
+// These steps are used in Given contexts (with "かつ" keyword)
+// Cucumber treats "かつ" as the same type as the previous step (Given)
 const setTitle = (title: string) => {
 	projectTitle = title;
 	storyboardTitle = title;
 };
-When('タイトルが「{string}」である', setTitle);
 Given('タイトルが「{string}」である', setTitle);
+// Also support without quotes for debugging
+Given(/^タイトルが「(.+)」である$/, (title: string) => {
+	projectTitle = title;
+	storyboardTitle = title;
+});
 
 const setDescription = (description: string) => {
 	projectDescription = description;
 };
-When('説明が「{string}」である', setDescription);
 Given('説明が「{string}」である', setDescription);
+// Also support without quotes for debugging
+Given(/^説明が「(.+)」である$/, (description: string) => {
+	projectDescription = description;
+});
 
 const setAspectRatio = (width: number, height: number) => {
 	storyboardAspectRatio = `${width}:${height}`;
 };
-When('アスペクト比が「{int}:{int}」である', setAspectRatio);
 Given('アスペクト比が「{int}:{int}」である', setAspectRatio);
 
 const setResolution = (resolution: string) => {
 	storyboardResolution = resolution;
 };
-When('解像度が「{string}」である', setResolution);
 Given('解像度が「{string}」である', setResolution);
+// Also support without quotes for debugging
+Given(/^解像度が「(.+)」である$/, (resolution: string) => {
+	storyboardResolution = resolution;
+});
 

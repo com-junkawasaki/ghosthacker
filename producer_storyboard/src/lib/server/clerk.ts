@@ -70,7 +70,11 @@ export async function verifyClerkSession(
 			secretKey: CLERK_SECRET_KEY,
 		});
 
-		if (errors || !payload || !payload.sub) {
+		// Type guard for payload with sub property
+		type PayloadWithSub = { sub: string; org_id?: string };
+		const typedPayload = payload as PayloadWithSub | null;
+
+		if (errors || !typedPayload || !typedPayload.sub) {
 			return {
 				userId: null,
 				orgId: null,
@@ -79,12 +83,12 @@ export async function verifyClerkSession(
 			};
 		}
 
-		const userId = payload.sub;
+		const userId = typedPayload.sub;
 
 		// Get organization ID from token payload or request headers
 		// Clerk JWT tokens can contain organization information
 		const orgId =
-			(payload.org_id as string | undefined) ||
+			(typedPayload.org_id as string | undefined) ||
 			req.headers.get('x-org-id') ||
 			null;
 

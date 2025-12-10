@@ -25,7 +25,7 @@ export const load = async ({ params, cookies, request }: Parameters<PageServerLo
 	const organizations = await getUserOrganizations(authResult.userId!);
 
 	// If user has only one organization, redirect to it
-	if (organizations.length === 1) {
+	if (organizations.length === 1 && organizations[0]) {
 		throw redirect(302, `/${validLang}/orgs/${organizations[0].id}/project`);
 	}
 

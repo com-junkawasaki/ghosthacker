@@ -24,6 +24,8 @@
 	let uploading = $state(false);
 	let error = $state<string | null>(null);
 	let dragOver = $state(false);
+	let imageInputRef = $state<HTMLInputElement | null>(null);
+	let audioInputRef = $state<HTMLInputElement | null>(null);
 
 	let listCharacterAssetsStore: ListCharacterAssetsStore | null = null;
 	let uploadCharacterAssetStore: UploadCharacterAssetStore | null = null;
@@ -193,37 +195,53 @@
 	<div
 		class="upload-area"
 		class:drag-over={dragOver}
+		role="region"
+		aria-label="File upload area"
 		ondragover={handleDragOver}
 		ondragleave={handleDragLeave}
 		ondrop={handleDrop}
 	>
 		<div class="upload-buttons">
-			<label class="upload-button" role="button" tabindex="0">
-				<input
-					type="file"
-					accept="image/*"
-					style="display: none;"
-					disabled={uploading}
-					onchange={(e) => handleFileInputChange(e, 'image')}
-				/>
+			<input
+				type="file"
+				accept="image/*"
+				style="display: none;"
+				disabled={uploading}
+				bind:this={imageInputRef}
+				onchange={(e) => handleFileInputChange(e, 'image')}
+			/>
+			<button
+				type="button"
+				class="upload-button"
+				tabindex="0"
+				disabled={uploading}
+				onclick={() => imageInputRef?.click()}
+			>
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
 					<path d="M8 3V13M3 8H13" stroke-width="1.5" stroke-linecap="round"/>
 				</svg>
 				Upload Image
-			</label>
-			<label class="upload-button" role="button" tabindex="0">
-				<input
-					type="file"
-					accept="audio/*"
-					style="display: none;"
-					disabled={uploading}
-					onchange={(e) => handleFileInputChange(e, 'audio')}
-				/>
+			</button>
+			<input
+				type="file"
+				accept="audio/*"
+				style="display: none;"
+				disabled={uploading}
+				bind:this={audioInputRef}
+				onchange={(e) => handleFileInputChange(e, 'audio')}
+			/>
+			<button
+				type="button"
+				class="upload-button"
+				tabindex="0"
+				disabled={uploading}
+				onclick={() => audioInputRef?.click()}
+			>
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
 					<path d="M8 3V13M3 8H13" stroke-width="1.5" stroke-linecap="round"/>
 				</svg>
 				Upload Audio
-			</label>
+			</button>
 		</div>
 		<p class="upload-hint">Or drag and drop files here</p>
 	</div>

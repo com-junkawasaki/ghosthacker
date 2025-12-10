@@ -53,10 +53,7 @@ export const load = async ({ params, url, cookies, request }: Parameters<LayoutS
 		if (!hasAccess) {
 			// User doesn't have access to this organization
 			// Throw error to trigger error page
-			throw error(403, {
-				message: `Access denied to organization: ${orgId}`,
-				orgId,
-			});
+			throw error(403, `Access denied to organization: ${orgId}`);
 		}
 	} else {
 		// No orgId in URL, but user is authenticated

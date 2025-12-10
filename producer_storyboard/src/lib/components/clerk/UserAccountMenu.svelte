@@ -56,7 +56,8 @@
 		const currentLang = lang || DEFAULT_LANG;
 		const currentOrgId = orgId || organization?.id;
 		if (currentOrgId) {
-			goto(`/${currentLang}/orgs/${currentOrgId}/profile`);
+			// Use /update route which redirects to /profile
+			goto(`/${currentLang}/orgs/${currentOrgId}/update`);
 		}
 	}
 

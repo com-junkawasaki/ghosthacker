@@ -78,6 +78,7 @@ const client = new HoudiniClient({
 	throwOnError: {
 		operations: ['all'],
 	},
+	// @ts-expect-error - fetch property may not be in type definition but is supported by Houdini
 	fetch: fetchWithTimeout,
 });
 

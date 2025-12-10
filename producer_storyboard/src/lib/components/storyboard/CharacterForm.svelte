@@ -26,12 +26,30 @@
 
 	let { character, onSave, onCancel }: Props = $props();
 
-	let name = $state(character?.name || '');
-	let description = $state(character?.description || '');
-	let personality = $state(character?.personality || '');
-	let background = $state(character?.background || '');
-	let defaultHumeVoiceId = $state(character?.defaultHumeVoiceId || '');
-	let profileImageId = $state(character?.profileImageId || '');
+	// Use $derived to reactively get character values
+	const characterName = $derived(character?.name || '');
+	const characterDescription = $derived(character?.description || '');
+	const characterPersonality = $derived(character?.personality || '');
+	const characterBackground = $derived(character?.background || '');
+	const characterDefaultHumeVoiceId = $derived(character?.defaultHumeVoiceId || '');
+	const characterProfileImageId = $derived(character?.profileImageId || '');
+
+	let name = $state('');
+	let description = $state('');
+	let personality = $state('');
+	let background = $state('');
+	let defaultHumeVoiceId = $state('');
+	let profileImageId = $state('');
+
+	// Sync state with character prop changes
+	$effect(() => {
+		name = characterName;
+		description = characterDescription;
+		personality = characterPersonality;
+		background = characterBackground;
+		defaultHumeVoiceId = characterDefaultHumeVoiceId;
+		profileImageId = characterProfileImageId;
+	});
 
 	type HumeVoice = {
 		id: string;

@@ -7,6 +7,8 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			$lib: path.resolve(__dirname, './src/lib'),
+			$houdini: path.resolve(__dirname, './$houdini'),
+			'$houdini/*': path.resolve(__dirname, './$houdini/*'),
 		},
 	},
 	test: {
