@@ -80,7 +80,7 @@ impl QueryRoot {
         if let Ok(auth) = get_clerk_auth_from_context(ctx) {
             if let Some(org) = auth.org {
                 // Verify project belongs to organization
-                let project_org: Option<String> = sqlx::query_scalar(
+                let project_org: Option<Option<String>> = sqlx::query_scalar::<_, Option<String>>(
                     "SELECT org_id FROM storyboard_projects WHERE id = $1"
                 )
                 .bind(project_uuid)
@@ -88,12 +88,22 @@ impl QueryRoot {
                 .await
                 .map_err(|e| async_graphql::Error::new(format!("Failed to verify project access: {}", e)))?;
                 
-                if let Some(project_org_id) = project_org {
-                    if project_org_id != org.id {
+                // project_org is None if project doesn't exist, Some(None) if project exists but org_id is NULL
+                match project_org {
+                    None => {
+                        // Project doesn't exist
+                        return Err(async_graphql::Error::new("Project not found"));
+                    }
+                    Some(Some(project_org_id)) => {
+                        // Project exists and has org_id
+                        if project_org_id != org.id {
+                            return Err(async_graphql::Error::new("Access denied: Project does not belong to your organization"));
+                        }
+                    }
+                    Some(None) => {
+                        // Project exists but has no org_id - deny access for org-scoped requests
                         return Err(async_graphql::Error::new("Access denied: Project does not belong to your organization"));
                     }
-                } else {
-                    return Err(async_graphql::Error::new("Project not found"));
                 }
             }
         }
