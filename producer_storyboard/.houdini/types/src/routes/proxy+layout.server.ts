@@ -1,8 +1,7 @@
 // @ts-nocheck
 /**
  * Server-side layout load function
- * Uses buildClerkProps to pass authentication state to client
- * Based on svelte-clerk documentation: https://svelte-clerk.netlify.app/kit/helpers.html
+ * Uses buildClerkProps to pass authentication state to client (svelte-clerk v0.20.1+)
  */
 import type { LayoutServerLoad } from './$types';
 import { buildClerkProps } from 'svelte-clerk/server';
@@ -19,18 +18,14 @@ export const load = async ({ locals }: Parameters<LayoutServerLoad>[0]) => {
 		process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
 		HARDCODED_PUBLISHABLE_KEY;
 
-	// Get auth state from locals (set by withClerkHandler)
+	// Get auth from locals (set by withClerkHandler)
 	const auth = locals.auth();
 	
-	console.log('[Layout Server] Auth state from locals:', {
+	console.log('[Layout Server] Auth state:', {
 		userId: auth.userId,
 		orgId: auth.orgId,
 		sessionId: auth.sessionId,
 	});
-
-	// Use buildClerkProps to build props for ClerkProvider
-	// This ensures the client-side Clerk context is properly initialized
-	const clerkProps = buildClerkProps(auth);
 
 	if (!clerkPublishableKey || clerkPublishableKey === '') {
 		console.error(
@@ -38,12 +33,12 @@ export const load = async ({ locals }: Parameters<LayoutServerLoad>[0]) => {
 		);
 		return {
 			clerkPublishableKey: HARDCODED_PUBLISHABLE_KEY,
-			...clerkProps,
+			...buildClerkProps(auth),
 		};
 	}
 
 	return {
 		clerkPublishableKey,
-		...clerkProps,
+		...buildClerkProps(auth),
 	};
 };

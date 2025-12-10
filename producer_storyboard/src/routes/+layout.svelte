@@ -13,7 +13,8 @@
 
 	// Use $derived to avoid capturing initial value warning
 	const clerkPublishableKey = $derived(data.clerkPublishableKey);
-	const initialAuthState = $derived(data.initialAuthState);
+	// buildClerkProps returns { initialState: ... }
+	const initialState = $derived(data.initialState);
 
 	if (browser) {
 		$effect(() => {
@@ -26,15 +27,15 @@
 		});
 		
 		$effect(() => {
-			if (initialAuthState) {
-				console.log('[Layout] Initial auth state:', initialAuthState);
+			if (initialState) {
+				console.log('[Layout] Initial state:', initialState);
 			}
 		});
 	}
 </script>
 
 {#if clerkPublishableKey}
-	<ClerkProvider publishableKey={clerkPublishableKey} initialAuthState={initialAuthState}>
+	<ClerkProvider publishableKey={clerkPublishableKey} initialState={initialState}>
 		<div class="app-layout">
 			{@render children()}
 		</div>

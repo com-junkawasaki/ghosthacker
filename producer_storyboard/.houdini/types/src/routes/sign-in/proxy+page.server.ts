@@ -1,8 +1,7 @@
 // @ts-nocheck
 /**
  * Sign-in page server load function
- * Redirects authenticated users to project list or organization selection
- * Based on svelte-clerk documentation: https://svelte-clerk.netlify.app/kit/helpers.html
+ * Redirects authenticated users to project list or organization selection (svelte-clerk v0.20.1+)
  */
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
@@ -11,7 +10,7 @@ import { clerkClient } from 'svelte-clerk/server';
 const DEFAULT_LANG = 'ja';
 
 export const load = async ({ locals }: Parameters<PageServerLoad>[0]) => {
-	// Get auth state from locals (set by withClerkHandler)
+	// Get auth from locals (set by withClerkHandler)
 	const auth = locals.auth();
 	
 	console.log('[SignIn Server] Auth state:', {
@@ -58,6 +57,10 @@ export const load = async ({ locals }: Parameters<PageServerLoad>[0]) => {
 			console.log('[SignIn] Server: User has no orgs, redirecting to organization selection');
 			throw redirect(302, `/${DEFAULT_LANG}/orgs/select/project`);
 		} catch (error) {
+			// Re-throw redirect errors
+			if (error instanceof Response || (error && typeof error === 'object' && 'status' in error)) {
+				throw error;
+			}
 			console.error('[SignIn] Server: Error fetching organizations:', error);
 			// On error, still redirect to organization selection
 			throw redirect(302, `/${DEFAULT_LANG}/orgs/select/project`);

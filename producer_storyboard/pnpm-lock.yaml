@@ -48,8 +48,8 @@ importers:
         specifier: ^4.0.0
         version: 4.3.4(picomatch@4.0.3)(svelte@5.45.6)(typescript@5.9.3)
       svelte-clerk:
-        specifier: ^0.1.0
-        version: 0.1.13(react@19.2.1)(svelte@5.45.6)
+        specifier: ^0.20.1
+        version: 0.20.1(@sveltejs/kit@2.49.1(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.45.6)(vite@7.2.7(@types/node@20.19.25)(jiti@1.21.7)(tsx@4.21.0)(yaml@2.8.2)))(svelte@5.45.6)(vite@7.2.7(@types/node@20.19.25)(jiti@1.21.7)(tsx@4.21.0)(yaml@2.8.2)))(react@19.2.1)(svelte@5.45.6)
       typescript:
         specifier: ^5.6.0
         version: 5.9.3
@@ -274,30 +274,9 @@ packages:
     bundledDependencies:
       - is-unicode-supported
 
-  '@clerk/backend@1.34.0':
-    resolution: {integrity: sha512-9rZ8hQJVpX5KX2bEpiuVXfpjhojQCiqCWADJDdCI0PCeKxn58Ep0JPYiIcczg4VKUc3a7jve9vXylykG2XajLQ==}
-    engines: {node: '>=18.17.0'}
-    peerDependencies:
-      svix: ^1.62.0
-    peerDependenciesMeta:
-      svix:
-        optional: true
-
   '@clerk/backend@2.26.0':
     resolution: {integrity: sha512-zj7WgU7sx8rMJyTpUfuPDX+/ZjhfwWM1Cz00PBnKRY+xQBnrTO3KS90Ct2XDVQ7b3lXxjToLLWjdtuSF1QhQSQ==}
     engines: {node: '>=18.17.0'}
-
-  '@clerk/shared@2.22.0':
-    resolution: {integrity: sha512-VWBeddOJVa3sqUPdvquaaQYw4h5hACSG3EUDOW7eSu2F6W3BXUozyLJQPBJ9C0MuoeHhOe/DeV8x2KqOgxVZaQ==}
-    engines: {node: '>=18.17.0'}
-    peerDependencies:
-      react: ^18.0.0 || ^19.0.0 || ^19.0.0-0
-      react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
 
   '@clerk/shared@3.39.0':
     resolution: {integrity: sha512-9kqqXGMPAdMQ7SXo5ZwUhbzbLLQeLp/1jdb8FQS5qlhmL0S0bAYKcyDjcmMB8xZPXNc7vZJRT72QHsGSlUAJxw==}
@@ -1796,9 +1775,6 @@ packages:
   dom-accessibility-api@0.6.3:
     resolution: {integrity: sha512-7ZgogeTnjuHbo+ct10G9Ffp0mif17idi0IyWNVA/wcwcm7NPOD/WEHVP3n7n3MhXqxoIYm8d6MuZohYWIZ4T3w==}
 
-  dot-case@3.0.4:
-    resolution: {integrity: sha512-Kv5nKlh6yRrdrGvxeJ2e5y2eRUpkUosIW4A2AS38zwSz27zu7ufDwQPi5Jhs3XAlGNetl3bmnGhQsMtkKJnj3w==}
-
   dset@3.1.4:
     resolution: {integrity: sha512-2QF/g9/zTaPDc3BjNcVTGoBbXBgYfMTTceLaYcFJ/W9kggFUkhxD/hMEeuLKbugyef9SqAx8cpgwlIP/jinUTA==}
     engines: {node: '>=4'}
@@ -2565,10 +2541,6 @@ packages:
   make-error@1.3.6:
     resolution: {integrity: sha512-s8UhlNe7vPKomQhC1qFelMokr/Sc3AgNbso3n74mVPA5LTZwkB9NlXf4XPamLxJE8h0gh73rM94xvwRT2CVInw==}
 
-  map-obj@4.3.0:
-    resolution: {integrity: sha512-hdN1wVrZbb29eBGiGjJbeP8JbKjq1urkHJ/LIP/NY48MZ1QVXUsQBV1G1zvYFHn1XE06cwjBsOI2K3Ulnj1YXQ==}
-    engines: {node: '>=8'}
-
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
@@ -3194,13 +3166,6 @@ packages:
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
 
-  snake-case@3.0.4:
-    resolution: {integrity: sha512-LAOh4z89bGQvl9pFfNF8V146i7o7/CqFPbqzYgP+yYzDIDeS9HaNFtXABamRW+AQzEVODcvE79ljJ+8a9YSdMg==}
-
-  snakecase-keys@8.0.1:
-    resolution: {integrity: sha512-Sj51kE1zC7zh6TDlNNz0/Jn1n5HiHdoQErxO8jLtnyrkJW/M5PrI7x05uDgY3BO7OUQYKCvmeMurW6BPUdwEOw==}
-    engines: {node: '>=18'}
-
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
@@ -3326,10 +3291,14 @@ packages:
       svelte: ^4.0.0 || ^5.0.0-next.0
       typescript: '>=5.0.0'
 
-  svelte-clerk@0.1.13:
-    resolution: {integrity: sha512-yBM9/8E0EHygYlFE2Bg3G5H0YL7da9WJYa/QzJ5X1Y87Tu5qRxij9UVSGI7NMcugsfhk/HtFi6k7QBbdtcIpyQ==}
+  svelte-clerk@0.20.1:
+    resolution: {integrity: sha512-jN8Zkqh8Spp3s94YbKFSZsRGOHdqIHJ1Mwa09AfT7cEys+S/VBaXXwxVDLSwmdj4qlbXo+pJE4LF79Jxj5sVXA==}
     peerDependencies:
-      svelte: ^5.0.0-next.1
+      '@sveltejs/kit': ^2.20.0
+      svelte: ^5.29.0
+    peerDependenciesMeta:
+      '@sveltejs/kit':
+        optional: true
 
   svelte-eslint-parser@0.43.0:
     resolution: {integrity: sha512-GpU52uPKKcVnh8tKN5P4UZpJ/fUDndmq7wfsvoVXsyP+aY0anol7Yqo01fyrlaWGMFfm4av5DyrjlaXdLRJvGA==}
@@ -3346,11 +3315,6 @@ packages:
 
   swr@2.3.4:
     resolution: {integrity: sha512-bYd2lrhc+VarcpkgWclcUi92wYCpOgMws9Sd1hG1ntAu0NEy+14CbotuFjshBU2kt9rYj9TSmDcybpxpeTU1fg==}
-    peerDependencies:
-      react: ^16.11.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-
-  swr@2.3.7:
-    resolution: {integrity: sha512-ZEquQ82QvalqTxhBVv/DlAg2mbmUjF4UgpPg9wwk4ufb9rQnZXh1iKyyKBqV6bQGu1Ie7L1QwSYO07qFIa1p+g==}
     peerDependencies:
       react: ^16.11.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -3939,17 +3903,6 @@ snapshots:
       picocolors: 1.1.1
       sisteransi: 1.0.5
 
-  '@clerk/backend@1.34.0(react@19.2.1)':
-    dependencies:
-      '@clerk/shared': 3.39.0(react@19.2.1)
-      '@clerk/types': 4.101.6(react@19.2.1)
-      cookie: 1.0.2
-      snakecase-keys: 8.0.1
-      tslib: 2.8.1
-    transitivePeerDependencies:
-      - react
-      - react-dom
-
   '@clerk/backend@2.26.0(react@19.2.1)':
     dependencies:
       '@clerk/shared': 3.39.0(react@19.2.1)
@@ -3960,17 +3913,6 @@ snapshots:
     transitivePeerDependencies:
       - react
       - react-dom
-
-  '@clerk/shared@2.22.0(react@19.2.1)':
-    dependencies:
-      '@clerk/types': 4.101.6(react@19.2.1)
-      dequal: 2.0.3
-      glob-to-regexp: 0.4.1
-      js-cookie: 3.0.5
-      std-env: 3.10.0
-      swr: 2.3.7(react@19.2.1)
-    optionalDependencies:
-      react: 19.2.1
 
   '@clerk/shared@3.39.0(react@19.2.1)':
     dependencies:
@@ -5475,11 +5417,6 @@ snapshots:
 
   dom-accessibility-api@0.6.3: {}
 
-  dot-case@3.0.4:
-    dependencies:
-      no-case: 3.0.4
-      tslib: 2.8.1
-
   dset@3.1.4: {}
 
   dunder-proto@1.0.1:
@@ -6362,8 +6299,6 @@ snapshots:
 
   make-error@1.3.6: {}
 
-  map-obj@4.3.0: {}
-
   math-intrinsics@1.1.0: {}
 
   memfs@3.5.3:
@@ -6943,17 +6878,6 @@ snapshots:
 
   sisteransi@1.0.5: {}
 
-  snake-case@3.0.4:
-    dependencies:
-      dot-case: 3.0.4
-      tslib: 2.8.1
-
-  snakecase-keys@8.0.1:
-    dependencies:
-      map-obj: 4.3.0
-      snake-case: 3.0.4
-      type-fest: 4.41.0
-
   source-map-js@1.2.1: {}
 
   source-map-support@0.5.21:
@@ -7093,16 +7017,17 @@ snapshots:
     transitivePeerDependencies:
       - picomatch
 
-  svelte-clerk@0.1.13(react@19.2.1)(svelte@5.45.6):
+  svelte-clerk@0.20.1(@sveltejs/kit@2.49.1(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.45.6)(vite@7.2.7(@types/node@20.19.25)(jiti@1.21.7)(tsx@4.21.0)(yaml@2.8.2)))(svelte@5.45.6)(vite@7.2.7(@types/node@20.19.25)(jiti@1.21.7)(tsx@4.21.0)(yaml@2.8.2)))(react@19.2.1)(svelte@5.45.6):
     dependencies:
-      '@clerk/backend': 1.34.0(react@19.2.1)
-      '@clerk/shared': 2.22.0(react@19.2.1)
-      '@clerk/types': 4.101.6(react@19.2.1)
+      '@clerk/backend': 2.26.0(react@19.2.1)
+      '@clerk/shared': 3.39.0(react@19.2.1)
+      set-cookie-parser: 2.7.2
       svelte: 5.45.6
+    optionalDependencies:
+      '@sveltejs/kit': 2.49.1(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.45.6)(vite@7.2.7(@types/node@20.19.25)(jiti@1.21.7)(tsx@4.21.0)(yaml@2.8.2)))(svelte@5.45.6)(vite@7.2.7(@types/node@20.19.25)(jiti@1.21.7)(tsx@4.21.0)(yaml@2.8.2))
     transitivePeerDependencies:
       - react
       - react-dom
-      - svix
 
   svelte-eslint-parser@0.43.0(svelte@5.45.6):
     dependencies:
@@ -7133,12 +7058,6 @@ snapshots:
       zimmerframe: 1.1.4
 
   swr@2.3.4(react@19.2.1):
-    dependencies:
-      dequal: 2.0.3
-      react: 19.2.1
-      use-sync-external-store: 1.6.0(react@19.2.1)
-
-  swr@2.3.7(react@19.2.1):
     dependencies:
       dequal: 2.0.3
       react: 19.2.1

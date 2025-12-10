@@ -1,5 +1,9 @@
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
+
+// Import svelte-clerk types
+/// <reference types="svelte-clerk" />
+
 declare global {
 	namespace App {
 		// interface Error {}
