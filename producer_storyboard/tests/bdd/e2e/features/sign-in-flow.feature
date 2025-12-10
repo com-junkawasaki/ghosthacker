@@ -17,11 +17,9 @@
     ならば ページに「ログイン」という見出しが表示される
     かつ SignInコンポーネントが表示される
     かつ ClerkLoading状態が処理される
-    かつ デバッグパネルが表示される
 
   シナリオ: ClerkProviderが正しくinitialAuthStateを受け取る
     前提 ブラウザが起動している
     かつ アプリケーションが起動している
     もし ユーザーがサインインページにアクセスしている
     ならば ClerkProviderが初期化される
-    かつ initialAuthStateがデバッグパネルに表示される

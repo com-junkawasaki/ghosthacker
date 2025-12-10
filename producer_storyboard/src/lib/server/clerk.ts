@@ -63,14 +63,14 @@ export async function verifyClerkSession(
 			cookies.get('__session') ||
 			req.headers.get('authorization')?.replace('Bearer ', '');
 
-		// Debug: Log cookie check (only in development)
-		if (process.env.NODE_ENV === 'development') {
-			console.log('[Clerk verifySession] Cookie check:', {
-				hasSessionCookie: !!cookies.get('__session'),
-				hasAuthHeader: !!req.headers.get('authorization'),
-				hasSessionToken: !!sessionToken,
-			});
-		}
+		// Debug: Log cookie check (always log for debugging)
+		console.log('[Clerk verifySession] Cookie check:', {
+			hasSessionCookie: !!cookies.get('__session'),
+			sessionTokenPreview: sessionToken?.substring(0, 50) + '...',
+			hasAuthHeader: !!req.headers.get('authorization'),
+			hasSessionToken: !!sessionToken,
+			allCookieNames: Object.keys(cookies.getAll ? cookies.getAll() : {}),
+		});
 
 		if (!sessionToken) {
 			return {

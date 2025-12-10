@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
-	import { ListAudioTracksStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/ListAudioTracks.js';
-	import { ListAudioClipsStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/ListAudioClips.js';
+	import { ListAudioTracksStore } from '../../../../.houdini/plugins/houdini-svelte/stores/ListAudioTracks.js';
 	import AudioTrack from './AudioTrack.svelte';
 
 	type Props = {
@@ -15,18 +13,16 @@
 
 	let tracks = $state<any[]>([]);
 	let listAudioTracksStore: ListAudioTracksStore | null = null;
-	let listAudioClipsStore: ListAudioClipsStore | null = null;
 
 	if (browser) {
 		listAudioTracksStore = new ListAudioTracksStore();
-		listAudioClipsStore = new ListAudioClipsStore();
 	}
 
 	async function loadTracks() {
-		if (!browser || !listAudioTracksStore || !composerId) return;
+		if (!browser || !listAudioTracksStore || !_composerId) return;
 
 		try {
-			const result = await listAudioTracksStore.fetch({ variables: { composerId } });
+			const result = await listAudioTracksStore.fetch({ variables: { composerId: _composerId } });
 			if (result?.data?.audioTracks) {
 				tracks = result.data.audioTracks.map((track: any) => ({
 					id: track.id,
@@ -41,7 +37,7 @@
 	}
 
 	$effect(() => {
-		if (composerId) {
+		if (_composerId) {
 			loadTracks();
 		} else {
 			tracks = [];

@@ -3,7 +3,6 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import ClerkAuthDebugPanel from '$lib/components/debug/ClerkAuthDebugPanel.svelte';
 	import type { PageData } from './$types';
 
 	const { data }: { data: PageData } = $props();
@@ -13,7 +12,7 @@
 	const organization = clerk?.organization;
 	const userId = $derived(auth?.userId);
 	const orgId = $derived(auth?.orgId || organization?.id);
-	const isLoaded = $derived(clerk?.loaded);
+	const isLoaded = $derived(clerk?.isLoaded);
 
 	const DEFAULT_LANG = 'ja';
 
@@ -52,8 +51,6 @@
 	});
 </script>
 
-<ClerkAuthDebugPanel />
-
 <div class="sign-in-container">
 	<div class="sign-in-content">
 		{#if !isLoaded}
@@ -66,6 +63,9 @@
 		{/if}
 	</div>
 </div>
+
+<!-- Debug panel at bottom for better visibility -->
+<!-- <ClerkAuthDebugPanel /> -->
 
 <style>
 	.sign-in-container {

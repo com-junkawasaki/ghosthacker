@@ -279,12 +279,13 @@
 		position: fixed;
 		top: 0;
 		right: 0;
-		width: 500px;
+		width: 400px;
 		max-height: 100vh;
-		background-color: #1a1a1a;
+		background-color: rgba(26, 26, 26, 0.95);
 		border-left: 2px solid #333;
-		z-index: 9999;
+		z-index: 100; /* Lower z-index so main content is visible */
 		overflow-y: auto;
+		pointer-events: auto;
 		font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
 		font-size: 12px;
 		box-shadow: -4px 0 12px rgba(0, 0, 0, 0.3);
