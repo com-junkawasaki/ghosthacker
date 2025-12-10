@@ -18,13 +18,23 @@
 
 	let selectedOrgId = $state<string | null>(null);
 	let isRedirecting = $state(false);
+	let hasRedirected = $state(false);
 
 	// If user already has an organization selected, redirect to it
+	// Only redirect once to prevent loops
 	$effect(() => {
-		if (!browser) return;
+		if (!browser || hasRedirected) return;
 
 		const currentOrgId = organization?.id || auth?.orgId;
-		if (currentOrgId && currentOrgId !== 'select') {
+		// Only redirect if we have a valid orgId and it's not 'select'
+		// Also check that we have organizations data from server
+		if (
+			currentOrgId &&
+			currentOrgId !== 'select' &&
+			data.organizations.length > 0 &&
+			data.organizations.some((org) => org.id === currentOrgId)
+		) {
+			hasRedirected = true;
 			goto(`/${currentLang}/orgs/${currentOrgId}/project`, { replaceState: true });
 		}
 	});

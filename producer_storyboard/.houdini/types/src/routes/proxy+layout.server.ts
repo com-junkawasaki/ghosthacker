@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Server-side layout load function
  * Initializes Clerk configuration and provides initial auth state
@@ -6,7 +7,7 @@
 import type { LayoutServerLoad } from './$types';
 import { verifyClerkSession } from '$lib/server/clerk';
 
-export const load: LayoutServerLoad = async ({ cookies, request }) => {
+export const load = async ({ cookies, request }: Parameters<LayoutServerLoad>[0]) => {
 	// Hardcoded value from /gftd env clerk as fallback
 	const HARDCODED_PUBLISHABLE_KEY = 'pk_test_ZW5vdWdoLWNoaXBtdW5rLTkyLmNsZXJrLmFjY291bnRzLmRldiQ';
 

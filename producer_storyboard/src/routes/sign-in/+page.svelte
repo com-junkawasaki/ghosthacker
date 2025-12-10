@@ -1,20 +1,57 @@
 <script lang="ts">
 	import { SignIn, useClerkContext, ClerkLoading, ClerkLoaded } from 'svelte-clerk';
 	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import ClerkAuthDebugPanel from '$lib/components/debug/ClerkAuthDebugPanel.svelte';
+	import type { PageData } from './$types';
 
-	// Do not destructure context to avoid losing reactivity
-	const ctx = useClerkContext();
-	const userId = $derived(ctx?.auth?.userId);
+	const { data }: { data: PageData } = $props();
 
-	// Redirect to organization selection if already authenticated
+	const clerk = useClerkContext();
+	const auth = clerk?.auth;
+	const organization = clerk?.organization;
+	const userId = $derived(auth?.userId);
+	const orgId = $derived(auth?.orgId || organization?.id);
+
+	const DEFAULT_LANG = 'ja';
+
+	// Get redirect URL from query parameter or use default
+	const redirectUrl = $derived(() => {
+		const urlParams = new URLSearchParams($page.url.search);
+		const redirect = urlParams.get('redirect_url');
+		// Default to organization selection, which will redirect to project list if user has one org
+		return redirect || `/${DEFAULT_LANG}/orgs/select/project`;
+	});
+
+	// Track if we've already attempted a redirect to prevent loops
+	let hasRedirected = $state(false);
+	
+	// Redirect if already authenticated (client-side check)
 	$effect(() => {
-		if (!browser) return;
-		if (userId) {
-			goto('/ja/orgs/select/project', { replaceState: true });
+		if (!browser || hasRedirected) return;
+		
+		const currentUserId = userId;
+		const currentOrgId = orgId;
+		
+		// If user is authenticated, redirect
+		if (currentUserId) {
+			hasRedirected = true; // Set flag before redirecting
+			
+			if (currentOrgId) {
+				// User has an organization, redirect to project list
+				console.log('[SignIn] User authenticated with org, redirecting to:', `/${DEFAULT_LANG}/orgs/${currentOrgId}/project`);
+				goto(`/${DEFAULT_LANG}/orgs/${currentOrgId}/project`, { replaceState: true });
+			} else {
+				// User authenticated but no org, redirect to organization selection
+				console.log('[SignIn] User authenticated without org, redirecting to organization selection');
+				goto(`/${DEFAULT_LANG}/orgs/select/project`, { replaceState: true });
+			}
 		}
 	});
 </script>
+
+<ClerkAuthDebugPanel />
 
 <ClerkLoading>
 	<div class="sign-in-container">
@@ -27,13 +64,11 @@
 <ClerkLoaded>
 	<div class="sign-in-container">
 		<div class="sign-in-content">
-			{#if userId === undefined}
-				<p>読み込み中...</p>
-			{:else if userId === null}
-				<h1>ログイン</h1>
-				<SignIn redirectUrl="/ja/orgs/select/project" />
-			{:else}
+			{#if userId}
 				<p>リダイレクト中...</p>
+			{:else}
+				<h1>ログイン</h1>
+				<SignIn redirectUrl={redirectUrl()} />
 			{/if}
 		</div>
 	</div>

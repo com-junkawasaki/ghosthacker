@@ -5,14 +5,17 @@
 import { createClerkClient, verifyToken } from '@clerk/backend';
 import type { Cookies, RequestEvent } from '@sveltejs/kit';
 
+// Hardcoded value from /gftd env clerk as fallback
+const HARDCODED_SECRET_KEY = 'sk_test_FmPI35dNxAij0tuaX7rV5PDIDVmVvx8J11nyVyxEGu';
+
 // Use process.env for server-side access to environment variables
 // Fallback to hardcoded value from /gftd env clerk
-const CLERK_SECRET_KEY =
-	process.env.CLERK_SECRET_KEY ||
-	'sk_test_FmPI35dNxAij0tuaX7rV5PDIDVmVvx8J11nyVyxEGu'; // Hardcoded from /gftd env clerk
+const CLERK_SECRET_KEY = process.env.CLERK_SECRET_KEY || HARDCODED_SECRET_KEY;
 
-if (!CLERK_SECRET_KEY) {
-	console.warn('[Clerk] CLERK_SECRET_KEY is not set. Clerk authentication will not work.');
+if (!CLERK_SECRET_KEY || CLERK_SECRET_KEY === '') {
+	console.warn('[Clerk] CLERK_SECRET_KEY is not set. Using hardcoded fallback.');
+} else if (CLERK_SECRET_KEY === HARDCODED_SECRET_KEY && !process.env.CLERK_SECRET_KEY) {
+	console.log('[Clerk] Using hardcoded CLERK_SECRET_KEY from /gftd env clerk');
 }
 
 const clerkClient = createClerkClient({ secretKey: CLERK_SECRET_KEY });
@@ -54,9 +57,20 @@ export async function verifyClerkSession(
 		}
 
 		// Get session token from cookie or Authorization header
+		// Clerk uses __session cookie for session tokens
+		// Note: __clerk_db_jwt and __clerk_js_version are not session tokens
 		const sessionToken =
 			cookies.get('__session') ||
 			req.headers.get('authorization')?.replace('Bearer ', '');
+
+		// Debug: Log cookie check (only in development)
+		if (process.env.NODE_ENV === 'development') {
+			console.log('[Clerk verifySession] Cookie check:', {
+				hasSessionCookie: !!cookies.get('__session'),
+				hasAuthHeader: !!req.headers.get('authorization'),
+				hasSessionToken: !!sessionToken,
+			});
+		}
 
 		if (!sessionToken) {
 			return {

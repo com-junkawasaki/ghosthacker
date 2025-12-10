@@ -30,15 +30,8 @@ export const load = async ({ url, cookies, request }: Parameters<PageServerLoad>
 			// Redirect to organization selection
 			throw redirect(302, `/${DEFAULT_LANG}/orgs/select/project`);
 		} else {
-			// User is not authenticated
-			// Check if there's a preferred org in cookies
-			const preferredOrgId = cookies.get('preferred_org_id');
-			if (preferredOrgId) {
-				throw redirect(302, `/${DEFAULT_LANG}/orgs/${preferredOrgId}/project`);
-			} else {
-				// Redirect to organization selection (user can sign in there)
-				throw redirect(302, `/${DEFAULT_LANG}/orgs/select/project`);
-			}
+			// User is not authenticated - redirect to sign-in page
+			throw redirect(302, '/sign-in');
 		}
 	}
 	

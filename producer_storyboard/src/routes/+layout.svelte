@@ -11,17 +11,30 @@
 
 	const { data, children }: { data: LayoutData; children: import('svelte').Snippet } = $props();
 
+	// Use $derived to avoid capturing initial value warning
+	const clerkPublishableKey = $derived(data.clerkPublishableKey);
+	const initialAuthState = $derived(data.initialAuthState);
+
 	if (browser) {
-		if (!data.clerkPublishableKey) {
-			console.error('[Layout] Clerk publishable key is missing. Authentication will not work.');
-		} else {
-			console.log('[Layout] Clerk publishable key is set:', data.clerkPublishableKey.substring(0, 20) + '...');
-		}
+		$effect(() => {
+			const key = clerkPublishableKey;
+			if (!key) {
+				console.error('[Layout] Clerk publishable key is missing. Authentication will not work.');
+			} else {
+				console.log('[Layout] Clerk publishable key is set:', key.substring(0, 20) + '...');
+			}
+		});
+		
+		$effect(() => {
+			if (initialAuthState) {
+				console.log('[Layout] Initial auth state:', initialAuthState);
+			}
+		});
 	}
 </script>
 
-{#if data.clerkPublishableKey}
-	<ClerkProvider publishableKey={data.clerkPublishableKey}>
+{#if clerkPublishableKey}
+	<ClerkProvider publishableKey={clerkPublishableKey} initialAuthState={initialAuthState}>
 		<div class="app-layout">
 			{@render children()}
 		</div>
