@@ -11,7 +11,6 @@ use crate::schema::composer::{Composer, AudioTrack, AudioClip, SunoMusic};
 use crate::ports::suno_service::SunoService;
 use crate::ports::clerk::get_clerk_auth_from_context;
 use uuid::Uuid;
-use sqlx::Row;
 use chrono::Utc;
 
 #[derive(InputObject)]
@@ -553,14 +552,11 @@ pub async fn generate_suno_music(ctx: &Context<'_>, input: GenerateSunoMusicInpu
 pub async fn reorder_audio_clips(ctx: &Context<'_>, track_id: ID, clip_ids: Vec<ID>) -> Result<Vec<AudioClip>> {
     let pool = ctx.data::<PostgresPool>()?;
     
-    let track_uuid = Uuid::parse_str(&track_id.0)
-        .map_err(|e| async_graphql::Error::new(format!("Invalid track ID: {}", e)))?;
-    
     // Update start_time_seconds based on clip order and durations
     // This is a simplified implementation - in production, you'd want more sophisticated logic
     let mut current_time = 0.0;
     
-    for (index, clip_id) in clip_ids.iter().enumerate() {
+    for (_index, clip_id) in clip_ids.iter().enumerate() {
         let clip_uuid = Uuid::parse_str(&clip_id.0)
             .map_err(|e| async_graphql::Error::new(format!("Invalid clip ID: {}", e)))?;
         

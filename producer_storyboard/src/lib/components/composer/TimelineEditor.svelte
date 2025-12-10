@@ -1,22 +1,53 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
+	import { ListAudioTracksStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/ListAudioTracks.js';
+	import { ListAudioClipsStore } from '../../../../../../.houdini/plugins/houdini-svelte/stores/ListAudioClips.js';
 	import AudioTrack from './AudioTrack.svelte';
 
 	type Props = {
+		composerId: string | null;
 		currentTime: number;
 		onSeek: (time: number) => void;
 	};
 
-	let { currentTime, onSeek }: Props = $props();
+	let { composerId, currentTime, onSeek }: Props = $props();
 
-	// Mock tracks data
-	const tracks = [
-		{ id: '1', name: 'Subtitle Track', type: 'subtitle', number: 0 },
-		{ id: '2', name: 'Video Track', type: 'video', number: 1 },
-		{ id: '3', name: 'Audio Track', type: 'audio', number: 2 },
-		{ id: '4', name: 'Audio Track 2', type: 'audio', number: 3 },
-		{ id: '5', name: 'Video Track 2', type: 'video', number: 4 },
-		{ id: '6', name: 'Audio Track 3', type: 'audio', number: 5 },
-	];
+	let tracks = $state<any[]>([]);
+	let listAudioTracksStore: ListAudioTracksStore | null = null;
+	let listAudioClipsStore: ListAudioClipsStore | null = null;
+
+	if (browser) {
+		listAudioTracksStore = new ListAudioTracksStore();
+		listAudioClipsStore = new ListAudioClipsStore();
+	}
+
+	async function loadTracks() {
+		if (!browser || !listAudioTracksStore || !composerId) return;
+
+		try {
+			const result = await listAudioTracksStore.fetch({ variables: { composerId } });
+			if (result?.data?.audioTracks) {
+				tracks = result.data.audioTracks.map((track: any) => ({
+					id: track.id,
+					name: track.name || `${track.trackType} Track ${track.trackNumber}`,
+					type: track.trackType,
+					number: track.trackNumber,
+				}));
+			}
+		} catch (err) {
+			console.error('[TimelineEditor] Error loading tracks:', err);
+		}
+	}
+
+	$effect(() => {
+		if (composerId) {
+			loadTracks();
+		} else {
+			tracks = [];
+		}
+	});
+
 
 	const timeMarkers = [0, 80, 190, 300, 600, 900];
 
@@ -44,9 +75,15 @@
 	</div>
 
 	<div class="timeline-tracks">
-		{#each tracks as track}
-			<AudioTrack track={track} currentTime={currentTime} />
-		{/each}
+		{#if tracks.length > 0}
+			{#each tracks as track}
+				<AudioTrack track={track} currentTime={currentTime} />
+			{/each}
+		{:else}
+			<div class="empty-timeline">
+				<p>No tracks available. Create a composer first.</p>
+			</div>
+		{/if}
 	</div>
 
 	<div class="timeline-footer">
@@ -123,6 +160,15 @@
 		flex: 1;
 		overflow-y: auto;
 		overflow-x: auto;
+	}
+
+	.empty-timeline {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		color: rgba(255, 255, 255, 0.4);
+		font-size: 0.875rem;
 	}
 
 	.timeline-footer {

@@ -2,7 +2,9 @@
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import { goto } from '$app/navigation';
+	import { ListComposersStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/ListComposers.js';
+	import { CreateComposerStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/CreateComposer.js';
+	import { GenerateSunoMusicStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/GenerateSunoMusic.js';
 	import ProjectSidebar from '$lib/components/storyboard/ProjectSidebar.svelte';
 	import OrganizationSwitcher from '$lib/components/clerk/OrganizationSwitcher.svelte';
 	import UserAccountMenu from '$lib/components/clerk/UserAccountMenu.svelte';
@@ -10,9 +12,10 @@
 	import PreviewWindow from '$lib/components/composer/PreviewWindow.svelte';
 	import AssetDetailsPanel from '$lib/components/composer/AssetDetailsPanel.svelte';
 	import TimelineEditor from '$lib/components/composer/TimelineEditor.svelte';
+	import SunoMusicGenerator from '$lib/components/composer/SunoMusicGenerator.svelte';
 
-	const { lang, orgId, projectId } = $page.params;
-	const projectIdParam: string = projectId || '';
+	const { projectId: projectIdParam } = $page.params;
+	const projectId: string = projectIdParam || '';
 
 	// State management
 	let selectedAssetType = $state<string>('audio');
@@ -20,15 +23,90 @@
 	let isPlaying = $state(false);
 	let currentTime = $state(0);
 	let duration = $state(0);
+	let composerId = $state<string | null>(null);
+	let showSunoGenerator = $state(false);
+
+	// Houdini stores
+	let listComposersStore: ListComposersStore | null = null;
+	let createComposerStore: CreateComposerStore | null = null;
+	let generateSunoMusicStore: GenerateSunoMusicStore | null = null;
+
+	if (browser) {
+		listComposersStore = new ListComposersStore();
+		createComposerStore = new CreateComposerStore();
+		generateSunoMusicStore = new GenerateSunoMusicStore();
+	}
+
+	async function loadComposers() {
+		if (!browser || !listComposersStore || !projectId) return;
+
+		try {
+			const result = await listComposersStore.fetch({ variables: { projectId } });
+			if (result?.data?.composers && result.data.composers.length > 0) {
+				composerId = result.data.composers[0].id;
+			} else {
+				// Create default composer if none exists
+				await createDefaultComposer();
+			}
+		} catch (err) {
+			console.error('[Composer] Error loading composers:', err);
+		}
+	}
+
+	async function createDefaultComposer() {
+		if (!browser || !createComposerStore || !projectId) return;
+
+		try {
+			const result = await createComposerStore.mutate({
+				input: {
+					projectId,
+					title: 'New Composer',
+				},
+			});
+
+			if (result?.data?.createComposer?.id) {
+				composerId = result.data.createComposer.id;
+			}
+		} catch (err) {
+			console.error('[Composer] Error creating composer:', err);
+		}
+	}
+
+	async function handleGenerateSunoMusic(prompt: string, customMode: boolean, makeInstrumental: boolean, mv: string | null) {
+		if (!browser || !generateSunoMusicStore || !composerId) return;
+
+		try {
+			const result = await generateSunoMusicStore.mutate({
+				input: {
+					composerId: composerId,
+					prompt,
+					customMode,
+					makeInstrumental,
+					mv: mv || null,
+				},
+			});
+
+			if (result?.errors && result.errors.length > 0) {
+				const error = result.errors[0];
+				console.error('[Composer] Error generating Suno music:', error?.message || 'Unknown error');
+			} else {
+				console.log('[Composer] Suno music generation started:', result?.data?.generateSunoMusic);
+			}
+		} catch (err) {
+			console.error('[Composer] Error generating Suno music:', err);
+		}
+
+		showSunoGenerator = false;
+	}
 
 	onMount(() => {
 		if (!browser) return;
-		// Initialize composer page
+		loadComposers();
 	});
 </script>
 
 <div class="composer-container">
-	<ProjectSidebar projectId={projectIdParam} />
+	<ProjectSidebar projectId={projectId} />
 	
 	<div class="composer-main">
 		<header class="composer-header">
@@ -47,8 +125,17 @@
 			<div class="composer-left-panel">
 				<AssetLibrary 
 					selectedType={selectedAssetType}
-					onSelectType={(type) => selectedAssetType = type}
-					onSelectAsset={(asset) => selectedAsset = asset}
+					onSelectType={(type) => {
+						selectedAssetType = type;
+						selectedAsset = null;
+					}}
+					onSelectAsset={(asset) => {
+						if (asset?.type === 'suno-generator') {
+							showSunoGenerator = true;
+						} else {
+							selectedAsset = asset;
+						}
+					}}
 				/>
 			</div>
 
@@ -74,12 +161,19 @@
 
 			<div class="composer-bottom-panel">
 				<TimelineEditor 
+					composerId={composerId}
 					currentTime={currentTime}
 					onSeek={(time) => currentTime = time}
 				/>
 			</div>
 		</div>
 	</div>
+
+	<SunoMusicGenerator
+		open={showSunoGenerator}
+		onClose={() => showSunoGenerator = false}
+		onGenerate={handleGenerateSunoMusic}
+	/>
 </div>
 
 <style>

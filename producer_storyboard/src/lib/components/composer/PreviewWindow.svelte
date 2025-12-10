@@ -18,12 +18,19 @@
 		return `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}:${String(frames).padStart(2, '0')}`;
 	}
 
-	function handleSeek(e: MouseEvent) {
-		const rect = e.currentTarget.getBoundingClientRect();
-		const x = e.clientX - rect.left;
-		const percentage = x / rect.width;
-		const newTime = percentage * duration;
-		onSeek(newTime);
+	function handleSeek(e: MouseEvent | { currentTarget: { offsetWidth: number; offsetX: number } }) {
+		if ('clientX' in e && 'currentTarget' in e) {
+			const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+			const x = e.clientX - rect.left;
+			const percentage = x / rect.width;
+			const newTime = percentage * duration;
+			onSeek(newTime);
+		} else {
+			// Keyboard event handler
+			const percentage = e.currentTarget.offsetX / e.currentTarget.offsetWidth;
+			const newTime = percentage * duration;
+			onSeek(newTime);
+		}
 	}
 </script>
 
@@ -68,7 +75,26 @@
 
 		<div class="timeline-controls">
 			<div class="time-display">{formatTime(currentTime)}</div>
-			<div class="timeline-bar" onclick={handleSeek}>
+			<div
+				class="timeline-bar"
+				role="slider"
+				aria-label="Timeline seek"
+				aria-valuemin="0"
+				aria-valuemax={duration}
+				aria-valuenow={currentTime}
+				tabindex="0"
+				onclick={handleSeek}
+				onkeydown={(e) => {
+					if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+						e.preventDefault();
+						const step = duration / 100; // 1% step
+						const newTime = e.key === 'ArrowLeft'
+							? Math.max(0, currentTime - step)
+							: Math.min(duration, currentTime + step);
+						onSeek(newTime);
+					}
+				}}
+			>
 				<div class="timeline-progress" style="width: {duration > 0 ? (currentTime / duration * 100) : 0}%"></div>
 				<div class="timeline-handle" style="left: {duration > 0 ? (currentTime / duration * 100) : 0}%"></div>
 			</div>

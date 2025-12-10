@@ -75,7 +75,11 @@
 					{/if}
 				</div>
 			{/each}
-			<button class="ai-generate-button">
+			<button class="ai-generate-button" onclick={() => {
+				if (onSelectAsset) {
+					onSelectAsset({ type: 'suno-generator', label: 'Generate Music' });
+				}
+			}}>
 				<span class="ai-icon">🤖</span>
 				<span>Music Generation AI</span>
 			</button>

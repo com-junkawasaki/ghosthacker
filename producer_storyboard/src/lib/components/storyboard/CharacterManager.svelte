@@ -192,7 +192,11 @@
 			}
 		}}
 	>
-		<div class="character-manager" onclick={(e) => e.stopPropagation()}>
+		<div
+			class="character-manager"
+			role="dialog"
+			onclick={(e) => e.stopPropagation()}
+		>
 			<div class="header">
 				<h2 id="character-manager-title">Characters</h2>
 				<button type="button" class="close-button" onclick={() => open = false}>✕</button>
@@ -326,7 +330,11 @@
 						}
 					}}
 				>
-					<div class="delete-confirm-dialog" onclick={(e) => e.stopPropagation()}>
+					<div
+						class="delete-confirm-dialog"
+						role="dialog"
+						onclick={(e) => e.stopPropagation()}
+					>
 						<h3 id="delete-confirm-title">Delete Character</h3>
 						<p>Are you sure you want to delete this character? This action cannot be undone.</p>
 						<div class="delete-confirm-actions">

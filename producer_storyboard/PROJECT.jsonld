@@ -9,7 +9,7 @@
   "url": "https://github.com/ghosthacker/producer_storyboard",
   "version": "0.1.0",
   "createdAt": "2025-12-09T00:00:00Z",
-  "updatedAt": "2025-12-09T22:40:00Z",
+  "updatedAt": "2025-12-10T00:00:00Z",
   "status": "InDevelopment",
   "maintainer": {
     "@type": "Person",
@@ -21,6 +21,9 @@
     "ai",
     "openai",
     "hume-ai",
+    "suno",
+    "composer",
+    "audio-editing",
     "svelte",
     "rust",
     "graphql",
@@ -461,6 +464,182 @@
           "databaseUrl": "Configured from Vercel environment variables"
         }
       }
+    },
+    {
+      "@type": "AddAction",
+      "name": "composer-page-implementation",
+      "description": "Implement Composer page with multi-track timeline editor, asset library, preview window, and AI music/voice generation",
+      "startTime": "2025-12-09T23:00:00Z",
+      "endTime": "2025-12-10T00:00:00Z",
+      "status": "Completed",
+      "result": {
+        "features": [
+          "Multi-track timeline editor (subtitle, video, audio tracks)",
+          "Asset library with categories (media, audio, titles, transitions, effects, overlays, subtitles, templates)",
+          "Preview window with playback controls and timeline seek",
+          "Asset details panel with search functionality",
+          "Suno AI music generation integration",
+          "Hume AI voice generation integration (reuse existing)",
+          "Audio track and clip management",
+          "Composer creation and management per project"
+        ],
+        "backend": {
+          "graphqlSchema": {
+            "types": ["Composer", "AudioTrack", "AudioClip", "SunoMusic"],
+            "queries": ["composers", "composer", "audioTracks", "audioClips", "sunoMusic"],
+            "mutations": [
+              "createComposer",
+              "createAudioTrack",
+              "createAudioClip",
+              "updateAudioClip",
+              "deleteAudioClip",
+              "generateSunoMusic",
+              "reorderAudioClips"
+            ]
+          },
+          "database": {
+            "migration": "010_create_composer_tables.sql",
+            "tables": [
+              "composers",
+              "audio_tracks",
+              "audio_clips",
+              "suno_music"
+            ]
+          },
+          "services": {
+            "suno": {
+              "file": "performers/services/graphql/src/ports/suno_service.rs",
+              "methods": [
+                "generate_music",
+                "get_task_status",
+                "download_audio"
+              ],
+              "apiEndpoint": "https://api.sunoapi.org/v1/suno/create",
+              "authentication": "Bearer token (SUNO_API_KEY)"
+            }
+          },
+          "resolvers": {
+            "file": "performers/services/graphql/src/resolvers/composer.rs",
+            "schemaTypes": "performers/services/graphql/src/schema/composer.rs"
+          }
+        },
+        "frontend": {
+          "route": "/[lang]/orgs/[orgId]/project/[projectId]/composer",
+          "page": "src/routes/[lang]/orgs/[orgId]/project/[projectId]/composer/+page.svelte",
+          "ssr": false,
+          "components": [
+            {
+              "name": "AssetLibrary",
+              "path": "src/lib/components/composer/AssetLibrary.svelte",
+              "features": [
+                "Asset category navigation",
+                "Audio subcategories (My Audio, AI Generation, BGM, Sound Effects)",
+                "Suno music generation trigger"
+              ]
+            },
+            {
+              "name": "PreviewWindow",
+              "path": "src/lib/components/composer/PreviewWindow.svelte",
+              "features": [
+                "Video/audio playback area",
+                "Playback controls (play, pause, stop, skip)",
+                "Timeline seek with keyboard support (Arrow keys)",
+                "Time display (HH:MM:SS:FF format)",
+                "Accessibility (ARIA slider attributes)"
+              ]
+            },
+            {
+              "name": "AssetDetailsPanel",
+              "path": "src/lib/components/composer/AssetDetailsPanel.svelte",
+              "features": [
+                "Asset list display",
+                "Search functionality",
+                "Metadata display (name, duration, creation date)"
+              ]
+            },
+            {
+              "name": "TimelineEditor",
+              "path": "src/lib/components/composer/TimelineEditor.svelte",
+              "features": [
+                "Multi-track timeline display",
+                "Time markers and ruler",
+                "Playhead indicator",
+                "Zoom controls",
+                "Track loading from GraphQL"
+              ]
+            },
+            {
+              "name": "AudioTrack",
+              "path": "src/lib/components/composer/AudioTrack.svelte",
+              "features": [
+                "Track controls (visibility, lock, volume)",
+                "Audio clip display",
+                "Video clip display with thumbnails"
+              ]
+            },
+            {
+              "name": "AudioClip",
+              "path": "src/lib/components/composer/AudioClip.svelte",
+              "features": [
+                "Waveform visualization",
+                "Clip positioning on timeline"
+              ]
+            },
+            {
+              "name": "SunoMusicGenerator",
+              "path": "src/lib/components/composer/SunoMusicGenerator.svelte",
+              "features": [
+                "Music description prompt input",
+                "Custom mode toggle",
+                "Instrumental mode toggle",
+                "Model version selection (Chirp v4/v3)",
+                "Accessibility (ARIA dialog attributes, Escape key support)"
+              ]
+            }
+          ],
+          "graphql": {
+            "queries": [
+              "ListComposers.gql",
+              "GetComposer.gql",
+              "ListAudioTracks.gql",
+              "ListAudioClips.gql",
+              "ListSunoMusic.gql"
+            ],
+            "mutations": [
+              "CreateComposer.gql",
+              "CreateAudioTrack.gql",
+              "CreateAudioClip.gql",
+              "UpdateAudioClip.gql",
+              "DeleteAudioClip.gql",
+              "GenerateSunoMusic.gql",
+              "ReorderAudioClips.gql"
+            ]
+          },
+          "integration": {
+            "projectSidebar": {
+              "menuItem": {
+                "id": "composer",
+                "label": "Composer",
+                "icon": "music",
+                "path": "buildPath('composer')"
+              }
+            }
+          }
+        },
+        "accessibility": {
+          "improvements": [
+            "ARIA dialog attributes for modals",
+            "Keyboard navigation support (Escape key, Arrow keys)",
+            "ARIA slider attributes for timeline seek",
+            "Proper focus management"
+          ],
+          "files": [
+            "src/lib/components/composer/SunoMusicGenerator.svelte",
+            "src/lib/components/composer/PreviewWindow.svelte",
+            "src/lib/components/storyboard/CharacterManager.svelte"
+          ]
+        }
+      }
     }
   ],
   "capability": [
@@ -567,6 +746,40 @@
       "api": {
         "organizations": "/api/organizations"
       }
+    },
+    {
+      "@type": "Service",
+      "name": "composer-editor",
+      "description": "Multi-track audio/video composition editor with timeline, asset library, and AI music generation",
+      "status": "Operational",
+      "features": [
+        "Multi-track timeline editor (subtitle, video, audio tracks)",
+        "Asset library with categorized resources",
+        "Preview window with playback controls",
+        "Suno AI music generation",
+        "Audio track and clip management",
+        "Composer creation per project"
+      ],
+      "components": [
+        "AssetLibrary",
+        "PreviewWindow",
+        "AssetDetailsPanel",
+        "TimelineEditor",
+        "AudioTrack",
+        "AudioClip",
+        "SunoMusicGenerator"
+      ],
+      "integrations": {
+        "suno": {
+          "service": "Suno AI API",
+          "endpoint": "https://api.sunoapi.org/v1/suno/create",
+          "features": ["Music generation from text prompts", "Task status polling", "Audio download"]
+        },
+        "hume": {
+          "service": "Hume AI (reuse existing)",
+          "features": ["Voice generation for audio tracks"]
+        }
+      }
     }
   ],
   "configuration": {
@@ -579,17 +792,20 @@
         "loadingStates": "Scene-specific loading overlays with spinner animations",
         "timeoutHandling": "Adaptive timeouts based on request type",
         "storyboardManagement": "Multi-storyboard creation and selection within projects with URL-based routing",
-        "characterManagement": "Character management with double confirmation for destructive actions"
+        "characterManagement": "Character management with double confirmation for destructive actions",
+        "composerEditor": "Multi-track audio/video composition with timeline editor, asset library, and AI music generation",
+        "accessibility": "ARIA attributes, keyboard navigation, focus management"
       }
     },
     "backend": {
       "framework": "Rust (Poem + Async-GraphQL)",
       "database": "PostgreSQL (SQLx)",
-      "ai": {
-        "imageGeneration": "OpenRouter API (Flux 2 Pro)",
-        "textGeneration": "OpenRouter API (GPT-4)",
-        "voiceSynthesis": "Hume AI (TTS)"
-      },
+        "ai": {
+          "imageGeneration": "OpenRouter API (Flux 2 Pro)",
+          "textGeneration": "OpenRouter API (GPT-4)",
+          "voiceSynthesis": "Hume AI (TTS)",
+          "musicGeneration": "Suno AI API"
+        },
       "imageStorage": "PostgreSQL BYTEA",
       "mutations": {
         "createStoryboard": "Create new storyboard with project association and default settings"
@@ -600,6 +816,19 @@
           "complexFields": {
             "assets": "ComplexObject resolver for character assets"
           }
+        },
+        "composer": {
+          "types": ["Composer", "AudioTrack", "AudioClip", "SunoMusic"],
+          "queries": ["composers", "composer", "audioTracks", "audioClips", "sunoMusic"],
+          "mutations": [
+            "createComposer",
+            "createAudioTrack",
+            "createAudioClip",
+            "updateAudioClip",
+            "deleteAudioClip",
+            "generateSunoMusic",
+            "reorderAudioClips"
+          ]
         }
       }
     },
@@ -643,6 +872,15 @@
       "routing": {
         "pattern": "/[lang]/orgs/[orgId]/project/[viewNames]",
         "organizationScoped": true
+      }
+    },
+    "composer": {
+      "environmentVariables": [
+        "SUNO_API_KEY",
+        "SUNO_API_URL"
+      ],
+      "defaults": {
+        "sunoApiUrl": "https://api.sunoapi.org"
       }
     }
   }

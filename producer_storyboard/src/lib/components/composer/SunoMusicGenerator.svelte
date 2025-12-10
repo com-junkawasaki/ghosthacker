@@ -26,14 +26,29 @@
 </script>
 
 {#if open}
-	<div class="suno-generator-overlay" onclick={(e) => {
-		if (e.target === e.currentTarget) {
-			onClose();
-		}
-	}}>
-		<div class="suno-generator-dialog" onclick={(e) => e.stopPropagation()}>
+	<div
+		class="suno-generator-overlay"
+		role="dialog"
+		aria-modal="true"
+		aria-labelledby="suno-generator-title"
+		onclick={(e) => {
+			if (e.target === e.currentTarget) {
+				onClose();
+			}
+		}}
+		onkeydown={(e) => {
+			if (e.key === 'Escape') {
+				onClose();
+			}
+		}}
+	>
+		<div
+			class="suno-generator-dialog"
+			role="dialog"
+			onclick={(e) => e.stopPropagation()}
+		>
 			<div class="dialog-header">
-				<h2>Generate AI Music</h2>
+				<h2 id="suno-generator-title">Generate AI Music</h2>
 				<button class="close-button" onclick={() => onClose()}>✕</button>
 			</div>
 
