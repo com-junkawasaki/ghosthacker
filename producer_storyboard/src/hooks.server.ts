@@ -1,6 +1,9 @@
 /**
  * SvelteKit server hooks
  * Handles Clerk authentication token forwarding to GraphQL API
+ * 
+ * Note: svelte-clerk's withClerkHandler has compatibility issues with SvelteKit 2.x
+ * Using custom implementation instead
  */
 import type { Handle } from '@sveltejs/kit';
 

@@ -1,7 +1,6 @@
 /**
  * Sign-in page server load function
  * Redirects authenticated users to project list or organization selection
- * Based on svelte-clerk documentation
  */
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
@@ -10,11 +9,6 @@ import { verifyClerkSession, getUserOrganizations } from '$lib/server/clerk';
 const DEFAULT_LANG = 'ja';
 
 export const load: PageServerLoad = async ({ cookies, request }) => {
-	console.log('[SignIn Server] Load function called', {
-		url: request.url,
-		method: request.method,
-	});
-	
 	// Verify Clerk session
 	const authResult = await verifyClerkSession(cookies, request);
 	
@@ -22,7 +16,6 @@ export const load: PageServerLoad = async ({ cookies, request }) => {
 		isAuthenticated: authResult.isAuthenticated,
 		userId: authResult.userId,
 		orgId: authResult.orgId,
-		hasOrg: authResult.hasOrg,
 	});
 
 	// If user is already authenticated, redirect to project management page

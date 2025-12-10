@@ -41,39 +41,35 @@
 					return acc;
 				}, {} as Record<string, string>) : {};
 				
-				console.log('[SignIn] Client auth state:', {
-					timestamp: new Date().toISOString(),
-					clerkExists: !!clerk,
-					clerkKeys: Object.keys(clerk),
-					authExists: !!auth,
-					authKeys: auth ? Object.keys(auth) : [],
-					authUserExists: !!authUser,
-					authUserKeys: authUser ? Object.keys(authUser) : [],
-					userExists: !!user,
-					userKeys: user ? Object.keys(user) : [],
-					sessionExists: !!session,
-					sessionKeys: session ? Object.keys(session) : [],
-					organizationExists: !!organization,
-					organizationKeys: organization ? Object.keys(organization) : [],
-					// Direct access
-					authUserId: auth?.userId ?? null,
-					authOrgId: auth?.orgId ?? null,
-					authUserUserId: authUser?.id ?? null,
-					userUserId: user?.id ?? null,
-					sessionUserId: session?.userId ?? null,
-					sessionOrgId: session?.lastActiveOrganizationId ?? null,
-					organizationId: organization?.id ?? null,
-					// Derived values
-					derivedUserId: userId,
-					derivedOrgId: orgId,
-					sessionId: auth?.sessionId ?? session?.id ?? null,
-					// Try to get from clerk instance
-					clerkUserId: clerk?.clerk?.user?.id ?? null,
-					// Cookies
-					cookies,
-					// Server-side auth state (from layout)
-					serverAuthState: $page.data?.initialAuthState ?? null,
+				// Log each property separately for better visibility
+				console.group('[SignIn] Client auth state');
+				console.log('Timestamp:', new Date().toISOString());
+				console.log('Clerk exists:', !!clerk);
+				console.log('Clerk keys:', Object.keys(clerk));
+				console.log('Auth exists:', !!auth);
+				console.log('Auth keys:', auth ? Object.keys(auth) : []);
+				console.log('Auth userId:', auth?.userId ?? null);
+				console.log('Auth orgId:', auth?.orgId ?? null);
+				console.log('Auth sessionId:', auth?.sessionId ?? null);
+				console.log('User exists:', !!user);
+				console.log('User id:', user?.id ?? null);
+				console.log('Session exists:', !!session);
+				console.log('Session keys:', session ? Object.keys(session) : []);
+				console.log('Session userId:', session?.userId ?? null);
+				console.log('Organization exists:', !!organization);
+				console.log('Organization id:', organization?.id ?? null);
+				console.log('Derived userId:', userId);
+				console.log('Derived orgId:', orgId);
+				console.log('Clerk instance user id:', clerk?.clerk?.user?.id ?? null);
+				console.log('Cookies:', cookies);
+				console.log('Server auth state (from layout):', $page.data?.initialAuthState ?? null);
+				console.log('Server vs Client mismatch:', {
+					serverAuthenticated: $page.data?.initialAuthState?.isAuthenticated ?? false,
+					clientAuthenticated: !!userId,
+					serverUserId: $page.data?.initialAuthState?.userId ?? null,
+					clientUserId: userId,
 				});
+				console.groupEnd();
 			} catch (error) {
 				console.error('[SignIn] Error logging auth state:', error);
 			}

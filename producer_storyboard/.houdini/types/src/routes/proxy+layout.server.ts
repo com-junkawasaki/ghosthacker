@@ -1,13 +1,13 @@
 // @ts-nocheck
 /**
  * Server-side layout load function
- * Initializes Clerk configuration and provides initial auth state
- * Hardcoded values from /gftd env clerk
+ * Uses buildClerkProps to pass authentication state to client
+ * Based on svelte-clerk documentation: https://svelte-clerk.netlify.app/kit/helpers.html
  */
 import type { LayoutServerLoad } from './$types';
-import { verifyClerkSession } from '$lib/server/clerk';
+import { buildClerkProps } from 'svelte-clerk/server';
 
-export const load = async ({ cookies, request }: Parameters<LayoutServerLoad>[0]) => {
+export const load = async ({ locals }: Parameters<LayoutServerLoad>[0]) => {
 	// Hardcoded value from /gftd env clerk as fallback
 	const HARDCODED_PUBLISHABLE_KEY = 'pk_test_ZW5vdWdoLWNoaXBtdW5rLTkyLmNsZXJrLmFjY291bnRzLmRldiQ';
 
@@ -19,8 +19,18 @@ export const load = async ({ cookies, request }: Parameters<LayoutServerLoad>[0]
 		process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
 		HARDCODED_PUBLISHABLE_KEY;
 
-	// Verify Clerk session to get initial auth state
-	const authResult = await verifyClerkSession(cookies, request);
+	// Get auth state from locals (set by withClerkHandler)
+	const auth = locals.auth();
+	
+	console.log('[Layout Server] Auth state from locals:', {
+		userId: auth.userId,
+		orgId: auth.orgId,
+		sessionId: auth.sessionId,
+	});
+
+	// Use buildClerkProps to build props for ClerkProvider
+	// This ensures the client-side Clerk context is properly initialized
+	const clerkProps = buildClerkProps(auth);
 
 	if (!clerkPublishableKey || clerkPublishableKey === '') {
 		console.error(
@@ -28,20 +38,12 @@ export const load = async ({ cookies, request }: Parameters<LayoutServerLoad>[0]
 		);
 		return {
 			clerkPublishableKey: HARDCODED_PUBLISHABLE_KEY,
-			initialAuthState: {
-				isAuthenticated: authResult.isAuthenticated,
-				userId: authResult.userId,
-				orgId: authResult.orgId,
-			},
+			...clerkProps,
 		};
 	}
 
 	return {
 		clerkPublishableKey,
-		initialAuthState: {
-			isAuthenticated: authResult.isAuthenticated,
-			userId: authResult.userId,
-			orgId: authResult.orgId,
-		},
+		...clerkProps,
 	};
 };

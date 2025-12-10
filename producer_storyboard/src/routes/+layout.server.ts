@@ -1,7 +1,9 @@
 /**
  * Server-side layout load function
  * Initializes Clerk configuration and provides initial auth state
- * Hardcoded values from /gftd env clerk
+ * 
+ * Note: svelte-clerk's buildClerkProps requires withClerkHandler which has
+ * compatibility issues with SvelteKit 2.x. Using custom implementation instead.
  */
 import type { LayoutServerLoad } from './$types';
 import { verifyClerkSession } from '$lib/server/clerk';
@@ -19,19 +21,19 @@ export const load: LayoutServerLoad = async ({ cookies, request }) => {
 		HARDCODED_PUBLISHABLE_KEY;
 
 	// Verify Clerk session to get initial auth state
-	console.log('[Layout Server] Verifying Clerk session...', {
-		url: request.url,
-		method: request.method,
-	});
-	
 	const authResult = await verifyClerkSession(cookies, request);
 	
 	console.log('[Layout Server] Auth result:', {
 		isAuthenticated: authResult.isAuthenticated,
 		userId: authResult.userId,
 		orgId: authResult.orgId,
-		hasOrg: authResult.hasOrg,
 	});
+
+	const initialAuthState = {
+		isAuthenticated: authResult.isAuthenticated,
+		userId: authResult.userId,
+		orgId: authResult.orgId,
+	};
 
 	if (!clerkPublishableKey || clerkPublishableKey === '') {
 		console.error(
@@ -39,20 +41,12 @@ export const load: LayoutServerLoad = async ({ cookies, request }) => {
 		);
 		return {
 			clerkPublishableKey: HARDCODED_PUBLISHABLE_KEY,
-			initialAuthState: {
-				isAuthenticated: authResult.isAuthenticated,
-				userId: authResult.userId,
-				orgId: authResult.orgId,
-			},
+			initialAuthState,
 		};
 	}
 
 	return {
 		clerkPublishableKey,
-		initialAuthState: {
-			isAuthenticated: authResult.isAuthenticated,
-			userId: authResult.userId,
-			orgId: authResult.orgId,
-		},
+		initialAuthState,
 	};
 };
