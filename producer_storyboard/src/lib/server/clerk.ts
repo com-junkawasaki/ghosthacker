@@ -64,12 +64,16 @@ export async function verifyClerkSession(
 			req.headers.get('authorization')?.replace('Bearer ', '');
 
 		// Debug: Log cookie check (always log for debugging)
+		const allCookies = cookies.getAll ? cookies.getAll() : [];
+		const cookieNames = Array.isArray(allCookies) 
+			? allCookies.map((c: { name: string }) => c.name) 
+			: Object.keys(allCookies);
 		console.log('[Clerk verifySession] Cookie check:', {
 			hasSessionCookie: !!cookies.get('__session'),
 			sessionTokenPreview: sessionToken?.substring(0, 50) + '...',
 			hasAuthHeader: !!req.headers.get('authorization'),
 			hasSessionToken: !!sessionToken,
-			allCookieNames: Object.keys(cookies.getAll ? cookies.getAll() : {}),
+			allCookieNames: cookieNames,
 		});
 
 		if (!sessionToken) {
@@ -91,7 +95,17 @@ export async function verifyClerkSession(
 		type PayloadWithSub = { sub: string; org_id?: string };
 		const typedPayload = payload as PayloadWithSub | null;
 
+		// Log verification result
+		console.log('[Clerk verifySession] Token verification result:', {
+			hasPayload: !!typedPayload,
+			hasErrors: !!errors,
+			errors: errors ? JSON.stringify(errors) : null,
+			userId: typedPayload?.sub || null,
+			orgId: typedPayload?.org_id || null,
+		});
+
 		if (errors || !typedPayload || !typedPayload.sub) {
+			console.log('[Clerk verifySession] Authentication failed:', { errors });
 			return {
 				userId: null,
 				orgId: null,

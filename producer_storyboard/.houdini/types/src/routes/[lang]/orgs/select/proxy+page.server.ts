@@ -16,22 +16,29 @@ export const load = async ({ params, cookies, request }: Parameters<PageServerLo
 	// Verify Clerk session
 	const authResult = await verifyClerkSession(cookies, request);
 
-	// Require authentication - redirect to sign-in if not authenticated
-	if (!authResult.isAuthenticated) {
-		throw redirect(302, '/sign-in');
+	// If authenticated, get organizations and handle redirects
+	if (authResult.isAuthenticated && authResult.userId) {
+		// Get user's organizations
+		const organizations = await getUserOrganizations(authResult.userId);
+
+		// If user has only one organization, redirect to it
+		if (organizations.length === 1 && organizations[0]) {
+			throw redirect(302, `/${validLang}/orgs/${organizations[0].id}/project`);
+		}
+
+		return {
+			lang: validLang,
+			organizations,
+			authResult,
+		};
 	}
 
-	// Get user's organizations
-	const organizations = await getUserOrganizations(authResult.userId!);
-
-	// If user has only one organization, redirect to it
-	if (organizations.length === 1 && organizations[0]) {
-		throw redirect(302, `/${validLang}/orgs/${organizations[0].id}/project`);
-	}
-
+	// If not authenticated, return empty data
+	// Client-side will handle authentication check and redirect if needed
+	// This allows the page to load and wait for client-side auth to be established
 	return {
 		lang: validLang,
-		organizations,
+		organizations: [],
 		authResult,
 	};
 };

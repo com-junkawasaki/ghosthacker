@@ -21,41 +21,50 @@
 	let selectedOrgId = $state<string | null>(null);
 	let isRedirecting = $state(false);
 	let hasRedirected = $state(false);
-	let isWaitingForAuth = $state(data.isFromSignIn || false);
 
-	// Handle post-sign-in redirect: wait for authentication to be established
+	// Wait for authentication to be established after sign-in
+	// This handles the case where the user is redirected here immediately after signing in
 	$effect(() => {
 		if (!browser || !isLoaded || hasRedirected) return;
 
-		// If coming from sign-in and not authenticated yet, wait
-		if (isWaitingForAuth && !userId) {
-			console.log('[OrgSelect] Waiting for authentication to be established...');
-			return;
-		}
-
-		// Once authenticated (or if already authenticated), proceed
+		// If user is authenticated, handle redirect logic
 		if (userId) {
-			isWaitingForAuth = false;
-			
-			// If user has only one organization, redirect to it
-			if (data.organizations.length === 1 && data.organizations[0]) {
-				hasRedirected = true;
-				console.log('[OrgSelect] User has one org, redirecting to:', `/${currentLang}/orgs/${data.organizations[0].id}/project`);
-				goto(`/${currentLang}/orgs/${data.organizations[0].id}/project`, { replaceState: true });
-				return;
-			}
+			// If server-side already provided organizations, use them
+			if (data.organizations.length > 0) {
+				// If user has only one organization, redirect to it
+				if (data.organizations.length === 1 && data.organizations[0]) {
+					hasRedirected = true;
+					goto(`/${currentLang}/orgs/${data.organizations[0].id}/project`, { replaceState: true });
+					return;
+				}
 
-			// If user has an organization selected in Clerk context, redirect to it
-			const currentOrgId = organization?.id || auth?.orgId;
-			if (
-				currentOrgId &&
-				currentOrgId !== 'select' &&
-				data.organizations.length > 0 &&
-				data.organizations.some((org) => org.id === currentOrgId)
-			) {
+				// If user has an organization selected in Clerk context, redirect to it
+				const currentOrgId = organization?.id || auth?.orgId;
+				if (
+					currentOrgId &&
+					currentOrgId !== 'select' &&
+					data.organizations.some((org) => org.id === currentOrgId)
+				) {
+					hasRedirected = true;
+					goto(`/${currentLang}/orgs/${currentOrgId}/project`, { replaceState: true });
+				}
+			} else {
+				// Server-side didn't have organizations (auth not established yet)
+				// Wait a bit and reload the page to get organizations from server
+				// This handles the case where session cookie is being set
+				setTimeout(() => {
+					if (!hasRedirected && userId) {
+						// Reload to get fresh data from server
+						window.location.reload();
+					}
+				}, 500);
+			}
+		} else if (isLoaded && !userId) {
+			// User is not authenticated, redirect to sign-in
+			// But only if we're sure Clerk has finished loading
+			if (!hasRedirected) {
 				hasRedirected = true;
-				console.log('[OrgSelect] User has org in context, redirecting to:', `/${currentLang}/orgs/${currentOrgId}/project`);
-				goto(`/${currentLang}/orgs/${currentOrgId}/project`, { replaceState: true });
+				goto('/sign-in', { replaceState: true });
 			}
 		}
 	});
