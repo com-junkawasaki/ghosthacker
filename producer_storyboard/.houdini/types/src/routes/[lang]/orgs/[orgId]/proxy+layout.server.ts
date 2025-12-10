@@ -23,28 +23,14 @@ export const load = async ({ params, url, cookies, request }: Parameters<LayoutS
 	// Verify Clerk session
 	const authResult = await verifyClerkSession(cookies, request);
 
-	// If user is not authenticated and trying to access org-scoped route
-	// Allow access but don't validate orgId (user might be signing in)
+	// Require authentication - redirect to sign-in if not authenticated
 	if (!authResult.isAuthenticated) {
-		// If orgId is 'select', allow it (organization selection page)
+		// If orgId is 'select', redirect to sign-in (authentication required)
 		if (orgId === 'select') {
-			return {
-				lang: validLang,
-				orgId: null,
-				authResult,
-				organizations: [],
-			};
+			throw redirect(302, '/sign-in');
 		}
-		// Otherwise, redirect to select page
-		if (orgId && orgId !== 'select') {
-			throw redirect(302, `/${validLang}/orgs/select/project`);
-		}
-		return {
-			lang: validLang,
-			orgId: null,
-			authResult,
-			organizations: [],
-		};
+		// Otherwise, redirect to sign-in
+		throw redirect(302, '/sign-in');
 	}
 
 	// User is authenticated

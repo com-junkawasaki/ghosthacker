@@ -1,41 +1,42 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
-	import { goto } from '$app/navigation';
 	import { useClerkContext } from 'svelte-clerk';
 
 	const clerk = useClerkContext();
 	const auth = clerk?.auth;
 
-	// Redirect to organization selection if already authenticated
-	$effect(() => {
-		if (!browser) return;
-		if (auth?.userId != null) {
-			const currentLang = 'ja';
-			goto(`/${currentLang}/orgs/select/project`, { replaceState: true });
-		}
-	});
-
 	onMount(() => {
-		if (!browser) return;
+		if (!browser || !clerk) return;
 
-		// If already authenticated, redirect to organization selection
+		// Server-side already handles redirect for authenticated users
+		// If somehow we're here and authenticated, redirect
 		if (auth?.userId != null) {
-			const currentLang = 'ja';
-			goto(`/${currentLang}/orgs/select/project`, { replaceState: true });
+			window.location.href = '/ja/orgs/select/project';
 			return;
 		}
 
-		// Redirect to Clerk sign-in
-		// Clerk will handle the sign-in flow and redirect back
+		// Redirect to Clerk's hosted sign-in page
+		// Clerk will handle the sign-in flow and redirect back to redirectUrl after successful sign-in
 		const redirectUrl = window.location.origin + '/ja/orgs/select/project';
 		
-		// Use Clerk's hosted sign-in page
-		// The sign-in page URL is configured in Clerk Dashboard
-		// For now, we'll use the current page as a fallback and let Clerk handle the redirect
-		// In production, Clerk will automatically redirect to the configured sign-in URL
-		const signInUrl = `/sign-in?redirect_url=${encodeURIComponent(redirectUrl)}`;
-		window.location.href = signInUrl;
+		// Use Clerk's openSignIn method if available
+		const clerkInstance = clerk.clerk as any;
+		if (clerkInstance && typeof clerkInstance.openSignIn === 'function') {
+			clerkInstance.openSignIn({
+				redirectUrl: redirectUrl
+			});
+		} else if (clerkInstance && typeof clerkInstance.redirectToSignIn === 'function') {
+			// Alternative method name
+			clerkInstance.redirectToSignIn({
+				redirectUrl: redirectUrl
+			});
+		} else {
+			// Fallback: Use Clerk's UserButton or show sign-in form
+			// For now, we'll use the Clerk component approach
+			// The user should see a sign-in form rendered by Clerk
+			console.warn('[SignIn] Clerk sign-in method not available. Using Clerk component.');
+		}
 	});
 </script>
 
