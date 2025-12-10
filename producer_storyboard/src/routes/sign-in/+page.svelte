@@ -1,18 +1,25 @@
 <script lang="ts">
-	import { SignIn, useClerkContext } from 'svelte-clerk';
-	import { browser } from '$app/environment';
-	import { page } from '$app/stores';
+	import { SignIn, SignedOut, SignedIn, useClerkContext } from 'svelte-clerk';
 	import { goto } from '$app/navigation';
-	import type { PageData } from './$types';
-
-	const { data }: { data: PageData } = $props();
 
 	const clerk = useClerkContext();
 	const auth = clerk?.auth;
 	const organization = clerk?.organization;
-	const userId = $derived(auth?.userId);
 	const orgId = $derived(auth?.orgId || organization?.id);
 	const isLoaded = $derived(clerk?.isLoaded);
+	const userId = $derived(auth?.userId);
+
+	// Debug: Log auth state when it changes
+	$effect(() => {
+		if (isLoaded) {
+			console.log('[SignIn] Client auth state:', {
+				userId,
+				orgId,
+				hasAuth: !!auth,
+				hasOrganization: !!organization,
+			});
+		}
+	});
 
 	async function handleSignOut() {
 		if (!clerk?.clerk) {
@@ -32,17 +39,23 @@
 	const DEFAULT_LANG = 'ja';
 
 	// Compute project management page URL based on organization
-	const projectManagementUrl = $derived(() => {
-		if (orgId) {
-			return `/${DEFAULT_LANG}/orgs/${orgId}/project`;
-		}
-		return `/${DEFAULT_LANG}/orgs/select/project`;
-	});
+	const projectManagementUrl = $derived(
+		orgId ? `/${DEFAULT_LANG}/orgs/${orgId}/project` : `/${DEFAULT_LANG}/orgs/select/project`
+	);
 
-	function goToProject(e?: Event) {
+	async function goToProject(e?: Event) {
 		e?.preventDefault();
-		const url = projectManagementUrl();
-		goto(url, { replaceState: true });
+		const url = projectManagementUrl;
+		console.log('[SignIn] Navigating to project page:', url, { orgId, userId: auth?.userId });
+		try {
+			await goto(url, { replaceState: true });
+		} catch (error) {
+			console.error('[SignIn] Navigation error:', error);
+			// Fallback to window.location if goto fails
+			if (typeof window !== 'undefined') {
+				window.location.href = url;
+			}
+		}
 	}
 
 	// Redirect target (fallback + force) - organization選択ページ
@@ -55,24 +68,27 @@
 	<div class="sign-in-content">
 		{#if !isLoaded}
 			<p>読み込み中...</p>
-		{:else if userId}
-			<div class="authenticated-section">
-				<p>既にログインしています</p>
-				<div class="action-buttons">
-					<button class="project-link" onclick={goToProject}>
-						プロジェクト管理ページへ
-					</button>
-					<button onclick={handleSignOut} class="logout-button">
-						ログアウト
-					</button>
-				</div>
-			</div>
 		{:else}
-			<h1>ログイン</h1>
-			<SignIn
-				fallbackRedirectUrl={signInRedirectUrl()}
-				forceRedirectUrl={signInRedirectUrl()}
-			/>
+			<SignedIn>
+				<div class="authenticated-section">
+					<p>既にログインしています</p>
+					<div class="action-buttons">
+						<button class="project-link" on:click={goToProject} type="button">
+							プロジェクト管理ページへ
+						</button>
+						<button on:click={handleSignOut} class="logout-button" type="button">
+							ログアウト
+						</button>
+					</div>
+				</div>
+			</SignedIn>
+			<SignedOut>
+				<h1>ログイン</h1>
+				<SignIn
+					fallbackRedirectUrl={signInRedirectUrl()}
+					forceRedirectUrl={signInRedirectUrl()}
+				/>
+			</SignedOut>
 		{/if}
 	</div>
 </div>
