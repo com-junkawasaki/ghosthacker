@@ -1,9 +1,17 @@
 {
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
-		"module": "commonjs",
+		"module": "ESNext",
+		"moduleResolution": "node",
 		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
+		"target": "ES2022",
+		"lib": ["ES2022"],
+		"types": ["node", "@cucumber/cucumber"]
 	},
 	"include": ["step_definitions/**/*.ts"],
+	"ts-node": {
+		"esm": true,
+		"experimentalSpecifierResolution": "node"
+	}
 }

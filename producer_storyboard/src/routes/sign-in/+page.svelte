@@ -1,49 +1,31 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { SignIn, useClerkContext } from 'svelte-clerk';
 	import { browser } from '$app/environment';
-	import { useClerkContext } from 'svelte-clerk';
+	import { goto } from '$app/navigation';
 
-	const clerk = useClerkContext();
-	const auth = clerk?.auth;
+	// Do not destructure context to avoid losing reactivity
+	const ctx = useClerkContext();
+	const userId = $derived(ctx.auth.userId);
 
-	onMount(() => {
-		if (!browser || !clerk) return;
-
-		// Server-side already handles redirect for authenticated users
-		// If somehow we're here and authenticated, redirect
-		if (auth?.userId != null) {
-			window.location.href = '/ja/orgs/select/project';
-			return;
-		}
-
-		// Redirect to Clerk's hosted sign-in page
-		// Clerk will handle the sign-in flow and redirect back to redirectUrl after successful sign-in
-		const redirectUrl = window.location.origin + '/ja/orgs/select/project';
-		
-		// Use Clerk's openSignIn method if available
-		const clerkInstance = clerk.clerk as any;
-		if (clerkInstance && typeof clerkInstance.openSignIn === 'function') {
-			clerkInstance.openSignIn({
-				redirectUrl: redirectUrl
-			});
-		} else if (clerkInstance && typeof clerkInstance.redirectToSignIn === 'function') {
-			// Alternative method name
-			clerkInstance.redirectToSignIn({
-				redirectUrl: redirectUrl
-			});
-		} else {
-			// Fallback: Use Clerk's UserButton or show sign-in form
-			// For now, we'll use the Clerk component approach
-			// The user should see a sign-in form rendered by Clerk
-			console.warn('[SignIn] Clerk sign-in method not available. Using Clerk component.');
+	// Redirect to organization selection if already authenticated
+	$effect(() => {
+		if (!browser) return;
+		if (userId) {
+			goto('/ja/orgs/select/project', { replaceState: true });
 		}
 	});
 </script>
 
 <div class="sign-in-container">
 	<div class="sign-in-content">
-		<h1>ログイン</h1>
-		<p>リダイレクト中...</p>
+		{#if userId === undefined}
+			<p>読み込み中...</p>
+		{:else if userId === null}
+			<h1>ログイン</h1>
+			<SignIn redirectUrl="/ja/orgs/select/project" />
+		{:else}
+			<p>リダイレクト中...</p>
+		{/if}
 	</div>
 </div>
 
