@@ -1,0 +1,13 @@
+query ListSunoMusic($composerId: ID!) {
+	sunoMusic(composerId: $composerId) {
+		id
+		composerId
+		prompt
+		status
+		audioUrl
+		audioDataId
+		taskId
+		createdAt
+		updatedAt
+	}
+}

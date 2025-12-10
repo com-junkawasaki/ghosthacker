@@ -1,0 +1,10 @@
+query GetComposer($id: ID!) {
+	composer(id: $id) {
+		id
+		projectId
+		title
+		durationSeconds
+		createdAt
+		updatedAt
+	}
+}

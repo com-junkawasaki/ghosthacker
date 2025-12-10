@@ -1,0 +1,13 @@
+mutation GenerateSunoMusic($input: GenerateSunoMusicInput!) {
+	generateSunoMusic(input: $input) {
+		id
+		composerId
+		prompt
+		status
+		audioUrl
+		audioDataId
+		taskId
+		createdAt
+		updatedAt
+	}
+}

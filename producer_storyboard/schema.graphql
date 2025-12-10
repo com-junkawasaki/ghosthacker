@@ -121,6 +121,11 @@ type Query {
 	audioData(dialogueId: ID!): String!
 	characterAssets(characterId: ID!): [CharacterAsset!]!
 	characterAssetData(assetId: ID!): String!
+	composers(projectId: ID!): [Composer!]!
+	composer(id: ID!): Composer
+	audioTracks(composerId: ID!): [AudioTrack!]!
+	audioClips(trackId: ID!): [AudioClip!]!
+	sunoMusic(composerId: ID!): [SunoMusic!]!
 }
 
 input CreateProjectInput {
@@ -224,11 +229,92 @@ input TranslateDialogueInput {
 	targetLanguage: String!
 }
 
+input CreateComposerInput {
+	projectId: ID!
+	title: String
+}
+
+input CreateAudioTrackInput {
+	composerId: ID!
+	trackNumber: Int!
+	trackType: String!
+	name: String
+}
+
+input CreateAudioClipInput {
+	trackId: ID!
+	startTimeSeconds: Float!
+	durationSeconds: Float!
+	audioType: String!
+	audioUrl: String
+	audioDataId: ID
+	metadata: String
+}
+
+input GenerateSunoMusicInput {
+	composerId: ID
+	prompt: String!
+	customMode: Boolean
+	makeInstrumental: Boolean
+	mv: String
+}
+
+input UpdateAudioClipInput {
+	id: ID!
+	startTimeSeconds: Float
+	durationSeconds: Float
+	trackId: ID
+}
+
 type HumeVoice {
 	id: String!
 	name: String!
 	description: String
 	language: String
+}
+
+type Composer {
+	id: ID!
+	projectId: ID!
+	title: String!
+	durationSeconds: Float
+	createdAt: String!
+	updatedAt: String!
+}
+
+type AudioTrack {
+	id: ID!
+	composerId: ID!
+	trackNumber: Int!
+	trackType: String!
+	name: String
+	createdAt: String!
+	updatedAt: String!
+}
+
+type AudioClip {
+	id: ID!
+	trackId: ID!
+	startTimeSeconds: Float!
+	durationSeconds: Float!
+	audioType: String!
+	audioUrl: String
+	audioDataId: ID
+	metadata: String
+	createdAt: String!
+	updatedAt: String!
+}
+
+type SunoMusic {
+	id: ID!
+	composerId: ID
+	prompt: String!
+	status: String!
+	audioUrl: String
+	audioDataId: ID
+	taskId: String
+	createdAt: String!
+	updatedAt: String!
 }
 
 type Mutation {
@@ -251,4 +337,11 @@ type Mutation {
 	deleteDialogue(id: ID!): Boolean!
 	translateDialogue(input: TranslateDialogueInput!): Dialogue!
 	generateDialogueAudio(dialogueId: ID!): Dialogue!
+	createComposer(input: CreateComposerInput!): Composer!
+	createAudioTrack(input: CreateAudioTrackInput!): AudioTrack!
+	createAudioClip(input: CreateAudioClipInput!): AudioClip!
+	updateAudioClip(input: UpdateAudioClipInput!): AudioClip!
+	deleteAudioClip(id: ID!): Boolean!
+	generateSunoMusic(input: GenerateSunoMusicInput!): SunoMusic!
+	reorderAudioClips(trackId: ID!, clipIds: [ID!]!): [AudioClip!]!
 }

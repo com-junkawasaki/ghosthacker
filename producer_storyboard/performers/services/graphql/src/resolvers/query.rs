@@ -8,6 +8,7 @@
 use async_graphql::{Context, Object, ID, Result};
 use crate::ports::postgres::PostgresPool;
 use crate::schema::storyboard::{Project, Storyboard, Scene, VideoStatus, GeneratedImage, OperationHistory, Character, Dialogue, HumeVoice, CharacterAsset};
+use crate::schema::composer::{Composer, AudioTrack, AudioClip, SunoMusic};
 use crate::ports::hume_service::HumeService;
 use crate::ports::clerk::get_clerk_auth_from_context;
 use uuid::Uuid;
@@ -599,5 +600,30 @@ impl QueryRoot {
                 created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
             }
         }).collect())
+    }
+
+    /// List composers for a project
+    async fn composers(&self, ctx: &Context<'_>, project_id: ID) -> Result<Vec<Composer>> {
+        crate::resolvers::composer::composers(ctx, project_id).await
+    }
+
+    /// Get a composer by ID
+    async fn composer(&self, ctx: &Context<'_>, id: ID) -> Result<Option<Composer>> {
+        crate::resolvers::composer::composer(ctx, id).await
+    }
+
+    /// List audio tracks for a composer
+    async fn audio_tracks(&self, ctx: &Context<'_>, composer_id: ID) -> Result<Vec<AudioTrack>> {
+        crate::resolvers::composer::audio_tracks(ctx, composer_id).await
+    }
+
+    /// List audio clips for a track
+    async fn audio_clips(&self, ctx: &Context<'_>, track_id: ID) -> Result<Vec<AudioClip>> {
+        crate::resolvers::composer::audio_clips(ctx, track_id).await
+    }
+
+    /// List Suno music for a composer
+    async fn suno_music(&self, ctx: &Context<'_>, composer_id: ID) -> Result<Vec<SunoMusic>> {
+        crate::resolvers::composer::suno_music(ctx, composer_id).await
     }
 }

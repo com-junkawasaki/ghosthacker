@@ -1,0 +1,11 @@
+mutation CreateAudioTrack($input: CreateAudioTrackInput!) {
+	createAudioTrack(input: $input) {
+		id
+		composerId
+		trackNumber
+		trackType
+		name
+		createdAt
+		updatedAt
+	}
+}

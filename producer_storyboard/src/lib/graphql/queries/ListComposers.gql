@@ -1,0 +1,10 @@
+query ListComposers($projectId: ID!) {
+	composers(projectId: $projectId) {
+		id
+		projectId
+		title
+		durationSeconds
+		createdAt
+		updatedAt
+	}
+}

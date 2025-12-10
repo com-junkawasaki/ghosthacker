@@ -1,0 +1,14 @@
+mutation UpdateAudioClip($input: UpdateAudioClipInput!) {
+	updateAudioClip(input: $input) {
+		id
+		trackId
+		startTimeSeconds
+		durationSeconds
+		audioType
+		audioUrl
+		audioDataId
+		metadata
+		createdAt
+		updatedAt
+	}
+}

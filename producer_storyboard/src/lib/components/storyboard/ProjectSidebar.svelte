@@ -33,6 +33,12 @@
 				path: buildPath('editor'),
 			},
 			{
+				id: 'composer',
+				label: 'Composer',
+				icon: 'music',
+				path: buildPath('composer'),
+			},
+			{
 				id: 'characters',
 				label: 'Characters',
 				icon: 'users',
@@ -103,6 +109,10 @@
 								{#if item.icon === 'film'}
 									<path d="M2 4C2 3.44772 2.44772 3 3 3H17C17.5523 3 18 3.44772 18 4V16C18 16.5523 17.5523 17 17 17H3C2.44772 17 2 16.5523 2 16V4Z" stroke-width="1.5"/>
 									<path d="M7 3V17M13 3V17" stroke-width="1.5"/>
+								{:else if item.icon === 'music'}
+									<path d="M8 15C8 16.1046 7.10457 17 6 17C4.89543 17 4 16.1046 4 15C4 13.8954 4.89543 13 6 13C7.10457 13 8 13.8954 8 15Z" stroke-width="1.5"/>
+									<path d="M16 13C16 14.1046 15.1046 15 14 15C12.8954 15 12 14.1046 12 13C12 11.8954 12.8954 11 14 11C15.1046 11 16 11.8954 16 13Z" stroke-width="1.5"/>
+									<path d="M8 15V5L16 3V13" stroke-width="1.5"/>
 								{:else if item.icon === 'users'}
 									<path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" stroke-width="1.5"/>
 									<path d="M10 12C5.58172 12 2 15.5817 2 20H18C18 15.5817 14.4183 12 10 12Z" stroke-width="1.5"/>

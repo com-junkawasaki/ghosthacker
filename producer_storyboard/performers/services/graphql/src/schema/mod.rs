@@ -6,3 +6,4 @@
  * GraphQL schema definitions
  */
 pub mod storyboard;
+pub mod composer;

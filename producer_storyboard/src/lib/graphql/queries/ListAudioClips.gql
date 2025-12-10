@@ -1,0 +1,14 @@
+query ListAudioClips($trackId: ID!) {
+	audioClips(trackId: $trackId) {
+		id
+		trackId
+		startTimeSeconds
+		durationSeconds
+		audioType
+		audioUrl
+		audioDataId
+		metadata
+		createdAt
+		updatedAt
+	}
+}

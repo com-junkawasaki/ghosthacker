@@ -11,7 +11,7 @@ type OutputDataShape<T> = MaybeWithVoid<Omit<App.PageData, RequiredKeys<T>> & Pa
 type EnsureDefined<T> = T extends null | undefined ? {} : T;
 type OptionalUnion<U extends Record<string, any>, A extends keyof U = U extends U ? keyof U : never> = U extends unknown ? { [P in Exclude<A, keyof U>]?: never } & U : never;
 export type Snapshot<T = any> = Kit.Snapshot<T>;
-type LayoutRouteId = RouteId | "/[lang]/orgs/[orgId]/profile" | "/[lang]/orgs/[orgId]/project" | "/[lang]/orgs/[orgId]/project/[projectId]/[storyboardId]/editor" | "/[lang]/orgs/[orgId]/project/[projectId]/characters" | "/[lang]/orgs/[orgId]/project/[projectId]/editor" | "/[lang]/orgs/[orgId]/project/[projectId]/scenario" | "/[lang]/orgs/[orgId]/project/[projectId]/world"
+type LayoutRouteId = RouteId | "/[lang]/orgs/[orgId]/profile" | "/[lang]/orgs/[orgId]/project" | "/[lang]/orgs/[orgId]/project/[projectId]/[storyboardId]/editor" | "/[lang]/orgs/[orgId]/project/[projectId]/characters" | "/[lang]/orgs/[orgId]/project/[projectId]/composer" | "/[lang]/orgs/[orgId]/project/[projectId]/editor" | "/[lang]/orgs/[orgId]/project/[projectId]/scenario" | "/[lang]/orgs/[orgId]/project/[projectId]/world" | "/[lang]/orgs/[orgId]/update"
 type LayoutParams = RouteParams & { lang?: string; orgId?: string; projectId?: string; storyboardId?: string }
 type LayoutServerParentData = EnsureDefined<import('../../../$houdini').LayoutServerData>;
 type LayoutParentData = EnsureDefined<import('../../../$houdini').LayoutData>;

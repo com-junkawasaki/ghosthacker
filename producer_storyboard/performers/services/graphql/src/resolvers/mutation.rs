@@ -13,6 +13,8 @@ use crate::ports::hume_service::HumeService;
 use crate::ports::translation_service::TranslationService;
 use crate::ports::clerk::{get_clerk_auth_from_context, require_auth_and_org};
 use crate::schema::storyboard::{Project, Storyboard, VideoStatus, Scene, GeneratedImage, Character, Dialogue, CharacterAsset};
+use crate::schema::composer::{Composer, AudioTrack, AudioClip, SunoMusic};
+use crate::resolvers::composer::{CreateComposerInput, CreateAudioTrackInput, CreateAudioClipInput, GenerateSunoMusicInput, UpdateAudioClipInput};
 use uuid::Uuid;
 use serde_json::json;
 use sqlx::Row;
@@ -1834,5 +1836,40 @@ impl MutationRoot {
             created_at: updated_row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
             updated_at: updated_row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
         })
+    }
+
+    /// Create a new composer
+    async fn create_composer(&self, ctx: &Context<'_>, input: CreateComposerInput) -> Result<Composer> {
+        crate::resolvers::composer::create_composer(ctx, input).await
+    }
+
+    /// Create a new audio track
+    async fn create_audio_track(&self, ctx: &Context<'_>, input: CreateAudioTrackInput) -> Result<AudioTrack> {
+        crate::resolvers::composer::create_audio_track(ctx, input).await
+    }
+
+    /// Create a new audio clip
+    async fn create_audio_clip(&self, ctx: &Context<'_>, input: CreateAudioClipInput) -> Result<AudioClip> {
+        crate::resolvers::composer::create_audio_clip(ctx, input).await
+    }
+
+    /// Update an audio clip
+    async fn update_audio_clip(&self, ctx: &Context<'_>, input: UpdateAudioClipInput) -> Result<AudioClip> {
+        crate::resolvers::composer::update_audio_clip(ctx, input).await
+    }
+
+    /// Delete an audio clip
+    async fn delete_audio_clip(&self, ctx: &Context<'_>, id: ID) -> Result<bool> {
+        crate::resolvers::composer::delete_audio_clip(ctx, id).await
+    }
+
+    /// Generate music using Suno AI
+    async fn generate_suno_music(&self, ctx: &Context<'_>, input: GenerateSunoMusicInput) -> Result<SunoMusic> {
+        crate::resolvers::composer::generate_suno_music(ctx, input).await
+    }
+
+    /// Reorder audio clips on a track
+    async fn reorder_audio_clips(&self, ctx: &Context<'_>, track_id: ID, clip_ids: Vec<ID>) -> Result<Vec<AudioClip>> {
+        crate::resolvers::composer::reorder_audio_clips(ctx, track_id, clip_ids).await
     }
 }
