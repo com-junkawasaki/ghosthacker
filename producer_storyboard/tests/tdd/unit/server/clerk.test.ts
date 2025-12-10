@@ -46,13 +46,16 @@ describe('Clerk Server Functions', () => {
 	describe('verifyClerkSession', () => {
 		it('should return unauthenticated when no session token', async () => {
 			const { verifyClerkSession } = await import('$lib/server/clerk');
+			// no __session cookie and no auth header
+			const requestWithoutAuth = new Request('http://localhost');
 			(mockCookies.get as ReturnType<typeof vi.fn>).mockReturnValue(null);
 
-			const result = await verifyClerkSession(mockCookies, mockRequest);
+			const result = await verifyClerkSession(mockCookies, requestWithoutAuth);
 
 			expect(result.isAuthenticated).toBe(false);
 			expect(result.userId).toBeNull();
 			expect(result.orgId).toBeNull();
+			expect(mockVerifyToken).not.toHaveBeenCalled();
 		});
 
 		it('should handle RequestEvent parameter', async () => {
@@ -128,6 +131,51 @@ describe('Clerk Server Functions', () => {
 
 			expect(result.isAuthenticated).toBe(false);
 			expect(result.userId).toBeNull();
+		});
+
+		it('should handle verifyToken returning undefined safely', async () => {
+			const { verifyClerkSession } = await import('$lib/server/clerk');
+			(mockCookies.get as ReturnType<typeof vi.fn>).mockReturnValue('invalid-token');
+
+			// simulate unexpected undefined result from verifyToken
+			mockVerifyToken.mockResolvedValue(undefined);
+
+			const result = await verifyClerkSession(mockCookies, mockRequest);
+
+			expect(result.isAuthenticated).toBe(false);
+			expect(result.userId).toBeNull();
+			expect(result.orgId).toBeNull();
+		});
+
+		it('should drop orgId when user has no access', async () => {
+			const { verifyClerkSession } = await import('$lib/server/clerk');
+			(mockCookies.get as ReturnType<typeof vi.fn>).mockReturnValue('test-session-token');
+
+			mockVerifyToken.mockResolvedValue({
+				data: { sub: 'user-abc', org_id: 'org-deny' },
+				errors: null,
+			});
+			// verifyOrgAccess -> false by returning empty org list
+			mockGetOrganizationMembershipList.mockResolvedValue({ data: [] });
+
+			const result = await verifyClerkSession(mockCookies, mockRequest);
+
+			expect(result.isAuthenticated).toBe(true);
+			expect(result.userId).toBe('user-abc');
+			expect(result.orgId).toBeNull();
+			expect(result.hasOrg).toBe(false);
+		});
+
+		it('should return unauthenticated when verifyToken throws', async () => {
+			const { verifyClerkSession } = await import('$lib/server/clerk');
+			(mockCookies.get as ReturnType<typeof vi.fn>).mockReturnValue('bad-token');
+			mockVerifyToken.mockRejectedValue(new Error('boom'));
+
+			const result = await verifyClerkSession(mockCookies, mockRequest);
+
+			expect(result.isAuthenticated).toBe(false);
+			expect(result.userId).toBeNull();
+			expect(result.orgId).toBeNull();
 		});
 	});
 

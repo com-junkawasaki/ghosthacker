@@ -39,9 +39,14 @@
 		return `/${DEFAULT_LANG}/orgs/select/project`;
 	});
 
-	// After sign-in URL - redirect to organization selection page
-	// The organization selection page will handle redirecting to the project page
-	const afterSignInUrl = $derived(() => {
+	function goToProject(e?: Event) {
+		e?.preventDefault();
+		const url = projectManagementUrl();
+		goto(url, { replaceState: true });
+	}
+
+	// Redirect target (fallback + force) - organization選択ページ
+	const signInRedirectUrl = $derived(() => {
 		return `/${DEFAULT_LANG}/orgs/select/project`;
 	});
 </script>
@@ -54,9 +59,9 @@
 			<div class="authenticated-section">
 				<p>既にログインしています</p>
 				<div class="action-buttons">
-					<a href={projectManagementUrl()} class="project-link">
+					<button class="project-link" onclick={goToProject}>
 						プロジェクト管理ページへ
-					</a>
+					</button>
 					<button onclick={handleSignOut} class="logout-button">
 						ログアウト
 					</button>
@@ -64,7 +69,10 @@
 			</div>
 		{:else}
 			<h1>ログイン</h1>
-			<SignIn afterSignInUrl={afterSignInUrl()} />
+			<SignIn
+				fallbackRedirectUrl={signInRedirectUrl()}
+				forceRedirectUrl={signInRedirectUrl()}
+			/>
 		{/if}
 	</div>
 </div>
@@ -116,9 +124,11 @@
 		background-color: var(--sb-accent, #007bff);
 		color: #ffffff;
 		text-decoration: none;
+		border: none;
 		border-radius: 0.5rem;
 		font-weight: 500;
 		transition: background-color 0.2s ease;
+		cursor: pointer;
 	}
 
 	.project-link:hover {

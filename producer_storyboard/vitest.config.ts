@@ -35,6 +35,7 @@ export default defineConfig({
 				'src/lib/graphql/client.ts', // Exclude due to SvelteKit-specific imports
 				'src/routes/**/*.server.ts', // Exclude SvelteKit server files
 				'src/routes/**/*.svelte', // Exclude Svelte route files
+				'src/lib/server/clerk.ts', // Exclude Clerk server glue (integration covered in e2e)
 			],
 			include: [
 				'src/lib/**/*.ts',
