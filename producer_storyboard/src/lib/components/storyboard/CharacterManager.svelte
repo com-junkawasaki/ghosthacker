@@ -179,6 +179,7 @@
 	<div
 		class="character-manager-overlay"
 		role="dialog"
+		tabindex="-1"
 		aria-modal="true"
 		aria-labelledby="character-manager-title"
 		onclick={(e) => {
@@ -195,7 +196,13 @@
 		<div
 			class="character-manager"
 			role="dialog"
+			tabindex="-1"
 			onclick={(e) => e.stopPropagation()}
+			onkeydown={(e) => {
+				if (e.key === 'Escape') {
+					onclose();
+				}
+			}}
 		>
 			<div class="header">
 				<h2 id="character-manager-title">Characters</h2>
@@ -317,6 +324,7 @@
 				<div
 					class="delete-confirm-overlay"
 					role="dialog"
+					tabindex="-1"
 					aria-modal="true"
 					aria-labelledby="delete-confirm-title"
 					onclick={(e) => {
@@ -333,7 +341,13 @@
 					<div
 						class="delete-confirm-dialog"
 						role="dialog"
+						tabindex="-1"
 						onclick={(e) => e.stopPropagation()}
+						onkeydown={(e) => {
+							if (e.key === 'Escape') {
+								cancelDelete();
+							}
+						}}
 					>
 						<h3 id="delete-confirm-title">Delete Character</h3>
 						<p>Are you sure you want to delete this character? This action cannot be undone.</p>

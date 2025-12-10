@@ -29,6 +29,7 @@
 	<div
 		class="suno-generator-overlay"
 		role="dialog"
+		tabindex="-1"
 		aria-modal="true"
 		aria-labelledby="suno-generator-title"
 		onclick={(e) => {
@@ -45,7 +46,13 @@
 		<div
 			class="suno-generator-dialog"
 			role="dialog"
+			tabindex="-1"
 			onclick={(e) => e.stopPropagation()}
+			onkeydown={(e) => {
+				if (e.key === 'Escape') {
+					onClose();
+				}
+			}}
 		>
 			<div class="dialog-header">
 				<h2 id="suno-generator-title">Generate AI Music</h2>

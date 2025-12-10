@@ -73,11 +73,15 @@ export default [
 				...globals.browser,
 			},
 		},
+		plugins: {
+			'@typescript-eslint': tsPlugin,
+		},
 		rules: {
 			'@typescript-eslint/no-unused-vars': ['error', { 
 				argsIgnorePattern: '^_',
-				varsIgnorePattern: '^(beforeEach|afterEach|describe|it|expect|vi)$'
+				varsIgnorePattern: '^(beforeEach|afterEach|describe|it|expect|vi|render|screen|waitFor|cleanup|afterAll)$'
 			}],
+			'@typescript-eslint/no-unused-expressions': 'off', // Allow Chai assertions
 		},
 	},
 	{

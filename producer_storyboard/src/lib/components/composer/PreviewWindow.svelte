@@ -43,7 +43,7 @@
 
 	<div class="preview-controls">
 		<div class="playback-controls">
-			<button class="control-button" onclick={() => onSeek(0)}>
+			<button class="control-button" onclick={() => onSeek(0)} aria-label="Go to start">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
 					<path d="M2 2L2 14M2 2L12 8L2 14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg>
@@ -60,12 +60,12 @@
 					</svg>
 				{/if}
 			</button>
-			<button class="control-button" onclick={() => onSeek(duration)}>
+			<button class="control-button" onclick={() => onSeek(duration)} aria-label="Go to end">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
 					<path d="M14 2L14 14M14 2L4 8L14 14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg>
 			</button>
-			<button class="control-button">
+			<button class="control-button" aria-label="Picture in picture" onclick={() => console.log('PiP')}>
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
 					<rect x="2" y="2" width="12" height="12" stroke-width="1.5"/>
 					<path d="M6 6L10 8L6 10V6Z" fill="currentColor"/>
@@ -101,13 +101,13 @@
 		</div>
 
 		<div class="view-controls">
-			<button class="control-button">
+			<button class="control-button" aria-label="View options">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
 					<rect x="2" y="2" width="12" height="12" stroke-width="1.5"/>
 					<path d="M5 5H11M5 8H11M5 11H8" stroke-width="1.5"/>
 				</svg>
 			</button>
-			<button class="control-button">16:9</button>
+			<button class="control-button" aria-label="Aspect ratio">16:9</button>
 		</div>
 	</div>
 </div>

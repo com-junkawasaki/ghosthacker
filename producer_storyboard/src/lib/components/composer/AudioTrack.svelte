@@ -9,13 +9,13 @@
 		currentTime: number;
 	};
 
-	let { track, currentTime: _currentTime }: Props = $props();
+	const { track }: Props = $props();
 
-	// Mock clips data
-	const clips = track.type === 'audio' ? [
+	// Mock clips data - use $derived to avoid state_referenced_locally warning
+	const clips = $derived(track.type === 'audio' ? [
 		{ id: '1', startTime: 0, duration: 30, name: 'Clip 1' },
 		{ id: '2', startTime: 35, duration: 20, name: 'Clip 2' },
-	] : [];
+	] : []);
 
 	let isVisible = $state(true);
 	let isLocked = $state(false);
@@ -73,9 +73,9 @@
 		{:else if track.type === 'video'}
 			<div class="video-clip">
 				<div class="clip-thumbnails">
-				{#each Array(5) as _}
-					<div class="thumbnail"></div>
-				{/each}
+					{#each Array(5).fill(0) as _, idx (idx)}
+						<div class="thumbnail"></div>
+					{/each}
 				</div>
 			</div>
 		{:else}

@@ -53,14 +53,15 @@
 
 	let listHumeVoicesStore: ListHumeVoicesStore | null = null;
 	let createDialogueStore: CreateDialogueStore | null = null;
-	let updateDialogueStore: UpdateDialogueStore | null = null;
+	// Note: updateDialogueStore is prepared for future use
+	// let updateDialogueStore: UpdateDialogueStore | null = null;
 	let translateDialogueStore: TranslateDialogueStore | null = null;
 	let generateDialogueAudioStore: GenerateDialogueAudioStore | null = null;
 
 	if (browser) {
 		listHumeVoicesStore = new ListHumeVoicesStore();
 		createDialogueStore = new CreateDialogueStore();
-		updateDialogueStore = new UpdateDialogueStore();
+		// updateDialogueStore = new UpdateDialogueStore();
 		translateDialogueStore = new TranslateDialogueStore();
 		generateDialogueAudioStore = new GenerateDialogueAudioStore();
 	}

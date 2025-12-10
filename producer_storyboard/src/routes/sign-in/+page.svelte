@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { SignIn, useClerkContext, ClerkLoading, ClerkLoaded } from 'svelte-clerk';
+	import { SignIn, useClerkContext } from 'svelte-clerk';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
@@ -13,11 +13,12 @@
 	const organization = clerk?.organization;
 	const userId = $derived(auth?.userId);
 	const orgId = $derived(auth?.orgId || organization?.id);
+	const isLoaded = $derived(clerk?.loaded);
 
 	const DEFAULT_LANG = 'ja';
 
-	// Get redirect URL from query parameter or use default
-	const redirectUrl = $derived(() => {
+	// Get fallback redirect URL from query parameter or use default
+	const fallbackRedirectUrl = $derived(() => {
 		const urlParams = new URLSearchParams($page.url.search);
 		const redirect = urlParams.get('redirect_url');
 		// Default to organization selection, which will redirect to project list if user has one org
@@ -29,7 +30,7 @@
 	
 	// Redirect if already authenticated (client-side check)
 	$effect(() => {
-		if (!browser || hasRedirected) return;
+		if (!browser || hasRedirected || !isLoaded) return;
 		
 		const currentUserId = userId;
 		const currentOrgId = orgId;
@@ -53,26 +54,18 @@
 
 <ClerkAuthDebugPanel />
 
-<ClerkLoading>
-	<div class="sign-in-container">
-		<div class="sign-in-content">
+<div class="sign-in-container">
+	<div class="sign-in-content">
+		{#if !isLoaded}
 			<p>読み込み中...</p>
-		</div>
+		{:else if userId}
+			<p>リダイレクト中...</p>
+		{:else}
+			<h1>ログイン</h1>
+			<SignIn fallbackRedirectUrl={fallbackRedirectUrl()} />
+		{/if}
 	</div>
-</ClerkLoading>
-
-<ClerkLoaded>
-	<div class="sign-in-container">
-		<div class="sign-in-content">
-			{#if userId}
-				<p>リダイレクト中...</p>
-			{:else}
-				<h1>ログイン</h1>
-				<SignIn redirectUrl={redirectUrl()} />
-			{/if}
-		</div>
-	</div>
-</ClerkLoaded>
+</div>
 
 <style>
 	.sign-in-container {
