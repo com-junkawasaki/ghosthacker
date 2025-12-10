@@ -11,7 +11,6 @@
 	let firstName = $state('');
 	let lastName = $state('');
 	let emailAddress = $state('');
-	let imageUrl = $state('');
 	let isSubmitting = $state(false);
 	let errorMessage = $state<string | null>(null);
 	let successMessage = $state<string | null>(null);
@@ -23,7 +22,6 @@
 		firstName = user.firstName || '';
 		lastName = user.lastName || '';
 		emailAddress = user.emailAddresses?.[0]?.emailAddress || '';
-		imageUrl = user.imageUrl || '';
 	});
 
 	async function handleSubmit(event: Event) {
@@ -49,15 +47,13 @@
 			if (Object.keys(updates).length > 0) {
 				// Use Clerk's user update method
 				// svelte-clerk provides access to Clerk instance through clerk.clerk
-				if (clerk.clerk && 'user' in clerk.clerk && clerk.clerk.user) {
-					const clerkUser = clerk.clerk.user as { update: (data: Record<string, string>) => Promise<void> };
-					if (typeof clerkUser.update === 'function') {
-						await clerkUser.update(updates);
-					} else {
-						throw new Error('Clerk user update method not available');
-					}
+				const clerkInstance = clerk.clerk as any;
+				if (clerkInstance?.user?.update && typeof clerkInstance.user.update === 'function') {
+					await clerkInstance.user.update(updates);
+					// Refresh user data after update
+					// The user object will be updated automatically by Clerk
 				} else {
-					throw new Error('Clerk user API not available');
+					throw new Error('Clerk user update method not available. Please use Clerk account management page.');
 				}
 			} else {
 				// No changes to update
@@ -88,13 +84,13 @@
 			firstName = user.firstName || '';
 			lastName = user.lastName || '';
 			emailAddress = user.emailAddresses?.[0]?.emailAddress || '';
-			imageUrl = user.imageUrl || '';
 		}
 		errorMessage = null;
 		successMessage = null;
 	}
 
 	const userInitials = $derived.by(() => {
+		if (!user) return 'U';
 		if (firstName && lastName) {
 			return `${firstName[0]}${lastName[0]}`.toUpperCase();
 		}
@@ -144,12 +140,10 @@
 				<h2>プロフィール画像</h2>
 				<div class="avatar-section">
 					<div class="avatar-preview">
-						{#if user && user.imageUrl}
+						{#if user?.imageUrl}
 							<img src={user.imageUrl} alt="Profile" />
-						{:else if user}
-							<span class="avatar-initials">{userInitials}</span>
 						{:else}
-							<span class="avatar-initials">U</span>
+							<span class="avatar-initials">{userInitials}</span>
 						{/if}
 					</div>
 					<p class="avatar-note">
