@@ -50,6 +50,16 @@
 		clerk.clerk.openUserProfile();
 	}
 
+	function handleUpdateProfile() {
+		const { lang, orgId } = $page.params;
+		const DEFAULT_LANG = 'ja';
+		const currentLang = lang || DEFAULT_LANG;
+		const currentOrgId = orgId || organization?.id;
+		if (currentOrgId) {
+			goto(`/${currentLang}/orgs/${currentOrgId}/profile`);
+		}
+	}
+
 	const userInitials = $derived.by(() => {
 		if (!user) return 'U';
 		const firstName = user.firstName || '';
@@ -116,6 +126,18 @@
 				<div class="menu-divider"></div>
 
 				<div class="menu-items">
+					<button class="menu-item" onclick={handleUpdateProfile}>
+						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+							<path
+								d="M11.5 2.5C11.7761 2.22386 12.1479 2.07003 12.5 2.07003C12.8521 2.07003 13.2239 2.22386 13.5 2.5C13.7761 2.77614 13.93 3.14786 13.93 3.5C13.93 3.85214 13.7761 4.22386 13.5 4.5L5 13L2 14L3 11L11.5 2.5Z"
+								stroke-width="1.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							/>
+						</svg>
+						<span>プロフィール編集</span>
+					</button>
+
 					<button class="menu-item" onclick={handleManageAccount}>
 						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
 							<circle cx="8" cy="6" r="2.5" stroke-width="1.5" />
