@@ -27,3 +27,4 @@ export const load = async ({ params, cookies, request }: Parameters<PageServerLo
 		authResult,
 	};
 };
+

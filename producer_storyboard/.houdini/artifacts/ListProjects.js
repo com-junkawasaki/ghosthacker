@@ -70,4 +70,4 @@ export default {
     "partial": false
 };
 
-"HoudiniHash=5b8d4269fd155bc4f92b37fc6f969f3689c5238752ed0f1095a034c352ae7942";
+"HoudiniHash=05a80e61960b0154ce5b47b4a075971972b9c69f0cf182ebb7806a7312f57500";

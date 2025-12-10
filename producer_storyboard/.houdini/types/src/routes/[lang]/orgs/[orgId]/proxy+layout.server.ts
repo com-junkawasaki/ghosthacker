@@ -75,3 +75,4 @@ export const load = async ({ params, url, cookies, request }: Parameters<LayoutS
 		organizations,
 	};
 };
+
