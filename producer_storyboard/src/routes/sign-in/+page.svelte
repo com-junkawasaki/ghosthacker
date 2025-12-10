@@ -27,24 +27,33 @@
 	// Track if we've already attempted a redirect to prevent loops
 	let hasRedirected = $state(false);
 	
-	// Redirect if already authenticated (client-side check)
+	// Compute project management page URL
+	const projectManagementUrl = $derived(() => {
+		if (orgId) {
+			return `/${DEFAULT_LANG}/orgs/${orgId}/project`;
+		}
+		return `/${DEFAULT_LANG}/orgs/select/project`;
+	});
+	
+	// Redirect if already authenticated (client-side check as fallback)
+	// Note: Server-side redirect should handle this first, but this is a fallback
 	$effect(() => {
 		if (!browser || hasRedirected || !isLoaded) return;
 		
 		const currentUserId = userId;
 		const currentOrgId = orgId;
 		
-		// If user is authenticated, redirect
+		// If user is authenticated, redirect to project management page
 		if (currentUserId) {
 			hasRedirected = true; // Set flag before redirecting
 			
 			if (currentOrgId) {
 				// User has an organization, redirect to project list
-				console.log('[SignIn] User authenticated with org, redirecting to:', `/${DEFAULT_LANG}/orgs/${currentOrgId}/project`);
+				console.log('[SignIn] Client: User authenticated with org, redirecting to:', `/${DEFAULT_LANG}/orgs/${currentOrgId}/project`);
 				goto(`/${DEFAULT_LANG}/orgs/${currentOrgId}/project`, { replaceState: true });
 			} else {
 				// User authenticated but no org, redirect to organization selection
-				console.log('[SignIn] User authenticated without org, redirecting to organization selection');
+				console.log('[SignIn] Client: User authenticated without org, redirecting to organization selection');
 				goto(`/${DEFAULT_LANG}/orgs/select/project`, { replaceState: true });
 			}
 		}
@@ -56,7 +65,12 @@
 		{#if !isLoaded}
 			<p>読み込み中...</p>
 		{:else if userId}
-			<p>リダイレクト中...</p>
+			<div class="authenticated-section">
+				<p>既にログインしています</p>
+				<a href={projectManagementUrl()} class="project-link">
+					プロジェクト管理ページへ
+				</a>
+			</div>
 		{:else}
 			<h1>ログイン</h1>
 			<SignIn fallbackRedirectUrl={fallbackRedirectUrl()} />
@@ -89,5 +103,27 @@
 
 	p {
 		color: var(--sb-text-secondary, #cccccc);
+	}
+
+	.authenticated-section {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.project-link {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		background-color: var(--sb-accent, #007bff);
+		color: #ffffff;
+		text-decoration: none;
+		border-radius: 0.5rem;
+		font-weight: 500;
+		transition: background-color 0.2s ease;
+	}
+
+	.project-link:hover {
+		background-color: var(--sb-accent-hover, #0056b3);
 	}
 </style>

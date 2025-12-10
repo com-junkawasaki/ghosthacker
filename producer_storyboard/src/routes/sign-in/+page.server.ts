@@ -13,10 +13,11 @@ export const load: PageServerLoad = async ({ cookies, request }) => {
 	// Verify Clerk session
 	const authResult = await verifyClerkSession(cookies, request);
 
-	// If user is already authenticated, redirect to appropriate page
+	// If user is already authenticated, redirect to project management page
 	if (authResult.isAuthenticated && authResult.userId) {
 		// If user has an organization ID, redirect directly to project list
 		if (authResult.orgId) {
+			console.log('[SignIn] Server: User authenticated with org, redirecting to:', `/${DEFAULT_LANG}/orgs/${authResult.orgId}/project`);
 			throw redirect(302, `/${DEFAULT_LANG}/orgs/${authResult.orgId}/project`);
 		}
 
@@ -25,16 +26,19 @@ export const load: PageServerLoad = async ({ cookies, request }) => {
 
 		// If user has only one organization, redirect to its project list
 		if (organizations.length === 1 && organizations[0]) {
+			console.log('[SignIn] Server: User has one org, redirecting to:', `/${DEFAULT_LANG}/orgs/${organizations[0].id}/project`);
 			throw redirect(302, `/${DEFAULT_LANG}/orgs/${organizations[0].id}/project`);
 		}
 
 		// If user has multiple organizations, redirect to organization selection
 		if (organizations.length > 1) {
+			console.log('[SignIn] Server: User has multiple orgs, redirecting to organization selection');
 			throw redirect(302, `/${DEFAULT_LANG}/orgs/select/project`);
 		}
 
 		// If user has no organizations, still redirect to organization selection
 		// (they can create one or wait for an invitation)
+		console.log('[SignIn] Server: User has no orgs, redirecting to organization selection');
 		throw redirect(302, `/${DEFAULT_LANG}/orgs/select/project`);
 	}
 
