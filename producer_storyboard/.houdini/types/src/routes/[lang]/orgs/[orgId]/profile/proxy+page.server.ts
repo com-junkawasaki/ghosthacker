@@ -2,29 +2,32 @@
 /**
  * Profile page server load function
  * Requires authentication
+ * Uses svelte-clerk v0.20.1+ with withClerkHandler
  */
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { verifyClerkSession } from '$lib/server/clerk';
 
 const DEFAULT_LANG = 'ja';
 
-export const load = async ({ params, cookies, request }: Parameters<PageServerLoad>[0]) => {
+export const load = async ({ params, locals }: Parameters<PageServerLoad>[0]) => {
 	const { lang, orgId } = params;
 	const validLang = lang || DEFAULT_LANG;
 
-	// Verify Clerk session
-	const authResult = await verifyClerkSession(cookies, request);
+	// Get auth from locals (set by withClerkHandler)
+	const auth = locals.auth();
 
 	// Require authentication - redirect to sign-in if not authenticated
-	if (!authResult.isAuthenticated) {
+	if (!auth.userId) {
 		throw redirect(302, '/sign-in');
 	}
 
 	return {
 		lang: validLang,
 		orgId: orgId || null,
-		authResult,
+		authResult: {
+			isAuthenticated: true,
+			userId: auth.userId,
+			orgId: auth.orgId,
+		},
 	};
 };
-
