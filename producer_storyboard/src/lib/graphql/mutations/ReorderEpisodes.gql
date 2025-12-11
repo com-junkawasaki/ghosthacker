@@ -1,0 +1,11 @@
+mutation ReorderEpisodes($input: ReorderEpisodesInput!) {
+	reorderEpisodes(input: $input) {
+		id
+		scenarioId
+		title
+		description
+		orderIndex
+		createdAt
+		updatedAt
+	}
+}

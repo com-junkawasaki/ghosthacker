@@ -239,6 +239,30 @@ pub struct UpdateScenePlanInput {
 }
 
 #[derive(InputObject)]
+pub struct ReorderEpisodesInput {
+    #[graphql(name = "scenarioId")]
+    pub scenario_id: ID,
+    #[graphql(name = "episodeIds")]
+    pub episode_ids: Vec<ID>,
+}
+
+#[derive(InputObject)]
+pub struct ReorderPartsInput {
+    #[graphql(name = "episodeId")]
+    pub episode_id: ID,
+    #[graphql(name = "partIds")]
+    pub part_ids: Vec<ID>,
+}
+
+#[derive(InputObject)]
+pub struct ReorderScenePlansInput {
+    #[graphql(name = "partId")]
+    pub part_id: ID,
+    #[graphql(name = "scenePlanIds")]
+    pub scene_plan_ids: Vec<ID>,
+}
+
+#[derive(InputObject)]
 pub struct TranslateDialogueInput {
     #[graphql(name = "dialogueId")]
     pub dialogue_id: ID,
@@ -2348,5 +2372,298 @@ impl MutationRoot {
             created_at: now.to_rfc3339(),
             updated_at: now.to_rfc3339(),
         })
+    }
+
+    /// Reorder episodes within a scenario
+    async fn reorder_episodes(&self, ctx: &Context<'_>, input: ReorderEpisodesInput) -> Result<Vec<Episode>> {
+        let pool = ctx.data::<PostgresPool>()?;
+        let (_user, org) = require_auth_and_org(ctx)?;
+        
+        let scenario_uuid = Uuid::parse_str(&input.scenario_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid scenario ID: {}", e)))?;
+        
+        // Verify scenario belongs to organization
+        let scenario_org: Option<Option<String>> = sqlx::query_scalar::<_, Option<String>>(
+            "SELECT org_id FROM scenarios WHERE id = $1"
+        )
+        .bind(scenario_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to verify scenario access: {}", e)))?;
+        
+        match scenario_org {
+            None => return Err(async_graphql::Error::new("Scenario not found")),
+            Some(Some(scenario_org_id)) => {
+                if scenario_org_id != org.id {
+                    return Err(async_graphql::Error::new("Access denied"));
+                }
+            }
+            Some(None) => {}
+        }
+        
+        // Use a transaction to avoid unique constraint violations
+        let mut tx = pool.begin().await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to start transaction: {}", e)))?;
+        
+        // First, set all order_index values to negative to avoid conflicts
+        sqlx::query(
+            r#"
+            UPDATE episodes
+            SET order_index = -order_index - 10000, updated_at = NOW()
+            WHERE scenario_id = $1
+            "#,
+        )
+        .bind(scenario_uuid)
+        .execute(&mut *tx)
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to prepare episodes for reordering: {}", e)))?;
+        
+        // Then update order_index based on new order
+        for (index, episode_id) in input.episode_ids.iter().enumerate() {
+            let episode_uuid = Uuid::parse_str(&episode_id.0)
+                .map_err(|e| async_graphql::Error::new(format!("Invalid episode ID: {}", e)))?;
+            
+            sqlx::query(
+                r#"
+                UPDATE episodes
+                SET order_index = $1, updated_at = NOW()
+                WHERE id = $2 AND scenario_id = $3
+                "#,
+            )
+            .bind(index as i32)
+            .bind(episode_uuid)
+            .bind(scenario_uuid)
+            .execute(&mut *tx)
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to reorder episodes: {}", e)))?;
+        }
+        
+        // Commit the transaction
+        tx.commit().await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to commit transaction: {}", e)))?;
+        
+        // Fetch updated episodes
+        let rows = sqlx::query(
+            r#"
+            SELECT id, scenario_id, title, description, order_index, created_at, updated_at
+            FROM episodes
+            WHERE scenario_id = $1
+            ORDER BY order_index ASC, created_at ASC
+            "#,
+        )
+        .bind(scenario_uuid)
+        .fetch_all(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch episodes: {}", e)))?;
+        
+        Ok(rows.into_iter().map(|row| {
+            let id: Uuid = row.get("id");
+            let scenario_id: Uuid = row.get("scenario_id");
+            
+            Episode {
+                id: ID(id.to_string()),
+                scenario_id: ID(scenario_id.to_string()),
+                title: row.get("title"),
+                description: row.get("description"),
+                order_index: row.get("order_index"),
+                created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
+                updated_at: row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
+            }
+        }).collect())
+    }
+
+    /// Reorder parts within an episode
+    async fn reorder_parts(&self, ctx: &Context<'_>, input: ReorderPartsInput) -> Result<Vec<Part>> {
+        let pool = ctx.data::<PostgresPool>()?;
+        let (_user, org) = require_auth_and_org(ctx)?;
+        
+        let episode_uuid = Uuid::parse_str(&input.episode_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid episode ID: {}", e)))?;
+        
+        // Verify episode belongs to organization
+        let episode_org: Option<Option<String>> = sqlx::query_scalar::<_, Option<String>>(
+            "SELECT org_id FROM episodes WHERE id = $1"
+        )
+        .bind(episode_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to verify episode access: {}", e)))?;
+        
+        match episode_org {
+            None => return Err(async_graphql::Error::new("Episode not found")),
+            Some(Some(episode_org_id)) => {
+                if episode_org_id != org.id {
+                    return Err(async_graphql::Error::new("Access denied"));
+                }
+            }
+            Some(None) => {}
+        }
+        
+        // Use a transaction to avoid unique constraint violations
+        let mut tx = pool.begin().await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to start transaction: {}", e)))?;
+        
+        // First, set all order_index values to negative to avoid conflicts
+        sqlx::query(
+            r#"
+            UPDATE parts
+            SET order_index = -order_index - 10000, updated_at = NOW()
+            WHERE episode_id = $1
+            "#,
+        )
+        .bind(episode_uuid)
+        .execute(&mut *tx)
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to prepare parts for reordering: {}", e)))?;
+        
+        // Then update order_index based on new order
+        for (index, part_id) in input.part_ids.iter().enumerate() {
+            let part_uuid = Uuid::parse_str(&part_id.0)
+                .map_err(|e| async_graphql::Error::new(format!("Invalid part ID: {}", e)))?;
+            
+            sqlx::query(
+                r#"
+                UPDATE parts
+                SET order_index = $1, updated_at = NOW()
+                WHERE id = $2 AND episode_id = $3
+                "#,
+            )
+            .bind(index as i32)
+            .bind(part_uuid)
+            .bind(episode_uuid)
+            .execute(&mut *tx)
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to reorder parts: {}", e)))?;
+        }
+        
+        // Commit the transaction
+        tx.commit().await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to commit transaction: {}", e)))?;
+        
+        // Fetch updated parts
+        let rows = sqlx::query(
+            r#"
+            SELECT id, episode_id, title, description, order_index, created_at, updated_at
+            FROM parts
+            WHERE episode_id = $1
+            ORDER BY order_index ASC, created_at ASC
+            "#,
+        )
+        .bind(episode_uuid)
+        .fetch_all(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch parts: {}", e)))?;
+        
+        Ok(rows.into_iter().map(|row| {
+            let id: Uuid = row.get("id");
+            let episode_id: Uuid = row.get("episode_id");
+            
+            Part {
+                id: ID(id.to_string()),
+                episode_id: ID(episode_id.to_string()),
+                title: row.get("title"),
+                description: row.get("description"),
+                order_index: row.get("order_index"),
+                created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
+                updated_at: row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
+            }
+        }).collect())
+    }
+
+    /// Reorder scene plans within a part
+    async fn reorder_scene_plans(&self, ctx: &Context<'_>, input: ReorderScenePlansInput) -> Result<Vec<ScenePlan>> {
+        let pool = ctx.data::<PostgresPool>()?;
+        let (_user, org) = require_auth_and_org(ctx)?;
+        
+        let part_uuid = Uuid::parse_str(&input.part_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid part ID: {}", e)))?;
+        
+        // Verify part belongs to organization
+        let part_org: Option<Option<String>> = sqlx::query_scalar::<_, Option<String>>(
+            "SELECT org_id FROM parts WHERE id = $1"
+        )
+        .bind(part_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to verify part access: {}", e)))?;
+        
+        match part_org {
+            None => return Err(async_graphql::Error::new("Part not found")),
+            Some(Some(part_org_id)) => {
+                if part_org_id != org.id {
+                    return Err(async_graphql::Error::new("Access denied"));
+                }
+            }
+            Some(None) => {}
+        }
+        
+        // Use a transaction to avoid unique constraint violations
+        let mut tx = pool.begin().await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to start transaction: {}", e)))?;
+        
+        // First, set all order_index values to negative to avoid conflicts
+        sqlx::query(
+            r#"
+            UPDATE scene_plans
+            SET order_index = -order_index - 10000, updated_at = NOW()
+            WHERE part_id = $1
+            "#,
+        )
+        .bind(part_uuid)
+        .execute(&mut *tx)
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to prepare scene plans for reordering: {}", e)))?;
+        
+        // Then update order_index based on new order
+        for (index, scene_plan_id) in input.scene_plan_ids.iter().enumerate() {
+            let scene_plan_uuid = Uuid::parse_str(&scene_plan_id.0)
+                .map_err(|e| async_graphql::Error::new(format!("Invalid scene plan ID: {}", e)))?;
+            
+            sqlx::query(
+                r#"
+                UPDATE scene_plans
+                SET order_index = $1, updated_at = NOW()
+                WHERE id = $2 AND part_id = $3
+                "#,
+            )
+            .bind(index as i32)
+            .bind(scene_plan_uuid)
+            .bind(part_uuid)
+            .execute(&mut *tx)
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to reorder scene plans: {}", e)))?;
+        }
+        
+        // Commit the transaction
+        tx.commit().await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to commit transaction: {}", e)))?;
+        
+        // Fetch updated scene plans
+        let rows = sqlx::query(
+            r#"
+            SELECT id, part_id, description, order_index, created_at, updated_at
+            FROM scene_plans
+            WHERE part_id = $1
+            ORDER BY order_index ASC, created_at ASC
+            "#,
+        )
+        .bind(part_uuid)
+        .fetch_all(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch scene plans: {}", e)))?;
+        
+        Ok(rows.into_iter().map(|row| {
+            let id: Uuid = row.get("id");
+            let part_id: Uuid = row.get("part_id");
+            
+            ScenePlan {
+                id: ID(id.to_string()),
+                part_id: ID(part_id.to_string()),
+                description: row.get("description"),
+                order_index: row.get("order_index"),
+                created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
+                updated_at: row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
+            }
+        }).collect())
     }
 }

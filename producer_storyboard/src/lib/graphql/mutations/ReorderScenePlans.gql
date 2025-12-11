@@ -1,0 +1,10 @@
+mutation ReorderScenePlans($input: ReorderScenePlansInput!) {
+	reorderScenePlans(input: $input) {
+		id
+		partId
+		description
+		orderIndex
+		createdAt
+		updatedAt
+	}
+}

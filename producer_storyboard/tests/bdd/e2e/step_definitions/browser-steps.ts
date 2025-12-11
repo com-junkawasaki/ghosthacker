@@ -12,9 +12,10 @@ import { chromium, Browser, Page, BrowserContext, expect } from '@playwright/tes
 
 setDefaultTimeout(60 * 1000); // 60 seconds
 
-let browser: Browser;
-let context: BrowserContext;
-let page: Page;
+// Export browser, context, and page for use in other step definition files
+export let browser: Browser;
+export let context: BrowserContext;
+export let page: Page;
 
 // Test state
 let currentUrl: string = '';

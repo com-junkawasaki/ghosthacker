@@ -300,6 +300,21 @@ input CreateScenePlanInput {
 	orderIndex: Int
 }
 
+input ReorderEpisodesInput {
+	scenarioId: ID!
+	episodeIds: [ID!]!
+}
+
+input ReorderPartsInput {
+	episodeId: ID!
+	partIds: [ID!]!
+}
+
+input ReorderScenePlansInput {
+	partId: ID!
+	scenePlanIds: [ID!]!
+}
+
 type HumeVoice {
 	id: String!
 	name: String!
@@ -425,4 +440,7 @@ type Mutation {
 	createEpisode(input: CreateEpisodeInput!): Episode!
 	createPart(input: CreatePartInput!): Part!
 	createScenePlan(input: CreateScenePlanInput!): ScenePlan!
+	reorderEpisodes(input: ReorderEpisodesInput!): [Episode!]!
+	reorderParts(input: ReorderPartsInput!): [Part!]!
+	reorderScenePlans(input: ReorderScenePlansInput!): [ScenePlan!]!
 }

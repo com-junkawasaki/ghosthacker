@@ -1,70 +1,62 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
-	import { ListScenariosStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/ListScenarios.js';
-	import { CreateScenarioStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/CreateScenario.js';
-	import { UpdateScenarioStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/UpdateScenario.js';
-	import { DeleteScenarioStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/DeleteScenario.js';
-	import { CreateEpisodeStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/CreateEpisode.js';
-	import { CreatePartStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/CreatePart.js';
-	import { CreateScenePlanStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/CreateScenePlan.js';
-	import { GetScenarioStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/GetScenario.js';
-	import { ReorderEpisodesStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/ReorderEpisodes.js';
-	import { ReorderPartsStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/ReorderParts.js';
-	import { ReorderScenePlansStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/ReorderScenePlans.js';
+	import { goto } from '$app/navigation';
+	import { GetScenarioStore } from '../../../../../../../../../../.houdini/plugins/houdini-svelte/stores/GetScenario.js';
+	import { 
+		CreateEpisodeStore,
+		CreatePartStore,
+		CreateScenePlanStore,
+		ReorderEpisodesStore,
+		ReorderPartsStore,
+		ReorderScenePlansStore,
+		UpdateScenarioStore,
+		DeleteScenarioStore
+	} from '../../../../../../../../../../.houdini/plugins/houdini-svelte/stores/index.js';
 	import ProjectSidebar from '$lib/components/storyboard/ProjectSidebar.svelte';
 
-	const { lang, orgId, projectId } = $page.params;
+	const { lang, orgId, projectId, scenarioId } = $page.params;
 
-	// SSR: Get the ListScenarios store from page data
+	// SSR: Get the GetScenario store from page data
 	interface PageData {
-		ListScenarios: ListScenariosStore;
+		GetScenario: GetScenarioStore;
 	}
 	const props = $props<{ data: PageData }>();
-	const scenarios = $derived(props.data.ListScenarios);
+	const scenarioStore = $derived(props.data.GetScenario);
 
 	// Initialize stores
-	let createScenarioStore: CreateScenarioStore | null = null;
-	let updateScenarioStore: UpdateScenarioStore | null = null;
-	let deleteScenarioStore: DeleteScenarioStore | null = null;
 	let createEpisodeStore: CreateEpisodeStore | null = null;
 	let createPartStore: CreatePartStore | null = null;
 	let createScenePlanStore: CreateScenePlanStore | null = null;
-	let getScenarioStore: GetScenarioStore | null = null;
 	let reorderEpisodesStore: ReorderEpisodesStore | null = null;
 	let reorderPartsStore: ReorderPartsStore | null = null;
 	let reorderScenePlansStore: ReorderScenePlansStore | null = null;
+	let updateScenarioStore: UpdateScenarioStore | null = null;
+	let deleteScenarioStore: DeleteScenarioStore | null = null;
 
 	if (browser) {
-		createScenarioStore = new CreateScenarioStore();
-		updateScenarioStore = new UpdateScenarioStore();
-		deleteScenarioStore = new DeleteScenarioStore();
 		createEpisodeStore = new CreateEpisodeStore();
 		createPartStore = new CreatePartStore();
 		createScenePlanStore = new CreateScenePlanStore();
-		getScenarioStore = new GetScenarioStore();
 		reorderEpisodesStore = new ReorderEpisodesStore();
 		reorderPartsStore = new ReorderPartsStore();
 		reorderScenePlansStore = new ReorderScenePlansStore();
+		updateScenarioStore = new UpdateScenarioStore();
+		deleteScenarioStore = new DeleteScenarioStore();
 	}
 
 	// State
-	let showCreateDialog = $state(false);
-	let showEditDialog = $state(false);
-	let showDeleteDialog = $state(false);
 	let showEpisodeDialog = $state(false);
 	let showPartDialog = $state(false);
 	let showScenePlanDialog = $state(false);
-	let selectedScenarioId = $state<string | null>(null);
+	let showEditDialog = $state(false);
+	let showDeleteDialog = $state(false);
 	let selectedEpisodeId = $state<string | null>(null);
 	let selectedPartId = $state<string | null>(null);
-	let expandedScenarios = $state<Set<string>>(new Set());
 	let expandedEpisodes = $state<Set<string>>(new Set());
 	let expandedParts = $state<Set<string>>(new Set());
 
 	// Form state
-	let newScenarioTitle = $state('');
-	let newScenarioDescription = $state('');
 	let editScenarioTitle = $state('');
 	let editScenarioDescription = $state('');
 	let newEpisodeTitle = $state('');
@@ -86,64 +78,35 @@
 	let dragOverScenePlanIndex = $state<number | null>(null);
 
 	// Computed properties
-	const scenariosStore = $derived(scenarios);
-	const loading = $derived($scenariosStore.fetching && !$scenariosStore.data);
-	const error = $derived($scenariosStore.errors?.[0] ? new Error($scenariosStore.errors[0].message) : null);
-	const scenariosList = $derived($scenariosStore.data?.scenarios ?? []);
+	const loading = $derived($scenarioStore.fetching && !$scenarioStore.data);
+	const error = $derived($scenarioStore.errors?.[0] ? new Error($scenarioStore.errors[0].message) : null);
+	const scenario = $derived($scenarioStore.data?.scenario);
 
-	// Load scenario details when selected
+	// Load scenario data when scenarioId changes
 	$effect(() => {
-		if (selectedScenarioId && getScenarioStore && browser) {
-			getScenarioStore.fetch({
-				variables: { id: selectedScenarioId },
+		if (scenarioId && browser && scenarioStore) {
+			scenarioStore.fetch({
+				variables: { id: scenarioId },
 			});
 		}
 	});
 
-	async function handleCreateScenario() {
-		if (!newScenarioTitle.trim() || !createScenarioStore) return;
-
-		isCreating = true;
-		try {
-			const result = await createScenarioStore.mutate({
-				input: {
-					projectId: projectId,
-					title: newScenarioTitle.trim(),
-					description: newScenarioDescription.trim() || null,
-				},
-			});
-
-			if (result?.data?.createScenario) {
-				await scenariosStore.fetch({ blocking: true });
-				showCreateDialog = false;
-				newScenarioTitle = '';
-				newScenarioDescription = '';
-			}
-		} catch (error) {
-			console.error('Failed to create scenario:', error);
-			alert(`Failed to create scenario: ${error instanceof Error ? error.message : String(error)}`);
-		} finally {
-			isCreating = false;
-		}
-	}
-
 	async function handleUpdateScenario() {
-		if (!selectedScenarioId || !updateScenarioStore) return;
+		if (!scenarioId || !updateScenarioStore) return;
 
 		isUpdating = true;
 		try {
 			const result = await updateScenarioStore.mutate({
 				input: {
-					id: selectedScenarioId,
+					id: scenarioId,
 					title: editScenarioTitle.trim() || null,
 					description: editScenarioDescription.trim() || null,
 				},
 			});
 
 			if (result?.data?.updateScenario) {
-				await scenariosStore.fetch({ blocking: true });
+				await scenarioStore.fetch({ blocking: true });
 				showEditDialog = false;
-				selectedScenarioId = null;
 			}
 		} catch (error) {
 			console.error('Failed to update scenario:', error);
@@ -154,18 +117,17 @@
 	}
 
 	async function handleDeleteScenario() {
-		if (!selectedScenarioId || !deleteScenarioStore) return;
+		if (!scenarioId || !deleteScenarioStore) return;
 
 		isDeleting = true;
 		try {
 			const result = await deleteScenarioStore.mutate({
-				id: selectedScenarioId,
+				id: scenarioId,
 			});
 
 			if (result?.data?.deleteScenario) {
-				await scenariosStore.fetch({ blocking: true });
-				showDeleteDialog = false;
-				selectedScenarioId = null;
+				// Navigate back to scenario list
+				await goto(`/${lang}/orgs/${orgId}/project/${projectId}/scenario`);
 			}
 		} catch (error) {
 			console.error('Failed to delete scenario:', error);
@@ -176,25 +138,20 @@
 	}
 
 	async function handleCreateEpisode() {
-		if (!selectedScenarioId || !newEpisodeTitle.trim() || !createEpisodeStore) return;
+		if (!scenarioId || !newEpisodeTitle.trim() || !createEpisodeStore) return;
 
 		isCreating = true;
 		try {
 			const result = await createEpisodeStore.mutate({
 				input: {
-					scenarioId: selectedScenarioId,
+					scenarioId: scenarioId,
 					title: newEpisodeTitle.trim(),
 					description: newEpisodeDescription.trim() || null,
 				},
 			});
 
 			if (result?.data?.createEpisode) {
-				if (getScenarioStore) {
-					await getScenarioStore.fetch({
-						variables: { id: selectedScenarioId },
-						blocking: true,
-					});
-				}
+				await scenarioStore.fetch({ blocking: true });
 				showEpisodeDialog = false;
 				newEpisodeTitle = '';
 				newEpisodeDescription = '';
@@ -220,15 +177,12 @@
 				},
 			});
 
-			if (result?.data?.createPart && selectedScenarioId && getScenarioStore) {
-				await getScenarioStore.fetch({
-					variables: { id: selectedScenarioId },
-					blocking: true,
-				});
+			if (result?.data?.createPart) {
+				await scenarioStore.fetch({ blocking: true });
+				showPartDialog = false;
+				newPartTitle = '';
+				newPartDescription = '';
 			}
-			showPartDialog = false;
-			newPartTitle = '';
-			newPartDescription = '';
 		} catch (error) {
 			console.error('Failed to create part:', error);
 			alert(`Failed to create part: ${error instanceof Error ? error.message : String(error)}`);
@@ -249,42 +203,16 @@
 				},
 			});
 
-			if (result?.data?.createScenePlan && selectedScenarioId && getScenarioStore) {
-				await getScenarioStore.fetch({
-					variables: { id: selectedScenarioId },
-					blocking: true,
-				});
+			if (result?.data?.createScenePlan) {
+				await scenarioStore.fetch({ blocking: true });
+				showScenePlanDialog = false;
+				newScenePlanDescription = '';
 			}
-			showScenePlanDialog = false;
-			newScenePlanDescription = '';
 		} catch (error) {
 			console.error('Failed to create scene plan:', error);
 			alert(`Failed to create scene plan: ${error instanceof Error ? error.message : String(error)}`);
 		} finally {
 			isCreating = false;
-		}
-	}
-
-	function openEditDialog(scenario: { id: string; title: string; description: string | null }) {
-		selectedScenarioId = scenario.id;
-		editScenarioTitle = scenario.title;
-		editScenarioDescription = scenario.description || '';
-		showEditDialog = true;
-	}
-
-	function openDeleteDialog(scenarioId: string) {
-		selectedScenarioId = scenarioId;
-		showDeleteDialog = true;
-	}
-
-	function toggleScenario(scenarioId: string) {
-		if (expandedScenarios.has(scenarioId)) {
-			expandedScenarios.delete(scenarioId);
-		} else {
-			expandedScenarios.add(scenarioId);
-			if (selectedScenarioId !== scenarioId) {
-				selectedScenarioId = scenarioId;
-			}
 		}
 	}
 
@@ -304,11 +232,17 @@
 		}
 	}
 
-	const selectedScenario = $derived(
-		selectedScenarioId && getScenarioStore && $getScenarioStore?.data?.scenario
-			? $getScenarioStore.data.scenario
-			: null
-	);
+	function openEditDialog() {
+		if (scenario) {
+			editScenarioTitle = scenario.title;
+			editScenarioDescription = scenario.description || '';
+			showEditDialog = true;
+		}
+	}
+
+	function openDeleteDialog() {
+		showDeleteDialog = true;
+	}
 
 	// Drag and drop handlers for episodes
 	function handleEpisodeDragStart(e: DragEvent, episodeId: string) {
@@ -335,9 +269,9 @@
 		e.preventDefault();
 		dragOverEpisodeIndex = null;
 
-		if (!draggedEpisodeId || !selectedScenario || !selectedScenarioId || !reorderEpisodesStore) return;
+		if (!draggedEpisodeId || !scenario || !scenarioId || !reorderEpisodesStore) return;
 
-		const episodes = selectedScenario.episodes || [];
+		const episodes = scenario.episodes || [];
 		const dragIndex = episodes.findIndex((ep: { id: string }) => ep.id === draggedEpisodeId);
 		
 		if (dragIndex === -1 || dragIndex === dropIndex) {
@@ -354,19 +288,17 @@
 		try {
 			const result = await reorderEpisodesStore.mutate({
 				input: {
-					scenarioId: selectedScenarioId,
+					scenarioId: scenarioId,
 					episodeIds: reorderedEpisodes.map((ep: { id: string }) => ep.id),
 				},
 			});
 
 			if (result?.data?.reorderEpisodes) {
 				// Refresh scenario data
-				if (getScenarioStore) {
-					await getScenarioStore.fetch({
-						variables: { id: selectedScenarioId },
-						blocking: true,
-					});
-				}
+				await scenarioStore.fetch({
+					variables: { id: scenarioId },
+					blocking: true,
+				});
 			}
 		} catch (error) {
 			console.error('Failed to reorder episodes:', error);
@@ -406,9 +338,9 @@
 		e.preventDefault();
 		dragOverPartIndex = null;
 
-		if (!draggedPartId || !selectedScenario || !reorderPartsStore) return;
+		if (!draggedPartId || !scenario || !reorderPartsStore) return;
 
-		const episode = selectedScenario.episodes?.find((ep: { id: string }) => ep.id === episodeId);
+		const episode = scenario.episodes?.find((ep: { id: string }) => ep.id === episodeId);
 		if (!episode || !episode.parts) {
 			draggedPartId = null;
 			return;
@@ -438,12 +370,10 @@
 
 			if (result?.data?.reorderParts) {
 				// Refresh scenario data
-				if (getScenarioStore) {
-					await getScenarioStore.fetch({
-						variables: { id: selectedScenarioId },
-						blocking: true,
-					});
-				}
+				await scenarioStore.fetch({
+					variables: { id: scenarioId },
+					blocking: true,
+				});
 			}
 		} catch (error) {
 			console.error('Failed to reorder parts:', error);
@@ -483,11 +413,11 @@
 		e.preventDefault();
 		dragOverScenePlanIndex = null;
 
-		if (!draggedScenePlanId || !selectedScenario || !reorderScenePlansStore) return;
+		if (!draggedScenePlanId || !scenario || !reorderScenePlansStore) return;
 
 		// Find the part that contains this scene plan
 		let targetPart: { id: string; scenePlans?: Array<{ id: string }> } | null = null;
-		for (const episode of selectedScenario.episodes || []) {
+		for (const episode of scenario.episodes || []) {
 			const part = episode.parts?.find((p: { id: string }) => p.id === partId);
 			if (part) {
 				targetPart = part;
@@ -524,12 +454,10 @@
 
 			if (result?.data?.reorderScenePlans) {
 				// Refresh scenario data
-				if (getScenarioStore) {
-					await getScenarioStore.fetch({
-						variables: { id: selectedScenarioId },
-						blocking: true,
-					});
-				}
+				await scenarioStore.fetch({
+					variables: { id: scenarioId },
+					blocking: true,
+				});
 			}
 		} catch (error) {
 			console.error('Failed to reorder scene plans:', error);
@@ -550,20 +478,40 @@
 	
 	<div class="main-content">
 		<header class="page-header">
-			<h1 class="page-title">Scenario</h1>
-			<button 
-				class="create-button" 
-				onclick={() => showCreateDialog = true}
-				disabled={isCreating}
+			<a 
+				href={`/${lang}/orgs/${orgId}/project/${projectId}/scenario`}
+				class="back-link"
 			>
-				+ Create Scenario
-			</button>
+				← Back to Scenarios
+			</a>
+			<div class="header-actions">
+				<h1 class="page-title">{scenario?.title || 'Loading...'}</h1>
+				<div class="action-buttons">
+					<button 
+						class="edit-button" 
+						onclick={openEditDialog}
+						disabled={isUpdating || !scenario}
+					>
+						Edit
+					</button>
+					<button 
+						class="delete-button" 
+						onclick={openDeleteDialog}
+						disabled={isDeleting || !scenario}
+					>
+						Delete
+					</button>
+				</div>
+			</div>
+			{#if scenario?.description}
+				<p class="scenario-description">{scenario.description}</p>
+			{/if}
 		</header>
 
 		<main class="page-content">
 			{#if loading}
 				<div class="loading-state">
-					<p>Loading scenarios...</p>
+					<p>Loading scenario...</p>
 				</div>
 			{:else if error}
 				<div class="error-state">
@@ -571,7 +519,7 @@
 					<button
 						onclick={async () => {
 							try {
-								await scenariosStore.fetch();
+								await scenarioStore.fetch();
 							} catch (error) {
 								console.error('Failed to retry:', error);
 							}
@@ -581,235 +529,135 @@
 						Retry
 					</button>
 				</div>
-			{:else if scenariosList.length === 0}
+			{:else if !scenario}
 				<div class="empty-state">
-					<svg width="64" height="64" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5">
-						<path d="M4 3C4 2.44772 4.44772 2 5 2H15C15.5523 2 16 2.44772 16 3V17C16 17.5523 15.5523 18 15 18H5C4.44772 18 4 17.5523 4 17V3Z"/>
-						<path d="M4 6H16"/>
-					</svg>
-					<h2>No Scenarios</h2>
-					<p>Create your first scenario to start planning your story structure.</p>
+					<p>Scenario not found</p>
 				</div>
 			{:else}
-				<div class="scenarios-list">
-					{#each scenariosList as scenario (scenario.id)}
-						<div class="scenario-item">
-							<div class="scenario-header" onclick={() => toggleScenario(scenario.id)}>
-								<button class="expand-button">
-									{expandedScenarios.has(scenario.id) ? '▼' : '▶'}
-								</button>
-								<div class="scenario-info">
-									<h3 class="scenario-title">{scenario.title}</h3>
-									{#if scenario.description}
-										<p class="scenario-description">{scenario.description}</p>
-									{/if}
-								</div>
-								<div class="scenario-actions">
-									<button 
-										class="action-button"
-										onclick={(e) => {
-											e.stopPropagation();
-											openEditDialog(scenario);
-										}}
+				<div class="scenario-detail">
+					<div class="episodes-section">
+						<div class="section-header">
+							<h2>Episodes</h2>
+							<button 
+								class="add-button"
+								onclick={() => showEpisodeDialog = true}
+								disabled={isCreating}
+							>
+								+ Add Episode
+							</button>
+						</div>
+						{#if scenario.episodes && scenario.episodes.length > 0}
+							<div class="episodes-list">
+								{#each scenario.episodes as episode, episodeIndex (episode.id)}
+									<div 
+										class="episode-item"
+										class:dragging={draggedEpisodeId === episode.id}
+										class:drag-over={dragOverEpisodeIndex === episodeIndex}
+										draggable="true"
+										ondragstart={(e) => handleEpisodeDragStart(e, episode.id)}
+										ondragover={(e) => handleEpisodeDragOver(e, episodeIndex)}
+										ondragleave={handleEpisodeDragLeave}
+										ondrop={(e) => handleEpisodeDrop(e, episodeIndex)}
+										ondragend={handleEpisodeDragEnd}
 									>
-										Edit
-									</button>
-									<button 
-										class="action-button delete-button"
-										onclick={(e) => {
-											e.stopPropagation();
-											openDeleteDialog(scenario.id);
-										}}
-									>
-										Delete
-									</button>
-								</div>
-							</div>
-							{#if expandedScenarios.has(scenario.id) && selectedScenario}
-								<div class="scenario-content">
-									<div class="episodes-section">
-										<div class="section-header">
-											<h4>Episodes</h4>
-											<button 
-												class="add-button"
-												onclick={() => {
-													selectedScenarioId = scenario.id;
-													showEpisodeDialog = true;
-												}}
-											>
-												+ Add Episode
+										<div class="episode-header" onclick={() => toggleEpisode(episode.id)}>
+											<button class="expand-button">
+												{expandedEpisodes.has(episode.id) ? '▼' : '▶'}
 											</button>
+											<h3 class="episode-title">{episode.title}</h3>
 										</div>
-										{#if selectedScenario.episodes && selectedScenario.episodes.length > 0}
-											{#each selectedScenario.episodes as episode, episodeIndex (episode.id)}
-												<div 
-													class="episode-item"
-													class:dragging={draggedEpisodeId === episode.id}
-													class:drag-over={dragOverEpisodeIndex === episodeIndex}
-													draggable="true"
-													ondragstart={(e) => handleEpisodeDragStart(e, episode.id)}
-													ondragover={(e) => handleEpisodeDragOver(e, episodeIndex)}
-													ondragleave={handleEpisodeDragLeave}
-													ondrop={(e) => handleEpisodeDrop(e, episodeIndex)}
-													ondragend={handleEpisodeDragEnd}
-												>
-													<div class="episode-header" onclick={() => toggleEpisode(episode.id)}>
-														<button class="expand-button">
-															{expandedEpisodes.has(episode.id) ? '▼' : '▶'}
-														</button>
-														<h5 class="episode-title">{episode.title}</h5>
-													</div>
-													{#if expandedEpisodes.has(episode.id) && episode.parts}
-														<div class="parts-section">
-															<div class="section-header">
-																<h6>Parts</h6>
-																<button 
-																	class="add-button"
-																	onclick={() => {
-																		selectedEpisodeId = episode.id;
-																		showPartDialog = true;
-																	}}
-																>
-																	+ Add Part
-																</button>
-															</div>
-															{#if episode.parts.length > 0}
-																{#each episode.parts as part, partIndex (part.id)}
-																	<div 
-																		class="part-item"
-																		class:dragging={draggedPartId === part.id}
-																		class:drag-over={dragOverPartIndex === partIndex}
-																		draggable="true"
-																		ondragstart={(e) => handlePartDragStart(e, part.id)}
-																		ondragover={(e) => handlePartDragOver(e, partIndex)}
-																		ondragleave={handlePartDragLeave}
-																		ondrop={(e) => handlePartDrop(e, partIndex, episode.id)}
-																		ondragend={handlePartDragEnd}
-																	>
-																		<div class="part-header" onclick={() => togglePart(part.id)}>
-																			<button class="expand-button">
-																				{expandedParts.has(part.id) ? '▼' : '▶'}
+										{#if expandedEpisodes.has(episode.id) && episode.parts}
+											<div class="parts-section">
+												<div class="section-header">
+													<h4>Parts</h4>
+													<button 
+														class="add-button"
+														onclick={() => {
+															selectedEpisodeId = episode.id;
+															showPartDialog = true;
+														}}
+													>
+														+ Add Part
+													</button>
+												</div>
+												{#if episode.parts.length > 0}
+													<div class="parts-list">
+														{#each episode.parts as part, partIndex (part.id)}
+															<div 
+																class="part-item"
+																class:dragging={draggedPartId === part.id}
+																class:drag-over={dragOverPartIndex === partIndex}
+																draggable="true"
+																ondragstart={(e) => handlePartDragStart(e, part.id)}
+																ondragover={(e) => handlePartDragOver(e, partIndex)}
+																ondragleave={handlePartDragLeave}
+																ondrop={(e) => handlePartDrop(e, partIndex, episode.id)}
+																ondragend={handlePartDragEnd}
+															>
+																<div class="part-header" onclick={() => togglePart(part.id)}>
+																	<button class="expand-button">
+																		{expandedParts.has(part.id) ? '▼' : '▶'}
+																	</button>
+																	<h4 class="part-title">{part.title}</h4>
+																</div>
+																{#if expandedParts.has(part.id) && part.scenePlans}
+																	<div class="scene-plans-section">
+																		<div class="section-header">
+																			<h5>Scene Plans</h5>
+																			<button 
+																				class="add-button"
+																				onclick={() => {
+																					selectedPartId = part.id;
+																					showScenePlanDialog = true;
+																				}}
+																			>
+																				+ Add Scene Plan
 																			</button>
-																			<h6 class="part-title">{part.title}</h6>
 																		</div>
-																		{#if expandedParts.has(part.id) && part.scenePlans}
-																			<div class="scene-plans-section">
-																				<div class="section-header">
-																					<h6>Scene Plans</h6>
-																					<button 
-																						class="add-button"
-																						onclick={() => {
-																							selectedPartId = part.id;
-																							showScenePlanDialog = true;
-																						}}
-																					>
-																						+ Add Scene Plan
-																					</button>
-																				</div>
-																				{#if part.scenePlans.length > 0}
-																					<ul class="scene-plans-list">
-																						{#each part.scenePlans as scenePlan, scenePlanIndex (scenePlan.id)}
-																							<li 
-																								class="scene-plan-item"
-																								class:dragging={draggedScenePlanId === scenePlan.id}
-																								class:drag-over={dragOverScenePlanIndex === scenePlanIndex}
-																								draggable="true"
-																								ondragstart={(e) => handleScenePlanDragStart(e, scenePlan.id)}
-																								ondragover={(e) => handleScenePlanDragOver(e, scenePlanIndex)}
-																								ondragleave={handleScenePlanDragLeave}
-																								ondrop={(e) => handleScenePlanDrop(e, scenePlanIndex, part.id)}
-																								ondragend={handleScenePlanDragEnd}
-																							>{scenePlan.description}</li>
-																						{/each}
-																					</ul>
-																				{:else}
-																					<p class="empty-text">No scene plans yet</p>
-																				{/if}
-																			</div>
+																		{#if part.scenePlans.length > 0}
+																			<ul class="scene-plans-list">
+																				{#each part.scenePlans as scenePlan, scenePlanIndex (scenePlan.id)}
+																					<li 
+																						class="scene-plan-item"
+																						class:dragging={draggedScenePlanId === scenePlan.id}
+																						class:drag-over={dragOverScenePlanIndex === scenePlanIndex}
+																						draggable="true"
+																						ondragstart={(e) => handleScenePlanDragStart(e, scenePlan.id)}
+																						ondragover={(e) => handleScenePlanDragOver(e, scenePlanIndex)}
+																						ondragleave={handleScenePlanDragLeave}
+																						ondrop={(e) => handleScenePlanDrop(e, scenePlanIndex, part.id)}
+																						ondragend={handleScenePlanDragEnd}
+																					>{scenePlan.description}</li>
+																				{/each}
+																			</ul>
+																		{:else}
+																			<p class="empty-text">No scene plans yet</p>
 																		{/if}
 																	</div>
-																{/each}
-															{:else}
-																<p class="empty-text">No parts yet</p>
-															{/if}
-														</div>
-													{/if}
-												</div>
-											{/each}
-										{:else}
-											<p class="empty-text">No episodes yet</p>
+																{/if}
+															</div>
+														{/each}
+													</div>
+												{:else}
+													<p class="empty-text">No parts yet</p>
+												{/if}
+											</div>
 										{/if}
 									</div>
-								</div>
-							{/if}
-						</div>
-					{/each}
+								{/each}
+							</div>
+						{:else}
+							<p class="empty-text">No episodes yet. Create your first episode to start planning.</p>
+						{/if}
+					</div>
 				</div>
 			{/if}
 		</main>
 	</div>
 </div>
 
-<!-- Create Scenario Dialog -->
-{#if showCreateDialog}
-	<div class="dialog-overlay" onclick={() => showCreateDialog = false}>
-		<div class="dialog" onclick={(e) => e.stopPropagation()}>
-			<h2>Create Scenario</h2>
-			<form
-				onsubmit={(e) => {
-					e.preventDefault();
-					handleCreateScenario();
-				}}
-			>
-				<div class="form-group">
-					<label for="scenario-title">Title *</label>
-					<input
-						id="scenario-title"
-						type="text"
-						bind:value={newScenarioTitle}
-						placeholder="Enter scenario title"
-						required
-						disabled={isCreating}
-					/>
-				</div>
-				<div class="form-group">
-					<label for="scenario-description">Description</label>
-					<textarea
-						id="scenario-description"
-						bind:value={newScenarioDescription}
-						placeholder="Enter scenario description (optional)"
-						disabled={isCreating}
-						rows="3"
-					></textarea>
-				</div>
-				<div class="dialog-actions">
-					<button
-						type="button"
-						class="cancel-button"
-						onclick={() => {
-							showCreateDialog = false;
-							newScenarioTitle = '';
-							newScenarioDescription = '';
-						}}
-						disabled={isCreating}
-					>
-						Cancel
-					</button>
-					<button
-						type="submit"
-						class="create-button"
-						disabled={isCreating || !newScenarioTitle.trim()}
-					>
-						{isCreating ? 'Creating...' : 'Create'}
-					</button>
-				</div>
-			</form>
-		</div>
-	</div>
-{/if}
-
 <!-- Edit Scenario Dialog -->
-{#if showEditDialog}
+{#if showEditDialog && scenario}
 	<div class="dialog-overlay" onclick={() => showEditDialog = false}>
 		<div class="dialog" onclick={(e) => e.stopPropagation()}>
 			<h2>Edit Scenario</h2>
@@ -845,7 +693,6 @@
 						class="cancel-button"
 						onclick={() => {
 							showEditDialog = false;
-							selectedScenarioId = null;
 						}}
 						disabled={isUpdating}
 					>
@@ -876,7 +723,6 @@
 					class="cancel-button"
 					onclick={() => {
 						showDeleteDialog = false;
-						selectedScenarioId = null;
 					}}
 					disabled={isDeleting}
 				>
@@ -1061,62 +907,83 @@
 <style>
 	.resource-page {
 		display: flex;
-		flex-direction: row;
-		height: 100vh;
+		min-height: 100vh;
 		background-color: #1a1a1a;
 		color: #ffffff;
-		overflow: hidden;
 	}
 
 	.main-content {
 		flex: 1;
-		display: flex;
-		flex-direction: column;
-		min-width: 0;
-		overflow: hidden;
+		padding: 2rem;
+		margin-left: 250px;
 	}
 
 	.page-header {
-		padding: 1.5rem 2rem;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-		background-color: #1a1a1a;
+		margin-bottom: 2rem;
+	}
+
+	.back-link {
+		display: inline-block;
+		margin-bottom: 1rem;
+		color: rgba(255, 255, 255, 0.7);
+		text-decoration: none;
+		font-size: 0.875rem;
+	}
+
+	.back-link:hover {
+		color: #ffffff;
+		text-decoration: underline;
+	}
+
+	.header-actions {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		margin-bottom: 0.5rem;
 	}
 
 	.page-title {
-		font-size: 1.5rem;
-		font-weight: 500;
+		font-size: 2rem;
+		font-weight: 600;
 		margin: 0;
 		color: #ffffff;
 	}
 
-	.page-content {
-		flex: 1;
-		overflow-y: auto;
-		padding: 2rem;
+	.action-buttons {
+		display: flex;
+		gap: 0.5rem;
 	}
 
-	.create-button {
+	.edit-button,
+	.delete-button {
 		padding: 0.5rem 1rem;
-		background-color: #ffffff;
-		color: #000000;
-		border: none;
+		background-color: #252525;
+		color: #ffffff;
+		border: 1px solid #404040;
 		border-radius: 4px;
-		font-size: 0.875rem;
-		font-weight: 500;
 		cursor: pointer;
+		font-size: 0.875rem;
 		transition: background-color 0.2s;
 	}
 
-	.create-button:hover:not(:disabled) {
-		background-color: rgba(255, 255, 255, 0.9);
+	.edit-button:hover:not(:disabled) {
+		background-color: #303030;
 	}
 
-	.create-button:disabled {
+	.delete-button:hover:not(:disabled) {
+		background-color: #4a1a1a;
+		border-color: #6a2a2a;
+	}
+
+	.edit-button:disabled,
+	.delete-button:disabled {
 		opacity: 0.5;
 		cursor: not-allowed;
+	}
+
+	.scenario-description {
+		color: rgba(255, 255, 255, 0.7);
+		margin-top: 0.5rem;
 	}
 
 	.loading-state,
@@ -1145,127 +1012,76 @@
 		cursor: pointer;
 	}
 
-	.scenarios-list {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
+	.scenario-detail {
+		max-width: 1200px;
 	}
 
-	.scenario-item {
-		background-color: #2a2a2a;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		border-radius: 8px;
-		overflow: hidden;
-	}
-
-	.scenario-header {
-		display: flex;
-		align-items: center;
-		padding: 1rem;
-		cursor: pointer;
-		gap: 0.75rem;
-	}
-
-	.expand-button {
-		background: none;
-		border: none;
-		color: rgba(255, 255, 255, 0.7);
-		cursor: pointer;
-		font-size: 0.75rem;
-		padding: 0.25rem;
-	}
-
-	.scenario-info {
-		flex: 1;
-	}
-
-	.scenario-title {
-		font-size: 1.125rem;
-		font-weight: 500;
-		margin: 0 0 0.25rem 0;
-		color: #ffffff;
-	}
-
-	.scenario-description {
-		font-size: 0.875rem;
-		color: rgba(255, 255, 255, 0.7);
-		margin: 0;
-	}
-
-	.scenario-actions {
-		display: flex;
-		gap: 0.5rem;
-	}
-
-	.action-button {
-		padding: 0.375rem 0.75rem;
-		background-color: rgba(255, 255, 255, 0.1);
-		color: #ffffff;
-		border: 1px solid rgba(255, 255, 255, 0.2);
-		border-radius: 4px;
-		font-size: 0.875rem;
-		cursor: pointer;
-		transition: background-color 0.2s;
-	}
-
-	.action-button:hover {
-		background-color: rgba(255, 255, 255, 0.2);
-	}
-
-	.delete-button {
-		background-color: rgba(255, 107, 107, 0.2);
-		border-color: rgba(255, 107, 107, 0.5);
-	}
-
-	.delete-button:hover {
-		background-color: rgba(255, 107, 107, 0.3);
-	}
-
-	.scenario-content {
-		padding: 1rem;
-		border-top: 1px solid rgba(255, 255, 255, 0.1);
-		background-color: #1f1f1f;
-	}
-
-	.episodes-section,
-	.parts-section,
-	.scene-plans-section {
-		margin-top: 1rem;
+	.episodes-section {
+		margin-top: 2rem;
 	}
 
 	.section-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		margin-bottom: 0.75rem;
+		margin-bottom: 1rem;
 	}
 
+	.section-header h2,
 	.section-header h4,
-	.section-header h6 {
-		font-size: 1rem;
-		font-weight: 500;
+	.section-header h5 {
 		margin: 0;
 		color: #ffffff;
 	}
 
-	.add-button {
-		padding: 0.375rem 0.75rem;
-		background-color: rgba(255, 255, 255, 0.1);
-		color: #ffffff;
-		border: 1px solid rgba(255, 255, 255, 0.2);
-		border-radius: 4px;
-		font-size: 0.75rem;
-		cursor: pointer;
+	.section-header h2 {
+		font-size: 1.5rem;
 	}
 
-	.add-button:hover {
-		background-color: rgba(255, 255, 255, 0.2);
+	.section-header h4 {
+		font-size: 1.125rem;
+	}
+
+	.section-header h5 {
+		font-size: 1rem;
+	}
+
+	.add-button {
+		padding: 0.5rem 1rem;
+		background-color: #ffffff;
+		color: #000000;
+		border: none;
+		border-radius: 4px;
+		font-size: 0.875rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+
+	.add-button:hover:not(:disabled) {
+		background-color: rgba(255, 255, 255, 0.9);
+	}
+
+	.add-button:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	.episodes-list,
+	.parts-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
 	}
 
 	.episode-item,
 	.part-item {
 		cursor: move;
 		transition: opacity 0.2s, transform 0.2s;
+		margin-bottom: 0.75rem;
+		padding: 0.75rem;
+		background-color: #252525;
+		border-radius: 4px;
 	}
 
 	.episode-item.dragging,
@@ -1279,28 +1095,6 @@
 		transform: translateY(-2px);
 	}
 
-	.scene-plan-item {
-		cursor: move;
-		transition: opacity 0.2s, transform 0.2s;
-	}
-
-	.scene-plan-item.dragging {
-		opacity: 0.5;
-	}
-
-	.scene-plan-item.drag-over {
-		border-top: 2px solid #ffffff;
-		transform: translateY(-2px);
-	}
-
-	.episode-item,
-	.part-item {
-		margin-bottom: 0.75rem;
-		padding: 0.75rem;
-		background-color: #252525;
-		border-radius: 4px;
-	}
-
 	.episode-header,
 	.part-header {
 		display: flex;
@@ -1309,14 +1103,13 @@
 		cursor: pointer;
 	}
 
-	.scenario-title-link {
-		text-decoration: none;
-		color: inherit;
-		flex: 1;
-	}
-
-	.scenario-title-link:hover .scenario-title {
-		text-decoration: underline;
+	.expand-button {
+		background: none;
+		border: none;
+		color: #ffffff;
+		cursor: pointer;
+		font-size: 0.75rem;
+		padding: 0.25rem;
 	}
 
 	.episode-title,
@@ -1327,6 +1120,12 @@
 		color: #ffffff;
 	}
 
+	.parts-section,
+	.scene-plans-section {
+		margin-top: 1rem;
+		margin-left: 1.5rem;
+	}
+
 	.scene-plans-list {
 		list-style: none;
 		padding: 0;
@@ -1334,12 +1133,23 @@
 	}
 
 	.scene-plan-item {
+		cursor: move;
+		transition: opacity 0.2s, transform 0.2s;
 		padding: 0.5rem;
 		margin-bottom: 0.5rem;
 		background-color: #1f1f1f;
 		border-radius: 4px;
 		font-size: 0.875rem;
 		color: rgba(255, 255, 255, 0.8);
+	}
+
+	.scene-plan-item.dragging {
+		opacity: 0.5;
+	}
+
+	.scene-plan-item.drag-over {
+		border-top: 2px solid #ffffff;
+		transform: translateY(-2px);
 	}
 
 	.empty-text {
@@ -1362,48 +1172,49 @@
 	}
 
 	.dialog {
-		background-color: #2a2a2a;
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		background-color: #252525;
 		border-radius: 8px;
 		padding: 2rem;
-		min-width: 400px;
-		max-width: 600px;
-		color: #ffffff;
+		max-width: 500px;
+		width: 90%;
+		max-height: 90vh;
+		overflow-y: auto;
 	}
 
 	.dialog h2 {
 		margin-top: 0;
 		margin-bottom: 1.5rem;
-		font-size: 1.5rem;
+		color: #ffffff;
 	}
 
 	.form-group {
-		margin-bottom: 1.5rem;
+		margin-bottom: 1rem;
 	}
 
 	.form-group label {
 		display: block;
 		margin-bottom: 0.5rem;
+		color: rgba(255, 255, 255, 0.9);
+		font-size: 0.875rem;
 		font-weight: 500;
-		color: #ffffff;
 	}
 
 	.form-group input,
 	.form-group textarea {
 		width: 100%;
-		padding: 0.75rem;
-		background-color: rgba(255, 255, 255, 0.1);
-		border: 1px solid rgba(255, 255, 255, 0.2);
+		padding: 0.5rem;
+		background-color: #1a1a1a;
+		border: 1px solid #404040;
 		border-radius: 4px;
 		color: #ffffff;
-		font-size: 1rem;
+		font-size: 0.875rem;
 		font-family: inherit;
 	}
 
 	.form-group input:focus,
 	.form-group textarea:focus {
 		outline: none;
-		border-color: rgba(255, 255, 255, 0.5);
+		border-color: #ffffff;
 	}
 
 	.form-group input:disabled,
@@ -1415,27 +1226,46 @@
 	.dialog-actions {
 		display: flex;
 		justify-content: flex-end;
-		gap: 1rem;
-		margin-top: 2rem;
+		gap: 0.5rem;
+		margin-top: 1.5rem;
 	}
 
 	.cancel-button {
-		padding: 0.75rem 1.5rem;
-		background-color: transparent;
+		padding: 0.5rem 1rem;
+		background-color: #404040;
 		color: #ffffff;
-		border: 1px solid rgba(255, 255, 255, 0.2);
+		border: none;
 		border-radius: 4px;
-		font-size: 1rem;
+		cursor: pointer;
+		font-size: 0.875rem;
+	}
+
+	.cancel-button:hover:not(:disabled) {
+		background-color: #505050;
+	}
+
+	.cancel-button:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	.create-button {
+		padding: 0.5rem 1rem;
+		background-color: #ffffff;
+		color: #000000;
+		border: none;
+		border-radius: 4px;
+		font-size: 0.875rem;
 		font-weight: 500;
 		cursor: pointer;
 		transition: background-color 0.2s;
 	}
 
-	.cancel-button:hover:not(:disabled) {
-		background-color: rgba(255, 255, 255, 0.1);
+	.create-button:hover:not(:disabled) {
+		background-color: rgba(255, 255, 255, 0.9);
 	}
 
-	.cancel-button:disabled {
+	.create-button:disabled {
 		opacity: 0.5;
 		cursor: not-allowed;
 	}
