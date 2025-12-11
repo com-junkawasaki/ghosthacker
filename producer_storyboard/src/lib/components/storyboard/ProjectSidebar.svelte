@@ -1,15 +1,81 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
+	import { ListProjectsStore } from '../../../../.houdini/plugins/houdini-svelte/stores/ListProjects.js';
 
 	type Props = {
 		projectId: string;
+		projectTitle?: string;
 	};
 
-	let { projectId }: Props = $props();
+	type Project = {
+		id: string;
+		orgId: string;
+		title: string;
+		description: string | null;
+	};
+
+	let { projectId, projectTitle = 'Project' }: Props = $props();
 
 	const currentPath = $derived($page.url.pathname);
-	const { lang, orgId } = $page.params;
+	const lang = $derived($page.params.lang);
+	const orgId = $derived($page.params.orgId);
+
+	// Project list for switching
+	let projects = $state<Project[]>([]);
+	let showProjectDropdown = $state(false);
+	let listProjectsStore: ListProjectsStore | null = null;
+
+	const currentProject = $derived(projects.find((p: Project) => p.id === projectId));
+	const displayTitle = $derived(currentProject?.title ?? projectTitle);
+
+	if (browser) {
+		listProjectsStore = new ListProjectsStore();
+	}
+
+	onMount(async () => {
+		if (!browser || !orgId || !listProjectsStore) return;
+		
+		try {
+			const result = await listProjectsStore.fetch({ variables: { orgId } });
+			if (result?.data?.projects) {
+				projects = result.data.projects as Project[];
+			}
+		} catch (err) {
+			console.error('[ProjectSidebar] Failed to load projects:', err);
+		}
+	});
+
+	function handleProjectSelect(selectedProjectId: string) {
+		showProjectDropdown = false;
+		goto(`/${lang}/orgs/${orgId}/project/${selectedProjectId}/editor`);
+	}
+
+	function handleBackToProjects() {
+		goto(`/${lang}/orgs/${orgId}/project`);
+	}
+
+	function handleClickOutside(event: MouseEvent) {
+		const target = event.target as HTMLElement;
+		if (!target.closest('.project-selector')) {
+			showProjectDropdown = false;
+		}
+	}
+
+	// Add click outside listener when dropdown is open
+	$effect(() => {
+		if (!browser) return;
+		
+		if (showProjectDropdown) {
+			document.addEventListener('click', handleClickOutside);
+		}
+		
+		return () => {
+			document.removeEventListener('click', handleClickOutside);
+		};
+	});
 
 	function buildPath(viewName: string): string {
 		return `/${lang}/orgs/${orgId}/project/${projectId}/${viewName}`;
@@ -89,8 +155,59 @@
 
 <aside class="sidebar">
 	<div class="sidebar-header">
-		<div class="logo">S</div>
-		<h2 class="sidebar-title">Project</h2>
+		<button class="back-button" onclick={handleBackToProjects} aria-label="Back to projects">
+			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+				<path d="M15 10H5M5 10L10 5M5 10L10 15" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>
+		</button>
+		<div class="project-selector">
+			<button 
+				class="project-selector-button"
+				onclick={() => showProjectDropdown = !showProjectDropdown}
+				aria-expanded={showProjectDropdown}
+				aria-haspopup="listbox"
+			>
+				<span class="project-title">{displayTitle}</span>
+				<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+					<path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+				</svg>
+			</button>
+			{#if showProjectDropdown}
+				<div class="project-dropdown" role="listbox">
+					<div class="project-dropdown-header">
+						<span>Switch Project</span>
+					</div>
+					<ul class="project-list">
+						{#each projects as project (project.id)}
+							<li>
+								<button
+									class="project-option"
+									class:active={project.id === projectId}
+									onclick={() => handleProjectSelect(project.id)}
+									role="option"
+									aria-selected={project.id === projectId}
+								>
+									<span class="project-option-title">{project.title}</span>
+									{#if project.id === projectId}
+										<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+											<path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/>
+										</svg>
+									{/if}
+								</button>
+							</li>
+						{/each}
+					</ul>
+					<div class="project-dropdown-footer">
+						<button class="view-all-button" onclick={handleBackToProjects}>
+							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+								<path d="M2 4h12M2 8h12M2 12h12" stroke-width="1.5" stroke-linecap="round"/>
+							</svg>
+							View all projects
+						</button>
+					</div>
+				</div>
+			{/if}
+		</div>
 	</div>
 
 	<nav class="sidebar-nav">
@@ -179,31 +296,153 @@
 	}
 
 	.sidebar-header {
-		padding: 1.5rem 1rem;
+		padding: 0.75rem;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 		display: flex;
 		align-items: center;
-		gap: 0.75rem;
+		gap: 0.5rem;
 	}
 
-	.logo {
+	.back-button {
 		width: 32px;
 		height: 32px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		font-size: 1.25rem;
-		font-weight: 600;
-		color: #ffffff;
+		background: none;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 6px;
+		color: rgba(255, 255, 255, 0.7);
+		cursor: pointer;
+		transition: all 0.2s;
+		flex-shrink: 0;
+	}
+
+	.back-button:hover {
 		background-color: rgba(255, 255, 255, 0.1);
+		color: #ffffff;
+		border-color: rgba(255, 255, 255, 0.2);
+	}
+
+	.project-selector {
+		flex: 1;
+		position: relative;
+		min-width: 0;
+	}
+
+	.project-selector-button {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
+		padding: 0.5rem 0.75rem;
+		background-color: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 6px;
+		color: #ffffff;
+		font-size: 0.875rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+
+	.project-selector-button:hover {
+		background-color: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.2);
+	}
+
+	.project-title {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.project-dropdown {
+		position: absolute;
+		top: calc(100% + 4px);
+		left: 0;
+		right: 0;
+		background-color: #252525;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 8px;
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+		z-index: 100;
+		overflow: hidden;
+	}
+
+	.project-dropdown-header {
+		padding: 0.5rem 0.75rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: rgba(255, 255, 255, 0.5);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.project-list {
+		list-style: none;
+		padding: 0.25rem 0;
+		margin: 0;
+		max-height: 200px;
+		overflow-y: auto;
+	}
+
+	.project-option {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
+		padding: 0.5rem 0.75rem;
+		background: none;
+		border: none;
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 0.875rem;
+		cursor: pointer;
+		transition: background-color 0.15s;
+		text-align: left;
+	}
+
+	.project-option:hover {
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+
+	.project-option.active {
+		color: #3b82f6;
+		background-color: rgba(59, 130, 246, 0.1);
+	}
+
+	.project-option-title {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.project-dropdown-footer {
+		padding: 0.25rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.view-all-button {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.5rem 0.75rem;
+		background: none;
+		border: none;
+		color: rgba(255, 255, 255, 0.6);
+		font-size: 0.813rem;
+		cursor: pointer;
+		transition: all 0.15s;
 		border-radius: 4px;
 	}
 
-	.sidebar-title {
-		font-size: 1rem;
-		font-weight: 500;
+	.view-all-button:hover {
+		background-color: rgba(255, 255, 255, 0.1);
 		color: #ffffff;
-		margin: 0;
 	}
 
 	.sidebar-nav {
