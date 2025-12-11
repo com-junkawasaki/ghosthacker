@@ -14,6 +14,7 @@ use crate::ports::translation_service::TranslationService;
 use crate::ports::clerk::{get_clerk_auth_from_context, require_auth_and_org};
 use crate::schema::storyboard::{Project, Storyboard, VideoStatus, Scene, GeneratedImage, Character, Dialogue, CharacterAsset};
 use crate::schema::composer::{Composer, AudioTrack, AudioClip, SunoMusic};
+use crate::schema::scenario::{Scenario, Episode, Part, ScenePlan};
 use crate::resolvers::composer::{CreateComposerInput, CreateAudioTrackInput, CreateAudioClipInput, GenerateSunoMusicInput, UpdateAudioClipInput};
 use uuid::Uuid;
 use serde_json::json;
@@ -163,6 +164,76 @@ pub struct UpdateDialogueInput {
     pub start_time_seconds: Option<f64>,
     #[graphql(name = "durationSeconds")]
     pub duration_seconds: Option<f64>,
+    #[graphql(name = "orderIndex")]
+    pub order_index: Option<i32>,
+}
+
+#[derive(InputObject)]
+pub struct CreateScenarioInput {
+    #[graphql(name = "projectId")]
+    pub project_id: ID,
+    pub title: String,
+    pub description: Option<String>,
+}
+
+#[derive(InputObject)]
+pub struct UpdateScenarioInput {
+    pub id: ID,
+    pub title: Option<String>,
+    pub description: Option<String>,
+}
+
+#[derive(InputObject)]
+pub struct CreateEpisodeInput {
+    #[graphql(name = "scenarioId")]
+    pub scenario_id: ID,
+    pub title: String,
+    pub description: Option<String>,
+    #[graphql(name = "orderIndex")]
+    pub order_index: Option<i32>,
+}
+
+#[derive(InputObject)]
+pub struct UpdateEpisodeInput {
+    pub id: ID,
+    pub title: Option<String>,
+    pub description: Option<String>,
+    #[graphql(name = "orderIndex")]
+    pub order_index: Option<i32>,
+}
+
+#[derive(InputObject)]
+pub struct CreatePartInput {
+    #[graphql(name = "episodeId")]
+    pub episode_id: ID,
+    pub title: String,
+    pub description: Option<String>,
+    #[graphql(name = "orderIndex")]
+    pub order_index: Option<i32>,
+}
+
+#[derive(InputObject)]
+pub struct UpdatePartInput {
+    pub id: ID,
+    pub title: Option<String>,
+    pub description: Option<String>,
+    #[graphql(name = "orderIndex")]
+    pub order_index: Option<i32>,
+}
+
+#[derive(InputObject)]
+pub struct CreateScenePlanInput {
+    #[graphql(name = "partId")]
+    pub part_id: ID,
+    pub description: String,
+    #[graphql(name = "orderIndex")]
+    pub order_index: Option<i32>,
+}
+
+#[derive(InputObject)]
+pub struct UpdateScenePlanInput {
+    pub id: ID,
+    pub description: Option<String>,
     #[graphql(name = "orderIndex")]
     pub order_index: Option<i32>,
 }
@@ -1871,5 +1942,436 @@ impl MutationRoot {
     /// Reorder audio clips on a track
     async fn reorder_audio_clips(&self, ctx: &Context<'_>, track_id: ID, clip_ids: Vec<ID>) -> Result<Vec<AudioClip>> {
         crate::resolvers::composer::reorder_audio_clips(ctx, track_id, clip_ids).await
+    }
+
+    /// Create a new scenario
+    async fn create_scenario(&self, ctx: &Context<'_>, input: CreateScenarioInput) -> Result<Scenario> {
+        let pool = ctx.data::<PostgresPool>()?;
+        let auth = require_auth_and_org(ctx)?;
+        
+        let project_uuid = Uuid::parse_str(&input.project_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid project ID: {}", e)))?;
+        
+        // Verify project belongs to organization
+        let project_org: Option<Option<String>> = sqlx::query_scalar::<_, Option<String>>(
+            "SELECT org_id FROM storyboard_projects WHERE id = $1"
+        )
+        .bind(project_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to verify project access: {}", e)))?;
+        
+        match project_org {
+            None => return Err(async_graphql::Error::new("Project not found")),
+            Some(Some(project_org_id)) => {
+                if project_org_id != auth.org.id {
+                    return Err(async_graphql::Error::new("Access denied"));
+                }
+            }
+            Some(None) => {
+                // Project exists but org_id is NULL - allow access and set org_id
+                sqlx::query("UPDATE storyboard_projects SET org_id = $1 WHERE id = $2")
+                    .bind(&auth.org.id)
+                    .bind(project_uuid)
+                    .execute(pool.as_ref())
+                    .await
+                    .map_err(|e| async_graphql::Error::new(format!("Failed to update project org_id: {}", e)))?;
+            }
+        }
+        
+        let scenario_id = Uuid::new_v4();
+        let now = chrono::Utc::now();
+        
+        sqlx::query(
+            r#"
+            INSERT INTO scenarios (id, project_id, org_id, title, description, created_at, updated_at)
+            VALUES ($1, $2, $3, $4, $5, $6, $7)
+            "#,
+        )
+        .bind(scenario_id)
+        .bind(project_uuid)
+        .bind(&auth.org.id)
+        .bind(&input.title)
+        .bind(&input.description)
+        .bind(now)
+        .bind(now)
+        .execute(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to create scenario: {}", e)))?;
+        
+        Ok(Scenario {
+            id: ID(scenario_id.to_string()),
+            project_id: input.project_id,
+            title: input.title,
+            description: input.description,
+            created_at: now.to_rfc3339(),
+            updated_at: now.to_rfc3339(),
+        })
+    }
+
+    /// Update a scenario
+    async fn update_scenario(&self, ctx: &Context<'_>, input: UpdateScenarioInput) -> Result<Scenario> {
+        let pool = ctx.data::<PostgresPool>()?;
+        let auth = require_auth_and_org(ctx)?;
+        
+        let scenario_uuid = Uuid::parse_str(&input.id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid scenario ID: {}", e)))?;
+        
+        // Verify scenario belongs to organization
+        let scenario_org: Option<Option<String>> = sqlx::query_scalar::<_, Option<String>>(
+            "SELECT org_id FROM scenarios WHERE id = $1"
+        )
+        .bind(scenario_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to verify scenario access: {}", e)))?;
+        
+        match scenario_org {
+            None => return Err(async_graphql::Error::new("Scenario not found")),
+            Some(Some(scenario_org_id)) => {
+                if scenario_org_id != auth.org.id {
+                    return Err(async_graphql::Error::new("Access denied"));
+                }
+            }
+            Some(None) => {
+                // Scenario exists but org_id is NULL - allow access
+            }
+        }
+        
+        // Build update query dynamically
+        let mut updates = Vec::new();
+        let mut params: Vec<&dyn sqlx::postgres::PgHasArrayType> = vec![];
+        
+        if let Some(ref title) = input.title {
+            updates.push("title = $1");
+            params.push(title);
+        }
+        if let Some(ref description) = input.description {
+            updates.push("description = $2");
+            params.push(description);
+        }
+        
+        if updates.is_empty() {
+            return Err(async_graphql::Error::new("No fields to update"));
+        }
+        
+        updates.push("updated_at = NOW()");
+        
+        let query = format!(
+            "UPDATE scenarios SET {} WHERE id = ${}",
+            updates.join(", "),
+            updates.len()
+        );
+        
+        // For simplicity, use a fixed query structure
+        let row = if input.title.is_some() && input.description.is_some() {
+            sqlx::query(
+                r#"
+                UPDATE scenarios
+                SET title = $1, description = $2, updated_at = NOW()
+                WHERE id = $3
+                RETURNING id, project_id, title, description, created_at, updated_at
+                "#,
+            )
+            .bind(&input.title.as_ref().unwrap())
+            .bind(&input.description.as_ref().unwrap())
+            .bind(scenario_uuid)
+            .fetch_one(pool.as_ref())
+            .await
+        } else if input.title.is_some() {
+            sqlx::query(
+                r#"
+                UPDATE scenarios
+                SET title = $1, updated_at = NOW()
+                WHERE id = $2
+                RETURNING id, project_id, title, description, created_at, updated_at
+                "#,
+            )
+            .bind(&input.title.as_ref().unwrap())
+            .bind(scenario_uuid)
+            .fetch_one(pool.as_ref())
+            .await
+        } else {
+            sqlx::query(
+                r#"
+                UPDATE scenarios
+                SET description = $1, updated_at = NOW()
+                WHERE id = $2
+                RETURNING id, project_id, title, description, created_at, updated_at
+                "#,
+            )
+            .bind(&input.description.as_ref().unwrap())
+            .bind(scenario_uuid)
+            .fetch_one(pool.as_ref())
+            .await
+        }
+        .map_err(|e| async_graphql::Error::new(format!("Failed to update scenario: {}", e)))?;
+        
+        let id: Uuid = row.get("id");
+        let project_id: Uuid = row.get("project_id");
+        
+        Ok(Scenario {
+            id: ID(id.to_string()),
+            project_id: ID(project_id.to_string()),
+            title: row.get("title"),
+            description: row.get("description"),
+            created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
+            updated_at: row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
+        })
+    }
+
+    /// Delete a scenario
+    async fn delete_scenario(&self, ctx: &Context<'_>, id: ID) -> Result<bool> {
+        let pool = ctx.data::<PostgresPool>()?;
+        let auth = require_auth_and_org(ctx)?;
+        
+        let scenario_uuid = Uuid::parse_str(&id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid scenario ID: {}", e)))?;
+        
+        // Verify scenario belongs to organization
+        let scenario_org: Option<Option<String>> = sqlx::query_scalar::<_, Option<String>>(
+            "SELECT org_id FROM scenarios WHERE id = $1"
+        )
+        .bind(scenario_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to verify scenario access: {}", e)))?;
+        
+        match scenario_org {
+            None => return Err(async_graphql::Error::new("Scenario not found")),
+            Some(Some(scenario_org_id)) => {
+                if scenario_org_id != auth.org.id {
+                    return Err(async_graphql::Error::new("Access denied"));
+                }
+            }
+            Some(None) => {
+                // Scenario exists but org_id is NULL - allow access
+            }
+        }
+        
+        let result = sqlx::query("DELETE FROM scenarios WHERE id = $1")
+            .bind(scenario_uuid)
+            .execute(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to delete scenario: {}", e)))?;
+        
+        Ok(result.rows_affected() > 0)
+    }
+
+    /// Create an episode
+    async fn create_episode(&self, ctx: &Context<'_>, input: CreateEpisodeInput) -> Result<Episode> {
+        let pool = ctx.data::<PostgresPool>()?;
+        let auth = require_auth_and_org(ctx)?;
+        
+        let scenario_uuid = Uuid::parse_str(&input.scenario_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid scenario ID: {}", e)))?;
+        
+        // Verify scenario belongs to organization
+        let scenario_org: Option<Option<String>> = sqlx::query_scalar::<_, Option<String>>(
+            "SELECT org_id FROM scenarios WHERE id = $1"
+        )
+        .bind(scenario_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to verify scenario access: {}", e)))?;
+        
+        match scenario_org {
+            None => return Err(async_graphql::Error::new("Scenario not found")),
+            Some(Some(scenario_org_id)) => {
+                if scenario_org_id != auth.org.id {
+                    return Err(async_graphql::Error::new("Access denied"));
+                }
+            }
+            Some(None) => {}
+        }
+        
+        // Get max order_index if not provided
+        let order_index = if let Some(order) = input.order_index {
+            order
+        } else {
+            let max_order: Option<i32> = sqlx::query_scalar(
+                "SELECT COALESCE(MAX(order_index), -1) + 1 FROM episodes WHERE scenario_id = $1"
+            )
+            .bind(scenario_uuid)
+            .fetch_one(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to get max order_index: {}", e)))?;
+            max_order.unwrap_or(0)
+        };
+        
+        let episode_id = Uuid::new_v4();
+        let now = chrono::Utc::now();
+        
+        sqlx::query(
+            r#"
+            INSERT INTO episodes (id, scenario_id, org_id, title, description, order_index, created_at, updated_at)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            "#,
+        )
+        .bind(episode_id)
+        .bind(scenario_uuid)
+        .bind(&auth.org.id)
+        .bind(&input.title)
+        .bind(&input.description)
+        .bind(order_index)
+        .bind(now)
+        .bind(now)
+        .execute(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to create episode: {}", e)))?;
+        
+        Ok(Episode {
+            id: ID(episode_id.to_string()),
+            scenario_id: input.scenario_id,
+            title: input.title,
+            description: input.description,
+            order_index,
+            created_at: now.to_rfc3339(),
+            updated_at: now.to_rfc3339(),
+        })
+    }
+
+    /// Create a part
+    async fn create_part(&self, ctx: &Context<'_>, input: CreatePartInput) -> Result<Part> {
+        let pool = ctx.data::<PostgresPool>()?;
+        let auth = require_auth_and_org(ctx)?;
+        
+        let episode_uuid = Uuid::parse_str(&input.episode_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid episode ID: {}", e)))?;
+        
+        // Verify episode belongs to organization
+        let episode_org: Option<Option<String>> = sqlx::query_scalar::<_, Option<String>>(
+            "SELECT org_id FROM episodes WHERE id = $1"
+        )
+        .bind(episode_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to verify episode access: {}", e)))?;
+        
+        match episode_org {
+            None => return Err(async_graphql::Error::new("Episode not found")),
+            Some(Some(episode_org_id)) => {
+                if episode_org_id != auth.org.id {
+                    return Err(async_graphql::Error::new("Access denied"));
+                }
+            }
+            Some(None) => {}
+        }
+        
+        // Get max order_index if not provided
+        let order_index = if let Some(order) = input.order_index {
+            order
+        } else {
+            let max_order: Option<i32> = sqlx::query_scalar(
+                "SELECT COALESCE(MAX(order_index), -1) + 1 FROM parts WHERE episode_id = $1"
+            )
+            .bind(episode_uuid)
+            .fetch_one(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to get max order_index: {}", e)))?;
+            max_order.unwrap_or(0)
+        };
+        
+        let part_id = Uuid::new_v4();
+        let now = chrono::Utc::now();
+        
+        sqlx::query(
+            r#"
+            INSERT INTO parts (id, episode_id, org_id, title, description, order_index, created_at, updated_at)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            "#,
+        )
+        .bind(part_id)
+        .bind(episode_uuid)
+        .bind(&auth.org.id)
+        .bind(&input.title)
+        .bind(&input.description)
+        .bind(order_index)
+        .bind(now)
+        .bind(now)
+        .execute(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to create part: {}", e)))?;
+        
+        Ok(Part {
+            id: ID(part_id.to_string()),
+            episode_id: input.episode_id,
+            title: input.title,
+            description: input.description,
+            order_index,
+            created_at: now.to_rfc3339(),
+            updated_at: now.to_rfc3339(),
+        })
+    }
+
+    /// Create a scene plan
+    async fn create_scene_plan(&self, ctx: &Context<'_>, input: CreateScenePlanInput) -> Result<ScenePlan> {
+        let pool = ctx.data::<PostgresPool>()?;
+        let auth = require_auth_and_org(ctx)?;
+        
+        let part_uuid = Uuid::parse_str(&input.part_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid part ID: {}", e)))?;
+        
+        // Verify part belongs to organization
+        let part_org: Option<Option<String>> = sqlx::query_scalar::<_, Option<String>>(
+            "SELECT org_id FROM parts WHERE id = $1"
+        )
+        .bind(part_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to verify part access: {}", e)))?;
+        
+        match part_org {
+            None => return Err(async_graphql::Error::new("Part not found")),
+            Some(Some(part_org_id)) => {
+                if part_org_id != auth.org.id {
+                    return Err(async_graphql::Error::new("Access denied"));
+                }
+            }
+            Some(None) => {}
+        }
+        
+        // Get max order_index if not provided
+        let order_index = if let Some(order) = input.order_index {
+            order
+        } else {
+            let max_order: Option<i32> = sqlx::query_scalar(
+                "SELECT COALESCE(MAX(order_index), -1) + 1 FROM scene_plans WHERE part_id = $1"
+            )
+            .bind(part_uuid)
+            .fetch_one(pool.as_ref())
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to get max order_index: {}", e)))?;
+            max_order.unwrap_or(0)
+        };
+        
+        let scene_plan_id = Uuid::new_v4();
+        let now = chrono::Utc::now();
+        
+        sqlx::query(
+            r#"
+            INSERT INTO scene_plans (id, part_id, org_id, description, order_index, created_at, updated_at)
+            VALUES ($1, $2, $3, $4, $5, $6, $7)
+            "#,
+        )
+        .bind(scene_plan_id)
+        .bind(part_uuid)
+        .bind(&auth.org.id)
+        .bind(&input.description)
+        .bind(order_index)
+        .bind(now)
+        .bind(now)
+        .execute(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to create scene plan: {}", e)))?;
+        
+        Ok(ScenePlan {
+            id: ID(scene_plan_id.to_string()),
+            part_id: input.part_id,
+            description: input.description,
+            order_index,
+            created_at: now.to_rfc3339(),
+            updated_at: now.to_rfc3339(),
+        })
     }
 }

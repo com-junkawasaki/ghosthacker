@@ -9,6 +9,7 @@ use async_graphql::{Context, Object, ID, Result};
 use crate::ports::postgres::PostgresPool;
 use crate::schema::storyboard::{Project, Storyboard, Scene, VideoStatus, GeneratedImage, OperationHistory, Character, Dialogue, HumeVoice, CharacterAsset};
 use crate::schema::composer::{Composer, AudioTrack, AudioClip, SunoMusic};
+use crate::schema::scenario::{Scenario, Episode, Part, ScenePlan};
 use crate::ports::hume_service::HumeService;
 use crate::ports::clerk::get_clerk_auth_from_context;
 use uuid::Uuid;
@@ -625,5 +626,125 @@ impl QueryRoot {
     /// List Suno music for a composer
     async fn suno_music(&self, ctx: &Context<'_>, composer_id: ID) -> Result<Vec<SunoMusic>> {
         crate::resolvers::composer::suno_music(ctx, composer_id).await
+    }
+
+    /// List scenarios for a project
+    async fn scenarios(&self, ctx: &Context<'_>, project_id: ID) -> Result<Vec<Scenario>> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let project_uuid = Uuid::parse_str(&project_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid project ID: {}", e)))?;
+        
+        // Check organization access
+        if let Ok(auth) = get_clerk_auth_from_context(ctx) {
+            if let Some(org) = auth.org {
+                // Verify project belongs to organization
+                let project_org: Option<Option<String>> = sqlx::query_scalar::<_, Option<String>>(
+                    "SELECT org_id FROM storyboard_projects WHERE id = $1"
+                )
+                .bind(project_uuid)
+                .fetch_optional(pool.as_ref())
+                .await
+                .map_err(|e| async_graphql::Error::new(format!("Failed to verify project access: {}", e)))?;
+                
+                match project_org {
+                    None => return Err(async_graphql::Error::new("Project not found")),
+                    Some(Some(project_org_id)) => {
+                        if project_org_id != org.id {
+                            return Err(async_graphql::Error::new("Access denied"));
+                        }
+                    }
+                    Some(None) => {
+                        // Project exists but org_id is NULL - allow access for backward compatibility
+                    }
+                }
+            }
+        }
+        
+        let rows = sqlx::query(
+            r#"
+            SELECT id, project_id, title, description, created_at, updated_at
+            FROM scenarios
+            WHERE project_id = $1
+            ORDER BY created_at DESC
+            "#,
+        )
+        .bind(project_uuid)
+        .fetch_all(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch scenarios: {}", e)))?;
+        
+        Ok(rows.into_iter().map(|row| {
+            let id: Uuid = row.get("id");
+            let project_id: Uuid = row.get("project_id");
+            
+            Scenario {
+                id: ID(id.to_string()),
+                project_id: ID(project_id.to_string()),
+                title: row.get("title"),
+                description: row.get("description"),
+                created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
+                updated_at: row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
+            }
+        }).collect())
+    }
+
+    /// Get a scenario by ID
+    async fn scenario(&self, ctx: &Context<'_>, id: ID) -> Result<Option<Scenario>> {
+        let pool = ctx.data::<PostgresPool>()?;
+        
+        let scenario_uuid = Uuid::parse_str(&id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid scenario ID: {}", e)))?;
+        
+        // Check organization access
+        if let Ok(auth) = get_clerk_auth_from_context(ctx) {
+            if let Some(org) = auth.org {
+                let scenario_org: Option<Option<String>> = sqlx::query_scalar::<_, Option<String>>(
+                    "SELECT org_id FROM scenarios WHERE id = $1"
+                )
+                .bind(scenario_uuid)
+                .fetch_optional(pool.as_ref())
+                .await
+                .map_err(|e| async_graphql::Error::new(format!("Failed to verify scenario access: {}", e)))?;
+                
+                match scenario_org {
+                    None => return Ok(None),
+                    Some(Some(scenario_org_id)) => {
+                        if scenario_org_id != org.id {
+                            return Err(async_graphql::Error::new("Access denied"));
+                        }
+                    }
+                    Some(None) => {
+                        // Scenario exists but org_id is NULL - allow access
+                    }
+                }
+            }
+        }
+        
+        let row = sqlx::query(
+            r#"
+            SELECT id, project_id, title, description, created_at, updated_at
+            FROM scenarios
+            WHERE id = $1
+            "#,
+        )
+        .bind(scenario_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch scenario: {}", e)))?;
+        
+        Ok(row.map(|row| {
+            let id: Uuid = row.get("id");
+            let project_id: Uuid = row.get("project_id");
+            
+            Scenario {
+                id: ID(id.to_string()),
+                project_id: ID(project_id.to_string()),
+                title: row.get("title"),
+                description: row.get("description"),
+                created_at: row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
+                updated_at: row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
+            }
+        }))
     }
 }

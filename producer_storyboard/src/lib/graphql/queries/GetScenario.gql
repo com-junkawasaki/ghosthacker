@@ -1,0 +1,36 @@
+query GetScenario($id: ID!) {
+	scenario(id: $id) {
+		id
+		projectId
+		title
+		description
+		createdAt
+		updatedAt
+		episodes {
+			id
+			scenarioId
+			title
+			description
+			orderIndex
+			createdAt
+			updatedAt
+			parts {
+				id
+				episodeId
+				title
+				description
+				orderIndex
+				createdAt
+				updatedAt
+				scenePlans {
+					id
+					partId
+					description
+					orderIndex
+					createdAt
+					updatedAt
+				}
+			}
+		}
+	}
+}

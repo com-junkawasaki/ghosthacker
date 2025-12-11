@@ -1,0 +1,11 @@
+mutation CreatePart($input: CreatePartInput!) {
+	createPart(input: $input) {
+		id
+		episodeId
+		title
+		description
+		orderIndex
+		createdAt
+		updatedAt
+	}
+}

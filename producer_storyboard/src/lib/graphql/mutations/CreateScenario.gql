@@ -1,0 +1,10 @@
+mutation CreateScenario($input: CreateScenarioInput!) {
+	createScenario(input: $input) {
+		id
+		projectId
+		title
+		description
+		createdAt
+		updatedAt
+	}
+}

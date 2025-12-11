@@ -114,6 +114,23 @@
       "realizedBy": [
         {"@id": "https://gftd.ai/performer/actor/storyboard-editor"}
       ]
+    },
+    {
+      "id": "https://gftd.ai/capability/scenario-management",
+      "type": "cpm:Capability",
+      "name": "Scenario Management",
+      "description": "Capability to create, edit, delete, and manage story scenarios with episode, part, and scene structure planning",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/create-scenario"},
+        {"@id": "https://gftd.ai/activity/edit-scenario"},
+        {"@id": "https://gftd.ai/activity/manage-scenario-structure"},
+        {"@id": "https://gftd.ai/activity/list-scenarios"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
     }
   ]
 }

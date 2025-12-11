@@ -1,0 +1,10 @@
+query ListScenarios($projectId: ID!) {
+	scenarios(projectId: $projectId) {
+		id
+		projectId
+		title
+		description
+		createdAt
+		updatedAt
+	}
+}

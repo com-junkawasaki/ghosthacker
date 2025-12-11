@@ -1,0 +1,10 @@
+mutation CreateScenePlan($input: CreateScenePlanInput!) {
+	createScenePlan(input: $input) {
+		id
+		partId
+		description
+		orderIndex
+		createdAt
+		updatedAt
+	}
+}

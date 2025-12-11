@@ -162,6 +162,81 @@
       "dependsOn": [
         {"@id": "https://gftd.ai/activity/generate-video"}
       ]
+    },
+    {
+      "id": "https://gftd.ai/activity/create-scenario",
+      "type": "cpm:Activity",
+      "name": "Create Scenario",
+      "description": "Create a new story scenario with title, description, and initial structure",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/storyboard-project"},
+        {"@id": "https://gftd.ai/resource/scenario-title"},
+        {"@id": "https://gftd.ai/resource/scenario-description"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/scenario"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/edit-scenario",
+      "type": "cpm:Activity",
+      "name": "Edit Scenario",
+      "description": "Edit scenario metadata, title, description, and settings",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/scenario"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/scenario"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/manage-scenario-structure",
+      "type": "cpm:Activity",
+      "name": "Manage Scenario Structure",
+      "description": "Manage scenario structure including episodes, parts, and scene planning with hierarchical organization",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/scenario"},
+        {"@id": "https://gftd.ai/resource/episode-structure"},
+        {"@id": "https://gftd.ai/resource/part-structure"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/scenario-structure"}
+      ],
+      "dependsOn": [
+        {"@id": "https://gftd.ai/activity/create-scenario"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/list-scenarios",
+      "type": "cpm:Activity",
+      "name": "List Scenarios",
+      "description": "Browse and list all scenarios for a project",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/storyboard-project"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/scenario-list"}
+      ]
     }
   ]
 }

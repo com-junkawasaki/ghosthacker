@@ -7,3 +7,4 @@
  */
 pub mod storyboard;
 pub mod composer;
+pub mod scenario;

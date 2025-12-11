@@ -1,0 +1,10 @@
+mutation UpdateScenario($input: UpdateScenarioInput!) {
+	updateScenario(input: $input) {
+		id
+		projectId
+		title
+		description
+		createdAt
+		updatedAt
+	}
+}

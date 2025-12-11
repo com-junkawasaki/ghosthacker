@@ -1,0 +1,11 @@
+mutation CreateEpisode($input: CreateEpisodeInput!) {
+	createEpisode(input: $input) {
+		id
+		scenarioId
+		title
+		description
+		orderIndex
+		createdAt
+		updatedAt
+	}
+}

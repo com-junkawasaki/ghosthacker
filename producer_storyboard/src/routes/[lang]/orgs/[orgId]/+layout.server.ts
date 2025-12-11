@@ -60,10 +60,45 @@ export const load: LayoutServerLoad = async ({ params, url, locals }) => {
 		// First check if the requested org matches the current session org
 		const isCurrentSessionOrg = auth.orgId === orgId;
 
-		// Verify user has access to this organization
-		const hasAccess = isCurrentSessionOrg || await verifyOrgAccess(auth.userId, orgId);
+		console.log('[OrgLayout Server] Pre-verification check:', {
+			userId: auth.userId,
+			requestedOrgId: orgId,
+			currentSessionOrgId: auth.orgId,
+			isCurrentSessionOrg,
+			willCheckMembership: !isCurrentSessionOrg,
+		});
 
-		console.log('[OrgLayout Server] Organization access check:', {
+		// Verify user has access to this organization
+		// If current session org matches, grant access immediately
+		// Otherwise, check membership via Clerk API
+		let hasAccess = isCurrentSessionOrg;
+		
+		if (!hasAccess) {
+			// Fetch user's organizations to verify membership
+			const availableOrgs = await getUserOrganizations(auth.userId);
+			console.log('[OrgLayout Server] User organizations from Clerk API:', {
+				count: availableOrgs.length,
+				orgIds: availableOrgs.map(org => org.id),
+				orgNames: availableOrgs.map(org => ({ id: org.id, name: org.name, role: org.role })),
+			});
+			
+			hasAccess = availableOrgs.some(org => org.id === orgId);
+			
+			if (!hasAccess) {
+				console.warn('[OrgLayout Server] Organization not found in user membership list:', {
+					requestedOrgId: orgId,
+					availableOrgIds: availableOrgs.map(org => org.id),
+					possibleIssues: [
+						'Organization was created but user was not added as a member',
+						'Organization membership was not properly synced with Clerk',
+						'User needs to refresh their session after creating organization',
+						'Organization ID mismatch between frontend and Clerk',
+					],
+				});
+			}
+		}
+
+		console.log('[OrgLayout Server] Organization access check result:', {
 			userId: auth.userId,
 			requestedOrgId: orgId,
 			currentOrgId: auth.orgId,
@@ -75,7 +110,12 @@ export const load: LayoutServerLoad = async ({ params, url, locals }) => {
 			// User doesn't have access to this organization
 			// Log available organizations for debugging
 			const availableOrgs = await getUserOrganizations(auth.userId);
-			console.log('[OrgLayout Server] Available organizations:', availableOrgs);
+			console.error('[OrgLayout Server] Access denied - Available organizations:', {
+				count: availableOrgs.length,
+				organizations: availableOrgs,
+				requestedOrgId: orgId,
+				userId: auth.userId,
+			});
 
 			// Allow access in development mode for debugging
 			const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -83,6 +123,7 @@ export const load: LayoutServerLoad = async ({ params, url, locals }) => {
 				throw error(403, `Access denied to organization: ${orgId}`);
 			} else {
 				console.warn('[OrgLayout Server] ACCESS DENIED BUT ALLOWED IN DEVELOPMENT MODE');
+				console.warn('[OrgLayout Server] This should be fixed before production deployment');
 			}
 		}
 	} else {

@@ -1,0 +1,3 @@
+mutation DeleteScenario($id: ID!) {
+	deleteScenario(id: $id)
+}

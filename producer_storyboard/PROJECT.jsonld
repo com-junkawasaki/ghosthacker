@@ -789,6 +789,88 @@
           "replacedBy": "locals.auth()"
         }
       }
+    },
+    {
+      "@type": "AddAction",
+      "name": "scenario-management-bdd-design",
+      "description": "Design BDD specifications for scenario management capability with episode, part, and scene structure planning",
+      "startTime": "2025-01-30T00:00:00Z",
+      "endTime": "2025-01-30T01:00:00Z",
+      "status": "Completed",
+      "result": {
+        "capability": {
+          "id": "https://gftd.ai/capability/scenario-management",
+          "name": "Scenario Management",
+          "description": "Capability to create, edit, delete, and manage story scenarios with episode, part, and scene structure planning",
+          "activities": [
+            "create-scenario",
+            "edit-scenario",
+            "manage-scenario-structure",
+            "list-scenarios"
+          ]
+        },
+        "activities": [
+          {
+            "id": "https://gftd.ai/activity/create-scenario",
+            "name": "Create Scenario",
+            "description": "Create a new story scenario with title, description, and initial structure"
+          },
+          {
+            "id": "https://gftd.ai/activity/edit-scenario",
+            "name": "Edit Scenario",
+            "description": "Edit scenario metadata, title, description, and settings"
+          },
+          {
+            "id": "https://gftd.ai/activity/manage-scenario-structure",
+            "name": "Manage Scenario Structure",
+            "description": "Manage scenario structure including episodes, parts, and scene planning with hierarchical organization"
+          },
+          {
+            "id": "https://gftd.ai/activity/list-scenarios",
+            "name": "List Scenarios",
+            "description": "Browse and list all scenarios for a project"
+          }
+        ],
+        "bdd": {
+          "features": [
+            {
+              "path": "tests/bdd/features/scenario-management.feature",
+              "type": "GraphQL API tests",
+              "scenarios": [
+                "プロジェクトのシナリオ一覧を取得する",
+                "新しいシナリオを作成する",
+                "シナリオ詳細を取得する",
+                "シナリオのタイトルと説明を更新する",
+                "シナリオを削除する",
+                "シナリオにエピソードを追加する",
+                "エピソードにパートを追加する",
+                "パートにシーン計画を追加する",
+                "シナリオ構造の階層を取得する"
+              ]
+            },
+            {
+              "path": "tests/bdd/e2e/features/scenario-management-e2e.feature",
+              "type": "E2E browser tests",
+              "scenarios": [
+                "ユーザーが新しいシナリオを作成する",
+                "ユーザーがシナリオのタイトルを編集する",
+                "ユーザーがシナリオにエピソードを追加する",
+                "ユーザーがエピソードにパートを追加する",
+                "ユーザーがパートにシーン計画を追加する",
+                "ユーザーがシナリオ構造を展開・折りたたみする",
+                "ユーザーがシナリオを削除する",
+                "ユーザーがシナリオ構造の順序を変更する"
+              ]
+            }
+          ]
+        },
+        "files": [
+          "capabilities.jsonld",
+          "activities.jsonld",
+          "tests/bdd/features/scenario-management.feature",
+          "tests/bdd/e2e/features/scenario-management-e2e.feature"
+        ]
+      }
     }
   ],
   "capability": [
@@ -894,6 +976,25 @@
       ],
       "api": {
         "organizations": "/api/organizations"
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "scenario-management",
+      "description": "Story scenario management with episode, part, and scene structure planning",
+      "status": "Designed",
+      "capability": "https://gftd.ai/capability/scenario-management",
+      "features": [
+        "Scenario CRUD operations",
+        "Hierarchical structure management (episode, part, scene)",
+        "Scenario structure planning",
+        "Scenario listing and browsing"
+      ],
+      "bdd": {
+        "specifications": [
+          "tests/bdd/features/scenario-management.feature",
+          "tests/bdd/e2e/features/scenario-management-e2e.feature"
+        ]
       }
     },
     {
