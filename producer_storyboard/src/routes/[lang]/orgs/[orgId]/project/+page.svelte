@@ -72,7 +72,6 @@
 
 			const result = await createProject.mutate({
 				input: {
-					orgId,
 					title: newProjectTitle.trim(),
 					description: newProjectDescription.trim() || null,
 				},

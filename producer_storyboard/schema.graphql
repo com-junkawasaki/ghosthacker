@@ -129,7 +129,6 @@ type Query {
 }
 
 input CreateProjectInput {
-	orgId: ID!
 	title: String!
 	description: String
 }

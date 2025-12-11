@@ -14,6 +14,7 @@ export type CreateProject$result = {
 };
 
 type CreateProjectInput = {
+    orgId: string | number;
     title: string;
     description?: string | null | undefined;
 };
@@ -95,6 +96,7 @@ export type CreateProject$artifact = {
         };
         "types": {
             "CreateProjectInput": {
+                "orgId": "ID";
                 "title": "String";
                 "description": "String";
             };
