@@ -57,12 +57,14 @@
 		isCreating = true;
 		try {
 			console.log('[Project] Creating project:', {
+				orgId,
 				title: newProjectTitle,
 				description: newProjectDescription,
 			});
 
 			const result = await createProject.mutate({
 				input: {
+					orgId,
 					title: newProjectTitle.trim(),
 					description: newProjectDescription.trim() || null,
 				},
@@ -71,8 +73,8 @@
 			console.log('[Project] Project created:', result);
 
 			if (result?.data?.createProject) {
-				// Refresh projects list
-				await projectsStore.fetch({ blocking: true });
+				// Refresh projects list with orgId
+				await projectsStore.fetch({ blocking: true, variables: { orgId } });
 				
 				// Navigate to the new project's editor
 				goto(buildPath('editor', result.data.createProject.id));
@@ -108,7 +110,7 @@
 				<button
 					onclick={async () => {
 						try {
-							await projectsStore.fetch();
+							await projectsStore.fetch({ variables: { orgId } });
 						} catch (error) {
 							console.error('Failed to retry:', error);
 						}
@@ -188,7 +190,7 @@
 					onclick={async () => {
 						try {
 							console.log('[Project] Manual retry...');
-							await projectsStore.fetch({ blocking: true });
+							await projectsStore.fetch({ blocking: true, variables: { orgId } });
 						} catch (error) {
 							console.error('[Project] Failed to retry:', error);
 						}

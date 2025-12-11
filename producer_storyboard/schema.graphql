@@ -4,6 +4,7 @@
 
 type Project {
 	id: ID!
+	orgId: ID!
 	title: String!
 	description: String
 	createdAt: String!
@@ -107,7 +108,7 @@ type Dialogue {
 }
 
 type Query {
-	projects: [Project!]!
+	projects(orgId: ID!): [Project!]!
 	storyboards(projectId: ID!): [Storyboard!]!
 	scenes(storyboardId: ID!): [Scene!]!
 	scene(id: ID!): Scene
@@ -129,6 +130,7 @@ type Query {
 }
 
 input CreateProjectInput {
+	orgId: ID!
 	title: String!
 	description: String
 }

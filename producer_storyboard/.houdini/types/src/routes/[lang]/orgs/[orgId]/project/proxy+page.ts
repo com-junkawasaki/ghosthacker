@@ -7,7 +7,12 @@ import { load_ListProjects } from '$houdini';
 import type { PageLoad } from './$types';
 
 export const load = async (event: Parameters<PageLoad>[0]) => {
+	const { orgId } = event.params;
+	
 	// Use Houdini's load function for SSR data fetching
-	// This will automatically handle caching and hydration
-	return await load_ListProjects({ event });
+	// Pass orgId as a variable to filter projects by organization
+	return await load_ListProjects({
+		event,
+		variables: { orgId },
+	});
 };

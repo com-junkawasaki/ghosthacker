@@ -1,11 +1,12 @@
 export default {
     "name": "ListProjects",
     "kind": "HoudiniQuery",
-    "hash": "b683e586c1f15aec4ffa5beb48bcaf18806767092e3e4f5eeffcfe5d6d11a07c",
+    "hash": "d25e2ff0acb5c8319a855d17387fb5c3cb7eb162e789a0dd09998072322ba3d2",
 
-    "raw": `query ListProjects {
-  projects {
+    "raw": `query ListProjects($orgId: ID!) {
+  projects(orgId: $orgId) {
     id
+    orgId
     title
     description
     createdAt
@@ -20,13 +21,19 @@ export default {
         "fields": {
             "projects": {
                 "type": "Project",
-                "keyRaw": "projects",
+                "keyRaw": "projects(orgId: $orgId)",
 
                 "selection": {
                     "fields": {
                         "id": {
                             "type": "ID",
                             "keyRaw": "id",
+                            "visible": true
+                        },
+
+                        "orgId": {
+                            "type": "ID",
+                            "keyRaw": "orgId",
                             "visible": true
                         },
 
@@ -66,8 +73,18 @@ export default {
         "houdini-svelte": {}
     },
 
+    "input": {
+        "fields": {
+            "orgId": "ID"
+        },
+
+        "types": {},
+        "defaults": {},
+        "runtimeScalars": {}
+    },
+
     "policy": "CacheOrNetwork",
     "partial": false
 };
 
-"HoudiniHash=05a80e61960b0154ce5b47b4a075971972b9c69f0cf182ebb7806a7312f57500";
+"HoudiniHash=0c36588894c46ac46b167c1e320d7f60d1b22fc2c71bb17f66b4564f9922731b";

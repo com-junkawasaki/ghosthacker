@@ -1,6 +1,7 @@
 mutation CreateProject($input: CreateProjectInput!) {
 	createProject(input: $input) {
 		id
+		orgId
 		title
 		description
 		createdAt
