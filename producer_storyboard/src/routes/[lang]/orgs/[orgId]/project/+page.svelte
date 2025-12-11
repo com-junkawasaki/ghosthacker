@@ -1,16 +1,22 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { ListProjectsStore, CreateProjectStore } from '$houdini';
+	import { CreateProjectStore, type ListProjectsStore } from '$houdini';
 	import DebugPanel from '$lib/components/debug/DebugPanel.svelte';
 
-	const { lang, orgId } = $page.params;
+	// Route params from page store
+	const lang = $derived($page.params.lang);
+	const orgId = $derived($page.params.orgId);
 
-	// Use Houdini 2.x with Svelte 5 runes mode
-	// Create store instance - it will auto-fetch if isManualLoad is false
-	const projects: ListProjectsStore = new ListProjectsStore();
+	// SSR: Get the ListProjects store from page data (loaded in +page.ts)
+	// Use $derived to maintain reactivity in Svelte 5
+	interface PageData {
+		ListProjects: ListProjectsStore;
+	}
+	const props = $props<{ data: PageData }>();
+	const projects = $derived(props.data.ListProjects);
+	
 	const createProject = new CreateProjectStore();
 
 	let debugVisible = $state(true);
@@ -19,9 +25,10 @@
 	let newProjectTitle = $state('');
 	let newProjectDescription = $state('');
 
-	// Computed properties for compatibility
-	const loading = $derived($projects.fetching && !$projects.data);
-	const error = $derived($projects.errors?.[0] ? new Error($projects.errors[0].message) : null);
+	// Computed properties - use $derived with store access
+	const projectsStore = $derived(projects);
+	const loading = $derived($projectsStore.fetching && !$projectsStore.data);
+	const error = $derived($projectsStore.errors?.[0] ? new Error($projectsStore.errors[0].message) : null);
 
 	function buildPath(viewName: string, projectId?: string): string {
 		if (projectId) {
@@ -30,62 +37,13 @@
 		return `/${lang}/orgs/${orgId}/project/${viewName}`;
 	}
 
-	onMount(async () => {
-		if (browser) {
-			try {
-				console.log('[Project] onMount - Initial store state:', {
-					loading,
-					fetching: $projects.fetching,
-					error,
-					data: $projects.data,
-				});
-				
-				// Wait a bit for auto-fetch to complete if it's in progress
-				if ($projects.fetching) {
-					console.log('[Project] Store is auto-fetching, waiting...');
-					// Wait up to 5 seconds for auto-fetch to complete
-					let waitCount = 0;
-					while ($projects.fetching && waitCount < 50) {
-						await new Promise(resolve => setTimeout(resolve, 100));
-						waitCount++;
-					}
-					
-					if ($projects.fetching) {
-						console.warn('[Project] Auto-fetch timed out, forcing manual fetch');
-						// Force manual fetch if auto-fetch is stuck
-						await projects.fetch({ blocking: true });
-					}
-				} else if (!$projects.data && !error) {
-					console.log('[Project] Manually fetching projects...');
-					await projects.fetch({ blocking: true });
-					console.log('[Project] Fetch completed');
-				} else {
-					console.log('[Project] Store already has data or error, skipping manual fetch');
-				}
-				
-				console.log('[Project] Store state after onMount:', {
-					loading,
-					error,
-					data: $projects.data,
-					fetching: $projects.fetching,
-				});
-			} catch (err) {
-				console.error('[Project] Failed to fetch projects:', err);
-				console.error('[Project] Error details:', {
-					message: err instanceof Error ? err.message : String(err),
-					stack: err instanceof Error ? err.stack : undefined,
-				});
-			}
-		}
-	});
-
 	$effect(() => {
 		if (browser) {
-			console.log('[Project] Store reactive update:', {
+			console.log('[Project] SSR Store state:', {
 				loading,
 				error,
-				data: $projects.data,
-				fetching: $projects.fetching,
+				data: $projectsStore.data,
+				fetching: $projectsStore.fetching,
 			});
 		}
 	});
@@ -114,7 +72,7 @@
 
 			if (result?.data?.createProject) {
 				// Refresh projects list
-				await projects.fetch({ blocking: true });
+				await projectsStore.fetch({ blocking: true });
 				
 				// Navigate to the new project's editor
 				goto(buildPath('editor', result.data.createProject.id));
@@ -141,7 +99,7 @@
 			<div class="loading-state">
 				<p>Loading projects...</p>
 				<div class="debug-info" style="margin-top: 1rem; font-size: 0.875rem; opacity: 0.7;">
-					<p>Store State: loading={loading ? 'true' : 'false'}, fetching={$projects.fetching ? 'true' : 'false'}</p>
+					<p>Store State: loading={loading ? 'true' : 'false'}, fetching={$projectsStore.fetching ? 'true' : 'false'}</p>
 				</div>
 			</div>
 		{:else if error}
@@ -150,7 +108,7 @@
 				<button
 					onclick={async () => {
 						try {
-							await projects.fetch();
+							await projectsStore.fetch();
 						} catch (error) {
 							console.error('Failed to retry:', error);
 						}
@@ -160,8 +118,8 @@
 					Retry
 				</button>
 			</div>
-		{:else if $projects.data && $projects.data.projects !== undefined}
-			{#if $projects.data.projects.length === 0}
+		{:else if $projectsStore.data && $projectsStore.data.projects !== undefined}
+			{#if $projectsStore.data.projects.length === 0}
 				<div class="empty-state">
 					<p>No projects found. Create a new project to get started.</p>
 					<button 
@@ -183,9 +141,9 @@
 					</button>
 				</div>
 			{/if}
-			{#if $projects.data.projects.length > 0}
+			{#if $projectsStore.data.projects.length > 0}
 				<div class="projects-grid">
-					{#each $projects.data.projects as project (project.id)}
+					{#each $projectsStore.data.projects as project (project.id)}
 						<a href={buildPath('editor', project.id)} class="project-card">
 							<h2 class="project-title">{project.title}</h2>
 							{#if project.description}
@@ -195,16 +153,16 @@
 					{/each}
 				</div>
 			{/if}
-		{:else if $projects.fetching}
+		{:else if $projectsStore.fetching}
 			<div class="loading-state">
 				<p>Fetching projects...</p>
 				<div class="debug-info">
 					<p>Debug Info:</p>
 					<ul>
 						<li>Loading: {loading ? 'true' : 'false'}</li>
-						<li>Fetching: {$projects.fetching ? 'true' : 'false'}</li>
+						<li>Fetching: {$projectsStore.fetching ? 'true' : 'false'}</li>
 						<li>Has Error: {error ? 'true' : 'false'}</li>
-						<li>Has Data: {$projects.data ? 'true' : 'false'}</li>
+						<li>Has Data: {$projectsStore.data ? 'true' : 'false'}</li>
 						{#if error}
 							<li>Error: {(error as Error).message}</li>
 						{/if}
@@ -218,9 +176,9 @@
 					<p>Debug Info:</p>
 					<ul>
 						<li>Loading: {loading ? 'true' : 'false'}</li>
-						<li>Fetching: {$projects.fetching ? 'true' : 'false'}</li>
+						<li>Fetching: {$projectsStore.fetching ? 'true' : 'false'}</li>
 						<li>Has Error: {error ? 'true' : 'false'}</li>
-						<li>Has Data: {$projects.data ? 'true' : 'false'}</li>
+						<li>Has Data: {$projectsStore.data ? 'true' : 'false'}</li>
 						{#if error}
 							<li>Error: {(error as Error).message}</li>
 						{/if}
@@ -230,7 +188,7 @@
 					onclick={async () => {
 						try {
 							console.log('[Project] Manual retry...');
-							await projects.fetch({ blocking: true });
+							await projectsStore.fetch({ blocking: true });
 						} catch (error) {
 							console.error('[Project] Failed to retry:', error);
 						}
@@ -302,7 +260,7 @@
 		{/if}
 
 		<!-- Debug Panel -->
-		<DebugPanel store={{ ...$projects, loading, error }} storeName="ListProjectsStore" visible={debugVisible} />
+		<DebugPanel store={{ ...$projectsStore, loading, error }} storeName="ListProjectsStore" visible={debugVisible} />
 </div>
 
 <style>
