@@ -1,11 +1,12 @@
 export default {
-    "name": "CreateProject",
-    "kind": "HoudiniMutation",
-    "hash": "875bfc962ac7788ab83986bcc34377628d9bb50d8fddc5f86b3ef6b49f286c94",
+    "name": "ListScenarios",
+    "kind": "HoudiniQuery",
+    "hash": "8c70ac2df80dfc0bbf9637a2bec091d61fdb7637e2aed640a227bcfea49108d0",
 
-    "raw": `mutation CreateProject($input: CreateProjectInput!) {
-  createProject(input: $input) {
+    "raw": `query ListScenarios($projectId: ID!) {
+  scenarios(projectId: $projectId) {
     id
+    projectId
     title
     description
     createdAt
@@ -13,20 +14,26 @@ export default {
   }
 }`,
 
-    "rootType": "Mutation",
+    "rootType": "Query",
     "stripVariables": [],
 
     "selection": {
         "fields": {
-            "createProject": {
-                "type": "Project",
-                "keyRaw": "createProject(input: $input)",
+            "scenarios": {
+                "type": "Scenario",
+                "keyRaw": "scenarios(projectId: $projectId)",
 
                 "selection": {
                     "fields": {
                         "id": {
                             "type": "ID",
                             "keyRaw": "id",
+                            "visible": true
+                        },
+
+                        "projectId": {
+                            "type": "ID",
+                            "keyRaw": "projectId",
                             "visible": true
                         },
 
@@ -68,19 +75,16 @@ export default {
 
     "input": {
         "fields": {
-            "input": "CreateProjectInput"
+            "projectId": "ID"
         },
 
-        "types": {
-            "CreateProjectInput": {
-                "title": "String",
-                "description": "String"
-            }
-        },
-
+        "types": {},
         "defaults": {},
         "runtimeScalars": {}
-    }
+    },
+
+    "policy": "CacheOrNetwork",
+    "partial": false
 };
 
-"HoudiniHash=7ccd4bd20af51b8a70321c58bf3cf9df498844c972a8dcffd7248ea38936e361";
+"HoudiniHash=99c0e5e4bb6bcd5b51081299f626310186575ab7ecb9ca0e07685f54f0fe8b5d";

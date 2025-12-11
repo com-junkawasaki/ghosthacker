@@ -1,13 +1,14 @@
 export default {
-    "name": "CreateProject",
+    "name": "CreateScenePlan",
     "kind": "HoudiniMutation",
-    "hash": "875bfc962ac7788ab83986bcc34377628d9bb50d8fddc5f86b3ef6b49f286c94",
+    "hash": "74869d18c5f62fa10773a68923a39907ed60fefa68d999ce8bd92184f54b4e73",
 
-    "raw": `mutation CreateProject($input: CreateProjectInput!) {
-  createProject(input: $input) {
+    "raw": `mutation CreateScenePlan($input: CreateScenePlanInput!) {
+  createScenePlan(input: $input) {
     id
-    title
+    partId
     description
+    orderIndex
     createdAt
     updatedAt
   }
@@ -18,9 +19,9 @@ export default {
 
     "selection": {
         "fields": {
-            "createProject": {
-                "type": "Project",
-                "keyRaw": "createProject(input: $input)",
+            "createScenePlan": {
+                "type": "ScenePlan",
+                "keyRaw": "createScenePlan(input: $input)",
 
                 "selection": {
                     "fields": {
@@ -30,16 +31,21 @@ export default {
                             "visible": true
                         },
 
-                        "title": {
-                            "type": "String",
-                            "keyRaw": "title",
+                        "partId": {
+                            "type": "ID",
+                            "keyRaw": "partId",
                             "visible": true
                         },
 
                         "description": {
                             "type": "String",
                             "keyRaw": "description",
-                            "nullable": true,
+                            "visible": true
+                        },
+
+                        "orderIndex": {
+                            "type": "Int",
+                            "keyRaw": "orderIndex",
                             "visible": true
                         },
 
@@ -68,13 +74,14 @@ export default {
 
     "input": {
         "fields": {
-            "input": "CreateProjectInput"
+            "input": "CreateScenePlanInput"
         },
 
         "types": {
-            "CreateProjectInput": {
-                "title": "String",
-                "description": "String"
+            "CreateScenePlanInput": {
+                "partId": "ID",
+                "description": "String",
+                "orderIndex": "Int"
             }
         },
 
@@ -83,4 +90,4 @@ export default {
     }
 };
 
-"HoudiniHash=7ccd4bd20af51b8a70321c58bf3cf9df498844c972a8dcffd7248ea38936e361";
+"HoudiniHash=cea022855e254c6e13353d0c304dd9fe9aa5dcfeeebad008d901341147e50efa";

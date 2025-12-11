@@ -1,13 +1,15 @@
 export default {
-    "name": "CreateProject",
+    "name": "CreateEpisode",
     "kind": "HoudiniMutation",
-    "hash": "875bfc962ac7788ab83986bcc34377628d9bb50d8fddc5f86b3ef6b49f286c94",
+    "hash": "b0a0ed9e4893b679ca30933e6f3af6bb0ed6e87676bd61967dd30c11f17c991b",
 
-    "raw": `mutation CreateProject($input: CreateProjectInput!) {
-  createProject(input: $input) {
+    "raw": `mutation CreateEpisode($input: CreateEpisodeInput!) {
+  createEpisode(input: $input) {
     id
+    scenarioId
     title
     description
+    orderIndex
     createdAt
     updatedAt
   }
@@ -18,15 +20,21 @@ export default {
 
     "selection": {
         "fields": {
-            "createProject": {
-                "type": "Project",
-                "keyRaw": "createProject(input: $input)",
+            "createEpisode": {
+                "type": "Episode",
+                "keyRaw": "createEpisode(input: $input)",
 
                 "selection": {
                     "fields": {
                         "id": {
                             "type": "ID",
                             "keyRaw": "id",
+                            "visible": true
+                        },
+
+                        "scenarioId": {
+                            "type": "ID",
+                            "keyRaw": "scenarioId",
                             "visible": true
                         },
 
@@ -40,6 +48,12 @@ export default {
                             "type": "String",
                             "keyRaw": "description",
                             "nullable": true,
+                            "visible": true
+                        },
+
+                        "orderIndex": {
+                            "type": "Int",
+                            "keyRaw": "orderIndex",
                             "visible": true
                         },
 
@@ -68,13 +82,15 @@ export default {
 
     "input": {
         "fields": {
-            "input": "CreateProjectInput"
+            "input": "CreateEpisodeInput"
         },
 
         "types": {
-            "CreateProjectInput": {
+            "CreateEpisodeInput": {
+                "scenarioId": "ID",
                 "title": "String",
-                "description": "String"
+                "description": "String",
+                "orderIndex": "Int"
             }
         },
 
@@ -83,4 +99,4 @@ export default {
     }
 };
 
-"HoudiniHash=7ccd4bd20af51b8a70321c58bf3cf9df498844c972a8dcffd7248ea38936e361";
+"HoudiniHash=4cbc76864c6f69909f88fd7f19ceee2c38929eb0e9e1f910f9356033644ebf67";

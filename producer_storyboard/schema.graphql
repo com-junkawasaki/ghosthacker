@@ -126,6 +126,8 @@ type Query {
 	audioTracks(composerId: ID!): [AudioTrack!]!
 	audioClips(trackId: ID!): [AudioClip!]!
 	sunoMusic(composerId: ID!): [SunoMusic!]!
+	scenarios(projectId: ID!): [Scenario!]!
+	scenario(id: ID!): Scenario
 }
 
 input CreateProjectInput {
@@ -266,6 +268,38 @@ input UpdateAudioClipInput {
 	trackId: ID
 }
 
+input CreateScenarioInput {
+	projectId: ID!
+	title: String!
+	description: String
+}
+
+input UpdateScenarioInput {
+	id: ID!
+	title: String
+	description: String
+}
+
+input CreateEpisodeInput {
+	scenarioId: ID!
+	title: String!
+	description: String
+	orderIndex: Int
+}
+
+input CreatePartInput {
+	episodeId: ID!
+	title: String!
+	description: String
+	orderIndex: Int
+}
+
+input CreateScenePlanInput {
+	partId: ID!
+	description: String!
+	orderIndex: Int
+}
+
 type HumeVoice {
 	id: String!
 	name: String!
@@ -317,6 +351,47 @@ type SunoMusic {
 	updatedAt: String!
 }
 
+type Scenario {
+	id: ID!
+	projectId: ID!
+	title: String!
+	description: String
+	episodes: [Episode!]!
+	createdAt: String!
+	updatedAt: String!
+}
+
+type Episode {
+	id: ID!
+	scenarioId: ID!
+	title: String!
+	description: String
+	orderIndex: Int!
+	parts: [Part!]!
+	createdAt: String!
+	updatedAt: String!
+}
+
+type Part {
+	id: ID!
+	episodeId: ID!
+	title: String!
+	description: String
+	orderIndex: Int!
+	scenePlans: [ScenePlan!]!
+	createdAt: String!
+	updatedAt: String!
+}
+
+type ScenePlan {
+	id: ID!
+	partId: ID!
+	description: String!
+	orderIndex: Int!
+	createdAt: String!
+	updatedAt: String!
+}
+
 type Mutation {
 	createProject(input: CreateProjectInput!): Project!
 	createStoryboard(input: CreateStoryboardInput!): Storyboard!
@@ -344,4 +419,10 @@ type Mutation {
 	deleteAudioClip(id: ID!): Boolean!
 	generateSunoMusic(input: GenerateSunoMusicInput!): SunoMusic!
 	reorderAudioClips(trackId: ID!, clipIds: [ID!]!): [AudioClip!]!
+	createScenario(input: CreateScenarioInput!): Scenario!
+	updateScenario(input: UpdateScenarioInput!): Scenario!
+	deleteScenario(id: ID!): Boolean!
+	createEpisode(input: CreateEpisodeInput!): Episode!
+	createPart(input: CreatePartInput!): Part!
+	createScenePlan(input: CreateScenePlanInput!): ScenePlan!
 }

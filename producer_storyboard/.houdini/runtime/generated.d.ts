@@ -5,32 +5,36 @@ import { GetComposer$result, GetComposer$input } from "$houdini/artifacts/GetCom
 import { GetComposerStore } from "../plugins/houdini-svelte/stores/GetComposer";
 import { GetGeneratedImages$result, GetGeneratedImages$input } from "$houdini/artifacts/GetGeneratedImages";
 import { GetGeneratedImagesStore } from "../plugins/houdini-svelte/stores/GetGeneratedImages";
-import { GetScene$result, GetScene$input } from "$houdini/artifacts/GetScene";
-import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
-import { ListAudioClips$result, ListAudioClips$input } from "$houdini/artifacts/ListAudioClips";
-import { ListAudioClipsStore } from "../plugins/houdini-svelte/stores/ListAudioClips";
-import { ListCharacterAssets$result, ListCharacterAssets$input } from "$houdini/artifacts/ListCharacterAssets";
-import { ListCharacterAssetsStore } from "../plugins/houdini-svelte/stores/ListCharacterAssets";
 import { ListAudioTracks$result, ListAudioTracks$input } from "$houdini/artifacts/ListAudioTracks";
 import { ListAudioTracksStore } from "../plugins/houdini-svelte/stores/ListAudioTracks";
+import { ListAudioClips$result, ListAudioClips$input } from "$houdini/artifacts/ListAudioClips";
+import { ListAudioClipsStore } from "../plugins/houdini-svelte/stores/ListAudioClips";
+import { GetScenario$result, GetScenario$input } from "$houdini/artifacts/GetScenario";
+import { GetScenarioStore } from "../plugins/houdini-svelte/stores/GetScenario";
+import { GetScene$result, GetScene$input } from "$houdini/artifacts/GetScene";
+import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
+import { ListCharacterAssets$result, ListCharacterAssets$input } from "$houdini/artifacts/ListCharacterAssets";
+import { ListCharacterAssetsStore } from "../plugins/houdini-svelte/stores/ListCharacterAssets";
 import { ListCharacters$result, ListCharacters$input } from "$houdini/artifacts/ListCharacters";
 import { ListCharactersStore } from "../plugins/houdini-svelte/stores/ListCharacters";
 import { ListComposers$result, ListComposers$input } from "$houdini/artifacts/ListComposers";
 import { ListComposersStore } from "../plugins/houdini-svelte/stores/ListComposers";
-import { ListDialogues$result, ListDialogues$input } from "$houdini/artifacts/ListDialogues";
-import { ListDialoguesStore } from "../plugins/houdini-svelte/stores/ListDialogues";
 import { ListGeneratedVideos$result, ListGeneratedVideos$input } from "$houdini/artifacts/ListGeneratedVideos";
 import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
+import { ListDialogues$result, ListDialogues$input } from "$houdini/artifacts/ListDialogues";
+import { ListDialoguesStore } from "../plugins/houdini-svelte/stores/ListDialogues";
 import { ListHumeVoices$result, ListHumeVoices$input } from "$houdini/artifacts/ListHumeVoices";
 import { ListHumeVoicesStore } from "../plugins/houdini-svelte/stores/ListHumeVoices";
-import { ListStoryboards$result, ListStoryboards$input } from "$houdini/artifacts/ListStoryboards";
-import { ListStoryboardsStore } from "../plugins/houdini-svelte/stores/ListStoryboards";
-import { ListSunoMusic$result, ListSunoMusic$input } from "$houdini/artifacts/ListSunoMusic";
-import { ListSunoMusicStore } from "../plugins/houdini-svelte/stores/ListSunoMusic";
+import { ListScenarios$result, ListScenarios$input } from "$houdini/artifacts/ListScenarios";
+import { ListScenariosStore } from "../plugins/houdini-svelte/stores/ListScenarios";
 import { ListProjects$result, ListProjects$input } from "$houdini/artifacts/ListProjects";
 import { ListProjectsStore } from "../plugins/houdini-svelte/stores/ListProjects";
 import { ListScenes$result, ListScenes$input } from "$houdini/artifacts/ListScenes";
 import { ListScenesStore } from "../plugins/houdini-svelte/stores/ListScenes";
+import { ListStoryboards$result, ListStoryboards$input } from "$houdini/artifacts/ListStoryboards";
+import { ListStoryboardsStore } from "../plugins/houdini-svelte/stores/ListStoryboards";
+import { ListSunoMusic$result, ListSunoMusic$input } from "$houdini/artifacts/ListSunoMusic";
+import { ListSunoMusicStore } from "../plugins/houdini-svelte/stores/ListSunoMusic";
 
 export declare type CacheTypeDef = {
     types: {
@@ -528,6 +532,18 @@ export declare type CacheTypeDef = {
                         composerId: string | number;
                     };
                 };
+                scenarios: {
+                    type: (Record<CacheTypeDef, "Scenario">)[];
+                    args: {
+                        projectId: string | number;
+                    };
+                };
+                scenario: {
+                    type: Record<CacheTypeDef, "Scenario"> | null;
+                    args: {
+                        id: string | number;
+                    };
+                };
             };
             fragments: [];
         };
@@ -715,7 +731,155 @@ export declare type CacheTypeDef = {
             };
             fragments: [];
         };
+        Scenario: {
+            idFields: {
+                id: string;
+            };
+            fields: {
+                id: {
+                    type: string;
+                    args: never;
+                };
+                projectId: {
+                    type: string;
+                    args: never;
+                };
+                title: {
+                    type: string;
+                    args: never;
+                };
+                description: {
+                    type: string | null;
+                    args: never;
+                };
+                episodes: {
+                    type: (Record<CacheTypeDef, "Episode">)[];
+                    args: never;
+                };
+                createdAt: {
+                    type: string;
+                    args: never;
+                };
+                updatedAt: {
+                    type: string;
+                    args: never;
+                };
+            };
+            fragments: [];
+        };
+        Episode: {
+            idFields: {
+                id: string;
+            };
+            fields: {
+                id: {
+                    type: string;
+                    args: never;
+                };
+                scenarioId: {
+                    type: string;
+                    args: never;
+                };
+                title: {
+                    type: string;
+                    args: never;
+                };
+                description: {
+                    type: string | null;
+                    args: never;
+                };
+                orderIndex: {
+                    type: number;
+                    args: never;
+                };
+                parts: {
+                    type: (Record<CacheTypeDef, "Part">)[];
+                    args: never;
+                };
+                createdAt: {
+                    type: string;
+                    args: never;
+                };
+                updatedAt: {
+                    type: string;
+                    args: never;
+                };
+            };
+            fragments: [];
+        };
+        Part: {
+            idFields: {
+                id: string;
+            };
+            fields: {
+                id: {
+                    type: string;
+                    args: never;
+                };
+                episodeId: {
+                    type: string;
+                    args: never;
+                };
+                title: {
+                    type: string;
+                    args: never;
+                };
+                description: {
+                    type: string | null;
+                    args: never;
+                };
+                orderIndex: {
+                    type: number;
+                    args: never;
+                };
+                scenePlans: {
+                    type: (Record<CacheTypeDef, "ScenePlan">)[];
+                    args: never;
+                };
+                createdAt: {
+                    type: string;
+                    args: never;
+                };
+                updatedAt: {
+                    type: string;
+                    args: never;
+                };
+            };
+            fragments: [];
+        };
+        ScenePlan: {
+            idFields: {
+                id: string;
+            };
+            fields: {
+                id: {
+                    type: string;
+                    args: never;
+                };
+                partId: {
+                    type: string;
+                    args: never;
+                };
+                description: {
+                    type: string;
+                    args: never;
+                };
+                orderIndex: {
+                    type: number;
+                    args: never;
+                };
+                createdAt: {
+                    type: string;
+                    args: never;
+                };
+                updatedAt: {
+                    type: string;
+                    args: never;
+                };
+            };
+            fragments: [];
+        };
     };
     lists: {};
-    queries: [[ListScenesStore, ListScenes$result, ListScenes$input], [ListProjectsStore, ListProjects$result, ListProjects$input], [ListSunoMusicStore, ListSunoMusic$result, ListSunoMusic$input], [ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListHumeVoicesStore, ListHumeVoices$result, ListHumeVoices$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input], [ListDialoguesStore, ListDialogues$result, ListDialogues$input], [ListComposersStore, ListComposers$result, ListComposers$input], [ListCharactersStore, ListCharacters$result, ListCharacters$input], [ListAudioTracksStore, ListAudioTracks$result, ListAudioTracks$input], [ListCharacterAssetsStore, ListCharacterAssets$result, ListCharacterAssets$input], [ListAudioClipsStore, ListAudioClips$result, ListAudioClips$input], [GetSceneStore, GetScene$result, GetScene$input], [GetGeneratedImagesStore, GetGeneratedImages$result, GetGeneratedImages$input], [GetComposerStore, GetComposer$result, GetComposer$input], [GetCharacterAssetDataStore, GetCharacterAssetData$result, GetCharacterAssetData$input]];
+    queries: [[ListSunoMusicStore, ListSunoMusic$result, ListSunoMusic$input], [ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListScenesStore, ListScenes$result, ListScenes$input], [ListProjectsStore, ListProjects$result, ListProjects$input], [ListScenariosStore, ListScenarios$result, ListScenarios$input], [ListHumeVoicesStore, ListHumeVoices$result, ListHumeVoices$input], [ListDialoguesStore, ListDialogues$result, ListDialogues$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input], [ListComposersStore, ListComposers$result, ListComposers$input], [ListCharactersStore, ListCharacters$result, ListCharacters$input], [ListCharacterAssetsStore, ListCharacterAssets$result, ListCharacterAssets$input], [GetSceneStore, GetScene$result, GetScene$input], [GetScenarioStore, GetScenario$result, GetScenario$input], [ListAudioClipsStore, ListAudioClips$result, ListAudioClips$input], [ListAudioTracksStore, ListAudioTracks$result, ListAudioTracks$input], [GetGeneratedImagesStore, GetGeneratedImages$result, GetGeneratedImages$input], [GetComposerStore, GetComposer$result, GetComposer$input], [GetCharacterAssetDataStore, GetCharacterAssetData$result, GetCharacterAssetData$input]];
 };

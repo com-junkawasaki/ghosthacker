@@ -1,11 +1,12 @@
 export default {
-    "name": "CreateProject",
+    "name": "CreateScenario",
     "kind": "HoudiniMutation",
-    "hash": "875bfc962ac7788ab83986bcc34377628d9bb50d8fddc5f86b3ef6b49f286c94",
+    "hash": "34cd1fb725452c2a91ada4995582af844197e0fd722f5472fa0b9f52fc53f5ba",
 
-    "raw": `mutation CreateProject($input: CreateProjectInput!) {
-  createProject(input: $input) {
+    "raw": `mutation CreateScenario($input: CreateScenarioInput!) {
+  createScenario(input: $input) {
     id
+    projectId
     title
     description
     createdAt
@@ -18,15 +19,21 @@ export default {
 
     "selection": {
         "fields": {
-            "createProject": {
-                "type": "Project",
-                "keyRaw": "createProject(input: $input)",
+            "createScenario": {
+                "type": "Scenario",
+                "keyRaw": "createScenario(input: $input)",
 
                 "selection": {
                     "fields": {
                         "id": {
                             "type": "ID",
                             "keyRaw": "id",
+                            "visible": true
+                        },
+
+                        "projectId": {
+                            "type": "ID",
+                            "keyRaw": "projectId",
                             "visible": true
                         },
 
@@ -68,11 +75,12 @@ export default {
 
     "input": {
         "fields": {
-            "input": "CreateProjectInput"
+            "input": "CreateScenarioInput"
         },
 
         "types": {
-            "CreateProjectInput": {
+            "CreateScenarioInput": {
+                "projectId": "ID",
                 "title": "String",
                 "description": "String"
             }
@@ -83,4 +91,4 @@ export default {
     }
 };
 
-"HoudiniHash=7ccd4bd20af51b8a70321c58bf3cf9df498844c972a8dcffd7248ea38936e361";
+"HoudiniHash=98a63324a03fe34c43e2deed0f72f473d32540c73a569c1bd580e9c8ce1bee2e";

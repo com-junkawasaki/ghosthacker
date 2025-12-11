@@ -1,46 +1,54 @@
-export type CreateProject = {
-    readonly "input": CreateProject$input;
-    readonly "result": CreateProject$result;
+export type CreateEpisode = {
+    readonly "input": CreateEpisode$input;
+    readonly "result": CreateEpisode$result;
 };
 
-export type CreateProject$result = {
-    readonly createProject: {
+export type CreateEpisode$result = {
+    readonly createEpisode: {
         readonly id: string;
+        readonly scenarioId: string;
         readonly title: string;
         readonly description: string | null;
+        readonly orderIndex: number;
         readonly createdAt: string;
         readonly updatedAt: string;
     };
 };
 
-type CreateProjectInput = {
+type CreateEpisodeInput = {
+    scenarioId: string | number;
     title: string;
     description?: string | null | undefined;
+    orderIndex?: number | null | undefined;
 };
 
-export type CreateProject$input = {
-    input: CreateProjectInput;
+export type CreateEpisode$input = {
+    input: CreateEpisodeInput;
 };
 
-export type CreateProject$optimistic = {
-    readonly createProject?: {
+export type CreateEpisode$optimistic = {
+    readonly createEpisode?: {
         readonly id?: string;
+        readonly scenarioId?: string;
         readonly title?: string;
         readonly description?: string | null;
+        readonly orderIndex?: number;
         readonly createdAt?: string;
         readonly updatedAt?: string;
     };
 };
 
-export type CreateProject$artifact = {
-    "name": "CreateProject";
+export type CreateEpisode$artifact = {
+    "name": "CreateEpisode";
     "kind": "HoudiniMutation";
-    "hash": "875bfc962ac7788ab83986bcc34377628d9bb50d8fddc5f86b3ef6b49f286c94";
-    "raw": `mutation CreateProject($input: CreateProjectInput!) {
-  createProject(input: $input) {
+    "hash": "b0a0ed9e4893b679ca30933e6f3af6bb0ed6e87676bd61967dd30c11f17c991b";
+    "raw": `mutation CreateEpisode($input: CreateEpisodeInput!) {
+  createEpisode(input: $input) {
     id
+    scenarioId
     title
     description
+    orderIndex
     createdAt
     updatedAt
   }
@@ -49,14 +57,19 @@ export type CreateProject$artifact = {
     "stripVariables": [];
     "selection": {
         "fields": {
-            "createProject": {
-                "type": "Project";
-                "keyRaw": "createProject(input: $input)";
+            "createEpisode": {
+                "type": "Episode";
+                "keyRaw": "createEpisode(input: $input)";
                 "selection": {
                     "fields": {
                         "id": {
                             "type": "ID";
                             "keyRaw": "id";
+                            "visible": true;
+                        };
+                        "scenarioId": {
+                            "type": "ID";
+                            "keyRaw": "scenarioId";
                             "visible": true;
                         };
                         "title": {
@@ -68,6 +81,11 @@ export type CreateProject$artifact = {
                             "type": "String";
                             "keyRaw": "description";
                             "nullable": true;
+                            "visible": true;
+                        };
+                        "orderIndex": {
+                            "type": "Int";
+                            "keyRaw": "orderIndex";
                             "visible": true;
                         };
                         "createdAt": {
@@ -91,12 +109,14 @@ export type CreateProject$artifact = {
     };
     "input": {
         "fields": {
-            "input": "CreateProjectInput";
+            "input": "CreateEpisodeInput";
         };
         "types": {
-            "CreateProjectInput": {
+            "CreateEpisodeInput": {
+                "scenarioId": "ID";
                 "title": "String";
                 "description": "String";
+                "orderIndex": "Int";
             };
         };
         "defaults": {};

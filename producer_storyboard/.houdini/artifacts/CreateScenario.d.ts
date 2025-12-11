@@ -1,11 +1,12 @@
-export type CreateProject = {
-    readonly "input": CreateProject$input;
-    readonly "result": CreateProject$result;
+export type CreateScenario = {
+    readonly "input": CreateScenario$input;
+    readonly "result": CreateScenario$result;
 };
 
-export type CreateProject$result = {
-    readonly createProject: {
+export type CreateScenario$result = {
+    readonly createScenario: {
         readonly id: string;
+        readonly projectId: string;
         readonly title: string;
         readonly description: string | null;
         readonly createdAt: string;
@@ -13,18 +14,20 @@ export type CreateProject$result = {
     };
 };
 
-type CreateProjectInput = {
+type CreateScenarioInput = {
+    projectId: string | number;
     title: string;
     description?: string | null | undefined;
 };
 
-export type CreateProject$input = {
-    input: CreateProjectInput;
+export type CreateScenario$input = {
+    input: CreateScenarioInput;
 };
 
-export type CreateProject$optimistic = {
-    readonly createProject?: {
+export type CreateScenario$optimistic = {
+    readonly createScenario?: {
         readonly id?: string;
+        readonly projectId?: string;
         readonly title?: string;
         readonly description?: string | null;
         readonly createdAt?: string;
@@ -32,13 +35,14 @@ export type CreateProject$optimistic = {
     };
 };
 
-export type CreateProject$artifact = {
-    "name": "CreateProject";
+export type CreateScenario$artifact = {
+    "name": "CreateScenario";
     "kind": "HoudiniMutation";
-    "hash": "875bfc962ac7788ab83986bcc34377628d9bb50d8fddc5f86b3ef6b49f286c94";
-    "raw": `mutation CreateProject($input: CreateProjectInput!) {
-  createProject(input: $input) {
+    "hash": "34cd1fb725452c2a91ada4995582af844197e0fd722f5472fa0b9f52fc53f5ba";
+    "raw": `mutation CreateScenario($input: CreateScenarioInput!) {
+  createScenario(input: $input) {
     id
+    projectId
     title
     description
     createdAt
@@ -49,14 +53,19 @@ export type CreateProject$artifact = {
     "stripVariables": [];
     "selection": {
         "fields": {
-            "createProject": {
-                "type": "Project";
-                "keyRaw": "createProject(input: $input)";
+            "createScenario": {
+                "type": "Scenario";
+                "keyRaw": "createScenario(input: $input)";
                 "selection": {
                     "fields": {
                         "id": {
                             "type": "ID";
                             "keyRaw": "id";
+                            "visible": true;
+                        };
+                        "projectId": {
+                            "type": "ID";
+                            "keyRaw": "projectId";
                             "visible": true;
                         };
                         "title": {
@@ -91,10 +100,11 @@ export type CreateProject$artifact = {
     };
     "input": {
         "fields": {
-            "input": "CreateProjectInput";
+            "input": "CreateScenarioInput";
         };
         "types": {
-            "CreateProjectInput": {
+            "CreateScenarioInput": {
+                "projectId": "ID";
                 "title": "String";
                 "description": "String";
             };

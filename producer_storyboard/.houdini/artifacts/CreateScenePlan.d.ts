@@ -1,46 +1,50 @@
-export type CreateProject = {
-    readonly "input": CreateProject$input;
-    readonly "result": CreateProject$result;
+export type CreateScenePlan = {
+    readonly "input": CreateScenePlan$input;
+    readonly "result": CreateScenePlan$result;
 };
 
-export type CreateProject$result = {
-    readonly createProject: {
+export type CreateScenePlan$result = {
+    readonly createScenePlan: {
         readonly id: string;
-        readonly title: string;
-        readonly description: string | null;
+        readonly partId: string;
+        readonly description: string;
+        readonly orderIndex: number;
         readonly createdAt: string;
         readonly updatedAt: string;
     };
 };
 
-type CreateProjectInput = {
-    title: string;
-    description?: string | null | undefined;
+type CreateScenePlanInput = {
+    partId: string | number;
+    description: string;
+    orderIndex?: number | null | undefined;
 };
 
-export type CreateProject$input = {
-    input: CreateProjectInput;
+export type CreateScenePlan$input = {
+    input: CreateScenePlanInput;
 };
 
-export type CreateProject$optimistic = {
-    readonly createProject?: {
+export type CreateScenePlan$optimistic = {
+    readonly createScenePlan?: {
         readonly id?: string;
-        readonly title?: string;
-        readonly description?: string | null;
+        readonly partId?: string;
+        readonly description?: string;
+        readonly orderIndex?: number;
         readonly createdAt?: string;
         readonly updatedAt?: string;
     };
 };
 
-export type CreateProject$artifact = {
-    "name": "CreateProject";
+export type CreateScenePlan$artifact = {
+    "name": "CreateScenePlan";
     "kind": "HoudiniMutation";
-    "hash": "875bfc962ac7788ab83986bcc34377628d9bb50d8fddc5f86b3ef6b49f286c94";
-    "raw": `mutation CreateProject($input: CreateProjectInput!) {
-  createProject(input: $input) {
+    "hash": "74869d18c5f62fa10773a68923a39907ed60fefa68d999ce8bd92184f54b4e73";
+    "raw": `mutation CreateScenePlan($input: CreateScenePlanInput!) {
+  createScenePlan(input: $input) {
     id
-    title
+    partId
     description
+    orderIndex
     createdAt
     updatedAt
   }
@@ -49,9 +53,9 @@ export type CreateProject$artifact = {
     "stripVariables": [];
     "selection": {
         "fields": {
-            "createProject": {
-                "type": "Project";
-                "keyRaw": "createProject(input: $input)";
+            "createScenePlan": {
+                "type": "ScenePlan";
+                "keyRaw": "createScenePlan(input: $input)";
                 "selection": {
                     "fields": {
                         "id": {
@@ -59,15 +63,19 @@ export type CreateProject$artifact = {
                             "keyRaw": "id";
                             "visible": true;
                         };
-                        "title": {
-                            "type": "String";
-                            "keyRaw": "title";
+                        "partId": {
+                            "type": "ID";
+                            "keyRaw": "partId";
                             "visible": true;
                         };
                         "description": {
                             "type": "String";
                             "keyRaw": "description";
-                            "nullable": true;
+                            "visible": true;
+                        };
+                        "orderIndex": {
+                            "type": "Int";
+                            "keyRaw": "orderIndex";
                             "visible": true;
                         };
                         "createdAt": {
@@ -91,12 +99,13 @@ export type CreateProject$artifact = {
     };
     "input": {
         "fields": {
-            "input": "CreateProjectInput";
+            "input": "CreateScenePlanInput";
         };
         "types": {
-            "CreateProjectInput": {
-                "title": "String";
+            "CreateScenePlanInput": {
+                "partId": "ID";
                 "description": "String";
+                "orderIndex": "Int";
             };
         };
         "defaults": {};

@@ -1,13 +1,15 @@
 export default {
-    "name": "CreateProject",
+    "name": "CreatePart",
     "kind": "HoudiniMutation",
-    "hash": "875bfc962ac7788ab83986bcc34377628d9bb50d8fddc5f86b3ef6b49f286c94",
+    "hash": "1f146a5ca2a9d15f471f90094179ef4dbab7f5af8eaf3980976f95254fc07d15",
 
-    "raw": `mutation CreateProject($input: CreateProjectInput!) {
-  createProject(input: $input) {
+    "raw": `mutation CreatePart($input: CreatePartInput!) {
+  createPart(input: $input) {
     id
+    episodeId
     title
     description
+    orderIndex
     createdAt
     updatedAt
   }
@@ -18,15 +20,21 @@ export default {
 
     "selection": {
         "fields": {
-            "createProject": {
-                "type": "Project",
-                "keyRaw": "createProject(input: $input)",
+            "createPart": {
+                "type": "Part",
+                "keyRaw": "createPart(input: $input)",
 
                 "selection": {
                     "fields": {
                         "id": {
                             "type": "ID",
                             "keyRaw": "id",
+                            "visible": true
+                        },
+
+                        "episodeId": {
+                            "type": "ID",
+                            "keyRaw": "episodeId",
                             "visible": true
                         },
 
@@ -40,6 +48,12 @@ export default {
                             "type": "String",
                             "keyRaw": "description",
                             "nullable": true,
+                            "visible": true
+                        },
+
+                        "orderIndex": {
+                            "type": "Int",
+                            "keyRaw": "orderIndex",
                             "visible": true
                         },
 
@@ -68,13 +82,15 @@ export default {
 
     "input": {
         "fields": {
-            "input": "CreateProjectInput"
+            "input": "CreatePartInput"
         },
 
         "types": {
-            "CreateProjectInput": {
+            "CreatePartInput": {
+                "episodeId": "ID",
                 "title": "String",
-                "description": "String"
+                "description": "String",
+                "orderIndex": "Int"
             }
         },
 
@@ -83,4 +99,4 @@ export default {
     }
 };
 
-"HoudiniHash=7ccd4bd20af51b8a70321c58bf3cf9df498844c972a8dcffd7248ea38936e361";
+"HoudiniHash=c923f037ad0365a0d28db8cd36bb7a2d951722f02ea14250fe50491e5c7879c4";

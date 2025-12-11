@@ -1947,7 +1947,7 @@ impl MutationRoot {
     /// Create a new scenario
     async fn create_scenario(&self, ctx: &Context<'_>, input: CreateScenarioInput) -> Result<Scenario> {
         let pool = ctx.data::<PostgresPool>()?;
-        let auth = require_auth_and_org(ctx)?;
+        let (_user, org) = require_auth_and_org(ctx)?;
         
         let project_uuid = Uuid::parse_str(&input.project_id.0)
             .map_err(|e| async_graphql::Error::new(format!("Invalid project ID: {}", e)))?;
@@ -1964,14 +1964,14 @@ impl MutationRoot {
         match project_org {
             None => return Err(async_graphql::Error::new("Project not found")),
             Some(Some(project_org_id)) => {
-                if project_org_id != auth.org.id {
+                if project_org_id != org.id {
                     return Err(async_graphql::Error::new("Access denied"));
                 }
             }
             Some(None) => {
                 // Project exists but org_id is NULL - allow access and set org_id
                 sqlx::query("UPDATE storyboard_projects SET org_id = $1 WHERE id = $2")
-                    .bind(&auth.org.id)
+                    .bind(&org.id)
                     .bind(project_uuid)
                     .execute(pool.as_ref())
                     .await
@@ -1990,7 +1990,7 @@ impl MutationRoot {
         )
         .bind(scenario_id)
         .bind(project_uuid)
-        .bind(&auth.org.id)
+        .bind(&org.id)
         .bind(&input.title)
         .bind(&input.description)
         .bind(now)
@@ -2012,7 +2012,7 @@ impl MutationRoot {
     /// Update a scenario
     async fn update_scenario(&self, ctx: &Context<'_>, input: UpdateScenarioInput) -> Result<Scenario> {
         let pool = ctx.data::<PostgresPool>()?;
-        let auth = require_auth_and_org(ctx)?;
+        let (_user, org) = require_auth_and_org(ctx)?;
         
         let scenario_uuid = Uuid::parse_str(&input.id.0)
             .map_err(|e| async_graphql::Error::new(format!("Invalid scenario ID: {}", e)))?;
@@ -2029,7 +2029,7 @@ impl MutationRoot {
         match scenario_org {
             None => return Err(async_graphql::Error::new("Scenario not found")),
             Some(Some(scenario_org_id)) => {
-                if scenario_org_id != auth.org.id {
+                if scenario_org_id != org.id {
                     return Err(async_graphql::Error::new("Access denied"));
                 }
             }
@@ -2037,31 +2037,6 @@ impl MutationRoot {
                 // Scenario exists but org_id is NULL - allow access
             }
         }
-        
-        // Build update query dynamically
-        let mut updates = Vec::new();
-        let mut params: Vec<&dyn sqlx::postgres::PgHasArrayType> = vec![];
-        
-        if let Some(ref title) = input.title {
-            updates.push("title = $1");
-            params.push(title);
-        }
-        if let Some(ref description) = input.description {
-            updates.push("description = $2");
-            params.push(description);
-        }
-        
-        if updates.is_empty() {
-            return Err(async_graphql::Error::new("No fields to update"));
-        }
-        
-        updates.push("updated_at = NOW()");
-        
-        let query = format!(
-            "UPDATE scenarios SET {} WHERE id = ${}",
-            updates.join(", "),
-            updates.len()
-        );
         
         // For simplicity, use a fixed query structure
         let row = if input.title.is_some() && input.description.is_some() {
@@ -2123,7 +2098,7 @@ impl MutationRoot {
     /// Delete a scenario
     async fn delete_scenario(&self, ctx: &Context<'_>, id: ID) -> Result<bool> {
         let pool = ctx.data::<PostgresPool>()?;
-        let auth = require_auth_and_org(ctx)?;
+        let (_user, org) = require_auth_and_org(ctx)?;
         
         let scenario_uuid = Uuid::parse_str(&id.0)
             .map_err(|e| async_graphql::Error::new(format!("Invalid scenario ID: {}", e)))?;
@@ -2140,7 +2115,7 @@ impl MutationRoot {
         match scenario_org {
             None => return Err(async_graphql::Error::new("Scenario not found")),
             Some(Some(scenario_org_id)) => {
-                if scenario_org_id != auth.org.id {
+                if scenario_org_id != org.id {
                     return Err(async_graphql::Error::new("Access denied"));
                 }
             }
@@ -2161,7 +2136,7 @@ impl MutationRoot {
     /// Create an episode
     async fn create_episode(&self, ctx: &Context<'_>, input: CreateEpisodeInput) -> Result<Episode> {
         let pool = ctx.data::<PostgresPool>()?;
-        let auth = require_auth_and_org(ctx)?;
+        let (_user, org) = require_auth_and_org(ctx)?;
         
         let scenario_uuid = Uuid::parse_str(&input.scenario_id.0)
             .map_err(|e| async_graphql::Error::new(format!("Invalid scenario ID: {}", e)))?;
@@ -2178,7 +2153,7 @@ impl MutationRoot {
         match scenario_org {
             None => return Err(async_graphql::Error::new("Scenario not found")),
             Some(Some(scenario_org_id)) => {
-                if scenario_org_id != auth.org.id {
+                if scenario_org_id != org.id {
                     return Err(async_graphql::Error::new("Access denied"));
                 }
             }
@@ -2210,7 +2185,7 @@ impl MutationRoot {
         )
         .bind(episode_id)
         .bind(scenario_uuid)
-        .bind(&auth.org.id)
+        .bind(&org.id)
         .bind(&input.title)
         .bind(&input.description)
         .bind(order_index)
@@ -2234,7 +2209,7 @@ impl MutationRoot {
     /// Create a part
     async fn create_part(&self, ctx: &Context<'_>, input: CreatePartInput) -> Result<Part> {
         let pool = ctx.data::<PostgresPool>()?;
-        let auth = require_auth_and_org(ctx)?;
+        let (_user, org) = require_auth_and_org(ctx)?;
         
         let episode_uuid = Uuid::parse_str(&input.episode_id.0)
             .map_err(|e| async_graphql::Error::new(format!("Invalid episode ID: {}", e)))?;
@@ -2251,7 +2226,7 @@ impl MutationRoot {
         match episode_org {
             None => return Err(async_graphql::Error::new("Episode not found")),
             Some(Some(episode_org_id)) => {
-                if episode_org_id != auth.org.id {
+                if episode_org_id != org.id {
                     return Err(async_graphql::Error::new("Access denied"));
                 }
             }
@@ -2283,7 +2258,7 @@ impl MutationRoot {
         )
         .bind(part_id)
         .bind(episode_uuid)
-        .bind(&auth.org.id)
+        .bind(&org.id)
         .bind(&input.title)
         .bind(&input.description)
         .bind(order_index)
@@ -2307,7 +2282,7 @@ impl MutationRoot {
     /// Create a scene plan
     async fn create_scene_plan(&self, ctx: &Context<'_>, input: CreateScenePlanInput) -> Result<ScenePlan> {
         let pool = ctx.data::<PostgresPool>()?;
-        let auth = require_auth_and_org(ctx)?;
+        let (_user, org) = require_auth_and_org(ctx)?;
         
         let part_uuid = Uuid::parse_str(&input.part_id.0)
             .map_err(|e| async_graphql::Error::new(format!("Invalid part ID: {}", e)))?;
@@ -2324,7 +2299,7 @@ impl MutationRoot {
         match part_org {
             None => return Err(async_graphql::Error::new("Part not found")),
             Some(Some(part_org_id)) => {
-                if part_org_id != auth.org.id {
+                if part_org_id != org.id {
                     return Err(async_graphql::Error::new("Access denied"));
                 }
             }
@@ -2356,7 +2331,7 @@ impl MutationRoot {
         )
         .bind(scene_plan_id)
         .bind(part_uuid)
-        .bind(&auth.org.id)
+        .bind(&org.id)
         .bind(&input.description)
         .bind(order_index)
         .bind(now)

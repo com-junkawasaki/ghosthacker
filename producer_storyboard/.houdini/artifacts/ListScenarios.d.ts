@@ -1,62 +1,54 @@
-export type CreateProject = {
-    readonly "input": CreateProject$input;
-    readonly "result": CreateProject$result;
+export type ListScenarios = {
+    readonly "input": ListScenarios$input;
+    readonly "result": ListScenarios$result | undefined;
 };
 
-export type CreateProject$result = {
-    readonly createProject: {
+export type ListScenarios$result = {
+    readonly scenarios: ({
         readonly id: string;
+        readonly projectId: string;
         readonly title: string;
         readonly description: string | null;
         readonly createdAt: string;
         readonly updatedAt: string;
-    };
+    })[];
 };
 
-type CreateProjectInput = {
-    title: string;
-    description?: string | null | undefined;
+export type ListScenarios$input = {
+    projectId: string | number;
 };
 
-export type CreateProject$input = {
-    input: CreateProjectInput;
-};
-
-export type CreateProject$optimistic = {
-    readonly createProject?: {
-        readonly id?: string;
-        readonly title?: string;
-        readonly description?: string | null;
-        readonly createdAt?: string;
-        readonly updatedAt?: string;
-    };
-};
-
-export type CreateProject$artifact = {
-    "name": "CreateProject";
-    "kind": "HoudiniMutation";
-    "hash": "875bfc962ac7788ab83986bcc34377628d9bb50d8fddc5f86b3ef6b49f286c94";
-    "raw": `mutation CreateProject($input: CreateProjectInput!) {
-  createProject(input: $input) {
+export type ListScenarios$artifact = {
+    "name": "ListScenarios";
+    "kind": "HoudiniQuery";
+    "hash": "8c70ac2df80dfc0bbf9637a2bec091d61fdb7637e2aed640a227bcfea49108d0";
+    "raw": `query ListScenarios($projectId: ID!) {
+  scenarios(projectId: $projectId) {
     id
+    projectId
     title
     description
     createdAt
     updatedAt
   }
 }`;
-    "rootType": "Mutation";
+    "rootType": "Query";
     "stripVariables": [];
     "selection": {
         "fields": {
-            "createProject": {
-                "type": "Project";
-                "keyRaw": "createProject(input: $input)";
+            "scenarios": {
+                "type": "Scenario";
+                "keyRaw": "scenarios(projectId: $projectId)";
                 "selection": {
                     "fields": {
                         "id": {
                             "type": "ID";
                             "keyRaw": "id";
+                            "visible": true;
+                        };
+                        "projectId": {
+                            "type": "ID";
+                            "keyRaw": "projectId";
                             "visible": true;
                         };
                         "title": {
@@ -91,15 +83,12 @@ export type CreateProject$artifact = {
     };
     "input": {
         "fields": {
-            "input": "CreateProjectInput";
+            "projectId": "ID";
         };
-        "types": {
-            "CreateProjectInput": {
-                "title": "String";
-                "description": "String";
-            };
-        };
+        "types": {};
         "defaults": {};
         "runtimeScalars": {};
     };
+    "policy": "CacheOrNetwork";
+    "partial": false;
 };

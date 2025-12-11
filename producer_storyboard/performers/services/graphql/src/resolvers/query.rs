@@ -9,7 +9,7 @@ use async_graphql::{Context, Object, ID, Result};
 use crate::ports::postgres::PostgresPool;
 use crate::schema::storyboard::{Project, Storyboard, Scene, VideoStatus, GeneratedImage, OperationHistory, Character, Dialogue, HumeVoice, CharacterAsset};
 use crate::schema::composer::{Composer, AudioTrack, AudioClip, SunoMusic};
-use crate::schema::scenario::{Scenario, Episode, Part, ScenePlan};
+use crate::schema::scenario::Scenario;
 use crate::ports::hume_service::HumeService;
 use crate::ports::clerk::get_clerk_auth_from_context;
 use uuid::Uuid;
