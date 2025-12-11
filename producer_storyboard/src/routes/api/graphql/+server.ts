@@ -18,7 +18,7 @@ function getGraphQLApiUrl(request: Request): string {
 	return process.env.GRAPHQL_API_URL || 'http://localhost:25325/graphql';
 }
 
-export const POST: RequestHandler = async ({ request, cookies }) => {
+export const POST: RequestHandler = async ({ request, cookies, locals }) => {
 	// Get GraphQL API URL (Vercel Rust runtime in production, localhost in development)
 	const graphqlApiUrl = getGraphQLApiUrl(request);
 	
@@ -40,6 +40,9 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 	try {
 		const body = await request.json();
 		
+		// Get auth from locals (set by withClerkHandler)
+		const auth = locals.auth();
+		
 		// Forward Clerk session token and org ID from request headers
 		const headers: Record<string, string> = {
 			'Content-Type': 'application/json',
@@ -51,10 +54,15 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 			headers['Authorization'] = authHeader;
 		}
 		
-		// Forward org ID header if present
-		const orgId = request.headers.get('x-org-id');
+		// Forward org ID header if present, or use from auth locals
+		const orgId = request.headers.get('x-org-id') || auth.orgId;
 		if (orgId) {
 			headers['X-Org-Id'] = orgId;
+		}
+		
+		// Forward user ID from auth locals (required for require_auth_and_org)
+		if (auth.userId) {
+			headers['X-User-Id'] = auth.userId;
 		}
 		
 		// Also check for Clerk session cookie

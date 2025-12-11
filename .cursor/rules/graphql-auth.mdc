@@ -1,0 +1,153 @@
+## GraphQL認証ヘッダー設定ルール
+
+### 問題の背景
+GraphQLバックエンドの`require_auth_and_org`関数は、`user`と`org`の両方が必要です。これらはHTTPヘッダーから取得されます：
+- `X-User-Id`: ユーザーID（必須）
+- `X-Org-Id`: 組織ID（必須）
+
+### 必須実装
+
+#### 1. GraphQL APIプロキシ (`/api/graphql/+server.ts`)
+すべてのGraphQLリクエストは`/api/graphql`プロキシ経由で送信されます。このプロキシは**必ず**以下のヘッダーをバックエンドに転送する必要があります：
+
+```typescript
+export const POST: RequestHandler = async ({ request, cookies, locals }) => {
+    // Get auth from locals (set by withClerkHandler)
+    const auth = locals.auth();
+    
+    const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+    };
+    
+    // Forward Authorization header if present
+    const authHeader = request.headers.get('authorization');
+    if (authHeader) {
+        headers['Authorization'] = authHeader;
+    }
+    
+    // Forward org ID header if present, or use from auth locals
+    const orgId = request.headers.get('x-org-id') || auth.orgId;
+    if (orgId) {
+        headers['X-Org-Id'] = orgId;
+    }
+    
+    // ⚠️ 必須: Forward user ID from auth locals
+    if (auth.userId) {
+        headers['X-User-Id'] = auth.userId;
+    }
+    
+    // Also check for Clerk session cookie
+    const clerkSession = cookies.get('__session');
+    if (clerkSession) {
+        headers['X-Clerk-Session'] = clerkSession;
+    }
+    
+    // ... rest of the code
+};
+```
+
+**重要ポイント:**
+- `locals`パラメータを必ず追加する
+- `locals.auth()`から`userId`を取得して`X-User-Id`ヘッダーを設定する
+- `orgId`も`locals.auth()`から取得してフォールバックとして使用する
+
+#### 2. GraphQLクライアント (`src/lib/graphql/client.ts`)
+クライアント側では`X-Org-Id`のみを設定します（URLから抽出）。`X-User-Id`はAPIプロキシ側で設定されるため、クライアント側では設定不要です。
+
+```typescript
+fetchParams({ session }) {
+    const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+    };
+    
+    // Extract orgId from URL params
+    if (browser) {
+        try {
+            const currentPath = window.location.pathname;
+            const orgIdMatch = currentPath.match(/\/orgs\/([^/]+)/);
+            if (orgIdMatch && orgIdMatch[1]) {
+                headers['X-Org-Id'] = orgIdMatch[1];
+            }
+        } catch (e) {
+            console.warn('[GraphQL Client] Could not extract orgId from URL:', e);
+        }
+    }
+    
+    return { headers };
+}
+```
+
+### チェックリスト
+
+新しいAPIエンドポイントを作成する際は、以下を確認してください：
+
+- [ ] `locals`パラメータが追加されているか
+- [ ] `locals.auth()`から`userId`を取得しているか
+- [ ] `X-User-Id`ヘッダーを設定しているか
+- [ ] `X-Org-Id`ヘッダーを設定しているか（リクエストヘッダーまたは`locals.auth().orgId`から）
+- [ ] Clerkセッションクッキー（`__session`）を`X-Clerk-Session`ヘッダーとして転送しているか
+
+### 認証が必要なGraphQL操作
+
+以下のミューテーションは`require_auth_and_org`を使用しているため、`X-User-Id`と`X-Org-Id`の両方が必要です：
+
+- `createProject`
+- `createScenario`
+- `updateScenario`
+- `deleteScenario`
+- `createEpisode`
+- `updateEpisode`
+- `deleteEpisode`
+- `createPart`
+- `updatePart`
+- `deletePart`
+- `createScenePlan`
+- `updateScenePlan`
+- `deleteScenePlan`
+- `reorderEpisodes`
+- `reorderParts`
+- `reorderScenePlans`
+- `convertScenarioToStoryboard`
+- `createStoryboard`
+- `updateStoryboard`
+- `deleteStoryboard`
+- `createScene`
+- `updateScene`
+- `deleteScene`
+- `reorderScenes`
+- `generateSceneImage`
+- `uploadSceneImage`
+- `createComposer`
+- `generateSunoMusic`
+- その他、組織スコープの操作
+
+### エラーパターン
+
+以下のエラーが発生した場合、認証ヘッダーが不足している可能性があります：
+
+- `Authentication required`: `X-User-Id`ヘッダーが不足
+- `Organization context required`: `X-Org-Id`ヘッダーが不足
+
+### デバッグ方法
+
+1. ブラウザの開発者ツールでNetworkタブを確認
+2. `/api/graphql`へのリクエストを確認
+3. Request Headersに以下が含まれているか確認：
+   - `x-org-id`: 組織ID
+   - `x-user-id`: ユーザーID（APIプロキシ側で追加される）
+4. サーバー側のログで`[GraphQL Proxy]`のログを確認
+
+### その他のAPIエンドポイント
+
+以下のエンドポイントは直接GraphQL APIを呼び出していますが、現在は認証ヘッダーを設定していません：
+- `/api/character-assets/[assetId]/+server.ts`
+- `/api/images/[imageId]/+server.ts`
+- `/api/audio/[dialogueId]/+server.ts`
+
+これらのエンドポイントも認証が必要な場合は、同様に`locals`パラメータを追加し、認証ヘッダーを設定する必要があります。
+
+### 参考実装
+
+- `/api/graphql/+server.ts`: GraphQL APIプロキシの実装例
+- `/src/lib/graphql/client.ts`: GraphQLクライアントの実装例
+- `/performers/services/graphql/src/ports/clerk.rs`: バックエンドの認証処理
