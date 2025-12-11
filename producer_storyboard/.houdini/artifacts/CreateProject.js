@@ -73,7 +73,6 @@ export default {
 
         "types": {
             "CreateProjectInput": {
-                "orgId": "ID",
                 "title": "String",
                 "description": "String"
             }
