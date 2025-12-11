@@ -19,6 +19,8 @@
     "test:bdd": "cucumber-js tests/bdd/features --config tests/bdd/cucumber.config.cjs",
     "test:bdd:e2e": "cucumber-js tests/bdd/e2e/features --config tests/bdd/e2e/cucumber.config.cjs",
     "test:bdd:coverage": "nyc --reporter=text --reporter=html cucumber-js tests/bdd/e2e/features --config tests/bdd/e2e/cucumber.config.cjs",
+    "test:bdd:coverage:report": "tsx scripts/bdd-coverage.ts",
+    "test:bdd:e2e:coverage": "pnpm test:bdd:e2e && pnpm test:bdd:coverage:report",
     "test:e2e": "playwright test",
     "test:tdd": "vitest run",
     "test:integration": "vitest run --config vitest.integration.config.ts",

@@ -413,7 +413,7 @@
 	}
 
 	// Add scene at specific index
-	async function addScene(index: number) {
+	async function addScene(index: number, retryCount = 0) {
 		if (!storyboardId || !browser || !createSceneStore) {
 			if (!browser) return;
 			alert('Storyboard ID is required or stores not initialized');
@@ -441,7 +441,23 @@
 			});
 
 			if (result?.errors && result.errors.length > 0) {
-				throw new Error(result.errors[0].message);
+				const errorMessage = result.errors[0].message;
+				
+				// Check if it's a unique constraint violation
+				if (errorMessage.includes('duplicate key') || errorMessage.includes('unique constraint')) {
+					// Reload scenes first to get the latest state
+					await loadScenes(storyboardId);
+					
+					// Retry with updated scene list (max 2 retries)
+					if (retryCount < 2) {
+						console.log(`[Editor] Retrying scene creation after constraint violation (attempt ${retryCount + 1})`);
+						return addScene(index, retryCount + 1);
+					} else {
+						throw new Error('Failed to create scene after multiple retries. Please try again.');
+					}
+				}
+				
+				throw new Error(errorMessage);
 			}
 
 			if (result?.data?.createScene) {
@@ -451,7 +467,19 @@
 			}
 		} catch (err) {
 			console.error('[Editor] Error creating scene:', err);
-			alert(err instanceof Error ? err.message : 'Failed to create scene');
+			const errorMessage = err instanceof Error ? err.message : 'Failed to create scene';
+			
+			// Check if it's a unique constraint violation
+			if (errorMessage.includes('duplicate key') || errorMessage.includes('unique constraint')) {
+				// Reload scenes and retry once
+				if (retryCount < 1) {
+					console.log('[Editor] Retrying scene creation after constraint violation');
+					await loadScenes(storyboardId);
+					return addScene(index, retryCount + 1);
+				}
+			}
+			
+			alert(errorMessage);
 		}
 	}
 

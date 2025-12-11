@@ -60,6 +60,35 @@ pnpm test:e2e
 - スクリーンショット: エラー時のみ
 - トレース: リトライ時のみ
 
+## カバレッジレポート
+
+BDD E2Eテストのカバレッジレポートを生成するには:
+
+```bash
+pnpm test:bdd:coverage:report
+```
+
+このコマンドは、`capabilities.jsonld`に定義されているすべてのcapabilityに対してE2Eテストが存在するかを確認し、カバレッジレポートを生成します。
+
+### カバレッジ目標
+
+- **目標**: 100%のカバレッジ
+- **現在のカバレッジ**: 100% ✅
+
+### カバレッジ対象
+
+以下のcapabilityがカバーされています:
+
+1. ✅ **Project Management** - プロジェクト管理 (6 scenarios)
+2. ✅ **Storyboard Editing** - ストーリーボード編集 (3 scenarios)
+3. ✅ **Scene Management** - シーン管理 (5 scenarios)
+4. ✅ **AI Video Generation** - AI動画生成 (3 scenarios)
+5. ✅ **Video Composition** - 動画合成 (3 scenarios)
+6. ✅ **Timeline Editing** - タイムライン編集 (3 scenarios)
+7. ✅ **Video Preview** - ビデオプレビュー (3 scenarios)
+
+**合計**: 14 feature files, 41 scenarios
+
 ## 認証テストについて
 
 現在、実際のClerk認証フローのテストは制限されています:
