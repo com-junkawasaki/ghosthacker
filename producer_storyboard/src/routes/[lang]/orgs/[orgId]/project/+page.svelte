@@ -2,7 +2,7 @@
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { CreateProjectStore, type ListProjectsStore } from '$houdini';
+	import { CreateProjectStore, type ListProjectsStore, type ListProjects$result } from '$houdini';
 	import DebugPanel from '$lib/components/debug/DebugPanel.svelte';
 
 	// Route params from page store
@@ -29,6 +29,13 @@
 	const projectsStore = $derived(projects);
 	const loading = $derived($projectsStore.fetching && !$projectsStore.data);
 	const error = $derived($projectsStore.errors?.[0] ? new Error($projectsStore.errors[0].message) : null);
+	
+	// Filter projects by current orgId (client-side safety filter)
+	// This ensures only projects belonging to the current organization are displayed
+	type Project = ListProjects$result['projects'][number];
+	const filteredProjects = $derived(
+		$projectsStore.data?.projects?.filter((project: Project) => project.orgId === orgId) ?? []
+	);
 
 	function buildPath(viewName: string, projectId?: string): string {
 		if (projectId) {
@@ -42,6 +49,9 @@
 			console.log('[Project] SSR Store state:', {
 				loading,
 				error,
+				orgId,
+				totalProjects: $projectsStore.data?.projects?.length ?? 0,
+				filteredProjects: filteredProjects.length,
 				data: $projectsStore.data,
 				fetching: $projectsStore.fetching,
 			});
@@ -121,9 +131,9 @@
 				</button>
 			</div>
 		{:else if $projectsStore.data && $projectsStore.data.projects !== undefined}
-			{#if $projectsStore.data.projects.length === 0}
+			{#if filteredProjects.length === 0}
 				<div class="empty-state">
-					<p>No projects found. Create a new project to get started.</p>
+					<p>No projects found in this organization. Create a new project to get started.</p>
 					<button 
 						class="create-button" 
 						onclick={() => showCreateDialog = true}
@@ -143,9 +153,9 @@
 					</button>
 				</div>
 			{/if}
-			{#if $projectsStore.data.projects.length > 0}
+			{#if filteredProjects.length > 0}
 				<div class="projects-grid">
-					{#each $projectsStore.data.projects as project (project.id)}
+					{#each filteredProjects as project (project.id)}
 						<a href={buildPath('editor', project.id)} class="project-card">
 							<h2 class="project-title">{project.title}</h2>
 							{#if project.description}

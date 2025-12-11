@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "svelte-kit sync && vite dev --host 0.0.0.0",
-    "prebuild": "tsx scripts/validate-env.ts && houdini generate && cp -f .houdini/artifacts/*.js .houdini/artifacts/*.d.ts '$houdini/artifacts/' 2>/dev/null || true",
+    "prebuild": "tsx scripts/validate-env.ts && svelte-kit sync && houdini generate && ln -sfn .houdini \\$houdini",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
