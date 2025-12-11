@@ -7,7 +7,7 @@ export class ListProjectsStore extends QueryStore {
 		super({
 			artifact,
 			storeName: "ListProjectsStore",
-			variables: true,
+			variables: false,
 		})
 	}
 }

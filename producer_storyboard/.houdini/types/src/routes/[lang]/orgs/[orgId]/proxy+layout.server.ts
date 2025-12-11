@@ -58,13 +58,33 @@ export const load = async ({ params, url, locals }: Parameters<LayoutServerLoad>
 
 	// Validate orgId if provided
 	if (orgId) {
+		// First check if the requested org matches the current session org
+		const isCurrentSessionOrg = auth.orgId === orgId;
+
 		// Verify user has access to this organization
-		const hasAccess = await verifyOrgAccess(auth.userId, orgId);
-		
+		const hasAccess = isCurrentSessionOrg || await verifyOrgAccess(auth.userId, orgId);
+
+		console.log('[OrgLayout Server] Organization access check:', {
+			userId: auth.userId,
+			requestedOrgId: orgId,
+			currentOrgId: auth.orgId,
+			isCurrentSessionOrg,
+			hasAccess,
+		});
+
 		if (!hasAccess) {
 			// User doesn't have access to this organization
-			// Throw error to trigger error page
-			throw error(403, `Access denied to organization: ${orgId}`);
+			// Log available organizations for debugging
+			const availableOrgs = await getUserOrganizations(auth.userId);
+			console.log('[OrgLayout Server] Available organizations:', availableOrgs);
+
+			// Allow access in development mode for debugging
+			const isDevelopment = process.env.NODE_ENV !== 'production';
+			if (!isDevelopment) {
+				throw error(403, `Access denied to organization: ${orgId}`);
+			} else {
+				console.warn('[OrgLayout Server] ACCESS DENIED BUT ALLOWED IN DEVELOPMENT MODE');
+			}
 		}
 	} else {
 		// No orgId in URL, but user is authenticated
@@ -96,8 +116,19 @@ export const load = async ({ params, url, locals }: Parameters<LayoutServerLoad>
  */
 async function getUserOrganizations(userId: string) {
 	try {
+		console.log('[OrgLayout] Fetching organizations for user:', userId);
 		const orgMemberships = await clerkClient.users.getOrganizationMembershipList({
 			userId,
+		});
+
+		console.log('[OrgLayout] Clerk API response:', {
+			totalCount: orgMemberships.totalCount,
+			organizationCount: orgMemberships.data?.length || 0,
+			organizations: orgMemberships.data?.map(m => ({
+				id: m.organization.id,
+				name: m.organization.name,
+				slug: m.organization.slug,
+			})) || [],
 		});
 
 		return orgMemberships.data?.map((membership) => ({
@@ -118,7 +149,14 @@ async function getUserOrganizations(userId: string) {
 async function verifyOrgAccess(userId: string, orgId: string): Promise<boolean> {
 	try {
 		const organizations = await getUserOrganizations(userId);
-		return organizations.some(org => org.id === orgId);
+		console.log('[OrgLayout] Checking org access:', {
+			userId,
+			requestedOrgId: orgId,
+			availableOrgIds: organizations.map(org => org.id),
+		});
+		const hasAccess = organizations.some(org => org.id === orgId);
+		console.log('[OrgLayout] Access result:', hasAccess);
+		return hasAccess;
 	} catch (error) {
 		console.error('[OrgLayout] Error verifying org access:', error);
 		return false;

@@ -6,12 +6,9 @@ import { load_ListProjects } from '$houdini';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = async (event) => {
-	const { orgId } = event.params;
-	
 	// Use Houdini's load function for SSR data fetching
-	// Pass orgId as a variable to filter projects by organization
+	// orgId is passed via X-Org-Id header in the GraphQL client
 	return await load_ListProjects({
 		event,
-		variables: { orgId },
 	});
 };

@@ -1,36 +1,36 @@
 import type { Record } from "./public/record";
-import { ListProjects$result, ListProjects$input } from "$houdini/artifacts/ListProjects";
-import { ListProjectsStore } from "../plugins/houdini-svelte/stores/ListProjects";
+import { ListCharacters$result, ListCharacters$input } from "$houdini/artifacts/ListCharacters";
+import { ListCharactersStore } from "../plugins/houdini-svelte/stores/ListCharacters";
+import { ListComposers$result, ListComposers$input } from "$houdini/artifacts/ListComposers";
+import { ListComposersStore } from "../plugins/houdini-svelte/stores/ListComposers";
+import { GetGeneratedImages$result, GetGeneratedImages$input } from "$houdini/artifacts/GetGeneratedImages";
+import { GetGeneratedImagesStore } from "../plugins/houdini-svelte/stores/GetGeneratedImages";
 import { GetCharacterAssetData$result, GetCharacterAssetData$input } from "$houdini/artifacts/GetCharacterAssetData";
 import { GetCharacterAssetDataStore } from "../plugins/houdini-svelte/stores/GetCharacterAssetData";
 import { GetComposer$result, GetComposer$input } from "$houdini/artifacts/GetComposer";
 import { GetComposerStore } from "../plugins/houdini-svelte/stores/GetComposer";
 import { GetScene$result, GetScene$input } from "$houdini/artifacts/GetScene";
 import { GetSceneStore } from "../plugins/houdini-svelte/stores/GetScene";
-import { ListCharacterAssets$result, ListCharacterAssets$input } from "$houdini/artifacts/ListCharacterAssets";
-import { ListCharacterAssetsStore } from "../plugins/houdini-svelte/stores/ListCharacterAssets";
-import { GetGeneratedImages$result, GetGeneratedImages$input } from "$houdini/artifacts/GetGeneratedImages";
-import { GetGeneratedImagesStore } from "../plugins/houdini-svelte/stores/GetGeneratedImages";
-import { ListAudioTracks$result, ListAudioTracks$input } from "$houdini/artifacts/ListAudioTracks";
-import { ListAudioTracksStore } from "../plugins/houdini-svelte/stores/ListAudioTracks";
 import { ListAudioClips$result, ListAudioClips$input } from "$houdini/artifacts/ListAudioClips";
 import { ListAudioClipsStore } from "../plugins/houdini-svelte/stores/ListAudioClips";
-import { ListGeneratedVideos$result, ListGeneratedVideos$input } from "$houdini/artifacts/ListGeneratedVideos";
-import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
-import { ListComposers$result, ListComposers$input } from "$houdini/artifacts/ListComposers";
-import { ListComposersStore } from "../plugins/houdini-svelte/stores/ListComposers";
-import { ListCharacters$result, ListCharacters$input } from "$houdini/artifacts/ListCharacters";
-import { ListCharactersStore } from "../plugins/houdini-svelte/stores/ListCharacters";
-import { ListSunoMusic$result, ListSunoMusic$input } from "$houdini/artifacts/ListSunoMusic";
-import { ListSunoMusicStore } from "../plugins/houdini-svelte/stores/ListSunoMusic";
-import { ListDialogues$result, ListDialogues$input } from "$houdini/artifacts/ListDialogues";
-import { ListDialoguesStore } from "../plugins/houdini-svelte/stores/ListDialogues";
-import { ListHumeVoices$result, ListHumeVoices$input } from "$houdini/artifacts/ListHumeVoices";
-import { ListHumeVoicesStore } from "../plugins/houdini-svelte/stores/ListHumeVoices";
-import { ListStoryboards$result, ListStoryboards$input } from "$houdini/artifacts/ListStoryboards";
-import { ListStoryboardsStore } from "../plugins/houdini-svelte/stores/ListStoryboards";
+import { ListAudioTracks$result, ListAudioTracks$input } from "$houdini/artifacts/ListAudioTracks";
+import { ListAudioTracksStore } from "../plugins/houdini-svelte/stores/ListAudioTracks";
+import { ListCharacterAssets$result, ListCharacterAssets$input } from "$houdini/artifacts/ListCharacterAssets";
+import { ListCharacterAssetsStore } from "../plugins/houdini-svelte/stores/ListCharacterAssets";
 import { ListScenes$result, ListScenes$input } from "$houdini/artifacts/ListScenes";
 import { ListScenesStore } from "../plugins/houdini-svelte/stores/ListScenes";
+import { ListDialogues$result, ListDialogues$input } from "$houdini/artifacts/ListDialogues";
+import { ListDialoguesStore } from "../plugins/houdini-svelte/stores/ListDialogues";
+import { ListGeneratedVideos$result, ListGeneratedVideos$input } from "$houdini/artifacts/ListGeneratedVideos";
+import { ListGeneratedVideosStore } from "../plugins/houdini-svelte/stores/ListGeneratedVideos";
+import { ListHumeVoices$result, ListHumeVoices$input } from "$houdini/artifacts/ListHumeVoices";
+import { ListHumeVoicesStore } from "../plugins/houdini-svelte/stores/ListHumeVoices";
+import { ListProjects$result, ListProjects$input } from "$houdini/artifacts/ListProjects";
+import { ListProjectsStore } from "../plugins/houdini-svelte/stores/ListProjects";
+import { ListStoryboards$result, ListStoryboards$input } from "$houdini/artifacts/ListStoryboards";
+import { ListStoryboardsStore } from "../plugins/houdini-svelte/stores/ListStoryboards";
+import { ListSunoMusic$result, ListSunoMusic$input } from "$houdini/artifacts/ListSunoMusic";
+import { ListSunoMusicStore } from "../plugins/houdini-svelte/stores/ListSunoMusic";
 
 export declare type CacheTypeDef = {
     types: {
@@ -40,10 +40,6 @@ export declare type CacheTypeDef = {
             };
             fields: {
                 id: {
-                    type: string;
-                    args: never;
-                };
-                orgId: {
                     type: string;
                     args: never;
                 };
@@ -423,9 +419,7 @@ export declare type CacheTypeDef = {
             fields: {
                 projects: {
                     type: (Record<CacheTypeDef, "Project">)[];
-                    args: {
-                        orgId: string | number;
-                    };
+                    args: never;
                 };
                 storyboards: {
                     type: (Record<CacheTypeDef, "Storyboard">)[];
@@ -723,5 +717,5 @@ export declare type CacheTypeDef = {
         };
     };
     lists: {};
-    queries: [[ListScenesStore, ListScenes$result, ListScenes$input], [ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListHumeVoicesStore, ListHumeVoices$result, ListHumeVoices$input], [ListDialoguesStore, ListDialogues$result, ListDialogues$input], [ListSunoMusicStore, ListSunoMusic$result, ListSunoMusic$input], [ListCharactersStore, ListCharacters$result, ListCharacters$input], [ListComposersStore, ListComposers$result, ListComposers$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input], [ListAudioClipsStore, ListAudioClips$result, ListAudioClips$input], [ListAudioTracksStore, ListAudioTracks$result, ListAudioTracks$input], [GetGeneratedImagesStore, GetGeneratedImages$result, GetGeneratedImages$input], [ListCharacterAssetsStore, ListCharacterAssets$result, ListCharacterAssets$input], [GetSceneStore, GetScene$result, GetScene$input], [GetComposerStore, GetComposer$result, GetComposer$input], [GetCharacterAssetDataStore, GetCharacterAssetData$result, GetCharacterAssetData$input], [ListProjectsStore, ListProjects$result, ListProjects$input]];
+    queries: [[ListSunoMusicStore, ListSunoMusic$result, ListSunoMusic$input], [ListStoryboardsStore, ListStoryboards$result, ListStoryboards$input], [ListProjectsStore, ListProjects$result, ListProjects$input], [ListHumeVoicesStore, ListHumeVoices$result, ListHumeVoices$input], [ListGeneratedVideosStore, ListGeneratedVideos$result, ListGeneratedVideos$input], [ListDialoguesStore, ListDialogues$result, ListDialogues$input], [ListScenesStore, ListScenes$result, ListScenes$input], [ListCharacterAssetsStore, ListCharacterAssets$result, ListCharacterAssets$input], [ListAudioTracksStore, ListAudioTracks$result, ListAudioTracks$input], [ListAudioClipsStore, ListAudioClips$result, ListAudioClips$input], [GetSceneStore, GetScene$result, GetScene$input], [GetComposerStore, GetComposer$result, GetComposer$input], [GetCharacterAssetDataStore, GetCharacterAssetData$result, GetCharacterAssetData$input], [GetGeneratedImagesStore, GetGeneratedImages$result, GetGeneratedImages$input], [ListComposersStore, ListComposers$result, ListComposers$input], [ListCharactersStore, ListCharacters$result, ListCharacters$input]];
 };

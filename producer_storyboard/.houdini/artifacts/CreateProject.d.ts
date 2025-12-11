@@ -6,7 +6,6 @@ export type CreateProject = {
 export type CreateProject$result = {
     readonly createProject: {
         readonly id: string;
-        readonly orgId: string;
         readonly title: string;
         readonly description: string | null;
         readonly createdAt: string;
@@ -27,7 +26,6 @@ export type CreateProject$input = {
 export type CreateProject$optimistic = {
     readonly createProject?: {
         readonly id?: string;
-        readonly orgId?: string;
         readonly title?: string;
         readonly description?: string | null;
         readonly createdAt?: string;
@@ -38,11 +36,10 @@ export type CreateProject$optimistic = {
 export type CreateProject$artifact = {
     "name": "CreateProject";
     "kind": "HoudiniMutation";
-    "hash": "08691cfa5747103ac5633b1d5633c875dd9ea223d6a4d625f159bebd50ae56cb";
+    "hash": "875bfc962ac7788ab83986bcc34377628d9bb50d8fddc5f86b3ef6b49f286c94";
     "raw": `mutation CreateProject($input: CreateProjectInput!) {
   createProject(input: $input) {
     id
-    orgId
     title
     description
     createdAt
@@ -61,11 +58,6 @@ export type CreateProject$artifact = {
                         "id": {
                             "type": "ID";
                             "keyRaw": "id";
-                            "visible": true;
-                        };
-                        "orgId": {
-                            "type": "ID";
-                            "keyRaw": "orgId";
                             "visible": true;
                         };
                         "title": {

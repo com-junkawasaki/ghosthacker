@@ -1,12 +1,11 @@
 export default {
     "name": "CreateProject",
     "kind": "HoudiniMutation",
-    "hash": "08691cfa5747103ac5633b1d5633c875dd9ea223d6a4d625f159bebd50ae56cb",
+    "hash": "875bfc962ac7788ab83986bcc34377628d9bb50d8fddc5f86b3ef6b49f286c94",
 
     "raw": `mutation CreateProject($input: CreateProjectInput!) {
   createProject(input: $input) {
     id
-    orgId
     title
     description
     createdAt
@@ -28,12 +27,6 @@ export default {
                         "id": {
                             "type": "ID",
                             "keyRaw": "id",
-                            "visible": true
-                        },
-
-                        "orgId": {
-                            "type": "ID",
-                            "keyRaw": "orgId",
                             "visible": true
                         },
 
@@ -91,4 +84,4 @@ export default {
     }
 };
 
-"HoudiniHash=d6bebc95990c2428fff9995057cd8c31443fe2b95465a5a1b3591c0af82f0199";
+"HoudiniHash=7ccd4bd20af51b8a70321c58bf3cf9df498844c972a8dcffd7248ea38936e361";

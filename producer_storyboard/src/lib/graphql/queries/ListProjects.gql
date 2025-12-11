@@ -1,7 +1,6 @@
-query ListProjects($orgId: ID!) {
-	projects(orgId: $orgId) {
+query ListProjects {
+	projects {
 		id
-		orgId
 		title
 		description
 		createdAt

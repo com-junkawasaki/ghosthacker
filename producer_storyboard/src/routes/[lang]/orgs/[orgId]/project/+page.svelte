@@ -32,12 +32,8 @@
 	const loading = $derived($projectsStore.fetching && !$projectsStore.data);
 	const error = $derived($projectsStore.errors?.[0] ? new Error($projectsStore.errors[0].message) : null);
 	
-	// Filter projects by current orgId (client-side safety filter)
-	// This ensures only projects belonging to the current organization are displayed
-	type Project = ListProjects$result['projects'][number];
-	const filteredProjects = $derived(
-		$projectsStore.data?.projects?.filter((project: Project) => project.orgId === orgId) ?? []
-	);
+	// Projects are filtered by backend using X-Org-Id header
+	const filteredProjects = $derived($projectsStore.data?.projects ?? []);
 
 	function buildPath(viewName: string, projectId?: string): string {
 		if (projectId) {
@@ -85,8 +81,8 @@
 			console.log('[Project] Project created:', result);
 
 			if (result?.data?.createProject) {
-				// Refresh projects list with orgId
-				await projectsStore.fetch({ blocking: true, variables: { orgId } });
+				// Refresh projects list (orgId is passed via X-Org-Id header)
+				await projectsStore.fetch({ blocking: true });
 				
 				// Navigate to the new project's editor
 				goto(buildPath('editor', result.data.createProject.id));
@@ -130,7 +126,7 @@
 				<button
 					onclick={async () => {
 						try {
-							await projectsStore.fetch({ variables: { orgId } });
+							await projectsStore.fetch();
 						} catch (error) {
 							console.error('Failed to retry:', error);
 						}
@@ -210,7 +206,7 @@
 					onclick={async () => {
 						try {
 							console.log('[Project] Manual retry...');
-							await projectsStore.fetch({ blocking: true, variables: { orgId } });
+							await projectsStore.fetch({ blocking: true });
 						} catch (error) {
 							console.error('[Project] Failed to retry:', error);
 						}
