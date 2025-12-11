@@ -9,7 +9,7 @@
   "url": "https://github.com/ghosthacker/producer_storyboard",
   "version": "0.1.0",
   "createdAt": "2025-12-09T00:00:00Z",
-  "updatedAt": "2025-12-10T00:00:00Z",
+  "updatedAt": "2025-12-11T00:00:00Z",
   "status": "InDevelopment",
   "maintainer": {
     "@type": "Person",
@@ -640,6 +640,155 @@
           ]
         }
       }
+    },
+    {
+      "@type": "UpdateAction",
+      "name": "twick-based-composer-enhancement",
+      "description": "Complete composer implementation inspired by twick video editor with drag-and-drop timeline, canvas preview, and undo/redo support",
+      "startTime": "2025-12-11T00:00:00Z",
+      "endTime": "2025-12-11T01:00:00Z",
+      "status": "Completed",
+      "result": {
+        "reference": "https://github.com/ncounterspecialist/twick",
+        "features": [
+          "Drag-and-drop clip manipulation on timeline",
+          "Clip resize with edge handles",
+          "Canvas-based video preview with aspect ratio support",
+          "Undo/Redo support with history management",
+          "Enhanced playback controls (play/pause/seek)",
+          "Keyboard shortcuts (Space, Ctrl+Z, Ctrl+Shift+Z, Arrow keys, Home, End)",
+          "Track mute/lock/visibility controls",
+          "Timeline zoom with Ctrl+scroll",
+          "Time markers and playhead dragging"
+        ],
+        "components": {
+          "new": [
+            {
+              "name": "ComposerStore",
+              "path": "src/lib/stores/composerStore.ts",
+              "features": [
+                "Track and clip state management with Svelte 5 runes",
+                "Playback control (play/pause/seek)",
+                "Undo/Redo with history (50 entries max)",
+                "Zoom and scroll state",
+                "Selection management (clip/track)"
+              ]
+            },
+            {
+              "name": "DraggableClip",
+              "path": "src/lib/components/composer/DraggableClip.svelte",
+              "features": [
+                "Mouse-based drag and drop",
+                "Left/right edge resize handles",
+                "Clip type color coding (audio/video/image/text)",
+                "Selection state with visual feedback",
+                "Waveform/thumbnail placeholder display"
+              ]
+            },
+            {
+              "name": "CanvasPreview",
+              "path": "src/lib/components/composer/CanvasPreview.svelte",
+              "features": [
+                "Canvas 2D rendering",
+                "Aspect ratio support (16:9, 9:16, 1:1, 4:3)",
+                "High DPI rendering (2x scale)",
+                "Active clip visualization",
+                "Time indicator overlay",
+                "Playing state indicator"
+              ]
+            },
+            {
+              "name": "ComposerToolbar",
+              "path": "src/lib/components/composer/ComposerToolbar.svelte",
+              "features": [
+                "Save/Undo/Redo buttons",
+                "Add Track button",
+                "Playback controls (start/step-back/play-pause/step-forward/end)",
+                "Timecode display (HH:MM:SS:FF)",
+                "Export button",
+                "Global keyboard shortcuts handler"
+              ]
+            },
+            {
+              "name": "ComposerLayout",
+              "path": "src/lib/components/composer/ComposerLayout.svelte",
+              "features": [
+                "Three-panel layout (left: assets, center: preview+timeline, right: details)",
+                "Add Track dialog with type selection",
+                "Suno music generator integration",
+                "Composer store initialization"
+              ]
+            }
+          ],
+          "updated": [
+            {
+              "name": "TimelineEditor",
+              "path": "src/lib/components/composer/TimelineEditor.svelte",
+              "changes": [
+                "Integration with composerStore",
+                "DraggableClip component usage",
+                "Enhanced ruler with time markers",
+                "Playhead dragging support",
+                "Ctrl+scroll zoom",
+                "Track controls (mute/lock/visibility)",
+                "Footer with zoom controls and time display"
+              ]
+            }
+          ]
+        },
+        "exports": {
+          "path": "src/lib/components/composer/index.ts",
+          "components": [
+            "ComposerLayout",
+            "TimelineEditor",
+            "CanvasPreview",
+            "ComposerToolbar",
+            "DraggableClip",
+            "AudioTrack",
+            "AudioClip",
+            "AssetLibrary",
+            "AssetDetailsPanel",
+            "PreviewWindow",
+            "SunoMusicGenerator"
+          ]
+        },
+        "store": {
+          "path": "src/lib/stores/composerStore.ts",
+          "types": ["Clip", "Track", "ComposerState"],
+          "singleton": "composerStore"
+        }
+      }
+    },
+    {
+      "@type": "FixAction",
+      "name": "svelte-clerk-upgrade-and-auth-refactor",
+      "description": "Upgrade svelte-clerk to v0.20.1 and refactor authentication to use withClerkHandler and buildClerkProps",
+      "startTime": "2025-12-10T22:00:00Z",
+      "endTime": "2025-12-11T00:00:00Z",
+      "status": "Completed",
+      "result": {
+        "upgrades": {
+          "svelte-clerk": "0.1.13 → 0.20.1"
+        },
+        "fixes": [
+          "Fixed TypeError: locals.auth is not a function",
+          "Fixed ERR_TOO_MANY_REDIRECTS loop",
+          "Fixed SvelteKit 2.x cookie handling compatibility",
+          "Removed custom verifyClerkSession in favor of locals.auth()",
+          "Fixed buildClerkProps usage with initialState prop"
+        ],
+        "refactoring": {
+          "hooks.server.ts": "Simplified to withClerkHandler()",
+          "+layout.server.ts": "Use locals.auth() + buildClerkProps(auth)",
+          "+layout.svelte": "Pass initialState to ClerkProvider",
+          "sign-in/+page.server.ts": "Use locals.auth() + clerkClient",
+          "[orgId]/+layout.server.ts": "Use locals.auth() + clerkClient"
+        },
+        "deprecation": {
+          "function": "verifyClerkSession",
+          "replacedBy": "locals.auth()"
+        }
+      }
     }
   ],
   "capability": [
@@ -750,25 +899,47 @@
     {
       "@type": "Service",
       "name": "composer-editor",
-      "description": "Multi-track audio/video composition editor with timeline, asset library, and AI music generation",
+      "description": "Multi-track audio/video composition editor with drag-and-drop timeline, canvas preview, and AI music generation (inspired by twick)",
       "status": "Operational",
       "features": [
-        "Multi-track timeline editor (subtitle, video, audio tracks)",
+        "Multi-track timeline editor with drag-and-drop clips",
+        "Clip resize with edge handles (left/right)",
+        "Canvas-based video preview with aspect ratio support (16:9, 9:16, 1:1, 4:3)",
+        "Undo/Redo support with history management (50 entries)",
+        "Enhanced playback controls (play/pause/seek)",
+        "Keyboard shortcuts (Space, Ctrl+Z, Ctrl+Shift+Z, Arrow keys, Home, End)",
+        "Track mute/lock/visibility controls",
+        "Timeline zoom with Ctrl+scroll",
+        "Time markers and playhead dragging",
         "Asset library with categorized resources",
-        "Preview window with playback controls",
         "Suno AI music generation",
         "Audio track and clip management",
         "Composer creation per project"
       ],
       "components": [
+        "ComposerLayout",
+        "ComposerToolbar",
+        "CanvasPreview",
+        "TimelineEditor",
+        "DraggableClip",
         "AssetLibrary",
         "PreviewWindow",
         "AssetDetailsPanel",
-        "TimelineEditor",
         "AudioTrack",
         "AudioClip",
         "SunoMusicGenerator"
       ],
+      "store": {
+        "name": "composerStore",
+        "path": "src/lib/stores/composerStore.ts",
+        "features": [
+          "Track and clip state management",
+          "Playback control",
+          "Undo/Redo with history",
+          "Zoom and scroll state",
+          "Selection management"
+        ]
+      },
       "integrations": {
         "suno": {
           "service": "Suno AI API",
@@ -778,6 +949,10 @@
         "hume": {
           "service": "Hume AI (reuse existing)",
           "features": ["Voice generation for audio tracks"]
+        },
+        "twick": {
+          "reference": "https://github.com/ncounterspecialist/twick",
+          "inspiration": "Timeline management, drag-and-drop editing, canvas preview architecture"
         }
       }
     }
@@ -793,7 +968,7 @@
         "timeoutHandling": "Adaptive timeouts based on request type",
         "storyboardManagement": "Multi-storyboard creation and selection within projects with URL-based routing",
         "characterManagement": "Character management with double confirmation for destructive actions",
-        "composerEditor": "Multi-track audio/video composition with timeline editor, asset library, and AI music generation",
+        "composerEditor": "Multi-track audio/video composition with drag-and-drop timeline, canvas preview, undo/redo, and AI music generation (twick-inspired)",
         "accessibility": "ARIA attributes, keyboard navigation, focus management"
       }
     },
@@ -854,20 +1029,28 @@
     "authentication": {
       "provider": "Clerk",
       "frontend": {
-        "sdk": "svelte-clerk",
+        "sdk": "svelte-clerk@0.20.1",
         "components": [
           "ClerkProvider",
           "UserAccountMenu",
           "OrganizationSwitcher"
+        ],
+        "helpers": [
+          "useClerkContext"
         ]
       },
       "backend": {
-        "sdk": "@clerk/backend",
+        "sdk": "svelte-clerk/server",
         "functions": [
-          "verifyClerkSession",
-          "getUserOrganizations",
-          "verifyOrgAccess"
-        ]
+          "withClerkHandler",
+          "buildClerkProps",
+          "clerkClient"
+        ],
+        "pattern": {
+          "hooks.server.ts": "withClerkHandler()",
+          "+layout.server.ts": "locals.auth() + buildClerkProps(auth)",
+          "+layout.svelte": "ClerkProvider with initialState prop"
+        }
       },
       "routing": {
         "pattern": "/[lang]/orgs/[orgId]/project/[viewNames]",
