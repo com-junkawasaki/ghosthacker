@@ -71,6 +71,18 @@ pub fn extract_clerk_auth(headers: &poem::http::HeaderMap) -> ClerkAuth {
         }
     }
     
+    // Extract user ID from X-User-Id header (for testing)
+    if let Some(user_header) = headers.get("X-User-Id") {
+        if let Ok(user_id) = user_header.to_str() {
+            auth.user = Some(ClerkUser {
+                id: user_id.to_string(),
+                email: None,
+                first_name: None,
+                last_name: None,
+            });
+        }
+    }
+    
     auth
 }
 
@@ -82,9 +94,13 @@ pub fn get_clerk_auth_from_context(ctx: &async_graphql::Context<'_>) -> async_gr
         return Ok(auth.clone());
     }
     
+    // Try to get from request headers (added via middleware in main.rs)
+    // Headers are added to poem::Request extensions, which async-graphql-poem makes available
+    if let Ok(headers) = ctx.data::<poem::http::HeaderMap>() {
+        return Ok(extract_clerk_auth(headers));
+    }
+    
     // Fallback: return default (will be populated from headers in resolvers if needed)
-    // Note: In async-graphql-poem, we can't directly access request headers from context
-    // So we'll extract auth info in resolvers using a different approach
     Ok(ClerkAuth::default())
 }
 

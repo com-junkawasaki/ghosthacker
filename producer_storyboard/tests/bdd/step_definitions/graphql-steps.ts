@@ -11,7 +11,14 @@ import { expect } from 'chai';
 import { GraphQLClient } from 'graphql-request';
 
 const GRAPHQL_API_URL = process.env.GRAPHQL_API_URL || 'http://localhost:25325/graphql';
-const client = new GraphQLClient(GRAPHQL_API_URL);
+// Create client with authentication headers for organization-scoped operations
+const client = new GraphQLClient(GRAPHQL_API_URL, {
+	headers: {
+		'X-Org-Id': process.env.TEST_ORG_ID || 'org_test',
+		'X-User-Id': process.env.TEST_USER_ID || 'user_test',
+		'Authorization': process.env.TEST_AUTH_TOKEN || 'Bearer test_token',
+	},
+});
 
 let response: any;
 let projectId: string;
@@ -416,7 +423,14 @@ Then('プロジェクトIDが返される', () => {
 });
 
 Then('作成日時が設定される', () => {
-	expect(response.createProject.createdAt).to.exist;
+	// Support both createProject and createScenario responses
+	if (response.createProject) {
+		expect(response.createProject.createdAt).to.exist;
+	} else if (response.createScenario) {
+		expect(response.createScenario.createdAt).to.exist;
+	} else {
+		throw new Error('No createProject or createScenario in response');
+	}
 });
 
 Then('ストーリーボードのリストが返される', () => {
@@ -842,20 +856,35 @@ Given('シナリオにエピソード、パート、シーン計画が存在す�
 Given('エピソードタイトルが「{string}」である', (title: string) => {
 	episodeTitle = title;
 });
+Given(/^エピソードタイトルが「(.+)」である$/, (title: string) => {
+	episodeTitle = title;
+});
 
 Given('パートタイトルが「{string}」である', (title: string) => {
+	partTitle = title;
+});
+Given(/^パートタイトルが「(.+)」である$/, (title: string) => {
 	partTitle = title;
 });
 
 Given('シーン説明が「{string}」である', (description: string) => {
 	scenePlanDescription = description;
 });
+Given(/^シーン説明が「(.+)」である$/, (description: string) => {
+	scenePlanDescription = description;
+});
 
 Given('新しいタイトルが「{string}」である', (title: string) => {
 	scenarioTitle = title;
 });
+Given(/^新しいタイトルが「(.+)」である$/, (title: string) => {
+	scenarioTitle = title;
+});
 
 Given('新しい説明が「{string}」である', (description: string) => {
+	scenarioDescription = description;
+});
+Given(/^新しい説明が「(.+)」である$/, (description: string) => {
 	scenarioDescription = description;
 });
 
@@ -1100,6 +1129,10 @@ Then('変更が反映される', () => {
 	if (scenarioDescription) {
 		expect(response.updateScenario.description).to.equal(scenarioDescription);
 	}
+});
+
+Then('更新日時が設定される', () => {
+	expect(response.updateScenario.updatedAt).to.exist;
 });
 
 Then('シナリオが削除される', () => {
