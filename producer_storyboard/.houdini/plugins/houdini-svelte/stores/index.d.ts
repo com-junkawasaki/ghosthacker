@@ -7,6 +7,7 @@ export type Result<DataType> = {
 	data?: DataType | null
 	error?: Error | null
 }
+export * from './ConvertScenarioToStoryboard'
 export * from './CreateAudioClip'
 export * from './CreateAudioTrack'
 export * from './CreateCharacter'

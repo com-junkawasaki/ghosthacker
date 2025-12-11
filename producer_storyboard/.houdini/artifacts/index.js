@@ -1,4 +1,5 @@
 
+ export { default as ConvertScenarioToStoryboard} from './ConvertScenarioToStoryboard'
  export { default as CreateAudioClip} from './CreateAudioClip'
  export { default as CreateAudioTrack} from './CreateAudioTrack'
  export { default as CreateCharacter} from './CreateCharacter'

@@ -13,8 +13,8 @@ type OptionalUnion<U extends Record<string, any>, A extends keyof U = U extends 
 export type Snapshot<T = any> = Kit.Snapshot<T>;
 type PageServerParentData = EnsureDefined<LayoutServerData>;
 type PageParentData = EnsureDefined<LayoutData>;
-type LayoutRouteId = RouteId | "/" | "/[lang]/orgs/[orgId]/profile" | "/[lang]/orgs/[orgId]/project" | "/[lang]/orgs/[orgId]/project/[projectId]/[storyboardId]/editor" | "/[lang]/orgs/[orgId]/project/[projectId]/characters" | "/[lang]/orgs/[orgId]/project/[projectId]/composer" | "/[lang]/orgs/[orgId]/project/[projectId]/editor" | "/[lang]/orgs/[orgId]/project/[projectId]/scenario" | "/[lang]/orgs/[orgId]/project/[projectId]/world" | "/[lang]/orgs/[orgId]/update" | "/[lang]/orgs/select" | "/sign-in" | "/sign-out" | null
-type LayoutParams = RouteParams & { lang?: string; orgId?: string; projectId?: string; storyboardId?: string }
+type LayoutRouteId = RouteId | "/" | "/[lang]/orgs/[orgId]/profile" | "/[lang]/orgs/[orgId]/project" | "/[lang]/orgs/[orgId]/project/[projectId]/[storyboardId]/editor" | "/[lang]/orgs/[orgId]/project/[projectId]/characters" | "/[lang]/orgs/[orgId]/project/[projectId]/composer" | "/[lang]/orgs/[orgId]/project/[projectId]/editor" | "/[lang]/orgs/[orgId]/project/[projectId]/scenario" | "/[lang]/orgs/[orgId]/project/[projectId]/scenario/[scenarioId]" | "/[lang]/orgs/[orgId]/project/[projectId]/world" | "/[lang]/orgs/[orgId]/update" | "/[lang]/orgs/select" | "/sign-in" | "/sign-out" | null
+type LayoutParams = RouteParams & { lang?: string; orgId?: string; projectId?: string; storyboardId?: string; scenarioId?: string }
 type LayoutServerParentData = EnsureDefined<{}>;
 type LayoutParentData = EnsureDefined<{}>;
 						type MakeOptional<Target, Keys extends keyof Target> = Omit<Target, Keys> & {

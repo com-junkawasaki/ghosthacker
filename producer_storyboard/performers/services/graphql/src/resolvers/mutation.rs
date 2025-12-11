@@ -263,6 +263,17 @@ pub struct ReorderScenePlansInput {
 }
 
 #[derive(InputObject)]
+pub struct ConvertScenarioToStoryboardInput {
+    #[graphql(name = "scenarioId")]
+    pub scenario_id: ID,
+    #[graphql(name = "storyboardTitle")]
+    pub storyboard_title: Option<String>,
+    #[graphql(name = "aspectRatio")]
+    pub aspect_ratio: Option<String>,
+    pub resolution: Option<String>,
+}
+
+#[derive(InputObject)]
 pub struct TranslateDialogueInput {
     #[graphql(name = "dialogueId")]
     pub dialogue_id: ID,
@@ -2665,5 +2676,178 @@ impl MutationRoot {
                 updated_at: row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
             }
         }).collect())
+    }
+
+    /// Convert a scenario to a storyboard
+    async fn convert_scenario_to_storyboard(&self, ctx: &Context<'_>, input: ConvertScenarioToStoryboardInput) -> Result<Storyboard> {
+        let pool = ctx.data::<PostgresPool>()?;
+        let (_user, org) = require_auth_and_org(ctx)?;
+        
+        let scenario_uuid = Uuid::parse_str(&input.scenario_id.0)
+            .map_err(|e| async_graphql::Error::new(format!("Invalid scenario ID: {}", e)))?;
+        
+        // Verify scenario belongs to organization
+        let scenario_row = sqlx::query(
+            r#"
+            SELECT id, project_id, org_id, title, description
+            FROM scenarios
+            WHERE id = $1
+            "#,
+        )
+        .bind(scenario_uuid)
+        .fetch_optional(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch scenario: {}", e)))?;
+        
+        let scenario = scenario_row.ok_or_else(|| async_graphql::Error::new("Scenario not found"))?;
+        let project_id: Uuid = scenario.get("project_id");
+        let scenario_org_id: Option<String> = scenario.get("org_id");
+        let scenario_title: String = scenario.get("title");
+        
+        // Verify access
+        if let Some(scenario_org_id) = scenario_org_id {
+            if scenario_org_id != org.id {
+                return Err(async_graphql::Error::new("Access denied"));
+            }
+        }
+        
+        // Use a transaction to create storyboard and scenes atomically
+        let mut tx = pool.begin().await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to start transaction: {}", e)))?;
+        
+        // Create storyboard
+        let storyboard_id = Uuid::new_v4();
+        let storyboard_title = input.storyboard_title.unwrap_or_else(|| format!("{} - Storyboard", scenario_title));
+        let aspect_ratio = input.aspect_ratio.unwrap_or_else(|| "16:9".to_string());
+        let resolution = input.resolution.unwrap_or_else(|| "1920x1080".to_string());
+        let now = chrono::Utc::now();
+        
+        sqlx::query(
+            r#"
+            INSERT INTO storyboards (id, project_id, org_id, title, aspect_ratio, resolution, num_variations, created_at, updated_at)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+            "#,
+        )
+        .bind(storyboard_id)
+        .bind(project_id)
+        .bind(&org.id)
+        .bind(&storyboard_title)
+        .bind(&aspect_ratio)
+        .bind(&resolution)
+        .bind(0)
+        .bind(now)
+        .bind(now)
+        .execute(&mut *tx)
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to create storyboard: {}", e)))?;
+        
+        // Fetch all episodes, parts, and scene plans for the scenario
+        let episodes = sqlx::query(
+            r#"
+            SELECT id, title, description, order_index
+            FROM episodes
+            WHERE scenario_id = $1
+            ORDER BY order_index ASC, created_at ASC
+            "#,
+        )
+        .bind(scenario_uuid)
+        .fetch_all(&mut *tx)
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch episodes: {}", e)))?;
+        
+        let mut scene_number = 1;
+        
+        // Iterate through episodes, parts, and scene plans to create scenes
+        for episode_row in episodes {
+            let episode_id: Uuid = episode_row.get("id");
+            
+            // Fetch parts for this episode
+            let parts = sqlx::query(
+                r#"
+                SELECT id, title, description, order_index
+                FROM parts
+                WHERE episode_id = $1
+                ORDER BY order_index ASC, created_at ASC
+                "#,
+            )
+            .bind(episode_id)
+            .fetch_all(&mut *tx)
+            .await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to fetch parts: {}", e)))?;
+            
+            for part_row in parts {
+                let part_id: Uuid = part_row.get("id");
+                
+                // Fetch scene plans for this part
+                let scene_plans = sqlx::query(
+                    r#"
+                    SELECT id, description, order_index
+                    FROM scene_plans
+                    WHERE part_id = $1
+                    ORDER BY order_index ASC, created_at ASC
+                    "#,
+                )
+                .bind(part_id)
+                .fetch_all(&mut *tx)
+                .await
+                .map_err(|e| async_graphql::Error::new(format!("Failed to fetch scene plans: {}", e)))?;
+                
+                // Create a scene for each scene plan
+                for scene_plan_row in scene_plans {
+                    let scene_id = Uuid::new_v4();
+                    let description: String = scene_plan_row.get("description");
+                    
+                    sqlx::query(
+                        r#"
+                        INSERT INTO scenes (id, storyboard_id, scene_number, text_description, created_at, updated_at)
+                        VALUES ($1, $2, $3, $4, $5, $6)
+                        "#,
+                    )
+                    .bind(scene_id)
+                    .bind(storyboard_id)
+                    .bind(scene_number)
+                    .bind(&description)
+                    .bind(now)
+                    .bind(now)
+                    .execute(&mut *tx)
+                    .await
+                    .map_err(|e| async_graphql::Error::new(format!("Failed to create scene: {}", e)))?;
+                    
+                    scene_number += 1;
+                }
+            }
+        }
+        
+        // Commit the transaction
+        tx.commit().await
+            .map_err(|e| async_graphql::Error::new(format!("Failed to commit transaction: {}", e)))?;
+        
+        // Fetch the created storyboard
+        let storyboard_row = sqlx::query(
+            r#"
+            SELECT id, project_id, title, aspect_ratio, resolution, duration_seconds, num_variations, created_at, updated_at
+            FROM storyboards
+            WHERE id = $1
+            "#,
+        )
+        .bind(storyboard_id)
+        .fetch_one(pool.as_ref())
+        .await
+        .map_err(|e| async_graphql::Error::new(format!("Failed to fetch storyboard: {}", e)))?;
+        
+        let project_id_db: Uuid = storyboard_row.get("project_id");
+        let duration_seconds: Option<i32> = storyboard_row.get("duration_seconds");
+        
+        Ok(Storyboard {
+            id: ID(storyboard_id.to_string()),
+            project_id: ID(project_id_db.to_string()),
+            title: storyboard_row.get("title"),
+            aspect_ratio: storyboard_row.get("aspect_ratio"),
+            resolution: storyboard_row.get("resolution"),
+            duration_seconds: duration_seconds,
+            num_variations: storyboard_row.get("num_variations"),
+            created_at: storyboard_row.get::<chrono::DateTime<chrono::Utc>, _>("created_at").to_rfc3339(),
+            updated_at: storyboard_row.get::<chrono::DateTime<chrono::Utc>, _>("updated_at").to_rfc3339(),
+        })
     }
 }

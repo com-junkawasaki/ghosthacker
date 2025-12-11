@@ -1,0 +1,13 @@
+mutation ConvertScenarioToStoryboard($input: ConvertScenarioToStoryboardInput!) {
+	convertScenarioToStoryboard(input: $input) {
+		id
+		projectId
+		title
+		aspectRatio
+		resolution
+		durationSeconds
+		numVariations
+		createdAt
+		updatedAt
+	}
+}

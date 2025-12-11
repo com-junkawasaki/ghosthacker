@@ -443,4 +443,12 @@ type Mutation {
 	reorderEpisodes(input: ReorderEpisodesInput!): [Episode!]!
 	reorderParts(input: ReorderPartsInput!): [Part!]!
 	reorderScenePlans(input: ReorderScenePlansInput!): [ScenePlan!]!
+	convertScenarioToStoryboard(input: ConvertScenarioToStoryboardInput!): Storyboard!
+}
+
+input ConvertScenarioToStoryboardInput {
+	scenarioId: ID!
+	storyboardTitle: String
+	aspectRatio: String
+	resolution: String
 }

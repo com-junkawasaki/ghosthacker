@@ -13,6 +13,7 @@
 		UpdateScenarioStore,
 		DeleteScenarioStore
 	} from '../../../../../../../../../../.houdini/plugins/houdini-svelte/stores/index.js';
+	import { ConvertScenarioToStoryboardStore } from '../../../../../../../../../../.houdini/plugins/houdini-svelte/stores/ConvertScenarioToStoryboard.js';
 	import ProjectSidebar from '$lib/components/storyboard/ProjectSidebar.svelte';
 
 	const { lang, orgId, projectId, scenarioId } = $page.params;
@@ -33,6 +34,7 @@
 	let reorderScenePlansStore: ReorderScenePlansStore | null = null;
 	let updateScenarioStore: UpdateScenarioStore | null = null;
 	let deleteScenarioStore: DeleteScenarioStore | null = null;
+	let convertScenarioToStoryboardStore: ConvertScenarioToStoryboardStore | null = null;
 
 	if (browser) {
 		createEpisodeStore = new CreateEpisodeStore();
@@ -43,6 +45,7 @@
 		reorderScenePlansStore = new ReorderScenePlansStore();
 		updateScenarioStore = new UpdateScenarioStore();
 		deleteScenarioStore = new DeleteScenarioStore();
+		convertScenarioToStoryboardStore = new ConvertScenarioToStoryboardStore();
 	}
 
 	// State
@@ -68,6 +71,7 @@
 	let isCreating = $state(false);
 	let isUpdating = $state(false);
 	let isDeleting = $state(false);
+	let isConverting = $state(false);
 
 	// Drag and drop state
 	let draggedEpisodeId = $state<string | null>(null);
@@ -471,6 +475,31 @@
 		draggedScenePlanId = null;
 		dragOverScenePlanIndex = null;
 	}
+
+	async function handleConvertToStoryboard() {
+		if (!scenarioId || !convertScenarioToStoryboardStore) return;
+
+		isConverting = true;
+		try {
+			const result = await convertScenarioToStoryboardStore.mutate({
+				input: {
+					scenarioId: scenarioId,
+					storyboardTitle: scenario ? `${scenario.title} - Storyboard` : null,
+				},
+			});
+
+			if (result?.data?.convertScenarioToStoryboard) {
+				const storyboardId = result.data.convertScenarioToStoryboard.id;
+				// Navigate to storyboard editor
+				await goto(`/${lang}/orgs/${orgId}/project/${projectId}/${storyboardId}/editor`);
+			}
+		} catch (error) {
+			console.error('Failed to convert scenario to storyboard:', error);
+			alert(`Failed to convert scenario to storyboard: ${error instanceof Error ? error.message : String(error)}`);
+		} finally {
+			isConverting = false;
+		}
+	}
 </script>
 
 <div class="resource-page">
@@ -487,6 +516,13 @@
 			<div class="header-actions">
 				<h1 class="page-title">{scenario?.title || 'Loading...'}</h1>
 				<div class="action-buttons">
+					<button 
+						class="convert-button" 
+						onclick={handleConvertToStoryboard}
+						disabled={isConverting || !scenario}
+					>
+						{isConverting ? 'Converting...' : 'Convert to Storyboard'}
+					</button>
 					<button 
 						class="edit-button" 
 						onclick={openEditDialog}
@@ -952,6 +988,27 @@
 	.action-buttons {
 		display: flex;
 		gap: 0.5rem;
+	}
+
+	.convert-button {
+		padding: 0.5rem 1rem;
+		background-color: #4a90e2;
+		color: #ffffff;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 0.875rem;
+		font-weight: 500;
+		transition: background-color 0.2s;
+	}
+
+	.convert-button:hover:not(:disabled) {
+		background-color: #357abd;
+	}
+
+	.convert-button:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
 	}
 
 	.edit-button,

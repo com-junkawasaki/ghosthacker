@@ -1,3 +1,4 @@
+export * from './ConvertScenarioToStoryboard'
 export * from './CreateAudioClip'
 export * from './CreateAudioTrack'
 export * from './CreateCharacter'

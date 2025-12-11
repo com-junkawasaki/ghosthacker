@@ -1,3 +1,4 @@
+export * from "./artifacts/ConvertScenarioToStoryboard";
 export * from "./artifacts/CreateAudioClip";
 export * from "./artifacts/CreateAudioTrack";
 export * from "./artifacts/CreateCharacter";
