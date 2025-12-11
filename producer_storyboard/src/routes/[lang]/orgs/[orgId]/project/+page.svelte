@@ -4,6 +4,8 @@
 	import { page } from '$app/stores';
 	import { CreateProjectStore, type ListProjectsStore, type ListProjects$result } from '$houdini';
 	import DebugPanel from '$lib/components/debug/DebugPanel.svelte';
+	import OrganizationSwitcher from '$lib/components/clerk/OrganizationSwitcher.svelte';
+	import UserAccountMenu from '$lib/components/clerk/UserAccountMenu.svelte';
 
 	// Route params from page store
 	const lang = $derived($page.params.lang);
@@ -104,6 +106,14 @@
 </script>
 
 <div class="projects-page">
+	<header class="page-header">
+		<div class="header-left">
+			<OrganizationSwitcher />
+		</div>
+		<div class="header-right">
+			<UserAccountMenu />
+		</div>
+	</header>
 	<div class="container">
 		<h1 class="page-title">Storyboard Projects</h1>
 
@@ -278,12 +288,37 @@
 <style>
 	.projects-page {
 		min-height: 100vh;
-		padding: 2rem;
+		padding: 0;
+	}
+
+	.page-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 1rem 2rem;
+		background-color: var(--sb-bg-secondary, #1a1a1a);
+		border-bottom: 1px solid var(--sb-border-color, #404040);
+		position: sticky;
+		top: 0;
+		z-index: 100;
+	}
+
+	.header-left {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.header-right {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
 	}
 
 	.container {
 		max-width: 1200px;
 		margin: 0 auto;
+		padding: 2rem;
 	}
 
 	.page-title {
