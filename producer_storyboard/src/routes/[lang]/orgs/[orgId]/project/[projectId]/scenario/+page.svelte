@@ -498,15 +498,7 @@
 									</button>
 								</div>
 							</div>
-							{#if expandedScenarios.has(scenario.id)}
-								<!-- TODO: Episode/Part/ScenePlan display will be added when grpc-go supports them -->
-								<div class="scenario-content">
-									<p style="padding: 1rem; color: rgba(255, 255, 255, 0.5);">
-										Episode/Part/ScenePlan support coming soon
-									</p>
-								</div>
-							{/if}
-							{#if false && expandedScenarios.has(scenario.id) && selectedScenario}
+							{#if expandedScenarios.has(scenario.id) && selectedScenario}
 								<div class="scenario-content">
 									<div class="episodes-section">
 										<div class="section-header">

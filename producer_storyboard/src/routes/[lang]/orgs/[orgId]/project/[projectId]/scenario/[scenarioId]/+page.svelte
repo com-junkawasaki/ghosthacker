@@ -461,12 +461,8 @@
 				</div>
 			{:else}
 				<div class="scenario-detail">
-					<!-- TODO: Episode/Part/ScenePlan display will be added when grpc-go supports them -->
 					<div class="episodes-section">
-						<p style="padding: 1rem; color: rgba(255, 255, 255, 0.5);">
-							Episode/Part/ScenePlan support coming soon
-						</p>
-						{#if false && scenario.episodes && scenario.episodes.length > 0}
+						{#if scenario.episodes && scenario.episodes.length > 0}
 							<div class="episodes-list">
 								{#each scenario.episodes as episode, episodeIndex (episode.id)}
 									<div 
