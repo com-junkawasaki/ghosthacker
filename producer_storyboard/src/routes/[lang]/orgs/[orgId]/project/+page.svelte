@@ -12,12 +12,12 @@
 	const orgId = $derived($page.params.orgId);
 
 	// SSR: Get the ListProjects store from page data (loaded in +page.ts)
-	// Use $derived to maintain reactivity in Svelte 5
+	// サーバー側で認証確認済み、認証済みの場合のみプロジェクトを取得
 	interface PageData {
 		ListProjects: ListProjectsStore;
 	}
 	const props = $props<{ data: PageData }>();
-	const projects = $derived(props.data.ListProjects);
+	const projectsStore = $derived(props.data.ListProjects);
 	
 	const createProject = new CreateProjectStore();
 
@@ -27,31 +27,15 @@
 	let newProjectTitle = $state('');
 	let newProjectDescription = $state('');
 
-	// SSRで読み込まれた初期データを直接配列として保持（KISS原則：シンプルに）
-	// クライアントサイドでsetup()が呼ばれてデータがリセットされても、初期値を保持
-	let ssrProjects = $state(props.data.ListProjects.data?.projects ?? []);
-	
 	// Computed properties - use $derived with store access
-	const projectsStore = $derived(projects);
-	
-	// ストアの状態を監視して、データが更新されたらssrProjectsも更新
-	$effect(() => {
-		if (browser && $projectsStore.data?.projects) {
-			// ストアにデータが設定されたら、ssrProjectsも更新
-			ssrProjects = $projectsStore.data.projects;
-		}
-	});
-	
-	// SSRでデータがある場合はloadingをfalseにする（KISS原則）
-	const loading = $derived($projectsStore.fetching && ssrProjects.length === 0);
+	const loading = $derived($projectsStore.fetching && !$projectsStore.data);
 	const error = $derived($projectsStore.errors?.[0] ? new Error($projectsStore.errors[0].message) : null);
 	
 	// Projects are filtered by backend using X-Org-Id header
-	// SSRで読み込まれたデータを優先的に使用（クライアントサイドでリセットされても表示）
-	const filteredProjects = $derived(($projectsStore.data?.projects ?? ssrProjects) ?? []);
+	const filteredProjects = $derived($projectsStore.data?.projects ?? []);
 	
-	// SSRで読み込まれたデータがあるかどうかをチェック（シンプルな判定）
-	const hasData = $derived(filteredProjects.length > 0 || ($projectsStore.data !== null && $projectsStore.data !== undefined));
+	// データがあるかどうかをチェック（シンプルな判定）
+	const hasData = $derived($projectsStore.data !== null && $projectsStore.data !== undefined);
 
 	function buildPath(viewName: string, projectId?: string): string {
 		if (projectId) {
@@ -64,15 +48,11 @@
 		if (browser) {
 			console.log('[Project] Store state:', {
 				loading,
-				error,
+				error: error?.message,
 				orgId,
-				ssrProjects: ssrProjects.length,
-				storeData: $projectsStore.data?.projects?.length ?? 0,
-				totalProjects: filteredProjects.length,
-				filteredProjects: filteredProjects.length,
-				storeFetching: $projectsStore.fetching,
-				storeHasData: $projectsStore.data !== null && $projectsStore.data !== undefined,
+				projectsCount: filteredProjects.length,
 				hasData,
+				fetching: $projectsStore.fetching,
 			});
 		}
 	});
@@ -133,7 +113,11 @@
 	<div class="container">
 		<h1 class="page-title">Storyboard Projects</h1>
 
-		{#if error}
+		{#if loading}
+			<div class="loading-state">
+				<p>Loading projects...</p>
+			</div>
+		{:else if error}
 			<div class="error-state">
 				<div class="error-message">Error: {error.message}</div>
 				<button
@@ -150,7 +134,6 @@
 				</button>
 			</div>
 		{:else if hasData}
-			<!-- SSRで読み込まれたデータを表示（KISS原則：シンプルに） -->
 			{#if filteredProjects.length === 0}
 				<div class="empty-state">
 					<p>No projects found in this organization. Create a new project to get started.</p>
@@ -183,10 +166,6 @@
 					{/each}
 				</div>
 			{/if}
-		{:else if loading}
-			<div class="loading-state">
-				<p>Loading projects...</p>
-			</div>
 		{:else}
 			<div class="empty-state">
 				<p>No data available. Please check your connection.</p>
@@ -207,66 +186,66 @@
 		{/if}
 	</div>
 
-		<!-- Create Project Dialog -->
-		{#if showCreateDialog}
-			<div class="dialog-overlay" onclick={() => showCreateDialog = false}>
-				<div class="dialog" onclick={(e) => e.stopPropagation()}>
-					<h2>Create New Project</h2>
-					<form
-						onsubmit={(e) => {
-							e.preventDefault();
-							handleCreateProject();
-						}}
-					>
-						<div class="form-group">
-							<label for="project-title">Title *</label>
-							<input
-								id="project-title"
-								type="text"
-								bind:value={newProjectTitle}
-								placeholder="Enter project title"
-								required
-								disabled={isCreating}
-							/>
-						</div>
-						<div class="form-group">
-							<label for="project-description">Description</label>
-							<textarea
-								id="project-description"
-								bind:value={newProjectDescription}
-								placeholder="Enter project description (optional)"
-								disabled={isCreating}
-								rows="3"
-							></textarea>
-						</div>
-						<div class="dialog-actions">
-							<button
-								type="button"
-								class="cancel-button"
-								onclick={() => {
-									showCreateDialog = false;
-									newProjectTitle = '';
-									newProjectDescription = '';
-								}}
-								disabled={isCreating}
-							>
-								Cancel
-							</button>
-							<button
-								type="submit"
-								class="create-button"
-								disabled={isCreating || !newProjectTitle.trim()}
-							>
-								{isCreating ? 'Creating...' : 'Create'}
-							</button>
-						</div>
-					</form>
-				</div>
+	<!-- Create Project Dialog -->
+	{#if showCreateDialog}
+		<div class="dialog-overlay" onclick={() => showCreateDialog = false}>
+			<div class="dialog" onclick={(e) => e.stopPropagation()}>
+				<h2>Create New Project</h2>
+				<form
+					onsubmit={(e) => {
+						e.preventDefault();
+						handleCreateProject();
+					}}
+				>
+					<div class="form-group">
+						<label for="project-title">Title *</label>
+						<input
+							id="project-title"
+							type="text"
+							bind:value={newProjectTitle}
+							placeholder="Enter project title"
+							required
+							disabled={isCreating}
+						/>
+					</div>
+					<div class="form-group">
+						<label for="project-description">Description</label>
+						<textarea
+							id="project-description"
+							bind:value={newProjectDescription}
+							placeholder="Enter project description (optional)"
+							disabled={isCreating}
+							rows="3"
+						></textarea>
+					</div>
+					<div class="dialog-actions">
+						<button
+							type="button"
+							class="cancel-button"
+							onclick={() => {
+								showCreateDialog = false;
+								newProjectTitle = '';
+								newProjectDescription = '';
+							}}
+							disabled={isCreating}
+						>
+							Cancel
+						</button>
+						<button
+							type="submit"
+							class="create-button"
+							disabled={isCreating || !newProjectTitle.trim()}
+						>
+							{isCreating ? 'Creating...' : 'Create'}
+						</button>
+					</div>
+				</form>
 			</div>
-		{/if}
+		</div>
+	{/if}
 
-		<!-- Debug Panel -->
-		<DebugPanel store={{ ...$projectsStore, loading, error }} storeName="ListProjectsStore" visible={debugVisible} />
+	<!-- Debug Panel -->
+	<DebugPanel store={{ ...$projectsStore, loading, error }} storeName="ListProjectsStore" visible={debugVisible} />
 </div>
 
 <style>
