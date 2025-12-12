@@ -18,35 +18,61 @@ services:
     networks:
       - storyboard-editor-network
 
-  graphql:
+  # Go GraphQL Service (primary)
+  graphql-go:
     build:
-      context: ./performers/services/graphql
+      context: ./performers/services/graphql-go
       dockerfile: Dockerfile
-      target: development
-    container_name: storyboard-editor-graphql
+    container_name: storyboard-editor-graphql-go
     ports:
       - "25325:8080"
     environment:
-      NODE_ENV: development
       # PostgreSQL Connection
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
       # Server Configuration
       PORT: 8080
       HOST: 0.0.0.0
       # AI Service Configuration
-      OPENAI_API_KEY: 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
-      HUME_API_KEY: xWvZpzP8KzNfQqBIadWnjKcy7JWQmBifwW36zVJkX90MxRt2
-      HUME_API_URL: ${HUME_API_URL:-https://api.hume.ai}
-      # Cargo watch configuration for HMR
-      CARGO_WATCH_IGNORE: "target/**"
-    volumes:
-      - ./performers/services/graphql:/app
-      - /app/target
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-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}
+      HUME_API_KEY: ${HUME_API_KEY:-xWvZpzP8KzNfQqBIadWnjKcy7JWQmBifwW36zVJkX90MxRt2}
+      SUNO_API_KEY: ${SUNO_API_KEY:-}
     depends_on:
       postgres:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
       - storyboard-editor-network
+
+  # Rust GraphQL Service (legacy, commented out)
+  # graphql:
+  #   build:
+  #     context: ./performers/services/graphql
+  #     dockerfile: Dockerfile
+  #     target: development
+  #   container_name: storyboard-editor-graphql
+  #   ports:
+  #     - "25326:8080"
+  #   environment:
+  #     NODE_ENV: development
+  #     DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
+  #     PORT: 8080
+  #     HOST: 0.0.0.0
+  #     OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+  #     HUME_API_KEY: ${HUME_API_KEY:-}
+  #     HUME_API_URL: ${HUME_API_URL:-https://api.hume.ai}
+  #     CARGO_WATCH_IGNORE: "target/**"
+  #   volumes:
+  #     - ./performers/services/graphql:/app
+  #     - /app/target
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #   networks:
+  #     - storyboard-editor-network
 
   frontend:
     build:
@@ -64,18 +90,17 @@ services:
       CHOKIDAR_INTERVAL: 1000
       WATCHPACK_POLLING: "true"
       WATCHPACK_POLLING_INTERVAL: 1000
-      # SvelteKit HMR configuration
       # App URLs (loaded from host env / .envrc)
       PUBLIC_APP_URL: ${PUBLIC_APP_URL:-http://localhost:25322}
-      # GraphQL API URL
-      # Use relative URL or same-origin proxy for browser requests
+      # GraphQL API URL - pointing to graphql-go service
       PUBLIC_GRAPHQL_API_URL: ${PUBLIC_GRAPHQL_API_URL:-/api/graphql}
-      GRAPHQL_API_URL: ${GRAPHQL_API_URL:-http://graphql:8080/graphql}
+      GRAPHQL_API_URL: ${GRAPHQL_API_URL:-http://graphql-go:8080/graphql}
     volumes:
       - .:/app
       - /app/node_modules
     depends_on:
-      - graphql
+      graphql-go:
+        condition: service_healthy
     networks:
       - storyboard-editor-network
     command: sh -c "pnpm install --no-frozen-lockfile && pnpm svelte-kit sync && pnpm dev"

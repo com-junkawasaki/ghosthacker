@@ -1,3 +1,30 @@
+# Development stage
+FROM golang:1.22-alpine AS development
+
+# Install development dependencies
+RUN apk add --no-cache git ca-certificates
+
+# Install air for hot reload
+RUN go install github.com/air-verse/air@latest
+
+# Set working directory
+WORKDIR /app
+
+# Copy go mod files first for better caching
+COPY go.mod go.sum ./
+
+# Download dependencies
+RUN go mod download
+
+# Copy source code
+COPY . .
+
+# Expose port
+EXPOSE 8080
+
+# Run with air for hot reload in development
+CMD ["air", "-c", ".air.toml"]
+
 # Build stage
 FROM golang:1.22-alpine AS builder
 
@@ -20,10 +47,10 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /graphql-server ./cmd/server
 
 # Runtime stage
-FROM alpine:3.19
+FROM alpine:3.19 AS production
 
 # Install runtime dependencies
-RUN apk --no-cache add ca-certificates tzdata
+RUN apk --no-cache add ca-certificates tzdata wget
 
 # Create non-root user
 RUN adduser -D -g '' appuser
