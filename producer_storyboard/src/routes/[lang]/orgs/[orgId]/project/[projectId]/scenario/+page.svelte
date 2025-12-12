@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
-	import { ListScenariosStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/ListScenarios.js';
-	import { CreateScenarioStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/CreateScenario.js';
-	import { UpdateScenarioStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/UpdateScenario.js';
-	import { DeleteScenarioStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/DeleteScenario.js';
-	import { CreateEpisodeStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/CreateEpisode.js';
-	import { CreatePartStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/CreatePart.js';
-	import { CreateScenePlanStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/CreateScenePlan.js';
-	import { GetScenarioStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/GetScenario.js';
-	import { ReorderEpisodesStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/ReorderEpisodes.js';
-	import { ReorderPartsStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/ReorderParts.js';
-	import { ReorderScenePlansStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/ReorderScenePlans.js';
+	import { ListScenariosStore } from '$houdini/plugins/houdini-svelte/stores/ListScenarios.js';
+	import { CreateScenarioStore } from '$houdini/plugins/houdini-svelte/stores/CreateScenario.js';
+	import { UpdateScenarioStore } from '$houdini/plugins/houdini-svelte/stores/UpdateScenario.js';
+	import { DeleteScenarioStore } from '$houdini/plugins/houdini-svelte/stores/DeleteScenario.js';
+	import { CreateEpisodeStore } from '$houdini/plugins/houdini-svelte/stores/CreateEpisode.js';
+	import { CreatePartStore } from '$houdini/plugins/houdini-svelte/stores/CreatePart.js';
+	import { CreateScenePlanStore } from '$houdini/plugins/houdini-svelte/stores/CreateScenePlan.js';
+	import { GetScenarioStore } from '$houdini/plugins/houdini-svelte/stores/GetScenario.js';
+	import { ReorderEpisodesStore } from '$houdini/plugins/houdini-svelte/stores/ReorderEpisodes.js';
+	import { ReorderPartsStore } from '$houdini/plugins/houdini-svelte/stores/ReorderParts.js';
+	import { ReorderScenePlansStore } from '$houdini/plugins/houdini-svelte/stores/ReorderScenePlans.js';
 	import ProjectSidebar from '$lib/components/storyboard/ProjectSidebar.svelte';
 
 	const { lang, orgId, projectId } = $page.params;

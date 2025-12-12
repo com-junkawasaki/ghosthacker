@@ -2,9 +2,12 @@ import { defineConfig, devices } from '@playwright/test';
 
 /**
  * @see https://playwright.dev/docs/test-configuration
+ * Clerk Testing Setup: https://clerk.com/docs/guides/development/testing/playwright/overview
  */
 export default defineConfig({
 	testDir: './tests/bdd/e2e',
+	/* Global setup for Clerk authentication */
+	globalSetup: './tests/bdd/e2e/global-setup.ts',
 	/* Run tests in files in parallel */
 	fullyParallel: true,
 	/* Fail the build on CI if you accidentally left test.only in the source code. */

@@ -2,6 +2,30 @@
 
 Playwrightを使用したブラウザベースのE2Eテストです。
 
+## Clerk認証の設定
+
+ClerkのPlaywrightテストガイドに基づいて認証を設定しています。
+
+### 必要な環境変数
+
+`.env`または`.env.test`に以下を設定：
+
+```bash
+CLERK_PUBLISHABLE_KEY=pk_test_...
+CLERK_SECRET_KEY=sk_test_...
+```
+
+### セットアップ
+
+1. `@clerk/testing`パッケージがインストールされていることを確認：
+   ```bash
+   pnpm add -D @clerk/testing
+   ```
+
+2. グローバルセットアップが実行されます（`BeforeAll`フックで自動実行）
+
+3. 各テストで`setupClerkTestingToken()`が自動的に呼び出されます
+
 ## 実行方法
 
 ```bash
@@ -9,7 +33,7 @@ Playwrightを使用したブラウザベースのE2Eテストです。
 pnpm test:bdd:e2e
 
 # 特定のフィーチャーのみ実行
-pnpm test:bdd:e2e tests/bdd/e2e/features/authentication.feature
+pnpm test:bdd:e2e tests/bdd/e2e/features/scenario-management-e2e.feature
 
 # ヘッドレスモードで実行
 HEADLESS=true pnpm test:bdd:e2e
@@ -24,79 +48,56 @@ pnpm test:e2e
 
 - `authentication.feature`: 認証フローのテスト
 - `project-management-e2e.feature`: プロジェクト管理のE2Eテスト
+- `scenario-management-e2e.feature`: シナリオ管理のE2Eテスト
 - `sign-in-flow.feature`: サインインフローの詳細テスト
 - `sign-in-visual.feature`: ビジュアル確認テスト（スクリーンショット）
 
 ### ステップ定義 (`tests/bdd/e2e/step_definitions/`)
 
-- `browser-steps.ts`: Playwrightを使用したブラウザ操作のステップ定義
+- `browser-steps.ts`: Playwrightを使用したブラウザ操作のステップ定義（Clerk認証含む）
+- `scenario-steps.ts`: シナリオ管理のステップ定義
 
-## テスト結果
+## Clerk認証の使用方法
 
-現在のテスト結果:
-- **6シナリオ、34ステップ全て成功**
-- 実行時間: 約18秒
+### 認証済みユーザーとしてテストを実行
 
-## スクリーンショット
-
-テスト実行時のスクリーンショットは `tests/bdd/reports/` に保存されます:
-
-- `sign-in-page.png`: サインインページのフルスクリーンショット
-- `debug-panel.png`: デバッグパネルのスクリーンショット（該当する場合）
-
-## 設定
-
-### Cucumber設定 (`tests/bdd/e2e/cucumber.config.cjs`)
-
-- TypeScript実行: `tsx/cjs`
-- レポート形式: `progress`, `json`, `html`
-- タイムアウト: 60秒
-
-### Playwright設定 (`playwright.config.ts`)
-
-- ブラウザ: Chromium
-- ベースURL: `http://localhost:5173`
-- 自動でdev serverを起動
-- スクリーンショット: エラー時のみ
-- トレース: リトライ時のみ
-
-## カバレッジレポート
-
-BDD E2Eテストのカバレッジレポートを生成するには:
-
-```bash
-pnpm test:bdd:coverage:report
+```gherkin
+シナリオ: 認証済みユーザーがシナリオを作成する
+  前提 ブラウザが起動している
+  かつ アプリケーションが起動している
+  かつ ユーザーが認証済みである
+  もし ユーザーがプロジェクト「project-123」のシナリオページにアクセスしている
+  ならば シナリオ一覧が表示される
 ```
 
-このコマンドは、`capabilities.jsonld`に定義されているすべてのcapabilityに対してE2Eテストが存在するかを確認し、カバレッジレポートを生成します。
+`ユーザーが認証済みである`ステップが自動的に`setupClerkTestingToken()`を呼び出します。
 
-### カバレッジ目標
+## トラブルシューティング
 
-- **目標**: 100%のカバレッジ
-- **現在のカバレッジ**: 100% ✅
+### Bot traffic detected エラー
 
-### カバレッジ対象
+`setupClerkTestingToken()`が正しく呼び出されているか確認してください。`BeforeAll`フックで`clerkSetup()`が実行されている必要があります。
 
-以下のcapabilityがカバーされています:
+### 認証が失敗する
 
-1. ✅ **Project Management** - プロジェクト管理 (6 scenarios)
-2. ✅ **Storyboard Editing** - ストーリーボード編集 (3 scenarios)
-3. ✅ **Scene Management** - シーン管理 (5 scenarios)
-4. ✅ **AI Video Generation** - AI動画生成 (3 scenarios)
-5. ✅ **Video Composition** - 動画合成 (3 scenarios)
-6. ✅ **Timeline Editing** - タイムライン編集 (3 scenarios)
-7. ✅ **Video Preview** - ビデオプレビュー (3 scenarios)
+1. 環境変数が正しく設定されているか確認：
+   ```bash
+   echo $CLERK_PUBLISHABLE_KEY
+   echo $CLERK_SECRET_KEY
+   ```
 
-**合計**: 14 feature files, 41 scenarios
+2. ClerkのインスタンスがDevelopmentモードであることを確認
 
-## 認証テストについて
+3. ブラウザのコンソールでエラーを確認
 
-現在、実際のClerk認証フローのテストは制限されています:
-- **未認証状態のテスト**: 正常動作
-- **認証済み状態のテスト**: 一時的にコメントアウト（Clerkテストモードまたはモック認証が必要）
+### Testing Tokenが取得できない
 
-将来の改善点:
-- Clerkのテストモードを使用した認証済み状態のテスト
-- プロジェクト作成フローの完全なE2Eテスト
-- 複数の組織間の切り替えテスト
+- Developmentインスタンスを使用していることを確認
+- `CLERK_PUBLISHABLE_KEY`と`CLERK_SECRET_KEY`が正しく設定されていることを確認
+- `BeforeAll`フックで`clerkSetup()`が実行されていることを確認
 
+## 参考リンク
+
+- [Clerk Playwright Testing Guide](https://clerk.com/docs/guides/development/testing/playwright/overview)
+- [Testing Tokens](https://clerk.com/changelog/2024-04-24-testing-tokens)
+- [Test Authenticated Flows](https://clerk.com/docs/testing/playwright/test-authenticated-flows)

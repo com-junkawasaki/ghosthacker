@@ -2,7 +2,7 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import { GetScenarioStore } from '../../../../../../../../../../.houdini/plugins/houdini-svelte/stores/GetScenario.js';
+	import { GetScenarioStore } from '$houdini/plugins/houdini-svelte/stores/GetScenario.js';
 	import { 
 		CreateEpisodeStore,
 		CreatePartStore,
@@ -12,8 +12,8 @@
 		ReorderScenePlansStore,
 		UpdateScenarioStore,
 		DeleteScenarioStore
-	} from '../../../../../../../../../../.houdini/plugins/houdini-svelte/stores/index.js';
-	import { ConvertScenarioToStoryboardStore } from '../../../../../../../../../../.houdini/plugins/houdini-svelte/stores/ConvertScenarioToStoryboard.js';
+	} from '$houdini/plugins/houdini-svelte/stores/index.js';
+	import { ConvertScenarioToStoryboardStore } from '$houdini/plugins/houdini-svelte/stores/ConvertScenarioToStoryboard.js';
 	import ProjectSidebar from '$lib/components/storyboard/ProjectSidebar.svelte';
 
 	const { lang, orgId, projectId, scenarioId } = $page.params;

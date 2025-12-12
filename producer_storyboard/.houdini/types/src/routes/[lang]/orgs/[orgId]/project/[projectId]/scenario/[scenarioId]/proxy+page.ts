@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { GetScenarioStore } from '../../../../../../../../../../.houdini/plugins/houdini-svelte/stores/GetScenario.js';
+import { GetScenarioStore } from '$houdini/plugins/houdini-svelte/stores/GetScenario.js';
 import type { PageLoad } from './$types';
 
 export const ssr = false;

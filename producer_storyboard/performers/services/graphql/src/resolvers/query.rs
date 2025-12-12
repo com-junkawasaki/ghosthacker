@@ -696,26 +696,39 @@ impl QueryRoot {
         let scenario_uuid = Uuid::parse_str(&id.0)
             .map_err(|e| async_graphql::Error::new(format!("Invalid scenario ID: {}", e)))?;
         
-        // Check organization access
+        // Check organization access - verify scenario belongs to user's organization
+        // Check both scenario.org_id and project.org_id (scenario inherits from project)
         if let Ok(auth) = get_clerk_auth_from_context(ctx) {
             if let Some(org) = auth.org {
-                let scenario_org: Option<Option<String>> = sqlx::query_scalar::<_, Option<String>>(
-                    "SELECT org_id FROM scenarios WHERE id = $1"
+                // Get both scenario.org_id and project.org_id via JOIN
+                let project_org: Option<Option<String>> = sqlx::query_scalar::<_, Option<String>>(
+                    r#"
+                    SELECT COALESCE(s.org_id, p.org_id)
+                    FROM scenarios s
+                    JOIN storyboard_projects p ON s.project_id = p.id
+                    WHERE s.id = $1
+                    "#
                 )
                 .bind(scenario_uuid)
                 .fetch_optional(pool.as_ref())
                 .await
                 .map_err(|e| async_graphql::Error::new(format!("Failed to verify scenario access: {}", e)))?;
                 
-                match scenario_org {
-                    None => return Ok(None),
-                    Some(Some(scenario_org_id)) => {
-                        if scenario_org_id != org.id {
-                            return Err(async_graphql::Error::new("Access denied"));
+                match project_org {
+                    None => {
+                        // Scenario doesn't exist
+                        return Ok(None);
+                    }
+                    Some(Some(project_org_id)) => {
+                        // Project exists and has org_id
+                        if project_org_id != org.id {
+                            return Err(async_graphql::Error::new("Access denied: Project does not belong to your organization"));
                         }
                     }
                     Some(None) => {
-                        // Scenario exists but org_id is NULL - allow access
+                        // Scenario exists but both scenario.org_id and project.org_id are NULL
+                        // Deny access for org-scoped requests
+                        return Err(async_graphql::Error::new("Access denied: Project does not belong to your organization"));
                     }
                 }
             }
