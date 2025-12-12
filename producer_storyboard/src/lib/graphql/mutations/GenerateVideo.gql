@@ -1,9 +1,0 @@
-mutation GenerateVideo($storyboardId: ID!) {
-	generateVideo(storyboardId: $storyboardId) {
-		id
-		storyboardId
-		variationNumber
-		status
-		createdAt
-	}
-}

@@ -1,5 +1,0 @@
-mutation DeleteCharacter($id: ID!) {
-	deleteCharacter(id: $id)
-}
-
-

@@ -4,10 +4,6 @@
 	import './globals.css';
 	import type { LayoutData } from './$types';
 
-	// Houdini client is automatically initialized via houdini.config.js
-	if (browser) {
-		console.log('[Layout] Houdini client will be auto-initialized');
-	}
 
 	const { data, children }: { data: LayoutData; children: import('svelte').Snippet } = $props();
 

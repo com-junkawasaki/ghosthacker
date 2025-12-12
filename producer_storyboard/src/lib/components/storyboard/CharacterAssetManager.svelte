@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { ListCharacterAssetsStore } from '../../../../.houdini/plugins/houdini-svelte/stores/ListCharacterAssets.js';
-	import { UploadCharacterAssetStore } from '../../../../.houdini/plugins/houdini-svelte/stores/UploadCharacterAsset.js';
-	import { DeleteCharacterAssetStore } from '../../../../.houdini/plugins/houdini-svelte/stores/DeleteCharacterAsset.js';
+	import { page } from '$app/stores';
 
 	type Props = {
 		characterId: string;
@@ -19,6 +17,8 @@
 		updatedAt: string;
 	};
 
+	const orgId = $derived($page.params.orgId);
+
 	let assets = $state<CharacterAsset[]>([]);
 	let loading = $state(false);
 	let uploading = $state(false);
@@ -27,26 +27,24 @@
 	let imageInputRef = $state<HTMLInputElement | null>(null);
 	let audioInputRef = $state<HTMLInputElement | null>(null);
 
-	let listCharacterAssetsStore: ListCharacterAssetsStore | null = null;
-	let uploadCharacterAssetStore: UploadCharacterAssetStore | null = null;
-	let deleteCharacterAssetStore: DeleteCharacterAssetStore | null = null;
-
-	if (browser) {
-		listCharacterAssetsStore = new ListCharacterAssetsStore();
-		uploadCharacterAssetStore = new UploadCharacterAssetStore();
-		deleteCharacterAssetStore = new DeleteCharacterAssetStore();
-	}
-
 	async function loadAssets() {
-		if (!browser || !listCharacterAssetsStore || !characterId) return;
+		if (!browser || !characterId) return;
 
 		try {
 			loading = true;
 			error = null;
-			const result = await listCharacterAssetsStore.fetch({ variables: { characterId } });
-			if (result?.data?.characterAssets) {
-				assets = result.data.characterAssets as CharacterAsset[];
+			const response = await fetch(`/api/character-assets?characterId=${characterId}`, {
+				headers: {
+					'X-Org-Id': orgId || '',
+				},
+			});
+			
+			if (!response.ok) {
+				throw new Error(`Failed to load assets: ${response.statusText}`);
 			}
+			
+			const data = await response.json();
+			assets = data.assets || [];
 		} catch (err) {
 			console.error('[CharacterAssetManager] Error loading assets:', err);
 			error = err instanceof Error ? err.message : 'Failed to load assets';
@@ -56,7 +54,7 @@
 	}
 
 	async function uploadAsset(file: File, assetType: 'image' | 'audio') {
-		if (!browser || !uploadCharacterAssetStore || !characterId) return;
+		if (!browser || !characterId) return;
 
 		try {
 			uploading = true;
@@ -70,34 +68,39 @@
 				throw new Error('File must be an audio file');
 			}
 
+			// Determine asset format from file type
+			const assetFormat = file.type.split('/')[1] || (assetType === 'image' ? 'png' : 'mp3');
+			
 			// Read file as base64
 			const reader = new FileReader();
 			const base64Promise = new Promise<string>((resolve, reject) => {
 				reader.onload = () => {
 					const result = reader.result as string;
-					// Keep data URL format for better format detection
 					resolve(result);
 				};
 				reader.onerror = reject;
 				reader.readAsDataURL(file);
 			});
-
+			
 			const assetData = await base64Promise;
 			
-			// Determine asset format from file type
-			const assetFormat = file.type.split('/')[1] || (assetType === 'image' ? 'png' : 'mp3');
+			const formData = new FormData();
+			formData.append('file', file);
+			formData.append('characterId', characterId);
+			formData.append('assetType', assetType);
+			formData.append('assetFormat', assetFormat);
 			
-			const result = await uploadCharacterAssetStore.mutate({
-				input: {
-					characterId,
-					assetData,
-					assetType,
-					assetFormat,
+			const response = await fetch('/api/character-assets', {
+				method: 'POST',
+				headers: {
+					'X-Org-Id': orgId || '',
 				},
+				body: formData,
 			});
 
-			if (result?.errors && result.errors.length > 0) {
-				throw new Error(result.errors[0].message);
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to upload asset');
 			}
 
 			await loadAssets();
@@ -111,14 +114,20 @@
 	}
 
 	async function deleteAsset(assetId: string) {
-		if (!browser || !deleteCharacterAssetStore) return;
+		if (!browser) return;
 		if (!confirm('Are you sure you want to delete this asset?')) return;
 
 		try {
-			const result = await deleteCharacterAssetStore.mutate({ assetId });
+			const response = await fetch(`/api/character-assets/${assetId}`, {
+				method: 'DELETE',
+				headers: {
+					'X-Org-Id': orgId || '',
+				},
+			});
 
-			if (result?.errors && result.errors.length > 0) {
-				throw new Error(result.errors[0].message);
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to delete asset');
 			}
 
 			await loadAssets();

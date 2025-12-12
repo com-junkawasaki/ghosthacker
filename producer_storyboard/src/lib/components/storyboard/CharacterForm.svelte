@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { ListHumeVoicesStore } from '../../../../.houdini/plugins/houdini-svelte/stores/ListHumeVoices.js';
-	import { ListCharacterAssetsStore } from '../../../../.houdini/plugins/houdini-svelte/stores/ListCharacterAssets.js';
+	import { page } from '$app/stores';
 
 	type Props = {
 		character: {
@@ -64,28 +63,30 @@
 		assetFormat: string | null;
 	};
 
+	const orgId = $derived($page.params.orgId);
+
 	let humeVoices = $state<HumeVoice[]>([]);
 	let characterAssets = $state<CharacterAsset[]>([]);
 	let loadingVoices = $state(false);
 	let loadingAssets = $state(false);
 
-	let listHumeVoicesStore: ListHumeVoicesStore | null = null;
-	let listCharacterAssetsStore: ListCharacterAssetsStore | null = null;
-
-	if (browser) {
-		listHumeVoicesStore = new ListHumeVoicesStore();
-		listCharacterAssetsStore = new ListCharacterAssetsStore();
-	}
-
 	async function loadHumeVoices() {
-		if (!browser || !listHumeVoicesStore) return;
+		if (!browser) return;
 
 		try {
 			loadingVoices = true;
-			const result = await listHumeVoicesStore.fetch();
-			if (result?.data?.humeVoices) {
-				humeVoices = result.data.humeVoices as HumeVoice[];
+			const response = await fetch('/api/hume-voices', {
+				headers: {
+					'X-Org-Id': orgId || '',
+				},
+			});
+			
+			if (!response.ok) {
+				throw new Error(`Failed to load Hume voices: ${response.statusText}`);
 			}
+			
+			const data = await response.json();
+			humeVoices = data.voices || [];
 		} catch (err) {
 			console.error('[CharacterForm] Error loading Hume voices:', err);
 		} finally {
@@ -94,14 +95,22 @@
 	}
 
 	async function loadCharacterAssets() {
-		if (!browser || !listCharacterAssetsStore || !character?.id) return;
+		if (!browser || !character?.id) return;
 
 		try {
 			loadingAssets = true;
-			const result = await listCharacterAssetsStore.fetch({ variables: { characterId: character.id } });
-			if (result?.data?.characterAssets) {
-				characterAssets = result.data.characterAssets.filter((asset: CharacterAsset) => asset.assetType === 'image') as CharacterAsset[];
+			const response = await fetch(`/api/character-assets?characterId=${character.id}`, {
+				headers: {
+					'X-Org-Id': orgId || '',
+				},
+			});
+			
+			if (!response.ok) {
+				throw new Error(`Failed to load character assets: ${response.statusText}`);
 			}
+			
+			const data = await response.json();
+			characterAssets = (data.assets || []).filter((asset: CharacterAsset) => asset.assetType === 'image');
 		} catch (err) {
 			console.error('[CharacterForm] Error loading character assets:', err);
 		} finally {

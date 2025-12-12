@@ -1,5 +1,0 @@
-mutation DeleteCharacterAsset($assetId: ID!) {
-	deleteCharacterAsset(assetId: $assetId)
-}
-
-

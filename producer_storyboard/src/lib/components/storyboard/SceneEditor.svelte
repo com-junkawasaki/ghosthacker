@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { GetSceneStore } from '$houdini';
 
 	type Props = {
 		sceneId: string;
@@ -8,15 +7,35 @@
 
 	let { sceneId }: Props = $props();
 
-	const data = new GetSceneStore();
+	let scene = $state<any>(null);
+	let loading = $state(false);
+	let error = $state<Error | null>(null);
 
-	// Use Svelte 5 runes mode
-	const loading = $derived($data.fetching && !$data.data);
-	const error = $derived($data.errors?.[0] ? new Error($data.errors[0].message) : null);
+	async function loadScene() {
+		if (!browser || !sceneId) return;
+		
+		try {
+			loading = true;
+			error = null;
+			const response = await fetch(`/api/scenes/${sceneId}`);
+			
+			if (!response.ok) {
+				throw new Error(`Failed to load scene: ${response.statusText}`);
+			}
+			
+			const data = await response.json();
+			scene = data;
+		} catch (err) {
+			console.error('[SceneEditor] Error loading scene:', err);
+			error = err instanceof Error ? err : new Error('Failed to load scene');
+		} finally {
+			loading = false;
+		}
+	}
 
 	$effect(() => {
 		if (browser && sceneId) {
-			data.fetch({ variables: { id: sceneId } });
+			loadScene();
 		}
 	});
 </script>
@@ -26,8 +45,7 @@
 		<p>Loading scene...</p>
 	{:else if error}
 		<div class="text-red-600">Error: {error.message}</div>
-	{:else if $data.data?.scene}
-		{@const scene = $data.data.scene}
+	{:else if scene}
 		<div class="space-y-4">
 			<h3 class="text-lg font-semibold">Scene {scene.sceneNumber}</h3>
 

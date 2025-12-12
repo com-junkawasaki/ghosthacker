@@ -1,5 +1,0 @@
-mutation DeleteDialogue($id: ID!) {
-	deleteDialogue(id: $id)
-}
-
-

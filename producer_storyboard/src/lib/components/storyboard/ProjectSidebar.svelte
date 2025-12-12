@@ -3,7 +3,6 @@
 	import { goto } from '$app/navigation';
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
-	import { ListProjectsStore } from '../../../../.houdini/plugins/houdini-svelte/stores/ListProjects.js';
 
 	type Props = {
 		projectId: string;
@@ -26,25 +25,34 @@
 	// Project list for switching
 	let projects = $state<Project[]>([]);
 	let showProjectDropdown = $state(false);
-	let listProjectsStore: ListProjectsStore | null = null;
 
 	const currentProject = $derived(projects.find((p: Project) => p.id === projectId));
 	const displayTitle = $derived(currentProject?.title ?? projectTitle);
 
-	if (browser) {
-		listProjectsStore = new ListProjectsStore();
-	}
-
-	onMount(async () => {
-		if (!browser || !orgId || !listProjectsStore) return;
+	async function loadProjects() {
+		if (!browser || !orgId) return;
 		
 		try {
-			const result = await listProjectsStore.fetch({ variables: { orgId } });
-			if (result?.data?.projects) {
-				projects = result.data.projects as Project[];
+			const response = await fetch('/api/projects', {
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
+			
+			if (!response.ok) {
+				throw new Error(`Failed to load projects: ${response.statusText}`);
 			}
+			
+			const data = await response.json();
+			projects = data.projects || [];
 		} catch (err) {
 			console.error('[ProjectSidebar] Failed to load projects:', err);
+		}
+	}
+
+	onMount(() => {
+		if (browser && orgId) {
+			loadProjects();
 		}
 	});
 

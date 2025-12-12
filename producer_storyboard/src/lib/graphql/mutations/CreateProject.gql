@@ -1,9 +1,0 @@
-mutation CreateProject($input: CreateProjectInput!) {
-	createProject(input: $input) {
-		id
-		title
-		description
-		createdAt
-		updatedAt
-	}
-}

@@ -27,8 +27,8 @@
 				const [url, init] = args;
 				const urlStr = typeof url === 'string' ? url : url.toString();
 				
-				// Only capture GraphQL requests
-				if (urlStr.includes('/graphql')) {
+				// Capture API requests
+				if (urlStr.includes('/api/')) {
 					const requestInfo = {
 						url: urlStr,
 						method: init?.method || 'GET',

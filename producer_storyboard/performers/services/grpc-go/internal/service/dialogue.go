@@ -5,9 +5,9 @@ import (
 	"encoding/base64"
 	"time"
 
+	"connectrpc.com/connect"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
-	"connectrpc.com/connect"
 
 	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/auth"
 	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/db/sqlc"
@@ -223,9 +223,9 @@ func (s *StoryboardService) GenerateDialogueAudio(
 
 	// Update dialogue with audio data
 	updatedDialogue, err := s.queries.UpdateDialogueAudio(ctx, sqlc.UpdateDialogueAudioParams{
-		ID:            dialogueID,
-		AudioData:     result.AudioData,
-		AudioUrl:      nil,
+		ID:              dialogueID,
+		AudioData:       result.AudioData,
+		AudioUrl:        nil,
 		DurationSeconds: &result.Duration,
 	})
 	if err != nil {

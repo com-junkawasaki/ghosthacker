@@ -2,7 +2,6 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	import { onMount } from 'svelte';
 	import ProjectSidebar from '$lib/components/storyboard/ProjectSidebar.svelte';
 
 	const { lang, orgId, projectId } = $page.params;

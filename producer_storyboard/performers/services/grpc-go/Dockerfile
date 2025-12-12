@@ -1,5 +1,5 @@
 # Development stage
-FROM golang:1.22-alpine AS development
+FROM golang:1.25-alpine AS development
 
 # Install development dependencies
 RUN apk add --no-cache git ca-certificates curl
@@ -8,8 +8,8 @@ RUN apk add --no-cache git ca-certificates curl
 RUN curl -sSL "https://github.com/bufbuild/buf/releases/latest/download/buf-Linux-x86_64" -o "/usr/local/bin/buf" && \
     chmod +x /usr/local/bin/buf
 
-# Install air for hot reload
-RUN go install github.com/air-verse/air@latest
+# Install air for hot reload (using v1.61.0 which supports Go 1.24)
+RUN go install github.com/air-verse/air@v1.61.0
 
 # Set working directory
 WORKDIR /app
@@ -23,8 +23,8 @@ RUN go mod download
 # Copy source code
 COPY . .
 
-# Generate protobuf code
-RUN buf generate --template buf.gen.yaml
+# Generate protobuf code (run from proto directory)
+RUN cd proto && buf generate --template ../buf.gen.yaml
 
 # Generate sqlc code
 RUN go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest && sqlc generate
@@ -36,7 +36,7 @@ EXPOSE 8081
 CMD ["air", "-c", ".air.toml"]
 
 # Build stage
-FROM golang:1.22-alpine AS builder
+FROM golang:1.25-alpine AS builder
 
 # Install build dependencies
 RUN apk add --no-cache git ca-certificates curl
@@ -57,8 +57,8 @@ RUN go mod download
 # Copy source code
 COPY . .
 
-# Generate protobuf code
-RUN buf generate --template buf.gen.yaml
+# Generate protobuf code (run from proto directory)
+RUN cd proto && buf generate --template ../buf.gen.yaml
 
 # Generate sqlc code
 RUN go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest && sqlc generate
