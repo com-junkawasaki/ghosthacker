@@ -3,20 +3,6 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import {
-		ListStoryboardsStore,
-		ListScenesStore,
-	} from '$houdini';
-	import { CreateStoryboardStore } from '../../../../../../../../../.houdini/plugins/houdini-svelte/stores/CreateStoryboard.js';
-	import { CreateSceneStore } from '../../../../../../../../../.houdini/plugins/houdini-svelte/stores/CreateScene.js';
-	import { UpdateSceneStore } from '../../../../../../../../../.houdini/plugins/houdini-svelte/stores/UpdateScene.js';
-	import { DeleteSceneStore } from '../../../../../../../../../.houdini/plugins/houdini-svelte/stores/DeleteScene.js';
-	import { ReorderScenesStore } from '../../../../../../../../../.houdini/plugins/houdini-svelte/stores/ReorderScenes.js';
-	import { GenerateSceneImageStore } from '../../../../../../../../../.houdini/plugins/houdini-svelte/stores/GenerateSceneImage.js';
-	import { GetGeneratedImagesStore } from '../../../../../../../../../.houdini/plugins/houdini-svelte/stores/GetGeneratedImages.js';
-	import { UploadSceneImageStore } from '../../../../../../../../../.houdini/plugins/houdini-svelte/stores/UploadSceneImage.js';
-	import { ListCharactersStore } from '../../../../../../../../../.houdini/plugins/houdini-svelte/stores/ListCharacters.js';
-	import { ListDialoguesStore } from '../../../../../../../../../.houdini/plugins/houdini-svelte/stores/ListDialogues.js';
 	import CharacterManager from '$lib/components/storyboard/CharacterManager.svelte';
 	import DialogueEditor from '$lib/components/storyboard/DialogueEditor.svelte';
 	import ProjectSidebar from '$lib/components/storyboard/ProjectSidebar.svelte';
@@ -95,34 +81,6 @@
 		}
 	});
 	
-	// Houdini stores - initialize only in browser
-	let storyboardsStore: ListStoryboardsStore | null = null;
-	let scenesStore: ListScenesStore | null = null;
-	let createStoryboardStore: CreateStoryboardStore | null = null;
-	let createSceneStore: CreateSceneStore | null = null;
-	let updateSceneStore: UpdateSceneStore | null = null;
-	let deleteSceneStore: DeleteSceneStore | null = null;
-	let reorderScenesStore: ReorderScenesStore | null = null;
-	let generateSceneImageStore: GenerateSceneImageStore | null = null;
-	let getGeneratedImagesStore: GetGeneratedImagesStore | null = null;
-	let uploadSceneImageStore: UploadSceneImageStore | null = null;
-	let listCharactersStore: ListCharactersStore | null = null;
-	let listDialoguesStore: ListDialoguesStore | null = null;
-
-	if (browser) {
-		storyboardsStore = new ListStoryboardsStore();
-		scenesStore = new ListScenesStore();
-		createStoryboardStore = new CreateStoryboardStore();
-		createSceneStore = new CreateSceneStore();
-		updateSceneStore = new UpdateSceneStore();
-		deleteSceneStore = new DeleteSceneStore();
-		reorderScenesStore = new ReorderScenesStore();
-		generateSceneImageStore = new GenerateSceneImageStore();
-		getGeneratedImagesStore = new GetGeneratedImagesStore();
-		uploadSceneImageStore = new UploadSceneImageStore();
-		listCharactersStore = new ListCharactersStore();
-		listDialoguesStore = new ListDialoguesStore();
-	}
 
 	// State management with $state for reactive updates
 	let scenes = $state<Scene[]>([]);
@@ -165,12 +123,22 @@
 
 	// Load characters
 	async function loadCharacters() {
-		if (!browser || !listCharactersStore || !projectId) return;
+		if (!browser || !projectId) return;
 
 		try {
-			const result = await listCharactersStore.fetch({ variables: { projectId }, metadata: { orgId } });
-			if (result?.data?.characters) {
-				characters = result.data.characters as Character[];
+			const response = await fetch(`/api/characters?projectId=${projectId}`, {
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
+			
+			if (!response.ok) {
+				throw new Error(`Failed to load characters: ${response.statusText}`);
+			}
+			
+			const data = await response.json();
+			if (data?.characters) {
+				characters = data.characters as Character[];
 			}
 		} catch (err) {
 			console.error('[Editor] Error loading characters:', err);
@@ -179,12 +147,22 @@
 
 	// Load dialogues for a scene
 	async function loadDialogues(sceneId: string) {
-		if (!browser || !listDialoguesStore) return;
+		if (!browser) return;
 
 		try {
-			const result = await listDialoguesStore.fetch({ variables: { sceneId }, metadata: { orgId } });
-			if (result?.data?.dialogues) {
-				sceneDialogues[sceneId] = result.data.dialogues as Dialogue[];
+			const response = await fetch(`/api/dialogues?sceneId=${sceneId}`, {
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
+			
+			if (!response.ok) {
+				throw new Error(`Failed to load dialogues: ${response.statusText}`);
+			}
+			
+			const data = await response.json();
+			if (data?.dialogues) {
+				sceneDialogues[sceneId] = data.dialogues as Dialogue[];
 			}
 		} catch (err) {
 			console.error('[Editor] Error loading dialogues:', err);
@@ -193,8 +171,8 @@
 
 	// Create a new storyboard
 	async function createStoryboard() {
-		if (!projectId || !browser || !createStoryboardStore) {
-			alert('Cannot create storyboard: stores not initialized');
+		if (!projectId || !browser) {
+			alert('Cannot create storyboard: project ID is required');
 			return;
 		}
 
@@ -207,32 +185,38 @@
 			loading = true;
 			error = null;
 
-			const result = await createStoryboardStore.mutate({
-				input: {
+			const response = await fetch('/api/storyboards', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
 					projectId,
 					title: newStoryboardTitle.trim(),
 					aspectRatio: '16:9',
 					resolution: '1920x1080',
-				},
-			}, { metadata: { orgId } });
+				}),
+			});
 
-			if (result?.errors && result.errors.length > 0) {
-				throw new Error(result.errors[0].message);
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to create storyboard');
 			}
 
-			if (result?.data?.createStoryboard) {
+			const result = await response.json();
+
+			if (result?.id) {
 				// Reload data to get the new storyboard
 				await loadData();
 				// Select the newly created storyboard and update URL
-				if (result.data.createStoryboard.id) {
-					const newStoryboardId = result.data.createStoryboard.id;
-					storyboardId = newStoryboardId;
-					// Update URL to include the new storyboardId
-					if (browser && projectId) {
-						await goto(buildPath(newStoryboardId), { replaceState: true });
-					}
-					await loadScenes(newStoryboardId);
+				const newStoryboardId = result.id;
+				storyboardId = newStoryboardId;
+				// Update URL to include the new storyboardId
+				if (browser && projectId) {
+					await goto(buildPath(newStoryboardId), { replaceState: true });
 				}
+				await loadScenes(newStoryboardId);
 				showCreateStoryboardDialog = false;
 				newStoryboardTitle = '';
 			} else {
@@ -278,11 +262,9 @@
 
 	// Load storyboards and scenes
 	async function loadData() {
-		if (!projectId || !browser || !storyboardsStore || !scenesStore) {
+		if (!projectId || !browser) {
 			if (!browser) {
 				error = 'This page requires browser environment';
-			} else if (!storyboardsStore || !scenesStore) {
-				error = 'Stores not initialized';
 			} else {
 				error = 'Project ID is required';
 			}
@@ -295,14 +277,18 @@
 			error = null;
 
 			// Load storyboards for the project
-			// metadata.orgId でX-Org-Idヘッダーを送信
-			const storyboardsResult = await storyboardsStore.fetch({ variables: { projectId }, metadata: { orgId } });
+			const response = await fetch(`/api/storyboards?projectId=${projectId}`, {
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
 			
-			if (storyboardsResult.errors && storyboardsResult.errors.length > 0) {
-				throw new Error(storyboardsResult.errors[0].message);
+			if (!response.ok) {
+				throw new Error(`Failed to load storyboards: ${response.statusText}`);
 			}
 
-			const loadedStoryboards = storyboardsResult.data?.storyboards || [];
+			const data = await response.json();
+			const loadedStoryboards = data?.storyboards || [];
 			storyboards = loadedStoryboards.map((sb: any) => ({
 				id: sb.id,
 				title: sb.title || 'Untitled Storyboard',
@@ -358,21 +344,26 @@
 
 	// Load scenes for a storyboard
 	async function loadScenes(sbId: string) {
-		if (!browser || !scenesStore) {
+		if (!browser) {
 			return;
 		}
 
 		try {
-			const scenesResult = await scenesStore.fetch({ variables: { storyboardId: sbId }, metadata: { orgId } });
+			const response = await fetch(`/api/scenes?storyboardId=${sbId}`, {
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
 			
-			if (scenesResult.errors && scenesResult.errors.length > 0) {
-				throw new Error(scenesResult.errors[0].message);
+			if (!response.ok) {
+				throw new Error(`Failed to load scenes: ${response.statusText}`);
 			}
 
-			const loadedScenes = scenesResult.data?.scenes || [];
+			const data = await response.json();
+			const loadedScenes = data?.scenes || [];
 			
-			// Convert GraphQL scenes to local Scene type
-			scenes = loadedScenes.map((s) => ({
+			// Convert API scenes to local Scene type
+			scenes = loadedScenes.map((s: any) => ({
 				id: s.id,
 				sceneNumber: s.sceneNumber,
 				textDescription: s.textDescription || '',
@@ -386,7 +377,7 @@
 			}
 
 			// Load images for all scenes (don't await to avoid blocking)
-			Promise.all(loadedScenes.map(s => loadSceneImages(s.id))).catch(err => {
+			Promise.all(loadedScenes.map((s: any) => loadSceneImages(s.id))).catch(err => {
 				console.error('[Editor] Error loading scene images:', err);
 			});
 
@@ -415,9 +406,9 @@
 
 	// Add scene at specific index
 	async function addScene(index: number, retryCount = 0) {
-		if (!storyboardId || !browser || !createSceneStore) {
+		if (!storyboardId || !browser) {
 			if (!browser) return;
-			alert('Storyboard ID is required or stores not initialized');
+			alert('Storyboard ID is required');
 			return;
 		}
 
@@ -425,24 +416,27 @@
 		const startTime = scenes.slice(0, index).reduce((sum, s) => sum + (s.durationSeconds || 0), 0);
 		
 		// Calculate scene number: insert at index means the new scene will be at position index + 1
-		// But we need to check existing scenes to avoid conflicts
-		// If inserting at index 0, new scene_number should be 1
-		// If inserting at index 1, new scene_number should be 2, etc.
 		const sceneNumber = index + 1;
 
 		try {
-			const result = await createSceneStore.mutate({
-				input: {
+			const response = await fetch('/api/scenes', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
 					storyboardId,
 					sceneNumber: sceneNumber,
 					textDescription: '',
 					durationSeconds: defaultDuration,
 					startTimeSeconds: startTime,
-				},
-			}, { metadata: { orgId } });
+				}),
+			});
 
-			if (result?.errors && result.errors.length > 0) {
-				const errorMessage = result.errors[0].message;
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				const errorMessage = errorData.error || 'Failed to create scene';
 				
 				// Check if it's a unique constraint violation
 				if (errorMessage.includes('duplicate key') || errorMessage.includes('unique constraint')) {
@@ -461,10 +455,12 @@
 				throw new Error(errorMessage);
 			}
 
-			if (result?.data?.createScene) {
+			const result = await response.json();
+
+			if (result?.id) {
 				// Reload scenes to get the updated list
 				await loadScenes(storyboardId);
-				selectedSceneId = result.data.createScene.id;
+				selectedSceneId = result.id;
 			}
 		} catch (err) {
 			console.error('[Editor] Error creating scene:', err);
@@ -486,7 +482,7 @@
 
 	// Delete scene
 	async function deleteScene(sceneId: string) {
-		if (!browser || !deleteSceneStore) {
+		if (!browser) {
 			return;
 		}
 
@@ -495,22 +491,24 @@
 		}
 
 		try {
-			const result = await deleteSceneStore.mutate({
-				id: sceneId,
-			}, { metadata: { orgId } });
+			const response = await fetch(`/api/scenes/${sceneId}`, {
+				method: 'DELETE',
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
 
-			if (result?.errors && result.errors.length > 0) {
-				throw new Error(result.errors[0].message);
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to delete scene');
 			}
 
-			if (result?.data?.deleteScene) {
-				// Reload scenes to get the updated list
-				if (storyboardId) {
-					await loadScenes(storyboardId);
-				}
-				if (selectedSceneId === sceneId) {
-					selectedSceneId = scenes[0]?.id || null;
-				}
+			// Reload scenes to get the updated list
+			if (storyboardId) {
+				await loadScenes(storyboardId);
+			}
+			if (selectedSceneId === sceneId) {
+				selectedSceneId = scenes[0]?.id || null;
 			}
 		} catch (err) {
 			console.error('[Editor] Error deleting scene:', err);
@@ -520,7 +518,7 @@
 
 	// Move scene from one index to another
 	async function moveScene(fromIndex: number, toIndex: number) {
-		if (fromIndex === toIndex || !storyboardId || !browser || !reorderScenesStore) return;
+		if (fromIndex === toIndex || !storyboardId || !browser) return;
 
 		const currentScenes = [...scenes];
 		const [moved] = currentScenes.splice(fromIndex, 1);
@@ -547,30 +545,30 @@
 		const sceneIds = currentScenes.map((s) => s.id);
 
 		try {
-			const result = await reorderScenesStore.mutate({
-				input: {
+			const response = await fetch('/api/scenes/reorder', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
 					storyboardId,
 					sceneIds,
-				},
-			}, { metadata: { orgId } });
+				}),
+			});
 
-			if (result?.errors && result.errors.length > 0) {
+			if (!response.ok) {
 				// Revert on error
 				await loadScenes(storyboardId);
-				throw new Error(result.errors[0].message);
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to reorder scenes');
 			}
 
-			if (result?.data?.reorderScenes && result.data.reorderScenes.length > 0) {
+			const result = await response.json();
+
+			if (result?.scenes && result.scenes.length > 0) {
 				// Update with server response to ensure consistency
-				// Map server response to local scene format
-				const serverScenes: Scene[] = result.data.reorderScenes.map((s: {
-					id: string;
-					sceneNumber: number;
-					textDescription: string | null;
-					startTimeSeconds: number | null;
-					durationSeconds: number | null;
-					mediaUrl?: string | null;
-				}) => ({
+				const serverScenes: Scene[] = result.scenes.map((s: any) => ({
 					id: s.id,
 					sceneNumber: s.sceneNumber,
 					textDescription: s.textDescription || '',
@@ -605,25 +603,30 @@
 
 	// Update scene
 	async function updateScene(sceneId: string, updates: Partial<Scene>) {
-		if (!browser || !updateSceneStore) {
+		if (!browser) {
 			return;
 		}
 
 		try {
-			const result = await updateSceneStore.mutate({
-				input: {
-					id: sceneId,
+			const response = await fetch(`/api/scenes/${sceneId}`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
 					textDescription: updates.textDescription !== undefined ? updates.textDescription : undefined,
 					durationSeconds: updates.durationSeconds !== undefined ? updates.durationSeconds : undefined,
 					startTimeSeconds: updates.startTimeSeconds !== undefined ? updates.startTimeSeconds : undefined,
-				},
-			}, { metadata: { orgId } });
+				}),
+			});
 
-			if (result?.errors && result.errors.length > 0) {
-				throw new Error(result.errors[0].message);
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to update scene');
 			}
 
-			if (result?.data?.updateScene && storyboardId) {
+			if (storyboardId) {
 				// Reload scenes to get the updated list
 				await loadScenes(storyboardId);
 			}
@@ -642,19 +645,24 @@
 
 	// Load generated images for a scene
 	async function loadSceneImages(sceneId: string) {
-		if (!browser || !getGeneratedImagesStore) {
+		if (!browser) {
 			return;
 		}
 
 		try {
-			const result = await getGeneratedImagesStore.fetch({ variables: { sceneId }, metadata: { orgId } });
+			const response = await fetch(`/api/scenes/${sceneId}/images`, {
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
 			
-			if (result.errors && result.errors.length > 0) {
-				console.error('[Editor] Error loading images:', result.errors[0].message);
+			if (!response.ok) {
+				console.error('[Editor] Error loading images:', response.statusText);
 				return;
 			}
 
-			const images = result.data?.generatedImages || [];
+			const data = await response.json();
+			const images = data?.images || [];
 			sceneImages = {
 				...sceneImages,
 				[sceneId]: images.map((img: any) => ({
@@ -683,7 +691,7 @@
 
 	// Generate image for a scene
 	async function generateSceneImage(sceneId: string, imageType: 'start' | 'end') {
-		if (!browser || !generateSceneImageStore) {
+		if (!browser) {
 			return;
 		}
 
@@ -691,21 +699,25 @@
 			generating = true;
 			generatingSceneId = sceneId;
 			generatingImageType = imageType;
-			const result = await generateSceneImageStore.mutate({
-				input: {
-					sceneId,
-					imageType,
+			
+			const response = await fetch(`/api/scenes/${sceneId}/generate-image`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
 				},
-			}, { metadata: { orgId } });
+				body: JSON.stringify({
+					imageType,
+				}),
+			});
 
-			if (result?.errors && result.errors.length > 0) {
-				throw new Error(result.errors[0].message);
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to generate image');
 			}
 
-			if (result?.data?.generateSceneImage) {
-				// Reload images for this scene
-				await loadSceneImages(sceneId);
-			}
+			// Reload images for this scene
+			await loadSceneImages(sceneId);
 		} catch (err) {
 			console.error('[Editor] Error generating image:', err);
 			alert(err instanceof Error ? err.message : 'Failed to generate image');
@@ -718,7 +730,7 @@
 
 	// Upload image for a scene
 	async function uploadSceneImage(sceneId: string, file: File, imageType: string = 'uploaded') {
-		if (!browser || !uploadSceneImageStore) {
+		if (!browser) {
 			return;
 		}
 
@@ -750,23 +762,26 @@
 			// Determine image format from file type
 			const imageFormat = file.type.split('/')[1] || 'png';
 			
-			const result = await uploadSceneImageStore.mutate({
-				input: {
-					sceneId,
+			const response = await fetch(`/api/scenes/${sceneId}/upload-image`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
 					imageData,
 					imageType,
 					imageFormat,
-				},
-			}, { metadata: { orgId } });
+				}),
+			});
 
-			if (result?.errors && result.errors.length > 0) {
-				throw new Error(result.errors[0].message);
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to upload image');
 			}
 
-			if (result?.data?.uploadSceneImage) {
-				// Reload images for this scene
-				await loadSceneImages(sceneId);
-			}
+			// Reload images for this scene
+			await loadSceneImages(sceneId);
 		} catch (err) {
 			console.error('[Editor] Error uploading image:', err);
 			alert(err instanceof Error ? err.message : 'Failed to upload image');
@@ -827,7 +842,7 @@
 
 	// Update scene duration
 	async function updateSceneDuration(sceneId: string, newDuration: number) {
-		if (!browser || !updateSceneStore) {
+		if (!browser) {
 			return;
 		}
 
@@ -856,22 +871,27 @@
 		}
 
 		try {
-			const result = await updateSceneStore.mutate({
-				input: {
-					id: sceneId,
-					durationSeconds: newDuration,
+			const response = await fetch(`/api/scenes/${sceneId}`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
 				},
-			}, { metadata: { orgId } });
+				body: JSON.stringify({
+					durationSeconds: newDuration,
+				}),
+			});
 
-			if (result?.errors && result.errors.length > 0) {
+			if (!response.ok) {
 				// Revert on error
 				if (storyboardId) {
 					await loadScenes(storyboardId);
 				}
-				throw new Error(result.errors[0].message);
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to update scene duration');
 			}
 
-			if (result?.data?.updateScene && storyboardId) {
+			if (storyboardId) {
 				// Reload scenes to get the updated list
 				await loadScenes(storyboardId);
 			}

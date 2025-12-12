@@ -3,10 +3,8 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { browser } from '$app/environment';
-	import { ListStoryboardsStore } from '$houdini';
 
 	const { lang, orgId, projectId } = $page.params;
-	let storyboardsStore: ListStoryboardsStore | null = null;
 
 	function buildPath(storyboardId?: string): string {
 		if (storyboardId) {
@@ -15,22 +13,27 @@
 		return `/${lang}/orgs/${orgId}/project/${projectId}/new/editor`;
 	}
 
-	if (browser) {
-		storyboardsStore = new ListStoryboardsStore();
-	}
-
 	onMount(async () => {
-		if (!browser || !projectId || !storyboardsStore) {
+		if (!browser || !projectId) {
 			return;
 		}
 
 		try {
 			// Load storyboards to get the first one
-			// metadata.orgId でX-Org-Idヘッダーを送信
-			const result = await storyboardsStore.fetch({ variables: { projectId }, metadata: { orgId } });
+			const response = await fetch(`/api/storyboards?projectId=${projectId}`, {
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
 			
-			if (result?.data?.storyboards && result.data.storyboards.length > 0) {
-				const firstStoryboard = result.data.storyboards[0];
+			if (!response.ok) {
+				throw new Error(`Failed to load storyboards: ${response.statusText}`);
+			}
+			
+			const data = await response.json();
+			
+			if (data?.storyboards && data.storyboards.length > 0) {
+				const firstStoryboard = data.storyboards[0];
 				if (firstStoryboard?.id) {
 					// Redirect to the new route with storyboardId
 					await goto(buildPath(firstStoryboard.id), { replaceState: true });
@@ -39,7 +42,6 @@
 			}
 			
 			// If no storyboards exist, redirect to the new route anyway (will show empty state)
-			// We'll use a placeholder ID that will be handled by the new route
 			await goto(buildPath(), { replaceState: true });
 		} catch (err) {
 			console.error('[Editor] Error loading storyboards for redirect:', err);

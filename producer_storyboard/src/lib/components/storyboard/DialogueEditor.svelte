@@ -1,10 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { ListHumeVoicesStore } from '../../../../.houdini/plugins/houdini-svelte/stores/ListHumeVoices.js';
-	import { CreateDialogueStore } from '../../../../.houdini/plugins/houdini-svelte/stores/CreateDialogue.js';
-	import { UpdateDialogueStore } from '../../../../.houdini/plugins/houdini-svelte/stores/UpdateDialogue.js';
-	import { TranslateDialogueStore } from '../../../../.houdini/plugins/houdini-svelte/stores/TranslateDialogue.js';
-	import { GenerateDialogueAudioStore } from '../../../../.houdini/plugins/houdini-svelte/stores/GenerateDialogueAudio.js';
+	import { page } from '$app/stores';
 	import AudioPlayer from './AudioPlayer.svelte';
 
 	type Props = {
@@ -51,39 +47,18 @@
 	let translating = $state(false);
 	let generating = $state(false);
 
-	let listHumeVoicesStore: ListHumeVoicesStore | null = null;
-	let createDialogueStore: CreateDialogueStore | null = null;
-	// Note: updateDialogueStore is prepared for future use
-	// let updateDialogueStore: UpdateDialogueStore | null = null;
-	let translateDialogueStore: TranslateDialogueStore | null = null;
-	let generateDialogueAudioStore: GenerateDialogueAudioStore | null = null;
+	const orgId = $derived($page.params.orgId);
 
-	if (browser) {
-		listHumeVoicesStore = new ListHumeVoicesStore();
-		createDialogueStore = new CreateDialogueStore();
-		// updateDialogueStore = new UpdateDialogueStore();
-		translateDialogueStore = new TranslateDialogueStore();
-		generateDialogueAudioStore = new GenerateDialogueAudioStore();
-	}
-
+	// TODO: Load Hume voices via grpc-go when supported
 	async function loadHumeVoices() {
-		if (!browser || !listHumeVoicesStore) return;
-
-		try {
-			loadingVoices = true;
-			const result = await listHumeVoicesStore.fetch();
-			if (result?.data?.humeVoices) {
-				humeVoices = result.data.humeVoices as HumeVoice[];
-			}
-		} catch (err) {
-			console.error('[DialogueEditor] Error loading Hume voices:', err);
-		} finally {
-			loadingVoices = false;
-		}
+		if (!browser) return;
+		// TODO: Implement when grpc-go supports ListHumeVoices
+		console.warn('[DialogueEditor] Hume voices loading not yet supported in grpc-go');
+		loadingVoices = false;
 	}
 
 	async function saveDialogue() {
-		if (!browser || !createDialogueStore) {
+		if (!browser) {
 			return;
 		}
 		
@@ -97,19 +72,24 @@
 		}
 
 		try {
-			const result = await createDialogueStore.mutate({
-				input: {
+			const response = await fetch('/api/dialogues', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
 					sceneId,
 					characterId: selectedCharacterId,
 					language: selectedLanguage,
 					text: dialogueText.trim(),
 					humeVoiceId: selectedVoiceId || null,
-					orderIndex: dialogues.length,
-				},
+				}),
 			});
 
-			if (result?.errors && result.errors.length > 0) {
-				throw new Error(result.errors[0].message);
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to save dialogue');
 			}
 
 			dialogueText = '';
@@ -121,33 +101,14 @@
 		}
 	}
 
+	// TODO: Translate dialogue via grpc-go when supported
 	async function translateDialogue(dialogueId: string, targetLanguage: string) {
-		if (!browser || !translateDialogueStore) return;
-
-		try {
-			translating = true;
-			const result = await translateDialogueStore.mutate({
-				input: {
-					dialogueId,
-					targetLanguage,
-				},
-			});
-
-			if (result?.errors && result.errors.length > 0) {
-				throw new Error(result.errors[0].message);
-			}
-
-			await onDialogueChange();
-		} catch (err) {
-			console.error('[DialogueEditor] Error translating dialogue:', err);
-			alert(err instanceof Error ? err.message : 'Failed to translate dialogue');
-		} finally {
-			translating = false;
-		}
+		alert('Dialogue translation not yet supported in grpc-go');
+		translating = false;
 	}
 
 	async function generateAudio(dialogueId: string) {
-		if (!browser || !generateDialogueAudioStore) return;
+		if (!browser) return;
 
 		try {
 			generating = true;
@@ -167,7 +128,7 @@
 	}
 
 	$effect(() => {
-		if (browser && listHumeVoicesStore) {
+		if (browser) {
 			loadHumeVoices();
 		}
 	});

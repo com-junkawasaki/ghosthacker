@@ -2,11 +2,11 @@ package service
 
 import (
 	"context"
-	"time"
 
+	"connectrpc.com/connect"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
-	"connectrpc.com/connect"
+	"github.com/jackc/pgx/v5/pgtype"
 
 	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/db/sqlc"
 	storyboardv1 "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1"
@@ -22,7 +22,7 @@ func (s *StoryboardService) ListComposers(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	composers, err := s.queries.ListComposers(ctx, projectID)
+	composers, err := s.queries.ListComposers(ctx, uuidToPgUUID(projectID))
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
@@ -30,12 +30,12 @@ func (s *StoryboardService) ListComposers(
 	pbComposers := make([]*storyboardv1.Composer, 0, len(composers))
 	for _, c := range composers {
 		pbComposers = append(pbComposers, &storyboardv1.Composer{
-			Id:              c.ID.String(),
-			ProjectId:       c.ProjectID.String(),
+			Id:              pgUUIDToString(c.ID),
+			ProjectId:       pgUUIDToString(c.ProjectID),
 			Title:           c.Title,
-			DurationSeconds: c.DurationSeconds,
-			CreatedAt:       c.CreatedAt.Format(time.RFC3339),
-			UpdatedAt:       c.UpdatedAt.Format(time.RFC3339),
+			DurationSeconds: pgFloat8ToFloat64(c.DurationSeconds),
+			CreatedAt:       pgTimestamptzToString(c.CreatedAt),
+			UpdatedAt:       pgTimestamptzToString(c.UpdatedAt),
 		})
 	}
 
@@ -54,7 +54,7 @@ func (s *StoryboardService) GetComposer(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	c, err := s.queries.GetComposer(ctx, composerID)
+	c, err := s.queries.GetComposer(ctx, uuidToPgUUID(composerID))
 	if err == pgx.ErrNoRows {
 		return nil, connect.NewError(connect.CodeNotFound, err)
 	}
@@ -63,12 +63,12 @@ func (s *StoryboardService) GetComposer(
 	}
 
 	return connect.NewResponse(&storyboardv1.Composer{
-		Id:              c.ID.String(),
-		ProjectId:       c.ProjectID.String(),
+		Id:              pgUUIDToString(c.ID),
+		ProjectId:       pgUUIDToString(c.ProjectID),
 		Title:           c.Title,
-		DurationSeconds: c.DurationSeconds,
-		CreatedAt:       c.CreatedAt.Format(time.RFC3339),
-		UpdatedAt:       c.UpdatedAt.Format(time.RFC3339),
+		DurationSeconds: pgFloat8ToFloat64(c.DurationSeconds),
+		CreatedAt:       pgTimestamptzToString(c.CreatedAt),
+		UpdatedAt:       pgTimestamptzToString(c.UpdatedAt),
 	}), nil
 }
 
@@ -83,21 +83,21 @@ func (s *StoryboardService) CreateComposer(
 	}
 
 	c, err := s.queries.CreateComposer(ctx, sqlc.CreateComposerParams{
-		ProjectID:       projectID,
+		ProjectID:       uuidToPgUUID(projectID),
 		Title:           req.Msg.Title,
-		DurationSeconds: req.Msg.DurationSeconds,
+		DurationSeconds: float64ToPgFloat8(req.Msg.DurationSeconds),
 	})
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
 	return connect.NewResponse(&storyboardv1.Composer{
-		Id:              c.ID.String(),
-		ProjectId:       c.ProjectID.String(),
+		Id:              pgUUIDToString(c.ID),
+		ProjectId:       pgUUIDToString(c.ProjectID),
 		Title:           c.Title,
-		DurationSeconds: c.DurationSeconds,
-		CreatedAt:       c.CreatedAt.Format(time.RFC3339),
-		UpdatedAt:       c.UpdatedAt.Format(time.RFC3339),
+		DurationSeconds: pgFloat8ToFloat64(c.DurationSeconds),
+		CreatedAt:       pgTimestamptzToString(c.CreatedAt),
+		UpdatedAt:       pgTimestamptzToString(c.UpdatedAt),
 	}), nil
 }
 
@@ -112,9 +112,9 @@ func (s *StoryboardService) UpdateComposer(
 	}
 
 	c, err := s.queries.UpdateComposer(ctx, sqlc.UpdateComposerParams{
-		ID:              composerID,
+		ID:              uuidToPgUUID(composerID),
 		Title:           req.Msg.Title,
-		DurationSeconds: req.Msg.DurationSeconds,
+		DurationSeconds: float64ToPgFloat8(req.Msg.DurationSeconds),
 	})
 	if err == pgx.ErrNoRows {
 		return nil, connect.NewError(connect.CodeNotFound, err)
@@ -124,12 +124,12 @@ func (s *StoryboardService) UpdateComposer(
 	}
 
 	return connect.NewResponse(&storyboardv1.Composer{
-		Id:              c.ID.String(),
-		ProjectId:       c.ProjectID.String(),
+		Id:              pgUUIDToString(c.ID),
+		ProjectId:       pgUUIDToString(c.ProjectID),
 		Title:           c.Title,
-		DurationSeconds: c.DurationSeconds,
-		CreatedAt:       c.CreatedAt.Format(time.RFC3339),
-		UpdatedAt:       c.UpdatedAt.Format(time.RFC3339),
+		DurationSeconds: pgFloat8ToFloat64(c.DurationSeconds),
+		CreatedAt:       pgTimestamptzToString(c.CreatedAt),
+		UpdatedAt:       pgTimestamptzToString(c.UpdatedAt),
 	}), nil
 }
 
@@ -143,7 +143,7 @@ func (s *StoryboardService) DeleteComposer(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	err = s.queries.DeleteComposer(ctx, composerID)
+	err = s.queries.DeleteComposer(ctx, uuidToPgUUID(composerID))
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
@@ -163,7 +163,7 @@ func (s *StoryboardService) ListAudioTracks(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	tracks, err := s.queries.ListAudioTracks(ctx, composerID)
+	tracks, err := s.queries.ListAudioTracks(ctx, uuidToPgUUID(composerID))
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
@@ -171,13 +171,13 @@ func (s *StoryboardService) ListAudioTracks(
 	pbTracks := make([]*storyboardv1.AudioTrack, 0, len(tracks))
 	for _, t := range tracks {
 		pbTracks = append(pbTracks, &storyboardv1.AudioTrack{
-			Id:          t.ID.String(),
-			ComposerId:  t.ComposerID.String(),
+			Id:          pgUUIDToString(t.ID),
+			ComposerId:  pgUUIDToString(t.ComposerID),
 			TrackNumber: int32(t.TrackNumber),
 			TrackType:   t.TrackType,
-			Name:        t.Name,
-			CreatedAt:   t.CreatedAt.Format(time.RFC3339),
-			UpdatedAt:   t.UpdatedAt.Format(time.RFC3339),
+			Name:        pgTextToString(t.Name),
+			CreatedAt:   pgTimestamptzToString(t.CreatedAt),
+			UpdatedAt:   pgTimestamptzToString(t.UpdatedAt),
 		})
 	}
 
@@ -197,23 +197,23 @@ func (s *StoryboardService) CreateAudioTrack(
 	}
 
 	t, err := s.queries.CreateAudioTrack(ctx, sqlc.CreateAudioTrackParams{
-		ComposerID:  composerID,
+		ComposerID:  uuidToPgUUID(composerID),
 		TrackNumber: int32(req.Msg.TrackNumber),
 		TrackType:   req.Msg.TrackType,
-		Name:        req.Msg.Name,
+		Name:        stringToPgText(req.Msg.Name),
 	})
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
 	return connect.NewResponse(&storyboardv1.AudioTrack{
-		Id:          t.ID.String(),
-		ComposerId:  t.ComposerID.String(),
+		Id:          pgUUIDToString(t.ID),
+		ComposerId:  pgUUIDToString(t.ComposerID),
 		TrackNumber: int32(t.TrackNumber),
 		TrackType:   t.TrackType,
-		Name:        t.Name,
-		CreatedAt:   t.CreatedAt.Format(time.RFC3339),
-		UpdatedAt:   t.UpdatedAt.Format(time.RFC3339),
+		Name:        pgTextToString(t.Name),
+		CreatedAt:   pgTimestamptzToString(t.CreatedAt),
+		UpdatedAt:   pgTimestamptzToString(t.UpdatedAt),
 	}), nil
 }
 
@@ -227,7 +227,7 @@ func (s *StoryboardService) ListAudioClips(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	clips, err := s.queries.ListAudioClips(ctx, trackID)
+	clips, err := s.queries.ListAudioClips(ctx, uuidToPgUUID(trackID))
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
@@ -235,18 +235,18 @@ func (s *StoryboardService) ListAudioClips(
 	pbClips := make([]*storyboardv1.AudioClip, 0, len(clips))
 	for _, clip := range clips {
 		pbClip := &storyboardv1.AudioClip{
-			Id:               clip.ID.String(),
-			TrackId:          clip.TrackID.String(),
+			Id:               pgUUIDToString(clip.ID),
+			TrackId:          pgUUIDToString(clip.TrackID),
 			StartTimeSeconds: clip.StartTimeSeconds,
 			DurationSeconds:  clip.DurationSeconds,
 			AudioType:        clip.AudioType,
-			AudioUrl:         clip.AudioUrl,
-			Metadata:         clip.Metadata,
-			CreatedAt:        clip.CreatedAt.Format(time.RFC3339),
-			UpdatedAt:        clip.UpdatedAt.Format(time.RFC3339),
+			AudioUrl:         pgTextToString(clip.AudioUrl),
+			Metadata:         pgTextToString(clip.Metadata),
+			CreatedAt:        pgTimestamptzToString(clip.CreatedAt),
+			UpdatedAt:        pgTimestamptzToString(clip.UpdatedAt),
 		}
-		if clip.AudioDataID != nil {
-			pbClip.AudioDataId = stringPtr(clip.AudioDataID.String())
+		if clip.AudioDataID.Valid {
+			pbClip.AudioDataId = stringPtr(pgUUIDToString(clip.AudioDataID))
 		}
 		pbClips = append(pbClips, pbClip)
 	}
@@ -267,30 +267,30 @@ func (s *StoryboardService) CreateAudioClip(
 	}
 
 	clip, err := s.queries.CreateAudioClip(ctx, sqlc.CreateAudioClipParams{
-		TrackID:          trackID,
+		TrackID:          uuidToPgUUID(trackID),
 		StartTimeSeconds: req.Msg.StartTimeSeconds,
 		DurationSeconds:  req.Msg.DurationSeconds,
 		AudioType:        req.Msg.AudioType,
-		AudioUrl:         req.Msg.AudioUrl,
-		Metadata:         req.Msg.Metadata,
+		AudioUrl:         stringToPgText(req.Msg.AudioUrl),
+		Metadata:         stringToPgText(req.Msg.Metadata),
 	})
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
 	pbClip := &storyboardv1.AudioClip{
-		Id:               clip.ID.String(),
-		TrackId:          clip.TrackID.String(),
+		Id:               pgUUIDToString(clip.ID),
+		TrackId:          pgUUIDToString(clip.TrackID),
 		StartTimeSeconds: clip.StartTimeSeconds,
 		DurationSeconds:  clip.DurationSeconds,
 		AudioType:        clip.AudioType,
-		AudioUrl:         clip.AudioUrl,
-		Metadata:         clip.Metadata,
-		CreatedAt:        clip.CreatedAt.Format(time.RFC3339),
-		UpdatedAt:        clip.UpdatedAt.Format(time.RFC3339),
+		AudioUrl:         pgTextToString(clip.AudioUrl),
+		Metadata:         pgTextToString(clip.Metadata),
+		CreatedAt:        pgTimestamptzToString(clip.CreatedAt),
+		UpdatedAt:        pgTimestamptzToString(clip.UpdatedAt),
 	}
-	if clip.AudioDataID != nil {
-		pbClip.AudioDataId = stringPtr(clip.AudioDataID.String())
+	if clip.AudioDataID.Valid {
+		pbClip.AudioDataId = stringPtr(pgUUIDToString(clip.AudioDataID))
 	}
 
 	return connect.NewResponse(pbClip), nil
@@ -306,7 +306,7 @@ func (s *StoryboardService) ListSunoMusic(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	music, err := s.queries.ListSunoMusic(ctx, composerID)
+	music, err := s.queries.ListSunoMusic(ctx, uuidToPgUUID(composerID))
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
@@ -314,19 +314,19 @@ func (s *StoryboardService) ListSunoMusic(
 	pbMusic := make([]*storyboardv1.SunoMusic, 0, len(music))
 	for _, m := range music {
 		pbM := &storyboardv1.SunoMusic{
-			Id:        m.ID.String(),
+			Id:        pgUUIDToString(m.ID),
 			Prompt:    m.Prompt,
 			Status:    m.Status,
-			AudioUrl:  m.AudioUrl,
-			TaskId:    m.TaskID,
-			CreatedAt: m.CreatedAt.Format(time.RFC3339),
-			UpdatedAt: m.UpdatedAt.Format(time.RFC3339),
+			AudioUrl:  pgTextToString(m.AudioUrl),
+			TaskId:    pgTextToString(m.TaskID),
+			CreatedAt: pgTimestamptzToString(m.CreatedAt),
+			UpdatedAt: pgTimestamptzToString(m.UpdatedAt),
 		}
-		if m.ComposerID != nil {
-			pbM.ComposerId = stringPtr(m.ComposerID.String())
+		if m.ComposerID.Valid {
+			pbM.ComposerId = stringPtr(pgUUIDToString(m.ComposerID))
 		}
-		if m.AudioDataID != nil {
-			pbM.AudioDataId = stringPtr(m.AudioDataID.String())
+		if m.AudioDataID.Valid {
+			pbM.AudioDataId = stringPtr(pgUUIDToString(m.AudioDataID))
 		}
 		pbMusic = append(pbMusic, pbM)
 	}
@@ -361,8 +361,12 @@ func (s *StoryboardService) GenerateSunoMusic(
 	}
 
 	// Save to database
+	var composerIDPg pgtype.UUID
+	if composerID != nil {
+		composerIDPg = uuidToPgUUID(*composerID)
+	}
 	music, err := s.queries.CreateSunoMusic(ctx, sqlc.CreateSunoMusicParams{
-		ComposerID: composerID,
+		ComposerID: composerIDPg,
 		Prompt:     req.Msg.Prompt,
 	})
 	if err != nil {
@@ -370,30 +374,31 @@ func (s *StoryboardService) GenerateSunoMusic(
 	}
 
 	// Update with task ID
+	taskIDPg := stringToPgText(&result.TaskID)
 	updatedMusic, err := s.queries.UpdateSunoMusicStatus(ctx, sqlc.UpdateSunoMusicStatusParams{
-		ID:      music.ID,
-		Status:  result.Status,
-		AudioUrl: result.AudioURL,
-		TaskID:  &result.TaskID,
+		ID:       music.ID,
+		Status:   result.Status,
+		AudioUrl: stringToPgText(&result.AudioURL),
+		TaskID:   taskIDPg,
 	})
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
 	pbM := &storyboardv1.SunoMusic{
-		Id:        updatedMusic.ID.String(),
+		Id:        pgUUIDToString(updatedMusic.ID),
 		Prompt:    updatedMusic.Prompt,
 		Status:    updatedMusic.Status,
-		AudioUrl:  updatedMusic.AudioUrl,
-		TaskId:    updatedMusic.TaskID,
-		CreatedAt: updatedMusic.CreatedAt.Format(time.RFC3339),
-		UpdatedAt: updatedMusic.UpdatedAt.Format(time.RFC3339),
+		AudioUrl:  pgTextToString(updatedMusic.AudioUrl),
+		TaskId:    pgTextToString(updatedMusic.TaskID),
+		CreatedAt: pgTimestamptzToString(updatedMusic.CreatedAt),
+		UpdatedAt: pgTimestamptzToString(updatedMusic.UpdatedAt),
 	}
-	if updatedMusic.ComposerID != nil {
-		pbM.ComposerId = stringPtr(updatedMusic.ComposerID.String())
+	if updatedMusic.ComposerID.Valid {
+		pbM.ComposerId = stringPtr(pgUUIDToString(updatedMusic.ComposerID))
 	}
-	if updatedMusic.AudioDataID != nil {
-		pbM.AudioDataId = stringPtr(updatedMusic.AudioDataID.String())
+	if updatedMusic.AudioDataID.Valid {
+		pbM.AudioDataId = stringPtr(pgUUIDToString(updatedMusic.AudioDataID))
 	}
 
 	return connect.NewResponse(&storyboardv1.GenerateSunoMusicResponse{

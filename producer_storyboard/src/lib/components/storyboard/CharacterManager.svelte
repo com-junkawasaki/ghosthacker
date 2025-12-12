@@ -1,9 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { ListCharactersStore } from '../../../../.houdini/plugins/houdini-svelte/stores/ListCharacters.js';
-	import { CreateCharacterStore } from '../../../../.houdini/plugins/houdini-svelte/stores/CreateCharacter.js';
-	import { UpdateCharacterStore } from '../../../../.houdini/plugins/houdini-svelte/stores/UpdateCharacter.js';
-	import { DeleteCharacterStore } from '../../../../.houdini/plugins/houdini-svelte/stores/DeleteCharacter.js';
+	import { page } from '$app/stores';
 	import CharacterForm from './CharacterForm.svelte';
 	import CharacterAssetManager from './CharacterAssetManager.svelte';
 
@@ -36,27 +33,27 @@
 	let deletingCharacterId = $state<string | null>(null);
 	let showDeleteConfirm = $state(false);
 
-	let listCharactersStore: ListCharactersStore | null = null;
-	let createCharacterStore: CreateCharacterStore | null = null;
-	let updateCharacterStore: UpdateCharacterStore | null = null;
-	let deleteCharacterStore: DeleteCharacterStore | null = null;
-
-	if (browser) {
-		listCharactersStore = new ListCharactersStore();
-		createCharacterStore = new CreateCharacterStore();
-		updateCharacterStore = new UpdateCharacterStore();
-		deleteCharacterStore = new DeleteCharacterStore();
-	}
+	const orgId = $derived($page.params.orgId);
 
 	async function loadCharacters() {
-		if (!browser || !listCharactersStore || !projectId) return;
+		if (!browser || !projectId) return;
 
 		try {
 			loading = true;
 			error = null;
-			const result = await listCharactersStore.fetch({ variables: { projectId } });
-			if (result?.data?.characters) {
-				characters = result.data.characters as Character[];
+			const response = await fetch(`/api/characters?projectId=${projectId}`, {
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
+			
+			if (!response.ok) {
+				throw new Error(`Failed to load characters: ${response.statusText}`);
+			}
+			
+			const result = await response.json();
+			if (result?.characters) {
+				characters = result.characters as Character[];
 			}
 		} catch (err) {
 			console.error('[CharacterManager] Error loading characters:', err);
@@ -74,23 +71,28 @@
 		defaultHumeVoiceId: string | null,
 		profileImageId: string | null
 	) {
-		if (!browser || !createCharacterStore || !projectId) return;
+		if (!browser || !projectId) return;
 
 		try {
-			const result = await createCharacterStore.mutate({
-				input: {
+			const response = await fetch('/api/characters', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
 					projectId,
 					name,
 					description: description || null,
 					personality: personality || null,
 					background: background || null,
 					defaultHumeVoiceId: defaultHumeVoiceId || null,
-					profileImageId: profileImageId || null,
-				},
+				}),
 			});
 
-			if (result?.errors && result.errors.length > 0) {
-				throw new Error(result.errors[0].message);
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to create character');
 			}
 
 			await loadCharacters();
@@ -110,23 +112,27 @@
 		defaultHumeVoiceId: string | null,
 		profileImageId: string | null
 	) {
-		if (!browser || !updateCharacterStore) return;
+		if (!browser) return;
 
 		try {
-			const result = await updateCharacterStore.mutate({
-				input: {
-					id,
+			const response = await fetch(`/api/characters/${id}`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
 					name,
 					description: description || null,
 					personality: personality || null,
 					background: background || null,
 					defaultHumeVoiceId: defaultHumeVoiceId || null,
-					profileImageId: profileImageId || null,
-				},
+				}),
 			});
 
-			if (result?.errors && result.errors.length > 0) {
-				throw new Error(result.errors[0].message);
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to update character');
 			}
 
 			await loadCharacters();
@@ -148,13 +154,19 @@
 	}
 
 	async function confirmDelete() {
-		if (!browser || !deleteCharacterStore || !deletingCharacterId) return;
+		if (!browser || !deletingCharacterId) return;
 
 		try {
-			const result = await deleteCharacterStore.mutate({ id: deletingCharacterId });
+			const response = await fetch(`/api/characters/${deletingCharacterId}`, {
+				method: 'DELETE',
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
 
-			if (result?.errors && result.errors.length > 0) {
-				throw new Error(result.errors[0].message);
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to delete character');
 			}
 
 			await loadCharacters();

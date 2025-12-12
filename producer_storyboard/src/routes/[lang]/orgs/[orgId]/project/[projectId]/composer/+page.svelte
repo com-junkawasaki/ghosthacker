@@ -2,9 +2,6 @@
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import { ListComposersStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/ListComposers.js';
-	import { CreateComposerStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/CreateComposer.js';
-	import { GenerateSunoMusicStore } from '../../../../../../../../.houdini/plugins/houdini-svelte/stores/GenerateSunoMusic.js';
 	import ProjectSidebar from '$lib/components/storyboard/ProjectSidebar.svelte';
 	import OrganizationSwitcher from '$lib/components/clerk/OrganizationSwitcher.svelte';
 	import UserAccountMenu from '$lib/components/clerk/UserAccountMenu.svelte';
@@ -26,24 +23,25 @@
 	let composerId = $state<string | null>(null);
 	let showSunoGenerator = $state(false);
 
-	// Houdini stores
-	let listComposersStore: ListComposersStore | null = null;
-	let createComposerStore: CreateComposerStore | null = null;
-	let generateSunoMusicStore: GenerateSunoMusicStore | null = null;
-
-	if (browser) {
-		listComposersStore = new ListComposersStore();
-		createComposerStore = new CreateComposerStore();
-		generateSunoMusicStore = new GenerateSunoMusicStore();
-	}
+	// Using grpc-go API instead of Houdini stores
 
 	async function loadComposers() {
-		if (!browser || !listComposersStore || !projectId) return;
+		if (!browser || !projectId) return;
 
 		try {
-			const result = await listComposersStore.fetch({ variables: { projectId }, metadata: { orgId } });
-			if (result?.data?.composers && result.data.composers.length > 0) {
-				composerId = result.data.composers[0].id;
+			const response = await fetch(`/api/composers?projectId=${projectId}`, {
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
+			
+			if (!response.ok) {
+				throw new Error(`Failed to load composers: ${response.statusText}`);
+			}
+			
+			const result = await response.json();
+			if (result?.composers && result.composers.length > 0) {
+				composerId = result.composers[0].id;
 			} else {
 				// Create default composer if none exists
 				await createDefaultComposer();
@@ -54,18 +52,28 @@
 	}
 
 	async function createDefaultComposer() {
-		if (!browser || !createComposerStore || !projectId) return;
+		if (!browser || !projectId) return;
 
 		try {
-			const result = await createComposerStore.mutate({
-				input: {
+			const response = await fetch('/api/composers', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
 					projectId,
 					title: 'New Composer',
-				},
-			}, { metadata: { orgId } });
+				}),
+			});
 
-			if (result?.data?.createComposer?.id) {
-				composerId = result.data.createComposer.id;
+			if (!response.ok) {
+				throw new Error(`Failed to create composer: ${response.statusText}`);
+			}
+
+			const result = await response.json();
+			if (result?.id) {
+				composerId = result.id;
 			}
 		} catch (err) {
 			console.error('[Composer] Error creating composer:', err);
@@ -73,24 +81,27 @@
 	}
 
 	async function handleGenerateSunoMusic(prompt: string, customMode: boolean, makeInstrumental: boolean, mv: string | null) {
-		if (!browser || !generateSunoMusicStore || !composerId) return;
+		if (!browser || !composerId) return;
 
 		try {
-			const result = await generateSunoMusicStore.mutate({
-				input: {
+			const response = await fetch('/api/suno-music', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
 					composerId: composerId,
 					prompt,
-					customMode,
-					makeInstrumental,
-					mv: mv || null,
-				},
-			}, { metadata: { orgId } });
+				}),
+			});
 
-			if (result?.errors && result.errors.length > 0) {
-				const error = result.errors[0];
-				console.error('[Composer] Error generating Suno music:', error?.message || 'Unknown error');
+			if (!response.ok) {
+				const error = await response.json().catch(() => ({ error: response.statusText }));
+				console.error('[Composer] Error generating Suno music:', error?.error || 'Unknown error');
 			} else {
-				console.log('[Composer] Suno music generation started:', result?.data?.generateSunoMusic);
+				const result = await response.json();
+				console.log('[Composer] Suno music generation started:', result);
 			}
 		} catch (err) {
 			console.error('[Composer] Error generating Suno music:', err);

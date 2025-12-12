@@ -5,15 +5,16 @@ import (
 	"encoding/base64"
 	"time"
 
+	"connectrpc.com/connect"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
-	"connectrpc.com/connect"
 
 	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/auth"
 	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/db/sqlc"
 	storyboardv1 "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1"
 	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1/storyboardv1connect"
 	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/services"
+	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
@@ -681,10 +682,6 @@ func convertSceneToProto(scene sqlc.Scene) *storyboardv1.Scene {
 		CreatedAt:        scene.CreatedAt.Format(time.RFC3339),
 		UpdatedAt:        scene.UpdatedAt.Format(time.RFC3339),
 	}
-}
-
-func stringPtr(s string) *string {
-	return &s
 }
 
 // Ensure StoryboardService implements the service interface

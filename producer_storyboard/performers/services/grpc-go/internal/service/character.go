@@ -3,11 +3,11 @@ package service
 import (
 	"context"
 	"encoding/base64"
-	"time"
 
+	"connectrpc.com/connect"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
-	"connectrpc.com/connect"
+	"github.com/jackc/pgx/v5/pgtype"
 
 	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/auth"
 	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/db/sqlc"
@@ -24,7 +24,7 @@ func (s *StoryboardService) ListCharacters(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	characters, err := s.queries.ListCharacters(ctx, projectID)
+	characters, err := s.queries.ListCharacters(ctx, uuidToPgUUID(projectID))
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
@@ -32,18 +32,18 @@ func (s *StoryboardService) ListCharacters(
 	pbCharacters := make([]*storyboardv1.Character, 0, len(characters))
 	for _, char := range characters {
 		pbChar := &storyboardv1.Character{
-			Id:                 char.ID.String(),
-			ProjectId:          char.ProjectID.String(),
+			Id:                 pgUUIDToString(char.ID),
+			ProjectId:          pgUUIDToString(char.ProjectID),
 			Name:               char.Name,
-			Description:        char.Description,
-			Personality:        char.Personality,
-			Background:         char.Background,
-			DefaultHumeVoiceId: char.DefaultHumeVoiceID,
-			CreatedAt:          char.CreatedAt.Format(time.RFC3339),
-			UpdatedAt:          char.UpdatedAt.Format(time.RFC3339),
+			Description:        pgTextToString(char.Description),
+			Personality:        pgTextToString(char.Personality),
+			Background:         pgTextToString(char.Background),
+			DefaultHumeVoiceId: pgTextToString(char.DefaultHumeVoiceID),
+			CreatedAt:          pgTimestamptzToString(char.CreatedAt),
+			UpdatedAt:          pgTimestamptzToString(char.UpdatedAt),
 		}
-		if char.ProfileImageID != nil {
-			pbChar.ProfileImageId = stringPtr(char.ProfileImageID.String())
+		if char.ProfileImageID.Valid {
+			pbChar.ProfileImageId = stringPtr(pgUUIDToString(char.ProfileImageID))
 		}
 		pbCharacters = append(pbCharacters, pbChar)
 	}
@@ -63,7 +63,7 @@ func (s *StoryboardService) GetCharacter(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	char, err := s.queries.GetCharacter(ctx, characterID)
+	char, err := s.queries.GetCharacter(ctx, uuidToPgUUID(characterID))
 	if err == pgx.ErrNoRows {
 		return nil, connect.NewError(connect.CodeNotFound, err)
 	}
@@ -72,18 +72,18 @@ func (s *StoryboardService) GetCharacter(
 	}
 
 	pbChar := &storyboardv1.Character{
-		Id:                 char.ID.String(),
-		ProjectId:          char.ProjectID.String(),
+		Id:                 pgUUIDToString(char.ID),
+		ProjectId:          pgUUIDToString(char.ProjectID),
 		Name:               char.Name,
-		Description:        char.Description,
-		Personality:        char.Personality,
-		Background:         char.Background,
-		DefaultHumeVoiceId:  char.DefaultHumeVoiceID,
-		CreatedAt:          char.CreatedAt.Format(time.RFC3339),
-		UpdatedAt:          char.UpdatedAt.Format(time.RFC3339),
+		Description:        pgTextToString(char.Description),
+		Personality:        pgTextToString(char.Personality),
+		Background:         pgTextToString(char.Background),
+		DefaultHumeVoiceId: pgTextToString(char.DefaultHumeVoiceID),
+		CreatedAt:          pgTimestamptzToString(char.CreatedAt),
+		UpdatedAt:          pgTimestamptzToString(char.UpdatedAt),
 	}
-	if char.ProfileImageID != nil {
-		pbChar.ProfileImageId = stringPtr(char.ProfileImageID.String())
+	if char.ProfileImageID.Valid {
+		pbChar.ProfileImageId = stringPtr(pgUUIDToString(char.ProfileImageID))
 	}
 
 	return connect.NewResponse(pbChar), nil
@@ -105,32 +105,37 @@ func (s *StoryboardService) CreateCharacter(
 		orgIDPtr = &orgID
 	}
 
+	var orgIDPg pgtype.Text
+	if orgID != "" {
+		orgIDPg = stringToPgText(&orgID)
+	}
+
 	char, err := s.queries.CreateCharacter(ctx, sqlc.CreateCharacterParams{
-		ProjectID:          projectID,
+		ProjectID:          uuidToPgUUID(projectID),
 		Name:               req.Msg.Name,
-		Description:        req.Msg.Description,
-		Personality:        req.Msg.Personality,
-		Background:         req.Msg.Background,
-		DefaultHumeVoiceID: req.Msg.DefaultHumeVoiceId,
-		OrgID:              orgIDPtr,
+		Description:        stringToPgText(req.Msg.Description),
+		Personality:        stringToPgText(req.Msg.Personality),
+		Background:         stringToPgText(req.Msg.Background),
+		DefaultHumeVoiceID: stringToPgText(req.Msg.DefaultHumeVoiceId),
+		OrgID:              orgIDPg,
 	})
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
 	pbChar := &storyboardv1.Character{
-		Id:                 char.ID.String(),
-		ProjectId:          char.ProjectID.String(),
+		Id:                 pgUUIDToString(char.ID),
+		ProjectId:          pgUUIDToString(char.ProjectID),
 		Name:               char.Name,
-		Description:        char.Description,
-		Personality:        char.Personality,
-		Background:         char.Background,
-		DefaultHumeVoiceId: char.DefaultHumeVoiceID,
-		CreatedAt:          char.CreatedAt.Format(time.RFC3339),
-		UpdatedAt:          char.UpdatedAt.Format(time.RFC3339),
+		Description:        pgTextToString(char.Description),
+		Personality:        pgTextToString(char.Personality),
+		Background:         pgTextToString(char.Background),
+		DefaultHumeVoiceId: pgTextToString(char.DefaultHumeVoiceID),
+		CreatedAt:          pgTimestamptzToString(char.CreatedAt),
+		UpdatedAt:          pgTimestamptzToString(char.UpdatedAt),
 	}
-	if char.ProfileImageID != nil {
-		pbChar.ProfileImageId = stringPtr(char.ProfileImageID.String())
+	if char.ProfileImageID.Valid {
+		pbChar.ProfileImageId = stringPtr(pgUUIDToString(char.ProfileImageID))
 	}
 
 	return connect.NewResponse(pbChar), nil
@@ -147,13 +152,13 @@ func (s *StoryboardService) UpdateCharacter(
 	}
 
 	char, err := s.queries.UpdateCharacter(ctx, sqlc.UpdateCharacterParams{
-		ID:                 characterID,
+		ID:                 uuidToPgUUID(characterID),
 		Name:               req.Msg.Name,
-		Description:        req.Msg.Description,
-		Personality:        req.Msg.Personality,
-		Background:         req.Msg.Background,
-		DefaultHumeVoiceID: req.Msg.DefaultHumeVoiceId,
-		ProfileImageID:     nil, // Not in UpdateCharacterRequest
+		Description:        stringToPgText(req.Msg.Description),
+		Personality:        stringToPgText(req.Msg.Personality),
+		Background:         stringToPgText(req.Msg.Background),
+		DefaultHumeVoiceID: stringToPgText(req.Msg.DefaultHumeVoiceId),
+		ProfileImageID:     pgtype.UUID{Valid: false}, // Not in UpdateCharacterRequest
 	})
 	if err == pgx.ErrNoRows {
 		return nil, connect.NewError(connect.CodeNotFound, err)
@@ -163,18 +168,18 @@ func (s *StoryboardService) UpdateCharacter(
 	}
 
 	pbChar := &storyboardv1.Character{
-		Id:                 char.ID.String(),
-		ProjectId:          char.ProjectID.String(),
+		Id:                 pgUUIDToString(char.ID),
+		ProjectId:          pgUUIDToString(char.ProjectID),
 		Name:               char.Name,
-		Description:        char.Description,
-		Personality:        char.Personality,
-		Background:         char.Background,
-		DefaultHumeVoiceId: char.DefaultHumeVoiceID,
-		CreatedAt:          char.CreatedAt.Format(time.RFC3339),
-		UpdatedAt:          char.UpdatedAt.Format(time.RFC3339),
+		Description:        pgTextToString(char.Description),
+		Personality:        pgTextToString(char.Personality),
+		Background:         pgTextToString(char.Background),
+		DefaultHumeVoiceId: pgTextToString(char.DefaultHumeVoiceID),
+		CreatedAt:          pgTimestamptzToString(char.CreatedAt),
+		UpdatedAt:          pgTimestamptzToString(char.UpdatedAt),
 	}
-	if char.ProfileImageID != nil {
-		pbChar.ProfileImageId = stringPtr(char.ProfileImageID.String())
+	if char.ProfileImageID.Valid {
+		pbChar.ProfileImageId = stringPtr(pgUUIDToString(char.ProfileImageID))
 	}
 
 	return connect.NewResponse(pbChar), nil
@@ -190,7 +195,7 @@ func (s *StoryboardService) DeleteCharacter(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	err = s.queries.DeleteCharacter(ctx, characterID)
+	err = s.queries.DeleteCharacter(ctx, uuidToPgUUID(characterID))
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
@@ -210,7 +215,7 @@ func (s *StoryboardService) ListCharacterAssets(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	assets, err := s.queries.ListCharacterAssets(ctx, characterID)
+	assets, err := s.queries.ListCharacterAssets(ctx, uuidToPgUUID(characterID))
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
@@ -218,12 +223,12 @@ func (s *StoryboardService) ListCharacterAssets(
 	pbAssets := make([]*storyboardv1.CharacterAsset, 0, len(assets))
 	for _, asset := range assets {
 		pbAssets = append(pbAssets, &storyboardv1.CharacterAsset{
-			Id:          asset.ID.String(),
-			CharacterId: asset.CharacterID.String(),
+			Id:          pgUUIDToString(asset.ID),
+			CharacterId: pgUUIDToString(asset.CharacterID),
 			AssetType:   asset.AssetType,
-			AssetFormat: asset.AssetFormat,
-			CreatedAt:   asset.CreatedAt.Format(time.RFC3339),
-			UpdatedAt:   asset.UpdatedAt.Format(time.RFC3339),
+			AssetFormat: pgTextToString(asset.AssetFormat),
+			CreatedAt:   pgTimestamptzToString(asset.CreatedAt),
+			UpdatedAt:   pgTimestamptzToString(asset.UpdatedAt),
 		})
 	}
 
@@ -242,7 +247,7 @@ func (s *StoryboardService) GetCharacterAssetData(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	result, err := s.queries.GetCharacterAssetData(ctx, assetID)
+	result, err := s.queries.GetCharacterAssetData(ctx, uuidToPgUUID(assetID))
 	if err == pgx.ErrNoRows {
 		return nil, connect.NewError(connect.CodeNotFound, err)
 	}

@@ -2,7 +2,7 @@
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { CreateProjectStore, type ListProjectsStore } from '$houdini';
+	import { onMount } from 'svelte';
 	import DebugPanel from '$lib/components/debug/DebugPanel.svelte';
 	import OrganizationSwitcher from '$lib/components/clerk/OrganizationSwitcher.svelte';
 	import UserAccountMenu from '$lib/components/clerk/UserAccountMenu.svelte';
@@ -11,31 +11,29 @@
 	const lang = $derived($page.params.lang);
 	const orgId = $derived($page.params.orgId);
 
-	// SSR: Get the ListProjects store from page data (loaded in +page.ts)
-	// サーバー側で認証確認済み、認証済みの場合のみプロジェクトを取得
+	// SSR: Get projects from page data (loaded in +page.ts)
 	interface PageData {
-		ListProjects: ListProjectsStore;
+		projects: Array<{
+			id: string;
+			title: string;
+			description?: string | null;
+			createdAt: string;
+			updatedAt: string;
+		}>;
 	}
 	const props = $props<{ data: PageData }>();
-	const projectsStore = $derived(props.data.ListProjects);
 	
-	const createProject = new CreateProjectStore();
-
+	let projects = $state(props.data.projects || []);
+	let loading = $state(false);
+	let error = $state<Error | null>(null);
 	let debugVisible = $state(true);
 	let isCreating = $state(false);
 	let showCreateDialog = $state(false);
 	let newProjectTitle = $state('');
 	let newProjectDescription = $state('');
 
-	// Computed properties - use $derived with store access
-	const loading = $derived($projectsStore.fetching && !$projectsStore.data);
-	const error = $derived($projectsStore.errors?.[0] ? new Error($projectsStore.errors[0].message) : null);
-	
-	// Projects are filtered by backend using X-Org-Id header
-	const filteredProjects = $derived($projectsStore.data?.projects ?? []);
-	
-	// データがあるかどうかをチェック（シンプルな判定）
-	const hasData = $derived($projectsStore.data !== null && $projectsStore.data !== undefined);
+	const filteredProjects = $derived(projects);
+	const hasData = $derived(projects.length > 0 || !loading);
 
 	function buildPath(viewName: string, projectId?: string): string {
 		if (projectId) {
@@ -44,18 +42,31 @@
 		return `/${lang}/orgs/${orgId}/project/${viewName}`;
 	}
 
-	$effect(() => {
-		if (browser) {
-			console.log('[Project] Store state:', {
-				loading,
-				error: error?.message,
-				orgId,
-				projectsCount: filteredProjects.length,
-				hasData,
-				fetching: $projectsStore.fetching,
+	async function loadProjects() {
+		if (!browser) return;
+		
+		try {
+			loading = true;
+			error = null;
+			const response = await fetch('/api/projects', {
+				headers: {
+					'X-Org-Id': orgId,
+				},
 			});
+			
+			if (!response.ok) {
+				throw new Error(`Failed to load projects: ${response.statusText}`);
+			}
+			
+			const data = await response.json();
+			projects = data.projects || [];
+		} catch (err) {
+			console.error('[Project] Error loading projects:', err);
+			error = err instanceof Error ? err : new Error('Failed to load projects');
+		} finally {
+			loading = false;
 		}
-	});
+	}
 
 	async function handleCreateProject() {
 		if (!newProjectTitle.trim()) {
@@ -65,33 +76,38 @@
 
 		isCreating = true;
 		try {
-			console.log('[Project] Creating project:', {
-				orgId,
-				title: newProjectTitle,
-				description: newProjectDescription,
-			});
-
-			const result = await createProject.mutate({
-				input: {
+			const response = await fetch('/api/projects', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
 					title: newProjectTitle.trim(),
 					description: newProjectDescription.trim() || null,
-				},
-			}, { metadata: { orgId } });
+				}),
+			});
 
-			console.log('[Project] Project created:', result);
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to create project');
+			}
 
-			if (result?.data?.createProject) {
-				// Refresh projects list (orgId is passed via X-Org-Id header and metadata)
-				await projectsStore.fetch({ blocking: true, metadata: { orgId } });
+			const result = await response.json();
+			
+			if (result?.id) {
+				// Refresh projects list
+				await loadProjects();
 				
 				// Navigate to the new project's editor
-				goto(buildPath('editor', result.data.createProject.id));
+				goto(buildPath('editor', result.id));
 			} else {
 				throw new Error('Failed to create project: No data returned');
 			}
-		} catch (error) {
-			console.error('[Project] Failed to create project:', error);
-			alert(`Failed to create project: ${error instanceof Error ? error.message : String(error)}`);
+		} catch (err) {
+			console.error('[Project] Failed to create project:', err);
+			error = err instanceof Error ? err : new Error('Failed to create project');
+			alert(`Failed to create project: ${error.message}`);
 		} finally {
 			isCreating = false;
 			showCreateDialog = false;
@@ -99,6 +115,12 @@
 			newProjectDescription = '';
 		}
 	}
+
+	onMount(() => {
+		if (browser && projects.length === 0) {
+			loadProjects();
+		}
+	});
 </script>
 
 <div class="projects-page">
@@ -121,13 +143,7 @@
 			<div class="error-state">
 				<div class="error-message">Error: {error.message}</div>
 				<button
-					onclick={async () => {
-						try {
-							await projectsStore.fetch({ blocking: true, metadata: { orgId } });
-						} catch (error) {
-							console.error('Failed to retry:', error);
-						}
-					}}
+					onclick={loadProjects}
 					class="retry-button"
 				>
 					Retry
@@ -245,7 +261,7 @@
 	{/if}
 
 	<!-- Debug Panel -->
-	<DebugPanel store={{ ...$projectsStore, loading, error }} storeName="ListProjectsStore" visible={debugVisible} />
+	<DebugPanel store={{ projects: filteredProjects, loading, error }} storeName="Projects" visible={debugVisible} />
 </div>
 
 <style>

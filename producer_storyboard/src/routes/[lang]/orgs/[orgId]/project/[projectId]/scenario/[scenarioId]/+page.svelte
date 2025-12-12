@@ -2,51 +2,27 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import { GetScenarioStore } from '$houdini/plugins/houdini-svelte/stores/GetScenario.js';
-	import { 
-		CreateEpisodeStore,
-		CreatePartStore,
-		CreateScenePlanStore,
-		ReorderEpisodesStore,
-		ReorderPartsStore,
-		ReorderScenePlansStore,
-		UpdateScenarioStore,
-		DeleteScenarioStore
-	} from '$houdini/plugins/houdini-svelte/stores/index.js';
-	import { ConvertScenarioToStoryboardStore } from '$houdini/plugins/houdini-svelte/stores/ConvertScenarioToStoryboard.js';
+	import { onMount } from 'svelte';
 	import ProjectSidebar from '$lib/components/storyboard/ProjectSidebar.svelte';
 
 	const { lang, orgId, projectId, scenarioId } = $page.params;
 
-	// SSR: Get the GetScenario store from page data
+	// SSR: Get scenario from page data
 	interface PageData {
-		GetScenario: GetScenarioStore;
+		scenario: {
+			id: string;
+			projectId: string;
+			title: string;
+			description?: string | null;
+			createdAt: string;
+			updatedAt: string;
+		} | null;
 	}
 	const props = $props<{ data: PageData }>();
-	const scenarioStore = $derived(props.data.GetScenario);
-
-	// Initialize stores
-	let createEpisodeStore: CreateEpisodeStore | null = null;
-	let createPartStore: CreatePartStore | null = null;
-	let createScenePlanStore: CreateScenePlanStore | null = null;
-	let reorderEpisodesStore: ReorderEpisodesStore | null = null;
-	let reorderPartsStore: ReorderPartsStore | null = null;
-	let reorderScenePlansStore: ReorderScenePlansStore | null = null;
-	let updateScenarioStore: UpdateScenarioStore | null = null;
-	let deleteScenarioStore: DeleteScenarioStore | null = null;
-	let convertScenarioToStoryboardStore: ConvertScenarioToStoryboardStore | null = null;
-
-	if (browser) {
-		createEpisodeStore = new CreateEpisodeStore();
-		createPartStore = new CreatePartStore();
-		createScenePlanStore = new CreateScenePlanStore();
-		reorderEpisodesStore = new ReorderEpisodesStore();
-		reorderPartsStore = new ReorderPartsStore();
-		reorderScenePlansStore = new ReorderScenePlansStore();
-		updateScenarioStore = new UpdateScenarioStore();
-		deleteScenarioStore = new DeleteScenarioStore();
-		convertScenarioToStoryboardStore = new ConvertScenarioToStoryboardStore();
-	}
+	
+	let scenario = $state(props.data.scenario);
+	let loading = $state(false);
+	let error = $state<Error | null>(null);
 
 	// State
 	let showEpisodeDialog = $state(false);
@@ -81,23 +57,34 @@
 	let dragOverPartIndex = $state<number | null>(null);
 	let dragOverScenePlanIndex = $state<number | null>(null);
 
-	// Computed properties
-	const loading = $derived($scenarioStore.fetching && !$scenarioStore.data);
-	const error = $derived($scenarioStore.errors?.[0] ? new Error($scenarioStore.errors[0].message) : null);
-	const scenario = $derived($scenarioStore.data?.scenario);
-
-	// Load scenario data when scenarioId changes
-	$effect(() => {
-		if (scenarioId && browser && scenarioStore) {
-			scenarioStore.fetch({
-				variables: { id: scenarioId },
-				metadata: { orgId },
+	async function loadScenario() {
+		if (!browser || !scenarioId) return;
+		
+		try {
+			loading = true;
+			error = null;
+			const response = await fetch(`/api/scenarios/${scenarioId}`, {
+				headers: {
+					'X-Org-Id': orgId,
+				},
 			});
+			
+			if (!response.ok) {
+				throw new Error(`Failed to load scenario: ${response.statusText}`);
+			}
+			
+			const data = await response.json();
+			scenario = data;
+		} catch (err) {
+			console.error('[Scenario Detail] Error loading scenario:', err);
+			error = err instanceof Error ? err : new Error('Failed to load scenario');
+		} finally {
+			loading = false;
 		}
-	});
+	}
 
 	async function handleUpdateScenario() {
-		if (!scenarioId || !updateScenarioStore) return;
+		if (!scenarioId) return;
 
 		isUpdating = true;
 		try {
@@ -142,83 +129,20 @@
 		}
 	}
 
+	// TODO: Episode/Part/ScenePlan creation will be implemented when grpc-go supports them
 	async function handleCreateEpisode() {
-		if (!scenarioId || !newEpisodeTitle.trim() || !createEpisodeStore) return;
-
-		isCreating = true;
-		try {
-			const result = await createEpisodeStore.mutate({
-				input: {
-					scenarioId: scenarioId,
-					title: newEpisodeTitle.trim(),
-					description: newEpisodeDescription.trim() || null,
-				},
-			}, { metadata: { orgId } });
-
-			if (result?.data?.createEpisode) {
-				await scenarioStore.fetch({ blocking: true, metadata: { orgId } });
-				showEpisodeDialog = false;
-				newEpisodeTitle = '';
-				newEpisodeDescription = '';
-			}
-		} catch (error) {
-			console.error('Failed to create episode:', error);
-			alert(`Failed to create episode: ${error instanceof Error ? error.message : String(error)}`);
-		} finally {
-			isCreating = false;
-		}
+		alert('Episode creation not yet supported in grpc-go');
+		showEpisodeDialog = false;
 	}
 
 	async function handleCreatePart() {
-		if (!selectedEpisodeId || !newPartTitle.trim() || !createPartStore) return;
-
-		isCreating = true;
-		try {
-			const result = await createPartStore.mutate({
-				input: {
-					episodeId: selectedEpisodeId,
-					title: newPartTitle.trim(),
-					description: newPartDescription.trim() || null,
-				},
-			}, { metadata: { orgId } });
-
-			if (result?.data?.createPart) {
-				await scenarioStore.fetch({ blocking: true, metadata: { orgId } });
-				showPartDialog = false;
-				newPartTitle = '';
-				newPartDescription = '';
-			}
-		} catch (error) {
-			console.error('Failed to create part:', error);
-			alert(`Failed to create part: ${error instanceof Error ? error.message : String(error)}`);
-		} finally {
-			isCreating = false;
-		}
+		alert('Part creation not yet supported in grpc-go');
+		showPartDialog = false;
 	}
 
 	async function handleCreateScenePlan() {
-		if (!selectedPartId || !newScenePlanDescription.trim() || !createScenePlanStore) return;
-
-		isCreating = true;
-		try {
-			const result = await createScenePlanStore.mutate({
-				input: {
-					partId: selectedPartId,
-					description: newScenePlanDescription.trim(),
-				},
-			}, { metadata: { orgId } });
-
-			if (result?.data?.createScenePlan) {
-				await scenarioStore.fetch({ blocking: true, metadata: { orgId } });
-				showScenePlanDialog = false;
-				newScenePlanDescription = '';
-			}
-		} catch (error) {
-			console.error('Failed to create scene plan:', error);
-			alert(`Failed to create scene plan: ${error instanceof Error ? error.message : String(error)}`);
-		} finally {
-			isCreating = false;
-		}
+		alert('Scene plan creation not yet supported in grpc-go');
+		showScenePlanDialog = false;
 	}
 
 	function toggleEpisode(episodeId: string) {
@@ -274,7 +198,7 @@
 		e.preventDefault();
 		dragOverEpisodeIndex = null;
 
-		if (!draggedEpisodeId || !scenario || !scenarioId || !reorderEpisodesStore) return;
+		if (!draggedEpisodeId || !scenario || !scenarioId) return;
 
 		const episodes = scenario.episodes || [];
 		const dragIndex = episodes.findIndex((ep: { id: string }) => ep.id === draggedEpisodeId);
@@ -289,27 +213,8 @@
 		const [draggedEpisode] = reorderedEpisodes.splice(dragIndex, 1);
 		reorderedEpisodes.splice(dropIndex, 0, draggedEpisode);
 
-		// Update order via GraphQL mutation
-		try {
-			const result = await reorderEpisodesStore.mutate({
-				input: {
-					scenarioId: scenarioId,
-					episodeIds: reorderedEpisodes.map((ep: { id: string }) => ep.id),
-				},
-			}, { metadata: { orgId } });
-
-			if (result?.data?.reorderEpisodes) {
-				// Refresh scenario data
-				await scenarioStore.fetch({
-					variables: { id: scenarioId },
-					blocking: true,
-					metadata: { orgId },
-				});
-			}
-		} catch (error) {
-			console.error('Failed to reorder episodes:', error);
-			alert(`Failed to reorder episodes: ${error instanceof Error ? error.message : String(error)}`);
-		}
+		// TODO: Reorder episodes via grpc-go when supported
+		alert('Episode reordering not yet supported in grpc-go');
 
 		draggedEpisodeId = null;
 	}
@@ -344,7 +249,7 @@
 		e.preventDefault();
 		dragOverPartIndex = null;
 
-		if (!draggedPartId || !scenario || !reorderPartsStore) return;
+		if (!draggedPartId || !scenario) return;
 
 		const episode = scenario.episodes?.find((ep: { id: string }) => ep.id === episodeId);
 		if (!episode || !episode.parts) {
@@ -420,7 +325,7 @@
 		e.preventDefault();
 		dragOverScenePlanIndex = null;
 
-		if (!draggedScenePlanId || !scenario || !reorderScenePlansStore) return;
+		if (!draggedScenePlanId || !scenario) return;
 
 		// Find the part that contains this scene plan
 		let targetPart: { id: string; scenePlans?: Array<{ id: string }> } | null = null;
@@ -480,30 +385,17 @@
 		dragOverScenePlanIndex = null;
 	}
 
+	// TODO: Convert scenario to storyboard via grpc-go when supported
 	async function handleConvertToStoryboard() {
-		if (!scenarioId || !convertScenarioToStoryboardStore) return;
-
-		isConverting = true;
-		try {
-			const result = await convertScenarioToStoryboardStore.mutate({
-				input: {
-					scenarioId: scenarioId,
-					storyboardTitle: scenario ? `${scenario.title} - Storyboard` : null,
-				},
-			}, { metadata: { orgId } });
-
-			if (result?.data?.convertScenarioToStoryboard) {
-				const storyboardId = result.data.convertScenarioToStoryboard.id;
-				// Navigate to storyboard editor
-				await goto(`/${lang}/orgs/${orgId}/project/${projectId}/${storyboardId}/editor`);
-			}
-		} catch (error) {
-			console.error('Failed to convert scenario to storyboard:', error);
-			alert(`Failed to convert scenario to storyboard: ${error instanceof Error ? error.message : String(error)}`);
-		} finally {
-			isConverting = false;
-		}
+		alert('Convert scenario to storyboard not yet supported in grpc-go');
+		isConverting = false;
 	}
+
+	onMount(() => {
+		if (browser && !scenario) {
+			loadScenario();
+		}
+	});
 </script>
 
 <div class="resource-page">
@@ -557,13 +449,7 @@
 				<div class="error-state">
 					<div class="error-message">Error: {error.message}</div>
 					<button
-						onclick={async () => {
-							try {
-								await scenarioStore.fetch();
-							} catch (error) {
-								console.error('Failed to retry:', error);
-							}
-						}}
+						onclick={loadScenario}
 						class="retry-button"
 					>
 						Retry
@@ -575,18 +461,12 @@
 				</div>
 			{:else}
 				<div class="scenario-detail">
+					<!-- TODO: Episode/Part/ScenePlan display will be added when grpc-go supports them -->
 					<div class="episodes-section">
-						<div class="section-header">
-							<h2>Episodes</h2>
-							<button 
-								class="add-button"
-								onclick={() => showEpisodeDialog = true}
-								disabled={isCreating}
-							>
-								+ Add Episode
-							</button>
-						</div>
-						{#if scenario.episodes && scenario.episodes.length > 0}
+						<p style="padding: 1rem; color: rgba(255, 255, 255, 0.5);">
+							Episode/Part/ScenePlan support coming soon
+						</p>
+						{#if false && scenario.episodes && scenario.episodes.length > 0}
 							<div class="episodes-list">
 								{#each scenario.episodes as episode, episodeIndex (episode.id)}
 									<div 
