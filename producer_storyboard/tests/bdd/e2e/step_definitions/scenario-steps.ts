@@ -89,13 +89,14 @@ When('ユーザーが説明フィールドに「{string}」を入力する', asy
 	await page.fill('textarea[name="description"], textarea[placeholder*="説明"], textarea[placeholder*="Description"]', description);
 });
 
-When('ユーザーが「作成」ボタンをクリックする', async () => {
-	console.log('[E2E] Clicking "Create" button');
-	await page.click('button:has-text("作成")').catch(() => {
-		return page.click('button:has-text("Create")');
-	});
-	await page.waitForLoadState('networkidle');
-});
+// Removed: Duplicate definition - use browser-steps.ts instead
+// When('ユーザーが「作成」ボタンをクリックする', async () => {
+// 	console.log('[E2E] Clicking "Create" button');
+// 	await page.click('button:has-text("作成")').catch(() => {
+// 		return page.click('button:has-text("Create")');
+// 	});
+// 	await page.waitForLoadState('networkidle');
+// });
 
 When('ユーザーがシナリオ「{string}」をクリックする', async (title: string) => {
 	scenarioTitle = title;
@@ -196,12 +197,13 @@ When('ユーザーがシナリオ「{string}」の「削除」ボタンをクリ
 	await page.waitForTimeout(500); // Wait for dialog to open
 });
 
-When('ユーザーが削除を確認する', async () => {
-	console.log('[E2E] Confirming deletion');
-	const confirmButton = page.getByRole('button', { name: /削除|Delete/i }).filter({ hasText: /削除|Delete/i }).last();
-	await confirmButton.click();
-	await page.waitForLoadState('networkidle');
-});
+// Removed: Duplicate definition - use browser-steps.ts instead
+// When('ユーザーが削除を確認する', async () => {
+// 	console.log('[E2E] Confirming deletion');
+// 	const confirmButton = page.getByRole('button', { name: /削除|Delete/i }).filter({ hasText: /削除|Delete/i }).last();
+// 	await confirmButton.click();
+// 	await page.waitForLoadState('networkidle');
+// });
 
 When('ユーザーがエピソード「{string}」をドラッグしてエピソード「{string}」の位置に移動する', async (sourceTitle: string, targetTitle: string) => {
 	console.log(`[E2E] Dragging episode ${sourceTitle} to ${targetTitle}`);

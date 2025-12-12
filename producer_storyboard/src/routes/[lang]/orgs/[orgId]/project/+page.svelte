@@ -27,13 +27,25 @@
 	let newProjectTitle = $state('');
 	let newProjectDescription = $state('');
 
+	// SSRで読み込まれた初期データを保持（KISS原則：シンプルに）
+	// クライアントサイドでsetup()が呼ばれてデータがリセットされても、初期値を保持
+	const ssrInitialData = $state(props.data.ListProjects.data);
+	
 	// Computed properties - use $derived with store access
 	const projectsStore = $derived(projects);
-	const loading = $derived($projectsStore.fetching && !$projectsStore.data);
+	// SSRでデータがある場合はloadingをfalseにする（KISS原則）
+	const loading = $derived($projectsStore.fetching && !$projectsStore.data && !ssrInitialData);
 	const error = $derived($projectsStore.errors?.[0] ? new Error($projectsStore.errors[0].message) : null);
 	
 	// Projects are filtered by backend using X-Org-Id header
-	const filteredProjects = $derived($projectsStore.data?.projects ?? []);
+	// SSRで読み込まれたデータを優先的に使用（クライアントサイドでリセットされても表示）
+	const filteredProjects = $derived(($projectsStore.data?.projects ?? ssrInitialData?.projects) ?? []);
+	
+	// SSRで読み込まれたデータがあるかどうかをチェック（シンプルな判定）
+	const hasData = $derived(
+		($projectsStore.data !== null && $projectsStore.data !== undefined) ||
+		(ssrInitialData !== null && ssrInitialData !== undefined)
+	);
 
 	function buildPath(viewName: string, projectId?: string): string {
 		if (projectId) {
@@ -44,14 +56,17 @@
 
 	$effect(() => {
 		if (browser) {
-			console.log('[Project] SSR Store state:', {
+			console.log('[Project] Store state:', {
 				loading,
 				error,
 				orgId,
-				totalProjects: $projectsStore.data?.projects?.length ?? 0,
+				ssrInitialData: ssrInitialData?.projects?.length ?? 0,
+				storeData: $projectsStore.data?.projects?.length ?? 0,
+				totalProjects: filteredProjects.length,
 				filteredProjects: filteredProjects.length,
 				data: $projectsStore.data,
 				fetching: $projectsStore.fetching,
+				hasData,
 			});
 		}
 	});
@@ -112,14 +127,7 @@
 	<div class="container">
 		<h1 class="page-title">Storyboard Projects</h1>
 
-		{#if loading}
-			<div class="loading-state">
-				<p>Loading projects...</p>
-				<div class="debug-info" style="margin-top: 1rem; font-size: 0.875rem; opacity: 0.7;">
-					<p>Store State: loading={loading ? 'true' : 'false'}, fetching={$projectsStore.fetching ? 'true' : 'false'}</p>
-				</div>
-			</div>
-		{:else if error}
+		{#if error}
 			<div class="error-state">
 				<div class="error-message">Error: {error.message}</div>
 				<button
@@ -135,7 +143,8 @@
 					Retry
 				</button>
 			</div>
-		{:else if $projectsStore.data && $projectsStore.data.projects !== undefined}
+		{:else if hasData}
+			<!-- SSRで読み込まれたデータを表示（KISS原則：シンプルに） -->
 			{#if filteredProjects.length === 0}
 				<div class="empty-state">
 					<p>No projects found in this organization. Create a new project to get started.</p>
@@ -157,8 +166,6 @@
 						{isCreating ? 'Creating...' : '+ Create Project'}
 					</button>
 				</div>
-			{/if}
-			{#if filteredProjects.length > 0}
 				<div class="projects-grid">
 					{#each filteredProjects as project (project.id)}
 						<a href={buildPath('editor', project.id)} class="project-card">
@@ -170,37 +177,13 @@
 					{/each}
 				</div>
 			{/if}
-		{:else if $projectsStore.fetching}
+		{:else if loading}
 			<div class="loading-state">
-				<p>Fetching projects...</p>
-				<div class="debug-info">
-					<p>Debug Info:</p>
-					<ul>
-						<li>Loading: {loading ? 'true' : 'false'}</li>
-						<li>Fetching: {$projectsStore.fetching ? 'true' : 'false'}</li>
-						<li>Has Error: {error ? 'true' : 'false'}</li>
-						<li>Has Data: {$projectsStore.data ? 'true' : 'false'}</li>
-						{#if error}
-							<li>Error: {(error as Error).message}</li>
-						{/if}
-					</ul>
-				</div>
+				<p>Loading projects...</p>
 			</div>
 		{:else}
 			<div class="empty-state">
 				<p>No data available. Please check your connection.</p>
-				<div class="debug-info">
-					<p>Debug Info:</p>
-					<ul>
-						<li>Loading: {loading ? 'true' : 'false'}</li>
-						<li>Fetching: {$projectsStore.fetching ? 'true' : 'false'}</li>
-						<li>Has Error: {error ? 'true' : 'false'}</li>
-						<li>Has Data: {$projectsStore.data ? 'true' : 'false'}</li>
-						{#if error}
-							<li>Error: {(error as Error).message}</li>
-						{/if}
-					</ul>
-				</div>
 				<button
 					onclick={async () => {
 						try {

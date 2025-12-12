@@ -130,21 +130,46 @@ Given('ストーリーボード「{string}」が存在する', async (storyboard
 	console.log(`[E2E] Storyboard exists: ${storyboardTitle}`);
 });
 
+// Support both Given and When for this step (feature files may use "かつ" which maps to Given)
+// Use string pattern only to avoid ambiguity with regex pattern
 Given('ユーザーがストーリーボード「{string}」のエディタページにアクセスしている', async (storyboardId: string) => {
 	const baseUrl = process.env.E2E_BASE_URL || 'http://localhost:5173';
-	const orgId = process.env.E2E_ORG_ID || 'org_test';
-	const projectId = process.env.E2E_PROJECT_ID || 'project_test';
+	const orgId = process.env.E2E_ORG_ID || process.env.TEST_ORG_ID || 'org_test';
+	const projectId = process.env.E2E_PROJECT_ID || process.env.TEST_PROJECT_ID || 'project_test';
 	await page.goto(`${baseUrl}/ja/orgs/${orgId}/project/${projectId}/${storyboardId}/editor`);
 	await page.waitForLoadState('networkidle');
 	currentUrl = page.url();
+	console.log(`[E2E] Navigated to storyboard editor page: ${storyboardId}`);
 });
 
+When('ユーザーがストーリーボード「{string}」のエディタページにアクセスしている', async (storyboardId: string) => {
+	const baseUrl = process.env.E2E_BASE_URL || 'http://localhost:5173';
+	const orgId = process.env.E2E_ORG_ID || process.env.TEST_ORG_ID || 'org_test';
+	const projectId = process.env.E2E_PROJECT_ID || process.env.TEST_PROJECT_ID || 'project_test';
+	await page.goto(`${baseUrl}/ja/orgs/${orgId}/project/${projectId}/${storyboardId}/editor`);
+	await page.waitForLoadState('networkidle');
+	currentUrl = page.url();
+	console.log(`[E2E] Navigated to storyboard editor page: ${storyboardId}`);
+});
+
+// Support both Given and When for this step (feature files may use "かつ" which maps to Given)
+// Use string pattern only to avoid ambiguity with regex pattern
 Given('ユーザーがプロジェクト「{string}」のエディタページにアクセスしている', async (projectId: string) => {
 	const baseUrl = process.env.E2E_BASE_URL || 'http://localhost:5173';
-	const orgId = process.env.E2E_ORG_ID || 'org_test';
+	const orgId = process.env.E2E_ORG_ID || process.env.TEST_ORG_ID || 'org_test';
 	await page.goto(`${baseUrl}/ja/orgs/${orgId}/project/${projectId}/editor`);
 	await page.waitForLoadState('networkidle');
 	currentUrl = page.url();
+	console.log(`[E2E] Navigated to project editor page: ${projectId}`);
+});
+
+When('ユーザーがプロジェクト「{string}」のエディタページにアクセスしている', async (projectId: string) => {
+	const baseUrl = process.env.E2E_BASE_URL || 'http://localhost:5173';
+	const orgId = process.env.E2E_ORG_ID || process.env.TEST_ORG_ID || 'org_test';
+	await page.goto(`${baseUrl}/ja/orgs/${orgId}/project/${projectId}/editor`);
+	await page.waitForLoadState('networkidle');
+	currentUrl = page.url();
+	console.log(`[E2E] Navigated to project editor page: ${projectId}`);
 });
 
 Given('シーン「{int}」が存在する', async (sceneNumber: number) => {
@@ -331,16 +356,33 @@ When('ユーザーが「新しいキャラクター」ボタンをクリック�
 	await page.waitForTimeout(500);
 });
 
+// Support both When and Given for these steps (feature files may use "かつ" which maps to Given)
 When('ユーザーが名前「{string}」を入力する', async (name: string) => {
 	// 名前フィールドに入力
 	const nameField = page.getByLabel(/名前|Name/i).or(page.getByPlaceholder(/名前|Name/i));
 	await nameField.fill(name);
+	console.log(`[E2E] Entered name: ${name}`);
+});
+
+Given('ユーザーが名前「{string}」を入力する', async (name: string) => {
+	// 名前フィールドに入力
+	const nameField = page.getByLabel(/名前|Name/i).or(page.getByPlaceholder(/名前|Name/i));
+	await nameField.fill(name);
+	console.log(`[E2E] Entered name: ${name}`);
 });
 
 When('ユーザーが説明「{string}」を入力する', async (description: string) => {
 	// 説明フィールドに入力
 	const descriptionField = page.getByLabel(/説明|Description/i).or(page.getByPlaceholder(/説明|Description/i));
 	await descriptionField.fill(description);
+	console.log(`[E2E] Entered description: ${description}`);
+});
+
+Given('ユーザーが説明「{string}」を入力する', async (description: string) => {
+	// 説明フィールドに入力
+	const descriptionField = page.getByLabel(/説明|Description/i).or(page.getByPlaceholder(/説明|Description/i));
+	await descriptionField.fill(description);
+	console.log(`[E2E] Entered description: ${description}`);
 });
 
 When('ユーザーが「作成」ボタンをクリックする', async () => {
@@ -466,6 +508,7 @@ When('ユーザーが一時停止ボタンをクリックする', async () => {
 	await page.waitForTimeout(500);
 });
 
+// Support both When and Given for this step (feature files may use "かつ" which maps to Given)
 When('ユーザーがタイムラインの「{float}」秒の位置をクリックする', async (time: number) => {
 	// タイムラインの特定位置をクリック
 	const timeline = page.locator('.timeline').or(page.locator('[role="slider"]'));
@@ -476,6 +519,20 @@ When('ユーザーがタイムラインの「{float}」秒の位置をクリッ�
 		await page.mouse.click(clickX, boundingBox.y + boundingBox.height / 2);
 	}
 	await page.waitForTimeout(500);
+	console.log(`[E2E] Clicked timeline at ${time} seconds`);
+});
+
+Given('ユーザーがタイムラインの「{float}」秒の位置をクリックする', async (time: number) => {
+	// タイムラインの特定位置をクリック
+	const timeline = page.locator('.timeline').or(page.locator('[role="slider"]'));
+	const boundingBox = await timeline.boundingBox();
+	if (boundingBox) {
+		// 時間に基づいて位置を計算（仮の計算）
+		const clickX = boundingBox.x + (time / 10) * boundingBox.width;
+		await page.mouse.click(clickX, boundingBox.y + boundingBox.height / 2);
+	}
+	await page.waitForTimeout(500);
+	console.log(`[E2E] Clicked timeline at ${time} seconds`);
 });
 
 When('ユーザーがストーリーボード設定を開く', async () => {
@@ -879,12 +936,23 @@ Then('再生ヘッドが現在の位置で停止する', async () => {
 	await expect(playhead.first()).toBeVisible();
 });
 
+// Support both Then and Given for this step (feature files may use "かつ" which maps to Given)
 Then('動画が「{float}」秒の位置にシークする', async (time: number) => {
 	// 動画が指定位置にシークしたことを確認
 	await page.waitForTimeout(1000);
 	const video = page.locator('video').first();
 	const currentTime = await video.evaluate((el: HTMLVideoElement) => el.currentTime);
 	chaiExpect(currentTime).to.be.closeTo(time, 0.5); // 0.5秒の誤差を許容
+	console.log(`[E2E] Video seeked to ${time} seconds (current: ${currentTime})`);
+});
+
+Given('動画が「{float}」秒の位置にシークする', async (time: number) => {
+	// 動画が指定位置にシークしたことを確認
+	await page.waitForTimeout(1000);
+	const video = page.locator('video').first();
+	const currentTime = await video.evaluate((el: HTMLVideoElement) => el.currentTime);
+	chaiExpect(currentTime).to.be.closeTo(time, 0.5); // 0.5秒の誤差を許容
+	console.log(`[E2E] Video seeked to ${time} seconds (current: ${currentTime})`);
 });
 
 Then('再生ヘッドが「{float}」秒の位置に移動する', async (time: number) => {
@@ -893,6 +961,16 @@ Then('再生ヘッドが「{float}」秒の位置に移動する', async (time: 
 	const playhead = page.locator('.playhead');
 	await expect(playhead.first()).toBeVisible();
 	// 実際の実装では、再生ヘッドの位置を計算して確認する必要がある
+	console.log(`[E2E] Playhead moved to ${time} seconds`);
+});
+
+Given('再生ヘッドが「{float}」秒の位置に移動する', async (time: number) => {
+	// 再生ヘッドが指定位置に移動したことを確認
+	await page.waitForTimeout(1000);
+	const playhead = page.locator('.playhead');
+	await expect(playhead.first()).toBeVisible();
+	// 実際の実装では、再生ヘッドの位置を計算して確認する必要がある
+	console.log(`[E2E] Playhead moved to ${time} seconds`);
 });
 
 Then('現在の組織に属するプロジェクトのみが表示される', async () => {
@@ -1002,28 +1080,8 @@ Given('説明が「{string}」である', async (description: string) => {
 	projectDescription = description;
 });
 
-// Use regex patterns to match Japanese quotes
-When(/^ユーザーが「(.+)」をクリックする$/, async (buttonText: string) => {
-	await page.getByRole('button', { name: buttonText }).click();
-	await page.waitForLoadState('networkidle');
-});
-
-When('ユーザーが「{string}」をクリックする', async (buttonText: string) => {
-	await page.getByRole('button', { name: buttonText }).click();
-	await page.waitForLoadState('networkidle');
-});
-
-When(/^ユーザーが「(.+)」ボタンをクリックする$/, async (buttonText: string) => {
-	// Try multiple selectors for button
-	try {
-		await page.getByRole('button', { name: new RegExp(buttonText, 'i') }).click({ timeout: 10000 });
-	} catch (e) {
-		// Fallback to text-based selector
-		await page.locator(`button:has-text("${buttonText}")`).first().click({ timeout: 10000 });
-	}
-	await page.waitForLoadState('networkidle');
-});
-
+// Unified button click handler - use string pattern only to avoid ambiguity
+// Note: More specific button click handlers (like "作成" button) should be defined before this generic one
 When('ユーザーが「{string}」ボタンをクリックする', async (buttonText: string) => {
 	// Try multiple selectors for button
 	try {
@@ -1035,26 +1093,25 @@ When('ユーザーが「{string}」ボタンをクリックする', async (butto
 	await page.waitForLoadState('networkidle');
 });
 
-When(/^ユーザーが「(.+)」リンクをクリックする$/, async (linkText: string) => {
-	await page.getByRole('link', { name: linkText }).click();
+// Generic button click (fallback for when "ボタン" is not specified)
+When('ユーザーが「{string}」をクリックする', async (buttonText: string) => {
+	// Try button first, then link
+	try {
+		await page.getByRole('button', { name: buttonText }).click({ timeout: 5000 });
+	} catch (e) {
+		// Fallback to link
+		await page.getByRole('link', { name: buttonText }).click({ timeout: 5000 });
+	}
 	await page.waitForLoadState('networkidle');
 });
 
+// Link click handler - use string pattern only to avoid ambiguity
 When('ユーザーが「{string}」リンクをクリックする', async (linkText: string) => {
 	await page.getByRole('link', { name: linkText }).click();
 	await page.waitForLoadState('networkidle');
 });
 
-When(/^ユーザーが「(.+)」フィールドに「(.+)」を入力する$/, async (fieldLabel: string, value: string) => {
-	const field = page.getByLabel(fieldLabel).or(page.getByPlaceholder(fieldLabel));
-	await field.fill(value);
-	if (fieldLabel.toLowerCase().includes('title') || fieldLabel === 'タイトル') {
-		projectTitle = value;
-	} else if (fieldLabel.toLowerCase().includes('description') || fieldLabel === '説明') {
-		projectDescription = value;
-	}
-});
-
+// Unified field input handler - use string pattern only to avoid ambiguity
 When('ユーザーが「{string}」フィールドに「{string}」を入力する', async (fieldLabel: string, value: string) => {
 	const field = page.getByLabel(fieldLabel).or(page.getByPlaceholder(fieldLabel));
 	await field.fill(value);
@@ -1063,6 +1120,19 @@ When('ユーザーが「{string}」フィールドに「{string}」を入力す�
 	} else if (fieldLabel.toLowerCase().includes('description') || fieldLabel === '説明') {
 		projectDescription = value;
 	}
+	console.log(`[E2E] Entered ${fieldLabel}: ${value}`);
+});
+
+// Support Given for "かつ" steps
+Given('ユーザーが「{string}」フィールドに「{string}」を入力する', async (fieldLabel: string, value: string) => {
+	const field = page.getByLabel(fieldLabel).or(page.getByPlaceholder(fieldLabel));
+	await field.fill(value);
+	if (fieldLabel.toLowerCase().includes('title') || fieldLabel === 'タイトル') {
+		projectTitle = value;
+	} else if (fieldLabel.toLowerCase().includes('description') || fieldLabel === '説明') {
+		projectDescription = value;
+	}
+	console.log(`[E2E] Entered ${fieldLabel}: ${value}`);
 });
 
 When('ユーザーがフォームを送信する', async () => {
