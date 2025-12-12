@@ -290,11 +290,15 @@ impl MutationRoot {
     async fn create_project(&self, ctx: &Context<'_>, input: CreateProjectInput) -> Result<Project> {
         let pool = ctx.data::<PostgresPool>()?;
         
-        // Get organization context - require authentication and organization
-        let org_id = if let Ok((_user, org)) = require_auth_and_org(ctx) {
-            Some(org.id)
+        // Get organization context from X-Org-Id header directly
+        // Note: Previously used require_auth_and_org which required both user and org,
+        // but user may not be available during SSR. Now we use org from header directly.
+        let org_id = if let Ok(auth) = get_clerk_auth_from_context(ctx) {
+            let org_id_opt = auth.org.map(|org| org.id);
+            println!("[DEBUG] create_project - org_id from header: {:?}, user: {:?}", org_id_opt, auth.user.as_ref().map(|u| &u.id));
+            org_id_opt
         } else {
-            // Allow creation without org for backward compatibility, but log warning
+            println!("[DEBUG] create_project - no auth context found");
             None
         };
         

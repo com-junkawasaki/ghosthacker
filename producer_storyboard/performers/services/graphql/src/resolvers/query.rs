@@ -31,10 +31,15 @@ impl QueryRoot {
         
         // Get organization context if available
         let org_filter = if let Ok(auth) = get_clerk_auth_from_context(ctx) {
-            auth.org.map(|org| org.id)
+            let org_id = auth.org.as_ref().map(|org| org.id.clone());
+            println!("[DEBUG] projects query - auth found, org_id: {:?}, user: {:?}", org_id, auth.user.as_ref().map(|u| &u.id));
+            org_id
         } else {
+            println!("[DEBUG] projects query - no auth context found");
             None
         };
+        
+        println!("[DEBUG] projects query - org_filter: {:?}", org_filter);
         
         let query = if let Some(org_id) = org_filter {
             sqlx::query_as::<_, (Uuid, String, Option<String>, chrono::DateTime<chrono::Utc>, chrono::DateTime<chrono::Utc>)>(

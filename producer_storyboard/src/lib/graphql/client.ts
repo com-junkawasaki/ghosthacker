@@ -1,10 +1,17 @@
 import { HoudiniClient } from '$houdini';
 import { browser } from '$app/environment';
 
-// Use relative URL for browser to avoid CORS/Mixed Content issues
+// IMPORTANT: Always use the SvelteKit proxy for GraphQL requests
+// This ensures:
+// 1. X-User-Id header is set from Clerk session (via +server.ts)
+// 2. X-Org-Id header is forwarded correctly
+// 3. CORS issues are avoided
+// 
+// SSR時も/api/graphqlプロキシを経由する必要があります（X-User-Id送信のため）
+// Note: In SSR, we need to use an absolute URL to the local server
 const graphqlApiUrl = browser
 	? (import.meta.env.PUBLIC_GRAPHQL_API_URL || '/api/graphql')
-	: (import.meta.env.GRAPHQL_API_URL || 'http://localhost:25325/graphql');
+	: 'http://localhost:5173/api/graphql';
 
 if (browser) {
 	console.log('[GraphQL Client] Initializing with URL:', graphqlApiUrl);
@@ -48,10 +55,14 @@ const client = new HoudiniClient({
 			'Content-Type': 'application/json',
 		};
 		
+		// DEBUG: Log on both SSR and client
+		console.log(`[GraphQL Client] fetchParams called - browser: ${browser}, metadata:`, metadata);
+		
 		// 1. First priority: Use orgId from metadata (passed from SSR load function)
 		// This ensures correct orgId is used in both SSR and client-side
 		if (metadata?.orgId) {
 			headers['X-Org-Id'] = metadata.orgId;
+			console.log(`[GraphQL Client] Using orgId from metadata: ${metadata.orgId}`);
 		}
 		// 2. Fallback: Extract orgId from URL params (client-side only)
 		else if (browser) {
@@ -60,18 +71,19 @@ const client = new HoudiniClient({
 				const orgIdMatch = currentPath.match(/\/orgs\/([^/]+)/);
 				if (orgIdMatch && orgIdMatch[1]) {
 					headers['X-Org-Id'] = orgIdMatch[1];
+					console.log(`[GraphQL Client] Using orgId from URL: ${orgIdMatch[1]}`);
 				}
 			} catch (e) {
 				console.warn('[GraphQL Client] Could not extract orgId from URL:', e);
 			}
+		} else {
+			console.warn('[GraphQL Client] SSR mode but no metadata.orgId provided!');
 		}
 		
 		// Clerk authentication is handled by the API proxy (/api/graphql/+server.ts)
 		// The proxy forwards Clerk session tokens from cookies/headers to the backend
 		
-		if (browser) {
-			console.log('[GraphQL Client] Fetch params:', { session, metadata, headers });
-		}
+		console.log('[GraphQL Client] Final headers:', headers);
 		
 		return {
 			headers,
