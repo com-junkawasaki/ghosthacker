@@ -62,12 +62,16 @@
 				console.log('Derived orgId:', orgId);
 				console.log('Clerk instance user id:', clerk?.clerk?.user?.id ?? null);
 				console.log('Cookies:', cookies);
-				console.log('Server auth state (from layout):', $page.data?.initialAuthState ?? null);
+				// buildClerkProps returns { initialState: { userId, orgId, sessionId, ... } }
+				const serverAuthState = $page.data?.initialState;
+				console.log('Server auth state (from layout):', serverAuthState ?? null);
 				console.log('Server vs Client mismatch:', {
-					serverAuthenticated: $page.data?.initialAuthState?.isAuthenticated ?? false,
+					serverAuthenticated: !!serverAuthState?.userId,
 					clientAuthenticated: !!userId,
-					serverUserId: $page.data?.initialAuthState?.userId ?? null,
+					serverUserId: serverAuthState?.userId ?? null,
 					clientUserId: userId,
+					serverOrgId: serverAuthState?.orgId ?? null,
+					clientOrgId: orgId,
 				});
 				console.groupEnd();
 			} catch (error) {

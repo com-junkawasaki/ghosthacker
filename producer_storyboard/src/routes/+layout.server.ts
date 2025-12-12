@@ -20,10 +20,13 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 	// Get auth from locals (set by withClerkHandler)
 	const auth = locals.auth();
 	
+	// Log detailed auth state for debugging
 	console.log('[Layout Server] Auth state:', {
 		userId: auth.userId,
 		orgId: auth.orgId,
 		sessionId: auth.sessionId,
+		authKeys: Object.keys(auth),
+		authObject: JSON.stringify(auth, null, 2),
 	});
 
 	if (!clerkPublishableKey || clerkPublishableKey === '') {
@@ -36,8 +39,17 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 		};
 	}
 
+	const clerkProps = buildClerkProps(auth);
+	
+	// Log buildClerkProps output for debugging
+	console.log('[Layout Server] buildClerkProps result:', {
+		hasInitialState: !!clerkProps.initialState,
+		initialStateKeys: clerkProps.initialState ? Object.keys(clerkProps.initialState) : [],
+		initialStatePreview: clerkProps.initialState ? JSON.stringify(clerkProps.initialState, null, 2) : null,
+	});
+	
 	return {
 		clerkPublishableKey,
-		...buildClerkProps(auth),
+		...clerkProps,
 	};
 };
