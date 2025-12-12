@@ -2,7 +2,7 @@
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { CreateProjectStore, type ListProjectsStore, type ListProjects$result } from '$houdini';
+	import { CreateProjectStore, type ListProjectsStore } from '$houdini';
 	import DebugPanel from '$lib/components/debug/DebugPanel.svelte';
 	import OrganizationSwitcher from '$lib/components/clerk/OrganizationSwitcher.svelte';
 	import UserAccountMenu from '$lib/components/clerk/UserAccountMenu.svelte';
@@ -27,25 +27,31 @@
 	let newProjectTitle = $state('');
 	let newProjectDescription = $state('');
 
-	// SSRで読み込まれた初期データを保持（KISS原則：シンプルに）
+	// SSRで読み込まれた初期データを直接配列として保持（KISS原則：シンプルに）
 	// クライアントサイドでsetup()が呼ばれてデータがリセットされても、初期値を保持
-	const ssrInitialData = $state(props.data.ListProjects.data);
+	let ssrProjects = $state(props.data.ListProjects.data?.projects ?? []);
 	
 	// Computed properties - use $derived with store access
 	const projectsStore = $derived(projects);
+	
+	// ストアの状態を監視して、データが更新されたらssrProjectsも更新
+	$effect(() => {
+		if (browser && $projectsStore.data?.projects) {
+			// ストアにデータが設定されたら、ssrProjectsも更新
+			ssrProjects = $projectsStore.data.projects;
+		}
+	});
+	
 	// SSRでデータがある場合はloadingをfalseにする（KISS原則）
-	const loading = $derived($projectsStore.fetching && !$projectsStore.data && !ssrInitialData);
+	const loading = $derived($projectsStore.fetching && ssrProjects.length === 0);
 	const error = $derived($projectsStore.errors?.[0] ? new Error($projectsStore.errors[0].message) : null);
 	
 	// Projects are filtered by backend using X-Org-Id header
 	// SSRで読み込まれたデータを優先的に使用（クライアントサイドでリセットされても表示）
-	const filteredProjects = $derived(($projectsStore.data?.projects ?? ssrInitialData?.projects) ?? []);
+	const filteredProjects = $derived(($projectsStore.data?.projects ?? ssrProjects) ?? []);
 	
 	// SSRで読み込まれたデータがあるかどうかをチェック（シンプルな判定）
-	const hasData = $derived(
-		($projectsStore.data !== null && $projectsStore.data !== undefined) ||
-		(ssrInitialData !== null && ssrInitialData !== undefined)
-	);
+	const hasData = $derived(filteredProjects.length > 0 || ($projectsStore.data !== null && $projectsStore.data !== undefined));
 
 	function buildPath(viewName: string, projectId?: string): string {
 		if (projectId) {
@@ -60,12 +66,12 @@
 				loading,
 				error,
 				orgId,
-				ssrInitialData: ssrInitialData?.projects?.length ?? 0,
+				ssrProjects: ssrProjects.length,
 				storeData: $projectsStore.data?.projects?.length ?? 0,
 				totalProjects: filteredProjects.length,
 				filteredProjects: filteredProjects.length,
-				data: $projectsStore.data,
-				fetching: $projectsStore.fetching,
+				storeFetching: $projectsStore.fetching,
+				storeHasData: $projectsStore.data !== null && $projectsStore.data !== undefined,
 				hasData,
 			});
 		}
@@ -479,4 +485,3 @@
 		cursor: not-allowed;
 	}
 </style>
-
