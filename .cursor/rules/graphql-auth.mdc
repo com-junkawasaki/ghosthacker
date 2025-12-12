@@ -139,12 +139,12 @@ fetchParams({ session }) {
 
 ### その他のAPIエンドポイント
 
-以下のエンドポイントは直接GraphQL APIを呼び出していますが、現在は認証ヘッダーを設定していません：
+以下のエンドポイントも`/api/graphql`プロキシ経由でGraphQL APIを呼び出し、認証ヘッダーを設定しています：
 - `/api/character-assets/[assetId]/+server.ts`
 - `/api/images/[imageId]/+server.ts`
 - `/api/audio/[dialogueId]/+server.ts`
 
-これらのエンドポイントも認証が必要な場合は、同様に`locals`パラメータを追加し、認証ヘッダーを設定する必要があります。
+これらのエンドポイントも同様に`locals`パラメータを追加し、認証ヘッダーを設定しています。すべてのGraphQLリクエストは`/api/graphql`プロキシ経由で送信されるため、認証ヘッダーが自動的に転送されます。
 
 ### 参考実装
 
