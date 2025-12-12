@@ -14,7 +14,7 @@
 	import TimelineEditor from '$lib/components/composer/TimelineEditor.svelte';
 	import SunoMusicGenerator from '$lib/components/composer/SunoMusicGenerator.svelte';
 
-	const { projectId: projectIdParam } = $page.params;
+	const { orgId, projectId: projectIdParam } = $page.params;
 	const projectId: string = projectIdParam || '';
 
 	// State management
@@ -41,7 +41,7 @@
 		if (!browser || !listComposersStore || !projectId) return;
 
 		try {
-			const result = await listComposersStore.fetch({ variables: { projectId } });
+			const result = await listComposersStore.fetch({ variables: { projectId }, metadata: { orgId } });
 			if (result?.data?.composers && result.data.composers.length > 0) {
 				composerId = result.data.composers[0].id;
 			} else {
@@ -62,7 +62,7 @@
 					projectId,
 					title: 'New Composer',
 				},
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.data?.createComposer?.id) {
 				composerId = result.data.createComposer.id;
@@ -84,7 +84,7 @@
 					makeInstrumental,
 					mv: mv || null,
 				},
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.errors && result.errors.length > 0) {
 				const error = result.errors[0];

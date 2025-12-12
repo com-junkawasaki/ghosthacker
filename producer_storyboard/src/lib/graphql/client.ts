@@ -43,23 +43,25 @@ const fetchWithTimeout = async (url: RequestInfo | URL, init?: RequestInit): Pro
 
 const client = new HoudiniClient({
 	url: graphqlApiUrl,
-	fetchParams({ session }) {
+	fetchParams({ session, metadata }) {
 		const headers: Record<string, string> = {
 			'Content-Type': 'application/json',
 		};
 		
-		// Extract orgId from URL params and add to headers
-		// This allows the API proxy to forward it to the backend
-		if (browser) {
+		// 1. First priority: Use orgId from metadata (passed from SSR load function)
+		// This ensures correct orgId is used in both SSR and client-side
+		if (metadata?.orgId) {
+			headers['X-Org-Id'] = metadata.orgId;
+		}
+		// 2. Fallback: Extract orgId from URL params (client-side only)
+		else if (browser) {
 			try {
-				// Try to get orgId from current URL path
 				const currentPath = window.location.pathname;
 				const orgIdMatch = currentPath.match(/\/orgs\/([^/]+)/);
 				if (orgIdMatch && orgIdMatch[1]) {
 					headers['X-Org-Id'] = orgIdMatch[1];
 				}
 			} catch (e) {
-				// If window is not available, skip orgId header
 				console.warn('[GraphQL Client] Could not extract orgId from URL:', e);
 			}
 		}
@@ -68,7 +70,7 @@ const client = new HoudiniClient({
 		// The proxy forwards Clerk session tokens from cookies/headers to the backend
 		
 		if (browser) {
-			console.log('[GraphQL Client] Fetch params:', { session, headers });
+			console.log('[GraphQL Client] Fetch params:', { session, metadata, headers });
 		}
 		
 		return {

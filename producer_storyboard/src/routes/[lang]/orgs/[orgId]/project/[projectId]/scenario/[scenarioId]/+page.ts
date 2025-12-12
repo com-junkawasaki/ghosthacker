@@ -4,7 +4,7 @@ import type { PageLoad } from './$types';
 export const ssr = false;
 
 export const load: PageLoad = async (event) => {
-	const { scenarioId } = event.params;
+	const { orgId, scenarioId } = event.params;
 	
 	const GetScenario = new GetScenarioStore();
 	
@@ -13,6 +13,7 @@ export const load: PageLoad = async (event) => {
 		variables: {
 			id: scenarioId,
 		},
+		metadata: { orgId },
 	});
 	
 	return {

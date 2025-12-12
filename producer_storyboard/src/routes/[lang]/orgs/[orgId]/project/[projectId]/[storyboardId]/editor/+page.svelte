@@ -168,7 +168,7 @@
 		if (!browser || !listCharactersStore || !projectId) return;
 
 		try {
-			const result = await listCharactersStore.fetch({ variables: { projectId } });
+			const result = await listCharactersStore.fetch({ variables: { projectId }, metadata: { orgId } });
 			if (result?.data?.characters) {
 				characters = result.data.characters as Character[];
 			}
@@ -182,7 +182,7 @@
 		if (!browser || !listDialoguesStore) return;
 
 		try {
-			const result = await listDialoguesStore.fetch({ variables: { sceneId } });
+			const result = await listDialoguesStore.fetch({ variables: { sceneId }, metadata: { orgId } });
 			if (result?.data?.dialogues) {
 				sceneDialogues[sceneId] = result.data.dialogues as Dialogue[];
 			}
@@ -214,7 +214,7 @@
 					aspectRatio: '16:9',
 					resolution: '1920x1080',
 				},
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.errors && result.errors.length > 0) {
 				throw new Error(result.errors[0].message);
@@ -295,7 +295,8 @@
 			error = null;
 
 			// Load storyboards for the project
-			const storyboardsResult = await storyboardsStore.fetch({ variables: { projectId } });
+			// metadata.orgId でX-Org-Idヘッダーを送信
+			const storyboardsResult = await storyboardsStore.fetch({ variables: { projectId }, metadata: { orgId } });
 			
 			if (storyboardsResult.errors && storyboardsResult.errors.length > 0) {
 				throw new Error(storyboardsResult.errors[0].message);
@@ -362,7 +363,7 @@
 		}
 
 		try {
-			const scenesResult = await scenesStore.fetch({ variables: { storyboardId: sbId } });
+			const scenesResult = await scenesStore.fetch({ variables: { storyboardId: sbId }, metadata: { orgId } });
 			
 			if (scenesResult.errors && scenesResult.errors.length > 0) {
 				throw new Error(scenesResult.errors[0].message);
@@ -438,7 +439,7 @@
 					durationSeconds: defaultDuration,
 					startTimeSeconds: startTime,
 				},
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.errors && result.errors.length > 0) {
 				const errorMessage = result.errors[0].message;
@@ -496,7 +497,7 @@
 		try {
 			const result = await deleteSceneStore.mutate({
 				id: sceneId,
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.errors && result.errors.length > 0) {
 				throw new Error(result.errors[0].message);
@@ -551,7 +552,7 @@
 					storyboardId,
 					sceneIds,
 				},
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.errors && result.errors.length > 0) {
 				// Revert on error
@@ -616,7 +617,7 @@
 					durationSeconds: updates.durationSeconds !== undefined ? updates.durationSeconds : undefined,
 					startTimeSeconds: updates.startTimeSeconds !== undefined ? updates.startTimeSeconds : undefined,
 				},
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.errors && result.errors.length > 0) {
 				throw new Error(result.errors[0].message);
@@ -646,7 +647,7 @@
 		}
 
 		try {
-			const result = await getGeneratedImagesStore.fetch({ variables: { sceneId } });
+			const result = await getGeneratedImagesStore.fetch({ variables: { sceneId }, metadata: { orgId } });
 			
 			if (result.errors && result.errors.length > 0) {
 				console.error('[Editor] Error loading images:', result.errors[0].message);
@@ -695,7 +696,7 @@
 					sceneId,
 					imageType,
 				},
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.errors && result.errors.length > 0) {
 				throw new Error(result.errors[0].message);
@@ -756,7 +757,7 @@
 					imageType,
 					imageFormat,
 				},
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.errors && result.errors.length > 0) {
 				throw new Error(result.errors[0].message);
@@ -860,7 +861,7 @@
 					id: sceneId,
 					durationSeconds: newDuration,
 				},
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.errors && result.errors.length > 0) {
 				// Revert on error

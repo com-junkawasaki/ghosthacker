@@ -76,13 +76,13 @@
 					title: newProjectTitle.trim(),
 					description: newProjectDescription.trim() || null,
 				},
-			});
+			}, { metadata: { orgId } });
 
 			console.log('[Project] Project created:', result);
 
 			if (result?.data?.createProject) {
-				// Refresh projects list (orgId is passed via X-Org-Id header)
-				await projectsStore.fetch({ blocking: true });
+				// Refresh projects list (orgId is passed via X-Org-Id header and metadata)
+				await projectsStore.fetch({ blocking: true, metadata: { orgId } });
 				
 				// Navigate to the new project's editor
 				goto(buildPath('editor', result.data.createProject.id));
@@ -123,7 +123,7 @@
 				<button
 					onclick={async () => {
 						try {
-							await projectsStore.fetch();
+							await projectsStore.fetch({ blocking: true, metadata: { orgId } });
 						} catch (error) {
 							console.error('Failed to retry:', error);
 						}
@@ -173,7 +173,7 @@
 					onclick={async () => {
 						try {
 							console.log('[Project] Manual retry...');
-							await projectsStore.fetch({ blocking: true });
+							await projectsStore.fetch({ blocking: true, metadata: { orgId } });
 						} catch (error) {
 							console.error('[Project] Failed to retry:', error);
 						}

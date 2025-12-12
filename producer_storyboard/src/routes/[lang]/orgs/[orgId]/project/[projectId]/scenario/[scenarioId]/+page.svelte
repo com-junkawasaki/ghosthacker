@@ -91,6 +91,7 @@
 		if (scenarioId && browser && scenarioStore) {
 			scenarioStore.fetch({
 				variables: { id: scenarioId },
+				metadata: { orgId },
 			});
 		}
 	});
@@ -106,10 +107,10 @@
 					title: editScenarioTitle.trim() || null,
 					description: editScenarioDescription.trim() || null,
 				},
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.data?.updateScenario) {
-				await scenarioStore.fetch({ blocking: true });
+				await scenarioStore.fetch({ blocking: true, metadata: { orgId } });
 				showEditDialog = false;
 			}
 		} catch (error) {
@@ -127,7 +128,7 @@
 		try {
 			const result = await deleteScenarioStore.mutate({
 				id: scenarioId,
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.data?.deleteScenario) {
 				// Navigate back to scenario list
@@ -152,10 +153,10 @@
 					title: newEpisodeTitle.trim(),
 					description: newEpisodeDescription.trim() || null,
 				},
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.data?.createEpisode) {
-				await scenarioStore.fetch({ blocking: true });
+				await scenarioStore.fetch({ blocking: true, metadata: { orgId } });
 				showEpisodeDialog = false;
 				newEpisodeTitle = '';
 				newEpisodeDescription = '';
@@ -179,10 +180,10 @@
 					title: newPartTitle.trim(),
 					description: newPartDescription.trim() || null,
 				},
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.data?.createPart) {
-				await scenarioStore.fetch({ blocking: true });
+				await scenarioStore.fetch({ blocking: true, metadata: { orgId } });
 				showPartDialog = false;
 				newPartTitle = '';
 				newPartDescription = '';
@@ -205,10 +206,10 @@
 					partId: selectedPartId,
 					description: newScenePlanDescription.trim(),
 				},
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.data?.createScenePlan) {
-				await scenarioStore.fetch({ blocking: true });
+				await scenarioStore.fetch({ blocking: true, metadata: { orgId } });
 				showScenePlanDialog = false;
 				newScenePlanDescription = '';
 			}
@@ -295,13 +296,14 @@
 					scenarioId: scenarioId,
 					episodeIds: reorderedEpisodes.map((ep: { id: string }) => ep.id),
 				},
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.data?.reorderEpisodes) {
 				// Refresh scenario data
 				await scenarioStore.fetch({
 					variables: { id: scenarioId },
 					blocking: true,
+					metadata: { orgId },
 				});
 			}
 		} catch (error) {
@@ -370,13 +372,14 @@
 					episodeId: episodeId,
 					partIds: reorderedParts.map((part: { id: string }) => part.id),
 				},
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.data?.reorderParts) {
 				// Refresh scenario data
 				await scenarioStore.fetch({
 					variables: { id: scenarioId },
 					blocking: true,
+					metadata: { orgId },
 				});
 			}
 		} catch (error) {
@@ -454,13 +457,14 @@
 					partId: partId,
 					scenePlanIds: reorderedScenePlans.map((sp: { id: string }) => sp.id),
 				},
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.data?.reorderScenePlans) {
 				// Refresh scenario data
 				await scenarioStore.fetch({
 					variables: { id: scenarioId },
 					blocking: true,
+					metadata: { orgId },
 				});
 			}
 		} catch (error) {
@@ -486,7 +490,7 @@
 					scenarioId: scenarioId,
 					storyboardTitle: scenario ? `${scenario.title} - Storyboard` : null,
 				},
-			});
+			}, { metadata: { orgId } });
 
 			if (result?.data?.convertScenarioToStoryboard) {
 				const storyboardId = result.data.convertScenarioToStoryboard.id;

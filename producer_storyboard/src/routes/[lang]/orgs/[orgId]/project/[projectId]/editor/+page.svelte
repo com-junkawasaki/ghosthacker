@@ -26,7 +26,8 @@
 
 		try {
 			// Load storyboards to get the first one
-			const result = await storyboardsStore.fetch({ variables: { projectId } });
+			// metadata.orgId でX-Org-Idヘッダーを送信
+			const result = await storyboardsStore.fetch({ variables: { projectId }, metadata: { orgId } });
 			
 			if (result?.data?.storyboards && result.data.storyboards.length > 0) {
 				const firstStoryboard = result.data.storyboards[0];
