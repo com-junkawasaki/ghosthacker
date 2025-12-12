@@ -17,6 +17,7 @@ const config = {
 		'houdini-svelte': {
 			client: './src/lib/graphql/client.ts',
 			forceRunesMode: true, // Enable Svelte 5 runes mode
+			defaultRouteBlocking: true, // SSRで読み込まれたデータがクライアントでリセットされないようにする
 		},
 	},
 	// Fetch schema from GraphQL endpoint
