@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+package storyboard.v1;
+
+option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1;storyboardv1";
+
+import "storyboard/v1/project.proto";
+import "storyboard/v1/storyboard.proto";
+import "storyboard/v1/scene.proto";
+import "storyboard/v1/character.proto";
+import "storyboard/v1/dialogue.proto";
+import "storyboard/v1/composer.proto";
+import "storyboard/v1/scenario.proto";
+
+// StoryboardService provides all storyboard-related operations
+service StoryboardService {
+  // Project operations
+  rpc ListProjects(ListProjectsRequest) returns (ListProjectsResponse);
+  rpc GetProject(GetProjectRequest) returns (Project);
+  rpc CreateProject(CreateProjectRequest) returns (Project);
+  rpc UpdateProject(UpdateProjectRequest) returns (Project);
+  rpc DeleteProject(DeleteProjectRequest) returns (DeleteProjectResponse);
+  
+  // Storyboard operations
+  rpc ListStoryboards(ListStoryboardsRequest) returns (ListStoryboardsResponse);
+  rpc GetStoryboard(GetStoryboardRequest) returns (Storyboard);
+  rpc CreateStoryboard(CreateStoryboardRequest) returns (Storyboard);
+  rpc UpdateStoryboard(UpdateStoryboardRequest) returns (Storyboard);
+  rpc DeleteStoryboard(DeleteStoryboardRequest) returns (DeleteStoryboardResponse);
+  
+  // Scene operations
+  rpc ListScenes(ListScenesRequest) returns (ListScenesResponse);
+  rpc GetScene(GetSceneRequest) returns (Scene);
+  rpc CreateScene(CreateSceneRequest) returns (Scene);
+  rpc UpdateScene(UpdateSceneRequest) returns (Scene);
+  rpc DeleteScene(DeleteSceneRequest) returns (DeleteSceneResponse);
+  
+  // Generated Image operations
+  rpc ListGeneratedImages(ListGeneratedImagesRequest) returns (ListGeneratedImagesResponse);
+  rpc GetImageData(GetImageDataRequest) returns (GetImageDataResponse);
+  rpc GenerateImage(GenerateImageRequest) returns (GenerateImageResponse);
+  
+  // Character operations
+  rpc ListCharacters(ListCharactersRequest) returns (ListCharactersResponse);
+  rpc GetCharacter(GetCharacterRequest) returns (Character);
+  rpc CreateCharacter(CreateCharacterRequest) returns (Character);
+  rpc UpdateCharacter(UpdateCharacterRequest) returns (Character);
+  rpc DeleteCharacter(DeleteCharacterRequest) returns (DeleteCharacterResponse);
+  
+  // Character Asset operations
+  rpc ListCharacterAssets(ListCharacterAssetsRequest) returns (ListCharacterAssetsResponse);
+  rpc GetCharacterAssetData(GetCharacterAssetDataRequest) returns (GetCharacterAssetDataResponse);
+  
+  // Hume Voice operations
+  rpc ListHumeVoices(ListHumeVoicesRequest) returns (ListHumeVoicesResponse);
+  
+  // Dialogue operations
+  rpc ListDialogues(ListDialoguesRequest) returns (ListDialoguesResponse);
+  rpc GetDialogue(GetDialogueRequest) returns (Dialogue);
+  rpc CreateDialogue(CreateDialogueRequest) returns (Dialogue);
+  rpc UpdateDialogue(UpdateDialogueRequest) returns (Dialogue);
+  rpc DeleteDialogue(DeleteDialogueRequest) returns (DeleteDialogueResponse);
+  rpc GetDialogueAudioData(GetDialogueAudioDataRequest) returns (GetDialogueAudioDataResponse);
+  rpc GenerateDialogueAudio(GenerateDialogueAudioRequest) returns (GenerateDialogueAudioResponse);
+  
+  // Composer operations
+  rpc ListComposers(ListComposersRequest) returns (ListComposersResponse);
+  rpc GetComposer(GetComposerRequest) returns (Composer);
+  rpc CreateComposer(CreateComposerRequest) returns (Composer);
+  rpc UpdateComposer(UpdateComposerRequest) returns (Composer);
+  rpc DeleteComposer(DeleteComposerRequest) returns (DeleteComposerResponse);
+  
+  // Audio Track operations
+  rpc ListAudioTracks(ListAudioTracksRequest) returns (ListAudioTracksResponse);
+  rpc CreateAudioTrack(CreateAudioTrackRequest) returns (AudioTrack);
+  
+  // Audio Clip operations
+  rpc ListAudioClips(ListAudioClipsRequest) returns (ListAudioClipsResponse);
+  rpc CreateAudioClip(CreateAudioClipRequest) returns (AudioClip);
+  
+  // Suno Music operations
+  rpc ListSunoMusic(ListSunoMusicRequest) returns (ListSunoMusicResponse);
+  rpc GenerateSunoMusic(GenerateSunoMusicRequest) returns (GenerateSunoMusicResponse);
+  
+  // Scenario operations
+  rpc ListScenarios(ListScenariosRequest) returns (ListScenariosResponse);
+  rpc GetScenario(GetScenarioRequest) returns (Scenario);
+  rpc CreateScenario(CreateScenarioRequest) returns (Scenario);
+  rpc UpdateScenario(UpdateScenarioRequest) returns (Scenario);
+  rpc DeleteScenario(DeleteScenarioRequest) returns (DeleteScenarioResponse);
+}

@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package storyboard.v1;
+
+option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1;storyboardv1";
+
+// Project represents a storyboard project
+message Project {
+  string id = 1;
+  string title = 2;
+  optional string description = 3;
+  string created_at = 4;
+  string updated_at = 5;
+}
+
+message ListProjectsRequest {
+  optional string org_id = 1;
+}
+
+message ListProjectsResponse {
+  repeated Project projects = 1;
+}
+
+message GetProjectRequest {
+  string id = 1;
+}
+
+message CreateProjectRequest {
+  string title = 1;
+  optional string description = 2;
+}
+
+message UpdateProjectRequest {
+  string id = 1;
+  optional string title = 2;
+  optional string description = 3;
+}
+
+message DeleteProjectRequest {
+  string id = 1;
+}
+
+message DeleteProjectResponse {
+  bool success = 1;
+}

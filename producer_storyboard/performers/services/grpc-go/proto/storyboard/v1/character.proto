@@ -1,0 +1,97 @@
+syntax = "proto3";
+
+package storyboard.v1;
+
+option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1;storyboardv1";
+
+// Character represents a character in a project
+message Character {
+  string id = 1;
+  string project_id = 2;
+  string name = 3;
+  optional string description = 4;
+  optional string personality = 5;
+  optional string background = 6;
+  optional string default_hume_voice_id = 7;
+  optional string profile_image_id = 8;
+  string created_at = 9;
+  string updated_at = 10;
+}
+
+message ListCharactersRequest {
+  string project_id = 1;
+}
+
+message ListCharactersResponse {
+  repeated Character characters = 1;
+}
+
+message GetCharacterRequest {
+  string id = 1;
+}
+
+message CreateCharacterRequest {
+  string project_id = 1;
+  string name = 2;
+  optional string description = 3;
+  optional string personality = 4;
+  optional string background = 5;
+  optional string default_hume_voice_id = 6;
+}
+
+message UpdateCharacterRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string description = 3;
+  optional string personality = 4;
+  optional string background = 5;
+  optional string default_hume_voice_id = 6;
+}
+
+message DeleteCharacterRequest {
+  string id = 1;
+}
+
+message DeleteCharacterResponse {
+  bool success = 1;
+}
+
+// CharacterAsset represents an asset for a character
+message CharacterAsset {
+  string id = 1;
+  string character_id = 2;
+  string asset_type = 3;
+  optional string asset_format = 4;
+  string created_at = 5;
+  string updated_at = 6;
+}
+
+message ListCharacterAssetsRequest {
+  string character_id = 1;
+}
+
+message ListCharacterAssetsResponse {
+  repeated CharacterAsset assets = 1;
+}
+
+message GetCharacterAssetDataRequest {
+  string asset_id = 1;
+}
+
+message GetCharacterAssetDataResponse {
+  string asset_data_base64 = 1;
+}
+
+// HumeVoice represents a Hume AI voice
+message HumeVoice {
+  string id = 1;
+  string name = 2;
+  optional string description = 3;
+  optional string language = 4;
+}
+
+message ListHumeVoicesRequest {}
+
+message ListHumeVoicesResponse {
+  repeated HumeVoice voices = 1;
+}

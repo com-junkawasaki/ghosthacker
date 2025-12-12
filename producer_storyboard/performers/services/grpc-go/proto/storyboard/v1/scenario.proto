@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package storyboard.v1;
+
+option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1;storyboardv1";
+
+// Scenario represents a scenario
+message Scenario {
+  string id = 1;
+  string project_id = 2;
+  string title = 3;
+  optional string description = 4;
+  string created_at = 5;
+  string updated_at = 6;
+}
+
+message ListScenariosRequest {
+  string project_id = 1;
+}
+
+message ListScenariosResponse {
+  repeated Scenario scenarios = 1;
+}
+
+message GetScenarioRequest {
+  string id = 1;
+}
+
+message CreateScenarioRequest {
+  string project_id = 1;
+  string title = 2;
+  optional string description = 3;
+}
+
+message UpdateScenarioRequest {
+  string id = 1;
+  optional string title = 2;
+  optional string description = 3;
+}
+
+message DeleteScenarioRequest {
+  string id = 1;
+}
+
+message DeleteScenarioResponse {
+  bool success = 1;
+}

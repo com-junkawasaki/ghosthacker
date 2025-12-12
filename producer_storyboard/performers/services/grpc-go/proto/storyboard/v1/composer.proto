@@ -1,0 +1,134 @@
+syntax = "proto3";
+
+package storyboard.v1;
+
+option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1;storyboardv1";
+
+// Composer represents an audio composer
+message Composer {
+  string id = 1;
+  string project_id = 2;
+  string title = 3;
+  optional double duration_seconds = 4;
+  string created_at = 5;
+  string updated_at = 6;
+}
+
+message ListComposersRequest {
+  string project_id = 1;
+}
+
+message ListComposersResponse {
+  repeated Composer composers = 1;
+}
+
+message GetComposerRequest {
+  string id = 1;
+}
+
+message CreateComposerRequest {
+  string project_id = 1;
+  string title = 2;
+  optional double duration_seconds = 3;
+}
+
+message UpdateComposerRequest {
+  string id = 1;
+  optional string title = 2;
+  optional double duration_seconds = 3;
+}
+
+message DeleteComposerRequest {
+  string id = 1;
+}
+
+message DeleteComposerResponse {
+  bool success = 1;
+}
+
+// AudioTrack represents an audio track
+message AudioTrack {
+  string id = 1;
+  string composer_id = 2;
+  int32 track_number = 3;
+  string track_type = 4;
+  optional string name = 5;
+  string created_at = 6;
+  string updated_at = 7;
+}
+
+message ListAudioTracksRequest {
+  string composer_id = 1;
+}
+
+message ListAudioTracksResponse {
+  repeated AudioTrack tracks = 1;
+}
+
+message CreateAudioTrackRequest {
+  string composer_id = 1;
+  int32 track_number = 2;
+  string track_type = 3;
+  optional string name = 4;
+}
+
+// AudioClip represents an audio clip
+message AudioClip {
+  string id = 1;
+  string track_id = 2;
+  double start_time_seconds = 3;
+  double duration_seconds = 4;
+  string audio_type = 5;
+  optional string audio_url = 6;
+  optional string audio_data_id = 7;
+  optional string metadata = 8;
+  string created_at = 9;
+  string updated_at = 10;
+}
+
+message ListAudioClipsRequest {
+  string track_id = 1;
+}
+
+message ListAudioClipsResponse {
+  repeated AudioClip clips = 1;
+}
+
+message CreateAudioClipRequest {
+  string track_id = 1;
+  double start_time_seconds = 2;
+  double duration_seconds = 3;
+  string audio_type = 4;
+  optional string audio_url = 5;
+  optional string metadata = 6;
+}
+
+// SunoMusic represents Suno AI generated music
+message SunoMusic {
+  string id = 1;
+  optional string composer_id = 2;
+  string prompt = 3;
+  string status = 4;
+  optional string audio_url = 5;
+  optional string audio_data_id = 6;
+  optional string task_id = 7;
+  string created_at = 8;
+  string updated_at = 9;
+}
+
+message ListSunoMusicRequest {
+  string composer_id = 1;
+}
+
+message ListSunoMusicResponse {
+  repeated SunoMusic music = 1;
+}
+
+message GenerateSunoMusicRequest {
+  optional string composer_id = 1;
+  string prompt = 2;
+}
+
+message GenerateSunoMusicResponse {
+  SunoMusic music = 1;
+}
