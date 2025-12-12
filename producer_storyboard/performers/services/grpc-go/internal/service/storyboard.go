@@ -3,7 +3,6 @@ package service
 import (
 	"context"
 	"encoding/base64"
-	"time"
 
 	"connectrpc.com/connect"
 	"github.com/google/uuid"
@@ -176,9 +175,13 @@ func (s *StoryboardService) UpdateProject(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
+	title := ""
+	if req.Msg.Title != nil {
+		title = *req.Msg.Title
+	}
 	project, err := s.queries.UpdateProject(ctx, sqlc.UpdateProjectParams{
 		ID:          uuidToPgUUID(projectID),
-		Title:       req.Msg.Title,
+		Title:       title,
 		Description: stringToPgText(req.Msg.Description),
 	})
 	if err == pgx.ErrNoRows {
@@ -238,12 +241,20 @@ func (s *StoryboardService) ListStoryboards(
 		if sb.DurationSeconds.Valid {
 			durSec = int32Ptr(int32(sb.DurationSeconds.Int32))
 		}
+		aspectRatio := ""
+		if sb.AspectRatio.Valid {
+			aspectRatio = sb.AspectRatio.String
+		}
+		resolution := ""
+		if sb.Resolution.Valid {
+			resolution = sb.Resolution.String
+		}
 		pbStoryboards = append(pbStoryboards, &storyboardv1.Storyboard{
 			Id:              pgUUIDToString(sb.ID),
 			ProjectId:       pgUUIDToString(sb.ProjectID),
 			Title:           sb.Title,
-			AspectRatio:     pgTextToString(sb.AspectRatio),
-			Resolution:      pgTextToString(sb.Resolution),
+			AspectRatio:     aspectRatio,
+			Resolution:      resolution,
 			DurationSeconds: durSec,
 			NumVariations:   int32(sb.NumVariations.Int32),
 			CreatedAt:       pgTimestamptzToString(sb.CreatedAt),
@@ -278,13 +289,21 @@ func (s *StoryboardService) GetStoryboard(
 	if sb.DurationSeconds.Valid {
 		durSec = int32Ptr(int32(sb.DurationSeconds.Int32))
 	}
+	aspectRatio := ""
+	if sb.AspectRatio.Valid {
+		aspectRatio = sb.AspectRatio.String
+	}
+	resolution := ""
+	if sb.Resolution.Valid {
+		resolution = sb.Resolution.String
+	}
 
 	return connect.NewResponse(&storyboardv1.Storyboard{
 		Id:              pgUUIDToString(sb.ID),
 		ProjectId:       pgUUIDToString(sb.ProjectID),
 		Title:           sb.Title,
-		AspectRatio:     pgTextToString(sb.AspectRatio),
-		Resolution:      pgTextToString(sb.Resolution),
+		AspectRatio:     aspectRatio,
+		Resolution:      resolution,
 		DurationSeconds: durSec,
 		NumVariations:   int32(sb.NumVariations.Int32),
 		CreatedAt:       pgTimestamptzToString(sb.CreatedAt),
@@ -346,12 +365,21 @@ func (s *StoryboardService) CreateStoryboard(
 		durSec = int32Ptr(int32(sb.DurationSeconds.Int32))
 	}
 
+	aspectRatioResp := ""
+	if sb.AspectRatio.Valid {
+		aspectRatioResp = sb.AspectRatio.String
+	}
+	resolutionResp := ""
+	if sb.Resolution.Valid {
+		resolutionResp = sb.Resolution.String
+	}
+
 	return connect.NewResponse(&storyboardv1.Storyboard{
 		Id:              pgUUIDToString(sb.ID),
 		ProjectId:       pgUUIDToString(sb.ProjectID),
 		Title:           sb.Title,
-		AspectRatio:     pgTextToString(sb.AspectRatio),
-		Resolution:      pgTextToString(sb.Resolution),
+		AspectRatio:     aspectRatioResp,
+		Resolution:      resolutionResp,
 		DurationSeconds: durSec,
 		NumVariations:   int32(sb.NumVariations.Int32),
 		CreatedAt:       pgTimestamptzToString(sb.CreatedAt),
@@ -369,9 +397,13 @@ func (s *StoryboardService) UpdateStoryboard(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
+	title := ""
+	if req.Msg.Title != nil {
+		title = *req.Msg.Title
+	}
 	sb, err := s.queries.UpdateStoryboard(ctx, sqlc.UpdateStoryboardParams{
 		ID:              uuidToPgUUID(storyboardID),
-		Title:           req.Msg.Title,
+		Title:           title,
 		AspectRatio:     stringToPgText(req.Msg.AspectRatio),
 		Resolution:      stringToPgText(req.Msg.Resolution),
 		DurationSeconds: int32ToPgInt4(req.Msg.DurationSeconds),
@@ -384,18 +416,27 @@ func (s *StoryboardService) UpdateStoryboard(
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
-	var durSec *int32
+	var durSec2 *int32
 	if sb.DurationSeconds.Valid {
-		durSec = int32Ptr(int32(sb.DurationSeconds.Int32))
+		durSec2 = int32Ptr(int32(sb.DurationSeconds.Int32))
+	}
+
+	aspectRatio2 := ""
+	if sb.AspectRatio.Valid {
+		aspectRatio2 = sb.AspectRatio.String
+	}
+	resolution2 := ""
+	if sb.Resolution.Valid {
+		resolution2 = sb.Resolution.String
 	}
 
 	return connect.NewResponse(&storyboardv1.Storyboard{
 		Id:              pgUUIDToString(sb.ID),
 		ProjectId:       pgUUIDToString(sb.ProjectID),
 		Title:           sb.Title,
-		AspectRatio:     pgTextToString(sb.AspectRatio),
-		Resolution:      pgTextToString(sb.Resolution),
-		DurationSeconds: durSec,
+		AspectRatio:     aspectRatio2,
+		Resolution:      resolution2,
+		DurationSeconds: durSec2,
 		NumVariations:   int32(sb.NumVariations.Int32),
 		CreatedAt:       pgTimestamptzToString(sb.CreatedAt),
 		UpdatedAt:       pgTimestamptzToString(sb.UpdatedAt),
@@ -432,14 +473,14 @@ func (s *StoryboardService) ListScenes(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	scenes, err := s.queries.ListScenes(ctx, storyboardID)
+	scenes, err := s.queries.ListScenes(ctx, uuidToPgUUID(storyboardID))
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
 	pbScenes := make([]*storyboardv1.Scene, 0, len(scenes))
 	for _, scene := range scenes {
-		pbScenes = append(pbScenes, convertSceneToProto(scene))
+		pbScenes = append(pbScenes, convertListScenesRowToProto(scene))
 	}
 
 	return connect.NewResponse(&storyboardv1.ListScenesResponse{
@@ -457,7 +498,7 @@ func (s *StoryboardService) GetScene(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	scene, err := s.queries.GetScene(ctx, sceneID)
+	scene, err := s.queries.GetScene(ctx, uuidToPgUUID(sceneID))
 	if err == pgx.ErrNoRows {
 		return nil, connect.NewError(connect.CodeNotFound, err)
 	}
@@ -465,7 +506,7 @@ func (s *StoryboardService) GetScene(
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
-	return connect.NewResponse(convertSceneToProto(scene)), nil
+	return connect.NewResponse(convertGetSceneRowToProto(scene)), nil
 }
 
 // CreateScene creates a new scene
@@ -479,24 +520,34 @@ func (s *StoryboardService) CreateScene(
 	}
 
 	orgID := auth.GetOrgIDFromContext(ctx)
-	var orgIDPtr *string
-	if orgID != "" {
-		orgIDPtr = &orgID
+	orgIDPg := stringToPgText(&orgID)
+
+	textDescription := ""
+	if req.Msg.TextDescription != nil {
+		textDescription = *req.Msg.TextDescription
+	}
+	mediaType := ""
+	if req.Msg.MediaType != nil {
+		mediaType = *req.Msg.MediaType
+	}
+	transitionType := ""
+	if req.Msg.TransitionType != nil {
+		transitionType = *req.Msg.TransitionType
 	}
 
 	scene, err := s.queries.CreateScene(ctx, sqlc.CreateSceneParams{
-		StoryboardID:    storyboardID,
+		StoryboardID:    uuidToPgUUID(storyboardID),
 		SceneNumber:     int32(req.Msg.SceneNumber),
-		TextDescription: req.Msg.TextDescription,
-		MediaType:       req.Msg.MediaType,
-		TransitionType:  req.Msg.TransitionType,
-		OrgID:           orgIDPtr,
+		TextDescription: stringToPgText(&textDescription),
+		MediaType:       stringToPgText(&mediaType),
+		TransitionType:  stringToPgText(&transitionType),
+		OrgID:           orgIDPg,
 	})
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
-	return connect.NewResponse(convertSceneToProto(scene)), nil
+	return connect.NewResponse(convertCreateSceneRowToProto(scene)), nil
 }
 
 // UpdateScene updates an existing scene
@@ -510,12 +561,12 @@ func (s *StoryboardService) UpdateScene(
 	}
 
 	scene, err := s.queries.UpdateScene(ctx, sqlc.UpdateSceneParams{
-		ID:               sceneID,
-		TextDescription:  req.Msg.TextDescription,
-		MediaType:        req.Msg.MediaType,
-		StartTimeSeconds: req.Msg.StartTimeSeconds,
-		DurationSeconds:  req.Msg.DurationSeconds,
-		TransitionType:   req.Msg.TransitionType,
+		ID:               uuidToPgUUID(sceneID),
+		TextDescription:  stringToPgText(req.Msg.TextDescription),
+		MediaType:        stringToPgText(req.Msg.MediaType),
+		StartTimeSeconds: float64ToPgNumeric(req.Msg.StartTimeSeconds),
+		DurationSeconds:  float64ToPgNumeric(req.Msg.DurationSeconds),
+		TransitionType:   stringToPgText(req.Msg.TransitionType),
 	})
 	if err == pgx.ErrNoRows {
 		return nil, connect.NewError(connect.CodeNotFound, err)
@@ -524,7 +575,7 @@ func (s *StoryboardService) UpdateScene(
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
-	return connect.NewResponse(convertSceneToProto(scene)), nil
+	return connect.NewResponse(convertUpdateSceneRowToProto(scene)), nil
 }
 
 // DeleteScene deletes a scene
@@ -537,7 +588,7 @@ func (s *StoryboardService) DeleteScene(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	err = s.queries.DeleteScene(ctx, sceneID)
+	err = s.queries.DeleteScene(ctx, uuidToPgUUID(sceneID))
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
@@ -557,7 +608,7 @@ func (s *StoryboardService) ListGeneratedImages(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	images, err := s.queries.ListGeneratedImages(ctx, sceneID)
+	images, err := s.queries.ListGeneratedImages(ctx, uuidToPgUUID(sceneID))
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
@@ -565,14 +616,14 @@ func (s *StoryboardService) ListGeneratedImages(
 	pbImages := make([]*storyboardv1.GeneratedImage, 0, len(images))
 	for _, img := range images {
 		pbImages = append(pbImages, &storyboardv1.GeneratedImage{
-			Id:            img.ID.String(),
-			SceneId:       img.SceneID.String(),
-			OpenaiImageId: img.OpenaiImageID,
-			ImageFormat:   img.ImageFormat,
-			ImageType:     img.ImageType,
-			Prompt:        img.Prompt,
-			Model:         img.Model,
-			CreatedAt:     img.CreatedAt.Format(time.RFC3339),
+			Id:            pgUUIDToString(img.ID),
+			SceneId:       pgUUIDToString(img.SceneID),
+			OpenaiImageId: pgTextToString(img.OpenaiImageID),
+			ImageFormat:   pgTextToString(img.ImageFormat),
+			ImageType:     pgTextToString(img.ImageType),
+			Prompt:        pgTextToString(img.Prompt),
+			Model:         pgTextToString(img.Model),
+			CreatedAt:     pgTimestamptzToString(img.CreatedAt),
 		})
 	}
 
@@ -591,7 +642,7 @@ func (s *StoryboardService) GetImageData(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	result, err := s.queries.GetGeneratedImageData(ctx, imageID)
+	result, err := s.queries.GetGeneratedImageData(ctx, uuidToPgUUID(imageID))
 	if err == pgx.ErrNoRows {
 		return nil, connect.NewError(connect.CodeNotFound, err)
 	}
@@ -632,21 +683,18 @@ func (s *StoryboardService) GenerateImage(
 	}
 
 	orgID := auth.GetOrgIDFromContext(ctx)
-	var orgIDPtr *string
-	if orgID != "" {
-		orgIDPtr = &orgID
-	}
+	orgIDPg := stringToPgText(&orgID)
 
 	// Save to database
 	image, err := s.queries.CreateGeneratedImage(ctx, sqlc.CreateGeneratedImageParams{
-		SceneID:       sceneID,
-		OpenaiImageID: &result.Prompt,
+		SceneID:       uuidToPgUUID(sceneID),
+		OpenaiImageID: stringToPgText(&result.Prompt),
 		ImageData:     result.ImageData,
-		ImageFormat:   &result.ImageFormat,
-		ImageType:     stringPtr("start"),
-		Prompt:        &req.Msg.Prompt,
-		Model:         &model,
-		OrgID:         orgIDPtr,
+		ImageFormat:   stringToPgText(&result.ImageFormat),
+		ImageType:     stringToPgText(stringPtr("start")),
+		Prompt:        stringToPgText(&req.Msg.Prompt),
+		Model:         stringToPgText(&model),
+		OrgID:         orgIDPg,
 	})
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
@@ -654,14 +702,14 @@ func (s *StoryboardService) GenerateImage(
 
 	return connect.NewResponse(&storyboardv1.GenerateImageResponse{
 		Image: &storyboardv1.GeneratedImage{
-			Id:            image.ID.String(),
-			SceneId:       image.SceneID.String(),
-			OpenaiImageId: image.OpenaiImageID,
-			ImageFormat:   image.ImageFormat,
-			ImageType:     image.ImageType,
-			Prompt:        image.Prompt,
-			Model:         image.Model,
-			CreatedAt:     image.CreatedAt.Format(time.RFC3339),
+			Id:            pgUUIDToString(image.ID),
+			SceneId:       pgUUIDToString(image.SceneID),
+			OpenaiImageId: pgTextToString(image.OpenaiImageID),
+			ImageFormat:   pgTextToString(image.ImageFormat),
+			ImageType:     pgTextToString(image.ImageType),
+			Prompt:        pgTextToString(image.Prompt),
+			Model:         pgTextToString(image.Model),
+			CreatedAt:     pgTimestamptzToString(image.CreatedAt),
 		},
 	}), nil
 }
@@ -670,17 +718,81 @@ func (s *StoryboardService) GenerateImage(
 
 func convertSceneToProto(scene sqlc.Scene) *storyboardv1.Scene {
 	return &storyboardv1.Scene{
-		Id:               scene.ID.String(),
-		StoryboardId:     scene.StoryboardID.String(),
+		Id:               pgUUIDToString(scene.ID),
+		StoryboardId:     pgUUIDToString(scene.StoryboardID),
 		SceneNumber:      int32(scene.SceneNumber),
-		TextDescription:  scene.TextDescription,
-		MediaType:        scene.MediaType,
-		MediaUrl:         scene.MediaUrl,
-		StartTimeSeconds: scene.StartTimeSeconds,
-		DurationSeconds:  scene.DurationSeconds,
-		TransitionType:   scene.TransitionType,
-		CreatedAt:        scene.CreatedAt.Format(time.RFC3339),
-		UpdatedAt:        scene.UpdatedAt.Format(time.RFC3339),
+		TextDescription:  pgTextToString(scene.TextDescription),
+		MediaType:        pgTextToString(scene.MediaType),
+		MediaUrl:         pgTextToString(scene.MediaUrl),
+		StartTimeSeconds: pgNumericToFloat64(scene.StartTimeSeconds),
+		DurationSeconds:  pgNumericToFloat64(scene.DurationSeconds),
+		TransitionType:   pgTextToString(scene.TransitionType),
+		CreatedAt:        pgTimestamptzToString(scene.CreatedAt),
+		UpdatedAt:        pgTimestamptzToString(scene.UpdatedAt),
+	}
+}
+
+func convertListScenesRowToProto(scene sqlc.ListScenesRow) *storyboardv1.Scene {
+	return &storyboardv1.Scene{
+		Id:               pgUUIDToString(scene.ID),
+		StoryboardId:     pgUUIDToString(scene.StoryboardID),
+		SceneNumber:      scene.SceneNumber,
+		TextDescription:  pgTextToString(scene.TextDescription),
+		MediaType:        pgTextToString(scene.MediaType),
+		MediaUrl:         pgTextToString(scene.MediaUrl),
+		StartTimeSeconds: pgNumericToFloat64(scene.StartTimeSeconds),
+		DurationSeconds:  pgNumericToFloat64(scene.DurationSeconds),
+		TransitionType:   pgTextToString(scene.TransitionType),
+		CreatedAt:        pgTimestamptzToString(scene.CreatedAt),
+		UpdatedAt:        pgTimestamptzToString(scene.CreatedAt), // UpdatedAt not in ListScenesRow
+	}
+}
+
+func convertGetSceneRowToProto(scene sqlc.GetSceneRow) *storyboardv1.Scene {
+	return &storyboardv1.Scene{
+		Id:               pgUUIDToString(scene.ID),
+		StoryboardId:     pgUUIDToString(scene.StoryboardID),
+		SceneNumber:      scene.SceneNumber,
+		TextDescription:  pgTextToString(scene.TextDescription),
+		MediaType:        pgTextToString(scene.MediaType),
+		MediaUrl:         pgTextToString(scene.MediaUrl),
+		StartTimeSeconds: pgNumericToFloat64(scene.StartTimeSeconds),
+		DurationSeconds:  pgNumericToFloat64(scene.DurationSeconds),
+		TransitionType:   pgTextToString(scene.TransitionType),
+		CreatedAt:        pgTimestamptzToString(scene.CreatedAt),
+		UpdatedAt:        pgTimestamptzToString(scene.CreatedAt), // UpdatedAt not in GetSceneRow
+	}
+}
+
+func convertCreateSceneRowToProto(scene sqlc.CreateSceneRow) *storyboardv1.Scene {
+	return &storyboardv1.Scene{
+		Id:               pgUUIDToString(scene.ID),
+		StoryboardId:     pgUUIDToString(scene.StoryboardID),
+		SceneNumber:      scene.SceneNumber,
+		TextDescription:  pgTextToString(scene.TextDescription),
+		MediaType:        pgTextToString(scene.MediaType),
+		MediaUrl:         pgTextToString(scene.MediaUrl),
+		StartTimeSeconds: pgNumericToFloat64(scene.StartTimeSeconds),
+		DurationSeconds:  pgNumericToFloat64(scene.DurationSeconds),
+		TransitionType:   pgTextToString(scene.TransitionType),
+		CreatedAt:        pgTimestamptzToString(scene.CreatedAt),
+		UpdatedAt:        pgTimestamptzToString(scene.CreatedAt), // UpdatedAt not in CreateSceneRow
+	}
+}
+
+func convertUpdateSceneRowToProto(scene sqlc.UpdateSceneRow) *storyboardv1.Scene {
+	return &storyboardv1.Scene{
+		Id:               pgUUIDToString(scene.ID),
+		StoryboardId:     pgUUIDToString(scene.StoryboardID),
+		SceneNumber:      scene.SceneNumber,
+		TextDescription:  pgTextToString(scene.TextDescription),
+		MediaType:        pgTextToString(scene.MediaType),
+		MediaUrl:         pgTextToString(scene.MediaUrl),
+		StartTimeSeconds: pgNumericToFloat64(scene.StartTimeSeconds),
+		DurationSeconds:  pgNumericToFloat64(scene.DurationSeconds),
+		TransitionType:   pgTextToString(scene.TransitionType),
+		CreatedAt:        pgTimestamptzToString(scene.CreatedAt),
+		UpdatedAt:        pgTimestamptzToString(scene.UpdatedAt),
 	}
 }
 

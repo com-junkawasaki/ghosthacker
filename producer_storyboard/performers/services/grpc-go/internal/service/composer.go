@@ -111,9 +111,13 @@ func (s *StoryboardService) UpdateComposer(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
+	title := ""
+	if req.Msg.Title != nil {
+		title = *req.Msg.Title
+	}
 	c, err := s.queries.UpdateComposer(ctx, sqlc.UpdateComposerParams{
 		ID:              uuidToPgUUID(composerID),
-		Title:           req.Msg.Title,
+		Title:           title,
 		DurationSeconds: float64ToPgFloat8(req.Msg.DurationSeconds),
 	})
 	if err == pgx.ErrNoRows {
@@ -378,7 +382,7 @@ func (s *StoryboardService) GenerateSunoMusic(
 	updatedMusic, err := s.queries.UpdateSunoMusicStatus(ctx, sqlc.UpdateSunoMusicStatusParams{
 		ID:       music.ID,
 		Status:   result.Status,
-		AudioUrl: stringToPgText(&result.AudioURL),
+		AudioUrl: stringToPgText(result.AudioURL),
 		TaskID:   taskIDPg,
 	})
 	if err != nil {

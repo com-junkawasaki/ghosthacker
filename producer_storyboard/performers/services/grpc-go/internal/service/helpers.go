@@ -13,7 +13,7 @@ func pgUUIDToString(id pgtype.UUID) string {
 	if !id.Valid {
 		return ""
 	}
-	return id.Bytes.String()
+	return uuid.UUID(id.Bytes).String()
 }
 
 func pgUUIDToUUID(id pgtype.UUID) uuid.UUID {

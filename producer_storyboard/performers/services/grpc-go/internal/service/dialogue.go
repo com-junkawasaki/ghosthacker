@@ -3,11 +3,11 @@ package service
 import (
 	"context"
 	"encoding/base64"
-	"time"
 
 	"connectrpc.com/connect"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgtype"
 
 	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/auth"
 	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/db/sqlc"
@@ -24,14 +24,14 @@ func (s *StoryboardService) ListDialogues(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	dialogues, err := s.queries.ListDialogues(ctx, sceneID)
+	dialogues, err := s.queries.ListDialogues(ctx, uuidToPgUUID(sceneID))
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
 	pbDialogues := make([]*storyboardv1.Dialogue, 0, len(dialogues))
 	for _, d := range dialogues {
-		pbDialogues = append(pbDialogues, convertDialogueToProto(d))
+		pbDialogues = append(pbDialogues, convertDialogueRowToProto(d))
 	}
 
 	return connect.NewResponse(&storyboardv1.ListDialoguesResponse{
@@ -49,7 +49,7 @@ func (s *StoryboardService) GetDialogue(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	d, err := s.queries.GetDialogue(ctx, dialogueID)
+	d, err := s.queries.GetDialogue(ctx, uuidToPgUUID(dialogueID))
 	if err == pgx.ErrNoRows {
 		return nil, connect.NewError(connect.CodeNotFound, err)
 	}
@@ -57,7 +57,7 @@ func (s *StoryboardService) GetDialogue(
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
-	return connect.NewResponse(convertDialogueToProto(d)), nil
+	return connect.NewResponse(convertGetDialogueRowToProto(d)), nil
 }
 
 // CreateDialogue creates a new dialogue
@@ -76,10 +76,7 @@ func (s *StoryboardService) CreateDialogue(
 	}
 
 	orgID := auth.GetOrgIDFromContext(ctx)
-	var orgIDPtr *string
-	if orgID != "" {
-		orgIDPtr = &orgID
-	}
+	orgIDPg := stringToPgText(&orgID)
 
 	orderIndex := int32(0)
 	if req.Msg.OrderIndex != nil {
@@ -87,19 +84,19 @@ func (s *StoryboardService) CreateDialogue(
 	}
 
 	d, err := s.queries.CreateDialogue(ctx, sqlc.CreateDialogueParams{
-		SceneID:     sceneID,
-		CharacterID: characterID,
+		SceneID:     uuidToPgUUID(sceneID),
+		CharacterID: uuidToPgUUID(characterID),
 		Language:    req.Msg.Language,
 		Text:        req.Msg.Text,
-		OrderIndex:  orderIndex,
-		HumeVoiceID: req.Msg.HumeVoiceId,
-		OrgID:       orgIDPtr,
+		OrderIndex:  int32ToPgInt4(&orderIndex),
+		HumeVoiceID: stringToPgText(req.Msg.HumeVoiceId),
+		OrgID:       orgIDPg,
 	})
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
-	return connect.NewResponse(convertDialogueToProto(d)), nil
+	return connect.NewResponse(convertCreateDialogueRowToProto(d)), nil
 }
 
 // UpdateDialogue updates an existing dialogue
@@ -117,11 +114,15 @@ func (s *StoryboardService) UpdateDialogue(
 		orderIndex = req.Msg.OrderIndex
 	}
 
+	text := ""
+	if req.Msg.Text != nil {
+		text = *req.Msg.Text
+	}
 	d, err := s.queries.UpdateDialogue(ctx, sqlc.UpdateDialogueParams{
-		ID:          dialogueID,
-		Text:        req.Msg.Text,
-		OrderIndex:  orderIndex,
-		HumeVoiceID: req.Msg.HumeVoiceId,
+		ID:          uuidToPgUUID(dialogueID),
+		Text:        text,
+		OrderIndex:  int32ToPgInt4(orderIndex),
+		HumeVoiceID: stringToPgText(req.Msg.HumeVoiceId),
 	})
 	if err == pgx.ErrNoRows {
 		return nil, connect.NewError(connect.CodeNotFound, err)
@@ -130,7 +131,7 @@ func (s *StoryboardService) UpdateDialogue(
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
-	return connect.NewResponse(convertDialogueToProto(d)), nil
+	return connect.NewResponse(convertUpdateDialogueRowToProto(d)), nil
 }
 
 // DeleteDialogue deletes a dialogue
@@ -143,7 +144,7 @@ func (s *StoryboardService) DeleteDialogue(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	err = s.queries.DeleteDialogue(ctx, dialogueID)
+	err = s.queries.DeleteDialogue(ctx, uuidToPgUUID(dialogueID))
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
@@ -163,7 +164,7 @@ func (s *StoryboardService) GetDialogueAudioData(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	result, err := s.queries.GetDialogueAudioData(ctx, dialogueID)
+	result, err := s.queries.GetDialogueAudioData(ctx, uuidToPgUUID(dialogueID))
 	if err == pgx.ErrNoRows {
 		return nil, connect.NewError(connect.CodeNotFound, err)
 	}
@@ -171,7 +172,7 @@ func (s *StoryboardService) GetDialogueAudioData(
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
-	base64Data := base64.StdEncoding.EncodeToString(result.AudioData)
+	base64Data := base64.StdEncoding.EncodeToString(result)
 
 	return connect.NewResponse(&storyboardv1.GetDialogueAudioDataResponse{
 		AudioDataBase64: base64Data,
@@ -193,7 +194,7 @@ func (s *StoryboardService) GenerateDialogueAudio(
 	}
 
 	// Get dialogue
-	dialogue, err := s.queries.GetDialogue(ctx, dialogueID)
+	dialogue, err := s.queries.GetDialogue(ctx, uuidToPgUUID(dialogueID))
 	if err == pgx.ErrNoRows {
 		return nil, connect.NewError(connect.CodeNotFound, err)
 	}
@@ -202,56 +203,197 @@ func (s *StoryboardService) GenerateDialogueAudio(
 	}
 
 	// Use character's default voice or dialogue's voice
-	voiceID := dialogue.HumeVoiceID
-	if voiceID == nil {
+	voiceID := ""
+	if dialogue.HumeVoiceID.Valid {
+		voiceID = dialogue.HumeVoiceID.String
+	} else {
 		// Get character's default voice
 		char, err := s.queries.GetCharacter(ctx, dialogue.CharacterID)
-		if err == nil && char.DefaultHumeVoiceID != nil {
-			voiceID = char.DefaultHumeVoiceID
+		if err == nil && char.DefaultHumeVoiceID.Valid {
+			voiceID = char.DefaultHumeVoiceID.String
 		}
 	}
 
-	if voiceID == nil {
+	if voiceID == "" {
 		return nil, connect.NewError(connect.CodeInvalidArgument, nil)
 	}
 
 	// Generate audio using Hume service
-	result, err := s.hume.GenerateSpeech(ctx, dialogue.Text, *voiceID)
+	result, err := s.hume.GenerateSpeech(ctx, dialogue.Text, voiceID)
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
 	// Update dialogue with audio data
 	updatedDialogue, err := s.queries.UpdateDialogueAudio(ctx, sqlc.UpdateDialogueAudioParams{
-		ID:              dialogueID,
+		ID:              uuidToPgUUID(dialogueID),
 		AudioData:       result.AudioData,
-		AudioUrl:        nil,
-		DurationSeconds: &result.Duration,
+		AudioUrl:        pgtype.Text{Valid: false, String: ""},
+		DurationSeconds: float64ToPgNumeric(&result.Duration),
 	})
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
 	return connect.NewResponse(&storyboardv1.GenerateDialogueAudioResponse{
-		Dialogue: convertDialogueToProto(updatedDialogue),
+		Dialogue: convertUpdateDialogueAudioRowToProto(updatedDialogue),
 	}), nil
 }
 
 func convertDialogueToProto(d sqlc.Dialogue) *storyboardv1.Dialogue {
+	orderIndex := int32(0)
+	if d.OrderIndex.Valid {
+		orderIndex = int32(d.OrderIndex.Int32)
+	}
 	pbDialogue := &storyboardv1.Dialogue{
-		Id:               d.ID.String(),
-		SceneId:          d.SceneID.String(),
-		CharacterId:      d.CharacterID.String(),
+		Id:               pgUUIDToString(d.ID),
+		SceneId:          pgUUIDToString(d.SceneID),
+		CharacterId:      pgUUIDToString(d.CharacterID),
 		Language:         d.Language,
 		Text:             d.Text,
-		TranslatedText:   d.TranslatedText,
-		HumeVoiceId:      d.HumeVoiceID,
-		AudioUrl:         d.AudioUrl,
-		StartTimeSeconds: d.StartTimeSeconds,
-		DurationSeconds:  d.DurationSeconds,
-		OrderIndex:       int32(d.OrderIndex),
-		CreatedAt:        d.CreatedAt.Format(time.RFC3339),
-		UpdatedAt:        d.UpdatedAt.Format(time.RFC3339),
+		TranslatedText:   stringPtr(string(d.TranslatedText)),
+		HumeVoiceId:      pgTextToString(d.HumeVoiceID),
+		AudioUrl:         pgTextToString(d.AudioUrl),
+		StartTimeSeconds: pgNumericToFloat64(d.StartTimeSeconds),
+		DurationSeconds:  pgNumericToFloat64(d.DurationSeconds),
+		OrderIndex:       orderIndex,
+		CreatedAt:        pgTimestamptzToString(d.CreatedAt),
+		UpdatedAt:        pgTimestamptzToString(d.UpdatedAt),
+	}
+	return pbDialogue
+}
+
+func convertDialogueRowToProto(d sqlc.ListDialoguesRow) *storyboardv1.Dialogue {
+	orderIndex := int32(0)
+	if d.OrderIndex.Valid {
+		orderIndex = int32(d.OrderIndex.Int32)
+	}
+	var translatedText *string
+	if len(d.TranslatedText) > 0 {
+		translatedText = stringPtr(string(d.TranslatedText))
+	}
+	pbDialogue := &storyboardv1.Dialogue{
+		Id:               pgUUIDToString(d.ID),
+		SceneId:          pgUUIDToString(d.SceneID),
+		CharacterId:      pgUUIDToString(d.CharacterID),
+		Language:         d.Language,
+		Text:             d.Text,
+		TranslatedText:   translatedText,
+		HumeVoiceId:      pgTextToString(d.HumeVoiceID),
+		AudioUrl:         pgTextToString(d.AudioUrl),
+		StartTimeSeconds: pgNumericToFloat64(d.StartTimeSeconds),
+		DurationSeconds:  pgNumericToFloat64(d.DurationSeconds),
+		OrderIndex:       orderIndex,
+		CreatedAt:        pgTimestamptzToString(d.CreatedAt),
+		UpdatedAt:        pgTimestamptzToString(d.UpdatedAt),
+	}
+	return pbDialogue
+}
+
+func convertGetDialogueRowToProto(d sqlc.GetDialogueRow) *storyboardv1.Dialogue {
+	orderIndex := int32(0)
+	if d.OrderIndex.Valid {
+		orderIndex = int32(d.OrderIndex.Int32)
+	}
+	var translatedText *string
+	if len(d.TranslatedText) > 0 {
+		translatedText = stringPtr(string(d.TranslatedText))
+	}
+	pbDialogue := &storyboardv1.Dialogue{
+		Id:               pgUUIDToString(d.ID),
+		SceneId:          pgUUIDToString(d.SceneID),
+		CharacterId:      pgUUIDToString(d.CharacterID),
+		Language:         d.Language,
+		Text:             d.Text,
+		TranslatedText:   translatedText,
+		HumeVoiceId:      pgTextToString(d.HumeVoiceID),
+		AudioUrl:         pgTextToString(d.AudioUrl),
+		StartTimeSeconds: pgNumericToFloat64(d.StartTimeSeconds),
+		DurationSeconds:  pgNumericToFloat64(d.DurationSeconds),
+		OrderIndex:       orderIndex,
+		CreatedAt:        pgTimestamptzToString(d.CreatedAt),
+		UpdatedAt:        pgTimestamptzToString(d.UpdatedAt),
+	}
+	return pbDialogue
+}
+
+func convertCreateDialogueRowToProto(d sqlc.CreateDialogueRow) *storyboardv1.Dialogue {
+	orderIndex := int32(0)
+	if d.OrderIndex.Valid {
+		orderIndex = int32(d.OrderIndex.Int32)
+	}
+	var translatedText *string
+	if len(d.TranslatedText) > 0 {
+		translatedText = stringPtr(string(d.TranslatedText))
+	}
+	pbDialogue := &storyboardv1.Dialogue{
+		Id:               pgUUIDToString(d.ID),
+		SceneId:          pgUUIDToString(d.SceneID),
+		CharacterId:      pgUUIDToString(d.CharacterID),
+		Language:         d.Language,
+		Text:             d.Text,
+		TranslatedText:   translatedText,
+		HumeVoiceId:      pgTextToString(d.HumeVoiceID),
+		AudioUrl:         pgTextToString(d.AudioUrl),
+		StartTimeSeconds: pgNumericToFloat64(d.StartTimeSeconds),
+		DurationSeconds:  pgNumericToFloat64(d.DurationSeconds),
+		OrderIndex:       orderIndex,
+		CreatedAt:        pgTimestamptzToString(d.CreatedAt),
+		UpdatedAt:        pgTimestamptzToString(d.UpdatedAt),
+	}
+	return pbDialogue
+}
+
+func convertUpdateDialogueRowToProto(d sqlc.UpdateDialogueRow) *storyboardv1.Dialogue {
+	orderIndex := int32(0)
+	if d.OrderIndex.Valid {
+		orderIndex = int32(d.OrderIndex.Int32)
+	}
+	var translatedText *string
+	if len(d.TranslatedText) > 0 {
+		translatedText = stringPtr(string(d.TranslatedText))
+	}
+	pbDialogue := &storyboardv1.Dialogue{
+		Id:               pgUUIDToString(d.ID),
+		SceneId:          pgUUIDToString(d.SceneID),
+		CharacterId:      pgUUIDToString(d.CharacterID),
+		Language:         d.Language,
+		Text:             d.Text,
+		TranslatedText:   translatedText,
+		HumeVoiceId:      pgTextToString(d.HumeVoiceID),
+		AudioUrl:         pgTextToString(d.AudioUrl),
+		StartTimeSeconds: pgNumericToFloat64(d.StartTimeSeconds),
+		DurationSeconds:  pgNumericToFloat64(d.DurationSeconds),
+		OrderIndex:       orderIndex,
+		CreatedAt:        pgTimestamptzToString(d.CreatedAt),
+		UpdatedAt:        pgTimestamptzToString(d.UpdatedAt),
+	}
+	return pbDialogue
+}
+
+func convertUpdateDialogueAudioRowToProto(d sqlc.UpdateDialogueAudioRow) *storyboardv1.Dialogue {
+	orderIndex := int32(0)
+	if d.OrderIndex.Valid {
+		orderIndex = int32(d.OrderIndex.Int32)
+	}
+	var translatedText *string
+	if len(d.TranslatedText) > 0 {
+		translatedText = stringPtr(string(d.TranslatedText))
+	}
+	pbDialogue := &storyboardv1.Dialogue{
+		Id:               pgUUIDToString(d.ID),
+		SceneId:          pgUUIDToString(d.SceneID),
+		CharacterId:      pgUUIDToString(d.CharacterID),
+		Language:         d.Language,
+		Text:             d.Text,
+		TranslatedText:   translatedText,
+		HumeVoiceId:      pgTextToString(d.HumeVoiceID),
+		AudioUrl:         pgTextToString(d.AudioUrl),
+		StartTimeSeconds: pgNumericToFloat64(d.StartTimeSeconds),
+		DurationSeconds:  pgNumericToFloat64(d.DurationSeconds),
+		OrderIndex:       orderIndex,
+		CreatedAt:        pgTimestamptzToString(d.CreatedAt),
+		UpdatedAt:        pgTimestamptzToString(d.UpdatedAt),
 	}
 	return pbDialogue
 }

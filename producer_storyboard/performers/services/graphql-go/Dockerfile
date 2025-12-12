@@ -1,5 +1,5 @@
 # Development stage
-FROM golang:1.22-alpine AS development
+FROM golang:1.25-alpine AS development
 
 # Install development dependencies
 RUN apk add --no-cache git ca-certificates
@@ -26,7 +26,7 @@ EXPOSE 8080
 CMD ["air", "-c", ".air.toml"]
 
 # Build stage
-FROM golang:1.22-alpine AS builder
+FROM golang:1.25-alpine AS builder
 
 # Install build dependencies
 RUN apk add --no-cache git ca-certificates

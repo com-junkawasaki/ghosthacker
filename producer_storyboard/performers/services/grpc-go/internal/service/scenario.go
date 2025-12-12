@@ -2,7 +2,6 @@ package service
 
 import (
 	"context"
-	"time"
 
 	"connectrpc.com/connect"
 	"github.com/google/uuid"
@@ -23,7 +22,7 @@ func (s *StoryboardService) ListScenarios(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	scenarios, err := s.queries.ListScenarios(ctx, projectID)
+	scenarios, err := s.queries.ListScenarios(ctx, uuidToPgUUID(projectID))
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
@@ -31,12 +30,12 @@ func (s *StoryboardService) ListScenarios(
 	pbScenarios := make([]*storyboardv1.Scenario, 0, len(scenarios))
 	for _, sc := range scenarios {
 		pbScenarios = append(pbScenarios, &storyboardv1.Scenario{
-			Id:          sc.ID.String(),
-			ProjectId:   sc.ProjectID.String(),
+			Id:          pgUUIDToString(sc.ID),
+			ProjectId:   pgUUIDToString(sc.ProjectID),
 			Title:       sc.Title,
-			Description: sc.Description,
-			CreatedAt:   sc.CreatedAt.Format(time.RFC3339),
-			UpdatedAt:   sc.UpdatedAt.Format(time.RFC3339),
+			Description: pgTextToString(sc.Description),
+			CreatedAt:   pgTimestamptzToString(sc.CreatedAt),
+			UpdatedAt:   pgTimestamptzToString(sc.UpdatedAt),
 		})
 	}
 
@@ -55,7 +54,7 @@ func (s *StoryboardService) GetScenario(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	sc, err := s.queries.GetScenario(ctx, scenarioID)
+	sc, err := s.queries.GetScenario(ctx, uuidToPgUUID(scenarioID))
 	if err == pgx.ErrNoRows {
 		return nil, connect.NewError(connect.CodeNotFound, err)
 	}
@@ -64,12 +63,12 @@ func (s *StoryboardService) GetScenario(
 	}
 
 	return connect.NewResponse(&storyboardv1.Scenario{
-		Id:          sc.ID.String(),
-		ProjectId:   sc.ProjectID.String(),
+		Id:          pgUUIDToString(sc.ID),
+		ProjectId:   pgUUIDToString(sc.ProjectID),
 		Title:       sc.Title,
-		Description: sc.Description,
-		CreatedAt:   sc.CreatedAt.Format(time.RFC3339),
-		UpdatedAt:   sc.UpdatedAt.Format(time.RFC3339),
+		Description: pgTextToString(sc.Description),
+		CreatedAt:   pgTimestamptzToString(sc.CreatedAt),
+		UpdatedAt:   pgTimestamptzToString(sc.UpdatedAt),
 	}), nil
 }
 
@@ -84,28 +83,25 @@ func (s *StoryboardService) CreateScenario(
 	}
 
 	orgID := auth.GetOrgIDFromContext(ctx)
-	var orgIDPtr *string
-	if orgID != "" {
-		orgIDPtr = &orgID
-	}
+	orgIDPg := stringToPgText(&orgID)
 
 	sc, err := s.queries.CreateScenario(ctx, sqlc.CreateScenarioParams{
-		ProjectID:   projectID,
+		ProjectID:   uuidToPgUUID(projectID),
 		Title:       req.Msg.Title,
-		Description: req.Msg.Description,
-		OrgID:       orgIDPtr,
+		Description: stringToPgText(req.Msg.Description),
+		OrgID:       orgIDPg,
 	})
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
 	return connect.NewResponse(&storyboardv1.Scenario{
-		Id:          sc.ID.String(),
-		ProjectId:   sc.ProjectID.String(),
+		Id:          pgUUIDToString(sc.ID),
+		ProjectId:   pgUUIDToString(sc.ProjectID),
 		Title:       sc.Title,
-		Description: sc.Description,
-		CreatedAt:   sc.CreatedAt.Format(time.RFC3339),
-		UpdatedAt:   sc.UpdatedAt.Format(time.RFC3339),
+		Description: pgTextToString(sc.Description),
+		CreatedAt:   pgTimestamptzToString(sc.CreatedAt),
+		UpdatedAt:   pgTimestamptzToString(sc.UpdatedAt),
 	}), nil
 }
 
@@ -119,10 +115,14 @@ func (s *StoryboardService) UpdateScenario(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
+	title := ""
+	if req.Msg.Title != nil {
+		title = *req.Msg.Title
+	}
 	sc, err := s.queries.UpdateScenario(ctx, sqlc.UpdateScenarioParams{
-		ID:          scenarioID,
-		Title:       req.Msg.Title,
-		Description: req.Msg.Description,
+		ID:          uuidToPgUUID(scenarioID),
+		Title:       title,
+		Description: stringToPgText(req.Msg.Description),
 	})
 	if err == pgx.ErrNoRows {
 		return nil, connect.NewError(connect.CodeNotFound, err)
@@ -132,12 +132,12 @@ func (s *StoryboardService) UpdateScenario(
 	}
 
 	return connect.NewResponse(&storyboardv1.Scenario{
-		Id:          sc.ID.String(),
-		ProjectId:   sc.ProjectID.String(),
+		Id:          pgUUIDToString(sc.ID),
+		ProjectId:   pgUUIDToString(sc.ProjectID),
 		Title:       sc.Title,
-		Description: sc.Description,
-		CreatedAt:   sc.CreatedAt.Format(time.RFC3339),
-		UpdatedAt:   sc.UpdatedAt.Format(time.RFC3339),
+		Description: pgTextToString(sc.Description),
+		CreatedAt:   pgTimestamptzToString(sc.CreatedAt),
+		UpdatedAt:   pgTimestamptzToString(sc.UpdatedAt),
 	}), nil
 }
 
@@ -151,7 +151,7 @@ func (s *StoryboardService) DeleteScenario(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	err = s.queries.DeleteScenario(ctx, scenarioID)
+	err = s.queries.DeleteScenario(ctx, uuidToPgUUID(scenarioID))
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}

@@ -100,10 +100,6 @@ func (s *StoryboardService) CreateCharacter(
 	}
 
 	orgID := auth.GetOrgIDFromContext(ctx)
-	var orgIDPtr *string
-	if orgID != "" {
-		orgIDPtr = &orgID
-	}
 
 	var orgIDPg pgtype.Text
 	if orgID != "" {
@@ -151,9 +147,13 @@ func (s *StoryboardService) UpdateCharacter(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
+	name := ""
+	if req.Msg.Name != nil {
+		name = *req.Msg.Name
+	}
 	char, err := s.queries.UpdateCharacter(ctx, sqlc.UpdateCharacterParams{
 		ID:                 uuidToPgUUID(characterID),
-		Name:               req.Msg.Name,
+		Name:               name,
 		Description:        stringToPgText(req.Msg.Description),
 		Personality:        stringToPgText(req.Msg.Personality),
 		Background:         stringToPgText(req.Msg.Background),
