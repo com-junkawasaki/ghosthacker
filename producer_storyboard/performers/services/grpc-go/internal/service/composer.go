@@ -2,14 +2,19 @@ package service
 
 import (
 	"context"
+	"fmt"
 
 	"connectrpc.com/connect"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgtype"
+	"go.temporal.io/sdk/client"
 
+	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/auth"
 	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/db/sqlc"
 	storyboardv1 "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1"
+	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/temporal"
+	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/temporal/workflows"
 )
 
 // ListComposers lists composers for a project
@@ -340,15 +345,11 @@ func (s *StoryboardService) ListSunoMusic(
 	}), nil
 }
 
-// GenerateSunoMusic generates music using Suno AI
+// GenerateSunoMusic generates music using Suno AI via Temporal workflow
 func (s *StoryboardService) GenerateSunoMusic(
 	ctx context.Context,
 	req *connect.Request[storyboardv1.GenerateSunoMusicRequest],
 ) (*connect.Response[storyboardv1.GenerateSunoMusicResponse], error) {
-	if s.suno == nil {
-		return nil, connect.NewError(connect.CodeUnimplemented, nil)
-	}
-
 	var composerID *uuid.UUID
 	if req.Msg.ComposerId != nil {
 		id, err := uuid.Parse(*req.Msg.ComposerId)
@@ -358,13 +359,42 @@ func (s *StoryboardService) GenerateSunoMusic(
 		composerID = &id
 	}
 
-	// Generate music using Suno service
-	result, err := s.suno.GenerateMusic(ctx, req.Msg.Prompt)
+	orgID := auth.GetOrgIDFromContext(ctx)
+
+	// Prepare parameters for Suno
+	params := map[string]interface{}{
+		"prompt": req.Msg.Prompt,
+	}
+	if composerID != nil {
+		params["composerId"] = composerID.String()
+	}
+
+	// Start Temporal workflow for Suno music generation
+	// Use a dummy storyboard ID since Suno doesn't require storyboard
+	dummyStoryboardID := uuid.New().String()
+	workflowOptions := client.StartWorkflowOptions{
+		ID:        fmt.Sprintf("suno-music-%s-%s", dummyStoryboardID, uuid.New().String()[:8]),
+		TaskQueue: temporal.TaskQueue,
+	}
+
+	we, err := s.temporalClient.ExecuteWorkflow(ctx, workflowOptions, workflows.VideoGenerationWorkflow, workflows.VideoGenerationWorkflowInput{
+		StoryboardID: dummyStoryboardID,
+		Provider:     "suno",
+		Params:       params,
+		OrgID:        orgID,
+	})
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
-	// Save to database
+	// Wait for workflow to complete
+	var result workflows.VideoGenerationWorkflowResult
+	err = we.Get(ctx, &result)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	// Save to SunoMusic table
 	var composerIDPg pgtype.UUID
 	if composerID != nil {
 		composerIDPg = uuidToPgUUID(*composerID)
@@ -377,12 +407,13 @@ func (s *StoryboardService) GenerateSunoMusic(
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
-	// Update with task ID
-	taskIDPg := stringToPgText(&result.TaskID)
+	// Update with task ID and audio URL
+	taskIDPg := stringToPgText(&result.ProviderID)
+	audioURL := stringToPgText(&result.VideoURL)
 	updatedMusic, err := s.queries.UpdateSunoMusicStatus(ctx, sqlc.UpdateSunoMusicStatusParams{
 		ID:       music.ID,
 		Status:   result.Status,
-		AudioUrl: stringToPgText(result.AudioURL),
+		AudioUrl: audioURL,
 		TaskID:   taskIDPg,
 	})
 	if err != nil {

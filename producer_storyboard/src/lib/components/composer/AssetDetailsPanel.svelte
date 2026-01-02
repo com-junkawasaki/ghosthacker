@@ -1,16 +1,42 @@
 <script lang="ts">
 	type Props = {
 		assetType: string;
-		selectedAsset: any;
+		selectedAsset: unknown;
+		onAddSample?: () => void;
+		onAddResource?: () => void;
 	};
 
-	let { assetType, selectedAsset }: Props = $props();
+	let { assetType, selectedAsset: _selectedAsset, onAddSample, onAddResource }: Props = $props();
+	void _selectedAsset; // Will be used for asset details display
 
 	// Mock data for demonstration
 	const mockAssets = [
-		{ id: '1', name: 'Music_Tokyo night p...', duration: '00:02:33', createdAt: '2025/12/09 10:36:53' },
-		{ id: '2', name: 'Music_Beats_Ads & Tr...', duration: '00:00:19', createdAt: '2025/12/09 10:01:27' },
+		{ id: '1', name: 'Music_Tokyo night p...', duration: '00:02:33', createdAt: '2025/12/09 10:36:53', durationSeconds: 153 },
+		{ id: '2', name: 'Music_Beats_Ads & Tr...', duration: '00:00:19', createdAt: '2025/12/09 10:01:27', durationSeconds: 19 },
 	];
+
+	function handleDragStart(e: DragEvent, asset: typeof mockAssets[0]) {
+		if (e.dataTransfer) {
+			e.dataTransfer.setData('application/json', JSON.stringify({
+				type: 'resource',
+				assetType,
+				id: asset.id,
+				name: asset.name,
+				duration: asset.durationSeconds || 0,
+			}));
+			e.dataTransfer.effectAllowed = 'copy';
+			// Add visual feedback
+			if (e.target instanceof HTMLElement) {
+				e.target.style.opacity = '0.5';
+			}
+		}
+	}
+
+	function handleDragEnd(e: DragEvent) {
+		if (e.target instanceof HTMLElement) {
+			e.target.style.opacity = '1';
+		}
+	}
 </script>
 
 <div class="asset-details-panel">
@@ -22,6 +48,18 @@
 				{assetType.charAt(0).toUpperCase() + assetType.slice(1)}
 			{/if}
 		</h3>
+		<div class="header-actions">
+			{#if onAddSample}
+				<button class="action-button" onclick={() => onAddSample?.()}>
+					<span>+</span> Sample
+				</button>
+			{/if}
+			{#if onAddResource}
+				<button class="action-button" onclick={() => onAddResource?.()}>
+					<span>+</span> Resource
+				</button>
+			{/if}
+		</div>
 		<div class="search-bar">
 			<input type="text" placeholder="Search..." class="search-input" />
 		</div>
@@ -39,7 +77,13 @@
 				</thead>
 				<tbody>
 					{#each mockAssets as asset}
-						<tr class="asset-row" onclick={() => selectedAsset = asset}>
+						<tr 
+							class="asset-row" 
+							draggable="true"
+							onclick={() => selectedAsset = asset}
+							ondragstart={(e) => handleDragStart(e, asset)}
+							ondragend={handleDragEnd}
+						>
 							<td>{asset.name}</td>
 							<td>{asset.duration}</td>
 							<td>{asset.createdAt}</td>
@@ -75,6 +119,36 @@
 		color: white;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
+	}
+
+	.header-actions {
+		display: flex;
+		gap: 0.5rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.action-button {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		padding: 0.375rem 0.75rem;
+		background: rgba(59, 130, 246, 0.2);
+		border: 1px solid rgba(59, 130, 246, 0.4);
+		border-radius: 0.25rem;
+		color: #3b82f6;
+		font-size: 0.75rem;
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+
+	.action-button:hover {
+		background: rgba(59, 130, 246, 0.3);
+		border-color: rgba(59, 130, 246, 0.6);
+	}
+
+	.action-button span {
+		font-weight: 600;
+		font-size: 0.875rem;
 	}
 
 	.search-bar {
@@ -125,12 +199,16 @@
 	}
 
 	.asset-row {
-		cursor: pointer;
+		cursor: grab;
 		transition: background 0.2s;
 	}
 
 	.asset-row:hover {
 		background: rgba(255, 255, 255, 0.05);
+	}
+
+	.asset-row:active {
+		cursor: grabbing;
 	}
 
 	.asset-table td {

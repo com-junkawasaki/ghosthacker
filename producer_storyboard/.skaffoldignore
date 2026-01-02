@@ -1,0 +1,51 @@
+# Git
+.git/
+.gitignore
+
+# Dependencies
+node_modules/
+vendor/
+go.sum
+
+# Build artifacts
+dist/
+build/
+target/
+*.o
+*.a
+*.so
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test results
+coverage/
+*.coverprofile
+test-results/
+playwright-report/
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.envrc
+.env.local
+
+# Kubernetes
+k8s/helm/*/charts/
+k8s/helm/*/Chart.lock
+
+# Temporary files
+tmp/
+temp/
+*.tmp

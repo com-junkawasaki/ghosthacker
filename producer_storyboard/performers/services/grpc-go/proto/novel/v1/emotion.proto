@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package novel.v1;
+
+option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/novel/v1;novelv1";
+
+// EmotionProfile represents emotion analysis results
+message EmotionProfile {
+  string id = 1;
+  string node_id = 2; // Chapter ID or JsonldNode ID
+  optional string node_type = 3; // "chapter", "character", "scene", etc.
+  double joy = 4;
+  double sadness = 5;
+  double fear = 6;
+  double anger = 7;
+  double surprise = 8;
+  double trust = 9;
+  double anticipation = 10;
+  double disgust = 11;
+  double relief = 12;
+  double hope = 13;
+  optional string emotion_vector_json = 14; // Full emotion vector as JSON
+  string created_at = 15;
+  string updated_at = 16;
+}
+
+message AnalyzeEmotionsRequest {
+  string node_id = 1;
+  optional string node_type = 2;
+  string text_content = 3;
+}
+
+message AnalyzeEmotionsResponse {
+  EmotionProfile emotion_profile = 1;
+}
+
+message GetEmotionProfileRequest {
+  string node_id = 1;
+}
+
+message GetEmotionProfileResponse {
+  optional EmotionProfile emotion_profile = 1;
+}

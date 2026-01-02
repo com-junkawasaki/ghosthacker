@@ -4,12 +4,6 @@
 	"installCommand": "pnpm install",
 	"framework": "sveltekit",
 	"regions": ["iad1"],
-	"functions": {
-		"api/graphql-rust.rs": {
-			"runtime": "vercel-rust@4.0.8",
-			"maxDuration": 30
-		}
-	},
 	"headers": [
 		{
 			"source": "/api/(.*)",

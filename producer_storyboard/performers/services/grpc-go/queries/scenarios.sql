@@ -107,3 +107,15 @@ RETURNING id, part_id, description, order_index, created_at, updated_at;
 
 -- name: DeleteScenePlan :exec
 DELETE FROM scene_plans WHERE id = $1;
+
+-- name: UpdatePartOrder :exec
+UPDATE parts
+SET order_index = $1,
+    updated_at = NOW()
+WHERE id = $2 AND episode_id = $3;
+
+-- name: UpdateScenePlanOrder :exec
+UPDATE scene_plans
+SET order_index = $1,
+    updated_at = NOW()
+WHERE id = $2 AND part_id = $3;

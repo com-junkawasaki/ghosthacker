@@ -25,3 +25,4 @@ export { default as PreviewWindow } from './PreviewWindow.svelte';
 
 // AI features
 export { default as SunoMusicGenerator } from './SunoMusicGenerator.svelte';
+

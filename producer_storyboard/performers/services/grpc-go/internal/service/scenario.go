@@ -44,7 +44,7 @@ func (s *StoryboardService) ListScenarios(
 	}), nil
 }
 
-// GetScenario retrieves a scenario by ID
+// GetScenario retrieves a scenario by ID with episodes, parts, and scene plans
 func (s *StoryboardService) GetScenario(
 	ctx context.Context,
 	req *connect.Request[storyboardv1.GetScenarioRequest],
@@ -54,12 +54,76 @@ func (s *StoryboardService) GetScenario(
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
-	sc, err := s.queries.GetScenario(ctx, uuidToPgUUID(scenarioID))
+	scenarioIDPg := uuidToPgUUID(scenarioID)
+
+	sc, err := s.queries.GetScenario(ctx, scenarioIDPg)
 	if err == pgx.ErrNoRows {
 		return nil, connect.NewError(connect.CodeNotFound, err)
 	}
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	// Fetch episodes
+	episodesRows, err := s.queries.ListEpisodes(ctx, scenarioIDPg)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	episodes := make([]*storyboardv1.Episode, 0, len(episodesRows))
+	for _, epRow := range episodesRows {
+		episodeIDPg := epRow.ID
+
+		// Fetch parts for this episode
+		partsRows, err := s.queries.ListParts(ctx, episodeIDPg)
+		if err != nil {
+			return nil, connect.NewError(connect.CodeInternal, err)
+		}
+
+		parts := make([]*storyboardv1.Part, 0, len(partsRows))
+		for _, partRow := range partsRows {
+			partIDPg := partRow.ID
+
+			// Fetch scene plans for this part
+			scenePlansRows, err := s.queries.ListScenePlans(ctx, partIDPg)
+			if err != nil {
+				return nil, connect.NewError(connect.CodeInternal, err)
+			}
+
+			scenePlans := make([]*storyboardv1.ScenePlan, 0, len(scenePlansRows))
+			for _, spRow := range scenePlansRows {
+				scenePlans = append(scenePlans, &storyboardv1.ScenePlan{
+					Id:          pgUUIDToString(spRow.ID),
+					PartId:      pgUUIDToString(spRow.PartID),
+					Description: spRow.Description,
+					OrderIndex:  int32(spRow.OrderIndex),
+					CreatedAt:   pgTimestamptzToString(spRow.CreatedAt),
+					UpdatedAt:   pgTimestamptzToString(spRow.UpdatedAt),
+				})
+			}
+
+			parts = append(parts, &storyboardv1.Part{
+				Id:          pgUUIDToString(partRow.ID),
+				EpisodeId:   pgUUIDToString(partRow.EpisodeID),
+				Title:       partRow.Title,
+				Description: pgTextToString(partRow.Description),
+				OrderIndex:  int32(partRow.OrderIndex),
+				CreatedAt:   pgTimestamptzToString(partRow.CreatedAt),
+				UpdatedAt:   pgTimestamptzToString(partRow.UpdatedAt),
+				ScenePlans:  scenePlans,
+			})
+		}
+
+		episodes = append(episodes, &storyboardv1.Episode{
+			Id:          pgUUIDToString(epRow.ID),
+			ScenarioId:  pgUUIDToString(epRow.ScenarioID),
+			Title:       epRow.Title,
+			Description: pgTextToString(epRow.Description),
+			OrderIndex:  int32(epRow.OrderIndex),
+			CreatedAt:   pgTimestamptzToString(epRow.CreatedAt),
+			UpdatedAt:   pgTimestamptzToString(epRow.UpdatedAt),
+			Parts:       parts,
+		})
 	}
 
 	return connect.NewResponse(&storyboardv1.Scenario{
@@ -69,6 +133,7 @@ func (s *StoryboardService) GetScenario(
 		Description: pgTextToString(sc.Description),
 		CreatedAt:   pgTimestamptzToString(sc.CreatedAt),
 		UpdatedAt:   pgTimestamptzToString(sc.UpdatedAt),
+		Episodes:    episodes,
 	}), nil
 }
 
@@ -157,6 +222,92 @@ func (s *StoryboardService) DeleteScenario(
 	}
 
 	return connect.NewResponse(&storyboardv1.DeleteScenarioResponse{
+		Success: true,
+	}), nil
+}
+
+// ReorderParts reorders parts within an episode
+func (s *StoryboardService) ReorderParts(
+	ctx context.Context,
+	req *connect.Request[storyboardv1.ReorderPartsRequest],
+) (*connect.Response[storyboardv1.ReorderPartsResponse], error) {
+	episodeID, err := uuid.Parse(req.Msg.EpisodeId)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInvalidArgument, err)
+	}
+
+	episodeIDPg := uuidToPgUUID(episodeID)
+
+	// Verify episode exists and user has access
+	_, err = s.queries.GetEpisode(ctx, episodeIDPg)
+	if err == pgx.ErrNoRows {
+		return nil, connect.NewError(connect.CodeNotFound, err)
+	}
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	// Update order_index for each part
+	for orderIndex, partIDStr := range req.Msg.PartIds {
+		partID, err := uuid.Parse(partIDStr)
+		if err != nil {
+			return nil, connect.NewError(connect.CodeInvalidArgument, err)
+		}
+
+		err = s.queries.UpdatePartOrder(ctx, sqlc.UpdatePartOrderParams{
+			OrderIndex: int32(orderIndex),
+			ID:         uuidToPgUUID(partID),
+			EpisodeID:  episodeIDPg,
+		})
+		if err != nil {
+			return nil, connect.NewError(connect.CodeInternal, err)
+		}
+	}
+
+	return connect.NewResponse(&storyboardv1.ReorderPartsResponse{
+		Success: true,
+	}), nil
+}
+
+// ReorderScenePlans reorders scene plans within a part
+func (s *StoryboardService) ReorderScenePlans(
+	ctx context.Context,
+	req *connect.Request[storyboardv1.ReorderScenePlansRequest],
+) (*connect.Response[storyboardv1.ReorderScenePlansResponse], error) {
+	partID, err := uuid.Parse(req.Msg.PartId)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInvalidArgument, err)
+	}
+
+	partIDPg := uuidToPgUUID(partID)
+
+	// Verify part exists and user has access
+	_, err = s.queries.GetPart(ctx, partIDPg)
+	if err == pgx.ErrNoRows {
+		return nil, connect.NewError(connect.CodeNotFound, err)
+	}
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	// Update order_index for each scene plan
+	for orderIndex, scenePlanIDStr := range req.Msg.ScenePlanIds {
+		scenePlanID, err := uuid.Parse(scenePlanIDStr)
+		if err != nil {
+			return nil, connect.NewError(connect.CodeInvalidArgument, err)
+		}
+
+		err = s.queries.UpdateScenePlanOrder(ctx, sqlc.UpdateScenePlanOrderParams{
+			OrderIndex: int32(orderIndex),
+			ID:         uuidToPgUUID(scenePlanID),
+			PartID:     partIDPg,
+		})
+		if err != nil {
+			return nil, connect.NewError(connect.CodeInternal, err)
+		}
+	}
+
+	return connect.NewResponse(&storyboardv1.ReorderScenePlansResponse{
 		Success: true,
 	}), nil
 }

@@ -54,3 +54,4 @@ message DeleteStoryboardRequest {
 message DeleteStoryboardResponse {
   bool success = 1;
 }
+

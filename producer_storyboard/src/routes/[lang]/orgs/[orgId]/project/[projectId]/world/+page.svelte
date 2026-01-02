@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import ProjectSidebar from '$lib/components/storyboard/ProjectSidebar.svelte';
+	import LocationManager from '$lib/components/storyboard/LocationManager.svelte';
 
 	const { lang, orgId, projectId } = $page.params;
+	let showLocationManager = $state(true);
 </script>
 
 <div class="resource-page">
@@ -14,14 +16,7 @@
 		</header>
 
 		<main class="page-content">
-			<div class="empty-state">
-				<svg width="64" height="64" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5">
-					<circle cx="10" cy="10" r="8"/>
-					<path d="M2 10H18M10 2C12.5 5 13.5 8 10 10C6.5 8 7.5 5 10 2Z"/>
-				</svg>
-				<h2>World Management</h2>
-				<p>World settings and configuration will be available here.</p>
-			</div>
+			<LocationManager projectId={projectId} bind:open={showLocationManager} />
 		</main>
 	</div>
 </div>
@@ -88,4 +83,5 @@
 		color: rgba(255, 255, 255, 0.6);
 	}
 </style>
+
 

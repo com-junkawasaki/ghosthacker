@@ -1,0 +1,111 @@
+{{- if .Values.grpcGo.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "producer-storyboard.fullname" . }}-grpc-go
+  labels:
+    {{- include "producer-storyboard.labels" . | nindent 4 }}
+    app.kubernetes.io/component: grpc-go
+spec:
+  replicas: {{ .Values.grpcGo.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "producer-storyboard.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: grpc-go
+  template:
+    metadata:
+      labels:
+        {{- include "producer-storyboard.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: grpc-go
+    spec:
+      containers:
+      - name: grpc-go
+        image: "{{ .Values.grpcGo.image.repository }}:{{ .Values.grpcGo.image.tag }}"
+        imagePullPolicy: {{ .Values.grpcGo.image.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.grpcGo.service.targetPort }}
+          protocol: TCP
+        env:
+        - name: DATABASE_URL
+          value: {{ .Values.grpcGo.env.DATABASE_URL | quote }}
+        - name: PORT
+          value: {{ .Values.grpcGo.env.PORT | quote }}
+        - name: HOST
+          value: {{ .Values.grpcGo.env.HOST | quote }}
+        - name: TEMPORAL_ADDRESS
+          value: {{ .Values.grpcGo.env.TEMPORAL_ADDRESS | quote }}
+        {{- if .Values.grpcGo.secrets.OPENAI_API_KEY }}
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "producer-storyboard.fullname" . }}-secrets
+              key: openai-api-key
+        {{- end }}
+        {{- if .Values.grpcGo.secrets.HUME_API_KEY }}
+        - name: HUME_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "producer-storyboard.fullname" . }}-secrets
+              key: hume-api-key
+        {{- end }}
+        {{- if .Values.grpcGo.secrets.SUNO_API_KEY }}
+        - name: SUNO_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "producer-storyboard.fullname" . }}-secrets
+              key: suno-api-key
+        {{- end }}
+        {{- if .Values.grpcGo.secrets.RUNWAY_API_KEY }}
+        - name: RUNWAY_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "producer-storyboard.fullname" . }}-secrets
+              key: runway-api-key
+        {{- end }}
+        {{- if .Values.grpcGo.secrets.HIGGSFIELD_API_KEY }}
+        - name: HIGGSFIELD_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "producer-storyboard.fullname" . }}-secrets
+              key: higgsfield-api-key
+        {{- end }}
+        resources:
+          {{- toYaml .Values.grpcGo.resources | nindent 10 }}
+        {{- if .Values.grpcGo.healthcheck.enabled }}
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.grpcGo.healthcheck.path }}
+            port: {{ .Values.grpcGo.healthcheck.port }}
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.grpcGo.healthcheck.path }}
+            port: {{ .Values.grpcGo.healthcheck.port }}
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        {{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "producer-storyboard.fullname" . }}-grpc-go
+  labels:
+    {{- include "producer-storyboard.labels" . | nindent 4 }}
+    app.kubernetes.io/component: grpc-go
+spec:
+  type: {{ .Values.grpcGo.service.type }}
+  ports:
+    - port: {{ .Values.grpcGo.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "producer-storyboard.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: grpc-go
+{{- end }}

@@ -63,3 +63,4 @@ export const POST: RequestHandler = async ({ request, cookies, locals }) => {
 		return json({ error: 'Failed to generate Suno music' }, { status: 500 });
 	}
 };
+

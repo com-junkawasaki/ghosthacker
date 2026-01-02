@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
+	import RunwayVideoGenerator from './RunwayVideoGenerator.svelte';
 
 	type Props = {
 		scene: {
@@ -10,12 +11,15 @@
 			durationSeconds: number | null;
 			mediaUrl: string | null;
 		};
+		storyboardId: string;
 		selected: boolean;
 	};
 
-	let { scene, selected }: Props = $props();
+	let { scene, storyboardId, selected }: Props = $props();
 
 	const dispatch = createEventDispatcher();
+
+	let showRunwayGenerator = $state(false);
 
 	function formatTime(seconds: number | null): string {
 		if (seconds === null) return '00.00';
@@ -34,6 +38,21 @@
 
 	function handleDelete() {
 		// TODO: Implement delete functionality
+	}
+
+	function handleGenerateVideo() {
+		showRunwayGenerator = true;
+	}
+
+	function handleVideoGenerated(videoUrl: string, videoId: string) {
+		console.log('Video generated:', videoUrl, videoId);
+		// TODO: Update scene with generated video
+		showRunwayGenerator = false;
+		dispatch('videoGenerated', { videoUrl, videoId });
+	}
+
+	function handleCloseGenerator() {
+		showRunwayGenerator = false;
 	}
 </script>
 
@@ -64,6 +83,17 @@
 	<div class="controls">
 		<span class="timestamp">{formatTime(scene.startTimeSeconds)}</span>
 		<div class="actions">
+			<button 
+				class="icon-button" 
+				onclick={(e) => { e.stopPropagation(); handleGenerateVideo(); }} 
+				aria-label="Generate video with Runway ML"
+				title="Generate video with Runway ML"
+			>
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+					<path d="M8 2V14M2 8H14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+					<circle cx="8" cy="8" r="6" stroke-width="1.5" />
+				</svg>
+			</button>
 			<button class="icon-button" onclick={(e) => { e.stopPropagation(); handleEdit(); }} aria-label="Edit scene">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
 					<path d="M11 2L14 5L5 14H2V11L11 2Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -77,6 +107,16 @@
 		</div>
 	</div>
 </div>
+
+{#if showRunwayGenerator}
+	<RunwayVideoGenerator
+		{storyboardId}
+		sceneDescription={scene.textDescription}
+		sceneImageUrl={scene.mediaUrl}
+		onVideoGenerated={handleVideoGenerated}
+		onClose={handleCloseGenerator}
+	/>
+{/if}
 
 <style>
 	.scene-panel {

@@ -2,6 +2,9 @@
 target/
 Cargo.lock
 
+# Legacy Rust GraphQL API (not used, uses gRPC-Go instead)
+api/
+
 # Node.js build artifacts
 node_modules/
 .svelte-kit/
@@ -22,4 +25,5 @@ dist/
 # OS
 .DS_Store
 Thumbs.db
+
 

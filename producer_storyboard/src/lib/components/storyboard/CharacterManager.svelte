@@ -6,10 +6,13 @@
 
 	type Props = {
 		projectId: string;
-		open: boolean;
+		open?: boolean;
+		modal?: boolean;
 	};
 
-	let { projectId, open = $bindable(false) }: Props = $props();
+	let { projectId, open = $bindable(true), modal = false }: Props = $props();
+
+	const isModal = $derived(modal && open && browser);
 
 	type Character = {
 		id: string;
@@ -41,10 +44,12 @@
 		try {
 			loading = true;
 			error = null;
+			const headers: HeadersInit = {};
+			if (orgId) {
+				headers['X-Org-Id'] = orgId;
+			}
 			const response = await fetch(`/api/characters?projectId=${projectId}`, {
-				headers: {
-					'X-Org-Id': orgId,
-				},
+				headers,
 			});
 			
 			if (!response.ok) {
@@ -74,12 +79,15 @@
 		if (!browser || !projectId) return;
 
 		try {
+			const headers: HeadersInit = {
+				'Content-Type': 'application/json',
+			};
+			if (orgId) {
+				headers['X-Org-Id'] = orgId;
+			}
 			const response = await fetch('/api/characters', {
 				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'X-Org-Id': orgId,
-				},
+				headers,
 				body: JSON.stringify({
 					projectId,
 					name,
@@ -115,12 +123,15 @@
 		if (!browser) return;
 
 		try {
+			const headers: HeadersInit = {
+				'Content-Type': 'application/json',
+			};
+			if (orgId) {
+				headers['X-Org-Id'] = orgId;
+			}
 			const response = await fetch(`/api/characters/${id}`, {
 				method: 'PUT',
-				headers: {
-					'Content-Type': 'application/json',
-					'X-Org-Id': orgId,
-				},
+				headers,
 				body: JSON.stringify({
 					name,
 					description: description || null,
@@ -157,11 +168,13 @@
 		if (!browser || !deletingCharacterId) return;
 
 		try {
+			const headers: HeadersInit = {};
+			if (orgId) {
+				headers['X-Org-Id'] = orgId;
+			}
 			const response = await fetch(`/api/characters/${deletingCharacterId}`, {
 				method: 'DELETE',
-				headers: {
-					'X-Org-Id': orgId,
-				},
+				headers,
 			});
 
 			if (!response.ok) {
@@ -189,18 +202,19 @@
 
 {#if open}
 	<div
-		class="character-manager-overlay"
+		class="character-manager-wrapper"
+		class:modal-overlay={isModal}
 		role="dialog"
 		tabindex="-1"
-		aria-modal="true"
+		aria-modal={isModal}
 		aria-labelledby="character-manager-title"
 		onclick={(e) => {
-			if (e.target === e.currentTarget) {
+			if (isModal && e.target === e.currentTarget) {
 				open = false;
 			}
 		}}
 		onkeydown={(e) => {
-			if (e.key === 'Escape') {
+			if (isModal && e.key === 'Escape') {
 				open = false;
 			}
 		}}
@@ -211,14 +225,16 @@
 			tabindex="-1"
 			onclick={(e) => e.stopPropagation()}
 			onkeydown={(e) => {
-				if (e.key === 'Escape') {
-					onclose();
+				if (isModal && e.key === 'Escape') {
+					open = false;
 				}
 			}}
 		>
 			<div class="header">
 				<h2 id="character-manager-title">Characters</h2>
-				<button type="button" class="close-button" onclick={() => open = false}>✕</button>
+				{#if isModal}
+					<button type="button" class="close-button" onclick={() => open = false}>✕</button>
+				{/if}
 			</div>
 
 			{#if error}
@@ -387,7 +403,11 @@
 {/if}
 
 <style>
-	.character-manager-overlay {
+	.character-manager-wrapper {
+		width: 100%;
+	}
+
+	.character-manager-wrapper.modal-overlay {
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -404,8 +424,11 @@
 		background: #1a1a1a;
 		border-radius: 0.5rem;
 		padding: 1.5rem;
+		width: 100%;
+	}
+
+	.character-manager-wrapper.modal-overlay .character-manager {
 		max-width: 600px;
-		width: 90%;
 		max-height: 80vh;
 		overflow-y: auto;
 	}

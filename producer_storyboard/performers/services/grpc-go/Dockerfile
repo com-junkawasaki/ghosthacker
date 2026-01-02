@@ -24,7 +24,17 @@ RUN go mod download
 COPY . .
 
 # Generate protobuf code (run from proto directory)
-RUN cd proto && buf generate --template ../buf.gen.yaml
+RUN cat > /tmp/buf.gen.go.yaml <<'EOF' && \
+    cd proto && buf generate --template /tmp/buf.gen.go.yaml
+version: v2
+plugins:
+  - remote: buf.build/protocolbuffers/go
+    out: internal/gen
+    opt: paths=source_relative
+  - remote: buf.build/connectrpc/go
+    out: internal/gen
+    opt: paths=source_relative
+EOF
 
 # Generate sqlc code
 RUN go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest && sqlc generate
@@ -58,7 +68,17 @@ RUN go mod download
 COPY . .
 
 # Generate protobuf code (run from proto directory)
-RUN cd proto && buf generate --template ../buf.gen.yaml
+RUN cat > /tmp/buf.gen.go.yaml <<'EOF' && \
+    cd proto && buf generate --template /tmp/buf.gen.go.yaml
+version: v2
+plugins:
+  - remote: buf.build/protocolbuffers/go
+    out: internal/gen
+    opt: paths=source_relative
+  - remote: buf.build/connectrpc/go
+    out: internal/gen
+    opt: paths=source_relative
+EOF
 
 # Generate sqlc code
 RUN go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest && sqlc generate
@@ -100,3 +120,4 @@ ENV HOST=0.0.0.0
 
 # Run the application
 CMD ["./grpc-server"]
+

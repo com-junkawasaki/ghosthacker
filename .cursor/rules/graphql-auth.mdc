@@ -151,3 +151,4 @@ fetchParams({ session }) {
 - `/api/graphql/+server.ts`: GraphQL APIプロキシの実装例
 - `/src/lib/graphql/client.ts`: GraphQLクライアントの実装例
 - `/performers/services/graphql/src/ports/clerk.rs`: バックエンドの認証処理
+

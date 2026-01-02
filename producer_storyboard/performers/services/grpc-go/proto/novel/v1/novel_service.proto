@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package novel.v1;
+
+option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/novel/v1;novelv1";
+
+import "novel/v1/novel.proto";
+import "novel/v1/chapter.proto";
+import "novel/v1/jsonld_node.proto";
+import "novel/v1/emotion.proto";
+import "novel/v1/ai.proto";
+import "novel/v1/epub.proto";
+
+// NovelService provides all novel-related operations
+service NovelService {
+  // Novel Project operations
+  rpc ListNovelProjects(ListNovelProjectsRequest) returns (ListNovelProjectsResponse);
+  rpc GetNovelProject(GetNovelProjectRequest) returns (NovelProject);
+  rpc CreateNovelProject(CreateNovelProjectRequest) returns (NovelProject);
+  rpc UpdateNovelProject(UpdateNovelProjectRequest) returns (NovelProject);
+  rpc DeleteNovelProject(DeleteNovelProjectRequest) returns (DeleteNovelProjectResponse);
+  
+  // Chapter operations
+  rpc ListChapters(ListChaptersRequest) returns (ListChaptersResponse);
+  rpc GetChapter(GetChapterRequest) returns (Chapter);
+  rpc CreateChapter(CreateChapterRequest) returns (Chapter);
+  rpc UpdateChapter(UpdateChapterRequest) returns (Chapter);
+  rpc DeleteChapter(DeleteChapterRequest) returns (DeleteChapterResponse);
+  rpc GetChapterContent(GetChapterContentRequest) returns (GetChapterContentResponse);
+  rpc UpdateChapterContent(UpdateChapterContentRequest) returns (UpdateChapterContentResponse);
+  
+  // JSON-LD Node operations
+  rpc ListJsonldNodes(ListJsonldNodesRequest) returns (ListJsonldNodesResponse);
+  rpc GetJsonldNode(GetJsonldNodeRequest) returns (JsonldNode);
+  rpc UpsertJsonldNode(UpsertJsonldNodeRequest) returns (JsonldNode);
+  rpc DeleteJsonldNode(DeleteJsonldNodeRequest) returns (DeleteJsonldNodeResponse);
+  
+  // Emotion Analysis operations
+  rpc AnalyzeEmotions(AnalyzeEmotionsRequest) returns (AnalyzeEmotionsResponse);
+  rpc GetEmotionProfile(GetEmotionProfileRequest) returns (GetEmotionProfileResponse);
+  
+  // AI Generation operations
+  rpc GenerateText(GenerateTextRequest) returns (GenerateTextResponse);
+  rpc GenerateImage(GenerateImageRequest) returns (GenerateImageResponse);
+  
+  // EPUB Export/Import operations
+  rpc ExportEpub(ExportEpubRequest) returns (ExportEpubResponse);
+  rpc ImportEpub(ImportEpubRequest) returns (ImportEpubResponse);
+}

@@ -5,7 +5,7 @@ help:
 	@echo "  make test              - Run all TDD tests"
 	@echo "  make test-unit         - Run unit tests only"
 	@echo "  make test-integration  - Run integration tests only"
-	@echo "  make test-bdd          - Run BDD tests (requires GraphQL API)"
+	@echo "  make test-bdd          - Run BDD tests (uses gRPC API)"
 	@echo "  make test-coverage     - Generate test coverage report"
 	@echo "  make docker-up         - Start all Docker services"
 	@echo "  make docker-down       - Stop all Docker services"
@@ -34,3 +34,19 @@ docker-down:
 
 docker-logs:
 	docker-compose logs -f
+
+# Skaffold commands for Kubernetes development
+skaffold-dev:
+	@skaffold dev --profile dev
+
+skaffold-run:
+	@skaffold run
+
+skaffold-build:
+	@skaffold build
+
+skaffold-deploy:
+	@skaffold deploy
+
+skaffold-delete:
+	@skaffold delete

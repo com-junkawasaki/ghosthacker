@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { composerStore, type Track } from '$lib/stores/composerStore';
+	import { composerStore, type Track } from '$lib/stores/composerStore.svelte';
 	import ComposerToolbar from './ComposerToolbar.svelte';
 	import CanvasPreview from './CanvasPreview.svelte';
 	import TimelineEditor from './TimelineEditor.svelte';
@@ -14,7 +14,8 @@
 		initialTracks?: Track[];
 	};
 
-	let { composerId, projectId, initialTracks = [] }: Props = $props();
+	let { composerId, projectId: _projectId, initialTracks = [] }: Props = $props();
+	void _projectId; // Reserved for future use
 
 	let selectedAssetType = $state('audio');
 	let selectedAsset = $state<unknown>(null);
@@ -52,7 +53,7 @@
 
 	function handleMusicGenerate(prompt: string, customMode: boolean, makeInstrumental: boolean, mv: string | null) {
 		console.log('[Composer] Generate music:', { prompt, customMode, makeInstrumental, mv });
-		// TODO: Call Suno API via GraphQL mutation
+		// TODO: Call Suno API via gRPC API endpoint (/api/suno-music)
 		showMusicGenerator = false;
 	}
 
@@ -87,16 +88,18 @@
 
 	function handleSave() {
 		console.log('[Composer] Save project');
-		// TODO: Save via GraphQL mutation
+		// TODO: Save via gRPC API endpoint (/api/composers)
 	}
 
 	// Handle drag and drop from asset library to timeline
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	function handleDragStart(e: DragEvent, asset: unknown) {
 		if (e.dataTransfer) {
 			e.dataTransfer.setData('application/json', JSON.stringify(asset));
 			e.dataTransfer.effectAllowed = 'copy';
 		}
 	}
+	void handleDragStart; // Will be used when drag-drop is implemented
 </script>
 
 <div class="composer-layout">
@@ -379,3 +382,4 @@
 		cursor: not-allowed;
 	}
 </style>
+

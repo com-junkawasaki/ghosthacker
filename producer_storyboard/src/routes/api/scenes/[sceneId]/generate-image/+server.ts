@@ -64,3 +64,4 @@ export const POST: RequestHandler = async ({ params, request, cookies, locals })
 		return json({ error: 'Failed to generate scene image' }, { status: 500 });
 	}
 };
+

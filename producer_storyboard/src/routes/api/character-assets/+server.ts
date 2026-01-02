@@ -105,3 +105,4 @@ export const POST: RequestHandler = async ({ request, cookies, locals }) => {
 		return json({ error: 'Failed to upload character asset' }, { status: 500 });
 	}
 };
+

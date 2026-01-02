@@ -36,3 +36,4 @@ Then('サーバーログにアクセス結果が記録される', async () => {
 	console.log(`[E2E Debug] Check server logs for: [OrgLayout Server] Organization access check result`);
 	console.log(`[E2E Debug] The log should show hasAccess: true or false`);
 });
+

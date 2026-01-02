@@ -59,3 +59,4 @@ export const POST: RequestHandler = async ({ request, cookies, locals }) => {
 		return json({ error: 'Failed to reorder scenes' }, { status: 500 });
 	}
 };
+

@@ -12,19 +12,29 @@ import (
 )
 
 const createCharacter = `-- name: CreateCharacter :one
-INSERT INTO characters (project_id, name, description, personality, background, default_hume_voice_id, org_id)
-VALUES ($1, $2, $3, $4, $5, $6, $7)
-RETURNING id, project_id, name, description, personality, background, default_hume_voice_id, profile_image_id, created_at, updated_at
+INSERT INTO characters (project_id, name, description, personality, background, default_hume_voice_id, org_id, age, gender, birth_date, height_cm, weight_kg, hair_color, eye_color, occupation_id, organization_id, attributes_json)
+VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
+RETURNING id, project_id, name, description, personality, background, default_hume_voice_id, profile_image_id, age, gender, birth_date, height_cm, weight_kg, hair_color, eye_color, occupation_id, organization_id, attributes_json, created_at, updated_at
 `
 
 type CreateCharacterParams struct {
-	ProjectID          pgtype.UUID `json:"project_id"`
-	Name               string      `json:"name"`
-	Description        pgtype.Text `json:"description"`
-	Personality        pgtype.Text `json:"personality"`
-	Background         pgtype.Text `json:"background"`
-	DefaultHumeVoiceID pgtype.Text `json:"default_hume_voice_id"`
-	OrgID              pgtype.Text `json:"org_id"`
+	ProjectID          pgtype.UUID    `json:"project_id"`
+	Name               string         `json:"name"`
+	Description        pgtype.Text    `json:"description"`
+	Personality        pgtype.Text    `json:"personality"`
+	Background         pgtype.Text    `json:"background"`
+	DefaultHumeVoiceID pgtype.Text    `json:"default_hume_voice_id"`
+	OrgID              pgtype.Text    `json:"org_id"`
+	Age                pgtype.Int4    `json:"age"`
+	Gender             pgtype.Text    `json:"gender"`
+	BirthDate          pgtype.Date    `json:"birth_date"`
+	HeightCm           pgtype.Int4    `json:"height_cm"`
+	WeightKg           pgtype.Numeric `json:"weight_kg"`
+	HairColor          pgtype.Text    `json:"hair_color"`
+	EyeColor           pgtype.Text    `json:"eye_color"`
+	OccupationID       pgtype.UUID    `json:"occupation_id"`
+	OrganizationID     pgtype.UUID    `json:"organization_id"`
+	AttributesJson     []byte         `json:"attributes_json"`
 }
 
 type CreateCharacterRow struct {
@@ -36,6 +46,16 @@ type CreateCharacterRow struct {
 	Background         pgtype.Text        `json:"background"`
 	DefaultHumeVoiceID pgtype.Text        `json:"default_hume_voice_id"`
 	ProfileImageID     pgtype.UUID        `json:"profile_image_id"`
+	Age                pgtype.Int4        `json:"age"`
+	Gender             pgtype.Text        `json:"gender"`
+	BirthDate          pgtype.Date        `json:"birth_date"`
+	HeightCm           pgtype.Int4        `json:"height_cm"`
+	WeightKg           pgtype.Numeric     `json:"weight_kg"`
+	HairColor          pgtype.Text        `json:"hair_color"`
+	EyeColor           pgtype.Text        `json:"eye_color"`
+	OccupationID       pgtype.UUID        `json:"occupation_id"`
+	OrganizationID     pgtype.UUID        `json:"organization_id"`
+	AttributesJson     []byte             `json:"attributes_json"`
 	CreatedAt          pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt          pgtype.Timestamptz `json:"updated_at"`
 }
@@ -49,6 +69,16 @@ func (q *Queries) CreateCharacter(ctx context.Context, arg CreateCharacterParams
 		arg.Background,
 		arg.DefaultHumeVoiceID,
 		arg.OrgID,
+		arg.Age,
+		arg.Gender,
+		arg.BirthDate,
+		arg.HeightCm,
+		arg.WeightKg,
+		arg.HairColor,
+		arg.EyeColor,
+		arg.OccupationID,
+		arg.OrganizationID,
+		arg.AttributesJson,
 	)
 	var i CreateCharacterRow
 	err := row.Scan(
@@ -60,6 +90,63 @@ func (q *Queries) CreateCharacter(ctx context.Context, arg CreateCharacterParams
 		&i.Background,
 		&i.DefaultHumeVoiceID,
 		&i.ProfileImageID,
+		&i.Age,
+		&i.Gender,
+		&i.BirthDate,
+		&i.HeightCm,
+		&i.WeightKg,
+		&i.HairColor,
+		&i.EyeColor,
+		&i.OccupationID,
+		&i.OrganizationID,
+		&i.AttributesJson,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const createCharacter3DModel = `-- name: CreateCharacter3DModel :one
+INSERT INTO character_3d_models (character_id, model_format, model_data, texture_data, is_primary, metadata)
+VALUES ($1, $2, $3, $4, $5, $6)
+RETURNING id, character_id, model_format, is_primary, metadata, created_at, updated_at
+`
+
+type CreateCharacter3DModelParams struct {
+	CharacterID pgtype.UUID `json:"character_id"`
+	ModelFormat string      `json:"model_format"`
+	ModelData   []byte      `json:"model_data"`
+	TextureData [][]byte    `json:"texture_data"`
+	IsPrimary   pgtype.Bool `json:"is_primary"`
+	Metadata    []byte      `json:"metadata"`
+}
+
+type CreateCharacter3DModelRow struct {
+	ID          pgtype.UUID        `json:"id"`
+	CharacterID pgtype.UUID        `json:"character_id"`
+	ModelFormat string             `json:"model_format"`
+	IsPrimary   pgtype.Bool        `json:"is_primary"`
+	Metadata    []byte             `json:"metadata"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+func (q *Queries) CreateCharacter3DModel(ctx context.Context, arg CreateCharacter3DModelParams) (CreateCharacter3DModelRow, error) {
+	row := q.db.QueryRow(ctx, createCharacter3DModel,
+		arg.CharacterID,
+		arg.ModelFormat,
+		arg.ModelData,
+		arg.TextureData,
+		arg.IsPrimary,
+		arg.Metadata,
+	)
+	var i CreateCharacter3DModelRow
+	err := row.Scan(
+		&i.ID,
+		&i.CharacterID,
+		&i.ModelFormat,
+		&i.IsPrimary,
+		&i.Metadata,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)
@@ -109,12 +196,74 @@ func (q *Queries) CreateCharacterAsset(ctx context.Context, arg CreateCharacterA
 	return i, err
 }
 
+const createCharacterImage = `-- name: CreateCharacterImage :one
+INSERT INTO character_images (character_id, angle, image_data, image_format, width, height, is_primary)
+VALUES ($1, $2, $3, $4, $5, $6, $7)
+RETURNING id, character_id, angle, image_format, width, height, is_primary, created_at, updated_at
+`
+
+type CreateCharacterImageParams struct {
+	CharacterID pgtype.UUID `json:"character_id"`
+	Angle       string      `json:"angle"`
+	ImageData   []byte      `json:"image_data"`
+	ImageFormat string      `json:"image_format"`
+	Width       pgtype.Int4 `json:"width"`
+	Height      pgtype.Int4 `json:"height"`
+	IsPrimary   pgtype.Bool `json:"is_primary"`
+}
+
+type CreateCharacterImageRow struct {
+	ID          pgtype.UUID        `json:"id"`
+	CharacterID pgtype.UUID        `json:"character_id"`
+	Angle       string             `json:"angle"`
+	ImageFormat string             `json:"image_format"`
+	Width       pgtype.Int4        `json:"width"`
+	Height      pgtype.Int4        `json:"height"`
+	IsPrimary   pgtype.Bool        `json:"is_primary"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+func (q *Queries) CreateCharacterImage(ctx context.Context, arg CreateCharacterImageParams) (CreateCharacterImageRow, error) {
+	row := q.db.QueryRow(ctx, createCharacterImage,
+		arg.CharacterID,
+		arg.Angle,
+		arg.ImageData,
+		arg.ImageFormat,
+		arg.Width,
+		arg.Height,
+		arg.IsPrimary,
+	)
+	var i CreateCharacterImageRow
+	err := row.Scan(
+		&i.ID,
+		&i.CharacterID,
+		&i.Angle,
+		&i.ImageFormat,
+		&i.Width,
+		&i.Height,
+		&i.IsPrimary,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
 const deleteCharacter = `-- name: DeleteCharacter :exec
 DELETE FROM characters WHERE id = $1
 `
 
 func (q *Queries) DeleteCharacter(ctx context.Context, id pgtype.UUID) error {
 	_, err := q.db.Exec(ctx, deleteCharacter, id)
+	return err
+}
+
+const deleteCharacter3DModel = `-- name: DeleteCharacter3DModel :exec
+DELETE FROM character_3d_models WHERE id = $1
+`
+
+func (q *Queries) DeleteCharacter3DModel(ctx context.Context, id pgtype.UUID) error {
+	_, err := q.db.Exec(ctx, deleteCharacter3DModel, id)
 	return err
 }
 
@@ -127,8 +276,17 @@ func (q *Queries) DeleteCharacterAsset(ctx context.Context, id pgtype.UUID) erro
 	return err
 }
 
+const deleteCharacterImage = `-- name: DeleteCharacterImage :exec
+DELETE FROM character_images WHERE id = $1
+`
+
+func (q *Queries) DeleteCharacterImage(ctx context.Context, id pgtype.UUID) error {
+	_, err := q.db.Exec(ctx, deleteCharacterImage, id)
+	return err
+}
+
 const getCharacter = `-- name: GetCharacter :one
-SELECT id, project_id, name, description, personality, background, default_hume_voice_id, profile_image_id, created_at, updated_at
+SELECT id, project_id, name, description, personality, background, default_hume_voice_id, profile_image_id, age, gender, birth_date, height_cm, weight_kg, hair_color, eye_color, occupation_id, organization_id, attributes_json, created_at, updated_at
 FROM characters
 WHERE id = $1
 `
@@ -142,6 +300,16 @@ type GetCharacterRow struct {
 	Background         pgtype.Text        `json:"background"`
 	DefaultHumeVoiceID pgtype.Text        `json:"default_hume_voice_id"`
 	ProfileImageID     pgtype.UUID        `json:"profile_image_id"`
+	Age                pgtype.Int4        `json:"age"`
+	Gender             pgtype.Text        `json:"gender"`
+	BirthDate          pgtype.Date        `json:"birth_date"`
+	HeightCm           pgtype.Int4        `json:"height_cm"`
+	WeightKg           pgtype.Numeric     `json:"weight_kg"`
+	HairColor          pgtype.Text        `json:"hair_color"`
+	EyeColor           pgtype.Text        `json:"eye_color"`
+	OccupationID       pgtype.UUID        `json:"occupation_id"`
+	OrganizationID     pgtype.UUID        `json:"organization_id"`
+	AttributesJson     []byte             `json:"attributes_json"`
 	CreatedAt          pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt          pgtype.Timestamptz `json:"updated_at"`
 }
@@ -158,8 +326,72 @@ func (q *Queries) GetCharacter(ctx context.Context, id pgtype.UUID) (GetCharacte
 		&i.Background,
 		&i.DefaultHumeVoiceID,
 		&i.ProfileImageID,
+		&i.Age,
+		&i.Gender,
+		&i.BirthDate,
+		&i.HeightCm,
+		&i.WeightKg,
+		&i.HairColor,
+		&i.EyeColor,
+		&i.OccupationID,
+		&i.OrganizationID,
+		&i.AttributesJson,
 		&i.CreatedAt,
 		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const getCharacter3DModel = `-- name: GetCharacter3DModel :one
+SELECT id, character_id, model_format, is_primary, metadata, created_at, updated_at
+FROM character_3d_models
+WHERE id = $1
+`
+
+type GetCharacter3DModelRow struct {
+	ID          pgtype.UUID        `json:"id"`
+	CharacterID pgtype.UUID        `json:"character_id"`
+	ModelFormat string             `json:"model_format"`
+	IsPrimary   pgtype.Bool        `json:"is_primary"`
+	Metadata    []byte             `json:"metadata"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+func (q *Queries) GetCharacter3DModel(ctx context.Context, id pgtype.UUID) (GetCharacter3DModelRow, error) {
+	row := q.db.QueryRow(ctx, getCharacter3DModel, id)
+	var i GetCharacter3DModelRow
+	err := row.Scan(
+		&i.ID,
+		&i.CharacterID,
+		&i.ModelFormat,
+		&i.IsPrimary,
+		&i.Metadata,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const getCharacter3DModelData = `-- name: GetCharacter3DModelData :one
+SELECT model_data, model_format, texture_data, metadata FROM character_3d_models WHERE id = $1
+`
+
+type GetCharacter3DModelDataRow struct {
+	ModelData   []byte   `json:"model_data"`
+	ModelFormat string   `json:"model_format"`
+	TextureData [][]byte `json:"texture_data"`
+	Metadata    []byte   `json:"metadata"`
+}
+
+func (q *Queries) GetCharacter3DModelData(ctx context.Context, id pgtype.UUID) (GetCharacter3DModelDataRow, error) {
+	row := q.db.QueryRow(ctx, getCharacter3DModelData, id)
+	var i GetCharacter3DModelDataRow
+	err := row.Scan(
+		&i.ModelData,
+		&i.ModelFormat,
+		&i.TextureData,
+		&i.Metadata,
 	)
 	return i, err
 }
@@ -178,6 +410,102 @@ func (q *Queries) GetCharacterAssetData(ctx context.Context, id pgtype.UUID) (Ge
 	var i GetCharacterAssetDataRow
 	err := row.Scan(&i.AssetData, &i.AssetFormat)
 	return i, err
+}
+
+const getCharacterImage = `-- name: GetCharacterImage :one
+SELECT id, character_id, angle, image_format, width, height, is_primary, created_at, updated_at
+FROM character_images
+WHERE id = $1
+`
+
+type GetCharacterImageRow struct {
+	ID          pgtype.UUID        `json:"id"`
+	CharacterID pgtype.UUID        `json:"character_id"`
+	Angle       string             `json:"angle"`
+	ImageFormat string             `json:"image_format"`
+	Width       pgtype.Int4        `json:"width"`
+	Height      pgtype.Int4        `json:"height"`
+	IsPrimary   pgtype.Bool        `json:"is_primary"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+func (q *Queries) GetCharacterImage(ctx context.Context, id pgtype.UUID) (GetCharacterImageRow, error) {
+	row := q.db.QueryRow(ctx, getCharacterImage, id)
+	var i GetCharacterImageRow
+	err := row.Scan(
+		&i.ID,
+		&i.CharacterID,
+		&i.Angle,
+		&i.ImageFormat,
+		&i.Width,
+		&i.Height,
+		&i.IsPrimary,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const getCharacterImageData = `-- name: GetCharacterImageData :one
+SELECT image_data, image_format FROM character_images WHERE id = $1
+`
+
+type GetCharacterImageDataRow struct {
+	ImageData   []byte `json:"image_data"`
+	ImageFormat string `json:"image_format"`
+}
+
+func (q *Queries) GetCharacterImageData(ctx context.Context, id pgtype.UUID) (GetCharacterImageDataRow, error) {
+	row := q.db.QueryRow(ctx, getCharacterImageData, id)
+	var i GetCharacterImageDataRow
+	err := row.Scan(&i.ImageData, &i.ImageFormat)
+	return i, err
+}
+
+const listCharacter3DModels = `-- name: ListCharacter3DModels :many
+SELECT id, character_id, model_format, is_primary, metadata, created_at, updated_at
+FROM character_3d_models
+WHERE character_id = $1
+ORDER BY is_primary DESC, created_at ASC
+`
+
+type ListCharacter3DModelsRow struct {
+	ID          pgtype.UUID        `json:"id"`
+	CharacterID pgtype.UUID        `json:"character_id"`
+	ModelFormat string             `json:"model_format"`
+	IsPrimary   pgtype.Bool        `json:"is_primary"`
+	Metadata    []byte             `json:"metadata"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+func (q *Queries) ListCharacter3DModels(ctx context.Context, characterID pgtype.UUID) ([]ListCharacter3DModelsRow, error) {
+	rows, err := q.db.Query(ctx, listCharacter3DModels, characterID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []ListCharacter3DModelsRow
+	for rows.Next() {
+		var i ListCharacter3DModelsRow
+		if err := rows.Scan(
+			&i.ID,
+			&i.CharacterID,
+			&i.ModelFormat,
+			&i.IsPrimary,
+			&i.Metadata,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
 }
 
 const listCharacterAssets = `-- name: ListCharacterAssets :many
@@ -223,8 +551,57 @@ func (q *Queries) ListCharacterAssets(ctx context.Context, characterID pgtype.UU
 	return items, nil
 }
 
+const listCharacterImages = `-- name: ListCharacterImages :many
+SELECT id, character_id, angle, image_format, width, height, is_primary, created_at, updated_at
+FROM character_images
+WHERE character_id = $1
+ORDER BY is_primary DESC, created_at ASC
+`
+
+type ListCharacterImagesRow struct {
+	ID          pgtype.UUID        `json:"id"`
+	CharacterID pgtype.UUID        `json:"character_id"`
+	Angle       string             `json:"angle"`
+	ImageFormat string             `json:"image_format"`
+	Width       pgtype.Int4        `json:"width"`
+	Height      pgtype.Int4        `json:"height"`
+	IsPrimary   pgtype.Bool        `json:"is_primary"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+func (q *Queries) ListCharacterImages(ctx context.Context, characterID pgtype.UUID) ([]ListCharacterImagesRow, error) {
+	rows, err := q.db.Query(ctx, listCharacterImages, characterID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []ListCharacterImagesRow
+	for rows.Next() {
+		var i ListCharacterImagesRow
+		if err := rows.Scan(
+			&i.ID,
+			&i.CharacterID,
+			&i.Angle,
+			&i.ImageFormat,
+			&i.Width,
+			&i.Height,
+			&i.IsPrimary,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const listCharacters = `-- name: ListCharacters :many
-SELECT id, project_id, name, description, personality, background, default_hume_voice_id, profile_image_id, created_at, updated_at
+SELECT id, project_id, name, description, personality, background, default_hume_voice_id, profile_image_id, age, gender, birth_date, height_cm, weight_kg, hair_color, eye_color, occupation_id, organization_id, attributes_json, created_at, updated_at
 FROM characters
 WHERE project_id = $1
 ORDER BY created_at ASC
@@ -239,6 +616,16 @@ type ListCharactersRow struct {
 	Background         pgtype.Text        `json:"background"`
 	DefaultHumeVoiceID pgtype.Text        `json:"default_hume_voice_id"`
 	ProfileImageID     pgtype.UUID        `json:"profile_image_id"`
+	Age                pgtype.Int4        `json:"age"`
+	Gender             pgtype.Text        `json:"gender"`
+	BirthDate          pgtype.Date        `json:"birth_date"`
+	HeightCm           pgtype.Int4        `json:"height_cm"`
+	WeightKg           pgtype.Numeric     `json:"weight_kg"`
+	HairColor          pgtype.Text        `json:"hair_color"`
+	EyeColor           pgtype.Text        `json:"eye_color"`
+	OccupationID       pgtype.UUID        `json:"occupation_id"`
+	OrganizationID     pgtype.UUID        `json:"organization_id"`
+	AttributesJson     []byte             `json:"attributes_json"`
 	CreatedAt          pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt          pgtype.Timestamptz `json:"updated_at"`
 }
@@ -261,6 +648,16 @@ func (q *Queries) ListCharacters(ctx context.Context, projectID pgtype.UUID) ([]
 			&i.Background,
 			&i.DefaultHumeVoiceID,
 			&i.ProfileImageID,
+			&i.Age,
+			&i.Gender,
+			&i.BirthDate,
+			&i.HeightCm,
+			&i.WeightKg,
+			&i.HairColor,
+			&i.EyeColor,
+			&i.OccupationID,
+			&i.OrganizationID,
+			&i.AttributesJson,
 			&i.CreatedAt,
 			&i.UpdatedAt,
 		); err != nil {
@@ -282,19 +679,39 @@ SET name = COALESCE($2, name),
     background = COALESCE($5, background),
     default_hume_voice_id = COALESCE($6, default_hume_voice_id),
     profile_image_id = COALESCE($7, profile_image_id),
+    age = COALESCE($8, age),
+    gender = COALESCE($9, gender),
+    birth_date = COALESCE($10, birth_date),
+    height_cm = COALESCE($11, height_cm),
+    weight_kg = COALESCE($12, weight_kg),
+    hair_color = COALESCE($13, hair_color),
+    eye_color = COALESCE($14, eye_color),
+    occupation_id = COALESCE($15, occupation_id),
+    organization_id = COALESCE($16, organization_id),
+    attributes_json = COALESCE($17, attributes_json),
     updated_at = NOW()
 WHERE id = $1
-RETURNING id, project_id, name, description, personality, background, default_hume_voice_id, profile_image_id, created_at, updated_at
+RETURNING id, project_id, name, description, personality, background, default_hume_voice_id, profile_image_id, age, gender, birth_date, height_cm, weight_kg, hair_color, eye_color, occupation_id, organization_id, attributes_json, created_at, updated_at
 `
 
 type UpdateCharacterParams struct {
-	ID                 pgtype.UUID `json:"id"`
-	Name               string      `json:"name"`
-	Description        pgtype.Text `json:"description"`
-	Personality        pgtype.Text `json:"personality"`
-	Background         pgtype.Text `json:"background"`
-	DefaultHumeVoiceID pgtype.Text `json:"default_hume_voice_id"`
-	ProfileImageID     pgtype.UUID `json:"profile_image_id"`
+	ID                 pgtype.UUID    `json:"id"`
+	Name               string         `json:"name"`
+	Description        pgtype.Text    `json:"description"`
+	Personality        pgtype.Text    `json:"personality"`
+	Background         pgtype.Text    `json:"background"`
+	DefaultHumeVoiceID pgtype.Text    `json:"default_hume_voice_id"`
+	ProfileImageID     pgtype.UUID    `json:"profile_image_id"`
+	Age                pgtype.Int4    `json:"age"`
+	Gender             pgtype.Text    `json:"gender"`
+	BirthDate          pgtype.Date    `json:"birth_date"`
+	HeightCm           pgtype.Int4    `json:"height_cm"`
+	WeightKg           pgtype.Numeric `json:"weight_kg"`
+	HairColor          pgtype.Text    `json:"hair_color"`
+	EyeColor           pgtype.Text    `json:"eye_color"`
+	OccupationID       pgtype.UUID    `json:"occupation_id"`
+	OrganizationID     pgtype.UUID    `json:"organization_id"`
+	AttributesJson     []byte         `json:"attributes_json"`
 }
 
 type UpdateCharacterRow struct {
@@ -306,6 +723,16 @@ type UpdateCharacterRow struct {
 	Background         pgtype.Text        `json:"background"`
 	DefaultHumeVoiceID pgtype.Text        `json:"default_hume_voice_id"`
 	ProfileImageID     pgtype.UUID        `json:"profile_image_id"`
+	Age                pgtype.Int4        `json:"age"`
+	Gender             pgtype.Text        `json:"gender"`
+	BirthDate          pgtype.Date        `json:"birth_date"`
+	HeightCm           pgtype.Int4        `json:"height_cm"`
+	WeightKg           pgtype.Numeric     `json:"weight_kg"`
+	HairColor          pgtype.Text        `json:"hair_color"`
+	EyeColor           pgtype.Text        `json:"eye_color"`
+	OccupationID       pgtype.UUID        `json:"occupation_id"`
+	OrganizationID     pgtype.UUID        `json:"organization_id"`
+	AttributesJson     []byte             `json:"attributes_json"`
 	CreatedAt          pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt          pgtype.Timestamptz `json:"updated_at"`
 }
@@ -319,6 +746,16 @@ func (q *Queries) UpdateCharacter(ctx context.Context, arg UpdateCharacterParams
 		arg.Background,
 		arg.DefaultHumeVoiceID,
 		arg.ProfileImageID,
+		arg.Age,
+		arg.Gender,
+		arg.BirthDate,
+		arg.HeightCm,
+		arg.WeightKg,
+		arg.HairColor,
+		arg.EyeColor,
+		arg.OccupationID,
+		arg.OrganizationID,
+		arg.AttributesJson,
 	)
 	var i UpdateCharacterRow
 	err := row.Scan(
@@ -330,8 +767,36 @@ func (q *Queries) UpdateCharacter(ctx context.Context, arg UpdateCharacterParams
 		&i.Background,
 		&i.DefaultHumeVoiceID,
 		&i.ProfileImageID,
+		&i.Age,
+		&i.Gender,
+		&i.BirthDate,
+		&i.HeightCm,
+		&i.WeightKg,
+		&i.HairColor,
+		&i.EyeColor,
+		&i.OccupationID,
+		&i.OrganizationID,
+		&i.AttributesJson,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)
 	return i, err
+}
+
+const updateCharacter3DModelPrimary = `-- name: UpdateCharacter3DModelPrimary :exec
+UPDATE character_3d_models SET is_primary = false WHERE character_id = $1 AND is_primary = true
+`
+
+func (q *Queries) UpdateCharacter3DModelPrimary(ctx context.Context, characterID pgtype.UUID) error {
+	_, err := q.db.Exec(ctx, updateCharacter3DModelPrimary, characterID)
+	return err
+}
+
+const updateCharacterImagePrimary = `-- name: UpdateCharacterImagePrimary :exec
+UPDATE character_images SET is_primary = false WHERE character_id = $1 AND is_primary = true
+`
+
+func (q *Queries) UpdateCharacterImagePrimary(ctx context.Context, characterID pgtype.UUID) error {
+	_, err := q.db.Exec(ctx, updateCharacterImagePrimary, characterID)
+	return err
 }

@@ -9,10 +9,10 @@ vi.mock('$app/environment', () => ({
 	browser: false,
 }));
 
-// Mock Houdini client for component tests
+// Mock Houdini client for component tests (legacy - components should migrate to gRPC API)
 vi.mock('$houdini', () => {
 	const mockClient = {
-		url: 'http://localhost:25325/graphql',
+		url: 'http://localhost:25326/api/grpc', // Updated to gRPC endpoint
 		fetchParams: vi.fn(({ session }) => ({
 			headers: {
 				'Content-Type': 'application/json',

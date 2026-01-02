@@ -9,7 +9,15 @@
 	const currentLang = lang || DEFAULT_LANG;
 
 	const errorOrgId = $derived((errorProp as { orgId?: string })?.orgId || $page.params.orgId);
-	const errorMessage = $derived(errorProp?.message || '組織へのアクセスが拒否されました');
+	const errorMessage = $derived(errorProp?.message || '');
+	
+	// Determine if this is specifically an organization access error (403) or a general error
+	const isOrgAccessError = $derived(status === 403);
+	const displayTitle = $derived(isOrgAccessError ? '組織へのアクセスが拒否されました' : 'エラーが発生しました');
+	const displayMessage = $derived(
+		errorMessage || 
+		(isOrgAccessError ? '組織へのアクセスが拒否されました' : `エラーが発生しました (${status})`)
+	);
 
 	function goToSelectOrg() {
 		goto(`/${currentLang}/orgs/select/project`);
@@ -22,14 +30,19 @@
 
 <div class="error-container">
 	<div class="error-content">
-		<h1>組織へのアクセスが拒否されました</h1>
+		<h1>{displayTitle}</h1>
+		<p class="error-code">Status: {status}</p>
 		<p class="error-message">
-			{errorMessage}
+			{displayMessage}
 		</p>
-		{#if errorOrgId}
+		{#if isOrgAccessError && errorOrgId}
 			<p class="error-description">
 				指定された組織（{errorOrgId}）にアクセスする権限がありません。
 				この組織のメンバーではないか、組織IDが無効です。
+			</p>
+		{:else if !isOrgAccessError}
+			<p class="error-description">
+				ページの読み込み中にエラーが発生しました。再度お試しください。
 			</p>
 		{:else}
 			<p class="error-description">
@@ -67,6 +80,13 @@
 		font-size: 2rem;
 		margin-bottom: 1rem;
 		color: var(--sb-text-primary, #ffffff);
+	}
+
+	.error-code {
+		font-size: 0.875rem;
+		color: var(--sb-text-tertiary, #888888);
+		margin-bottom: 0.5rem;
+		font-family: monospace;
 	}
 
 	.error-message {
@@ -117,4 +137,5 @@
 		background-color: var(--sb-bg-tertiary, #3a3a3a);
 	}
 </style>
+
 

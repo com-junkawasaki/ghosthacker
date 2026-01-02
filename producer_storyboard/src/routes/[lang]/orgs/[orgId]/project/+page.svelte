@@ -128,6 +128,13 @@
 		<div class="header-left">
 			<OrganizationSwitcher />
 		</div>
+		<div class="header-center">
+			<nav class="main-nav">
+				<a href={`/${lang}/orgs/${orgId}/project`} class="nav-link" class:active={$page.url.pathname === `/${lang}/orgs/${orgId}/project`}>
+					Projects
+				</a>
+			</nav>
+		</div>
 		<div class="header-right">
 			<UserAccountMenu />
 		</div>
@@ -186,14 +193,7 @@
 			<div class="empty-state">
 				<p>No data available. Please check your connection.</p>
 				<button
-					onclick={async () => {
-						try {
-							console.log('[Project] Manual retry...');
-							await projectsStore.fetch({ blocking: true, metadata: { orgId } });
-						} catch (error) {
-							console.error('[Project] Failed to retry:', error);
-						}
-					}}
+					onclick={loadProjects}
 					class="retry-button"
 				>
 					Retry
@@ -286,6 +286,38 @@
 		display: flex;
 		align-items: center;
 		gap: 1rem;
+	}
+
+	.header-center {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+	}
+
+	.main-nav {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.nav-link {
+		padding: 0.5rem 1rem;
+		color: var(--sb-text-secondary, rgba(255, 255, 255, 0.7));
+		text-decoration: none;
+		border-radius: 6px;
+		font-size: 0.875rem;
+		font-weight: 500;
+		transition: all 0.2s;
+	}
+
+	.nav-link:hover {
+		background-color: rgba(255, 255, 255, 0.1);
+		color: var(--sb-text-primary, #ffffff);
+	}
+
+	.nav-link.active {
+		background-color: rgba(59, 130, 246, 0.15);
+		color: #3b82f6;
 	}
 
 	.header-right {

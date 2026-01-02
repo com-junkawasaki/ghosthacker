@@ -9,7 +9,7 @@
   "url": "https://github.com/ghosthacker/producer_storyboard",
   "version": "0.1.0",
   "createdAt": "2025-12-09T00:00:00Z",
-  "updatedAt": "2025-12-11T00:00:00Z",
+  "updatedAt": "2025-12-16T00:00:00Z",
   "status": "InDevelopment",
   "maintainer": {
     "@type": "Person",
@@ -20,6 +20,7 @@
     "video-production",
     "ai",
     "openai",
+    "runway-ml",
     "hume-ai",
     "suno",
     "composer",
@@ -871,6 +872,150 @@
           "tests/bdd/e2e/features/scenario-management-e2e.feature"
         ]
       }
+    },
+    {
+      "@type": "AddAction",
+      "name": "runway-ml-video-generation-integration",
+      "description": "Integrate Runway ML Gen-3 Alpha video generation API for AI-powered video creation from text and image prompts",
+      "startTime": "2025-12-16T00:00:00Z",
+      "endTime": "2025-12-16T03:00:00Z",
+      "status": "Completed",
+      "result": {
+        "capability": {
+          "id": "https://gftd.ai/capability/ai-video-generation",
+          "name": "AI Video Generation",
+          "description": "Multi-provider video generation supporting OpenAI and Runway ML Gen-3 Alpha",
+          "activities": [
+            "generate-video-openai",
+            "generate-video-runway",
+            "poll-video-generation-status"
+          ]
+        },
+        "backend": {
+          "migration": "20240101000010_add_runway_support.sql",
+          "schema": {
+            "columns": [
+              "provider (openai, runway)",
+              "runway_task_id",
+              "generation_params (JSONB)",
+              "duration",
+              "model"
+            ]
+          },
+          "service": {
+            "file": "performers/services/grpc-go/internal/services/runway.go",
+            "methods": [
+              "GenerateVideo",
+              "GetTaskStatus",
+              "DownloadVideo"
+            ],
+            "models": ["gen3a_turbo", "gen3a"]
+          },
+          "grpc": {
+            "proto": "performers/services/grpc-go/proto/storyboard/v1/video.proto",
+            "service": "performers/services/grpc-go/internal/service/video.go",
+            "endpoints": [
+              "GenerateVideo",
+              "GetVideoTaskStatus",
+              "ListGeneratedVideos",
+              "GetGeneratedVideo",
+              "DeleteGeneratedVideo"
+            ]
+          },
+          "queries": "performers/services/grpc-go/queries/generated_videos.sql"
+        },
+        "frontend": {
+          "component": {
+            "name": "RunwayVideoGenerator",
+            "path": "src/lib/components/storyboard/RunwayVideoGenerator.svelte",
+            "features": [
+              "Text prompt input",
+              "Optional reference image URL",
+              "Model selection (gen3a_turbo, gen3a)",
+              "Duration selection (5s, 10s)",
+              "Aspect ratio selection (16:9, 9:16, 1:1)",
+              "Real-time status polling",
+              "Progress indicator",
+              "Error handling"
+            ]
+          },
+          "integration": {
+            "component": "ScenePanel.svelte",
+            "trigger": "Video generation button in scene controls",
+            "autoPopulate": [
+              "Scene description as prompt",
+              "Scene image as reference"
+            ]
+          },
+          "api": {
+            "routes": [
+              "/api/runway/generate",
+              "/api/runway/status/[taskId]",
+              "/api/runway/videos/[storyboardId]"
+            ]
+          }
+        },
+        "bdd": {
+          "features": [
+            {
+              "path": "tests/bdd/features/runway-video-generation.feature",
+              "type": "API tests",
+              "scenarios": [
+                "テキストプロンプトから動画を生成する",
+                "テキストと画像プロンプトから動画を生成する",
+                "動画生成ステータスをポーリングする",
+                "動画生成が完了する",
+                "動画生成が失敗する",
+                "ストーリーボードの生成済み動画を一覧表示する",
+                "生成済み動画を削除する",
+                "異なるモデルを選択する",
+                "異なるアスペクト比を選択する",
+                "組織スコープでの動画管理"
+              ]
+            },
+            {
+              "path": "tests/bdd/e2e/features/runway-video-generation-e2e.feature",
+              "type": "E2E tests",
+              "scenarios": [
+                "シーンパネルから Runway 動画生成ダイアログを開く",
+                "動画生成パラメータを入力する",
+                "動画生成を実行する",
+                "動画生成が完了する",
+                "動画生成をキャンセルする",
+                "バリデーションエラーを表示する",
+                "シーン説明を自動入力する",
+                "シーン画像を参照画像として使用する",
+                "生成された動画を一覧表示する",
+                "動画生成履歴を確認する",
+                "キーボードナビゲーション",
+                "スクリーンリーダー対応"
+              ]
+            }
+          ]
+        },
+        "environmentVariables": [
+          "RUNWAY_API_KEY",
+          "RUNWAY_API_URL"
+        ],
+        "files": [
+          "capabilities.jsonld",
+          "activities.jsonld",
+          "performers/services/grpc-go/migrations/20240101000010_add_runway_support.sql",
+          "performers/services/grpc-go/queries/generated_videos.sql",
+          "performers/services/grpc-go/internal/services/runway.go",
+          "performers/services/grpc-go/proto/storyboard/v1/video.proto",
+          "performers/services/grpc-go/proto/storyboard/v1/storyboard_service.proto",
+          "performers/services/grpc-go/internal/service/video.go",
+          "performers/services/grpc-go/internal/service/storyboard.go",
+          "src/routes/api/runway/generate/+server.ts",
+          "src/routes/api/runway/status/[taskId]/+server.ts",
+          "src/routes/api/runway/videos/[storyboardId]/+server.ts",
+          "src/lib/components/storyboard/RunwayVideoGenerator.svelte",
+          "src/lib/components/storyboard/ScenePanel.svelte",
+          "tests/bdd/features/runway-video-generation.feature",
+          "tests/bdd/e2e/features/runway-video-generation-e2e.feature"
+        ]
+      }
     }
   ],
   "capability": [
@@ -994,6 +1139,40 @@
         "specifications": [
           "tests/bdd/features/scenario-management.feature",
           "tests/bdd/e2e/features/scenario-management-e2e.feature"
+        ]
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "runway-video-generation",
+      "description": "Runway ML Gen-3 Alpha video generation from text and image prompts with multi-provider support",
+      "status": "Operational",
+      "capability": "https://gftd.ai/capability/ai-video-generation",
+      "features": [
+        "Text-to-video generation",
+        "Image-to-video generation",
+        "Model selection (gen3a_turbo, gen3a)",
+        "Duration control (5s, 10s)",
+        "Aspect ratio selection (16:9, 9:16, 1:1)",
+        "Asynchronous task polling",
+        "Video download and storage",
+        "Multi-provider architecture (OpenAI, Runway)",
+        "Organization-scoped video management",
+        "Generation parameter tracking"
+      ],
+      "api": {
+        "provider": "Runway ML",
+        "baseUrl": "https://api.dev.runwayml.com/v1",
+        "endpoints": [
+          "/generate",
+          "/tasks/{taskId}"
+        ],
+        "models": ["gen3a_turbo", "gen3a"]
+      },
+      "bdd": {
+        "specifications": [
+          "tests/bdd/features/runway-video-generation.feature",
+          "tests/bdd/e2e/features/runway-video-generation-e2e.feature"
         ]
       }
     },

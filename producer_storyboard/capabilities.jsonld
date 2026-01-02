@@ -67,13 +67,15 @@
       "id": "https://gftd.ai/capability/ai-video-generation",
       "type": "cpm:Capability",
       "name": "AI Video Generation",
-      "description": "Capability to generate videos from storyboards using OpenAI API. Videos are stored as bytea in PostgreSQL and returned as Base64-encoded data or URLs.",
+      "description": "Capability to generate videos from storyboards using multiple AI providers (OpenAI, Runway ML Gen-3 Alpha). Videos are stored as bytea in PostgreSQL and returned as Base64-encoded data or URLs.",
       "createdAt": "2025-01-30T00:00:00Z",
       "hasActivity": [
-        {"@id": "https://gftd.ai/activity/generate-video"}
+        {"@id": "https://gftd.ai/activity/generate-video-openai"},
+        {"@id": "https://gftd.ai/activity/generate-video-runway"},
+        {"@id": "https://gftd.ai/activity/poll-video-generation-status"}
       ],
       "realizedBy": [
-        {"@id": "https://gftd.ai/performer/service/graphql"}
+        {"@id": "https://gftd.ai/performer/service/grpc"}
       ]
     },
     {
@@ -130,6 +132,25 @@
       "realizedBy": [
         {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
         {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/sponsor-management",
+      "type": "cpm:Capability",
+      "name": "Sponsor Management",
+      "description": "Capability to search, register, manage, contact, track, and post sponsor information as an organization",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/search-sponsors"},
+        {"@id": "https://gftd.ai/activity/register-sponsor"},
+        {"@id": "https://gftd.ai/activity/update-sponsor"},
+        {"@id": "https://gftd.ai/activity/contact-sponsor"},
+        {"@id": "https://gftd.ai/activity/track-sponsor-status"},
+        {"@id": "https://gftd.ai/activity/post-sponsor-info"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
+        {"@id": "https://gftd.ai/performer/service/grpc"}
       ]
     }
   ]

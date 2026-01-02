@@ -87,6 +87,9 @@ const (
 	// StoryboardServiceGenerateImageProcedure is the fully-qualified name of the StoryboardService's
 	// GenerateImage RPC.
 	StoryboardServiceGenerateImageProcedure = "/storyboard.v1.StoryboardService/GenerateImage"
+	// StoryboardServiceGenerateCharacterImageProcedure is the fully-qualified name of the
+	// StoryboardService's GenerateCharacterImage RPC.
+	StoryboardServiceGenerateCharacterImageProcedure = "/storyboard.v1.StoryboardService/GenerateCharacterImage"
 	// StoryboardServiceListCharactersProcedure is the fully-qualified name of the StoryboardService's
 	// ListCharacters RPC.
 	StoryboardServiceListCharactersProcedure = "/storyboard.v1.StoryboardService/ListCharacters"
@@ -180,6 +183,261 @@ const (
 	// StoryboardServiceDeleteScenarioProcedure is the fully-qualified name of the StoryboardService's
 	// DeleteScenario RPC.
 	StoryboardServiceDeleteScenarioProcedure = "/storyboard.v1.StoryboardService/DeleteScenario"
+	// StoryboardServiceReorderPartsProcedure is the fully-qualified name of the StoryboardService's
+	// ReorderParts RPC.
+	StoryboardServiceReorderPartsProcedure = "/storyboard.v1.StoryboardService/ReorderParts"
+	// StoryboardServiceReorderScenePlansProcedure is the fully-qualified name of the
+	// StoryboardService's ReorderScenePlans RPC.
+	StoryboardServiceReorderScenePlansProcedure = "/storyboard.v1.StoryboardService/ReorderScenePlans"
+	// StoryboardServiceListProjectAssetsProcedure is the fully-qualified name of the
+	// StoryboardService's ListProjectAssets RPC.
+	StoryboardServiceListProjectAssetsProcedure = "/storyboard.v1.StoryboardService/ListProjectAssets"
+	// StoryboardServiceGetProjectAssetProcedure is the fully-qualified name of the StoryboardService's
+	// GetProjectAsset RPC.
+	StoryboardServiceGetProjectAssetProcedure = "/storyboard.v1.StoryboardService/GetProjectAsset"
+	// StoryboardServiceGetProjectAssetDataProcedure is the fully-qualified name of the
+	// StoryboardService's GetProjectAssetData RPC.
+	StoryboardServiceGetProjectAssetDataProcedure = "/storyboard.v1.StoryboardService/GetProjectAssetData"
+	// StoryboardServiceCreateProjectAssetProcedure is the fully-qualified name of the
+	// StoryboardService's CreateProjectAsset RPC.
+	StoryboardServiceCreateProjectAssetProcedure = "/storyboard.v1.StoryboardService/CreateProjectAsset"
+	// StoryboardServiceUpdateProjectAssetProcedure is the fully-qualified name of the
+	// StoryboardService's UpdateProjectAsset RPC.
+	StoryboardServiceUpdateProjectAssetProcedure = "/storyboard.v1.StoryboardService/UpdateProjectAsset"
+	// StoryboardServiceDeleteProjectAssetProcedure is the fully-qualified name of the
+	// StoryboardService's DeleteProjectAsset RPC.
+	StoryboardServiceDeleteProjectAssetProcedure = "/storyboard.v1.StoryboardService/DeleteProjectAsset"
+	// StoryboardServiceListLocationsProcedure is the fully-qualified name of the StoryboardService's
+	// ListLocations RPC.
+	StoryboardServiceListLocationsProcedure = "/storyboard.v1.StoryboardService/ListLocations"
+	// StoryboardServiceGetLocationProcedure is the fully-qualified name of the StoryboardService's
+	// GetLocation RPC.
+	StoryboardServiceGetLocationProcedure = "/storyboard.v1.StoryboardService/GetLocation"
+	// StoryboardServiceCreateLocationProcedure is the fully-qualified name of the StoryboardService's
+	// CreateLocation RPC.
+	StoryboardServiceCreateLocationProcedure = "/storyboard.v1.StoryboardService/CreateLocation"
+	// StoryboardServiceUpdateLocationProcedure is the fully-qualified name of the StoryboardService's
+	// UpdateLocation RPC.
+	StoryboardServiceUpdateLocationProcedure = "/storyboard.v1.StoryboardService/UpdateLocation"
+	// StoryboardServiceDeleteLocationProcedure is the fully-qualified name of the StoryboardService's
+	// DeleteLocation RPC.
+	StoryboardServiceDeleteLocationProcedure = "/storyboard.v1.StoryboardService/DeleteLocation"
+	// StoryboardServiceListLocationImagesProcedure is the fully-qualified name of the
+	// StoryboardService's ListLocationImages RPC.
+	StoryboardServiceListLocationImagesProcedure = "/storyboard.v1.StoryboardService/ListLocationImages"
+	// StoryboardServiceGetLocationImageProcedure is the fully-qualified name of the StoryboardService's
+	// GetLocationImage RPC.
+	StoryboardServiceGetLocationImageProcedure = "/storyboard.v1.StoryboardService/GetLocationImage"
+	// StoryboardServiceGetLocationImageDataProcedure is the fully-qualified name of the
+	// StoryboardService's GetLocationImageData RPC.
+	StoryboardServiceGetLocationImageDataProcedure = "/storyboard.v1.StoryboardService/GetLocationImageData"
+	// StoryboardServiceUploadLocationImageProcedure is the fully-qualified name of the
+	// StoryboardService's UploadLocationImage RPC.
+	StoryboardServiceUploadLocationImageProcedure = "/storyboard.v1.StoryboardService/UploadLocationImage"
+	// StoryboardServiceDeleteLocationImageProcedure is the fully-qualified name of the
+	// StoryboardService's DeleteLocationImage RPC.
+	StoryboardServiceDeleteLocationImageProcedure = "/storyboard.v1.StoryboardService/DeleteLocationImage"
+	// StoryboardServiceListLocation3DModelsProcedure is the fully-qualified name of the
+	// StoryboardService's ListLocation3DModels RPC.
+	StoryboardServiceListLocation3DModelsProcedure = "/storyboard.v1.StoryboardService/ListLocation3DModels"
+	// StoryboardServiceGetLocation3DModelProcedure is the fully-qualified name of the
+	// StoryboardService's GetLocation3DModel RPC.
+	StoryboardServiceGetLocation3DModelProcedure = "/storyboard.v1.StoryboardService/GetLocation3DModel"
+	// StoryboardServiceGetLocation3DModelDataProcedure is the fully-qualified name of the
+	// StoryboardService's GetLocation3DModelData RPC.
+	StoryboardServiceGetLocation3DModelDataProcedure = "/storyboard.v1.StoryboardService/GetLocation3DModelData"
+	// StoryboardServiceUploadLocation3DModelProcedure is the fully-qualified name of the
+	// StoryboardService's UploadLocation3DModel RPC.
+	StoryboardServiceUploadLocation3DModelProcedure = "/storyboard.v1.StoryboardService/UploadLocation3DModel"
+	// StoryboardServiceDeleteLocation3DModelProcedure is the fully-qualified name of the
+	// StoryboardService's DeleteLocation3DModel RPC.
+	StoryboardServiceDeleteLocation3DModelProcedure = "/storyboard.v1.StoryboardService/DeleteLocation3DModel"
+	// StoryboardServiceListTagsProcedure is the fully-qualified name of the StoryboardService's
+	// ListTags RPC.
+	StoryboardServiceListTagsProcedure = "/storyboard.v1.StoryboardService/ListTags"
+	// StoryboardServiceGetTagProcedure is the fully-qualified name of the StoryboardService's GetTag
+	// RPC.
+	StoryboardServiceGetTagProcedure = "/storyboard.v1.StoryboardService/GetTag"
+	// StoryboardServiceCreateTagProcedure is the fully-qualified name of the StoryboardService's
+	// CreateTag RPC.
+	StoryboardServiceCreateTagProcedure = "/storyboard.v1.StoryboardService/CreateTag"
+	// StoryboardServiceUpdateTagProcedure is the fully-qualified name of the StoryboardService's
+	// UpdateTag RPC.
+	StoryboardServiceUpdateTagProcedure = "/storyboard.v1.StoryboardService/UpdateTag"
+	// StoryboardServiceDeleteTagProcedure is the fully-qualified name of the StoryboardService's
+	// DeleteTag RPC.
+	StoryboardServiceDeleteTagProcedure = "/storyboard.v1.StoryboardService/DeleteTag"
+	// StoryboardServiceListResourceTagsProcedure is the fully-qualified name of the StoryboardService's
+	// ListResourceTags RPC.
+	StoryboardServiceListResourceTagsProcedure = "/storyboard.v1.StoryboardService/ListResourceTags"
+	// StoryboardServiceAddResourceTagProcedure is the fully-qualified name of the StoryboardService's
+	// AddResourceTag RPC.
+	StoryboardServiceAddResourceTagProcedure = "/storyboard.v1.StoryboardService/AddResourceTag"
+	// StoryboardServiceRemoveResourceTagProcedure is the fully-qualified name of the
+	// StoryboardService's RemoveResourceTag RPC.
+	StoryboardServiceRemoveResourceTagProcedure = "/storyboard.v1.StoryboardService/RemoveResourceTag"
+	// StoryboardServiceListVoicePresetsProcedure is the fully-qualified name of the StoryboardService's
+	// ListVoicePresets RPC.
+	StoryboardServiceListVoicePresetsProcedure = "/storyboard.v1.StoryboardService/ListVoicePresets"
+	// StoryboardServiceGetVoicePresetProcedure is the fully-qualified name of the StoryboardService's
+	// GetVoicePreset RPC.
+	StoryboardServiceGetVoicePresetProcedure = "/storyboard.v1.StoryboardService/GetVoicePreset"
+	// StoryboardServiceCreateVoicePresetProcedure is the fully-qualified name of the
+	// StoryboardService's CreateVoicePreset RPC.
+	StoryboardServiceCreateVoicePresetProcedure = "/storyboard.v1.StoryboardService/CreateVoicePreset"
+	// StoryboardServiceUpdateVoicePresetProcedure is the fully-qualified name of the
+	// StoryboardService's UpdateVoicePreset RPC.
+	StoryboardServiceUpdateVoicePresetProcedure = "/storyboard.v1.StoryboardService/UpdateVoicePreset"
+	// StoryboardServiceDeleteVoicePresetProcedure is the fully-qualified name of the
+	// StoryboardService's DeleteVoicePreset RPC.
+	StoryboardServiceDeleteVoicePresetProcedure = "/storyboard.v1.StoryboardService/DeleteVoicePreset"
+	// StoryboardServiceGenerateVideoProcedure is the fully-qualified name of the StoryboardService's
+	// GenerateVideo RPC.
+	StoryboardServiceGenerateVideoProcedure = "/storyboard.v1.StoryboardService/GenerateVideo"
+	// StoryboardServiceGetVideoTaskStatusProcedure is the fully-qualified name of the
+	// StoryboardService's GetVideoTaskStatus RPC.
+	StoryboardServiceGetVideoTaskStatusProcedure = "/storyboard.v1.StoryboardService/GetVideoTaskStatus"
+	// StoryboardServiceListGeneratedVideosProcedure is the fully-qualified name of the
+	// StoryboardService's ListGeneratedVideos RPC.
+	StoryboardServiceListGeneratedVideosProcedure = "/storyboard.v1.StoryboardService/ListGeneratedVideos"
+	// StoryboardServiceGetGeneratedVideoProcedure is the fully-qualified name of the
+	// StoryboardService's GetGeneratedVideo RPC.
+	StoryboardServiceGetGeneratedVideoProcedure = "/storyboard.v1.StoryboardService/GetGeneratedVideo"
+	// StoryboardServiceDeleteGeneratedVideoProcedure is the fully-qualified name of the
+	// StoryboardService's DeleteGeneratedVideo RPC.
+	StoryboardServiceDeleteGeneratedVideoProcedure = "/storyboard.v1.StoryboardService/DeleteGeneratedVideo"
+	// StoryboardServiceListDepartmentsProcedure is the fully-qualified name of the StoryboardService's
+	// ListDepartments RPC.
+	StoryboardServiceListDepartmentsProcedure = "/storyboard.v1.StoryboardService/ListDepartments"
+	// StoryboardServiceListRolesProcedure is the fully-qualified name of the StoryboardService's
+	// ListRoles RPC.
+	StoryboardServiceListRolesProcedure = "/storyboard.v1.StoryboardService/ListRoles"
+	// StoryboardServiceGetProjectOrganizationProcedure is the fully-qualified name of the
+	// StoryboardService's GetProjectOrganization RPC.
+	StoryboardServiceGetProjectOrganizationProcedure = "/storyboard.v1.StoryboardService/GetProjectOrganization"
+	// StoryboardServiceListTeamMembersProcedure is the fully-qualified name of the StoryboardService's
+	// ListTeamMembers RPC.
+	StoryboardServiceListTeamMembersProcedure = "/storyboard.v1.StoryboardService/ListTeamMembers"
+	// StoryboardServiceSyncClerkMembersProcedure is the fully-qualified name of the StoryboardService's
+	// SyncClerkMembers RPC.
+	StoryboardServiceSyncClerkMembersProcedure = "/storyboard.v1.StoryboardService/SyncClerkMembers"
+	// StoryboardServiceAssignTeamMemberProcedure is the fully-qualified name of the StoryboardService's
+	// AssignTeamMember RPC.
+	StoryboardServiceAssignTeamMemberProcedure = "/storyboard.v1.StoryboardService/AssignTeamMember"
+	// StoryboardServiceUnassignTeamMemberProcedure is the fully-qualified name of the
+	// StoryboardService's UnassignTeamMember RPC.
+	StoryboardServiceUnassignTeamMemberProcedure = "/storyboard.v1.StoryboardService/UnassignTeamMember"
+	// StoryboardServiceListProjectAssignmentsProcedure is the fully-qualified name of the
+	// StoryboardService's ListProjectAssignments RPC.
+	StoryboardServiceListProjectAssignmentsProcedure = "/storyboard.v1.StoryboardService/ListProjectAssignments"
+	// StoryboardServiceCheckPermissionProcedure is the fully-qualified name of the StoryboardService's
+	// CheckPermission RPC.
+	StoryboardServiceCheckPermissionProcedure = "/storyboard.v1.StoryboardService/CheckPermission"
+	// StoryboardServiceGetUserPermissionsProcedure is the fully-qualified name of the
+	// StoryboardService's GetUserPermissions RPC.
+	StoryboardServiceGetUserPermissionsProcedure = "/storyboard.v1.StoryboardService/GetUserPermissions"
+	// StoryboardServiceStartApprovalWorkflowProcedure is the fully-qualified name of the
+	// StoryboardService's StartApprovalWorkflow RPC.
+	StoryboardServiceStartApprovalWorkflowProcedure = "/storyboard.v1.StoryboardService/StartApprovalWorkflow"
+	// StoryboardServiceSubmitApprovalActionProcedure is the fully-qualified name of the
+	// StoryboardService's SubmitApprovalAction RPC.
+	StoryboardServiceSubmitApprovalActionProcedure = "/storyboard.v1.StoryboardService/SubmitApprovalAction"
+	// StoryboardServiceListApprovalRequestsProcedure is the fully-qualified name of the
+	// StoryboardService's ListApprovalRequests RPC.
+	StoryboardServiceListApprovalRequestsProcedure = "/storyboard.v1.StoryboardService/ListApprovalRequests"
+	// StoryboardServiceGetApprovalRequestProcedure is the fully-qualified name of the
+	// StoryboardService's GetApprovalRequest RPC.
+	StoryboardServiceGetApprovalRequestProcedure = "/storyboard.v1.StoryboardService/GetApprovalRequest"
+	// StoryboardServiceListApprovalActionsProcedure is the fully-qualified name of the
+	// StoryboardService's ListApprovalActions RPC.
+	StoryboardServiceListApprovalActionsProcedure = "/storyboard.v1.StoryboardService/ListApprovalActions"
+	// StoryboardServiceStartProductionWorkflowProcedure is the fully-qualified name of the
+	// StoryboardService's StartProductionWorkflow RPC.
+	StoryboardServiceStartProductionWorkflowProcedure = "/storyboard.v1.StoryboardService/StartProductionWorkflow"
+	// StoryboardServiceGetEpisodeProductionProcedure is the fully-qualified name of the
+	// StoryboardService's GetEpisodeProduction RPC.
+	StoryboardServiceGetEpisodeProductionProcedure = "/storyboard.v1.StoryboardService/GetEpisodeProduction"
+	// StoryboardServiceListEpisodeProductionsProcedure is the fully-qualified name of the
+	// StoryboardService's ListEpisodeProductions RPC.
+	StoryboardServiceListEpisodeProductionsProcedure = "/storyboard.v1.StoryboardService/ListEpisodeProductions"
+	// StoryboardServiceUpdateProductionStatusProcedure is the fully-qualified name of the
+	// StoryboardService's UpdateProductionStatus RPC.
+	StoryboardServiceUpdateProductionStatusProcedure = "/storyboard.v1.StoryboardService/UpdateProductionStatus"
+	// StoryboardServiceStartTaskWorkflowProcedure is the fully-qualified name of the
+	// StoryboardService's StartTaskWorkflow RPC.
+	StoryboardServiceStartTaskWorkflowProcedure = "/storyboard.v1.StoryboardService/StartTaskWorkflow"
+	// StoryboardServiceAssignTaskProcedure is the fully-qualified name of the StoryboardService's
+	// AssignTask RPC.
+	StoryboardServiceAssignTaskProcedure = "/storyboard.v1.StoryboardService/AssignTask"
+	// StoryboardServiceUpdateTaskStatusProcedure is the fully-qualified name of the StoryboardService's
+	// UpdateTaskStatus RPC.
+	StoryboardServiceUpdateTaskStatusProcedure = "/storyboard.v1.StoryboardService/UpdateTaskStatus"
+	// StoryboardServiceListTasksProcedure is the fully-qualified name of the StoryboardService's
+	// ListTasks RPC.
+	StoryboardServiceListTasksProcedure = "/storyboard.v1.StoryboardService/ListTasks"
+	// StoryboardServiceGetTaskProcedure is the fully-qualified name of the StoryboardService's GetTask
+	// RPC.
+	StoryboardServiceGetTaskProcedure = "/storyboard.v1.StoryboardService/GetTask"
+	// StoryboardServiceListPropsProcedure is the fully-qualified name of the StoryboardService's
+	// ListProps RPC.
+	StoryboardServiceListPropsProcedure = "/storyboard.v1.StoryboardService/ListProps"
+	// StoryboardServiceGetPropProcedure is the fully-qualified name of the StoryboardService's GetProp
+	// RPC.
+	StoryboardServiceGetPropProcedure = "/storyboard.v1.StoryboardService/GetProp"
+	// StoryboardServiceCreatePropProcedure is the fully-qualified name of the StoryboardService's
+	// CreateProp RPC.
+	StoryboardServiceCreatePropProcedure = "/storyboard.v1.StoryboardService/CreateProp"
+	// StoryboardServiceUpdatePropProcedure is the fully-qualified name of the StoryboardService's
+	// UpdateProp RPC.
+	StoryboardServiceUpdatePropProcedure = "/storyboard.v1.StoryboardService/UpdateProp"
+	// StoryboardServiceDeletePropProcedure is the fully-qualified name of the StoryboardService's
+	// DeleteProp RPC.
+	StoryboardServiceDeletePropProcedure = "/storyboard.v1.StoryboardService/DeleteProp"
+	// StoryboardServiceListPropImagesProcedure is the fully-qualified name of the StoryboardService's
+	// ListPropImages RPC.
+	StoryboardServiceListPropImagesProcedure = "/storyboard.v1.StoryboardService/ListPropImages"
+	// StoryboardServiceGetPropImageProcedure is the fully-qualified name of the StoryboardService's
+	// GetPropImage RPC.
+	StoryboardServiceGetPropImageProcedure = "/storyboard.v1.StoryboardService/GetPropImage"
+	// StoryboardServiceGetPropImageDataProcedure is the fully-qualified name of the StoryboardService's
+	// GetPropImageData RPC.
+	StoryboardServiceGetPropImageDataProcedure = "/storyboard.v1.StoryboardService/GetPropImageData"
+	// StoryboardServiceUploadPropImageProcedure is the fully-qualified name of the StoryboardService's
+	// UploadPropImage RPC.
+	StoryboardServiceUploadPropImageProcedure = "/storyboard.v1.StoryboardService/UploadPropImage"
+	// StoryboardServiceDeletePropImageProcedure is the fully-qualified name of the StoryboardService's
+	// DeletePropImage RPC.
+	StoryboardServiceDeletePropImageProcedure = "/storyboard.v1.StoryboardService/DeletePropImage"
+	// StoryboardServiceListProp3DModelsProcedure is the fully-qualified name of the StoryboardService's
+	// ListProp3DModels RPC.
+	StoryboardServiceListProp3DModelsProcedure = "/storyboard.v1.StoryboardService/ListProp3DModels"
+	// StoryboardServiceGetProp3DModelProcedure is the fully-qualified name of the StoryboardService's
+	// GetProp3DModel RPC.
+	StoryboardServiceGetProp3DModelProcedure = "/storyboard.v1.StoryboardService/GetProp3DModel"
+	// StoryboardServiceGetProp3DModelDataProcedure is the fully-qualified name of the
+	// StoryboardService's GetProp3DModelData RPC.
+	StoryboardServiceGetProp3DModelDataProcedure = "/storyboard.v1.StoryboardService/GetProp3DModelData"
+	// StoryboardServiceUploadProp3DModelProcedure is the fully-qualified name of the
+	// StoryboardService's UploadProp3DModel RPC.
+	StoryboardServiceUploadProp3DModelProcedure = "/storyboard.v1.StoryboardService/UploadProp3DModel"
+	// StoryboardServiceDeleteProp3DModelProcedure is the fully-qualified name of the
+	// StoryboardService's DeleteProp3DModel RPC.
+	StoryboardServiceDeleteProp3DModelProcedure = "/storyboard.v1.StoryboardService/DeleteProp3DModel"
+	// StoryboardServiceListWorldSettingsProcedure is the fully-qualified name of the
+	// StoryboardService's ListWorldSettings RPC.
+	StoryboardServiceListWorldSettingsProcedure = "/storyboard.v1.StoryboardService/ListWorldSettings"
+	// StoryboardServiceGetWorldSettingProcedure is the fully-qualified name of the StoryboardService's
+	// GetWorldSetting RPC.
+	StoryboardServiceGetWorldSettingProcedure = "/storyboard.v1.StoryboardService/GetWorldSetting"
+	// StoryboardServiceCreateWorldSettingProcedure is the fully-qualified name of the
+	// StoryboardService's CreateWorldSetting RPC.
+	StoryboardServiceCreateWorldSettingProcedure = "/storyboard.v1.StoryboardService/CreateWorldSetting"
+	// StoryboardServiceUpdateWorldSettingProcedure is the fully-qualified name of the
+	// StoryboardService's UpdateWorldSetting RPC.
+	StoryboardServiceUpdateWorldSettingProcedure = "/storyboard.v1.StoryboardService/UpdateWorldSetting"
+	// StoryboardServiceDeleteWorldSettingProcedure is the fully-qualified name of the
+	// StoryboardService's DeleteWorldSetting RPC.
+	StoryboardServiceDeleteWorldSettingProcedure = "/storyboard.v1.StoryboardService/DeleteWorldSetting"
 )
 
 // StoryboardServiceClient is a client for the storyboard.v1.StoryboardService service.
@@ -206,6 +464,8 @@ type StoryboardServiceClient interface {
 	ListGeneratedImages(context.Context, *connect.Request[v1.ListGeneratedImagesRequest]) (*connect.Response[v1.ListGeneratedImagesResponse], error)
 	GetImageData(context.Context, *connect.Request[v1.GetImageDataRequest]) (*connect.Response[v1.GetImageDataResponse], error)
 	GenerateImage(context.Context, *connect.Request[v1.GenerateImageRequest]) (*connect.Response[v1.GenerateImageResponse], error)
+	// Character Image Generation operations (Higgsfield Soul ID)
+	GenerateCharacterImage(context.Context, *connect.Request[v1.GenerateCharacterImageRequest]) (*connect.Response[v1.GenerateCharacterImageResponse], error)
 	// Character operations
 	ListCharacters(context.Context, *connect.Request[v1.ListCharactersRequest]) (*connect.Response[v1.ListCharactersResponse], error)
 	GetCharacter(context.Context, *connect.Request[v1.GetCharacterRequest]) (*connect.Response[v1.Character], error)
@@ -246,6 +506,107 @@ type StoryboardServiceClient interface {
 	CreateScenario(context.Context, *connect.Request[v1.CreateScenarioRequest]) (*connect.Response[v1.Scenario], error)
 	UpdateScenario(context.Context, *connect.Request[v1.UpdateScenarioRequest]) (*connect.Response[v1.Scenario], error)
 	DeleteScenario(context.Context, *connect.Request[v1.DeleteScenarioRequest]) (*connect.Response[v1.DeleteScenarioResponse], error)
+	ReorderParts(context.Context, *connect.Request[v1.ReorderPartsRequest]) (*connect.Response[v1.ReorderPartsResponse], error)
+	ReorderScenePlans(context.Context, *connect.Request[v1.ReorderScenePlansRequest]) (*connect.Response[v1.ReorderScenePlansResponse], error)
+	// Project Asset operations
+	ListProjectAssets(context.Context, *connect.Request[v1.ListProjectAssetsRequest]) (*connect.Response[v1.ListProjectAssetsResponse], error)
+	GetProjectAsset(context.Context, *connect.Request[v1.GetProjectAssetRequest]) (*connect.Response[v1.ProjectAsset], error)
+	GetProjectAssetData(context.Context, *connect.Request[v1.GetProjectAssetDataRequest]) (*connect.Response[v1.GetProjectAssetDataResponse], error)
+	CreateProjectAsset(context.Context, *connect.Request[v1.CreateProjectAssetRequest]) (*connect.Response[v1.ProjectAsset], error)
+	UpdateProjectAsset(context.Context, *connect.Request[v1.UpdateProjectAssetRequest]) (*connect.Response[v1.ProjectAsset], error)
+	DeleteProjectAsset(context.Context, *connect.Request[v1.DeleteProjectAssetRequest]) (*connect.Response[v1.DeleteProjectAssetResponse], error)
+	// Location operations
+	ListLocations(context.Context, *connect.Request[v1.ListLocationsRequest]) (*connect.Response[v1.ListLocationsResponse], error)
+	GetLocation(context.Context, *connect.Request[v1.GetLocationRequest]) (*connect.Response[v1.Location], error)
+	CreateLocation(context.Context, *connect.Request[v1.CreateLocationRequest]) (*connect.Response[v1.Location], error)
+	UpdateLocation(context.Context, *connect.Request[v1.UpdateLocationRequest]) (*connect.Response[v1.Location], error)
+	DeleteLocation(context.Context, *connect.Request[v1.DeleteLocationRequest]) (*connect.Response[v1.DeleteLocationResponse], error)
+	// Location Image operations (multi-angle)
+	ListLocationImages(context.Context, *connect.Request[v1.ListLocationImagesRequest]) (*connect.Response[v1.ListLocationImagesResponse], error)
+	GetLocationImage(context.Context, *connect.Request[v1.GetLocationImageRequest]) (*connect.Response[v1.LocationImage], error)
+	GetLocationImageData(context.Context, *connect.Request[v1.GetLocationImageDataRequest]) (*connect.Response[v1.GetLocationImageDataResponse], error)
+	UploadLocationImage(context.Context, *connect.Request[v1.UploadLocationImageRequest]) (*connect.Response[v1.UploadLocationImageResponse], error)
+	DeleteLocationImage(context.Context, *connect.Request[v1.DeleteLocationImageRequest]) (*connect.Response[v1.DeleteLocationImageResponse], error)
+	// Location 3D Model operations
+	ListLocation3DModels(context.Context, *connect.Request[v1.ListLocation3DModelsRequest]) (*connect.Response[v1.ListLocation3DModelsResponse], error)
+	GetLocation3DModel(context.Context, *connect.Request[v1.GetLocation3DModelRequest]) (*connect.Response[v1.Location3DModel], error)
+	GetLocation3DModelData(context.Context, *connect.Request[v1.GetLocation3DModelDataRequest]) (*connect.Response[v1.GetLocation3DModelDataResponse], error)
+	UploadLocation3DModel(context.Context, *connect.Request[v1.UploadLocation3DModelRequest]) (*connect.Response[v1.UploadLocation3DModelResponse], error)
+	DeleteLocation3DModel(context.Context, *connect.Request[v1.DeleteLocation3DModelRequest]) (*connect.Response[v1.DeleteLocation3DModelResponse], error)
+	// Tag operations
+	ListTags(context.Context, *connect.Request[v1.ListTagsRequest]) (*connect.Response[v1.ListTagsResponse], error)
+	GetTag(context.Context, *connect.Request[v1.GetTagRequest]) (*connect.Response[v1.Tag], error)
+	CreateTag(context.Context, *connect.Request[v1.CreateTagRequest]) (*connect.Response[v1.Tag], error)
+	UpdateTag(context.Context, *connect.Request[v1.UpdateTagRequest]) (*connect.Response[v1.Tag], error)
+	DeleteTag(context.Context, *connect.Request[v1.DeleteTagRequest]) (*connect.Response[v1.DeleteTagResponse], error)
+	ListResourceTags(context.Context, *connect.Request[v1.ListResourceTagsRequest]) (*connect.Response[v1.ListResourceTagsResponse], error)
+	AddResourceTag(context.Context, *connect.Request[v1.AddResourceTagRequest]) (*connect.Response[v1.ResourceTag], error)
+	RemoveResourceTag(context.Context, *connect.Request[v1.RemoveResourceTagRequest]) (*connect.Response[v1.RemoveResourceTagResponse], error)
+	// Voice Preset operations
+	ListVoicePresets(context.Context, *connect.Request[v1.ListVoicePresetsRequest]) (*connect.Response[v1.ListVoicePresetsResponse], error)
+	GetVoicePreset(context.Context, *connect.Request[v1.GetVoicePresetRequest]) (*connect.Response[v1.VoicePreset], error)
+	CreateVoicePreset(context.Context, *connect.Request[v1.CreateVoicePresetRequest]) (*connect.Response[v1.VoicePreset], error)
+	UpdateVoicePreset(context.Context, *connect.Request[v1.UpdateVoicePresetRequest]) (*connect.Response[v1.VoicePreset], error)
+	DeleteVoicePreset(context.Context, *connect.Request[v1.DeleteVoicePresetRequest]) (*connect.Response[v1.DeleteVoicePresetResponse], error)
+	// Video Generation operations
+	GenerateVideo(context.Context, *connect.Request[v1.GenerateVideoRequest]) (*connect.Response[v1.GenerateVideoResponse], error)
+	GetVideoTaskStatus(context.Context, *connect.Request[v1.GetVideoTaskStatusRequest]) (*connect.Response[v1.GetVideoTaskStatusResponse], error)
+	ListGeneratedVideos(context.Context, *connect.Request[v1.ListGeneratedVideosRequest]) (*connect.Response[v1.ListGeneratedVideosResponse], error)
+	GetGeneratedVideo(context.Context, *connect.Request[v1.GetGeneratedVideoRequest]) (*connect.Response[v1.GeneratedVideo], error)
+	DeleteGeneratedVideo(context.Context, *connect.Request[v1.DeleteGeneratedVideoRequest]) (*connect.Response[v1.DeleteGeneratedVideoResponse], error)
+	// Organization operations
+	ListDepartments(context.Context, *connect.Request[v1.ListDepartmentsRequest]) (*connect.Response[v1.ListDepartmentsResponse], error)
+	ListRoles(context.Context, *connect.Request[v1.ListRolesRequest]) (*connect.Response[v1.ListRolesResponse], error)
+	GetProjectOrganization(context.Context, *connect.Request[v1.GetProjectOrganizationRequest]) (*connect.Response[v1.ProjectOrganization], error)
+	ListTeamMembers(context.Context, *connect.Request[v1.ListTeamMembersRequest]) (*connect.Response[v1.ListTeamMembersResponse], error)
+	SyncClerkMembers(context.Context, *connect.Request[v1.SyncClerkMembersRequest]) (*connect.Response[v1.SyncClerkMembersResponse], error)
+	AssignTeamMember(context.Context, *connect.Request[v1.AssignTeamMemberRequest]) (*connect.Response[v1.ProjectTeamAssignment], error)
+	UnassignTeamMember(context.Context, *connect.Request[v1.UnassignTeamMemberRequest]) (*connect.Response[v1.UnassignTeamMemberResponse], error)
+	ListProjectAssignments(context.Context, *connect.Request[v1.ListProjectAssignmentsRequest]) (*connect.Response[v1.ListProjectAssignmentsResponse], error)
+	// Permission operations
+	CheckPermission(context.Context, *connect.Request[v1.CheckPermissionRequest]) (*connect.Response[v1.CheckPermissionResponse], error)
+	GetUserPermissions(context.Context, *connect.Request[v1.GetUserPermissionsRequest]) (*connect.Response[v1.GetUserPermissionsResponse], error)
+	// Approval Workflow operations
+	StartApprovalWorkflow(context.Context, *connect.Request[v1.StartApprovalWorkflowRequest]) (*connect.Response[v1.StartApprovalWorkflowResponse], error)
+	SubmitApprovalAction(context.Context, *connect.Request[v1.SubmitApprovalActionRequest]) (*connect.Response[v1.ApprovalRequest], error)
+	ListApprovalRequests(context.Context, *connect.Request[v1.ListApprovalRequestsRequest]) (*connect.Response[v1.ListApprovalRequestsResponse], error)
+	GetApprovalRequest(context.Context, *connect.Request[v1.GetApprovalRequestRequest]) (*connect.Response[v1.ApprovalRequest], error)
+	ListApprovalActions(context.Context, *connect.Request[v1.ListApprovalActionsRequest]) (*connect.Response[v1.ListApprovalActionsResponse], error)
+	// Production Workflow operations
+	StartProductionWorkflow(context.Context, *connect.Request[v1.StartProductionWorkflowRequest]) (*connect.Response[v1.StartProductionWorkflowResponse], error)
+	GetEpisodeProduction(context.Context, *connect.Request[v1.GetEpisodeProductionRequest]) (*connect.Response[v1.EpisodeProduction], error)
+	ListEpisodeProductions(context.Context, *connect.Request[v1.ListEpisodeProductionsRequest]) (*connect.Response[v1.ListEpisodeProductionsResponse], error)
+	UpdateProductionStatus(context.Context, *connect.Request[v1.UpdateProductionStatusRequest]) (*connect.Response[v1.EpisodeProduction], error)
+	// Task Workflow operations
+	StartTaskWorkflow(context.Context, *connect.Request[v1.StartTaskWorkflowRequest]) (*connect.Response[v1.StartTaskWorkflowResponse], error)
+	AssignTask(context.Context, *connect.Request[v1.AssignTaskRequest]) (*connect.Response[v1.Task], error)
+	UpdateTaskStatus(context.Context, *connect.Request[v1.UpdateTaskStatusRequest]) (*connect.Response[v1.Task], error)
+	ListTasks(context.Context, *connect.Request[v1.ListTasksRequest]) (*connect.Response[v1.ListTasksResponse], error)
+	GetTask(context.Context, *connect.Request[v1.GetTaskRequest]) (*connect.Response[v1.Task], error)
+	// Prop operations
+	ListProps(context.Context, *connect.Request[v1.ListPropsRequest]) (*connect.Response[v1.ListPropsResponse], error)
+	GetProp(context.Context, *connect.Request[v1.GetPropRequest]) (*connect.Response[v1.Prop], error)
+	CreateProp(context.Context, *connect.Request[v1.CreatePropRequest]) (*connect.Response[v1.Prop], error)
+	UpdateProp(context.Context, *connect.Request[v1.UpdatePropRequest]) (*connect.Response[v1.Prop], error)
+	DeleteProp(context.Context, *connect.Request[v1.DeletePropRequest]) (*connect.Response[v1.DeletePropResponse], error)
+	// Prop Image operations (multi-angle)
+	ListPropImages(context.Context, *connect.Request[v1.ListPropImagesRequest]) (*connect.Response[v1.ListPropImagesResponse], error)
+	GetPropImage(context.Context, *connect.Request[v1.GetPropImageRequest]) (*connect.Response[v1.PropImage], error)
+	GetPropImageData(context.Context, *connect.Request[v1.GetPropImageDataRequest]) (*connect.Response[v1.GetPropImageDataResponse], error)
+	UploadPropImage(context.Context, *connect.Request[v1.UploadPropImageRequest]) (*connect.Response[v1.UploadPropImageResponse], error)
+	DeletePropImage(context.Context, *connect.Request[v1.DeletePropImageRequest]) (*connect.Response[v1.DeletePropImageResponse], error)
+	// Prop 3D Model operations
+	ListProp3DModels(context.Context, *connect.Request[v1.ListProp3DModelsRequest]) (*connect.Response[v1.ListProp3DModelsResponse], error)
+	GetProp3DModel(context.Context, *connect.Request[v1.GetProp3DModelRequest]) (*connect.Response[v1.Prop3DModel], error)
+	GetProp3DModelData(context.Context, *connect.Request[v1.GetProp3DModelDataRequest]) (*connect.Response[v1.GetProp3DModelDataResponse], error)
+	UploadProp3DModel(context.Context, *connect.Request[v1.UploadProp3DModelRequest]) (*connect.Response[v1.UploadProp3DModelResponse], error)
+	DeleteProp3DModel(context.Context, *connect.Request[v1.DeleteProp3DModelRequest]) (*connect.Response[v1.DeleteProp3DModelResponse], error)
+	// World Setting operations
+	ListWorldSettings(context.Context, *connect.Request[v1.ListWorldSettingsRequest]) (*connect.Response[v1.ListWorldSettingsResponse], error)
+	GetWorldSetting(context.Context, *connect.Request[v1.GetWorldSettingRequest]) (*connect.Response[v1.WorldSetting], error)
+	CreateWorldSetting(context.Context, *connect.Request[v1.CreateWorldSettingRequest]) (*connect.Response[v1.WorldSetting], error)
+	UpdateWorldSetting(context.Context, *connect.Request[v1.UpdateWorldSettingRequest]) (*connect.Response[v1.WorldSetting], error)
+	DeleteWorldSetting(context.Context, *connect.Request[v1.DeleteWorldSettingRequest]) (*connect.Response[v1.DeleteWorldSettingResponse], error)
 }
 
 // NewStoryboardServiceClient constructs a client for the storyboard.v1.StoryboardService service.
@@ -365,6 +726,12 @@ func NewStoryboardServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			httpClient,
 			baseURL+StoryboardServiceGenerateImageProcedure,
 			connect.WithSchema(storyboardServiceMethods.ByName("GenerateImage")),
+			connect.WithClientOptions(opts...),
+		),
+		generateCharacterImage: connect.NewClient[v1.GenerateCharacterImageRequest, v1.GenerateCharacterImageResponse](
+			httpClient,
+			baseURL+StoryboardServiceGenerateCharacterImageProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GenerateCharacterImage")),
 			connect.WithClientOptions(opts...),
 		),
 		listCharacters: connect.NewClient[v1.ListCharactersRequest, v1.ListCharactersResponse](
@@ -553,60 +920,656 @@ func NewStoryboardServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			connect.WithSchema(storyboardServiceMethods.ByName("DeleteScenario")),
 			connect.WithClientOptions(opts...),
 		),
+		reorderParts: connect.NewClient[v1.ReorderPartsRequest, v1.ReorderPartsResponse](
+			httpClient,
+			baseURL+StoryboardServiceReorderPartsProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ReorderParts")),
+			connect.WithClientOptions(opts...),
+		),
+		reorderScenePlans: connect.NewClient[v1.ReorderScenePlansRequest, v1.ReorderScenePlansResponse](
+			httpClient,
+			baseURL+StoryboardServiceReorderScenePlansProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ReorderScenePlans")),
+			connect.WithClientOptions(opts...),
+		),
+		listProjectAssets: connect.NewClient[v1.ListProjectAssetsRequest, v1.ListProjectAssetsResponse](
+			httpClient,
+			baseURL+StoryboardServiceListProjectAssetsProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListProjectAssets")),
+			connect.WithClientOptions(opts...),
+		),
+		getProjectAsset: connect.NewClient[v1.GetProjectAssetRequest, v1.ProjectAsset](
+			httpClient,
+			baseURL+StoryboardServiceGetProjectAssetProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetProjectAsset")),
+			connect.WithClientOptions(opts...),
+		),
+		getProjectAssetData: connect.NewClient[v1.GetProjectAssetDataRequest, v1.GetProjectAssetDataResponse](
+			httpClient,
+			baseURL+StoryboardServiceGetProjectAssetDataProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetProjectAssetData")),
+			connect.WithClientOptions(opts...),
+		),
+		createProjectAsset: connect.NewClient[v1.CreateProjectAssetRequest, v1.ProjectAsset](
+			httpClient,
+			baseURL+StoryboardServiceCreateProjectAssetProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("CreateProjectAsset")),
+			connect.WithClientOptions(opts...),
+		),
+		updateProjectAsset: connect.NewClient[v1.UpdateProjectAssetRequest, v1.ProjectAsset](
+			httpClient,
+			baseURL+StoryboardServiceUpdateProjectAssetProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("UpdateProjectAsset")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteProjectAsset: connect.NewClient[v1.DeleteProjectAssetRequest, v1.DeleteProjectAssetResponse](
+			httpClient,
+			baseURL+StoryboardServiceDeleteProjectAssetProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("DeleteProjectAsset")),
+			connect.WithClientOptions(opts...),
+		),
+		listLocations: connect.NewClient[v1.ListLocationsRequest, v1.ListLocationsResponse](
+			httpClient,
+			baseURL+StoryboardServiceListLocationsProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListLocations")),
+			connect.WithClientOptions(opts...),
+		),
+		getLocation: connect.NewClient[v1.GetLocationRequest, v1.Location](
+			httpClient,
+			baseURL+StoryboardServiceGetLocationProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetLocation")),
+			connect.WithClientOptions(opts...),
+		),
+		createLocation: connect.NewClient[v1.CreateLocationRequest, v1.Location](
+			httpClient,
+			baseURL+StoryboardServiceCreateLocationProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("CreateLocation")),
+			connect.WithClientOptions(opts...),
+		),
+		updateLocation: connect.NewClient[v1.UpdateLocationRequest, v1.Location](
+			httpClient,
+			baseURL+StoryboardServiceUpdateLocationProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("UpdateLocation")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteLocation: connect.NewClient[v1.DeleteLocationRequest, v1.DeleteLocationResponse](
+			httpClient,
+			baseURL+StoryboardServiceDeleteLocationProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("DeleteLocation")),
+			connect.WithClientOptions(opts...),
+		),
+		listLocationImages: connect.NewClient[v1.ListLocationImagesRequest, v1.ListLocationImagesResponse](
+			httpClient,
+			baseURL+StoryboardServiceListLocationImagesProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListLocationImages")),
+			connect.WithClientOptions(opts...),
+		),
+		getLocationImage: connect.NewClient[v1.GetLocationImageRequest, v1.LocationImage](
+			httpClient,
+			baseURL+StoryboardServiceGetLocationImageProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetLocationImage")),
+			connect.WithClientOptions(opts...),
+		),
+		getLocationImageData: connect.NewClient[v1.GetLocationImageDataRequest, v1.GetLocationImageDataResponse](
+			httpClient,
+			baseURL+StoryboardServiceGetLocationImageDataProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetLocationImageData")),
+			connect.WithClientOptions(opts...),
+		),
+		uploadLocationImage: connect.NewClient[v1.UploadLocationImageRequest, v1.UploadLocationImageResponse](
+			httpClient,
+			baseURL+StoryboardServiceUploadLocationImageProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("UploadLocationImage")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteLocationImage: connect.NewClient[v1.DeleteLocationImageRequest, v1.DeleteLocationImageResponse](
+			httpClient,
+			baseURL+StoryboardServiceDeleteLocationImageProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("DeleteLocationImage")),
+			connect.WithClientOptions(opts...),
+		),
+		listLocation3DModels: connect.NewClient[v1.ListLocation3DModelsRequest, v1.ListLocation3DModelsResponse](
+			httpClient,
+			baseURL+StoryboardServiceListLocation3DModelsProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListLocation3DModels")),
+			connect.WithClientOptions(opts...),
+		),
+		getLocation3DModel: connect.NewClient[v1.GetLocation3DModelRequest, v1.Location3DModel](
+			httpClient,
+			baseURL+StoryboardServiceGetLocation3DModelProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetLocation3DModel")),
+			connect.WithClientOptions(opts...),
+		),
+		getLocation3DModelData: connect.NewClient[v1.GetLocation3DModelDataRequest, v1.GetLocation3DModelDataResponse](
+			httpClient,
+			baseURL+StoryboardServiceGetLocation3DModelDataProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetLocation3DModelData")),
+			connect.WithClientOptions(opts...),
+		),
+		uploadLocation3DModel: connect.NewClient[v1.UploadLocation3DModelRequest, v1.UploadLocation3DModelResponse](
+			httpClient,
+			baseURL+StoryboardServiceUploadLocation3DModelProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("UploadLocation3DModel")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteLocation3DModel: connect.NewClient[v1.DeleteLocation3DModelRequest, v1.DeleteLocation3DModelResponse](
+			httpClient,
+			baseURL+StoryboardServiceDeleteLocation3DModelProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("DeleteLocation3DModel")),
+			connect.WithClientOptions(opts...),
+		),
+		listTags: connect.NewClient[v1.ListTagsRequest, v1.ListTagsResponse](
+			httpClient,
+			baseURL+StoryboardServiceListTagsProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListTags")),
+			connect.WithClientOptions(opts...),
+		),
+		getTag: connect.NewClient[v1.GetTagRequest, v1.Tag](
+			httpClient,
+			baseURL+StoryboardServiceGetTagProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetTag")),
+			connect.WithClientOptions(opts...),
+		),
+		createTag: connect.NewClient[v1.CreateTagRequest, v1.Tag](
+			httpClient,
+			baseURL+StoryboardServiceCreateTagProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("CreateTag")),
+			connect.WithClientOptions(opts...),
+		),
+		updateTag: connect.NewClient[v1.UpdateTagRequest, v1.Tag](
+			httpClient,
+			baseURL+StoryboardServiceUpdateTagProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("UpdateTag")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteTag: connect.NewClient[v1.DeleteTagRequest, v1.DeleteTagResponse](
+			httpClient,
+			baseURL+StoryboardServiceDeleteTagProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("DeleteTag")),
+			connect.WithClientOptions(opts...),
+		),
+		listResourceTags: connect.NewClient[v1.ListResourceTagsRequest, v1.ListResourceTagsResponse](
+			httpClient,
+			baseURL+StoryboardServiceListResourceTagsProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListResourceTags")),
+			connect.WithClientOptions(opts...),
+		),
+		addResourceTag: connect.NewClient[v1.AddResourceTagRequest, v1.ResourceTag](
+			httpClient,
+			baseURL+StoryboardServiceAddResourceTagProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("AddResourceTag")),
+			connect.WithClientOptions(opts...),
+		),
+		removeResourceTag: connect.NewClient[v1.RemoveResourceTagRequest, v1.RemoveResourceTagResponse](
+			httpClient,
+			baseURL+StoryboardServiceRemoveResourceTagProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("RemoveResourceTag")),
+			connect.WithClientOptions(opts...),
+		),
+		listVoicePresets: connect.NewClient[v1.ListVoicePresetsRequest, v1.ListVoicePresetsResponse](
+			httpClient,
+			baseURL+StoryboardServiceListVoicePresetsProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListVoicePresets")),
+			connect.WithClientOptions(opts...),
+		),
+		getVoicePreset: connect.NewClient[v1.GetVoicePresetRequest, v1.VoicePreset](
+			httpClient,
+			baseURL+StoryboardServiceGetVoicePresetProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetVoicePreset")),
+			connect.WithClientOptions(opts...),
+		),
+		createVoicePreset: connect.NewClient[v1.CreateVoicePresetRequest, v1.VoicePreset](
+			httpClient,
+			baseURL+StoryboardServiceCreateVoicePresetProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("CreateVoicePreset")),
+			connect.WithClientOptions(opts...),
+		),
+		updateVoicePreset: connect.NewClient[v1.UpdateVoicePresetRequest, v1.VoicePreset](
+			httpClient,
+			baseURL+StoryboardServiceUpdateVoicePresetProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("UpdateVoicePreset")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteVoicePreset: connect.NewClient[v1.DeleteVoicePresetRequest, v1.DeleteVoicePresetResponse](
+			httpClient,
+			baseURL+StoryboardServiceDeleteVoicePresetProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("DeleteVoicePreset")),
+			connect.WithClientOptions(opts...),
+		),
+		generateVideo: connect.NewClient[v1.GenerateVideoRequest, v1.GenerateVideoResponse](
+			httpClient,
+			baseURL+StoryboardServiceGenerateVideoProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GenerateVideo")),
+			connect.WithClientOptions(opts...),
+		),
+		getVideoTaskStatus: connect.NewClient[v1.GetVideoTaskStatusRequest, v1.GetVideoTaskStatusResponse](
+			httpClient,
+			baseURL+StoryboardServiceGetVideoTaskStatusProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetVideoTaskStatus")),
+			connect.WithClientOptions(opts...),
+		),
+		listGeneratedVideos: connect.NewClient[v1.ListGeneratedVideosRequest, v1.ListGeneratedVideosResponse](
+			httpClient,
+			baseURL+StoryboardServiceListGeneratedVideosProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListGeneratedVideos")),
+			connect.WithClientOptions(opts...),
+		),
+		getGeneratedVideo: connect.NewClient[v1.GetGeneratedVideoRequest, v1.GeneratedVideo](
+			httpClient,
+			baseURL+StoryboardServiceGetGeneratedVideoProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetGeneratedVideo")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteGeneratedVideo: connect.NewClient[v1.DeleteGeneratedVideoRequest, v1.DeleteGeneratedVideoResponse](
+			httpClient,
+			baseURL+StoryboardServiceDeleteGeneratedVideoProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("DeleteGeneratedVideo")),
+			connect.WithClientOptions(opts...),
+		),
+		listDepartments: connect.NewClient[v1.ListDepartmentsRequest, v1.ListDepartmentsResponse](
+			httpClient,
+			baseURL+StoryboardServiceListDepartmentsProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListDepartments")),
+			connect.WithClientOptions(opts...),
+		),
+		listRoles: connect.NewClient[v1.ListRolesRequest, v1.ListRolesResponse](
+			httpClient,
+			baseURL+StoryboardServiceListRolesProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListRoles")),
+			connect.WithClientOptions(opts...),
+		),
+		getProjectOrganization: connect.NewClient[v1.GetProjectOrganizationRequest, v1.ProjectOrganization](
+			httpClient,
+			baseURL+StoryboardServiceGetProjectOrganizationProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetProjectOrganization")),
+			connect.WithClientOptions(opts...),
+		),
+		listTeamMembers: connect.NewClient[v1.ListTeamMembersRequest, v1.ListTeamMembersResponse](
+			httpClient,
+			baseURL+StoryboardServiceListTeamMembersProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListTeamMembers")),
+			connect.WithClientOptions(opts...),
+		),
+		syncClerkMembers: connect.NewClient[v1.SyncClerkMembersRequest, v1.SyncClerkMembersResponse](
+			httpClient,
+			baseURL+StoryboardServiceSyncClerkMembersProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("SyncClerkMembers")),
+			connect.WithClientOptions(opts...),
+		),
+		assignTeamMember: connect.NewClient[v1.AssignTeamMemberRequest, v1.ProjectTeamAssignment](
+			httpClient,
+			baseURL+StoryboardServiceAssignTeamMemberProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("AssignTeamMember")),
+			connect.WithClientOptions(opts...),
+		),
+		unassignTeamMember: connect.NewClient[v1.UnassignTeamMemberRequest, v1.UnassignTeamMemberResponse](
+			httpClient,
+			baseURL+StoryboardServiceUnassignTeamMemberProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("UnassignTeamMember")),
+			connect.WithClientOptions(opts...),
+		),
+		listProjectAssignments: connect.NewClient[v1.ListProjectAssignmentsRequest, v1.ListProjectAssignmentsResponse](
+			httpClient,
+			baseURL+StoryboardServiceListProjectAssignmentsProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListProjectAssignments")),
+			connect.WithClientOptions(opts...),
+		),
+		checkPermission: connect.NewClient[v1.CheckPermissionRequest, v1.CheckPermissionResponse](
+			httpClient,
+			baseURL+StoryboardServiceCheckPermissionProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("CheckPermission")),
+			connect.WithClientOptions(opts...),
+		),
+		getUserPermissions: connect.NewClient[v1.GetUserPermissionsRequest, v1.GetUserPermissionsResponse](
+			httpClient,
+			baseURL+StoryboardServiceGetUserPermissionsProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetUserPermissions")),
+			connect.WithClientOptions(opts...),
+		),
+		startApprovalWorkflow: connect.NewClient[v1.StartApprovalWorkflowRequest, v1.StartApprovalWorkflowResponse](
+			httpClient,
+			baseURL+StoryboardServiceStartApprovalWorkflowProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("StartApprovalWorkflow")),
+			connect.WithClientOptions(opts...),
+		),
+		submitApprovalAction: connect.NewClient[v1.SubmitApprovalActionRequest, v1.ApprovalRequest](
+			httpClient,
+			baseURL+StoryboardServiceSubmitApprovalActionProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("SubmitApprovalAction")),
+			connect.WithClientOptions(opts...),
+		),
+		listApprovalRequests: connect.NewClient[v1.ListApprovalRequestsRequest, v1.ListApprovalRequestsResponse](
+			httpClient,
+			baseURL+StoryboardServiceListApprovalRequestsProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListApprovalRequests")),
+			connect.WithClientOptions(opts...),
+		),
+		getApprovalRequest: connect.NewClient[v1.GetApprovalRequestRequest, v1.ApprovalRequest](
+			httpClient,
+			baseURL+StoryboardServiceGetApprovalRequestProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetApprovalRequest")),
+			connect.WithClientOptions(opts...),
+		),
+		listApprovalActions: connect.NewClient[v1.ListApprovalActionsRequest, v1.ListApprovalActionsResponse](
+			httpClient,
+			baseURL+StoryboardServiceListApprovalActionsProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListApprovalActions")),
+			connect.WithClientOptions(opts...),
+		),
+		startProductionWorkflow: connect.NewClient[v1.StartProductionWorkflowRequest, v1.StartProductionWorkflowResponse](
+			httpClient,
+			baseURL+StoryboardServiceStartProductionWorkflowProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("StartProductionWorkflow")),
+			connect.WithClientOptions(opts...),
+		),
+		getEpisodeProduction: connect.NewClient[v1.GetEpisodeProductionRequest, v1.EpisodeProduction](
+			httpClient,
+			baseURL+StoryboardServiceGetEpisodeProductionProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetEpisodeProduction")),
+			connect.WithClientOptions(opts...),
+		),
+		listEpisodeProductions: connect.NewClient[v1.ListEpisodeProductionsRequest, v1.ListEpisodeProductionsResponse](
+			httpClient,
+			baseURL+StoryboardServiceListEpisodeProductionsProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListEpisodeProductions")),
+			connect.WithClientOptions(opts...),
+		),
+		updateProductionStatus: connect.NewClient[v1.UpdateProductionStatusRequest, v1.EpisodeProduction](
+			httpClient,
+			baseURL+StoryboardServiceUpdateProductionStatusProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("UpdateProductionStatus")),
+			connect.WithClientOptions(opts...),
+		),
+		startTaskWorkflow: connect.NewClient[v1.StartTaskWorkflowRequest, v1.StartTaskWorkflowResponse](
+			httpClient,
+			baseURL+StoryboardServiceStartTaskWorkflowProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("StartTaskWorkflow")),
+			connect.WithClientOptions(opts...),
+		),
+		assignTask: connect.NewClient[v1.AssignTaskRequest, v1.Task](
+			httpClient,
+			baseURL+StoryboardServiceAssignTaskProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("AssignTask")),
+			connect.WithClientOptions(opts...),
+		),
+		updateTaskStatus: connect.NewClient[v1.UpdateTaskStatusRequest, v1.Task](
+			httpClient,
+			baseURL+StoryboardServiceUpdateTaskStatusProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("UpdateTaskStatus")),
+			connect.WithClientOptions(opts...),
+		),
+		listTasks: connect.NewClient[v1.ListTasksRequest, v1.ListTasksResponse](
+			httpClient,
+			baseURL+StoryboardServiceListTasksProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListTasks")),
+			connect.WithClientOptions(opts...),
+		),
+		getTask: connect.NewClient[v1.GetTaskRequest, v1.Task](
+			httpClient,
+			baseURL+StoryboardServiceGetTaskProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetTask")),
+			connect.WithClientOptions(opts...),
+		),
+		listProps: connect.NewClient[v1.ListPropsRequest, v1.ListPropsResponse](
+			httpClient,
+			baseURL+StoryboardServiceListPropsProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListProps")),
+			connect.WithClientOptions(opts...),
+		),
+		getProp: connect.NewClient[v1.GetPropRequest, v1.Prop](
+			httpClient,
+			baseURL+StoryboardServiceGetPropProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetProp")),
+			connect.WithClientOptions(opts...),
+		),
+		createProp: connect.NewClient[v1.CreatePropRequest, v1.Prop](
+			httpClient,
+			baseURL+StoryboardServiceCreatePropProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("CreateProp")),
+			connect.WithClientOptions(opts...),
+		),
+		updateProp: connect.NewClient[v1.UpdatePropRequest, v1.Prop](
+			httpClient,
+			baseURL+StoryboardServiceUpdatePropProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("UpdateProp")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteProp: connect.NewClient[v1.DeletePropRequest, v1.DeletePropResponse](
+			httpClient,
+			baseURL+StoryboardServiceDeletePropProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("DeleteProp")),
+			connect.WithClientOptions(opts...),
+		),
+		listPropImages: connect.NewClient[v1.ListPropImagesRequest, v1.ListPropImagesResponse](
+			httpClient,
+			baseURL+StoryboardServiceListPropImagesProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListPropImages")),
+			connect.WithClientOptions(opts...),
+		),
+		getPropImage: connect.NewClient[v1.GetPropImageRequest, v1.PropImage](
+			httpClient,
+			baseURL+StoryboardServiceGetPropImageProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetPropImage")),
+			connect.WithClientOptions(opts...),
+		),
+		getPropImageData: connect.NewClient[v1.GetPropImageDataRequest, v1.GetPropImageDataResponse](
+			httpClient,
+			baseURL+StoryboardServiceGetPropImageDataProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetPropImageData")),
+			connect.WithClientOptions(opts...),
+		),
+		uploadPropImage: connect.NewClient[v1.UploadPropImageRequest, v1.UploadPropImageResponse](
+			httpClient,
+			baseURL+StoryboardServiceUploadPropImageProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("UploadPropImage")),
+			connect.WithClientOptions(opts...),
+		),
+		deletePropImage: connect.NewClient[v1.DeletePropImageRequest, v1.DeletePropImageResponse](
+			httpClient,
+			baseURL+StoryboardServiceDeletePropImageProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("DeletePropImage")),
+			connect.WithClientOptions(opts...),
+		),
+		listProp3DModels: connect.NewClient[v1.ListProp3DModelsRequest, v1.ListProp3DModelsResponse](
+			httpClient,
+			baseURL+StoryboardServiceListProp3DModelsProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListProp3DModels")),
+			connect.WithClientOptions(opts...),
+		),
+		getProp3DModel: connect.NewClient[v1.GetProp3DModelRequest, v1.Prop3DModel](
+			httpClient,
+			baseURL+StoryboardServiceGetProp3DModelProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetProp3DModel")),
+			connect.WithClientOptions(opts...),
+		),
+		getProp3DModelData: connect.NewClient[v1.GetProp3DModelDataRequest, v1.GetProp3DModelDataResponse](
+			httpClient,
+			baseURL+StoryboardServiceGetProp3DModelDataProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetProp3DModelData")),
+			connect.WithClientOptions(opts...),
+		),
+		uploadProp3DModel: connect.NewClient[v1.UploadProp3DModelRequest, v1.UploadProp3DModelResponse](
+			httpClient,
+			baseURL+StoryboardServiceUploadProp3DModelProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("UploadProp3DModel")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteProp3DModel: connect.NewClient[v1.DeleteProp3DModelRequest, v1.DeleteProp3DModelResponse](
+			httpClient,
+			baseURL+StoryboardServiceDeleteProp3DModelProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("DeleteProp3DModel")),
+			connect.WithClientOptions(opts...),
+		),
+		listWorldSettings: connect.NewClient[v1.ListWorldSettingsRequest, v1.ListWorldSettingsResponse](
+			httpClient,
+			baseURL+StoryboardServiceListWorldSettingsProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("ListWorldSettings")),
+			connect.WithClientOptions(opts...),
+		),
+		getWorldSetting: connect.NewClient[v1.GetWorldSettingRequest, v1.WorldSetting](
+			httpClient,
+			baseURL+StoryboardServiceGetWorldSettingProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("GetWorldSetting")),
+			connect.WithClientOptions(opts...),
+		),
+		createWorldSetting: connect.NewClient[v1.CreateWorldSettingRequest, v1.WorldSetting](
+			httpClient,
+			baseURL+StoryboardServiceCreateWorldSettingProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("CreateWorldSetting")),
+			connect.WithClientOptions(opts...),
+		),
+		updateWorldSetting: connect.NewClient[v1.UpdateWorldSettingRequest, v1.WorldSetting](
+			httpClient,
+			baseURL+StoryboardServiceUpdateWorldSettingProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("UpdateWorldSetting")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteWorldSetting: connect.NewClient[v1.DeleteWorldSettingRequest, v1.DeleteWorldSettingResponse](
+			httpClient,
+			baseURL+StoryboardServiceDeleteWorldSettingProcedure,
+			connect.WithSchema(storyboardServiceMethods.ByName("DeleteWorldSetting")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // storyboardServiceClient implements StoryboardServiceClient.
 type storyboardServiceClient struct {
-	listProjects          *connect.Client[v1.ListProjectsRequest, v1.ListProjectsResponse]
-	getProject            *connect.Client[v1.GetProjectRequest, v1.Project]
-	createProject         *connect.Client[v1.CreateProjectRequest, v1.Project]
-	updateProject         *connect.Client[v1.UpdateProjectRequest, v1.Project]
-	deleteProject         *connect.Client[v1.DeleteProjectRequest, v1.DeleteProjectResponse]
-	listStoryboards       *connect.Client[v1.ListStoryboardsRequest, v1.ListStoryboardsResponse]
-	getStoryboard         *connect.Client[v1.GetStoryboardRequest, v1.Storyboard]
-	createStoryboard      *connect.Client[v1.CreateStoryboardRequest, v1.Storyboard]
-	updateStoryboard      *connect.Client[v1.UpdateStoryboardRequest, v1.Storyboard]
-	deleteStoryboard      *connect.Client[v1.DeleteStoryboardRequest, v1.DeleteStoryboardResponse]
-	listScenes            *connect.Client[v1.ListScenesRequest, v1.ListScenesResponse]
-	getScene              *connect.Client[v1.GetSceneRequest, v1.Scene]
-	createScene           *connect.Client[v1.CreateSceneRequest, v1.Scene]
-	updateScene           *connect.Client[v1.UpdateSceneRequest, v1.Scene]
-	deleteScene           *connect.Client[v1.DeleteSceneRequest, v1.DeleteSceneResponse]
-	listGeneratedImages   *connect.Client[v1.ListGeneratedImagesRequest, v1.ListGeneratedImagesResponse]
-	getImageData          *connect.Client[v1.GetImageDataRequest, v1.GetImageDataResponse]
-	generateImage         *connect.Client[v1.GenerateImageRequest, v1.GenerateImageResponse]
-	listCharacters        *connect.Client[v1.ListCharactersRequest, v1.ListCharactersResponse]
-	getCharacter          *connect.Client[v1.GetCharacterRequest, v1.Character]
-	createCharacter       *connect.Client[v1.CreateCharacterRequest, v1.Character]
-	updateCharacter       *connect.Client[v1.UpdateCharacterRequest, v1.Character]
-	deleteCharacter       *connect.Client[v1.DeleteCharacterRequest, v1.DeleteCharacterResponse]
-	listCharacterAssets   *connect.Client[v1.ListCharacterAssetsRequest, v1.ListCharacterAssetsResponse]
-	getCharacterAssetData *connect.Client[v1.GetCharacterAssetDataRequest, v1.GetCharacterAssetDataResponse]
-	listHumeVoices        *connect.Client[v1.ListHumeVoicesRequest, v1.ListHumeVoicesResponse]
-	listDialogues         *connect.Client[v1.ListDialoguesRequest, v1.ListDialoguesResponse]
-	getDialogue           *connect.Client[v1.GetDialogueRequest, v1.Dialogue]
-	createDialogue        *connect.Client[v1.CreateDialogueRequest, v1.Dialogue]
-	updateDialogue        *connect.Client[v1.UpdateDialogueRequest, v1.Dialogue]
-	deleteDialogue        *connect.Client[v1.DeleteDialogueRequest, v1.DeleteDialogueResponse]
-	getDialogueAudioData  *connect.Client[v1.GetDialogueAudioDataRequest, v1.GetDialogueAudioDataResponse]
-	generateDialogueAudio *connect.Client[v1.GenerateDialogueAudioRequest, v1.GenerateDialogueAudioResponse]
-	listComposers         *connect.Client[v1.ListComposersRequest, v1.ListComposersResponse]
-	getComposer           *connect.Client[v1.GetComposerRequest, v1.Composer]
-	createComposer        *connect.Client[v1.CreateComposerRequest, v1.Composer]
-	updateComposer        *connect.Client[v1.UpdateComposerRequest, v1.Composer]
-	deleteComposer        *connect.Client[v1.DeleteComposerRequest, v1.DeleteComposerResponse]
-	listAudioTracks       *connect.Client[v1.ListAudioTracksRequest, v1.ListAudioTracksResponse]
-	createAudioTrack      *connect.Client[v1.CreateAudioTrackRequest, v1.AudioTrack]
-	listAudioClips        *connect.Client[v1.ListAudioClipsRequest, v1.ListAudioClipsResponse]
-	createAudioClip       *connect.Client[v1.CreateAudioClipRequest, v1.AudioClip]
-	listSunoMusic         *connect.Client[v1.ListSunoMusicRequest, v1.ListSunoMusicResponse]
-	generateSunoMusic     *connect.Client[v1.GenerateSunoMusicRequest, v1.GenerateSunoMusicResponse]
-	listScenarios         *connect.Client[v1.ListScenariosRequest, v1.ListScenariosResponse]
-	getScenario           *connect.Client[v1.GetScenarioRequest, v1.Scenario]
-	createScenario        *connect.Client[v1.CreateScenarioRequest, v1.Scenario]
-	updateScenario        *connect.Client[v1.UpdateScenarioRequest, v1.Scenario]
-	deleteScenario        *connect.Client[v1.DeleteScenarioRequest, v1.DeleteScenarioResponse]
+	listProjects            *connect.Client[v1.ListProjectsRequest, v1.ListProjectsResponse]
+	getProject              *connect.Client[v1.GetProjectRequest, v1.Project]
+	createProject           *connect.Client[v1.CreateProjectRequest, v1.Project]
+	updateProject           *connect.Client[v1.UpdateProjectRequest, v1.Project]
+	deleteProject           *connect.Client[v1.DeleteProjectRequest, v1.DeleteProjectResponse]
+	listStoryboards         *connect.Client[v1.ListStoryboardsRequest, v1.ListStoryboardsResponse]
+	getStoryboard           *connect.Client[v1.GetStoryboardRequest, v1.Storyboard]
+	createStoryboard        *connect.Client[v1.CreateStoryboardRequest, v1.Storyboard]
+	updateStoryboard        *connect.Client[v1.UpdateStoryboardRequest, v1.Storyboard]
+	deleteStoryboard        *connect.Client[v1.DeleteStoryboardRequest, v1.DeleteStoryboardResponse]
+	listScenes              *connect.Client[v1.ListScenesRequest, v1.ListScenesResponse]
+	getScene                *connect.Client[v1.GetSceneRequest, v1.Scene]
+	createScene             *connect.Client[v1.CreateSceneRequest, v1.Scene]
+	updateScene             *connect.Client[v1.UpdateSceneRequest, v1.Scene]
+	deleteScene             *connect.Client[v1.DeleteSceneRequest, v1.DeleteSceneResponse]
+	listGeneratedImages     *connect.Client[v1.ListGeneratedImagesRequest, v1.ListGeneratedImagesResponse]
+	getImageData            *connect.Client[v1.GetImageDataRequest, v1.GetImageDataResponse]
+	generateImage           *connect.Client[v1.GenerateImageRequest, v1.GenerateImageResponse]
+	generateCharacterImage  *connect.Client[v1.GenerateCharacterImageRequest, v1.GenerateCharacterImageResponse]
+	listCharacters          *connect.Client[v1.ListCharactersRequest, v1.ListCharactersResponse]
+	getCharacter            *connect.Client[v1.GetCharacterRequest, v1.Character]
+	createCharacter         *connect.Client[v1.CreateCharacterRequest, v1.Character]
+	updateCharacter         *connect.Client[v1.UpdateCharacterRequest, v1.Character]
+	deleteCharacter         *connect.Client[v1.DeleteCharacterRequest, v1.DeleteCharacterResponse]
+	listCharacterAssets     *connect.Client[v1.ListCharacterAssetsRequest, v1.ListCharacterAssetsResponse]
+	getCharacterAssetData   *connect.Client[v1.GetCharacterAssetDataRequest, v1.GetCharacterAssetDataResponse]
+	listHumeVoices          *connect.Client[v1.ListHumeVoicesRequest, v1.ListHumeVoicesResponse]
+	listDialogues           *connect.Client[v1.ListDialoguesRequest, v1.ListDialoguesResponse]
+	getDialogue             *connect.Client[v1.GetDialogueRequest, v1.Dialogue]
+	createDialogue          *connect.Client[v1.CreateDialogueRequest, v1.Dialogue]
+	updateDialogue          *connect.Client[v1.UpdateDialogueRequest, v1.Dialogue]
+	deleteDialogue          *connect.Client[v1.DeleteDialogueRequest, v1.DeleteDialogueResponse]
+	getDialogueAudioData    *connect.Client[v1.GetDialogueAudioDataRequest, v1.GetDialogueAudioDataResponse]
+	generateDialogueAudio   *connect.Client[v1.GenerateDialogueAudioRequest, v1.GenerateDialogueAudioResponse]
+	listComposers           *connect.Client[v1.ListComposersRequest, v1.ListComposersResponse]
+	getComposer             *connect.Client[v1.GetComposerRequest, v1.Composer]
+	createComposer          *connect.Client[v1.CreateComposerRequest, v1.Composer]
+	updateComposer          *connect.Client[v1.UpdateComposerRequest, v1.Composer]
+	deleteComposer          *connect.Client[v1.DeleteComposerRequest, v1.DeleteComposerResponse]
+	listAudioTracks         *connect.Client[v1.ListAudioTracksRequest, v1.ListAudioTracksResponse]
+	createAudioTrack        *connect.Client[v1.CreateAudioTrackRequest, v1.AudioTrack]
+	listAudioClips          *connect.Client[v1.ListAudioClipsRequest, v1.ListAudioClipsResponse]
+	createAudioClip         *connect.Client[v1.CreateAudioClipRequest, v1.AudioClip]
+	listSunoMusic           *connect.Client[v1.ListSunoMusicRequest, v1.ListSunoMusicResponse]
+	generateSunoMusic       *connect.Client[v1.GenerateSunoMusicRequest, v1.GenerateSunoMusicResponse]
+	listScenarios           *connect.Client[v1.ListScenariosRequest, v1.ListScenariosResponse]
+	getScenario             *connect.Client[v1.GetScenarioRequest, v1.Scenario]
+	createScenario          *connect.Client[v1.CreateScenarioRequest, v1.Scenario]
+	updateScenario          *connect.Client[v1.UpdateScenarioRequest, v1.Scenario]
+	deleteScenario          *connect.Client[v1.DeleteScenarioRequest, v1.DeleteScenarioResponse]
+	reorderParts            *connect.Client[v1.ReorderPartsRequest, v1.ReorderPartsResponse]
+	reorderScenePlans       *connect.Client[v1.ReorderScenePlansRequest, v1.ReorderScenePlansResponse]
+	listProjectAssets       *connect.Client[v1.ListProjectAssetsRequest, v1.ListProjectAssetsResponse]
+	getProjectAsset         *connect.Client[v1.GetProjectAssetRequest, v1.ProjectAsset]
+	getProjectAssetData     *connect.Client[v1.GetProjectAssetDataRequest, v1.GetProjectAssetDataResponse]
+	createProjectAsset      *connect.Client[v1.CreateProjectAssetRequest, v1.ProjectAsset]
+	updateProjectAsset      *connect.Client[v1.UpdateProjectAssetRequest, v1.ProjectAsset]
+	deleteProjectAsset      *connect.Client[v1.DeleteProjectAssetRequest, v1.DeleteProjectAssetResponse]
+	listLocations           *connect.Client[v1.ListLocationsRequest, v1.ListLocationsResponse]
+	getLocation             *connect.Client[v1.GetLocationRequest, v1.Location]
+	createLocation          *connect.Client[v1.CreateLocationRequest, v1.Location]
+	updateLocation          *connect.Client[v1.UpdateLocationRequest, v1.Location]
+	deleteLocation          *connect.Client[v1.DeleteLocationRequest, v1.DeleteLocationResponse]
+	listLocationImages      *connect.Client[v1.ListLocationImagesRequest, v1.ListLocationImagesResponse]
+	getLocationImage        *connect.Client[v1.GetLocationImageRequest, v1.LocationImage]
+	getLocationImageData    *connect.Client[v1.GetLocationImageDataRequest, v1.GetLocationImageDataResponse]
+	uploadLocationImage     *connect.Client[v1.UploadLocationImageRequest, v1.UploadLocationImageResponse]
+	deleteLocationImage     *connect.Client[v1.DeleteLocationImageRequest, v1.DeleteLocationImageResponse]
+	listLocation3DModels    *connect.Client[v1.ListLocation3DModelsRequest, v1.ListLocation3DModelsResponse]
+	getLocation3DModel      *connect.Client[v1.GetLocation3DModelRequest, v1.Location3DModel]
+	getLocation3DModelData  *connect.Client[v1.GetLocation3DModelDataRequest, v1.GetLocation3DModelDataResponse]
+	uploadLocation3DModel   *connect.Client[v1.UploadLocation3DModelRequest, v1.UploadLocation3DModelResponse]
+	deleteLocation3DModel   *connect.Client[v1.DeleteLocation3DModelRequest, v1.DeleteLocation3DModelResponse]
+	listTags                *connect.Client[v1.ListTagsRequest, v1.ListTagsResponse]
+	getTag                  *connect.Client[v1.GetTagRequest, v1.Tag]
+	createTag               *connect.Client[v1.CreateTagRequest, v1.Tag]
+	updateTag               *connect.Client[v1.UpdateTagRequest, v1.Tag]
+	deleteTag               *connect.Client[v1.DeleteTagRequest, v1.DeleteTagResponse]
+	listResourceTags        *connect.Client[v1.ListResourceTagsRequest, v1.ListResourceTagsResponse]
+	addResourceTag          *connect.Client[v1.AddResourceTagRequest, v1.ResourceTag]
+	removeResourceTag       *connect.Client[v1.RemoveResourceTagRequest, v1.RemoveResourceTagResponse]
+	listVoicePresets        *connect.Client[v1.ListVoicePresetsRequest, v1.ListVoicePresetsResponse]
+	getVoicePreset          *connect.Client[v1.GetVoicePresetRequest, v1.VoicePreset]
+	createVoicePreset       *connect.Client[v1.CreateVoicePresetRequest, v1.VoicePreset]
+	updateVoicePreset       *connect.Client[v1.UpdateVoicePresetRequest, v1.VoicePreset]
+	deleteVoicePreset       *connect.Client[v1.DeleteVoicePresetRequest, v1.DeleteVoicePresetResponse]
+	generateVideo           *connect.Client[v1.GenerateVideoRequest, v1.GenerateVideoResponse]
+	getVideoTaskStatus      *connect.Client[v1.GetVideoTaskStatusRequest, v1.GetVideoTaskStatusResponse]
+	listGeneratedVideos     *connect.Client[v1.ListGeneratedVideosRequest, v1.ListGeneratedVideosResponse]
+	getGeneratedVideo       *connect.Client[v1.GetGeneratedVideoRequest, v1.GeneratedVideo]
+	deleteGeneratedVideo    *connect.Client[v1.DeleteGeneratedVideoRequest, v1.DeleteGeneratedVideoResponse]
+	listDepartments         *connect.Client[v1.ListDepartmentsRequest, v1.ListDepartmentsResponse]
+	listRoles               *connect.Client[v1.ListRolesRequest, v1.ListRolesResponse]
+	getProjectOrganization  *connect.Client[v1.GetProjectOrganizationRequest, v1.ProjectOrganization]
+	listTeamMembers         *connect.Client[v1.ListTeamMembersRequest, v1.ListTeamMembersResponse]
+	syncClerkMembers        *connect.Client[v1.SyncClerkMembersRequest, v1.SyncClerkMembersResponse]
+	assignTeamMember        *connect.Client[v1.AssignTeamMemberRequest, v1.ProjectTeamAssignment]
+	unassignTeamMember      *connect.Client[v1.UnassignTeamMemberRequest, v1.UnassignTeamMemberResponse]
+	listProjectAssignments  *connect.Client[v1.ListProjectAssignmentsRequest, v1.ListProjectAssignmentsResponse]
+	checkPermission         *connect.Client[v1.CheckPermissionRequest, v1.CheckPermissionResponse]
+	getUserPermissions      *connect.Client[v1.GetUserPermissionsRequest, v1.GetUserPermissionsResponse]
+	startApprovalWorkflow   *connect.Client[v1.StartApprovalWorkflowRequest, v1.StartApprovalWorkflowResponse]
+	submitApprovalAction    *connect.Client[v1.SubmitApprovalActionRequest, v1.ApprovalRequest]
+	listApprovalRequests    *connect.Client[v1.ListApprovalRequestsRequest, v1.ListApprovalRequestsResponse]
+	getApprovalRequest      *connect.Client[v1.GetApprovalRequestRequest, v1.ApprovalRequest]
+	listApprovalActions     *connect.Client[v1.ListApprovalActionsRequest, v1.ListApprovalActionsResponse]
+	startProductionWorkflow *connect.Client[v1.StartProductionWorkflowRequest, v1.StartProductionWorkflowResponse]
+	getEpisodeProduction    *connect.Client[v1.GetEpisodeProductionRequest, v1.EpisodeProduction]
+	listEpisodeProductions  *connect.Client[v1.ListEpisodeProductionsRequest, v1.ListEpisodeProductionsResponse]
+	updateProductionStatus  *connect.Client[v1.UpdateProductionStatusRequest, v1.EpisodeProduction]
+	startTaskWorkflow       *connect.Client[v1.StartTaskWorkflowRequest, v1.StartTaskWorkflowResponse]
+	assignTask              *connect.Client[v1.AssignTaskRequest, v1.Task]
+	updateTaskStatus        *connect.Client[v1.UpdateTaskStatusRequest, v1.Task]
+	listTasks               *connect.Client[v1.ListTasksRequest, v1.ListTasksResponse]
+	getTask                 *connect.Client[v1.GetTaskRequest, v1.Task]
+	listProps               *connect.Client[v1.ListPropsRequest, v1.ListPropsResponse]
+	getProp                 *connect.Client[v1.GetPropRequest, v1.Prop]
+	createProp              *connect.Client[v1.CreatePropRequest, v1.Prop]
+	updateProp              *connect.Client[v1.UpdatePropRequest, v1.Prop]
+	deleteProp              *connect.Client[v1.DeletePropRequest, v1.DeletePropResponse]
+	listPropImages          *connect.Client[v1.ListPropImagesRequest, v1.ListPropImagesResponse]
+	getPropImage            *connect.Client[v1.GetPropImageRequest, v1.PropImage]
+	getPropImageData        *connect.Client[v1.GetPropImageDataRequest, v1.GetPropImageDataResponse]
+	uploadPropImage         *connect.Client[v1.UploadPropImageRequest, v1.UploadPropImageResponse]
+	deletePropImage         *connect.Client[v1.DeletePropImageRequest, v1.DeletePropImageResponse]
+	listProp3DModels        *connect.Client[v1.ListProp3DModelsRequest, v1.ListProp3DModelsResponse]
+	getProp3DModel          *connect.Client[v1.GetProp3DModelRequest, v1.Prop3DModel]
+	getProp3DModelData      *connect.Client[v1.GetProp3DModelDataRequest, v1.GetProp3DModelDataResponse]
+	uploadProp3DModel       *connect.Client[v1.UploadProp3DModelRequest, v1.UploadProp3DModelResponse]
+	deleteProp3DModel       *connect.Client[v1.DeleteProp3DModelRequest, v1.DeleteProp3DModelResponse]
+	listWorldSettings       *connect.Client[v1.ListWorldSettingsRequest, v1.ListWorldSettingsResponse]
+	getWorldSetting         *connect.Client[v1.GetWorldSettingRequest, v1.WorldSetting]
+	createWorldSetting      *connect.Client[v1.CreateWorldSettingRequest, v1.WorldSetting]
+	updateWorldSetting      *connect.Client[v1.UpdateWorldSettingRequest, v1.WorldSetting]
+	deleteWorldSetting      *connect.Client[v1.DeleteWorldSettingRequest, v1.DeleteWorldSettingResponse]
 }
 
 // ListProjects calls storyboard.v1.StoryboardService.ListProjects.
@@ -697,6 +1660,11 @@ func (c *storyboardServiceClient) GetImageData(ctx context.Context, req *connect
 // GenerateImage calls storyboard.v1.StoryboardService.GenerateImage.
 func (c *storyboardServiceClient) GenerateImage(ctx context.Context, req *connect.Request[v1.GenerateImageRequest]) (*connect.Response[v1.GenerateImageResponse], error) {
 	return c.generateImage.CallUnary(ctx, req)
+}
+
+// GenerateCharacterImage calls storyboard.v1.StoryboardService.GenerateCharacterImage.
+func (c *storyboardServiceClient) GenerateCharacterImage(ctx context.Context, req *connect.Request[v1.GenerateCharacterImageRequest]) (*connect.Response[v1.GenerateCharacterImageResponse], error) {
+	return c.generateCharacterImage.CallUnary(ctx, req)
 }
 
 // ListCharacters calls storyboard.v1.StoryboardService.ListCharacters.
@@ -854,6 +1822,431 @@ func (c *storyboardServiceClient) DeleteScenario(ctx context.Context, req *conne
 	return c.deleteScenario.CallUnary(ctx, req)
 }
 
+// ReorderParts calls storyboard.v1.StoryboardService.ReorderParts.
+func (c *storyboardServiceClient) ReorderParts(ctx context.Context, req *connect.Request[v1.ReorderPartsRequest]) (*connect.Response[v1.ReorderPartsResponse], error) {
+	return c.reorderParts.CallUnary(ctx, req)
+}
+
+// ReorderScenePlans calls storyboard.v1.StoryboardService.ReorderScenePlans.
+func (c *storyboardServiceClient) ReorderScenePlans(ctx context.Context, req *connect.Request[v1.ReorderScenePlansRequest]) (*connect.Response[v1.ReorderScenePlansResponse], error) {
+	return c.reorderScenePlans.CallUnary(ctx, req)
+}
+
+// ListProjectAssets calls storyboard.v1.StoryboardService.ListProjectAssets.
+func (c *storyboardServiceClient) ListProjectAssets(ctx context.Context, req *connect.Request[v1.ListProjectAssetsRequest]) (*connect.Response[v1.ListProjectAssetsResponse], error) {
+	return c.listProjectAssets.CallUnary(ctx, req)
+}
+
+// GetProjectAsset calls storyboard.v1.StoryboardService.GetProjectAsset.
+func (c *storyboardServiceClient) GetProjectAsset(ctx context.Context, req *connect.Request[v1.GetProjectAssetRequest]) (*connect.Response[v1.ProjectAsset], error) {
+	return c.getProjectAsset.CallUnary(ctx, req)
+}
+
+// GetProjectAssetData calls storyboard.v1.StoryboardService.GetProjectAssetData.
+func (c *storyboardServiceClient) GetProjectAssetData(ctx context.Context, req *connect.Request[v1.GetProjectAssetDataRequest]) (*connect.Response[v1.GetProjectAssetDataResponse], error) {
+	return c.getProjectAssetData.CallUnary(ctx, req)
+}
+
+// CreateProjectAsset calls storyboard.v1.StoryboardService.CreateProjectAsset.
+func (c *storyboardServiceClient) CreateProjectAsset(ctx context.Context, req *connect.Request[v1.CreateProjectAssetRequest]) (*connect.Response[v1.ProjectAsset], error) {
+	return c.createProjectAsset.CallUnary(ctx, req)
+}
+
+// UpdateProjectAsset calls storyboard.v1.StoryboardService.UpdateProjectAsset.
+func (c *storyboardServiceClient) UpdateProjectAsset(ctx context.Context, req *connect.Request[v1.UpdateProjectAssetRequest]) (*connect.Response[v1.ProjectAsset], error) {
+	return c.updateProjectAsset.CallUnary(ctx, req)
+}
+
+// DeleteProjectAsset calls storyboard.v1.StoryboardService.DeleteProjectAsset.
+func (c *storyboardServiceClient) DeleteProjectAsset(ctx context.Context, req *connect.Request[v1.DeleteProjectAssetRequest]) (*connect.Response[v1.DeleteProjectAssetResponse], error) {
+	return c.deleteProjectAsset.CallUnary(ctx, req)
+}
+
+// ListLocations calls storyboard.v1.StoryboardService.ListLocations.
+func (c *storyboardServiceClient) ListLocations(ctx context.Context, req *connect.Request[v1.ListLocationsRequest]) (*connect.Response[v1.ListLocationsResponse], error) {
+	return c.listLocations.CallUnary(ctx, req)
+}
+
+// GetLocation calls storyboard.v1.StoryboardService.GetLocation.
+func (c *storyboardServiceClient) GetLocation(ctx context.Context, req *connect.Request[v1.GetLocationRequest]) (*connect.Response[v1.Location], error) {
+	return c.getLocation.CallUnary(ctx, req)
+}
+
+// CreateLocation calls storyboard.v1.StoryboardService.CreateLocation.
+func (c *storyboardServiceClient) CreateLocation(ctx context.Context, req *connect.Request[v1.CreateLocationRequest]) (*connect.Response[v1.Location], error) {
+	return c.createLocation.CallUnary(ctx, req)
+}
+
+// UpdateLocation calls storyboard.v1.StoryboardService.UpdateLocation.
+func (c *storyboardServiceClient) UpdateLocation(ctx context.Context, req *connect.Request[v1.UpdateLocationRequest]) (*connect.Response[v1.Location], error) {
+	return c.updateLocation.CallUnary(ctx, req)
+}
+
+// DeleteLocation calls storyboard.v1.StoryboardService.DeleteLocation.
+func (c *storyboardServiceClient) DeleteLocation(ctx context.Context, req *connect.Request[v1.DeleteLocationRequest]) (*connect.Response[v1.DeleteLocationResponse], error) {
+	return c.deleteLocation.CallUnary(ctx, req)
+}
+
+// ListLocationImages calls storyboard.v1.StoryboardService.ListLocationImages.
+func (c *storyboardServiceClient) ListLocationImages(ctx context.Context, req *connect.Request[v1.ListLocationImagesRequest]) (*connect.Response[v1.ListLocationImagesResponse], error) {
+	return c.listLocationImages.CallUnary(ctx, req)
+}
+
+// GetLocationImage calls storyboard.v1.StoryboardService.GetLocationImage.
+func (c *storyboardServiceClient) GetLocationImage(ctx context.Context, req *connect.Request[v1.GetLocationImageRequest]) (*connect.Response[v1.LocationImage], error) {
+	return c.getLocationImage.CallUnary(ctx, req)
+}
+
+// GetLocationImageData calls storyboard.v1.StoryboardService.GetLocationImageData.
+func (c *storyboardServiceClient) GetLocationImageData(ctx context.Context, req *connect.Request[v1.GetLocationImageDataRequest]) (*connect.Response[v1.GetLocationImageDataResponse], error) {
+	return c.getLocationImageData.CallUnary(ctx, req)
+}
+
+// UploadLocationImage calls storyboard.v1.StoryboardService.UploadLocationImage.
+func (c *storyboardServiceClient) UploadLocationImage(ctx context.Context, req *connect.Request[v1.UploadLocationImageRequest]) (*connect.Response[v1.UploadLocationImageResponse], error) {
+	return c.uploadLocationImage.CallUnary(ctx, req)
+}
+
+// DeleteLocationImage calls storyboard.v1.StoryboardService.DeleteLocationImage.
+func (c *storyboardServiceClient) DeleteLocationImage(ctx context.Context, req *connect.Request[v1.DeleteLocationImageRequest]) (*connect.Response[v1.DeleteLocationImageResponse], error) {
+	return c.deleteLocationImage.CallUnary(ctx, req)
+}
+
+// ListLocation3DModels calls storyboard.v1.StoryboardService.ListLocation3DModels.
+func (c *storyboardServiceClient) ListLocation3DModels(ctx context.Context, req *connect.Request[v1.ListLocation3DModelsRequest]) (*connect.Response[v1.ListLocation3DModelsResponse], error) {
+	return c.listLocation3DModels.CallUnary(ctx, req)
+}
+
+// GetLocation3DModel calls storyboard.v1.StoryboardService.GetLocation3DModel.
+func (c *storyboardServiceClient) GetLocation3DModel(ctx context.Context, req *connect.Request[v1.GetLocation3DModelRequest]) (*connect.Response[v1.Location3DModel], error) {
+	return c.getLocation3DModel.CallUnary(ctx, req)
+}
+
+// GetLocation3DModelData calls storyboard.v1.StoryboardService.GetLocation3DModelData.
+func (c *storyboardServiceClient) GetLocation3DModelData(ctx context.Context, req *connect.Request[v1.GetLocation3DModelDataRequest]) (*connect.Response[v1.GetLocation3DModelDataResponse], error) {
+	return c.getLocation3DModelData.CallUnary(ctx, req)
+}
+
+// UploadLocation3DModel calls storyboard.v1.StoryboardService.UploadLocation3DModel.
+func (c *storyboardServiceClient) UploadLocation3DModel(ctx context.Context, req *connect.Request[v1.UploadLocation3DModelRequest]) (*connect.Response[v1.UploadLocation3DModelResponse], error) {
+	return c.uploadLocation3DModel.CallUnary(ctx, req)
+}
+
+// DeleteLocation3DModel calls storyboard.v1.StoryboardService.DeleteLocation3DModel.
+func (c *storyboardServiceClient) DeleteLocation3DModel(ctx context.Context, req *connect.Request[v1.DeleteLocation3DModelRequest]) (*connect.Response[v1.DeleteLocation3DModelResponse], error) {
+	return c.deleteLocation3DModel.CallUnary(ctx, req)
+}
+
+// ListTags calls storyboard.v1.StoryboardService.ListTags.
+func (c *storyboardServiceClient) ListTags(ctx context.Context, req *connect.Request[v1.ListTagsRequest]) (*connect.Response[v1.ListTagsResponse], error) {
+	return c.listTags.CallUnary(ctx, req)
+}
+
+// GetTag calls storyboard.v1.StoryboardService.GetTag.
+func (c *storyboardServiceClient) GetTag(ctx context.Context, req *connect.Request[v1.GetTagRequest]) (*connect.Response[v1.Tag], error) {
+	return c.getTag.CallUnary(ctx, req)
+}
+
+// CreateTag calls storyboard.v1.StoryboardService.CreateTag.
+func (c *storyboardServiceClient) CreateTag(ctx context.Context, req *connect.Request[v1.CreateTagRequest]) (*connect.Response[v1.Tag], error) {
+	return c.createTag.CallUnary(ctx, req)
+}
+
+// UpdateTag calls storyboard.v1.StoryboardService.UpdateTag.
+func (c *storyboardServiceClient) UpdateTag(ctx context.Context, req *connect.Request[v1.UpdateTagRequest]) (*connect.Response[v1.Tag], error) {
+	return c.updateTag.CallUnary(ctx, req)
+}
+
+// DeleteTag calls storyboard.v1.StoryboardService.DeleteTag.
+func (c *storyboardServiceClient) DeleteTag(ctx context.Context, req *connect.Request[v1.DeleteTagRequest]) (*connect.Response[v1.DeleteTagResponse], error) {
+	return c.deleteTag.CallUnary(ctx, req)
+}
+
+// ListResourceTags calls storyboard.v1.StoryboardService.ListResourceTags.
+func (c *storyboardServiceClient) ListResourceTags(ctx context.Context, req *connect.Request[v1.ListResourceTagsRequest]) (*connect.Response[v1.ListResourceTagsResponse], error) {
+	return c.listResourceTags.CallUnary(ctx, req)
+}
+
+// AddResourceTag calls storyboard.v1.StoryboardService.AddResourceTag.
+func (c *storyboardServiceClient) AddResourceTag(ctx context.Context, req *connect.Request[v1.AddResourceTagRequest]) (*connect.Response[v1.ResourceTag], error) {
+	return c.addResourceTag.CallUnary(ctx, req)
+}
+
+// RemoveResourceTag calls storyboard.v1.StoryboardService.RemoveResourceTag.
+func (c *storyboardServiceClient) RemoveResourceTag(ctx context.Context, req *connect.Request[v1.RemoveResourceTagRequest]) (*connect.Response[v1.RemoveResourceTagResponse], error) {
+	return c.removeResourceTag.CallUnary(ctx, req)
+}
+
+// ListVoicePresets calls storyboard.v1.StoryboardService.ListVoicePresets.
+func (c *storyboardServiceClient) ListVoicePresets(ctx context.Context, req *connect.Request[v1.ListVoicePresetsRequest]) (*connect.Response[v1.ListVoicePresetsResponse], error) {
+	return c.listVoicePresets.CallUnary(ctx, req)
+}
+
+// GetVoicePreset calls storyboard.v1.StoryboardService.GetVoicePreset.
+func (c *storyboardServiceClient) GetVoicePreset(ctx context.Context, req *connect.Request[v1.GetVoicePresetRequest]) (*connect.Response[v1.VoicePreset], error) {
+	return c.getVoicePreset.CallUnary(ctx, req)
+}
+
+// CreateVoicePreset calls storyboard.v1.StoryboardService.CreateVoicePreset.
+func (c *storyboardServiceClient) CreateVoicePreset(ctx context.Context, req *connect.Request[v1.CreateVoicePresetRequest]) (*connect.Response[v1.VoicePreset], error) {
+	return c.createVoicePreset.CallUnary(ctx, req)
+}
+
+// UpdateVoicePreset calls storyboard.v1.StoryboardService.UpdateVoicePreset.
+func (c *storyboardServiceClient) UpdateVoicePreset(ctx context.Context, req *connect.Request[v1.UpdateVoicePresetRequest]) (*connect.Response[v1.VoicePreset], error) {
+	return c.updateVoicePreset.CallUnary(ctx, req)
+}
+
+// DeleteVoicePreset calls storyboard.v1.StoryboardService.DeleteVoicePreset.
+func (c *storyboardServiceClient) DeleteVoicePreset(ctx context.Context, req *connect.Request[v1.DeleteVoicePresetRequest]) (*connect.Response[v1.DeleteVoicePresetResponse], error) {
+	return c.deleteVoicePreset.CallUnary(ctx, req)
+}
+
+// GenerateVideo calls storyboard.v1.StoryboardService.GenerateVideo.
+func (c *storyboardServiceClient) GenerateVideo(ctx context.Context, req *connect.Request[v1.GenerateVideoRequest]) (*connect.Response[v1.GenerateVideoResponse], error) {
+	return c.generateVideo.CallUnary(ctx, req)
+}
+
+// GetVideoTaskStatus calls storyboard.v1.StoryboardService.GetVideoTaskStatus.
+func (c *storyboardServiceClient) GetVideoTaskStatus(ctx context.Context, req *connect.Request[v1.GetVideoTaskStatusRequest]) (*connect.Response[v1.GetVideoTaskStatusResponse], error) {
+	return c.getVideoTaskStatus.CallUnary(ctx, req)
+}
+
+// ListGeneratedVideos calls storyboard.v1.StoryboardService.ListGeneratedVideos.
+func (c *storyboardServiceClient) ListGeneratedVideos(ctx context.Context, req *connect.Request[v1.ListGeneratedVideosRequest]) (*connect.Response[v1.ListGeneratedVideosResponse], error) {
+	return c.listGeneratedVideos.CallUnary(ctx, req)
+}
+
+// GetGeneratedVideo calls storyboard.v1.StoryboardService.GetGeneratedVideo.
+func (c *storyboardServiceClient) GetGeneratedVideo(ctx context.Context, req *connect.Request[v1.GetGeneratedVideoRequest]) (*connect.Response[v1.GeneratedVideo], error) {
+	return c.getGeneratedVideo.CallUnary(ctx, req)
+}
+
+// DeleteGeneratedVideo calls storyboard.v1.StoryboardService.DeleteGeneratedVideo.
+func (c *storyboardServiceClient) DeleteGeneratedVideo(ctx context.Context, req *connect.Request[v1.DeleteGeneratedVideoRequest]) (*connect.Response[v1.DeleteGeneratedVideoResponse], error) {
+	return c.deleteGeneratedVideo.CallUnary(ctx, req)
+}
+
+// ListDepartments calls storyboard.v1.StoryboardService.ListDepartments.
+func (c *storyboardServiceClient) ListDepartments(ctx context.Context, req *connect.Request[v1.ListDepartmentsRequest]) (*connect.Response[v1.ListDepartmentsResponse], error) {
+	return c.listDepartments.CallUnary(ctx, req)
+}
+
+// ListRoles calls storyboard.v1.StoryboardService.ListRoles.
+func (c *storyboardServiceClient) ListRoles(ctx context.Context, req *connect.Request[v1.ListRolesRequest]) (*connect.Response[v1.ListRolesResponse], error) {
+	return c.listRoles.CallUnary(ctx, req)
+}
+
+// GetProjectOrganization calls storyboard.v1.StoryboardService.GetProjectOrganization.
+func (c *storyboardServiceClient) GetProjectOrganization(ctx context.Context, req *connect.Request[v1.GetProjectOrganizationRequest]) (*connect.Response[v1.ProjectOrganization], error) {
+	return c.getProjectOrganization.CallUnary(ctx, req)
+}
+
+// ListTeamMembers calls storyboard.v1.StoryboardService.ListTeamMembers.
+func (c *storyboardServiceClient) ListTeamMembers(ctx context.Context, req *connect.Request[v1.ListTeamMembersRequest]) (*connect.Response[v1.ListTeamMembersResponse], error) {
+	return c.listTeamMembers.CallUnary(ctx, req)
+}
+
+// SyncClerkMembers calls storyboard.v1.StoryboardService.SyncClerkMembers.
+func (c *storyboardServiceClient) SyncClerkMembers(ctx context.Context, req *connect.Request[v1.SyncClerkMembersRequest]) (*connect.Response[v1.SyncClerkMembersResponse], error) {
+	return c.syncClerkMembers.CallUnary(ctx, req)
+}
+
+// AssignTeamMember calls storyboard.v1.StoryboardService.AssignTeamMember.
+func (c *storyboardServiceClient) AssignTeamMember(ctx context.Context, req *connect.Request[v1.AssignTeamMemberRequest]) (*connect.Response[v1.ProjectTeamAssignment], error) {
+	return c.assignTeamMember.CallUnary(ctx, req)
+}
+
+// UnassignTeamMember calls storyboard.v1.StoryboardService.UnassignTeamMember.
+func (c *storyboardServiceClient) UnassignTeamMember(ctx context.Context, req *connect.Request[v1.UnassignTeamMemberRequest]) (*connect.Response[v1.UnassignTeamMemberResponse], error) {
+	return c.unassignTeamMember.CallUnary(ctx, req)
+}
+
+// ListProjectAssignments calls storyboard.v1.StoryboardService.ListProjectAssignments.
+func (c *storyboardServiceClient) ListProjectAssignments(ctx context.Context, req *connect.Request[v1.ListProjectAssignmentsRequest]) (*connect.Response[v1.ListProjectAssignmentsResponse], error) {
+	return c.listProjectAssignments.CallUnary(ctx, req)
+}
+
+// CheckPermission calls storyboard.v1.StoryboardService.CheckPermission.
+func (c *storyboardServiceClient) CheckPermission(ctx context.Context, req *connect.Request[v1.CheckPermissionRequest]) (*connect.Response[v1.CheckPermissionResponse], error) {
+	return c.checkPermission.CallUnary(ctx, req)
+}
+
+// GetUserPermissions calls storyboard.v1.StoryboardService.GetUserPermissions.
+func (c *storyboardServiceClient) GetUserPermissions(ctx context.Context, req *connect.Request[v1.GetUserPermissionsRequest]) (*connect.Response[v1.GetUserPermissionsResponse], error) {
+	return c.getUserPermissions.CallUnary(ctx, req)
+}
+
+// StartApprovalWorkflow calls storyboard.v1.StoryboardService.StartApprovalWorkflow.
+func (c *storyboardServiceClient) StartApprovalWorkflow(ctx context.Context, req *connect.Request[v1.StartApprovalWorkflowRequest]) (*connect.Response[v1.StartApprovalWorkflowResponse], error) {
+	return c.startApprovalWorkflow.CallUnary(ctx, req)
+}
+
+// SubmitApprovalAction calls storyboard.v1.StoryboardService.SubmitApprovalAction.
+func (c *storyboardServiceClient) SubmitApprovalAction(ctx context.Context, req *connect.Request[v1.SubmitApprovalActionRequest]) (*connect.Response[v1.ApprovalRequest], error) {
+	return c.submitApprovalAction.CallUnary(ctx, req)
+}
+
+// ListApprovalRequests calls storyboard.v1.StoryboardService.ListApprovalRequests.
+func (c *storyboardServiceClient) ListApprovalRequests(ctx context.Context, req *connect.Request[v1.ListApprovalRequestsRequest]) (*connect.Response[v1.ListApprovalRequestsResponse], error) {
+	return c.listApprovalRequests.CallUnary(ctx, req)
+}
+
+// GetApprovalRequest calls storyboard.v1.StoryboardService.GetApprovalRequest.
+func (c *storyboardServiceClient) GetApprovalRequest(ctx context.Context, req *connect.Request[v1.GetApprovalRequestRequest]) (*connect.Response[v1.ApprovalRequest], error) {
+	return c.getApprovalRequest.CallUnary(ctx, req)
+}
+
+// ListApprovalActions calls storyboard.v1.StoryboardService.ListApprovalActions.
+func (c *storyboardServiceClient) ListApprovalActions(ctx context.Context, req *connect.Request[v1.ListApprovalActionsRequest]) (*connect.Response[v1.ListApprovalActionsResponse], error) {
+	return c.listApprovalActions.CallUnary(ctx, req)
+}
+
+// StartProductionWorkflow calls storyboard.v1.StoryboardService.StartProductionWorkflow.
+func (c *storyboardServiceClient) StartProductionWorkflow(ctx context.Context, req *connect.Request[v1.StartProductionWorkflowRequest]) (*connect.Response[v1.StartProductionWorkflowResponse], error) {
+	return c.startProductionWorkflow.CallUnary(ctx, req)
+}
+
+// GetEpisodeProduction calls storyboard.v1.StoryboardService.GetEpisodeProduction.
+func (c *storyboardServiceClient) GetEpisodeProduction(ctx context.Context, req *connect.Request[v1.GetEpisodeProductionRequest]) (*connect.Response[v1.EpisodeProduction], error) {
+	return c.getEpisodeProduction.CallUnary(ctx, req)
+}
+
+// ListEpisodeProductions calls storyboard.v1.StoryboardService.ListEpisodeProductions.
+func (c *storyboardServiceClient) ListEpisodeProductions(ctx context.Context, req *connect.Request[v1.ListEpisodeProductionsRequest]) (*connect.Response[v1.ListEpisodeProductionsResponse], error) {
+	return c.listEpisodeProductions.CallUnary(ctx, req)
+}
+
+// UpdateProductionStatus calls storyboard.v1.StoryboardService.UpdateProductionStatus.
+func (c *storyboardServiceClient) UpdateProductionStatus(ctx context.Context, req *connect.Request[v1.UpdateProductionStatusRequest]) (*connect.Response[v1.EpisodeProduction], error) {
+	return c.updateProductionStatus.CallUnary(ctx, req)
+}
+
+// StartTaskWorkflow calls storyboard.v1.StoryboardService.StartTaskWorkflow.
+func (c *storyboardServiceClient) StartTaskWorkflow(ctx context.Context, req *connect.Request[v1.StartTaskWorkflowRequest]) (*connect.Response[v1.StartTaskWorkflowResponse], error) {
+	return c.startTaskWorkflow.CallUnary(ctx, req)
+}
+
+// AssignTask calls storyboard.v1.StoryboardService.AssignTask.
+func (c *storyboardServiceClient) AssignTask(ctx context.Context, req *connect.Request[v1.AssignTaskRequest]) (*connect.Response[v1.Task], error) {
+	return c.assignTask.CallUnary(ctx, req)
+}
+
+// UpdateTaskStatus calls storyboard.v1.StoryboardService.UpdateTaskStatus.
+func (c *storyboardServiceClient) UpdateTaskStatus(ctx context.Context, req *connect.Request[v1.UpdateTaskStatusRequest]) (*connect.Response[v1.Task], error) {
+	return c.updateTaskStatus.CallUnary(ctx, req)
+}
+
+// ListTasks calls storyboard.v1.StoryboardService.ListTasks.
+func (c *storyboardServiceClient) ListTasks(ctx context.Context, req *connect.Request[v1.ListTasksRequest]) (*connect.Response[v1.ListTasksResponse], error) {
+	return c.listTasks.CallUnary(ctx, req)
+}
+
+// GetTask calls storyboard.v1.StoryboardService.GetTask.
+func (c *storyboardServiceClient) GetTask(ctx context.Context, req *connect.Request[v1.GetTaskRequest]) (*connect.Response[v1.Task], error) {
+	return c.getTask.CallUnary(ctx, req)
+}
+
+// ListProps calls storyboard.v1.StoryboardService.ListProps.
+func (c *storyboardServiceClient) ListProps(ctx context.Context, req *connect.Request[v1.ListPropsRequest]) (*connect.Response[v1.ListPropsResponse], error) {
+	return c.listProps.CallUnary(ctx, req)
+}
+
+// GetProp calls storyboard.v1.StoryboardService.GetProp.
+func (c *storyboardServiceClient) GetProp(ctx context.Context, req *connect.Request[v1.GetPropRequest]) (*connect.Response[v1.Prop], error) {
+	return c.getProp.CallUnary(ctx, req)
+}
+
+// CreateProp calls storyboard.v1.StoryboardService.CreateProp.
+func (c *storyboardServiceClient) CreateProp(ctx context.Context, req *connect.Request[v1.CreatePropRequest]) (*connect.Response[v1.Prop], error) {
+	return c.createProp.CallUnary(ctx, req)
+}
+
+// UpdateProp calls storyboard.v1.StoryboardService.UpdateProp.
+func (c *storyboardServiceClient) UpdateProp(ctx context.Context, req *connect.Request[v1.UpdatePropRequest]) (*connect.Response[v1.Prop], error) {
+	return c.updateProp.CallUnary(ctx, req)
+}
+
+// DeleteProp calls storyboard.v1.StoryboardService.DeleteProp.
+func (c *storyboardServiceClient) DeleteProp(ctx context.Context, req *connect.Request[v1.DeletePropRequest]) (*connect.Response[v1.DeletePropResponse], error) {
+	return c.deleteProp.CallUnary(ctx, req)
+}
+
+// ListPropImages calls storyboard.v1.StoryboardService.ListPropImages.
+func (c *storyboardServiceClient) ListPropImages(ctx context.Context, req *connect.Request[v1.ListPropImagesRequest]) (*connect.Response[v1.ListPropImagesResponse], error) {
+	return c.listPropImages.CallUnary(ctx, req)
+}
+
+// GetPropImage calls storyboard.v1.StoryboardService.GetPropImage.
+func (c *storyboardServiceClient) GetPropImage(ctx context.Context, req *connect.Request[v1.GetPropImageRequest]) (*connect.Response[v1.PropImage], error) {
+	return c.getPropImage.CallUnary(ctx, req)
+}
+
+// GetPropImageData calls storyboard.v1.StoryboardService.GetPropImageData.
+func (c *storyboardServiceClient) GetPropImageData(ctx context.Context, req *connect.Request[v1.GetPropImageDataRequest]) (*connect.Response[v1.GetPropImageDataResponse], error) {
+	return c.getPropImageData.CallUnary(ctx, req)
+}
+
+// UploadPropImage calls storyboard.v1.StoryboardService.UploadPropImage.
+func (c *storyboardServiceClient) UploadPropImage(ctx context.Context, req *connect.Request[v1.UploadPropImageRequest]) (*connect.Response[v1.UploadPropImageResponse], error) {
+	return c.uploadPropImage.CallUnary(ctx, req)
+}
+
+// DeletePropImage calls storyboard.v1.StoryboardService.DeletePropImage.
+func (c *storyboardServiceClient) DeletePropImage(ctx context.Context, req *connect.Request[v1.DeletePropImageRequest]) (*connect.Response[v1.DeletePropImageResponse], error) {
+	return c.deletePropImage.CallUnary(ctx, req)
+}
+
+// ListProp3DModels calls storyboard.v1.StoryboardService.ListProp3DModels.
+func (c *storyboardServiceClient) ListProp3DModels(ctx context.Context, req *connect.Request[v1.ListProp3DModelsRequest]) (*connect.Response[v1.ListProp3DModelsResponse], error) {
+	return c.listProp3DModels.CallUnary(ctx, req)
+}
+
+// GetProp3DModel calls storyboard.v1.StoryboardService.GetProp3DModel.
+func (c *storyboardServiceClient) GetProp3DModel(ctx context.Context, req *connect.Request[v1.GetProp3DModelRequest]) (*connect.Response[v1.Prop3DModel], error) {
+	return c.getProp3DModel.CallUnary(ctx, req)
+}
+
+// GetProp3DModelData calls storyboard.v1.StoryboardService.GetProp3DModelData.
+func (c *storyboardServiceClient) GetProp3DModelData(ctx context.Context, req *connect.Request[v1.GetProp3DModelDataRequest]) (*connect.Response[v1.GetProp3DModelDataResponse], error) {
+	return c.getProp3DModelData.CallUnary(ctx, req)
+}
+
+// UploadProp3DModel calls storyboard.v1.StoryboardService.UploadProp3DModel.
+func (c *storyboardServiceClient) UploadProp3DModel(ctx context.Context, req *connect.Request[v1.UploadProp3DModelRequest]) (*connect.Response[v1.UploadProp3DModelResponse], error) {
+	return c.uploadProp3DModel.CallUnary(ctx, req)
+}
+
+// DeleteProp3DModel calls storyboard.v1.StoryboardService.DeleteProp3DModel.
+func (c *storyboardServiceClient) DeleteProp3DModel(ctx context.Context, req *connect.Request[v1.DeleteProp3DModelRequest]) (*connect.Response[v1.DeleteProp3DModelResponse], error) {
+	return c.deleteProp3DModel.CallUnary(ctx, req)
+}
+
+// ListWorldSettings calls storyboard.v1.StoryboardService.ListWorldSettings.
+func (c *storyboardServiceClient) ListWorldSettings(ctx context.Context, req *connect.Request[v1.ListWorldSettingsRequest]) (*connect.Response[v1.ListWorldSettingsResponse], error) {
+	return c.listWorldSettings.CallUnary(ctx, req)
+}
+
+// GetWorldSetting calls storyboard.v1.StoryboardService.GetWorldSetting.
+func (c *storyboardServiceClient) GetWorldSetting(ctx context.Context, req *connect.Request[v1.GetWorldSettingRequest]) (*connect.Response[v1.WorldSetting], error) {
+	return c.getWorldSetting.CallUnary(ctx, req)
+}
+
+// CreateWorldSetting calls storyboard.v1.StoryboardService.CreateWorldSetting.
+func (c *storyboardServiceClient) CreateWorldSetting(ctx context.Context, req *connect.Request[v1.CreateWorldSettingRequest]) (*connect.Response[v1.WorldSetting], error) {
+	return c.createWorldSetting.CallUnary(ctx, req)
+}
+
+// UpdateWorldSetting calls storyboard.v1.StoryboardService.UpdateWorldSetting.
+func (c *storyboardServiceClient) UpdateWorldSetting(ctx context.Context, req *connect.Request[v1.UpdateWorldSettingRequest]) (*connect.Response[v1.WorldSetting], error) {
+	return c.updateWorldSetting.CallUnary(ctx, req)
+}
+
+// DeleteWorldSetting calls storyboard.v1.StoryboardService.DeleteWorldSetting.
+func (c *storyboardServiceClient) DeleteWorldSetting(ctx context.Context, req *connect.Request[v1.DeleteWorldSettingRequest]) (*connect.Response[v1.DeleteWorldSettingResponse], error) {
+	return c.deleteWorldSetting.CallUnary(ctx, req)
+}
+
 // StoryboardServiceHandler is an implementation of the storyboard.v1.StoryboardService service.
 type StoryboardServiceHandler interface {
 	// Project operations
@@ -878,6 +2271,8 @@ type StoryboardServiceHandler interface {
 	ListGeneratedImages(context.Context, *connect.Request[v1.ListGeneratedImagesRequest]) (*connect.Response[v1.ListGeneratedImagesResponse], error)
 	GetImageData(context.Context, *connect.Request[v1.GetImageDataRequest]) (*connect.Response[v1.GetImageDataResponse], error)
 	GenerateImage(context.Context, *connect.Request[v1.GenerateImageRequest]) (*connect.Response[v1.GenerateImageResponse], error)
+	// Character Image Generation operations (Higgsfield Soul ID)
+	GenerateCharacterImage(context.Context, *connect.Request[v1.GenerateCharacterImageRequest]) (*connect.Response[v1.GenerateCharacterImageResponse], error)
 	// Character operations
 	ListCharacters(context.Context, *connect.Request[v1.ListCharactersRequest]) (*connect.Response[v1.ListCharactersResponse], error)
 	GetCharacter(context.Context, *connect.Request[v1.GetCharacterRequest]) (*connect.Response[v1.Character], error)
@@ -918,6 +2313,107 @@ type StoryboardServiceHandler interface {
 	CreateScenario(context.Context, *connect.Request[v1.CreateScenarioRequest]) (*connect.Response[v1.Scenario], error)
 	UpdateScenario(context.Context, *connect.Request[v1.UpdateScenarioRequest]) (*connect.Response[v1.Scenario], error)
 	DeleteScenario(context.Context, *connect.Request[v1.DeleteScenarioRequest]) (*connect.Response[v1.DeleteScenarioResponse], error)
+	ReorderParts(context.Context, *connect.Request[v1.ReorderPartsRequest]) (*connect.Response[v1.ReorderPartsResponse], error)
+	ReorderScenePlans(context.Context, *connect.Request[v1.ReorderScenePlansRequest]) (*connect.Response[v1.ReorderScenePlansResponse], error)
+	// Project Asset operations
+	ListProjectAssets(context.Context, *connect.Request[v1.ListProjectAssetsRequest]) (*connect.Response[v1.ListProjectAssetsResponse], error)
+	GetProjectAsset(context.Context, *connect.Request[v1.GetProjectAssetRequest]) (*connect.Response[v1.ProjectAsset], error)
+	GetProjectAssetData(context.Context, *connect.Request[v1.GetProjectAssetDataRequest]) (*connect.Response[v1.GetProjectAssetDataResponse], error)
+	CreateProjectAsset(context.Context, *connect.Request[v1.CreateProjectAssetRequest]) (*connect.Response[v1.ProjectAsset], error)
+	UpdateProjectAsset(context.Context, *connect.Request[v1.UpdateProjectAssetRequest]) (*connect.Response[v1.ProjectAsset], error)
+	DeleteProjectAsset(context.Context, *connect.Request[v1.DeleteProjectAssetRequest]) (*connect.Response[v1.DeleteProjectAssetResponse], error)
+	// Location operations
+	ListLocations(context.Context, *connect.Request[v1.ListLocationsRequest]) (*connect.Response[v1.ListLocationsResponse], error)
+	GetLocation(context.Context, *connect.Request[v1.GetLocationRequest]) (*connect.Response[v1.Location], error)
+	CreateLocation(context.Context, *connect.Request[v1.CreateLocationRequest]) (*connect.Response[v1.Location], error)
+	UpdateLocation(context.Context, *connect.Request[v1.UpdateLocationRequest]) (*connect.Response[v1.Location], error)
+	DeleteLocation(context.Context, *connect.Request[v1.DeleteLocationRequest]) (*connect.Response[v1.DeleteLocationResponse], error)
+	// Location Image operations (multi-angle)
+	ListLocationImages(context.Context, *connect.Request[v1.ListLocationImagesRequest]) (*connect.Response[v1.ListLocationImagesResponse], error)
+	GetLocationImage(context.Context, *connect.Request[v1.GetLocationImageRequest]) (*connect.Response[v1.LocationImage], error)
+	GetLocationImageData(context.Context, *connect.Request[v1.GetLocationImageDataRequest]) (*connect.Response[v1.GetLocationImageDataResponse], error)
+	UploadLocationImage(context.Context, *connect.Request[v1.UploadLocationImageRequest]) (*connect.Response[v1.UploadLocationImageResponse], error)
+	DeleteLocationImage(context.Context, *connect.Request[v1.DeleteLocationImageRequest]) (*connect.Response[v1.DeleteLocationImageResponse], error)
+	// Location 3D Model operations
+	ListLocation3DModels(context.Context, *connect.Request[v1.ListLocation3DModelsRequest]) (*connect.Response[v1.ListLocation3DModelsResponse], error)
+	GetLocation3DModel(context.Context, *connect.Request[v1.GetLocation3DModelRequest]) (*connect.Response[v1.Location3DModel], error)
+	GetLocation3DModelData(context.Context, *connect.Request[v1.GetLocation3DModelDataRequest]) (*connect.Response[v1.GetLocation3DModelDataResponse], error)
+	UploadLocation3DModel(context.Context, *connect.Request[v1.UploadLocation3DModelRequest]) (*connect.Response[v1.UploadLocation3DModelResponse], error)
+	DeleteLocation3DModel(context.Context, *connect.Request[v1.DeleteLocation3DModelRequest]) (*connect.Response[v1.DeleteLocation3DModelResponse], error)
+	// Tag operations
+	ListTags(context.Context, *connect.Request[v1.ListTagsRequest]) (*connect.Response[v1.ListTagsResponse], error)
+	GetTag(context.Context, *connect.Request[v1.GetTagRequest]) (*connect.Response[v1.Tag], error)
+	CreateTag(context.Context, *connect.Request[v1.CreateTagRequest]) (*connect.Response[v1.Tag], error)
+	UpdateTag(context.Context, *connect.Request[v1.UpdateTagRequest]) (*connect.Response[v1.Tag], error)
+	DeleteTag(context.Context, *connect.Request[v1.DeleteTagRequest]) (*connect.Response[v1.DeleteTagResponse], error)
+	ListResourceTags(context.Context, *connect.Request[v1.ListResourceTagsRequest]) (*connect.Response[v1.ListResourceTagsResponse], error)
+	AddResourceTag(context.Context, *connect.Request[v1.AddResourceTagRequest]) (*connect.Response[v1.ResourceTag], error)
+	RemoveResourceTag(context.Context, *connect.Request[v1.RemoveResourceTagRequest]) (*connect.Response[v1.RemoveResourceTagResponse], error)
+	// Voice Preset operations
+	ListVoicePresets(context.Context, *connect.Request[v1.ListVoicePresetsRequest]) (*connect.Response[v1.ListVoicePresetsResponse], error)
+	GetVoicePreset(context.Context, *connect.Request[v1.GetVoicePresetRequest]) (*connect.Response[v1.VoicePreset], error)
+	CreateVoicePreset(context.Context, *connect.Request[v1.CreateVoicePresetRequest]) (*connect.Response[v1.VoicePreset], error)
+	UpdateVoicePreset(context.Context, *connect.Request[v1.UpdateVoicePresetRequest]) (*connect.Response[v1.VoicePreset], error)
+	DeleteVoicePreset(context.Context, *connect.Request[v1.DeleteVoicePresetRequest]) (*connect.Response[v1.DeleteVoicePresetResponse], error)
+	// Video Generation operations
+	GenerateVideo(context.Context, *connect.Request[v1.GenerateVideoRequest]) (*connect.Response[v1.GenerateVideoResponse], error)
+	GetVideoTaskStatus(context.Context, *connect.Request[v1.GetVideoTaskStatusRequest]) (*connect.Response[v1.GetVideoTaskStatusResponse], error)
+	ListGeneratedVideos(context.Context, *connect.Request[v1.ListGeneratedVideosRequest]) (*connect.Response[v1.ListGeneratedVideosResponse], error)
+	GetGeneratedVideo(context.Context, *connect.Request[v1.GetGeneratedVideoRequest]) (*connect.Response[v1.GeneratedVideo], error)
+	DeleteGeneratedVideo(context.Context, *connect.Request[v1.DeleteGeneratedVideoRequest]) (*connect.Response[v1.DeleteGeneratedVideoResponse], error)
+	// Organization operations
+	ListDepartments(context.Context, *connect.Request[v1.ListDepartmentsRequest]) (*connect.Response[v1.ListDepartmentsResponse], error)
+	ListRoles(context.Context, *connect.Request[v1.ListRolesRequest]) (*connect.Response[v1.ListRolesResponse], error)
+	GetProjectOrganization(context.Context, *connect.Request[v1.GetProjectOrganizationRequest]) (*connect.Response[v1.ProjectOrganization], error)
+	ListTeamMembers(context.Context, *connect.Request[v1.ListTeamMembersRequest]) (*connect.Response[v1.ListTeamMembersResponse], error)
+	SyncClerkMembers(context.Context, *connect.Request[v1.SyncClerkMembersRequest]) (*connect.Response[v1.SyncClerkMembersResponse], error)
+	AssignTeamMember(context.Context, *connect.Request[v1.AssignTeamMemberRequest]) (*connect.Response[v1.ProjectTeamAssignment], error)
+	UnassignTeamMember(context.Context, *connect.Request[v1.UnassignTeamMemberRequest]) (*connect.Response[v1.UnassignTeamMemberResponse], error)
+	ListProjectAssignments(context.Context, *connect.Request[v1.ListProjectAssignmentsRequest]) (*connect.Response[v1.ListProjectAssignmentsResponse], error)
+	// Permission operations
+	CheckPermission(context.Context, *connect.Request[v1.CheckPermissionRequest]) (*connect.Response[v1.CheckPermissionResponse], error)
+	GetUserPermissions(context.Context, *connect.Request[v1.GetUserPermissionsRequest]) (*connect.Response[v1.GetUserPermissionsResponse], error)
+	// Approval Workflow operations
+	StartApprovalWorkflow(context.Context, *connect.Request[v1.StartApprovalWorkflowRequest]) (*connect.Response[v1.StartApprovalWorkflowResponse], error)
+	SubmitApprovalAction(context.Context, *connect.Request[v1.SubmitApprovalActionRequest]) (*connect.Response[v1.ApprovalRequest], error)
+	ListApprovalRequests(context.Context, *connect.Request[v1.ListApprovalRequestsRequest]) (*connect.Response[v1.ListApprovalRequestsResponse], error)
+	GetApprovalRequest(context.Context, *connect.Request[v1.GetApprovalRequestRequest]) (*connect.Response[v1.ApprovalRequest], error)
+	ListApprovalActions(context.Context, *connect.Request[v1.ListApprovalActionsRequest]) (*connect.Response[v1.ListApprovalActionsResponse], error)
+	// Production Workflow operations
+	StartProductionWorkflow(context.Context, *connect.Request[v1.StartProductionWorkflowRequest]) (*connect.Response[v1.StartProductionWorkflowResponse], error)
+	GetEpisodeProduction(context.Context, *connect.Request[v1.GetEpisodeProductionRequest]) (*connect.Response[v1.EpisodeProduction], error)
+	ListEpisodeProductions(context.Context, *connect.Request[v1.ListEpisodeProductionsRequest]) (*connect.Response[v1.ListEpisodeProductionsResponse], error)
+	UpdateProductionStatus(context.Context, *connect.Request[v1.UpdateProductionStatusRequest]) (*connect.Response[v1.EpisodeProduction], error)
+	// Task Workflow operations
+	StartTaskWorkflow(context.Context, *connect.Request[v1.StartTaskWorkflowRequest]) (*connect.Response[v1.StartTaskWorkflowResponse], error)
+	AssignTask(context.Context, *connect.Request[v1.AssignTaskRequest]) (*connect.Response[v1.Task], error)
+	UpdateTaskStatus(context.Context, *connect.Request[v1.UpdateTaskStatusRequest]) (*connect.Response[v1.Task], error)
+	ListTasks(context.Context, *connect.Request[v1.ListTasksRequest]) (*connect.Response[v1.ListTasksResponse], error)
+	GetTask(context.Context, *connect.Request[v1.GetTaskRequest]) (*connect.Response[v1.Task], error)
+	// Prop operations
+	ListProps(context.Context, *connect.Request[v1.ListPropsRequest]) (*connect.Response[v1.ListPropsResponse], error)
+	GetProp(context.Context, *connect.Request[v1.GetPropRequest]) (*connect.Response[v1.Prop], error)
+	CreateProp(context.Context, *connect.Request[v1.CreatePropRequest]) (*connect.Response[v1.Prop], error)
+	UpdateProp(context.Context, *connect.Request[v1.UpdatePropRequest]) (*connect.Response[v1.Prop], error)
+	DeleteProp(context.Context, *connect.Request[v1.DeletePropRequest]) (*connect.Response[v1.DeletePropResponse], error)
+	// Prop Image operations (multi-angle)
+	ListPropImages(context.Context, *connect.Request[v1.ListPropImagesRequest]) (*connect.Response[v1.ListPropImagesResponse], error)
+	GetPropImage(context.Context, *connect.Request[v1.GetPropImageRequest]) (*connect.Response[v1.PropImage], error)
+	GetPropImageData(context.Context, *connect.Request[v1.GetPropImageDataRequest]) (*connect.Response[v1.GetPropImageDataResponse], error)
+	UploadPropImage(context.Context, *connect.Request[v1.UploadPropImageRequest]) (*connect.Response[v1.UploadPropImageResponse], error)
+	DeletePropImage(context.Context, *connect.Request[v1.DeletePropImageRequest]) (*connect.Response[v1.DeletePropImageResponse], error)
+	// Prop 3D Model operations
+	ListProp3DModels(context.Context, *connect.Request[v1.ListProp3DModelsRequest]) (*connect.Response[v1.ListProp3DModelsResponse], error)
+	GetProp3DModel(context.Context, *connect.Request[v1.GetProp3DModelRequest]) (*connect.Response[v1.Prop3DModel], error)
+	GetProp3DModelData(context.Context, *connect.Request[v1.GetProp3DModelDataRequest]) (*connect.Response[v1.GetProp3DModelDataResponse], error)
+	UploadProp3DModel(context.Context, *connect.Request[v1.UploadProp3DModelRequest]) (*connect.Response[v1.UploadProp3DModelResponse], error)
+	DeleteProp3DModel(context.Context, *connect.Request[v1.DeleteProp3DModelRequest]) (*connect.Response[v1.DeleteProp3DModelResponse], error)
+	// World Setting operations
+	ListWorldSettings(context.Context, *connect.Request[v1.ListWorldSettingsRequest]) (*connect.Response[v1.ListWorldSettingsResponse], error)
+	GetWorldSetting(context.Context, *connect.Request[v1.GetWorldSettingRequest]) (*connect.Response[v1.WorldSetting], error)
+	CreateWorldSetting(context.Context, *connect.Request[v1.CreateWorldSettingRequest]) (*connect.Response[v1.WorldSetting], error)
+	UpdateWorldSetting(context.Context, *connect.Request[v1.UpdateWorldSettingRequest]) (*connect.Response[v1.WorldSetting], error)
+	DeleteWorldSetting(context.Context, *connect.Request[v1.DeleteWorldSettingRequest]) (*connect.Response[v1.DeleteWorldSettingResponse], error)
 }
 
 // NewStoryboardServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -1033,6 +2529,12 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 		StoryboardServiceGenerateImageProcedure,
 		svc.GenerateImage,
 		connect.WithSchema(storyboardServiceMethods.ByName("GenerateImage")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGenerateCharacterImageHandler := connect.NewUnaryHandler(
+		StoryboardServiceGenerateCharacterImageProcedure,
+		svc.GenerateCharacterImage,
+		connect.WithSchema(storyboardServiceMethods.ByName("GenerateCharacterImage")),
 		connect.WithHandlerOptions(opts...),
 	)
 	storyboardServiceListCharactersHandler := connect.NewUnaryHandler(
@@ -1221,6 +2723,516 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 		connect.WithSchema(storyboardServiceMethods.ByName("DeleteScenario")),
 		connect.WithHandlerOptions(opts...),
 	)
+	storyboardServiceReorderPartsHandler := connect.NewUnaryHandler(
+		StoryboardServiceReorderPartsProcedure,
+		svc.ReorderParts,
+		connect.WithSchema(storyboardServiceMethods.ByName("ReorderParts")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceReorderScenePlansHandler := connect.NewUnaryHandler(
+		StoryboardServiceReorderScenePlansProcedure,
+		svc.ReorderScenePlans,
+		connect.WithSchema(storyboardServiceMethods.ByName("ReorderScenePlans")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListProjectAssetsHandler := connect.NewUnaryHandler(
+		StoryboardServiceListProjectAssetsProcedure,
+		svc.ListProjectAssets,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListProjectAssets")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetProjectAssetHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetProjectAssetProcedure,
+		svc.GetProjectAsset,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetProjectAsset")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetProjectAssetDataHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetProjectAssetDataProcedure,
+		svc.GetProjectAssetData,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetProjectAssetData")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceCreateProjectAssetHandler := connect.NewUnaryHandler(
+		StoryboardServiceCreateProjectAssetProcedure,
+		svc.CreateProjectAsset,
+		connect.WithSchema(storyboardServiceMethods.ByName("CreateProjectAsset")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceUpdateProjectAssetHandler := connect.NewUnaryHandler(
+		StoryboardServiceUpdateProjectAssetProcedure,
+		svc.UpdateProjectAsset,
+		connect.WithSchema(storyboardServiceMethods.ByName("UpdateProjectAsset")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceDeleteProjectAssetHandler := connect.NewUnaryHandler(
+		StoryboardServiceDeleteProjectAssetProcedure,
+		svc.DeleteProjectAsset,
+		connect.WithSchema(storyboardServiceMethods.ByName("DeleteProjectAsset")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListLocationsHandler := connect.NewUnaryHandler(
+		StoryboardServiceListLocationsProcedure,
+		svc.ListLocations,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListLocations")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetLocationHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetLocationProcedure,
+		svc.GetLocation,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetLocation")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceCreateLocationHandler := connect.NewUnaryHandler(
+		StoryboardServiceCreateLocationProcedure,
+		svc.CreateLocation,
+		connect.WithSchema(storyboardServiceMethods.ByName("CreateLocation")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceUpdateLocationHandler := connect.NewUnaryHandler(
+		StoryboardServiceUpdateLocationProcedure,
+		svc.UpdateLocation,
+		connect.WithSchema(storyboardServiceMethods.ByName("UpdateLocation")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceDeleteLocationHandler := connect.NewUnaryHandler(
+		StoryboardServiceDeleteLocationProcedure,
+		svc.DeleteLocation,
+		connect.WithSchema(storyboardServiceMethods.ByName("DeleteLocation")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListLocationImagesHandler := connect.NewUnaryHandler(
+		StoryboardServiceListLocationImagesProcedure,
+		svc.ListLocationImages,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListLocationImages")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetLocationImageHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetLocationImageProcedure,
+		svc.GetLocationImage,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetLocationImage")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetLocationImageDataHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetLocationImageDataProcedure,
+		svc.GetLocationImageData,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetLocationImageData")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceUploadLocationImageHandler := connect.NewUnaryHandler(
+		StoryboardServiceUploadLocationImageProcedure,
+		svc.UploadLocationImage,
+		connect.WithSchema(storyboardServiceMethods.ByName("UploadLocationImage")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceDeleteLocationImageHandler := connect.NewUnaryHandler(
+		StoryboardServiceDeleteLocationImageProcedure,
+		svc.DeleteLocationImage,
+		connect.WithSchema(storyboardServiceMethods.ByName("DeleteLocationImage")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListLocation3DModelsHandler := connect.NewUnaryHandler(
+		StoryboardServiceListLocation3DModelsProcedure,
+		svc.ListLocation3DModels,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListLocation3DModels")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetLocation3DModelHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetLocation3DModelProcedure,
+		svc.GetLocation3DModel,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetLocation3DModel")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetLocation3DModelDataHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetLocation3DModelDataProcedure,
+		svc.GetLocation3DModelData,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetLocation3DModelData")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceUploadLocation3DModelHandler := connect.NewUnaryHandler(
+		StoryboardServiceUploadLocation3DModelProcedure,
+		svc.UploadLocation3DModel,
+		connect.WithSchema(storyboardServiceMethods.ByName("UploadLocation3DModel")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceDeleteLocation3DModelHandler := connect.NewUnaryHandler(
+		StoryboardServiceDeleteLocation3DModelProcedure,
+		svc.DeleteLocation3DModel,
+		connect.WithSchema(storyboardServiceMethods.ByName("DeleteLocation3DModel")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListTagsHandler := connect.NewUnaryHandler(
+		StoryboardServiceListTagsProcedure,
+		svc.ListTags,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListTags")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetTagHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetTagProcedure,
+		svc.GetTag,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetTag")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceCreateTagHandler := connect.NewUnaryHandler(
+		StoryboardServiceCreateTagProcedure,
+		svc.CreateTag,
+		connect.WithSchema(storyboardServiceMethods.ByName("CreateTag")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceUpdateTagHandler := connect.NewUnaryHandler(
+		StoryboardServiceUpdateTagProcedure,
+		svc.UpdateTag,
+		connect.WithSchema(storyboardServiceMethods.ByName("UpdateTag")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceDeleteTagHandler := connect.NewUnaryHandler(
+		StoryboardServiceDeleteTagProcedure,
+		svc.DeleteTag,
+		connect.WithSchema(storyboardServiceMethods.ByName("DeleteTag")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListResourceTagsHandler := connect.NewUnaryHandler(
+		StoryboardServiceListResourceTagsProcedure,
+		svc.ListResourceTags,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListResourceTags")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceAddResourceTagHandler := connect.NewUnaryHandler(
+		StoryboardServiceAddResourceTagProcedure,
+		svc.AddResourceTag,
+		connect.WithSchema(storyboardServiceMethods.ByName("AddResourceTag")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceRemoveResourceTagHandler := connect.NewUnaryHandler(
+		StoryboardServiceRemoveResourceTagProcedure,
+		svc.RemoveResourceTag,
+		connect.WithSchema(storyboardServiceMethods.ByName("RemoveResourceTag")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListVoicePresetsHandler := connect.NewUnaryHandler(
+		StoryboardServiceListVoicePresetsProcedure,
+		svc.ListVoicePresets,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListVoicePresets")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetVoicePresetHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetVoicePresetProcedure,
+		svc.GetVoicePreset,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetVoicePreset")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceCreateVoicePresetHandler := connect.NewUnaryHandler(
+		StoryboardServiceCreateVoicePresetProcedure,
+		svc.CreateVoicePreset,
+		connect.WithSchema(storyboardServiceMethods.ByName("CreateVoicePreset")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceUpdateVoicePresetHandler := connect.NewUnaryHandler(
+		StoryboardServiceUpdateVoicePresetProcedure,
+		svc.UpdateVoicePreset,
+		connect.WithSchema(storyboardServiceMethods.ByName("UpdateVoicePreset")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceDeleteVoicePresetHandler := connect.NewUnaryHandler(
+		StoryboardServiceDeleteVoicePresetProcedure,
+		svc.DeleteVoicePreset,
+		connect.WithSchema(storyboardServiceMethods.ByName("DeleteVoicePreset")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGenerateVideoHandler := connect.NewUnaryHandler(
+		StoryboardServiceGenerateVideoProcedure,
+		svc.GenerateVideo,
+		connect.WithSchema(storyboardServiceMethods.ByName("GenerateVideo")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetVideoTaskStatusHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetVideoTaskStatusProcedure,
+		svc.GetVideoTaskStatus,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetVideoTaskStatus")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListGeneratedVideosHandler := connect.NewUnaryHandler(
+		StoryboardServiceListGeneratedVideosProcedure,
+		svc.ListGeneratedVideos,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListGeneratedVideos")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetGeneratedVideoHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetGeneratedVideoProcedure,
+		svc.GetGeneratedVideo,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetGeneratedVideo")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceDeleteGeneratedVideoHandler := connect.NewUnaryHandler(
+		StoryboardServiceDeleteGeneratedVideoProcedure,
+		svc.DeleteGeneratedVideo,
+		connect.WithSchema(storyboardServiceMethods.ByName("DeleteGeneratedVideo")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListDepartmentsHandler := connect.NewUnaryHandler(
+		StoryboardServiceListDepartmentsProcedure,
+		svc.ListDepartments,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListDepartments")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListRolesHandler := connect.NewUnaryHandler(
+		StoryboardServiceListRolesProcedure,
+		svc.ListRoles,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListRoles")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetProjectOrganizationHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetProjectOrganizationProcedure,
+		svc.GetProjectOrganization,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetProjectOrganization")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListTeamMembersHandler := connect.NewUnaryHandler(
+		StoryboardServiceListTeamMembersProcedure,
+		svc.ListTeamMembers,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListTeamMembers")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceSyncClerkMembersHandler := connect.NewUnaryHandler(
+		StoryboardServiceSyncClerkMembersProcedure,
+		svc.SyncClerkMembers,
+		connect.WithSchema(storyboardServiceMethods.ByName("SyncClerkMembers")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceAssignTeamMemberHandler := connect.NewUnaryHandler(
+		StoryboardServiceAssignTeamMemberProcedure,
+		svc.AssignTeamMember,
+		connect.WithSchema(storyboardServiceMethods.ByName("AssignTeamMember")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceUnassignTeamMemberHandler := connect.NewUnaryHandler(
+		StoryboardServiceUnassignTeamMemberProcedure,
+		svc.UnassignTeamMember,
+		connect.WithSchema(storyboardServiceMethods.ByName("UnassignTeamMember")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListProjectAssignmentsHandler := connect.NewUnaryHandler(
+		StoryboardServiceListProjectAssignmentsProcedure,
+		svc.ListProjectAssignments,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListProjectAssignments")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceCheckPermissionHandler := connect.NewUnaryHandler(
+		StoryboardServiceCheckPermissionProcedure,
+		svc.CheckPermission,
+		connect.WithSchema(storyboardServiceMethods.ByName("CheckPermission")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetUserPermissionsHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetUserPermissionsProcedure,
+		svc.GetUserPermissions,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetUserPermissions")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceStartApprovalWorkflowHandler := connect.NewUnaryHandler(
+		StoryboardServiceStartApprovalWorkflowProcedure,
+		svc.StartApprovalWorkflow,
+		connect.WithSchema(storyboardServiceMethods.ByName("StartApprovalWorkflow")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceSubmitApprovalActionHandler := connect.NewUnaryHandler(
+		StoryboardServiceSubmitApprovalActionProcedure,
+		svc.SubmitApprovalAction,
+		connect.WithSchema(storyboardServiceMethods.ByName("SubmitApprovalAction")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListApprovalRequestsHandler := connect.NewUnaryHandler(
+		StoryboardServiceListApprovalRequestsProcedure,
+		svc.ListApprovalRequests,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListApprovalRequests")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetApprovalRequestHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetApprovalRequestProcedure,
+		svc.GetApprovalRequest,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetApprovalRequest")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListApprovalActionsHandler := connect.NewUnaryHandler(
+		StoryboardServiceListApprovalActionsProcedure,
+		svc.ListApprovalActions,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListApprovalActions")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceStartProductionWorkflowHandler := connect.NewUnaryHandler(
+		StoryboardServiceStartProductionWorkflowProcedure,
+		svc.StartProductionWorkflow,
+		connect.WithSchema(storyboardServiceMethods.ByName("StartProductionWorkflow")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetEpisodeProductionHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetEpisodeProductionProcedure,
+		svc.GetEpisodeProduction,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetEpisodeProduction")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListEpisodeProductionsHandler := connect.NewUnaryHandler(
+		StoryboardServiceListEpisodeProductionsProcedure,
+		svc.ListEpisodeProductions,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListEpisodeProductions")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceUpdateProductionStatusHandler := connect.NewUnaryHandler(
+		StoryboardServiceUpdateProductionStatusProcedure,
+		svc.UpdateProductionStatus,
+		connect.WithSchema(storyboardServiceMethods.ByName("UpdateProductionStatus")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceStartTaskWorkflowHandler := connect.NewUnaryHandler(
+		StoryboardServiceStartTaskWorkflowProcedure,
+		svc.StartTaskWorkflow,
+		connect.WithSchema(storyboardServiceMethods.ByName("StartTaskWorkflow")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceAssignTaskHandler := connect.NewUnaryHandler(
+		StoryboardServiceAssignTaskProcedure,
+		svc.AssignTask,
+		connect.WithSchema(storyboardServiceMethods.ByName("AssignTask")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceUpdateTaskStatusHandler := connect.NewUnaryHandler(
+		StoryboardServiceUpdateTaskStatusProcedure,
+		svc.UpdateTaskStatus,
+		connect.WithSchema(storyboardServiceMethods.ByName("UpdateTaskStatus")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListTasksHandler := connect.NewUnaryHandler(
+		StoryboardServiceListTasksProcedure,
+		svc.ListTasks,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListTasks")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetTaskHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetTaskProcedure,
+		svc.GetTask,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetTask")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListPropsHandler := connect.NewUnaryHandler(
+		StoryboardServiceListPropsProcedure,
+		svc.ListProps,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListProps")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetPropHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetPropProcedure,
+		svc.GetProp,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetProp")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceCreatePropHandler := connect.NewUnaryHandler(
+		StoryboardServiceCreatePropProcedure,
+		svc.CreateProp,
+		connect.WithSchema(storyboardServiceMethods.ByName("CreateProp")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceUpdatePropHandler := connect.NewUnaryHandler(
+		StoryboardServiceUpdatePropProcedure,
+		svc.UpdateProp,
+		connect.WithSchema(storyboardServiceMethods.ByName("UpdateProp")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceDeletePropHandler := connect.NewUnaryHandler(
+		StoryboardServiceDeletePropProcedure,
+		svc.DeleteProp,
+		connect.WithSchema(storyboardServiceMethods.ByName("DeleteProp")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListPropImagesHandler := connect.NewUnaryHandler(
+		StoryboardServiceListPropImagesProcedure,
+		svc.ListPropImages,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListPropImages")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetPropImageHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetPropImageProcedure,
+		svc.GetPropImage,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetPropImage")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetPropImageDataHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetPropImageDataProcedure,
+		svc.GetPropImageData,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetPropImageData")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceUploadPropImageHandler := connect.NewUnaryHandler(
+		StoryboardServiceUploadPropImageProcedure,
+		svc.UploadPropImage,
+		connect.WithSchema(storyboardServiceMethods.ByName("UploadPropImage")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceDeletePropImageHandler := connect.NewUnaryHandler(
+		StoryboardServiceDeletePropImageProcedure,
+		svc.DeletePropImage,
+		connect.WithSchema(storyboardServiceMethods.ByName("DeletePropImage")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListProp3DModelsHandler := connect.NewUnaryHandler(
+		StoryboardServiceListProp3DModelsProcedure,
+		svc.ListProp3DModels,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListProp3DModels")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetProp3DModelHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetProp3DModelProcedure,
+		svc.GetProp3DModel,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetProp3DModel")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetProp3DModelDataHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetProp3DModelDataProcedure,
+		svc.GetProp3DModelData,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetProp3DModelData")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceUploadProp3DModelHandler := connect.NewUnaryHandler(
+		StoryboardServiceUploadProp3DModelProcedure,
+		svc.UploadProp3DModel,
+		connect.WithSchema(storyboardServiceMethods.ByName("UploadProp3DModel")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceDeleteProp3DModelHandler := connect.NewUnaryHandler(
+		StoryboardServiceDeleteProp3DModelProcedure,
+		svc.DeleteProp3DModel,
+		connect.WithSchema(storyboardServiceMethods.ByName("DeleteProp3DModel")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListWorldSettingsHandler := connect.NewUnaryHandler(
+		StoryboardServiceListWorldSettingsProcedure,
+		svc.ListWorldSettings,
+		connect.WithSchema(storyboardServiceMethods.ByName("ListWorldSettings")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetWorldSettingHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetWorldSettingProcedure,
+		svc.GetWorldSetting,
+		connect.WithSchema(storyboardServiceMethods.ByName("GetWorldSetting")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceCreateWorldSettingHandler := connect.NewUnaryHandler(
+		StoryboardServiceCreateWorldSettingProcedure,
+		svc.CreateWorldSetting,
+		connect.WithSchema(storyboardServiceMethods.ByName("CreateWorldSetting")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceUpdateWorldSettingHandler := connect.NewUnaryHandler(
+		StoryboardServiceUpdateWorldSettingProcedure,
+		svc.UpdateWorldSetting,
+		connect.WithSchema(storyboardServiceMethods.ByName("UpdateWorldSetting")),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceDeleteWorldSettingHandler := connect.NewUnaryHandler(
+		StoryboardServiceDeleteWorldSettingProcedure,
+		svc.DeleteWorldSetting,
+		connect.WithSchema(storyboardServiceMethods.ByName("DeleteWorldSetting")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/storyboard.v1.StoryboardService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case StoryboardServiceListProjectsProcedure:
@@ -1259,6 +3271,8 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 			storyboardServiceGetImageDataHandler.ServeHTTP(w, r)
 		case StoryboardServiceGenerateImageProcedure:
 			storyboardServiceGenerateImageHandler.ServeHTTP(w, r)
+		case StoryboardServiceGenerateCharacterImageProcedure:
+			storyboardServiceGenerateCharacterImageHandler.ServeHTTP(w, r)
 		case StoryboardServiceListCharactersProcedure:
 			storyboardServiceListCharactersHandler.ServeHTTP(w, r)
 		case StoryboardServiceGetCharacterProcedure:
@@ -1321,6 +3335,176 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 			storyboardServiceUpdateScenarioHandler.ServeHTTP(w, r)
 		case StoryboardServiceDeleteScenarioProcedure:
 			storyboardServiceDeleteScenarioHandler.ServeHTTP(w, r)
+		case StoryboardServiceReorderPartsProcedure:
+			storyboardServiceReorderPartsHandler.ServeHTTP(w, r)
+		case StoryboardServiceReorderScenePlansProcedure:
+			storyboardServiceReorderScenePlansHandler.ServeHTTP(w, r)
+		case StoryboardServiceListProjectAssetsProcedure:
+			storyboardServiceListProjectAssetsHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetProjectAssetProcedure:
+			storyboardServiceGetProjectAssetHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetProjectAssetDataProcedure:
+			storyboardServiceGetProjectAssetDataHandler.ServeHTTP(w, r)
+		case StoryboardServiceCreateProjectAssetProcedure:
+			storyboardServiceCreateProjectAssetHandler.ServeHTTP(w, r)
+		case StoryboardServiceUpdateProjectAssetProcedure:
+			storyboardServiceUpdateProjectAssetHandler.ServeHTTP(w, r)
+		case StoryboardServiceDeleteProjectAssetProcedure:
+			storyboardServiceDeleteProjectAssetHandler.ServeHTTP(w, r)
+		case StoryboardServiceListLocationsProcedure:
+			storyboardServiceListLocationsHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetLocationProcedure:
+			storyboardServiceGetLocationHandler.ServeHTTP(w, r)
+		case StoryboardServiceCreateLocationProcedure:
+			storyboardServiceCreateLocationHandler.ServeHTTP(w, r)
+		case StoryboardServiceUpdateLocationProcedure:
+			storyboardServiceUpdateLocationHandler.ServeHTTP(w, r)
+		case StoryboardServiceDeleteLocationProcedure:
+			storyboardServiceDeleteLocationHandler.ServeHTTP(w, r)
+		case StoryboardServiceListLocationImagesProcedure:
+			storyboardServiceListLocationImagesHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetLocationImageProcedure:
+			storyboardServiceGetLocationImageHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetLocationImageDataProcedure:
+			storyboardServiceGetLocationImageDataHandler.ServeHTTP(w, r)
+		case StoryboardServiceUploadLocationImageProcedure:
+			storyboardServiceUploadLocationImageHandler.ServeHTTP(w, r)
+		case StoryboardServiceDeleteLocationImageProcedure:
+			storyboardServiceDeleteLocationImageHandler.ServeHTTP(w, r)
+		case StoryboardServiceListLocation3DModelsProcedure:
+			storyboardServiceListLocation3DModelsHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetLocation3DModelProcedure:
+			storyboardServiceGetLocation3DModelHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetLocation3DModelDataProcedure:
+			storyboardServiceGetLocation3DModelDataHandler.ServeHTTP(w, r)
+		case StoryboardServiceUploadLocation3DModelProcedure:
+			storyboardServiceUploadLocation3DModelHandler.ServeHTTP(w, r)
+		case StoryboardServiceDeleteLocation3DModelProcedure:
+			storyboardServiceDeleteLocation3DModelHandler.ServeHTTP(w, r)
+		case StoryboardServiceListTagsProcedure:
+			storyboardServiceListTagsHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetTagProcedure:
+			storyboardServiceGetTagHandler.ServeHTTP(w, r)
+		case StoryboardServiceCreateTagProcedure:
+			storyboardServiceCreateTagHandler.ServeHTTP(w, r)
+		case StoryboardServiceUpdateTagProcedure:
+			storyboardServiceUpdateTagHandler.ServeHTTP(w, r)
+		case StoryboardServiceDeleteTagProcedure:
+			storyboardServiceDeleteTagHandler.ServeHTTP(w, r)
+		case StoryboardServiceListResourceTagsProcedure:
+			storyboardServiceListResourceTagsHandler.ServeHTTP(w, r)
+		case StoryboardServiceAddResourceTagProcedure:
+			storyboardServiceAddResourceTagHandler.ServeHTTP(w, r)
+		case StoryboardServiceRemoveResourceTagProcedure:
+			storyboardServiceRemoveResourceTagHandler.ServeHTTP(w, r)
+		case StoryboardServiceListVoicePresetsProcedure:
+			storyboardServiceListVoicePresetsHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetVoicePresetProcedure:
+			storyboardServiceGetVoicePresetHandler.ServeHTTP(w, r)
+		case StoryboardServiceCreateVoicePresetProcedure:
+			storyboardServiceCreateVoicePresetHandler.ServeHTTP(w, r)
+		case StoryboardServiceUpdateVoicePresetProcedure:
+			storyboardServiceUpdateVoicePresetHandler.ServeHTTP(w, r)
+		case StoryboardServiceDeleteVoicePresetProcedure:
+			storyboardServiceDeleteVoicePresetHandler.ServeHTTP(w, r)
+		case StoryboardServiceGenerateVideoProcedure:
+			storyboardServiceGenerateVideoHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetVideoTaskStatusProcedure:
+			storyboardServiceGetVideoTaskStatusHandler.ServeHTTP(w, r)
+		case StoryboardServiceListGeneratedVideosProcedure:
+			storyboardServiceListGeneratedVideosHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetGeneratedVideoProcedure:
+			storyboardServiceGetGeneratedVideoHandler.ServeHTTP(w, r)
+		case StoryboardServiceDeleteGeneratedVideoProcedure:
+			storyboardServiceDeleteGeneratedVideoHandler.ServeHTTP(w, r)
+		case StoryboardServiceListDepartmentsProcedure:
+			storyboardServiceListDepartmentsHandler.ServeHTTP(w, r)
+		case StoryboardServiceListRolesProcedure:
+			storyboardServiceListRolesHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetProjectOrganizationProcedure:
+			storyboardServiceGetProjectOrganizationHandler.ServeHTTP(w, r)
+		case StoryboardServiceListTeamMembersProcedure:
+			storyboardServiceListTeamMembersHandler.ServeHTTP(w, r)
+		case StoryboardServiceSyncClerkMembersProcedure:
+			storyboardServiceSyncClerkMembersHandler.ServeHTTP(w, r)
+		case StoryboardServiceAssignTeamMemberProcedure:
+			storyboardServiceAssignTeamMemberHandler.ServeHTTP(w, r)
+		case StoryboardServiceUnassignTeamMemberProcedure:
+			storyboardServiceUnassignTeamMemberHandler.ServeHTTP(w, r)
+		case StoryboardServiceListProjectAssignmentsProcedure:
+			storyboardServiceListProjectAssignmentsHandler.ServeHTTP(w, r)
+		case StoryboardServiceCheckPermissionProcedure:
+			storyboardServiceCheckPermissionHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetUserPermissionsProcedure:
+			storyboardServiceGetUserPermissionsHandler.ServeHTTP(w, r)
+		case StoryboardServiceStartApprovalWorkflowProcedure:
+			storyboardServiceStartApprovalWorkflowHandler.ServeHTTP(w, r)
+		case StoryboardServiceSubmitApprovalActionProcedure:
+			storyboardServiceSubmitApprovalActionHandler.ServeHTTP(w, r)
+		case StoryboardServiceListApprovalRequestsProcedure:
+			storyboardServiceListApprovalRequestsHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetApprovalRequestProcedure:
+			storyboardServiceGetApprovalRequestHandler.ServeHTTP(w, r)
+		case StoryboardServiceListApprovalActionsProcedure:
+			storyboardServiceListApprovalActionsHandler.ServeHTTP(w, r)
+		case StoryboardServiceStartProductionWorkflowProcedure:
+			storyboardServiceStartProductionWorkflowHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetEpisodeProductionProcedure:
+			storyboardServiceGetEpisodeProductionHandler.ServeHTTP(w, r)
+		case StoryboardServiceListEpisodeProductionsProcedure:
+			storyboardServiceListEpisodeProductionsHandler.ServeHTTP(w, r)
+		case StoryboardServiceUpdateProductionStatusProcedure:
+			storyboardServiceUpdateProductionStatusHandler.ServeHTTP(w, r)
+		case StoryboardServiceStartTaskWorkflowProcedure:
+			storyboardServiceStartTaskWorkflowHandler.ServeHTTP(w, r)
+		case StoryboardServiceAssignTaskProcedure:
+			storyboardServiceAssignTaskHandler.ServeHTTP(w, r)
+		case StoryboardServiceUpdateTaskStatusProcedure:
+			storyboardServiceUpdateTaskStatusHandler.ServeHTTP(w, r)
+		case StoryboardServiceListTasksProcedure:
+			storyboardServiceListTasksHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetTaskProcedure:
+			storyboardServiceGetTaskHandler.ServeHTTP(w, r)
+		case StoryboardServiceListPropsProcedure:
+			storyboardServiceListPropsHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetPropProcedure:
+			storyboardServiceGetPropHandler.ServeHTTP(w, r)
+		case StoryboardServiceCreatePropProcedure:
+			storyboardServiceCreatePropHandler.ServeHTTP(w, r)
+		case StoryboardServiceUpdatePropProcedure:
+			storyboardServiceUpdatePropHandler.ServeHTTP(w, r)
+		case StoryboardServiceDeletePropProcedure:
+			storyboardServiceDeletePropHandler.ServeHTTP(w, r)
+		case StoryboardServiceListPropImagesProcedure:
+			storyboardServiceListPropImagesHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetPropImageProcedure:
+			storyboardServiceGetPropImageHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetPropImageDataProcedure:
+			storyboardServiceGetPropImageDataHandler.ServeHTTP(w, r)
+		case StoryboardServiceUploadPropImageProcedure:
+			storyboardServiceUploadPropImageHandler.ServeHTTP(w, r)
+		case StoryboardServiceDeletePropImageProcedure:
+			storyboardServiceDeletePropImageHandler.ServeHTTP(w, r)
+		case StoryboardServiceListProp3DModelsProcedure:
+			storyboardServiceListProp3DModelsHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetProp3DModelProcedure:
+			storyboardServiceGetProp3DModelHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetProp3DModelDataProcedure:
+			storyboardServiceGetProp3DModelDataHandler.ServeHTTP(w, r)
+		case StoryboardServiceUploadProp3DModelProcedure:
+			storyboardServiceUploadProp3DModelHandler.ServeHTTP(w, r)
+		case StoryboardServiceDeleteProp3DModelProcedure:
+			storyboardServiceDeleteProp3DModelHandler.ServeHTTP(w, r)
+		case StoryboardServiceListWorldSettingsProcedure:
+			storyboardServiceListWorldSettingsHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetWorldSettingProcedure:
+			storyboardServiceGetWorldSettingHandler.ServeHTTP(w, r)
+		case StoryboardServiceCreateWorldSettingProcedure:
+			storyboardServiceCreateWorldSettingHandler.ServeHTTP(w, r)
+		case StoryboardServiceUpdateWorldSettingProcedure:
+			storyboardServiceUpdateWorldSettingHandler.ServeHTTP(w, r)
+		case StoryboardServiceDeleteWorldSettingProcedure:
+			storyboardServiceDeleteWorldSettingHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -1400,6 +3584,10 @@ func (UnimplementedStoryboardServiceHandler) GetImageData(context.Context, *conn
 
 func (UnimplementedStoryboardServiceHandler) GenerateImage(context.Context, *connect.Request[v1.GenerateImageRequest]) (*connect.Response[v1.GenerateImageResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GenerateImage is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GenerateCharacterImage(context.Context, *connect.Request[v1.GenerateCharacterImageRequest]) (*connect.Response[v1.GenerateCharacterImageResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GenerateCharacterImage is not implemented"))
 }
 
 func (UnimplementedStoryboardServiceHandler) ListCharacters(context.Context, *connect.Request[v1.ListCharactersRequest]) (*connect.Response[v1.ListCharactersResponse], error) {
@@ -1524,4 +3712,344 @@ func (UnimplementedStoryboardServiceHandler) UpdateScenario(context.Context, *co
 
 func (UnimplementedStoryboardServiceHandler) DeleteScenario(context.Context, *connect.Request[v1.DeleteScenarioRequest]) (*connect.Response[v1.DeleteScenarioResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.DeleteScenario is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ReorderParts(context.Context, *connect.Request[v1.ReorderPartsRequest]) (*connect.Response[v1.ReorderPartsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ReorderParts is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ReorderScenePlans(context.Context, *connect.Request[v1.ReorderScenePlansRequest]) (*connect.Response[v1.ReorderScenePlansResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ReorderScenePlans is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListProjectAssets(context.Context, *connect.Request[v1.ListProjectAssetsRequest]) (*connect.Response[v1.ListProjectAssetsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListProjectAssets is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetProjectAsset(context.Context, *connect.Request[v1.GetProjectAssetRequest]) (*connect.Response[v1.ProjectAsset], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetProjectAsset is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetProjectAssetData(context.Context, *connect.Request[v1.GetProjectAssetDataRequest]) (*connect.Response[v1.GetProjectAssetDataResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetProjectAssetData is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) CreateProjectAsset(context.Context, *connect.Request[v1.CreateProjectAssetRequest]) (*connect.Response[v1.ProjectAsset], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.CreateProjectAsset is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) UpdateProjectAsset(context.Context, *connect.Request[v1.UpdateProjectAssetRequest]) (*connect.Response[v1.ProjectAsset], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.UpdateProjectAsset is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) DeleteProjectAsset(context.Context, *connect.Request[v1.DeleteProjectAssetRequest]) (*connect.Response[v1.DeleteProjectAssetResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.DeleteProjectAsset is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListLocations(context.Context, *connect.Request[v1.ListLocationsRequest]) (*connect.Response[v1.ListLocationsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListLocations is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetLocation(context.Context, *connect.Request[v1.GetLocationRequest]) (*connect.Response[v1.Location], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetLocation is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) CreateLocation(context.Context, *connect.Request[v1.CreateLocationRequest]) (*connect.Response[v1.Location], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.CreateLocation is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) UpdateLocation(context.Context, *connect.Request[v1.UpdateLocationRequest]) (*connect.Response[v1.Location], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.UpdateLocation is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) DeleteLocation(context.Context, *connect.Request[v1.DeleteLocationRequest]) (*connect.Response[v1.DeleteLocationResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.DeleteLocation is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListLocationImages(context.Context, *connect.Request[v1.ListLocationImagesRequest]) (*connect.Response[v1.ListLocationImagesResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListLocationImages is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetLocationImage(context.Context, *connect.Request[v1.GetLocationImageRequest]) (*connect.Response[v1.LocationImage], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetLocationImage is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetLocationImageData(context.Context, *connect.Request[v1.GetLocationImageDataRequest]) (*connect.Response[v1.GetLocationImageDataResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetLocationImageData is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) UploadLocationImage(context.Context, *connect.Request[v1.UploadLocationImageRequest]) (*connect.Response[v1.UploadLocationImageResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.UploadLocationImage is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) DeleteLocationImage(context.Context, *connect.Request[v1.DeleteLocationImageRequest]) (*connect.Response[v1.DeleteLocationImageResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.DeleteLocationImage is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListLocation3DModels(context.Context, *connect.Request[v1.ListLocation3DModelsRequest]) (*connect.Response[v1.ListLocation3DModelsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListLocation3DModels is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetLocation3DModel(context.Context, *connect.Request[v1.GetLocation3DModelRequest]) (*connect.Response[v1.Location3DModel], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetLocation3DModel is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetLocation3DModelData(context.Context, *connect.Request[v1.GetLocation3DModelDataRequest]) (*connect.Response[v1.GetLocation3DModelDataResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetLocation3DModelData is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) UploadLocation3DModel(context.Context, *connect.Request[v1.UploadLocation3DModelRequest]) (*connect.Response[v1.UploadLocation3DModelResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.UploadLocation3DModel is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) DeleteLocation3DModel(context.Context, *connect.Request[v1.DeleteLocation3DModelRequest]) (*connect.Response[v1.DeleteLocation3DModelResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.DeleteLocation3DModel is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListTags(context.Context, *connect.Request[v1.ListTagsRequest]) (*connect.Response[v1.ListTagsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListTags is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetTag(context.Context, *connect.Request[v1.GetTagRequest]) (*connect.Response[v1.Tag], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetTag is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) CreateTag(context.Context, *connect.Request[v1.CreateTagRequest]) (*connect.Response[v1.Tag], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.CreateTag is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) UpdateTag(context.Context, *connect.Request[v1.UpdateTagRequest]) (*connect.Response[v1.Tag], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.UpdateTag is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) DeleteTag(context.Context, *connect.Request[v1.DeleteTagRequest]) (*connect.Response[v1.DeleteTagResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.DeleteTag is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListResourceTags(context.Context, *connect.Request[v1.ListResourceTagsRequest]) (*connect.Response[v1.ListResourceTagsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListResourceTags is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) AddResourceTag(context.Context, *connect.Request[v1.AddResourceTagRequest]) (*connect.Response[v1.ResourceTag], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.AddResourceTag is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) RemoveResourceTag(context.Context, *connect.Request[v1.RemoveResourceTagRequest]) (*connect.Response[v1.RemoveResourceTagResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.RemoveResourceTag is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListVoicePresets(context.Context, *connect.Request[v1.ListVoicePresetsRequest]) (*connect.Response[v1.ListVoicePresetsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListVoicePresets is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetVoicePreset(context.Context, *connect.Request[v1.GetVoicePresetRequest]) (*connect.Response[v1.VoicePreset], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetVoicePreset is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) CreateVoicePreset(context.Context, *connect.Request[v1.CreateVoicePresetRequest]) (*connect.Response[v1.VoicePreset], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.CreateVoicePreset is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) UpdateVoicePreset(context.Context, *connect.Request[v1.UpdateVoicePresetRequest]) (*connect.Response[v1.VoicePreset], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.UpdateVoicePreset is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) DeleteVoicePreset(context.Context, *connect.Request[v1.DeleteVoicePresetRequest]) (*connect.Response[v1.DeleteVoicePresetResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.DeleteVoicePreset is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GenerateVideo(context.Context, *connect.Request[v1.GenerateVideoRequest]) (*connect.Response[v1.GenerateVideoResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GenerateVideo is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetVideoTaskStatus(context.Context, *connect.Request[v1.GetVideoTaskStatusRequest]) (*connect.Response[v1.GetVideoTaskStatusResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetVideoTaskStatus is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListGeneratedVideos(context.Context, *connect.Request[v1.ListGeneratedVideosRequest]) (*connect.Response[v1.ListGeneratedVideosResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListGeneratedVideos is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetGeneratedVideo(context.Context, *connect.Request[v1.GetGeneratedVideoRequest]) (*connect.Response[v1.GeneratedVideo], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetGeneratedVideo is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) DeleteGeneratedVideo(context.Context, *connect.Request[v1.DeleteGeneratedVideoRequest]) (*connect.Response[v1.DeleteGeneratedVideoResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.DeleteGeneratedVideo is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListDepartments(context.Context, *connect.Request[v1.ListDepartmentsRequest]) (*connect.Response[v1.ListDepartmentsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListDepartments is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListRoles(context.Context, *connect.Request[v1.ListRolesRequest]) (*connect.Response[v1.ListRolesResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListRoles is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetProjectOrganization(context.Context, *connect.Request[v1.GetProjectOrganizationRequest]) (*connect.Response[v1.ProjectOrganization], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetProjectOrganization is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListTeamMembers(context.Context, *connect.Request[v1.ListTeamMembersRequest]) (*connect.Response[v1.ListTeamMembersResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListTeamMembers is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) SyncClerkMembers(context.Context, *connect.Request[v1.SyncClerkMembersRequest]) (*connect.Response[v1.SyncClerkMembersResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.SyncClerkMembers is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) AssignTeamMember(context.Context, *connect.Request[v1.AssignTeamMemberRequest]) (*connect.Response[v1.ProjectTeamAssignment], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.AssignTeamMember is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) UnassignTeamMember(context.Context, *connect.Request[v1.UnassignTeamMemberRequest]) (*connect.Response[v1.UnassignTeamMemberResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.UnassignTeamMember is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListProjectAssignments(context.Context, *connect.Request[v1.ListProjectAssignmentsRequest]) (*connect.Response[v1.ListProjectAssignmentsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListProjectAssignments is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) CheckPermission(context.Context, *connect.Request[v1.CheckPermissionRequest]) (*connect.Response[v1.CheckPermissionResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.CheckPermission is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetUserPermissions(context.Context, *connect.Request[v1.GetUserPermissionsRequest]) (*connect.Response[v1.GetUserPermissionsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetUserPermissions is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) StartApprovalWorkflow(context.Context, *connect.Request[v1.StartApprovalWorkflowRequest]) (*connect.Response[v1.StartApprovalWorkflowResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.StartApprovalWorkflow is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) SubmitApprovalAction(context.Context, *connect.Request[v1.SubmitApprovalActionRequest]) (*connect.Response[v1.ApprovalRequest], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.SubmitApprovalAction is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListApprovalRequests(context.Context, *connect.Request[v1.ListApprovalRequestsRequest]) (*connect.Response[v1.ListApprovalRequestsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListApprovalRequests is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetApprovalRequest(context.Context, *connect.Request[v1.GetApprovalRequestRequest]) (*connect.Response[v1.ApprovalRequest], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetApprovalRequest is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListApprovalActions(context.Context, *connect.Request[v1.ListApprovalActionsRequest]) (*connect.Response[v1.ListApprovalActionsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListApprovalActions is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) StartProductionWorkflow(context.Context, *connect.Request[v1.StartProductionWorkflowRequest]) (*connect.Response[v1.StartProductionWorkflowResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.StartProductionWorkflow is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetEpisodeProduction(context.Context, *connect.Request[v1.GetEpisodeProductionRequest]) (*connect.Response[v1.EpisodeProduction], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetEpisodeProduction is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListEpisodeProductions(context.Context, *connect.Request[v1.ListEpisodeProductionsRequest]) (*connect.Response[v1.ListEpisodeProductionsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListEpisodeProductions is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) UpdateProductionStatus(context.Context, *connect.Request[v1.UpdateProductionStatusRequest]) (*connect.Response[v1.EpisodeProduction], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.UpdateProductionStatus is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) StartTaskWorkflow(context.Context, *connect.Request[v1.StartTaskWorkflowRequest]) (*connect.Response[v1.StartTaskWorkflowResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.StartTaskWorkflow is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) AssignTask(context.Context, *connect.Request[v1.AssignTaskRequest]) (*connect.Response[v1.Task], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.AssignTask is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) UpdateTaskStatus(context.Context, *connect.Request[v1.UpdateTaskStatusRequest]) (*connect.Response[v1.Task], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.UpdateTaskStatus is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListTasks(context.Context, *connect.Request[v1.ListTasksRequest]) (*connect.Response[v1.ListTasksResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListTasks is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetTask(context.Context, *connect.Request[v1.GetTaskRequest]) (*connect.Response[v1.Task], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetTask is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListProps(context.Context, *connect.Request[v1.ListPropsRequest]) (*connect.Response[v1.ListPropsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListProps is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetProp(context.Context, *connect.Request[v1.GetPropRequest]) (*connect.Response[v1.Prop], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetProp is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) CreateProp(context.Context, *connect.Request[v1.CreatePropRequest]) (*connect.Response[v1.Prop], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.CreateProp is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) UpdateProp(context.Context, *connect.Request[v1.UpdatePropRequest]) (*connect.Response[v1.Prop], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.UpdateProp is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) DeleteProp(context.Context, *connect.Request[v1.DeletePropRequest]) (*connect.Response[v1.DeletePropResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.DeleteProp is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListPropImages(context.Context, *connect.Request[v1.ListPropImagesRequest]) (*connect.Response[v1.ListPropImagesResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListPropImages is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetPropImage(context.Context, *connect.Request[v1.GetPropImageRequest]) (*connect.Response[v1.PropImage], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetPropImage is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetPropImageData(context.Context, *connect.Request[v1.GetPropImageDataRequest]) (*connect.Response[v1.GetPropImageDataResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetPropImageData is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) UploadPropImage(context.Context, *connect.Request[v1.UploadPropImageRequest]) (*connect.Response[v1.UploadPropImageResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.UploadPropImage is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) DeletePropImage(context.Context, *connect.Request[v1.DeletePropImageRequest]) (*connect.Response[v1.DeletePropImageResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.DeletePropImage is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListProp3DModels(context.Context, *connect.Request[v1.ListProp3DModelsRequest]) (*connect.Response[v1.ListProp3DModelsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListProp3DModels is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetProp3DModel(context.Context, *connect.Request[v1.GetProp3DModelRequest]) (*connect.Response[v1.Prop3DModel], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetProp3DModel is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetProp3DModelData(context.Context, *connect.Request[v1.GetProp3DModelDataRequest]) (*connect.Response[v1.GetProp3DModelDataResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetProp3DModelData is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) UploadProp3DModel(context.Context, *connect.Request[v1.UploadProp3DModelRequest]) (*connect.Response[v1.UploadProp3DModelResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.UploadProp3DModel is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) DeleteProp3DModel(context.Context, *connect.Request[v1.DeleteProp3DModelRequest]) (*connect.Response[v1.DeleteProp3DModelResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.DeleteProp3DModel is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListWorldSettings(context.Context, *connect.Request[v1.ListWorldSettingsRequest]) (*connect.Response[v1.ListWorldSettingsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.ListWorldSettings is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetWorldSetting(context.Context, *connect.Request[v1.GetWorldSettingRequest]) (*connect.Response[v1.WorldSetting], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.GetWorldSetting is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) CreateWorldSetting(context.Context, *connect.Request[v1.CreateWorldSettingRequest]) (*connect.Response[v1.WorldSetting], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.CreateWorldSetting is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) UpdateWorldSetting(context.Context, *connect.Request[v1.UpdateWorldSettingRequest]) (*connect.Response[v1.WorldSetting], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.UpdateWorldSetting is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) DeleteWorldSetting(context.Context, *connect.Request[v1.DeleteWorldSettingRequest]) (*connect.Response[v1.DeleteWorldSettingResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("storyboard.v1.StoryboardService.DeleteWorldSetting is not implemented"))
 }

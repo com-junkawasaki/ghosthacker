@@ -128,6 +128,70 @@
       ]
     },
     {
+      "id": "https://gftd.ai/activity/generate-video-openai",
+      "type": "cpm:Activity",
+      "name": "Generate Video with OpenAI",
+      "description": "Generate video from storyboard scenes using OpenAI video generation API. Videos are stored as bytea in PostgreSQL.",
+      "createdAt": "2025-12-16T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/service/grpc"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/storyboard"},
+        {"@id": "https://gftd.ai/resource/scene"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/generated-video"},
+        {"@id": "https://gftd.ai/resource/video-bytea-storage"}
+      ],
+      "dependsOn": [
+        {"@id": "https://gftd.ai/activity/manage-scenes"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/generate-video-runway",
+      "type": "cpm:Activity",
+      "name": "Generate Video with Runway ML",
+      "description": "Generate video from text prompts or images using Runway ML Gen-3 Alpha/Turbo models. Supports text-to-video and image-to-video generation with customizable duration, aspect ratio, and model selection.",
+      "createdAt": "2025-12-16T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/service/grpc"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/scene-description"},
+        {"@id": "https://gftd.ai/resource/scene-image"},
+        {"@id": "https://gftd.ai/resource/generation-parameters"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/video-generation-task"},
+        {"@id": "https://gftd.ai/resource/generated-video"}
+      ],
+      "dependsOn": [
+        {"@id": "https://gftd.ai/activity/manage-scenes"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/poll-video-generation-status",
+      "type": "cpm:Activity",
+      "name": "Poll Video Generation Status",
+      "description": "Check the status of asynchronous video generation tasks from providers like Runway ML. Polls task status and downloads completed videos to PostgreSQL storage.",
+      "createdAt": "2025-12-16T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/service/grpc"},
+        {"@id": "https://gftd.ai/performer/system/background-worker"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/video-generation-task"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/task-status"},
+        {"@id": "https://gftd.ai/resource/generated-video"}
+      ],
+      "dependsOn": [
+        {"@id": "https://gftd.ai/activity/generate-video-runway"}
+      ]
+    },
+    {
       "id": "https://gftd.ai/activity/edit-timeline",
       "type": "cpm:Activity",
       "name": "Edit Timeline",
@@ -236,6 +300,115 @@
       ],
       "produces": [
         {"@id": "https://gftd.ai/resource/scenario-list"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/search-sponsors",
+      "type": "cpm:Activity",
+      "name": "Search Sponsors",
+      "description": "Search and explore potential sponsors by industry, budget, preferences, and other criteria",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
+        {"@id": "https://gftd.ai/performer/service/grpc"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/search-criteria"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/sponsor-list"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/register-sponsor",
+      "type": "cpm:Activity",
+      "name": "Register Sponsor",
+      "description": "Register a new sponsor with basic information, contact details, budget, and preferences",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
+        {"@id": "https://gftd.ai/performer/service/grpc"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/sponsor-information"},
+        {"@id": "https://gftd.ai/resource/organization-context"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/sponsor"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/update-sponsor",
+      "type": "cpm:Activity",
+      "name": "Update Sponsor",
+      "description": "Update sponsor information including contact details, budget, preferences, and status",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
+        {"@id": "https://gftd.ai/performer/service/grpc"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/sponsor"},
+        {"@id": "https://gftd.ai/resource/sponsor-updates"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/sponsor"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/contact-sponsor",
+      "type": "cpm:Activity",
+      "name": "Contact Sponsor",
+      "description": "Record contact history and negotiation details with sponsors",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
+        {"@id": "https://gftd.ai/performer/service/grpc"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/sponsor"},
+        {"@id": "https://gftd.ai/resource/contact-information"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/sponsor-history"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/track-sponsor-status",
+      "type": "cpm:Activity",
+      "name": "Track Sponsor Status",
+      "description": "Track and update sponsor candidate status (prospect, contacted, negotiating, approved, rejected)",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
+        {"@id": "https://gftd.ai/performer/service/grpc"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/sponsor"},
+        {"@id": "https://gftd.ai/resource/status-update"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/sponsor"},
+        {"@id": "https://gftd.ai/resource/sponsor-history"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/activity/post-sponsor-info",
+      "type": "cpm:Activity",
+      "name": "Post Sponsor Info",
+      "description": "Post sponsor information as an organization for sharing and collaboration",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "performedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
+        {"@id": "https://gftd.ai/performer/service/grpc"}
+      ],
+      "consumes": [
+        {"@id": "https://gftd.ai/resource/sponsor"},
+        {"@id": "https://gftd.ai/resource/post-content"},
+        {"@id": "https://gftd.ai/resource/organization-context"}
+      ],
+      "produces": [
+        {"@id": "https://gftd.ai/resource/sponsor-post"}
       ]
     }
   ]

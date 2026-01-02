@@ -8,6 +8,30 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+type ApprovalAction struct {
+	ID         pgtype.UUID        `json:"id"`
+	ApprovalID pgtype.UUID        `json:"approval_id"`
+	ReviewerID pgtype.UUID        `json:"reviewer_id"`
+	Action     string             `json:"action"`
+	Comment    pgtype.Text        `json:"comment"`
+	CreatedAt  pgtype.Timestamptz `json:"created_at"`
+}
+
+type ApprovalRequest struct {
+	ID           pgtype.UUID        `json:"id"`
+	ProjectID    pgtype.UUID        `json:"project_id"`
+	EpisodeID    pgtype.UUID        `json:"episode_id"`
+	Type         string             `json:"type"`
+	SubmitterID  pgtype.UUID        `json:"submitter_id"`
+	ResourceID   pgtype.UUID        `json:"resource_id"`
+	ResourceType string             `json:"resource_type"`
+	Status       string             `json:"status"`
+	WorkflowID   pgtype.Text        `json:"workflow_id"`
+	RunID        pgtype.Text        `json:"run_id"`
+	CreatedAt    pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt    pgtype.Timestamptz `json:"updated_at"`
+}
+
 type AudioClip struct {
 	ID               pgtype.UUID        `json:"id"`
 	TrackID          pgtype.UUID        `json:"track_id"`
@@ -43,7 +67,30 @@ type Character struct {
 	CreatedAt          pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt          pgtype.Timestamptz `json:"updated_at"`
 	// Clerk organization ID (inherited from project)
-	OrgID pgtype.Text `json:"org_id"`
+	OrgID          pgtype.Text    `json:"org_id"`
+	Age            pgtype.Int4    `json:"age"`
+	Gender         pgtype.Text    `json:"gender"`
+	BirthDate      pgtype.Date    `json:"birth_date"`
+	HeightCm       pgtype.Int4    `json:"height_cm"`
+	WeightKg       pgtype.Numeric `json:"weight_kg"`
+	HairColor      pgtype.Text    `json:"hair_color"`
+	EyeColor       pgtype.Text    `json:"eye_color"`
+	OccupationID   pgtype.UUID    `json:"occupation_id"`
+	OrganizationID pgtype.UUID    `json:"organization_id"`
+	AttributesJson []byte         `json:"attributes_json"`
+}
+
+// 3D models for characters (GLB/GLTF/FBX/OBJ)
+type Character3dModel struct {
+	ID          pgtype.UUID        `json:"id"`
+	CharacterID pgtype.UUID        `json:"character_id"`
+	ModelFormat string             `json:"model_format"`
+	ModelData   []byte             `json:"model_data"`
+	TextureData [][]byte           `json:"texture_data"`
+	IsPrimary   pgtype.Bool        `json:"is_primary"`
+	Metadata    []byte             `json:"metadata"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
 }
 
 type CharacterAsset struct {
@@ -57,6 +104,20 @@ type CharacterAsset struct {
 	OrgID       pgtype.Text        `json:"org_id"`
 }
 
+// Multi-angle images for characters
+type CharacterImage struct {
+	ID          pgtype.UUID        `json:"id"`
+	CharacterID pgtype.UUID        `json:"character_id"`
+	Angle       string             `json:"angle"`
+	ImageData   []byte             `json:"image_data"`
+	ImageFormat string             `json:"image_format"`
+	Width       pgtype.Int4        `json:"width"`
+	Height      pgtype.Int4        `json:"height"`
+	IsPrimary   pgtype.Bool        `json:"is_primary"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
 type Composer struct {
 	ID              pgtype.UUID        `json:"id"`
 	ProjectID       pgtype.UUID        `json:"project_id"`
@@ -64,6 +125,15 @@ type Composer struct {
 	DurationSeconds pgtype.Float8      `json:"duration_seconds"`
 	CreatedAt       pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt       pgtype.Timestamptz `json:"updated_at"`
+}
+
+type Department struct {
+	ID           pgtype.UUID        `json:"id"`
+	Name         string             `json:"name"`
+	NameJa       string             `json:"name_ja"`
+	Type         string             `json:"type"`
+	DisplayOrder int32              `json:"display_order"`
+	CreatedAt    pgtype.Timestamptz `json:"created_at"`
 }
 
 type Dialogue struct {
@@ -83,6 +153,31 @@ type Dialogue struct {
 	UpdatedAt        pgtype.Timestamptz `json:"updated_at"`
 	// Clerk organization ID (inherited from project)
 	OrgID pgtype.Text `json:"org_id"`
+	// Name of the emotion selected from emotion map (e.g., Joy, Anger, Sadness)
+	EmotionName pgtype.Text `json:"emotion_name"`
+	// X coordinate on emotion map (0-100 normalized)
+	EmotionX pgtype.Float8 `json:"emotion_x"`
+	// Y coordinate on emotion map (0-100 normalized)
+	EmotionY pgtype.Float8 `json:"emotion_y"`
+}
+
+type EmotionProfile struct {
+	ID                pgtype.UUID        `json:"id"`
+	NodeID            pgtype.UUID        `json:"node_id"`
+	NodeType          string             `json:"node_type"`
+	Joy               pgtype.Float8      `json:"joy"`
+	Sadness           pgtype.Float8      `json:"sadness"`
+	Fear              pgtype.Float8      `json:"fear"`
+	Anger             pgtype.Float8      `json:"anger"`
+	Surprise          pgtype.Float8      `json:"surprise"`
+	Trust             pgtype.Float8      `json:"trust"`
+	Anticipation      pgtype.Float8      `json:"anticipation"`
+	Disgust           pgtype.Float8      `json:"disgust"`
+	Relief            pgtype.Float8      `json:"relief"`
+	Hope              pgtype.Float8      `json:"hope"`
+	EmotionVectorJson []byte             `json:"emotion_vector_json"`
+	CreatedAt         pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt         pgtype.Timestamptz `json:"updated_at"`
 }
 
 // Episodes within a scenario
@@ -98,6 +193,19 @@ type Episode struct {
 	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
 }
 
+type EpisodeProduction struct {
+	ID              pgtype.UUID        `json:"id"`
+	ProjectID       pgtype.UUID        `json:"project_id"`
+	EpisodeID       pgtype.UUID        `json:"episode_id"`
+	Status          string             `json:"status"`
+	Deadline        pgtype.Timestamptz `json:"deadline"`
+	ProgressPercent pgtype.Numeric     `json:"progress_percent"`
+	WorkflowID      pgtype.Text        `json:"workflow_id"`
+	RunID           pgtype.Text        `json:"run_id"`
+	CreatedAt       pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt       pgtype.Timestamptz `json:"updated_at"`
+}
+
 type GeneratedImage struct {
 	ID            pgtype.UUID        `json:"id"`
 	SceneID       pgtype.UUID        `json:"scene_id"`
@@ -109,6 +217,12 @@ type GeneratedImage struct {
 	Model         pgtype.Text        `json:"model"`
 	CreatedAt     pgtype.Timestamptz `json:"created_at"`
 	OrgID         pgtype.Text        `json:"org_id"`
+	// Image generation provider: openai, higgsfield, etc.
+	Provider pgtype.Text `json:"provider"`
+	// Provider-specific image ID (replaces openai_image_id)
+	ExternalImageID pgtype.Text `json:"external_image_id"`
+	// Associated character ID for character-specific image generation
+	CharacterID pgtype.UUID `json:"character_id"`
 }
 
 type GeneratedVideo struct {
@@ -124,6 +238,149 @@ type GeneratedVideo struct {
 	UpdatedAt       pgtype.Timestamptz `json:"updated_at"`
 	// Clerk organization ID (inherited from project)
 	OrgID pgtype.Text `json:"org_id"`
+	// Video generation provider: openai, runway
+	Provider pgtype.Text `json:"provider"`
+	// Runway ML task ID for polling status
+	RunwayTaskID pgtype.Text `json:"runway_task_id"`
+	// Provider-specific generation parameters (JSON)
+	GenerationParams []byte `json:"generation_params"`
+	// Video duration in seconds (for providers that support custom duration)
+	Duration pgtype.Int4 `json:"duration"`
+	// AI model used for generation (e.g., gen3a_turbo, gen3a, dall-e-3)
+	Model pgtype.Text `json:"model"`
+}
+
+type JsonldNode struct {
+	ID             pgtype.UUID        `json:"id"`
+	NovelProjectID pgtype.UUID        `json:"novel_project_id"`
+	NodeType       string             `json:"node_type"`
+	Name           string             `json:"name"`
+	Description    pgtype.Text        `json:"description"`
+	AttributesJson []byte             `json:"attributes_json"`
+	ImageBase64    pgtype.Text        `json:"image_base64"`
+	CreatedAt      pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt      pgtype.Timestamptz `json:"updated_at"`
+}
+
+// Story locations/places with hierarchical structure support
+type Location struct {
+	ID        pgtype.UUID `json:"id"`
+	ProjectID pgtype.UUID `json:"project_id"`
+	// Clerk organization ID (inherited from project)
+	OrgID            pgtype.Text        `json:"org_id"`
+	Name             string             `json:"name"`
+	Description      pgtype.Text        `json:"description"`
+	ParentLocationID pgtype.UUID        `json:"parent_location_id"`
+	ImageID          pgtype.UUID        `json:"image_id"`
+	Metadata         []byte             `json:"metadata"`
+	CreatedAt        pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt        pgtype.Timestamptz `json:"updated_at"`
+	LocationType     pgtype.Text        `json:"location_type"`
+	Address          pgtype.Text        `json:"address"`
+	Latitude         pgtype.Numeric     `json:"latitude"`
+	Longitude        pgtype.Numeric     `json:"longitude"`
+	SizeSqm          pgtype.Numeric     `json:"size_sqm"`
+	Capacity         pgtype.Int4        `json:"capacity"`
+	Atmosphere       pgtype.Text        `json:"atmosphere"`
+	Accessibility    pgtype.Text        `json:"accessibility"`
+	SafetyLevel      pgtype.Text        `json:"safety_level"`
+}
+
+// 3D models for locations (GLB/GLTF/FBX/OBJ)
+type Location3dModel struct {
+	ID          pgtype.UUID        `json:"id"`
+	LocationID  pgtype.UUID        `json:"location_id"`
+	ModelFormat string             `json:"model_format"`
+	ModelData   []byte             `json:"model_data"`
+	TextureData [][]byte           `json:"texture_data"`
+	IsPrimary   pgtype.Bool        `json:"is_primary"`
+	Metadata    []byte             `json:"metadata"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+// Multi-angle images for locations
+type LocationImage struct {
+	ID          pgtype.UUID        `json:"id"`
+	LocationID  pgtype.UUID        `json:"location_id"`
+	Angle       string             `json:"angle"`
+	ImageData   []byte             `json:"image_data"`
+	ImageFormat string             `json:"image_format"`
+	Width       pgtype.Int4        `json:"width"`
+	Height      pgtype.Int4        `json:"height"`
+	IsPrimary   pgtype.Bool        `json:"is_primary"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+type MangaGeneratedImage struct {
+	ID             pgtype.UUID        `json:"id"`
+	MangaProjectID pgtype.UUID        `json:"manga_project_id"`
+	PanelID        pgtype.UUID        `json:"panel_id"`
+	ImageData      []byte             `json:"image_data"`
+	ImageFormat    string             `json:"image_format"`
+	Width          pgtype.Int4        `json:"width"`
+	Height         pgtype.Int4        `json:"height"`
+	Prompt         pgtype.Text        `json:"prompt"`
+	Model          pgtype.Text        `json:"model"`
+	CreatedAt      pgtype.Timestamptz `json:"created_at"`
+}
+
+type MangaPage struct {
+	ID             pgtype.UUID        `json:"id"`
+	MangaProjectID pgtype.UUID        `json:"manga_project_id"`
+	PageNumber     int32              `json:"page_number"`
+	KonvaStageJson pgtype.Text        `json:"konva_stage_json"`
+	CreatedAt      pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt      pgtype.Timestamptz `json:"updated_at"`
+}
+
+type MangaPanel struct {
+	ID         pgtype.UUID        `json:"id"`
+	PageID     pgtype.UUID        `json:"page_id"`
+	OrderIndex int32              `json:"order_index"`
+	X          pgtype.Float8      `json:"x"`
+	Y          pgtype.Float8      `json:"y"`
+	Width      pgtype.Float8      `json:"width"`
+	Height     pgtype.Float8      `json:"height"`
+	LayoutType pgtype.Text        `json:"layout_type"`
+	Prompt     pgtype.Text        `json:"prompt"`
+	CreatedAt  pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt  pgtype.Timestamptz `json:"updated_at"`
+}
+
+type MangaProject struct {
+	ID          pgtype.UUID `json:"id"`
+	ProjectID   pgtype.UUID `json:"project_id"`
+	Title       string      `json:"title"`
+	Description pgtype.Text `json:"description"`
+	// Clerk organization ID (inherited from project)
+	OrgID     pgtype.Text        `json:"org_id"`
+	CreatedAt pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt pgtype.Timestamptz `json:"updated_at"`
+}
+
+type NovelChapter struct {
+	ID             pgtype.UUID        `json:"id"`
+	NovelProjectID pgtype.UUID        `json:"novel_project_id"`
+	Title          string             `json:"title"`
+	OrderIndex     int32              `json:"order_index"`
+	ContentHtml    pgtype.Text        `json:"content_html"`
+	ContentJson    pgtype.Text        `json:"content_json"`
+	CreatedAt      pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt      pgtype.Timestamptz `json:"updated_at"`
+}
+
+type NovelProject struct {
+	ID          pgtype.UUID `json:"id"`
+	ProjectID   pgtype.UUID `json:"project_id"`
+	Title       string      `json:"title"`
+	Description pgtype.Text `json:"description"`
+	Language    pgtype.Text `json:"language"`
+	// Clerk organization ID (inherited from project)
+	OrgID     pgtype.Text        `json:"org_id"`
+	CreatedAt pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt pgtype.Timestamptz `json:"updated_at"`
 }
 
 type OperationHistory struct {
@@ -148,6 +405,112 @@ type Part struct {
 	OrderIndex  int32              `json:"order_index"`
 	CreatedAt   pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+// Project-wide media assets (images, videos, audio, documents)
+type ProjectAsset struct {
+	ID        pgtype.UUID `json:"id"`
+	ProjectID pgtype.UUID `json:"project_id"`
+	// Clerk organization ID (inherited from project)
+	OrgID       pgtype.Text        `json:"org_id"`
+	AssetType   string             `json:"asset_type"`
+	AssetData   []byte             `json:"asset_data"`
+	AssetFormat pgtype.Text        `json:"asset_format"`
+	Filename    pgtype.Text        `json:"filename"`
+	Description pgtype.Text        `json:"description"`
+	Tags        []string           `json:"tags"`
+	Metadata    []byte             `json:"metadata"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+type ProjectTeamAssignment struct {
+	ID           pgtype.UUID        `json:"id"`
+	ProjectID    pgtype.UUID        `json:"project_id"`
+	TeamMemberID pgtype.UUID        `json:"team_member_id"`
+	RoleID       pgtype.UUID        `json:"role_id"`
+	EpisodeID    pgtype.UUID        `json:"episode_id"`
+	AssignedAt   pgtype.Timestamptz `json:"assigned_at"`
+}
+
+// Props/items with multi-angle images and 3D models support
+type Prop struct {
+	ID        pgtype.UUID `json:"id"`
+	ProjectID pgtype.UUID `json:"project_id"`
+	// Clerk organization ID (inherited from project)
+	OrgID               pgtype.Text        `json:"org_id"`
+	Name                string             `json:"name"`
+	Description         pgtype.Text        `json:"description"`
+	Category            pgtype.Text        `json:"category"`
+	Material            pgtype.Text        `json:"material"`
+	Size                pgtype.Text        `json:"size"`
+	WeightKg            pgtype.Numeric     `json:"weight_kg"`
+	ValueAmount         pgtype.Numeric     `json:"value_amount"`
+	ValueCurrency       pgtype.Text        `json:"value_currency"`
+	Rarity              pgtype.Text        `json:"rarity"`
+	FunctionDescription pgtype.Text        `json:"function_description"`
+	OwnerCharacterID    pgtype.UUID        `json:"owner_character_id"`
+	LocationID          pgtype.UUID        `json:"location_id"`
+	RelatedTechnologyID pgtype.UUID        `json:"related_technology_id"`
+	Tags                []string           `json:"tags"`
+	AttributesJson      []byte             `json:"attributes_json"`
+	CreatedAt           pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt           pgtype.Timestamptz `json:"updated_at"`
+}
+
+// 3D models for props (GLB/GLTF/FBX/OBJ)
+type Prop3dModel struct {
+	ID          pgtype.UUID        `json:"id"`
+	PropID      pgtype.UUID        `json:"prop_id"`
+	ModelFormat string             `json:"model_format"`
+	ModelData   []byte             `json:"model_data"`
+	TextureData [][]byte           `json:"texture_data"`
+	IsPrimary   pgtype.Bool        `json:"is_primary"`
+	Metadata    []byte             `json:"metadata"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+// Multi-angle images for props
+type PropImage struct {
+	ID          pgtype.UUID        `json:"id"`
+	PropID      pgtype.UUID        `json:"prop_id"`
+	Angle       string             `json:"angle"`
+	ImageData   []byte             `json:"image_data"`
+	ImageFormat string             `json:"image_format"`
+	Width       pgtype.Int4        `json:"width"`
+	Height      pgtype.Int4        `json:"height"`
+	IsPrimary   pgtype.Bool        `json:"is_primary"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+// Many-to-many relationship between resources and tags
+type ResourceTag struct {
+	ResourceType string      `json:"resource_type"`
+	ResourceID   pgtype.UUID `json:"resource_id"`
+	TagID        pgtype.UUID `json:"tag_id"`
+	// Clerk organization ID (inherited from project)
+	OrgID     pgtype.Text        `json:"org_id"`
+	CreatedAt pgtype.Timestamptz `json:"created_at"`
+}
+
+type Role struct {
+	ID           pgtype.UUID        `json:"id"`
+	DepartmentID pgtype.UUID        `json:"department_id"`
+	Name         string             `json:"name"`
+	NameJa       string             `json:"name_ja"`
+	Description  pgtype.Text        `json:"description"`
+	DisplayOrder int32              `json:"display_order"`
+	CreatedAt    pgtype.Timestamptz `json:"created_at"`
+}
+
+type RolePermission struct {
+	ID        pgtype.UUID        `json:"id"`
+	RoleID    pgtype.UUID        `json:"role_id"`
+	Scope     string             `json:"scope"`
+	Level     int32              `json:"level"`
+	CreatedAt pgtype.Timestamptz `json:"created_at"`
 }
 
 // Story scenarios for planning story structure
@@ -193,6 +556,20 @@ type ScenePlan struct {
 	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
 }
 
+type SpeechBubble struct {
+	ID         pgtype.UUID        `json:"id"`
+	PanelID    pgtype.UUID        `json:"panel_id"`
+	BubbleType string             `json:"bubble_type"`
+	Text       string             `json:"text"`
+	Speaker    pgtype.Text        `json:"speaker"`
+	X          pgtype.Float8      `json:"x"`
+	Y          pgtype.Float8      `json:"y"`
+	Width      pgtype.Float8      `json:"width"`
+	Height     pgtype.Float8      `json:"height"`
+	CreatedAt  pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt  pgtype.Timestamptz `json:"updated_at"`
+}
+
 type Storyboard struct {
 	ID              pgtype.UUID        `json:"id"`
 	ProjectID       pgtype.UUID        `json:"project_id"`
@@ -228,4 +605,80 @@ type SunoMusic struct {
 	TaskID      pgtype.Text        `json:"task_id"`
 	CreatedAt   pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+// Project-wide tags for resource categorization
+type Tag struct {
+	ID        pgtype.UUID `json:"id"`
+	ProjectID pgtype.UUID `json:"project_id"`
+	// Clerk organization ID (inherited from project)
+	OrgID     pgtype.Text        `json:"org_id"`
+	Name      string             `json:"name"`
+	Color     pgtype.Text        `json:"color"`
+	CreatedAt pgtype.Timestamptz `json:"created_at"`
+}
+
+type Task struct {
+	ID          pgtype.UUID        `json:"id"`
+	ProjectID   pgtype.UUID        `json:"project_id"`
+	EpisodeID   pgtype.UUID        `json:"episode_id"`
+	Title       string             `json:"title"`
+	Description pgtype.Text        `json:"description"`
+	AssigneeID  pgtype.UUID        `json:"assignee_id"`
+	RoleID      pgtype.UUID        `json:"role_id"`
+	Status      string             `json:"status"`
+	Deadline    pgtype.Timestamptz `json:"deadline"`
+	WorkflowID  pgtype.Text        `json:"workflow_id"`
+	RunID       pgtype.Text        `json:"run_id"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+type TeamMember struct {
+	ID        pgtype.UUID        `json:"id"`
+	OrgID     string             `json:"org_id"`
+	UserID    string             `json:"user_id"`
+	Name      string             `json:"name"`
+	Email     pgtype.Text        `json:"email"`
+	AvatarUrl pgtype.Text        `json:"avatar_url"`
+	CreatedAt pgtype.Timestamptz `json:"created_at"`
+}
+
+// Hume AI voice preset management
+type VoicePreset struct {
+	ID        pgtype.UUID `json:"id"`
+	ProjectID pgtype.UUID `json:"project_id"`
+	// Clerk organization ID (inherited from project)
+	OrgID         pgtype.Text        `json:"org_id"`
+	Name          string             `json:"name"`
+	HumeVoiceID   string             `json:"hume_voice_id"`
+	Description   pgtype.Text        `json:"description"`
+	CharacterID   pgtype.UUID        `json:"character_id"`
+	SampleAudioID pgtype.UUID        `json:"sample_audio_id"`
+	Settings      []byte             `json:"settings"`
+	CreatedAt     pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt     pgtype.Timestamptz `json:"updated_at"`
+}
+
+// World/setting configurations
+type WorldSetting struct {
+	ID        pgtype.UUID `json:"id"`
+	ProjectID pgtype.UUID `json:"project_id"`
+	// Clerk organization ID (inherited from project)
+	OrgID          pgtype.Text        `json:"org_id"`
+	Name           string             `json:"name"`
+	Description    pgtype.Text        `json:"description"`
+	SettingType    pgtype.Text        `json:"setting_type"`
+	TimePeriod     pgtype.Text        `json:"time_period"`
+	Geography      pgtype.Text        `json:"geography"`
+	Climate        pgtype.Text        `json:"climate"`
+	Culture        pgtype.Text        `json:"culture"`
+	Politics       pgtype.Text        `json:"politics"`
+	Economy        pgtype.Text        `json:"economy"`
+	MagicSystem    pgtype.Text        `json:"magic_system"`
+	Rules          pgtype.Text        `json:"rules"`
+	History        pgtype.Text        `json:"history"`
+	AttributesJson []byte             `json:"attributes_json"`
+	CreatedAt      pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt      pgtype.Timestamptz `json:"updated_at"`
 }

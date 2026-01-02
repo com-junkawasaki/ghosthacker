@@ -3,15 +3,18 @@ package service
 import (
 	"context"
 	"encoding/base64"
+	"fmt"
 
 	"connectrpc.com/connect"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
-	"github.com/jackc/pgx/v5/pgtype"
+	"go.temporal.io/sdk/client"
 
 	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/auth"
 	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/db/sqlc"
 	storyboardv1 "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1"
+	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/temporal"
+	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/temporal/workflows"
 )
 
 // ListDialogues lists dialogues for a scene
@@ -91,6 +94,9 @@ func (s *StoryboardService) CreateDialogue(
 		OrderIndex:  int32ToPgInt4(&orderIndex),
 		HumeVoiceID: stringToPgText(req.Msg.HumeVoiceId),
 		OrgID:       orgIDPg,
+		EmotionName: stringToPgText(req.Msg.EmotionName),
+		EmotionX:    float64ToPgFloat8(req.Msg.EmotionX),
+		EmotionY:    float64ToPgFloat8(req.Msg.EmotionY),
 	})
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
@@ -123,6 +129,9 @@ func (s *StoryboardService) UpdateDialogue(
 		Text:        text,
 		OrderIndex:  int32ToPgInt4(orderIndex),
 		HumeVoiceID: stringToPgText(req.Msg.HumeVoiceId),
+		EmotionName: stringToPgText(req.Msg.EmotionName),
+		EmotionX:    float64ToPgFloat8(req.Msg.EmotionX),
+		EmotionY:    float64ToPgFloat8(req.Msg.EmotionY),
 	})
 	if err == pgx.ErrNoRows {
 		return nil, connect.NewError(connect.CodeNotFound, err)
@@ -179,15 +188,11 @@ func (s *StoryboardService) GetDialogueAudioData(
 	}), nil
 }
 
-// GenerateDialogueAudio generates audio for a dialogue using Hume AI
+// GenerateDialogueAudio generates audio for a dialogue using Hume AI via Temporal workflow
 func (s *StoryboardService) GenerateDialogueAudio(
 	ctx context.Context,
 	req *connect.Request[storyboardv1.GenerateDialogueAudioRequest],
 ) (*connect.Response[storyboardv1.GenerateDialogueAudioResponse], error) {
-	if s.hume == nil {
-		return nil, connect.NewError(connect.CodeUnimplemented, nil)
-	}
-
 	dialogueID, err := uuid.Parse(req.Msg.DialogueId)
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
@@ -215,28 +220,42 @@ func (s *StoryboardService) GenerateDialogueAudio(
 	}
 
 	if voiceID == "" {
-		return nil, connect.NewError(connect.CodeInvalidArgument, nil)
+		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("voice ID is required"))
 	}
 
-	// Generate audio using Hume service
-	result, err := s.hume.GenerateSpeech(ctx, dialogue.Text, voiceID)
-	if err != nil {
-		return nil, connect.NewError(connect.CodeInternal, err)
+	orgID := auth.GetOrgIDFromContext(ctx)
+
+	// Start Temporal workflow for audio generation
+	workflowOptions := client.StartWorkflowOptions{
+		ID:        fmt.Sprintf("audio-gen-%s-%s", dialogueID, uuid.New().String()[:8]),
+		TaskQueue: temporal.TaskQueue,
 	}
 
-	// Update dialogue with audio data
-	updatedDialogue, err := s.queries.UpdateDialogueAudio(ctx, sqlc.UpdateDialogueAudioParams{
-		ID:              uuidToPgUUID(dialogueID),
-		AudioData:       result.AudioData,
-		AudioUrl:        pgtype.Text{Valid: false, String: ""},
-		DurationSeconds: float64ToPgNumeric(&result.Duration),
+	we, err := s.temporalClient.ExecuteWorkflow(ctx, workflowOptions, workflows.AudioGenerationWorkflow, workflows.AudioGenerationWorkflowInput{
+		DialogueID: dialogueID.String(),
+		Text:       dialogue.Text,
+		VoiceID:    voiceID,
+		OrgID:      orgID,
 	})
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
+	// Wait for workflow to complete
+	var result workflows.AudioGenerationWorkflowResult
+	err = we.Get(ctx, &result)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	// Query the updated dialogue from database
+	updatedDialogue, err := s.queries.GetDialogue(ctx, uuidToPgUUID(dialogueID))
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
 	return connect.NewResponse(&storyboardv1.GenerateDialogueAudioResponse{
-		Dialogue: convertUpdateDialogueAudioRowToProto(updatedDialogue),
+		Dialogue: convertDialogueToProto(updatedDialogue),
 	}), nil
 }
 
@@ -257,6 +276,9 @@ func convertDialogueToProto(d sqlc.Dialogue) *storyboardv1.Dialogue {
 		StartTimeSeconds: pgNumericToFloat64(d.StartTimeSeconds),
 		DurationSeconds:  pgNumericToFloat64(d.DurationSeconds),
 		OrderIndex:       orderIndex,
+		EmotionName:      pgTextToString(d.EmotionName),
+		EmotionX:         pgFloat8ToFloat64(d.EmotionX),
+		EmotionY:         pgFloat8ToFloat64(d.EmotionY),
 		CreatedAt:        pgTimestamptzToString(d.CreatedAt),
 		UpdatedAt:        pgTimestamptzToString(d.UpdatedAt),
 	}
@@ -284,6 +306,9 @@ func convertDialogueRowToProto(d sqlc.ListDialoguesRow) *storyboardv1.Dialogue {
 		StartTimeSeconds: pgNumericToFloat64(d.StartTimeSeconds),
 		DurationSeconds:  pgNumericToFloat64(d.DurationSeconds),
 		OrderIndex:       orderIndex,
+		EmotionName:      pgTextToString(d.EmotionName),
+		EmotionX:         pgFloat8ToFloat64(d.EmotionX),
+		EmotionY:         pgFloat8ToFloat64(d.EmotionY),
 		CreatedAt:        pgTimestamptzToString(d.CreatedAt),
 		UpdatedAt:        pgTimestamptzToString(d.UpdatedAt),
 	}
@@ -311,6 +336,9 @@ func convertGetDialogueRowToProto(d sqlc.GetDialogueRow) *storyboardv1.Dialogue 
 		StartTimeSeconds: pgNumericToFloat64(d.StartTimeSeconds),
 		DurationSeconds:  pgNumericToFloat64(d.DurationSeconds),
 		OrderIndex:       orderIndex,
+		EmotionName:      pgTextToString(d.EmotionName),
+		EmotionX:         pgFloat8ToFloat64(d.EmotionX),
+		EmotionY:         pgFloat8ToFloat64(d.EmotionY),
 		CreatedAt:        pgTimestamptzToString(d.CreatedAt),
 		UpdatedAt:        pgTimestamptzToString(d.UpdatedAt),
 	}
@@ -338,6 +366,9 @@ func convertCreateDialogueRowToProto(d sqlc.CreateDialogueRow) *storyboardv1.Dia
 		StartTimeSeconds: pgNumericToFloat64(d.StartTimeSeconds),
 		DurationSeconds:  pgNumericToFloat64(d.DurationSeconds),
 		OrderIndex:       orderIndex,
+		EmotionName:      pgTextToString(d.EmotionName),
+		EmotionX:         pgFloat8ToFloat64(d.EmotionX),
+		EmotionY:         pgFloat8ToFloat64(d.EmotionY),
 		CreatedAt:        pgTimestamptzToString(d.CreatedAt),
 		UpdatedAt:        pgTimestamptzToString(d.UpdatedAt),
 	}
@@ -365,6 +396,9 @@ func convertUpdateDialogueRowToProto(d sqlc.UpdateDialogueRow) *storyboardv1.Dia
 		StartTimeSeconds: pgNumericToFloat64(d.StartTimeSeconds),
 		DurationSeconds:  pgNumericToFloat64(d.DurationSeconds),
 		OrderIndex:       orderIndex,
+		EmotionName:      pgTextToString(d.EmotionName),
+		EmotionX:         pgFloat8ToFloat64(d.EmotionX),
+		EmotionY:         pgFloat8ToFloat64(d.EmotionY),
 		CreatedAt:        pgTimestamptzToString(d.CreatedAt),
 		UpdatedAt:        pgTimestamptzToString(d.UpdatedAt),
 	}
@@ -392,6 +426,9 @@ func convertUpdateDialogueAudioRowToProto(d sqlc.UpdateDialogueAudioRow) *storyb
 		StartTimeSeconds: pgNumericToFloat64(d.StartTimeSeconds),
 		DurationSeconds:  pgNumericToFloat64(d.DurationSeconds),
 		OrderIndex:       orderIndex,
+		EmotionName:      pgTextToString(d.EmotionName),
+		EmotionX:         pgFloat8ToFloat64(d.EmotionX),
+		EmotionY:         pgFloat8ToFloat64(d.EmotionY),
 		CreatedAt:        pgTimestamptzToString(d.CreatedAt),
 		UpdatedAt:        pgTimestamptzToString(d.UpdatedAt),
 	}

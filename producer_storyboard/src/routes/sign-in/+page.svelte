@@ -2,6 +2,37 @@
 	import { SignIn, SignedOut, SignedIn, useClerkContext } from 'svelte-clerk';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { browser } from '$app/environment';
+	
+	// Debug logging helper - works in both dev and production
+	const debugLog = (location: string, message: string, data: Record<string, unknown>, hypothesisId: string) => {
+		const logEntry = {
+			location,
+			message,
+			data,
+			timestamp: Date.now(),
+			sessionId: 'debug-session',
+			runId: 'run1',
+			hypothesisId,
+			env: typeof window !== 'undefined' ? (window as unknown as { __VERCEL_ENV?: string }).__VERCEL_ENV || 'unknown' : 'server',
+		};
+		
+		// Always log to console for Vercel production logs
+		console.log('[DEBUG]', logEntry);
+		
+		// Try to send to debug endpoint (only works in dev/local)
+		if (browser && typeof window !== 'undefined') {
+			try {
+				fetch('http://127.0.0.1:7242/ingest/7e72d231-80f0-42e1-9016-64156099317e', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(logEntry),
+				}).catch(() => {});
+			} catch (e) {
+				// Ignore fetch errors in production
+			}
+		}
+	};
 
 	const clerk = useClerkContext();
 	const auth = clerk?.auth;
@@ -103,12 +134,20 @@
 	);
 
 	async function goToProject(e?: Event) {
+		// #region agent log
+		debugLog('sign-in/+page.svelte:105', 'goToProject called', { eventType: e?.type, hasEvent: !!e }, 'D');
+		// #endregion
+		
 		e?.preventDefault();
 		
 		// Use derived values instead of direct auth access
 		const currentUserId = userId;
 		const currentOrgId = orgId;
 		const url = projectManagementUrl;
+		
+		// #region agent log
+		debugLog('sign-in/+page.svelte:112', 'URL computed', { url, userId: currentUserId, orgId: currentOrgId, authExists: !!auth, organizationExists: !!organization, clerkLoaded: isLoaded }, 'A');
+		// #endregion
 		
 		console.log('[SignIn] Navigating to project page:', {
 			url,
@@ -127,17 +166,45 @@
 		// Wait a bit for auth state to sync, then navigate
 		// This ensures the session cookie is properly set before navigation
 		if (typeof window !== 'undefined') {
+			// #region agent log
+			debugLog('sign-in/+page.svelte:130', 'Before delay', { currentUrl: window.location.href, targetUrl: url }, 'B');
+			// #endregion
+			
 			// Small delay to ensure auth state is synced
 			await new Promise(resolve => setTimeout(resolve, 100));
 			
+			// #region agent log
+			debugLog('sign-in/+page.svelte:135', 'Before window.location.href assignment', { targetUrl: url, currentUrl: window.location.href }, 'B');
+			// #endregion
+			
 			console.log('[SignIn] Using window.location.href for navigation');
 			// Use full page reload to ensure server-side auth check works
-			window.location.href = url;
+			try {
+				window.location.href = url;
+				
+				// #region agent log
+				debugLog('sign-in/+page.svelte:142', 'After window.location.href assignment', { targetUrl: url, assigned: true }, 'B');
+				// #endregion
+			} catch (error) {
+				// #region agent log
+				debugLog('sign-in/+page.svelte:148', 'Navigation error caught', { error: String(error), errorName: (error as Error)?.name, errorMessage: (error as Error)?.message }, 'B');
+				// #endregion
+				
+				console.error('[SignIn] Navigation error:', error);
+			}
 		} else {
 			// Fallback to goto for SSR (though this shouldn't happen in a click handler)
+			// #region agent log
+			debugLog('sign-in/+page.svelte:155', 'Using goto fallback (SSR)', { url }, 'C');
+			// #endregion
+			
 			try {
 				await goto(url, { replaceState: true });
 			} catch (error) {
+				// #region agent log
+				debugLog('sign-in/+page.svelte:161', 'goto error caught', { error: String(error), errorName: (error as Error)?.name, errorMessage: (error as Error)?.message }, 'C');
+				// #endregion
+				
 				console.error('[SignIn] Navigation error:', error);
 			}
 		}
@@ -158,7 +225,12 @@
 				<div class="authenticated-section">
 					<p>既にログインしています</p>
 					<div class="action-buttons">
-						<button class="project-link" on:click={goToProject} type="button">
+						<button class="project-link" on:click={(e) => {
+							// #region agent log
+							debugLog('sign-in/+page.svelte:161', 'Button clicked', { buttonType: 'project-link', eventType: e.type, isTrusted: e.isTrusted }, 'D');
+							// #endregion
+							goToProject(e);
+						}} type="button">
 							プロジェクト管理ページへ
 						</button>
 						<button on:click={handleSignOut} class="logout-button" type="button">

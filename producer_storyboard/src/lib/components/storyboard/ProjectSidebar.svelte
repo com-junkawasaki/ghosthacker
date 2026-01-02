@@ -113,10 +113,92 @@
 				path: buildPath('composer'),
 			},
 			{
+				id: 'novel',
+				label: 'Novel',
+				icon: 'book-open',
+				path: buildPath('novel'),
+			},
+			{
+				id: 'manga',
+				label: 'Manga',
+				icon: 'image',
+				path: buildPath('manga'),
+			},
+			{
+				id: 'organization',
+				label: 'Organization',
+				icon: 'users-cog',
+				path: buildPath('organization'),
+				group: 'Production',
+			},
+			{
+				id: 'sponsors',
+				label: 'Sponsors',
+				icon: 'handshake',
+				path: buildPath('sponsors'),
+				group: 'Production',
+			},
+			{
+				id: 'workflow',
+				label: 'Workflow',
+				icon: 'git-branch',
+				path: buildPath('workflow'),
+				group: 'Production',
+			},
+			{
 				id: 'characters',
 				label: 'Characters',
 				icon: 'users',
 				path: buildPath('characters'),
+				group: 'Resources',
+			},
+			{
+				id: 'assets',
+				label: 'Assets',
+				icon: 'folder',
+				path: buildPath('assets'),
+				group: 'Resources',
+			},
+			{
+				id: 'backgrounds',
+				label: 'Backgrounds',
+				icon: 'landscape',
+				path: buildPath('backgrounds'),
+				group: 'Resources',
+			},
+			{
+				id: 'props',
+				label: 'Props',
+				icon: 'box',
+				path: buildPath('props'),
+				group: 'Resources',
+			},
+			{
+				id: 'pieces',
+				label: 'Pieces',
+				icon: 'puzzle',
+				path: buildPath('pieces'),
+				group: 'Resources',
+			},
+			{
+				id: 'locations',
+				label: 'Locations',
+				icon: 'map-pin',
+				path: buildPath('locations'),
+				group: 'Resources',
+			},
+			{
+				id: 'dialogs',
+				label: 'Dialogs',
+				icon: 'message-circle',
+				path: buildPath('dialogs'),
+				group: 'Resources',
+			},
+			{
+				id: 'environments',
+				label: 'Environments',
+				icon: 'layers',
+				path: buildPath('environments'),
 				group: 'Resources',
 			},
 			{
@@ -131,6 +213,34 @@
 				label: 'Scenario',
 				icon: 'book',
 				path: buildPath('scenario'),
+				group: 'Resources',
+			},
+			{
+				id: 'tags',
+				label: 'Tags',
+				icon: 'tag',
+				path: buildPath('tags'),
+				group: 'Resources',
+			},
+			{
+				id: 'voice-presets',
+				label: 'Voice Presets',
+				icon: 'mic',
+				path: buildPath('voice-presets'),
+				group: 'Resources',
+			},
+			{
+				id: 'sound-effects',
+				label: 'Sound Effects',
+				icon: 'sound-wave',
+				path: buildPath('sound-effects'),
+				group: 'Resources',
+			},
+			{
+				id: 'bgm',
+				label: 'BGM',
+				icon: 'music-note',
+				path: buildPath('bgm'),
 				group: 'Resources',
 			},
 		];
@@ -238,15 +348,32 @@
 									<path d="M8 15C8 16.1046 7.10457 17 6 17C4.89543 17 4 16.1046 4 15C4 13.8954 4.89543 13 6 13C7.10457 13 8 13.8954 8 15Z" stroke-width="1.5"/>
 									<path d="M16 13C16 14.1046 15.1046 15 14 15C12.8954 15 12 14.1046 12 13C12 11.8954 12.8954 11 14 11C15.1046 11 16 11.8954 16 13Z" stroke-width="1.5"/>
 									<path d="M8 15V5L16 3V13" stroke-width="1.5"/>
+								{:else if item.icon === 'book-open'}
+									<path d="M2 4C2 3.44772 2.44772 3 3 3H7C7.55228 3 8 3.44772 8 4V16C8 16.5523 7.55228 17 7 17H3C2.44772 17 2 16.5523 2 16V4Z" stroke-width="1.5"/>
+									<path d="M12 4C12 3.44772 12.4477 3 13 3H17C17.5523 3 18 3.44772 18 4V16C18 16.5523 17.5523 17 17 17H13C12.4477 17 12 16.5523 12 16V4Z" stroke-width="1.5"/>
+									<path d="M8 6H12M8 10H12" stroke-width="1.5"/>
+								{:else if item.icon === 'image'}
+									<rect x="2" y="4" width="16" height="12" rx="2" stroke-width="1.5"/>
+									<circle cx="6" cy="8" r="1.5" stroke-width="1.5"/>
+									<path d="M2 14L6 10L10 14L14 10L18 14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 								{:else if item.icon === 'users'}
 									<path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" stroke-width="1.5"/>
 									<path d="M10 12C5.58172 12 2 15.5817 2 20H18C18 15.5817 14.4183 12 10 12Z" stroke-width="1.5"/>
+								{:else if item.icon === 'folder'}
+									<path d="M2 5C2 4.44772 2.44772 4 3 4H7L9 6H17C17.5523 6 18 6.44772 18 7V15C18 15.5523 17.5523 16 17 16H3C2.44772 16 2 15.5523 2 15V5Z" stroke-width="1.5"/>
 								{:else if item.icon === 'globe'}
 									<circle cx="10" cy="10" r="8" stroke-width="1.5"/>
 									<path d="M2 10H18M10 2C12.5 5 13.5 8 10 10C6.5 8 7.5 5 10 2Z" stroke-width="1.5"/>
 								{:else if item.icon === 'book'}
 									<path d="M4 3C4 2.44772 4.44772 2 5 2H15C15.5523 2 16 2.44772 16 3V17C16 17.5523 15.5523 18 15 18H5C4.44772 18 4 17.5523 4 17V3Z" stroke-width="1.5"/>
 									<path d="M4 6H16" stroke-width="1.5"/>
+								{:else if item.icon === 'tag'}
+									<path d="M3 7C3 5.89543 3.89543 5 5 5H8.58579C9.11622 5 9.62493 5.21071 10 5.58579L14.4142 10C14.7893 10.3751 15 10.8838 15 11.4142V15C15 16.1046 14.1046 17 13 17H5C3.89543 17 3 16.1046 3 15V7Z" stroke-width="1.5"/>
+									<circle cx="7" cy="7" r="1" stroke-width="1.5"/>
+								{:else if item.icon === 'mic'}
+									<path d="M10 2C8.89543 2 8 2.89543 8 4V10C8 11.1046 8.89543 12 10 12C11.1046 12 12 11.1046 12 10V4C12 2.89543 11.1046 2 10 2Z" stroke-width="1.5"/>
+									<path d="M5 10V10C5 13.3137 7.68629 16 11 16H9C12.3137 16 15 13.3137 15 10V10" stroke-width="1.5"/>
+									<path d="M10 16V18M7 18H13" stroke-width="1.5"/>
 								{/if}
 							</svg>
 							<span class="menu-label">{item.label}</span>
@@ -273,21 +400,67 @@
 									{#if item.icon === 'users'}
 										<path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" stroke-width="1.5"/>
 										<path d="M10 12C5.58172 12 2 15.5817 2 20H18C18 15.5817 14.4183 12 10 12Z" stroke-width="1.5"/>
+									{:else if item.icon === 'folder'}
+										<path d="M2 5C2 4.44772 2.44772 4 3 4H7L9 6H17C17.5523 6 18 6.44772 18 7V15C18 15.5523 17.5523 16 17 16H3C2.44772 16 2 15.5523 2 15V5Z" stroke-width="1.5"/>
 									{:else if item.icon === 'globe'}
 										<circle cx="10" cy="10" r="8" stroke-width="1.5"/>
 										<path d="M2 10H18M10 2C12.5 5 13.5 8 10 10C6.5 8 7.5 5 10 2Z" stroke-width="1.5"/>
 									{:else if item.icon === 'book'}
 										<path d="M4 3C4 2.44772 4.44772 2 5 2H15C15.5523 2 16 2.44772 16 3V17C16 17.5523 15.5523 18 15 18H5C4.44772 18 4 17.5523 4 17V3Z" stroke-width="1.5"/>
 										<path d="M4 6H16" stroke-width="1.5"/>
-									{/if}
-								</svg>
-								<span class="menu-label">{item.label}</span>
-							</button>
-						</li>
-					{/each}
-				</ul>
-			</div>
-		{/each}
+									{:else if item.icon === 'tag'}
+										<path d="M3 7C3 5.89543 3.89543 5 5 5H8.58579C9.11622 5 9.62493 5.21071 10 5.58579L14.4142 10C14.7893 10.3751 15 10.8838 15 11.4142V15C15 16.1046 14.1046 17 13 17H5C3.89543 17 3 16.1046 3 15V7Z" stroke-width="1.5"/>
+										<circle cx="7" cy="7" r="1" stroke-width="1.5"/>
+								{:else if item.icon === 'mic'}
+									<path d="M10 2C8.89543 2 8 2.89543 8 4V10C8 11.1046 8.89543 12 10 12C11.1046 12 12 11.1046 12 10V4C12 2.89543 11.1046 2 10 2Z" stroke-width="1.5"/>
+									<path d="M5 10V10C5 13.3137 7.68629 16 11 16H9C12.3137 16 15 13.3137 15 10V10" stroke-width="1.5"/>
+									<path d="M10 16V18M7 18H13" stroke-width="1.5"/>
+								{:else if item.icon === 'landscape'}
+									<rect x="2" y="4" width="16" height="12" rx="1" stroke-width="1.5"/>
+									<path d="M2 13L6 9L10 13L14 8L18 13" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+									<circle cx="6" cy="7" r="1.5" stroke-width="1.5"/>
+								{:else if item.icon === 'box'}
+									<path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke-width="1.5" stroke-linejoin="round"/>
+									<path d="M10 10L18 6M10 10L2 6M10 10V18" stroke-width="1.5"/>
+								{:else if item.icon === 'map-pin'}
+									<path d="M10 18S16 12.5 16 8A6 6 0 004 8c0 4.5 6 10 6 10z" stroke-width="1.5"/>
+									<circle cx="10" cy="8" r="2" stroke-width="1.5"/>
+								{:else if item.icon === 'message-circle'}
+									<path d="M18 10c0 4-3.6 7-8 7a8.5 8.5 0 01-3-.5L2 18l1.5-3.5C2.5 13.5 2 12 2 10c0-4 3.6-7 8-7s8 3 8 7z" stroke-width="1.5" stroke-linejoin="round"/>
+								{:else if item.icon === 'layers'}
+									<path d="M10 2L2 6l8 4 8-4-8-4z" stroke-width="1.5" stroke-linejoin="round"/>
+									<path d="M2 10l8 4 8-4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+									<path d="M2 14l8 4 8-4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+								{:else if item.icon === 'puzzle'}
+									<path d="M6 4h3a1 1 0 011 1v1a2 2 0 104 0V5a1 1 0 011-1h1a1 1 0 011 1v3a2 2 0 100 4h1a1 1 0 011 1v1a1 1 0 01-1 1h-3a2 2 0 10-4 0H7a1 1 0 01-1-1v-1a2 2 0 100-4H5a1 1 0 01-1-1V5a1 1 0 011-1h1z" stroke-width="1.5" stroke-linejoin="round"/>
+								{:else if item.icon === 'sound-wave'}
+									<path d="M2 10H4M6 6V14M10 4V16M14 7V13M18 9V11" stroke-width="1.5" stroke-linecap="round"/>
+								{:else if item.icon === 'music-note'}
+									<path d="M8 16C8 17.1046 7.10457 18 6 18C4.89543 18 4 17.1046 4 16C4 14.8954 4.89543 14 6 14C7.10457 14 8 14.8954 8 16Z" stroke-width="1.5"/>
+									<path d="M8 16V4L16 2V14" stroke-width="1.5"/>
+									<path d="M16 14C16 15.1046 15.1046 16 14 16C12.8954 16 12 15.1046 12 14C12 12.8954 12.8954 12 14 12C15.1046 12 16 12.8954 16 14Z" stroke-width="1.5"/>
+								{:else if item.icon === 'users-cog'}
+									<path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" stroke-width="1.5"/>
+									<path d="M10 12C5.58172 12 2 15.5817 2 20H18C18 15.5817 14.4183 12 10 12Z" stroke-width="1.5"/>
+									<circle cx="10" cy="8" r="1.5" stroke-width="1.5"/>
+									<path d="M14 14L16 16M16 14L14 16" stroke-width="1.5" stroke-linecap="round"/>
+								{:else if item.icon === 'handshake'}
+									<path d="M7 8L4 11L7 14M13 8L16 11L13 14M7 8C7 6.89543 7.89543 6 9 6H11C12.1046 6 13 6.89543 13 8M7 8V14M13 8V14M7 14C7 15.1046 7.89543 16 9 16H11C12.1046 16 13 15.1046 13 14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+									<path d="M5 11H15" stroke-width="1.5" stroke-linecap="round"/>
+								{:else if item.icon === 'git-branch'}
+									<path d="M6 3C6 4.10457 5.10457 5 4 5C2.89543 5 2 4.10457 2 3C2 1.89543 2.89543 1 4 1C5.10457 1 6 1.89543 6 3Z" stroke-width="1.5"/>
+									<path d="M6 3V10M6 10C6 11.1046 6.89543 12 8 12H12C13.1046 12 14 11.1046 14 10V3" stroke-width="1.5"/>
+									<path d="M14 17C14 18.1046 13.1046 19 12 19C10.8954 19 10 18.1046 10 17C10 15.8954 10.8954 15 12 15C13.1046 15 14 15.8954 14 17Z" stroke-width="1.5"/>
+									<path d="M18 3C18 4.10457 17.1046 5 16 5C14.8954 5 14 4.10457 14 3C14 1.89543 14.8954 1 16 1C17.1046 1 18 1.89543 18 3Z" stroke-width="1.5"/>
+								{/if}
+							</svg>
+							<span class="menu-label">{item.label}</span>
+						</button>
+					</li>
+				{/each}
+			</ul>
+		</div>
+	{/each}
 	</nav>
 </aside>
 

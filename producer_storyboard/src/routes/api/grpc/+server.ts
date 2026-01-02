@@ -5,6 +5,7 @@
  */
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
+import { env } from '$env/dynamic/private';
 
 // Use grpc-go service endpoint
 function getGrpcApiUrl(request: Request): string {
@@ -13,10 +14,11 @@ function getGrpcApiUrl(request: Request): string {
 		const url = new URL(request.url);
 		return `${url.origin}/api/grpc-go`;
 	}
-	return process.env.GRPC_API_URL || 'http://localhost:25326';
+	// Try dynamic env first, then fallback to process.env, then default
+	return env.GRPC_API_URL || process.env.GRPC_API_URL || 'http://grpc-go:8081';
 }
 
-export const POST: RequestHandler = async ({ request, cookies, locals }) => {
+export const POST: RequestHandler = async ({ request, cookies }) => {
 	const grpcApiUrl = getGrpcApiUrl(request);
 	
 	// Get the service and method from the request path
@@ -27,9 +29,9 @@ export const POST: RequestHandler = async ({ request, cookies, locals }) => {
 	const serviceMethod = pathParts[pathParts.length - 1];
 	const servicePath = pathParts.slice(2, -1).join('/');
 	
-	// Construct the Connect endpoint URL
-	const connectPath = `${servicePath}/${serviceMethod}`;
-	const targetUrl = `${grpcApiUrl}/${connectPath}`;
+	// Construct the Connect endpoint URL (Connect RPC requires leading slash)
+	const connectPath = `/${servicePath}/${serviceMethod}`;
+	const targetUrl = `${grpcApiUrl}${connectPath}`;
 	
 	// Get Clerk session from cookies or locals
 	const sessionToken = cookies.get('__session') || request.headers.get('Authorization')?.replace('Bearer ', '');
@@ -66,6 +68,16 @@ export const POST: RequestHandler = async ({ request, cookies, locals }) => {
 		
 		const responseText = await response.text();
 		
+		// Log error responses for debugging
+		if (!response.ok) {
+			console.error('[gRPC Proxy] Error response:', {
+				status: response.status,
+				statusText: response.statusText,
+				targetUrl,
+				responseText: responseText.substring(0, 500),
+			});
+		}
+		
 		return new Response(responseText, {
 			status: response.status,
 			headers: {
@@ -73,10 +85,18 @@ export const POST: RequestHandler = async ({ request, cookies, locals }) => {
 			},
 		});
 	} catch (error) {
-		console.error('[gRPC Proxy] Error forwarding request:', error);
+		console.error('[gRPC Proxy] Error forwarding request:', {
+			error: error instanceof Error ? error.message : String(error),
+			targetUrl,
+			grpcApiUrl,
+		});
 		return json(
-			{ error: 'Failed to forward request to grpc-go service' },
+			{ 
+				error: 'Failed to forward request to grpc-go service',
+				details: error instanceof Error ? error.message : String(error),
+			},
 			{ status: 500 }
 		);
 	}
 };
+

@@ -132,3 +132,4 @@ message GenerateSunoMusicRequest {
 message GenerateSunoMusicResponse {
   SunoMusic music = 1;
 }
+

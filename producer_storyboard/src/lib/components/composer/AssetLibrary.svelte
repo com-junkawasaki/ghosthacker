@@ -10,11 +10,19 @@
 	const assetCategories = [
 		{ id: 'media', label: 'Media', icon: '📁' },
 		{ id: 'audio', label: 'Audio', icon: '🎵' },
+		{ id: 'characters', label: 'Characters', icon: '👤' },
+		{ id: 'backgrounds', label: 'Backgrounds', icon: '🏞️' },
+		{ id: 'props', label: 'Props', icon: '🎭' },
+		{ id: 'pieces', label: 'Pieces', icon: '🧩' },
+		{ id: 'locations', label: 'Locations', icon: '📍' },
+		{ id: 'dialogs', label: 'Dialogs', icon: '💬' },
+		{ id: 'environments', label: 'Environments', icon: '🌤️' },
+		{ id: 'worlds', label: 'Worlds', icon: '🌍' },
 		{ id: 'titles', label: 'Titles', icon: '📝' },
 		{ id: 'transitions', label: 'Transitions', icon: '↔️' },
 		{ id: 'effects', label: 'Effects', icon: '✨' },
 		{ id: 'overlays', label: 'Overlays', icon: '🖼️' },
-		{ id: 'subtitles', label: 'Subtitles', icon: '💬' },
+		{ id: 'subtitles', label: 'Subtitles', icon: '💭' },
 		{ id: 'templates', label: 'Templates', icon: '📋' },
 	];
 

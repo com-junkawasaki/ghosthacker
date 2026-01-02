@@ -1,0 +1,754 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://gftd.ai/ontology/epub-editor#",
+    "id": "@id",
+    "type": "@type",
+    "cpm": "https://example.org/cpm#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct": "http://purl.org/dc/terms/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    
+    "name": "dct:title",
+    "description": "dct:description",
+    "createdAt": {"@id": "dct:created", "@type": "xsd:dateTime"},
+    "updatedAt": {"@id": "dct:modified", "@type": "xsd:dateTime"},
+    "version": "dct:hasVersion",
+    
+    "hasCapability": {"@id": "cpm:hasCapability", "@type": "@id", "@container": "@set"},
+    "hasActivity": {"@id": "cpm:hasActivity", "@type": "@id", "@container": "@set"},
+    "hasPerformer": {"@id": "cpm:hasPerformer", "@type": "@id", "@container": "@set"},
+    "hasResource": {"@id": "cpm:hasResource", "@type": "@id", "@container": "@set"},
+    "dependsOn": {"@id": "cpm:dependsOn", "@type": "@id", "@container": "@set"},
+    "produces": {"@id": "cpm:produces", "@type": "@id", "@container": "@set"},
+    "consumes": {"@id": "cpm:consumes", "@type": "@id", "@container": "@set"},
+    
+    "goal": {"@id": "cpm:goal", "@type": "@id"},
+    "status": "cpm:status",
+    "priority": "cpm:priority",
+    "configuration": {"@id": "cpm:configuration", "@container": "@set"},
+    "issue": {"@id": "cpm:issue", "@container": "@set"}
+  },
+  
+  "id": "https://gftd.ai/project/epub-editor",
+  "type": "cpm:Project",
+  "name": "EPUB Editor Tool",
+  "description": "Tiptap editor based EPUB editing tool with AI Generator integration, multi-agent content generation with structured context extraction (hierarchical hybrid approach: Node + Mark + Attribute), AI node classification and batch reclassification (single and multiple nodes), node content analysis (sub-node detection, mask recommendations, emotion analysis), emotion analysis (Hume AI) with current node analysis, sidebar visualization and benchmark comparison, and JSON-LD semantic nodes. Frontend: Next.js 14 App Router + Tiptap + JSON-LD nodes, Backend: GraphQL (Poem/Rust) + PostgreSQL",
+  "version": "2.11.0",
+  "createdAt": "2025-01-27T00:00:00Z",
+  "updatedAt": "2025-01-29T00:00:00Z",
+  "status": "in_progress",
+  "priority": "high",
+  
+  "goal": {
+    "id": "https://gftd.ai/goal/epub-editor-wellbecoming",
+    "type": "cpm:Goal",
+    "name": "Enable users to create and edit EPUB books with AI assistance",
+    "description": "Users achieve well-becoming through intuitive EPUB editing experience with AI-powered writing assistance"
+  },
+  
+  "hasCapability": [
+    {"@id": "https://gftd.ai/capability/epub-editing"},
+    {"@id": "https://gftd.ai/capability/ai-generation"},
+    {"@id": "https://gftd.ai/capability/multi-agent-content-generation"},
+    {"@id": "https://gftd.ai/capability/epub-export"},
+    {"@id": "https://gftd.ai/capability/epub-import-export"},
+    {"@id": "https://gftd.ai/capability/emotion-analysis"},
+    {"@id": "https://gftd.ai/capability/emotion-visualization"},
+    {"@id": "https://gftd.ai/capability/emotion-benchmark-comparison"},
+    {"@id": "https://gftd.ai/capability/emotion-arc-generation"},
+    {"@id": "https://gftd.ai/capability/node-classification"},
+    {"@id": "https://gftd.ai/capability/jsonld-data-management"},
+    {"@id": "https://gftd.ai/capability/markdown-processing"},
+    {"@id": "https://gftd.ai/capability/image-generation"}
+  ],
+  
+  "hasActivity": [
+    {"@id": "https://gftd.ai/activity/list-projects"},
+    {"@id": "https://gftd.ai/activity/edit-epub-content"},
+    {"@id": "https://gftd.ai/activity/manage-chapters"},
+    {"@id": "https://gftd.ai/activity/manage-metadata"},
+    {"@id": "https://gftd.ai/activity/manage-media"},
+    {"@id": "https://gftd.ai/activity/generate-text"},
+    {"@id": "https://gftd.ai/activity/export-epub"},
+    {"@id": "https://gftd.ai/activity/export-epub-content"},
+    {"@id": "https://gftd.ai/activity/import-epub-content"},
+    {"@id": "https://gftd.ai/activity/insert-jsonld-nodes"},
+    {"@id": "https://gftd.ai/activity/mask-content"},
+    {"@id": "https://gftd.ai/activity/slash-commands"},
+    {"@id": "https://gftd.ai/activity/analyze-emotions"},
+    {"@id": "https://gftd.ai/activity/analyze-current-node-emotions"},
+    {"@id": "https://gftd.ai/activity/emotion-visualization"},
+    {"@id": "https://gftd.ai/activity/emotion-benchmark-comparison"},
+    {"@id": "https://gftd.ai/activity/manage-jsonld-nodes"},
+    {"@id": "https://gftd.ai/activity/manage-graph-links"},
+    {"@id": "https://gftd.ai/activity/manage-graph-incidences"},
+    {"@id": "https://gftd.ai/activity/import-jsonld-nodes"},
+    {"@id": "https://gftd.ai/activity/concatenate-markdown-files"},
+    {"@id": "https://gftd.ai/activity/generate-image"},
+    {"@id": "https://gftd.ai/activity/extract-editor-context"},
+    {"@id": "https://gftd.ai/activity/ai-content-generation"},
+    {"@id": "https://gftd.ai/activity/build-multi-agent-context"},
+    {"@id": "https://gftd.ai/activity/generate-emotion-arc"},
+    {"@id": "https://gftd.ai/activity/classify-node"},
+    {"@id": "https://gftd.ai/activity/reclassify-nodes"},
+    {"@id": "https://gftd.ai/activity/batch-classify-nodes"},
+    {"@id": "https://gftd.ai/activity/analyze-node-content"},
+    {"@id": "https://gftd.ai/activity/update-node-type"},
+    {"@id": "https://gftd.ai/activity/manage-mask-context"},
+    {"@id": "https://gftd.ai/activity/extract-structured-context"},
+    {"@id": "https://gftd.ai/activity/generate-context-jsonld"},
+    {"@id": "https://gftd.ai/activity/sanitize-attributes"},
+    {"@id": "https://gftd.ai/activity/character-image-upload"}
+  ],
+  
+  "hasPerformer": [
+    {
+      "@id": "https://gftd.ai/performer/actor/editor",
+      "type": "cpm:Actor",
+      "name": "Editor Actor",
+      "description": "Frontend actor providing EPUB editing UI built with Next.js 14 App Router, Tailwind CSS, and Tiptap editor, running on port 25320"
+    },
+    {
+      "@id": "https://gftd.ai/performer/service/graphql",
+      "type": "cpm:Service",
+      "name": "GraphQL Service",
+      "description": "GraphQL API service built with Poem v3/Rust, async-graphql v7, with CORS support, running on port 25325 (host) -> 8080 (container)"
+    },
+    {
+      "@id": "https://gftd.ai/performer/system/postgresql",
+      "type": "cpm:System",
+      "name": "PostgreSQL Database",
+      "description": "Relational database storing EPUB structure and content, running on port 5432"
+    }
+  ],
+  
+  "hasResource": [
+    {
+      "@id": "https://gftd.ai/resource/epub-document",
+      "type": "cpm:Resource",
+      "name": "EPUB Document",
+      "description": "EPUB book structure and content"
+    },
+    {
+      "@id": "https://gftd.ai/resource/chapter",
+      "type": "cpm:Resource",
+      "name": "Chapter",
+      "description": "Chapter within EPUB book"
+    },
+    {
+      "@id": "https://gftd.ai/resource/media",
+      "type": "cpm:Resource",
+      "name": "Media Asset",
+      "description": "Images and media files in EPUB"
+    },
+    {
+      "@id": "https://gftd.ai/resource/project-list",
+      "type": "cpm:Resource",
+      "name": "Project List",
+      "description": "List of all EPUB projects with metadata"
+    },
+    {
+      "@id": "https://gftd.ai/resource/jsonld-nodes",
+      "type": "cpm:Resource",
+      "name": "JSON-LD Nodes",
+      "description": "Semantic story elements (Character, Ghost, Location, Organization, Technology, Episode, Scene, Arc, Motif, Season, Timeline, POV, Beat, Event, SourceRef, Occupation, Setting). Block Container Nodes (character, scene, location, organization, pov) can contain paragraph content. Inline Atom Nodes (ghost, technology, episode, arc, motif, season, timeline, beat, event, etc.) are reference tags embedded in text."
+    },
+    {
+      "@id": "https://gftd.ai/resource/mask-types",
+      "type": "cpm:Resource",
+      "name": "Mask Types",
+      "description": "Content masking types (emotion, theme, context, notes, relationship, virtue, anchoredTo, emitsRepelsAvoids, phase, role). Mask controls are now integrated into FloatingToolbar context menu, accessible when text is selected. Supports toggle individual masks and toggle all masks functionality."
+    },
+    {
+      "@id": "https://gftd.ai/resource/editor-toolbar",
+      "type": "cpm:Resource",
+      "name": "Editor Toolbar",
+      "description": "Main editor toolbar organized by workflow phases: Phase 1 (Creation) - JSON-LD node insertion buttons and image generation; Phase 2 (Editing) - Format controls (Bold, Italic, H1, H2), AI generation, and node classification; Phase 4 (Export) - Export/import buttons and save status. Toolbar sections are visually separated with labels and border dividers."
+    },
+    {
+      "@id": "https://gftd.ai/resource/floating-toolbar",
+      "type": "cpm:Resource",
+      "name": "Floating Toolbar",
+      "description": "Floating toolbar that appears when text is selected in the editor. Provides context menu for mask operations (all 10 mask types with Toggle All functionality) and JSON-LD node insertion. Integrated mask controls moved from separate MaskControls component. Displays above selected text with visual feedback for active masks."
+    },
+    {
+      "@id": "https://gftd.ai/resource/emotion-profile",
+      "type": "cpm:Resource",
+      "name": "Emotion Profile",
+      "description": "Emotion analysis results (emotion vector with scores) attached to all node types (paragraph, character, scene, beat, etc.), analyzed via Hume AI API. Can be analyzed for current node (Block Container Nodes: character, scene, location, organization, pov, or paragraph) via toolbar button. Extracts full text content from selected node including all child nodes. Visualized in right sidebar aligned with each editor line, with background colors and border colors based on dominant emotions."
+    },
+    {
+      "@id": "https://gftd.ai/resource/emotion-benchmark",
+      "type": "cpm:Resource",
+      "name": "Emotion Benchmark",
+      "description": "Emotional benchmark data (JSON-LD format) defining target emotion scores for reference works (e.g., 君の名は。, ARIA, 聲の形, Arrival, Shawshank). Used for comparing actual emotion scores with benchmarks and calculating alignment scores (0-100%)."
+    },
+    {
+      "@id": "https://gftd.ai/resource/emotion-sidebar",
+      "type": "cpm:Resource",
+      "name": "Emotion Sidebar",
+      "description": "Right-side sidebar displaying emotion analysis data aligned with each editor line. Shows dominant emotions, scores, benchmark comparisons, and alignment scores for each analyzed node. Includes benchmark selector dropdown in header. Positioned absolutely to match editor line positions."
+    },
+    {
+      "@id": "https://gftd.ai/resource/export-file",
+      "type": "cpm:Resource",
+      "name": "Export File",
+      "description": "EPUB content export file in Tiptap JSON format, containing EPUB structure, chapters, JSON-LD nodes, mask information, and emotion analysis data"
+    },
+    {
+      "@id": "https://gftd.ai/resource/graph-nodes-links-incidences",
+      "type": "cpm:Resource",
+      "name": "Graph Nodes, Links, and Incidences",
+      "description": "Incidence graph model for JSON-LD nodes. GraphLinks represent relationships between nodes (worksFor, knows, parent, spouse, etc.). GraphIncidences connect nodes to links with roles (source, target, participant). Uses existing JSON-LD node tables as nodes."
+    },
+    {
+      "@id": "https://gftd.ai/resource/markdown-episode-files",
+      "type": "cpm:Resource",
+      "name": "Markdown Episode Files",
+      "description": "Markdown files for Wattpad episodes (part*.md and part*.en.md) organized by episode directories (ep01-ep12)"
+    },
+    {
+      "@id": "https://gftd.ai/resource/combined-markdown-files",
+      "type": "cpm:Resource",
+      "name": "Combined Markdown Files",
+      "description": "Combined Markdown files generated from episode parts (combined.md, combined.en.md per episode, and all_episodes.md, all_episodes.en.md for all episodes)"
+    },
+    {
+      "@id": "https://gftd.ai/resource/generated-image",
+      "type": "cpm:Resource",
+      "name": "Generated Image",
+      "description": "AI-generated images created from editor context (selected nodes, masked nodes, mask information). Images are generated using OpenAI DALL-E (with b64_json response format) or Higgsfield API and inserted into editor as Base64 data URIs. OpenAI DALL-E API returns Base64-encoded image data directly to avoid CORS issues with Azure Blob Storage URLs."
+    },
+    {
+      "@id": "https://gftd.ai/resource/editor-context",
+      "type": "cpm:Resource",
+      "name": "Editor Context",
+      "description": "Editor context information extracted from TipTap editor including selected nodes, masked nodes, mask information, and selected text. Used for generating image prompts automatically."
+    },
+    {
+      "@id": "https://gftd.ai/resource/ai-generated-content",
+      "type": "cpm:Resource",
+      "name": "AI Generated Content",
+      "description": "AI-generated narrative content created using OpenAI API with multi-agent model. Each character and narrator generates content based on their own context (character attributes, scene presence, POV perspective). Generated content includes emotion analysis results from Hume AI."
+    },
+    {
+      "@id": "https://gftd.ai/resource/multi-agent-context",
+      "type": "cpm:Resource",
+      "name": "Multi-Agent Context",
+      "description": "Context information for multi-agent content generation. Includes character context (attributes, relationships, dialogue, scene presence), scene context (characters present, location, emotion state), and narrator context (POV, perspective type). Only characters present in a scene have access to that scene's context."
+    },
+    {
+      "@id": "https://gftd.ai/resource/emotion-arc",
+      "type": "cpm:Resource",
+      "name": "Emotion Arc",
+      "description": "Emotional arc (EmotionalPlan) defining the emotional flow of a scene. Includes emotion beats with target emotions, actual emotion analysis results, deviation calculations, and alignment scores. Used to guide content generation and adjust generated text to match desired emotional progression."
+    },
+    {
+      "@id": "https://gftd.ai/resource/node-classification-result",
+      "type": "cpm:Resource",
+      "name": "Node Classification Result",
+      "description": "AI classification results for nodes including suggested node type (character, location, scene, technology, organization, etc.), confidence score, reasoning, suggested attributes, and suggested mask type. Used to reclassify existing nodes or classify new text selections."
+    },
+    {
+      "@id": "https://gftd.ai/resource/multiple-node-classification-results",
+      "type": "cpm:Resource",
+      "name": "Multiple Node Classification Results",
+      "description": "Batch classification results for multiple nodes selected in text range. Each node is classified individually with its own result (suggested type, confidence, reasoning, attributes). Results are displayed in a list view with individual apply/skip actions and batch apply functionality. Progress tracking shows applied/skipped/remaining counts."
+    },
+    {
+      "@id": "https://gftd.ai/resource/node-content-analysis-result",
+      "type": "cpm:Resource",
+      "name": "Node Content Analysis Result",
+      "description": "Analysis results for node content after classification, including detected sub-nodes (with text, node type, confidence, position), recommended masks (mask type and confidence), and emotion profile (emotion vector with scores). Analysis is automatically triggered after successful node reclassification. Results are displayed in a dedicated dialog with options to apply detected nodes, recommended masks, and emotion analysis, or skip the analysis."
+    },
+    {
+      "@id": "https://gftd.ai/resource/character-image",
+      "type": "cpm:Resource",
+      "name": "Character Image",
+      "description": "Base64-encoded image data for character profile images. Images are stored in PostgreSQL TEXT column (image_base64) and displayed in TipTap CharacterNode. Supports PNG, JPEG, and WebP formats. Images are uploaded via file selection and converted to base64 format before saving."
+    }
+  ],
+  
+  "dependsOn": [
+    {
+      "@id": "https://gftd.ai/dependency/nextjs",
+      "name": "Next.js",
+      "description": "React framework with App Router, version 14.2"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/tiptap",
+      "name": "Tiptap Editor",
+      "description": "Rich text editor framework, version 2.27"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/tailwindcss",
+      "name": "Tailwind CSS",
+      "description": "Utility-first CSS framework, version 3.4"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/postgresql",
+      "name": "PostgreSQL Database",
+      "description": "Relational database for EPUB structure, version 16"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/sqlx",
+      "name": "sqlx",
+      "description": "Rust SQL toolkit, version 0.8"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/poem",
+      "name": "Poem Framework",
+      "description": "Rust web framework, version 3"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/async-graphql",
+      "name": "async-graphql",
+      "description": "Rust GraphQL library, version 7"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/reqwest",
+      "name": "reqwest",
+      "description": "Rust HTTP client library, version 0.12, used for Hume AI API calls"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/regex",
+      "name": "regex",
+      "description": "Rust regular expression library, version 1, used for text segmentation in emotion analysis"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/hume-ai",
+      "name": "Hume AI",
+      "description": "Hume AI Language API for emotion analysis (optional, falls back to deterministic analysis if not configured)"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/walkdir",
+      "name": "walkdir",
+      "description": "Rust library for recursively walking directories, version 2, used in JSON-LD import CLI tool"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/python",
+      "name": "Python",
+      "description": "Python 3 interpreter for running Markdown concatenation scripts"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/openai-api",
+      "name": "OpenAI API",
+      "description": "OpenAI API for content generation (GPT-4) and image generation (DALL-E 2 and DALL-E 3 models). Used for multi-agent content generation where each character and narrator generates text based on their context, and for generating images from text prompts."
+    },
+    {
+      "@id": "https://gftd.ai/dependency/higgsfield-api",
+      "name": "Higgsfield API",
+      "description": "Higgsfield AI API for image generation. Alternative to OpenAI DALL-E for generating images from text prompts."
+    },
+    {
+      "@id": "https://gftd.ai/dependency/ts-pattern",
+      "name": "ts-pattern",
+      "description": "TypeScript pattern matching library for exhaustive type-safe pattern matching, version 5.9.0"
+    },
+    {
+      "@id": "https://gftd.ai/dependency/zustand",
+      "name": "Zustand",
+      "description": "Lightweight state management library for React, used for editor save state management"
+    }
+  ],
+  
+  "configuration": [
+    {
+      "@id": "https://gftd.ai/config/ports",
+      "name": "Service Ports",
+      "description": "Port configuration for services",
+      "frontend": 25320,
+      "graphql": 25325,
+      "postgres": 5432
+    },
+    {
+      "@id": "https://gftd.ai/config/network",
+      "name": "Docker Network",
+      "description": "Docker network configuration",
+      "network_name": "epub-editor-network-v2",
+      "driver": "bridge"
+    },
+    {
+      "@id": "https://gftd.ai/config/rust",
+      "name": "Rust Configuration",
+      "description": "Rust toolchain and dependencies",
+      "edition": "2021",
+      "async_graphql_version": "7",
+      "poem_version": "3",
+      "sqlx_version": "0.8",
+      "postgresql_version": "16",
+      "reqwest_version": "0.12",
+      "regex_version": "1"
+    },
+    {
+      "@id": "https://gftd.ai/config/frontend",
+      "name": "Frontend Configuration",
+      "description": "Frontend framework and dependencies",
+      "nextjs_version": "14.2",
+      "react_version": "18.3",
+      "tailwindcss_version": "3.4",
+      "nodejs_version": "20"
+    }
+  ],
+  
+  "issue": [
+    {
+      "@id": "https://gftd.ai/issue/graphql-codegen-schema-loading",
+      "name": "GraphQL Codegen Schema Loading",
+      "description": "Codegen fails to load schema from localhost:25325 when running inside container. Use http://graphql:8080/graphql for container-based codegen.",
+      "status": "resolved",
+      "resolution": "Updated codegen.yaml to support both localhost (host) and graphql:8080 (container) endpoints"
+    },
+    {
+      "@id": "https://gftd.ai/issue/simpleobject-outputtype",
+      "name": "SimpleObject OutputType Implementation",
+      "description": "Fixed SimpleObject derive macro issues by reordering struct definitions and adding Clone trait",
+      "status": "resolved"
+    },
+    {
+      "@id": "https://gftd.ai/issue/async-graphql-error-conversion",
+      "name": "async_graphql::Error Conversion",
+      "description": "Fixed error conversion from async_graphql::Error to anyhow::Error using format! macro with Debug trait",
+      "status": "resolved"
+    },
+    {
+      "@id": "https://gftd.ai/issue/disk-space",
+      "name": "Disk Space Management",
+      "description": "Cleaned up Docker volumes and Rust target directories to free up ~14GB of disk space",
+      "status": "resolved"
+    },
+    {
+      "@id": "https://gftd.ai/issue/docker-image-download",
+      "name": "Docker Image Download Performance",
+      "description": "Docker image download is slow, especially for Rust and Node.js base images. Consider using local image cache or pre-pulling images.",
+      "status": "acknowledged"
+    },
+    {
+      "@id": "https://gftd.ai/issue/clerk-removal",
+      "name": "Clerk Authentication Removal",
+      "description": "Removed Clerk authentication integration to resolve white screen issue. Authentication will be re-implemented later if needed.",
+      "status": "resolved",
+      "resolution": "Removed @clerk/astro package and integration from astro.config.mjs, removed Clerk environment variables from docker-compose.yaml"
+    },
+    {
+      "@id": "https://gftd.ai/issue/astro-to-nextjs-migration",
+      "name": "Astro to Next.js 14 Migration",
+      "description": "Migrated frontend from Astro 5.15.8 to Next.js 14 App Router. Updated all pages, components, and API routes to Next.js format. Added Tailwind CSS for styling.",
+      "status": "resolved",
+      "resolution": "Converted Astro pages to Next.js Server/Client Components, updated API routes to Next.js Route Handlers, added Tailwind CSS configuration, updated Docker configuration"
+    },
+    {
+      "@id": "https://gftd.ai/issue/api-routes-to-graphql",
+      "name": "API Routes to GraphQL Integration",
+      "description": "Consolidated all API routes (generate, proofread, summarize, translate) into GraphQL mutations. Removed Next.js API routes and updated components to use GraphQL mutations.",
+      "status": "resolved",
+      "resolution": "Added AI mutations to GraphQL schema, updated frontend components to use GraphQL mutations, removed Next.js API route handlers"
+    },
+    {
+      "@id": "https://gftd.ai/issue/cors-error",
+      "name": "CORS Error Resolution",
+      "description": "Fixed CORS errors preventing GraphQL requests from frontend. Added CORS middleware to GraphQL server.",
+      "status": "resolved",
+      "resolution": "Added poem::middleware::Cors to GraphQL server with EndpointExt trait, enabled CORS for all origins"
+    },
+    {
+      "@id": "https://gftd.ai/issue/tiptap-ssr-error",
+      "name": "Tiptap SSR Error",
+      "description": "Fixed Tiptap editor SSR hydration mismatch errors by setting immediatelyRender to false.",
+      "status": "resolved",
+      "resolution": "Added immediatelyRender: false to useEditor configuration in TiptapEditor component"
+    },
+    {
+      "@id": "https://gftd.ai/issue/uiux-improvements",
+      "name": "UI/UX Improvements",
+      "description": "Improved UI styling with Tailwind CSS, enhanced error handling, and better component layouts.",
+      "status": "resolved",
+      "resolution": "Added Tailwind CSS classes to all components, improved error messages, enhanced form styling, updated editor toolbar design"
+    },
+    {
+      "@id": "https://gftd.ai/issue/graphql-field-naming",
+      "name": "GraphQL Field Naming Convention",
+      "description": "Fixed GraphQL field naming mismatch between Rust (snake_case) and GraphQL schema (camelCase). async-graphql automatically converts snake_case to camelCase, so client-side queries and mutations were updated to use camelCase.",
+      "status": "resolved",
+      "resolution": "Updated all GraphQL queries and mutations to use camelCase field names (epubId, chapterId, contentHtml, createdAt, updatedAt, mimeType, fileSize, targetLanguage). Updated TypeScript components to use camelCase when calling GraphQL operations."
+    },
+    {
+      "@id": "https://gftd.ai/issue/uuid-normalization",
+      "name": "UUID Normalization for Default Project",
+      "description": "Fixed GraphQL ID validation error when using 'default' as project ID. GraphQL ID type expects UUID format, but 'default' string was being passed directly.",
+      "status": "resolved",
+      "resolution": "Created normalizeProjectId() utility function to map 'default' to fixed UUID (00000000-0000-0000-0000-000000000000). Added ensure_default_epub() function in Rust backend to create default EPUB on startup. Updated EditorLayout to normalize projectId before passing to GraphQL queries."
+    },
+    {
+      "@id": "https://gftd.ai/issue/auto-save",
+      "name": "Auto-save Functionality",
+      "description": "Implemented automatic saving for chapter content with debounce (1 second after last change). Added chapter selection state management and visual feedback.",
+      "status": "resolved",
+      "resolution": "Added debounced auto-save in TiptapEditor component using setTimeout. Implemented chapter selection state in EditorLayout. Added chapter creation functionality in ChapterTree component. Added error handling and visual feedback for save operations."
+    },
+    {
+      "@id": "https://gftd.ai/issue/project-list-page",
+      "name": "Project List Page",
+      "description": "Created project list page at /projects to browse and manage all EPUB projects.",
+      "status": "resolved",
+      "resolution": "Created src/app/projects/page.tsx with project list display, project cards with metadata, and navigation to editor. Integrated with LIST_EPUBS GraphQL query."
+    },
+    {
+      "@id": "https://gftd.ai/issue/hmr-configuration",
+      "name": "Hot Module Replacement (HMR) Configuration",
+      "description": "Configured HMR for both Rust and Next.js in Docker environment to enable faster development workflow.",
+      "status": "resolved",
+      "resolution": "Rust: Configured cargo watch with optimized options (--ignore target/**, --delay 0.5, --clear). Next.js: Added webpack watchOptions with polling (1000ms interval) and Fast Refresh enabled. Added CHOKIDAR_USEPOLLING and WATCHPACK_POLLING environment variables for macOS file watching."
+    },
+    {
+      "@id": "https://gftd.ai/issue/typescript-type-errors",
+      "name": "TypeScript Type Errors",
+      "description": "Fixed TypeScript type errors related to exactOptionalPropertyTypes and missing type definitions.",
+      "status": "resolved",
+      "resolution": "Added @types/react and @types/react-dom packages. Updated optional property types to explicitly include undefined (string | undefined). Fixed GraphQL client exports."
+    },
+    {
+      "@id": "https://gftd.ai/issue/jsonld-nodes-implementation",
+      "name": "JSON-LD Nodes Implementation",
+      "description": "Implemented JSON-LD semantic nodes for story elements (Character, Ghost, Location, Organization, Technology, Episode, Scene, Arc, Motif, Season, Timeline, Event, SourceRef, Occupation, Setting) as Tiptap custom nodes.",
+      "status": "resolved",
+      "resolution": "Created custom Tiptap node extensions for all JSON-LD node types. Added GraphQL queries to fetch node data. Implemented node insertion via toolbar buttons and slash commands. Added NodeSelectorDialog component for node selection."
+    },
+    {
+      "@id": "https://gftd.ai/issue/mask-functionality",
+      "name": "Mask Functionality Implementation",
+      "description": "Implemented content masking functionality with 10 mask types (emotion, theme, context, notes, relationship, virtue, anchoredTo, emitsRepelsAvoids, phase, role).",
+      "status": "resolved",
+      "resolution": "Created MaskExtension Tiptap extension with individual mask attributes for each type. Added MaskControls component for UI control. Implemented toggleMask, setMask, and toggleAllMasks commands. Added CSS styling for masked content."
+    },
+    {
+      "@id": "https://gftd.ai/issue/slash-commands",
+      "name": "Slash Commands Implementation",
+      "description": "Implemented slash command interface for inserting JSON-LD nodes via /character, /location, etc.",
+      "status": "resolved",
+      "resolution": "Created SlashCommand Tiptap extension with suggestion mechanism. Added SlashCommandMenu component for displaying suggestions. Integrated with node insertion commands."
+    },
+    {
+      "@id": "https://gftd.ai/issue/tiptap-type-errors",
+      "name": "Tiptap Type Errors",
+      "description": "Fixed TypeScript type errors in Tiptap extensions (parseHTML, renderHTML, addCommands) and missing @tiptap/core/@tiptap/pm dependencies.",
+      "status": "resolved",
+      "resolution": "Added @tiptap/core and @tiptap/pm packages (v2.27.1). Fixed all type annotations in extension files. Updated CommandProps usage. Fixed SlashCommand and MaskExtension type errors."
+    },
+    {
+      "@id": "https://gftd.ai/issue/emotion-analysis-integration",
+      "name": "Emotion Analysis Integration",
+      "description": "Integrated Hume AI emotion analysis as Tiptap extension. Backend: Rust GraphQL service with emotion analysis mutation. Frontend: EmotionAnalysisExtension and EmotionAnalysisControls components. Emotion profiles are stored as paragraph node attributes and visualized via mask functionality.",
+      "status": "resolved",
+      "resolution": "Created emotion analysis schema (emotion.rs), service (emotion_service.rs), and GraphQL mutation. Implemented EmotionAnalysisExtension for Tiptap with paragraph node attributes (emotionProfile, emotionVector). Added EmotionAnalysisControls UI component. Integrated with existing MaskExtension for visualization. Added emotion type color mapping in CSS. GraphQL mutation re-exports generated DocumentNodes to avoid redundancy."
+    },
+    {
+      "@id": "https://gftd.ai/issue/graphql-mutation-redundancy",
+      "name": "GraphQL Mutation Redundancy",
+      "description": "GraphQL mutations were defined twice: in .graphql files and in TypeScript with gql tags. This was redundant since GraphQL Codegen already generates DocumentNodes.",
+      "status": "resolved",
+      "resolution": "Refactored mutations.ts to re-export generated DocumentNodes from graphql.ts instead of using gql tags. Now mutations are defined once in .graphql files, and TypeScript file just re-exports the generated types."
+    },
+    {
+      "@id": "https://gftd.ai/issue/graphql-compilation-error",
+      "name": "GraphQL Service Compilation Error",
+      "description": "GraphQL service failed to compile due to async_graphql::Error not implementing StdError trait, preventing use of anyhow::Context::context() method.",
+      "status": "resolved",
+      "resolution": "Fixed emotion_service.rs to use .map_err() instead of .context() for error conversion from async_graphql::Error to anyhow::Error. Changed postgres::get_chapter() error handling to use format! macro with Debug trait."
+    },
+    {
+      "@id": "https://gftd.ai/issue/readonly-array-sort-error",
+      "name": "Read-only Array Sort Error",
+      "description": "TypeError: Cannot assign to read only property '0' of object '[object Array]' when sorting chapters array from GraphQL query result.",
+      "status": "resolved",
+      "resolution": "Fixed TiptapEditor component to use useMemo hook with array spread operator ([...array]) to create a mutable copy before sorting. This prevents mutation of read-only Apollo Client cache data."
+    },
+    {
+      "@id": "https://gftd.ai/issue/maskcontrols-editor-instance",
+      "name": "MaskControls Editor Instance Error",
+      "description": "MaskControls component was calling useEditor() without arguments, causing 'Schema is missing its top node type' error. useEditor() hook requires an editor instance to be passed as argument or accessed via context.",
+      "status": "resolved",
+      "resolution": "Updated MaskControls component to accept editor instance as prop from parent TiptapEditor component. Changed from useEditor() hook to Editor | null prop type."
+    },
+    {
+      "@id": "https://gftd.ai/issue/epub-export-import-implementation",
+      "name": "EPUB Export/Import Implementation",
+      "description": "Implemented EPUB content export and import functionality using Tiptap JSON format. Export includes EPUB structure, chapters, JSON-LD nodes, mask information, and emotion analysis data. Import restores EPUB content from JSON file with validation and error handling.",
+      "status": "resolved",
+      "resolution": "Created export functionality (src/lib/export/epubExport.ts) to convert EPUB HTML content to Tiptap JSON format and download as JSON file. Created import functionality (src/lib/import/epubImport.ts) to read JSON file, validate structure, and restore EPUB content. Added export/import buttons to TiptapEditor toolbar with file selection dialog and user feedback. Used @tiptap/core generateJSON and generateHTML helpers for format conversion. All Tiptap extensions (JSON-LD nodes, MaskExtension, EmotionAnalysisExtension) are included in export/import process."
+    },
+    {
+      "@id": "https://gftd.ai/issue/jsonld-import-implementation",
+      "name": "JSON-LD Import Implementation",
+      "description": "Implemented JSON-LD import functionality for bulk importing semantic story data from JSON-LD files. Supports importing Character, Ghost, Location, Organization, Company, Technology, Episode, Scene, Arc, Motif, Season, Timeline, Event, SourceRef, Occupation, and Setting nodes. Handles @graph arrays by importing each element individually. Uses upsert operations to overwrite existing data.",
+      "status": "resolved",
+      "resolution": "Created PostgreSQL upsert functions (upsert_character, upsert_ghost, upsert_location, etc.) in postgres.rs. Implemented JSON-LD parser and mapper in scripts/import_jsonld.rs with extract_node_id function to handle various @id formats (gh:Type:identifier, character:id, etc.). Created CLI tool (bin/import_jsonld.rs) to recursively walk directories and import all JSON-LD files. Added create_pool_without_migrations function to skip migrations during import. Fixed error handling for async_graphql::Error conversion using Debug trait. Added Makefile target for import-jsonld command."
+    },
+    {
+      "@id": "https://gftd.ai/issue/markdown-concatenation-script",
+      "name": "Markdown Concatenation Script",
+      "description": "Created Python script to concatenate Markdown episode files (part*.md and part*.en.md) into combined files per episode and all-episodes combined files. Processes ep01-ep12 directories, combines parts in order, and generates combined.md, combined.en.md per episode, plus all_episodes.md and all_episodes.en.md.",
+      "status": "resolved",
+      "resolution": "Created scripts/concat_episode_markdown.py with functions to find part files, concatenate parts with proper spacing, process each episode directory, and create all-episodes combined files. Script handles both Japanese (part*.md) and English (part*.en.md) files. Generates episode headers (# Episode XX) in all-episodes files. Successfully processed all 12 episodes, creating combined files for each episode and master all-episodes files (138KB Japanese, 110KB English)."
+    },
+    {
+      "@id": "https://gftd.ai/issue/image-generation-implementation",
+      "name": "Image Generation Implementation",
+      "description": "Implemented AI image generation functionality integrated with TipTap editor. Supports OpenAI DALL-E and Higgsfield APIs. Automatically extracts editor context (selected nodes, masked nodes, mask information) to generate image prompts. Generated images are inserted into editor as Base64 data URIs.",
+      "status": "resolved",
+      "resolution": "Created image generation API client (src/lib/ai/imageGenerator.ts) supporting OpenAI DALL-E and Higgsfield APIs. Implemented editor context extractor (src/lib/editor/contextExtractor.ts) to extract selected nodes, masked nodes, and mask information from TipTap editor. Created prompt generator (src/lib/ai/promptGenerator.ts) to convert editor context into image generation prompts. Added ImageGenerationDialog component with automatic prompt generation and manual editing capabilities. Integrated image generation button into TiptapEditor toolbar. Added environment variables for API keys (NEXT_PUBLIC_OPENAI_API_KEY, NEXT_PUBLIC_HIGGSFIELD_API_KEY_ID, NEXT_PUBLIC_HIGGSFIELD_API_KEY_SECRET, NEXT_PUBLIC_HIGGSFIELD_API_ENDPOINT) in docker-compose.yaml."
+    },
+    {
+      "@id": "https://gftd.ai/issue/pov-beat-nodes-implementation",
+      "name": "POV and Beat Nodes Implementation",
+      "description": "Added POV (Point of View) and Beat nodes as Tiptap custom nodes. POV nodes support characterId and perspectiveType attributes. Beat nodes support position and sceneId attributes. Both nodes are integrated into editor with SlashCommand support and NodeSelectorDialog.",
+      "status": "resolved",
+      "resolution": "Created POVNode and BeatNode type definitions in src/types/jsonld.ts. Implemented POVNode and BeatNode in StoryNode.ts using createStoryNode pattern. Added POV and Beat to TiptapEditor extensions, SlashCommand items, and NodeSelectorDialog switch cases. Updated MaskExtension to support POV and Beat nodes."
+    },
+    {
+      "@id": "https://gftd.ai/issue/block-container-node-pattern",
+      "name": "Block Container Node Pattern Implementation",
+      "description": "Refactored Tiptap nodes to support two patterns: Block Container Nodes (can contain paragraph content) and Inline Atom Nodes (reference tags). Character, Scene, Location, Organization, and POV nodes are now Block Container Nodes. Ghost, Technology, Episode, Arc, Motif, Season, Timeline, Beat, and other reference nodes remain Inline Atom Nodes.",
+      "status": "resolved",
+      "resolution": "Updated createStoryNode function to support isBlockContainer parameter. Block Container Nodes use group: 'block', content: 'paragraph+', atom: false, and render as div elements with header and content areas. Inline Atom Nodes use group: 'inline', atom: true, and render as span elements. Updated CharacterNode, LocationNode, OrganizationNode, SceneNode, and POVNode to Block Container pattern. Document configuration already supports block+ content."
+    },
+    {
+      "@id": "https://gftd.ai/issue/ai-content-generation-multi-agent",
+      "name": "AI Content Generation with Multi-Agent Model",
+      "description": "Implemented AI content generation extension based on Tiptap AI Toolkit. Features multi-agent model where each character and narrator generates content based on their own context. Characters only have access to context from scenes they are present in. Integrated OpenAI GPT-4 API for text generation and Hume AI for emotion analysis. Includes emotion arc generation and adjustment capabilities.",
+      "status": "resolved",
+      "resolution": "Created AIContentGenerationExtension Tiptap extension with generateContent and generateWithContext commands. Implemented multi-agent context builder (src/lib/ai/multiAgentContext.ts) to extract character, scene, and narrator contexts from JSONLD nodes. Enhanced context extractor (src/lib/editor/contextExtractor.ts) with scene character extraction and dialogue extraction. Added GraphQL mutation generateContentWithMultiAgent with OpenAI API integration in Rust backend (performers/services/graphql/src/ports/ai_service.rs). Created AIContentGenerationControls UI component with agent selection and emotion arc configuration. Implemented emotion arc generator (src/lib/ai/emotionArcGenerator.ts) for generating and analyzing emotional flows. Integrated AI generation button into TiptapEditor toolbar."
+    },
+    {
+      "@id": "https://gftd.ai/issue/ai-node-classification",
+      "name": "AI Node Classification and Reclassification",
+      "description": "Implemented AI-powered node classification and reclassification feature. Users can select existing nodes or text ranges and use AI to classify them into appropriate node types (character, location, scene, technology, organization, etc.). Classification considers node text, current attributes, mask information, and surrounding context. Results include suggested type, confidence score, reasoning, suggested attributes, and suggested mask type. Users can review and apply classifications to reclassify nodes.",
+      "status": "resolved",
+      "resolution": "Created GraphQL schema types (ClassifyNodeInput, NodeClassificationResult, ReclassifySelectedNodesInput, ReclassifyResult) in performers/services/graphql/src/schema/ai.rs. Implemented classify_node() and reclassify_nodes() functions in Rust backend (performers/services/graphql/src/ports/ai_service.rs) using OpenAI GPT-4 API with JSON response format. Added GraphQL mutations classify_node and reclassify_selected_nodes. Created node classification utilities (src/lib/ai/nodeClassifier.ts) for extracting node information and reclassifying nodes in the editor. Implemented NodeClassificationDialog component to display classification results with confidence scores and reasoning. Created NodeClassificationControls toolbar component with classification button. Integrated classification controls into TiptapEditor toolbar. Added GraphQL mutations (ClassifyNode, ReclassifySelectedNodes) to frontend mutations.graphql and mutations.ts."
+    },
+    {
+      "@id": "https://gftd.ai/issue/emotion-visualization-implementation",
+      "name": "Emotion Visualization Implementation",
+      "description": "Implemented comprehensive emotion visualization system with Hume AI integration. Features include: emotion analysis for all node types (not just paragraphs), visual color coding based on dominant emotions, benchmark comparison with alignment scores, and emotion curve graph visualization.",
+      "status": "resolved",
+      "priority": "high",
+      "resolution": "Extended EmotionAnalysisExtension to support all node types (paragraph, character, scene, beat, arc, etc.). Created emotion visualization library (src/lib/editor/emotionVisualization.ts) with color mapping for 10 emotion types (joy, sadness, fear, anger, surprise, trust, anticipation, disgust, relief, hope). Implemented benchmark comparison system (src/lib/ai/emotionBenchmark.ts) loading JSON-LD benchmark data and calculating alignment scores (0-100%). Created EmotionalView component displaying node-by-node emotion scores, benchmark comparisons, and overall statistics. Implemented EmotionCurveGraph component (SVG-based) visualizing emotion flow and comparing with benchmark targets. Added CSS styles for emotion-based background and border colors. Integrated EmotionalView into TiptapEditor. EmotionStyleExtension was disabled due to schema issues, using CSS-based styling instead via data-emotion-vector attributes."
+    },
+    {
+      "@id": "https://gftd.ai/issue/emotion-sidebar-layout-refactor",
+      "name": "Emotion Sidebar Layout Refactor",
+      "description": "Refactored emotion visualization layout to eliminate duplicate display. Moved all emotion analysis data display to right-side sidebar (EmotionSidebar) aligned with editor lines. Removed bottom EmotionalView panel. Added benchmark selector to sidebar header. Implemented position tracking to align emotion data with corresponding editor lines using DOM element positions and scroll synchronization.",
+      "status": "resolved",
+      "priority": "medium",
+      "resolution": "Created EmotionSidebar component (src/components/editor/EmotionSidebar.tsx) with position tracking logic using ResizeObserver and scroll events. Sidebar displays emotion data aligned with each editor line using absolute positioning. Added benchmark selector dropdown to sidebar header. Removed EmotionalView component from TiptapEditor. Updated TiptapEditor layout to 2-column flex layout (editor content + emotion sidebar). Added CSS styles for sidebar positioning and responsive design. Emotion node items are positioned absolutely based on calculated editor line positions, synchronized with scroll events."
+    },
+    {
+      "@id": "https://gftd.ai/issue/openai-image-generation-cors-error",
+      "name": "OpenAI Image Generation CORS Error",
+      "description": "Fixed CORS error when fetching generated images from Azure Blob Storage. Client-side fetch to Azure Blob Storage URLs was blocked by CORS policy (No 'Access-Control-Allow-Origin' header).",
+      "status": "resolved",
+      "resolution": "Changed OpenAI DALL-E API response_format from 'url' to 'b64_json' to receive Base64-encoded image data directly from API. Removed urlToBase64() function call that was fetching images from Azure Blob Storage. Images are now received as Base64 data URIs directly from OpenAI API, eliminating CORS issues and improving performance by removing additional fetch requests."
+    },
+    {
+      "@id": "https://gftd.ai/issue/button-layout-redesign",
+      "name": "Button Layout Redesign",
+      "description": "Redesigned editor toolbar button layout to follow workflow order (Creation → Editing → Export). Reorganized buttons into clear sections with visual separators and labels. Moved mask controls from separate component to FloatingToolbar context menu for better integration with text selection.",
+      "status": "resolved",
+      "priority": "medium",
+      "resolution": "Reorganized TiptapEditor toolbar into workflow phases: Phase 1 (Creation) - JSON-LD node insertion (10 types) and image generation; Phase 2 (Editing) - Format controls (Bold, Italic, H1, H2), AI generation, and node classification; Phase 4 (Export) - Export/import buttons and save status. Added visual section separators with labels. Integrated MaskControls functionality into FloatingToolbar component with all 10 mask types and Toggle All functionality. Removed standalone MaskControls component. Mask operations are now context-aware, appearing when text is selected."
+    },
+    {
+      "@id": "https://gftd.ai/issue/batch-node-classification",
+      "name": "Batch Node Classification Implementation",
+      "description": "Implemented batch node classification feature allowing users to select multiple nodes in a text range and classify them individually. Each node is classified separately with its own result. Results are displayed in a list view with individual apply/skip actions and batch apply functionality. Progress tracking shows applied/skipped/remaining counts.",
+      "status": "resolved",
+      "priority": "high",
+      "resolution": "Created extractMultipleNodesFromSelection() function in nodeClassifier.ts to extract multiple nodes from text selection range. Extended NodeClassificationControls to detect multiple nodes and classify each node individually. Enhanced NodeClassificationDialog to display multiple classification results in a list view with individual apply/skip buttons, progress bar, and batch apply functionality. Each node shows its classification result (suggested type, confidence, reasoning) with visual feedback for applied/skipped states. Error handling allows partial failures without stopping the entire batch classification process."
+    },
+    {
+      "@id": "https://gftd.ai/issue/node-content-analysis",
+      "name": "Node Content Analysis Implementation",
+      "description": "Implemented node content analysis feature that automatically analyzes node content after classification. Analysis includes: detecting sub-nodes within the node's text (with confidence scores and positions), recommending masks based on node type and content, and performing emotion analysis on the entire content. Results are displayed in a dedicated dialog with options to apply detected nodes, recommended masks, and emotion analysis, or skip the analysis.",
+      "status": "resolved",
+      "priority": "high",
+      "resolution": "Created AnalyzeNodeContent GraphQL mutation with input types (AnalyzeNodeContentInput) and result types (AnalyzeNodeContentResult, DetectedNode, RecommendedMask, TextPosition). Implemented analyze_node_content() function in Rust backend (performers/services/graphql/src/ports/ai_service.rs) that splits content into chunks, classifies each chunk to detect sub-nodes, recommends masks based on node type, and analyzes emotions. Added contentAnalyzer.ts utility functions (applyDetectedNodes, applyRecommendedMasks, applyEmotionAnalysis) to apply analysis results to the editor. Integrated analysis into NodeClassificationDialog to automatically trigger after successful node reclassification. Added analysis result dialog UI displaying detected nodes, recommended masks, and emotion profiles with apply/skip actions."
+    },
+    {
+      "@id": "https://gftd.ai/issue/update-node-type-database",
+      "name": "Update Node Type in Database",
+      "description": "Implemented database update functionality when nodes are reclassified. When a node's type changes, the node data is moved from the old type table to the new type table, and all related graph links and incidences are updated to reflect the new node type.",
+      "status": "resolved",
+      "priority": "high",
+      "resolution": "Created UpdateNodeType GraphQL mutation with input types (UpdateNodeTypeInput) and result types (UpdateNodeTypeResult). Implemented update_node_type() function in Rust backend (performers/services/graphql/src/ports/postgres.rs) that handles moving node data between tables, updating graph_links (source_node_type and target_node_type), and updating graph_incidences (node_type). Integrated UpdateNodeType mutation into NodeClassificationDialog to automatically update database when nodes are reclassified. Added getNodeIdAndType() and extractNodeId() utility functions in nodeClassifier.ts to retrieve node IDs and types for database updates."
+    },
+    {
+      "@id": "https://gftd.ai/issue/editor-content-validation",
+      "name": "Editor Content Validation and Error Handling",
+      "description": "Improved editor content loading robustness by adding validation for content format (string, array, object) and error handling. Fixed 'Invalid array passed to renderSpec' error by ensuring setContent always receives valid HTML strings. Added Ctrl+A/Cmd+A keyboard shortcut handling to select only editor content instead of entire page.",
+      "status": "resolved",
+      "priority": "medium",
+      "resolution": "Created setEditorContent() helper function with useCallback to safely set editor content. Added validation to check content type (string, array, object) and convert invalid formats to empty paragraph. Added HTML format validation to wrap non-HTML content in paragraph tags. Implemented error handling with fallback to empty paragraph on errors. Added handleKeyDown() function in TiptapEditor to intercept Ctrl+A/Cmd+A and call editor.commands.selectAll() to select only editor content. Changed useEditor content option to empty string and set content via useEffect after editor initialization."
+    },
+    {
+      "@id": "https://gftd.ai/issue/structured-context-integration",
+      "name": "Structured Context Integration for AI Generation",
+      "description": "Implemented hierarchical hybrid approach (Node + Mark + Attribute) for structured context extraction. Extracts scene, location, character, dialogue, emotion, and context information from editor content. Generates JSON-LD from structured context. Extends AI generation prompts to use structured context. Integrates structured context into multi-agent context builder. Updates AI generation controls to use structured context.",
+      "status": "resolved",
+      "priority": "high",
+      "resolution": "Created structuredContextExtractor.ts with extractStructuredContext() function that extracts hierarchical context (Scene Node, Location Node, Character Node/Mark, Dialogue with Marks, Emotion Marks, Context Marks). Created contextToJsonLd.ts with generateContextJSONLD() function to convert structured context to JSON-LD format. Extended promptGenerator.ts with generateStructuredPrompt() and generateMultiAgentPrompt() functions. Updated multiAgentContext.ts to integrate structured context with mark information (emotion, context). Updated AIContentGenerationControls.tsx to use structured context extraction and generate prompts from structured context. Extended contextExtractor.ts to optionally include structured context in EditorContext. All implementations follow hierarchical hybrid approach: Scene/Location as Block Nodes, Character as Block Node + Mark, Dialogue as Paragraph + Marks, Context/Emotion as Marks."
+    },
+    {
+      "@id": "https://gftd.ai/issue/tiptap-renderspec-array-error",
+      "name": "Tiptap renderSpec Array Error",
+      "description": "Fixed 'Invalid array passed to renderSpec' error occurring when setting editor content. Error was caused by arrays being passed to Tiptap's setContent() method, which expects HTML strings or valid Tiptap JSON objects.",
+      "status": "resolved",
+      "priority": "high",
+      "resolution": "Enhanced setEditorContent() function in TiptapEditor.tsx with comprehensive content validation using ts-pattern. Added isValidTiptapJSON() helper to validate Tiptap JSON structure. Improved array detection and conversion to empty paragraph. Added double-check validation before calling setContent() to ensure arrays are never passed. Updated reclassifyNode() function in nodeClassifier.ts to filter out arrays from newAttributes before passing to insert commands. All content paths now validate and sanitize input to prevent renderSpec errors."
+    },
+    {
+      "@id": "https://gftd.ai/issue/ts-pattern-zustand-integration",
+      "name": "ts-pattern and Zustand Integration",
+      "description": "Integrated ts-pattern library for type-safe exhaustive pattern matching throughout the codebase. Refactored conditional logic to use ts-pattern for better type safety and compile-time exhaustiveness checking.",
+      "status": "resolved",
+      "priority": "medium",
+      "resolution": "Added ts-pattern import to TiptapEditor.tsx. Refactored normalizeContentHtml() function to use ts-pattern for content type matching. Refactored setEditorContent() function to use ts-pattern for content validation and type handling. Refactored node type switch statement to use ts-pattern with exhaustive() matching for all node types (character, ghost, location, organization, company, technology, episode, scene, arc, motif, season, timeline, pov, beat, event). Refactored save status display to use ts-pattern with exhaustive() matching for all status types (idle, saving, saved, error). All pattern matching now provides compile-time exhaustiveness guarantees."
+    },
+    {
+      "@id": "https://gftd.ai/issue/renderhtml-array-error-fix",
+      "name": "renderHTML Array Error Fix",
+      "description": "Fixed 'Invalid array passed to renderSpec' error in TipTap renderHTML methods. Error occurred when mergeAttributes returned objects containing arrays (e.g., class attribute as array). Added sanitization to convert arrays to strings before passing to renderSpec.",
+      "status": "resolved",
+      "priority": "high",
+      "resolution": "Updated CharacterNode, OrganizationNode, and LocationNode renderHTML methods to sanitize mergeAttributes results. Added array detection and conversion to strings (using join(' ')) for all attribute values. Added error handling in getHTML() calls to prevent editor crashes. All renderHTML methods now ensure attributes are objects with string values, not arrays."
+    },
+    {
+      "@id": "https://gftd.ai/issue/hume-emotion-analysis-toolbar-button",
+      "name": "Hume Emotion Analysis Toolbar Button Integration",
+      "description": "Added Hume emotion analysis button to editor toolbar for analyzing current node emotions. Users can click the 'Hume感情分析' button in Phase 2 (Editing) section to analyze emotions for the currently selected node (Block Container Nodes: character, scene, location, organization, pov, or paragraph). Extracts full text content from selected node including all child nodes, sends to Hume AI API via GraphQL mutation, and applies emotion profile to the node.",
+      "status": "resolved",
+      "priority": "high",
+      "resolution": "Created getCurrentNodeFullText() function in TiptapEditor.tsx to extract text from current node (supports Block Container Nodes: character, scene, location, organization, pov, and paragraphs). Implemented handleAnalyzeCurrentNode() function using ANALYZE_EMOTIONS GraphQL mutation with error handling. Added 'Hume感情分析' button to editor toolbar Phase 2 section (next to NodeClassificationControls) with loading state ('分析中...') and disabled state. Added emotionAnalysisError state and error banner UI (yellow warning banner) for user feedback. Integrated with existing EmotionAnalysisExtension.setEmotionProfile() command to apply emotion profiles to nodes. Fixed duplicate useMutation import error. All functionality tested and build successful."
+    },
+    {
+      "@id": "https://gftd.ai/issue/tiptap-node-attributes-type-safety",
+      "name": "Tiptap Node Attributes Type Safety with ts-pattern",
+      "description": "Implemented type-safe attribute sanitization for all Tiptap node extensions to prevent 'Invalid array passed to renderSpec' errors at build time. Created common sanitization utility using ts-pattern and union types for compile-time type checking. Applied sanitization to all insert commands across all node extensions (Character, Location, Organization, Company, Ghost, Technology, Episode, Scene, Arc, Motif, Season, Timeline, POV, Beat, SourceRef, Event, Occupation, Setting).",
+      "status": "resolved",
+      "priority": "high",
+      "resolution": "Created common sanitization utility (src/lib/editor/sanitizeAttributes.ts) with sanitizeAttributeValue() function using ts-pattern for type-safe value conversion. Implemented sanitizeNodeAttributes() generic function to sanitize all node attributes. Defined TiptapAttributeValue union type (string | number | boolean | null | undefined) to enforce type safety. Applied sanitization to all insert commands: CharacterNode.insertCharacter(), LocationNode.insertLocation(), OrganizationNode.insertOrganization() and insertCompany(), GhostNode.insertGhost(), TechnologyNode.insertTechnology(), StoryNode factory (insertEpisode, insertScene, insertArc, insertMotif, insertSeason, insertTimeline, insertPOV, insertBeat), and MetaNode factory (insertSourceRef, insertEvent, insertOccupation, insertSetting). All sanitization uses ts-pattern with exhaustive type guards to convert arrays and objects to primitive types at build time. TypeScript strict mode ensures compile-time detection of type errors. All node extensions now prevent renderSpec errors by sanitizing attributes before passing to Tiptap's create() or insertContent() methods."
+    },
+    {
+      "@id": "https://gftd.ai/issue/character-image-integration",
+      "name": "Character Node Image Integration",
+      "description": "Implemented image upload functionality for character nodes. Images are stored as base64-encoded strings in PostgreSQL TEXT column and displayed in TipTap CharacterNode. Supports PNG, JPEG, and WebP formats. Images are uploaded via file selection, converted to base64 format, and saved via GraphQL mutation.",
+      "status": "resolved",
+      "priority": "medium",
+      "resolution": "Added image_base64 TEXT column to characters table via migration (004_add_character_image.sql). Updated Rust GraphQL schema (Character struct) and database layer (CharacterRow, list_characters, upsert_character) to support image_base64 field. Created UpsertCharacterInput GraphQL input type and upsertCharacter mutation. Updated TypeScript CharacterNode interface and TipTap CharacterNode extension to support imageBase64 attribute. Enhanced renderHTML() to display images when present. Updated import_jsonld.rs to handle image_base64 field. All implementations follow existing patterns and maintain backward compatibility."
+    }
+  ]
+}

@@ -5,6 +5,7 @@
  */
 import { createClerkClient, verifyToken } from '@clerk/backend';
 import type { Cookies, RequestEvent } from '@sveltejs/kit';
+import { appendFileSync } from 'fs';
 
 // Hardcoded value from /gftd env clerk as fallback
 const HARDCODED_SECRET_KEY = 'sk_test_FmPI35dNxAij0tuaX7rV5PDIDVmVvx8J11nyVyxEGu';
@@ -150,6 +151,13 @@ export async function verifyClerkSession(
 			(typedPayload.org_id as string | undefined) ||
 			req.headers.get('x-org-id') ||
 			null;
+		
+		// #region agent log
+		try {
+			const logEntry = JSON.stringify({location:'clerk.ts:149',message:'OrgId extraction from token',data:{userId,orgIdFromToken:typedPayload.org_id,orgIdFromHeader:req.headers.get('x-org-id'),finalOrgId:orgId,hasOrgId:!!orgId},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'H'}) + '\n';
+			appendFileSync('/Users/junkawasaki/jun784/ghosthacker/producer_storyboard/.cursor/debug.log', logEntry);
+		} catch (e) {}
+		// #endregion
 
 		// If orgId is provided, verify the user has access to it
 		if (orgId) {

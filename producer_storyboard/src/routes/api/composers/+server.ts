@@ -4,15 +4,19 @@
  */
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
+import { env } from '$env/dynamic/private';
 
-const GRPC_API_URL = process.env.GRPC_API_URL || 'http://localhost:25326';
+// Use grpc-go service endpoint
+const GRPC_API_URL = env.GRPC_API_URL || process.env.GRPC_API_URL || 'http://grpc-go:8081';
 
 async function callGrpcService(
 	method: string,
 	requestBody: any,
 	headers: Record<string, string>
 ): Promise<Response> {
-	const url = `${GRPC_API_URL}/storyboard.v1.StoryboardService/${method}`;
+	// Construct the Connect endpoint URL (Connect RPC requires leading slash)
+	const connectPath = `/storyboard.v1.StoryboardService/${method}`;
+	const url = `${GRPC_API_URL}${connectPath}`;
 	
 	const response = await fetch(url, {
 		method: 'POST',
@@ -22,6 +26,17 @@ async function callGrpcService(
 		},
 		body: JSON.stringify(requestBody),
 	});
+	
+	if (!response.ok) {
+		const responseText = await response.text().catch(() => '');
+		console.error('[Composers API] gRPC service error:', {
+			status: response.status,
+			statusText: response.statusText,
+			method,
+			url,
+			responseText: responseText.substring(0, 500),
+		});
+	}
 	
 	return response;
 }
@@ -95,3 +110,4 @@ export const POST: RequestHandler = async ({ request, cookies, locals }) => {
 		return json({ error: 'Failed to create composer' }, { status: 500 });
 	}
 };
+

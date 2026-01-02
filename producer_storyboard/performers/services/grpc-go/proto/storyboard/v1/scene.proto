@@ -59,13 +59,15 @@ message DeleteSceneResponse {
 // GeneratedImage represents a generated image for a scene
 message GeneratedImage {
   string id = 1;
-  string scene_id = 2;
-  optional string openai_image_id = 3;
-  optional string image_format = 4;
-  optional string image_type = 5;
-  optional string prompt = 6;
-  optional string model = 7;
-  string created_at = 8;
+  optional string scene_id = 2;
+  optional string provider = 3; // "openai", "higgsfield", etc.
+  optional string external_image_id = 4; // Provider-specific image ID
+  optional string image_format = 5;
+  optional string image_type = 6;
+  optional string prompt = 7;
+  optional string model = 8;
+  optional string character_id = 9; // For character-specific images
+  string created_at = 10;
 }
 
 message ListGeneratedImagesRequest {
@@ -88,8 +90,11 @@ message GenerateImageRequest {
   string scene_id = 1;
   string prompt = 2;
   optional string model = 3;
+  optional string provider = 4; // "openai", "higgsfield", etc. Defaults to "openai"
+  optional string character_id = 5; // For character-specific generation with Higgsfield Soul ID
 }
 
 message GenerateImageResponse {
   GeneratedImage image = 1;
 }
+

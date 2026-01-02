@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { Clip } from '$lib/stores/composerStore';
-	import { composerStore } from '$lib/stores/composerStore';
+	import type { Clip } from '$lib/stores/composerStore.svelte';
+	import { composerStore } from '$lib/stores/composerStore.svelte';
 
 	type Props = {
 		clip: Clip;
@@ -143,7 +143,7 @@
 			<div class="waveform"></div>
 		{:else if clip.type === 'video'}
 			<div class="thumbnails">
-				{#each Array(Math.max(1, Math.floor(clipWidth / 60))) as _, i}
+				{#each Array(Math.max(1, Math.floor(clipWidth / 60))) as _}
 					<div class="thumbnail" style="background: rgba(255,255,255,0.1)"></div>
 				{/each}
 			</div>
@@ -258,3 +258,4 @@
 		font-weight: 500;
 	}
 </style>
+

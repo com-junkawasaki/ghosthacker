@@ -23,6 +23,10 @@
 		const currentOrgId = organization?.id || auth?.orgId;
 		const isAuthenticated = auth?.userId != null;
 
+		// #region agent log
+		fetch('http://127.0.0.1:7242/ingest/7e72d231-80f0-42e1-9016-64156099317e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'+layout.svelte:19',message:'Client-side org check',data:{urlOrgId,currentOrgId,organizationId:organization?.id,authOrgId:auth?.orgId,isAuthenticated,userId:auth?.userId},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'F'})}).catch(()=>{});
+		// #endregion
+
 		// Only redirect if user is authenticated and has an organization
 		if (!isAuthenticated || !currentOrgId) {
 			// If user is not authenticated or has no organization, allow access
@@ -32,6 +36,10 @@
 
 		// If user is authenticated and has an organization, but URL doesn't match
 		if (urlOrgId && currentOrgId !== urlOrgId) {
+			// #region agent log
+			fetch('http://127.0.0.1:7242/ingest/7e72d231-80f0-42e1-9016-64156099317e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'+layout.svelte:34',message:'Organization mismatch detected - will redirect',data:{currentOrgId,urlOrgId,currentPath:$page.url.pathname},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'G'})}).catch(()=>{});
+			// #endregion
+			
 			console.log('[Layout] Organization mismatch, redirecting...', {
 				currentOrgId,
 				urlOrgId,
@@ -80,4 +88,5 @@
 </script>
 
 {@render children()}
+
 

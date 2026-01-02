@@ -14,7 +14,7 @@ import (
 const createGeneratedVideo = `-- name: CreateGeneratedVideo :one
 INSERT INTO generated_videos (storyboard_id, variation_number, status, org_id)
 VALUES ($1, $2, $3, $4)
-RETURNING id, storyboard_id, variation_number, video_url, status, error_message, created_at
+RETURNING id, storyboard_id, variation_number, video_url, status, error_message, created_at, provider, model, duration
 `
 
 type CreateGeneratedVideoParams struct {
@@ -32,6 +32,9 @@ type CreateGeneratedVideoRow struct {
 	Status          string             `json:"status"`
 	ErrorMessage    pgtype.Text        `json:"error_message"`
 	CreatedAt       pgtype.Timestamptz `json:"created_at"`
+	Provider        pgtype.Text        `json:"provider"`
+	Model           pgtype.Text        `json:"model"`
+	Duration        pgtype.Int4        `json:"duration"`
 }
 
 func (q *Queries) CreateGeneratedVideo(ctx context.Context, arg CreateGeneratedVideoParams) (CreateGeneratedVideoRow, error) {
@@ -50,6 +53,76 @@ func (q *Queries) CreateGeneratedVideo(ctx context.Context, arg CreateGeneratedV
 		&i.Status,
 		&i.ErrorMessage,
 		&i.CreatedAt,
+		&i.Provider,
+		&i.Model,
+		&i.Duration,
+	)
+	return i, err
+}
+
+const createGeneratedVideoRunway = `-- name: CreateGeneratedVideoRunway :one
+INSERT INTO generated_videos (
+    storyboard_id, 
+    variation_number, 
+    status, 
+    org_id,
+    provider,
+    runway_task_id,
+    model,
+    duration,
+    generation_params
+)
+VALUES ($1, $2, $3, $4, 'runway', $5, $6, $7, $8)
+RETURNING id, storyboard_id, variation_number, status, provider, runway_task_id, model, duration, created_at, generation_params
+`
+
+type CreateGeneratedVideoRunwayParams struct {
+	StoryboardID     pgtype.UUID `json:"storyboard_id"`
+	VariationNumber  pgtype.Int4 `json:"variation_number"`
+	Status           string      `json:"status"`
+	OrgID            pgtype.Text `json:"org_id"`
+	RunwayTaskID     pgtype.Text `json:"runway_task_id"`
+	Model            pgtype.Text `json:"model"`
+	Duration         pgtype.Int4 `json:"duration"`
+	GenerationParams []byte      `json:"generation_params"`
+}
+
+type CreateGeneratedVideoRunwayRow struct {
+	ID               pgtype.UUID        `json:"id"`
+	StoryboardID     pgtype.UUID        `json:"storyboard_id"`
+	VariationNumber  pgtype.Int4        `json:"variation_number"`
+	Status           string             `json:"status"`
+	Provider         pgtype.Text        `json:"provider"`
+	RunwayTaskID     pgtype.Text        `json:"runway_task_id"`
+	Model            pgtype.Text        `json:"model"`
+	Duration         pgtype.Int4        `json:"duration"`
+	CreatedAt        pgtype.Timestamptz `json:"created_at"`
+	GenerationParams []byte             `json:"generation_params"`
+}
+
+func (q *Queries) CreateGeneratedVideoRunway(ctx context.Context, arg CreateGeneratedVideoRunwayParams) (CreateGeneratedVideoRunwayRow, error) {
+	row := q.db.QueryRow(ctx, createGeneratedVideoRunway,
+		arg.StoryboardID,
+		arg.VariationNumber,
+		arg.Status,
+		arg.OrgID,
+		arg.RunwayTaskID,
+		arg.Model,
+		arg.Duration,
+		arg.GenerationParams,
+	)
+	var i CreateGeneratedVideoRunwayRow
+	err := row.Scan(
+		&i.ID,
+		&i.StoryboardID,
+		&i.VariationNumber,
+		&i.Status,
+		&i.Provider,
+		&i.RunwayTaskID,
+		&i.Model,
+		&i.Duration,
+		&i.CreatedAt,
+		&i.GenerationParams,
 	)
 	return i, err
 }
@@ -64,19 +137,24 @@ func (q *Queries) DeleteGeneratedVideo(ctx context.Context, id pgtype.UUID) erro
 }
 
 const getGeneratedVideo = `-- name: GetGeneratedVideo :one
-SELECT id, storyboard_id, variation_number, video_url, status, error_message, created_at
+SELECT id, storyboard_id, variation_number, video_url, status, error_message, created_at, provider, runway_task_id, model, duration, generation_params
 FROM generated_videos
 WHERE id = $1
 `
 
 type GetGeneratedVideoRow struct {
-	ID              pgtype.UUID        `json:"id"`
-	StoryboardID    pgtype.UUID        `json:"storyboard_id"`
-	VariationNumber pgtype.Int4        `json:"variation_number"`
-	VideoUrl        pgtype.Text        `json:"video_url"`
-	Status          string             `json:"status"`
-	ErrorMessage    pgtype.Text        `json:"error_message"`
-	CreatedAt       pgtype.Timestamptz `json:"created_at"`
+	ID               pgtype.UUID        `json:"id"`
+	StoryboardID     pgtype.UUID        `json:"storyboard_id"`
+	VariationNumber  pgtype.Int4        `json:"variation_number"`
+	VideoUrl         pgtype.Text        `json:"video_url"`
+	Status           string             `json:"status"`
+	ErrorMessage     pgtype.Text        `json:"error_message"`
+	CreatedAt        pgtype.Timestamptz `json:"created_at"`
+	Provider         pgtype.Text        `json:"provider"`
+	RunwayTaskID     pgtype.Text        `json:"runway_task_id"`
+	Model            pgtype.Text        `json:"model"`
+	Duration         pgtype.Int4        `json:"duration"`
+	GenerationParams []byte             `json:"generation_params"`
 }
 
 func (q *Queries) GetGeneratedVideo(ctx context.Context, id pgtype.UUID) (GetGeneratedVideoRow, error) {
@@ -90,12 +168,58 @@ func (q *Queries) GetGeneratedVideo(ctx context.Context, id pgtype.UUID) (GetGen
 		&i.Status,
 		&i.ErrorMessage,
 		&i.CreatedAt,
+		&i.Provider,
+		&i.RunwayTaskID,
+		&i.Model,
+		&i.Duration,
+		&i.GenerationParams,
+	)
+	return i, err
+}
+
+const getGeneratedVideoByRunwayTaskID = `-- name: GetGeneratedVideoByRunwayTaskID :one
+SELECT id, storyboard_id, variation_number, status, provider, runway_task_id, video_url, error_message, created_at, model, duration, generation_params
+FROM generated_videos
+WHERE runway_task_id = $1
+`
+
+type GetGeneratedVideoByRunwayTaskIDRow struct {
+	ID               pgtype.UUID        `json:"id"`
+	StoryboardID     pgtype.UUID        `json:"storyboard_id"`
+	VariationNumber  pgtype.Int4        `json:"variation_number"`
+	Status           string             `json:"status"`
+	Provider         pgtype.Text        `json:"provider"`
+	RunwayTaskID     pgtype.Text        `json:"runway_task_id"`
+	VideoUrl         pgtype.Text        `json:"video_url"`
+	ErrorMessage     pgtype.Text        `json:"error_message"`
+	CreatedAt        pgtype.Timestamptz `json:"created_at"`
+	Model            pgtype.Text        `json:"model"`
+	Duration         pgtype.Int4        `json:"duration"`
+	GenerationParams []byte             `json:"generation_params"`
+}
+
+func (q *Queries) GetGeneratedVideoByRunwayTaskID(ctx context.Context, runwayTaskID pgtype.Text) (GetGeneratedVideoByRunwayTaskIDRow, error) {
+	row := q.db.QueryRow(ctx, getGeneratedVideoByRunwayTaskID, runwayTaskID)
+	var i GetGeneratedVideoByRunwayTaskIDRow
+	err := row.Scan(
+		&i.ID,
+		&i.StoryboardID,
+		&i.VariationNumber,
+		&i.Status,
+		&i.Provider,
+		&i.RunwayTaskID,
+		&i.VideoUrl,
+		&i.ErrorMessage,
+		&i.CreatedAt,
+		&i.Model,
+		&i.Duration,
+		&i.GenerationParams,
 	)
 	return i, err
 }
 
 const listGeneratedVideos = `-- name: ListGeneratedVideos :many
-SELECT id, storyboard_id, variation_number, video_url, status, error_message, created_at
+SELECT id, storyboard_id, variation_number, video_url, status, error_message, created_at, provider, model, duration
 FROM generated_videos
 WHERE storyboard_id = $1
 ORDER BY variation_number ASC, created_at DESC
@@ -109,6 +233,9 @@ type ListGeneratedVideosRow struct {
 	Status          string             `json:"status"`
 	ErrorMessage    pgtype.Text        `json:"error_message"`
 	CreatedAt       pgtype.Timestamptz `json:"created_at"`
+	Provider        pgtype.Text        `json:"provider"`
+	Model           pgtype.Text        `json:"model"`
+	Duration        pgtype.Int4        `json:"duration"`
 }
 
 func (q *Queries) ListGeneratedVideos(ctx context.Context, storyboardID pgtype.UUID) ([]ListGeneratedVideosRow, error) {
@@ -128,6 +255,9 @@ func (q *Queries) ListGeneratedVideos(ctx context.Context, storyboardID pgtype.U
 			&i.Status,
 			&i.ErrorMessage,
 			&i.CreatedAt,
+			&i.Provider,
+			&i.Model,
+			&i.Duration,
 		); err != nil {
 			return nil, err
 		}
@@ -139,6 +269,111 @@ func (q *Queries) ListGeneratedVideos(ctx context.Context, storyboardID pgtype.U
 	return items, nil
 }
 
+const listPendingRunwayVideos = `-- name: ListPendingRunwayVideos :many
+SELECT id, storyboard_id, runway_task_id, status, created_at, model, duration
+FROM generated_videos
+WHERE provider = 'runway' 
+  AND status IN ('pending', 'processing')
+  AND created_at > NOW() - INTERVAL '1 hour'
+ORDER BY created_at DESC
+`
+
+type ListPendingRunwayVideosRow struct {
+	ID           pgtype.UUID        `json:"id"`
+	StoryboardID pgtype.UUID        `json:"storyboard_id"`
+	RunwayTaskID pgtype.Text        `json:"runway_task_id"`
+	Status       string             `json:"status"`
+	CreatedAt    pgtype.Timestamptz `json:"created_at"`
+	Model        pgtype.Text        `json:"model"`
+	Duration     pgtype.Int4        `json:"duration"`
+}
+
+func (q *Queries) ListPendingRunwayVideos(ctx context.Context) ([]ListPendingRunwayVideosRow, error) {
+	rows, err := q.db.Query(ctx, listPendingRunwayVideos)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []ListPendingRunwayVideosRow
+	for rows.Next() {
+		var i ListPendingRunwayVideosRow
+		if err := rows.Scan(
+			&i.ID,
+			&i.StoryboardID,
+			&i.RunwayTaskID,
+			&i.Status,
+			&i.CreatedAt,
+			&i.Model,
+			&i.Duration,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const updateGeneratedVideoRunwayStatus = `-- name: UpdateGeneratedVideoRunwayStatus :one
+UPDATE generated_videos
+SET status = $2,
+    video_url = $3,
+    video_data = $4,
+    error_message = $5,
+    updated_at = NOW()
+WHERE runway_task_id = $1
+RETURNING id, storyboard_id, variation_number, status, provider, runway_task_id, video_url, error_message, created_at, model, duration
+`
+
+type UpdateGeneratedVideoRunwayStatusParams struct {
+	RunwayTaskID pgtype.Text `json:"runway_task_id"`
+	Status       string      `json:"status"`
+	VideoUrl     pgtype.Text `json:"video_url"`
+	VideoData    []byte      `json:"video_data"`
+	ErrorMessage pgtype.Text `json:"error_message"`
+}
+
+type UpdateGeneratedVideoRunwayStatusRow struct {
+	ID              pgtype.UUID        `json:"id"`
+	StoryboardID    pgtype.UUID        `json:"storyboard_id"`
+	VariationNumber pgtype.Int4        `json:"variation_number"`
+	Status          string             `json:"status"`
+	Provider        pgtype.Text        `json:"provider"`
+	RunwayTaskID    pgtype.Text        `json:"runway_task_id"`
+	VideoUrl        pgtype.Text        `json:"video_url"`
+	ErrorMessage    pgtype.Text        `json:"error_message"`
+	CreatedAt       pgtype.Timestamptz `json:"created_at"`
+	Model           pgtype.Text        `json:"model"`
+	Duration        pgtype.Int4        `json:"duration"`
+}
+
+func (q *Queries) UpdateGeneratedVideoRunwayStatus(ctx context.Context, arg UpdateGeneratedVideoRunwayStatusParams) (UpdateGeneratedVideoRunwayStatusRow, error) {
+	row := q.db.QueryRow(ctx, updateGeneratedVideoRunwayStatus,
+		arg.RunwayTaskID,
+		arg.Status,
+		arg.VideoUrl,
+		arg.VideoData,
+		arg.ErrorMessage,
+	)
+	var i UpdateGeneratedVideoRunwayStatusRow
+	err := row.Scan(
+		&i.ID,
+		&i.StoryboardID,
+		&i.VariationNumber,
+		&i.Status,
+		&i.Provider,
+		&i.RunwayTaskID,
+		&i.VideoUrl,
+		&i.ErrorMessage,
+		&i.CreatedAt,
+		&i.Model,
+		&i.Duration,
+	)
+	return i, err
+}
+
 const updateGeneratedVideoStatus = `-- name: UpdateGeneratedVideoStatus :one
 UPDATE generated_videos
 SET status = $2,
@@ -146,7 +381,7 @@ SET status = $2,
     error_message = $4,
     updated_at = NOW()
 WHERE id = $1
-RETURNING id, storyboard_id, variation_number, video_url, status, error_message, created_at
+RETURNING id, storyboard_id, variation_number, video_url, status, error_message, created_at, provider, model, duration
 `
 
 type UpdateGeneratedVideoStatusParams struct {
@@ -164,6 +399,9 @@ type UpdateGeneratedVideoStatusRow struct {
 	Status          string             `json:"status"`
 	ErrorMessage    pgtype.Text        `json:"error_message"`
 	CreatedAt       pgtype.Timestamptz `json:"created_at"`
+	Provider        pgtype.Text        `json:"provider"`
+	Model           pgtype.Text        `json:"model"`
+	Duration        pgtype.Int4        `json:"duration"`
 }
 
 func (q *Queries) UpdateGeneratedVideoStatus(ctx context.Context, arg UpdateGeneratedVideoStatusParams) (UpdateGeneratedVideoStatusRow, error) {
@@ -182,6 +420,9 @@ func (q *Queries) UpdateGeneratedVideoStatus(ctx context.Context, arg UpdateGene
 		&i.Status,
 		&i.ErrorMessage,
 		&i.CreatedAt,
+		&i.Provider,
+		&i.Model,
+		&i.Duration,
 	)
 	return i, err
 }

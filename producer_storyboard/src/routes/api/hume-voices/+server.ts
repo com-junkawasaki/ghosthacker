@@ -52,3 +52,4 @@ export const GET: RequestHandler = async ({ request, cookies, locals }) => {
 		return json({ error: 'Failed to fetch Hume voices' }, { status: 500 });
 	}
 };
+

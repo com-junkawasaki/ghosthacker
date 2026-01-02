@@ -1,0 +1,203 @@
+syntax = "proto3";
+
+package storyboard.v1;
+
+option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1;storyboardv1";
+
+// Prop represents a prop/item in a project
+message Prop {
+  string id = 1;
+  string project_id = 2;
+  optional string org_id = 3;
+  string name = 4;
+  optional string description = 5;
+  optional string category = 6;
+  optional string material = 7;
+  optional string size = 8;
+  optional double weight_kg = 9;
+  optional double value_amount = 10;
+  string value_currency = 11;
+  optional string rarity = 12;
+  optional string function_description = 13;
+  optional string owner_character_id = 14;
+  optional string location_id = 15;
+  optional string related_technology_id = 16;
+  repeated string tags = 17;
+  optional string attributes_json = 18; // JSON string
+  string created_at = 19;
+  string updated_at = 20;
+}
+
+message ListPropsRequest {
+  string project_id = 1;
+  optional string category = 2; // Filter by category
+  repeated string tags = 3; // Filter by tags
+}
+
+message ListPropsResponse {
+  repeated Prop props = 1;
+}
+
+message GetPropRequest {
+  string id = 1;
+}
+
+message CreatePropRequest {
+  string project_id = 1;
+  string name = 2;
+  optional string description = 3;
+  optional string category = 4;
+  optional string material = 5;
+  optional string size = 6;
+  optional double weight_kg = 7;
+  optional double value_amount = 8;
+  optional string value_currency = 9;
+  optional string rarity = 10;
+  optional string function_description = 11;
+  optional string owner_character_id = 12;
+  optional string location_id = 13;
+  optional string related_technology_id = 14;
+  repeated string tags = 15;
+  optional string attributes_json = 16;
+}
+
+message UpdatePropRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string description = 3;
+  optional string category = 4;
+  optional string material = 5;
+  optional string size = 6;
+  optional double weight_kg = 7;
+  optional double value_amount = 8;
+  optional string value_currency = 9;
+  optional string rarity = 10;
+  optional string function_description = 11;
+  optional string owner_character_id = 12;
+  optional string location_id = 13;
+  optional string related_technology_id = 14;
+  repeated string tags = 15;
+  optional string attributes_json = 16;
+}
+
+message DeletePropRequest {
+  string id = 1;
+}
+
+message DeletePropResponse {
+  bool success = 1;
+}
+
+// PropImage represents a prop image from a specific angle
+message PropImage {
+  string id = 1;
+  string prop_id = 2;
+  string angle = 3; // front, side_left, side_right, back, etc.
+  optional string image_data_base64 = 4; // Base64 encoded image data
+  string image_format = 5;
+  optional int32 width = 6;
+  optional int32 height = 7;
+  bool is_primary = 8;
+  string created_at = 9;
+  string updated_at = 10;
+}
+
+message ListPropImagesRequest {
+  string prop_id = 1;
+}
+
+message ListPropImagesResponse {
+  repeated PropImage images = 1;
+}
+
+message GetPropImageRequest {
+  string id = 1;
+}
+
+message GetPropImageDataRequest {
+  string image_id = 1;
+}
+
+message GetPropImageDataResponse {
+  string image_data_base64 = 1;
+  string image_format = 2;
+}
+
+message UploadPropImageRequest {
+  string prop_id = 1;
+  string angle = 2;
+  string image_data_base64 = 3; // Base64 encoded image data
+  optional string image_format = 4;
+  optional int32 width = 5;
+  optional int32 height = 6;
+  optional bool is_primary = 7;
+}
+
+message UploadPropImageResponse {
+  PropImage image = 1;
+}
+
+message DeletePropImageRequest {
+  string id = 1;
+}
+
+message DeletePropImageResponse {
+  bool success = 1;
+}
+
+// Prop3DModel represents a 3D model for a prop
+message Prop3DModel {
+  string id = 1;
+  string prop_id = 2;
+  string model_format = 3; // glb, gltf, fbx, obj
+  optional string model_data_base64 = 4; // Base64 encoded model data
+  repeated string texture_data_base64 = 5; // Base64 encoded texture files
+  bool is_primary = 6;
+  optional string metadata = 7; // JSON string
+  string created_at = 8;
+  string updated_at = 9;
+}
+
+message ListProp3DModelsRequest {
+  string prop_id = 1;
+}
+
+message ListProp3DModelsResponse {
+  repeated Prop3DModel models = 1;
+}
+
+message GetProp3DModelRequest {
+  string id = 1;
+}
+
+message GetProp3DModelDataRequest {
+  string model_id = 1;
+}
+
+message GetProp3DModelDataResponse {
+  string model_data_base64 = 1;
+  string model_format = 2;
+  repeated string texture_data_base64 = 3;
+  optional string metadata = 4;
+}
+
+message UploadProp3DModelRequest {
+  string prop_id = 1;
+  string model_format = 2;
+  string model_data_base64 = 3; // Base64 encoded model data
+  repeated string texture_data_base64 = 4; // Base64 encoded texture files
+  optional bool is_primary = 5;
+  optional string metadata = 6; // JSON string
+}
+
+message UploadProp3DModelResponse {
+  Prop3DModel model = 1;
+}
+
+message DeleteProp3DModelRequest {
+  string id = 1;
+}
+
+message DeleteProp3DModelResponse {
+  bool success = 1;
+}

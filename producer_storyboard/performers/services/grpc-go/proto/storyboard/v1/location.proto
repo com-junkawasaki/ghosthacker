@@ -1,0 +1,199 @@
+syntax = "proto3";
+
+package storyboard.v1;
+
+option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1;storyboardv1";
+
+// Location represents a story location/place
+message Location {
+  string id = 1;
+  string project_id = 2;
+  optional string org_id = 3;
+  string name = 4;
+  optional string description = 5;
+  optional string parent_location_id = 6;
+  optional string image_id = 7;
+  optional string location_type = 8;
+  optional string address = 9;
+  optional double latitude = 10;
+  optional double longitude = 11;
+  optional double size_sqm = 12;
+  optional int32 capacity = 13;
+  optional string atmosphere = 14;
+  optional string accessibility = 15;
+  optional string safety_level = 16;
+  optional string metadata = 17; // JSON string
+  string created_at = 18;
+  string updated_at = 19;
+}
+
+message ListLocationsRequest {
+  string project_id = 1;
+  optional string parent_location_id = 2; // Filter by parent location
+}
+
+message ListLocationsResponse {
+  repeated Location locations = 1;
+}
+
+message GetLocationRequest {
+  string id = 1;
+}
+
+message CreateLocationRequest {
+  string project_id = 1;
+  string name = 2;
+  optional string description = 3;
+  optional string parent_location_id = 4;
+  optional string image_id = 5;
+  optional string location_type = 6;
+  optional string address = 7;
+  optional double latitude = 8;
+  optional double longitude = 9;
+  optional double size_sqm = 10;
+  optional int32 capacity = 11;
+  optional string atmosphere = 12;
+  optional string accessibility = 13;
+  optional string safety_level = 14;
+  optional string metadata = 15; // JSON string
+}
+
+message UpdateLocationRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string description = 3;
+  optional string parent_location_id = 4;
+  optional string image_id = 5;
+  optional string location_type = 6;
+  optional string address = 7;
+  optional double latitude = 8;
+  optional double longitude = 9;
+  optional double size_sqm = 10;
+  optional int32 capacity = 11;
+  optional string atmosphere = 12;
+  optional string accessibility = 13;
+  optional string safety_level = 14;
+  optional string metadata = 15; // JSON string
+}
+
+message DeleteLocationRequest {
+  string id = 1;
+}
+
+message DeleteLocationResponse {
+  bool success = 1;
+}
+
+// LocationImage represents a location image from a specific angle
+message LocationImage {
+  string id = 1;
+  string location_id = 2;
+  string angle = 3;
+  optional string image_data_base64 = 4; // Base64 encoded image data
+  string image_format = 5;
+  optional int32 width = 6;
+  optional int32 height = 7;
+  bool is_primary = 8;
+  string created_at = 9;
+  string updated_at = 10;
+}
+
+message ListLocationImagesRequest {
+  string location_id = 1;
+}
+
+message ListLocationImagesResponse {
+  repeated LocationImage images = 1;
+}
+
+message GetLocationImageRequest {
+  string id = 1;
+}
+
+message GetLocationImageDataRequest {
+  string image_id = 1;
+}
+
+message GetLocationImageDataResponse {
+  string image_data_base64 = 1;
+  string image_format = 2;
+}
+
+message UploadLocationImageRequest {
+  string location_id = 1;
+  string angle = 2;
+  string image_data_base64 = 3; // Base64 encoded image data
+  optional string image_format = 4;
+  optional int32 width = 5;
+  optional int32 height = 6;
+  optional bool is_primary = 7;
+}
+
+message UploadLocationImageResponse {
+  LocationImage image = 1;
+}
+
+message DeleteLocationImageRequest {
+  string id = 1;
+}
+
+message DeleteLocationImageResponse {
+  bool success = 1;
+}
+
+// Location3DModel represents a 3D model for a location
+message Location3DModel {
+  string id = 1;
+  string location_id = 2;
+  string model_format = 3; // glb, gltf, fbx, obj
+  optional string model_data_base64 = 4; // Base64 encoded model data
+  repeated string texture_data_base64 = 5; // Base64 encoded texture files
+  bool is_primary = 6;
+  optional string metadata = 7; // JSON string
+  string created_at = 8;
+  string updated_at = 9;
+}
+
+message ListLocation3DModelsRequest {
+  string location_id = 1;
+}
+
+message ListLocation3DModelsResponse {
+  repeated Location3DModel models = 1;
+}
+
+message GetLocation3DModelRequest {
+  string id = 1;
+}
+
+message GetLocation3DModelDataRequest {
+  string model_id = 1;
+}
+
+message GetLocation3DModelDataResponse {
+  string model_data_base64 = 1;
+  string model_format = 2;
+  repeated string texture_data_base64 = 3;
+  optional string metadata = 4;
+}
+
+message UploadLocation3DModelRequest {
+  string location_id = 1;
+  string model_format = 2;
+  string model_data_base64 = 3; // Base64 encoded model data
+  repeated string texture_data_base64 = 4; // Base64 encoded texture files
+  optional bool is_primary = 5;
+  optional string metadata = 6; // JSON string
+}
+
+message UploadLocation3DModelResponse {
+  Location3DModel model = 1;
+}
+
+message DeleteLocation3DModelRequest {
+  string id = 1;
+}
+
+message DeleteLocation3DModelResponse {
+  bool success = 1;
+}

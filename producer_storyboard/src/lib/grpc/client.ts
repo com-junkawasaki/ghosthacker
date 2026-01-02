@@ -3,9 +3,9 @@
  * Client for calling grpc-go service via Connect protocol
  */
 import { browser } from '$app/environment';
-import { createPromiseClient } from '@connectrpc/connect';
+import { createClient } from '@connectrpc/connect';
 import { createConnectTransport } from '@connectrpc/connect-web';
-import { StoryboardService } from '../../../performers/services/grpc-go/internal/gen/storyboard/v1/storyboard_service_connect';
+import { StoryboardService } from '../grpc/generated/storyboard/v1/storyboard_service_pb';
 
 // Get gRPC API URL
 const grpcApiUrl = browser
@@ -17,7 +17,7 @@ const transport = createConnectTransport({
 	baseUrl: grpcApiUrl,
 	fetch: async (input, init) => {
 		// Extract orgId from URL or metadata
-		const url = typeof input === 'string' ? new URL(input, window.location.origin) : new URL(input.url);
+		const url = typeof input === 'string' ? new URL(input, window.location.origin) : new URL(input instanceof Request ? input.url : input);
 		const orgId = url.searchParams.get('orgId') || extractOrgIdFromPath();
 		
 		const headers = new Headers(init?.headers);
@@ -50,11 +50,12 @@ function extractOrgIdFromPath(): string | null {
 	try {
 		const path = window.location.pathname;
 		const match = path.match(/\/orgs\/([^/]+)/);
-		return match ? match[1] : null;
+		return match ? match[1] ?? null : null;
 	} catch {
 		return null;
 	}
 }
 
 // Create client
-export const grpcClient = createPromiseClient(StoryboardService, transport);
+export const grpcClient = createClient(StoryboardService, transport);
+

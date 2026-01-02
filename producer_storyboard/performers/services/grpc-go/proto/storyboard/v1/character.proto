@@ -4,6 +4,8 @@ package storyboard.v1;
 
 option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1;storyboardv1";
 
+import "storyboard/v1/scene.proto";
+
 // Character represents a character in a project
 message Character {
   string id = 1;
@@ -14,8 +16,18 @@ message Character {
   optional string background = 6;
   optional string default_hume_voice_id = 7;
   optional string profile_image_id = 8;
-  string created_at = 9;
-  string updated_at = 10;
+  optional int32 age = 9;
+  optional string gender = 10;
+  optional string birth_date = 11; // ISO 8601 date string
+  optional int32 height_cm = 12;
+  optional double weight_kg = 13;
+  optional string hair_color = 14;
+  optional string eye_color = 15;
+  optional string occupation_id = 16;
+  optional string organization_id = 17;
+  optional string attributes_json = 18; // JSON string
+  string created_at = 19;
+  string updated_at = 20;
 }
 
 message ListCharactersRequest {
@@ -46,6 +58,16 @@ message UpdateCharacterRequest {
   optional string personality = 4;
   optional string background = 5;
   optional string default_hume_voice_id = 6;
+  optional int32 age = 7;
+  optional string gender = 8;
+  optional string birth_date = 9;
+  optional int32 height_cm = 10;
+  optional double weight_kg = 11;
+  optional string hair_color = 12;
+  optional string eye_color = 13;
+  optional string occupation_id = 14;
+  optional string organization_id = 15;
+  optional string attributes_json = 16;
 }
 
 message DeleteCharacterRequest {
@@ -95,3 +117,131 @@ message ListHumeVoicesRequest {}
 message ListHumeVoicesResponse {
   repeated HumeVoice voices = 1;
 }
+
+// CharacterImage represents a character image from a specific angle
+message CharacterImage {
+  string id = 1;
+  string character_id = 2;
+  string angle = 3; // front, side_left, side_right, back, etc.
+  optional string image_data_base64 = 4; // Base64 encoded image data
+  string image_format = 5;
+  optional int32 width = 6;
+  optional int32 height = 7;
+  bool is_primary = 8;
+  string created_at = 9;
+  string updated_at = 10;
+}
+
+message ListCharacterImagesRequest {
+  string character_id = 1;
+}
+
+message ListCharacterImagesResponse {
+  repeated CharacterImage images = 1;
+}
+
+message GetCharacterImageRequest {
+  string id = 1;
+}
+
+message GetCharacterImageDataRequest {
+  string image_id = 1;
+}
+
+message GetCharacterImageDataResponse {
+  string image_data_base64 = 1;
+  string image_format = 2;
+}
+
+message UploadCharacterImageRequest {
+  string character_id = 1;
+  string angle = 2;
+  string image_data_base64 = 3; // Base64 encoded image data
+  optional string image_format = 4;
+  optional int32 width = 5;
+  optional int32 height = 6;
+  optional bool is_primary = 7;
+}
+
+message UploadCharacterImageResponse {
+  CharacterImage image = 1;
+}
+
+message DeleteCharacterImageRequest {
+  string id = 1;
+}
+
+message DeleteCharacterImageResponse {
+  bool success = 1;
+}
+
+// Character3DModel represents a 3D model for a character
+message Character3DModel {
+  string id = 1;
+  string character_id = 2;
+  string model_format = 3; // glb, gltf, fbx, obj
+  optional string model_data_base64 = 4; // Base64 encoded model data
+  repeated string texture_data_base64 = 5; // Base64 encoded texture files
+  bool is_primary = 6;
+  optional string metadata = 7; // JSON string
+  string created_at = 8;
+  string updated_at = 9;
+}
+
+message ListCharacter3DModelsRequest {
+  string character_id = 1;
+}
+
+message ListCharacter3DModelsResponse {
+  repeated Character3DModel models = 1;
+}
+
+message GetCharacter3DModelRequest {
+  string id = 1;
+}
+
+message GetCharacter3DModelDataRequest {
+  string model_id = 1;
+}
+
+message GetCharacter3DModelDataResponse {
+  string model_data_base64 = 1;
+  string model_format = 2;
+  repeated string texture_data_base64 = 3;
+  optional string metadata = 4;
+}
+
+message UploadCharacter3DModelRequest {
+  string character_id = 1;
+  string model_format = 2;
+  string model_data_base64 = 3; // Base64 encoded model data
+  repeated string texture_data_base64 = 4; // Base64 encoded texture files
+  optional bool is_primary = 5;
+  optional string metadata = 6; // JSON string
+}
+
+message UploadCharacter3DModelResponse {
+  Character3DModel model = 1;
+}
+
+message DeleteCharacter3DModelRequest {
+  string id = 1;
+}
+
+message DeleteCharacter3DModelResponse {
+  bool success = 1;
+}
+
+// GenerateCharacterImageRequest represents a request to generate a character image using Higgsfield Soul ID
+message GenerateCharacterImageRequest {
+  string character_id = 1;
+  string prompt = 2;
+  optional string style = 3; // e.g., "cinematic", "anime", "realistic"
+  optional string aspect_ratio = 4; // e.g., "16:9", "1:1", "9:16"
+}
+
+// GenerateCharacterImageResponse represents the response from character image generation
+message GenerateCharacterImageResponse {
+  GeneratedImage image = 1; // Uses GeneratedImage from scene.proto
+}
+

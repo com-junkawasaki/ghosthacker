@@ -12,20 +12,24 @@ import (
 )
 
 const createDialogue = `-- name: CreateDialogue :one
-INSERT INTO dialogues (scene_id, character_id, language, text, order_index, hume_voice_id, org_id)
-VALUES ($1, $2, $3, $4, $5, $6, $7)
+INSERT INTO dialogues (scene_id, character_id, language, text, order_index, hume_voice_id, org_id, emotion_name, emotion_x, emotion_y)
+VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
 RETURNING id, scene_id, character_id, language, text, translated_text, hume_voice_id, audio_url,
-          start_time_seconds, duration_seconds, order_index, created_at, updated_at
+          start_time_seconds, duration_seconds, order_index, emotion_name, emotion_x, emotion_y,
+          created_at, updated_at
 `
 
 type CreateDialogueParams struct {
-	SceneID     pgtype.UUID `json:"scene_id"`
-	CharacterID pgtype.UUID `json:"character_id"`
-	Language    string      `json:"language"`
-	Text        string      `json:"text"`
-	OrderIndex  pgtype.Int4 `json:"order_index"`
-	HumeVoiceID pgtype.Text `json:"hume_voice_id"`
-	OrgID       pgtype.Text `json:"org_id"`
+	SceneID     pgtype.UUID   `json:"scene_id"`
+	CharacterID pgtype.UUID   `json:"character_id"`
+	Language    string        `json:"language"`
+	Text        string        `json:"text"`
+	OrderIndex  pgtype.Int4   `json:"order_index"`
+	HumeVoiceID pgtype.Text   `json:"hume_voice_id"`
+	OrgID       pgtype.Text   `json:"org_id"`
+	EmotionName pgtype.Text   `json:"emotion_name"`
+	EmotionX    pgtype.Float8 `json:"emotion_x"`
+	EmotionY    pgtype.Float8 `json:"emotion_y"`
 }
 
 type CreateDialogueRow struct {
@@ -40,6 +44,9 @@ type CreateDialogueRow struct {
 	StartTimeSeconds pgtype.Numeric     `json:"start_time_seconds"`
 	DurationSeconds  pgtype.Numeric     `json:"duration_seconds"`
 	OrderIndex       pgtype.Int4        `json:"order_index"`
+	EmotionName      pgtype.Text        `json:"emotion_name"`
+	EmotionX         pgtype.Float8      `json:"emotion_x"`
+	EmotionY         pgtype.Float8      `json:"emotion_y"`
 	CreatedAt        pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt        pgtype.Timestamptz `json:"updated_at"`
 }
@@ -53,6 +60,9 @@ func (q *Queries) CreateDialogue(ctx context.Context, arg CreateDialogueParams) 
 		arg.OrderIndex,
 		arg.HumeVoiceID,
 		arg.OrgID,
+		arg.EmotionName,
+		arg.EmotionX,
+		arg.EmotionY,
 	)
 	var i CreateDialogueRow
 	err := row.Scan(
@@ -67,6 +77,9 @@ func (q *Queries) CreateDialogue(ctx context.Context, arg CreateDialogueParams) 
 		&i.StartTimeSeconds,
 		&i.DurationSeconds,
 		&i.OrderIndex,
+		&i.EmotionName,
+		&i.EmotionX,
+		&i.EmotionY,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)
@@ -84,7 +97,8 @@ func (q *Queries) DeleteDialogue(ctx context.Context, id pgtype.UUID) error {
 
 const getDialogue = `-- name: GetDialogue :one
 SELECT id, scene_id, character_id, language, text, translated_text, hume_voice_id, audio_url,
-       start_time_seconds, duration_seconds, order_index, created_at, updated_at
+       start_time_seconds, duration_seconds, order_index, emotion_name, emotion_x, emotion_y,
+       created_at, updated_at
 FROM dialogues
 WHERE id = $1
 `
@@ -101,6 +115,9 @@ type GetDialogueRow struct {
 	StartTimeSeconds pgtype.Numeric     `json:"start_time_seconds"`
 	DurationSeconds  pgtype.Numeric     `json:"duration_seconds"`
 	OrderIndex       pgtype.Int4        `json:"order_index"`
+	EmotionName      pgtype.Text        `json:"emotion_name"`
+	EmotionX         pgtype.Float8      `json:"emotion_x"`
+	EmotionY         pgtype.Float8      `json:"emotion_y"`
 	CreatedAt        pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt        pgtype.Timestamptz `json:"updated_at"`
 }
@@ -120,6 +137,9 @@ func (q *Queries) GetDialogue(ctx context.Context, id pgtype.UUID) (GetDialogueR
 		&i.StartTimeSeconds,
 		&i.DurationSeconds,
 		&i.OrderIndex,
+		&i.EmotionName,
+		&i.EmotionX,
+		&i.EmotionY,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)
@@ -150,7 +170,8 @@ func (q *Queries) GetMaxDialogueOrderIndex(ctx context.Context, sceneID pgtype.U
 
 const listDialogues = `-- name: ListDialogues :many
 SELECT id, scene_id, character_id, language, text, translated_text, hume_voice_id, audio_url,
-       start_time_seconds, duration_seconds, order_index, created_at, updated_at
+       start_time_seconds, duration_seconds, order_index, emotion_name, emotion_x, emotion_y,
+       created_at, updated_at
 FROM dialogues
 WHERE scene_id = $1
 ORDER BY order_index ASC, created_at ASC
@@ -168,6 +189,9 @@ type ListDialoguesRow struct {
 	StartTimeSeconds pgtype.Numeric     `json:"start_time_seconds"`
 	DurationSeconds  pgtype.Numeric     `json:"duration_seconds"`
 	OrderIndex       pgtype.Int4        `json:"order_index"`
+	EmotionName      pgtype.Text        `json:"emotion_name"`
+	EmotionX         pgtype.Float8      `json:"emotion_x"`
+	EmotionY         pgtype.Float8      `json:"emotion_y"`
 	CreatedAt        pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt        pgtype.Timestamptz `json:"updated_at"`
 }
@@ -193,6 +217,9 @@ func (q *Queries) ListDialogues(ctx context.Context, sceneID pgtype.UUID) ([]Lis
 			&i.StartTimeSeconds,
 			&i.DurationSeconds,
 			&i.OrderIndex,
+			&i.EmotionName,
+			&i.EmotionX,
+			&i.EmotionY,
 			&i.CreatedAt,
 			&i.UpdatedAt,
 		); err != nil {
@@ -211,17 +238,24 @@ UPDATE dialogues
 SET text = COALESCE($2, text),
     order_index = COALESCE($3, order_index),
     hume_voice_id = COALESCE($4, hume_voice_id),
+    emotion_name = COALESCE($5, emotion_name),
+    emotion_x = COALESCE($6, emotion_x),
+    emotion_y = COALESCE($7, emotion_y),
     updated_at = NOW()
 WHERE id = $1
 RETURNING id, scene_id, character_id, language, text, translated_text, hume_voice_id, audio_url,
-          start_time_seconds, duration_seconds, order_index, created_at, updated_at
+          start_time_seconds, duration_seconds, order_index, emotion_name, emotion_x, emotion_y,
+          created_at, updated_at
 `
 
 type UpdateDialogueParams struct {
-	ID          pgtype.UUID `json:"id"`
-	Text        string      `json:"text"`
-	OrderIndex  pgtype.Int4 `json:"order_index"`
-	HumeVoiceID pgtype.Text `json:"hume_voice_id"`
+	ID          pgtype.UUID   `json:"id"`
+	Text        string        `json:"text"`
+	OrderIndex  pgtype.Int4   `json:"order_index"`
+	HumeVoiceID pgtype.Text   `json:"hume_voice_id"`
+	EmotionName pgtype.Text   `json:"emotion_name"`
+	EmotionX    pgtype.Float8 `json:"emotion_x"`
+	EmotionY    pgtype.Float8 `json:"emotion_y"`
 }
 
 type UpdateDialogueRow struct {
@@ -236,6 +270,9 @@ type UpdateDialogueRow struct {
 	StartTimeSeconds pgtype.Numeric     `json:"start_time_seconds"`
 	DurationSeconds  pgtype.Numeric     `json:"duration_seconds"`
 	OrderIndex       pgtype.Int4        `json:"order_index"`
+	EmotionName      pgtype.Text        `json:"emotion_name"`
+	EmotionX         pgtype.Float8      `json:"emotion_x"`
+	EmotionY         pgtype.Float8      `json:"emotion_y"`
 	CreatedAt        pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt        pgtype.Timestamptz `json:"updated_at"`
 }
@@ -246,6 +283,9 @@ func (q *Queries) UpdateDialogue(ctx context.Context, arg UpdateDialogueParams) 
 		arg.Text,
 		arg.OrderIndex,
 		arg.HumeVoiceID,
+		arg.EmotionName,
+		arg.EmotionX,
+		arg.EmotionY,
 	)
 	var i UpdateDialogueRow
 	err := row.Scan(
@@ -260,6 +300,9 @@ func (q *Queries) UpdateDialogue(ctx context.Context, arg UpdateDialogueParams) 
 		&i.StartTimeSeconds,
 		&i.DurationSeconds,
 		&i.OrderIndex,
+		&i.EmotionName,
+		&i.EmotionX,
+		&i.EmotionY,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)
@@ -274,7 +317,8 @@ SET audio_data = $2,
     updated_at = NOW()
 WHERE id = $1
 RETURNING id, scene_id, character_id, language, text, translated_text, hume_voice_id, audio_url,
-          start_time_seconds, duration_seconds, order_index, created_at, updated_at
+          start_time_seconds, duration_seconds, order_index, emotion_name, emotion_x, emotion_y,
+          created_at, updated_at
 `
 
 type UpdateDialogueAudioParams struct {
@@ -296,6 +340,9 @@ type UpdateDialogueAudioRow struct {
 	StartTimeSeconds pgtype.Numeric     `json:"start_time_seconds"`
 	DurationSeconds  pgtype.Numeric     `json:"duration_seconds"`
 	OrderIndex       pgtype.Int4        `json:"order_index"`
+	EmotionName      pgtype.Text        `json:"emotion_name"`
+	EmotionX         pgtype.Float8      `json:"emotion_x"`
+	EmotionY         pgtype.Float8      `json:"emotion_y"`
 	CreatedAt        pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt        pgtype.Timestamptz `json:"updated_at"`
 }
@@ -320,6 +367,9 @@ func (q *Queries) UpdateDialogueAudio(ctx context.Context, arg UpdateDialogueAud
 		&i.StartTimeSeconds,
 		&i.DurationSeconds,
 		&i.OrderIndex,
+		&i.EmotionName,
+		&i.EmotionX,
+		&i.EmotionY,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)

@@ -1,7 +1,0 @@
-[print_schema]
-file = "src/infra/schema.rs"
-custom_type_derives = ["Debug", "Clone", "Serialize", "Deserialize"]
-
-[migrations_directory]
-dir = "resources/database/migrations"
-

@@ -3,8 +3,11 @@
 	import ProjectSidebar from '$lib/components/storyboard/ProjectSidebar.svelte';
 	import CharacterManager from '$lib/components/storyboard/CharacterManager.svelte';
 
-	const { lang, orgId, projectId } = $page.params;
-	let showCharacterManager = $state(true);
+	const { projectId } = $page.params;
+	
+	if (!projectId) {
+		throw new Error('Project ID is required');
+	}
 </script>
 
 <div class="resource-page">
@@ -16,7 +19,7 @@
 		</header>
 
 		<main class="page-content">
-			<CharacterManager projectId={projectId} bind:open={showCharacterManager} />
+			<CharacterManager projectId={projectId} open={true} modal={false} />
 		</main>
 	</div>
 </div>
@@ -58,4 +61,5 @@
 		padding: 2rem;
 	}
 </style>
+
 

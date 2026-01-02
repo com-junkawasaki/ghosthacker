@@ -113,3 +113,55 @@ func stringPtr(s string) *string {
 func int32Ptr(i int32) *int32 {
 	return &i
 }
+
+func uuidToPgUUIDPtr(id *uuid.UUID) pgtype.UUID {
+	if id == nil {
+		return pgtype.UUID{Valid: false}
+	}
+	return pgtype.UUID{Bytes: *id, Valid: true}
+}
+
+func int32PtrFromIntPtr(i *int) *int32 {
+	if i == nil {
+		return nil
+	}
+	v := int32(*i)
+	return &v
+}
+
+func float64PtrFromPgFloat8(f pgtype.Float8) *float64 {
+	if !f.Valid {
+		return nil
+	}
+	return &f.Float64
+}
+
+func dateToPgDate(d *time.Time) pgtype.Date {
+	if d == nil {
+		return pgtype.Date{Valid: false}
+	}
+	return pgtype.Date{Time: *d, Valid: true}
+}
+
+func pgBoolToBool(b pgtype.Bool) bool {
+	return b.Valid && b.Bool
+}
+
+func boolToPgBool(b bool) pgtype.Bool {
+	return pgtype.Bool{Bool: b, Valid: true}
+}
+
+func pgInt4ToIntPtr(i pgtype.Int4) *int {
+	if !i.Valid {
+		return nil
+	}
+	v := int(i.Int32)
+	return &v
+}
+
+func intPtrToPgInt4(i *int) pgtype.Int4 {
+	if i == nil {
+		return pgtype.Int4{Valid: false}
+	}
+	return pgtype.Int4{Int32: int32(*i), Valid: true}
+}

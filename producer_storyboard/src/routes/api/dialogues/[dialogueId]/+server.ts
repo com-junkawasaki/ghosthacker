@@ -58,7 +58,7 @@ export const GET: RequestHandler = async ({ params, cookies, locals }) => {
 export const PUT: RequestHandler = async ({ params, request, cookies, locals }) => {
 	const { dialogueId } = params;
 	const body = await request.json();
-	const { language, text, humeVoiceId } = body;
+	const { language, text, humeVoiceId, emotionName, emotionX, emotionY } = body;
 	
 	const auth = locals.auth();
 	const headers: Record<string, string> = {};
@@ -79,7 +79,7 @@ export const PUT: RequestHandler = async ({ params, request, cookies, locals }) 
 	try {
 		const response = await callGrpcService(
 			'UpdateDialogue',
-			{ id: dialogueId, language, text, humeVoiceId },
+			{ id: dialogueId, language, text, humeVoiceId, emotionName, emotionX, emotionY },
 			headers
 		);
 		const data = await response.json();
@@ -118,3 +118,4 @@ export const DELETE: RequestHandler = async ({ params, cookies, locals }) => {
 		return json({ error: 'Failed to delete dialogue' }, { status: 500 });
 	}
 };
+

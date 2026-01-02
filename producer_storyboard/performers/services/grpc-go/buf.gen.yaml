@@ -6,3 +6,14 @@ plugins:
   - remote: buf.build/connectrpc/go
     out: internal/gen
     opt: paths=source_relative
+  - local: protoc-gen-es
+    out: ../../../src/lib/grpc/generated
+    opt:
+      - import_extension=none
+      - target=ts
+  - remote: buf.build/connectrpc/es
+    out: ../../../src/lib/grpc/generated
+    opt:
+      - import_extension=none
+      - target=ts
+

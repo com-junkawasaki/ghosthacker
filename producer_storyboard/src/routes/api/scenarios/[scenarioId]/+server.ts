@@ -47,11 +47,18 @@ export const GET: RequestHandler = async ({ params, cookies, locals }) => {
 	
 	try {
 		const response = await callGrpcService('GetScenario', { id: scenarioId }, headers);
+		
+		if (!response.ok) {
+			const errorText = await response.text();
+			console.error('[Scenario API] gRPC error:', response.status, errorText);
+			return json({ error: `Failed to fetch scenario: ${response.statusText}`, details: errorText }, { status: response.status });
+		}
+		
 		const data = await response.json();
 		return json(data);
 	} catch (error) {
 		console.error('[Scenario API] Error:', error);
-		return json({ error: 'Failed to fetch scenario' }, { status: 500 });
+		return json({ error: 'Failed to fetch scenario', details: error instanceof Error ? error.message : String(error) }, { status: 500 });
 	}
 };
 
@@ -118,3 +125,4 @@ export const DELETE: RequestHandler = async ({ params, cookies, locals }) => {
 		return json({ error: 'Failed to delete scenario' }, { status: 500 });
 	}
 };
+

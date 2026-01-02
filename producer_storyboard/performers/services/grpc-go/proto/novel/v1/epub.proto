@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package novel.v1;
+
+option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/novel/v1;novelv1";
+
+// ExportEpubRequest represents a request to export novel as EPUB
+message ExportEpubRequest {
+  string novel_project_id = 1;
+  optional string format = 2; // "epub3", "tiptap-json"
+}
+
+message ExportEpubResponse {
+  bytes epub_data = 1; // EPUB file bytes or Tiptap JSON
+  string filename = 2;
+  string mime_type = 3;
+}
+
+// ImportEpubRequest represents a request to import novel from EPUB or Tiptap JSON
+message ImportEpubRequest {
+  string novel_project_id = 1;
+  bytes epub_data = 2; // EPUB file bytes or Tiptap JSON
+  string mime_type = 3; // "application/epub+zip", "application/json"
+}
+
+message ImportEpubResponse {
+  bool success = 1;
+  int32 chapters_imported = 2;
+}

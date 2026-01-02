@@ -31,14 +31,6 @@ export default [
 		},
 	},
 	{
-		files: ['src/lib/graphql/client.ts'],
-		languageOptions: {
-			globals: {
-				...globals.browser,
-			},
-		},
-	},
-	{
 		files: ['**/*.svelte'],
 		languageOptions: {
 			parser: svelteParser,
@@ -100,4 +92,5 @@ export default [
 	},
 	prettierConfig,
 ];
+
 

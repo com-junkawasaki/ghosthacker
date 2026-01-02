@@ -43,6 +43,9 @@
 		text: string;
 		humeVoiceId: string | null;
 		audioUrl: string | null;
+		emotionName?: string | null;
+		emotionX?: number | null;
+		emotionY?: number | null;
 	};
 
 	const { lang, orgId, projectId: projectIdParam, storyboardId: storyboardIdParam } = $page.params;
@@ -126,10 +129,12 @@
 		if (!browser || !projectId) return;
 
 		try {
+			const headers: HeadersInit = {};
+			if (orgId) {
+				headers['X-Org-Id'] = orgId;
+			}
 			const response = await fetch(`/api/characters?projectId=${projectId}`, {
-				headers: {
-					'X-Org-Id': orgId,
-				},
+				headers,
 			});
 			
 			if (!response.ok) {
@@ -137,8 +142,12 @@
 			}
 			
 			const data = await response.json();
+			console.log('[Editor] Loaded characters:', data);
 			if (data?.characters) {
 				characters = data.characters as Character[];
+				console.log('[Editor] Characters set:', characters.length, 'characters');
+			} else {
+				console.warn('[Editor] No characters in response:', data);
 			}
 		} catch (err) {
 			console.error('[Editor] Error loading characters:', err);
@@ -332,6 +341,7 @@
 			if (targetStoryboardId) {
 				storyboardId = targetStoryboardId;
 				await loadScenes(targetStoryboardId);
+				await loadCharacters();
 			} else {
 				loading = false;
 			}
@@ -982,6 +992,8 @@
 		
 		// Load initial data
 		await loadData();
+		// Ensure characters are loaded
+		await loadCharacters();
 		
 		const handleKeyDown = (e: KeyboardEvent) => {
 			// Prevent shortcuts when typing in inputs
@@ -1521,7 +1533,7 @@
 	</div>
 
 	<!-- Character Manager -->
-	<CharacterManager projectId={projectId} bind:open={showCharacterManager} />
+	<CharacterManager projectId={projectId} bind:open={showCharacterManager} modal={true} />
 
 	<!-- Create Storyboard Dialog -->
 	{#if showCreateStoryboardDialog}

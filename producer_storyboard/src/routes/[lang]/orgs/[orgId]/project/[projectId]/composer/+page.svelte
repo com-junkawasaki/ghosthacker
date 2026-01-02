@@ -10,6 +10,7 @@
 	import AssetDetailsPanel from '$lib/components/composer/AssetDetailsPanel.svelte';
 	import TimelineEditor from '$lib/components/composer/TimelineEditor.svelte';
 	import SunoMusicGenerator from '$lib/components/composer/SunoMusicGenerator.svelte';
+	import { composerStore } from '$lib/stores/composerStore.svelte';
 
 	const { orgId, projectId: projectIdParam } = $page.params;
 	const projectId: string = projectIdParam || '';
@@ -22,6 +23,8 @@
 	let duration = $state(0);
 	let composerId = $state<string | null>(null);
 	let showSunoGenerator = $state(false);
+	let showAddResourceDialog = $state(false);
+	let showAddSampleDialog = $state(false);
 
 	// Using grpc-go API instead of Houdini stores
 
@@ -41,7 +44,10 @@
 			
 			const result = await response.json();
 			if (result?.composers && result.composers.length > 0) {
-				composerId = result.composers[0].id;
+				const composer = result.composers[0];
+				composerId = composer.id;
+				// Load tracks for this composer
+				await loadTracks(composer.id);
 			} else {
 				// Create default composer if none exists
 				await createDefaultComposer();
@@ -74,6 +80,10 @@
 			const result = await response.json();
 			if (result?.id) {
 				composerId = result.id;
+				// Initialize composer store with empty tracks
+				if (browser) {
+					composerStore.initialize(result.id, []);
+				}
 			}
 		} catch (err) {
 			console.error('[Composer] Error creating composer:', err);
@@ -109,6 +119,73 @@
 
 		showSunoGenerator = false;
 	}
+
+	async function handleAddSample() {
+		if (!browser || !projectId) return;
+		showAddSampleDialog = true;
+		
+		// TODO: Implement sample resource addition via API
+		// For now, just show dialog or add mock sample
+		console.log('[Composer] Add sample resource');
+	}
+
+	async function handleAddResource() {
+		if (!browser || !projectId) return;
+		showAddResourceDialog = true;
+		
+		// TODO: Implement resource addition via API
+		// For now, just show dialog
+		console.log('[Composer] Add resource');
+	}
+
+	async function loadTracks(composerIdToLoad: string) {
+		if (!browser || !composerIdToLoad) return;
+
+		try {
+			// Try to load tracks from API (if endpoint exists)
+			const response = await fetch(`/api/composers/${composerIdToLoad}/tracks`, {
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
+			
+			if (!response.ok) {
+				// If tracks endpoint doesn't exist yet, initialize with empty tracks
+				composerStore.initialize(composerIdToLoad, []);
+				return;
+			}
+			
+			const result = await response.json();
+			const tracks = result?.tracks || [];
+			
+			// Convert API tracks to store format
+			const storeTracks = tracks.map((track: any) => ({
+				id: track.id,
+				composerId: track.composer_id,
+				type: track.track_type as 'audio' | 'video' | 'overlay',
+				name: track.name || `Track ${track.track_number}`,
+				number: track.track_number,
+				muted: false,
+				locked: false,
+				visible: true,
+				clips: [], // Clips will be loaded separately if needed
+			}));
+			
+			// Initialize composer store with loaded tracks
+			composerStore.initialize(composerIdToLoad, storeTracks);
+		} catch (err) {
+			console.error('[Composer] Error loading tracks:', err);
+			// Initialize with empty tracks on error
+			composerStore.initialize(composerIdToLoad, []);
+		}
+	}
+
+	// Initialize composer store when composerId changes
+	$effect(() => {
+		if (browser && composerId) {
+			loadTracks(composerId);
+		}
+	});
 
 	onMount(() => {
 		if (!browser) return;
@@ -166,6 +243,8 @@
 					<AssetDetailsPanel 
 						assetType={selectedAssetType}
 						selectedAsset={selectedAsset}
+						onAddSample={handleAddSample}
+						onAddResource={handleAddResource}
 					/>
 				</div>
 			</div>

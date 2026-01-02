@@ -95,3 +95,4 @@ export const POST: RequestHandler = async ({ request, cookies, locals }) => {
 		return json({ error: 'Failed to create character' }, { status: 500 });
 	}
 };
+

@@ -74,6 +74,34 @@
 			}
 			
 			const data = await response.json();
+			
+			// Ensure parts are sorted by orderIndex
+			if (data.episodes) {
+				data.episodes = data.episodes.map((ep: any) => {
+					if (ep.parts && Array.isArray(ep.parts)) {
+						ep.parts = [...ep.parts].sort((a: any, b: any) => {
+							const aIndex = a.orderIndex ?? 0;
+							const bIndex = b.orderIndex ?? 0;
+							return aIndex - bIndex;
+						});
+					}
+					// Ensure scene plans are sorted by orderIndex
+					if (ep.parts) {
+						ep.parts = ep.parts.map((part: any) => {
+							if (part.scenePlans && Array.isArray(part.scenePlans)) {
+								part.scenePlans = [...part.scenePlans].sort((a: any, b: any) => {
+									const aIndex = a.orderIndex ?? 0;
+									const bIndex = b.orderIndex ?? 0;
+									return aIndex - bIndex;
+								});
+							}
+							return part;
+						});
+					}
+					return ep;
+				});
+			}
+			
 			scenario = data;
 		} catch (err) {
 			console.error('[Scenario Detail] Error loading scenario:', err);
@@ -88,18 +116,25 @@
 
 		isUpdating = true;
 		try {
-			const result = await updateScenarioStore.mutate({
-				input: {
-					id: scenarioId,
+			const response = await fetch(`/api/scenarios/${scenarioId}`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
 					title: editScenarioTitle.trim() || null,
 					description: editScenarioDescription.trim() || null,
-				},
-			}, { metadata: { orgId } });
+				}),
+			});
 
-			if (result?.data?.updateScenario) {
-				await scenarioStore.fetch({ blocking: true, metadata: { orgId } });
-				showEditDialog = false;
+			if (!response.ok) {
+				throw new Error(`Failed to update scenario: ${response.statusText}`);
 			}
+
+			// Reload scenario data
+			await loadScenario();
+			showEditDialog = false;
 		} catch (error) {
 			console.error('Failed to update scenario:', error);
 			alert(`Failed to update scenario: ${error instanceof Error ? error.message : String(error)}`);
@@ -109,18 +144,23 @@
 	}
 
 	async function handleDeleteScenario() {
-		if (!scenarioId || !deleteScenarioStore) return;
+		if (!scenarioId) return;
 
 		isDeleting = true;
 		try {
-			const result = await deleteScenarioStore.mutate({
-				id: scenarioId,
-			}, { metadata: { orgId } });
+			const response = await fetch(`/api/scenarios/${scenarioId}`, {
+				method: 'DELETE',
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
 
-			if (result?.data?.deleteScenario) {
-				// Navigate back to scenario list
-				await goto(`/${lang}/orgs/${orgId}/project/${projectId}/scenario`);
+			if (!response.ok) {
+				throw new Error(`Failed to delete scenario: ${response.statusText}`);
 			}
+
+			// Navigate back to scenario list
+			await goto(`/${lang}/orgs/${orgId}/project/${projectId}/scenario`);
 		} catch (error) {
 			console.error('Failed to delete scenario:', error);
 			alert(`Failed to delete scenario: ${error instanceof Error ? error.message : String(error)}`);
@@ -270,23 +310,27 @@
 		const [draggedPart] = reorderedParts.splice(dragIndex, 1);
 		reorderedParts.splice(dropIndex, 0, draggedPart);
 
-		// Update order via GraphQL mutation
+		// Reorder parts via gRPC API
 		try {
-			const result = await reorderPartsStore.mutate({
-				input: {
-					episodeId: episodeId,
-					partIds: reorderedParts.map((part: { id: string }) => part.id),
+			const response = await fetch(`/api/scenarios/${scenarioId}/reorder-parts`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
 				},
-			}, { metadata: { orgId } });
+				body: JSON.stringify({
+					episodeId,
+					partIds: reorderedParts.map((part: { id: string }) => part.id),
+				}),
+			});
 
-			if (result?.data?.reorderParts) {
-				// Refresh scenario data
-				await scenarioStore.fetch({
-					variables: { id: scenarioId },
-					blocking: true,
-					metadata: { orgId },
-				});
+			if (!response.ok) {
+				const errorText = await response.text();
+				throw new Error(`Failed to reorder parts: ${response.statusText} - ${errorText}`);
 			}
+
+			// Refresh scenario data
+			await loadScenario();
 		} catch (error) {
 			console.error('Failed to reorder parts:', error);
 			alert(`Failed to reorder parts: ${error instanceof Error ? error.message : String(error)}`);
@@ -355,23 +399,26 @@
 		const [draggedScenePlan] = reorderedScenePlans.splice(dragIndex, 1);
 		reorderedScenePlans.splice(dropIndex, 0, draggedScenePlan);
 
-		// Update order via GraphQL mutation
+		// Reorder scene plans via gRPC API
 		try {
-			const result = await reorderScenePlansStore.mutate({
-				input: {
-					partId: partId,
-					scenePlanIds: reorderedScenePlans.map((sp: { id: string }) => sp.id),
+			const response = await fetch(`/api/scenarios/${scenarioId}/reorder-scene-plans`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
 				},
-			}, { metadata: { orgId } });
+				body: JSON.stringify({
+					partId,
+					scenePlanIds: reorderedScenePlans.map((sp: { id: string }) => sp.id),
+				}),
+			});
 
-			if (result?.data?.reorderScenePlans) {
-				// Refresh scenario data
-				await scenarioStore.fetch({
-					variables: { id: scenarioId },
-					blocking: true,
-					metadata: { orgId },
-				});
+			if (!response.ok) {
+				throw new Error(`Failed to reorder scene plans: ${response.statusText}`);
 			}
+
+			// Refresh scenario data
+			await loadScenario();
 		} catch (error) {
 			console.error('Failed to reorder scene plans:', error);
 			alert(`Failed to reorder scene plans: ${error instanceof Error ? error.message : String(error)}`);

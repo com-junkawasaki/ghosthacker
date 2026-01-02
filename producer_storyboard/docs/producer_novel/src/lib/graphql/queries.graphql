@@ -1,0 +1,67 @@
+query GetEpub($id: ID!) {
+  epub(id: $id) {
+    id
+    title
+    language
+    createdAt
+    updatedAt
+    chapters {
+      id
+      title
+      order
+      contentHtml
+      media {
+        id
+        type
+        url
+        mimeType
+        fileSize
+      }
+    }
+    metadata {
+      key
+      value
+    }
+  }
+}
+
+query ListEpubs {
+  epubList {
+    id
+    title
+    language
+    createdAt
+    updatedAt
+  }
+}
+
+query GetChapter($id: ID!) {
+  chapter(id: $id) {
+    id
+    title
+    order
+    contentHtml
+    paragraphs {
+      id
+      order
+      contentHtml
+    }
+    media {
+      id
+      type
+      url
+      mimeType
+      fileSize
+    }
+  }
+}
+
+query GetChapters($epubId: ID!) {
+  chapters(epubId: $epubId) {
+    id
+    title
+    order
+    contentHtml
+  }
+}
+

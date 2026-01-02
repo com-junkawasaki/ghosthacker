@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { composerStore } from '$lib/stores/composerStore';
+	import { composerStore } from '$lib/stores/composerStore.svelte';
 
 	type Props = {
 		width?: number;
@@ -9,13 +9,13 @@
 
 	let { width = 1920, height = 1080, aspectRatio = '16:9' }: Props = $props();
 
-	let canvas: HTMLCanvasElement | undefined = $state();
-	let ctx: CanvasRenderingContext2D | null = $state(null);
+	let canvasEl: HTMLCanvasElement | undefined = $state();
+	let canvasCtx: CanvasRenderingContext2D | null = $state(null);
 
-	const state = $derived(composerStore.state);
-	const currentTime = $derived(state.currentTime);
-	const tracks = $derived(state.tracks);
-	const isPlaying = $derived(state.isPlaying);
+	const composerState = $derived(composerStore.state);
+	const currentTime = $derived(composerState.currentTime);
+	const tracks = $derived(composerState.tracks);
+	const isPlaying = $derived(composerState.isPlaying);
 
 	// Calculate aspect ratio dimensions
 	const aspectRatios = {
@@ -63,62 +63,62 @@
 
 	// Initialize canvas
 	$effect(() => {
-		if (canvas) {
-			ctx = canvas.getContext('2d');
+		if (canvasEl) {
+			canvasCtx = canvasEl.getContext('2d');
 		}
 	});
 
 	// Render canvas
 	$effect(() => {
-		if (!ctx || !canvas) return;
+		if (!canvasCtx || !canvasEl) return;
 
 		const size = displaySize();
-		canvas.width = size.width * 2; // High DPI
-		canvas.height = size.height * 2;
-		ctx.scale(2, 2);
+		canvasEl.width = size.width * 2; // High DPI
+		canvasEl.height = size.height * 2;
+		canvasCtx.scale(2, 2);
 
 		// Clear canvas
-		ctx.fillStyle = '#000000';
-		ctx.fillRect(0, 0, size.width, size.height);
+		canvasCtx.fillStyle = '#000000';
+		canvasCtx.fillRect(0, 0, size.width, size.height);
 
 		// Render active clips
 		const clips = activeClips();
 		
 		if (clips.length === 0) {
 			// Show placeholder
-			ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-			ctx.fillRect(0, 0, size.width, size.height);
+			canvasCtx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+			canvasCtx.fillRect(0, 0, size.width, size.height);
 			
-			ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-			ctx.font = '16px system-ui, sans-serif';
-			ctx.textAlign = 'center';
-			ctx.textBaseline = 'middle';
-			ctx.fillText('No content at current time', size.width / 2, size.height / 2);
+			canvasCtx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+			canvasCtx.font = '16px system-ui, sans-serif';
+			canvasCtx.textAlign = 'center';
+			canvasCtx.textBaseline = 'middle';
+			canvasCtx.fillText('No content at current time', size.width / 2, size.height / 2);
 		} else {
 			// Render each clip (simplified - would need actual media rendering)
-			for (const { clip, track } of clips) {
+			for (const { clip } of clips) {
 				const progress = (currentTime - clip.startTime) / clip.duration;
 				
 				if (clip.type === 'video' || clip.type === 'image') {
 					// Placeholder for video/image
-					ctx.fillStyle = 'rgba(34, 197, 94, 0.3)';
-					ctx.fillRect(0, 0, size.width, size.height);
+					canvasCtx.fillStyle = 'rgba(34, 197, 94, 0.3)';
+					canvasCtx.fillRect(0, 0, size.width, size.height);
 					
-					ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-					ctx.font = '14px system-ui, sans-serif';
-					ctx.textAlign = 'center';
-					ctx.textBaseline = 'middle';
-					ctx.fillText(clip.name, size.width / 2, size.height / 2);
+					canvasCtx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+					canvasCtx.font = '14px system-ui, sans-serif';
+					canvasCtx.textAlign = 'center';
+					canvasCtx.textBaseline = 'middle';
+					canvasCtx.fillText(clip.name, size.width / 2, size.height / 2);
 				} else if (clip.type === 'text') {
 					// Render text element
-					ctx.fillStyle = '#ffffff';
-					ctx.font = 'bold 24px system-ui, sans-serif';
-					ctx.textAlign = 'center';
-					ctx.textBaseline = 'middle';
-					ctx.fillText(clip.name, size.width / 2, size.height / 2);
+					canvasCtx.fillStyle = '#ffffff';
+					canvasCtx.font = 'bold 24px system-ui, sans-serif';
+					canvasCtx.textAlign = 'center';
+					canvasCtx.textBaseline = 'middle';
+					canvasCtx.fillText(clip.name, size.width / 2, size.height / 2);
 				} else if (clip.type === 'audio') {
 					// Show audio waveform visualization
-					ctx.fillStyle = 'rgba(59, 130, 246, 0.2)';
+					canvasCtx.fillStyle = 'rgba(59, 130, 246, 0.2)';
 					const barWidth = 4;
 					const gap = 2;
 					const barCount = Math.floor(size.width / (barWidth + gap));
@@ -129,20 +129,20 @@
 						const amplitude = Math.sin((i + progress * 20) * 0.3) * 0.5 + 0.5;
 						const barHeight = amplitude * size.height * 0.4;
 						
-						ctx.fillRect(x, centerY - barHeight / 2, barWidth, barHeight);
+						canvasCtx.fillRect(x, centerY - barHeight / 2, barWidth, barHeight);
 					}
 				}
 			}
 		}
 
 		// Draw time indicator
-		ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-		ctx.fillRect(size.width - 80, 10, 70, 24);
-		ctx.fillStyle = '#ffffff';
-		ctx.font = '12px monospace';
-		ctx.textAlign = 'right';
-		ctx.textBaseline = 'middle';
-		ctx.fillText(formatTime(currentTime), size.width - 15, 22);
+		canvasCtx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+		canvasCtx.fillRect(size.width - 80, 10, 70, 24);
+		canvasCtx.fillStyle = '#ffffff';
+		canvasCtx.font = '12px monospace';
+		canvasCtx.textAlign = 'right';
+		canvasCtx.textBaseline = 'middle';
+		canvasCtx.fillText(formatTime(currentTime), size.width - 15, 22);
 	});
 
 	function formatTime(seconds: number): string {
@@ -156,7 +156,7 @@
 <div class="canvas-preview">
 	<div class="canvas-container" style="width: {displaySize().width}px; height: {displaySize().height}px;">
 		<canvas
-			bind:this={canvas}
+			bind:this={canvasEl}
 			style="width: {displaySize().width}px; height: {displaySize().height}px;"
 		></canvas>
 		
@@ -241,3 +241,4 @@
 		font-family: monospace;
 	}
 </style>
+

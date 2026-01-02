@@ -1,26 +1,27 @@
 <script lang="ts">
-	import { composerStore } from '$lib/stores/composerStore';
+	import { composerStore } from '$lib/stores/composerStore.svelte';
 	import DraggableClip from './DraggableClip.svelte';
 
 	type Props = {
 		composerId: string | null;
 	};
 
-	let { composerId }: Props = $props();
+	let { composerId: _composerId }: Props = $props();
+	void _composerId; // Reserved for future use
 
-	const state = $derived(composerStore.state);
-	const tracks = $derived(state.tracks);
-	const currentTime = $derived(state.currentTime);
-	const duration = $derived(state.duration);
-	const zoom = $derived(state.zoom);
-	const isPlaying = $derived(state.isPlaying);
+	const timelineState = $derived(composerStore.state);
+	const tracks = $derived(timelineState.tracks);
+	const currentTime = $derived(timelineState.currentTime);
+	const duration = $derived(timelineState.duration);
+	const zoom = $derived(timelineState.zoom);
+	const isPlaying = $derived(timelineState.isPlaying);
 
 	const trackHeight = 72;
-	const rulerHeight = 32;
 	const trackControlsWidth = 180;
 
 	let timelineContainer: HTMLDivElement | undefined = $state();
 	let isDraggingPlayhead = $state(false);
+	let dragOverTrackId = $state<string | null>(null);
 
 	// Generate time markers based on zoom level
 	const timeMarkers = $derived(() => {
@@ -87,6 +88,60 @@
 
 	function handleClipSelect(clipId: string) {
 		composerStore.selectClip(clipId);
+	}
+
+	function handleDragOver(e: DragEvent, trackId: string) {
+		e.preventDefault();
+		if (e.dataTransfer) {
+			e.dataTransfer.dropEffect = 'copy';
+		}
+		dragOverTrackId = trackId;
+	}
+
+	function handleDragLeave() {
+		dragOverTrackId = null;
+	}
+
+	function handleDrop(e: DragEvent, trackId: string) {
+		e.preventDefault();
+		dragOverTrackId = null;
+
+		try {
+			const data = e.dataTransfer?.getData('application/json');
+			if (!data) return;
+
+			const resource = JSON.parse(data);
+			if (resource.type === 'resource') {
+				// Calculate drop position in timeline
+				const trackElement = e.currentTarget as HTMLElement;
+				const rect = trackElement.getBoundingClientRect();
+				const x = e.clientX - rect.left - trackControlsWidth;
+				const dropTime = Math.max(0, x / zoom);
+
+				// Find the track
+				const track = tracks.find(t => t.id === trackId);
+				if (!track) return;
+
+				// Create clip from resource
+				const clipId = `clip-${Date.now()}`;
+				const clipDuration = resource.duration || 5; // Default 5 seconds if no duration
+
+				composerStore.addClip(trackId, {
+					id: clipId,
+					startTime: dropTime,
+					duration: clipDuration,
+					type: track.type === 'audio' ? 'audio' : track.type === 'video' ? 'video' : 'image',
+					name: resource.name || 'Untitled Clip',
+					url: resource.url,
+					metadata: {
+						resourceId: resource.id,
+						assetType: resource.assetType,
+					},
+				});
+			}
+		} catch (err) {
+			console.error('[TimelineEditor] Error handling drop:', err);
+		}
 	}
 
 	// Playback timer
@@ -158,7 +213,7 @@
 						<!-- Track controls -->
 						<div
 							class="track-controls"
-							class:selected={state.selectedTrackId === track.id}
+							class:selected={timelineState.selectedTrackId === track.id}
 							role="button"
 							tabindex="0"
 							onclick={() => handleTrackClick(track.id)}
@@ -236,8 +291,12 @@
 						<!-- Track content with clips -->
 						<div
 							class="track-content"
-							style="width: {timelineWidth}px"
 							class:locked={track.locked}
+							class:drag-over={dragOverTrackId === track.id}
+							style="width: {timelineWidth}px"
+							ondragover={(e) => !track.locked && handleDragOver(e, track.id)}
+							ondragleave={handleDragLeave}
+							ondrop={(e) => !track.locked && handleDrop(e, track.id)}
 						>
 							{#each track.clips as clip (clip.id)}
 								<DraggableClip
@@ -462,6 +521,11 @@
 	.track-content.locked {
 		opacity: 0.5;
 		pointer-events: none;
+	}
+
+	.track-content.drag-over {
+		background: rgba(59, 130, 246, 0.1);
+		border: 2px dashed rgba(59, 130, 246, 0.5);
 	}
 
 	.playhead-line {

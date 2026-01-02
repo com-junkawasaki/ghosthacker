@@ -1,0 +1,176 @@
+apiVersion: skaffold/v4beta7
+kind: Config
+metadata:
+  name: producer-storyboard
+build:
+  local:
+    push: false
+  artifacts:
+    - image: producer-storyboard/grpc-go
+      context: ./performers/services/grpc-go
+      docker:
+        dockerfile: Dockerfile
+        target: production
+      sync:
+        manual:
+          - src: "**/*.go"
+            dest: /app
+          - src: "**/*.sql"
+            dest: /app
+    - image: producer-storyboard/temporal-worker
+      context: ./performers/services/grpc-go
+      docker:
+        dockerfile: Dockerfile.worker
+        target: production
+      sync:
+        manual:
+          - src: "**/*.go"
+            dest: /app
+          - src: "**/*.sql"
+            dest: /app
+    # Frontend is optional - uncomment if needed
+    # - image: producer-storyboard/frontend
+    #   context: .
+    #   docker:
+    #     dockerfile: Dockerfile.frontend
+    #     target: production
+    #   sync:
+    #     manual:
+    #       - src: "src/**/*.{ts,svelte,js,css}"
+    #         dest: /app/src
+    #       - src: "static/**/*"
+    #         dest: /app/static
+
+deploy:
+  helm:
+    releases:
+      - name: producer-storyboard
+        chartPath: ./k8s/helm/producer-storyboard
+        namespace: producer-storyboard
+        createNamespace: true
+        valuesFiles:
+          - ./k8s/helm/producer-storyboard/values.yaml
+        setValues:
+          grpcGo.image.tag: "{{.IMAGE_TAG}}"
+          grpcGo.image.pullPolicy: IfNotPresent
+          temporalWorker.image.tag: "{{.IMAGE_TAG}}"
+          temporalWorker.image.pullPolicy: IfNotPresent
+          postgresql.enabled: true
+          temporal.enabled: true
+        wait: true
+        upgradeOnChange: true
+        recreatePods: true
+        skipBuildDependencies: true
+
+portForward:
+  - resourceType: service
+    resourceName: producer-storyboard-grpc-go
+    namespace: producer-storyboard
+    port: 8081
+    localPort: 8081
+  - resourceType: service
+    resourceName: temporal-ui
+    namespace: temporal-system
+    port: 8080
+    localPort: 8080
+  - resourceType: service
+    resourceName: temporal-frontend
+    namespace: temporal-system
+    port: 7233
+    localPort: 7233
+
+test:
+  - image: producer-storyboard/grpc-go
+    structureTests:
+      - ./k8s/test/structure-tests.yaml
+
+profiles:
+  - name: dev
+    build:
+      local:
+        push: false
+      artifacts:
+        - image: producer-storyboard/grpc-go
+          context: ./performers/services/grpc-go
+          docker:
+            dockerfile: Dockerfile
+            target: development
+          sync:
+            manual:
+              - src: "**/*.go"
+                dest: /app
+              - src: "**/*.sql"
+                dest: /app
+        - image: producer-storyboard/temporal-worker
+          context: ./performers/services/grpc-go
+          docker:
+            dockerfile: Dockerfile.worker
+            target: development
+          sync:
+            manual:
+              - src: "**/*.go"
+                dest: /app
+              - src: "**/*.sql"
+                dest: /app
+    deploy:
+      helm:
+        releases:
+          - name: producer-storyboard
+            chartPath: ./k8s/helm/producer-storyboard
+            namespace: producer-storyboard
+            createNamespace: true
+            valuesFiles:
+              - ./k8s/helm/producer-storyboard/values.yaml
+            setValues:
+              grpcGo.image.tag: "{{.IMAGE_TAG}}"
+              grpcGo.image.pullPolicy: Never
+              temporalWorker.image.tag: "{{.IMAGE_TAG}}"
+              temporalWorker.image.pullPolicy: Never
+              grpcGo.replicaCount: 1
+              temporalWorker.replicaCount: 1
+              postgresql.enabled: true
+              temporal.enabled: true
+            skipBuildDependencies: true
+    portForward:
+      - resourceType: service
+        resourceName: producer-storyboard-grpc-go
+        namespace: producer-storyboard
+        port: 8081
+        localPort: 8081
+      - resourceType: service
+        resourceName: temporal-ui
+        namespace: temporal-system
+        port: 8080
+        localPort: 8080
+
+  - name: prod
+    build:
+      googleCloudBuild:
+        projectId: your-gcp-project
+      artifacts:
+        - image: gcr.io/your-gcp-project/producer-storyboard/grpc-go
+          context: ./performers/services/grpc-go
+          docker:
+            dockerfile: Dockerfile
+            target: production
+        - image: gcr.io/your-gcp-project/producer-storyboard/temporal-worker
+          context: ./performers/services/grpc-go
+          docker:
+            dockerfile: Dockerfile.worker
+            target: production
+    deploy:
+      helm:
+        releases:
+          - name: producer-storyboard
+            chartPath: ./k8s/helm/producer-storyboard
+            namespace: producer-storyboard
+            createNamespace: true
+            valuesFiles:
+              - ./k8s/helm/producer-storyboard/values.yaml
+            setValues:
+              grpcGo.image.repository: gcr.io/your-gcp-project/producer-storyboard/grpc-go
+              grpcGo.image.tag: "{{.IMAGE_TAG}}"
+              temporalWorker.image.repository: gcr.io/your-gcp-project/producer-storyboard/temporal-worker
+              temporalWorker.image.tag: "{{.IMAGE_TAG}}"
+              grpcGo.replicaCount: 3
+              temporalWorker.replicaCount: 3

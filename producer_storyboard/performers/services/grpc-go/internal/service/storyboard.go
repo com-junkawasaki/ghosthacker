@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"encoding/base64"
+	"fmt"
 
 	"connectrpc.com/connect"
 	"github.com/google/uuid"
@@ -13,21 +14,26 @@ import (
 	storyboardv1 "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1"
 	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1/storyboardv1connect"
 	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/services"
+	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/temporal"
+	"github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/temporal/workflows"
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"go.temporal.io/sdk/client"
 )
 
 // StoryboardService implements the StoryboardService gRPC service
 type StoryboardService struct {
-	db      *pgxpool.Pool
-	queries *sqlc.Queries
-	hume    *services.HumeService
-	openai  *services.OpenAIService
-	suno    *services.SunoService
+	db             *pgxpool.Pool
+	queries        *sqlc.Queries
+	temporalClient client.Client
+	hume           *services.HumeService
+	openai         *services.OpenAIService
+	suno           *services.SunoService
+	runway         *services.RunwayService
 }
 
 // NewStoryboardService creates a new StoryboardService
-func NewStoryboardService(pool *pgxpool.Pool) (*StoryboardService, error) {
+func NewStoryboardService(pool *pgxpool.Pool, temporalClient client.Client) (*StoryboardService, error) {
 	queries := sqlc.New(pool)
 
 	hume, err := services.NewHumeService()
@@ -48,12 +54,20 @@ func NewStoryboardService(pool *pgxpool.Pool) (*StoryboardService, error) {
 		suno = nil
 	}
 
+	runway, err := services.NewRunwayService()
+	if err != nil {
+		// Runway service is optional
+		runway = nil
+	}
+
 	return &StoryboardService{
-		db:      pool,
-		queries: queries,
-		hume:    hume,
-		openai:  openai,
-		suno:    suno,
+		db:             pool,
+		queries:        queries,
+		temporalClient: temporalClient,
+		hume:           hume,
+		openai:         openai,
+		suno:           suno,
+		runway:         runway,
 	}, nil
 }
 
@@ -615,15 +629,27 @@ func (s *StoryboardService) ListGeneratedImages(
 
 	pbImages := make([]*storyboardv1.GeneratedImage, 0, len(images))
 	for _, img := range images {
+		var sceneIDStr *string
+		if img.SceneID.Valid {
+			s := pgUUIDToString(img.SceneID)
+			sceneIDStr = &s
+		}
+		var characterIDStr *string
+		if img.CharacterID.Valid {
+			c := pgUUIDToString(img.CharacterID)
+			characterIDStr = &c
+		}
 		pbImages = append(pbImages, &storyboardv1.GeneratedImage{
-			Id:            pgUUIDToString(img.ID),
-			SceneId:       pgUUIDToString(img.SceneID),
-			OpenaiImageId: pgTextToString(img.OpenaiImageID),
-			ImageFormat:   pgTextToString(img.ImageFormat),
-			ImageType:     pgTextToString(img.ImageType),
-			Prompt:        pgTextToString(img.Prompt),
-			Model:         pgTextToString(img.Model),
-			CreatedAt:     pgTimestamptzToString(img.CreatedAt),
+			Id:              pgUUIDToString(img.ID),
+			SceneId:         sceneIDStr,
+			Provider:        pgTextToString(img.Provider),
+			ExternalImageId: pgTextToString(img.ExternalImageID),
+			ImageFormat:     pgTextToString(img.ImageFormat),
+			ImageType:       pgTextToString(img.ImageType),
+			Prompt:          pgTextToString(img.Prompt),
+			Model:           pgTextToString(img.Model),
+			CharacterId:     characterIDStr,
+			CreatedAt:       pgTimestamptzToString(img.CreatedAt),
 		})
 	}
 
@@ -657,15 +683,11 @@ func (s *StoryboardService) GetImageData(
 	}), nil
 }
 
-// GenerateImage generates an image using OpenAI
+// GenerateImage generates an image using OpenAI via Temporal workflow
 func (s *StoryboardService) GenerateImage(
 	ctx context.Context,
 	req *connect.Request[storyboardv1.GenerateImageRequest],
 ) (*connect.Response[storyboardv1.GenerateImageResponse], error) {
-	if s.openai == nil {
-		return nil, connect.NewError(connect.CodeUnimplemented, nil)
-	}
-
 	sceneID, err := uuid.Parse(req.Msg.SceneId)
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
@@ -676,40 +698,161 @@ func (s *StoryboardService) GenerateImage(
 		model = *req.Msg.Model
 	}
 
-	// Generate image using OpenAI service
-	result, err := s.openai.GenerateImage(ctx, req.Msg.Prompt, model, "")
-	if err != nil {
-		return nil, connect.NewError(connect.CodeInternal, err)
+	provider := "openai"
+	if req.Msg.Provider != nil {
+		provider = *req.Msg.Provider
+	}
+
+	var characterID string
+	if req.Msg.CharacterId != nil {
+		characterID = *req.Msg.CharacterId
 	}
 
 	orgID := auth.GetOrgIDFromContext(ctx)
-	orgIDPg := stringToPgText(&orgID)
 
-	// Save to database
-	image, err := s.queries.CreateGeneratedImage(ctx, sqlc.CreateGeneratedImageParams{
-		SceneID:       uuidToPgUUID(sceneID),
-		OpenaiImageID: stringToPgText(&result.Prompt),
-		ImageData:     result.ImageData,
-		ImageFormat:   stringToPgText(&result.ImageFormat),
-		ImageType:     stringToPgText(stringPtr("start")),
-		Prompt:        stringToPgText(&req.Msg.Prompt),
-		Model:         stringToPgText(&model),
-		OrgID:         orgIDPg,
+	// Start Temporal workflow for image generation
+	workflowOptions := client.StartWorkflowOptions{
+		ID:        fmt.Sprintf("image-gen-%s-%s", sceneID, uuid.New().String()[:8]),
+		TaskQueue: temporal.TaskQueue,
+	}
+
+	we, err := s.temporalClient.ExecuteWorkflow(ctx, workflowOptions, workflows.ImageGenerationWorkflow, workflows.ImageGenerationWorkflowInput{
+		SceneID:     sceneID.String(),
+		Prompt:      req.Msg.Prompt,
+		Model:       model,
+		Provider:    provider,
+		OrgID:       orgID,
+		CharacterID: characterID,
 	})
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
+	// Wait for workflow to complete (with timeout)
+	var result workflows.ImageGenerationWorkflowResult
+	err = we.Get(ctx, &result)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	// Query the generated image from database using the image ID from workflow result
+	imageUUID, err := uuid.Parse(result.ImageID)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	image, err := s.queries.GetGeneratedImage(ctx, uuidToPgUUID(imageUUID))
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	var sceneIDStr *string
+	if image.SceneID.Valid {
+		s := pgUUIDToString(image.SceneID)
+		sceneIDStr = &s
+	}
+	var characterIDStr *string
+	if image.CharacterID.Valid {
+		c := pgUUIDToString(image.CharacterID)
+		characterIDStr = &c
+	}
+
 	return connect.NewResponse(&storyboardv1.GenerateImageResponse{
 		Image: &storyboardv1.GeneratedImage{
-			Id:            pgUUIDToString(image.ID),
-			SceneId:       pgUUIDToString(image.SceneID),
-			OpenaiImageId: pgTextToString(image.OpenaiImageID),
-			ImageFormat:   pgTextToString(image.ImageFormat),
-			ImageType:     pgTextToString(image.ImageType),
-			Prompt:        pgTextToString(image.Prompt),
-			Model:         pgTextToString(image.Model),
-			CreatedAt:     pgTimestamptzToString(image.CreatedAt),
+			Id:              pgUUIDToString(image.ID),
+			SceneId:         sceneIDStr,
+			Provider:        pgTextToString(image.Provider),
+			ExternalImageId: pgTextToString(image.ExternalImageID),
+			ImageFormat:     pgTextToString(image.ImageFormat),
+			ImageType:       pgTextToString(image.ImageType),
+			Prompt:          pgTextToString(image.Prompt),
+			Model:           pgTextToString(image.Model),
+			CharacterId:     characterIDStr,
+			CreatedAt:       pgTimestamptzToString(image.CreatedAt),
+		},
+	}), nil
+}
+
+// GenerateCharacterImage generates a character image using Higgsfield Soul ID via Temporal workflow
+func (s *StoryboardService) GenerateCharacterImage(
+	ctx context.Context,
+	req *connect.Request[storyboardv1.GenerateCharacterImageRequest],
+) (*connect.Response[storyboardv1.GenerateCharacterImageResponse], error) {
+	characterID, err := uuid.Parse(req.Msg.CharacterId)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInvalidArgument, err)
+	}
+
+	style := ""
+	if req.Msg.Style != nil {
+		style = *req.Msg.Style
+	}
+
+	aspectRatio := ""
+	if req.Msg.AspectRatio != nil {
+		aspectRatio = *req.Msg.AspectRatio
+	}
+
+	orgID := auth.GetOrgIDFromContext(ctx)
+
+	// Start Temporal workflow for character image generation
+	workflowOptions := client.StartWorkflowOptions{
+		ID:        fmt.Sprintf("char-image-gen-%s-%s", characterID, uuid.New().String()[:8]),
+		TaskQueue: temporal.TaskQueue,
+	}
+
+	we, err := s.temporalClient.ExecuteWorkflow(ctx, workflowOptions, workflows.CharacterImageGenerationWorkflow, workflows.CharacterImageGenerationWorkflowInput{
+		CharacterID: characterID.String(),
+		Prompt:      req.Msg.Prompt,
+		Style:       style,
+		AspectRatio: aspectRatio,
+		OrgID:       orgID,
+	})
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	// Wait for workflow to complete (with timeout)
+	var result workflows.ImageGenerationWorkflowResult
+	err = we.Get(ctx, &result)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	// Query the generated image from database using the image ID from workflow result
+	imageUUID, err := uuid.Parse(result.ImageID)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	image, err := s.queries.GetGeneratedImage(ctx, uuidToPgUUID(imageUUID))
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	var sceneIDStr *string
+	if image.SceneID.Valid {
+		s := pgUUIDToString(image.SceneID)
+		sceneIDStr = &s
+	}
+	var characterIDStr *string
+	if image.CharacterID.Valid {
+		c := pgUUIDToString(image.CharacterID)
+		characterIDStr = &c
+	}
+
+	return connect.NewResponse(&storyboardv1.GenerateCharacterImageResponse{
+		Image: &storyboardv1.GeneratedImage{
+			Id:              pgUUIDToString(image.ID),
+			SceneId:         sceneIDStr,
+			Provider:        pgTextToString(image.Provider),
+			ExternalImageId: pgTextToString(image.ExternalImageID),
+			ImageFormat:     pgTextToString(image.ImageFormat),
+			ImageType:       pgTextToString(image.ImageType),
+			Prompt:          pgTextToString(image.Prompt),
+			Model:           pgTextToString(image.Model),
+			CharacterId:     characterIDStr,
+			CreatedAt:       pgTimestamptzToString(image.CreatedAt),
 		},
 	}), nil
 }

@@ -54,3 +54,4 @@ export const GET: RequestHandler = async ({ params, cookies, locals }) => {
 		return json({ error: 'Failed to fetch generated images' }, { status: 500 });
 	}
 };
+

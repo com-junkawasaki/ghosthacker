@@ -4,8 +4,35 @@
  */
 import type { LayoutServerLoad } from './$types';
 import { buildClerkProps } from 'svelte-clerk/server';
+import fs from 'fs';
 
-export const load: LayoutServerLoad = async ({ locals }) => {
+export const load: LayoutServerLoad = async ({ locals, url }) => {
+	// #region agent log
+	const logPath = '/Users/junkawasaki/jun784/ghosthacker/producer_storyboard/.cursor/debug.log';
+	const log = (location: string, message: string, data: Record<string, unknown>, hypothesisId: string) => {
+		const logEntry = JSON.stringify({
+			location,
+			message,
+			data,
+			timestamp: Date.now(),
+			sessionId: 'debug-session',
+			runId: 'run1',
+			hypothesisId
+		});
+		try {
+			fs.appendFileSync(logPath, logEntry + '\n');
+		} catch (e) {
+			console.error('[Layout Server] Failed to write log:', e);
+		}
+	};
+	
+	log('+layout.server.ts:30', 'Root layout load called', {
+		pathname: url.pathname,
+		isSignInRoute: url.pathname.startsWith('/sign-in'),
+		isSSoCallback: url.pathname === '/sign-in/sso-callback'
+	}, 'H2,H5');
+	// #endregion
+	
 	// Hardcoded value from /gftd env clerk as fallback
 	const HARDCODED_PUBLISHABLE_KEY = 'pk_test_ZW5vdWdoLWNoaXBtdW5rLTkyLmNsZXJrLmFjY291bnRzLmRldiQ';
 

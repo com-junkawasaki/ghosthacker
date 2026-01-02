@@ -12,3 +12,4 @@ setup('global setup', async () => {
 	await clerkSetup();
 	console.log('[E2E Global Setup] Clerk setup completed');
 });
+

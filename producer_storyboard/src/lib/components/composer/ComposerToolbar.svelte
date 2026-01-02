@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { composerStore } from '$lib/stores/composerStore';
+	import { composerStore } from '$lib/stores/composerStore.svelte';
 
 	type Props = {
 		onAddTrack: () => void;
@@ -269,3 +269,4 @@
 		color: rgba(255, 255, 255, 0.5);
 	}
 </style>
+

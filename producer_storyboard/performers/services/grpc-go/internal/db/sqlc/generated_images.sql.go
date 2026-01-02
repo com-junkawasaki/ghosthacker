@@ -12,53 +12,61 @@ import (
 )
 
 const createGeneratedImage = `-- name: CreateGeneratedImage :one
-INSERT INTO generated_images (scene_id, openai_image_id, image_data, image_format, image_type, prompt, model, org_id)
-VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-RETURNING id, scene_id, openai_image_id, image_format, image_type, prompt, model, created_at
+INSERT INTO generated_images (scene_id, provider, external_image_id, image_data, image_format, image_type, prompt, model, character_id, org_id)
+VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+RETURNING id, scene_id, provider, external_image_id, image_format, image_type, prompt, model, character_id, created_at
 `
 
 type CreateGeneratedImageParams struct {
-	SceneID       pgtype.UUID `json:"scene_id"`
-	OpenaiImageID pgtype.Text `json:"openai_image_id"`
-	ImageData     []byte      `json:"image_data"`
-	ImageFormat   pgtype.Text `json:"image_format"`
-	ImageType     pgtype.Text `json:"image_type"`
-	Prompt        pgtype.Text `json:"prompt"`
-	Model         pgtype.Text `json:"model"`
-	OrgID         pgtype.Text `json:"org_id"`
+	SceneID         pgtype.UUID `json:"scene_id"`
+	Provider        pgtype.Text `json:"provider"`
+	ExternalImageID pgtype.Text `json:"external_image_id"`
+	ImageData       []byte      `json:"image_data"`
+	ImageFormat     pgtype.Text `json:"image_format"`
+	ImageType       pgtype.Text `json:"image_type"`
+	Prompt          pgtype.Text `json:"prompt"`
+	Model           pgtype.Text `json:"model"`
+	CharacterID     pgtype.UUID `json:"character_id"`
+	OrgID           pgtype.Text `json:"org_id"`
 }
 
 type CreateGeneratedImageRow struct {
-	ID            pgtype.UUID        `json:"id"`
-	SceneID       pgtype.UUID        `json:"scene_id"`
-	OpenaiImageID pgtype.Text        `json:"openai_image_id"`
-	ImageFormat   pgtype.Text        `json:"image_format"`
-	ImageType     pgtype.Text        `json:"image_type"`
-	Prompt        pgtype.Text        `json:"prompt"`
-	Model         pgtype.Text        `json:"model"`
-	CreatedAt     pgtype.Timestamptz `json:"created_at"`
+	ID              pgtype.UUID        `json:"id"`
+	SceneID         pgtype.UUID        `json:"scene_id"`
+	Provider        pgtype.Text        `json:"provider"`
+	ExternalImageID pgtype.Text        `json:"external_image_id"`
+	ImageFormat     pgtype.Text        `json:"image_format"`
+	ImageType       pgtype.Text        `json:"image_type"`
+	Prompt          pgtype.Text        `json:"prompt"`
+	Model           pgtype.Text        `json:"model"`
+	CharacterID     pgtype.UUID        `json:"character_id"`
+	CreatedAt       pgtype.Timestamptz `json:"created_at"`
 }
 
 func (q *Queries) CreateGeneratedImage(ctx context.Context, arg CreateGeneratedImageParams) (CreateGeneratedImageRow, error) {
 	row := q.db.QueryRow(ctx, createGeneratedImage,
 		arg.SceneID,
-		arg.OpenaiImageID,
+		arg.Provider,
+		arg.ExternalImageID,
 		arg.ImageData,
 		arg.ImageFormat,
 		arg.ImageType,
 		arg.Prompt,
 		arg.Model,
+		arg.CharacterID,
 		arg.OrgID,
 	)
 	var i CreateGeneratedImageRow
 	err := row.Scan(
 		&i.ID,
 		&i.SceneID,
-		&i.OpenaiImageID,
+		&i.Provider,
+		&i.ExternalImageID,
 		&i.ImageFormat,
 		&i.ImageType,
 		&i.Prompt,
 		&i.Model,
+		&i.CharacterID,
 		&i.CreatedAt,
 	)
 	return i, err
@@ -74,20 +82,22 @@ func (q *Queries) DeleteGeneratedImage(ctx context.Context, id pgtype.UUID) erro
 }
 
 const getGeneratedImage = `-- name: GetGeneratedImage :one
-SELECT id, scene_id, openai_image_id, image_format, image_type, prompt, model, created_at
+SELECT id, scene_id, provider, external_image_id, image_format, image_type, prompt, model, character_id, created_at
 FROM generated_images
 WHERE id = $1
 `
 
 type GetGeneratedImageRow struct {
-	ID            pgtype.UUID        `json:"id"`
-	SceneID       pgtype.UUID        `json:"scene_id"`
-	OpenaiImageID pgtype.Text        `json:"openai_image_id"`
-	ImageFormat   pgtype.Text        `json:"image_format"`
-	ImageType     pgtype.Text        `json:"image_type"`
-	Prompt        pgtype.Text        `json:"prompt"`
-	Model         pgtype.Text        `json:"model"`
-	CreatedAt     pgtype.Timestamptz `json:"created_at"`
+	ID              pgtype.UUID        `json:"id"`
+	SceneID         pgtype.UUID        `json:"scene_id"`
+	Provider        pgtype.Text        `json:"provider"`
+	ExternalImageID pgtype.Text        `json:"external_image_id"`
+	ImageFormat     pgtype.Text        `json:"image_format"`
+	ImageType       pgtype.Text        `json:"image_type"`
+	Prompt          pgtype.Text        `json:"prompt"`
+	Model           pgtype.Text        `json:"model"`
+	CharacterID     pgtype.UUID        `json:"character_id"`
+	CreatedAt       pgtype.Timestamptz `json:"created_at"`
 }
 
 func (q *Queries) GetGeneratedImage(ctx context.Context, id pgtype.UUID) (GetGeneratedImageRow, error) {
@@ -96,11 +106,13 @@ func (q *Queries) GetGeneratedImage(ctx context.Context, id pgtype.UUID) (GetGen
 	err := row.Scan(
 		&i.ID,
 		&i.SceneID,
-		&i.OpenaiImageID,
+		&i.Provider,
+		&i.ExternalImageID,
 		&i.ImageFormat,
 		&i.ImageType,
 		&i.Prompt,
 		&i.Model,
+		&i.CharacterID,
 		&i.CreatedAt,
 	)
 	return i, err
@@ -123,21 +135,23 @@ func (q *Queries) GetGeneratedImageData(ctx context.Context, id pgtype.UUID) (Ge
 }
 
 const listGeneratedImages = `-- name: ListGeneratedImages :many
-SELECT id, scene_id, openai_image_id, image_format, image_type, prompt, model, created_at
+SELECT id, scene_id, provider, external_image_id, image_format, image_type, prompt, model, character_id, created_at
 FROM generated_images
 WHERE scene_id = $1
 ORDER BY created_at DESC
 `
 
 type ListGeneratedImagesRow struct {
-	ID            pgtype.UUID        `json:"id"`
-	SceneID       pgtype.UUID        `json:"scene_id"`
-	OpenaiImageID pgtype.Text        `json:"openai_image_id"`
-	ImageFormat   pgtype.Text        `json:"image_format"`
-	ImageType     pgtype.Text        `json:"image_type"`
-	Prompt        pgtype.Text        `json:"prompt"`
-	Model         pgtype.Text        `json:"model"`
-	CreatedAt     pgtype.Timestamptz `json:"created_at"`
+	ID              pgtype.UUID        `json:"id"`
+	SceneID         pgtype.UUID        `json:"scene_id"`
+	Provider        pgtype.Text        `json:"provider"`
+	ExternalImageID pgtype.Text        `json:"external_image_id"`
+	ImageFormat     pgtype.Text        `json:"image_format"`
+	ImageType       pgtype.Text        `json:"image_type"`
+	Prompt          pgtype.Text        `json:"prompt"`
+	Model           pgtype.Text        `json:"model"`
+	CharacterID     pgtype.UUID        `json:"character_id"`
+	CreatedAt       pgtype.Timestamptz `json:"created_at"`
 }
 
 func (q *Queries) ListGeneratedImages(ctx context.Context, sceneID pgtype.UUID) ([]ListGeneratedImagesRow, error) {
@@ -152,11 +166,64 @@ func (q *Queries) ListGeneratedImages(ctx context.Context, sceneID pgtype.UUID) 
 		if err := rows.Scan(
 			&i.ID,
 			&i.SceneID,
-			&i.OpenaiImageID,
+			&i.Provider,
+			&i.ExternalImageID,
 			&i.ImageFormat,
 			&i.ImageType,
 			&i.Prompt,
 			&i.Model,
+			&i.CharacterID,
+			&i.CreatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const listGeneratedImagesByCharacter = `-- name: ListGeneratedImagesByCharacter :many
+SELECT id, scene_id, provider, external_image_id, image_format, image_type, prompt, model, character_id, created_at
+FROM generated_images
+WHERE character_id = $1
+ORDER BY created_at DESC
+`
+
+type ListGeneratedImagesByCharacterRow struct {
+	ID              pgtype.UUID        `json:"id"`
+	SceneID         pgtype.UUID        `json:"scene_id"`
+	Provider        pgtype.Text        `json:"provider"`
+	ExternalImageID pgtype.Text        `json:"external_image_id"`
+	ImageFormat     pgtype.Text        `json:"image_format"`
+	ImageType       pgtype.Text        `json:"image_type"`
+	Prompt          pgtype.Text        `json:"prompt"`
+	Model           pgtype.Text        `json:"model"`
+	CharacterID     pgtype.UUID        `json:"character_id"`
+	CreatedAt       pgtype.Timestamptz `json:"created_at"`
+}
+
+func (q *Queries) ListGeneratedImagesByCharacter(ctx context.Context, characterID pgtype.UUID) ([]ListGeneratedImagesByCharacterRow, error) {
+	rows, err := q.db.Query(ctx, listGeneratedImagesByCharacter, characterID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []ListGeneratedImagesByCharacterRow
+	for rows.Next() {
+		var i ListGeneratedImagesByCharacterRow
+		if err := rows.Scan(
+			&i.ID,
+			&i.SceneID,
+			&i.Provider,
+			&i.ExternalImageID,
+			&i.ImageFormat,
+			&i.ImageType,
+			&i.Prompt,
+			&i.Model,
+			&i.CharacterID,
 			&i.CreatedAt,
 		); err != nil {
 			return nil, err

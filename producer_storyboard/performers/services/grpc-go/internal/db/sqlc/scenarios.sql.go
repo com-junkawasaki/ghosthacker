@@ -609,6 +609,24 @@ func (q *Queries) UpdatePart(ctx context.Context, arg UpdatePartParams) (UpdateP
 	return i, err
 }
 
+const updatePartOrder = `-- name: UpdatePartOrder :exec
+UPDATE parts
+SET order_index = $1,
+    updated_at = NOW()
+WHERE id = $2 AND episode_id = $3
+`
+
+type UpdatePartOrderParams struct {
+	OrderIndex int32       `json:"order_index"`
+	ID         pgtype.UUID `json:"id"`
+	EpisodeID  pgtype.UUID `json:"episode_id"`
+}
+
+func (q *Queries) UpdatePartOrder(ctx context.Context, arg UpdatePartOrderParams) error {
+	_, err := q.db.Exec(ctx, updatePartOrder, arg.OrderIndex, arg.ID, arg.EpisodeID)
+	return err
+}
+
 const updateScenario = `-- name: UpdateScenario :one
 UPDATE scenarios
 SET title = COALESCE($2, title),
@@ -683,4 +701,22 @@ func (q *Queries) UpdateScenePlan(ctx context.Context, arg UpdateScenePlanParams
 		&i.UpdatedAt,
 	)
 	return i, err
+}
+
+const updateScenePlanOrder = `-- name: UpdateScenePlanOrder :exec
+UPDATE scene_plans
+SET order_index = $1,
+    updated_at = NOW()
+WHERE id = $2 AND part_id = $3
+`
+
+type UpdateScenePlanOrderParams struct {
+	OrderIndex int32       `json:"order_index"`
+	ID         pgtype.UUID `json:"id"`
+	PartID     pgtype.UUID `json:"part_id"`
+}
+
+func (q *Queries) UpdateScenePlanOrder(ctx context.Context, arg UpdateScenePlanOrderParams) error {
+	_, err := q.db.Exec(ctx, updateScenePlanOrder, arg.OrderIndex, arg.ID, arg.PartID)
+	return err
 }

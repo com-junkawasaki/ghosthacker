@@ -11,94 +11,260 @@ import (
 )
 
 type Querier interface {
+	AddResourceTag(ctx context.Context, arg AddResourceTagParams) error
+	CheckUserPermission(ctx context.Context, arg CheckUserPermissionParams) (interface{}, error)
+	CreateApprovalAction(ctx context.Context, arg CreateApprovalActionParams) (ApprovalAction, error)
+	CreateApprovalRequest(ctx context.Context, arg CreateApprovalRequestParams) (ApprovalRequest, error)
 	CreateAudioClip(ctx context.Context, arg CreateAudioClipParams) (AudioClip, error)
 	CreateAudioTrack(ctx context.Context, arg CreateAudioTrackParams) (AudioTrack, error)
 	CreateCharacter(ctx context.Context, arg CreateCharacterParams) (CreateCharacterRow, error)
+	CreateCharacter3DModel(ctx context.Context, arg CreateCharacter3DModelParams) (CreateCharacter3DModelRow, error)
 	CreateCharacterAsset(ctx context.Context, arg CreateCharacterAssetParams) (CreateCharacterAssetRow, error)
+	CreateCharacterImage(ctx context.Context, arg CreateCharacterImageParams) (CreateCharacterImageRow, error)
 	CreateComposer(ctx context.Context, arg CreateComposerParams) (Composer, error)
+	CreateDepartment(ctx context.Context, arg CreateDepartmentParams) (Department, error)
 	CreateDialogue(ctx context.Context, arg CreateDialogueParams) (CreateDialogueRow, error)
 	CreateEpisode(ctx context.Context, arg CreateEpisodeParams) (CreateEpisodeRow, error)
+	CreateEpisodeProduction(ctx context.Context, arg CreateEpisodeProductionParams) (EpisodeProduction, error)
 	CreateGeneratedImage(ctx context.Context, arg CreateGeneratedImageParams) (CreateGeneratedImageRow, error)
 	CreateGeneratedVideo(ctx context.Context, arg CreateGeneratedVideoParams) (CreateGeneratedVideoRow, error)
+	CreateGeneratedVideoRunway(ctx context.Context, arg CreateGeneratedVideoRunwayParams) (CreateGeneratedVideoRunwayRow, error)
+	CreateLocation(ctx context.Context, arg CreateLocationParams) (CreateLocationRow, error)
+	CreateLocation3DModel(ctx context.Context, arg CreateLocation3DModelParams) (CreateLocation3DModelRow, error)
+	CreateLocationImage(ctx context.Context, arg CreateLocationImageParams) (CreateLocationImageRow, error)
+	CreateMangaGeneratedImage(ctx context.Context, arg CreateMangaGeneratedImageParams) (MangaGeneratedImage, error)
+	CreateMangaPage(ctx context.Context, arg CreateMangaPageParams) (MangaPage, error)
+	CreateMangaPanel(ctx context.Context, arg CreateMangaPanelParams) (MangaPanel, error)
+	CreateMangaProject(ctx context.Context, arg CreateMangaProjectParams) (CreateMangaProjectRow, error)
+	CreateNovelChapter(ctx context.Context, arg CreateNovelChapterParams) (NovelChapter, error)
+	CreateNovelProject(ctx context.Context, arg CreateNovelProjectParams) (CreateNovelProjectRow, error)
 	CreateOperationHistory(ctx context.Context, arg CreateOperationHistoryParams) (CreateOperationHistoryRow, error)
 	CreatePart(ctx context.Context, arg CreatePartParams) (CreatePartRow, error)
 	CreateProject(ctx context.Context, arg CreateProjectParams) (CreateProjectRow, error)
+	CreateProjectAsset(ctx context.Context, arg CreateProjectAssetParams) (CreateProjectAssetRow, error)
+	CreateProjectTeamAssignment(ctx context.Context, arg CreateProjectTeamAssignmentParams) (ProjectTeamAssignment, error)
+	CreateProp(ctx context.Context, arg CreatePropParams) (Prop, error)
+	CreateProp3DModel(ctx context.Context, arg CreateProp3DModelParams) (CreateProp3DModelRow, error)
+	CreatePropImage(ctx context.Context, arg CreatePropImageParams) (CreatePropImageRow, error)
+	CreateRole(ctx context.Context, arg CreateRoleParams) (Role, error)
+	CreateRolePermission(ctx context.Context, arg CreateRolePermissionParams) (RolePermission, error)
 	CreateScenario(ctx context.Context, arg CreateScenarioParams) (CreateScenarioRow, error)
 	CreateScene(ctx context.Context, arg CreateSceneParams) (CreateSceneRow, error)
 	CreateScenePlan(ctx context.Context, arg CreateScenePlanParams) (CreateScenePlanRow, error)
+	CreateSpeechBubble(ctx context.Context, arg CreateSpeechBubbleParams) (SpeechBubble, error)
 	CreateStoryboard(ctx context.Context, arg CreateStoryboardParams) (CreateStoryboardRow, error)
 	CreateSunoMusic(ctx context.Context, arg CreateSunoMusicParams) (SunoMusic, error)
+	CreateTag(ctx context.Context, arg CreateTagParams) (CreateTagRow, error)
+	CreateTask(ctx context.Context, arg CreateTaskParams) (Task, error)
+	CreateVoicePreset(ctx context.Context, arg CreateVoicePresetParams) (CreateVoicePresetRow, error)
+	CreateWorldSetting(ctx context.Context, arg CreateWorldSettingParams) (WorldSetting, error)
 	DeleteAudioClip(ctx context.Context, id pgtype.UUID) error
 	DeleteAudioTrack(ctx context.Context, id pgtype.UUID) error
 	DeleteCharacter(ctx context.Context, id pgtype.UUID) error
+	DeleteCharacter3DModel(ctx context.Context, id pgtype.UUID) error
 	DeleteCharacterAsset(ctx context.Context, id pgtype.UUID) error
+	DeleteCharacterImage(ctx context.Context, id pgtype.UUID) error
 	DeleteComposer(ctx context.Context, id pgtype.UUID) error
 	DeleteDialogue(ctx context.Context, id pgtype.UUID) error
 	DeleteEpisode(ctx context.Context, id pgtype.UUID) error
 	DeleteGeneratedImage(ctx context.Context, id pgtype.UUID) error
 	DeleteGeneratedVideo(ctx context.Context, id pgtype.UUID) error
+	DeleteJsonldNode(ctx context.Context, id pgtype.UUID) error
+	DeleteLocation(ctx context.Context, arg DeleteLocationParams) error
+	DeleteLocation3DModel(ctx context.Context, id pgtype.UUID) error
+	DeleteLocationImage(ctx context.Context, id pgtype.UUID) error
+	DeleteMangaPage(ctx context.Context, id pgtype.UUID) error
+	DeleteMangaPanel(ctx context.Context, id pgtype.UUID) error
+	DeleteMangaProject(ctx context.Context, id pgtype.UUID) error
+	DeleteNovelChapter(ctx context.Context, id pgtype.UUID) error
+	DeleteNovelProject(ctx context.Context, id pgtype.UUID) error
 	DeletePart(ctx context.Context, id pgtype.UUID) error
 	DeleteProject(ctx context.Context, id pgtype.UUID) error
+	DeleteProjectAsset(ctx context.Context, arg DeleteProjectAssetParams) error
+	DeleteProjectTeamAssignment(ctx context.Context, id pgtype.UUID) error
+	DeleteProp(ctx context.Context, id pgtype.UUID) error
+	DeleteProp3DModel(ctx context.Context, id pgtype.UUID) error
+	DeletePropImage(ctx context.Context, id pgtype.UUID) error
+	DeleteRolePermissions(ctx context.Context, roleID pgtype.UUID) error
 	DeleteScenario(ctx context.Context, id pgtype.UUID) error
 	DeleteScene(ctx context.Context, id pgtype.UUID) error
 	DeleteScenePlan(ctx context.Context, id pgtype.UUID) error
+	DeleteSpeechBubble(ctx context.Context, id pgtype.UUID) error
 	DeleteStoryboard(ctx context.Context, id pgtype.UUID) error
 	DeleteSunoMusic(ctx context.Context, id pgtype.UUID) error
+	DeleteTag(ctx context.Context, arg DeleteTagParams) error
+	DeleteTask(ctx context.Context, id pgtype.UUID) error
+	DeleteVoicePreset(ctx context.Context, arg DeleteVoicePresetParams) error
+	DeleteWorldSetting(ctx context.Context, id pgtype.UUID) error
+	GetApprovalRequest(ctx context.Context, id pgtype.UUID) (ApprovalRequest, error)
 	GetAudioClip(ctx context.Context, id pgtype.UUID) (AudioClip, error)
 	GetAudioTrack(ctx context.Context, id pgtype.UUID) (AudioTrack, error)
 	GetCharacter(ctx context.Context, id pgtype.UUID) (GetCharacterRow, error)
+	GetCharacter3DModel(ctx context.Context, id pgtype.UUID) (GetCharacter3DModelRow, error)
+	GetCharacter3DModelData(ctx context.Context, id pgtype.UUID) (GetCharacter3DModelDataRow, error)
 	GetCharacterAssetData(ctx context.Context, id pgtype.UUID) (GetCharacterAssetDataRow, error)
+	GetCharacterImage(ctx context.Context, id pgtype.UUID) (GetCharacterImageRow, error)
+	GetCharacterImageData(ctx context.Context, id pgtype.UUID) (GetCharacterImageDataRow, error)
 	GetComposer(ctx context.Context, id pgtype.UUID) (Composer, error)
+	GetDepartment(ctx context.Context, id pgtype.UUID) (Department, error)
 	GetDialogue(ctx context.Context, id pgtype.UUID) (GetDialogueRow, error)
 	GetDialogueAudioData(ctx context.Context, id pgtype.UUID) ([]byte, error)
+	GetEmotionProfile(ctx context.Context, arg GetEmotionProfileParams) (EmotionProfile, error)
 	GetEpisode(ctx context.Context, id pgtype.UUID) (GetEpisodeRow, error)
+	GetEpisodeProduction(ctx context.Context, arg GetEpisodeProductionParams) (EpisodeProduction, error)
 	GetGeneratedImage(ctx context.Context, id pgtype.UUID) (GetGeneratedImageRow, error)
 	GetGeneratedImageData(ctx context.Context, id pgtype.UUID) (GetGeneratedImageDataRow, error)
 	GetGeneratedVideo(ctx context.Context, id pgtype.UUID) (GetGeneratedVideoRow, error)
+	GetGeneratedVideoByRunwayTaskID(ctx context.Context, runwayTaskID pgtype.Text) (GetGeneratedVideoByRunwayTaskIDRow, error)
+	GetJsonldNode(ctx context.Context, id pgtype.UUID) (JsonldNode, error)
+	GetLocation(ctx context.Context, arg GetLocationParams) (GetLocationRow, error)
+	GetLocation3DModel(ctx context.Context, id pgtype.UUID) (GetLocation3DModelRow, error)
+	GetLocation3DModelData(ctx context.Context, id pgtype.UUID) (GetLocation3DModelDataRow, error)
+	GetLocationImage(ctx context.Context, id pgtype.UUID) (GetLocationImageRow, error)
+	GetLocationImageData(ctx context.Context, id pgtype.UUID) (GetLocationImageDataRow, error)
+	GetMangaGeneratedImage(ctx context.Context, id pgtype.UUID) (MangaGeneratedImage, error)
+	GetMangaPage(ctx context.Context, id pgtype.UUID) (MangaPage, error)
+	GetMangaPanel(ctx context.Context, id pgtype.UUID) (MangaPanel, error)
+	GetMangaProject(ctx context.Context, id pgtype.UUID) (GetMangaProjectRow, error)
+	GetMangaProjectByProjectId(ctx context.Context, projectID pgtype.UUID) (GetMangaProjectByProjectIdRow, error)
+	GetMangaProjectOrgId(ctx context.Context, id pgtype.UUID) (pgtype.Text, error)
 	GetMaxDialogueOrderIndex(ctx context.Context, sceneID pgtype.UUID) (interface{}, error)
 	GetMaxSceneNumber(ctx context.Context, storyboardID pgtype.UUID) (interface{}, error)
+	GetNovelChapter(ctx context.Context, id pgtype.UUID) (NovelChapter, error)
+	GetNovelProject(ctx context.Context, id pgtype.UUID) (GetNovelProjectRow, error)
+	GetNovelProjectByProjectId(ctx context.Context, projectID pgtype.UUID) (GetNovelProjectByProjectIdRow, error)
+	GetNovelProjectOrgId(ctx context.Context, id pgtype.UUID) (pgtype.Text, error)
 	GetPart(ctx context.Context, id pgtype.UUID) (GetPartRow, error)
 	GetProject(ctx context.Context, id pgtype.UUID) (GetProjectRow, error)
+	GetProjectAsset(ctx context.Context, arg GetProjectAssetParams) (GetProjectAssetRow, error)
+	GetProjectAssetData(ctx context.Context, arg GetProjectAssetDataParams) (GetProjectAssetDataRow, error)
 	GetProjectByIdAndOrg(ctx context.Context, arg GetProjectByIdAndOrgParams) (GetProjectByIdAndOrgRow, error)
 	GetProjectOrgId(ctx context.Context, id pgtype.UUID) (pgtype.Text, error)
+	GetProjectTeamAssignment(ctx context.Context, id pgtype.UUID) (ProjectTeamAssignment, error)
+	GetProp(ctx context.Context, id pgtype.UUID) (Prop, error)
+	GetProp3DModel(ctx context.Context, id pgtype.UUID) (GetProp3DModelRow, error)
+	GetProp3DModelData(ctx context.Context, id pgtype.UUID) (GetProp3DModelDataRow, error)
+	GetPropImage(ctx context.Context, id pgtype.UUID) (GetPropImageRow, error)
+	GetPropImageData(ctx context.Context, id pgtype.UUID) (GetPropImageDataRow, error)
+	GetRole(ctx context.Context, id pgtype.UUID) (Role, error)
+	GetRolePermissionsByRoleIds(ctx context.Context, dollar_1 []pgtype.UUID) ([]RolePermission, error)
 	GetScenario(ctx context.Context, id pgtype.UUID) (GetScenarioRow, error)
 	GetScene(ctx context.Context, id pgtype.UUID) (GetSceneRow, error)
 	GetScenePlan(ctx context.Context, id pgtype.UUID) (GetScenePlanRow, error)
+	GetSpeechBubble(ctx context.Context, id pgtype.UUID) (SpeechBubble, error)
 	GetStoryboard(ctx context.Context, id pgtype.UUID) (GetStoryboardRow, error)
 	GetSunoMusic(ctx context.Context, id pgtype.UUID) (SunoMusic, error)
+	GetTag(ctx context.Context, arg GetTagParams) (GetTagRow, error)
+	GetTask(ctx context.Context, id pgtype.UUID) (Task, error)
+	GetTeamMember(ctx context.Context, id pgtype.UUID) (TeamMember, error)
+	GetTeamMemberByUserId(ctx context.Context, arg GetTeamMemberByUserIdParams) (TeamMember, error)
+	GetUserPermissionsInProject(ctx context.Context, arg GetUserPermissionsInProjectParams) ([]RolePermission, error)
+	GetUserRolesInProject(ctx context.Context, arg GetUserRolesInProjectParams) ([]Role, error)
+	GetVoicePreset(ctx context.Context, arg GetVoicePresetParams) (GetVoicePresetRow, error)
+	GetWorldSetting(ctx context.Context, id pgtype.UUID) (WorldSetting, error)
+	// Approval Actions
+	ListApprovalActions(ctx context.Context, approvalID pgtype.UUID) ([]ApprovalAction, error)
+	// Approval Requests
+	ListApprovalRequests(ctx context.Context, arg ListApprovalRequestsParams) ([]ApprovalRequest, error)
 	ListAudioClips(ctx context.Context, trackID pgtype.UUID) ([]AudioClip, error)
 	ListAudioTracks(ctx context.Context, composerID pgtype.UUID) ([]AudioTrack, error)
+	ListCharacter3DModels(ctx context.Context, characterID pgtype.UUID) ([]ListCharacter3DModelsRow, error)
 	ListCharacterAssets(ctx context.Context, characterID pgtype.UUID) ([]ListCharacterAssetsRow, error)
+	ListCharacterImages(ctx context.Context, characterID pgtype.UUID) ([]ListCharacterImagesRow, error)
 	ListCharacters(ctx context.Context, projectID pgtype.UUID) ([]ListCharactersRow, error)
 	ListComposers(ctx context.Context, projectID pgtype.UUID) ([]Composer, error)
+	ListDepartments(ctx context.Context) ([]Department, error)
 	ListDialogues(ctx context.Context, sceneID pgtype.UUID) ([]ListDialoguesRow, error)
+	// Episode Productions
+	ListEpisodeProductions(ctx context.Context, projectID pgtype.UUID) ([]EpisodeProduction, error)
 	ListEpisodes(ctx context.Context, scenarioID pgtype.UUID) ([]ListEpisodesRow, error)
 	ListGeneratedImages(ctx context.Context, sceneID pgtype.UUID) ([]ListGeneratedImagesRow, error)
+	ListGeneratedImagesByCharacter(ctx context.Context, characterID pgtype.UUID) ([]ListGeneratedImagesByCharacterRow, error)
 	ListGeneratedVideos(ctx context.Context, storyboardID pgtype.UUID) ([]ListGeneratedVideosRow, error)
+	ListJsonldNodes(ctx context.Context, arg ListJsonldNodesParams) ([]JsonldNode, error)
+	ListLocation3DModels(ctx context.Context, locationID pgtype.UUID) ([]ListLocation3DModelsRow, error)
+	ListLocationImages(ctx context.Context, locationID pgtype.UUID) ([]ListLocationImagesRow, error)
+	ListLocations(ctx context.Context, arg ListLocationsParams) ([]ListLocationsRow, error)
+	ListMangaGeneratedImages(ctx context.Context, mangaProjectID pgtype.UUID) ([]MangaGeneratedImage, error)
+	ListMangaPages(ctx context.Context, mangaProjectID pgtype.UUID) ([]MangaPage, error)
+	ListMangaPanels(ctx context.Context, pageID pgtype.UUID) ([]MangaPanel, error)
+	ListMangaProjectsByProjectId(ctx context.Context, projectID pgtype.UUID) ([]ListMangaProjectsByProjectIdRow, error)
+	ListNovelChapters(ctx context.Context, novelProjectID pgtype.UUID) ([]NovelChapter, error)
+	ListNovelProjectsByProjectId(ctx context.Context, projectID pgtype.UUID) ([]ListNovelProjectsByProjectIdRow, error)
 	ListOperationHistory(ctx context.Context) ([]ListOperationHistoryRow, error)
 	ListOperationHistoryByEntity(ctx context.Context, arg ListOperationHistoryByEntityParams) ([]ListOperationHistoryByEntityRow, error)
 	ListOperationHistoryByType(ctx context.Context, entityType string) ([]ListOperationHistoryByTypeRow, error)
 	ListParts(ctx context.Context, episodeID pgtype.UUID) ([]ListPartsRow, error)
+	ListPendingRunwayVideos(ctx context.Context) ([]ListPendingRunwayVideosRow, error)
+	ListProjectAssets(ctx context.Context, arg ListProjectAssetsParams) ([]ListProjectAssetsRow, error)
+	ListProjectTeamAssignments(ctx context.Context, arg ListProjectTeamAssignmentsParams) ([]ListProjectTeamAssignmentsRow, error)
 	ListProjects(ctx context.Context, dollar_1 string) ([]ListProjectsRow, error)
 	ListProjectsByOrg(ctx context.Context, orgID pgtype.Text) ([]ListProjectsByOrgRow, error)
+	ListProp3DModels(ctx context.Context, propID pgtype.UUID) ([]ListProp3DModelsRow, error)
+	ListPropImages(ctx context.Context, propID pgtype.UUID) ([]ListPropImagesRow, error)
+	ListProps(ctx context.Context, arg ListPropsParams) ([]Prop, error)
+	ListResourceTags(ctx context.Context, arg ListResourceTagsParams) ([]ListResourceTagsRow, error)
+	ListRolePermissions(ctx context.Context, roleID pgtype.UUID) ([]RolePermission, error)
+	ListRoles(ctx context.Context, dollar_1 pgtype.UUID) ([]Role, error)
 	ListScenarios(ctx context.Context, projectID pgtype.UUID) ([]ListScenariosRow, error)
 	ListScenePlans(ctx context.Context, partID pgtype.UUID) ([]ListScenePlansRow, error)
 	ListScenes(ctx context.Context, storyboardID pgtype.UUID) ([]ListScenesRow, error)
+	ListSpeechBubbles(ctx context.Context, panelID pgtype.UUID) ([]SpeechBubble, error)
 	ListStoryboards(ctx context.Context, projectID pgtype.UUID) ([]ListStoryboardsRow, error)
 	ListSunoMusic(ctx context.Context, composerID pgtype.UUID) ([]SunoMusic, error)
+	ListTags(ctx context.Context, arg ListTagsParams) ([]ListTagsRow, error)
+	// Tasks
+	ListTasks(ctx context.Context, arg ListTasksParams) ([]Task, error)
+	ListTeamMembers(ctx context.Context, orgID string) ([]TeamMember, error)
+	ListVoicePresets(ctx context.Context, arg ListVoicePresetsParams) ([]ListVoicePresetsRow, error)
+	ListWorldSettings(ctx context.Context, projectID pgtype.UUID) ([]WorldSetting, error)
+	RemoveResourceTag(ctx context.Context, arg RemoveResourceTagParams) error
+	UpdateApprovalRequestStatus(ctx context.Context, arg UpdateApprovalRequestStatusParams) (ApprovalRequest, error)
+	UpdateApprovalRequestWorkflow(ctx context.Context, arg UpdateApprovalRequestWorkflowParams) (ApprovalRequest, error)
 	UpdateCharacter(ctx context.Context, arg UpdateCharacterParams) (UpdateCharacterRow, error)
+	UpdateCharacter3DModelPrimary(ctx context.Context, characterID pgtype.UUID) error
+	UpdateCharacterImagePrimary(ctx context.Context, characterID pgtype.UUID) error
 	UpdateComposer(ctx context.Context, arg UpdateComposerParams) (Composer, error)
 	UpdateDialogue(ctx context.Context, arg UpdateDialogueParams) (UpdateDialogueRow, error)
 	UpdateDialogueAudio(ctx context.Context, arg UpdateDialogueAudioParams) (UpdateDialogueAudioRow, error)
 	UpdateEpisode(ctx context.Context, arg UpdateEpisodeParams) (UpdateEpisodeRow, error)
+	UpdateEpisodeProductionStatus(ctx context.Context, arg UpdateEpisodeProductionStatusParams) (EpisodeProduction, error)
+	UpdateEpisodeProductionWorkflow(ctx context.Context, arg UpdateEpisodeProductionWorkflowParams) (EpisodeProduction, error)
+	UpdateGeneratedVideoRunwayStatus(ctx context.Context, arg UpdateGeneratedVideoRunwayStatusParams) (UpdateGeneratedVideoRunwayStatusRow, error)
 	UpdateGeneratedVideoStatus(ctx context.Context, arg UpdateGeneratedVideoStatusParams) (UpdateGeneratedVideoStatusRow, error)
+	UpdateLocation(ctx context.Context, arg UpdateLocationParams) (UpdateLocationRow, error)
+	UpdateLocation3DModelPrimary(ctx context.Context, locationID pgtype.UUID) error
+	UpdateLocationImagePrimary(ctx context.Context, locationID pgtype.UUID) error
+	UpdateMangaPage(ctx context.Context, arg UpdateMangaPageParams) (MangaPage, error)
+	UpdateMangaPageContent(ctx context.Context, arg UpdateMangaPageContentParams) (MangaPage, error)
+	UpdateMangaPanel(ctx context.Context, arg UpdateMangaPanelParams) (MangaPanel, error)
+	UpdateMangaProject(ctx context.Context, arg UpdateMangaProjectParams) (UpdateMangaProjectRow, error)
+	UpdateNovelChapter(ctx context.Context, arg UpdateNovelChapterParams) (NovelChapter, error)
+	UpdateNovelChapterContent(ctx context.Context, arg UpdateNovelChapterContentParams) (NovelChapter, error)
+	UpdateNovelProject(ctx context.Context, arg UpdateNovelProjectParams) (UpdateNovelProjectRow, error)
 	UpdatePart(ctx context.Context, arg UpdatePartParams) (UpdatePartRow, error)
+	UpdatePartOrder(ctx context.Context, arg UpdatePartOrderParams) error
 	UpdateProject(ctx context.Context, arg UpdateProjectParams) (UpdateProjectRow, error)
+	UpdateProjectAsset(ctx context.Context, arg UpdateProjectAssetParams) (UpdateProjectAssetRow, error)
+	UpdateProp(ctx context.Context, arg UpdatePropParams) (Prop, error)
+	UpdateProp3DModelPrimary(ctx context.Context, propID pgtype.UUID) error
+	UpdatePropImagePrimary(ctx context.Context, propID pgtype.UUID) error
 	UpdateScenario(ctx context.Context, arg UpdateScenarioParams) (UpdateScenarioRow, error)
 	UpdateScene(ctx context.Context, arg UpdateSceneParams) (UpdateSceneRow, error)
 	UpdateScenePlan(ctx context.Context, arg UpdateScenePlanParams) (UpdateScenePlanRow, error)
+	UpdateScenePlanOrder(ctx context.Context, arg UpdateScenePlanOrderParams) error
+	UpdateSpeechBubble(ctx context.Context, arg UpdateSpeechBubbleParams) (SpeechBubble, error)
 	UpdateStoryboard(ctx context.Context, arg UpdateStoryboardParams) (UpdateStoryboardRow, error)
 	UpdateSunoMusicStatus(ctx context.Context, arg UpdateSunoMusicStatusParams) (SunoMusic, error)
+	UpdateTag(ctx context.Context, arg UpdateTagParams) (UpdateTagRow, error)
+	UpdateTaskAssignee(ctx context.Context, arg UpdateTaskAssigneeParams) (Task, error)
+	UpdateTaskStatus(ctx context.Context, arg UpdateTaskStatusParams) (Task, error)
+	UpdateTaskWorkflow(ctx context.Context, arg UpdateTaskWorkflowParams) (Task, error)
+	UpdateVoicePreset(ctx context.Context, arg UpdateVoicePresetParams) (UpdateVoicePresetRow, error)
+	UpdateWorldSetting(ctx context.Context, arg UpdateWorldSettingParams) (WorldSetting, error)
+	UpsertEmotionProfile(ctx context.Context, arg UpsertEmotionProfileParams) (EmotionProfile, error)
+	UpsertJsonldNode(ctx context.Context, arg UpsertJsonldNodeParams) (JsonldNode, error)
+	UpsertTeamMember(ctx context.Context, arg UpsertTeamMemberParams) (TeamMember, error)
 }
 
 var _ Querier = (*Queries)(nil)

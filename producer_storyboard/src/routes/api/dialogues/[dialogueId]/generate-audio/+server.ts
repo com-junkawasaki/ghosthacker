@@ -54,3 +54,4 @@ export const POST: RequestHandler = async ({ params, cookies, locals }) => {
 		return json({ error: 'Failed to generate dialogue audio' }, { status: 500 });
 	}
 };
+

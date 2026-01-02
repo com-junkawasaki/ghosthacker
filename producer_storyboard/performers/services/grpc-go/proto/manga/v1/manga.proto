@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package manga.v1;
+
+option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/manga/v1;mangav1";
+
+// MangaProject represents a manga project
+message MangaProject {
+  string id = 1;
+  string project_id = 2;
+  string title = 3;
+  optional string description = 4;
+  string created_at = 5;
+  string updated_at = 6;
+}
+
+message ListMangaProjectsRequest {
+  string project_id = 1;
+}
+
+message ListMangaProjectsResponse {
+  repeated MangaProject projects = 1;
+}
+
+message GetMangaProjectRequest {
+  string id = 1;
+}
+
+message CreateMangaProjectRequest {
+  string project_id = 1;
+  string title = 2;
+  optional string description = 3;
+}
+
+message UpdateMangaProjectRequest {
+  string id = 1;
+  optional string title = 2;
+  optional string description = 3;
+}
+
+message DeleteMangaProjectRequest {
+  string id = 1;
+}
+
+message DeleteMangaProjectResponse {
+  bool success = 1;
+}

@@ -60,7 +60,7 @@ export const GET: RequestHandler = async ({ request, url, cookies, locals }) => 
 
 export const POST: RequestHandler = async ({ request, cookies, locals }) => {
 	const body = await request.json();
-	const { sceneId, characterId, language, text, humeVoiceId } = body;
+	const { sceneId, characterId, language, text, humeVoiceId, emotionName, emotionX, emotionY } = body;
 	
 	if (!sceneId || !characterId || !language || !text) {
 		return json({ error: 'sceneId, characterId, language, and text are required' }, { status: 400 });
@@ -85,7 +85,7 @@ export const POST: RequestHandler = async ({ request, cookies, locals }) => {
 	try {
 		const response = await callGrpcService(
 			'CreateDialogue',
-			{ sceneId, characterId, language, text, humeVoiceId },
+			{ sceneId, characterId, language, text, humeVoiceId, emotionName, emotionX, emotionY },
 			headers
 		);
 		const data = await response.json();
@@ -95,3 +95,4 @@ export const POST: RequestHandler = async ({ request, cookies, locals }) => {
 		return json({ error: 'Failed to create dialogue' }, { status: 500 });
 	}
 };
+

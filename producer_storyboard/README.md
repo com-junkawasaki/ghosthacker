@@ -4,9 +4,11 @@ Soraのストーリーボード機能を参考に、シーン単位で動画を�
 
 ## アーキテクチャ
 
-- **Backend**: Rust (async-graphql/Poem) + PostgreSQL 16
-- **Frontend**: SvelteKit 2.x + Houdini (GraphQL)
-- **AI**: OpenAI API (動画生成)
+- **Backend**: Go (gRPC-Connect) + PostgreSQL 16 + Temporal
+- **Frontend**: SvelteKit 2.x + gRPC API
+- **AI**: OpenAI, Hume AI, Suno, Runway, Higgsfield
+- **Orchestration**: Temporal (via Scaffold Kubernetes Operator)
+- **Deployment**: Kubernetes (Skaffold/Helm) or Docker Compose
 
 ## セットアップ
 
@@ -37,32 +39,70 @@ pnpm dev
 
 ### 環境変数
 
+#### ローカル開発環境
+
 `.envrc`ファイルを作成:
 
 ```bash
 export OPENAI_API_KEY=your_openai_api_key_here
+export HUME_API_KEY=your_hume_api_key_here
 export DATABASE_URL=postgresql://postgres:postgres@localhost:5435/postgres
-export PUBLIC_GRAPHQL_API_URL=http://localhost:25325/graphql
-export GRAPHQL_API_URL=http://localhost:25325/graphql
+# gRPC API URL is configured in docker-compose.yaml
 ```
+
+#### Vercel環境変数の設定
+
+Vercelにデプロイする場合、環境変数をVercelダッシュボードで設定するか、`vercel env pull`コマンドを使用します。
+
+##### Vercelダッシュボードでの設定
+
+1. Vercelダッシュボードにログイン
+2. プロジェクトを選択
+3. Settings > Environment Variables に移動
+4. 以下の環境変数を追加:
+   - `HUME_API_KEY`: Hume AI APIキー
+   - `HUME_API_SECRET`: Hume AI APIシークレット（必要に応じて）
+   - `OPENAI_API_KEY`: OpenAI APIキー
+   - `DATABASE_URL`: PostgreSQL接続文字列
+   - `CLERK_PUBLISHABLE_KEY`: Clerk公開キー
+   - `CLERK_SECRET_KEY`: Clerkシークレットキー
+
+##### vercel env pullコマンドの使用
+
+既にVercelに環境変数が設定されている場合、ローカル環境に同期できます:
+
+```bash
+# Vercel CLIをインストール（未インストールの場合）
+npm i -g vercel
+
+# Vercelにログイン
+vercel login
+
+# 環境変数をローカルにプル（.env.localに保存）
+vercel env pull .env.local
+
+# 開発環境用（development）
+vercel env pull .env.local --environment=development
+
+# 本番環境用（production）
+vercel env pull .env.local --environment=production
+```
+
+**注意**: `.vercelignore`ファイルで`.env`、`.envrc`、`.env.local`などの環境変数ファイルがVercelに含まれないよう設定されています。
 
 ### 手動セットアップ
 
 ```bash
 # 依存関係のインストール
 pnpm install
-cd performers/services/graphql && cargo fetch && cd ../../..
-
-# GraphQLスキーマ生成（Houdini）
-pnpm graphql:generate
 
 # Docker Composeで全サービスを起動
 docker-compose up
 
 # 個別に起動する場合
-# Backend
-cd performers/services/graphql
-cargo run
+# Backend (gRPC-Go service)
+cd performers/services/grpc-go
+go run cmd/server/main.go
 
 # Frontend
 pnpm dev
@@ -70,14 +110,15 @@ pnpm dev
 
 ## 開発
 
-### GraphQLスキーマ生成
+### gRPC API
 
 ```bash
-# HoudiniでGraphQL型を生成
-pnpm graphql:generate
+# gRPC-GoサービスはDocker Composeで自動起動
+# または手動で起動:
+cd performers/services/grpc-go
+go run cmd/server/main.go
 
-# バックエンドからスキーマを取得
-pnpm graphql:fetch-schema
+# APIエンドポイント: http://localhost:25326
 ```
 
 ### データベースマイグレーション

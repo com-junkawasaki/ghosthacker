@@ -118,3 +118,4 @@ export const DELETE: RequestHandler = async ({ params, cookies, locals }) => {
 		return json({ error: 'Failed to delete project' }, { status: 500 });
 	}
 };
+

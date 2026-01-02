@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package storyboard.v1;
+
+option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1;storyboardv1";
+
+// Tag represents a project-wide tag for resource categorization
+message Tag {
+  string id = 1;
+  string project_id = 2;
+  string name = 3;
+  optional string color = 4; // Hex color code (e.g., #3b82f6)
+  string created_at = 5;
+}
+
+message ListTagsRequest {
+  string project_id = 1;
+}
+
+message ListTagsResponse {
+  repeated Tag tags = 1;
+}
+
+message GetTagRequest {
+  string id = 1;
+}
+
+message CreateTagRequest {
+  string project_id = 1;
+  string name = 2;
+  optional string color = 3;
+}
+
+message UpdateTagRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string color = 3;
+}
+
+message DeleteTagRequest {
+  string id = 1;
+}
+
+message DeleteTagResponse {
+  bool success = 1;
+}
+
+// ResourceTag represents a tag assignment to a resource
+message ResourceTag {
+  string resource_type = 1; // 'character', 'scenario', 'asset', 'location', etc.
+  string resource_id = 2;
+  string tag_id = 3;
+}
+
+message ListResourceTagsRequest {
+  string resource_type = 1;
+  string resource_id = 2;
+}
+
+message ListResourceTagsResponse {
+  repeated Tag tags = 1;
+}
+
+message AddResourceTagRequest {
+  string resource_type = 1;
+  string resource_id = 2;
+  string tag_id = 3;
+}
+
+message RemoveResourceTagRequest {
+  string resource_type = 1;
+  string resource_id = 2;
+  string tag_id = 3;
+}
+
+message RemoveResourceTagResponse {
+  bool success = 1;
+}

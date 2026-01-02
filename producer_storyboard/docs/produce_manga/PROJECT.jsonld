@@ -1,0 +1,135 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://gftd.ai/ontology/manga-editor#",
+    "id": "@id",
+    "type": "@type",
+    "cpm": "https://example.org/cpm#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct": "http://purl.org/dc/terms/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    
+    "name": "dct:title",
+    "description": "dct:description",
+    "createdAt": {"@id": "dct:created", "@type": "xsd:dateTime"},
+    "updatedAt": {"@id": "dct:modified", "@type": "xsd:dateTime"},
+    "version": "dct:hasVersion",
+    
+    "hasCapability": {"@id": "cpm:hasCapability", "@type": "@id", "@container": "@set"},
+    "hasActivity": {"@id": "cpm:hasActivity", "@type": "@id", "@container": "@set"},
+    "hasPerformer": {"@id": "cpm:hasPerformer", "@type": "@id", "@container": "@set"},
+    "hasResource": {"@id": "cpm:hasResource", "@type": "@id", "@container": "@set"},
+    "dependsOn": {"@id": "cpm:dependsOn", "@type": "@id", "@container": "@set"},
+    "produces": {"@id": "cpm:produces", "@type": "@id", "@container": "@set"},
+    "consumes": {"@id": "cpm:consumes", "@type": "@id", "@container": "@set"},
+    
+    "goal": {"@id": "cpm:goal", "@type": "@id"},
+    "status": "cpm:status",
+    "priority": "cpm:priority",
+    "configuration": {"@id": "cpm:configuration", "@container": "@set"},
+    "issue": {"@id": "cpm:issue", "@container": "@set"}
+  },
+  
+  "id": "https://gftd.ai/project/manga-editor",
+  "type": "cpm:Project",
+  "name": "Manga Editor Tool",
+  "description": "AI Agentを使ったマンガ制作ウェブアプリ。単一Canvas（Konva.js）でページ全体を管理し、fal.ai/DeepInfraによるモデル選択機能を実装。画像はPostgreSQLのbytea型で保存。Frontend: Next.js 14 App Router + React 18 + react-konva (動的インポートでSSR対応) + Tailwind CSS, Backend: gRPC (Tonic/Rust) + PostgreSQL 16。Apple Pencilの筆圧対応を実装（Pointer Events API使用）。ページ切り替え機能を修正し、konvaStageJsonの読み込み時にイベントリスナーが維持されるように改善。",
+  "version": "0.1.0",
+  "createdAt": "2025-01-29T00:00:00Z",
+  "updatedAt": "2025-11-30T04:41:00Z",
+  "status": "in_progress",
+  "priority": "high",
+  
+  "goal": {
+    "id": "https://gftd.ai/goal/manga-editor-wellbecoming",
+    "type": "cpm:Goal",
+    "name": "Enable users to create manga with AI assistance",
+    "description": "Users achieve well-becoming through intuitive manga creation experience with AI-powered image generation and story generation"
+  },
+  
+  "hasCapability": [
+    {"@id": "https://gftd.ai/capability/project-management"},
+    {"@id": "https://gftd.ai/capability/manga-editing"},
+    {"@id": "https://gftd.ai/capability/ai-image-generation"},
+    {"@id": "https://gftd.ai/capability/model-selection"},
+    {"@id": "https://gftd.ai/capability/story-generation"},
+    {"@id": "https://gftd.ai/capability/manga-export"},
+    {"@id": "https://gftd.ai/capability/character-management"},
+    {"@id": "https://gftd.ai/capability/scene-management"},
+    {"@id": "https://gftd.ai/capability/panel-management"},
+    {"@id": "https://gftd.ai/capability/editing-tools"},
+    {"@id": "https://gftd.ai/capability/speech-bubble-system"},
+    {"@id": "https://gftd.ai/capability/apple-pencil-pressure-support"},
+    {"@id": "https://gftd.ai/capability/page-switching"},
+    {"@id": "https://gftd.ai/capability/grpc-backend"}
+  ],
+  
+  "hasActivity": [
+    {"@id": "https://gftd.ai/activity/create-manga-project"},
+    {"@id": "https://gftd.ai/activity/list-manga-projects"},
+    {"@id": "https://gftd.ai/activity/edit-manga-page"},
+    {"@id": "https://gftd.ai/activity/manage-panels"},
+    {"@id": "https://gftd.ai/activity/manage-layers"},
+    {"@id": "https://gftd.ai/activity/generate-story"},
+    {"@id": "https://gftd.ai/activity/generate-panel-images"},
+    {"@id": "https://gftd.ai/activity/manage-speech-bubbles"},
+    {"@id": "https://gftd.ai/activity/export-manga-page"},
+    {"@id": "https://gftd.ai/activity/use-selection-tool"},
+    {"@id": "https://gftd.ai/activity/use-pen-tool"},
+    {"@id": "https://gftd.ai/activity/use-eraser-tool"},
+    {"@id": "https://gftd.ai/activity/use-shape-tool"},
+    {"@id": "https://gftd.ai/activity/use-text-tool"},
+    {"@id": "https://gftd.ai/activity/undo-redo"},
+    {"@id": "https://gftd.ai/activity/add-speech-bubble"},
+    {"@id": "https://gftd.ai/activity/edit-speech-bubble"},
+    {"@id": "https://gftd.ai/activity/delete-speech-bubble"},
+    {"@id": "https://gftd.ai/activity/switch-pages"},
+    {"@id": "https://gftd.ai/activity/draw-with-pressure-sensitivity"}
+  ],
+  
+  "hasPerformer": [
+    {
+      "@id": "https://gftd.ai/performer/actor/manga-editor",
+      "type": "cpm:Actor",
+      "name": "Manga Editor Actor",
+      "description": "Frontend actor providing manga editing UI"
+    },
+    {
+      "@id": "https://gftd.ai/performer/service/graphql",
+      "type": "cpm:Service",
+      "name": "GraphQL Service",
+      "description": "Rust GraphQL service providing manga data management and AI integration"
+    },
+    {
+      "@id": "https://gftd.ai/performer/service/grpc",
+      "type": "cpm:Service",
+      "name": "gRPC Service",
+      "description": "Rust gRPC service (Tonic) providing manga data management with gRPC-Web support (tonic-web) for browser compatibility"
+    }
+  ],
+  
+  "hasResource": [
+    {"@id": "https://gftd.ai/resource/manga-project"},
+    {"@id": "https://gftd.ai/resource/manga-story"},
+    {"@id": "https://gftd.ai/resource/manga-scene"},
+    {"@id": "https://gftd.ai/resource/manga-script"},
+    {"@id": "https://gftd.ai/resource/manga-page"},
+    {"@id": "https://gftd.ai/resource/manga-panel"},
+    {"@id": "https://gftd.ai/resource/manga-layer"},
+    {"@id": "https://gftd.ai/resource/speech-bubble"},
+    {"@id": "https://gftd.ai/resource/generated-image"},
+    {"@id": "https://gftd.ai/resource/ai-model"},
+    {"@id": "https://gftd.ai/resource/image-bytea-storage"}
+  ],
+  
+  "dependsOn": [
+    {"@id": "https://gftd.ai/dependency/postgresql"},
+    {"@id": "https://gftd.ai/dependency/fal-ai-api"},
+    {"@id": "https://gftd.ai/dependency/deepinfra-api"}
+  ]
+}
+
