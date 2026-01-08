@@ -12,6 +12,8 @@
     "tauri": "tauri"
   },
   "devDependencies": {
+    "@bufbuild/protoc-gen-es": "^1.10.1",
+    "@connectrpc/protoc-gen-connect-es": "1.7.0",
     "@sveltejs/adapter-static": "^3.0.10",
     "@sveltejs/kit": "^2.49.3",
     "@sveltejs/vite-plugin-svelte": "^4.0.4",
@@ -22,9 +24,13 @@
     "vite": "^6.4.1"
   },
   "dependencies": {
-    "@connectrpc/connect": "^2.1.1",
-    "@connectrpc/connect-web": "^2.1.1",
+    "@bufbuild/protobuf": "^1.10.1",
+    "@connectrpc/connect": "^1.7.0",
+    "@connectrpc/connect-query": "^2.2.0",
+    "@connectrpc/connect-web": "^1.7.0",
     "@tauri-apps/api": "^2.9.1",
+    "@tauri-apps/plugin-dialog": "^2.4.2",
+    "@tauri-apps/plugin-fs": "^2.4.4",
     "@tauri-apps/plugin-shell": "^2.3.3",
     "prosemirror-commands": "^1.7.1",
     "prosemirror-history": "^1.5.0",
