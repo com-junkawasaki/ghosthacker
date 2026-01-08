@@ -7,9 +7,19 @@
   import { baseKeymap } from 'prosemirror-commands';
   import { keymap } from 'prosemirror-keymap';
   import { history, undo, redo } from 'prosemirror-history';
+  import { client } from '$lib/api';
 
   let editorElement: HTMLDivElement;
   let view: EditorView;
+  let debounceTimer: ReturnType<typeof setTimeout>;
+
+  async function handleUpdate(content: string) {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(async () => {
+      const result = await client.analyzeText(content);
+      console.log("Analysis Result:", result);
+    }, 1000);
+  }
 
   onMount(() => {
     const state = EditorState.create({
@@ -25,7 +35,10 @@
       dispatchTransaction(transaction) {
         const newState = view.state.apply(transaction);
         view.updateState(newState);
-        // Here we can trigger the AI analysis or graph update
+        
+        if (transaction.docChanged) {
+          handleUpdate(newState.doc.textContent);
+        }
       }
     });
   });
