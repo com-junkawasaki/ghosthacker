@@ -420,6 +420,16 @@ export declare class Node extends Message<Node> {
    */
   type: string;
 
+  /**
+   * @generated from field: float x = 4;
+   */
+  x: number;
+
+  /**
+   * @generated from field: float y = 5;
+   */
+  y: number;
+
   constructor(data?: PartialMessage<Node>);
 
   static readonly runtime: typeof proto3;

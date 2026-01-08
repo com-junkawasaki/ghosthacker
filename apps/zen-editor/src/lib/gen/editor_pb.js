@@ -165,6 +165,8 @@ export const Node = /*@__PURE__*/ proto3.makeMessageType(
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "label", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "x", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
+    { no: 5, name: "y", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
   ],
 );
 

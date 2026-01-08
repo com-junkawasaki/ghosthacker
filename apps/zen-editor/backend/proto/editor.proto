@@ -84,6 +84,8 @@ message Node {
   string id = 1;
   string label = 2;
   string type = 3;
+  float x = 4;
+  float y = 5;
 }
 
 message Edge {
