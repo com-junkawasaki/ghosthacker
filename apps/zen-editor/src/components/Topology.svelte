@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import { client } from '../lib/api';
 
   let { onSelect } = $props();
@@ -108,7 +107,13 @@
           };
         });
 
-      nodes = [...manuscriptNodes, ...entityNodes];
+          nodes = [...manuscriptNodes, ...entityNodes].map(n => ({
+            ...n,
+            x: n.x || 0,
+            y: n.y || 0,
+            size: n.size || 20,
+            label: n.label || 'Unknown'
+          }));
       edges = [...manuscriptEdges, ...topo.edges];
       isLoading = false;
     } catch (err) {
@@ -281,7 +286,7 @@
   .tool-btn.action { background: #0071e3; color: white; border: none; box-shadow: 0 4px 12px rgba(0,113,227,0.2); }
   .edge-line { stroke: #e5e5e5; stroke-width: 1.5; fill: none; }
   .manuscript-edge { stroke: #0071e3; stroke-dasharray: 4 4; opacity: 0.4; }
-  .node { cursor: grab; transition: transform 0.1s linear; }
+  .node { cursor: pointer; transition: transform 0.1s linear; pointer-events: all; }
   .node:active { cursor: grabbing; }
   .node-circle { fill: #f5f5f7; stroke: #d2d2d7; stroke-width: 1.5; }
   .node-circle.manuscript { fill: #eef7ff; stroke: #0071e3; }

@@ -20,6 +20,7 @@
     console.log("+page $effect started");
     client.getProjectMetadata({ projectId: "251022" })
       .then(resp => {
+        console.log("Metadata received:", resp.title);
         metadata = {
           title: resp.title,
           description: resp.description,
