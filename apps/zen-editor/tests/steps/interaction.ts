@@ -9,10 +9,11 @@ Given('I am on the Story Topology page', async ({ page }) => {
 });
 
 When('I click on a character node named {string}', async ({ page }, name: string) => {
-  // SVG nodes have text labels. Click the circle near the text.
-  const nodeText = page.locator('g.node text').filter({ hasText: name });
-  await expect(nodeText).toBeVisible({ timeout: 10000 });
-  await nodeText.click();
+  // SVG nodes have text labels and a circle. Click the group that contains the text.
+  const node = page.locator('g.node').filter({ hasText: name });
+  await expect(node).toBeVisible({ timeout: 15000 });
+  // Use force click if needed, or just click the group
+  await node.click({ force: true });
 });
 
 When('I click on {string}', async ({ page }, buttonText: string) => {

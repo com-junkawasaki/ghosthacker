@@ -12,17 +12,42 @@
   let isDragging = $state(false);
   let dragNode = $state(null);
 
-  onMount(async () => {
-    await refreshGraph();
+  console.log("Topology component script evaluated");
+
+  $effect(() => {
+    refreshGraph();
   });
 
   async function refreshGraph() {
     isLoading = true;
-    try {
-      const [meta, topo] = await Promise.all([
+      console.log("Fetching project metadata and topology...");
+      const [metaResp, topoResp] = await Promise.all([
         client.getProjectMetadata({ projectId: "251022" }),
         client.getTopology({ projectId: "251022" })
       ]);
+      const meta = {
+        episodes: metaResp.episodes.map(ep => ({
+          id: ep.id,
+          title: ep.title,
+          files: [...ep.files]
+        }))
+      };
+      const topo = {
+        nodes: topoResp.nodes.map(n => ({
+          id: n.id,
+          label: n.label,
+          type: n.type,
+          x: n.x,
+          y: n.y
+        })),
+        edges: topoResp.edges.map(e => ({
+          fromId: e.fromId,
+          toId: e.toId,
+          relation: e.relation
+        }))
+      };
+      console.log("Metadata (plain):", JSON.stringify(meta));
+      console.log("Topology (plain):", JSON.stringify(topo));
 
       const width = 1000;
       const height = 800;
@@ -32,12 +57,15 @@
       // 1. Process Manuscript Nodes
       const manuscriptNodes = [];
       const manuscriptEdges = [];
+      console.log("Processing episodes...");
       meta.episodes.forEach((ep, epIdx) => {
-        const epAngle = (epIdx / meta.episodes.length) * Math.PI * 2;
+        console.log(`Processing episode ${epIdx}...`);
+        const epAngle = (epIdx / (meta.episodes.length || 1)) * Math.PI * 2;
         const epX = centerX + Math.cos(epAngle) * 350;
         const epY = centerY + Math.sin(epAngle) * 300;
 
         ep.files.forEach((file, fileIdx) => {
+          console.log(`Processing file ${fileIdx} for episode ${epIdx}...`);
           const fileId = `file:${ep.id}:${fileIdx}`;
           // Check if we have stored positions from topo.nodes (some might be layout stubs)
           const stored = topo.nodes.find(n => n.id === fileId);
@@ -58,16 +86,24 @@
       });
 
       // 2. Process Entity Nodes (skip layout stubs that were matched to manuscripts)
-      const entityNodes = topo.nodes
-        .filter(n => n.type !== 'gh:LayoutStub' || !manuscriptNodes.find(m => m.id === n.id))
+      console.log("Processing entity nodes...");
+      console.log(`topo.nodes type: ${typeof topo.nodes}, isArray: ${Array.isArray(topo.nodes)}`);
+      const entityNodes = (topo.nodes || [])
+        .filter(n => {
+          if (!n) return false;
+          const match = manuscriptNodes.find(m => m.id === n.id);
+          return n.type !== 'gh:LayoutStub' || !match;
+        })
         .map((n, i) => {
-          if (n.x !== 0 && n.y !== 0) return { ...n, size: n.type.includes('Person') ? 30 : 20 };
-          const angle = (i / topo.nodes.length) * Math.PI * 2;
+          console.log(`Mapping entity node ${i}: ${n.id}`);
+          const isPerson = n.type && typeof n.type === 'string' && n.type.includes('Person');
+          if (n.x !== 0 && n.y !== 0) return { ...n, size: isPerson ? 30 : 20 };
+          const angle = (i / (topo.nodes.length || 1)) * Math.PI * 2;
           return {
             ...n,
             x: centerX + Math.cos(angle) * 150,
             y: centerY + Math.sin(angle) * 120,
-            size: n.type.includes('Person') ? 30 : 20
+            size: isPerson ? 30 : 20
           };
         });
 
@@ -206,7 +242,7 @@
             onclick={(e) => toggleNode(node, e)}
             class:selected={selectedNodeId === node.id || multiSelect.includes(node.id)}
           >
-            <circle r={node.size} class="node-circle" class:manuscript={node.type === 'manuscript'} class:person={node.type.includes('Person')} />
+            <circle r={node.size} class="node-circle" class:manuscript={node.type === 'manuscript'} class:person={node.type && node.type.includes('Person')} />
             <text y={node.size + 18} text-anchor="middle" class="node-label">{node.label}</text>
             {#if multiSelect.includes(node.id)}
               <circle r={node.size + 5} class="selection-ring" />

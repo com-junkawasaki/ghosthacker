@@ -182,6 +182,7 @@ func (s *EditorServer) handleSaveFileTool(ctx context.Context, req mcp.CallToolR
 }
 
 func (s *EditorServer) GetProjectMetadata(ctx context.Context, req *connect.Request[editorpb.GetProjectMetadataRequest]) (*connect.Response[editorpb.GetProjectMetadataResponse], error) {
+	log.Printf("RPC: GetProjectMetadata called for project: %s", req.Msg.ProjectId)
 	manifestPath := filepath.Join(s.WorkspaceRoot, "251022/wattpad/manifest.json")
 	data, err := os.ReadFile(manifestPath)
 	if err != nil {
@@ -251,6 +252,7 @@ func (s *EditorServer) Interact(
 }
 
 func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[editorpb.GetTopologyRequest]) (*connect.Response[editorpb.GetTopologyResponse], error) {
+	log.Printf("RPC: GetTopology called for project: %s", req.Msg.ProjectId)
 	jsonLdPath := filepath.Join(s.WorkspaceRoot, "251022/ghost-hacker.jsonld")
 	data, err := os.ReadFile(jsonLdPath)
 	if err != nil {
@@ -325,6 +327,7 @@ func (s *EditorServer) CallTool(ctx context.Context, req *connect.Request[editor
 
 func withCORS(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		log.Printf("CORS: %s %s from %s", r.Method, r.URL.Path, r.RemoteAddr)
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Connect-Protocol-Version, Connect-Timeout-Ms, X-Grpc-Web, X-User-Agent")
@@ -340,10 +343,21 @@ func main() {
 	workspaceRoot := "/Volumes/251214/jun784/ghosthacker"
 	srv := NewEditorServer(workspaceRoot)
 	mux := http.NewServeMux()
+	
+	// Add a simple health check
+	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("OK"))
+	})
+
 	path, handler := editorpbconnect.NewEditorServiceHandler(srv)
 	mux.Handle(path, withCORS(handler))
-	fmt.Println("MCP + gRPC Connect Server starting on :8080")
-	err := http.ListenAndServe("localhost:8080", h2c.NewHandler(mux, &http2.Server{}))
+	
+	port := "8080"
+	fmt.Printf("MCP + gRPC Connect Server starting on :%s\n", port)
+	
+	// Listen on all interfaces (0.0.0.0) to avoid localhost IPv4/v6 issues
+	err := http.ListenAndServe(":"+port, h2c.NewHandler(mux, &http2.Server{}))
 	if err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}

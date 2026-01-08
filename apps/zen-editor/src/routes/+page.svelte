@@ -1,4 +1,5 @@
 <script lang="ts">
+  console.log("+page script evaluated");
   import Editor from '../components/Editor.svelte';
   import Topology from '../components/Topology.svelte';
   import { onMount } from 'svelte';
@@ -15,13 +16,23 @@
   let chatMessages = $state([]);
   let chatInput = $state("");
 
-  onMount(async () => {
-    try {
-      const resp = await client.getProjectMetadata({ projectId: "251022" });
-      metadata = resp;
-    } catch (err) {
-      console.error("Failed to load project metadata:", err);
-    }
+  $effect(() => {
+    console.log("+page $effect started");
+    client.getProjectMetadata({ projectId: "251022" })
+      .then(resp => {
+        metadata = {
+          title: resp.title,
+          description: resp.description,
+          episodes: resp.episodes.map(ep => ({
+            id: ep.id,
+            title: ep.title,
+            files: [...ep.files]
+          }))
+        };
+      })
+      .catch(err => {
+        console.error("Failed to load project metadata:", err);
+      });
   });
 
   function handleNodeSelect(node, allSelected) {
