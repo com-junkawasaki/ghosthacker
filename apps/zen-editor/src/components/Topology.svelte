@@ -3,9 +3,9 @@
 
   // Basic Topology visualization using SVG
   let nodes = [
-    { id: '1', label: 'Tamaki', type: 'character', x: 100, y: 100 },
-    { id: '2', label: 'Kaede', type: 'character', x: 300, y: 100 },
-    { id: '3', label: 'Tokyo', type: 'location', x: 200, y: 250 },
+    { id: '1', label: 'Tamaki', type: 'character', x: 150, y: 150, size: 24 },
+    { id: '2', label: 'Kaede', type: 'character', x: 450, y: 150, size: 20 },
+    { id: '3', label: 'Tokyo', type: 'location', x: 300, y: 300, size: 30 },
   ];
 
   let edges = [
@@ -19,32 +19,44 @@
 </script>
 
 <div class="topology-container">
-  <svg width="600" height="400">
-    <!-- Edges -->
+  <svg viewBox="0 0 600 450" class="topology-svg">
+    <!-- Edges with Blur effect -->
+    <defs>
+      <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+      </filter>
+    </defs>
+
     {#each edges as edge}
       {@const start = getPos(edge.from)}
       {@const end = getPos(edge.to)}
       <line 
         x1={start.x} y1={start.y} 
         x2={end.x} y2={end.y} 
-        stroke="#ccc" 
-        stroke-width="2" 
+        stroke="#e5e5e5" 
+        stroke-width="1.5" 
       />
-      <text 
-        x={(start.x + end.x) / 2} 
-        y={(start.y + end.y) / 2} 
-        font-size="10" 
-        fill="#999"
-      >
-        {edge.relation}
-      </text>
     {/each}
 
     <!-- Nodes -->
     {#each nodes as node}
       <g class="node" transform="translate({node.x}, {node.y})">
-        <circle r="20" fill={node.type === 'character' ? '#007bff' : '#28a745'} />
-        <text y="35" text-anchor="middle" font-size="12">{node.label}</text>
+        <circle 
+          r={node.size} 
+          fill={node.type === 'character' ? '#0071e3' : '#34c759'} 
+          fill-opacity="0.1"
+          stroke={node.type === 'character' ? '#0071e3' : '#34c759'}
+          stroke-width="1.5"
+        />
+        <text 
+          y={node.size + 20} 
+          text-anchor="middle" 
+          font-size="11" 
+          font-weight="500"
+          fill="#1d1d1f"
+        >
+          {node.label}
+        </text>
       </g>
     {/each}
   </svg>
@@ -58,15 +70,22 @@
     justify-content: center;
     align-items: center;
     background: #fff;
+    border-radius: 12px;
+  }
+
+  .topology-svg {
+    max-width: 100%;
+    max-height: 100%;
   }
 
   .node circle {
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .node circle:hover {
-    transform: scale(1.2);
+  .node:hover circle {
+    fill-opacity: 0.2;
+    transform: scale(1.1);
   }
 </style>
 
