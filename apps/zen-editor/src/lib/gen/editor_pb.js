@@ -6,6 +6,40 @@
 import { proto3 } from "@bufbuild/protobuf";
 
 /**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.GetProjectMetadataRequest
+ */
+export const GetProjectMetadataRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "gftd.ghosthacker.zeneditor.v1.GetProjectMetadataRequest",
+  () => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.GetProjectMetadataResponse
+ */
+export const GetProjectMetadataResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "gftd.ghosthacker.zeneditor.v1.GetProjectMetadataResponse",
+  () => [
+    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "episodes", kind: "message", T: Episode, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.Episode
+ */
+export const Episode = /*@__PURE__*/ proto3.makeMessageType(
+  "gftd.ghosthacker.zeneditor.v1.Episode",
+  () => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "files", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ],
+);
+
+/**
  * @generated from message gftd.ghosthacker.zeneditor.v1.OpenFileRequest
  */
 export const OpenFileRequest = /*@__PURE__*/ proto3.makeMessageType(

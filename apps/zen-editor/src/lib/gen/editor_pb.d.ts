@@ -7,6 +7,98 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.GetProjectMetadataRequest
+ */
+export declare class GetProjectMetadataRequest extends Message<GetProjectMetadataRequest> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId: string;
+
+  constructor(data?: PartialMessage<GetProjectMetadataRequest>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "gftd.ghosthacker.zeneditor.v1.GetProjectMetadataRequest";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetProjectMetadataRequest;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetProjectMetadataRequest;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetProjectMetadataRequest;
+
+  static equals(a: GetProjectMetadataRequest | PlainMessage<GetProjectMetadataRequest> | undefined, b: GetProjectMetadataRequest | PlainMessage<GetProjectMetadataRequest> | undefined): boolean;
+}
+
+/**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.GetProjectMetadataResponse
+ */
+export declare class GetProjectMetadataResponse extends Message<GetProjectMetadataResponse> {
+  /**
+   * @generated from field: string title = 1;
+   */
+  title: string;
+
+  /**
+   * @generated from field: string description = 2;
+   */
+  description: string;
+
+  /**
+   * @generated from field: repeated gftd.ghosthacker.zeneditor.v1.Episode episodes = 3;
+   */
+  episodes: Episode[];
+
+  constructor(data?: PartialMessage<GetProjectMetadataResponse>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "gftd.ghosthacker.zeneditor.v1.GetProjectMetadataResponse";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetProjectMetadataResponse;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetProjectMetadataResponse;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetProjectMetadataResponse;
+
+  static equals(a: GetProjectMetadataResponse | PlainMessage<GetProjectMetadataResponse> | undefined, b: GetProjectMetadataResponse | PlainMessage<GetProjectMetadataResponse> | undefined): boolean;
+}
+
+/**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.Episode
+ */
+export declare class Episode extends Message<Episode> {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+
+  /**
+   * @generated from field: string title = 2;
+   */
+  title: string;
+
+  /**
+   * @generated from field: repeated string files = 3;
+   */
+  files: string[];
+
+  constructor(data?: PartialMessage<Episode>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "gftd.ghosthacker.zeneditor.v1.Episode";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Episode;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Episode;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Episode;
+
+  static equals(a: Episode | PlainMessage<Episode> | undefined, b: Episode | PlainMessage<Episode> | undefined): boolean;
+}
+
+/**
  * @generated from message gftd.ghosthacker.zeneditor.v1.OpenFileRequest
  */
 export declare class OpenFileRequest extends Message<OpenFileRequest> {

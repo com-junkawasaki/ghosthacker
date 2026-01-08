@@ -7,8 +7,25 @@ option go_package = "github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/pro
 service EditorService {
   rpc AnalyzeText(AnalyzeTextRequest) returns (AnalyzeTextResponse);
   rpc GetTopology(GetTopologyRequest) returns (GetTopologyResponse);
+  rpc GetProjectMetadata(GetProjectMetadataRequest) returns (GetProjectMetadataResponse);
   rpc OpenFile(OpenFileRequest) returns (OpenFileResponse);
   rpc SaveFile(SaveFileRequest) returns (SaveFileResponse);
+}
+
+message GetProjectMetadataRequest {
+  string project_id = 1;
+}
+
+message GetProjectMetadataResponse {
+  string title = 1;
+  string description = 2;
+  repeated Episode episodes = 3;
+}
+
+message Episode {
+  string id = 1;
+  string title = 2;
+  repeated string files = 3;
 }
 
 message OpenFileRequest {

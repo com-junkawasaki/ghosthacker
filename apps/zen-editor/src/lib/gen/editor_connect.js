@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AnalyzeTextRequest, AnalyzeTextResponse, GetTopologyRequest, GetTopologyResponse, OpenFileRequest, OpenFileResponse, SaveFileRequest, SaveFileResponse } from "./editor_pb.js";
+import { AnalyzeTextRequest, AnalyzeTextResponse, GetProjectMetadataRequest, GetProjectMetadataResponse, GetTopologyRequest, GetTopologyResponse, OpenFileRequest, OpenFileResponse, SaveFileRequest, SaveFileResponse } from "./editor_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -28,6 +28,15 @@ export const EditorService = {
       name: "GetTopology",
       I: GetTopologyRequest,
       O: GetTopologyResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.GetProjectMetadata
+     */
+    getProjectMetadata: {
+      name: "GetProjectMetadata",
+      I: GetProjectMetadataRequest,
+      O: GetProjectMetadataResponse,
       kind: MethodKind.Unary,
     },
     /**

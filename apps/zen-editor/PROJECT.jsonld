@@ -6,7 +6,12 @@
   "@type": "gh:Project",
   "name": "Ghost Hacker Zen Editor",
   "description": "A dedicated local editor for Ghost Hacker story production, featuring Zen mode text editing and Graph Topology visualization.",
-  "status": "integrated",
+  "status": "active",
+  "data_integration": {
+    "manifest": "251022/wattpad/manifest.json integrated for file navigation",
+    "topology": "251022/ghost-hacker.jsonld parsed for world-building visualization",
+    "manuscripts": "Full access to Wattpad episode parts"
+  },
   "ai_integration": {
     "openrouter": "Configured with dedicated API key",
     "hume": "Configured with API key and secret"
