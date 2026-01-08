@@ -69,8 +69,13 @@ Generate only the markdown content for the new scene.`, combinedContext)
 	}
 	defer resp.Body.Close()
 
+	body, _ := io.ReadAll(resp.Body)
+	if resp.StatusCode != http.StatusOK {
+		return "", fmt.Errorf("OpenRouter API error: %s (status %d)", string(body), resp.StatusCode)
+	}
+
 	var chatResp ChatResponse
-	if err := json.NewDecoder(resp.Body).Decode(&chatResp); err != nil {
+	if err := json.Unmarshal(body, &chatResp); err != nil {
 		return "", err
 	}
 

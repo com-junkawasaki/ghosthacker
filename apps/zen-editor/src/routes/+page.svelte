@@ -49,16 +49,14 @@
       chatMessages = [...chatMessages, { role: 'user', text: msg }];
 
       try {
-        async function* makeRequests() {
-          yield {
-            nodeIds: multiSelection.map(n => n.id),
-            userMessage: msg,
-            sessionId: "session-1", // Add session ID if needed
-            emotionBias: {} // Optional bias
-          };
-        }
+        const responseStream = client.interact({
+          nodeIds: multiSelection.map(n => n.id),
+          userMessage: msg,
+          sessionId: "session-1",
+          emotionBias: {}
+        });
 
-        for await (const response of client.interact(makeRequests())) {
+        for await (const response of responseStream) {
           chatMessages = [...chatMessages, { 
             role: 'assistant', 
             name: response.nodeName,

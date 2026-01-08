@@ -77,10 +77,10 @@
             type: 'manuscript',
             filePath: "251022/wattpad/" + file,
             x: (stored && stored.x !== 0) ? stored.x : epX + (fileIdx - 1) * 60,
-            y: (stored && stored.y !== 0) ? stored.y : epY + 40,
-            size: 22
-          });
-          if (fileIdx > 0) {
+                y: (stored && stored.y !== 0) ? stored.y : epY + 40,
+                size: 40
+              });
+              if (fileIdx > 0) {
             manuscriptEdges.push({ fromId: `file:${ep.id}:${fileIdx - 1}`, toId: fileId, relation: 'precedes' });
           }
         });
@@ -98,13 +98,13 @@
         .map((n, i) => {
           console.log(`Mapping entity node ${i}: ${n.id}`);
           const isPerson = n.type && typeof n.type === 'string' && n.type.includes('Person');
-          if (n.x !== 0 && n.y !== 0) return { ...n, size: isPerson ? 30 : 20 };
+          if (n.x !== 0 && n.y !== 0) return { ...n, size: isPerson ? 50 : 35 };
           const angle = (i / (topo.nodes.length || 1)) * Math.PI * 2;
           return {
             ...n,
-            x: centerX + Math.cos(angle) * 150,
-            y: centerY + Math.sin(angle) * 120,
-            size: isPerson ? 30 : 20
+            x: centerX + Math.cos(angle) * 250,
+            y: centerY + Math.sin(angle) * 200,
+            size: isPerson ? 50 : 35
           };
         });
 
@@ -119,20 +119,13 @@
 
   // --- Dragging Logic ---
   function handleMouseDown(node, event) {
+    console.log("handleMouseDown called for:", node.id);
     if (event.shiftKey) return; // Ignore for multi-select
     dragNode = node;
     isDragging = true;
     
-    // Update local state immediately
-    selectedNodeId = node.id;
-    if (!multiSelect.includes(node.id)) {
-      multiSelect = [node.id];
-    }
-    
-    if (onSelect) {
-      const selectedNodes = nodes.filter(n => multiSelect.includes(n.id));
-      onSelect(node, selectedNodes);
-    }
+    // We don't call onSelect here to avoid duplicate calls with onclick
+    // but we can set the dragNode so handleMouseMove works
   }
 
   function handleMouseMove(event) {
@@ -172,6 +165,9 @@
   }
 
   function toggleNode(node, event) {
+    console.log("toggleNode called for:", node.id, "shiftKey:", event.shiftKey);
+    event.stopPropagation(); // Prevent bubbling if any
+    
     if (event.shiftKey) {
       if (multiSelect.includes(node.id)) {
         multiSelect = multiSelect.filter(id => id !== node.id);
@@ -183,9 +179,12 @@
       multiSelect = [node.id];
     }
     
+    console.log("New multiSelect:", multiSelect);
+    
     // Provide callback with full selection objects
     if (onSelect) {
       const selectedNodes = nodes.filter(n => multiSelect.includes(n.id));
+      console.log("Calling onSelect with:", selectedNodes.length, "nodes");
       onSelect(node, selectedNodes);
     }
   }
@@ -286,8 +285,8 @@
   .node:active { cursor: grabbing; }
   .node-circle { fill: #f5f5f7; stroke: #d2d2d7; stroke-width: 1.5; }
   .node-circle.manuscript { fill: #eef7ff; stroke: #0071e3; }
-  .node-circle.person { fill: #fff0f0; stroke: #ff3b30; }
-  .node-label { font-size: 10px; font-weight: 600; fill: #1d1d1f; pointer-events: none; }
-  .selection-ring { fill: none; stroke: #0071e3; stroke-width: 2; opacity: 0.6; }
+      .node-circle.person { fill: #fff0f0; stroke: #ff3b30; }
+      .node-label { font-size: 14px; font-weight: 600; fill: #1d1d1f; pointer-events: none; }
+      .selection-ring { fill: none; stroke: #0071e3; stroke-width: 2; opacity: 0.6; }
   .selected .node-circle { stroke-width: 3; stroke: #0071e3; }
 </style>

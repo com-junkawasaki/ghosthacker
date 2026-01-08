@@ -210,6 +210,7 @@ func (s *EditorServer) Interact(
 	req *connect.Request[editorpb.InteractRequest],
 	stream *connect.ServerStream[editorpb.InteractResponse],
 ) error {
+	log.Printf("RPC: Interact called with nodes: %v, message: %s", req.Msg.NodeIds, req.Msg.UserMessage)
 	var participants []string
 	combinedEmotion := make(map[string]float32)
 

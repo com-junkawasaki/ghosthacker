@@ -11,7 +11,7 @@
       - text: Graph Topology
     - generic [ref=e11]:
       - heading "Selected Node" [level=3] [ref=e12]
-      - paragraph [ref=e13]: Hibiki Oliveira
+      - paragraph [ref=e13]: Dualist Client
       - paragraph [ref=e14]: Person
       - button "Chat with Node" [ref=e16] [cursor=pointer]
     - generic [ref=e17]: 2065 Tokyo Connectivity
@@ -283,7 +283,7 @@
               - button "Select node"
     - generic [ref=e20]:
       - generic [ref=e21]:
-        - 'heading "Interaction: Hibiki Oliveira" [level=2] [ref=e22]'
+        - 'heading "Interaction: Dualist Client" [level=2] [ref=e22]'
         - button "✕" [ref=e23] [cursor=pointer]
       - generic [ref=e26]: Hello Tamaki
       - generic [ref=e27]:

@@ -48,7 +48,7 @@ export declare const EditorService: {
       readonly name: "Interact",
       readonly I: typeof InteractRequest,
       readonly O: typeof InteractResponse,
-      readonly kind: MethodKind.BiDiStreaming,
+      readonly kind: MethodKind.ServerStreaming,
     },
   }
 };

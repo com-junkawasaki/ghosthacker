@@ -7,8 +7,8 @@
     "dev": "concurrently \"vite dev\" \"cd backend && go run cmd/server/main.go\"",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "svelte-kit sync && svelte-check --accelerated",
-    "check:watch": "svelte-kit sync && svelte-check --accelerated --watch",
+    "check": "svelte-kit sync && svelte-check",
+    "check:watch": "svelte-kit sync && svelte-check --watch",
     "tauri": "tauri",
     "test:unit": "vitest",
     "test:e2e": "pnpm exec bddgen && pnpm exec playwright test"
