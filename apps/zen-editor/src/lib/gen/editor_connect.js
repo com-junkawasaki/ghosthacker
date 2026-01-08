@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CallToolRequest, CallToolResponse, GetProjectMetadataRequest, GetProjectMetadataResponse, GetTopologyRequest, GetTopologyResponse } from "./editor_pb.js";
+import { CallToolRequest, CallToolResponse, GetProjectMetadataRequest, GetProjectMetadataResponse, GetTopologyRequest, GetTopologyResponse, InteractRequest, InteractResponse } from "./editor_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -13,8 +13,6 @@ export const EditorService = {
   typeName: "gftd.ghosthacker.zeneditor.v1.EditorService",
   methods: {
     /**
-     * Traditional RPCs for structured data
-     *
      * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.GetTopology
      */
     getTopology: {
@@ -33,8 +31,6 @@ export const EditorService = {
       kind: MethodKind.Unary,
     },
     /**
-     * Unified MCP Tool Execution via ConnectRPC
-     *
      * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.CallTool
      */
     callTool: {
@@ -42,6 +38,17 @@ export const EditorService = {
       I: CallToolRequest,
       O: CallToolResponse,
       kind: MethodKind.Unary,
+    },
+    /**
+     * Real-time Chat/Interaction Stream (A2A support)
+     *
+     * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.Interact
+     */
+    interact: {
+      name: "Interact",
+      I: InteractRequest,
+      O: InteractResponse,
+      kind: MethodKind.BiDiStreaming,
     },
   }
 };

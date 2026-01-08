@@ -6,6 +6,32 @@
 import { proto3 } from "@bufbuild/protobuf";
 
 /**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.InteractRequest
+ */
+export const InteractRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "gftd.ghosthacker.zeneditor.v1.InteractRequest",
+  () => [
+    { no: 1, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "node_ids", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 3, name: "user_message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "emotion_bias", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 2 /* ScalarType.FLOAT */} },
+  ],
+);
+
+/**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.InteractResponse
+ */
+export const InteractResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "gftd.ghosthacker.zeneditor.v1.InteractResponse",
+  () => [
+    { no: 1, name: "node_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "node_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "emotion_vector", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 2 /* ScalarType.FLOAT */} },
+  ],
+);
+
+/**
  * @generated from message gftd.ghosthacker.zeneditor.v1.CallToolRequest
  */
 export const CallToolRequest = /*@__PURE__*/ proto3.makeMessageType(

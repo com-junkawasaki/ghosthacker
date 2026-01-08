@@ -1,4 +1,4 @@
-package main
+package ai
 
 import (
 	"bytes"
@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"os"
 )
 
 type OpenRouterClient struct {

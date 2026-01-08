@@ -41,15 +41,17 @@ const (
 	EditorServiceGetProjectMetadataProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/GetProjectMetadata"
 	// EditorServiceCallToolProcedure is the fully-qualified name of the EditorService's CallTool RPC.
 	EditorServiceCallToolProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/CallTool"
+	// EditorServiceInteractProcedure is the fully-qualified name of the EditorService's Interact RPC.
+	EditorServiceInteractProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/Interact"
 )
 
 // EditorServiceClient is a client for the gftd.ghosthacker.zeneditor.v1.EditorService service.
 type EditorServiceClient interface {
-	// Traditional RPCs for structured data
 	GetTopology(context.Context, *connect.Request[proto.GetTopologyRequest]) (*connect.Response[proto.GetTopologyResponse], error)
 	GetProjectMetadata(context.Context, *connect.Request[proto.GetProjectMetadataRequest]) (*connect.Response[proto.GetProjectMetadataResponse], error)
-	// Unified MCP Tool Execution via ConnectRPC
 	CallTool(context.Context, *connect.Request[proto.CallToolRequest]) (*connect.Response[proto.CallToolResponse], error)
+	// Real-time Chat/Interaction Stream (A2A support)
+	Interact(context.Context) *connect.BidiStreamForClient[proto.InteractRequest, proto.InteractResponse]
 }
 
 // NewEditorServiceClient constructs a client for the gftd.ghosthacker.zeneditor.v1.EditorService
@@ -81,6 +83,12 @@ func NewEditorServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			connect.WithSchema(editorServiceMethods.ByName("CallTool")),
 			connect.WithClientOptions(opts...),
 		),
+		interact: connect.NewClient[proto.InteractRequest, proto.InteractResponse](
+			httpClient,
+			baseURL+EditorServiceInteractProcedure,
+			connect.WithSchema(editorServiceMethods.ByName("Interact")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -89,6 +97,7 @@ type editorServiceClient struct {
 	getTopology        *connect.Client[proto.GetTopologyRequest, proto.GetTopologyResponse]
 	getProjectMetadata *connect.Client[proto.GetProjectMetadataRequest, proto.GetProjectMetadataResponse]
 	callTool           *connect.Client[proto.CallToolRequest, proto.CallToolResponse]
+	interact           *connect.Client[proto.InteractRequest, proto.InteractResponse]
 }
 
 // GetTopology calls gftd.ghosthacker.zeneditor.v1.EditorService.GetTopology.
@@ -106,14 +115,19 @@ func (c *editorServiceClient) CallTool(ctx context.Context, req *connect.Request
 	return c.callTool.CallUnary(ctx, req)
 }
 
+// Interact calls gftd.ghosthacker.zeneditor.v1.EditorService.Interact.
+func (c *editorServiceClient) Interact(ctx context.Context) *connect.BidiStreamForClient[proto.InteractRequest, proto.InteractResponse] {
+	return c.interact.CallBidiStream(ctx)
+}
+
 // EditorServiceHandler is an implementation of the gftd.ghosthacker.zeneditor.v1.EditorService
 // service.
 type EditorServiceHandler interface {
-	// Traditional RPCs for structured data
 	GetTopology(context.Context, *connect.Request[proto.GetTopologyRequest]) (*connect.Response[proto.GetTopologyResponse], error)
 	GetProjectMetadata(context.Context, *connect.Request[proto.GetProjectMetadataRequest]) (*connect.Response[proto.GetProjectMetadataResponse], error)
-	// Unified MCP Tool Execution via ConnectRPC
 	CallTool(context.Context, *connect.Request[proto.CallToolRequest]) (*connect.Response[proto.CallToolResponse], error)
+	// Real-time Chat/Interaction Stream (A2A support)
+	Interact(context.Context, *connect.BidiStream[proto.InteractRequest, proto.InteractResponse]) error
 }
 
 // NewEditorServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -141,6 +155,12 @@ func NewEditorServiceHandler(svc EditorServiceHandler, opts ...connect.HandlerOp
 		connect.WithSchema(editorServiceMethods.ByName("CallTool")),
 		connect.WithHandlerOptions(opts...),
 	)
+	editorServiceInteractHandler := connect.NewBidiStreamHandler(
+		EditorServiceInteractProcedure,
+		svc.Interact,
+		connect.WithSchema(editorServiceMethods.ByName("Interact")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/gftd.ghosthacker.zeneditor.v1.EditorService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case EditorServiceGetTopologyProcedure:
@@ -149,6 +169,8 @@ func NewEditorServiceHandler(svc EditorServiceHandler, opts ...connect.HandlerOp
 			editorServiceGetProjectMetadataHandler.ServeHTTP(w, r)
 		case EditorServiceCallToolProcedure:
 			editorServiceCallToolHandler.ServeHTTP(w, r)
+		case EditorServiceInteractProcedure:
+			editorServiceInteractHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -168,4 +190,8 @@ func (UnimplementedEditorServiceHandler) GetProjectMetadata(context.Context, *co
 
 func (UnimplementedEditorServiceHandler) CallTool(context.Context, *connect.Request[proto.CallToolRequest]) (*connect.Response[proto.CallToolResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.zeneditor.v1.EditorService.CallTool is not implemented"))
+}
+
+func (UnimplementedEditorServiceHandler) Interact(context.Context, *connect.BidiStream[proto.InteractRequest, proto.InteractResponse]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.zeneditor.v1.EditorService.Interact is not implemented"))
 }

@@ -7,6 +7,92 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.InteractRequest
+ */
+export declare class InteractRequest extends Message<InteractRequest> {
+  /**
+   * @generated from field: string session_id = 1;
+   */
+  sessionId: string;
+
+  /**
+   * Participating nodes (Characters, Environment, etc.)
+   *
+   * @generated from field: repeated string node_ids = 2;
+   */
+  nodeIds: string[];
+
+  /**
+   * @generated from field: string user_message = 3;
+   */
+  userMessage: string;
+
+  /**
+   * Optional manual override or base bias
+   *
+   * @generated from field: map<string, float> emotion_bias = 4;
+   */
+  emotionBias: { [key: string]: number };
+
+  constructor(data?: PartialMessage<InteractRequest>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "gftd.ghosthacker.zeneditor.v1.InteractRequest";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InteractRequest;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InteractRequest;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InteractRequest;
+
+  static equals(a: InteractRequest | PlainMessage<InteractRequest> | undefined, b: InteractRequest | PlainMessage<InteractRequest> | undefined): boolean;
+}
+
+/**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.InteractResponse
+ */
+export declare class InteractResponse extends Message<InteractResponse> {
+  /**
+   * Which node is responding
+   *
+   * @generated from field: string node_id = 1;
+   */
+  nodeId: string;
+
+  /**
+   * @generated from field: string node_name = 2;
+   */
+  nodeName: string;
+
+  /**
+   * @generated from field: string message = 3;
+   */
+  message: string;
+
+  /**
+   * Current emotional state of the responding node
+   *
+   * @generated from field: map<string, float> emotion_vector = 4;
+   */
+  emotionVector: { [key: string]: number };
+
+  constructor(data?: PartialMessage<InteractResponse>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "gftd.ghosthacker.zeneditor.v1.InteractResponse";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InteractResponse;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InteractResponse;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InteractResponse;
+
+  static equals(a: InteractResponse | PlainMessage<InteractResponse> | undefined, b: InteractResponse | PlainMessage<InteractResponse> | undefined): boolean;
+}
+
+/**
  * @generated from message gftd.ghosthacker.zeneditor.v1.CallToolRequest
  */
 export declare class CallToolRequest extends Message<CallToolRequest> {

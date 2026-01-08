@@ -5,12 +5,26 @@ package gftd.ghosthacker.zeneditor.v1;
 option go_package = "github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/proto;editorpb";
 
 service EditorService {
-  // Traditional RPCs for structured data
   rpc GetTopology(GetTopologyRequest) returns (GetTopologyResponse);
   rpc GetProjectMetadata(GetProjectMetadataRequest) returns (GetProjectMetadataResponse);
-  
-  // Unified MCP Tool Execution via ConnectRPC
   rpc CallTool(CallToolRequest) returns (CallToolResponse);
+  
+  // Real-time Chat/Interaction Stream (A2A support)
+  rpc Interact(stream InteractRequest) returns (stream InteractResponse);
+}
+
+message InteractRequest {
+  string session_id = 1;
+  repeated string node_ids = 2; // Participating nodes (Characters, Environment, etc.)
+  string user_message = 3;
+  map<string, float> emotion_bias = 4; // Optional manual override or base bias
+}
+
+message InteractResponse {
+  string node_id = 1;      // Which node is responding
+  string node_name = 2;
+  string message = 3;
+  map<string, float> emotion_vector = 4; // Current emotional state of the responding node
 }
 
 message CallToolRequest {

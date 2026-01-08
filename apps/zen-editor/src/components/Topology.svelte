@@ -135,7 +135,12 @@
     } else {
       selectedNodeId = node.id;
       multiSelect = [node.id];
-      if (onSelect) onSelect(node);
+    }
+    
+    // Provide callback with full selection objects
+    if (onSelect) {
+      const selectedNodes = nodes.filter(n => multiSelect.includes(n.id));
+      onSelect(node, selectedNodes);
     }
   }
 

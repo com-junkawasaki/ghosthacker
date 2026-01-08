@@ -17,6 +17,7 @@ import (
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
+	"github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/internal/ai"
 	"github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/proto"
 	"github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/proto/editorpbconnect"
 )
@@ -24,82 +25,47 @@ import (
 type EditorServer struct {
 	WorkspaceRoot string
 	MCPServer     *server.MCPServer
+	NodeEmotions  map[string]map[string]float32
+	ToolHandlers  map[string]func(context.Context, mcp.CallToolRequest) (*mcp.CallToolResult, error)
 }
 
 func NewEditorServer(root string) *EditorServer {
 	s := &EditorServer{
 		WorkspaceRoot: root,
 		MCPServer:     server.NewMCPServer("GhostHackerEditor", "1.0.0"),
+		NodeEmotions:  initNodeEmotions(),
+		ToolHandlers:  make(map[string]func(context.Context, mcp.CallToolRequest) (*mcp.CallToolResult, error)),
 	}
 	s.registerMCPTools()
 	return s
 }
 
-// MCP Tool Registration
+func initNodeEmotions() map[string]map[string]float32 {
+	return map[string]map[string]float32{
+		"character:tamaki": {"Calm": 0.8, "Joy": 0.2, "Sadness": 0.1, "Neutral": 0.9},
+		"character:nei":    {"Joy": 0.7, "Excitement": 0.6, "Playfulness": 0.8},
+		"setting:office":   {"Neutral": 0.8, "Boredom": 0.3, "Focus": 0.7},
+		"setting:tokyo":    {"Awe": 0.5, "Connectedness": 0.6, "Nostalgia": 0.4},
+	}
+}
+
 func (s *EditorServer) registerMCPTools() {
-	s.MCPServer.AddTool(mcp.NewTool("open_file",
-		mcp.WithDescription("Opens a local markdown file"),
-		mcp.WithSchema(map[string]interface{}{
-			"type": "object",
-			"properties": map[string]interface{}{
-				"path": map[string]interface{}{"type": "string"},
-			},
-			"required": []interface{}{"path"},
-		}),
-	), s.handleOpenFileTool)
+	s.ToolHandlers["open_file"] = s.handleOpenFileTool
+	s.MCPServer.AddTool(mcp.NewTool("open_file", mcp.WithDescription("Opens a markdown file")), s.handleOpenFileTool)
 
-	s.MCPServer.AddTool(mcp.NewTool("save_file",
-		mcp.WithDescription("Saves content to a local markdown file"),
-		mcp.WithSchema(map[string]interface{}{
-			"type": "object",
-			"properties": map[string]interface{}{
-				"path":    map[string]interface{}{"type": "string"},
-				"content": map[string]interface{}{"type": "string"},
-			},
-			"required": []interface{}{"path", "content"},
-		}),
-	), s.handleSaveFileTool)
+	s.ToolHandlers["save_file"] = s.handleSaveFileTool
+	s.MCPServer.AddTool(mcp.NewTool("save_file", mcp.WithDescription("Saves a markdown file")), s.handleSaveFileTool)
 
-	s.MCPServer.AddTool(mcp.NewTool("generate_node",
-		mcp.WithDescription("Generates a new story node based on context from existing nodes"),
-		mcp.WithSchema(map[string]interface{}{
-			"type": "object",
-			"properties": map[string]interface{}{
-				"context_paths": map[string]interface{}{
-					"type":  "array",
-					"items": map[string]interface{}{"type": "string"},
-				},
-				"new_path": map[string]interface{}{"type": "string"},
-			},
-			"required": []interface{}{"context_paths", "new_path"},
-		}),
-	), s.handleGenerateNodeTool)
+	s.ToolHandlers["generate_node"] = s.handleGenerateNodeTool
+	s.MCPServer.AddTool(mcp.NewTool("generate_node", mcp.WithDescription("Generates story content")), s.handleGenerateNodeTool)
 
-	s.MCPServer.AddTool(mcp.NewTool("update_node_positions",
-		mcp.WithDescription("Persists node positions to ghost-hacker.jsonld"),
-		mcp.WithSchema(map[string]interface{}{
-			"type": "object",
-			"properties": map[string]interface{}{
-				"positions": map[string]interface{}{
-					"type": "array",
-					"items": map[string]interface{}{
-						"type": "object",
-						"properties": map[string]interface{}{
-							"id": map[string]interface{}{"type": "string"},
-							"x":  map[string]interface{}{"type": "number"},
-							"y":  map[string]interface{}{"type": "number"},
-						},
-						"required": []interface{}{"id", "x", "y"},
-					},
-				},
-			},
-			"required": []interface{}{"positions"},
-		}),
-	), s.handleUpdateNodePositionsTool)
+	s.ToolHandlers["update_node_positions"] = s.handleUpdateNodePositionsTool
+	s.MCPServer.AddTool(mcp.NewTool("update_node_positions", mcp.WithDescription("Saves layout")), s.handleUpdateNodePositionsTool)
 }
 
 func (s *EditorServer) handleUpdateNodePositionsTool(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
-	positions, _ := req.Arguments["positions"].([]interface{})
+	args := req.Params.Arguments.(map[string]interface{})
+	positions, _ := args["positions"].([]interface{})
 	jsonLdPath := filepath.Join(s.WorkspaceRoot, "251022/ghost-hacker.jsonld")
 
 	data, err := os.ReadFile(jsonLdPath)
@@ -151,12 +117,13 @@ func (s *EditorServer) handleUpdateNodePositionsTool(ctx context.Context, req mc
 		return mcp.NewToolResultError(err.Error()), nil
 	}
 
-	return mcp.NewToolResultText(fmt.Sprintf("Successfully updated %d node positions in ghost-hacker.jsonld", updatedCount)), nil
+	return mcp.NewToolResultText(fmt.Sprintf("Successfully updated %d node positions", updatedCount)), nil
 }
 
 func (s *EditorServer) handleGenerateNodeTool(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
-	paths, _ := req.Arguments["context_paths"].([]interface{})
-	newPath, _ := req.Arguments["new_path"].(string)
+	args := req.Params.Arguments.(map[string]interface{})
+	paths, _ := args["context_paths"].([]interface{})
+	newPath, _ := args["new_path"].(string)
 	var contextTexts []string
 	for _, p := range paths {
 		path := p.(string)
@@ -168,11 +135,11 @@ func (s *EditorServer) handleGenerateNodeTool(ctx context.Context, req mcp.CallT
 			contextTexts = append(contextTexts, string(content))
 		}
 	}
-	client := &OpenRouterClient{
+	aiClient := &ai.OpenRouterClient{
 		ApiKey: "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",
 		Model:  "anthropic/claude-3.5-sonnet",
 	}
-	generated, err := client.GenerateNextScene(ctx, contextTexts)
+	generated, err := aiClient.GenerateNextScene(ctx, contextTexts)
 	if err != nil {
 		return mcp.NewToolResultError(err.Error()), nil
 	}
@@ -182,11 +149,12 @@ func (s *EditorServer) handleGenerateNodeTool(ctx context.Context, req mcp.CallT
 	}
 	os.MkdirAll(filepath.Dir(absNewPath), 0755)
 	os.WriteFile(absNewPath, []byte(generated), 0644)
-	return mcp.NewToolResultText(fmt.Sprintf("Generated new node at %s", newPath)), nil
+	return mcp.NewToolResultText(fmt.Sprintf("Generated at %s", newPath)), nil
 }
 
 func (s *EditorServer) handleOpenFileTool(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
-	path, _ := req.Arguments["path"].(string)
+	args := req.Params.Arguments.(map[string]interface{})
+	path, _ := args["path"].(string)
 	if !filepath.IsAbs(path) {
 		path = filepath.Join(s.WorkspaceRoot, path)
 	}
@@ -198,8 +166,9 @@ func (s *EditorServer) handleOpenFileTool(ctx context.Context, req mcp.CallToolR
 }
 
 func (s *EditorServer) handleSaveFileTool(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
-	path, _ := req.Arguments["path"].(string)
-	content, _ := req.Arguments["content"].(string)
+	args := req.Params.Arguments.(map[string]interface{})
+	path, _ := args["path"].(string)
+	content, _ := args["content"].(string)
 	if !filepath.IsAbs(path) {
 		path = filepath.Join(s.WorkspaceRoot, path)
 	}
@@ -235,6 +204,52 @@ func (s *EditorServer) GetProjectMetadata(ctx context.Context, req *connect.Requ
 	return connect.NewResponse(resp), nil
 }
 
+func (s *EditorServer) Interact(
+	ctx context.Context,
+	stream *connect.BidiStream[editorpb.InteractRequest, editorpb.InteractResponse],
+) error {
+	for {
+		req, err := stream.Receive()
+		if err != nil {
+			return err
+		}
+
+		var participants []string
+		combinedEmotion := make(map[string]float32)
+
+		for _, nodeID := range req.NodeIds {
+			name := nodeID
+			if emotion, ok := s.NodeEmotions[nodeID]; ok {
+				for k, v := range emotion {
+					combinedEmotion[k] += v
+				}
+			}
+			participants = append(participants, name)
+		}
+
+		aiClient := &ai.OpenRouterClient{
+			ApiKey: "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",
+			Model:  "anthropic/claude-3.5-sonnet",
+		}
+		prompt := fmt.Sprintf("Participants: %v\nUser Input: %s\nEmotional Context: %v\n", participants, req.UserMessage, combinedEmotion)
+		
+		response, err := aiClient.GenerateNextScene(ctx, []string{prompt})
+		if err != nil {
+			return err
+		}
+
+		err = stream.Send(&editorpb.InteractResponse{
+			NodeId:         req.NodeIds[0],
+			NodeName:       participants[0],
+			Message:        response,
+			EmotionVector:  combinedEmotion,
+		})
+		if err != nil {
+			return err
+		}
+	}
+}
+
 func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[editorpb.GetTopologyRequest]) (*connect.Response[editorpb.GetTopologyResponse], error) {
 	jsonLdPath := filepath.Join(s.WorkspaceRoot, "251022/ghost-hacker.jsonld")
 	data, err := os.ReadFile(jsonLdPath)
@@ -260,17 +275,27 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 			}
 			resp.Nodes = append(resp.Nodes, node)
 		}
-		if chars, ok := item["gh:hasCharacter"].([]interface{}); ok {
-			for _, c := range chars {
-				if cMap, ok := c.(map[string]interface{}); ok {
-					targetID, _ := cMap["@id"].(string)
-					if targetID != "" {
-						resp.Edges = append(resp.Edges, &editorpb.Edge{FromId: id, ToId: targetID, Relation: "hasCharacter"})
-					}
-				}
+	}
+	
+	for nodeID := range s.NodeEmotions {
+		found := false
+		for _, n := range resp.Nodes {
+			if n.Id == nodeID {
+				found = true
+				break
 			}
 		}
+		if !found {
+			resp.Nodes = append(resp.Nodes, &editorpb.Node{
+				Id:    nodeID,
+				Label: strings.ToUpper(nodeID[strings.LastIndex(nodeID, ":")+1:strings.LastIndex(nodeID, ":")+2]) + nodeID[strings.LastIndex(nodeID, ":")+2:],
+				Type:  nodeID[:strings.Index(nodeID, ":")],
+				X:     100,
+				Y:     100,
+			})
+		}
 	}
+
 	return connect.NewResponse(resp), nil
 }
 
@@ -279,13 +304,21 @@ func (s *EditorServer) CallTool(ctx context.Context, req *connect.Request[editor
 	if err := json.Unmarshal([]byte(req.Msg.ArgumentsJson), &args); err != nil {
 		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
+	
+	handler, ok := s.ToolHandlers[req.Msg.Name]
+	if !ok {
+		return connect.NewResponse(&editorpb.CallToolResponse{IsError: true, ResultJson: `{"error": "tool not found"}`}), nil
+	}
+
 	mcpReq := mcp.CallToolRequest{}
 	mcpReq.Params.Name = req.Msg.Name
 	mcpReq.Params.Arguments = args
-	result, err := s.MCPServer.CallTool(ctx, mcpReq)
+	
+	result, err := handler(ctx, mcpReq)
 	if err != nil {
 		return connect.NewResponse(&editorpb.CallToolResponse{IsError: true, ResultJson: fmt.Sprintf(`{"error": "%s"}`, err.Error())}), nil
 	}
+	
 	resData, _ := json.Marshal(result)
 	return connect.NewResponse(&editorpb.CallToolResponse{ResultJson: string(resData), IsError: result.IsError}), nil
 }

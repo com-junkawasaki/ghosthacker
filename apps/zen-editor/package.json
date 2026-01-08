@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --accelerated",
     "check:watch": "svelte-kit sync && svelte-check --accelerated --watch",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "test:unit": "vitest",
+    "test:e2e": "pnpm exec bddgen && pnpm exec playwright test"
   },
   "devDependencies": {
     "@bufbuild/protoc-gen-es": "^1.10.1",
@@ -18,10 +20,16 @@
     "@sveltejs/kit": "^2.49.3",
     "@sveltejs/vite-plugin-svelte": "^4.0.4",
     "@tauri-apps/cli": "^2.9.6",
+    "@testing-library/svelte": "^5.2.7",
+    "jsdom": "^26.0.0",
+    "playwright": "^1.51.0",
+    "playwright-bdd": "^8.4.2",
+    "@playwright/test": "^1.51.0",
     "svelte": "^5.46.1",
     "svelte-check": "^4.3.5",
     "typescript": "^5.9.3",
-    "vite": "^6.4.1"
+    "vite": "^6.4.1",
+    "vitest": "^3.0.8"
   },
   "dependencies": {
     "@bufbuild/protobuf": "^1.10.1",

@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CallToolRequest, CallToolResponse, GetProjectMetadataRequest, GetProjectMetadataResponse, GetTopologyRequest, GetTopologyResponse } from "./editor_pb.js";
+import { CallToolRequest, CallToolResponse, GetProjectMetadataRequest, GetProjectMetadataResponse, GetTopologyRequest, GetTopologyResponse, InteractRequest, InteractResponse } from "./editor_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -13,8 +13,6 @@ export declare const EditorService: {
   readonly typeName: "gftd.ghosthacker.zeneditor.v1.EditorService",
   readonly methods: {
     /**
-     * Traditional RPCs for structured data
-     *
      * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.GetTopology
      */
     readonly getTopology: {
@@ -33,8 +31,6 @@ export declare const EditorService: {
       readonly kind: MethodKind.Unary,
     },
     /**
-     * Unified MCP Tool Execution via ConnectRPC
-     *
      * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.CallTool
      */
     readonly callTool: {
@@ -42,6 +38,17 @@ export declare const EditorService: {
       readonly I: typeof CallToolRequest,
       readonly O: typeof CallToolResponse,
       readonly kind: MethodKind.Unary,
+    },
+    /**
+     * Real-time Chat/Interaction Stream (A2A support)
+     *
+     * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.Interact
+     */
+    readonly interact: {
+      readonly name: "Interact",
+      readonly I: typeof InteractRequest,
+      readonly O: typeof InteractResponse,
+      readonly kind: MethodKind.BiDiStreaming,
     },
   }
 };

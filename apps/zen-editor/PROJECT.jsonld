@@ -6,15 +6,15 @@
   "@type": "gh:Project",
   "name": "Ghost Hacker Zen Editor",
   "description": "A dedicated local editor for Ghost Hacker story production, featuring Zen mode text editing and Graph Topology visualization.",
-  "status": "active",
+  "status": "A2A_Active",
   "data_integration": {
     "manifest": "251022/wattpad/manifest.json integrated for file navigation",
     "topology": "251022/ghost-hacker.jsonld parsed for world-building visualization",
     "manuscripts": "Full access to Wattpad episode parts"
   },
   "ai_integration": {
-    "openrouter": "Configured with dedicated API key",
-    "hume": "Configured with API key and secret"
+    "openrouter": "Claude 3.5 Sonnet driven persona emulation (A2A)",
+    "hume": "Real-time emotion vector mapping for characters and settings"
   },
   "technologies": [
     "Tauri",
@@ -26,7 +26,8 @@
     "Kubernetes",
     "OpenRouter",
     "Hume AI",
-    "Git"
+    "Git",
+    "MCP (Model Context Protocol)"
   ],
   "architecture": {
     "frontend": {
@@ -38,7 +39,7 @@
     },
     "backend": {
       "language": "Go",
-      "api": "gRPC Server",
+      "api": "gRPC Server (MCP-enabled)",
       "workflow_engine": "Temporal",
       "orchestration": "Kubernetes (k8s)"
     },
@@ -54,6 +55,10 @@
       {
         "name": "Hume AI",
         "purpose": "Semantic emotion analysis of the narrative"
+      },
+      {
+        "name": "MCP (Model Context Protocol)",
+        "purpose": "Standardized tool invocation for AI and backend services"
       }
     ]
   },
@@ -67,6 +72,10 @@
       "description": "Live visualization of story entities and relationships extracted from the text."
     },
     {
+      "name": "Multi-Agent Interaction (A2A)",
+      "description": "Conversational UI to talk with characters, environments, and objects using Hume AI emotion vectors."
+    },
+    {
       "name": "Git Versioning",
       "description": "Integrated git workflows for branch management and history tracking."
     }
@@ -74,24 +83,31 @@
   "roadmap": [
     {
       "step": "1. Initialize Tauri + SvelteKit project structure",
-      "status": "pending"
+      "status": "completed"
     },
     {
       "step": "2. Implement Prosemirror editor with Svelte",
-      "status": "pending"
+      "status": "completed"
     },
     {
       "step": "3. Setup Go gRPC backend and Temporal worker",
-      "status": "pending"
+      "status": "completed"
     },
     {
       "step": "4. Implement AI entity extraction and graph visualization",
-      "status": "pending"
+      "status": "completed"
     },
     {
       "step": "5. Integrate Hume AI and Git workflows",
-      "status": "pending"
+      "status": "completed"
+    },
+    {
+      "step": "6. Refactor backend to MCP + gRPC Connect architecture",
+      "status": "completed"
+    },
+    {
+      "step": "7. Implement A2A Multi-Agent Interaction UI",
+      "status": "completed"
     }
   ]
 }
-
