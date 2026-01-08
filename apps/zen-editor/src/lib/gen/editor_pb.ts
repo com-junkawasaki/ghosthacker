@@ -741,6 +741,13 @@ export class Node extends Message<Node> {
    */
   y = 0;
 
+  /**
+   * For blocks, the actual text
+   *
+   * @generated from field: string content = 6;
+   */
+  content = "";
+
   constructor(data?: PartialMessage<Node>) {
     super();
     proto3.util.initPartial(data, this);
@@ -754,6 +761,7 @@ export class Node extends Message<Node> {
     { no: 3, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "x", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
     { no: 5, name: "y", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
+    { no: 6, name: "content", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Node {
@@ -792,6 +800,20 @@ export class Edge extends Message<Edge> {
    */
   relation = "";
 
+  /**
+   * Optional: specify color for different relations
+   *
+   * @generated from field: string color = 4;
+   */
+  color = "";
+
+  /**
+   * Optional: "solid", "dashed", "dotted"
+   *
+   * @generated from field: string style = 5;
+   */
+  style = "";
+
   constructor(data?: PartialMessage<Edge>) {
     super();
     proto3.util.initPartial(data, this);
@@ -803,6 +825,8 @@ export class Edge extends Message<Edge> {
     { no: 1, name: "from_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "to_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "relation", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "color", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "style", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Edge {

@@ -17,110 +17,77 @@
     refreshGraph();
   });
 
-  async function refreshGraph() {
-    isLoading = true;
-    try {
-      console.log("Fetching project metadata and topology...");
-      const [metaResp, topoResp] = await Promise.all([
-        client.getProjectMetadata({ projectId: "251022" }),
-        client.getTopology({ projectId: "251022" })
-      ]);
-      const meta = {
-        episodes: metaResp.episodes.map(ep => ({
-          id: ep.id,
-          title: ep.title,
-          files: [...ep.files]
-        }))
-      };
-      const topo = {
-        nodes: topoResp.nodes.map(n => ({
-          id: n.id,
-          label: n.label,
-          type: n.type,
-          x: n.x,
-          y: n.y
-        })),
-        edges: topoResp.edges.map(e => ({
-          fromId: e.fromId,
-          toId: e.toId,
-          relation: e.relation
-        }))
-      };
-      console.log("Metadata (plain):", JSON.stringify(meta));
-      console.log("Topology (plain):", JSON.stringify(topo));
-
-      const width = 1000;
-      const height = 800;
-      const centerX = width / 2;
-      const centerY = height / 2;
-
-      // 1. Process Manuscript Nodes
-      const manuscriptNodes = [];
-      const manuscriptEdges = [];
-      console.log("Processing episodes...");
-      meta.episodes.forEach((ep, epIdx) => {
-        console.log(`Processing episode ${epIdx}...`);
-        const epAngle = (epIdx / (meta.episodes.length || 1)) * Math.PI * 2;
-        const epX = centerX + Math.cos(epAngle) * 350;
-        const epY = centerY + Math.sin(epAngle) * 300;
-
-        ep.files.forEach((file, fileIdx) => {
-          console.log(`Processing file ${fileIdx} for episode ${epIdx}...`);
-          const fileId = `file:${ep.id}:${fileIdx}`;
-          // Check if we have stored positions from topo.nodes (some might be layout stubs)
-          const stored = topo.nodes.find(n => n.id === fileId);
+      async function refreshGraph() {
+        isLoading = true;
+        try {
+          console.log("Fetching project metadata and topology...");
+          const [metaResp, topoResp] = await Promise.all([
+            client.getProjectMetadata({ projectId: "251022" }),
+            client.getTopology({ projectId: "251022" })
+          ]);
           
-          manuscriptNodes.push({
-            id: fileId,
-            label: file.split('/').pop(),
-            type: 'manuscript',
-            filePath: "251022/wattpad/" + file,
-            x: (stored && stored.x !== 0) ? stored.x : epX + (fileIdx - 1) * 60,
-                y: (stored && stored.y !== 0) ? stored.y : epY + 40,
-                size: 40
-              });
-              if (fileIdx > 0) {
-            manuscriptEdges.push({ fromId: `file:${ep.id}:${fileIdx - 1}`, toId: fileId, relation: 'precedes' });
-          }
-        });
-      });
-
-      // 2. Process Entity Nodes (skip layout stubs that were matched to manuscripts)
-      console.log("Processing entity nodes...");
-      console.log(`topo.nodes type: ${typeof topo.nodes}, isArray: ${Array.isArray(topo.nodes)}`);
-      const entityNodes = (topo.nodes || [])
-        .filter(n => {
-          if (!n) return false;
-          const match = manuscriptNodes.find(m => m.id === n.id);
-          return n.type !== 'gh:LayoutStub' || !match;
-        })
-        .map((n, i) => {
-          console.log(`Mapping entity node ${i}: ${n.id}`);
-          const isPerson = n.type && typeof n.type === 'string' && n.type.includes('Person');
-          if (n.x !== 0 && n.y !== 0) return { ...n, size: isPerson ? 50 : 35 };
-          const angle = (i / (topo.nodes.length || 1)) * Math.PI * 2;
-          return {
-            ...n,
-            x: centerX + Math.cos(angle) * 250,
-            y: centerY + Math.sin(angle) * 200,
-            size: isPerson ? 50 : 35
+          const topo = {
+            nodes: topoResp.nodes.map(n => ({
+              id: n.id,
+              label: n.label,
+              type: n.type,
+              x: n.x,
+              y: n.y,
+              content: n.content
+            })),
+            edges: topoResp.edges.map(e => ({
+              fromId: e.fromId,
+              toId: e.toId,
+              relation: e.relation,
+              color: e.color,
+              style: e.style
+            }))
           };
-        });
 
-          nodes = [...manuscriptNodes, ...entityNodes].map(n => ({
-            ...n,
-            x: n.x || 0,
-            y: n.y || 0,
-            size: n.size || 20,
-            label: n.label || 'Unknown'
-          }));
-      edges = [...manuscriptEdges, ...topo.edges];
-      isLoading = false;
-    } catch (err) {
-      console.error("Failed to load graph:", err);
-      isLoading = false;
-    }
-  }
+          const width = 1000;
+          const height = 800;
+          const centerX = width / 2;
+          const centerY = height / 2;
+
+          // Process nodes and assign positions if missing
+          nodes = topo.nodes.map((n, i) => {
+            let x = n.x;
+            let y = n.y;
+            let size = 20;
+
+            if (n.type === 'gh:Manuscript') size = 30;
+            if (n.type === 'gh:Block') size = 15;
+            const isPerson = n.type && typeof n.type === 'string' && n.type.includes('Person');
+            const isPlace = n.type && typeof n.type === 'string' && n.type.includes('Place');
+            if (isPerson) size = 35;
+            if (isPlace) size = 35;
+
+            if (x === 0 && y === 0) {
+              // Simple layout if no stored position
+              if (n.type === 'gh:Manuscript') {
+                const angle = (i / 10) * Math.PI * 2;
+                x = centerX + Math.cos(angle) * 350;
+                y = centerY + Math.sin(angle) * 300;
+              } else if (n.type === 'gh:Block') {
+                x = centerX + (Math.random() - 0.5) * 800;
+                y = centerY + (Math.random() - 0.5) * 600;
+              } else {
+                const angle = (i / 20) * Math.PI * 2;
+                x = centerX + Math.cos(angle) * 150;
+                y = centerY + Math.sin(angle) * 120;
+              }
+            }
+
+            return { ...n, x, y, size, label: n.label || 'Unknown' };
+          });
+
+          edges = topo.edges;
+          isLoading = false;
+        } catch (err) {
+          console.error("Failed to load graph:", err);
+          isLoading = false;
+        }
+      }
 
   // --- Dragging Logic ---
   function handleMouseDown(node, event) {
@@ -239,37 +206,50 @@
         </marker>
       </defs>
 
-      <g class="edges">
-        {#each edges as edge}
-          {@const start = getPos(edge.fromId)}
-          {@const end = getPos(edge.toId)}
-          {#if start.x !== 0 && end.x !== 0}
-            <line x1={start.x} y1={start.y} x2={end.x} y2={end.y} class="edge-line" class:manuscript-edge={edge.relation === 'precedes'} marker-end="url(#arrowhead)" />
-          {/if}
-        {/each}
-      </g>
-
-      <g class="nodes">
-        {#each nodes as node}
-          <g 
-            class="node" 
-            transform="translate({node.x}, {node.y})"
-            onmousedown={(e) => handleMouseDown(node, e)}
-            onclick={(e) => toggleNode(node, e)}
-            onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleNode(node, e)}
-            class:selected={selectedNodeId === node.id || multiSelect.includes(node.id)}
-            role="button"
-            tabindex="0"
-            aria-label="Select node {node.label}"
-          >
-            <circle r={node.size} class="node-circle" class:manuscript={node.type === 'manuscript'} class:person={node.type && node.type.includes('Person')} />
-            <text y={node.size + 18} text-anchor="middle" class="node-label">{node.label}</text>
-            {#if multiSelect.includes(node.id)}
-              <circle r={node.size + 5} class="selection-ring" />
-            {/if}
+          <g class="edges">
+            {#each edges as edge}
+              {@const start = getPos(edge.fromId)}
+              {@const end = getPos(edge.toId)}
+              {#if start.x !== 0 && end.x !== 0}
+                <line 
+                  x1={start.x} y1={start.y} x2={end.x} y2={end.y} 
+                  class="edge-line" 
+                  style="stroke: {edge.color || '#e5e5e5'}; stroke-dasharray: {edge.style === 'dashed' ? '4 4' : edge.style === 'dotted' ? '1 3' : 'none'}"
+                  marker-end="url(#arrowhead)" 
+                />
+              {/if}
+            {/each}
           </g>
-        {/each}
-      </g>
+
+          <g class="nodes">
+            {#each nodes as node}
+              <g 
+                class="node" 
+                transform="translate({node.x}, {node.y})"
+                onmousedown={(e) => handleMouseDown(node, e)}
+                onclick={(e) => toggleNode(node, e)}
+                onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleNode(node, e)}
+                class:selected={selectedNodeId === node.id || multiSelect.includes(node.id)}
+                role="button"
+                tabindex="0"
+                aria-label="Select node {node.label}"
+              >
+                <circle 
+                  r={node.size} 
+                  class="node-circle" 
+                  class:manuscript={node.type === 'gh:Manuscript'} 
+                  class:block={node.type === 'gh:Block'}
+                  class:person={node.type && node.type.includes('Person')} 
+                />
+                <text y={node.size + 18} text-anchor="middle" class="node-label">
+                  {node.label}
+                </text>
+                {#if multiSelect.includes(node.id)}
+                  <circle r={node.size + 5} class="selection-ring" />
+                {/if}
+              </g>
+            {/each}
+          </g>
     </svg>
   {/if}
 </div>
@@ -285,11 +265,11 @@
   .tool-btn { background: #f5f5f7; color: #1d1d1f; border: 1px solid #d2d2d7; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
   .tool-btn.action { background: #0071e3; color: white; border: none; box-shadow: 0 4px 12px rgba(0,113,227,0.2); }
   .edge-line { stroke: #e5e5e5; stroke-width: 1.5; fill: none; }
-  .manuscript-edge { stroke: #0071e3; stroke-dasharray: 4 4; opacity: 0.4; }
   .node { cursor: pointer; transition: transform 0.1s linear; pointer-events: all; }
   .node:active { cursor: grabbing; }
   .node-circle { fill: #f5f5f7; stroke: #d2d2d7; stroke-width: 1.5; }
-  .node-circle.manuscript { fill: #eef7ff; stroke: #0071e3; }
+      .node-circle.manuscript { fill: #eef7ff; stroke: #0071e3; }
+      .node-circle.block { fill: #f0fff0; stroke: #34c759; }
       .node-circle.person { fill: #fff0f0; stroke: #ff3b30; }
       .node-label { font-size: 14px; font-weight: 600; fill: #1d1d1f; pointer-events: none; }
       .selection-ring { fill: none; stroke: #0071e3; stroke-width: 2; opacity: 0.6; }

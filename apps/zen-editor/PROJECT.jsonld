@@ -69,11 +69,11 @@
     },
     {
       "name": "Graph Topology Mode",
-      "description": "Live visualization of story entities and relationships extracted from the text."
+      "description": "Live visualization of story entities and relationships. Now supporting Block-level granularity and rich relationship types (contains, precedes, appearsIn, translationOf)."
     },
     {
       "name": "Multi-Agent Interaction (A2A)",
-      "description": "Conversational UI to talk with characters, environments, and objects using Hume AI emotion vectors."
+      "description": "Conversational UI to talk with characters, environments, and objects. Supporting block-level context for precise interactions."
     },
     {
       "name": "Git Versioning",

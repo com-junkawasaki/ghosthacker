@@ -94,18 +94,25 @@
           <p>{multiSelection.length} Entities Selected</p>
           <button class="action-btn" onclick={() => isChatOpen = true}>Start Multi-Agent Chat</button>
         </div>
-      {:else if selectedNode}
-        <div class="detail-card">
-          <h3>Selected Node</h3>
-          <p class="node-label">{selectedNode.label}</p>
-          <p class="node-type">{selectedNode.type}</p>
-          <div class="card-actions">
-            {#if selectedNode.filePath || selectedNode.type === 'manuscript'}
-              <button class="action-btn" onclick={() => isEditorOpen = true}>Edit Content</button>
-            {/if}
-            <button class="action-btn secondary" onclick={() => isChatOpen = true}>Chat with Node</button>
-          </div>
-        </div>
+          {:else if selectedNode}
+            <div class="detail-card">
+              <h3>Selected Node</h3>
+              <p class="node-label">{selectedNode.label}</p>
+              <p class="node-type">{selectedNode.type}</p>
+              
+              {#if selectedNode.content}
+                <div class="node-content-preview">
+                  {selectedNode.content}
+                </div>
+              {/if}
+
+              <div class="card-actions">
+                {#if selectedNode.filePath || selectedNode.type === 'gh:Manuscript' || selectedNode.type === 'manuscript'}
+                  <button class="action-btn" onclick={() => isEditorOpen = true}>Edit Content</button>
+                {/if}
+                <button class="action-btn secondary" onclick={() => isChatOpen = true}>Chat with Node</button>
+              </div>
+            </div>
       {:else}
         <p class="hint">Select nodes in the graph to interact or edit.</p>
       {/if}
@@ -225,9 +232,22 @@
   }
   .detail-card h3 { font-size: 0.7rem; text-transform: uppercase; color: #86868b; margin: 0 0 0.8rem 0; letter-spacing: 0.05em; }
   .node-label { font-weight: 700; font-size: 1.1rem; margin: 0; }
-  .node-type { font-size: 0.75rem; color: #0071e3; margin: 0.2rem 0 1.2rem 0; font-weight: 600; text-transform: capitalize; }
-  
-  .card-actions { display: flex; flex-direction: column; gap: 0.6rem; }
+      .node-type { font-size: 0.75rem; color: #0071e3; margin: 0.2rem 0 1.2rem 0; font-weight: 600; text-transform: capitalize; }
+      
+      .node-content-preview {
+        font-size: 0.85rem;
+        color: #1d1d1f;
+        background: #f5f5f7;
+        padding: 0.8rem;
+        border-radius: 8px;
+        margin-bottom: 1.2rem;
+        max-height: 150px;
+        overflow-y: auto;
+        line-height: 1.5;
+        border: 1px solid #d2d2d7;
+      }
+
+      .card-actions { display: flex; flex-direction: column; gap: 0.6rem; }
   .action-btn { 
     width: 100%; 
     background: #0071e3; 

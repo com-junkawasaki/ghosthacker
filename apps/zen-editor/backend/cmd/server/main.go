@@ -256,6 +256,11 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 	}
 	json.Unmarshal(data, &g)
 	resp := &editorpb.GetTopologyResponse{}
+
+	// ID to Node map for easy lookup
+	nodeMap := make(map[string]*editorpb.Node)
+
+	// 1. Load entities from JSON-LD
 	for _, item := range g.Graph {
 		id, _ := item["@id"].(string)
 		name, _ := item["name"].(string)
@@ -265,13 +270,119 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 			if x, ok := item["gh:x"].(float64); ok {
 				node.X = float32(x)
 			}
-			if y, ok := item["gh:y"].(float64); ok {
+			if y, ok := item["gh:y"].(float32); ok {
 				node.Y = float32(y)
 			}
+			nodeMap[id] = node
 			resp.Nodes = append(resp.Nodes, node)
 		}
 	}
-	
+
+	// 2. Load Manuscript and Blocks dynamically
+	manifestPath := filepath.Join(s.WorkspaceRoot, "251022/wattpad/manifest.json")
+	mdata, err := os.ReadFile(manifestPath)
+	if err == nil {
+		var m struct {
+			Episodes []struct {
+				ID    string   `json:"id"`
+				Files []string `json:"files"`
+			} `json:"episodes"`
+		}
+		json.Unmarshal(mdata, &m)
+		for _, ep := range m.Episodes {
+			for _, file := range ep.Files {
+				mNodeID := fmt.Sprintf("manuscript:%s:%s", ep.ID, file)
+				mNode := &editorpb.Node{
+					Id:    mNodeID,
+					Label: file,
+					Type:  "gh:Manuscript",
+				}
+				// Try to restore position from LayoutStub if exists
+				if stub, ok := nodeMap[mNodeID]; ok {
+					mNode.X = stub.X
+					mNode.Y = stub.Y
+				}
+				resp.Nodes = append(resp.Nodes, mNode)
+
+				// Extract blocks
+				filePath := filepath.Join(s.WorkspaceRoot, "251022/wattpad/", file)
+				fcontent, ferr := os.ReadFile(filePath)
+				if ferr == nil {
+					blocks := strings.Split(string(fcontent), "\n\n")
+					var prevBlockID string
+					for bIdx, bContent := range blocks {
+						bContent = strings.TrimSpace(bContent)
+						if bContent == "" {
+							continue
+						}
+						bNodeID := fmt.Sprintf("block:%s:%s:%d", ep.ID, file, bIdx)
+						shortLabel := bContent
+						if len(shortLabel) > 20 {
+							shortLabel = shortLabel[:20] + "..."
+						}
+						bNode := &editorpb.Node{
+							Id:      bNodeID,
+							Label:   shortLabel,
+							Type:    "gh:Block",
+							Content: bContent,
+						}
+						resp.Nodes = append(resp.Nodes, bNode)
+
+						// Link: Manuscript contains Block
+						resp.Edges = append(resp.Edges, &editorpb.Edge{
+							FromId:   mNodeID,
+							ToId:     bNodeID,
+							Relation: "gh:contains",
+							Style:    "dashed",
+							Color:    "#d2d2d7",
+						})
+
+						// Link: Sequential blocks
+						if prevBlockID != "" {
+							resp.Edges = append(resp.Edges, &editorpb.Edge{
+								FromId:   prevBlockID,
+								ToId:     bNodeID,
+								Relation: "gh:precedes",
+								Style:    "solid",
+								Color:    "#0071e3",
+							})
+						}
+						prevBlockID = bNodeID
+
+						// Link: Detect translation
+						if strings.HasSuffix(file, ".en.md") {
+							jaFile := strings.Replace(file, ".en.md", ".md", 1)
+							jaNodeID := fmt.Sprintf("manuscript:%s:%s", ep.ID, jaFile)
+							resp.Edges = append(resp.Edges, &editorpb.Edge{
+								FromId:   mNodeID,
+								ToId:     jaNodeID,
+								Relation: "gh:translationOf",
+								Style:    "dotted",
+								Color:    "#34c759",
+							})
+						}
+
+						// Link: Character/Setting mentioned in Block
+						for _, ent := range resp.Nodes {
+							if ent.Type == "Person" || ent.Type == "Place" {
+								if strings.Contains(bContent, ent.Label) {
+									resp.Edges = append(resp.Edges, &editorpb.Edge{
+										FromId:   ent.Id,
+										ToId:     bNodeID,
+										Relation: "gh:appearsIn",
+										Style:    "dotted",
+										Color:    "#ff9500",
+									})
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// 3. Add default emotions nodes if missing
 	for nodeID := range s.NodeEmotions {
 		found := false
 		for _, n := range resp.Nodes {
