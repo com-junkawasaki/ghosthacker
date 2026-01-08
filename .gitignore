@@ -1,1 +1,21 @@
-/node_modules
+# Dependencies
+node_modules/
+/vendor/
+
+# Build artifacts
+dist/
+build/
+bin/
+target/
+.svelte-kit/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+
+# Logs
+*.log
