@@ -268,8 +268,8 @@
       "gh:ghost": {
         "@id": "character:Nei-chan"
       },
-      "gh:x": 649.7209950739841,
-      "gh:y": 407.3156767148271,
+      "gh:x": 649.721,
+      "gh:y": 407.31567,
       "knows": [
         {
           "@id": "character:kaede"
@@ -309,8 +309,8 @@
       "gh:master": {
         "@id": "character:tamaki"
       },
-      "gh:x": 648.8850182125861,
-      "gh:y": 414.6041386317798,
+      "gh:x": 648.885,
+      "gh:y": 414.60413,
       "name": "Nei-Chan"
     },
     {
@@ -320,8 +320,8 @@
       "alternateName": "काएदे शर्मा",
       "description": "37歳、女性、インド・日本ハーフ。頼れる先輩Ghost Hacker。ToL臨床リード（\"Upanishad\"）としてTamakiの上司。ケースリード・倫理境界を担当。",
       "gh:callsign": "UPA",
-      "gh:x": 647.4951793046379,
-      "gh:y": 421.83827219381936,
+      "gh:x": 647.4952,
+      "gh:y": 421.8383,
       "knows": [
         {
           "@id": "character:tamaki"
@@ -347,8 +347,8 @@
       "alternateName": "鳴神 葵",
       "description": "22歳、男性、日本出身。純朴で可愛い青年。駆け出しのGhost Hacker。心がまっすぐで、澄んだ\"スッキリ感\"を持つ。困難の前でも正直に向き合い、他者の自由を尊重する姿勢が核にある。ログ観測・可視化を担当。",
       "gh:callsign": "SKY",
-      "gh:x": 645.5566486421616,
-      "gh:y": 428.9911659489556,
+      "gh:x": 645.55664,
+      "gh:y": 428.99118,
       "knows": [
         {
           "@id": "character:tamaki"
@@ -374,8 +374,8 @@
       "alternateName": "如月 彰人",
       "description": "67歳、男性、日本・台湾出身。天才プログラマー。Nei-Chanを作成した人物。設計・臨床監督を担当。",
       "gh:callsign": "ROOT",
-      "gh:x": 643.0766376865449,
-      "gh:y": 436.03621066261576,
+      "gh:x": 643.07666,
+      "gh:y": 436.03622,
       "name": "Akito Kisaragi",
       "occupation": [
         "Genius Programmer / Clinical Supervisor",
@@ -393,8 +393,8 @@
       "alternateName": "響 オリヴェイラ",
       "description": "33歳、男性、ブラジル出身。音楽スペシャリスト。儀礼・周波数同調を担当し、空間周波数を調整してハッカーとGhostの精神を安定させる。",
       "gh:callsign": "SERPENTE",
-      "gh:x": 640.0643722414303,
-      "gh:y": 442.947198305745,
+      "gh:x": 640.0644,
+      "gh:y": 442.9472,
       "name": "Hibiki Oliveira",
       "occupation": [
         "Music Specialist / Ritual Coordinator",
@@ -409,8 +409,8 @@
       "gh:ghost": {
         "@id": "character:logos"
       },
-      "gh:x": 636.5310581321199,
-      "gh:y": 449.6984195503958,
+      "gh:x": 636.53107,
+      "gh:y": 449.69843,
       "name": "Elias",
       "occupation": "Physicist"
     },
@@ -425,8 +425,8 @@
       "gh:master": {
         "@id": "character:elias"
       },
-      "gh:x": 632.4898395191691,
-      "gh:y": 456.26475941011637,
+      "gh:x": 632.48987,
+      "gh:y": 456.26477,
       "name": "Logos"
     },
     {
@@ -434,8 +434,8 @@
       "@type": "Person",
       "description": "自己と世界を分離して考え、無限に続く輪廻（自己の永続）を苦痛として恐れるクライアント。",
       "gh:role": "Client",
-      "gh:x": 627.9557500012462,
-      "gh:y": 462.62179066935,
+      "gh:x": 627.95575,
+      "gh:y": 462.6218,
       "name": "Dualist Client"
     },
     {
@@ -443,8 +443,8 @@
       "@type": "Place",
       "description": "運河と川が縦横に走る水の街。沖縄の海のように澄んだ青い水。未来の東京で、ガラス張りの超高層ビルが立ち並ぶ。都市インフラは光による伝送・計算が一般化しており、街路・水路・建物に編み込まれた光の網が、人とGhostの往来を静かに支えている。2050年には温暖化対策として20世紀に築かれた高架道路を撤去し、運河と緑を中心とする都市へ再編。都市外周には、なお2000年代の風景も残存する。",
       "gh:hazardNote": "海面上昇（+4m想定）、大地震、台風大型化により都市設計を見直し。低地は水際線を後退させ、運河・緑・静域でレジリエンスを確保。",
-      "gh:x": 622.9456566891579,
-      "gh:y": 468.74586475428106,
+      "gh:x": 622.9457,
+      "gh:y": 468.74585,
       "gh:year": 2065,
       "name": "Tokyo (水の都)"
     },
@@ -457,64 +457,64 @@
         "Artificial Intelligence",
         "Alien"
       ],
-      "gh:x": 617.4781974590891,
-      "gh:y": 474.61419970708323,
+      "gh:x": 617.4782,
+      "gh:y": 474.6142,
       "name": "Ghost Concept"
     },
     {
       "@id": "occupation:deamon-hunter",
       "@type": "Intangible",
       "description": "他者のリソースを束縛し、過剰に消費するghostであるDeamonを狩る職業。",
-      "gh:x": 611.5737116184794,
-      "gh:y": 480.2049649362986,
+      "gh:x": 611.5737,
+      "gh:y": 480.20496,
       "name": "Deamon Hunter"
     },
     {
       "@id": "occupation:zombie-killer",
       "@type": "Intangible",
       "description": "リソースを解放せず、消費しかしないghostであるZombieを狩る職業。",
-      "gh:x": 605.254164242464,
-      "gh:y": 485.4973624280718,
+      "gh:x": 605.25415,
+      "gh:y": 485.49738,
       "name": "Zombie Killer"
     },
     {
       "@id": "society:labor-automation",
       "@type": "Intangible",
       "description": "AIとロボティクスにより代替が進み、生活基盤は安定。多くの人が『貧窮』から解放され、学習・創造・ケアに時間を振り向ける。",
-      "gh:x": 598.5430644623507,
-      "gh:y": 490.4717041161277,
+      "gh:x": 598.5431,
+      "gh:y": 490.4717,
       "name": "Labor Automation"
     },
     {
       "@id": "culture:post-work",
       "@type": "Intangible",
       "description": "仕事中心から関係中心へ。静けさ・ケア・共同体への参加が価値として再評価される。",
-      "gh:x": 591.4653780101081,
-      "gh:y": 495.1094851226708,
+      "gh:x": 591.4654,
+      "gh:y": 495.1095,
       "name": "Post-work Culture"
     },
     {
       "@id": "issue:cross-border-friction",
       "@type": "Intangible",
       "description": "国境・文化・価値観の差異に起因する摩擦は依然として存在。対話・合意形成の制度設計が重要。",
-      "gh:x": 584.0474343442025,
-      "gh:y": 499.39345259774643,
+      "gh:x": 584.0474,
+      "gh:y": 499.39346,
       "name": "Cross-border/Cultural Friction"
     },
     {
       "@id": "issue:environmental-challenges",
       "@type": "Intangible",
       "description": "気候変動や生態系の回復はなお継続課題。都市の再編と静かな日常の両立が試されている。",
-      "gh:x": 576.316828702283,
-      "gh:y": 503.3076699009753,
+      "gh:x": 576.31683,
+      "gh:y": 503.30768,
       "name": "Environmental Challenges"
     },
     {
       "@id": "policy:tokyo-2050-canal-green",
       "@type": "Intangible",
       "description": "2050年、温暖化対策として高架道路を撤去し、運河と緑へ都市を転換。外周には過去の景観が残り、時間のレイヤが共存する。",
-      "gh:x": 568.3023194450857,
-      "gh:y": 506.8375758869029,
+      "gh:x": 568.3023,
+      "gh:y": 506.8376,
       "name": "Tokyo 2050 Canal \u0026 Green Policy"
     },
     {
@@ -522,8 +522,8 @@
       "@type": "Intangible",
       "description": "高出力AIの推論・出力はリスクとして扱われ、計算リソースは強く制御・監視される。高い計算量は核施設・核兵器に準じた安全枠組みで監督され、段階的な審査・監査・追跡可能性が義務化される。",
       "gh:securityNote": "閾値越えのジョブは多重承認と監査証跡を要求。緊急停止・隔離の手順を標準化。",
-      "gh:x": 560.0337210734417,
-      "gh:y": 509.9700390734166,
+      "gh:x": 560.0337,
+      "gh:y": 509.97003,
       "name": "AI Compute Governance"
     },
     {
@@ -531,8 +531,8 @@
       "@type": "Intangible",
       "description": "一方で、分散型技術に基づくAIインフラも普及。強国の武力による一元的制御ではなく、分散アルゴリズムによる合意形成で資源配分・検証・安心の担保を図る。",
       "gh:operationalNote": "合意は軽量で再帰的。地域ノードが自律しつつ相互監査を行う。",
-      "gh:x": 551.5417933163769,
-      "gh:y": 512.6934064917216,
+      "gh:x": 551.5418,
+      "gh:y": 512.6934,
       "name": "Decentralized AI Infrastructure"
     },
     {
@@ -540,8 +540,8 @@
       "@type": "Intangible",
       "description": "計算クォータの割当と消費を記録する共有台帳。監視主体・事業者・市民監査が読み出せ、過剰な集中や秘匿的な集積を検知する。",
       "gh:infraNote": "光ネット上の時刻同期で改竄耐性を確保し、近傍キャッシュで遅延を抑制。",
-      "gh:x": 542.8581267028994,
-      "gh:y": 514.9975470361505,
+      "gh:x": 542.85815,
+      "gh:y": 514.99756,
       "name": "Compute Quota Ledger"
     },
     {
@@ -559,56 +559,56 @@
           "@id": "tech:compute-quota-ledger"
         }
       ],
-      "gh:x": 534.0150250431561,
-      "gh:y": 516.8738891525418,
+      "gh:x": 534.015,
+      "gh:y": 516.8739,
       "name": "AI Governance Bundle"
     },
     {
       "@id": "scenario:sea-level-rise-4m",
       "@type": "Intangible",
       "description": "長期スケールで海面上昇が+4mに達した世界。デルタ低地・港湾都市は恒常浸水域が拡大し、数億人規模の再都市化が必要。防御可能な都市と撤退・移転を迫られる地域の差が拡大。",
-      "gh:x": 525.0453852561383,
-      "gh:y": 518.3154527249836,
+      "gh:x": 525.0454,
+      "gh:y": 518.3154,
       "name": "Sea Level Rise +4m"
     },
     {
       "@id": "risk:asia-delta",
       "@type": "Intangible",
       "description": "メコン・ガンジス・揚子江デルタなど海抜1–3m帯が広がる地域。都市・農地・港湾が一体で浸水リスクに晒される。",
-      "gh:x": 515.9825749909814,
-      "gh:y": 519.3168750423044,
+      "gh:x": 515.9826,
+      "gh:y": 519.3169,
       "name": "Asia Delta Risk"
     },
     {
       "@id": "risk:europe-lowlands",
       "@type": "Intangible",
       "description": "低地国家・河口域の堤防システムが設計限界に接近。防潮門の再設計と恒常投資が必須。",
-      "gh:x": 506.8603084971192,
-      "gh:y": 519.8744307477102,
+      "gh:x": 506.86032,
+      "gh:y": 519.87445,
       "name": "Europe Lowlands Risk"
     },
     {
       "@id": "risk:americas-coastal",
       "@type": "Intangible",
       "description": "空港・地下鉄などインフラ被害が深刻化。石灰岩地盤では防潮壁の効果が限定。",
-      "gh:x": 497.71252120506114,
-      "gh:y": 519.9860456973565,
+      "gh:x": 497.71252,
+      "gh:y": 519.986,
       "name": "Americas Coastal Risk"
     },
     {
       "@id": "risk:africa-middleeast",
       "@type": "Intangible",
       "description": "デルタ農業地帯の塩害・人口移動が広域に波及。",
-      "gh:x": 488.5732434843623,
-      "gh:y": 519.6513046762997,
+      "gh:x": 488.57324,
+      "gh:y": 519.6513,
       "name": "Africa/MiddleEast Coastal Risk"
     },
     {
       "@id": "risk:pacific-islands",
       "@type": "Intangible",
       "description": "島嶼国は国家存続・移住の政策課題へ。文化・主権の扱いが国際合意の焦点。",
-      "gh:x": 479.4764740484135,
-      "gh:y": 518.8714529431239,
+      "gh:x": 479.47647,
+      "gh:y": 518.87146,
       "name": "Pacific Islands Risk"
     },
     {
@@ -635,8 +635,8 @@
           "@id": "risk:pacific-islands"
         }
       ],
-      "gh:x": 470.4560534769941,
-      "gh:y": 517.6493915974974,
+      "gh:x": 470.45605,
+      "gh:y": 517.6494,
       "name": "Sea Level +4m Risk Bundle"
     },
     {
@@ -644,8 +644,8 @@
       "@type": "Event",
       "description": "Rapid multi‑meter global mean sea‑level rise (~+4 m) following Arctic ice‑sheet collapse, returning Tokyo to a city of water.",
       "endDate": "2059-12-31",
-      "gh:x": 461.545538327093,
-      "gh:y": 515.9896667878912,
+      "gh:x": 461.54553,
+      "gh:y": 515.9897,
       "name": "Great Transgression (Event +4 m)",
       "sameAs": [
         {
@@ -665,8 +665,8 @@
       "gh:certification": {
         "@id": "tech:tree-of-life-exam"
       },
-      "gh:x": 452.7780763003123,
-      "gh:y": 513.8984527996081,
+      "gh:x": 452.77808,
+      "gh:y": 513.89844,
       "name": "Ghost Hacking"
     },
     {
@@ -675,8 +675,8 @@
       "description": "Ghostを計算科学的に可視・物質化し、変性意識状態（ASC）下で意識重ね合わせを支援する医療デバイス。オンラインSession対応。",
       "gh:infraNote": "都市の光ネットと同期して微小遅延を抑制。近傍にASC制御帯を形成して安定化。",
       "gh:operationalNote": "現場では雑音の遮断を優先し、深度上げはセッション合図後に段階的に行う。",
-      "gh:x": 444.1862829312404,
-      "gh:y": 511.38352908603594,
+      "gh:x": 444.18628,
+      "gh:y": 511.3835,
       "name": "SIP (Spirit in Physics) Device"
     },
     {
@@ -685,8 +685,8 @@
       "description": "VR様の1024次元情報空間。Ghostは暗号化され、特権昇格やオーバーフロー探索によりdaemon processを特定し、kill→/dev/nullでrelease。情報場はオングストローム級周波数帯で観測される。",
       "gh:infraNote": "計算要求は分散して光経路に割付、可視化レイヤは近傍にキャッシュ。",
       "gh:securityNote": "深度域は階層的に分離し、境界越えはワンウェイ・ゲートでログ化。",
-      "gh:x": 435.80212025552106,
-      "gh:y": 508.45425132856985,
+      "gh:x": 435.80212,
+      "gh:y": 508.45425,
       "name": "Memory Space (1024D)"
     },
     {
@@ -695,32 +695,32 @@
       "description": "個別Session以外に常時運用されるゾンビプロセス退治プログラム。社会インフラのmeme感染を抑止。",
       "gh:infraNote": "光経路に沿った広域スキャンで『循環ノイズ』を抽出し、低干渉帯へ流して減衰。",
       "gh:operationalNote": "除去よりも隔離→自然減衰を優先。戻れる線は残す。",
-      "gh:x": 427.65677790898155,
-      "gh:y": 505.1215166328632,
+      "gh:x": 427.65677,
+      "gh:y": 505.12152,
       "name": "Zombie Process Sweeper"
     },
     {
       "@id": "tech:household-robotics",
       "@type": "Intangible",
       "description": "家庭・介護・日常業務を担う汎用ロボット群。人の尊厳と自由時間を増やす設計が標準。",
-      "gh:x": 419.7805571001389,
-      "gh:y": 501.3977229908788,
+      "gh:x": 419.78055,
+      "gh:y": 501.39774,
       "name": "Household/Personal Robotics"
     },
     {
       "@id": "tech:public-service-autonomy",
       "@type": "Intangible",
       "description": "清掃・輸送・インフラ保全など公共サービスの自律運用。人は調整・監督・合意形成へ。",
-      "gh:x": 412.2027578877137,
-      "gh:y": 497.29672315954434,
+      "gh:x": 412.20276,
+      "gh:y": 497.29672,
       "name": "Public Service Autonomy"
     },
     {
       "@id": "tech:consent-mediator",
       "@type": "Intangible",
       "description": "合意のための対話補助エージェント。関係の温度を下げ、選択肢を増やす対話設計を提示。",
-      "gh:x": 404.9515701824877,
-      "gh:y": 492.83377312758694,
+      "gh:x": 404.95157,
+      "gh:y": 492.83377,
       "name": "Consent Mediator"
     },
     {
@@ -738,8 +738,8 @@
           "@id": "tech:consent-mediator"
         }
       ],
-      "gh:x": 398.05396887898394,
-      "gh:y": 488.025475362253,
+      "gh:x": 398.05396,
+      "gh:y": 488.02548,
       "name": "Automation \u0026 Care Bundle"
     },
     {
@@ -758,16 +758,16 @@
         }
       ],
       "gh:operationalNote": "名称は前面に出さず、生活の背後で“静かに効く”設計思想。",
-      "gh:x": 391.5356135070873,
-      "gh:y": 482.88971704703954,
+      "gh:x": 391.5356,
+      "gh:y": 482.8897,
       "name": "Urban Light Infrastructure Bundle"
     },
     {
       "@id": "tech:tree-of-life-exam",
       "@type": "Intangible",
       "description": "Ghost Hackerの国家資格試験。2回の試験があり、非常に難しい。合格しないと職業につけない。",
-      "gh:x": 385.4207527769083,
-      "gh:y": 477.44560354019694,
+      "gh:x": 385.42075,
+      "gh:y": 477.44562,
       "name": "TOL (Tree of Life) Certification"
     },
     {
@@ -785,8 +785,8 @@
         }
       ],
       "gh:operationalNote": "クライアント近傍でASC制御帯を一時調整し、負荷と揺らぎを緩和。",
-      "gh:x": 379.7321343719884,
-      "gh:y": 471.7133873015411,
+      "gh:x": 379.73215,
+      "gh:y": 471.71338,
       "name": "Schwa"
     },
     {
@@ -800,8 +800,8 @@
         }
       ],
       "gh:securityNote": "観測データは最小化・匿名化し、復路でのみ再結合する設計。",
-      "gh:x": 374.4909203264237,
-      "gh:y": 465.714392551973,
+      "gh:x": 374.4909,
+      "gh:y": 465.7144,
       "name": "ToL (Tree of Life)",
       "sponsor": [
         {
@@ -818,71 +818,71 @@
     {
       "@id": "organization:jpn-nsc",
       "@type": "Organization",
-      "gh:x": 369.7166083007077,
-      "gh:y": 459.4709359459763,
+      "gh:x": 369.7166,
+      "gh:y": 459.47095,
       "name": "国家安全保障会議 (NSC)"
     },
     {
       "@id": "organization:mhlw",
       "@type": "Organization",
-      "gh:x": 365.4269590491539,
-      "gh:y": 453.0062435521969,
+      "gh:x": 365.42697,
+      "gh:y": 453.00626,
       "name": "厚生労働省 (MHLW)"
     },
     {
       "@id": "organization:imperial-household",
       "@type": "Organization",
-      "gh:x": 361.6379303487231,
-      "gh:y": 446.34436445094195,
+      "gh:x": 361.63794,
+      "gh:y": 446.34436,
       "name": "宮内庁"
     },
     {
       "@id": "organization:tol-hermeneutics",
       "@type": "Organization",
-      "gh:x": 358.3636176350452,
-      "gh:y": 439.5100812700218,
+      "gh:x": 358.36362,
+      "gh:y": 439.51007,
       "name": "ToL Hermeneutics"
     },
     {
       "@id": "organization:tol-zen",
       "@type": "Organization",
-      "gh:x": 355.6162015664726,
-      "gh:y": 432.5288179917467,
+      "gh:x": 355.6162,
+      "gh:y": 432.5288,
       "name": "ToL Zen"
     },
     {
       "@id": "organization:tol-amazon",
       "@type": "Organization",
-      "gh:x": 353.40590271123125,
-      "gh:y": 425.4265453740425,
+      "gh:x": 353.4059,
+      "gh:y": 425.42654,
       "name": "ToL Amazon"
     },
     {
       "@id": "organization:tol-native",
       "@type": "Organization",
-      "gh:x": 351.7409435262356,
-      "gh:y": 418.2296843375261,
+      "gh:x": 351.74094,
+      "gh:y": 418.22968,
       "name": "ToL Native"
     },
     {
       "@id": "organization:tol-psychedelic",
       "@type": "Organization",
-      "gh:x": 350.6275177690086,
-      "gh:y": 410.9650076779446,
+      "gh:x": 350.62753,
+      "gh:y": 410.965,
       "name": "ToL Psychedelic"
     },
     {
       "@id": "organization:tol-psychology",
       "@type": "Organization",
-      "gh:x": 350.0697674564973,
-      "gh:y": 403.65954046961696,
+      "gh:x": 350.06976,
+      "gh:y": 403.65955,
       "name": "ToL Psychology"
     },
     {
       "@id": "organization:tol-comics",
       "@type": "Organization",
-      "gh:x": 350.0697674564973,
-      "gh:y": 396.34045953038304,
+      "gh:x": 350.06976,
+      "gh:y": 396.34045,
       "name": "ToL Narrative/Comics"
     },
     {
@@ -895,8 +895,8 @@
         "@id": "ghost:barrier-architect"
       },
       "gh:persona": "分離の建築家",
-      "gh:x": 350.6275177690086,
-      "gh:y": 389.0349923220555,
+      "gh:x": 350.62753,
+      "gh:y": 389.035,
       "name": "Yael Ben-Ami",
       "occupation": [
         "Policy Advisor (Separation \u0026 Security)",
@@ -914,8 +914,8 @@
       "gh:master": {
         "@id": "character:yael-ben-ami"
       },
-      "gh:x": 351.7409435262356,
-      "gh:y": 381.77031566247393,
+      "gh:x": 351.74094,
+      "gh:y": 381.77032,
       "name": "Barrier Architect"
     },
     {
@@ -928,8 +928,8 @@
         "@id": "ghost:house-of-keys"
       },
       "gh:persona": "鍵の家の守護者",
-      "gh:x": 353.40590271123125,
-      "gh:y": 374.5734546259575,
+      "gh:x": 353.4059,
+      "gh:y": 374.57346,
       "name": "Nabil Al-Khalil",
       "occupation": [
         "Record Keeper",
@@ -947,8 +947,8 @@
       "gh:master": {
         "@id": "character:nabil-al-khalil"
       },
-      "gh:x": 355.61620156647257,
-      "gh:y": 367.4711820082533,
+      "gh:x": 355.6162,
+      "gh:y": 367.4712,
       "name": "House of Keys"
     },
     {
@@ -961,8 +961,8 @@
         "@id": "ghost:paper-walls"
       },
       "gh:persona": "名なき者の記録者",
-      "gh:x": 358.3636176350452,
-      "gh:y": 360.4899187299782,
+      "gh:x": 358.36362,
+      "gh:y": 360.48993,
       "name": "Mina Cho",
       "occupation": [
         "Journalist",
@@ -980,8 +980,8 @@
       "gh:master": {
         "@id": "character:mina-cho"
       },
-      "gh:x": 361.6379303487231,
-      "gh:y": 353.65563554905816,
+      "gh:x": 361.63794,
+      "gh:y": 353.65564,
       "name": "Paper Walls"
     },
     {
@@ -994,8 +994,8 @@
         "@id": "ghost:mirror-soldier"
       },
       "gh:persona": "分裂した兵士",
-      "gh:x": 365.4269590491539,
-      "gh:y": 346.9937564478032,
+      "gh:x": 365.42697,
+      "gh:y": 346.99374,
       "name": "Diego Ortega",
       "occupation": [
         "Former Soldier",
@@ -1013,8 +1013,8 @@
       "gh:master": {
         "@id": "character:diego-ortega"
       },
-      "gh:x": 369.71660830070766,
-      "gh:y": 340.52906405402376,
+      "gh:x": 369.7166,
+      "gh:y": 340.52905,
       "name": "Mirror Soldier"
     },
     {
@@ -1027,8 +1027,8 @@
         "@id": "ghost:silent-pulpit"
       },
       "gh:persona": "沈黙の羊飼い",
-      "gh:x": 374.49092032642363,
-      "gh:y": 334.2856074480271,
+      "gh:x": 374.4909,
+      "gh:y": 334.2856,
       "name": "Father Markus Petrescu",
       "occupation": [
         "Priest",
@@ -1046,8 +1046,8 @@
       "gh:master": {
         "@id": "character:markus-petrescu"
       },
-      "gh:x": 379.73213437198837,
-      "gh:y": 328.28661269845895,
+      "gh:x": 379.73215,
+      "gh:y": 328.28662,
       "name": "Silent Pulpit"
     },
     {
@@ -1060,8 +1060,8 @@
         "@id": "ghost:rage-engine"
       },
       "gh:persona": "フィードの管理者",
-      "gh:x": 385.4207527769082,
-      "gh:y": 322.5543964598031,
+      "gh:x": 385.42075,
+      "gh:y": 322.55438,
       "name": "Anika Bose",
       "occupation": [
         "Platform Safety Officer",
@@ -1079,8 +1079,8 @@
       "gh:master": {
         "@id": "character:anika-bose"
       },
-      "gh:x": 391.5356135070873,
-      "gh:y": 317.11028295296046,
+      "gh:x": 391.5356,
+      "gh:y": 317.1103,
       "name": "Rage Engine"
     },
     {
@@ -1094,8 +1094,8 @@
         "@id": "ghost:john-locke"
       },
       "gh:role": "Antagonist",
-      "gh:x": 398.053968878984,
-      "gh:y": 311.974524637747,
+      "gh:x": 398.05396,
+      "gh:y": 311.97452,
       "name": "Lachlan Keyes",
       "nationality": "Australian",
       "occupation": "Orbital Facilities Security Architect"
@@ -1111,8 +1111,8 @@
       "gh:master": {
         "@id": "character:lachlan-keyes"
       },
-      "gh:x": 404.95157018248767,
-      "gh:y": 307.16622687241306,
+      "gh:x": 404.95157,
+      "gh:y": 307.16623,
       "name": "The Fortress of Self"
     },
     {
@@ -1126,8 +1126,8 @@
         "@id": "ghost:adam-smith"
       },
       "gh:role": "Antagonist",
-      "gh:x": 412.20275788771374,
-      "gh:y": 302.70327684045566,
+      "gh:x": 412.20276,
+      "gh:y": 302.70328,
       "knows": [
         {
           "@id": "character:millia-stuart"
@@ -1148,8 +1148,8 @@
       "gh:master": {
         "@id": "character:leo-kazan"
       },
-      "gh:x": 419.78055710013894,
-      "gh:y": 298.60227700912117,
+      "gh:x": 419.78055,
+      "gh:y": 298.60226,
       "name": "The Invisible Hand"
     },
     {
@@ -1168,8 +1168,8 @@
         }
       ],
       "gh:role": "Antagonist",
-      "gh:x": 427.65677790898155,
-      "gh:y": 294.8784833671368,
+      "gh:x": 427.65677,
+      "gh:y": 294.87848,
       "knows": [
         {
           "@id": "character:leo-kazan"
@@ -1190,8 +1190,8 @@
       "gh:master": {
         "@id": "character:millia-stuart"
       },
-      "gh:x": 435.80212025552106,
-      "gh:y": 291.5457486714302,
+      "gh:x": 435.80212,
+      "gh:y": 291.54575,
       "name": "The Liberty Bell"
     },
     {
@@ -1205,8 +1205,8 @@
       "gh:master": {
         "@id": "character:millia-stuart"
       },
-      "gh:x": 444.1862829312403,
-      "gh:y": 288.6164709139641,
+      "gh:x": 444.18628,
+      "gh:y": 288.6165,
       "name": "祖霊の鎖 (The Ancestors' Chain)"
     },
     {
@@ -1218,8 +1218,8 @@
       "gender": "Female",
       "gh:callsign": "SCALPEL",
       "gh:role": "Supporter",
-      "gh:x": 452.7780763003123,
-      "gh:y": 286.1015472003919,
+      "gh:x": 452.77808,
+      "gh:y": 286.10153,
       "memberOf": {
         "@id": "organization:tol"
       },
@@ -1233,8 +1233,8 @@
       "gender": "Male",
       "gh:callsign": "ATMAN",
       "gh:role": "Supporter",
-      "gh:x": 461.54553832709297,
-      "gh:y": 284.0103332121088,
+      "gh:x": 461.54553,
+      "gh:y": 284.01035,
       "memberOf": {
         "@id": "organization:tol-hermeneutics"
       },
@@ -1253,8 +1253,8 @@
       "gender": "Female",
       "gh:callsign": "BRAHMAN",
       "gh:role": "Supporter",
-      "gh:x": 470.4560534769941,
-      "gh:y": 282.3506084025026,
+      "gh:x": 470.45605,
+      "gh:y": 282.35062,
       "memberOf": {
         "@id": "organization:tol-hermeneutics"
       },
@@ -1273,8 +1273,8 @@
       "gender": "Non-binary",
       "gh:callsign": "LOGOS",
       "gh:role": "Supporter",
-      "gh:x": 479.4764740484134,
-      "gh:y": 281.12854705687613,
+      "gh:x": 479.47647,
+      "gh:y": 281.12854,
       "memberOf": {
         "@id": "organization:tol-hermeneutics"
       },
@@ -1293,8 +1293,8 @@
       "gender": "Male",
       "gh:callsign": "TAO",
       "gh:role": "Supporter",
-      "gh:x": 488.57324348436225,
-      "gh:y": 280.3486953237003,
+      "gh:x": 488.57324,
+      "gh:y": 280.3487,
       "memberOf": {
         "@id": "organization:tol-hermeneutics"
       },
@@ -1313,8 +1313,8 @@
       "gender": "Female",
       "gh:callsign": "WUWEI",
       "gh:role": "Supporter",
-      "gh:x": 497.712521205061,
-      "gh:y": 280.01395430264347,
+      "gh:x": 497.71252,
+      "gh:y": 280.01395,
       "memberOf": {
         "@id": "organization:tol-hermeneutics"
       },
@@ -1333,8 +1333,8 @@
       "gender": "Non-binary",
       "gh:callsign": "KERNEL",
       "gh:role": "Supporter",
-      "gh:x": 506.8603084971192,
-      "gh:y": 280.1255692522897,
+      "gh:x": 506.86032,
+      "gh:y": 280.12558,
       "memberOf": {
         "@id": "organization:tol-zen"
       },
@@ -1353,8 +1353,8 @@
       "gender": "Male",
       "gh:callsign": "MANDALA",
       "gh:role": "Supporter",
-      "gh:x": 515.9825749909814,
-      "gh:y": 280.68312495769555,
+      "gh:x": 515.9826,
+      "gh:y": 280.68314,
       "memberOf": {
         "@id": "organization:tol-hermeneutics"
       },
@@ -1373,8 +1373,8 @@
       "gender": "Female",
       "gh:callsign": "TIANTAI",
       "gh:role": "Supporter",
-      "gh:x": 525.0453852561383,
-      "gh:y": 281.68454727501637,
+      "gh:x": 525.0454,
+      "gh:y": 281.68454,
       "memberOf": {
         "@id": "organization:tol-hermeneutics"
       },
@@ -1393,8 +1393,8 @@
       "gender": "Male",
       "gh:callsign": "KOAN",
       "gh:role": "Supporter",
-      "gh:x": 534.0150250431561,
-      "gh:y": 283.1261108474582,
+      "gh:x": 534.015,
+      "gh:y": 283.1261,
       "memberOf": {
         "@id": "organization:tol-zen"
       },
@@ -1413,8 +1413,8 @@
       "gender": "Female",
       "gh:callsign": "ZAZEN",
       "gh:role": "Supporter",
-      "gh:x": 542.8581267028993,
-      "gh:y": 285.0024529638494,
+      "gh:x": 542.85815,
+      "gh:y": 285.00244,
       "memberOf": {
         "@id": "organization:tol-zen"
       },
@@ -1433,8 +1433,8 @@
       "gender": "Male",
       "gh:callsign": "EVANGEL",
       "gh:role": "Supporter",
-      "gh:x": 551.5417933163769,
-      "gh:y": 287.3065935082784,
+      "gh:x": 551.5418,
+      "gh:y": 287.30658,
       "memberOf": {
         "@id": "organization:tol-zen"
       },
@@ -1453,8 +1453,8 @@
       "gender": "Non-binary",
       "gh:callsign": "TRANSLATOR",
       "gh:role": "Supporter",
-      "gh:x": 560.0337210734417,
-      "gh:y": 290.0299609265834,
+      "gh:x": 560.0337,
+      "gh:y": 290.02997,
       "memberOf": {
         "@id": "organization:tol-zen"
       },
@@ -1473,8 +1473,8 @@
       "gender": "Female",
       "gh:callsign": "ARCHETYPE",
       "gh:role": "Supporter",
-      "gh:x": 568.3023194450856,
-      "gh:y": 293.162424113097,
+      "gh:x": 568.3023,
+      "gh:y": 293.1624,
       "memberOf": {
         "@id": "organization:tol-psychology"
       },
@@ -1493,8 +1493,8 @@
       "gender": "Female",
       "gh:callsign": "EMPTINESS",
       "gh:role": "Supporter",
-      "gh:x": 576.316828702283,
-      "gh:y": 296.6923300990246,
+      "gh:x": 576.31683,
+      "gh:y": 296.69232,
       "memberOf": {
         "@id": "organization:tol-psychology"
       },
@@ -1513,8 +1513,8 @@
       "gender": "Non-binary",
       "gh:callsign": "UPGRADE",
       "gh:role": "Supporter",
-      "gh:x": 584.0474343442024,
-      "gh:y": 300.60654740225357,
+      "gh:x": 584.0474,
+      "gh:y": 300.60654,
       "memberOf": {
         "@id": "organization:tol-psychedelic"
       },
@@ -1533,8 +1533,8 @@
       "gender": "Male",
       "gh:callsign": "AYAHUASCA",
       "gh:role": "Supporter",
-      "gh:x": 591.465378010108,
-      "gh:y": 304.8905148773291,
+      "gh:x": 591.4654,
+      "gh:y": 304.8905,
       "memberOf": {
         "@id": "organization:tol-amazon"
       },
@@ -1553,8 +1553,8 @@
       "gender": "Female",
       "gh:callsign": "PLANTCODE",
       "gh:role": "Supporter",
-      "gh:x": 598.5430644623507,
-      "gh:y": 309.5282958838723,
+      "gh:x": 598.5431,
+      "gh:y": 309.5283,
       "memberOf": {
         "@id": "organization:tol-amazon"
       },
@@ -1573,8 +1573,8 @@
       "gender": "Non-binary",
       "gh:callsign": "SWEATLODGE",
       "gh:role": "Supporter",
-      "gh:x": 605.254164242464,
-      "gh:y": 314.5026375719282,
+      "gh:x": 605.25415,
+      "gh:y": 314.50262,
       "memberOf": {
         "@id": "organization:tol-native"
       },
@@ -1593,8 +1593,8 @@
       "gender": "Female",
       "gh:callsign": "GREATSPIRIT",
       "gh:role": "Supporter",
-      "gh:x": 611.5737116184795,
-      "gh:y": 319.7950350637014,
+      "gh:x": 611.5737,
+      "gh:y": 319.79504,
       "memberOf": {
         "@id": "organization:tol-native"
       },
@@ -1613,8 +1613,8 @@
       "gender": "Male",
       "gh:callsign": "PHOENIX",
       "gh:role": "Supporter",
-      "gh:x": 617.4781974590891,
-      "gh:y": 325.38580029291677,
+      "gh:x": 617.4782,
+      "gh:y": 325.3858,
       "memberOf": {
         "@id": "organization:tol-comics"
       },
@@ -1633,8 +1633,8 @@
       "gender": "Non-binary",
       "gh:callsign": "GHOSTNAME",
       "gh:role": "Supporter",
-      "gh:x": 622.9456566891579,
-      "gh:y": 331.2541352457189,
+      "gh:x": 622.9457,
+      "gh:y": 331.25415,
       "memberOf": {
         "@id": "organization:tol-comics"
       },
@@ -1651,8 +1651,8 @@
       "@type": "Organization",
       "description": "仏教の解脱概念に着想を得たGhost Hacking会社。",
       "gh:companyType": "Ghost Hacking Competitor",
-      "gh:x": 627.9557500012462,
-      "gh:y": 337.37820933065,
+      "gh:x": 627.95575,
+      "gh:y": 337.3782,
       "name": "Gedatsu"
     },
     {
@@ -1660,8 +1660,8 @@
       "@type": "Organization",
       "description": "愛の概念に焦点を当てたGhost Hacking会社。",
       "gh:companyType": "Ghost Hacking Competitor",
-      "gh:x": 632.4898395191692,
-      "gh:y": 343.7352405898837,
+      "gh:x": 632.48987,
+      "gh:y": 343.73523,
       "name": "Ai"
     },
     {
@@ -1669,24 +1669,24 @@
       "@type": "Organization",
       "description": "問題を引き起こすことで知られるGhost Hacking会社。",
       "gh:companyType": "Ghost Hacking Competitor",
-      "gh:x": 636.5310581321199,
-      "gh:y": 350.3015804496042,
+      "gh:x": 636.53107,
+      "gh:y": 350.30157,
       "name": "GnB Inc. (Good and Bad)"
     },
     {
       "@id": "sound:choro-club",
       "@type": "Intangible",
       "description": "Ghost Hackerプロジェクトのサウンドトラックアーティスト",
-      "gh:x": 640.0643722414303,
-      "gh:y": 357.052801694255,
+      "gh:x": 640.0644,
+      "gh:y": 357.0528,
       "name": "Choro Club"
     },
     {
       "@id": "sound:freetempo",
       "@type": "Intangible",
       "description": "Ghost Hackerプロジェクトのサウンドトラックアーティスト",
-      "gh:x": 643.0766376865449,
-      "gh:y": 363.96378933738424,
+      "gh:x": 643.07666,
+      "gh:y": 363.96378,
       "name": "Freetempo"
     },
     {
@@ -1694,8 +1694,8 @@
       "@type": "Intangible",
       "description": "Wattpadで最も支持される文体。一人称視点、現在形時制、口語的・会話的トーン。",
       "gh:writingStyle": "一人称現在形の口語的・会話的文体",
-      "gh:x": 645.5566486421616,
-      "gh:y": 371.00883405104435,
+      "gh:x": 645.55664,
+      "gh:y": 371.00882,
       "name": "Writing Style"
     },
     {
@@ -1703,27 +1703,27 @@
       "@type": "Intangible",
       "description": "天野こずえ・田村由美風。minimalist yet detailed portrait。ダイナミック線描、多様パース、コントラスト設計。静かな身体言語で感情表現。",
       "gh:artStyle": "天野こずえ、田村由美風のminimalist yet detailed portrait",
-      "gh:x": 647.4951793046379,
-      "gh:y": 378.1617278061806,
+      "gh:x": 647.4952,
+      "gh:y": 378.1617,
       "name": "Art Style"
     },
     {
       "@id": "file:S4E2:1",
       "@type": "gh:LayoutStub",
-      "gh:x": 252.5126265847083,
-      "gh:y": 227.86796564403576
+      "gh:x": 252.51262,
+      "gh:y": 227.86797
     },
     {
       "@id": "file:S3E2:1",
       "@type": "gh:LayoutStub",
-      "gh:x": 252.51262658470839,
-      "gh:y": 652.1320343559643
+      "gh:x": 252.51262,
+      "gh:y": 652.132
     },
     {
       "@id": "file:S6E1:0",
       "@type": "gh:LayoutStub",
-      "gh:x": 687.4873734152916,
-      "gh:y": 227.8679656440357
+      "gh:x": 687.48737,
+      "gh:y": 227.86797
     },
     {
       "@id": "file:S1E1:1",
@@ -1741,13 +1741,13 @@
       "@id": "file:S4E1:1",
       "@type": "gh:LayoutStub",
       "gh:x": 150,
-      "gh:y": 440.00000000000006
+      "gh:y": 440
     },
     {
       "@id": "file:S4E2:0",
       "@type": "gh:LayoutStub",
-      "gh:x": 192.5126265847083,
-      "gh:y": 227.86796564403576
+      "gh:x": 192.51262,
+      "gh:y": 227.86797
     },
     {
       "@id": "file:S1E1:2",
@@ -1764,8 +1764,8 @@
     {
       "@id": "file:S4E2:2",
       "@type": "gh:LayoutStub",
-      "gh:x": 312.5126265847083,
-      "gh:y": 227.86796564403576
+      "gh:x": 312.51263,
+      "gh:y": 227.86797
     },
     {
       "@id": "setting:office",
@@ -1776,8 +1776,8 @@
     {
       "@id": "file:S3E2:2",
       "@type": "gh:LayoutStub",
-      "gh:x": 312.5126265847084,
-      "gh:y": 652.1320343559643
+      "gh:x": 312.51263,
+      "gh:y": 652.132
     },
     {
       "@id": "file:S3E1:0",
@@ -1788,13 +1788,13 @@
     {
       "@id": "file:S2E1:2",
       "@type": "gh:LayoutStub",
-      "gh:x": 807.4873734152916,
-      "gh:y": 652.1320343559643
+      "gh:x": 807.48737,
+      "gh:y": 652.132
     },
     {
       "@id": "file:S5E1:0",
       "@type": "gh:LayoutStub",
-      "gh:x": 439.99999999999994,
+      "gh:x": 440,
       "gh:y": 140
     },
     {
@@ -1812,44 +1812,44 @@
     {
       "@id": "file:S3E2:0",
       "@type": "gh:LayoutStub",
-      "gh:x": 192.51262658470839,
-      "gh:y": 652.1320343559643
+      "gh:x": 192.51262,
+      "gh:y": 652.132
     },
     {
       "@id": "file:S4E1:2",
       "@type": "gh:LayoutStub",
       "gh:x": 210,
-      "gh:y": 440.00000000000006
+      "gh:y": 440
     },
     {
       "@id": "file:S4E1:0",
       "@type": "gh:LayoutStub",
       "gh:x": 90,
-      "gh:y": 440.00000000000006
+      "gh:y": 440
     },
     {
       "@id": "file:S5E1:1",
       "@type": "gh:LayoutStub",
-      "gh:x": 499.99999999999994,
+      "gh:x": 500,
       "gh:y": 140
     },
     {
       "@id": "file:S6E1:1",
       "@type": "gh:LayoutStub",
-      "gh:x": 747.4873734152916,
-      "gh:y": 227.8679656440357
+      "gh:x": 747.48737,
+      "gh:y": 227.86797
     },
     {
       "@id": "file:S2E1:0",
       "@type": "gh:LayoutStub",
-      "gh:x": 687.4873734152916,
-      "gh:y": 652.1320343559643
+      "gh:x": 687.48737,
+      "gh:y": 652.132
     },
     {
       "@id": "file:S2E1:1",
       "@type": "gh:LayoutStub",
-      "gh:x": 747.4873734152916,
-      "gh:y": 652.1320343559643
+      "gh:x": 747.48737,
+      "gh:y": 652.132
     },
     {
       "@id": "file:S3E1:1",
@@ -1860,8 +1860,8 @@
     {
       "@id": "file:S6E1:2",
       "@type": "gh:LayoutStub",
-      "gh:x": 807.4873734152916,
-      "gh:y": 227.8679656440357
+      "gh:x": 807.48737,
+      "gh:y": 227.86797
     }
   ]
 }

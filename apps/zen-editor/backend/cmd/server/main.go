@@ -207,48 +207,40 @@ func (s *EditorServer) GetProjectMetadata(ctx context.Context, req *connect.Requ
 
 func (s *EditorServer) Interact(
 	ctx context.Context,
-	stream *connect.BidiStream[editorpb.InteractRequest, editorpb.InteractResponse],
+	req *connect.Request[editorpb.InteractRequest],
+	stream *connect.ServerStream[editorpb.InteractResponse],
 ) error {
-	for {
-		req, err := stream.Receive()
-		if err != nil {
-			return err
-		}
+	var participants []string
+	combinedEmotion := make(map[string]float32)
 
-		var participants []string
-		combinedEmotion := make(map[string]float32)
-
-		for _, nodeID := range req.NodeIds {
-			name := nodeID
-			if emotion, ok := s.NodeEmotions[nodeID]; ok {
-				for k, v := range emotion {
-					combinedEmotion[k] += v
-				}
+	for _, nodeID := range req.Msg.NodeIds {
+		name := nodeID
+		if emotion, ok := s.NodeEmotions[nodeID]; ok {
+			for k, v := range emotion {
+				combinedEmotion[k] += v
 			}
-			participants = append(participants, name)
 		}
-
-		aiClient := &ai.OpenRouterClient{
-			ApiKey: "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",
-			Model:  "anthropic/claude-3.5-sonnet",
-		}
-		prompt := fmt.Sprintf("Participants: %v\nUser Input: %s\nEmotional Context: %v\n", participants, req.UserMessage, combinedEmotion)
-		
-		response, err := aiClient.GenerateNextScene(ctx, []string{prompt})
-		if err != nil {
-			return err
-		}
-
-		err = stream.Send(&editorpb.InteractResponse{
-			NodeId:         req.NodeIds[0],
-			NodeName:       participants[0],
-			Message:        response,
-			EmotionVector:  combinedEmotion,
-		})
-		if err != nil {
-			return err
-		}
+		participants = append(participants, name)
 	}
+
+	aiClient := &ai.OpenRouterClient{
+		ApiKey: "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",
+		Model:  "anthropic/claude-3.5-sonnet",
+	}
+	prompt := fmt.Sprintf("Participants: %v\nUser Input: %s\nEmotional Context: %v\n", participants, req.Msg.UserMessage, combinedEmotion)
+	
+	response, err := aiClient.GenerateNextScene(ctx, []string{prompt})
+	if err != nil {
+		return err
+	}
+
+	err = stream.Send(&editorpb.InteractResponse{
+		NodeId:         req.Msg.NodeIds[0],
+		NodeName:       participants[0],
+		Message:        response,
+		EmotionVector:  combinedEmotion,
+	})
+	return err
 }
 
 func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[editorpb.GetTopologyRequest]) (*connect.Response[editorpb.GetTopologyResponse], error) {

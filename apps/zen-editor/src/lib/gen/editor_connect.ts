@@ -48,7 +48,7 @@ export const EditorService = {
       name: "Interact",
       I: InteractRequest,
       O: InteractResponse,
-      kind: MethodKind.BiDiStreaming,
+      kind: MethodKind.ServerStreaming,
     },
   }
 } as const;

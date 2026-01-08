@@ -20,6 +20,7 @@
 
   async function refreshGraph() {
     isLoading = true;
+    try {
       console.log("Fetching project metadata and topology...");
       const [metaResp, topoResp] = await Promise.all([
         client.getProjectMetadata({ projectId: "251022" }),
@@ -121,8 +122,17 @@
     if (event.shiftKey) return; // Ignore for multi-select
     dragNode = node;
     isDragging = true;
+    
+    // Update local state immediately
     selectedNodeId = node.id;
-    if (onSelect) onSelect(node);
+    if (!multiSelect.includes(node.id)) {
+      multiSelect = [node.id];
+    }
+    
+    if (onSelect) {
+      const selectedNodes = nodes.filter(n => multiSelect.includes(n.id));
+      onSelect(node, selectedNodes);
+    }
   }
 
   function handleMouseMove(event) {
@@ -216,6 +226,8 @@
       onmousemove={handleMouseMove} 
       onmouseup={handleMouseUp}
       onmouseleave={handleMouseUp}
+      role="img"
+      aria-label="Story Topology Graph"
     >
       <defs>
         <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="25" refY="3.5" orient="auto">
@@ -240,7 +252,11 @@
             transform="translate({node.x}, {node.y})"
             onmousedown={(e) => handleMouseDown(node, e)}
             onclick={(e) => toggleNode(node, e)}
+            onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleNode(node, e)}
             class:selected={selectedNodeId === node.id || multiSelect.includes(node.id)}
+            role="button"
+            tabindex="0"
+            aria-label="Select node {node.label}"
           >
             <circle r={node.size} class="node-circle" class:manuscript={node.type === 'manuscript'} class:person={node.type && node.type.includes('Person')} />
             <text y={node.size + 18} text-anchor="middle" class="node-label">{node.label}</text>

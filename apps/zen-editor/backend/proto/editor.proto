@@ -9,8 +9,8 @@ service EditorService {
   rpc GetProjectMetadata(GetProjectMetadataRequest) returns (GetProjectMetadataResponse);
   rpc CallTool(CallToolRequest) returns (CallToolResponse);
   
-  // Real-time Chat/Interaction Stream (A2A support)
-  rpc Interact(stream InteractRequest) returns (stream InteractResponse);
+      // Real-time Chat/Interaction Stream (A2A support)
+      rpc Interact(InteractRequest) returns (stream InteractResponse);
 }
 
 message InteractRequest {

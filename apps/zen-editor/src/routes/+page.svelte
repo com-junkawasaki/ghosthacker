@@ -35,35 +35,38 @@
       });
   });
 
-  function handleNodeSelect(node, allSelected) {
-    selectedNode = node;
-    multiSelection = allSelected;
-  }
+      function handleNodeSelect(node, allSelected = []) {
+        console.log("Node selected:", node?.id, "Total selected:", allSelected?.length);
+        selectedNode = node;
+        multiSelection = allSelected || [];
+      }
 
   async function sendChatMessage() {
     if (!chatInput) return;
     
     const msg = chatInput;
     chatInput = "";
-    chatMessages = [...chatMessages, { role: 'user', text: msg }];
+      chatMessages = [...chatMessages, { role: 'user', text: msg }];
 
-    try {
-      const stream = client.interact();
-      await stream.requests.send({
-        nodeIds: multiSelection.map(n => n.id),
-        userMessage: msg
-      });
-      await stream.requests.complete();
+      try {
+        async function* makeRequests() {
+          yield {
+            nodeIds: multiSelection.map(n => n.id),
+            userMessage: msg,
+            sessionId: "session-1", // Add session ID if needed
+            emotionBias: {} // Optional bias
+          };
+        }
 
-      for await (const response of stream.responses) {
-        chatMessages = [...chatMessages, { 
-          role: 'assistant', 
-          name: response.nodeName,
-          text: response.message,
-          emotions: response.emotionVector
-        }];
-      }
-    } catch (err) {
+        for await (const response of client.interact(makeRequests())) {
+          chatMessages = [...chatMessages, { 
+            role: 'assistant', 
+            name: response.nodeName,
+            text: response.message,
+            emotions: response.emotionVector
+          }];
+        }
+      } catch (err) {
       console.error("Interaction failed:", err);
     }
   }
@@ -144,16 +147,16 @@
           {#each chatMessages as m}
             <div class="message" class:user={m.role === 'user'}>
               {#if m.role !== 'user'}<span class="speaker">{m.name}</span>{/if}
-              <div class="msg-bubble">
-                {m.text}
-                {#if m.emotions}
-                  <div class="msg-emotions">
-                    {#each Object.entries(m.emotions) as [e, v]}
-                      {#if v > 0.1}<span class="e-tag">{e}: {v.toFixed(1)}</span>{/if}
-                    {/each}
+                  <div class="msg-bubble">
+                    {m.text}
+                    {#if m.emotions}
+                      <div class="msg-emotions">
+                        {#each Object.entries(m.emotions) as [e, v]}
+                          {#if (v as number) > 0.1}<span class="e-tag">{e}: {(v as number).toFixed(1)}</span>{/if}
+                        {/each}
+                      </div>
+                    {/if}
                   </div>
-                {/if}
-              </div>
             </div>
           {/each}
         </div>
