@@ -32,7 +32,7 @@ type ChatResponse struct {
 
 func NewOpenRouterClient() *OpenRouterClient {
 	return &OpenRouterClient{
-		ApiKey: os.Getenv("OPENROUTER_API_KEY"),
+		ApiKey: "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",
 		Model:  "openai/gpt-4o-mini", // Default lightweight model for extraction
 	}
 }

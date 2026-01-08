@@ -6,10 +6,11 @@
   "permissions": [
     "core:default",
     "shell:allow-open",
-    "fs:allow-read-text",
-    "fs:allow-write-text",
+    "fs:allow-read-text-file",
+    "fs:allow-write-text-file",
+    "fs:allow-read-file",
+    "fs:allow-write-file",
     "dialog:allow-open",
     "dialog:allow-save"
   ]
 }
-

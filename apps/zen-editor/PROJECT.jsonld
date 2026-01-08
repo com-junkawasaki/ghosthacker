@@ -6,7 +6,11 @@
   "@type": "gh:Project",
   "name": "Ghost Hacker Zen Editor",
   "description": "A dedicated local editor for Ghost Hacker story production, featuring Zen mode text editing and Graph Topology visualization.",
-  "status": "designing",
+  "status": "integrated",
+  "ai_integration": {
+    "openrouter": "Configured with dedicated API key",
+    "hume": "Configured with API key and secret"
+  },
   "technologies": [
     "Tauri",
     "SvelteKit",
