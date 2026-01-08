@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AnalyzeTextRequest, AnalyzeTextResponse, GetProjectMetadataRequest, GetProjectMetadataResponse, GetTopologyRequest, GetTopologyResponse, OpenFileRequest, OpenFileResponse, SaveFileRequest, SaveFileResponse } from "./editor_pb.js";
+import { CallToolRequest, CallToolResponse, GetProjectMetadataRequest, GetProjectMetadataResponse, GetTopologyRequest, GetTopologyResponse } from "./editor_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -13,15 +13,8 @@ export declare const EditorService: {
   readonly typeName: "gftd.ghosthacker.zeneditor.v1.EditorService",
   readonly methods: {
     /**
-     * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.AnalyzeText
-     */
-    readonly analyzeText: {
-      readonly name: "AnalyzeText",
-      readonly I: typeof AnalyzeTextRequest,
-      readonly O: typeof AnalyzeTextResponse,
-      readonly kind: MethodKind.Unary,
-    },
-    /**
+     * Traditional RPCs for structured data
+     *
      * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.GetTopology
      */
     readonly getTopology: {
@@ -40,21 +33,14 @@ export declare const EditorService: {
       readonly kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.OpenFile
+     * Unified MCP Tool Execution via ConnectRPC
+     *
+     * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.CallTool
      */
-    readonly openFile: {
-      readonly name: "OpenFile",
-      readonly I: typeof OpenFileRequest,
-      readonly O: typeof OpenFileResponse,
-      readonly kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.SaveFile
-     */
-    readonly saveFile: {
-      readonly name: "SaveFile",
-      readonly I: typeof SaveFileRequest,
-      readonly O: typeof SaveFileResponse,
+    readonly callTool: {
+      readonly name: "CallTool",
+      readonly I: typeof CallToolRequest,
+      readonly O: typeof CallToolResponse,
       readonly kind: MethodKind.Unary,
     },
   }

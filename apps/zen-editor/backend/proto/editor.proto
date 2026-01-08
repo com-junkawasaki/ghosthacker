@@ -5,11 +5,22 @@ package gftd.ghosthacker.zeneditor.v1;
 option go_package = "github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/proto;editorpb";
 
 service EditorService {
-  rpc AnalyzeText(AnalyzeTextRequest) returns (AnalyzeTextResponse);
+  // Traditional RPCs for structured data
   rpc GetTopology(GetTopologyRequest) returns (GetTopologyResponse);
   rpc GetProjectMetadata(GetProjectMetadataRequest) returns (GetProjectMetadataResponse);
-  rpc OpenFile(OpenFileRequest) returns (OpenFileResponse);
-  rpc SaveFile(SaveFileRequest) returns (SaveFileResponse);
+  
+  // Unified MCP Tool Execution via ConnectRPC
+  rpc CallTool(CallToolRequest) returns (CallToolResponse);
+}
+
+message CallToolRequest {
+  string name = 1;
+  string arguments_json = 2; // JSON string of arguments
+}
+
+message CallToolResponse {
+  string result_json = 1;    // JSON string of result
+  bool is_error = 2;
 }
 
 message GetProjectMetadataRequest {

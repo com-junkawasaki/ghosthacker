@@ -33,28 +33,23 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// EditorServiceAnalyzeTextProcedure is the fully-qualified name of the EditorService's AnalyzeText
-	// RPC.
-	EditorServiceAnalyzeTextProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/AnalyzeText"
 	// EditorServiceGetTopologyProcedure is the fully-qualified name of the EditorService's GetTopology
 	// RPC.
 	EditorServiceGetTopologyProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/GetTopology"
 	// EditorServiceGetProjectMetadataProcedure is the fully-qualified name of the EditorService's
 	// GetProjectMetadata RPC.
 	EditorServiceGetProjectMetadataProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/GetProjectMetadata"
-	// EditorServiceOpenFileProcedure is the fully-qualified name of the EditorService's OpenFile RPC.
-	EditorServiceOpenFileProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/OpenFile"
-	// EditorServiceSaveFileProcedure is the fully-qualified name of the EditorService's SaveFile RPC.
-	EditorServiceSaveFileProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/SaveFile"
+	// EditorServiceCallToolProcedure is the fully-qualified name of the EditorService's CallTool RPC.
+	EditorServiceCallToolProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/CallTool"
 )
 
 // EditorServiceClient is a client for the gftd.ghosthacker.zeneditor.v1.EditorService service.
 type EditorServiceClient interface {
-	AnalyzeText(context.Context, *connect.Request[proto.AnalyzeTextRequest]) (*connect.Response[proto.AnalyzeTextResponse], error)
+	// Traditional RPCs for structured data
 	GetTopology(context.Context, *connect.Request[proto.GetTopologyRequest]) (*connect.Response[proto.GetTopologyResponse], error)
 	GetProjectMetadata(context.Context, *connect.Request[proto.GetProjectMetadataRequest]) (*connect.Response[proto.GetProjectMetadataResponse], error)
-	OpenFile(context.Context, *connect.Request[proto.OpenFileRequest]) (*connect.Response[proto.OpenFileResponse], error)
-	SaveFile(context.Context, *connect.Request[proto.SaveFileRequest]) (*connect.Response[proto.SaveFileResponse], error)
+	// Unified MCP Tool Execution via ConnectRPC
+	CallTool(context.Context, *connect.Request[proto.CallToolRequest]) (*connect.Response[proto.CallToolResponse], error)
 }
 
 // NewEditorServiceClient constructs a client for the gftd.ghosthacker.zeneditor.v1.EditorService
@@ -68,12 +63,6 @@ func NewEditorServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 	baseURL = strings.TrimRight(baseURL, "/")
 	editorServiceMethods := proto.File_proto_editor_proto.Services().ByName("EditorService").Methods()
 	return &editorServiceClient{
-		analyzeText: connect.NewClient[proto.AnalyzeTextRequest, proto.AnalyzeTextResponse](
-			httpClient,
-			baseURL+EditorServiceAnalyzeTextProcedure,
-			connect.WithSchema(editorServiceMethods.ByName("AnalyzeText")),
-			connect.WithClientOptions(opts...),
-		),
 		getTopology: connect.NewClient[proto.GetTopologyRequest, proto.GetTopologyResponse](
 			httpClient,
 			baseURL+EditorServiceGetTopologyProcedure,
@@ -86,16 +75,10 @@ func NewEditorServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			connect.WithSchema(editorServiceMethods.ByName("GetProjectMetadata")),
 			connect.WithClientOptions(opts...),
 		),
-		openFile: connect.NewClient[proto.OpenFileRequest, proto.OpenFileResponse](
+		callTool: connect.NewClient[proto.CallToolRequest, proto.CallToolResponse](
 			httpClient,
-			baseURL+EditorServiceOpenFileProcedure,
-			connect.WithSchema(editorServiceMethods.ByName("OpenFile")),
-			connect.WithClientOptions(opts...),
-		),
-		saveFile: connect.NewClient[proto.SaveFileRequest, proto.SaveFileResponse](
-			httpClient,
-			baseURL+EditorServiceSaveFileProcedure,
-			connect.WithSchema(editorServiceMethods.ByName("SaveFile")),
+			baseURL+EditorServiceCallToolProcedure,
+			connect.WithSchema(editorServiceMethods.ByName("CallTool")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -103,16 +86,9 @@ func NewEditorServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 
 // editorServiceClient implements EditorServiceClient.
 type editorServiceClient struct {
-	analyzeText        *connect.Client[proto.AnalyzeTextRequest, proto.AnalyzeTextResponse]
 	getTopology        *connect.Client[proto.GetTopologyRequest, proto.GetTopologyResponse]
 	getProjectMetadata *connect.Client[proto.GetProjectMetadataRequest, proto.GetProjectMetadataResponse]
-	openFile           *connect.Client[proto.OpenFileRequest, proto.OpenFileResponse]
-	saveFile           *connect.Client[proto.SaveFileRequest, proto.SaveFileResponse]
-}
-
-// AnalyzeText calls gftd.ghosthacker.zeneditor.v1.EditorService.AnalyzeText.
-func (c *editorServiceClient) AnalyzeText(ctx context.Context, req *connect.Request[proto.AnalyzeTextRequest]) (*connect.Response[proto.AnalyzeTextResponse], error) {
-	return c.analyzeText.CallUnary(ctx, req)
+	callTool           *connect.Client[proto.CallToolRequest, proto.CallToolResponse]
 }
 
 // GetTopology calls gftd.ghosthacker.zeneditor.v1.EditorService.GetTopology.
@@ -125,24 +101,19 @@ func (c *editorServiceClient) GetProjectMetadata(ctx context.Context, req *conne
 	return c.getProjectMetadata.CallUnary(ctx, req)
 }
 
-// OpenFile calls gftd.ghosthacker.zeneditor.v1.EditorService.OpenFile.
-func (c *editorServiceClient) OpenFile(ctx context.Context, req *connect.Request[proto.OpenFileRequest]) (*connect.Response[proto.OpenFileResponse], error) {
-	return c.openFile.CallUnary(ctx, req)
-}
-
-// SaveFile calls gftd.ghosthacker.zeneditor.v1.EditorService.SaveFile.
-func (c *editorServiceClient) SaveFile(ctx context.Context, req *connect.Request[proto.SaveFileRequest]) (*connect.Response[proto.SaveFileResponse], error) {
-	return c.saveFile.CallUnary(ctx, req)
+// CallTool calls gftd.ghosthacker.zeneditor.v1.EditorService.CallTool.
+func (c *editorServiceClient) CallTool(ctx context.Context, req *connect.Request[proto.CallToolRequest]) (*connect.Response[proto.CallToolResponse], error) {
+	return c.callTool.CallUnary(ctx, req)
 }
 
 // EditorServiceHandler is an implementation of the gftd.ghosthacker.zeneditor.v1.EditorService
 // service.
 type EditorServiceHandler interface {
-	AnalyzeText(context.Context, *connect.Request[proto.AnalyzeTextRequest]) (*connect.Response[proto.AnalyzeTextResponse], error)
+	// Traditional RPCs for structured data
 	GetTopology(context.Context, *connect.Request[proto.GetTopologyRequest]) (*connect.Response[proto.GetTopologyResponse], error)
 	GetProjectMetadata(context.Context, *connect.Request[proto.GetProjectMetadataRequest]) (*connect.Response[proto.GetProjectMetadataResponse], error)
-	OpenFile(context.Context, *connect.Request[proto.OpenFileRequest]) (*connect.Response[proto.OpenFileResponse], error)
-	SaveFile(context.Context, *connect.Request[proto.SaveFileRequest]) (*connect.Response[proto.SaveFileResponse], error)
+	// Unified MCP Tool Execution via ConnectRPC
+	CallTool(context.Context, *connect.Request[proto.CallToolRequest]) (*connect.Response[proto.CallToolResponse], error)
 }
 
 // NewEditorServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -152,12 +123,6 @@ type EditorServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewEditorServiceHandler(svc EditorServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	editorServiceMethods := proto.File_proto_editor_proto.Services().ByName("EditorService").Methods()
-	editorServiceAnalyzeTextHandler := connect.NewUnaryHandler(
-		EditorServiceAnalyzeTextProcedure,
-		svc.AnalyzeText,
-		connect.WithSchema(editorServiceMethods.ByName("AnalyzeText")),
-		connect.WithHandlerOptions(opts...),
-	)
 	editorServiceGetTopologyHandler := connect.NewUnaryHandler(
 		EditorServiceGetTopologyProcedure,
 		svc.GetTopology,
@@ -170,30 +135,20 @@ func NewEditorServiceHandler(svc EditorServiceHandler, opts ...connect.HandlerOp
 		connect.WithSchema(editorServiceMethods.ByName("GetProjectMetadata")),
 		connect.WithHandlerOptions(opts...),
 	)
-	editorServiceOpenFileHandler := connect.NewUnaryHandler(
-		EditorServiceOpenFileProcedure,
-		svc.OpenFile,
-		connect.WithSchema(editorServiceMethods.ByName("OpenFile")),
-		connect.WithHandlerOptions(opts...),
-	)
-	editorServiceSaveFileHandler := connect.NewUnaryHandler(
-		EditorServiceSaveFileProcedure,
-		svc.SaveFile,
-		connect.WithSchema(editorServiceMethods.ByName("SaveFile")),
+	editorServiceCallToolHandler := connect.NewUnaryHandler(
+		EditorServiceCallToolProcedure,
+		svc.CallTool,
+		connect.WithSchema(editorServiceMethods.ByName("CallTool")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/gftd.ghosthacker.zeneditor.v1.EditorService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case EditorServiceAnalyzeTextProcedure:
-			editorServiceAnalyzeTextHandler.ServeHTTP(w, r)
 		case EditorServiceGetTopologyProcedure:
 			editorServiceGetTopologyHandler.ServeHTTP(w, r)
 		case EditorServiceGetProjectMetadataProcedure:
 			editorServiceGetProjectMetadataHandler.ServeHTTP(w, r)
-		case EditorServiceOpenFileProcedure:
-			editorServiceOpenFileHandler.ServeHTTP(w, r)
-		case EditorServiceSaveFileProcedure:
-			editorServiceSaveFileHandler.ServeHTTP(w, r)
+		case EditorServiceCallToolProcedure:
+			editorServiceCallToolHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -203,10 +158,6 @@ func NewEditorServiceHandler(svc EditorServiceHandler, opts ...connect.HandlerOp
 // UnimplementedEditorServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedEditorServiceHandler struct{}
 
-func (UnimplementedEditorServiceHandler) AnalyzeText(context.Context, *connect.Request[proto.AnalyzeTextRequest]) (*connect.Response[proto.AnalyzeTextResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.zeneditor.v1.EditorService.AnalyzeText is not implemented"))
-}
-
 func (UnimplementedEditorServiceHandler) GetTopology(context.Context, *connect.Request[proto.GetTopologyRequest]) (*connect.Response[proto.GetTopologyResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.zeneditor.v1.EditorService.GetTopology is not implemented"))
 }
@@ -215,10 +166,6 @@ func (UnimplementedEditorServiceHandler) GetProjectMetadata(context.Context, *co
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.zeneditor.v1.EditorService.GetProjectMetadata is not implemented"))
 }
 
-func (UnimplementedEditorServiceHandler) OpenFile(context.Context, *connect.Request[proto.OpenFileRequest]) (*connect.Response[proto.OpenFileResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.zeneditor.v1.EditorService.OpenFile is not implemented"))
-}
-
-func (UnimplementedEditorServiceHandler) SaveFile(context.Context, *connect.Request[proto.SaveFileRequest]) (*connect.Response[proto.SaveFileResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.zeneditor.v1.EditorService.SaveFile is not implemented"))
+func (UnimplementedEditorServiceHandler) CallTool(context.Context, *connect.Request[proto.CallToolRequest]) (*connect.Response[proto.CallToolResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.zeneditor.v1.EditorService.CallTool is not implemented"))
 }

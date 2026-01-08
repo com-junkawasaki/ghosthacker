@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AnalyzeTextRequest, AnalyzeTextResponse, GetProjectMetadataRequest, GetProjectMetadataResponse, GetTopologyRequest, GetTopologyResponse, OpenFileRequest, OpenFileResponse, SaveFileRequest, SaveFileResponse } from "./editor_pb.js";
+import { CallToolRequest, CallToolResponse, GetProjectMetadataRequest, GetProjectMetadataResponse, GetTopologyRequest, GetTopologyResponse } from "./editor_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -13,15 +13,8 @@ export const EditorService = {
   typeName: "gftd.ghosthacker.zeneditor.v1.EditorService",
   methods: {
     /**
-     * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.AnalyzeText
-     */
-    analyzeText: {
-      name: "AnalyzeText",
-      I: AnalyzeTextRequest,
-      O: AnalyzeTextResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
+     * Traditional RPCs for structured data
+     *
      * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.GetTopology
      */
     getTopology: {
@@ -40,21 +33,14 @@ export const EditorService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.OpenFile
+     * Unified MCP Tool Execution via ConnectRPC
+     *
+     * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.CallTool
      */
-    openFile: {
-      name: "OpenFile",
-      I: OpenFileRequest,
-      O: OpenFileResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.SaveFile
-     */
-    saveFile: {
-      name: "SaveFile",
-      I: SaveFileRequest,
-      O: SaveFileResponse,
+    callTool: {
+      name: "CallTool",
+      I: CallToolRequest,
+      O: CallToolResponse,
       kind: MethodKind.Unary,
     },
   }

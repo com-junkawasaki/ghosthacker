@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, watch } from 'svelte';
+  import { onMount } from 'svelte';
   import { client } from '../lib/api';
 
   let { filePath = $bindable("") } = $props();
@@ -8,7 +8,6 @@
   let content = $state("");
   let isDirty = $state(false);
 
-  // Watch for filePath changes to load the file
   $effect(() => {
     if (filePath) {
       loadFile(filePath);
@@ -17,11 +16,21 @@
 
   async function loadFile(path: string) {
     try {
-      const resp = await client.openFile({ path });
-      content = resp.content;
+      // Call via MCP Tool pattern
+      const resp = await client.callTool({
+        name: "open_file",
+        argumentsJson: JSON.stringify({ path })
+      });
+      
+      const result = JSON.parse(resp.resultJson);
+      if (resp.isError) {
+        throw new Error(result.content[0].text);
+      }
+      
+      content = result.content[0].text;
       isDirty = false;
     } catch (err) {
-      console.error("Failed to open file:", err);
+      console.error("Failed to open file via MCP:", err);
       alert("Failed to open file: " + path);
     }
   }
@@ -38,25 +47,21 @@
     }
     if (filePath) {
       try {
-        const resp = await client.saveFile({ path: filePath, content });
-        if (resp.success) {
+        // Call via MCP Tool pattern
+        const resp = await client.callTool({
+          name: "save_file",
+          argumentsJson: JSON.stringify({ path: filePath, content })
+        });
+        
+        if (!resp.isError) {
           isDirty = false;
-          // Trigger AI analysis in background
-          triggerAnalysis();
+          console.log("Saved via MCP Tool");
+        } else {
+          console.error("Save failed:", resp.resultJson);
         }
       } catch (err) {
-        console.error("Failed to save file:", err);
+        console.error("Failed to save file via MCP:", err);
       }
-    }
-  }
-
-  async function triggerAnalysis() {
-    try {
-      const resp = await client.analyzeText({ text: content });
-      console.log("Analysis result:", resp);
-      // In a real scenario, we'd update emotions from actual Hume results
-    } catch (err) {
-      console.error("Analysis failed:", err);
     }
   }
 
@@ -98,97 +103,16 @@
 </div>
 
 <style>
-  .zen-editor-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    transition: background 1.5s ease-in-out;
-  }
-
-  .toolbar {
-    width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(20px);
-    z-index: 10;
-  }
-
+  .zen-editor-container { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; padding: 0; transition: background 1.5s ease-in-out; }
+  .toolbar { width: 100%; height: 60px; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; border-bottom: 1px solid rgba(0,0,0,0.05); background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); z-index: 10; }
   .file-info { display: flex; align-items: center; gap: 0.5rem; }
   .file-path { font-size: 0.8rem; font-weight: 500; color: #86868b; }
   .dirty-dot { width: 6px; height: 6px; background: #ff3b30; border-radius: 50%; }
-
-  .save-btn {
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    border: none;
-    background: #0071e3;
-    color: white;
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
+  .save-btn { padding: 0.4rem 1rem; border-radius: 20px; border: none; background: #0071e3; color: white; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
   .save-btn:disabled { background: #f5f5f7; color: #d2d2d7; cursor: default; }
-
-  .editor-wrapper {
-    width: 100%;
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    overflow-y: auto;
-    padding-top: 4rem;
-  }
-
-  .zen-textarea {
-    width: 100%;
-    max-width: 720px;
-    height: fit-content;
-    min-height: 80vh;
-    background: transparent;
-    border: none;
-    padding: 2rem;
-    outline: none;
-    font-family: "Georgia", serif;
-    line-height: 2;
-    font-size: 1.25rem;
-    color: #1d1d1f;
-    resize: none;
-  }
-
-  .emotion-indicator {
-    position: absolute;
-    bottom: 2rem;
-    right: 2rem;
-    display: flex;
-    gap: 1.2rem;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px);
-    padding: 0.6rem 1.2rem;
-    border-radius: 30px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  }
-
-  .emotion-tag {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #424245;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-  }
+  .editor-wrapper { width: 100%; flex: 1; display: flex; justify-content: center; overflow-y: auto; padding-top: 4rem; }
+  .zen-textarea { width: 100%; max-width: 720px; height: fit-content; min-height: 80vh; background: transparent; border: none; padding: 2rem; outline: none; font-family: "Georgia", serif; line-height: 2; font-size: 1.25rem; color: #1d1d1f; resize: none; }
+  .emotion-indicator { position: absolute; bottom: 2rem; right: 2rem; display: flex; gap: 1.2rem; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); padding: 0.6rem 1.2rem; border-radius: 30px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border: 1px solid rgba(255, 255, 255, 0.3); }
+  .emotion-tag { font-size: 0.75rem; font-weight: 600; color: #424245; display: flex; align-items: center; gap: 0.5rem; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
 </style>

@@ -6,6 +6,28 @@
 import { proto3 } from "@bufbuild/protobuf";
 
 /**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.CallToolRequest
+ */
+export const CallToolRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "gftd.ghosthacker.zeneditor.v1.CallToolRequest",
+  () => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "arguments_json", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.CallToolResponse
+ */
+export const CallToolResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "gftd.ghosthacker.zeneditor.v1.CallToolResponse",
+  () => [
+    { no: 1, name: "result_json", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "is_error", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ],
+);
+
+/**
  * @generated from message gftd.ghosthacker.zeneditor.v1.GetProjectMetadataRequest
  */
 export const GetProjectMetadataRequest = /*@__PURE__*/ proto3.makeMessageType(

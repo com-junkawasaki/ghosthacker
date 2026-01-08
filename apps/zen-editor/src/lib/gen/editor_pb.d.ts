@@ -7,6 +7,68 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.CallToolRequest
+ */
+export declare class CallToolRequest extends Message<CallToolRequest> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name: string;
+
+  /**
+   * JSON string of arguments
+   *
+   * @generated from field: string arguments_json = 2;
+   */
+  argumentsJson: string;
+
+  constructor(data?: PartialMessage<CallToolRequest>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "gftd.ghosthacker.zeneditor.v1.CallToolRequest";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CallToolRequest;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CallToolRequest;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CallToolRequest;
+
+  static equals(a: CallToolRequest | PlainMessage<CallToolRequest> | undefined, b: CallToolRequest | PlainMessage<CallToolRequest> | undefined): boolean;
+}
+
+/**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.CallToolResponse
+ */
+export declare class CallToolResponse extends Message<CallToolResponse> {
+  /**
+   * JSON string of result
+   *
+   * @generated from field: string result_json = 1;
+   */
+  resultJson: string;
+
+  /**
+   * @generated from field: bool is_error = 2;
+   */
+  isError: boolean;
+
+  constructor(data?: PartialMessage<CallToolResponse>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "gftd.ghosthacker.zeneditor.v1.CallToolResponse";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CallToolResponse;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CallToolResponse;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CallToolResponse;
+
+  static equals(a: CallToolResponse | PlainMessage<CallToolResponse> | undefined, b: CallToolResponse | PlainMessage<CallToolResponse> | undefined): boolean;
+}
+
+/**
  * @generated from message gftd.ghosthacker.zeneditor.v1.GetProjectMetadataRequest
  */
 export declare class GetProjectMetadataRequest extends Message<GetProjectMetadataRequest> {

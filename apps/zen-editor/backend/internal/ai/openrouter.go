@@ -1,4 +1,4 @@
-package ai
+package main
 
 import (
 	"bytes"
@@ -33,17 +33,29 @@ type ChatResponse struct {
 func NewOpenRouterClient() *OpenRouterClient {
 	return &OpenRouterClient{
 		ApiKey: "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",
-		Model:  "openai/gpt-4o-mini", // Default lightweight model for extraction
+		Model:  "anthropic/claude-3.5-sonnet", // Use a powerful model for story gen
 	}
 }
 
-func (c *OpenRouterClient) ExtractEntities(ctx context.Context, text string) (string, error) {
-	prompt := fmt.Sprintf("Extract entities (characters, locations, key terms) from the following text and return as a story graph JSON-LD structure:\n\n%s", text)
+func (c *OpenRouterClient) GenerateNextScene(ctx context.Context, contextTexts []string) (string, error) {
+	combinedContext := ""
+	for i, text := range contextTexts {
+		combinedContext += fmt.Sprintf("--- Context Node %d ---\n%s\n\n", i+1, text)
+	}
+
+	prompt := fmt.Sprintf(`Based on the following context from the "Ghost Hacker" series, generate a new story scene.
+The scene should maintain the first-person, present-tense, conversational style (Wattpad style).
+Theme: Healing connections in 2065 Tokyo.
+
+CONTEXT:
+%s
+
+Generate only the markdown content for the new scene.`, combinedContext)
 	
 	reqBody, _ := json.Marshal(ChatRequest{
 		Model: c.Model,
 		Messages: []Message{
-			{Role: "system", Content: "You are a specialized story analyst for the Ghost Hacker series."},
+			{Role: "system", Content: "You are a specialized creative writer for the Ghost Hacker series."},
 			{Role: "user", Content: prompt},
 		},
 	})
@@ -67,6 +79,6 @@ func (c *OpenRouterClient) ExtractEntities(ctx context.Context, text string) (st
 		return chatResp.Choices[0].Message.Content, nil
 	}
 
-	return "", fmt.Errorf("no response from AI")
+	return "", fmt.Errorf("no response from OpenRouter")
 }
 

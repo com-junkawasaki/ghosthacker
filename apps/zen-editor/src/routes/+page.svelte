@@ -3,11 +3,13 @@
   import Topology from '../components/Topology.svelte';
   import { onMount } from 'svelte';
   import { client } from '../lib/api';
+  import { open } from '@tauri-apps/plugin-dialog';
 
   // Svelte 5 Runes
-  let viewMode = $state('zen');
-  let metadata = $state({ title: "Loading...", description: "", episodes: [] });
-  let selectedFilePath = $state("");
+  let viewMode = $state('topology'); // Start in topology mode
+  let metadata = $state({ title: "Ghost Hacker", description: "", episodes: [] });
+  let selectedNode = $state(null);
+  let isEditorOpen = $state(false);
 
   onMount(async () => {
     try {
@@ -18,10 +20,34 @@
     }
   });
 
-  function selectFile(path: string) {
-    // Path in manifest is relative to 251022/wattpad/
-    selectedFilePath = "251022/wattpad/" + path;
-    viewMode = 'zen';
+  async function handleImportFile() {
+    try {
+      const selected = await open({
+        multiple: false,
+        filters: [{
+          name: 'Markdown',
+          extensions: ['md']
+        }]
+      });
+      if (selected) {
+        // In a real app, you'd send this path to the backend to copy/import
+        alert(`Selected file for node import: ${selected}\n(Backend logic to map this to graph node pending)`);
+      }
+    } catch (err) {
+      console.error("File dialog failed:", err);
+    }
+  }
+
+  function handleNodeSelect(node) {
+    selectedNode = node;
+    // If it's a manuscript node (mapped to a file), we can open the editor
+    if (node.filePath || node.type === 'manuscript') {
+      isEditorOpen = true;
+    }
+  }
+
+  function closeEditor() {
+    isEditorOpen = false;
   }
 </script>
 
@@ -29,39 +55,31 @@
   <nav class="sidebar">
     <div class="sidebar-header">
       <h1 class="app-title">{metadata.title}</h1>
-      <p class="app-desc">{metadata.description}</p>
+      <p class="app-desc">Graph-based Story Engine</p>
     </div>
     
     <div class="nav-group">
-      <button class:active={viewMode === 'zen'} onclick={() => viewMode = 'zen'}>
-        <span class="icon">✎</span> Zen Editor
-      </button>
       <button class:active={viewMode === 'topology'} onclick={() => viewMode = 'topology'}>
-        <span class="icon">⬢</span> Topology
+        <span class="icon">⬢</span> Graph Topology
+      </button>
+      <button onclick={handleImportFile}>
+        <span class="icon">📥</span> Import Node (File)
       </button>
     </div>
 
-    <div class="project-files">
-      <h3>Manuscripts</h3>
-      {#each metadata.episodes as ep}
-        <div class="episode-group">
-          <span class="episode-id">{ep.id}</span>
-          <span class="episode-title">{ep.title}</span>
-          <ul>
-            {#each ep.files as file}
-              <li>
-                <button 
-                  class="file-link" 
-                  class:selected={selectedFilePath === "251022/wattpad/" + file}
-                  onclick={() => selectFile(file)}
-                >
-                  {file.split('/').pop()}
-                </button>
-              </li>
-            {/each}
-          </ul>
+    <div class="selection-detail">
+      {#if selectedNode}
+        <div class="detail-card">
+          <h3>Selected Node</h3>
+          <p class="node-label">{selectedNode.label}</p>
+          <p class="node-type">{selectedNode.type}</p>
+          {#if selectedNode.filePath || selectedNode.type === 'manuscript'}
+            <button class="action-btn" onclick={() => isEditorOpen = true}>Edit Content</button>
+          {/if}
         </div>
-      {/each}
+      {:else}
+        <p class="hint">Select a node in the graph to view details or edit.</p>
+      {/if}
     </div>
 
     <div class="sidebar-footer">
@@ -70,16 +88,21 @@
   </nav>
 
   <main class="content">
-    {#if viewMode === 'zen'}
-      <Editor bind:filePath={selectedFilePath} />
-    {:else}
-      <div class="topology-view">
-        <header class="view-header">
-          <h1>Graph Topology</h1>
-          <p>Structural relationships from the 251022 story graph.</p>
-        </header>
-        <div class="topology-canvas">
-          <Topology />
+    <div class="topology-wrapper" class:dimmed={isEditorOpen}>
+      <header class="view-header">
+        <h1>Topology Mode</h1>
+        <p>Interactive graph of world entities and narrative nodes.</p>
+      </header>
+      <div class="topology-canvas">
+        <Topology onSelect={handleNodeSelect} />
+      </div>
+    </div>
+
+    {#if isEditorOpen && selectedNode}
+      <div class="editor-overlay">
+        <button class="close-overlay" onclick={closeEditor}>✕ Close Zen Mode</button>
+        <div class="editor-container-inner">
+          <Editor bind:filePath={selectedNode.filePath} />
         </div>
       </div>
     {/if}
@@ -97,21 +120,22 @@
   .app-layout { display: flex; height: 100vh; overflow: hidden; }
   
   .sidebar { 
-    width: 260px; 
+    width: 280px; 
     background: #f5f5f7; 
     border-right: 1px solid #d2d2d7; 
     display: flex; 
     flex-direction: column; 
     padding: 1.5rem;
-    overflow-y: auto;
+    z-index: 20;
   }
 
   .sidebar-header { margin-bottom: 2rem; }
   .app-title { font-weight: 700; font-size: 1.1rem; margin: 0; }
-  .app-desc { font-size: 0.75rem; color: #86868b; margin: 0.2rem 0 0 0; line-height: 1.4; }
+  .app-desc { font-size: 0.75rem; color: #86868b; margin: 0.2rem 0 0 0; }
 
-  .nav-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 2rem; }
+  .nav-group { margin-bottom: 2rem; }
   .sidebar button { 
+    width: 100%;
     background: transparent; 
     border: none; 
     text-align: left; 
@@ -125,37 +149,65 @@
     color: #1d1d1f;
     transition: all 0.2s;
   }
-  .sidebar button:hover { background: #e8e8ed; }
   .sidebar button.active { background: #0071e3; color: white; }
 
-  .project-files h3 { 
-    font-size: 0.7rem; 
-    text-transform: uppercase; 
-    color: #86868b; 
-    letter-spacing: 0.05em; 
-    margin-bottom: 1rem;
+  .selection-detail { flex: 1; margin-top: 1rem; }
+  .detail-card { 
+    background: white; 
+    padding: 1rem; 
+    border-radius: 12px; 
+    border: 1px solid #d2d2d7;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   }
-
-  .episode-group { margin-bottom: 1.5rem; }
-  .episode-id { font-size: 0.7rem; font-weight: 700; color: #0071e3; display: block; }
-  .episode-title { font-size: 0.85rem; font-weight: 600; color: #1d1d1f; display: block; margin-bottom: 0.4rem; }
-  
-  .episode-group ul { list-style: none; padding: 0; margin: 0; }
-  .file-link { 
-    width: 100%;
-    font-size: 0.8rem !important; 
-    padding: 0.4rem 0.6rem !important;
-    color: #424245 !important;
+  .detail-card h3 { font-size: 0.7rem; text-transform: uppercase; color: #86868b; margin: 0 0 0.5rem 0; }
+  .node-label { font-weight: 600; font-size: 1rem; margin: 0; }
+  .node-type { font-size: 0.75rem; color: #0071e3; margin: 0.2rem 0 1rem 0; }
+  .action-btn { 
+    width: 100%; 
+    background: #0071e3 !important; 
+    color: white !important; 
+    font-weight: 600; 
+    justify-content: center;
   }
-  .file-link.selected { color: #0071e3 !important; font-weight: 600; }
+  .hint { font-size: 0.8rem; color: #86868b; line-height: 1.5; }
 
-  .sidebar-footer { margin-top: auto; padding-top: 1rem; font-size: 0.75rem; color: #86868b; display: flex; align-items: center; gap: 0.5rem; }
+  .sidebar-footer { padding-top: 1rem; font-size: 0.75rem; color: #86868b; display: flex; align-items: center; gap: 0.5rem; }
   .status-dot.online { width: 6px; height: 6px; background: #34c759; border-radius: 50%; }
 
   .content { flex: 1; height: 100%; overflow: hidden; background: #fff; position: relative; }
 
-  .topology-view { height: 100%; display: flex; flex-direction: column; padding: 3rem; box-sizing: border-box; }
-  .view-header h1 { font-size: 2rem; font-weight: 700; margin: 0; letter-spacing: -0.02em; }
+  .topology-wrapper { height: 100%; display: flex; flex-direction: column; padding: 3rem; box-sizing: border-box; transition: filter 0.3s; }
+  .topology-wrapper.dimmed { filter: blur(10px) grayscale(0.5); pointer-events: none; }
+
+  .view-header h1 { font-size: 2rem; font-weight: 700; margin: 0; }
   .view-header p { color: #86868b; font-size: 1.1rem; margin-top: 0.5rem; }
   .topology-canvas { flex: 1; margin-top: 2rem; border: 1px solid #f5f5f7; border-radius: 16px; overflow: hidden; background: #fafafa; }
+
+  .editor-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: scale(1); } }
+
+  .close-overlay {
+    position: absolute;
+    top: 2rem; right: 2rem;
+    background: #1d1d1f;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 110;
+  }
+
+  .editor-container-inner { flex: 1; overflow: hidden; }
 </style>
