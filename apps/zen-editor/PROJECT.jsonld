@@ -1,0 +1,88 @@
+{
+  "@context": {
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "project": "https://gftd.ai/project/ontology/"
+  },
+  "@type": "gh:Project",
+  "name": "Ghost Hacker Zen Editor",
+  "description": "A dedicated local editor for Ghost Hacker story production, featuring Zen mode text editing and Graph Topology visualization.",
+  "status": "designing",
+  "technologies": [
+    "Tauri",
+    "SvelteKit",
+    "Prosemirror",
+    "Go",
+    "gRPC",
+    "Temporal",
+    "Kubernetes",
+    "OpenRouter",
+    "Hume AI",
+    "Git"
+  ],
+  "architecture": {
+    "frontend": {
+      "framework": "SvelteKit",
+      "ui_shell": "Tauri",
+      "editor": "Prosemirror (Svelte-integrated)",
+      "visualization": "Zen Graph Topology (Custom SVG/Canvas)",
+      "communication": "ConnectRPC (gRPC-web)"
+    },
+    "backend": {
+      "language": "Go",
+      "api": "gRPC Server",
+      "workflow_engine": "Temporal",
+      "orchestration": "Kubernetes (k8s)"
+    },
+    "integrations": [
+      {
+        "name": "Git",
+        "purpose": "Document version control and branching"
+      },
+      {
+        "name": "OpenRouter",
+        "purpose": "Entity extraction and story graph generation"
+      },
+      {
+        "name": "Hume AI",
+        "purpose": "Semantic emotion analysis of the narrative"
+      }
+    ]
+  },
+  "features": [
+    {
+      "name": "Zen Mode",
+      "description": "Distraction-free markdown editing using Prosemirror with Svelte bindings."
+    },
+    {
+      "name": "Graph Topology Mode",
+      "description": "Live visualization of story entities and relationships extracted from the text."
+    },
+    {
+      "name": "Git Versioning",
+      "description": "Integrated git workflows for branch management and history tracking."
+    }
+  ],
+  "roadmap": [
+    {
+      "step": "1. Initialize Tauri + SvelteKit project structure",
+      "status": "pending"
+    },
+    {
+      "step": "2. Implement Prosemirror editor with Svelte",
+      "status": "pending"
+    },
+    {
+      "step": "3. Setup Go gRPC backend and Temporal worker",
+      "status": "pending"
+    },
+    {
+      "step": "4. Implement AI entity extraction and graph visualization",
+      "status": "pending"
+    },
+    {
+      "step": "5. Integrate Hume AI and Git workflows",
+      "status": "pending"
+    }
+  ]
+}
+

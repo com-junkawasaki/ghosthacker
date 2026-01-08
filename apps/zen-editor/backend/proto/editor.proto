@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package gftd.ghosthacker.zeneditor.v1;
+
+option go_package = "github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/proto;editorpb";
+
+service EditorService {
+  rpc AnalyzeText(AnalyzeTextRequest) returns (AnalyzeTextResponse);
+  rpc GetTopology(GetTopologyRequest) returns (GetTopologyResponse);
+}
+
+message AnalyzeTextRequest {
+  string text = 1;
+}
+
+message AnalyzeTextResponse {
+  string summary = 1;
+  repeated Entity entities = 2;
+}
+
+message GetTopologyRequest {
+  string project_id = 1;
+}
+
+message GetTopologyResponse {
+  repeated Node nodes = 1;
+  repeated Edge edges = 2;
+}
+
+message Entity {
+  string id = 1;
+  string type = 2;
+  string name = 3;
+}
+
+message Node {
+  string id = 1;
+  string label = 2;
+  string type = 3;
+}
+
+message Edge {
+  string from_id = 1;
+  string to_id = 2;
+  string relation = 3;
+}
+
