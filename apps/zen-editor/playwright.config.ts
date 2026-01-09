@@ -11,13 +11,20 @@ export default defineConfig({
   reporter: 'html',
   use: {
     baseURL: 'http://127.0.0.1:1420',
-    trace: 'on-first-retry',
+    trace: 'on',
+    video: 'on',
+    screenshot: 'on',
     viewport: { width: 2560, height: 1440 },
   },
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        ...devices['Desktop Chrome'],
+        launchOptions: {
+          args: ['--enable-unsafe-webgpu']
+        }
+      },
     },
   ],
   webServer: {

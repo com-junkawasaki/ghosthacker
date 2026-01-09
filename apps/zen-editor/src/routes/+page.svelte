@@ -1,21 +1,30 @@
 <script lang="ts">
   console.log("+page script evaluated");
   import Editor from '../components/Editor.svelte';
-  import Topology from '../components/Topology.svelte';
+  import Topology from '../components/TopologyWebGPU.svelte';
   import { onMount } from 'svelte';
   import { client } from '../lib/api';
   import { fly, fade } from 'svelte/transition';
 
+  interface NodeData {
+    id: string;
+    label: string;
+    type: string;
+    content?: string;
+    filePath?: string;
+    group: string;
+  }
+
   // Svelte 5 Runes
   let viewMode = $state('topology');
-  let metadata = $state({ title: "Ghost Hacker", description: "", episodes: [] });
-  let selectedNode = $state(null);
-  let multiSelection = $state([]);
+  let metadata = $state<{title: string, description: string, episodes: any[]}>({ title: "Ghost Hacker", description: "", episodes: [] });
+  let selectedNode = $state<NodeData | null>(null);
+  let multiSelection = $state<NodeData[]>([]);
   let isEditorOpen = $state(false);
   let isChatOpen = $state(false);
   let isSidebarOpen = $state(false);
   
-  let chatMessages = $state([]);
+  let chatMessages = $state<any[]>([]);
   let chatInput = $state("");
 
   $effect(() => {
@@ -38,7 +47,7 @@
       });
   });
 
-  function handleNodeSelect(node, allSelected = []) {
+  function handleNodeSelect(node: any, allSelected: any[] = []) {
     console.log("Node selected:", node?.id, "Total selected:", allSelected?.length);
     selectedNode = node;
     multiSelection = allSelected || [];
@@ -87,6 +96,7 @@
 </script>
 
     <div class="app-layout">
+      {console.log("Rendering app-layout")}
       <button class="menu-trigger" onclick={() => isSidebarOpen = true} aria-label="Open Menu">
         <span class="icon">☰</span>
       </button>
@@ -168,7 +178,11 @@
               <button class="close-panel" onclick={closeEditor}>✕</button>
             </div>
             <div class="panel-content">
-              <Editor bind:filePath={selectedNode.filePath} initialContent={selectedNode.content} />
+              {#if selectedNode.filePath}
+                <Editor bind:filePath={selectedNode.filePath} initialContent={selectedNode.content || ""} />
+              {:else}
+                <Editor initialContent={selectedNode.content || ""} />
+              {/if}
             </div>
           </div>
         {/if}

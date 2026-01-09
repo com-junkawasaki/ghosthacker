@@ -3,7 +3,7 @@ import { combineEmotionVectors } from './emotion';
 
 describe('combineEmotionVectors', () => {
   it('should return a combined vector of multiple nodes', () => {
-    const vectors = [
+    const vectors: Record<string, number>[] = [
       { Joy: 0.5, Calm: 0.2 },
       { Joy: 0.3, Sadness: 0.1 },
       { Anger: 0.4 }

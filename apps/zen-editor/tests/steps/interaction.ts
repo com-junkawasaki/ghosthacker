@@ -11,22 +11,12 @@ Given('I am on the Story Topology page', async ({ page }) => {
 
 When('I click on a character node named {string}', async ({ page }, name: string) => {
   console.log(`Searching for node: ${name}`);
-  // Wait for the graph to load
-  const node = page.locator('g.node').filter({ hasText: name }).first();
+  // Use the hidden test buttons for Canvas-based graph
+  const node = page.locator('.test-node-btn').filter({ hasText: name }).first();
   await expect(node).toBeAttached({ timeout: 20000 });
   
-  // Programmatically click to avoid viewport issues
-  // We use evaluate to trigger the Svelte onclick handler directly
-  await node.evaluate(el => {
-    el.scrollIntoView({ block: 'center', inline: 'center' });
-    const event = new MouseEvent('click', {
-      view: window,
-      bubbles: true,
-      cancelable: true
-    });
-    el.dispatchEvent(event);
-  });
-  console.log(`Programmatically clicked node: ${name}`);
+  await node.click({ force: true });
+  console.log(`Clicked test button for node: ${name}`);
   await page.waitForTimeout(1000); // Wait for sidebar to open
 });
 
