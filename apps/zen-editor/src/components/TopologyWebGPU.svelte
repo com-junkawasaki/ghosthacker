@@ -1,8 +1,8 @@
 <script lang="ts">
   import { client } from '../lib/api';
   import { onDestroy } from 'svelte';
-  import * as d3Zoom from 'd3-zoom';
-  import { select } from 'd3-selection';
+  // import * as d3Zoom from 'd3-zoom';
+  // import { select } from 'd3-selection';
   import GraphWorker from '../lib/graph_v2.worker?worker';
 
   let { onSelect, selectedId } = $props();
@@ -42,7 +42,7 @@
                 } 
             }, [offscreen]);
             
-            initZoom();
+            // initZoom();
         } catch (err) {
             console.error("Worker creation failed:", err);
         }
