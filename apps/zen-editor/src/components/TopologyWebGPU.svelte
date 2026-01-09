@@ -17,10 +17,8 @@
   let worker: Worker | null = null;
 
   $effect(() => {
-    console.log("TopologyWebGPU $effect (Worker init) started");
     if (!worker && canvasElement) {
         try {
-            console.log("Creating GraphWorker...");
             worker = new GraphWorker();
             worker.onerror = (err) => console.error("Worker error:", err);
             worker.onmessage = (e) => {
@@ -29,7 +27,6 @@
                 }
             };
             
-            console.log("Transferring canvas control...");
             const offscreen = canvasElement.transferControlToOffscreen();
             worker.postMessage({ 
                 type: 'INIT', 
@@ -40,7 +37,7 @@
                 } 
             }, [offscreen]);
             
-            console.log("Worker initialized.");
+            initZoom();
         } catch (err) {
             console.error("Worker creation failed:", err);
         }
@@ -48,14 +45,11 @@
   });
 
   $effect(() => {
-    console.log("TopologyWebGPU $effect (Data fetch) started");
     (async () => {
         isLoading = true;
         try {
-          console.log("Fetching topology data...");
           const topoResp = await client.getTopology({ projectId: "251022" });
           nodes = (topoResp.nodes || []).filter(n => n && n.id && n.label);
-          console.log(`Fetched ${nodes.length} nodes`);
           
           if (worker) {
               const nodesData = nodes.map(n => ({ 
@@ -75,6 +69,26 @@
     })();
   });
 
+  function initZoom() {
+    if (!canvasElement) return;
+    try {
+        const zoom = d3Zoom.zoom<HTMLCanvasElement, unknown>()
+          .scaleExtent([0.1, 10])
+          .on("zoom", (event) => {
+            if (worker) {
+                worker.postMessage({ 
+                    type: 'SET_TRANSFORM', 
+                    data: { x: event.transform.x, y: event.transform.y, k: event.transform.k } 
+                });
+            }
+          });
+        
+        select(canvasElement).call(zoom);
+    } catch (err) {
+        console.error("d3Zoom failed:", err);
+    }
+  }
+
   onDestroy(() => {
     if (worker) worker.terminate();
   });
@@ -85,7 +99,6 @@
 </script>
 
 <div class="topology-container" bind:clientWidth={containerWidth} bind:clientHeight={containerHeight}>
-  {console.log("Rendering Topology canvas, element:", canvasElement)}
   <canvas 
     bind:this={canvasElement} 
     width={containerWidth} 
@@ -105,7 +118,8 @@
 
 <style>
   .topology-container { width: 100%; height: 100%; position: relative; background: #05050a; }
-  canvas { width: 100%; height: 100%; display: block; }
+  canvas { width: 100%; height: 100%; display: block; cursor: grab; }
+  canvas:active { cursor: grabbing; }
   .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; display: flex; flex-direction: column; align-items: center; gap: 1rem; z-index: 100; }
   .spinner { width: 24px; height: 24px; border: 2px solid #333; border-top-color: #0071e3; border-radius: 50%; animation: spin 1s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }

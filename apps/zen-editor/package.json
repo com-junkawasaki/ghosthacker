@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite dev\" \"cd backend && go run cmd/server/main.go\"",
+    "dev": "concurrently \"vite dev --force\" \"cd backend && go run cmd/server/main.go\"",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check",

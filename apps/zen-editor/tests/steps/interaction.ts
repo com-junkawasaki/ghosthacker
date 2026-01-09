@@ -54,4 +54,3 @@ Then('I should eventually see a response from {string}', async ({ page }, name: 
   await expect(response.locator('.speaker').last()).toContainText(name, { timeout: 30000 });
   await expect(response.locator('.msg-bubble').last()).not.toBeEmpty();
 });
-
