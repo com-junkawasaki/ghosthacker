@@ -159,6 +159,8 @@ const nodeVertexShader = (tgpu['~unstable'].vertexFn as any)({
     out: {
         pos: d.builtin.position,
         color: d.vec4f,
+        uv: d.vec2f,
+        isSelected: d.f32,
     },
 })`{
     let node = nodes[in.instanceIdx];
@@ -170,8 +172,10 @@ const nodeVertexShader = (tgpu['~unstable'].vertexFn as any)({
     let cy = (1.0 - py * 2.0 + params.viewOffsetY) * params.viewScale;
 
     var size = node.size;
+    var isSelected = 0.0;
     if (in.instanceIdx == params.selectedNodeIdx) {
-        size = size * 1.5;
+        size = size * 1.4;
+        isSelected = 1.0;
     }
 
     let screenPos = vec2f(cx, cy) + (in.unitPos * (size * params.viewScale) / params.width);
@@ -181,15 +185,42 @@ const nodeVertexShader = (tgpu['~unstable'].vertexFn as any)({
     if (node.group == 1u) { color = vec4f(1.0, 0.23, 0.19, 1.0); } 
     if (node.group == 2u) { color = vec4f(0.55, 0.55, 0.58, 1.0); } 
     
-    if (in.instanceIdx == params.selectedNodeIdx) {
-        color = vec4f(1.0, 1.0, 1.0, 1.0); // Highlight selected node
-    }
-    
-    return Out(vec4f(screenPos, 0.0, 1.0), color);
+    return Out(vec4f(screenPos, 0.0, 1.0), color, in.unitPos, isSelected);
 }`.$uses({
     params: d.ptrUniform(ParamsStruct),
     nodes: d.ptrStorage(d.arrayOf(NodeStruct, 10240))
 });
+
+const nodeFragmentShader = (tgpu['~unstable'].fragmentFn as any)({
+    in: { 
+        color: d.vec4f,
+        uv: d.vec2f,
+        isSelected: d.f32,
+    },
+    out: d.vec4f,
+})`{
+    let dist = length(in.uv);
+    if (dist > 1.0) { discard; }
+    
+    var finalColor = in.color;
+    
+    // Antialiased border
+    let borderSize = 0.05;
+    let edge = 1.0 - borderSize;
+    if (dist > edge) {
+        let alpha = smoothstep(1.0, edge, dist);
+        finalColor = mix(vec4f(1.0, 1.0, 1.0, 1.0), finalColor, alpha);
+    }
+    
+    if (in.isSelected > 0.5) {
+        // Stronger border for selected node
+        if (dist > 0.8) {
+            finalColor = vec4f(1.0, 1.0, 1.0, 1.0);
+        }
+    }
+    
+    return finalColor;
+}`;
 
 const edgeVertexShader = (tgpu['~unstable'].vertexFn as any)({
     in: {
@@ -217,17 +248,10 @@ const edgeVertexShader = (tgpu['~unstable'].vertexFn as any)({
     edges: d.ptrStorage(d.arrayOf(EdgeStruct, 20480))
 });
 
-const fragmentShader = (tgpu['~unstable'].fragmentFn as any)({
-    in: { color: d.vec4f },
-    out: d.vec4f,
-})`{
-    return in.color;
-}`;
-
 const edgeFragmentShader = (tgpu['~unstable'].fragmentFn as any)({
     out: d.vec4f,
 })`{
-    return vec4f(0.3, 0.3, 0.35, 0.5);
+    return vec4f(0.3, 0.3, 0.35, 0.4);
 }`;
 
 // --- Implementation ---
@@ -254,7 +278,7 @@ async function init(offscreen: OffscreenCanvas, w: number, h: number) {
 
         root = tgpu.initFromDevice({ device });
 
-        const sides = 12;
+        const sides = 16; // Increased smoothness
         const circleVerts = [];
         for (let i = 0; i < sides; i++) {
             const angle1 = (i / sides) * Math.PI * 2;
@@ -289,7 +313,7 @@ function startLoop() {
             if (!nodeRenderPipeline) {
                 nodeRenderPipeline = root.createRenderPipeline({
                     vertex: nodeVertexShader,
-                    fragment: fragmentShader,
+                    fragment: nodeFragmentShader,
                     primitive: { topology: 'triangle-list' },
                 });
             }
@@ -334,7 +358,7 @@ function startLoop() {
             }
 
             // 2. Draw Nodes
-            const circleVertsCount = 36; 
+            const circleVertsCount = 48; // Updated for 16 sides * 3 verts
             const vertexLayout = tgpu.vertexLayout(d.arrayOf(d.vec2f), 'vertex');
             nodeRenderPipeline
                 .with(paramsBuffer)
@@ -379,11 +403,10 @@ self.onmessage = async (e: MessageEvent) => {
             pos: d.vec2f(n.x, n.y),
             vel: d.vec2f(0, 0),
             force: d.vec2f(0, 0),
-            size: n.size || 6,
+            size: n.size || 8, // Slightly larger default
             group: n.group === 'content' ? 0 : n.group === 'entity' ? 1 : n.group === 'concept' ? 2 : 3
         }));
 
-        // Node ID to index map for edge mapping
         const idMap = new Map();
         nodes.forEach((n: any, i: number) => idMap.set(n.id, i));
 
