@@ -435,6 +435,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 				Label: label,
 				Type:  itemType,
 				Group: s.categorizeNode(itemType),
+				Embedding: s.generateDummyEmbedding(id), // Generate vector
 			}
 			if x, ok := item["gh:x"].(float64); ok {
 				node.X = float32(x)
@@ -453,7 +454,6 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 				for _, p := range participants {
 					pID, ok := p.(string)
 					if !ok {
-						// Handle nested objects if any (JSON-LD can be complex)
 						if pMap, ok := p.(map[string]interface{}); ok {
 							pID, _ = pMap["@id"].(string)
 						}
@@ -465,8 +465,9 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 							Relation: relType,
 							Strength: float32(strength),
 							Group:    "semantic",
-							Color:    "#a855f7", // Purple for events
+							Color:    "#a855f7",
 							Style:    "solid",
+							Distance: float32(100.0 * (1.5 - strength)), // Distance based on strength
 						})
 					}
 				}
@@ -493,6 +494,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 					Label: file,
 					Type:  "gh:Manuscript",
 					Group: "content",
+					Embedding: s.generateDummyEmbedding(mNodeID),
 				}
 				// Try to restore position from LayoutStub if exists
 				if stub, ok := nodeMap[mNodeID]; ok {
@@ -524,6 +526,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 							Type:    "gh:Block",
 							Content: bContent,
 							Group:   "content",
+							Embedding: s.generateDummyEmbedding(bNodeID),
 						}
 						resp.Nodes = append(resp.Nodes, bNode)
 
@@ -535,6 +538,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 							Style:    "dashed",
 							Color:    "#d2d2d7",
 							Group:    "structural",
+							Distance: 50, // Close distance for containment
 						})
 
 						// Link: Sequential blocks
@@ -546,6 +550,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 								Style:    "solid",
 								Color:    "#0071e3",
 								Group:    "structural",
+								Distance: 30, // Sequential blocks are close
 							})
 						}
 						prevBlockID = bNodeID
@@ -561,6 +566,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 								Style:    "dotted",
 								Color:    "#34c759",
 								Group:    "semantic",
+								Distance: 150,
 							})
 						}
 
@@ -575,6 +581,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 										Style:    "dotted",
 										Color:    "#ff9500",
 										Group:    "semantic",
+										Distance: 80,
 									})
 								}
 							}
@@ -586,6 +593,19 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 	}
 
 	return connect.NewResponse(resp), nil
+}
+
+func (s *EditorServer) generateDummyEmbedding(id string) []float32 {
+	// Simple hash-based dummy embedding for stable positions
+	embedding := make([]float32, 16)
+	sum := 0
+	for _, char := range id {
+		sum += int(char)
+	}
+	for i := range embedding {
+		embedding[i] = float32((sum * (i + 1)) % 100) / 100.0
+	}
+	return embedding
 }
 
 func (s *EditorServer) categorizeNode(t string) string {

@@ -869,7 +869,8 @@ type Node struct {
 	X             float32                `protobuf:"fixed32,4,opt,name=x,proto3" json:"x,omitempty"`
 	Y             float32                `protobuf:"fixed32,5,opt,name=y,proto3" json:"y,omitempty"`
 	Content       string                 `protobuf:"bytes,6,opt,name=content,proto3" json:"content,omitempty"`
-	Group         string                 `protobuf:"bytes,7,opt,name=group,proto3" json:"group,omitempty"` // "entity", "content", "concept", "link-node"
+	Group         string                 `protobuf:"bytes,7,opt,name=group,proto3" json:"group,omitempty"`                  // "entity", "content", "concept", "link-node"
+	Embedding     []float32              `protobuf:"fixed32,8,rep,packed,name=embedding,proto3" json:"embedding,omitempty"` // LLM-like vector for distance-based layout
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -953,6 +954,13 @@ func (x *Node) GetGroup() string {
 	return ""
 }
 
+func (x *Node) GetEmbedding() []float32 {
+	if x != nil {
+		return x.Embedding
+	}
+	return nil
+}
+
 type Edge struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	FromId        string                 `protobuf:"bytes,1,opt,name=from_id,json=fromId,proto3" json:"from_id,omitempty"`
@@ -962,6 +970,7 @@ type Edge struct {
 	Style         string                 `protobuf:"bytes,5,opt,name=style,proto3" json:"style,omitempty"`
 	Strength      float32                `protobuf:"fixed32,6,opt,name=strength,proto3" json:"strength,omitempty"` // 0.0 - 1.0
 	Group         string                 `protobuf:"bytes,7,opt,name=group,proto3" json:"group,omitempty"`         // "structural", "semantic", "causal", "thematic"
+	Distance      float32                `protobuf:"fixed32,8,opt,name=distance,proto3" json:"distance,omitempty"` // Preferred distance based on vector similarity
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1045,6 +1054,13 @@ func (x *Edge) GetGroup() string {
 	return ""
 }
 
+func (x *Edge) GetDistance() float32 {
+	if x != nil {
+		return x.Distance
+	}
+	return 0
+}
+
 var File_editor_proto protoreflect.FileDescriptor
 
 const file_editor_proto_rawDesc = "" +
@@ -1108,7 +1124,7 @@ const file_editor_proto_rawDesc = "" +
 	"\x06Entity\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04type\x18\x02 \x01(\tR\x04type\x12\x12\n" +
-	"\x04name\x18\x03 \x01(\tR\x04name\"\x8c\x01\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\"\xaa\x01\n" +
 	"\x04Node\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05label\x18\x02 \x01(\tR\x05label\x12\x12\n" +
@@ -1116,7 +1132,8 @@ const file_editor_proto_rawDesc = "" +
 	"\x01x\x18\x04 \x01(\x02R\x01x\x12\f\n" +
 	"\x01y\x18\x05 \x01(\x02R\x01y\x12\x18\n" +
 	"\acontent\x18\x06 \x01(\tR\acontent\x12\x14\n" +
-	"\x05group\x18\a \x01(\tR\x05group\"\xae\x01\n" +
+	"\x05group\x18\a \x01(\tR\x05group\x12\x1c\n" +
+	"\tembedding\x18\b \x03(\x02R\tembedding\"\xca\x01\n" +
 	"\x04Edge\x12\x17\n" +
 	"\afrom_id\x18\x01 \x01(\tR\x06fromId\x12\x13\n" +
 	"\x05to_id\x18\x02 \x01(\tR\x04toId\x12\x1a\n" +
@@ -1124,7 +1141,8 @@ const file_editor_proto_rawDesc = "" +
 	"\x05color\x18\x04 \x01(\tR\x05color\x12\x14\n" +
 	"\x05style\x18\x05 \x01(\tR\x05style\x12\x1a\n" +
 	"\bstrength\x18\x06 \x01(\x02R\bstrength\x12\x14\n" +
-	"\x05group\x18\a \x01(\tR\x05group2\xed\x03\n" +
+	"\x05group\x18\a \x01(\tR\x05group\x12\x1a\n" +
+	"\bdistance\x18\b \x01(\x02R\bdistance2\xed\x03\n" +
 	"\rEditorService\x12t\n" +
 	"\vGetTopology\x121.gftd.ghosthacker.zeneditor.v1.GetTopologyRequest\x1a2.gftd.ghosthacker.zeneditor.v1.GetTopologyResponse\x12\x89\x01\n" +
 	"\x12GetProjectMetadata\x128.gftd.ghosthacker.zeneditor.v1.GetProjectMetadataRequest\x1a9.gftd.ghosthacker.zeneditor.v1.GetProjectMetadataResponse\x12k\n" +

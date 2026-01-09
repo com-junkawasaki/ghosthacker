@@ -1,134 +1,121 @@
 <script lang="ts">
   import { client } from '../lib/api';
+  import * as d3 from 'd3-force';
+  import { onMount } from 'svelte';
+
+  interface GraphNode extends d3.SimulationNodeDatum {
+    id: string;
+    label: string;
+    type: string;
+    content?: string;
+    group: string;
+    size: number;
+    embedding?: number[];
+    filePath?: string;
+  }
+
+  interface GraphEdge extends d3.SimulationLinkDatum<GraphNode> {
+    relation: string;
+    color?: string;
+    style?: string;
+    group: string;
+    strength: number;
+    distance: number;
+  }
 
   let { onSelect } = $props();
 
-  let nodes = $state([]);
-  let edges = $state([]);
+  let nodes = $state<GraphNode[]>([]);
+  let edges = $state<GraphEdge[]>([]);
   let isLoading = $state(true);
-  let selectedNodeId = $state(null);
-  let multiSelect = $state([]);
+  let selectedNodeId = $state<string | null>(null);
+  let multiSelect = $state<string[]>([]);
   let isDragging = $state(false);
-  let dragNode = $state(null);
+  let dragNode = $state<GraphNode | null>(null);
+
+  let simulation: d3.Simulation<GraphNode, GraphEdge>;
+  let containerWidth = 1000;
+  let containerHeight = 800;
 
   console.log("Topology component script evaluated");
 
   $effect(() => {
+    initSimulation();
     refreshGraph();
   });
 
-      async function refreshGraph() {
-        isLoading = true;
-        try {
-          console.log("Fetching project metadata and topology...");
-          const [metaResp, topoResp] = await Promise.all([
-            client.getProjectMetadata({ projectId: "251022" }),
-            client.getTopology({ projectId: "251022" })
-          ]);
-          
-          const topo = {
-            nodes: topoResp.nodes.map(n => ({
-              id: n.id,
-              label: n.label,
-              type: n.type,
-              x: n.x,
-              y: n.y,
-              content: n.content,
-              group: n.group
-            })),
-            edges: topoResp.edges.map(e => ({
-              fromId: e.fromId,
-              toId: e.toId,
-              relation: e.relation,
-              color: e.color,
-              style: e.style,
-              group: e.group,
-              strength: e.strength
-            }))
-          };
+  function initSimulation() {
+    simulation = d3.forceSimulation<GraphNode>()
+      .force("link", d3.forceLink<GraphNode, GraphEdge>().id(d => d.id).distance(d => d.distance))
+      .force("charge", d3.forceManyBody().strength(-300))
+      .force("center", d3.forceCenter(containerWidth / 2, containerHeight / 2))
+      .force("collision", d3.forceCollide<GraphNode>().radius(d => d.size + 15))
+      .on("tick", () => {
+        nodes = [...nodes];
+      });
+  }
 
-          const width = 1000;
-          const height = 800;
-          const centerX = width / 2;
-          const centerY = height / 2;
+  async function refreshGraph() {
+    isLoading = true;
+    try {
+      const [metaResp, topoResp] = await Promise.all([
+        client.getProjectMetadata({ projectId: "251022" }),
+        client.getTopology({ projectId: "251022" })
+      ]);
+      
+      const rawNodes: GraphNode[] = topoResp.nodes.map(n => ({
+        id: n.id,
+        label: n.label,
+        type: n.type,
+        x: n.x || (containerWidth / 2 + (Math.random() - 0.5) * 100),
+        y: n.y || (containerHeight / 2 + (Math.random() - 0.5) * 100),
+        content: n.content,
+        group: n.group,
+        embedding: [...n.embedding],
+        size: calculateSize(n)
+      }));
 
-          // Process nodes and assign positions if missing
-          nodes = topo.nodes.map((n, i) => {
-            let x = n.x;
-            let y = n.y;
-            let size = 20;
+      const rawEdges: GraphEdge[] = topoResp.edges.map(e => ({
+        source: e.fromId,
+        target: e.toId,
+        relation: e.relation,
+        color: e.color,
+        style: e.style,
+        group: e.group,
+        strength: e.strength,
+        distance: e.distance || 150
+      }));
 
-            if (n.group === 'content') {
-              size = n.type === 'gh:Manuscript' ? 28 : 12;
-            } else if (n.group === 'entity') {
-              size = 32;
-            } else if (n.group === 'concept') {
-              size = 20;
-            } else if (n.group === 'link-node') {
-              size = 18; // Smaller diamond-like node for relationships
-            }
+      nodes = rawNodes;
+      edges = rawEdges;
 
-            if (x === 0 && y === 0) {
-              if (n.group === 'entity') {
-                const angle = (i / 10) * Math.PI * 2;
-                x = centerX + Math.cos(angle) * 200;
-                y = centerY + Math.sin(angle) * 180;
-              } else if (n.group === 'content') {
-                const angle = (i / 15) * Math.PI * 2;
-                x = centerX + Math.cos(angle) * 380;
-                y = centerY + Math.sin(angle) * 320;
-              } else if (n.group === 'link-node') {
-                x = centerX + (Math.random() - 0.5) * 200;
-                y = centerY + (Math.random() - 0.5) * 200;
-              } else {
-                x = centerX + (Math.random() - 0.5) * 400;
-                y = centerY + (Math.random() - 0.5) * 400;
-              }
-            }
+      simulation.nodes(nodes);
+      simulation.force<d3.ForceLink<GraphNode, GraphEdge>>("link").links(edges);
+      simulation.alpha(1).restart();
 
-            return { ...n, x, y, size, label: n.label || 'Unknown' };
-          });
+      isLoading = false;
+    } catch (err) {
+      console.error("Failed to load graph:", err);
+      isLoading = false;
+    }
+  }
 
-          edges = topo.edges;
-          isLoading = false;
-        } catch (err) {
-          console.error("Failed to load graph:", err);
-          isLoading = false;
-        }
-      }
-
-      async function runAIAnalysis() {
-        if (multiSelect.length < 2) {
-          alert("Select at least 2 nodes for AI analysis.");
-          return;
-        }
-        isLoading = true;
-        try {
-          const resp = await client.callTool({
-            name: "analyze_links",
-            argumentsJson: JSON.stringify({ node_ids: multiSelect })
-          });
-          if (!resp.isError) {
-            const results = JSON.parse(resp.resultJson);
-            alert("AI Analysis complete. Suggestions: " + resp.resultJson);
-            // In future, we could add these links dynamically
-          }
-        } catch (err) {
-          console.error(err);
-        } finally {
-          isLoading = false;
-        }
-      }
+  function calculateSize(n) {
+    if (n.group === 'content') return n.type === 'gh:Manuscript' ? 28 : 12;
+    if (n.group === 'entity') return 32;
+    if (n.group === 'concept') return 20;
+    if (n.group === 'link-node') return 18;
+    return 20;
+  }
 
   // --- Dragging Logic ---
   function handleMouseDown(node, event) {
-    console.log("handleMouseDown called for:", node.id);
-    if (event.shiftKey) return; // Ignore for multi-select
+    if (event.shiftKey) return;
     dragNode = node;
     isDragging = true;
-    
-    // We don't call onSelect here to avoid duplicate calls with onclick
-    // but we can set the dragNode so handleMouseMove works
+    simulation.alphaTarget(0.3).restart();
+    node.fx = node.x;
+    node.fy = node.y;
   }
 
   function handleMouseMove(event) {
@@ -138,39 +125,42 @@
     const x = (event.clientX - CTM.e) / CTM.a;
     const y = (event.clientY - CTM.f) / CTM.d;
     
-    // Update node position in state
-    nodes = nodes.map(n => n.id === dragNode.id ? { ...n, x, y } : n);
+    dragNode.fx = x;
+    dragNode.fy = y;
   }
 
   function handleMouseUp() {
+    if (isDragging && dragNode) {
+      simulation.alphaTarget(0);
+      // Keep fx/fy if we want to "pin" nodes, or set to null to let them settle
+      // Let's set to null for "LLM vector fluid layout" feel
+      dragNode.fx = null;
+      dragNode.fy = null;
+      autoSaveLayout();
+    }
     isDragging = false;
     dragNode = null;
   }
 
-  async function saveLayout() {
-    isLoading = true;
-    try {
-      const positions = nodes.map(n => ({ id: n.id, x: n.x, y: n.y }));
-      const resp = await client.callTool({
-        name: "update_node_positions",
-        argumentsJson: JSON.stringify({ positions })
-      });
-      if (!resp.isError) {
-        console.log("Layout saved to JSON-LD");
-      } else {
-        alert("Failed to save layout: " + resp.resultJson);
+  let saveTimeout;
+  function autoSaveLayout() {
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(async () => {
+      try {
+        const positions = nodes.map(n => ({ id: n.id, x: n.x, y: n.y }));
+        await client.callTool({
+          name: "update_node_positions",
+          argumentsJson: JSON.stringify({ positions })
+        });
+        console.log("Layout auto-saved");
+      } catch (err) {
+        console.error("Auto-save failed:", err);
       }
-    } catch (err) {
-      console.error("Save layout failed:", err);
-    } finally {
-      isLoading = false;
-    }
+    }, 2000);
   }
 
   function toggleNode(node, event) {
-    console.log("toggleNode called for:", node.id, "shiftKey:", event.shiftKey);
-    event.stopPropagation(); // Prevent bubbling if any
-    
+    event.stopPropagation();
     if (event.shiftKey) {
       if (multiSelect.includes(node.id)) {
         multiSelect = multiSelect.filter(id => id !== node.id);
@@ -182,19 +172,10 @@
       multiSelect = [node.id];
     }
     
-    console.log("New multiSelect:", multiSelect);
-    
-    // Provide callback with full selection objects
     if (onSelect) {
       const selectedNodes = nodes.filter(n => multiSelect.includes(n.id));
-      console.log("Calling onSelect with:", selectedNodes.length, "nodes");
       onSelect(node, selectedNodes);
     }
-  }
-
-  function getPos(id: string) {
-    const n = nodes.find(n => n.id === id);
-    return n ? { x: n.x, y: n.y } : { x: 0, y: 0 };
   }
 
   async function handleGenerateNode() {
@@ -209,22 +190,41 @@
       await refreshGraph();
     } catch (err) { console.error(err); } finally { isLoading = false; }
   }
+
+  async function runAIAnalysis() {
+    if (multiSelect.length < 2) {
+      alert("Select at least 2 nodes for AI analysis.");
+      return;
+    }
+    isLoading = true;
+    try {
+      const resp = await client.callTool({
+        name: "analyze_links",
+        argumentsJson: JSON.stringify({ node_ids: multiSelect })
+      });
+      if (!resp.isError) {
+        alert("AI Analysis complete. Suggestions: " + resp.resultJson);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      isLoading = false;
+    }
+  }
 </script>
 
 <div class="topology-container">
   {#if isLoading}
     <div class="loader"><div class="spinner"></div>Syncing Story Graph...</div>
   {:else}
-        <div class="graph-toolbar">
-          <div class="selection-info">{multiSelect.length} nodes selected</div>
-          <button class="tool-btn ai-btn" onclick={runAIAnalysis}>✨ AI Link Analysis</button>
-          <button class="tool-btn action" onclick={handleGenerateNode}>Generate from Selection</button>
-          <button class="tool-btn" onclick={saveLayout}>Save Layout</button>
-          <button class="tool-btn" onclick={refreshGraph}>Refresh</button>
-        </div>
+    <div class="graph-toolbar">
+      <div class="selection-info">{multiSelect.length} nodes selected</div>
+      <button class="tool-btn ai-btn" onclick={runAIAnalysis}>✨ AI Link Analysis</button>
+      <button class="tool-btn action" onclick={handleGenerateNode}>Generate from Selection</button>
+    </div>
     
     <svg 
-      viewBox="0 0 1000 800" 
+      viewBox="0 0 {containerWidth} {containerHeight}" 
       class="topology-svg" 
       onmousemove={handleMouseMove} 
       onmouseup={handleMouseUp}
@@ -238,53 +238,51 @@
         </marker>
       </defs>
 
-          <g class="edges">
-            {#each edges as edge}
-              {@const start = getPos(edge.fromId)}
-              {@const end = getPos(edge.toId)}
-              {#if start.x !== 0 && end.x !== 0}
-                <line 
-                  x1={start.x} y1={start.y} x2={end.x} y2={end.y} 
-                  class="edge-line" 
-                  style="stroke: {edge.color || '#e5e5e5'}; stroke-dasharray: {edge.style === 'dashed' ? '4 4' : edge.style === 'dotted' ? '1 3' : 'none'}"
-                  marker-end="url(#arrowhead)" 
-                />
-              {/if}
-            {/each}
-          </g>
+      <g class="edges">
+        {#each edges as edge}
+          {#if typeof edge.source === 'object' && typeof edge.target === 'object'}
+            <line 
+              x1={edge.source.x} y1={edge.source.y} x2={edge.target.x} y2={edge.target.y} 
+              class="edge-line" 
+              style="stroke: {edge.color || '#e5e5e5'}; stroke-dasharray: {edge.style === 'dashed' ? '4 4' : edge.style === 'dotted' ? '1 3' : 'none'}"
+              marker-end="url(#arrowhead)" 
+            />
+          {/if}
+        {/each}
+      </g>
 
-          <g class="nodes">
-            {#each nodes as node}
-              <g 
-                class="node" 
-                transform="translate({node.x}, {node.y})"
-                data-group={node.group}
-                data-id={node.id}
-                onmousedown={(e) => handleMouseDown(node, e)}
-                onclick={(e) => toggleNode(node, e)}
-                onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleNode(node, e)}
-                class:selected={selectedNodeId === node.id || multiSelect.includes(node.id)}
-                role="button"
-                tabindex="0"
-                aria-label="Select node {node.label}"
-              >
-                <circle 
-                  r={node.size} 
-                  class="node-circle" 
-                  class:manuscript={node.type === 'gh:Manuscript'} 
-                  class:block={node.type === 'gh:Block'}
-                  class:person={node.type && node.type.includes('Person')} 
-                  class:link-node={node.group === 'link-node'}
-                />
-                <text y={node.size + 18} text-anchor="middle" class="node-label">
-                  {node.label}
-                </text>
-                {#if multiSelect.includes(node.id)}
-                  <circle r={node.size + 5} class="selection-ring" />
-                {/if}
-              </g>
-            {/each}
+      <g class="nodes">
+        {#each nodes as node}
+          <g 
+            class="node" 
+            transform="translate({node.x}, {node.y})"
+            data-group={node.group}
+            data-id={node.id}
+            onmousedown={(e) => handleMouseDown(node, e)}
+            onclick={(e) => toggleNode(node, e)}
+            onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleNode(node, e)}
+            class:selected={selectedNodeId === node.id || multiSelect.includes(node.id)}
+            role="button"
+            tabindex="0"
+            aria-label="Select node {node.label}"
+          >
+            <circle 
+              r={node.size} 
+              class="node-circle" 
+              class:manuscript={node.type === 'gh:Manuscript'} 
+              class:block={node.type === 'gh:Block'}
+              class:person={node.type && node.type.includes('Person')} 
+              class:link-node={node.group === 'link-node'}
+            />
+            <text y={node.size + 18} text-anchor="middle" class="node-label">
+              {node.label}
+            </text>
+            {#if multiSelect.includes(node.id)}
+              <circle r={node.size + 5} class="selection-ring" />
+            {/if}
           </g>
+        {/each}
+      </g>
     </svg>
   {/if}
 </div>

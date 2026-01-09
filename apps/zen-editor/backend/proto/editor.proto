@@ -102,6 +102,7 @@ message Node {
   float y = 5;
   string content = 6;
   string group = 7; // "entity", "content", "concept", "link-node"
+  repeated float embedding = 8; // LLM-like vector for distance-based layout
 }
 
 message Edge {
@@ -112,4 +113,5 @@ message Edge {
   string style = 5;
   float strength = 6; // 0.0 - 1.0
   string group = 7;    // "structural", "semantic", "causal", "thematic"
+  float distance = 8; // Preferred distance based on vector similarity
 }

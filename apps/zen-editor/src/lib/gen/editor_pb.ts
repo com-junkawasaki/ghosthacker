@@ -753,6 +753,13 @@ export class Node extends Message<Node> {
    */
   group = "";
 
+  /**
+   * LLM-like vector for distance-based layout
+   *
+   * @generated from field: repeated float embedding = 8;
+   */
+  embedding: number[] = [];
+
   constructor(data?: PartialMessage<Node>) {
     super();
     proto3.util.initPartial(data, this);
@@ -768,6 +775,7 @@ export class Node extends Message<Node> {
     { no: 5, name: "y", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
     { no: 6, name: "content", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "group", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: "embedding", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Node {
@@ -830,6 +838,13 @@ export class Edge extends Message<Edge> {
    */
   group = "";
 
+  /**
+   * Preferred distance based on vector similarity
+   *
+   * @generated from field: float distance = 8;
+   */
+  distance = 0;
+
   constructor(data?: PartialMessage<Edge>) {
     super();
     proto3.util.initPartial(data, this);
@@ -845,6 +860,7 @@ export class Edge extends Message<Edge> {
     { no: 5, name: "style", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "strength", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
     { no: 7, name: "group", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: "distance", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Edge {
