@@ -99,6 +99,10 @@
     "gh:operationalNote": {
       "@type": "xsd:string"
     },
+    "gh:participants": {
+      "@id": "https://ghosthacker.example.com/vocab#participants",
+      "@type": "@id"
+    },
     "gh:persona": {
       "@type": "xsd:string"
     },
@@ -106,8 +110,20 @@
       "@id": "https://ghosthacker.example.com/vocab#relatesTo",
       "@type": "@id"
     },
-    "gh:relationshipType": {
-      "@id": "https://ghosthacker.example.com/vocab#relationshipType",
+    "gh:relationType": {
+      "@id": "https://ghosthacker.example.com/vocab#relationType",
+      "@type": "xsd:string"
+    },
+    "gh:strength": {
+      "@id": "https://ghosthacker.example.com/vocab#strength",
+      "@type": "xsd:float"
+    },
+    "gh:evidence": {
+      "@id": "https://ghosthacker.example.com/vocab#evidence",
+      "@type": "xsd:string"
+    },
+    "gh:atTime": {
+      "@id": "https://ghosthacker.example.com/vocab#atTime",
       "@type": "xsd:string"
     },
     "gh:role": {
@@ -1862,6 +1878,18 @@
       "@type": "gh:LayoutStub",
       "gh:x": 807.48737,
       "gh:y": 227.86797
+    },
+    {
+      "@id": "event:tamaki-nei-conflict-001",
+      "@type": "gh:RelationEvent",
+      "gh:relationType": "gh:conflict",
+      "gh:participants": [
+        "character:tamaki",
+        "character:Nei-chan"
+      ],
+      "gh:strength": 0.8,
+      "gh:evidence": "Tamaki finds Nei-chan's playfulness distracting during a critical hack.",
+      "gh:atTime": "2065-04-12T14:30:00Z"
     }
   ]
 }

@@ -229,6 +229,98 @@ func (s *EditorServer) GetProjectMetadata(ctx context.Context, req *connect.Requ
 	return connect.NewResponse(resp), nil
 }
 
+func (s *EditorServer) buildGraphRAGContext(ctx context.Context, nodeIDs []string) string {
+	jsonLdPath := filepath.Join(s.WorkspaceRoot, "251022/ghost-hacker.jsonld")
+	data, err := os.ReadFile(jsonLdPath)
+	if err != nil {
+		return ""
+	}
+	var g struct {
+		Graph []map[string]interface{} `json:"@graph"`
+	}
+	json.Unmarshal(data, &g)
+
+	var contextParts []string
+	relatedEvents := []map[string]interface{}{}
+	relatedEntities := make(map[string]map[string]interface{})
+
+	// 1. Find all related events and entities
+	for _, item := range g.Graph {
+		id, _ := item["@id"].(string)
+		itemType, _ := item["@type"].(string)
+
+		// Check if it's one of our target nodes
+		for _, targetID := range nodeIDs {
+			if id == targetID {
+				relatedEntities[id] = item
+			}
+		}
+
+		// Check if it's a RelationEvent participating with our nodes
+		if itemType == "gh:RelationEvent" {
+			participants, _ := item["gh:participants"].([]interface{})
+			isRelevant := false
+			for _, p := range participants {
+				pID, _ := p.(string)
+				for _, targetID := range nodeIDs {
+					if pID == targetID {
+						isRelevant = true
+						break
+					}
+				}
+				if isRelevant {
+					break
+				}
+			}
+			if isRelevant {
+				relatedEvents = append(relatedEvents, item)
+				// Also add other participants to entities list for context
+				for _, p := range participants {
+					pID, _ := p.(string)
+					if _, exists := relatedEntities[pID]; !exists {
+						// We'll find them in the next pass or ignore if not in @graph
+					}
+				}
+			}
+		}
+	}
+
+	// 2. Format Entities
+	contextParts = append(contextParts, "--- RELEVANT ENTITIES ---")
+	for id, ent := range relatedEntities {
+		name, _ := ent["name"].(string)
+		desc, _ := ent["description"].(string)
+		contextParts = append(contextParts, fmt.Sprintf("ID: %s | Name: %s | Description: %s", id, name, desc))
+	}
+
+	// 3. Format Events (Incidence/Hypergraph relationships)
+	contextParts = append(contextParts, "\n--- RELATIONSHIP EVENTS & CONTEXT ---")
+	for _, ev := range relatedEvents {
+		relType, _ := ev["gh:relationType"].(string)
+		participants, _ := ev["gh:participants"].([]interface{})
+		evidence, _ := ev["gh:evidence"].(string)
+		strength, _ := ev["gh:strength"].(float64)
+		atTime, _ := ev["gh:atTime"].(string)
+
+		pNames := []string{}
+		for _, p := range participants {
+			pID, _ := p.(string)
+			if ent, ok := relatedEntities[pID]; ok {
+				name, _ := ent["name"].(string)
+				pNames = append(pNames, name)
+			} else {
+				pNames = append(pNames, pID)
+			}
+		}
+
+		contextParts = append(contextParts, fmt.Sprintf("- Event: %s between %v", relType, pNames))
+		contextParts = append(contextParts, fmt.Sprintf("  Evidence: %s", evidence))
+		contextParts = append(contextParts, fmt.Sprintf("  Strength: %.2f | Time: %s", strength, atTime))
+	}
+
+	return strings.Join(contextParts, "\n")
+}
+
 func (s *EditorServer) Interact(
 	ctx context.Context,
 	req *connect.Request[editorpb.InteractRequest],
@@ -260,12 +352,20 @@ func (s *EditorServer) Interact(
 		Model:  "anthropic/claude-3.5-sonnet", // Or any reliable model
 	}
 	
-	// Better prompt for chat interaction
+	// GraphRAG: Build rich context from JSON-LD
+	ragContext := s.buildGraphRAGContext(ctx, req.Msg.NodeIds)
+
+	// Better prompt for chat interaction using GraphRAG context
 	chatPrompt := fmt.Sprintf(`You are roleplaying as the following characters/entities in the "Ghost Hacker" series: %v.
 The user says: "%s"
 The current emotional context is: %v.
+
+GRAPH CONTEXT (RAG):
+%s
+
 Themes: Healing connections, 2065 Tokyo, Ghost Hacking.
-Respond in-character, maintaining the first-person, present-tense, conversational style.`, participants, req.Msg.UserMessage, combinedEmotion)
+Respond in-character, maintaining the first-person, present-tense, conversational style. 
+Use the GRAPH CONTEXT provided to mention specific events, evidence, and relationships correctly.`, participants, req.Msg.UserMessage, combinedEmotion, ragContext)
 	
 	response, err := aiClient.GenerateNextScene(ctx, []string{chatPrompt})
 	if err != nil {
@@ -321,6 +421,15 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 				label = strings.Title(label)
 			}
 
+			// Special handling for RelationEvent (Incidence Graph / Hypergraph)
+			if itemType == "gh:RelationEvent" {
+				relType, _ := item["gh:relationType"].(string)
+				label = fmt.Sprintf("[%s]", relType)
+				if strings.Contains(relType, ":") {
+					label = fmt.Sprintf("[%s]", relType[strings.Index(relType, ":")+1:])
+				}
+			}
+
 			node := &editorpb.Node{
 				Id:    id,
 				Label: label,
@@ -335,6 +444,33 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 			}
 			nodeMap[id] = node
 			resp.Nodes = append(resp.Nodes, node)
+
+			// If it's a RelationEvent, create edges to all participants
+			if itemType == "gh:RelationEvent" {
+				participants, _ := item["gh:participants"].([]interface{})
+				relType, _ := item["gh:relationType"].(string)
+				strength, _ := item["gh:strength"].(float64)
+				for _, p := range participants {
+					pID, ok := p.(string)
+					if !ok {
+						// Handle nested objects if any (JSON-LD can be complex)
+						if pMap, ok := p.(map[string]interface{}); ok {
+							pID, _ = pMap["@id"].(string)
+						}
+					}
+					if pID != "" {
+						resp.Edges = append(resp.Edges, &editorpb.Edge{
+							FromId:   id, // From the Event Node
+							ToId:     pID, // To the Participant
+							Relation: relType,
+							Strength: float32(strength),
+							Group:    "semantic",
+							Color:    "#a855f7", // Purple for events
+							Style:    "solid",
+						})
+					}
+				}
+			}
 		}
 	}
 
@@ -454,6 +590,8 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 
 func (s *EditorServer) categorizeNode(t string) string {
 	switch {
+	case t == "gh:RelationEvent":
+		return "link-node"
 	case strings.Contains(t, "Person") || strings.Contains(t, "Place") || strings.Contains(t, "Organization"):
 		return "entity"
 	case strings.Contains(t, "Manuscript") || strings.Contains(t, "Block") || strings.Contains(t, "CreativeWork"):

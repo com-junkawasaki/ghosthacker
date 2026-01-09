@@ -64,6 +64,8 @@
               size = 32;
             } else if (n.group === 'concept') {
               size = 20;
+            } else if (n.group === 'link-node') {
+              size = 18; // Smaller diamond-like node for relationships
             }
 
             if (x === 0 && y === 0) {
@@ -75,6 +77,9 @@
                 const angle = (i / 15) * Math.PI * 2;
                 x = centerX + Math.cos(angle) * 380;
                 y = centerY + Math.sin(angle) * 320;
+              } else if (n.group === 'link-node') {
+                x = centerX + (Math.random() - 0.5) * 200;
+                y = centerY + (Math.random() - 0.5) * 200;
               } else {
                 x = centerX + (Math.random() - 0.5) * 400;
                 y = centerY + (Math.random() - 0.5) * 400;
@@ -269,6 +274,7 @@
                   class:manuscript={node.type === 'gh:Manuscript'} 
                   class:block={node.type === 'gh:Block'}
                   class:person={node.type && node.type.includes('Person')} 
+                  class:link-node={node.group === 'link-node'}
                 />
                 <text y={node.size + 18} text-anchor="middle" class="node-label">
                   {node.label}
@@ -300,11 +306,13 @@
       .node-circle.manuscript { fill: #eef7ff; stroke: #0071e3; }
       .node-circle.block { fill: #f0fff0; stroke: #34c759; }
       .node-circle.person { fill: #fff0f0; stroke: #ff3b30; }
+      .node-circle.link-node { fill: #f3e8ff; stroke: #a855f7; }
       
       /* Group-based colors if class mapping is not enough */
       .node[data-group="entity"] .node-circle { fill: #fff0f0; stroke: #ff3b30; }
       .node[data-group="content"] .node-circle { fill: #eef7ff; stroke: #0071e3; }
       .node[data-group="concept"] .node-circle { fill: #f5f5f7; stroke: #d2d2d7; }
+      .node[data-group="link-node"] .node-circle { fill: #f3e8ff; stroke: #a855f7; }
 
       .node-label { font-size: 14px; font-weight: 600; fill: #1d1d1f; pointer-events: none; }
       .selection-ring { fill: none; stroke: #0071e3; stroke-width: 2; opacity: 0.6; }
