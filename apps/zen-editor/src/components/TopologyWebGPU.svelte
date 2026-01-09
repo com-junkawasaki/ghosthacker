@@ -1,9 +1,8 @@
 <script lang="ts">
-  console.log("TopologyWebGPU script evaluated");
   import { client } from '../lib/api';
-  import { onMount, onDestroy } from 'svelte';
-  // import * as d3Zoom from 'd3-zoom';
-  // import { select } from 'd3-selection';
+  import { onDestroy } from 'svelte';
+  import * as d3Zoom from 'd3-zoom';
+  import { select } from 'd3-selection';
   import GraphWorker from '../lib/graph_v2.worker?worker';
 
   let { onSelect } = $props();
@@ -27,7 +26,7 @@
                 }
             };
             
-            const offscreen = canvasElement.transferControlToOffscreen();
+            const offscreen = (canvasElement as any).transferControlToOffscreen();
             worker.postMessage({ 
                 type: 'INIT', 
                 data: { 
@@ -50,6 +49,7 @@
         try {
           const topoResp = await client.getTopology({ projectId: "251022" });
           nodes = (topoResp.nodes || []).filter(n => n && n.id && n.label);
+          const edges = topoResp.edges || [];
           
           if (worker) {
               const nodesData = nodes.map(n => ({ 
@@ -59,7 +59,7 @@
                   y: n.y || (Math.random() * containerHeight),
                   group: n.group || 'unknown'
               }));
-              worker.postMessage({ type: 'UPDATE_DATA', data: { nodes: nodesData, edges: [] } });
+              worker.postMessage({ type: 'UPDATE_DATA', data: { nodes: nodesData, edges } });
           }
         } catch (err) {
           console.error("Topology fetch failed:", err);
@@ -74,7 +74,7 @@
     try {
         const zoom = d3Zoom.zoom<HTMLCanvasElement, unknown>()
           .scaleExtent([0.1, 10])
-          .on("zoom", (event) => {
+          .on("zoom", (event: any) => {
             if (worker) {
                 worker.postMessage({ 
                     type: 'SET_TRANSFORM', 
@@ -83,7 +83,7 @@
             }
           });
         
-        select(canvasElement).call(zoom);
+        select(canvasElement).call(zoom as any);
     } catch (err) {
         console.error("d3Zoom failed:", err);
     }

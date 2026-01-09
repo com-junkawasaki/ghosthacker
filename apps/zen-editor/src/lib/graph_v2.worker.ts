@@ -11,6 +11,11 @@ const NodeStruct = d.struct({
     group: d.u32, 
 });
 
+const EdgeStruct = d.struct({
+    source: d.u32,
+    target: d.u32,
+});
+
 const ParamsStruct = d.struct({
     nodeCount: d.u32,
     edgeCount: d.u32,
@@ -34,14 +39,18 @@ let root: any;
 let presentationFormat: GPUTextureFormat;
 
 let nodesBuffer: any;
+let edgesBuffer: any;
 let paramsBuffer: any;
 let vertexBuffer: any;
 
 let repulsionPipeline: any;
+let attractionPipeline: any;
 let updatePipeline: any;
-let renderPipeline: any;
+let nodeRenderPipeline: any;
+let edgeRenderPipeline: any;
 
 let nodeCount = 0;
+let edgeCount = 0;
 let width = 1000;
 let height = 800;
 
@@ -65,8 +74,9 @@ let nodeMetadata: any[] = [];
 
 // --- Shaders ---
 
-const repulsionPass = tgpu['~unstable'].computeFn({
+const repulsionPass = (tgpu['~unstable'].computeFn as any)({
     in: { idx: d.builtin.globalInvocationId },
+    workgroupSize: [64],
 })`{
     let i = in.idx.x;
     if (i >= params.nodeCount) { return; }
@@ -90,11 +100,35 @@ const repulsionPass = tgpu['~unstable'].computeFn({
     nodes[i].force = force;
 }`.$uses({
     params: d.ptrUniform(ParamsStruct),
-    nodes: d.ptrStorage(d.arrayOf(NodeStruct))
+    nodes: d.ptrStorage(d.arrayOf(NodeStruct, 10240)) // Use fixed size for now to avoid TypeGPU errors
 });
 
-const updatePass = tgpu['~unstable'].computeFn({
+const attractionPass = (tgpu['~unstable'].computeFn as any)({
     in: { idx: d.builtin.globalInvocationId },
+    workgroupSize: [64],
+})`{
+    let i = in.idx.x;
+    if (i >= params.edgeCount) { return; }
+
+    let edge = edges[i];
+    let source = nodes[edge.source];
+    let target = nodes[edge.target];
+    
+    let diff = target.pos - source.pos;
+    let dist = length(diff) + 0.1;
+    let force = diff * (dist * params.attractionStrength);
+
+    nodes[edge.source].force = nodes[edge.source].force + force;
+    nodes[edge.target].force = nodes[edge.target].force - force;
+}`.$uses({
+    params: d.ptrUniform(ParamsStruct),
+    nodes: d.ptrStorage(d.arrayOf(NodeStruct, 10240)),
+    edges: d.ptrStorage(d.arrayOf(EdgeStruct, 20480))
+});
+
+const updatePass = (tgpu['~unstable'].computeFn as any)({
+    in: { idx: d.builtin.globalInvocationId },
+    workgroupSize: [64],
 })`{
     let i = in.idx.x;
     if (i >= params.nodeCount) { return; }
@@ -103,6 +137,7 @@ const updatePass = tgpu['~unstable'].computeFn({
     node.vel = (node.vel + node.force * params.dt) * params.friction;
     node.pos = node.pos + node.vel * params.dt;
 
+    // Bounds check
     if (node.pos.x < 0.0) { node.pos.x = 0.0; node.vel.x *= -0.5; }
     if (node.pos.x > params.width) { node.pos.x = params.width; node.vel.x *= -0.5; }
     if (node.pos.y < 0.0) { node.pos.y = 0.0; node.vel.y *= -0.5; }
@@ -111,10 +146,10 @@ const updatePass = tgpu['~unstable'].computeFn({
     nodes[i] = node;
 }`.$uses({
     params: d.ptrUniform(ParamsStruct),
-    nodes: d.ptrStorage(d.arrayOf(NodeStruct))
+    nodes: d.ptrStorage(d.arrayOf(NodeStruct, 10240))
 });
 
-const vertexShader = tgpu['~unstable'].vertexFn({
+const nodeVertexShader = (tgpu['~unstable'].vertexFn as any)({
     in: {
         unitPos: d.vec2f,
         instanceIdx: d.builtin.instanceIndex,
@@ -126,14 +161,9 @@ const vertexShader = tgpu['~unstable'].vertexFn({
 })`{
     let node = nodes[in.instanceIdx];
     
-    // Apply zoom and pan in normalized coordinate space
-    // NDC: [-1, 1] range. 
-    // 1. Position in [0, 1] range
     let px = node.pos.x / params.width;
     let py = node.pos.y / params.height;
     
-    // 2. Apply scale and offset (zoom about center or top-left?)
-    // Here we do simple global scale/offset
     let cx = (px * 2.0 - 1.0 + params.viewOffsetX) * params.viewScale;
     let cy = (1.0 - py * 2.0 + params.viewOffsetY) * params.viewScale;
 
@@ -147,14 +177,46 @@ const vertexShader = tgpu['~unstable'].vertexFn({
     return Out(vec4f(screenPos, 0.0, 1.0), color);
 }`.$uses({
     params: d.ptrUniform(ParamsStruct),
-    nodes: d.ptrStorage(d.arrayOf(NodeStruct))
+    nodes: d.ptrStorage(d.arrayOf(NodeStruct, 10240))
 });
 
-const fragmentShader = tgpu['~unstable'].fragmentFn({
+const edgeVertexShader = (tgpu['~unstable'].vertexFn as any)({
+    in: {
+        vertexIdx: d.builtin.vertexIndex,
+        instanceIdx: d.builtin.instanceIndex,
+    },
+    out: {
+        pos: d.builtin.position,
+    },
+})`{
+    let edge = edges[in.instanceIdx];
+    let nodeIdx = select(edge.source, edge.target, in.vertexIdx == 1u);
+    let node = nodes[nodeIdx];
+
+    let px = node.pos.x / params.width;
+    let py = node.pos.y / params.height;
+    
+    let cx = (px * 2.0 - 1.0 + params.viewOffsetX) * params.viewScale;
+    let cy = (1.0 - py * 2.0 + params.viewOffsetY) * params.viewScale;
+
+    return Out(vec4f(cx, cy, 0.0, 1.0));
+}`.$uses({
+    params: d.ptrUniform(ParamsStruct),
+    nodes: d.ptrStorage(d.arrayOf(NodeStruct, 10240)),
+    edges: d.ptrStorage(d.arrayOf(EdgeStruct, 20480))
+});
+
+const fragmentShader = (tgpu['~unstable'].fragmentFn as any)({
     in: { color: d.vec4f },
     out: d.vec4f,
 })`{
     return in.color;
+}`;
+
+const edgeFragmentShader = (tgpu['~unstable'].fragmentFn as any)({
+    out: d.vec4f,
+})`{
+    return vec4f(0.3, 0.3, 0.35, 0.5);
 }`;
 
 // --- Implementation ---
@@ -182,7 +244,7 @@ async function init(offscreen: OffscreenCanvas, w: number, h: number) {
         root = tgpu.initFromDevice({ device });
 
         const sides = 12;
-        const circleVerts: d.vec2f[] = [];
+        const circleVerts = [];
         for (let i = 0; i < sides; i++) {
             const angle1 = (i / sides) * Math.PI * 2;
             const angle2 = ((i + 1) / sides) * Math.PI * 2;
@@ -211,12 +273,20 @@ function startLoop() {
 
         try {
             if (!repulsionPipeline) repulsionPipeline = root.createComputePipeline({ compute: repulsionPass });
+            if (!attractionPipeline) attractionPipeline = root.createComputePipeline({ compute: attractionPass });
             if (!updatePipeline) updatePipeline = root.createComputePipeline({ compute: updatePass });
-            if (!renderPipeline) {
-                renderPipeline = root.createRenderPipeline({
-                    vertex: vertexShader,
+            if (!nodeRenderPipeline) {
+                nodeRenderPipeline = root.createRenderPipeline({
+                    vertex: nodeVertexShader,
                     fragment: fragmentShader,
                     primitive: { topology: 'triangle-list' },
+                });
+            }
+            if (!edgeRenderPipeline) {
+                edgeRenderPipeline = root.createRenderPipeline({
+                    vertex: edgeVertexShader,
+                    fragment: edgeFragmentShader,
+                    primitive: { topology: 'line-list' },
                 });
             }
 
@@ -225,6 +295,12 @@ function startLoop() {
             const repulsionPassEncoder = commandEncoder.beginComputePass();
             repulsionPipeline.with(paramsBuffer).with(nodesBuffer).dispatchWorkgroups(Math.ceil(nodeCount / 64)).execute(repulsionPassEncoder);
             repulsionPassEncoder.end();
+
+            if (edgeCount > 0 && edgesBuffer) {
+                const attractionPassEncoder = commandEncoder.beginComputePass();
+                attractionPipeline.with(paramsBuffer).with(nodesBuffer).with(edgesBuffer).dispatchWorkgroups(Math.ceil(edgeCount / 64)).execute(attractionPassEncoder);
+                attractionPassEncoder.end();
+            }
 
             const updatePassEncoder = commandEncoder.beginComputePass();
             updatePipeline.with(paramsBuffer).with(nodesBuffer).dispatchWorkgroups(Math.ceil(nodeCount / 64)).execute(updatePassEncoder);
@@ -236,8 +312,25 @@ function startLoop() {
                 colorAttachments: [{ view, clearValue: { r: 0.01, g: 0.01, b: 0.02, a: 1.0 }, loadOp: 'clear', storeOp: 'store' }],
             });
 
+            // 1. Draw Edges
+            if (edgeCount > 0 && edgesBuffer) {
+                edgeRenderPipeline
+                    .with(paramsBuffer)
+                    .with(nodesBuffer)
+                    .with(edgesBuffer)
+                    .draw(2, edgeCount)
+                    .execute(renderPassEncoder);
+            }
+
+            // 2. Draw Nodes
             const circleVertsCount = 36; 
-            renderPipeline.with(paramsBuffer).with(nodesBuffer).with(tgpu.vertexLayout(d.arrayOf(d.vec2f, circleVertsCount), 'vertex'), vertexBuffer).draw(circleVertsCount, nodeCount).execute(renderPassEncoder);
+            const vertexLayout = tgpu.vertexLayout(d.arrayOf(d.vec2f, circleVertsCount), 'vertex');
+            nodeRenderPipeline
+                .with(paramsBuffer)
+                .with(nodesBuffer)
+                .with(vertexLayout, vertexBuffer)
+                .draw(circleVertsCount, nodeCount)
+                .execute(renderPassEncoder);
             
             renderPassEncoder.end();
             device.queue.submit([commandEncoder.finish()]);
@@ -246,8 +339,10 @@ function startLoop() {
             if (Date.now() % 30 === 0) {
                 const results = await nodesBuffer.read();
                 for (let i = 0; i < nodeCount; i++) {
-                    nodeMetadata[i].x = results[i].pos.x;
-                    nodeMetadata[i].y = results[i].pos.y;
+                    if (nodeMetadata[i]) {
+                        nodeMetadata[i].x = results[i].pos.x;
+                        nodeMetadata[i].y = results[i].pos.y;
+                    }
                 }
             }
         } catch (err) {
@@ -264,8 +359,9 @@ self.onmessage = async (e: MessageEvent) => {
     if (type === 'INIT') {
         await init(data.canvas, data.width, data.height);
     } else if (type === 'UPDATE_DATA') {
-        const { nodes } = data;
+        const { nodes, edges } = data;
         nodeCount = nodes.length;
+        edgeCount = edges.length;
         nodeMetadata = nodes.map((n: any) => ({ id: n.id, label: n.label, x: n.x, y: n.y }));
         
         const mappedNodes = nodes.map((n: any) => ({
@@ -276,8 +372,22 @@ self.onmessage = async (e: MessageEvent) => {
             group: n.group === 'content' ? 0 : n.group === 'entity' ? 1 : n.group === 'concept' ? 2 : 3
         }));
 
-        nodesBuffer = root.createBuffer(d.arrayOf(NodeStruct, nodeCount), mappedNodes).$usage('storage');
+        // Node ID to index map for edge mapping
+        const idMap = new Map();
+        nodes.forEach((n: any, i: number) => idMap.set(n.id, i));
+
+        const mappedEdges = edges.map((e: any) => ({
+            source: idMap.get(e.fromId) || 0,
+            target: idMap.get(e.toId) || 0,
+        }));
+
+        nodesBuffer = root.createBuffer(d.arrayOf(NodeStruct, 10240), mappedNodes).$usage('storage');
+        if (edgeCount > 0) {
+            edgesBuffer = root.createBuffer(d.arrayOf(EdgeStruct, 20480), mappedEdges).$usage('storage');
+        }
+        
         currentParams.nodeCount = nodeCount;
+        currentParams.edgeCount = edgeCount;
         paramsBuffer.write(currentParams);
     } else if (type === 'SET_TRANSFORM') {
         currentParams.viewOffsetX = data.x / width;
