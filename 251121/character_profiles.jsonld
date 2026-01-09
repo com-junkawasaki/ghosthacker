@@ -127,6 +127,13 @@
       "@id": "character:Ren",
       "schema:name": "蓮 (Ren)",
       "schema:role": "Ghost Hacker",
+      "gh:virtue": "Sloth (Efficiency)",
+      "gh:credentials": [
+        "CISSP Associate (Passed at 16)",
+        "CEH (Certified Ethical Hacker)",
+        "OSCP (Offensive Security Certified Professional)"
+      ],
+      "gh:academicHistory": "MIT Early Entrance / Dropout (Special Admission at 15)",
       "gh:voiceStyle": "気だるげだが核心を突く。「めんどくせぇ」「アンタのその感情、ノイズだね」。翔太の合理性には「話が早くて助かる」と好意的。",
       "gh:contextUpdate": "依頼人が同世代（少し年上）の翔太になったことで、ビジネスライクな交渉が可能になった。",
       "gh:relationship": {
@@ -168,10 +175,18 @@
       }
     },
     {
-      "@id": "character:Kaito",
-      "schema:name": "水城 快斗 (Kaito Mizuki)",
+      "@id": "character:Kaname",
+      "schema:name": "水城 要 (Kaname Mizuki)",
       "schema:alternateName": "Javelin",
       "schema:role": "Rival Hacker (Arrogance)",
+      "gh:virtue": "Arrogance (Perfection)",
+      "gh:credentials": [
+        "CISA (Certified Information Systems Auditor - Exam Passed)",
+        "PMP (Project Management Professional)",
+        "情報処理安全確保支援士 (Registered Information Security Specialist)"
+      ],
+      "gh:academicHistory": "Stanford University Graduate (Jumped Grades)",
+      "gh:battleStyle": "Governance Control / Systematic Auditing / Governance Hacking",
       "schema:age": 18,
       "gh:personality": "Arrogant, Perfectionist, Calculating",
       "gh:voiceStyle": "常に冷静で、他人を見下したような穏やかな口調。「君では理解できないだろうが」「美しくないね、そのコードは」など、静かに相手のプライドを削る言葉を選ぶ。自らの知識を誇示するために、意図的に難解な専門用語を多用する。",
@@ -179,7 +194,7 @@
       "gh:skills": "ゼロデイ脆弱性を利用した潜入、痕跡を完全に消し去るステルス技術、複雑な人間心理を突くソーシャルエンジニアリングを得意とする。彼の攻撃は静かで、気づいた時には手遅れになっている。",
       "gh:relationship": {
         "character:Ren": "Renの哲学的なアプローチを「非論理的で汚い」と嫌悪しているが、その得体の知れない能力には警戒心と一種の知的好奇心を抱いている。美しくない仕事（物理的な破壊など）は、下のハッカー（Hammerなど）に任せるため、Renと直接組むことは稀。",
-        "character:Hammer": "単細胞な破壊屋と見下しており、自分のチェスの駒（ポーン）程度にしか思っていない。便利な道具として使うことはあるが、対等な協力者とは認めていない。"
+        "character:Takeru": "単細胞な破壊屋と見下しており、自分のチェスの駒（ポーン）程度にしか思っていない。便利な道具として使うことはあるが、対等な協力者とは認めていない。"
       },
       "gh:motivation": "自らの知性が世界を支配できることを証明すること。彼の美学にそぐわない『霊』という非論理的な存在を扱うRenは、彼の完璧な世界を乱すノイズであり、排除または理解すべき対象。",
       "gh:appearance": {
@@ -196,10 +211,17 @@
       }
     },
     {
-      "@id": "character:Tsuyoshi",
-      "schema:name": "赤羽 剛 (Tsuyoshi Akabane)",
+      "@id": "character:Takeru",
+      "schema:name": "赤羽 猛 (Takeru Akabane)",
       "schema:alternateName": "Hammer",
       "schema:role": "Rival Hacker (Short-tempered)",
+      "gh:virtue": "Short-tempered (Instant Action)",
+      "gh:credentials": [
+        "OSCP (Offensive Security Certified Professional)",
+        "GXPN (GIAC Exploit Researcher and Advanced Penetration Tester)"
+      ],
+      "gh:academicHistory": "Self-taught / CTF Champion (Global Blacklist)",
+      "gh:battleStyle": "Brute Force Exploit / High-Speed Infrastructure Destruction",
       "schema:age": 19,
       "gh:personality": "Short-tempered, Impulsive, Destructive",
       "gh:voiceStyle": "常にイライラしており、舌打ちが多い。口が悪く、考えるより先に手が出るタイプ。「うぜぇ！」「とっとと終わらせろ！」など、暴力的で直接的な言葉を好む。",
@@ -207,7 +229,7 @@
       "gh:skills": "大規模なDDoS攻撃、ランサムウェアの展開、電力網や交通システムなど物理インフラの破壊工作（サイバーテロ）を得意とする。彼のハッキングは常に派手な破壊の痕跡を残す。",
       "gh:relationship": {
         "character:Ren": "Renの慎重で悠長なやり方が理解できず、見ているだけで苛立つ。「グズでのろま」と罵倒するが、自分が破壊した後の『霊的汚染』をRenが処理できることを知っており、不本意ながら後始末を任せることもある。",
-        "character:Javelin": "インテリぶった気に食わない奴と認識している。金払いが良いため仕事は受けるが、いつかその自信に満ちた顔を歪ませてやりたいと思っている。"
+        "character:Kaname": "インテリぶった気に食わない奴と認識している。金払いが良いため仕事は受けるが、いつかその自信に満ちた顔を歪ませてやりたいと思っている。"
       },
       "gh:motivation": "目の前の邪魔なものを破壊するスリルと、それによって得られる大金。複雑なことは考えず、衝動と欲望に忠実に生きている。",
       "gh:appearance": {

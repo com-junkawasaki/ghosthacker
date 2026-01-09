@@ -40,9 +40,7 @@
                 } 
             }, [offscreen]);
             
-            console.log("Initializing zoom...");
-            // initZoom();
-            console.log("Zoom initialized.");
+            console.log("Worker initialized.");
         } catch (err) {
             console.error("Worker creation failed:", err);
         }
@@ -77,28 +75,6 @@
     })();
   });
 
-  function initZoom() {
-    /*
-    if (!canvasElement) return;
-    try {
-        const zoom = d3Zoom.zoom<HTMLCanvasElement, unknown>()
-          .scaleExtent([0.1, 10])
-          .on("zoom", (event) => {
-            if (worker) {
-                worker.postMessage({ 
-                    type: 'SET_TRANSFORM', 
-                    data: { x: event.transform.x, y: event.transform.y, k: event.transform.k } 
-                });
-            }
-          });
-        
-        select(canvasElement).call(zoom);
-    } catch (err) {
-        console.error("d3Zoom failed:", err);
-    }
-    */
-  }
-
   onDestroy(() => {
     if (worker) worker.terminate();
   });
@@ -129,8 +105,7 @@
 
 <style>
   .topology-container { width: 100%; height: 100%; position: relative; background: #05050a; }
-  canvas { width: 100%; height: 100%; display: block; cursor: grab; }
-  canvas:active { cursor: grabbing; }
+  canvas { width: 100%; height: 100%; display: block; }
   .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; display: flex; flex-direction: column; align-items: center; gap: 1rem; z-index: 100; }
   .spinner { width: 24px; height: 24px; border: 2px solid #333; border-top-color: #0071e3; border-radius: 50%; animation: spin 1s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }

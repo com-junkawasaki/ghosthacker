@@ -66,6 +66,80 @@
       "gh:role": "IT Support (unofficial)"
     }
   ],
+  "gh:storyline": [
+    {
+      "gh:episode": 1,
+      "dct:title": "牙を剥く内部の影 (Case: Ransomware & Insider Threat)",
+      "gh:concepts": ["CISSP Domain 1: Risk Management", "CISA KEV"],
+      "gh:lesson": "Principle of Least Privilege and Log Monitoring."
+    },
+    {
+      "gh:episode": 2,
+      "dct:title": "見えない毒物 (Case: Supply Chain Attack)",
+      "gh:concepts": ["CMMI Level 2", "SBOM (Software Bill of Materials)"],
+      "gh:lesson": "Trust, but verify software update integrity."
+    },
+    {
+      "gh:episode": 3,
+      "dct:title": "偽りの声、真実の瞳 (Case: BEC/Business Email Compromise)",
+      "gh:concepts": ["CISSP Domain 5: IAM", "MFA (Multi-Factor Authentication)"],
+      "gh:lesson": "Social Engineering counters through human process."
+    },
+    {
+      "gh:episode": 4,
+      "dct:title": "都市の心臓を止める者 (Case: IoT/OT Attack)",
+      "gh:concepts": ["CISA Shields Up", "CISSP Domain 7: Operations Security"],
+      "gh:lesson": "Securing critical infrastructure and physical impacts."
+    },
+    {
+      "gh:episode": 5,
+      "dct:title": "零日の悪夢 (Case: 0-Day Vulnerability)",
+      "gh:concepts": ["CISSP Domain 8: Software Development Security", "CISA KEV Catalog"],
+      "gh:lesson": "Virtual Patching and rapid response time."
+    },
+    {
+      "gh:episode": 6,
+      "dct:title": "空の要塞の崩壊 (Case: Cloud Misconfiguration)",
+      "gh:concepts": ["Shared Responsibility Model", "CASB"],
+      "gh:lesson": "User responsibility in cloud configuration."
+    },
+    {
+      "gh:episode": 7,
+      "dct:title": "消えた資産の足跡 (Case: Crypto Money Laundering)",
+      "gh:concepts": ["CISSP Domain 2: Asset Security", "Blockchain Analysis"],
+      "gh:lesson": "Tracing funds through transparency of blockchain."
+    },
+    {
+      "gh:episode": 8,
+      "dct:title": "静かなる侵略者 (Case: APT/Targeted Attack)",
+      "gh:concepts": ["MITRE ATT&CK Framework", "IoC (Indicators of Compromise)"],
+      "gh:lesson": "Persistence detection through behavioral patterns."
+    },
+    {
+      "gh:episode": 9,
+      "dct:title": "壁を越える影 (Case: Physical Security)",
+      "gh:concepts": ["CISSP Domain 3: Security Architecture and Engineering", "Tailgating"],
+      "gh:lesson": "Encryption is useless if physical access is gained."
+    },
+    {
+      "gh:episode": 10,
+      "dct:title": "鏡の中の敵 (Case: Deepfake / LLM Abuse)",
+      "gh:concepts": ["CISSP Domain 6: Security Assessment and Testing", "AI Governance"],
+      "gh:lesson": "Human-in-the-loop verification for AI-generated content."
+    },
+    {
+      "gh:episode": 11,
+      "dct:title": "崩壊する信頼 (Case: Active Directory Compromise)",
+      "gh:concepts": ["Golden Ticket Attack", "Tiered Administration Model"],
+      "gh:lesson": "The danger of administrative privilege escalation."
+    },
+    {
+      "gh:episode": 12,
+      "dct:title": "Ghost Hacker: 最適化された世界 (Case: Framework Consolidation)",
+      "gh:concepts": ["CMMI Level 5", "NIST Cybersecurity Framework"],
+      "gh:lesson": "Security as a continuous process, not a destination."
+    }
+  ],
   "gh:scenes": [
     {
       "@id": "scene:page-1",
