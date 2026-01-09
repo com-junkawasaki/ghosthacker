@@ -29,22 +29,25 @@
 
   $effect(() => {
     console.log("+page $effect started");
-    client.getProjectMetadata({ projectId: "251022" })
-      .then(resp => {
-        console.log("Metadata received:", resp.title);
-        metadata = {
-          title: resp.title,
-          description: resp.description,
-          episodes: resp.episodes.map(ep => ({
-            id: ep.id,
-            title: ep.title,
-            files: [...ep.files]
-          }))
-        };
-      })
-      .catch(err => {
-        console.error("Failed to load project metadata:", err);
-      });
+    (async () => {
+        try {
+            const resp = await client.getProjectMetadata({ projectId: "251022" });
+            console.log("Metadata received:", resp?.title);
+            if (resp) {
+                metadata = {
+                    title: resp.title || "Ghost Hacker",
+                    description: resp.description || "",
+                    episodes: (resp.episodes || []).map(ep => ({
+                        id: ep.id,
+                        title: ep.title,
+                        files: ep.files ? [...ep.files] : []
+                    }))
+                };
+            }
+        } catch (err) {
+            console.error("Failed to load project metadata:", err);
+        }
+    })();
   });
 
   function handleNodeSelect(node: any, allSelected: any[] = []) {
@@ -102,8 +105,8 @@
       </button>
 
       {#if isSidebarOpen}
-        <div class="sidebar-backdrop" onclick={() => isSidebarOpen = false} onkeydown={e => e.key === 'Escape' && (isSidebarOpen = false)} role="button" tabindex="0" aria-label="Close sidebar" transition:fade={{ duration: 200 }}></div>
-        <nav class="sidebar" transition:fly={{ x: -340, duration: 400, opacity: 1 }}>
+        <div class="sidebar-backdrop" onclick={() => isSidebarOpen = false} onkeydown={e => e.key === 'Escape' && (isSidebarOpen = false)} role="button" tabindex="0" aria-label="Close sidebar"></div>
+        <nav class="sidebar">
           <div class="sidebar-header">
             <div class="title-stack">
               <h1 class="app-title">{metadata.title}</h1>
@@ -167,12 +170,13 @@
       <main class="content" class:panel-open={isEditorOpen || isChatOpen}>
         <div class="topology-wrapper">
           <div class="topology-canvas">
+            {console.log("Rendering Topology component")}
             <Topology onSelect={handleNodeSelect} />
           </div>
         </div>
 
         {#if isEditorOpen && selectedNode}
-          <div class="side-panel editor-panel" transition:fly={{ x: 600, duration: 400, opacity: 1 }}>
+          <div class="side-panel editor-panel">
             <div class="panel-header">
               <h2 class="panel-title">Zen Edit: {selectedNode.label}</h2>
               <button class="close-panel" onclick={closeEditor}>✕</button>
@@ -188,7 +192,7 @@
         {/if}
 
         {#if isChatOpen}
-          <div class="side-panel chat-panel" transition:fly={{ x: 480, duration: 400, opacity: 1 }}>
+          <div class="side-panel chat-panel">
             <div class="panel-header">
               <h2 class="panel-title">Interaction: {multiSelection.map(n => n.label).join(', ')}</h2>
               <button class="close-panel" onclick={closeChat}>✕</button>
