@@ -15,6 +15,9 @@ export default defineConfig({
 		host: true,
     allowedHosts: true
 	},
+	ssr: {
+		noExternal: ['@tauri-apps/api', '@tauri-apps/plugin-dialog', '@tauri-apps/plugin-fs', '@tauri-apps/plugin-shell']
+	},
 	// to make use of `TAURI_DEBUG` and other env variables
 	// https://tauri.app/v1/api/config#buildconfig.beforedevcommand
 	envPrefix: ['VITE_', 'TAURI_'],

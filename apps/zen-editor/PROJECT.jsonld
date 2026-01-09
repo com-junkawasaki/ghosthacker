@@ -17,6 +17,7 @@
     "hume": "Real-time emotion vector mapping for characters and settings"
   },
   "technologies": [
+    "Deno",
     "Tauri",
     "SvelteKit",
     "Prosemirror",
