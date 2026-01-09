@@ -1,0 +1,322 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "dct": "http://purl.org/dc/terms/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "org": "gh:org/",
+    "role": "gh:role/",
+    "character": "gh:character/",
+    "case": "gh:case/",
+    "arc": "gh:arc/",
+    "ecosystem": "gh:ecosystem/"
+  },
+  "@id": "gh:season/01",
+  "@type": ["gh:SeasonBible", "prov:Entity"],
+  "dct:title": "Ghost Hacker - Season 1 Bible (Case Study / Crime Ecosystem)",
+  "dct:description": "Season 1 focuses on financially-motivated international cybercrime as an ecosystem (not a single group). Each arc targets one organization with one incident, spanning 1–3 episodes. The story resolves not only technical issues, but also Ghosts: memes/emotions/places that cause incidents to repeat.",
+  "gh:corePrinciples": [
+    "Practical cybersecurity: real terminology and repeatable practices (incident response, governance, auditing, recovery).",
+    "Ghosts are social/memetic: emotions, norms, rules, and places that 'possess' people and organizations.",
+    "The enemy is an ecosystem: brokers, affiliates, operators, laundering, and market manipulation."
+  ],
+  "gh:virtues": [
+    {
+      "@id": "gh:virtue/sloth",
+      "schema:name": "Sloth (Efficiency)",
+      "gh:meaning": "To make people able to be lazy safely: eliminate waste, remove forced suffering, design environments that do not require heroics."
+    },
+    {
+      "@id": "gh:virtue/arrogance",
+      "schema:name": "Arrogance (Rule-making)",
+      "gh:meaning": "To let people live with dignity: rules must not use people; people rewrite rules. 'Perfection' is redesign, not stubbornness."
+    },
+    {
+      "@id": "gh:virtue/short-tempered",
+      "schema:name": "Short-tempered (Instant Action)",
+      "gh:meaning": "To stop unnecessary endurance: act fast so people don't suffer. Planning is fast and humane, not KPI-only."
+    }
+  ],
+  "gh:catchphrases": [
+    {
+      "gh:character": "character:Ren",
+      "gh:virtue": "gh:virtue/sloth",
+      "schema:text": "それは「怠惰」だ。",
+      "gh:target": "Organizations that replace design/controls with emotion, forgiveness, and ambiguity (environmental negligence)."
+    },
+    {
+      "gh:character": "character:Kaname",
+      "gh:virtue": "gh:virtue/arrogance",
+      "schema:text": "それは傲慢ですね。",
+      "gh:target": "Rules that control people; prideful rigidity that harms living systems; procedures used to evade responsibility."
+    },
+    {
+      "gh:character": "character:Takeru",
+      "gh:virtue": "gh:virtue/short-tempered",
+      "schema:text": "あんたら、短気だな。",
+      "gh:target": "KPI-only planning; impatience disguised as efficiency that forces humans to endure and breaks the field."
+    }
+  ],
+  "gh:companies": [
+    {
+      "@id": "org:daimon-construction",
+      "@type": "gh:VictimOrganization",
+      "schema:name": "大門建設 (Daimon Construction)",
+      "gh:arcLabel": "A",
+      "gh:surfaceImage": "真面目・家族的・現場主義（努力しているように見える）",
+      "gh:essence": "怠惰（設計放棄）：情で片付け、責任と権限の境界が曖昧で、再発防止を先送りする。",
+      "gh:companyGhosts": [
+        "先代が壁に掛けた『額縁ルール』",
+        "前例",
+        "見て見ぬふり（善意の顔）"
+      ],
+      "gh:incidentType": "Ransomware + Insider / Operational shutdown",
+      "gh:caseInspirationNote": "Inspired by real-world incidents in Japan (e.g., large logistics/EC disruptions), but treated as a fictional case."
+    },
+    {
+      "@id": "org:jinpu-mobility",
+      "@type": "gh:VictimOrganization",
+      "schema:name": "迅風モビリティ (JINPU Mobility)",
+      "gh:arcLabel": "B",
+      "gh:surfaceImage": "データドリブン・KPI最強・効率的（スマートに見える）",
+      "gh:essence": "短気（人を削る計画）：目先の数値が唯一の計画になり、心や場や情緒を含めた計画が欠落する。",
+      "gh:companyGhosts": [
+        "『今すぐ』",
+        "『遅れ＝罪』",
+        "数字が人を使う"
+      ],
+      "gh:incidentType": "OT/IoT disruption + cascading supply chain impact"
+    },
+    {
+      "@id": "org:byakudan-financial",
+      "@type": "gh:VictimOrganization",
+      "schema:name": "白檀フィナンシャル (BYAKUDAN Financial)",
+      "gh:arcLabel": "C",
+      "gh:surfaceImage": "堅牢・低リスク・規程が強い（ちゃんとしているように見える）",
+      "gh:essence": "傲慢（ルールの硬直）：意地を通して窮屈になり、例外を悪とすることで現場が死ぬ。ルールが人を使う。",
+      "gh:companyGhosts": [
+        "『規程は絶対』",
+        "『例外＝悪』",
+        "責任回避の稟議迷路"
+      ],
+      "gh:incidentType": "Cloud governance failure + fraud/money laundering vector"
+    },
+    {
+      "@id": "org:askul-like",
+      "@type": "gh:ReferenceOrganization",
+      "schema:name": "アスクル級の大手EC/物流（着想元）",
+      "gh:note": "A real-world incident is used as inspiration for the narrative mechanism: disruption can move markets. The story does not assert real attribution.",
+      "gh:marketLink": "Attack → disruption → news/psychology → price movement → profit"
+    }
+  ],
+  "gh:lawEnforcementOrganizations": [
+    {
+      "@id": "org:mpd-cyber",
+      "@type": "gh:LawEnforcementOrg",
+      "schema:name": "警視庁 サイバー犯罪対策（捜査部門）"
+    },
+    {
+      "@id": "org:npa-cyber",
+      "@type": "gh:LawEnforcementOrg",
+      "schema:name": "警察庁 サイバー分析・調整"
+    },
+    {
+      "@id": "org:jpcert",
+      "@type": "gh:CoordinationOrg",
+      "schema:name": "JPCERT/CC"
+    },
+    {
+      "@id": "org:sesc",
+      "@type": "gh:MarketRegulatorOrg",
+      "schema:name": "証券取引等監視委員会 (SESC)"
+    },
+    {
+      "@id": "org:tse",
+      "@type": "gh:MarketOrg",
+      "schema:name": "東京証券取引所 (TSE)"
+    },
+    {
+      "@id": "org:interpol",
+      "@type": "gh:LawEnforcementOrg",
+      "schema:name": "INTERPOL"
+    },
+    {
+      "@id": "org:fbi",
+      "@type": "gh:LawEnforcementOrg",
+      "schema:name": "FBI"
+    },
+    {
+      "@id": "org:europol-ec3",
+      "@type": "gh:LawEnforcementOrg",
+      "schema:name": "Europol EC3 (European Cybercrime Centre)"
+    },
+    {
+      "@id": "org:nca-nccu",
+      "@type": "gh:LawEnforcementOrg",
+      "schema:name": "NCA NCCU (UK National Cyber Crime Unit)"
+    }
+  ],
+  "gh:roleTemplates": [
+    {
+      "@id": "role:jp-cyber-investigator",
+      "schema:name": "日本のサイバー捜査官（現場）",
+      "gh:responsibilities": ["被害企業対応", "デジタル証拠保全", "令状執行支援", "関係者聴取"]
+    },
+    {
+      "@id": "role:jp-cyber-analyst",
+      "schema:name": "日本のサイバー分析官（広域調整）",
+      "gh:responsibilities": ["複数事案の関連付け", "TTPの整理", "国際照会の整理", "組織間調整"]
+    },
+    {
+      "@id": "role:market-investigator",
+      "schema:name": "市場犯罪調査官（SESC/取引監視）",
+      "gh:responsibilities": ["不審な売買の検知", "空売り・オプションの動き", "風説/情報操作の追跡", "証券会社への照会"]
+    },
+    {
+      "@id": "role:cert-coordination-analyst",
+      "schema:name": "CERTアナリスト（IoC/TTP共有）",
+      "gh:responsibilities": ["IoC共有", "注意喚起", "マルウェア分析", "被害組織の横連携"]
+    },
+    {
+      "@id": "role:international-liaison",
+      "schema:name": "国際連携（INTERPOL/FBI/Europol/NCA）",
+      "gh:responsibilities": ["国際照会", "押収インフラの解析共有", "暗号資産追跡", "越境手配"]
+    }
+  ],
+  "gh:cast": [
+    {
+      "@id": "character:IsaReiji",
+      "@type": "gh:SupportingRole",
+      "schema:name": "伊佐 玲司",
+      "gh:organization": "org:mpd-cyber",
+      "gh:roleTemplate": "role:jp-cyber-investigator",
+      "gh:note": "現場主義。最初はRenを疑うが、証拠の積み方に惚れる。"
+    },
+    {
+      "@id": "character:HatoriKoichi",
+      "@type": "gh:SupportingRole",
+      "schema:name": "羽鳥 恒一",
+      "gh:organization": "org:npa-cyber",
+      "gh:roleTemplate": "role:jp-cyber-analyst",
+      "gh:note": "A/B/Cを線で繋ぐ調整役。"
+    },
+    {
+      "@id": "character:SaegusaNoa",
+      "@type": "gh:SupportingRole",
+      "schema:name": "三枝 乃亜",
+      "gh:organization": "org:jpcert",
+      "gh:roleTemplate": "role:cert-coordination-analyst",
+      "gh:note": "TTP/IoCを会話で落とし込む。Neiと相性が良い。"
+    },
+    {
+      "@id": "character:KurokawaMio",
+      "@type": "gh:SupportingRole",
+      "schema:name": "黒川 澪",
+      "gh:organization": "org:sesc",
+      "gh:roleTemplate": "role:market-investigator",
+      "gh:note": "『攻撃→株価』の匂いを嗅ぎ分ける。"
+    },
+    {
+      "@id": "character:NatsumeKoichi",
+      "@type": "gh:SupportingRole",
+      "schema:name": "夏目 恒一",
+      "gh:organization": "org:tse",
+      "gh:roleTemplate": "role:market-investigator",
+      "gh:note": "市場側の門番。取引停止という重い選択肢を持つ。"
+    },
+    {
+      "@id": "character:MayaRahman",
+      "@type": "gh:SupportingRole",
+      "schema:name": "Maya Rahman",
+      "gh:organization": "org:interpol",
+      "gh:roleTemplate": "role:international-liaison",
+      "gh:note": "国際照会と手配のパイプ役。"
+    },
+    {
+      "@id": "character:EthanCole",
+      "@type": "gh:SupportingRole",
+      "schema:name": "Ethan Cole",
+      "gh:organization": "org:fbi",
+      "gh:roleTemplate": "role:international-liaison",
+      "gh:note": "暗号資産追跡・押収サーバ解析の情報提供。"
+    },
+    {
+      "@id": "character:IngridVoss",
+      "@type": "gh:SupportingRole",
+      "schema:name": "Ingrid Voss",
+      "gh:organization": "org:europol-ec3",
+      "gh:roleTemplate": "role:international-liaison",
+      "gh:note": "欧州側インフラ押収・分析の知見を持つ。"
+    },
+    {
+      "@id": "character:TomHargreaves",
+      "@type": "gh:SupportingRole",
+      "schema:name": "Tom Hargreaves",
+      "gh:organization": "org:nca-nccu",
+      "gh:roleTemplate": "role:international-liaison",
+      "gh:note": "マネロン網とアフィリエイトを追う。"
+    }
+  ],
+  "gh:criminalEcosystem": {
+    "@id": "ecosystem:unnamed-season1",
+    "@type": "gh:CriminalEcosystem",
+    "schema:name": "TBD (ecosystem name to be decided)",
+    "gh:positioning": "A financially-motivated ecosystem that exploits supply chains and market psychology to profit (ransom, laundering, and market operations).",
+    "gh:components": [
+      { "schema:name": "Initial Access Brokers (IAB)", "gh:does": "Sell/auction access (credentials, footholds) across victims and suppliers." },
+      { "schema:name": "Access-as-a-Service / Malware loaders", "gh:does": "Provide delivery mechanisms and persistence kits." },
+      { "schema:name": "RaaS Operators", "gh:does": "Provide ransomware tooling and negotiation infrastructure." },
+      { "schema:name": "Affiliates", "gh:does": "Execute intrusions and deploy payloads; vary by region, causing signature drift." },
+      { "schema:name": "Data Theft / Leak Ops", "gh:does": "Operate double extortion: theft + threat of exposure." },
+      { "schema:name": "PsyOps / Narrative Ops", "gh:does": "Amplify fear through leaks, timing, and rumors to move markets." },
+      { "schema:name": "Market Ops", "gh:does": "Profit via short-selling/options/arbitrage around disruption and panic." },
+      { "schema:name": "Laundering Ops", "gh:does": "Crypto mixing/OTC conversion/nominee networks; evades tracing." },
+      { "schema:name": "Bulletproof Hosting / Infra Providers", "gh:does": "Provide resilient infrastructure, fast rotation, and takedown resistance." },
+      { "schema:name": "Exploit Supply / Vulnerability Brokers", "gh:does": "Supply exploits; prioritize widely deployed supply-chain software." }
+    ],
+    "gh:realWorldAnalogyNote": "Real-world financially motivated groups and ecosystems exist (e.g., ransomware-as-a-service and access brokers). This story uses a fictionalized ecosystem and does not claim attribution for specific historical incidents.",
+    "gh:inspiration": [
+      "RaaS-style ecosystems (general)",
+      "Access broker markets (general)",
+      "Market manipulation as a motive (fictionalized connection)"
+    ],
+    "gh:askulLink": {
+      "schema:name": "Askul-like disruption → market profit mechanism",
+      "gh:note": "Uses a real-world style of large-scale disruption as inspiration. In the story, the ecosystem designs disruption timing to influence market psychology and profit via positions."
+    }
+  },
+  "gh:seasonStructure": {
+    "gh:format": "One company = one major incident (case). Each case spans 1–3 episodes to cover technical response → governance/practice → Ghost resolution.",
+    "gh:arcs": [
+      {
+        "@id": "arc:A",
+        "schema:name": "Arc A - Daimon (Sloth / environmental negligence)",
+        "gh:episodes": [1, 2, 3],
+        "gh:coreGhost": "Forgiveness-as-negligence; legacy rules as a curse",
+        "gh:finalLine": "それは「怠惰」だ。"
+      },
+      {
+        "@id": "arc:B",
+        "schema:name": "Arc B - JINPU (Short-tempered / KPI-only impatience)",
+        "gh:episodes": [4, 5, 6],
+        "gh:coreGhost": "Speed that forces endurance; numbers that command people",
+        "gh:finalLine": "あんたら、短気だな。"
+      },
+      {
+        "@id": "arc:C",
+        "schema:name": "Arc C - BYAKUDAN (Arrogance / rules using people)",
+        "gh:episodes": [7, 8, 9],
+        "gh:coreGhost": "Rigid procedures and pride; responsibility evasion by rules",
+        "gh:finalLine": "それは傲慢ですね。"
+      },
+      {
+        "@id": "arc:D",
+        "schema:name": "Arc D - Cross-supply-chain / market ops (Ecosystem Ghost)",
+        "gh:episodes": [10, 11, 12],
+        "gh:coreGhost": "The ecosystem itself: supply-chain parasitism + market psychology",
+        "gh:finalLine": "Ghost is not a person. It's the market of negligence."
+      }
+    ]
+  }
+}
+

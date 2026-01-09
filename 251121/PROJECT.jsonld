@@ -22,9 +22,18 @@
       "Ren Numano: Sloth (Efficiency), MIT Dropout, CISSP Associate, CEH",
       "Kaname: Arrogance (Perfection), Stanford Grad, CISA, PMP, Registered InfoSec Specialist",
       "Takeru: Short-tempered (Instant Action), Self-taught, OSCP, GXPN",
-      "12 Episodes mapped to CISSP Domains and CISA KEVs"
+      "Season 1 bible created (crime ecosystem + law enforcement cast + company archetypes)"
     ]
   },
+  "gh:artifacts": [
+    {
+      "@id": "gh:artifact/season1-bible-251121",
+      "@type": "gh:Artifact",
+      "schema:name": "Season 1 Bible (JSON-LD)",
+      "schema:encodingFormat": "application/ld+json",
+      "schema:filePath": "251121/season1_bible.jsonld"
+    }
+  ],
   "gh:milestones": [
     {
       "gh:name": "Concept Design",
