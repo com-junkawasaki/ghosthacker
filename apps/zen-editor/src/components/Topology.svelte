@@ -1,6 +1,8 @@
 <script lang="ts">
   import { client } from '../lib/api';
   import * as d3 from 'd3-force';
+  import * as d3Zoom from 'd3-zoom';
+  import { select } from 'd3-selection';
   import { onMount } from 'svelte';
 
   interface GraphNode extends d3.SimulationNodeDatum {
@@ -32,16 +34,50 @@
   let multiSelect = $state<string[]>([]);
   let isDragging = $state(false);
   let dragNode = $state<GraphNode | null>(null);
+  let isFullscreen = $state(false);
 
   let simulation: d3.Simulation<GraphNode, GraphEdge>;
-  let containerWidth = 1000;
-  let containerHeight = 800;
+  let containerWidth = $state(1000);
+  let containerHeight = $state(800);
+  let svgElement = $state<SVGSVGElement | null>(null);
+  let gElement = $state<SVGGElement | null>(null);
+  let transform = $state({ x: 0, y: 0, k: 1 });
+
+  // Bounds for minimap
+  let bounds = $derived.by(() => {
+    if (nodes.length === 0) return { x: 0, y: 0, width: 1000, height: 800 };
+    const xs = nodes.map(n => n.x!);
+    const ys = nodes.map(n => n.y!);
+    const minX = Math.min(...xs) - 50;
+    const maxX = Math.max(...xs) + 50;
+    const minY = Math.min(...ys) - 50;
+    const maxY = Math.max(...ys) + 50;
+    return {
+      x: minX,
+      y: minY,
+      width: maxX - minX,
+      height: maxY - minY
+    };
+  });
 
   console.log("Topology component script evaluated");
 
   $effect(() => {
     initSimulation();
     refreshGraph();
+  });
+
+  $effect(() => {
+    if (simulation) {
+      simulation.force("center", d3.forceCenter(containerWidth / 2, containerHeight / 2));
+      simulation.alpha(0.3).restart();
+    }
+  });
+
+  $effect(() => {
+    if (svgElement) {
+      initZoom();
+    }
   });
 
   function initSimulation() {
@@ -55,13 +91,36 @@
       });
   }
 
+  function initZoom() {
+    if (!svgElement) return;
+    const zoom = d3Zoom.zoom<SVGSVGElement, unknown>()
+      .scaleExtent([0.1, 8])
+      .on("zoom", (event) => {
+        transform = event.transform;
+      });
+    
+    select(svgElement).call(zoom);
+  }
+
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      document.querySelector('.topology-container')?.requestFullscreen();
+      isFullscreen = true;
+    } else {
+      document.exitFullscreen();
+      isFullscreen = false;
+    }
+  }
+
   async function refreshGraph() {
+    console.log("refreshGraph started");
     isLoading = true;
     try {
       const [metaResp, topoResp] = await Promise.all([
         client.getProjectMetadata({ projectId: "251022" }),
         client.getTopology({ projectId: "251022" })
       ]);
+      console.log("Topology data received", topoResp.nodes.length, "nodes");
       
       const rawNodes: GraphNode[] = topoResp.nodes.map(n => ({
         id: n.id,
@@ -71,7 +130,7 @@
         y: n.y || (containerHeight / 2 + (Math.random() - 0.5) * 100),
         content: n.content,
         group: n.group,
-        embedding: [...n.embedding],
+        embedding: n.embedding ? [...n.embedding] : [],
         size: calculateSize(n)
       }));
 
@@ -93,10 +152,11 @@
       simulation.force<d3.ForceLink<GraphNode, GraphEdge>>("link").links(edges);
       simulation.alpha(1).restart();
 
-      isLoading = false;
     } catch (err) {
       console.error("Failed to load graph:", err);
+    } finally {
       isLoading = false;
+      console.log("isLoading set to false");
     }
   }
 
@@ -120,10 +180,11 @@
 
   function handleMouseMove(event) {
     if (!isDragging || !dragNode) return;
-    const svg = event.currentTarget;
-    const CTM = svg.getScreenCTM();
-    const x = (event.clientX - CTM.e) / CTM.a;
-    const y = (event.clientY - CTM.f) / CTM.d;
+    // Map mouse position to SVG coordinates considering zoom/pan
+    const [mx, my] = [event.clientX, event.clientY];
+    const svgRect = svgElement.getBoundingClientRect();
+    const x = (mx - svgRect.left - transform.x) / transform.k;
+    const y = (my - svgRect.top - transform.y) / transform.k;
     
     dragNode.fx = x;
     dragNode.fy = y;
@@ -132,8 +193,6 @@
   function handleMouseUp() {
     if (isDragging && dragNode) {
       simulation.alphaTarget(0);
-      // Keep fx/fy if we want to "pin" nodes, or set to null to let them settle
-      // Let's set to null for "LLM vector fluid layout" feel
       dragNode.fx = null;
       dragNode.fy = null;
       autoSaveLayout();
@@ -213,7 +272,7 @@
   }
 </script>
 
-<div class="topology-container">
+<div class="topology-container" class:fullscreen={isFullscreen} bind:clientWidth={containerWidth} bind:clientHeight={containerHeight}>
   {#if isLoading}
     <div class="loader"><div class="spinner"></div>Syncing Story Graph...</div>
   {:else}
@@ -221,9 +280,33 @@
       <div class="selection-info">{multiSelect.length} nodes selected</div>
       <button class="tool-btn ai-btn" onclick={runAIAnalysis}>✨ AI Link Analysis</button>
       <button class="tool-btn action" onclick={handleGenerateNode}>Generate from Selection</button>
+      <button class="tool-btn secondary" onclick={toggleFullscreen}>
+        {isFullscreen ? 'Exit Fullscreen' : '⛶ Fullscreen'}
+      </button>
+    </div>
+
+    <!-- Minimap -->
+    <div class="minimap">
+      <svg viewBox="{bounds.x} {bounds.y} {bounds.width} {bounds.height}">
+        <rect x={bounds.x} y={bounds.y} width={bounds.width} height={bounds.height} fill="rgba(0,0,0,0.03)" />
+        {#each nodes as node}
+          <circle cx={node.x} cy={node.y} r={node.size / 2} fill={node.group === 'entity' ? '#ff3b30' : node.group === 'content' ? '#0071e3' : '#d2d2d7'} />
+        {/each}
+        <!-- Viewport rect in minimap -->
+        <rect 
+          x={(-transform.x / transform.k)} 
+          y={(-transform.y / transform.k)} 
+          width={containerWidth / transform.k} 
+          height={containerHeight / transform.k} 
+          fill="none" 
+          stroke="#0071e3" 
+          stroke-width={bounds.width / 100} 
+        />
+      </svg>
     </div>
     
     <svg 
+      bind:this={svgElement}
       viewBox="0 0 {containerWidth} {containerHeight}" 
       class="topology-svg" 
       onmousemove={handleMouseMove} 
@@ -238,50 +321,52 @@
         </marker>
       </defs>
 
-      <g class="edges">
-        {#each edges as edge}
-          {#if typeof edge.source === 'object' && typeof edge.target === 'object'}
-            <line 
-              x1={edge.source.x} y1={edge.source.y} x2={edge.target.x} y2={edge.target.y} 
-              class="edge-line" 
-              style="stroke: {edge.color || '#e5e5e5'}; stroke-dasharray: {edge.style === 'dashed' ? '4 4' : edge.style === 'dotted' ? '1 3' : 'none'}"
-              marker-end="url(#arrowhead)" 
-            />
-          {/if}
-        {/each}
-      </g>
-
-      <g class="nodes">
-        {#each nodes as node}
-          <g 
-            class="node" 
-            transform="translate({node.x}, {node.y})"
-            data-group={node.group}
-            data-id={node.id}
-            onmousedown={(e) => handleMouseDown(node, e)}
-            onclick={(e) => toggleNode(node, e)}
-            onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleNode(node, e)}
-            class:selected={selectedNodeId === node.id || multiSelect.includes(node.id)}
-            role="button"
-            tabindex="0"
-            aria-label="Select node {node.label}"
-          >
-            <circle 
-              r={node.size} 
-              class="node-circle" 
-              class:manuscript={node.type === 'gh:Manuscript'} 
-              class:block={node.type === 'gh:Block'}
-              class:person={node.type && node.type.includes('Person')} 
-              class:link-node={node.group === 'link-node'}
-            />
-            <text y={node.size + 18} text-anchor="middle" class="node-label">
-              {node.label}
-            </text>
-            {#if multiSelect.includes(node.id)}
-              <circle r={node.size + 5} class="selection-ring" />
+      <g bind:this={gElement} transform="translate({transform.x}, {transform.y}) scale({transform.k})">
+        <g class="edges">
+          {#each edges as edge}
+            {#if typeof edge.source === 'object' && typeof edge.target === 'object'}
+              <line 
+                x1={edge.source.x} y1={edge.source.y} x2={edge.target.x} y2={edge.target.y} 
+                class="edge-line" 
+                style="stroke: {edge.color || '#e5e5e5'}; stroke-dasharray: {edge.style === 'dashed' ? '4 4' : edge.style === 'dotted' ? '1 3' : 'none'}"
+                marker-end="url(#arrowhead)" 
+              />
             {/if}
-          </g>
-        {/each}
+          {/each}
+        </g>
+
+        <g class="nodes">
+          {#each nodes as node}
+            <g 
+              class="node" 
+              transform="translate({node.x}, {node.y})"
+              data-group={node.group}
+              data-id={node.id}
+              onmousedown={(e) => handleMouseDown(node, e)}
+              onclick={(e) => toggleNode(node, e)}
+              onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleNode(node, e)}
+              class:selected={selectedNodeId === node.id || multiSelect.includes(node.id)}
+              role="button"
+              tabindex="0"
+              aria-label="Select node {node.label}"
+            >
+              <circle 
+                r={node.size} 
+                class="node-circle" 
+                class:manuscript={node.type === 'gh:Manuscript'} 
+                class:block={node.type === 'gh:Block'}
+                class:person={node.type && node.type.includes('Person')} 
+                class:link-node={node.group === 'link-node'}
+              />
+              <text y={node.size + 18} text-anchor="middle" class="node-label">
+                {node.label}
+              </text>
+              {#if multiSelect.includes(node.id)}
+                <circle r={node.size + 5} class="selection-ring" />
+              {/if}
+            </g>
+          {/each}
+        </g>
       </g>
     </svg>
   {/if}
@@ -289,7 +374,9 @@
 
 <style>
   .topology-container { width: 100%; height: 100%; position: relative; overflow: hidden; background: #fff; }
-  .topology-svg { width: 100%; height: 100%; }
+  .topology-container.fullscreen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1000; }
+  .topology-svg { width: 100%; height: 100%; cursor: grab; }
+  .topology-svg:active { cursor: grabbing; }
   .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 1rem; color: #86868b; font-size: 0.9rem; z-index: 50; }
   .spinner { width: 24px; height: 24px; border: 2px solid #f5f5f7; border-top-color: #0071e3; border-radius: 50%; animation: spin 1s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
@@ -297,30 +384,45 @@
   .selection-info { font-size: 0.75rem; color: #86868b; font-weight: 600; background: rgba(255,255,255,0.8); padding: 0.4rem 0.8rem; border-radius: 12px; backdrop-filter: blur(10px); }
   .tool-btn { background: #f5f5f7; color: #1d1d1f; border: 1px solid #d2d2d7; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
   .tool-btn.action { background: #0071e3; color: white; border: none; box-shadow: 0 4px 12px rgba(0,113,227,0.2); }
+  .tool-btn.secondary { background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); }
   .edge-line { stroke: #e5e5e5; stroke-width: 1.5; fill: none; }
   .node { cursor: pointer; transition: transform 0.1s linear; pointer-events: all; }
   .node:active { cursor: grabbing; }
-      .node-circle { fill: #f5f5f7; stroke: #d2d2d7; stroke-width: 1.5; }
-      .node-circle.manuscript { fill: #eef7ff; stroke: #0071e3; }
-      .node-circle.block { fill: #f0fff0; stroke: #34c759; }
-      .node-circle.person { fill: #fff0f0; stroke: #ff3b30; }
-      .node-circle.link-node { fill: #f3e8ff; stroke: #a855f7; }
-      
-      /* Group-based colors if class mapping is not enough */
-      .node[data-group="entity"] .node-circle { fill: #fff0f0; stroke: #ff3b30; }
-      .node[data-group="content"] .node-circle { fill: #eef7ff; stroke: #0071e3; }
-      .node[data-group="concept"] .node-circle { fill: #f5f5f7; stroke: #d2d2d7; }
-      .node[data-group="link-node"] .node-circle { fill: #f3e8ff; stroke: #a855f7; }
+  .node-circle { fill: #f5f5f7; stroke: #d2d2d7; stroke-width: 1.5; }
+  .node-circle.manuscript { fill: #eef7ff; stroke: #0071e3; }
+  .node-circle.block { fill: #f0fff0; stroke: #34c759; }
+  .node-circle.person { fill: #fff0f0; stroke: #ff3b30; }
+  .node-circle.link-node { fill: #f3e8ff; stroke: #a855f7; }
+  
+  .node[data-group="entity"] .node-circle { fill: #fff0f0; stroke: #ff3b30; }
+  .node[data-group="content"] .node-circle { fill: #eef7ff; stroke: #0071e3; }
+  .node[data-group="concept"] .node-circle { fill: #f5f5f7; stroke: #d2d2d7; }
+  .node[data-group="link-node"] .node-circle { fill: #f3e8ff; stroke: #a855f7; }
 
-      .node-label { font-size: 14px; font-weight: 600; fill: #1d1d1f; pointer-events: none; }
-      .selection-ring { fill: none; stroke: #0071e3; stroke-width: 2; opacity: 0.6; }
-      .selected .node-circle { stroke-width: 3; stroke: #0071e3; }
+  .node-label { font-size: 14px; font-weight: 600; fill: #1d1d1f; pointer-events: none; }
+  .selection-ring { fill: none; stroke: #0071e3; stroke-width: 2; opacity: 0.6; }
+  .selected .node-circle { stroke-width: 3; stroke: #0071e3; }
 
-      .ai-btn {
-        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-        color: white;
-        border: none;
-        box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
-      }
-      .ai-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  .ai-btn {
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+  }
+  .ai-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  .minimap {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 200px;
+    height: 160px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid #d2d2d7;
+    border-radius: 12px;
+    overflow: hidden;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
 </style>

@@ -4,6 +4,7 @@
   import Topology from '../components/Topology.svelte';
   import { onMount } from 'svelte';
   import { client } from '../lib/api';
+  import { fly, fade } from 'svelte/transition';
 
   // Svelte 5 Runes
   let viewMode = $state('topology');
@@ -12,6 +13,7 @@
   let multiSelection = $state([]);
   let isEditorOpen = $state(false);
   let isChatOpen = $state(false);
+  let isSidebarOpen = $state(false);
   
   let chatMessages = $state([]);
   let chatInput = $state("");
@@ -74,65 +76,80 @@
   function closeEditor() { isEditorOpen = false; }
 </script>
 
-<div class="app-layout">
-  <nav class="sidebar">
-    <div class="sidebar-header">
-      <h1 class="app-title">{metadata.title}</h1>
-      <p class="app-desc">MCP + A2A Interaction Engine</p>
-    </div>
-    
-    <div class="nav-group">
-      <button class:active={viewMode === 'topology'} onclick={() => viewMode = 'topology'}>
-        <span class="icon">⬢</span> Graph Topology
+    <div class="app-layout">
+      <button class="menu-trigger" onclick={() => isSidebarOpen = true} aria-label="Open Menu">
+        <span class="icon">☰</span>
       </button>
-    </div>
 
-    <div class="selection-detail">
-      {#if multiSelection.length > 1}
-        <div class="detail-card interaction">
-          <h3>A2A Mode Active</h3>
-          <p>{multiSelection.length} Entities Selected</p>
-          <button class="action-btn" onclick={() => isChatOpen = true}>Start Multi-Agent Chat</button>
-        </div>
-          {:else if selectedNode}
-            <div class="detail-card">
-              <h3>Selected Node</h3>
-              <p class="node-label">{selectedNode.label}</p>
-              <p class="node-type">{selectedNode.type}</p>
-              
-              {#if selectedNode.content}
-                <div class="node-content-preview">
-                  {selectedNode.content}
-                </div>
-              {/if}
-
-              <div class="card-actions">
-                {#if selectedNode.filePath || selectedNode.type === 'gh:Manuscript' || selectedNode.type === 'manuscript' || selectedNode.type === 'gh:Block'}
-                  <button class="action-btn" onclick={() => isEditorOpen = true}>Edit Content</button>
-                {/if}
-                <button class="action-btn secondary" onclick={() => isChatOpen = true}>Chat with Node</button>
-              </div>
+      {#if isSidebarOpen}
+        <div class="sidebar-backdrop" onclick={() => isSidebarOpen = false} transition:fade={{ duration: 200 }}></div>
+        <nav class="sidebar" transition:fly={{ x: -340, duration: 400, opacity: 1 }}>
+          <div class="sidebar-header">
+            <div class="title-stack">
+              <h1 class="app-title">{metadata.title}</h1>
+              <p class="app-desc">A2A Interaction Engine</p>
             </div>
-      {:else}
-        <p class="hint">Select nodes in the graph to interact or edit.</p>
+            <button class="close-sidebar" onclick={() => isSidebarOpen = false}>✕</button>
+          </div>
+          
+          <div class="nav-group index-group">
+            <h2 class="group-title">Story Index</h2>
+            <div class="episode-list">
+              {#each metadata.episodes as ep}
+                <div class="episode-item">
+                  <span class="episode-name">{ep.title}</span>
+                  <ul class="file-list">
+                    {#each ep.files as file}
+                      <li class="file-item">{file}</li>
+                    {/each}
+                  </ul>
+                </div>
+              {/each}
+            </div>
+          </div>
+
+          <div class="selection-detail">
+            {#if multiSelection.length > 1}
+              <div class="detail-card interaction">
+                <p class="mode-tag">A2A Mode Active</p>
+                <p>{multiSelection.length} Entities Selected</p>
+                <button class="action-btn" onclick={() => { isChatOpen = true; isSidebarOpen = false; }}>Start Multi-Agent Chat</button>
+              </div>
+            {:else if selectedNode}
+              <div class="detail-card">
+                <p class="node-type">{selectedNode.type}</p>
+                <h3 class="node-label">{selectedNode.label}</h3>
+                
+                {#if selectedNode.content}
+                  <div class="node-content-preview">
+                    {selectedNode.content}
+                  </div>
+                {/if}
+
+                <div class="card-actions">
+                  {#if selectedNode.filePath || selectedNode.type === 'gh:Manuscript' || selectedNode.type === 'manuscript' || selectedNode.type === 'gh:Block'}
+                    <button class="action-btn" onclick={() => { isEditorOpen = true; isSidebarOpen = false; }}>Edit Content</button>
+                  {/if}
+                  <button class="action-btn secondary" onclick={() => { isChatOpen = true; isSidebarOpen = false; }}>Chat with Node</button>
+                </div>
+              </div>
+            {:else}
+              <p class="hint">Select nodes in the graph to interact.</p>
+            {/if}
+          </div>
+
+          <div class="sidebar-footer">
+            <span class="status-dot online"></span> Tokyo 2065 Node
+          </div>
+        </nav>
       {/if}
-    </div>
 
-    <div class="sidebar-footer">
-      <span class="status-dot online"></span> 2065 Tokyo Connectivity
-    </div>
-  </nav>
-
-  <main class="content">
-    <div class="topology-wrapper" class:dimmed={isEditorOpen || isChatOpen}>
-      <header class="view-header">
-        <h1>Topology Mode</h1>
-        <p>Interactive world graph. Shift+Click for Multi-Agent A2A.</p>
-      </header>
-      <div class="topology-canvas">
-        <Topology onSelect={handleNodeSelect} />
-      </div>
-    </div>
+      <main class="content">
+        <div class="topology-wrapper" class:dimmed={isEditorOpen || isChatOpen}>
+          <div class="topology-canvas">
+            <Topology onSelect={handleNodeSelect} />
+          </div>
+        </div>
 
         {#if isEditorOpen && selectedNode}
           <div class="overlay editor-overlay">
@@ -188,97 +205,112 @@
     color: #1d1d1f;
     -webkit-font-smoothing: antialiased;
   }
-  .app-layout { display: flex; height: 100vh; overflow: hidden; }
-  
-  .sidebar { 
-    width: 300px; 
-    background: #f5f5f7; 
-    border-right: 1px solid #d2d2d7; 
-    display: flex; 
-    flex-direction: column; 
-    padding: 1.5rem;
-    z-index: 20;
-  }
+      .app-layout { display: flex; height: 100vh; overflow: hidden; position: relative; }
+      
+      .sidebar { 
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 340px; 
+        height: 100%;
+        background: rgba(255, 255, 255, 0.98); 
+        backdrop-filter: blur(30px);
+        border-right: 1px solid #d2d2d7; 
+        display: flex; 
+        flex-direction: column; 
+        padding: 2rem;
+        z-index: 1000;
+        box-shadow: 20px 0 50px rgba(0,0,0,0.1);
+      }
 
-  .sidebar-header { margin-bottom: 2rem; }
-  .app-title { font-weight: 700; font-size: 1.1rem; margin: 0; }
-  .app-desc { font-size: 0.75rem; color: #86868b; margin: 0.2rem 0 0 0; }
+      .sidebar-backdrop {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.2);
+        z-index: 999;
+        backdrop-filter: blur(4px);
+      }
 
-  .nav-group { margin-bottom: 2rem; }
-  .sidebar button { 
-    width: 100%;
-    background: transparent; 
-    border: none; 
-    text-align: left; 
-    padding: 0.6rem 0.8rem; 
-    cursor: pointer; 
-    border-radius: 8px; 
-    font-size: 0.9rem; 
-    display: flex; 
-    align-items: center; 
-    gap: 0.6rem; 
-    color: #1d1d1f;
-    transition: all 0.2s;
-  }
-  .sidebar button.active { background: #0071e3; color: white; }
+      .menu-trigger {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        width: 56px;
+        height: 56px;
+        background: white;
+        border: 1px solid #d2d2d7;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 500;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        font-size: 1.2rem;
+      }
+      .menu-trigger:active { transform: scale(0.92); background: #f5f5f7; }
 
-  .selection-detail { flex: 1; margin-top: 1rem; }
-  .detail-card { 
-    background: white; 
-    padding: 1.2rem; 
-    border-radius: 14px; 
-    border: 1px solid #d2d2d7;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  }
-  .detail-card h3 { font-size: 0.7rem; text-transform: uppercase; color: #86868b; margin: 0 0 0.8rem 0; letter-spacing: 0.05em; }
-  .node-label { font-weight: 700; font-size: 1.1rem; margin: 0; }
-      .node-type { font-size: 0.75rem; color: #0071e3; margin: 0.2rem 0 1.2rem 0; font-weight: 600; text-transform: capitalize; }
+      .sidebar-header { margin-bottom: 2.5rem; display: flex; justify-content: space-between; align-items: flex-start; }
+      .close-sidebar { background: #f5f5f7; border: none; font-size: 1rem; color: #1d1d1f; cursor: pointer; padding: 0.6rem; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
+      .app-title { font-weight: 800; font-size: 1.25rem; margin: 0; letter-spacing: -0.02em; }
+      .app-desc { font-size: 0.8rem; color: #86868b; margin: 0.3rem 0 0 0; }
+
+      .nav-group { margin-bottom: 2rem; }
+      .group-title { font-size: 0.75rem; text-transform: uppercase; color: #86868b; margin-bottom: 1rem; letter-spacing: 0.1em; font-weight: 700; }
+
+      .index-group { flex: 1; min-height: 0; overflow-y: auto; margin-bottom: 2rem; -webkit-overflow-scrolling: touch; }
+      .episode-list { display: flex; flex-direction: column; gap: 1.2rem; }
+      .episode-name { font-size: 0.9rem; font-weight: 700; color: #1d1d1f; display: block; margin-bottom: 0.6rem; }
+      .file-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+      .file-item { font-size: 0.85rem; color: #424245; padding: 0.6rem 0.8rem; border-radius: 10px; cursor: pointer; transition: all 0.2s; background: #f5f5f7; }
+      .file-item:active { background: #e8e8ed; transform: scale(0.98); }
+
+      .selection-detail { margin-top: 1rem; }
+      .detail-card { 
+        background: white; 
+        padding: 1.5rem; 
+        border-radius: 20px; 
+        border: 1px solid #d2d2d7;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      }
+      .mode-tag { font-size: 0.7rem; text-transform: uppercase; color: #0071e3; font-weight: 800; margin-bottom: 0.5rem; }
+      .node-label { font-weight: 800; font-size: 1.2rem; margin: 0; }
+      .node-type { font-size: 0.75rem; color: #86868b; margin: 0 0 0.4rem 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
       
       .node-content-preview {
-        font-size: 0.85rem;
+        font-size: 0.95rem;
         color: #1d1d1f;
         background: #f5f5f7;
-        padding: 0.8rem;
-        border-radius: 8px;
-        margin-bottom: 1.2rem;
-        max-height: 150px;
+        padding: 1rem;
+        border-radius: 12px;
+        margin: 1rem 0 1.5rem 0;
+        max-height: 200px;
         overflow-y: auto;
-        line-height: 1.5;
+        line-height: 1.6;
         border: 1px solid #d2d2d7;
       }
 
-      .card-actions { display: flex; flex-direction: column; gap: 0.6rem; }
-  .action-btn { 
-    width: 100%; 
-    background: #0071e3; 
-    color: white; 
-    border: none;
-    padding: 0.7rem;
-    border-radius: 10px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    transition: background 0.2s;
-  }
-  .action-btn.secondary { background: #e8e8ed; color: #1d1d1f; }
-  .action-btn:hover { opacity: 0.9; }
+      .card-actions { display: flex; flex-direction: column; gap: 0.8rem; }
+      .action-btn { 
+        width: 100%; 
+        background: #0071e3; 
+        color: white; 
+        border: none;
+        padding: 1rem;
+        border-radius: 14px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      .action-btn:active { transform: scale(0.96); opacity: 0.9; }
+      .action-btn.secondary { background: #e8e8ed; color: #1d1d1f; }
 
-  .hint { font-size: 0.8rem; color: #86868b; line-height: 1.5; text-align: center; margin-top: 2rem; }
-
-  .sidebar-footer { padding-top: 1rem; font-size: 0.75rem; color: #86868b; display: flex; align-items: center; gap: 0.5rem; }
-  .status-dot.online { width: 6px; height: 6px; background: #34c759; border-radius: 50%; }
-
-  .content { flex: 1; height: 100%; overflow: hidden; background: #fff; position: relative; }
-
-  .topology-wrapper { height: 100%; display: flex; flex-direction: column; padding: 2rem 3rem; box-sizing: border-box; transition: filter 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-  .topology-wrapper.dimmed { filter: blur(15px) grayscale(0.8); pointer-events: none; }
-
-  .view-header { margin-bottom: 1.5rem; }
-  .view-header h1 { font-size: 1.8rem; font-weight: 800; margin: 0; letter-spacing: -0.02em; }
-  .view-header p { color: #86868b; font-size: 1rem; margin-top: 0.4rem; }
-  .topology-canvas { flex: 1; border: 1px solid #f5f5f7; border-radius: 20px; overflow: hidden; background: #fafafa; }
+      .topology-wrapper { height: 100%; display: flex; flex-direction: column; padding: 0; box-sizing: border-box; transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+      .topology-canvas { flex: 1; border: none; border-radius: 0; overflow: hidden; background: #fff; }
 
   .overlay {
     position: absolute;
