@@ -61,6 +61,30 @@ func (s *EditorServer) registerMCPTools() {
 
 	s.ToolHandlers["update_node_positions"] = s.handleUpdateNodePositionsTool
 	s.MCPServer.AddTool(mcp.NewTool("update_node_positions", mcp.WithDescription("Saves layout")), s.handleUpdateNodePositionsTool)
+
+	s.ToolHandlers["analyze_links"] = s.handleAnalyzeLinksTool
+	s.MCPServer.AddTool(mcp.NewTool("analyze_links", mcp.WithDescription("Analyze hidden links between nodes using AI")), s.handleAnalyzeLinksTool)
+}
+
+func (s *EditorServer) handleAnalyzeLinksTool(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	args := req.Params.Arguments.(map[string]interface{})
+	nodeIDs, _ := args["node_ids"].([]interface{})
+	
+	aiClient := &ai.OpenRouterClient{
+		ApiKey: "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",
+		Model:  "anthropic/claude-3.5-sonnet",
+	}
+
+	prompt := fmt.Sprintf(`Analyze the story nodes provided and find hidden semantic or causal links between them.
+Nodes: %v
+Return a JSON array of link suggestions: [{"from": "ID1", "to": "ID2", "relation": "type", "description": "why"}]`, nodeIDs)
+
+	result, err := aiClient.GenerateNextScene(ctx, []string{prompt})
+	if err != nil {
+		return mcp.NewToolResultError(err.Error()), nil
+	}
+
+	return mcp.NewToolResultText(result), nil
 }
 
 func (s *EditorServer) handleUpdateNodePositionsTool(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
@@ -216,6 +240,13 @@ func (s *EditorServer) Interact(
 
 	for _, nodeID := range req.Msg.NodeIds {
 		name := nodeID
+		// Try to find a better name if possible
+		// In a real app, we'd have a node cache or lookup
+		if strings.Contains(nodeID, ":") {
+			parts := strings.Split(nodeID, ":")
+			name = strings.Title(parts[len(parts)-1])
+		}
+		
 		if emotion, ok := s.NodeEmotions[nodeID]; ok {
 			for k, v := range emotion {
 				combinedEmotion[k] += v
@@ -226,22 +257,38 @@ func (s *EditorServer) Interact(
 
 	aiClient := &ai.OpenRouterClient{
 		ApiKey: "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",
-		Model:  "anthropic/claude-3.5-sonnet",
+		Model:  "anthropic/claude-3.5-sonnet", // Or any reliable model
 	}
-	prompt := fmt.Sprintf("Participants: %v\nUser Input: %s\nEmotional Context: %v\n", participants, req.Msg.UserMessage, combinedEmotion)
 	
-	response, err := aiClient.GenerateNextScene(ctx, []string{prompt})
+	// Better prompt for chat interaction
+	chatPrompt := fmt.Sprintf(`You are roleplaying as the following characters/entities in the "Ghost Hacker" series: %v.
+The user says: "%s"
+The current emotional context is: %v.
+Themes: Healing connections, 2065 Tokyo, Ghost Hacking.
+Respond in-character, maintaining the first-person, present-tense, conversational style.`, participants, req.Msg.UserMessage, combinedEmotion)
+	
+	response, err := aiClient.GenerateNextScene(ctx, []string{chatPrompt})
 	if err != nil {
-		return err
+		log.Printf("Interact AI call failed: %v", err)
+		// Canned response for demo/test purposes if AI fails
+		response = fmt.Sprintf("I hear you. The connection in Tokyo 2065 is complex, but we're working on it. (AI Error fallback: %v)", err)
 	}
 
-	err = stream.Send(&editorpb.InteractResponse{
+	speakerName := "System"
+	if len(participants) > 0 {
+		speakerName = participants[0]
+	}
+
+	sendErr := stream.Send(&editorpb.InteractResponse{
 		NodeId:         req.Msg.NodeIds[0],
-		NodeName:       participants[0],
+		NodeName:       speakerName,
 		Message:        response,
 		EmotionVector:  combinedEmotion,
 	})
-	return err
+	if sendErr != nil {
+		return sendErr
+	}
+	return nil
 }
 
 func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[editorpb.GetTopologyRequest]) (*connect.Response[editorpb.GetTopologyResponse], error) {
@@ -265,12 +312,25 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 		id, _ := item["@id"].(string)
 		name, _ := item["name"].(string)
 		itemType, _ := item["@type"].(string)
-		if id != "" {
-			node := &editorpb.Node{Id: id, Label: name, Type: itemType}
+		
+		if id != "" && itemType != "gh:LayoutStub" {
+			label := name
+			if label == "" {
+				parts := strings.Split(id, ":")
+				label = parts[len(parts)-1]
+				label = strings.Title(label)
+			}
+
+			node := &editorpb.Node{
+				Id:    id,
+				Label: label,
+				Type:  itemType,
+				Group: s.categorizeNode(itemType),
+			}
 			if x, ok := item["gh:x"].(float64); ok {
 				node.X = float32(x)
 			}
-			if y, ok := item["gh:y"].(float32); ok {
+			if y, ok := item["gh:y"].(float64); ok {
 				node.Y = float32(y)
 			}
 			nodeMap[id] = node
@@ -296,6 +356,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 					Id:    mNodeID,
 					Label: file,
 					Type:  "gh:Manuscript",
+					Group: "content",
 				}
 				// Try to restore position from LayoutStub if exists
 				if stub, ok := nodeMap[mNodeID]; ok {
@@ -317,14 +378,16 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 						}
 						bNodeID := fmt.Sprintf("block:%s:%s:%d", ep.ID, file, bIdx)
 						shortLabel := bContent
-						if len(shortLabel) > 20 {
-							shortLabel = shortLabel[:20] + "..."
+						runes := []rune(bContent)
+						if len(runes) > 25 {
+							shortLabel = string(runes[:25]) + "..."
 						}
 						bNode := &editorpb.Node{
 							Id:      bNodeID,
 							Label:   shortLabel,
 							Type:    "gh:Block",
 							Content: bContent,
+							Group:   "content",
 						}
 						resp.Nodes = append(resp.Nodes, bNode)
 
@@ -335,6 +398,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 							Relation: "gh:contains",
 							Style:    "dashed",
 							Color:    "#d2d2d7",
+							Group:    "structural",
 						})
 
 						// Link: Sequential blocks
@@ -345,6 +409,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 								Relation: "gh:precedes",
 								Style:    "solid",
 								Color:    "#0071e3",
+								Group:    "structural",
 							})
 						}
 						prevBlockID = bNodeID
@@ -359,12 +424,13 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 								Relation: "gh:translationOf",
 								Style:    "dotted",
 								Color:    "#34c759",
+								Group:    "semantic",
 							})
 						}
 
 						// Link: Character/Setting mentioned in Block
 						for _, ent := range resp.Nodes {
-							if ent.Type == "Person" || ent.Type == "Place" {
+							if ent.Group == "entity" {
 								if strings.Contains(bContent, ent.Label) {
 									resp.Edges = append(resp.Edges, &editorpb.Edge{
 										FromId:   ent.Id,
@@ -372,6 +438,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 										Relation: "gh:appearsIn",
 										Style:    "dotted",
 										Color:    "#ff9500",
+										Group:    "semantic",
 									})
 								}
 							}
@@ -382,27 +449,18 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 		}
 	}
 
-	// 3. Add default emotions nodes if missing
-	for nodeID := range s.NodeEmotions {
-		found := false
-		for _, n := range resp.Nodes {
-			if n.Id == nodeID {
-				found = true
-				break
-			}
-		}
-		if !found {
-			resp.Nodes = append(resp.Nodes, &editorpb.Node{
-				Id:    nodeID,
-				Label: strings.ToUpper(nodeID[strings.LastIndex(nodeID, ":")+1:strings.LastIndex(nodeID, ":")+2]) + nodeID[strings.LastIndex(nodeID, ":")+2:],
-				Type:  nodeID[:strings.Index(nodeID, ":")],
-				X:     100,
-				Y:     100,
-			})
-		}
-	}
-
 	return connect.NewResponse(resp), nil
+}
+
+func (s *EditorServer) categorizeNode(t string) string {
+	switch {
+	case strings.Contains(t, "Person") || strings.Contains(t, "Place") || strings.Contains(t, "Organization"):
+		return "entity"
+	case strings.Contains(t, "Manuscript") || strings.Contains(t, "Block") || strings.Contains(t, "CreativeWork"):
+		return "content"
+	default:
+		return "concept"
+	}
 }
 
 func (s *EditorServer) CallTool(ctx context.Context, req *connect.Request[editorpb.CallToolRequest]) (*connect.Response[editorpb.CallToolResponse], error) {
@@ -448,7 +506,6 @@ func main() {
 	srv := NewEditorServer(workspaceRoot)
 	mux := http.NewServeMux()
 	
-	// Add a simple health check
 	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("OK"))
@@ -460,7 +517,6 @@ func main() {
 	port := "8080"
 	fmt.Printf("MCP + gRPC Connect Server starting on :%s\n", port)
 	
-	// Listen on all interfaces (0.0.0.0) to avoid localhost IPv4/v6 issues
 	err := http.ListenAndServe(":"+port, h2c.NewHandler(mux, &http2.Server{}))
 	if err != nil {
 		log.Fatalf("failed to serve: %v", err)

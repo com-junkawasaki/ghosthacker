@@ -742,11 +742,16 @@ export class Node extends Message<Node> {
   y = 0;
 
   /**
-   * For blocks, the actual text
-   *
    * @generated from field: string content = 6;
    */
   content = "";
+
+  /**
+   * "entity", "content", "concept", "link-node"
+   *
+   * @generated from field: string group = 7;
+   */
+  group = "";
 
   constructor(data?: PartialMessage<Node>) {
     super();
@@ -762,6 +767,7 @@ export class Node extends Message<Node> {
     { no: 4, name: "x", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
     { no: 5, name: "y", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
     { no: 6, name: "content", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "group", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Node {
@@ -801,18 +807,28 @@ export class Edge extends Message<Edge> {
   relation = "";
 
   /**
-   * Optional: specify color for different relations
-   *
    * @generated from field: string color = 4;
    */
   color = "";
 
   /**
-   * Optional: "solid", "dashed", "dotted"
-   *
    * @generated from field: string style = 5;
    */
   style = "";
+
+  /**
+   * 0.0 - 1.0
+   *
+   * @generated from field: float strength = 6;
+   */
+  strength = 0;
+
+  /**
+   * "structural", "semantic", "causal", "thematic"
+   *
+   * @generated from field: string group = 7;
+   */
+  group = "";
 
   constructor(data?: PartialMessage<Edge>) {
     super();
@@ -827,6 +843,8 @@ export class Edge extends Message<Edge> {
     { no: 3, name: "relation", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "color", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "style", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "strength", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
+    { no: 7, name: "group", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Edge {

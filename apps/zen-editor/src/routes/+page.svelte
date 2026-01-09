@@ -107,7 +107,7 @@
               {/if}
 
               <div class="card-actions">
-                {#if selectedNode.filePath || selectedNode.type === 'gh:Manuscript' || selectedNode.type === 'manuscript'}
+                {#if selectedNode.filePath || selectedNode.type === 'gh:Manuscript' || selectedNode.type === 'manuscript' || selectedNode.type === 'gh:Block'}
                   <button class="action-btn" onclick={() => isEditorOpen = true}>Edit Content</button>
                 {/if}
                 <button class="action-btn secondary" onclick={() => isChatOpen = true}>Chat with Node</button>
@@ -134,14 +134,14 @@
       </div>
     </div>
 
-    {#if isEditorOpen && selectedNode}
-      <div class="overlay editor-overlay">
-        <button class="close-overlay" onclick={closeEditor}>✕ Close Zen Mode</button>
-        <div class="overlay-content">
-          <Editor bind:filePath={selectedNode.filePath} />
-        </div>
-      </div>
-    {/if}
+        {#if isEditorOpen && selectedNode}
+          <div class="overlay editor-overlay">
+            <button class="close-overlay" onclick={closeEditor}>✕ Close Zen Mode</button>
+            <div class="overlay-content">
+              <Editor bind:filePath={selectedNode.filePath} initialContent={selectedNode.content} />
+            </div>
+          </div>
+        {/if}
 
     {#if isChatOpen}
       <div class="overlay chat-overlay">

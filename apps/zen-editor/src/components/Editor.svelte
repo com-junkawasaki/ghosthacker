@@ -2,15 +2,18 @@
   import { onMount } from 'svelte';
   import { client } from '../lib/api';
 
-  let { filePath = $bindable("") } = $props();
+  let { filePath = $bindable(""), initialContent = "" } = $props();
 
   let emotions = $state({ Calm: 1.0, Joy: 0.2, Sadness: 0.1 });
-  let content = $state("");
+  let content = $state(initialContent);
   let isDirty = $state(false);
 
   $effect(() => {
     if (filePath) {
       loadFile(filePath);
+    } else if (initialContent) {
+      content = initialContent;
+      isDirty = false;
     }
   });
 

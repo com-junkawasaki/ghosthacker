@@ -9,8 +9,8 @@ service EditorService {
   rpc GetProjectMetadata(GetProjectMetadataRequest) returns (GetProjectMetadataResponse);
   rpc CallTool(CallToolRequest) returns (CallToolResponse);
   
-      // Real-time Chat/Interaction Stream (A2A support)
-      rpc Interact(InteractRequest) returns (stream InteractResponse);
+  // Real-time Chat/Interaction Stream (A2A support)
+  rpc Interact(InteractRequest) returns (stream InteractResponse);
 }
 
 message InteractRequest {
@@ -100,14 +100,16 @@ message Node {
   string type = 3;
   float x = 4;
   float y = 5;
-  string content = 6; // For blocks, the actual text
+  string content = 6;
+  string group = 7; // "entity", "content", "concept", "link-node"
 }
 
 message Edge {
   string from_id = 1;
   string to_id = 2;
   string relation = 3;
-  string color = 4; // Optional: specify color for different relations
-  string style = 5; // Optional: "solid", "dashed", "dotted"
+  string color = 4;
+  string style = 5;
+  float strength = 6; // 0.0 - 1.0
+  string group = 7;    // "structural", "semantic", "causal", "thematic"
 }
-

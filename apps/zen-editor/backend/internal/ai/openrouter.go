@@ -5,6 +5,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
+	"log"
 	"net/http"
 )
 
@@ -58,6 +60,7 @@ Generate only the markdown content for the new scene.`, combinedContext)
 			{Role: "user", Content: prompt},
 		},
 	})
+	log.Printf("Sending request to OpenRouter: %s", string(reqBody))
 
 	req, _ := http.NewRequestWithContext(ctx, "POST", "https://openrouter.ai/api/v1/chat/completions", bytes.NewBuffer(reqBody))
 	req.Header.Set("Authorization", "Bearer "+c.ApiKey)
@@ -65,17 +68,20 @@ Generate only the markdown content for the new scene.`, combinedContext)
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
+		log.Printf("OpenRouter Request failed: %v", err)
 		return "", err
 	}
 	defer resp.Body.Close()
 
 	body, _ := io.ReadAll(resp.Body)
 	if resp.StatusCode != http.StatusOK {
+		log.Printf("OpenRouter error response: %s", string(body))
 		return "", fmt.Errorf("OpenRouter API error: %s (status %d)", string(body), resp.StatusCode)
 	}
 
 	var chatResp ChatResponse
 	if err := json.Unmarshal(body, &chatResp); err != nil {
+		log.Printf("Failed to decode OpenRouter response: %v", err)
 		return "", err
 	}
 
@@ -83,6 +89,7 @@ Generate only the markdown content for the new scene.`, combinedContext)
 		return chatResp.Choices[0].Message.Content, nil
 	}
 
+	log.Printf("OpenRouter returned no choices. Full response: %s", string(body))
 	return "", fmt.Errorf("no response from OpenRouter")
 }
 

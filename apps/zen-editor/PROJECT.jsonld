@@ -108,6 +108,14 @@
     {
       "step": "7. Implement A2A Multi-Agent Interaction UI",
       "status": "completed"
+    },
+    {
+      "step": "8. Implement Block-level node extraction and categorization",
+      "status": "completed"
+    },
+    {
+      "step": "9. Implement LLM Link Analysis Tool (MCP)",
+      "status": "completed"
     }
   ]
 }

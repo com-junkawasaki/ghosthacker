@@ -33,14 +33,17 @@
               type: n.type,
               x: n.x,
               y: n.y,
-              content: n.content
+              content: n.content,
+              group: n.group
             })),
             edges: topoResp.edges.map(e => ({
               fromId: e.fromId,
               toId: e.toId,
               relation: e.relation,
               color: e.color,
-              style: e.style
+              style: e.style,
+              group: e.group,
+              strength: e.strength
             }))
           };
 
@@ -55,26 +58,26 @@
             let y = n.y;
             let size = 20;
 
-            if (n.type === 'gh:Manuscript') size = 30;
-            if (n.type === 'gh:Block') size = 15;
-            const isPerson = n.type && typeof n.type === 'string' && n.type.includes('Person');
-            const isPlace = n.type && typeof n.type === 'string' && n.type.includes('Place');
-            if (isPerson) size = 35;
-            if (isPlace) size = 35;
+            if (n.group === 'content') {
+              size = n.type === 'gh:Manuscript' ? 28 : 12;
+            } else if (n.group === 'entity') {
+              size = 32;
+            } else if (n.group === 'concept') {
+              size = 20;
+            }
 
             if (x === 0 && y === 0) {
-              // Simple layout if no stored position
-              if (n.type === 'gh:Manuscript') {
+              if (n.group === 'entity') {
                 const angle = (i / 10) * Math.PI * 2;
-                x = centerX + Math.cos(angle) * 350;
-                y = centerY + Math.sin(angle) * 300;
-              } else if (n.type === 'gh:Block') {
-                x = centerX + (Math.random() - 0.5) * 800;
-                y = centerY + (Math.random() - 0.5) * 600;
+                x = centerX + Math.cos(angle) * 200;
+                y = centerY + Math.sin(angle) * 180;
+              } else if (n.group === 'content') {
+                const angle = (i / 15) * Math.PI * 2;
+                x = centerX + Math.cos(angle) * 380;
+                y = centerY + Math.sin(angle) * 320;
               } else {
-                const angle = (i / 20) * Math.PI * 2;
-                x = centerX + Math.cos(angle) * 150;
-                y = centerY + Math.sin(angle) * 120;
+                x = centerX + (Math.random() - 0.5) * 400;
+                y = centerY + (Math.random() - 0.5) * 400;
               }
             }
 
@@ -85,6 +88,29 @@
           isLoading = false;
         } catch (err) {
           console.error("Failed to load graph:", err);
+          isLoading = false;
+        }
+      }
+
+      async function runAIAnalysis() {
+        if (multiSelect.length < 2) {
+          alert("Select at least 2 nodes for AI analysis.");
+          return;
+        }
+        isLoading = true;
+        try {
+          const resp = await client.callTool({
+            name: "analyze_links",
+            argumentsJson: JSON.stringify({ node_ids: multiSelect })
+          });
+          if (!resp.isError) {
+            const results = JSON.parse(resp.resultJson);
+            alert("AI Analysis complete. Suggestions: " + resp.resultJson);
+            // In future, we could add these links dynamically
+          }
+        } catch (err) {
+          console.error(err);
+        } finally {
           isLoading = false;
         }
       }
@@ -184,12 +210,13 @@
   {#if isLoading}
     <div class="loader"><div class="spinner"></div>Syncing Story Graph...</div>
   {:else}
-    <div class="graph-toolbar">
-      <div class="selection-info">{multiSelect.length} nodes selected</div>
-      <button class="tool-btn action" onclick={handleGenerateNode}>Generate from Selection</button>
-      <button class="tool-btn" onclick={saveLayout}>Save Layout</button>
-      <button class="tool-btn" onclick={refreshGraph}>Refresh</button>
-    </div>
+        <div class="graph-toolbar">
+          <div class="selection-info">{multiSelect.length} nodes selected</div>
+          <button class="tool-btn ai-btn" onclick={runAIAnalysis}>✨ AI Link Analysis</button>
+          <button class="tool-btn action" onclick={handleGenerateNode}>Generate from Selection</button>
+          <button class="tool-btn" onclick={saveLayout}>Save Layout</button>
+          <button class="tool-btn" onclick={refreshGraph}>Refresh</button>
+        </div>
     
     <svg 
       viewBox="0 0 1000 800" 
@@ -226,6 +253,8 @@
               <g 
                 class="node" 
                 transform="translate({node.x}, {node.y})"
+                data-group={node.group}
+                data-id={node.id}
                 onmousedown={(e) => handleMouseDown(node, e)}
                 onclick={(e) => toggleNode(node, e)}
                 onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleNode(node, e)}
@@ -267,11 +296,25 @@
   .edge-line { stroke: #e5e5e5; stroke-width: 1.5; fill: none; }
   .node { cursor: pointer; transition: transform 0.1s linear; pointer-events: all; }
   .node:active { cursor: grabbing; }
-  .node-circle { fill: #f5f5f7; stroke: #d2d2d7; stroke-width: 1.5; }
+      .node-circle { fill: #f5f5f7; stroke: #d2d2d7; stroke-width: 1.5; }
       .node-circle.manuscript { fill: #eef7ff; stroke: #0071e3; }
       .node-circle.block { fill: #f0fff0; stroke: #34c759; }
       .node-circle.person { fill: #fff0f0; stroke: #ff3b30; }
+      
+      /* Group-based colors if class mapping is not enough */
+      .node[data-group="entity"] .node-circle { fill: #fff0f0; stroke: #ff3b30; }
+      .node[data-group="content"] .node-circle { fill: #eef7ff; stroke: #0071e3; }
+      .node[data-group="concept"] .node-circle { fill: #f5f5f7; stroke: #d2d2d7; }
+
       .node-label { font-size: 14px; font-weight: 600; fill: #1d1d1f; pointer-events: none; }
       .selection-ring { fill: none; stroke: #0071e3; stroke-width: 2; opacity: 0.6; }
-  .selected .node-circle { stroke-width: 3; stroke: #0071e3; }
+      .selected .node-circle { stroke-width: 3; stroke: #0071e3; }
+
+      .ai-btn {
+        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+        color: white;
+        border: none;
+        box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+      }
+      .ai-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 </style>
