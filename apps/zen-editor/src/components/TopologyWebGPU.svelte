@@ -1,118 +1,114 @@
 <script lang="ts">
   import { client } from '../lib/api';
-  import { onDestroy } from 'svelte';
-  // import * as d3Zoom from 'd3-zoom';
-  // import { select } from 'd3-selection';
-  import GraphWorker from '../lib/graph_v2.worker?worker';
+  import { onMount, onDestroy } from 'svelte';
+  import { Graph } from '@cosmos.gl/graph';
 
   let { onSelect, selectedId } = $props();
 
-  let nodes = $state<any[]>([]);
+  let containerElement = $state<HTMLDivElement | null>(null);
+  let graph = $state<Graph | null>(null);
   let isLoading = $state(true);
-  
-  let containerWidth = $state(1000);
-  let containerHeight = $state(800);
-  let canvasElement = $state<HTMLCanvasElement | null>(null);
-  let worker: Worker | null = null;
+  let nodes = $state<any[]>([]);
 
-  $effect(() => {
-    if (worker && selectedId !== undefined) {
-      worker.postMessage({ type: 'SET_SELECTED_NODE', data: { id: selectedId } });
+  onMount(() => {
+    console.log("Topology component onMount starting (using @cosmos.gl/graph)");
+    if (containerElement) {
+      try {
+        console.log("Initializing Graph with container:", containerElement);
+        const g = new Graph(containerElement, {
+          backgroundColor: '#05050a',
+          pointDefaultSize: 4,
+          linkDefaultWidth: 1,
+          linkDefaultColor: '#33333a',
+          pointColor: '#0071e3',
+          simulationGravity: 0.01,
+          simulationRepulsion: 0.5,
+          simulationFriction: 0.95,
+        });
+
+        graph = g;
+        fetchData();
+      } catch (err) {
+        console.error("Graph initialization failed:", err);
+      }
     }
   });
 
-  $effect(() => {
-    if (!worker && canvasElement) {
-        try {
-            worker = new GraphWorker();
-            worker.onerror = (err) => console.error("Worker error:", err);
-            worker.onmessage = (e) => {
-                if (e.data.type === 'NODE_AT_RESULT' && e.data.data) {
-                    onSelect?.(e.data.data, [e.data.data]);
-                }
-            };
-            
-            const offscreen = (canvasElement as any).transferControlToOffscreen();
-            worker.postMessage({ 
-                type: 'INIT', 
-                data: { 
-                    canvas: offscreen,
-                    width: containerWidth,
-                    height: containerHeight
-                } 
-            }, [offscreen]);
-            
-            // initZoom();
-        } catch (err) {
-            console.error("Worker creation failed:", err);
-        }
-    }
-  });
-
-  $effect(() => {
-    (async () => {
-        isLoading = true;
-        try {
-          const topoResp = await client.getTopology({ projectId: "251022" });
-          nodes = (topoResp.nodes || []).filter(n => n && n.id && n.label);
-          const edges = topoResp.edges || [];
-          
-          if (worker) {
-              const nodesData = nodes.map(n => ({ 
-                  id: n.id, 
-                  label: n.label, 
-                  x: n.x || (Math.random() * containerWidth), 
-                  y: n.y || (Math.random() * containerHeight),
-                  group: n.group || 'unknown'
-              }));
-              worker.postMessage({ type: 'UPDATE_DATA', data: { nodes: nodesData, edges } });
-          }
-        } catch (err) {
-          console.error("Topology fetch failed:", err);
-        } finally {
-          isLoading = false;
-        }
-    })();
-  });
-
-  function initZoom() {
-    if (!canvasElement) return;
+  async function fetchData() {
+    isLoading = true;
     try {
-        const zoom = d3Zoom.zoom<HTMLCanvasElement, unknown>()
-          .scaleExtent([0.1, 10])
-          .on("zoom", (event: any) => {
-            if (worker) {
-                worker.postMessage({ 
-                    type: 'SET_TRANSFORM', 
-                    data: { x: event.transform.x, y: event.transform.y, k: event.transform.k } 
-                });
-            }
-          });
+      if (!client) return;
+      console.log("Fetching topology data...");
+      const resp = await client.getTopology({ projectId: "251022" });
+      console.log("Topology data received:", resp);
+      nodes = (resp.nodes || []).filter(n => n && n.id && n.label);
+      const edges = resp.edges || [];
+
+      if (graph) {
+        const pointPositions = new Float32Array(nodes.length * 2);
+        const pointColors = new Float32Array(nodes.length * 4);
         
-        select(canvasElement).call(zoom as any);
+        nodes.forEach((n, i) => {
+          pointPositions[i * 2] = n.x || (Math.random() * 1000 - 500);
+          pointPositions[i * 2 + 1] = n.y || (Math.random() * 1000 - 500);
+          
+          const color = n.group === 'content' ? [0, 113, 227, 255] : n.group === 'entity' ? [255, 59, 48, 255] : [142, 142, 147, 255];
+          pointColors[i * 4] = color[0];
+          pointColors[i * 4 + 1] = color[1];
+          pointColors[i * 4 + 2] = color[2];
+          pointColors[i * 4 + 3] = color[3] / 255;
+        });
+
+        const links = new Float32Array(edges.length * 2);
+        const idToIndex = new Map(nodes.map((n, i) => [n.id, i]));
+        
+        edges.forEach((e, i) => {
+          links[i * 2] = idToIndex.get(e.fromId) || 0;
+          links[i * 2 + 1] = idToIndex.get(e.toId) || 0;
+        });
+
+        console.log("Setting Graph data...");
+        graph.setPointPositions(pointPositions);
+        graph.setPointColors(pointColors);
+        graph.setLinks(links);
+        graph.render();
+        graph.fitView(1000);
+      }
     } catch (err) {
-        console.error("d3Zoom failed:", err);
+      console.error("Topology fetch failed:", err);
+    } finally {
+      isLoading = false;
     }
   }
 
+  $effect(() => {
+    if (graph && selectedId) {
+      const index = nodes.findIndex(n => n.id === selectedId);
+      if (index !== -1) {
+          graph.zoomToPointByIndex(index, 1000);
+      }
+    }
+  });
+
   onDestroy(() => {
-    if (worker) worker.terminate();
+    if (graph) {
+      graph.destroy();
+    }
   });
 
   function handleNodeClick(node: any) {
-      onSelect?.(node, [node]);
+    onSelect?.(node, [node]);
   }
 </script>
 
-<div class="topology-container" bind:clientWidth={containerWidth} bind:clientHeight={containerHeight}>
-  <canvas 
-    bind:this={canvasElement} 
-    width={containerWidth} 
-    height={containerHeight}
-  ></canvas>
+<div class="topology-container">
+  <div 
+    bind:this={containerElement} 
+    style="width: 100%; height: 100%;"
+  ></div>
   
   {#if isLoading}
-    <div class="loader"><div class="spinner"></div>Syncing Story Graph...</div>
+    <div class="loader">Syncing story world...</div>
   {/if}
 
   <div class="test-nodes">
@@ -124,11 +120,7 @@
 
 <style>
   .topology-container { width: 100%; height: 100%; position: relative; background: #05050a; }
-  canvas { width: 100%; height: 100%; display: block; cursor: grab; }
-  canvas:active { cursor: grabbing; }
-  .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; display: flex; flex-direction: column; align-items: center; gap: 1rem; z-index: 100; }
-  .spinner { width: 24px; height: 24px; border: 2px solid #333; border-top-color: #0071e3; border-radius: 50%; animation: spin 1s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .test-nodes { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 10; opacity: 0.01; }
+  .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; }
+  .test-nodes { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.01; }
   .test-node-btn { pointer-events: auto; }
 </style>

@@ -57,6 +57,111 @@
       "gh:target": "KPI-only planning; impatience disguised as efficiency that forces humans to endure and breaks the field."
     }
   ],
+  "gh:ghostCatalog": [
+    {
+      "@id": "gh:ghost/arc-a-goodwill-curse",
+      "@type": "gh:Ghost",
+      "schema:name": "善意の呪い",
+      "schema:alternateName": "Curse of Goodwill",
+      "gh:arc": "arc:A",
+      "gh:note": "善意・情・許しが、設計放棄（怠惰）として再発を生むGhost。"
+    },
+    {
+      "@id": "gh:ghost/arc-b-never-ending-clock",
+      "@type": "gh:Ghost",
+      "schema:name": "終わらぬ時計",
+      "schema:alternateName": "Never-Ending Clock",
+      "gh:arc": "arc:B",
+      "gh:note": "開始に厳しいのに終わり（Done）に厳しくない。完了定義がなく、復旧が遅れる“短気の歪み”。"
+    },
+    {
+      "@id": "gh:ghost/arc-c-exception-hunter",
+      "@type": "gh:Ghost",
+      "schema:name": "例外狩り",
+      "schema:alternateName": "Exception Hunter",
+      "gh:arc": "arc:C",
+      "gh:note": "例外を悪として槍で刺し、ルールが人を使う構造を固定するGhost。"
+    },
+    {
+      "@id": "gh:ghost/seigi-hero-justice-knuckle",
+      "@type": "gh:Ghost",
+      "schema:name": "正義鉄拳",
+      "schema:alternateName": "Justice Knuckle",
+      "gh:note": "『正義』の仮面で他人を殴る痛い暴力。実親への反抗できなさの転写から生まれる。"
+    }
+  ],
+  "gh:toolsAndWeapons": [
+    {
+      "@id": "gh:loadout/ren",
+      "@type": "gh:CharacterLoadout",
+      "gh:character": "character:Ren",
+      "gh:mainWeapon": {
+        "schema:name": "断麻斧",
+        "schema:alternateName": "Null Axe",
+        "gh:note": "快刀乱麻を断つ。複雑な事故の結び目を切って落とすハッカーの斧。"
+      },
+      "gh:subTools": [
+        {
+          "schema:name": "ロープ（結界索）",
+          "schema:alternateName": "Containment Rope",
+          "gh:note": "切るだけでなく結ぶ。境界を作り再発を止める。"
+        }
+      ],
+      "gh:signatureTechniques": [
+        { "schema:name": "/dev/null chop", "schema:alternateName": "dev/null chop" }
+      ]
+    },
+    {
+      "@id": "gh:loadout/takeru",
+      "@type": "gh:CharacterLoadout",
+      "gh:character": "character:Takeru",
+      "gh:mainWeapon": {
+        "schema:name": "バール",
+        "schema:alternateName": "Crowbar",
+        "gh:note": "詰まりをこじ開けて流れを通す。遅延の原因を引き剥がす短気の主武器。"
+      },
+      "gh:subTools": [
+        {
+          "schema:name": "ハンマー",
+          "schema:alternateName": "Hammer",
+          "gh:note": "最後に叩き込んで“終わらせる”ための一撃。"
+        },
+        {
+          "schema:name": "ストップウォッチ",
+          "schema:alternateName": "Stopwatch / Done Watch",
+          "gh:note": "開始ではなく“終端（Done）”を刻む。"
+        }
+      ]
+    },
+    {
+      "@id": "gh:loadout/kaname",
+      "@type": "gh:CharacterLoadout",
+      "gh:character": "character:Kaname",
+      "gh:mainWeapon": {
+        "schema:name": "トルクレンチ",
+        "schema:alternateName": "Torque Wrench",
+        "gh:note": "責任と締結を適正トルクで決める。完璧は運用ではなく設計。"
+      },
+      "gh:subTools": [
+        { "schema:name": "コンパス（円規）", "schema:alternateName": "Compass", "gh:note": "境界（責任/権限）を描く。" },
+        { "schema:name": "定規", "schema:alternateName": "Ruler", "gh:note": "現実と規程のズレを測って裁く。" }
+      ]
+    },
+    {
+      "@id": "gh:loadout/nei",
+      "@type": "gh:CharacterLoadout",
+      "gh:character": "character:Nei",
+      "gh:mainWeapon": {
+        "schema:name": "解析端末（コンピュータ）",
+        "schema:alternateName": "Analysis Rig",
+        "gh:note": "可視化・解析・照準。Ghostを見える形に落とす。"
+      },
+      "gh:subTools": [
+        { "schema:name": "SIPデバイス", "schema:alternateName": "SIP Device", "gh:note": "Ghostを物理レイヤに固定する拘束機材。" },
+        { "schema:name": "フォレンジックUSB", "schema:alternateName": "Forensic Key", "gh:note": "証拠保全の鍵。" }
+      ]
+    }
+  ],
   "gh:companies": [
     {
       "@id": "org:daimon-construction",
@@ -76,14 +181,14 @@
     {
       "@id": "org:jinpu-mobility",
       "@type": "gh:VictimOrganization",
-      "schema:name": "迅風モビリティ (JINPU Mobility)",
+      "schema:name": "丁場運行 (CHOBA Unko)",
       "gh:arcLabel": "B",
-      "gh:surfaceImage": "データドリブン・KPI最強・効率的（スマートに見える）",
-      "gh:essence": "短気（人を削る計画）：目先の数値が唯一の計画になり、心や場や情緒を含めた計画が欠落する。",
+      "gh:surfaceImage": "始業や開始時間にうるさい（“速い会社”に見える）",
+      "gh:essence": "短気（遅さを生む短気）：開始に厳しいのに終わり（Done）にうるさくない。完了定義が曖昧で、障害対応も終わらず、結果として遅い。",
       "gh:companyGhosts": [
-        "『今すぐ』",
-        "『遅れ＝罪』",
-        "数字が人を使う"
+        "終わらぬ時計",
+        "『開始だけ速い』",
+        "『終わりは気合』"
       ],
       "gh:incidentType": "OT/IoT disruption + cascading supply chain impact"
     },
@@ -400,97 +505,100 @@
       {
         "@id": "gh:episode/s01e03",
         "gh:number": 3,
-        "dct:title": "Arc A-3: 偽りの声、真実の瞳（情の再設計）",
+        "dct:title": "Arc A-3: 善意の呪い（会社のGhostを殴る）",
         "gh:arc": "arc:A",
         "gh:company": "org:daimon-construction",
         "gh:focusVirtue": "gh:virtue/sloth",
         "gh:mainCharacters": ["character:Ren", "character:Nei"],
-        "gh:openingHook": "取引先でBEC発生。『至急振込』が“善意の急ぎ”として侵入する。",
+        "gh:openingHook": "復旧が“できた”のに、誰も安心できない。原因はマルウェアではなく、情で責任が溶ける“善意の運用”が残っていること。",
         "gh:practiceBeats": [
-          "送金/承認の“場”を作る（コールバック・二者承認・MFA）",
-          "人を責めず、プロセスを責める（再発を止める仕組み化）",
-          "取引先も含めて“連鎖”として対策する"
+          "復旧の終端（Done）を定義：復旧＝起動ではなく、検知・復元・再発防止まで",
+          "二度やらない：バックアップ方針、権限境界、ログ、台帳化（誰が何を持つか）",
+          "情を設計に変換：条件付き復帰、再発時の停止判断、責任の所在を確定する"
         ],
         "gh:ghostBattle": {
-          "schema:name": "焦りのGhost（『今すぐ』の糸が経理の手を操る）",
-          "gh:turn": "Renが“怠惰にできる仕組み”＝確認の手順を定着させ、糸を切る"
+          "schema:name": "善意の呪い（Curse of Goodwill）",
+          "gh:visual": "『許し』『絆』『家族』の文字が笑顔の仮面になって貼り付く。仮面の裏で責任が消えていく。",
+          "gh:turn": "NeiがSIPで“善意の仮面”を固定。Renは断麻斧で“曖昧さの結び目”を切り、ロープで新しい境界を結ぶ。"
         },
-        "gh:conflict": "翔太は“スピードの正義”に揺れるが、Renは『速さのために人が燃えるのは怠惰』と切り捨てる。",
-        "gh:cliffhanger": "痕跡が物流/配車の基盤へ。Nei『次は物理に来ます』→Arc Bへ。",
+        "gh:conflict": "社長は“情”で守ろうとし、翔太は改革の痛みを恐れる。Renは『善意で設計をサボるな』と突きつける。",
+        "gh:cliffhanger": "委託先の遠隔管理基盤に、同型の痕跡。Nei『供給網から次の会社へ波及します』→Arc Bへ。",
         "gh:evidenceProduced": [
-          "詐欺送金先の口座/暗号資産ルートの端緒（後のSESC線）",
-          "X/LINE由来のリクルート断片（闇バイト線の予兆）"
+          "委託先起点のアクセス痕跡（供給網の入口）",
+          "復旧手順と証拠保全のパッケージ（捜査・共有に耐える形）"
         ]
       },
       {
         "@id": "gh:episode/s01e04",
         "gh:number": 4,
-        "dct:title": "Arc B-1: 都市の心臓を止める者（猛 登場）",
+        "dct:title": "Arc B-1: 終わらぬ時計（猛 登場）",
         "gh:arc": "arc:B",
         "gh:company": "org:jinpu-mobility",
         "gh:focusVirtue": "gh:virtue/short-tempered",
         "gh:mainCharacters": ["character:Ren", "character:Nei", "character:Takeru"],
-        "gh:openingHook": "配車/物流が詰まり、街が止まる。現場は『待つ』ことを強いられる。",
+        "gh:openingHook": "始業と出庫の時刻だけは絶対。だが、終わり（Done）の定義は誰も持っていない。障害が起きた瞬間、現場は“早く動かす”ために証拠を壊し始める。",
         "gh:practiceBeats": [
-          "OT/IoTの緊急遮断と安全側停止（人命優先）",
-          "分離・迂回・手動運用の発動（止め方の手順）",
-          "KEV起点の侵入疑いを現場で切り分け"
+          "初動：電源/再起動を止め、隔離と証拠保全を最優先",
+          "止め方：安全側停止と手動運用（出庫/配送の代替）を即発動",
+          "Doneの宣言：『何が戻れば完了か』を決めない限り終わらないと突きつける"
         ],
         "gh:ghostBattle": {
-          "schema:name": "我慢のGhost（鎖で現場を締め上げる）",
-          "gh:turn": "猛が『止めろ』を即断し、鎖を断つ。速度は救済だと示す"
+          "schema:name": "終わらぬ時計の前駆（針が刃になり現場を急かす）",
+          "gh:visual": "『始業の鐘』だけが鳴り続け、時計の針が刃になって首元へ迫る",
+          "gh:turn": "猛はバールで“詰まり”をこじ開ける前に、まず『止める』。速さは、止め方の手順に宿ると示す"
         },
-        "gh:conflict": "CEOはKPIを盾に止める判断を拒む。猛の怒りが“短気”として誤解される。",
-        "gh:cliffhanger": "猛が吐く。『……あんたら、短気だな』KPIだけが計画の会社に亀裂が入る。",
+        "gh:conflict": "経営は『遅れるな』だけを叫ぶ。だが“終わり”を設計していないから、障害が永遠に続く。猛の怒りは短気に見えるが、本音は“遅さの原因を殺す”こと。",
+        "gh:cliffhanger": "始業に間に合わせるために独断で再起動を命じる管理職。猛が吐く。『……あんたら、短気だな』",
         "gh:evidenceProduced": [
-          "闇バイト経由の“現場侵入”の断片（募集文面/連絡網）",
-          "同型インフラへの横展開兆候（供給網の匂い）"
+          "証拠を壊そうとした“独断復旧”のログ（後の責任境界の証拠）",
+          "現場端末/遠隔管理の不審操作（闇バイト線の入口）"
         ]
       },
       {
         "@id": "gh:episode/s01e05",
         "gh:number": 5,
-        "dct:title": "Arc B-2: 零日の悪夢（仮想パッチ）",
+        "dct:title": "Arc B-2: Doneがない地獄（終わりの設計）",
         "gh:arc": "arc:B",
         "gh:company": "org:jinpu-mobility",
         "gh:focusVirtue": "gh:virtue/short-tempered",
         "gh:mainCharacters": ["character:Ren", "character:Nei", "character:Takeru"],
-        "gh:openingHook": "未知の穴。直せない。止められない。現場が燃える。",
+        "gh:openingHook": "復旧のたびに再発。『直った』と言うたびに、現場がさらに遅くなる。原因は“終端”がないこと。",
         "gh:practiceBeats": [
-          "仮想パッチ/迂回で“時間を買う”",
-          "影響範囲の封じ込め（横展開を止める）",
-          "恒久対応の優先順位と、現場の負荷を計画に織り込む"
+          "封じ込め：影響範囲を切り分け、再起動・復旧を勝手にさせない",
+          "計測：猛のストップウォッチで“復旧の定義”と“締切”を刻む",
+          "再開条件：段階復旧（最小機能→監視→拡大）をRunbook化する"
         ],
         "gh:ghostBattle": {
-          "schema:name": "『数字だけの計画』Ghost（グラフが鞭になる）",
-          "gh:turn": "猛は“速い計画”を作り直す。KPIではなく人の呼吸を含む計画"
+          "schema:name": "終わらぬ時計（Never-Ending Clock）",
+          "gh:visual": "時計盤が増殖し、針が無限に回転して“今すぐ”を叩きつける",
+          "gh:turn": "猛は“速い復旧”ではなく“速く終わる復旧”へ変える。Doneを刻めない作業は作業じゃない"
         },
-        "gh:conflict": "猛は計画的なのに『短気』扱いされる。彼の本音は“人を待たせない”こと。",
-        "gh:cliffhanger": "供給網の共通部品（外部ベンダ/管理ソフト）名が浮上→Arc Cの入口。",
+        "gh:conflict": "短気の会社は『急げ』と言いながら、終わりの設計をしない。猛は“遅いことが許せない”からこそ、終わりを作る。",
+        "gh:cliffhanger": "X/LINE経由の闇バイト指示が見つかる。『現場に入り込ませる手足がいる』",
         "gh:evidenceProduced": [
-          "侵入で使われたローダ/キットの指紋（購入/レンタルの痕跡）",
-          "X/LINEの募集〜実行のオペレーション断片（捜査用）"
+          "X/LINEの募集〜実行のオペレーション断片（捜査用）",
+          "エコシステムのツール利用痕跡（自作ではない“買った道具”の証拠）"
         ]
       },
       {
         "@id": "gh:episode/s01e06",
         "gh:number": 6,
-        "dct:title": "Arc B-3: 短気の会社を救う計画",
+        "dct:title": "Arc B-3: 終端刻印（短気を救済に戻す）",
         "gh:arc": "arc:B",
         "gh:company": "org:jinpu-mobility",
         "gh:focusVirtue": "gh:virtue/short-tempered",
         "gh:mainCharacters": ["character:Ren", "character:Nei", "character:Takeru"],
-        "gh:openingHook": "復旧の見込みが立つほど、経営が『数字』で現場を殴り始める。",
+        "gh:openingHook": "復旧が見えても終わらない。会社は“開始の速さ”で自分を誤魔化し続ける。",
         "gh:practiceBeats": [
-          "BCP/手動運用の定着（我慢の属人化をやめる）",
-          "現場の情緒を含めた“運用設計”（当番・休息・責任境界）",
-          "闇バイト対策：採用/委託/現場アクセスの見直し"
+          "Doneの制度化：完了定義、停止判断、エスカレーション、当番と休息を設計に入れる",
+          "BCP：手動運用を“根性”ではなく手順にする（始業より終端を優先）",
+          "闇バイト対策：現場アクセス/委託の境界を明確化し、侵入の手足を断つ"
         ],
         "gh:ghostBattle": {
-          "schema:name": "『今すぐ』Ghost（時計の針が刃になる）",
-          "gh:turn": "猛が“止める勇気”を制度にする。短気＝救済として刻む"
+          "schema:name": "終わらぬ時計（針の刃）",
+          "gh:turn": "猛がハンマーで『終端（DONE）』を叩き込む。短気は“人を救うための速さ”に戻る"
         },
-        "gh:cliffhanger": "白檀フィナンシャルの案件へ。『規程』が人を殺す匂い。",
+        "gh:cliffhanger": "供給網の共通部品（外部ベンダ/管理基盤）が金融側にも繋がっていることが判明→Arc Cへ。",
         "gh:evidenceProduced": [
           "闇バイト連絡網の関係図（ハブの端緒）",
           "海外拠点への送金/換金の断片（国際連携の入口）"
@@ -668,21 +776,21 @@
         "@id": "arc:A",
         "schema:name": "Arc A - Daimon (Sloth / environmental negligence)",
         "gh:episodes": [1, 2, 3],
-        "gh:coreGhost": "Forgiveness-as-negligence; legacy rules as a curse",
+        "gh:coreGhost": "善意の呪い（Curse of Goodwill）",
         "gh:finalLine": "それは「怠惰」だ。"
       },
       {
         "@id": "arc:B",
-        "schema:name": "Arc B - JINPU (Short-tempered / KPI-only impatience)",
+        "schema:name": "Arc B - CHOBA (Short-tempered / Never-Ending Clock)",
         "gh:episodes": [4, 5, 6],
-        "gh:coreGhost": "Speed that forces endurance; numbers that command people",
+        "gh:coreGhost": "終わらぬ時計（Never-Ending Clock）",
         "gh:finalLine": "あんたら、短気だな。"
       },
       {
         "@id": "arc:C",
         "schema:name": "Arc C - BYAKUDAN (Arrogance / rules using people)",
         "gh:episodes": [7, 8, 9],
-        "gh:coreGhost": "Rigid procedures and pride; responsibility evasion by rules",
+        "gh:coreGhost": "例外狩り（Exception Hunter）",
         "gh:finalLine": "それは傲慢ですね。"
       },
       {
