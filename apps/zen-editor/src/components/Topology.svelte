@@ -83,9 +83,9 @@
   function initSimulation() {
     simulation = d3.forceSimulation<GraphNode>()
       .force("link", d3.forceLink<GraphNode, GraphEdge>().id(d => d.id).distance(d => d.distance))
-      .force("charge", d3.forceManyBody().strength(-300))
+      .force("charge", d3.forceManyBody().strength(-50))
       .force("center", d3.forceCenter(containerWidth / 2, containerHeight / 2))
-      .force("collision", d3.forceCollide<GraphNode>().radius(d => d.size + 15))
+      .force("collision", d3.forceCollide<GraphNode>().radius(d => d.size + 10))
       .on("tick", () => {
         nodes = [...nodes];
       });
@@ -287,10 +287,16 @@
 
     <!-- Minimap -->
     <div class="minimap">
-      <svg viewBox="{bounds.x} {bounds.y} {bounds.width} {bounds.height}">
-        <rect x={bounds.x} y={bounds.y} width={bounds.width} height={bounds.height} fill="rgba(0,0,0,0.03)" />
+      <svg viewBox="{bounds.x} {bounds.y} {bounds.width} {bounds.height}" preserveAspectRatio="xMidYMid meet">
+        <rect x={bounds.x} y={bounds.y} width={bounds.width} height={bounds.height} fill="rgba(0,0,0,0.02)" />
         {#each nodes as node}
-          <circle cx={node.x} cy={node.y} r={node.size / 2} fill={node.group === 'entity' ? '#ff3b30' : node.group === 'content' ? '#0071e3' : '#d2d2d7'} />
+          <circle 
+            cx={node.x} 
+            cy={node.y} 
+            r={bounds.width / 150} 
+            fill={node.group === 'entity' ? '#ff3b30' : node.group === 'content' ? '#0071e3' : '#d2d2d7'} 
+            opacity="0.6"
+          />
         {/each}
         <!-- Viewport rect in minimap -->
         <rect 
@@ -298,9 +304,9 @@
           y={(-transform.y / transform.k)} 
           width={containerWidth / transform.k} 
           height={containerHeight / transform.k} 
-          fill="none" 
+          fill="rgba(0, 113, 227, 0.05)" 
           stroke="#0071e3" 
-          stroke-width={bounds.width / 100} 
+          stroke-width={bounds.width / 200} 
         />
       </svg>
     </div>

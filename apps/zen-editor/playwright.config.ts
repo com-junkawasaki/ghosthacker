@@ -10,8 +10,9 @@ export default defineConfig({
   testDir,
   reporter: 'html',
   use: {
-    baseURL: 'http://localhost:1420',
+    baseURL: 'http://127.0.0.1:1420',
     trace: 'on-first-retry',
+    viewport: { width: 2560, height: 1440 },
   },
   projects: [
     {

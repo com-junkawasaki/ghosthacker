@@ -44,6 +44,9 @@ importers:
       '@types/d3-zoom':
         specifier: ^3.0.8
         version: 3.0.8
+      '@webgpu/types':
+        specifier: ^0.1.68
+        version: 0.1.68
       d3-drag:
         specifier: ^3.0.0
         version: 3.0.0
@@ -77,6 +80,9 @@ importers:
       prosemirror-view:
         specifier: ^1.41.4
         version: 1.41.4
+      typegpu:
+        specifier: ^0.9.0
+        version: 0.9.0
     devDependencies:
       '@bufbuild/protoc-gen-es':
         specifier: 1.10.1
@@ -821,6 +827,9 @@ packages:
   '@vitest/utils@3.2.4':
     resolution: {integrity: sha512-fB2V0JFrQSMsCo9HiSq3Ezpdv4iYaXRG1Sx8edX3MwxfyNn83mKiGzOcH+Fkxt4MHxr3y42fQi1oeAInqgX2QA==}
 
+  '@webgpu/types@0.1.68':
+    resolution: {integrity: sha512-3ab1B59Ojb6RwjOspYLsTpCzbNB3ZaamIAxBMmvnNkiDoLTZUOBXZ9p5nAYVEkQlDdf6qAZWi1pqj9+ypiqznA==}
+
   acorn@8.15.0:
     resolution: {integrity: sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==}
     engines: {node: '>=0.4.0'}
@@ -1405,6 +1414,10 @@ packages:
   tinybench@2.9.0:
     resolution: {integrity: sha512-0+DUvqWMValLmha6lr4kD8iAMK1HzV0/aKnCtWb9v9641TnP/MFb7Pc2bxoxQjTXAErryXVgUOfv2YqNllqGeg==}
 
+  tinyest@0.2.0:
+    resolution: {integrity: sha512-k8XL8FipMVboHtNwAJ6PgGVkWk+9hWEROGoxEXJKmO9ZOXehlBgdGY5uCkGRgT60TYJhtfOelvC/ikMpKYAmHA==}
+    engines: {node: '>=12.20.0'}
+
   tinyexec@0.3.2:
     resolution: {integrity: sha512-KQQR9yN7R5+OSwaK0XQoj22pwHoTlgYqmUscPYoknOoWCWfj/5/ABTMRi69FrKU5ffPVh5QcFikpWJI/P1ocHA==}
 
@@ -1453,6 +1466,13 @@ packages:
 
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
+
+  typed-binary@4.3.2:
+    resolution: {integrity: sha512-HT3pIBM2njCZUmeczDaQUUErGiM6GXFCqMsHegE12HCoBtvHCkfR10JJni0TeGOTnLilTd6YFyj+YhflqQDrDQ==}
+
+  typegpu@0.9.0:
+    resolution: {integrity: sha512-1mIUiElaxmwy4RMGvFrifHYmLnXLQjB30eKanAWj1ab3qhJvDq0bUfi9j0JP3jaQPXsGgFcNvLGJvCfvi55Ajg==}
+    engines: {node: '>=12.20.0'}
 
   typescript@4.5.2:
     resolution: {integrity: sha512-5BlMof9H1yGt0P8/WF+wPNw6GfctgGjXp5hkblpyT+8rkASSmkUKMXrxR0Xg8ThVCi/JnHQiKXeBaEwCeQwMFw==}
@@ -2195,6 +2215,8 @@ snapshots:
       loupe: 3.2.1
       tinyrainbow: 2.0.0
 
+  '@webgpu/types@0.1.68': {}
+
   acorn@8.15.0: {}
 
   agent-base@7.1.4: {}
@@ -2799,6 +2821,8 @@ snapshots:
 
   tinybench@2.9.0: {}
 
+  tinyest@0.2.0: {}
+
   tinyexec@0.3.2: {}
 
   tinyglobby@0.2.15:
@@ -2835,6 +2859,13 @@ snapshots:
   tree-kill@1.2.2: {}
 
   tslib@2.8.1: {}
+
+  typed-binary@4.3.2: {}
+
+  typegpu@0.9.0:
+    dependencies:
+      tinyest: 0.2.0
+      typed-binary: 4.3.2
 
   typescript@4.5.2: {}
 
