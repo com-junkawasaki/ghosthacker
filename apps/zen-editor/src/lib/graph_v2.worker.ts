@@ -29,6 +29,7 @@ const ParamsStruct = d.struct({
     viewOffsetX: d.f32,
     viewOffsetY: d.f32,
     viewScale: d.f32,
+    selectedNodeIdx: d.u32,
 });
 
 // --- WebGPU State ---
@@ -68,6 +69,7 @@ let currentParams = {
     viewOffsetX: 0,
     viewOffsetY: 0,
     viewScale: 1.0,
+    selectedNodeIdx: 0xFFFFFFFF,
 };
 
 let nodeMetadata: any[] = []; 
@@ -100,7 +102,7 @@ const repulsionPass = (tgpu['~unstable'].computeFn as any)({
     nodes[i].force = force;
 }`.$uses({
     params: d.ptrUniform(ParamsStruct),
-    nodes: d.ptrStorage(d.arrayOf(NodeStruct, 10240)) // Use fixed size for now to avoid TypeGPU errors
+    nodes: d.ptrStorage(d.arrayOf(NodeStruct, 10240))
 });
 
 const attractionPass = (tgpu['~unstable'].computeFn as any)({
@@ -167,12 +169,21 @@ const nodeVertexShader = (tgpu['~unstable'].vertexFn as any)({
     let cx = (px * 2.0 - 1.0 + params.viewOffsetX) * params.viewScale;
     let cy = (1.0 - py * 2.0 + params.viewOffsetY) * params.viewScale;
 
-    let screenPos = vec2f(cx, cy) + (in.unitPos * (node.size * params.viewScale) / params.width);
+    var size = node.size;
+    if (in.instanceIdx == params.selectedNodeIdx) {
+        size = size * 1.5;
+    }
+
+    let screenPos = vec2f(cx, cy) + (in.unitPos * (size * params.viewScale) / params.width);
     
     var color = vec4f(0.8, 0.8, 0.8, 1.0);
     if (node.group == 0u) { color = vec4f(0.0, 0.44, 0.89, 1.0); } 
     if (node.group == 1u) { color = vec4f(1.0, 0.23, 0.19, 1.0); } 
     if (node.group == 2u) { color = vec4f(0.55, 0.55, 0.58, 1.0); } 
+    
+    if (in.instanceIdx == params.selectedNodeIdx) {
+        color = vec4f(1.0, 1.0, 1.0, 1.0); // Highlight selected node
+    }
     
     return Out(vec4f(screenPos, 0.0, 1.0), color);
 }`.$uses({
@@ -324,7 +335,7 @@ function startLoop() {
 
             // 2. Draw Nodes
             const circleVertsCount = 36; 
-            const vertexLayout = tgpu.vertexLayout(d.arrayOf(d.vec2f, circleVertsCount), 'vertex');
+            const vertexLayout = tgpu.vertexLayout(d.arrayOf(d.vec2f), 'vertex');
             nodeRenderPipeline
                 .with(paramsBuffer)
                 .with(nodesBuffer)
@@ -393,6 +404,19 @@ self.onmessage = async (e: MessageEvent) => {
         currentParams.viewOffsetX = data.x / width;
         currentParams.viewOffsetY = -data.y / height;
         currentParams.viewScale = data.k;
+        paramsBuffer.write(currentParams);
+    } else if (type === 'SET_SELECTED_NODE') {
+        const id = data.id;
+        let foundIdx = 0xFFFFFFFF;
+        if (id) {
+            for (let i = 0; i < nodeMetadata.length; i++) {
+                if (nodeMetadata[i].id === id) {
+                    foundIdx = i;
+                    break;
+                }
+            }
+        }
+        currentParams.selectedNodeIdx = foundIdx;
         paramsBuffer.write(currentParams);
     } else if (type === 'GET_NODE_AT') {
         const { x, y } = data;

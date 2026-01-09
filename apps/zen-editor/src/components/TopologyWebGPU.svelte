@@ -5,7 +5,7 @@
   import { select } from 'd3-selection';
   import GraphWorker from '../lib/graph_v2.worker?worker';
 
-  let { onSelect } = $props();
+  let { onSelect, selectedId } = $props();
 
   let nodes = $state<any[]>([]);
   let isLoading = $state(true);
@@ -14,6 +14,12 @@
   let containerHeight = $state(800);
   let canvasElement = $state<HTMLCanvasElement | null>(null);
   let worker: Worker | null = null;
+
+  $effect(() => {
+    if (worker && selectedId !== undefined) {
+      worker.postMessage({ type: 'SET_SELECTED_NODE', data: { id: selectedId } });
+    }
+  });
 
   $effect(() => {
     if (!worker && canvasElement) {

@@ -50,16 +50,15 @@
     try {
       // Use callTool as a proxy for chat functionality if the backend supports it
       const resp = await client.callTool({
-        projectId: "251022",
-        toolName: "chat_with_node",
-        arguments: JSON.stringify({
-          nodeId: selectedNode.id,
+        name: "chat_with_node",
+        argumentsJson: JSON.stringify({
+          node_id: selectedNode.id,
           message: userMsg
         })
       });
       
-      if (resp && resp.result) {
-        const resultData = JSON.parse(resp.result);
+      if (resp && resp.resultJson) {
+        const resultData = JSON.parse(resp.resultJson);
         messages.push({
           role: "assistant",
           name: selectedNode.label,
@@ -80,7 +79,7 @@
   </header>
 
   <div class="main-content" class:dim={isChatOpen}>
-      <Topology onSelect={handleNodeSelect} />
+      <Topology onSelect={handleNodeSelect} selectedId={selectedNode?.id} />
   </div>
   
   {#if isSidebarOpen && selectedNode}
