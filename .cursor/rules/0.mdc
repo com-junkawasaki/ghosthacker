@@ -81,3 +81,42 @@ alwaysApply: true
 見せ場ページ: 1〜3コマ（大ゴマ・アップ中心、サムネ的に強いページ）。
 説明ページ: 4〜6コマ（会話・状況説明・フラグ回収用）。
 各ページのラストコマは、スマホスクロールで次ページをめくりたくなるような ミニ引き（疑問・表情変化・カット終わり） を意識します。
+
+## Zen Editor (apps/zen-editor) 開発ルール
+
+### 技術スタック
+- **Frontend**: SvelteKit 5 + Tauri 2
+- **Runtime**: Deno (npm互換機能を使用)
+- **Backend**: Go (gRPC Connect)
+- **Visualization**: @cosmos.gl/graph (WebGPU)
+
+### 開発コマンド
+- **開発サーバー起動**: `cd apps/zen-editor && deno task dev:vite`
+- **バックエンド起動**: `cd apps/zen-editor && deno task dev:backend`
+- **Tauri開発**: `cd apps/zen-editor && export PATH="$HOME/.cargo/bin:$PATH" && deno task tauri dev`
+- **ビルド**: `cd apps/zen-editor && deno task build`
+
+### Deno設定
+- `deno.json` のタスクは `deno run -A npm:` を使用（pnpm/npm は使わない）
+- `-A` フラグで全ての権限を許可（開発環境）
+- `nodeModulesDir: "auto"` で自動管理
+
+### Tauri設定
+- `beforeDevCommand`: `deno task dev` (vite を起動)
+- `devUrl`: `http://localhost:1420`
+- `beforeBuildCommand`: `deno task build`
+
+### SvelteKit設定
+- `@sveltejs/adapter-static` を使用（Tauri推奨）
+- `+layout.ts`: `ssr = false`, `prerender = true`
+- `vite.config.ts`: ポート 1420、strictPort: true
+
+### コンポーネント構成
+- **Graph View**: `TopologyWebGPU.svelte` - 物語グラフの可視化
+- **Storyboard View**: `Storyboard.svelte` - 絵コンテ作成・編集
+- **Editor**: `Editor.svelte` - Zen Mode テキストエディタ
+
+### 絵コンテ機能
+- LLM による自動生成: `EditorService.interact` を使用
+- リアルタイムストリーミング: シーンを順次生成・表示
+- 手動編集: 各シーンの画面・説明・音声・尺を編集可能
