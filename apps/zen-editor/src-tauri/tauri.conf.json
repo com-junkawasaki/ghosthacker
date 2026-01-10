@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "identifier": "ai.gftd.ghosthacker.zeneditor",
   "build": {
-    "beforeDevCommand": "deno task dev",
+    "beforeDevCommand": "deno task dev:vite",
     "devUrl": "http://localhost:1420",
     "beforeBuildCommand": "deno task build",
     "frontendDist": "../build"
@@ -24,7 +24,8 @@
   },
   "bundle": {
     "active": true,
-    "targets": "all"
+    "targets": "all",
+    "resources": []
   }
 }
 

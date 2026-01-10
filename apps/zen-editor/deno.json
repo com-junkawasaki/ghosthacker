@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "dev": "deno run -A npm:vite@latest dev",
+    "dev": "deno task dev:vite",
     "dev:vite": "deno run -A npm:vite@latest dev",
     "dev:frontend": "deno task dev:vite",
     "dev:backend": "cd backend && go run cmd/server/main.go",
@@ -20,7 +20,8 @@
   "imports": {
     "vite": "npm:vite@^6.4.1",
     "@sveltejs/kit": "npm:@sveltejs/kit@^2.49.3",
-    "@sveltejs/vite-plugin-svelte": "npm:@sveltejs/vite-plugin-svelte@^4.0.4"
+    "@sveltejs/vite-plugin-svelte": "npm:@sveltejs/vite-plugin-svelte@^4.0.4",
+    "@sveltejs/adapter-static": "npm:@sveltejs/adapter-static@^3.0.10"
   }
 }
 

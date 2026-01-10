@@ -28,7 +28,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'pnpm dev',
+    command: 'deno task dev:vite',
     port: 1420,
     reuseExistingServer: !process.env.CI,
   },
