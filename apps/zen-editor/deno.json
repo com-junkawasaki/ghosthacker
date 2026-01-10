@@ -1,18 +1,26 @@
 {
   "tasks": {
-    "dev": "concurrently \"vite dev\" \"cd backend && go run cmd/server/main.go\"",
-    "build": "vite build",
-    "preview": "vite preview",
-    "check": "svelte-kit sync && svelte-check",
-    "check:watch": "svelte-kit sync && svelte-check --watch",
-    "tauri": "tauri",
-    "test:unit": "vitest",
-    "test:e2e": "deno task bddgen && playwright test",
+    "dev": "deno run -A npm:vite@latest dev",
+    "dev:vite": "deno run -A npm:vite@latest dev",
+    "dev:frontend": "deno task dev:vite",
+    "dev:backend": "cd backend && go run cmd/server/main.go",
+    "build": "deno run -A npm:vite@latest build",
+    "preview": "deno run -A npm:vite@latest preview",
+    "check": "deno run -A npm:svelte-kit@latest sync && deno run -A npm:svelte-check@latest",
+    "check:watch": "deno run -A npm:svelte-kit@latest sync && deno run -A npm:svelte-check@latest --watch",
+    "tauri": "deno run -A npm:@tauri-apps/cli@latest",
+    "test:unit": "deno run -A npm:vitest@latest",
+    "test:e2e": "deno task bddgen && deno run -A npm:playwright@latest test",
     "bddgen": "bddgen"
   },
   "nodeModulesDir": "auto",
   "compilerOptions": {
     "types": ["@webgpu/types"]
+  },
+  "imports": {
+    "vite": "npm:vite@^6.4.1",
+    "@sveltejs/kit": "npm:@sveltejs/kit@^2.49.3",
+    "@sveltejs/vite-plugin-svelte": "npm:@sveltejs/vite-plugin-svelte@^4.0.4"
   }
 }
 

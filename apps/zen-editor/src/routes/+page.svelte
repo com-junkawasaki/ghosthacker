@@ -1,6 +1,7 @@
 <script lang="ts">
   import Editor from '../components/Editor.svelte';
   import Topology from '../components/TopologyWebGPU.svelte';
+  import Storyboard from '../components/Storyboard.svelte';
   import { onMount } from 'svelte';
   import { client } from '../lib/api';
 
@@ -10,6 +11,7 @@
   let isEditorOpen = $state(false);
   let currentFilePath = $state("");
   let projectTitle = $state("GhostHacker Zen Editor");
+  let activeView = $state<"graph" | "storyboard">("graph");
 
   onMount(() => {
     (async () => {
@@ -24,7 +26,7 @@
     })();
   });
 
-  function handleNodeSelect(node: any) {
+  function handleNodeSelect(node: any, nodes: any[]) {
     selectedNode = node;
     isSidebarOpen = true;
   }
@@ -32,12 +34,34 @@
 
 <div class="app-layout">
   <header class="main-header">
-    <button class="menu-trigger">☰</button>
-    <h1 class="project-title">{projectTitle}</h1>
+    <div class="header-left">
+      <button class="menu-trigger">☰</button>
+      <h1 class="project-title">{projectTitle}</h1>
+    </div>
+    
+    <div class="view-switcher">
+      <button 
+        class:active={activeView === "graph"} 
+        onclick={() => activeView = "graph"}
+      >
+        Graph View
+      </button>
+      <button 
+        class:active={activeView === "storyboard"} 
+        onclick={() => activeView = "storyboard"}
+      >
+        Storyboard View
+      </button>
+    </div>
   </header>
 
   <div class="main-content" class:dim={isChatOpen || isEditorOpen}>
-      <Topology onSelect={handleNodeSelect} selectedId={selectedNode?.id} />
+      {#if activeView === "graph"}
+        {@const topologyProps = { onSelect: handleNodeSelect, selectedId: selectedNode?.id } as any}
+        <Topology {...topologyProps} />
+      {:else}
+        <Storyboard />
+      {/if}
   </div>
   
   {#if isSidebarOpen && selectedNode}
@@ -96,10 +120,37 @@
 <style>
   :global(body) { margin: 0; padding: 0; background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; overflow: hidden; }
   .app-layout { width: 100vw; height: 100vh; background: #000; position: relative; display: flex; flex-direction: column; overflow: hidden; }
-  .main-header { height: 64px; display: flex; align-items: center; padding: 0 1.5rem; gap: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.8); backdrop-filter: blur(20px); z-index: 10; }
+  .main-header { height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.8); backdrop-filter: blur(20px); z-index: 10; }
+  .header-left { display: flex; align-items: center; gap: 1.5rem; }
   .menu-trigger { background: transparent; border: none; color: #fff; font-size: 1.2rem; cursor: pointer; padding: 0.5rem; border-radius: 8px; transition: background 0.2s; }
   .project-title { font-size: 1rem; font-weight: 500; color: rgba(255,255,255,0.9); }
   
+  .view-switcher {
+    display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px;
+    border-radius: 12px;
+    gap: 4px;
+  }
+
+  .view-switcher button {
+    background: transparent;
+    border: none;
+    color: #86868b;
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .view-switcher button.active {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
   .main-content { flex: 1; position: relative; transition: opacity 0.4s; }
   .main-content.dim { opacity: 0.2; }
 

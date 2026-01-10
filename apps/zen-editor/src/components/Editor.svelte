@@ -1,7 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
 
-  let { filePath = $bindable(""), initialContent = "" } = $props();
+  let { filePath = $bindable(""), initialContent = "" } = $props<{
+    filePath?: string;
+    initialContent?: string;
+  }>();
 
   let emotions = $state({ Calm: 1.0, Joy: 0.2, Sadness: 0.1 });
   let content = $state("");

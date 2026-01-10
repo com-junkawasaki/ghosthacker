@@ -3,7 +3,10 @@
   import { onMount, onDestroy } from 'svelte';
   import { Graph } from '@cosmos.gl/graph';
 
-  let { onSelect, selectedId } = $props();
+  let { onSelect = () => {}, selectedId = undefined } = $props<{
+    onSelect?: (node: any, nodes: any[]) => void;
+    selectedId?: string;
+  }>();
 
   let containerElement = $state<HTMLDivElement | null>(null);
   let graph = $state<Graph | null>(null);
