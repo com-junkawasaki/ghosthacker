@@ -1,4 +1,4 @@
-import { EditorService } from "./gen/editor_connect.js";
+import { EditorService } from "./gen/editor_pb.js";
 
 // 型定義
 type EditorClient = {
@@ -23,7 +23,8 @@ async function initClient(): Promise<void> {
       baseUrl: "http://127.0.0.1:8080",
     });
     
-    _client = createClient(EditorService as any, transport) as EditorClient;
+    // @ts-ignore
+    _client = createClient(EditorService, transport);
     console.log("[api] Client initialized successfully");
   } catch (err) {
     console.error("[api] Failed to initialize client:", err);
@@ -46,9 +47,6 @@ export async function getClient(): Promise<EditorClient | null> {
 /**
  * 同期的アクセス（初期化前は null）
  */
-export function getClientSync(): EditorClient | null {
+export function getClientSync(): any {
   return _client;
 }
-
-// 互換性のための移行用（非推奨）
-export const client = _client;

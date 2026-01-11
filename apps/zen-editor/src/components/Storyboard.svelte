@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { client } from '../lib/api';
+  import { getClient } from '../lib/api';
 
   let { } = $props<{}>();
 
@@ -26,6 +26,9 @@
     scenes = [];
 
     try {
+      const client = await getClient();
+      if (!client) return;
+      
       const it = client.interact({
         sessionId: "storyboard-gen-" + Date.now(),
         userMessage: `Please generate a detailed storyboard for the following prompt: "${prompt}". 
