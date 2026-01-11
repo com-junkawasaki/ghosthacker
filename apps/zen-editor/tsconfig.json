@@ -12,6 +12,11 @@
 		"moduleResolution": "bundler",
 		"module": "esnext",
 		"types": ["@webgpu/types"]
-	}
+	},
+	"exclude": [
+		"./node_modules",
+		"./src-tauri",
+		"./build"
+	]
 }
 
