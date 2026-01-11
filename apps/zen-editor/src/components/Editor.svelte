@@ -8,37 +8,44 @@
   import { keymap } from 'prosemirror-keymap';
   import { baseKeymap } from 'prosemirror-commands';
 
-  let { filePath = $bindable(""), initialContent = "" } = $props<{
+  let { filePath = $bindable(""), initialContent = "", onSave = () => {} } = $props<{
     filePath?: string;
     initialContent?: string;
+    onSave?: (content: string) => void;
   }>();
 
   let editorElement = $state<HTMLDivElement | null>(null);
   let view: EditorView | null = null;
   let emotions = $state({ Calm: 1.0, Joy: 0.2, Sadness: 0.1 });
+  let isSaving = $state(false);
 
-  onMount(() => {
-    if (!editorElement) return;
-
-    const state = EditorState.create({
+  function createEditorState(content: string) {
+    const element = document.createElement('div');
+    element.innerHTML = `<p>${content.replace(/\n/g, '</p><p>')}</p>`;
+    
+    return EditorState.create({
       schema,
+      doc: DOMParser.fromSchema(schema).parse(element),
       plugins: [
         history(),
         keymap({ "Mod-z": undo, "Mod-y": redo }),
         keymap(baseKeymap)
       ]
     });
+  }
+
+  onMount(() => {
+    if (!editorElement) return;
+
+    const state = createEditorState(initialContent || "Start writing...");
 
     view = new EditorView(editorElement, {
       state,
       dispatchTransaction(transaction) {
         const newState = view!.state.apply(transaction);
         view!.updateState(newState);
-        // Handle changes here (e.g., real-time emotion analysis trigger)
       }
     });
-
-    console.log("ProseMirror Editor initialized for:", filePath);
   });
 
   onDestroy(() => {
@@ -46,39 +53,44 @@
   });
 
   $effect(() => {
-    if (filePath && view) {
-      console.log("Switching to file:", filePath);
-      
-      // Simulating file load
-      const dummyContent = `# ${filePath.split('/').pop()}\n\nThis is the content of the selected node. You can edit this in Zen Mode.`;
-      
-      const element = document.createElement('div');
-      element.innerHTML = `<p>${dummyContent.replace(/\n/g, '</p><p>')}</p>`;
-      
-      const newState = EditorState.create({
-        schema,
-        doc: DOMParser.fromSchema(schema).parse(element),
-        plugins: view.state.plugins
-      });
-      
+    if (view && initialContent !== undefined) {
+      const newState = createEditorState(initialContent);
       view.updateState(newState);
     }
   });
+
+  async function handleSave() {
+    if (!view) return;
+    isSaving = true;
+    try {
+      const content = view.state.doc.textContent;
+      await onSave(content);
+    } catch (err) {
+      console.error("Save failed:", err);
+    } finally {
+      isSaving = false;
+    }
+  }
 </script>
 
 <div class="zen-editor-container">
   <div class="editor-header">
     <div class="file-info">
       <span class="icon">📄</span>
-      <span class="path">{filePath || 'Untitled.md'}</span>
+      <span class="path">{filePath}</span>
     </div>
-    <div class="emotion-meter">
-      {#each Object.entries(emotions) as [name, val]}
-        <div class="meter-item">
-          <span class="label">{name}</span>
-          <div class="bar-bg"><div class="bar" style="width: {val * 100}%"></div></div>
-        </div>
-      {/each}
+    <div class="header-right">
+      <div class="emotion-meter">
+        {#each Object.entries(emotions) as [name, val]}
+          <div class="meter-item">
+            <span class="label">{name}</span>
+            <div class="bar-bg"><div class="bar" style="width: {val * 100}%"></div></div>
+          </div>
+        {/each}
+      </div>
+      <button class="save-btn" onclick={handleSave} disabled={isSaving}>
+        {isSaving ? "Saving..." : "Save"}
+      </button>
     </div>
   </div>
   
@@ -107,6 +119,22 @@
   .path { font-family: monospace; }
 
   .emotion-meter { display: flex; gap: 1rem; }
+  .header-right { display: flex; align-items: center; gap: 1.5rem; }
+  
+  .save-btn {
+    background: #0071e3;
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .save-btn:hover { background: #0077ed; }
+  .save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
   .meter-item { display: flex; align-items: center; gap: 0.5rem; }
   .meter-item .label { font-size: 0.7rem; font-weight: 600; color: #86868b; text-transform: uppercase; }
   .bar-bg { width: 40px; height: 4px; background: #d2d2d7; border-radius: 2px; overflow: hidden; }

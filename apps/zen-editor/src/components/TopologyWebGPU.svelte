@@ -12,6 +12,9 @@
   let graph = $state<Graph | null>(null);
   let isLoading = $state(true);
   let nodes = $state<any[]>([]);
+  let edges = $state<any[]>([]);
+  let hoveredNode = $state<any>(null);
+  let mousePos = $state({ x: 0, y: 0 });
 
   onMount(() => {
     console.log("Topology component onMount starting (using @cosmos.gl/graph)");
@@ -27,6 +30,23 @@
           simulationGravity: 0.05,
           simulationRepulsion: 1.0,
           simulationFriction: 0.9,
+          events: {
+            onClick: (index: number) => {
+              if (index !== undefined && nodes[index]) {
+                handleNodeClick(nodes[index]);
+              }
+            },
+            onPointerOver: (index: number) => {
+              if (index !== undefined && nodes[index]) {
+                hoveredNode = nodes[index];
+                if (containerElement) containerElement.style.cursor = 'pointer';
+              }
+            },
+            onPointerOut: () => {
+              hoveredNode = null;
+              if (containerElement) containerElement.style.cursor = 'default';
+            }
+          }
         });
 
         graph = g;
@@ -37,6 +57,10 @@
     }
   });
 
+  function handleMouseMove(e: MouseEvent) {
+    mousePos = { x: e.clientX, y: e.clientY };
+  }
+
   async function fetchData() {
     isLoading = true;
     try {
@@ -46,7 +70,7 @@
       const resp = await client.getTopology({ projectId: "251022" });
       console.log("Topology data received:", resp);
       nodes = (resp.nodes || []).filter(n => n && n.id && n.label);
-      const edges = resp.edges || [];
+      edges = resp.edges || [];
 
       if (graph) {
         const pointPositions = new Float32Array(nodes.length * 2);
@@ -186,11 +210,32 @@
     </div>
   </div>
 
-  <div class="topology-main">
+  <div class="topology-main" onmousemove={handleMouseMove}>
     <div 
       bind:this={containerElement} 
       style="width: 100%; height: 100%;"
     ></div>
+    
+    {#if hoveredNode}
+      <div class="node-tooltip" style="left: {mousePos.x + 15}px; top: {mousePos.y + 15}px;">
+        <div class="tooltip-header">
+          <span class="node-icon {hoveredNode.group || 'default'}"></span>
+          <strong>{hoveredNode.label}</strong>
+        </div>
+        <div class="tooltip-type">{hoveredNode.type}</div>
+        
+        {#if hoveredNode.content}
+          <div class="tooltip-content">{hoveredNode.content}</div>
+        {/if}
+
+        <div class="tooltip-footer">
+          <span class="relation-count">
+            Connections: {edges.filter(e => e.fromId === hoveredNode.id || e.toId === hoveredNode.id).length}
+          </span>
+          <span class="node-id">ID: {hoveredNode.id.split(':').pop()}</span>
+        </div>
+      </div>
+    {/if}
     
     {#if isLoading}
       <div class="loader">Syncing story world...</div>
@@ -301,6 +346,58 @@
   }
   
   .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; }
+  
+  .node-tooltip {
+    position: fixed;
+    z-index: 1000;
+    background: rgba(10, 10, 15, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.8rem;
+    pointer-events: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    max-width: 300px;
+    backdrop-filter: blur(10px);
+  }
+
+  .tooltip-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .tooltip-type {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+  }
+
+  .tooltip-content {
+    font-size: 0.8rem;
+    color: #ccc;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 0.6rem;
+  }
+
+  .tooltip-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 0.4rem;
+    font-size: 0.6rem;
+    color: #555;
+  }
+
+  .relation-count { color: #0071e3; font-weight: 600; }
+
   .test-nodes { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.01; }
   .test-node-btn { pointer-events: auto; cursor: grab; }
 </style>

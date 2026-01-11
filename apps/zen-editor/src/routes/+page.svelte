@@ -11,6 +11,7 @@
   let isEditorOpen = $state(false);
   let isHistoryOpen = $state(false);
   let currentFilePath = $state("");
+  let currentFileContent = $state("");
   let projectTitle = $state("GhostHacker Zen Editor");
   let activeView = $state<"graph" | "storyboard" | "dual">("dual");
   let leftPaneWidth = $state(40); // Initial width for graph
@@ -31,7 +32,32 @@
   function handleNodeSelect(node: any) {
     selectedNode = node;
     isEditorOpen = true;
-    currentFilePath = node.path || "";
+    currentFilePath = node.label || node.id || "Untitled.md";
+    currentFileContent = node.content || "";
+  }
+
+  async function handleEditorSave(content: string) {
+    try {
+      const client = await getClient();
+      if (!client || !selectedNode) return;
+
+      await client.commitHistory({
+        projectId: "251022",
+        type: "node_edit",
+        stateJson: JSON.stringify({
+          nodeId: selectedNode.id,
+          content: content
+        }),
+        message: `Edit node: ${selectedNode.label}`,
+        branchName: "main"
+      });
+      
+      // Update local node state if needed
+      selectedNode.content = content;
+      alert("Changes saved to history!");
+    } catch (err) {
+      console.error("Failed to save editor content:", err);
+    }
   }
 
   function toggleSidebar() { isSidebarOpen = !isSidebarOpen; }
@@ -118,7 +144,11 @@
           <button onclick={() => isEditorOpen = false}>×</button>
         </div>
         <div class="drawer-body">
-          <Editor filePath={currentFilePath} />
+          <Editor 
+            filePath={currentFilePath} 
+            initialContent={currentFileContent}
+            onSave={handleEditorSave}
+          />
         </div>
       </aside>
     {/if}
