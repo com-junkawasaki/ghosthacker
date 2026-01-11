@@ -11,6 +11,11 @@
     timing: string;
     fps: number;
     isGenerating?: boolean;
+    // New fields for entities
+    persons: string[];
+    places: string[];
+    items: string[];
+    emotions: string[];
   };
 
   let scenes = $state<Scene[]>([]);
@@ -58,7 +63,11 @@
             audio: "",
             timing: "0s",
             fps: 24,
-            isGenerating: true
+            isGenerating: true,
+            persons: [],
+            places: [],
+            items: [],
+            emotions: []
           };
           scenes.push(currentScene as Scene);
         }
@@ -100,12 +109,31 @@
       description: "",
       audio: "",
       timing: "0s",
-      fps: 24
+      fps: 24,
+      persons: [],
+      places: [],
+      items: [],
+      emotions: []
     });
   }
 
   function removeScene(id: number) {
     scenes = scenes.filter(s => s.id !== id);
+  }
+
+  function handleDrop(e: DragEvent, scene: Scene, type: 'persons' | 'places' | 'items' | 'emotions') {
+    e.preventDefault();
+    const data = e.dataTransfer?.getData('application/json');
+    if (data) {
+      try {
+        const node = JSON.parse(data);
+        if (node.label && !scene[type].includes(node.label)) {
+          scene[type].push(node.label);
+        }
+      } catch (err) {
+        console.error("Failed to parse drop data:", err);
+      }
+    }
   }
 </script>
 
@@ -164,6 +192,53 @@
 
           <div class="col-desc">
             <textarea bind:value={scene.description} placeholder="Describe the scene..."></textarea>
+            
+            <div class="entity-slots">
+              <div class="entity-slot" ondragover={(e) => e.preventDefault()} ondrop={(e) => handleDrop(e, scene, 'persons')}>
+                <span class="label">人物:</span>
+                <div class="entity-tags">
+                  {#each scene.persons as p}
+                    <span class="tag person">{p} <button onclick={() => scene.persons = scene.persons.filter(x => x !== p)}>×</button></span>
+                  {/each}
+                  {#if scene.persons.length === 0}
+                    <span class="placeholder">Drop characters</span>
+                  {/if}
+                </div>
+              </div>
+              <div class="entity-slot" ondragover={(e) => e.preventDefault()} ondrop={(e) => handleDrop(e, scene, 'places')}>
+                <span class="label">背景:</span>
+                <div class="entity-tags">
+                  {#each scene.places as p}
+                    <span class="tag place">{p} <button onclick={() => scene.places = scene.places.filter(x => x !== p)}>×</button></span>
+                  {/each}
+                  {#if scene.places.length === 0}
+                    <span class="placeholder">Drop places</span>
+                  {/if}
+                </div>
+              </div>
+              <div class="entity-slot" ondragover={(e) => e.preventDefault()} ondrop={(e) => handleDrop(e, scene, 'items')}>
+                <span class="label">小物:</span>
+                <div class="entity-tags">
+                  {#each scene.items as i}
+                    <span class="tag item">{i} <button onclick={() => scene.items = scene.items.filter(x => x !== i)}>×</button></span>
+                  {/each}
+                  {#if scene.items.length === 0}
+                    <span class="placeholder">Drop items</span>
+                  {/if}
+                </div>
+              </div>
+              <div class="entity-slot" ondragover={(e) => e.preventDefault()} ondrop={(e) => handleDrop(e, scene, 'emotions')}>
+                <span class="label">感情:</span>
+                <div class="entity-tags">
+                  {#each scene.emotions as em}
+                    <span class="tag emotion">{em} <button onclick={() => scene.emotions = scene.emotions.filter(x => x !== em)}>×</button></span>
+                  {/each}
+                  {#if scene.emotions.length === 0}
+                    <span class="placeholder">Drop emotions</span>
+                  {/if}
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="col-audio">
@@ -286,6 +361,74 @@
   .col-desc, .col-audio { flex: 1; padding: 0.5rem; border-right: 1px solid #d2d2d7; }
   textarea { width: 100%; height: 100%; border: none; resize: none; background: transparent; padding: 0.8rem; font-size: 0.9rem; line-height: 1.6; color: #1d1d1f; }
   textarea:focus { outline: none; }
+
+  .entity-slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 8px;
+    margin-top: 0.5rem;
+  }
+
+  .entity-slot {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 140px;
+    padding: 4px 8px;
+    border: 1px dashed #d2d2d7;
+    border-radius: 6px;
+    background: #fff;
+  }
+
+  .entity-slot .label {
+    font-size: 0.7rem;
+    color: #86868b;
+    white-space: nowrap;
+  }
+
+  .entity-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .placeholder {
+    font-size: 0.65rem;
+    color: #d2d2d7;
+    font-style: italic;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: white;
+  }
+
+  .tag.person { background: #0071e3; }
+  .tag.place { background: #34c759; }
+  .tag.item { background: #ff9500; }
+  .tag.emotion { background: #af52de; }
+
+  .tag button {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    font-size: 0.8rem;
+    opacity: 0.7;
+  }
+
+  .tag button:hover { opacity: 1; }
 
   .col-time { width: 100px; padding: 1rem; display: flex; flex-direction: column; gap: 1rem; }
   .time-input { width: 100%; border: none; border-bottom: 1px solid #d2d2d7; font-size: 1.2rem; text-align: right; color: #ff3b30; padding: 0.2rem; background: transparent; }

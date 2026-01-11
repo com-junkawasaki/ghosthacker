@@ -103,28 +103,124 @@
   function handleNodeClick(node: any) {
     onSelect?.(node, [node]);
   }
+
+  function handleDragStart(e: DragEvent, node: any) {
+    e.dataTransfer?.setData('application/json', JSON.stringify(node));
+    e.dataTransfer!.effectAllowed = 'copy';
+  }
 </script>
 
 <div class="topology-container">
-  <div 
-    bind:this={containerElement} 
-    style="width: 100%; height: 100%;"
-  ></div>
-  
-  {#if isLoading}
-    <div class="loader">Syncing story world...</div>
-  {/if}
-
-  <div class="test-nodes">
+  <div class="topology-sidebar">
+    <div class="sidebar-header">Nodes</div>
+    <div class="node-list">
       {#each nodes as n (n.id)}
-          <button class="test-node-btn" data-node-name={n.label} onclick={() => handleNodeClick(n)}>{n.label}</button>
+        <div 
+          class="node-item" 
+          draggable={true}
+          ondragstart={(e) => handleDragStart(e, n)}
+          onclick={() => handleNodeClick(n)}
+        >
+          <span class="node-icon {n.group || 'default'}"></span>
+          <span class="node-label">{n.label}</span>
+        </div>
       {/each}
+    </div>
+  </div>
+
+  <div class="topology-main">
+    <div 
+      bind:this={containerElement} 
+      style="width: 100%; height: 100%;"
+    ></div>
+    
+    {#if isLoading}
+      <div class="loader">Syncing story world...</div>
+    {/if}
+
+    <div class="test-nodes">
+        {#each nodes as n (n.id)}
+            <button 
+              class="test-node-btn" 
+              draggable={true}
+              ondragstart={(e) => handleDragStart(e, n)}
+              data-node-name={n.label} 
+              onclick={() => handleNodeClick(n)}
+            >
+              {n.label}
+            </button>
+        {/each}
+    </div>
   </div>
 </div>
 
 <style>
-  .topology-container { width: 100%; height: 100%; position: relative; background: #05050a; }
+  .topology-container { 
+    width: 100%; 
+    height: 100%; 
+    display: flex;
+    background: #05050a; 
+  }
+
+  .topology-sidebar {
+    width: 180px;
+    background: #000;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+  }
+
+  .sidebar-header {
+    padding: 0.8rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #666;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    letter-spacing: 0.1em;
+  }
+
+  .node-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.2rem;
+  }
+
+  .node-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    cursor: grab;
+    transition: all 0.2s;
+    font-size: 0.75rem;
+    color: #999;
+  }
+
+  .node-item:hover {
+    background: rgba(0, 113, 227, 0.1);
+    color: #fff;
+  }
+
+  .node-icon {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .node-icon.content { background: #0071e3; }
+  .node-icon.entity { background: #ff3b30; }
+  .node-icon.default { background: #8e8e93; }
+
+  .topology-main {
+    flex: 1;
+    position: relative;
+  }
+  
   .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; }
   .test-nodes { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.01; }
-  .test-node-btn { pointer-events: auto; }
+  .test-node-btn { pointer-events: auto; cursor: grab; }
 </style>

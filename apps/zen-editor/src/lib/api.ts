@@ -20,7 +20,7 @@ async function initClient(): Promise<void> {
     const { createClient } = await import("@connectrpc/connect");
     
     const transport = createConnectTransport({
-      baseUrl: "http://127.0.0.1:8080",
+      baseUrl: "http://localhost:8080",
     });
     
     // @ts-ignore
