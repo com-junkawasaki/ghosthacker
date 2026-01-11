@@ -104,6 +104,45 @@
     onSelect?.(node, [node]);
   }
 
+  export function setPositions(positions: any[]) {
+    if (!graph) return;
+    const posMap = new Map(positions.map(p => [p.id, p]));
+    const pointPositions = new Float32Array(nodes.length * 2);
+    
+    nodes.forEach((n, i) => {
+      const p = posMap.get(n.id);
+      pointPositions[i * 2] = p ? p.x : (n.x || 0);
+      pointPositions[i * 2 + 1] = p ? p.y : (n.y || 0);
+    });
+    
+    graph.setPointPositions(pointPositions);
+    graph.render();
+  }
+
+  async function saveLayout() {
+    if (!graph) return;
+    try {
+      const client = await getClient();
+      if (!client) return;
+      
+      const positions = nodes.map((n, i) => {
+        const pos = graph!.getPointPositionByIndex(i);
+        return { id: n.id, x: pos[0], y: pos[1] };
+      });
+
+      await client.commitHistory({
+        projectId: "251022",
+        type: "graph",
+        stateJson: JSON.stringify(positions),
+        message: "Manual layout commit",
+        branchName: "main"
+      });
+      alert("Layout committed to history!");
+    } catch (err) {
+      console.error("Failed to commit layout:", err);
+    }
+  }
+
   function handleDragStart(e: DragEvent, node: any) {
     e.dataTransfer?.setData('application/json', JSON.stringify(node));
     e.dataTransfer!.effectAllowed = 'copy';
@@ -112,7 +151,10 @@
 
 <div class="topology-container">
   <div class="topology-sidebar">
-    <div class="sidebar-header">Nodes</div>
+    <div class="sidebar-header">
+      <span>Nodes</span>
+      <button class="save-layout-btn" onclick={saveLayout} title="Save Layout to History">💾</button>
+    </div>
     <div class="node-list">
       {#each nodes as n (n.id)}
         <div 
@@ -179,7 +221,21 @@
     color: #666;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     letter-spacing: 0.1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
+
+  .save-layout-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+
+  .save-layout-btn:hover { opacity: 1; }
 
   .node-list {
     flex: 1;

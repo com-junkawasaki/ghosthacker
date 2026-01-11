@@ -13,8 +13,56 @@ service EditorService {
   rpc SaveStoryboard(SaveStoryboardRequest) returns (SaveStoryboardResponse);
   rpc GetStoryboard(GetStoryboardRequest) returns (GetStoryboardResponse);
 
+  // History & Branching
+  rpc CommitHistory(CommitHistoryRequest) returns (CommitHistoryResponse);
+  rpc GetHistory(GetHistoryRequest) returns (GetHistoryResponse);
+  rpc CheckoutHistory(CheckoutHistoryRequest) returns (CheckoutHistoryResponse);
+
   // Real-time Chat/Interaction Stream (A2A support)
   rpc Interact(InteractRequest) returns (stream InteractResponse);
+}
+
+message CommitHistoryRequest {
+  string project_id = 1;
+  string type = 2; // "storyboard", "graph"
+  string state_json = 3;
+  string message = 4;
+  string branch_name = 5;
+  string parent_id = 6;
+}
+
+message CommitHistoryResponse {
+  string id = 1;
+  bool success = 2;
+}
+
+message GetHistoryRequest {
+  string project_id = 1;
+  string branch_name = 2;
+}
+
+message GetHistoryResponse {
+  repeated HistoryItem items = 1;
+}
+
+message HistoryItem {
+  string id = 1;
+  string type = 2;
+  string state_json = 3;
+  string message = 4;
+  string branch_name = 5;
+  string parent_id = 6;
+  string created_at = 7;
+}
+
+message CheckoutHistoryRequest {
+  string history_id = 1;
+}
+
+message CheckoutHistoryResponse {
+  bool success = 1;
+  string state_json = 2;
+  string type = 3;
 }
 
 message SaveStoryboardRequest {

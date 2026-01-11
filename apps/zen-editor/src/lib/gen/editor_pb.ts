@@ -10,7 +10,203 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file editor.proto.
  */
 export const file_editor: GenFile = /*@__PURE__*/
-  fileDesc("CgxlZGl0b3IucHJvdG8SHWdmdGQuZ2hvc3RoYWNrZXIuemVuZWRpdG9yLnYxImsKFVNhdmVTdG9yeWJvYXJkUmVxdWVzdBISCgpwcm9qZWN0X2lkGAEgASgJEj4KBnNjZW5lcxgCIAMoCzIuLmdmdGQuZ2hvc3RoYWNrZXIuemVuZWRpdG9yLnYxLlN0b3J5Ym9hcmRTY2VuZSI6ChZTYXZlU3Rvcnlib2FyZFJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgSDwoHbWVzc2FnZRgCIAEoCSIqChRHZXRTdG9yeWJvYXJkUmVxdWVzdBISCgpwcm9qZWN0X2lkGAEgASgJIlcKFUdldFN0b3J5Ym9hcmRSZXNwb25zZRI+CgZzY2VuZXMYASADKAsyLi5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5TdG9yeWJvYXJkU2NlbmUisAEKD1N0b3J5Ym9hcmRTY2VuZRIKCgJpZBgBIAEoBRIOCgZ2aXN1YWwYAiABKAkSEwoLZGVzY3JpcHRpb24YAyABKAkSDQoFYXVkaW8YBCABKAkSDgoGdGltaW5nGAUgASgJEgsKA2ZwcxgGIAEoBRIPCgdwZXJzb25zGAcgAygJEg4KBnBsYWNlcxgIIAMoCRINCgVpdGVtcxgJIAMoCRIQCghlbW90aW9ucxgKIAMoCSLYAQoPSW50ZXJhY3RSZXF1ZXN0EhIKCnNlc3Npb25faWQYASABKAkSEAoIbm9kZV9pZHMYAiADKAkSFAoMdXNlcl9tZXNzYWdlGAMgASgJElUKDGVtb3Rpb25fYmlhcxgEIAMoCzI/LmdmdGQuZ2hvc3RoYWNrZXIuemVuZWRpdG9yLnYxLkludGVyYWN0UmVxdWVzdC5FbW90aW9uQmlhc0VudHJ5GjIKEEVtb3Rpb25CaWFzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgCOgI4ASLZAQoQSW50ZXJhY3RSZXNwb25zZRIPCgdub2RlX2lkGAEgASgJEhEKCW5vZGVfbmFtZRgCIAEoCRIPCgdtZXNzYWdlGAMgASgJEloKDmVtb3Rpb25fdmVjdG9yGAQgAygLMkIuZ2Z0ZC5naG9zdGhhY2tlci56ZW5lZGl0b3IudjEuSW50ZXJhY3RSZXNwb25zZS5FbW90aW9uVmVjdG9yRW50cnkaNAoSRW1vdGlvblZlY3RvckVudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoAjoCOAEiNwoPQ2FsbFRvb2xSZXF1ZXN0EgwKBG5hbWUYASABKAkSFgoOYXJndW1lbnRzX2pzb24YAiABKAkiOQoQQ2FsbFRvb2xSZXNwb25zZRITCgtyZXN1bHRfanNvbhgBIAEoCRIQCghpc19lcnJvchgCIAEoCCIvChlHZXRQcm9qZWN0TWV0YWRhdGFSZXF1ZXN0EhIKCnByb2plY3RfaWQYASABKAkiegoaR2V0UHJvamVjdE1ldGFkYXRhUmVzcG9uc2USDQoFdGl0bGUYASABKAkSEwoLZGVzY3JpcHRpb24YAiABKAkSOAoIZXBpc29kZXMYAyADKAsyJi5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5FcGlzb2RlIjMKB0VwaXNvZGUSCgoCaWQYASABKAkSDQoFdGl0bGUYAiABKAkSDQoFZmlsZXMYAyADKAkiHwoPT3BlbkZpbGVSZXF1ZXN0EgwKBHBhdGgYASABKAkiIwoQT3BlbkZpbGVSZXNwb25zZRIPCgdjb250ZW50GAEgASgJIjAKD1NhdmVGaWxlUmVxdWVzdBIMCgRwYXRoGAEgASgJEg8KB2NvbnRlbnQYAiABKAkiIwoQU2F2ZUZpbGVSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIIiIKEkFuYWx5emVUZXh0UmVxdWVzdBIMCgR0ZXh0GAEgASgJIl8KE0FuYWx5emVUZXh0UmVzcG9uc2USDwoHc3VtbWFyeRgBIAEoCRI3CghlbnRpdGllcxgCIAMoCzIlLmdmdGQuZ2hvc3RoYWNrZXIuemVuZWRpdG9yLnYxLkVudGl0eSIoChJHZXRUb3BvbG9neVJlcXVlc3QSEgoKcHJvamVjdF9pZBgBIAEoCSJ9ChNHZXRUb3BvbG9neVJlc3BvbnNlEjIKBW5vZGVzGAEgAygLMiMuZ2Z0ZC5naG9zdGhhY2tlci56ZW5lZGl0b3IudjEuTm9kZRIyCgVlZGdlcxgCIAMoCzIjLmdmdGQuZ2hvc3RoYWNrZXIuemVuZWRpdG9yLnYxLkVkZ2UiMAoGRW50aXR5EgoKAmlkGAEgASgJEgwKBHR5cGUYAiABKAkSDAoEbmFtZRgDIAEoCSJ4CgROb2RlEgoKAmlkGAEgASgJEg0KBWxhYmVsGAIgASgJEgwKBHR5cGUYAyABKAkSCQoBeBgEIAEoAhIJCgF5GAUgASgCEg8KB2NvbnRlbnQYBiABKAkSDQoFZ3JvdXAYByABKAkSEQoJZW1iZWRkaW5nGAggAygCIokBCgRFZGdlEg8KB2Zyb21faWQYASABKAkSDQoFdG9faWQYAiABKAkSEAoIcmVsYXRpb24YAyABKAkSDQoFY29sb3IYBCABKAkSDQoFc3R5bGUYBSABKAkSEAoIc3RyZW5ndGgYBiABKAISDQoFZ3JvdXAYByABKAkSEAoIZGlzdGFuY2UYCCABKAIy6AUKDUVkaXRvclNlcnZpY2USdAoLR2V0VG9wb2xvZ3kSMS5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5HZXRUb3BvbG9neVJlcXVlc3QaMi5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5HZXRUb3BvbG9neVJlc3BvbnNlEokBChJHZXRQcm9qZWN0TWV0YWRhdGESOC5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5HZXRQcm9qZWN0TWV0YWRhdGFSZXF1ZXN0GjkuZ2Z0ZC5naG9zdGhhY2tlci56ZW5lZGl0b3IudjEuR2V0UHJvamVjdE1ldGFkYXRhUmVzcG9uc2USawoIQ2FsbFRvb2wSLi5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5DYWxsVG9vbFJlcXVlc3QaLy5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5DYWxsVG9vbFJlc3BvbnNlEn0KDlNhdmVTdG9yeWJvYXJkEjQuZ2Z0ZC5naG9zdGhhY2tlci56ZW5lZGl0b3IudjEuU2F2ZVN0b3J5Ym9hcmRSZXF1ZXN0GjUuZ2Z0ZC5naG9zdGhhY2tlci56ZW5lZGl0b3IudjEuU2F2ZVN0b3J5Ym9hcmRSZXNwb25zZRJ6Cg1HZXRTdG9yeWJvYXJkEjMuZ2Z0ZC5naG9zdGhhY2tlci56ZW5lZGl0b3IudjEuR2V0U3Rvcnlib2FyZFJlcXVlc3QaNC5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5HZXRTdG9yeWJvYXJkUmVzcG9uc2USbQoISW50ZXJhY3QSLi5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5JbnRlcmFjdFJlcXVlc3QaLy5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5JbnRlcmFjdFJlc3BvbnNlMAFCSFpGZ2l0aHViLmNvbS9nZnRkLWFpL2dob3N0LWhhY2tlci9hcHBzL3plbi1lZGl0b3IvYmFja2VuZC9wcm90bztlZGl0b3JwYmIGcHJvdG8z");
+  fileDesc("CgxlZGl0b3IucHJvdG8SHWdmdGQuZ2hvc3RoYWNrZXIuemVuZWRpdG9yLnYxIoUBChRDb21taXRIaXN0b3J5UmVxdWVzdBISCgpwcm9qZWN0X2lkGAEgASgJEgwKBHR5cGUYAiABKAkSEgoKc3RhdGVfanNvbhgDIAEoCRIPCgdtZXNzYWdlGAQgASgJEhMKC2JyYW5jaF9uYW1lGAUgASgJEhEKCXBhcmVudF9pZBgGIAEoCSI0ChVDb21taXRIaXN0b3J5UmVzcG9uc2USCgoCaWQYASABKAkSDwoHc3VjY2VzcxgCIAEoCCI8ChFHZXRIaXN0b3J5UmVxdWVzdBISCgpwcm9qZWN0X2lkGAEgASgJEhMKC2JyYW5jaF9uYW1lGAIgASgJIk8KEkdldEhpc3RvcnlSZXNwb25zZRI5CgVpdGVtcxgBIAMoCzIqLmdmdGQuZ2hvc3RoYWNrZXIuemVuZWRpdG9yLnYxLkhpc3RvcnlJdGVtIogBCgtIaXN0b3J5SXRlbRIKCgJpZBgBIAEoCRIMCgR0eXBlGAIgASgJEhIKCnN0YXRlX2pzb24YAyABKAkSDwoHbWVzc2FnZRgEIAEoCRITCgticmFuY2hfbmFtZRgFIAEoCRIRCglwYXJlbnRfaWQYBiABKAkSEgoKY3JlYXRlZF9hdBgHIAEoCSIsChZDaGVja291dEhpc3RvcnlSZXF1ZXN0EhIKCmhpc3RvcnlfaWQYASABKAkiTAoXQ2hlY2tvdXRIaXN0b3J5UmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCBISCgpzdGF0ZV9qc29uGAIgASgJEgwKBHR5cGUYAyABKAkiawoVU2F2ZVN0b3J5Ym9hcmRSZXF1ZXN0EhIKCnByb2plY3RfaWQYASABKAkSPgoGc2NlbmVzGAIgAygLMi4uZ2Z0ZC5naG9zdGhhY2tlci56ZW5lZGl0b3IudjEuU3Rvcnlib2FyZFNjZW5lIjoKFlNhdmVTdG9yeWJvYXJkUmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCBIPCgdtZXNzYWdlGAIgASgJIioKFEdldFN0b3J5Ym9hcmRSZXF1ZXN0EhIKCnByb2plY3RfaWQYASABKAkiVwoVR2V0U3Rvcnlib2FyZFJlc3BvbnNlEj4KBnNjZW5lcxgBIAMoCzIuLmdmdGQuZ2hvc3RoYWNrZXIuemVuZWRpdG9yLnYxLlN0b3J5Ym9hcmRTY2VuZSKwAQoPU3Rvcnlib2FyZFNjZW5lEgoKAmlkGAEgASgFEg4KBnZpc3VhbBgCIAEoCRITCgtkZXNjcmlwdGlvbhgDIAEoCRINCgVhdWRpbxgEIAEoCRIOCgZ0aW1pbmcYBSABKAkSCwoDZnBzGAYgASgFEg8KB3BlcnNvbnMYByADKAkSDgoGcGxhY2VzGAggAygJEg0KBWl0ZW1zGAkgAygJEhAKCGVtb3Rpb25zGAogAygJItgBCg9JbnRlcmFjdFJlcXVlc3QSEgoKc2Vzc2lvbl9pZBgBIAEoCRIQCghub2RlX2lkcxgCIAMoCRIUCgx1c2VyX21lc3NhZ2UYAyABKAkSVQoMZW1vdGlvbl9iaWFzGAQgAygLMj8uZ2Z0ZC5naG9zdGhhY2tlci56ZW5lZGl0b3IudjEuSW50ZXJhY3RSZXF1ZXN0LkVtb3Rpb25CaWFzRW50cnkaMgoQRW1vdGlvbkJpYXNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAI6AjgBItkBChBJbnRlcmFjdFJlc3BvbnNlEg8KB25vZGVfaWQYASABKAkSEQoJbm9kZV9uYW1lGAIgASgJEg8KB21lc3NhZ2UYAyABKAkSWgoOZW1vdGlvbl92ZWN0b3IYBCADKAsyQi5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5JbnRlcmFjdFJlc3BvbnNlLkVtb3Rpb25WZWN0b3JFbnRyeRo0ChJFbW90aW9uVmVjdG9yRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgCOgI4ASI3Cg9DYWxsVG9vbFJlcXVlc3QSDAoEbmFtZRgBIAEoCRIWCg5hcmd1bWVudHNfanNvbhgCIAEoCSI5ChBDYWxsVG9vbFJlc3BvbnNlEhMKC3Jlc3VsdF9qc29uGAEgASgJEhAKCGlzX2Vycm9yGAIgASgIIi8KGUdldFByb2plY3RNZXRhZGF0YVJlcXVlc3QSEgoKcHJvamVjdF9pZBgBIAEoCSJ6ChpHZXRQcm9qZWN0TWV0YWRhdGFSZXNwb25zZRINCgV0aXRsZRgBIAEoCRITCgtkZXNjcmlwdGlvbhgCIAEoCRI4CghlcGlzb2RlcxgDIAMoCzImLmdmdGQuZ2hvc3RoYWNrZXIuemVuZWRpdG9yLnYxLkVwaXNvZGUiMwoHRXBpc29kZRIKCgJpZBgBIAEoCRINCgV0aXRsZRgCIAEoCRINCgVmaWxlcxgDIAMoCSIfCg9PcGVuRmlsZVJlcXVlc3QSDAoEcGF0aBgBIAEoCSIjChBPcGVuRmlsZVJlc3BvbnNlEg8KB2NvbnRlbnQYASABKAkiMAoPU2F2ZUZpbGVSZXF1ZXN0EgwKBHBhdGgYASABKAkSDwoHY29udGVudBgCIAEoCSIjChBTYXZlRmlsZVJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgiIgoSQW5hbHl6ZVRleHRSZXF1ZXN0EgwKBHRleHQYASABKAkiXwoTQW5hbHl6ZVRleHRSZXNwb25zZRIPCgdzdW1tYXJ5GAEgASgJEjcKCGVudGl0aWVzGAIgAygLMiUuZ2Z0ZC5naG9zdGhhY2tlci56ZW5lZGl0b3IudjEuRW50aXR5IigKEkdldFRvcG9sb2d5UmVxdWVzdBISCgpwcm9qZWN0X2lkGAEgASgJIn0KE0dldFRvcG9sb2d5UmVzcG9uc2USMgoFbm9kZXMYASADKAsyIy5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5Ob2RlEjIKBWVkZ2VzGAIgAygLMiMuZ2Z0ZC5naG9zdGhhY2tlci56ZW5lZGl0b3IudjEuRWRnZSIwCgZFbnRpdHkSCgoCaWQYASABKAkSDAoEdHlwZRgCIAEoCRIMCgRuYW1lGAMgASgJIngKBE5vZGUSCgoCaWQYASABKAkSDQoFbGFiZWwYAiABKAkSDAoEdHlwZRgDIAEoCRIJCgF4GAQgASgCEgkKAXkYBSABKAISDwoHY29udGVudBgGIAEoCRINCgVncm91cBgHIAEoCRIRCgllbWJlZGRpbmcYCCADKAIiiQEKBEVkZ2USDwoHZnJvbV9pZBgBIAEoCRINCgV0b19pZBgCIAEoCRIQCghyZWxhdGlvbhgDIAEoCRINCgVjb2xvchgEIAEoCRINCgVzdHlsZRgFIAEoCRIQCghzdHJlbmd0aBgGIAEoAhINCgVncm91cBgHIAEoCRIQCghkaXN0YW5jZRgIIAEoAjLaCAoNRWRpdG9yU2VydmljZRJ0CgtHZXRUb3BvbG9neRIxLmdmdGQuZ2hvc3RoYWNrZXIuemVuZWRpdG9yLnYxLkdldFRvcG9sb2d5UmVxdWVzdBoyLmdmdGQuZ2hvc3RoYWNrZXIuemVuZWRpdG9yLnYxLkdldFRvcG9sb2d5UmVzcG9uc2USiQEKEkdldFByb2plY3RNZXRhZGF0YRI4LmdmdGQuZ2hvc3RoYWNrZXIuemVuZWRpdG9yLnYxLkdldFByb2plY3RNZXRhZGF0YVJlcXVlc3QaOS5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5HZXRQcm9qZWN0TWV0YWRhdGFSZXNwb25zZRJrCghDYWxsVG9vbBIuLmdmdGQuZ2hvc3RoYWNrZXIuemVuZWRpdG9yLnYxLkNhbGxUb29sUmVxdWVzdBovLmdmdGQuZ2hvc3RoYWNrZXIuemVuZWRpdG9yLnYxLkNhbGxUb29sUmVzcG9uc2USfQoOU2F2ZVN0b3J5Ym9hcmQSNC5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5TYXZlU3Rvcnlib2FyZFJlcXVlc3QaNS5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5TYXZlU3Rvcnlib2FyZFJlc3BvbnNlEnoKDUdldFN0b3J5Ym9hcmQSMy5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5HZXRTdG9yeWJvYXJkUmVxdWVzdBo0LmdmdGQuZ2hvc3RoYWNrZXIuemVuZWRpdG9yLnYxLkdldFN0b3J5Ym9hcmRSZXNwb25zZRJ6Cg1Db21taXRIaXN0b3J5EjMuZ2Z0ZC5naG9zdGhhY2tlci56ZW5lZGl0b3IudjEuQ29tbWl0SGlzdG9yeVJlcXVlc3QaNC5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5Db21taXRIaXN0b3J5UmVzcG9uc2UScQoKR2V0SGlzdG9yeRIwLmdmdGQuZ2hvc3RoYWNrZXIuemVuZWRpdG9yLnYxLkdldEhpc3RvcnlSZXF1ZXN0GjEuZ2Z0ZC5naG9zdGhhY2tlci56ZW5lZGl0b3IudjEuR2V0SGlzdG9yeVJlc3BvbnNlEoABCg9DaGVja291dEhpc3RvcnkSNS5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5DaGVja291dEhpc3RvcnlSZXF1ZXN0GjYuZ2Z0ZC5naG9zdGhhY2tlci56ZW5lZGl0b3IudjEuQ2hlY2tvdXRIaXN0b3J5UmVzcG9uc2USbQoISW50ZXJhY3QSLi5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5JbnRlcmFjdFJlcXVlc3QaLy5nZnRkLmdob3N0aGFja2VyLnplbmVkaXRvci52MS5JbnRlcmFjdFJlc3BvbnNlMAFCSFpGZ2l0aHViLmNvbS9nZnRkLWFpL2dob3N0LWhhY2tlci9hcHBzL3plbi1lZGl0b3IvYmFja2VuZC9wcm90bztlZGl0b3JwYmIGcHJvdG8z");
+
+/**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.CommitHistoryRequest
+ */
+export type CommitHistoryRequest = Message<"gftd.ghosthacker.zeneditor.v1.CommitHistoryRequest"> & {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId: string;
+
+  /**
+   * "storyboard", "graph"
+   *
+   * @generated from field: string type = 2;
+   */
+  type: string;
+
+  /**
+   * @generated from field: string state_json = 3;
+   */
+  stateJson: string;
+
+  /**
+   * @generated from field: string message = 4;
+   */
+  message: string;
+
+  /**
+   * @generated from field: string branch_name = 5;
+   */
+  branchName: string;
+
+  /**
+   * @generated from field: string parent_id = 6;
+   */
+  parentId: string;
+};
+
+/**
+ * Describes the message gftd.ghosthacker.zeneditor.v1.CommitHistoryRequest.
+ * Use `create(CommitHistoryRequestSchema)` to create a new message.
+ */
+export const CommitHistoryRequestSchema: GenMessage<CommitHistoryRequest> = /*@__PURE__*/
+  messageDesc(file_editor, 0);
+
+/**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.CommitHistoryResponse
+ */
+export type CommitHistoryResponse = Message<"gftd.ghosthacker.zeneditor.v1.CommitHistoryResponse"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+
+  /**
+   * @generated from field: bool success = 2;
+   */
+  success: boolean;
+};
+
+/**
+ * Describes the message gftd.ghosthacker.zeneditor.v1.CommitHistoryResponse.
+ * Use `create(CommitHistoryResponseSchema)` to create a new message.
+ */
+export const CommitHistoryResponseSchema: GenMessage<CommitHistoryResponse> = /*@__PURE__*/
+  messageDesc(file_editor, 1);
+
+/**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.GetHistoryRequest
+ */
+export type GetHistoryRequest = Message<"gftd.ghosthacker.zeneditor.v1.GetHistoryRequest"> & {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId: string;
+
+  /**
+   * @generated from field: string branch_name = 2;
+   */
+  branchName: string;
+};
+
+/**
+ * Describes the message gftd.ghosthacker.zeneditor.v1.GetHistoryRequest.
+ * Use `create(GetHistoryRequestSchema)` to create a new message.
+ */
+export const GetHistoryRequestSchema: GenMessage<GetHistoryRequest> = /*@__PURE__*/
+  messageDesc(file_editor, 2);
+
+/**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.GetHistoryResponse
+ */
+export type GetHistoryResponse = Message<"gftd.ghosthacker.zeneditor.v1.GetHistoryResponse"> & {
+  /**
+   * @generated from field: repeated gftd.ghosthacker.zeneditor.v1.HistoryItem items = 1;
+   */
+  items: HistoryItem[];
+};
+
+/**
+ * Describes the message gftd.ghosthacker.zeneditor.v1.GetHistoryResponse.
+ * Use `create(GetHistoryResponseSchema)` to create a new message.
+ */
+export const GetHistoryResponseSchema: GenMessage<GetHistoryResponse> = /*@__PURE__*/
+  messageDesc(file_editor, 3);
+
+/**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.HistoryItem
+ */
+export type HistoryItem = Message<"gftd.ghosthacker.zeneditor.v1.HistoryItem"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+
+  /**
+   * @generated from field: string type = 2;
+   */
+  type: string;
+
+  /**
+   * @generated from field: string state_json = 3;
+   */
+  stateJson: string;
+
+  /**
+   * @generated from field: string message = 4;
+   */
+  message: string;
+
+  /**
+   * @generated from field: string branch_name = 5;
+   */
+  branchName: string;
+
+  /**
+   * @generated from field: string parent_id = 6;
+   */
+  parentId: string;
+
+  /**
+   * @generated from field: string created_at = 7;
+   */
+  createdAt: string;
+};
+
+/**
+ * Describes the message gftd.ghosthacker.zeneditor.v1.HistoryItem.
+ * Use `create(HistoryItemSchema)` to create a new message.
+ */
+export const HistoryItemSchema: GenMessage<HistoryItem> = /*@__PURE__*/
+  messageDesc(file_editor, 4);
+
+/**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.CheckoutHistoryRequest
+ */
+export type CheckoutHistoryRequest = Message<"gftd.ghosthacker.zeneditor.v1.CheckoutHistoryRequest"> & {
+  /**
+   * @generated from field: string history_id = 1;
+   */
+  historyId: string;
+};
+
+/**
+ * Describes the message gftd.ghosthacker.zeneditor.v1.CheckoutHistoryRequest.
+ * Use `create(CheckoutHistoryRequestSchema)` to create a new message.
+ */
+export const CheckoutHistoryRequestSchema: GenMessage<CheckoutHistoryRequest> = /*@__PURE__*/
+  messageDesc(file_editor, 5);
+
+/**
+ * @generated from message gftd.ghosthacker.zeneditor.v1.CheckoutHistoryResponse
+ */
+export type CheckoutHistoryResponse = Message<"gftd.ghosthacker.zeneditor.v1.CheckoutHistoryResponse"> & {
+  /**
+   * @generated from field: bool success = 1;
+   */
+  success: boolean;
+
+  /**
+   * @generated from field: string state_json = 2;
+   */
+  stateJson: string;
+
+  /**
+   * @generated from field: string type = 3;
+   */
+  type: string;
+};
+
+/**
+ * Describes the message gftd.ghosthacker.zeneditor.v1.CheckoutHistoryResponse.
+ * Use `create(CheckoutHistoryResponseSchema)` to create a new message.
+ */
+export const CheckoutHistoryResponseSchema: GenMessage<CheckoutHistoryResponse> = /*@__PURE__*/
+  messageDesc(file_editor, 6);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.SaveStoryboardRequest
@@ -32,7 +228,7 @@ export type SaveStoryboardRequest = Message<"gftd.ghosthacker.zeneditor.v1.SaveS
  * Use `create(SaveStoryboardRequestSchema)` to create a new message.
  */
 export const SaveStoryboardRequestSchema: GenMessage<SaveStoryboardRequest> = /*@__PURE__*/
-  messageDesc(file_editor, 0);
+  messageDesc(file_editor, 7);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.SaveStoryboardResponse
@@ -54,7 +250,7 @@ export type SaveStoryboardResponse = Message<"gftd.ghosthacker.zeneditor.v1.Save
  * Use `create(SaveStoryboardResponseSchema)` to create a new message.
  */
 export const SaveStoryboardResponseSchema: GenMessage<SaveStoryboardResponse> = /*@__PURE__*/
-  messageDesc(file_editor, 1);
+  messageDesc(file_editor, 8);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.GetStoryboardRequest
@@ -71,7 +267,7 @@ export type GetStoryboardRequest = Message<"gftd.ghosthacker.zeneditor.v1.GetSto
  * Use `create(GetStoryboardRequestSchema)` to create a new message.
  */
 export const GetStoryboardRequestSchema: GenMessage<GetStoryboardRequest> = /*@__PURE__*/
-  messageDesc(file_editor, 2);
+  messageDesc(file_editor, 9);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.GetStoryboardResponse
@@ -88,7 +284,7 @@ export type GetStoryboardResponse = Message<"gftd.ghosthacker.zeneditor.v1.GetSt
  * Use `create(GetStoryboardResponseSchema)` to create a new message.
  */
 export const GetStoryboardResponseSchema: GenMessage<GetStoryboardResponse> = /*@__PURE__*/
-  messageDesc(file_editor, 3);
+  messageDesc(file_editor, 10);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.StoryboardScene
@@ -150,7 +346,7 @@ export type StoryboardScene = Message<"gftd.ghosthacker.zeneditor.v1.StoryboardS
  * Use `create(StoryboardSceneSchema)` to create a new message.
  */
 export const StoryboardSceneSchema: GenMessage<StoryboardScene> = /*@__PURE__*/
-  messageDesc(file_editor, 4);
+  messageDesc(file_editor, 11);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.InteractRequest
@@ -186,7 +382,7 @@ export type InteractRequest = Message<"gftd.ghosthacker.zeneditor.v1.InteractReq
  * Use `create(InteractRequestSchema)` to create a new message.
  */
 export const InteractRequestSchema: GenMessage<InteractRequest> = /*@__PURE__*/
-  messageDesc(file_editor, 5);
+  messageDesc(file_editor, 12);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.InteractResponse
@@ -222,7 +418,7 @@ export type InteractResponse = Message<"gftd.ghosthacker.zeneditor.v1.InteractRe
  * Use `create(InteractResponseSchema)` to create a new message.
  */
 export const InteractResponseSchema: GenMessage<InteractResponse> = /*@__PURE__*/
-  messageDesc(file_editor, 6);
+  messageDesc(file_editor, 13);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.CallToolRequest
@@ -246,7 +442,7 @@ export type CallToolRequest = Message<"gftd.ghosthacker.zeneditor.v1.CallToolReq
  * Use `create(CallToolRequestSchema)` to create a new message.
  */
 export const CallToolRequestSchema: GenMessage<CallToolRequest> = /*@__PURE__*/
-  messageDesc(file_editor, 7);
+  messageDesc(file_editor, 14);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.CallToolResponse
@@ -270,7 +466,7 @@ export type CallToolResponse = Message<"gftd.ghosthacker.zeneditor.v1.CallToolRe
  * Use `create(CallToolResponseSchema)` to create a new message.
  */
 export const CallToolResponseSchema: GenMessage<CallToolResponse> = /*@__PURE__*/
-  messageDesc(file_editor, 8);
+  messageDesc(file_editor, 15);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.GetProjectMetadataRequest
@@ -287,7 +483,7 @@ export type GetProjectMetadataRequest = Message<"gftd.ghosthacker.zeneditor.v1.G
  * Use `create(GetProjectMetadataRequestSchema)` to create a new message.
  */
 export const GetProjectMetadataRequestSchema: GenMessage<GetProjectMetadataRequest> = /*@__PURE__*/
-  messageDesc(file_editor, 9);
+  messageDesc(file_editor, 16);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.GetProjectMetadataResponse
@@ -314,7 +510,7 @@ export type GetProjectMetadataResponse = Message<"gftd.ghosthacker.zeneditor.v1.
  * Use `create(GetProjectMetadataResponseSchema)` to create a new message.
  */
 export const GetProjectMetadataResponseSchema: GenMessage<GetProjectMetadataResponse> = /*@__PURE__*/
-  messageDesc(file_editor, 10);
+  messageDesc(file_editor, 17);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.Episode
@@ -341,7 +537,7 @@ export type Episode = Message<"gftd.ghosthacker.zeneditor.v1.Episode"> & {
  * Use `create(EpisodeSchema)` to create a new message.
  */
 export const EpisodeSchema: GenMessage<Episode> = /*@__PURE__*/
-  messageDesc(file_editor, 11);
+  messageDesc(file_editor, 18);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.OpenFileRequest
@@ -358,7 +554,7 @@ export type OpenFileRequest = Message<"gftd.ghosthacker.zeneditor.v1.OpenFileReq
  * Use `create(OpenFileRequestSchema)` to create a new message.
  */
 export const OpenFileRequestSchema: GenMessage<OpenFileRequest> = /*@__PURE__*/
-  messageDesc(file_editor, 12);
+  messageDesc(file_editor, 19);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.OpenFileResponse
@@ -375,7 +571,7 @@ export type OpenFileResponse = Message<"gftd.ghosthacker.zeneditor.v1.OpenFileRe
  * Use `create(OpenFileResponseSchema)` to create a new message.
  */
 export const OpenFileResponseSchema: GenMessage<OpenFileResponse> = /*@__PURE__*/
-  messageDesc(file_editor, 13);
+  messageDesc(file_editor, 20);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.SaveFileRequest
@@ -397,7 +593,7 @@ export type SaveFileRequest = Message<"gftd.ghosthacker.zeneditor.v1.SaveFileReq
  * Use `create(SaveFileRequestSchema)` to create a new message.
  */
 export const SaveFileRequestSchema: GenMessage<SaveFileRequest> = /*@__PURE__*/
-  messageDesc(file_editor, 14);
+  messageDesc(file_editor, 21);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.SaveFileResponse
@@ -414,7 +610,7 @@ export type SaveFileResponse = Message<"gftd.ghosthacker.zeneditor.v1.SaveFileRe
  * Use `create(SaveFileResponseSchema)` to create a new message.
  */
 export const SaveFileResponseSchema: GenMessage<SaveFileResponse> = /*@__PURE__*/
-  messageDesc(file_editor, 15);
+  messageDesc(file_editor, 22);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.AnalyzeTextRequest
@@ -431,7 +627,7 @@ export type AnalyzeTextRequest = Message<"gftd.ghosthacker.zeneditor.v1.AnalyzeT
  * Use `create(AnalyzeTextRequestSchema)` to create a new message.
  */
 export const AnalyzeTextRequestSchema: GenMessage<AnalyzeTextRequest> = /*@__PURE__*/
-  messageDesc(file_editor, 16);
+  messageDesc(file_editor, 23);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.AnalyzeTextResponse
@@ -453,7 +649,7 @@ export type AnalyzeTextResponse = Message<"gftd.ghosthacker.zeneditor.v1.Analyze
  * Use `create(AnalyzeTextResponseSchema)` to create a new message.
  */
 export const AnalyzeTextResponseSchema: GenMessage<AnalyzeTextResponse> = /*@__PURE__*/
-  messageDesc(file_editor, 17);
+  messageDesc(file_editor, 24);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.GetTopologyRequest
@@ -470,7 +666,7 @@ export type GetTopologyRequest = Message<"gftd.ghosthacker.zeneditor.v1.GetTopol
  * Use `create(GetTopologyRequestSchema)` to create a new message.
  */
 export const GetTopologyRequestSchema: GenMessage<GetTopologyRequest> = /*@__PURE__*/
-  messageDesc(file_editor, 18);
+  messageDesc(file_editor, 25);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.GetTopologyResponse
@@ -492,7 +688,7 @@ export type GetTopologyResponse = Message<"gftd.ghosthacker.zeneditor.v1.GetTopo
  * Use `create(GetTopologyResponseSchema)` to create a new message.
  */
 export const GetTopologyResponseSchema: GenMessage<GetTopologyResponse> = /*@__PURE__*/
-  messageDesc(file_editor, 19);
+  messageDesc(file_editor, 26);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.Entity
@@ -519,7 +715,7 @@ export type Entity = Message<"gftd.ghosthacker.zeneditor.v1.Entity"> & {
  * Use `create(EntitySchema)` to create a new message.
  */
 export const EntitySchema: GenMessage<Entity> = /*@__PURE__*/
-  messageDesc(file_editor, 20);
+  messageDesc(file_editor, 27);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.Node
@@ -575,7 +771,7 @@ export type Node = Message<"gftd.ghosthacker.zeneditor.v1.Node"> & {
  * Use `create(NodeSchema)` to create a new message.
  */
 export const NodeSchema: GenMessage<Node> = /*@__PURE__*/
-  messageDesc(file_editor, 21);
+  messageDesc(file_editor, 28);
 
 /**
  * @generated from message gftd.ghosthacker.zeneditor.v1.Edge
@@ -633,7 +829,7 @@ export type Edge = Message<"gftd.ghosthacker.zeneditor.v1.Edge"> & {
  * Use `create(EdgeSchema)` to create a new message.
  */
 export const EdgeSchema: GenMessage<Edge> = /*@__PURE__*/
-  messageDesc(file_editor, 22);
+  messageDesc(file_editor, 29);
 
 /**
  * @generated from service gftd.ghosthacker.zeneditor.v1.EditorService
@@ -680,6 +876,32 @@ export const EditorService: GenService<{
     methodKind: "unary";
     input: typeof GetStoryboardRequestSchema;
     output: typeof GetStoryboardResponseSchema;
+  },
+  /**
+   * History & Branching
+   *
+   * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.CommitHistory
+   */
+  commitHistory: {
+    methodKind: "unary";
+    input: typeof CommitHistoryRequestSchema;
+    output: typeof CommitHistoryResponseSchema;
+  },
+  /**
+   * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.GetHistory
+   */
+  getHistory: {
+    methodKind: "unary";
+    input: typeof GetHistoryRequestSchema;
+    output: typeof GetHistoryResponseSchema;
+  },
+  /**
+   * @generated from rpc gftd.ghosthacker.zeneditor.v1.EditorService.CheckoutHistory
+   */
+  checkoutHistory: {
+    methodKind: "unary";
+    input: typeof CheckoutHistoryRequestSchema;
+    output: typeof CheckoutHistoryResponseSchema;
   },
   /**
    * Real-time Chat/Interaction Stream (A2A support)

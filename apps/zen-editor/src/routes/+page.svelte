@@ -2,12 +2,14 @@
   import Editor from '../components/Editor.svelte';
   import Topology from '../components/TopologyWebGPU.svelte';
   import Storyboard from '../components/Storyboard.svelte';
+  import HistoryPanel from '../components/HistoryPanel.svelte';
   import { getClient } from '../lib/api';
 
   let selectedNode = $state<any>(null);
   let isSidebarOpen = $state(false);
   let isChatOpen = $state(false);
   let isEditorOpen = $state(false);
+  let isHistoryOpen = $state(false);
   let currentFilePath = $state("");
   let projectTitle = $state("GhostHacker Zen Editor");
   let activeView = $state<"graph" | "storyboard" | "dual">("dual");
@@ -15,20 +17,16 @@
   let isGraphCollapsed = $state(false);
   let isStoryboardCollapsed = $state(false);
 
-  $effect(() => {
-    async function loadMetadata() {
-      try {
-        const client = await getClient();
-        if (client) {
-          const resp = await client.getProjectMetadata({ projectId: "251022" });
-          projectTitle = resp?.title || "GhostHacker Zen Editor";
-        }
-      } catch (err) {
-        console.error("Failed to fetch metadata:", err);
-      }
+  let storyboardRef: any = $state(null);
+  let topologyRef: any = $state(null);
+
+  function handleCheckout(state: any, type: string) {
+    if (type === 'storyboard') {
+      storyboardRef?.setScenes(state);
+    } else if (type === 'graph') {
+      topologyRef?.setPositions(state);
     }
-    loadMetadata();
-  });
+  }
 
   function handleNodeSelect(node: any) {
     selectedNode = node;
@@ -68,6 +66,7 @@
     </div>
 
     <div class="right-section">
+      <button class="icon-btn" onclick={() => isHistoryOpen = !isHistoryOpen} class:active={isHistoryOpen}>📜</button>
       <button class="icon-btn" onclick={toggleChat}>💬</button>
       <button class="icon-btn">⚙️</button>
     </div>
@@ -83,7 +82,7 @@
               <button class="collapse-btn" onclick={() => isGraphCollapsed = true}>◀</button>
             {/if}
           </div>
-          <Topology onSelect={handleNodeSelect} selectedId={selectedNode?.id} />
+          <Topology bind:this={topologyRef} onSelect={handleNodeSelect} selectedId={selectedNode?.id} />
         </div>
       {:else if activeView === "dual" && isGraphCollapsed}
         <div class="collapsed-pane" onclick={() => isGraphCollapsed = false}>
@@ -103,7 +102,7 @@
             {/if}
             <span>Storyboard Editor</span>
           </div>
-          <Storyboard />
+          <Storyboard bind:this={storyboardRef} />
         </div>
       {:else if activeView === "dual" && isStoryboardCollapsed}
         <div class="collapsed-pane right" onclick={() => isStoryboardCollapsed = false}>
@@ -121,6 +120,12 @@
         <div class="drawer-body">
           <Editor filePath={currentFilePath} />
         </div>
+      </aside>
+    {/if}
+
+    {#if isHistoryOpen}
+      <aside class="history-drawer">
+        <HistoryPanel onCheckout={handleCheckout} />
       </aside>
     {/if}
 
@@ -215,12 +220,16 @@
   .resize-handle:hover { background: #0071e3; }
 
   .editor-drawer { position: absolute; right: 0; top: 0; width: 60%; height: 100%; background: #111; border-left: 1px solid #333; display: flex; flex-direction: column; z-index: 200; box-shadow: -10px 0 30px rgba(0,0,0,0.5); }
+  .history-drawer { position: absolute; right: 0; top: 0; width: 300px; height: 100%; background: #111; border-left: 1px solid #333; display: flex; flex-direction: column; z-index: 205; box-shadow: -10px 0 30px rgba(0,0,0,0.5); }
   .chat-sidebar { position: absolute; right: 0; top: 0; width: 350px; height: 100%; background: #16161a; border-left: 1px solid #333; display: flex; flex-direction: column; z-index: 201; }
 
   .drawer-header, .sidebar-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 1px solid #333; font-size: 0.9rem; font-weight: 500; }
   .drawer-body, .chat-container { flex: 1; overflow: hidden; }
 
   button { background: transparent; border: none; color: white; cursor: pointer; font-size: 1.2rem; }
+  .icon-btn { font-size: 1.2rem; opacity: 0.6; transition: all 0.2s; }
+  .icon-btn:hover { opacity: 1; transform: scale(1.1); }
+  .icon-btn.active { opacity: 1; color: #0071e3; }
   .menu-btn { font-size: 1.4rem; color: #0071e3; }
   
   .chat-placeholder { padding: 2rem; color: #666; text-align: center; font-style: italic; }

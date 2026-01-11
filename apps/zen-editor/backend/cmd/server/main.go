@@ -17,6 +17,7 @@ import (
 
 	_ "modernc.org/sqlite"
 
+	"github.com/google/uuid"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -48,6 +49,21 @@ func NewEditorServer(root string) *EditorServer {
 	)`)
 	if err != nil {
 		log.Fatalf("failed to create table: %v", err)
+	}
+
+	// Create history table
+	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS history (
+		id TEXT PRIMARY KEY,
+		project_id TEXT,
+		parent_id TEXT,
+		branch_name TEXT,
+		type TEXT,
+		state_json TEXT,
+		message TEXT,
+		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	)`)
+	if err != nil {
+		log.Fatalf("failed to create history table: %v", err)
 	}
 
 	s := &EditorServer{
@@ -302,7 +318,63 @@ func (s *EditorServer) SaveStoryboard(ctx context.Context, req *connect.Request[
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
+	// Auto-commit to history
+	s.CommitHistory(ctx, connect.NewRequest(&editorpb.CommitHistoryRequest{
+		ProjectId:  req.Msg.ProjectId,
+		Type:       "storyboard",
+		StateJson:  string(scenesJSON),
+		Message:    "Auto-save storyboard",
+		BranchName: "main",
+	}))
+
 	return connect.NewResponse(&editorpb.SaveStoryboardResponse{Success: true, Message: "Saved successfully"}), nil
+}
+
+func (s *EditorServer) CommitHistory(ctx context.Context, req *connect.Request[editorpb.CommitHistoryRequest]) (*connect.Response[editorpb.CommitHistoryResponse], error) {
+	log.Printf("RPC: CommitHistory called for project: %s, type: %s", req.Msg.ProjectId, req.Msg.Type)
+	id := uuid.New().String()
+	_, err := s.DB.Exec(`INSERT INTO history (id, project_id, parent_id, branch_name, type, state_json, message) 
+		VALUES (?, ?, ?, ?, ?, ?, ?)`,
+		id, req.Msg.ProjectId, req.Msg.ParentId, req.Msg.BranchName, req.Msg.Type, req.Msg.StateJson, req.Msg.Message)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+	return connect.NewResponse(&editorpb.CommitHistoryResponse{Id: id, Success: true}), nil
+}
+
+func (s *EditorServer) GetHistory(ctx context.Context, req *connect.Request[editorpb.GetHistoryRequest]) (*connect.Response[editorpb.GetHistoryResponse], error) {
+	log.Printf("RPC: GetHistory called for project: %s, branch: %s", req.Msg.ProjectId, req.Msg.BranchName)
+	rows, err := s.DB.Query(`SELECT id, type, state_json, message, branch_name, parent_id, created_at 
+		FROM history WHERE project_id = ? AND (branch_name = ? OR ? = '') ORDER BY created_at DESC`,
+		req.Msg.ProjectId, req.Msg.BranchName, req.Msg.BranchName)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+	defer rows.Close()
+
+	var items []*editorpb.HistoryItem
+	for rows.Next() {
+		var item editorpb.HistoryItem
+		if err := rows.Scan(&item.Id, &item.Type, &item.StateJson, &item.Message, &item.BranchName, &item.ParentId, &item.CreatedAt); err != nil {
+			return nil, connect.NewError(connect.CodeInternal, err)
+		}
+		items = append(items, &item)
+	}
+	return connect.NewResponse(&editorpb.GetHistoryResponse{Items: items}), nil
+}
+
+func (s *EditorServer) CheckoutHistory(ctx context.Context, req *connect.Request[editorpb.CheckoutHistoryRequest]) (*connect.Response[editorpb.CheckoutHistoryResponse], error) {
+	var stateJSON, hType string
+	err := s.DB.QueryRow("SELECT state_json, type FROM history WHERE id = ?", req.Msg.HistoryId).Scan(&stateJSON, &hType)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeNotFound, err)
+	}
+
+	return connect.NewResponse(&editorpb.CheckoutHistoryResponse{
+		Success:   true,
+		StateJson: stateJSON,
+		Type:      hType,
+	}), nil
 }
 
 func (s *EditorServer) GetStoryboard(ctx context.Context, req *connect.Request[editorpb.GetStoryboardRequest]) (*connect.Response[editorpb.GetStoryboardResponse], error) {

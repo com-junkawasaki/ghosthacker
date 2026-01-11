@@ -8,6 +8,9 @@ type EditorClient = {
   interact: (req: any) => AsyncIterable<any>;
   saveStoryboard: (req: { projectId: string, scenes: any[] }) => Promise<any>;
   getStoryboard: (req: { projectId: string }) => Promise<any>;
+  commitHistory: (req: { projectId: string, type: string, stateJson: string, message: string, branchName: string, parentId?: string }) => Promise<any>;
+  getHistory: (req: { projectId: string, branchName?: string }) => Promise<any>;
+  checkoutHistory: (req: { historyId: string }) => Promise<any>;
 };
 
 let _client: EditorClient | null = null;

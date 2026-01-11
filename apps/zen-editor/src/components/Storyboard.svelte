@@ -2,8 +2,6 @@
   import { onMount } from 'svelte';
   import { getClient } from '../lib/api';
 
-  let { } = $props<{}>();
-
   type Scene = {
     id: number;
     visual: string;
@@ -19,13 +17,21 @@
     emotions: string[];
   };
 
-  let scenes = $state<Scene[]>([]);
+  let { scenes: initialScenes = [] } = $props<{ scenes?: Scene[] }>();
+
+  let scenes = $state<Scene[]>(initialScenes);
   let isGenerating = $state(false);
   let isSaving = $state(false);
   let prompt = $state("Generate a high-tension confrontation scene between Kaede and the antagonist in an abandoned server room.");
 
+  export function setScenes(newScenes: Scene[]) {
+    scenes = newScenes;
+  }
+
   onMount(async () => {
-    await loadStoryboard();
+    if (scenes.length === 0) {
+      await loadStoryboard();
+    }
   });
 
   async function saveStoryboard() {

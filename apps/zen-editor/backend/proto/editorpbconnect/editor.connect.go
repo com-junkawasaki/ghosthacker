@@ -47,6 +47,15 @@ const (
 	// EditorServiceGetStoryboardProcedure is the fully-qualified name of the EditorService's
 	// GetStoryboard RPC.
 	EditorServiceGetStoryboardProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/GetStoryboard"
+	// EditorServiceCommitHistoryProcedure is the fully-qualified name of the EditorService's
+	// CommitHistory RPC.
+	EditorServiceCommitHistoryProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/CommitHistory"
+	// EditorServiceGetHistoryProcedure is the fully-qualified name of the EditorService's GetHistory
+	// RPC.
+	EditorServiceGetHistoryProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/GetHistory"
+	// EditorServiceCheckoutHistoryProcedure is the fully-qualified name of the EditorService's
+	// CheckoutHistory RPC.
+	EditorServiceCheckoutHistoryProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/CheckoutHistory"
 	// EditorServiceInteractProcedure is the fully-qualified name of the EditorService's Interact RPC.
 	EditorServiceInteractProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/Interact"
 )
@@ -59,6 +68,10 @@ type EditorServiceClient interface {
 	// Storyboard persistence
 	SaveStoryboard(context.Context, *connect.Request[proto.SaveStoryboardRequest]) (*connect.Response[proto.SaveStoryboardResponse], error)
 	GetStoryboard(context.Context, *connect.Request[proto.GetStoryboardRequest]) (*connect.Response[proto.GetStoryboardResponse], error)
+	// History & Branching
+	CommitHistory(context.Context, *connect.Request[proto.CommitHistoryRequest]) (*connect.Response[proto.CommitHistoryResponse], error)
+	GetHistory(context.Context, *connect.Request[proto.GetHistoryRequest]) (*connect.Response[proto.GetHistoryResponse], error)
+	CheckoutHistory(context.Context, *connect.Request[proto.CheckoutHistoryRequest]) (*connect.Response[proto.CheckoutHistoryResponse], error)
 	// Real-time Chat/Interaction Stream (A2A support)
 	Interact(context.Context, *connect.Request[proto.InteractRequest]) (*connect.ServerStreamForClient[proto.InteractResponse], error)
 }
@@ -104,6 +117,24 @@ func NewEditorServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			connect.WithSchema(editorServiceMethods.ByName("GetStoryboard")),
 			connect.WithClientOptions(opts...),
 		),
+		commitHistory: connect.NewClient[proto.CommitHistoryRequest, proto.CommitHistoryResponse](
+			httpClient,
+			baseURL+EditorServiceCommitHistoryProcedure,
+			connect.WithSchema(editorServiceMethods.ByName("CommitHistory")),
+			connect.WithClientOptions(opts...),
+		),
+		getHistory: connect.NewClient[proto.GetHistoryRequest, proto.GetHistoryResponse](
+			httpClient,
+			baseURL+EditorServiceGetHistoryProcedure,
+			connect.WithSchema(editorServiceMethods.ByName("GetHistory")),
+			connect.WithClientOptions(opts...),
+		),
+		checkoutHistory: connect.NewClient[proto.CheckoutHistoryRequest, proto.CheckoutHistoryResponse](
+			httpClient,
+			baseURL+EditorServiceCheckoutHistoryProcedure,
+			connect.WithSchema(editorServiceMethods.ByName("CheckoutHistory")),
+			connect.WithClientOptions(opts...),
+		),
 		interact: connect.NewClient[proto.InteractRequest, proto.InteractResponse](
 			httpClient,
 			baseURL+EditorServiceInteractProcedure,
@@ -120,6 +151,9 @@ type editorServiceClient struct {
 	callTool           *connect.Client[proto.CallToolRequest, proto.CallToolResponse]
 	saveStoryboard     *connect.Client[proto.SaveStoryboardRequest, proto.SaveStoryboardResponse]
 	getStoryboard      *connect.Client[proto.GetStoryboardRequest, proto.GetStoryboardResponse]
+	commitHistory      *connect.Client[proto.CommitHistoryRequest, proto.CommitHistoryResponse]
+	getHistory         *connect.Client[proto.GetHistoryRequest, proto.GetHistoryResponse]
+	checkoutHistory    *connect.Client[proto.CheckoutHistoryRequest, proto.CheckoutHistoryResponse]
 	interact           *connect.Client[proto.InteractRequest, proto.InteractResponse]
 }
 
@@ -148,6 +182,21 @@ func (c *editorServiceClient) GetStoryboard(ctx context.Context, req *connect.Re
 	return c.getStoryboard.CallUnary(ctx, req)
 }
 
+// CommitHistory calls gftd.ghosthacker.zeneditor.v1.EditorService.CommitHistory.
+func (c *editorServiceClient) CommitHistory(ctx context.Context, req *connect.Request[proto.CommitHistoryRequest]) (*connect.Response[proto.CommitHistoryResponse], error) {
+	return c.commitHistory.CallUnary(ctx, req)
+}
+
+// GetHistory calls gftd.ghosthacker.zeneditor.v1.EditorService.GetHistory.
+func (c *editorServiceClient) GetHistory(ctx context.Context, req *connect.Request[proto.GetHistoryRequest]) (*connect.Response[proto.GetHistoryResponse], error) {
+	return c.getHistory.CallUnary(ctx, req)
+}
+
+// CheckoutHistory calls gftd.ghosthacker.zeneditor.v1.EditorService.CheckoutHistory.
+func (c *editorServiceClient) CheckoutHistory(ctx context.Context, req *connect.Request[proto.CheckoutHistoryRequest]) (*connect.Response[proto.CheckoutHistoryResponse], error) {
+	return c.checkoutHistory.CallUnary(ctx, req)
+}
+
 // Interact calls gftd.ghosthacker.zeneditor.v1.EditorService.Interact.
 func (c *editorServiceClient) Interact(ctx context.Context, req *connect.Request[proto.InteractRequest]) (*connect.ServerStreamForClient[proto.InteractResponse], error) {
 	return c.interact.CallServerStream(ctx, req)
@@ -162,6 +211,10 @@ type EditorServiceHandler interface {
 	// Storyboard persistence
 	SaveStoryboard(context.Context, *connect.Request[proto.SaveStoryboardRequest]) (*connect.Response[proto.SaveStoryboardResponse], error)
 	GetStoryboard(context.Context, *connect.Request[proto.GetStoryboardRequest]) (*connect.Response[proto.GetStoryboardResponse], error)
+	// History & Branching
+	CommitHistory(context.Context, *connect.Request[proto.CommitHistoryRequest]) (*connect.Response[proto.CommitHistoryResponse], error)
+	GetHistory(context.Context, *connect.Request[proto.GetHistoryRequest]) (*connect.Response[proto.GetHistoryResponse], error)
+	CheckoutHistory(context.Context, *connect.Request[proto.CheckoutHistoryRequest]) (*connect.Response[proto.CheckoutHistoryResponse], error)
 	// Real-time Chat/Interaction Stream (A2A support)
 	Interact(context.Context, *connect.Request[proto.InteractRequest], *connect.ServerStream[proto.InteractResponse]) error
 }
@@ -203,6 +256,24 @@ func NewEditorServiceHandler(svc EditorServiceHandler, opts ...connect.HandlerOp
 		connect.WithSchema(editorServiceMethods.ByName("GetStoryboard")),
 		connect.WithHandlerOptions(opts...),
 	)
+	editorServiceCommitHistoryHandler := connect.NewUnaryHandler(
+		EditorServiceCommitHistoryProcedure,
+		svc.CommitHistory,
+		connect.WithSchema(editorServiceMethods.ByName("CommitHistory")),
+		connect.WithHandlerOptions(opts...),
+	)
+	editorServiceGetHistoryHandler := connect.NewUnaryHandler(
+		EditorServiceGetHistoryProcedure,
+		svc.GetHistory,
+		connect.WithSchema(editorServiceMethods.ByName("GetHistory")),
+		connect.WithHandlerOptions(opts...),
+	)
+	editorServiceCheckoutHistoryHandler := connect.NewUnaryHandler(
+		EditorServiceCheckoutHistoryProcedure,
+		svc.CheckoutHistory,
+		connect.WithSchema(editorServiceMethods.ByName("CheckoutHistory")),
+		connect.WithHandlerOptions(opts...),
+	)
 	editorServiceInteractHandler := connect.NewServerStreamHandler(
 		EditorServiceInteractProcedure,
 		svc.Interact,
@@ -221,6 +292,12 @@ func NewEditorServiceHandler(svc EditorServiceHandler, opts ...connect.HandlerOp
 			editorServiceSaveStoryboardHandler.ServeHTTP(w, r)
 		case EditorServiceGetStoryboardProcedure:
 			editorServiceGetStoryboardHandler.ServeHTTP(w, r)
+		case EditorServiceCommitHistoryProcedure:
+			editorServiceCommitHistoryHandler.ServeHTTP(w, r)
+		case EditorServiceGetHistoryProcedure:
+			editorServiceGetHistoryHandler.ServeHTTP(w, r)
+		case EditorServiceCheckoutHistoryProcedure:
+			editorServiceCheckoutHistoryHandler.ServeHTTP(w, r)
 		case EditorServiceInteractProcedure:
 			editorServiceInteractHandler.ServeHTTP(w, r)
 		default:
@@ -250,6 +327,18 @@ func (UnimplementedEditorServiceHandler) SaveStoryboard(context.Context, *connec
 
 func (UnimplementedEditorServiceHandler) GetStoryboard(context.Context, *connect.Request[proto.GetStoryboardRequest]) (*connect.Response[proto.GetStoryboardResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.zeneditor.v1.EditorService.GetStoryboard is not implemented"))
+}
+
+func (UnimplementedEditorServiceHandler) CommitHistory(context.Context, *connect.Request[proto.CommitHistoryRequest]) (*connect.Response[proto.CommitHistoryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.zeneditor.v1.EditorService.CommitHistory is not implemented"))
+}
+
+func (UnimplementedEditorServiceHandler) GetHistory(context.Context, *connect.Request[proto.GetHistoryRequest]) (*connect.Response[proto.GetHistoryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.zeneditor.v1.EditorService.GetHistory is not implemented"))
+}
+
+func (UnimplementedEditorServiceHandler) CheckoutHistory(context.Context, *connect.Request[proto.CheckoutHistoryRequest]) (*connect.Response[proto.CheckoutHistoryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.zeneditor.v1.EditorService.CheckoutHistory is not implemented"))
 }
 
 func (UnimplementedEditorServiceHandler) Interact(context.Context, *connect.Request[proto.InteractRequest], *connect.ServerStream[proto.InteractResponse]) error {
