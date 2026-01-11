@@ -574,6 +574,8 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 	nodeMap := make(map[string]*editorpb.Node)
 
 	// 1. Load entities from JSON-LD
+	entityHubs := make(map[string]string) // Group -> HubNodeID
+
 	for _, item := range g.Graph {
 		id, _ := item["@id"].(string)
 		name, _ := item["name"].(string)
@@ -585,6 +587,33 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 				parts := strings.Split(id, ":")
 				label = parts[len(parts)-1]
 				label = strings.Title(label)
+			}
+
+			group := s.categorizeNode(itemType)
+
+			// Create Hub nodes if they don't exist
+			if (group == "entity" || group == "link-node") && entityHubs[group] == "" {
+				hubID := "hub:" + group
+				entityHubs[group] = hubID
+				resp.Nodes = append(resp.Nodes, &editorpb.Node{
+					Id:    hubID,
+					Label: strings.Title(group) + " Cluster",
+					Type:  "gh:ClusterHub",
+					Group: "meta",
+				})
+			}
+
+			// Link entity to its hub
+			if hubID, ok := entityHubs[group]; ok {
+				resp.Edges = append(resp.Edges, &editorpb.Edge{
+					FromId:   hubID,
+					ToId:     id,
+					Relation: "gh:memberOf",
+					Group:    "structural",
+					Distance: 150,
+					Strength: 0.1,
+					Color:    "#444444",
+				})
 			}
 
 			// Special handling for RelationEvent (Incidence Graph / Hypergraph)
@@ -600,7 +629,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 				Id:    id,
 				Label: label,
 				Type:  itemType,
-				Group: s.categorizeNode(itemType),
+				Group: group,
 				Embedding: s.generateDummyEmbedding(id), // Generate vector
 			}
 			if x, ok := item["gh:x"].(float64); ok {
@@ -653,6 +682,14 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 		}
 		json.Unmarshal(mdata, &m)
 		for _, ep := range m.Episodes {
+			epNodeID := "episode:" + ep.ID
+			resp.Nodes = append(resp.Nodes, &editorpb.Node{
+				Id:    epNodeID,
+				Label: "Episode " + ep.ID,
+				Type:  "gh:Episode",
+				Group: "content",
+			})
+
 			for _, file := range ep.Files {
 				mNodeID := fmt.Sprintf("manuscript:%s:%s", ep.ID, file)
 				mNode := &editorpb.Node{
@@ -668,6 +705,17 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 					mNode.Y = stub.Y
 				}
 				resp.Nodes = append(resp.Nodes, mNode)
+
+				// Link Episode to Manuscript
+				resp.Edges = append(resp.Edges, &editorpb.Edge{
+					FromId:   epNodeID,
+					ToId:     mNodeID,
+					Relation: "gh:contains",
+					Group:    "structural",
+					Distance: 100,
+					Strength: 0.5,
+					Color:    "#0071e3",
+				})
 
 				// Extract blocks
 				filePath := filepath.Join(s.WorkspaceRoot, "251022/wattpad/", file)

@@ -20,13 +20,13 @@
         console.log("Initializing Graph with container:", containerElement);
         const g = new Graph(containerElement, {
           backgroundColor: '#05050a',
-          pointDefaultSize: 4,
-          linkDefaultWidth: 1,
+          pointDefaultSize: 6,
+          linkDefaultWidth: 1.5,
           linkDefaultColor: '#33333a',
           pointColor: '#0071e3',
-          simulationGravity: 0.01,
-          simulationRepulsion: 0.5,
-          simulationFriction: 0.95,
+          simulationGravity: 0.05,
+          simulationRepulsion: 1.0,
+          simulationFriction: 0.9,
         });
 
         graph = g;
@@ -56,7 +56,12 @@
           pointPositions[i * 2] = n.x || (Math.random() * 1000 - 500);
           pointPositions[i * 2 + 1] = n.y || (Math.random() * 1000 - 500);
           
-          const color = n.group === 'content' ? [0, 113, 227, 255] : n.group === 'entity' ? [255, 59, 48, 255] : [142, 142, 147, 255];
+          let color = [142, 142, 147, 255]; // Default gray
+          if (n.group === 'content') color = [0, 113, 227, 255]; // blue
+          if (n.group === 'entity') color = [255, 59, 48, 255]; // red
+          if (n.type === 'gh:Episode') color = [255, 214, 10, 255]; // yellow
+          if (n.type === 'gh:ClusterHub') color = [175, 82, 222, 255]; // purple
+          
           pointColors[i * 4] = color[0];
           pointColors[i * 4 + 1] = color[1];
           pointColors[i * 4 + 2] = color[2];
@@ -102,6 +107,14 @@
 
   function handleNodeClick(node: any) {
     onSelect?.(node, [node]);
+    
+    // Zoom to clicked node
+    if (graph) {
+      const index = nodes.findIndex(n => n.id === node.id);
+      if (index !== -1) {
+        graph.zoomToPointByIndex(index, 1000);
+      }
+    }
   }
 
   export function setPositions(positions: any[]) {
@@ -153,7 +166,10 @@
   <div class="topology-sidebar">
     <div class="sidebar-header">
       <span>Nodes</span>
-      <button class="save-layout-btn" onclick={saveLayout} title="Save Layout to History">💾</button>
+      <div class="header-actions">
+        <button class="icon-btn" onclick={() => graph?.fitView(1000)} title="Fit View">🔍</button>
+        <button class="save-layout-btn" onclick={saveLayout} title="Save Layout to History">💾</button>
+      </div>
     </div>
     <div class="node-list">
       {#each nodes as n (n.id)}
@@ -226,16 +242,23 @@
     align-items: center;
   }
 
-  .save-layout-btn {
+  .header-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .icon-btn, .save-layout-btn {
     background: transparent;
     border: none;
     cursor: pointer;
     font-size: 0.8rem;
     opacity: 0.5;
     transition: opacity 0.2s;
+    padding: 2px;
   }
 
-  .save-layout-btn:hover { opacity: 1; }
+  .icon-btn:hover, .save-layout-btn:hover { opacity: 1; }
 
   .node-list {
     flex: 1;
@@ -269,6 +292,7 @@
 
   .node-icon.content { background: #0071e3; }
   .node-icon.entity { background: #ff3b30; }
+  .node-icon.meta { background: #af52de; }
   .node-icon.default { background: #8e8e93; }
 
   .topology-main {
