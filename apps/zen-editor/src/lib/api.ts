@@ -1,4 +1,4 @@
-import { EditorService } from "./gen/editor_pb.js";
+import { EditorService } from "./gen/editor_pb";
 
 // 型定義
 type EditorClient = {
@@ -6,6 +6,8 @@ type EditorClient = {
   getProjectMetadata: (req: { projectId: string }) => Promise<any>;
   callTool: (req: any) => Promise<any>;
   interact: (req: any) => AsyncIterable<any>;
+  saveStoryboard: (req: { projectId: string, scenes: any[] }) => Promise<any>;
+  getStoryboard: (req: { projectId: string }) => Promise<any>;
 };
 
 let _client: EditorClient | null = null;
@@ -22,6 +24,8 @@ async function initClient(): Promise<void> {
     const transport = createConnectTransport({
       baseUrl: "http://localhost:8080",
     });
+    
+    console.log("[api] EditorService methods:", Object.keys(EditorService.methods));
     
     // @ts-ignore
     _client = createClient(EditorService, transport);

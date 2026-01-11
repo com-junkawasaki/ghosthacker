@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -13,6 +14,8 @@ import (
 	"connectrpc.com/connect"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
+
+	_ "modernc.org/sqlite"
 
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
@@ -27,14 +30,32 @@ type EditorServer struct {
 	MCPServer     *server.MCPServer
 	NodeEmotions  map[string]map[string]float32
 	ToolHandlers  map[string]func(context.Context, mcp.CallToolRequest) (*mcp.CallToolResult, error)
+	DB            *sql.DB
 }
 
 func NewEditorServer(root string) *EditorServer {
+	dbPath := filepath.Join(root, "apps/zen-editor/zen-editor.db")
+	db, err := sql.Open("sqlite", dbPath)
+	if err != nil {
+		log.Fatalf("failed to open database: %v", err)
+	}
+
+	// Create storyboard table
+	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS storyboards (
+		project_id TEXT PRIMARY KEY,
+		scenes_json TEXT,
+		updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	)`)
+	if err != nil {
+		log.Fatalf("failed to create table: %v", err)
+	}
+
 	s := &EditorServer{
 		WorkspaceRoot: root,
 		MCPServer:     server.NewMCPServer("GhostHackerEditor", "1.0.0"),
 		NodeEmotions:  initNodeEmotions(),
 		ToolHandlers:  make(map[string]func(context.Context, mcp.CallToolRequest) (*mcp.CallToolResult, error)),
+		DB:            db,
 	}
 	s.registerMCPTools()
 	return s
@@ -64,6 +85,43 @@ func (s *EditorServer) registerMCPTools() {
 
 	s.ToolHandlers["analyze_links"] = s.handleAnalyzeLinksTool
 	s.MCPServer.AddTool(mcp.NewTool("analyze_links", mcp.WithDescription("Analyze hidden links between nodes using AI")), s.handleAnalyzeLinksTool)
+
+	s.ToolHandlers["save_storyboard"] = s.handleSaveStoryboardTool
+	s.MCPServer.AddTool(mcp.NewTool("save_storyboard", mcp.WithDescription("Saves storyboard data to DB")), s.handleSaveStoryboardTool)
+
+	s.ToolHandlers["get_storyboard"] = s.handleGetStoryboardTool
+	s.MCPServer.AddTool(mcp.NewTool("get_storyboard", mcp.WithDescription("Loads storyboard data from DB")), s.handleGetStoryboardTool)
+}
+
+func (s *EditorServer) handleGetStoryboardTool(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	args := req.Params.Arguments.(map[string]interface{})
+	projectID, _ := args["project_id"].(string)
+
+	var scenesJSON string
+	err := s.DB.QueryRow("SELECT scenes_json FROM storyboards WHERE project_id = ?", projectID).Scan(&scenesJSON)
+	if err == sql.ErrNoRows {
+		return mcp.NewToolResultText("[]"), nil
+	} else if err != nil {
+		return mcp.NewToolResultError(err.Error()), nil
+	}
+
+	return mcp.NewToolResultText(scenesJSON), nil
+}
+
+func (s *EditorServer) handleSaveStoryboardTool(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	args := req.Params.Arguments.(map[string]interface{})
+	projectID, _ := args["project_id"].(string)
+	scenesJSON, _ := args["scenes_json"].(string)
+
+	_, err := s.DB.Exec(`INSERT INTO storyboards (project_id, scenes_json, updated_at) 
+		VALUES (?, ?, CURRENT_TIMESTAMP) 
+		ON CONFLICT(project_id) DO UPDATE SET scenes_json = EXCLUDED.scenes_json, updated_at = CURRENT_TIMESTAMP`,
+		projectID, scenesJSON)
+	if err != nil {
+		return mcp.NewToolResultError(err.Error()), nil
+	}
+
+	return mcp.NewToolResultText("Storyboard saved successfully to DB via MCP"), nil
 }
 
 func (s *EditorServer) handleAnalyzeLinksTool(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
@@ -227,6 +285,42 @@ func (s *EditorServer) GetProjectMetadata(ctx context.Context, req *connect.Requ
 		resp.Episodes = append(resp.Episodes, &editorpb.Episode{Id: ep.ID, Title: ep.Title, Files: ep.Files})
 	}
 	return connect.NewResponse(resp), nil
+}
+
+func (s *EditorServer) SaveStoryboard(ctx context.Context, req *connect.Request[editorpb.SaveStoryboardRequest]) (*connect.Response[editorpb.SaveStoryboardResponse], error) {
+	log.Printf("RPC: SaveStoryboard called for project: %s", req.Msg.ProjectId)
+	scenesJSON, err := json.Marshal(req.Msg.Scenes)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	_, err = s.DB.Exec(`INSERT INTO storyboards (project_id, scenes_json, updated_at) 
+		VALUES (?, ?, CURRENT_TIMESTAMP) 
+		ON CONFLICT(project_id) DO UPDATE SET scenes_json = EXCLUDED.scenes_json, updated_at = CURRENT_TIMESTAMP`,
+		req.Msg.ProjectId, string(scenesJSON))
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	return connect.NewResponse(&editorpb.SaveStoryboardResponse{Success: true, Message: "Saved successfully"}), nil
+}
+
+func (s *EditorServer) GetStoryboard(ctx context.Context, req *connect.Request[editorpb.GetStoryboardRequest]) (*connect.Response[editorpb.GetStoryboardResponse], error) {
+	log.Printf("RPC: GetStoryboard called for project: %s", req.Msg.ProjectId)
+	var scenesJSON string
+	err := s.DB.QueryRow("SELECT scenes_json FROM storyboards WHERE project_id = ?", req.Msg.ProjectId).Scan(&scenesJSON)
+	if err == sql.ErrNoRows {
+		return connect.NewResponse(&editorpb.GetStoryboardResponse{}), nil
+	} else if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	var scenes []*editorpb.StoryboardScene
+	if err := json.Unmarshal([]byte(scenesJSON), &scenes); err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	return connect.NewResponse(&editorpb.GetStoryboardResponse{Scenes: scenes}), nil
 }
 
 func (s *EditorServer) buildGraphRAGContext(ctx context.Context, nodeIDs []string) string {

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { getClient } from '../lib/api';
 
   let { } = $props<{}>();
@@ -20,7 +21,70 @@
 
   let scenes = $state<Scene[]>([]);
   let isGenerating = $state(false);
+  let isSaving = $state(false);
   let prompt = $state("Generate a high-tension confrontation scene between Kaede and the antagonist in an abandoned server room.");
+
+  onMount(async () => {
+    await loadStoryboard();
+  });
+
+  async function saveStoryboard() {
+    console.log("saveStoryboard called");
+    isSaving = true;
+    try {
+      const client = await getClient();
+      if (!client) return;
+      
+      // Method A: Direct gRPC
+      await client.saveStoryboard({
+        projectId: "251022",
+        scenes: scenes.map(s => ({
+          id: s.id,
+          visual: s.visual,
+          description: s.description,
+          audio: s.audio,
+          timing: s.timing,
+          fps: s.fps,
+          persons: s.persons,
+          places: s.places,
+          items: s.items,
+          emotions: s.emotions
+        }))
+      });
+
+      // Method B: MCP Tool (as requested "mcp 経由で")
+      const result = await client.callTool({
+        name: "save_storyboard",
+        argumentsJson: JSON.stringify({
+          project_id: "251022",
+          scenes_json: JSON.stringify(scenes)
+        })
+      });
+      console.log("MCP Save result:", result);
+
+      console.log("Storyboard saved successfully");
+    } catch (err) {
+      console.error("Failed to save storyboard:", err);
+    } finally {
+      isSaving = false;
+    }
+  }
+
+  async function loadStoryboard() {
+    try {
+      const client = await getClient();
+      if (!client) return;
+      const resp = await client.getStoryboard({ projectId: "251022" });
+      if (resp && resp.scenes && resp.scenes.length > 0) {
+        scenes = resp.scenes.map((s: any) => ({
+          ...s,
+          isGenerating: false
+        }));
+      }
+    } catch (err) {
+      console.error("Failed to load storyboard:", err);
+    }
+  }
 
   async function generateWithAI() {
     if (isGenerating) return;
@@ -84,7 +148,7 @@
             items: [],
             emotions: []
           };
-          scenes.push(currentScene as Scene);
+          scenes = [...scenes, currentScene as Scene];
         }
 
         if (currentScene && buffer.includes("[END_SCENE]")) {
@@ -118,7 +182,7 @@
 
   function addScene() {
     const nextId = scenes.length > 0 ? Math.max(...scenes.map(s => s.id)) : 0;
-    scenes.push({
+    const newScene: Scene = {
       id: nextId + 1,
       visual: "",
       description: "",
@@ -129,7 +193,9 @@
       places: [],
       items: [],
       emotions: []
-    });
+    };
+    scenes = [...scenes, newScene];
+    console.log("Scene added, total:", scenes.length);
   }
 
   function removeScene(id: number) {
@@ -158,6 +224,9 @@
       <input type="text" bind:value={prompt} placeholder="Enter story prompt..." />
       <button class="ai-gen-btn" onclick={generateWithAI} disabled={isGenerating}>
         {isGenerating ? "Generating..." : "Generate with AI"}
+      </button>
+      <button class="save-btn" onclick={saveStoryboard} disabled={isSaving}>
+        {isSaving ? "Saving..." : "Save to DB"}
       </button>
     </div>
   </div>
@@ -323,6 +392,19 @@
   }
 
   .ai-gen-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .save-btn {
+    background: #34c759;
+    color: white;
+    border: none;
+    padding: 0 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
   .storyboard-view {
     flex: 1;

@@ -21,6 +21,314 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type SaveStoryboardRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId     string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	Scenes        []*StoryboardScene     `protobuf:"bytes,2,rep,name=scenes,proto3" json:"scenes,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SaveStoryboardRequest) Reset() {
+	*x = SaveStoryboardRequest{}
+	mi := &file_editor_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SaveStoryboardRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SaveStoryboardRequest) ProtoMessage() {}
+
+func (x *SaveStoryboardRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_editor_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SaveStoryboardRequest.ProtoReflect.Descriptor instead.
+func (*SaveStoryboardRequest) Descriptor() ([]byte, []int) {
+	return file_editor_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *SaveStoryboardRequest) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
+func (x *SaveStoryboardRequest) GetScenes() []*StoryboardScene {
+	if x != nil {
+		return x.Scenes
+	}
+	return nil
+}
+
+type SaveStoryboardResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SaveStoryboardResponse) Reset() {
+	*x = SaveStoryboardResponse{}
+	mi := &file_editor_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SaveStoryboardResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SaveStoryboardResponse) ProtoMessage() {}
+
+func (x *SaveStoryboardResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_editor_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SaveStoryboardResponse.ProtoReflect.Descriptor instead.
+func (*SaveStoryboardResponse) Descriptor() ([]byte, []int) {
+	return file_editor_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *SaveStoryboardResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *SaveStoryboardResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type GetStoryboardRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId     string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetStoryboardRequest) Reset() {
+	*x = GetStoryboardRequest{}
+	mi := &file_editor_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetStoryboardRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetStoryboardRequest) ProtoMessage() {}
+
+func (x *GetStoryboardRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_editor_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetStoryboardRequest.ProtoReflect.Descriptor instead.
+func (*GetStoryboardRequest) Descriptor() ([]byte, []int) {
+	return file_editor_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetStoryboardRequest) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
+type GetStoryboardResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Scenes        []*StoryboardScene     `protobuf:"bytes,1,rep,name=scenes,proto3" json:"scenes,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetStoryboardResponse) Reset() {
+	*x = GetStoryboardResponse{}
+	mi := &file_editor_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetStoryboardResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetStoryboardResponse) ProtoMessage() {}
+
+func (x *GetStoryboardResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_editor_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetStoryboardResponse.ProtoReflect.Descriptor instead.
+func (*GetStoryboardResponse) Descriptor() ([]byte, []int) {
+	return file_editor_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetStoryboardResponse) GetScenes() []*StoryboardScene {
+	if x != nil {
+		return x.Scenes
+	}
+	return nil
+}
+
+type StoryboardScene struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Visual        string                 `protobuf:"bytes,2,opt,name=visual,proto3" json:"visual,omitempty"`
+	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	Audio         string                 `protobuf:"bytes,4,opt,name=audio,proto3" json:"audio,omitempty"`
+	Timing        string                 `protobuf:"bytes,5,opt,name=timing,proto3" json:"timing,omitempty"`
+	Fps           int32                  `protobuf:"varint,6,opt,name=fps,proto3" json:"fps,omitempty"`
+	Persons       []string               `protobuf:"bytes,7,rep,name=persons,proto3" json:"persons,omitempty"`
+	Places        []string               `protobuf:"bytes,8,rep,name=places,proto3" json:"places,omitempty"`
+	Items         []string               `protobuf:"bytes,9,rep,name=items,proto3" json:"items,omitempty"`
+	Emotions      []string               `protobuf:"bytes,10,rep,name=emotions,proto3" json:"emotions,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StoryboardScene) Reset() {
+	*x = StoryboardScene{}
+	mi := &file_editor_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StoryboardScene) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StoryboardScene) ProtoMessage() {}
+
+func (x *StoryboardScene) ProtoReflect() protoreflect.Message {
+	mi := &file_editor_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StoryboardScene.ProtoReflect.Descriptor instead.
+func (*StoryboardScene) Descriptor() ([]byte, []int) {
+	return file_editor_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *StoryboardScene) GetId() int32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *StoryboardScene) GetVisual() string {
+	if x != nil {
+		return x.Visual
+	}
+	return ""
+}
+
+func (x *StoryboardScene) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *StoryboardScene) GetAudio() string {
+	if x != nil {
+		return x.Audio
+	}
+	return ""
+}
+
+func (x *StoryboardScene) GetTiming() string {
+	if x != nil {
+		return x.Timing
+	}
+	return ""
+}
+
+func (x *StoryboardScene) GetFps() int32 {
+	if x != nil {
+		return x.Fps
+	}
+	return 0
+}
+
+func (x *StoryboardScene) GetPersons() []string {
+	if x != nil {
+		return x.Persons
+	}
+	return nil
+}
+
+func (x *StoryboardScene) GetPlaces() []string {
+	if x != nil {
+		return x.Places
+	}
+	return nil
+}
+
+func (x *StoryboardScene) GetItems() []string {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+func (x *StoryboardScene) GetEmotions() []string {
+	if x != nil {
+		return x.Emotions
+	}
+	return nil
+}
+
 type InteractRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
@@ -33,7 +341,7 @@ type InteractRequest struct {
 
 func (x *InteractRequest) Reset() {
 	*x = InteractRequest{}
-	mi := &file_editor_proto_msgTypes[0]
+	mi := &file_editor_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45,7 +353,7 @@ func (x *InteractRequest) String() string {
 func (*InteractRequest) ProtoMessage() {}
 
 func (x *InteractRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[0]
+	mi := &file_editor_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,7 +366,7 @@ func (x *InteractRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InteractRequest.ProtoReflect.Descriptor instead.
 func (*InteractRequest) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{0}
+	return file_editor_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *InteractRequest) GetSessionId() string {
@@ -101,7 +409,7 @@ type InteractResponse struct {
 
 func (x *InteractResponse) Reset() {
 	*x = InteractResponse{}
-	mi := &file_editor_proto_msgTypes[1]
+	mi := &file_editor_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -113,7 +421,7 @@ func (x *InteractResponse) String() string {
 func (*InteractResponse) ProtoMessage() {}
 
 func (x *InteractResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[1]
+	mi := &file_editor_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -126,7 +434,7 @@ func (x *InteractResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InteractResponse.ProtoReflect.Descriptor instead.
 func (*InteractResponse) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{1}
+	return file_editor_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *InteractResponse) GetNodeId() string {
@@ -167,7 +475,7 @@ type CallToolRequest struct {
 
 func (x *CallToolRequest) Reset() {
 	*x = CallToolRequest{}
-	mi := &file_editor_proto_msgTypes[2]
+	mi := &file_editor_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -179,7 +487,7 @@ func (x *CallToolRequest) String() string {
 func (*CallToolRequest) ProtoMessage() {}
 
 func (x *CallToolRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[2]
+	mi := &file_editor_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -192,7 +500,7 @@ func (x *CallToolRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CallToolRequest.ProtoReflect.Descriptor instead.
 func (*CallToolRequest) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{2}
+	return file_editor_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *CallToolRequest) GetName() string {
@@ -219,7 +527,7 @@ type CallToolResponse struct {
 
 func (x *CallToolResponse) Reset() {
 	*x = CallToolResponse{}
-	mi := &file_editor_proto_msgTypes[3]
+	mi := &file_editor_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -231,7 +539,7 @@ func (x *CallToolResponse) String() string {
 func (*CallToolResponse) ProtoMessage() {}
 
 func (x *CallToolResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[3]
+	mi := &file_editor_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -244,7 +552,7 @@ func (x *CallToolResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CallToolResponse.ProtoReflect.Descriptor instead.
 func (*CallToolResponse) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{3}
+	return file_editor_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CallToolResponse) GetResultJson() string {
@@ -270,7 +578,7 @@ type GetProjectMetadataRequest struct {
 
 func (x *GetProjectMetadataRequest) Reset() {
 	*x = GetProjectMetadataRequest{}
-	mi := &file_editor_proto_msgTypes[4]
+	mi := &file_editor_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -282,7 +590,7 @@ func (x *GetProjectMetadataRequest) String() string {
 func (*GetProjectMetadataRequest) ProtoMessage() {}
 
 func (x *GetProjectMetadataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[4]
+	mi := &file_editor_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -295,7 +603,7 @@ func (x *GetProjectMetadataRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProjectMetadataRequest.ProtoReflect.Descriptor instead.
 func (*GetProjectMetadataRequest) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{4}
+	return file_editor_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetProjectMetadataRequest) GetProjectId() string {
@@ -316,7 +624,7 @@ type GetProjectMetadataResponse struct {
 
 func (x *GetProjectMetadataResponse) Reset() {
 	*x = GetProjectMetadataResponse{}
-	mi := &file_editor_proto_msgTypes[5]
+	mi := &file_editor_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -328,7 +636,7 @@ func (x *GetProjectMetadataResponse) String() string {
 func (*GetProjectMetadataResponse) ProtoMessage() {}
 
 func (x *GetProjectMetadataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[5]
+	mi := &file_editor_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -341,7 +649,7 @@ func (x *GetProjectMetadataResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProjectMetadataResponse.ProtoReflect.Descriptor instead.
 func (*GetProjectMetadataResponse) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{5}
+	return file_editor_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GetProjectMetadataResponse) GetTitle() string {
@@ -376,7 +684,7 @@ type Episode struct {
 
 func (x *Episode) Reset() {
 	*x = Episode{}
-	mi := &file_editor_proto_msgTypes[6]
+	mi := &file_editor_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -388,7 +696,7 @@ func (x *Episode) String() string {
 func (*Episode) ProtoMessage() {}
 
 func (x *Episode) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[6]
+	mi := &file_editor_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -401,7 +709,7 @@ func (x *Episode) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Episode.ProtoReflect.Descriptor instead.
 func (*Episode) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{6}
+	return file_editor_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *Episode) GetId() string {
@@ -434,7 +742,7 @@ type OpenFileRequest struct {
 
 func (x *OpenFileRequest) Reset() {
 	*x = OpenFileRequest{}
-	mi := &file_editor_proto_msgTypes[7]
+	mi := &file_editor_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -446,7 +754,7 @@ func (x *OpenFileRequest) String() string {
 func (*OpenFileRequest) ProtoMessage() {}
 
 func (x *OpenFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[7]
+	mi := &file_editor_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -459,7 +767,7 @@ func (x *OpenFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OpenFileRequest.ProtoReflect.Descriptor instead.
 func (*OpenFileRequest) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{7}
+	return file_editor_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *OpenFileRequest) GetPath() string {
@@ -478,7 +786,7 @@ type OpenFileResponse struct {
 
 func (x *OpenFileResponse) Reset() {
 	*x = OpenFileResponse{}
-	mi := &file_editor_proto_msgTypes[8]
+	mi := &file_editor_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -490,7 +798,7 @@ func (x *OpenFileResponse) String() string {
 func (*OpenFileResponse) ProtoMessage() {}
 
 func (x *OpenFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[8]
+	mi := &file_editor_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -503,7 +811,7 @@ func (x *OpenFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OpenFileResponse.ProtoReflect.Descriptor instead.
 func (*OpenFileResponse) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{8}
+	return file_editor_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *OpenFileResponse) GetContent() string {
@@ -523,7 +831,7 @@ type SaveFileRequest struct {
 
 func (x *SaveFileRequest) Reset() {
 	*x = SaveFileRequest{}
-	mi := &file_editor_proto_msgTypes[9]
+	mi := &file_editor_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -535,7 +843,7 @@ func (x *SaveFileRequest) String() string {
 func (*SaveFileRequest) ProtoMessage() {}
 
 func (x *SaveFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[9]
+	mi := &file_editor_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -548,7 +856,7 @@ func (x *SaveFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SaveFileRequest.ProtoReflect.Descriptor instead.
 func (*SaveFileRequest) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{9}
+	return file_editor_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *SaveFileRequest) GetPath() string {
@@ -574,7 +882,7 @@ type SaveFileResponse struct {
 
 func (x *SaveFileResponse) Reset() {
 	*x = SaveFileResponse{}
-	mi := &file_editor_proto_msgTypes[10]
+	mi := &file_editor_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -586,7 +894,7 @@ func (x *SaveFileResponse) String() string {
 func (*SaveFileResponse) ProtoMessage() {}
 
 func (x *SaveFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[10]
+	mi := &file_editor_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -599,7 +907,7 @@ func (x *SaveFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SaveFileResponse.ProtoReflect.Descriptor instead.
 func (*SaveFileResponse) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{10}
+	return file_editor_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *SaveFileResponse) GetSuccess() bool {
@@ -618,7 +926,7 @@ type AnalyzeTextRequest struct {
 
 func (x *AnalyzeTextRequest) Reset() {
 	*x = AnalyzeTextRequest{}
-	mi := &file_editor_proto_msgTypes[11]
+	mi := &file_editor_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -630,7 +938,7 @@ func (x *AnalyzeTextRequest) String() string {
 func (*AnalyzeTextRequest) ProtoMessage() {}
 
 func (x *AnalyzeTextRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[11]
+	mi := &file_editor_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -643,7 +951,7 @@ func (x *AnalyzeTextRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnalyzeTextRequest.ProtoReflect.Descriptor instead.
 func (*AnalyzeTextRequest) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{11}
+	return file_editor_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *AnalyzeTextRequest) GetText() string {
@@ -663,7 +971,7 @@ type AnalyzeTextResponse struct {
 
 func (x *AnalyzeTextResponse) Reset() {
 	*x = AnalyzeTextResponse{}
-	mi := &file_editor_proto_msgTypes[12]
+	mi := &file_editor_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -675,7 +983,7 @@ func (x *AnalyzeTextResponse) String() string {
 func (*AnalyzeTextResponse) ProtoMessage() {}
 
 func (x *AnalyzeTextResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[12]
+	mi := &file_editor_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -688,7 +996,7 @@ func (x *AnalyzeTextResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnalyzeTextResponse.ProtoReflect.Descriptor instead.
 func (*AnalyzeTextResponse) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{12}
+	return file_editor_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *AnalyzeTextResponse) GetSummary() string {
@@ -714,7 +1022,7 @@ type GetTopologyRequest struct {
 
 func (x *GetTopologyRequest) Reset() {
 	*x = GetTopologyRequest{}
-	mi := &file_editor_proto_msgTypes[13]
+	mi := &file_editor_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -726,7 +1034,7 @@ func (x *GetTopologyRequest) String() string {
 func (*GetTopologyRequest) ProtoMessage() {}
 
 func (x *GetTopologyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[13]
+	mi := &file_editor_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -739,7 +1047,7 @@ func (x *GetTopologyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTopologyRequest.ProtoReflect.Descriptor instead.
 func (*GetTopologyRequest) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{13}
+	return file_editor_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetTopologyRequest) GetProjectId() string {
@@ -759,7 +1067,7 @@ type GetTopologyResponse struct {
 
 func (x *GetTopologyResponse) Reset() {
 	*x = GetTopologyResponse{}
-	mi := &file_editor_proto_msgTypes[14]
+	mi := &file_editor_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -771,7 +1079,7 @@ func (x *GetTopologyResponse) String() string {
 func (*GetTopologyResponse) ProtoMessage() {}
 
 func (x *GetTopologyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[14]
+	mi := &file_editor_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -784,7 +1092,7 @@ func (x *GetTopologyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTopologyResponse.ProtoReflect.Descriptor instead.
 func (*GetTopologyResponse) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{14}
+	return file_editor_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GetTopologyResponse) GetNodes() []*Node {
@@ -812,7 +1120,7 @@ type Entity struct {
 
 func (x *Entity) Reset() {
 	*x = Entity{}
-	mi := &file_editor_proto_msgTypes[15]
+	mi := &file_editor_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -824,7 +1132,7 @@ func (x *Entity) String() string {
 func (*Entity) ProtoMessage() {}
 
 func (x *Entity) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[15]
+	mi := &file_editor_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -837,7 +1145,7 @@ func (x *Entity) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Entity.ProtoReflect.Descriptor instead.
 func (*Entity) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{15}
+	return file_editor_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *Entity) GetId() string {
@@ -877,7 +1185,7 @@ type Node struct {
 
 func (x *Node) Reset() {
 	*x = Node{}
-	mi := &file_editor_proto_msgTypes[16]
+	mi := &file_editor_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -889,7 +1197,7 @@ func (x *Node) String() string {
 func (*Node) ProtoMessage() {}
 
 func (x *Node) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[16]
+	mi := &file_editor_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -902,7 +1210,7 @@ func (x *Node) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Node.ProtoReflect.Descriptor instead.
 func (*Node) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{16}
+	return file_editor_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *Node) GetId() string {
@@ -977,7 +1285,7 @@ type Edge struct {
 
 func (x *Edge) Reset() {
 	*x = Edge{}
-	mi := &file_editor_proto_msgTypes[17]
+	mi := &file_editor_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -989,7 +1297,7 @@ func (x *Edge) String() string {
 func (*Edge) ProtoMessage() {}
 
 func (x *Edge) ProtoReflect() protoreflect.Message {
-	mi := &file_editor_proto_msgTypes[17]
+	mi := &file_editor_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1002,7 +1310,7 @@ func (x *Edge) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Edge.ProtoReflect.Descriptor instead.
 func (*Edge) Descriptor() ([]byte, []int) {
-	return file_editor_proto_rawDescGZIP(), []int{17}
+	return file_editor_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *Edge) GetFromId() string {
@@ -1065,7 +1373,31 @@ var File_editor_proto protoreflect.FileDescriptor
 
 const file_editor_proto_rawDesc = "" +
 	"\n" +
-	"\feditor.proto\x12\x1dgftd.ghosthacker.zeneditor.v1\"\x92\x02\n" +
+	"\feditor.proto\x12\x1dgftd.ghosthacker.zeneditor.v1\"~\n" +
+	"\x15SaveStoryboardRequest\x12\x1d\n" +
+	"\n" +
+	"project_id\x18\x01 \x01(\tR\tprojectId\x12F\n" +
+	"\x06scenes\x18\x02 \x03(\v2..gftd.ghosthacker.zeneditor.v1.StoryboardSceneR\x06scenes\"L\n" +
+	"\x16SaveStoryboardResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"5\n" +
+	"\x14GetStoryboardRequest\x12\x1d\n" +
+	"\n" +
+	"project_id\x18\x01 \x01(\tR\tprojectId\"_\n" +
+	"\x15GetStoryboardResponse\x12F\n" +
+	"\x06scenes\x18\x01 \x03(\v2..gftd.ghosthacker.zeneditor.v1.StoryboardSceneR\x06scenes\"\xff\x01\n" +
+	"\x0fStoryboardScene\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x16\n" +
+	"\x06visual\x18\x02 \x01(\tR\x06visual\x12 \n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x14\n" +
+	"\x05audio\x18\x04 \x01(\tR\x05audio\x12\x16\n" +
+	"\x06timing\x18\x05 \x01(\tR\x06timing\x12\x10\n" +
+	"\x03fps\x18\x06 \x01(\x05R\x03fps\x12\x18\n" +
+	"\apersons\x18\a \x03(\tR\apersons\x12\x16\n" +
+	"\x06places\x18\b \x03(\tR\x06places\x12\x14\n" +
+	"\x05items\x18\t \x03(\tR\x05items\x12\x1a\n" +
+	"\bemotions\x18\n" +
+	" \x03(\tR\bemotions\"\x92\x02\n" +
 	"\x0fInteractRequest\x12\x1d\n" +
 	"\n" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x19\n" +
@@ -1142,11 +1474,13 @@ const file_editor_proto_rawDesc = "" +
 	"\x05style\x18\x05 \x01(\tR\x05style\x12\x1a\n" +
 	"\bstrength\x18\x06 \x01(\x02R\bstrength\x12\x14\n" +
 	"\x05group\x18\a \x01(\tR\x05group\x12\x1a\n" +
-	"\bdistance\x18\b \x01(\x02R\bdistance2\xed\x03\n" +
+	"\bdistance\x18\b \x01(\x02R\bdistance2\xe8\x05\n" +
 	"\rEditorService\x12t\n" +
 	"\vGetTopology\x121.gftd.ghosthacker.zeneditor.v1.GetTopologyRequest\x1a2.gftd.ghosthacker.zeneditor.v1.GetTopologyResponse\x12\x89\x01\n" +
 	"\x12GetProjectMetadata\x128.gftd.ghosthacker.zeneditor.v1.GetProjectMetadataRequest\x1a9.gftd.ghosthacker.zeneditor.v1.GetProjectMetadataResponse\x12k\n" +
-	"\bCallTool\x12..gftd.ghosthacker.zeneditor.v1.CallToolRequest\x1a/.gftd.ghosthacker.zeneditor.v1.CallToolResponse\x12m\n" +
+	"\bCallTool\x12..gftd.ghosthacker.zeneditor.v1.CallToolRequest\x1a/.gftd.ghosthacker.zeneditor.v1.CallToolResponse\x12}\n" +
+	"\x0eSaveStoryboard\x124.gftd.ghosthacker.zeneditor.v1.SaveStoryboardRequest\x1a5.gftd.ghosthacker.zeneditor.v1.SaveStoryboardResponse\x12z\n" +
+	"\rGetStoryboard\x123.gftd.ghosthacker.zeneditor.v1.GetStoryboardRequest\x1a4.gftd.ghosthacker.zeneditor.v1.GetStoryboardResponse\x12m\n" +
 	"\bInteract\x12..gftd.ghosthacker.zeneditor.v1.InteractRequest\x1a/.gftd.ghosthacker.zeneditor.v1.InteractResponse0\x01BHZFgithub.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/proto;editorpbb\x06proto3"
 
 var (
@@ -1161,49 +1495,60 @@ func file_editor_proto_rawDescGZIP() []byte {
 	return file_editor_proto_rawDescData
 }
 
-var file_editor_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
+var file_editor_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_editor_proto_goTypes = []any{
-	(*InteractRequest)(nil),            // 0: gftd.ghosthacker.zeneditor.v1.InteractRequest
-	(*InteractResponse)(nil),           // 1: gftd.ghosthacker.zeneditor.v1.InteractResponse
-	(*CallToolRequest)(nil),            // 2: gftd.ghosthacker.zeneditor.v1.CallToolRequest
-	(*CallToolResponse)(nil),           // 3: gftd.ghosthacker.zeneditor.v1.CallToolResponse
-	(*GetProjectMetadataRequest)(nil),  // 4: gftd.ghosthacker.zeneditor.v1.GetProjectMetadataRequest
-	(*GetProjectMetadataResponse)(nil), // 5: gftd.ghosthacker.zeneditor.v1.GetProjectMetadataResponse
-	(*Episode)(nil),                    // 6: gftd.ghosthacker.zeneditor.v1.Episode
-	(*OpenFileRequest)(nil),            // 7: gftd.ghosthacker.zeneditor.v1.OpenFileRequest
-	(*OpenFileResponse)(nil),           // 8: gftd.ghosthacker.zeneditor.v1.OpenFileResponse
-	(*SaveFileRequest)(nil),            // 9: gftd.ghosthacker.zeneditor.v1.SaveFileRequest
-	(*SaveFileResponse)(nil),           // 10: gftd.ghosthacker.zeneditor.v1.SaveFileResponse
-	(*AnalyzeTextRequest)(nil),         // 11: gftd.ghosthacker.zeneditor.v1.AnalyzeTextRequest
-	(*AnalyzeTextResponse)(nil),        // 12: gftd.ghosthacker.zeneditor.v1.AnalyzeTextResponse
-	(*GetTopologyRequest)(nil),         // 13: gftd.ghosthacker.zeneditor.v1.GetTopologyRequest
-	(*GetTopologyResponse)(nil),        // 14: gftd.ghosthacker.zeneditor.v1.GetTopologyResponse
-	(*Entity)(nil),                     // 15: gftd.ghosthacker.zeneditor.v1.Entity
-	(*Node)(nil),                       // 16: gftd.ghosthacker.zeneditor.v1.Node
-	(*Edge)(nil),                       // 17: gftd.ghosthacker.zeneditor.v1.Edge
-	nil,                                // 18: gftd.ghosthacker.zeneditor.v1.InteractRequest.EmotionBiasEntry
-	nil,                                // 19: gftd.ghosthacker.zeneditor.v1.InteractResponse.EmotionVectorEntry
+	(*SaveStoryboardRequest)(nil),      // 0: gftd.ghosthacker.zeneditor.v1.SaveStoryboardRequest
+	(*SaveStoryboardResponse)(nil),     // 1: gftd.ghosthacker.zeneditor.v1.SaveStoryboardResponse
+	(*GetStoryboardRequest)(nil),       // 2: gftd.ghosthacker.zeneditor.v1.GetStoryboardRequest
+	(*GetStoryboardResponse)(nil),      // 3: gftd.ghosthacker.zeneditor.v1.GetStoryboardResponse
+	(*StoryboardScene)(nil),            // 4: gftd.ghosthacker.zeneditor.v1.StoryboardScene
+	(*InteractRequest)(nil),            // 5: gftd.ghosthacker.zeneditor.v1.InteractRequest
+	(*InteractResponse)(nil),           // 6: gftd.ghosthacker.zeneditor.v1.InteractResponse
+	(*CallToolRequest)(nil),            // 7: gftd.ghosthacker.zeneditor.v1.CallToolRequest
+	(*CallToolResponse)(nil),           // 8: gftd.ghosthacker.zeneditor.v1.CallToolResponse
+	(*GetProjectMetadataRequest)(nil),  // 9: gftd.ghosthacker.zeneditor.v1.GetProjectMetadataRequest
+	(*GetProjectMetadataResponse)(nil), // 10: gftd.ghosthacker.zeneditor.v1.GetProjectMetadataResponse
+	(*Episode)(nil),                    // 11: gftd.ghosthacker.zeneditor.v1.Episode
+	(*OpenFileRequest)(nil),            // 12: gftd.ghosthacker.zeneditor.v1.OpenFileRequest
+	(*OpenFileResponse)(nil),           // 13: gftd.ghosthacker.zeneditor.v1.OpenFileResponse
+	(*SaveFileRequest)(nil),            // 14: gftd.ghosthacker.zeneditor.v1.SaveFileRequest
+	(*SaveFileResponse)(nil),           // 15: gftd.ghosthacker.zeneditor.v1.SaveFileResponse
+	(*AnalyzeTextRequest)(nil),         // 16: gftd.ghosthacker.zeneditor.v1.AnalyzeTextRequest
+	(*AnalyzeTextResponse)(nil),        // 17: gftd.ghosthacker.zeneditor.v1.AnalyzeTextResponse
+	(*GetTopologyRequest)(nil),         // 18: gftd.ghosthacker.zeneditor.v1.GetTopologyRequest
+	(*GetTopologyResponse)(nil),        // 19: gftd.ghosthacker.zeneditor.v1.GetTopologyResponse
+	(*Entity)(nil),                     // 20: gftd.ghosthacker.zeneditor.v1.Entity
+	(*Node)(nil),                       // 21: gftd.ghosthacker.zeneditor.v1.Node
+	(*Edge)(nil),                       // 22: gftd.ghosthacker.zeneditor.v1.Edge
+	nil,                                // 23: gftd.ghosthacker.zeneditor.v1.InteractRequest.EmotionBiasEntry
+	nil,                                // 24: gftd.ghosthacker.zeneditor.v1.InteractResponse.EmotionVectorEntry
 }
 var file_editor_proto_depIdxs = []int32{
-	18, // 0: gftd.ghosthacker.zeneditor.v1.InteractRequest.emotion_bias:type_name -> gftd.ghosthacker.zeneditor.v1.InteractRequest.EmotionBiasEntry
-	19, // 1: gftd.ghosthacker.zeneditor.v1.InteractResponse.emotion_vector:type_name -> gftd.ghosthacker.zeneditor.v1.InteractResponse.EmotionVectorEntry
-	6,  // 2: gftd.ghosthacker.zeneditor.v1.GetProjectMetadataResponse.episodes:type_name -> gftd.ghosthacker.zeneditor.v1.Episode
-	15, // 3: gftd.ghosthacker.zeneditor.v1.AnalyzeTextResponse.entities:type_name -> gftd.ghosthacker.zeneditor.v1.Entity
-	16, // 4: gftd.ghosthacker.zeneditor.v1.GetTopologyResponse.nodes:type_name -> gftd.ghosthacker.zeneditor.v1.Node
-	17, // 5: gftd.ghosthacker.zeneditor.v1.GetTopologyResponse.edges:type_name -> gftd.ghosthacker.zeneditor.v1.Edge
-	13, // 6: gftd.ghosthacker.zeneditor.v1.EditorService.GetTopology:input_type -> gftd.ghosthacker.zeneditor.v1.GetTopologyRequest
-	4,  // 7: gftd.ghosthacker.zeneditor.v1.EditorService.GetProjectMetadata:input_type -> gftd.ghosthacker.zeneditor.v1.GetProjectMetadataRequest
-	2,  // 8: gftd.ghosthacker.zeneditor.v1.EditorService.CallTool:input_type -> gftd.ghosthacker.zeneditor.v1.CallToolRequest
-	0,  // 9: gftd.ghosthacker.zeneditor.v1.EditorService.Interact:input_type -> gftd.ghosthacker.zeneditor.v1.InteractRequest
-	14, // 10: gftd.ghosthacker.zeneditor.v1.EditorService.GetTopology:output_type -> gftd.ghosthacker.zeneditor.v1.GetTopologyResponse
-	5,  // 11: gftd.ghosthacker.zeneditor.v1.EditorService.GetProjectMetadata:output_type -> gftd.ghosthacker.zeneditor.v1.GetProjectMetadataResponse
-	3,  // 12: gftd.ghosthacker.zeneditor.v1.EditorService.CallTool:output_type -> gftd.ghosthacker.zeneditor.v1.CallToolResponse
-	1,  // 13: gftd.ghosthacker.zeneditor.v1.EditorService.Interact:output_type -> gftd.ghosthacker.zeneditor.v1.InteractResponse
-	10, // [10:14] is the sub-list for method output_type
-	6,  // [6:10] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	4,  // 0: gftd.ghosthacker.zeneditor.v1.SaveStoryboardRequest.scenes:type_name -> gftd.ghosthacker.zeneditor.v1.StoryboardScene
+	4,  // 1: gftd.ghosthacker.zeneditor.v1.GetStoryboardResponse.scenes:type_name -> gftd.ghosthacker.zeneditor.v1.StoryboardScene
+	23, // 2: gftd.ghosthacker.zeneditor.v1.InteractRequest.emotion_bias:type_name -> gftd.ghosthacker.zeneditor.v1.InteractRequest.EmotionBiasEntry
+	24, // 3: gftd.ghosthacker.zeneditor.v1.InteractResponse.emotion_vector:type_name -> gftd.ghosthacker.zeneditor.v1.InteractResponse.EmotionVectorEntry
+	11, // 4: gftd.ghosthacker.zeneditor.v1.GetProjectMetadataResponse.episodes:type_name -> gftd.ghosthacker.zeneditor.v1.Episode
+	20, // 5: gftd.ghosthacker.zeneditor.v1.AnalyzeTextResponse.entities:type_name -> gftd.ghosthacker.zeneditor.v1.Entity
+	21, // 6: gftd.ghosthacker.zeneditor.v1.GetTopologyResponse.nodes:type_name -> gftd.ghosthacker.zeneditor.v1.Node
+	22, // 7: gftd.ghosthacker.zeneditor.v1.GetTopologyResponse.edges:type_name -> gftd.ghosthacker.zeneditor.v1.Edge
+	18, // 8: gftd.ghosthacker.zeneditor.v1.EditorService.GetTopology:input_type -> gftd.ghosthacker.zeneditor.v1.GetTopologyRequest
+	9,  // 9: gftd.ghosthacker.zeneditor.v1.EditorService.GetProjectMetadata:input_type -> gftd.ghosthacker.zeneditor.v1.GetProjectMetadataRequest
+	7,  // 10: gftd.ghosthacker.zeneditor.v1.EditorService.CallTool:input_type -> gftd.ghosthacker.zeneditor.v1.CallToolRequest
+	0,  // 11: gftd.ghosthacker.zeneditor.v1.EditorService.SaveStoryboard:input_type -> gftd.ghosthacker.zeneditor.v1.SaveStoryboardRequest
+	2,  // 12: gftd.ghosthacker.zeneditor.v1.EditorService.GetStoryboard:input_type -> gftd.ghosthacker.zeneditor.v1.GetStoryboardRequest
+	5,  // 13: gftd.ghosthacker.zeneditor.v1.EditorService.Interact:input_type -> gftd.ghosthacker.zeneditor.v1.InteractRequest
+	19, // 14: gftd.ghosthacker.zeneditor.v1.EditorService.GetTopology:output_type -> gftd.ghosthacker.zeneditor.v1.GetTopologyResponse
+	10, // 15: gftd.ghosthacker.zeneditor.v1.EditorService.GetProjectMetadata:output_type -> gftd.ghosthacker.zeneditor.v1.GetProjectMetadataResponse
+	8,  // 16: gftd.ghosthacker.zeneditor.v1.EditorService.CallTool:output_type -> gftd.ghosthacker.zeneditor.v1.CallToolResponse
+	1,  // 17: gftd.ghosthacker.zeneditor.v1.EditorService.SaveStoryboard:output_type -> gftd.ghosthacker.zeneditor.v1.SaveStoryboardResponse
+	3,  // 18: gftd.ghosthacker.zeneditor.v1.EditorService.GetStoryboard:output_type -> gftd.ghosthacker.zeneditor.v1.GetStoryboardResponse
+	6,  // 19: gftd.ghosthacker.zeneditor.v1.EditorService.Interact:output_type -> gftd.ghosthacker.zeneditor.v1.InteractResponse
+	14, // [14:20] is the sub-list for method output_type
+	8,  // [8:14] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_editor_proto_init() }
@@ -1217,7 +1562,7 @@ func file_editor_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_editor_proto_rawDesc), len(file_editor_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   20,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -9,8 +9,43 @@ service EditorService {
   rpc GetProjectMetadata(GetProjectMetadataRequest) returns (GetProjectMetadataResponse);
   rpc CallTool(CallToolRequest) returns (CallToolResponse);
   
+  // Storyboard persistence
+  rpc SaveStoryboard(SaveStoryboardRequest) returns (SaveStoryboardResponse);
+  rpc GetStoryboard(GetStoryboardRequest) returns (GetStoryboardResponse);
+
   // Real-time Chat/Interaction Stream (A2A support)
   rpc Interact(InteractRequest) returns (stream InteractResponse);
+}
+
+message SaveStoryboardRequest {
+  string project_id = 1;
+  repeated StoryboardScene scenes = 2;
+}
+
+message SaveStoryboardResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message GetStoryboardRequest {
+  string project_id = 1;
+}
+
+message GetStoryboardResponse {
+  repeated StoryboardScene scenes = 1;
+}
+
+message StoryboardScene {
+  int32 id = 1;
+  string visual = 2;
+  string description = 3;
+  string audio = 4;
+  string timing = 5;
+  int32 fps = 6;
+  repeated string persons = 7;
+  repeated string places = 8;
+  repeated string items = 9;
+  repeated string emotions = 10;
 }
 
 message InteractRequest {

@@ -41,6 +41,12 @@ const (
 	EditorServiceGetProjectMetadataProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/GetProjectMetadata"
 	// EditorServiceCallToolProcedure is the fully-qualified name of the EditorService's CallTool RPC.
 	EditorServiceCallToolProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/CallTool"
+	// EditorServiceSaveStoryboardProcedure is the fully-qualified name of the EditorService's
+	// SaveStoryboard RPC.
+	EditorServiceSaveStoryboardProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/SaveStoryboard"
+	// EditorServiceGetStoryboardProcedure is the fully-qualified name of the EditorService's
+	// GetStoryboard RPC.
+	EditorServiceGetStoryboardProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/GetStoryboard"
 	// EditorServiceInteractProcedure is the fully-qualified name of the EditorService's Interact RPC.
 	EditorServiceInteractProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/Interact"
 )
@@ -50,6 +56,9 @@ type EditorServiceClient interface {
 	GetTopology(context.Context, *connect.Request[proto.GetTopologyRequest]) (*connect.Response[proto.GetTopologyResponse], error)
 	GetProjectMetadata(context.Context, *connect.Request[proto.GetProjectMetadataRequest]) (*connect.Response[proto.GetProjectMetadataResponse], error)
 	CallTool(context.Context, *connect.Request[proto.CallToolRequest]) (*connect.Response[proto.CallToolResponse], error)
+	// Storyboard persistence
+	SaveStoryboard(context.Context, *connect.Request[proto.SaveStoryboardRequest]) (*connect.Response[proto.SaveStoryboardResponse], error)
+	GetStoryboard(context.Context, *connect.Request[proto.GetStoryboardRequest]) (*connect.Response[proto.GetStoryboardResponse], error)
 	// Real-time Chat/Interaction Stream (A2A support)
 	Interact(context.Context, *connect.Request[proto.InteractRequest]) (*connect.ServerStreamForClient[proto.InteractResponse], error)
 }
@@ -83,6 +92,18 @@ func NewEditorServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			connect.WithSchema(editorServiceMethods.ByName("CallTool")),
 			connect.WithClientOptions(opts...),
 		),
+		saveStoryboard: connect.NewClient[proto.SaveStoryboardRequest, proto.SaveStoryboardResponse](
+			httpClient,
+			baseURL+EditorServiceSaveStoryboardProcedure,
+			connect.WithSchema(editorServiceMethods.ByName("SaveStoryboard")),
+			connect.WithClientOptions(opts...),
+		),
+		getStoryboard: connect.NewClient[proto.GetStoryboardRequest, proto.GetStoryboardResponse](
+			httpClient,
+			baseURL+EditorServiceGetStoryboardProcedure,
+			connect.WithSchema(editorServiceMethods.ByName("GetStoryboard")),
+			connect.WithClientOptions(opts...),
+		),
 		interact: connect.NewClient[proto.InteractRequest, proto.InteractResponse](
 			httpClient,
 			baseURL+EditorServiceInteractProcedure,
@@ -97,6 +118,8 @@ type editorServiceClient struct {
 	getTopology        *connect.Client[proto.GetTopologyRequest, proto.GetTopologyResponse]
 	getProjectMetadata *connect.Client[proto.GetProjectMetadataRequest, proto.GetProjectMetadataResponse]
 	callTool           *connect.Client[proto.CallToolRequest, proto.CallToolResponse]
+	saveStoryboard     *connect.Client[proto.SaveStoryboardRequest, proto.SaveStoryboardResponse]
+	getStoryboard      *connect.Client[proto.GetStoryboardRequest, proto.GetStoryboardResponse]
 	interact           *connect.Client[proto.InteractRequest, proto.InteractResponse]
 }
 
@@ -115,6 +138,16 @@ func (c *editorServiceClient) CallTool(ctx context.Context, req *connect.Request
 	return c.callTool.CallUnary(ctx, req)
 }
 
+// SaveStoryboard calls gftd.ghosthacker.zeneditor.v1.EditorService.SaveStoryboard.
+func (c *editorServiceClient) SaveStoryboard(ctx context.Context, req *connect.Request[proto.SaveStoryboardRequest]) (*connect.Response[proto.SaveStoryboardResponse], error) {
+	return c.saveStoryboard.CallUnary(ctx, req)
+}
+
+// GetStoryboard calls gftd.ghosthacker.zeneditor.v1.EditorService.GetStoryboard.
+func (c *editorServiceClient) GetStoryboard(ctx context.Context, req *connect.Request[proto.GetStoryboardRequest]) (*connect.Response[proto.GetStoryboardResponse], error) {
+	return c.getStoryboard.CallUnary(ctx, req)
+}
+
 // Interact calls gftd.ghosthacker.zeneditor.v1.EditorService.Interact.
 func (c *editorServiceClient) Interact(ctx context.Context, req *connect.Request[proto.InteractRequest]) (*connect.ServerStreamForClient[proto.InteractResponse], error) {
 	return c.interact.CallServerStream(ctx, req)
@@ -126,6 +159,9 @@ type EditorServiceHandler interface {
 	GetTopology(context.Context, *connect.Request[proto.GetTopologyRequest]) (*connect.Response[proto.GetTopologyResponse], error)
 	GetProjectMetadata(context.Context, *connect.Request[proto.GetProjectMetadataRequest]) (*connect.Response[proto.GetProjectMetadataResponse], error)
 	CallTool(context.Context, *connect.Request[proto.CallToolRequest]) (*connect.Response[proto.CallToolResponse], error)
+	// Storyboard persistence
+	SaveStoryboard(context.Context, *connect.Request[proto.SaveStoryboardRequest]) (*connect.Response[proto.SaveStoryboardResponse], error)
+	GetStoryboard(context.Context, *connect.Request[proto.GetStoryboardRequest]) (*connect.Response[proto.GetStoryboardResponse], error)
 	// Real-time Chat/Interaction Stream (A2A support)
 	Interact(context.Context, *connect.Request[proto.InteractRequest], *connect.ServerStream[proto.InteractResponse]) error
 }
@@ -155,6 +191,18 @@ func NewEditorServiceHandler(svc EditorServiceHandler, opts ...connect.HandlerOp
 		connect.WithSchema(editorServiceMethods.ByName("CallTool")),
 		connect.WithHandlerOptions(opts...),
 	)
+	editorServiceSaveStoryboardHandler := connect.NewUnaryHandler(
+		EditorServiceSaveStoryboardProcedure,
+		svc.SaveStoryboard,
+		connect.WithSchema(editorServiceMethods.ByName("SaveStoryboard")),
+		connect.WithHandlerOptions(opts...),
+	)
+	editorServiceGetStoryboardHandler := connect.NewUnaryHandler(
+		EditorServiceGetStoryboardProcedure,
+		svc.GetStoryboard,
+		connect.WithSchema(editorServiceMethods.ByName("GetStoryboard")),
+		connect.WithHandlerOptions(opts...),
+	)
 	editorServiceInteractHandler := connect.NewServerStreamHandler(
 		EditorServiceInteractProcedure,
 		svc.Interact,
@@ -169,6 +217,10 @@ func NewEditorServiceHandler(svc EditorServiceHandler, opts ...connect.HandlerOp
 			editorServiceGetProjectMetadataHandler.ServeHTTP(w, r)
 		case EditorServiceCallToolProcedure:
 			editorServiceCallToolHandler.ServeHTTP(w, r)
+		case EditorServiceSaveStoryboardProcedure:
+			editorServiceSaveStoryboardHandler.ServeHTTP(w, r)
+		case EditorServiceGetStoryboardProcedure:
+			editorServiceGetStoryboardHandler.ServeHTTP(w, r)
 		case EditorServiceInteractProcedure:
 			editorServiceInteractHandler.ServeHTTP(w, r)
 		default:
@@ -190,6 +242,14 @@ func (UnimplementedEditorServiceHandler) GetProjectMetadata(context.Context, *co
 
 func (UnimplementedEditorServiceHandler) CallTool(context.Context, *connect.Request[proto.CallToolRequest]) (*connect.Response[proto.CallToolResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.zeneditor.v1.EditorService.CallTool is not implemented"))
+}
+
+func (UnimplementedEditorServiceHandler) SaveStoryboard(context.Context, *connect.Request[proto.SaveStoryboardRequest]) (*connect.Response[proto.SaveStoryboardResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.zeneditor.v1.EditorService.SaveStoryboard is not implemented"))
+}
+
+func (UnimplementedEditorServiceHandler) GetStoryboard(context.Context, *connect.Request[proto.GetStoryboardRequest]) (*connect.Response[proto.GetStoryboardResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.zeneditor.v1.EditorService.GetStoryboard is not implemented"))
 }
 
 func (UnimplementedEditorServiceHandler) Interact(context.Context, *connect.Request[proto.InteractRequest], *connect.ServerStream[proto.InteractResponse]) error {

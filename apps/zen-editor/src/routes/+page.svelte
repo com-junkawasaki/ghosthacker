@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import Editor from '../components/Editor.svelte';
   import Topology from '../components/TopologyWebGPU.svelte';
   import Storyboard from '../components/Storyboard.svelte';
@@ -16,16 +15,19 @@
   let isGraphCollapsed = $state(false);
   let isStoryboardCollapsed = $state(false);
 
-  onMount(async () => {
-    try {
-      const client = await getClient();
-      if (client) {
-        const resp = await client.getProjectMetadata({ projectId: "251022" });
-        projectTitle = resp?.title || "GhostHacker Zen Editor";
+  $effect(() => {
+    async function loadMetadata() {
+      try {
+        const client = await getClient();
+        if (client) {
+          const resp = await client.getProjectMetadata({ projectId: "251022" });
+          projectTitle = resp?.title || "GhostHacker Zen Editor";
+        }
+      } catch (err) {
+        console.error("Failed to fetch metadata:", err);
       }
-    } catch (err) {
-      console.error("Failed to fetch metadata:", err);
     }
+    loadMetadata();
   });
 
   function handleNodeSelect(node: any) {
