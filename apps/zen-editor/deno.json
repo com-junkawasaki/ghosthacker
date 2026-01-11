@@ -1,11 +1,11 @@
 {
   "tasks": {
     "dev": "deno task dev:vite",
-    "dev:vite": "deno run -A npm:vite@latest dev",
+    "dev:vite": "deno run -A npm:vite dev",
     "dev:frontend": "deno task dev:vite",
     "dev:backend": "cd backend && go run cmd/server/main.go",
     "build:sidecar": "cd backend && go build -o ../src-tauri/binaries/backend-server-aarch64-apple-darwin cmd/server/main.go",
-    "build": "deno task build:sidecar && deno task check && deno run -A npm:vite@latest build",
+    "build": "deno task build:sidecar && deno task check && deno run -A npm:vite build",
     "preview": "deno run -A npm:vite@latest preview",
     "check": "deno run -A npm:@sveltejs/kit sync && deno run -A npm:svelte-check --threshold error",
     "check:watch": "deno run -A npm:@sveltejs/kit@latest sync && deno run -A npm:svelte-check@latest --watch",
@@ -21,14 +21,22 @@
     "types": ["@webgpu/types"]
   },
   "imports": {
-    "vite": "npm:vite@^6.4.1",
-    "@sveltejs/kit": "npm:@sveltejs/kit@^2.49.3",
-    "@sveltejs/vite-plugin-svelte": "npm:@sveltejs/vite-plugin-svelte@^4.0.4",
-    "@sveltejs/adapter-static": "npm:@sveltejs/adapter-static@^3.0.10",
+    "vite": "npm:vite@^7.0.0",
+    "svelte": "npm:svelte@^5.0.0",
+    "@sveltejs/kit": "npm:@sveltejs/kit@^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "npm:@sveltejs/vite-plugin-svelte@^4.0.0",
+    "@sveltejs/adapter-static": "npm:@sveltejs/adapter-static@^3.0.0",
     "@std/assert": "jsr:@std/assert@^1.0.0",
     "@connectrpc/connect-web": "npm:@connectrpc/connect-web@^2.1.1",
     "@connectrpc/connect": "npm:@connectrpc/connect@^2.1.1",
-    "@bufbuild/protobuf": "npm:@bufbuild/protobuf@^1.10.0"
+    "@bufbuild/protobuf": "npm:@bufbuild/protobuf@^1.10.0",
+    "@cosmos.gl/graph": "npm:@cosmos.gl/graph@latest",
+    "prosemirror-state": "npm:prosemirror-state@^1.4.3",
+    "prosemirror-view": "npm:prosemirror-view@^1.33.1",
+    "prosemirror-schema-basic": "npm:prosemirror-schema-basic@^1.2.2",
+    "prosemirror-commands": "npm:prosemirror-commands@^1.5.2",
+    "prosemirror-keymap": "npm:prosemirror-keymap@^1.2.2",
+    "prosemirror-history": "npm:prosemirror-history@^1.4.0"
   }
 }
 
