@@ -3,7 +3,7 @@
 ## 1. 依存関係の整合性 (Core Dependencies)
 - **@bufbuild/protobuf**: 必ず `^1.10.0` を維持すること。
   - `v2.x` への更新は生成コード (`proto3`) との互換性を破壊するため厳禁。
-- **ConnectRPC**: 
+- **ConnectRPC**:
   - フロントエンド: `@connectrpc/connect` v2.x (`createClient`) を使用。
   - バックエンド: `connectrpc.com/connect` v1.17+ を使用。
 - **Svelte**: 5.x 構文 (`$state`, `$derived`, `$props`) を標準とする。
@@ -17,6 +17,9 @@
   - `src/lib/api.ts` の `getClient()` パターンによる遅延初期化を使用し、モジュールロード時のクラッシュを防止する。
 
 ## 3. ビルドパイプライン & 検証
+- **tauri.conf.json**:
+  - 必ず `$schema`: "https://schema.tauri.app/config/2" を含めること。
+  - サイドカー設定は `bundle.externalBinaries` に記述し、不明なプロパティエラーが出る場合はスキーマの整合性を優先する。
 - **ビルド順序**: `deno task build` は以下のステップをアトミックに実行する。
   1. `build:sidecar`: Go バックエンドのコンパイル。
   2. `check`: `svelte-check` による型検証（エラー時は即停止）。
@@ -26,7 +29,7 @@
   - `onwarn` 設定により、`MISSING_EXPORT` を Error に昇格させて停止させる。
 
 ## 4. 開発ワークフロー
-環境不整合や 500 エラーが発生した場合は、個別の修正を試みる前に以下の「全同期」を実行して環境を浄化すること。
+環境不整合や 500 エラーが発生した場合は、個別修正を試みる前に以下の「全同期」を実行して環境を浄化すること。
 ```bash
 deno task sync:force
 ```

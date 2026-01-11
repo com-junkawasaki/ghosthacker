@@ -1,7 +1,6 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use tauri::Manager;
 use tauri_plugin_shell::ShellExt;
 
 fn main() {
@@ -10,12 +9,13 @@ fn main() {
             // Tauri 2.x Standard Sidecar Implementation
             // This works for both dev (if binary exists) and production
             let sidecar_command = app.shell().sidecar("backend-server").map_err(|e| {
-                eprintln!("Failed to create sidecar command: {}", e);
+                eprintln!("Error creating sidecar command 'backend-server': {}", e);
                 e
             })?;
 
+            println!("Attempting to spawn sidecar...");
             let (mut _rx, _child) = sidecar_command.spawn().map_err(|e| {
-                eprintln!("Failed to spawn sidecar: {}", e);
+                eprintln!("Failed to spawn sidecar 'backend-server'. Ensure binary exists at src-tauri/binaries/backend-server-[target-triple]: {}", e);
                 e
             })?;
 
@@ -35,5 +35,3 @@ fn main() {
             }
         });
 }
-}
-

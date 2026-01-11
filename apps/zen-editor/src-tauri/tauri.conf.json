@@ -1,4 +1,5 @@
 {
+  "$schema": "https://schema.tauri.app/config/2",
   "productName": "Ghost Hacker Zen Editor",
   "version": "0.0.1",
   "identifier": "ai.gftd.ghosthacker.zeneditor",
@@ -25,10 +26,8 @@
   "bundle": {
     "active": true,
     "targets": "all",
-    "resources": [],
-    "externalBinaries": [
-      "binaries/backend-server"
+    "resources": [
+      "binaries/backend-server-*"
     ]
   }
 }
-
