@@ -1,13 +1,54 @@
-console.log("api.ts starting");
-import { createConnectTransport } from "@connectrpc/connect-web";
-import { createPromiseClient } from "@connectrpc/connect";
 import { EditorService } from "./gen/editor_connect.js";
 
-console.log("creating transport...");
-const transport = createConnectTransport({
-  baseUrl: "http://127.0.0.1:8080",
-});
+// 型定義
+type EditorClient = {
+  getTopology: (req: { projectId: string }) => Promise<any>;
+  getProjectMetadata: (req: { projectId: string }) => Promise<any>;
+  callTool: (req: any) => Promise<any>;
+  interact: (req: any) => AsyncIterable<any>;
+};
 
-console.log("creating client...");
-export const client = createPromiseClient(EditorService, transport);
-console.log("api.ts finished");
+let _client: EditorClient | null = null;
+let _initPromise: Promise<void> | null = null;
+
+async function initClient(): Promise<void> {
+  if (_client) return;
+  
+  try {
+    console.log("[api] Starting client initialization...");
+    const { createConnectTransport } = await import("@connectrpc/connect-web");
+    const { createClient } = await import("@connectrpc/connect");
+    
+    const transport = createConnectTransport({
+      baseUrl: "http://127.0.0.1:8080",
+    });
+    
+    _client = createClient(EditorService as any, transport) as EditorClient;
+    console.log("[api] Client initialized successfully");
+  } catch (err) {
+    console.error("[api] Failed to initialize client:", err);
+  }
+}
+
+// 即時初期化開始
+_initPromise = initClient();
+
+/**
+ * クライアントを取得（初期化完了を待つ）
+ */
+export async function getClient(): Promise<EditorClient | null> {
+  if (!_client) {
+    await _initPromise;
+  }
+  return _client;
+}
+
+/**
+ * 同期的アクセス（初期化前は null）
+ */
+export function getClientSync(): EditorClient | null {
+  return _client;
+}
+
+// 互換性のための移行用（非推奨）
+export const client = _client;

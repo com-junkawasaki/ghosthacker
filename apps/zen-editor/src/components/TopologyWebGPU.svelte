@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { client } from '../lib/api';
+  import { getClient } from '../lib/api';
   import { onMount, onDestroy } from 'svelte';
   import { Graph } from '@cosmos.gl/graph';
 
@@ -40,6 +40,7 @@
   async function fetchData() {
     isLoading = true;
     try {
+      const client = await getClient();
       if (!client) return;
       console.log("Fetching topology data...");
       const resp = await client.getTopology({ projectId: "251022" });

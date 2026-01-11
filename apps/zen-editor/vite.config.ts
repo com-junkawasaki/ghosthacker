@@ -1,12 +1,22 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 
+// #region agent log
+fetch('http://127.0.0.1:7249/ingest/e16c245d-b5ae-4213-a2e9-a99d3b60cda9',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'vite.config.ts:4',message:'vite.config.ts loaded',data:{deno:typeof Deno!=='undefined',node:typeof process!=='undefined'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+// #endregion
+
 export default defineConfig({
 	plugins: [sveltekit()],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}'],
 		environment: 'jsdom',
-		globals: true
+		globals: true,
+		pool: 'forks',
+		poolOptions: {
+			forks: {
+				execArgv: [] // Deno 環境では Node.js の execArgv を空にする
+			}
+		}
 	},
 	// Tauri expects a fixed port when developing
 	server: {

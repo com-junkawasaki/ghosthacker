@@ -1,9 +1,25 @@
 <script lang="ts">
+  // #region agent log
+  fetch('http://127.0.0.1:7249/ingest/e16c245d-b5ae-4213-a2e9-a99d3b60cda9',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'+page.svelte:2',message:'+page.svelte script starting',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'H3'})}).catch(()=>{});
+  // #endregion
+  
   import Editor from '../components/Editor.svelte';
+  // #region agent log
+  fetch('http://127.0.0.1:7249/ingest/e16c245d-b5ae-4213-a2e9-a99d3b60cda9',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'+page.svelte:6',message:'Editor component imported',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'H4'})}).catch(()=>{});
+  // #endregion
+  
   import Topology from '../components/TopologyWebGPU.svelte';
+  // #region agent log
+  fetch('http://127.0.0.1:7249/ingest/e16c245d-b5ae-4213-a2e9-a99d3b60cda9',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'+page.svelte:8',message:'Topology component imported',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'H4'})}).catch(()=>{});
+  // #endregion
+  
   import Storyboard from '../components/Storyboard.svelte';
+  // #region agent log
+  fetch('http://127.0.0.1:7249/ingest/e16c245d-b5ae-4213-a2e9-a99d3b60cda9',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'+page.svelte:10',message:'Storyboard component imported',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'H4'})}).catch(()=>{});
+  // #endregion
+  
   import { onMount } from 'svelte';
-  import { client } from '../lib/api';
+  import { getClient } from '../lib/api';
 
   let selectedNode = $state<any>(null);
   let isSidebarOpen = $state(false);
@@ -13,17 +29,16 @@
   let projectTitle = $state("GhostHacker Zen Editor");
   let activeView = $state<"graph" | "storyboard">("graph");
 
-  onMount(() => {
-    (async () => {
-        try {
-          if (client) {
-            const resp = await client.getProjectMetadata({ projectId: "251022" });
-            projectTitle = resp?.title || "GhostHacker Zen Editor";
-          }
-        } catch (err) {
-          console.error("Failed to fetch metadata:", err);
-        }
-    })();
+  onMount(async () => {
+    try {
+      const client = await getClient();
+      if (client) {
+        const resp = await client.getProjectMetadata({ projectId: "251022" });
+        projectTitle = resp?.title || "GhostHacker Zen Editor";
+      }
+    } catch (err) {
+      console.error("Failed to fetch metadata:", err);
+    }
   });
 
   function handleNodeSelect(node: any, nodes: any[]) {

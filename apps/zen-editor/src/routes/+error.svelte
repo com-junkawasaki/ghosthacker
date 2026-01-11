@@ -1,20 +1,18 @@
 <script lang="ts">
   import { page } from '$app/stores';
   
-  let { error, status } = $props<{
+  let { error: errorProp, status: statusProp } = $props<{
     error?: Error;
     status?: number;
   }>();
   
-  // Fallback if props are not available
-  if (!error && !status) {
-    error = new Error('Unknown error occurred');
-    status = 500;
-  }
+  // Fallback if props are not available - use derived to react to prop changes
+  let error = $derived(errorProp || new Error('Unknown error occurred'));
+  let status = $derived(statusProp || 500);
 </script>
 
 <div class="error-container">
-  <h1>{status || 500}</h1>
+  <h1>{status}</h1>
   <h2>Internal Error</h2>
   {#if error}
     <p class="error-message">{error.message}</p>

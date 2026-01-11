@@ -17,13 +17,19 @@ fn main() {
                 let mut backend_dir: Option<PathBuf> = None;
                 
                 // 方法1: 実行ファイルの場所から相対パスで解決
-                // src-tauri/target/debug/zen-editor から ../../backend
+                // target/debug/zen-editor から ../../backend (src-tauri/target/debug -> src-tauri -> apps/zen-editor -> backend)
                 if let Ok(exe_path) = std::env::current_exe() {
-                    if let Some(target_dir) = exe_path.parent() {
-                        if let Some(src_tauri_dir) = target_dir.parent().and_then(|p| p.parent()) {
-                            let candidate = src_tauri_dir.join("backend");
-                            if candidate.join("cmd").join("server").join("main.go").exists() {
-                                backend_dir = Some(candidate);
+                    // target/debug/zen-editor -> target/debug -> target -> src-tauri
+                    if let Some(target_debug_dir) = exe_path.parent() {
+                        if let Some(target_dir) = target_debug_dir.parent() {
+                            if let Some(src_tauri_dir) = target_dir.parent() {
+                                // src-tauri -> apps/zen-editor
+                                if let Some(zen_editor_dir) = src_tauri_dir.parent() {
+                                    let candidate = zen_editor_dir.join("backend");
+                                    if candidate.join("cmd").join("server").join("main.go").exists() {
+                                        backend_dir = Some(candidate);
+                                    }
+                                }
                             }
                         }
                     }
@@ -32,9 +38,18 @@ fn main() {
                 // 方法2: 現在の作業ディレクトリから探す
                 if backend_dir.is_none() {
                     if let Ok(cwd) = std::env::current_dir() {
+                        // 直接 backend ディレクトリを探す
                         let candidate = cwd.join("backend");
                         if candidate.join("cmd").join("server").join("main.go").exists() {
                             backend_dir = Some(candidate);
+                        } else {
+                            // src-tauri にいる場合、親ディレクトリの backend を探す
+                            if let Some(parent) = cwd.parent() {
+                                let candidate = parent.join("backend");
+                                if candidate.join("cmd").join("server").join("main.go").exists() {
+                                    backend_dir = Some(candidate);
+                                }
+                            }
                         }
                     }
                 }
@@ -76,7 +91,7 @@ fn main() {
                 }
             } else {
                 // 本番時: バンドルされたバイナリを起動
-                let resource_dir = app.path_resolver()
+                let resource_dir = app.path()
                     .resource_dir()
                     .expect("failed to resolve resource directory");
                 
