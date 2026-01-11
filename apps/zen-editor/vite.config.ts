@@ -1,12 +1,24 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 
-// #region agent log
-fetch('http://127.0.0.1:7249/ingest/e16c245d-b5ae-4213-a2e9-a99d3b60cda9',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'vite.config.ts:4',message:'vite.config.ts loaded',data:{deno:typeof Deno!=='undefined',node:typeof process!=='undefined'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-// #endregion
+// 物理的な依存関係チェックプラグイン
+const dependencyGuard = () => ({
+	name: 'dependency-guard',
+	buildStart() {
+		const pbFile = path.resolve('src/lib/gen/editor_pb.js');
+		if (fs.existsSync(pbFile)) {
+			const content = fs.readFileSync(pbFile, 'utf-8');
+			if (content.includes('proto3')) {
+				console.log('✅ [Guard] Generated code uses proto3 (v1.x style)');
+			}
+		}
+	}
+});
 
 export default defineConfig({
-	plugins: [sveltekit()],
+	plugins: [dependencyGuard(), sveltekit()],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}'],
 		environment: 'jsdom',
@@ -37,7 +49,15 @@ export default defineConfig({
 		// don't minify for debug builds
 		minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
 		// produce sourcemaps for debug builds
-		sourcemap: !!process.env.TAURI_DEBUG
+		sourcemap: !!process.env.TAURI_DEBUG,
+		rollupOptions: {
+			onwarn(warning, warn) {
+				if (warning.code === 'MISSING_EXPORT') {
+					throw new Error(warning.message);
+				}
+				warn(warning);
+			}
+		}
 	}
 });
 

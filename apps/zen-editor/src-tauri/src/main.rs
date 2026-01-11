@@ -1,126 +1,25 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use std::process::{Command, Stdio, Child};
-use std::sync::Mutex;
-use std::path::PathBuf;
 use tauri::Manager;
-
-static SIDECAR_PROCESS: Mutex<Option<Child>> = Mutex::new(None);
+use tauri_plugin_shell::ShellExt;
 
 fn main() {
     tauri::Builder::default()
         .setup(|app| {
-            if cfg!(debug_assertions) {
-                // 開発時: go run で起動
-                // 複数の方法で backend ディレクトリを探す
-                let mut backend_dir: Option<PathBuf> = None;
-                
-                // 方法1: 実行ファイルの場所から相対パスで解決
-                // target/debug/zen-editor から ../../backend (src-tauri/target/debug -> src-tauri -> apps/zen-editor -> backend)
-                if let Ok(exe_path) = std::env::current_exe() {
-                    // target/debug/zen-editor -> target/debug -> target -> src-tauri
-                    if let Some(target_debug_dir) = exe_path.parent() {
-                        if let Some(target_dir) = target_debug_dir.parent() {
-                            if let Some(src_tauri_dir) = target_dir.parent() {
-                                // src-tauri -> apps/zen-editor
-                                if let Some(zen_editor_dir) = src_tauri_dir.parent() {
-                                    let candidate = zen_editor_dir.join("backend");
-                                    if candidate.join("cmd").join("server").join("main.go").exists() {
-                                        backend_dir = Some(candidate);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                
-                // 方法2: 現在の作業ディレクトリから探す
-                if backend_dir.is_none() {
-                    if let Ok(cwd) = std::env::current_dir() {
-                        // 直接 backend ディレクトリを探す
-                        let candidate = cwd.join("backend");
-                        if candidate.join("cmd").join("server").join("main.go").exists() {
-                            backend_dir = Some(candidate);
-                        } else {
-                            // src-tauri にいる場合、親ディレクトリの backend を探す
-                            if let Some(parent) = cwd.parent() {
-                                let candidate = parent.join("backend");
-                                if candidate.join("cmd").join("server").join("main.go").exists() {
-                                    backend_dir = Some(candidate);
-                                }
-                            }
-                        }
-                    }
-                }
-                
-                // 方法3: 環境変数から取得
-                if backend_dir.is_none() {
-                    if let Ok(env_path) = std::env::var("ZEN_EDITOR_BACKEND_DIR") {
-                        let candidate = PathBuf::from(env_path);
-                        if candidate.join("cmd").join("server").join("main.go").exists() {
-                            backend_dir = Some(candidate);
-                        }
-                    }
-                }
-                
-                if let Some(backend_dir) = backend_dir {
-                    match Command::new("go")
-                        .args(&["run", "cmd/server/main.go"])
-                        .current_dir(&backend_dir)
-                        .stdout(Stdio::piped())
-                        .stderr(Stdio::piped())
-                        .spawn()
-                    {
-                        Ok(child) => {
-                            let pid = child.id();
-                            println!("Started backend sidecar (dev mode) with PID: {} from {:?}", pid, backend_dir);
-                            *SIDECAR_PROCESS.lock().unwrap() = Some(child);
-                        }
-                        Err(e) => {
-                            eprintln!("Failed to start backend sidecar (dev mode): {}", e);
-                            eprintln!("Make sure 'go' is in your PATH");
-                            eprintln!("Backend directory: {:?}", backend_dir);
-                        }
-                    }
-                } else {
-                    eprintln!("Could not find backend directory. Tried:");
-                    eprintln!("  - Relative to executable");
-                    eprintln!("  - Current working directory");
-                    eprintln!("  - ZEN_EDITOR_BACKEND_DIR environment variable");
-                }
-            } else {
-                // 本番時: バンドルされたバイナリを起動
-                let resource_dir = app.path()
-                    .resource_dir()
-                    .expect("failed to resolve resource directory");
-                
-                #[cfg(target_os = "macos")]
-                let sidecar_path = resource_dir.join("binaries").join("backend-server");
-                #[cfg(target_os = "windows")]
-                let sidecar_path = resource_dir.join("binaries").join("backend-server.exe");
-                #[cfg(target_os = "linux")]
-                let sidecar_path = resource_dir.join("binaries").join("backend-server");
-                
-                if sidecar_path.exists() {
-                    match Command::new(&sidecar_path)
-                        .stdout(Stdio::piped())
-                        .stderr(Stdio::piped())
-                        .spawn()
-                    {
-                        Ok(child) => {
-                            let pid = child.id();
-                            println!("Started backend sidecar (production) with PID: {}", pid);
-                            *SIDECAR_PROCESS.lock().unwrap() = Some(child);
-                        }
-                        Err(e) => {
-                            eprintln!("Failed to start backend sidecar (production): {}", e);
-                        }
-                    }
-                } else {
-                    eprintln!("Backend sidecar binary not found at: {:?}", sidecar_path);
-                }
-            }
+            // Tauri 2.x Standard Sidecar Implementation
+            // This works for both dev (if binary exists) and production
+            let sidecar_command = app.shell().sidecar("backend-server").map_err(|e| {
+                eprintln!("Failed to create sidecar command: {}", e);
+                e
+            })?;
+
+            let (mut _rx, _child) = sidecar_command.spawn().map_err(|e| {
+                eprintln!("Failed to spawn sidecar: {}", e);
+                e
+            })?;
+
+            println!("Backend sidecar started successfully via Tauri Shell API");
             
             Ok(())
         })
@@ -130,15 +29,11 @@ fn main() {
         .build(tauri::generate_context!())
         .expect("error while building tauri application")
         .run(|_app_handle, event| {
-            // アプリ終了時に sidecar プロセスを終了
             if let tauri::RunEvent::ExitRequested { .. } = event {
-                if let Ok(mut process) = SIDECAR_PROCESS.lock() {
-                    if let Some(mut child) = process.take() {
-                        let _ = child.kill();
-                        println!("Terminated backend sidecar");
-                    }
-                }
+                // Tauri 2.x handles sidecar cleanup automatically if spawned via Shell API
+                println!("Application exiting, cleaning up...");
             }
         });
+}
 }
 
