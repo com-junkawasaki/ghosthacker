@@ -34,9 +34,22 @@
       const client = await getClient();
       if (!client) return;
       
+      // Collect all entities from scenes if they exist, or use default prompt
+      const allPersons = [...new Set(scenes.flatMap(s => s.persons))];
+      const allPlaces = [...new Set(scenes.flatMap(s => s.places))];
+      const allItems = [...new Set(scenes.flatMap(s => s.items))];
+      const allEmotions = [...new Set(scenes.flatMap(s => s.emotions))];
+
+      let contextInfo = "";
+      if (allPersons.length > 0) contextInfo += `\nCharacters involved: ${allPersons.join(', ')}`;
+      if (allPlaces.length > 0) contextInfo += `\nSetting: ${allPlaces.join(', ')}`;
+      if (allItems.length > 0) contextInfo += `\nImportant Items: ${allItems.join(', ')}`;
+      if (allEmotions.length > 0) contextInfo += `\nDominant Emotions: ${allEmotions.join(', ')}`;
+
       const it = client.interact({
         sessionId: "storyboard-gen-" + Date.now(),
-        userMessage: `Please generate a detailed storyboard for the following prompt: "${prompt}". 
+        userMessage: `Please generate a detailed storyboard for the following prompt: "${prompt}". ${contextInfo}
+        
         Format each scene as follows:
         [SCENE]
         VISUAL: (Describe the visual sketch/shot)
@@ -45,6 +58,8 @@
         TIME: (Duration in seconds, e.g., 5s)
         [END_SCENE]
         Provide at least 3-5 scenes.`,
+        nodeIds: [...allPersons, ...allPlaces, ...allItems],
+        emotionBias: Object.fromEntries(allEmotions.map(em => [em, 1.0]))
       });
 
       let currentScene: Partial<Scene> | null = null;
