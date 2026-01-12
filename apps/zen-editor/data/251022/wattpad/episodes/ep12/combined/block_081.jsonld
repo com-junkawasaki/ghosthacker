@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/combined:81",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, Nero… has returned.”",
+    "ja": "Nei-chan『タマ、Neroが……還った』"
+  },
+  "gh:index": 81
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/combined:21",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "Kaede「うん。結界、安定してる」"
+  },
+  "gh:index": 21
+}

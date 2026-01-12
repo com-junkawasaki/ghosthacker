@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/combined:117",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I write one line in my notebook:",
+    "ja": "私は手帳に一行を書く。"
+  },
+  "gh:index": 117
+}

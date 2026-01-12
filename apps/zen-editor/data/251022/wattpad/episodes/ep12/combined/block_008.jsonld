@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/combined:8",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "A final line in the notebook: ‘We can’t put it together. It is together.’ —We have finally caught up to that fact.",
+    "ja": "「わたしは在る」"
+  },
+  "gh:index": 8
+}

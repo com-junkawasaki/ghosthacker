@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/combined:34",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero: “...I hear…”",
+    "ja": "Nero『……聞こえる……』"
+  },
+  "gh:index": 34
+}

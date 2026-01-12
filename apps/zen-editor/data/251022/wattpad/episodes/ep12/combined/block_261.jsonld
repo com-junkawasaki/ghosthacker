@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/combined:261",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "**[End]**",
+    "ja": "**[Beat: Together——いっしょに在ること、それが全て]**"
+  },
+  "gh:index": 261
+}
