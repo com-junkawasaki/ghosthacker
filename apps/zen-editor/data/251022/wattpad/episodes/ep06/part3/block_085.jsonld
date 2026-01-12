@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part3:85",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi: “Tamaki, the Ogre’s influence is shrinking.”",
+    "ja": "Aoiがメトリクスを表示する。"
+  },
+  "gh:index": 85
+}

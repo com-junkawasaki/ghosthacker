@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part3:43",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “So it forces perfection—because it’s imperfect.”",
+    "ja": "Hibiki「だから、完璧を強いるんだ。自分が不完全だから」"
+  },
+  "gh:index": 43
+}

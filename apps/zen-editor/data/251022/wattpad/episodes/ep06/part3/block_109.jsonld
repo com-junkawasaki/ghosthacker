@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part3:109",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "ASC rises a step.",
+    "ja": "私は足元で神楽を一拍。"
+  },
+  "gh:index": 109
+}

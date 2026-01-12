@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part3:12",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The Compliance Ogre appears.",
+    "ja": "Compliance Ogreが現れる。"
+  },
+  "gh:index": 12
+}

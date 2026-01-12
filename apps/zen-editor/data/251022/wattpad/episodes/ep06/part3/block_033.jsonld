@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part3:33",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I open my eyes.",
+    "ja": "私は目を開ける。"
+  },
+  "gh:index": 33
+}

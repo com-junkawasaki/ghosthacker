@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part3:95",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Beneath it—something small, trembling.",
+    "ja": "Compliance Ogreの鎧が、完全にほどける。"
+  },
+  "gh:index": 95
+}
