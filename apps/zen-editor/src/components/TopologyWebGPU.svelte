@@ -20,6 +20,10 @@
 
   onMount(() => {
     console.log("Topology component onMount starting (using @cosmos.gl/graph)");
+    
+    // Always attempt to fetch data
+    fetchData();
+
     if (containerElement) {
       try {
         console.log("Initializing Graph with container:", containerElement);
@@ -58,6 +62,7 @@
 
         // Sync minimap
         // @ts-ignore
+        /*
         if (g.zoomInstance) {
           // @ts-ignore
           g.zoomInstance.on('zoom', (event) => {
@@ -71,6 +76,7 @@
             };
           });
         }
+        */
 
         graph = g;
         fetchData();
@@ -85,73 +91,100 @@
   }
 
   async function fetchData() {
+    console.log("[Topology] fetchData started");
     isLoading = true;
+    
+    // Safety timeout to prevent infinite "Syncing..."
+    const timeout = setTimeout(() => {
+      if (isLoading) {
+        console.warn("[Topology] Fetching timed out after 5s");
+        isLoading = false;
+      }
+    }, 5000);
+
     try {
+      console.log("[Topology] Getting client...");
       const client = await getClient();
-      if (!client) return;
-      console.log("Fetching topology data...");
+      console.log("[Topology] Client obtained:", !!client);
+      
+      if (!client) {
+        throw new Error("Client initialization failed");
+      }
+
+      console.log("[Topology] Calling getTopology...");
       const resp = await client.getTopology({ projectId: "251022" });
-      console.log("Topology data received:", resp);
+      console.log("[Topology] getTopology success, nodes:", resp.nodes?.length);
+      
       nodes = (resp.nodes || []).filter((n: any) => n && n.id && n.label);
       edges = resp.edges || [];
-
+      
       if (graph) {
-        const pointPositions = new Float32Array(nodes.length * 2);
-        const pointColors = new Float32Array(nodes.length * 4);
-        
-        nodes.forEach((n, i) => {
-          pointPositions[i * 2] = n.x || (Math.random() * 1000 - 500);
-          pointPositions[i * 2 + 1] = n.y || (Math.random() * 1000 - 500);
-          
-          let color = [142, 142, 147, 255]; // Default gray
-          if (n.group === 'content') color = [0, 113, 227, 255]; // blue
-          if (n.group === 'entity') color = [255, 59, 48, 255]; // red
-          if (n.type === 'gh:Episode') color = [255, 214, 10, 255]; // yellow
-          if (n.type === 'gh:ClusterHub') color = [175, 82, 222, 255]; // purple
-          
-          pointColors[i * 4] = color[0];
-          pointColors[i * 4 + 1] = color[1];
-          pointColors[i * 4 + 2] = color[2];
-          pointColors[i * 4 + 3] = color[3] / 255;
-        });
-
-        const links = new Float32Array(edges.length * 2);
-        const linkColors = new Float32Array(edges.length * 4);
-        const linkWidths = new Float32Array(edges.length);
-        const idToIndex = new Map(nodes.map((n, i) => [n.id, i]));
-        
-        edges.forEach((e, i) => {
-          const fromIdx = idToIndex.get(e.fromId) || 0;
-          const toIdx = idToIndex.get(e.toId) || 0;
-          links[i * 2] = fromIdx;
-          links[i * 2 + 1] = toIdx;
-
-          const color = hexToRgba(e.color || '#33333a', 0.4);
-          linkColors[i * 4] = color[0];
-          linkColors[i * 4 + 1] = color[1];
-          linkColors[i * 4 + 2] = color[2];
-          linkColors[i * 4 + 3] = color[3];
-
-          linkWidths[i] = e.relation === 'gh:precedes' ? 2.0 : 1.0;
-        });
-
-        console.log("Setting Graph data with enhanced links...");
-        graph.setPointPositions(pointPositions);
-        graph.setPointColors(pointColors);
-        graph.setLinks(links);
-        
-        // @ts-ignore
-        if (graph.setLinkColors) graph.setLinkColors(linkColors);
-        // @ts-ignore
-        if (graph.setLinkWidths) graph.setLinkWidths(linkWidths);
-
-        graph.render();
-        graph.fitView(1000);
+        updateGraphData();
       }
     } catch (err) {
-      console.error("Topology fetch failed:", err);
+      console.error("[Topology] fetch failed:", err);
     } finally {
+      clearTimeout(timeout);
       isLoading = false;
+      console.log("[Topology] isLoading set to false");
+    }
+  }
+
+  function updateGraphData() {
+    if (!graph || nodes.length === 0) return;
+    try {
+      const pointPositions = new Float32Array(nodes.length * 2);
+      const pointColors = new Float32Array(nodes.length * 4);
+      
+      nodes.forEach((n, i) => {
+        pointPositions[i * 2] = n.x || (Math.random() * 1000 - 500);
+        pointPositions[i * 2 + 1] = n.y || (Math.random() * 1000 - 500);
+        
+        let color = [142, 142, 147, 255]; 
+        if (n.group === 'content') color = [0, 113, 227, 255];
+        if (n.group === 'entity') color = [255, 59, 48, 255];
+        if (n.type === 'gh:Episode') color = [255, 214, 10, 255];
+        if (n.type === 'gh:ClusterHub') color = [175, 82, 222, 255];
+        
+        pointColors[i * 4] = color[0];
+        pointColors[i * 4 + 1] = color[1];
+        pointColors[i * 4 + 2] = color[2];
+        pointColors[i * 4 + 3] = color[3] / 255;
+      });
+
+      const links = new Float32Array(edges.length * 2);
+      const linkColors = new Float32Array(edges.length * 4);
+      const linkWidths = new Float32Array(edges.length);
+      const idToIndex = new Map(nodes.map((n, i) => [n.id, i]));
+      
+      edges.forEach((e, i) => {
+        const fromIdx = idToIndex.get(e.fromId) || 0;
+        const toIdx = idToIndex.get(e.toId) || 0;
+        links[i * 2] = fromIdx;
+        links[i * 2 + 1] = toIdx;
+
+        const color = hexToRgba(e.color || '#33333a', 0.4);
+        linkColors[i * 4] = color[0];
+        linkColors[i * 4 + 1] = color[1];
+        linkColors[i * 4 + 2] = color[2];
+        linkColors[i * 4 + 3] = color[3];
+
+        linkWidths[i] = e.relation === 'gh:precedes' ? 2.0 : 1.0;
+      });
+
+      graph.setPointPositions(pointPositions);
+      graph.setPointColors(pointColors);
+      graph.setLinks(links);
+      
+      // @ts-ignore
+      if (graph.setLinkColors) graph.setLinkColors(linkColors);
+      // @ts-ignore
+      if (graph.setLinkWidths) graph.setLinkWidths(linkWidths);
+
+      graph.render();
+      graph.fitView(1000);
+    } catch (err) {
+      console.error("[Topology] updateGraphData failed:", err);
     }
   }
 

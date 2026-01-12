@@ -1,5 +1,0 @@
-# Page snapshot
-
-```yaml
-- generic [ref=e2]: "Error: Failed to load url /.svelte-kit/generated/server/internal.js (resolved id: /Volumes/251214/jun784/ghosthacker/apps/zen-editor/.svelte-kit/generated/server/internal.js) in /Volumes/251214/jun784/ghosthacker/apps/zen-editor/node_modules/.deno/@sveltejs+kit@2.49.4/node_modules/@sveltejs/kit/src/runtime/server/index.js. Does the file exist? at loadAndTransform (file:///Volumes/251214/jun784/ghosthacker/apps/zen-editor/node_modules/.deno/vite@6.4.1/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:35729:17) at eventLoopTick (ext:core/01_core.js:179:7) at async fetchModule (file:///Volumes/251214/jun784/ghosthacker/apps/zen-editor/node_modules/.deno/vite@6.4.1/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:46858:16) at async handleInvoke (file:///Volumes/251214/jun784/ghosthacker/apps/zen-editor/node_modules/.deno/vite@6.4.1/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:39002:22) at async EventEmitter.listenerForInvokeHandler (file:///Volumes/251214/jun784/ghosthacker/apps/zen-editor/node_modules/.deno/vite@6.4.1/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:39075:19)"
-```

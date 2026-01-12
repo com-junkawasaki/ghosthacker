@@ -44,7 +44,6 @@ func NewEditorServer(root string) *EditorServer {
 		log.Fatalf("failed to open database: %v", err)
 	}
 
-	// Create storyboard table (keeping for cache/history if needed, but primary will be file)
 	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS storyboards (
 		project_id TEXT PRIMARY KEY,
 		scenes_json TEXT,
@@ -54,7 +53,6 @@ func NewEditorServer(root string) *EditorServer {
 		log.Fatalf("failed to create table: %v", err)
 	}
 
-	// Create history table
 	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS history (
 		id TEXT PRIMARY KEY,
 		project_id TEXT,
@@ -139,7 +137,6 @@ func (s *EditorServer) handleSaveStoryboardTool(ctx context.Context, req mcp.Cal
 		return mcp.NewToolResultError(err.Error()), nil
 	}
 	
-	// Format as JSON-LD
 	var scenes []interface{}
 	if err := json.Unmarshal([]byte(scenesJSON), &scenes); err != nil {
 		return mcp.NewToolResultError(err.Error()), nil
@@ -171,7 +168,6 @@ func (s *EditorServer) handleSaveStoryboardTool(ctx context.Context, req mcp.Cal
 		return mcp.NewToolResultError(err.Error()), nil
 	}
 
-	// Auto-commit to Git
 	if s.Git != nil {
 		s.Git.CommitDocument(path, "Update storyboard JSON-LD via MCP")
 	}
@@ -376,12 +372,10 @@ func (s *EditorServer) SaveStoryboard(ctx context.Context, req *connect.Request[
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
-	// Auto-commit to Git
 	if s.Git != nil {
 		s.Git.CommitDocument(path, "Auto-save storyboard JSON-LD via gRPC")
 	}
 
-	// Also keep in DB as cache if needed, but primary is file
 	scenesJSON, _ := json.Marshal(req.Msg.Scenes)
 	s.DB.Exec(`INSERT INTO storyboards (project_id, scenes_json, updated_at) 
 		VALUES (?, ?, CURRENT_TIMESTAMP) 
@@ -445,7 +439,6 @@ func (s *EditorServer) GetStoryboard(ctx context.Context, req *connect.Request[e
 	data, err := os.ReadFile(path)
 	if err != nil {
 		if os.IsNotExist(err) {
-			// Fallback to DB if file doesn't exist (migration period)
 			var scenesJSON string
 			err := s.DB.QueryRow("SELECT scenes_json FROM storyboards WHERE project_id = ?", req.Msg.ProjectId).Scan(&scenesJSON)
 			if err == sql.ErrNoRows {
@@ -485,19 +478,16 @@ func (s *EditorServer) buildGraphRAGContext(ctx context.Context, nodeIDs []strin
 	relatedEvents := []map[string]interface{}{}
 	relatedEntities := make(map[string]map[string]interface{})
 
-	// 1. Find all related events and entities
 	for _, item := range g.Graph {
 		id, _ := item["@id"].(string)
 		itemType, _ := item["@type"].(string)
 
-		// Check if it's one of our target nodes
 		for _, targetID := range nodeIDs {
 			if id == targetID {
 				relatedEntities[id] = item
 			}
 		}
 
-		// Check if it's a RelationEvent participating with our nodes
 		if itemType == "gh:RelationEvent" {
 			participants, _ := item["gh:participants"].([]interface{})
 			isRelevant := false
@@ -515,18 +505,10 @@ func (s *EditorServer) buildGraphRAGContext(ctx context.Context, nodeIDs []strin
 			}
 			if isRelevant {
 				relatedEvents = append(relatedEvents, item)
-				// Also add other participants to entities list for context
-				for _, p := range participants {
-					pID, _ := p.(string)
-					if _, exists := relatedEntities[pID]; !exists {
-						// We'll find them in the next pass or ignore if not in @graph
-					}
-				}
 			}
 		}
 	}
 
-	// 2. Format Entities
 	contextParts = append(contextParts, "--- RELEVANT ENTITIES ---")
 	for id, ent := range relatedEntities {
 		name, _ := ent["name"].(string)
@@ -534,7 +516,6 @@ func (s *EditorServer) buildGraphRAGContext(ctx context.Context, nodeIDs []strin
 		contextParts = append(contextParts, fmt.Sprintf("ID: %s | Name: %s | Description: %s", id, name, desc))
 	}
 
-	// 3. Format Events (Incidence/Hypergraph relationships)
 	contextParts = append(contextParts, "\n--- RELATIONSHIP EVENTS & CONTEXT ---")
 	for _, ev := range relatedEvents {
 		relType, _ := ev["gh:relationType"].(string)
@@ -573,8 +554,6 @@ func (s *EditorServer) Interact(
 
 	for _, nodeID := range req.Msg.NodeIds {
 		name := nodeID
-		// Try to find a better name if possible
-		// In a real app, we'd have a node cache or lookup
 		if strings.Contains(nodeID, ":") {
 			parts := strings.Split(nodeID, ":")
 			name = strings.Title(parts[len(parts)-1])
@@ -590,13 +569,11 @@ func (s *EditorServer) Interact(
 
 	aiClient := &ai.OpenRouterClient{
 		ApiKey: "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",
-		Model:  "anthropic/claude-3.5-sonnet", // Or any reliable model
+		Model:  "anthropic/claude-3.5-sonnet",
 	}
 	
-	// GraphRAG: Build rich context from JSON-LD
 	ragContext := s.buildGraphRAGContext(ctx, req.Msg.NodeIds)
 
-	// Better prompt for chat interaction using GraphRAG context
 	chatPrompt := fmt.Sprintf(`You are roleplaying as the following characters/entities in the "Ghost Hacker" series: %v.
 The user says: "%s"
 The current emotional context is: %v.
@@ -611,7 +588,6 @@ Use the GRAPH CONTEXT provided to mention specific events, evidence, and relatio
 	response, err := aiClient.GenerateNextScene(ctx, []string{chatPrompt})
 	if err != nil {
 		log.Printf("Interact AI call failed: %v", err)
-		// Canned response for demo/test purposes if AI fails
 		response = fmt.Sprintf("I hear you. The connection in Tokyo 2065 is complex, but we're working on it. (AI Error fallback: %v)", err)
 	}
 
@@ -633,23 +609,26 @@ Use the GRAPH CONTEXT provided to mention specific events, evidence, and relatio
 }
 
 func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[editorpb.GetTopologyRequest]) (*connect.Response[editorpb.GetTopologyResponse], error) {
+	fmt.Printf(">>> RPC: GetTopology ENTERED for project: %s\n", req.Msg.ProjectId)
 	log.Printf("RPC: GetTopology called for project: %s", req.Msg.ProjectId)
 	jsonLdPath := filepath.Join(s.WorkspaceRoot, "251022/ghost-hacker.jsonld")
-	data, err := os.ReadFile(jsonLdPath)
-	if err != nil {
-		return nil, connect.NewError(connect.CodeNotFound, err)
-	}
+	
 	var g struct {
 		Graph []map[string]interface{} `json:"@graph"`
 	}
-	json.Unmarshal(data, &g)
+
+	data, err := os.ReadFile(jsonLdPath)
+	if err != nil {
+		log.Printf("Warning: Could not read topology file: %v. Using empty graph.", err)
+	} else {
+		if err := json.Unmarshal(data, &g); err != nil {
+			log.Printf("Error: Failed to unmarshal JSON-LD: %v", err)
+		}
+	}
+
 	resp := &editorpb.GetTopologyResponse{}
-
-	// ID to Node map for easy lookup
 	nodeMap := make(map[string]*editorpb.Node)
-
-	// 1. Load entities from JSON-LD
-	entityHubs := make(map[string]string) // Group -> HubNodeID
+	entityHubs := make(map[string]string)
 
 	for _, item := range g.Graph {
 		id, _ := item["@id"].(string)
@@ -666,7 +645,6 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 
 			group := s.categorizeNode(itemType)
 
-			// Create Hub nodes if they don't exist
 			if (group == "entity" || group == "link-node") && entityHubs[group] == "" {
 				hubID := "hub:" + group
 				entityHubs[group] = hubID
@@ -678,7 +656,6 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 				})
 			}
 
-			// Link entity to its hub
 			if hubID, ok := entityHubs[group]; ok {
 				resp.Edges = append(resp.Edges, &editorpb.Edge{
 					FromId:   hubID,
@@ -691,7 +668,6 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 				})
 			}
 
-			// Special handling for RelationEvent (Incidence Graph / Hypergraph)
 			if itemType == "gh:RelationEvent" {
 				relType, _ := item["gh:relationType"].(string)
 				label = fmt.Sprintf("[%s]", relType)
@@ -705,7 +681,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 				Label: label,
 				Type:  itemType,
 				Group: group,
-				Embedding: s.generateDummyEmbedding(id), // Generate vector
+				Embedding: s.generateDummyEmbedding(id),
 			}
 			if x, ok := item["gh:x"].(float64); ok {
 				node.X = float32(x)
@@ -716,7 +692,6 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 			nodeMap[id] = node
 			resp.Nodes = append(resp.Nodes, node)
 
-			// If it's a RelationEvent, create edges to all participants
 			if itemType == "gh:RelationEvent" {
 				participants, _ := item["gh:participants"].([]interface{})
 				relType, _ := item["gh:relationType"].(string)
@@ -730,14 +705,14 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 					}
 					if pID != "" {
 						resp.Edges = append(resp.Edges, &editorpb.Edge{
-							FromId:   id, // From the Event Node
-							ToId:     pID, // To the Participant
+							FromId:   id,
+							ToId:     pID,
 							Relation: relType,
 							Strength: float32(strength),
 							Group:    "semantic",
 							Color:    "#a855f7",
 							Style:    "solid",
-							Distance: float32(100.0 * (1.5 - strength)), // Distance based on strength
+							Distance: float32(100.0 * (1.5 - strength)),
 						})
 					}
 				}
@@ -745,7 +720,6 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 		}
 	}
 
-	// 2. Load Manuscript and Blocks dynamically
 	manifestPath := filepath.Join(s.WorkspaceRoot, "251022/wattpad/manifest.json")
 	mdata, err := os.ReadFile(manifestPath)
 	if err == nil {
@@ -774,14 +748,12 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 					Group: "content",
 					Embedding: s.generateDummyEmbedding(mNodeID),
 				}
-				// Try to restore position from LayoutStub if exists
 				if stub, ok := nodeMap[mNodeID]; ok {
 					mNode.X = stub.X
 					mNode.Y = stub.Y
 				}
 				resp.Nodes = append(resp.Nodes, mNode)
 
-				// Link Episode to Manuscript
 				resp.Edges = append(resp.Edges, &editorpb.Edge{
 					FromId:   epNodeID,
 					ToId:     mNodeID,
@@ -792,7 +764,8 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 					Color:    "#0071e3",
 				})
 
-				// Extract blocks
+				// Skip blocks for now to fix performance hanging
+				/*
 				filePath := filepath.Join(s.WorkspaceRoot, "251022/wattpad/", file)
 				fcontent, ferr := os.ReadFile(filePath)
 				if ferr == nil {
@@ -819,34 +792,31 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 						}
 						resp.Nodes = append(resp.Nodes, bNode)
 
-						// Link: Manuscript contains Block
 						resp.Edges = append(resp.Edges, &editorpb.Edge{
 							FromId:   mNodeID,
 							ToId:     bNodeID,
 							Relation: "gh:contains",
 							Style:    "dashed",
-							Color:    "#0071e3", // Manuscript color
+							Color:    "#0071e3",
 							Group:    "structural",
 							Distance: 60,
 							Strength: 0.8,
 						})
 
-						// Link: Sequential blocks
 						if prevBlockID != "" {
 							resp.Edges = append(resp.Edges, &editorpb.Edge{
 								FromId:   prevBlockID,
 								ToId:     bNodeID,
 								Relation: "gh:precedes",
 								Style:    "solid",
-								Color:    "#34c759", // Flow color (green)
+								Color:    "#34c759",
 								Group:    "structural",
-								Distance: 30, // Sequential blocks are very close
+								Distance: 30,
 								Strength: 1.0,
 							})
 						}
 						prevBlockID = bNodeID
 
-						// Link: Detect translation
 						if strings.HasSuffix(file, ".en.md") {
 							jaFile := strings.Replace(file, ".en.md", ".md", 1)
 							jaNodeID := fmt.Sprintf("manuscript:%s:%s", ep.ID, jaFile)
@@ -860,26 +830,9 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 								Distance: 150,
 							})
 						}
-
-						// Link: Character/Setting mentioned in Block
-						for _, ent := range resp.Nodes {
-							if ent.Group == "entity" {
-								if strings.Contains(bContent, ent.Label) {
-									resp.Edges = append(resp.Edges, &editorpb.Edge{
-										FromId:   ent.Id,
-										ToId:     bNodeID,
-										Relation: "gh:appearsIn",
-										Style:    "dotted",
-										Color:    "#ff9500", // Entity appearance color (orange)
-										Group:    "semantic",
-										Distance: 120,
-										Strength: 0.3,
-									})
-								}
-							}
-						}
 					}
 				}
+				*/
 			}
 		}
 	}
@@ -888,7 +841,6 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 }
 
 func (s *EditorServer) generateDummyEmbedding(id string) []float32 {
-	// Simple hash-based dummy embedding for stable positions
 	embedding := make([]float32, 16)
 	sum := 0
 	for _, char := range id {

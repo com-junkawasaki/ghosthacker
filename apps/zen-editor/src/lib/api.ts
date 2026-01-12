@@ -1,3 +1,5 @@
+import { createConnectTransport } from "@connectrpc/connect-web";
+import { createClient } from "@connectrpc/connect";
 import { EditorService } from "./gen/editor_pb";
 
 // 型定義
@@ -14,39 +16,40 @@ type EditorClient = {
 };
 
 let _client: EditorClient | null = null;
-let _initPromise: Promise<void> | null = null;
 
-async function initClient(): Promise<void> {
+function initClient(): void {
   if (_client) return;
   
   try {
     console.log("[api] Starting client initialization...");
-    const { createConnectTransport } = await import("@connectrpc/connect-web");
-    const { createClient } = await import("@connectrpc/connect");
-    
     const transport = createConnectTransport({
       baseUrl: "http://localhost:8080",
     });
     
-    console.log("[api] EditorService methods:", Object.keys(EditorService.methods));
+    console.log("[api] Transport created. EditorService:", !!EditorService);
     
     // @ts-ignore
     _client = createClient(EditorService, transport);
-    console.log("[api] Client initialized successfully");
+    
+    if (_client) {
+      console.log("[api] Client created successfully. Available methods:", Object.keys(_client));
+    } else {
+      console.error("[api] createClient returned null");
+    }
   } catch (err) {
     console.error("[api] Failed to initialize client:", err);
   }
 }
 
-// 即時初期化開始
-_initPromise = initClient();
+// 即時初期化
+initClient();
 
 /**
- * クライアントを取得（初期化完了を待つ）
+ * クライアントを取得
  */
 export async function getClient(): Promise<EditorClient | null> {
   if (!_client) {
-    await _initPromise;
+    initClient();
   }
   return _client;
 }
