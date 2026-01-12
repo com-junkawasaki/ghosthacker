@@ -1,0 +1,39 @@
+{
+  "@context": {
+    "audio": "gh:audio",
+    "description": "schema:description",
+    "emotions": "gh:emotions",
+    "fps": "gh:fps",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "items": "gh:involvedItems",
+    "persons": "gh:involvedPersons",
+    "places": "gh:involvedPlaces",
+    "scenes": "gh:scenes",
+    "schema": "https://schema.org/",
+    "timing": "gh:timing",
+    "visual": "gh:visual"
+  },
+  "@type": "gh:Storyboard",
+  "gh:projectId": "251022",
+  "gh:scenes": [
+    {
+      "id": 1,
+      "description": "aaa",
+      "timing": "0s",
+      "fps": 24
+    },
+    {
+      "id": 2,
+      "description": "Bbb",
+      "timing": "0s",
+      "fps": 24
+    },
+    {
+      "id": 3,
+      "description": "Confrontation in the server room",
+      "timing": "0s",
+      "fps": 24
+    }
+  ],
+  "updatedAt": "2026-01-12T09:59:32+09:00"
+}
