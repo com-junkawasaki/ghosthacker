@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part2:28",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“I am. Coming back while going on.”",
+    "ja": "渦の縁がほどける。\n影が一瞬、濃くなる。抵抗。すぐに薄まる。小さな勝ち負けが交互に来る。\n私は短く笑う。「いい。今のが変化」"
+  },
+  "gh:index": 28
+}

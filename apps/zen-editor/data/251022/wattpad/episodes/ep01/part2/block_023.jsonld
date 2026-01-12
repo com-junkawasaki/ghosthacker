@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part2:23",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “ASC, hold. Tama, next?”",
+    "ja": "「戻る。戻りながら、進む」"
+  },
+  "gh:index": 23
+}

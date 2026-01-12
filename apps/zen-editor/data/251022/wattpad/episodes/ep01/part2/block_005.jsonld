@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part2:5",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Far off, Kaede’s voice—tense but composed.",
+    "ja": "遠くでKaedeの声。彼女の声は、緊張しているが、冷静だ。"
+  },
+  "gh:index": 5
+}

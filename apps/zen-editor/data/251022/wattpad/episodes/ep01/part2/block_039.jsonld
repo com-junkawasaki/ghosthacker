@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part2:39",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Not far. The path is already here. Match stride.”"
+  },
+  "gh:index": 39
+}

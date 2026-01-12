@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part2:32",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki’s low tones flow in—warm, kind.",
+    "ja": "Kaedeの声が通信に入る。彼女の声は、いつもの冷静さに戻っている。"
+  },
+  "gh:index": 32
+}
