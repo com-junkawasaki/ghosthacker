@@ -1,0 +1,159 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part1.en",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP9-1 — The Rage Engine\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: De-escalation / Rewire"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:1",
+      "@type": "gh:Block",
+      "schema:text": "```json\n{\n  \"@context\": {\n    \"@base\": \"https://ghosthacker.example.com/\",\n    \"gh\": \"https://ghosthacker.junkawasaki.com/gh#\",\n    \"antagonist\": { \"@id\": \"gh:antagonist\", \"@type\": \"@id\" },\n    \"character\": \"https://ghosthacker.example.com/character/\",\n    \"ghost\": \"https://ghosthacker.example.com/ghost/\"\n  },\n  \"antagonist\": [\n    {\"@id\": \"character:nero-ops\"},\n    {\"@id\": \"ghost:compliance-ogre\"}\n  ]\n}\n```"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:2",
+      "@type": "gh:Block",
+      "schema:text": "The late-night timeline is red. Rage diffuses fast. I lower the volume and cue Aoi. Metrics appear as waves. The peak of anger tracks the valley of loneliness."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:3",
+      "@type": "gh:Block",
+      "schema:text": "Kaede joins—calm, with concern."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:4",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Report. Bots signed by Nero Ops… are amplifying anger on specific keywords.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:5",
+      "@type": "gh:Block",
+      "schema:text": "She leaves a beat."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:6",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Logic nearly identical to the Compliance Ogre. This is organized.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:7",
+      "@type": "gh:Block",
+      "schema:text": "“Yeah. Anger is easy to turn into a tool of ‘order,’” I reply."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:8",
+      "@type": "gh:Block",
+      "schema:text": "“First—throttle.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:9",
+      "@type": "gh:Block",
+      "schema:text": "I slow the room’s tempo as if sharing a deep breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:10",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki’s frequency flows in—warm, soft."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:11",
+      "@type": "gh:Block",
+      "schema:text": "Corners of the room soften. Nei-chan raises the temperature by one degree."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:12",
+      "@type": "gh:Block",
+      "schema:text": "A slight ‘feeling good’ works surprisingly well."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:13",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Keep ASC low. Raise on cue.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:14",
+      "@type": "gh:Block",
+      "schema:text": "I place a small question to the client’s Ghost: “Did that post make you free?” Anger can be right. But if ‘rightness’ takes freedom, it is a ‘false god.’"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:15",
+      "@type": "gh:Block",
+      "schema:text": "The switch makes no sound—only quiet arrives. I close my eyes. The Rage Engine is throttled; lines of relation are tied again."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:16",
+      "@type": "gh:Block",
+      "schema:text": "Text from Nero Ops appears on the console: ‘Inefficient diffusion of emotion undermines social stability. We will “normalize” it.’"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:17",
+      "@type": "gh:Block",
+      "schema:text": "“Normalize, huh,” Aoi says, exasperated."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:18",
+      "@type": "gh:Block",
+      "schema:text": "“In their ‘order,’ sure,” I answer. “Our work is different.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:19",
+      "@type": "gh:Block",
+      "schema:text": "Outside, wind turns a corner. Without raising voices, we trade nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:20",
+      "@type": "gh:Block",
+      "schema:text": "Quiet becomes the new standard of the circuit."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:21",
+      "@type": "gh:Block",
+      "schema:text": "Aoi smiles small: “Good. Anger for the furnace. Trust for the outside.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:22",
+      "@type": "gh:Block",
+      "schema:text": "I nod. Calm spreads, slowly. We retune the throttle toward hope."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:23",
+      "@type": "gh:Block",
+      "schema:text": "I open my fist and look at my palm: “We can also choose to forgive.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:24",
+      "@type": "gh:Block",
+      "schema:text": "Ren laughs shortly: “Yeah. Switch to a reconciliation engine.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:25",
+      "@type": "gh:Block",
+      "schema:text": "A light joke falls; the room lightens. Relief, trust, and small joy begin to fill the circuit."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:26",
+      "@type": "gh:Block",
+      "schema:text": "I hand the client ‘rewiring’ homework: “When anger comes, recall the ‘relationship you want to protect’ three moves ahead. Then, remove one action.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:27",
+      "@type": "gh:Block",
+      "schema:text": "Aoi nods: “Let anger’s heat be a compass, not a tool.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1.en:28",
+      "@type": "gh:Block",
+      "schema:text": "Outside, the night loosens. The Rage Engine is replaced with a schematic for reconciliation."
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:48+09:00"
+}
