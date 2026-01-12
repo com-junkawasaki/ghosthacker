@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part3:13",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Green along the canal sings in the wind. Far away, remnants of the old elevated line fall into quiet shadow. Night deepens in the city of water, and the lattice of light glows softly.",
+    "ja": "私は足元で、もう一度だけ神楽を一拍。終わりの合図。\nLogosが小さく笑う。「主は、戻れると思う？」\n「うん。戻れる。戻り方は、もうここにある」"
+  },
+  "gh:index": 13
+}

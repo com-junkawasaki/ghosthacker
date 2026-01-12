@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part3:25",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I close my notebook and take one breath in my chest. ‘Release → afterglow’ settles, quietly."
+  },
+  "gh:index": 25
+}

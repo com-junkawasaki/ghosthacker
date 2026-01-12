@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part3:16",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede returns to comms, voice gentle: “Short rehearsal tomorrow morning?”"
+  },
+  "gh:index": 16
+}
