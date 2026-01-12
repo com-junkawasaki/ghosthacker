@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part1:16",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan whispers only into my awareness: “Tama, he smells very ‘correct.’ So why does it hurt?”",
+    "ja": "私はもう一度、神楽を一拍。スロットルを少し開ける。Nei-chan「うん、合図受けた」"
+  },
+  "gh:index": 16
+}

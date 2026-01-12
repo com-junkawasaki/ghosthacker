@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part1:31",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Behind me, there is a quiet bug—loneliness justified by reason. I do not forget it."
+  },
+  "gh:index": 31
+}
