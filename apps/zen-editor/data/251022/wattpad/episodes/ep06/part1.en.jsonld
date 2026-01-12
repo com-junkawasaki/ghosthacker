@@ -1,0 +1,74 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part1.en",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep06/part1.en:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP6-1 — Shadow (Infrastructure)\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Omen / Systems"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part1.en:1",
+      "@type": "gh:Block",
+      "schema:text": "```json\n{\n  \"@context\": {\n    \"@base\": \"https://ghosthacker.example.com/\",\n    \"gh\": \"https://ghosthacker.junkawasaki.com/gh#\",\n    \"antagonist\": { \"@id\": \"gh:antagonist\", \"@type\": \"@id\" },\n    \"character\": \"https://ghosthacker.example.com/character/\",\n    \"ghost\": \"https://ghosthacker.example.com/ghost/\"\n  },\n  \"antagonist\": [\n    {\"@id\": \"character:nero-ops\"},\n    {\"@id\": \"ghost:compliance-ogre\"}\n  ]\n}\n```"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part1.en:2",
+      "@type": "gh:Block",
+      "schema:text": "Waterways, power, communications—anomalous waveforms with the same correlation. A nameless force grips the city’s throat. I ask for a “name.” Calling is the first procedure to bring a target back into the world. I steady my breath to avoid choosing fear."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part1.en:3",
+      "@type": "gh:Block",
+      "schema:text": "Kaede comes onto comms, tense."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part1.en:4",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Authority delegation at the city-office layer… I see backflow tendencies.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part1.en:5",
+      "@type": "gh:Block",
+      "schema:text": "She leaves a beat."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part1.en:6",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “In ER terms, this is ‘abnormal vitals.’ Be careful.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part1.en:7",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki’s frequency floods the room—lower and more serious than usual."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part1.en:8",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Low-frequency unease is lingering in the streets. The sound is heavy, Tamaki.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part1.en:9",
+      "@type": "gh:Block",
+      "schema:text": "I draw faint circles on the map. The Compliance Ogre’s stride. Nero Ops’ habits. With a quiet cue, preparations accelerate."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part1.en:10",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Match ASC?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part1.en:11",
+      "@type": "gh:Block",
+      "schema:text": "I tap a one-beat kagura at my feet. Signal. The resolution of awareness quietly rises."
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:43+09:00"
+}
