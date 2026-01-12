@@ -1,0 +1,224 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part2.en",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:0",
+      "@type": "gh:Block",
+      "schema:text": "# Session: Lachlan Keyes - Part 2"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:1",
+      "@type": "gh:Block",
+      "schema:text": "---\nKaede: “Continue in the same night.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:2",
+      "@type": "gh:Block",
+      "schema:text": "Resolve fills her voice."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:3",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Don’t split. We finish tonight. This is a turning point.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:4",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Ambient noise is low tonight.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:5",
+      "@type": "gh:Block",
+      "schema:text": "Calm."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:6",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Riverside lights are in low-lumen mode. Only the ER lane is bright. A good night that won’t interfere with sound.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:7",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, now’s good. His wall is trembling.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:8",
+      "@type": "gh:Block",
+      "schema:text": "‘Fortress of Self’—transparent walls encircle him. Inside, he breathes shallow."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:9",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “This wall no longer ‘protects.’ It imprisons.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:10",
+      "@type": "gh:Block",
+      "schema:text": "Kaede joins, voice carrying deep understanding."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:11",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “John Locke’s self-ownership—body as one’s sole property. Absolute boundary.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:12",
+      "@type": "gh:Block",
+      "schema:text": "She leaves a beat."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:13",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “It kept him alive. Now it locks him in.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:14",
+      "@type": "gh:Block",
+      "schema:text": "I touch the wall. Its cold comes not from temperature, but from meaning stripped away."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:15",
+      "@type": "gh:Block",
+      "schema:text": "“Lachlan, did you build this wall?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:16",
+      "@type": "gh:Block",
+      "schema:text": "“Yes. For safety. No one comes in. No one can betray me.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:17",
+      "@type": "gh:Block",
+      "schema:text": "“But then, no one can touch you.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:18",
+      "@type": "gh:Block",
+      "schema:text": "He is silent."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:19",
+      "@type": "gh:Block",
+      "schema:text": "A different memory flashes—first EVA. Tether, oxygen, heart thresholds. ‘Your body is not yours; it is the mission’s,’ the trainer’s voice. To keep the tether from snapping, he cut emotion."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:20",
+      "@type": "gh:Block",
+      "schema:text": "“You survived by surrendering the freedom of your body. So your heart surrendered freedom.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:21",
+      "@type": "gh:Block",
+      "schema:text": "He bristles: “Your Ghost is AI. Not life. It will not betray you because it has no will. It is a program.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:22",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan’s wings tremble. I take her hand."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:23",
+      "@type": "gh:Block",
+      "schema:text": "“Nei-chan is not a ‘program.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:24",
+      "@type": "gh:Block",
+      "schema:text": "“Trust is not calculation. It arises because we are ‘not separated.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:25",
+      "@type": "gh:Block",
+      "schema:text": "“—Illogical.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:26",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “But your heart rate just went up. That’s the reaction when you like something ‘illogical.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:27",
+      "@type": "gh:Block",
+      "schema:text": "“Physics assumes separation.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:28",
+      "@type": "gh:Block",
+      "schema:text": "“But your breathing is, right now, inseparable from the air in this room.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:29",
+      "@type": "gh:Block",
+      "schema:text": "I tap a beat of kagura. Raise ASC half a step. Feed the non-separation code into the wall’s joints."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:30",
+      "@type": "gh:Block",
+      "schema:text": "The wall hums faintly."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:31",
+      "@type": "gh:Block",
+      "schema:text": "He places a hand on his chest and steps forward one step. His unclenched fist loosens, fingertips trembling."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:32",
+      "@type": "gh:Block",
+      "schema:text": "“...I wanted someone to touch me. But I was afraid. Of betrayal.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:33",
+      "@type": "gh:Block",
+      "schema:text": "“‘Afraid’ is the reverse of ‘desire.’ If you desired nothing, you would not fear.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:34",
+      "@type": "gh:Block",
+      "schema:text": "The wall turns transparent, and I see him wavering."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:35",
+      "@type": "gh:Block",
+      "schema:text": "“What should I do?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:36",
+      "@type": "gh:Block",
+      "schema:text": "I whisper, matching breath: “Say ‘huh?’—that’s the first signal.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:37",
+      "@type": "gh:Block",
+      "schema:text": "“Breath. Recover the breathing that feels good.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:38",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama is here. I’m here, too.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:39",
+      "@type": "gh:Block",
+      "schema:text": "The wall collapses, and the sound recedes. For the first time, his shoulders fall."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:40",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part2.en:41",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: The wall collapses—from a protocol body to a breathing body]**"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:37+09:00"
+}
