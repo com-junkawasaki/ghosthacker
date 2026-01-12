@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:60",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "A vine-like UI unfurls in the information space.",
+    "ja": "Hibikiの手元で小さな端末が光る。"
+  },
+  "gh:index": 60
+}

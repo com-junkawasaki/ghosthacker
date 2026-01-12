@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:42",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo signs the support consent. Resolve and worry mix on his face.",
+    "ja": "読み上げ完了後、Milliaは手を重ねてサインする。"
+  },
+  "gh:index": 42
+}

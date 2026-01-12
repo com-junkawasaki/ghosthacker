@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:78",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo supports her shoulder.",
+    "ja": "そして、決意を込めて言う。"
+  },
+  "gh:index": 78
+}

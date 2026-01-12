@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:23",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki steps forward. The badge of anesthesia glints on his coat.",
+    "ja": "Hibikiが前へ出る。白衣の胸元に、麻酔科医の資格章が光っている。"
+  },
+  "gh:index": 23
+}

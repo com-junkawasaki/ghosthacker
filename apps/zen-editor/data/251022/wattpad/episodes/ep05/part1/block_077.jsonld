@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:77",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Bitterness spreads across her tongue.",
+    "ja": "Milliaは少し考える。"
+  },
+  "gh:index": 77
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:97",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Millia, I’m here. Do not fear. We go together.”",
+    "ja": "Dr. イタコは光のメスを掲げる。"
+  },
+  "gh:index": 97
+}

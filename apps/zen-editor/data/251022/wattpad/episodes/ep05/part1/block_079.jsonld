@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:79",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “It’s okay. I’m here.”",
+    "ja": "Millia「……はい。私が選びます」"
+  },
+  "gh:index": 79
+}

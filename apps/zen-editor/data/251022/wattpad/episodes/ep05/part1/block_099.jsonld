@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:99",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "—The operation begins.",
+    "ja": "「ほんとは私は縫合専門なんだけどね。いいよ、今回は切開もやろうじゃないか」"
+  },
+  "gh:index": 99
+}

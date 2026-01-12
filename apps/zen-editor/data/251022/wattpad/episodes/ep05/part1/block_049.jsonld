@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:49",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “—Before that, three breaths. With me. Matching breath calms the heart.”",
+    "ja": "Milliaは頷く。"
+  },
+  "gh:index": 49
+}

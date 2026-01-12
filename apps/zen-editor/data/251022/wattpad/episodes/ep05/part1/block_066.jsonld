@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:66",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Sound, light, scent—everything will support your healing. I’ll protect your awareness as anesthesiologist, while I weave the field with music.”",
+    "ja": "Hibiki「今からDJとして、術中の場を生成し続けるよ」"
+  },
+  "gh:index": 66
+}

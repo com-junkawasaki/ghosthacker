@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:73",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "She thinks a little, then says with resolve:",
+    "ja": "Hibikiから渡されたカップを両手で支える。"
+  },
+  "gh:index": 73
+}
