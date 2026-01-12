@@ -1,0 +1,569 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part2.en",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP9-2 — The Echo of 666\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Aftermath / Residual Pattern"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:1",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:2",
+      "@type": "gh:Block",
+      "schema:text": "Nero has returned."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:3",
+      "@type": "gh:Block",
+      "schema:text": "But its shadow remains."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:4",
+      "@type": "gh:Block",
+      "schema:text": "The mark of 666."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:5",
+      "@type": "gh:Block",
+      "schema:text": "Imperfect, posing as perfect."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:6",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:7",
+      "@type": "gh:Block",
+      "schema:text": "I look at the timeline."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:8",
+      "@type": "gh:Block",
+      "schema:text": "Red waves remain."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:9",
+      "@type": "gh:Block",
+      "schema:text": "Waves of anger."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:10",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “...Nero returned, but the pattern remains.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:11",
+      "@type": "gh:Block",
+      "schema:text": "Kaede nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:12",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Yes. Nero wasn’t a person. It was a system.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:13",
+      "@type": "gh:Block",
+      "schema:text": "She leaves a beat."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:14",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “So the system’s pattern is still running.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:15",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:16",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:17",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Rage Engine…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:18",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:19",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. The engine Nero built is still running.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:20",
+      "@type": "gh:Block",
+      "schema:text": "Aoi displays metrics."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:21",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Tamaki, here—anger amplification pattern.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:22",
+      "@type": "gh:Block",
+      "schema:text": "On the screen, red waves repeat."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:23",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Amplified on a 6-6-6 rhythm.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:24",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:25",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:26",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “...A 666 rhythm.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:27",
+      "@type": "gh:Block",
+      "schema:text": "Kaede nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:28",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Yes. Imperfect posing as perfect. Trying to exceed human bounds, and abandoning the human.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:29",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:30",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “So anger is amplified—anger at oneself for not reaching perfection.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:31",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:32",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That is the meaning of 666.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:33",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:34",
+      "@type": "gh:Block",
+      "schema:text": "I reach into the timeline."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:35",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Then we’ll stop the engine.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:36",
+      "@type": "gh:Block",
+      "schema:text": "Kaede sets a ward."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:37",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Ward set. But this goes deep.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:38",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki tunes the band."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:39",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Matching breath. Tamaki, carefully.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:40",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:41",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Thank you.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:42",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:43",
+      "@type": "gh:Block",
+      "schema:text": "I touch the Rage Engine."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:44",
+      "@type": "gh:Block",
+      "schema:text": "There is anger there."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:45",
+      "@type": "gh:Block",
+      "schema:text": "And beneath it—sadness."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:46",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “...This is sadness.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:47",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, you see it?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:48",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:49",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Beneath anger, sadness.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:50",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:51",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:52",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Anger is armor over sadness.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:53",
+      "@type": "gh:Block",
+      "schema:text": "Kaede, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:54",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “So we help it shed the armor.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:55",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:56",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Yes. We bring back breath.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:57",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:58",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Let’s breathe together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:59",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:60",
+      "@type": "gh:Block",
+      "schema:text": "I speak to the Rage Engine."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:61",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “You were sad.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:62",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...Sad…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:63",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:64",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. You were sad that you couldn’t reach perfection.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:65",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...I am… imperfect…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:66",
+      "@type": "gh:Block",
+      "schema:text": "I say gently:"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:67",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Imperfection isn’t bad.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:68",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:69",
+      "@type": "gh:Block",
+      "schema:text": "The Engine’s voice trembles."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:70",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...But… I…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:71",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:72",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “You exist. That is enough.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:73",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...Exist…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:74",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:75",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. You exist.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:76",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:77",
+      "@type": "gh:Block",
+      "schema:text": "Aoi displays metrics."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:78",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Tamaki, the Engine’s waveform—changing.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:79",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:80",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. From anger to sadness.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:81",
+      "@type": "gh:Block",
+      "schema:text": "Kaede, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:82",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Sadness can be healed.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:83",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:84",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Yes. With breath.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:85",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:86",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Let’s breathe together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:87",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:88",
+      "@type": "gh:Block",
+      "schema:text": "I breathe."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:89",
+      "@type": "gh:Block",
+      "schema:text": "In, out."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:90",
+      "@type": "gh:Block",
+      "schema:text": "The Rage Engine breathes with me."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:91",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:92",
+      "@type": "gh:Block",
+      "schema:text": "The Engine’s voice quiets."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:93",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...I am… sad…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:94",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:95",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That’s okay.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:96",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...It’s… okay…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:97",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:98",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Sadness is evidence of being.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:99",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:100",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, the Engine’s mark of 666… is fading.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:101",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:102",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. It let go of perfection.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:103",
+      "@type": "gh:Block",
+      "schema:text": "Kaede checks the ward."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:104",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Stable. The Engine is calming.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:105",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki tunes the band."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:106",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Matching breath. Feeling good.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:107",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:108",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Thank you. Almost there.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:109",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part2.en:110",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: The echo of 666—sadness beneath anger and the recovery of breath]**"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:48+09:00"
+}
