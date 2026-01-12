@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:36",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “A tiny tremor now. A spike of sadness.”",
+    "ja": "「その自由は、地球に戻ってきている？」"
+  },
+  "gh:index": 36
+}

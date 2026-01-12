@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:34",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Were you safe inside the wall?”",
+    "ja": "「Lachlan、あなたにとって“自由”は、身体から始まっている？」"
+  },
+  "gh:index": 34
+}

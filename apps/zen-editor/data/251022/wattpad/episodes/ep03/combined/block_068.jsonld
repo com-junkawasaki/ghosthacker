@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:68",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “This wall no longer ‘protects.’ It imprisons.”",
+    "ja": "Kaede「彼はそれで生き延びた。でも今は……それが彼を閉じ込めてる」"
+  },
+  "gh:index": 68
+}

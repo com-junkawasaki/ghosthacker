@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:151",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He finally sets it down and folds his hands. “...I don’t know.” He jokes, but his voice shakes. His shoulders drop; breath deepens.",
+    "ja": "「いや、しかし……」言いかけて、彼は黙る。長い沈黙。瞳に水が溜まる。"
+  },
+  "gh:index": 151
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:93",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The wall turns transparent, and I see him wavering.",
+    "ja": "# Session: Lachlan Keyes - Part 3"
+  },
+  "gh:index": 93
+}

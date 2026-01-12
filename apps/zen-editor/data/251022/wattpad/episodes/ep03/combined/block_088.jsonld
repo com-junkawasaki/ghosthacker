@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:88",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I tap a beat of kagura. Raise ASC half a step. Feed the non-separation code into the wall’s joints.",
+    "ja": "「呼吸。いい感じの呼吸を、取り戻す」"
+  },
+  "gh:index": 88
+}

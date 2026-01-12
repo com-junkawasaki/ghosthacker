@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:167",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan smiles small: “Mm. From here.”"
+  },
+  "gh:index": 167
+}

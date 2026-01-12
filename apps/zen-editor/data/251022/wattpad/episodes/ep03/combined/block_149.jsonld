@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:149",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“So where, from where to where, is that water ‘you’?”",
+    "ja": "「……もしかして、“私は水と”……わかれていないのか？」"
+  },
+  "gh:index": 149
+}

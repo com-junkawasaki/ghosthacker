@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:154",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The hallway metronome ticks, faint: kat, kat, kat.",
+    "ja": "私は何も言わない。Nei-chanも、何も言わない。"
+  },
+  "gh:index": 154
+}

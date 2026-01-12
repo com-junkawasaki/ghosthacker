@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:100",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "**[Beat: The wall collapses—from a protocol body to a breathing body]**",
+    "ja": "「……私は誰も信じられなかった。誰も……私を信じてくれなかった」"
+  },
+  "gh:index": 100
+}

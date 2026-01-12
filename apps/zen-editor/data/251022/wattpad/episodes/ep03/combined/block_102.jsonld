@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:102",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---\nAoi (comms): “Outside, the cicadas started. Coastal flood map update came in—okay to hold?”",
+    "ja": "「いま、ここにいる。あなたは“信じたい”と思っている。それが人間性」\n彼は不意に笑って、すぐに困ったように眉を寄せた。「……こんな顔、久しぶりだ」"
+  },
+  "gh:index": 102
+}

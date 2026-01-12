@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:144",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He drinks without a word. His throat bobs.",
+    "ja": "やがて彼はコップを置き、両手を組む。「……わからない」冗談めかして言うが、声は震えている。肩が一段落ち、呼吸が深くなる。\nNei-chan『“わからない”って、ほんとは、はじめまして』"
+  },
+  "gh:index": 144
+}

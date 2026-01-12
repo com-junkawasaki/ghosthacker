@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:137",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "After a beat, I point at the cup.",
+    "ja": "彼は無言で飲む。喉が上下する。"
+  },
+  "gh:index": 137
+}

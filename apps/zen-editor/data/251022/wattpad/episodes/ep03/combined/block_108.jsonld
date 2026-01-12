@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:108",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...I couldn’t trust anyone. No one… trusted me.”",
+    "ja": "「……母に。十八ヶ月、連絡していない」"
+  },
+  "gh:index": 108
+}

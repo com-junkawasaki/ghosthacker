@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:142",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I slide the cup to him, smiling.",
+    "ja": "「では、その水は『どこからどこまで』があなた？」"
+  },
+  "gh:index": 142
+}

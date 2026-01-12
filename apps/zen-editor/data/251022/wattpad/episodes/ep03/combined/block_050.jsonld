@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:50",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“The question itself shows it.”",
+    "ja": "「私は、もう少し話す。——私は、子どものときから『泣くな』と言われた。私は、泣かないことで生き延びた。私は、泣かないことで、いま苦しい」"
+  },
+  "gh:index": 50
+}

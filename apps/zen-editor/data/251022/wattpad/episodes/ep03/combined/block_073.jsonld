@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:73",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I touch the wall. Its cold comes not from temperature, but from meaning stripped away.",
+    "ja": "彼は黙る。"
+  },
+  "gh:index": 73
+}

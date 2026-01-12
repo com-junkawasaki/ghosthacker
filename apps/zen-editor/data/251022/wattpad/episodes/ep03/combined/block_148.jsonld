@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:148",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He touches the rim with his lips—at that instant—",
+    "ja": "彼は私とNei-chanを交互に見て——"
+  },
+  "gh:index": 148
+}
