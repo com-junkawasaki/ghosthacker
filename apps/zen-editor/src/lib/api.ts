@@ -6,6 +6,7 @@ import { EditorService } from "./gen/editor_pb";
 type EditorClient = {
   getTopology: (req: { projectId: string }) => Promise<any>;
   getBlocks: (req: { projectId: string, manuscriptId: string }) => Promise<any>;
+  saveManuscript: (req: { projectId: string, manuscriptId: string, blocks: any[] }) => Promise<any>;
   getProjectMetadata: (req: { projectId: string }) => Promise<any>;
   callTool: (req: any) => Promise<any>;
   interact: (req: any) => AsyncIterable<any>;

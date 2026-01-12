@@ -6,6 +6,8 @@
   import ConnectionSuggester from '../components/ConnectionSuggester.svelte';
   import { getClient } from '../lib/api';
 
+  import { graphStore } from '../lib/stores/graph.svelte';
+
   let selectedNode = $state<any>(null);
   let rightPaneMode = $state<"storyboard" | "editor" | "connection-suggester" | "entity" | "relation" | "asset">("storyboard");
   let projectId = $state("251022"); // Default project
@@ -31,7 +33,7 @@
     }
   }
 
-  function handleNodeSelect(node: any) {
+  async function handleNodeSelect(node: any) {
     if (!node) {
       selectedNode = null;
       return;
@@ -47,9 +49,24 @@
     // Decide View Mode based on Type/Group (VS Code filetype style)
     if (group === 'unlinked') {
       rightPaneMode = "connection-suggester";
-    } else if (type === 'gh:Manuscript' || type === 'gh:Block' || id.startsWith('manuscript:') || id.startsWith('block:')) {
+    } else if (type === 'gh:Manuscript' || id.startsWith('manuscript:')) {
       rightPaneMode = "editor";
       currentFilePath = node.label || id || "Untitled.md";
+      
+      // Fetch full content if it's a manuscript
+      await graphStore.fetchBlocks(id);
+      const manuscript = graphStore.nodes.get(id);
+      if (manuscript && manuscript.children) {
+        currentFileContent = manuscript.children
+          .map(cid => graphStore.nodes.get(cid)?.content || "")
+          .filter(c => c !== "")
+          .join("\n\n");
+      } else {
+        currentFileContent = node.content || "";
+      }
+    } else if (type === 'gh:Block' || id.startsWith('block:')) {
+      rightPaneMode = "editor";
+      currentFilePath = id;
       currentFileContent = node.content || "";
     } else if (type.includes('Person') || type.includes('Character') || id.startsWith('character:')) {
       rightPaneMode = "entity";
@@ -70,26 +87,32 @@
   }
 
   async function handleEditorSave(content: string) {
-    try {
-      const client = await getClient();
-      if (!client || !selectedNode) return;
+    if (!selectedNode) return;
+    
+    if (selectedNode.type === 'gh:Manuscript' || selectedNode.id.startsWith('manuscript:')) {
+      await graphStore.saveManuscript(selectedNode.id, content);
+    } else {
+      // Handle legacy or single block save
+      try {
+        const client = await getClient();
+        if (!client) return;
 
-      await client.commitHistory({
-        projectId: "251022",
-        type: "node_edit",
-        stateJson: JSON.stringify({
-          nodeId: selectedNode.id,
-          content: content
-        }),
-        message: `Edit node: ${selectedNode.label}`,
-        branchName: "main"
-      });
-      
-      // Update local node state if needed
-      selectedNode.content = content;
-      alert("Changes saved to history!");
-    } catch (err) {
-      console.error("Failed to save editor content:", err);
+        await client.commitHistory({
+          projectId: "251022",
+          type: "node_edit",
+          stateJson: JSON.stringify({
+            nodeId: selectedNode.id,
+            content: content
+          }),
+          message: `Edit node: ${selectedNode.label}`,
+          branchName: "main"
+        });
+        
+        selectedNode.content = content;
+        alert("Changes saved to history!");
+      } catch (err) {
+        console.error("Failed to save editor content:", err);
+      }
     }
   }
 

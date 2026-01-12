@@ -78,9 +78,7 @@ class GraphStore {
 
       // Update nodes map
       (resp.nodes || []).forEach((n: any) => {
-        if (!this.nodes.has(n.id)) {
-          this.nodes.set(n.id, { ...n, children: [] });
-        }
+        this.nodes.set(n.id, { ...n, children: [] });
       });
 
       // Update parent children list
@@ -106,6 +104,35 @@ class GraphStore {
 
     } catch (err) {
       console.error("Failed to fetch blocks:", err);
+    }
+  }
+
+  async saveManuscript(manuscriptId: string, content: string) {
+    if (!this.projectId) return;
+    try {
+      const client = await getClient();
+      if (!client) return;
+
+      // Split content into blocks
+      const rawBlocks = content.split('\n\n');
+      const blocks = rawBlocks.map((text, i) => ({
+        id: `${manuscriptId}:block:${i}`,
+        content: text.trim(),
+        type: 'gh:Block'
+      })).filter(b => b.content !== "");
+
+      await client.saveManuscript({
+        projectId: this.projectId,
+        manuscriptId,
+        blocks
+      });
+
+      // Refresh blocks in store
+      await this.fetchBlocks(manuscriptId);
+      alert("Manuscript saved successfully as JSON-LD");
+    } catch (err) {
+      console.error("Failed to save manuscript:", err);
+      alert("Failed to save manuscript");
     }
   }
 

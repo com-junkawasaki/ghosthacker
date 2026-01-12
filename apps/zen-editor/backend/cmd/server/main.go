@@ -813,10 +813,18 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 			})
 
 			for _, file := range ep.Files {
-				mNodeID := fmt.Sprintf("manuscript:%s:%s", ep.ID, file)
+				// Use .jsonld if it exists, otherwise .md
+				baseName := strings.TrimSuffix(file, ".md")
+				jsonldFile := baseName + ".jsonld"
+				actualFile := file
+				if _, err := os.Stat(filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", jsonldFile)); err == nil {
+					actualFile = jsonldFile
+				}
+
+				mNodeID := fmt.Sprintf("manuscript:%s:%s", ep.ID, actualFile)
 				mNode := &editorpb.Node{
 					Id:    mNodeID,
-					Label: file,
+					Label: actualFile,
 					Type:  "gh:Manuscript",
 					Group: "content",
 					Embedding: s.generateDummyEmbedding(mNodeID),
@@ -889,21 +897,66 @@ func (s *EditorServer) GetBlocks(ctx context.Context, req *connect.Request[edito
 	epID := parts[1]
 	fileRelPath := strings.Join(parts[2:], ":")
 	
-	filePath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", fileRelPath)
-	fcontent, err := os.ReadFile(filePath)
-	if err != nil {
+	// Try the exact path, then try swapping extensions
+	baseName := strings.TrimSuffix(strings.TrimSuffix(fileRelPath, ".md"), ".jsonld")
+	jsonldPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", baseName+".jsonld")
+	mdPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", baseName+".md")
+	
+	var blocks []interface{}
+	var data []byte
+	var err error
+
+	if _, err = os.Stat(jsonldPath); err == nil {
+		data, err = os.ReadFile(jsonldPath)
+		if err == nil {
+			var manuscript struct {
+				Blocks []interface{} `json:"gh:blocks"`
+			}
+			if jerr := json.Unmarshal(data, &manuscript); jerr == nil {
+				blocks = manuscript.Blocks
+			} else {
+				// If JSON is invalid, maybe it's still raw text (unlikely but safe)
+				log.Printf("Warning: Invalid JSON in %s, treating as raw text", jsonldPath)
+				err = jerr
+			}
+		}
+	} 
+	
+	if len(blocks) == 0 {
+		// Fallback to .md or treat .jsonld as raw if it failed above
+		if _, err = os.Stat(mdPath); err == nil {
+			data, err = os.ReadFile(mdPath)
+		} else if _, err = os.Stat(jsonldPath); err == nil {
+			data, err = os.ReadFile(jsonldPath)
+		}
+
+		if err == nil {
+			rawBlocks := strings.Split(string(data), "\n\n")
+			for bIdx, bContent := range rawBlocks {
+				bContent = strings.TrimSpace(bContent)
+				if bContent == "" {
+					continue
+				}
+				blocks = append(blocks, map[string]interface{}{
+					"@id":         fmt.Sprintf("block:%s:%s:%d", epID, fileRelPath, bIdx),
+					"@type":       "gh:Block",
+					"schema:text": bContent,
+				})
+			}
+		}
+	}
+
+	if err != nil && len(blocks) == 0 {
 		return nil, connect.NewError(connect.CodeNotFound, err)
 	}
 
 	resp := &editorpb.GetBlocksResponse{}
-	blocks := strings.Split(string(fcontent), "\n\n")
 	var prevBlockID string
-	for bIdx, bContent := range blocks {
-		bContent = strings.TrimSpace(bContent)
-		if bContent == "" {
-			continue
-		}
-		bNodeID := fmt.Sprintf("block:%s:%s:%d", epID, fileRelPath, bIdx)
+	for _, b := range blocks {
+		bMap := b.(map[string]interface{})
+		bID, _ := bMap["@id"].(string)
+		bContent, _ := bMap["schema:text"].(string)
+		
 		shortLabel := bContent
 		runes := []rune(bContent)
 		if len(runes) > 30 {
@@ -912,18 +965,18 @@ func (s *EditorServer) GetBlocks(ctx context.Context, req *connect.Request[edito
 		shortLabel = strings.ReplaceAll(shortLabel, "\n", " ")
 
 		bNode := &editorpb.Node{
-			Id:      bNodeID,
+			Id:      bID,
 			Label:   shortLabel,
 			Type:    "gh:Block",
 			Content: bContent,
 			Group:   "content",
-			Embedding: s.generateDummyEmbedding(bNodeID),
+			Embedding: s.generateDummyEmbedding(bID),
 		}
 		resp.Nodes = append(resp.Nodes, bNode)
 
 		resp.Edges = append(resp.Edges, &editorpb.Edge{
 			FromId:   req.Msg.ManuscriptId,
-			ToId:     bNodeID,
+			ToId:     bID,
 			Relation: "gh:contains",
 			Style:    "dashed",
 			Color:    "#0071e3",
@@ -935,7 +988,7 @@ func (s *EditorServer) GetBlocks(ctx context.Context, req *connect.Request[edito
 		if prevBlockID != "" {
 			resp.Edges = append(resp.Edges, &editorpb.Edge{
 				FromId:   prevBlockID,
-				ToId:     bNodeID,
+				ToId:     bID,
 				Relation: "gh:precedes",
 				Style:    "solid",
 				Color:    "#34c759",
@@ -944,10 +997,59 @@ func (s *EditorServer) GetBlocks(ctx context.Context, req *connect.Request[edito
 				Strength: 1.0,
 			})
 		}
-		prevBlockID = bNodeID
+		prevBlockID = bID
 	}
 
 	return connect.NewResponse(resp), nil
+}
+
+func (s *EditorServer) SaveManuscript(ctx context.Context, req *connect.Request[editorpb.SaveManuscriptRequest]) (*connect.Response[editorpb.SaveManuscriptResponse], error) {
+	log.Printf("RPC: SaveManuscript called for manuscript: %s", req.Msg.ManuscriptId)
+	
+	parts := strings.Split(req.Msg.ManuscriptId, ":")
+	if len(parts) < 3 {
+		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("invalid manuscript id format"))
+	}
+	fileRelPath := strings.Join(parts[2:], ":")
+	baseName := strings.TrimSuffix(strings.TrimSuffix(fileRelPath, ".md"), ".jsonld")
+	jsonldPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", baseName+".jsonld")
+
+	blocks := []interface{}{}
+	for _, b := range req.Msg.Blocks {
+		blocks = append(blocks, map[string]interface{}{
+			"@id":         b.Id,
+			"@type":       "gh:Block",
+			"schema:text": b.Content,
+		})
+	}
+
+	manuscript := map[string]interface{}{
+		"@context": map[string]interface{}{
+			"gh":     "https://gftd.ai/ghost-hacker/ontology/",
+			"schema": "https://schema.org/",
+			"name":   "schema:name",
+			"text":   "schema:text",
+			"blocks": "gh:blocks",
+		},
+		"@id":       req.Msg.ManuscriptId,
+		"@type":     "gh:Manuscript",
+		"gh:blocks": blocks,
+		"updatedAt": time.Now().Format(time.RFC3339),
+	}
+
+	data, _ := json.MarshalIndent(manuscript, "", "  ")
+	if err := os.WriteFile(jsonldPath, data, 0644); err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	if s.Git != nil {
+		s.Git.CommitDocument(jsonldPath, fmt.Sprintf("Save manuscript %s as JSON-LD", req.Msg.ManuscriptId))
+	}
+
+	return connect.NewResponse(&editorpb.SaveManuscriptResponse{
+		Success: true, 
+		Message: "Manuscript saved as JSON-LD and committed to Git",
+	}), nil
 }
 
 func (s *EditorServer) generateDummyEmbedding(id string) []float32 {

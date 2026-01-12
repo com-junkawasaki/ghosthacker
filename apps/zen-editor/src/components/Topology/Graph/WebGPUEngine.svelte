@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
   import { Graph } from '@cosmos.gl/graph';
-  import { graphStore } from '../../lib/stores/graph.svelte';
+  import { graphStore, type Node, type Edge } from '../../../lib/stores/graph.svelte';
 
   let { 
     onNodeClick = () => {},
@@ -25,7 +25,7 @@
   $effect(() => {
     if (graph && graphStore.selectedNodeId) {
       const nodeList = Array.from(graphStore.nodes.values());
-      const index = nodeList.findIndex(n => n.id === graphStore.selectedNodeId);
+      const index = nodeList.findIndex((n: Node) => n.id === graphStore.selectedNodeId);
       if (index !== -1) {
         graph.zoomToPointByIndex(index, 800);
       }
@@ -78,7 +78,7 @@
     const pointPositions = new Float32Array(nodeList.length * 2);
     const pointColors = new Float32Array(nodeList.length * 4);
     
-    nodeList.forEach((n, i) => {
+    nodeList.forEach((n: Node, i: number) => {
       pointPositions[i * 2] = n.x || (Math.random() * 1000 - 500);
       pointPositions[i * 2 + 1] = n.y || (Math.random() * 1000 - 500);
       
@@ -96,9 +96,9 @@
     });
 
     const links = new Float32Array(edgeList.length * 2);
-    const idToIndex = new Map(nodeList.map((n, i) => [n.id, i]));
+    const idToIndex = new Map(nodeList.map((n: Node, i: number) => [n.id, i]));
     
-    edgeList.forEach((e, i) => {
+    edgeList.forEach((e: Edge, i: number) => {
       const fromIdx = idToIndex.get(e.fromId) ?? 0;
       const toIdx = idToIndex.get(e.toId) ?? 0;
       links[i * 2] = fromIdx;

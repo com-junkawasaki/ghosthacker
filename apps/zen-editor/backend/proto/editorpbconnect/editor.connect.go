@@ -36,6 +36,8 @@ const (
 	// EditorServiceGetTopologyProcedure is the fully-qualified name of the EditorService's GetTopology
 	// RPC.
 	EditorServiceGetTopologyProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/GetTopology"
+	// EditorServiceGetBlocksProcedure is the fully-qualified name of the EditorService's GetBlocks RPC.
+	EditorServiceGetBlocksProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/GetBlocks"
 	// EditorServiceGetProjectMetadataProcedure is the fully-qualified name of the EditorService's
 	// GetProjectMetadata RPC.
 	EditorServiceGetProjectMetadataProcedure = "/gftd.ghosthacker.zeneditor.v1.EditorService/GetProjectMetadata"
@@ -63,6 +65,7 @@ const (
 // EditorServiceClient is a client for the gftd.ghosthacker.zeneditor.v1.EditorService service.
 type EditorServiceClient interface {
 	GetTopology(context.Context, *connect.Request[proto.GetTopologyRequest]) (*connect.Response[proto.GetTopologyResponse], error)
+	GetBlocks(context.Context, *connect.Request[proto.GetBlocksRequest]) (*connect.Response[proto.GetBlocksResponse], error)
 	GetProjectMetadata(context.Context, *connect.Request[proto.GetProjectMetadataRequest]) (*connect.Response[proto.GetProjectMetadataResponse], error)
 	CallTool(context.Context, *connect.Request[proto.CallToolRequest]) (*connect.Response[proto.CallToolResponse], error)
 	// Storyboard persistence
@@ -91,6 +94,12 @@ func NewEditorServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			httpClient,
 			baseURL+EditorServiceGetTopologyProcedure,
 			connect.WithSchema(editorServiceMethods.ByName("GetTopology")),
+			connect.WithClientOptions(opts...),
+		),
+		getBlocks: connect.NewClient[proto.GetBlocksRequest, proto.GetBlocksResponse](
+			httpClient,
+			baseURL+EditorServiceGetBlocksProcedure,
+			connect.WithSchema(editorServiceMethods.ByName("GetBlocks")),
 			connect.WithClientOptions(opts...),
 		),
 		getProjectMetadata: connect.NewClient[proto.GetProjectMetadataRequest, proto.GetProjectMetadataResponse](
@@ -147,6 +156,7 @@ func NewEditorServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 // editorServiceClient implements EditorServiceClient.
 type editorServiceClient struct {
 	getTopology        *connect.Client[proto.GetTopologyRequest, proto.GetTopologyResponse]
+	getBlocks          *connect.Client[proto.GetBlocksRequest, proto.GetBlocksResponse]
 	getProjectMetadata *connect.Client[proto.GetProjectMetadataRequest, proto.GetProjectMetadataResponse]
 	callTool           *connect.Client[proto.CallToolRequest, proto.CallToolResponse]
 	saveStoryboard     *connect.Client[proto.SaveStoryboardRequest, proto.SaveStoryboardResponse]
@@ -160,6 +170,11 @@ type editorServiceClient struct {
 // GetTopology calls gftd.ghosthacker.zeneditor.v1.EditorService.GetTopology.
 func (c *editorServiceClient) GetTopology(ctx context.Context, req *connect.Request[proto.GetTopologyRequest]) (*connect.Response[proto.GetTopologyResponse], error) {
 	return c.getTopology.CallUnary(ctx, req)
+}
+
+// GetBlocks calls gftd.ghosthacker.zeneditor.v1.EditorService.GetBlocks.
+func (c *editorServiceClient) GetBlocks(ctx context.Context, req *connect.Request[proto.GetBlocksRequest]) (*connect.Response[proto.GetBlocksResponse], error) {
+	return c.getBlocks.CallUnary(ctx, req)
 }
 
 // GetProjectMetadata calls gftd.ghosthacker.zeneditor.v1.EditorService.GetProjectMetadata.
@@ -206,6 +221,7 @@ func (c *editorServiceClient) Interact(ctx context.Context, req *connect.Request
 // service.
 type EditorServiceHandler interface {
 	GetTopology(context.Context, *connect.Request[proto.GetTopologyRequest]) (*connect.Response[proto.GetTopologyResponse], error)
+	GetBlocks(context.Context, *connect.Request[proto.GetBlocksRequest]) (*connect.Response[proto.GetBlocksResponse], error)
 	GetProjectMetadata(context.Context, *connect.Request[proto.GetProjectMetadataRequest]) (*connect.Response[proto.GetProjectMetadataResponse], error)
 	CallTool(context.Context, *connect.Request[proto.CallToolRequest]) (*connect.Response[proto.CallToolResponse], error)
 	// Storyboard persistence
@@ -230,6 +246,12 @@ func NewEditorServiceHandler(svc EditorServiceHandler, opts ...connect.HandlerOp
 		EditorServiceGetTopologyProcedure,
 		svc.GetTopology,
 		connect.WithSchema(editorServiceMethods.ByName("GetTopology")),
+		connect.WithHandlerOptions(opts...),
+	)
+	editorServiceGetBlocksHandler := connect.NewUnaryHandler(
+		EditorServiceGetBlocksProcedure,
+		svc.GetBlocks,
+		connect.WithSchema(editorServiceMethods.ByName("GetBlocks")),
 		connect.WithHandlerOptions(opts...),
 	)
 	editorServiceGetProjectMetadataHandler := connect.NewUnaryHandler(
@@ -284,6 +306,8 @@ func NewEditorServiceHandler(svc EditorServiceHandler, opts ...connect.HandlerOp
 		switch r.URL.Path {
 		case EditorServiceGetTopologyProcedure:
 			editorServiceGetTopologyHandler.ServeHTTP(w, r)
+		case EditorServiceGetBlocksProcedure:
+			editorServiceGetBlocksHandler.ServeHTTP(w, r)
 		case EditorServiceGetProjectMetadataProcedure:
 			editorServiceGetProjectMetadataHandler.ServeHTTP(w, r)
 		case EditorServiceCallToolProcedure:
@@ -311,6 +335,10 @@ type UnimplementedEditorServiceHandler struct{}
 
 func (UnimplementedEditorServiceHandler) GetTopology(context.Context, *connect.Request[proto.GetTopologyRequest]) (*connect.Response[proto.GetTopologyResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.zeneditor.v1.EditorService.GetTopology is not implemented"))
+}
+
+func (UnimplementedEditorServiceHandler) GetBlocks(context.Context, *connect.Request[proto.GetBlocksRequest]) (*connect.Response[proto.GetBlocksResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.zeneditor.v1.EditorService.GetBlocks is not implemented"))
 }
 
 func (UnimplementedEditorServiceHandler) GetProjectMetadata(context.Context, *connect.Request[proto.GetProjectMetadataRequest]) (*connect.Response[proto.GetProjectMetadataResponse], error) {

@@ -7,6 +7,7 @@ option go_package = "github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/pro
 service EditorService {
   rpc GetTopology(GetTopologyRequest) returns (GetTopologyResponse);
   rpc GetBlocks(GetBlocksRequest) returns (GetBlocksResponse);
+  rpc SaveManuscript(SaveManuscriptRequest) returns (SaveManuscriptResponse);
   rpc GetProjectMetadata(GetProjectMetadataRequest) returns (GetProjectMetadataResponse);
   rpc CallTool(CallToolRequest) returns (CallToolResponse);
   
@@ -181,6 +182,17 @@ message GetBlocksRequest {
 message GetBlocksResponse {
   repeated Node nodes = 1;
   repeated Edge edges = 2;
+}
+
+message SaveManuscriptRequest {
+  string project_id = 1;
+  string manuscript_id = 2;
+  repeated Node blocks = 3;
+}
+
+message SaveManuscriptResponse {
+  bool success = 1;
+  string message = 2;
 }
 
 message Entity {
