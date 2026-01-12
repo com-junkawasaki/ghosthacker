@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:29",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP9-2 — The Echo of 666\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Aftermath / Residual Pattern",
+    "ja": "Tamaki「……Neroは還ったけど、パターンは残ってる」"
+  },
+  "gh:index": 29
+}

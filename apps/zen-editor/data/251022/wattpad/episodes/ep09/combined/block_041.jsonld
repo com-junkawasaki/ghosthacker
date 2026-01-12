@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:41",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Yes. Nero wasn’t a person. It was a system.”",
+    "ja": "画面には、赤い波が繰り返される。"
+  },
+  "gh:index": 41
+}

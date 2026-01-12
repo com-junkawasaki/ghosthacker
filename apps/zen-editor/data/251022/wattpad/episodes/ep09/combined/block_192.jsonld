@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:192",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Reconciliation Engine: “...Together…”",
+    "ja": "Hibiki「呼吸、合わせてる。いい感じだ」"
+  },
+  "gh:index": 192
+}

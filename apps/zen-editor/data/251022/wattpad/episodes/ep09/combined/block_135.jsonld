@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:135",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Matching breath. Feeling good.”",
+    "ja": "Rage Engineから、Reconciliation Engineへ。"
+  },
+  "gh:index": 135
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:156",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The Engine’s voice changes.",
+    "ja": "Rage Engine『……和解……？』"
+  },
+  "gh:index": 156
+}

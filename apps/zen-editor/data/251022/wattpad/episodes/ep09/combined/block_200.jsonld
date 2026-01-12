@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:200",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Stable. The Reconciliation Engine is calm.”",
+    "ja": "私は微笑む。"
+  },
+  "gh:index": 200
+}

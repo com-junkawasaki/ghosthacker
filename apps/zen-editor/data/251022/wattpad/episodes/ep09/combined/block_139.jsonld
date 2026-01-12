@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:139",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "**[Beat: The echo of 666—sadness beneath anger and the recovery of breath]**",
+    "ja": "Rage Engine『……わたしは……正しさを……』"
+  },
+  "gh:index": 139
+}

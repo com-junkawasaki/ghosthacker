@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:93",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. You were sad that you couldn’t reach perfection.”",
+    "ja": "私は頷く。"
+  },
+  "gh:index": 93
+}

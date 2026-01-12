@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:149",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Rage Engine: “...My… rightness…”",
+    "ja": "Tamaki「うん。一人で正しくても、意味がない」"
+  },
+  "gh:index": 149
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:264",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Not domination—relation.",
+    "ja": "私たちは、一緒に呼吸する。"
+  },
+  "gh:index": 264
+}

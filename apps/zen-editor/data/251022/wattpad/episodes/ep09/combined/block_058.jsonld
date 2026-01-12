@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:58",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki, quiet:",
+    "ja": "Hibiki「呼吸、合わせてる。Tamaki、慎重に」"
+  },
+  "gh:index": 58
+}

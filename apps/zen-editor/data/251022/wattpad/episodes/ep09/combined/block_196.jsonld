@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:196",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, the Engine’s 666 mark… is gone.”",
+    "ja": "私は、依頼人に\"再配線\"の宿題を渡す。"
+  },
+  "gh:index": 196
+}

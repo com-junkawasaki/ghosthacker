@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:111",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Sadness can be healed.”",
+    "ja": "Rage Engineの声が、静かになる。"
+  },
+  "gh:index": 111
+}

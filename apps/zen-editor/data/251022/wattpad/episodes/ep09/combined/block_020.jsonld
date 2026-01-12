@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:20",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Quiet becomes the new standard of the circuit.",
+    "ja": "---"
+  },
+  "gh:index": 20
+}

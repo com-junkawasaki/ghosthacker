@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:19",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Outside, wind turns a corner. Without raising voices, we trade nods.",
+    "ja": "# EP9-2 — 666の残響（The Echo of 666）\n- POV: 私（Tamaki／環樹）\n- Beat: Aftermath / Residual Pattern"
+  },
+  "gh:index": 19
+}

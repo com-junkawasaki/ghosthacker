@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:122",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Rage Engine: “...I am… sad…”",
+    "ja": "Kaedeが境界を確認する。"
+  },
+  "gh:index": 122
+}

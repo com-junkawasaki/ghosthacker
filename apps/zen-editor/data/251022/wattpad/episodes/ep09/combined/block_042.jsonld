@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:42",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "She leaves a beat.",
+    "ja": "Aoi「6-6-6のリズムで、怒りが増幅されてる」"
+  },
+  "gh:index": 42
+}

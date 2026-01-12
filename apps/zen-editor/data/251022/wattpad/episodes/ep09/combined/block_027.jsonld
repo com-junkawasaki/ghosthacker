@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:27",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi nods: “Let anger’s heat be a compass, not a tool.”",
+    "ja": "赤い波が、まだ残っている。"
+  },
+  "gh:index": 27
+}

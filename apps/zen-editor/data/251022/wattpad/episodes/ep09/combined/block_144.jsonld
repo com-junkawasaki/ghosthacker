@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:144",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "From anger to reconciliation.",
+    "ja": "Tamaki「正しさは、関係の中にある」"
+  },
+  "gh:index": 144
+}

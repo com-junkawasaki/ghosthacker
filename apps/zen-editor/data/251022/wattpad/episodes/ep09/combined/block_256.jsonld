@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:256",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Our gazes meet and loosen, naturally.",
+    "ja": "怒りではなく、和解。"
+  },
+  "gh:index": 256
+}
