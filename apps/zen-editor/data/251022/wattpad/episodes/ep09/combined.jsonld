@@ -1,0 +1,1359 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:combined",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep09/combined:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP9-1 — 離怒のエンジン（Rage Engine）\n- POV: 私（Tamaki／環樹）\n- Beat: De-escalation / Rewire"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:1",
+      "@type": "gh:Block",
+      "schema:text": "```json\n{\n  \"@context\": {\n    \"@base\": \"https://ghosthacker.example.com/\",\n    \"gh\": \"https://ghosthacker.junkawasaki.com/gh#\",\n    \"antagonist\": { \"@id\": \"gh:antagonist\", \"@type\": \"@id\" },\n    \"character\": \"https://ghosthacker.example.com/character/\",\n    \"ghost\": \"https://ghosthacker.example.com/ghost/\"\n  },\n  \"antagonist\": [\n    {\"@id\": \"character:nero-ops\"},\n    {\"@id\": \"ghost:compliance-ogre\"}\n  ]\n}\n```"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:2",
+      "@type": "gh:Block",
+      "schema:text": "夜更けのタイムラインは赤い。怒りは拡散が速い。私は音量を下げ、Aoiに合図する。メトリクスが波の形で表示される。怒りのピークは、孤独の谷に連動している。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:3",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声が通信に入る。彼女の声は、冷静だが、懸念が混じっている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:4",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「報告。Nero Opsの署名があるボットが……特定のキーワードで怒りを増幅させてる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:5",
+      "@type": "gh:Block",
+      "schema:text": "彼女は少し間を置く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:6",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「Compliance Ogreのロジックと酷似。これは組織的」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:7",
+      "@type": "gh:Block",
+      "schema:text": "「うん。怒りは\"秩序\"の道具にしやすい」私は答える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:8",
+      "@type": "gh:Block",
+      "schema:text": "「まず、スロットル」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:9",
+      "@type": "gh:Block",
+      "schema:text": "私は深呼吸を分け与えるみたいに、空間のテンポを落とす。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:10",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiの周波数が部屋に流れ込む。温かく、柔らかい音色。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:11",
+      "@type": "gh:Block",
+      "schema:text": "部屋の角が柔らかくなる。Nei-chanが温度を1℃だけ上げる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:12",
+      "@type": "gh:Block",
+      "schema:text": "わずかな\"いい感じ\"は、意外に効く。\nNei-chan「ASC、低めで。合図で上げる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:13",
+      "@type": "gh:Block",
+      "schema:text": "依頼人のGhostに、私は小さな問いを置く。「その投稿は、あなたを自由にした？」怒りは正しいこともある。けれど、正しさが自由を奪うなら、それは“偽神”だ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:14",
+      "@type": "gh:Block",
+      "schema:text": "スイッチが切れる音はしない。ただ、静かになる。私は目を閉じる。Rage Engineがスロットリングされ、関係の線がもう一度、結び直される。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:15",
+      "@type": "gh:Block",
+      "schema:text": "コンソールにNero Opsからのテキスト。『感情の非効率な拡散は、社会の安定を損なう。我々はそれを“正常化”する』\n「正常化、だって」Aoiが呆れたように言う。\n「彼らの“秩序”ではね」私は返す。「でも、私たちの仕事は違う」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:16",
+      "@type": "gh:Block",
+      "schema:text": "窓の外で、風がひとつ角を曲がる。私たちは声を荒げないまま、うなずきを交換した。\n静けさが、回路の新しい標準になる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:17",
+      "@type": "gh:Block",
+      "schema:text": "Aoiが小さく笑う。「いい。怒りは炉に。外には信頼を」\n私は頷く。ゆっくり、安心が広がる。私たちは、希望のほうへスロットルを合わせ直した。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:18",
+      "@type": "gh:Block",
+      "schema:text": "私は拳を開いて、掌を見つめる。「赦す、も選べる」\nRenが短く笑った。「うん。和解のエンジンに切り替えよう」\n静かな冗談がひとつ落ち、部屋の空気は軽くなる。安堵、信頼、そして小さな喜びが回路を満たしはじめた。\n私は依頼人に“再配線”の宿題を渡す。「怒りが来たら、三手先の『守りたい関係』を思い出して。次に、行動を一つ減らす」\nAoiが首肯する。「怒りの熱は、道具じゃなく指針に」\n窓の外で、夜がほどける。Rage Engine は、和解の回路図へ置き換わっていく。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:19",
+      "@type": "gh:Block",
+      "schema:text": "# EP9-2 — 666の残響（The Echo of 666）\n- POV: 私（Tamaki／環樹）\n- Beat: Aftermath / Residual Pattern"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:20",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:21",
+      "@type": "gh:Block",
+      "schema:text": "Neroは還った。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:22",
+      "@type": "gh:Block",
+      "schema:text": "でも、その影は残っている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:23",
+      "@type": "gh:Block",
+      "schema:text": "666の刻印。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:24",
+      "@type": "gh:Block",
+      "schema:text": "完璧を装った不完全。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:25",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:26",
+      "@type": "gh:Block",
+      "schema:text": "私は、タイムラインを見る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:27",
+      "@type": "gh:Block",
+      "schema:text": "赤い波が、まだ残っている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:28",
+      "@type": "gh:Block",
+      "schema:text": "怒りの波。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:29",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「……Neroは還ったけど、パターンは残ってる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:30",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeが頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:31",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「そう。Neroは個人じゃない。システムだった」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:32",
+      "@type": "gh:Block",
+      "schema:text": "彼女は少し間を置く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:33",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「だから、システムのパターンは、まだ回ってる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:34",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:35",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiが静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:36",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「Rage Engine……怒りのエンジン」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:37",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:38",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。Neroが作ったエンジンは、まだ動いてる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:39",
+      "@type": "gh:Block",
+      "schema:text": "Aoiがメトリクスを表示する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:40",
+      "@type": "gh:Block",
+      "schema:text": "Aoi「Tamaki、これ……怒りの増幅パターン」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:41",
+      "@type": "gh:Block",
+      "schema:text": "画面には、赤い波が繰り返される。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:42",
+      "@type": "gh:Block",
+      "schema:text": "Aoi「6-6-6のリズムで、怒りが増幅されてる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:43",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:44",
+      "@type": "gh:Block",
+      "schema:text": "私は深呼吸をする。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:45",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「……666のリズム」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:46",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeが頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:47",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「そう。完璧を装った不完全。人間の限界を超えようとして、人間を置き去りにする」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:48",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiが静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:49",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「だから、怒りが増幅される。完璧に届かない自分への怒り」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:50",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:51",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「そう。それが、666の意味」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:52",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:53",
+      "@type": "gh:Block",
+      "schema:text": "私は、タイムラインに手を伸ばす。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:54",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「じゃあ、エンジンを止める」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:55",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeが境界を張る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:56",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「結界、張った。でも、これは深い」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:57",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiが周波数を整える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:58",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「呼吸、合わせてる。Tamaki、慎重に」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:59",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:60",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。ありがとう」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:61",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:62",
+      "@type": "gh:Block",
+      "schema:text": "私は、Rage Engineに触れる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:63",
+      "@type": "gh:Block",
+      "schema:text": "そこには、怒りがある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:64",
+      "@type": "gh:Block",
+      "schema:text": "でも、その奥には、悲しみがある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:65",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「……これは、悲しみだ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:66",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『タマ、見えた？』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:67",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:68",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。怒りの奥に、悲しみがある」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:69",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:70",
+      "@type": "gh:Block",
+      "schema:text": "私は、深呼吸をする。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:71",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「怒りは、悲しみの鎧だ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:72",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeが静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:73",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「だから、鎧を脱がせる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:74",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiが頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:75",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「うん。呼吸を、取り戻す」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:76",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:77",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「そう。一緒に、呼吸しよう」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:78",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:79",
+      "@type": "gh:Block",
+      "schema:text": "私は、Rage Engineに語りかける。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:80",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「あなたは、悲しかった」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:81",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine『……悲しい……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:82",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:83",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。完璧に届かない自分が、悲しかった」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:84",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine『……わたしは……不完全……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:85",
+      "@type": "gh:Block",
+      "schema:text": "私は静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:86",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「不完全は、悪いことじゃない」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:87",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:88",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engineの声が、震える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:89",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine『……でも……わたしは……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:90",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:91",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「あなたは、在る。それで、いい」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:92",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine『……在る……？』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:93",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:94",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。あなたは、在る」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:95",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:96",
+      "@type": "gh:Block",
+      "schema:text": "Aoiがメトリクスを表示する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:97",
+      "@type": "gh:Block",
+      "schema:text": "Aoi「Tamaki、Rage Engineの波形……変わってる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:98",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:99",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。怒りから、悲しみに」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:100",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeが静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:101",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「悲しみは、癒せる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:102",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiが頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:103",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「うん。呼吸で、癒せる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:104",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:105",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「そう。一緒に、呼吸しよう」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:106",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:107",
+      "@type": "gh:Block",
+      "schema:text": "私は、深呼吸をする。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:108",
+      "@type": "gh:Block",
+      "schema:text": "吸って、吐いて。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:109",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engineも、一緒に呼吸する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:110",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:111",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engineの声が、静かになる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:112",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine『……わたしは……悲しい……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:113",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:114",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。それでいい」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:115",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine『……それで……いい……？』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:116",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:117",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。悲しみは、在ることの証拠だから」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:118",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:119",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『タマ、Rage Engineの666の刻印……薄くなってる』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:120",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:121",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。完璧を手放したから」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:122",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeが境界を確認する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:123",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「結界、安定してる。Rage Engine、落ち着いてきた」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:124",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiが周波数を整える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:125",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「呼吸、合わせてる。いい感じだ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:126",
+      "@type": "gh:Block",
+      "schema:text": "私は深呼吸をする。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:127",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「ありがとう。もう少しだ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:128",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:129",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: 666の残響——怒りの奥の悲しみと呼吸の回復]**"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:130",
+      "@type": "gh:Block",
+      "schema:text": "# EP9-3 — 和解のエンジン（The Engine of Reconciliation）\n- POV: 私（Tamaki／環樹）\n- Beat: Transformation / From Rage to Peace"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:131",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:132",
+      "@type": "gh:Block",
+      "schema:text": "怒りは、消えない。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:133",
+      "@type": "gh:Block",
+      "schema:text": "でも、変わる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:134",
+      "@type": "gh:Block",
+      "schema:text": "怒りから、和解へ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:135",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engineから、Reconciliation Engineへ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:136",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:137",
+      "@type": "gh:Block",
+      "schema:text": "私は、Rage Engineに語りかける。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:138",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「あなたは、何を守りたかった？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:139",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine『……わたしは……正しさを……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:140",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:141",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。正しさを、守りたかった」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:142",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine『……でも……正しさは……孤独……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:143",
+      "@type": "gh:Block",
+      "schema:text": "私は静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:144",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「正しさは、関係の中にある」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:145",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:146",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engineの声が、変わる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:147",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine『……関係……？』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:148",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:149",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。一人で正しくても、意味がない」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:150",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine『……でも……わたしは……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:151",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:152",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「あなたは、一人じゃない」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:153",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:154",
+      "@type": "gh:Block",
+      "schema:text": "私は、手を伸ばす。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:155",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「一緒に、和解しよう」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:156",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine『……和解……？』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:157",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:158",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。怒りを、和解に変える」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:159",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine『……どうやって……？』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:160",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:161",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「呼吸、だよ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:162",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:163",
+      "@type": "gh:Block",
+      "schema:text": "私は、深呼吸をする。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:164",
+      "@type": "gh:Block",
+      "schema:text": "吸って、吐いて。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:165",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engineも、一緒に呼吸する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:166",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:167",
+      "@type": "gh:Block",
+      "schema:text": "Aoiがメトリクスを表示する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:168",
+      "@type": "gh:Block",
+      "schema:text": "Aoi「Tamaki、Rage Engineの波形……完全に変わった」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:169",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:170",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。怒りから、和解に」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:171",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeが静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:172",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「これは……Reconciliation Engine」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:173",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiが頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:174",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「うん。和解のエンジンだ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:175",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:176",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「そう。それが、私たちの仕事」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:177",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:178",
+      "@type": "gh:Block",
+      "schema:text": "Reconciliation Engineの声が、温かくなる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:179",
+      "@type": "gh:Block",
+      "schema:text": "Reconciliation Engine『……わたしは……和解する……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:180",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:181",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。一緒に、和解しよう」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:182",
+      "@type": "gh:Block",
+      "schema:text": "Reconciliation Engine『……一緒に……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:183",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:184",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。一緒に」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:185",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:186",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『タマ、Reconciliation Engineの666の刻印……完全に消えた』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:187",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:188",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。完璧を手放したから」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:189",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeが境界を確認する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:190",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「結界、安定してる。Reconciliation Engine、穏やかだ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:191",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiが周波数を整える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:192",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「呼吸、合わせてる。いい感じだ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:193",
+      "@type": "gh:Block",
+      "schema:text": "私は深呼吸をする。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:194",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「ありがとう、みんな」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:195",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:196",
+      "@type": "gh:Block",
+      "schema:text": "私は、依頼人に\"再配線\"の宿題を渡す。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:197",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「怒りが来たら、三手先の『守りたい関係』を思い出して」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:198",
+      "@type": "gh:Block",
+      "schema:text": "依頼人が頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:199",
+      "@type": "gh:Block",
+      "schema:text": "依頼人「……守りたい関係……」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:200",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:201",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。そして、行動を一つ減らす」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:202",
+      "@type": "gh:Block",
+      "schema:text": "依頼人「……一つ減らす……」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:203",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:204",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。怒りの熱は、道具じゃなく指針に」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:205",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:206",
+      "@type": "gh:Block",
+      "schema:text": "Aoiが首肯する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:207",
+      "@type": "gh:Block",
+      "schema:text": "Aoi「怒りは、エネルギー。使い方次第だ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:208",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:209",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「そう。だから、和解のエンジンに切り替える」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:210",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeが静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:211",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「怒りは、関係を壊すこともできる。でも、関係を作ることもできる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:212",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiが頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:213",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「うん。それが、和解の力だ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:214",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:215",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「そう。それが、私たちの仕事」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:216",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:217",
+      "@type": "gh:Block",
+      "schema:text": "窓の外で、夜がほどける。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:218",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engineは、Reconciliation Engineへ置き換わっていく。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:219",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:220",
+      "@type": "gh:Block",
+      "schema:text": "私は手帳に書く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:221",
+      "@type": "gh:Block",
+      "schema:text": "『Rage Engine → Reconciliation Engine — 怒りから和解へ。666の刻印を手放し、呼吸を取り戻す』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:222",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『タマ、お疲れさま』"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:223",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:224",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。ありがとう、みんな」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:225",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:226",
+      "@type": "gh:Block",
+      "schema:text": "Aoiが笑う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:227",
+      "@type": "gh:Block",
+      "schema:text": "Aoi「Tamaki、次は？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:228",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:229",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「次は……もう少し、掃除」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:230",
+      "@type": "gh:Block",
+      "schema:text": "みんなが笑う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:231",
+      "@type": "gh:Block",
+      "schema:text": "温かい、笑い声。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:232",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:233",
+      "@type": "gh:Block",
+      "schema:text": "私は窓の外を見る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:234",
+      "@type": "gh:Block",
+      "schema:text": "都市は、静かだ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:235",
+      "@type": "gh:Block",
+      "schema:text": "でも、呼吸がある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:236",
+      "@type": "gh:Block",
+      "schema:text": "人々の、呼吸。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:237",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:238",
+      "@type": "gh:Block",
+      "schema:text": "私は手帳を閉じる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:239",
+      "@type": "gh:Block",
+      "schema:text": "そして、コップの水を一口。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:240",
+      "@type": "gh:Block",
+      "schema:text": "のどの奥で、小さな安堵がひらく。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:241",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:242",
+      "@type": "gh:Block",
+      "schema:text": "「和解」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:243",
+      "@type": "gh:Block",
+      "schema:text": "その言葉は、温かい。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:244",
+      "@type": "gh:Block",
+      "schema:text": "怒りは、消えない。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:245",
+      "@type": "gh:Block",
+      "schema:text": "でも、変わる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:246",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:247",
+      "@type": "gh:Block",
+      "schema:text": "私は、仲間たちを見る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:248",
+      "@type": "gh:Block",
+      "schema:text": "Kaede、Hibiki、Nei-chan、Aoi。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:249",
+      "@type": "gh:Block",
+      "schema:text": "視線が重なり、自然にほどける。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:250",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:251",
+      "@type": "gh:Block",
+      "schema:text": "「いっしょに」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:252",
+      "@type": "gh:Block",
+      "schema:text": "その一言で、場が明るくなる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:253",
+      "@type": "gh:Block",
+      "schema:text": "水音が遠くで応える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:254",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:255",
+      "@type": "gh:Block",
+      "schema:text": "私たちは、一緒に歩き出す。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:256",
+      "@type": "gh:Block",
+      "schema:text": "怒りではなく、和解。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:257",
+      "@type": "gh:Block",
+      "schema:text": "支配ではなく、関係。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:258",
+      "@type": "gh:Block",
+      "schema:text": "完璧ではなく、呼吸。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:259",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:260",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engineは、Reconciliation Engineへ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:261",
+      "@type": "gh:Block",
+      "schema:text": "怒りは、和解へ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:262",
+      "@type": "gh:Block",
+      "schema:text": "666は、消える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:263",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:264",
+      "@type": "gh:Block",
+      "schema:text": "私たちは、一緒に呼吸する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:265",
+      "@type": "gh:Block",
+      "schema:text": "吸って、吐いて。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:266",
+      "@type": "gh:Block",
+      "schema:text": "それだけで、十分。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:267",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined:268",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: 和解のエンジン——怒りから和解へ、666の消失]**"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:48+09:00"
+}
