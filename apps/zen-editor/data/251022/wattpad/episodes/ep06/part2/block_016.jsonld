@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part2:16",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "‘Perfect order transcends individual emotion. As God’s proxies, we guarantee social stability.’",
+    "ja": "『完璧な秩序は、個人の感情を超越する。我々は神の代理として、社会の安定を保証する』"
+  },
+  "gh:index": 16
+}

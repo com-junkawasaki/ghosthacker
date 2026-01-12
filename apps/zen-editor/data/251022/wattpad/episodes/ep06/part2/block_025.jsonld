@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part2:25",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. That’s why it needs a name.”",
+    "ja": "Tamaki「うん。だから、名を与える必要がある」"
+  },
+  "gh:index": 25
+}

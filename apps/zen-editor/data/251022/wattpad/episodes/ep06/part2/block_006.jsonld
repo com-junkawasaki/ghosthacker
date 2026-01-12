@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part2:6",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Where did we see this number?”",
+    "ja": "Tamaki「この数字、どこで見た？」"
+  },
+  "gh:index": 6
+}

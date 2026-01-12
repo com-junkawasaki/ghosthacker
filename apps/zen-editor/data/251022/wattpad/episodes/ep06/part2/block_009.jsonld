@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part2:9",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Maximum 6.66 points. Not 7. It never reaches divine perfection (7). But it repeats the human maximum (6) three times.”",
+    "ja": "Kaede「6.66点満点。7じゃない。神の完璧（7）には届かない。でも、人間の最高（6）を3回繰り返す」"
+  },
+  "gh:index": 9
+}

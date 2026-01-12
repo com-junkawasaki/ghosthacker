@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part2:52",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi: “City offices, hospitals, schools, companies… everything.”",
+    "ja": "Aoi「市役所、病院、学校、企業……全部」"
+  },
+  "gh:index": 52
+}

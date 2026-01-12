@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part2:30",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I tap kagura.",
+    "ja": "私は足元で神楽を一拍。"
+  },
+  "gh:index": 30
+}

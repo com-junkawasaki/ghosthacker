@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part2:44",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Afraid of ‘not being perfect.’”",
+    "ja": "Tamaki「うん。\"完璧じゃない\"ことを、恐れてる」"
+  },
+  "gh:index": 44
+}

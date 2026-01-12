@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part2:8",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "She points at the display.",
+    "ja": "彼女は画面を指す。"
+  },
+  "gh:index": 8
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part2:13",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Feigning ‘divine perfection’ while actually running on fear.”",
+    "ja": "Tamaki「そう。\"神のような完璧\"を装いながら、実は恐れで回してる」"
+  },
+  "gh:index": 13
+}
