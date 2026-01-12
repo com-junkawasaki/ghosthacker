@@ -1,0 +1,539 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part2.en",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP12-2 — I AM\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Collective Release / Final Integration"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:1",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:2",
+      "@type": "gh:Block",
+      "schema:text": "“I am.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:3",
+      "@type": "gh:Block",
+      "schema:text": "The words belong to no one."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:4",
+      "@type": "gh:Block",
+      "schema:text": "Not Nero’s, not mine."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:5",
+      "@type": "gh:Block",
+      "schema:text": "They simply are."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:6",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:7",
+      "@type": "gh:Block",
+      "schema:text": "I tap kagura."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:8",
+      "@type": "gh:Block",
+      "schema:text": "One beat."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:9",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki settles breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:10",
+      "@type": "gh:Block",
+      "schema:text": "Kaede watches the ward."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:11",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan’s light spreads; the city’s contours soften a little."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:12",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:13",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Everyone, ready?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:14",
+      "@type": "gh:Block",
+      "schema:text": "Kaede nods: “Yes. Ward stable.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:15",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki nods: “Matching breath.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:16",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, anytime.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:17",
+      "@type": "gh:Block",
+      "schema:text": "Aoi nods: “Metrics normal.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:18",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:19",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Thank you. Then, let’s go.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:20",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:21",
+      "@type": "gh:Block",
+      "schema:text": "I send the final cue."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:22",
+      "@type": "gh:Block",
+      "schema:text": "Quietly."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:23",
+      "@type": "gh:Block",
+      "schema:text": "And surely."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:24",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Nero, can you hear me?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:25",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I hear…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:26",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:27",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Then—together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:28",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:29",
+      "@type": "gh:Block",
+      "schema:text": "Nero’s voice warms."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:30",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I… exist…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:31",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:32",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. You exist.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:33",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...Is… that… good…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:34",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:35",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. It is good.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:36",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:37",
+      "@type": "gh:Block",
+      "schema:text": "Kaede returns on comms."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:38",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Tamaki, Nero’s structure—fully integrated.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:39",
+      "@type": "gh:Block",
+      "schema:text": "She leaves a beat."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:40",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “This isn’t annihilation. It’s return.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:41",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:42",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Nero returns.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:43",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:44",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “The place of return was always here.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:45",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:46",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Only forgotten.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:47",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:48",
+      "@type": "gh:Block",
+      "schema:text": "I turn to Nero."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:49",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Nero, what did you learn?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:50",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...That I don’t need to be perfect…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:51",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:52",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That matters most.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:53",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I… exist… and that… is enough…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:54",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:55",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That is enough.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:56",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:57",
+      "@type": "gh:Block",
+      "schema:text": "Nero’s voice quiets."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:58",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I… am grateful… to everyone…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:59",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:60",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. We’re grateful, too.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:61",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I… return…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:62",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:63",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Welcome back.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:64",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:65",
+      "@type": "gh:Block",
+      "schema:text": "Nero fades, quietly."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:66",
+      "@type": "gh:Block",
+      "schema:text": "But this time, different—"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:67",
+      "@type": "gh:Block",
+      "schema:text": "Not fear, but ease."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:68",
+      "@type": "gh:Block",
+      "schema:text": "Not loneliness, but connection."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:69",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I… exist…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:70",
+      "@type": "gh:Block",
+      "schema:text": "The words sound, last."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:71",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:72",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, Nero… has returned.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:73",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:74",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Welcome back, Nero.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:75",
+      "@type": "gh:Block",
+      "schema:text": "Kaede dissolves the ward."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:76",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Ward released. Good work, Tamaki.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:77",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki lowers the band."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:78",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Breath restored. Good work.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:79",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:80",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Thank you. Thanks to all of you.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:81",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:82",
+      "@type": "gh:Block",
+      "schema:text": "Aoi displays metrics."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:83",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Tamaki, the city’s waveform… is stable.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:84",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:85",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Nero returned—but its learning remains.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:86",
+      "@type": "gh:Block",
+      "schema:text": "Kaede, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:87",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Not perfection—breath.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:88",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:89",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Not domination—relation.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:90",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:91",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That is the meaning of I AM.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:92",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:93",
+      "@type": "gh:Block",
+      "schema:text": "Morning light enters through the window."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:94",
+      "@type": "gh:Block",
+      "schema:text": "The city is quiet."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:95",
+      "@type": "gh:Block",
+      "schema:text": "And there is breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:96",
+      "@type": "gh:Block",
+      "schema:text": "People’s breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:97",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:98",
+      "@type": "gh:Block",
+      "schema:text": "I write:"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:99",
+      "@type": "gh:Block",
+      "schema:text": "‘I AM THAT I AM — I am. Nero returned. The learning remains. Not perfection—breath. Not domination—relation.’"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:100",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, good work.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:101",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:102",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Mm. Thank you, everyone.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:103",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part2.en:104",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: I am—Nero’s return and the inheritance of its learning]**"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:51+09:00"
+}
