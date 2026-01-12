@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:17",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“He is… Elias.”",
+    "ja": "室内が静まる。"
+  },
+  "gh:index": 17
+}

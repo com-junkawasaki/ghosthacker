@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:74",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Yeah. Cut. Return. We’ll dive next time.”",
+    "ja": "風が角を曲がる。夜はやわらかく、強い。\n私は手帳を閉じ、胸で一呼吸。『解放→余韻』が、静かに定着する。"
+  },
+  "gh:index": 74
+}

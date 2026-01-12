@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:12",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The air loosens. Nei-chan fans a wing of light on my shoulder.",
+    "ja": "「主は……Elias」\n名が与えられた瞬間、世界は少し輪郭を得る。私はうなずき、簡潔に手順を確認する。聞く／整える／潜る。順番を飛ばさない。それが事故を減らす最短路。"
+  },
+  "gh:index": 12
+}

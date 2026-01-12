@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:36",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The pushback is instant. A shadow appears and presses vacuum into my chest. Static snow scours my vision; my knees waver.",
+    "ja": "私は渦の核に掌を重ね、そっと名を外す。「孤独」とは呼ばない。ただ、痛みと呼ぶ。名を変えると、対象の硬度が少しだけ変わる。"
+  },
+  "gh:index": 36
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:46",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I lay my palm on the core of the vortex and quietly rename it. Not “loneliness,” just pain. Change the name and the hardness changes a bit.",
+    "ja": "「戻る。戻りながら、進む」"
+  },
+  "gh:index": 46
+}

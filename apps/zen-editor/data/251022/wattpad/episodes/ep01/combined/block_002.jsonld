@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:2",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The canal is blue. The warmth at my fingertips traces the window and melts into the city through the glass. The scar of the dismantled elevated line has turned green, and a soft wind follows the canal. A lattice of light is woven across the city—there is a quiet pulse.",
+    "ja": "運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。撤去された高架の跡は緑になり、運河沿いの風がやわらかい。街には光の網が編み込まれていて、静かな脈動がある。\nいい感じでいる——呼吸を一つ置き、私の足場を確認する。Tree of Life（生命の樹）に錨を下ろす感覚。ここから始める。\n私は足元で、短く神楽を一拍。合図。Nei-chanがASCの制御を合わせ、意識の解像度が静かに上がる。"
+  },
+  "gh:index": 2
+}

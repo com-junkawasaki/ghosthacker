@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:40",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “I’ll break that logic-camouflage from outside. Hibiki, sending coordinates—counter-frequency!”",
+    "ja": "私は体を起こし、静けさの中でただ在った。"
+  },
+  "gh:index": 40
+}
