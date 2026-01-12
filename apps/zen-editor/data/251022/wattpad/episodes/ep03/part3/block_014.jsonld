@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part3:14",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I ask: “Who do you want to meet next?”",
+    "ja": "私は問う。「次、誰に会いたい？」"
+  },
+  "gh:index": 14
+}

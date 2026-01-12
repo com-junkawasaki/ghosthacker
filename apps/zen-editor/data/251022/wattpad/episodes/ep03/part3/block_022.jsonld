@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part3:22",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I inhale. “…A couple?”",
+    "ja": "Kaedeの声には、少し心配が混じっている。"
+  },
+  "gh:index": 22
+}

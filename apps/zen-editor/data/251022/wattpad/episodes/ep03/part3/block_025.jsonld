@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part3:25",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I look at the canal’s light. “We’ll find out.”",
+    "ja": "私は運河の光を見る。「これから見つける」"
+  },
+  "gh:index": 25
+}

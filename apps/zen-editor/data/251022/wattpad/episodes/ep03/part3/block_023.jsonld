@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part3:23",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede’s voice carries a hint of worry: “Yes. They say ‘we love each other,’ while hurting each other. A difficult case.”",
+    "ja": "Kaede「そう……\"愛している\"と言いながら、互いを傷つけている。難しいケースよ」"
+  },
+  "gh:index": 23
+}
