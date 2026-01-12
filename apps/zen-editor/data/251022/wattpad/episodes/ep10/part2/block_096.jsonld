@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part2:96",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi: “Tamaki, the System’s waveform… is changing.”",
+    "ja": "---"
+  },
+  "gh:index": 96
+}

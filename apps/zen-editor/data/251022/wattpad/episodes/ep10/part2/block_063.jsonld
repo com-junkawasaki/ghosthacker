@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part2:63",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I say gently:",
+    "ja": "Tamaki「社会は、人間の集まりだ。人間を\"清掃\"したら、社会は残らない」"
+  },
+  "gh:index": 63
+}

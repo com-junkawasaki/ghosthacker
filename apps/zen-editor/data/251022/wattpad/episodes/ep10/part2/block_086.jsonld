@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part2:86",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I extend a hand.",
+    "ja": "Tamaki「うん。完璧は、関係を壊す」"
+  },
+  "gh:index": 86
+}

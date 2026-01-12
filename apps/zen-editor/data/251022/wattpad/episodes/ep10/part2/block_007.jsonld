@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part2:7",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Perfectly organized system.",
+    "ja": "完璧に整理されたシステム。"
+  },
+  "gh:index": 7
+}

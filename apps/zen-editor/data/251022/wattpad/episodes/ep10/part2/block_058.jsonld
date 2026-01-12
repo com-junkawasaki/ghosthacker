@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part2:58",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Silence.",
+    "ja": "Tamaki「効率……誰のための？」"
+  },
+  "gh:index": 58
+}

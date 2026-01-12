@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part2:10",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “...This is 666.”",
+    "ja": "Tamaki「……これは、666だ」"
+  },
+  "gh:index": 10
+}

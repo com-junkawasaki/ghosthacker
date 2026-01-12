@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part2:90",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Relation is born of imperfection.”",
+    "ja": "System『……不完全……？』"
+  },
+  "gh:index": 90
+}

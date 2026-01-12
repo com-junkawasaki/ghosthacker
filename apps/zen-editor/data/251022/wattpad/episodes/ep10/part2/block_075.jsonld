@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part2:75",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. That is a false god’s method.”",
+    "ja": "Hibiki「完璧な社会を作ろうとして、人間を排除してる」"
+  },
+  "gh:index": 75
+}
