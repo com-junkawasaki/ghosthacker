@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:517",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Final question.”",
+    "ja": "Millia「でも……売りたくても、切りたくても切れない……」"
+  },
+  "gh:index": 517
+}

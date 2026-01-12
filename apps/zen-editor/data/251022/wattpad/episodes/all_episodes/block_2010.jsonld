@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2010",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "System: “...I… was… cleansing…”",
+    "ja": "Kaedeが境界を確認する。"
+  },
+  "gh:index": 2010
+}

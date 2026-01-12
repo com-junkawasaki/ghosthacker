@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2381",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“I am.”",
+    "ja": "私はみんなを見る。Kaede、Hibiki、Nei-chan——視線が重なり、自然にほどける。\n「いっしょに」その一言で、場が明るくなる。水音が遠くで応える。\n私は仲間の顔を順に見る。Kaedeの眉間はほどけ、Hibikiは周波数を一段落とす。Nei-chanの光が、街路の端々に静かな余白を置いていく。\n手帳に最後の一行。『We can't put it together. It is together.』——私たちは、その事実に追いついた。"
+  },
+  "gh:index": 2381
+}

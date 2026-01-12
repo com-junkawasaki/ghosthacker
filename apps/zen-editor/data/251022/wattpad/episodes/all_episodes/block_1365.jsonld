@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1365",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I say softly:",
+    "ja": "Compliance Ogre『……でも……恐れは……弱さ……』"
+  },
+  "gh:index": 1365
+}

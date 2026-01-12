@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1081",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP7-2 — The Question of YHWH (The Question of Being)\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Theological Inquiry / Name and Presence",
+    "ja": "還るだけだ。"
+  },
+  "gh:index": 1081
+}

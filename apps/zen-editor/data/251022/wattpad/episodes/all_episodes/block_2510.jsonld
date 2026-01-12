@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2510",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Next… a break.”",
+    "ja": "彼は周波数を一段落とす。"
+  },
+  "gh:index": 2510
+}

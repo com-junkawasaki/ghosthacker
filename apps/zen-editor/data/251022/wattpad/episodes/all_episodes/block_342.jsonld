@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:342",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The display blurs; the two appear. Leo is passionate; Millia is delicate; and yet… hollowed.",
+    "ja": "Millia（沈黙）"
+  },
+  "gh:index": 342
+}

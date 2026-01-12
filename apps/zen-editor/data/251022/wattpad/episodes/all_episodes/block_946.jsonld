@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:946",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I write in my notebook:",
+    "ja": "Hibiki「だから、666なんだ。7には届かない。でも、届こうとし続ける」"
+  },
+  "gh:index": 946
+}

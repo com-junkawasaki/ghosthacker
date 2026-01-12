@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:103",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I close my notebook and take one breath in my chest. ‘Release → afterglow’ settles, quietly.",
+    "ja": "クライアントのGhostの輪郭が、星々の光に溶け込んでいく。恐怖が消え、安堵の表情が浮かぶ。彼は無限の牢獄から解放され、大いなる流れの一部に還った。"
+  },
+  "gh:index": 103
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:385",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Ehh, I don’t like strangers. Even if it was given to me!”",
+    "ja": "「いいえ。それは、\"拡張された自己\"です」\nLeo「……え？」\nNei-chan『いま、“え？”入った』"
+  },
+  "gh:index": 385
+}

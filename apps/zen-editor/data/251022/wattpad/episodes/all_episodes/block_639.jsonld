@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:639",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia listens intently. Leo nods by her side.",
+    "ja": "美しい、でも少し不気味な光景。"
+  },
+  "gh:index": 639
+}

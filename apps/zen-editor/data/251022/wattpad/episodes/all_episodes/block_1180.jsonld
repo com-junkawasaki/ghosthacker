@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1180",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "‘YHWH — “I am.” A name is not possession but presence; God generated within relation.’",
+    "ja": "私は続ける。"
+  },
+  "gh:index": 1180
+}

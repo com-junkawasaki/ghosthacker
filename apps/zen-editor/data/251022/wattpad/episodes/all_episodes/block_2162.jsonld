@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2162",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Breath is life.”",
+    "ja": "Compliance Ogre『……社会の秩序のため……』"
+  },
+  "gh:index": 2162
+}

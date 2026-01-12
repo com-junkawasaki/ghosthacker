@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:250",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Trust is ‘not separated.’ Tama and I are like that.”",
+    "ja": "「では、その水は『どこからどこまで』があなた？」"
+  },
+  "gh:index": 250
+}

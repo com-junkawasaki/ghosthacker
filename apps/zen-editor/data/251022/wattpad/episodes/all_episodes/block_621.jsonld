@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:621",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, both are tense. But they’re ready.”",
+    "ja": "Hibiki「では、麻酔に入るね」"
+  },
+  "gh:index": 621
+}

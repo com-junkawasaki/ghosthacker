@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2574",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Let’s be—together.”",
+    "ja": "Aoi「Tamaki、どこへ行く？」"
+  },
+  "gh:index": 2574
+}

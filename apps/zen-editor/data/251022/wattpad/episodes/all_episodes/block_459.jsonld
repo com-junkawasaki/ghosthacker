@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:459",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“As an ‘extended self,’ how do you want to live?”",
+    "ja": "Leo「え？ どういうこと」"
+  },
+  "gh:index": 459
+}

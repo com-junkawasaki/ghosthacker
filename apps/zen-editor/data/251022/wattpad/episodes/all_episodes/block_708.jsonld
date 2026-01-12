@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:708",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The wall-lights sync to breath, the informational ground stabilizes.",
+    "ja": "Kaede「抑圧の解除には、言葉が要る。声に出して、解放して」"
+  },
+  "gh:index": 708
+}

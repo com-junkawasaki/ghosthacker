@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1567",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Not domination—relation.",
+    "ja": "でも、呼吸がある。"
+  },
+  "gh:index": 1567
+}

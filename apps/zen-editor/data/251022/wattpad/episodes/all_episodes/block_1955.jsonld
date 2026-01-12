@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1955",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. That is a false god’s method.”",
+    "ja": "Kaede「Tamaki、GnB Inc.のシステム……見えてきた」"
+  },
+  "gh:index": 1955
+}

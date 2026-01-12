@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:284",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Silence. A furrow forms. “...I think not.”",
+    "ja": "「タマ、今日は大変だよ。カップルセッションだって」"
+  },
+  "gh:index": 284
+}

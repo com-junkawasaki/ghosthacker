@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:177",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Has that freedom returned to Earth with you?”",
+    "ja": "私は壁に触れる。冷たさは温度ではなく、意味の欠落だ。"
+  },
+  "gh:index": 177
+}

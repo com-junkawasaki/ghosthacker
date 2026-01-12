@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:377",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "**[Beat: Leo \u0026 Millia session begins—confusion among love, credit, and trust]**",
+    "ja": "「……彼が、苦しんでいるのを見ると……私も、苦しいです」"
+  },
+  "gh:index": 377
+}

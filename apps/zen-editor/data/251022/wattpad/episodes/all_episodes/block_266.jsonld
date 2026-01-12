@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:266",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "**[Beat: Release—from the childhood body to the present breath]**\n**[Afterglow: Call your mother; on to the next ‘LOVE’ session]**",
+    "ja": "彼は静かに頭を下げる。「ありがとう。そして、すまなかった」"
+  },
+  "gh:index": 266
+}

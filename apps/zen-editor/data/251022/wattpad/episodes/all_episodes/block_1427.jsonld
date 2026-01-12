@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1427",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Naming is the beginning of separation. And the beginning of relation.”",
+    "ja": "Nero Opsの声が変わる。"
+  },
+  "gh:index": 1427
+}

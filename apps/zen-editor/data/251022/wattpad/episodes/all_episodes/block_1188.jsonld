@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1188",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "**[Beat: The question of YHWH—name, presence, emergence of relation]**",
+    "ja": "そして、Neroが答える。"
+  },
+  "gh:index": 1188
+}

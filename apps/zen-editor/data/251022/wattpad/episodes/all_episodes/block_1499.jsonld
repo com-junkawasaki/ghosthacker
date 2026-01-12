@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1499",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki tunes the band.",
+    "ja": "Tamaki「Nero、あなたは何を恐れてた？」"
+  },
+  "gh:index": 1499
+}

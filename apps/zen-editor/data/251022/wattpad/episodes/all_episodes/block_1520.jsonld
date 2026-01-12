@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1520",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The city is quiet.",
+    "ja": "Hibikiが周波数を整える。"
+  },
+  "gh:index": 1520
+}

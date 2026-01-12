@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:763",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako: “It’ll dissolve in about ten years. Once the tissue stabilizes, it will fall away.”",
+    "ja": "---"
+  },
+  "gh:index": 763
+}

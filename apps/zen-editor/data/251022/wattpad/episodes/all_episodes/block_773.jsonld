@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:773",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Warmth returns to the room.",
+    "ja": "Kaede「今は休んで。手術、お疲れ様」"
+  },
+  "gh:index": 773
+}

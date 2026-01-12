@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2021",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "System: “...I will… leave the markers…”",
+    "ja": "System『……保護……？』"
+  },
+  "gh:index": 2021
+}

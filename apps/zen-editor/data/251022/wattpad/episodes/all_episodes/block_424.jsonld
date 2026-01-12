@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:424",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“No. Because you and Leo are ‘not separate.’ You feel his pain as your own.”",
+    "ja": "**[Beat: \"愛\"と\"信用\"と\"信頼\"の違いの発見——拡張された自己の気づき]**"
+  },
+  "gh:index": 424
+}

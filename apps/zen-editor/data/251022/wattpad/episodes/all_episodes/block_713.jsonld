@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:713",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“What do you see?”",
+    "ja": "「私はあなたの人形じゃない！」"
+  },
+  "gh:index": 713
+}

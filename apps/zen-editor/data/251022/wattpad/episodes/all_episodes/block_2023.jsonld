@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2023",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. That is your work.”",
+    "ja": "Tamaki「うん。戻れる道を、残すこと」"
+  },
+  "gh:index": 2023
+}

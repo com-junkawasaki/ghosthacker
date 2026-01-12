@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:141",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “The evening shower finally passed…”",
+    "ja": "Nei-chan『今、小さく震えた。悲しみのスパイク』"
+  },
+  "gh:index": 141
+}

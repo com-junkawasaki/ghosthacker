@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:879",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “In ER terms, this is ‘abnormal vitals.’ Be careful.”",
+    "ja": "私は笑う。"
+  },
+  "gh:index": 879
+}

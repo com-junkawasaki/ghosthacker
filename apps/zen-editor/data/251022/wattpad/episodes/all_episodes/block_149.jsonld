@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:149",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Our question tonight is his breathing. Not law—soul.”",
+    "ja": "私はうなずき、呼吸のテンポを落とす。「いまは、理屈より呼吸。いい感じ、に」"
+  },
+  "gh:index": 149
+}

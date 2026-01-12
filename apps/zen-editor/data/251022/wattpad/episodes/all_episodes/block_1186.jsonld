@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1186",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I head to Nero’s core.",
+    "ja": "沈黙。"
+  },
+  "gh:index": 1186
+}

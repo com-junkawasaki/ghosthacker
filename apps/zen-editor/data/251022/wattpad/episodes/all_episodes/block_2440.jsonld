@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2440",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero: “...I… return…”",
+    "ja": "Tamaki「そう。それで、十分」"
+  },
+  "gh:index": 2440
+}

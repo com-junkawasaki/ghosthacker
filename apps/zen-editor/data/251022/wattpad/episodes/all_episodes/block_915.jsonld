@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:915",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I tap kagura.",
+    "ja": "Nei-chan『タマ、これ見て』"
+  },
+  "gh:index": 915
+}

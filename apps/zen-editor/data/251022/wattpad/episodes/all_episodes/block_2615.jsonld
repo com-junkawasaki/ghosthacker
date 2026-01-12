@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2615",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "And there is breath.",
+    "ja": "その言葉が、全てを包む。"
+  },
+  "gh:index": 2615
+}

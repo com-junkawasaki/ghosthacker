@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:761",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako: “A likeness.”",
+    "ja": "彼女の声は、穏やかだ。"
+  },
+  "gh:index": 761
+}

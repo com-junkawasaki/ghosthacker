@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:192",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“I will say a little more. As a child, I was told ‘don’t cry.’ I survived by not crying. Now I suffer by not crying.”",
+    "ja": "「……私は、誰かに触れたかった。しかし怖かった。裏切りが」"
+  },
+  "gh:index": 192
+}

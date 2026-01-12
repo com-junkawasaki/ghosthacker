@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2331",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi laughs.",
+    "ja": "『Quiet Justice — 呼吸できる正義。完璧ではなく、呼吸。恐れではなく、信頼』"
+  },
+  "gh:index": 2331
+}

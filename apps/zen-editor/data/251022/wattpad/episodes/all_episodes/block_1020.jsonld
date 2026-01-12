@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1020",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “You are not God. That’s fine.”",
+    "ja": "Tamaki「うん。\"完璧じゃない自分\"を、隠してる」"
+  },
+  "gh:index": 1020
+}

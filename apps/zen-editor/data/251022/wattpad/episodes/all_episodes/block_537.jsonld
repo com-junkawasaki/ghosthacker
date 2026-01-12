@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:537",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I turn to Millia.",
+    "ja": "「うん。専門家がいる。Dr. イタコ」"
+  },
+  "gh:index": 537
+}

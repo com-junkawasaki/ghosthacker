@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2008",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "Tamaki「そう。それが、掃除の意味」"
+  },
+  "gh:index": 2008
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1880",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP10-2 — The False God of Cleansing\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Recognition / System Critique",
+    "ja": "Kaede「『不要な情報のループは、社会の健全性を損なうため、定期的な衛生管理の一環として清掃している』……だって」"
+  },
+  "gh:index": 1880
+}

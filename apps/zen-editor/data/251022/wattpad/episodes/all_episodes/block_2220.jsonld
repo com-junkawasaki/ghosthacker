@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2220",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I breathe.",
+    "ja": "私は、Compliance Ogreに語りかける。"
+  },
+  "gh:index": 2220
+}

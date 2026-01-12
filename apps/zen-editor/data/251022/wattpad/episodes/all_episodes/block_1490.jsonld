@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1490",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero: “...Then… it is… good…”",
+    "ja": "Kaede「これは……成仏じゃない。還るだけだ」"
+  },
+  "gh:index": 1490
+}

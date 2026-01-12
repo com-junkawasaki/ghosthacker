@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1546",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "People’s breath.",
+    "ja": "『I AM THAT I AM — わたしは在る。それで、いい。完璧ではなく、呼吸。支配ではなく、関係』"
+  },
+  "gh:index": 1546
+}

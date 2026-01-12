@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:86",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede draws her shoulders in; her voice is calm again.",
+    "ja": "「Tamakiがいつも『いい感じ』を大切にするのは、そのためでもあるんだよね」Nei-chanが言う。"
+  },
+  "gh:index": 86
+}

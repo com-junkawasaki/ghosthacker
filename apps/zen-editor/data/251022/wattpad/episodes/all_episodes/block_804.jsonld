@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:804",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Tamaki, thanks to you, Millia—and we—truly became ‘not separate.’”",
+    "ja": "「別施設で手術予定さ。お前の母親の父親のゴーストなんて、直接は知らないだろ？」"
+  },
+  "gh:index": 804
+}

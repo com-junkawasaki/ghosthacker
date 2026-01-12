@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2124",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "That’s why it reeks.",
+    "ja": "「呼吸できる正義」を胸に置く。私は書類を閉じ、窓を少しだけ開ける。\n冷たい完璧は下がり、やわらかな信頼が入ってくる。静けさが合図になる。"
+  },
+  "gh:index": 2124
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1203",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "And yet, surely—exists.",
+    "ja": "ASCが一段上がる。"
+  },
+  "gh:index": 1203
+}

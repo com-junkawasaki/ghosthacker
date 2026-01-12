@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:467",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Next—the economy of ‘love and family.’”",
+    "ja": "Leoが頷く。Milliaは俯いている。"
+  },
+  "gh:index": 467
+}

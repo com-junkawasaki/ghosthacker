@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:557",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I lower my eyes and say nothing.",
+    "ja": "セッションルームの光が、少しずつ戻っていく。"
+  },
+  "gh:index": 557
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2050",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede says quietly:",
+    "ja": "GnB Inc.広報からの公式通知。"
+  },
+  "gh:index": 2050
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2210",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki tunes the band.",
+    "ja": "Nei-chan『タマ、Compliance Ogreの666の刻印……薄くなってる』"
+  },
+  "gh:index": 2210
+}

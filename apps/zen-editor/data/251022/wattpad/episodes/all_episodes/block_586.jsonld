@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:586",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "For the first time, relief colors her voice.",
+    "ja": "Tamaki「大丈夫。私たちは準備ができている」"
+  },
+  "gh:index": 586
+}

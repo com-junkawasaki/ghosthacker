@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1107",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Synth Angel: “For all people. We eliminate suffering.”",
+    "ja": "私は首を振る。"
+  },
+  "gh:index": 1107
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1127",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Voice Prophet: “Relation is unstable.”",
+    "ja": "Tamaki「苦しみを排除したら、喜びも消える」"
+  },
+  "gh:index": 1127
+}

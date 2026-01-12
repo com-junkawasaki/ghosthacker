@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2455",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Ward released. Good work, Tamaki.”",
+    "ja": "その言葉が、最後に響く。"
+  },
+  "gh:index": 2455
+}

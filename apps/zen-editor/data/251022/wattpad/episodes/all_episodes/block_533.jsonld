@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:533",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. The way to tell the economy of love and relationship is ‘can it be sold or not.’”",
+    "ja": "彼女の声は、小さいが、希望が混じっている。"
+  },
+  "gh:index": 533
+}

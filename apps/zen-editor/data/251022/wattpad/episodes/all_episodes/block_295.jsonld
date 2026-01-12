@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:295",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...Could it be that ‘I and water’… are not separate?”",
+    "ja": "彼女は少し間を置く。"
+  },
+  "gh:index": 295
+}

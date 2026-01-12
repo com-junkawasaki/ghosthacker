@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:628",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia: “...To cut the ‘chain of house’ I inherited from my mother.”",
+    "ja": "Milliaも、それに合わせる。"
+  },
+  "gh:index": 628
+}

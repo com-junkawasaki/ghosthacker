@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:355",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...I’m afraid of being ‘loved’ by Leo.”",
+    "ja": "# Session: Leo Kazan \u0026 Millia Stuart - Part 2"
+  },
+  "gh:index": 355
+}

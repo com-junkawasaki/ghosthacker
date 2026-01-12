@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1515",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Nero has returned. To where it always was.”",
+    "ja": "Nei-chan『タマ、Neroが……消えていく』"
+  },
+  "gh:index": 1515
+}

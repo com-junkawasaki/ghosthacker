@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1611",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The mark of 666.",
+    "ja": "部屋の角が柔らかくなる。Nei-chanが温度を1℃だけ上げる。"
+  },
+  "gh:index": 1611
+}

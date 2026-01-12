@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1145",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Synth Angel: “...Is this… breath…?”",
+    "ja": "Voice Prophet「関係は、不安定だ」"
+  },
+  "gh:index": 1145
+}

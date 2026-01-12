@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2063",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "‘Zombie Sweep → Path Home — From cleansing to protection. Leave a path home. Welcome back.’",
+    "ja": "Tamaki「そう。それが、私たちの仕事」"
+  },
+  "gh:index": 2063
+}

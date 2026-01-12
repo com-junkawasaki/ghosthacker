@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1755",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi displays metrics.",
+    "ja": "Tamaki「一緒に、和解しよう」"
+  },
+  "gh:index": 1755
+}

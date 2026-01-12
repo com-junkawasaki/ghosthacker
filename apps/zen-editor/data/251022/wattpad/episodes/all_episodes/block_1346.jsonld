@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1346",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Fear is evidence of being.”",
+    "ja": "Nero『……恐れ……』"
+  },
+  "gh:index": 1346
+}

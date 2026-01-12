@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:171",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “…His throat clicked. It’s the sign for ‘please come in.’”",
+    "ja": "`Fortress of Self`——透明な壁が彼の周囲を囲む。内側で彼は呼吸を浅くする。"
+  },
+  "gh:index": 171
+}

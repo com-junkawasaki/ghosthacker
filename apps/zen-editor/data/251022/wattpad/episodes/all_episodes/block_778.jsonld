@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:778",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Ascent complete.” Gentle relief in his voice.",
+    "ja": "彼女の輪郭は軽やかで、初めて、本当に自由に見える。"
+  },
+  "gh:index": 778
+}

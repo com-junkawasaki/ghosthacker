@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:800",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Her operation is scheduled at another facility. You wouldn’t know your mother’s father’s ghost directly, right?”",
+    "ja": "Kaede「面会は……あなたが決めていい。強制じゃない」"
+  },
+  "gh:index": 800
+}

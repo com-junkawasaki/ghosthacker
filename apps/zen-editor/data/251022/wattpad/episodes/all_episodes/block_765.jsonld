@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:765",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “No more chain.”",
+    "ja": "# Session: Dr. Itako - Spiritual Surgery - Part 3"
+  },
+  "gh:index": 765
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:796",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Visits… you decide. No compulsion.”",
+    "ja": "Kaede「事後の行政手続きは、私が持つ」"
+  },
+  "gh:index": 796
+}

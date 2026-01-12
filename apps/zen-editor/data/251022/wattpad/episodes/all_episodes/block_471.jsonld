@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:471",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Both: “Eh?”",
+    "ja": "彼は少し考え込む。"
+  },
+  "gh:index": 471
+}

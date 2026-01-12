@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2114",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Something eases. Perfection steps back a pace; the human steps forward a half. I open my fist and exhale slowly.",
+    "ja": "戻れる道は、いつもここにある。"
+  },
+  "gh:index": 2114
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:808",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki returns the bands; the room brightens to normal.",
+    "ja": "「Tamaki、あなたたちのおかげで、Milliaは……私たちは、本当に\"わかれていない\"存在になれました」"
+  },
+  "gh:index": 808
+}

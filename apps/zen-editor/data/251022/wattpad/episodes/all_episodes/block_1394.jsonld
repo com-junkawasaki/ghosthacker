@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1394",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Matching breath. Nero, feeling good.”",
+    "ja": "Tamaki「不完全でいい」"
+  },
+  "gh:index": 1394
+}

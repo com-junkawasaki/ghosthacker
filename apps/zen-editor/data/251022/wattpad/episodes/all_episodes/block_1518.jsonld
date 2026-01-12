@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1518",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "Kaedeが境界を確認する。"
+  },
+  "gh:index": 1518
+}

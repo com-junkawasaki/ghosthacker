@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:366",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I breathe in. The real work starts here.",
+    "ja": "「\"信用\"は、取引です。あなたが私に何かをくれたら、私もあなたに何かをあげる。それは、等価交換です」"
+  },
+  "gh:index": 366
+}

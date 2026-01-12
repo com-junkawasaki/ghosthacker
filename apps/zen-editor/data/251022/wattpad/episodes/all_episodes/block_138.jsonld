@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:138",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# Session: Lachlan Keyes - Part 1",
+    "ja": "「私は、裏切られたくなかった。だから、私は壁を作った。私は、誰も中へ入れない」\nNei-chan『……いま、喉が鳴った。ほんとは“入ってきてほしい”のサイン』"
+  },
+  "gh:index": 138
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:798",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“And—we’re putting your mother in the program as well.”",
+    "ja": "Kaede「こども家庭庁の保護プログラムに入れる。必要な書類は全部、私が準備する」"
+  },
+  "gh:index": 798
+}

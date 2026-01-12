@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1896",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi displays metrics.",
+    "ja": "Tamaki「……これは、666だ」"
+  },
+  "gh:index": 1896
+}

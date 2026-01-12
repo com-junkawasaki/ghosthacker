@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:150",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Shibuya’s light pulses low. The canal wind. Nei-chan rings a small chime.",
+    "ja": "彼の肩が一ミリ下がる。輪郭がわずかに丸くなる。"
+  },
+  "gh:index": 150
+}

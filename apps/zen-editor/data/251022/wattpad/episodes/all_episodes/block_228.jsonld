@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:228",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He places a hand on his chest and steps forward one step. His unclenched fist loosens, fingertips trembling.",
+    "ja": "**[Beat: 解放——幼少期の身体から、いまの呼吸へ]**"
+  },
+  "gh:index": 228
+}

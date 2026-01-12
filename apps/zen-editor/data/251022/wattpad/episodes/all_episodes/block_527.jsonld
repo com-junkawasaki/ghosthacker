@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:527",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Eh?” He looks at her.",
+    "ja": "私は目を伏せ、何も言わない。"
+  },
+  "gh:index": 527
+}

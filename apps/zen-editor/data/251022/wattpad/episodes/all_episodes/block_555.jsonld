@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:555",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Cut the soul and it bleeds. Cutting hurts.”",
+    "ja": "「次のステップは、Dr. イタコのセッション。——でも、今日はここまで。二人で、ゆっくり話して」"
+  },
+  "gh:index": 555
+}

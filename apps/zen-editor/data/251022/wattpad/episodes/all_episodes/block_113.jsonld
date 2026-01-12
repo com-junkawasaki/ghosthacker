@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:113",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Our work is to help him soften the border between himself and the world and return to the greater flow. Wu wei, ziran. Simply, to be as it is.",
+    "ja": "Kaede「湿度が高い。こういう夜は、心が重くなりやすい。気をつけて」"
+  },
+  "gh:index": 113
+}

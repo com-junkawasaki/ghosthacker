@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:514",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo turns to her, shocked: “What? You’d sell?”",
+    "ja": "Tamaki「\"あなたを愛している\"という嘘をつく人を愛さなくていいの」"
+  },
+  "gh:index": 514
+}

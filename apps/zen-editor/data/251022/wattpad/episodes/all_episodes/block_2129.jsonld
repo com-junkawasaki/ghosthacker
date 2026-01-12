@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2129",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "And yet—humans are left behind.",
+    "ja": "だから臭う。"
+  },
+  "gh:index": 2129
+}

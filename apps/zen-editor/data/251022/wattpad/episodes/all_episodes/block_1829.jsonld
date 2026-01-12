@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1829",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Anger doesn’t vanish.",
+    "ja": "Tamaki「次は……もう少し、掃除」"
+  },
+  "gh:index": 1829
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:663",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “I’ll be DJ through the operation—continuously generating the field.”",
+    "ja": "部屋の空気が変わる。"
+  },
+  "gh:index": 663
+}

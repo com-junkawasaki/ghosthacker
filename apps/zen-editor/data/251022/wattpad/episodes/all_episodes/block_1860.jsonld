@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1860",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede sets a ward—her usual quick precision.",
+    "ja": "Rage Engineは、Reconciliation Engineへ。"
+  },
+  "gh:index": 1860
+}

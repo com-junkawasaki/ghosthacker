@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:114",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“That’s also why you always protect ‘feeling good,’ Tamaki,” Nei-chan says.",
+    "ja": "Hibiki「Tudo bem, Kaede! 夜の帯域、いい感じだよ。ピークカットは入ってるけど、音は十分に流せる」"
+  },
+  "gh:index": 114
+}

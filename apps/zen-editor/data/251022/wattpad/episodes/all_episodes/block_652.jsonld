@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:652",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Slow, deep.",
+    "ja": "Milliaは少し考える。"
+  },
+  "gh:index": 652
+}

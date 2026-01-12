@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1961",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Perfection is lonely.”",
+    "ja": "Hibiki「完璧な社会を作ろうとして、人間を排除してる」"
+  },
+  "gh:index": 1961
+}

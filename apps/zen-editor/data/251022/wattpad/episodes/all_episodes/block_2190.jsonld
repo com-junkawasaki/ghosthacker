@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2190",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Compliance Ogre: “...It’s… okay…?”",
+    "ja": "Tamaki「あなたの名は、恐れの正当化」"
+  },
+  "gh:index": 2190
+}

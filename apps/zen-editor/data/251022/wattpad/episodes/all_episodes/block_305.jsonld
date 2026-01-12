@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:305",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan smiles small: “Mm. From here.”",
+    "ja": "「Tamaki Mizuno、ですね。私はLeo Kazan。こちらはMillia」\nNei-chan（小声）『情熱、強め。ミリアは薄いガード』"
+  },
+  "gh:index": 305
+}

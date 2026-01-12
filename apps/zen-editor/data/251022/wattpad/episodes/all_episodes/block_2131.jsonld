@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2131",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede nods.",
+    "ja": "私は、Compliance Ogreのログを見る。"
+  },
+  "gh:index": 2131
+}

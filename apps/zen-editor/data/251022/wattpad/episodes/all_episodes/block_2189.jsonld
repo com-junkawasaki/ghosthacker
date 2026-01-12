@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2189",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. That’s okay.”",
+    "ja": "私は、手を伸ばす。"
+  },
+  "gh:index": 2189
+}

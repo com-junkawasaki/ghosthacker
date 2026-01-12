@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:238",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "**[Beat: The wall collapses—from a protocol body to a breathing body]**",
+    "ja": "少し間を置いて、私はコップを指した。"
+  },
+  "gh:index": 238
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:364",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo (bright): “People call me sunny. But I think I can handle it positively.”",
+    "ja": "「これが\"愛\"、これが\"信用\"、そしてこれが\"信頼\"」"
+  },
+  "gh:index": 364
+}

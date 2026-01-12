@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:98",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "On the stair landing, a quiet margin opens.",
+    "ja": "「壁の外側に来て」"
+  },
+  "gh:index": 98
+}

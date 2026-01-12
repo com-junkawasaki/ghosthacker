@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:769",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo embraces her.",
+    "ja": "Hibiki「よくやったね、Millia。回復室へ移動しよう。周波数を通常帯に戻す」"
+  },
+  "gh:index": 769
+}

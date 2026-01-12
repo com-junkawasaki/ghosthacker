@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:248",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“I’m here now. You want to trust—that’s your humanity.”",
+    "ja": "「もう一口、どうぞ」"
+  },
+  "gh:index": 248
+}

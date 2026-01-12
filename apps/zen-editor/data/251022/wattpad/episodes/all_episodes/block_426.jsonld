@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:426",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I smile.",
+    "ja": "Tamaki「では次は“愛と家族”の経済」"
+  },
+  "gh:index": 426
+}

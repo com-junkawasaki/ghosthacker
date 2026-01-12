@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:626",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Ayahuasca is not just anesthesia. Your intention sets the vector of healing.”",
+    "ja": "Hibiki「——その前に、三呼吸。ぼくと一緒に。呼吸を合わせると、心が落ち着くから」"
+  },
+  "gh:index": 626
+}

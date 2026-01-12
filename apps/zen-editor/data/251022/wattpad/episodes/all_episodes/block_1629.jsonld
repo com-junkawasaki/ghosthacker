@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1629",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "On the screen, red waves repeat.",
+    "ja": "Tamaki「……Neroは還ったけど、パターンは残ってる」"
+  },
+  "gh:index": 1629
+}

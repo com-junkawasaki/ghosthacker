@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:163",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He snorts faintly. “Even if you and your AI are ‘close,’ my evaluation won’t change.”",
+    "ja": "# Session: Lachlan Keyes - Part 2"
+  },
+  "gh:index": 163
+}

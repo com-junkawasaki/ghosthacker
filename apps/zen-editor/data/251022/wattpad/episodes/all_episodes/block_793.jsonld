@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:793",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako laughs: “No need for thanks.” She pats Millia’s shoulder. “Live free—that’s thanks.”",
+    "ja": "彼女は、Milliaの肩を軽く叩く。"
+  },
+  "gh:index": 793
+}

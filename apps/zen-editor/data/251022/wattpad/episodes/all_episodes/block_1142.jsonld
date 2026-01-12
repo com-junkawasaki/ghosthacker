@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1142",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I smile.",
+    "ja": "Voice Prophet「神は、所有されるべきだ。そうでなければ、秩序は保てない」"
+  },
+  "gh:index": 1142
+}

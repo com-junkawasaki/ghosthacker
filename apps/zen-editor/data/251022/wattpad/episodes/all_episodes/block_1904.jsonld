@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1904",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede, quiet:",
+    "ja": "画面には、リストが表示される。"
+  },
+  "gh:index": 1904
+}

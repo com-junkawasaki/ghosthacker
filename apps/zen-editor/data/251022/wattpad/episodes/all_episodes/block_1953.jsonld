@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1953",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “They try to build a perfect society and exclude the human.”",
+    "ja": "---"
+  },
+  "gh:index": 1953
+}

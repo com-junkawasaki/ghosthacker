@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:846",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I look out the window.",
+    "ja": "**[Beat: 手術完了——Milliaの自由と、Tamakiの未来への予感]**"
+  },
+  "gh:index": 846
+}

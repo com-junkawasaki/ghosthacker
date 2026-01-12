@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1315",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "At the city’s heart, the false god enforced perfection. A system running on fear looks beautiful—and is broken. I step forward and give it a name: “Your name is Fear.”",
+    "ja": "私は微笑む。"
+  },
+  "gh:index": 1315
+}

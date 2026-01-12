@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:741",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“I want to be with Leo!”",
+    "ja": "Hibiki「場をβ帯域へ引き上げる。ゆっくりと、安全に」"
+  },
+  "gh:index": 741
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1207",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I nod.",
+    "ja": "# EP7-3 — I AMの鐘（The Bell of Being）\n- POV: 私（Tamaki／環樹）\n- Beat: Revelation / First Response"
+  },
+  "gh:index": 1207
+}

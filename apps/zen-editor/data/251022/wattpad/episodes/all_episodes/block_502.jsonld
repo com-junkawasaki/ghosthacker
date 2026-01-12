@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:502",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Eh? What do you mean?”",
+    "ja": "Tamaki「自分と\"感じている\"か否かなの」"
+  },
+  "gh:index": 502
+}

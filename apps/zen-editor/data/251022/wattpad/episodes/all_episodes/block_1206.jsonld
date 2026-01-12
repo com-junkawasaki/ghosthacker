@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1206",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Voice Prophet: “...A name… cannot be possessed…”",
+    "ja": "**[Beat: YHWHの問い——名と現前、関係の生成]**"
+  },
+  "gh:index": 1206
+}

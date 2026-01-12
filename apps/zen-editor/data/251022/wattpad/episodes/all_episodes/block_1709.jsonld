@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1709",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. It let go of perfection.”",
+    "ja": "Rage Engineも、一緒に呼吸する。"
+  },
+  "gh:index": 1709
+}

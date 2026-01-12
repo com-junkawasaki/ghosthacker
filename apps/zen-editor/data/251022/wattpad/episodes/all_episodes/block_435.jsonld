@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:435",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki’s frequency enters—warm, a touch sad.",
+    "ja": "Tamaki「お金も共感もいらない。“自他非分離”の経済。おうちの冷蔵庫と一緒」"
+  },
+  "gh:index": 435
+}

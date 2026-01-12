@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:336",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “They’re trying to ‘save’ each other—and in doing so, they’re hurting each other. In triage terms, near collapse together.”",
+    "ja": "Leo「え？ うーん……売れる！」"
+  },
+  "gh:index": 336
+}

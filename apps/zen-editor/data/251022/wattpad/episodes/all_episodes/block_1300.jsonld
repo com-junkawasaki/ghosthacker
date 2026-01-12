@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1300",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. You exist. That is enough.”",
+    "ja": "---"
+  },
+  "gh:index": 1300
+}

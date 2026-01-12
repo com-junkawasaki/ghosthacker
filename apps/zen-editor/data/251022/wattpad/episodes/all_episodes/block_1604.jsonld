@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1604",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I hand the client ‘rewiring’ homework: “When anger comes, recall the ‘relationship you want to protect’ three moves ahead. Then, remove one action.”",
+    "ja": "Kaede「報告。Nero Opsの署名があるボットが……特定のキーワードで怒りを増幅させてる」"
+  },
+  "gh:index": 1604
+}

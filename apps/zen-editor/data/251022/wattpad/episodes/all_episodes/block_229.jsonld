@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:229",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...I wanted someone to touch me. But I was afraid. Of betrayal.”",
+    "ja": "**[Afterglow: 母への連絡、次の“LOVE”セッションへ]**"
+  },
+  "gh:index": 229
+}

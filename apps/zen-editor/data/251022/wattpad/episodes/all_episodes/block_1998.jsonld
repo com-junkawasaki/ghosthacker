@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1998",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi: “Yes. It will be a marker for someone to find their way back.”",
+    "ja": "その言葉は、温かい。"
+  },
+  "gh:index": 1998
+}

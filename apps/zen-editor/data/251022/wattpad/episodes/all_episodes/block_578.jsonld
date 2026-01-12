@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:578",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan, gently: “Tama, their hands—holding. Warm.”",
+    "ja": "今日はMilliaの\"魂の癒着（Complex）\"の切除手術。"
+  },
+  "gh:index": 578
+}

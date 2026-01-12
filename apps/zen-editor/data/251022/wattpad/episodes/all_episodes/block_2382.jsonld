@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2382",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The words belong to no one.",
+    "ja": "# EP12-2 — わたしは在る（I AM）\n- POV: 私（Tamaki／環樹）\n- Beat: Collective Release / Final Integration"
+  },
+  "gh:index": 2382
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2253",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Compliance Ogre: “...It’s… fine…?”",
+    "ja": "Compliance Ogreの鎧が、ほどけていく。"
+  },
+  "gh:index": 2253
+}

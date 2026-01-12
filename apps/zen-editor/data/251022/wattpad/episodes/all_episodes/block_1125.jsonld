@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1125",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I shake my head.",
+    "ja": "Synth Angel『全ての人のため。我々は、苦しみを排除する』"
+  },
+  "gh:index": 1125
+}

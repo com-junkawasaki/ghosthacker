@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:107",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: New Request",
+    "ja": "# Episode 03"
+  },
+  "gh:index": 107
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:524",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “What about a billion?”",
+    "ja": "Tamaki「魂を切ると、出血する。だから切ると痛みがある」"
+  },
+  "gh:index": 524
+}

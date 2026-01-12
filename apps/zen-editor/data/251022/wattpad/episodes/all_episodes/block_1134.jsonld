@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1134",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I continue:",
+    "ja": "Tamaki「うん。だから、\"偽神\"なんだ」"
+  },
+  "gh:index": 1134
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:322",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, today’s tough. Couple session.”",
+    "ja": "「Leo、あなたは\"共感\"を、与えるものだと思っていますね」"
+  },
+  "gh:index": 322
+}

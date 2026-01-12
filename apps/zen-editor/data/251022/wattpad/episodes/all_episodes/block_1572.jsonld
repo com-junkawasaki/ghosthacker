@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1572",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "And you are.",
+    "ja": "のどの奥で、小さな安堵がひらく。"
+  },
+  "gh:index": 1572
+}

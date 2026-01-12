@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2304",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi: “Tamaki, the Ogre’s influence… is changing.”",
+    "ja": "Compliance Ogre『……わたしは……これを……守る……』"
+  },
+  "gh:index": 2304
+}

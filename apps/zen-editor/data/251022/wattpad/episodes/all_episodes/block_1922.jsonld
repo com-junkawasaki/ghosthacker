@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1922",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "There is cold.",
+    "ja": "Kaedeが頷く。"
+  },
+  "gh:index": 1922
+}

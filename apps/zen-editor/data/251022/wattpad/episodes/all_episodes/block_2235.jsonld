@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2235",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Justice that can breathe.”",
+    "ja": "Tamaki「そう。呼吸できる正義」"
+  },
+  "gh:index": 2235
+}

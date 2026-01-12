@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1747",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Rage Engine: “...How…?”",
+    "ja": "Rage Engine『……関係……？』"
+  },
+  "gh:index": 1747
+}

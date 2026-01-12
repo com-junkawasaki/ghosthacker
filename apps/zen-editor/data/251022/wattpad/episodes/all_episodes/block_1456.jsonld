@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1456",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. That is enough.”",
+    "ja": "Tamaki「次は、成仏。Neroを、還す」"
+  },
+  "gh:index": 1456
+}

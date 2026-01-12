@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:213",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Yes. For safety. No one comes in. No one can betray me.”",
+    "ja": "Kaedeの声が通信に入る。彼女の声には、安堵が混じっている。"
+  },
+  "gh:index": 213
+}

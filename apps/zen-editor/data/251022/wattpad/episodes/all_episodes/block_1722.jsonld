@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1722",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "From anger to reconciliation.",
+    "ja": "Kaedeが境界を確認する。"
+  },
+  "gh:index": 1722
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:169",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "—The air cools a touch. A metronome ticks far away.",
+    "ja": "Hibiki「護岸ライトは低輝度モード。救急航路のみ強発光。音の邪魔にならない、いい夜」"
+  },
+  "gh:index": 169
+}

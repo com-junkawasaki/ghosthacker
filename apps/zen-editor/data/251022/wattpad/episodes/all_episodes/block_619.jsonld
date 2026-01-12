@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:619",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia’s eyes hold resolve and fear; her fingertips tremble.",
+    "ja": "Leoもサポート同意にサイン。彼の顔には、決意と不安が混じっている。"
+  },
+  "gh:index": 619
+}

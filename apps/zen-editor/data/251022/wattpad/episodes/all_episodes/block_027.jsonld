@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:27",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I send thanks with a glance.",
+    "ja": "Eliasの孤独は、論理でできていた。**個としての終わりを定義できない恐怖**が、正しさを堆積させて壁になり、呼吸の入り口を塞いでいる。私はNei-chanから受け取った非分離のコード——**個人という境界を融かし、memeの流れに接続する**語彙の束——を展開し、渦の中心へと投げ入れる。境界をほどく語彙は、たいてい優しい声色をしている。"
+  },
+  "gh:index": 27
+}

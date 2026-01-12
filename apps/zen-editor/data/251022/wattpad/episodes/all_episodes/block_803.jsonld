@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:803",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo turns to me.",
+    "ja": "Milliaが驚いて彼女を見る。"
+  },
+  "gh:index": 803
+}

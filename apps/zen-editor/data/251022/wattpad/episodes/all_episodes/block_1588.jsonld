@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1588",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki’s frequency flows in—warm, soft.",
+    "ja": "対決ではなく、対話。"
+  },
+  "gh:index": 1588
+}

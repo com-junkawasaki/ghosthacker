@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:688",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia’s outline trembles.",
+    "ja": "HibikiはDJとして場を編み続ける。"
+  },
+  "gh:index": 688
+}

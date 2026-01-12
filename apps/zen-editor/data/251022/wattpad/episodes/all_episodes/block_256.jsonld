@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:256",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Your mom will go ‘huh?’ But she’ll be relieved right away.”",
+    "ja": "彼は私とNei-chanを交互に見て——"
+  },
+  "gh:index": 256
+}

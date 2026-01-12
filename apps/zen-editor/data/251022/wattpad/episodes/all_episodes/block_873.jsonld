@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:873",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP6-1 — Shadow (Infrastructure)\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Omen / Systems",
+    "ja": "Dr. イタコが笑う。"
+  },
+  "gh:index": 873
+}

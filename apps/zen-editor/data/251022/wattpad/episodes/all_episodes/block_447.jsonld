@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:447",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I take her hand.",
+    "ja": "Nei-chan『タマ、ミリアの手首……見えてる？』\nTamaki（小声）「うん。でも、今は待つ」"
+  },
+  "gh:index": 447
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1074",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "Compliance Ogreの鎧が、完全にほどける。"
+  },
+  "gh:index": 1074
+}

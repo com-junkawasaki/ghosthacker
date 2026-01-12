@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2406",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Then—together.”",
+    "ja": "私は、最後の合図を送る。"
+  },
+  "gh:index": 2406
+}

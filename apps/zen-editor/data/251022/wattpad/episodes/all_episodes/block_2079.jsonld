@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2079",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Welcome back.”",
+    "ja": "Tamaki「次は……もう少し、整理」"
+  },
+  "gh:index": 2079
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1285",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Next—confrontation. The final with Nero.”",
+    "ja": "Neroも、一緒に呼吸する。"
+  },
+  "gh:index": 1285
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1052",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “From a cage of perfection to a place of breath.”",
+    "ja": "完璧の檻が、ひび割れる。"
+  },
+  "gh:index": 1052
+}

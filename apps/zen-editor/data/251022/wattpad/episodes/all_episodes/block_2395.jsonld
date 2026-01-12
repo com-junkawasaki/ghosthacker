@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2395",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, anytime.”",
+    "ja": "Tamaki「みんな、準備はいい？」"
+  },
+  "gh:index": 2395
+}

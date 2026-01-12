@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1407",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero Ops: “...We… to maintain… order…”",
+    "ja": "Tamaki「うん。あなたは、在る」"
+  },
+  "gh:index": 1407
+}

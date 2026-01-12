@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1041",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “The ward is stable. But Nero is strong.”",
+    "ja": "Compliance Ogre『呼吸……』"
+  },
+  "gh:index": 1041
+}

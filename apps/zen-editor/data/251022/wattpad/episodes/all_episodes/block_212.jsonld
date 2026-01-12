@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:212",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Lachlan, did you build this wall?”",
+    "ja": "彼は微笑む。「非論理的だ……でも、美しい」"
+  },
+  "gh:index": 212
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:360",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Who made the booking?”",
+    "ja": "彼の声は、とても優しい。"
+  },
+  "gh:index": 360
+}

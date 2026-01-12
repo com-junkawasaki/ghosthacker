@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:329",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Ehh? Then I don’t get it!”",
+    "ja": "Leoが問う。"
+  },
+  "gh:index": 329
+}

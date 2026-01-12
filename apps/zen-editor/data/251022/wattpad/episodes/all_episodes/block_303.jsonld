@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:303",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The metronome grows louder, signaling session end.",
+    "ja": "私は深く息を吸う。Nei-chanに合図し、神楽を小さく踏む。ASC制御の準備。"
+  },
+  "gh:index": 303
+}

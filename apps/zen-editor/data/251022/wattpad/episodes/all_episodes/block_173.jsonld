@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:173",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“I was safe. —And yet, I breathe shallow.”",
+    "ja": "Kaedeの声が通信に入る。彼女の声には、深い理解がある。"
+  },
+  "gh:index": 173
+}

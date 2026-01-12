@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:790",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Well, that’s that.” Her tone returns to usual.",
+    "ja": "彼女の声は、感謝で満ちている。"
+  },
+  "gh:index": 790
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:805",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I smile: “That was your choice. We only lit the path.”",
+    "ja": "Dr. イタコは少し笑う。"
+  },
+  "gh:index": 805
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:32",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Behind me, there is a quiet bug—loneliness justified by reason. I do not forget it.",
+    "ja": "Kaede「その論理迷彩、外部から壊す。Hibiki、座標送るから——カウンター周波数を！」\nNei-chanの声が震える。『……タマ、彼の言う通り、信頼はエラーなの？ 論理的には……』"
+  },
+  "gh:index": 32
+}

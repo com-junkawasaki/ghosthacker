@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:984",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Compliance Ogre: “Relation is inefficient. We pursue optimization.”",
+    "ja": "私は周囲を見渡す。完璧に整列されたデータ。完璧に最適化されたプロセス。完璧に管理された感情。"
+  },
+  "gh:index": 984
+}

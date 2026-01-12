@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:951",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Next—confrontation.”",
+    "ja": "Aoi「Tamaki、これ……Neroの影響範囲」"
+  },
+  "gh:index": 951
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1881",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "私「\"清掃\"ね。誰の\"不要\"なんだろう」"
+  },
+  "gh:index": 1881
+}

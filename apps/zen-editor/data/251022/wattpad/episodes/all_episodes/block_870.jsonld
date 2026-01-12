@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:870",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "**[Afterglow: Quiet residue—Leo and Millia holding hands; a foreboding of Tamaki’s own ‘chain’]**",
+    "ja": "「でも、忘れるな。お前にも、いずれ\"鎖\"が見えてくる」"
+  },
+  "gh:index": 870
+}

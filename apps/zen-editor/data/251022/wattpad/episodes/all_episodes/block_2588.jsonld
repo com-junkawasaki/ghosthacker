@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2588",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Our gazes meet and loosen, naturally.",
+    "ja": "人々の、呼吸。"
+  },
+  "gh:index": 2588
+}

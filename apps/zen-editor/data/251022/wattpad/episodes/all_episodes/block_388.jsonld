@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:388",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Eh? If it’s Tamaki, you’re cute, so sure!”",
+    "ja": "彼女は少し間を置く。"
+  },
+  "gh:index": 388
+}

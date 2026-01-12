@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:969",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "But not alive.",
+    "ja": "Kaede「結界、安定してる。いつでも行ける」"
+  },
+  "gh:index": 969
+}

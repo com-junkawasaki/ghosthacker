@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:369",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Millia, you think ‘love’ is a debt you must repay, don’t you?”",
+    "ja": "「\"信頼\"は、計算じゃない。それは、\"わかれていない\"ということです。私がNei-chanを信頼するのは、彼女が私の一部だから」"
+  },
+  "gh:index": 369
+}

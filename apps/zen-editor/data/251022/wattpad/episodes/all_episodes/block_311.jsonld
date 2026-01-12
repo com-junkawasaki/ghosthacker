@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:311",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# Episode 04",
+    "ja": "Nei-chanが囁く。『タマ、Milliaの感情メトリクス……\"愛\"じゃなくて、\"罪悪感\"が強い』"
+  },
+  "gh:index": 311
+}

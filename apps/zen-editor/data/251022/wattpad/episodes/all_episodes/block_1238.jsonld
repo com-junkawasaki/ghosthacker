@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1238",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I smile.",
+    "ja": "Tamaki「うん。Neroは、自分を見つけてる」"
+  },
+  "gh:index": 1238
+}

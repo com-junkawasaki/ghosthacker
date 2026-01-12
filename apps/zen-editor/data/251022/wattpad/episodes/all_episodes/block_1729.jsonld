@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1729",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. You wanted to protect rightness.”",
+    "ja": "**[Beat: 666の残響——怒りの奥の悲しみと呼吸の回復]**"
+  },
+  "gh:index": 1729
+}

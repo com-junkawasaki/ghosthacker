@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:674",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "She drinks.",
+    "ja": "「ほんとは私は縫合専門なんだけどね。いいよ、今回は切開もやろうじゃないか」"
+  },
+  "gh:index": 674
+}

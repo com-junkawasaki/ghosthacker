@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:93",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Yeah. Thank you.”",
+    "ja": "彼の恐怖の正体は、二元論（デュアリズム）の袋小路。私は廊下の真ん中で立ち止まり、壁に手を触れる。冷たい。けれど、幻じゃない。彼が固く信じ込んでいる現実だ。"
+  },
+  "gh:index": 93
+}

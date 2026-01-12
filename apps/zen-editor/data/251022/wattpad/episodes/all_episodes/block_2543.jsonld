@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2543",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "A small ease opens at the back of my throat.",
+    "ja": "Nei-chan『ASC、通常に戻した』"
+  },
+  "gh:index": 2543
+}

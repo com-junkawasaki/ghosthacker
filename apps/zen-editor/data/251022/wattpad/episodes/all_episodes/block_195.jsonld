@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:195",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "「どうすれば」\n私は息を合わせて囁く。「“え？”って言って——それが最初の合図」"
+  },
+  "gh:index": 195
+}

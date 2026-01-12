@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:815",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Family peeks in the doorway—Leo’s family and siblings, worried.",
+    "ja": "Hibikiが周波数を戻し、部屋が通常の明るさに戻る。"
+  },
+  "gh:index": 815
+}

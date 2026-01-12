@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:226",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I tap a beat of kagura. Raise ASC half a step. Feed the non-separation code into the wall’s joints.",
+    "ja": "私は運河の光を見る。「これから見つける」"
+  },
+  "gh:index": 226
+}

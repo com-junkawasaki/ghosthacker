@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1874",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "On console, an official notice from GnB Inc. PR: ‘We acknowledge your intervention. Any interference with our social hygiene program will be recorded.’",
+    "ja": "私はSchwaのコンソールでプログラムを立ち上げる。Zombie Sweeper。"
+  },
+  "gh:index": 1874
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1366",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “You were rejected because you were perfect.”",
+    "ja": "私は首を振る。"
+  },
+  "gh:index": 1366
+}

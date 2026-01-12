@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:272",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“This age argues whether AI should have life rights. I oppose it.”",
+    "ja": ""
+  },
+  "gh:index": 272
+}

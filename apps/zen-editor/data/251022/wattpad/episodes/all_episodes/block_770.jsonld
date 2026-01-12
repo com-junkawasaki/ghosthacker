@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:770",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “...Good. Really, good.” Tears trembling.",
+    "ja": "彼の声には、麻酔科医としての安心感がある。"
+  },
+  "gh:index": 770
+}

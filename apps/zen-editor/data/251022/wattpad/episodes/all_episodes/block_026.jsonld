@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:26",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede lays down security rails. ER quick, ER sure.",
+    "ja": "// LOGICAL PARADOX: TRUST == ERROR"
+  },
+  "gh:index": 26
+}

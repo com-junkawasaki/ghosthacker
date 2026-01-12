@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:564",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Light returns to her eyes.",
+    "ja": "私は、静かに微笑む。"
+  },
+  "gh:index": 564
+}

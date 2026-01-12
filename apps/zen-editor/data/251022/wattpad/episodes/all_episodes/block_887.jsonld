@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:887",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The same number repeats in the city’s logs.",
+    "ja": "---"
+  },
+  "gh:index": 887
+}

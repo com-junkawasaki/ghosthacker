@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1036",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "Tamaki「あなたは、神じゃない。それでいい」"
+  },
+  "gh:index": 1036
+}

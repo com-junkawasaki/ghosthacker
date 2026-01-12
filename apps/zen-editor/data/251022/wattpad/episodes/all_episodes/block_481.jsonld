@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:481",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia says nothing, looking down with a mix of anger, sorrow, and confusion.",
+    "ja": "Tamaki「あなたの家族を1億円で売れますか？」"
+  },
+  "gh:index": 481
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:404",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Very gentle.",
+    "ja": "「Millia、あなたは\"個人\"という境界線に囚われています。でも、\"個人\"は幻想です。あなたは、すでにLeoと\"わかれていない\"」"
+  },
+  "gh:index": 404
+}

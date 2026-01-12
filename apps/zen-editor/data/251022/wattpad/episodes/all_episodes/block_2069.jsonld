@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2069",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi: “Tamaki, what’s next?”",
+    "ja": "---"
+  },
+  "gh:index": 2069
+}

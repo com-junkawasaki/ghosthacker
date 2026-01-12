@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1833",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede, Hibiki, Nei-chan, Aoi.",
+    "ja": "私は窓の外を見る。"
+  },
+  "gh:index": 1833
+}

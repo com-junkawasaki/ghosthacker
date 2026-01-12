@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1746",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Turn anger into reconciliation.”",
+    "ja": "Rage Engineの声が、変わる。"
+  },
+  "gh:index": 1746
+}

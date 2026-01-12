@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1449",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I face Nero.",
+    "ja": "私は微笑む。"
+  },
+  "gh:index": 1449
+}

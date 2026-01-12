@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2249",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Beneath it, something small, trembling.",
+    "ja": "Compliance Ogre『……呼吸と……一緒に……』"
+  },
+  "gh:index": 2249
+}

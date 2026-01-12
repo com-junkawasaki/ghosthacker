@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1633",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “...A 666 rhythm.”",
+    "ja": "Kaede「だから、システムのパターンは、まだ回ってる」"
+  },
+  "gh:index": 1633
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:659",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "A vine-like UI unfurls in the information space.",
+    "ja": "Leo「大丈夫。ぼくがここにいる」"
+  },
+  "gh:index": 659
+}

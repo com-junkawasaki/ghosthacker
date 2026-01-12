@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1578",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP9-1 — The Rage Engine\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: De-escalation / Rewire",
+    "ja": "---"
+  },
+  "gh:index": 1578
+}

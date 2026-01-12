@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:872",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# Episode 06",
+    "ja": "「……私の、鎖？」"
+  },
+  "gh:index": 872
+}

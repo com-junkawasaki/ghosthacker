@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:665",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Sound, light, scent—everything will support your healing. I’ll protect your awareness as anesthesiologist, while I weave the field with music.”",
+    "ja": "若く、しかし口調は老練。グラマーな老婆。"
+  },
+  "gh:index": 665
+}

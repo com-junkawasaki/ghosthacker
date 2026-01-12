@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:362",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Happy?”",
+    "ja": "Nei-chan『タマ、いまミリアの肩、少し下がった』"
+  },
+  "gh:index": 362
+}

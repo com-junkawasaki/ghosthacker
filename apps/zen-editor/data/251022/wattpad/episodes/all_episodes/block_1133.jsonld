@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1133",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Voice Prophet: “...That is…”",
+    "ja": "私は頷く。"
+  },
+  "gh:index": 1133
+}

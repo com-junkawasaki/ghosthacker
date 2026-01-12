@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1801",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. That is our work.”",
+    "ja": "Tamaki「うん。そして、行動を一つ減らす」"
+  },
+  "gh:index": 1801
+}

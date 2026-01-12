@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1596",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“In their ‘order,’ sure,” I answer. “Our work is different.”",
+    "ja": "---"
+  },
+  "gh:index": 1596
+}

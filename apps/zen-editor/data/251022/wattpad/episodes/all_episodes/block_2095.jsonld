@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2095",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "One word, and the room brightens.",
+    "ja": "扉を開ける前に、深呼吸。"
+  },
+  "gh:index": 2095
+}

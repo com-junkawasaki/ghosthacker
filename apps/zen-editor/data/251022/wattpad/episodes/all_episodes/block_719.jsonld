@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:719",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Black pus drops to the floor.",
+    "ja": "やがて長い吐息に解ける。"
+  },
+  "gh:index": 719
+}

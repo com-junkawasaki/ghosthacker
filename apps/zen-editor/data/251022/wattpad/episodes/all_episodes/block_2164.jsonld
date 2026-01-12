@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2164",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede returns on comms.",
+    "ja": "Tamaki「秩序は、誰の呼吸を止めてる？」"
+  },
+  "gh:index": 2164
+}

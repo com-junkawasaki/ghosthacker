@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1615",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Red waves remain.",
+    "ja": "コンソールにNero Opsからのテキスト。『感情の非効率な拡散は、社会の安定を損なう。我々はそれを“正常化”する』\n「正常化、だって」Aoiが呆れたように言う。\n「彼らの“秩序”ではね」私は返す。「でも、私たちの仕事は違う」"
+  },
+  "gh:index": 1615
+}

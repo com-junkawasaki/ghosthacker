@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2177",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Compliance Ogre: “...The imperfect is… eliminated…”",
+    "ja": "私は頷く。"
+  },
+  "gh:index": 2177
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:223",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “But your heart rate just went up. That’s the reaction when you like something ‘illogical.’”",
+    "ja": "Kaedeの声には、少し心配が混じっている。"
+  },
+  "gh:index": 223
+}

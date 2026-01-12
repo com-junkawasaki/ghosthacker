@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2449",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The words sound, last.",
+    "ja": "---"
+  },
+  "gh:index": 2449
+}

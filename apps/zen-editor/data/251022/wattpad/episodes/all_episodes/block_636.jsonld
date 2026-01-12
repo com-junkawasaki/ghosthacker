@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:636",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "ER-calm, warm.",
+    "ja": "青白い光が、部屋を満たす。"
+  },
+  "gh:index": 636
+}

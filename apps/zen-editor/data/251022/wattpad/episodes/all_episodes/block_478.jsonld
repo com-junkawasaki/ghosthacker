@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:478",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “No money, no sympathy. The economy of ‘non-separation.’ Like the family fridge.”",
+    "ja": "私は深く息を吸う。ここからが、本当の核心。"
+  },
+  "gh:index": 478
+}

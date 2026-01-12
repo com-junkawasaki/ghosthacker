@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:399",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# Session: Leo Kazan \u0026 Millia Stuart - Part 2",
+    "ja": "Nei-chanがMilliaに近づく。"
+  },
+  "gh:index": 399
+}

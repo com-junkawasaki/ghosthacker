@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1581",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede joins—calm, with concern.",
+    "ja": "視線が重なり、自然にほどける。"
+  },
+  "gh:index": 1581
+}

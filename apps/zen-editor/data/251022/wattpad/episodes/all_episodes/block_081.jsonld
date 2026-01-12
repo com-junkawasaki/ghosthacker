@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:81",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Tamaki, your hands are shaking.”",
+    "ja": "「私は無限に続くんですか？ このまま、何度も、何度も？」"
+  },
+  "gh:index": 81
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1774",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, the Engine’s 666 mark… is gone.”",
+    "ja": "Hibiki「うん。和解のエンジンだ」"
+  },
+  "gh:index": 1774
+}

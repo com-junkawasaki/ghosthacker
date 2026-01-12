@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1705",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Sadness is evidence of being.”",
+    "ja": "Tamaki「そう。一緒に、呼吸しよう」"
+  },
+  "gh:index": 1705
+}

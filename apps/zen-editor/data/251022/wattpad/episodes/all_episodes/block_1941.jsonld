@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1941",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Society is a gathering of humans. If you ‘cleanse’ humans, no society remains.”",
+    "ja": "Tamaki「恐れは、在ることの証拠だ」"
+  },
+  "gh:index": 1941
+}

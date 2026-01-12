@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:102",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The wind turns the corner. The night is soft and strong.",
+    "ja": "「死ねないんじゃない。あなたは、形を変えながら、ずっと在り続けるだけ。この宇宙がそうであるように」"
+  },
+  "gh:index": 102
+}

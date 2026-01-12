@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:60",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Tamaki, come back.”",
+    "ja": "踊り場の風が変わる。運河の気配が、書架の奥で微かに鳴る。\n私はEliasの視線を受け止め、頷く。「続けよう。ゆっくりでいい」"
+  },
+  "gh:index": 60
+}

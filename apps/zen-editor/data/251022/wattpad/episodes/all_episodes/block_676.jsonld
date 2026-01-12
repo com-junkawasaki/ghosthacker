@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:676",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Bitterness spreads across her tongue.",
+    "ja": "Dr. イタコ「Tamaki、意識の位置取りは頼んだ」"
+  },
+  "gh:index": 676
+}

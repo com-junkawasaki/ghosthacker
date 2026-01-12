@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1831",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "温かい、笑い声。"
+  },
+  "gh:index": 1831
+}

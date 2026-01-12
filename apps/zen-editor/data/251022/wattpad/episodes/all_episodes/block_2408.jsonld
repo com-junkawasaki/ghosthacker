@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2408",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero’s voice warms.",
+    "ja": "でも、確かに。"
+  },
+  "gh:index": 2408
+}

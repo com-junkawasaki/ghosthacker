@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2559",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Next… we walk together.”",
+    "ja": "Kaede「Tamaki、これで終わり？」"
+  },
+  "gh:index": 2559
+}

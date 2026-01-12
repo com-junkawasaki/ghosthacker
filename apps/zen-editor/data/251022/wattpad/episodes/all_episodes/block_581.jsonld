@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:581",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo nods. Millia nods quietly.",
+    "ja": "Kaede「でもね、Tamaki。これから深く潜る。霊的手術は、私も何度も立ち会ってきたけど……毎回、緊張する」"
+  },
+  "gh:index": 581
+}

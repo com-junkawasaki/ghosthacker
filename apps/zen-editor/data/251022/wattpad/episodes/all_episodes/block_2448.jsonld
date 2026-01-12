@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2448",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero: “...I… exist…”",
+    "ja": "Tamaki「うん。おかえり」"
+  },
+  "gh:index": 2448
+}

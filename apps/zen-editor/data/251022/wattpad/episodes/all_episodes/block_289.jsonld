@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:289",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He finally sets it down and folds his hands. “...I don’t know.” He jokes, but his voice shakes. His shoulders drop; breath deepens.",
+    "ja": "Nei-chanが私の横に座る。「タマ、\"愛\"って何？」"
+  },
+  "gh:index": 289
+}

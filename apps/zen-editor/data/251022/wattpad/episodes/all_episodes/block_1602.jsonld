@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1602",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Ren laughs shortly: “Yeah. Switch to a reconciliation engine.”",
+    "ja": "夜更けのタイムラインは赤い。怒りは拡散が速い。私は音量を下げ、Aoiに合図する。メトリクスが波の形で表示される。怒りのピークは、孤独の谷に連動している。"
+  },
+  "gh:index": 1602
+}

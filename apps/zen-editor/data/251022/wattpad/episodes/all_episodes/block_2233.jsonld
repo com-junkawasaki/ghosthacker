@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2233",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP11-3 — Quiet Justice\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Transformation / Justice with Breath",
+    "ja": "Compliance Ogre『……呼吸する……正義……』"
+  },
+  "gh:index": 2233
+}

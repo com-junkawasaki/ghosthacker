@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1378",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I extend a hand.",
+    "ja": "Tamaki「そう。でも、完璧は孤独を深めるだけ」"
+  },
+  "gh:index": 1378
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:334",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Leo’s Ghost is Adam Smith’s Theory of Moral Sentiments—seeking ‘sympathy’ from others. Millia’s Ghost is J.S. Mill’s liberty of the individual, plus Japan’s patriarchal ‘chain of ancestors.’ Two Ghosts are tearing her apart.”",
+    "ja": "Tamaki「信用の経済から行くね」"
+  },
+  "gh:index": 334
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2101",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Not perfection—breath.",
+    "ja": "視線が重なり、自然にほどける。"
+  },
+  "gh:index": 2101
+}

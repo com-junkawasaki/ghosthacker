@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:211",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I touch the wall. Its cold comes not from temperature, but from meaning stripped away.",
+    "ja": "Nei-chan「信頼は“わかれていない”。タマとわたしがそう」"
+  },
+  "gh:index": 211
+}

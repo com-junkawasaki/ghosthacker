@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:468",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia reacts, faint.",
+    "ja": "Tamaki「次の質問。——あなたの片目を1億円で売れますか？」"
+  },
+  "gh:index": 468
+}

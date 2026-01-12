@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:412",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I continue.",
+    "ja": "「……私は、自由でいたかった。でも、\"自由\"は……孤独だった」\nLeoが彼女の方へ体を傾ける。彼女はほんの少しだけ肩を預ける。"
+  },
+  "gh:index": 412
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1017",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “No. The imperfect is human.”",
+    "ja": "彼女は少し間を置く。"
+  },
+  "gh:index": 1017
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2525",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. That is the meaning of I AM.”",
+    "ja": "Kaede「Neroは、完璧を求めてた」"
+  },
+  "gh:index": 2525
+}

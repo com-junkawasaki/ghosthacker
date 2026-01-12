@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1592",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I place a small question to the client’s Ghost: “Did that post make you free?” Anger can be right. But if ‘rightness’ takes freedom, it is a ‘false god.’",
+    "ja": "I AM THAT I AM."
+  },
+  "gh:index": 1592
+}

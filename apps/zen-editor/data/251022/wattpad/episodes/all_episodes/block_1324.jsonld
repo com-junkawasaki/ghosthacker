@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1324",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I face Nero.",
+    "ja": "支配ではなく、関係。"
+  },
+  "gh:index": 1324
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:433",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “But that presupposes the boundary of ‘individuals.’ Leo, you try to understand Millia ‘as an individual.’ That, paradoxically, isolates her.”",
+    "ja": "Tamaki「——これが“愛と家族”の経済」"
+  },
+  "gh:index": 433
+}

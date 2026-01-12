@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:703",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako’s scalpel bites into the chain.",
+    "ja": "Dr. イタコのメスが深く入る。"
+  },
+  "gh:index": 703
+}

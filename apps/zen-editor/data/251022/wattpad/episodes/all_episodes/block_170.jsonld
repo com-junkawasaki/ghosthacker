@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:170",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“I didn’t want to be betrayed. So I built a wall. I let no one in.”",
+    "ja": "Nei-chan『タマ、いまがいい。彼の壁、少し揺れてる』"
+  },
+  "gh:index": 170
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1915",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede nods: “Roger. Ward set.”",
+    "ja": "Tamaki「うん。だから、止める」"
+  },
+  "gh:index": 1915
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1584",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Logic nearly identical to the Compliance Ogre. This is organized.”",
+    "ja": "その一言で、場が明るくなる。"
+  },
+  "gh:index": 1584
+}

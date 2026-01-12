@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2139",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "‘The imperfect is eliminated.’",
+    "ja": "Kaede「でも、正義は呼吸を止めてる」"
+  },
+  "gh:index": 2139
+}

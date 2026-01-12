@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:670",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Millia… do you choose to drink now?”",
+    "ja": "彼女の背後に、黒い\"鎖\"が見える。"
+  },
+  "gh:index": 670
+}

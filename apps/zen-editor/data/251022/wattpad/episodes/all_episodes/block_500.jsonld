@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:500",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Then—would you sell someone you once passed on the street long ago?”",
+    "ja": "Tamaki「そう。愛と関係性の経済の見分け方は\"売れるか売れないか\"」"
+  },
+  "gh:index": 500
+}

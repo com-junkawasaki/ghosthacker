@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:989",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "No answer.",
+    "ja": "Tamaki「うん。完璧の檻だ」"
+  },
+  "gh:index": 989
+}

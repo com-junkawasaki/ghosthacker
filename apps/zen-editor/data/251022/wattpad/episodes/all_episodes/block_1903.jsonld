@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1903",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “...GnB Inc. is ‘cleansing’ humans.”",
+    "ja": "Aoi「Tamaki、これ……GnB Inc.の\"不要\"の定義」"
+  },
+  "gh:index": 1903
+}

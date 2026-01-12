@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:607",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Tudo bem, Kaede. I’ve fully isolated the room’s band. Zero external noise. Sound, light—everything tuned for Millia’s healing.”",
+    "ja": "Hibikiは深く頷く。彼の目には、温かさと尊敬がある。"
+  },
+  "gh:index": 607
+}

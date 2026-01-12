@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1563",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Water answers in the distance.",
+    "ja": "温かい、笑い声。"
+  },
+  "gh:index": 1563
+}

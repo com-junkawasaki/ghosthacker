@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:635",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Final consent before operation.”",
+    "ja": "Hibikiの手元で小さな端末が光る。"
+  },
+  "gh:index": 635
+}

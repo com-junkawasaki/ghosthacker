@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:396",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Ha—yeah. True. Definitely. Honestly, if it’s Tamaki, you could have charged more!”",
+    "ja": "「……私は、Milliaを……取引の対象にしていたんですか？」\n彼の声が掠れる。視線が膝に落ちる。Milliaは無意識にテーブル上の水に手を伸ばし、口を湿らせる。"
+  },
+  "gh:index": 396
+}

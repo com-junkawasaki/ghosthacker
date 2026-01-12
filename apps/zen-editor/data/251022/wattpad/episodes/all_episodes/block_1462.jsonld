@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1462",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero: “...Not anymore…?”",
+    "ja": "# EP8-3 — わたしは在る（I AM THAT I AM）\n- POV: 私（Tamaki／環樹）\n- Beat: Resolution / Being Together"
+  },
+  "gh:index": 1462
+}

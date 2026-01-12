@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2159",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Whose breathing does the order stop?”",
+    "ja": "Tamaki「正義……誰のための？」"
+  },
+  "gh:index": 2159
+}

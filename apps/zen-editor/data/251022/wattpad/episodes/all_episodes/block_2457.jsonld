@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2457",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Breath restored. Good work.”",
+    "ja": "Nei-chan『タマ、Neroが……還った』"
+  },
+  "gh:index": 2457
+}

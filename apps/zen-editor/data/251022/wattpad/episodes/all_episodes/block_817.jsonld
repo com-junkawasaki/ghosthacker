@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:817",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo’s family enters. Leo stands by Millia’s bed and holds her hand.",
+    "ja": "私は窓の外を見つめる。運河の光の網が、夕暮れに沈んでいく。"
+  },
+  "gh:index": 817
+}

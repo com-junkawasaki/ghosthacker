@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:687",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The room pulses low.",
+    "ja": "Nei-chan『タマ、これ……すごく重い』"
+  },
+  "gh:index": 687
+}

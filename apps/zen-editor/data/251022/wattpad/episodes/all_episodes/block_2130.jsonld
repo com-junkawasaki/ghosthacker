@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2130",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “...This is the justification of fear.”",
+    "ja": "---"
+  },
+  "gh:index": 2130
+}

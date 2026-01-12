@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:723",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede joins, ER-calm with deep compassion:",
+    "ja": "Milliaは続ける。"
+  },
+  "gh:index": 723
+}

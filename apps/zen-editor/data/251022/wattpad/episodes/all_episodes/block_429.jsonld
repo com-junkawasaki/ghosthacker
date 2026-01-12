@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:429",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “We got an ‘eh?’”",
+    "ja": "Tamakiは、Milliaが少し口をつけたコップを静かに取り、黙って一口。"
+  },
+  "gh:index": 429
+}

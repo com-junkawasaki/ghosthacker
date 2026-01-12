@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1411",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I nod.",
+    "ja": "Tamaki「うん。名を与えることで、関係が生まれる」"
+  },
+  "gh:index": 1411
+}

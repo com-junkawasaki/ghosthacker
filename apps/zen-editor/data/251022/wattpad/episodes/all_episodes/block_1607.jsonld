@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1607",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP9-2 — The Echo of 666\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Aftermath / Residual Pattern",
+    "ja": "「うん。怒りは\"秩序\"の道具にしやすい」私は答える。"
+  },
+  "gh:index": 1607
+}

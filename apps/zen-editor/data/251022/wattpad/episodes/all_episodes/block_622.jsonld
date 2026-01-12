@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:622",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki steps forward. The badge of anesthesia glints on his coat.",
+    "ja": "Hibikiは、Milliaの目を優しく見つめる。"
+  },
+  "gh:index": 622
+}

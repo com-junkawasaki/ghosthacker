@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2379",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP12-2 — I AM\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Collective Release / Final Integration",
+    "ja": "「わたしは在る」\nその言葉は誰かの所有物ではない。恐れが手を離し、関係が立ち上がる。Neroは去っていく。勝利じゃない。還るだけだ。"
+  },
+  "gh:index": 2379
+}

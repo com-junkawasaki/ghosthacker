@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:373",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“You’re mixing up ‘love’ and ‘credit.’ And you’re forgetting ‘trust.’”",
+    "ja": "「本当に？」"
+  },
+  "gh:index": 373
+}

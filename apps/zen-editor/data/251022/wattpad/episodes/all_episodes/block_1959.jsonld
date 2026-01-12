@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1959",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "System: “...Perfection is… necessary…”",
+    "ja": "Tamaki「うん。だから、\"清掃\"する」"
+  },
+  "gh:index": 1959
+}

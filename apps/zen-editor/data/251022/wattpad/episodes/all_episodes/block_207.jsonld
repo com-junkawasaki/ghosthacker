@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:207",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede joins, voice carrying deep understanding.",
+    "ja": "壁が崩れ、彼は初めて本当の姿を見せる。震え、そして泣く。"
+  },
+  "gh:index": 207
+}

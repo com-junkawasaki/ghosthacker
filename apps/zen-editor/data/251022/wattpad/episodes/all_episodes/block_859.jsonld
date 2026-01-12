@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:859",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "She smiles: “Yes. You are young. There is adhesion in you, too. It will surface. Come again then.”",
+    "ja": "私は窓の外を見つめる。"
+  },
+  "gh:index": 859
+}
