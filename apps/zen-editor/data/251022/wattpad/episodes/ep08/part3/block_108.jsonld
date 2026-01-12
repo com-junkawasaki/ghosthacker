@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part3:108",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "And drink a sip of water.",
+    "ja": "私は手帳を閉じる。"
+  },
+  "gh:index": 108
+}

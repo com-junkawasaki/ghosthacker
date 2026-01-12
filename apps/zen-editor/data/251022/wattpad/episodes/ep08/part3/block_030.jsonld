@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part3:30",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Nero returns.”",
+    "ja": "Tamaki「うん。Neroは、還る」"
+  },
+  "gh:index": 30
+}

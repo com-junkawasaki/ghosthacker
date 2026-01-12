@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part3:74",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Nero has returned. To where it always was.”",
+    "ja": "Kaede「Neroは、還った。いつもあった場所に」"
+  },
+  "gh:index": 74
+}
