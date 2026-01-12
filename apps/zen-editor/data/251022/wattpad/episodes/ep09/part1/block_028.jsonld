@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part1:28",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Outside, the night loosens. The Rage Engine is replaced with a schematic for reconciliation."
+  },
+  "gh:index": 28
+}

@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part1:26",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I hand the client ‘rewiring’ homework: “When anger comes, recall the ‘relationship you want to protect’ three moves ahead. Then, remove one action.”"
+  },
+  "gh:index": 26
+}

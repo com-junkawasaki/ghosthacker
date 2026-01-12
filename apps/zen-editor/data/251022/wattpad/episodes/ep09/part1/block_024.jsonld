@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part1:24",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Ren laughs shortly: “Yeah. Switch to a reconciliation engine.”"
+  },
+  "gh:index": 24
+}
