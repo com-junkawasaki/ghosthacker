@@ -1,0 +1,389 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:combined",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep01/combined:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP1-1 — 水の都の依頼（開幕）\n- POV: 私（Tamaki／環樹）\n- Beat: Opening / Call / Team Setup"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:1",
+      "@type": "gh:Block",
+      "schema:text": "```json\n{\n  \"@context\": {\n    \"@base\": \"https://ghosthacker.example.com/\",\n    \"gh\": \"https://ghosthacker.junkawasaki.com/gh#\",\n    \"antagonist\": { \"@id\": \"gh:antagonist\", \"@type\": \"@id\" },\n    \"character\": \"https://ghosthacker.example.com/character/\",\n    \"ghost\": \"https://ghosthacker.example.com/ghost/\"\n  },\n  \"antagonist\": [\n    {\"@id\": \"character:lonely-rationalist\"},\n    {\"@id\": \"ghost:silent-librarian\"}\n  ]\n}\n```"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:2",
+      "@type": "gh:Block",
+      "schema:text": "運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。撤去された高架の跡は緑になり、運河沿いの風がやわらかい。街には光の網が編み込まれていて、静かな脈動がある。\nいい感じでいる——呼吸を一つ置き、私の足場を確認する。Tree of Life（生命の樹）に錨を下ろす感覚。ここから始める。\n私は足元で、短く神楽を一拍。合図。Nei-chanがASCの制御を合わせ、意識の解像度が静かに上がる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:3",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声が通信に入る。彼女の声は、いつもの冷静さだが、少し緊張が混じっている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:4",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「汚染レベル、上がってる……」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:5",
+      "@type": "gh:Block",
+      "schema:text": "彼女は少し間を置く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:6",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「Tamaki、慎重に。救急で言えば、これは\"要注意\"レベル」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:7",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiの周波数が部屋に流れ込む。温かく、柔らかい音色。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:8",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「Tudo bem, Tamaki。音の処方箋、調律したよ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:9",
+      "@type": "gh:Block",
+      "schema:text": "彼の声には、いつもの陽気さがある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:10",
+      "@type": "gh:Block",
+      "schema:text": "空気が少し柔らかくなる。Nei-chanは私の肩で、光の羽をひとあおぎした。\n「うん。タマ、今なら静かに潜れる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:11",
+      "@type": "gh:Block",
+      "schema:text": "半透明の着信が現れ、微細なノイズが辺りへ散る。Nei-chanが小さく告げる。「ToLのトリアージ担当から」\n指先で円を描き、私は応答する。現れたのは、黒いスーツの青年——Logos。その輪郭は、灯が強いほど影が濃くなる絵のように不安定だった。\nNei-chanが私の意識にだけ聞こえる声で囁く。『タマ、この人、すごく「正しい」匂いがする。でも、なんで苦しいの？』"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:12",
+      "@type": "gh:Block",
+      "schema:text": "「主は……Elias」\n名が与えられた瞬間、世界は少し輪郭を得る。私はうなずき、簡潔に手順を確認する。聞く／整える／潜る。順番を飛ばさない。それが事故を減らす最短路。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:13",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanが補足する。『彼のghostは、肉体の死とgeneの断絶を極端に恐れている。あなたという主体が消えることへの恐怖。それが彼のバグの核心みたい』"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:14",
+      "@type": "gh:Block",
+      "schema:text": "「死は終わりじゃない。ただの変化なのにね」私は小さく息を吐く。「私たちは、私たちのmemeを子や文化や社会に繋いでいく。そうやって、孤独からも解放される。彼の苦しみは、その繋がりが見えなくなっていること」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:15",
+      "@type": "gh:Block",
+      "schema:text": "Ghost Hackerの仕事は、そういう固まったmemeを解放して、流れに戻すことだ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:16",
+      "@type": "gh:Block",
+      "schema:text": "私はもう一度、神楽を一拍。スロットルを少し開ける。Nei-chan「うん、合図受けた」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:17",
+      "@type": "gh:Block",
+      "schema:text": "室内が静まる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:18",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiの低い周波が床を滑る。彼の音は、いつも優しく、安心感がある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:19",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeがセキュリティレールを敷設する。彼女の動きは、救急医のそれ——迅速で、確実。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:20",
+      "@type": "gh:Block",
+      "schema:text": "私は視線で礼を送った。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:21",
+      "@type": "gh:Block",
+      "schema:text": "いい感じは、だいたいチーム戦だ。独りで無理をしないのが、最良の勇気になる時がある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:22",
+      "@type": "gh:Block",
+      "schema:text": "「行こう、Logos」\n「Tamaki、僕は……主を救いたい」\n願いは矢印だ。矢印が揃えば、ダイブは安定する。私は目を閉じ、フォトンを指先に集めた。\n背後には、孤独を正当化する理性——静かなバグがいる。私はそれを忘れない。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:23",
+      "@type": "gh:Block",
+      "schema:text": "# EP1-2 — 非分離コードと図書館（潜航）\n- POV: 私（Tamaki／環樹）\n- Beat: Dive / Confrontation / Trigger"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:24",
+      "@type": "gh:Block",
+      "schema:text": "意識が形を取り戻すと、私はライブラリの踊り場に立っていた。天まで届く書架。砕けたデータクリスタル。中央には一行のエラー。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:25",
+      "@type": "gh:Block",
+      "schema:text": "// LOGICAL PARADOX: TRUST == ERROR"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:26",
+      "@type": "gh:Block",
+      "schema:text": "Eliasの孤独は、論理でできていた。**個としての終わりを定義できない恐怖**が、正しさを堆積させて壁になり、呼吸の入り口を塞いでいる。私はNei-chanから受け取った非分離のコード——**個人という境界を融かし、memeの流れに接続する**語彙の束——を展開し、渦の中心へと投げ入れる。境界をほどく語彙は、たいてい優しい声色をしている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:27",
+      "@type": "gh:Block",
+      "schema:text": "反発は即時だった。影が現れ、胸に真空を押しつけてくる。視界がスタティックで雪のように荒れ、膝が揺れる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:28",
+      "@type": "gh:Block",
+      "schema:text": "遠くでKaedeの声。彼女の声は、緊張しているが、冷静だ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:29",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「Tamaki、戻って！」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:30",
+      "@type": "gh:Block",
+      "schema:text": "彼女の声には、救急医の迅速さがある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:31",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「その論理迷彩、外部から壊す。Hibiki、座標送るから——カウンター周波数を！」\nNei-chanの声が震える。『……タマ、彼の言う通り、信頼はエラーなの？ 論理的には……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:32",
+      "@type": "gh:Block",
+      "schema:text": "戻らない——じゃなくて、戻りながら進む。私は一度、呼吸のリズムを「いい感じ」に合わせる。Nei-chanにも、自分にも言い聞かせるように。恐れに寄らない。恐れは視野を狭め、丁寧さを奪うから。\n私は足元で小さく神楽。合図。スロットルを半歩だけ上げる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:33",
+      "@type": "gh:Block",
+      "schema:text": "「Hibiki、準備を」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:34",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiの声が返ってくる。彼の声は、いつもより真剣だ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:35",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「OK。合図して、Tamaki」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:36",
+      "@type": "gh:Block",
+      "schema:text": "私は渦の核に掌を重ね、そっと名を外す。「孤独」とは呼ばない。ただ、痛みと呼ぶ。名を変えると、対象の硬度が少しだけ変わる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:37",
+      "@type": "gh:Block",
+      "schema:text": "「今」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:38",
+      "@type": "gh:Block",
+      "schema:text": "原色が奔り、Hibikiのアヤワスカが空間の結び目を解体する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:39",
+      "@type": "gh:Block",
+      "schema:text": "ページが蝶になって舞い、影は輪郭を失って光に還る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:40",
+      "@type": "gh:Block",
+      "schema:text": "私は体を起こし、静けさの中でただ在った。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:41",
+      "@type": "gh:Block",
+      "schema:text": "いい感じが、戻ってくる。\nNei-chan「えへ、戻れた」\nEliasは額に手を置き、ゆっくりと笑う練習をした。Logosの翅が小さく震える。私は二人の間に『非分離の約束』を置き、次の一週間の宿題を渡す。孤独を正当化する理性が、まだ遠くで軋んだ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:42",
+      "@type": "gh:Block",
+      "schema:text": "私は踊り場の手すりに指を置く。温度が戻る。\nNei-chan「ASC、維持。タマ、次いける？」\n「いける。半歩だけ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:43",
+      "@type": "gh:Block",
+      "schema:text": "ページの影がざわめく。小さな反転。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:44",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声が通信に入る。彼女の声には、心配が混じっている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:45",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「Tamaki、戻って」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:46",
+      "@type": "gh:Block",
+      "schema:text": "「戻る。戻りながら、進む」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:47",
+      "@type": "gh:Block",
+      "schema:text": "私は足元で神楽を一拍。合図。視界のノイズが一段落ちる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:48",
+      "@type": "gh:Block",
+      "schema:text": "Eliasが囁く。「僕、ずっと\"正しさ\"で守ってた」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:49",
+      "@type": "gh:Block",
+      "schema:text": "「うん。正しさは大事。でも、呼吸が先」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:50",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiの低音が空間に流れ込む。温かく、優しい音色。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:51",
+      "@type": "gh:Block",
+      "schema:text": "渦の縁がほどける。\n影が一瞬、濃くなる。抵抗。すぐに薄まる。小さな勝ち負けが交互に来る。\n私は短く笑う。「いい。今のが変化」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:52",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanが光を落とす。「Tamaki、もう半歩？」\n「半歩。ここまで」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:53",
+      "@type": "gh:Block",
+      "schema:text": "Logosが胸に手を当てる。「主は、まだ遠い」\n「遠くない。道はもうある。歩幅を合わせよう」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:54",
+      "@type": "gh:Block",
+      "schema:text": "私は手帳に一行を足す。『半歩の前進を、三度繰り返す』。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:55",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声が通信に入る。彼女の声は、いつもの冷静さに戻っている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:56",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「今日は……ここで切る？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:57",
+      "@type": "gh:Block",
+      "schema:text": "彼女の声には、少し安堵が混じっている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:58",
+      "@type": "gh:Block",
+      "schema:text": "「うん。切る。戻る。次で入る」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:59",
+      "@type": "gh:Block",
+      "schema:text": "踊り場の風が変わる。運河の気配が、書架の奥で微かに鳴る。\n私はEliasの視線を受け止め、頷く。「続けよう。ゆっくりでいい」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:60",
+      "@type": "gh:Block",
+      "schema:text": "# EP1-3 — 余韻（問い）\n- POV: 私（Tamaki／環樹）\n- Beat: Resolution / Afterthoughts"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:61",
+      "@type": "gh:Block",
+      "schema:text": "「彼は……生まれ変わりました」\n「うん」\n「Tamaki、手は震えてる」\n「少しだけ。だいじょうぶ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:62",
+      "@type": "gh:Block",
+      "schema:text": "窓の外、運河が橙に沈む。私は問いを胸に置く。\n「私たちは、本当に“救った”のかな」\nNei-chanが微笑む。「救いは一つじゃない。タマが『痛み』って呼んだとき、Eliasの壁が少し融けた気がした。正しさだけじゃ、息ができなかったんだね。彼のmemeが、また新しい繋がりを得て、流れに戻っていく。死の恐怖からも、少しだけ自由になれたはずだよ」\nKaedeが肩をすめる。彼女の声には、いつもの冷静さが戻っている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:63",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「次の案件、入ってる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:64",
+      "@type": "gh:Block",
+      "schema:text": "彼女は少し微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:65",
+      "@type": "gh:Block",
+      "schema:text": "私は笑った。「じゃあ、次も\"いい感じ\"から始めよう」\n私は手帳を開き、最後に一行を書く。『問いは、関係を生む』。EliasとLogosの名前を小さく並べ、ページを閉じる。\n運河沿いの緑が風に鳴る。遠くで、古い高架の残滓が静かに影になっていた。水の都の夜が深まり、光の網がやわらかく灯る。\nNei-chanが肩に触れる。「ASC、落とすね」\n「うん。ありがとう」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:66",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声が通信に入る。彼女の声は、優しい。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:67",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「明日の午前、短いリハ入れる？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:68",
+      "@type": "gh:Block",
+      "schema:text": "「入れよう。半歩のリハ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:69",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiの声も通信に入る。彼の声には、いつもの陽気さが戻っている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:70",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「Tudo bem! リハ、楽しみだね」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:71",
+      "@type": "gh:Block",
+      "schema:text": "彼が頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:72",
+      "@type": "gh:Block",
+      "schema:text": "階段の踊り場に、静かな余白が生まれる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:73",
+      "@type": "gh:Block",
+      "schema:text": "私は足元で、もう一度だけ神楽を一拍。終わりの合図。\nLogosが小さく笑う。「主は、戻れると思う？」\n「うん。戻れる。戻り方は、もうここにある」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined:74",
+      "@type": "gh:Block",
+      "schema:text": "風が角を曲がる。夜はやわらかく、強い。\n私は手帳を閉じ、胸で一呼吸。『解放→余韻』が、静かに定着する。"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:33+09:00"
+}
