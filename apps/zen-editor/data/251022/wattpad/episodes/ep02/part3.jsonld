@@ -1,0 +1,64 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part3",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep02/part3:0",
+      "@type": "gh:Block",
+      "schema:text": "# S1E2-3 — 次の宇宙のために"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/part3:1",
+      "@type": "gh:Block",
+      "schema:text": "- POV: 私（Tamaki／環樹）\n- Beat: Resolution / Afterthoughts"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/part3:2",
+      "@type": "gh:Block",
+      "schema:text": "「壁の外側に来て」"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/part3:3",
+      "@type": "gh:Block",
+      "schema:text": "私の声は、彼の精神世界に波紋のように広がる。無限回廊の壁が、ゆっくりと砂のように崩れていく。現れたのは、星々の生まれる宇宙の景色。"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/part3:4",
+      "@type": "gh:Block",
+      "schema:text": "「あなたは、あなたという個別の存在であると同時に、この宇宙そのものなんだよ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/part3:5",
+      "@type": "gh:Block",
+      "schema:text": "私は彼に語りかける。彼が「自己」だと思っていた境界線は、もともと存在しない。ただ、そう思い込んでいただけ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/part3:6",
+      "@type": "gh:Block",
+      "schema:text": "「死ねないんじゃない。あなたは、形を変えながら、ずっと在り続けるだけ。この宇宙がそうであるように」"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/part3:7",
+      "@type": "gh:Block",
+      "schema:text": "クライアントのGhostの輪郭が、星々の光に溶け込んでいく。恐怖が消え、安堵の表情が浮かぶ。彼は無限の牢獄から解放され、大いなる流れの一部に還った。"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/part3:8",
+      "@type": "gh:Block",
+      "schema:text": "セッションを終え、オフィスに戻る。窓の外は、いつもと同じ水の都の夜景。\n「私たちの仕事って、壮大だよね」Nei-chanが言う。\n「そうだね。次の宇宙が、少しでも『いい感じ』になるように。私たちは、その一助を担っているだけ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/part3:9",
+      "@type": "gh:Block",
+      "schema:text": "私は手帳に新しい一行を書き加えた。『境界は、幻想』。その言葉が、今日のセッションのすべてを物語っていた。"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:36+09:00"
+}
