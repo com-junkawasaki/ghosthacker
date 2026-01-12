@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part2:46",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “It’s a defense mechanism—hiding fear.”",
+    "ja": "Kaede「これは……防御機制だ。恐れを隠してる」"
+  },
+  "gh:index": 46
+}

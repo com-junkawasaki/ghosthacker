@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part2:20",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “...The Compliance Ogre is afraid.”",
+    "ja": "Tamaki「……Compliance Ogreは、恐れてる」"
+  },
+  "gh:index": 20
+}
