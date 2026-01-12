@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep02/part1:3",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Will I continue forever? Like this, again and again…?”",
+    "ja": "「私は無限に続くんですか？ このまま、何度も、何度も？」"
+  },
+  "gh:index": 3
+}
