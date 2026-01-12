@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part4:35",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...I didn’t understand.”",
+    "ja": "メトロノームの音が近づき、セッションの終わりを告げる。"
+  },
+  "gh:index": 35
+}

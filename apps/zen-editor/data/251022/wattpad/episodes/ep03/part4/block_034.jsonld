@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part4:34",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Time passes slowly. Felt minutes. Only a few in fact.",
+    "ja": "「……私は、わかっていなかったんだな」"
+  },
+  "gh:index": 34
+}

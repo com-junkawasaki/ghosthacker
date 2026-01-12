@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part4:37",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He bows his head quietly. “Thank you. And… I’m sorry.”",
+    "ja": "Nei-chanが小さく微笑む。『うん。ここから』"
+  },
+  "gh:index": 37
+}

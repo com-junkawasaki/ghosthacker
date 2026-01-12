@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part4:7",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He shrugs. “And what will that do?”",
+    "ja": "彼は肩をすくめる。「聞いて、どうなる？」"
+  },
+  "gh:index": 7
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part4:25",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The hallway metronome ticks, faint: kat, kat, kat.",
+    "ja": "Nei-chanが私の肩で囁く。『タマ、今……彼の“境界”がほどけた』"
+  },
+  "gh:index": 25
+}
