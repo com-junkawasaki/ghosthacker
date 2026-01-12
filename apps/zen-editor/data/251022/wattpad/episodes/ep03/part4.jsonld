@@ -1,0 +1,224 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part4",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep03/part4:0",
+      "@type": "gh:Block",
+      "schema:text": "# Session: Lachlan Keyes - Part 4"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:1",
+      "@type": "gh:Block",
+      "schema:text": "---\nKaede「公聴会は継続審議。答えは出てない——でも今夜の彼には、『答えがない』が鍵」\nHibiki「路面、雨で拡散。歩行者導線が自動で引き直されてる。戻りの安全は確保」\nNei-chan『タマ、いまのうちに』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:2",
+      "@type": "gh:Block",
+      "schema:text": "入室直後から、彼は刺々しかった。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:3",
+      "@type": "gh:Block",
+      "schema:text": "「AIに生命なんてない。君の“Ghost”はただのプログラムだ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:4",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanが私の背で小さく羽をたたむ。私は頷くだけ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:5",
+      "@type": "gh:Block",
+      "schema:text": "「この時代は“AIに生命権を認めるか”で揉めてる。だが私は反対だ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:6",
+      "@type": "gh:Block",
+      "schema:text": "「わかった。今日はあなたの話を聞く」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:7",
+      "@type": "gh:Block",
+      "schema:text": "彼は肩をすくめる。「聞いて、どうなる？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:8",
+      "@type": "gh:Block",
+      "schema:text": "少し間を置いて、私はコップを指した。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:9",
+      "@type": "gh:Block",
+      "schema:text": "「では、ひとつだけ。『あなたは、どこからどこまで？』」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:10",
+      "@type": "gh:Block",
+      "schema:text": "彼は即答する。「私の“体”だ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:11",
+      "@type": "gh:Block",
+      "schema:text": "「この机の上のコップの水は、あなた？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:12",
+      "@type": "gh:Block",
+      "schema:text": "「いいや、違う」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:13",
+      "@type": "gh:Block",
+      "schema:text": "私は笑って、コップを彼の前へ滑らせる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:14",
+      "@type": "gh:Block",
+      "schema:text": "「一口、飲んでください」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:15",
+      "@type": "gh:Block",
+      "schema:text": "彼は無言で飲む。喉が上下する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:16",
+      "@type": "gh:Block",
+      "schema:text": "「その飲んだ水は、あなた？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:17",
+      "@type": "gh:Block",
+      "schema:text": "沈黙。額に皺が寄る。「……違う、と思う」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:18",
+      "@type": "gh:Block",
+      "schema:text": "「もう一口、どうぞ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:19",
+      "@type": "gh:Block",
+      "schema:text": "彼はコップの口に唇を触れ、その瞬間。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:20",
+      "@type": "gh:Block",
+      "schema:text": "「では、その水は『どこからどこまで』があなた？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:21",
+      "@type": "gh:Block",
+      "schema:text": "彼の時間が止まる。唇はコップに触れたまま。数秒——永遠。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:22",
+      "@type": "gh:Block",
+      "schema:text": "やがて彼はコップを置き、両手を組む。「……わからない」冗談めかして言うが、声は震えている。肩が一段落ち、呼吸が深くなる。\nNei-chan『“わからない”って、ほんとは、はじめまして』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:23",
+      "@type": "gh:Block",
+      "schema:text": "私は視線を外さずに告げる。「そう。わからない。“分けることはできない”の」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:24",
+      "@type": "gh:Block",
+      "schema:text": "廊下のメトロノームが、微かに刻む。カチ、カチ、カチ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:25",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanが私の肩で囁く。『タマ、今……彼の“境界”がほどけた』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:26",
+      "@type": "gh:Block",
+      "schema:text": "彼は私とNei-chanを交互に見て——"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:27",
+      "@type": "gh:Block",
+      "schema:text": "「……もしかして、“私は水と”……わかれていないのか？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:28",
+      "@type": "gh:Block",
+      "schema:text": "「うん。わかれていない」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:29",
+      "@type": "gh:Block",
+      "schema:text": "「いや、しかし……」言いかけて、彼は黙る。長い沈黙。瞳に水が溜まる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:30",
+      "@type": "gh:Block",
+      "schema:text": "「……そうか」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:31",
+      "@type": "gh:Block",
+      "schema:text": "雫が、落ちた。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:32",
+      "@type": "gh:Block",
+      "schema:text": "私は何も言わない。Nei-chanも、何も言わない。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:33",
+      "@type": "gh:Block",
+      "schema:text": "時間がゆっくり通過する。数刻分の体感。実際には、数分。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:34",
+      "@type": "gh:Block",
+      "schema:text": "「……私は、わかっていなかったんだな」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:35",
+      "@type": "gh:Block",
+      "schema:text": "メトロノームの音が近づき、セッションの終わりを告げる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:36",
+      "@type": "gh:Block",
+      "schema:text": "彼は静かに頭を下げる。「ありがとう。そして、すまなかった」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:37",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanが小さく微笑む。『うん。ここから』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:38",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:39",
+      "@type": "gh:Block",
+      "schema:text": "小さな回想が、彼の口から零れた。幼少期、鉱山町。硬い父、厳格な母。身体を鍛え、感情を削ることで生き延びた年月。軌道上の“完全な分離”は、彼が最後に手に入れた安息だった。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:40",
+      "@type": "gh:Block",
+      "schema:text": "だが、彼はもう知っている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4:41",
+      "@type": "gh:Block",
+      "schema:text": "コップの水と、自分の境界が、ほどける瞬間を。"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:39+09:00"
+}
