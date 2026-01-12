@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part2:120",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "私は、Neroの成仏へ向かう。"
+  },
+  "gh:index": 120
+}

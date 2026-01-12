@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part2:73",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Stable. Nero is calming.”",
+    "ja": "Kaedeが境界を確認する。"
+  },
+  "gh:index": 73
+}
