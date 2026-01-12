@@ -9,8 +9,27 @@
   let selectedNode = $state<any>(null);
   let rightPaneMode = $state<"storyboard" | "editor" | "connection-suggester" | "entity" | "relation" | "asset">("storyboard");
   let projectId = $state("251022"); // Default project
+  let isSidebarOpen = $state(false);
+  let isChatOpen = $state(false);
+  let isHistoryOpen = $state(false);
+  let currentFilePath = $state("");
+  let currentFileContent = $state("");
+  let projectTitle = $state("GhostHacker Zen Editor");
+  let activeView = $state<"graph" | "storyboard" | "dual">("dual");
+  let leftPaneWidth = $state(40); // Initial width for graph
+  let isGraphCollapsed = $state(false);
+  let isStoryboardCollapsed = $state(false);
 
-  // ... (handleCheckout remains the same)
+  let storyboardRef: any = $state(null);
+  let topologyRef: any = $state(null);
+
+  function handleCheckout(state: any, type: string) {
+    if (type === 'storyboard') {
+      storyboardRef?.setScenes(state);
+    } else if (type === 'graph') {
+      topologyRef?.setPositions(state);
+    }
+  }
 
   function handleNodeSelect(node: any) {
     if (!node) {
