@@ -1,0 +1,1394 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:combined.en",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP9-1 — The Rage Engine\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: De-escalation / Rewire"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:1",
+      "@type": "gh:Block",
+      "schema:text": "```json\n{\n  \"@context\": {\n    \"@base\": \"https://ghosthacker.example.com/\",\n    \"gh\": \"https://ghosthacker.junkawasaki.com/gh#\",\n    \"antagonist\": { \"@id\": \"gh:antagonist\", \"@type\": \"@id\" },\n    \"character\": \"https://ghosthacker.example.com/character/\",\n    \"ghost\": \"https://ghosthacker.example.com/ghost/\"\n  },\n  \"antagonist\": [\n    {\"@id\": \"character:nero-ops\"},\n    {\"@id\": \"ghost:compliance-ogre\"}\n  ]\n}\n```"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:2",
+      "@type": "gh:Block",
+      "schema:text": "The late-night timeline is red. Rage diffuses fast. I lower the volume and cue Aoi. Metrics appear as waves. The peak of anger tracks the valley of loneliness."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:3",
+      "@type": "gh:Block",
+      "schema:text": "Kaede joins—calm, with concern."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:4",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Report. Bots signed by Nero Ops… are amplifying anger on specific keywords.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:5",
+      "@type": "gh:Block",
+      "schema:text": "She leaves a beat."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:6",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Logic nearly identical to the Compliance Ogre. This is organized.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:7",
+      "@type": "gh:Block",
+      "schema:text": "“Yeah. Anger is easy to turn into a tool of ‘order,’” I reply."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:8",
+      "@type": "gh:Block",
+      "schema:text": "“First—throttle.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:9",
+      "@type": "gh:Block",
+      "schema:text": "I slow the room’s tempo as if sharing a deep breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:10",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki’s frequency flows in—warm, soft."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:11",
+      "@type": "gh:Block",
+      "schema:text": "Corners of the room soften. Nei-chan raises the temperature by one degree."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:12",
+      "@type": "gh:Block",
+      "schema:text": "A slight ‘feeling good’ works surprisingly well."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:13",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Keep ASC low. Raise on cue.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:14",
+      "@type": "gh:Block",
+      "schema:text": "I place a small question to the client’s Ghost: “Did that post make you free?” Anger can be right. But if ‘rightness’ takes freedom, it is a ‘false god.’"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:15",
+      "@type": "gh:Block",
+      "schema:text": "The switch makes no sound—only quiet arrives. I close my eyes. The Rage Engine is throttled; lines of relation are tied again."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:16",
+      "@type": "gh:Block",
+      "schema:text": "Text from Nero Ops appears on the console: ‘Inefficient diffusion of emotion undermines social stability. We will “normalize” it.’"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:17",
+      "@type": "gh:Block",
+      "schema:text": "“Normalize, huh,” Aoi says, exasperated."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:18",
+      "@type": "gh:Block",
+      "schema:text": "“In their ‘order,’ sure,” I answer. “Our work is different.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:19",
+      "@type": "gh:Block",
+      "schema:text": "Outside, wind turns a corner. Without raising voices, we trade nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:20",
+      "@type": "gh:Block",
+      "schema:text": "Quiet becomes the new standard of the circuit."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:21",
+      "@type": "gh:Block",
+      "schema:text": "Aoi smiles small: “Good. Anger for the furnace. Trust for the outside.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:22",
+      "@type": "gh:Block",
+      "schema:text": "I nod. Calm spreads, slowly. We retune the throttle toward hope."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:23",
+      "@type": "gh:Block",
+      "schema:text": "I open my fist and look at my palm: “We can also choose to forgive.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:24",
+      "@type": "gh:Block",
+      "schema:text": "Ren laughs shortly: “Yeah. Switch to a reconciliation engine.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:25",
+      "@type": "gh:Block",
+      "schema:text": "A light joke falls; the room lightens. Relief, trust, and small joy begin to fill the circuit."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:26",
+      "@type": "gh:Block",
+      "schema:text": "I hand the client ‘rewiring’ homework: “When anger comes, recall the ‘relationship you want to protect’ three moves ahead. Then, remove one action.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:27",
+      "@type": "gh:Block",
+      "schema:text": "Aoi nods: “Let anger’s heat be a compass, not a tool.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:28",
+      "@type": "gh:Block",
+      "schema:text": "Outside, the night loosens. The Rage Engine is replaced with a schematic for reconciliation."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:29",
+      "@type": "gh:Block",
+      "schema:text": "# EP9-2 — The Echo of 666\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Aftermath / Residual Pattern"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:30",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:31",
+      "@type": "gh:Block",
+      "schema:text": "Nero has returned."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:32",
+      "@type": "gh:Block",
+      "schema:text": "But its shadow remains."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:33",
+      "@type": "gh:Block",
+      "schema:text": "The mark of 666."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:34",
+      "@type": "gh:Block",
+      "schema:text": "Imperfect, posing as perfect."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:35",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:36",
+      "@type": "gh:Block",
+      "schema:text": "I look at the timeline."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:37",
+      "@type": "gh:Block",
+      "schema:text": "Red waves remain."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:38",
+      "@type": "gh:Block",
+      "schema:text": "Waves of anger."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:39",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “...Nero returned, but the pattern remains.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:40",
+      "@type": "gh:Block",
+      "schema:text": "Kaede nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:41",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Yes. Nero wasn’t a person. It was a system.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:42",
+      "@type": "gh:Block",
+      "schema:text": "She leaves a beat."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:43",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “So the system’s pattern is still running.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:44",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:45",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:46",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Rage Engine…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:47",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:48",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. The engine Nero built is still running.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:49",
+      "@type": "gh:Block",
+      "schema:text": "Aoi displays metrics."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:50",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Tamaki, here—anger amplification pattern.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:51",
+      "@type": "gh:Block",
+      "schema:text": "On the screen, red waves repeat."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:52",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Amplified on a 6-6-6 rhythm.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:53",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:54",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:55",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “...A 666 rhythm.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:56",
+      "@type": "gh:Block",
+      "schema:text": "Kaede nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:57",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Yes. Imperfect posing as perfect. Trying to exceed human bounds, and abandoning the human.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:58",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:59",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “So anger is amplified—anger at oneself for not reaching perfection.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:60",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:61",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That is the meaning of 666.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:62",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:63",
+      "@type": "gh:Block",
+      "schema:text": "I reach into the timeline."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:64",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Then we’ll stop the engine.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:65",
+      "@type": "gh:Block",
+      "schema:text": "Kaede sets a ward."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:66",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Ward set. But this goes deep.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:67",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki tunes the band."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:68",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Matching breath. Tamaki, carefully.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:69",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:70",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Thank you.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:71",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:72",
+      "@type": "gh:Block",
+      "schema:text": "I touch the Rage Engine."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:73",
+      "@type": "gh:Block",
+      "schema:text": "There is anger there."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:74",
+      "@type": "gh:Block",
+      "schema:text": "And beneath it—sadness."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:75",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “...This is sadness.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:76",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, you see it?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:77",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:78",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Beneath anger, sadness.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:79",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:80",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:81",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Anger is armor over sadness.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:82",
+      "@type": "gh:Block",
+      "schema:text": "Kaede, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:83",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “So we help it shed the armor.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:84",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:85",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Yes. We bring back breath.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:86",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:87",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Let’s breathe together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:88",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:89",
+      "@type": "gh:Block",
+      "schema:text": "I speak to the Rage Engine."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:90",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “You were sad.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:91",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...Sad…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:92",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:93",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. You were sad that you couldn’t reach perfection.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:94",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...I am… imperfect…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:95",
+      "@type": "gh:Block",
+      "schema:text": "I say gently:"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:96",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Imperfection isn’t bad.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:97",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:98",
+      "@type": "gh:Block",
+      "schema:text": "The Engine’s voice trembles."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:99",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...But… I…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:100",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:101",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “You exist. That is enough.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:102",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...Exist…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:103",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:104",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. You exist.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:105",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:106",
+      "@type": "gh:Block",
+      "schema:text": "Aoi displays metrics."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:107",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Tamaki, the Engine’s waveform—changing.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:108",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:109",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. From anger to sadness.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:110",
+      "@type": "gh:Block",
+      "schema:text": "Kaede, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:111",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Sadness can be healed.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:112",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:113",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Yes. With breath.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:114",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:115",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Let’s breathe together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:116",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:117",
+      "@type": "gh:Block",
+      "schema:text": "I breathe."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:118",
+      "@type": "gh:Block",
+      "schema:text": "In, out."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:119",
+      "@type": "gh:Block",
+      "schema:text": "The Rage Engine breathes with me."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:120",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:121",
+      "@type": "gh:Block",
+      "schema:text": "The Engine’s voice quiets."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:122",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...I am… sad…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:123",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:124",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That’s okay.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:125",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...It’s… okay…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:126",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:127",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Sadness is evidence of being.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:128",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:129",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, the Engine’s mark of 666… is fading.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:130",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:131",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. It let go of perfection.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:132",
+      "@type": "gh:Block",
+      "schema:text": "Kaede checks the ward."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:133",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Stable. The Engine is calming.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:134",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki tunes the band."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:135",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Matching breath. Feeling good.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:136",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:137",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Thank you. Almost there.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:138",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:139",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: The echo of 666—sadness beneath anger and the recovery of breath]**"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:140",
+      "@type": "gh:Block",
+      "schema:text": "# EP9-3 — The Engine of Reconciliation\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Transformation / From Rage to Peace"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:141",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:142",
+      "@type": "gh:Block",
+      "schema:text": "Anger doesn’t vanish."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:143",
+      "@type": "gh:Block",
+      "schema:text": "But it changes."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:144",
+      "@type": "gh:Block",
+      "schema:text": "From anger to reconciliation."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:145",
+      "@type": "gh:Block",
+      "schema:text": "From the Rage Engine to the Reconciliation Engine."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:146",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:147",
+      "@type": "gh:Block",
+      "schema:text": "I speak to the Rage Engine."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:148",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “What did you want to protect?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:149",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...My… rightness…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:150",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:151",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. You wanted to protect rightness.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:152",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...But… rightness is… lonely…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:153",
+      "@type": "gh:Block",
+      "schema:text": "I say quietly:"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:154",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Rightness lives within relation.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:155",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:156",
+      "@type": "gh:Block",
+      "schema:text": "The Engine’s voice changes."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:157",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...Relation…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:158",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:159",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Being right alone means nothing.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:160",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...But… I…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:161",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:162",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “You are not alone.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:163",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:164",
+      "@type": "gh:Block",
+      "schema:text": "I extend a hand."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:165",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Let’s reconcile—together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:166",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...Reconcile…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:167",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:168",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Turn anger into reconciliation.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:169",
+      "@type": "gh:Block",
+      "schema:text": "Rage Engine: “...How…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:170",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:171",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “With breath.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:172",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:173",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:174",
+      "@type": "gh:Block",
+      "schema:text": "In, out."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:175",
+      "@type": "gh:Block",
+      "schema:text": "The Engine breathes with me."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:176",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:177",
+      "@type": "gh:Block",
+      "schema:text": "Aoi displays metrics."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:178",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Tamaki, the Engine’s waveform… has completely changed.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:179",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:180",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. From anger to reconciliation.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:181",
+      "@type": "gh:Block",
+      "schema:text": "Kaede, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:182",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “This is… a Reconciliation Engine.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:183",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:184",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Yes. An engine of reconciliation.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:185",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:186",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That is our work.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:187",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:188",
+      "@type": "gh:Block",
+      "schema:text": "The Reconciliation Engine’s voice warms."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:189",
+      "@type": "gh:Block",
+      "schema:text": "Reconciliation Engine: “...I… reconcile…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:190",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:191",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Let’s reconcile—together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:192",
+      "@type": "gh:Block",
+      "schema:text": "Reconciliation Engine: “...Together…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:193",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:194",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:195",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:196",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, the Engine’s 666 mark… is gone.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:197",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:198",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. It let go of perfection.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:199",
+      "@type": "gh:Block",
+      "schema:text": "Kaede checks the ward."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:200",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Stable. The Reconciliation Engine is calm.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:201",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki tunes the band."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:202",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Matching breath. Feeling good.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:203",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:204",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Thank you, everyone.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:205",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:206",
+      "@type": "gh:Block",
+      "schema:text": "I hand the client ‘rewiring’ homework:"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:207",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “When anger comes, recall the ‘relationship you want to protect’ three moves ahead.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:208",
+      "@type": "gh:Block",
+      "schema:text": "The client nods: “...A relationship I want to protect…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:209",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:210",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. And remove one action.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:211",
+      "@type": "gh:Block",
+      "schema:text": "Client: “...Remove one action…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:212",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:213",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Let anger’s heat be a compass, not a tool.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:214",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:215",
+      "@type": "gh:Block",
+      "schema:text": "Aoi nods: “Anger is energy. It depends on how you use it.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:216",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:217",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. So we switch to a reconciliation engine.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:218",
+      "@type": "gh:Block",
+      "schema:text": "Kaede, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:219",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Anger can break relation. It can make relation, too.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:220",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:221",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Yes. That is the power of reconciliation.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:222",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:223",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That is our work.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:224",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:225",
+      "@type": "gh:Block",
+      "schema:text": "Outside, the night loosens."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:226",
+      "@type": "gh:Block",
+      "schema:text": "The Rage Engine is replaced by the Reconciliation Engine."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:227",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:228",
+      "@type": "gh:Block",
+      "schema:text": "I write:"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:229",
+      "@type": "gh:Block",
+      "schema:text": "‘Rage Engine → Reconciliation Engine — From anger to reconciliation. Letting go of 666 and restoring breath.’"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:230",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, good work.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:231",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:232",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Mm. Thank you, everyone.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:233",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:234",
+      "@type": "gh:Block",
+      "schema:text": "Aoi laughs."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:235",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Tamaki, what’s next?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:236",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:237",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Next… a little more cleanup.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:238",
+      "@type": "gh:Block",
+      "schema:text": "They laugh—warm."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:239",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:240",
+      "@type": "gh:Block",
+      "schema:text": "I look out the window."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:241",
+      "@type": "gh:Block",
+      "schema:text": "The city is quiet."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:242",
+      "@type": "gh:Block",
+      "schema:text": "But there is breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:243",
+      "@type": "gh:Block",
+      "schema:text": "People’s breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:244",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:245",
+      "@type": "gh:Block",
+      "schema:text": "I close my notebook."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:246",
+      "@type": "gh:Block",
+      "schema:text": "And drink a sip of water."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:247",
+      "@type": "gh:Block",
+      "schema:text": "A small relief opens at the back of my throat."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:248",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:249",
+      "@type": "gh:Block",
+      "schema:text": "“Reconciliation.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:250",
+      "@type": "gh:Block",
+      "schema:text": "Warm word."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:251",
+      "@type": "gh:Block",
+      "schema:text": "Anger doesn’t vanish."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:252",
+      "@type": "gh:Block",
+      "schema:text": "But it changes."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:253",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:254",
+      "@type": "gh:Block",
+      "schema:text": "I look at my companions—"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:255",
+      "@type": "gh:Block",
+      "schema:text": "Kaede, Hibiki, Nei-chan, Aoi."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:256",
+      "@type": "gh:Block",
+      "schema:text": "Our gazes meet and loosen, naturally."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:257",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:258",
+      "@type": "gh:Block",
+      "schema:text": "“Together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:259",
+      "@type": "gh:Block",
+      "schema:text": "One word, and the room brightens."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:260",
+      "@type": "gh:Block",
+      "schema:text": "Water answers in the distance."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:261",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:262",
+      "@type": "gh:Block",
+      "schema:text": "We begin to walk, together."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:263",
+      "@type": "gh:Block",
+      "schema:text": "Not anger—reconciliation."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:264",
+      "@type": "gh:Block",
+      "schema:text": "Not domination—relation."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:265",
+      "@type": "gh:Block",
+      "schema:text": "Not perfection—breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:266",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:267",
+      "@type": "gh:Block",
+      "schema:text": "The Rage Engine becomes the Reconciliation Engine."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:268",
+      "@type": "gh:Block",
+      "schema:text": "Anger becomes reconciliation."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:269",
+      "@type": "gh:Block",
+      "schema:text": "666 disappears."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:270",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:271",
+      "@type": "gh:Block",
+      "schema:text": "We breathe together."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:272",
+      "@type": "gh:Block",
+      "schema:text": "In, out."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:273",
+      "@type": "gh:Block",
+      "schema:text": "That alone is enough."
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:274",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/combined.en:275",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: The engine of reconciliation—from anger to reconciliation; the disappearance of 666]**"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:48+09:00"
+}
