@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:70",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero’s voice trembles.",
+    "ja": "Tamaki「うん。私たちは、ここにいる」"
+  },
+  "gh:index": 70
+}

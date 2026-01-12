@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:6",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP8-2 — The Power of Naming\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Confrontation / Naming the Fear",
+    "ja": "# EP8-2 — 名づけの力（The Power of Naming）\n- POV: 私（Tamaki／環樹）\n- Beat: Confrontation / Naming the Fear"
+  },
+  "gh:index": 6
+}

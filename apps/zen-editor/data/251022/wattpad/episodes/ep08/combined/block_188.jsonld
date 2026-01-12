@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:188",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I breathe deep.",
+    "ja": "Hibiki「呼吸、合わせてる。Nero、ありがとう」"
+  },
+  "gh:index": 188
+}

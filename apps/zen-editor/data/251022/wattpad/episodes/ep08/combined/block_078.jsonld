@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:78",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede checks the ward.",
+    "ja": "Tamaki「うん。名を与えることで、関係が生まれる」"
+  },
+  "gh:index": 78
+}

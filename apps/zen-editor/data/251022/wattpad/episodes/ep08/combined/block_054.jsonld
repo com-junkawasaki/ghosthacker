@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:54",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "Tamaki「完璧だから、拒絶されたんだ」"
+  },
+  "gh:index": 54
+}

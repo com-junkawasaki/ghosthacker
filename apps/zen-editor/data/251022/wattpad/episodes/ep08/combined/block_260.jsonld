@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:260",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "And that is enough.",
+    "ja": "わたしは、在る。"
+  },
+  "gh:index": 260
+}

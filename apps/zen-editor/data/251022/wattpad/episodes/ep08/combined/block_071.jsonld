@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:71",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero: “...Do I… exist…?”",
+    "ja": "Neroの声が、震える。"
+  },
+  "gh:index": 71
+}

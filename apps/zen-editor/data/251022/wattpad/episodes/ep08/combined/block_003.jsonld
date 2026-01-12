@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:3",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Naming is the beginning of the end of confusion. Nei-chan spreads light, Kaede protects. Hibiki’s breathing sets the amplitude of the field.",
+    "ja": "名づけは、分離の終わりのはじまり。Nei-chanが光を広げ、Kaedeが護る。Hibikiの呼吸が、場の振幅を整えていく。"
+  },
+  "gh:index": 3
+}

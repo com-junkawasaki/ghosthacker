@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:195",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Return.",
+    "ja": "成仏ではない。"
+  },
+  "gh:index": 195
+}

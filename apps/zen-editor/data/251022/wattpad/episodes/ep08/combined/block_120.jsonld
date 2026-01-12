@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:120",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, next?”",
+    "ja": "『名づけの力 — 名を与えることで、対象は世界に引き戻される。分離は、関係の始まり』"
+  },
+  "gh:index": 120
+}
