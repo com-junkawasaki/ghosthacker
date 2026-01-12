@@ -1,0 +1,154 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:combined",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep02/combined:0",
+      "@type": "gh:Block",
+      "schema:text": "# S1E2-1 — 死ねない恐怖"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:1",
+      "@type": "gh:Block",
+      "schema:text": "- POV: 私（Tamaki／環樹）\n- Beat: 新しい依頼"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:2",
+      "@type": "gh:Block",
+      "schema:text": "今回のクライアントは、死ねないことを恐れていた。"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:3",
+      "@type": "gh:Block",
+      "schema:text": "「私は無限に続くんですか？ このまま、何度も、何度も？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:4",
+      "@type": "gh:Block",
+      "schema:text": "彼の声は、乾いた葉が擦れるような音を立てていた。永遠の繰り返しという牢獄。その恐怖が、彼のGhostを苛んでいた。"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:5",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanが私の隣で静かに告げる。『彼は、自分が個別の存在（individual）だと強く信じすぎている。だから、終わりのない輪廻が罰のように感じられるんだ』"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:6",
+      "@type": "gh:Block",
+      "schema:text": "「そうだね」私は同意する。「彼は、自分が宇宙そのものの一部だってことを忘れてる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:7",
+      "@type": "gh:Block",
+      "schema:text": "私たちの仕事は、彼が自分と世界の境界線を融かし、大いなる流れに還る手助けをすること。無為自然。ただ、在るがままにあること。"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:8",
+      "@type": "gh:Block",
+      "schema:text": "「Tamakiがいつも『いい感じ』を大切にするのは、そのためでもあるんだよね」Nei-chanが言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:9",
+      "@type": "gh:Block",
+      "schema:text": "「うん。だって、私たちの『いい感じ』は、次の宇宙の『いい感じ』に繋がっていくから」"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:10",
+      "@type": "gh:Block",
+      "schema:text": "自己の境界が幻想だと知れば、死も生も、ただの波になる。私はクライアントに向き直り、静かに、そして深く、呼吸を合わせた。"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:11",
+      "@type": "gh:Block",
+      "schema:text": "# S1E2-2 — 無限回廊"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:12",
+      "@type": "gh:Block",
+      "schema:text": "- POV: 私（Tamaki／環樹）\n- Beat: Dive / Confrontation"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:13",
+      "@type": "gh:Block",
+      "schema:text": "ダイブした先は、無限に続く廊下だった。同じ扉、同じ窓、同じ光。どこまで進んでも風景は変わらず、終わりがない。クライアントの精神は、このループに囚われている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:14",
+      "@type": "gh:Block",
+      "schema:text": "『自己と世界を完全に分けて考えているんだ』Nei-chanが分析する。『だから、自己が永遠に続くという観念が、牢獄になっている』"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:15",
+      "@type": "gh:Block",
+      "schema:text": "彼の恐怖の正体は、二元論（デュアリズム）の袋小路。私は廊下の真ん中で立ち止まり、壁に手を触れる。冷たい。けれど、幻じゃない。彼が固く信じ込んでいる現実だ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:16",
+      "@type": "gh:Block",
+      "schema:text": "「この壁を、融かさないとね」"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:17",
+      "@type": "gh:Block",
+      "schema:text": "私はASCの制御を一段階上げる。風景の粒子が粗くなり、世界の継ぎ目が見え始める。ループの綻びを探す。彼が「自分」だと思っているものの外側へ、出口を作るために。"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:18",
+      "@type": "gh:Block",
+      "schema:text": "# S1E2-3 — 次の宇宙のために"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:19",
+      "@type": "gh:Block",
+      "schema:text": "- POV: 私（Tamaki／環樹）\n- Beat: Resolution / Afterthoughts"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:20",
+      "@type": "gh:Block",
+      "schema:text": "「壁の外側に来て」"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:21",
+      "@type": "gh:Block",
+      "schema:text": "私の声は、彼の精神世界に波紋のように広がる。無限回廊の壁が、ゆっくりと砂のように崩れていく。現れたのは、星々の生まれる宇宙の景色。"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:22",
+      "@type": "gh:Block",
+      "schema:text": "「あなたは、あなたという個別の存在であると同時に、この宇宙そのものなんだよ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:23",
+      "@type": "gh:Block",
+      "schema:text": "私は彼に語りかける。彼が「自己」だと思っていた境界線は、もともと存在しない。ただ、そう思い込んでいただけ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:24",
+      "@type": "gh:Block",
+      "schema:text": "「死ねないんじゃない。あなたは、形を変えながら、ずっと在り続けるだけ。この宇宙がそうであるように」"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:25",
+      "@type": "gh:Block",
+      "schema:text": "クライアントのGhostの輪郭が、星々の光に溶け込んでいく。恐怖が消え、安堵の表情が浮かぶ。彼は無限の牢獄から解放され、大いなる流れの一部に還った。"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:26",
+      "@type": "gh:Block",
+      "schema:text": "セッションを終え、オフィスに戻る。窓の外は、いつもと同じ水の都の夜景。\n「私たちの仕事って、壮大だよね」Nei-chanが言う。\n「そうだね。次の宇宙が、少しでも『いい感じ』になるように。私たちは、その一助を担っているだけ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep02/combined:27",
+      "@type": "gh:Block",
+      "schema:text": "私は手帳に新しい一行を書き加えた。『境界は、幻想』。その言葉が、今日のセッションのすべてを物語っていた。"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:34+09:00"
+}
