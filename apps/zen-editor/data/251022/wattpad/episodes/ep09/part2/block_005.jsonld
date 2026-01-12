@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part2:5",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Imperfect, posing as perfect.",
+    "ja": "完璧を装った不完全。"
+  },
+  "gh:index": 5
+}

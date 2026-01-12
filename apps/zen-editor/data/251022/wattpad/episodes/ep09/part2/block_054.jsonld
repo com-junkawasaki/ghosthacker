@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part2:54",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “So we help it shed the armor.”",
+    "ja": "Kaede「だから、鎧を脱がせる」"
+  },
+  "gh:index": 54
+}
