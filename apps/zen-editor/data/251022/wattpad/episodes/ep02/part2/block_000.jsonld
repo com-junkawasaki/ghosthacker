@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep02/part2:0",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# S1E2-2 — The Endless Corridor",
+    "ja": "# S1E2-2 — 無限回廊"
+  },
+  "gh:index": 0
+}
