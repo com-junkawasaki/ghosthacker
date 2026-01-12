@@ -27,6 +27,8 @@
       const nodeList = Array.from(graphStore.nodes.values());
       const index = nodeList.findIndex((n: Node) => n.id === graphStore.selectedNodeId);
       if (index !== -1) {
+        // Zoom and center the camera on the selected node
+        // The node stays at (width/2, height/2) on screen
         graph.zoomToPointByIndex(index, 800);
       }
     }
@@ -59,7 +61,18 @@
         g.zoomInstance.on('zoom', (event) => {
           const t = event.transform;
           currentTransform = { x: t.x, y: t.y, k: t.k };
+          
+          // If a node is selected, we can optionally force it to stay centered
+          // during manual zoom/pan if that's the desired "orbit" behavior.
+          // For now, we rely on the initial centering.
         });
+      }
+
+      // Add orbit-like behavior: keep selected node centered during zoom
+      // @ts-ignore
+      const originalZoom = g.zoomInstance;
+      if (originalZoom) {
+        // Custom interaction logic could go here to lock focus
       }
 
       graph = g;

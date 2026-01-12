@@ -813,12 +813,18 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 			})
 
 			for _, file := range ep.Files {
-				// Use .jsonld if it exists, otherwise .md
-				baseName := strings.TrimSuffix(file, ".md")
+				// Prioritize .jsonld if it exists, otherwise check for .md
+				baseName := strings.TrimSuffix(strings.TrimSuffix(file, ".md"), ".jsonld")
 				jsonldFile := baseName + ".jsonld"
-				actualFile := file
-				if _, err := os.Stat(filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", jsonldFile)); err == nil {
-					actualFile = jsonldFile
+				actualFile := jsonldFile // Default to suggesting .jsonld
+				
+				jsonldPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", jsonldFile)
+				mdPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", baseName+".md")
+				
+				if _, err := os.Stat(jsonldPath); err != nil {
+					if _, err := os.Stat(mdPath); err == nil {
+						actualFile = baseName + ".md"
+					}
 				}
 
 				mNodeID := fmt.Sprintf("manuscript:%s:%s", ep.ID, actualFile)
@@ -888,7 +894,6 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 func (s *EditorServer) GetBlocks(ctx context.Context, req *connect.Request[editorpb.GetBlocksRequest]) (*connect.Response[editorpb.GetBlocksResponse], error) {
 	log.Printf("RPC: GetBlocks called for manuscript: %s", req.Msg.ManuscriptId)
 	
-	// Manuscript ID format: manuscript:EP_ID:FILE_PATH
 	parts := strings.Split(req.Msg.ManuscriptId, ":")
 	if len(parts) < 3 {
 		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("invalid manuscript id format"))
@@ -897,7 +902,6 @@ func (s *EditorServer) GetBlocks(ctx context.Context, req *connect.Request[edito
 	epID := parts[1]
 	fileRelPath := strings.Join(parts[2:], ":")
 	
-	// Try the exact path, then try swapping extensions
 	baseName := strings.TrimSuffix(strings.TrimSuffix(fileRelPath, ".md"), ".jsonld")
 	jsonldPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", baseName+".jsonld")
 	mdPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", baseName+".md")
@@ -905,6 +909,7 @@ func (s *EditorServer) GetBlocks(ctx context.Context, req *connect.Request[edito
 	var blocks []interface{}
 	var data []byte
 	var err error
+	var migrated bool
 
 	if _, err = os.Stat(jsonldPath); err == nil {
 		data, err = os.ReadFile(jsonldPath)
@@ -915,7 +920,6 @@ func (s *EditorServer) GetBlocks(ctx context.Context, req *connect.Request[edito
 			if jerr := json.Unmarshal(data, &manuscript); jerr == nil {
 				blocks = manuscript.Blocks
 			} else {
-				// If JSON is invalid, maybe it's still raw text (unlikely but safe)
 				log.Printf("Warning: Invalid JSON in %s, treating as raw text", jsonldPath)
 				err = jerr
 			}
@@ -923,31 +927,51 @@ func (s *EditorServer) GetBlocks(ctx context.Context, req *connect.Request[edito
 	} 
 	
 	if len(blocks) == 0 {
-		// Fallback to .md or treat .jsonld as raw if it failed above
+		// Fallback to .md and perform migration
 		if _, err = os.Stat(mdPath); err == nil {
 			data, err = os.ReadFile(mdPath)
-		} else if _, err = os.Stat(jsonldPath); err == nil {
-			data, err = os.ReadFile(jsonldPath)
-		}
-
-		if err == nil {
-			rawBlocks := strings.Split(string(data), "\n\n")
-			for bIdx, bContent := range rawBlocks {
-				bContent = strings.TrimSpace(bContent)
-				if bContent == "" {
-					continue
+			if err == nil {
+				rawBlocks := strings.Split(string(data), "\n\n")
+				for bIdx, bContent := range rawBlocks {
+					bContent = strings.TrimSpace(bContent)
+					if bContent == "" {
+						continue
+					}
+					blocks = append(blocks, map[string]interface{}{
+						"@id":         fmt.Sprintf("block:%s:%s:%d", epID, baseName, bIdx),
+						"@type":       "gh:Block",
+						"schema:text": bContent,
+					})
 				}
-				blocks = append(blocks, map[string]interface{}{
-					"@id":         fmt.Sprintf("block:%s:%s:%d", epID, fileRelPath, bIdx),
-					"@type":       "gh:Block",
-					"schema:text": bContent,
-				})
+				migrated = true
 			}
 		}
 	}
 
 	if err != nil && len(blocks) == 0 {
 		return nil, connect.NewError(connect.CodeNotFound, err)
+	}
+
+	// If migrated from MD, save the JSON-LD version automatically
+	if migrated && len(blocks) > 0 {
+		manuscript := map[string]interface{}{
+			"@context": map[string]interface{}{
+				"gh":     "https://gftd.ai/ghost-hacker/ontology/",
+				"schema": "https://schema.org/",
+				"name":   "schema:name",
+				"text":   "schema:text",
+				"blocks": "gh:blocks",
+			},
+			"@id":       req.Msg.ManuscriptId,
+			"@type":     "gh:Manuscript",
+			"gh:blocks": blocks,
+			"updatedAt": time.Now().Format(time.RFC3339),
+		}
+		updatedData, _ := json.MarshalIndent(manuscript, "", "  ")
+		os.WriteFile(jsonldPath, updatedData, 0644)
+		if s.Git != nil {
+			s.Git.CommitDocument(jsonldPath, fmt.Sprintf("Auto-migrate manuscript %s to JSON-LD", req.Msg.ManuscriptId))
+		}
 	}
 
 	resp := &editorpb.GetBlocksResponse{}
@@ -988,7 +1012,7 @@ func (s *EditorServer) GetBlocks(ctx context.Context, req *connect.Request[edito
 		if prevBlockID != "" {
 			resp.Edges = append(resp.Edges, &editorpb.Edge{
 				FromId:   prevBlockID,
-				ToId:     bID,
+				ToId:     bNode.Id,
 				Relation: "gh:precedes",
 				Style:    "solid",
 				Color:    "#34c759",
@@ -997,7 +1021,7 @@ func (s *EditorServer) GetBlocks(ctx context.Context, req *connect.Request[edito
 				Strength: 1.0,
 			})
 		}
-		prevBlockID = bID
+		prevBlockID = bNode.Id
 	}
 
 	return connect.NewResponse(resp), nil

@@ -1,0 +1,29 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:all_episodes",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:all_episodes:0",
+      "@type": "gh:Block",
+      "schema:text": "# Ghost Hacker – All Episodes (Part Index)"
+    },
+    {
+      "@id": "block:251022:all_episodes:1",
+      "@type": "gh:Block",
+      "schema:text": "本文は各 `episodes/epXX/part*.md` を正典とし、ここでは目次のみを提供します。"
+    },
+    {
+      "@id": "block:251022:all_episodes:2",
+      "@type": "gh:Block",
+      "schema:text": "- EP1 — episodes/ep01/part1.md / part2.md / part3.md\n- EP2 — episodes/ep02/part1.md / part2.md / part3.md\n- EP3 — episodes/ep03/part1.md / part2.md / part3.md\n- EP4 — episodes/ep04/part1.md / part2.md / part3.md\n- EP5 — episodes/ep05/part1.md / part2.md / part3.md\n- EP6 — episodes/ep06/part1.md / part2.md / part3.md\n- EP7 — episodes/ep07/part1.md / part2.md / part3.md\n- EP8 — episodes/ep08/part1.md / part2.md / part3.md\n- EP9 — episodes/ep09/part1.md\n- EP10 — episodes/ep10/part1.md\n- EP11 — episodes/ep11/part1.md\n- EP12 — episodes/ep12/part1.md"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:33+09:00"
+}
