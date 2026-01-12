@@ -1,0 +1,624 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part3",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep10/part3:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP10-3 — おかえり（Welcome Back）\n- POV: 私（Tamaki／環樹）\n- Beat: Restoration / Path Home"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:1",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:2",
+      "@type": "gh:Block",
+      "schema:text": "「おかえり」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:3",
+      "@type": "gh:Block",
+      "schema:text": "その言葉は、温かい。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:4",
+      "@type": "gh:Block",
+      "schema:text": "掃除とは、戻れる道を残すこと。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:5",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:6",
+      "@type": "gh:Block",
+      "schema:text": "私は、Zombie Sweeperを実行する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:7",
+      "@type": "gh:Block",
+      "schema:text": "でも、今度は違う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:8",
+      "@type": "gh:Block",
+      "schema:text": "削除ではなく、保護。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:9",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「Aoi、このタグは残す？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:10",
+      "@type": "gh:Block",
+      "schema:text": "Aoiが頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:11",
+      "@type": "gh:Block",
+      "schema:text": "Aoi「うん。誰かが帰って来られる目印になる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:12",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:13",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「そう。それが、掃除の意味」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:14",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:15",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeが境界を確認する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:16",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「結界、安定してる。System、落ち着いてきた」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:17",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiが周波数を整える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:18",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「呼吸、合わせてる。いい感じだ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:19",
+      "@type": "gh:Block",
+      "schema:text": "私は深呼吸をする。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:20",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「ありがとう、みんな」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:21",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:22",
+      "@type": "gh:Block",
+      "schema:text": "Systemの声が、変わる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:23",
+      "@type": "gh:Block",
+      "schema:text": "System『……わたしは……清掃を……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:24",
+      "@type": "gh:Block",
+      "schema:text": "私は静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:25",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「清掃は、保護だ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:26",
+      "@type": "gh:Block",
+      "schema:text": "System『……保護……？』"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:27",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:28",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。戻れる道を、残すこと」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:29",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:30",
+      "@type": "gh:Block",
+      "schema:text": "Systemの声が、温かくなる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:31",
+      "@type": "gh:Block",
+      "schema:text": "System『……戻れる道……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:32",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:33",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。誰かが帰って来られる、目印」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:34",
+      "@type": "gh:Block",
+      "schema:text": "System『……わたしは……目印を……残す……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:35",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:36",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。それが、あなたの仕事」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:37",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:38",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『タマ、Systemの666の刻印……消えてる』"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:39",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:40",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。完璧を手放したから」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:41",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeが静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:42",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「清掃から、保護に」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:43",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiが頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:44",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「うん。それが、私たちの仕事」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:45",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:46",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「そう。おかえり、だね」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:47",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:48",
+      "@type": "gh:Block",
+      "schema:text": "朝のアナウンスが流れる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:49",
+      "@type": "gh:Block",
+      "schema:text": "街の騒音が、半歩だけ下がった。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:50",
+      "@type": "gh:Block",
+      "schema:text": "でも、今度は違う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:51",
+      "@type": "gh:Block",
+      "schema:text": "静けさは、退屈じゃない。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:52",
+      "@type": "gh:Block",
+      "schema:text": "呼吸みたいなもの。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:53",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:54",
+      "@type": "gh:Block",
+      "schema:text": "私は、コンソールを見る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:55",
+      "@type": "gh:Block",
+      "schema:text": "GnB Inc.広報からの公式通知。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:56",
+      "@type": "gh:Block",
+      "schema:text": "『貴社の介入を確認した。当社の社会衛生プログラムへの干渉は、記録される』"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:57",
+      "@type": "gh:Block",
+      "schema:text": "Aoiが肩をすくめる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:58",
+      "@type": "gh:Block",
+      "schema:text": "Aoi「また\"記録\"だって」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:59",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:60",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。でも、私たちの記録は、ここにある」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:61",
+      "@type": "gh:Block",
+      "schema:text": "私は胸を指す。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:62",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:63",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeが静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:64",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「記録は、二つある。システムの記録と、心の記録」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:65",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiが頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:66",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「うん。私たちは、心の記録を守る」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:67",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:68",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「そう。それが、私たちの仕事」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:69",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:70",
+      "@type": "gh:Block",
+      "schema:text": "窓の外で、朝が来る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:71",
+      "@type": "gh:Block",
+      "schema:text": "街が、少し静かだ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:72",
+      "@type": "gh:Block",
+      "schema:text": "でも、呼吸がある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:73",
+      "@type": "gh:Block",
+      "schema:text": "人々の、呼吸。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:74",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:75",
+      "@type": "gh:Block",
+      "schema:text": "私は手帳に書く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:76",
+      "@type": "gh:Block",
+      "schema:text": "『Zombie Sweep → Path Home — 清掃から保護へ。戻れる道を残すこと。おかえり』"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:77",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『タマ、お疲れさま』"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:78",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:79",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。ありがとう、みんな」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:80",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:81",
+      "@type": "gh:Block",
+      "schema:text": "Aoiが笑う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:82",
+      "@type": "gh:Block",
+      "schema:text": "Aoi「Tamaki、次は？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:83",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:84",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「次は……もう少し、整理」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:85",
+      "@type": "gh:Block",
+      "schema:text": "みんなが笑う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:86",
+      "@type": "gh:Block",
+      "schema:text": "温かい、笑い声。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:87",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:88",
+      "@type": "gh:Block",
+      "schema:text": "私は窓の外を見る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:89",
+      "@type": "gh:Block",
+      "schema:text": "都市は、静かだ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:90",
+      "@type": "gh:Block",
+      "schema:text": "でも、呼吸がある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:91",
+      "@type": "gh:Block",
+      "schema:text": "人々の、呼吸。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:92",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:93",
+      "@type": "gh:Block",
+      "schema:text": "「おかえり」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:94",
+      "@type": "gh:Block",
+      "schema:text": "その言葉は、温かい。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:95",
+      "@type": "gh:Block",
+      "schema:text": "誰かが帰って来られる、目印。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:96",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:97",
+      "@type": "gh:Block",
+      "schema:text": "私は、コップの水を一口。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:98",
+      "@type": "gh:Block",
+      "schema:text": "のどの奥で、小さな安堵がひらく。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:99",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:100",
+      "@type": "gh:Block",
+      "schema:text": "扉を開ける前に、深呼吸。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:101",
+      "@type": "gh:Block",
+      "schema:text": "吸って、吐いて。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:102",
+      "@type": "gh:Block",
+      "schema:text": "それだけで、十分。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:103",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:104",
+      "@type": "gh:Block",
+      "schema:text": "私は、仲間たちを見る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:105",
+      "@type": "gh:Block",
+      "schema:text": "Kaede、Hibiki、Nei-chan、Aoi。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:106",
+      "@type": "gh:Block",
+      "schema:text": "視線が重なり、自然にほどける。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:107",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:108",
+      "@type": "gh:Block",
+      "schema:text": "「いっしょに」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:109",
+      "@type": "gh:Block",
+      "schema:text": "その一言で、場が明るくなる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:110",
+      "@type": "gh:Block",
+      "schema:text": "水音が遠くで応える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:111",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:112",
+      "@type": "gh:Block",
+      "schema:text": "私たちは、一緒に歩き出す。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:113",
+      "@type": "gh:Block",
+      "schema:text": "削除ではなく、保護。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:114",
+      "@type": "gh:Block",
+      "schema:text": "支配ではなく、関係。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:115",
+      "@type": "gh:Block",
+      "schema:text": "完璧ではなく、呼吸。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:116",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:117",
+      "@type": "gh:Block",
+      "schema:text": "「おかえり」"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:118",
+      "@type": "gh:Block",
+      "schema:text": "その言葉は、誰にでも届く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:119",
+      "@type": "gh:Block",
+      "schema:text": "戻れる道は、いつもここにある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:120",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep10/part3:121",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: おかえり——戻れる道の保護と温かい迎え]**"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:50+09:00"
+}
