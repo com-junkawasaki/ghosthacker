@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:114",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia smiles small. Tears not yet dry, but—hope in her eyes.",
+    "ja": "Nei-chan『タマ、二人の手、繋がってる。あったかい』"
+  },
+  "gh:index": 114
+}

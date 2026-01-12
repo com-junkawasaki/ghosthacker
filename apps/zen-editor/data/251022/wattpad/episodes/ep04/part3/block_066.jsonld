@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:66",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Someone who seizes your sympathy and soul, who binds you—sympathy extraction. That must not be allowed.”",
+    "ja": "私はMilliaに向き直る。"
+  },
+  "gh:index": 66
+}

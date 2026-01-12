@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:13",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Would you sell a friend for 100 million yen?”",
+    "ja": "Leo「え、それは絶対売らないよ」"
+  },
+  "gh:index": 13
+}

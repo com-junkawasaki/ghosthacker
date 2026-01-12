@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:59",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Her voice shakes.",
+    "ja": "Millia「1円でも……いくらでも売りたい……」"
+  },
+  "gh:index": 59
+}

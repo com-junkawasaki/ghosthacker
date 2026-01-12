@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:113",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Yes. It’ll be okay. One step at a time.”",
+    "ja": "Nei-chanの声が、優しく響く。"
+  },
+  "gh:index": 113
+}

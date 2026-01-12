@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:108",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“It’s okay. You’re no longer alone. A new road will open.”",
+    "ja": "Nei-chan『タマ、二人の手、繋がってる。あったかい』"
+  },
+  "gh:index": 108
+}

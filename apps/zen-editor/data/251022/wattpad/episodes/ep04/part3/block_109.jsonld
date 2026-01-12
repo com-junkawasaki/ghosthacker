@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:109",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, so warm. The color of hope. Sparkly.”",
+    "ja": "Leoが、ゆっくりとMilliaの手を取る。今度は、迷いなく。"
+  },
+  "gh:index": 109
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:39",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He answers at once. Millia is silent.",
+    "ja": "私は深く息を吸う。ここからが、本当の核心。"
+  },
+  "gh:index": 39
+}

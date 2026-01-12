@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:77",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki (small): “Mm. Not yet.”",
+    "ja": "Tamaki「あなたの共感と魂を奪う、束縛する人、共感の搾取。それは許されることではない」"
+  },
+  "gh:index": 77
+}

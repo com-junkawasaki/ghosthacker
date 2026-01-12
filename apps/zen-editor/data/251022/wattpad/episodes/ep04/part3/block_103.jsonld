@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:103",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia: “...Yes. Thank you, Leo.”",
+    "ja": "彼の声は優しい。でも、力強い。"
+  },
+  "gh:index": 103
+}

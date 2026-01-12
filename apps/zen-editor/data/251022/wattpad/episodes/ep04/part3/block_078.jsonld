@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:78",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I face Millia.",
+    "ja": "Millia「でも……売りたくても、切りたくても切れない……」"
+  },
+  "gh:index": 78
+}

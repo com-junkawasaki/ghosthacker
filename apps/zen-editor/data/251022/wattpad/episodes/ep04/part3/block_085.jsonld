@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:85",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I meet her gaze.",
+    "ja": "Tamaki「魂を切ると、出血する。だから切ると痛みがある」"
+  },
+  "gh:index": 85
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:99",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo nods. Millia nods quietly.",
+    "ja": "私は彼女の目を見つめる。"
+  },
+  "gh:index": 99
+}

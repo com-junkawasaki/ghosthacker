@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:68",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Because it has become part of your body.”",
+    "ja": "Milliaは少し泣き止む。"
+  },
+  "gh:index": 68
+}

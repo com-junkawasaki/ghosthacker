@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:96",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan, gently: “Tama, their hands—holding. Warm.”",
+    "ja": "Milliaの目に、小さな光が灯る。"
+  },
+  "gh:index": 96
+}

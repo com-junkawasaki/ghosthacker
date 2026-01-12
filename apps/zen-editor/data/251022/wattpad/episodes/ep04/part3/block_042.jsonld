@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:42",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “What about a billion?”",
+    "ja": "Tamaki「あなたの家族を1億円で売れますか？」"
+  },
+  "gh:index": 42
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:12",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I leave a beat.",
+    "ja": "Tamaki「あなたは友人を1億円で売れますか？」"
+  },
+  "gh:index": 12
+}

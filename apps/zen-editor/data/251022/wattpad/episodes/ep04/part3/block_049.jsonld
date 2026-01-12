@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:49",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia: “For one yen… for any amount… I want to sell them…”",
+    "ja": "Leoは力強く言う。でも、Milliaは……"
+  },
+  "gh:index": 49
+}
