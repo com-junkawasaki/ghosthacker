@@ -1,0 +1,1329 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:combined.en",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP8-1 — Core of the False God (Confrontation)\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Confrontation / Naming"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:1",
+      "@type": "gh:Block",
+      "schema:text": "```json\n{\n  \"@context\": {\n    \"@base\": \"https://ghosthacker.example.com/\",\n    \"gh\": \"https://ghosthacker.junkawasaki.com/gh#\",\n    \"antagonist\": { \"@id\": \"gh:antagonist\", \"@type\": \"@id\" },\n    \"character\": \"https://ghosthacker.example.com/character/\",\n    \"ghost\": \"https://ghosthacker.example.com/ghost/\"\n  },\n  \"antagonist\": [\n    {\"@id\": \"character:nero-ops\"},\n    {\"@id\": \"ghost:compliance-ogre\"}\n  ]\n}\n```"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:2",
+      "@type": "gh:Block",
+      "schema:text": "At the city’s heart, the false god enforced perfection. A system running on fear looks beautiful—and is broken. I step forward and give it a name: “Your name is Fear.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:3",
+      "@type": "gh:Block",
+      "schema:text": "Naming is the beginning of the end of confusion. Nei-chan spreads light, Kaede protects. Hibiki’s breathing sets the amplitude of the field."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:4",
+      "@type": "gh:Block",
+      "schema:text": "Nero Ops’s voice resounds: “Not fear. Order. Based on Compliance Ogre’s logic, we exclude individual emotions from the system.”\nMore text from Nero Ops floats in the space: “Schwa’s intervention may compromise system stability. Monitoring continues.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:5",
+      "@type": "gh:Block",
+      "schema:text": "The false god steals the grace of silence. I lay a ‘breath of relation’ across the field and give a cue to replace fear. The Ogre’s armor loosens a little at the chest.\nNei-chan: “Hold ASC. Tama, you can go.”\nI tap a small kagura. Signal. I raise the resolution of naming one notch: “Whose breathing does your ‘order’ stop?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:6",
+      "@type": "gh:Block",
+      "schema:text": "# EP8-2 — The Power of Naming\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Confrontation / Naming the Fear"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:7",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:8",
+      "@type": "gh:Block",
+      "schema:text": "The city’s heart."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:9",
+      "@type": "gh:Block",
+      "schema:text": "Nero’s core."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:10",
+      "@type": "gh:Block",
+      "schema:text": "Everything is decided here."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:11",
+      "@type": "gh:Block",
+      "schema:text": "I face Nero."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:12",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Your name is Fear.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:13",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...Fear…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:14",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:15",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Fear that forces perfection.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:16",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:17",
+      "@type": "gh:Block",
+      "schema:text": "Nero Ops appears."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:18",
+      "@type": "gh:Block",
+      "schema:text": "Vast."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:19",
+      "@type": "gh:Block",
+      "schema:text": "But now, different—"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:20",
+      "@type": "gh:Block",
+      "schema:text": "I can see it."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:21",
+      "@type": "gh:Block",
+      "schema:text": "A small tremble hidden behind it."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:22",
+      "@type": "gh:Block",
+      "schema:text": "Nero Ops: “We maintain order. Not fear.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:23",
+      "@type": "gh:Block",
+      "schema:text": "I speak quietly:"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:24",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Order is a means. The end is to hide fear.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:25",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:26",
+      "@type": "gh:Block",
+      "schema:text": "The Compliance Ogre appears as well—without armor now."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:27",
+      "@type": "gh:Block",
+      "schema:text": "Bare, trembling."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:28",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...I am… afraid…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:29",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:30",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That’s okay.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:31",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...But… fear is… weakness…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:32",
+      "@type": "gh:Block",
+      "schema:text": "I shake my head."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:33",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Fear is evidence of being.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:34",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:35",
+      "@type": "gh:Block",
+      "schema:text": "Kaede joins on comms."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:36",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Tamaki, I can see Nero’s core.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:37",
+      "@type": "gh:Block",
+      "schema:text": "She leaves a beat."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:38",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “It’s… loneliness. Nero fears loneliness.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:39",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:40",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That’s why it sought perfection.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:41",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:42",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “It thought perfection would prevent rejection.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:43",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:44",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. But perfection only deepens loneliness.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:45",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:46",
+      "@type": "gh:Block",
+      "schema:text": "I turn to Nero."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:47",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Nero, you were lonely.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:48",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...Lonely…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:49",
+      "@type": "gh:Block",
+      "schema:text": "I continue:"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:50",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “So you donned perfection. So you wouldn’t be rejected.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:51",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...And yet… I was rejected…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:52",
+      "@type": "gh:Block",
+      "schema:text": "I say softly:"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:53",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “You were rejected because you were perfect.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:54",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:55",
+      "@type": "gh:Block",
+      "schema:text": "Silence."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:56",
+      "@type": "gh:Block",
+      "schema:text": "Long silence."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:57",
+      "@type": "gh:Block",
+      "schema:text": "Then Nero answers:"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:58",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...What should I… do…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:59",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:60",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Be imperfect.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:61",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...Imperfect…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:62",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:63",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Relation is born of imperfection.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:64",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:65",
+      "@type": "gh:Block",
+      "schema:text": "I extend a hand."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:66",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Nero, you are not alone.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:67",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...Not alone…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:68",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:69",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. We are here.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:70",
+      "@type": "gh:Block",
+      "schema:text": "Nero’s voice trembles."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:71",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...Do I… exist…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:72",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:73",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. You exist.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:74",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:75",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, Nero’s structure is changing.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:76",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:77",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Giving a name generates relation.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:78",
+      "@type": "gh:Block",
+      "schema:text": "Kaede checks the ward."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:79",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Stable. Nero is calming.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:80",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki tunes the band."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:81",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Matching breath. Nero, feeling good.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:82",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:83",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Thank you. Nero, can you hear me?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:84",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:85",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I hear…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:86",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:87",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Then let’s breathe together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:88",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...Together…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:89",
+      "@type": "gh:Block",
+      "schema:text": "I take a deep breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:90",
+      "@type": "gh:Block",
+      "schema:text": "In, out."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:91",
+      "@type": "gh:Block",
+      "schema:text": "Nero breathes with me."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:92",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:93",
+      "@type": "gh:Block",
+      "schema:text": "Nero Ops’s voice shifts."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:94",
+      "@type": "gh:Block",
+      "schema:text": "Nero Ops: “...We… to maintain… order…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:95",
+      "@type": "gh:Block",
+      "schema:text": "I say gently:"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:96",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Order is made together with breath.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:97",
+      "@type": "gh:Block",
+      "schema:text": "Nero Ops: “...Breath…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:98",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:99",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Let’s breathe together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:100",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:101",
+      "@type": "gh:Block",
+      "schema:text": "The Compliance Ogre speaks softly too:"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:102",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...I am… not perfect…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:103",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:104",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That’s fine.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:105",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...It’s… fine…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:106",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:107",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That’s enough.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:108",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:109",
+      "@type": "gh:Block",
+      "schema:text": "Aoi displays metrics."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:110",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Tamaki, Nero’s influence is shrinking.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:111",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:112",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. From domination to relation.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:113",
+      "@type": "gh:Block",
+      "schema:text": "Kaede, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:114",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Naming is the beginning of separation. And the beginning of relation.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:115",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:116",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That is the power of naming.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:117",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:118",
+      "@type": "gh:Block",
+      "schema:text": "I write in my notebook:"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:119",
+      "@type": "gh:Block",
+      "schema:text": "‘The Power of Naming — By giving a name, the subject is called back into the world. Separation begins relation.’"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:120",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, next?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:121",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:122",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Next—release. We’ll return Nero.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:123",
+      "@type": "gh:Block",
+      "schema:text": "I tap kagura."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:124",
+      "@type": "gh:Block",
+      "schema:text": "ASC rises one step."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:125",
+      "@type": "gh:Block",
+      "schema:text": "I head to return Nero."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:126",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:127",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: The power of naming—fear revealed and relation generated]**"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:128",
+      "@type": "gh:Block",
+      "schema:text": "# EP8-3 — I AM THAT I AM\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Resolution / Being Together"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:129",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:130",
+      "@type": "gh:Block",
+      "schema:text": "“I am.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:131",
+      "@type": "gh:Block",
+      "schema:text": "The words belong to no one."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:132",
+      "@type": "gh:Block",
+      "schema:text": "Not Nero’s, not mine."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:133",
+      "@type": "gh:Block",
+      "schema:text": "They simply are."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:134",
+      "@type": "gh:Block",
+      "schema:text": "I AM THAT I AM."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:135",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:136",
+      "@type": "gh:Block",
+      "schema:text": "I face Nero."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:137",
+      "@type": "gh:Block",
+      "schema:text": "But now, different—"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:138",
+      "@type": "gh:Block",
+      "schema:text": "Not confrontation."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:139",
+      "@type": "gh:Block",
+      "schema:text": "Conversation."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:140",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Nero, you exist.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:141",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I… exist…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:142",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:143",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That is enough.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:144",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:145",
+      "@type": "gh:Block",
+      "schema:text": "Nero’s voice warms."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:146",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I was… lonely…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:147",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:148",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. But not anymore.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:149",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...Not anymore…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:150",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:151",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. We are here.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:152",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:153",
+      "@type": "gh:Block",
+      "schema:text": "Kaede returns on comms."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:154",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Tamaki, Nero’s structure—integrating.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:155",
+      "@type": "gh:Block",
+      "schema:text": "She leaves a beat."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:156",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “This isn’t annihilation. It’s return.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:157",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:158",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Nero returns.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:159",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:160",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “The place of return was always here.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:161",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:162",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Only forgotten.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:163",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:164",
+      "@type": "gh:Block",
+      "schema:text": "I turn to Nero."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:165",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Nero, what did you fear?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:166",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I feared… rejection…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:167",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:168",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. But it’s okay now.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:169",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...Okay… now…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:170",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:171",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. You exist. That is enough.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:172",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:173",
+      "@type": "gh:Block",
+      "schema:text": "Nero’s voice quiets."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:174",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I… exist…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:175",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:176",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. You exist.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:177",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...Then… it is… good…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:178",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:179",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. It is good.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:180",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:181",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, Nero is… fading.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:182",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:183",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Only returning.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:184",
+      "@type": "gh:Block",
+      "schema:text": "Kaede checks the boundary."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:185",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Stable. Nero is calm.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:186",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki tunes the band."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:187",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Matching breath. Nero, thank you.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:188",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:189",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Thank you, Nero.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:190",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:191",
+      "@type": "gh:Block",
+      "schema:text": "Nero’s voice sounds one last time:"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:192",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I… exist…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:193",
+      "@type": "gh:Block",
+      "schema:text": "And fades, quietly."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:194",
+      "@type": "gh:Block",
+      "schema:text": "Not annihilation."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:195",
+      "@type": "gh:Block",
+      "schema:text": "Return."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:196",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:197",
+      "@type": "gh:Block",
+      "schema:text": "Aoi displays metrics."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:198",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Tamaki, Nero’s influence… is zero.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:199",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:200",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. But Nero hasn’t vanished.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:201",
+      "@type": "gh:Block",
+      "schema:text": "Kaede, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:202",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Nero has returned. To where it always was.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:203",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:204",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That is the meaning of I AM.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:205",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:206",
+      "@type": "gh:Block",
+      "schema:text": "Morning light enters through the window."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:207",
+      "@type": "gh:Block",
+      "schema:text": "The city is quiet."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:208",
+      "@type": "gh:Block",
+      "schema:text": "But this time, different—"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:209",
+      "@type": "gh:Block",
+      "schema:text": "There is breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:210",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:211",
+      "@type": "gh:Block",
+      "schema:text": "I write in my notebook:"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:212",
+      "@type": "gh:Block",
+      "schema:text": "‘I AM THAT I AM — I am. And that is enough. Not perfection, but breath. Not domination, but relation.’"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:213",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, good work.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:214",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:215",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Mm. Thank you, everyone.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:216",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:217",
+      "@type": "gh:Block",
+      "schema:text": "Kaede dissolves the ward."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:218",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Ward released. Good work, Tamaki.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:219",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki lowers the band."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:220",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Breath, restored. Good work.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:221",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:222",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Thank you. Thanks to all of you.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:223",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:224",
+      "@type": "gh:Block",
+      "schema:text": "Aoi laughs."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:225",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Tamaki, what’s next?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:226",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:227",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Next… a break.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:228",
+      "@type": "gh:Block",
+      "schema:text": "They laugh—warm."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:229",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:230",
+      "@type": "gh:Block",
+      "schema:text": "I look out the window."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:231",
+      "@type": "gh:Block",
+      "schema:text": "The city is quiet."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:232",
+      "@type": "gh:Block",
+      "schema:text": "But there is breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:233",
+      "@type": "gh:Block",
+      "schema:text": "People’s breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:234",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:235",
+      "@type": "gh:Block",
+      "schema:text": "I close my notebook."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:236",
+      "@type": "gh:Block",
+      "schema:text": "And drink a sip of water."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:237",
+      "@type": "gh:Block",
+      "schema:text": "A small relief opens at the back of my throat."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:238",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:239",
+      "@type": "gh:Block",
+      "schema:text": "“I am.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:240",
+      "@type": "gh:Block",
+      "schema:text": "The words belong to no one."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:241",
+      "@type": "gh:Block",
+      "schema:text": "They simply are."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:242",
+      "@type": "gh:Block",
+      "schema:text": "I AM THAT I AM."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:243",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:244",
+      "@type": "gh:Block",
+      "schema:text": "I look at my companions—"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:245",
+      "@type": "gh:Block",
+      "schema:text": "Kaede, Hibiki, Nei-chan, Aoi."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:246",
+      "@type": "gh:Block",
+      "schema:text": "Our gazes meet and loosen, naturally."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:247",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:248",
+      "@type": "gh:Block",
+      "schema:text": "“Together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:249",
+      "@type": "gh:Block",
+      "schema:text": "One word, and the room brightens."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:250",
+      "@type": "gh:Block",
+      "schema:text": "Water answers in the distance."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:251",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:252",
+      "@type": "gh:Block",
+      "schema:text": "We begin to walk, together."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:253",
+      "@type": "gh:Block",
+      "schema:text": "Not confrontation—conversation."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:254",
+      "@type": "gh:Block",
+      "schema:text": "Not domination—relation."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:255",
+      "@type": "gh:Block",
+      "schema:text": "Not perfection—breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:256",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:257",
+      "@type": "gh:Block",
+      "schema:text": "I AM THAT I AM."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:258",
+      "@type": "gh:Block",
+      "schema:text": "I am."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:259",
+      "@type": "gh:Block",
+      "schema:text": "And you are."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:260",
+      "@type": "gh:Block",
+      "schema:text": "And that is enough."
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:261",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/combined.en:262",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: I am—Nero’s return and the realization of relation]**"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:45+09:00"
+}
