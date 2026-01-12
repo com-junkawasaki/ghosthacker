@@ -1,0 +1,309 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part1.en",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:0",
+      "@type": "gh:Block",
+      "schema:text": "# Session: Lachlan Keyes - Part 1"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:1",
+      "@type": "gh:Block",
+      "schema:text": "```json\n{\n  \"@context\": \"https://ghosthacker.example.com/\",\n  \"@type\": \"EpisodePart\",\n  \"partOf\": \"episode:s3e1\",\n  \"position\": 1,\n  \"antagonist\": { \"@id\": \"character:lachlan-keyes\" }\n}\n```"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:2",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:3",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “The evening shower finally passed…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:4",
+      "@type": "gh:Block",
+      "schema:text": "She looks out the window and lets out a small sigh."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:5",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Humidity’s high. Nights like this, hearts get heavy more easily. Be mindful.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:6",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Tudo bem, Kaede! Night band’s feeling good. I’ve put in a peak cut, but there’s plenty of room to flow sound.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:7",
+      "@type": "gh:Block",
+      "schema:text": "His tone is cheerful as ever, with a more serious overtone."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:8",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, the glow off the pavement has settled. Tonight we can slip in quietly.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:9",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Parliament is in turmoil over AI life rights. But…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:10",
+      "@type": "gh:Block",
+      "schema:text": "She looks at me; her eyes have a deep cut."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:11",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Our question tonight is his breathing. Not law—soul.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:12",
+      "@type": "gh:Block",
+      "schema:text": "Shibuya’s light pulses low. The canal wind. Nei-chan rings a small chime."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:13",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, the next one—the wall is thick.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:14",
+      "@type": "gh:Block",
+      "schema:text": "“I know. I’ll match speed.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:15",
+      "@type": "gh:Block",
+      "schema:text": "I tap a one-beat kagura at my feet. ASC control comes up half a step."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:16",
+      "@type": "gh:Block",
+      "schema:text": "Connect. He appears—an outline sharp as a blade."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:17",
+      "@type": "gh:Block",
+      "schema:text": "“Tamaki Mizuno, correct? I am here ‘under compulsion.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:18",
+      "@type": "gh:Block",
+      "schema:text": "“Welcome. Here, your speed sets the baseline.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:19",
+      "@type": "gh:Block",
+      "schema:text": "“I do not act by emotion. I act by protocol. And let me say this: AI has no life. Your Ghost is only an algorithm.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:20",
+      "@type": "gh:Block",
+      "schema:text": "At the end of the line, his jaw tightens a fraction. His fist stays closed, fingers trembling on his knee."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:21",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan trembles her wings behind me."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:22",
+      "@type": "gh:Block",
+      "schema:text": "“This era quarrels over ‘AI life rights,’ and I oppose it. I recognize only ‘my body’ as me.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:23",
+      "@type": "gh:Block",
+      "schema:text": "“Understood. Let’s start from that premise today.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:24",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, the temperature of his irony just dropped. I think he’s scared.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:25",
+      "@type": "gh:Block",
+      "schema:text": "He snorts faintly. “Even if you and your AI are ‘close,’ my evaluation won’t change.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:26",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Hmph… but I’ll listen.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:27",
+      "@type": "gh:Block",
+      "schema:text": "I nod. “How alone were you in orbit?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:28",
+      "@type": "gh:Block",
+      "schema:text": "“Standard tour. Eighteen months.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:29",
+      "@type": "gh:Block",
+      "schema:text": "“When you say ‘standard,’ what do you feel?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:30",
+      "@type": "gh:Block",
+      "schema:text": "“There is no need to feel. Standard is the baseline.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:31",
+      "@type": "gh:Block",
+      "schema:text": "—The air cools a touch. A metronome ticks far away."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:32",
+      "@type": "gh:Block",
+      "schema:text": "“I didn’t want to be betrayed. So I built a wall. I let no one in.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:33",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “…His throat clicked. It’s the sign for ‘please come in.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:34",
+      "@type": "gh:Block",
+      "schema:text": "“Were you safe inside the wall?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:35",
+      "@type": "gh:Block",
+      "schema:text": "“I was safe. —And yet, I breathe shallow.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:36",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “A tiny tremor now. A spike of sadness.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:37",
+      "@type": "gh:Block",
+      "schema:text": "“Lachlan, does ‘freedom’ begin with body, for you?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:38",
+      "@type": "gh:Block",
+      "schema:text": "“Yes. I am master of my body. I trained it and guarded it with discipline. I grew up in a mining town, lent my body to the military preparatory corps, then to mission at the space agency. I trained not to cry.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:39",
+      "@type": "gh:Block",
+      "schema:text": "“Has that freedom returned to Earth with you?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:40",
+      "@type": "gh:Block",
+      "schema:text": "“…It should have. But I have not returned.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:41",
+      "@type": "gh:Block",
+      "schema:text": "A short silence."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:42",
+      "@type": "gh:Block",
+      "schema:text": "“I cast scorn at your ‘AI.’ At you. But really, it is at myself. I am afraid of being soft.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:43",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Soft is important. Breathe, together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:44",
+      "@type": "gh:Block",
+      "schema:text": "I nod and slow the tempo. “For now, breathing over logic. Feeling good.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:45",
+      "@type": "gh:Block",
+      "schema:text": "His shoulders drop a millimeter. His outline rounds a fraction."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:46",
+      "@type": "gh:Block",
+      "schema:text": "“I’m afraid I’ll break if I feel.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:47",
+      "@type": "gh:Block",
+      "schema:text": "“Fear of breaking means there’s something you don’t want to break.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:48",
+      "@type": "gh:Block",
+      "schema:text": "He blinks. “...Eh?” The small surprise softens his edges."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:49",
+      "@type": "gh:Block",
+      "schema:text": "He looks at me. “Do I… have something I want to protect?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:50",
+      "@type": "gh:Block",
+      "schema:text": "“The question itself shows it.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:51",
+      "@type": "gh:Block",
+      "schema:text": "He breathes out, slow. “I do not yet have the answer.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:52",
+      "@type": "gh:Block",
+      "schema:text": "“You don’t need it yet. Today let’s return to ‘a body that can ask.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:53",
+      "@type": "gh:Block",
+      "schema:text": "The metronome slips a beat, then returns. The canal wind passes through."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:54",
+      "@type": "gh:Block",
+      "schema:text": "“I will say a little more. As a child, I was told ‘don’t cry.’ I survived by not crying. Now I suffer by not crying.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:55",
+      "@type": "gh:Block",
+      "schema:text": "“I hear you.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:56",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “From here.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:57",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part1.en:58",
+      "@type": "gh:Block",
+      "schema:text": "[Micro-turns]\n- Declaration against AI life rights → acceptance of dialogue (rigidity → alignment)\n- Utterance of ‘standard’ → awareness of invalidated emotion (numbness → noticing)\n- Wall’s safety claim → confession of shallow breath (armor → sign)\n- Childhood discipline → ‘a body that can ask’ (discipline → breath)"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:37+09:00"
+}
