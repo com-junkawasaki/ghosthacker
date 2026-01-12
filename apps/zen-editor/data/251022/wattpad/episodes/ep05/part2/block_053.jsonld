@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:53",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako sets down the scalpel.",
+    "ja": "「……私は母を\"許せない\"と思っていた」"
+  },
+  "gh:index": 53
+}

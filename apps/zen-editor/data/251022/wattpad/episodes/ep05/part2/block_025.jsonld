@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:25",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Millia… put it into language.”",
+    "ja": "Kaede「Millia……それを言語化して」"
+  },
+  "gh:index": 25
+}

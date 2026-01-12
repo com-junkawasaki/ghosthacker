@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:78",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "Milliaが小さく笑う。"
+  },
+  "gh:index": 78
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:43",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Crying, she shouts:",
+    "ja": "「私は自由でいたい！」"
+  },
+  "gh:index": 43
+}

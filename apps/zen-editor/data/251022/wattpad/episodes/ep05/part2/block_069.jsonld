@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:69",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Her eyelids quiver.",
+    "ja": "Dr. イタコ「十年もすれば自壊する。組織が安定すれば自然に外れる」"
+  },
+  "gh:index": 69
+}

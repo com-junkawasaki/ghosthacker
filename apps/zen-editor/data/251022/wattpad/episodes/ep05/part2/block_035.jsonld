@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:35",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The chain snaps.",
+    "ja": "光が閃く。"
+  },
+  "gh:index": 35
+}

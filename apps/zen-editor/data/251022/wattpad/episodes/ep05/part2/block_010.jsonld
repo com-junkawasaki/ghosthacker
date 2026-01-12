@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:10",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki’s hand keeps time.",
+    "ja": "Hibikiの手が、リズムを刻む。"
+  },
+  "gh:index": 10
+}

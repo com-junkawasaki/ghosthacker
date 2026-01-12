@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:2",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia’s scream fills the room.",
+    "ja": "Milliaの叫びが部屋に響く。"
+  },
+  "gh:index": 2
+}

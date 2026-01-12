@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:14",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“What do you see?”",
+    "ja": "「いま、何が見える？」"
+  },
+  "gh:index": 14
+}

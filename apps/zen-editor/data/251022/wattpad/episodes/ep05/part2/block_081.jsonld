@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:81",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "部屋の空気が、温かくなる。"
+  },
+  "gh:index": 81
+}

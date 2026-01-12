@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:76",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "**[Beat: Excision of the chain—release of anger; ascent supported by the DJ’d field]**",
+    "ja": "Leo「……よかった。本当に、よかった」"
+  },
+  "gh:index": 76
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:55",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Prepare to ascend.” Gentle reassurance.",
+    "ja": "「でも、母も\"鎖\"に縛られていた」"
+  },
+  "gh:index": 55
+}

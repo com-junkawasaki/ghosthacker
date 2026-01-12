@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:13",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I grip Millia’s hand tight.",
+    "ja": "私はMilliaの手を強く握る。"
+  },
+  "gh:index": 13
+}
