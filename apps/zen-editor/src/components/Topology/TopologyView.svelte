@@ -38,10 +38,10 @@
     const k = currentTransform.k;
     const tx = currentTransform.x;
     const ty = currentTransform.y;
-    // tx and ty from cosmos.gl/graph usually map world (0,0) to viewport center or similar
-    // Let's assume tx, ty are absolute screen offsets from top-left
-    const x = (node.x || 0) * k + tx;
-    const y = (node.y || 0) * k + ty;
+    // cosmos.gl/graph (0,0) is center. d3-zoom tx, ty are offsets from center?
+    // Usually it's (worldX * k) + tx + width/2
+    const x = (node.x || 0) * k + tx + containerWidth / 2;
+    const y = (node.y || 0) * k + ty + containerHeight / 2;
     return { x, y };
   }
 

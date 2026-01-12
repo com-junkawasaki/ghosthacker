@@ -34,6 +34,39 @@
     }
   });
 
+  let frameId = $state(0);
+
+  function syncLoop() {
+    if (graph) {
+      // 1. Sync Camera Transform
+      // @ts-ignore
+      const zi = graph.zoomInstance;
+      if (zi) {
+        // Look for transform in common locations for cosmos versions
+        const t = zi.transform || (graph as any).selection?.__zoom || { x: 0, y: 0, k: 1 };
+        if (t.x !== currentTransform.x || t.y !== currentTransform.y || t.k !== currentTransform.k) {
+          currentTransform = { x: t.x, y: t.y, k: t.k };
+        }
+      }
+
+      // 2. Sync Node Positions from Simulation back to Store
+      // This ensures labels stay attached to the dots
+      try {
+        const positions = graph.getPointPositions();
+        const nodeList = Array.from(graphStore.nodes.values());
+        if (positions && positions.length >= nodeList.length * 2) {
+          nodeList.forEach((node, i) => {
+            node.x = positions[i * 2];
+            node.y = positions[i * 2 + 1];
+          });
+        }
+      } catch (e) {
+        // Simulation might not have started or array is detached
+      }
+    }
+    frameId = requestAnimationFrame(syncLoop);
+  }
+
   onMount(() => {
     if (containerElement) {
       const g = new Graph(containerElement, {
@@ -55,31 +88,13 @@
         }
       };
 
-      // @ts-ignore
-      if (g.zoomInstance && typeof g.zoomInstance.on === 'function') {
-        // @ts-ignore
-        g.zoomInstance.on('zoom', (event) => {
-          const t = event.transform;
-          currentTransform = { x: t.x, y: t.y, k: t.k };
-          
-          // If a node is selected, we can optionally force it to stay centered
-          // during manual zoom/pan if that's the desired "orbit" behavior.
-          // For now, we rely on the initial centering.
-        });
-      }
-
-      // Add orbit-like behavior: keep selected node centered during zoom
-      // @ts-ignore
-      const originalZoom = g.zoomInstance;
-      if (originalZoom) {
-        // Custom interaction logic could go here to lock focus
-      }
-
       graph = g;
+      frameId = requestAnimationFrame(syncLoop);
     }
   });
 
   onDestroy(() => {
+    cancelAnimationFrame(frameId);
     graph?.destroy();
   });
 
