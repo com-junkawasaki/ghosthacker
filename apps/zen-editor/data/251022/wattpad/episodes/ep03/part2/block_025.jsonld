@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part2:25",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“—Illogical.”",
+    "ja": "「物理は分離を前提にする」"
+  },
+  "gh:index": 25
+}

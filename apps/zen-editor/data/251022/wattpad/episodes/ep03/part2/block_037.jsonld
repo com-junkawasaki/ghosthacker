@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part2:37",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Breath. Recover the breathing that feels good.”",
+    "ja": "**[Beat: 壁の崩壊——プロトコルの身体から、呼吸の身体へ]**"
+  },
+  "gh:index": 37
+}

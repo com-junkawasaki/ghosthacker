@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part2:28",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“But your breathing is, right now, inseparable from the air in this room.”",
+    "ja": "壁が微かに鳴る。\n彼は胸に手を当て、一歩だけ前へ出る。閉じていた拳がほどけ、指先が震えた。"
+  },
+  "gh:index": 28
+}

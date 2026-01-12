@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part2:21",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He bristles: “Your Ghost is AI. Not life. It will not betray you because it has no will. It is a program.”",
+    "ja": "彼は苛立ちを滲ませる。「あなたのGhostはAIです。生命ではない。裏切らないのは、意思がないからだ。プログラムだ」"
+  },
+  "gh:index": 21
+}

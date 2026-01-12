@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part2:20",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“You survived by surrendering the freedom of your body. So your heart surrendered freedom.”",
+    "ja": "「あなたは“身体の自由”を、失うことで生き延びた。だから心も、自由を諦めた」"
+  },
+  "gh:index": 20
+}
