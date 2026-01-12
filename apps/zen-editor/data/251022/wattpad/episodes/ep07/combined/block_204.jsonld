@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/combined:204",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "‘I AM — Declaration of being. Not possession, but presence. Existence generated within relation.’",
+    "ja": "わたしは、在る。"
+  },
+  "gh:index": 204
+}

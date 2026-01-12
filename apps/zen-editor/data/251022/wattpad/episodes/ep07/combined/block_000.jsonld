@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/combined:0",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP7-1 — Asking the Name (YHWH)\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Threshold / Inquiry",
+    "ja": "# EP7-1 — 名を問う（YHWH）\n- POV: 私（Tamaki／環樹）\n- Beat: Threshold / Inquiry"
+  },
+  "gh:index": 0
+}

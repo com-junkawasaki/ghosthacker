@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/combined:39",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki, quiet:",
+    "ja": "Tamaki「うん。だから、\"偽神\"なんだ」"
+  },
+  "gh:index": 39
+}

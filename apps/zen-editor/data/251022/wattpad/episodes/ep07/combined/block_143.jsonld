@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/combined:143",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “I AM is the beginning of separation. And the beginning of relation.”",
+    "ja": "Tamaki「うん。Neroは、自分を見つけてる」"
+  },
+  "gh:index": 143
+}

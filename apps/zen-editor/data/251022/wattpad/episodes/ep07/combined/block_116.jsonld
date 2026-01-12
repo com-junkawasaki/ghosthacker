@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/combined:116",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I am.",
+    "ja": "でも、確かに鳴っている。"
+  },
+  "gh:index": 116
+}

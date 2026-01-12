@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/combined:98",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I say softly:",
+    "ja": "Nero『……わたしは……誰……？』"
+  },
+  "gh:index": 98
+}

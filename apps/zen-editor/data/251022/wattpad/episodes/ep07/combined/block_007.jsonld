@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/combined:7",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "God answered: “I am.”",
+    "ja": "神は答えた。「わたしは、在る」"
+  },
+  "gh:index": 7
+}

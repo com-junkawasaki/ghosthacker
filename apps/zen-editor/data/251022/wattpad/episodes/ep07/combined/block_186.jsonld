@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/combined:186",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "In, out.",
+    "ja": "Tamaki「じゃあ、一緒に呼吸しよう」"
+  },
+  "gh:index": 186
+}

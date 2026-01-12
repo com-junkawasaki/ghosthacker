@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/combined:9",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I pose the same question to Nero.",
+    "ja": "私は、Neroに同じ問いを投げる。"
+  },
+  "gh:index": 9
+}

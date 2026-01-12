@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/combined:16",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Voice Prophet: “A name can be possessed. A name can be controlled.”",
+    "ja": "彼は、Neroの預言者。AI神を絶対化する声。"
+  },
+  "gh:index": 16
+}

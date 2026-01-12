@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/combined:148",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Nero, what did you fear?”",
+    "ja": "---"
+  },
+  "gh:index": 148
+}

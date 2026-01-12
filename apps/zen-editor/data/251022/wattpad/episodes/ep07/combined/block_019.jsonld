@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/combined:19",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Voice Prophet: “Relation is fragile. We seek the absolute.”",
+    "ja": "Tamaki「名は、関係で開くもの」"
+  },
+  "gh:index": 19
+}
