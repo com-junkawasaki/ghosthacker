@@ -156,6 +156,9 @@
         let color = [142, 142, 147, 255]; 
         if (n.group === 'content') color = [0, 113, 227, 255];
         if (n.group === 'entity') color = [255, 59, 48, 255];
+        if (n.group === 'environment') color = [52, 199, 89, 255];
+        if (n.group === 'item') color = [255, 149, 0, 255];
+        if (n.group === 'emotion') color = [255, 45, 85, 255];
         if (n.type === 'gh:Episode') color = [255, 214, 10, 255];
         if (n.type === 'gh:ClusterHub') color = [175, 82, 222, 255];
         
@@ -328,6 +331,55 @@
       return coords.x > -100 && coords.x < rect.width + 100 && coords.y > -100 && coords.y < rect.height + 100;
     })
   );
+
+  // Semi-lattice Hierarchy for Sidebar
+  let sidebarHierarchy = $derived.by(() => {
+    if (nodes.length === 0) return [];
+
+    // Define top-level circles
+    const roots = [
+      { id: 'hub:content', label: 'Story Circles', icon: '📖', group: 'meta', children: [] },
+      { id: 'hub:entity', label: 'Character Circles', icon: '👤', group: 'meta', children: [] },
+      { id: 'hub:environment', label: 'Environment Circles', icon: '📍', group: 'meta', children: [] },
+      { id: 'hub:item', label: 'Item Circles', icon: '📦', group: 'meta', children: [] },
+      { id: 'hub:emotion', label: 'Emotion Circles', icon: '💓', group: 'meta', children: [] },
+      { id: 'hub:asset', label: 'Asset Circles', icon: '🖼️', group: 'meta', children: [] },
+      { id: 'hub:concept', label: 'Concept Circles', icon: '🧠', group: 'meta', children: [] },
+      { id: 'hub:unlinked', label: 'Unlinked Circle', icon: '❓', group: 'meta', children: [] }
+    ];
+
+    const nodeMap = new Map();
+    nodes.forEach(n => nodeMap.set(n.id, { ...n, children: [] }));
+
+    // Edges that define "membership" or "recursive containment"
+    const containmentEdges = edges.filter(e => 
+      e.relation === 'gh:memberOf' || 
+      e.relation === 'gh:contains' || 
+      e.relation === 'gh:partOf'
+    );
+
+    // Build hierarchy (allowing multiple parents)
+    containmentEdges.forEach(edge => {
+      const parent = nodeMap.get(edge.fromId);
+      const child = nodeMap.get(edge.toId);
+      
+      if (parent && child) {
+        // Semi-lattice: push child into parent's children
+        // We push a clone to avoid circular references if any (though logic should be DAG-like)
+        parent.children.push(child);
+      }
+    });
+
+    // Find nodes that should be in the roots
+    roots.forEach(root => {
+      const rootNode = nodeMap.get(root.id);
+      if (rootNode) {
+        root.children = rootNode.children;
+      }
+    });
+
+    return roots;
+  });
 </script>
 
 <div class="topology-container">
@@ -341,20 +393,43 @@
       </div>
     </div>
     <div class="node-list">
-      {#each nodes as n (n.id)}
-        <div 
-          role="button"
-          tabindex="0"
-          class="node-item" 
-          draggable={true}
-          ondragstart={(e) => handleDragStart(e, n)}
-          onclick={() => handleNodeClick(n)}
-          onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && handleNodeClick(n)}
-        >
-          <span class="node-icon {n.group || 'default'}"></span>
-          <span class="node-label">{n.label}</span>
-        </div>
-      {/each}
+      {#snippet nodeTree(items, depth = 0)}
+        {#each items as item (item.id + depth)}
+          {#if item.children && item.children.length > 0}
+            <details class="circle-item" style="margin-left: {depth * 0.5}rem" open>
+              <summary 
+                class="node-item circle-header" 
+                onclick={(e) => {
+                  if (!e.defaultPrevented) handleNodeClick(item);
+                }}
+              >
+                <span class="node-icon {item.group || 'default'}"></span>
+                <span class="node-label">{item.label}</span>
+                <span class="child-count">({item.children.length})</span>
+              </summary>
+              <div class="circle-content">
+                {@render nodeTree(item.children, depth + 1)}
+              </div>
+            </details>
+          {:else}
+            <div 
+              role="button"
+              tabindex="0"
+              class="node-item leaf-node" 
+              style="margin-left: {depth * 0.5}rem"
+              draggable={true}
+              ondragstart={(e) => handleDragStart(e, item)}
+              onclick={() => handleNodeClick(item)}
+              onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && handleNodeClick(item)}
+            >
+              <span class="node-icon {item.group || 'default'}"></span>
+              <span class="node-label">{item.label}</span>
+            </div>
+          {/if}
+        {/each}
+      {/snippet}
+
+      {@render nodeTree(sidebarHierarchy)}
     </div>
   </div>
 
@@ -491,19 +566,60 @@
     padding: 0.2rem;
   }
 
+  .circle-item {
+    margin-bottom: 2px;
+  }
+
+  .circle-item summary {
+    list-style: none;
+    outline: none;
+  }
+
+  .circle-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .circle-content {
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    margin-left: 4px;
+  }
+
   .node-item {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     padding: 0.3rem 0.6rem;
     border-radius: 4px;
-    cursor: grab;
+    cursor: pointer;
     transition: all 0.2s;
     font-size: 0.75rem;
     color: #999;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .node-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+  }
+
+  .circle-header {
+    color: #0071e3;
+    font-weight: 600;
+  }
+
+  .child-count {
+    font-size: 0.6rem;
+    opacity: 0.4;
+    margin-left: auto;
+  }
+
+  .leaf-node {
+    color: #ccc;
+  }
+
+  .leaf-node:hover {
     background: rgba(0, 113, 227, 0.1);
     color: #fff;
   }
@@ -517,6 +633,9 @@
 
   .node-icon.content { background: #0071e3; }
   .node-icon.entity { background: #ff3b30; }
+  .node-icon.environment { background: #34c759; }
+  .node-icon.item { background: #ff9500; }
+  .node-icon.emotion { background: #ff2d55; }
   .node-icon.meta { background: #af52de; }
   .node-icon.unlinked { background: #ff9500; }
   .node-icon.default { background: #8e8e93; }
@@ -543,6 +662,9 @@
 
   .node-label-tag.content { border-color: #0071e3; color: #0071e3; }
   .node-label-tag.entity { border-color: #ff3b30; color: #ff3b30; }
+  .node-label-tag.environment { border-color: #34c759; color: #34c759; }
+  .node-label-tag.item { border-color: #ff9500; color: #ff9500; }
+  .node-label-tag.emotion { border-color: #ff2d55; color: #ff2d55; }
   .node-label-tag.unlinked { border-color: #ff9500; color: #ff9500; }
   .node-label-tag.meta { border-color: #af52de; color: #af52de; font-weight: bold; background: rgba(175, 82, 222, 0.1); }
 

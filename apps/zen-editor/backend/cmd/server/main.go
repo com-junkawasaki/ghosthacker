@@ -687,12 +687,24 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 				group = "unlinked"
 			}
 
-			if (group == "entity" || group == "link-node" || group == "unlinked") && entityHubs[group] == "" {
+			if (group == "entity" || group == "link-node" || group == "unlinked" || group == "concept" || group == "content" || group == "asset" || group == "environment" || group == "item" || group == "emotion") && entityHubs[group] == "" {
 				hubID := "hub:" + group
 				entityHubs[group] = hubID
-				label := strings.Title(group) + " Cluster"
+				label := strings.Title(group) + " Circle"
 				if group == "unlinked" {
-					label = "Unlinked Context Cluster"
+					label = "Unlinked Circle"
+				} else if group == "content" {
+					label = "Story Circle"
+				} else if group == "asset" {
+					label = "Asset Circle"
+				} else if group == "entity" {
+					label = "Character Circle"
+				} else if group == "environment" {
+					label = "Environment Circle"
+				} else if group == "item" {
+					label = "Item Circle"
+				} else if group == "emotion" {
+					label = "Emotion Circle"
 				}
 				resp.Nodes = append(resp.Nodes, &editorpb.Node{
 					Id:    hubID,
@@ -791,6 +803,15 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 				Group: "content",
 			})
 
+			// Link Episode to Story Circle
+			resp.Edges = append(resp.Edges, &editorpb.Edge{
+				FromId:   "hub:content",
+				ToId:     epNodeID,
+				Relation: "gh:memberOf",
+				Group:    "structural",
+				Distance: 200,
+			})
+
 			for _, file := range ep.Files {
 				mNodeID := fmt.Sprintf("manuscript:%s:%s", ep.ID, file)
 				mNode := &editorpb.Node{
@@ -816,8 +837,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 					Color:    "#0071e3",
 				})
 
-				// Skip blocks for now to fix performance hanging
-				/*
+				// Re-enable blocks extraction
 				filePath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", file)
 				fcontent, ferr := os.ReadFile(filePath)
 				if ferr == nil {
@@ -831,9 +851,13 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 						bNodeID := fmt.Sprintf("block:%s:%s:%d", ep.ID, file, bIdx)
 						shortLabel := bContent
 						runes := []rune(bContent)
-						if len(runes) > 25 {
-							shortLabel = string(runes[:25]) + "..."
+						if len(runes) > 30 {
+							shortLabel = string(runes[:30]) + "..."
 						}
+						
+						// Basic cleanup for label
+						shortLabel = strings.ReplaceAll(shortLabel, "\n", " ")
+						
 						bNode := &editorpb.Node{
 							Id:      bNodeID,
 							Label:   shortLabel,
@@ -869,6 +893,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 						}
 						prevBlockID = bNodeID
 
+						// Translation link if applicable
 						if strings.HasSuffix(file, ".en.md") {
 							jaFile := strings.Replace(file, ".en.md", ".md", 1)
 							jaNodeID := fmt.Sprintf("manuscript:%s:%s", ep.ID, jaFile)
@@ -884,7 +909,6 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 						}
 					}
 				}
-				*/
 			}
 		}
 	}
@@ -905,6 +929,13 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 				Label: name,
 				Type:  "schema:ImageObject",
 				Group: "asset",
+			})
+			resp.Edges = append(resp.Edges, &editorpb.Edge{
+				FromId:   "hub:asset",
+				ToId:     assetID,
+				Relation: "gh:memberOf",
+				Group:    "structural",
+				Distance: 150,
 			})
 		}
 		return nil
@@ -931,8 +962,12 @@ func (s *EditorServer) categorizeNode(t string) string {
 		return "link-node"
 	case strings.Contains(t, "Person") || strings.Contains(t, "Character") || strings.Contains(t, "Organization"):
 		return "entity"
-	case strings.Contains(t, "Place") || strings.Contains(t, "Setting"):
-		return "entity"
+	case strings.Contains(t, "Place") || strings.Contains(t, "Setting") || strings.Contains(t, "Environment"):
+		return "environment"
+	case strings.Contains(t, "Item") || strings.Contains(t, "Product") || strings.Contains(t, "Object"):
+		return "item"
+	case strings.Contains(t, "Emotion") || strings.Contains(t, "Sentiment"):
+		return "emotion"
 	case strings.Contains(t, "Manuscript") || strings.Contains(t, "Block") || strings.Contains(t, "CreativeWork"):
 		return "content"
 	case strings.Contains(t, "Image") || strings.Contains(t, "Asset"):
