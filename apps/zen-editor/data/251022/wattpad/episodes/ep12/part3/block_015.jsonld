@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part3:15",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede smiles.",
+    "ja": "Kaedeが微笑む。"
+  },
+  "gh:index": 15
+}

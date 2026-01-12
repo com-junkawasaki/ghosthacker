@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part3:20",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He drops the band one notch.",
+    "ja": "彼は周波数を一段落とす。"
+  },
+  "gh:index": 20
+}

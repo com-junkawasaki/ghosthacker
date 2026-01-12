@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part3:122",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "私たちは、その事実に追いついた。"
+  },
+  "gh:index": 122
+}

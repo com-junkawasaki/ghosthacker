@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part3:70",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Not the end. The beginning.”",
+    "ja": "私は首を振る。"
+  },
+  "gh:index": 70
+}

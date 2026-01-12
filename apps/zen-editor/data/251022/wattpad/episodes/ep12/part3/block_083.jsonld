@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part3:83",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi: “Tamaki, where to?”",
+    "ja": "Aoiが笑う。"
+  },
+  "gh:index": 83
+}
