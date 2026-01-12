@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:252",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "They look truly free—for the first time.",
+    "ja": "Dr. イタコ「いい、geneとmemeを残すんだよ」"
+  },
+  "gh:index": 252
+}

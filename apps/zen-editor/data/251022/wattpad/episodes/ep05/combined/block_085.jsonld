@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:85",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Young, speaking old; a glamorous elder.",
+    "ja": "Leo「大丈夫。ぼくがここにいる」"
+  },
+  "gh:index": 85
+}

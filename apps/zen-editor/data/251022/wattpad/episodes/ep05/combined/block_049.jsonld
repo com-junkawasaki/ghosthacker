@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:49",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “—Before that, three breaths. With me. Matching breath calms the heart.”",
+    "ja": "Hibiki「アヤワスカ・コードを情報場にインストールする。あなたは\"ingest（摂取）\"する。でもね、これは強制じゃない。あなたが選ぶ」"
+  },
+  "gh:index": 49
+}

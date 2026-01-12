@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:23",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki steps forward. The badge of anesthesia glints on his coat.",
+    "ja": "Nei-chan『タマ、二人とも緊張してる。でも、覚悟はできてる』"
+  },
+  "gh:index": 23
+}

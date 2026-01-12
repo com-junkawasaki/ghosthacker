@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:162",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako: “A likeness.”",
+    "ja": "「でも、母も\"鎖\"に縛られていた」"
+  },
+  "gh:index": 162
+}

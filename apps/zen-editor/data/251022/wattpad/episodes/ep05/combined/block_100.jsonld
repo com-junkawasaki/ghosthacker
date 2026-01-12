@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:100",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# Session: Dr. Itako - Spiritual Surgery - Part 2",
+    "ja": "「ほんとは私は縫合専門なんだけどね。いいよ、今回は切開もやろうじゃないか」"
+  },
+  "gh:index": 100
+}

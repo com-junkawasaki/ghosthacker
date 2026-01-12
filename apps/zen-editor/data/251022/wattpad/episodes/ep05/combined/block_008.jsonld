@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:8",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Tudo bem, Kaede. I’ve fully isolated the room’s band. Zero external noise. Sound, light—everything tuned for Millia’s healing.”",
+    "ja": "Hibiki「Tudo bem, Kaede。手術室の帯域、完全に隔離したよ。外部ノイズはゼロ。音も光も、全部Milliaの治癒のために調整済み」"
+  },
+  "gh:index": 8
+}

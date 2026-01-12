@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:183",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, Millia’s outline is glowing. Beautiful.”",
+    "ja": "Leo「……よかった。本当に、よかった」"
+  },
+  "gh:index": 183
+}

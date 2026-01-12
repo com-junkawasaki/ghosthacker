@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:62",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Beautiful, and a little uncanny.",
+    "ja": "青白い光が、部屋を満たす。"
+  },
+  "gh:index": 62
+}

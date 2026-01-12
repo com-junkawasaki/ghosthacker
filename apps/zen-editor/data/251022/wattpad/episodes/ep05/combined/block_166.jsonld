@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:166",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “No more chain.”",
+    "ja": "彼の声は、優しく、安心感がある。"
+  },
+  "gh:index": 166
+}

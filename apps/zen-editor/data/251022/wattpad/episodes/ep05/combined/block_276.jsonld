@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:276",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "Leoが横にいる。彼の家族も、心配そうに見守っている。"
+  },
+  "gh:index": 276
+}

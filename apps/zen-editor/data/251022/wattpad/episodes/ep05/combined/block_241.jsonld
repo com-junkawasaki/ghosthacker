@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:241",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako enters.",
+    "ja": "Hibikiが周波数を戻し、部屋が通常の明るさに戻る。"
+  },
+  "gh:index": 241
+}

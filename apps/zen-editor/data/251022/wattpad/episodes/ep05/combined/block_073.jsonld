@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:73",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "She thinks a little, then says with resolve:",
+    "ja": "彼女の目には、決意と、少しの安心がある。"
+  },
+  "gh:index": 73
+}

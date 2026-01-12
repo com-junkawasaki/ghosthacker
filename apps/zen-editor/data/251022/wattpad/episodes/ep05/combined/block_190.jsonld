@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:190",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako puts away the cup.",
+    "ja": "**[Beat: 鎖の切除——怒りの解放、DJの場に支えられた浮上]**"
+  },
+  "gh:index": 190
+}

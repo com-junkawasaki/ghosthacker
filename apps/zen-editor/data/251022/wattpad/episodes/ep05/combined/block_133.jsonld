@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:133",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“I have feelings! I have a life!”",
+    "ja": "彼女は少し間を置く。"
+  },
+  "gh:index": 133
+}

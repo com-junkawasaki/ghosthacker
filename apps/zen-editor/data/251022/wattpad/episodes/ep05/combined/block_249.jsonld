@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:249",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The canal light pulses quietly.",
+    "ja": "ドアの影に、Leoの家族と兄弟。心配そうに覗いている。"
+  },
+  "gh:index": 249
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:57",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The air in the room shifts.",
+    "ja": "二呼吸。"
+  },
+  "gh:index": 57
+}

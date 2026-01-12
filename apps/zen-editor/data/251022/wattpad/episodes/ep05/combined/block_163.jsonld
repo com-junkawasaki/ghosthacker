@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:163",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "She reaches into Millia’s information space.",
+    "ja": "Dr. イタコはメスを置く。"
+  },
+  "gh:index": 163
+}

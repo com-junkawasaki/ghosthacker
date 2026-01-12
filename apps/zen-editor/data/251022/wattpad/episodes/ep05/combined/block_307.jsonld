@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:307",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "窓の外、運河が夕焼けに沈む。"
+  },
+  "gh:index": 307
+}

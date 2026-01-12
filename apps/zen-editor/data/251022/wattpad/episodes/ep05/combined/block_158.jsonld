@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:158",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Sound softens.",
+    "ja": "部屋の空気が、変わる。"
+  },
+  "gh:index": 158
+}

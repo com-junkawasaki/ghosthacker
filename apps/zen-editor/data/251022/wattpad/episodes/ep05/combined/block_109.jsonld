@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:109",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The wall-lights sync to breath, the informational ground stabilizes.",
+    "ja": "Milliaの叫びが部屋に響く。"
+  },
+  "gh:index": 109
+}

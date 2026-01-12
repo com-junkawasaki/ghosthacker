@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:146",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Silence falls.",
+    "ja": "Leoは目を閉じ、手の甲で涙を拭った。"
+  },
+  "gh:index": 146
+}

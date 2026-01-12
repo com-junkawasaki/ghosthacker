@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:229",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I smile: “I’m okay. Now, the next session.”",
+    "ja": "Milliaが驚いて彼女を見る。"
+  },
+  "gh:index": 229
+}

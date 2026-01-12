@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:152",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“But my mother was bound by a ‘chain’ too.”",
+    "ja": "「Leoと一緒にいたい！」"
+  },
+  "gh:index": 152
+}

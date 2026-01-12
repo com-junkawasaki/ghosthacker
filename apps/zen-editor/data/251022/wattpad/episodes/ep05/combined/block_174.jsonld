@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:174",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Warmth returns to the room.",
+    "ja": "Dr. イタコ「似姿だ」"
+  },
+  "gh:index": 174
+}

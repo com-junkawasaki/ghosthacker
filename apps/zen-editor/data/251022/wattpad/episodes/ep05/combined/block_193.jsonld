@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:193",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia bows: “...Thank you, Dr. Itako.” Gratitude fills her voice.",
+    "ja": "Hibiki「上昇完了」"
+  },
+  "gh:index": 193
+}

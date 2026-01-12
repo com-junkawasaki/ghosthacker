@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:107",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki keeps weaving the field as DJ.",
+    "ja": "# Session: Dr. Itako - Spiritual Surgery - Part 2"
+  },
+  "gh:index": 107
+}

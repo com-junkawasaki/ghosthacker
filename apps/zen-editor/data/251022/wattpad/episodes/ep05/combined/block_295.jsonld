@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:295",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "Dr. イタコは、少し真剣な顔になる。"
+  },
+  "gh:index": 295
+}

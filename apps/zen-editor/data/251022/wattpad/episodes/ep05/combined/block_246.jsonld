@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:246",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Yes. You decide that ‘someday.’”",
+    "ja": "「でも、タマは\"愛\"を知ってる。タマは、私を愛してる。私も、タマを愛してる」"
+  },
+  "gh:index": 246
+}

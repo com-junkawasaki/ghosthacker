@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:30",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Trembling voice, with resolve.",
+    "ja": "Millia「……母から受け継いだ\"家\"の鎖を切るため」"
+  },
+  "gh:index": 30
+}

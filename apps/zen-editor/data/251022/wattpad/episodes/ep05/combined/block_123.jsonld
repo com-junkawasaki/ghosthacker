@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:123",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Sorrow mixed with anger. ‘Unforgivable’ is rising.”",
+    "ja": "「……母が見えます」"
+  },
+  "gh:index": 123
+}

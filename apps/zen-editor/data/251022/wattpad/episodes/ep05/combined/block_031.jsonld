@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:31",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia: “To live my freedom.”",
+    "ja": "彼女の声は震えている。でも、決意がある。"
+  },
+  "gh:index": 31
+}

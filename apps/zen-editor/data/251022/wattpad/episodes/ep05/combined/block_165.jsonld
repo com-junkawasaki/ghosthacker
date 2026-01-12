@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:165",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Light wraps Millia.",
+    "ja": "Hibiki「上昇準備」"
+  },
+  "gh:index": 165
+}

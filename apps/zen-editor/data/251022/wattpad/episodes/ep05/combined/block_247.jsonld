@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:247",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I look out the window.",
+    "ja": "私は笑う。"
+  },
+  "gh:index": 247
+}

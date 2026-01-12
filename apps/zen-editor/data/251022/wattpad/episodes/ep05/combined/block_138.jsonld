@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:138",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako: “That’s right. Without saying it, it won’t cut.”",
+    "ja": "そして、叫ぶ。"
+  },
+  "gh:index": 138
+}

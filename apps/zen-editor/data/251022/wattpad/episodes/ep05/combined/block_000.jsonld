@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:0",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# Session: Dr. Itako - Spiritual Surgery - Part 1",
+    "ja": "# Session: Dr. Itako - Spiritual Surgery - Part 1"
+  },
+  "gh:index": 0
+}

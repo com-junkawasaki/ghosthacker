@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:225",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...My chain?”",
+    "ja": "Kaedeの声には、救急医としての確実性がある。"
+  },
+  "gh:index": 225
+}

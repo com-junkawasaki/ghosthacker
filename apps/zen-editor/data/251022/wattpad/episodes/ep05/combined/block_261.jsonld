@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:261",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "She leaves. I think a little.",
+    "ja": "彼女が部屋を出ていく。私は少し、考え込む。"
+  },
+  "gh:index": 261
+}

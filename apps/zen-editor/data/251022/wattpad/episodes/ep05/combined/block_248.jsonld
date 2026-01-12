@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:248",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Freedom doesn’t contradict non-separation. You are free—and we are ‘not separate.’”",
+    "ja": "「そうだね。それが、\"わかれていない\"ということだね」"
+  },
+  "gh:index": 248
+}

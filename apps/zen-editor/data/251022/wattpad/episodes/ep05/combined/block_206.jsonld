@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:206",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I smile: “That was your choice. We only lit the path.”",
+    "ja": "Leoは彼女の額に触れる。"
+  },
+  "gh:index": 206
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:142",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“I want to be with Leo!”",
+    "ja": "光が閃く。"
+  },
+  "gh:index": 142
+}
