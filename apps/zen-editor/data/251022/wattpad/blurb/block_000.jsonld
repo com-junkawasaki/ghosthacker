@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:blurb:0",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "Ghost Hacker – いい感じに還す話。"
+  },
+  "gh:index": 0
+}

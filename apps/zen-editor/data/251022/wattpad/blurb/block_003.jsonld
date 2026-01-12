@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:blurb:3",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "“わるい感じに依らない”。その静けさが、世界を少しずつ良くしていく。"
+  },
+  "gh:index": 3
+}
