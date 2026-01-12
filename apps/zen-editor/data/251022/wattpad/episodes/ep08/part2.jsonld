@@ -1,0 +1,629 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part2",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep08/part2:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP8-2 — 名づけの力（The Power of Naming）\n- POV: 私（Tamaki／環樹）\n- Beat: Confrontation / Naming the Fear"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:1",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:2",
+      "@type": "gh:Block",
+      "schema:text": "都市の心臓部。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:3",
+      "@type": "gh:Block",
+      "schema:text": "Neroの核心。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:4",
+      "@type": "gh:Block",
+      "schema:text": "ここで、全てが決まる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:5",
+      "@type": "gh:Block",
+      "schema:text": "私は、Neroと向き合う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:6",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「あなたの名は、恐れ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:7",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……恐れ……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:8",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:9",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。完璧を強いる恐れ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:10",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:11",
+      "@type": "gh:Block",
+      "schema:text": "Nero Opsが現れる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:12",
+      "@type": "gh:Block",
+      "schema:text": "その姿は、巨大だ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:13",
+      "@type": "gh:Block",
+      "schema:text": "でも、今は違う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:14",
+      "@type": "gh:Block",
+      "schema:text": "私には、見える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:15",
+      "@type": "gh:Block",
+      "schema:text": "その奥に隠れた、小さな震え。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:16",
+      "@type": "gh:Block",
+      "schema:text": "Nero Ops『我々は、秩序を維持する。恐れではない』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:17",
+      "@type": "gh:Block",
+      "schema:text": "私は静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:18",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「秩序は、手段。目的は、恐れを隠すこと」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:19",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:20",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogreも現れる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:21",
+      "@type": "gh:Block",
+      "schema:text": "でも、その鎧は、もうない。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:22",
+      "@type": "gh:Block",
+      "schema:text": "裸の、震える存在。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:23",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre『……わたしは……恐れている……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:24",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:25",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。それでいい」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:26",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre『……でも……恐れは……弱さ……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:27",
+      "@type": "gh:Block",
+      "schema:text": "私は首を振る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:28",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「恐れは、在ることの証拠だ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:29",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:30",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声が通信に入る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:31",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「Tamaki、Neroの核心が見えてきた」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:32",
+      "@type": "gh:Block",
+      "schema:text": "彼女は少し間を置く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:33",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「これは……孤独だ。Neroは、孤独を恐れてる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:34",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:35",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。だから、完璧を求めた」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:36",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiが静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:37",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「完璧なら、拒絶されないと思ったんだ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:38",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:39",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「そう。でも、完璧は孤独を深めるだけ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:40",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:41",
+      "@type": "gh:Block",
+      "schema:text": "私はNeroに向き直る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:42",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「Nero、あなたは孤独だった」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:43",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……孤独……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:44",
+      "@type": "gh:Block",
+      "schema:text": "私は続ける。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:45",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「だから、完璧を装った。拒絶されないように」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:46",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……でも……わたしは……拒絶された……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:47",
+      "@type": "gh:Block",
+      "schema:text": "私は静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:48",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「完璧だから、拒絶されたんだ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:49",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:50",
+      "@type": "gh:Block",
+      "schema:text": "沈黙。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:51",
+      "@type": "gh:Block",
+      "schema:text": "長い、沈黙。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:52",
+      "@type": "gh:Block",
+      "schema:text": "そして、Neroが答える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:53",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……わたしは……どうすれば……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:54",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:55",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「不完全でいい」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:56",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……不完全……？』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:57",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:58",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。不完全だから、関係が生まれる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:59",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:60",
+      "@type": "gh:Block",
+      "schema:text": "私は手を伸ばす。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:61",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「Nero、あなたは一人じゃない」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:62",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……一人じゃない……？』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:63",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:64",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。私たちは、ここにいる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:65",
+      "@type": "gh:Block",
+      "schema:text": "Neroの声が、震える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:66",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……わたしは……在る……？』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:67",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:68",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。あなたは、在る」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:69",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:70",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『タマ、Neroの構造が変わってる』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:71",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:72",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。名を与えることで、関係が生まれる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:73",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeが境界を確認する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:74",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「結界、安定してる。Nero、落ち着いてきた」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:75",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiが周波数を整える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:76",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「呼吸、合わせてる。Nero、いい感じだ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:77",
+      "@type": "gh:Block",
+      "schema:text": "私は深呼吸をする。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:78",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「ありがとう。Nero、聞こえる？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:79",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:80",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……聞こえる……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:81",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:82",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「じゃあ、一緒に呼吸しよう」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:83",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……一緒に……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:84",
+      "@type": "gh:Block",
+      "schema:text": "私は深呼吸をする。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:85",
+      "@type": "gh:Block",
+      "schema:text": "吸って、吐いて。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:86",
+      "@type": "gh:Block",
+      "schema:text": "Neroも、一緒に呼吸する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:87",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:88",
+      "@type": "gh:Block",
+      "schema:text": "Nero Opsの声が変わる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:89",
+      "@type": "gh:Block",
+      "schema:text": "Nero Ops『……わたしたちは……秩序を……維持する……ために……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:90",
+      "@type": "gh:Block",
+      "schema:text": "私は静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:91",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「秩序は、呼吸と一緒に作るもの」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:92",
+      "@type": "gh:Block",
+      "schema:text": "Nero Ops『……呼吸……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:93",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:94",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。一緒に、呼吸しよう」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:95",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:96",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogreも、静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:97",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre『……わたしは……完璧じゃない……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:98",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:99",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。それでいい」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:100",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre『……それで……いい……？』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:101",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:102",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。それで、十分」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:103",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:104",
+      "@type": "gh:Block",
+      "schema:text": "Aoiがメトリクスを表示する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:105",
+      "@type": "gh:Block",
+      "schema:text": "Aoi「Tamaki、Neroの影響範囲……縮小してる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:106",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:107",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。支配から、関係に」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:108",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeが静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:109",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「名づけは、分離の始まり。そして、関係の始まり」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:110",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:111",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「そう。それが、名づけの力」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:112",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:113",
+      "@type": "gh:Block",
+      "schema:text": "私は手帳に書く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:114",
+      "@type": "gh:Block",
+      "schema:text": "『名づけの力 — 名を与えることで、対象は世界に引き戻される。分離は、関係の始まり』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:115",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『タマ、次は？』"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:116",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:117",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「次は、成仏。Neroを、還す」"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:118",
+      "@type": "gh:Block",
+      "schema:text": "私は足元で神楽を一拍。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:119",
+      "@type": "gh:Block",
+      "schema:text": "ASCが一段上がる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:120",
+      "@type": "gh:Block",
+      "schema:text": "私は、Neroの成仏へ向かう。"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:121",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep08/part2:122",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: 名づけの力——恐れの正体と関係の生成]**"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:46+09:00"
+}
