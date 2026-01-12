@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:emotion-improvement:67",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "## gh:Episode/EP09\n- 計画未定義: EmotionalPlanが無いので既定の終盤( relief/joy/hope )増強を推奨。"
+  },
+  "gh:index": 67
+}
