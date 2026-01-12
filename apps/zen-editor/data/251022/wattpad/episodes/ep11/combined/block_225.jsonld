@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:225",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "They nod—quietly.",
+    "ja": "都市は、静かだ。"
+  },
+  "gh:index": 225
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:114",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The Ogre’s voice warms.",
+    "ja": "Compliance Ogre『……呼吸する……正義……』"
+  },
+  "gh:index": 114
+}

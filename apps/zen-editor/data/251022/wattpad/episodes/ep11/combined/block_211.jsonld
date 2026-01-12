@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:211",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The Compliance Ogre fades, quietly.",
+    "ja": "私は手帳に書く。"
+  },
+  "gh:index": 211
+}

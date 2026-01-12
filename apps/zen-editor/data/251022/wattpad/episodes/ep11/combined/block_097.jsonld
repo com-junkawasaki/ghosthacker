@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:97",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. It let go of perfection.”",
+    "ja": "Hibiki「呼吸、合わせてる。いい感じだ」"
+  },
+  "gh:index": 97
+}

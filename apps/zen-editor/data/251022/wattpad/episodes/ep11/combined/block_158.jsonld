@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:158",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I face the Ogre.",
+    "ja": "Tamaki「うん。でも、完璧を求めすぎた」"
+  },
+  "gh:index": 158
+}

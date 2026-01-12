@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:71",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I say quietly:",
+    "ja": "Tamaki「あなたの名は、恐れの正当化」"
+  },
+  "gh:index": 71
+}

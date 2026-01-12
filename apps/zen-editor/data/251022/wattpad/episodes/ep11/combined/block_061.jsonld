@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:61",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Justice is fear’s armor.”",
+    "ja": "私は、Compliance Ogreに向き直る。"
+  },
+  "gh:index": 61
+}

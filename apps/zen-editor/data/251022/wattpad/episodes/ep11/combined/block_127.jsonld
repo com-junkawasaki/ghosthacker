@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:127",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "And yet, surely there.",
+    "ja": "Compliance Ogre『……完璧じゃない……？』"
+  },
+  "gh:index": 127
+}

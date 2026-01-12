@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:0",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP11-1 — The Compliance Ogre\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Decompile / Quiet Justice",
+    "ja": "# EP11-1 — コンプライアンスの鬼（Compliance Ogre）\n- POV: 私（Tamaki／環樹）\n- Beat: Decompile / Quiet Justice"
+  },
+  "gh:index": 0
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:130",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Justice isn’t perfect.”",
+    "ja": "Compliance Ogre『……呼吸と……一緒に……』"
+  },
+  "gh:index": 130
+}

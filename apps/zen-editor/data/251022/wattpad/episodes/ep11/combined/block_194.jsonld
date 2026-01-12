@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:194",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi: “Tamaki, the Ogre’s influence… is changing.”",
+    "ja": "Kaede「完璧から、呼吸に」"
+  },
+  "gh:index": 194
+}
