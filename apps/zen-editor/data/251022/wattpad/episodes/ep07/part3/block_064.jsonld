@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/part3:64",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Stable. Nero is calming.”",
+    "ja": "Tamaki「うん。完璧を手放したから」"
+  },
+  "gh:index": 64
+}

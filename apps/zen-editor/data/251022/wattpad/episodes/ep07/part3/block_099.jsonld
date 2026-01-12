@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/part3:99",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "But this time, different.",
+    "ja": "私は足元で神楽を一拍。"
+  },
+  "gh:index": 99
+}

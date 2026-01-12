@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/part3:68",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Thank you. Nero, can you hear me?”",
+    "ja": "Hibiki「呼吸、合わせてる。Nero、いい感じだ」"
+  },
+  "gh:index": 68
+}

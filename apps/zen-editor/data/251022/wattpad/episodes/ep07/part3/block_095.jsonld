@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/part3:95",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I nod.",
+    "ja": "『I AM — 在ることの宣言。所有ではなく、現前。関係の中に生成される存在』"
+  },
+  "gh:index": 95
+}
