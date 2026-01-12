@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/part2:66",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. This is breath.”",
+    "ja": "私は頷く。"
+  },
+  "gh:index": 66
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/part2:39",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Nero seeks to dominate.”",
+    "ja": "私は続ける。"
+  },
+  "gh:index": 39
+}

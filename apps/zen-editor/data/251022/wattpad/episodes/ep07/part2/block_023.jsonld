@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/part2:23",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Synth Angel: “We are God’s proxies. We promise perfect order.”",
+    "ja": "でも、その声には、呼吸がない。"
+  },
+  "gh:index": 23
+}
