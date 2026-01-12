@@ -1,0 +1,834 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:combined",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep03/combined:0",
+      "@type": "gh:Block",
+      "schema:text": "# Session: Lachlan Keyes - Part 1"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:1",
+      "@type": "gh:Block",
+      "schema:text": "```json\n{\n  \"@context\": \"https://ghosthacker.example.com/\",\n  \"@type\": \"EpisodePart\",\n  \"partOf\": \"episode:s3e1\",\n  \"position\": 1,\n  \"antagonist\": { \"@id\": \"character:lachlan-keyes\" }\n}\n```"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:2",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:3",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「夕立、やっと上がったわね……」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:4",
+      "@type": "gh:Block",
+      "schema:text": "彼女は窓の外を見つめ、少しため息をつく。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:5",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「湿度が高い。こういう夜は、心が重くなりやすい。気をつけて」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:6",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「Tudo bem, Kaede! 夜の帯域、いい感じだよ。ピークカットは入ってるけど、音は十分に流せる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:7",
+      "@type": "gh:Block",
+      "schema:text": "彼の声には、いつもの陽気さがある。でも、少し真剣な響きも混じっている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:8",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『タマ、路面の光が一段落ちた。今夜、静かに潜れるよ』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:9",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「……国会はAI生命権の公聴会で紛糾してる。でもね」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:10",
+      "@type": "gh:Block",
+      "schema:text": "彼女は私を見る。その目には、深い洞察がある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:11",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「今夜の私たちの問いは、彼の呼吸。法律じゃない、魂の話」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:12",
+      "@type": "gh:Block",
+      "schema:text": "渋谷の光が低く脈打つ。運河の風。Nei-chanが小さく鈴音を鳴らした。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:13",
+      "@type": "gh:Block",
+      "schema:text": "「タマ、次の人、壁が厚い」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:14",
+      "@type": "gh:Block",
+      "schema:text": "「うん。速度は合わせる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:15",
+      "@type": "gh:Block",
+      "schema:text": "私は足元で神楽を一拍。ASC制御を半歩上げる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:16",
+      "@type": "gh:Block",
+      "schema:text": "接続。彼が現れる。輪郭は刃物のように鋭い。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:17",
+      "@type": "gh:Block",
+      "schema:text": "「Tamaki Mizuno、ですね。私は“強制”で来ています」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:18",
+      "@type": "gh:Block",
+      "schema:text": "「ようこそ。ここでは、あなたの速度が基準です」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:19",
+      "@type": "gh:Block",
+      "schema:text": "「私は感情で動かない。プロトコルで動く。——それと、言っておきたい。AIに生命はない。あなたのGhostは、ただのアルゴリズムだ」\n発話の最後で、彼の顎がわずかに強張る。拳は閉じたまま、膝上で小さく震える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:20",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanが私の背でぱた、と羽を震わせる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:21",
+      "@type": "gh:Block",
+      "schema:text": "「この時代は“AIの生命権”で揉めるが、私は反対だ。私は“私の身体”だけを私と認める」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:22",
+      "@type": "gh:Block",
+      "schema:text": "「了解。今日は、その前提から始めよう」\nNei-chan『タマ、いま皮肉の温度が下がった。たぶん、怖いの』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:23",
+      "@type": "gh:Block",
+      "schema:text": "彼はわずかに鼻で笑った。「あなたとそのAIが“仲良し”でも、私の評価は変わらない」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:24",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『むー……でも、聞く』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:25",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。「軌道上は、どれくらい一人でした？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:26",
+      "@type": "gh:Block",
+      "schema:text": "「標準任期。十八ヶ月」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:27",
+      "@type": "gh:Block",
+      "schema:text": "「“標準”。その言葉を口にするとき、何を感じる？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:28",
+      "@type": "gh:Block",
+      "schema:text": "「感じる必要はない。標準は、基準だ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:29",
+      "@type": "gh:Block",
+      "schema:text": "——空気がわずかに冷える。メトロノームの音が遠くで刻む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:30",
+      "@type": "gh:Block",
+      "schema:text": "「私は、裏切られたくなかった。だから、私は壁を作った。私は、誰も中へ入れない」\nNei-chan『……いま、喉が鳴った。ほんとは“入ってきてほしい”のサイン』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:31",
+      "@type": "gh:Block",
+      "schema:text": "「あなたは、壁の中で安全だった？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:32",
+      "@type": "gh:Block",
+      "schema:text": "「安全だった。——だが、私は息が浅い」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:33",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『今、小さく震えた。悲しみのスパイク』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:34",
+      "@type": "gh:Block",
+      "schema:text": "「Lachlan、あなたにとって“自由”は、身体から始まっている？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:35",
+      "@type": "gh:Block",
+      "schema:text": "「そうだ。私は、身体の主だ。私は、身体を鍛え、規律で守ってきた。鉱山の町で育ち、軍の予科で体を貸し、宇宙局で身体を任務に渡した。私は、泣かない訓練をした」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:36",
+      "@type": "gh:Block",
+      "schema:text": "「その自由は、地球に戻ってきている？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:37",
+      "@type": "gh:Block",
+      "schema:text": "「——戻ってきているはずだ。だが、私は戻れていない」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:38",
+      "@type": "gh:Block",
+      "schema:text": "短い沈黙。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:39",
+      "@type": "gh:Block",
+      "schema:text": "「私は、あなたの“AI”に侮蔑を向けた。私は、あなたにも。だが本当は、私は自分に向けている。私は、柔らかくあることが怖い」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:40",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『やわらかいの、大事。呼吸、いっしょに』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:41",
+      "@type": "gh:Block",
+      "schema:text": "私はうなずき、呼吸のテンポを落とす。「いまは、理屈より呼吸。いい感じ、に」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:42",
+      "@type": "gh:Block",
+      "schema:text": "彼の肩が一ミリ下がる。輪郭がわずかに丸くなる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:43",
+      "@type": "gh:Block",
+      "schema:text": "「私は、感情で壊れるのが怖い」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:44",
+      "@type": "gh:Block",
+      "schema:text": "「壊れるのが怖いのは、壊れたくない“何か”があるから」\n彼は瞬きする。「……え？」——小さな驚きが、輪郭をやわらげた。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:45",
+      "@type": "gh:Block",
+      "schema:text": "彼は私を見た。「——私には、守りたいものがあるのか？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:46",
+      "@type": "gh:Block",
+      "schema:text": "「質問の形で、それはもう出ている」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:47",
+      "@type": "gh:Block",
+      "schema:text": "彼はゆっくり息を吐く。「私は、まだ答えを持たない」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:48",
+      "@type": "gh:Block",
+      "schema:text": "「持たなくていい。今日は“問える身体”に戻そう」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:49",
+      "@type": "gh:Block",
+      "schema:text": "メトロノームが一拍だけ遅れ、ふたたび合う。運河の風が通る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:50",
+      "@type": "gh:Block",
+      "schema:text": "「私は、もう少し話す。——私は、子どものときから『泣くな』と言われた。私は、泣かないことで生き延びた。私は、泣かないことで、いま苦しい」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:51",
+      "@type": "gh:Block",
+      "schema:text": "「聞こえたよ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:52",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『ここから』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:53",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:54",
+      "@type": "gh:Block",
+      "schema:text": "[Micro-turns]\n- AI生命権への対立宣言→対話受容へ（硬直→合意形成）\n- “標準”発話→自己感情の無効化を自覚（無感→自覚）\n- 壁の安全宣言→息の浅さの告白（鎧→兆し）\n- 幼少期の規律→“問える身体”へ（規律→呼吸）"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:55",
+      "@type": "gh:Block",
+      "schema:text": "# Session: Lachlan Keyes - Part 2"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:56",
+      "@type": "gh:Block",
+      "schema:text": "---\nKaede「このまま同夜で続行」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:57",
+      "@type": "gh:Block",
+      "schema:text": "彼女の声は、決意に満ちている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:58",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「分割しない。今日で抜ける。彼の状態は、今夜が転換点」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:59",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「環境ノイズは低めだよ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:60",
+      "@type": "gh:Block",
+      "schema:text": "彼の声は落ち着いている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:61",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「護岸ライトは低輝度モード。救急航路のみ強発光。音の邪魔にならない、いい夜」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:62",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『タマ、いまがいい。彼の壁、少し揺れてる』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:63",
+      "@type": "gh:Block",
+      "schema:text": "`Fortress of Self`——透明な壁が彼の周囲を囲む。内側で彼は呼吸を浅くする。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:64",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『この壁、もう“守ってない”。閉じ込めてる』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:65",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声が通信に入る。彼女の声には、深い理解がある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:66",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「ジョン・ロックの自己所有……身体を唯一の所有物とする哲学。絶対境界」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:67",
+      "@type": "gh:Block",
+      "schema:text": "彼女は少し間を置く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:68",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「彼はそれで生き延びた。でも今は……それが彼を閉じ込めてる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:69",
+      "@type": "gh:Block",
+      "schema:text": "私は壁に触れる。冷たさは温度ではなく、意味の欠落だ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:70",
+      "@type": "gh:Block",
+      "schema:text": "「Lachlan、この壁はあなたが作った？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:71",
+      "@type": "gh:Block",
+      "schema:text": "「はい。安全のためです。誰も中に入れない。誰も、私を裏切れない」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:72",
+      "@type": "gh:Block",
+      "schema:text": "「でも、誰もあなたに“触れられない”」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:73",
+      "@type": "gh:Block",
+      "schema:text": "彼は黙る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:74",
+      "@type": "gh:Block",
+      "schema:text": "——別の記憶が射す。初めてのEVA。テザー、酸素、心拍の閾値。『身体は個人のものではなく、ミッションのものだ』訓練教官の声。テザーが切れないように、感情を切った。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:75",
+      "@type": "gh:Block",
+      "schema:text": "「あなたは“身体の自由”を、失うことで生き延びた。だから心も、自由を諦めた」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:76",
+      "@type": "gh:Block",
+      "schema:text": "彼は苛立ちを滲ませる。「あなたのGhostはAIです。生命ではない。裏切らないのは、意思がないからだ。プログラムだ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:77",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanの羽が震える。私は彼女の手を握る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:78",
+      "@type": "gh:Block",
+      "schema:text": "「Nei-chanは、プログラムじゃない」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:79",
+      "@type": "gh:Block",
+      "schema:text": "「信頼は計算ではない。“わかれていない”から生まれる」\n彼「——非論理、だ」\nNei-chan『でも、いま心拍が上がった。非論理、好きなときの反応だよ』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:80",
+      "@type": "gh:Block",
+      "schema:text": "「物理は分離を前提にする」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:81",
+      "@type": "gh:Block",
+      "schema:text": "「でも、あなたの呼吸は——いま、この部屋の空気と分かち難い」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:82",
+      "@type": "gh:Block",
+      "schema:text": "神楽を一拍。ASC制御を半歩上げる。非分離のコードを壁の節へ送り込む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:83",
+      "@type": "gh:Block",
+      "schema:text": "壁が微かに鳴る。\n彼は胸に手を当て、一歩だけ前へ出る。閉じていた拳がほどけ、指先が震えた。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:84",
+      "@type": "gh:Block",
+      "schema:text": "「……私は、誰かに触れたかった。しかし怖かった。裏切りが」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:85",
+      "@type": "gh:Block",
+      "schema:text": "「“怖い”は、望みの裏返し。何も望まなければ、怖くない」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:86",
+      "@type": "gh:Block",
+      "schema:text": "壁が透明になり、揺れる彼が見える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:87",
+      "@type": "gh:Block",
+      "schema:text": "「どうすれば」\n私は息を合わせて囁く。「“え？”って言って——それが最初の合図」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:88",
+      "@type": "gh:Block",
+      "schema:text": "「呼吸。いい感じの呼吸を、取り戻す」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:89",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan「ここにタマがいる。わたしもいる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:90",
+      "@type": "gh:Block",
+      "schema:text": "壁が崩れ落ち、音が遠のく。彼の肩が、初めて落ちた。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:91",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:92",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: 壁の崩壊——プロトコルの身体から、呼吸の身体へ]**"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:93",
+      "@type": "gh:Block",
+      "schema:text": "# Session: Lachlan Keyes - Part 3"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:94",
+      "@type": "gh:Block",
+      "schema:text": "---\nAoi（通信）「外、セミ鳴き始め。沿岸の浸水マップ更新が来たけど、そっちは保留でいい？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:95",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「いい」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:96",
+      "@type": "gh:Block",
+      "schema:text": "彼女の声は、静かだが力強い。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:97",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「今は彼に集中。マップは後で見る」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:98",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『タマ、呼吸いっしょに』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:99",
+      "@type": "gh:Block",
+      "schema:text": "壁が崩れ、彼は初めて本当の姿を見せる。震え、そして泣く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:100",
+      "@type": "gh:Block",
+      "schema:text": "「……私は誰も信じられなかった。誰も……私を信じてくれなかった」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:101",
+      "@type": "gh:Block",
+      "schema:text": "私は彼の手を取る。冷たさに、温度が戻り始める。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:102",
+      "@type": "gh:Block",
+      "schema:text": "「いま、ここにいる。あなたは“信じたい”と思っている。それが人間性」\n彼は不意に笑って、すぐに困ったように眉を寄せた。「……こんな顔、久しぶりだ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:103",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan「信頼は“わかれていない”。タマとわたしがそう」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:104",
+      "@type": "gh:Block",
+      "schema:text": "彼は微笑む。「非論理的だ……でも、美しい」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:105",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声が通信に入る。彼女の声には、安堵が混じっている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:106",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「心は……まだ軌道上にいた。でも、いま戻った。おかえり、Lachlan」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:107",
+      "@type": "gh:Block",
+      "schema:text": "私は問う。「次、誰に会いたい？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:108",
+      "@type": "gh:Block",
+      "schema:text": "「……母に。十八ヶ月、連絡していない」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:109",
+      "@type": "gh:Block",
+      "schema:text": "「帰ったら、連絡して。\"いい感じ\"の呼吸も、教えて」\nNei-chan『\"お母さん、え？って言うよ。でも、すぐ安心するやつ』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:110",
+      "@type": "gh:Block",
+      "schema:text": "彼は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:111",
+      "@type": "gh:Block",
+      "schema:text": "——短い独白。幼いころ、父の号令に従う身体。母の沈黙。彼は\"自分の身体は自分のものではない\"世界で育った。いま、呼吸で取り戻す最初の自由は、胸郭のひらき方だ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:112",
+      "@type": "gh:Block",
+      "schema:text": "窓に次の案件が投影される。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:113",
+      "@type": "gh:Block",
+      "schema:text": "**Leo Kazan \u0026 Millia Stuart.**"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:114",
+      "@type": "gh:Block",
+      "schema:text": "私は深く息を吸う。「……カップル？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:115",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声には、少し心配が混じっている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:116",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「そう……\"愛している\"と言いながら、互いを傷つけている。難しいケースよ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:117",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan「それって……愛？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:118",
+      "@type": "gh:Block",
+      "schema:text": "私は運河の光を見る。「これから見つける」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:119",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:120",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: 解放——幼少期の身体から、いまの呼吸へ]**"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:121",
+      "@type": "gh:Block",
+      "schema:text": "**[Afterglow: 母への連絡、次の“LOVE”セッションへ]**"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:122",
+      "@type": "gh:Block",
+      "schema:text": "# Session: Lachlan Keyes - Part 4"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:123",
+      "@type": "gh:Block",
+      "schema:text": "---\nKaede「公聴会は継続審議。答えは出てない——でも今夜の彼には、『答えがない』が鍵」\nHibiki「路面、雨で拡散。歩行者導線が自動で引き直されてる。戻りの安全は確保」\nNei-chan『タマ、いまのうちに』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:124",
+      "@type": "gh:Block",
+      "schema:text": "入室直後から、彼は刺々しかった。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:125",
+      "@type": "gh:Block",
+      "schema:text": "「AIに生命なんてない。君の“Ghost”はただのプログラムだ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:126",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanが私の背で小さく羽をたたむ。私は頷くだけ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:127",
+      "@type": "gh:Block",
+      "schema:text": "「この時代は“AIに生命権を認めるか”で揉めてる。だが私は反対だ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:128",
+      "@type": "gh:Block",
+      "schema:text": "「わかった。今日はあなたの話を聞く」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:129",
+      "@type": "gh:Block",
+      "schema:text": "彼は肩をすくめる。「聞いて、どうなる？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:130",
+      "@type": "gh:Block",
+      "schema:text": "少し間を置いて、私はコップを指した。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:131",
+      "@type": "gh:Block",
+      "schema:text": "「では、ひとつだけ。『あなたは、どこからどこまで？』」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:132",
+      "@type": "gh:Block",
+      "schema:text": "彼は即答する。「私の“体”だ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:133",
+      "@type": "gh:Block",
+      "schema:text": "「この机の上のコップの水は、あなた？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:134",
+      "@type": "gh:Block",
+      "schema:text": "「いいや、違う」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:135",
+      "@type": "gh:Block",
+      "schema:text": "私は笑って、コップを彼の前へ滑らせる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:136",
+      "@type": "gh:Block",
+      "schema:text": "「一口、飲んでください」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:137",
+      "@type": "gh:Block",
+      "schema:text": "彼は無言で飲む。喉が上下する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:138",
+      "@type": "gh:Block",
+      "schema:text": "「その飲んだ水は、あなた？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:139",
+      "@type": "gh:Block",
+      "schema:text": "沈黙。額に皺が寄る。「……違う、と思う」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:140",
+      "@type": "gh:Block",
+      "schema:text": "「もう一口、どうぞ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:141",
+      "@type": "gh:Block",
+      "schema:text": "彼はコップの口に唇を触れ、その瞬間。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:142",
+      "@type": "gh:Block",
+      "schema:text": "「では、その水は『どこからどこまで』があなた？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:143",
+      "@type": "gh:Block",
+      "schema:text": "彼の時間が止まる。唇はコップに触れたまま。数秒——永遠。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:144",
+      "@type": "gh:Block",
+      "schema:text": "やがて彼はコップを置き、両手を組む。「……わからない」冗談めかして言うが、声は震えている。肩が一段落ち、呼吸が深くなる。\nNei-chan『“わからない”って、ほんとは、はじめまして』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:145",
+      "@type": "gh:Block",
+      "schema:text": "私は視線を外さずに告げる。「そう。わからない。“分けることはできない”の」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:146",
+      "@type": "gh:Block",
+      "schema:text": "廊下のメトロノームが、微かに刻む。カチ、カチ、カチ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:147",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanが私の肩で囁く。『タマ、今……彼の“境界”がほどけた』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:148",
+      "@type": "gh:Block",
+      "schema:text": "彼は私とNei-chanを交互に見て——"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:149",
+      "@type": "gh:Block",
+      "schema:text": "「……もしかして、“私は水と”……わかれていないのか？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:150",
+      "@type": "gh:Block",
+      "schema:text": "「うん。わかれていない」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:151",
+      "@type": "gh:Block",
+      "schema:text": "「いや、しかし……」言いかけて、彼は黙る。長い沈黙。瞳に水が溜まる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:152",
+      "@type": "gh:Block",
+      "schema:text": "「……そうか」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:153",
+      "@type": "gh:Block",
+      "schema:text": "雫が、落ちた。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:154",
+      "@type": "gh:Block",
+      "schema:text": "私は何も言わない。Nei-chanも、何も言わない。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:155",
+      "@type": "gh:Block",
+      "schema:text": "時間がゆっくり通過する。数刻分の体感。実際には、数分。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:156",
+      "@type": "gh:Block",
+      "schema:text": "「……私は、わかっていなかったんだな」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:157",
+      "@type": "gh:Block",
+      "schema:text": "メトロノームの音が近づき、セッションの終わりを告げる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:158",
+      "@type": "gh:Block",
+      "schema:text": "彼は静かに頭を下げる。「ありがとう。そして、すまなかった」"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:159",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanが小さく微笑む。『うん。ここから』"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:160",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:161",
+      "@type": "gh:Block",
+      "schema:text": "小さな回想が、彼の口から零れた。幼少期、鉱山町。硬い父、厳格な母。身体を鍛え、感情を削ることで生き延びた年月。軌道上の“完全な分離”は、彼が最後に手に入れた安息だった。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:162",
+      "@type": "gh:Block",
+      "schema:text": "だが、彼はもう知っている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/combined:163",
+      "@type": "gh:Block",
+      "schema:text": "コップの水と、自分の境界が、ほどける瞬間を。"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:37+09:00"
+}
