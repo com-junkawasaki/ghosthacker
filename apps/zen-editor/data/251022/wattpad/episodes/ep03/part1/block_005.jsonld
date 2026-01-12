@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part1:5",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Humidity’s high. Nights like this, hearts get heavy more easily. Be mindful.”",
+    "ja": "Kaede「湿度が高い。こういう夜は、心が重くなりやすい。気をつけて」"
+  },
+  "gh:index": 5
+}

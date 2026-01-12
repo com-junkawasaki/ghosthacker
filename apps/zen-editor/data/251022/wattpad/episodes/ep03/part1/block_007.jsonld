@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part1:7",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "His tone is cheerful as ever, with a more serious overtone.",
+    "ja": "彼の声には、いつもの陽気さがある。でも、少し真剣な響きも混じっている。"
+  },
+  "gh:index": 7
+}

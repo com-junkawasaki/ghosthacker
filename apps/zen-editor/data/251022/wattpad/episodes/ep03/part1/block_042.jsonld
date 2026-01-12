@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part1:42",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“I cast scorn at your ‘AI.’ At you. But really, it is at myself. I am afraid of being soft.”",
+    "ja": "彼の肩が一ミリ下がる。輪郭がわずかに丸くなる。"
+  },
+  "gh:index": 42
+}

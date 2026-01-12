@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part1:24",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, the temperature of his irony just dropped. I think he’s scared.”",
+    "ja": "Nei-chan『むー……でも、聞く』"
+  },
+  "gh:index": 24
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part1:38",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Yes. I am master of my body. I trained it and guarded it with discipline. I grew up in a mining town, lent my body to the military preparatory corps, then to mission at the space agency. I trained not to cry.”",
+    "ja": "短い沈黙。"
+  },
+  "gh:index": 38
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part1:33",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “…His throat clicked. It’s the sign for ‘please come in.’”",
+    "ja": "Nei-chan『今、小さく震えた。悲しみのスパイク』"
+  },
+  "gh:index": 33
+}

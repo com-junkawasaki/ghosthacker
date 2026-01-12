@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part1:39",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Has that freedom returned to Earth with you?”",
+    "ja": "「私は、あなたの“AI”に侮蔑を向けた。私は、あなたにも。だが本当は、私は自分に向けている。私は、柔らかくあることが怖い」"
+  },
+  "gh:index": 39
+}
