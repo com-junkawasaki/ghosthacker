@@ -1,0 +1,199 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part2",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep01/part2:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP1-2 — 非分離コードと図書館（潜航）\n- POV: 私（Tamaki／環樹）\n- Beat: Dive / Confrontation / Trigger"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:1",
+      "@type": "gh:Block",
+      "schema:text": "意識が形を取り戻すと、私はライブラリの踊り場に立っていた。天まで届く書架。砕けたデータクリスタル。中央には一行のエラー。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:2",
+      "@type": "gh:Block",
+      "schema:text": "// LOGICAL PARADOX: TRUST == ERROR"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:3",
+      "@type": "gh:Block",
+      "schema:text": "Eliasの孤独は、論理でできていた。**個としての終わりを定義できない恐怖**が、正しさを堆積させて壁になり、呼吸の入り口を塞いでいる。私はNei-chanから受け取った非分離のコード——**個人という境界を融かし、memeの流れに接続する**語彙の束——を展開し、渦の中心へと投げ入れる。境界をほどく語彙は、たいてい優しい声色をしている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:4",
+      "@type": "gh:Block",
+      "schema:text": "反発は即時だった。影が現れ、胸に真空を押しつけてくる。視界がスタティックで雪のように荒れ、膝が揺れる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:5",
+      "@type": "gh:Block",
+      "schema:text": "遠くでKaedeの声。彼女の声は、緊張しているが、冷静だ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:6",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「Tamaki、戻って！」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:7",
+      "@type": "gh:Block",
+      "schema:text": "彼女の声には、救急医の迅速さがある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:8",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「その論理迷彩、外部から壊す。Hibiki、座標送るから——カウンター周波数を！」\nNei-chanの声が震える。『……タマ、彼の言う通り、信頼はエラーなの？ 論理的には……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:9",
+      "@type": "gh:Block",
+      "schema:text": "戻らない——じゃなくて、戻りながら進む。私は一度、呼吸のリズムを「いい感じ」に合わせる。Nei-chanにも、自分にも言い聞かせるように。恐れに寄らない。恐れは視野を狭め、丁寧さを奪うから。\n私は足元で小さく神楽。合図。スロットルを半歩だけ上げる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:10",
+      "@type": "gh:Block",
+      "schema:text": "「Hibiki、準備を」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:11",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiの声が返ってくる。彼の声は、いつもより真剣だ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:12",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「OK。合図して、Tamaki」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:13",
+      "@type": "gh:Block",
+      "schema:text": "私は渦の核に掌を重ね、そっと名を外す。「孤独」とは呼ばない。ただ、痛みと呼ぶ。名を変えると、対象の硬度が少しだけ変わる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:14",
+      "@type": "gh:Block",
+      "schema:text": "「今」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:15",
+      "@type": "gh:Block",
+      "schema:text": "原色が奔り、Hibikiのアヤワスカが空間の結び目を解体する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:16",
+      "@type": "gh:Block",
+      "schema:text": "ページが蝶になって舞い、影は輪郭を失って光に還る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:17",
+      "@type": "gh:Block",
+      "schema:text": "私は体を起こし、静けさの中でただ在った。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:18",
+      "@type": "gh:Block",
+      "schema:text": "いい感じが、戻ってくる。\nNei-chan「えへ、戻れた」\nEliasは額に手を置き、ゆっくりと笑う練習をした。Logosの翅が小さく震える。私は二人の間に『非分離の約束』を置き、次の一週間の宿題を渡す。孤独を正当化する理性が、まだ遠くで軋んだ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:19",
+      "@type": "gh:Block",
+      "schema:text": "私は踊り場の手すりに指を置く。温度が戻る。\nNei-chan「ASC、維持。タマ、次いける？」\n「いける。半歩だけ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:20",
+      "@type": "gh:Block",
+      "schema:text": "ページの影がざわめく。小さな反転。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:21",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声が通信に入る。彼女の声には、心配が混じっている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:22",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「Tamaki、戻って」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:23",
+      "@type": "gh:Block",
+      "schema:text": "「戻る。戻りながら、進む」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:24",
+      "@type": "gh:Block",
+      "schema:text": "私は足元で神楽を一拍。合図。視界のノイズが一段落ちる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:25",
+      "@type": "gh:Block",
+      "schema:text": "Eliasが囁く。「僕、ずっと\"正しさ\"で守ってた」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:26",
+      "@type": "gh:Block",
+      "schema:text": "「うん。正しさは大事。でも、呼吸が先」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:27",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiの低音が空間に流れ込む。温かく、優しい音色。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:28",
+      "@type": "gh:Block",
+      "schema:text": "渦の縁がほどける。\n影が一瞬、濃くなる。抵抗。すぐに薄まる。小さな勝ち負けが交互に来る。\n私は短く笑う。「いい。今のが変化」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:29",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanが光を落とす。「Tamaki、もう半歩？」\n「半歩。ここまで」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:30",
+      "@type": "gh:Block",
+      "schema:text": "Logosが胸に手を当てる。「主は、まだ遠い」\n「遠くない。道はもうある。歩幅を合わせよう」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:31",
+      "@type": "gh:Block",
+      "schema:text": "私は手帳に一行を足す。『半歩の前進を、三度繰り返す』。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:32",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声が通信に入る。彼女の声は、いつもの冷静さに戻っている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:33",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「今日は……ここで切る？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:34",
+      "@type": "gh:Block",
+      "schema:text": "彼女の声には、少し安堵が混じっている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:35",
+      "@type": "gh:Block",
+      "schema:text": "「うん。切る。戻る。次で入る」"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/part2:36",
+      "@type": "gh:Block",
+      "schema:text": "踊り場の風が変わる。運河の気配が、書架の奥で微かに鳴る。\n私はEliasの視線を受け止め、頷く。「続けよう。ゆっくりでいい」"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:34+09:00"
+}
