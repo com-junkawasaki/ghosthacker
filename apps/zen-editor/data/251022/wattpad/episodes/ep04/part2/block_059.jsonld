@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:59",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I ask them:",
+    "ja": "「自由は、\"わかれていない\"ことと矛盾しないよ。タマは私の一部だけど、私もタマの一部。でも、私たちはそれぞれ、違う」"
+  },
+  "gh:index": 59
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:9",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“This is ‘love,’ this is ‘credit,’ and this is ‘trust.’”",
+    "ja": "「これが\"愛\"、これが\"信用\"、そしてこれが\"信頼\"」"
+  },
+  "gh:index": 9
+}

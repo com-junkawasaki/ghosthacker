@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:21",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...When I see him suffering… I suffer.”",
+    "ja": "彼女の目が涙を浮かべる。"
+  },
+  "gh:index": 21
+}

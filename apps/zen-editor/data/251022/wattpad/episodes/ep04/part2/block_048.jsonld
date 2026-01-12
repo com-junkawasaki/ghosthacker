@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:48",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I take her hand.",
+    "ja": "私は彼女の手を取る。"
+  },
+  "gh:index": 48
+}

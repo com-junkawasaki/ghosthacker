@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:73",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I return the cup to where it was.",
+    "ja": "Tamakiは何も言わない。十数秒の沈黙。"
+  },
+  "gh:index": 73
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:8",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I draw three circles between them.",
+    "ja": "私は二人の間に、三つの円を描く。"
+  },
+  "gh:index": 8
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:44",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“You tried to ‘save’ her. But she didn’t want to be ‘saved.’ She just wanted a presence that is ‘not separate.’”",
+    "ja": "Nei-chanがMilliaに近づく。"
+  },
+  "gh:index": 44
+}

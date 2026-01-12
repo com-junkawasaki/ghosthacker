@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:31",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede joins with deep insight:",
+    "ja": "Kaedeの声が通信に入る。彼女の声には、深い洞察がある。"
+  },
+  "gh:index": 31
+}

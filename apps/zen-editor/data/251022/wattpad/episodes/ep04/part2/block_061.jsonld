@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:61",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo smiles—first real one: “...I want to be with Millia ‘not separate.’ No transactions. Just… together.”",
+    "ja": "「お二人は、\"拡張された自己\"として、どう生きたいですか？」"
+  },
+  "gh:index": 61
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:35",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The compassion of an ER doctor who’s seen this pain many times.",
+    "ja": "Kaedeの声には、救急医として何度も見てきた痛みへの共感がある。"
+  },
+  "gh:index": 35
+}

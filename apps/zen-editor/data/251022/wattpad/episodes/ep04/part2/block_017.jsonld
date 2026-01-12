@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:17",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Are you sure?”",
+    "ja": "私は笑う。"
+  },
+  "gh:index": 17
+}
