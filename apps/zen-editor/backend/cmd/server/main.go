@@ -37,8 +37,9 @@ type EditorServer struct {
 	Git           *git.GitService
 }
 
-func NewEditorServer(root string) *EditorServer {
-	dbPath := filepath.Join(root, "apps/zen-editor/zen-editor.db")
+func NewEditorServer(dataRoot string) *EditorServer {
+	// DB is in apps/zen-editor/zen-editor.db, which is one level up from apps/zen-editor/data
+	dbPath := filepath.Join(dataRoot, "..", "zen-editor.db")
 	db, err := sql.Open("sqlite", dbPath)
 	if err != nil {
 		log.Fatalf("failed to open database: %v", err)
@@ -68,12 +69,12 @@ func NewEditorServer(root string) *EditorServer {
 	}
 
 	s := &EditorServer{
-		WorkspaceRoot: root,
+		WorkspaceRoot: dataRoot,
 		MCPServer:     server.NewMCPServer("GhostHackerEditor", "1.0.0"),
 		NodeEmotions:  initNodeEmotions(),
 		ToolHandlers:  make(map[string]func(context.Context, mcp.CallToolRequest) (*mcp.CallToolResult, error)),
 		DB:            db,
-		Git:           git.NewGitService(root),
+		Git:           git.NewGitService(dataRoot),
 	}
 	s.registerMCPTools()
 	return s
@@ -199,7 +200,11 @@ Return a JSON array of link suggestions: [{"from": "ID1", "to": "ID2", "relation
 func (s *EditorServer) handleUpdateNodePositionsTool(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 	args := req.Params.Arguments.(map[string]interface{})
 	positions, _ := args["positions"].([]interface{})
-	jsonLdPath := filepath.Join(s.WorkspaceRoot, "251022/ghost-hacker.jsonld")
+	projectID, _ := args["project_id"].(string)
+	if projectID == "" {
+		projectID = "251022" // fallback
+	}
+	jsonLdPath := filepath.Join(s.WorkspaceRoot, projectID, "ghost-hacker.jsonld")
 
 	data, err := os.ReadFile(jsonLdPath)
 	if err != nil {
@@ -316,7 +321,7 @@ func (s *EditorServer) handleSaveFileTool(ctx context.Context, req mcp.CallToolR
 
 func (s *EditorServer) GetProjectMetadata(ctx context.Context, req *connect.Request[editorpb.GetProjectMetadataRequest]) (*connect.Response[editorpb.GetProjectMetadataResponse], error) {
 	log.Printf("RPC: GetProjectMetadata called for project: %s", req.Msg.ProjectId)
-	manifestPath := filepath.Join(s.WorkspaceRoot, "251022/wattpad/manifest.json")
+	manifestPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/manifest.json")
 	data, err := os.ReadFile(manifestPath)
 	if err != nil {
 		return nil, connect.NewError(connect.CodeNotFound, err)
@@ -463,8 +468,8 @@ func (s *EditorServer) GetStoryboard(ctx context.Context, req *connect.Request[e
 	return connect.NewResponse(&editorpb.GetStoryboardResponse{Scenes: storyboard.Scenes}), nil
 }
 
-func (s *EditorServer) buildGraphRAGContext(ctx context.Context, nodeIDs []string) string {
-	jsonLdPath := filepath.Join(s.WorkspaceRoot, "251022/ghost-hacker.jsonld")
+func (s *EditorServer) buildGraphRAGContext(ctx context.Context, projectID string, nodeIDs []string) string {
+	jsonLdPath := filepath.Join(s.WorkspaceRoot, projectID, "ghost-hacker.jsonld")
 	data, err := os.ReadFile(jsonLdPath)
 	if err != nil {
 		return ""
@@ -572,7 +577,7 @@ func (s *EditorServer) Interact(
 		Model:  "anthropic/claude-3.5-sonnet",
 	}
 	
-	ragContext := s.buildGraphRAGContext(ctx, req.Msg.NodeIds)
+	ragContext := s.buildGraphRAGContext(ctx, "251022", req.Msg.NodeIds)
 
 	chatPrompt := fmt.Sprintf(`You are roleplaying as the following characters/entities in the "Ghost Hacker" series: %v.
 The user says: "%s"
@@ -610,7 +615,7 @@ Use the GRAPH CONTEXT provided to mention specific events, evidence, and relatio
 
 func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[editorpb.GetTopologyRequest]) (*connect.Response[editorpb.GetTopologyResponse], error) {
 	log.Printf("RPC: GetTopology called for project: %s", req.Msg.ProjectId)
-	jsonLdPath := filepath.Join(s.WorkspaceRoot, "251022/ghost-hacker.jsonld")
+	jsonLdPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "ghost-hacker.jsonld")
 	
 	var g struct {
 		Graph []map[string]interface{} `json:"@graph"`
@@ -719,7 +724,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 		}
 	}
 
-	manifestPath := filepath.Join(s.WorkspaceRoot, "251022/wattpad/manifest.json")
+	manifestPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/manifest.json")
 	mdata, err := os.ReadFile(manifestPath)
 	if err == nil {
 		var m struct {
@@ -765,7 +770,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 
 				// Skip blocks for now to fix performance hanging
 				/*
-				filePath := filepath.Join(s.WorkspaceRoot, "251022/wattpad/", file)
+				filePath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", file)
 				fcontent, ferr := os.ReadFile(filePath)
 				if ferr == nil {
 					blocks := strings.Split(string(fcontent), "\n\n")
@@ -903,7 +908,23 @@ func withCORS(h http.Handler) http.Handler {
 }
 
 func main() {
-	workspaceRoot := "/Volumes/251214/jun784/ghosthacker"
+	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
+	if workspaceRoot == "" {
+		cwd, _ := os.Getwd()
+		// Default to apps/zen-editor/data relative to where we usually run from
+		// If running from apps/zen-editor/backend: ../data
+		// If running from apps/zen-editor: ./data
+		if strings.HasSuffix(cwd, "backend") {
+			workspaceRoot = filepath.Join(cwd, "..", "data")
+		} else if strings.HasSuffix(cwd, "zen-editor") {
+			workspaceRoot = filepath.Join(cwd, "data")
+		} else {
+			// Fallback to absolute path
+			workspaceRoot = "/Volumes/251214/jun784/ghosthacker/apps/zen-editor/data"
+		}
+	}
+
+	fmt.Printf("Using data directory: %s\n", workspaceRoot)
 	srv := NewEditorServer(workspaceRoot)
 	mux := http.NewServeMux()
 	
@@ -911,6 +932,10 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("OK"))
 	})
+
+	// Serve project data files (including images) via /data/ prefix
+	fileServer := http.FileServer(http.Dir(workspaceRoot))
+	mux.Handle("/data/", http.StripPrefix("/data/", withCORS(fileServer)))
 
 	path, handler := editorpbconnect.NewEditorServiceHandler(srv)
 	mux.Handle(path, withCORS(handler))

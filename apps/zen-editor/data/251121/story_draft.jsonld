@@ -1,0 +1,253 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "character": "gh:character/",
+    "item": "gh:item/",
+    "concept": "gh:concept/",
+    "scene": "gh:scene/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dct": "http://purl.org/dc/terms/"
+  },
+  "@id": "gh:episode/draft-251121",
+  "@type": "gh:Episode",
+  "dct:title": "Ghost Hacker: Pilot Draft (Updated)",
+  "dct:temporal": "2026",
+  "dct:description": "霊長類の進化、そして情報生命体Ghostへの変遷を描く導入エピソード",
+  "gh:theme": [
+    "Spirit Evolution",
+    "Information Physics",
+    "Landauer's Principle",
+    "Business Succession",
+    "Digital Divide"
+  ],
+  "gh:characters": [
+    {
+      "@id": "character:Ren",
+      "@type": "gh:Protagonist",
+      "schema:name": "Ren"
+    },
+    {
+      "@id": "character:Nei",
+      "@type": "gh:Assistant",
+      "schema:name": "Nei",
+      "schema:description": "Renが開発した自律人型AI。見た目は16歳の少女と変わらない。"
+    },
+    {
+      "@id": "character:Shouta",
+      "@type": "gh:Client",
+      "schema:name": "Shouta Daimon",
+      "schema:description": "大門建設の社長の息子。26歳。会社の改革を志すが、古参社員との壁に悩む。",
+      "gh:role": "Client / Successor"
+    },
+    {
+      "@id": "character:Yasumoto",
+      "@type": "gh:Antagonist",
+      "schema:name": "Kenji Yasumoto",
+      "gh:role": "Possessed Victim / General Affairs Manager",
+      "gh:ghostType": "Obsolescence & Jealousy"
+    },
+    {
+      "@id": "character:President",
+      "@type": "gh:SupportingRole",
+      "schema:name": "Goro Daimon",
+      "gh:role": "President / Spiritual Pillar"
+    },
+    {
+      "@id": "character:Matsuda",
+      "@type": "gh:SupportingRole",
+      "schema:name": "Yoshiko Matsuda",
+      "gh:role": "Accounting Manager"
+    },
+    {
+      "@id": "character:Sato",
+      "@type": "gh:SupportingRole",
+      "schema:name": "Kenta Sato",
+      "gh:role": "IT Support (unofficial)"
+    }
+  ],
+  "gh:storyline": [
+    {
+      "gh:episode": 1,
+      "dct:title": "牙を剥く内部の影 (Case: Ransomware & Insider Threat)",
+      "gh:concepts": ["CISSP Domain 1: Risk Management", "CISA KEV"],
+      "gh:characters": ["character:Ren", "character:Nei"],
+      "gh:lesson": "Principle of Least Privilege and Log Monitoring."
+    },
+    {
+      "gh:episode": 2,
+      "dct:title": "見えない毒物 (Case: Supply Chain Attack)",
+      "gh:concepts": ["CMMI Level 2", "SBOM (Software Bill of Materials)"],
+      "gh:characters": ["character:Ren", "character:Nei"],
+      "gh:lesson": "Trust, but verify software update integrity."
+    },
+    {
+      "gh:episode": 3,
+      "dct:title": "偽りの声、真実の瞳 (Case: BEC/Business Email Compromise)",
+      "gh:concepts": ["CISSP Domain 5: IAM", "MFA (Multi-Factor Authentication)"],
+      "gh:characters": ["character:Ren", "character:Nei"],
+      "gh:lesson": "Social Engineering counters through human process."
+    },
+    {
+      "gh:episode": 4,
+      "dct:title": "都市の心臓を止める者 (Case: IoT/OT Attack)",
+      "gh:concepts": ["CISA Shields Up", "CISSP Domain 7: Operations Security"],
+      "gh:characters": ["character:Ren", "character:Nei", "character:Takeru"],
+      "gh:note": "Takeru (Hammer) first appearance. High-speed infrastructure destruction requires his explosive speed.",
+      "gh:lesson": "Securing critical infrastructure and physical impacts."
+    },
+    {
+      "gh:episode": 5,
+      "dct:title": "零日の悪夢 (Case: 0-Day Vulnerability)",
+      "gh:concepts": ["CISSP Domain 8: Software Development Security", "CISA KEV Catalog"],
+      "gh:characters": ["character:Ren", "character:Nei", "character:Takeru"],
+      "gh:lesson": "Virtual Patching and rapid response time."
+    },
+    {
+      "gh:episode": 6,
+      "dct:title": "空の要塞の崩壊 (Case: Cloud Misconfiguration)",
+      "gh:concepts": ["Shared Responsibility Model", "CASB"],
+      "gh:characters": ["character:Ren", "character:Nei", "character:Kaname"],
+      "gh:note": "Kaname (Javelin) first appearance. Governance failure in cloud requires his strict auditing approach.",
+      "gh:lesson": "User responsibility in cloud configuration."
+    },
+    {
+      "gh:episode": 7,
+      "dct:title": "消えた資産の足跡 (Case: Crypto Money Laundering)",
+      "gh:concepts": ["CISSP Domain 2: Asset Security", "Blockchain Analysis"],
+      "gh:characters": ["character:Ren", "character:Nei", "character:Kaname"],
+      "gh:lesson": "Tracing funds through transparency of blockchain."
+    },
+    {
+      "gh:episode": 8,
+      "dct:title": "静かなる侵略者 (Case: APT/Targeted Attack)",
+      "gh:concepts": ["MITRE ATT&CK Framework", "IoC (Indicators of Compromise)"],
+      "gh:characters": ["character:Ren", "character:Nei", "character:Kaname", "character:Takeru"],
+      "gh:note": "First full gathering of the trio to tackle a persistent threat.",
+      "gh:lesson": "Persistence detection through behavioral patterns."
+    },
+    {
+      "gh:episode": 9,
+      "dct:title": "壁を越える影 (Case: Physical Security)",
+      "gh:concepts": ["CISSP Domain 3: Security Architecture and Engineering", "Tailgating"],
+      "gh:characters": ["character:Ren", "character:Nei", "character:Takeru"],
+      "gh:lesson": "Encryption is useless if physical access is gained."
+    },
+    {
+      "gh:episode": 10,
+      "dct:title": "鏡の中の敵 (Case: Deepfake / LLM Abuse)",
+      "gh:concepts": ["CISSP Domain 6: Security Assessment and Testing", "AI Governance"],
+      "gh:characters": ["character:Ren", "character:Nei", "character:Kaname"],
+      "gh:lesson": "Human-in-the-loop verification for AI-generated content."
+    },
+    {
+      "gh:episode": 11,
+      "dct:title": "崩壊する信頼 (Case: Active Directory Compromise)",
+      "gh:concepts": ["Golden Ticket Attack", "Tiered Administration Model"],
+      "gh:characters": ["character:Ren", "character:Nei", "character:Kaname", "character:Takeru"],
+      "gh:lesson": "The danger of administrative privilege escalation."
+    },
+    {
+      "gh:episode": 12,
+      "dct:title": "Ghost Hacker: 最適化された世界 (Case: Framework Consolidation)",
+      "gh:concepts": ["CMMI Level 5", "NIST Cybersecurity Framework"],
+      "gh:characters": ["character:Ren", "character:Nei", "character:Kaname", "character:Takeru"],
+      "gh:lesson": "Security as a continuous process, not a destination."
+    }
+  ],
+  "gh:scenes": [
+    {
+      "@id": "scene:page-1",
+      "schema:name": "Page 1: History of Spirit",
+      "gh:content": "猿からヒトへの進化図と、炎や像、儀式と共に現れてきた霊の歴史を描く導入ページ。荒々しい自然の中で火を囲む人類、洞窟壁画、巨大な大仏やトーテムポール、シャーマニズムの儀式などがモンタージュ的に重なり、「人は霊によって進化した存在である」というナレーションが入る。"
+    },
+    {
+      "@id": "scene:page-2",
+      "schema:name": "Page 2: Ghost Hacker Title Page",
+      "gh:content": "デジタルグリッドと物理都市の破片が融合・崩壊・再構築を繰り返すサイバー空間を、スマホ縦スクロール1ページいっぱいに描くタイトルページ。中心には重力に逆らって浮かぶRenとNei。Renは半透明のキーボードを高速でタイピングし、遠くのデータ構造を見つめている。Neiは腕を組んで周囲を警戒し、その瞳には解析データが流れている。背後には歪んだ空間の向こうから『GHOST Hacker』の巨大なタイトルロゴが現れ、「世界はバグだらけだ」というモノローグとRenの紹介ナレーションが重なる。"
+    },
+    {
+      "@id": "scene:page-4",
+      "schema:name": "Page 4: Ren's Lazy Daily Life",
+      "gh:content": "コンクリート打ちっぱなしの壁とウッドフローリングの清潔なオフィスで、Renがモダンなデスクチェアに仰向けでだらけている日常シーン。Neiは部屋の隅でタブレットを操作し、サーバー費用や仕事の心配をしながらRenを急かす。Renは耳をほじりながら「怠惰こそ美徳」と言い放ち、金欠と怠惰の関係性がコミカルに提示される。"
+    },
+    {
+      "@id": "scene:page-5",
+      "schema:name": "Page 5: Shouta's First Visit",
+      "gh:participants": ["character:Ren", "character:Nei", "character:Shouta"],
+      "gh:content": "ドアチャイムとインターホン越しの映像で翔太が登場し、Renのオフィスを訪ねるシーン。モニターにはスーツ姿で緊張した表情の翔太が映り、Neiが予約客の到着を告げる。Renは面倒くさそうに椅子から起き上がり、実際に入ってきた翔太を観察する。翔太は会社の危機を説明し、父には内緒で依頼していることを告げる導入となる。"
+    },
+    {
+      "@id": "scene:page-6",
+      "schema:name": "Page 6: Daimon Construction in Panic",
+      "gh:participants": ["character:Ren", "character:Shouta", "character:Matsuda", "character:Sato"],
+      "gh:content": "蒲田の大門建設オフィスに場面転換。昭和感の残る古いオフィスで、電話が鳴り止まず、経理の松田が給料振込の危機に叫び、若手の佐藤がPC裏で必死にケーブルを確認している。Renと翔太はこの修羅場を前に立ち尽くし、翔太は自分の独断で依頼した事情と切迫感を語る。Renは昭和の遺産と中途半端なDXが混在する最悪な環境だと心の中で評する。"
+    },
+    {
+      "@id": "scene:page-7",
+      "schema:name": "Page 7: Yasumoto Confrontation and Ghost Aura",
+      "gh:participants": ["character:Ren", "character:Shouta", "character:Yasumoto"],
+      "gh:content": "総務部長の安本が汗だくで登場し、部外者であるRenの介入を拒もうと翔太を怒鳴りつける。翔太は強い口調でやり返し、管理責任を問いながら専門家に任せるべきだと主張する。RenはAR視点で安本の背後にまとわりつく黒い煙のようなGhostのオーラを視認し、問題の本質がマルウェアではなく人間の嫉妬と恐怖にあることを見抜く。Renは空いている席に勝手に座り、ノートPCを開いて侵入準備を始める。"
+    },
+    {
+      "@id": "scene:page-8",
+      "schema:name": "Page 8: High-Speed Hacking and Landauer's Principle",
+      "gh:participants": ["character:Ren", "character:Shouta", "character:Sato", "character:Yasumoto"],
+      "gh:content": "Renが超高速でタイピングし、暗号化されたシェルをリアルタイムで解析していく様子を、後ろから覗き込む翔太と佐藤が驚きと尊敬の眼差しで見つめる。Renは画面から目を離さずにランダウアーの原理を引用し、「情報は物理量であり、この攻撃は質量を持った悪意だ」と説明する。安本は顔色を変え、わけのわからない理屈だと強がりながらも後ずさりし、Ghostの発現前夜の緊張感が高まる。"
+    },
+    {
+      "@id": "scene:page-9",
+      "schema:name": "Page 9: Exposing Yasumoto",
+      "gh:participants": ["character:Ren", "character:Nei", "character:Shouta", "character:Matsuda", "character:Yasumoto"],
+      "gh:content": "Neiが画面いっぱいに現れ、『FOUND!!』の文字と共に社内端末からの不正アクセスを特定し、安本の端末が発信源であることを告げる。Renは振り返って安本を指差し、横領と闇サイトから拾ったウイルスによる自爆を淡々と暴く。オフィスの全員が一斉に安本を見る中、松田と翔太は驚きと怒りを露わにし、安本は震えながら否定しようとするが、逃げ場を失っていく。"
+    },
+    {
+      "@id": "scene:page-10",
+      "schema:name": "Page 10: Ghost Emergence",
+      "gh:participants": ["character:Ren", "character:Shouta", "character:Matsuda", "character:Sato", "character:Yasumoto"],
+      "gh:content": "糾弾された安本が絶叫し、自分は30年間会社に尽くしてきたと叫びながら暴走する。その背後の影が膨張し、古い書類とLANケーブル、PCパーツの塊のような巨大な怪物としてGhostが実体化する。松田と佐藤は腰を抜かし、翔太はVRかと現実感を失いかけるが、Renはこれは歪んだ情報が実体化した姿だと冷静に告げる。"
+    },
+    {
+      "@id": "scene:page-11",
+      "schema:name": "Page 11: SIP Device Activation",
+      "gh:participants": ["character:Ren", "character:Nei", "character:Ghost", "character:Yasumoto"],
+      "gh:content": "Renがスマホを取り出してSIPデバイスを起動し、Ghostを物理レイヤーに固定する準備を始める。Neiはシーケンス開始を宣言し、オフィス全体にデジタルノイズとグリッドが走り、Ghostの質量が増していく。Ghostは物理的な破壊力を獲得し、スチール棚をなぎ倒して紙と火花を撒き散らし、オフィスが本格的な戦場へと変わる。"
+    },
+    {
+      "@id": "scene:page-12",
+      "schema:name": "Page 12: Shouta's Protection and Axe Formation",
+      "gh:participants": ["character:Ren", "character:Shouta", "character:Matsuda", "character:Ghost"],
+      "gh:content": "倒れてくる棚から松田を守るために、翔太が咄嗟に自分の体で庇い、若き後継者としての責任感と勇気を示す。Renの手のひらには淡い青いデータ光が集まり、徐々に巨大なデジタルアックスの形をとっていく。形成された斧を肩に担いだRenは、冷たい目でGhostに向かって一歩踏み出し、「自分が一番」というエゴをノイズとして削除する決意を言葉と態度で示す。"
+    },
+    {
+      "@id": "scene:page-13",
+      "schema:name": "Page 13: Ghost Battle and Deletion",
+      "gh:participants": ["character:Ren", "character:Nei", "character:Ghost"],
+      "gh:content": "GhostのLANケーブル触手による攻撃を、Renが素早い身のこなしでかわしながら接近戦を仕掛ける。NeiがAR的なUI越しに「右30度」など戦術的な情報を伝え、Renは空中でデジタルアックスを構えて『/> /dev/null chop --force』のコマンドを叫ぶ。一閃でGhostの核（安本のコンプレックスの象徴）を叩き割り、光とデジタルノイズの爆発と共に実体化した悪意を削除するクライマックスバトル。"
+    },
+    {
+      "@id": "scene:page-14",
+      "schema:name": "Page 14: Ghost Dissolution and System Restore",
+      "gh:participants": ["character:Ren", "character:Sato", "character:Yasumoto"],
+      "gh:content": "爆発の光が収まると、Ghostの身体はデジタル粒子となって霧散し、糸が切れたように安本が床に崩れ落ちる。オフィスには静寂が戻り、社員のPC画面のロック画面が一斉に消えて、それぞれのデスクトップが復帰する。佐藤はサーバーの復旧を確認して安堵の声を上げ、安本は床に座り込んで泣きながら、認めてほしかっただけだという本音を漏らす。"
+    },
+    {
+      "@id": "scene:page-15",
+      "schema:name": "Page 15: President's Return and Shouta's Decision",
+      "gh:participants": ["character:Shouta", "character:President", "character:Yasumoto"],
+      "gh:content": "作業着姿の社長・五郎が現場から戻り、荒れたオフィスの様子に困惑しながら何があったのかを問う。翔太は一瞬迷いながらも、安本がシステムを直そうとして怪我をしたと説明し、横領の件は後で自分がケジメをつけさせると心に決める。安本は驚きと感謝の入り混じった表情で翔太を見上げ、社長は状況を察しつつも、長年の戦友である安本を責めるのではなく「無理させたな」と受け止める。"
+    },
+    {
+      "@id": "scene:page-16",
+      "schema:name": "Page 16: Restored Funds and Comedic Relief",
+      "gh:participants": ["character:Ren", "character:Matsuda", "character:Shouta"],
+      "gh:content": "RenはUSBを抜きながら、データ復旧だけでなく安本が溶かした金も隠し口座から回収しておいたとさらりと言い、手数料を引いておいたことも付け加える。松田はオンラインバンキング画面を見て、給料が払えるどころか少し増えていることに歓喜し、オフィスにコミカルな安堵が広がる。翔太は去ろうとするRenを呼び止め、心からの感謝と尊敬を込めて礼を述べる。"
+    },
+    {
+      "@id": "scene:page-17",
+      "schema:name": "Page 17: Epilogue and Afterglow",
+      "gh:participants": ["character:Ren", "character:Nei", "character:Shouta"],
+      "gh:content": "Renは背中越しに片手を軽く振り、「Ghostを溜め込むなよ、次期社長」と言い残してオフィスを後にする。場面は夕暮れの蒲田の雑踏に移り、RenとNeiが人混みの中を歩きながら会話し、Neiは手数料の取りすぎをやんわりと指摘する。Renはスマホで入金を確認してニヤリと笑い、ハッカーとしてのしたたかな一面を見せる。最後に「Ghost Hacker - Episode 1 End」の文字が黒背景に静かに表示され、物語の余韻を残してエピソードが締めくくられる。"
+    }
+  ]
+}

@@ -98,9 +98,10 @@ message StoryboardScene {
 
 message InteractRequest {
   string session_id = 1;
-  repeated string node_ids = 2; // Participating nodes (Characters, Environment, etc.)
-  string user_message = 3;
-  map<string, float> emotion_bias = 4; // Optional manual override or base bias
+  string project_id = 2;
+  repeated string node_ids = 3; // Participating nodes (Characters, Environment, etc.)
+  string user_message = 4;
+  map<string, float> emotion_bias = 5; // Optional manual override or base bias
 }
 
 message InteractResponse {

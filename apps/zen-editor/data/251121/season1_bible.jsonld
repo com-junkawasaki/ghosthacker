@@ -1,0 +1,807 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "dct": "http://purl.org/dc/terms/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "org": "gh:org/",
+    "role": "gh:role/",
+    "character": "gh:character/",
+    "case": "gh:case/",
+    "arc": "gh:arc/",
+    "ecosystem": "gh:ecosystem/"
+  },
+  "@id": "gh:season/01",
+  "@type": ["gh:SeasonBible", "prov:Entity"],
+  "dct:title": "Ghost Hacker - Season 1 Bible (Case Study / Crime Ecosystem)",
+  "dct:description": "Season 1 focuses on financially-motivated international cybercrime as an ecosystem (not a single group). Each arc targets one organization with one incident, spanning 1–3 episodes. The story resolves not only technical issues, but also Ghosts: memes/emotions/places that cause incidents to repeat.",
+  "gh:corePrinciples": [
+    "Practical cybersecurity: real terminology and repeatable practices (incident response, governance, auditing, recovery).",
+    "Ghosts are social/memetic: emotions, norms, rules, and places that 'possess' people and organizations.",
+    "The enemy is an ecosystem: brokers, affiliates, operators, laundering, and market manipulation."
+  ],
+  "gh:virtues": [
+    {
+      "@id": "gh:virtue/sloth",
+      "schema:name": "Sloth (Efficiency)",
+      "gh:meaning": "To make people able to be lazy safely: eliminate waste, remove forced suffering, design environments that do not require heroics."
+    },
+    {
+      "@id": "gh:virtue/arrogance",
+      "schema:name": "Arrogance (Rule-making)",
+      "gh:meaning": "To let people live with dignity: rules must not use people; people rewrite rules. 'Perfection' is redesign, not stubbornness."
+    },
+    {
+      "@id": "gh:virtue/short-tempered",
+      "schema:name": "Short-tempered (Instant Action)",
+      "gh:meaning": "To stop unnecessary endurance: act fast so people don't suffer. Planning is fast and humane, not KPI-only."
+    }
+  ],
+  "gh:catchphrases": [
+    {
+      "gh:character": "character:Ren",
+      "gh:virtue": "gh:virtue/sloth",
+      "schema:text": "それは「怠惰」だ。",
+      "gh:target": "Organizations that replace design/controls with emotion, forgiveness, and ambiguity (environmental negligence)."
+    },
+    {
+      "gh:character": "character:Kaname",
+      "gh:virtue": "gh:virtue/arrogance",
+      "schema:text": "それは傲慢ですね。",
+      "gh:target": "Rules that control people; prideful rigidity that harms living systems; procedures used to evade responsibility."
+    },
+    {
+      "gh:character": "character:Takeru",
+      "gh:virtue": "gh:virtue/short-tempered",
+      "schema:text": "あんたら、短気だな。",
+      "gh:target": "KPI-only planning; impatience disguised as efficiency that forces humans to endure and breaks the field."
+    }
+  ],
+  "gh:ghostCatalog": [
+    {
+      "@id": "gh:ghost/arc-a-goodwill-curse",
+      "@type": "gh:Ghost",
+      "schema:name": "善意の呪い",
+      "schema:alternateName": "Curse of Goodwill",
+      "gh:arc": "arc:A",
+      "gh:note": "善意・情・許しが、設計放棄（怠惰）として再発を生むGhost。"
+    },
+    {
+      "@id": "gh:ghost/arc-b-never-ending-clock",
+      "@type": "gh:Ghost",
+      "schema:name": "終わらぬ時計",
+      "schema:alternateName": "Never-Ending Clock",
+      "gh:arc": "arc:B",
+      "gh:note": "開始に厳しいのに終わり（Done）に厳しくない。完了定義がなく、復旧が遅れる“短気の歪み”。"
+    },
+    {
+      "@id": "gh:ghost/arc-c-exception-hunter",
+      "@type": "gh:Ghost",
+      "schema:name": "例外狩り",
+      "schema:alternateName": "Exception Hunter",
+      "gh:arc": "arc:C",
+      "gh:note": "例外を悪として槍で刺し、ルールが人を使う構造を固定するGhost。"
+    },
+    {
+      "@id": "gh:ghost/seigi-hero-justice-knuckle",
+      "@type": "gh:Ghost",
+      "schema:name": "正義鉄拳",
+      "schema:alternateName": "Justice Knuckle",
+      "gh:note": "『正義』の仮面で他人を殴る痛い暴力。実親への反抗できなさの転写から生まれる。"
+    }
+  ],
+  "gh:toolsAndWeapons": [
+    {
+      "@id": "gh:loadout/ren",
+      "@type": "gh:CharacterLoadout",
+      "gh:character": "character:Ren",
+      "gh:mainWeapon": {
+        "schema:name": "断麻斧",
+        "schema:alternateName": "Null Axe",
+        "gh:note": "快刀乱麻を断つ。複雑な事故の結び目を切って落とすハッカーの斧。"
+      },
+      "gh:subTools": [
+        {
+          "schema:name": "ロープ（結界索）",
+          "schema:alternateName": "Containment Rope",
+          "gh:note": "切るだけでなく結ぶ。境界を作り再発を止める。"
+        }
+      ],
+      "gh:signatureTechniques": [
+        { "schema:name": "/dev/null chop", "schema:alternateName": "dev/null chop" }
+      ]
+    },
+    {
+      "@id": "gh:loadout/takeru",
+      "@type": "gh:CharacterLoadout",
+      "gh:character": "character:Takeru",
+      "gh:mainWeapon": {
+        "schema:name": "バール",
+        "schema:alternateName": "Crowbar",
+        "gh:note": "詰まりをこじ開けて流れを通す。遅延の原因を引き剥がす短気の主武器。"
+      },
+      "gh:subTools": [
+        {
+          "schema:name": "ハンマー",
+          "schema:alternateName": "Hammer",
+          "gh:note": "最後に叩き込んで“終わらせる”ための一撃。"
+        },
+        {
+          "schema:name": "ストップウォッチ",
+          "schema:alternateName": "Stopwatch / Done Watch",
+          "gh:note": "開始ではなく“終端（Done）”を刻む。"
+        }
+      ]
+    },
+    {
+      "@id": "gh:loadout/kaname",
+      "@type": "gh:CharacterLoadout",
+      "gh:character": "character:Kaname",
+      "gh:mainWeapon": {
+        "schema:name": "トルクレンチ",
+        "schema:alternateName": "Torque Wrench",
+        "gh:note": "責任と締結を適正トルクで決める。完璧は運用ではなく設計。"
+      },
+      "gh:subTools": [
+        { "schema:name": "コンパス（円規）", "schema:alternateName": "Compass", "gh:note": "境界（責任/権限）を描く。" },
+        { "schema:name": "定規", "schema:alternateName": "Ruler", "gh:note": "現実と規程のズレを測って裁く。" }
+      ]
+    },
+    {
+      "@id": "gh:loadout/nei",
+      "@type": "gh:CharacterLoadout",
+      "gh:character": "character:Nei",
+      "gh:mainWeapon": {
+        "schema:name": "解析端末（コンピュータ）",
+        "schema:alternateName": "Analysis Rig",
+        "gh:note": "可視化・解析・照準。Ghostを見える形に落とす。"
+      },
+      "gh:subTools": [
+        { "schema:name": "SIPデバイス", "schema:alternateName": "SIP Device", "gh:note": "Ghostを物理レイヤに固定する拘束機材。" },
+        { "schema:name": "フォレンジックUSB", "schema:alternateName": "Forensic Key", "gh:note": "証拠保全の鍵。" }
+      ]
+    }
+  ],
+  "gh:companies": [
+    {
+      "@id": "org:daimon-construction",
+      "@type": "gh:VictimOrganization",
+      "schema:name": "大門建設 (Daimon Construction)",
+      "gh:arcLabel": "A",
+      "gh:surfaceImage": "真面目・家族的・現場主義（努力しているように見える）",
+      "gh:essence": "怠惰（設計放棄）：情で片付け、責任と権限の境界が曖昧で、再発防止を先送りする。",
+      "gh:companyGhosts": [
+        "先代が壁に掛けた『額縁ルール』",
+        "前例",
+        "見て見ぬふり（善意の顔）"
+      ],
+      "gh:incidentType": "Ransomware + Insider / Operational shutdown",
+      "gh:caseInspirationNote": "Inspired by real-world incidents in Japan (e.g., large logistics/EC disruptions), but treated as a fictional case."
+    },
+    {
+      "@id": "org:jinpu-mobility",
+      "@type": "gh:VictimOrganization",
+      "schema:name": "丁場運行 (CHOBA Unko)",
+      "gh:arcLabel": "B",
+      "gh:surfaceImage": "始業や開始時間にうるさい（“速い会社”に見える）",
+      "gh:essence": "短気（遅さを生む短気）：開始に厳しいのに終わり（Done）にうるさくない。完了定義が曖昧で、障害対応も終わらず、結果として遅い。",
+      "gh:companyGhosts": [
+        "終わらぬ時計",
+        "『開始だけ速い』",
+        "『終わりは気合』"
+      ],
+      "gh:incidentType": "OT/IoT disruption + cascading supply chain impact"
+    },
+    {
+      "@id": "org:byakudan-financial",
+      "@type": "gh:VictimOrganization",
+      "schema:name": "白檀フィナンシャル (BYAKUDAN Financial)",
+      "gh:arcLabel": "C",
+      "gh:surfaceImage": "堅牢・低リスク・規程が強い（ちゃんとしているように見える）",
+      "gh:essence": "傲慢（ルールの硬直）：意地を通して窮屈になり、例外を悪とすることで現場が死ぬ。ルールが人を使う。",
+      "gh:companyGhosts": [
+        "『規程は絶対』",
+        "『例外＝悪』",
+        "責任回避の稟議迷路"
+      ],
+      "gh:incidentType": "Cloud governance failure + fraud/money laundering vector"
+    },
+    {
+      "@id": "org:askul-like",
+      "@type": "gh:ReferenceOrganization",
+      "schema:name": "アスクル級の大手EC/物流（着想元）",
+      "gh:note": "A real-world incident is used as inspiration for the narrative mechanism: disruption can move markets. The story does not assert real attribution.",
+      "gh:marketLink": "Attack → disruption → news/psychology → price movement → profit"
+    }
+  ],
+  "gh:lawEnforcementOrganizations": [
+    {
+      "@id": "org:mpd-cyber",
+      "@type": "gh:LawEnforcementOrg",
+      "schema:name": "警視庁 サイバー犯罪対策（捜査部門）"
+    },
+    {
+      "@id": "org:npa-cyber",
+      "@type": "gh:LawEnforcementOrg",
+      "schema:name": "警察庁 サイバー分析・調整"
+    },
+    {
+      "@id": "org:jpcert",
+      "@type": "gh:CoordinationOrg",
+      "schema:name": "JPCERT/CC"
+    },
+    {
+      "@id": "org:sesc",
+      "@type": "gh:MarketRegulatorOrg",
+      "schema:name": "証券取引等監視委員会 (SESC)"
+    },
+    {
+      "@id": "org:tse",
+      "@type": "gh:MarketOrg",
+      "schema:name": "東京証券取引所 (TSE)"
+    },
+    {
+      "@id": "org:interpol",
+      "@type": "gh:LawEnforcementOrg",
+      "schema:name": "INTERPOL"
+    },
+    {
+      "@id": "org:fbi",
+      "@type": "gh:LawEnforcementOrg",
+      "schema:name": "FBI"
+    },
+    {
+      "@id": "org:europol-ec3",
+      "@type": "gh:LawEnforcementOrg",
+      "schema:name": "Europol EC3 (European Cybercrime Centre)"
+    },
+    {
+      "@id": "org:nca-nccu",
+      "@type": "gh:LawEnforcementOrg",
+      "schema:name": "NCA NCCU (UK National Cyber Crime Unit)"
+    }
+  ],
+  "gh:roleTemplates": [
+    {
+      "@id": "role:jp-cyber-investigator",
+      "schema:name": "日本のサイバー捜査官（現場）",
+      "gh:responsibilities": ["被害企業対応", "デジタル証拠保全", "令状執行支援", "関係者聴取"]
+    },
+    {
+      "@id": "role:jp-cyber-analyst",
+      "schema:name": "日本のサイバー分析官（広域調整）",
+      "gh:responsibilities": ["複数事案の関連付け", "TTPの整理", "国際照会の整理", "組織間調整"]
+    },
+    {
+      "@id": "role:market-investigator",
+      "schema:name": "市場犯罪調査官（SESC/取引監視）",
+      "gh:responsibilities": ["不審な売買の検知", "空売り・オプションの動き", "風説/情報操作の追跡", "証券会社への照会"]
+    },
+    {
+      "@id": "role:cert-coordination-analyst",
+      "schema:name": "CERTアナリスト（IoC/TTP共有）",
+      "gh:responsibilities": ["IoC共有", "注意喚起", "マルウェア分析", "被害組織の横連携"]
+    },
+    {
+      "@id": "role:international-liaison",
+      "schema:name": "国際連携（INTERPOL/FBI/Europol/NCA）",
+      "gh:responsibilities": ["国際照会", "押収インフラの解析共有", "暗号資産追跡", "越境手配"]
+    }
+  ],
+  "gh:cast": [
+    {
+      "@id": "character:IsaReiji",
+      "@type": "gh:SupportingRole",
+      "schema:name": "伊佐 玲司",
+      "gh:organization": "org:mpd-cyber",
+      "gh:roleTemplate": "role:jp-cyber-investigator",
+      "gh:note": "現場主義。最初はRenを疑うが、証拠の積み方に惚れる。"
+    },
+    {
+      "@id": "character:HatoriKoichi",
+      "@type": "gh:SupportingRole",
+      "schema:name": "羽鳥 恒一",
+      "gh:organization": "org:npa-cyber",
+      "gh:roleTemplate": "role:jp-cyber-analyst",
+      "gh:note": "A/B/Cを線で繋ぐ調整役。"
+    },
+    {
+      "@id": "character:SaegusaNoa",
+      "@type": "gh:SupportingRole",
+      "schema:name": "三枝 乃亜",
+      "gh:organization": "org:jpcert",
+      "gh:roleTemplate": "role:cert-coordination-analyst",
+      "gh:note": "TTP/IoCを会話で落とし込む。Neiと相性が良い。"
+    },
+    {
+      "@id": "character:KurokawaMio",
+      "@type": "gh:SupportingRole",
+      "schema:name": "黒川 澪",
+      "gh:organization": "org:sesc",
+      "gh:roleTemplate": "role:market-investigator",
+      "gh:note": "『攻撃→株価』の匂いを嗅ぎ分ける。"
+    },
+    {
+      "@id": "character:NatsumeKoichi",
+      "@type": "gh:SupportingRole",
+      "schema:name": "夏目 恒一",
+      "gh:organization": "org:tse",
+      "gh:roleTemplate": "role:market-investigator",
+      "gh:note": "市場側の門番。取引停止という重い選択肢を持つ。"
+    },
+    {
+      "@id": "character:MayaRahman",
+      "@type": "gh:SupportingRole",
+      "schema:name": "Maya Rahman",
+      "gh:organization": "org:interpol",
+      "gh:roleTemplate": "role:international-liaison",
+      "gh:note": "国際照会と手配のパイプ役。"
+    },
+    {
+      "@id": "character:EthanCole",
+      "@type": "gh:SupportingRole",
+      "schema:name": "Ethan Cole",
+      "gh:organization": "org:fbi",
+      "gh:roleTemplate": "role:international-liaison",
+      "gh:note": "暗号資産追跡・押収サーバ解析の情報提供。"
+    },
+    {
+      "@id": "character:IngridVoss",
+      "@type": "gh:SupportingRole",
+      "schema:name": "Ingrid Voss",
+      "gh:organization": "org:europol-ec3",
+      "gh:roleTemplate": "role:international-liaison",
+      "gh:note": "欧州側インフラ押収・分析の知見を持つ。"
+    },
+    {
+      "@id": "character:TomHargreaves",
+      "@type": "gh:SupportingRole",
+      "schema:name": "Tom Hargreaves",
+      "gh:organization": "org:nca-nccu",
+      "gh:roleTemplate": "role:international-liaison",
+      "gh:note": "マネロン網とアフィリエイトを追う。"
+    }
+  ],
+  "gh:criminalEcosystem": {
+    "@id": "ecosystem:unnamed-season1",
+    "@type": "gh:CriminalEcosystem",
+    "schema:name": "TBD (ecosystem name to be decided)",
+    "gh:positioning": "A financially-motivated ecosystem that exploits supply chains and market psychology to profit (ransom, laundering, and market operations).",
+    "gh:frontActorTeams": [
+      {
+        "@id": "gh:actorTeam/seigi-hero",
+        "@type": "gh:ActorTeam",
+        "schema:name": "SEIGI_HERO",
+        "gh:representative": {
+          "@id": "character:HERO",
+          "@type": "gh:Antagonist",
+          "schema:name": "HERO",
+          "gh:legalName": "佐藤 ヒロシ (Hiroshi Sato)",
+          "gh:note": "SEIGI_HEROの代表格。海外拠点で『正義』を名乗り、告発と破壊を混同する。痛くてダサいが悪意はある。理解はできても同情されない。"
+        },
+        "gh:note": "A 'painful' Japanese actor team operating from overseas. They believe they are justice, but are morally weak, shallow, and easily ridden by the ecosystem. The story understands their psychology but does not sympathize; they must atone and rehabilitate.",
+        "gh:homeGhostCore": {
+          "@type": "gh:Ghost",
+          "schema:name": "親に逆らえない怒りの転写 (Parent Rage Displacement)",
+          "gh:description": "They cannot confront their real parents, so they redirect resentment toward the state, companies, and strangers. 'Justice' becomes a mask for cowardice and approval-seeking."
+        },
+        "gh:operations": [
+          {
+            "schema:name": "Ore-ore style fraud / social engineering",
+            "gh:note": "They run phone/DM-based fraud patterns and human manipulation alongside cybercrime."
+          },
+          {
+            "schema:name": "Yami-baito recruitment (gig-style crime)",
+            "gh:channels": ["X", "LINE"],
+            "gh:note": "They recruit disposable runners/operators via social platforms and messaging apps."
+          },
+          {
+            "schema:name": "Supply-chain enabled intrusion (ecosystem-provided)",
+            "gh:note": "They do not build sophisticated software; they buy/rent access, loaders, and ransomware kits from the ecosystem."
+          }
+        ],
+        "gh:capabilities": [
+          "low-skill coordination",
+          "social engineering and recruitment",
+          "operational harassment and disruption",
+          "acting as an affiliate for larger ransomware/market ops"
+        ],
+        "gh:weaknesses": [
+          "poor OPSEC",
+          "ego-driven bragging",
+          "inconsistent stories",
+          "traceable payment and recruitment patterns"
+        ],
+        "gh:seasonOutcome": {
+          "gh:episode": 12,
+          "gh:result": "Identified and arrested (overseas base) through international coordination.",
+          "gh:involvedOrgs": ["org:mpd-cyber", "org:npa-cyber", "org:interpol", "org:fbi", "org:europol-ec3", "org:nca-nccu", "org:sesc", "org:tse"]
+        }
+      }
+    ],
+    "gh:components": [
+      { "schema:name": "Initial Access Brokers (IAB)", "gh:does": "Sell/auction access (credentials, footholds) across victims and suppliers." },
+      { "schema:name": "Access-as-a-Service / Malware loaders", "gh:does": "Provide delivery mechanisms and persistence kits." },
+      { "schema:name": "RaaS Operators", "gh:does": "Provide ransomware tooling and negotiation infrastructure." },
+      { "schema:name": "Affiliates", "gh:does": "Execute intrusions and deploy payloads; vary by region, causing signature drift." },
+      { "schema:name": "Data Theft / Leak Ops", "gh:does": "Operate double extortion: theft + threat of exposure." },
+      { "schema:name": "PsyOps / Narrative Ops", "gh:does": "Amplify fear through leaks, timing, and rumors to move markets." },
+      { "schema:name": "Market Ops", "gh:does": "Profit via short-selling/options/arbitrage around disruption and panic." },
+      { "schema:name": "Laundering Ops", "gh:does": "Crypto mixing/OTC conversion/nominee networks; evades tracing." },
+      { "schema:name": "Bulletproof Hosting / Infra Providers", "gh:does": "Provide resilient infrastructure, fast rotation, and takedown resistance." },
+      { "schema:name": "Exploit Supply / Vulnerability Brokers", "gh:does": "Supply exploits; prioritize widely deployed supply-chain software." }
+    ],
+    "gh:realWorldAnalogyNote": "Real-world financially motivated groups and ecosystems exist (e.g., ransomware-as-a-service and access brokers). This story uses a fictionalized ecosystem and does not claim attribution for specific historical incidents.",
+    "gh:inspiration": [
+      "RaaS-style ecosystems (general)",
+      "Access broker markets (general)",
+      "Market manipulation as a motive (fictionalized connection)"
+    ],
+    "gh:askulLink": {
+      "schema:name": "Askul-like disruption → market profit mechanism",
+      "gh:note": "Uses a real-world style of large-scale disruption as inspiration. In the story, the ecosystem designs disruption timing to influence market psychology and profit via positions."
+    }
+  },
+  "gh:seasonStructure": {
+    "gh:format": "One company = one major incident (case). Each case spans 1–3 episodes to cover technical response → governance/practice → Ghost resolution.",
+    "gh:episodes": [
+      {
+        "@id": "gh:episode/s01e01",
+        "gh:number": 1,
+        "dct:title": "Arc A-1: 牙を剥く内部の影",
+        "gh:arc": "arc:A",
+        "gh:company": "org:daimon-construction",
+        "gh:focusVirtue": "gh:virtue/sloth",
+        "gh:mainCharacters": ["character:Ren", "character:Nei"],
+        "gh:incident": {
+          "schema:name": "Ransomware + Insider (initial detonation)",
+          "gh:surface": "全システム停止・電話鳴り止まず・給与/工事/発注が止まる",
+          "gh:root": "情と曖昧さで設計を放棄した運用（権限/ログ/バックアップ不明）+ 内部の出来心"
+        },
+        "gh:openingHook": "『会社が止まった』という依頼。現場は“努力”で回しているように見えるが、Renは一目で“設計放棄”を嗅ぐ。",
+        "gh:practiceBeats": [
+          "初動：隔離・証拠保全（勝手に電源を切らせない）",
+          "最小復旧：重要業務の優先順位と代替手段を整理",
+          "侵入点の仮説：既知の穴（KEV）と人為ミスを並行で追う"
+        ],
+        "gh:ghostBattle": {
+          "schema:name": "疎外感/陳腐化の恐怖のGhost（LANケーブルと紙束の巨体）",
+          "gh:visual": "古い規程書・紙・ケーブルが絡み合い、責任の所在が見えない霧を吐く",
+          "gh:turn": "Neiが『急所（既知の穴）』を可視化→Renが最短で核を割る"
+        },
+        "gh:conflict": "社長は『情』で収めようとし、翔太は揺れる。Renは“許し”が再発を作ると感じて怒りが増す。",
+        "gh:cliffhanger": "社長が安本を許そうとした瞬間、Renが止める。『それは「怠惰」だ。』額縁ルールが黒く滲む。",
+        "gh:evidenceProduced": [
+          "端末/ログ/侵入経路の一次証拠（のちにJPCERT/警察に渡せる形）",
+          "内部端末からの実行痕跡（『出来心』の具体化）"
+        ]
+      },
+      {
+        "@id": "gh:episode/s01e02",
+        "gh:number": 2,
+        "dct:title": "Arc A-2: 許しの毒（CISSPで殴る）",
+        "gh:arc": "arc:A",
+        "gh:company": "org:daimon-construction",
+        "gh:focusVirtue": "gh:virtue/sloth",
+        "gh:mainCharacters": ["character:Ren", "character:Nei"],
+        "gh:openingHook": "復旧直後、再侵害の兆候。『終わったことにした』ツケが襲う。",
+        "gh:practiceBeats": [
+          "再発防止の条件：権限剥奪・職務分掌・ログ保全・バックアップの棚卸し",
+          "“許す”を設計へ：条件付き復帰、監査可能性、責任境界の確定",
+          "証拠が消える前に“手順で止める”"
+        ],
+        "gh:ghostBattle": {
+          "schema:name": "善意の顔をした『見て見ぬふり』Ghost（額縁ルールの呪い）",
+          "gh:visual": "先代の額縁から文字が滲み、笑顔の仮面になって人を黙らせる",
+          "gh:turn": "Renは個人を裁かず、環境を変える“最小の設計”を強制する"
+        },
+        "gh:conflict": "『家族みたいな会社』という価値観 vs 再発の確率。情が“怠惰”に変わる瞬間をRenが暴く。",
+        "gh:cliffhanger": "Neiが検知：外部から“委託先経由”の足跡。『供給網に匂いがあります』",
+        "gh:evidenceProduced": [
+          "委託/外部ベンダ起点のアクセス痕跡（サプライチェーン線）",
+          "監査に耐える形の証跡パッケージ（捜査引き渡し前提）"
+        ]
+      },
+      {
+        "@id": "gh:episode/s01e03",
+        "gh:number": 3,
+        "dct:title": "Arc A-3: 善意の呪い（会社のGhostを殴る）",
+        "gh:arc": "arc:A",
+        "gh:company": "org:daimon-construction",
+        "gh:focusVirtue": "gh:virtue/sloth",
+        "gh:mainCharacters": ["character:Ren", "character:Nei"],
+        "gh:openingHook": "復旧が“できた”のに、誰も安心できない。原因はマルウェアではなく、情で責任が溶ける“善意の運用”が残っていること。",
+        "gh:practiceBeats": [
+          "復旧の終端（Done）を定義：復旧＝起動ではなく、検知・復元・再発防止まで",
+          "二度やらない：バックアップ方針、権限境界、ログ、台帳化（誰が何を持つか）",
+          "情を設計に変換：条件付き復帰、再発時の停止判断、責任の所在を確定する"
+        ],
+        "gh:ghostBattle": {
+          "schema:name": "善意の呪い（Curse of Goodwill）",
+          "gh:visual": "『許し』『絆』『家族』の文字が笑顔の仮面になって貼り付く。仮面の裏で責任が消えていく。",
+          "gh:turn": "NeiがSIPで“善意の仮面”を固定。Renは断麻斧で“曖昧さの結び目”を切り、ロープで新しい境界を結ぶ。"
+        },
+        "gh:conflict": "社長は“情”で守ろうとし、翔太は改革の痛みを恐れる。Renは『善意で設計をサボるな』と突きつける。",
+        "gh:cliffhanger": "委託先の遠隔管理基盤に、同型の痕跡。Nei『供給網から次の会社へ波及します』→Arc Bへ。",
+        "gh:evidenceProduced": [
+          "委託先起点のアクセス痕跡（供給網の入口）",
+          "復旧手順と証拠保全のパッケージ（捜査・共有に耐える形）"
+        ]
+      },
+      {
+        "@id": "gh:episode/s01e04",
+        "gh:number": 4,
+        "dct:title": "Arc B-1: 終わらぬ時計（猛 登場）",
+        "gh:arc": "arc:B",
+        "gh:company": "org:jinpu-mobility",
+        "gh:focusVirtue": "gh:virtue/short-tempered",
+        "gh:mainCharacters": ["character:Ren", "character:Nei", "character:Takeru"],
+        "gh:openingHook": "始業と出庫の時刻だけは絶対。だが、終わり（Done）の定義は誰も持っていない。障害が起きた瞬間、現場は“早く動かす”ために証拠を壊し始める。",
+        "gh:practiceBeats": [
+          "初動：電源/再起動を止め、隔離と証拠保全を最優先",
+          "止め方：安全側停止と手動運用（出庫/配送の代替）を即発動",
+          "Doneの宣言：『何が戻れば完了か』を決めない限り終わらないと突きつける"
+        ],
+        "gh:ghostBattle": {
+          "schema:name": "終わらぬ時計の前駆（針が刃になり現場を急かす）",
+          "gh:visual": "『始業の鐘』だけが鳴り続け、時計の針が刃になって首元へ迫る",
+          "gh:turn": "猛はバールで“詰まり”をこじ開ける前に、まず『止める』。速さは、止め方の手順に宿ると示す"
+        },
+        "gh:conflict": "経営は『遅れるな』だけを叫ぶ。だが“終わり”を設計していないから、障害が永遠に続く。猛の怒りは短気に見えるが、本音は“遅さの原因を殺す”こと。",
+        "gh:cliffhanger": "始業に間に合わせるために独断で再起動を命じる管理職。猛が吐く。『……あんたら、短気だな』",
+        "gh:evidenceProduced": [
+          "証拠を壊そうとした“独断復旧”のログ（後の責任境界の証拠）",
+          "現場端末/遠隔管理の不審操作（闇バイト線の入口）"
+        ]
+      },
+      {
+        "@id": "gh:episode/s01e05",
+        "gh:number": 5,
+        "dct:title": "Arc B-2: Doneがない地獄（終わりの設計）",
+        "gh:arc": "arc:B",
+        "gh:company": "org:jinpu-mobility",
+        "gh:focusVirtue": "gh:virtue/short-tempered",
+        "gh:mainCharacters": ["character:Ren", "character:Nei", "character:Takeru"],
+        "gh:openingHook": "復旧のたびに再発。『直った』と言うたびに、現場がさらに遅くなる。原因は“終端”がないこと。",
+        "gh:practiceBeats": [
+          "封じ込め：影響範囲を切り分け、再起動・復旧を勝手にさせない",
+          "計測：猛のストップウォッチで“復旧の定義”と“締切”を刻む",
+          "再開条件：段階復旧（最小機能→監視→拡大）をRunbook化する"
+        ],
+        "gh:ghostBattle": {
+          "schema:name": "終わらぬ時計（Never-Ending Clock）",
+          "gh:visual": "時計盤が増殖し、針が無限に回転して“今すぐ”を叩きつける",
+          "gh:turn": "猛は“速い復旧”ではなく“速く終わる復旧”へ変える。Doneを刻めない作業は作業じゃない"
+        },
+        "gh:conflict": "短気の会社は『急げ』と言いながら、終わりの設計をしない。猛は“遅いことが許せない”からこそ、終わりを作る。",
+        "gh:cliffhanger": "X/LINE経由の闇バイト指示が見つかる。『現場に入り込ませる手足がいる』",
+        "gh:evidenceProduced": [
+          "X/LINEの募集〜実行のオペレーション断片（捜査用）",
+          "エコシステムのツール利用痕跡（自作ではない“買った道具”の証拠）"
+        ]
+      },
+      {
+        "@id": "gh:episode/s01e06",
+        "gh:number": 6,
+        "dct:title": "Arc B-3: 終端刻印（短気を救済に戻す）",
+        "gh:arc": "arc:B",
+        "gh:company": "org:jinpu-mobility",
+        "gh:focusVirtue": "gh:virtue/short-tempered",
+        "gh:mainCharacters": ["character:Ren", "character:Nei", "character:Takeru"],
+        "gh:openingHook": "復旧が見えても終わらない。会社は“開始の速さ”で自分を誤魔化し続ける。",
+        "gh:practiceBeats": [
+          "Doneの制度化：完了定義、停止判断、エスカレーション、当番と休息を設計に入れる",
+          "BCP：手動運用を“根性”ではなく手順にする（始業より終端を優先）",
+          "闇バイト対策：現場アクセス/委託の境界を明確化し、侵入の手足を断つ"
+        ],
+        "gh:ghostBattle": {
+          "schema:name": "終わらぬ時計（針の刃）",
+          "gh:turn": "猛がハンマーで『終端（DONE）』を叩き込む。短気は“人を救うための速さ”に戻る"
+        },
+        "gh:cliffhanger": "供給網の共通部品（外部ベンダ/管理基盤）が金融側にも繋がっていることが判明→Arc Cへ。",
+        "gh:evidenceProduced": [
+          "闇バイト連絡網の関係図（ハブの端緒）",
+          "海外拠点への送金/換金の断片（国際連携の入口）"
+        ]
+      },
+      {
+        "@id": "gh:episode/s01e07",
+        "gh:number": 7,
+        "dct:title": "Arc C-1: 空の要塞の崩壊（要 登場）",
+        "gh:arc": "arc:C",
+        "gh:company": "org:byakudan-financial",
+        "gh:focusVirtue": "gh:virtue/arrogance",
+        "gh:mainCharacters": ["character:Ren", "character:Nei", "character:Kaname"],
+        "gh:openingHook": "漏えい疑惑。会議は稟議で停止。そこに要『監査不合格。会議も不合格』",
+        "gh:practiceBeats": [
+          "責任共有モデルの再確認（クラウドの責任境界）",
+          "監査ログ/設定の棚卸し（IaC/権限/監査証跡）",
+          "“例外”が穴になる構造の可視化"
+        ],
+        "gh:ghostBattle": {
+          "schema:name": "規程Ghost（紙の鎧で人を縛る）",
+          "gh:turn": "要が言い放つ。『それは傲慢ですね』—ルールが人を使う構造を折る"
+        },
+        "gh:cliffhanger": "『正しい手続き』で金が抜ける兆候→マネロンへ。",
+        "gh:evidenceProduced": [
+          "設定ミスのタイムライン（誰が/いつ/なぜ）",
+          "監査ログから見える外部アクセスの共通パターン"
+        ]
+      },
+      {
+        "@id": "gh:episode/s01e08",
+        "gh:number": 8,
+        "dct:title": "Arc C-2: 消えた資産の足跡（監査で殴る）",
+        "gh:arc": "arc:C",
+        "gh:company": "org:byakudan-financial",
+        "gh:focusVirtue": "gh:virtue/arrogance",
+        "gh:mainCharacters": ["character:Ren", "character:Nei", "character:Kaname"],
+        "gh:openingHook": "“規程通り”に処理した送金が、規程通りに抜かれていく。",
+        "gh:practiceBeats": [
+          "承認フローの再設計（責任回避の稟議を解体）",
+          "証跡・突合・監査の視点で資金経路を追う",
+          "市場犯罪（SESC線）へ繋がる“異常売買の匂い”"
+        ],
+        "gh:ghostBattle": {
+          "schema:name": "意地のGhost（“例外は悪”の槍）",
+          "gh:turn": "要が“書き換え”で槍を折る。傲慢＝人のための支配"
+        },
+        "gh:cliffhanger": "市場側が反応し始める。『攻撃の前に売られている』",
+        "gh:evidenceProduced": [
+          "マネロン/換金の端緒（海外OTC/名義）",
+          "取引監視に渡せる形の“異常の説明”"
+        ]
+      },
+      {
+        "@id": "gh:episode/s01e09",
+        "gh:number": 9,
+        "dct:title": "Arc C-3: それは傲慢ですね（ルールを殺す）",
+        "gh:arc": "arc:C",
+        "gh:company": "org:byakudan-financial",
+        "gh:focusVirtue": "gh:virtue/arrogance",
+        "gh:mainCharacters": ["character:Ren", "character:Nei", "character:Kaname"],
+        "gh:openingHook": "社内が『規程違反』の恐怖で止まる。守るほど被害が広がる。",
+        "gh:practiceBeats": [
+          "例外を“手順”に昇格させる（緊急時の設計）",
+          "責任の所在を明示（誰が決め、誰が守るか）",
+          "捜査機関に渡せる形で証拠を固定"
+        ],
+        "gh:ghostBattle": {
+          "schema:name": "規程の王（ルールが人を使う王冠）",
+          "gh:turn": "要『それは傲慢ですね』で王冠を叩き割り、現場が呼吸する"
+        },
+        "gh:cliffhanger": "SESC/TSEが動く。『これは市場を狙っている』→最終Arcへ。",
+        "gh:evidenceProduced": [
+          "市場監視へ渡す“時系列（攻撃と売買の同期）”",
+          "国際照会に必要な送金/インフラ情報の束"
+        ]
+      },
+      {
+        "@id": "gh:episode/s01e10",
+        "gh:number": 10,
+        "dct:title": "Arc D-1: 群れのGhost（エコシステムが笑う）",
+        "gh:arc": "arc:D",
+        "gh:focusVirtue": "gh:virtue/sloth",
+        "gh:mainCharacters": ["character:Ren", "character:Nei", "character:Kaname", "character:Takeru"],
+        "gh:openingHook": "同じ癖の攻撃がA/B/Cを跨いで再発。敵は個人ではなく市場。",
+        "gh:practiceBeats": [
+          "IoCよりTTPで繋ぐ（“癖”を証拠にする）",
+          "市場監視とIRを接続（恐怖→価格の線）",
+          "国際連携の準備（照会の要件を揃える）"
+        ],
+        "gh:ghostBattle": {
+          "schema:name": "市場心理のGhost（恐怖が板になる）",
+          "gh:turn": "Renたちは“沈黙”ではなく“事実”を積むことで恐怖を弱める"
+        },
+        "gh:cliffhanger": "SEIGI_HEROの名前が浮上（痛い日本人チーム）。『正義』の仮面。",
+        "gh:evidenceProduced": [
+          "SEIGI_HEROの募集/指示系統の断片（X/LINE）",
+          "ツール購入/レンタルの痕跡（自作でない証明）"
+        ]
+      },
+      {
+        "@id": "gh:episode/s01e11",
+        "gh:number": 11,
+        "dct:title": "Arc D-2: 崩壊する信頼（捜査が線になる）",
+        "gh:arc": "arc:D",
+        "gh:mainCharacters": ["character:Ren", "character:Nei", "character:Kaname", "character:Takeru"],
+        "gh:openingHook": "信頼の根が揺れる。逮捕ではなく“止血”が先。だが証拠は逃すな。",
+        "gh:practiceBeats": [
+          "証拠を毀損しない封じ込め",
+          "組織と捜査の役割分担（Ren達は警察の代わりをしない）",
+          "国際照会へ：インフラ/資金/人物の三点セット"
+        ],
+        "gh:ghostBattle": {
+          "schema:name": "正義の仮面Ghost（親への怒りが外へ転写される）",
+          "gh:turn": "三人がそれぞれの言葉で仮面を割る（怠惰/短気/傲慢）"
+        },
+        "gh:cliffhanger": "HERO（本名ヒロシ）の実在が浮上。海外拠点の座標が見える。",
+        "gh:evidenceProduced": [
+          "代表者HEROの結節点（連絡/換金/インフラ）",
+          "INTERPOL/FBI/Europol/NCA向け照会パッケージ"
+        ]
+      },
+      {
+        "@id": "gh:episode/s01e12",
+        "gh:number": 12,
+        "dct:title": "Arc D-3: 逮捕（でもGhostは残る）",
+        "gh:arc": "arc:D",
+        "gh:mainCharacters": ["character:Ren", "character:Nei", "character:Kaname", "character:Takeru"],
+        "gh:openingHook": "国際連携が噛み合い、SEIGI_HEROの海外拠点に手が伸びる。",
+        "gh:practiceBeats": [
+          "市場犯罪：SESC/TSEが“価格操作の線”を固める",
+          "国際捜査：照会と押収、同時突入（逃げ道を潰す）",
+          "被害側：再発しない設計（A/B/Cで学んだ対策の統合）"
+        ],
+        "gh:ghostBattle": {
+          "schema:name": "巨大なGhost（エコシステム）",
+          "gh:turn": "SEIGI_HEROは捕まるが、真の敵は“市場として再生する”ことが示される"
+        },
+        "gh:resolutionLine": "Ghost is not a person. It's the market of negligence.",
+        "gh:ending": "HEROは捕まる。だが“正義の仮面”は社会に残る。Renは次の依頼通知を消して寝る。怠惰のために戦い続ける。",
+        "gh:evidenceProduced": [
+          "逮捕に至る証拠の統合（IR+市場+国際）",
+          "次シーズンに繋がる“エコシステムの残骸”"
+        ]
+      }
+    ],
+    "gh:investigationThread": {
+      "gh:objective": "Identify and arrest SEIGI_HERO (representative: HERO / Hiroshi) while revealing the larger criminal ecosystem.",
+      "gh:method": "Accumulated technical indicators, financial signals, and recruitment footprints are merged and handed to law enforcement via formal channels.",
+      "gh:steps": [
+        {
+          "gh:episodes": [1, 2, 3],
+          "gh:signal": "Victim-side IR artifacts (logs, access paths, persistence) + 'forgiveness-as-negligence' Ghost confrontation triggers governance fixes, preserving evidence."
+        },
+        {
+          "gh:episodes": [4, 5, 6],
+          "gh:signal": "OT/IoT disruption patterns + yami-baito recruitment trails (X/LINE) surface. Takeru calls it out: 'あんたら、短気だな。'"
+        },
+        {
+          "gh:episodes": [7, 8, 9],
+          "gh:signal": "Audit-style tracing and rule rewrites expose transaction anomalies and ecosystem dependencies. Kaname calls out misuse: 'それは傲慢ですね。'"
+        },
+        {
+          "gh:episodes": [10, 11, 12],
+          "gh:signal": "Market-ops motive emerges (disruption → fear → price movement). SESC/TSE monitoring plus international takedown intel (INTERPOL/FBI/Europol/NCA) leads to attribution of SEIGI_HERO's overseas base and arrests."
+        }
+      ],
+      "gh:handoff": {
+        "gh:toOrgs": ["org:mpd-cyber", "org:npa-cyber", "org:jpcert", "org:sesc", "org:tse", "org:interpol", "org:fbi", "org:europol-ec3", "org:nca-nccu"],
+        "gh:note": "Ren/Kaname/Takeru do not replace police; they produce actionable evidence and force organizations to preserve truth instead of burying it."
+      }
+    },
+    "gh:arcs": [
+      {
+        "@id": "arc:A",
+        "schema:name": "Arc A - Daimon (Sloth / environmental negligence)",
+        "gh:episodes": [1, 2, 3],
+        "gh:coreGhost": "善意の呪い（Curse of Goodwill）",
+        "gh:finalLine": "それは「怠惰」だ。"
+      },
+      {
+        "@id": "arc:B",
+        "schema:name": "Arc B - CHOBA (Short-tempered / Never-Ending Clock)",
+        "gh:episodes": [4, 5, 6],
+        "gh:coreGhost": "終わらぬ時計（Never-Ending Clock）",
+        "gh:finalLine": "あんたら、短気だな。"
+      },
+      {
+        "@id": "arc:C",
+        "schema:name": "Arc C - BYAKUDAN (Arrogance / rules using people)",
+        "gh:episodes": [7, 8, 9],
+        "gh:coreGhost": "例外狩り（Exception Hunter）",
+        "gh:finalLine": "それは傲慢ですね。"
+      },
+      {
+        "@id": "arc:D",
+        "schema:name": "Arc D - Cross-supply-chain / market ops (Ecosystem Ghost)",
+        "gh:episodes": [10, 11, 12],
+        "gh:coreGhost": "The ecosystem itself: supply-chain parasitism + market psychology",
+        "gh:finalLine": "Ghost is not a person. It's the market of negligence.",
+        "gh:climax": "SEIGI_HERO gets identified and arrested, but the ecosystem remains: the true Ghost is structural."
+      }
+    ]
+  }
+}
+

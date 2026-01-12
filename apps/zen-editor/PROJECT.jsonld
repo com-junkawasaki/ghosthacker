@@ -8,10 +8,11 @@
   "description": "A dedicated local editor for Ghost Hacker story production, featuring Zen mode text editing and Graph Topology visualization.",
   "status": "A2A_Active",
   "data_integration": {
-    "manifest": "251022/wattpad/manifest.json integrated for file navigation",
-    "topology": "251022/ghost-hacker.jsonld parsed for world-building visualization",
-    "manuscripts": "Full access to Wattpad episode parts",
-    "storyboard": "251022/wattpad/storyboard.jsonld managed as JSON-LD with Git versioning"
+    "manifest": "data/251022/wattpad/manifest.json integrated for file navigation",
+    "topology": "data/251022/ghost-hacker.jsonld parsed for world-building visualization",
+    "manuscripts": "Full access to Wattpad episode parts in data/",
+    "storyboard": "data/251022/wattpad/storyboard.jsonld managed as JSON-LD with Git versioning",
+    "assets": "data/**/assets/ containing images and webp files served via backend /data/ endpoint"
   },
   "ai_integration": {
     "openrouter": "Claude 3.5 Sonnet driven persona emulation (A2A)",
@@ -133,6 +134,14 @@
     },
     {
       "step": "13. Migrate Storyboard to File-based JSON-LD with Git auto-commit",
+      "status": "completed"
+    },
+    {
+      "step": "14. Centralize project data into apps/zen-editor/data for better portability and LLM context",
+      "status": "completed"
+    },
+    {
+      "step": "15. Implement dynamic project loading and image serving from the centralized data directory",
       "status": "completed"
     }
   ]
