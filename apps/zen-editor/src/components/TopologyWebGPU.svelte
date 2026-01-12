@@ -3,9 +3,14 @@
   import { onMount, onDestroy } from 'svelte';
   import { Graph } from '@cosmos.gl/graph';
 
-  let { onSelect = () => {}, selectedId = undefined } = $props<{
+  let { 
+    onSelect = () => {}, 
+    selectedId = undefined,
+    projectId = "251022" 
+  } = $props<{
     onSelect?: (node: any, nodes: any[]) => void;
     selectedId?: string;
+    projectId?: string;
   }>();
 
   let containerElement = $state<HTMLDivElement | null>(null);
@@ -19,11 +24,8 @@
   let minimapViewport = $state({ top: 0, left: 0, width: 100, height: 100 });
 
   onMount(() => {
-    console.log("Topology component onMount starting (using @cosmos.gl/graph)");
+    console.log(`Topology component onMount starting for project: ${projectId} (using @cosmos.gl/graph)`);
     
-    // Always attempt to fetch data
-    fetchData();
-
     if (containerElement) {
       try {
         console.log("Initializing Graph with container:", containerElement);
@@ -111,8 +113,8 @@
         throw new Error("Client initialization failed");
       }
 
-      console.log("[Topology] Calling getTopology...");
-      const resp = await client.getTopology({ projectId: "251022" });
+      console.log(`[Topology] Calling getTopology for project: ${projectId}...`);
+      const resp = await client.getTopology({ projectId });
       console.log("[Topology] getTopology success, nodes:", resp.nodes?.length);
       
       nodes = (resp.nodes || []).filter((n: any) => n && n.id && n.label);
@@ -291,7 +293,7 @@
 <div class="topology-container">
   <div class="topology-sidebar">
     <div class="sidebar-header">
-      <span>Nodes</span>
+      <span>Nodes ({nodes.length})</span>
       <div class="header-actions">
         <button class="icon-btn" onclick={() => graph?.fitView(1000)} title="Fit View">🔍</button>
         <button class="save-layout-btn" onclick={saveLayout} title="Save Layout to History">💾</button>

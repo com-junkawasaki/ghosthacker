@@ -17,7 +17,13 @@
     emotions: string[];
   };
 
-  let { scenes: initialScenes = [] } = $props<{ scenes?: Scene[] }>();
+  let { 
+    scenes: initialScenes = [],
+    projectId = "251022"
+  } = $props<{ 
+    scenes?: Scene[],
+    projectId?: string
+  }>();
 
   let scenes = $state<Scene[]>(initialScenes);
   let isGenerating = $state(false);
@@ -43,7 +49,7 @@
       
       // Method A: Direct gRPC
       await client.saveStoryboard({
-        projectId: "251022",
+        projectId,
         scenes: scenes.map(s => ({
           id: s.id,
           visual: s.visual,
@@ -80,7 +86,7 @@
     try {
       const client = await getClient();
       if (!client) return;
-      const resp = await client.getStoryboard({ projectId: "251022" });
+      const resp = await client.getStoryboard({ projectId });
       if (resp && resp.scenes && resp.scenes.length > 0) {
         scenes = resp.scenes.map((s: any) => ({
           ...s,

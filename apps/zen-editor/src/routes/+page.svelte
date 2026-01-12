@@ -6,9 +6,10 @@
   import { getClient } from '../lib/api';
 
   let selectedNode = $state<any>(null);
+  let rightPaneMode = $state<"storyboard" | "editor">("storyboard");
+  let projectId = $state("251022"); // Default project
   let isSidebarOpen = $state(false);
   let isChatOpen = $state(false);
-  let isEditorOpen = $state(false);
   let isHistoryOpen = $state(false);
   let currentFilePath = $state("");
   let currentFileContent = $state("");
@@ -31,9 +32,19 @@
 
   function handleNodeSelect(node: any) {
     selectedNode = node;
-    isEditorOpen = true;
-    currentFilePath = node.label || node.id || "Untitled.md";
-    currentFileContent = node.content || "";
+    const type = node.type || "";
+    
+    if (type === 'gh:Manuscript' || type === 'gh:Block' || node.id?.startsWith('manuscript:') || node.id?.startsWith('block:')) {
+      rightPaneMode = "editor";
+      currentFilePath = node.label || node.id || "Untitled.md";
+      currentFileContent = node.content || "";
+    } else {
+      rightPaneMode = "storyboard";
+    }
+    
+    if (isStoryboardCollapsed) {
+      isStoryboardCollapsed = false;
+    }
   }
 
   async function handleEditorSave(content: string) {
@@ -99,7 +110,7 @@
   </header>
 
   <main class="main-layout">
-    <div class="main-content" class:dim={isChatOpen || isEditorOpen} class:dual-view={activeView === "dual"}>
+    <div class="main-content" class:dim={isChatOpen} class:dual-view={activeView === "dual"}>
       {#if (activeView === "graph" || activeView === "dual") && !isGraphCollapsed}
         <div class="pane graph-pane" style={activeView === "dual" ? `width: ${leftPaneWidth}%` : "width: 100%"}>
           <div class="pane-header">
@@ -108,7 +119,12 @@
               <button class="collapse-btn" onclick={() => isGraphCollapsed = true}>◀</button>
             {/if}
           </div>
-          <Topology bind:this={topologyRef} onSelect={handleNodeSelect} selectedId={selectedNode?.id} />
+          <Topology 
+            bind:this={topologyRef} 
+            {projectId}
+            onSelect={handleNodeSelect} 
+            selectedId={selectedNode?.id} 
+          />
         </div>
       {:else if activeView === "dual" && isGraphCollapsed}
         <div 
@@ -140,14 +156,25 @@
       {/if}
 
       {#if (activeView === "storyboard" || activeView === "dual") && !isStoryboardCollapsed}
-        <div class="pane storyboard-pane" style={activeView === "dual" ? `width: ${activeView === "dual" && isGraphCollapsed ? 100 : 100 - leftPaneWidth}%` : "width: 100%"}>
+        <div class="pane right-pane" style={activeView === "dual" ? `width: ${activeView === "dual" && isGraphCollapsed ? 100 : 100 - leftPaneWidth}%` : "width: 100%"}>
           <div class="pane-header">
             {#if activeView === "dual"}
               <button class="collapse-btn" onclick={() => isStoryboardCollapsed = true}>▶</button>
             {/if}
-            <span>Storyboard Editor</span>
+            <span>{rightPaneMode === 'storyboard' ? 'Storyboard Editor' : 'Text Editor'}</span>
           </div>
-          <Storyboard bind:this={storyboardRef} />
+          
+          {#if rightPaneMode === 'editor'}
+            <div class="pane-content">
+              <Editor 
+                filePath={currentFilePath} 
+                initialContent={currentFileContent}
+                onSave={handleEditorSave}
+              />
+            </div>
+          {:else}
+            <Storyboard bind:this={storyboardRef} {projectId} />
+          {/if}
         </div>
       {:else if activeView === "dual" && isStoryboardCollapsed}
         <div 
@@ -157,26 +184,10 @@
           onclick={() => isStoryboardCollapsed = false}
           onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && (isStoryboardCollapsed = false)}
         >
-          <span>Storyboard</span>
+          <span>{rightPaneMode === 'storyboard' ? 'Storyboard' : 'Editor'}</span>
         </div>
       {/if}
     </div>
-
-    {#if isEditorOpen}
-      <aside class="editor-drawer">
-        <div class="drawer-header">
-          <span>{currentFilePath || 'Editor'}</span>
-          <button onclick={() => isEditorOpen = false}>×</button>
-        </div>
-        <div class="drawer-body">
-          <Editor 
-            filePath={currentFilePath} 
-            initialContent={currentFileContent}
-            onSave={handleEditorSave}
-          />
-        </div>
-      </aside>
-    {/if}
 
     {#if isHistoryOpen}
       <aside class="history-drawer">
@@ -220,6 +231,7 @@
   .main-content.dim { filter: blur(10px) brightness(0.5); }
 
   .pane { height: 100%; overflow: hidden; position: relative; display: flex; flex-direction: column; }
+  .pane-content { flex: 1; overflow: hidden; position: relative; }
   .pane-header {
     height: 30px;
     background: rgba(255, 255, 255, 0.05);

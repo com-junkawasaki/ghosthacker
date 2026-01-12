@@ -615,7 +615,11 @@ Use the GRAPH CONTEXT provided to mention specific events, evidence, and relatio
 
 func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[editorpb.GetTopologyRequest]) (*connect.Response[editorpb.GetTopologyResponse], error) {
 	log.Printf("RPC: GetTopology called for project: %s", req.Msg.ProjectId)
-	jsonLdPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "ghost-hacker.jsonld")
+	
+	// Ensure we are looking into the project directory within WorkspaceRoot
+	projectDir := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId)
+	jsonLdPath := filepath.Join(projectDir, "ghost-hacker.jsonld")
+	log.Printf("Attempting to read topology from: %s", jsonLdPath)
 	
 	var g struct {
 		Graph []map[string]interface{} `json:"@graph"`
