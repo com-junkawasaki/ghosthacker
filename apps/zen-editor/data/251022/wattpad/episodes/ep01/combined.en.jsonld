@@ -1,0 +1,529 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:combined.en",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP1-1 — The Request from the City of Water (Opening)\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Opening / Call / Team Setup"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:1",
+      "@type": "gh:Block",
+      "schema:text": "```json\n{\n  \"@context\": {\n    \"@base\": \"https://ghosthacker.example.com/\",\n    \"gh\": \"https://ghosthacker.junkawasaki.com/gh#\",\n    \"antagonist\": { \"@id\": \"gh:antagonist\", \"@type\": \"@id\" },\n    \"character\": \"https://ghosthacker.example.com/character/\",\n    \"ghost\": \"https://ghosthacker.example.com/ghost/\"\n  },\n  \"antagonist\": [\n    {\"@id\": \"character:lonely-rationalist\"},\n    {\"@id\": \"ghost:silent-librarian\"}\n  ]\n}\n```"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:2",
+      "@type": "gh:Block",
+      "schema:text": "The canal is blue. The warmth at my fingertips traces the window and melts into the city through the glass. The scar of the dismantled elevated line has turned green, and a soft wind follows the canal. A lattice of light is woven across the city—there is a quiet pulse."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:3",
+      "@type": "gh:Block",
+      "schema:text": "I settle into feeling good—place a single breath and confirm my footing. I drop anchor into the Tree of Life. Start here."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:4",
+      "@type": "gh:Block",
+      "schema:text": "At my feet, I tap a one-beat kagura. A signal. Nei-chan trims ASC control to match, and the resolution of awareness rises, gently."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:5",
+      "@type": "gh:Block",
+      "schema:text": "Kaede’s voice comes onto comms. Calm as always, but with a trace of tension."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:6",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Contamination level is climbing…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:7",
+      "@type": "gh:Block",
+      "schema:text": "She leaves a small pause."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:8",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Tamaki, go carefully. In ER terms, this is ‘watchful caution.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:9",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki’s frequency flows into the room—warm, soft overtones."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:10",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Tudo bem, Tamaki. I’ve tuned the prescription of sound.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:11",
+      "@type": "gh:Block",
+      "schema:text": "His voice carries its usual lightness."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:12",
+      "@type": "gh:Block",
+      "schema:text": "The air loosens. Nei-chan fans a wing of light on my shoulder."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:13",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Mm. Now you can slip in quietly.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:14",
+      "@type": "gh:Block",
+      "schema:text": "A translucent call arrives; fine noise scatters into the room. “Triage, ToL,” Nei-chan whispers."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:15",
+      "@type": "gh:Block",
+      "schema:text": "I draw a circle with my fingertip and accept. A young man in a black suit appears—Logos. The brighter the light around his outline, the darker the shadow, like a drawing that can’t decide its lines."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:16",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan whispers only into my awareness: “Tama, he smells very ‘correct.’ So why does it hurt?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:17",
+      "@type": "gh:Block",
+      "schema:text": "“He is… Elias.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:18",
+      "@type": "gh:Block",
+      "schema:text": "The moment a name is granted, the world gains edges. I nod and review the procedure: listen / align / dive. Don’t skip steps. That’s the shortest path to fewer accidents."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:19",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan adds: “His ghost is terrified of bodily death and the severance of gene—terrified that ‘you’ as a subject will vanish. That seems to be the core of his bug.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:20",
+      "@type": "gh:Block",
+      "schema:text": "“Death isn’t an end. It’s just change,” I exhale softly. “We carry our memes forward through children, through culture, through society. That is how we are released from loneliness. His pain is that he can no longer perceive those connections.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:21",
+      "@type": "gh:Block",
+      "schema:text": "The Ghost Hacker’s work is to free such hardened memes and return them to flow."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:22",
+      "@type": "gh:Block",
+      "schema:text": "I tap kagura once more. Open the throttle a touch. Nei-chan: “Received.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:23",
+      "@type": "gh:Block",
+      "schema:text": "The room grows quiet."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:24",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki’s low band glides along the floor—gentle, reassuring."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:25",
+      "@type": "gh:Block",
+      "schema:text": "Kaede lays down security rails. ER quick, ER sure."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:26",
+      "@type": "gh:Block",
+      "schema:text": "I send thanks with a glance."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:27",
+      "@type": "gh:Block",
+      "schema:text": "Feeling good is mostly teamwork. Not forcing it alone is, sometimes, the bravest thing."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:28",
+      "@type": "gh:Block",
+      "schema:text": "“Let’s go, Logos.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:29",
+      "@type": "gh:Block",
+      "schema:text": "“Tamaki, I… want to save my lord.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:30",
+      "@type": "gh:Block",
+      "schema:text": "Desire is an arrow. When arrows align, dives are stable. I close my eyes and gather photons into my fingertips."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:31",
+      "@type": "gh:Block",
+      "schema:text": "Behind me, there is a quiet bug—loneliness justified by reason. I do not forget it."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:32",
+      "@type": "gh:Block",
+      "schema:text": "# EP1-2 — The Non-Separation Code and the Library (Dive)\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Dive / Confrontation / Trigger"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:33",
+      "@type": "gh:Block",
+      "schema:text": "When my awareness regains shape, I’m on the landing of a library. Stacks that reach the sky. Shattered data crystals. In the center, a single line of error:"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:34",
+      "@type": "gh:Block",
+      "schema:text": "// LOGICAL PARADOX: TRUST == ERROR"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:35",
+      "@type": "gh:Block",
+      "schema:text": "Elias’s loneliness is made of logic. The fear of being unable to define the end of the self hardens into correctness, becomes a wall, and seals the entrance to breath. I deploy the non-separation code I received from Nei-chan—vocabularies that dissolve the boundary called “individual” and reconnect to the flow of memes—and cast it into the whirlpool’s core. Language that loosens boundaries usually sounds gentle."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:36",
+      "@type": "gh:Block",
+      "schema:text": "The pushback is instant. A shadow appears and presses vacuum into my chest. Static snow scours my vision; my knees waver."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:37",
+      "@type": "gh:Block",
+      "schema:text": "Far off, Kaede’s voice—tense but composed."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:38",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Tamaki, come back!”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:39",
+      "@type": "gh:Block",
+      "schema:text": "Quick, like an ER doctor."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:40",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “I’ll break that logic-camouflage from outside. Hibiki, sending coordinates—counter-frequency!”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:41",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan trembles: “Tama… is he right that trust is an error? Logically…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:42",
+      "@type": "gh:Block",
+      "schema:text": "Not ‘don’t go back’—go back while advancing. I re-sync my breathing to feeling good and say it to Nei-chan and to myself. Don’t choose fear. Fear narrows the field and steals care."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:43",
+      "@type": "gh:Block",
+      "schema:text": "I tap a small kagura at my feet. Signal. The throttle comes up half a step."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:44",
+      "@type": "gh:Block",
+      "schema:text": "“Hibiki, ready.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:45",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki answers, more serious than usual: “OK. Give me the cue, Tamaki.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:46",
+      "@type": "gh:Block",
+      "schema:text": "I lay my palm on the core of the vortex and quietly rename it. Not “loneliness,” just pain. Change the name and the hardness changes a bit."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:47",
+      "@type": "gh:Block",
+      "schema:text": "“Now.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:48",
+      "@type": "gh:Block",
+      "schema:text": "Primary colors surge. Hibiki’s ayahuasca undoes the knot of space."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:49",
+      "@type": "gh:Block",
+      "schema:text": "Pages become butterflies and dance; the shadow loses its outline and returns to light."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:50",
+      "@type": "gh:Block",
+      "schema:text": "I rise, dwelling in the quiet."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:51",
+      "@type": "gh:Block",
+      "schema:text": "Feeling good returns."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:52",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Hehe, we came back.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:53",
+      "@type": "gh:Block",
+      "schema:text": "Elias places a hand on his brow and practices a slow smile. Logos’s wings tremble. I place a “non-separation pact” between them and hand over homework for the next week. Far off, the reason that justifies loneliness creaks."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:54",
+      "@type": "gh:Block",
+      "schema:text": "I rest my fingers on the landing’s rail. Warmth returns."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:55",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “ASC, hold. Tama, next?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:56",
+      "@type": "gh:Block",
+      "schema:text": "“Next. Half a step.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:57",
+      "@type": "gh:Block",
+      "schema:text": "Page-shadow rustles. A small inversion."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:58",
+      "@type": "gh:Block",
+      "schema:text": "Kaede returns to comms, worry in her tone."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:59",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Tamaki, come back.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:60",
+      "@type": "gh:Block",
+      "schema:text": "“I am. Coming back while going on.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:61",
+      "@type": "gh:Block",
+      "schema:text": "I tap a one-beat kagura. The noise in my vision drops a level."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:62",
+      "@type": "gh:Block",
+      "schema:text": "Elias whispers: “I’ve been protecting myself with ‘correctness.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:63",
+      "@type": "gh:Block",
+      "schema:text": "“Yeah. Correctness matters. But breath comes first.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:64",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki’s low tones flow in—warm, kind."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:65",
+      "@type": "gh:Block",
+      "schema:text": "The eddies loosen."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:66",
+      "@type": "gh:Block",
+      "schema:text": "The shadow darkens for a beat—resistance—then thins. Small wins and losses alternate."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:67",
+      "@type": "gh:Block",
+      "schema:text": "I laugh, short: “Good. That’s change.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:68",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan lowers a light: “Tama, another half-step?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:69",
+      "@type": "gh:Block",
+      "schema:text": "“Half-step. Up to here.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:70",
+      "@type": "gh:Block",
+      "schema:text": "Logos places a hand to his chest: “My lord is still far.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:71",
+      "@type": "gh:Block",
+      "schema:text": "“Not far. The path is already here. Match stride.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:72",
+      "@type": "gh:Block",
+      "schema:text": "I add a line to my notebook: Repeat ‘half-step forward’ three times."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:73",
+      "@type": "gh:Block",
+      "schema:text": "Kaede returns, voice back to calm: “Shall we… cut it here for today?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:74",
+      "@type": "gh:Block",
+      "schema:text": "“Yeah. Cut. Return. We’ll dive next time.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:75",
+      "@type": "gh:Block",
+      "schema:text": "The wind on the landing shifts. The canal’s presence hums faintly in the stacks."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:76",
+      "@type": "gh:Block",
+      "schema:text": "I meet Elias’s gaze and nod. “Let’s continue. Slowly is fine.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:77",
+      "@type": "gh:Block",
+      "schema:text": "# EP1-3 — Afterglow (Question)\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Resolution / Afterthoughts"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:78",
+      "@type": "gh:Block",
+      "schema:text": "“He… was reborn.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:79",
+      "@type": "gh:Block",
+      "schema:text": "“Mm.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:80",
+      "@type": "gh:Block",
+      "schema:text": "“Tamaki, your hands are shaking.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:81",
+      "@type": "gh:Block",
+      "schema:text": "“A little. I’m okay.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:82",
+      "@type": "gh:Block",
+      "schema:text": "Outside the window, the canal sinks into orange. I place a question on my chest."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:83",
+      "@type": "gh:Block",
+      "schema:text": "“Did we really ‘save’ him?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:84",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan smiles. “Salvation isn’t singular. When you called it ‘pain,’ I felt Elias’s wall soften. ‘Correctness’ alone left him breathless. His meme will find new connections and return to the flow. He’s a little freer of the fear of death now.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:85",
+      "@type": "gh:Block",
+      "schema:text": "Kaede draws her shoulders in; her voice is calm again."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:86",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Next case is already in.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:87",
+      "@type": "gh:Block",
+      "schema:text": "She smiles a little."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:88",
+      "@type": "gh:Block",
+      "schema:text": "I laugh. “Then let’s start the next one from ‘feeling good’ again.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:89",
+      "@type": "gh:Block",
+      "schema:text": "I open my notebook and add a final line: ‘Questions beget relationships.’ I write Elias and Logos’s names small beside it and close the page."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:90",
+      "@type": "gh:Block",
+      "schema:text": "Green along the canal sings in the wind. Far away, remnants of the old elevated line fall into quiet shadow. Night deepens in the city of water, and the lattice of light glows softly."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:91",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan touches my shoulder. “Dropping ASC.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:92",
+      "@type": "gh:Block",
+      "schema:text": "“Yeah. Thank you.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:93",
+      "@type": "gh:Block",
+      "schema:text": "Kaede returns to comms, voice gentle: “Short rehearsal tomorrow morning?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:94",
+      "@type": "gh:Block",
+      "schema:text": "“Let’s do it. A half-step rehearsal.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:95",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki joins, his usual cheer back: “Tudo bem! Looking forward to it.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:96",
+      "@type": "gh:Block",
+      "schema:text": "He nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:97",
+      "@type": "gh:Block",
+      "schema:text": "On the stair landing, a quiet margin opens."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:98",
+      "@type": "gh:Block",
+      "schema:text": "I tap a final one-beat kagura. The sign for ending."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:99",
+      "@type": "gh:Block",
+      "schema:text": "Logos smiles faintly. “Will my lord be able to return?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:100",
+      "@type": "gh:Block",
+      "schema:text": "“Yes. The way back is already here.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:101",
+      "@type": "gh:Block",
+      "schema:text": "The wind turns the corner. The night is soft and strong."
+    },
+    {
+      "@id": "block:251022:episodes/ep01/combined.en:102",
+      "@type": "gh:Block",
+      "schema:text": "I close my notebook and take one breath in my chest. ‘Release → afterglow’ settles, quietly."
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:33+09:00"
+}
