@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part2:41",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I nod.",
+    "ja": "Kaede「Tamaki、Neroの構造……完全に統合されてる」"
+  },
+  "gh:index": 41
+}

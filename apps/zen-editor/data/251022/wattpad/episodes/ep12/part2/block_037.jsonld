@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part2:37",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede returns on comms.",
+    "ja": "私は微笑む。"
+  },
+  "gh:index": 37
+}

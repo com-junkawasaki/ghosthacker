@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part2:63",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Welcome back.”",
+    "ja": "Tamaki「うん。私たちも、感謝してる」"
+  },
+  "gh:index": 63
+}

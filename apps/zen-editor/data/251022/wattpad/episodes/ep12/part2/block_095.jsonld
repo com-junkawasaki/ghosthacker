@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part2:95",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "And there is breath.",
+    "ja": "---"
+  },
+  "gh:index": 95
+}

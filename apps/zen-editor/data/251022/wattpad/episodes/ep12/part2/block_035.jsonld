@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part2:35",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. It is good.”",
+    "ja": "Tamaki「うん。あなたは、在る」"
+  },
+  "gh:index": 35
+}

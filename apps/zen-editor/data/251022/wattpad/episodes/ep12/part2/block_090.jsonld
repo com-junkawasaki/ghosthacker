@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part2:90",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I smile.",
+    "ja": "Kaede「完璧ではなく、呼吸」"
+  },
+  "gh:index": 90
+}

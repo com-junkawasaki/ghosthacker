@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part2:101",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I smile.",
+    "ja": "私は手帳に書く。"
+  },
+  "gh:index": 101
+}
