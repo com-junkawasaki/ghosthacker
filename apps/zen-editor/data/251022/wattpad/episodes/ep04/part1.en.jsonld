@@ -1,0 +1,449 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part1.en",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:0",
+      "@type": "gh:Block",
+      "schema:text": "# Session: Leo Kazan \u0026 Millia Stuart - Part 1"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:1",
+      "@type": "gh:Block",
+      "schema:text": "```json\n{\n  \"@context\": \"https://ghosthacker.example.com/\",\n  \"@type\": \"EpisodePart\",\n  \"partOf\": \"episode:s3e2\",\n  \"position\": 1,\n  \"antagonist\": [\n    { \"@id\": \"character:leo-kazan\" },\n    { \"@id\": \"character:millia-stuart\" }\n  ]\n}\n```"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:2",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:3",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Morning river fog…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:4",
+      "@type": "gh:Block",
+      "schema:text": "There’s a hint of worry in her voice."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:5",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Pressure is dropping. On days like this, emotions destabilize easily. Deep breaths, Tamaki.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:6",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Ei, Tamaki! The band is stable. Daytime peak cut is lifted. Plenty of room for sound.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:7",
+      "@type": "gh:Block",
+      "schema:text": "He’s bright, with a note of care."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:8",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, it’s a couple today. The air’s a little hot.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:9",
+      "@type": "gh:Block",
+      "schema:text": "Morning light touches the Shibuya canal. Nei-chan is making something in the kitchen—she doesn’t eat, but likes to cook for me."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:10",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, today’s tough. Couple session.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:11",
+      "@type": "gh:Block",
+      "schema:text": "I pour coffee and open the ToL file."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:12",
+      "@type": "gh:Block",
+      "schema:text": "Leo Kazan, 38, Director of a humanitarian NGO. Millia Stuart, 30, digital artist."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:13",
+      "@type": "gh:Block",
+      "schema:text": "Kaede’s note is attached:"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:14",
+      "@type": "gh:Block",
+      "schema:text": "“They say they ‘love’ each other. But Millia repeats self-harm; Leo ‘tries to save’ her and is exhausted. High likelihood of co-dependence.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:15",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan sits beside me: “Tama, what is ‘love’?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:16",
+      "@type": "gh:Block",
+      "schema:text": "I smile. “Love. I know it—but right now, I’m ‘waiting.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:17",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Ehh? Then I don’t get it!”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:18",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “You two, session starts now.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:19",
+      "@type": "gh:Block",
+      "schema:text": "Kaede joins, more tense than usual."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:20",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Tamaki… this one is hard. I’ve seen it many times in ER—couples who hurt each other under the name of ‘love.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:21",
+      "@type": "gh:Block",
+      "schema:text": "She leaves a beat."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:22",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Leo’s Ghost is Adam Smith’s Theory of Moral Sentiments—seeking ‘sympathy’ from others. Millia’s Ghost is J.S. Mill’s liberty of the individual, plus Japan’s patriarchal ‘chain of ancestors.’ Two Ghosts are tearing her apart.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:23",
+      "@type": "gh:Block",
+      "schema:text": "Deep compassion in Kaede’s tone."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:24",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “They’re trying to ‘save’ each other—and in doing so, they’re hurting each other. In triage terms, near collapse together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:25",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki’s frequency enters—warm, with a trace of sadness."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:26",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Tamaki… listen to their bands.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:27",
+      "@type": "gh:Block",
+      "schema:text": "Quiet, earnest."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:28",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “They are completely async. They use the ‘same words,’ but the meanings don’t match. In music terms, it’s like playing two different songs at once.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:29",
+      "@type": "gh:Block",
+      "schema:text": "I inhale, give Nei-chan a cue, and tap a small kagura. ASC prepped."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:30",
+      "@type": "gh:Block",
+      "schema:text": "The display blurs; the two appear. Leo is passionate; Millia is delicate; and yet… hollowed."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:31",
+      "@type": "gh:Block",
+      "schema:text": "“You’re Tamaki Mizuno? I’m Leo Kazan. This is Millia.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:32",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan (small): “Passion’s strong. Millia’s guard is thin.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:33",
+      "@type": "gh:Block",
+      "schema:text": "Leo’s voice is warm, with fatigue behind it."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:34",
+      "@type": "gh:Block",
+      "schema:text": "Millia smiles small. A fragile smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:35",
+      "@type": "gh:Block",
+      "schema:text": "“I heard you two ‘love each other.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:36",
+      "@type": "gh:Block",
+      "schema:text": "Leo answers at once: “Yes. I love Millia. She is… everything to me.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:37",
+      "@type": "gh:Block",
+      "schema:text": "His fingers squeeze her hand unconsciously. Millia pulls back for an instant, then returns."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:38",
+      "@type": "gh:Block",
+      "schema:text": "Millia’s smile freezes a little."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:39",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan whispers: “Tama, Millia’s emotional metrics… not ‘love’—‘guilt’ is strong.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:40",
+      "@type": "gh:Block",
+      "schema:text": "I ask Millia:"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:41",
+      "@type": "gh:Block",
+      "schema:text": "“Millia, do you… love Leo?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:42",
+      "@type": "gh:Block",
+      "schema:text": "Her gaze wavers. She says, small:"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:43",
+      "@type": "gh:Block",
+      "schema:text": "“...I’m afraid of being ‘loved’ by Leo.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:44",
+      "@type": "gh:Block",
+      "schema:text": "Leo’s throat clicks. “...I’m sorry.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:45",
+      "@type": "gh:Block",
+      "schema:text": "Leo: “Eh…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:46",
+      "@type": "gh:Block",
+      "schema:text": "Leo’s face collapses."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:47",
+      "@type": "gh:Block",
+      "schema:text": "“Millia… why? Weren’t we here to decide work choices today? We have to explain to the board, to family, friends—everyone—”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:48",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Who made the booking?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:49",
+      "@type": "gh:Block",
+      "schema:text": "Millia: “...I did. Watching Leo ‘enjoy’ struggling makes me happy… and anxious.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:50",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Happy?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:51",
+      "@type": "gh:Block",
+      "schema:text": "Millia: “...I like Leo’s family stories. They’re warm.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:52",
+      "@type": "gh:Block",
+      "schema:text": "Leo (bright): “People call me sunny. But I think I can handle it positively.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:53",
+      "@type": "gh:Block",
+      "schema:text": "Leo: “My family always supports me, and I have many close friends. So—I thought it would be fine.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:54",
+      "@type": "gh:Block",
+      "schema:text": "I breathe in. The real work starts here."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:55",
+      "@type": "gh:Block",
+      "schema:text": "“Leo, you think ‘sympathy’ is something you give, don’t you?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:56",
+      "@type": "gh:Block",
+      "schema:text": "He looks at me, startled."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:57",
+      "@type": "gh:Block",
+      "schema:text": "“Millia, you think ‘love’ is a debt you must repay, don’t you?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:58",
+      "@type": "gh:Block",
+      "schema:text": "Tears pool in her eyes."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:59",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, both of them think ‘love’ is a transaction.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:60",
+      "@type": "gh:Block",
+      "schema:text": "I turn to them."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:61",
+      "@type": "gh:Block",
+      "schema:text": "“You’re mixing up ‘love’ and ‘credit.’ And you’re forgetting ‘trust.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:62",
+      "@type": "gh:Block",
+      "schema:text": "Leo asks: “...What’s the difference?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:63",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:64",
+      "@type": "gh:Block",
+      "schema:text": "“We’ll find it now.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:65",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: Leo \u0026 Millia session begins—confusion among love, credit, and trust]**"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:66",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Let’s start with the economy of credit.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:67",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “That bottle of water on the table—will you sell it to me for 100 yen?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:68",
+      "@type": "gh:Block",
+      "schema:text": "Leo: “Eh? Uh… I can sell it!”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:69",
+      "@type": "gh:Block",
+      "schema:text": "Millia: “...I can sell it.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:70",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Right. That’s the economy of ‘others’—the economy of credit. The world of money and contracts.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:71",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Next, the economy of trust and sympathy.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:72",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Will you give that water to a stranger?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:73",
+      "@type": "gh:Block",
+      "schema:text": "Leo: “Ehh, I don’t like strangers. Even if it was given to me!”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:74",
+      "@type": "gh:Block",
+      "schema:text": "Millia (silent)"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:75",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Will you give the water to me?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:76",
+      "@type": "gh:Block",
+      "schema:text": "Leo: “Eh? If it’s Tamaki, you’re cute, so sure!”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:77",
+      "@type": "gh:Block",
+      "schema:text": "Millia (elbows him): “...”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:78",
+      "@type": "gh:Block",
+      "schema:text": "Leo: “Ow.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:79",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki takes the bottle and drinks a sip."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:80",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “This is the economy of ‘friends’—the economy of sympathy and trust.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:81",
+      "@type": "gh:Block",
+      "schema:text": "Leo: “Eh, what do you mean?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:82",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “‘Because she’s cute.’ ‘Because it’s Tamaki.’ Relationship creates value. A value of emotion and sympathy that doesn’t arise with strangers.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:83",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “What you feel is ‘you’—knowledge, culture, experience—has value even without form.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:84",
+      "@type": "gh:Block",
+      "schema:text": "Leo: “Ha—yeah. True. Definitely. Honestly, if it’s Tamaki, you could have charged more!”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:85",
+      "@type": "gh:Block",
+      "schema:text": "Millia (pinches)"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part1.en:86",
+      "@type": "gh:Block",
+      "schema:text": "Leo: “Ow-ow-ow!”"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:39+09:00"
+}
