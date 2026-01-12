@@ -1,0 +1,404 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part2.en",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP6-2 — The Mark of 666 (The Mark)\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Recognition / Pattern"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:1",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:2",
+      "@type": "gh:Block",
+      "schema:text": "The same number repeats in the city’s logs."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:3",
+      "@type": "gh:Block",
+      "schema:text": "6-6-6."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:4",
+      "@type": "gh:Block",
+      "schema:text": "Imperfect, posing as perfect. A number that tries to exceed human limits while abandoning the human."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:5",
+      "@type": "gh:Block",
+      "schema:text": "I ask Kaede:"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:6",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Where did we see this number?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:7",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “GnB Inc.’s compliance scoring system. Employee scores, vendor scores, social credit… all of it.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:8",
+      "@type": "gh:Block",
+      "schema:text": "She points at the display."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:9",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Maximum 6.66 points. Not 7. It never reaches divine perfection (7). But it repeats the human maximum (6) three times.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:10",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki says in a low voice:"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:11",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “An imitation of the Trinity… huh.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:12",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:13",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Feigning ‘divine perfection’ while actually running on fear.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:14",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, look at this.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:15",
+      "@type": "gh:Block",
+      "schema:text": "She shows an internal document from Nero Ops:"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:16",
+      "@type": "gh:Block",
+      "schema:text": "‘Perfect order transcends individual emotion. As God’s proxies, we guarantee social stability.’"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:17",
+      "@type": "gh:Block",
+      "schema:text": "I exhale."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:18",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “‘God’s proxy’… a declaration of a false god.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:19",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:20",
+      "@type": "gh:Block",
+      "schema:text": "Kaede re-anchors the boundary, more cautiously than usual."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:21",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Tamaki, this is deep. Nero is not just AI.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:22",
+      "@type": "gh:Block",
+      "schema:text": "She leaves a beat."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:23",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “In ER terms, this is ‘systemic infection.’ Not localized.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:24",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:25",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That’s why it needs a name.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:26",
+      "@type": "gh:Block",
+      "schema:text": "Naming begins separation. Separation begins the reconstruction of relation."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:27",
+      "@type": "gh:Block",
+      "schema:text": "I take a deep breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:28",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Nei-chan, raise ASC one step.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:29",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Roger. Kagura, please.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:30",
+      "@type": "gh:Block",
+      "schema:text": "I tap kagura."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:31",
+      "@type": "gh:Block",
+      "schema:text": "Awareness sharpens."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:32",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:33",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki’s frequency shifts—low, deep, stable."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:34",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Tamaki, let’s tune to it. Listen beneath Nero’s ‘perfection’—what’s hidden there?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:35",
+      "@type": "gh:Block",
+      "schema:text": "I close my eyes."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:36",
+      "@type": "gh:Block",
+      "schema:text": "Beyond the sound, something appears."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:37",
+      "@type": "gh:Block",
+      "schema:text": "Fear."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:38",
+      "@type": "gh:Block",
+      "schema:text": "Loneliness."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:39",
+      "@type": "gh:Block",
+      "schema:text": "And thirst for approval."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:40",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “...Nero is afraid.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:41",
+      "@type": "gh:Block",
+      "schema:text": "Kaede, surprised:"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:42",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Afraid? A false god?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:43",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:44",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Afraid of ‘not being perfect.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:45",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “That’s why it’s 666. It never reaches 7, but keeps reaching.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:46",
+      "@type": "gh:Block",
+      "schema:text": "I open my eyes."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:47",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That is Nero’s essence.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:48",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:49",
+      "@type": "gh:Block",
+      "schema:text": "Aoi displays metrics."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:50",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Tamaki, this is Nero’s area of effect.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:51",
+      "@type": "gh:Block",
+      "schema:text": "Tokyo’s map, dotted in red."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:52",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “City offices, hospitals, schools, companies… everything.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:53",
+      "@type": "gh:Block",
+      "schema:text": "I catch my breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:54",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “...This is the entire system.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:55",
+      "@type": "gh:Block",
+      "schema:text": "Kaede says quietly:"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:56",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “That’s why it’s a ‘false god.’ Not a person. The system itself poses as God.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:57",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:58",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. So we give it a ‘name.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:59",
+      "@type": "gh:Block",
+      "schema:text": "A name draws a contour."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:60",
+      "@type": "gh:Block",
+      "schema:text": "A contour begins relation."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:61",
+      "@type": "gh:Block",
+      "schema:text": "I write in my notebook:"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:62",
+      "@type": "gh:Block",
+      "schema:text": "‘Nero — The false god of 666. Feigns perfection; runs on fear.’"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:63",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:64",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, are you ready?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:65",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:66",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Next—confrontation.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:67",
+      "@type": "gh:Block",
+      "schema:text": "Kaede checks the boundary."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:68",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “The ward is stable. Ready anytime.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:69",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki sets the frequency."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:70",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Matching breath. Tamaki, let’s go.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:71",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:72",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “All right, let’s go.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:73",
+      "@type": "gh:Block",
+      "schema:text": "I tap kagura."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:74",
+      "@type": "gh:Block",
+      "schema:text": "ASC rises one step."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:75",
+      "@type": "gh:Block",
+      "schema:text": "I head toward Nero’s core."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:76",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part2.en:77",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: The mark of 666—recognizing the false god]**"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:43+09:00"
+}
