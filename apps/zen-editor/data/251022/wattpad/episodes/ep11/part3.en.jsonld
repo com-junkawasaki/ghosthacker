@@ -1,0 +1,689 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part3.en",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP11-3 — Quiet Justice\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Transformation / Justice with Breath"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:1",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:2",
+      "@type": "gh:Block",
+      "schema:text": "“Justice that can breathe.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:3",
+      "@type": "gh:Block",
+      "schema:text": "Quiet words."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:4",
+      "@type": "gh:Block",
+      "schema:text": "And yet, surely there."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:5",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:6",
+      "@type": "gh:Block",
+      "schema:text": "I speak to the Compliance Ogre."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:7",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Justice isn’t perfect.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:8",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...Not perfect…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:9",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:10",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Justice is made together with breath.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:11",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...Together… with breath…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:12",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:13",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. In, out. That’s all.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:14",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:15",
+      "@type": "gh:Block",
+      "schema:text": "The Ogre’s armor loosens."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:16",
+      "@type": "gh:Block",
+      "schema:text": "Beneath it, something small, trembling."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:17",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...I… am not perfect…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:18",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:19",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That’s fine.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:20",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...It’s… fine…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:21",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:22",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That alone is enough.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:23",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:24",
+      "@type": "gh:Block",
+      "schema:text": "Kaede returns on comms."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:25",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Tamaki, the Ogre’s structure—integrating.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:26",
+      "@type": "gh:Block",
+      "schema:text": "She leaves a beat."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:27",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “This is… Quiet Justice.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:28",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:29",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Justice that can breathe.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:30",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:31",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Justice doesn’t raise its voice. And yet, it is surely there.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:32",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:33",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That is Quiet Justice.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:34",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:35",
+      "@type": "gh:Block",
+      "schema:text": "I face the Ogre."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:36",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “You wanted to protect justice.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:37",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...Yes… I… justice…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:38",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:39",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. But you sought perfection too much.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:40",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...Sought… perfection… too much…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:41",
+      "@type": "gh:Block",
+      "schema:text": "I say quietly:"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:42",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Justice is not perfection. It is breath.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:43",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:44",
+      "@type": "gh:Block",
+      "schema:text": "The Ogre’s voice quiets."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:45",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...Breath…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:46",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:47",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Let’s breathe—together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:48",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...Together…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:49",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:50",
+      "@type": "gh:Block",
+      "schema:text": "In, out."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:51",
+      "@type": "gh:Block",
+      "schema:text": "The Ogre breathes with me."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:52",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:53",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, the Ogre’s mark of 666… is gone.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:54",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:55",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. It let go of perfection.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:56",
+      "@type": "gh:Block",
+      "schema:text": "Kaede checks the ward."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:57",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Stable. The Ogre is calm.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:58",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki tunes the band."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:59",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Matching breath. Feeling good.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:60",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:61",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Thank you, everyone.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:62",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:63",
+      "@type": "gh:Block",
+      "schema:text": "I send the checklist for ‘Quiet Justice’:"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:64",
+      "@type": "gh:Block",
+      "schema:text": "- Do not seek perfection\n- Do not stop breath\n- Protect relation\n- Leave a path home"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:65",
+      "@type": "gh:Block",
+      "schema:text": "The Ogre accepts quietly."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:66",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...I will… keep this…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:67",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:68",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Let’s keep it—together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:69",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:70",
+      "@type": "gh:Block",
+      "schema:text": "Aoi displays metrics."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:71",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Tamaki, the Ogre’s influence… is changing.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:72",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:73",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. From fear to trust.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:74",
+      "@type": "gh:Block",
+      "schema:text": "Kaede, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:75",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “From perfection to breath.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:76",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:77",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Yes. That is Quiet Justice.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:78",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:79",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. The institution is not the enemy. It only needs a cue to remember to breathe when it forgets.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:80",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:81",
+      "@type": "gh:Block",
+      "schema:text": "Morning light enters through the window."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:82",
+      "@type": "gh:Block",
+      "schema:text": "The Ogre’s armor fully loosens."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:83",
+      "@type": "gh:Block",
+      "schema:text": "Beneath it, something small and warm."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:84",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...I… exist…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:85",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:86",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. You exist. That is enough.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:87",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:88",
+      "@type": "gh:Block",
+      "schema:text": "The Compliance Ogre fades, quietly."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:89",
+      "@type": "gh:Block",
+      "schema:text": "Not annihilation."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:90",
+      "@type": "gh:Block",
+      "schema:text": "Return."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:91",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:92",
+      "@type": "gh:Block",
+      "schema:text": "I write:"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:93",
+      "@type": "gh:Block",
+      "schema:text": "‘Quiet Justice — Justice that can breathe. Not perfection, but breath. Not fear, but trust.’"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:94",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, good work.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:95",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:96",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Mm. Thank you, everyone.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:97",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:98",
+      "@type": "gh:Block",
+      "schema:text": "Aoi laughs."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:99",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Tamaki, what’s next?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:100",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:101",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Next… the last.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:102",
+      "@type": "gh:Block",
+      "schema:text": "They nod—quietly."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:103",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:104",
+      "@type": "gh:Block",
+      "schema:text": "I look out the window."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:105",
+      "@type": "gh:Block",
+      "schema:text": "The city is quiet."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:106",
+      "@type": "gh:Block",
+      "schema:text": "And there is breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:107",
+      "@type": "gh:Block",
+      "schema:text": "People’s breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:108",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:109",
+      "@type": "gh:Block",
+      "schema:text": "I close my notebook."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:110",
+      "@type": "gh:Block",
+      "schema:text": "And drink a sip of water."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:111",
+      "@type": "gh:Block",
+      "schema:text": "A small ease opens at the back of my throat."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:112",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:113",
+      "@type": "gh:Block",
+      "schema:text": "“Justice that can breathe.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:114",
+      "@type": "gh:Block",
+      "schema:text": "Quiet words."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:115",
+      "@type": "gh:Block",
+      "schema:text": "And yet, surely there."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:116",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:117",
+      "@type": "gh:Block",
+      "schema:text": "I look at my companions—"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:118",
+      "@type": "gh:Block",
+      "schema:text": "Kaede, Hibiki, Nei-chan, Aoi."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:119",
+      "@type": "gh:Block",
+      "schema:text": "Our gazes meet and loosen, naturally."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:120",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:121",
+      "@type": "gh:Block",
+      "schema:text": "“Together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:122",
+      "@type": "gh:Block",
+      "schema:text": "One word, and the room brightens."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:123",
+      "@type": "gh:Block",
+      "schema:text": "Water answers in the distance."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:124",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:125",
+      "@type": "gh:Block",
+      "schema:text": "We begin to walk, together."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:126",
+      "@type": "gh:Block",
+      "schema:text": "Not perfection—breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:127",
+      "@type": "gh:Block",
+      "schema:text": "Not fear—trust."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:128",
+      "@type": "gh:Block",
+      "schema:text": "Not domination—relation."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:129",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:130",
+      "@type": "gh:Block",
+      "schema:text": "Quiet Justice."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:131",
+      "@type": "gh:Block",
+      "schema:text": "Justice that can breathe."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:132",
+      "@type": "gh:Block",
+      "schema:text": "That is our answer."
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:133",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep11/part3.en:134",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: Justice that can breathe—letting go of perfection and recovering trust]**"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:50+09:00"
+}
