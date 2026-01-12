@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:58",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Kaede, set the boundary.”",
+    "ja": "私は、GnB Inc.のシステムに触れる。"
+  },
+  "gh:index": 58
+}

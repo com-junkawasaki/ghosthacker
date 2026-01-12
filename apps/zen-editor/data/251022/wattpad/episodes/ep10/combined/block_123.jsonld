@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:123",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede, quiet:",
+    "ja": "**[Beat: 清掃の偽神——GnB Inc.の手法と関係の保護]**"
+  },
+  "gh:index": 123
+}

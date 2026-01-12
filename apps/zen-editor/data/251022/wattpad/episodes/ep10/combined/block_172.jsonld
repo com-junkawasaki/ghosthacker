@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:172",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede, quiet:",
+    "ja": "朝のアナウンスが流れる。"
+  },
+  "gh:index": 172
+}

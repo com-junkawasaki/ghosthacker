@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:162",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "System: “...A path home…”",
+    "ja": "Nei-chan『タマ、Systemの666の刻印……消えてる』"
+  },
+  "gh:index": 162
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:42",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "A list appears:",
+    "ja": "Hibiki「これは、偽神の手法だ。Neroと同じ」"
+  },
+  "gh:index": 42
+}

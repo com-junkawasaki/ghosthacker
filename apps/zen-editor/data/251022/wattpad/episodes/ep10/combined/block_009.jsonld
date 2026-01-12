@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:9",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “‘Unnecessary information loops damage social soundness; we clean them as part of routine hygiene management.’”",
+    "ja": "Kaede「『不要な情報のループは、社会の健全性を損なうため、定期的な衛生管理の一環として清掃している』……だって」"
+  },
+  "gh:index": 9
+}

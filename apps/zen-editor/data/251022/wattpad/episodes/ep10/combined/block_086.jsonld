@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:86",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "System: “...But… the unnecessary…”",
+    "ja": "Kaede「これは……恐れだ。不完全を恐れてる」"
+  },
+  "gh:index": 86
+}

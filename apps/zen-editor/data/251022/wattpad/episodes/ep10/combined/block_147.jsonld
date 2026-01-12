@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:147",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Stable. The System is calming.”",
+    "ja": "System『……わたしは……清掃を……』"
+  },
+  "gh:index": 147
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:117",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Let’s breathe together.”",
+    "ja": "Kaede「清掃から、保護に」"
+  },
+  "gh:index": 117
+}

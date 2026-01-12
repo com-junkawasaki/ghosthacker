@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:180",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The city’s noise drops half a step.",
+    "ja": "『貴社の介入を確認した。当社の社会衛生プログラムへの干渉は、記録される』"
+  },
+  "gh:index": 180
+}
