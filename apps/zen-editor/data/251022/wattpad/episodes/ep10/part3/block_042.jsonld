@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part3:42",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “From cleansing to protection.”",
+    "ja": "Kaede「清掃から、保護に」"
+  },
+  "gh:index": 42
+}

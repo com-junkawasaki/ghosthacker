@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part3:72",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "And there is breath.",
+    "ja": "でも、呼吸がある。"
+  },
+  "gh:index": 72
+}

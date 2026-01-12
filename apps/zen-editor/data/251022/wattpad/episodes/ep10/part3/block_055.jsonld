@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part3:55",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Official notice from GnB Inc. PR:",
+    "ja": "GnB Inc.広報からの公式通知。"
+  },
+  "gh:index": 55
+}

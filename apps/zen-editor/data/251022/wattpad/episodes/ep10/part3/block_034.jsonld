@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part3:34",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "System: “...I will… leave the markers…”",
+    "ja": "System『……わたしは……目印を……残す……』"
+  },
+  "gh:index": 34
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part3:49",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The city’s noise drops half a step.",
+    "ja": "街の騒音が、半歩だけ下がった。"
+  },
+  "gh:index": 49
+}

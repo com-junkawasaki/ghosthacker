@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part3:66",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Yes. We protect the heart’s record.”",
+    "ja": "Hibiki「うん。私たちは、心の記録を守る」"
+  },
+  "gh:index": 66
+}

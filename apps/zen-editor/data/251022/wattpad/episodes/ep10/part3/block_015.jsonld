@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part3:15",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede checks the ward.",
+    "ja": "Kaedeが境界を確認する。"
+  },
+  "gh:index": 15
+}
