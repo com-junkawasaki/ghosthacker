@@ -1,0 +1,154 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part3.en",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:0",
+      "@type": "gh:Block",
+      "schema:text": "# Session: Lachlan Keyes - Part 3"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:1",
+      "@type": "gh:Block",
+      "schema:text": "---\nAoi (comms): “Outside, the cicadas started. Coastal flood map update came in—okay to hold?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:2",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Hold.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:3",
+      "@type": "gh:Block",
+      "schema:text": "Quiet, firm."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:4",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Focus on him now. We’ll review the map later.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:5",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, breathe with him.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:6",
+      "@type": "gh:Block",
+      "schema:text": "The wall is down, and he shows himself for the first time. He trembles, and he cries."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:7",
+      "@type": "gh:Block",
+      "schema:text": "“...I couldn’t trust anyone. No one… trusted me.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:8",
+      "@type": "gh:Block",
+      "schema:text": "I take his hand. The cold begins to warm."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:9",
+      "@type": "gh:Block",
+      "schema:text": "“I’m here now. You want to trust—that’s your humanity.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:10",
+      "@type": "gh:Block",
+      "schema:text": "He smiles unexpectedly, then frowns, unsure. “...This face—it’s been a while.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:11",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Trust is ‘not separated.’ Tama and I are like that.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:12",
+      "@type": "gh:Block",
+      "schema:text": "He smiles. “Illogical… but beautiful.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:13",
+      "@type": "gh:Block",
+      "schema:text": "Kaede returns, a little relief in her voice: “Your heart was still in orbit. Now it returned. Welcome back, Lachlan.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:14",
+      "@type": "gh:Block",
+      "schema:text": "I ask: “Who do you want to meet next?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:15",
+      "@type": "gh:Block",
+      "schema:text": "“...My mother. I haven’t called her in eighteen months.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:16",
+      "@type": "gh:Block",
+      "schema:text": "“Call her when you’re back. Teach her the ‘feeling good’ breathing.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:17",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Your mom will go ‘huh?’ But she’ll be relieved right away.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:18",
+      "@type": "gh:Block",
+      "schema:text": "He nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:19",
+      "@type": "gh:Block",
+      "schema:text": "—A short monologue. Childhood under a father’s command. A silent mother. He grew up in a world where ‘his body was not his.’ The first freedom he will reclaim by breathing is the opening of his ribcage."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:20",
+      "@type": "gh:Block",
+      "schema:text": "The next case is projected on the window."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:21",
+      "@type": "gh:Block",
+      "schema:text": "Leo Kazan \u0026 Millia Stuart."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:22",
+      "@type": "gh:Block",
+      "schema:text": "I inhale. “…A couple?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:23",
+      "@type": "gh:Block",
+      "schema:text": "Kaede’s voice carries a hint of worry: “Yes. They say ‘we love each other,’ while hurting each other. A difficult case.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:24",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Is that… love?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:25",
+      "@type": "gh:Block",
+      "schema:text": "I look at the canal’s light. “We’ll find out.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:26",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part3.en:27",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: Release—from the childhood body to the present breath]**\n**[Afterglow: Call your mother; on to the next ‘LOVE’ session]**"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:38+09:00"
+}
