@@ -7,6 +7,7 @@ export interface Node {
   type: string;
   group: string;
   content?: string;
+  localizedContent?: Record<string, string>; // Add this
   x?: number;
   y?: number;
   children?: string[]; // IDs of children
@@ -145,19 +146,24 @@ class GraphStore {
     }
   }
 
-  async saveManuscript(manuscriptId: string, content: string) {
+  async saveManuscript(manuscriptId: string, contentOrBlocks: string | any[]) {
     if (!this.projectId) return;
     try {
       const client = await getClient();
       if (!client) return;
 
-      // Split content into blocks
-      const rawBlocks = content.split('\n\n');
-      const blocks = rawBlocks.map((text, i) => ({
-        id: `${manuscriptId}:block:${i}`,
-        content: text.trim(),
-        type: 'gh:Block'
-      })).filter(b => b.content !== "");
+      let blocks = [];
+      if (typeof contentOrBlocks === 'string') {
+        const rawBlocks = contentOrBlocks.split('\n\n');
+        blocks = rawBlocks.map((text, i) => ({
+          id: `${manuscriptId}:block:${i}`,
+          content: text.trim(),
+          type: 'gh:Block',
+          localizedContent: { ja: text.trim() } // assume ja for raw edit
+        })).filter(b => b.content !== "");
+      } else {
+        blocks = contentOrBlocks;
+      }
 
       await client.saveManuscript({
         projectId: this.projectId,
@@ -167,7 +173,7 @@ class GraphStore {
 
       // Refresh blocks in store
       await this.fetchBlocks(manuscriptId);
-      alert("Manuscript saved successfully as JSON-LD");
+      // alert("Manuscript saved successfully");
     } catch (err) {
       console.error("Failed to save manuscript:", err);
       alert("Failed to save manuscript");

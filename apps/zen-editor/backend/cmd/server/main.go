@@ -77,7 +77,97 @@ func NewEditorServer(dataRoot string) *EditorServer {
 		Git:           git.NewGitService(dataRoot),
 	}
 	s.registerMCPTools()
+	s.MigrateAllToJSONLD()
 	return s
+}
+
+func (s *EditorServer) MigrateAllToJSONLD() {
+	log.Printf("Starting batch migration of .md manuscripts to .jsonld...")
+	
+	// Scan all project directories in WorkspaceRoot
+	entries, err := os.ReadDir(s.WorkspaceRoot)
+	if err != nil {
+		log.Printf("Migration error: failed to read workspace root: %v", err)
+		return
+	}
+
+	for _, entry := range entries {
+		if !entry.IsDir() {
+			continue
+		}
+		projectID := entry.Name()
+		wattpadDir := filepath.Join(s.WorkspaceRoot, projectID, "wattpad")
+		
+		if _, err := os.Stat(wattpadDir); os.IsNotExist(err) {
+			continue
+		}
+
+		filepath.Walk(wattpadDir, func(path string, info os.FileInfo, err error) error {
+			if err != nil || info.IsDir() || filepath.Ext(path) != ".md" {
+				return nil
+			}
+
+			baseName := strings.TrimSuffix(path, ".md")
+			jsonldPath := baseName + ".jsonld"
+
+			if _, err := os.Stat(jsonldPath); err == nil {
+				// Already exists
+				return nil
+			}
+
+			log.Printf("Migrating: %s -> %s", path, jsonldPath)
+			data, err := os.ReadFile(path)
+			if err != nil {
+				return nil
+			}
+
+			rawBlocks := strings.Split(string(data), "\n\n")
+			var blocks []interface{}
+			for bIdx, bContent := range rawBlocks {
+				bContent = strings.TrimSpace(bContent)
+				if bContent == "" {
+					continue
+				}
+				// Try to guess a stable ID
+				relPath, _ := filepath.Rel(wattpadDir, path)
+				baseRelPath := strings.TrimSuffix(relPath, ".md")
+				
+				blocks = append(blocks, map[string]interface{}{
+					"@id":         fmt.Sprintf("block:%s:%s:%d", projectID, baseRelPath, bIdx),
+					"@type":       "gh:Block",
+					"schema:text": bContent,
+				})
+			}
+
+			if len(blocks) == 0 {
+				return nil
+			}
+
+			manuscript := map[string]interface{}{
+				"@context": map[string]interface{}{
+					"gh":     "https://gftd.ai/ghost-hacker/ontology/",
+					"schema": "https://schema.org/",
+					"name":   "schema:name",
+					"text":   "schema:text",
+					"blocks": "gh:blocks",
+				},
+				"@id":       fmt.Sprintf("manuscript:%s:%s", projectID, strings.TrimSuffix(filepath.Base(path), ".md")),
+				"@type":     "gh:Manuscript",
+				"gh:blocks": blocks,
+				"updatedAt": time.Now().Format(time.RFC3339),
+			}
+
+			updatedData, _ := json.MarshalIndent(manuscript, "", "  ")
+			os.WriteFile(jsonldPath, updatedData, 0644)
+			
+			if s.Git != nil {
+				s.Git.CommitDocument(jsonldPath, fmt.Sprintf("Auto-migrate %s to JSON-LD", path))
+			}
+
+			return nil
+		})
+	}
+	log.Printf("Batch migration complete.")
 }
 
 func initNodeEmotions() map[string]map[string]float32 {
@@ -262,32 +352,115 @@ func (s *EditorServer) handleGenerateNodeTool(ctx context.Context, req mcp.CallT
 	args := req.Params.Arguments.(map[string]interface{})
 	paths, _ := args["context_paths"].([]interface{})
 	newPath, _ := args["new_path"].(string)
+	projectID, _ := args["project_id"].(string)
+	if projectID == "" {
+		projectID = "251022"
+	}
+
 	var contextTexts []string
 	for _, p := range paths {
 		path := p.(string)
-		if !filepath.IsAbs(path) {
-			path = filepath.Join(s.WorkspaceRoot, path)
-		}
-		content, err := os.ReadFile(path)
-		if err == nil {
-			contextTexts = append(contextTexts, string(content))
+		// If path is a node ID like character:tamaki, we should fetch its context from JSON-LD
+		if strings.Contains(path, ":") {
+			contextTexts = append(contextTexts, s.buildGraphRAGContext(ctx, projectID, []string{path}))
+		} else {
+			if !filepath.IsAbs(path) {
+				path = filepath.Join(s.WorkspaceRoot, path)
+			}
+			content, err := os.ReadFile(path)
+			if err == nil {
+				contextTexts = append(contextTexts, string(content))
+			}
 		}
 	}
+
 	aiClient := &ai.OpenRouterClient{
 		ApiKey: "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",
 		Model:  "anthropic/claude-3.5-sonnet",
 	}
-	generated, err := aiClient.GenerateNextScene(ctx, contextTexts)
+
+	promptType := "general scene"
+	if strings.Contains(newPath, "portrait") {
+		promptType = "Portrait Image Prompt (Physical Description)"
+	} else if strings.Contains(newPath, "history") || strings.Contains(newPath, "bio") {
+		promptType = "Character Biography/History"
+	}
+
+	combinedContext := strings.Join(contextTexts, "\n\n")
+	prompt := fmt.Sprintf(`Based on the following context from the "Ghost Hacker" series, generate content for a: %s.
+New Path/Context: %s
+
+CONTEXT:
+%s
+
+Generate only the content. If it is a portrait, describe the character's appearance in detail for an image generator. If it is history, write a compelling backstory.`, promptType, newPath, combinedContext)
+
+	generated, err := aiClient.GenerateNextScene(ctx, []string{prompt})
 	if err != nil {
 		return mcp.NewToolResultError(err.Error()), nil
 	}
+
 	absNewPath := newPath
 	if !filepath.IsAbs(absNewPath) {
-		absNewPath = filepath.Join(s.WorkspaceRoot, absNewPath)
+		absNewPath = filepath.Join(s.WorkspaceRoot, projectID, absNewPath)
 	}
 	os.MkdirAll(filepath.Dir(absNewPath), 0755)
 	os.WriteFile(absNewPath, []byte(generated), 0644)
-	return mcp.NewToolResultText(fmt.Sprintf("Generated at %s", newPath)), nil
+
+	// Also add a stub to ghost-hacker.jsonld so it appears in the graph
+	s.addNodeStubToGraph(projectID, newPath, promptType, paths)
+
+	return mcp.NewToolResultText(fmt.Sprintf("Generated %s at %s", promptType, newPath)), nil
+}
+
+func (s *EditorServer) addNodeStubToGraph(projectID, path, nodeType string, contextIds []interface{}) {
+	jsonLdPath := filepath.Join(s.WorkspaceRoot, projectID, "ghost-hacker.jsonld")
+	data, err := os.ReadFile(jsonLdPath)
+	if err != nil {
+		return
+	}
+	var g map[string]interface{}
+	json.Unmarshal(data, &g)
+	graph, _ := g["@graph"].([]interface{})
+
+	newID := path
+	if !strings.HasPrefix(newID, "asset:") && !strings.HasPrefix(newID, "history:") {
+		if strings.Contains(path, "assets") {
+			newID = "asset:" + filepath.Base(path)
+		} else {
+			newID = "history:" + filepath.Base(path)
+		}
+	}
+
+	newNode := map[string]interface{}{
+		"@id":         newID,
+		"@type":       "gh:GeneratedContent",
+		"name":        filepath.Base(path),
+		"description": fmt.Sprintf("Generated %s", nodeType),
+		"gh:source":   path,
+	}
+
+	graph = append(graph, newNode)
+
+	// Add relations to context nodes
+	for _, ctxID := range contextIds {
+		idStr, ok := ctxID.(string)
+		if !ok { continue }
+		
+		relEvent := map[string]interface{}{
+			"@id":              "rel:gen:" + uuid.New().String()[:8],
+			"@type":            "gh:RelationEvent",
+			"gh:relationType": "gh:relatesTo",
+			"gh:participants": []string{newID, idStr},
+			"gh:evidence":     "AI Generated content based on this node",
+			"gh:strength":     0.9,
+		}
+		graph = append(graph, relEvent)
+	}
+
+	g["@graph"] = graph
+	updatedData, _ := json.MarshalIndent(g, "", "  ")
+	os.WriteFile(jsonLdPath, updatedData, 0644)
 }
 
 func (s *EditorServer) handleOpenFileTool(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
@@ -687,28 +860,20 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 				group = "unlinked"
 			}
 
-			if (group == "entity" || group == "link-node" || group == "unlinked" || group == "concept" || group == "content" || group == "asset" || group == "environment" || group == "item" || group == "emotion") && entityHubs[group] == "" {
+			// Ensure all groups have a hub
+			if entityHubs[group] == "" {
 				hubID := "hub:" + group
 				entityHubs[group] = hubID
-				label := strings.Title(group) + " Circle"
-				if group == "unlinked" {
-					label = "Unlinked Circle"
-				} else if group == "content" {
-					label = "Story Circle"
-				} else if group == "asset" {
-					label = "Asset Circle"
-				} else if group == "entity" {
-					label = "Character Circle"
-				} else if group == "environment" {
-					label = "Environment Circle"
-				} else if group == "item" {
-					label = "Item Circle"
-				} else if group == "emotion" {
-					label = "Emotion Circle"
-				}
+				hLabel := strings.Title(group) + " Circle"
+				if group == "unlinked" { hLabel = "Unlinked Circle" }
+				if group == "content" { hLabel = "Story Circle" }
+				if group == "asset" { hLabel = "Asset Circle" }
+				if group == "entity" { hLabel = "Character Circle" }
+				if group == "translation" { hLabel = "Translation Circle" }
+				
 				resp.Nodes = append(resp.Nodes, &editorpb.Node{
 					Id:    hubID,
-					Label: label,
+					Label: hLabel,
 					Type:  "gh:ClusterHub",
 					Group: "meta",
 				})
@@ -784,6 +949,15 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 		}
 	}
 
+	if entityHubs["translation"] == "" {
+		resp.Nodes = append(resp.Nodes, &editorpb.Node{
+			Id:    "hub:translation",
+			Label: "Translation Circle",
+			Type:  "gh:ClusterHub",
+			Group: "meta",
+		})
+	}
+
 	manifestPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/manifest.json")
 	mdata, err := os.ReadFile(manifestPath)
 	if err == nil {
@@ -813,24 +987,14 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 			})
 
 			for _, file := range ep.Files {
-				// Prioritize .jsonld if it exists, otherwise check for .md
 				baseName := strings.TrimSuffix(strings.TrimSuffix(file, ".md"), ".jsonld")
 				jsonldFile := baseName + ".jsonld"
-				actualFile := jsonldFile // Default to suggesting .jsonld
 				
-				jsonldPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", jsonldFile)
-				mdPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", baseName+".md")
-				
-				if _, err := os.Stat(jsonldPath); err != nil {
-					if _, err := os.Stat(mdPath); err == nil {
-						actualFile = baseName + ".md"
-					}
-				}
-
-				mNodeID := fmt.Sprintf("manuscript:%s:%s", ep.ID, actualFile)
+				// Exclusively use .jsonld in the data folder
+				mNodeID := fmt.Sprintf("manuscript:%s:%s", ep.ID, jsonldFile)
 				mNode := &editorpb.Node{
 					Id:    mNodeID,
-					Label: actualFile,
+					Label: jsonldFile,
 					Type:  "gh:Manuscript",
 					Group: "content",
 					Embedding: s.generateDummyEmbedding(mNodeID),
@@ -901,179 +1065,151 @@ func (s *EditorServer) GetBlocks(ctx context.Context, req *connect.Request[edito
 	
 	epID := parts[1]
 	fileRelPath := strings.Join(parts[2:], ":")
-	
 	baseName := strings.TrimSuffix(strings.TrimSuffix(fileRelPath, ".md"), ".jsonld")
-	jsonldPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", baseName+".jsonld")
-	mdPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", baseName+".md")
 	
-	var blocks []interface{}
-	var data []byte
-	var err error
-	var migrated bool
-
-	if _, err = os.Stat(jsonldPath); err == nil {
-		data, err = os.ReadFile(jsonldPath)
-		if err == nil {
-			var manuscript struct {
-				Blocks []interface{} `json:"gh:blocks"`
-			}
-			if jerr := json.Unmarshal(data, &manuscript); jerr == nil {
-				blocks = manuscript.Blocks
-			} else {
-				log.Printf("Warning: Invalid JSON in %s, treating as raw text", jsonldPath)
-				err = jerr
-			}
-		}
-	} 
+	// Granular block directory path
+	blockDir := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", baseName)
 	
-	if len(blocks) == 0 {
-		// Fallback to .md and perform migration
-		if _, err = os.Stat(mdPath); err == nil {
-			data, err = os.ReadFile(mdPath)
-			if err == nil {
-				rawBlocks := strings.Split(string(data), "\n\n")
-				for bIdx, bContent := range rawBlocks {
-					bContent = strings.TrimSpace(bContent)
-					if bContent == "" {
-						continue
-					}
-					blocks = append(blocks, map[string]interface{}{
-						"@id":         fmt.Sprintf("block:%s:%s:%d", epID, baseName, bIdx),
-						"@type":       "gh:Block",
-						"schema:text": bContent,
-					})
-				}
-				migrated = true
-			}
-		}
-	}
-
-	if err != nil && len(blocks) == 0 {
-		return nil, connect.NewError(connect.CodeNotFound, err)
-	}
-
-	// If migrated from MD, save the JSON-LD version automatically
-	if migrated && len(blocks) > 0 {
-		manuscript := map[string]interface{}{
-			"@context": map[string]interface{}{
-				"gh":     "https://gftd.ai/ghost-hacker/ontology/",
-				"schema": "https://schema.org/",
-				"name":   "schema:name",
-				"text":   "schema:text",
-				"blocks": "gh:blocks",
-			},
-			"@id":       req.Msg.ManuscriptId,
-			"@type":     "gh:Manuscript",
-			"gh:blocks": blocks,
-			"updatedAt": time.Now().Format(time.RFC3339),
-		}
-		updatedData, _ := json.MarshalIndent(manuscript, "", "  ")
-		os.WriteFile(jsonldPath, updatedData, 0644)
-		if s.Git != nil {
-			s.Git.CommitDocument(jsonldPath, fmt.Sprintf("Auto-migrate manuscript %s to JSON-LD", req.Msg.ManuscriptId))
-		}
-	}
-
 	resp := &editorpb.GetBlocksResponse{}
-	var prevBlockID string
-	for _, b := range blocks {
-		bMap := b.(map[string]interface{})
-		bID, _ := bMap["@id"].(string)
-		bContent, _ := bMap["schema:text"].(string)
+	var blockFiles []string
+
+	// Try reading from granular directory first
+	if entries, err := os.ReadDir(blockDir); err == nil {
+		for _, entry := range entries {
+			if !entry.IsDir() && strings.HasPrefix(entry.Name(), "block_") && strings.HasSuffix(entry.Name(), ".jsonld") {
+				blockFiles = append(blockFiles, filepath.Join(blockDir, entry.Name()))
+			}
+		}
+		sort.Strings(blockFiles) // Ensure order by filename (block_000, 001...)
 		
-		shortLabel := bContent
-		runes := []rune(bContent)
-		if len(runes) > 30 {
-			shortLabel = string(runes[:30]) + "..."
-		}
-		shortLabel = strings.ReplaceAll(shortLabel, "\n", " ")
+		for _, path := range blockFiles {
+			data, _ := os.ReadFile(path)
+			var bMap map[string]interface{}
+			json.Unmarshal(data, &bMap)
+			
+			id, _ := bMap["@id"].(string)
+			contentMap, _ := bMap["gh:content"].(map[string]interface{})
+			
+			localized := make(map[string]string)
+			for k, v := range contentMap {
+				localized[k] = v.(string)
+			}
 
-		bNode := &editorpb.Node{
-			Id:      bID,
-			Label:   shortLabel,
-			Type:    "gh:Block",
-			Content: bContent,
-			Group:   "content",
-			Embedding: s.generateDummyEmbedding(bID),
-		}
-		resp.Nodes = append(resp.Nodes, bNode)
+			// For the generic content field, prioritize ja then en
+			mainContent := localized["ja"]
+			if mainContent == "" { mainContent = localized["en"] }
 
-		resp.Edges = append(resp.Edges, &editorpb.Edge{
-			FromId:   req.Msg.ManuscriptId,
-			ToId:     bID,
-			Relation: "gh:contains",
-			Style:    "dashed",
-			Color:    "#0071e3",
-			Group:    "structural",
-			Distance: 60,
-			Strength: 0.8,
-		})
-
-		if prevBlockID != "" {
-			resp.Edges = append(resp.Edges, &editorpb.Edge{
-				FromId:   prevBlockID,
-				ToId:     bNode.Id,
-				Relation: "gh:precedes",
-				Style:    "solid",
-				Color:    "#34c759",
-				Group:    "structural",
-				Distance: 30,
-				Strength: 1.0,
+			resp.Nodes = append(resp.Nodes, &editorpb.Node{
+				Id:               id,
+				Label:            truncateLabel(mainContent),
+				Type:             "gh:Block",
+				Content:          mainContent,
+				LocalizedContent: localized,
+				Group:            "content",
+				Embedding:        s.generateDummyEmbedding(id),
 			})
 		}
-		prevBlockID = bNode.Id
+	} else {
+		// Fallback to legacy single JSON-LD file
+		jsonldPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", baseName+".jsonld")
+		
+		var blocks []interface{}
+		var data []byte
+		if _, err := os.Stat(jsonldPath); err == nil {
+			data, _ = os.ReadFile(jsonldPath)
+			var m struct { Blocks []interface{} `json:"gh:blocks"` }
+			json.Unmarshal(data, &m)
+			blocks = m.Blocks
+		}
+
+		for _, b := range blocks {
+			bMap := b.(map[string]interface{})
+			id, _ := bMap["@id"].(string)
+			text, _ := bMap["schema:text"].(string)
+			
+			node := &editorpb.Node{
+				Id:      id,
+				Label:   truncateLabel(text),
+				Type:    "gh:Block",
+				Content: text,
+				LocalizedContent: map[string]string{"ja": text}, // assume ja for legacy
+				Group:   "content",
+				Embedding: s.generateDummyEmbedding(id),
+			}
+			resp.Nodes = append(resp.Nodes, node)
+		}
+	}
+
+	// Build edges between blocks
+	for i := 0; i < len(resp.Nodes); i++ {
+		resp.Edges = append(resp.Edges, &editorpb.Edge{
+			FromId: req.Msg.ManuscriptId, ToId: resp.Nodes[i].Id,
+			Relation: "gh:contains", Style: "dashed", Color: "#0071e3", Group: "structural",
+		})
+		if i > 0 {
+			resp.Edges = append(resp.Edges, &editorpb.Edge{
+				FromId: resp.Nodes[i-1].Id, ToId: resp.Nodes[i].Id,
+				Relation: "gh:precedes", Style: "solid", Color: "#34c759", Group: "structural",
+			})
+		}
 	}
 
 	return connect.NewResponse(resp), nil
 }
 
+func truncateLabel(s string) string {
+	runes := []rune(strings.ReplaceAll(s, "\n", " "))
+	if len(runes) > 30 { return string(runes[:30]) + "..." }
+	return string(runes)
+}
+
 func (s *EditorServer) SaveManuscript(ctx context.Context, req *connect.Request[editorpb.SaveManuscriptRequest]) (*connect.Response[editorpb.SaveManuscriptResponse], error) {
-	log.Printf("RPC: SaveManuscript called for manuscript: %s", req.Msg.ManuscriptId)
+	log.Printf("RPC: SaveManuscript (Granular) called for: %s", req.Msg.ManuscriptId)
 	
 	parts := strings.Split(req.Msg.ManuscriptId, ":")
-	if len(parts) < 3 {
-		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("invalid manuscript id format"))
-	}
-	fileRelPath := strings.Join(parts[2:], ":")
-	baseName := strings.TrimSuffix(strings.TrimSuffix(fileRelPath, ".md"), ".jsonld")
-	jsonldPath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", baseName+".jsonld")
+	if len(parts) < 3 { return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("invalid ID")) }
+	
+	baseName := strings.TrimSuffix(strings.TrimSuffix(strings.Join(parts[2:], ":"), ".md"), ".jsonld")
+	blockDir := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", baseName)
+	os.MkdirAll(blockDir, 0755)
 
-	blocks := []interface{}{}
-	for _, b := range req.Msg.Blocks {
-		blocks = append(blocks, map[string]interface{}{
-			"@id":         b.Id,
-			"@type":       "gh:Block",
-			"schema:text": b.Content,
-		})
+	// Delete old block files
+	entries, _ := os.ReadDir(blockDir)
+	for _, e := range entries {
+		if !e.IsDir() { os.Remove(filepath.Join(blockDir, e.Name())) }
 	}
 
-	manuscript := map[string]interface{}{
-		"@context": map[string]interface{}{
-			"gh":     "https://gftd.ai/ghost-hacker/ontology/",
-			"schema": "https://schema.org/",
-			"name":   "schema:name",
-			"text":   "schema:text",
-			"blocks": "gh:blocks",
-		},
-		"@id":       req.Msg.ManuscriptId,
-		"@type":     "gh:Manuscript",
-		"gh:blocks": blocks,
-		"updatedAt": time.Now().Format(time.RFC3339),
-	}
+	for i, b := range req.Msg.Blocks {
+		filename := fmt.Sprintf("block_%03d.jsonld", i)
+		path := filepath.Join(blockDir, filename)
+		
+		localized := b.LocalizedContent
+		if len(localized) == 0 {
+			localized = map[string]string{"ja": b.Content}
+		}
 
-	data, _ := json.MarshalIndent(manuscript, "", "  ")
-	if err := os.WriteFile(jsonldPath, data, 0644); err != nil {
-		return nil, connect.NewError(connect.CodeInternal, err)
+		blockData := map[string]interface{}{
+			"@context": map[string]interface{}{
+				"gh":     "https://gftd.ai/ghost-hacker/ontology/",
+				"schema": "https://schema.org/",
+				"content": "gh:content",
+			},
+			"@id":        b.Id,
+			"@type":      "gh:Block",
+			"gh:index":   i,
+			"gh:content": localized,
+			"updatedAt":  time.Now().Format(time.RFC3339),
+		}
+		
+		data, _ := json.MarshalIndent(blockData, "", "  ")
+		os.WriteFile(path, data, 0644)
 	}
 
 	if s.Git != nil {
-		s.Git.CommitDocument(jsonldPath, fmt.Sprintf("Save manuscript %s as JSON-LD", req.Msg.ManuscriptId))
+		s.Git.CommitDocument(blockDir, fmt.Sprintf("Update granular blocks for %s", req.Msg.ManuscriptId))
 	}
 
-	return connect.NewResponse(&editorpb.SaveManuscriptResponse{
-		Success: true, 
-		Message: "Manuscript saved as JSON-LD and committed to Git",
-	}), nil
+	return connect.NewResponse(&editorpb.SaveManuscriptResponse{Success: true, Message: "Saved granularly"}), nil
 }
 
 func (s *EditorServer) generateDummyEmbedding(id string) []float32 {
@@ -1104,6 +1240,8 @@ func (s *EditorServer) categorizeNode(t string) string {
 		return "content"
 	case strings.Contains(t, "Image") || strings.Contains(t, "Asset"):
 		return "asset"
+	case strings.Contains(t, "Translation") || strings.Contains(t, "Localized"):
+		return "translation"
 	default:
 		return "concept"
 	}
@@ -1147,6 +1285,76 @@ func withCORS(h http.Handler) http.Handler {
 	})
 }
 
+func (s *EditorServer) migrateToGranularBlocks(ctx context.Context, projectID string) {
+	// Source of truth is the repo root
+	repoRoot := filepath.Dir(filepath.Dir(filepath.Dir(s.WorkspaceRoot)))
+	sourceRoot := filepath.Join(repoRoot, projectID, "wattpad")
+	targetRoot := filepath.Join(s.WorkspaceRoot, projectID, "wattpad")
+
+	log.Printf("Starting granular block migration. Source: %s, Target: %s", sourceRoot, targetRoot)
+
+	// Scan for .md files in the repository root (original source)
+	filepath.Walk(sourceRoot, func(path string, info os.FileInfo, err error) error {
+		if err != nil || info.IsDir() || !strings.HasSuffix(info.Name(), ".md") || strings.Contains(info.Name(), ".en.md") {
+			return nil
+		}
+
+		baseName := strings.TrimSuffix(info.Name(), ".md")
+		relPath, _ := filepath.Rel(sourceRoot, path)
+		dirRelPath := strings.TrimSuffix(relPath, ".md")
+		targetBlockDir := filepath.Join(targetRoot, dirRelPath)
+
+		// Only migrate if target granular directory doesn't exist
+		if _, err := os.Stat(targetBlockDir); os.IsNotExist(err) {
+			log.Printf("Migrating manuscript to granular: %s", relPath)
+			
+			jaContent, _ := os.ReadFile(path)
+			enPath := strings.TrimSuffix(path, ".md") + ".en.md"
+			enContent, _ := os.ReadFile(enPath)
+
+			jaBlocks := strings.Split(string(jaContent), "\n\n")
+			enBlocks := []string{}
+			if len(enContent) > 0 {
+				enBlocks = strings.Split(string(enContent), "\n\n")
+			}
+
+			os.MkdirAll(targetBlockDir, 0755)
+			
+			maxBlocks := len(jaBlocks)
+			if len(enBlocks) > maxBlocks { maxBlocks = len(enBlocks) }
+
+			for i := 0; i < maxBlocks; i++ {
+				localized := make(map[string]string)
+				if i < len(jaBlocks) { localized["ja"] = strings.TrimSpace(jaBlocks[i]) }
+				if i < len(enBlocks) { localized["en"] = strings.TrimSpace(enBlocks[i]) }
+
+				if localized["ja"] == "" && localized["en"] == "" { continue }
+
+				blockID := fmt.Sprintf("block:%s:%s:%d", projectID, dirRelPath, i)
+				blockData := map[string]interface{}{
+					"@context": map[string]interface{}{
+						"gh": "https://gftd.ai/ghost-hacker/ontology/",
+						"content": "gh:content",
+					},
+					"@id": blockID,
+					"@type": "gh:Block",
+					"gh:index": i,
+					"gh:content": localized,
+				}
+				
+				data, _ := json.MarshalIndent(blockData, "", "  ")
+				filename := fmt.Sprintf("block_%03d.jsonld", i)
+				os.WriteFile(filepath.Join(targetBlockDir, filename), data, 0644)
+			}
+			
+			if s.Git != nil {
+				s.Git.CommitDocument(targetBlockDir, fmt.Sprintf("Granular migration for %s", relPath))
+			}
+		}
+		return nil
+	})
+}
+
 func main() {
 	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
 	if workspaceRoot == "" {
@@ -1166,6 +1374,10 @@ func main() {
 
 	fmt.Printf("Using data directory: %s\n", workspaceRoot)
 	srv := NewEditorServer(workspaceRoot)
+
+	// Run migration
+	srv.migrateToGranularBlocks(context.Background(), "251022")
+
 	mux := http.NewServeMux()
 	
 	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {

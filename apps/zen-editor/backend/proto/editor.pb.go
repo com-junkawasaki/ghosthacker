@@ -1822,17 +1822,18 @@ func (x *Entity) GetName() string {
 }
 
 type Node struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Label         string                 `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"`
-	Type          string                 `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
-	X             float32                `protobuf:"fixed32,4,opt,name=x,proto3" json:"x,omitempty"`
-	Y             float32                `protobuf:"fixed32,5,opt,name=y,proto3" json:"y,omitempty"`
-	Content       string                 `protobuf:"bytes,6,opt,name=content,proto3" json:"content,omitempty"`
-	Group         string                 `protobuf:"bytes,7,opt,name=group,proto3" json:"group,omitempty"`                  // "entity", "content", "concept", "link-node"
-	Embedding     []float32              `protobuf:"fixed32,8,rep,packed,name=embedding,proto3" json:"embedding,omitempty"` // LLM-like vector for distance-based layout
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Label            string                 `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"`
+	Type             string                 `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
+	X                float32                `protobuf:"fixed32,4,opt,name=x,proto3" json:"x,omitempty"`
+	Y                float32                `protobuf:"fixed32,5,opt,name=y,proto3" json:"y,omitempty"`
+	Content          string                 `protobuf:"bytes,6,opt,name=content,proto3" json:"content,omitempty"`
+	Group            string                 `protobuf:"bytes,7,opt,name=group,proto3" json:"group,omitempty"`                                                                                                                         // "entity", "content", "concept", "link-node"
+	Embedding        []float32              `protobuf:"fixed32,8,rep,packed,name=embedding,proto3" json:"embedding,omitempty"`                                                                                                        // LLM-like vector for distance-based layout
+	LocalizedContent map[string]string      `protobuf:"bytes,9,rep,name=localized_content,json=localizedContent,proto3" json:"localized_content,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // "ja" -> "...", "en" -> "..."
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *Node) Reset() {
@@ -1917,6 +1918,13 @@ func (x *Node) GetGroup() string {
 func (x *Node) GetEmbedding() []float32 {
 	if x != nil {
 		return x.Embedding
+	}
+	return nil
+}
+
+func (x *Node) GetLocalizedContent() map[string]string {
+	if x != nil {
+		return x.LocalizedContent
 	}
 	return nil
 }
@@ -2164,7 +2172,7 @@ const file_proto_editor_proto_rawDesc = "" +
 	"\x06Entity\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04type\x18\x02 \x01(\tR\x04type\x12\x12\n" +
-	"\x04name\x18\x03 \x01(\tR\x04name\"\xaa\x01\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\"\xd7\x02\n" +
 	"\x04Node\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05label\x18\x02 \x01(\tR\x05label\x12\x12\n" +
@@ -2173,7 +2181,11 @@ const file_proto_editor_proto_rawDesc = "" +
 	"\x01y\x18\x05 \x01(\x02R\x01y\x12\x18\n" +
 	"\acontent\x18\x06 \x01(\tR\acontent\x12\x14\n" +
 	"\x05group\x18\a \x01(\tR\x05group\x12\x1c\n" +
-	"\tembedding\x18\b \x03(\x02R\tembedding\"\xca\x01\n" +
+	"\tembedding\x18\b \x03(\x02R\tembedding\x12f\n" +
+	"\x11localized_content\x18\t \x03(\v29.gftd.ghosthacker.zeneditor.v1.Node.LocalizedContentEntryR\x10localizedContent\x1aC\n" +
+	"\x15LocalizedContentEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xca\x01\n" +
 	"\x04Edge\x12\x17\n" +
 	"\afrom_id\x18\x01 \x01(\tR\x06fromId\x12\x13\n" +
 	"\x05to_id\x18\x02 \x01(\tR\x04toId\x12\x1a\n" +
@@ -2210,7 +2222,7 @@ func file_proto_editor_proto_rawDescGZIP() []byte {
 	return file_proto_editor_proto_rawDescData
 }
 
-var file_proto_editor_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
+var file_proto_editor_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
 var file_proto_editor_proto_goTypes = []any{
 	(*CommitHistoryRequest)(nil),       // 0: gftd.ghosthacker.zeneditor.v1.CommitHistoryRequest
 	(*CommitHistoryResponse)(nil),      // 1: gftd.ghosthacker.zeneditor.v1.CommitHistoryResponse
@@ -2248,6 +2260,7 @@ var file_proto_editor_proto_goTypes = []any{
 	(*Edge)(nil),                       // 33: gftd.ghosthacker.zeneditor.v1.Edge
 	nil,                                // 34: gftd.ghosthacker.zeneditor.v1.InteractRequest.EmotionBiasEntry
 	nil,                                // 35: gftd.ghosthacker.zeneditor.v1.InteractResponse.EmotionVectorEntry
+	nil,                                // 36: gftd.ghosthacker.zeneditor.v1.Node.LocalizedContentEntry
 }
 var file_proto_editor_proto_depIdxs = []int32{
 	4,  // 0: gftd.ghosthacker.zeneditor.v1.GetHistoryResponse.items:type_name -> gftd.ghosthacker.zeneditor.v1.HistoryItem
@@ -2262,33 +2275,34 @@ var file_proto_editor_proto_depIdxs = []int32{
 	32, // 9: gftd.ghosthacker.zeneditor.v1.GetBlocksResponse.nodes:type_name -> gftd.ghosthacker.zeneditor.v1.Node
 	33, // 10: gftd.ghosthacker.zeneditor.v1.GetBlocksResponse.edges:type_name -> gftd.ghosthacker.zeneditor.v1.Edge
 	32, // 11: gftd.ghosthacker.zeneditor.v1.SaveManuscriptRequest.blocks:type_name -> gftd.ghosthacker.zeneditor.v1.Node
-	25, // 12: gftd.ghosthacker.zeneditor.v1.EditorService.GetTopology:input_type -> gftd.ghosthacker.zeneditor.v1.GetTopologyRequest
-	27, // 13: gftd.ghosthacker.zeneditor.v1.EditorService.GetBlocks:input_type -> gftd.ghosthacker.zeneditor.v1.GetBlocksRequest
-	29, // 14: gftd.ghosthacker.zeneditor.v1.EditorService.SaveManuscript:input_type -> gftd.ghosthacker.zeneditor.v1.SaveManuscriptRequest
-	16, // 15: gftd.ghosthacker.zeneditor.v1.EditorService.GetProjectMetadata:input_type -> gftd.ghosthacker.zeneditor.v1.GetProjectMetadataRequest
-	14, // 16: gftd.ghosthacker.zeneditor.v1.EditorService.CallTool:input_type -> gftd.ghosthacker.zeneditor.v1.CallToolRequest
-	7,  // 17: gftd.ghosthacker.zeneditor.v1.EditorService.SaveStoryboard:input_type -> gftd.ghosthacker.zeneditor.v1.SaveStoryboardRequest
-	9,  // 18: gftd.ghosthacker.zeneditor.v1.EditorService.GetStoryboard:input_type -> gftd.ghosthacker.zeneditor.v1.GetStoryboardRequest
-	0,  // 19: gftd.ghosthacker.zeneditor.v1.EditorService.CommitHistory:input_type -> gftd.ghosthacker.zeneditor.v1.CommitHistoryRequest
-	2,  // 20: gftd.ghosthacker.zeneditor.v1.EditorService.GetHistory:input_type -> gftd.ghosthacker.zeneditor.v1.GetHistoryRequest
-	5,  // 21: gftd.ghosthacker.zeneditor.v1.EditorService.CheckoutHistory:input_type -> gftd.ghosthacker.zeneditor.v1.CheckoutHistoryRequest
-	12, // 22: gftd.ghosthacker.zeneditor.v1.EditorService.Interact:input_type -> gftd.ghosthacker.zeneditor.v1.InteractRequest
-	26, // 23: gftd.ghosthacker.zeneditor.v1.EditorService.GetTopology:output_type -> gftd.ghosthacker.zeneditor.v1.GetTopologyResponse
-	28, // 24: gftd.ghosthacker.zeneditor.v1.EditorService.GetBlocks:output_type -> gftd.ghosthacker.zeneditor.v1.GetBlocksResponse
-	30, // 25: gftd.ghosthacker.zeneditor.v1.EditorService.SaveManuscript:output_type -> gftd.ghosthacker.zeneditor.v1.SaveManuscriptResponse
-	17, // 26: gftd.ghosthacker.zeneditor.v1.EditorService.GetProjectMetadata:output_type -> gftd.ghosthacker.zeneditor.v1.GetProjectMetadataResponse
-	15, // 27: gftd.ghosthacker.zeneditor.v1.EditorService.CallTool:output_type -> gftd.ghosthacker.zeneditor.v1.CallToolResponse
-	8,  // 28: gftd.ghosthacker.zeneditor.v1.EditorService.SaveStoryboard:output_type -> gftd.ghosthacker.zeneditor.v1.SaveStoryboardResponse
-	10, // 29: gftd.ghosthacker.zeneditor.v1.EditorService.GetStoryboard:output_type -> gftd.ghosthacker.zeneditor.v1.GetStoryboardResponse
-	1,  // 30: gftd.ghosthacker.zeneditor.v1.EditorService.CommitHistory:output_type -> gftd.ghosthacker.zeneditor.v1.CommitHistoryResponse
-	3,  // 31: gftd.ghosthacker.zeneditor.v1.EditorService.GetHistory:output_type -> gftd.ghosthacker.zeneditor.v1.GetHistoryResponse
-	6,  // 32: gftd.ghosthacker.zeneditor.v1.EditorService.CheckoutHistory:output_type -> gftd.ghosthacker.zeneditor.v1.CheckoutHistoryResponse
-	13, // 33: gftd.ghosthacker.zeneditor.v1.EditorService.Interact:output_type -> gftd.ghosthacker.zeneditor.v1.InteractResponse
-	23, // [23:34] is the sub-list for method output_type
-	12, // [12:23] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	36, // 12: gftd.ghosthacker.zeneditor.v1.Node.localized_content:type_name -> gftd.ghosthacker.zeneditor.v1.Node.LocalizedContentEntry
+	25, // 13: gftd.ghosthacker.zeneditor.v1.EditorService.GetTopology:input_type -> gftd.ghosthacker.zeneditor.v1.GetTopologyRequest
+	27, // 14: gftd.ghosthacker.zeneditor.v1.EditorService.GetBlocks:input_type -> gftd.ghosthacker.zeneditor.v1.GetBlocksRequest
+	29, // 15: gftd.ghosthacker.zeneditor.v1.EditorService.SaveManuscript:input_type -> gftd.ghosthacker.zeneditor.v1.SaveManuscriptRequest
+	16, // 16: gftd.ghosthacker.zeneditor.v1.EditorService.GetProjectMetadata:input_type -> gftd.ghosthacker.zeneditor.v1.GetProjectMetadataRequest
+	14, // 17: gftd.ghosthacker.zeneditor.v1.EditorService.CallTool:input_type -> gftd.ghosthacker.zeneditor.v1.CallToolRequest
+	7,  // 18: gftd.ghosthacker.zeneditor.v1.EditorService.SaveStoryboard:input_type -> gftd.ghosthacker.zeneditor.v1.SaveStoryboardRequest
+	9,  // 19: gftd.ghosthacker.zeneditor.v1.EditorService.GetStoryboard:input_type -> gftd.ghosthacker.zeneditor.v1.GetStoryboardRequest
+	0,  // 20: gftd.ghosthacker.zeneditor.v1.EditorService.CommitHistory:input_type -> gftd.ghosthacker.zeneditor.v1.CommitHistoryRequest
+	2,  // 21: gftd.ghosthacker.zeneditor.v1.EditorService.GetHistory:input_type -> gftd.ghosthacker.zeneditor.v1.GetHistoryRequest
+	5,  // 22: gftd.ghosthacker.zeneditor.v1.EditorService.CheckoutHistory:input_type -> gftd.ghosthacker.zeneditor.v1.CheckoutHistoryRequest
+	12, // 23: gftd.ghosthacker.zeneditor.v1.EditorService.Interact:input_type -> gftd.ghosthacker.zeneditor.v1.InteractRequest
+	26, // 24: gftd.ghosthacker.zeneditor.v1.EditorService.GetTopology:output_type -> gftd.ghosthacker.zeneditor.v1.GetTopologyResponse
+	28, // 25: gftd.ghosthacker.zeneditor.v1.EditorService.GetBlocks:output_type -> gftd.ghosthacker.zeneditor.v1.GetBlocksResponse
+	30, // 26: gftd.ghosthacker.zeneditor.v1.EditorService.SaveManuscript:output_type -> gftd.ghosthacker.zeneditor.v1.SaveManuscriptResponse
+	17, // 27: gftd.ghosthacker.zeneditor.v1.EditorService.GetProjectMetadata:output_type -> gftd.ghosthacker.zeneditor.v1.GetProjectMetadataResponse
+	15, // 28: gftd.ghosthacker.zeneditor.v1.EditorService.CallTool:output_type -> gftd.ghosthacker.zeneditor.v1.CallToolResponse
+	8,  // 29: gftd.ghosthacker.zeneditor.v1.EditorService.SaveStoryboard:output_type -> gftd.ghosthacker.zeneditor.v1.SaveStoryboardResponse
+	10, // 30: gftd.ghosthacker.zeneditor.v1.EditorService.GetStoryboard:output_type -> gftd.ghosthacker.zeneditor.v1.GetStoryboardResponse
+	1,  // 31: gftd.ghosthacker.zeneditor.v1.EditorService.CommitHistory:output_type -> gftd.ghosthacker.zeneditor.v1.CommitHistoryResponse
+	3,  // 32: gftd.ghosthacker.zeneditor.v1.EditorService.GetHistory:output_type -> gftd.ghosthacker.zeneditor.v1.GetHistoryResponse
+	6,  // 33: gftd.ghosthacker.zeneditor.v1.EditorService.CheckoutHistory:output_type -> gftd.ghosthacker.zeneditor.v1.CheckoutHistoryResponse
+	13, // 34: gftd.ghosthacker.zeneditor.v1.EditorService.Interact:output_type -> gftd.ghosthacker.zeneditor.v1.InteractResponse
+	24, // [24:35] is the sub-list for method output_type
+	13, // [13:24] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_proto_editor_proto_init() }
@@ -2302,7 +2316,7 @@ func file_proto_editor_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_editor_proto_rawDesc), len(file_proto_editor_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   36,
+			NumMessages:   37,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

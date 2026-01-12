@@ -210,6 +210,7 @@ message Node {
   string content = 6;
   string group = 7; // "entity", "content", "concept", "link-node"
   repeated float embedding = 8; // LLM-like vector for distance-based layout
+  map<string, string> localized_content = 9; // "ja" -> "...", "en" -> "..."
 }
 
 message Edge {

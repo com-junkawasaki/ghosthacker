@@ -4,12 +4,14 @@
   import Storyboard from '../components/Storyboard.svelte';
   import HistoryPanel from '../components/HistoryPanel.svelte';
   import ConnectionSuggester from '../components/ConnectionSuggester.svelte';
+  import EntityProfile from '../components/EntityProfile.svelte';
+  import TranslationViewer from '../components/TranslationViewer.svelte';
   import { getClient } from '../lib/api';
 
   import { graphStore } from '../lib/stores/graph.svelte';
 
   let selectedNode = $state<any>(null);
-  let rightPaneMode = $state<"storyboard" | "editor" | "connection-suggester" | "entity" | "relation" | "asset">("storyboard");
+  let rightPaneMode = $state<"storyboard" | "editor" | "connection-suggester" | "entity" | "relation" | "asset" | "translation">("storyboard");
   let projectId = $state("251022"); // Default project
   let isSidebarOpen = $state(false);
   let isChatOpen = $state(false);
@@ -47,10 +49,12 @@
     console.log("[Page] Selected Node:", { id, type, group, label: node.label });
 
     // Decide View Mode based on Type/Group (VS Code filetype style)
-    if (group === 'unlinked') {
-      rightPaneMode = "connection-suggester";
+    if (id === 'hub:translation') {
+      rightPaneMode = "translation";
     } else if (type === 'gh:Manuscript' || id.startsWith('manuscript:')) {
-      rightPaneMode = "editor";
+      if (rightPaneMode !== "translation") {
+        rightPaneMode = "editor";
+      }
       currentFilePath = node.label || id || "Untitled.md";
       
       // Fetch full content if it's a manuscript
@@ -65,10 +69,12 @@
         currentFileContent = node.content || "";
       }
     } else if (type === 'gh:Block' || id.startsWith('block:')) {
-      rightPaneMode = "editor";
+      if (rightPaneMode !== "translation") {
+        rightPaneMode = "editor";
+      }
       currentFilePath = id;
       currentFileContent = node.content || "";
-    } else if (type.includes('Person') || type.includes('Character') || id.startsWith('character:')) {
+    } else if (type.includes('Person') || type.includes('Character') || id.startsWith('character:') || group === 'unlinked') {
       rightPaneMode = "entity";
     } else if (type.includes('Place') || id.startsWith('setting:')) {
       rightPaneMode = "entity";
@@ -217,7 +223,12 @@
           </div>
           
           <div class="pane-content">
-            {#if rightPaneMode === 'editor'}
+            {#if rightPaneMode === 'translation'}
+              <TranslationViewer 
+                manuscriptId={selectedNode?.id?.startsWith('manuscript:') ? selectedNode.id : (selectedNode?.id?.startsWith('block:') ? selectedNode.id.split(':').slice(0, 3).join(':') : '')} 
+                {projectId} 
+              />
+            {:else if rightPaneMode === 'editor'}
               <Editor 
                 filePath={currentFilePath} 
                 initialContent={currentFileContent}
@@ -234,17 +245,11 @@
                 }}
               />
             {:else if rightPaneMode === 'entity'}
-              <div class="viewer-placeholder">
-                <h2>{selectedNode?.label}</h2>
-                <p>Type: {selectedNode?.type}</p>
-                <div class="entity-card">
-                  <div class="avatar-placeholder">👤</div>
-                  <div class="entity-info">
-                    <p><strong>ID:</strong> {selectedNode?.id}</p>
-                    <p><strong>Description:</strong> {selectedNode?.content || 'No description available.'}</p>
-                  </div>
-                </div>
-              </div>
+              <EntityProfile 
+                node={selectedNode} 
+                {projectId} 
+                onRefresh={() => topologyRef?.fetchData()} 
+              />
             {:else if rightPaneMode === 'relation'}
               <div class="viewer-placeholder">
                 <h2>Relation: {selectedNode?.label}</h2>
