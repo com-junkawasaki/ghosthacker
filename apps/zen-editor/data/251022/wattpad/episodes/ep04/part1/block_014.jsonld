@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part1:14",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“They say they ‘love’ each other. But Millia repeats self-harm; Leo ‘tries to save’ her and is exhausted. High likelihood of co-dependence.”",
+    "ja": "*「この二人は、お互いを\"愛している\"と言っている。でも、Milliaはリストカットを繰り返し、LeoはMilliaを\"救おうとして\"疲弊している。彼らの関係性は、共依存の可能性が高い」*"
+  },
+  "gh:index": 14
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part1:73",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Ehh, I don’t like strangers. Even if it was given to me!”",
+    "ja": "Tamakiはペットボトルを受け取り、一口飲む。"
+  },
+  "gh:index": 73
+}

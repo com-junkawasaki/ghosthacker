@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part1:43",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...I’m afraid of being ‘loved’ by Leo.”",
+    "ja": "「Millia……なぜ？ 今日は、仕事の選択の相談だろ？ ボードにも家族にも、友達にも、みんなに説明しなきゃで——」"
+  },
+  "gh:index": 43
+}

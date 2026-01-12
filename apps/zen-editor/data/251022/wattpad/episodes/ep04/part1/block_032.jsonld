@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part1:32",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan (small): “Passion’s strong. Millia’s guard is thin.”",
+    "ja": "Leoの声は温かい。でも、その奥に、疲労がある。"
+  },
+  "gh:index": 32
+}

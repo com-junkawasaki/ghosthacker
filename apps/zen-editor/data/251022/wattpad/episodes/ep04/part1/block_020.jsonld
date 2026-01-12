@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part1:20",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Tamaki… this one is hard. I’ve seen it many times in ER—couples who hurt each other under the name of ‘love.’”",
+    "ja": "Kaede「Tamaki……このセッションは、難しい。私も救急で何度も見てきた——\"愛\"の名の下に、互いを傷つけ合うカップル」"
+  },
+  "gh:index": 20
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part1:77",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia (elbows him): “...”",
+    "ja": "Tamaki「あなたが“あなた”と感じているもの——知識、文化、経験。形がなくても価値がある」"
+  },
+  "gh:index": 77
+}

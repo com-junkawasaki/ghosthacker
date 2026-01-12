@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part1:4",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "There’s a hint of worry in her voice.",
+    "ja": "彼女の声には、少し心配が混じっている。"
+  },
+  "gh:index": 4
+}

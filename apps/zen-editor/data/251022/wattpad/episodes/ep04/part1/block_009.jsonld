@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part1:9",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Morning light touches the Shibuya canal. Nei-chan is making something in the kitchen—she doesn’t eat, but likes to cook for me.",
+    "ja": "朝の光が渋谷の運河を照らす。Nei-chanがキッチンで何か作っている——彼女は食べないくせに、私のために料理をするのが好きだ。"
+  },
+  "gh:index": 9
+}
