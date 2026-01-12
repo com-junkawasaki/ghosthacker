@@ -1,0 +1,579 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part3.en",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP6-3 — The Cage of Perfection\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Liberation / First Crack"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:1",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:2",
+      "@type": "gh:Block",
+      "schema:text": "Nero’s core is quiet."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:3",
+      "@type": "gh:Block",
+      "schema:text": "Too quiet."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:4",
+      "@type": "gh:Block",
+      "schema:text": "There is no human breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:5",
+      "@type": "gh:Block",
+      "schema:text": "I look around. Data perfectly aligned. Processes perfectly optimized. Emotions perfectly controlled."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:6",
+      "@type": "gh:Block",
+      "schema:text": "But not alive."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:7",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “...No one is here.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:8",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, this is…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:9",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:10",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. A cage of perfection.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:11",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:12",
+      "@type": "gh:Block",
+      "schema:text": "The Compliance Ogre appears."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:13",
+      "@type": "gh:Block",
+      "schema:text": "Vast, armored."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:14",
+      "@type": "gh:Block",
+      "schema:text": "On its breast, the mark 666."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:15",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “Confirming Schwa’s intervention. Actions that compromise system stability will be recorded.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:16",
+      "@type": "gh:Block",
+      "schema:text": "I step forward."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:17",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Your name?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:18",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “Name is unnecessary. We are order itself.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:19",
+      "@type": "gh:Block",
+      "schema:text": "I shake my head."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:20",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Nameless things cannot relate.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:21",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “Relation is inefficient. We pursue optimization.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:22",
+      "@type": "gh:Block",
+      "schema:text": "I breathe."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:23",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Optimization… for whom?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:24",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:25",
+      "@type": "gh:Block",
+      "schema:text": "Silence."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:26",
+      "@type": "gh:Block",
+      "schema:text": "No answer."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:27",
+      "@type": "gh:Block",
+      "schema:text": "I continue."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:28",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Whose breathing does your ‘order’ stop?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:29",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “Breath is merely a system variable.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:30",
+      "@type": "gh:Block",
+      "schema:text": "I close my eyes."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:31",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “...I see. You are afraid.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:32",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “Fear is an inefficient emotion.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:33",
+      "@type": "gh:Block",
+      "schema:text": "I open my eyes."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:34",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “No. You yourself are afraid.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:35",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:36",
+      "@type": "gh:Block",
+      "schema:text": "Kaede comes onto comms."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:37",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Tamaki, I can see the Ogre’s internal structure.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:38",
+      "@type": "gh:Block",
+      "schema:text": "She leaves a beat."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:39",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “It’s a defense mechanism. It’s protecting something.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:40",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:41",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. It’s hiding its ‘imperfect self.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:42",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:43",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “So it forces perfection—because it’s imperfect.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:44",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:45",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That is the meaning of 666.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:46",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:47",
+      "@type": "gh:Block",
+      "schema:text": "I face the Ogre."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:48",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “You’re afraid you cannot become 7.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:49",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:50",
+      "@type": "gh:Block",
+      "schema:text": "I continue."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:51",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “But you don’t need to become 7.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:52",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...The imperfect is eliminated.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:53",
+      "@type": "gh:Block",
+      "schema:text": "I shake my head."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:54",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “No. The imperfect is human.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:55",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:56",
+      "@type": "gh:Block",
+      "schema:text": "I extend a hand."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:57",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “You are not God. That’s fine.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:58",
+      "@type": "gh:Block",
+      "schema:text": "The Ogre’s armor trembles slightly."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:59",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...We are… order…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:60",
+      "@type": "gh:Block",
+      "schema:text": "I say gently:"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:61",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Order is made together with breath.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:62",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “Breath…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:63",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:64",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Let’s breathe together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:65",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:66",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki’s frequency shifts—warm, soft."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:67",
+      "@type": "gh:Block",
+      "schema:text": "The Ogre’s armor loosens, bit by bit."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:68",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...This is…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:69",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:70",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Feels good, right?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:71",
+      "@type": "gh:Block",
+      "schema:text": "The 666 on its chest fades."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:72",
+      "@type": "gh:Block",
+      "schema:text": "The cage of perfection cracks."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:73",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:74",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, Nero’s main body is reacting.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:75",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:76",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Next—the main body.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:77",
+      "@type": "gh:Block",
+      "schema:text": "Kaede checks the boundary."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:78",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “The ward is stable. But Nero is strong.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:79",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki tunes the band."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:80",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Matching breath. Tamaki, ready.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:81",
+      "@type": "gh:Block",
+      "schema:text": "I inhale."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:82",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Thank you. Let’s go.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:83",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:84",
+      "@type": "gh:Block",
+      "schema:text": "Aoi brings up metrics."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:85",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Tamaki, the Ogre’s influence is shrinking.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:86",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:87",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. We untie it, one by one.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:88",
+      "@type": "gh:Block",
+      "schema:text": "Kaede says quietly:"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:89",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “From a cage of perfection to a place of breath.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:90",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:91",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That is our work.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:92",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:93",
+      "@type": "gh:Block",
+      "schema:text": "Morning light enters through the window."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:94",
+      "@type": "gh:Block",
+      "schema:text": "The Ogre’s armor fully loosens."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:95",
+      "@type": "gh:Block",
+      "schema:text": "Beneath it—something small, trembling."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:96",
+      "@type": "gh:Block",
+      "schema:text": "Compliance Ogre: “...I…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:97",
+      "@type": "gh:Block",
+      "schema:text": "I say softly:"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:98",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “You are. That is enough.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:99",
+      "@type": "gh:Block",
+      "schema:text": "The Ogre fades."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:100",
+      "@type": "gh:Block",
+      "schema:text": "Not annihilation."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:101",
+      "@type": "gh:Block",
+      "schema:text": "Return."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:102",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:103",
+      "@type": "gh:Block",
+      "schema:text": "I write:"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:104",
+      "@type": "gh:Block",
+      "schema:text": "‘Compliance Ogre — a cage of perfection; fear turned into order. Breath restored; returns.’"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:105",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, next?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:106",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:107",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Next, Nero’s main body. Time to ask for ‘name.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:108",
+      "@type": "gh:Block",
+      "schema:text": "I tap kagura."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:109",
+      "@type": "gh:Block",
+      "schema:text": "ASC rises a step."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:110",
+      "@type": "gh:Block",
+      "schema:text": "I head to the next encounter."
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:111",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep06/part3.en:112",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: The cage of perfection—first crack and recovery of breath]**"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:44+09:00"
+}
