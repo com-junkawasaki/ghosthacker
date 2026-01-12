@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:12",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP6-2 — The Mark of 666 (The Mark)\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Recognition / Pattern",
+    "ja": "都市のログに、同じ数字が繰り返される。"
+  },
+  "gh:index": 12
+}

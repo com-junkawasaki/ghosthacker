@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:168",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “The ward is stable. But Nero is strong.”",
+    "ja": "Hibikiが周波数を整える。"
+  },
+  "gh:index": 168
+}

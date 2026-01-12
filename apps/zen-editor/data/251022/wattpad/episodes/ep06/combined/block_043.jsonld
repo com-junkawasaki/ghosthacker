@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:43",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Awareness sharpens.",
+    "ja": "Hibikiの周波数が変わる。低く、深く、安定している。"
+  },
+  "gh:index": 43
+}

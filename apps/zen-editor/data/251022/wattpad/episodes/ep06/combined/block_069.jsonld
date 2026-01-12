@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:69",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I nod.",
+    "ja": "名は、輪郭。"
+  },
+  "gh:index": 69
+}

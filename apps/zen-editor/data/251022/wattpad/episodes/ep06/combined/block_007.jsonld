@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:7",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki’s frequency floods the room—lower and more serious than usual.",
+    "ja": "Hibikiの周波数が部屋に流れ込む。彼の声は、いつもより低く、真剣だ。"
+  },
+  "gh:index": 7
+}

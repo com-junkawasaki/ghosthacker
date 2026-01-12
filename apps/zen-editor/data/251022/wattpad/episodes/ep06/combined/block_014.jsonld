@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:14",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The same number repeats in the city’s logs.",
+    "ja": "完璧を装った不完全。人間の限界を超えようとして、人間を置き去りにする数。"
+  },
+  "gh:index": 14
+}

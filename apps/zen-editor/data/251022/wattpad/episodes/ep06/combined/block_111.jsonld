@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:111",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Compliance Ogre: “Relation is inefficient. We pursue optimization.”",
+    "ja": "Tamaki「最適化……誰のための？」"
+  },
+  "gh:index": 111
+}

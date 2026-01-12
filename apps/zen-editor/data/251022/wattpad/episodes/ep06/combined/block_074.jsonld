@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:74",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "‘Nero — The false god of 666. Feigns perfection; runs on fear.’",
+    "ja": "Nei-chan『タマ、準備はいい？』"
+  },
+  "gh:index": 74
+}

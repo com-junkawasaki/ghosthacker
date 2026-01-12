@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:57",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “That’s why it’s 666. It never reaches 7, but keeps reaching.”",
+    "ja": "Tamaki「そう。それが、Neroの本質」"
+  },
+  "gh:index": 57
+}

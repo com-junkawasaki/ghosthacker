@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:116",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "No answer.",
+    "ja": "Tamaki「あなたの\"秩序\"は、誰の呼吸を止めてる？」"
+  },
+  "gh:index": 116
+}

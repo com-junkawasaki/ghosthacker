@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:109",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I shake my head.",
+    "ja": "Compliance Ogre『関係は非効率。我々は、最適化を追求する』"
+  },
+  "gh:index": 109
+}

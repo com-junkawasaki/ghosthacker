@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:202",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "**[Beat: The cage of perfection—first crack and recovery of breath]**"
+  },
+  "gh:index": 202
+}

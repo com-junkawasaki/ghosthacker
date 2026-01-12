@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:4",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Authority delegation at the city-office layer… I see backflow tendencies.”",
+    "ja": "Kaede「市役所レイヤの権限委譲……逆流傾向が見える」"
+  },
+  "gh:index": 4
+}

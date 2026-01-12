@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:0",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP6-1 — Shadow (Infrastructure)\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Omen / Systems",
+    "ja": "# EP6-1 — 影（インフラ）\n- POV: 私（Tamaki／環樹）\n- Beat: Omen / Systems"
+  },
+  "gh:index": 0
+}

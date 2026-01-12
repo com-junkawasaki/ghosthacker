@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:184",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The Ogre’s armor fully loosens.",
+    "ja": "その下には、小さな、震える存在。"
+  },
+  "gh:index": 184
+}

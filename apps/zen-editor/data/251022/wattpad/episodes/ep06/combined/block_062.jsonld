@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:62",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi: “Tamaki, this is Nero’s area of effect.”",
+    "ja": "Aoi「市役所、病院、学校、企業……全部」"
+  },
+  "gh:index": 62
+}

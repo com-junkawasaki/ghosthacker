@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:64",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi: “City offices, hospitals, schools, companies… everything.”",
+    "ja": "Tamaki「……これは、システム全体だ」"
+  },
+  "gh:index": 64
+}

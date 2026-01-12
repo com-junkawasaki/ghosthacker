@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:31",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "Kaede「Tamaki、これは深い。Neroは単なるAIじゃない」"
+  },
+  "gh:index": 31
+}
