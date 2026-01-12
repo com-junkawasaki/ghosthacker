@@ -837,78 +837,11 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 					Color:    "#0071e3",
 				})
 
-				// Re-enable blocks extraction
+				// Re-enable blocks extraction (removed for lazy loading)
+				/*
 				filePath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", file)
-				fcontent, ferr := os.ReadFile(filePath)
-				if ferr == nil {
-					blocks := strings.Split(string(fcontent), "\n\n")
-					var prevBlockID string
-					for bIdx, bContent := range blocks {
-						bContent = strings.TrimSpace(bContent)
-						if bContent == "" {
-							continue
-						}
-						bNodeID := fmt.Sprintf("block:%s:%s:%d", ep.ID, file, bIdx)
-						shortLabel := bContent
-						runes := []rune(bContent)
-						if len(runes) > 30 {
-							shortLabel = string(runes[:30]) + "..."
-						}
-						
-						// Basic cleanup for label
-						shortLabel = strings.ReplaceAll(shortLabel, "\n", " ")
-						
-						bNode := &editorpb.Node{
-							Id:      bNodeID,
-							Label:   shortLabel,
-							Type:    "gh:Block",
-							Content: bContent,
-							Group:   "content",
-							Embedding: s.generateDummyEmbedding(bNodeID),
-						}
-						resp.Nodes = append(resp.Nodes, bNode)
-
-						resp.Edges = append(resp.Edges, &editorpb.Edge{
-							FromId:   mNodeID,
-							ToId:     bNodeID,
-							Relation: "gh:contains",
-							Style:    "dashed",
-							Color:    "#0071e3",
-							Group:    "structural",
-							Distance: 60,
-							Strength: 0.8,
-						})
-
-						if prevBlockID != "" {
-							resp.Edges = append(resp.Edges, &editorpb.Edge{
-								FromId:   prevBlockID,
-								ToId:     bNodeID,
-								Relation: "gh:precedes",
-								Style:    "solid",
-								Color:    "#34c759",
-								Group:    "structural",
-								Distance: 30,
-								Strength: 1.0,
-							})
-						}
-						prevBlockID = bNodeID
-
-						// Translation link if applicable
-						if strings.HasSuffix(file, ".en.md") {
-							jaFile := strings.Replace(file, ".en.md", ".md", 1)
-							jaNodeID := fmt.Sprintf("manuscript:%s:%s", ep.ID, jaFile)
-							resp.Edges = append(resp.Edges, &editorpb.Edge{
-								FromId:   mNodeID,
-								ToId:     jaNodeID,
-								Relation: "gh:translationOf",
-								Style:    "dotted",
-								Color:    "#34c759",
-								Group:    "semantic",
-								Distance: 150,
-							})
-						}
-					}
-				}
+... (truncated blocks logic) ...
+				*/
 			}
 		}
 	}
@@ -940,6 +873,79 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 		}
 		return nil
 	})
+
+	return connect.NewResponse(resp), nil
+}
+
+func (s *EditorServer) GetBlocks(ctx context.Context, req *connect.Request[editorpb.GetBlocksRequest]) (*connect.Response[editorpb.GetBlocksResponse], error) {
+	log.Printf("RPC: GetBlocks called for manuscript: %s", req.Msg.ManuscriptId)
+	
+	// Manuscript ID format: manuscript:EP_ID:FILE_PATH
+	parts := strings.Split(req.Msg.ManuscriptId, ":")
+	if len(parts) < 3 {
+		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("invalid manuscript id format"))
+	}
+	
+	epID := parts[1]
+	fileRelPath := strings.Join(parts[2:], ":")
+	
+	filePath := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/", fileRelPath)
+	fcontent, err := os.ReadFile(filePath)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeNotFound, err)
+	}
+
+	resp := &editorpb.GetBlocksResponse{}
+	blocks := strings.Split(string(fcontent), "\n\n")
+	var prevBlockID string
+	for bIdx, bContent := range blocks {
+		bContent = strings.TrimSpace(bContent)
+		if bContent == "" {
+			continue
+		}
+		bNodeID := fmt.Sprintf("block:%s:%s:%d", epID, fileRelPath, bIdx)
+		shortLabel := bContent
+		runes := []rune(bContent)
+		if len(runes) > 30 {
+			shortLabel = string(runes[:30]) + "..."
+		}
+		shortLabel = strings.ReplaceAll(shortLabel, "\n", " ")
+
+		bNode := &editorpb.Node{
+			Id:      bNodeID,
+			Label:   shortLabel,
+			Type:    "gh:Block",
+			Content: bContent,
+			Group:   "content",
+			Embedding: s.generateDummyEmbedding(bNodeID),
+		}
+		resp.Nodes = append(resp.Nodes, bNode)
+
+		resp.Edges = append(resp.Edges, &editorpb.Edge{
+			FromId:   req.Msg.ManuscriptId,
+			ToId:     bNodeID,
+			Relation: "gh:contains",
+			Style:    "dashed",
+			Color:    "#0071e3",
+			Group:    "structural",
+			Distance: 60,
+			Strength: 0.8,
+		})
+
+		if prevBlockID != "" {
+			resp.Edges = append(resp.Edges, &editorpb.Edge{
+				FromId:   prevBlockID,
+				ToId:     bNodeID,
+				Relation: "gh:precedes",
+				Style:    "solid",
+				Color:    "#34c759",
+				Group:    "structural",
+				Distance: 30,
+				Strength: 1.0,
+			})
+		}
+		prevBlockID = bNodeID
+	}
 
 	return connect.NewResponse(resp), nil
 }

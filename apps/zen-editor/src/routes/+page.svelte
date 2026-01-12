@@ -1,6 +1,6 @@
 <script lang="ts">
   import Editor from '../components/Editor.svelte';
-  import Topology from '../components/TopologyWebGPU.svelte';
+  import Topology from '../components/Topology/TopologyView.svelte';
   import Storyboard from '../components/Storyboard.svelte';
   import HistoryPanel from '../components/HistoryPanel.svelte';
   import ConnectionSuggester from '../components/ConnectionSuggester.svelte';

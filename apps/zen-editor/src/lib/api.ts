@@ -5,6 +5,7 @@ import { EditorService } from "./gen/editor_pb";
 // 型定義
 type EditorClient = {
   getTopology: (req: { projectId: string }) => Promise<any>;
+  getBlocks: (req: { projectId: string, manuscriptId: string }) => Promise<any>;
   getProjectMetadata: (req: { projectId: string }) => Promise<any>;
   callTool: (req: any) => Promise<any>;
   interact: (req: any) => AsyncIterable<any>;

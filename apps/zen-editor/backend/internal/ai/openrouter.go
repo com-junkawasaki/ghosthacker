@@ -21,8 +21,9 @@ type Message struct {
 }
 
 type ChatRequest struct {
-	Model    string    `json:"model"`
-	Messages []Message `json:"messages"`
+	Model     string    `json:"model"`
+	Messages  []Message `json:"messages"`
+	MaxTokens int       `json:"max_tokens,omitempty"`
 }
 
 type ChatResponse struct {
@@ -59,6 +60,7 @@ Generate only the markdown content for the new scene.`, combinedContext)
 			{Role: "system", Content: "You are a specialized creative writer for the Ghost Hacker series."},
 			{Role: "user", Content: prompt},
 		},
+		MaxTokens: 8192, // Claude 3.5 Sonnet supports up to 8k output tokens. Context is 200k.
 	})
 	log.Printf("Sending request to OpenRouter: %s", string(reqBody))
 
