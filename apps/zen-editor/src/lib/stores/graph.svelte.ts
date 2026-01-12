@@ -1,4 +1,5 @@
 import { getClient } from '../api';
+import { calculateHierarchicalPositions } from '../tree-utils';
 
 export interface Node {
   id: string;
@@ -23,7 +24,7 @@ export interface Edge {
 class GraphStore {
   nodes = $state<Map<string, Node>>(new Map());
   edges = $state<Edge[]>([]);
-  expandedNodes = $state<Set<string>>(new Set());
+  expandedNodes = $state<string[]>([]); // Use array for easier reactivity in Svelte 5
   selectedNodeId = $state<string | null>(null);
   isLoading = $state(false);
 
@@ -56,8 +57,29 @@ class GraphStore {
         }
       });
 
+      // Apply initial hierarchical layout
+      const rootCircleIds = [
+        'hub:content', 'hub:entity', 'hub:environment', 'hub:item', 'hub:emotion', 
+        'hub:asset', 'hub:concept', 'hub:unlinked'
+      ];
+      const positions = calculateHierarchicalPositions(newNodeMap, resp.edges || [], rootCircleIds);
+      
+      positions.forEach((pos, id) => {
+        const node = newNodeMap.get(id);
+        if (node) {
+          node.x = pos.x;
+          node.y = pos.y;
+        }
+      });
+
       this.nodes = newNodeMap;
       this.edges = resp.edges || [];
+      
+      // Auto-expand root hubs
+      this.expandedNodes = (resp.nodes || [])
+        .filter((n: any) => n.id.startsWith('hub:'))
+        .map((n: any) => n.id);
+        
     } catch (err) {
       console.error("Failed to fetch topology:", err);
     } finally {
@@ -78,7 +100,9 @@ class GraphStore {
 
       // Update nodes map
       (resp.nodes || []).forEach((n: any) => {
-        this.nodes.set(n.id, { ...n, children: [] });
+        if (!this.nodes.has(n.id)) {
+          this.nodes.set(n.id, { ...n, children: [] });
+        }
       });
 
       // Update parent children list
@@ -101,6 +125,20 @@ class GraphStore {
         }
       });
       this.edges = newEdges;
+
+      // Recalculate positions for new nodes
+      const rootCircleIds = [
+        'hub:content', 'hub:entity', 'hub:environment', 'hub:item', 'hub:emotion', 
+        'hub:asset', 'hub:concept', 'hub:unlinked'
+      ];
+      const positions = calculateHierarchicalPositions(this.nodes, this.edges, rootCircleIds);
+      positions.forEach((pos, id) => {
+        const node = this.nodes.get(id);
+        if (node) {
+          node.x = pos.x;
+          node.y = pos.y;
+        }
+      });
 
     } catch (err) {
       console.error("Failed to fetch blocks:", err);
@@ -137,14 +175,15 @@ class GraphStore {
   }
 
   toggleExpand(nodeId: string) {
-    if (this.expandedNodes.has(nodeId)) {
-      this.expandedNodes.delete(nodeId);
+    const index = this.expandedNodes.indexOf(nodeId);
+    if (index !== -1) {
+      this.expandedNodes = this.expandedNodes.filter(id => id !== nodeId);
     } else {
       const node = this.nodes.get(nodeId);
       if (node && node.type === 'gh:Manuscript' && (!node.children || node.children.length === 0)) {
         this.fetchBlocks(nodeId);
       }
-      this.expandedNodes.add(nodeId);
+      this.expandedNodes = [...this.expandedNodes, nodeId];
     }
   }
 

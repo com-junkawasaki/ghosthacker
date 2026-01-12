@@ -24,7 +24,7 @@ import (
 
 	"github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/internal/ai"
 	"github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/internal/git"
-	"github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/proto"
+	editorpb "github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/proto"
 	"github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/proto/editorpbconnect"
 )
 

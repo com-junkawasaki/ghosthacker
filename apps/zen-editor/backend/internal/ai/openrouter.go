@@ -60,7 +60,7 @@ Generate only the markdown content for the new scene.`, combinedContext)
 			{Role: "system", Content: "You are a specialized creative writer for the Ghost Hacker series."},
 			{Role: "user", Content: prompt},
 		},
-		MaxTokens: 8192, // Claude 3.5 Sonnet supports up to 8k output tokens. Context is 200k.
+		MaxTokens: 1024, // Reduced to avoid credit issues
 	})
 	log.Printf("Sending request to OpenRouter: %s", string(reqBody))
 

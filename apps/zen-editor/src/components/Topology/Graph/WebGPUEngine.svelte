@@ -41,7 +41,7 @@
         linkDefaultColor: '#33333a',
         pointColor: '#0071e3',
         simulationGravity: 0.05,
-        simulationRepulsion: 1.0,
+        simulationRepulsion: 1.2,
         simulationFriction: 0.9,
       });
 
@@ -88,6 +88,7 @@
       if (n.group === 'environment') color = [52, 199, 89, 255];
       if (n.group === 'item') color = [255, 149, 0, 255];
       if (n.group === 'emotion') color = [255, 45, 85, 255];
+      if (n.group === 'meta') color = [175, 82, 222, 255]; // Purple for Hubs
       
       pointColors[i * 4] = color[0] / 255;
       pointColors[i * 4 + 1] = color[1] / 255;
