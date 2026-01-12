@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep02/combined:7",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Our work is to help him soften the border between himself and the world and return to the greater flow. Wu wei, ziran. Simply, to be as it is.",
+    "ja": "私たちの仕事は、彼が自分と世界の境界線を融かし、大いなる流れに還る手助けをすること。無為自然。ただ、在るがままにあること。"
+  },
+  "gh:index": 7
+}

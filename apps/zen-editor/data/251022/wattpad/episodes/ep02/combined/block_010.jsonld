@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep02/combined:10",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Once you know the self-boundary is an illusion, life and death become waves. I face the client, quietly, deeply, and match breath.",
+    "ja": "自己の境界が幻想だと知れば、死も生も、ただの波になる。私はクライアントに向き直り、静かに、そして深く、呼吸を合わせた。"
+  },
+  "gh:index": 10
+}
