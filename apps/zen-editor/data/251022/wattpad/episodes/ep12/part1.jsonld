@@ -1,0 +1,44 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part1",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep12/part1:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP12-1 — Together（いっしょに）\n- POV: 私（Tamaki／環樹）\n- Beat: Collective Release / Quiet Union"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part1:1",
+      "@type": "gh:Block",
+      "schema:text": "```json\n{\n  \"@context\": {\n    \"@base\": \"https://ghosthacker.example.com/\",\n    \"gh\": \"https://ghosthacker.junkawasaki.com/gh#\",\n    \"antagonist\": { \"@id\": \"gh:antagonist\", \"@type\": \"@id\" },\n    \"character\": \"https://ghosthacker.example.com/character/\",\n    \"ghost\": \"https://ghosthacker.example.com/ghost/\"\n  },\n  \"antagonist\": [\n    {\"@id\": \"character:nero-ops\"},\n    {\"@id\": \"ghost:compliance-ogre\"}\n  ]\n}\n```"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part1:2",
+      "@type": "gh:Block",
+      "schema:text": "最後の合図は、静かに。私は神楽を踏み、Hibikiが呼吸を整える。Kaedeが結界を見守る。Nei-chanの光が広がり、街の輪郭が少し柔らかくなる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part1:3",
+      "@type": "gh:Block",
+      "schema:text": "「わたしは在る」\nその言葉は誰かの所有物ではない。恐れが手を離し、関係が立ち上がる。Neroは去っていく。勝利じゃない。還るだけだ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part1:4",
+      "@type": "gh:Block",
+      "schema:text": "朝の運河。私は手帳に一行を書く。「We can't put it toghether. it is toghether.」\nそして、ページの端に小さな“木”を描いた。"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/part1:5",
+      "@type": "gh:Block",
+      "schema:text": "私はみんなを見る。Kaede、Hibiki、Nei-chan——視線が重なり、自然にほどける。\n「いっしょに」その一言で、場が明るくなる。水音が遠くで応える。\n私は仲間の顔を順に見る。Kaedeの眉間はほどけ、Hibikiは周波数を一段落とす。Nei-chanの光が、街路の端々に静かな余白を置いていく。\n手帳に最後の一行。『We can't put it together. It is together.』——私たちは、その事実に追いついた。"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:51+09:00"
+}
