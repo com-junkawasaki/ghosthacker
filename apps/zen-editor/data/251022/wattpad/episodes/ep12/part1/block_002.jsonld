@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part1:2",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The final cue, quietly. I tap kagura; Hibiki settles the breathing. Kaede watches the ward. Nei-chan’s light spreads; the city’s contours soften a little.",
+    "ja": "最後の合図は、静かに。私は神楽を踏み、Hibikiが呼吸を整える。Kaedeが結界を見守る。Nei-chanの光が広がり、街の輪郭が少し柔らかくなる。"
+  },
+  "gh:index": 2
+}
