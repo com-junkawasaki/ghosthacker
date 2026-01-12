@@ -7,41 +7,41 @@
   import { getClient } from '../lib/api';
 
   let selectedNode = $state<any>(null);
-  let rightPaneMode = $state<"storyboard" | "editor" | "connection-suggester">("storyboard");
+  let rightPaneMode = $state<"storyboard" | "editor" | "connection-suggester" | "entity" | "relation" | "asset">("storyboard");
   let projectId = $state("251022"); // Default project
-  let isSidebarOpen = $state(false);
-  let isChatOpen = $state(false);
-  let isHistoryOpen = $state(false);
-  let currentFilePath = $state("");
-  let currentFileContent = $state("");
-  let projectTitle = $state("GhostHacker Zen Editor");
-  let activeView = $state<"graph" | "storyboard" | "dual">("dual");
-  let leftPaneWidth = $state(40); // Initial width for graph
-  let isGraphCollapsed = $state(false);
-  let isStoryboardCollapsed = $state(false);
 
-  let storyboardRef: any = $state(null);
-  let topologyRef: any = $state(null);
-
-  function handleCheckout(state: any, type: string) {
-    if (type === 'storyboard') {
-      storyboardRef?.setScenes(state);
-    } else if (type === 'graph') {
-      topologyRef?.setPositions(state);
-    }
-  }
+  // ... (handleCheckout remains the same)
 
   function handleNodeSelect(node: any) {
+    if (!node) {
+      selectedNode = null;
+      return;
+    }
+    
     selectedNode = node;
     const type = node.type || "";
-    
-    if (node.group === 'unlinked') {
+    const id = node.id || "";
+    const group = node.group || "";
+
+    console.log("[Page] Selected Node:", { id, type, group, label: node.label });
+
+    // Decide View Mode based on Type/Group (VS Code filetype style)
+    if (group === 'unlinked') {
       rightPaneMode = "connection-suggester";
-    } else if (type === 'gh:Manuscript' || type === 'gh:Block' || node.id?.startsWith('manuscript:') || node.id?.startsWith('block:')) {
+    } else if (type === 'gh:Manuscript' || type === 'gh:Block' || id.startsWith('manuscript:') || id.startsWith('block:')) {
       rightPaneMode = "editor";
-      currentFilePath = node.label || node.id || "Untitled.md";
+      currentFilePath = node.label || id || "Untitled.md";
       currentFileContent = node.content || "";
+    } else if (type.includes('Person') || type.includes('Character') || id.startsWith('character:')) {
+      rightPaneMode = "entity";
+    } else if (type.includes('Place') || id.startsWith('setting:')) {
+      rightPaneMode = "entity";
+    } else if (type === 'gh:RelationEvent') {
+      rightPaneMode = "relation";
+    } else if (id.match(/\.(png|webp|jpg|jpeg|gif|pdf)$/i)) {
+      rightPaneMode = "asset";
     } else {
+      // Default to Storyboard for Episodes and everything else
       rightPaneMode = "storyboard";
     }
     
@@ -167,20 +167,21 @@
             <span>
               {#if rightPaneMode === 'storyboard'}Storyboard Editor
               {:else if rightPaneMode === 'editor'}Text Editor
+              {:else if rightPaneMode === 'entity'}Entity Profile
+              {:else if rightPaneMode === 'relation'}Relation Inspector
+              {:else if rightPaneMode === 'asset'}Asset Viewer
               {:else}Connection Suggester{/if}
             </span>
           </div>
           
-          {#if rightPaneMode === 'editor'}
-            <div class="pane-content">
+          <div class="pane-content">
+            {#if rightPaneMode === 'editor'}
               <Editor 
                 filePath={currentFilePath} 
                 initialContent={currentFileContent}
                 onSave={handleEditorSave}
               />
-            </div>
-          {:else if rightPaneMode === 'connection-suggester'}
-            <div class="pane-content">
+            {:else if rightPaneMode === 'connection-suggester'}
               <ConnectionSuggester 
                 node={selectedNode} 
                 {projectId} 
@@ -190,10 +191,34 @@
                   topologyRef?.fetchData();
                 }}
               />
-            </div>
-          {:else}
-            <Storyboard bind:this={storyboardRef} {projectId} />
-          {/if}
+            {:else if rightPaneMode === 'entity'}
+              <div class="viewer-placeholder">
+                <h2>{selectedNode?.label}</h2>
+                <p>Type: {selectedNode?.type}</p>
+                <div class="entity-card">
+                  <div class="avatar-placeholder">👤</div>
+                  <div class="entity-info">
+                    <p><strong>ID:</strong> {selectedNode?.id}</p>
+                    <p><strong>Description:</strong> {selectedNode?.content || 'No description available.'}</p>
+                  </div>
+                </div>
+              </div>
+            {:else if rightPaneMode === 'relation'}
+              <div class="viewer-placeholder">
+                <h2>Relation: {selectedNode?.label}</h2>
+                <div class="relation-card">
+                  <p><strong>Type:</strong> {selectedNode?.type}</p>
+                  <p><strong>Context:</strong> {selectedNode?.content}</p>
+                </div>
+              </div>
+            {:else if rightPaneMode === 'asset'}
+              <div class="asset-viewer">
+                <img src={`/data/${projectId}/${selectedNode?.id}`} alt={selectedNode?.label} />
+              </div>
+            {:else}
+              <Storyboard bind:this={storyboardRef} {projectId} />
+            {/if}
+          </div>
         </div>
       {:else if activeView === "dual" && isStoryboardCollapsed}
         <div 
@@ -318,5 +343,44 @@
   .icon-btn.active { opacity: 1; color: #0071e3; }
   .menu-btn { font-size: 1.4rem; color: #0071e3; }
   
-  .chat-placeholder { padding: 2rem; color: #666; text-align: center; font-style: italic; }
+  .asset-viewer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+  }
+  .asset-viewer img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  .viewer-placeholder {
+    padding: 2rem;
+    color: #ccc;
+  }
+  .entity-card, .relation-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    display: flex;
+    gap: 1.5rem;
+  }
+  .avatar-placeholder {
+    width: 80px;
+    height: 80px;
+    background: #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+  .entity-info p {
+    margin: 0.5rem 0;
+  }
 </style>

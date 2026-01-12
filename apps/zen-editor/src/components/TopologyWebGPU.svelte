@@ -45,14 +45,19 @@
         // Setup interactions
         // @ts-ignore
         g.onClick = (index: number) => {
-          if (index !== undefined && nodes[index]) {
+          console.log("[Topology] Graph onClick index:", index);
+          if (index !== undefined && index >= 0 && index < nodes.length) {
             handleNodeClick(nodes[index]);
+          } else {
+            console.log("[Topology] Clicked background or invalid index");
+            // Deselect if background clicked
+            onSelect?.(null, []);
           }
         };
 
         // @ts-ignore
         g.onPointerOver = (index: number) => {
-          if (index !== undefined && nodes[index]) {
+          if (index !== undefined && index >= 0 && index < nodes.length) {
             hoveredNode = nodes[index];
             if (containerElement) containerElement.style.cursor = 'pointer';
           }
@@ -212,13 +217,14 @@
   });
 
   function handleNodeClick(node: any) {
+    console.log("[Topology] handleNodeClick:", node.id, node.label);
     onSelect?.(node, [node]);
     
     // Zoom to clicked node
     if (graph) {
       const index = nodes.findIndex(n => n.id === node.id);
       if (index !== -1) {
-        graph.zoomToPointByIndex(index, 1000);
+        graph.zoomToPointByIndex(index, 800);
       }
     }
   }
@@ -299,23 +305,27 @@
     if (!containerElement) return { x: 0, y: 0 };
     const rect = containerElement.getBoundingClientRect();
     
-    // Fallback if transform is not yet initialized
     const k = currentTransform.k || 1;
     const tx = currentTransform.x || 0;
     const ty = currentTransform.y || 0;
 
-    const x = (node.x || 0) * k + tx + rect.width / 2;
-    const y = (node.y || 0) * k + ty + rect.height / 2;
+    // @cosmos.gl/graph by default centers the simulation origin (0,0) in the middle of the canvas
+    // D3 zoom transform (tx, ty) is relative to the top-left of the container.
+    const x = (node.x || 0) * k + tx;
+    const y = (node.y || 0) * k + ty;
+    
     return { x, y };
   }
 
   let visibleNodes = $derived(
     nodes.filter(n => {
-      if (currentTransform.k < 0.25 && n.group !== 'meta') return false;
+      // Hide labels if zoomed out too far, except for meta/clusters
+      if (currentTransform.k < 0.3 && n.group !== 'meta') return false;
       const coords = getScreenCoords(n);
       if (!containerElement) return false;
       const rect = containerElement.getBoundingClientRect();
-      return coords.x > -50 && coords.x < rect.width + 50 && coords.y > -50 && coords.y < rect.height + 50;
+      // Only show nodes within viewport (+ margin)
+      return coords.x > -100 && coords.x < rect.width + 100 && coords.y > -100 && coords.y < rect.height + 100;
     })
   );
 </script>

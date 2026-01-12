@@ -729,6 +729,12 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 				Group: group,
 				Embedding: s.generateDummyEmbedding(id),
 			}
+			if desc, ok := item["description"].(string); ok {
+				node.Content = desc
+			} else if evidence, ok := item["gh:evidence"].(string); ok {
+				node.Content = evidence
+			}
+
 			if x, ok := item["gh:x"].(float64); ok {
 				node.X = float32(x)
 			}
@@ -883,6 +889,27 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 		}
 	}
 
+	// Add image assets if they exist (recursive scan)
+	assetsRoot := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "assets")
+	filepath.Walk(assetsRoot, func(path string, info os.FileInfo, err error) error {
+		if err != nil || info.IsDir() {
+			return nil
+		}
+		name := info.Name()
+		ext := strings.ToLower(filepath.Ext(name))
+		if ext == ".png" || ext == ".webp" || ext == ".jpg" || ext == ".jpeg" {
+			relPath, _ := filepath.Rel(assetsRoot, path)
+			assetID := "assets/" + relPath
+			resp.Nodes = append(resp.Nodes, &editorpb.Node{
+				Id:    assetID,
+				Label: name,
+				Type:  "schema:ImageObject",
+				Group: "asset",
+			})
+		}
+		return nil
+	})
+
 	return connect.NewResponse(resp), nil
 }
 
@@ -902,10 +929,14 @@ func (s *EditorServer) categorizeNode(t string) string {
 	switch {
 	case t == "gh:RelationEvent":
 		return "link-node"
-	case strings.Contains(t, "Person") || strings.Contains(t, "Place") || strings.Contains(t, "Organization"):
+	case strings.Contains(t, "Person") || strings.Contains(t, "Character") || strings.Contains(t, "Organization"):
+		return "entity"
+	case strings.Contains(t, "Place") || strings.Contains(t, "Setting"):
 		return "entity"
 	case strings.Contains(t, "Manuscript") || strings.Contains(t, "Block") || strings.Contains(t, "CreativeWork"):
 		return "content"
+	case strings.Contains(t, "Image") || strings.Contains(t, "Asset"):
+		return "asset"
 	default:
 		return "concept"
 	}
