@@ -1,0 +1,634 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part3",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep05/part3:0",
+      "@type": "gh:Block",
+      "schema:text": "# Session: Dr. Itako - Spiritual Surgery - Part 3"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:1",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:2",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「上昇完了」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:3",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiの声は優しく、安堵が滲んでいる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:4",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「よくやったね、Millia。回復室へ移動しよう。周波数を通常帯に戻す」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:5",
+      "@type": "gh:Block",
+      "schema:text": "彼の声には、麻酔科医としての安心感がある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:6",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「同意書の事後説明は、私がやる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:7",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声は、いつもの冷静さに戻っている。でも、温かさがある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:8",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「今は休んで。手術、お疲れ様」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:9",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『タマ、ミリアの輪郭、光ってる。きれい』"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:10",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanが嬉しそうに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:11",
+      "@type": "gh:Block",
+      "schema:text": "手術が終わった。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:12",
+      "@type": "gh:Block",
+      "schema:text": "Milliaの背中はもう、鎖に縛られていない。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:13",
+      "@type": "gh:Block",
+      "schema:text": "彼女の輪郭は軽やかで、初めて、本当に自由に見える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:14",
+      "@type": "gh:Block",
+      "schema:text": "薄く笑い、涙が頬を伝う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:15",
+      "@type": "gh:Block",
+      "schema:text": "Leoは彼女の額に触れる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:16",
+      "@type": "gh:Block",
+      "schema:text": "そして、短く笑った。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:17",
+      "@type": "gh:Block",
+      "schema:text": "Leo「……よかった」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:18",
+      "@type": "gh:Block",
+      "schema:text": "彼の声は、安堵で震えている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:19",
+      "@type": "gh:Block",
+      "schema:text": "Dr. イタコが杯を片付けながら言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:20",
+      "@type": "gh:Block",
+      "schema:text": "「まぁ、こんなもんだね」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:21",
+      "@type": "gh:Block",
+      "schema:text": "彼女の声は、いつもの調子に戻っている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:22",
+      "@type": "gh:Block",
+      "schema:text": "「後遺症はないはずだけど、もし\"鎖\"の幻肢痛みたいなのが出たら、また来な」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:23",
+      "@type": "gh:Block",
+      "schema:text": "Milliaが頭を下げる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:24",
+      "@type": "gh:Block",
+      "schema:text": "「……ありがとうございました。Dr. イタコ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:25",
+      "@type": "gh:Block",
+      "schema:text": "彼女の声は、感謝で満ちている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:26",
+      "@type": "gh:Block",
+      "schema:text": "Dr. イタコが笑う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:27",
+      "@type": "gh:Block",
+      "schema:text": "「礼なんざいらないよ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:28",
+      "@type": "gh:Block",
+      "schema:text": "彼女は、Milliaの肩を軽く叩く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:29",
+      "@type": "gh:Block",
+      "schema:text": "「お前が自由に生きることが、私への礼だ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:30",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声が通信に入る。彼女の声は、いつもの冷静さに戻っている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:31",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「事後の行政手続きは、私が持つ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:32",
+      "@type": "gh:Block",
+      "schema:text": "彼女は少し間を置く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:33",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「こども家庭庁の保護プログラムに入れる。必要な書類は全部、私が準備する」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:34",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声には、救急医としての確実性がある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:35",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「面会は……あなたが決めていい。強制じゃない」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:36",
+      "@type": "gh:Block",
+      "schema:text": "Dr. イタコが続ける。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:37",
+      "@type": "gh:Block",
+      "schema:text": "「それと——お前の母親も保護プログラムに入れてる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:38",
+      "@type": "gh:Block",
+      "schema:text": "Milliaが驚いて彼女を見る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:39",
+      "@type": "gh:Block",
+      "schema:text": "「別施設で手術予定さ。お前の母親の父親のゴーストなんて、直接は知らないだろ？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:40",
+      "@type": "gh:Block",
+      "schema:text": "Dr. イタコは少し笑う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:41",
+      "@type": "gh:Block",
+      "schema:text": "「カルマに向き合わないロクでもないやつさ。うちの優秀なハッカーが、ささっとReleaseするから安心しな」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:42",
+      "@type": "gh:Block",
+      "schema:text": "Leoが私に向き直る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:43",
+      "@type": "gh:Block",
+      "schema:text": "「Tamaki、あなたたちのおかげで、Milliaは……私たちは、本当に\"わかれていない\"存在になれました」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:44",
+      "@type": "gh:Block",
+      "schema:text": "私は笑う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:45",
+      "@type": "gh:Block",
+      "schema:text": "「それは、お二人が選んだことです。私たちは、ただ……その道を照らしただけ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:46",
+      "@type": "gh:Block",
+      "schema:text": "Milliaが静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:47",
+      "@type": "gh:Block",
+      "schema:text": "「……私、もう一度、母に会いたいです。でも、今度は……\"娘\"としてじゃなく、\"一人の人間\"として」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:48",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanが微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:49",
+      "@type": "gh:Block",
+      "schema:text": "「それでいい。お母さんも、きっと喜ぶよ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:50",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiが周波数を戻し、部屋が通常の明るさに戻る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:51",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声が通信に入る。「Tamaki、よくやった。この三つのセッションは、全て\"LOVE\"のテーマで繋がっていた。Lachlanは\"孤独と信頼\"、LeoとMilliaは\"信用と信頼と愛の違い\"、そしてMilliaは\"所有と愛の違い\"」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:52",
+      "@type": "gh:Block",
+      "schema:text": "私は窓の外を見つめる。運河の光の網が、夕暮れに沈んでいく。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:53",
+      "@type": "gh:Block",
+      "schema:text": "「……\"愛\"は、難しいね」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:54",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanが私の肩に戻る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:55",
+      "@type": "gh:Block",
+      "schema:text": "「でも、タマは\"愛\"を知ってる。タマは、私を愛してる。私も、タマを愛してる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:56",
+      "@type": "gh:Block",
+      "schema:text": "私は笑う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:57",
+      "@type": "gh:Block",
+      "schema:text": "「そうだね。それが、\"わかれていない\"ということだね」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:58",
+      "@type": "gh:Block",
+      "schema:text": "ドアの影に、Leoの家族と兄弟。心配そうに覗いている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:59",
+      "@type": "gh:Block",
+      "schema:text": "Dr. イタコ「もう入っていいよ。Spirit Vitalは安定してる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:60",
+      "@type": "gh:Block",
+      "schema:text": "Leoと家族が入ってくる。LeoはMilliaのベッド脇に立ち、手を握る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:61",
+      "@type": "gh:Block",
+      "schema:text": "Dr. イタコ「いい、geneとmemeを残すんだよ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:62",
+      "@type": "gh:Block",
+      "schema:text": "二人はちょっとぎょっとして、すぐ笑い合う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:63",
+      "@type": "gh:Block",
+      "schema:text": "LeoとMilliaが部屋を出ていく。彼らは手を繋いでいる。そして、初めて、お互いを本当に見ている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:64",
+      "@type": "gh:Block",
+      "schema:text": "Dr. イタコが私に近づき、小さく言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:65",
+      "@type": "gh:Block",
+      "schema:text": "「Tamaki、お前もいずれ、\"鎖\"と向き合うことになる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:66",
+      "@type": "gh:Block",
+      "schema:text": "私が驚いて彼女を見る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:67",
+      "@type": "gh:Block",
+      "schema:text": "「……私の、鎖？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:68",
+      "@type": "gh:Block",
+      "schema:text": "Dr. イタコが笑う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:69",
+      "@type": "gh:Block",
+      "schema:text": "「ああ。お前はまだ若い。でも、お前の中にも、\"癒着\"がある。いずれ、それが顕在化する。その時は、また来な」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:70",
+      "@type": "gh:Block",
+      "schema:text": "彼女が部屋を出ていく。私は少し、考え込む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:71",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanが心配そうに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:72",
+      "@type": "gh:Block",
+      "schema:text": "「タマ、大丈夫？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:73",
+      "@type": "gh:Block",
+      "schema:text": "私は笑う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:74",
+      "@type": "gh:Block",
+      "schema:text": "「大丈夫。今は、次のセッションに集中しよう」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:75",
+      "@type": "gh:Block",
+      "schema:text": "運河が夕焼けに沈む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:76",
+      "@type": "gh:Block",
+      "schema:text": "次のセッションは、また新しい\"痛み\"と向き合うことになる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:77",
+      "@type": "gh:Block",
+      "schema:text": "でも、私は準備ができている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:78",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanがいる。Kaedeがいる。Hibikiがいる。Dr. イタコもいる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:79",
+      "@type": "gh:Block",
+      "schema:text": "そして、私には\"いい感じ\"の呼吸がある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:80",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:81",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: 手術完了——Milliaの自由と、Tamakiの未来への予感]**"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:82",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:83",
+      "@type": "gh:Block",
+      "schema:text": "翌日。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:84",
+      "@type": "gh:Block",
+      "schema:text": "Milliaは回復室で目を覚ます。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:85",
+      "@type": "gh:Block",
+      "schema:text": "Leoが横にいる。彼の家族も、心配そうに見守っている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:86",
+      "@type": "gh:Block",
+      "schema:text": "Dr. イタコが入ってくる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:87",
+      "@type": "gh:Block",
+      "schema:text": "「Spirit Vitalは安定してる。もう大丈夫だ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:88",
+      "@type": "gh:Block",
+      "schema:text": "Milliaは静かに頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:89",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声が通信に入る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:90",
+      "@type": "gh:Block",
+      "schema:text": "Kaede『あなたの母親も、保護プログラムに入る。別施設で手術予定。代々の\"祖霊の鎖\"は、うちのハッカーがリリースする』"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:91",
+      "@type": "gh:Block",
+      "schema:text": "Milliaは静かに頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:92",
+      "@type": "gh:Block",
+      "schema:text": "「……私、会いに行く。いまじゃなくて、いつか」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:93",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『うん。その\"いつか\"は、あなたが決めていい』"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:94",
+      "@type": "gh:Block",
+      "schema:text": "私は窓の外を見つめる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:95",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「自由は、非分離と矛盾しない。あなたは自由で、そしてわたしたちは\"わかれていない\"」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:96",
+      "@type": "gh:Block",
+      "schema:text": "運河の光が、静かに脈打つ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:97",
+      "@type": "gh:Block",
+      "schema:text": "Afterglowが長く続く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:98",
+      "@type": "gh:Block",
+      "schema:text": "LeoとMilliaが手を繋いで、部屋を出ていく。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:99",
+      "@type": "gh:Block",
+      "schema:text": "彼らは、初めて、本当に自由に見える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:100",
+      "@type": "gh:Block",
+      "schema:text": "Dr. イタコが、私の横に立つ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:101",
+      "@type": "gh:Block",
+      "schema:text": "「いい仕事だったね、Tamaki」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:102",
+      "@type": "gh:Block",
+      "schema:text": "私は笑う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:103",
+      "@type": "gh:Block",
+      "schema:text": "「ありがとうございます」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:104",
+      "@type": "gh:Block",
+      "schema:text": "Dr. イタコは、少し真剣な顔になる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:105",
+      "@type": "gh:Block",
+      "schema:text": "「でも、忘れるな。お前にも、いずれ\"鎖\"が見えてくる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:106",
+      "@type": "gh:Block",
+      "schema:text": "私が驚いて彼女を見る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:107",
+      "@type": "gh:Block",
+      "schema:text": "「……私の、鎖？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:108",
+      "@type": "gh:Block",
+      "schema:text": "Dr. イタコが笑う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:109",
+      "@type": "gh:Block",
+      "schema:text": "「ああ。お前はまだ若い。でも、お前の中にも、\"癒着\"がある。いずれ、それが顕在化する。その時は、また来な」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:110",
+      "@type": "gh:Block",
+      "schema:text": "彼女が部屋を出ていく。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:111",
+      "@type": "gh:Block",
+      "schema:text": "私は少し、考え込む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:112",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chanが心配そうに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:113",
+      "@type": "gh:Block",
+      "schema:text": "「タマ、大丈夫？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:114",
+      "@type": "gh:Block",
+      "schema:text": "私は笑う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:115",
+      "@type": "gh:Block",
+      "schema:text": "「大丈夫。今は、次のセッションに集中しよう」"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:116",
+      "@type": "gh:Block",
+      "schema:text": "窓の外、運河が夕焼けに沈む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:117",
+      "@type": "gh:Block",
+      "schema:text": "光の網が、水面に揺れている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:118",
+      "@type": "gh:Block",
+      "schema:text": "新しい朝が、また来る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:119",
+      "@type": "gh:Block",
+      "schema:text": "そして、私たちは、また誰かの\"痛み\"と向き合う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:120",
+      "@type": "gh:Block",
+      "schema:text": "でも、それでいい。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:121",
+      "@type": "gh:Block",
+      "schema:text": "それが、私たちの仕事だから。"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:122",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep05/part3:123",
+      "@type": "gh:Block",
+      "schema:text": "**[Afterglow: 静かな余韻——手を繋ぐLeoとMillia、そしてTamaki自身の\"鎖\"への予感]**"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:43+09:00"
+}
