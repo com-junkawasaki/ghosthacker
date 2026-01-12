@@ -16,11 +16,11 @@
 
   // Find relations involving this node from the store
   let relations = $derived.by(() => {
-    const allEdges = $graphStore.edges;
-    return allEdges.filter(e => e.fromId === node.id || e.toId === node.id)
-      .map(e => {
+    const allEdges = graphStore.edges;
+    return allEdges.filter((e: any) => e.fromId === node.id || e.toId === node.id)
+      .map((e: any) => {
         const otherId = e.fromId === node.id ? e.toId : e.fromId;
-        const otherNode = $graphStore.nodes.get(otherId);
+        const otherNode = graphStore.nodes.get(otherId);
         return {
           ...e,
           otherNode,
@@ -94,7 +94,7 @@
   <header class="profile-header">
     <div class="avatar-container">
       {#if node.id.includes('tamaki')}
-        <img src="/data/251022/assets/portraits/tamaki.webp" alt={node.label} onerror={(e) => e.target.style.display='none'} />
+        <img src="/data/251022/assets/portraits/tamaki.webp" alt={node.label} onerror={(e) => (e.currentTarget as HTMLImageElement).style.display='none'} />
       {:else}
         <div class="avatar-placeholder">👤</div>
       {/if}

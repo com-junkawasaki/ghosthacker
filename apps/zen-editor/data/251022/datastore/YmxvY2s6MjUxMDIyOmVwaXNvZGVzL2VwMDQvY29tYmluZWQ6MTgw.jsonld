@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:180",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I look at them. Leo leans in; Millia pulls back slightly.",
+    "ja": "Tamaki「じゃあ、あなたの友人との関係には1億円以上の価値がある、ということだね」"
+  },
+  "gh:index": 180
+}

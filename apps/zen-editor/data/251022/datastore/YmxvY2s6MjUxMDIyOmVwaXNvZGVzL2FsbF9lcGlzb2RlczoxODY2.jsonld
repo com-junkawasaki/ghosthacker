@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1866",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Me: “‘Cleaning,’ huh. Unnecessary to whom, I wonder.”",
+    "ja": "それだけで、十分。"
+  },
+  "gh:index": 1866
+}

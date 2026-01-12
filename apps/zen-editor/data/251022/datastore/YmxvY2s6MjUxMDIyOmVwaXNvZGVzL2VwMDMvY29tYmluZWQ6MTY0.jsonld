@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:164",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...I didn’t understand.”"
+  },
+  "gh:index": 164
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:14",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "That’s why it reeks.",
+    "ja": "完璧に最適化された手順。"
+  },
+  "gh:index": 14
+}

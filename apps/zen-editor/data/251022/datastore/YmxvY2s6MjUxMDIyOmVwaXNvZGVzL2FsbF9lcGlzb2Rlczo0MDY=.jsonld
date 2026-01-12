@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:406",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, Millia’s shoulders just fell a little.”",
+    "ja": "「Leo、あなたも、Milliaと\"わかれていない\"。だから、彼女の痛みが、あなたを疲弊させる」"
+  },
+  "gh:index": 406
+}

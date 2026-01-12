@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part2:36",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I whisper, matching breath: “Say ‘huh?’—that’s the first signal.”",
+    "ja": "---"
+  },
+  "gh:index": 36
+}

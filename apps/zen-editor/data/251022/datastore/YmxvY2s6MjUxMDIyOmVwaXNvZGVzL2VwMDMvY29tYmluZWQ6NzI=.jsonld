@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:72",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “It kept him alive. Now it locks him in.”",
+    "ja": "「でも、誰もあなたに“触れられない”」"
+  },
+  "gh:index": 72
+}

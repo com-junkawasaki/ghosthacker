@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:101",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia’s face softens, just a little. A burden lifts, just a little.",
+    "ja": "Leoが、ゆっくりとMilliaの手を取る。"
+  },
+  "gh:index": 101
+}

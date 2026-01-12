@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:166",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “No money, no sympathy. The economy of ‘non-separation.’ Like the family fridge.”",
+    "ja": "---"
+  },
+  "gh:index": 166
+}

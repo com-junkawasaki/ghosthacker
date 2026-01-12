@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:emotion-improvement:20",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "## gh:Episode/S4E1\n- target vs actual (last segment):\n  - relief: target=0.00 actual=0.29 delta=0.29\n  - trust: target=0.25 actual=0.01 delta=-0.24\n  - joy: target=0.00 actual=0.21 delta=0.21\n  - anticipation: target=0.25 actual=0.07 delta=-0.18\n  - hope: target=0.00 actual=0.15 delta=0.15\n  - fear: target=0.00 actual=0.10 delta=0.10"
+  },
+  "gh:index": 20
+}

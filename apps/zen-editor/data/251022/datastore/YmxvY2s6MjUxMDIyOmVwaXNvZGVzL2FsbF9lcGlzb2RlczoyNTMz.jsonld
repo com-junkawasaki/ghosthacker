@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2533",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “All wards released. The city is stable.”",
+    "ja": "---"
+  },
+  "gh:index": 2533
+}

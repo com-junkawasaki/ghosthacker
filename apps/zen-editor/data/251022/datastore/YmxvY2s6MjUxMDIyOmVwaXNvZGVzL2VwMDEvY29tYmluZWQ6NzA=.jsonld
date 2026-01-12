@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:70",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Logos places a hand to his chest: “My lord is still far.”",
+    "ja": "Hibiki「Tudo bem! リハ、楽しみだね」"
+  },
+  "gh:index": 70
+}

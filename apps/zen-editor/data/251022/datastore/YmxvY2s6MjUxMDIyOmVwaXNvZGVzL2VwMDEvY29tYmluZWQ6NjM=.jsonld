@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:63",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Yeah. Correctness matters. But breath comes first.”",
+    "ja": "Kaede「次の案件、入ってる」"
+  },
+  "gh:index": 63
+}

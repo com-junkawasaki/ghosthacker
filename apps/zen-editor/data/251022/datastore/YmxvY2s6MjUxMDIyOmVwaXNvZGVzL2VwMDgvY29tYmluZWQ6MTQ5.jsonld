@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:149",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero: “...Not anymore…?”",
+    "ja": "Tamaki「うん。でも、もう違う」"
+  },
+  "gh:index": 149
+}

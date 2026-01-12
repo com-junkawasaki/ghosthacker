@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/combined:13",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Not Nero’s, not mine.",
+    "ja": "私は、神楽を踏む。"
+  },
+  "gh:index": 13
+}

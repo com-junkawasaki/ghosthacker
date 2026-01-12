@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:393",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Eh, what do you mean?”",
+    "ja": "彼の声は優しいが、真実を告げている。"
+  },
+  "gh:index": 393
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:82",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Matching breath. Tamaki, let’s go.”",
+    "ja": "Tamaki「じゃあ、行くよ」"
+  },
+  "gh:index": 82
+}

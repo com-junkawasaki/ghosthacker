@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part4:16",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Is the water you just drank you?”",
+    "ja": "「その飲んだ水は、あなた？」"
+  },
+  "gh:index": 16
+}

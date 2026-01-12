@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1013",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I continue.",
+    "ja": "Tamaki「違う。あなた自身が、恐れてる」"
+  },
+  "gh:index": 1013
+}

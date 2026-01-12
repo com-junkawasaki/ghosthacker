@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:91",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Green along the canal sings in the wind. Far away, remnants of the old elevated line fall into quiet shadow. Night deepens in the city of water, and the lattice of light glows softly.",
+    "ja": "ダイブした先は、無限に続く廊下だった。同じ扉、同じ窓、同じ光。どこまで進んでも風景は変わらず、終わりがない。クライアントの精神は、このループに囚われている。"
+  },
+  "gh:index": 91
+}

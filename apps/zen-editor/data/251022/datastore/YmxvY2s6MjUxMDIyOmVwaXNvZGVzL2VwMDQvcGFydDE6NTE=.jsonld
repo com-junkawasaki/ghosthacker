@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part1:51",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia: “...I like Leo’s family stories. They’re warm.”",
+    "ja": "彼女の目が、涙を浮かべる。"
+  },
+  "gh:index": 51
+}

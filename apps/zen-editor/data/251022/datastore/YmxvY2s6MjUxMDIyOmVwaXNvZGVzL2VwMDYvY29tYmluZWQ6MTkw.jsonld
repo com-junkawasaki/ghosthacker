@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:190",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Not annihilation.",
+    "ja": "還るだけだ。"
+  },
+  "gh:index": 190
+}

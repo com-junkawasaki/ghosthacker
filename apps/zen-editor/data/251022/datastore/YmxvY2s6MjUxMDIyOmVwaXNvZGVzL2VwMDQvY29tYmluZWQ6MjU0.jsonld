@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:254",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Yes. There is a specialist. Dr. Itako.”",
+    "ja": "Nei-chan（小声）『タマ……見えた』"
+  },
+  "gh:index": 254
+}

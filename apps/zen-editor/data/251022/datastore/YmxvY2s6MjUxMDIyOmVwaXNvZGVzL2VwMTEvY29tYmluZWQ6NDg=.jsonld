@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:48",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I continue:",
+    "ja": "Tamaki「呼吸は、生きることだ」"
+  },
+  "gh:index": 48
+}

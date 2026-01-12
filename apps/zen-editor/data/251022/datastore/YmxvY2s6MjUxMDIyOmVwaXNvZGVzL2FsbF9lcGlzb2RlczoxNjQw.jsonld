@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1640",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "Aoi「Tamaki、これ……怒りの増幅パターン」"
+  },
+  "gh:index": 1640
+}

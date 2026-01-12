@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:212",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...Love is hard.”",
+    "ja": "彼女の声は、いつもの調子に戻っている。"
+  },
+  "gh:index": 212
+}

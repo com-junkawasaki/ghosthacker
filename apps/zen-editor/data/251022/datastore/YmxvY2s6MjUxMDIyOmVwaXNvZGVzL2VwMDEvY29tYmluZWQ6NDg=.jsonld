@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:48",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Primary colors surge. Hibiki’s ayahuasca undoes the knot of space.",
+    "ja": "Eliasが囁く。「僕、ずっと\"正しさ\"で守ってた」"
+  },
+  "gh:index": 48
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:698",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "—The operation begins.",
+    "ja": "彼女の声は涙で濡れている。"
+  },
+  "gh:index": 698
+}

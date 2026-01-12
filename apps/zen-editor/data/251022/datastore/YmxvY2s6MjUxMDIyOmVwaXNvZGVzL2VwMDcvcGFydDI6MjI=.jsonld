@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/part2:22",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "But there is no breath in it.",
+    "ja": "美しい、完璧な声。"
+  },
+  "gh:index": 22
+}

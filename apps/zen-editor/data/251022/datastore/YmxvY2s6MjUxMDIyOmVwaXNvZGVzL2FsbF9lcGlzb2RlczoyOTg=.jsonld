@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:298",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...I see.”",
+    "ja": "Kaede「彼らは互いに、相手を\"救おう\"として……相手を傷つけている。トリアージで言えば、共倒れ寸前よ」"
+  },
+  "gh:index": 298
+}

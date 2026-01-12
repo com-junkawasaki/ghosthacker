@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:15",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi: “Do we keep this tag?”",
+    "ja": "# EP10-2 — 清掃の偽神（The False God of Cleansing）\n- POV: 私（Tamaki／環樹）\n- Beat: Recognition / System Critique"
+  },
+  "gh:index": 15
+}

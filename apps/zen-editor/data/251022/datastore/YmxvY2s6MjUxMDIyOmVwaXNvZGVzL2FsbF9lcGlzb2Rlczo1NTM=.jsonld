@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:553",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Even if bodies are apart, souls remain bound. Cutting the soul is the same as cutting your body.”",
+    "ja": "Nei-chan『タマ、二人の手、繋がってる。あったかい』"
+  },
+  "gh:index": 553
+}

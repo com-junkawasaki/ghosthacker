@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:31",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia (small): “...I might.”",
+    "ja": "Leo「……目！？ 1億円か……」"
+  },
+  "gh:index": 31
+}

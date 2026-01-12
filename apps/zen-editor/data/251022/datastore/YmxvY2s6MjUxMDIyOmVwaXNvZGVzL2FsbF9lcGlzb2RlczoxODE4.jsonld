@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1818",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I look out the window.",
+    "ja": "Rage Engineは、Reconciliation Engineへ置き換わっていく。"
+  },
+  "gh:index": 1818
+}

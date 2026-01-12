@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:71",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “...Good. Really, good.” Tears trembling.",
+    "ja": "Nei-chan『もう、鎖はない』"
+  },
+  "gh:index": 71
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:326",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“They say they ‘love’ each other. But Millia repeats self-harm; Leo ‘tries to save’ her and is exhausted. High likelihood of co-dependence.”",
+    "ja": "Nei-chanが静かに告げる。『タマ、二人とも……\"愛\"を、取引だと思ってる』"
+  },
+  "gh:index": 326
+}

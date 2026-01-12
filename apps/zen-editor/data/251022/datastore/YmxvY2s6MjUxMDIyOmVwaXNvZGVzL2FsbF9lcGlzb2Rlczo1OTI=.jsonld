@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:592",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo holds her hand; she squeezes back.",
+    "ja": "私は手術室の中央に立つ。ここは、魂の手術室。物理的な手術ではない。でも、痛みは本物。"
+  },
+  "gh:index": 592
+}

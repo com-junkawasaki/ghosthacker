@@ -1,0 +1,28 @@
+{
+  "@id": "bundle:sea-level-4m-risk",
+  "@type": "Intangible",
+  "description": "+4mシナリオにおける地域別の典型リスクを束ねた参照ノード。",
+  "gh:items": [
+    {
+      "@id": "scenario:sea-level-rise-4m"
+    },
+    {
+      "@id": "risk:asia-delta"
+    },
+    {
+      "@id": "risk:europe-lowlands"
+    },
+    {
+      "@id": "risk:americas-coastal"
+    },
+    {
+      "@id": "risk:africa-middleeast"
+    },
+    {
+      "@id": "risk:pacific-islands"
+    }
+  ],
+  "gh:x": -2559.9581689652637,
+  "gh:y": 9816.877432373638,
+  "name": "Sea Level +4m Risk Bundle"
+}

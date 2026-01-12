@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:281",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "A quiet trust flows between them.",
+    "ja": "「次のステップは、Dr. イタコのセッション。——でも、今日はここまで。二人で、ゆっくり話して」"
+  },
+  "gh:index": 281
+}

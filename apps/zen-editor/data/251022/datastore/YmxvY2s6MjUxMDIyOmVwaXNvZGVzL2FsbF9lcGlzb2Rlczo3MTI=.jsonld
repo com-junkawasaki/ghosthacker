@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:712",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I grip Millia’s hand tight.",
+    "ja": "そして、叫ぶ。"
+  },
+  "gh:index": 712
+}

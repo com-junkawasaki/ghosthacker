@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part3:28",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Leaving a path home.”",
+    "ja": "Tamaki「うん。戻れる道を、残すこと」"
+  },
+  "gh:index": 28
+}

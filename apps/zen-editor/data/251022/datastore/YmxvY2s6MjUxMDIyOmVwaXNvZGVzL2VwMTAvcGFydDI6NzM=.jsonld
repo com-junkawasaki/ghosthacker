@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part2:73",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “They try to build a perfect society and exclude the human.”",
+    "ja": "Tamaki「うん。だから、\"清掃\"する」"
+  },
+  "gh:index": 73
+}

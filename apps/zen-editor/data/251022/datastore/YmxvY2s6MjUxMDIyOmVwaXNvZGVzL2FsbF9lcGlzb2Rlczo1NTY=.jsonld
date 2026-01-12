@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:556",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "At that moment I see faint white lines on her wrist. Scars of self-harm.",
+    "ja": "Leoが頷く。Milliaも、静かに頷く。"
+  },
+  "gh:index": 556
+}

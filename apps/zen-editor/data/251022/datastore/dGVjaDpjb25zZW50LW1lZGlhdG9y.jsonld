@@ -1,0 +1,8 @@
+{
+  "@id": "tech:consent-mediator",
+  "@type": "Intangible",
+  "description": "合意のための対話補助エージェント。関係の温度を下げ、選択肢を増やす対話設計を提示。",
+  "gh:x": -6741.152924960878,
+  "gh:y": 6437.59148202955,
+  "name": "Consent Mediator"
+}

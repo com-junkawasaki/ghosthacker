@@ -45,19 +45,28 @@
     const type = node.type || "";
     const id = node.id || "";
     const group = node.group || "";
+    const viewType = node.viewType || ""; // Use the new explicit view hint
 
-    console.log("[Page] Selected Node:", { id, type, group, label: node.label });
+    console.log("[Page] Selected Node:", { id, type, group, viewType, label: node.label });
 
-    // Decide View Mode based on Type/Group (VS Code filetype style)
-    if (id === 'hub:translation') {
+    // 1. Explicit ViewType has highest priority
+    if (viewType) {
+      // @ts-ignore - map string to valid pane modes
+      rightPaneMode = viewType;
+    } 
+    // 2. Fallback logic (VS Code filetype style)
+    else if (id === 'hub:translation') {
       rightPaneMode = "translation";
     } else if (type === 'gh:Manuscript' || id.startsWith('manuscript:')) {
       if (rightPaneMode !== "translation") {
         rightPaneMode = "editor";
       }
       currentFilePath = node.label || id || "Untitled.md";
-      
-      // Fetch full content if it's a manuscript
+      // ... (rest of the logic)
+    }
+
+    // Special logic for fetching manuscript blocks remains the same
+    if (type === 'gh:Manuscript' || id.startsWith('manuscript:')) {
       await graphStore.fetchBlocks(id);
       const manuscript = graphStore.nodes.get(id);
       if (manuscript && manuscript.children) {
@@ -69,22 +78,8 @@
         currentFileContent = node.content || "";
       }
     } else if (type === 'gh:Block' || id.startsWith('block:')) {
-      if (rightPaneMode !== "translation") {
-        rightPaneMode = "editor";
-      }
       currentFilePath = id;
       currentFileContent = node.content || "";
-    } else if (type.includes('Person') || type.includes('Character') || id.startsWith('character:') || group === 'unlinked') {
-      rightPaneMode = "entity";
-    } else if (type.includes('Place') || id.startsWith('setting:')) {
-      rightPaneMode = "entity";
-    } else if (type === 'gh:RelationEvent') {
-      rightPaneMode = "relation";
-    } else if (id.match(/\.(png|webp|jpg|jpeg|gif|pdf)$/i)) {
-      rightPaneMode = "asset";
-    } else {
-      // Default to Storyboard for Episodes and everything else
-      rightPaneMode = "storyboard";
     }
     
     if (isStoryboardCollapsed) {
@@ -124,7 +119,19 @@
 
   function toggleSidebar() { isSidebarOpen = !isSidebarOpen; }
   function toggleChat() { isChatOpen = !isChatOpen; }
-  function setView(view: "graph" | "storyboard" | "dual") { activeView = view; }
+  function setView(view: "graph" | "storyboard" | "dual") { 
+    activeView = view; 
+    if (view === "graph") {
+      isGraphCollapsed = false;
+      isStoryboardCollapsed = true;
+    } else if (view === "storyboard") {
+      isGraphCollapsed = true;
+      isStoryboardCollapsed = false;
+    } else {
+      isGraphCollapsed = false;
+      isStoryboardCollapsed = false;
+    }
+  }
 
   let isResizing = $state(false);
   function startResize() { isResizing = true; }

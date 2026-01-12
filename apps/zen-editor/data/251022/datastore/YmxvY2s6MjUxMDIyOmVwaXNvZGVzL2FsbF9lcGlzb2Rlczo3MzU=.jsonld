@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:735",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Her scream melts into sobs—then into a long exhale.",
+    "ja": "彼女の声は、穏やかになっている。"
+  },
+  "gh:index": 735
+}

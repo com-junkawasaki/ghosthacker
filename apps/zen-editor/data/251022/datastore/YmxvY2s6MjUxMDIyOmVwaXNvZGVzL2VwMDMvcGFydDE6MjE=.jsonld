@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part1:21",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan trembles her wings behind me.",
+    "ja": "「この時代は“AIの生命権”で揉めるが、私は反対だ。私は“私の身体”だけを私と認める」"
+  },
+  "gh:index": 21
+}

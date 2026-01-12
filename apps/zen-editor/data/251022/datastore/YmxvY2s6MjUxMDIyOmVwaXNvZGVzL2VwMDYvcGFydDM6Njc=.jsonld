@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part3:67",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The Ogre’s armor loosens, bit by bit.",
+    "ja": "温かく、柔らかい音色。"
+  },
+  "gh:index": 67
+}

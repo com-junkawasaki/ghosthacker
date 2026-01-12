@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1156",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I breathe deep.",
+    "ja": "Tamaki「うん。いま、ここに、在ること」"
+  },
+  "gh:index": 1156
+}

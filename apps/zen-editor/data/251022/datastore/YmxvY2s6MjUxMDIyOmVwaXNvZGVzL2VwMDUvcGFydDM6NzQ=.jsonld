@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:74",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo and Millia leave holding hands.",
+    "ja": "「大丈夫。今は、次のセッションに集中しよう」"
+  },
+  "gh:index": 74
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:119",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The chain peels, bit by bit.",
+    "ja": "Dr. イタコが呟く。その声は、静かだが重い。"
+  },
+  "gh:index": 119
+}

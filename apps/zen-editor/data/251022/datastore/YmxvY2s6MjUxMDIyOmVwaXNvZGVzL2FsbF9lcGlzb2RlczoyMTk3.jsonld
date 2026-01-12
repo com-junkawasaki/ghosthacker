@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2197",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. From fear to trust.”",
+    "ja": "Tamaki「うん。恐れは、在ることの証拠だから」"
+  },
+  "gh:index": 2197
+}

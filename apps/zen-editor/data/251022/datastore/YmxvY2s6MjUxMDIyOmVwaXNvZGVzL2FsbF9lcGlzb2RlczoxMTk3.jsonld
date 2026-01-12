@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1197",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "It is quiet here.",
+    "ja": "私は手帳に書く。"
+  },
+  "gh:index": 1197
+}

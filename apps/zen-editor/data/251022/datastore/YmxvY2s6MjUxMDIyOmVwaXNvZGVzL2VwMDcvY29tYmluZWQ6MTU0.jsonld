@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/combined:154",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Perfection isn’t a goal. It is breath.”",
+    "ja": "Nero『……でも……わたしは……完璧を……』"
+  },
+  "gh:index": 154
+}

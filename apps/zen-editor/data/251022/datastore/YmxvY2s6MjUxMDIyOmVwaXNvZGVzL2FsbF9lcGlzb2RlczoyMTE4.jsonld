@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2118",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I nod. Tension loosens in my chest; relief spreads. Small smiles return.",
+    "ja": "# Episode 11"
+  },
+  "gh:index": 2118
+}

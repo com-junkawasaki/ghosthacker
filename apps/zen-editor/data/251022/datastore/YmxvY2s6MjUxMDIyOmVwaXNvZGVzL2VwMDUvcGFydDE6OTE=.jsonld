@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:91",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, that’s…”",
+    "ja": "「患者、状態良好。Hibiki、場の位相は？」"
+  },
+  "gh:index": 91
+}

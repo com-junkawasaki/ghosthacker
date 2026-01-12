@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part2:43",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The wind on the landing shifts. The canal’s presence hums faintly in the stacks."
+  },
+  "gh:index": 43
+}

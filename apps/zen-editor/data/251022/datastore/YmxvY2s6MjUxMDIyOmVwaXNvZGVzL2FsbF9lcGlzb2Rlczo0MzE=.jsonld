@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:431",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Adam Smith, in Theory of Moral Sentiments, frames sympathy as ‘standing in the other’s place.’”",
+    "ja": "Tamakiはコップをもとの位置へ戻す。"
+  },
+  "gh:index": 431
+}

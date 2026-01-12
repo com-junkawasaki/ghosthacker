@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:139",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia continues:",
+    "ja": "「私はあなたの人形じゃない！」"
+  },
+  "gh:index": 139
+}

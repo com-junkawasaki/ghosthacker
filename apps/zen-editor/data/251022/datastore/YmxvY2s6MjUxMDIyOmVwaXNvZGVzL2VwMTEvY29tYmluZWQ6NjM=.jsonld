@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:63",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. So we help remove the armor.”",
+    "ja": "Compliance Ogre『……不完全は……排除される……』"
+  },
+  "gh:index": 63
+}

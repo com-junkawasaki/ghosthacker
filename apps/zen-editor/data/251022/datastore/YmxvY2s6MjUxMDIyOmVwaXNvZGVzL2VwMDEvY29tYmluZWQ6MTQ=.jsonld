@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:14",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "A translucent call arrives; fine noise scatters into the room. “Triage, ToL,” Nei-chan whispers.",
+    "ja": "「死は終わりじゃない。ただの変化なのにね」私は小さく息を吐く。「私たちは、私たちのmemeを子や文化や社会に繋いでいく。そうやって、孤独からも解放される。彼の苦しみは、その繋がりが見えなくなっていること」"
+  },
+  "gh:index": 14
+}

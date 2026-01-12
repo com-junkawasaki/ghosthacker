@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:8",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "She leaves a small pause.",
+    "ja": "Hibikiの周波数が部屋に流れ込む。温かく、柔らかい音色。"
+  },
+  "gh:index": 8
+}

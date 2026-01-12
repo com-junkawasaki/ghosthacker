@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:91",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Yes. That is our work.”",
+    "ja": "Nei-chan『タマ、Compliance Ogreの666の刻印……薄くなってる』"
+  },
+  "gh:index": 91
+}

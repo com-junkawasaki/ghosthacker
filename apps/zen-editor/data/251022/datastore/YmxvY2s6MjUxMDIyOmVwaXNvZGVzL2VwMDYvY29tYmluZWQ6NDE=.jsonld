@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:41",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Roger. Kagura, please.”",
+    "ja": "意識の解像度が上がる。"
+  },
+  "gh:index": 41
+}

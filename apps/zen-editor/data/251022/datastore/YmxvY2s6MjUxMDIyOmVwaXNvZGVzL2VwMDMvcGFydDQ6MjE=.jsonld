@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part4:21",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "His time stops. His lips on the cup. Seconds—an eternity.",
+    "ja": "彼の時間が止まる。唇はコップに触れたまま。数秒——永遠。"
+  },
+  "gh:index": 21
+}

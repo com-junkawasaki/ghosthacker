@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:420",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...When I see him suffering… I suffer.”",
+    "ja": "「……私も、Leoと\"わかれていない\"存在でいたい。でも、\"私\"も大事にしたい」"
+  },
+  "gh:index": 420
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part3:92",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Welcome back.”",
+    "ja": "---"
+  },
+  "gh:index": 92
+}

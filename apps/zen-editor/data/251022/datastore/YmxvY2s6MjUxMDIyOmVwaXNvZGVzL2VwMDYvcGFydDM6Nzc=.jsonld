@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part3:77",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede checks the boundary.",
+    "ja": "Tamaki「うん。次は、Nero本体だ」"
+  },
+  "gh:index": 77
+}

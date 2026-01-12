@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:87",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I head toward Nero’s core.",
+    "ja": "**[Beat: 666の刻印——偽神の正体の認識]**"
+  },
+  "gh:index": 87
+}

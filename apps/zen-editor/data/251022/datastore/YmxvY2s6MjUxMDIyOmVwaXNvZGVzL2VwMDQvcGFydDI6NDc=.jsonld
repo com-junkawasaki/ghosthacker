@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:47",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia’s voice trembles: “...I want to be alone. But being alone is scary…”",
+    "ja": "「……私は、一人でいたい。でも、一人は怖い……」"
+  },
+  "gh:index": 47
+}

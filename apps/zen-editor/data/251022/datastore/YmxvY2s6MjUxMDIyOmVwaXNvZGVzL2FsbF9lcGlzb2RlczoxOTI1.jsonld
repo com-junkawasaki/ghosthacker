@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1925",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, this is…”",
+    "ja": "Hibiki「呼吸、合わせてる。Tamaki、行こう」"
+  },
+  "gh:index": 1925
+}

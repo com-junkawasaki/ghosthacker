@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part1:74",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia (silent)",
+    "ja": "Tamaki「これが“友達”の経済＝共感と信頼の経済」"
+  },
+  "gh:index": 74
+}

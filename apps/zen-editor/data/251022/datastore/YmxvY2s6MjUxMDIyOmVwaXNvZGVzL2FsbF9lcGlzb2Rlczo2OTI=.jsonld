@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:692",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“I usually do sutures, but fine, I’ll cut this time.”",
+    "ja": "「……何十年分の念が凝固してる」"
+  },
+  "gh:index": 692
+}

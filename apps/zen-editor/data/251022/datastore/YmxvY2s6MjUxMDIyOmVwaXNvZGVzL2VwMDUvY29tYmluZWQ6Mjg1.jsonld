@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:285",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "私は窓の外を見つめる。"
+  },
+  "gh:index": 285
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part4:23",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “‘I don’t know’ is actually ‘nice to meet you.’”",
+    "ja": "私は視線を外さずに告げる。「そう。わからない。“分けることはできない”の」"
+  },
+  "gh:index": 23
+}

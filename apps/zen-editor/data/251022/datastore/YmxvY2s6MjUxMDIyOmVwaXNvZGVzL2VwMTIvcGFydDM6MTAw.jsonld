@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part3:100",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "‘Together — We have finally caught up to that fact.’",
+    "ja": "私は手帳に最後の一行を書く。"
+  },
+  "gh:index": 100
+}

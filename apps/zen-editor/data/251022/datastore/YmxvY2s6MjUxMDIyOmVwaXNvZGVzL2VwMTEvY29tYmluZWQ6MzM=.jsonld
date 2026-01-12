@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:33",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “So it forces perfection.”",
+    "ja": "私は、Compliance Ogreに語りかける。"
+  },
+  "gh:index": 33
+}

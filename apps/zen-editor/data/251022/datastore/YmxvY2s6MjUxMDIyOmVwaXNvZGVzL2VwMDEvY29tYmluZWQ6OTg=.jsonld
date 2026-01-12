@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:98",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I tap a final one-beat kagura. The sign for ending."
+  },
+  "gh:index": 98
+}

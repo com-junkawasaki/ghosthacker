@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:10",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I look at them. Leo leans in; Millia pulls back slightly.",
+    "ja": "Tamaki「では、最後の質問に行くね」"
+  },
+  "gh:index": 10
+}

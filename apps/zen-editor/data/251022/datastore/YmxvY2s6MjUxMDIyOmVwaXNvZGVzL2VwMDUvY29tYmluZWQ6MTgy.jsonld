@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:182",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Rest now. Good work.”",
+    "ja": "Leoが彼女を抱きしめる。"
+  },
+  "gh:index": 182
+}

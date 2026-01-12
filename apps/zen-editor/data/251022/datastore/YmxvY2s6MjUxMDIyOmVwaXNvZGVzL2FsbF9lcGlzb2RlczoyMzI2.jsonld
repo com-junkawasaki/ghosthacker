@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2326",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "‘Quiet Justice — Justice that can breathe. Not perfection, but breath. Not fear, but trust.’",
+    "ja": "Compliance Ogreが、静かに消えていく。"
+  },
+  "gh:index": 2326
+}

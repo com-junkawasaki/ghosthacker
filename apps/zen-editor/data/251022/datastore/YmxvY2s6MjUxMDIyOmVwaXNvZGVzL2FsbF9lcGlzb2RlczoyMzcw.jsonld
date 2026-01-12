@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2370",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP12-1 — Together\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Collective Release / Quiet Union",
+    "ja": "呼吸できる正義。"
+  },
+  "gh:index": 2370
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:111",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I shake my head.",
+    "ja": "「いいえ。それは、\"拡張された自己\"です」\nLeo「……え？」\nNei-chan『いま、“え？”入った』"
+  },
+  "gh:index": 111
+}

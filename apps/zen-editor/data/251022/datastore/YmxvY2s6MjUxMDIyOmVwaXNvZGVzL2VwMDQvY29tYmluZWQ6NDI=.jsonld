@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:42",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Her gaze wavers. She says, small:",
+    "ja": "Leoの表情が崩れる。"
+  },
+  "gh:index": 42
+}

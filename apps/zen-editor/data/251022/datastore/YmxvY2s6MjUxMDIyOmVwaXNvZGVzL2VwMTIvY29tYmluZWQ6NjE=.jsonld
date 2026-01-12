@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/combined:61",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. That matters most.”",
+    "ja": "Tamaki「うん。それが、一番大事」"
+  },
+  "gh:index": 61
+}

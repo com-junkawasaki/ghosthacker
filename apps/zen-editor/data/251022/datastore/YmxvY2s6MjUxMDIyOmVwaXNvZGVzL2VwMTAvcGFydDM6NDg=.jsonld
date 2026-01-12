@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part3:48",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Morning announcements play.",
+    "ja": "朝のアナウンスが流れる。"
+  },
+  "gh:index": 48
+}

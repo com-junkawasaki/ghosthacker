@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part1:1",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "```json\n{\n  \"@context\": \"https://ghosthacker.example.com/\",\n  \"@type\": \"EpisodePart\",\n  \"partOf\": \"episode:s3e1\",\n  \"position\": 1,\n  \"antagonist\": { \"@id\": \"character:lachlan-keyes\" }\n}\n```",
+    "ja": "```json\n{\n  \"@context\": \"https://ghosthacker.example.com/\",\n  \"@type\": \"EpisodePart\",\n  \"partOf\": \"episode:s3e1\",\n  \"position\": 1,\n  \"antagonist\": { \"@id\": \"character:lachlan-keyes\" }\n}\n```"
+  },
+  "gh:index": 1
+}

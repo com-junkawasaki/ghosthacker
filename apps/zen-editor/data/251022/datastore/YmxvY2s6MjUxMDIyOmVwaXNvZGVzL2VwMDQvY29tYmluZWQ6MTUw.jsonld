@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:150",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I smile.",
+    "ja": "**[Beat: \"愛\"と\"信用\"と\"信頼\"の違いの発見——拡張された自己の気づき]**"
+  },
+  "gh:index": 150
+}

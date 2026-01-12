@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:emotion-improvement:11",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "## gh:Episode/S3E1\n- target vs actual (last segment):\n  - anticipation: target=0.00 actual=0.40 delta=0.40\n  - joy: target=0.20 actual=0.00 delta=-0.20\n  - relief: target=0.35 actual=0.30 delta=-0.05\n  - hope: target=0.30 actual=0.30 delta=0.00\n  - sadness: target=0.00 actual=0.00 delta=0.00\n  - fear: target=0.00 actual=0.00 delta=0.00\n- 提案: 終盤に『赦し』『水』『静けさ』のモチーフを追加。短いQuiet Winの会話と呼吸描写で余韻を延ばす。"
+  },
+  "gh:index": 11
+}

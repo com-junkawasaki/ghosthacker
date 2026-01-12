@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part2:2",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Resolve fills her voice.",
+    "ja": "彼女の声は、決意に満ちている。"
+  },
+  "gh:index": 2
+}

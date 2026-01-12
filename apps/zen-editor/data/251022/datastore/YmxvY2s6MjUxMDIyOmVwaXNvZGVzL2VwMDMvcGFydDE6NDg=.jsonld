@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part1:48",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He blinks. “...Eh?” The small surprise softens his edges.",
+    "ja": "「持たなくていい。今日は“問える身体”に戻そう」"
+  },
+  "gh:index": 48
+}

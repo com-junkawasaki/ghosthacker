@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:150",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I say gently:",
+    "ja": "Compliance Ogre『呼吸……』"
+  },
+  "gh:index": 150
+}

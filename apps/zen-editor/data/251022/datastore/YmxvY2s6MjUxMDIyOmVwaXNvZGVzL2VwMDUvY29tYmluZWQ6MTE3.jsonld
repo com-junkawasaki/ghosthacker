@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:117",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tears in her voice.",
+    "ja": "Hibikiの手が、リズムを刻む。"
+  },
+  "gh:index": 117
+}

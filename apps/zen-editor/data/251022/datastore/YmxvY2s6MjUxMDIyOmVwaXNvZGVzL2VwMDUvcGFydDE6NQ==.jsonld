@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:5",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Pressure is… stable this morning.”",
+    "ja": "彼女の声は静かだが、緊張が滲んでいる。"
+  },
+  "gh:index": 5
+}

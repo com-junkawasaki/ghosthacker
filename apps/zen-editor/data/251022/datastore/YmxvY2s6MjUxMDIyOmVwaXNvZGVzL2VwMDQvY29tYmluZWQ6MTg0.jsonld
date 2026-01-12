@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:184",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Eh—that I would never sell.”",
+    "ja": "空間の背景に、薄く街並みのコンテキストが現れる。"
+  },
+  "gh:index": 184
+}

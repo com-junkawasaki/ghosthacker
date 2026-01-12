@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2153",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I say softly:",
+    "ja": "Tamaki「あなたは、何を恐れてる？」"
+  },
+  "gh:index": 2153
+}

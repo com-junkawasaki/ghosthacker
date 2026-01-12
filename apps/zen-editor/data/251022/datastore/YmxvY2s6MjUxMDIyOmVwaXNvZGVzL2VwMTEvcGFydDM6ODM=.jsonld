@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part3:83",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Beneath it, something small and warm.",
+    "ja": "その下には、小さな、温かい存在。"
+  },
+  "gh:index": 83
+}

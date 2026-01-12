@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2390",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan’s light spreads; the city’s contours soften a little.",
+    "ja": "一拍。"
+  },
+  "gh:index": 2390
+}

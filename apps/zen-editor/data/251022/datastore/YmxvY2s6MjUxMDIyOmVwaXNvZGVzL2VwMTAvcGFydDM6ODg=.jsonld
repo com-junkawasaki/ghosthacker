@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part3:88",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The city is quiet.",
+    "ja": "私は窓の外を見る。"
+  },
+  "gh:index": 88
+}

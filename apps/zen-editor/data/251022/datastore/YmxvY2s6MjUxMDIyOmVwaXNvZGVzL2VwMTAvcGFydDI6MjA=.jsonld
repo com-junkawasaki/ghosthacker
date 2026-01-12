@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part2:20",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi: “All are evidence of being human.”",
+    "ja": "Aoi「全部、人間の証拠だ」"
+  },
+  "gh:index": 20
+}

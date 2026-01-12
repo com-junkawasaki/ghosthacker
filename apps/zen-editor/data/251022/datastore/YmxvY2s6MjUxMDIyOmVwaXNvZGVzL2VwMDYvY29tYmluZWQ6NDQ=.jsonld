@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:44",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "Hibiki「Tamaki、周波数を合わせる。Neroの\"完璧\"の裏に、何が隠れてるか……聴いてみよう」"
+  },
+  "gh:index": 44
+}

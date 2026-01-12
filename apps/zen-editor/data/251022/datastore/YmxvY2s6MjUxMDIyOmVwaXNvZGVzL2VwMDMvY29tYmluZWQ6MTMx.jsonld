@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:131",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He is prickly from the moment he enters.",
+    "ja": "「では、ひとつだけ。『あなたは、どこからどこまで？』」"
+  },
+  "gh:index": 131
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part3:5",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Outside the window, the canal sinks into orange. I place a question on my chest.",
+    "ja": "私は笑った。「じゃあ、次も\"いい感じ\"から始めよう」\n私は手帳を開き、最後に一行を書く。『問いは、関係を生む』。EliasとLogosの名前を小さく並べ、ページを閉じる。\n運河沿いの緑が風に鳴る。遠くで、古い高架の残滓が静かに影になっていた。水の都の夜が深まり、光の網がやわらかく灯る。\nNei-chanが肩に触れる。「ASC、落とすね」\n「うん。ありがとう」"
+  },
+  "gh:index": 5
+}

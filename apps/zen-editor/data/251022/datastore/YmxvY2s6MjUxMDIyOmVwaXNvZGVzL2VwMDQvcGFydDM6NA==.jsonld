@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:4",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Tamaki, carefully. In ER terms, we’re entering the most delicate procedure.”",
+    "ja": "Kaede「Tamaki、慎重に。救急で言えば、これから一番デリケートな処置に入る」"
+  },
+  "gh:index": 4
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:216",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Family peeks in the doorway—Leo’s family and siblings, worried.",
+    "ja": "彼女の声は、感謝で満ちている。"
+  },
+  "gh:index": 216
+}

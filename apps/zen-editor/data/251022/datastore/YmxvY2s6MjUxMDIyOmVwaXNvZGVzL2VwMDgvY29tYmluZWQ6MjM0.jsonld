@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:234",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "でも、呼吸がある。"
+  },
+  "gh:index": 234
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1772",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Together.”",
+    "ja": "Kaede「これは……Reconciliation Engine」"
+  },
+  "gh:index": 1772
+}

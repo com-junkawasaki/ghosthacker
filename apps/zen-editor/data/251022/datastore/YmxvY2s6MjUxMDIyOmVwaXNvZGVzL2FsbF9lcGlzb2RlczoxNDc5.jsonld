@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1479",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero: “...I feared… rejection…”",
+    "ja": "Neroの声が、温かくなる。"
+  },
+  "gh:index": 1479
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1412",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Let’s breathe together.”",
+    "ja": "Kaedeが境界を確認する。"
+  },
+  "gh:index": 1412
+}

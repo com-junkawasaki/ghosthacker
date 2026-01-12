@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:33",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "When my awareness regains shape, I’m on the landing of a library. Stacks that reach the sky. Shattered data crystals. In the center, a single line of error:",
+    "ja": "「Hibiki、準備を」"
+  },
+  "gh:index": 33
+}

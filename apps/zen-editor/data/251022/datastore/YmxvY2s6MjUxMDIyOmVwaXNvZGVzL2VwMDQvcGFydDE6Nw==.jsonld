@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part1:7",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He’s bright, with a note of care.",
+    "ja": "彼の声は明るいが、どこか気遣いがある。"
+  },
+  "gh:index": 7
+}

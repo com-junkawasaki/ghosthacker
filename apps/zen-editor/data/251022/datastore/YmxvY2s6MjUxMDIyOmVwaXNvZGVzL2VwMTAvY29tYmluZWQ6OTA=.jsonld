@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:90",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede returns on comms.",
+    "ja": "Hibiki「完璧な社会を作ろうとして、人間を排除してる」"
+  },
+  "gh:index": 90
+}

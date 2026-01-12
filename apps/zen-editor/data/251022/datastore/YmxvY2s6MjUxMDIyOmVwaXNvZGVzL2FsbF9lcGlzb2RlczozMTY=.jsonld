@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:316",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "There’s a hint of worry in her voice.",
+    "ja": "Leoの表情が崩れる。"
+  },
+  "gh:index": 316
+}

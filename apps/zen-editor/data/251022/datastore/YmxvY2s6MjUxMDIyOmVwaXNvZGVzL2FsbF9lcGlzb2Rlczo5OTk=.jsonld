@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:999",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede comes onto comms.",
+    "ja": "Tamaki「名のないものは、関係を持てない」"
+  },
+  "gh:index": 999
+}

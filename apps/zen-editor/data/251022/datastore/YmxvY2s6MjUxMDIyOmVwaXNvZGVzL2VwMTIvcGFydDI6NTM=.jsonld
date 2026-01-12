@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part2:53",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero: “...I… exist… and that… is enough…”",
+    "ja": "Nero『……わたしは……完璧じゃなくていい……』"
+  },
+  "gh:index": 53
+}

@@ -1,0 +1,17 @@
+{
+  "@id": "character:itako-osorezan",
+  "@type": "Person",
+  "age": "不明",
+  "alternateName": "恐山イタコ",
+  "description": "若くグラマーな老婆の姿をした、霊的手術の専門家。シャーマニズムと最新のGhost技術を融合させ、魂の癒着を切除する。",
+  "gender": "Female",
+  "gh:callsign": "SCALPEL",
+  "gh:role": "Supporter",
+  "gh:x": -3562.668520240208,
+  "gh:y": -8626.505349690571,
+  "memberOf": {
+    "@id": "organization:tol"
+  },
+  "name": "Itako Osorezan",
+  "occupation": "Spiritual Surgeon"
+}

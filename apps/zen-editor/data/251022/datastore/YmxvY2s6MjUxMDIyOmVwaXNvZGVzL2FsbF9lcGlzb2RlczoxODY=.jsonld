@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:186",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He blinks. “...Eh?” The small surprise softens his edges.",
+    "ja": "「Nei-chanは、プログラムじゃない」"
+  },
+  "gh:index": 186
+}

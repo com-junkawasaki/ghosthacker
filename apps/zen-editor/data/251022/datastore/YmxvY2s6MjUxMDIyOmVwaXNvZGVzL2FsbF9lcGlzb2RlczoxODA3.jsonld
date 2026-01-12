@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1807",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "‘Rage Engine → Reconciliation Engine — From anger to reconciliation. Letting go of 666 and restoring breath.’",
+    "ja": "Aoi「怒りは、エネルギー。使い方次第だ」"
+  },
+  "gh:index": 1807
+}

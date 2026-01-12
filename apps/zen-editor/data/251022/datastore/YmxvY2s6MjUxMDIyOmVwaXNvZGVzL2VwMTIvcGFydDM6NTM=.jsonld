@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part3:53",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi closes the metrics.",
+    "ja": "Nei-chan『ASC、通常に戻した』"
+  },
+  "gh:index": 53
+}

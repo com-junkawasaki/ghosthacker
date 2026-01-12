@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:11",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Tudo bem, Tamaki. I’ve tuned the prescription of sound.”",
+    "ja": "空気が少し柔らかくなる。Nei-chanは私の肩で、光の羽をひとあおぎした。\n「うん。タマ、今なら静かに潜れる」"
+  },
+  "gh:index": 11
+}

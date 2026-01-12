@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part2:29",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I tap a beat of kagura. Raise ASC half a step. Feed the non-separation code into the wall’s joints.",
+    "ja": "「……私は、誰かに触れたかった。しかし怖かった。裏切りが」"
+  },
+  "gh:index": 29
+}

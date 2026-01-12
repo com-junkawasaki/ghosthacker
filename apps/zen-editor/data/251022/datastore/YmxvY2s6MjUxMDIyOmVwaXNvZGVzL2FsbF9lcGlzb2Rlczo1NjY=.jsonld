@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:566",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Yes. There is a specialist. Dr. Itako.”",
+    "ja": "Nei-chan『タマ、二人、すごくあったかい。希望の色してる。キラキラしてる』"
+  },
+  "gh:index": 566
+}

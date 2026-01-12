@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part3:7",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...I couldn’t trust anyone. No one… trusted me.”",
+    "ja": "「……私は誰も信じられなかった。誰も……私を信じてくれなかった」"
+  },
+  "gh:index": 7
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:530",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia sobs without answer, then forces out words:",
+    "ja": "私はMilliaに向き直る。"
+  },
+  "gh:index": 530
+}

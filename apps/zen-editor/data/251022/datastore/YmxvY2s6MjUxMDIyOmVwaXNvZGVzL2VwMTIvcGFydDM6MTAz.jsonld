@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part3:103",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede, Hibiki, Nei-chan, Aoi.",
+    "ja": "私は、仲間たちを見る。"
+  },
+  "gh:index": 103
+}

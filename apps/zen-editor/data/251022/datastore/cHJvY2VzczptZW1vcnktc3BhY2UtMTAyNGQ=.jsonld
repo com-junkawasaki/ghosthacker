@@ -1,0 +1,10 @@
+{
+  "@id": "process:memory-space-1024d",
+  "@type": "Intangible",
+  "description": "VR様の1024次元情報空間。Ghostは暗号化され、特権昇格やオーバーフロー探索によりdaemon processを特定し、kill→/dev/nullでrelease。情報場はオングストローム級周波数帯で観測される。",
+  "gh:infraNote": "計算要求は分散して光経路に割付、可視化レイヤは近傍にキャッシュ。",
+  "gh:securityNote": "深度域は階層的に分離し、境界越えはワンウェイ・ゲートでログ化。",
+  "gh:x": -5222.415731363562,
+  "gh:y": 8177.8083085749,
+  "name": "Memory Space (1024D)"
+}

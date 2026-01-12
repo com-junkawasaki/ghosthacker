@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:260",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Water answers in the distance.",
+    "ja": "Rage Engineは、Reconciliation Engineへ。"
+  },
+  "gh:index": 260
+}

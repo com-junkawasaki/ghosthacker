@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:58",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Page-shadow rustles. A small inversion.",
+    "ja": "彼女の声には、少し安堵が混じっている。"
+  },
+  "gh:index": 58
+}

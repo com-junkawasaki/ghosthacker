@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:929",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Afraid of ‘not being perfect.’”",
+    "ja": "Tamaki「Nei-chan、ASCを一段上げて」"
+  },
+  "gh:index": 929
+}

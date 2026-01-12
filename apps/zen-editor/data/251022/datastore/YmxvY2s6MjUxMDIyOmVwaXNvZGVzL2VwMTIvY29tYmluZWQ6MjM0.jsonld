@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/combined:234",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "It is together.",
+    "ja": "We can't put it together."
+  },
+  "gh:index": 234
+}

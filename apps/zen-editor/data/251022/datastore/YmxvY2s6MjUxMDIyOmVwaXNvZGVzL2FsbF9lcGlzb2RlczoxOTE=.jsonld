@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:191",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The metronome slips a beat, then returns. The canal wind passes through.",
+    "ja": "壁が微かに鳴る。\n彼は胸に手を当て、一歩だけ前へ出る。閉じていた拳がほどけ、指先が震えた。"
+  },
+  "gh:index": 191
+}

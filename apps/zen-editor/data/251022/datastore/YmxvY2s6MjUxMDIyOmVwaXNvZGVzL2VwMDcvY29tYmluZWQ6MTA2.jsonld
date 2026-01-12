@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/combined:106",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I tap kagura.",
+    "ja": "Tamaki「次は、対峙。Neroの核心へ」"
+  },
+  "gh:index": 106
+}

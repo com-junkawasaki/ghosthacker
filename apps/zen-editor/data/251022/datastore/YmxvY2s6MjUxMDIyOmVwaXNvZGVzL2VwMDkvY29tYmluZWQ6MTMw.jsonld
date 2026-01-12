@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:130",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I nod.",
+    "ja": "# EP9-3 — 和解のエンジン（The Engine of Reconciliation）\n- POV: 私（Tamaki／環樹）\n- Beat: Transformation / From Rage to Peace"
+  },
+  "gh:index": 130
+}

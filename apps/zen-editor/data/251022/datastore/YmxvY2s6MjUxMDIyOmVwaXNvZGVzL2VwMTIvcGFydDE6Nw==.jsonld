@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part1:7",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I look at my friends in turn. The crease in Kaede’s brow unwinds; Hibiki drops the band one notch. Nei-chan’s light lays quiet margins along the streets."
+  },
+  "gh:index": 7
+}

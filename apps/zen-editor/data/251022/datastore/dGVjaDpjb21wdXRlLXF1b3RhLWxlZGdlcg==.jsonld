@@ -1,0 +1,9 @@
+{
+  "@id": "tech:compute-quota-ledger",
+  "@type": "Intangible",
+  "description": "計算クォータの割当と消費を記録する共有台帳。監視主体・事業者・市民監査が読み出せ、過剰な集中や秘匿的な集積を検知する。",
+  "gh:infraNote": "光ネット上の時刻同期で改竄耐性を確保し、近傍キャッシュで遅延を抑制。",
+  "gh:x": 3400.492293821093,
+  "gh:y": 9540.128678541734,
+  "name": "Compute Quota Ledger"
+}

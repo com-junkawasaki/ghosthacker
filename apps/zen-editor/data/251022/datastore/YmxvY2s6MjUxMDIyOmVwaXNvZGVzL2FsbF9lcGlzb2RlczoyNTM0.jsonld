@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2534",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki restores the band.",
+    "ja": "私は、窓の外を見る。"
+  },
+  "gh:index": 2534
+}

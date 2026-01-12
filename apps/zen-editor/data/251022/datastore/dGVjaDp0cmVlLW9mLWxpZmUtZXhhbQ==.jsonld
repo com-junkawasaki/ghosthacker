@@ -1,0 +1,8 @@
+{
+  "@id": "tech:tree-of-life-exam",
+  "@type": "Intangible",
+  "description": "Ghost Hackerの国家資格試験。2回の試験があり、非常に難しい。合格しないと職業につけない。",
+  "gh:x": -7521.65601076374,
+  "gh:y": 5092.206333709072,
+  "name": "TOL (Tree of Life) Certification"
+}

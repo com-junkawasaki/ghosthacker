@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:945",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "A contour begins relation.",
+    "ja": "Tamaki「うん。\"完璧じゃない\"ことを、恐れてる」"
+  },
+  "gh:index": 945
+}

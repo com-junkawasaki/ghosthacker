@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:693",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Confidence, easy.",
+    "ja": "Dr. イタコが呟く。その声は、静かだが重い。"
+  },
+  "gh:index": 693
+}

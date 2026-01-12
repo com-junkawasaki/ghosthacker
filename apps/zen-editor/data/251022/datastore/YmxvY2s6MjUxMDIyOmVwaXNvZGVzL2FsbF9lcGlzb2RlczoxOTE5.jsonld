@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1919",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Mm. Thank you.”",
+    "ja": "ただ削除するんじゃない。"
+  },
+  "gh:index": 1919
+}

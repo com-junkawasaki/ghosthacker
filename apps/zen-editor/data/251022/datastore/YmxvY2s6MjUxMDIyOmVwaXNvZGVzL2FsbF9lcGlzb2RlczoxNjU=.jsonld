@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:165",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I nod. “How alone were you in orbit?”",
+    "ja": "彼女の声は、決意に満ちている。"
+  },
+  "gh:index": 165
+}

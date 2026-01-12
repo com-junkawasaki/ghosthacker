@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:117",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Call her when you’re back. Teach her the ‘feeling good’ breathing.”",
+    "ja": "Nei-chan「それって……愛？」"
+  },
+  "gh:index": 117
+}

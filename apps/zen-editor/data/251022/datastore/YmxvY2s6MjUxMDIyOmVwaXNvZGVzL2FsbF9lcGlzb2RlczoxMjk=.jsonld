@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:129",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I speak to him. The line he thought was “self” never existed—he only believed it so.",
+    "ja": "「この時代は“AIの生命権”で揉めるが、私は反対だ。私は“私の身体”だけを私と認める」"
+  },
+  "gh:index": 129
+}

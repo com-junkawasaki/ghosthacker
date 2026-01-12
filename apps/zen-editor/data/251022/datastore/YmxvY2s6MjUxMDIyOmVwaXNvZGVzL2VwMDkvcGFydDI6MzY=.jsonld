@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part2:36",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede sets a ward.",
+    "ja": "Kaedeが境界を張る。"
+  },
+  "gh:index": 36
+}

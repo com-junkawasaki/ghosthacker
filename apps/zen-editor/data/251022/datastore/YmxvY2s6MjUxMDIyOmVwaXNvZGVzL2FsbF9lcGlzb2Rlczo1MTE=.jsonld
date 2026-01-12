@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:511",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo’s face changes.",
+    "ja": "私は静かに続ける。"
+  },
+  "gh:index": 511
+}

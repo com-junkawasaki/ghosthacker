@@ -1,0 +1,15 @@
+{
+  "@id": "ghost:the-ancestors-chain",
+  "@type": [
+    "Person",
+    "gh:Ghost"
+  ],
+  "description": "儒教的家父長制と日本の『家』制度を体現するGhost。個人の感情より家族の調和を優先させ、魂に癒着する。",
+  "gh:ghostType": "Cultural",
+  "gh:master": {
+    "@id": "character:millia-stuart"
+  },
+  "gh:x": -4218.835335010662,
+  "gh:y": -8311.81052142456,
+  "name": "祖霊の鎖 (The Ancestors' Chain)"
+}

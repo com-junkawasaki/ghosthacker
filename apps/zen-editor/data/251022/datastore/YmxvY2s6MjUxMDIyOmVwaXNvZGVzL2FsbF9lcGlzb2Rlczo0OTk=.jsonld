@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:499",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Oh! I see! Yeah! Totally!” He nods happily. Millia nods only slightly.",
+    "ja": "私はそれには触れず、Milliaに静かに言う。"
+  },
+  "gh:index": 499
+}

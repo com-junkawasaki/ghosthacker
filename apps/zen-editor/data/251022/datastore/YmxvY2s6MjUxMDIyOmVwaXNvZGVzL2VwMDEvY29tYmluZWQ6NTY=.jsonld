@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:56",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Next. Half a step.”",
+    "ja": "Kaede「今日は……ここで切る？」"
+  },
+  "gh:index": 56
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2028",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede, quiet:",
+    "ja": "Tamaki「うん。誰かが帰って来られる、目印」"
+  },
+  "gh:index": 2028
+}

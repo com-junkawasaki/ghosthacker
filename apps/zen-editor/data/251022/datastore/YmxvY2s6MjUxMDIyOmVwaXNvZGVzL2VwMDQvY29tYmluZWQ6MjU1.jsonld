@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:255",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I meet her gaze.",
+    "ja": "Tamaki（小声）「うん。いまは、待つ」"
+  },
+  "gh:index": 255
+}

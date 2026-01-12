@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1673",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I say gently:",
+    "ja": "Kaede「だから、鎧を脱がせる」"
+  },
+  "gh:index": 1673
+}

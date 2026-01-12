@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part3:13",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede returns, a little relief in her voice: “Your heart was still in orbit. Now it returned. Welcome back, Lachlan.”",
+    "ja": "Kaede「心は……まだ軌道上にいた。でも、いま戻った。おかえり、Lachlan」"
+  },
+  "gh:index": 13
+}

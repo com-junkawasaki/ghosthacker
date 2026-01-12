@@ -1,4 +1,4 @@
-import type { Node } from './stores/graph.svelte';
+import type { Node, Edge } from './stores/graph.svelte';
 
 export interface FlattenedNode {
   id: string;

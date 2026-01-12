@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1589",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Corners of the room soften. Nei-chan raises the temperature by one degree.",
+    "ja": "支配ではなく、関係。"
+  },
+  "gh:index": 1589
+}

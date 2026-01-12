@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part1:71",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Next, the economy of trust and sympathy.”",
+    "ja": "Millia（肘で小突く）「……」"
+  },
+  "gh:index": 71
+}

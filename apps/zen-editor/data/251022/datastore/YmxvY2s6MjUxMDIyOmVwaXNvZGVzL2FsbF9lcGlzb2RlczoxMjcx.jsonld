@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1271",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede, quiet:",
+    "ja": "Tamaki「うん。完璧を手放したから」"
+  },
+  "gh:index": 1271
+}

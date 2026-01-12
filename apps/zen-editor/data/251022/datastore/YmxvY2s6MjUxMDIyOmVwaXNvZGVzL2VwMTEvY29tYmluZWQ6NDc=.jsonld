@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:47",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Compliance Ogre: “...For the order of society…”",
+    "ja": "私は静かに言う。"
+  },
+  "gh:index": 47
+}

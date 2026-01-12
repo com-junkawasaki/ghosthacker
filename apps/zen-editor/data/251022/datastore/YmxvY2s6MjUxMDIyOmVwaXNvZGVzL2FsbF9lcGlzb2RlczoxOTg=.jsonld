@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:198",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---\nKaede: “Continue in the same night.”",
+    "ja": "壁が崩れ落ち、音が遠のく。彼の肩が、初めて落ちた。"
+  },
+  "gh:index": 198
+}

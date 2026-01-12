@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:26",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Hmph… but I’ll listen.”",
+    "ja": "「標準任期。十八ヶ月」"
+  },
+  "gh:index": 26
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part3:134",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "**[Beat: I am—Nero’s return and the realization of relation]**",
+    "ja": "---"
+  },
+  "gh:index": 134
+}

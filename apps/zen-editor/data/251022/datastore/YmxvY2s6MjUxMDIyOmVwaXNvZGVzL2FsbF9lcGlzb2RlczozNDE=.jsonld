@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:341",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I inhale, give Nei-chan a cue, and tap a small kagura. ASC prepped.",
+    "ja": "Leo「えー、知らない人は嫌だな。もらったものだけど！」"
+  },
+  "gh:index": 341
+}

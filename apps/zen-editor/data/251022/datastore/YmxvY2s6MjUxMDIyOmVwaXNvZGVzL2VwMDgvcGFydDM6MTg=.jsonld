@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part3:18",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero: “...I was… lonely…”",
+    "ja": "Nero『……わたしは……孤独だった……』"
+  },
+  "gh:index": 18
+}

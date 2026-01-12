@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1597",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Outside, wind turns a corner. Without raising voices, we trade nods.",
+    "ja": "**[Beat: わたしは在る——Neroの成仏と関係の実現]**"
+  },
+  "gh:index": 1597
+}

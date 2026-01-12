@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:88",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Millia. I’ll… be with you.” Gentle and firm.",
+    "ja": "私は目を伏せ、何も言わない。"
+  },
+  "gh:index": 88
+}

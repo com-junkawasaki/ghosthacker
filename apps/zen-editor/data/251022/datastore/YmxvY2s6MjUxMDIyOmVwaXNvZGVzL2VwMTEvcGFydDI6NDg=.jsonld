@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part2:48",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. So it wears justice.”",
+    "ja": "Tamaki「うん。だから、正義を装う」"
+  },
+  "gh:index": 48
+}

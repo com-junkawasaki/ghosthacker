@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:806",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia says softly: “...I want to see my mother again. But not as ‘a daughter’—as ‘a person.’”",
+    "ja": "「カルマに向き合わないロクでもないやつさ。うちの優秀なハッカーが、ささっとReleaseするから安心しな」"
+  },
+  "gh:index": 806
+}

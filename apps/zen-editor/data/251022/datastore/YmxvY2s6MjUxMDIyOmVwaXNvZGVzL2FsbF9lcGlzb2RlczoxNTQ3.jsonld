@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1547",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "Nei-chan『タマ、お疲れさま』"
+  },
+  "gh:index": 1547
+}

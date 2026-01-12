@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:87",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Outside, the canal sinks into sunset.",
+    "ja": "「Spirit Vitalは安定してる。もう大丈夫だ」"
+  },
+  "gh:index": 87
+}

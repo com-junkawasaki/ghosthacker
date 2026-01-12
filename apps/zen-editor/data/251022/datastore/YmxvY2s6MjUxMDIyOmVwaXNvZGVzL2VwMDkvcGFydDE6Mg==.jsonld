@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part1:2",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The late-night timeline is red. Rage diffuses fast. I lower the volume and cue Aoi. Metrics appear as waves. The peak of anger tracks the valley of loneliness.",
+    "ja": "夜更けのタイムラインは赤い。怒りは拡散が速い。私は音量を下げ、Aoiに合図する。メトリクスが波の形で表示される。怒りのピークは、孤独の谷に連動している。"
+  },
+  "gh:index": 2
+}

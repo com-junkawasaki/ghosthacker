@@ -1,0 +1,20 @@
+{
+  "@id": "character:oliver-watts",
+  "@type": "Person",
+  "age": 44,
+  "gender": "Non-binary",
+  "gh:callsign": "TRANSLATOR",
+  "gh:role": "Supporter",
+  "gh:x": 7365.498491489379,
+  "gh:y": -3446.958199654716,
+  "memberOf": {
+    "@id": "organization:tol-zen"
+  },
+  "name": "Oliver Watts",
+  "nationality": "British",
+  "occupation": [
+    "Interpreter of Zen",
+    "Deamon Hunter",
+    "Zombie Killer"
+  ]
+}

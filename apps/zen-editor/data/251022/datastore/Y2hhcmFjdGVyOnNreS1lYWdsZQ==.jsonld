@@ -1,0 +1,20 @@
+{
+  "@id": "character:sky-eagle",
+  "@type": "Person",
+  "age": 38,
+  "gender": "Female",
+  "gh:callsign": "GREATSPIRIT",
+  "gh:role": "Supporter",
+  "gh:x": 7464.023593581299,
+  "gh:y": -5472.826359593122,
+  "memberOf": {
+    "@id": "organization:tol-native"
+  },
+  "name": "Sky Eagle",
+  "nationality": "Native American (Cherokee)",
+  "occupation": [
+    "Ritual Healer",
+    "Deamon Hunter",
+    "Zombie Killer"
+  ]
+}

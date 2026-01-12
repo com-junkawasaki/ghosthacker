@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1799",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Yes. That is the power of reconciliation.”",
+    "ja": "依頼人「……守りたい関係……」"
+  },
+  "gh:index": 1799
+}

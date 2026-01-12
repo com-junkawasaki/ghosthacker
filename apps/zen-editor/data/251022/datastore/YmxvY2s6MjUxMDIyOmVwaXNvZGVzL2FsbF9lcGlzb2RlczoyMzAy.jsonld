@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2302",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "- 完璧を求めない\n- 呼吸を止めない\n- 関係を守る\n- 戻れる道を残す"
+  },
+  "gh:index": 2302
+}

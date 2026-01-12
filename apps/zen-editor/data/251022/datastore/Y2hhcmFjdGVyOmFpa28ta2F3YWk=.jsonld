@@ -1,0 +1,20 @@
+{
+  "@id": "character:aiko-kawai",
+  "@type": "Person",
+  "age": 48,
+  "gender": "Female",
+  "gh:callsign": "EMPTINESS",
+  "gh:role": "Supporter",
+  "gh:x": 5349.218953221283,
+  "gh:y": -7581.9947942452645,
+  "memberOf": {
+    "@id": "organization:tol-psychology"
+  },
+  "name": "Aiko Kawai",
+  "nationality": "Japanese",
+  "occupation": [
+    "Clinical Psychologist",
+    "Deamon Hunter",
+    "Zombie Killer"
+  ]
+}

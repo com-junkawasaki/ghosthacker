@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:67",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He smiles a little.",
+    "ja": "Hibikiの声は、静かだが力強い。彼の目には、深い集中がある。"
+  },
+  "gh:index": 67
+}

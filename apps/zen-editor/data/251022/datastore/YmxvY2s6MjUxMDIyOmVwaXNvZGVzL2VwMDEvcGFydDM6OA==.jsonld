@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part3:8",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede draws her shoulders in; her voice is calm again.",
+    "ja": "「入れよう。半歩のリハ」"
+  },
+  "gh:index": 8
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part3:57",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Stable. The Ogre is calm.”",
+    "ja": "Kaede「結界、安定してる。Compliance Ogre、穏やかだ」"
+  },
+  "gh:index": 57
+}

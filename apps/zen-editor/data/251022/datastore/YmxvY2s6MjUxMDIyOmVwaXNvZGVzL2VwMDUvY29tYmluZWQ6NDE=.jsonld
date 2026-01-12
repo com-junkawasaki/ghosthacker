@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:41",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Reading complete, Millia overlaps hands to sign—trembling, without hesitation.",
+    "ja": "彼女の声には、深い配慮がある。"
+  },
+  "gh:index": 41
+}

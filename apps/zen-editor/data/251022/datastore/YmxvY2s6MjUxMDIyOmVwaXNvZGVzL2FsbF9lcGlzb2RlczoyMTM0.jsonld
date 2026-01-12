@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2134",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “But that justice stops breath.”",
+    "ja": "でも、人間が置き去りにされている。"
+  },
+  "gh:index": 2134
+}

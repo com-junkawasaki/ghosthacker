@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:30",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Desire is an arrow. When arrows align, dives are stable. I close my eyes and gather photons into my fingertips.",
+    "ja": "彼女の声には、救急医の迅速さがある。"
+  },
+  "gh:index": 30
+}

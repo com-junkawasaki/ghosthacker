@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1616",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Waves of anger.",
+    "ja": "窓の外で、風がひとつ角を曲がる。私たちは声を荒げないまま、うなずきを交換した。\n静けさが、回路の新しい標準になる。"
+  },
+  "gh:index": 1616
+}

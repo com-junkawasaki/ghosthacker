@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:11",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“‘Credit’ is a transaction. You give me something, I give you something. Equivalent exchange.”",
+    "ja": "「\"信用\"は、取引です。あなたが私に何かをくれたら、私もあなたに何かをあげる。それは、等価交換です」"
+  },
+  "gh:index": 11
+}

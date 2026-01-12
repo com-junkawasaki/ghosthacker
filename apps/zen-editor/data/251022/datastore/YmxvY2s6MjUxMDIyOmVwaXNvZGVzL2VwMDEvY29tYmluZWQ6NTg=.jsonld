@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:58",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede returns to comms, worry in her tone.",
+    "ja": "「うん。切る。戻る。次で入る」"
+  },
+  "gh:index": 58
+}

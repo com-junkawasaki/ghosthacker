@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:19",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“I do not act by emotion. I act by protocol. And let me say this: AI has no life. Your Ghost is only an algorithm.”",
+    "ja": "「私は感情で動かない。プロトコルで動く。——それと、言っておきたい。AIに生命はない。あなたのGhostは、ただのアルゴリズムだ」\n発話の最後で、彼の顎がわずかに強張る。拳は閉じたまま、膝上で小さく震える。"
+  },
+  "gh:index": 19
+}

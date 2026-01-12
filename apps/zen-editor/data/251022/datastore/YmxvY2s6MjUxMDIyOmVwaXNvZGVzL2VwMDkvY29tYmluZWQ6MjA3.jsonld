@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:207",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “When anger comes, recall the ‘relationship you want to protect’ three moves ahead.”",
+    "ja": "Aoi「怒りは、エネルギー。使い方次第だ」"
+  },
+  "gh:index": 207
+}

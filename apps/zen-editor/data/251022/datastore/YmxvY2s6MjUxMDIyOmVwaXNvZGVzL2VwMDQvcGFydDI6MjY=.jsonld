@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:26",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo blurts: “...Is that sympathy?”",
+    "ja": "「違います。それは、あなたとLeoが\"わかれていない\"からです。あなたは、彼の痛みを、自分の痛みとして感じている」"
+  },
+  "gh:index": 26
+}

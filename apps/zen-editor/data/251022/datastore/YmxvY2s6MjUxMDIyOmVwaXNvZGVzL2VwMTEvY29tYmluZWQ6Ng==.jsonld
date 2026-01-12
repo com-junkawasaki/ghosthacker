@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:6",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Cold perfection recedes; a soft trust comes in. Quiet becomes the cue.",
+    "ja": "Aoi「十分。今日はここまででいい」\n私はうなずく。胸の緊張がほどけ、安堵が広がる。小さな笑顔が返ってくる。\n窓辺の光はやわらかい。希望は声を上げない——けれど、確かにここにある。\n私は『Quiet Justice』のチェックリストを送る。制度は敵じゃない。呼吸を忘れたときに、私たちが思い出す合図が必要なだけだ。"
+  },
+  "gh:index": 6
+}

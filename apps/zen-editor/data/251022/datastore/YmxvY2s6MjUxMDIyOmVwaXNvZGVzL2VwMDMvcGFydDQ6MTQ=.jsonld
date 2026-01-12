@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part4:14",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Take a sip.”",
+    "ja": "「一口、飲んでください」"
+  },
+  "gh:index": 14
+}

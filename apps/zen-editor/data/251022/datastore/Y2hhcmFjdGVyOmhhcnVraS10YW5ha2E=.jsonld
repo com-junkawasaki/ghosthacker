@@ -1,0 +1,20 @@
+{
+  "@id": "character:haruki-tanaka",
+  "@type": "Person",
+  "age": 41,
+  "gender": "Male",
+  "gh:callsign": "MANDALA",
+  "gh:role": "Supporter",
+  "gh:x": 1216.5566950079292,
+  "gh:y": -9249.736270860432,
+  "memberOf": {
+    "@id": "organization:tol-hermeneutics"
+  },
+  "name": "Haruki Tanaka",
+  "nationality": "Japanese",
+  "occupation": [
+    "Shingon Architect",
+    "Deamon Hunter",
+    "Zombie Killer"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:496",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Eh—that I would never sell.”",
+    "ja": "Milliaは泣きじゃくって、何も答えない。"
+  },
+  "gh:index": 496
+}

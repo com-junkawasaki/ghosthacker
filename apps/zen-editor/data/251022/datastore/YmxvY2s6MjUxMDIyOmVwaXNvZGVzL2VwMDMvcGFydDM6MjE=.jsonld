@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part3:21",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo Kazan \u0026 Millia Stuart.",
+    "ja": "私は深く息を吸う。「……カップル？」"
+  },
+  "gh:index": 21
+}

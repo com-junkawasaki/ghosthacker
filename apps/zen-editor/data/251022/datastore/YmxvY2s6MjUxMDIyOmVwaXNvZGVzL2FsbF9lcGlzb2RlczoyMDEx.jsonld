@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2011",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I say softly:",
+    "ja": "Kaede「結界、安定してる。System、落ち着いてきた」"
+  },
+  "gh:index": 2011
+}

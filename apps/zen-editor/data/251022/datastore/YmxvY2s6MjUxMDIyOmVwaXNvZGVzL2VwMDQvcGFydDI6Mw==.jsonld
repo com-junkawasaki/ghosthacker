@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:3",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Do not rush to settle it here. Like ER triage—haste causes misses.”",
+    "ja": "Kaede「ここで決着を急がない。救急のトリアージと同じ——焦ると、見落とす」"
+  },
+  "gh:index": 3
+}

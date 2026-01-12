@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2258",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Tamaki, the Ogre’s structure—integrating.”",
+    "ja": "Compliance Ogre『……それで……いい……？』"
+  },
+  "gh:index": 2258
+}

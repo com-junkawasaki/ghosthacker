@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:717",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“A mother who looks not at me, but at an ideal daughter.”",
+    "ja": "鎖が音を立てて切れる。"
+  },
+  "gh:index": 717
+}

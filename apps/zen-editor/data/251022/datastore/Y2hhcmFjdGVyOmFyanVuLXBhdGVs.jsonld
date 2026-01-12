@@ -1,0 +1,20 @@
+{
+  "@id": "character:arjun-patel",
+  "@type": "Person",
+  "age": 42,
+  "gender": "Male",
+  "gh:callsign": "ATMAN",
+  "gh:role": "Supporter",
+  "gh:x": -2893.1128764184605,
+  "gh:y": -8878.919977708087,
+  "memberOf": {
+    "@id": "organization:tol-hermeneutics"
+  },
+  "name": "Arjun Patel",
+  "nationality": "Indian",
+  "occupation": [
+    "Meditative Hacker",
+    "Deamon Hunter",
+    "Zombie Killer"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:104",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "On its breast, the mark 666.",
+    "ja": "私は一歩前に出る。"
+  },
+  "gh:index": 104
+}

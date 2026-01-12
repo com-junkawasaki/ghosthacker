@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:38",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Nero’s echo.”",
+    "ja": "Tamaki「……GnB Inc.は、人間を\"清掃\"してる」"
+  },
+  "gh:index": 38
+}

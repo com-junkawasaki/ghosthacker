@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:814",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I smile: “Yes. That is ‘not being separate.’”",
+    "ja": "「それでいい。お母さんも、きっと喜ぶよ」"
+  },
+  "gh:index": 814
+}

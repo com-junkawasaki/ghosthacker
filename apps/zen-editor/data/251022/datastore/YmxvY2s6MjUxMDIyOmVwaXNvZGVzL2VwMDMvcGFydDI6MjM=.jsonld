@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part2:23",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Nei-chan is not a ‘program.’”",
+    "ja": "「Nei-chanは、プログラムじゃない」"
+  },
+  "gh:index": 23
+}

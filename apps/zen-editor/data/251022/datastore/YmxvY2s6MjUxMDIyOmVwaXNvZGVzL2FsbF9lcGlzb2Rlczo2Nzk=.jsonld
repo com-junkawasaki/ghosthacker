@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:679",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan squeezes my hand.",
+    "ja": "Milliaが私を見る。その目には、信頼がある。"
+  },
+  "gh:index": 679
+}

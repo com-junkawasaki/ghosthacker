@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:125",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Resolution / Afterthoughts",
+    "ja": "「Tamaki Mizuno、ですね。私は“強制”で来ています」"
+  },
+  "gh:index": 125
+}

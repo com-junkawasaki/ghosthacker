@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:75",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I lower my eyes and say nothing.",
+    "ja": "Tamaki「\"あなたを愛している\"という嘘をつく人を愛さなくていいの」"
+  },
+  "gh:index": 75
+}

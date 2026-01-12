@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:271",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia’s face softens, just a little. A burden lifts, just a little.",
+    "ja": "私は頷く。"
+  },
+  "gh:index": 271
+}

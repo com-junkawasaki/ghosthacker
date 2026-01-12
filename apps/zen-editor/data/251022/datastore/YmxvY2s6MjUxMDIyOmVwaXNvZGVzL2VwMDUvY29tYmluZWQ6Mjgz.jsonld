@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:283",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "「……私、会いに行く。いまじゃなくて、いつか」"
+  },
+  "gh:index": 283
+}

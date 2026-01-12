@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:140",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "「安全だった。——だが、私は息が浅い」"
+  },
+  "gh:index": 140
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:309",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The moment when the boundary between the cup’s water and himself loosens.",
+    "ja": "Leoが即座に答える。「はい。私はMilliaを愛しています。彼女は……私の全てです」\nLeoの指が、無意識にMilliaの手を強く握る。Milliaは一瞬だけ手を引き、すぐに戻す。"
+  },
+  "gh:index": 309
+}

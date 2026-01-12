@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:10",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "She looks at me; her eyes have a deep cut.",
+    "ja": "彼女は私を見る。その目には、深い洞察がある。"
+  },
+  "gh:index": 10
+}

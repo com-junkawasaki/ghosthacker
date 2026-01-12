@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:261",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "そして、あなたも、在る。"
+  },
+  "gh:index": 261
+}

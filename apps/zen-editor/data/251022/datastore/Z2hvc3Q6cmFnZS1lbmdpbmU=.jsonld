@@ -1,0 +1,14 @@
+{
+  "@id": "ghost:rage-engine",
+  "@type": [
+    "Person",
+    "gh:Ghost"
+  ],
+  "gh:ghostType": "Human-derived",
+  "gh:master": {
+    "@id": "character:anika-bose"
+  },
+  "gh:x": -7510.373815322347,
+  "gh:y": -5034.833781790859,
+  "name": "Rage Engine"
+}

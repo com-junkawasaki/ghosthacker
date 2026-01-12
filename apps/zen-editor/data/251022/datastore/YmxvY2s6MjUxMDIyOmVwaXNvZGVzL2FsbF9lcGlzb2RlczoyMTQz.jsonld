@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2143",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “So it forces perfection.”",
+    "ja": "「完璧じゃないと、拒絶される」"
+  },
+  "gh:index": 2143
+}

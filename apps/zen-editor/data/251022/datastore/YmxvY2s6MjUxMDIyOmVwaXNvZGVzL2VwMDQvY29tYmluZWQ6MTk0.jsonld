@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:194",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Right. Value differs by relation. Relationships have value.”",
+    "ja": "Tamaki「次の質問。——あなたの片目を1億円で売れますか？」"
+  },
+  "gh:index": 194
+}

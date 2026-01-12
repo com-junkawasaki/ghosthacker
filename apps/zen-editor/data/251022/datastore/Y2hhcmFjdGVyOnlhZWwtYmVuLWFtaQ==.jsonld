@@ -1,0 +1,19 @@
+{
+  "@id": "character:yael-ben-ami",
+  "@type": "Person",
+  "age": 39,
+  "description": "39歳、女性、イスラエル出身。政策助言（分離と治安）を専門とする。テーマ: 分離・安全と自由のトレードオフ・国境。",
+  "gh:callsign": "WALL",
+  "gh:ghost": {
+    "@id": "ghost:barrier-architect"
+  },
+  "gh:persona": "分離の建築家",
+  "gh:x": -8566.181130958646,
+  "gh:y": -201.9848853972357,
+  "name": "Yael Ben-Ami",
+  "occupation": [
+    "Policy Advisor (Separation \u0026 Security)",
+    "Deamon Hunter",
+    "Zombie Killer"
+  ]
+}

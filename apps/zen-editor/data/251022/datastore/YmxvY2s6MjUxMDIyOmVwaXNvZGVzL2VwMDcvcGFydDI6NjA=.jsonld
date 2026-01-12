@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/part2:60",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Synth Angel: “...Do we… exist…?”",
+    "ja": "Synth Angelの歌が止まる。"
+  },
+  "gh:index": 60
+}

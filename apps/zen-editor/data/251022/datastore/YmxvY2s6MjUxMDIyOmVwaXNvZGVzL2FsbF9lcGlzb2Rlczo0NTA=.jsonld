@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:450",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Leo, you are ‘not separate’ from Millia too. That is why her pain exhausts you.”",
+    "ja": "私は少し間を置く。"
+  },
+  "gh:index": 450
+}

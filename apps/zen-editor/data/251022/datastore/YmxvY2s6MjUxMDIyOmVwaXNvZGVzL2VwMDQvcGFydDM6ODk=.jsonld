@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:89",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia smiles through tears: “...Doctor, please.”",
+    "ja": "Nei-chan（小声）『タマ……見えた』"
+  },
+  "gh:index": 89
+}

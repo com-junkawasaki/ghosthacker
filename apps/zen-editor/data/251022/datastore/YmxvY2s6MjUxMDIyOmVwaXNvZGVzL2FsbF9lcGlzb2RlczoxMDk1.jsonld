@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1095",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I speak quietly:",
+    "ja": "# EP7-1 — 名を問う（YHWH）\n- POV: 私（Tamaki／環樹）\n- Beat: Threshold / Inquiry"
+  },
+  "gh:index": 1095
+}

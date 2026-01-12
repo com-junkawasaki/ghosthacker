@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:701",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia’s scream fills the room.",
+    "ja": "黒い膿が、床に落ちる。"
+  },
+  "gh:index": 701
+}

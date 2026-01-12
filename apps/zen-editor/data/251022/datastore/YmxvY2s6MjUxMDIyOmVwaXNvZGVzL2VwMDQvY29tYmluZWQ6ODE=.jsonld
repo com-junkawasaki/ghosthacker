@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:81",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Eh, what do you mean?”",
+    "ja": "# Session: Leo Kazan \u0026 Millia Stuart - Part 2"
+  },
+  "gh:index": 81
+}

@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part1:22",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I nod. Calm spreads, slowly. We retune the throttle toward hope."
+  },
+  "gh:index": 22
+}

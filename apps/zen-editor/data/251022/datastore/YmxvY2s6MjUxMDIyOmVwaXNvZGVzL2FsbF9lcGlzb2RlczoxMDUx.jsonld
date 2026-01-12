@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1051",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede says quietly:",
+    "ja": "Compliance Ogreの胸の666が、薄くなる。"
+  },
+  "gh:index": 1051
+}

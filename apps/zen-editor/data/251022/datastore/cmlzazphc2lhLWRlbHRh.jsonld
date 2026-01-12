@@ -1,0 +1,8 @@
+{
+  "@id": "risk:asia-delta",
+  "@type": "Intangible",
+  "description": "メコン・ガンジス・揚子江デルタなど海抜1–3m帯が広がる地域。都市・農地・港湾が一体で浸水リスクに晒される。",
+  "gh:x": 1284.5848579159347,
+  "gh:y": 10178.69053225432,
+  "name": "Asia Delta Risk"
+}

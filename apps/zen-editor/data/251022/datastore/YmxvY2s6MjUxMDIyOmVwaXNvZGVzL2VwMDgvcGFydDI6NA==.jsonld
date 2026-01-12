@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part2:4",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Everything is decided here.",
+    "ja": "ここで、全てが決まる。"
+  },
+  "gh:index": 4
+}

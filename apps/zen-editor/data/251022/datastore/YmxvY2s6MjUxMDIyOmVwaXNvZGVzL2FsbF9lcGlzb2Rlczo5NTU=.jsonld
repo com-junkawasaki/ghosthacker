@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:955",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Matching breath. Tamaki, let’s go.”",
+    "ja": "Tamaki「……これは、システム全体だ」"
+  },
+  "gh:index": 955
+}

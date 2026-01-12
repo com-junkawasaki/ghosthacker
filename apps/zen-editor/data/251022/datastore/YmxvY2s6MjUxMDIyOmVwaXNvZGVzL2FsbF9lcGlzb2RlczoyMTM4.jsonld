@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2138",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "‘If I’m not perfect, I’ll be rejected.’",
+    "ja": "彼女は少し間を置く。"
+  },
+  "gh:index": 2138
+}

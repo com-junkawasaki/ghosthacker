@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:312",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "それが、私たちの仕事だから。"
+  },
+  "gh:index": 312
+}

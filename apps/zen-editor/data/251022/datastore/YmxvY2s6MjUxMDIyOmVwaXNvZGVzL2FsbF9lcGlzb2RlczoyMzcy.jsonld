@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2372",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The final cue, quietly. I tap kagura; Hibiki settles the breathing. Kaede watches the ward. Nei-chan’s light spreads; the city’s contours soften a little.",
+    "ja": "---"
+  },
+  "gh:index": 2372
+}

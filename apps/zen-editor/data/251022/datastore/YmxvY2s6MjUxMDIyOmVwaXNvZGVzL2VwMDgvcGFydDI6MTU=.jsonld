@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part2:15",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "A small tremble hidden behind it.",
+    "ja": "その奥に隠れた、小さな震え。"
+  },
+  "gh:index": 15
+}

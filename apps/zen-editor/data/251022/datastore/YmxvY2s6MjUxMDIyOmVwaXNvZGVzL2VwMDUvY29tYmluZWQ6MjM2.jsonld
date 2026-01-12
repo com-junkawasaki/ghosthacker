@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:236",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "**[Beat: Operation complete—Millia’s freedom and Tamaki’s foreboding]**",
+    "ja": "「それは、お二人が選んだことです。私たちは、ただ……その道を照らしただけ」"
+  },
+  "gh:index": 236
+}

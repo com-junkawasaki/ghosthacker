@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1649",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "Hibiki「だから、怒りが増幅される。完璧に届かない自分への怒り」"
+  },
+  "gh:index": 1649
+}

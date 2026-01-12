@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1292",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I walk toward Nero.",
+    "ja": "Kaede「完璧の檻から、呼吸の場所に」"
+  },
+  "gh:index": 1292
+}

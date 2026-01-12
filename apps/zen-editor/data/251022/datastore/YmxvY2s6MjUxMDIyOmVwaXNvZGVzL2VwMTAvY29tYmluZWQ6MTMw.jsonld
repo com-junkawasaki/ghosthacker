@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:130",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "**[Beat: The false god of cleansing—GnB Inc.’s method and the protection of relation]**",
+    "ja": "私は、Zombie Sweeperを実行する。"
+  },
+  "gh:index": 130
+}

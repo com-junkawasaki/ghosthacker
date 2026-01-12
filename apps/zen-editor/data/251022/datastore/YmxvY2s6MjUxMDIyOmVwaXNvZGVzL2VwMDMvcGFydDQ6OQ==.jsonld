@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part4:9",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Then one thing. ‘Where do you begin and end?’”",
+    "ja": "「では、ひとつだけ。『あなたは、どこからどこまで？』」"
+  },
+  "gh:index": 9
+}

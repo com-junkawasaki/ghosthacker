@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:105",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Focus on him now. We’ll review the map later.”",
+    "ja": "Kaedeの声が通信に入る。彼女の声には、安堵が混じっている。"
+  },
+  "gh:index": 105
+}

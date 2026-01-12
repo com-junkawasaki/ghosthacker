@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:193",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“I hear you.”",
+    "ja": "「“怖い”は、望みの裏返し。何も望まなければ、怖くない」"
+  },
+  "gh:index": 193
+}

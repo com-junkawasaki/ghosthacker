@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1335",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero Ops: “We maintain order. Not fear.”",
+    "ja": "都市の心臓部で、偽神は完璧を強いた。恐れで回るシステムは、美しく見えて、壊れている。私は一歩出て、名を与える。「あなたの名は、恐れ」"
+  },
+  "gh:index": 1335
+}

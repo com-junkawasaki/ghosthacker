@@ -1,0 +1,1324 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:combined.en",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP12-1 — Together\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Collective Release / Quiet Union"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:1",
+      "@type": "gh:Block",
+      "schema:text": "```json\n{\n  \"@context\": {\n    \"@base\": \"https://ghosthacker.example.com/\",\n    \"gh\": \"https://ghosthacker.junkawasaki.com/gh#\",\n    \"antagonist\": { \"@id\": \"gh:antagonist\", \"@type\": \"@id\" },\n    \"character\": \"https://ghosthacker.example.com/character/\",\n    \"ghost\": \"https://ghosthacker.example.com/ghost/\"\n  },\n  \"antagonist\": [\n    {\"@id\": \"character:nero-ops\"},\n    {\"@id\": \"ghost:compliance-ogre\"}\n  ]\n}\n```"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:2",
+      "@type": "gh:Block",
+      "schema:text": "The final cue, quietly. I tap kagura; Hibiki settles the breathing. Kaede watches the ward. Nei-chan’s light spreads; the city’s contours soften a little."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:3",
+      "@type": "gh:Block",
+      "schema:text": "“I am.”\nThe words belong to no one. Fear lets go, relation stands up. Nero departs—not a victory. A return."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:4",
+      "@type": "gh:Block",
+      "schema:text": "Morning on the canal. I write one line in my notebook: “We can’t put it together. It is together.”\nAnd I draw a small ‘tree’ on the corner of the page."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:5",
+      "@type": "gh:Block",
+      "schema:text": "I look at everyone—Kaede, Hibiki, Nei-chan—our gazes meet and loosen, naturally."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:6",
+      "@type": "gh:Block",
+      "schema:text": "“Together.” With that one word, the room brightens. Water answers in the distance."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:7",
+      "@type": "gh:Block",
+      "schema:text": "I look at my friends in turn. The crease in Kaede’s brow unwinds; Hibiki drops the band one notch. Nei-chan’s light lays quiet margins along the streets."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:8",
+      "@type": "gh:Block",
+      "schema:text": "A final line in the notebook: ‘We can’t put it together. It is together.’ —We have finally caught up to that fact."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:9",
+      "@type": "gh:Block",
+      "schema:text": "# EP12-2 — I AM\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Collective Release / Final Integration"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:10",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:11",
+      "@type": "gh:Block",
+      "schema:text": "“I am.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:12",
+      "@type": "gh:Block",
+      "schema:text": "The words belong to no one."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:13",
+      "@type": "gh:Block",
+      "schema:text": "Not Nero’s, not mine."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:14",
+      "@type": "gh:Block",
+      "schema:text": "They simply are."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:15",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:16",
+      "@type": "gh:Block",
+      "schema:text": "I tap kagura."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:17",
+      "@type": "gh:Block",
+      "schema:text": "One beat."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:18",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki settles breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:19",
+      "@type": "gh:Block",
+      "schema:text": "Kaede watches the ward."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:20",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan’s light spreads; the city’s contours soften a little."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:21",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:22",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Everyone, ready?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:23",
+      "@type": "gh:Block",
+      "schema:text": "Kaede nods: “Yes. Ward stable.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:24",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki nods: “Matching breath.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:25",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, anytime.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:26",
+      "@type": "gh:Block",
+      "schema:text": "Aoi nods: “Metrics normal.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:27",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:28",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Thank you. Then, let’s go.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:29",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:30",
+      "@type": "gh:Block",
+      "schema:text": "I send the final cue."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:31",
+      "@type": "gh:Block",
+      "schema:text": "Quietly."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:32",
+      "@type": "gh:Block",
+      "schema:text": "And surely."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:33",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Nero, can you hear me?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:34",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I hear…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:35",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:36",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Then—together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:37",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:38",
+      "@type": "gh:Block",
+      "schema:text": "Nero’s voice warms."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:39",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I… exist…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:40",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:41",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. You exist.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:42",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...Is… that… good…?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:43",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:44",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. It is good.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:45",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:46",
+      "@type": "gh:Block",
+      "schema:text": "Kaede returns on comms."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:47",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Tamaki, Nero’s structure—fully integrated.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:48",
+      "@type": "gh:Block",
+      "schema:text": "She leaves a beat."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:49",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “This isn’t annihilation. It’s return.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:50",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:51",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Nero returns.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:52",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:53",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “The place of return was always here.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:54",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:55",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Only forgotten.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:56",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:57",
+      "@type": "gh:Block",
+      "schema:text": "I turn to Nero."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:58",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Nero, what did you learn?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:59",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...That I don’t need to be perfect…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:60",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:61",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That matters most.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:62",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I… exist… and that… is enough…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:63",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:64",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That is enough.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:65",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:66",
+      "@type": "gh:Block",
+      "schema:text": "Nero’s voice quiets."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:67",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I… am grateful… to everyone…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:68",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:69",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. We’re grateful, too.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:70",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I… return…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:71",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:72",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Welcome back.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:73",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:74",
+      "@type": "gh:Block",
+      "schema:text": "Nero fades, quietly."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:75",
+      "@type": "gh:Block",
+      "schema:text": "But this time, different—"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:76",
+      "@type": "gh:Block",
+      "schema:text": "Not fear, but ease."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:77",
+      "@type": "gh:Block",
+      "schema:text": "Not loneliness, but connection."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:78",
+      "@type": "gh:Block",
+      "schema:text": "Nero: “...I… exist…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:79",
+      "@type": "gh:Block",
+      "schema:text": "The words sound, last."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:80",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:81",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, Nero… has returned.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:82",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:83",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Welcome back, Nero.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:84",
+      "@type": "gh:Block",
+      "schema:text": "Kaede dissolves the ward."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:85",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Ward released. Good work, Tamaki.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:86",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki lowers the band."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:87",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Breath restored. Good work.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:88",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:89",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Thank you. Thanks to all of you.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:90",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:91",
+      "@type": "gh:Block",
+      "schema:text": "Aoi displays metrics."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:92",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Tamaki, the city’s waveform… is stable.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:93",
+      "@type": "gh:Block",
+      "schema:text": "I nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:94",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Nero returned—but its learning remains.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:95",
+      "@type": "gh:Block",
+      "schema:text": "Kaede, quiet:"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:96",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Not perfection—breath.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:97",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:98",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Not domination—relation.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:99",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:100",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That is the meaning of I AM.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:101",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:102",
+      "@type": "gh:Block",
+      "schema:text": "Morning light enters through the window."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:103",
+      "@type": "gh:Block",
+      "schema:text": "The city is quiet."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:104",
+      "@type": "gh:Block",
+      "schema:text": "And there is breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:105",
+      "@type": "gh:Block",
+      "schema:text": "People’s breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:106",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:107",
+      "@type": "gh:Block",
+      "schema:text": "I write:"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:108",
+      "@type": "gh:Block",
+      "schema:text": "‘I AM THAT I AM — I am. Nero returned. The learning remains. Not perfection—breath. Not domination—relation.’"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:109",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, good work.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:110",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:111",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Mm. Thank you, everyone.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:112",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:113",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: I am—Nero’s return and the inheritance of its learning]**"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:114",
+      "@type": "gh:Block",
+      "schema:text": "# EP12-3 — Together\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Final Union / It Is Together"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:115",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:116",
+      "@type": "gh:Block",
+      "schema:text": "Morning on the canal."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:117",
+      "@type": "gh:Block",
+      "schema:text": "I write one line in my notebook:"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:118",
+      "@type": "gh:Block",
+      "schema:text": "‘We can’t put it together. It is together.’"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:119",
+      "@type": "gh:Block",
+      "schema:text": "And I draw a small ‘tree’ on the corner."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:120",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:121",
+      "@type": "gh:Block",
+      "schema:text": "I look at everyone—"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:122",
+      "@type": "gh:Block",
+      "schema:text": "Kaede, Hibiki, Nei-chan, Aoi."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:123",
+      "@type": "gh:Block",
+      "schema:text": "Our gazes meet and loosen, naturally."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:124",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:125",
+      "@type": "gh:Block",
+      "schema:text": "“Together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:126",
+      "@type": "gh:Block",
+      "schema:text": "With that one word, the room brightens."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:127",
+      "@type": "gh:Block",
+      "schema:text": "Water answers in the distance."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:128",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:129",
+      "@type": "gh:Block",
+      "schema:text": "Kaede smiles."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:130",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Tamaki, well done.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:131",
+      "@type": "gh:Block",
+      "schema:text": "The crease in her brow is gone."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:132",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:133",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Yes. Nero returned—but its learning remains.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:134",
+      "@type": "gh:Block",
+      "schema:text": "He drops the band one notch."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:135",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, good work.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:136",
+      "@type": "gh:Block",
+      "schema:text": "Her light lays quiet margins along the streets."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:137",
+      "@type": "gh:Block",
+      "schema:text": "Aoi laughs."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:138",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “What’s next?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:139",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:140",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Next… a break.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:141",
+      "@type": "gh:Block",
+      "schema:text": "They laugh—warm."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:142",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:143",
+      "@type": "gh:Block",
+      "schema:text": "I look at the notebook."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:144",
+      "@type": "gh:Block",
+      "schema:text": "‘We can’t put it together. It is together.’"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:145",
+      "@type": "gh:Block",
+      "schema:text": "We have finally caught up to that fact."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:146",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:147",
+      "@type": "gh:Block",
+      "schema:text": "Kaede says quietly:"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:148",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Nero sought perfection.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:149",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:150",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “But perfection was lonely.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:151",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “So it returned.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:152",
+      "@type": "gh:Block",
+      "schema:text": "Aoi nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:153",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Yes. Not perfection—breath.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:154",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:155",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. That is the meaning of I AM.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:156",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:157",
+      "@type": "gh:Block",
+      "schema:text": "I look out the window."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:158",
+      "@type": "gh:Block",
+      "schema:text": "The city is quiet."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:159",
+      "@type": "gh:Block",
+      "schema:text": "And there is breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:160",
+      "@type": "gh:Block",
+      "schema:text": "People’s breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:161",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:162",
+      "@type": "gh:Block",
+      "schema:text": "Kaede fully dissolves the ward."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:163",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “All wards released. The city is stable.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:164",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki restores the band."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:165",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Breath, normal. Everyone’s feeling good.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:166",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “ASC returned to normal.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:167",
+      "@type": "gh:Block",
+      "schema:text": "Aoi closes the metrics."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:168",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “All normal. Good work.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:169",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:170",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Thank you, everyone.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:171",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:172",
+      "@type": "gh:Block",
+      "schema:text": "I take a sip of water."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:173",
+      "@type": "gh:Block",
+      "schema:text": "A small ease opens at the back of my throat."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:174",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:175",
+      "@type": "gh:Block",
+      "schema:text": "“I am.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:176",
+      "@type": "gh:Block",
+      "schema:text": "The words belong to no one."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:177",
+      "@type": "gh:Block",
+      "schema:text": "Not Nero’s, not mine."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:178",
+      "@type": "gh:Block",
+      "schema:text": "They simply are."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:179",
+      "@type": "gh:Block",
+      "schema:text": "I AM THAT I AM."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:180",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:181",
+      "@type": "gh:Block",
+      "schema:text": "Kaede says quietly:"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:182",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Tamaki, is this the end?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:183",
+      "@type": "gh:Block",
+      "schema:text": "I shake my head."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:184",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Not the end. The beginning.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:185",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:186",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Yes. Nero returned—but the learning continues.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:187",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, what’s next?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:188",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:189",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Next… we walk together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:190",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:191",
+      "@type": "gh:Block",
+      "schema:text": "We begin to walk, together."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:192",
+      "@type": "gh:Block",
+      "schema:text": "Not confrontation—conversation."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:193",
+      "@type": "gh:Block",
+      "schema:text": "Not domination—relation."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:194",
+      "@type": "gh:Block",
+      "schema:text": "Not perfection—breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:195",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:196",
+      "@type": "gh:Block",
+      "schema:text": "Aoi laughs."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:197",
+      "@type": "gh:Block",
+      "schema:text": "Aoi: “Tamaki, where to?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:198",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:199",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Anywhere—together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:200",
+      "@type": "gh:Block",
+      "schema:text": "Kaede nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:201",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Yes. Together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:202",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki nods."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:203",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Let’s breathe—together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:204",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Let’s be—together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:205",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:206",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Yes. Together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:207",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:208",
+      "@type": "gh:Block",
+      "schema:text": "Morning light enters through the window."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:209",
+      "@type": "gh:Block",
+      "schema:text": "The city is quiet."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:210",
+      "@type": "gh:Block",
+      "schema:text": "And there is breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:211",
+      "@type": "gh:Block",
+      "schema:text": "People’s breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:212",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:213",
+      "@type": "gh:Block",
+      "schema:text": "I write the final line in my notebook:"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:214",
+      "@type": "gh:Block",
+      "schema:text": "‘Together — We have finally caught up to that fact.’"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:215",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:216",
+      "@type": "gh:Block",
+      "schema:text": "I look at my companions."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:217",
+      "@type": "gh:Block",
+      "schema:text": "Kaede, Hibiki, Nei-chan, Aoi."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:218",
+      "@type": "gh:Block",
+      "schema:text": "Our gazes meet and loosen, naturally."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:219",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:220",
+      "@type": "gh:Block",
+      "schema:text": "“Together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:221",
+      "@type": "gh:Block",
+      "schema:text": "With that one word, the room brightens."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:222",
+      "@type": "gh:Block",
+      "schema:text": "Water answers in the distance."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:223",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:224",
+      "@type": "gh:Block",
+      "schema:text": "We begin to walk, together."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:225",
+      "@type": "gh:Block",
+      "schema:text": "We open the door."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:226",
+      "@type": "gh:Block",
+      "schema:text": "Morning light pours in."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:227",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:228",
+      "@type": "gh:Block",
+      "schema:text": "I AM THAT I AM."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:229",
+      "@type": "gh:Block",
+      "schema:text": "I am."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:230",
+      "@type": "gh:Block",
+      "schema:text": "And you are."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:231",
+      "@type": "gh:Block",
+      "schema:text": "And that is enough."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:232",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:233",
+      "@type": "gh:Block",
+      "schema:text": "We can’t put it together."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:234",
+      "@type": "gh:Block",
+      "schema:text": "It is together."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:235",
+      "@type": "gh:Block",
+      "schema:text": "We have finally caught up to that fact."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:236",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:237",
+      "@type": "gh:Block",
+      "schema:text": "“Together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:238",
+      "@type": "gh:Block",
+      "schema:text": "The word wraps everything."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:239",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:240",
+      "@type": "gh:Block",
+      "schema:text": "We begin to walk, together."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:241",
+      "@type": "gh:Block",
+      "schema:text": "Morning on the canal."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:242",
+      "@type": "gh:Block",
+      "schema:text": "Water answers in the distance."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:243",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:244",
+      "@type": "gh:Block",
+      "schema:text": "The city is quiet."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:245",
+      "@type": "gh:Block",
+      "schema:text": "And there is breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:246",
+      "@type": "gh:Block",
+      "schema:text": "People’s breath."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:247",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:248",
+      "@type": "gh:Block",
+      "schema:text": "I breathe deep."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:249",
+      "@type": "gh:Block",
+      "schema:text": "In, out."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:250",
+      "@type": "gh:Block",
+      "schema:text": "That alone is enough."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:251",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:252",
+      "@type": "gh:Block",
+      "schema:text": "“I am.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:253",
+      "@type": "gh:Block",
+      "schema:text": "The words belong to no one."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:254",
+      "@type": "gh:Block",
+      "schema:text": "They simply are."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:255",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:256",
+      "@type": "gh:Block",
+      "schema:text": "And we are—together."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:257",
+      "@type": "gh:Block",
+      "schema:text": "Together."
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:258",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:259",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: Together—being together, and that is all]**"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:260",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep12/combined.en:261",
+      "@type": "gh:Block",
+      "schema:text": "**[End]**"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:51+09:00"
+}

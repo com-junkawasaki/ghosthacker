@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:21",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo cups her hand; worry on his face.",
+    "ja": "Leoはその手を包む。彼の顔にも、不安が浮かんでいる。"
+  },
+  "gh:index": 21
+}

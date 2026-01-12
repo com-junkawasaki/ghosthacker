@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:88",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “There is no unnecessary. Everything is someone’s precious thing.”",
+    "ja": "Tamaki「うん。だから、\"清掃\"する」"
+  },
+  "gh:index": 88
+}

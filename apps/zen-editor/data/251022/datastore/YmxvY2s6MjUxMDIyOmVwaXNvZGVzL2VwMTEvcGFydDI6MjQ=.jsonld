@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part2:24",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. It turns fear into justice.”",
+    "ja": "Tamaki「うん。恐れを、正義に変えて」"
+  },
+  "gh:index": 24
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:3",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I start a program in Schwa’s console: Zombie Sweeper.",
+    "ja": "私はSchwaのコンソールでプログラムを立ち上げる。Zombie Sweeper。"
+  },
+  "gh:index": 3
+}

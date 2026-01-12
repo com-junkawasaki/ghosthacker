@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:198",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Next question. —Would you sell one of your eyes for 100 million?”",
+    "ja": "Leo「……悩むけど……売れない」"
+  },
+  "gh:index": 198
+}

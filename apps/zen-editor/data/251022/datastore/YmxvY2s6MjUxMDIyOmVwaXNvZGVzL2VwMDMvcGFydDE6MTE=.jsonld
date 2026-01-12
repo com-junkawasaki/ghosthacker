@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part1:11",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Our question tonight is his breathing. Not law—soul.”",
+    "ja": "Kaede「今夜の私たちの問いは、彼の呼吸。法律じゃない、魂の話」"
+  },
+  "gh:index": 11
+}

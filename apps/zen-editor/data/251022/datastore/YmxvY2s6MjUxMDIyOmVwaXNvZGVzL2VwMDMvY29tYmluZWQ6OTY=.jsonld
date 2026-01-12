@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:96",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Breath. Recover the breathing that feels good.”",
+    "ja": "彼女の声は、静かだが力強い。"
+  },
+  "gh:index": 96
+}

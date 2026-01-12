@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep02/combined:19",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Resolution / Afterthoughts",
+    "ja": "- POV: 私（Tamaki／環樹）\n- Beat: Resolution / Afterthoughts"
+  },
+  "gh:index": 19
+}

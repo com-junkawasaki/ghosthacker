@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:7",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “But we’re diving deep. I’ve been present at many spiritual surgeries… it’s nerve-wracking every time.”",
+    "ja": "Kaede「でもね、Tamaki。これから深く潜る。霊的手術は、私も何度も立ち会ってきたけど……毎回、緊張する」"
+  },
+  "gh:index": 7
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2108",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "",
+    "ja": "削除ではなく、保護。"
+  },
+  "gh:index": 2108
+}

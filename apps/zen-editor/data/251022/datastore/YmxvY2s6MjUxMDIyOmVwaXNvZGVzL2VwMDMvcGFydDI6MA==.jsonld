@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part2:0",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# Session: Lachlan Keyes - Part 2",
+    "ja": "# Session: Lachlan Keyes - Part 2"
+  },
+  "gh:index": 0
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1098",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I breathe deep.",
+    "ja": "# EP7-2 — YHWHの問い（The Question of Being）\n- POV: 私（Tamaki／環樹）\n- Beat: Theological Inquiry / Name and Presence"
+  },
+  "gh:index": 1098
+}

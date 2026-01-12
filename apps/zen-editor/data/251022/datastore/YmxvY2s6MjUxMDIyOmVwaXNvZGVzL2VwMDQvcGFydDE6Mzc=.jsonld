@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part1:37",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "His fingers squeeze her hand unconsciously. Millia pulls back for an instant, then returns.",
+    "ja": "Nei-chanが囁く。『タマ、Milliaの感情メトリクス……\"愛\"じゃなくて、\"罪悪感\"が強い』"
+  },
+  "gh:index": 37
+}

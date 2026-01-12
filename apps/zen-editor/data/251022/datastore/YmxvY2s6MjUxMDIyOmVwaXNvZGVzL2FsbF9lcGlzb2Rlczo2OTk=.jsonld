@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:699",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# Session: Dr. Itako - Spiritual Surgery - Part 2",
+    "ja": "「私ではなく、理想の娘を見ている母が」"
+  },
+  "gh:index": 699
+}

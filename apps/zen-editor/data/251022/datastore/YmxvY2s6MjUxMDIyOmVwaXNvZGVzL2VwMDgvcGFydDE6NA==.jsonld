@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part1:4",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero Ops’s voice resounds: “Not fear. Order. Based on Compliance Ogre’s logic, we exclude individual emotions from the system.”\nMore text from Nero Ops floats in the space: “Schwa’s intervention may compromise system stability. Monitoring continues.”",
+    "ja": "Nero Opsの声が響く。『恐れではない。秩序だ。Compliance Ogreのロジックに基づき、個人の感情はシステムから排除する』\n続けてNero Opsのテキストが空間に浮かぶ。『Schwaの介入は、システムの安定性を損なう可能性がある。監視を続ける』"
+  },
+  "gh:index": 4
+}

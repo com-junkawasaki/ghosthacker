@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:84",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“—Illogical.”",
+    "ja": "「……私は、誰かに触れたかった。しかし怖かった。裏切りが」"
+  },
+  "gh:index": 84
+}

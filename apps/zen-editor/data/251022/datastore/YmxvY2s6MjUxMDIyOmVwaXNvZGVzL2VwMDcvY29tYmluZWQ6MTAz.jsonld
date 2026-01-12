@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/combined:103",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, next?”",
+    "ja": "『YHWH — \"わたしは在る\"。名は所有ではなく、現前。関係の中に生成される神』"
+  },
+  "gh:index": 103
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:17",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Cleaning means leaving a path home. Morning announcements play; the city’s noise drops half a step.",
+    "ja": "「清掃」"
+  },
+  "gh:index": 17
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:4",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Today is Millia’s surgery to remove the ‘adhesion of soul (Complex).’",
+    "ja": "今日はMilliaの\"魂の癒着（Complex）\"の切除手術。"
+  },
+  "gh:index": 4
+}

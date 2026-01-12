@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:531",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia: “For one yen… for any amount… I want to sell them…”",
+    "ja": "Tamaki「あなたには勇気がある。でもちゃんと切るのは専門家に任せようね」"
+  },
+  "gh:index": 531
+}

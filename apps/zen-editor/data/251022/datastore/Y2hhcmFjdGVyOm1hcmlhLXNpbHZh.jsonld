@@ -1,0 +1,20 @@
+{
+  "@id": "character:maria-silva",
+  "@type": "Person",
+  "age": 34,
+  "gender": "Female",
+  "gh:callsign": "PLANTCODE",
+  "gh:role": "Supporter",
+  "gh:x": 6731.388513777358,
+  "gh:y": -6354.704073162284,
+  "memberOf": {
+    "@id": "organization:tol-amazon"
+  },
+  "name": "Maria Silva",
+  "nationality": "Peruvian",
+  "occupation": [
+    "Ethnobotanist",
+    "Deamon Hunter",
+    "Zombie Killer"
+  ]
+}

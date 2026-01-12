@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:92",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan touches my shoulder. “Dropping ASC.”",
+    "ja": "『自己と世界を完全に分けて考えているんだ』Nei-chanが分析する。『だから、自己が永遠に続くという観念が、牢獄になっている』"
+  },
+  "gh:index": 92
+}

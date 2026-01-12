@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part3:128",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Not domination—relation.",
+    "ja": "恐れではなく、信頼。"
+  },
+  "gh:index": 128
+}

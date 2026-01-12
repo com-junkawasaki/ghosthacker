@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:896",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “An imitation of the Trinity… huh.”",
+    "ja": "彼女は少し間を置く。"
+  },
+  "gh:index": 896
+}

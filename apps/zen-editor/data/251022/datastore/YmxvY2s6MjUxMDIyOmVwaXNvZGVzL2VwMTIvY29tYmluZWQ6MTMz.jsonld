@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/combined:133",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Yes. Nero returned—but its learning remains.”",
+    "ja": "Hibiki「うん。Neroは還った。でも、その学びは残る」"
+  },
+  "gh:index": 133
+}

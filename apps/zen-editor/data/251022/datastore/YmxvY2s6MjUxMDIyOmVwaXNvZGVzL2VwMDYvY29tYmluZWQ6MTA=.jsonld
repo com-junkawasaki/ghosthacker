@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:10",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Match ASC?”",
+    "ja": "# EP6-2 — 666の刻印（The Mark）\n- POV: 私（Tamaki／環樹）\n- Beat: Recognition / Pattern"
+  },
+  "gh:index": 10
+}

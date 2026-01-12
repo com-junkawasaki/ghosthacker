@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:117",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "光の網が、水面に揺れている。"
+  },
+  "gh:index": 117
+}

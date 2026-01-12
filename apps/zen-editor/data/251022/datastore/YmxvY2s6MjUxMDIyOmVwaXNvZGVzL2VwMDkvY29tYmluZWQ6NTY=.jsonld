@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:56",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede nods.",
+    "ja": "Kaede「結界、張った。でも、これは深い」"
+  },
+  "gh:index": 56
+}

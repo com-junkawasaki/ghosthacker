@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1793",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi nods: “Anger is energy. It depends on how you use it.”",
+    "ja": "私は深呼吸をする。"
+  },
+  "gh:index": 1793
+}

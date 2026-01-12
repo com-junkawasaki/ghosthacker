@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:292",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The hallway metronome ticks, faint: kat, kat, kat.",
+    "ja": "Kaede「二人とも、もうセッションが始まるわ」"
+  },
+  "gh:index": 292
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:48",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...My chain?”",
+    "ja": "Nei-chanが微笑む。"
+  },
+  "gh:index": 48
+}

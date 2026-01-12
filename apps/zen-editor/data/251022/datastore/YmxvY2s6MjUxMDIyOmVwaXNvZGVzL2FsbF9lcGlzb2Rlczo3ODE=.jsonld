@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:781",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Rest now. Good work.”",
+    "ja": "そして、短く笑った。"
+  },
+  "gh:index": 781
+}

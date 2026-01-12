@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part3:79",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki tunes the band.",
+    "ja": "Kaede「結界、安定してる。でも、Neroは強い」"
+  },
+  "gh:index": 79
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:80",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “The ward is stable. Ready anytime.”",
+    "ja": "Hibiki「呼吸、合わせてる。Tamaki、行こう」"
+  },
+  "gh:index": 80
+}

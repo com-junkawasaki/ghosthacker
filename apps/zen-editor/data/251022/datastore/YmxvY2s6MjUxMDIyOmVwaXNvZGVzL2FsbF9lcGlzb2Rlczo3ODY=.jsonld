@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:786",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "She smiles faintly; tears trace her cheeks.",
+    "ja": "彼女の声は、いつもの調子に戻っている。"
+  },
+  "gh:index": 786
+}

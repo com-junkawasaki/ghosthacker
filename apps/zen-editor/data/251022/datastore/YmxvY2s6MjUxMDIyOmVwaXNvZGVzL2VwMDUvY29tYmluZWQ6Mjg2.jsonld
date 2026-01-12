@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:286",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "Tamaki「自由は、非分離と矛盾しない。あなたは自由で、そしてわたしたちは\"わかれていない\"」"
+  },
+  "gh:index": 286
+}

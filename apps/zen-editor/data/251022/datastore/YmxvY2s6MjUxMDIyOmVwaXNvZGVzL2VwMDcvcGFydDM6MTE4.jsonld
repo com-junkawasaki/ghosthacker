@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/part3:118",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I am.",
+    "ja": "完璧ではなく、呼吸。"
+  },
+  "gh:index": 118
+}

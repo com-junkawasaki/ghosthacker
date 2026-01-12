@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:72",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I leave a small pause.",
+    "ja": "私は静かに続ける。"
+  },
+  "gh:index": 72
+}

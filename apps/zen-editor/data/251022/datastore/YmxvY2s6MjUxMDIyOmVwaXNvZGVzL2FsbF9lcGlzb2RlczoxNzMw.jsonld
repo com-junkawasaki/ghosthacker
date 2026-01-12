@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1730",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Rage Engine: “...But… rightness is… lonely…”",
+    "ja": "# EP9-3 — 和解のエンジン（The Engine of Reconciliation）\n- POV: 私（Tamaki／環樹）\n- Beat: Transformation / From Rage to Peace"
+  },
+  "gh:index": 1730
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:620",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo cups her hand; worry on his face.",
+    "ja": "Kaede「……ありがとう。私たちは、全力であなたを守る」"
+  },
+  "gh:index": 620
+}

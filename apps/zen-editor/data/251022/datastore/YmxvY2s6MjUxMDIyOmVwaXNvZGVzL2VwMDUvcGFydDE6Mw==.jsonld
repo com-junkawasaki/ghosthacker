@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:3",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Lower level of the Shibuya canal, Schwa’s operating room. Black walls, low luminance. Hibiki’s frequency flows faintly through the space.",
+    "ja": "今日はMilliaの\"魂の癒着（Complex）\"の切除手術。"
+  },
+  "gh:index": 3
+}

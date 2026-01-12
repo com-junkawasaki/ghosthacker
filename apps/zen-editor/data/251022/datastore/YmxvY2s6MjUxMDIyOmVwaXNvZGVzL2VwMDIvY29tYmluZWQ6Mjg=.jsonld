@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep02/combined:28",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Yes. So the next universe can be a little more ‘feeling good.’ We’re only helping a bit.”"
+  },
+  "gh:index": 28
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:170",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo embraces her.",
+    "ja": "Dr. イタコは静かに頷く。"
+  },
+  "gh:index": 170
+}

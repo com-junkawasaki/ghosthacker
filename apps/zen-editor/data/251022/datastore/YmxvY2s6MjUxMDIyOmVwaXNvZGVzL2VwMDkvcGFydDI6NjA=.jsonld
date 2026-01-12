@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part2:60",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I speak to the Rage Engine.",
+    "ja": "私は、Rage Engineに語りかける。"
+  },
+  "gh:index": 60
+}

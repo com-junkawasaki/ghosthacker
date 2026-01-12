@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:94",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero Ops: “...We… to maintain… order…”",
+    "ja": "Nero Opsの声が変わる。"
+  },
+  "gh:index": 94
+}

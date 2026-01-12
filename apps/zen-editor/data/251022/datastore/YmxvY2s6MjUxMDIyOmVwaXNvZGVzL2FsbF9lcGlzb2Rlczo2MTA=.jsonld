@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:610",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I breathe deep.",
+    "ja": "空間にホログラムの同意書が投影される。青白い光が、部屋を照らす。"
+  },
+  "gh:index": 610
+}

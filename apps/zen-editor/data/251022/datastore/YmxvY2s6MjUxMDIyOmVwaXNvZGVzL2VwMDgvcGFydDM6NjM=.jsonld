@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part3:63",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero’s voice sounds one last time:",
+    "ja": "Neroの声が、最後に響く。"
+  },
+  "gh:index": 63
+}

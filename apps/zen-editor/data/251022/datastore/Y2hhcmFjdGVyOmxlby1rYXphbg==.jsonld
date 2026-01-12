@@ -1,0 +1,22 @@
+{
+  "@id": "character:leo-kazan",
+  "@type": "Person",
+  "age": 38,
+  "description": "情に厚いが、『共感されるべき自分』を演じることに疲弊している人道支援NGOのディレクター。",
+  "gender": "Male",
+  "gh:callsign": "COMPASS",
+  "gh:ghost": {
+    "@id": "ghost:adam-smith"
+  },
+  "gh:role": "Antagonist",
+  "gh:x": 1664.638683317739,
+  "gh:y": 1156.4052682146216,
+  "knows": [
+    {
+      "@id": "character:millia-stuart"
+    }
+  ],
+  "name": "Leo Kazan",
+  "nationality": "French (Russian descendant)",
+  "occupation": "Director of a Humanitarian NGO"
+}

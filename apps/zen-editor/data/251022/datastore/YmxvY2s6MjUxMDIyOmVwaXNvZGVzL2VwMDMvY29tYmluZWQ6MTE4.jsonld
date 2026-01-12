@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:118",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Your mom will go ‘huh?’ But she’ll be relieved right away.”",
+    "ja": "私は運河の光を見る。「これから見つける」"
+  },
+  "gh:index": 118
+}

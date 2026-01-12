@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:330",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “You two, session starts now.”",
+    "ja": "「……それは、どう違うんですか？」"
+  },
+  "gh:index": 330
+}

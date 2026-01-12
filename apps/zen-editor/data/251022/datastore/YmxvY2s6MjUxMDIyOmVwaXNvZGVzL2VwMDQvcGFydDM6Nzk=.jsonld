@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:79",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “You have courage. But for a proper cut, leave it to a specialist.”",
+    "ja": "彼女の声は、絶望に満ちている。"
+  },
+  "gh:index": 79
+}

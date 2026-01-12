@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:139",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Compliance Ogre: “...”",
+    "ja": "Tamaki「でも、7になる必要はない」"
+  },
+  "gh:index": 139
+}

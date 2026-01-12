@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:203",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“A no-good one who won’t face karma. Our excellent hackers will release it, quick.”",
+    "ja": "Milliaの背中はもう、鎖に縛られていない。"
+  },
+  "gh:index": 203
+}

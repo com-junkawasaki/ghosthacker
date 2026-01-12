@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part2:33",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“‘Afraid’ is the reverse of ‘desire.’ If you desired nothing, you would not fear.”",
+    "ja": "「呼吸。いい感じの呼吸を、取り戻す」"
+  },
+  "gh:index": 33
+}

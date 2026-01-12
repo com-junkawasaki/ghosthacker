@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:591",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, so warm. The color of hope. Sparkly.”",
+    "ja": "Tamaki「うん。わかってる」"
+  },
+  "gh:index": 591
+}

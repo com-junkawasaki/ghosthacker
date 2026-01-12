@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:6",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Ei, Tamaki! The band is stable. Daytime peak cut is lifted. Plenty of room for sound.”",
+    "ja": "Hibiki「Ei, Tamaki! 帯域は安定してるよ。昼のピークカットも解除済み。音はばっちり流せる」"
+  },
+  "gh:index": 6
+}

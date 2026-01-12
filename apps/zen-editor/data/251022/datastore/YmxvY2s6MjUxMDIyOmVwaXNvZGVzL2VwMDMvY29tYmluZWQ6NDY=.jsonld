@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:46",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“I’m afraid I’ll break if I feel.”",
+    "ja": "「質問の形で、それはもう出ている」"
+  },
+  "gh:index": 46
+}

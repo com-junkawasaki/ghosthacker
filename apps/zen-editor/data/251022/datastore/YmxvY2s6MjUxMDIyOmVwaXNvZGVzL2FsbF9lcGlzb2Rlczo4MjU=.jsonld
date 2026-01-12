@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:825",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "She smiles: “Yes. You are young. But there is adhesion in you as well. It will surface. Come again then.”",
+    "ja": "Leoと家族が入ってくる。LeoはMilliaのベッド脇に立ち、手を握る。"
+  },
+  "gh:index": 825
+}

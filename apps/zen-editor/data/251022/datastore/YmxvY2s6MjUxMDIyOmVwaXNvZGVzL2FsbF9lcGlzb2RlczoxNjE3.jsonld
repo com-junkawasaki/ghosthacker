@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1617",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “...Nero returned, but the pattern remains.”",
+    "ja": "Aoiが小さく笑う。「いい。怒りは炉に。外には信頼を」\n私は頷く。ゆっくり、安心が広がる。私たちは、希望のほうへスロットルを合わせ直した。"
+  },
+  "gh:index": 1617
+}

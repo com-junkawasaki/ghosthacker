@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:92",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako raises a scalpel of light and smiles slightly.",
+    "ja": "「患者、状態良好。Hibiki、場の位相は？」"
+  },
+  "gh:index": 92
+}

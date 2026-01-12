@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2393",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede nods: “Yes. Ward stable.”",
+    "ja": "Nei-chanの光が広がり、街の輪郭が少し柔らかくなる。"
+  },
+  "gh:index": 2393
+}

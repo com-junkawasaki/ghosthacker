@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1875",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi shrugs: “There’s that ‘record’ again.”",
+    "ja": "Kaedeが境界を張る。彼女の動きは、いつもの迅速さ。"
+  },
+  "gh:index": 1875
+}

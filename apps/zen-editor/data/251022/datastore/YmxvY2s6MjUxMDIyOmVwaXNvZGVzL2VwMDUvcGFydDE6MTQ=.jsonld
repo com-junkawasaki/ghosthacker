@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:14",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “But the procedure is exact. We all protect Millia. Tamaki, you guide. Hibiki, as anesthesiologist, carries ‘anesthesia of awareness.’ Dr. Itako operates.”",
+    "ja": "Kaede「でも手順は厳格。私たち全員が、Milliaを守る。Tamaki、あなたはガイド。Hibikiが麻酔科医として\"意識の麻酔\"を担当。Dr. イタコが執刀」"
+  },
+  "gh:index": 14
+}

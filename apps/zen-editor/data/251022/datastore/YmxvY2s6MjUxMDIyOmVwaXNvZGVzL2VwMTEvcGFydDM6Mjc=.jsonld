@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part3:27",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “This is… Quiet Justice.”",
+    "ja": "Kaede「これは……Quiet Justice」"
+  },
+  "gh:index": 27
+}

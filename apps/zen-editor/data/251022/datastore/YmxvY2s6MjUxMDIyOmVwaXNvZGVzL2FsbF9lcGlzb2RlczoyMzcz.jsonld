@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2373",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“I am.”\nThe words belong to no one. Fear lets go, relation stands up. Nero departs—not a victory. A return.",
+    "ja": "**[Beat: 呼吸できる正義——完璧の放棄と信頼の回復]**"
+  },
+  "gh:index": 2373
+}

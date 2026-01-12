@@ -1,0 +1,9 @@
+{
+  "@id": "company:ai-company",
+  "@type": "Organization",
+  "description": "愛の概念に焦点を当てたGhost Hacking会社。",
+  "gh:companyType": "Ghost Hacking Competitor",
+  "gh:x": 8481.641377944943,
+  "gh:y": -3668.092452761273,
+  "name": "Ai"
+}

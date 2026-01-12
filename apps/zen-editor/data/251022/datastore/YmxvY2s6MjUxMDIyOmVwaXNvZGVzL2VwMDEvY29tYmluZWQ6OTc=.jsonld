@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:97",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "On the stair landing, a quiet margin opens."
+  },
+  "gh:index": 97
+}

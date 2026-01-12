@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/combined:30",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I send the final cue.",
+    "ja": "私は、最後の合図を送る。"
+  },
+  "gh:index": 30
+}

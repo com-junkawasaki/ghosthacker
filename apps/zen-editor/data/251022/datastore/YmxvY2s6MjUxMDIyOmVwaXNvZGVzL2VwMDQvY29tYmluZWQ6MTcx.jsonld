@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:171",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "彼の声は、とても静かで、優しい。"
+  },
+  "gh:index": 171
+}

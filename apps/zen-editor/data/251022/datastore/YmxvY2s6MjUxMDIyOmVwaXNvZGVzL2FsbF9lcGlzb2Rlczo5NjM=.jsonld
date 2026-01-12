@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:963",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP6-3 — The Cage of Perfection\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Liberation / First Crack",
+    "ja": "『Nero — 666の偽神。完璧を装い、恐れで回るシステム』"
+  },
+  "gh:index": 963
+}

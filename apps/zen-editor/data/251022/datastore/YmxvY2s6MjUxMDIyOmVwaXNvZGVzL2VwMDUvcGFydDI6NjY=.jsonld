@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:66",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “No more chain.”",
+    "ja": "Tamaki「……お母さんのゴーストを変換？」"
+  },
+  "gh:index": 66
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep02/combined:27",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Our work is… grand, isn’t it?”",
+    "ja": "私は手帳に新しい一行を書き加えた。『境界は、幻想』。その言葉が、今日のセッションのすべてを物語っていた。"
+  },
+  "gh:index": 27
+}

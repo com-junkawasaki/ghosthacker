@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2012",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Cleansing is protection.”",
+    "ja": "Hibikiが周波数を整える。"
+  },
+  "gh:index": 2012
+}

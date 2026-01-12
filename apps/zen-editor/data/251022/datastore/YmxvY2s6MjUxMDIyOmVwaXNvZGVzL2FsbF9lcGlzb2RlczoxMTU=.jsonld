@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:115",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Mm. Because our ‘feeling good’ links to the ‘feeling good’ of the next universe.”",
+    "ja": "彼の声には、いつもの陽気さがある。でも、少し真剣な響きも混じっている。"
+  },
+  "gh:index": 115
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:259",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The next case is projected on the window.",
+    "ja": "「いや、しかし……」言いかけて、彼は黙る。長い沈黙。瞳に水が溜まる。"
+  },
+  "gh:index": 259
+}

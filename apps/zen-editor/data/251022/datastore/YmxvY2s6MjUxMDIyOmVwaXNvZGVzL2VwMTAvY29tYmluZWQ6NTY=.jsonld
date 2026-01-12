@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:56",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "But this time, different.",
+    "ja": "Tamaki「うん。ありがとう」"
+  },
+  "gh:index": 56
+}

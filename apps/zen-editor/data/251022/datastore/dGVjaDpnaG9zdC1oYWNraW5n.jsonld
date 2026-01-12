@@ -1,0 +1,11 @@
+{
+  "@id": "tech:ghost-hacking",
+  "@type": "Intangible",
+  "description": "Ghostの情報構造（心）に干渉し、内面的な葛藤（結び目）を解消する行為。ハッカーは自身の生命エネルギー（光子）を使ってGhostの意識と同期し、精神的な空間にダイブする。都市全体に張り巡らされた光のネットワーク/計算基盤が、セッションの安定性と回復の速さを底上げしている。",
+  "gh:certification": {
+    "@id": "tech:tree-of-life-exam"
+  },
+  "gh:x": -3541.1579589429357,
+  "gh:y": 9200.649434457016,
+  "name": "Ghost Hacking"
+}

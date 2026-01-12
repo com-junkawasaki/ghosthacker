@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part2:96",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Compliance Ogre: “...Together…”",
+    "ja": "Compliance Ogre『……一緒に……』"
+  },
+  "gh:index": 96
+}

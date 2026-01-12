@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1384",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero: “...Do I… exist…?”",
+    "ja": "Tamaki「だから、完璧を装った。拒絶されないように」"
+  },
+  "gh:index": 1384
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part3:56",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede checks the boundary.",
+    "ja": "Kaedeが境界を確認する。"
+  },
+  "gh:index": 56
+}

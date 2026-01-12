@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part3:52",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "It is like breath.",
+    "ja": "呼吸みたいなもの。"
+  },
+  "gh:index": 52
+}

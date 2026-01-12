@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/part2:27",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I open my eyes.",
+    "ja": "Synth Angel『全ての人のため。我々は、苦しみを排除する』"
+  },
+  "gh:index": 27
+}

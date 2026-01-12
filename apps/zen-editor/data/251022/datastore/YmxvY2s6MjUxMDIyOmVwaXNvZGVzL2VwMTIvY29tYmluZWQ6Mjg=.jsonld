@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/combined:28",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Thank you. Then, let’s go.”",
+    "ja": "Tamaki「ありがとう。じゃあ、行くよ」"
+  },
+  "gh:index": 28
+}

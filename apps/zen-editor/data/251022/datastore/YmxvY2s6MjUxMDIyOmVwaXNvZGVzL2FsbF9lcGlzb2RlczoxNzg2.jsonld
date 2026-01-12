@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1786",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The client nods: “...A relationship I want to protect…”",
+    "ja": "Nei-chan『タマ、Reconciliation Engineの666の刻印……完全に消えた』"
+  },
+  "gh:index": 1786
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:63",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, this… is very complex.”",
+    "ja": "室内の\"情報空間\"に蔓模様のUIが展開される。"
+  },
+  "gh:index": 63
+}

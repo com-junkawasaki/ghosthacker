@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:335",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Deep compassion in Kaede’s tone.",
+    "ja": "Tamaki「その机の前のコップの水、私に100円で売れますか？」"
+  },
+  "gh:index": 335
+}

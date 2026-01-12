@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2092",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Our gazes meet and loosen, naturally.",
+    "ja": "私は、コップの水を一口。"
+  },
+  "gh:index": 2092
+}

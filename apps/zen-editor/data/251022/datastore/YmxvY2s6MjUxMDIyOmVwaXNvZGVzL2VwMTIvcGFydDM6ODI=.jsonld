@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part3:82",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi laughs.",
+    "ja": "---"
+  },
+  "gh:index": 82
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:19",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia and Leo enter.",
+    "ja": "MilliaとLeoが入ってくる。"
+  },
+  "gh:index": 19
+}

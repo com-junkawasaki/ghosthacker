@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:205",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Tamaki, thanks to you, Millia—and we—truly became ‘not separate.’”",
+    "ja": "薄く笑い、涙が頬を伝う。"
+  },
+  "gh:index": 205
+}

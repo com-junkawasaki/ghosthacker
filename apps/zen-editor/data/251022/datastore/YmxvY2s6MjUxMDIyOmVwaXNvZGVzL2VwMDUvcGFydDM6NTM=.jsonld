@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:53",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The canal sinks into sunset.",
+    "ja": "「……\"愛\"は、難しいね」"
+  },
+  "gh:index": 53
+}

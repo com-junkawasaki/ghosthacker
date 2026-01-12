@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part3:47",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I face the Ogre.",
+    "ja": "私はCompliance Ogreに向き直る。"
+  },
+  "gh:index": 47
+}

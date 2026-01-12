@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:46",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo’s face collapses.",
+    "ja": "Leo（明るく）「ノー天気って言われます。でも、ぼくは前向きにやれると思ってて」\nLeo「うちの家族はいつも応援してくれるし、親友も多い。だから——大丈夫だと思ってた」"
+  },
+  "gh:index": 46
+}

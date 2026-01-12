@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part1:21",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The Ghost Hacker’s work is to free such hardened memes and return them to flow.",
+    "ja": "いい感じは、だいたいチーム戦だ。独りで無理をしないのが、最良の勇気になる時がある。"
+  },
+  "gh:index": 21
+}

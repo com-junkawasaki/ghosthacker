@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:835",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "**[Beat: Operation complete—Millia’s freedom and Tamaki’s foreboding]**",
+    "ja": "彼女が部屋を出ていく。私は少し、考え込む。"
+  },
+  "gh:index": 835
+}

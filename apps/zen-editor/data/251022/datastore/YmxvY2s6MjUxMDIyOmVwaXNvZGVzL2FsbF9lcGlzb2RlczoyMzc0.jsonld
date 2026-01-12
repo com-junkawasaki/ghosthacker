@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2374",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Morning on the canal. I write one line in my notebook: “We can’t put it together. It is together.”\nAnd I draw a small ‘tree’ on the corner of the page.",
+    "ja": ""
+  },
+  "gh:index": 2374
+}

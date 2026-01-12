@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:19",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia and Leo enter.",
+    "ja": "扉が開く音。"
+  },
+  "gh:index": 19
+}

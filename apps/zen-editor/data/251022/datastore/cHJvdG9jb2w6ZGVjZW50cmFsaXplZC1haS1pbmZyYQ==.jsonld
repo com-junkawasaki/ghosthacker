@@ -1,0 +1,9 @@
+{
+  "@id": "protocol:decentralized-ai-infra",
+  "@type": "Intangible",
+  "description": "一方で、分散型技術に基づくAIインフラも普及。強国の武力による一元的制御ではなく、分散アルゴリズムによる合意形成で資源配分・検証・安心の担保を図る。",
+  "gh:operationalNote": "合意は軽量で再帰的。地域ノードが自律しつつ相互監査を行う。",
+  "gh:x": 4022.8125071969184,
+  "gh:y": 9271.87667533807,
+  "name": "Decentralized AI Infrastructure"
+}

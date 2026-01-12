@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2127",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Perfectly organized records.",
+    "ja": "---"
+  },
+  "gh:index": 2127
+}

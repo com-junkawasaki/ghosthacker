@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2081",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "A marker for someone to return.",
+    "ja": "温かい、笑い声。"
+  },
+  "gh:index": 2081
+}

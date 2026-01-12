@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:997",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “No. You yourself are afraid.”",
+    "ja": "Compliance Ogre『名は不要。我々は、秩序そのものである』"
+  },
+  "gh:index": 997
+}

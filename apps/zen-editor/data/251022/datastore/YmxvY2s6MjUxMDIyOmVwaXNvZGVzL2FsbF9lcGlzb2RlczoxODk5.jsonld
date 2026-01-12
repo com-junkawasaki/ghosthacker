@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1899",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "- Inefficient emotions\n- Unproductive relations\n- Non-standard behavior",
+    "ja": "彼女は少し間を置く。"
+  },
+  "gh:index": 1899
+}

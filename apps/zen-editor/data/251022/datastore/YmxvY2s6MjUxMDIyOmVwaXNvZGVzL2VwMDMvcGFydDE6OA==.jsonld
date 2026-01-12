@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part1:8",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, the glow off the pavement has settled. Tonight we can slip in quietly.”",
+    "ja": "Nei-chan『タマ、路面の光が一段落ちた。今夜、静かに潜れるよ』"
+  },
+  "gh:index": 8
+}

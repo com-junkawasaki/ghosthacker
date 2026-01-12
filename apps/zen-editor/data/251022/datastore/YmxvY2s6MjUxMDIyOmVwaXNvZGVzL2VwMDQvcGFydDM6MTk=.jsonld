@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:19",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The background thins to a street scene.",
+    "ja": "空間の背景に、薄く街並みのコンテキストが現れる。"
+  },
+  "gh:index": 19
+}

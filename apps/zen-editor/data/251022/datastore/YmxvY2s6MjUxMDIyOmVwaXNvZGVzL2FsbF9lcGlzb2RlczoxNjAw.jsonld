@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1600",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I nod. Calm spreads, slowly. We retune the throttle toward hope.",
+    "ja": "# EP9-1 — 離怒のエンジン（Rage Engine）\n- POV: 私（Tamaki／環樹）\n- Beat: De-escalation / Rewire"
+  },
+  "gh:index": 1600
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:779",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Well done, Millia. Let’s move to recovery. Returning bands to normal.” Professional reassurance.",
+    "ja": "薄く笑い、涙が頬を伝う。"
+  },
+  "gh:index": 779
+}

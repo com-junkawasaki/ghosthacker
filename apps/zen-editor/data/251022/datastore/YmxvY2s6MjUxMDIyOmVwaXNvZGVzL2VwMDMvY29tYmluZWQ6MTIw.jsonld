@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:120",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "—A short monologue. Childhood under a father’s command. A silent mother. He grew up in a world where ‘his body was not his.’ The first freedom he will reclaim by breathing is the opening of his ribcage.",
+    "ja": "**[Beat: 解放——幼少期の身体から、いまの呼吸へ]**"
+  },
+  "gh:index": 120
+}

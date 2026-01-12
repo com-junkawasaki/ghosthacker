@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:19",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "And yet—humans are left behind.",
+    "ja": "彼女は少し間を置く。"
+  },
+  "gh:index": 19
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part2:29",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede joins on comms.",
+    "ja": "---"
+  },
+  "gh:index": 29
+}

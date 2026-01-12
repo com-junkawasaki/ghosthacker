@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:391",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki takes the bottle and drinks a sip.",
+    "ja": "Hibikiの周波数が部屋に入る。温かいが、少し悲しい音色。"
+  },
+  "gh:index": 391
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:802",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“A no-good one who won’t face karma. Our excellent hackers will release it, quick.”",
+    "ja": "「それと——お前の母親も保護プログラムに入れてる」"
+  },
+  "gh:index": 802
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:146",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede checks the ward.",
+    "ja": "Systemの声が、変わる。"
+  },
+  "gh:index": 146
+}

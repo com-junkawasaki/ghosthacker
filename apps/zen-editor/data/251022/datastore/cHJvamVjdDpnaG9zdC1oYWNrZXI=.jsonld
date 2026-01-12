@@ -1,0 +1,92 @@
+{
+  "@id": "project:ghost-hacker",
+  "@type": "CreativeWork",
+  "alternateName": "We can't put it toghether. it is toghether.",
+  "description": "A story about healing connections in a disconnected world through ghost hacking technology",
+  "gh:artStyle": "天野こずえ、田村由美風のminimalist yet detailed portrait、ダイナミック線描、多様パース、コントラスト設計",
+  "gh:hasCharacter": [
+    {
+      "@id": "character:tamaki"
+    },
+    {
+      "@id": "character:Nei-chan"
+    },
+    {
+      "@id": "character:kaede"
+    },
+    {
+      "@id": "character:aoi"
+    },
+    {
+      "@id": "character:akito"
+    },
+    {
+      "@id": "character:hibiki"
+    },
+    {
+      "@id": "character:elias"
+    },
+    {
+      "@id": "character:logos"
+    },
+    {
+      "@id": "character:dualist"
+    }
+  ],
+  "gh:hasCompany": [
+    {
+      "@id": "company:schwa"
+    },
+    {
+      "@id": "company:gedatsu"
+    },
+    {
+      "@id": "company:ai-company"
+    },
+    {
+      "@id": "company:gnb-inc"
+    }
+  ],
+  "gh:hasSetting": [
+    {
+      "@id": "setting:tokyo"
+    },
+    {
+      "@id": "setting:ghost-concept"
+    }
+  ],
+  "gh:hasTechnology": [
+    {
+      "@id": "tech:ghost-hacking"
+    },
+    {
+      "@id": "tech:tree-of-life-exam"
+    },
+    {
+      "@id": "tech:urban-light-infra"
+    },
+    {
+      "@id": "tech:automation-bundle"
+    },
+    {
+      "@id": "bundle:ai-governance"
+    },
+    {
+      "@id": "bundle:sea-level-4m-risk"
+    }
+  ],
+  "gh:soundtrack": [
+    {
+      "@id": "sound:choro-club"
+    },
+    {
+      "@id": "sound:freetempo"
+    }
+  ],
+  "gh:theme": "Healing connections in a disconnected world",
+  "gh:writingStyle": "一人称現在形の口語的・会話的文体 (Wattpad風)",
+  "gh:x": 9578.770522475914,
+  "gh:y": 251.60073935092245,
+  "gh:year": 2065,
+  "name": "Ghost Hacker"
+}

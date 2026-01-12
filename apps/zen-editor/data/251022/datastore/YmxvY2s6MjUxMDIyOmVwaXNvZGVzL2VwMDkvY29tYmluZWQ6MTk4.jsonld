@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:198",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. It let go of perfection.”",
+    "ja": "依頼人が頷く。"
+  },
+  "gh:index": 198
+}

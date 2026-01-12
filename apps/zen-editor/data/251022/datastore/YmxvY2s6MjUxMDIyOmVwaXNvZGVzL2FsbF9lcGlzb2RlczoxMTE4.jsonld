@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1118",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “God is generated within relation. But Nero…”",
+    "ja": "---"
+  },
+  "gh:index": 1118
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:35",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Consent appears in hologram, blue-white light filling the room.",
+    "ja": "Hibikiが、Kaedeへ合図する。"
+  },
+  "gh:index": 35
+}

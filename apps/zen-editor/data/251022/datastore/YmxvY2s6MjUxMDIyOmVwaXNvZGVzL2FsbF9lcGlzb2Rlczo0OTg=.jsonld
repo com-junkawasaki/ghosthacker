@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:498",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Then your friendship is worth more than 100 million.”",
+    "ja": "Millia「1円でも……いくらでも売りたい……」"
+  },
+  "gh:index": 498
+}

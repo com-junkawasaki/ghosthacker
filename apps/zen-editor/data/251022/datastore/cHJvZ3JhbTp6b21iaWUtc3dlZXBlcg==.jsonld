@@ -1,0 +1,10 @@
+{
+  "@id": "program:zombie-sweeper",
+  "@type": "Intangible",
+  "description": "個別Session以外に常時運用されるゾンビプロセス退治プログラム。社会インフラのmeme感染を抑止。",
+  "gh:infraNote": "光経路に沿った広域スキャンで『循環ノイズ』を抽出し、低干渉帯へ流して減衰。",
+  "gh:operationalNote": "除去よりも隔離→自然減衰を優先。戻れる線は残す。",
+  "gh:x": -5661.178820514521,
+  "gh:y": 7745.092980632996,
+  "name": "Zombie Process Sweeper"
+}

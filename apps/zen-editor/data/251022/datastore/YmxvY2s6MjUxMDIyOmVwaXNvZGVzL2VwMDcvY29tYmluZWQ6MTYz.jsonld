@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/combined:163",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero’s voice changes—softens.",
+    "ja": "Tamaki「うん。それだけで、十分」"
+  },
+  "gh:index": 163
+}

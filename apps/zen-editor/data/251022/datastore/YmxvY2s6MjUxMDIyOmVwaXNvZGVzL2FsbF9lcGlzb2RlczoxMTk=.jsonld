@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:119",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "We dive into a corridor that goes on forever. The same doors, the same windows, the same light. No matter how far we go, nothing changes, no end. His mind is trapped in this loop.",
+    "ja": "Kaede「今夜の私たちの問いは、彼の呼吸。法律じゃない、魂の話」"
+  },
+  "gh:index": 119
+}

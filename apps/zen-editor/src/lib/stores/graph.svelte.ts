@@ -7,7 +7,8 @@ export interface Node {
   type: string;
   group: string;
   content?: string;
-  localizedContent?: Record<string, string>; // Add this
+  localizedContent?: Record<string, string>;
+  viewType?: string; // Add this
   x?: number;
   y?: number;
   children?: string[]; // IDs of children
@@ -73,8 +74,10 @@ class GraphStore {
         }
       });
 
-      this.nodes = newNodeMap;
-      this.edges = resp.edges || [];
+              this.nodes = newNodeMap;
+              this.edges = resp.edges || [];
+              console.log("[Store] Nodes updated:", this.nodes.size, "Edges updated:", this.edges.length);
+              console.log("[Store] Sample hubs:", Array.from(this.nodes.keys()).filter(id => id.startsWith('hub:')));
       
       // Auto-expand root hubs
       this.expandedNodes = (resp.nodes || [])

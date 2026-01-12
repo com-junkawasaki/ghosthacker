@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:225",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“But your breathing is, right now, inseparable from the air in this room.”",
+    "ja": "Nei-chan「それって……愛？」"
+  },
+  "gh:index": 225
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:68",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia’s outline stabilizes.",
+    "ja": "彼女は、Milliaの情報空間に手を伸ばす。"
+  },
+  "gh:index": 68
+}

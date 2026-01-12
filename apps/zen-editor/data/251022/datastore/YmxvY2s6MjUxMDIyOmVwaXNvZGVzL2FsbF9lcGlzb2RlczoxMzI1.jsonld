@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1325",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Your name is Fear.”",
+    "ja": "完璧ではなく、呼吸。"
+  },
+  "gh:index": 1325
+}

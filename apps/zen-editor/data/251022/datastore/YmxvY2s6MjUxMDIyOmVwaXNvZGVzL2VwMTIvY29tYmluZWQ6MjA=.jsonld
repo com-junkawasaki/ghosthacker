@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/combined:20",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan’s light spreads; the city’s contours soften a little.",
+    "ja": "Kaedeが頷く。"
+  },
+  "gh:index": 20
+}

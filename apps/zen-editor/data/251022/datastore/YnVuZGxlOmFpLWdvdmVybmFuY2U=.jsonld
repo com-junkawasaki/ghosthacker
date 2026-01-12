@@ -1,0 +1,19 @@
+{
+  "@id": "bundle:ai-governance",
+  "@type": "Intangible",
+  "description": "集中監督（安全枠組み）と分散合意（自律インフラ）を両立させるためのポリシー/プロトコル/台帳の束ね。",
+  "gh:items": [
+    {
+      "@id": "policy:ai-compute-governance"
+    },
+    {
+      "@id": "protocol:decentralized-ai-infra"
+    },
+    {
+      "@id": "tech:compute-quota-ledger"
+    }
+  ],
+  "gh:x": 2724.2228201624116,
+  "gh:y": 9800.990970407836,
+  "name": "AI Governance Bundle"
+}

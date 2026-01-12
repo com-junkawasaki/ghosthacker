@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:178",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi: “Tamaki, the Engine’s waveform… has completely changed.”",
+    "ja": "Reconciliation Engineの声が、温かくなる。"
+  },
+  "gh:index": 178
+}

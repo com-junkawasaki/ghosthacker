@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:188",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The Reconciliation Engine’s voice warms.",
+    "ja": "Tamaki「うん。完璧を手放したから」"
+  },
+  "gh:index": 188
+}

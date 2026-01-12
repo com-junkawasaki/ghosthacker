@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1978",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. From cold to warm.”",
+    "ja": "Tamaki「うん。不完全だから、関係が生まれる」"
+  },
+  "gh:index": 1978
+}

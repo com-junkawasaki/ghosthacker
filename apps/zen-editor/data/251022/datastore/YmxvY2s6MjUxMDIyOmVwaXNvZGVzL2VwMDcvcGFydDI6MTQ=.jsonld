@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/part2:14",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I speak quietly:",
+    "ja": "Voice Prophet「名は所有できる。名は支配できる」"
+  },
+  "gh:index": 14
+}

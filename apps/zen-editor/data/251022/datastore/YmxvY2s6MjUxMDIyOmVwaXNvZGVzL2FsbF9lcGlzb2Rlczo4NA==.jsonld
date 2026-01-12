@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:84",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Did we really ‘save’ him?”",
+    "ja": "「そうだね」私は同意する。「彼は、自分が宇宙そのものの一部だってことを忘れてる」"
+  },
+  "gh:index": 84
+}

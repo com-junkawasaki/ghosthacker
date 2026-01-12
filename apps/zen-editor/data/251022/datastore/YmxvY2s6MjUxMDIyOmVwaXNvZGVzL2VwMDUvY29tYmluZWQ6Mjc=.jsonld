@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:27",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Ayahuasca is not just anesthesia. Your intention sets the vector of healing.”",
+    "ja": "彼の声は優しいが、麻酔科医としての真剣さがある。"
+  },
+  "gh:index": 27
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:8",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Low band receives the fear; filigree highs support the instant of ‘cut.’",
+    "ja": "低域は不安を受け止め、微細な高域が\"切断\"の瞬間を支援する。"
+  },
+  "gh:index": 8
+}

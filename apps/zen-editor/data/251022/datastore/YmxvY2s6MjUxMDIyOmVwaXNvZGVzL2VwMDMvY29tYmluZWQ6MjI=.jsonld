@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:22",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“This era quarrels over ‘AI life rights,’ and I oppose it. I recognize only ‘my body’ as me.”",
+    "ja": "「了解。今日は、その前提から始めよう」\nNei-chan『タマ、いま皮肉の温度が下がった。たぶん、怖いの』"
+  },
+  "gh:index": 22
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part2:51",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tokyo’s map, dotted in red.",
+    "ja": "画面には、東京の地図。赤い点が無数に散らばっている。"
+  },
+  "gh:index": 51
+}

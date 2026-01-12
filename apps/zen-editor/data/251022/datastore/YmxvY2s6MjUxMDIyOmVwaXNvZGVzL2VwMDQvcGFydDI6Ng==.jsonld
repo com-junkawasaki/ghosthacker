@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:6",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Match their breathing. Music mirrors breath.”",
+    "ja": "Hibiki「二人の呼吸に合わせて。音楽は、呼吸を映す鏡だから」"
+  },
+  "gh:index": 6
+}

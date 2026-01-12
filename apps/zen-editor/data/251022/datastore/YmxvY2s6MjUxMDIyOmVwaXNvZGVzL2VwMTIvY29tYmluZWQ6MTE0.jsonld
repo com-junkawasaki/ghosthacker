@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/combined:114",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP12-3 — Together\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Final Union / It Is Together",
+    "ja": "# EP12-3 — Together（いっしょに）\n- POV: 私（Tamaki／環樹）\n- Beat: Final Union / It Is Together"
+  },
+  "gh:index": 114
+}

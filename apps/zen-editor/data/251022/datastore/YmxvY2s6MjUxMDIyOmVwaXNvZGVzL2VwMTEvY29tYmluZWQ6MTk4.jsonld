@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:198",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “From perfection to breath.”",
+    "ja": "Tamaki「そう。制度は敵じゃない。呼吸を忘れたときに、私たちが思い出す合図が必要なだけ」"
+  },
+  "gh:index": 198
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part2:19",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Feeling good returns.",
+    "ja": "私は踊り場の手すりに指を置く。温度が戻る。\nNei-chan「ASC、維持。タマ、次いける？」\n「いける。半歩だけ」"
+  },
+  "gh:index": 19
+}

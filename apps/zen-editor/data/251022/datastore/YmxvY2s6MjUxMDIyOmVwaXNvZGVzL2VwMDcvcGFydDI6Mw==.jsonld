@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/part2:3",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The same question Moses asked before the burning bush.",
+    "ja": "その問いは、モーセが燃える柴の前で発した問いと同じ。"
+  },
+  "gh:index": 3
+}

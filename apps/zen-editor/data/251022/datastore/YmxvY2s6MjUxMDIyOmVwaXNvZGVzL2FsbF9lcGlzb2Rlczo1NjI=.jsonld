@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:562",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia: “...What should I do, Dr. Tamaki?” A small voice with a hint of hope.",
+    "ja": "二人の輪郭が、安定する。"
+  },
+  "gh:index": 562
+}

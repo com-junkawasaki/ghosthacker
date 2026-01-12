@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part4:20",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“So where, from where to where, is that water ‘you’?”",
+    "ja": "「では、その水は『どこからどこまで』があなた？」"
+  },
+  "gh:index": 20
+}

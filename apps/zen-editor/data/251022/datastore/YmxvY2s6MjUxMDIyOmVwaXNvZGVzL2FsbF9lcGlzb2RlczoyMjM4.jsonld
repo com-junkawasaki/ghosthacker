@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2238",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "# EP11-3 — 呼吸できる正義（Quiet Justice）\n- POV: 私（Tamaki／環樹）\n- Beat: Transformation / Justice with Breath"
+  },
+  "gh:index": 2238
+}

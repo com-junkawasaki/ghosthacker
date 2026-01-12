@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:197",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo nods. Millia looks down.",
+    "ja": "彼は少し考え込む。"
+  },
+  "gh:index": 197
+}

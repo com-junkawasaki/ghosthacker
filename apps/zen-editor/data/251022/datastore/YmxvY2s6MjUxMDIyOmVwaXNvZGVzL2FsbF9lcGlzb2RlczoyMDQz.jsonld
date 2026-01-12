@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2043",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "‘We acknowledge your intervention. Any interference with our social hygiene program will be recorded.’",
+    "ja": "朝のアナウンスが流れる。"
+  },
+  "gh:index": 2043
+}

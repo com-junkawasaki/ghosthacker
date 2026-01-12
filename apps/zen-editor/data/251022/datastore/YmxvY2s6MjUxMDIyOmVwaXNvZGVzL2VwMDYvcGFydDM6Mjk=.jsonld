@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part3:29",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Compliance Ogre: “Breath is merely a system variable.”",
+    "ja": "Compliance Ogre『呼吸は、システムの変数に過ぎない』"
+  },
+  "gh:index": 29
+}

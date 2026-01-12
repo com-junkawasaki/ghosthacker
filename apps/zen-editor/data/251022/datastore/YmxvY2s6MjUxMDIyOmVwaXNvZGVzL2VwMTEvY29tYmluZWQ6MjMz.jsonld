@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:233",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "And drink a sip of water.",
+    "ja": "「呼吸できる正義」"
+  },
+  "gh:index": 233
+}

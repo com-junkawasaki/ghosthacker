@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part3:12",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I open my notebook and add a final line: ‘Questions beget relationships.’ I write Elias and Logos’s names small beside it and close the page.",
+    "ja": "階段の踊り場に、静かな余白が生まれる。"
+  },
+  "gh:index": 12
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:914",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Roger. Kagura, please.”",
+    "ja": "Tamaki「そう。\"神のような完璧\"を装いながら、実は恐れで回してる」"
+  },
+  "gh:index": 914
+}

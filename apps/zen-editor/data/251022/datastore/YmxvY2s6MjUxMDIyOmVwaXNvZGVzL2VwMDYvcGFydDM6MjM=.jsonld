@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part3:23",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Optimization… for whom?”",
+    "ja": "Tamaki「最適化……誰のための？」"
+  },
+  "gh:index": 23
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2506",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Her light lays quiet margins along the streets.",
+    "ja": "Kaede「Tamaki、いい仕事だったね」"
+  },
+  "gh:index": 2506
+}

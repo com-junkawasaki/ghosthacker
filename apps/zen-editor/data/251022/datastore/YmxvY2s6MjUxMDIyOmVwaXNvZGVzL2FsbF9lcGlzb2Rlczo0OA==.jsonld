@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:48",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Now.”",
+    "ja": "私は足元で神楽を一拍。合図。視界のノイズが一段落ちる。"
+  },
+  "gh:index": 48
+}

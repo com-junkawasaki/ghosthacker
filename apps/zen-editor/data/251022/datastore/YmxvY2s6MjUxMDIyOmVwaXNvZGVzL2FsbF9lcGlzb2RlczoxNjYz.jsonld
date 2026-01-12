@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1663",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Yes. We bring back breath.”",
+    "ja": "そこには、怒りがある。"
+  },
+  "gh:index": 1663
+}

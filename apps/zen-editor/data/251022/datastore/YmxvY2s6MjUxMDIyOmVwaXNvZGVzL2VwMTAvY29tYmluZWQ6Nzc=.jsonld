@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:77",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Fear is evidence of being.”",
+    "ja": "私は続ける。"
+  },
+  "gh:index": 77
+}

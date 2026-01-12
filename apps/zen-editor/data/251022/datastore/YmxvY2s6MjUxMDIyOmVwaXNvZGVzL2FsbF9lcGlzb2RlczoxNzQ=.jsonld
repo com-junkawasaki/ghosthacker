@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:174",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “A tiny tremor now. A spike of sadness.”",
+    "ja": "Kaede「ジョン・ロックの自己所有……身体を唯一の所有物とする哲学。絶対境界」"
+  },
+  "gh:index": 174
+}

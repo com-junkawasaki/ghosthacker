@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part3:104",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "But there is breath.",
+    "ja": "都市は、静かだ。"
+  },
+  "gh:index": 104
+}

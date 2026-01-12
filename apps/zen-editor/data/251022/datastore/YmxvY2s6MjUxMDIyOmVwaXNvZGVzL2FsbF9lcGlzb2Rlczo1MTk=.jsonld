@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:519",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Would you sell your family for 100 million?”",
+    "ja": "Tamaki「うん。それはね。自分の体の一部になっているからだよ」"
+  },
+  "gh:index": 519
+}

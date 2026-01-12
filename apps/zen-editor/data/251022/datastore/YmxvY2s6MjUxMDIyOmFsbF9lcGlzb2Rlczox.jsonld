@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:all_episodes:1",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "本文は各 `episodes/epXX/part*.md` を正典とし、ここでは目次のみを提供します。"
+  },
+  "gh:index": 1
+}

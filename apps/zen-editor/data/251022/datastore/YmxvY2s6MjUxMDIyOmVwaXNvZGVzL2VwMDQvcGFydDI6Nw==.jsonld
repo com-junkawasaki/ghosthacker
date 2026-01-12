@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:7",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, Millia’s shoulders just fell a little.”",
+    "ja": "Nei-chan『タマ、いまミリアの肩、少し下がった』"
+  },
+  "gh:index": 7
+}

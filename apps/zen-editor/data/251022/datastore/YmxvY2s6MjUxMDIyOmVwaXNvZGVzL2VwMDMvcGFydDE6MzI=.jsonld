@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part1:32",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“I didn’t want to be betrayed. So I built a wall. I let no one in.”",
+    "ja": "「安全だった。——だが、私は息が浅い」"
+  },
+  "gh:index": 32
+}

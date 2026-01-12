@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part3:18",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He nods.",
+    "ja": "——短い独白。幼いころ、父の号令に従う身体。母の沈黙。彼は\"自分の身体は自分のものではない\"世界で育った。いま、呼吸で取り戻す最初の自由は、胸郭のひらき方だ。"
+  },
+  "gh:index": 18
+}

@@ -38,8 +38,10 @@
     const k = currentTransform.k;
     const tx = currentTransform.x;
     const ty = currentTransform.y;
-    const x = (node.x || 0) * k + tx + containerWidth / 2;
-    const y = (node.y || 0) * k + ty + containerHeight / 2;
+    // tx and ty from cosmos.gl/graph usually map world (0,0) to viewport center or similar
+    // Let's assume tx, ty are absolute screen offsets from top-left
+    const x = (node.x || 0) * k + tx;
+    const y = (node.y || 0) * k + ty;
     return { x, y };
   }
 

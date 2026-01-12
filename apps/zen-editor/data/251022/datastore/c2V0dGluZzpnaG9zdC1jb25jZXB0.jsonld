@@ -1,0 +1,13 @@
+{
+  "@id": "setting:ghost-concept",
+  "@type": "Intangible",
+  "description": "情報のみで構成される生命体。人間の思考・感情から生まれ、死者の残留思念、または人工的に作成されたAIを含む。人間には基本的に一人のGhostがつき、主人はMasterと呼ばれる。",
+  "gh:ghostType": [
+    "Human-derived",
+    "Artificial Intelligence",
+    "Alien"
+  ],
+  "gh:x": 7927.987237566203,
+  "gh:y": 5418.451516111609,
+  "name": "Ghost Concept"
+}

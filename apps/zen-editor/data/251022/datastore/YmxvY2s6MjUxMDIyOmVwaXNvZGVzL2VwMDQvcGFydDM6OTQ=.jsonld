@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:94",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Millia. I’ll… be with you. Through any operation. After, too.”",
+    "ja": "彼女の声は、小さいが、希望が混じっている。"
+  },
+  "gh:index": 94
+}

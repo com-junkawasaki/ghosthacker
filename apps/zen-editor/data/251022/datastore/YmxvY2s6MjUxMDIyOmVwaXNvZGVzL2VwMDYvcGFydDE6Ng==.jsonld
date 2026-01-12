@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part1:6",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “In ER terms, this is ‘abnormal vitals.’ Be careful.”",
+    "ja": "Kaede「救急で言えば、これは\"異常バイタル\"。注意して」"
+  },
+  "gh:index": 6
+}

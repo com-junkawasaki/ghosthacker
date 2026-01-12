@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1628",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi: “Tamaki, here—anger amplification pattern.”",
+    "ja": "怒りの波。"
+  },
+  "gh:index": 1628
+}

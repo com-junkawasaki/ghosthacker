@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2031",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Yes. That is our work.”",
+    "ja": "Tamaki「うん。それが、あなたの仕事」"
+  },
+  "gh:index": 2031
+}

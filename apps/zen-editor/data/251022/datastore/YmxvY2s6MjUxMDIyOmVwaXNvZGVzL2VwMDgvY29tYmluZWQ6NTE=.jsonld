@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:51",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero: “...And yet… I was rejected…”",
+    "ja": "Tamaki「だから、完璧を装った。拒絶されないように」"
+  },
+  "gh:index": 51
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:125",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Rage Engine: “...It’s… okay…?”",
+    "ja": "Hibiki「呼吸、合わせてる。いい感じだ」"
+  },
+  "gh:index": 125
+}

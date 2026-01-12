@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:816",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako: “You can come in. Spirit vital is stable.”",
+    "ja": "Kaedeの声が通信に入る。「Tamaki、よくやった。この三つのセッションは、全て\"LOVE\"のテーマで繋がっていた。Lachlanは\"孤独と信頼\"、LeoとMilliaは\"信用と信頼と愛の違い\"、そしてMilliaは\"所有と愛の違い\"」"
+  },
+  "gh:index": 816
+}

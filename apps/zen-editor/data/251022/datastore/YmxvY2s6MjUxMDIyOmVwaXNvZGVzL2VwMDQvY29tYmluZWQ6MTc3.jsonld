@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:177",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “I’ll sync completely to their breathing. Let sound hold them.”",
+    "ja": "Tamaki「あなたは友人を1億円で売れますか？」"
+  },
+  "gh:index": 177
+}

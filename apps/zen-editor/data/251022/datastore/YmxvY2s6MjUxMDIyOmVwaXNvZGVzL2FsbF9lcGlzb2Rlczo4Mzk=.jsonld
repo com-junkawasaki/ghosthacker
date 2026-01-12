@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:839",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo is at her side; his family watches, worried.",
+    "ja": "「大丈夫。今は、次のセッションに集中しよう」"
+  },
+  "gh:index": 839
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part2:90",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The Rage Engine breathes with me.",
+    "ja": "Rage Engineも、一緒に呼吸する。"
+  },
+  "gh:index": 90
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:61",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Resolve fills her voice.",
+    "ja": "Hibiki「護岸ライトは低輝度モード。救急航路のみ強発光。音の邪魔にならない、いい夜」"
+  },
+  "gh:index": 61
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part3:49",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “All wards released. The city is stable.”",
+    "ja": "Kaedeが境界を完全に解く。"
+  },
+  "gh:index": 49
+}

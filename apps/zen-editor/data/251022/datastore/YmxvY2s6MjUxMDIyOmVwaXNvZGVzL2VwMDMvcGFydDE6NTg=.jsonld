@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part1:58",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "[Micro-turns]\n- Declaration against AI life rights → acceptance of dialogue (rigidity → alignment)\n- Utterance of ‘standard’ → awareness of invalidated emotion (numbness → noticing)\n- Wall’s safety claim → confession of shallow breath (armor → sign)\n- Childhood discipline → ‘a body that can ask’ (discipline → breath)"
+  },
+  "gh:index": 58
+}

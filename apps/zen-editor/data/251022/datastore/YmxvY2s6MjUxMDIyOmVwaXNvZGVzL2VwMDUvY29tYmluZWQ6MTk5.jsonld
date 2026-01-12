@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:199",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“And—we’re putting your mother in the program as well.”",
+    "ja": "Kaede「今は休んで。手術、お疲れ様」"
+  },
+  "gh:index": 199
+}

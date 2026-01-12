@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1590",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "A slight ‘feeling good’ works surprisingly well.",
+    "ja": "完璧ではなく、呼吸。"
+  },
+  "gh:index": 1590
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1027",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Let’s breathe together.”",
+    "ja": "Tamaki「あなたは、7になれないことを恐れてる」"
+  },
+  "gh:index": 1027
+}

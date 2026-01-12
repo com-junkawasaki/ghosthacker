@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:751",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“But my mother was bound by a ‘chain’ too.”",
+    "ja": "光が、Milliaの周りを包む。"
+  },
+  "gh:index": 751
+}

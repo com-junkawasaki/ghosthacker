@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part2:29",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I tap a one-beat kagura. The noise in my vision drops a level.",
+    "ja": "Nei-chanが光を落とす。「Tamaki、もう半歩？」\n「半歩。ここまで」"
+  },
+  "gh:index": 29
+}

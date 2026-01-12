@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:34",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “But that presupposes the boundary of ‘individuals.’ Leo, you try to understand Millia ‘as an individual.’ That, paradoxically, isolates her.”",
+    "ja": "Kaede「でもね、それは実は、\"個人\"という境界線を前提にしてる。Leo、あなたは\"個人として\"Milliaを理解しようとしている。でも……それが逆に、彼女を孤立させてるの」"
+  },
+  "gh:index": 34
+}

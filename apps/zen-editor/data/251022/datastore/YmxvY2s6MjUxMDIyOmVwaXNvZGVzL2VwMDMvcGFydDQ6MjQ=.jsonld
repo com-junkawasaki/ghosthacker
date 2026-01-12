@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part4:24",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I hold his gaze. “Yes. You don’t know. Because it cannot be divided.”",
+    "ja": "廊下のメトロノームが、微かに刻む。カチ、カチ、カチ。"
+  },
+  "gh:index": 24
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:226",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “But even if it’s ‘family,’ it isn’t that you must not sell.”",
+    "ja": "Tamaki「そう。愛と関係性の経済の見分け方は\"売れるか売れないか\"」"
+  },
+  "gh:index": 226
+}

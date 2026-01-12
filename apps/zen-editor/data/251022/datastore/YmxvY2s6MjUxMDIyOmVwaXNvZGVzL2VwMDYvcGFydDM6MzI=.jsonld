@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part3:32",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Compliance Ogre: “Fear is an inefficient emotion.”",
+    "ja": "Compliance Ogre『恐れは、非効率な感情である』"
+  },
+  "gh:index": 32
+}

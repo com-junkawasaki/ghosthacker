@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:62",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Beautiful, and a little uncanny.",
+    "ja": "室内の\"情報空間\"に蔓模様のUIが展開される。"
+  },
+  "gh:index": 62
+}

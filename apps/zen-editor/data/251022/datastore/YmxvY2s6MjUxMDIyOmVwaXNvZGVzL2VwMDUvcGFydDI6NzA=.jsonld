@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:70",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo embraces her.",
+    "ja": "光が、Milliaの周りを包む。"
+  },
+  "gh:index": 70
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part3:9",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Next case is already in.”",
+    "ja": "Hibikiの声も通信に入る。彼の声には、いつもの陽気さが戻っている。"
+  },
+  "gh:index": 9
+}

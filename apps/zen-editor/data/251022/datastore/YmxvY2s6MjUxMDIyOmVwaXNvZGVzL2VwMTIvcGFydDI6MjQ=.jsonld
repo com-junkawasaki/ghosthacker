@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part2:24",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Nero, can you hear me?”",
+    "ja": "私は、最後の合図を送る。"
+  },
+  "gh:index": 24
+}

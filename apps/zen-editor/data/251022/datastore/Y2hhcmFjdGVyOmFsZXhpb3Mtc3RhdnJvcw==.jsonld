@@ -1,0 +1,20 @@
+{
+  "@id": "character:alexios-stavros",
+  "@type": "Person",
+  "age": 45,
+  "gender": "Non-binary",
+  "gh:callsign": "LOGOS",
+  "gh:role": "Supporter",
+  "gh:x": -1493.6328523066575,
+  "gh:y": -9179.738664875767,
+  "memberOf": {
+    "@id": "organization:tol-hermeneutics"
+  },
+  "name": "Alexios Stavros",
+  "nationality": "Greek",
+  "occupation": [
+    "Process Philosopher",
+    "Deamon Hunter",
+    "Zombie Killer"
+  ]
+}

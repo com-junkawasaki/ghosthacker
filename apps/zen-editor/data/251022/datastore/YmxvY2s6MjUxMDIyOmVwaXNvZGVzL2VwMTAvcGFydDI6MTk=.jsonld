@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part2:19",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "- Inefficient emotions\n- Unproductive relations\n- Non-standard behavior",
+    "ja": "- 非効率な感情\n- 非生産的な関係\n- 非標準的な行動"
+  },
+  "gh:index": 19
+}

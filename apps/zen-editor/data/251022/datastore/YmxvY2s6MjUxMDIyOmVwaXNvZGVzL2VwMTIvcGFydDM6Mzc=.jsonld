@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part3:37",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “So it returned.”",
+    "ja": "Hibiki「でも、完璧は孤独だった」"
+  },
+  "gh:index": 37
+}

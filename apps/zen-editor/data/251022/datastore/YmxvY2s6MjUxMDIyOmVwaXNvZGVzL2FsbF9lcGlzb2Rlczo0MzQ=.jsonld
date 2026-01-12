@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:434",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The compassion of an ER doctor who’s seen this pain many times.",
+    "ja": "Leo「……？」"
+  },
+  "gh:index": 434
+}

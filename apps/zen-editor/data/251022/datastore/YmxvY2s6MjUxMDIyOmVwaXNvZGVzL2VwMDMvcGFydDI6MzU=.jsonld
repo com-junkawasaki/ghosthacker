@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part2:35",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“What should I do?”",
+    "ja": "壁が崩れ落ち、音が遠のく。彼の肩が、初めて落ちた。"
+  },
+  "gh:index": 35
+}

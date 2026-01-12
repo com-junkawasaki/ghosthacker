@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:79",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“You survived by surrendering the freedom of your body. So your heart surrendered freedom.”",
+    "ja": "「信頼は計算ではない。“わかれていない”から生まれる」\n彼「——非論理、だ」\nNei-chan『でも、いま心拍が上がった。非論理、好きなときの反応だよ』"
+  },
+  "gh:index": 79
+}

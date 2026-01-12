@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:742",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Crying, she shouts:",
+    "ja": "Hibikiの手が、リズムを変える。麻酔科医として、意識を深い場所から優しく引き上げる。"
+  },
+  "gh:index": 742
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:596",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia smiles small. Tears not yet dry, but—hope in her eyes.",
+    "ja": "Leoはその手を包む。彼の顔にも、不安が浮かんでいる。"
+  },
+  "gh:index": 596
+}

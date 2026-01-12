@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:41",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "A short silence.",
+    "ja": "私はうなずき、呼吸のテンポを落とす。「いまは、理屈より呼吸。いい感じ、に」"
+  },
+  "gh:index": 41
+}

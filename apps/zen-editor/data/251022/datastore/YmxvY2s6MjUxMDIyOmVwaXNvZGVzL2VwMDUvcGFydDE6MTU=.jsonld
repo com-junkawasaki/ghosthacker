@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:15",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "ER-calm, with deep compassion.",
+    "ja": "Kaedeの声は、救急医のそれだ。冷静だが、深い共感がある。"
+  },
+  "gh:index": 15
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1725",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I speak to the Rage Engine.",
+    "ja": "Hibiki「呼吸、合わせてる。いい感じだ」"
+  },
+  "gh:index": 1725
+}

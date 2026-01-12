@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:172",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Were you safe inside the wall?”",
+    "ja": "Nei-chan『この壁、もう“守ってない”。閉じ込めてる』"
+  },
+  "gh:index": 172
+}

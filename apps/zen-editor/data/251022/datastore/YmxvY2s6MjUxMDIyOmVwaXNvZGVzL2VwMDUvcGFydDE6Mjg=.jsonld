@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:28",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia breathes in.",
+    "ja": "Milliaは深く息を吸う。"
+  },
+  "gh:index": 28
+}

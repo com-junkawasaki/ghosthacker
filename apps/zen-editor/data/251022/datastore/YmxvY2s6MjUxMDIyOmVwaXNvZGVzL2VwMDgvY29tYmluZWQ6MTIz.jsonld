@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:123",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I tap kagura.",
+    "ja": "Tamaki「次は、成仏。Neroを、還す」"
+  },
+  "gh:index": 123
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:584",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “...Millia, I don’t know what happens next, but… we’ll move forward together.”",
+    "ja": "Nei-chan『タマ、痛いって聞いた。大丈夫？』"
+  },
+  "gh:index": 584
+}

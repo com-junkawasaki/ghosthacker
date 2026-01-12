@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part2:11",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “John Locke’s self-ownership—body as one’s sole property. Absolute boundary.”",
+    "ja": "Kaede「ジョン・ロックの自己所有……身体を唯一の所有物とする哲学。絶対境界」"
+  },
+  "gh:index": 11
+}

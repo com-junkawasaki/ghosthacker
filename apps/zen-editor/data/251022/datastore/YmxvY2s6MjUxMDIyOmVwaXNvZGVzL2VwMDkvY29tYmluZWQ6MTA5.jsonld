@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:109",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. From anger to sadness.”",
+    "ja": "Rage Engineも、一緒に呼吸する。"
+  },
+  "gh:index": 109
+}

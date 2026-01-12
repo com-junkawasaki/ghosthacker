@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2260",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “This is… Quiet Justice.”",
+    "ja": "Tamaki「うん。それで、十分」"
+  },
+  "gh:index": 2260
+}

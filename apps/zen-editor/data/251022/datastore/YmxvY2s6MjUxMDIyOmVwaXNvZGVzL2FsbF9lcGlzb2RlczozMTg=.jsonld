@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:318",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Ei, Tamaki! The band is stable. Daytime peak cut is lifted. Plenty of room for sound.”",
+    "ja": "Tamaki「予約は、どなたが？」"
+  },
+  "gh:index": 318
+}

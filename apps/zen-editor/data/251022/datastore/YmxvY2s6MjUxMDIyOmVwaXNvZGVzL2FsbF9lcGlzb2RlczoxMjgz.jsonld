@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1283",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, next?”",
+    "ja": "私は深呼吸をする。"
+  },
+  "gh:index": 1283
+}

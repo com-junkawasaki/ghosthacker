@@ -1,0 +1,229 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part4.en",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:0",
+      "@type": "gh:Block",
+      "schema:text": "# Session: Lachlan Keyes - Part 4"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:1",
+      "@type": "gh:Block",
+      "schema:text": "---\nKaede: “The hearing is carried over—no answer yet. But for him tonight, ‘no answer’ is the key.”\nHibiki: “Roads are wet, scattering glare. Pedestrian flows are being auto-redrawn. Return path is safe.”\nNei-chan: “Tama, now.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:2",
+      "@type": "gh:Block",
+      "schema:text": "He is prickly from the moment he enters."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:3",
+      "@type": "gh:Block",
+      "schema:text": "“AI has no life. Your ‘Ghost’ is just a program.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:4",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan folds her wings small at my back. I only nod."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:5",
+      "@type": "gh:Block",
+      "schema:text": "“This age argues whether AI should have life rights. I oppose it.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:6",
+      "@type": "gh:Block",
+      "schema:text": "“Got it. Today, we listen to you.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:7",
+      "@type": "gh:Block",
+      "schema:text": "He shrugs. “And what will that do?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:8",
+      "@type": "gh:Block",
+      "schema:text": "After a beat, I point at the cup."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:9",
+      "@type": "gh:Block",
+      "schema:text": "“Then one thing. ‘Where do you begin and end?’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:10",
+      "@type": "gh:Block",
+      "schema:text": "He answers instantly: “My ‘body.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:11",
+      "@type": "gh:Block",
+      "schema:text": "“Is the water in this cup on the desk you?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:12",
+      "@type": "gh:Block",
+      "schema:text": "“No.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:13",
+      "@type": "gh:Block",
+      "schema:text": "I slide the cup to him, smiling."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:14",
+      "@type": "gh:Block",
+      "schema:text": "“Take a sip.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:15",
+      "@type": "gh:Block",
+      "schema:text": "He drinks without a word. His throat bobs."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:16",
+      "@type": "gh:Block",
+      "schema:text": "“Is the water you just drank you?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:17",
+      "@type": "gh:Block",
+      "schema:text": "Silence. A furrow forms. “...I think not.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:18",
+      "@type": "gh:Block",
+      "schema:text": "“One more.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:19",
+      "@type": "gh:Block",
+      "schema:text": "He touches the rim with his lips—at that instant—"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:20",
+      "@type": "gh:Block",
+      "schema:text": "“So where, from where to where, is that water ‘you’?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:21",
+      "@type": "gh:Block",
+      "schema:text": "His time stops. His lips on the cup. Seconds—an eternity."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:22",
+      "@type": "gh:Block",
+      "schema:text": "He finally sets it down and folds his hands. “...I don’t know.” He jokes, but his voice shakes. His shoulders drop; breath deepens."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:23",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “‘I don’t know’ is actually ‘nice to meet you.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:24",
+      "@type": "gh:Block",
+      "schema:text": "I hold his gaze. “Yes. You don’t know. Because it cannot be divided.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:25",
+      "@type": "gh:Block",
+      "schema:text": "The hallway metronome ticks, faint: kat, kat, kat."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:26",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan whispers on my shoulder: “Tama, his ‘boundary’ just loosened.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:27",
+      "@type": "gh:Block",
+      "schema:text": "He looks between me and Nei-chan—"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:28",
+      "@type": "gh:Block",
+      "schema:text": "“...Could it be that ‘I and water’… are not separate?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:29",
+      "@type": "gh:Block",
+      "schema:text": "“Yes. Not separate.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:30",
+      "@type": "gh:Block",
+      "schema:text": "“No, but…” He stops. A long silence. His eyes brim."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:31",
+      "@type": "gh:Block",
+      "schema:text": "“...I see.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:32",
+      "@type": "gh:Block",
+      "schema:text": "A drop falls."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:33",
+      "@type": "gh:Block",
+      "schema:text": "I say nothing. Nei-chan says nothing."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:34",
+      "@type": "gh:Block",
+      "schema:text": "Time passes slowly. Felt minutes. Only a few in fact."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:35",
+      "@type": "gh:Block",
+      "schema:text": "“...I didn’t understand.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:36",
+      "@type": "gh:Block",
+      "schema:text": "The metronome grows louder, signaling session end."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:37",
+      "@type": "gh:Block",
+      "schema:text": "He bows his head quietly. “Thank you. And… I’m sorry.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:38",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan smiles small: “Mm. From here.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:39",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:40",
+      "@type": "gh:Block",
+      "schema:text": "A brief recollection spills from him. A mining town childhood. A hard father, strict mother. He survived by training his body and shaving his feelings. The ‘perfect separation’ in orbit was the last peace he found."
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:41",
+      "@type": "gh:Block",
+      "schema:text": "But he knows now—"
+    },
+    {
+      "@id": "block:251022:episodes/ep03/part4.en:42",
+      "@type": "gh:Block",
+      "schema:text": "The moment when the boundary between the cup’s water and himself loosens."
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:38+09:00"
+}

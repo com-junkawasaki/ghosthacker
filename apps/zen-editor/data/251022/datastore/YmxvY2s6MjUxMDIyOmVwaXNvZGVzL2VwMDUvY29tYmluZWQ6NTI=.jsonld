@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:52",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "One breath—",
+    "ja": "Hibiki「——その前に、三呼吸。ぼくと一緒に。呼吸を合わせると、心が落ち着くから」"
+  },
+  "gh:index": 52
+}

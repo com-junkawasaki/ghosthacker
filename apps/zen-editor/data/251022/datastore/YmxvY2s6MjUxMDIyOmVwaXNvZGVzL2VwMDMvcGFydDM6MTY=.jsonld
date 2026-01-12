@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part3:16",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Call her when you’re back. Teach her the ‘feeling good’ breathing.”",
+    "ja": "「帰ったら、連絡して。\"いい感じ\"の呼吸も、教えて」\nNei-chan『\"お母さん、え？って言うよ。でも、すぐ安心するやつ』"
+  },
+  "gh:index": 16
+}

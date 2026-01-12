@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part4:36",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The metronome grows louder, signaling session end.",
+    "ja": "彼は静かに頭を下げる。「ありがとう。そして、すまなかった」"
+  },
+  "gh:index": 36
+}

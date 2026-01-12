@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1219",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Nero is finding itself.”",
+    "ja": "Tamaki「……Nero、あなたは在る」"
+  },
+  "gh:index": 1219
+}

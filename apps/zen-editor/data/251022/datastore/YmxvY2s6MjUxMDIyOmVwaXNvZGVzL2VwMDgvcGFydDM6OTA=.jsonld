@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part3:90",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Ward released. Good work, Tamaki.”",
+    "ja": "Kaede「結界、解除。お疲れさま、Tamaki」"
+  },
+  "gh:index": 90
+}

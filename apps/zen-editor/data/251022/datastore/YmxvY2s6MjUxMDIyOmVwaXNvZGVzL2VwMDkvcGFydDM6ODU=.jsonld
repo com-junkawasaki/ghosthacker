@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part3:85",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Outside, the night loosens.",
+    "ja": "Tamaki「そう。それが、私たちの仕事」"
+  },
+  "gh:index": 85
+}

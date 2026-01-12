@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:361",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia: “...I did. Watching Leo ‘enjoy’ struggling makes me happy… and anxious.”",
+    "ja": "Hibiki「二人の呼吸に合わせて。音楽は、呼吸を映す鏡だから」"
+  },
+  "gh:index": 361
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:69",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia nods—resolve, and a trace of relief.",
+    "ja": "Hibiki「音と光と匂い——すべてがあなたの治癒を支援するように。ぼくは麻酔科医として、あなたの意識を守りながら、音楽で場を編む」"
+  },
+  "gh:index": 69
+}

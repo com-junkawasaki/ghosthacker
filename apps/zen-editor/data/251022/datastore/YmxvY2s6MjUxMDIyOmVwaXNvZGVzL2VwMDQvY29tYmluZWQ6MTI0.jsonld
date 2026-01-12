@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:124",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Leo… listen to your ‘sympathy.’”",
+    "ja": "「あなたは、彼女を\"救おう\"としていました。でも、彼女は\"救われたい\"と思っていなかった。彼女は、ただ……\"わかれていない\"存在が欲しかった」"
+  },
+  "gh:index": 124
+}

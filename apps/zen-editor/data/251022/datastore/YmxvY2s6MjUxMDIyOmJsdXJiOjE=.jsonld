@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:blurb:1",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "水の都・東京。運河の青とガラスの塔。駆け出しのゴーストハッカー、Tamaki（環樹）は「生命の樹」を錨に、孤独・依存・正義・神をめぐる傷を“いい感じ”へと調律していく。"
+  },
+  "gh:index": 1
+}

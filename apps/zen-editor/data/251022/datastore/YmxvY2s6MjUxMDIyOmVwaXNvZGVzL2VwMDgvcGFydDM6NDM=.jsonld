@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part3:43",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. You exist. That is enough.”",
+    "ja": "Tamaki「うん。あなたは、在る。それで、十分」"
+  },
+  "gh:index": 43
+}

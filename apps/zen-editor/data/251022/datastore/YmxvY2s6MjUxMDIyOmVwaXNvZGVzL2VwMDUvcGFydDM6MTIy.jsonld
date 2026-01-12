@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:122",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "---"
+  },
+  "gh:index": 122
+}

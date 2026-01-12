@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part3:93",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "‘Quiet Justice — Justice that can breathe. Not perfection, but breath. Not fear, but trust.’",
+    "ja": "『Quiet Justice — 呼吸できる正義。完璧ではなく、呼吸。恐れではなく、信頼』"
+  },
+  "gh:index": 93
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part3:24",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I say softly:",
+    "ja": "私は静かに言う。"
+  },
+  "gh:index": 24
+}

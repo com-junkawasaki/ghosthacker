@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:161",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "(At that moment, I see faint white lines on Millia’s wrist as she replaces the cup. I lower my eyes and say nothing. Nei-chan trembles slightly.)",
+    "ja": "Tamaki「お金も共感もいらない。“自他非分離”の経済。おうちの冷蔵庫と一緒」"
+  },
+  "gh:index": 161
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:469",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I say nothing. Ten-plus seconds of silence.",
+    "ja": "Leoの表情が変わる。"
+  },
+  "gh:index": 469
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:190",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“You don’t need it yet. Today let’s return to ‘a body that can ask.’”",
+    "ja": "神楽を一拍。ASC制御を半歩上げる。非分離のコードを壁の節へ送り込む。"
+  },
+  "gh:index": 190
+}

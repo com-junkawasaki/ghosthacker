@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:205",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "‘Fortress of Self’—transparent walls encircle him. Inside, he breathes shallow.",
+    "ja": "Kaede「今は彼に集中。マップは後で見る」"
+  },
+  "gh:index": 205
+}

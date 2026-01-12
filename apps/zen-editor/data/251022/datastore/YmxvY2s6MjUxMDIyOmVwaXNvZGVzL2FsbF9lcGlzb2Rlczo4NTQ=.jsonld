@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:854",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I smile: “Thank you.”",
+    "ja": "Kaedeの声が通信に入る。"
+  },
+  "gh:index": 854
+}

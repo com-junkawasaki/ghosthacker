@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:270",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "そして、私には\"いい感じ\"の呼吸がある。"
+  },
+  "gh:index": 270
+}

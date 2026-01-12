@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:1",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "```json\n{\n  \"@context\": \"https://ghosthacker.example.com/\",\n  \"@type\": \"EpisodePart\",\n  \"partOf\": \"episode:s3e2\",\n  \"position\": 1,\n  \"antagonist\": [\n    { \"@id\": \"character:leo-kazan\" },\n    { \"@id\": \"character:millia-stuart\" }\n  ]\n}\n```",
+    "ja": "```json\n{\n  \"@context\": \"https://ghosthacker.example.com/\",\n  \"@type\": \"EpisodePart\",\n  \"partOf\": \"episode:s3e2\",\n  \"position\": 1,\n  \"antagonist\": [\n    { \"@id\": \"character:leo-kazan\" },\n    { \"@id\": \"character:millia-stuart\" }\n  ]\n}\n```"
+  },
+  "gh:index": 1
+}

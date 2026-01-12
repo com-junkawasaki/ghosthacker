@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:402",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Do not rush to settle it here. Like ER triage—haste causes misses.”",
+    "ja": "「……私は、一人でいたい。でも、一人は怖い……」"
+  },
+  "gh:index": 402
+}

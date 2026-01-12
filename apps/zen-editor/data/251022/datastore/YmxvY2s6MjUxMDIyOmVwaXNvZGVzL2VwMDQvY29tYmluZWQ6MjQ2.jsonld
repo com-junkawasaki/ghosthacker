@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:246",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan (small): “Tama… I saw.”",
+    "ja": "私は静かに言う。"
+  },
+  "gh:index": 246
+}

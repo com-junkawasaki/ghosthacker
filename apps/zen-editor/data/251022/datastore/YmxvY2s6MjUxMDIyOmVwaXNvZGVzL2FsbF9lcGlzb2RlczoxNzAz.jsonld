@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1703",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Rage Engine: “...It’s… okay…?”",
+    "ja": "Hibiki「うん。呼吸で、癒せる」"
+  },
+  "gh:index": 1703
+}

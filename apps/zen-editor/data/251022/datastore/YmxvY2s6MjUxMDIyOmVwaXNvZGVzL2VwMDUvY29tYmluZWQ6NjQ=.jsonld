@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:64",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “I’ll be DJ through the operation—continuously generating the field.”",
+    "ja": "コードが静かに編み込まれる。"
+  },
+  "gh:index": 64
+}

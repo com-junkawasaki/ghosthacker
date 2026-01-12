@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:93",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo takes her hand again—this time, without hesitation.",
+    "ja": "Millia「……どうしたらいいですか、Dr. Tamaki」"
+  },
+  "gh:index": 93
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:606",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “But we’re diving deep. I’ve been present at many spiritual surgeries… it’s nerve-wracking every time.”",
+    "ja": "Millia「自分の自由を生きるため」"
+  },
+  "gh:index": 606
+}

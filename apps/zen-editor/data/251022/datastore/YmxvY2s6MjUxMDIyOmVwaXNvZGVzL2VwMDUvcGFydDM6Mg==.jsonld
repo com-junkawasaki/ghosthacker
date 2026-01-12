@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:2",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Ascent complete.” Gentle relief in his voice.",
+    "ja": "Hibiki「上昇完了」"
+  },
+  "gh:index": 2
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:39",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "She reads, carefully.",
+    "ja": "Kaedeが、ゆっくりと読み上げる。"
+  },
+  "gh:index": 39
+}

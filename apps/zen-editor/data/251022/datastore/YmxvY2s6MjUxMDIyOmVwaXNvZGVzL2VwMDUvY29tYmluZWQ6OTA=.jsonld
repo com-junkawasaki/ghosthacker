@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:90",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "A black ‘chain’ appears behind her.",
+    "ja": "Dr. イタコが奥から現れる。"
+  },
+  "gh:index": 90
+}

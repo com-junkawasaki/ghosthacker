@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:278",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Is the water in this cup on the desk you?”",
+    "ja": "彼女の声には、少し心配が混じっている。"
+  },
+  "gh:index": 278
+}

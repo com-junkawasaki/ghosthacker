@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1376",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Relation is born of imperfection.”",
+    "ja": "Hibiki「完璧なら、拒絶されないと思ったんだ」"
+  },
+  "gh:index": 1376
+}

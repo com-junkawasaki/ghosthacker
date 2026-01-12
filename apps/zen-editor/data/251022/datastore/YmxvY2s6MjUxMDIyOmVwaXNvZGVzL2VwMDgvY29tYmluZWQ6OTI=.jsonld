@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:92",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "Neroも、一緒に呼吸する。"
+  },
+  "gh:index": 92
+}

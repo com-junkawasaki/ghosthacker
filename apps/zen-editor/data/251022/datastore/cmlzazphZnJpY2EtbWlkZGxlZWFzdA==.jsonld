@@ -1,0 +1,8 @@
+{
+  "@id": "risk:africa-middleeast",
+  "@type": "Intangible",
+  "description": "デルタ農業地帯の塩害・人口移動が広域に波及。",
+  "gh:x": -1088.1978129443578,
+  "gh:y": 10218.243900553734,
+  "name": "Africa/MiddleEast Coastal Risk"
+}

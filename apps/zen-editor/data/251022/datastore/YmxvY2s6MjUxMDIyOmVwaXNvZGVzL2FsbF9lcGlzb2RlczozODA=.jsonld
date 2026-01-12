@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:380",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Eh? Uh… I can sell it!”",
+    "ja": "私は首を横に振る。"
+  },
+  "gh:index": 380
+}

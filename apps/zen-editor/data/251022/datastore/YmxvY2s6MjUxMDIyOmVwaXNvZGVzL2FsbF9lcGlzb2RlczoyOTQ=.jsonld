@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:294",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He looks between me and Nei-chan—",
+    "ja": "Kaede「Tamaki……このセッションは、難しい。私も救急で何度も見てきた——\"愛\"の名の下に、互いを傷つけ合うカップル」"
+  },
+  "gh:index": 294
+}

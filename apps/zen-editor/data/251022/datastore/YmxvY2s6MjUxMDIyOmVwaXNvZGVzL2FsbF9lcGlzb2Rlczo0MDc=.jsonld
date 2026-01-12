@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:407",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I draw three circles between them.",
+    "ja": "私は二人に告げる。"
+  },
+  "gh:index": 407
+}

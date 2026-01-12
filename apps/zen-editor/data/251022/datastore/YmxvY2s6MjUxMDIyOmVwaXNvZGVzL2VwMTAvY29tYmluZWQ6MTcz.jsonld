@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:173",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “From cleansing to protection.”",
+    "ja": "街の騒音が、半歩だけ下がった。"
+  },
+  "gh:index": 173
+}

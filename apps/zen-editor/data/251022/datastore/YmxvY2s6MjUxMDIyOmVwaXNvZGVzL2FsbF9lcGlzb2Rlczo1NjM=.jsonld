@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:563",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Mm. Procedure… anesthesia and surgery. Let me ask.”",
+    "ja": "そして、初めて——本当に、お互いを見ている。"
+  },
+  "gh:index": 563
+}

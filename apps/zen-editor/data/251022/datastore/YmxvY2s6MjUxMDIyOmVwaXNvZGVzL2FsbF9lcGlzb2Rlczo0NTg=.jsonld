@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:458",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I ask them:",
+    "ja": "空間の背景に、薄く街並みのコンテキストが現れる。"
+  },
+  "gh:index": 458
+}

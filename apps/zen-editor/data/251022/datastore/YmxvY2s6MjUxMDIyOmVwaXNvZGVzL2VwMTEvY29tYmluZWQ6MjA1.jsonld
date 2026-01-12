@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:205",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The Ogre’s armor fully loosens.",
+    "ja": "Tamaki「うん。あなたは、在る。それでいい」"
+  },
+  "gh:index": 205
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:238",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "そして、コップの水を一口。"
+  },
+  "gh:index": 238
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:60",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---\nKaede: “Continue in the same night.”",
+    "ja": "彼の声は落ち着いている。"
+  },
+  "gh:index": 60
+}

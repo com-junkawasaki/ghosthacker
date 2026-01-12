@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part1:29",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I inhale, give Nei-chan a cue, and tap a small kagura. ASC prepped.",
+    "ja": "私は深く息を吸う。Nei-chanに合図し、神楽を小さく踏む。ASC制御の準備。"
+  },
+  "gh:index": 29
+}

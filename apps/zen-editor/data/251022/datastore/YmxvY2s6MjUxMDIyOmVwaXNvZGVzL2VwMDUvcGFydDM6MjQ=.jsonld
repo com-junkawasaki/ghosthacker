@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:24",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Her operation is scheduled at another facility. You wouldn’t know your mother’s father’s ghost directly, right?”",
+    "ja": "「……ありがとうございました。Dr. イタコ」"
+  },
+  "gh:index": 24
+}

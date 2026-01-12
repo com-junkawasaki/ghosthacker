@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep02/combined:22",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“You are both a distinct being and this universe itself.”",
+    "ja": "「あなたは、あなたという個別の存在であると同時に、この宇宙そのものなんだよ」"
+  },
+  "gh:index": 22
+}

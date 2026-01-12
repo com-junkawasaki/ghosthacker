@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:12",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “...Good.” His voice shakes with relief.",
+    "ja": "Milliaの背中はもう、鎖に縛られていない。"
+  },
+  "gh:index": 12
+}

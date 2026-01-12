@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2487",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I write one line in my notebook:",
+    "ja": "Tamaki「うん。ありがとう、みんな」"
+  },
+  "gh:index": 2487
+}

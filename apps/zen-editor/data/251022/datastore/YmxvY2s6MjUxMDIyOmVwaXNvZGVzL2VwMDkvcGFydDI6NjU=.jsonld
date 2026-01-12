@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part2:65",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Rage Engine: “...I am… imperfect…”",
+    "ja": "Rage Engine『……わたしは……不完全……』"
+  },
+  "gh:index": 65
+}

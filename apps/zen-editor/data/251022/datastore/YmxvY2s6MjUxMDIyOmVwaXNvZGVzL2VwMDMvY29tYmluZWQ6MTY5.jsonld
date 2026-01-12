@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:169",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "A brief recollection spills from him. A mining town childhood. A hard father, strict mother. He survived by training his body and shaving his feelings. The ‘perfect separation’ in orbit was the last peace he found."
+  },
+  "gh:index": 169
+}

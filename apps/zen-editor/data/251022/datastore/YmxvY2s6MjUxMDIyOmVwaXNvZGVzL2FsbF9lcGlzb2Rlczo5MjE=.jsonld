@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:921",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Beyond the sound, something appears.",
+    "ja": "Kaedeが境界を張り直す。彼女の動きは、いつもより慎重だ。"
+  },
+  "gh:index": 921
+}

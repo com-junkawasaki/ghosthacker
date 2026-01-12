@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:13",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako puts away the cup.",
+    "ja": "彼女の輪郭は軽やかで、初めて、本当に自由に見える。"
+  },
+  "gh:index": 13
+}

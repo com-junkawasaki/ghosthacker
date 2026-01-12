@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:127",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Lifting repression needs words. Speak it, release it.”",
+    "ja": "黒い膿が、床に落ちる。"
+  },
+  "gh:index": 127
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2598",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I AM THAT I AM.",
+    "ja": "その一言で、場が明るくなる。"
+  },
+  "gh:index": 2598
+}

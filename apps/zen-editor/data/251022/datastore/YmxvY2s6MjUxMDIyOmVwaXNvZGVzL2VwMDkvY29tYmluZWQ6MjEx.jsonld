@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:211",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Client: “...Remove one action…”",
+    "ja": "Kaede「怒りは、関係を壊すこともできる。でも、関係を作ることもできる」"
+  },
+  "gh:index": 211
+}

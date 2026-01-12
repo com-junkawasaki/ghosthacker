@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part2:22",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "On the screen, red waves repeat.",
+    "ja": "画面には、赤い波が繰り返される。"
+  },
+  "gh:index": 22
+}

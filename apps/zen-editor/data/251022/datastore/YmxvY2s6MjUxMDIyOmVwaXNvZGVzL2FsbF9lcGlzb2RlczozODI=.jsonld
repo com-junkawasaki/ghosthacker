@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:382",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Right. That’s the economy of ‘others’—the economy of credit. The world of money and contracts.”",
+    "ja": "Leoが驚いて言う。"
+  },
+  "gh:index": 382
+}

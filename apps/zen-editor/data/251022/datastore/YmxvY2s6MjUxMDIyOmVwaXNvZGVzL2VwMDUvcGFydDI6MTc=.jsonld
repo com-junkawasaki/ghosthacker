@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:17",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tears in her voice.",
+    "ja": "彼女の声は涙で濡れている。"
+  },
+  "gh:index": 17
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:115",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "System: “...Relation…”",
+    "ja": "Tamaki「うん。冷たさから、温かさに」"
+  },
+  "gh:index": 115
+}

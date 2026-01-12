@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part3:109",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "水音が遠くで応える。"
+  },
+  "gh:index": 109
+}

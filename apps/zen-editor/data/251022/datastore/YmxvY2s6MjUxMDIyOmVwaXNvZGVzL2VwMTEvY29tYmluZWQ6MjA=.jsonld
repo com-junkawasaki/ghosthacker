@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:20",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “...This is the justification of fear.”",
+    "ja": "Kaede「でも、正義は呼吸を止めてる」"
+  },
+  "gh:index": 20
+}

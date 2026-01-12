@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:68",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I shake my head.",
+    "ja": "Tamaki「正義は、呼吸と一緒に作るもの」"
+  },
+  "gh:index": 68
+}

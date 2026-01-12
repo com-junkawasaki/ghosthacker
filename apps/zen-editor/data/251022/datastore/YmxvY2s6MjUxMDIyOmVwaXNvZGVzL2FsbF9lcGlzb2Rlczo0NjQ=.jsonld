@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:464",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "Tamaki「うん。人と関係で価値は異なる。関係性には価値がある」"
+  },
+  "gh:index": 464
+}

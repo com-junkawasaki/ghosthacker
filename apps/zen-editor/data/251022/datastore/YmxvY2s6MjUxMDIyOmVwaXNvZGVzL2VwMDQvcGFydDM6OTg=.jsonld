@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:98",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Next step is Dr. Itako’s session. —For today, that’s all. Talk slowly, together.”",
+    "ja": "「うん。専門家がいる。Dr. イタコ」"
+  },
+  "gh:index": 98
+}

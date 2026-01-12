@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1867",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The key is not ‘discarding.’ While piping unwanted loops to /dev/null, we protect the relational lines that should remain. I touch the Tree of Life and execute each step.",
+    "ja": "---"
+  },
+  "gh:index": 1867
+}

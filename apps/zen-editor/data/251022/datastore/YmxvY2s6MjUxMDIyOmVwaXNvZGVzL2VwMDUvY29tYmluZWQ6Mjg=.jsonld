@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:28",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia breathes in.",
+    "ja": "Hibiki「アヤワスカは、ただの麻酔じゃない。あなたの意図が、治癒の方向を決める」"
+  },
+  "gh:index": 28
+}

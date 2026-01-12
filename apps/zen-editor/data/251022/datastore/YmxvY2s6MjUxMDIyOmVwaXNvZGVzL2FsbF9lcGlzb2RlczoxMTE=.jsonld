@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:111",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan, beside me, spoke quietly: “He believes too strongly that he is an individual. So endless samsara feels like punishment.”",
+    "ja": "Kaede「夕立、やっと上がったわね……」"
+  },
+  "gh:index": 111
+}

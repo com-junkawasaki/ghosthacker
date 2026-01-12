@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2308",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “From perfection to breath.”",
+    "ja": "Aoiがメトリクスを表示する。"
+  },
+  "gh:index": 2308
+}

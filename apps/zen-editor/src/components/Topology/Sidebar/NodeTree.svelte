@@ -7,7 +7,7 @@
   // Determine root circles
   const rootCircleIds = [
     'hub:content', 'hub:entity', 'hub:environment', 'hub:item', 'hub:emotion', 
-    'hub:asset', 'hub:concept', 'hub:unlinked'
+    'hub:asset', 'hub:concept', 'hub:translation', 'hub:unlinked'
   ];
 
   let flattened = $derived(

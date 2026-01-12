@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:140",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I continue.",
+    "ja": "Compliance Ogre『……不完全は、排除される』"
+  },
+  "gh:index": 140
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:68",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Eh? Uh… I can sell it!”",
+    "ja": "Millia（沈黙）"
+  },
+  "gh:index": 68
+}

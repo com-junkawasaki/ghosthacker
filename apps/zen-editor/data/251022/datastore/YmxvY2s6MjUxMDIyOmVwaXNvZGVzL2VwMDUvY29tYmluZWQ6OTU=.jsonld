@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:95",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako: “Tamaki, hold the position of awareness.”",
+    "ja": "Milliaの輪郭が揺れる。"
+  },
+  "gh:index": 95
+}

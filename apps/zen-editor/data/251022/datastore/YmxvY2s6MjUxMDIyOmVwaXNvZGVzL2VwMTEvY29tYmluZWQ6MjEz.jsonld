@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:213",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Return.",
+    "ja": "Nei-chan『タマ、お疲れさま』"
+  },
+  "gh:index": 213
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:297",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“No, but…” He stops. A long silence. His eyes brim.",
+    "ja": "Kaedeの声には、深い共感がある。"
+  },
+  "gh:index": 297
+}

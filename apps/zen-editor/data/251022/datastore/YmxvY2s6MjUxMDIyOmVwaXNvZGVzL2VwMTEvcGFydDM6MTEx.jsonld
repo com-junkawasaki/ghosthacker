@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part3:111",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "A small ease opens at the back of my throat.",
+    "ja": "そして、コップの水を一口。"
+  },
+  "gh:index": 111
+}

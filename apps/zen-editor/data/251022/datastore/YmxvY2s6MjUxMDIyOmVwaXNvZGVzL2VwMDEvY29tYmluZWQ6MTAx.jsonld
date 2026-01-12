@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:101",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The wind turns the corner. The night is soft and strong."
+  },
+  "gh:index": 101
+}

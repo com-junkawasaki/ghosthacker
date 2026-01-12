@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:582",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The room’s light slowly returns.",
+    "ja": "Hibiki「Tudo bem, Kaede。手術室の帯域、完全に隔離したよ。外部ノイズはゼロ。音も光も、全部Milliaの治癒のために調整済み」"
+  },
+  "gh:index": 582
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:101",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Yes. The way back is already here.”",
+    "ja": "私は彼に語りかける。彼が「自己」だと思っていた境界線は、もともと存在しない。ただ、そう思い込んでいただけ。"
+  },
+  "gh:index": 101
+}

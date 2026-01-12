@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:92",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako raises a scalpel of light and smiles slightly.",
+    "ja": "Hibiki「安定。アルファへ緩やかに降下中。ガンマは抑制」"
+  },
+  "gh:index": 92
+}

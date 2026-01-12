@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:emotion-improvement:75",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "## gh:Episode/EP11\n- target vs actual (last segment):\n  - hope: target=0.00 actual=0.56 delta=0.56\n  - fear: target=0.00 actual=0.44 delta=0.44\n  - relief: target=0.35 actual=0.00 delta=-0.35\n  - joy: target=0.20 actual=0.00 delta=-0.20\n  - sadness: target=0.00 actual=0.00 delta=0.00\n  - anger: target=0.00 actual=0.00 delta=0.00\n- 提案: 不安描写は名づけ→整えで早めに解く。\"待つ契約\"や\"I AM\"の台詞で恐れを関係に変換。"
+  },
+  "gh:index": 75
+}

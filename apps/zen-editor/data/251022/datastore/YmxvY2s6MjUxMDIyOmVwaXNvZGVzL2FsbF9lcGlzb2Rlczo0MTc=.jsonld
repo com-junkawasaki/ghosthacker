@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:417",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I ask her:",
+    "ja": "Leoが笑う。初めて、本当に笑った。"
+  },
+  "gh:index": 417
+}

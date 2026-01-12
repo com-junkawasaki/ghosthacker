@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:940",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede says quietly:",
+    "ja": "そして、承認への渇望。"
+  },
+  "gh:index": 940
+}

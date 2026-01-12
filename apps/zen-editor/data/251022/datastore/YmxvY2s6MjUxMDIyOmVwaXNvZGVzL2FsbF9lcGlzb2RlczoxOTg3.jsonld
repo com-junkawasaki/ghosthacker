@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1987",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP10-3 — Welcome Back\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Restoration / Path Home",
+    "ja": "Kaedeが静かに言う。"
+  },
+  "gh:index": 1987
+}

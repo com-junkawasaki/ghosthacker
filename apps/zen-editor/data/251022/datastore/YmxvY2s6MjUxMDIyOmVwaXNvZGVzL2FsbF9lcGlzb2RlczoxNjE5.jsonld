@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1619",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Yes. Nero wasn’t a person. It was a system.”",
+    "ja": "# EP9-2 — 666の残響（The Echo of 666）\n- POV: 私（Tamaki／環樹）\n- Beat: Aftermath / Residual Pattern"
+  },
+  "gh:index": 1619
+}

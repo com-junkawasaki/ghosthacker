@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:169",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki tunes the band.",
+    "ja": "Hibiki「呼吸、合わせてる。Tamaki、準備はいい」"
+  },
+  "gh:index": 169
+}

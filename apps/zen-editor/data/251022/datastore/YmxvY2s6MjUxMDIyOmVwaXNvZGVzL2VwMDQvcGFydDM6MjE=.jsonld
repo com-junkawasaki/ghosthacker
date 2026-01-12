@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:21",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Someone you only passed once. You will never meet again. —Would you sell them for 100 million?”",
+    "ja": "Tamaki「昔、道ですれ違っただけの人。その人と二度と会えない。ただそれだけ。——1億円で売れますか？」"
+  },
+  "gh:index": 21
+}

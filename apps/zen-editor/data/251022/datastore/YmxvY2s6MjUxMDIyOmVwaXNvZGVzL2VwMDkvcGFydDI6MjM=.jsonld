@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part2:23",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi: “Amplified on a 6-6-6 rhythm.”",
+    "ja": "Aoi「6-6-6のリズムで、怒りが増幅されてる」"
+  },
+  "gh:index": 23
+}

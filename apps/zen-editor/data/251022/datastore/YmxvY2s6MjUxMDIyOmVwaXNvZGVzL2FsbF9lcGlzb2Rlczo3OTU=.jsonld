@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:795",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “We’ll enroll you in the Children \u0026 Families Agency’s protection program. I’ll prepare all documents.” ER-surety.",
+    "ja": "Kaedeの声が通信に入る。彼女の声は、いつもの冷静さに戻っている。"
+  },
+  "gh:index": 795
+}

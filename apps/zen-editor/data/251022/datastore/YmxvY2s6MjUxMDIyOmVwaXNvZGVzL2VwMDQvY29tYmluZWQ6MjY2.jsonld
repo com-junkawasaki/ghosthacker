@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:266",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan, gently: “Tama, their hands—holding. Warm.”",
+    "ja": "Leoが、ゆっくりとMilliaの手を取る。"
+  },
+  "gh:index": 266
+}

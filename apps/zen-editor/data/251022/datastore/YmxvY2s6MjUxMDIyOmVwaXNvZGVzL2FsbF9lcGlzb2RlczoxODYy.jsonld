@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1862",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede joins, calm with a touch of irony:",
+    "ja": "666は、消える。"
+  },
+  "gh:index": 1862
+}

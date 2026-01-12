@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:136",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Her scream melts into sobs—then into a long exhale.",
+    "ja": "「母に、何を言いたい？」"
+  },
+  "gh:index": 136
+}

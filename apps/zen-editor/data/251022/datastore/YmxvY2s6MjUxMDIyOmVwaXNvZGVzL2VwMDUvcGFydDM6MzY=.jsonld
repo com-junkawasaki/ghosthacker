@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:36",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan returns to my shoulder.",
+    "ja": "Dr. イタコが続ける。"
+  },
+  "gh:index": 36
+}

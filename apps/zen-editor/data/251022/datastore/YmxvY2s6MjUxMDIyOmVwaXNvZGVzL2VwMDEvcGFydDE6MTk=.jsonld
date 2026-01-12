@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part1:19",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan adds: “His ghost is terrified of bodily death and the severance of gene—terrified that ‘you’ as a subject will vanish. That seems to be the core of his bug.”",
+    "ja": "Kaedeがセキュリティレールを敷設する。彼女の動きは、救急医のそれ——迅速で、確実。"
+  },
+  "gh:index": 19
+}

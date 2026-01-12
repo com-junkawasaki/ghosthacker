@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:28",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Let’s go, Logos.”",
+    "ja": "遠くでKaedeの声。彼女の声は、緊張しているが、冷静だ。"
+  },
+  "gh:index": 28
+}

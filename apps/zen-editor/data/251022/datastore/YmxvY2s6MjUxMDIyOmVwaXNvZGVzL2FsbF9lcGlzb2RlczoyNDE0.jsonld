@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2414",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. It is good.”",
+    "ja": "Neroの声が、温かくなる。"
+  },
+  "gh:index": 2414
+}

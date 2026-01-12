@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:74",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Warmth returns to the room.",
+    "ja": "瞼が震える。"
+  },
+  "gh:index": 74
+}

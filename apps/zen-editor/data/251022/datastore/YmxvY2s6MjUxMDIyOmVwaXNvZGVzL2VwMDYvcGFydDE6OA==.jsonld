@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part1:8",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Low-frequency unease is lingering in the streets. The sound is heavy, Tamaki.”",
+    "ja": "Hibiki「低周波の不安が……街路に残留してる。音が重いよ、Tamaki」"
+  },
+  "gh:index": 8
+}

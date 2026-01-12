@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:489",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “I’ll sync completely to their breathing. Let sound hold them.”",
+    "ja": "Millia「……売る」"
+  },
+  "gh:index": 489
+}

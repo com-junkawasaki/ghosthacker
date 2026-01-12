@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:731",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Her voice reverberates.",
+    "ja": "Hibikiの音が、より柔らかい調性へ遷移する。"
+  },
+  "gh:index": 731
+}

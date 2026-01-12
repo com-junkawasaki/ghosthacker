@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:27",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "She shows an internal document from Nero Ops:",
+    "ja": "私は息を吐く。"
+  },
+  "gh:index": 27
+}

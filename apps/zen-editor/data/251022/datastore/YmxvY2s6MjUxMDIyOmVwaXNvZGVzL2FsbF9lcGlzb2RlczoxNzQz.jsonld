@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1743",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Let’s reconcile—together.”",
+    "ja": "私は静かに言う。"
+  },
+  "gh:index": 1743
+}

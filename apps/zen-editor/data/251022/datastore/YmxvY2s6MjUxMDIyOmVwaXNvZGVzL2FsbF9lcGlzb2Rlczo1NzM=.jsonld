@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:573",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“It’s okay. You’re not alone. Leo, and all of us, are with you.”",
+    "ja": "# Episode 05"
+  },
+  "gh:index": 573
+}

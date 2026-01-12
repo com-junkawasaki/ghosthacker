@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part4:3",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“AI has no life. Your ‘Ghost’ is just a program.”",
+    "ja": "「AIに生命なんてない。君の“Ghost”はただのプログラムだ」"
+  },
+  "gh:index": 3
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:94",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Confidence, easy.",
+    "ja": "Milliaの輪郭が揺れる。"
+  },
+  "gh:index": 94
+}

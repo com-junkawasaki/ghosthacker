@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:261",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I inhale. “…A couple?”",
+    "ja": "雫が、落ちた。"
+  },
+  "gh:index": 261
+}

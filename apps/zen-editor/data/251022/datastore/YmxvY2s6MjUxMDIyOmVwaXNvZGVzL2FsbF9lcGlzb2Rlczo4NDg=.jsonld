@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:848",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The canal light pulses quietly.",
+    "ja": "翌日。"
+  },
+  "gh:index": 848
+}

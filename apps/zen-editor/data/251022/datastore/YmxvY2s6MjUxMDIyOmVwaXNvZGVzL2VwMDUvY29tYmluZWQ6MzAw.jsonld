@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:300",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "「ああ。お前はまだ若い。でも、お前の中にも、\"癒着\"がある。いずれ、それが顕在化する。その時は、また来な」"
+  },
+  "gh:index": 300
+}

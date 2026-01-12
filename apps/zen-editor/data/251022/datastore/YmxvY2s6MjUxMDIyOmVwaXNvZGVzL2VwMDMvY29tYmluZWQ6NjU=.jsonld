@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:65",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Riverside lights are in low-lumen mode. Only the ER lane is bright. A good night that won’t interfere with sound.”",
+    "ja": "Kaedeの声が通信に入る。彼女の声には、深い理解がある。"
+  },
+  "gh:index": 65
+}

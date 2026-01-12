@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:229",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "‘Rage Engine → Reconciliation Engine — From anger to reconciliation. Letting go of 666 and restoring breath.’",
+    "ja": "Tamaki「次は……もう少し、掃除」"
+  },
+  "gh:index": 229
+}

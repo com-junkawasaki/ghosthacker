@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:214",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“But you know love. You love me. I love you.”",
+    "ja": "Milliaが頭を下げる。"
+  },
+  "gh:index": 214
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:268",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Anger becomes reconciliation.",
+    "ja": "**[Beat: 和解のエンジン——怒りから和解へ、666の消失]**"
+  },
+  "gh:index": 268
+}

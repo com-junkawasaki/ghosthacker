@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:31",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia: “To live my freedom.”",
+    "ja": "Millia「自分の自由を生きるため」"
+  },
+  "gh:index": 31
+}

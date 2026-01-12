@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:400",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---\nKaede: “Continue same session.”",
+    "ja": "「Millia、あなたがリストカットをするのは、\"祖霊の鎖\"を切ろうとしているから。でも、その鎖は、あなた一人では切れない」"
+  },
+  "gh:index": 400
+}

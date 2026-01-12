@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:720",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“You were treated as a ‘part of the house.’”",
+    "ja": "Leoは目を閉じ、手の甲で涙を拭った。"
+  },
+  "gh:index": 720
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:19",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “We’ll enroll you in the Children \u0026 Families Agency’s protection program. I’ll prepare all documents.” ER-surety.",
+    "ja": "Dr. イタコが杯を片付けながら言う。"
+  },
+  "gh:index": 19
+}

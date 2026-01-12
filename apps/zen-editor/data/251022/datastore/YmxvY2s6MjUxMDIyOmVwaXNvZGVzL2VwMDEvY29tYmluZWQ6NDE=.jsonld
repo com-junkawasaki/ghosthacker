@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:41",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan trembles: “Tama… is he right that trust is an error? Logically…?”",
+    "ja": "いい感じが、戻ってくる。\nNei-chan「えへ、戻れた」\nEliasは額に手を置き、ゆっくりと笑う練習をした。Logosの翅が小さく震える。私は二人の間に『非分離の約束』を置き、次の一週間の宿題を渡す。孤独を正当化する理性が、まだ遠くで軋んだ。"
+  },
+  "gh:index": 41
+}

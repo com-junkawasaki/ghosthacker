@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:317",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Pressure is dropping. On days like this, emotions destabilize easily. Deep breaths, Tamaki.”",
+    "ja": "「Millia……なぜ？ 今日は、仕事の選択の相談だろ？ ボードにも家族にも、友達にも、みんなに説明しなきゃで——」"
+  },
+  "gh:index": 317
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part2:50",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi: “Tamaki, this is Nero’s area of effect.”",
+    "ja": "Aoi「Tamaki、これ……Neroの影響範囲」"
+  },
+  "gh:index": 50
+}

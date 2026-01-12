@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:240",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---\nAoi (comms): “Outside, the cicadas started. Coastal flood map update came in—okay to hold?”",
+    "ja": "彼は即答する。「私の“体”だ」"
+  },
+  "gh:index": 240
+}

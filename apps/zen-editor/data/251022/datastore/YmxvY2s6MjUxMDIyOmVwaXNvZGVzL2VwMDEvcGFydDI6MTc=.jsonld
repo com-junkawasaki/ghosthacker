@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part2:17",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Pages become butterflies and dance; the shadow loses its outline and returns to light.",
+    "ja": "私は体を起こし、静けさの中でただ在った。"
+  },
+  "gh:index": 17
+}

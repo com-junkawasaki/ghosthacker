@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:4",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I settle into feeling good—place a single breath and confirm my footing. I drop anchor into the Tree of Life. Start here.",
+    "ja": "Kaedeの声が通信に入る。彼女の声は、いつもの冷静さだが、少し緊張が混じっている。"
+  },
+  "gh:index": 4
+}

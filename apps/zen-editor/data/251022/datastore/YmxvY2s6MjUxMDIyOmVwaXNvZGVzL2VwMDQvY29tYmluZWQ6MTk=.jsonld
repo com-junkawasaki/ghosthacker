@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:19",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede joins, more tense than usual.",
+    "ja": "Kaedeが通信に入る。彼女の声は、いつもより少し緊張している。"
+  },
+  "gh:index": 19
+}

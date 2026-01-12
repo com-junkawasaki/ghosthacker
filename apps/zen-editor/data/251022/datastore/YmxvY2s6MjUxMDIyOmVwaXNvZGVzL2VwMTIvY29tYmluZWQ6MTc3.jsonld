@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/combined:177",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Not Nero’s, not mine.",
+    "ja": "その言葉は、誰のものでもない。"
+  },
+  "gh:index": 177
+}

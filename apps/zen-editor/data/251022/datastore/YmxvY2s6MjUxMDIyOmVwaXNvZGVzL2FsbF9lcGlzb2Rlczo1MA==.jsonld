@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:50",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Pages become butterflies and dance; the shadow loses its outline and returns to light.",
+    "ja": "「うん。正しさは大事。でも、呼吸が先」"
+  },
+  "gh:index": 50
+}

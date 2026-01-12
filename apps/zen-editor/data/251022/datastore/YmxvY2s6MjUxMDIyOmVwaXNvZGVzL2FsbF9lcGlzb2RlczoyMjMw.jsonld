@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2230",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Justice that can breathe.”",
+    "ja": "Compliance Ogre『……わたしは……呼吸する……』"
+  },
+  "gh:index": 2230
+}

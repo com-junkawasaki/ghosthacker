@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part1:10",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I send the checklist for Quiet Justice. The institution is not the enemy. It only needs a cue to remember to breathe when it forgets."
+  },
+  "gh:index": 10
+}

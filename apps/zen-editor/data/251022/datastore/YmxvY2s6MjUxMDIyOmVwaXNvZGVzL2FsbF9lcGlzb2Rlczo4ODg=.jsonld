@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:888",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "6-6-6.",
+    "ja": "**[Afterglow: 静かな余韻——手を繋ぐLeoとMillia、そしてTamaki自身の\"鎖\"への予感]**"
+  },
+  "gh:index": 888
+}

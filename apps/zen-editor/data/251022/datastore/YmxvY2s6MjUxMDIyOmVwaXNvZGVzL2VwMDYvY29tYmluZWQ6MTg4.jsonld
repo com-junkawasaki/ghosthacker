@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:188",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “You are. That is enough.”",
+    "ja": "Compliance Ogreが、静かに消えていく。"
+  },
+  "gh:index": 188
+}

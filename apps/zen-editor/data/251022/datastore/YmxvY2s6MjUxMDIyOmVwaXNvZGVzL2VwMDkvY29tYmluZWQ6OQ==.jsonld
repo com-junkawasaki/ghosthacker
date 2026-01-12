@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:9",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I slow the room’s tempo as if sharing a deep breath.",
+    "ja": "私は深呼吸を分け与えるみたいに、空間のテンポを落とす。"
+  },
+  "gh:index": 9
+}

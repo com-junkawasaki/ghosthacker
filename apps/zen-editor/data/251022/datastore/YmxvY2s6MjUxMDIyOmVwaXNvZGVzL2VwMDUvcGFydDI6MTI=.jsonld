@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:12",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako mutters—quiet, heavy.",
+    "ja": "Dr. イタコが呟く。その声は、静かだが重い。"
+  },
+  "gh:index": 12
+}

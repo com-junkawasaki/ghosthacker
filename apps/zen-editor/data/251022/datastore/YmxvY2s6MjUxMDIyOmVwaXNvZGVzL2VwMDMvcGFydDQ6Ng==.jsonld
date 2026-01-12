@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part4:6",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Got it. Today, we listen to you.”",
+    "ja": "「わかった。今日はあなたの話を聞く」"
+  },
+  "gh:index": 6
+}

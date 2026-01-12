@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:232",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "But I am ready.",
+    "ja": "「カルマに向き合わないロクでもないやつさ。うちの優秀なハッカーが、ささっとReleaseするから安心しな」"
+  },
+  "gh:index": 232
+}

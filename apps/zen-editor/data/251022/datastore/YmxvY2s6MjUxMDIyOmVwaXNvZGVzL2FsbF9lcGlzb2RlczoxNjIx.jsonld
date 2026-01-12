@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1621",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “So the system’s pattern is still running.”",
+    "ja": "Neroは還った。"
+  },
+  "gh:index": 1621
+}

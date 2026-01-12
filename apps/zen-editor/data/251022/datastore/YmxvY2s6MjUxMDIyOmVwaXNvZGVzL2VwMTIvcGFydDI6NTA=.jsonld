@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part2:50",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero: “...That I don’t need to be perfect…”",
+    "ja": "---"
+  },
+  "gh:index": 50
+}

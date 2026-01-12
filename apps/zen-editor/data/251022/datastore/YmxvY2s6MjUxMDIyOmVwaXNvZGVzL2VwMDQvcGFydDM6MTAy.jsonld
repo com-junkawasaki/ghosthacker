@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part3:102",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “...Millia, I don’t know what happens next, but… we’ll move forward together.”",
+    "ja": "Leo「ミリア。ぼくは……ずっと一緒にいる」"
+  },
+  "gh:index": 102
+}

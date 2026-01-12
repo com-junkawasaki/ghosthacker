@@ -1,0 +1,20 @@
+{
+  "@id": "character:kenji-suzuki",
+  "@type": "Person",
+  "age": 46,
+  "gender": "Male",
+  "gh:callsign": "EVANGEL",
+  "gh:role": "Supporter",
+  "gh:x": 3835.966862147267,
+  "gh:y": -8476.983022892136,
+  "memberOf": {
+    "@id": "organization:tol-zen"
+  },
+  "name": "Kenji Suzuki",
+  "nationality": "Japanese",
+  "occupation": [
+    "Zen Evangelist",
+    "Deamon Hunter",
+    "Zombie Killer"
+  ]
+}

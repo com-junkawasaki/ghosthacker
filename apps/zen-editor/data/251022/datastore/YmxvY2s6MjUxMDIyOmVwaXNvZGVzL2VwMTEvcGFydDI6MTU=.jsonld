@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part2:15",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I read between the lines.",
+    "ja": "私は、行間を読む。"
+  },
+  "gh:index": 15
+}

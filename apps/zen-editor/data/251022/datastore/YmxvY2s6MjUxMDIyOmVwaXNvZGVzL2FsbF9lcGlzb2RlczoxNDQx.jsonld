@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1441",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP8-3 — I AM THAT I AM\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Resolution / Being Together",
+    "ja": "Tamaki「うん。それで、十分」"
+  },
+  "gh:index": 1441
+}

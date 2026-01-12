@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:2",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "渋谷の運河下層、Schwaの手術室。黒い壁、低い照度。空間にはHibikiの周波数が薄く流れている。"
+  },
+  "gh:index": 2
+}

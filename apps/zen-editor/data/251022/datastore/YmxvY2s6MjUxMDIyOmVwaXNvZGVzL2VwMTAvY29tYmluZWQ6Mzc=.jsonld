@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:37",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "She leaves a beat.",
+    "ja": "私は深呼吸をする。"
+  },
+  "gh:index": 37
+}

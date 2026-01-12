@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part3:32",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “The place of return was always here.”",
+    "ja": "Hibiki「還る場所は、いつもここにあった」"
+  },
+  "gh:index": 32
+}

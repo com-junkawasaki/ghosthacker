@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:397",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia (pinches)",
+    "ja": "私は静かに言う。"
+  },
+  "gh:index": 397
+}

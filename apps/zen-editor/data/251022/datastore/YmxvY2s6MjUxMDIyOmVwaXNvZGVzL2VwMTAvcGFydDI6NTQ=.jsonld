@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part2:54",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "System: “We pursue efficiency.”",
+    "ja": "私は首を振る。"
+  },
+  "gh:index": 54
+}

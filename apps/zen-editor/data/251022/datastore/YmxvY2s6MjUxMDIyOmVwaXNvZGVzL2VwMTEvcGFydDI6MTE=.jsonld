@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part2:11",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Yes. It turns fear into justice.”",
+    "ja": "Kaede「そう。恐れを、正義に変えてる」"
+  },
+  "gh:index": 11
+}

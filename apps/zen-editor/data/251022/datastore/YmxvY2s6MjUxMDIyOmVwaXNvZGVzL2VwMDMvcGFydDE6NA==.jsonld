@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part1:4",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "She looks out the window and lets out a small sigh.",
+    "ja": "彼女は窓の外を見つめ、少しため息をつく。"
+  },
+  "gh:index": 4
+}

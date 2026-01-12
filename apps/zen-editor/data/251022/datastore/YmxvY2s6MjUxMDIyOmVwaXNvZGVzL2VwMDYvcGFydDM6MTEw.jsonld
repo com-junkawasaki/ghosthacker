@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part3:110",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I head to the next encounter.",
+    "ja": "ASCが一段上がる。"
+  },
+  "gh:index": 110
+}

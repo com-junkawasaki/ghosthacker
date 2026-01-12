@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part2:1",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "When my awareness regains shape, I’m on the landing of a library. Stacks that reach the sky. Shattered data crystals. In the center, a single line of error:",
+    "ja": "意識が形を取り戻すと、私はライブラリの踊り場に立っていた。天まで届く書架。砕けたデータクリスタル。中央には一行のエラー。"
+  },
+  "gh:index": 1
+}

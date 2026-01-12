@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:127",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "「この時代は“AIに生命権を認めるか”で揉めてる。だが私は反対だ」"
+  },
+  "gh:index": 127
+}

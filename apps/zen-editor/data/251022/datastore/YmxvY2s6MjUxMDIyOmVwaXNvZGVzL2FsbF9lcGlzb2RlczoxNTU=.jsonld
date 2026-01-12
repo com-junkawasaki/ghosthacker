@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:155",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Tamaki Mizuno, correct? I am here ‘under compulsion.’”",
+    "ja": "彼はゆっくり息を吐く。「私は、まだ答えを持たない」"
+  },
+  "gh:index": 155
+}

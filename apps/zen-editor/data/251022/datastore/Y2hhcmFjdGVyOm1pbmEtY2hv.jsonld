@@ -1,0 +1,19 @@
+{
+  "@id": "character:mina-cho",
+  "@type": "Person",
+  "age": 31,
+  "description": "31歳、女性、コリアン・ディアスポラ（在日類型の国際問題）。記者。テーマ: 法的不可視・差別・アイデンティティ。",
+  "gh:callsign": "NAMELESS",
+  "gh:ghost": {
+    "@id": "ghost:paper-walls"
+  },
+  "gh:persona": "名なき者の記録者",
+  "gh:x": -8393.015900866261,
+  "gh:y": -1731.2076066021484,
+  "name": "Mina Cho",
+  "occupation": [
+    "Journalist",
+    "Deamon Hunter",
+    "Zombie Killer"
+  ]
+}

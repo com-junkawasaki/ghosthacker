@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:142",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Compliance Ogre: “...The imperfect is eliminated.”",
+    "ja": "Tamaki「違う。不完全は、人間だ」"
+  },
+  "gh:index": 142
+}

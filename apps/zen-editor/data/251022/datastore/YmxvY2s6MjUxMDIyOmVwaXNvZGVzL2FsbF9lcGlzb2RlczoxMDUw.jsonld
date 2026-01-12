@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1050",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. We untie it, one by one.”",
+    "ja": "Tamaki「いい感じ、でしょ？」"
+  },
+  "gh:index": 1050
+}

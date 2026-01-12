@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part3:12",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Rage Engine: “...But… rightness is… lonely…”",
+    "ja": "Rage Engine『……でも……正しさは……孤独……』"
+  },
+  "gh:index": 12
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2180",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Compliance Ogre: “...But… justice is… perfect…”",
+    "ja": "私は、Compliance Ogreに向き直る。"
+  },
+  "gh:index": 2180
+}

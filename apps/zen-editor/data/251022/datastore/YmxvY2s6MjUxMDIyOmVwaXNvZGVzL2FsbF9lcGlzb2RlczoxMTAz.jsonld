@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1103",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "But there is no breath in it.",
+    "ja": "I AM THAT I AM."
+  },
+  "gh:index": 1103
+}

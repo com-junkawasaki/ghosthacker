@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:161",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "A drop falls.",
+    "ja": "小さな回想が、彼の口から零れた。幼少期、鉱山町。硬い父、厳格な母。身体を鍛え、感情を削ることで生き延びた年月。軌道上の“完全な分離”は、彼が最後に手に入れた安息だった。"
+  },
+  "gh:index": 161
+}

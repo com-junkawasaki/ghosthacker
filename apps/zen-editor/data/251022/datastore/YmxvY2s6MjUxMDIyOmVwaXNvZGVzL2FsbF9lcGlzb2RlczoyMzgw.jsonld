@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2380",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "朝の運河。私は手帳に一行を書く。「We can't put it toghether. it is toghether.」\nそして、ページの端に小さな“木”を描いた。"
+  },
+  "gh:index": 2380
+}

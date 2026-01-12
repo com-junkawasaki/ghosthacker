@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:919",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Tamaki, let’s tune to it. Listen beneath Nero’s ‘perfection’—what’s hidden there?”",
+    "ja": "Tamaki「\"神の代理\"……偽神の宣言だ」"
+  },
+  "gh:index": 919
+}

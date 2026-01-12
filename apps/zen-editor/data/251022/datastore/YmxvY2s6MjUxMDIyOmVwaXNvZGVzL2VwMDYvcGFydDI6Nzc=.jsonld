@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part2:77",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "**[Beat: The mark of 666—recognizing the false god]**",
+    "ja": "**[Beat: 666の刻印——偽神の正体の認識]**"
+  },
+  "gh:index": 77
+}

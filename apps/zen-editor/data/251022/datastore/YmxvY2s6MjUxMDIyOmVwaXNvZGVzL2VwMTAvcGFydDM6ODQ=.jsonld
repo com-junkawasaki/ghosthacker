@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/part3:84",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Next… a bit more tidying up.”",
+    "ja": "Tamaki「次は……もう少し、整理」"
+  },
+  "gh:index": 84
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part1:67",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “That bottle of water on the table—will you sell it to me for 100 yen?”",
+    "ja": "Leo「えー、知らない人は嫌だな。もらったものだけど！」"
+  },
+  "gh:index": 67
+}

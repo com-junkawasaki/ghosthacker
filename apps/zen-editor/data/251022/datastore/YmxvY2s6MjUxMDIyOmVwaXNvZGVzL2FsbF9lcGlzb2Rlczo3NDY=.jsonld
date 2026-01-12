@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:746",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki’s tones move toward softer keys.",
+    "ja": "Dr. イタコ「出血止めのために、仮の\"保護用スピリットモデル\"を埋め込むよ」"
+  },
+  "gh:index": 746
+}

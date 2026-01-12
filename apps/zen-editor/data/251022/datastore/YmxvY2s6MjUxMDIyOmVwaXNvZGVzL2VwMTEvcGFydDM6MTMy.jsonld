@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part3:132",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "That is our answer.",
+    "ja": "呼吸できる正義。"
+  },
+  "gh:index": 132
+}

@@ -1,0 +1,6 @@
+{
+  "@id": "setting:office",
+  "@type": "gh:LayoutStub",
+  "gh:x": 100,
+  "gh:y": 100
+}

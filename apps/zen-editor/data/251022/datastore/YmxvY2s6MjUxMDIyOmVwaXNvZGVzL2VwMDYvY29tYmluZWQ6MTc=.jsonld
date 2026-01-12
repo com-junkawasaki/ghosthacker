@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:17",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I ask Kaede:",
+    "ja": "Kaede「GnB Inc.のコンプライアンス・スコアシステム。社員評価、取引先評価、社会信用スコア……全部」"
+  },
+  "gh:index": 17
+}

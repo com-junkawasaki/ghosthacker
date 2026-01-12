@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:850",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo and Millia leave holding hands.",
+    "ja": "Leoが横にいる。彼の家族も、心配そうに見守っている。"
+  },
+  "gh:index": 850
+}

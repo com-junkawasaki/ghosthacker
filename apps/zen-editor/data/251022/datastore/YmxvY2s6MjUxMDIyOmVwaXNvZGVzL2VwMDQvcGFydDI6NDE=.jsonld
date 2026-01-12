@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:41",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...I was making Millia… an object of transaction?”",
+    "ja": "「……私は、Milliaを……取引の対象にしていたんですか？」\n彼の声が掠れる。視線が膝に落ちる。Milliaは無意識にテーブル上の水に手を伸ばし、口を湿らせる。"
+  },
+  "gh:index": 41
+}

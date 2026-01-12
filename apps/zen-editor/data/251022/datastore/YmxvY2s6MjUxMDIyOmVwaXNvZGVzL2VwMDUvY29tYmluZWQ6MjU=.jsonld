@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:25",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Millia, first tell me your intention. Why do you dive today?”",
+    "ja": "彼はMilliaの目を見て、優しく微笑む。"
+  },
+  "gh:index": 25
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:243",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Cut the soul and it bleeds. Cutting hurts.”",
+    "ja": "Millia「でも……売りたくても、切りたくても切れない……」"
+  },
+  "gh:index": 243
+}

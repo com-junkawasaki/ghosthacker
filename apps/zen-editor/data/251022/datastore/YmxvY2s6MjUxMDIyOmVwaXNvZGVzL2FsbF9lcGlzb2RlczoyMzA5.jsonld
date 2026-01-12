@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2309",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki nods.",
+    "ja": "Aoi「Tamaki、Compliance Ogreの影響範囲……変わってる」"
+  },
+  "gh:index": 2309
+}

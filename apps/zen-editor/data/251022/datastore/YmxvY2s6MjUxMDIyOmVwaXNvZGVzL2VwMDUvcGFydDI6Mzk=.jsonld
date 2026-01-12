@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:39",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia continues:",
+    "ja": "Leoは目を閉じ、手の甲で涙を拭った。"
+  },
+  "gh:index": 39
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:96",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki joins, his usual cheer back: “Tudo bem! Looking forward to it.”",
+    "ja": "# S1E2-3 — 次の宇宙のために"
+  },
+  "gh:index": 96
+}

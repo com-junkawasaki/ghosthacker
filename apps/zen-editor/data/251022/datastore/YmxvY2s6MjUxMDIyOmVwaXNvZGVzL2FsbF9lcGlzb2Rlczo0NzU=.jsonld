@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:475",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki (small): “Mm. Not yet.”",
+    "ja": "Leoが驚いて彼女を見る。"
+  },
+  "gh:index": 475
+}

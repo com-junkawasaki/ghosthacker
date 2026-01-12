@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part1:4",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "At my feet, I tap a one-beat kagura. A signal. Nei-chan trims ASC control to match, and the resolution of awareness rises, gently.",
+    "ja": "Kaede「汚染レベル、上がってる……」"
+  },
+  "gh:index": 4
+}

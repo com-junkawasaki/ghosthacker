@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:343",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“You’re Tamaki Mizuno? I’m Leo Kazan. This is Millia.”",
+    "ja": "Tamaki「その水、私にくれますか？」"
+  },
+  "gh:index": 343
+}

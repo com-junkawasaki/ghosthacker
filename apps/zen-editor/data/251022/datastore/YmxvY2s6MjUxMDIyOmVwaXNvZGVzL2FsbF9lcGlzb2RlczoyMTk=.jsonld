@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:219",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan’s wings tremble. I take her hand.",
+    "ja": "——短い独白。幼いころ、父の号令に従う身体。母の沈黙。彼は\"自分の身体は自分のものではない\"世界で育った。いま、呼吸で取り戻す最初の自由は、胸郭のひらき方だ。"
+  },
+  "gh:index": 219
+}

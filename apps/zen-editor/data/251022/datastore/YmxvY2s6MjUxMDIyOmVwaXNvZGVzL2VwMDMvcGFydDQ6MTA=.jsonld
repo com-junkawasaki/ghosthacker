@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part4:10",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He answers instantly: “My ‘body.’”",
+    "ja": "彼は即答する。「私の“体”だ」"
+  },
+  "gh:index": 10
+}

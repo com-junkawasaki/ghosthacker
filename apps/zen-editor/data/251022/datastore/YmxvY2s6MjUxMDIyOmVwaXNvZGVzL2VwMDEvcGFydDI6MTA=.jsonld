@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part2:10",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Not ‘don’t go back’—go back while advancing. I re-sync my breathing to feeling good and say it to Nei-chan and to myself. Don’t choose fear. Fear narrows the field and steals care.",
+    "ja": "「Hibiki、準備を」"
+  },
+  "gh:index": 10
+}

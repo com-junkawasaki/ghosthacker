@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part1:76",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Eh? If it’s Tamaki, you’re cute, so sure!”",
+    "ja": "Tamaki「“可愛いから”“Tamakiだから”。関係が価値を生む。知らない人では立ち上がらない、感情と共感の価値」"
+  },
+  "gh:index": 76
+}

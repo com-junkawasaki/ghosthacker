@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1642",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Then we’ll stop the engine.”",
+    "ja": "Aoi「6-6-6のリズムで、怒りが増幅されてる」"
+  },
+  "gh:index": 1642
+}

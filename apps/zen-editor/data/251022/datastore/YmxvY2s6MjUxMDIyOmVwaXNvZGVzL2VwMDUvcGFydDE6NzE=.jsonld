@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:71",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Millia… do you choose to drink now?”",
+    "ja": "Milliaは頷く。"
+  },
+  "gh:index": 71
+}

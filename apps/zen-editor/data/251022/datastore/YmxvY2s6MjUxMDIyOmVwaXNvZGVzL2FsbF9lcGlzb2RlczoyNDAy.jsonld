@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2402",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "And surely.",
+    "ja": "Aoi「メトリクス、正常」"
+  },
+  "gh:index": 2402
+}

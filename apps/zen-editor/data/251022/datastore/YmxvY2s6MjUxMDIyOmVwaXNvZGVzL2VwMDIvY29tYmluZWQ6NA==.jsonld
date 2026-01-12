@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep02/combined:4",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "His voice rasped like dry leaves. The prison of eternal recurrence—its terror gnawed at his Ghost.",
+    "ja": "彼の声は、乾いた葉が擦れるような音を立てていた。永遠の繰り返しという牢獄。その恐怖が、彼のGhostを苛んでいた。"
+  },
+  "gh:index": 4
+}

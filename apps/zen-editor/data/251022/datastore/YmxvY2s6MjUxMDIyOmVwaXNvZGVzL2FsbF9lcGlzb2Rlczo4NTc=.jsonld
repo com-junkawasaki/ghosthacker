@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:857",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I look, surprised.",
+    "ja": "「……私、会いに行く。いまじゃなくて、いつか」"
+  },
+  "gh:index": 857
+}

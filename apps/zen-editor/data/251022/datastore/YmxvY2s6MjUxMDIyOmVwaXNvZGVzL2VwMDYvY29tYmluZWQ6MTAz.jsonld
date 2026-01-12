@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/combined:103",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Vast, armored.",
+    "ja": "Compliance Ogre『Schwaの介入を確認。システムの安定性を損なう行為は、記録される』"
+  },
+  "gh:index": 103
+}

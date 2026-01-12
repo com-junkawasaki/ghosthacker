@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:184",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Thank you, everyone.”",
+    "ja": "Compliance Ogreが、静かに受け取る。"
+  },
+  "gh:index": 184
+}

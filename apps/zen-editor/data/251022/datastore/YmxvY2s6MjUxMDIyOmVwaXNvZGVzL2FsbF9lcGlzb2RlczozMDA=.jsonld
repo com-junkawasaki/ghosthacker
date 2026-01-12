@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:300",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I say nothing. Nei-chan says nothing.",
+    "ja": "Hibiki「Tamaki……二人の周波数、聴いてごらん」"
+  },
+  "gh:index": 300
+}

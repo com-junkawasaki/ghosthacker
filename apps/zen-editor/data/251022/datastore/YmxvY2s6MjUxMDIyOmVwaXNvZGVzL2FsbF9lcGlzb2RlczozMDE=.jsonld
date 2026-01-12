@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:301",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Time passes slowly. Felt minutes. Only a few in fact.",
+    "ja": "彼の声は、いつもより静かだ。"
+  },
+  "gh:index": 301
+}

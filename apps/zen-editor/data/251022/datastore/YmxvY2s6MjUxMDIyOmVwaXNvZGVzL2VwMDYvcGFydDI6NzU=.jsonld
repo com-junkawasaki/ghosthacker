@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep06/part2:75",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I head toward Nero’s core.",
+    "ja": "私は、Neroの核心へ向かう。"
+  },
+  "gh:index": 75
+}

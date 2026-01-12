@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/part3:48",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero: “...That’s all…?”",
+    "ja": "Tamaki「うん。吸って、吐いて。それだけ」"
+  },
+  "gh:index": 48
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:559",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki (small): “Mm. Not yet.”",
+    "ja": "Leo「……ミリア、これから、どうなるかわからないけど……でも、一緒に進もう」"
+  },
+  "gh:index": 559
+}

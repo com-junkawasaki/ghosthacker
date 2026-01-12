@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:28",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "‘If I’m not perfect, I’ll be rejected.’",
+    "ja": "Hibikiが静かに言う。"
+  },
+  "gh:index": 28
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:21",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Welcome back.”",
+    "ja": "私は、GnB Inc.の「社会衛生プログラム」を見る。"
+  },
+  "gh:index": 21
+}

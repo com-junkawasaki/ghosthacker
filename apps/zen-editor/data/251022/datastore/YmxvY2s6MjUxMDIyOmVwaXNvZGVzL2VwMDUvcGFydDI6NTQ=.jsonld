@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part2:54",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Understanding is born only after anger passes. Forgiveness is not the freezing of emotion.”",
+    "ja": "彼女の声は、穏やかになっている。"
+  },
+  "gh:index": 54
+}

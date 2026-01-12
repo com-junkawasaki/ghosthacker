@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:83",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The air changes.",
+    "ja": "苦い味が、口の中に広がる。"
+  },
+  "gh:index": 83
+}

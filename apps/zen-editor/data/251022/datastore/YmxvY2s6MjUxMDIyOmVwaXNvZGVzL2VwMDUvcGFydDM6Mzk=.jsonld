@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:39",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Family peeks in the doorway—Leo’s family and siblings, worried.",
+    "ja": "「別施設で手術予定さ。お前の母親の父親のゴーストなんて、直接は知らないだろ？」"
+  },
+  "gh:index": 39
+}

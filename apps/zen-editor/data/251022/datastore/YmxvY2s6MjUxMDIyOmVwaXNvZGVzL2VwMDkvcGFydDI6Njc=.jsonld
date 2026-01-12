@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part2:67",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Imperfection isn’t bad.”",
+    "ja": "Tamaki「不完全は、悪いことじゃない」"
+  },
+  "gh:index": 67
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2503",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “Yes. Nero returned—but its learning remains.”",
+    "ja": "水音が遠くで応える。"
+  },
+  "gh:index": 2503
+}

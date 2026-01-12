@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part2:30",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The wall hums faintly.",
+    "ja": "「“怖い”は、望みの裏返し。何も望まなければ、怖くない」"
+  },
+  "gh:index": 30
+}

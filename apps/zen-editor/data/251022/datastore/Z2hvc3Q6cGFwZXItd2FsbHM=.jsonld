@@ -1,0 +1,14 @@
+{
+  "@id": "ghost:paper-walls",
+  "@type": [
+    "Person",
+    "gh:Ghost"
+  ],
+  "gh:ghostType": "Human-derived",
+  "gh:master": {
+    "@id": "character:mina-cho"
+  },
+  "gh:x": -8306.785172210515,
+  "gh:y": -2137.3103896769258,
+  "name": "Paper Walls"
+}

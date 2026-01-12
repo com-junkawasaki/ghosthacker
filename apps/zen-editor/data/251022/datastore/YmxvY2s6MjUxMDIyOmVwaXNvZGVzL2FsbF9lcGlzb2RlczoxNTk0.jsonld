@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1594",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Text from Nero Ops appears on the console: ‘Inefficient diffusion of emotion undermines social stability. We will “normalize” it.’",
+    "ja": "そして、あなたも、在る。"
+  },
+  "gh:index": 1594
+}

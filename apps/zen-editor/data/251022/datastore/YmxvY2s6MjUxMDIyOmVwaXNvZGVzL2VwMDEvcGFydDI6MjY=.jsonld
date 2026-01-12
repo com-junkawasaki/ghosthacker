@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part2:26",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede returns to comms, worry in her tone.",
+    "ja": "「うん。正しさは大事。でも、呼吸が先」"
+  },
+  "gh:index": 26
+}

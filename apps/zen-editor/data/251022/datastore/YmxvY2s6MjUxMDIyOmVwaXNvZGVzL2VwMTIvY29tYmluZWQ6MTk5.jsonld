@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/combined:199",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Anywhere—together.”",
+    "ja": "私は微笑む。"
+  },
+  "gh:index": 199
+}

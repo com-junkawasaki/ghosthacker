@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/combined:0",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# EP1-1 — The Request from the City of Water (Opening)\n- POV: Me (Tamaki / Mizuno Tamaki)\n- Beat: Opening / Call / Team Setup",
+    "ja": "# EP1-1 — 水の都の依頼（開幕）\n- POV: 私（Tamaki／環樹）\n- Beat: Opening / Call / Team Setup"
+  },
+  "gh:index": 0
+}

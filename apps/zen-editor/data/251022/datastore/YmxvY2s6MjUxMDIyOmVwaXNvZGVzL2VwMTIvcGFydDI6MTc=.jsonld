@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part2:17",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi nods: “Metrics normal.”",
+    "ja": "Hibiki「呼吸、合わせてる」"
+  },
+  "gh:index": 17
+}

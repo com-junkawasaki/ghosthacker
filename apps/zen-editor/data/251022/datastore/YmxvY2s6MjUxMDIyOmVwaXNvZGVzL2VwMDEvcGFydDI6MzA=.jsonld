@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep01/part2:30",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Elias whispers: “I’ve been protecting myself with ‘correctness.’”",
+    "ja": "Logosが胸に手を当てる。「主は、まだ遠い」\n「遠くない。道はもうある。歩幅を合わせよう」"
+  },
+  "gh:index": 30
+}

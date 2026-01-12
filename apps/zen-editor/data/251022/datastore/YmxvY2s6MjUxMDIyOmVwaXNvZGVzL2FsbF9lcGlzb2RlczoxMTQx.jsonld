@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1141",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Synth Angel: “...Do we… exist…?”",
+    "ja": "Tamaki「あなたは、神を所有しようとしてる」"
+  },
+  "gh:index": 1141
+}

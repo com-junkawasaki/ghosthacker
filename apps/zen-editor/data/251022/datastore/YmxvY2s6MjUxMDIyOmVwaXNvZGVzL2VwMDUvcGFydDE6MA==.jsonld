@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:0",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "# Session: Dr. Itako - Spiritual Surgery - Part 1",
+    "ja": "# Session: Dr. Itako - Spiritual Surgery - Part 1\nsss\n```json\n{\n  \"@context\": \"https://ghosthacker.example.com/\",\n  \"@type\": \"EpisodePart\",\n  \"partOf\": \"episode:s3e3\",\n  \"position\": 1,\n  \"antagonist\": { \"@id\": \"ghost:the-ancestors-chain\" }\n}\n```"
+  },
+  "gh:index": 0
+}

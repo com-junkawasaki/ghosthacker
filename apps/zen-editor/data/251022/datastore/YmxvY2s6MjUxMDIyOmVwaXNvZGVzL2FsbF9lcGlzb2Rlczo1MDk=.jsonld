@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:509",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo nods. Millia looks down.",
+    "ja": "彼女の声は、震えている。"
+  },
+  "gh:index": 509
+}

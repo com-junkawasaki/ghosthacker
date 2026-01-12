@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:512",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “...An eye!? 100 million….” He thinks. “...I’d struggle… but I wouldn’t.”",
+    "ja": "Tamaki「日本の文化では家族は無条件に自分であることを前提にされている。西洋の価値観ではパートナーが自分であることを神に誓う」"
+  },
+  "gh:index": 512
+}

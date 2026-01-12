@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:212",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "‘I AM THAT I AM — I am. And that is enough. Not perfection, but breath. Not domination, but relation.’",
+    "ja": "私は手帳に書く。"
+  },
+  "gh:index": 212
+}

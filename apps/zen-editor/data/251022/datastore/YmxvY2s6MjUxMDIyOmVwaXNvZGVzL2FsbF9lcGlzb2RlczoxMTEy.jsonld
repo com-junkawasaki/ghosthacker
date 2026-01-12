@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1112",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Tamaki, behind the Voice Prophet… I can see Nero’s theological system.”",
+    "ja": "Voice Prophet「名は所有できる。名は支配できる」"
+  },
+  "gh:index": 1112
+}

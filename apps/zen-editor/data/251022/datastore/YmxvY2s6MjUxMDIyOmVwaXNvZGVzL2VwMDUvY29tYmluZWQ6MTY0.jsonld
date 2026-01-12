@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:164",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako: “It’ll dissolve in about ten years. Once the tissue stabilizes, it will fall away.”",
+    "ja": "「怒りを通って初めて理解が生まれる。許しは感情の凍結ではない」"
+  },
+  "gh:index": 164
+}

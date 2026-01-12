@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:179",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "A short silence.",
+    "ja": "「はい。安全のためです。誰も中に入れない。誰も、私を裏切れない」"
+  },
+  "gh:index": 179
+}

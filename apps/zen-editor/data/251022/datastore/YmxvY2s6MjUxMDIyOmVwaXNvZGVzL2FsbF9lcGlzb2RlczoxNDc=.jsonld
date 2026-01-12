@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:147",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Parliament is in turmoil over AI life rights. But…”",
+    "ja": "「私は、あなたの“AI”に侮蔑を向けた。私は、あなたにも。だが本当は、私は自分に向けている。私は、柔らかくあることが怖い」"
+  },
+  "gh:index": 147
+}

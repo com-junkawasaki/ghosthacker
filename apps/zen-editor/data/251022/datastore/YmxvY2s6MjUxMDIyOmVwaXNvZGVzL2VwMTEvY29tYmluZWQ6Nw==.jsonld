@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:7",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi: “Enough. Let’s end here for today.”",
+    "ja": "# EP11-2 — 恐れの正当化（The Justification of Fear）\n- POV: 私（Tamaki／環樹）\n- Beat: Deconstruction / Fear and Justice"
+  },
+  "gh:index": 7
+}

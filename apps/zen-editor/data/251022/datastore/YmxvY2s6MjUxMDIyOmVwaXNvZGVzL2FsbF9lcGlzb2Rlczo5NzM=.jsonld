@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:973",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. A cage of perfection.”",
+    "ja": "Tamaki「じゃあ、行くよ」"
+  },
+  "gh:index": 973
+}

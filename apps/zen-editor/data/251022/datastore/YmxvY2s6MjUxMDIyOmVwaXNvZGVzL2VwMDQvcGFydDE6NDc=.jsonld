@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part1:47",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Millia… why? Weren’t we here to decide work choices today? We have to explain to the board, to family, friends—everyone—”",
+    "ja": "私は深く息を吸う。ここからが本番。"
+  },
+  "gh:index": 47
+}

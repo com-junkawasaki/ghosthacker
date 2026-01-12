@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part2:7",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Perfectly optimized procedures.",
+    "ja": "完璧に最適化された手順。"
+  },
+  "gh:index": 7
+}

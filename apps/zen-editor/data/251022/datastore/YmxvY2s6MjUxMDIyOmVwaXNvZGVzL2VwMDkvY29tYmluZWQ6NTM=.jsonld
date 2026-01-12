@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/combined:53",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "私は、タイムラインに手を伸ばす。"
+  },
+  "gh:index": 53
+}

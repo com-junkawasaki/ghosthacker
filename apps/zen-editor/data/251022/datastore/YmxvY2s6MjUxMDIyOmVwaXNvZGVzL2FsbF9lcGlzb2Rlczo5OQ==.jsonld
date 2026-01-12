@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:99",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I tap a final one-beat kagura. The sign for ending.",
+    "ja": "私の声は、彼の精神世界に波紋のように広がる。無限回廊の壁が、ゆっくりと砂のように崩れていく。現れたのは、星々の生まれる宇宙の景色。"
+  },
+  "gh:index": 99
+}

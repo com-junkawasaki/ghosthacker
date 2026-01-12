@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/part2:71",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I gently take the cup that Millia sipped and drink a mouthful.",
+    "ja": "Tamaki「では次は“愛と家族”の経済」"
+  },
+  "gh:index": 71
+}

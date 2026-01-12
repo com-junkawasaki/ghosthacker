@@ -1,0 +1,14 @@
+{
+  "@id": "ghost:barrier-architect",
+  "@type": [
+    "Person",
+    "gh:Ghost"
+  ],
+  "gh:ghostType": "Human-derived",
+  "gh:master": {
+    "@id": "character:yael-ben-ami"
+  },
+  "gh:x": -8546.093224308144,
+  "gh:y": -548.4129114916491,
+  "name": "Barrier Architect"
+}

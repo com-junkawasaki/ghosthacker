@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1403",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "In, out.",
+    "ja": "Tamaki「うん。私たちは、ここにいる」"
+  },
+  "gh:index": 1403
+}

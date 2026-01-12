@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2314",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Morning light enters through the window.",
+    "ja": "Hibikiが頷く。"
+  },
+  "gh:index": 2314
+}

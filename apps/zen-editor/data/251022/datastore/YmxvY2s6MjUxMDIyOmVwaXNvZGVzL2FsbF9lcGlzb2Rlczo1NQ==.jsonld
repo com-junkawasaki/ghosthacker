@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:55",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I rest my fingers on the landing’s rail. Warmth returns.",
+    "ja": "私は手帳に一行を足す。『半歩の前進を、三度繰り返す』。"
+  },
+  "gh:index": 55
+}

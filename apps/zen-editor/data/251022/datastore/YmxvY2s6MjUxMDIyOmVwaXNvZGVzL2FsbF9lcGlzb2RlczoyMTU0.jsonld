@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:2154",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Justice… for whom?”",
+    "ja": "Compliance Ogre『恐れは、非効率である』"
+  },
+  "gh:index": 2154
+}

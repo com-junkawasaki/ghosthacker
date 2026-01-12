@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/part3:4",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Not Nero’s, not mine.",
+    "ja": "Neroのものでも、私のものでもない。"
+  },
+  "gh:index": 4
+}

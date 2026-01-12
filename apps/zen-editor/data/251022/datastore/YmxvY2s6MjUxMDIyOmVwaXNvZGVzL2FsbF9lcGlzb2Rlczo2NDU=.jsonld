@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:645",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “I’ll install Ayahuasca code into the information field. You will ingest. But this is not coercion. You choose.”",
+    "ja": "Hibiki「怖くないよ。ぼくがずっと、あなたの呼吸を聴いてる」"
+  },
+  "gh:index": 645
+}

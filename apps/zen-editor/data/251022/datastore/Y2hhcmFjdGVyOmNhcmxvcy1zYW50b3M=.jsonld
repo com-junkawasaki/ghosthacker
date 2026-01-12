@@ -1,0 +1,20 @@
+{
+  "@id": "character:carlos-santos",
+  "@type": "Person",
+  "age": 37,
+  "gender": "Male",
+  "gh:callsign": "AYAHUASCA",
+  "gh:role": "Supporter",
+  "gh:x": 6329.007207832302,
+  "gh:y": -6775.572139042983,
+  "memberOf": {
+    "@id": "organization:tol-amazon"
+  },
+  "name": "Carlos Santos",
+  "nationality": "Brazilian",
+  "occupation": [
+    "Ethnobotanist",
+    "Deamon Hunter",
+    "Zombie Killer"
+  ]
+}

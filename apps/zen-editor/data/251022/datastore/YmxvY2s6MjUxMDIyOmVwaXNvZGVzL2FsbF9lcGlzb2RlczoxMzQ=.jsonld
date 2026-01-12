@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:134",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Yes. So the next universe can be a little more ‘feeling good.’ We’re only helping a bit.”",
+    "ja": "「標準任期。十八ヶ月」"
+  },
+  "gh:index": 134
+}

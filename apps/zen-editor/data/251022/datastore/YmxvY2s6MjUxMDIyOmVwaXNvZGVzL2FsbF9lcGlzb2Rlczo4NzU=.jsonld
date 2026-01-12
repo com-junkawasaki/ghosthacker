@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:875",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Waterways, power, communications—anomalous waveforms with the same correlation. A nameless force grips the city’s throat. I ask for a “name.” Calling is the first procedure to bring a target back into the world. I steady my breath to avoid choosing fear.",
+    "ja": "彼女が部屋を出ていく。"
+  },
+  "gh:index": 875
+}

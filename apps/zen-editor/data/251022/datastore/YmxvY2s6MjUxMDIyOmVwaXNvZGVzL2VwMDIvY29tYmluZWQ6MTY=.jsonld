@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep02/combined:16",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“We’ll have to melt this wall.”",
+    "ja": "「この壁を、融かさないとね」"
+  },
+  "gh:index": 16
+}

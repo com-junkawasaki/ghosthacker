@@ -1,0 +1,20 @@
+{
+  "@id": "character:li-wei",
+  "@type": "Person",
+  "age": 48,
+  "gender": "Female",
+  "gh:callsign": "WUWEI",
+  "gh:role": "Supporter",
+  "gh:x": -151.54537466488026,
+  "gh:y": -9287.950526172524,
+  "memberOf": {
+    "@id": "organization:tol-hermeneutics"
+  },
+  "name": "Li Wei",
+  "nationality": "Chinese",
+  "occupation": [
+    "Daoist Sage",
+    "Deamon Hunter",
+    "Zombie Killer"
+  ]
+}

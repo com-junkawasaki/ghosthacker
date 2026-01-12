@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:924",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "And thirst for approval.",
+    "ja": "Kaede「救急で言えば、これは\"全身性の感染\"。一箇所じゃない」"
+  },
+  "gh:index": 924
+}

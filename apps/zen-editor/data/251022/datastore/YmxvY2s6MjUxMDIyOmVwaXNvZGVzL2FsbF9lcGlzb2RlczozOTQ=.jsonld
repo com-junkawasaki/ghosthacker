@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:394",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “‘Because she’s cute.’ ‘Because it’s Tamaki.’ Relationship creates value. A value of emotion and sympathy that doesn’t arise with strangers.”",
+    "ja": "Hibiki「それは実は、\"信用\"の一種なんだ。『私があなたを理解したら、あなたも私を理解してくれる』——それは、取引の音だよ」"
+  },
+  "gh:index": 394
+}

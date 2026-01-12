@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep10/combined:164",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. A marker for someone to return.”",
+    "ja": "Tamaki「うん。完璧を手放したから」"
+  },
+  "gh:index": 164
+}

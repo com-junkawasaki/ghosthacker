@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:771",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia smiles small: “...I’m free.”",
+    "ja": "Kaede「同意書の事後説明は、私がやる」"
+  },
+  "gh:index": 771
+}

@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:emotion-scores:1",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "Score = finalSimilarity(40%) + posGrowth(30%) + smoothness(20%) + negDecline(10%) - finalPenalties(10%)"
+  },
+  "gh:index": 1
+}

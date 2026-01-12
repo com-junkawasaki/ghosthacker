@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:8",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "No chain binds her back.",
+    "ja": "Kaede「今は休んで。手術、お疲れ様」"
+  },
+  "gh:index": 8
+}

@@ -1,0 +1,14 @@
+{
+  "@id": "ghost:mirror-soldier",
+  "@type": [
+    "Person",
+    "gh:Ghost"
+  ],
+  "gh:ghostType": "Human-derived",
+  "gh:master": {
+    "@id": "character:diego-ortega"
+  },
+  "gh:x": -8139.387868142552,
+  "gh:y": -3019.6568892623695,
+  "name": "Mirror Soldier"
+}

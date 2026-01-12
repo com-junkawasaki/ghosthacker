@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:81",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I look, surprised.",
+    "ja": "**[Beat: 手術完了——Milliaの自由と、Tamakiの未来への予感]**"
+  },
+  "gh:index": 81
+}

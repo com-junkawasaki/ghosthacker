@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:543",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I continue softly.",
+    "ja": "Milliaが、涙のまま、小さく笑う。"
+  },
+  "gh:index": 543
+}

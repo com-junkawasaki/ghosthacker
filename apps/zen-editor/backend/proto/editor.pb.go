@@ -1832,6 +1832,7 @@ type Node struct {
 	Group            string                 `protobuf:"bytes,7,opt,name=group,proto3" json:"group,omitempty"`                                                                                                                         // "entity", "content", "concept", "link-node"
 	Embedding        []float32              `protobuf:"fixed32,8,rep,packed,name=embedding,proto3" json:"embedding,omitempty"`                                                                                                        // LLM-like vector for distance-based layout
 	LocalizedContent map[string]string      `protobuf:"bytes,9,rep,name=localized_content,json=localizedContent,proto3" json:"localized_content,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // "ja" -> "...", "en" -> "..."
+	ViewType         string                 `protobuf:"bytes,10,opt,name=view_type,json=viewType,proto3" json:"view_type,omitempty"`                                                                                                  // Explicit view hint: "storyboard", "editor", "translation", "entity", "asset"
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -1927,6 +1928,13 @@ func (x *Node) GetLocalizedContent() map[string]string {
 		return x.LocalizedContent
 	}
 	return nil
+}
+
+func (x *Node) GetViewType() string {
+	if x != nil {
+		return x.ViewType
+	}
+	return ""
 }
 
 type Edge struct {
@@ -2172,7 +2180,7 @@ const file_proto_editor_proto_rawDesc = "" +
 	"\x06Entity\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04type\x18\x02 \x01(\tR\x04type\x12\x12\n" +
-	"\x04name\x18\x03 \x01(\tR\x04name\"\xd7\x02\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\"\xf4\x02\n" +
 	"\x04Node\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05label\x18\x02 \x01(\tR\x05label\x12\x12\n" +
@@ -2182,7 +2190,9 @@ const file_proto_editor_proto_rawDesc = "" +
 	"\acontent\x18\x06 \x01(\tR\acontent\x12\x14\n" +
 	"\x05group\x18\a \x01(\tR\x05group\x12\x1c\n" +
 	"\tembedding\x18\b \x03(\x02R\tembedding\x12f\n" +
-	"\x11localized_content\x18\t \x03(\v29.gftd.ghosthacker.zeneditor.v1.Node.LocalizedContentEntryR\x10localizedContent\x1aC\n" +
+	"\x11localized_content\x18\t \x03(\v29.gftd.ghosthacker.zeneditor.v1.Node.LocalizedContentEntryR\x10localizedContent\x12\x1b\n" +
+	"\tview_type\x18\n" +
+	" \x01(\tR\bviewType\x1aC\n" +
 	"\x15LocalizedContentEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xca\x01\n" +

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:889",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Imperfect, posing as perfect. A number that tries to exceed human limits while abandoning the human.",
+    "ja": ""
+  },
+  "gh:index": 889
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:83",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Outside the window, the canal sinks into orange. I place a question on my chest.",
+    "ja": "Nei-chanが私の隣で静かに告げる。『彼は、自分が個別の存在（individual）だと強く信じすぎている。だから、終わりのない輪廻が罰のように感じられるんだ』"
+  },
+  "gh:index": 83
+}

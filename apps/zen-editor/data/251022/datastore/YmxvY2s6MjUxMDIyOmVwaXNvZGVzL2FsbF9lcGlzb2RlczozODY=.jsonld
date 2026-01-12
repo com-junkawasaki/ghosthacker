@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:386",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia (silent)",
+    "ja": "Kaedeの声が通信に入る。彼女の声には、深い洞察がある。"
+  },
+  "gh:index": 386
+}

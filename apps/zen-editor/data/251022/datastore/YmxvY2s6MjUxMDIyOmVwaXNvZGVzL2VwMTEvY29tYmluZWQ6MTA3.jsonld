@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/combined:107",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Compliance Ogre: “...Together…”",
+    "ja": "吸って、吐いて。"
+  },
+  "gh:index": 107
+}

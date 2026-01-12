@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:508",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Financial capital is a 2,000 trillion-dollar market. Social capital is worth thousands of times more. The world’s economy runs on sympathy and relation.”",
+    "ja": "Millia「……売ってもいいんですか？」"
+  },
+  "gh:index": 508
+}

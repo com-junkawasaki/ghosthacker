@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part1:45",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He meets her gaze.",
+    "ja": "Kaede「……ありがとう。私たちは、全力であなたを守る」"
+  },
+  "gh:index": 45
+}

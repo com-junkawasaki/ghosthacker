@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:758",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako nods quietly—stern eyes, a soft mouth.",
+    "ja": "彼の声は、涙で震えている。"
+  },
+  "gh:index": 758
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1873",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Cleaning means leaving a path home. Morning announcements play; the city’s noise drops half a step.",
+    "ja": "通知の暴風。誰かの意思ではなく、誰かの\"後始末\"が無限ループしている。"
+  },
+  "gh:index": 1873
+}

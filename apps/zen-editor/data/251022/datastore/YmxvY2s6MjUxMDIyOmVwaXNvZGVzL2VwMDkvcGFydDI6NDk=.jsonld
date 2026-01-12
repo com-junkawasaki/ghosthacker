@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part2:49",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Beneath anger, sadness.”",
+    "ja": "Tamaki「うん。怒りの奥に、悲しみがある」"
+  },
+  "gh:index": 49
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1106",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “...Perfect order—for whom?”",
+    "ja": "Nero『我々は、秩序である』"
+  },
+  "gh:index": 1106
+}

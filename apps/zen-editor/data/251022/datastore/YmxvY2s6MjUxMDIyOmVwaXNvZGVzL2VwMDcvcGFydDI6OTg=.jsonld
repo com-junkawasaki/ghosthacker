@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep07/part2:98",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I write in my notebook:",
+    "ja": "---"
+  },
+  "gh:index": 98
+}

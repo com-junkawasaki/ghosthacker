@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep12/part3:50",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki restores the band.",
+    "ja": "Kaede「結界、全て解除。都市は、安定してる」"
+  },
+  "gh:index": 50
+}

@@ -1,0 +1,8 @@
+{
+  "@id": "occupation:zombie-killer",
+  "@type": "Intangible",
+  "description": "リソースを解放せず、消費しかしないghostであるZombieを狩る職業。",
+  "gh:x": 7386.633679378738,
+  "gh:y": 6355.276492255535,
+  "name": "Zombie Killer"
+}

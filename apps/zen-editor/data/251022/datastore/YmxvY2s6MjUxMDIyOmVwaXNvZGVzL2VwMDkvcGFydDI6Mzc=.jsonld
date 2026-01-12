@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part2:37",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Ward set. But this goes deep.”",
+    "ja": "Kaede「結界、張った。でも、これは深い」"
+  },
+  "gh:index": 37
+}

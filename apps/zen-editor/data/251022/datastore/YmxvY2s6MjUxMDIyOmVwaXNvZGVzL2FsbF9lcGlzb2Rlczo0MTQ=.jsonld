@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:414",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia speaks small: “...But we are… separate.”",
+    "ja": "「自由は、\"わかれていない\"ことと矛盾しないよ。タマは私の一部だけど、私もタマの一部。でも、私たちはそれぞれ、違う」"
+  },
+  "gh:index": 414
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part1:52",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“You don’t need it yet. Today let’s return to ‘a body that can ask.’”",
+    "ja": "Nei-chan『ここから』"
+  },
+  "gh:index": 52
+}

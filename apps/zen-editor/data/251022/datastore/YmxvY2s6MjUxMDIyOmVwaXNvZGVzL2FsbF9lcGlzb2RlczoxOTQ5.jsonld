@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1949",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “It is… fear. Fear of imperfection.”",
+    "ja": "Tamaki「社会は、人間の集まりだ。人間を\"清掃\"したら、社会は残らない」"
+  },
+  "gh:index": 1949
+}

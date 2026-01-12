@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/combined:147",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“One more.”",
+    "ja": "Nei-chanが私の肩で囁く。『タマ、今……彼の“境界”がほどけた』"
+  },
+  "gh:index": 147
+}

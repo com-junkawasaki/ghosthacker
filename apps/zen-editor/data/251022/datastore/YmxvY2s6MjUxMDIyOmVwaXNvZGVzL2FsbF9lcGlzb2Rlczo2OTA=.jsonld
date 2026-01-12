@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:690",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, that’s…”",
+    "ja": "壁面の光は呼吸に同期し、情報空間の地床が安定する。"
+  },
+  "gh:index": 690
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:304",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He bows his head quietly. “Thank you. And… I’m sorry.”",
+    "ja": "画面がぼやけ、二人が現れる。Leoは情熱的で、Milliaは繊細で、でも……どこか、空洞がある。"
+  },
+  "gh:index": 304
+}

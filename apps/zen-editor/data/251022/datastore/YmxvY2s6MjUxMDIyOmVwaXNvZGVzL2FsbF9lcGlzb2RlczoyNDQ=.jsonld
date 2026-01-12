@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:244",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, breathe with him.”",
+    "ja": "「一口、飲んでください」"
+  },
+  "gh:index": 244
+}

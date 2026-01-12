@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep08/combined:22",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nero Ops: “We maintain order. Not fear.”",
+    "ja": "Nero Ops『我々は、秩序を維持する。恐れではない』"
+  },
+  "gh:index": 22
+}

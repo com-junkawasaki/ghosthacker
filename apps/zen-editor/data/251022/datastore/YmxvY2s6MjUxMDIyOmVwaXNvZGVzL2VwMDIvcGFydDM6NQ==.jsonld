@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep02/part3:5",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I speak to him. The line he thought was “self” never existed—he only believed it so.",
+    "ja": "私は彼に語りかける。彼が「自己」だと思っていた境界線は、もともと存在しない。ただ、そう思い込んでいただけ。"
+  },
+  "gh:index": 5
+}

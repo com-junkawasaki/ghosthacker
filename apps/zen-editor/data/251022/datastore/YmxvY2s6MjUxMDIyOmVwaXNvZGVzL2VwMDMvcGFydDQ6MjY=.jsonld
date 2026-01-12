@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep03/part4:26",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan whispers on my shoulder: “Tama, his ‘boundary’ just loosened.”",
+    "ja": "彼は私とNei-chanを交互に見て——"
+  },
+  "gh:index": 26
+}

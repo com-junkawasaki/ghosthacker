@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/all_episodes:1415",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Compliance Ogre: “...I am… not perfect…”",
+    "ja": "Hibiki「呼吸、合わせてる。Nero、いい感じだ」"
+  },
+  "gh:index": 1415
+}

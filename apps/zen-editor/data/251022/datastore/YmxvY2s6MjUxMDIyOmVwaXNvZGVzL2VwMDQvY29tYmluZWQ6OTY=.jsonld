@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:96",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“This is ‘love,’ this is ‘credit,’ and this is ‘trust.’”",
+    "ja": "Milliaが小さく声を出す。"
+  },
+  "gh:index": 96
+}

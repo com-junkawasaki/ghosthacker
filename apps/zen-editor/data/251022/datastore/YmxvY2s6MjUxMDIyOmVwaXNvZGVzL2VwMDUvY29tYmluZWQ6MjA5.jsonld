@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/combined:209",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki returns the bands; the room brightens to normal.",
+    "ja": "彼の声は、安堵で震えている。"
+  },
+  "gh:index": 209
+}
