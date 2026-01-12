@@ -17,22 +17,44 @@
   "gh:projectId": "251022",
   "gh:scenes": [
     {
-      "id": 1,
+      "$typeName": "gftd.ghosthacker.zeneditor.v1.StoryboardScene",
+      "audio": "",
       "description": "aaa",
+      "emotions": [],
+      "fps": 24,
+      "id": 1,
+      "isGenerating": false,
+      "items": [],
+      "persons": [],
+      "places": [],
       "timing": "0s",
-      "fps": 24
+      "visual": ""
     },
     {
-      "id": 2,
+      "$typeName": "gftd.ghosthacker.zeneditor.v1.StoryboardScene",
+      "audio": "",
       "description": "Bbb",
+      "emotions": [],
+      "fps": 24,
+      "id": 2,
+      "isGenerating": false,
+      "items": [],
+      "persons": [],
+      "places": [],
       "timing": "0s",
-      "fps": 24
+      "visual": ""
     },
     {
-      "id": 3,
+      "audio": "",
       "description": "Confrontation in the server room",
+      "emotions": [],
+      "fps": 24,
+      "id": 3,
+      "items": [],
+      "persons": [],
+      "places": [],
       "timing": "0s",
-      "fps": 24
+      "visual": ""
     }
   ],
   "updatedAt": "2026-01-12T09:59:32+09:00"
