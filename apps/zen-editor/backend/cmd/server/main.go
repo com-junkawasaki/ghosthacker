@@ -609,7 +609,6 @@ Use the GRAPH CONTEXT provided to mention specific events, evidence, and relatio
 }
 
 func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[editorpb.GetTopologyRequest]) (*connect.Response[editorpb.GetTopologyResponse], error) {
-	fmt.Printf(">>> RPC: GetTopology ENTERED for project: %s\n", req.Msg.ProjectId)
 	log.Printf("RPC: GetTopology called for project: %s", req.Msg.ProjectId)
 	jsonLdPath := filepath.Join(s.WorkspaceRoot, "251022/ghost-hacker.jsonld")
 	

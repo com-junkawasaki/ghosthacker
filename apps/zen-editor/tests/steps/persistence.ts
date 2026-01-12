@@ -37,9 +37,19 @@ When('I reload the page', async ({ page }) => {
 });
 
 Then('I should see the scene with description {string}', async ({ page }, description: string) => {
-  const scene = page.locator(`.scene-row:has(textarea:text-is("${description}"))`);
-  // Note: text-is might be tricky with textarea, using locator with filter
-  const textarea = page.locator('.scene-row textarea').filter({ hasText: description });
-  await expect(textarea).toBeVisible();
+  // Use a more robust check for textarea value
+  const textareas = page.locator('.scene-row textarea');
+  await expect(async () => {
+    const counts = await textareas.count();
+    let found = false;
+    for (let i = 0; i < counts; i++) {
+      const val = await textareas.nth(i).inputValue();
+      if (val === description) {
+        found = true;
+        break;
+      }
+    }
+    expect(found).toBe(true);
+  }).toPass({ timeout: 10000 });
 });
 
