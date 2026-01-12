@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:38",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia’s smile freezes a little.",
+    "ja": "私はMilliaに尋ねる。"
+  },
+  "gh:index": 38
+}

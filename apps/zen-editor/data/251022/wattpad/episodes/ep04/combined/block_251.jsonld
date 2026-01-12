@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:251",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Mm. Procedure… anesthesia and surgery. Let me ask.”",
+    "ja": "その時、Milliaがコップを戻す手首に、白く薄い線が幾つか見えた。"
+  },
+  "gh:index": 251
+}

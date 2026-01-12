@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:99",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan adds: “Banks lend with ‘credit.’ They hand over money on the premise it comes back.”",
+    "ja": "「本当に？」"
+  },
+  "gh:index": 99
+}

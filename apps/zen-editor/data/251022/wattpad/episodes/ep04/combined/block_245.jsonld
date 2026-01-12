@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:245",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I lower my eyes and say nothing.",
+    "ja": "Tamaki「うん。それはね。自分の体の一部になっているからだよ」"
+  },
+  "gh:index": 245
+}

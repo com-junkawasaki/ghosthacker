@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:148",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo smiles—first real one: “...I want to be with Millia ‘not separate.’ No transactions. Just… together.”",
+    "ja": "「それでいい。それが、\"愛\"です」"
+  },
+  "gh:index": 148
+}

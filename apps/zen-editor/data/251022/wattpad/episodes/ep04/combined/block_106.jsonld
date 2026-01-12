@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:106",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Millia, when you look at Leo, what do you feel?”",
+    "ja": "私は首を横に振る。"
+  },
+  "gh:index": 106
+}

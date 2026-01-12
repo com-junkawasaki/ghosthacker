@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:244",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "At that moment I see faint white lines on her wrist. Scars of self-harm.",
+    "ja": "彼女の声は、絶望に満ちている。"
+  },
+  "gh:index": 244
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:236",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Someone who seizes your sympathy and soul, who binds you—sympathy extraction. That must not be allowed.”",
+    "ja": "Tamaki「うん。家族も自分か否か。それはあなたが決めていい」"
+  },
+  "gh:index": 236
+}

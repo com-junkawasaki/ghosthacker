@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:247",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki (small): “Mm. Not yet.”",
+    "ja": "Tamaki「それが\"complex\"。心身複合体、spiritになっている。魂が癒着しているの」"
+  },
+  "gh:index": 247
+}

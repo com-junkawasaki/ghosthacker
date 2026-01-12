@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:157",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I say nothing. Ten-plus seconds of silence.",
+    "ja": "Tamakiはコップをもとの位置へ戻す。"
+  },
+  "gh:index": 157
+}

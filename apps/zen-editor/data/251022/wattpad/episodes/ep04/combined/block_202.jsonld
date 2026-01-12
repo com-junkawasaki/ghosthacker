@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:202",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo turns to her, shocked: “What? You’d sell?”",
+    "ja": "Leo「え！ 売るの？！」"
+  },
+  "gh:index": 202
+}

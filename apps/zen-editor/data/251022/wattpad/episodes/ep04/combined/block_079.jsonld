@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:79",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki takes the bottle and drinks a sip.",
+    "ja": "Millia（つねる）"
+  },
+  "gh:index": 79
+}

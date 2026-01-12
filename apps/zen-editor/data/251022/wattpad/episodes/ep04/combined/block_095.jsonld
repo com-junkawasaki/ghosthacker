@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:95",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I draw three circles between them.",
+    "ja": "「\"信頼\"は、計算じゃない。それは、\"わかれていない\"ということです。私がNei-chanを信頼するのは、彼女が私の一部だから」"
+  },
+  "gh:index": 95
+}

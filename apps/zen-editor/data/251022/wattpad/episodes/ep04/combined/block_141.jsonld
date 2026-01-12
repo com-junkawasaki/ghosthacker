@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:141",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo’s eyes fill.",
+    "ja": "私は二人に尋ねる。"
+  },
+  "gh:index": 141
+}

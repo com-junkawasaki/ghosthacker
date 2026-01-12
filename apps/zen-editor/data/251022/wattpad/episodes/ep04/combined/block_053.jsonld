@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:53",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “My family always supports me, and I have many close friends. So—I thought it would be fine.”",
+    "ja": "私は二人に向き直る。"
+  },
+  "gh:index": 53
+}

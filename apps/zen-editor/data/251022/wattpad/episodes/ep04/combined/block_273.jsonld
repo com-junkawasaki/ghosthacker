@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:273",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia: “...Yes. Thank you, Leo.”",
+    "ja": "Nei-chan『タマ、二人の手、繋がってる。あったかい』"
+  },
+  "gh:index": 273
+}

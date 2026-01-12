@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:181",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Then, final question.”",
+    "ja": "Leo「おー！ なるほど！ そうかも！ たしかに！」"
+  },
+  "gh:index": 181
+}

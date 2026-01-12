@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:208",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Eh—that I would never.”",
+    "ja": "Leo「え、それは絶対売らない」"
+  },
+  "gh:index": 208
+}

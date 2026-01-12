@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:142",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...I tried to respect Millia ‘as an individual.’ But that isolated her.”",
+    "ja": "「お二人は、\"拡張された自己\"として、どう生きたいですか？」"
+  },
+  "gh:index": 142
+}

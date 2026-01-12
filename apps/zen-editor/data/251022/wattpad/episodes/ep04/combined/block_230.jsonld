@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:230",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Family too—whether they are ‘you’ or not. You decide.”",
+    "ja": "Leoは言いつつ、この場でどうしたらいいかわからない。"
+  },
+  "gh:index": 230
+}

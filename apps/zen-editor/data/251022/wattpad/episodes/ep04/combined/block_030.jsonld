@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:30",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The display blurs; the two appear. Leo is passionate; Millia is delicate; and yet… hollowed.",
+    "ja": "画面がぼやけ、二人が現れる。Leoは情熱的で、Milliaは繊細で、でも……どこか、空洞がある。"
+  },
+  "gh:index": 30
+}

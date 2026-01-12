@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:209",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "He answers at once. Millia is silent.",
+    "ja": "Leoは即答する。でも、Milliaは沈黙している。"
+  },
+  "gh:index": 209
+}

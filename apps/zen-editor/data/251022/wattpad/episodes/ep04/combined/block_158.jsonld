@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:158",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I gently take the cup that Millia sipped and drink a mouthful.",
+    "ja": "（その時、Milliaがコップを戻す手首に、白く薄い線が幾つか見えた。私は目を伏せ、何も言わない。Nei-chanがそっと震える）\nNei-chan（小声）『タマ……見えた』\nTamaki（小声）「うん。いまは、待つ」"
+  },
+  "gh:index": 158
+}

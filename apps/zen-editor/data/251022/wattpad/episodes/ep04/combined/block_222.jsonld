@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:222",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I meet her eyes.",
+    "ja": "Milliaは泣きじゃくって、何も答えない。"
+  },
+  "gh:index": 222
+}

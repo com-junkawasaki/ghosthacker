@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:195",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I leave a beat.",
+    "ja": "Leoの表情が変わる。"
+  },
+  "gh:index": 195
+}

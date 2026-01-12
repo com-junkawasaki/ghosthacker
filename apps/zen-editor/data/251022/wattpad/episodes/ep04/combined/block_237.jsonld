@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:237",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia: “But… even if I want to sell, to cut, I can’t cut it off…” Despair.",
+    "ja": "私は静かに続ける。"
+  },
+  "gh:index": 237
+}

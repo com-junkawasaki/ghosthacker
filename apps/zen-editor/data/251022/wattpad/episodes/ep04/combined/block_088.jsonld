@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:88",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---\nKaede: “Continue same session.”",
+    "ja": "Nei-chan『タマ、いまミリアの肩、少し下がった』"
+  },
+  "gh:index": 88
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:224",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “I—I see…” He still doesn’t know what to do here.",
+    "ja": "Millia「1円でも……いくらでも売りたい……」"
+  },
+  "gh:index": 224
+}

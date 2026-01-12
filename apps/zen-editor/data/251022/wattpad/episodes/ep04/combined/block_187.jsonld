@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:187",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Oh! I see! Yeah! Totally!” He nods happily. Millia nods only slightly.",
+    "ja": "Leo「んー……それなら売るかも」"
+  },
+  "gh:index": 187
+}

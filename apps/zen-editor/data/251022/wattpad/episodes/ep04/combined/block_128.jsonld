@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:128",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...I was making Millia… an object of transaction?”",
+    "ja": "「……私は、一人でいたい。でも、一人は怖い……」"
+  },
+  "gh:index": 128
+}

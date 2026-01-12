@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:113",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo blurts: “...Is that sympathy?”",
+    "ja": "Kaede「Tamaki……アダム・スミスは『道徳感情論』で、共感を\"他者の立場に立つこと\"として説明した」"
+  },
+  "gh:index": 113
+}

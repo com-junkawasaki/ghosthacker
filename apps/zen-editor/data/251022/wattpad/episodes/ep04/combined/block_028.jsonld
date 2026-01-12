@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:28",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Hibiki: “They are completely async. They use the ‘same words,’ but the meanings don’t match. In music terms, it’s like playing two different songs at once.”",
+    "ja": "Hibiki「完全に非同期。彼らは\"同じ言葉\"を使ってるけど、その意味が全然違う。音楽で言えば、別の曲を同時に演奏してるみたいだ」"
+  },
+  "gh:index": 28
+}

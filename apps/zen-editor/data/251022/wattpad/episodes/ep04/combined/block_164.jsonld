@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:164",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “—That is the economy of ‘love and family.’”",
+    "ja": "Milliaは何も言わず、怒りと悲しみ、困惑を混ぜた表情で俯く。"
+  },
+  "gh:index": 164
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:215",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Leo: “Eh?” He looks at her.",
+    "ja": "Millia「……売る」"
+  },
+  "gh:index": 215
+}

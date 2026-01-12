@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:136",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“Millia, you’re imprisoned by the boundary called ‘individual.’ But ‘individual’ is an illusion. You and Leo are already ‘not separate.’”",
+    "ja": "「……私は、Milliaを\"一人の個人\"として尊重しようとしていました。でも、それが……彼女を孤立させていた」"
+  },
+  "gh:index": 136
+}

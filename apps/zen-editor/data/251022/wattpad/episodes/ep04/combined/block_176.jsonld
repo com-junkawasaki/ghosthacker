@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:176",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Very quiet and kind.",
+    "ja": "私は少し間を置く。"
+  },
+  "gh:index": 176
+}

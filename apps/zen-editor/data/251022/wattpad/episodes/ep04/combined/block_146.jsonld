@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:146",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I ask them:",
+    "ja": "「……私も、Leoと\"わかれていない\"存在でいたい。でも、\"私\"も大事にしたい」"
+  },
+  "gh:index": 146
+}

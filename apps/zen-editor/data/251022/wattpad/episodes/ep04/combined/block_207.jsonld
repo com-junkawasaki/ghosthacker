@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep04/combined:207",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Would you sell your family for 100 million?”",
+    "ja": "Tamaki「あなたの家族を1億円で売れますか？」"
+  },
+  "gh:index": 207
+}
