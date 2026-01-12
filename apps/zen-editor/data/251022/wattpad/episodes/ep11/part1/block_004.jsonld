@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part1:4",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Something eases. Perfection steps back a pace; the human steps forward a half. I open my fist and exhale slowly.",
+    "ja": "小さくほぐれる。完璧は一歩退き、人間が半歩進む。私は拳を開いて、ゆっくり息を吐く。"
+  },
+  "gh:index": 4
+}

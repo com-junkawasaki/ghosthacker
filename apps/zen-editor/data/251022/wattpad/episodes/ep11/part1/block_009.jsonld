@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part1:9",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Light at the window is soft. Hope doesn’t raise its voice—and yet it is surely here."
+  },
+  "gh:index": 9
+}
