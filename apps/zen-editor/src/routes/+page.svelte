@@ -3,10 +3,11 @@
   import Topology from '../components/TopologyWebGPU.svelte';
   import Storyboard from '../components/Storyboard.svelte';
   import HistoryPanel from '../components/HistoryPanel.svelte';
+  import ConnectionSuggester from '../components/ConnectionSuggester.svelte';
   import { getClient } from '../lib/api';
 
   let selectedNode = $state<any>(null);
-  let rightPaneMode = $state<"storyboard" | "editor">("storyboard");
+  let rightPaneMode = $state<"storyboard" | "editor" | "connection-suggester">("storyboard");
   let projectId = $state("251022"); // Default project
   let isSidebarOpen = $state(false);
   let isChatOpen = $state(false);
@@ -34,7 +35,9 @@
     selectedNode = node;
     const type = node.type || "";
     
-    if (type === 'gh:Manuscript' || type === 'gh:Block' || node.id?.startsWith('manuscript:') || node.id?.startsWith('block:')) {
+    if (node.group === 'unlinked') {
+      rightPaneMode = "connection-suggester";
+    } else if (type === 'gh:Manuscript' || type === 'gh:Block' || node.id?.startsWith('manuscript:') || node.id?.startsWith('block:')) {
       rightPaneMode = "editor";
       currentFilePath = node.label || node.id || "Untitled.md";
       currentFileContent = node.content || "";
@@ -161,7 +164,11 @@
             {#if activeView === "dual"}
               <button class="collapse-btn" onclick={() => isStoryboardCollapsed = true}>▶</button>
             {/if}
-            <span>{rightPaneMode === 'storyboard' ? 'Storyboard Editor' : 'Text Editor'}</span>
+            <span>
+              {#if rightPaneMode === 'storyboard'}Storyboard Editor
+              {:else if rightPaneMode === 'editor'}Text Editor
+              {:else}Connection Suggester{/if}
+            </span>
           </div>
           
           {#if rightPaneMode === 'editor'}
@@ -170,6 +177,18 @@
                 filePath={currentFilePath} 
                 initialContent={currentFileContent}
                 onSave={handleEditorSave}
+              />
+            </div>
+          {:else if rightPaneMode === 'connection-suggester'}
+            <div class="pane-content">
+              <ConnectionSuggester 
+                node={selectedNode} 
+                {projectId} 
+                onConnect={(from, to, rel) => {
+                  console.log(`Connected ${from} to ${to} via ${rel}`);
+                  // Refresh topology to show new connection
+                  topologyRef?.fetchData();
+                }}
               />
             </div>
           {:else}

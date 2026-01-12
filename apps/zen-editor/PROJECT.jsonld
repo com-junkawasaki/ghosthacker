@@ -143,6 +143,10 @@
     {
       "step": "15. Implement dynamic project loading and image serving from the centralized data directory",
       "status": "completed"
+    },
+    {
+      "step": "16. Implement Miro-like graph interaction with node labels, unlinked context clustering, and LLM-driven connection suggestions",
+      "status": "completed"
     }
   ]
 }

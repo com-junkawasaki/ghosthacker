@@ -23,6 +23,8 @@
 
   let minimapViewport = $state({ top: 0, left: 0, width: 100, height: 100 });
 
+  let currentTransform = $state({ x: 0, y: 0, k: 1 });
+
   onMount(() => {
     console.log(`Topology component onMount starting for project: ${projectId} (using @cosmos.gl/graph)`);
     
@@ -62,13 +64,14 @@
           if (containerElement) containerElement.style.cursor = 'default';
         };
 
-        // Sync minimap
+        // Sync labels and minimap
         // @ts-ignore
-        /*
-        if (g.zoomInstance) {
+        if (g.zoomInstance && typeof g.zoomInstance.on === 'function') {
           // @ts-ignore
           g.zoomInstance.on('zoom', (event) => {
             const transform = event.transform;
+            currentTransform = { x: transform.x, y: transform.y, k: transform.k };
+            
             const scale = Math.min(1, 1 / transform.k);
             minimapViewport = {
               left: ((-transform.x / transform.k) / 2000 + 0.5) * 100,
@@ -77,13 +80,16 @@
               height: scale * 50
             };
           });
+        } else {
+          console.warn("zoomInstance.on is not available, sync might be limited");
         }
-        */
 
         graph = g;
         fetchData();
       } catch (err) {
         console.error("Graph initialization failed:", err);
+        // Fallback to fetch data anyway so UI doesn't hang
+        fetchData();
       }
     }
   });
@@ -92,7 +98,7 @@
     mousePos = { x: e.clientX, y: e.clientY };
   }
 
-  async function fetchData() {
+  export async function fetchData() {
     console.log("[Topology] fetchData started");
     isLoading = true;
     
@@ -288,6 +294,30 @@
     e.dataTransfer?.setData('application/json', JSON.stringify(node));
     e.dataTransfer!.effectAllowed = 'copy';
   }
+
+  function getScreenCoords(node: any) {
+    if (!containerElement) return { x: 0, y: 0 };
+    const rect = containerElement.getBoundingClientRect();
+    
+    // Fallback if transform is not yet initialized
+    const k = currentTransform.k || 1;
+    const tx = currentTransform.x || 0;
+    const ty = currentTransform.y || 0;
+
+    const x = (node.x || 0) * k + tx + rect.width / 2;
+    const y = (node.y || 0) * k + ty + rect.height / 2;
+    return { x, y };
+  }
+
+  let visibleNodes = $derived(
+    nodes.filter(n => {
+      if (currentTransform.k < 0.25 && n.group !== 'meta') return false;
+      const coords = getScreenCoords(n);
+      if (!containerElement) return false;
+      const rect = containerElement.getBoundingClientRect();
+      return coords.x > -50 && coords.x < rect.width + 50 && coords.y > -50 && coords.y < rect.height + 50;
+    })
+  );
 </script>
 
 <div class="topology-container">
@@ -295,6 +325,7 @@
     <div class="sidebar-header">
       <span>Nodes ({nodes.length})</span>
       <div class="header-actions">
+        <button class="icon-btn" onclick={() => fetchData()} title="Refresh Data">🔄</button>
         <button class="icon-btn" onclick={() => graph?.fitView(1000)} title="Fit View">🔍</button>
         <button class="save-layout-btn" onclick={saveLayout} title="Save Layout to History">💾</button>
       </div>
@@ -324,6 +355,19 @@
       role="application"
       aria-label="Graph Visualization"
     ></div>
+
+    <!-- Node Labels Overlay -->
+    <div class="labels-overlay" style="pointer-events: none;">
+      {#each visibleNodes as n}
+        {@const coords = getScreenCoords(n)}
+        <div 
+          class="node-label-tag {n.group}" 
+          style="position: absolute; left: {coords.x}px; top: {coords.y + 10}px; transform: translate(-50%, 0); font-size: {Math.max(8, 12 * currentTransform.k)}px;"
+        >
+          {n.label}
+        </div>
+      {/each}
+    </div>
 
     <div class="graph-controls">
       <button class="control-btn" onclick={handleZoomIn} title="Zoom In">+</button>
@@ -464,7 +508,33 @@
   .node-icon.content { background: #0071e3; }
   .node-icon.entity { background: #ff3b30; }
   .node-icon.meta { background: #af52de; }
+  .node-icon.unlinked { background: #ff9500; }
   .node-icon.default { background: #8e8e93; }
+
+  .labels-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .node-label-tag {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+    pointer-events: none;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .node-label-tag.content { border-color: #0071e3; color: #0071e3; }
+  .node-label-tag.entity { border-color: #ff3b30; color: #ff3b30; }
+  .node-label-tag.unlinked { border-color: #ff9500; color: #ff9500; }
+  .node-label-tag.meta { border-color: #af52de; color: #af52de; font-weight: bold; background: rgba(175, 82, 222, 0.1); }
 
   .topology-main {
     flex: 1;

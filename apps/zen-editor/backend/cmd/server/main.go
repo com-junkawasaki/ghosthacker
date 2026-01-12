@@ -637,6 +637,26 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 	resp := &editorpb.GetTopologyResponse{}
 	nodeMap := make(map[string]*editorpb.Node)
 	entityHubs := make(map[string]string)
+	connectedNodes := make(map[string]bool)
+
+	// Preliminary pass to identify relations and connections
+	for _, item := range g.Graph {
+		itemType, _ := item["@type"].(string)
+		if itemType == "gh:RelationEvent" {
+			participants, _ := item["gh:participants"].([]interface{})
+			for _, p := range participants {
+				pID, ok := p.(string)
+				if !ok {
+					if pMap, ok := p.(map[string]interface{}); ok {
+						pID, _ = pMap["@id"].(string)
+					}
+				}
+				if pID != "" {
+					connectedNodes[pID] = true
+				}
+			}
+		}
+	}
 
 	for _, item := range g.Graph {
 		id, _ := item["@id"].(string)
@@ -653,12 +673,30 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 
 			group := s.categorizeNode(itemType)
 
-			if (group == "entity" || group == "link-node") && entityHubs[group] == "" {
+	// Identification of unlinked nodes
+			isLinked := connectedNodes[id]
+			
+			// Also check if it's already in the manuscripts or episodes
+			if !isLinked {
+				if itemType == "gh:Manuscript" || itemType == "gh:Episode" || itemType == "gh:Block" {
+					isLinked = true
+				}
+			}
+
+			if !isLinked && (group == "entity" || group == "concept") {
+				group = "unlinked"
+			}
+
+			if (group == "entity" || group == "link-node" || group == "unlinked") && entityHubs[group] == "" {
 				hubID := "hub:" + group
 				entityHubs[group] = hubID
+				label := strings.Title(group) + " Cluster"
+				if group == "unlinked" {
+					label = "Unlinked Context Cluster"
+				}
 				resp.Nodes = append(resp.Nodes, &editorpb.Node{
 					Id:    hubID,
-					Label: strings.Title(group) + " Cluster",
+					Label: label,
 					Type:  "gh:ClusterHub",
 					Group: "meta",
 				})
@@ -670,8 +708,8 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 					ToId:     id,
 					Relation: "gh:memberOf",
 					Group:    "structural",
-					Distance: 150,
-					Strength: 0.1,
+					Distance: 200,
+					Strength: 0.05,
 					Color:    "#444444",
 				})
 			}
