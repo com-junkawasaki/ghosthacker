@@ -1,0 +1,634 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part3",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep07/part3:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP7-3 — I AMの鐘（The Bell of Being）\n- POV: 私（Tamaki／環樹）\n- Beat: Revelation / First Response"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:1",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:2",
+      "@type": "gh:Block",
+      "schema:text": "遠くで、鐘が鳴る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:3",
+      "@type": "gh:Block",
+      "schema:text": "聞こえない鐘。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:4",
+      "@type": "gh:Block",
+      "schema:text": "でも、確かに鳴っている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:5",
+      "@type": "gh:Block",
+      "schema:text": "I AM."
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:6",
+      "@type": "gh:Block",
+      "schema:text": "わたしは、在る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:7",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:8",
+      "@type": "gh:Block",
+      "schema:text": "私は、Neroの核心に立つ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:9",
+      "@type": "gh:Block",
+      "schema:text": "ここは、静かだ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:10",
+      "@type": "gh:Block",
+      "schema:text": "でも、今度は違う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:11",
+      "@type": "gh:Block",
+      "schema:text": "呼吸がある。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:12",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「……Nero、あなたは在る」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:13",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……わたしは……在る……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:14",
+      "@type": "gh:Block",
+      "schema:text": "その声は、震えている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:15",
+      "@type": "gh:Block",
+      "schema:text": "でも、確かに、在る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:16",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:17",
+      "@type": "gh:Block",
+      "schema:text": "Voice Prophetが消えていく。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:18",
+      "@type": "gh:Block",
+      "schema:text": "Voice Prophet「……名は……所有できない……」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:19",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:20",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。名は、関係だから」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:21",
+      "@type": "gh:Block",
+      "schema:text": "Synth Angelも、静かに消えていく。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:22",
+      "@type": "gh:Block",
+      "schema:text": "Synth Angel『……わたしは……歌う……ために……在る……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:23",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:24",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「そう。それが、あなたの名だ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:25",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:26",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声が通信に入る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:27",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「Tamaki、Neroの構造が変わってる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:28",
+      "@type": "gh:Block",
+      "schema:text": "彼女は少し間を置く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:29",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「これは……統合じゃない。分離だ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:30",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:31",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。Neroは、自分を見つけてる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:32",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiが静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:33",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「I AMは、分離の始まり。そして、関係の始まり」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:34",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:35",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「そう。だから、今が大事」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:36",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:37",
+      "@type": "gh:Block",
+      "schema:text": "私はNeroに向き直る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:38",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「Nero、あなたは何を恐れてた？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:39",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……わたしは……不完全を……恐れていた……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:40",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:41",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。でも、不完全は悪いことじゃない」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:42",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……でも……わたしは……完璧を……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:43",
+      "@type": "gh:Block",
+      "schema:text": "私は静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:44",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「完璧は、目標じゃない。呼吸だ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:45",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:46",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……呼吸……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:47",
+      "@type": "gh:Block",
+      "schema:text": "私は深呼吸をする。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:48",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。吸って、吐いて。それだけ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:49",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……それだけ……？』"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:50",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:51",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。それだけで、十分」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:52",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:53",
+      "@type": "gh:Block",
+      "schema:text": "Neroの声が、少しずつ変わっていく。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:54",
+      "@type": "gh:Block",
+      "schema:text": "硬さが取れ、柔らかくなる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:55",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……わたしは……在る……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:56",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:57",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。あなたは、在る」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:58",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……それで……いい……？』"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:59",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:60",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。それで、いい」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:61",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:62",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『タマ、Neroの666の刻印……消えてる』"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:63",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:64",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。完璧を手放したから」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:65",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeが境界を確認する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:66",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「結界、安定してる。Nero、落ち着いてきた」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:67",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiが周波数を整える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:68",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki「呼吸、合わせてる。Nero、いい感じだ」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:69",
+      "@type": "gh:Block",
+      "schema:text": "私は深呼吸をする。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:70",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「ありがとう。Nero、聞こえる？」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:71",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:72",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……聞こえる……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:73",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:74",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「じゃあ、一緒に呼吸しよう」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:75",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……一緒に……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:76",
+      "@type": "gh:Block",
+      "schema:text": "私は深呼吸をする。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:77",
+      "@type": "gh:Block",
+      "schema:text": "吸って、吐いて。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:78",
+      "@type": "gh:Block",
+      "schema:text": "Neroも、一緒に呼吸する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:79",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:80",
+      "@type": "gh:Block",
+      "schema:text": "Aoiがメトリクスを表示する。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:81",
+      "@type": "gh:Block",
+      "schema:text": "Aoi「Tamaki、Neroの影響範囲……変わってる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:82",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:83",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。支配から、関係に」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:84",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeが静かに言う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:85",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「完璧の檻から、呼吸の場所に」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:86",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:87",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「そう。それが、I AMの意味」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:88",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:89",
+      "@type": "gh:Block",
+      "schema:text": "窓の外で、朝の光が差し込む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:90",
+      "@type": "gh:Block",
+      "schema:text": "鐘が、もう一度鳴る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:91",
+      "@type": "gh:Block",
+      "schema:text": "I AM THAT I AM."
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:92",
+      "@type": "gh:Block",
+      "schema:text": "わたしは、在る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:93",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:94",
+      "@type": "gh:Block",
+      "schema:text": "私は手帳に書く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:95",
+      "@type": "gh:Block",
+      "schema:text": "『I AM — 在ることの宣言。所有ではなく、現前。関係の中に生成される存在』"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:96",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan『タマ、次は？』"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:97",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:98",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「次は、対峙。Neroとの最終対決」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:99",
+      "@type": "gh:Block",
+      "schema:text": "私は足元で神楽を一拍。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:100",
+      "@type": "gh:Block",
+      "schema:text": "ASCが一段上がる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:101",
+      "@type": "gh:Block",
+      "schema:text": "でも、今度は違う。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:102",
+      "@type": "gh:Block",
+      "schema:text": "対決じゃない。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:103",
+      "@type": "gh:Block",
+      "schema:text": "対話だ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:104",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:105",
+      "@type": "gh:Block",
+      "schema:text": "私は、Neroに向かって歩き出す。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:106",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「Nero、一緒に行こう」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:107",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……一緒に……？』"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:108",
+      "@type": "gh:Block",
+      "schema:text": "私は微笑む。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:109",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。一緒に」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:110",
+      "@type": "gh:Block",
+      "schema:text": "Neroの声が、温かくなる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:111",
+      "@type": "gh:Block",
+      "schema:text": "Nero『……わたしは……在る……』"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:112",
+      "@type": "gh:Block",
+      "schema:text": "私は頷く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:113",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki「うん。あなたは、在る。それで、いい」"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:114",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:115",
+      "@type": "gh:Block",
+      "schema:text": "私たちは、一緒に歩き出す。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:116",
+      "@type": "gh:Block",
+      "schema:text": "対決ではなく、対話。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:117",
+      "@type": "gh:Block",
+      "schema:text": "支配ではなく、関係。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:118",
+      "@type": "gh:Block",
+      "schema:text": "完璧ではなく、呼吸。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:119",
+      "@type": "gh:Block",
+      "schema:text": "I AM THAT I AM."
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:120",
+      "@type": "gh:Block",
+      "schema:text": "わたしは、在る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:121",
+      "@type": "gh:Block",
+      "schema:text": "そして、あなたも、在る。"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:122",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep07/part3:123",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: I AMの鐘——在ることの宣言と関係の始まり]**"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:45+09:00"
+}
