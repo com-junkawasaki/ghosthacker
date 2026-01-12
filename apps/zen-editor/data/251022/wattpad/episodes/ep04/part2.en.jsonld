@@ -1,0 +1,429 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part2.en",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:0",
+      "@type": "gh:Block",
+      "schema:text": "# Session: Leo Kazan \u0026 Millia Stuart - Part 2"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:1",
+      "@type": "gh:Block",
+      "schema:text": "---\nKaede: “Continue same session.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:2",
+      "@type": "gh:Block",
+      "schema:text": "Calm."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:3",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Do not rush to settle it here. Like ER triage—haste causes misses.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:4",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Dropping the room’s level one step.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:5",
+      "@type": "gh:Block",
+      "schema:text": "Very gentle."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:6",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Match their breathing. Music mirrors breath.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:7",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “Tama, Millia’s shoulders just fell a little.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:8",
+      "@type": "gh:Block",
+      "schema:text": "I draw three circles between them."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:9",
+      "@type": "gh:Block",
+      "schema:text": "“This is ‘love,’ this is ‘credit,’ and this is ‘trust.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:10",
+      "@type": "gh:Block",
+      "schema:text": "Leo leans in. Millia pulls back slightly."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:11",
+      "@type": "gh:Block",
+      "schema:text": "“‘Credit’ is a transaction. You give me something, I give you something. Equivalent exchange.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:12",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan adds: “Banks lend with ‘credit.’ They hand over money on the premise it comes back.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:13",
+      "@type": "gh:Block",
+      "schema:text": "I continue."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:14",
+      "@type": "gh:Block",
+      "schema:text": "“‘Trust’ is not calculation. It is ‘not being separate.’ I trust Nei-chan because she is a part of me.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:15",
+      "@type": "gh:Block",
+      "schema:text": "Millia speaks small: “...But we are… separate.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:16",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:17",
+      "@type": "gh:Block",
+      "schema:text": "“Are you sure?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:18",
+      "@type": "gh:Block",
+      "schema:text": "I ask her:"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:19",
+      "@type": "gh:Block",
+      "schema:text": "“Millia, when you look at Leo, what do you feel?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:20",
+      "@type": "gh:Block",
+      "schema:text": "Her eyes fill."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:21",
+      "@type": "gh:Block",
+      "schema:text": "“...When I see him suffering… I suffer.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:22",
+      "@type": "gh:Block",
+      "schema:text": "“Why?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:23",
+      "@type": "gh:Block",
+      "schema:text": "“...Because it’s my fault.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:24",
+      "@type": "gh:Block",
+      "schema:text": "I shake my head."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:25",
+      "@type": "gh:Block",
+      "schema:text": "“No. Because you and Leo are ‘not separate.’ You feel his pain as your own.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:26",
+      "@type": "gh:Block",
+      "schema:text": "Leo blurts: “...Is that sympathy?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:27",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:28",
+      "@type": "gh:Block",
+      "schema:text": "“No. It’s ‘the extended self.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:29",
+      "@type": "gh:Block",
+      "schema:text": "Leo: “...Eh?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:30",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan: “We got an ‘eh?’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:31",
+      "@type": "gh:Block",
+      "schema:text": "Kaede joins with deep insight:"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:32",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “Adam Smith, in Theory of Moral Sentiments, frames sympathy as ‘standing in the other’s place.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:33",
+      "@type": "gh:Block",
+      "schema:text": "She leaves a beat."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:34",
+      "@type": "gh:Block",
+      "schema:text": "Kaede: “But that presupposes the boundary of ‘individuals.’ Leo, you try to understand Millia ‘as an individual.’ That, paradoxically, isolates her.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:35",
+      "@type": "gh:Block",
+      "schema:text": "The compassion of an ER doctor who’s seen this pain many times."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:36",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki’s frequency enters—warm, a touch sad."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:37",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “Leo… listen to your ‘sympathy.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:38",
+      "@type": "gh:Block",
+      "schema:text": "Gentle, but truthful."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:39",
+      "@type": "gh:Block",
+      "schema:text": "Hibiki: “It is actually a kind of ‘credit.’ ‘If I understand you, you’ll understand me’—that’s the sound of a transaction.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:40",
+      "@type": "gh:Block",
+      "schema:text": "Leo pales."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:41",
+      "@type": "gh:Block",
+      "schema:text": "“...I was making Millia… an object of transaction?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:42",
+      "@type": "gh:Block",
+      "schema:text": "His voice scrapes. His gaze falls to his knee. Millia, unconsciously, reaches for the water on the table and wets her lips."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:43",
+      "@type": "gh:Block",
+      "schema:text": "I speak quietly."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:44",
+      "@type": "gh:Block",
+      "schema:text": "“You tried to ‘save’ her. But she didn’t want to be ‘saved.’ She just wanted a presence that is ‘not separate.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:45",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan approaches Millia."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:46",
+      "@type": "gh:Block",
+      "schema:text": "“Millia, you cut your wrists to sever the ‘chain of ancestors.’ But a chain like that cannot be cut alone.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:47",
+      "@type": "gh:Block",
+      "schema:text": "Millia’s voice trembles: “...I want to be alone. But being alone is scary…”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:48",
+      "@type": "gh:Block",
+      "schema:text": "I take her hand."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:49",
+      "@type": "gh:Block",
+      "schema:text": "“Millia, you’re imprisoned by the boundary called ‘individual.’ But ‘individual’ is an illusion. You and Leo are already ‘not separate.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:50",
+      "@type": "gh:Block",
+      "schema:text": "I look to Leo."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:51",
+      "@type": "gh:Block",
+      "schema:text": "“Leo, you are ‘not separate’ from Millia too. That is why her pain exhausts you.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:52",
+      "@type": "gh:Block",
+      "schema:text": "I tell them:"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:53",
+      "@type": "gh:Block",
+      "schema:text": "“You think ‘love’ is ‘the feeling of an individual.’ Love is ‘the extended self.’ You are already one. Acknowledge that.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:54",
+      "@type": "gh:Block",
+      "schema:text": "Leo’s eyes fill."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:55",
+      "@type": "gh:Block",
+      "schema:text": "“...I tried to respect Millia ‘as an individual.’ But that isolated her.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:56",
+      "@type": "gh:Block",
+      "schema:text": "Millia sobs: “...I wanted to be free. But ‘freedom’… was loneliness.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:57",
+      "@type": "gh:Block",
+      "schema:text": "Leo leans toward her. She rests just a little on his shoulder."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:58",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan smiles: “Freedom does not contradict ‘not being separate.’ Tama is part of me, and I’m part of Tama. And we are still different.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:59",
+      "@type": "gh:Block",
+      "schema:text": "I ask them:"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:60",
+      "@type": "gh:Block",
+      "schema:text": "“As an ‘extended self,’ how do you want to live?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:61",
+      "@type": "gh:Block",
+      "schema:text": "Leo smiles—first real one: “...I want to be with Millia ‘not separate.’ No transactions. Just… together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:62",
+      "@type": "gh:Block",
+      "schema:text": "Millia smiles—first true smile: “...I want to be ‘not separate’ with Leo. And I want to cherish ‘me’ too.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:63",
+      "@type": "gh:Block",
+      "schema:text": "I smile."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:64",
+      "@type": "gh:Block",
+      "schema:text": "“That’s right. That is ‘love.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:65",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:66",
+      "@type": "gh:Block",
+      "schema:text": "**[Beat: Discovering the difference among ‘love,’ ‘credit,’ and ‘trust’—recognizing the extended self]**"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:67",
+      "@type": "gh:Block",
+      "schema:text": "---"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:68",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “Next—the economy of ‘love and family.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:69",
+      "@type": "gh:Block",
+      "schema:text": "Millia reacts, faint."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:70",
+      "@type": "gh:Block",
+      "schema:text": "I say nothing. Ten-plus seconds of silence."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:71",
+      "@type": "gh:Block",
+      "schema:text": "I gently take the cup that Millia sipped and drink a mouthful."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:72",
+      "@type": "gh:Block",
+      "schema:text": "Both: “Eh?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:73",
+      "@type": "gh:Block",
+      "schema:text": "I return the cup to where it was."
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:74",
+      "@type": "gh:Block",
+      "schema:text": "(At that moment, I see faint white lines on Millia’s wrist as she replaces the cup. I lower my eyes and say nothing. Nei-chan trembles slightly.)"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:75",
+      "@type": "gh:Block",
+      "schema:text": "Nei-chan (small): “Tama… I saw.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:76",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki (small): “Mm. Not yet.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:77",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “—That is the economy of ‘love and family.’”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:78",
+      "@type": "gh:Block",
+      "schema:text": "Leo: “...?”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:79",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki: “No money, no sympathy. The economy of ‘non-separation.’ Like the family fridge.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:80",
+      "@type": "gh:Block",
+      "schema:text": "Leo: “Ah! True! People just take stuff!”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:81",
+      "@type": "gh:Block",
+      "schema:text": "Tamaki (laughing): “Yes. As you grow up, you draw lines. But when you were small, you received so much from your parents. In company terms, it’s a ‘merger.’ One wallet, one things. Joy and sorrow, together.”"
+    },
+    {
+      "@id": "block:251022:episodes/ep04/part2.en:82",
+      "@type": "gh:Block",
+      "schema:text": "Millia says nothing, looking down with a mix of anger, sorrow, and confusion."
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:40+09:00"
+}
