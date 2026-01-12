@@ -10,6 +10,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"connectrpc.com/connect"
 	"golang.org/x/net/http2"
@@ -22,6 +23,7 @@ import (
 	"github.com/mark3labs/mcp-go/server"
 
 	"github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/internal/ai"
+	"github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/internal/git"
 	"github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/proto"
 	"github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/proto/editorpbconnect"
 )
@@ -32,6 +34,7 @@ type EditorServer struct {
 	NodeEmotions  map[string]map[string]float32
 	ToolHandlers  map[string]func(context.Context, mcp.CallToolRequest) (*mcp.CallToolResult, error)
 	DB            *sql.DB
+	Git           *git.GitService
 }
 
 func NewEditorServer(root string) *EditorServer {
@@ -41,7 +44,7 @@ func NewEditorServer(root string) *EditorServer {
 		log.Fatalf("failed to open database: %v", err)
 	}
 
-	// Create storyboard table
+	// Create storyboard table (keeping for cache/history if needed, but primary will be file)
 	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS storyboards (
 		project_id TEXT PRIMARY KEY,
 		scenes_json TEXT,
@@ -72,6 +75,7 @@ func NewEditorServer(root string) *EditorServer {
 		NodeEmotions:  initNodeEmotions(),
 		ToolHandlers:  make(map[string]func(context.Context, mcp.CallToolRequest) (*mcp.CallToolResult, error)),
 		DB:            db,
+		Git:           git.NewGitService(root),
 	}
 	s.registerMCPTools()
 	return s
@@ -113,15 +117,16 @@ func (s *EditorServer) handleGetStoryboardTool(ctx context.Context, req mcp.Call
 	args := req.Params.Arguments.(map[string]interface{})
 	projectID, _ := args["project_id"].(string)
 
-	var scenesJSON string
-	err := s.DB.QueryRow("SELECT scenes_json FROM storyboards WHERE project_id = ?", projectID).Scan(&scenesJSON)
-	if err == sql.ErrNoRows {
-		return mcp.NewToolResultText("[]"), nil
-	} else if err != nil {
+	path := filepath.Join(s.WorkspaceRoot, projectID, "wattpad/storyboard.jsonld")
+	data, err := os.ReadFile(path)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return mcp.NewToolResultText("[]"), nil
+		}
 		return mcp.NewToolResultError(err.Error()), nil
 	}
 
-	return mcp.NewToolResultText(scenesJSON), nil
+	return mcp.NewToolResultText(string(data)), nil
 }
 
 func (s *EditorServer) handleSaveStoryboardTool(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
@@ -129,15 +134,49 @@ func (s *EditorServer) handleSaveStoryboardTool(ctx context.Context, req mcp.Cal
 	projectID, _ := args["project_id"].(string)
 	scenesJSON, _ := args["scenes_json"].(string)
 
-	_, err := s.DB.Exec(`INSERT INTO storyboards (project_id, scenes_json, updated_at) 
-		VALUES (?, ?, CURRENT_TIMESTAMP) 
-		ON CONFLICT(project_id) DO UPDATE SET scenes_json = EXCLUDED.scenes_json, updated_at = CURRENT_TIMESTAMP`,
-		projectID, scenesJSON)
-	if err != nil {
+	path := filepath.Join(s.WorkspaceRoot, projectID, "wattpad/storyboard.jsonld")
+	if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
+		return mcp.NewToolResultError(err.Error()), nil
+	}
+	
+	// Format as JSON-LD
+	var scenes []interface{}
+	if err := json.Unmarshal([]byte(scenesJSON), &scenes); err != nil {
 		return mcp.NewToolResultError(err.Error()), nil
 	}
 
-	return mcp.NewToolResultText("Storyboard saved successfully to DB via MCP"), nil
+	storyboard := map[string]interface{}{
+		"@context": map[string]interface{}{
+			"gh":          "https://gftd.ai/ghost-hacker/ontology/",
+			"schema":      "https://schema.org/",
+			"scenes":      "gh:scenes",
+			"visual":      "gh:visual",
+			"description": "schema:description",
+			"audio":       "gh:audio",
+			"timing":      "gh:timing",
+			"fps":         "gh:fps",
+			"persons":     "gh:involvedPersons",
+			"places":      "gh:involvedPlaces",
+			"items":       "gh:involvedItems",
+			"emotions":    "gh:emotions",
+		},
+		"@type":        "gh:Storyboard",
+		"gh:projectId": projectID,
+		"gh:scenes":    scenes,
+		"updatedAt":    time.Now().Format(time.RFC3339),
+	}
+
+	updatedData, _ := json.MarshalIndent(storyboard, "", "  ")
+	if err := os.WriteFile(path, updatedData, 0644); err != nil {
+		return mcp.NewToolResultError(err.Error()), nil
+	}
+
+	// Auto-commit to Git
+	if s.Git != nil {
+		s.Git.CommitDocument(path, "Update storyboard JSON-LD via MCP")
+	}
+
+	return mcp.NewToolResultText("Storyboard saved successfully to local file and committed to Git"), nil
 }
 
 func (s *EditorServer) handleAnalyzeLinksTool(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
@@ -305,29 +344,51 @@ func (s *EditorServer) GetProjectMetadata(ctx context.Context, req *connect.Requ
 
 func (s *EditorServer) SaveStoryboard(ctx context.Context, req *connect.Request[editorpb.SaveStoryboardRequest]) (*connect.Response[editorpb.SaveStoryboardResponse], error) {
 	log.Printf("RPC: SaveStoryboard called for project: %s", req.Msg.ProjectId)
-	scenesJSON, err := json.Marshal(req.Msg.Scenes)
-	if err != nil {
+	
+	path := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/storyboard.jsonld")
+	if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+	
+	storyboard := map[string]interface{}{
+		"@context": map[string]interface{}{
+			"gh":          "https://gftd.ai/ghost-hacker/ontology/",
+			"schema":      "https://schema.org/",
+			"scenes":      "gh:scenes",
+			"visual":      "gh:visual",
+			"description": "schema:description",
+			"audio":       "gh:audio",
+			"timing":      "gh:timing",
+			"fps":         "gh:fps",
+			"persons":     "gh:involvedPersons",
+			"places":      "gh:involvedPlaces",
+			"items":       "gh:involvedItems",
+			"emotions":    "gh:emotions",
+		},
+		"@type":        "gh:Storyboard",
+		"gh:projectId": req.Msg.ProjectId,
+		"gh:scenes":    req.Msg.Scenes,
+		"updatedAt":    time.Now().Format(time.RFC3339),
+	}
+
+	updatedData, _ := json.MarshalIndent(storyboard, "", "  ")
+	if err := os.WriteFile(path, updatedData, 0644); err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
-	_, err = s.DB.Exec(`INSERT INTO storyboards (project_id, scenes_json, updated_at) 
+	// Auto-commit to Git
+	if s.Git != nil {
+		s.Git.CommitDocument(path, "Auto-save storyboard JSON-LD via gRPC")
+	}
+
+	// Also keep in DB as cache if needed, but primary is file
+	scenesJSON, _ := json.Marshal(req.Msg.Scenes)
+	s.DB.Exec(`INSERT INTO storyboards (project_id, scenes_json, updated_at) 
 		VALUES (?, ?, CURRENT_TIMESTAMP) 
 		ON CONFLICT(project_id) DO UPDATE SET scenes_json = EXCLUDED.scenes_json, updated_at = CURRENT_TIMESTAMP`,
 		req.Msg.ProjectId, string(scenesJSON))
-	if err != nil {
-		return nil, connect.NewError(connect.CodeInternal, err)
-	}
 
-	// Auto-commit to history
-	s.CommitHistory(ctx, connect.NewRequest(&editorpb.CommitHistoryRequest{
-		ProjectId:  req.Msg.ProjectId,
-		Type:       "storyboard",
-		StateJson:  string(scenesJSON),
-		Message:    "Auto-save storyboard",
-		BranchName: "main",
-	}))
-
-	return connect.NewResponse(&editorpb.SaveStoryboardResponse{Success: true, Message: "Saved successfully"}), nil
+	return connect.NewResponse(&editorpb.SaveStoryboardResponse{Success: true, Message: "Saved successfully to file and DB cache"}), nil
 }
 
 func (s *EditorServer) CommitHistory(ctx context.Context, req *connect.Request[editorpb.CommitHistoryRequest]) (*connect.Response[editorpb.CommitHistoryResponse], error) {
@@ -379,20 +440,34 @@ func (s *EditorServer) CheckoutHistory(ctx context.Context, req *connect.Request
 
 func (s *EditorServer) GetStoryboard(ctx context.Context, req *connect.Request[editorpb.GetStoryboardRequest]) (*connect.Response[editorpb.GetStoryboardResponse], error) {
 	log.Printf("RPC: GetStoryboard called for project: %s", req.Msg.ProjectId)
-	var scenesJSON string
-	err := s.DB.QueryRow("SELECT scenes_json FROM storyboards WHERE project_id = ?", req.Msg.ProjectId).Scan(&scenesJSON)
-	if err == sql.ErrNoRows {
-		return connect.NewResponse(&editorpb.GetStoryboardResponse{}), nil
-	} else if err != nil {
+	
+	path := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "wattpad/storyboard.jsonld")
+	data, err := os.ReadFile(path)
+	if err != nil {
+		if os.IsNotExist(err) {
+			// Fallback to DB if file doesn't exist (migration period)
+			var scenesJSON string
+			err := s.DB.QueryRow("SELECT scenes_json FROM storyboards WHERE project_id = ?", req.Msg.ProjectId).Scan(&scenesJSON)
+			if err == sql.ErrNoRows {
+				return connect.NewResponse(&editorpb.GetStoryboardResponse{}), nil
+			} else if err != nil {
+				return nil, connect.NewError(connect.CodeInternal, err)
+			}
+			var scenes []*editorpb.StoryboardScene
+			json.Unmarshal([]byte(scenesJSON), &scenes)
+			return connect.NewResponse(&editorpb.GetStoryboardResponse{Scenes: scenes}), nil
+		}
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
-	var scenes []*editorpb.StoryboardScene
-	if err := json.Unmarshal([]byte(scenesJSON), &scenes); err != nil {
+	var storyboard struct {
+		Scenes []*editorpb.StoryboardScene `json:"gh:scenes"`
+	}
+	if err := json.Unmarshal(data, &storyboard); err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
-	return connect.NewResponse(&editorpb.GetStoryboardResponse{Scenes: scenes}), nil
+	return connect.NewResponse(&editorpb.GetStoryboardResponse{Scenes: storyboard.Scenes}), nil
 }
 
 func (s *EditorServer) buildGraphRAGContext(ctx context.Context, nodeIDs []string) string {
@@ -750,9 +825,10 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 							ToId:     bNodeID,
 							Relation: "gh:contains",
 							Style:    "dashed",
-							Color:    "#d2d2d7",
+							Color:    "#0071e3", // Manuscript color
 							Group:    "structural",
-							Distance: 50, // Close distance for containment
+							Distance: 60,
+							Strength: 0.8,
 						})
 
 						// Link: Sequential blocks
@@ -762,9 +838,10 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 								ToId:     bNodeID,
 								Relation: "gh:precedes",
 								Style:    "solid",
-								Color:    "#0071e3",
+								Color:    "#34c759", // Flow color (green)
 								Group:    "structural",
-								Distance: 30, // Sequential blocks are close
+								Distance: 30, // Sequential blocks are very close
+								Strength: 1.0,
 							})
 						}
 						prevBlockID = bNodeID
@@ -793,9 +870,10 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 										ToId:     bNodeID,
 										Relation: "gh:appearsIn",
 										Style:    "dotted",
-										Color:    "#ff9500",
+										Color:    "#ff9500", // Entity appearance color (orange)
 										Group:    "semantic",
-										Distance: 80,
+										Distance: 120,
+										Strength: 0.3,
 									})
 								}
 							}

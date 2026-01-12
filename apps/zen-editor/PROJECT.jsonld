@@ -10,7 +10,8 @@
   "data_integration": {
     "manifest": "251022/wattpad/manifest.json integrated for file navigation",
     "topology": "251022/ghost-hacker.jsonld parsed for world-building visualization",
-    "manuscripts": "Full access to Wattpad episode parts"
+    "manuscripts": "Full access to Wattpad episode parts",
+    "storyboard": "251022/wattpad/storyboard.jsonld managed as JSON-LD with Git versioning"
   },
   "ai_integration": {
     "openrouter": "Claude 3.5 Sonnet driven persona emulation (A2A)",
@@ -128,6 +129,10 @@
     },
     {
       "step": "12. Implement Automatic Layout Persistence",
+      "status": "completed"
+    },
+    {
+      "step": "13. Migrate Storyboard to File-based JSON-LD with Git auto-commit",
       "status": "completed"
     }
   ]

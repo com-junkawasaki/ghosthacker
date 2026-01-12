@@ -283,8 +283,14 @@
           <div class="col-desc">
             <textarea bind:value={scene.description} placeholder="Describe the scene..."></textarea>
             
-            <div class="entity-slots">
-              <div class="entity-slot" ondragover={(e) => e.preventDefault()} ondrop={(e) => handleDrop(e, scene, 'persons')}>
+            <div class="entity-slots" role="group" aria-label="Scene entities">
+              <div 
+                role="region" 
+                aria-label="Characters"
+                class="entity-slot" 
+                ondragover={(e) => e.preventDefault()} 
+                ondrop={(e) => handleDrop(e, scene, 'persons')}
+              >
                 <span class="label">人物:</span>
                 <div class="entity-tags">
                   {#each scene.persons as p}
@@ -295,7 +301,13 @@
                   {/if}
                 </div>
               </div>
-              <div class="entity-slot" ondragover={(e) => e.preventDefault()} ondrop={(e) => handleDrop(e, scene, 'places')}>
+              <div 
+                role="region" 
+                aria-label="Places"
+                class="entity-slot" 
+                ondragover={(e) => e.preventDefault()} 
+                ondrop={(e) => handleDrop(e, scene, 'places')}
+              >
                 <span class="label">背景:</span>
                 <div class="entity-tags">
                   {#each scene.places as p}
@@ -306,7 +318,13 @@
                   {/if}
                 </div>
               </div>
-              <div class="entity-slot" ondragover={(e) => e.preventDefault()} ondrop={(e) => handleDrop(e, scene, 'items')}>
+              <div 
+                role="region" 
+                aria-label="Items"
+                class="entity-slot" 
+                ondragover={(e) => e.preventDefault()} 
+                ondrop={(e) => handleDrop(e, scene, 'items')}
+              >
                 <span class="label">小物:</span>
                 <div class="entity-tags">
                   {#each scene.items as i}
@@ -317,7 +335,13 @@
                   {/if}
                 </div>
               </div>
-              <div class="entity-slot" ondragover={(e) => e.preventDefault()} ondrop={(e) => handleDrop(e, scene, 'emotions')}>
+              <div 
+                role="region" 
+                aria-label="Emotions"
+                class="entity-slot" 
+                ondragover={(e) => e.preventDefault()} 
+                ondrop={(e) => handleDrop(e, scene, 'emotions')}
+              >
                 <span class="label">感情:</span>
                 <div class="entity-tags">
                   {#each scene.emotions as em}

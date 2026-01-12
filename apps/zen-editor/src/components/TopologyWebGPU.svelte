@@ -16,6 +16,8 @@
   let hoveredNode = $state<any>(null);
   let mousePos = $state({ x: 0, y: 0 });
 
+  let minimapViewport = $state({ top: 0, left: 0, width: 100, height: 100 });
+
   onMount(() => {
     console.log("Topology component onMount starting (using @cosmos.gl/graph)");
     if (containerElement) {
@@ -30,24 +32,45 @@
           simulationGravity: 0.05,
           simulationRepulsion: 1.0,
           simulationFriction: 0.9,
-          events: {
-            onClick: (index: number) => {
-              if (index !== undefined && nodes[index]) {
-                handleNodeClick(nodes[index]);
-              }
-            },
-            onPointerOver: (index: number) => {
-              if (index !== undefined && nodes[index]) {
-                hoveredNode = nodes[index];
-                if (containerElement) containerElement.style.cursor = 'pointer';
-              }
-            },
-            onPointerOut: () => {
-              hoveredNode = null;
-              if (containerElement) containerElement.style.cursor = 'default';
-            }
-          }
         });
+
+        // Setup interactions
+        // @ts-ignore
+        g.onClick = (index: number) => {
+          if (index !== undefined && nodes[index]) {
+            handleNodeClick(nodes[index]);
+          }
+        };
+
+        // @ts-ignore
+        g.onPointerOver = (index: number) => {
+          if (index !== undefined && nodes[index]) {
+            hoveredNode = nodes[index];
+            if (containerElement) containerElement.style.cursor = 'pointer';
+          }
+        };
+
+        // @ts-ignore
+        g.onPointerOut = () => {
+          hoveredNode = null;
+          if (containerElement) containerElement.style.cursor = 'default';
+        };
+
+        // Sync minimap
+        // @ts-ignore
+        if (g.zoomInstance) {
+          // @ts-ignore
+          g.zoomInstance.on('zoom', (event) => {
+            const transform = event.transform;
+            const scale = Math.min(1, 1 / transform.k);
+            minimapViewport = {
+              left: ((-transform.x / transform.k) / 2000 + 0.5) * 100,
+              top: ((-transform.y / transform.k) / 2000 + 0.5) * 100,
+              width: scale * 50,
+              height: scale * 50
+            };
+          });
+        }
 
         graph = g;
         fetchData();
@@ -69,7 +92,7 @@
       console.log("Fetching topology data...");
       const resp = await client.getTopology({ projectId: "251022" });
       console.log("Topology data received:", resp);
-      nodes = (resp.nodes || []).filter(n => n && n.id && n.label);
+      nodes = (resp.nodes || []).filter((n: any) => n && n.id && n.label);
       edges = resp.edges || [];
 
       if (graph) {
@@ -93,17 +116,35 @@
         });
 
         const links = new Float32Array(edges.length * 2);
+        const linkColors = new Float32Array(edges.length * 4);
+        const linkWidths = new Float32Array(edges.length);
         const idToIndex = new Map(nodes.map((n, i) => [n.id, i]));
         
         edges.forEach((e, i) => {
-          links[i * 2] = idToIndex.get(e.fromId) || 0;
-          links[i * 2 + 1] = idToIndex.get(e.toId) || 0;
+          const fromIdx = idToIndex.get(e.fromId) || 0;
+          const toIdx = idToIndex.get(e.toId) || 0;
+          links[i * 2] = fromIdx;
+          links[i * 2 + 1] = toIdx;
+
+          const color = hexToRgba(e.color || '#33333a', 0.4);
+          linkColors[i * 4] = color[0];
+          linkColors[i * 4 + 1] = color[1];
+          linkColors[i * 4 + 2] = color[2];
+          linkColors[i * 4 + 3] = color[3];
+
+          linkWidths[i] = e.relation === 'gh:precedes' ? 2.0 : 1.0;
         });
 
-        console.log("Setting Graph data...");
+        console.log("Setting Graph data with enhanced links...");
         graph.setPointPositions(pointPositions);
         graph.setPointColors(pointColors);
         graph.setLinks(links);
+        
+        // @ts-ignore
+        if (graph.setLinkColors) graph.setLinkColors(linkColors);
+        // @ts-ignore
+        if (graph.setLinkWidths) graph.setLinkWidths(linkWidths);
+
         graph.render();
         graph.fitView(1000);
       }
@@ -141,6 +182,13 @@
     }
   }
 
+  function hexToRgba(hex: string, alpha: number = 0.5) {
+    const r = parseInt(hex.slice(1, 3), 16) / 255;
+    const g = parseInt(hex.slice(3, 5), 16) / 255;
+    const b = parseInt(hex.slice(5, 7), 16) / 255;
+    return [r, g, b, alpha];
+  }
+
   export function setPositions(positions: any[]) {
     if (!graph) return;
     const posMap = new Map(positions.map(p => [p.id, p]));
@@ -160,11 +208,15 @@
     if (!graph) return;
     try {
       const client = await getClient();
-      if (!client) return;
+      if (!client || !graph) return;
       
+      const allPositions = graph.getPointPositions();
       const positions = nodes.map((n, i) => {
-        const pos = graph!.getPointPositionByIndex(i);
-        return { id: n.id, x: pos[0], y: pos[1] };
+        return { 
+          id: n.id, 
+          x: allPositions[i * 2], 
+          y: allPositions[i * 2 + 1] 
+        };
       });
 
       await client.commitHistory({
@@ -178,6 +230,23 @@
     } catch (err) {
       console.error("Failed to commit layout:", err);
     }
+  }
+
+  function handleZoomIn() {
+    if (!graph) return;
+    // @ts-ignore
+    graph.zoomInstance.scaleBy(graph.canvasD3Selection.transition().duration(300), 1.5);
+  }
+
+  function handleZoomOut() {
+    if (!graph) return;
+    // @ts-ignore
+    graph.zoomInstance.scaleBy(graph.canvasD3Selection.transition().duration(300), 0.75);
+  }
+
+  function handleResetZoom() {
+    if (!graph) return;
+    graph.fitView(500);
   }
 
   function handleDragStart(e: DragEvent, node: any) {
@@ -198,10 +267,13 @@
     <div class="node-list">
       {#each nodes as n (n.id)}
         <div 
+          role="button"
+          tabindex="0"
           class="node-item" 
           draggable={true}
           ondragstart={(e) => handleDragStart(e, n)}
           onclick={() => handleNodeClick(n)}
+          onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && handleNodeClick(n)}
         >
           <span class="node-icon {n.group || 'default'}"></span>
           <span class="node-label">{n.label}</span>
@@ -210,14 +282,33 @@
     </div>
   </div>
 
-  <div class="topology-main" onmousemove={handleMouseMove}>
+  <div class="topology-main" role="presentation" onmousemove={handleMouseMove}>
     <div 
       bind:this={containerElement} 
       style="width: 100%; height: 100%;"
+      role="application"
+      aria-label="Graph Visualization"
     ></div>
+
+    <div class="graph-controls">
+      <button class="control-btn" onclick={handleZoomIn} title="Zoom In">+</button>
+      <button class="control-btn" onclick={handleZoomOut} title="Zoom Out">−</button>
+      <button class="control-btn" onclick={handleResetZoom} title="Reset View">⟲</button>
+    </div>
+
+    <div class="minimap-container">
+      <div class="minimap-header">Minimap</div>
+      <div class="minimap-view" role="region" aria-label="Minimap View">
+        <!-- Nodes representation in minimap -->
+        {#each nodes as n}
+          <div role="presentation" class="minimap-node {n.group || 'default'}" style="left: {((n.x || 0) / 2000 + 0.5) * 100}%; top: {((n.y || 0) / 2000 + 0.5) * 100}%;"></div>
+        {/each}
+        <div class="minimap-viewport" style="left: {minimapViewport.left}%; top: {minimapViewport.top}%; width: {minimapViewport.width}%; height: {minimapViewport.height}%;"></div>
+      </div>
+    </div>
     
     {#if hoveredNode}
-      <div class="node-tooltip" style="left: {mousePos.x + 15}px; top: {mousePos.y + 15}px;">
+      <div role="tooltip" class="node-tooltip" style="left: {mousePos.x + 15}px; top: {mousePos.y + 15}px;">
         <div class="tooltip-header">
           <span class="node-icon {hoveredNode.group || 'default'}"></span>
           <strong>{hoveredNode.label}</strong>
@@ -343,6 +434,88 @@
   .topology-main {
     flex: 1;
     position: relative;
+    overflow: hidden;
+  }
+
+  .graph-controls {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 100;
+  }
+
+  .graph-controls .control-btn {
+    width: 36px;
+    height: 36px;
+    background: rgba(20, 20, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    backdrop-filter: blur(5px);
+  }
+
+  .graph-controls .control-btn:hover {
+    background: #0071e3;
+    border-color: #0071e3;
+  }
+
+  .minimap-container {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    width: 180px;
+    height: 120px;
+    background: rgba(10, 10, 15, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .minimap-header {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    color: #666;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    letter-spacing: 0.1em;
+  }
+
+  .minimap-view {
+    flex: 1;
+    position: relative;
+    background: #05050a;
+  }
+
+  .minimap-node {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .minimap-node.content { background: #0071e3; }
+  .minimap-node.entity { background: #ff3b30; }
+  .minimap-node.default { background: #8e8e93; }
+
+  .minimap-viewport {
+    position: absolute;
+    border: 1px solid rgba(0, 113, 227, 0.5);
+    background: rgba(0, 113, 227, 0.1);
+    pointer-events: none;
   }
   
   .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; }
@@ -381,6 +554,7 @@
     line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     margin-bottom: 0.6rem;

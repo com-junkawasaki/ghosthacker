@@ -64,7 +64,13 @@
       <div class="loading">Loading history...</div>
     {:else}
       {#each historyItems as item}
-        <div class="history-item" onclick={() => checkout(item.id)}>
+        <div 
+          role="button"
+          tabindex="0"
+          class="history-item" 
+          onclick={() => checkout(item.id)}
+          onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && checkout(item.id)}
+        >
           <div class="item-header">
             <span class="type-tag" class:storyboard={item.type === 'storyboard'}>{item.type}</span>
             <span class="date">{new Date(item.createdAt).toLocaleString()}</span>

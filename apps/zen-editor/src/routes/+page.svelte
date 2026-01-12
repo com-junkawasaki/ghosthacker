@@ -76,7 +76,7 @@
   }
 </script>
 
-<div class="app-container" onmousemove={handleMouseMove} onmouseup={stopResize}>
+<div class="app-container" role="presentation" onmousemove={handleMouseMove} onmouseup={stopResize}>
   <header class="top-bar">
     <div class="left-section">
       <button class="menu-btn" onclick={toggleSidebar}>☰</button>
@@ -111,13 +111,32 @@
           <Topology bind:this={topologyRef} onSelect={handleNodeSelect} selectedId={selectedNode?.id} />
         </div>
       {:else if activeView === "dual" && isGraphCollapsed}
-        <div class="collapsed-pane" onclick={() => isGraphCollapsed = false}>
+        <div 
+          role="button"
+          tabindex="0"
+          class="collapsed-pane" 
+          onclick={() => isGraphCollapsed = false}
+          onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && (isGraphCollapsed = false)}
+        >
           <span>Graph</span>
         </div>
       {/if}
 
       {#if activeView === "dual"}
-        <div class="resize-handle" onmousedown={startResize}></div>
+        <div 
+          role="separator" 
+          tabindex="0"
+          aria-orientation="vertical"
+          aria-valuenow={leftPaneWidth}
+          aria-valuemin={10}
+          aria-valuemax={90}
+          class="resize-handle" 
+          onmousedown={startResize}
+          onkeydown={(e) => {
+            if (e.key === 'ArrowLeft') leftPaneWidth = Math.max(10, leftPaneWidth - 1);
+            if (e.key === 'ArrowRight') leftPaneWidth = Math.min(90, leftPaneWidth + 1);
+          }}
+        ></div>
       {/if}
 
       {#if (activeView === "storyboard" || activeView === "dual") && !isStoryboardCollapsed}
@@ -131,7 +150,13 @@
           <Storyboard bind:this={storyboardRef} />
         </div>
       {:else if activeView === "dual" && isStoryboardCollapsed}
-        <div class="collapsed-pane right" onclick={() => isStoryboardCollapsed = false}>
+        <div 
+          role="button"
+          tabindex="0"
+          class="collapsed-pane right" 
+          onclick={() => isStoryboardCollapsed = false}
+          onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && (isStoryboardCollapsed = false)}
+        >
           <span>Storyboard</span>
         </div>
       {/if}
