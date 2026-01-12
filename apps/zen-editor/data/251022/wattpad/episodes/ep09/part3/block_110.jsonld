@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part3:110",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Warm word.",
+    "ja": "のどの奥で、小さな安堵がひらく。"
+  },
+  "gh:index": 110
+}

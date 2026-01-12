@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part3:56",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, the Engine’s 666 mark… is gone.”",
+    "ja": "Nei-chan『タマ、Reconciliation Engineの666の刻印……完全に消えた』"
+  },
+  "gh:index": 56
+}

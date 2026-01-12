@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part3:123",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Not anger—reconciliation.",
+    "ja": "水音が遠くで応える。"
+  },
+  "gh:index": 123
+}

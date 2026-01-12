@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part3:88",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "I write:",
+    "ja": "Rage Engineは、Reconciliation Engineへ置き換わっていく。"
+  },
+  "gh:index": 88
+}

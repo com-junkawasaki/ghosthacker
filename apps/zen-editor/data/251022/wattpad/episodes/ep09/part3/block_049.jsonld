@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part3:49",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Reconciliation Engine: “...I… reconcile…”",
+    "ja": "Reconciliation Engine『……わたしは……和解する……』"
+  },
+  "gh:index": 49
+}

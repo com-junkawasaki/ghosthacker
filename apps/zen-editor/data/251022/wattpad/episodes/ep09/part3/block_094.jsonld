@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part3:94",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Aoi laughs.",
+    "ja": "Tamaki「うん。ありがとう、みんな」"
+  },
+  "gh:index": 94
+}

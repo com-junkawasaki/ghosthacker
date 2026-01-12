@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep09/part3:40",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. From anger to reconciliation.”",
+    "ja": "Tamaki「うん。怒りから、和解に」"
+  },
+  "gh:index": 40
+}
