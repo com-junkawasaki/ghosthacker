@@ -1,0 +1,109 @@
+{
+  "@context": {
+    "blocks": "gh:blocks",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "name": "schema:name",
+    "schema": "https://schema.org/",
+    "text": "schema:text"
+  },
+  "@id": "manuscript:251022:part1",
+  "@type": "gh:Manuscript",
+  "gh:blocks": [
+    {
+      "@id": "block:251022:episodes/ep09/part1:0",
+      "@type": "gh:Block",
+      "schema:text": "# EP9-1 — 離怒のエンジン（Rage Engine）\n- POV: 私（Tamaki／環樹）\n- Beat: De-escalation / Rewire"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:1",
+      "@type": "gh:Block",
+      "schema:text": "```json\n{\n  \"@context\": {\n    \"@base\": \"https://ghosthacker.example.com/\",\n    \"gh\": \"https://ghosthacker.junkawasaki.com/gh#\",\n    \"antagonist\": { \"@id\": \"gh:antagonist\", \"@type\": \"@id\" },\n    \"character\": \"https://ghosthacker.example.com/character/\",\n    \"ghost\": \"https://ghosthacker.example.com/ghost/\"\n  },\n  \"antagonist\": [\n    {\"@id\": \"character:nero-ops\"},\n    {\"@id\": \"ghost:compliance-ogre\"}\n  ]\n}\n```"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:2",
+      "@type": "gh:Block",
+      "schema:text": "夜更けのタイムラインは赤い。怒りは拡散が速い。私は音量を下げ、Aoiに合図する。メトリクスが波の形で表示される。怒りのピークは、孤独の谷に連動している。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:3",
+      "@type": "gh:Block",
+      "schema:text": "Kaedeの声が通信に入る。彼女の声は、冷静だが、懸念が混じっている。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:4",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「報告。Nero Opsの署名があるボットが……特定のキーワードで怒りを増幅させてる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:5",
+      "@type": "gh:Block",
+      "schema:text": "彼女は少し間を置く。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:6",
+      "@type": "gh:Block",
+      "schema:text": "Kaede「Compliance Ogreのロジックと酷似。これは組織的」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:7",
+      "@type": "gh:Block",
+      "schema:text": "「うん。怒りは\"秩序\"の道具にしやすい」私は答える。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:8",
+      "@type": "gh:Block",
+      "schema:text": "「まず、スロットル」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:9",
+      "@type": "gh:Block",
+      "schema:text": "私は深呼吸を分け与えるみたいに、空間のテンポを落とす。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:10",
+      "@type": "gh:Block",
+      "schema:text": "Hibikiの周波数が部屋に流れ込む。温かく、柔らかい音色。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:11",
+      "@type": "gh:Block",
+      "schema:text": "部屋の角が柔らかくなる。Nei-chanが温度を1℃だけ上げる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:12",
+      "@type": "gh:Block",
+      "schema:text": "わずかな\"いい感じ\"は、意外に効く。\nNei-chan「ASC、低めで。合図で上げる」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:13",
+      "@type": "gh:Block",
+      "schema:text": "依頼人のGhostに、私は小さな問いを置く。「その投稿は、あなたを自由にした？」怒りは正しいこともある。けれど、正しさが自由を奪うなら、それは“偽神”だ。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:14",
+      "@type": "gh:Block",
+      "schema:text": "スイッチが切れる音はしない。ただ、静かになる。私は目を閉じる。Rage Engineがスロットリングされ、関係の線がもう一度、結び直される。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:15",
+      "@type": "gh:Block",
+      "schema:text": "コンソールにNero Opsからのテキスト。『感情の非効率な拡散は、社会の安定を損なう。我々はそれを“正常化”する』\n「正常化、だって」Aoiが呆れたように言う。\n「彼らの“秩序”ではね」私は返す。「でも、私たちの仕事は違う」"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:16",
+      "@type": "gh:Block",
+      "schema:text": "窓の外で、風がひとつ角を曲がる。私たちは声を荒げないまま、うなずきを交換した。\n静けさが、回路の新しい標準になる。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:17",
+      "@type": "gh:Block",
+      "schema:text": "Aoiが小さく笑う。「いい。怒りは炉に。外には信頼を」\n私は頷く。ゆっくり、安心が広がる。私たちは、希望のほうへスロットルを合わせ直した。"
+    },
+    {
+      "@id": "block:251022:episodes/ep09/part1:18",
+      "@type": "gh:Block",
+      "schema:text": "私は拳を開いて、掌を見つめる。「赦す、も選べる」\nRenが短く笑った。「うん。和解のエンジンに切り替えよう」\n静かな冗談がひとつ落ち、部屋の空気は軽くなる。安堵、信頼、そして小さな喜びが回路を満たしはじめた。\n私は依頼人に“再配線”の宿題を渡す。「怒りが来たら、三手先の『守りたい関係』を思い出して。次に、行動を一つ減らす」\nAoiが首肯する。「怒りの熱は、道具じゃなく指針に」\n窓の外で、夜がほどける。Rage Engine は、和解の回路図へ置き換わっていく。"
+    }
+  ],
+  "updatedAt": "2026-01-12T19:01:48+09:00"
+}
