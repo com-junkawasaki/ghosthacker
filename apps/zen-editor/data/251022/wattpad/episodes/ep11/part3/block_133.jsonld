@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part3:133",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "---",
+    "ja": "それが、私たちの答えだ。"
+  },
+  "gh:index": 133
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part3:39",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. But you sought perfection too much.”",
+    "ja": "Tamaki「うん。でも、完璧を求めすぎた」"
+  },
+  "gh:index": 39
+}

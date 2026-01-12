@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part3:68",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Tamaki: “Yes. Let’s keep it—together.”",
+    "ja": "Tamaki「うん。一緒に、守ろう」"
+  },
+  "gh:index": 68
+}

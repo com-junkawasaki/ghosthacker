@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part3:51",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The Ogre breathes with me.",
+    "ja": "Compliance Ogreも、一緒に呼吸する。"
+  },
+  "gh:index": 51
+}

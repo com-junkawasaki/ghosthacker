@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part3:8",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Compliance Ogre: “...Not perfect…?”",
+    "ja": "Compliance Ogre『……完璧じゃない……？』"
+  },
+  "gh:index": 8
+}

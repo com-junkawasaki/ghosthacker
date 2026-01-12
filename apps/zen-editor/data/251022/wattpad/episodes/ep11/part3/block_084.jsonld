@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep11/part3:84",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Compliance Ogre: “...I… exist…”",
+    "ja": "Compliance Ogre『……わたしは……在る……』"
+  },
+  "gh:index": 84
+}
