@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:67",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede (comms): “Your mother will also enter the protection program. Operation scheduled at another facility. The ‘chain of ancestors’ across generations—we’ll release it.”",
+    "ja": "「……私の、鎖？」"
+  },
+  "gh:index": 67
+}

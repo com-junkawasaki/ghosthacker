@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:30",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Millia says softly: “...I want to see my mother again. But not as ‘a daughter’—as ‘a person.’”",
+    "ja": "Kaedeの声が通信に入る。彼女の声は、いつもの冷静さに戻っている。"
+  },
+  "gh:index": 30
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:15",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“There shouldn’t be aftereffects, but if you feel ‘phantom chain pain,’ come back.”",
+    "ja": "Leoは彼女の額に触れる。"
+  },
+  "gh:index": 15
+}

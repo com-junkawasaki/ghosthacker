@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:31",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan smiles: “That’s good. Your mother will be glad.”",
+    "ja": "Kaede「事後の行政手続きは、私が持つ」"
+  },
+  "gh:index": 31
+}

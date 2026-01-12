@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:57",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "And I have breathing that feels good.",
+    "ja": "「そうだね。それが、\"わかれていない\"ということだね」"
+  },
+  "gh:index": 57
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:61",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The next day.",
+    "ja": "Dr. イタコ「いい、geneとmemeを残すんだよ」"
+  },
+  "gh:index": 61
+}

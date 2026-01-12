@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:5",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Kaede: “Rest now. Good work.”",
+    "ja": "彼の声には、麻酔科医としての安心感がある。"
+  },
+  "gh:index": 5
+}

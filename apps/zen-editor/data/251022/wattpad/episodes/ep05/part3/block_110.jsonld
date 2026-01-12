@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:110",
+  "@type": "gh:Block",
+  "gh:content": {
+    "ja": "彼女が部屋を出ていく。"
+  },
+  "gh:index": 110
+}

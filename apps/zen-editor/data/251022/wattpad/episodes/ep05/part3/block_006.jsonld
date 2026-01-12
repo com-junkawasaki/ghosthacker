@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:6",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Nei-chan: “Tama, Millia’s outline is glowing. Beautiful.”",
+    "ja": "Kaede「同意書の事後説明は、私がやる」"
+  },
+  "gh:index": 6
+}

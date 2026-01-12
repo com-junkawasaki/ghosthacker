@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:72",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "The canal light pulses quietly.",
+    "ja": "「タマ、大丈夫？」"
+  },
+  "gh:index": 72
+}

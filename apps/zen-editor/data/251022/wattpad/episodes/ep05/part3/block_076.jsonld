@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:76",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Dr. Itako stands beside me.",
+    "ja": "次のセッションは、また新しい\"痛み\"と向き合うことになる。"
+  },
+  "gh:index": 76
+}

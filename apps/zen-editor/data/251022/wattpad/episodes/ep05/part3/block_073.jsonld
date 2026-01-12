@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:73",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "Afterglow lasts long.",
+    "ja": "私は笑う。"
+  },
+  "gh:index": 73
+}

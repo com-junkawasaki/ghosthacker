@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "content": "gh:content",
+    "gh": "https://gftd.ai/ghost-hacker/ontology/"
+  },
+  "@id": "block:251022:episodes/ep05/part3:35",
+  "@type": "gh:Block",
+  "gh:content": {
+    "en": "“...Love is hard.”",
+    "ja": "Kaede「面会は……あなたが決めていい。強制じゃない」"
+  },
+  "gh:index": 35
+}
