@@ -50,18 +50,13 @@
       }
 
       // 2. Sync Node Positions from Simulation back to Store
-      // This ensures labels stay attached to the dots
       try {
         const positions = graph.getPointPositions();
-        const nodeList = Array.from(graphStore.nodes.values());
-        if (positions && positions.length >= nodeList.length * 2) {
-          nodeList.forEach((node, i) => {
-            node.x = positions[i * 2];
-            node.y = positions[i * 2 + 1];
-          });
+        if (positions) {
+          graphStore.updateNodePositions(positions);
         }
       } catch (e) {
-        // Simulation might not have started or array is detached
+        // Simulation might not have started
       }
     }
     frameId = requestAnimationFrame(syncLoop);

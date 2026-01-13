@@ -43,21 +43,14 @@ class GraphStore {
       
       const newNodeMap = new Map<string, Node>();
       (resp.nodes || []).forEach((n: any) => {
-        newNodeMap.set(n.id, { ...n, children: [] });
+        newNodeMap.set(n.id, { 
+          ...n, 
+          children: n.children || [] 
+        });
       });
 
-      // Build containment relations for tree
-      (resp.edges || []).forEach((e: any) => {
-        if (e.relation === 'gh:memberOf' || e.relation === 'gh:contains' || e.relation === 'gh:partOf') {
-          const parent = newNodeMap.get(e.fromId);
-          if (parent) {
-            if (!parent.children) parent.children = [];
-            if (!parent.children.includes(e.toId)) {
-              parent.children.push(e.toId);
-            }
-          }
-        }
-      });
+      // Hub containment is already handled by the backend's 'children' and 'memberOf' edges.
+      // We keep this for any additional client-side hierarchy if needed.
 
       // Apply initial hierarchical layout
       const rootCircleIds = [
@@ -105,19 +98,18 @@ class GraphStore {
       // Update nodes map
       (resp.nodes || []).forEach((n: any) => {
         if (!this.nodes.has(n.id)) {
-          this.nodes.set(n.id, { ...n, children: [] });
+          this.nodes.set(n.id, { 
+            ...n, 
+            children: n.children || [] 
+          });
         }
       });
 
-      // Update parent children list
+      // Update parent children list from response
       const parent = this.nodes.get(manuscriptId);
       if (parent) {
-        if (!parent.children) parent.children = [];
-        (resp.nodes || []).forEach((n: any) => {
-          if (!parent.children!.includes(n.id)) {
-            parent.children!.push(n.id);
-          }
-        });
+        const childIds = (resp.nodes || []).map((n: any) => n.id);
+        parent.children = Array.from(new Set([...(parent.children || []), ...childIds]));
       }
 
       // Merge edges
@@ -196,10 +188,37 @@ class GraphStore {
     }
   }
 
-  private projectId = "";
-
   selectNode(nodeId: string | null) {
     this.selectedNodeId = nodeId;
+    if (nodeId) {
+      const node = this.nodes.get(nodeId);
+      if (node && node.type === 'gh:Manuscript' && (!node.children || node.children.length === 0)) {
+        this.fetchBlocks(nodeId);
+      }
+    }
+  }
+
+  private projectId = "";
+
+  updateNodePositions(positions: Float32Array) {
+    let changed = false;
+    const nodeList = Array.from(this.nodes.values());
+    if (positions.length < nodeList.length * 2) return;
+
+    nodeList.forEach((node, i) => {
+      const nx = positions[i * 2];
+      const ny = positions[i * 2 + 1];
+      if (node.x !== nx || node.y !== ny) {
+        node.x = nx;
+        node.y = ny;
+        changed = true;
+      }
+    });
+
+    if (changed) {
+      // Trigger map update to notify observers of derived state
+      this.nodes = new Map(this.nodes);
+    }
   }
 }
 

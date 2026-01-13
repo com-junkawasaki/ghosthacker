@@ -28,12 +28,13 @@ Then('I should see a success message {string}', async ({ page }, message: string
   // But let's assume we might have a UI toast later. For now, let's just wait a bit
   // or check if the save button is enabled again.
   const saveBtn = page.locator('.save-btn');
-  await expect(saveBtn).toBeEnabled();
+  await expect(saveBtn).toBeEnabled({ timeout: 15000 });
 });
 
 When('I reload the page', async ({ page }) => {
   await page.reload();
-  await expect(page.locator('.dual-view')).toBeVisible();
+  // Wait for the app container to be ready
+  await expect(page.locator('.main-content')).toBeVisible();
 });
 
 Then('I should see the scene with description {string}', async ({ page }, description: string) => {

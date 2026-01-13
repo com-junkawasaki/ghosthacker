@@ -491,8 +491,8 @@
   .sketch-footer { padding: 0.2rem 0.5rem; font-size: 0.6rem; color: #999; border-top: 1px dashed #eee; text-align: right; font-family: monospace; }
   .sketch-placeholder { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #d2d2d7; gap: 0.5rem; }
   
-  .col-desc, .col-audio { flex: 1; padding: 0.5rem; border-right: 1px solid #d2d2d7; }
-  textarea { width: 100%; height: 100%; border: none; resize: none; background: transparent; padding: 0.8rem; font-size: 0.9rem; line-height: 1.6; color: #1d1d1f; }
+  .col-desc, .col-audio { flex: 1; padding: 0.5rem; border-right: 1px solid #d2d2d7; display: flex; flex-direction: column; }
+  textarea { width: 100%; flex: 1; min-height: 100px; border: none; resize: none; background: transparent; padding: 0.8rem; font-size: 0.9rem; line-height: 1.6; color: #1d1d1f; }
   textarea:focus { outline: none; }
 
   .entity-slots {

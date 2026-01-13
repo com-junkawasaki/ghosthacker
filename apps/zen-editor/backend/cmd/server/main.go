@@ -76,7 +76,13 @@ func (s *EditorServer) LoadDatastore(projectID string) {
 		if err := json.Unmarshal(data, &nodeData); err != nil { continue }
 
 		id, _ := nodeData["@id"].(string)
-		nodeType, _ := nodeData["@type"].(string)
+		var nodeType string
+		if t, ok := nodeData["@type"].(string); ok {
+			nodeType = t
+		} else if ts, ok := nodeData["@type"].([]interface{}); ok && len(ts) > 0 {
+			nodeType, _ = ts[0].(string)
+		}
+		
 		label, _ := nodeData["name"].(string)
 		if label == "" { label, _ = nodeData["label"].(string) }
 		group := s.categorizeNode(nodeType)
@@ -98,28 +104,43 @@ func (s *EditorServer) LoadDatastore(projectID string) {
 
 		s.NodeCache[id] = node
 
-		// Extract relations
-		if participants, ok := nodeData["gh:participants"].([]interface{}); ok {
-			relType, _ := nodeData["gh:relationType"].(string)
-			strength, _ := nodeData["gh:strength"].(float64)
-			for _, p := range participants {
-				pID, _ := p.(string)
-				if pID != "" && pID != id {
+		// Extract relations recursively
+		var extractEdges func(v interface{})
+		extractEdges = func(v interface{}) {
+			switch val := v.(type) {
+			case map[string]interface{}:
+				if targetID, ok := val["@id"].(string); ok && targetID != "" && targetID != id {
 					s.EdgeCache = append(s.EdgeCache, &editorpb.Edge{
-						FromId: id, ToId: pID, Relation: relType, Strength: float32(strength), Group: "semantic",
+						FromId: id, ToId: targetID, Relation: "gh:relatesTo", Group: "semantic",
 					})
 				}
+				for _, subV := range val { extractEdges(subV) }
+			case []interface{}:
+				for _, subV := range val { extractEdges(subV) }
 			}
 		}
-		
-		if contains, ok := nodeData["gh:contains"].([]interface{}); ok {
-			for _, c := range contains {
-				cID, _ := c.(string)
-				if cID != "" {
-					s.EdgeCache = append(s.EdgeCache, &editorpb.Edge{
-						FromId: id, ToId: cID, Relation: "gh:contains", Group: "structural",
-					})
+
+		for k, v := range nodeData {
+			if k == "@id" || k == "@type" || k == "gh:x" || k == "gh:y" { continue }
+			if k == "gh:contains" || k == "gh:participants" || k == "gh:involvedIn" || k == "gh:memberOf" {
+				if items, ok := v.([]interface{}); ok {
+					for _, item := range items {
+						targetID := ""
+						if s, ok := item.(string); ok { targetID = s }
+						if m, ok := item.(map[string]interface{}); ok { targetID, _ = m["@id"].(string) }
+						if targetID != "" && targetID != id {
+							rel := k
+							if k == "gh:participants" { rel = "gh:relatesTo" }
+							group := "structural"
+							if rel == "gh:relatesTo" { group = "semantic" }
+							s.EdgeCache = append(s.EdgeCache, &editorpb.Edge{
+								FromId: id, ToId: targetID, Relation: rel, Group: group,
+							})
+						}
+					}
 				}
+			} else {
+				extractEdges(v)
 			}
 		}
 	}
@@ -188,9 +209,12 @@ func NewEditorServer(dataRoot string) *EditorServer {
 	}
 	s.registerMCPTools()
 	
-	// Initial project load and migration
+	// Initial project load
 	projectID := "251022"
-	s.DeepFlattenDatastore(projectID)
+	datastoreDir := filepath.Join(s.WorkspaceRoot, projectID, "datastore")
+	if _, err := os.Stat(datastoreDir); os.IsNotExist(err) {
+		s.DeepFlattenDatastore(projectID)
+	}
 	s.LoadDatastore(projectID)
 
 	return s
@@ -201,42 +225,64 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 	if len(s.NodeCache) == 0 { s.LoadDatastore(req.Msg.ProjectId) }
 	
 	resp := &editorpb.GetTopologyResponse{}
-	hubs := make(map[string]bool)
+	hubs := make(map[string]*editorpb.Node)
 	connected := make(map[string]bool)
 
-	// First pass: identify non-block nodes and high-level connections
+	// Pre-identify connected nodes
 	for _, edge := range s.EdgeCache {
 		connected[edge.FromId] = true
 		connected[edge.ToId] = true
 	}
 
+	// First pass: Add regular nodes and identify needed hubs
 	for _, node := range s.NodeCache {
-		if node.Type != "gh:Block" {
-			resp.Nodes = append(resp.Nodes, node)
-			group := node.Group
-			if !connected[node.Id] {
-				group = "unlinked"
-				node.Group = "unlinked"
-			}
-			if group != "" && group != "meta" && group != "link-node" {
-				hubs[group] = true
+		// Filter out blocks and other noise for the high-level topology
+		if node.Type == "gh:Block" || strings.HasPrefix(node.Id, "block:") {
+			continue
+		}
+		
+		nodeCopy := *node
+		nodeCopy.Children = nil // Reset children for response
+		
+		group := nodeCopy.Group
+		
+		// If not connected to anything else, put in unlinked
+		if !connected[nodeCopy.Id] {
+			group = "unlinked"
+			nodeCopy.Group = "unlinked"
+		}
+		
+		resp.Nodes = append(resp.Nodes, &nodeCopy)
+		if group != "" && group != "meta" && group != "link-node" {
+			hubID := "hub:" + group
+			if _, ok := hubs[hubID]; !ok {
+				hLabel := strings.Title(group) + " Circle"
+				if group == "unlinked" { hLabel = "Unlinked Circle" }
+				if group == "content" { hLabel = "Story Circle" }
+				
+				hubs[hubID] = &editorpb.Node{
+					Id: hubID, Label: hLabel, Type: "gh:ClusterHub", Group: "meta",
+					ViewType: s.determineViewType(hubID, "gh:ClusterHub", "meta"),
+				}
 			}
 		}
 	}
 	
-	// Ensure hubs exist
-	for group := range hubs {
-		hubID := "hub:" + group
-		hLabel := strings.Title(group) + " Circle"
-		if group == "unlinked" { hLabel = "Unlinked Context Circle" }
-		
-		resp.Nodes = append(resp.Nodes, &editorpb.Node{
-			Id: hubID, Label: hLabel, Type: "gh:ClusterHub", Group: "meta",
-			ViewType: s.determineViewType(hubID, "gh:ClusterHub", "meta"),
-		})
-		
-		for _, node := range resp.Nodes {
-			if node.Group == group {
+	// Add hubs to response
+	for _, hub := range hubs {
+		resp.Nodes = append(resp.Nodes, hub)
+	}
+
+	// Create a map for quick access during edge/children building
+	nodeMap := make(map[string]*editorpb.Node)
+	for _, n := range resp.Nodes { nodeMap[n.Id] = n }
+
+	// Build containment edges and populate children
+	for _, node := range resp.Nodes {
+		if node.Group != "" && node.Group != "meta" && node.Group != "link-node" {
+			hubID := "hub:" + node.Group
+			if hub, ok := nodeMap[hubID]; ok {
+				hub.Children = append(hub.Children, node.Id)
 				resp.Edges = append(resp.Edges, &editorpb.Edge{
 					FromId: hubID, ToId: node.Id, Relation: "gh:memberOf", Group: "structural",
 				})
@@ -244,10 +290,26 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 		}
 	}
 
+	// Add semantic edges from cache and populate children for other relations
 	for _, edge := range s.EdgeCache {
-		resp.Edges = append(resp.Edges, edge)
+		if from, ok := nodeMap[edge.FromId]; ok {
+			if _, ok := nodeMap[edge.ToId]; ok {
+				resp.Edges = append(resp.Edges, edge)
+				// Use specific relations to build hierarchy in the sidebar
+				if edge.Relation == "gh:contains" || edge.Relation == "gh:partOf" || edge.Relation == "gh:memberOf" {
+					found := false
+					for _, c := range from.Children {
+						if c == edge.ToId { found = true; break }
+					}
+					if !found {
+						from.Children = append(from.Children, edge.ToId)
+					}
+				}
+			}
+		}
 	}
 
+	log.Printf("RPC: GetTopology returning %d nodes and %d edges", len(resp.Nodes), len(resp.Edges))
 	return connect.NewResponse(resp), nil
 }
 
@@ -255,13 +317,19 @@ func (s *EditorServer) GetBlocks(ctx context.Context, req *connect.Request[edito
 	log.Printf("RPC: GetBlocks (MemoryStore) called for: %s", req.Msg.ManuscriptId)
 	resp := &editorpb.GetBlocksResponse{}
 	if len(s.NodeCache) == 0 { s.LoadDatastore(req.Msg.ProjectId) }
+	
 	var manuscriptBlocks []*editorpb.Node
 	for _, edge := range s.EdgeCache {
 		if edge.FromId == req.Msg.ManuscriptId && edge.Relation == "gh:contains" {
-			if node, ok := s.NodeCache[edge.ToId]; ok { manuscriptBlocks = append(manuscriptBlocks, node) }
+			if node, ok := s.NodeCache[edge.ToId]; ok {
+				nodeCopy := *node
+				nodeCopy.Children = nil
+				manuscriptBlocks = append(manuscriptBlocks, &nodeCopy)
+			}
 		}
 	}
 	sort.Slice(manuscriptBlocks, func(i, j int) bool { return manuscriptBlocks[i].Id < manuscriptBlocks[j].Id })
+	
 	resp.Nodes = manuscriptBlocks
 	for i := 0; i < len(manuscriptBlocks); i++ {
 		resp.Edges = append(resp.Edges, &editorpb.Edge{FromId: req.Msg.ManuscriptId, ToId: manuscriptBlocks[i].Id, Relation: "gh:contains", Group: "structural"})
@@ -339,11 +407,61 @@ func (s *EditorServer) GetProjectMetadata(ctx context.Context, req *connect.Requ
 }
 
 func (s *EditorServer) SaveStoryboard(ctx context.Context, req *connect.Request[editorpb.SaveStoryboardRequest]) (*connect.Response[editorpb.SaveStoryboardResponse], error) {
-	return connect.NewResponse(&editorpb.SaveStoryboardResponse{Success: true}), nil
+	log.Printf("RPC: SaveStoryboard called for: %s", req.Msg.ProjectId)
+	datastoreDir := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "datastore")
+	os.MkdirAll(datastoreDir, 0755)
+
+	storyboardData := map[string]interface{}{
+		"@context": map[string]interface{}{
+			"gh": "https://gftd.ai/ghost-hacker/ontology/",
+			"scenes": "gh:scenes",
+		},
+		"@id": "storyboard:" + req.Msg.ProjectId,
+		"@type": "gh:Storyboard",
+		"gh:scenes": req.Msg.Scenes,
+	}
+
+	data, err := json.MarshalIndent(storyboardData, "", "  ")
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+	log.Printf("Saving Storyboard JSON: %s", string(data))
+
+	filename := s.idToFilename("storyboard:" + req.Msg.ProjectId)
+	err = os.WriteFile(filepath.Join(datastoreDir, filename), data, 0644)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	s.LoadDatastore(req.Msg.ProjectId)
+	return connect.NewResponse(&editorpb.SaveStoryboardResponse{Success: true, Message: "Saved to Datastore"}), nil
 }
 
 func (s *EditorServer) GetStoryboard(ctx context.Context, req *connect.Request[editorpb.GetStoryboardRequest]) (*connect.Response[editorpb.GetStoryboardResponse], error) {
-	return connect.NewResponse(&editorpb.GetStoryboardResponse{}), nil
+	log.Printf("RPC: GetStoryboard called for: %s", req.Msg.ProjectId)
+	id := "storyboard:" + req.Msg.ProjectId
+	
+	if len(s.NodeCache) == 0 { s.LoadDatastore(req.Msg.ProjectId) }
+	
+	datastoreDir := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "datastore")
+	path := filepath.Join(datastoreDir, s.idToFilename(id))
+	
+	data, err := os.ReadFile(path)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return connect.NewResponse(&editorpb.GetStoryboardResponse{}), nil
+		}
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	var storyboardData struct {
+		Scenes []*editorpb.StoryboardScene `json:"gh:scenes"`
+	}
+	if err := json.Unmarshal(data, &storyboardData); err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	return connect.NewResponse(&editorpb.GetStoryboardResponse{Scenes: storyboardData.Scenes}), nil
 }
 
 func (s *EditorServer) CommitHistory(ctx context.Context, req *connect.Request[editorpb.CommitHistoryRequest]) (*connect.Response[editorpb.CommitHistoryResponse], error) {

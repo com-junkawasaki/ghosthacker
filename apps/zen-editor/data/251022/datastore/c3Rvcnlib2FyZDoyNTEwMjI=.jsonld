@@ -1,0 +1,28 @@
+{
+  "@context": {
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "scenes": "gh:scenes"
+  },
+  "@id": "storyboard:251022",
+  "@type": "gh:Storyboard",
+  "gh:scenes": [
+    {
+      "id": 1,
+      "description": "Confrontation in the server room",
+      "timing": "0s",
+      "fps": 24
+    },
+    {
+      "id": 2,
+      "description": "Confrontation in the server room",
+      "timing": "0s",
+      "fps": 24
+    },
+    {
+      "id": 3,
+      "description": "Confrontation in the server room",
+      "timing": "0s",
+      "fps": 24
+    }
+  ]
+}

@@ -4,11 +4,21 @@
 
   let { onNodeClick = () => {} } = $props<{ onNodeClick?: (node: any) => void }>();
 
-  // Determine root circles
-  const rootCircleIds = [
-    'hub:content', 'hub:entity', 'hub:environment', 'hub:item', 'hub:emotion', 
-    'hub:asset', 'hub:concept', 'hub:translation', 'hub:unlinked'
-  ];
+  // Determine root circles - dynamic from nodes starting with hub:
+  let rootCircleIds = $derived(
+    Array.from(graphStore.nodes.keys())
+      .filter(id => id.startsWith('hub:'))
+      .sort((a, b) => {
+        // Prioritize Story, Character, etc.
+        const order = ['hub:content', 'hub:entity', 'hub:environment', 'hub:item', 'hub:emotion', 'hub:translation', 'hub:unlinked'];
+        const idxA = order.indexOf(a);
+        const idxB = order.indexOf(b);
+        if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+        if (idxA !== -1) return -1;
+        if (idxB !== -1) return 1;
+        return a.localeCompare(b);
+      })
+  );
 
   let flattened = $derived(
     flattenTree(rootCircleIds, graphStore.nodes, graphStore.expandedNodes)
@@ -17,6 +27,10 @@
   function handleToggle(e: MouseEvent, id: string) {
     e.stopPropagation();
     graphStore.toggleExpand(id);
+  }
+
+  function handleDragStart(e: DragEvent, node: any) {
+    e.dataTransfer?.setData('application/json', JSON.stringify(node));
   }
 
   function handleClick(node: any) {
@@ -32,6 +46,8 @@
       class:selected={graphStore.selectedNodeId === item.id}
       style="padding-left: {item.depth * 12 + 8}px"
       onclick={() => handleClick(item.node)}
+      draggable="true"
+      ondragstart={(e) => handleDragStart(e, item.node)}
       role="button"
       tabindex="0"
       onkeydown={(e) => e.key === 'Enter' && handleClick(item.node)}

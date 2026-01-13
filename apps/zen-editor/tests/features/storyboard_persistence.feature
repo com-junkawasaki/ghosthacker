@@ -5,7 +5,7 @@ Feature: Storyboard File Persistence
 
   Scenario: Saving a storyboard and verifying it persists
     Given I am on the Zen Editor dual page
-    And I wait for the "Syncing story world" message to disappear
+    And I wait for the "Syncing world..." message to disappear
     When I add a manual scene to the storyboard
     And I enter "Confrontation in the server room" in the description of the new scene
     And I click the "Save to DB" button

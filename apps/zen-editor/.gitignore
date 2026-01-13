@@ -6,6 +6,8 @@ zen-editor.db-journal
 playwright-report/
 test-results/
 .features-gen/
+blob-report/
+playwright/.cache/
 
 # Logs
 logs
