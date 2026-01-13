@@ -21,6 +21,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
+	"sync"
 
 	"github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/internal/git"
 	editorpb "github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/proto"
@@ -36,6 +37,7 @@ type EditorServer struct {
 	Git           *git.GitService
 
 	// Memory Store for fast access
+	mu        sync.RWMutex
 	NodeCache map[string]*editorpb.Node
 	EdgeCache []*editorpb.Edge
 }
@@ -52,6 +54,9 @@ func (s *EditorServer) filenameToId(filename string) string {
 }
 
 func (s *EditorServer) LoadDatastore(projectID string) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	
 	datastoreDir := filepath.Join(s.WorkspaceRoot, projectID, "datastore")
 	os.MkdirAll(datastoreDir, 0755)
 
@@ -224,6 +229,9 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 	log.Printf("RPC: GetTopology (MemoryStore) called for: %s", req.Msg.ProjectId)
 	if len(s.NodeCache) == 0 { s.LoadDatastore(req.Msg.ProjectId) }
 	
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
 	resp := &editorpb.GetTopologyResponse{}
 	hubs := make(map[string]*editorpb.Node)
 	connected := make(map[string]bool)
@@ -318,6 +326,9 @@ func (s *EditorServer) GetBlocks(ctx context.Context, req *connect.Request[edito
 	resp := &editorpb.GetBlocksResponse{}
 	if len(s.NodeCache) == 0 { s.LoadDatastore(req.Msg.ProjectId) }
 	
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
 	var manuscriptBlocks []*editorpb.Node
 	for _, edge := range s.EdgeCache {
 		if edge.FromId == req.Msg.ManuscriptId && edge.Relation == "gh:contains" {
@@ -425,7 +436,6 @@ func (s *EditorServer) SaveStoryboard(ctx context.Context, req *connect.Request[
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
-	log.Printf("Saving Storyboard JSON: %s", string(data))
 
 	filename := s.idToFilename("storyboard:" + req.Msg.ProjectId)
 	err = os.WriteFile(filepath.Join(datastoreDir, filename), data, 0644)
