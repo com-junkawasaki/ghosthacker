@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { T, useThrelte } from '@threlte/core';
+  import { T, useThrelte, useTask } from '@threlte/core';
   import { OrbitControls, ContactShadows, Float, Grid } from '@threlte/extras';
   import * as THREE from 'three';
   import { onMount, onDestroy } from 'svelte';
@@ -13,6 +13,15 @@
     onNodeClick?: (node: any) => void;
     currentTransform: { x: number; y: number; k: number };
   }>();
+
+  // Viewpoint Camera Configurations
+  const VIEWPOINT_CONFIGS: Record<string, any> = {
+    chronological: { distance: 800, offset: [400, 300, 600], fov: 40, drift: 0.2 },
+    relationship: { distance: 500, offset: [0, 200, 500], fov: 45, orbit: 0.1 },
+    atmospheric: { distance: 1500, offset: [0, 0, 1500], fov: 60, pan: 0.5 },
+    heatmap: { distance: 400, offset: [300, 100, 400], fov: 50, pulse: 0.05 },
+    overview: { distance: 2000, offset: [0, 0, 2000], fov: 35, drift: 0.05 }
+  };
 
   // Colors mapping
   function getNodeColor(group: string): string {
@@ -92,16 +101,70 @@
   let controlsRef = $state<any>(null);
   const { camera } = useThrelte();
 
+  // Derived styling based on viewpoint
+  let viewpointType = $derived(
+    graphStore.viewpoints.find(v => v.id === graphStore.currentViewpointId)?.type || 'overview'
+  );
+
+  let time = 0;
+  useTask((delta) => {
+    time += delta;
+    if (!controlsRef) return;
+
+    const config = VIEWPOINT_CONFIGS[viewpointType] || VIEWPOINT_CONFIGS.overview;
+    const viewpointId = graphStore.currentViewpointId;
+    const targetId = viewpointId || graphStore.selectedNodeId;
+    
+    // 1. Move Target
+    let targetPos = new THREE.Vector3(0, 0, 0);
+    if (targetId) {
+      const targetNode = graphStore.nodes.get(targetId);
+      if (targetNode) {
+        targetPos.set(targetNode.x || 0, targetNode.y || 0, 0);
+      }
+    }
+    controlsRef.target.lerp(targetPos, 0.05);
+
+    // 2. Dynamic Movements
+    const cam = $camera;
+    const baseOffset = new THREE.Vector3(...config.offset);
+    let dynamicOffset = new THREE.Vector3().copy(baseOffset);
+
+    if (config.drift) {
+      dynamicOffset.x += Math.sin(time * 0.5) * 50 * config.drift;
+      dynamicOffset.y += Math.cos(time * 0.3) * 30 * config.drift;
+    }
+
+    if (config.orbit) {
+      const angle = time * 0.2 * config.orbit;
+      const radius = baseOffset.length();
+      dynamicOffset.x = Math.sin(angle) * radius;
+      dynamicOffset.z = Math.cos(angle) * radius;
+      dynamicOffset.y = baseOffset.y;
+    }
+
+    if (config.pulse) {
+      const scale = 1 + Math.sin(time * 2) * 0.1 * config.pulse;
+      dynamicOffset.multiplyScalar(scale);
+    }
+
+    const idealPos = new THREE.Vector3().addVectors(targetPos, dynamicOffset);
+    cam.position.lerp(idealPos, 0.03);
+
+    // Sync FOV
+    if (cam.fov !== config.fov) {
+      cam.fov = THREE.MathUtils.lerp(cam.fov, config.fov, 0.05);
+      cam.updateProjectionMatrix();
+    }
+  });
+
   $effect(() => {
     if (controlsRef) {
       const updateTransform = () => {
         const cam = $camera;
         const target = controlsRef.target;
-        // Map 3D camera to 2D currentTransform {x, y, k}
-        // k is roughly 1 / distance
         const distance = cam.position.distanceTo(target);
         const k = 1000 / distance; 
-        // x, y are target offsets (roughly)
         if (currentTransform.x !== -target.x || currentTransform.y !== -target.y || currentTransform.k !== k) {
           currentTransform = { x: -target.x, y: -target.y, k };
         }
@@ -111,38 +174,6 @@
       return () => controlsRef.removeEventListener('change', updateTransform);
     }
   });
-
-  $effect(() => {
-    if (controlsRef) {
-      const viewpointId = graphStore.currentViewpointId;
-      const targetId = viewpointId || graphStore.selectedNodeId;
-      
-      if (targetId) {
-        const targetNode = graphStore.nodes.get(targetId);
-        if (targetNode) {
-          const targetPos = new THREE.Vector3(targetNode.x || 0, targetNode.y || 0, 0);
-          
-          // Smoothly interpolate camera target
-          const currentTarget = controlsRef.target;
-          currentTarget.lerp(targetPos, 0.05);
-
-          // Adjust camera distance based on viewpoint type
-          if (viewpointId) {
-            const distance = viewpointId.includes('meta') ? 1500 : 600;
-            const cam = $camera;
-            const direction = new THREE.Vector3().subVectors(cam.position, targetPos).normalize();
-            const idealPos = new THREE.Vector3().addVectors(targetPos, direction.multiplyScalar(distance));
-            cam.position.lerp(idealPos, 0.03);
-          }
-        }
-      }
-    }
-  });
-
-  // Derived styling based on viewpoint
-  let viewpointType = $derived(
-    graphStore.viewpoints.find(v => v.id === graphStore.currentViewpointId)?.type || 'default'
-  );
 
   function getAtmosphereColor() {
     switch (viewpointType) {
@@ -234,5 +265,3 @@
     </T.Line>
   {/if}
 {/each}
-
-
