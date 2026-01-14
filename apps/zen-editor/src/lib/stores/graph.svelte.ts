@@ -28,9 +28,25 @@ class GraphStore {
   edges = $state<Edge[]>([]);
   expandedNodes = $state<string[]>([]); // Use array for easier reactivity in Svelte 5
   selectedNodeId = $state<string | null>(null);
+  currentViewpointId = $state<string | null>(null);
   isLoading = $state(false);
 
+  viewpoints = $derived([
+    { id: 'hub:content', label: 'Timeline', type: 'chronological', description: 'Story progression' },
+    { id: 'hub:entity', label: 'Characters', type: 'relationship', description: 'Social graph' },
+    { id: 'hub:environment', label: 'World', type: 'atmospheric', description: 'Physical spaces' },
+    { id: 'hub:emotion', label: 'Emotions', type: 'heatmap', description: 'Emotional resonance' },
+    { id: 'hub:meta', label: 'Meta', type: 'overview', description: 'System architecture' }
+  ]);
+
   constructor() {}
+
+  setViewpoint(id: string | null) {
+    this.currentViewpointId = id;
+    if (id) {
+      this.selectedNodeId = id; // Also select the hub
+    }
+  }
 
   async fetchTopology(projectId: string) {
     this.projectId = projectId;

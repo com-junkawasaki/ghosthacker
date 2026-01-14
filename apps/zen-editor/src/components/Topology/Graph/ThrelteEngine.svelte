@@ -113,16 +113,46 @@
   });
 
   $effect(() => {
-    if (controlsRef && graphStore.selectedNodeId) {
-      const selectedNode = graphStore.nodes.get(graphStore.selectedNodeId);
-      if (selectedNode) {
-        // Move camera to look at the selected node
-        const target = new THREE.Vector3(selectedNode.x || 0, selectedNode.y || 0, 0);
-        // Animate or jump
-        controlsRef.target.lerp(target, 0.1);
+    if (controlsRef) {
+      const viewpointId = graphStore.currentViewpointId;
+      const targetId = viewpointId || graphStore.selectedNodeId;
+      
+      if (targetId) {
+        const targetNode = graphStore.nodes.get(targetId);
+        if (targetNode) {
+          const targetPos = new THREE.Vector3(targetNode.x || 0, targetNode.y || 0, 0);
+          
+          // Smoothly interpolate camera target
+          const currentTarget = controlsRef.target;
+          currentTarget.lerp(targetPos, 0.05);
+
+          // Adjust camera distance based on viewpoint type
+          if (viewpointId) {
+            const distance = viewpointId.includes('meta') ? 1500 : 600;
+            const cam = $camera;
+            const direction = new THREE.Vector3().subVectors(cam.position, targetPos).normalize();
+            const idealPos = new THREE.Vector3().addVectors(targetPos, direction.multiplyScalar(distance));
+            cam.position.lerp(idealPos, 0.03);
+          }
+        }
       }
     }
   });
+
+  // Derived styling based on viewpoint
+  let viewpointType = $derived(
+    graphStore.viewpoints.find(v => v.id === graphStore.currentViewpointId)?.type || 'default'
+  );
+
+  function getAtmosphereColor() {
+    switch (viewpointType) {
+      case 'chronological': return '#002244';
+      case 'relationship': return '#441111';
+      case 'atmospheric': return '#113311';
+      case 'heatmap': return '#441122';
+      default: return '#05050a';
+    }
+  }
 
   onDestroy(() => {
     if (simulation) simulation.stop();
@@ -149,13 +179,14 @@
   />
 </T.PerspectiveCamera>
 
-<T.AmbientLight intensity={0.8} />
-<T.DirectionalLight position={[10, 10, 10]} intensity={1} />
+<T.AmbientLight intensity={viewpointType === 'overview' ? 0.8 : 0.4} />
+<T.DirectionalLight position={[10, 10, 10]} intensity={1} color={getAtmosphereColor()} />
+<T.PointLight position={[0, 0, 500]} intensity={2} color="#ffffff" />
 
 <Grid
-  position.z={-1}
-  cellColor="#111115"
-  sectionColor="#22222a"
+  position.z={-5}
+  cellColor={viewpointType === 'default' ? "#111115" : "#222230"}
+  sectionColor={getAtmosphereColor()}
   sectionSize={100}
   cellSize={20}
   infiniteGrid
@@ -164,6 +195,8 @@
 
 <!-- Nodes -->
 {#each simulationNodes as node (node.id)}
+  {@const isSelected = graphStore.selectedNodeId === node.id}
+  {@const isDimmed = graphStore.currentViewpointId && node.group !== 'meta' && !node.id.startsWith(graphStore.currentViewpointId.split(':')[1]) && node.id !== graphStore.currentViewpointId}
   <T.Mesh
     position={[node.x || 0, node.y || 0, 0]}
     onpointerenter={() => { document.body.style.cursor = 'pointer'; }}
@@ -173,8 +206,14 @@
       onNodeClick(node);
     }}
   >
-    <T.SphereGeometry args={[node.group === 'meta' ? 8 : 4, 16, 16]} />
-    <T.MeshStandardMaterial color={getNodeColor(node.group)} emissive={getNodeColor(node.group)} emissiveIntensity={0.5} />
+    <T.SphereGeometry args={[node.group === 'meta' ? 12 : (isSelected ? 8 : 4), 16, 16]} />
+    <T.MeshStandardMaterial 
+      color={getNodeColor(node.group)} 
+      emissive={getNodeColor(node.group)} 
+      emissiveIntensity={isSelected ? 2 : (isDimmed ? 0.1 : 0.5)} 
+      transparent={true}
+      opacity={isDimmed ? 0.2 : 1}
+    />
   </T.Mesh>
 {/each}
 

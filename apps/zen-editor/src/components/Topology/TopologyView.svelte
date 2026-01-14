@@ -48,6 +48,13 @@
 
   let visibleLabels = $derived(
     Array.from(graphStore.nodes.values()).filter(n => {
+      // Filter based on active viewpoint
+      if (graphStore.currentViewpointId) {
+        const isMeta = n.group === 'meta';
+        const isRelated = n.id.startsWith(graphStore.currentViewpointId.split(':')[1]) || n.id === graphStore.currentViewpointId;
+        if (!isMeta && !isRelated) return false;
+      }
+
       if (currentTransform.k < 0.3 && n.group !== 'meta') return false;
       const coords = getScreenCoords(n);
       return coords.x > -100 && coords.x < containerWidth + 100 && 
@@ -88,6 +95,23 @@
     </div>
 
     <div class="controls">
+      <div class="viewpoint-selector">
+        <button 
+          class:active={!graphStore.currentViewpointId} 
+          onclick={() => graphStore.setViewpoint(null)}
+        >
+          Overview
+        </button>
+        {#each graphStore.viewpoints as vp}
+          <button 
+            class:active={graphStore.currentViewpointId === vp.id}
+            onclick={() => graphStore.setViewpoint(vp.id)}
+            title={vp.description}
+          >
+            {vp.label}
+          </button>
+        {/each}
+      </div>
       <button onclick={() => engineRef?.fitView()}>🔍</button>
     </div>
 
@@ -162,6 +186,40 @@
     position: absolute;
     bottom: 1rem;
     left: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-end;
+  }
+
+  .viewpoint-selector {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 4px;
+    border-radius: 8px;
+    display: flex;
+    gap: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .viewpoint-selector button {
+    background: transparent;
+    border: none;
+    color: #666;
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .viewpoint-selector button:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .viewpoint-selector button.active {
+    background: #0071e3;
+    color: #fff;
   }
 
   .loader {
