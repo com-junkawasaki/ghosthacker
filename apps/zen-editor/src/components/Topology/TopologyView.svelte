@@ -1,7 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { Canvas } from '@threlte/core';
   import NodeTree from './Sidebar/NodeTree.svelte';
-  import WebGPUEngine from './Graph/WebGPUEngine.svelte';
+  import ThrelteEngine from './Graph/ThrelteEngine.svelte';
   import { graphStore } from '../../lib/stores/graph.svelte';
 
   let { 
@@ -65,11 +66,13 @@
   </aside>
 
   <main class="graph-main">
-    <WebGPUEngine 
-      bind:this={engineRef} 
-      bind:currentTransform={currentTransform}
-      onNodeClick={handleNodeClick} 
-    />
+    <Canvas>
+      <ThrelteEngine 
+        bind:this={engineRef} 
+        bind:currentTransform={currentTransform}
+        onNodeClick={handleNodeClick} 
+      />
+    </Canvas>
 
     <!-- Labels Overlay -->
     <div class="labels-overlay">
