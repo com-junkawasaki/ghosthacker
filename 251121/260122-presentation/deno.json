@@ -1,0 +1,21 @@
+{
+  "tasks": {
+    "dev": "deno run -A npm:vite dev",
+    "build": "deno run -A npm:vite build",
+    "preview": "deno run -A npm:vite preview"
+  },
+  "nodeModulesDir": "auto",
+  "imports": {
+    "svelte": "npm:svelte@^5.0.0",
+    "@sveltejs/kit": "npm:@sveltejs/kit@^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "npm:@sveltejs/vite-plugin-svelte@^4.0.0",
+    "@sveltejs/adapter-static": "npm:@sveltejs/adapter-static@^3.0.0",
+    "three": "npm:three@^0.170.0",
+    "@threlte/core": "npm:@threlte/core@^8.0.0",
+    "@threlte/extras": "npm:@threlte/extras@^9.0.0",
+    "vite": "npm:vite@^6.0.0",
+    "lucide-svelte": "npm:lucide-svelte@^0.454.0",
+    "d3-force": "npm:d3-force@^3.0.0",
+    "@types/d3-force": "npm:@types/d3-force@^3.0.0"
+  }
+}

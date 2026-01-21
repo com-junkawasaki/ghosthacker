@@ -27,7 +27,7 @@
       "Takeru: Short-tempered (Instant Action), Self-taught, OSCP, GXPN",
       "storyboard.jsonld regenerated to include all 12 episodes with full pages and panels (E1: 17 pages, E2–E12: 16 pages each)",
       "Every panel now contains gh:shotProperties and ARIA-style live-action Runway base prompt (no dialogue)",
-      "character_profiles.jsonld enhanced with detailed ocular (eye) descriptions for all main characters",
+      "character_profiles.jsonld restored and enhanced with detailed ocular (eye) descriptions for all 23 characters across Arcs A, B, C, and D",
       ".cursor/rules/runway_manga_generation.mdc updated with ARIA aesthetic and Ocular Detail rules",
       "Added generator script scripts/generate_storyboard_full_aria.py to reproducibly rebuild the full storyboard"
     ]

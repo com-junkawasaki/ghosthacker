@@ -8,9 +8,9 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "dct": "http://purl.org/dc/terms/"
   },
-  "@id": "gh:profiles/season1-characters-photorealistic",
+  "@id": "gh:profiles/season1-characters-photorealistic-full",
   "@type": "gh:CharacterProfiles",
-  "dct:title": "Ghost Hacker Season 1: Character Profiles (Cinematic Photorealistic Edition)",
+  "dct:title": "Ghost Hacker Season 1: Full Character Profiles (ARIA Cinematic Base)",
   "gh:characters": [
     {
       "@id": "character:Shouta",
@@ -24,6 +24,20 @@
         "gh:eyes": "Intricate dark brown iris, sharp catchlights, reflecting office light.",
         "gh:style": "Photorealistic, cinematic lighting, 8k, highly detailed skin texture.",
         "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 26-year-old Japanese businessman, sharp eyes with intricate deep brown iris patterns and sparkling catchlights, short clean-cut black hair, wearing a navy blue three-piece suit, natural skin tone."
+      }
+    },
+    {
+      "@id": "character:President",
+      "schema:name": "大門 五郎 (Goro Daimon)",
+      "schema:role": "President / Spiritual Pillar",
+      "schema:age": 62,
+      "gh:appearance": {
+        "gh:face": "62-year-old Japanese man, sturdy build, deep facial wrinkles, weathered skin, kind but firm eyes.",
+        "gh:hair": "Short salt-and-pepper hair.",
+        "gh:build": "Sturdy, wearing a navy blue work jacket with a high-visibility safety vest.",
+        "gh:eyes": "Kind but firm weathered eyes, subtle iris detail, soft catchlights.",
+        "gh:style": "Photorealistic, weathered texture, authentic Japanese elder, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 62-year-old Japanese man, sturdy build, deep facial wrinkles, weathered skin, kind firm eyes with subtle iris detail and soft catchlights, short salt-and-pepper hair, wearing a navy blue work jacket, natural skin tone."
       }
     },
     {
@@ -80,6 +94,258 @@
         "gh:eyes": "Cold obsidian-like dark irises, sharp mirror-like catchlights, arrogant expression.",
         "gh:style": "Photorealistic, luxury elite vibe, sharp focus, 8k.",
         "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 18-year-old Japanese male, perfectly sculpted face, arrogant cold eyes with obsidian-like dark irises and sharp catchlights, white suit, luxury aesthetic."
+      }
+    },
+    {
+      "@id": "character:Yasumoto",
+      "schema:name": "安本 健治 (Kenji Yasumoto)",
+      "schema:role": "Antagonist / Victim",
+      "schema:age": 52,
+      "gh:appearance": {
+        "gh:face": "52-year-old Japanese man, oily skin, anxious and defensive expression, darting eyes.",
+        "gh:hair": "Messy receding salt-and-pepper hair.",
+        "gh:build": "Slightly overweight, wearing a rumpled gray business suit.",
+        "gh:eyes": "Anxious darting eyes, oily texture on eyelids, sharp catchlights from fluorescent lights.",
+        "gh:style": "Photorealistic, harsh office lighting, oily skin texture, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, a 52-year-old Japanese man, slightly overweight, anxious expression, messy receding hair, rumpled gray suit, sweat stains, harsh fluorescent lighting, anxious eyes with sharp catchlights."
+      }
+    },
+    {
+      "@id": "character:Matsuda",
+      "schema:name": "松田 ヨシ子 (Yoshiko Matsuda)",
+      "schema:role": "Accounting Manager",
+      "schema:age": 58,
+      "gh:appearance": {
+        "gh:face": "58-year-old Japanese woman, strict expression, realistic aging details.",
+        "gh:hair": "Short permed black hair.",
+        "gh:build": "Small build, wearing a beige blouse and dark skirt, reading glasses on a silver chain.",
+        "gh:eyes": "Sharp strict eyes behind reading glasses, realistic iris patterns, precise catchlights.",
+        "gh:style": "Photorealistic, strict Japanese office lady, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 58-year-old Japanese woman, small build, strict expression, short permed black hair, beige blouse, reading glasses on chain, cinematic office lighting, sharp eyes with precise catchlights."
+      }
+    },
+    {
+      "@id": "character:Sato",
+      "schema:name": "佐藤 健太 (Kenta Sato)",
+      "schema:role": "IT Support",
+      "schema:age": 24,
+      "gh:appearance": {
+        "gh:face": "24-year-old Japanese male, fatigued and worried expression.",
+        "gh:hair": "Simple short black hair, slightly messy.",
+        "gh:build": "Slim build, wearing a light blue polo shirt and dark chinos.",
+        "gh:eyes": "Fatigued worried eyes, soft iris detail, crystalline catchlights reflecting monitor glow.",
+        "gh:style": "Photorealistic, fatigued youth, realistic sweat, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 24-year-old Japanese male, slim build, fatigued expression, short black hair, light blue polo shirt, carrying cables, realistic office lighting, worried eyes with crystalline catchlights."
+      }
+    },
+    {
+      "@id": "character:IsaReiji",
+      "schema:name": "伊佐 玲司 (Reiji Isa)",
+      "schema:role": "Cyber Investigator",
+      "gh:organization": "org:mpd-cyber",
+      "schema:age": 42,
+      "gh:appearance": {
+        "gh:face": "42-year-old Japanese male, veteran investigator, rugged handsome features, sharp analytical eyes.",
+        "gh:hair": "Short cropped black hair with slight graying at temples.",
+        "gh:build": "Solid and athletic build, wearing a dark gray tactical blazer.",
+        "gh:eyes": "Sharp analytical eyes, deep iris patterns, intense catchlights.",
+        "gh:style": "Photorealistic, veteran investigator vibe, dramatic shadows, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, 42-year-old Japanese male investigator, rugged handsome features, sharp analytical eyes with deep iris patterns and intense catchlights, short black hair, dark gray blazer."
+      }
+    },
+    {
+      "@id": "character:HatoriKoichi",
+      "schema:name": "羽鳥 恒一 (Koichi Hatori)",
+      "schema:role": "Cyber Analyst",
+      "gh:organization": "org:npa-cyber",
+      "schema:age": 38,
+      "gh:appearance": {
+        "gh:face": "38-year-old Japanese male, calm and intellectual face, wearing thin-rimmed glasses.",
+        "gh:hair": "Neatly combed dark hair.",
+        "gh:build": "Slender, wearing a crisp white shirt and navy vest.",
+        "gh:eyes": "Intellectual calm eyes behind thin-rimmed glasses, precise iris patterns, clear catchlights.",
+        "gh:style": "Photorealistic, intellectual analyst, clean clinical lighting, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 38-year-old Japanese male analyst, calm intellectual face, neatly combed hair, wearing thin-rimmed glasses, white shirt, navy vest, precise iris patterns and clear catchlights."
+      }
+    },
+    {
+      "@id": "character:SaegusaNoa",
+      "schema:name": "三枝 乃亜 (Noa Saegusa)",
+      "schema:role": "CERT Analyst",
+      "gh:organization": "org:jpcert",
+      "schema:age": 29,
+      "gh:appearance": {
+        "gh:face": "29-year-old Japanese female, energetic and sharp expression, modern tech professional.",
+        "gh:hair": "Shoulder-length black hair with a stylish streak.",
+        "gh:build": "Average build, wearing a smart casual tech-wear jacket.",
+        "gh:eyes": "Energetic sharp eyes, bright iris patterns, sparkling catchlights.",
+        "gh:style": "Photorealistic, modern tech professional, bright energetic lighting, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 29-year-old Japanese female, energetic sharp expression, shoulder-length black hair with streak, smart casual tech-wear, bright iris patterns and sparkling catchlights."
+      }
+    },
+    {
+      "@id": "character:KurokawaMio",
+      "schema:name": "黒川 澪 (Mio Kurokawa)",
+      "schema:role": "Market Investigator",
+      "gh:organization": "org:sesc",
+      "schema:age": 31,
+      "gh:appearance": {
+        "gh:face": "31-year-old Japanese female, elegant but fierce expression, sophisticated investigator.",
+        "gh:hair": "Long straight black hair.",
+        "gh:build": "Tall and slender, wearing a luxury charcoal suit.",
+        "gh:eyes": "Fierce elegant eyes, deep iris detail, mirror-like catchlights.",
+        "gh:style": "Photorealistic, sophisticated market investigator, high fashion office lighting, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 31-year-old Japanese female, elegant fierce expression, long straight black hair, luxury charcoal suit, deep iris detail and mirror-like catchlights."
+      }
+    },
+    {
+      "@id": "character:NatsumeKoichi",
+      "schema:name": "夏目 恒一 (Koichi Natsume)",
+      "schema:role": "Market Guard",
+      "gh:organization": "org:tse",
+      "schema:age": 45,
+      "gh:appearance": {
+        "gh:face": "45-year-old Japanese male, stoic and authoritative face, heavy presence.",
+        "gh:hair": "Neat salt-and-pepper hair.",
+        "gh:build": "Broad shoulders, wearing a formal black suit.",
+        "gh:eyes": "Stoic authoritative eyes, heavy iris texture, sharp catchlights.",
+        "gh:style": "Photorealistic, stoic authority, dramatic office lighting, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 45-year-old Japanese male, stoic authoritative face, neat salt-and-pepper hair, formal black suit, heavy iris texture and sharp catchlights."
+      }
+    },
+    {
+      "@id": "character:MayaRahman",
+      "schema:name": "Maya Rahman",
+      "schema:role": "Interpol Liaison",
+      "gh:organization": "org:interpol",
+      "schema:age": 35,
+      "gh:appearance": {
+        "gh:face": "35-year-old South Asian female, global professional, sharp international look.",
+        "gh:hair": "Dark brown hair in a neat bun.",
+        "gh:build": "Confident posture, wearing a sophisticated business setup with a scarf.",
+        "gh:eyes": "Sharp international eyes, deep amber iris patterns, bright crystalline catchlights.",
+        "gh:style": "Photorealistic, global professional woman, natural world-traveler lighting, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 35-year-old South Asian woman, sharp international look, dark brown bun, sophisticated business suit with scarf, deep amber iris patterns and bright catchlights."
+      }
+    },
+    {
+      "@id": "character:EthanCole",
+      "schema:name": "Ethan Cole",
+      "schema:role": "FBI Agent",
+      "gh:organization": "org:fbi",
+      "schema:age": 33,
+      "gh:appearance": {
+        "gh:face": "33-year-old American male, sharp blond features, high-tech investigator vibe.",
+        "gh:hair": "Short neat blond hair.",
+        "gh:build": "Athletic and toned, wearing a standard FBI suit.",
+        "gh:eyes": "Confident blue eyes, intricate iris patterns, bright clinical catchlights.",
+        "gh:style": "Photorealistic, sharp American agent, bright clinical lighting, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 33-year-old American male, sharp blond hair, athletic build, confident blue eyes with intricate iris patterns, wearing FBI suit."
+      }
+    },
+    {
+      "@id": "character:IngridVoss",
+      "schema:name": "Ingrid Voss",
+      "schema:role": "Europol Investigator",
+      "gh:organization": "org:europol-ec3",
+      "schema:age": 39,
+      "gh:appearance": {
+        "gh:face": "39-year-old German female, cold clinical aesthetic, direct and professional.",
+        "gh:hair": "Platinum blond short cut.",
+        "gh:build": "Tall and strong build, wearing a dark gray tailored jacket.",
+        "gh:eyes": "Cold clinical gray eyes, sharp iris detail, high-resolution catchlights.",
+        "gh:style": "Photorealistic, direct European investigator, cold clinical aesthetic, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 39-year-old German woman, platinum blond short cut, tall strong build, cold gray eyes with sharp iris detail, dark gray tailored jacket."
+      }
+    },
+    {
+      "@id": "character:TomHargreaves",
+      "schema:name": "Tom Hargreaves",
+      "schema:role": "NCA Officer",
+      "gh:organization": "org:nca-nccu",
+      "schema:age": 41,
+      "gh:appearance": {
+        "gh:face": "41-year-old British male, classic brown features, banking-literate look.",
+        "gh:hair": "Classic brown hair.",
+        "gh:build": "Slender and elegant, wearing a perfect British suit.",
+        "gh:eyes": "Ironic intelligent eyes, detailed iris patterns, soft classic catchlights.",
+        "gh:style": "Photorealistic, British officer, banking-literate look, soft classic lighting, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 41-year-old British man, classic brown hair, elegant build, ironic eyes with detailed iris patterns, perfect British suit."
+      }
+    },
+    {
+      "@id": "character:HERO",
+      "schema:name": "佐藤 ヒロシ (Hiroshi Sato)",
+      "schema:role": "Main Antagonist (Arc D)",
+      "gh:organization": "gh:actorTeam/seigi-hero",
+      "schema:age": 30,
+      "gh:appearance": {
+        "gh:face": "30-year-old Japanese male, suntanned skin, arrogant but insecure expression, 'charismatic' but shallow.",
+        "gh:hair": "Stylish but slightly tacky black hair.",
+        "gh:build": "Average build, wearing a flashy tactical jacket with many patches.",
+        "gh:eyes": "Arrogant insecure eyes, shallow iris detail, bright catchlights from high-rise sun.",
+        "gh:style": "Photorealistic, tacky villain aesthetic, tropical high-rise lighting, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 30-year-old Japanese male, suntanned skin, tacky black hair, arrogant insecure eyes with shallow iris detail, flashy tactical jacket, designer t-shirt."
+      }
+    },
+    {
+      "@id": "character:MakotoBaba",
+      "schema:name": "馬場 誠 (Makoto Baba)",
+      "schema:role": "Dispatch Manager (Arc B)",
+      "gh:organization": "org:jinpu-mobility",
+      "schema:age": 54,
+      "gh:appearance": {
+        "gh:face": "54-year-old Japanese male, stressed and angry expression, deep eye bags.",
+        "gh:hair": "Short thinning black hair.",
+        "gh:build": "Average build, wearing a white shirt and gray trousers.",
+        "gh:eyes": "Stressed angry eyes, deep iris patterns, sharp catchlights reflecting warehouse lights.",
+        "gh:style": "Photorealistic, high-stress manager, dramatic logistics lighting, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 54-year-old Japanese male, stressed angry expression, short thinning hair, white shirt, gray trousers, logistics center background."
+      }
+    },
+    {
+      "@id": "character:TsubasaKobayashi",
+      "schema:name": "小林 翼 (Tsubasa Kobayashi)",
+      "schema:role": "Young Driver (Arc B)",
+      "gh:organization": "org:jinpu-mobility",
+      "schema:age": 23,
+      "gh:appearance": {
+        "gh:face": "23-year-old Japanese male, pale and nervous expression, modern youthful features.",
+        "gh:hair": "Driver uniform cap over messy hair.",
+        "gh:build": "Thin and fragile build.",
+        "gh:eyes": "Nervous eyes reflecting smartphone glow, soft iris detail, crystalline catchlights.",
+        "gh:style": "Photorealistic, anxious youth, digital native look, cool night lighting, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 23-year-old Japanese male, pale nervous expression, wearing driver cap, looking at smartphone, cool night lighting."
+      }
+    },
+    {
+      "@id": "character:ReikaKujoin",
+      "schema:name": "九条院 麗華 (Reika Kujoin)",
+      "schema:role": "Compliance Officer (Arc C)",
+      "gh:organization": "org:byakudan-financial",
+      "schema:age": 45,
+      "gh:appearance": {
+        "gh:face": "45-year-old elegant Japanese female, cold and arrogant expression, sharp features.",
+        "gh:hair": "Sleek black hair in an updo.",
+        "gh:build": "Tall and elegant, wearing a luxury black suit.",
+        "gh:eyes": "Cold arrogant eyes, intricate iris patterns, sharp mirror-like catchlights.",
+        "gh:style": "Photorealistic, cold elite beauty, dramatic sharp lighting, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 45-year-old elegant Japanese woman, cold arrogant expression, sharp eyes, sleek updo black hair, luxury black suit."
+      }
+    },
+    {
+      "@id": "character:ToruSasaki",
+      "schema:name": "佐々木 徹 (Toru Sasaki)",
+      "schema:role": "Cloud Administrator (Arc C)",
+      "gh:organization": "org:byakudan-financial",
+      "schema:age": 34,
+      "gh:appearance": {
+        "gh:face": "34-year-old Japanese male, thin and nervous face, trapped expression.",
+        "gh:hair": "Simple black hair, slightly unkempt.",
+        "gh:build": "Thin build, wearing a simple blue shirt.",
+        "gh:eyes": "Nervous trapped eyes, detailed iris patterns, soft catchlights reflecting server racks.",
+        "gh:style": "Photorealistic, nervous IT professional, clinical server lighting, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 34-year-old Japanese male, nervous face, looking down, blue shirt, server rack background."
       }
     }
   ]
