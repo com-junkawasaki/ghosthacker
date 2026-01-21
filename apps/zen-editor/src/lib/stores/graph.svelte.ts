@@ -14,10 +14,10 @@ export interface Node {
   children?: string[]; // IDs of children
   
   // 3D properties for Assembler
-  position3d?: [number, number, number];
-  rotation3d?: [number, number, number];
-  scale3d?: [number, number, number];
-  gltfPath?: string;
+  position3d: number[];
+  rotation3d: number[];
+  scale3d: number[];
+  gltfPath: string;
 }
 
 export interface Edge {
@@ -222,9 +222,9 @@ class GraphStore {
   }
 
   async updateNode3d(id: string, updates: Partial<{
-    position3d: [number, number, number];
-    rotation3d: [number, number, number];
-    scale3d: [number, number, number];
+    position3d: number[];
+    rotation3d: number[];
+    scale3d: number[];
     gltfPath: string;
   }>) {
     const node = this.nodes.get(id);
@@ -238,14 +238,13 @@ class GraphStore {
           const client = await getClient();
           if (!client) return;
 
-          // Convert to numbers for proto (float32)
           await client.saveNode({
             projectId: this.projectId,
             node: {
               ...node,
-              position3d: node.position3d || [0, 0, 0],
-              rotation3d: node.rotation3d || [0, 0, 0],
-              scale3d: node.scale3d || [1, 1, 1],
+              position3d: node.position3d && node.position3d.length === 3 ? node.position3d : [0, 0, 0],
+              rotation3d: node.rotation3d && node.rotation3d.length === 3 ? node.rotation3d : [0, 0, 0],
+              scale3d: node.scale3d && node.scale3d.length === 3 ? node.scale3d : [1, 1, 1],
               gltfPath: node.gltfPath || ""
             } as any
           });

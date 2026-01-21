@@ -5,12 +5,14 @@ import (
 	"database/sql"
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 	"sort"
 	"strings"
+	"sync"
 
 	"connectrpc.com/connect"
 	"golang.org/x/net/http2"
@@ -21,7 +23,6 @@ import (
 	"github.com/google/uuid"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
-	"sync"
 
 	"github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/internal/git"
 	editorpb "github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/proto"
@@ -37,9 +38,10 @@ type EditorServer struct {
 	Git           *git.GitService
 
 	// Memory Store for fast access
-	mu        sync.RWMutex
-	NodeCache map[string]*editorpb.Node
-	EdgeCache []*editorpb.Edge
+	mu               sync.RWMutex
+	currentProjectID string
+	NodeCache        map[string]*editorpb.Node
+	EdgeCache        []*editorpb.Edge
 }
 
 func (s *EditorServer) idToFilename(id string) string {
@@ -57,112 +59,134 @@ func (s *EditorServer) LoadDatastore(projectID string) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	
+	s.currentProjectID = projectID
 	datastoreDir := filepath.Join(s.WorkspaceRoot, projectID, "datastore")
 	os.MkdirAll(datastoreDir, 0755)
 
 	s.NodeCache = make(map[string]*editorpb.Node)
 	s.EdgeCache = nil
 
-	entries, err := os.ReadDir(datastoreDir)
-	if err != nil {
-		log.Printf("Error reading datastore: %v", err)
-		return
-	}
+	// Helper to load files from a directory
+	var loadFromDir func(dir string)
+	loadFromDir = func(dir string) {
+		entries, err := os.ReadDir(dir)
+		if err != nil { return }
 
-	for _, e := range entries {
-		if e.IsDir() || !strings.HasSuffix(e.Name(), ".jsonld") {
-			continue
-		}
-		
-		data, err := os.ReadFile(filepath.Join(datastoreDir, e.Name()))
-		if err != nil { continue }
-
-		var nodeData map[string]interface{}
-		if err := json.Unmarshal(data, &nodeData); err != nil { continue }
-
-		id, _ := nodeData["@id"].(string)
-		var nodeType string
-		if t, ok := nodeData["@type"].(string); ok {
-			nodeType = t
-		} else if ts, ok := nodeData["@type"].([]interface{}); ok && len(ts) > 0 {
-			nodeType, _ = ts[0].(string)
-		}
-		
-		label, _ := nodeData["name"].(string)
-		if label == "" { label, _ = nodeData["label"].(string) }
-		group := s.categorizeNode(nodeType)
-		
-		node := &editorpb.Node{
-			Id:       id,
-			Label:    label,
-			Type:     nodeType,
-			Group:    group,
-			ViewType: s.determineViewType(id, nodeType, group),
-		}
-
-		// 3D properties
-		if gltf, ok := nodeData["gh:gltfPath"].(string); ok {
-			node.GltfPath = gltf
-		}
-		if pos, ok := nodeData["gh:position3d"].([]interface{}); ok && len(pos) == 3 {
-			node.Position3D = []float32{float32(pos[0].(float64)), float32(pos[1].(float64)), float32(pos[2].(float64))}
-		}
-		if rot, ok := nodeData["gh:rotation3d"].([]interface{}); ok && len(rot) == 3 {
-			node.Rotation3D = []float32{float32(rot[0].(float64)), float32(rot[1].(float64)), float32(rot[2].(float64))}
-		}
-		if scale, ok := nodeData["gh:scale3d"].([]interface{}); ok && len(scale) == 3 {
-			node.Scale3D = []float32{float32(scale[0].(float64)), float32(scale[1].(float64)), float32(scale[2].(float64))}
-		}
-
-		if desc, ok := nodeData["description"].(string); ok { node.Content = desc }
-		if content, ok := nodeData["gh:content"].(map[string]interface{}); ok {
-			node.LocalizedContent = make(map[string]string)
-			for k, v := range content { node.LocalizedContent[k] = v.(string) }
-			if node.Content == "" { node.Content = node.LocalizedContent["ja"] }
-		}
-
-		s.NodeCache[id] = node
-
-		// Extract relations recursively
-		var extractEdges func(v interface{})
-		extractEdges = func(v interface{}) {
-			switch val := v.(type) {
-			case map[string]interface{}:
-				if targetID, ok := val["@id"].(string); ok && targetID != "" && targetID != id {
-					s.EdgeCache = append(s.EdgeCache, &editorpb.Edge{
-						FromId: id, ToId: targetID, Relation: "gh:relatesTo", Group: "semantic",
-					})
-				}
-				for _, subV := range val { extractEdges(subV) }
-			case []interface{}:
-				for _, subV := range val { extractEdges(subV) }
+		for _, e := range entries {
+			fullPath := filepath.Join(dir, e.Name())
+			if e.IsDir() {
+				loadFromDir(fullPath)
+				continue
 			}
-		}
+			if !strings.HasSuffix(e.Name(), ".jsonld") {
+				continue
+			}
+			
+			data, err := os.ReadFile(fullPath)
+			if err != nil { continue }
 
-		for k, v := range nodeData {
-			if k == "@id" || k == "@type" || k == "gh:x" || k == "gh:y" { continue }
-			if k == "gh:contains" || k == "gh:participants" || k == "gh:involvedIn" || k == "gh:memberOf" {
-				if items, ok := v.([]interface{}); ok {
-					for _, item := range items {
-						targetID := ""
-						if s, ok := item.(string); ok { targetID = s }
-						if m, ok := item.(map[string]interface{}); ok { targetID, _ = m["@id"].(string) }
-						if targetID != "" && targetID != id {
-							rel := k
-							if k == "gh:participants" { rel = "gh:relatesTo" }
-							group := "structural"
-							if rel == "gh:relatesTo" { group = "semantic" }
-							s.EdgeCache = append(s.EdgeCache, &editorpb.Edge{
-								FromId: id, ToId: targetID, Relation: rel, Group: group,
-							})
+			var nodeData map[string]interface{}
+			if err := json.Unmarshal(data, &nodeData); err != nil { continue }
+
+			id, _ := nodeData["@id"].(string)
+			if id == "" { continue }
+
+			var nodeType string
+			if t, ok := nodeData["@type"].(string); ok {
+				nodeType = t
+			} else if ts, ok := nodeData["@type"].([]interface{}); ok && len(ts) > 0 {
+				nodeType, _ = ts[0].(string)
+			}
+			
+			label, _ := nodeData["name"].(string)
+			if label == "" { label, _ = nodeData["label"].(string) }
+			group := s.categorizeNode(nodeType)
+			
+			node := &editorpb.Node{
+				Id:       id,
+				Label:    label,
+				Type:     nodeType,
+				Group:    group,
+				ViewType: s.determineViewType(id, nodeType, group),
+			}
+
+			// 3D properties
+			if gltf, ok := nodeData["gh:gltfPath"].(string); ok {
+				node.GltfPath = gltf
+			}
+			if pos, ok := nodeData["gh:position3d"].([]interface{}); ok && len(pos) == 3 {
+				node.Position3D = []float32{float32(pos[0].(float64)), float32(pos[1].(float64)), float32(pos[2].(float64))}
+			}
+			if rot, ok := nodeData["gh:rotation3d"].([]interface{}); ok && len(rot) == 3 {
+				node.Rotation3D = []float32{float32(rot[0].(float64)), float32(rot[1].(float64)), float32(rot[2].(float64))}
+			}
+			if scale, ok := nodeData["gh:scale3d"].([]interface{}); ok && len(scale) == 3 {
+				node.Scale3D = []float32{float32(scale[0].(float64)), float32(scale[1].(float64)), float32(scale[2].(float64))}
+			}
+
+			if desc, ok := nodeData["description"].(string); ok { node.Content = desc }
+			if content, ok := nodeData["gh:content"].(map[string]interface{}); ok {
+				node.LocalizedContent = make(map[string]string)
+				for k, v := range content { node.LocalizedContent[k] = v.(string) }
+				if node.Content == "" { node.Content = node.LocalizedContent["ja"] }
+			}
+
+			s.NodeCache[id] = node
+
+			// Extract relations recursively
+			var extractEdges func(string, interface{})
+			extractEdges = func(fromID string, v interface{}) {
+				switch val := v.(type) {
+				case map[string]interface{}:
+					if targetID, ok := val["@id"].(string); ok && targetID != "" && targetID != fromID {
+						s.EdgeCache = append(s.EdgeCache, &editorpb.Edge{
+							FromId: fromID, ToId: targetID, Relation: "gh:relatesTo", Group: "semantic",
+						})
+					}
+					for k, subV := range val {
+						if k == "@context" {
+							continue
 						}
+						extractEdges(fromID, subV)
+					}
+				case []interface{}:
+					for _, subV := range val {
+						extractEdges(fromID, subV)
 					}
 				}
-			} else {
-				extractEdges(v)
+			}
+
+			for k, v := range nodeData {
+				if k == "@id" || k == "@type" || k == "gh:x" || k == "gh:y" { continue }
+				if k == "gh:contains" || k == "gh:participants" || k == "gh:involvedIn" || k == "gh:memberOf" {
+					if items, ok := v.([]interface{}); ok {
+						for _, item := range items {
+							targetID := ""
+							if s, ok := item.(string); ok { targetID = s }
+							if m, ok := item.(map[string]interface{}); ok { targetID, _ = m["@id"].(string) }
+							if targetID != "" && targetID != id {
+								rel := k
+								if k == "gh:participants" { rel = "gh:relatesTo" }
+								group := "structural"
+								if rel == "gh:relatesTo" { group = "semantic" }
+								s.EdgeCache = append(s.EdgeCache, &editorpb.Edge{
+									FromId: id, ToId: targetID, Relation: rel, Group: group,
+								})
+							}
+						}
+					}
+				} else {
+					extractEdges(id, v)
+				}
 			}
 		}
 	}
+
+	// Load from datastore and other predefined directories
+	loadFromDir(datastoreDir)
+	loadFromDir(filepath.Join(s.WorkspaceRoot, projectID, "props"))
+	loadFromDir(filepath.Join(s.WorkspaceRoot, projectID, "environments"))
+
 	log.Printf("Loaded %d nodes and %d edges from datastore for %s", len(s.NodeCache), len(s.EdgeCache), projectID)
 }
 
@@ -241,7 +265,14 @@ func NewEditorServer(dataRoot string) *EditorServer {
 
 func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[editorpb.GetTopologyRequest]) (*connect.Response[editorpb.GetTopologyResponse], error) {
 	log.Printf("RPC: GetTopology (MemoryStore) called for: %s", req.Msg.ProjectId)
-	if len(s.NodeCache) == 0 { s.LoadDatastore(req.Msg.ProjectId) }
+	
+	s.mu.RLock()
+	needsLoad := s.currentProjectID != req.Msg.ProjectId || len(s.NodeCache) == 0
+	s.mu.RUnlock()
+
+	if needsLoad {
+		s.LoadDatastore(req.Msg.ProjectId)
+	}
 	
 	s.mu.RLock()
 	defer s.mu.RUnlock()
@@ -400,7 +431,7 @@ func (s *EditorServer) categorizeNode(t string) string {
 	case t == "gh:RelationEvent": return "link-node"
 	case strings.Contains(t, "Person") || strings.Contains(t, "Character"): return "entity"
 	case strings.Contains(t, "Place") || strings.Contains(t, "Setting") || strings.Contains(t, "Environment"): return "environment"
-	case strings.Contains(t, "Item") || strings.Contains(t, "Object") || strings.Contains(t, "Product"): return "item"
+	case strings.Contains(t, "Item") || strings.Contains(t, "Object") || strings.Contains(t, "Product") || strings.Contains(t, "Prop"): return "item"
 	case strings.Contains(t, "Emotion") || strings.Contains(t, "Sentiment"): return "emotion"
 	case strings.Contains(t, "Manuscript") || strings.Contains(t, "Block") || strings.Contains(t, "Episode"): return "content"
 	case strings.Contains(t, "Image") || strings.Contains(t, "Asset") || strings.Contains(t, "ImageObject"): return "asset"
@@ -428,7 +459,82 @@ func (s *EditorServer) Interact(ctx context.Context, req *connect.Request[editor
 }
 
 func (s *EditorServer) GetProjectMetadata(ctx context.Context, req *connect.Request[editorpb.GetProjectMetadataRequest]) (*connect.Response[editorpb.GetProjectMetadataResponse], error) {
-	return connect.NewResponse(&editorpb.GetProjectMetadataResponse{Title: "Ghost Hacker"}), nil
+	projectID := req.Msg.ProjectId
+	projectDir := filepath.Join(s.WorkspaceRoot, projectID)
+	
+	resp := &editorpb.GetProjectMetadataResponse{
+		Title: projectID,
+	}
+
+	// Try to load PROJECT.jsonld for title/description
+	projectFile := filepath.Join(projectDir, "PROJECT.jsonld")
+	if data, err := os.ReadFile(projectFile); err == nil {
+		var meta struct {
+			Name        string `json:"name"`
+			Description string `json:"description"`
+		}
+		json.Unmarshal(data, &meta)
+		if meta.Name != "" { resp.Title = meta.Name }
+		resp.Description = meta.Description
+	}
+
+	// List files in the project directory
+	filepath.Walk(projectDir, func(path string, info os.FileInfo, err error) error {
+		if err != nil || info.IsDir() { return nil }
+		relPath, _ := filepath.Rel(s.WorkspaceRoot, path)
+		// Basic categorization into "episodes" or just list them
+		// For now, let's put everything in one virtual episode
+		if len(resp.Episodes) == 0 {
+			resp.Episodes = append(resp.Episodes, &editorpb.Episode{Id: "files", Title: "Project Files"})
+		}
+		resp.Episodes[0].Files = append(resp.Episodes[0].Files, relPath)
+		return nil
+	})
+
+	return connect.NewResponse(resp), nil
+}
+
+func (s *EditorServer) OpenFile(ctx context.Context, req *connect.Request[editorpb.OpenFileRequest]) (*connect.Response[editorpb.OpenFileResponse], error) {
+	log.Printf("RPC: OpenFile called for: %s", req.Msg.Path)
+	fullPath := filepath.Join(s.WorkspaceRoot, req.Msg.Path)
+	
+	// Security check
+	cleanBase := filepath.Clean(s.WorkspaceRoot)
+	cleanFull := filepath.Clean(fullPath)
+	if !strings.HasPrefix(cleanFull, cleanBase) {
+		return nil, connect.NewError(connect.CodePermissionDenied, fmt.Errorf("access denied"))
+	}
+
+	data, err := os.ReadFile(fullPath)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	return connect.NewResponse(&editorpb.OpenFileResponse{Content: string(data)}), nil
+}
+
+func (s *EditorServer) SaveFile(ctx context.Context, req *connect.Request[editorpb.SaveFileRequest]) (*connect.Response[editorpb.SaveFileResponse], error) {
+	log.Printf("RPC: SaveFile called for: %s", req.Msg.Path)
+	fullPath := filepath.Join(s.WorkspaceRoot, req.Msg.Path)
+	
+	// Security check
+	cleanBase := filepath.Clean(s.WorkspaceRoot)
+	cleanFull := filepath.Clean(fullPath)
+	if !strings.HasPrefix(cleanFull, cleanBase) {
+		return nil, connect.NewError(connect.CodePermissionDenied, fmt.Errorf("access denied"))
+	}
+
+	err := os.MkdirAll(filepath.Dir(fullPath), 0755)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	err = os.WriteFile(fullPath, []byte(req.Msg.Content), 0644)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	return connect.NewResponse(&editorpb.SaveFileResponse{Success: true}), nil
 }
 
 func (s *EditorServer) SaveStoryboard(ctx context.Context, req *connect.Request[editorpb.SaveStoryboardRequest]) (*connect.Response[editorpb.SaveStoryboardResponse], error) {

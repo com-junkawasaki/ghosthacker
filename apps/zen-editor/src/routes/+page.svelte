@@ -21,7 +21,7 @@
     }
   });
 
-  let projectId = $state("251022"); // Default project
+  let projectId = $state("251121"); // Default project (updated to 251121)
   let isSidebarOpen = $state(false);
   let isChatOpen = $state(false);
   let isHistoryOpen = $state(false);

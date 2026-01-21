@@ -7,7 +7,7 @@
   import { graphStore } from '../../lib/stores/graph.svelte';
 
   let { 
-    projectId = "251022",
+    projectId = "251121",
     onSelect = () => {},
     selectedId = undefined
   } = $props<{

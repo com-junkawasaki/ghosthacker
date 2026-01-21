@@ -25,6 +25,10 @@ service EditorService {
 
   // General Node Persistence
   rpc SaveNode(SaveNodeRequest) returns (SaveNodeResponse);
+
+  // General File Persistence
+  rpc OpenFile(OpenFileRequest) returns (OpenFileResponse);
+  rpc SaveFile(SaveFileRequest) returns (SaveFileResponse);
 }
 
 message SaveNodeRequest {

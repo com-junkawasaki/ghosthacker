@@ -16,7 +16,9 @@
   // Filter nodes that belong to the current environment/assembler view
   let assemblerNodes = $derived(
     Array.from(graphStore.nodes.values()).filter(n => 
-      n.position3d || n.gltfPath || n.group === 'environment' || n.group === 'entity' || n.group === 'item'
+      (n.position3d && n.position3d.length > 0) || 
+      (n.gltfPath && n.gltfPath !== "") || 
+      n.group === 'environment' || n.group === 'entity' || n.group === 'item'
     )
   );
 
@@ -69,11 +71,11 @@
 {#each assemblerNodes as node (node.id)}
   {@const isSelected = graphStore.selectedNodeId === node.id}
   <T.Group
-    position={node.position3d || [0, 0, 0]}
-    rotation={node.rotation3d || [0, 0, 0]}
-    scale={node.scale3d || [1, 1, 1]}
+    position={node.position3d?.length === 3 ? node.position3d : [0, 0, 0]}
+    rotation={node.rotation3d?.length === 3 ? node.rotation3d : [0, 0, 0]}
+    scale={node.scale3d?.length === 3 ? node.scale3d : [1, 1, 1]}
   >
-    {#if node.gltfPath}
+    {#if node.gltfPath && node.gltfPath !== ""}
       <GLTF
         url={getAssetUrl(node.gltfPath)}
         castShadow

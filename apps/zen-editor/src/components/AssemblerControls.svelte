@@ -5,24 +5,24 @@
 
   function updatePos(axis: 0 | 1 | 2, val: string) {
     if (!selectedNode) return;
-    const currentPos = selectedNode.position3d || [0, 0, 0];
-    const newPos = [...currentPos] as [number, number, number];
+    const currentPos = selectedNode.position3d && selectedNode.position3d.length === 3 ? selectedNode.position3d : [0, 0, 0];
+    const newPos = [...currentPos] as number[];
     newPos[axis] = parseFloat(val);
     graphStore.updateNode3d(selectedNode.id, { position3d: newPos });
   }
 
   function updateRot(axis: 0 | 1 | 2, val: string) {
     if (!selectedNode) return;
-    const currentRot = selectedNode.rotation3d || [0, 0, 0];
-    const newRot = [...currentRot] as [number, number, number];
+    const currentRot = selectedNode.rotation3d && selectedNode.rotation3d.length === 3 ? selectedNode.rotation3d : [0, 0, 0];
+    const newRot = [...currentRot] as number[];
     newRot[axis] = (parseFloat(val) * Math.PI) / 180;
     graphStore.updateNode3d(selectedNode.id, { rotation3d: newRot });
   }
 
   function updateScale(axis: 0 | 1 | 2, val: string) {
     if (!selectedNode) return;
-    const currentScale = selectedNode.scale3d || [1, 1, 1];
-    const newScale = [...currentScale] as [number, number, number];
+    const currentScale = selectedNode.scale3d && selectedNode.scale3d.length === 3 ? selectedNode.scale3d : [1, 1, 1];
+    const newScale = [...currentScale] as number[];
     newScale[axis] = parseFloat(val);
     graphStore.updateNode3d(selectedNode.id, { scale3d: newScale });
   }
