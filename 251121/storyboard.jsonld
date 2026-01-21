@@ -74,9 +74,9 @@
         {
           "gh:pageNumber": 4,
           "gh:panels": [
-            { "panel": 1, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. (Ren: 17-year-old male, dark hoodie) slouching deeply in a high-end ergonomic chair, picking his ear. Rim lighting, crisp line art." },
+            { "panel": 1, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. (Ren: 17-year-old male, dark hoodie) slouching deeply in his Okamura Cruise and Atlas ergonomic workstation, picking his ear. Rim lighting, crisp line art." },
             { "panel": 2, "shot": "Close-up", "prompt": "Close-up, Professional monochrome manga art. (Nei: android, blonde hair) looking exasperated, holding a tablet. Detailed expressive eyes, dense screentone." },
-            { "panel": 3, "shot": "Two Shot", "prompt": "Two Shot, Medium Shot, Professional monochrome manga art. Ren and Nei. Nei pointing at a tablet screen with a 'LOW FUNDS' icon. Cluttered tech-office background." },
+            { "panel": 3, "shot": "Two Shot", "prompt": "Two Shot, Medium Shot, Professional monochrome manga art. Ren and Nei. Nei pointing at a tablet screen with a 'LOW FUNDS' icon. Cluttered tech-office background with USM Haller furniture and server racks." },
             { "panel": 4, "shot": "Extreme Close-up", "prompt": "Extreme Close-up, Professional monochrome manga art. Ren's sharp half-lidded eye suddenly wide and alert. High contrast, intense ink strokes." }
           ]
         }

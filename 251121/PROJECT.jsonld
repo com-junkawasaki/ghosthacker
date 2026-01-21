@@ -27,7 +27,8 @@
       "storyboard.jsonld created as the master asset, consolidating Bible, Drafts, and Prompts",
       "All prompts updated to Professional Monochrome Manga style optimized for Runway Gen-2/Gen-3",
       "Redundant storyboard and draft files deleted to simplify project structure",
-      ".cursor/rules/runway_manga_generation.mdc created to codify Runway-specific Manga generation rules"
+      ".cursor/rules/runway_manga_generation.mdc created to codify Runway-specific Manga generation rules",
+      "251121/props/ directory created to define specific furniture and items (Okamura Cruise & Atlas, USM Haller, etc.) for consistent visual property across prompts"
     ]
   },
   "gh:artifacts": [
@@ -50,6 +51,13 @@
       "schema:name": "Environment Base Prompts",
       "schema:description": "Detailed environment-only prompts for consistent scene setup.",
       "schema:filePath": "251121/environments/"
+    },
+    {
+      "@id": "gh:artifact/props-definition-251121",
+      "@type": "gh:Artifact",
+      "schema:name": "Prop & Furniture Definitions",
+      "schema:description": "Specific brand and model names for consistent object generation.",
+      "schema:filePath": "251121/props/"
     }
   ],
   "gh:milestones": [
