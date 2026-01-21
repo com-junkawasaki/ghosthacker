@@ -9,7 +9,7 @@
   "@type": ["gh:Project", "prov:Entity"],
   "dct:title": "Manga Ghost Hacker: Case Study Series",
   "dct:description": "A manga series designed to teach cybersecurity through case studies, using real-world terminology and frameworks (CISA, CISSP, CMMI).",
-  "gh:status": "Planning / Master Storyboard (Cinematic Live-Action Base) Completed",
+  "gh:status": "Planning / Master Storyboard (ARIA Cinematic Base) Completed",
   "gh:currentSession": {
     "@type": "prov:Activity",
     "prov:startedAtTime": "2026-01-22T00:00:00Z",
@@ -19,16 +19,16 @@
       "Generate detailed panel-by-panel (cut) storyboard prompts for Manga production",
       "Align prompts with Professional Monochrome Manga style and Runway constraints",
       "Consolidate all story assets into a single master storyboard",
-      "Convert all prompts to a realistic live-action base for subsequent style transfer"
+      "Implement ARIA-style aesthetic (clean air, soft light, detailed eyes) for Runway base generation"
     ],
     "gh:results": [
       "Ren Numano: Sloth (Efficiency), MIT Dropout, CISSP Associate, CEH",
       "Kaname: Arrogance (Perfection), Stanford Grad, CISA, PMP, Registered InfoSec Specialist",
       "Takeru: Short-tempered (Instant Action), Self-taught, OSCP, GXPN",
-      "storyboard.jsonld updated with realistic cinematic prompts (no style keywords) for optimal Runway generation",
-      "character_profiles.jsonld reverted to photorealistic descriptions to serve as accurate Runway references",
-      ".cursor/rules/runway_manga_generation.mdc updated to codify 'Live-Action Base' generation strategy",
-      "Runway constraints (3 entities, no dialogue, cinematic terms) maintained across all realistic prompts"
+      "storyboard.jsonld updated with gh:shotProperties and ARIA-style cinematic prompts",
+      "character_profiles.jsonld enhanced with detailed ocular (eye) descriptions for all main characters",
+      ".cursor/rules/runway_manga_generation.mdc updated with ARIA aesthetic and Ocular Detail rules",
+      "Live-Action Base strategy finalized to maximize Runway video quality before style transfer"
     ]
   },
   "gh:artifacts": [

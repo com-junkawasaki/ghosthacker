@@ -18,11 +18,12 @@
       "schema:role": "Client / Successor",
       "schema:age": 26,
       "gh:appearance": {
-        "gh:face": "26-year-old Japanese male, sharp eyes, slightly fatigued but determined expression.",
+        "gh:face": "26-year-old Japanese male, sharp eyes with deep brown iris patterns, slightly fatigued but determined expression.",
         "gh:hair": "Short clean-cut black hair, business style.",
         "gh:build": "Fit and athletic build, wearing a navy blue three-piece suit.",
+        "gh:eyes": "Intricate dark brown iris, sharp catchlights, reflecting office light.",
         "gh:style": "Photorealistic, cinematic lighting, 8k, highly detailed skin texture.",
-        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 26-year-old Japanese businessman, sharp eyes, short clean-cut black hair, wearing a navy blue three-piece suit, slightly loosened tie, natural skin tone."
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 26-year-old Japanese businessman, sharp eyes with intricate deep brown iris patterns and sparkling catchlights, short clean-cut black hair, wearing a navy blue three-piece suit, natural skin tone."
       }
     },
     {
@@ -31,11 +32,12 @@
       "schema:role": "Ghost Hacker",
       "schema:age": 17,
       "gh:appearance": {
-        "gh:face": "17-year-old stunningly beautiful Japanese male, pale translucent skin, melancholic half-lidded eyes.",
+        "gh:face": "17-year-old stunningly beautiful Japanese male, pale translucent skin, melancholic half-lidded eyes with silver-grey crystalline irises.",
         "gh:hair": "Messy voluminous stylish raven black hair.",
         "gh:build": "Slender and graceful, wearing an oversized dark charcoal hoodie.",
+        "gh:eyes": "Clear silver-grey crystalline iris, sharp sparkling catchlights, deep melancholic expression.",
         "gh:style": "Photorealistic, high fashion photography, dramatic shadows, 8k.",
-        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, stunningly beautiful 17-year-old Japanese male, pale porcelain skin, messy voluminous raven black hair, melancholic half-lidded eyes, oversized dark charcoal hoodie, dramatic shadows."
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, stunningly beautiful 17-year-old Japanese male, pale porcelain skin, messy voluminous raven black hair, melancholic half-lidded eyes with silver-grey crystalline irises and sharp catchlights, oversized dark charcoal hoodie."
       }
     },
     {
@@ -44,11 +46,12 @@
       "schema:role": "AI Partner / Android",
       "schema:age": 16,
       "gh:appearance": {
-        "gh:face": "16-year-old stunningly beautiful Japanese female android, intelligent and mischievous sharp eyes, perfect porcelain skin.",
+        "gh:face": "16-year-old stunningly beautiful Japanese female android, intelligent and mischievous sharp eyes with glowing blue intricate iris patterns.",
         "gh:hair": "Platinum blonde layered bob hair.",
         "gh:build": "Slender, wearing a white long-sleeve blouse and black sleeveless dress.",
+        "gh:eyes": "Intelligent glowing blue irises with complex mechanical-like patterns, bright crystalline catchlights.",
         "gh:style": "Photorealistic, cinematic soft lighting, high-end android aesthetic, 8k.",
-        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, beautiful 16-year-old Japanese female android, platinum blonde layered bob, glowing irises, white blouse, black dress, perfect skin."
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, beautiful 16-year-old Japanese female android, platinum blonde layered bob, glowing blue irises with intricate mechanical patterns and sharp catchlights, white blouse, black dress."
       }
     },
     {
@@ -57,11 +60,12 @@
       "schema:role": "Rival Hacker",
       "schema:age": 19,
       "gh:appearance": {
-        "gh:face": "19-year-old Japanese male, muscular build, aggressive and intense expression.",
+        "gh:face": "19-year-old Japanese male, muscular build, aggressive and intense expression, piercing amber eyes.",
         "gh:hair": "Messy black hair with bleached highlights.",
         "gh:build": "Muscular, wearing high-end techwear/streetwear.",
+        "gh:eyes": "Piercing amber irises, high contrast iris texture, intense sharp catchlights.",
         "gh:style": "Photorealistic, gritty street aesthetic, high contrast, 8k.",
-        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 19-year-old Japanese male, muscular build, aggressive expression, messy black hair with bleached highlights, techwear, gritty street aesthetic."
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 19-year-old Japanese male, aggressive expression, piercing amber eyes with high contrast iris textures, messy black hair with bleached highlights, techwear."
       }
     },
     {
@@ -70,50 +74,12 @@
       "schema:role": "Rival Hacker",
       "schema:age": 18,
       "gh:appearance": {
-        "gh:face": "18-year-old Japanese male, perfectly sculpted handsome face, arrogant and cold eyes.",
+        "gh:face": "18-year-old Japanese male, perfectly sculpted handsome face, arrogant and cold eyes with obsidian-like dark irises.",
         "gh:hair": "Stylishly set dark brown hair.",
         "gh:build": "Model-like tall and slender, wearing a perfectly tailored white suit.",
+        "gh:eyes": "Cold obsidian-like dark irises, sharp mirror-like catchlights, arrogant expression.",
         "gh:style": "Photorealistic, luxury elite vibe, sharp focus, 8k.",
-        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 18-year-old Japanese male, perfectly sculpted face, stylish dark brown hair, arrogant eyes, wearing a white suit, luxury elite aesthetic."
-      }
-    },
-    {
-      "@id": "character:Yasumoto",
-      "schema:name": "安本 健治 (Kenji Yasumoto)",
-      "schema:role": "Antagonist / Victim",
-      "schema:age": 52,
-      "gh:appearance": {
-        "gh:face": "52-year-old Japanese man, oily skin, anxious and defensive expression, darting eyes.",
-        "gh:hair": "Messy receding salt-and-pepper hair.",
-        "gh:build": "Slightly overweight, wearing a rumpled gray business suit.",
-        "gh:style": "Photorealistic, harsh office lighting, oily skin texture, 8k.",
-        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, a 52-year-old Japanese man, slightly overweight, anxious expression, messy receding hair, rumpled gray suit, sweat stains, harsh fluorescent lighting."
-      }
-    },
-    {
-      "@id": "character:Matsuda",
-      "schema:name": "松田 ヨシ子 (Yoshiko Matsuda)",
-      "schema:role": "Accounting Manager",
-      "schema:age": 58,
-      "gh:appearance": {
-        "gh:face": "58-year-old Japanese woman, strict expression, realistic aging details.",
-        "gh:hair": "Short permed black hair.",
-        "gh:build": "Small build, wearing a beige blouse and dark skirt, reading glasses on a silver chain.",
-        "gh:style": "Photorealistic, strict Japanese office lady, 8k.",
-        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 58-year-old Japanese woman, small build, strict expression, short permed black hair, beige blouse, reading glasses on chain, cinematic office lighting."
-      }
-    },
-    {
-      "@id": "character:Sato",
-      "schema:name": "佐藤 健太 (Kenta Sato)",
-      "schema:role": "IT Support",
-      "schema:age": 24,
-      "gh:appearance": {
-        "gh:face": "24-year-old Japanese male, fatigued and worried expression.",
-        "gh:hair": "Simple short black hair, slightly messy.",
-        "gh:build": "Slim build, wearing a light blue polo shirt and dark chinos.",
-        "gh:style": "Photorealistic, fatigued youth, realistic sweat, 8k.",
-        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 24-year-old Japanese male, slim build, fatigued expression, short black hair, light blue polo shirt, carrying cables, realistic office lighting."
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 18-year-old Japanese male, perfectly sculpted face, arrogant cold eyes with obsidian-like dark irises and sharp catchlights, white suit, luxury aesthetic."
       }
     }
   ]

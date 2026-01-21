@@ -9,16 +9,17 @@
     "panel": "gh:panelIndex",
     "purpose": "gh:narrativePurpose",
     "shot": "gh:shotType",
-    "prompt": "gh:runwayPrompt"
+    "prompt": "gh:runwayPrompt",
+    "properties": "gh:shotProperties"
   },
   "@id": "gh:storyboard/master-season1",
   "@type": ["gh:MasterStoryboard", "prov:Entity"],
-  "dct:title": "Ghost Hacker Season 1: Master Storyboard (Cinematic Live-Action Base)",
-  "dct:description": "Unified narrative framework and visual storyboard for Season 1. Full page/panel breakdowns with realistic cinematic prompts for Runway. Style transfer to be applied later.",
-  "gh:globalStyle": "Photorealistic cinematic video, 8k, raw photo quality, high detail, natural skin textures, dramatic lighting, shot on 35mm lens, f/1.8, shallow depth of field.",
+  "dct:title": "Ghost Hacker Season 1: Master Storyboard (ARIA Cinematic Base)",
+  "dct:description": "Unified narrative framework and visual storyboard for Season 1. Full page/panel breakdowns with ARIA-style realistic cinematic prompts. Emphasizes luminous atmosphere and extreme ocular detail.",
+  "gh:globalStyle": "ARIA-style: Luminous atmosphere, soft diffused natural light, pristine air, highly detailed expressive eyes, intricate iris patterns, sharp catchlights. 8k photorealistic, shot on 35mm/85mm lenses.",
   "gh:mangaPrinciples": {
     "gh:layoutLogic": "Impression (1-3 panels) vs. Rhythm (4-8 panels)",
-    "gh:runwayConstraints": "Maximum 3 entities per prompt, cinematic camera/lighting terms, no dialogue text."
+    "gh:runwayConstraints": "Maximum 3 entities per prompt, cinematic camera/lighting terms, no dialogue text, ARIA aesthetic."
   },
   "gh:narrativeFramework": {
     "gh:arcs": [
@@ -33,84 +34,66 @@
       "gh:episode": 1,
       "dct:title": "牙を剥く内部の影",
       "gh:pages": [
-        { "gh:pageNumber": 1, "gh:panels": [
-          { "panel": 1, "shot": "Wide Angle", "prompt": "Wide Angle, Cinematic 8k. A detailed evolution chart from primitive man to modern human, superimposed on a dark, primeval forest. High contrast lighting." },
-          { "panel": 2, "shot": "Medium Shot", "prompt": "Medium Shot, Photorealistic. A large stone ancient Buddha statue and wooden totem poles, glowing faintly behind a modern high-tech server rack in a dark room. 35mm lens." },
-          { "panel": 3, "shot": "Bird's Eye View", "prompt": "Bird's Eye View, Cinematic. Tokyo skyline at night in 2026, glowing neon data streams flowing between skyscrapers like rivers of light. 8k, high detail." }
-        ]},
-        { "gh:pageNumber": 2, "gh:panels": [
-          { "panel": 1, "shot": "Full Page Vertical", "prompt": "Full Page Vertical, Cinematic. (Ren: 17-year-old male, messy black hair) and (Nei: female android, platinum blonde hair) floating in a vortex of digital light grids and collapsing architectural fragments. Epic scale, 8k." }
-        ]},
-        { "gh:pageNumber": 4, "gh:panels": [
-          { "panel": 1, "shot": "Medium Shot", "prompt": "Medium Shot, Modern concrete office. (Ren: 17-year-old male, dark hoodie) slouching deeply in an Okamura Cruise and Atlas workstation, picking his ear. Rim lighting from window, photorealistic." },
-          { "panel": 2, "shot": "Close-up", "prompt": "Close-up, Photorealistic. (Nei: female android, platinum blonde bob) looking exasperated, holding a thin tablet. Sharp eyes, 8k, shallow depth of field." },
-          { "panel": 3, "shot": "Two Shot", "prompt": "Two Shot, Cinematic. Ren and Nei in a tech-filled office with USM Haller furniture. Nei pointing at a tablet screen showing a 'LOW FUNDS' icon. Natural office lighting." },
-          { "panel": 4, "shot": "Extreme Close-up", "prompt": "Extreme Close-up, 8k. Close-up of Ren's eye suddenly wide and alert. Detailed pupil and eyelashes, dramatic high contrast lighting." }
-        ]},
-        { "gh:pageNumber": 5, "gh:panels": [
-          { "panel": 1, "shot": "Low Angle", "prompt": "Low Angle, Medium Shot. (Shouta: 26-year-old male, navy suit) standing at a door, looking tense and desperate. Rim lighting from the hallway." },
-          { "panel": 2, "shot": "Medium Shot", "prompt": "Medium Shot, Photorealistic. Ren standing up slowly from his ergonomic chair, looking at Shouta. Cinematic shadows, high detail on hoodie texture." }
-        ]},
-        { "gh:pageNumber": 6, "gh:panels": [
-          { "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Realistic. Interior of a cluttered 1980s-style Japanese office. Scattered blueprints, old FAX machines, many staff panicking. Harsh fluorescent lighting." },
-          { "panel": 2, "shot": "Medium Shot", "prompt": "Medium Shot, 8k. (Matsuda: 58-year-old Japanese woman) screaming into two telephone receivers. Sweat on face, realistic skin texture, sharp focus." },
-          { "panel": 3, "shot": "Low Angle", "prompt": "Low Angle, Close-up. (Sato: 24-year-old male) sweating, looking up from under a dark server rack. Tangled black cables, realistic industrial textures." }
-        ]},
-        { "gh:pageNumber": 7, "gh:panels": [
-          { "panel": 1, "shot": "Medium Shot", "prompt": "Medium Shot, Photorealistic. (Yasumoto: 52-year-old male, suit) pointing an aggressive finger. Red face, popping veins on neck, high contrast lighting." },
-          { "panel": 2, "shot": "POV Shot", "prompt": "POV Shot (Augmented Reality), Cinematic. A massive, black shadowy hand of a spectral entity emerging from Yasumoto's back. Glitchy air effects, 8k." }
-        ]},
-        { "gh:pageNumber": 10, "gh:panels": [
-          { "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Horror. Yasumoto screaming, his shadow expanding into a monstrous shape on the office floor. Dynamic camera angle, high contrast." },
-          { "panel": 2, "shot": "Full Shot", "prompt": "Full Shot, Realistic VFX. A monstrous entity made of tangled LAN cables and yellowed documents looming in the office. Cinematic lighting, debris in the air." }
-        ]},
-        { "gh:pageNumber": 13, "gh:panels": [
-          { "panel": 1, "shot": "Action Shot", "prompt": "Action Shot, 8k. Ren leaping through the air, dodging black cable tentacles. Motion blur, high-speed camera effect." },
-          { "panel": 2, "shot": "Full Page Splash", "prompt": "Full Page Splash, Cinematic. A massive digital axe made of blue light particles striking the core of the cable monster. Huge explosion of light and data fragments." }
-        ]}
-      ]
-    },
-    {
-      "gh:episode": 2,
-      "dct:title": "許しの毒",
-      "gh:pages": [
-        { "gh:pageNumber": 1, "gh:panels": [{ "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Photorealistic. Quiet office at dawn, Shouta looking at Yasumoto through a glass partition. Soft morning sun through blinds, 8k." }]},
-        { "gh:pageNumber": 4, "gh:panels": [{ "panel": 1, "shot": "Full Shot", "prompt": "Full Shot, Cinematic. Every computer monitor in the office turning black with a large white 'ACCESS DENIED' message. Sudden chaotic movement of staff." }]},
-        { "gh:pageNumber": 6, "gh:panels": [{ "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Sci-fi. Nei projecting a complex 3D holographic supply chain map from her hand. Glowing blue nodes and data lines in a dark room." }]}
-      ]
-    },
-    {
-      "gh:episode": 4,
-      "dct:title": "終わらぬ時計",
-      "gh:pages": [
-        { "gh:pageNumber": 1, "gh:panels": [{ "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Realistic. A massive industrial warehouse at 4 AM. Rows of trucks idling, (Makoto Baba: 54-year-old male) looking stressed. High contrast industrial lighting." }]},
-        { "gh:pageNumber": 2, "gh:panels": [{ "panel": 1, "shot": "Low Angle", "prompt": "Low Angle, Action. (Takeru: 19-year-old male, techwear) jumping off a moving truck. Holding a heavy iron crowbar, determined look, photorealistic 8k." }]},
-        { "gh:pageNumber": 5, "gh:panels": [{ "panel": 1, "shot": "Full Shot", "prompt": "Full Shot, Surreal. A giant mechanical clock with bladed needles appearing over warehouse conveyor belts. Ghostly aura, cinematic horror lighting." }]}
-      ]
-    },
-    {
-      "gh:episode": 7,
-      "dct:title": "空の要塞の崩壊",
-      "gh:pages": [
-        { "gh:pageNumber": 1, "gh:panels": [{ "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Luxury. A high-end marble financial lobby. (Kaname: 18-year-old male, white suit) walking with elegance. Sterile architecture, symmetrical composition." }]},
-        { "gh:pageNumber": 10, "gh:panels": [{ "panel": 1, "shot": "Medium Shot", "prompt": "Medium Shot, Photorealistic. Kaname holding a chrome torque wrench with detailed metallic reflections. Arrogant expression, sharp focus, 8k." }]},
-        { "gh:pageNumber": 12, "gh:panels": [{ "panel": 1, "shot": "Full Shot", "prompt": "Full Shot, Realistic VFX. A spectral knight in armor made of fluttering financial paper regulations. Sterile server room background, cinematic lighting." }]}
-      ]
-    },
-    {
-      "gh:episode": 10,
-      "dct:title": "群れのGhost",
-      "gh:pages": [
-        { "gh:pageNumber": 1, "gh:panels": [{ "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Cinematic. Shinjuku rooftop at night. Ren, Takeru, and Kaname standing together in the rain. Neon sign reflections in puddles, dramatic shadows." }]},
-        { "gh:pageNumber": 5, "gh:panels": [{ "panel": 1, "shot": "Medium Shot", "prompt": "Medium Shot, Realistic. (HERO: 30-year-old male) shouting into a high-end microphone. Flashy tactical jacket, tacky luxury high-rise room, 8k." }]}
-      ]
-    },
-    {
-      "gh:episode": 12,
-      "dct:title": "逮捕",
-      "gh:pages": [
-        { "gh:pageNumber": 1, "gh:panels": [{ "panel": 1, "shot": "Action Shot", "prompt": "Action Shot, Cinematic. A SWAT team in tactical gear bursting through a glass penthouse door. HERO looking back in terror, debris flying, 8k." }]},
-        { "gh:pageNumber": 10, "gh:panels": [{ "panel": 1, "shot": "Medium Shot", "prompt": "Medium Shot, Realistic. Ren fast asleep in his desk chair. Nei gently placing a soft blanket over him. Warm morning light, peaceful office atmosphere." }]}
+        {
+          "gh:pageNumber": 4,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "properties": {
+                "gh:distance": "Wide Shot",
+                "gh:angle": "Back View, Eye Level",
+                "gh:atmosphere": "ARIA-style: Soft diffused morning light, luminous clean air",
+                "gh:composition": "One-point perspective, centered subject",
+                "gh:focus": "Deep focus"
+              },
+              "prompt": "Wide Shot, Back View, Eye Level. ARIA-style: Luminous atmosphere, soft diffused light from right window, clean air. (Ren:1.2) sitting at a minimalist white ergonomic desk, back to camera, facing dual monitors. One-point perspective, 35mm wide lens, 8k photorealistic, serene mood."
+            },
+            {
+              "panel": 2,
+              "shot": "Close-up",
+              "properties": {
+                "gh:distance": "Close-up",
+                "gh:angle": "Frontal",
+                "gh:atmosphere": "Soft bokeh, high-end portrait lighting",
+                "gh:eyeDetail": "Intricate blue iris patterns, sharp catchlights, crystal clear eyes"
+              },
+              "prompt": "Close-up, Frontal. ARIA-style: (Nei:1.2) looking at camera with an exasperated expression. Intricate glowing blue iris patterns, sharp sparkling catchlights in crystalline eyes, extreme ocular detail. Soft diffused light, 85mm lens, f/1.2, creamy bokeh, 8k photorealistic."
+            },
+            {
+              "panel": 3,
+              "shot": "Medium Shot",
+              "properties": {
+                "gh:distance": "Medium Shot",
+                "gh:angle": "Side View",
+                "gh:atmosphere": "Clean luminous air, natural office light",
+                "gh:composition": "Two shot"
+              },
+              "prompt": "Medium Shot, Side View. ARIA-style: Ren and Nei in a tech-filled office with USM Haller furniture. Nei pointing at a tablet screen. Soft diffused lighting, clean air, 35mm lens, 8k photorealistic."
+            },
+            {
+              "panel": 4,
+              "shot": "Extreme Close-up",
+              "properties": {
+                "gh:distance": "Extreme Close-up",
+                "gh:angle": "Ocular focus",
+                "gh:eyeDetail": "Extreme iris detail, deep silver-grey crystalline texture"
+              },
+              "prompt": "Extreme Close-up, Ocular Focus. ARIA-style: Ren's eye suddenly wide and alert. Extreme iris detail, silver-grey crystalline texture, sharp sparkling catchlights, visible eye-lashes. Dramatic soft lighting, 100mm macro lens, 8k photorealistic."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 1,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Angle",
+              "properties": { "gh:atmosphere": "ARIA-style: Luminous mist, ethereal light" },
+              "prompt": "Wide Angle. ARIA-style: Luminous mist, soft diffused light. A detailed evolution chart from primitive man to modern human, superimposed on a pristine primeval forest. 8k, aerial perspective."
+            }
+          ]
+        }
       ]
     }
   ]
