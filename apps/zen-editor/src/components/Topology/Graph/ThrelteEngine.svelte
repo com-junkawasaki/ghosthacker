@@ -152,7 +152,7 @@
     cam.position.lerp(idealPos, 0.03);
 
     // Sync FOV
-    if (cam.fov !== config.fov) {
+    if (cam instanceof THREE.PerspectiveCamera && cam.fov !== config.fov) {
       cam.fov = THREE.MathUtils.lerp(cam.fov, config.fov, 0.05);
       cam.updateProjectionMatrix();
     }
@@ -232,7 +232,7 @@
     position={[node.x || 0, node.y || 0, 0]}
     onpointerenter={() => { document.body.style.cursor = 'pointer'; }}
     onpointerleave={() => { document.body.style.cursor = 'default'; }}
-    onclick={(e) => {
+    onclick={(e: any) => {
       e.stopPropagation();
       onNodeClick(node);
     }}

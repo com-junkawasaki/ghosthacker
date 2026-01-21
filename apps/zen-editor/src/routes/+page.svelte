@@ -8,17 +8,20 @@
   import ConnectionSuggester from '../components/ConnectionSuggester.svelte';
   import EntityProfile from '../components/EntityProfile.svelte';
   import TranslationViewer from '../components/TranslationViewer.svelte';
+  import MangaView from '../components/Manga/MangaView.svelte';
   import { getClient, getAssetUrl } from '../lib/api';
 
   import { graphStore } from '../lib/stores/graph.svelte';
 
   let selectedNode = $state<any>(null);
-  let rightPaneMode = $state<"storyboard" | "editor" | "connection-suggester" | "entity" | "relation" | "asset" | "translation" | "assembler">("storyboard");
+  let rightPaneMode = $state<"storyboard" | "editor" | "connection-suggester" | "entity" | "relation" | "asset" | "translation" | "assembler" | "manga">("storyboard");
 
   // Sync rightPaneMode with assembler viewpoint
   $effect(() => {
     if (graphStore.currentViewpointId === 'hub:assembler') {
       rightPaneMode = "assembler";
+    } else if (graphStore.currentViewpointId === 'hub:manga') {
+      rightPaneMode = "manga";
     }
   });
 
@@ -30,7 +33,7 @@
   let currentFileContent = $state("");
   let projectTitle = $state("GhostHacker Zen Editor");
   let activeView = $state<"graph" | "storyboard" | "dual">("dual");
-  let sidebarMode = $state<"nodes" | "files">("graph");
+  let sidebarMode = $state<"graph" | "files" | "storyboard">("graph");
   let leftPaneWidth = $state(40); // Initial width for graph
   let isGraphCollapsed = $state(false);
   let isStoryboardCollapsed = $state(false);
@@ -167,6 +170,7 @@
     </div>
 
     <div class="right-section">
+      <button class="icon-btn" title="Manga View" onclick={() => graphStore.setViewpoint('hub:manga')}>🎨</button>
       <button class="icon-btn" title="3D Assembler" onclick={() => graphStore.setViewpoint('hub:assembler')}>🧊</button>
       <button class="icon-btn" onclick={() => isHistoryOpen = !isHistoryOpen} class:active={isHistoryOpen}>📜</button>
       <button class="icon-btn" onclick={toggleChat}>💬</button>
@@ -182,6 +186,7 @@
             <div class="mode-switch">
               <button class:active={sidebarMode === 'graph'} onclick={() => sidebarMode = 'graph'}>Graph</button>
               <button class:active={sidebarMode === 'files'} onclick={() => sidebarMode = 'files'}>Files</button>
+              <button class:active={sidebarMode === 'storyboard'} onclick={() => sidebarMode = 'storyboard'}>Storyboard</button>
             </div>
             {#if activeView === "dual"}
               <button class="collapse-btn" onclick={() => isGraphCollapsed = true}>◀</button>
@@ -191,11 +196,15 @@
           <div class="pane-content dual-sidebar">
             {#if sidebarMode === 'files'}
               <FileExplorer {projectId} onSelectFile={handleFileSelect} />
+            {:else if sidebarMode === 'storyboard'}
+              <div class="compact-storyboard">
+                <Storyboard {projectId} />
+              </div>
             {/if}
             <Topology 
               bind:this={topologyRef} 
               {projectId}
-              hideSidebar={sidebarMode === 'files'}
+              hideSidebar={sidebarMode !== 'graph'}
               onSelect={handleNodeSelect} 
               selectedId={selectedNode?.id} 
             />
@@ -288,6 +297,8 @@
               </div>
             {:else if rightPaneMode === 'assembler'}
               <AssemblerControls />
+            {:else if rightPaneMode === 'manga'}
+              <MangaView {projectId} />
             {:else}
               <Storyboard bind:this={storyboardRef} {projectId} />
             {/if}
@@ -383,6 +394,31 @@
   .dual-sidebar {
     display: flex;
     height: 100%;
+  }
+
+  .compact-storyboard {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .compact-storyboard :global(.storyboard-controls) {
+    padding: 0.5rem;
+  }
+  
+  .compact-storyboard :global(.scene-row) {
+    flex-direction: column;
+    min-height: auto;
+  }
+  
+  .compact-storyboard :global(.col-visual) {
+    width: 100%;
+  }
+  
+  .compact-storyboard :global(.col-desc),
+  .compact-storyboard :global(.col-audio),
+  .compact-storyboard :global(.col-time) {
+    display: none;
   }
 
   .collapse-btn {

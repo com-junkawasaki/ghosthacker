@@ -29,6 +29,31 @@ export interface Edge {
   strength?: number;
 }
 
+export interface MangaDialogue {
+  speaker: string;
+  text: string;
+  x?: number; // percentage 0-100
+  y?: number; // percentage 0-100
+  type?: 'normal' | 'thought' | 'shout';
+}
+
+export interface MangaPanel {
+  id: string;
+  panelId: number;
+  visual: string;
+  dialogue: MangaDialogue[];
+  imagePath?: string;
+  layout?: string;
+}
+
+export interface MangaPage {
+  id: string;
+  panels: MangaPanel[];
+  pageNumber: number;
+  type?: string;
+  description?: string;
+}
+
 class GraphStore {
   nodes = $state<Map<string, Node>>(new Map());
   edges = $state<Edge[]>([]);
@@ -37,11 +62,13 @@ class GraphStore {
   currentViewpointId = $state<string | null>(null);
   isLoading = $state(false);
   projectMetadata = $state<any>(null);
+  mangaPages = $state<MangaPage[]>([]);
 
   viewpoints = $derived([
     { id: 'hub:content', label: 'Timeline', type: 'chronological', description: 'Story progression' },
     { id: 'hub:entity', label: 'Characters', type: 'relationship', description: 'Social graph' },
     { id: 'hub:environment', label: 'World', type: 'atmospheric', description: 'Physical spaces' },
+    { id: 'hub:manga', label: 'Manga View', type: 'manga', description: 'Manga layout & lettering' },
     { id: 'hub:assembler', label: '3D Assembler', type: 'assembler', description: 'Scene composition' },
     { id: 'hub:emotion', label: 'Emotions', type: 'heatmap', description: 'Emotional resonance' },
     { id: 'hub:meta', label: 'Meta', type: 'overview', description: 'System architecture' }
@@ -53,6 +80,85 @@ class GraphStore {
     this.currentViewpointId = id;
     if (id) {
       this.selectedNodeId = id; // Also select the hub
+    }
+  }
+
+  async loadMangaScript(projectId: string) {
+    console.log(`[Store] Loading manga script for ${projectId}`);
+    try {
+      const content = await this.openFile(`${projectId}/manga_script.jsonld`);
+      if (content) {
+        const data = JSON.parse(content);
+        this.mangaPages = (data["gh:pages"] || []).map((p: any, idx: number) => ({
+          id: p["@id"] || `page:${idx + 1}`,
+          pageNumber: idx + 1,
+          type: p["gh:type"],
+          description: p["gh:description"],
+          panels: (p["gh:panels"] || []).map((pan: any) => ({
+            id: `${p["@id"] || `page:${idx + 1}`}:panel:${pan["panel:id"]}`,
+            panelId: pan["panel:id"],
+            visual: pan.visual,
+            layout: pan["gh:layout"],
+            imagePath: pan["gh:imagePath"], // Load if exists
+            dialogue: (pan.dialogue || []).map((d: any) => ({
+              speaker: d.speaker,
+              text: d.text,
+              x: d.x ?? 50,
+              y: d.y ?? 50,
+              type: d.type ?? 'normal'
+            }))
+          }))
+        }));
+        console.log(`[Store] Manga script loaded: ${this.mangaPages.length} pages`);
+      }
+    } catch (err) {
+      console.error("Failed to load manga script:", err);
+    }
+  }
+
+  async saveMangaScript() {
+    if (!this.projectId) return;
+    console.log(`[Store] Saving manga script for ${this.projectId}`);
+    try {
+      const scriptPath = `${this.projectId}/manga_script.jsonld`;
+      // We need to preserve the original structure as much as possible
+      const originalContent = await this.openFile(scriptPath);
+      const data = JSON.parse(originalContent);
+
+      data["gh:pages"] = this.mangaPages.map(p => ({
+        "@id": p.id,
+        "gh:type": p.type,
+        "gh:description": p.description,
+        "gh:panels": p.panels.map(pan => ({
+          "panel:id": pan.panelId,
+          "visual": pan.visual,
+          "gh:layout": pan.layout,
+          "gh:imagePath": pan.imagePath,
+          "dialogue": pan.dialogue.map(d => ({
+            speaker: d.speaker,
+            text: d.text,
+            x: d.x,
+            y: d.y,
+            type: d.type
+          }))
+        }))
+      }));
+
+      await this.saveFile(scriptPath, JSON.stringify(data, null, 2));
+      console.log(`[Store] Manga script saved`);
+    } catch (err) {
+      console.error("Failed to save manga script:", err);
+    }
+  }
+
+  updateMangaPanel(pageId: string, panelId: number, updates: Partial<MangaPanel>) {
+    const page = this.mangaPages.find(p => p.id === pageId);
+    if (page) {
+      const panel = page.panels.find(pan => pan.panelId === panelId);
+      if (panel) {
+        Object.assign(panel, updates);
+        this.mangaPages = [...this.mangaPages]; // Trigger reactivity
+      }
     }
   }
 
@@ -292,7 +398,7 @@ class GraphStore {
 
   private projectId = "";
 
-  updateNodePositions(positions: Float32Array) {
+  updateNodePositions(positions: Float32Array | number[]) {
     let changed = false;
     const nodeList = Array.from(this.nodes.values());
     if (positions.length < nodeList.length * 2) return;
@@ -300,7 +406,7 @@ class GraphStore {
     nodeList.forEach((node, i) => {
       const nx = positions[i * 2];
       const ny = positions[i * 2 + 1];
-      if (node.x !== nx || node.y !== ny) {
+      if (nx !== undefined && ny !== undefined && (node.x !== nx || node.y !== ny)) {
         node.x = nx;
         node.y = ny;
         changed = true;

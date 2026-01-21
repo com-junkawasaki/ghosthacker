@@ -264,7 +264,19 @@
             </div>
           </div>
           
-          <div class="col-visual">
+          <div 
+            class="col-visual"
+            draggable="true"
+            ondragstart={(e) => {
+              e.dataTransfer?.setData('application/json', JSON.stringify({
+                type: 'storyboard-scene',
+                id: scene.id,
+                visual: scene.visual,
+                description: scene.description,
+                image: scene.visual.startsWith("http") || scene.visual.startsWith("/") ? scene.visual : null
+              }));
+            }}
+          >
             <div class="visual-container">
               {#if scene.visual && !scene.visual.startsWith("Generating")}
                 <div class="sketch-area">
