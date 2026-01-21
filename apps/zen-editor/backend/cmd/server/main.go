@@ -683,11 +683,14 @@ func main() {
 	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) { w.Write([]byte("OK")) })
 	
 	// Serve data directory as static files
-	mux.Handle("/data/", withCORS(http.StripPrefix("/data/", http.FileServer(http.Dir(workspaceRoot)))))
+	mux.Handle("/data/", http.StripPrefix("/data/", http.FileServer(http.Dir(workspaceRoot))))
 
 	path, handler := editorpbconnect.NewEditorServiceHandler(srv)
-	mux.Handle(path, withCORS(handler))
+	mux.Handle(path, handler)
+	
+	// Apply CORS to everything
+	handlerWithCORS := withCORS(mux)
 	
 	log.Printf("Starting server on :%s (workspace: %s)", port, workspaceRoot)
-	http.ListenAndServe(":"+port, h2c.NewHandler(mux, &http2.Server{}))
+	http.ListenAndServe(":"+port, h2c.NewHandler(handlerWithCORS, &http2.Server{}))
 }

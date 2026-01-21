@@ -163,6 +163,10 @@
     {
       "step": "19. Configure Tilt for integrated development of frontend and backend services",
       "status": "completed"
+    },
+    {
+      "step": "20. Implement Browser-based E2E TDD suite with Playwright",
+      "status": "in_progress"
     }
   ]
 }

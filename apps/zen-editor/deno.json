@@ -11,7 +11,8 @@
     "preview": "deno run -A npm:vite@latest preview",
     "check": "deno run -A npm:@sveltejs/kit sync && deno run -A npm:svelte-check --threshold error",
     "check:watch": "deno run -A npm:@sveltejs/kit@latest sync && deno run -A npm:svelte-check@latest --watch",
-    "sync:force": "rm -rf node_modules .svelte-kit build deno.lock && deno cache --reload src/lib/api.ts && deno run -A npm:@sveltejs/kit sync"
+    "sync:force": "rm -rf node_modules .svelte-kit build deno.lock && deno cache --reload src/lib/api.ts && deno run -A npm:@sveltejs/kit sync",
+    "test:e2e": "deno run -A npm:@playwright/test test"
   },
   "nodeModulesDir": "auto",
   "compilerOptions": {

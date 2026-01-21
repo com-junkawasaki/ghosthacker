@@ -109,21 +109,30 @@ class GraphStore {
   }
 
   async fetchProjectMetadata(projectId: string) {
+    console.log(`[Store] Fetching project metadata for ${projectId}`);
     try {
       const client = await getClient();
       if (!client) return;
       const resp = await client.getProjectMetadata({ projectId });
       this.projectMetadata = resp;
+      console.log(`[Store] Project metadata updated: ${resp.episodes?.length} episodes found`);
     } catch (err) {
       console.error("Failed to fetch project metadata:", err);
     }
   }
 
   async openFile(path: string): Promise<string> {
-    const client = await getClient();
-    if (!client) return "";
-    const resp = await client.openFile({ path });
-    return resp.content || "";
+    console.log(`[Store] Opening file: ${path}`);
+    try {
+      const client = await getClient();
+      if (!client) throw new Error("Client not initialized");
+      const resp = await client.openFile({ path });
+      console.log(`[Store] File opened, content length: ${resp.content?.length}`);
+      return resp.content || "";
+    } catch (err) {
+      console.error(`[Store] Failed to open file ${path}:`, err);
+      throw err;
+    }
   }
 
   async saveFile(path: string, content: string): Promise<boolean> {

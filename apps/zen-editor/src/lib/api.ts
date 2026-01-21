@@ -15,6 +15,9 @@ type EditorClient = {
   commitHistory: (req: { projectId: string, type: string, stateJson: string, message: string, branchName: string, parentId?: string }) => Promise<any>;
   getHistory: (req: { projectId: string, branchName?: string }) => Promise<any>;
   checkoutHistory: (req: { historyId: string }) => Promise<any>;
+  saveNode: (req: { projectId: string, node: any }) => Promise<any>;
+  openFile: (req: { path: string }) => Promise<any>;
+  saveFile: (req: { path: string, content: string }) => Promise<any>;
 };
 
 let _client: EditorClient | null = null;
@@ -24,9 +27,12 @@ function initClient(): void {
   
   try {
     console.log("[api] Starting client initialization...");
-    const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:8080";
+    const baseUrl = import.meta.env.VITE_API_URL || "http://127.0.0.1:8080";
     console.log(`[api] Initializing transport with baseUrl: ${baseUrl}`);
     
+    // Simple health check
+    fetch(`${baseUrl}/health`).then(r => r.text()).then(t => console.log(`[api] Backend health: ${t}`)).catch(e => console.error(`[api] Backend unreachable:`, e));
+
     const transport = createConnectTransport({
       baseUrl: baseUrl,
     });

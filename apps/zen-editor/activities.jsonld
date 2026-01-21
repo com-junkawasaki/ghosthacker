@@ -1,0 +1,32 @@
+{
+  "@context": {
+    "gh": "https://gftd.ai/ghost-hacker/ontology/",
+    "activity": "https://gftd.ai/activity/ontology/"
+  },
+  "@type": "gh:ActivitySet",
+  "name": "Zen Editor Operational Activities",
+  "activities": [
+    {
+      "@id": "act:explore_graph",
+      "name": "Explore Story Graph",
+      "performer": "Author",
+      "steps": [
+        "Load the application at http://localhost:1420",
+        "Observe the initial graph loading nodes and edges",
+        "Click on a node (e.g., character:kaede)",
+        "Verify right pane shows character profile"
+      ]
+    },
+    {
+      "@id": "act:edit_raw_file",
+      "name": "Edit Raw Project File",
+      "performer": "Author",
+      "steps": [
+        "Switch sidebar mode to 'Files'",
+        "Select 'storyboard.jsonld' from the file list",
+        "Modify some text in the editor",
+        "Click 'Save' and verify success notification"
+      ]
+    }
+  ]
+}

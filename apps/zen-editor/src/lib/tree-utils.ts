@@ -52,8 +52,12 @@ export function calculateHierarchicalPositions(
   rootIds: string[]
 ): Map<string, { x: number; y: number }> {
   const positions = new Map<string, { x: number; y: number }>();
+  const visited = new Set<string>();
   
   const layoutNode = (id: string, centerX: number, centerY: number, radius: number, startAngle: number, endAngle: number) => {
+    if (visited.has(id)) return;
+    visited.add(id);
+
     const node = nodes.get(id);
     if (!node) return;
 
