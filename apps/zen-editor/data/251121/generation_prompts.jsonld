@@ -48,7 +48,7 @@
         {
           "@id": "gh:panelPrompt/p2-1",
           "panelIndex": 1,
-          "promptEn": "Full page vertical title shot. A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, collapse, and reconstruct. At the center, (Ren: 17-year-old male, pale skin, messy voluminous wavy black hair, sharp half-lidded eyes) and (Nei: 16-year-old female android, shoulder-length black hair, sailor-style outfit) float weightlessly. Ren types furiously on a translucent holographic keyboard, his gaze fixed on a distant data structure. Nei stands beside him, arms crossed, floating vigilantly, her eyes streaming analytical data. Behind them, through a distortion in space, the giant vertical title logo 'GHOST Hacker' emerges. cinematic, photorealistic, high contrast, cyberpunk."
+          "promptEn": "Full page vertical title shot. A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, collapse, and reconstruct. At the center, (Ren: 17-year-old male, K-pop idol aesthetic, pale skin, messy voluminous wavy black hair, sharp half-lidded eyes) and (Nei: 16-year-old female android, platinum blonde bob, white blouse and black sleeveless dress) float weightlessly. Ren types furiously on a translucent holographic keyboard, his gaze fixed on a distant data structure. Nei stands beside him, arms crossed, floating vigilantly, her eyes streaming analytical data. Behind them, through a distortion in space, the giant vertical title logo 'GHOST Hacker' emerges. cinematic, photorealistic, high contrast, cyberpunk."
         }
       ],
       "promptEn": "Title Page: In a chaotic cyberspace, Ren and Nei float at the center of a vortex of data and city fragments. Ren is hacking while Nei stands guard. The 'GHOST Hacker' title logo is prominent. cinematic, photorealistic, high contrast, cyberpunk.",
@@ -62,22 +62,22 @@
         {
           "@id": "gh:panelPrompt/p4-1",
           "panelIndex": 1,
-          "promptEn": "A clean office with concrete walls and wood flooring. (Ren: 17-year-old male, messy voluminous wavy black hair, skinny build, dark gray hoodie, jeans), slouches lazily backward in a modern desk chair, looking bored. cinematic, photorealistic, high contrast."
+          "promptEn": "A clean office with concrete walls and wood flooring. (Ren: 17-year-old male, K-pop idol aesthetic, messy voluminous wavy black hair, skinny build, dark gray hoodie, jeans), slouches lazily backward in a modern desk chair, looking bored. cinematic, photorealistic, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p4-2",
           "panelIndex": 2,
-          "promptEn": "In a corner of the room, (Nei: 16-year-old female android, shoulder-length black hair, sailor-style outfit) operates a tablet with an exasperated expression. cinematic, photorealistic, high contrast."
+          "promptEn": "In a corner of the room, (Nei: 16-year-old female android, platinum blonde bob, white blouse and black sleeveless dress) operates a tablet with an exasperated expression. cinematic, photorealistic, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p4-3",
           "panelIndex": 3,
-          "promptEn": "(Nei: 16-year-old female android) approaches Ren's chair, leaning in with an annoyed look on her face. cinematic, photorealistic, high contrast."
+          "promptEn": "(Nei: 16-year-old female android, platinum blonde bob, white blouse and black sleeveless dress) approaches Ren's chair, leaning in with an annoyed look on her face. cinematic, photorealistic, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p4-4",
           "panelIndex": 4,
-          "promptEn": "Close-up of (Ren: 17-year-old male, pale skin, messy voluminous wavy black hair, sharp half-lidded eyes) picking his ear, looking utterly bored. cinematic, photorealistic, high contrast."
+          "promptEn": "Close-up of (Ren: 17-year-old male, K-pop idol aesthetic, pale skin, messy voluminous wavy black hair, sharp half-lidded eyes) picking his ear, looking utterly bored. cinematic, photorealistic, high contrast."
         }
       ],
       "promptEn": "Ren is lazing about in his office, bored, while Nei nags him about their tight finances and the need to work. Ren dismisses her with a lazy philosophy on the virtue of sloth. cinematic, photorealistic, high contrast.",
@@ -96,7 +96,7 @@
         {
           "@id": "gh:panelPrompt/p5-2",
           "panelIndex": 2,
-          "promptEn": "(Ren: 17-year-old male, messy voluminous wavy black hair, skinny build, dark gray hoodie, jeans) gets up reluctantly, annoyed. cinematic, photorealistic, high contrast."
+          "promptEn": "(Ren: 17-year-old male, K-pop idol aesthetic, messy voluminous wavy black hair, skinny build, dark gray hoodie, jeans) gets up reluctantly, annoyed. cinematic, photorealistic, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p5-3",
@@ -202,7 +202,7 @@
         {
           "@id": "gh:panelPrompt/p9-1",
           "panelIndex": 1,
-          "promptEn": "A large 'FOUND!!' message on a screen, displayed by (Nei: 16-year-old female android). The screen shows the access originated from the department head's terminal. cinematic, photorealistic, high contrast."
+          "promptEn": "A large 'FOUND!!' message on a screen, displayed by (Nei: 16-year-old female android, platinum blonde bob, white blouse and black sleeveless dress). The screen shows the access originated from the department head's terminal. cinematic, photorealistic, high contrast."
         },
         {
           "@id": "gh:panelPrompt/p9-2",
@@ -409,7 +409,7 @@
         {
           "@id": "gh:panelPrompt/p17-2",
           "panelIndex": 2,
-          "promptEn": "Ren and (Nei: 16-year-old female android, sailor-style outfit) walk through the crowded, neon-lit streets of Kamata at dusk. cinematic, photorealistic."
+          "promptEn": "Ren and (Nei: 16-year-old female android, platinum blonde bob, white blouse and black sleeveless dress) walk through the crowded, neon-lit streets of Kamata at dusk. cinematic, photorealistic."
         },
         {
           "@id": "gh:panelPrompt/p17-3",

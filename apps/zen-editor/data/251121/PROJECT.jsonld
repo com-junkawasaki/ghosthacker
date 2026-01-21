@@ -9,31 +9,63 @@
   "@type": ["gh:Project", "prov:Entity"],
   "dct:title": "Manga Ghost Hacker: Case Study Series",
   "dct:description": "A manga series designed to teach cybersecurity through case studies, using real-world terminology and frameworks (CISA, CISSP, CMMI).",
-  "gh:status": "Planning / Character Design Updated",
+  "gh:status": "Planning / Master Storyboard (ARIA Cinematic Base - FULL 12 Episodes) Completed",
   "gh:currentSession": {
     "@type": "prov:Activity",
-    "prov:startedAtTime": "2026-01-09T00:00:00Z",
+    "prov:startedAtTime": "2026-01-22T00:00:00Z",
     "gh:goals": [
       "Define 12-episode case study structure",
       "Update character profiles with real-world security credentials",
-      "Establish 'Virtues' for main characters (Sloth, Arrogance, Short-tempered)"
+      "Generate detailed panel-by-panel (cut) storyboard prompts for Runway base generation",
+      "Convert prompts to realistic live-action base (style transfer applied later)",
+      "Consolidate all story assets into a single master storyboard",
+      "Implement ARIA-style aesthetic (clean air, soft light, detailed eyes) for Runway base generation"
     ],
     "gh:results": [
       "Ren Numano: Sloth (Efficiency), MIT Dropout, CISSP Associate, CEH",
       "Kaname: Arrogance (Perfection), Stanford Grad, CISA, PMP, Registered InfoSec Specialist",
       "Takeru: Short-tempered (Instant Action), Self-taught, OSCP, GXPN",
-      "Season 1 bible created (crime ecosystem + law enforcement cast + company archetypes)",
-      "3D Scene Assembler integrated into Graph Topology view",
-      "Ren's Chair GLB added and mapped to graph node properties"
+      "storyboard.jsonld regenerated to include all 12 episodes with full pages and panels (E1: 17 pages, E2–E12: 16 pages each)",
+      "Every panel now contains gh:shotProperties and ARIA-style live-action Runway base prompt (no dialogue)",
+      "character_profiles.jsonld enhanced with detailed ocular (eye) descriptions for all main characters",
+      ".cursor/rules/runway_manga_generation.mdc updated with ARIA aesthetic and Ocular Detail rules",
+      "Added generator script scripts/generate_storyboard_full_aria.py to reproducibly rebuild the full storyboard"
     ]
   },
   "gh:artifacts": [
     {
-      "@id": "gh:artifact/season1-bible-251121",
+      "@id": "gh:artifact/master-storyboard-251121",
       "@type": "gh:Artifact",
-      "schema:name": "Season 1 Bible (JSON-LD)",
+      "schema:name": "Master Storyboard (JSON-LD)",
       "schema:encodingFormat": "application/ld+json",
-      "schema:filePath": "251121/season1_bible.jsonld"
+      "schema:filePath": "251121/storyboard.jsonld"
+    },
+    {
+      "@id": "gh:artifact/character-profiles-251121",
+      "@type": "gh:Artifact",
+      "schema:name": "Character Profiles",
+      "schema:filePath": "251121/character_profiles.jsonld"
+    },
+    {
+      "@id": "gh:artifact/environments-prompts-251121",
+      "@type": "gh:Artifact",
+      "schema:name": "Environment Base Prompts",
+      "schema:description": "Detailed environment-only prompts for consistent scene setup.",
+      "schema:filePath": "251121/environments/"
+    },
+    {
+      "@id": "gh:artifact/props-definition-251121",
+      "@type": "gh:Artifact",
+      "schema:name": "Prop & Furniture Definitions",
+      "schema:description": "Specific brand and model names for consistent object generation.",
+      "schema:filePath": "251121/props/"
+    },
+    {
+      "@id": "gh:artifact/zen-editor-3d-assembler",
+      "@type": "gh:Artifact",
+      "schema:name": "Zen Editor: 3D Assembler (Integrated)",
+      "schema:description": "Threlte-based 3D workspace integrated into graph topology.",
+      "schema:filePath": "apps/zen-editor/src/components/Topology/Graph/AssemblerEngine.svelte"
     }
   ],
   "gh:milestones": [
@@ -48,7 +80,14 @@
     {
       "gh:name": "12-Episode Structure",
       "gh:status": "Completed"
+    },
+    {
+      "gh:name": "Master Storyboard (Monochrome Edition)",
+      "gh:status": "Completed"
+    },
+    {
+      "gh:name": "3D Scene Assembler Integration into Graph",
+      "gh:status": "Completed"
     }
   ]
 }
-

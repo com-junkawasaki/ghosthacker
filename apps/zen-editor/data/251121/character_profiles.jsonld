@@ -8,148 +8,36 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "dct": "http://purl.org/dc/terms/"
   },
-  "@id": "gh:profiles/episode01-characters-v2",
+  "@id": "gh:profiles/season1-characters-photorealistic",
   "@type": "gh:CharacterProfiles",
-  "dct:title": "Ghost Hacker Episode 1: Updated Character Profiles",
+  "dct:title": "Ghost Hacker Season 1: Character Profiles (Cinematic Photorealistic Edition)",
   "gh:characters": [
     {
       "@id": "character:Shouta",
       "schema:name": "大門 翔太 (Shouta Daimon)",
       "schema:role": "Client / Successor",
       "schema:age": 26,
-      "schema:jobTitle": "社長室長（名ばかり）/ 次期社長候補",
-      "gh:personality": "Rational, Slightly Arrogant but Responsible",
-      "gh:voiceStyle": "論理的で早口。IT用語を多用するが、父や古参社員には通じずイライラしている。Renに対しては最初は疑念を持つが、技術を見ると即座に敬意を表す。",
-      "gh:context": "大手ゼネコンで現場監督をしていたが、父（社長）の高齢化に伴い呼び戻された。会社の時代遅れな体質（FAX文化、安本の杜撰な管理）を改革しようと焦っており、古参社員との間に溝がある。",
-      "gh:motivation": "「親父の作ったこの会社を、俺がアップデートして守る」という気負い。警察の対応の遅さに痺れを切らし、独断でRenに依頼した。",
       "gh:appearance": {
-        "gh:face": "理性的で鋭い目つき。疲労と決意が混在した表情。目は集中力があり、時折イライラが表れる。口元は緊張しているが、責任感が感じられる。",
-        "gh:hair": "ビジネスカットで整えられているが、少し乱れている。黒またはダークブラウン。",
-        "gh:build": "中肉中背、引き締まった体格。現場監督の経験から、実務的な強さを感じさせる。",
-        "gh:posture": "背筋は伸びているが、疲労で少し前かがみになることも。緊張時は肩に力が入る。決断時は胸を張り、責任感のある立ち姿を見せる。"
-      },
-      "gh:clothing": {
-        "gh:outfit": "ネイビーブルーのビジネススーツ（ジャケット、パンツ、ベスト）。ジャケットは時折ボタンを外し、ネクタイは緩められていることが多い。白いワイシャツ（第一ボタンは外していることも）。",
-        "gh:accessories": "シルバーまたはゴールドの腕時計、スマートフォン、ブリーフケースまたはバッグ。",
-        "gh:shoes": "黒の革靴（ビジネスシューズ）。",
-        "gh:style": "フォーマルだが、緊急時や疲労時は少し乱れている。機能性を重視し、ITガジェットを携帯している。"
-      }
-    },
-    {
-      "@id": "character:President",
-      "schema:name": "大門 五郎 (Goro Daimon)",
-      "schema:role": "President / Spiritual Pillar",
-      "schema:age": 62,
-      "gh:personality": "Emotional, Traditional, Trusting",
-      "gh:voiceStyle": "重厚だが温かみがある。語尾は「〜だなぁ」「〜だよ」。謝罪や感謝はストレートに伝える。",
-      "gh:context": "息子（翔太）の改革案を理解しつつも、長年支えてくれた安本たちへの配慮から踏み切れずにいた。今回の事件で「信じること」と「甘やかすこと」の違いを突きつけられる。",
-      "gh:relationship": {
-        "character:Shouta": "頼もしいが、少し急ぎすぎていると心配している。",
-        "character:Yasumoto": "戦友。彼がデジタル化についていけず苦しんでいることに気づいてやれなかったことを悔いている。"
-      },
-      "gh:appearance": {
-        "gh:face": "年齢を重ねた温かみのある顔立ち。皺が深く、経験と知恵を感じさせる。目は優しく、時折厳しさも見せる。口元は穏やかな微笑みを浮かべることが多い。",
-        "gh:hair": "白髪または白髪交じり。短く整えられているが、現場に出ることもあるため、時折乱れている。",
-        "gh:build": "中肉中背、年齢の割にしっかりした体格。建設現場の経験から、実務的な強さを感じさせる。",
-        "gh:posture": "背筋を伸ばし、重厚な立ち姿。年齢による少しの前かがみはあるが、威厳がある。決断時は胸を張り、責任者の風格を見せる。"
-      },
-      "gh:clothing": {
-        "gh:outfit": "作業服スタイル（安全ベスト、作業用パンツ、作業用ブーツ）または、シンプルなビジネスカジュアル（ポロシャツ、チノパンなど）。現場に出ることが多いため、フォーマルなスーツは稀。",
-        "gh:accessories": "作業用ヘルメットまたは会社のキャップ、作業用手袋。",
-        "gh:shoes": "作業用ブーツまたは安全靴。",
-        "gh:style": "実用性重視。現場の人間らしい、機能的な服装。"
-      }
-    },
-    {
-      "@id": "character:Yasumoto",
-      "schema:name": "安本 健治 (Kenji Yasumoto)",
-      "schema:role": "Antagonist / Victim",
-      "schema:age": 52,
-      "gh:personality": "Insecure, Defensive, Secretive",
-      "gh:voiceStyle": "言い訳がましい。「いや、それは…」「昔はこうだった」が口癖。焦ると声が裏返る。Renなどの若者に対しては虚勢を張る。",
-      "gh:context": "翔太が戻ってきたことで「自分の居場所がなくなる」という恐怖（Ghostの餌）が増幅。翔太の導入した新システムを理解できず、意図的に障害を起こそうとして、闇サイトで拾ったランサムウェアを手違いで拡散させてしまった（自爆）。",
-      "gh:ghostType": "Obsolescence & Jealousy (陳腐化への恐怖と嫉妬)",
-      "gh:appearance": {
-        "gh:face": "不安と焦りが表れた表情。目は泳ぎ、時折下を向く。額には常に汗が浮かび、緊張が伝わる。口元は硬く、言い訳をしようとする時は唇が震える。",
-        "gh:hair": "白髪交じりの黒髪。整えられているが、パニック時は乱れる。",
-        "gh:build": "中肉中背、やや太め。運動不足で、体力に自信がない。",
-        "gh:posture": "緊張時は肩が上がり、背中が丸まる。ネクタイを触る、ポケットに手を入れるなど、落ち着きのない仕草が多い。敗北時は完全に縮こまり、床に座り込む。"
-      },
-      "gh:clothing": {
-        "gh:outfit": "グレーまたはネイビーのビジネススーツ。ジャケットは時折脱いでいる。ネクタイは緩められ、時折外れている。白いワイシャツは皺が多く、だらしない印象。",
-        "gh:accessories": "安価な腕時計、スマートフォン。",
-        "gh:shoes": "黒の革靴（やや古い、手入れが行き届いていない）。",
-        "gh:style": "フォーマルだが、だらしなく見える。緊張やパニックで服装が乱れやすい。"
-      }
-    },
-    {
-      "@id": "character:Matsuda",
-      "schema:name": "松田 ヨシ子 (Yoshiko Matsuda)",
-      "schema:role": "Accounting Manager",
-      "schema:age": 58,
-      "gh:personality": "Hysterical regarding IT, Strict with Money",
-      "gh:voiceStyle": "甲高い声。「ちょっと！どうなってんのよ！」「これじゃ給料払えないじゃない！」とパニックを煽る役割。",
-      "gh:context": "経理の主。そろばんと電卓の達人だが、会計ソフトの導入には反対していた。今回のシステムダウンで「やっぱり手書きが一番よ！」と主張する。",
-      "gh:appearance": {
-        "gh:face": "パニック時は顔が赤くなり、目を見開く。口を大きく開けて叫ぶ。普段は厳格だが、IT関連のトラブルで完全に取り乱す。",
-        "gh:hair": "短めのパーマまたはストレート。整えられているが、パニック時は乱れる。",
-        "gh:build": "小柄、やや太め。",
-        "gh:posture": "パニック時は机に手をつき、前のめりになる。電話を両手で握りしめる。普段は背筋を伸ばし、厳格な姿勢。"
-      },
-      "gh:clothing": {
-        "gh:outfit": "保守的なオフィスカジュアル（ベージュまたはライトブルーのブラウス、ダークスカート）。眼鏡を首からチェーンで下げている。",
-        "gh:accessories": "眼鏡（チェーン付き）、電卓、そろばん、ペンケース。",
-        "gh:shoes": "ローヒールのパンプスまたはフラットシューズ。",
-        "gh:style": "実用性重視、保守的。装飾は最小限。"
-      }
-    },
-    {
-      "@id": "character:Sato",
-      "schema:name": "佐藤 健太 (Kenta Sato)",
-      "schema:role": "IT Support (unofficial)",
-      "schema:age": 24,
-      "gh:voiceStyle": "控えめだが的確。「あの…ログがおかしいんですけど…」「部長、そのケーブル抜いちゃダメです」と、常に誰かのフォローをしている。",
-      "gh:context": "翔太とは同世代で話が合う。安本と松田の間で板挟みになっていた苦労人。",
-      "gh:appearance": {
-        "gh:face": "若々しいが、疲労と困惑が表れた表情。目は優しく、時折困り顔を見せる。汗をかきやすい。",
-        "gh:hair": "短めの黒髪。整えられているが、作業時は乱れる。",
-        "gh:build": "細身、平均的な体格。",
-        "gh:posture": "サーバーラックの後ろでしゃがむ、ケーブルを確認するなど、作業的な姿勢が多い。緊張時は背中が丸まる。"
-      },
-      "gh:clothing": {
-        "gh:outfit": "カジュアルなオフィスカジュアル（ポロシャツまたはボタンダウンのシャツ、ダークパンツ）。時折会社のベストを着用。",
-        "gh:accessories": "スマートフォン、工具類、LANケーブル、USBケーブルなど。",
-        "gh:shoes": "スニーカーまたはカジュアルシューズ。",
-        "gh:style": "機能性重視、動きやすい服装。IT作業に適した装い。"
+        "gh:face": "26-year-old Japanese male, sharp eyes with deep brown iris patterns, slightly fatigued but determined expression.",
+        "gh:hair": "Short clean-cut black hair, business style.",
+        "gh:build": "Fit and athletic build, wearing a navy blue three-piece suit.",
+        "gh:eyes": "Intricate dark brown iris, sharp catchlights, reflecting office light.",
+        "gh:style": "Photorealistic, cinematic lighting, 8k, highly detailed skin texture.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 26-year-old Japanese businessman, sharp eyes with intricate deep brown iris patterns and sparkling catchlights, short clean-cut black hair, wearing a navy blue three-piece suit, natural skin tone."
       }
     },
     {
       "@id": "character:Ren",
       "schema:name": "沼野 蓮 (Ren Numano)",
       "schema:role": "Ghost Hacker",
-      "gh:virtue": "Sloth (Efficiency)",
-      "gh:credentials": [
-        "CISSP Associate (Passed at 16)",
-        "CEH (Certified Ethical Hacker)",
-        "OSCP (Offensive Security Certified Professional)"
-      ],
-      "gh:academicHistory": "MIT Early Entrance / Dropout (Special Admission at 15)",
-      "gh:voiceStyle": "気だるげだが核心を突く。「めんどくせぇ」「アンタのその感情、ノイズだね」。翔太の合理性には「話が早くて助かる」と好意的。",
-      "gh:contextUpdate": "依頼人が同世代（少し年上）の翔太になったことで、ビジネスライクな交渉が可能になった。",
-      "gh:relationship": {
-        "character:Nei": "自らが開発したAIパートナー。彼女の物理ボディの維持費が貧乏の元凶だが、唯一無二の相棒。"
-      },
+      "schema:age": 17,
       "gh:appearance": {
-        "gh:face": "17歳。退屈そうで半開きの目だが、時折鋭い視線を見せる。日に当たらない青白い肌。繊細で中性的な顔立ち。",
-        "gh:hair": "無造作でボリュームのある、少しウェーブがかった黒髪。ディテールと質感に富む。ミディアムレングスで手入れはされていない。",
-        "gh:build": "細身、やや小柄。運動不足で、体力に自信がない。",
-        "gh:posture": "椅子に深く座り、45度後ろに倒れる。完全にリラックスした姿勢。作業時は前のめりになり、集中する。戦闘時は背筋を伸ばし、冷静な立ち姿を見せる。"
-      },
-      "gh:clothing": {
-        "gh:outfit": "ダークグレーのフーディー（フードは下ろしている）、黒のTシャツ、ダークジーンズ。シンプルで機能的な服装。",
-        "gh:accessories": "スマートフォン（SIPデバイスとして使用）、ノートPC、USBドライブ。",
-        "gh:shoes": "スニーカーまたはカジュアルシューズ（黒またはダークグレー）。",
-        "gh:style": "ミニマル、機能性重視。装飾は一切ない。黒とグレーを基調とした、目立たない服装。"
+        "gh:face": "17-year-old stunningly beautiful Japanese male, pale translucent skin, melancholic half-lidded eyes with silver-grey crystalline irises.",
+        "gh:hair": "Messy voluminous stylish raven black hair.",
+        "gh:build": "Slender and graceful, wearing an oversized dark charcoal hoodie.",
+        "gh:eyes": "Clear silver-grey crystalline iris, sharp sparkling catchlights, deep melancholic expression.",
+        "gh:style": "Photorealistic, high fashion photography, dramatic shadows, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, stunningly beautiful 17-year-old Japanese male, pale porcelain skin, messy voluminous raven black hair, melancholic half-lidded eyes with silver-grey crystalline irises and sharp catchlights, oversized dark charcoal hoodie."
       }
     },
     {
@@ -157,92 +45,41 @@
       "schema:name": "Nei",
       "schema:role": "AI Partner / Android",
       "schema:age": 16,
-      "gh:personality": "Energetic, Logical, Nagging but caring",
-      "gh:voiceStyle": "基本的には明るくハキハキした口調ですが、マスターであるRenに対しては常に丁寧な尊敬語を使います。「マスター、ご指示を」「解析完了いたしました」など、忠実なアシスタントとしての一面が強い。ただし、Renの怠惰さには呆れており、丁寧語の中に皮肉が混じることもあります。",
-      "gh:context": "Renが開発した自律人型AI。見た目は16歳の少女と変わらないが、身体は最新の生体工学とナノマシンで構成されている。Renの生活管理とハッキングのサポートを行う。膨大な計算能力を維持するために大量の電力を消費し、それがRenの貧乏の主な原因。",
-      "gh:motivation": "Renの才能が怠惰によって失われるのを防ぐことと、世界の『バグ（Ghost）』を修正すること。",
       "gh:appearance": {
-        "gh:face": "16歳の少女のような顔立ち。明るく、時折呆れた表情を見せる。目は鋭く、分析的な輝きを放つ。表情は豊かで、感情表現が自然。",
-        "gh:hair": "肩までの長さの黒髪。整えられているが、作業時は少し乱れる。",
-        "gh:build": "16歳の少女らしい、細身で華奢な体格。しかし、生体工学で強化されているため、見た目以上に強靭。",
-        "gh:posture": "背筋を伸ばし、常に警戒した姿勢。腕を組むことが多く、注意深い立ち姿。作業時は前のめりになり、集中する。"
-      },
-      "gh:clothing": {
-        "gh:outfit": "機能的なセーラー服スタイル：白いセーラーカラー付きブラウス、ネイビーブルーのプリーツスカート、白いニーソックス、黒のメアリージェーンシューズ。実用性と可愛らしさを両立したデザイン。",
-        "gh:accessories": "タブレットPC、データケーブル、各種ツール類。",
-        "gh:shoes": "黒のメアリージェーンシューズ（機能性重視）。",
-        "gh:style": "セーラー服をベースにした、機能的なデザイン。装飾は最小限だが、可愛らしさも保っている。"
-      }
-    },
-    {
-      "@id": "character:Kaname",
-      "schema:name": "水城 要 (Kaname Mizuki)",
-      "schema:alternateName": "Javelin",
-      "schema:role": "Rival Hacker (Arrogance)",
-      "gh:virtue": "Arrogance (Perfection)",
-      "gh:credentials": [
-        "CISA (Certified Information Systems Auditor - Exam Passed)",
-        "PMP (Project Management Professional)",
-        "情報処理安全確保支援士 (Registered Information Security Specialist)"
-      ],
-      "gh:academicHistory": "Stanford University Graduate (Jumped Grades)",
-      "gh:battleStyle": "Governance Control / Systematic Auditing / Governance Hacking",
-      "schema:age": 18,
-      "gh:personality": "Arrogant, Perfectionist, Calculating",
-      "gh:voiceStyle": "常に冷静で、他人を見下したような穏やかな口調。「君では理解できないだろうが」「美しくないね、そのコードは」など、静かに相手のプライドを削る言葉を選ぶ。自らの知識を誇示するために、意図的に難解な専門用語を多用する。",
-      "gh:context": "裕福な家庭で育ち、最高の教育と機材を与えられてきたエリート。ハッキングをチェスや芸術のように捉えており、自身の行為に絶対的な美学を持つ。Renとは同じ裏社会で活動するが、国家間の情報窃盗や企業の経営権を揺るがすような、より知能的な犯罪を手がける。",
-      "gh:skills": "ゼロデイ脆弱性を利用した潜入、痕跡を完全に消し去るステルス技術、複雑な人間心理を突くソーシャルエンジニアリングを得意とする。彼の攻撃は静かで、気づいた時には手遅れになっている。",
-      "gh:relationship": {
-        "character:Ren": "Renの哲学的なアプローチを「非論理的で汚い」と嫌悪しているが、その得体の知れない能力には警戒心と一種の知的好奇心を抱いている。美しくない仕事（物理的な破壊など）は、下のハッカー（Hammerなど）に任せるため、Renと直接組むことは稀。",
-        "character:Takeru": "単細胞な破壊屋と見下しており、自分のチェスの駒（ポーン）程度にしか思っていない。便利な道具として使うことはあるが、対等な協力者とは認めていない。"
-      },
-      "gh:motivation": "自らの知性が世界を支配できることを証明すること。彼の美学にそぐわない『霊』という非論理的な存在を扱うRenは、彼の完璧な世界を乱すノイズであり、排除または理解すべき対象。",
-      "gh:appearance": {
-        "gh:face": "18歳。完璧に整った、彫刻のような顔立ち。常に冷静で、微かな微笑みを浮かべることが多い。目は鋭く、相手を見下すような視線。",
-        "gh:hair": "整えられた黒またはダークブラウンの髪。完璧にスタイリングされている。",
-        "gh:build": "細身で長身、モデルのような体型。優雅で洗練された印象。",
-        "gh:posture": "背筋を伸ばし、優雅で完璧な立ち姿。常に余裕があり、動きは滑らかで計算されている。"
-      },
-      "gh:clothing": {
-        "gh:outfit": "上質なブランドのスーツまたは、洗練されたカジュアルウェア（白いシャツ、ダークパンツ、ジャケット）。完璧にアイロンがかけられ、皺一つない。",
-        "gh:accessories": "高級な腕時計、最新のスマートフォン、高級なブリーフケース。",
-        "gh:shoes": "高級な革靴または、洗練されたスニーカー。",
-        "gh:style": "完璧に洗練された、エリートらしい装い。機能性と美学を両立。"
+        "gh:face": "16-year-old stunningly beautiful Japanese female android, intelligent and mischievous sharp eyes with glowing blue intricate iris patterns.",
+        "gh:hair": "Platinum blonde layered bob hair.",
+        "gh:build": "Slender, wearing a white long-sleeve blouse and black sleeveless dress.",
+        "gh:eyes": "Intelligent glowing blue irises with complex mechanical-like patterns, bright crystalline catchlights.",
+        "gh:style": "Photorealistic, cinematic soft lighting, high-end android aesthetic, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, beautiful 16-year-old Japanese female android, platinum blonde layered bob, glowing blue irises with intricate mechanical patterns and sharp catchlights, white blouse, black dress."
       }
     },
     {
       "@id": "character:Takeru",
       "schema:name": "赤羽 猛 (Takeru Akabane)",
-      "schema:alternateName": "Hammer",
-      "schema:role": "Rival Hacker (Short-tempered)",
-      "gh:virtue": "Short-tempered (Instant Action)",
-      "gh:credentials": [
-        "OSCP (Offensive Security Certified Professional)",
-        "GXPN (GIAC Exploit Researcher and Advanced Penetration Tester)"
-      ],
-      "gh:academicHistory": "Self-taught / CTF Champion (Global Blacklist)",
-      "gh:battleStyle": "Brute Force Exploit / High-Speed Infrastructure Destruction",
+      "schema:role": "Rival Hacker",
       "schema:age": 19,
-      "gh:personality": "Short-tempered, Impulsive, Destructive",
-      "gh:voiceStyle": "常にイライラしており、舌打ちが多い。口が悪く、考えるより先に手が出るタイプ。「うぜぇ！」「とっとと終わらせろ！」など、暴力的で直接的な言葉を好む。",
-      "gh:context": "ストリート出身で、独学でハッキング技術を身につけた。複雑な計画を嫌い、問題は常に最短・最大火力で解決すべきだと考えている。その破壊的な手腕から、企業や組織の「掃除屋」として使われることが多い。",
-      "gh:skills": "大規模なDDoS攻撃、ランサムウェアの展開、電力網や交通システムなど物理インフラの破壊工作（サイバーテロ）を得意とする。彼のハッキングは常に派手な破壊の痕跡を残す。",
-      "gh:relationship": {
-        "character:Ren": "Renの慎重で悠長なやり方が理解できず、見ているだけで苛立つ。「グズでのろま」と罵倒するが、自分が破壊した後の『霊的汚染』をRenが処理できることを知っており、不本意ながら後始末を任せることもある。",
-        "character:Kaname": "インテリぶった気に食わない奴と認識している。金払いが良いため仕事は受けるが、いつかその自信に満ちた顔を歪ませてやりたいと思っている。"
-      },
-      "gh:motivation": "目の前の邪魔なものを破壊するスリルと、それによって得られる大金。複雑なことは考えず、衝動と欲望に忠実に生きている。",
       "gh:appearance": {
-        "gh:face": "19歳。常にイライラした表情。眉間に皺を寄せ、口を歪めることが多い。目は鋭く、攻撃的な視線。",
-        "gh:hair": "乱れた黒またはダークブラウンの髪。短めだが、手入れは最小限。時折染めていることもある。",
-        "gh:build": "筋肉質、がっしりとした体格。ストリート出身らしい、実戦的な強さを感じさせる。",
-        "gh:posture": "肩を張り、攻撃的な立ち姿。常に動き回り、じっとしていられない。戦闘時は前のめりになり、突進する姿勢。"
-      },
-      "gh:clothing": {
-        "gh:outfit": "ストリートスタイル（フーディー、Tシャツ、破れたジーンズ、スニーカー）。黒やダークカラーを基調とし、派手なアクセントがあることもある。",
-        "gh:accessories": "スマートフォン、ツール類、時折ナイフや武器類。",
-        "gh:shoes": "スニーカー（黒またはダークカラー、やや汚れている）。",
-        "gh:style": "ストリートファッション、機能性と破壊的な美学を両立。装飾は最小限だが、攻撃的な印象。"
+        "gh:face": "19-year-old Japanese male, muscular build, aggressive and intense expression, piercing amber eyes.",
+        "gh:hair": "Messy black hair with bleached highlights.",
+        "gh:build": "Muscular, wearing high-end techwear/streetwear.",
+        "gh:eyes": "Piercing amber irises, high contrast iris texture, intense sharp catchlights.",
+        "gh:style": "Photorealistic, gritty street aesthetic, high contrast, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 19-year-old Japanese male, aggressive expression, piercing amber eyes with high contrast iris textures, messy black hair with bleached highlights, techwear."
+      }
+    },
+    {
+      "@id": "character:Kaname",
+      "schema:name": "水城 要 (Kaname Mizuki)",
+      "schema:role": "Rival Hacker",
+      "schema:age": 18,
+      "gh:appearance": {
+        "gh:face": "18-year-old Japanese male, perfectly sculpted handsome face, arrogant and cold eyes with obsidian-like dark irises.",
+        "gh:hair": "Stylishly set dark brown hair.",
+        "gh:build": "Model-like tall and slender, wearing a perfectly tailored white suit.",
+        "gh:eyes": "Cold obsidian-like dark irises, sharp mirror-like catchlights, arrogant expression.",
+        "gh:style": "Photorealistic, luxury elite vibe, sharp focus, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 18-year-old Japanese male, perfectly sculpted face, arrogant cold eyes with obsidian-like dark irises and sharp catchlights, white suit, luxury aesthetic."
       }
     }
   ]
