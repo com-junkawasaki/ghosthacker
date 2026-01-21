@@ -3,6 +3,7 @@
   import { OrbitControls, ContactShadows, Grid, GLTF } from '@threlte/extras';
   import * as THREE from 'three';
   import { graphStore } from '../../../lib/stores/graph.svelte';
+  import { getAssetUrl } from '../../../lib/api';
 
   let { 
     onNodeClick = () => {} 
@@ -74,7 +75,7 @@
   >
     {#if node.gltfPath}
       <GLTF
-        url={node.gltfPath}
+        url={getAssetUrl(node.gltfPath)}
         castShadow
         receiveShadow
         onclick={(e: any) => {

@@ -100,6 +100,20 @@ func (s *EditorServer) LoadDatastore(projectID string) {
 			ViewType: s.determineViewType(id, nodeType, group),
 		}
 
+		// 3D properties
+		if gltf, ok := nodeData["gh:gltfPath"].(string); ok {
+			node.GltfPath = gltf
+		}
+		if pos, ok := nodeData["gh:position3d"].([]interface{}); ok && len(pos) == 3 {
+			node.Position3D = []float32{float32(pos[0].(float64)), float32(pos[1].(float64)), float32(pos[2].(float64))}
+		}
+		if rot, ok := nodeData["gh:rotation3d"].([]interface{}); ok && len(rot) == 3 {
+			node.Rotation3D = []float32{float32(rot[0].(float64)), float32(rot[1].(float64)), float32(rot[2].(float64))}
+		}
+		if scale, ok := nodeData["gh:scale3d"].([]interface{}); ok && len(scale) == 3 {
+			node.Scale3D = []float32{float32(scale[0].(float64)), float32(scale[1].(float64)), float32(scale[2].(float64))}
+		}
+
 		if desc, ok := nodeData["description"].(string); ok { node.Content = desc }
 		if content, ok := nodeData["gh:content"].(map[string]interface{}); ok {
 			node.LocalizedContent = make(map[string]string)
@@ -503,6 +517,47 @@ func withCORS(h http.Handler) http.Handler {
 	})
 }
 
+func (s *EditorServer) SaveNode(ctx context.Context, req *connect.Request[editorpb.SaveNodeRequest]) (*connect.Response[editorpb.SaveNodeResponse], error) {
+	log.Printf("RPC: SaveNode called for: %s (project: %s)", req.Msg.Node.Id, req.Msg.ProjectId)
+	datastoreDir := filepath.Join(s.WorkspaceRoot, req.Msg.ProjectId, "datastore")
+	os.MkdirAll(datastoreDir, 0755)
+
+	node := req.Msg.Node
+	filename := s.idToFilename(node.Id)
+	path := filepath.Join(datastoreDir, filename)
+
+	// Load existing data if available to preserve extra fields
+	nodeData := make(map[string]interface{})
+	if data, err := os.ReadFile(path); err == nil {
+		json.Unmarshal(data, &nodeData)
+	}
+
+	// Update fields from request
+	nodeData["@id"] = node.Id
+	nodeData["@type"] = node.Type
+	nodeData["name"] = node.Label
+	nodeData["description"] = node.Content
+	nodeData["gh:gltfPath"] = node.GltfPath
+	if len(node.Position3D) == 3 {
+		nodeData["gh:position3d"] = []float32{node.Position3D[0], node.Position3D[1], node.Position3D[2]}
+	}
+	if len(node.Rotation3D) == 3 {
+		nodeData["gh:rotation3d"] = []float32{node.Rotation3D[0], node.Rotation3D[1], node.Rotation3D[2]}
+	}
+	if len(node.Scale3D) == 3 {
+		nodeData["gh:scale3d"] = []float32{node.Scale3D[0], node.Scale3D[1], node.Scale3D[2]}
+	}
+
+	data, _ := json.MarshalIndent(nodeData, "", "  ")
+	err := os.WriteFile(path, data, 0644)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, err)
+	}
+
+	s.LoadDatastore(req.Msg.ProjectId)
+	return connect.NewResponse(&editorpb.SaveNodeResponse{Success: true, Message: "Node saved to Datastore"}), nil
+}
+
 func main() {
 	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
 	if workspaceRoot == "" {
@@ -517,6 +572,10 @@ func main() {
 	srv := NewEditorServer(workspaceRoot)
 	mux := http.NewServeMux()
 	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) { w.Write([]byte("OK")) })
+	
+	// Serve data directory as static files
+	mux.Handle("/data/", withCORS(http.StripPrefix("/data/", http.FileServer(http.Dir(workspaceRoot)))))
+
 	path, handler := editorpbconnect.NewEditorServiceHandler(srv)
 	mux.Handle(path, withCORS(handler))
 	

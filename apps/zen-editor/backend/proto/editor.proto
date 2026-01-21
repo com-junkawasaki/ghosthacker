@@ -22,6 +22,19 @@ service EditorService {
 
   // Real-time Chat/Interaction Stream (A2A support)
   rpc Interact(InteractRequest) returns (stream InteractResponse);
+
+  // General Node Persistence
+  rpc SaveNode(SaveNodeRequest) returns (SaveNodeResponse);
+}
+
+message SaveNodeRequest {
+  string project_id = 1;
+  Node node = 2;
+}
+
+message SaveNodeResponse {
+  bool success = 1;
+  string message = 2;
 }
 
 message CommitHistoryRequest {

@@ -7,7 +7,7 @@
   import ConnectionSuggester from '../components/ConnectionSuggester.svelte';
   import EntityProfile from '../components/EntityProfile.svelte';
   import TranslationViewer from '../components/TranslationViewer.svelte';
-  import { getClient } from '../lib/api';
+  import { getClient, getAssetUrl } from '../lib/api';
 
   import { graphStore } from '../lib/stores/graph.svelte';
 
@@ -277,7 +277,7 @@
               </div>
             {:else if rightPaneMode === 'asset'}
               <div class="asset-viewer">
-                <img src={`/data/${projectId}/${selectedNode?.id}`} alt={selectedNode?.label} />
+                <img src={getAssetUrl(`/data/${projectId}/${selectedNode?.id}`)} alt={selectedNode?.label} />
               </div>
             {:else if rightPaneMode === 'assembler'}
               <AssemblerControls />

@@ -60,6 +60,18 @@ export async function getClient(): Promise<EditorClient | null> {
 }
 
 /**
+ * アセットのURLを取得
+ */
+export function getAssetUrl(path: string): string {
+  const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:8080";
+  // Remove trailing slash if exists
+  const base = baseUrl.replace(/\/$/, "");
+  // Ensure path starts with slash
+  const p = path.startsWith("/") ? path : `/${path}`;
+  return `${base}${p}`;
+}
+
+/**
  * 同期的アクセス（初期化前は null）
  */
 export function getClientSync(): any {

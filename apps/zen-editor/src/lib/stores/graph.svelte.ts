@@ -221,15 +221,38 @@ class GraphStore {
     }
   }
 
-  updateNode3d(id: string, updates: Partial<{
+  async updateNode3d(id: string, updates: Partial<{
     position3d: [number, number, number];
     rotation3d: [number, number, number];
     scale3d: [number, number, number];
+    gltfPath: string;
   }>) {
     const node = this.nodes.get(id);
     if (node) {
       Object.assign(node, updates);
       this.nodes = new Map(this.nodes); // Trigger reactivity
+
+      // Persist to backend
+      if (this.projectId) {
+        try {
+          const client = await getClient();
+          if (!client) return;
+
+          // Convert to numbers for proto (float32)
+          await client.saveNode({
+            projectId: this.projectId,
+            node: {
+              ...node,
+              position3d: node.position3d || [0, 0, 0],
+              rotation3d: node.rotation3d || [0, 0, 0],
+              scale3d: node.scale3d || [1, 1, 1],
+              gltfPath: node.gltfPath || ""
+            } as any
+          });
+        } catch (err) {
+          console.error("Failed to persist node 3d update:", err);
+        }
+      }
     }
   }
 

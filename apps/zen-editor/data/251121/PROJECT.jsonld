@@ -22,7 +22,9 @@
       "Ren Numano: Sloth (Efficiency), MIT Dropout, CISSP Associate, CEH",
       "Kaname: Arrogance (Perfection), Stanford Grad, CISA, PMP, Registered InfoSec Specialist",
       "Takeru: Short-tempered (Instant Action), Self-taught, OSCP, GXPN",
-      "Season 1 bible created (crime ecosystem + law enforcement cast + company archetypes)"
+      "Season 1 bible created (crime ecosystem + law enforcement cast + company archetypes)",
+      "3D Scene Assembler integrated into Graph Topology view",
+      "Ren's Chair GLB added and mapped to graph node properties"
     ]
   },
   "gh:artifacts": [

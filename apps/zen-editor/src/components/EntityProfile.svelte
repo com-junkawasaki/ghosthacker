@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getClient } from '../lib/api';
+  import { getClient, getAssetUrl } from '../lib/api';
   import { graphStore } from '../lib/stores/graph.svelte';
   import { onMount } from 'svelte';
   import ConnectionSuggester from './ConnectionSuggester.svelte';
@@ -94,7 +94,7 @@
   <header class="profile-header">
     <div class="avatar-container">
       {#if node.id.includes('tamaki')}
-        <img src="/data/251022/assets/portraits/tamaki.webp" alt={node.label} onerror={(e) => (e.currentTarget as HTMLImageElement).style.display='none'} />
+        <img src={getAssetUrl(`/data/251022/assets/portraits/tamaki.webp`)} alt={node.label} onerror={(e) => (e.currentTarget as HTMLImageElement).style.display='none'} />
       {:else}
         <div class="avatar-placeholder">👤</div>
       {/if}
