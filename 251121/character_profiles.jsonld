@@ -351,9 +351,89 @@
       "gh:style": "Photorealistic, 'charismatic' but shallow, painful villain aesthetic, tropical high-rise lighting, high fashion but tacky.",
       "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 35mm lens, f/1.8, masterpiece, 30-year-old Japanese male, suntanned skin, stylish but slightly tacky black hair, arrogant but insecure eyes, wearing a flashy tactical jacket with many patches over a designer t-shirt, painful villain aesthetic, tropical high-rise lighting, high fashion but tacky vibe."
     },
-    "gh:clothing": {
+      "gh:clothing": {
         "gh:daily": "派手なブランドロゴの入ったTシャツと短パン。海外のリゾート地を思わせる軽薄なスタイル。",
         "gh:work": "動画配信などで使用する、シンボリックな『正義』を強調したタクティカル・ジャケット。派手なワッペンや装飾が多く、実用性よりも見栄えを重視。"
+      }
+    },
+    {
+      "@id": "character:MakotoBaba",
+      "schema:name": "馬場 誠 (Makoto Baba)",
+      "schema:role": "Dispatch Manager / Arc B Victim",
+      "gh:organization": "org:jinpu-mobility",
+      "schema:age": 54,
+      "gh:personality": "Short-tempered, Impatient, Process-obsessed",
+      "gh:context": "丁場運行（ジンプ・モビリティ）の運行管理部長。始業時刻と出庫の遅れを極端に嫌う。システムトラブル時、原因究明を待たずに独断で再起動を命じ、証拠を破壊しつつGhostを増幅させてしまった。",
+      "gh:appearance": {
+        "gh:face": "54歳。常に苛立っているような険しい表情。目の下のクマが深く、慢性的な寝不足を感じさせる。常に腕時計を気にする仕草。",
+        "gh:hair": "短く切り揃えられた黒髪。少し薄くなり始めている。几帳面だが少し乱れている。",
+        "gh:build": "平均的な体格。常に早足で歩くため、落ち着きがない。",
+        "gh:style": "Photorealistic, high-stress manager, restless energy, dramatic logistics office lighting.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 35mm lens, f/1.8, masterpiece, 54-year-old Japanese male manager, stressed and angry expression, looking at wristwatch, short thinning black hair, wearing a white shirt and gray trousers, logistics center background, natural skin tone."
+      },
+      "gh:clothing": {
+        "gh:daily": "機能的なポロシャツとチノパン。",
+        "gh:work": "社名の入った青い作業用シャツ。袖を捲り上げ、胸ポケットには数本のペンと無線機。実務優先のスタイル。"
+      }
+    },
+    {
+      "@id": "character:TsubasaKobayashi",
+      "schema:name": "小林 翼 (Tsubasa Kobayashi)",
+      "schema:role": "Young Driver / Arc B Witness",
+      "gh:organization": "org:jinpu-mobility",
+      "schema:age": 23,
+      "gh:personality": "Naive, Obedient, Tech-native",
+      "gh:context": "丁場運行の新米ドライバー。SNSでの『効率的な小遣い稼ぎ』の誘い（闇バイト）に乗り、社内端末に不審なデバイスを接続してしまった。悪意はなかったが、エコシステムに利用された若者。",
+      "gh:appearance": {
+        "gh:face": "23歳。どこにでもいる善良そうな若者の顔立ち。罪悪感と恐怖で青ざめた表情。瞳にはデジタルの光が反射している。",
+        "gh:hair": "流行のスタイルだが、仕事で帽子を被るため少し潰れている。",
+        "gh:build": "細身で現代的な若者の体格。",
+        "gh:style": "Photorealistic, anxious youth, digital native look, cool night-time lighting.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 50mm lens, f/1.4, masterpiece, 23-year-old Japanese male driver, pale and nervous expression, looking at smartphone screen, wearing a driver uniform cap, modern youthful features, natural skin tone."
+      },
+      "gh:clothing": {
+        "gh:daily": "オーバーサイズのストリートウェア。ヘッドフォンを常に首にかけている。",
+        "gh:work": "清潔な配送用制服（ポロシャツ、カーゴパンツ）。社名の入った帽子。若手らしいキビキビした印象を装っているが、内面は揺れている。"
+      }
+    },
+    {
+      "@id": "character:ReikaKujoin",
+      "schema:name": "九条院 麗華 (Reika Kujoin)",
+      "schema:role": "Compliance Officer / Arc C Victim",
+      "gh:organization": "org:byakudan-financial",
+      "schema:age": 45,
+      "gh:personality": "Arrogant, Perfectionist, Rigid",
+      "gh:context": "白檀フィナンシャルのコンプライアンス室長。ルールこそが正義であると信じて疑わない。現場の例外的な状況を『悪』として断罪し、ルールの硬直化を招いたことで、皮肉にも『正しい手続き』による不正を許してしまった。",
+      "gh:appearance": {
+        "gh:face": "45歳。冷徹で完璧な美貌。他人を寄せ付けない威厳と、規程違反を許さない鋭い視線。一切の妥協を許さない鉄の女。",
+        "gh:hair": "完璧にセットされた夜会巻きの黒髪。一筋の乱れもない。",
+        "gh:build": "長身で姿勢が非常に良く、洗練されたシルエット。",
+        "gh:style": "Photorealistic, cold elite beauty, rigid presence, sharp professional lighting.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 85mm lens, f/1.8, masterpiece, 45-year-old elegant Japanese woman, cold and arrogant expression, sharp eyes, sleek updo black hair, wearing a luxury black suit, high fashion photography, dramatic lighting."
+      },
+      "gh:clothing": {
+        "gh:daily": "高級ブランドのシルクワンピース。宝石は最小限だが極めて上質なもの。",
+        "gh:work": "オーダーメイドの漆黒のパンツスーツ。機能美と権威を象徴する装い。足元はルブタンのような鋭いヒール。"
+      }
+    },
+    {
+      "@id": "character:ToruSasaki",
+      "schema:name": "佐々木 徹 (Toru Sasaki)",
+      "schema:role": "Cloud Administrator / Arc C Victim",
+      "gh:organization": "org:byakudan-financial",
+      "schema:age": 34,
+      "gh:personality": "Rational, Diligent, Timid",
+      "gh:context": "白檀フィナンシャルのクラウドインフラ担当。緊急対応のためにやむを得ず作った『設定の例外』を九条院に激しく糾弾され、精神的に追い詰められる。その『例外』こそが、Ghostの侵入経路となった。",
+      "gh:appearance": {
+        "gh:face": "34歳。神経質そうな整った顔立ち。九条院の圧圧に耐えかね、常に怯えたような表情。眼鏡の奥の目は疲弊している。",
+        "gh:hair": "几帳面に整えられているが、心労で少しパサついた質感の黒髪。",
+        "gh:build": "細身で少し猫背気味。防御的な姿勢。",
+        "gh:style": "Photorealistic, nervous IT professional, trapped expression, clinical server room lighting.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 50mm lens, f/2.0, masterpiece, 34-year-old Japanese male IT engineer, thin and nervous face, looking down, wearing a simple blue shirt, server rack background, natural skin tone."
+      },
+      "gh:clothing": {
+        "gh:daily": "無地のネルシャツにジーンズ。目立たないことを良しとする私服。",
+        "gh:work": "アイロンの効いた白いワイシャツに紺のネクタイ。会社の規程通りの地味なビジネスカジュアル。胸には常に二重のIDカード。"
       }
     }
   ]

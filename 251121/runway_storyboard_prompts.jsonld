@@ -1,0 +1,207 @@
+{
+  "@context": {
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "schema": "http://schema.org/",
+    "dct": "http://purl.org/dc/terms/",
+    "prompt": "gh:runwayPrompt"
+  },
+  "@id": "gh:storyboard/season1-runway-prompts",
+  "@type": "gh:RunwayStoryboard",
+  "dct:title": "Ghost Hacker Season 1: Runway Scene Generation Prompts",
+  "dct:description": "Photorealistic cinematic prompts for Runway Gen-2/Gen-3, covering key beats of all 12 episodes in Season 1.",
+  "gh:globalStyle": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 35mm lens, f/1.8, masterpiece, natural skin tones, dramatic shadows, high contrast.",
+  "gh:episodes": [
+    {
+      "gh:episode": 1,
+      "dct:title": "Arc A-1: 牙を剥く内部の影",
+      "gh:scenes": [
+        {
+          "gh:sceneId": "s01e01-01",
+          "gh:description": "Opening: Chaotic Daimon Construction office. Phones ringing, panicking staff.",
+          "gh:prompt": "photorealistic, 8k, raw photo. A cluttered, old-fashioned Japanese construction company office in Kamata. Mid-50s staff panicking, phones ringing off the hook. Blueprints and FAX machines. Harsh fluorescent lighting, dramatic shadows. 35mm lens."
+        },
+        {
+          "gh:sceneId": "s01e01-02",
+          "gh:description": "Ren's Hacking: Ren typing at blinding speed while Shouta and Sato watch in awe.",
+          "gh:prompt": "photorealistic, 8k, cinematic lighting. (Ren: stunned handsome 17-year-old Japanese male, pale skin, messy voluminous raven hair, oversized dark hoodie) typing furiously on a high-end laptop. Behind him, (Shouta: fit 26-year-old Japanese man in navy suit) and (Sato: 24-year-old tired Japanese IT support) watching with intense respect. Dramatic office environment."
+        },
+        {
+          "gh:sceneId": "s01e01-03",
+          "gh:description": "Ghost Manifestation: Yasumoto's insecurities transform into a monster of cables and paper.",
+          "gh:prompt": "photorealistic, 8k, horror aesthetic. A monstrous entity made of tangled LAN cables and yellowed documents emerging from a terrified middle-aged Japanese man (Yasumoto). Glitch effects in the air, digital noise. Dark, high-contrast office setting."
+        }
+      ]
+    },
+    {
+      "gh:episode": 2,
+      "dct:title": "Arc A-2: 許しの毒",
+      "gh:scenes": [
+        {
+          "gh:sceneId": "s01e02-01",
+          "gh:description": "Re-infection: The 'forgiven' system crashes again. Ren looks at the screen with cold anger.",
+          "gh:prompt": "photorealistic, 8k, cold aesthetic. Close-up of (Ren: 17-year-old Japanese male, messy black hair) looking at a glowing monitor displaying a 'RE-INFECTED' warning. Cold blue light on his face. Cinematic dramatic shadows."
+        },
+        {
+          "gh:sceneId": "s01e02-02",
+          "gh:description": "Supply Chain Trace: Nei analyzes the external vendor link.",
+          "gh:prompt": "photorealistic, 8k, sci-fi. (Nei: stunning 16-year-old Japanese android, platinum blonde bob, white blouse, black dress) with glowing irises, holograms of network infrastructure floating around her. Analyzing data streams in a dark room."
+        }
+      ]
+    },
+    {
+      "gh:episode": 3,
+      "dct:title": "Arc A-3: 善意の呪い",
+      "gh:scenes": [
+        {
+          "gh:sceneId": "s01e03-01",
+          "gh:description": "Climax Battle: Ren uses the Null Axe to cut the 'Curse of Goodwill'.",
+          "gh:prompt": "photorealistic, 8k, cinematic action. (Ren: 17-year-old Japanese male, messy black hair) wielding a glowing digital axe made of blue light particles. He strikes down at a mask-like ghost floating in the air. High-speed action, particles flying everywhere."
+        },
+        {
+          "gh:sceneId": "s01e03-02",
+          "gh:description": "Resolution: Ren leaves the office at sunset in Kamata.",
+          "gh:prompt": "photorealistic, 8k, natural golden hour lighting. (Ren: 17-year-old Japanese male, hoodie) walking away from an old building, waving a hand without looking back. (Nei: 16-year-old android, blonde bob) walking beside him. Sunset in a crowded Japanese street (Kamata)."
+        }
+      ]
+    },
+    {
+      "gh:episode": 4,
+      "dct:title": "Arc B-1: 終わらぬ時計",
+      "gh:scenes": [
+        {
+          "gh:sceneId": "s01e04-01",
+          "gh:description": "Takeru's Entrance: Takeru smashes a locked server rack with a crowbar.",
+          "gh:prompt": "photorealistic, 8k, aggressive energy. (Takeru: muscular 19-year-old Japanese male, messy black hair with bleached highlights, techwear) swinging a heavy iron crowbar to smash a server rack lock. Sparks flying, gritty warehouse/logistics center background. 35mm lens."
+        },
+        {
+          "gh:sceneId": "s01e04-02",
+          "gh:description": "The Clock Ghost: A giant clock with blade-like needles looming over the warehouse.",
+          "gh:prompt": "photorealistic, 8k, surreal horror. A massive, ghostly mechanical clock floating in a logistics center. Its needles are sharp surgical blades. Panicking truck drivers in the background. Harsh, high-contrast industrial lighting."
+        }
+      ]
+    },
+    {
+      "gh:episode": 5,
+      "dct:title": "Arc B-2: Doneがない地獄",
+      "gh:scenes": [
+        {
+          "gh:sceneId": "s01e05-01",
+          "gh:description": "Endless Cycle: Staff working frantically under the red 'DANGER' lights.",
+          "gh:prompt": "photorealistic, 8k, dramatic lighting. Tired Japanese logistics workers staring at rows of 'ERROR' monitors. Red emergency lights casting long, deep shadows. Sweat and exhaustion on their faces. Raw photo."
+        },
+        {
+          "gh:sceneId": "s01e05-02",
+          "gh:description": "Takeru's stopwatch: He times the recovery with intense focus.",
+          "gh:prompt": "photorealistic, 8k, close-up. (Takeru: muscular 19-year-old Japanese male, aggressive expression) holding a glowing digital stopwatch. The light reflects in his eyes. Serious, determined look. Gritty industrial setting."
+        }
+      ]
+    },
+    {
+      "gh:episode": 6,
+      "dct:title": "Arc B-3: 終端刻印",
+      "gh:scenes": [
+        {
+          "gh:sceneId": "s01e06-01",
+          "gh:description": "Hammer Strike: Takeru smashes the core of the Clock Ghost.",
+          "gh:prompt": "photorealistic, 8k, explosive action. (Takeru: 19-year-old Japanese male, techwear) leaping into the air, striking a giant glowing mechanical heart with a digital sledgehammer. Massive shockwave of light and data. High contrast, cinematic vfx."
+        }
+      ]
+    },
+    {
+      "gh:episode": 7,
+      "dct:title": "Arc C-1: 空の要塞の崩壊",
+      "gh:scenes": [
+        {
+          "gh:sceneId": "s01e07-01",
+          "gh:description": "Kaname's Entrance: Kaname walks through a luxury financial lobby with a torque wrench.",
+          "gh:prompt": "photorealistic, 8k, luxury aesthetic. (Kaname: elegant 18-year-old Japanese male, dark brown hair, perfectly tailored white suit) walking through a high-end, marble-floored bank lobby. He holds a futuristic chrome torque wrench. Cold, symmetrical composition. High fashion photography."
+        },
+        {
+          "gh:sceneId": "s01e07-02",
+          "gh:description": "Governance Ghost: A knight in armor made of paper rules/regulations.",
+          "gh:prompt": "photorealistic, 8k, surreal. A ghostly knight whose armor is composed entirely of fluttering financial documents and contracts. It stands in a sterile, white server room. Sharp clinical lighting."
+        }
+      ]
+    },
+    {
+      "gh:episode": 8,
+      "dct:title": "Arc C-2: 消えた資産の足跡",
+      "gh:scenes": [
+        {
+          "gh:sceneId": "s01e08-01",
+          "gh:description": "Audit Hacking: Kaname analyzes blockchain money laundering paths.",
+          "gh:prompt": "photorealistic, 8k, tech aesthetic. (Kaname: elegant 18-year-old Japanese male, white suit) staring at a wall of screens showing complex blockchain transaction graphs. Reflection of data in his arrogant eyes. Cool blue and white lighting."
+        },
+        {
+          "gh:sceneId": "s01e08-02",
+          "gh:description": "Market Anomaly: Kurokawa detects the price manipulation.",
+          "gh:prompt": "photorealistic, 8k, professional. (Kurokawa Mio: sharp 32-year-old Japanese woman, black pantsuit) pointing at a stock chart with a massive sudden drop. Intense focus, sharp office environment. High contrast cinematic lighting."
+        }
+      ]
+    },
+    {
+      "gh:episode": 9,
+      "dct:title": "Arc C-3: それは傲慢ですね",
+      "gh:scenes": [
+        {
+          "gh:sceneId": "s01e09-01",
+          "gh:description": "Rewriting the Rules: Kaname shatters the Regulation Crown.",
+          "gh:prompt": "photorealistic, 8k, cinematic peak. (Kaname: 18-year-old Japanese male, white suit) using his digital torque wrench to shatter a floating, glowing crown made of paper. Shards of glass and paper flying in a vortex. 'It's arrogant,' he says with a cold smile."
+        }
+      ]
+    },
+    {
+      "gh:episode": 10,
+      "dct:title": "Arc D-1: 群れのGhost",
+      "gh:scenes": [
+        {
+          "gh:sceneId": "s01e10-01",
+          "gh:description": "The Trio Gathers: Ren, Takeru, and Kaname standing together.",
+          "gh:prompt": "photorealistic, 8k, epic gathering. (Ren: 17-year-old in hoodie), (Takeru: 19-year-old in techwear), and (Kaname: 18-year-old in white suit) standing on a rooftop in Tokyo at night. Neon signs reflecting in the puddles. Cinematic lighting, dramatic shadows."
+        },
+        {
+          "gh:sceneId": "s01e10-02",
+          "gh:description": "SEIGI_HERO Video: HERO broadcasting his 'justice' manifesto.",
+          "gh:prompt": "photorealistic, 8k, tacky aesthetic. (HERO: 30-year-old Japanese male, flashy tactical jacket with patches, suntanned) shouting into a high-end microphone in a tropical high-rise room. Behind him, multiple monitors and a 'SEIGI_HERO' logo. Overly bright, saturated lighting."
+        }
+      ]
+    },
+    {
+      "gh:episode": 11,
+      "dct:title": "Arc D-2: 崩壊する信頼",
+      "gh:scenes": [
+        {
+          "gh:sceneId": "s01e11-01",
+          "gh:description": "International Coordination: Isa, Maya, and Ethan in a video conference.",
+          "gh:prompt": "photorealistic, 8k, global professional. A split-screen scene showing (Isa: 42-year-old Japanese detective), (Maya Rahman: 35-year-old South Asian woman), and (Ethan Cole: 33-year-old American FBI agent) in their respective offices, coordinating an arrest. Serious, tense atmosphere."
+        },
+        {
+          "gh:sceneId": "s01e11-02",
+          "gh:description": "Locating the Base: Nei pinpoints the coordinates in South East Asia.",
+          "gh:prompt": "photorealistic, 8k, sci-fi. (Nei: android, blonde bob) touching a 3D hologram of a tropical city. A red dot pulses on a specific high-rise building. Dark room, glowing map light on her porcelain skin."
+        }
+      ]
+    },
+    {
+      "gh:episode": 12,
+      "dct:title": "Arc D-3: 逮捕",
+      "gh:scenes": [
+        {
+          "gh:sceneId": "s01e12-01",
+          "gh:description": "The Raid: Police tactical team bursting into HERO's hideout.",
+          "gh:prompt": "photorealistic, 8k, action. A local SWAT team in tactical gear bursting through a glass door into a luxury penthouse filled with computers. (HERO: 30-year-old man) looking back in terror. Motion blur, flying debris, intense flashlights."
+        },
+        {
+          "gh:sceneId": "s01e12-02",
+          "gh:description": "Final Resolution: Ren deletes the SEIGI_HERO master key.",
+          "gh:prompt": "photorealistic, 8k, cinematic. Close-up of (Ren: 17-year-old Japanese male, messy black hair) pressing a single key on his laptop. The screen shows 'ERASING...' Cold, satisfied smile. 85mm lens, blurred background."
+        },
+        {
+          "gh:sceneId": "s01e12-03",
+          "gh:description": "Epilogue: Ren sleeping in his office after the job.",
+          "gh:prompt": "photorealistic, 8k, peaceful natural light. (Ren: 17-year-old Japanese male) fast asleep in his desk chair, tilted back. (Nei: android, blonde bob) gently placing a blanket over him. Soft morning light coming through the window. Quiet office setting."
+        }
+      ]
+    }
+  ]
+}
