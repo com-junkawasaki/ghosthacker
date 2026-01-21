@@ -9,22 +9,20 @@
   "@type": ["gh:Project", "prov:Entity"],
   "dct:title": "Manga Ghost Hacker: Case Study Series",
   "dct:description": "A manga series designed to teach cybersecurity through case studies, using real-world terminology and frameworks (CISA, CISSP, CMMI).",
-  "gh:status": "Planning / Detailed Scene Storyboard Prompts Generated",
+  "gh:status": "Planning / Manga Panel (Cut) Storyboard Initialized",
   "gh:currentSession": {
     "@type": "prov:Activity",
     "prov:startedAtTime": "2026-01-22T00:00:00Z",
     "gh:goals": [
       "Define 12-episode case study structure",
       "Update character profiles with real-world security credentials",
-      "Integrate Season 1 cast and arc-specific victim characters into profiles",
-      "Generate detailed scene-by-scene Runway storyboard prompts for all 12 episodes"
+      "Generate detailed panel-by-panel (cut) storyboard prompts for Manga production"
     ],
     "gh:results": [
       "Ren Numano: Sloth (Efficiency), MIT Dropout, CISSP Associate, CEH",
       "Kaname: Arrogance (Perfection), Stanford Grad, CISA, PMP, Registered InfoSec Specialist",
       "Takeru: Short-tempered (Instant Action), Self-taught, OSCP, GXPN",
-      "Season 1 cast and Arc characters integrated into character_profiles.jsonld",
-      "scene_storyboard_prompts.jsonld created with 80+ granular cinematic prompts for all 12 episodes"
+      "manga_panel_storyboard.jsonld created with cut-level prompts for Episode 1 based on Manga principles (Impression vs Rhythm)"
     ]
   },
   "gh:artifacts": [

@@ -1,0 +1,178 @@
+{
+  "@context": {
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "schema": "http://schema.org/",
+    "dct": "http://purl.org/dc/terms/",
+    "panel": "gh:panelIndex",
+    "purpose": "gh:narrativePurpose",
+    "shot": "gh:shotType",
+    "prompt": "gh:runwayPrompt"
+  },
+  "@id": "gh:storyboard/manga-season1-panels",
+  "@type": "gh:MangaPanelStoryboard",
+  "dct:title": "Ghost Hacker Season 1: Manga Panel (Cut) Storyboard",
+  "dct:description": "Granular panel-by-panel storyboard prompts for Manga production, optimized for Runway video generation. Each page contains 1-8 cuts based on visual impact and rhythm.",
+  "gh:mangaPrinciples": {
+    "gh:layoutLogic": "Impression (1-3 panels for impact) vs. Rhythm (4-8 panels for development/dialogue)",
+    "gh:pageUnit": "1-8 panels per page",
+    "gh:lastPanelRule": "Mini-cliffhanger (pull) to make the reader turn the page"
+  },
+  "gh:episodes": [
+    {
+      "gh:episode": 1,
+      "dct:title": "牙を剥く内部の影",
+      "gh:pages": [
+        {
+          "gh:pageNumber": 1,
+          "gh:layoutType": "Information Heavy",
+          "gh:panels": [
+            {
+              "panel": 1,
+              "purpose": "Context",
+              "shot": "Wide Angle",
+              "prompt": "photorealistic, 8k. A historical evolution chart from primitive man to modern human, superimposed on a dark, wild forest. Cinematic lighting."
+            },
+            {
+              "panel": 2,
+              "purpose": "History",
+              "shot": "Medium Shot",
+              "prompt": "photorealistic, 8k. Silhouette of a giant ancient Buddha statue and totem poles glowing faintly behind a modern data server room. Mystical atmosphere."
+            },
+            {
+              "panel": 3,
+              "purpose": "Context",
+              "shot": "Bird's Eye View",
+              "prompt": "photorealistic, 8k. High-altitude shot of Tokyo 2026 at night. Neon data streams flowing like rivers between skyscrapers. 35mm lens."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 2,
+          "gh:layoutType": "High Impact",
+          "gh:panels": [
+            {
+              "panel": 1,
+              "purpose": "Highlight",
+              "shot": "Full Page Vertical",
+              "prompt": "photorealistic, 8k, cyberpunk. (Ren: 17-year-old Japanese male, messy black hair) and (Nei: android, blonde bob) floating in a vortex of digital grids and collapsing city buildings. Massive 'GHOST Hacker' title logo."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 4,
+          "gh:layoutType": "Rhythm",
+          "gh:panels": [
+            {
+              "panel": 1,
+              "purpose": "Daily Life",
+              "shot": "Medium Shot",
+              "prompt": "photorealistic, 8k. (Ren: 17-year-old male, dark hoodie) slouching deeply in a high-end ergonomic chair, picking his ear, looking bored. Clean office background."
+            },
+            {
+              "panel": 2,
+              "purpose": "Reaction",
+              "shot": "Close-up",
+              "prompt": "photorealistic, 8k. (Nei: 16-year-old android, blonde bob) looking exasperated, holding a thin tablet. Sharp, intelligent eyes."
+            },
+            {
+              "panel": 3,
+              "purpose": "Dialogue",
+              "shot": "Medium Shot",
+              "prompt": "photorealistic, 8k. Ren and Nei in the same frame. Nei points at the tablet screen showing 'LOW FUNDS' warning. Cluttered tech-office."
+            },
+            {
+              "panel": 4,
+              "purpose": "Pull",
+              "shot": "Extreme Close-up",
+              "prompt": "photorealistic, 8k. Ren's half-lidded eye suddenly sharpening as a doorbell chime 'DING-DONG' text appears in the air. Dramatic lighting."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 5,
+          "gh:layoutType": "Rhythm",
+          "gh:panels": [
+            {
+              "panel": 1,
+              "purpose": "Action",
+              "shot": "Medium Shot",
+              "prompt": "photorealistic, 8k. (Shouta: 26-year-old Japanese man, navy suit) stepping into the office. Desperate but determined face. Door slightly ajar."
+            },
+            {
+              "panel": 2,
+              "purpose": "Action",
+              "shot": "Medium Shot",
+              "prompt": "photorealistic, 8k. (Ren: 17-year-old male) standing up slowly from his chair, looking at Shouta with suspicion. High contrast lighting."
+            },
+            {
+              "panel": 3,
+              "purpose": "Dialogue",
+              "shot": "Close-up",
+              "prompt": "photorealistic, 8k. Shouta bowing slightly. 'I need your help. My company is dying.' Intense, weary facial features."
+            },
+            {
+              "panel": 4,
+              "purpose": "Action",
+              "shot": "Wide Angle",
+              "prompt": "photorealistic, 8k. Ren grabbing his laptop and a USB drive. 'Let's go. Time is money.' Nei following him. Dynamic movement."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 6,
+          "gh:layoutType": "Rhythm",
+          "gh:panels": [
+            {
+              "panel": 1,
+              "purpose": "Context",
+              "shot": "Wide Shot",
+              "prompt": "photorealistic, 8k. Interior of Daimon Construction. Old FAX machines, scattered papers, 1980s aesthetic. 50 staff panicking."
+            },
+            {
+              "panel": 2,
+              "purpose": "Reaction",
+              "shot": "Medium Shot",
+              "prompt": "photorealistic, 8k. (Matsuda: 58-year-old woman) screaming into two phones at once. Face flushed red with panic. Harsh office light."
+            },
+            {
+              "panel": 3,
+              "purpose": "Action",
+              "shot": "Low Angle",
+              "prompt": "photorealistic, 8k. (Sato: 24-year-old IT support) sweating under a server rack, cables tangled around him like snakes. Fearful expression."
+            },
+            {
+              "panel": 4,
+              "purpose": "Dialogue",
+              "shot": "Medium Shot",
+              "prompt": "photorealistic, 8k. (Ren: 17-year-old male) surveying the mess. 'This isn't just a bug. This is a graveyard of tech.' Cold smile."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 7,
+          "gh:layoutType": "High Impact",
+          "gh:panels": [
+            {
+              "panel": 1,
+              "purpose": "Highlight",
+              "shot": "Medium Shot",
+              "prompt": "photorealistic, 8k. (Yasumoto: 52-year-old sweaty Japanese man) pointing an angry finger at Shouta. Veins popping on his neck. Aggressive stance."
+            },
+            {
+              "panel": 2,
+              "purpose": "Action",
+              "shot": "Close-up",
+              "prompt": "photorealistic, 8k. (Ren: 17-year-old male) putting on his smart-glasses. Reflection of Yasumoto in the lens. Cold, analytical look."
+            },
+            {
+              "panel": 3,
+              "purpose": "Highlight",
+              "shot": "Medium Shot",
+              "prompt": "photorealistic, 8k, surreal. AR Vision: A massive, black shadowy hand of a Ghost reaching out from Yasumoto's back, clutching his throat. Cinematic horror."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
