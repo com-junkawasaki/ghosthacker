@@ -44,6 +44,7 @@
     <div 
       class="tree-item" 
       class:selected={graphStore.selectedNodeId === item.id}
+      class:hub={item.id.startsWith('hub:')}
       style="padding-left: {item.depth * 12 + 8}px"
       onclick={() => handleClick(item.node)}
       draggable="true"
@@ -86,7 +87,7 @@
     user-select: none;
     border-radius: 6px;
     margin: 0 8px;
-    color: var(--secondary-label);
+    color: var(--system-label);
   }
 
   .tree-item:hover {
@@ -98,6 +99,12 @@
     background: rgba(0, 122, 255, 0.15);
     color: var(--accent-blue);
     font-weight: 600;
+  }
+
+  .tree-item.hub {
+    font-weight: 700;
+    color: var(--system-label);
+    letter-spacing: 0.02em;
   }
 
   .toggle-icon {
@@ -138,6 +145,8 @@
   .label {
     overflow: hidden;
     text-overflow: ellipsis;
+    flex: 1;
+    margin-right: 8px;
   }
 </style>
 

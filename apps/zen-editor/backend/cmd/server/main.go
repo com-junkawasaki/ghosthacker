@@ -137,6 +137,60 @@ func (s *EditorServer) LoadDatastore(projectID string) {
 
 			s.NodeCache[id] = node
 
+			// Special handling for Storyboard to create hierarchy
+			if nodeType == "gh:Storyboard" {
+				if scenes, ok := nodeData["gh:scenes"].([]interface{}); ok {
+					for _, sVal := range scenes {
+						sceneData, ok := sVal.(map[string]interface{})
+						if !ok { continue }
+						
+						sID, _ := sceneData["id"].(float64)
+						sDesc, _ := sceneData["description"].(string)
+						
+						// Parse "Episode X, Page Y, Panel Z" from description
+						episodeNum := "1"
+						pageNum := "1"
+						panelNum := fmt.Sprintf("%d", int(sID))
+						
+						parts := strings.Split(sDesc, ",")
+						for _, p := range parts {
+							p = strings.TrimSpace(p)
+							if strings.HasPrefix(p, "Episode") {
+								episodeNum = strings.TrimSpace(strings.TrimPrefix(p, "Episode"))
+							} else if strings.HasPrefix(p, "Page") {
+								pageNum = strings.TrimSpace(strings.TrimPrefix(p, "Page"))
+							} else if strings.HasPrefix(p, "Panel") {
+								panelNum = strings.TrimSpace(strings.TrimPrefix(p, "Panel"))
+							}
+						}
+
+						epID := fmt.Sprintf("hub:episode:%s", episodeNum)
+						pgID := fmt.Sprintf("hub:episode:%s:page:%s", episodeNum, pageNum)
+						cutID := fmt.Sprintf("cut:%d", int(sID))
+
+						// Ensure Episode Hub
+						if _, ok := s.NodeCache[epID]; !ok {
+							s.NodeCache[epID] = &editorpb.Node{
+								Id: epID, Label: "Episode " + episodeNum, Type: "gh:EpisodeHub", Group: "content", ViewType: "storyboard",
+							}
+							s.EdgeCache = append(s.EdgeCache, &editorpb.Edge{FromId: id, ToId: epID, Relation: "gh:contains", Group: "structural"})
+						}
+						// Ensure Page Hub
+						if _, ok := s.NodeCache[pgID]; !ok {
+							s.NodeCache[pgID] = &editorpb.Node{
+								Id: pgID, Label: "Page " + pageNum, Type: "gh:PageHub", Group: "content", ViewType: "storyboard",
+							}
+							s.EdgeCache = append(s.EdgeCache, &editorpb.Edge{FromId: epID, ToId: pgID, Relation: "gh:contains", Group: "structural"})
+						}
+						// Scene Node
+						s.NodeCache[cutID] = &editorpb.Node{
+							Id: cutID, Label: "Cut " + panelNum, Type: "gh:Cut", Group: "content", Content: sDesc, ViewType: "storyboard",
+						}
+						s.EdgeCache = append(s.EdgeCache, &editorpb.Edge{FromId: pgID, ToId: cutID, Relation: "gh:contains", Group: "structural"})
+					}
+				}
+			}
+
 			// Extract relations recursively
 			var extractEdges func(string, interface{})
 			extractEdges = func(fromID string, v interface{}) {
@@ -284,11 +338,15 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 	resp := &editorpb.GetTopologyResponse{}
 	hubs := make(map[string]*editorpb.Node)
 	connected := make(map[string]bool)
+	hasParent := make(map[string]bool)
 
-	// Pre-identify connected nodes
+	// Pre-identify connected nodes and children
 	for _, edge := range s.EdgeCache {
 		connected[edge.FromId] = true
 		connected[edge.ToId] = true
+		if edge.Relation == "gh:contains" || edge.Relation == "gh:partOf" || edge.Relation == "gh:memberOf" {
+			hasParent[edge.ToId] = true
+		}
 	}
 
 	// First pass: Add regular nodes and identify needed hubs
@@ -310,7 +368,9 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 		}
 		
 		resp.Nodes = append(resp.Nodes, &nodeCopy)
-		if group != "" && group != "meta" && group != "link-node" {
+		
+		// Only create group hubs for nodes that don't have an explicit parent
+		if !hasParent[nodeCopy.Id] && group != "" && group != "meta" && group != "link-node" {
 			hubID := "hub:" + group
 			if _, ok := hubs[hubID]; !ok {
 				hLabel := strings.Title(group) + " Circle"
@@ -334,9 +394,9 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 	nodeMap := make(map[string]*editorpb.Node)
 	for _, n := range resp.Nodes { nodeMap[n.Id] = n }
 
-	// Build containment edges and populate children
+	// Build containment edges and populate children for group hubs
 	for _, node := range resp.Nodes {
-		if node.Group != "" && node.Group != "meta" && node.Group != "link-node" {
+		if !hasParent[node.Id] && node.Group != "" && node.Group != "meta" && node.Group != "link-node" {
 			hubID := "hub:" + node.Group
 			if hub, ok := nodeMap[hubID]; ok {
 				hub.Children = append(hub.Children, node.Id)
@@ -437,7 +497,7 @@ func (s *EditorServer) categorizeNode(t string) string {
 	case strings.Contains(t, "Place") || strings.Contains(t, "Setting") || strings.Contains(t, "Environment"): return "environment"
 	case strings.Contains(t, "Item") || strings.Contains(t, "Object") || strings.Contains(t, "Product") || strings.Contains(t, "Prop"): return "item"
 	case strings.Contains(t, "Emotion") || strings.Contains(t, "Sentiment"): return "emotion"
-	case strings.Contains(t, "Manuscript") || strings.Contains(t, "Block") || strings.Contains(t, "Episode"): return "content"
+	case strings.Contains(t, "Manuscript") || strings.Contains(t, "Block") || strings.Contains(t, "Episode") || strings.Contains(t, "Storyboard") || strings.Contains(t, "Page") || strings.Contains(t, "Cut"): return "content"
 	case strings.Contains(t, "Image") || strings.Contains(t, "Asset") || strings.Contains(t, "ImageObject"): return "asset"
 	default: return "concept"
 	}
