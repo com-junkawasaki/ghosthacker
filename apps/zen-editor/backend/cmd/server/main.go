@@ -686,10 +686,14 @@ func main() {
 	mux.Handle("/data/", http.StripPrefix("/data/", http.FileServer(http.Dir(workspaceRoot))))
 
 	path, handler := editorpbconnect.NewEditorServiceHandler(srv)
+	log.Printf("Registering Connect handler at: %s", path)
 	mux.Handle(path, handler)
 	
 	// Apply CORS to everything
-	handlerWithCORS := withCORS(mux)
+	handlerWithCORS := withCORS(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		log.Printf("DEBUG: Request received: %s %s", r.Method, r.URL.Path)
+		mux.ServeHTTP(w, r)
+	}))
 	
 	log.Printf("Starting server on :%s (workspace: %s)", port, workspaceRoot)
 	http.ListenAndServe(":"+port, h2c.NewHandler(handlerWithCORS, &http2.Server{}))
