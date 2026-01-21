@@ -35,10 +35,6 @@ export default defineConfig({
   },
   ssr: {
     noExternal: [
-      '@tauri-apps/api', 
-      '@tauri-apps/plugin-dialog', 
-      '@tauri-apps/plugin-fs', 
-      '@tauri-apps/plugin-shell',
       '@bufbuild/protobuf',
       '@connectrpc/connect',
       '@connectrpc/connect-web'
@@ -48,10 +44,10 @@ export default defineConfig({
   // https://tauri.app/v1/api/config#buildconfig.beforedevcommand
   envPrefix: ['VITE_', 'TAURI_'],
   build: {
-    // Tauri supports es2021
+    // browser support target
     target: 'esnext',
     // don't minify for debug builds
-    minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
+    minify: process.env.TAURI_DEBUG === undefined ? 'esbuild' : false,
     // produce sourcemaps for debug builds
     sourcemap: !!process.env.TAURI_DEBUG,
     rollupOptions: {

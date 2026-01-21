@@ -161,6 +161,7 @@
     </div>
 
     <div class="right-section">
+      <a href="/assembler" class="icon-btn" title="3D Assembler" style="text-decoration: none; margin-right: 0.5rem;">🧊</a>
       <button class="icon-btn" onclick={() => isHistoryOpen = !isHistoryOpen} class:active={isHistoryOpen}>📜</button>
       <button class="icon-btn" onclick={toggleChat}>💬</button>
       <button class="icon-btn">⚙️</button>

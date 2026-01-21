@@ -1,0 +1,24 @@
+# Tiltfile for Zen Editor
+
+# Frontend (SvelteKit + Deno)
+local_resource(
+    'zen-frontend',
+    cmd='deno task dev:web',
+    deps=['src', 'vite.config.ts', 'svelte.config.js', 'package.json', 'deno.json'],
+    links=['http://localhost:1420']
+)
+
+# Backend (Go Server)
+local_resource(
+    'zen-backend-server',
+    cmd='export WORKSPACE_ROOT=data && export PORT=8080 && deno task dev:backend',
+    deps=['backend/cmd/server', 'backend/internal', 'backend/proto', 'backend/go.mod', 'backend/go.sum'],
+    links=['http://localhost:8080/health']
+)
+
+# Backend (Go Worker)
+local_resource(
+    'zen-backend-worker',
+    cmd='export WORKSPACE_ROOT=data && deno task dev:worker',
+    deps=['backend/cmd/worker', 'backend/internal', 'backend/proto', 'backend/go.mod', 'backend/go.sum']
+)

@@ -35,10 +35,10 @@
   "architecture": {
     "frontend": {
       "framework": "SvelteKit",
-      "ui_shell": "Tauri",
+      "ui_shell": "Browser (Standard Web) / Tauri (Optional)",
       "editor": "Prosemirror (Svelte-integrated)",
-      "visualization": "Zen Graph Topology (Custom SVG/Canvas)",
-      "communication": "ConnectRPC (gRPC-web)"
+      "visualization": "Zen Graph Topology (WebGPU via @cosmos.gl/graph)",
+      "communication": "ConnectRPC (connect-web)"
     },
     "backend": {
       "language": "Go",
@@ -47,6 +47,10 @@
       "orchestration": "Kubernetes (k8s)"
     },
     "integrations": [
+      {
+        "name": "Tilt",
+        "purpose": "Local development orchestration for frontend and backend"
+      },
       {
         "name": "Git",
         "purpose": "Document version control and branching"

@@ -28,7 +28,8 @@
       "All prompts updated to Professional Monochrome Manga style optimized for Runway Gen-2/Gen-3",
       "Redundant storyboard and draft files deleted to simplify project structure",
       ".cursor/rules/runway_manga_generation.mdc created to codify Runway-specific Manga generation rules",
-      "251121/props/ directory created to define specific furniture and items (Okamura Cruise & Atlas, USM Haller, etc.) for consistent visual property across prompts"
+      "251121/props/ directory created to define specific furniture and items (Okamura Cruise & Atlas, USM Haller, etc.) for consistent visual property across prompts",
+      "apps/zen-editor: 3D Scene Assembler implemented using Threlte (Svelte 5) at /assembler route, allowing for character/prop placement and camera angle setup"
     ]
   },
   "gh:artifacts": [
@@ -58,6 +59,13 @@
       "schema:name": "Prop & Furniture Definitions",
       "schema:description": "Specific brand and model names for consistent object generation.",
       "schema:filePath": "251121/props/"
+    },
+    {
+      "@id": "gh:artifact/zen-editor-3d-assembler",
+      "@type": "gh:Artifact",
+      "schema:name": "Zen Editor: 3D Assembler",
+      "schema:description": "Threlte-based 3D workspace for scene composition.",
+      "schema:filePath": "apps/zen-editor/src/routes/assembler/"
     }
   ],
   "gh:milestones": [
@@ -75,6 +83,10 @@
     },
     {
       "gh:name": "Master Storyboard (Monochrome Edition)",
+      "gh:status": "Completed"
+    },
+    {
+      "gh:name": "3D Scene Assembler Implementation",
       "gh:status": "Completed"
     }
   ]

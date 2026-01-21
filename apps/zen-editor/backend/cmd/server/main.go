@@ -504,11 +504,22 @@ func withCORS(h http.Handler) http.Handler {
 }
 
 func main() {
-	workspaceRoot := "/Volumes/251214/jun784/ghosthacker/apps/zen-editor/data"
+	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
+	if workspaceRoot == "" {
+		workspaceRoot = "data" // Default to relative data directory
+	}
+	
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
 	srv := NewEditorServer(workspaceRoot)
 	mux := http.NewServeMux()
 	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) { w.Write([]byte("OK")) })
 	path, handler := editorpbconnect.NewEditorServiceHandler(srv)
 	mux.Handle(path, withCORS(handler))
-	http.ListenAndServe(":8080", h2c.NewHandler(mux, &http2.Server{}))
+	
+	log.Printf("Starting server on :%s (workspace: %s)", port, workspaceRoot)
+	http.ListenAndServe(":"+port, h2c.NewHandler(mux, &http2.Server{}))
 }

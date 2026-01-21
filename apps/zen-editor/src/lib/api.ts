@@ -24,8 +24,11 @@ function initClient(): void {
   
   try {
     console.log("[api] Starting client initialization...");
+    const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:8080";
+    console.log(`[api] Initializing transport with baseUrl: ${baseUrl}`);
+    
     const transport = createConnectTransport({
-      baseUrl: "http://localhost:8080",
+      baseUrl: baseUrl,
     });
     
     console.log("[api] Transport created. EditorService:", !!EditorService);
