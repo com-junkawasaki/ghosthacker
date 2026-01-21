@@ -9,20 +9,20 @@
   "@type": ["gh:Project", "prov:Entity"],
   "dct:title": "Manga Ghost Hacker: Case Study Series",
   "dct:description": "A manga series designed to teach cybersecurity through case studies, using real-world terminology and frameworks (CISA, CISSP, CMMI).",
-  "gh:status": "Planning / Character Design Updated",
+  "gh:status": "Planning / Season 1 Cast Integrated",
   "gh:currentSession": {
     "@type": "prov:Activity",
-    "prov:startedAtTime": "2026-01-09T00:00:00Z",
+    "prov:startedAtTime": "2026-01-22T00:00:00Z",
     "gh:goals": [
       "Define 12-episode case study structure",
       "Update character profiles with real-world security credentials",
-      "Establish 'Virtues' for main characters (Sloth, Arrogance, Short-tempered)"
+      "Integrate Season 1 cast (law enforcement & antagonists) into profiles"
     ],
     "gh:results": [
       "Ren Numano: Sloth (Efficiency), MIT Dropout, CISSP Associate, CEH",
       "Kaname: Arrogance (Perfection), Stanford Grad, CISA, PMP, Registered InfoSec Specialist",
       "Takeru: Short-tempered (Instant Action), Self-taught, OSCP, GXPN",
-      "Season 1 bible created (crime ecosystem + law enforcement cast + company archetypes)"
+      "Season 1 cast (Reiji Isa, Noa Saegusa, HERO, etc.) added to character_profiles.jsonld"
     ]
   },
   "gh:artifacts": [

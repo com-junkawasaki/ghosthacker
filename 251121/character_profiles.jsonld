@@ -70,7 +70,7 @@
       "gh:context": "翔太が戻ってきたことで「自分の居場所がなくなる」という恐怖（Ghostの餌）が増幅。翔太の導入した新システムを理解できず、意図的に障害を起こそうとして、闇サイトで拾ったランサムウェアを手違いで拡散させてしまった（自爆）。",
       "gh:ghostType": "Obsolescence & Jealousy (陳腐化への恐怖と嫉妬)",
       "gh:appearance": {
-        "gh:face": "不安と焦りが表れた表情。目は泳ぎ、時折下を向く。額には常に汗が浮かび、緊張が伝わる。口元は硬く、言い訳をしようとする時は唇が震える。",
+        "gh:face": "不安と焦りが表れた表情。目は泳ぎ、時折下を向く. 額には常に汗が浮かび、緊張が伝わる。口元は硬く、言い訳をしようとする時は唇が震える。",
         "gh:hair": "白髪交じりの黒髪。整えられているが、パニック時は乱れる。",
         "gh:build": "中肉中背、やや太め。運動不足で、体力に自信がない。",
         "gh:posture": "緊張時は肩が上がり、背中が丸まる。ネクタイを触る、ポケットに手を入れるなど、落ち着きのない仕草が多い。敗北時は完全に縮こまり、床に座り込む。"
@@ -146,7 +146,7 @@
         "gh:posture": "椅子に深く座り、45度後ろに倒れる。完全にリラックスした姿勢。作業時は前のめりになり、集中する。戦闘時は背筋を伸ばし、冷静な立ち姿を見せる。"
       },
       "gh:clothing": {
-        "gh:outfit": "ダークグレーのフーディー（フードは下ろしている）、黒のTシャツ、ダークジーンズ。シンプルで機能的な服装。",
+        "gh:outfit": "ダークグレーのフーディー（フードは下ろしている）、黒のTシャツ、ダークジーンズ. シンプルで機能的な服装。",
         "gh:accessories": "スマートフォン（SIPデバイスとして使用）、ノートPC、USBドライブ。",
         "gh:shoes": "スニーカーまたはカジュアルシューズ（黒またはダークグレー）。",
         "gh:style": "ミニマル、機能性重視。装飾は一切ない。黒とグレーを基調とした、目立たない服装。"
@@ -193,7 +193,7 @@
       "gh:context": "裕福な家庭で育ち、最高の教育と機材を与えられてきたエリート。ハッキングをチェスや芸術のように捉えており、自身の行為に絶対的な美学を持つ。Renとは同じ裏社会で活動するが、国家間の情報窃盗や企業の経営権を揺るがすような、より知能的な犯罪を手がける。",
       "gh:skills": "ゼロデイ脆弱性を利用した潜入、痕跡を完全に消し去るステルス技術、複雑な人間心理を突くソーシャルエンジニアリングを得意とする。彼の攻撃は静かで、気づいた時には手遅れになっている。",
       "gh:relationship": {
-        "character:Ren": "Renの哲学的なアプローチを「非論理的で汚い」と嫌悪しているが、その得体の知れない能力には警戒心と一種の知的好奇心を抱いている。美しくない仕事（物理的な破壊など）は、下のハッカー（Hammerなど）に任せるため、Renと直接組むことは稀。",
+        "character:Ren": "Renの哲学的なアプローチを「非論理的で汚い」と嫌悪しているが、その得体の知れない能力には警戒心と一種の知的好奇心を抱いている。美学にそぐわない『霊』という非論理的な存在を扱うRenは、彼の完璧な世界を乱すノイズであり、排除または理解すべき対象。",
         "character:Takeru": "単細胞な破壊屋と見下しており、自分のチェスの駒（ポーン）程度にしか思っていない。便利な道具として使うことはあるが、対等な協力者とは認めていない。"
       },
       "gh:motivation": "自らの知性が世界を支配できることを証明すること。彼の美学にそぐわない『霊』という非論理的な存在を扱うRenは、彼の完璧な世界を乱すノイズであり、排除または理解すべき対象。",
@@ -243,6 +243,160 @@
         "gh:accessories": "スマートフォン、ツール類、時折ナイフや武器類。",
         "gh:shoes": "スニーカー（黒またはダークカラー、やや汚れている）。",
         "gh:style": "ストリートファッション、機能性と破壊的な美学を両立。装飾は最小限だが、攻撃的な印象。"
+      }
+    },
+    {
+      "@id": "character:IsaReiji",
+      "schema:name": "伊佐 玲司 (Reiji Isa)",
+      "schema:role": "Supporting Role / MPD Cyber Investigator",
+      "gh:organization": "org:mpd-cyber",
+      "gh:roleTemplate": "role:jp-cyber-investigator",
+      "gh:personality": "Practical, Resolute, Respectful of Skill",
+      "gh:context": "警視庁サイバー犯罪対策課の捜査官。現場主義で、当初はRenのような非正規のハッカーを疑っていたが、彼の論理的で完璧な証拠保全の手腕を見て認識を改める。以後、警察の枠内では動けない事件においてRenと密かに連携する。",
+      "gh:appearance": {
+        "gh:face": "40代前半。無精髭が似合う、実直でタフな顔立ち。目は鋭く、嘘を見逃さない。現場の修羅場をくぐり抜けてきた男の顔。",
+        "gh:hair": "短く刈り込まれた黒髪。手入れは最小限。",
+        "gh:build": "がっしりとした、鍛えられた体格。",
+        "gh:posture": "どっしりと構えた、安定感のある立ち姿。"
+      }
+    },
+    {
+      "@id": "character:HatoriKoichi",
+      "schema:name": "羽鳥 恒一 (Koichi Hatori)",
+      "schema:role": "Supporting Role / NPA Cyber Analyst",
+      "gh:organization": "org:npa-cyber",
+      "gh:roleTemplate": "role:jp-cyber-analyst",
+      "gh:personality": "Strategic, Calm, Coordinator",
+      "gh:context": "警察庁のサイバー分析官。個別の事案を繋ぎ合わせ、背後にある犯罪エコシステムの全体像を分析する。伊佐の上司的立場であり、Renたちの能力を戦略的に活用しようとする知性派。",
+      "gh:appearance": {
+        "gh:face": "45歳。冷静で知的な印象。常に何かを分析しているような、落ち着いた眼差し。眼鏡をかけている。",
+        "gh:hair": "几帳面に整えられた七三分けの黒髪。",
+        "gh:build": "細身だが、背筋が伸びた端正な体格。",
+        "gh:posture": "理知的で無駄のない動き。会議室が似合う。"
+      }
+    },
+    {
+      "@id": "character:SaegusaNoa",
+      "schema:name": "三枝 乃亜 (Noa Saegusa)",
+      "schema:role": "Supporting Role / JPCERT Analyst",
+      "gh:organization": "org:jpcert",
+      "gh:roleTemplate": "role:cert-coordination-analyst",
+      "gh:personality": "Precise, Data-driven, Tech-savvy",
+      "gh:context": "JPCERT/CCのアナリスト。攻撃手法（TTP）や侵害指標（IoC）の分析を専門とする。Neiとはデータ解析の文脈で「話が合う」稀有な人間。被害組織間の横連携を支援する。",
+      "gh:appearance": {
+        "gh:face": "30代前半。知的で明るい表情。最新のガジェットを使いこなす、現代的なアナリストの顔立ち。",
+        "gh:hair": "まとめられたミディアムレングスの髪。",
+        "gh:build": "標準的な体格。",
+        "gh:posture": "常にデバイスを操作しているか、モニターを見つめている。"
+      }
+    },
+    {
+      "@id": "character:KurokawaMio",
+      "schema:name": "黒川 澪 (Mio Kurokawa)",
+      "schema:role": "Supporting Role / SESC Market Investigator",
+      "gh:organization": "org:sesc",
+      "gh:roleTemplate": "role:market-investigator",
+      "gh:personality": "Intuitive, Sharp, Uncompromising",
+      "gh:context": "証券取引等監視委員会（SESC）の調査官。サイバー攻撃の背後にある市場操作やインサイダー取引の匂いを見逃さない。攻撃のタイミングと株価の動きの相関関係を執拗に追う。",
+      "gh:appearance": {
+        "gh:face": "30代半ば。鋭い洞察力を感じさせる美貌。冷徹に見えるが、正義感は強い。",
+        "gh:hair": "タイトにまとめられた黒髪ロング。",
+        "gh:build": "細身でスタイリッシュな体格。",
+        "gh:posture": "凛とした立ち姿。ハイヒールの音が響くような。"
+      }
+    },
+    {
+      "@id": "character:NatsumeKoichi",
+      "schema:name": "夏目 恒一 (Koichi Natsume)",
+      "schema:role": "Supporting Role / TSE Market Investigator",
+      "gh:organization": "org:tse",
+      "gh:roleTemplate": "role:market-investigator",
+      "gh:personality": "Serious, Responsible, Guard of the Gate",
+      "gh:context": "東京証券取引所（TSE）の市場監視員。日本の市場という巨大なシステムの門番として、混乱を最小限に抑えるための重い決断を下す。黒川とは情報のやり取りが多い。",
+      "gh:appearance": {
+        "gh:face": "50代。責任感に満ちた、厳格な顔立ち。市場の安定を第一に考える、重厚な印象。",
+        "gh:hair": "短く整えられた、白髪交じりの髪。",
+        "gh:build": "重厚感のある体格。",
+        "gh:posture": "どっしりとしており、揺るぎない。"
+      }
+    },
+    {
+      "@id": "character:MayaRahman",
+      "schema:name": "Maya Rahman",
+      "schema:role": "Supporting Role / INTERPOL Liaison",
+      "gh:organization": "org:interpol",
+      "gh:roleTemplate": "role:international-liaison",
+      "gh:personality": "Multicultural, Diplomatic, Fast-paced",
+      "gh:context": "インターポールの国際連携担当。各国の異なる法体系や捜査手順を調整し、SEIGI_HEROのような国境を越える犯行グループを追い詰めるためのパイプ役。",
+      "gh:appearance": {
+        "gh:face": "30代。中東・南アジア系のルーツを持つ、知的な美貌。多様な言語を操る口元が印象的。",
+        "gh:hair": "ウェーブのかかったダークヘア。",
+        "gh:build": "活動的で引き締まった体格。",
+        "gh:posture": "常に世界中と連絡を取り合っている、忙しないが優雅な動き。"
+      }
+    },
+    {
+      "@id": "character:EthanCole",
+      "schema:name": "Ethan Cole",
+      "schema:role": "Supporting Role / FBI Liaison",
+      "gh:organization": "org:fbi",
+      "gh:roleTemplate": "role:international-liaison",
+      "gh:personality": "Arrogant but Competent, Technical, Direct",
+      "gh:context": "FBIの捜査官。米国の圧倒的なインフラ調査能力を背景に、暗号資産の洗浄先や海外サーバーの解析情報を提供する。技術的な優位性を鼻にかけるが、その実力は本物。",
+      "gh:appearance": {
+        "gh:face": "30代後半。自信に満ちたアメリカン・エリートの顔立ち。少し不敵な笑みを浮かべることが多い。",
+        "gh:hair": "短く清潔に整えられたブロンド。",
+        "gh:build": "大柄で筋肉質な体格。",
+        "gh:posture": "堂々としており、自分の領域に対する絶対的な自信を感じさせる。"
+      }
+    },
+    {
+      "@id": "character:IngridVoss",
+      "schema:name": "Ingrid Voss",
+      "schema:role": "Supporting Role / Europol Liaison",
+      "gh:organization": "org:europol-ec3",
+      "gh:roleTemplate": "role:international-liaison",
+      "gh:personality": "Methodical, Calm, Expert in Ecosystems",
+      "gh:context": "欧州サイバー犯罪センター（EC3）の連絡員。欧州全域に広がるサイバー犯罪のエコシステムや、アフィリエイト・ネットワークの構造を冷静に分析する専門家。",
+      "gh:appearance": {
+        "gh:face": "40代。北欧系の冷静な顔立ち。データの中に真実を見出す、静かな情熱を感じさせる瞳。",
+        "gh:hair": "短めのプラチナブロンド。",
+        "gh:build": "細身で端正な体格。",
+        "gh:posture": "静かで無駄のない動き。資料の山の中にいても落ち着いている。"
+      }
+    },
+    {
+      "@id": "character:TomHargreaves",
+      "schema:name": "Tom Hargreaves",
+      "schema:role": "Supporting Role / NCA Liaison",
+      "gh:organization": "org:nca-nccu",
+      "gh:roleTemplate": "role:international-liaison",
+      "gh:personality": "Cynical, Persistent, Financial Crime Expert",
+      "gh:context": "英国国家犯罪対策庁（NCA）のNCCU所属。複雑なマネーロンダリング網や、サイバー犯罪者が資金を隠す手法を執拗に追いかける。少し皮肉屋だが、実務能力は極めて高い。",
+      "gh:appearance": {
+        "gh:face": "40代後半。少し疲れが見えるが、執念深さを感じさせる眼差し。英国紳士的な皮肉を好む表情。",
+        "gh:hair": "少し薄くなり始めた茶髪。",
+        "gh:build": "平均的な体格だが、粘り強さを感じさせる。",
+        "gh:posture": "リラックスしているようで、常に周囲を観察している。"
+      }
+    },
+    {
+      "@id": "character:HERO",
+      "schema:name": "HERO / 佐藤 ヒロシ (Hiroshi Sato)",
+      "schema:role": "Main Antagonist / Representative of SEIGI_HERO",
+      "gh:virtue": "False Justice (Rage Displacement)",
+      "gh:personality": "Immature, Aggressive, Narcissistic",
+      "gh:context": "サイバー犯罪グループ「SEIGI_HERO」のリーダー. 海外拠点から日本の大手企業を狙い、独自の『正義』の名の下にランサムウェア攻撃や情報漏洩を仕掛ける。その本質は、厳格な親への反抗心の転写であり、他人を断罪することで自分の存在価値を確認している。",
+      "gh:appearance": {
+        "gh:face": "20代後半。整っているが、どこか幼さと不安定さが同居する顔立ち。目は承認欲求と怒りでギラついている。自信満々なようでいて、批判されると激昂する。",
+        "gh:hair": "少し派手めにスタイリングされた髪。",
+        "gh:build": "細身だが、攻撃的なエネルギーに満ちている。",
+        "gh:posture": "派手な椅子に座り、王のように振る舞う。大袈裟な身振り手振りで『正義』を説く。"
+      },
+      "gh:clothing": {
+        "gh:outfit": "ブランド物のカジュアルウェア。高価だが成金趣味な印象。サングラスを頭にかけていることが多い。",
+        "gh:accessories": "高価なヘッドセット、複数のスマートフォン、ゲーミングデバイス。",
+        "gh:style": "「成功したハッカー」を演出した、過剰で派手な装い。"
       }
     }
   ]
