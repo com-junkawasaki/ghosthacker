@@ -67,7 +67,7 @@ const (
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
 var (
-	editorServiceServiceDescriptor                  = proto.File_editor_proto.Services().ByName("EditorService")
+	editorServiceServiceDescriptor                  = proto.File_backend_proto_editor_proto.Services().ByName("EditorService")
 	editorServiceGetTopologyMethodDescriptor        = editorServiceServiceDescriptor.Methods().ByName("GetTopology")
 	editorServiceGetBlocksMethodDescriptor          = editorServiceServiceDescriptor.Methods().ByName("GetBlocks")
 	editorServiceSaveManuscriptMethodDescriptor     = editorServiceServiceDescriptor.Methods().ByName("SaveManuscript")

@@ -8,116 +8,34 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "dct": "http://purl.org/dc/terms/"
   },
-  "@id": "gh:profiles/episode01-characters-v3",
+  "@id": "gh:profiles/season1-characters-photorealistic",
   "@type": "gh:CharacterProfiles",
-  "dct:title": "Ghost Hacker Episode 1: Character Profiles (Monochrome Manga Edition)",
+  "dct:title": "Ghost Hacker Season 1: Character Profiles (Cinematic Photorealistic Edition)",
   "gh:characters": [
     {
       "@id": "character:Shouta",
       "schema:name": "大門 翔太 (Shouta Daimon)",
       "schema:role": "Client / Successor",
       "schema:age": 26,
-      "schema:jobTitle": "社長室長 / 次期社長候補",
-      "gh:personality": "Rational, Slightly Arrogant but Responsible",
       "gh:appearance": {
-        "gh:face": "26歳。理性的で鋭い目つき。疲労と決意が混在したリアルな表情。",
-        "gh:hair": "短めのビジネスカット。黒髪。",
-        "gh:build": "中肉中背、引き締まった体格。",
-        "gh:style": "Professional monochrome manga art, high-contrast black and white, crisp line art, heavy screentone shading, halftone dot texture, modern seinen manga aesthetic.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, a 26-year-old Japanese businessman, sharp eyes, short clean-cut black hair, wearing a navy blue suit, slightly loosened tie, dramatic office lighting, crisp line art, detailed eyes, heavy screentone shading."
-      },
-      "gh:clothing": {
-        "gh:daily": "上質なカシミアニットポロに、スリムなスラックス。高級レザースニーカー。",
-        "gh:work": "ダークネイビーのスリーピース・オーダースーツ。細身でシャープ。戦うためのビジネスアーマー、モノクロームトーン。"
-      }
-    },
-    {
-      "@id": "character:President",
-      "schema:name": "大門 五郎 (Goro Daimon)",
-      "schema:role": "President / Spiritual Pillar",
-      "schema:age": 62,
-      "gh:personality": "Emotional, Traditional, Trusting",
-      "gh:appearance": {
-        "gh:face": "62歳。皺の深い、経験豊かな老年の顔立ち。温かみと威厳。",
-        "gh:hair": "短く刈り込まれた白髪交じりの髪。",
-        "gh:build": "がっしりとした頑強な体格。",
-        "gh:style": "Professional monochrome manga art, high-contrast black and white, detailed wrinkles, weathered texture.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, a 62-year-old Japanese man, sturdy build, deep facial wrinkles, kind but firm eyes, short salt-and-pepper hair, wearing a work jacket, realistic ink shading, dense screentone texture, clear line work."
-      },
-      "gh:clothing": {
-        "gh:daily": "シンプルなポロシャツにチノパン。または紺の作務衣。",
-        "gh:work": "社名の入った作業服に安全ベスト、安全靴。常に現場に立てる現役の装い、モノクロームトーン。"
-      }
-    },
-    {
-      "@id": "character:Yasumoto",
-      "schema:name": "安本 健治 (Kenji Yasumoto)",
-      "schema:role": "Antagonist / Victim",
-      "schema:age": 52,
-      "gh:personality": "Insecure, Defensive, Secretive",
-      "gh:appearance": {
-        "gh:face": "52歳。不安と焦燥が滲み出た顔立ち。泳ぐ視線。額の汗や肌のテクスチャが繊細な線で表現される。",
-        "gh:hair": "乱れた七三分けの白髪交じり。",
-        "gh:build": "運動不足気味のやや太めな体型。",
-        "gh:style": "Professional monochrome manga art, oily texture, nervous expression, high contrast shadows.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, a 52-year-old Japanese man, slightly overweight, anxious and defensive expression, darting eyes, messy receding hair, wearing a rumpled suit, white shirt with sweat stains, heavy ink shading, halftone dot textures."
-      },
-      "gh:clothing": {
-        "gh:daily": "くたびれたポロシャツにスラックス。",
-        "gh:work": "皺の寄ったビジネススーツ。緩んだネクタイ、襟元の汗染み。モノクロームトーン。"
-      }
-    },
-    {
-      "@id": "character:Matsuda",
-      "schema:name": "松田 ヨシ子 (Yoshiko Matsuda)",
-      "schema:role": "Accounting Manager",
-      "schema:age": 58,
-      "gh:personality": "Hysterical regarding IT, Strict with Money",
-      "gh:appearance": {
-        "gh:face": "58歳。厳格で几帳面そうな顔立ち。眼鏡の奥の目は鋭い。",
-        "gh:hair": "短めのパーマをあてた黒髪。",
-        "gh:build": "小柄だが背筋の伸びた、隙のない立ち姿。",
-        "gh:style": "Professional monochrome manga art, strict Japanese office lady, detailed aging lines.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, a 58-year-old Japanese woman, small build, strict expression, short permed black hair, wearing a blouse and dark skirt, reading glasses on a silver chain, intricate line art, dense screentone shading."
-      },
-      "gh:clothing": {
-        "gh:daily": "落ち着いた色のアンサンブルニットにロングスカート。",
-        "gh:work": "保守的なオフィスカジュアル。老眼鏡、モノクロームトーン。"
-      }
-    },
-    {
-      "@id": "character:Sato",
-      "schema:name": "佐藤 健太 (Kenta Sato)",
-      "schema:role": "IT Support (unofficial)",
-      "schema:age": 24,
-      "gh:appearance": {
-        "gh:face": "24歳。若々しいが、疲弊した表情。困り眉。",
-        "gh:hair": "無頓着に短くした黒髪。",
-        "gh:build": "細身。サーバーラックの裏に潜り込めるような身軽な体格。",
-        "gh:style": "Professional monochrome manga art, fatigued youth, realistic sweat and messy hair.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, a 24-year-old Japanese male, slim build, fatigued and worried expression, simple short black hair, wearing a polo shirt, intricate ink lines, halftone dot texture."
-      },
-      "gh:clothing": {
-        "gh:daily": "Tシャツにチノパン、スニーカー。",
-        "gh:work": "作業用ベストを羽織ったカジュアルなシャツスタイル。モノクロームトーン。"
+        "gh:face": "26-year-old Japanese male, sharp eyes, slightly fatigued but determined expression.",
+        "gh:hair": "Short clean-cut black hair, business style.",
+        "gh:build": "Fit and athletic build, wearing a navy blue three-piece suit.",
+        "gh:style": "Photorealistic, cinematic lighting, 8k, highly detailed skin texture.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 26-year-old Japanese businessman, sharp eyes, short clean-cut black hair, wearing a navy blue three-piece suit, slightly loosened tie, natural skin tone."
       }
     },
     {
       "@id": "character:Ren",
       "schema:name": "沼野 蓮 (Ren Numano)",
       "schema:role": "Ghost Hacker",
-      "gh:virtue": "Sloth (Efficiency)",
       "schema:age": 17,
       "gh:appearance": {
-        "gh:face": "17歳。耽美で整った顔立ち。白抜き表現された肌。アンニュイで気だるげな半開きの目。",
-        "gh:hair": "計算された無造作なボリュームを持つ、ウェーブがかった黒髪。鋭いインクのタッチ。",
-        "gh:build": "非常に細身で華奢だが、優雅なシルエット。",
-        "gh:style": "Professional monochrome manga art, high-contrast, voluminous messy ink-drawn hair, sharp half-lidded melancholic eyes.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, stunningly beautiful 17-year-old Japanese male, pale skin, voluminous messy stylish raven black hair with sharp ink strokes, sharp half-lidded melancholic eyes, slender neck, wearing an oversized dark charcoal hoodie, intricate line art, detailed eyes with long eyelashes, heavy screentone shading."
-      },
-      "gh:clothing": {
-        "gh:daily": "オーバーサイズのダークチャコール・フーディー。ミニマルで装飾を排したデザイン。質感の良いスウェット（網点トーン）。",
-        "gh:work": "普段着のフーディーを深く被り、極薄のフレームレス・スマートグラスを装着。モノクロームトーン。"
+        "gh:face": "17-year-old stunningly beautiful Japanese male, pale translucent skin, melancholic half-lidded eyes.",
+        "gh:hair": "Messy voluminous stylish raven black hair.",
+        "gh:build": "Slender and graceful, wearing an oversized dark charcoal hoodie.",
+        "gh:style": "Photorealistic, high fashion photography, dramatic shadows, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, stunningly beautiful 17-year-old Japanese male, pale porcelain skin, messy voluminous raven black hair, melancholic half-lidded eyes, oversized dark charcoal hoodie, dramatic shadows."
       }
     },
     {
@@ -126,310 +44,76 @@
       "schema:role": "AI Partner / Android",
       "schema:age": 16,
       "gh:appearance": {
-        "gh:face": "16歳の少女の姿をしたアンドロイド。洗練された美貌。分析的な輝きを放つ瞳。",
-        "gh:hair": "プラチナブロンドのハイトーン・ボブカット。細い線と白抜きで表現された質感。",
-        "gh:build": "細身で完璧なプロポーション。完璧すぎる肌（Porcelain skin）。",
-        "gh:style": "Professional monochrome manga art, high-end android, platinum blonde bob represented by negative space, large expressive eyes with dense screentone.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, stunningly beautiful 16-year-old Japanese female android, platinum blonde layered bob hair shown with fine lines and negative space, analytical glowing iris, intelligent mischievous eyes, white blouse under a chic dark dress, crisp line art, halftone dot shading."
-      },
-      "gh:clothing": {
-        "gh:daily": "白いパフスリーブの長袖ブラウスに、黒のノースリーブ・ワンピースを重ねたレイヤードスタイル。",
-        "gh:work": "シースルーのテクニカル・ロングコートを羽織る。モノクロームトーン。"
-      }
-    },
-    {
-      "@id": "character:Kaname",
-      "schema:name": "水城 要 (Kaname Mizuki)",
-      "schema:alternateName": "Javelin",
-      "schema:role": "Rival Hacker (Arrogance)",
-      "gh:virtue": "Arrogance (Perfection)",
-      "schema:age": 18,
-      "gh:appearance": {
-        "gh:face": "18歳。彫刻のように完璧に整った、冷徹な美貌。他人を見下すような鋭い視線。",
-        "gh:hair": "完璧にスタイリングされたダークブラウンの髪。一筋の乱れもない鋭い線。",
-        "gh:build": "モデルのような長身で細身の体型。",
-        "gh:style": "Professional monochrome manga art, luxury elite, perfect symmetry, cold aesthetic, sharp ink strokes.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 18-year-old Japanese male, perfectly sculpted handsome face, stylishly set dark hair, arrogant eyes, cold aesthetic, wearing a perfectly tailored suit and tie, crisp line art, detailed facial features, heavy screentone shading."
-      },
-      "gh:clothing": {
-        "gh:daily": "真っ白な最高級シルクシャツに、ライトグレーのトラウザーズ。",
-        "gh:work": "純白のテーラード・タキシードスーツに黒のタイ。モノクロームトーン。"
+        "gh:face": "16-year-old stunningly beautiful Japanese female android, intelligent and mischievous sharp eyes, perfect porcelain skin.",
+        "gh:hair": "Platinum blonde layered bob hair.",
+        "gh:build": "Slender, wearing a white long-sleeve blouse and black sleeveless dress.",
+        "gh:style": "Photorealistic, cinematic soft lighting, high-end android aesthetic, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, beautiful 16-year-old Japanese female android, platinum blonde layered bob, glowing irises, white blouse, black dress, perfect skin."
       }
     },
     {
       "@id": "character:Takeru",
       "schema:name": "赤羽 猛 (Takeru Akabane)",
-      "schema:alternateName": "Hammer",
-      "schema:role": "Rival Hacker (Short-tempered)",
-      "gh:virtue": "Short-tempered (Instant Action)",
+      "schema:role": "Rival Hacker",
       "schema:age": 19,
       "gh:appearance": {
-        "gh:face": "19歳。常に苛立ちを隠さない、攻撃的な表情。鋭く、獲物を狙うような目つき。",
-        "gh:hair": "乱れた黒髪にブリーチのメッシュ（トーン抜き）。荒々しい質感。",
-        "gh:build": "筋肉質でがっしりとした体格。",
-        "gh:style": "Professional monochrome manga art, gritty street aesthetic, aggressive energy, high contrast black shading.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 19-year-old Japanese male, muscular build, aggressive expression, messy black hair with bleached highlights, wearing high-end streetwear, oversized graphic hoodie, gritty ink drawing, heavy screentone, dynamic shadows."
-      },
-      "gh:clothing": {
-        "gh:daily": "オーバーサイズのグラフィックTシャツに、ダメージジーンズ。",
-        "gh:work": "多機能なタクティカル・テックウェア。黒のカーゴパンツ、高機能ナイロンフーディー。モノクロームトーン。"
+        "gh:face": "19-year-old Japanese male, muscular build, aggressive and intense expression.",
+        "gh:hair": "Messy black hair with bleached highlights.",
+        "gh:build": "Muscular, wearing high-end techwear/streetwear.",
+        "gh:style": "Photorealistic, gritty street aesthetic, high contrast, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 19-year-old Japanese male, muscular build, aggressive expression, messy black hair with bleached highlights, techwear, gritty street aesthetic."
       }
     },
     {
-      "@id": "character:IsaReiji",
-      "schema:name": "伊佐 玲司 (Reiji Isa)",
-      "schema:role": "MPD Cyber Crime Division Investigator",
-      "gh:organization": "org:mpd-cyber",
-      "schema:age": 42,
+      "@id": "character:Kaname",
+      "schema:name": "水城 要 (Kaname Mizuki)",
+      "schema:role": "Rival Hacker",
+      "schema:age": 18,
       "gh:appearance": {
-        "gh:face": "42歳。現場叩き上げの鋭い眼光を持つ刑事。日々の捜査による疲労（トーンによる陰影）。",
-        "gh:hair": "短く整えられた黒髪。少し白髪が混じり始めている。",
-        "gh:build": "平均的な身長だが、安定感のある体格。",
-        "gh:style": "Professional monochrome manga art, seasoned detective, weary but sharp eyes, intricate line shading.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 42-year-old Japanese male detective, sharp eyes, slightly graying short black hair, weary but focused expression, wearing a business suit, detailed ink lines, halftone texture."
-      },
-      "gh:clothing": {
-        "gh:daily": "シンプルなシャツとスラックス。",
-        "gh:work": "実用的なダークカラーのビジネススーツ。警察手帳、モノクロームトーン。"
+        "gh:face": "18-year-old Japanese male, perfectly sculpted handsome face, arrogant and cold eyes.",
+        "gh:hair": "Stylishly set dark brown hair.",
+        "gh:build": "Model-like tall and slender, wearing a perfectly tailored white suit.",
+        "gh:style": "Photorealistic, luxury elite vibe, sharp focus, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 18-year-old Japanese male, perfectly sculpted face, stylish dark brown hair, arrogant eyes, wearing a white suit, luxury elite aesthetic."
       }
     },
     {
-      "@id": "character:HatoriKoichi",
-      "schema:name": "羽鳥 恒一 (Koichi Hatori)",
-      "schema:role": "NPA Cyber Analyst",
-      "gh:organization": "org:npa-cyber",
-      "schema:age": 45,
+      "@id": "character:Yasumoto",
+      "schema:name": "安本 健治 (Kenji Yasumoto)",
+      "schema:role": "Antagonist / Victim",
+      "schema:age": 52,
       "gh:appearance": {
-        "gh:face": "45歳。理性的で穏やかな表情のエリート官僚。清潔感のある顔立ち。",
-        "gh:hair": "几帳面に整えられた黒髪。",
-        "gh:build": "細身で背筋が伸びた、洗練された体格。",
-        "gh:style": "Professional monochrome manga art, high-ranking official, calm and intelligent, clean professional look.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 45-year-old Japanese male official, calm and intelligent expression, neatly groomed black hair, wearing a high-quality gray suit, crisp line art, detailed facial features."
-      },
-      "gh:clothing": {
-        "gh:daily": "質の良いポロシャツに高級なスラックス。",
-        "gh:work": "高級な仕立てのスーツ。組織間の調整役、モノクロームトーン。"
+        "gh:face": "52-year-old Japanese man, oily skin, anxious and defensive expression, darting eyes.",
+        "gh:hair": "Messy receding salt-and-pepper hair.",
+        "gh:build": "Slightly overweight, wearing a rumpled gray business suit.",
+        "gh:style": "Photorealistic, harsh office lighting, oily skin texture, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, a 52-year-old Japanese man, slightly overweight, anxious expression, messy receding hair, rumpled gray suit, sweat stains, harsh fluorescent lighting."
       }
     },
     {
-      "@id": "character:SaegusaNoa",
-      "schema:name": "三枝 乃亜 (Noa Saegusa)",
-      "schema:role": "JPCERT/CC Analyst",
-      "gh:organization": "org:jpcert",
-      "schema:age": 29,
+      "@id": "character:Matsuda",
+      "schema:name": "松田 ヨシ子 (Yoshiko Matsuda)",
+      "schema:role": "Accounting Manager",
+      "schema:age": 58,
       "gh:appearance": {
-        "gh:face": "29歳。知性的でモダンな雰囲気。大きな眼鏡が特徴で、鋭い瞳。",
-        "gh:hair": "手入れの行き届いた黒のミディアムボブ。",
-        "gh:build": "細身でしなやか。キーボードを叩く指先。",
-        "gh:style": "Professional monochrome manga art, smart modern woman, tech-literate beauty, detailed eyes behind glasses.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 29-year-old Japanese woman, intelligent expression, large glasses, medium black bob hair, wearing a blouse and jacket, sharp line art, intricate details, dense screentone."
-      },
-      "gh:clothing": {
-        "gh:daily": "トレンドを取り入れたスタイリッシュなカジュアルウェア。",
-        "gh:work": "洗練されたオフィスカジュアル。白のブラウスにネイビーのジャケット。モノクロームトーン。"
+        "gh:face": "58-year-old Japanese woman, strict expression, realistic aging details.",
+        "gh:hair": "Short permed black hair.",
+        "gh:build": "Small build, wearing a beige blouse and dark skirt, reading glasses on a silver chain.",
+        "gh:style": "Photorealistic, strict Japanese office lady, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 58-year-old Japanese woman, small build, strict expression, short permed black hair, beige blouse, reading glasses on chain, cinematic office lighting."
       }
     },
     {
-      "@id": "character:KurokawaMio",
-      "schema:name": "黒川 澪 (Mio Kurokawa)",
-      "schema:role": "SESC Inspector",
-      "gh:organization": "org:sesc",
-      "schema:age": 32,
+      "@id": "character:Sato",
+      "schema:name": "佐藤 健太 (Kenta Sato)",
+      "schema:role": "IT Support",
+      "schema:age": 24,
       "gh:appearance": {
-        "gh:face": "32歳。冷徹でシャープな美貌。市場の歪みを嗅ぎ分ける鋭い視線。",
-        "gh:hair": "タイトにまとめられた黒髪。完璧なスタイリング。",
-        "gh:build": "長身で細身。無駄のないシルエット。",
-        "gh:style": "Professional monochrome manga art, cold beauty, professional market investigator, high contrast ink strokes.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 32-year-old Japanese woman, sharp and cold beauty, sharp eyes, sleek black hair tied back, wearing a black pantsuit, crisp outlines, detailed eyes, heavy screentone shading."
-      },
-      "gh:clothing": {
-        "gh:daily": "ミニマルなブランドのワンピース。",
-        "gh:work": "完璧にアイロンがかけられた漆黒のパンツスーツ。モノクロームトーン。"
-      }
-    },
-    {
-      "@id": "character:NatsumeKoichi",
-      "schema:name": "夏目 恒一 (Koichi Natsume)",
-      "schema:role": "TSE Market Monitor",
-      "gh:organization": "org:tse",
-      "schema:age": 55,
-      "gh:appearance": {
-        "gh:face": "55歳。威厳と重厚感のある日本人の男性。市場の門番としての落ち着いた表情。",
-        "gh:hair": "きれいに整えられたロマンスグレーの髪。",
-        "gh:build": "恰幅が良く、安定感のある体格。",
-        "gh:style": "Professional monochrome manga art, dignified elder, market gatekeeper, dramatic ink shading.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 55-year-old Japanese man, dignified and heavy presence, romance gray hair, wearing a high-end business suit, intricate line work, dense halftone shading."
-      },
-      "gh:clothing": {
-        "gh:daily": "上質なベストを合わせたクラシックなカジュアルスタイル。",
-        "gh:work": "最高級の重厚なビジネススーツ。モノクロームトーン。"
-      }
-    },
-    {
-      "@id": "character:MayaRahman",
-      "schema:name": "Maya Rahman",
-      "schema:role": "INTERPOL Liaison",
-      "gh:organization": "org:interpol",
-      "schema:age": 35,
-      "gh:appearance": {
-        "gh:face": "35歳。南アジア系の血を引く、知性的でグローバルな雰囲気。鋭い視線。",
-        "gh:hair": "洗練されたダークブラウンのロングヘア。後ろでまとめられている。",
-        "gh:build": "平均的な体格だが、自信に満ちた立ち振る舞い。",
-        "gh:style": "Professional monochrome manga art, global professional woman, sharp international look, intricate ink rendering.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 35-year-old South Asian woman, sharp international features, dark hair in a bun, sophisticated business attire, crisp line art, detailed eyes, heavy screentone."
-      },
-      "gh:clothing": {
-        "gh:daily": "エスニックな要素を取り入れたモダンなカジュアルウェア。",
-        "gh:work": "洗練された国際標準のビジネスウェア。モノクロームトーン。"
-      }
-    },
-    {
-      "@id": "character:EthanCole",
-      "schema:name": "Ethan Cole",
-      "schema:role": "FBI Agent",
-      "gh:organization": "org:fbi",
-      "schema:age": 33,
-      "gh:appearance": {
-        "gh:face": "33歳。清潔感のあるアメリカ人。最新技術に精通した知的な顔立ち。自信に満ちた瞳。",
-        "gh:hair": "短く完璧に整えられたブロンドの髪（白抜き表現）。",
-        "gh:build": "アスリートのような体格。",
-        "gh:style": "Professional monochrome manga art, sharp American agent, high-tech investigator vibe, crisp outlines.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 33-year-old American male, sharp short hair represented by fine lines, athletic build, confident eyes, wearing a suit, detailed line art, halftone shading."
-      },
-      "gh:clothing": {
-        "gh:daily": "カジュアルなスポーツウェアやデニム。",
-        "gh:work": "FBIの標準的なスーツスタイル。モノクロームトーン。"
-      }
-    },
-    {
-      "@id": "character:IngridVoss",
-      "schema:name": "Ingrid Voss",
-      "schema:role": "Europol EC3 Investigator",
-      "gh:organization": "org:europol-ec3",
-      "schema:age": 39,
-      "gh:appearance": {
-        "gh:face": "39歳。意志の強そうなドイツ系の女性。冷徹で徹底したプロフェッショナリズム。",
-        "gh:hair": "短めのプラチナブロンド（白抜き表現）。シャープなカット。",
-        "gh:build": "長身でしっかりとした骨格。",
-        "gh:style": "Professional monochrome manga art, direct European investigator, cold clinical aesthetic, high resolution line work.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 39-year-old German woman, short cut hair shown with fine lines, strong build, wearing a tailored jacket, sharp outlines, detailed features, dense screentone."
-      },
-      "gh:clothing": {
-        "gh:daily": "ミニマルな欧州ブランドのカジュアルウェア。",
-        "gh:work": "洗練されたダークグレーのテーラードジャケット。モノクロームトーン。"
-      }
-    },
-    {
-      "@id": "character:TomHargreaves",
-      "schema:name": "Tom Hargreaves",
-      "schema:role": "NCA NCCU Officer",
-      "gh:organization": "org:nca-nccu",
-      "schema:age": 41,
-      "gh:appearance": {
-        "gh:face": "41歳。英国紳士の風格。冷静で忍耐強い瞳。皮肉な微笑。",
-        "gh:hair": "落ち着いたブラウンの髪。クラシックなスタイル。",
-        "gh:build": "細身で上品な立ち振る舞い。",
-        "gh:style": "Professional monochrome manga art, British officer, banking-literate look, detailed line shading.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 41-year-old British man, classic hair style, slender and elegant, wearing a British suit, ironic smile, intricate ink drawing, dense halftone texture."
-      },
-      "gh:clothing": {
-        "gh:daily": "伝統的なツイードジャケットとチノパン。",
-        "gh:work": "サヴィル・ロウの仕立てを思わせるスーツ。モノクロームトーン。"
-      }
-    },
-    {
-      "@id": "character:HERO",
-      "schema:name": "佐藤 ヒロシ (Hiroshi Sato)",
-      "schema:alternateName": "HERO",
-      "schema:role": "Season 1 Main Antagonist / SEIGI_HERO Representative",
-      "gh:organization": "gh:actorTeam/seigi-hero",
-      "schema:age": 30,
-      "gh:appearance": {
-        "gh:face": "30歳。自称『正義の味方』。薄っぺらで『痛い』印象の日本人男性。自信過剰な瞳の奥に臆病さが透ける。",
-        "gh:hair": "流行を取り入れた派手なスタイリングの黒髪。",
-        "gh:build": "平均的な体格だが、ブランド物で自分を大きく見せようとしている。",
-        "gh:style": "Professional monochrome manga art, 'charismatic' but shallow, painful villain aesthetic, high-contrast tacky fashion.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 30-year-old Japanese male, stylish but tacky hair, arrogant but insecure eyes, wearing a flashy tactical jacket with many patches, detailed line art, heavy screentone, intense shadows."
-      },
-      "gh:clothing": {
-        "gh:daily": "派手なブランドロゴの入ったTシャツと短パン。",
-        "gh:work": "シンボリックなタクティカル・ジャケット。派手なワッペン、モノクロームトーン。"
-      }
-    },
-    {
-      "@id": "character:MakotoBaba",
-      "schema:name": "馬場 誠 (Makoto Baba)",
-      "schema:role": "Dispatch Manager / Arc B Victim",
-      "gh:organization": "org:jinpu-mobility",
-      "schema:age": 54,
-      "gh:personality": "Short-tempered, Impatient, Process-obsessed",
-      "gh:appearance": {
-        "gh:face": "54歳。苛立ちを隠さない険しい表情。目の下のクマ（トーンで強調）。",
-        "gh:hair": "短く切り揃えられた黒髪。少し薄くなり始めている。",
-        "gh:build": "平均的な体格。落ち着きのない動作。",
-        "gh:style": "Professional monochrome manga art, high-stress manager, restless energy, detailed ink lines.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 54-year-old Japanese male manager, stressed angry expression, looking at wristwatch, short thinning black hair, intricate line art, dense halftone dot shading."
-      },
-      "gh:clothing": {
-        "gh:daily": "機能的なポロシャツとチノパン。",
-        "gh:work": "作業用シャツ。無線機、モノクロームトーン。"
-      }
-    },
-    {
-      "@id": "character:TsubasaKobayashi",
-      "schema:name": "小林 翼 (Tsubasa Kobayashi)",
-      "schema:role": "Young Driver / Arc B Witness",
-      "gh:organization": "org:jinpu-mobility",
-      "schema:age": 23,
-      "gh:personality": "Naive, Obedient, Tech-native",
-      "gh:appearance": {
-        "gh:face": "23歳。善良そうな若者の顔立ち。罪悪感と恐怖で青ざめた表情（トーン抜き）。",
-        "gh:hair": "流行のスタイル。帽子の跡。",
-        "gh:build": "細身で現代的な若者の体格。",
-        "gh:style": "Professional monochrome manga art, anxious youth, digital native look, high contrast night lighting.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 23-year-old Japanese male driver, pale nervous expression, looking at smartphone, wearing a driver uniform cap, detailed facial lines, heavy screentone."
-      },
-      "gh:clothing": {
-        "gh:daily": "オーバーサイズのストリートウェア。",
-        "gh:work": "配送用制服（ポロシャツ、カーゴパンツ）。モノクロームトーン。"
-      }
-    },
-    {
-      "@id": "character:ReikaKujoin",
-      "schema:name": "九条院 麗華 (Reika Kujoin)",
-      "schema:role": "Compliance Officer / Arc C Victim",
-      "gh:organization": "org:byakudan-financial",
-      "schema:age": 45,
-      "gh:personality": "Arrogant, Perfectionist, Rigid",
-      "gh:appearance": {
-        "gh:face": "45歳。冷徹で完璧な美貌。威厳と鋭い視線。一切の妥協を許さない鉄の女。",
-        "gh:hair": "完璧にセットされた夜会巻きの黒髪。",
-        "gh:build": "長身で姿勢が非常に良く、洗練されたシルエット。",
-        "gh:style": "Professional monochrome manga art, cold elite beauty, rigid presence, sharp ink strokes, detailed jewelry.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 45-year-old elegant Japanese woman, cold arrogant expression, sharp eyes, sleek updo black hair, wearing a luxury suit, intricate line art, dense halftone dot shading."
-      },
-      "gh:clothing": {
-        "gh:daily": "高級ブランドのシルクワンピース。",
-        "gh:work": "オーダーメイドの漆黒のパンツスーツ。モノクロームトーン。"
-      }
-    },
-    {
-      "@id": "character:ToruSasaki",
-      "schema:name": "佐々木 徹 (Toru Sasaki)",
-      "schema:role": "Cloud Administrator / Arc C Victim",
-      "gh:organization": "org:byakudan-financial",
-      "schema:age": 34,
-      "gh:personality": "Rational, Diligent, Timid",
-      "gh:appearance": {
-        "gh:face": "34歳。神経質そうな整った顔立ち。怯えたような表情。眼鏡の奥の疲弊した目。",
-        "gh:hair": "几帳面に整えられているが、パサついた質感の黒髪。",
-        "gh:build": "細身で少し猫背気味。",
-        "gh:style": "Professional monochrome manga art, nervous IT professional, trapped expression, detailed server room background.",
-        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 34-year-old Japanese male IT engineer, thin nervous face, wearing a shirt, detailed line art, heavy screentone, clinical office lighting."
-      },
-      "gh:clothing": {
-        "gh:daily": "無地のネルシャツにジーンズ。",
-        "gh:work": "白いワイシャツに紺のネクタイ。地味なビジネスカジュアル、モノクロームトーン。"
+        "gh:face": "24-year-old Japanese male, fatigued and worried expression.",
+        "gh:hair": "Simple short black hair, slightly messy.",
+        "gh:build": "Slim build, wearing a light blue polo shirt and dark chinos.",
+        "gh:style": "Photorealistic, fatigued youth, realistic sweat, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 24-year-old Japanese male, slim build, fatigued expression, short black hair, light blue polo shirt, carrying cables, realistic office lighting."
       }
     }
   ]

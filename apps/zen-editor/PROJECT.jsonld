@@ -151,6 +151,18 @@
     {
       "step": "16. Implement Miro-like graph interaction with node labels, unlinked context clustering, and LLM-driven connection suggestions",
       "status": "completed"
+    },
+    {
+      "step": "17. Transition from Tauri to pure Browser-based architecture with Go backend file serving",
+      "status": "completed"
+    },
+    {
+      "step": "18. Implement general file persistence (OpenFile/SaveFile) via gRPC for raw data editing",
+      "status": "completed"
+    },
+    {
+      "step": "19. Configure Tilt for integrated development of frontend and backend services",
+      "status": "completed"
     }
   ]
 }

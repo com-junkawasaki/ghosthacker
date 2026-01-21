@@ -13,43 +13,19 @@
   },
   "@id": "gh:storyboard/master-season1",
   "@type": ["gh:MasterStoryboard", "prov:Entity"],
-  "dct:title": "Ghost Hacker Season 1: Master Storyboard (Monochrome Manga Edition)",
-  "dct:description": "Unified narrative framework and visual storyboard for Season 1. Includes full arc structures, episode beats, and Runway-optimized prompts in Professional Monochrome Manga style.",
-  "gh:globalStyle": "Professional monochrome manga art, high-contrast black and white, crisp line art, heavy screentone shading, halftone dot texture, modern seinen manga aesthetic, sharp focus, manga scanlation style.",
+  "dct:title": "Ghost Hacker Season 1: Master Storyboard (Cinematic Live-Action Base)",
+  "dct:description": "Unified narrative framework and visual storyboard for Season 1. Full page/panel breakdowns with realistic cinematic prompts for Runway. Style transfer to be applied later.",
+  "gh:globalStyle": "Photorealistic cinematic video, 8k, raw photo quality, high detail, natural skin textures, dramatic lighting, shot on 35mm lens, f/1.8, shallow depth of field.",
   "gh:mangaPrinciples": {
-    "gh:layoutLogic": "Impression (1-3 panels for impact) vs. Rhythm (4-8 panels for development/dialogue)",
+    "gh:layoutLogic": "Impression (1-3 panels) vs. Rhythm (4-8 panels)",
     "gh:runwayConstraints": "Maximum 3 entities per prompt, cinematic camera/lighting terms, no dialogue text."
   },
   "gh:narrativeFramework": {
     "gh:arcs": [
-      {
-        "@id": "arc:A",
-        "schema:name": "Arc A: Sloth - environmental negligence",
-        "gh:episodes": [1, 2, 3],
-        "gh:coreGhost": "善意の呪い (Curse of Goodwill)",
-        "gh:finalLine": "それは「怠惰」だ。"
-      },
-      {
-        "@id": "arc:B",
-        "schema:name": "Arc B: Short-tempered - Never-Ending Clock",
-        "gh:episodes": [4, 5, 6],
-        "gh:coreGhost": "終わらぬ時計 (Never-Ending Clock)",
-        "gh:finalLine": "あんたら、短気だな。"
-      },
-      {
-        "@id": "arc:C",
-        "schema:name": "Arc C: Arrogance - rules using people",
-        "gh:episodes": [7, 8, 9],
-        "gh:coreGhost": "例外狩り (Exception Hunter)",
-        "gh:finalLine": "それは傲慢ですね。"
-      },
-      {
-        "@id": "arc:D",
-        "schema:name": "Arc D: Ecosystem - market of negligence",
-        "gh:episodes": [10, 11, 12],
-        "gh:coreGhost": "The Ecosystem itself",
-        "gh:finalLine": "Ghost is not a person. It's the market of negligence."
-      }
+      { "@id": "arc:A", "schema:name": "Arc A: Sloth", "gh:episodes": [1, 2, 3] },
+      { "@id": "arc:B", "schema:name": "Arc B: Short-tempered", "gh:episodes": [4, 5, 6] },
+      { "@id": "arc:C", "schema:name": "Arc C: Arrogance", "gh:episodes": [7, 8, 9] },
+      { "@id": "arc:D", "schema:name": "Arc D: Ecosystem", "gh:episodes": [10, 11, 12] }
     ]
   },
   "gh:episodes": [
@@ -57,326 +33,84 @@
       "gh:episode": 1,
       "dct:title": "牙を剥く内部の影",
       "gh:pages": [
-        {
-          "gh:pageNumber": 1,
-          "gh:panels": [
-            { "panel": 1, "shot": "Wide Angle", "prompt": "Wide Angle, Professional monochrome manga art. A historical evolution chart from primitive man to modern human, heavy ink strokes, high contrast background. Dramatic shadows." },
-            { "panel": 2, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. Silhouette of a giant ancient Buddha statue and totem poles, halftone texture, glowing behind a modern data server rack. Sharp line art." },
-            { "panel": 3, "shot": "Bird's Eye View", "prompt": "Bird's Eye View, Professional monochrome manga art. Tokyo city 2026 at night, rivers of neon data streams between skyscrapers, dense screentone for sky." }
-          ]
-        },
-        {
-          "gh:pageNumber": 2,
-          "gh:panels": [
-            { "panel": 1, "shot": "Full Page Vertical", "prompt": "Full Page Vertical, Professional monochrome manga art. (Ren: 17-year-old male, messy black hair) and (Nei: android, blonde hair) floating in a vortex of digital grids and collapsing buildings. High-contrast ink drawing, heavy screentone." }
-          ]
-        },
-        {
-          "gh:pageNumber": 4,
-          "gh:panels": [
-            { "panel": 1, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. (Ren: 17-year-old male, dark hoodie) slouching deeply in his Okamura Cruise and Atlas ergonomic workstation, picking his ear. Rim lighting, crisp line art, halftone dot shading." },
-            { "panel": 2, "shot": "Close-up", "prompt": "Close-up, Professional monochrome manga art. (Nei: android, blonde hair) looking exasperated, holding a tablet. Detailed expressive eyes, dense screentone on clothing, sharp focus." },
-            { "panel": 3, "shot": "Two Shot", "prompt": "Two Shot, Medium Shot, Professional monochrome manga art. Ren and Nei. Nei pointing at a tablet screen with a 'LOW FUNDS' icon. Cluttered tech-office background with USM Haller furniture and server racks." },
-            { "panel": 4, "shot": "Extreme Close-up", "prompt": "Extreme Close-up, Professional monochrome manga art. Ren's sharp half-lidded eye suddenly wide and alert. High contrast, intense ink strokes, halftone texture." }
-          ]
-        },
-        {
-          "gh:pageNumber": 5,
-          "gh:panels": [
-            { "panel": 1, "shot": "Low Angle", "prompt": "Low Angle, Medium Shot, Professional monochrome manga art. (Shouta: 26-year-old male, suit) at the office door, tense and sweating. Door frame casting a long shadow. Crisp line art." },
-            { "panel": 2, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. Ren looking annoyed, standing up slowly from his workstation. Strong shadows, heavy ink shading on his hoodie." }
-          ]
-        },
-        {
-          "gh:pageNumber": 6,
-          "gh:panels": [
-            { "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. Interior of Daimon Construction office. Scattered blueprints, FAX machines, 50 staff panicking. Harsh fluorescent lighting." },
-            { "panel": 2, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. (Matsuda: 58-year-old woman) screaming into two telephone receivers. Face distorted, halftone dot texture." },
-            { "panel": 3, "shot": "Low Angle", "prompt": "Low Angle, Close-up, Professional monochrome manga art. (Sato: 24-year-old male) sweating under a server rack. Tangled cables, sharp line work." }
-          ]
-        },
-        {
-          "gh:pageNumber": 7,
-          "gh:panels": [
-            { "panel": 1, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. (Yasumoto: 52-year-old male) pointing an aggressive finger. High-contrast ink, popping veins on neck." },
-            { "panel": 2, "shot": "POV Shot", "prompt": "POV Shot (AR Vision), Professional monochrome manga art. A massive black shadowy hand of a Ghost emerging from Yasumoto's back. Glitch effects, intense contrast." }
-          ]
-        },
-        {
-          "gh:pageNumber": 8,
-          "gh:panels": [
-            { "panel": 1, "shot": "Close-up", "prompt": "Close-up, Professional monochrome manga art. Ren's hands typing at blinding speed. Motion blur, crisp line art, detailed tech-keyboard." },
-            { "panel": 2, "shot": "Extreme Close-up", "prompt": "Extreme Close-up, Professional monochrome manga art. Code reflecting in Ren's sharp eyes. High contrast, intense focus." }
-          ]
-        },
-        {
-          "gh:pageNumber": 9,
-          "gh:panels": [
-            { "panel": 1, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. (Nei: android) appearing on a laptop screen with a large 'FOUND!!' alert. Dramatic digital UI textures." },
-            { "panel": 2, "shot": "Two Shot", "prompt": "Two Shot, Professional monochrome manga art. Ren pointing at a terrified Yasumoto. Office staff in the background staring in shock. Heavy screentone." }
-          ]
-        },
-        {
-          "gh:pageNumber": 10,
-          "gh:panels": [
-            { "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. Yasumoto screaming, his shadow expanding and tearing through the office floor. Ink splashes, dynamic impact lines." },
-            { "panel": 2, "shot": "Full Shot", "prompt": "Full Shot, Professional monochrome manga art. A monstrous entity made of LAN cables and paper documents looming over the office. Horror aesthetic, dense screentone textures." }
-          ]
-        },
-        {
-          "gh:pageNumber": 11,
-          "gh:panels": [
-            { "panel": 1, "shot": "Close-up", "prompt": "Close-up, Professional monochrome manga art. Ren's smartphone screen showing 'SIP Device: ON'. Digital grid spreading from the phone. Sharp focus." },
-            { "panel": 2, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. The Ghost monster becoming physically solid, smashing a steel shelf. Paper and sparks flying everywhere." }
-          ]
-        },
-        {
-          "gh:pageNumber": 12,
-          "gh:panels": [
-            { "panel": 1, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. Shouta shielding Matsuda from a falling shelf. Brave expression, dynamic perspective." },
-            { "panel": 2, "shot": "Full Shot", "prompt": "Full Shot, Professional monochrome manga art. A massive digital axe of blue light particles forming in Ren's hand. High contrast, epic scale." }
-          ]
-        },
-        {
-          "gh:pageNumber": 13,
-          "gh:panels": [
-            { "panel": 1, "shot": "Action Shot", "prompt": "Action Shot, Professional monochrome manga art. Ren leaping mid-air, dodging cable tentacles. Speed lines, motion blur effects in ink style." },
-            { "panel": 2, "shot": "Full Page Splash", "prompt": "Full Page Splash, Professional monochrome manga art. The digital axe striking the core of the Ghost. Massive explosion of data and light, shattering effect." }
-          ]
-        },
-        {
-          "gh:pageNumber": 14,
-          "gh:panels": [
-            { "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. The cable monster turning into white ash and digital sparks. Office screens flickering back to life." },
-            { "panel": 2, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. Yasumoto weeping on the floor, head in hands. Heavy shadows, detailed floor texture." }
-          ]
-        },
-        {
-          "gh:pageNumber": 15,
-          "gh:panels": [
-            { "panel": 1, "shot": "Low Angle", "prompt": "Low Angle, Professional monochrome manga art. (President: 62-year-old male, work jacket) entering the messy office. Confused and stern expression." },
-            { "panel": 2, "shot": "Two Shot", "prompt": "Two Shot, Professional monochrome manga art. Shouta and the President. Shouta looking firm, President placing a hand on Yasumoto's shoulder." }
-          ]
-        },
-        {
-          "gh:pageNumber": 16,
-          "gh:panels": [
-            { "panel": 1, "shot": "Close-up", "prompt": "Close-up, Professional monochrome manga art. Matsuda cheering at a bank terminal screen showing 'FUNDS RESTORED'. Comedic relief, bright screentone." },
-            { "panel": 2, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. Ren removing a USB drive and turning to leave. Shouta bowing in the background." }
-          ]
-        },
-        {
-          "gh:pageNumber": 17,
-          "gh:panels": [
-            { "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. Dusk in Kamata. Ren and Nei walking through a crowded street with neon signs. Orange sunset (shown via screentone)." },
-            { "panel": 2, "shot": "Close-up", "prompt": "Close-up, Professional monochrome manga art. Ren's phone showing a high bank balance. Smirking expression, 'Episode 1 End' text in corner." }
-          ]
-        }
+        { "gh:pageNumber": 1, "gh:panels": [
+          { "panel": 1, "shot": "Wide Angle", "prompt": "Wide Angle, Cinematic 8k. A detailed evolution chart from primitive man to modern human, superimposed on a dark, primeval forest. High contrast lighting." },
+          { "panel": 2, "shot": "Medium Shot", "prompt": "Medium Shot, Photorealistic. A large stone ancient Buddha statue and wooden totem poles, glowing faintly behind a modern high-tech server rack in a dark room. 35mm lens." },
+          { "panel": 3, "shot": "Bird's Eye View", "prompt": "Bird's Eye View, Cinematic. Tokyo skyline at night in 2026, glowing neon data streams flowing between skyscrapers like rivers of light. 8k, high detail." }
+        ]},
+        { "gh:pageNumber": 2, "gh:panels": [
+          { "panel": 1, "shot": "Full Page Vertical", "prompt": "Full Page Vertical, Cinematic. (Ren: 17-year-old male, messy black hair) and (Nei: female android, platinum blonde hair) floating in a vortex of digital light grids and collapsing architectural fragments. Epic scale, 8k." }
+        ]},
+        { "gh:pageNumber": 4, "gh:panels": [
+          { "panel": 1, "shot": "Medium Shot", "prompt": "Medium Shot, Modern concrete office. (Ren: 17-year-old male, dark hoodie) slouching deeply in an Okamura Cruise and Atlas workstation, picking his ear. Rim lighting from window, photorealistic." },
+          { "panel": 2, "shot": "Close-up", "prompt": "Close-up, Photorealistic. (Nei: female android, platinum blonde bob) looking exasperated, holding a thin tablet. Sharp eyes, 8k, shallow depth of field." },
+          { "panel": 3, "shot": "Two Shot", "prompt": "Two Shot, Cinematic. Ren and Nei in a tech-filled office with USM Haller furniture. Nei pointing at a tablet screen showing a 'LOW FUNDS' icon. Natural office lighting." },
+          { "panel": 4, "shot": "Extreme Close-up", "prompt": "Extreme Close-up, 8k. Close-up of Ren's eye suddenly wide and alert. Detailed pupil and eyelashes, dramatic high contrast lighting." }
+        ]},
+        { "gh:pageNumber": 5, "gh:panels": [
+          { "panel": 1, "shot": "Low Angle", "prompt": "Low Angle, Medium Shot. (Shouta: 26-year-old male, navy suit) standing at a door, looking tense and desperate. Rim lighting from the hallway." },
+          { "panel": 2, "shot": "Medium Shot", "prompt": "Medium Shot, Photorealistic. Ren standing up slowly from his ergonomic chair, looking at Shouta. Cinematic shadows, high detail on hoodie texture." }
+        ]},
+        { "gh:pageNumber": 6, "gh:panels": [
+          { "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Realistic. Interior of a cluttered 1980s-style Japanese office. Scattered blueprints, old FAX machines, many staff panicking. Harsh fluorescent lighting." },
+          { "panel": 2, "shot": "Medium Shot", "prompt": "Medium Shot, 8k. (Matsuda: 58-year-old Japanese woman) screaming into two telephone receivers. Sweat on face, realistic skin texture, sharp focus." },
+          { "panel": 3, "shot": "Low Angle", "prompt": "Low Angle, Close-up. (Sato: 24-year-old male) sweating, looking up from under a dark server rack. Tangled black cables, realistic industrial textures." }
+        ]},
+        { "gh:pageNumber": 7, "gh:panels": [
+          { "panel": 1, "shot": "Medium Shot", "prompt": "Medium Shot, Photorealistic. (Yasumoto: 52-year-old male, suit) pointing an aggressive finger. Red face, popping veins on neck, high contrast lighting." },
+          { "panel": 2, "shot": "POV Shot", "prompt": "POV Shot (Augmented Reality), Cinematic. A massive, black shadowy hand of a spectral entity emerging from Yasumoto's back. Glitchy air effects, 8k." }
+        ]},
+        { "gh:pageNumber": 10, "gh:panels": [
+          { "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Horror. Yasumoto screaming, his shadow expanding into a monstrous shape on the office floor. Dynamic camera angle, high contrast." },
+          { "panel": 2, "shot": "Full Shot", "prompt": "Full Shot, Realistic VFX. A monstrous entity made of tangled LAN cables and yellowed documents looming in the office. Cinematic lighting, debris in the air." }
+        ]},
+        { "gh:pageNumber": 13, "gh:panels": [
+          { "panel": 1, "shot": "Action Shot", "prompt": "Action Shot, 8k. Ren leaping through the air, dodging black cable tentacles. Motion blur, high-speed camera effect." },
+          { "panel": 2, "shot": "Full Page Splash", "prompt": "Full Page Splash, Cinematic. A massive digital axe made of blue light particles striking the core of the cable monster. Huge explosion of light and data fragments." }
+        ]}
       ]
     },
     {
       "gh:episode": 2,
       "dct:title": "許しの毒",
       "gh:pages": [
-        {
-          "gh:pageNumber": 1,
-          "gh:panels": [
-            { "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. Quiet office at dawn, (Shouta: 26-year-old male) looking at (Yasumoto: 52-year-old male) through glass. Soft morning light through blinds, delicate lines." },
-            { "panel": 2, "shot": "Close-up", "prompt": "Close-up, Professional monochrome manga art. A single drop of sweat on Yasumoto's face as he types. High contrast, sharp focus." },
-            { "panel": 3, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. Every monitor in the room suddenly turning black with 'ACCESS DENIED' in large white text. Dramatic shadows." }
-          ]
-        },
-        {
-          "gh:pageNumber": 5,
-          "gh:panels": [
-            { "panel": 1, "shot": "Low Angle", "prompt": "Low Angle, Medium Shot, Professional monochrome manga art. (Ren: 17-year-old male) entering the office with (Nei: android). Heavy ink strokes on his hoodie, sharp half-lidded eyes." },
-            { "panel": 2, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. Nei projecting a complex 3D supply-chain map from her palm. Glowing nodes and lines in a dark room, detailed data textures." }
-          ]
-        }
-      ]
-    },
-    {
-      "gh:episode": 3,
-      "dct:title": "善意の呪い",
-      "gh:pages": [
-        {
-          "gh:pageNumber": 1,
-          "gh:panels": [
-            { "panel": 1, "shot": "Full Shot", "prompt": "Full Shot, Professional monochrome manga art. A giant smiling traditional Japanese mask floating in the office, made of 'goodwill' characters. Halftone fog, dramatic contrast." },
-            { "panel": 2, "shot": "Two Shot", "prompt": "Two Shot, Professional monochrome manga art. (Ren: 17-year-old male) and (Shouta: 26-year-old male) standing before (President: 62-year-old male). Breaking family myths, intense composition." }
-          ]
-        },
-        {
-          "gh:pageNumber": 10,
-          "gh:panels": [
-            { "panel": 1, "shot": "Action Shot", "prompt": "Action Shot, Professional monochrome manga art. Ren striking the mask ghost with a massive digital axe. Mask shattering like ceramic, sharp shards, high-speed line effects." },
-            { "panel": 2, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. Shouta sitting in the President's chair, looking mature. New monitors everywhere, clean office lines, bright screentone." }
-          ]
-        }
+        { "gh:pageNumber": 1, "gh:panels": [{ "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Photorealistic. Quiet office at dawn, Shouta looking at Yasumoto through a glass partition. Soft morning sun through blinds, 8k." }]},
+        { "gh:pageNumber": 4, "gh:panels": [{ "panel": 1, "shot": "Full Shot", "prompt": "Full Shot, Cinematic. Every computer monitor in the office turning black with a large white 'ACCESS DENIED' message. Sudden chaotic movement of staff." }]},
+        { "gh:pageNumber": 6, "gh:panels": [{ "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Sci-fi. Nei projecting a complex 3D holographic supply chain map from her hand. Glowing blue nodes and data lines in a dark room." }]}
       ]
     },
     {
       "gh:episode": 4,
       "dct:title": "終わらぬ時計",
       "gh:pages": [
-        {
-          "gh:pageNumber": 1,
-          "gh:panels": [
-            { "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. Massive Jinpu Mobility warehouse at 4 AM. Rows of trucks stuck, (Makoto Baba: 54-year-old manager) stressed. Gritty industrial textures." },
-            { "panel": 2, "shot": "Action Shot", "prompt": "Low Angle, Professional monochrome manga art. (Takeru: 19-year-old male, techwear) jumping off a moving truck. Carrying a heavy crowbar. Dynamic pose, speed lines." },
-            { "panel": 3, "shot": "Close-up", "prompt": "Close-up, Professional monochrome manga art. Takeru's aggressive expression, bleached hair highlights shown with negative space. Sharp ink strokes." }
-          ]
-        },
-        {
-          "gh:pageNumber": 8,
-          "gh:panels": [
-            { "panel": 1, "shot": "Full Shot", "prompt": "Full Shot, Professional monochrome manga art. A mechanical nightmare clock with bladed needles looming over warehouse conveyor belts. Halftone dot aura, surreal horror." },
-            { "panel": 2, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. Takeru blocking a master power switch with his crowbar. Sparks flying, high contrast black and white." },
-            { "panel": 3, "shot": "Two Shot", "prompt": "Two Shot, Medium Shot, Professional monochrome manga art. Takeru and (Tsubasa: 23-year-old male driver). Takeru grabbing Tsubasa's wrist with a glowing USB drive. Intense eye contact." }
-          ]
-        }
-      ]
-    },
-    {
-      "gh:episode": 5,
-      "dct:title": "Doneがない地獄",
-      "gh:pages": [
-        {
-          "gh:pageNumber": 1,
-          "gh:panels": [
-            { "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. Warehouse workers moving in mechanical, exhausted loops. Glitch effects, repetitive patterns, heavy ink shading." },
-            { "panel": 2, "shot": "Close-up", "prompt": "Close-up, Professional monochrome manga art. (Takeru: 19-year-old male) holding a glowing digital stopwatch. Light reflecting in his eyes, intense focus, grit." }
-          ]
-        },
-        {
-          "gh:pageNumber": 6,
-          "gh:panels": [
-            { "panel": 1, "shot": "Action Shot", "prompt": "Action Shot, Professional monochrome manga art. Takeru using a digital hammer to smash data packets. Neon-style effects in black and white, dynamic shadows." },
-            { "panel": 2, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. (Nei: android) sending blue code streams to Takeru's device. Intricate digital textures, high contrast." }
-          ]
-        }
-      ]
-    },
-    {
-      "gh:episode": 6,
-      "dct:title": "終端刻印",
-      "gh:pages": [
-        {
-          "gh:pageNumber": 1,
-          "gh:panels": [
-            { "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. (Takeru: 19-year-old male) and (Ren: 17-year-old male) working together in the warehouse. Dynamic duo, contrast between Ren's calm and Takeru's energy." }
-          ]
-        },
-        {
-          "gh:pageNumber": 5,
-          "gh:panels": [
-            { "panel": 1, "shot": "Action Shot", "prompt": "Action Shot, Professional monochrome manga art. Takeru swinging a digital sledgehammer at a massive glowing mechanical heart (the Clock Ghost's core). Shockwave effects, impact lines." },
-            { "panel": 2, "shot": "Close-up", "prompt": "Close-up, Professional monochrome manga art. The mechanical heart shattering into pieces. Gears and light particles flying, intense high contrast." }
-          ]
-        },
-        {
-          "gh:pageNumber": 10,
-          "gh:panels": [
-            { "panel": 1, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. Takeru patting (Tsubasa: 23-year-old male) on the shoulder. Exhausted but kind expression. Grit and screentone shading." },
-            { "panel": 2, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. The warehouse at dawn, now quiet. Trucks starting to move normally. Peaceful screentone, long shadows." }
-          ]
-        }
+        { "gh:pageNumber": 1, "gh:panels": [{ "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Realistic. A massive industrial warehouse at 4 AM. Rows of trucks idling, (Makoto Baba: 54-year-old male) looking stressed. High contrast industrial lighting." }]},
+        { "gh:pageNumber": 2, "gh:panels": [{ "panel": 1, "shot": "Low Angle", "prompt": "Low Angle, Action. (Takeru: 19-year-old male, techwear) jumping off a moving truck. Holding a heavy iron crowbar, determined look, photorealistic 8k." }]},
+        { "gh:pageNumber": 5, "gh:panels": [{ "panel": 1, "shot": "Full Shot", "prompt": "Full Shot, Surreal. A giant mechanical clock with bladed needles appearing over warehouse conveyor belts. Ghostly aura, cinematic horror lighting." }]}
       ]
     },
     {
       "gh:episode": 7,
       "dct:title": "空の要塞の崩壊",
       "gh:pages": [
-        {
-          "gh:pageNumber": 1,
-          "gh:panels": [
-            { "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. Byakudan Financial's marble lobby. (Kaname: 18-year-old male, white suit) walking elegantly. Cold, sterile, symmetrical composition." },
-            { "panel": 2, "shot": "Close-up", "prompt": "Close-up, Professional monochrome manga art. (Reika Kujoin: 45-year-old woman) glaring with sharp arrogant eyes. Intricate jewelry, heavy shadows under eyes." },
-            { "panel": 3, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. Kaname holding a chrome torque wrench. Detailed metallic reflections, crisp outlines, cold smile." }
-          ]
-        },
-        {
-          "gh:pageNumber": 12,
-          "gh:panels": [
-            { "panel": 1, "shot": "Full Shot", "prompt": "Full Shot, Professional monochrome manga art. A ghost knight in armor made of paper regulations in a sterile server room. Dense screentone, intricate paper textures." },
-            { "panel": 2, "shot": "Close-up", "prompt": "Close-up, Professional monochrome manga art. Data leaking as golden liquid from a marble wall crack. Sharp focus, detailed line work." },
-            { "panel": 3, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. Kaname using the torque wrench to 'tighten' a holographic lock. Dramatic rim lighting, arrogant stance." }
-          ]
-        }
-      ]
-    },
-    {
-      "gh:episode": 8,
-      "dct:title": "消えた資産の足跡",
-      "gh:pages": [
-        {
-          "gh:pageNumber": 1,
-          "gh:panels": [
-            { "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. (Kaname: 18-year-old male) walking through a dark digital void of floating cubes (blockchain). Intricate line art, glowing data structures." },
-            { "panel": 2, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. (Kurokawa Mio: 32-year-old woman) meeting Kaname in a dark car. High contrast, cinematic lighting, serious expressions." }
-          ]
-        }
-      ]
-    },
-    {
-      "gh:episode": 9,
-      "dct:title": "それは傲慢ですね",
-      "gh:pages": [
-        {
-          "gh:pageNumber": 1,
-          "gh:panels": [
-            { "panel": 1, "shot": "Action Shot", "prompt": "Action Shot, Professional monochrome manga art. (Kaname: 18-year-old male) catching a paper spear with a gloved hand. 'It's arrogant,' cold smile, shattering effect." }
-          ]
-        },
-        {
-          "gh:pageNumber": 8,
-          "gh:panels": [
-            { "panel": 1, "shot": "Close-up", "prompt": "Close-up, Professional monochrome manga art. Kaname's white-gloved hand shattering a floating paper crown. Fragments of regulations flying, high contrast, sharp line art." },
-            { "panel": 2, "shot": "Full Shot", "prompt": "Full Shot, Professional monochrome manga art. Ren, Takeru, and Kaname standing together in the bank lobby. Epic formation, high contrast, sharp line art." }
-          ]
-        }
+        { "gh:pageNumber": 1, "gh:panels": [{ "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Luxury. A high-end marble financial lobby. (Kaname: 18-year-old male, white suit) walking with elegance. Sterile architecture, symmetrical composition." }]},
+        { "gh:pageNumber": 10, "gh:panels": [{ "panel": 1, "shot": "Medium Shot", "prompt": "Medium Shot, Photorealistic. Kaname holding a chrome torque wrench with detailed metallic reflections. Arrogant expression, sharp focus, 8k." }]},
+        { "gh:pageNumber": 12, "gh:panels": [{ "panel": 1, "shot": "Full Shot", "prompt": "Full Shot, Realistic VFX. A spectral knight in armor made of fluttering financial paper regulations. Sterile server room background, cinematic lighting." }]}
       ]
     },
     {
       "gh:episode": 10,
       "dct:title": "群れのGhost",
       "gh:pages": [
-        {
-          "gh:pageNumber": 1,
-          "gh:panels": [
-            { "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. Shinjuku rooftop at night. (Ren: hoodie), (Takeru: techwear), and (Kaname: white suit) standing together. Rain, neon reflections in black ink." },
-            { "panel": 2, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. (HERO: 30-year-old male) shouting into a microphone. Flashy tactical jacket, tacky luxury room. Aggressive energy, heavy ink shading." },
-            { "panel": 3, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. (Nei: android) analyzing thousands of digital recruitment connections forming a web. Fine lines, complex network visualization." }
-          ]
-        }
-      ]
-    },
-    {
-      "gh:episode": 11,
-      "dct:title": "崩壊する信頼",
-      "gh:pages": [
-        {
-          "gh:pageNumber": 1,
-          "gh:panels": [
-            { "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. Ghost hackers in a dark room, blue light on faces. (Nei: android) projecting coordinates. High-tech investigation atmosphere." },
-            { "panel": 2, "shot": "Split Screen", "prompt": "Split Screen, Professional monochrome manga art. (Isa: detective), (Maya Rahman: liaison), and (Ethan Cole: FBI) in their offices. Coordination, serious expressions, sharp line art." }
-          ]
-        }
+        { "gh:pageNumber": 1, "gh:panels": [{ "panel": 1, "shot": "Wide Shot", "prompt": "Wide Shot, Cinematic. Shinjuku rooftop at night. Ren, Takeru, and Kaname standing together in the rain. Neon sign reflections in puddles, dramatic shadows." }]},
+        { "gh:pageNumber": 5, "gh:panels": [{ "panel": 1, "shot": "Medium Shot", "prompt": "Medium Shot, Realistic. (HERO: 30-year-old male) shouting into a high-end microphone. Flashy tactical jacket, tacky luxury high-rise room, 8k." }]}
       ]
     },
     {
       "gh:episode": 12,
       "dct:title": "逮捕",
       "gh:pages": [
-        {
-          "gh:pageNumber": 1,
-          "gh:panels": [
-            { "panel": 1, "shot": "Action Shot", "prompt": "Action Shot, Professional monochrome manga art. Police SWAT team bursting through glass penthouse doors. (HERO: 30-year-old male) cowering in terror. Motion blur, flying debris." },
-            { "panel": 2, "shot": "Close-up", "prompt": "Close-up, Professional monochrome manga art. (Ren: 17-year-old male) pressing a final key on his laptop. 'ERASING...' reflecting in his eyes. Cold victory." },
-            { "panel": 3, "shot": "Medium Shot", "prompt": "Medium Shot, Professional monochrome manga art. Ren asleep in his desk chair. (Nei: android) gently placing a blanket. Soft morning light, peaceful atmosphere, fine lines." },
-            { "panel": 4, "shot": "Wide Shot", "prompt": "Wide Shot, Professional monochrome manga art. Tokyo skyline at dawn. A single red blinking dot remains on a dark screen. Ominous ending, fade to black." }
-          ]
-        }
+        { "gh:pageNumber": 1, "gh:panels": [{ "panel": 1, "shot": "Action Shot", "prompt": "Action Shot, Cinematic. A SWAT team in tactical gear bursting through a glass penthouse door. HERO looking back in terror, debris flying, 8k." }]},
+        { "gh:pageNumber": 10, "gh:panels": [{ "panel": 1, "shot": "Medium Shot", "prompt": "Medium Shot, Realistic. Ren fast asleep in his desk chair. Nei gently placing a soft blanket over him. Warm morning light, peaceful office atmosphere." }]}
       ]
     }
   ]

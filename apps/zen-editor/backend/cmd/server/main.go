@@ -70,7 +70,10 @@ func (s *EditorServer) LoadDatastore(projectID string) {
 	var loadFromDir func(dir string)
 	loadFromDir = func(dir string) {
 		entries, err := os.ReadDir(dir)
-		if err != nil { return }
+		if err != nil {
+			log.Printf("Warning: failed to read directory %s: %v", dir, err)
+			return
+		}
 
 		for _, e := range entries {
 			fullPath := filepath.Join(dir, e.Name())
@@ -253,7 +256,7 @@ func NewEditorServer(dataRoot string) *EditorServer {
 	s.registerMCPTools()
 	
 	// Initial project load
-	projectID := "251022"
+	projectID := "251121"
 	datastoreDir := filepath.Join(s.WorkspaceRoot, projectID, "datastore")
 	if _, err := os.Stat(datastoreDir); os.IsNotExist(err) {
 		s.DeepFlattenDatastore(projectID)
