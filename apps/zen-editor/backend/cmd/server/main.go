@@ -103,6 +103,7 @@ func (s *EditorServer) LoadDatastore(projectID string) {
 			
 			label, _ := nodeData["name"].(string)
 			if label == "" { label, _ = nodeData["label"].(string) }
+			if label == "" { label = id } // Fallback to ID if no name/label
 			group := s.categorizeNode(nodeType)
 			
 			node := &editorpb.Node{

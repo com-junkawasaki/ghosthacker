@@ -72,7 +72,7 @@
     flex: 1;
     overflow-y: auto;
     background: transparent;
-    color: var(--secondary-label);
+    color: var(--system-label);
     font-size: 0.8rem;
     padding: 0;
   }
@@ -86,16 +86,18 @@
     user-select: none;
     border-radius: 6px;
     margin: 0 8px;
+    color: var(--secondary-label);
   }
 
   .tree-item:hover {
     background: rgba(255, 255, 255, 0.05);
+    color: var(--system-label);
   }
 
   .tree-item.selected {
     background: rgba(0, 122, 255, 0.15);
     color: var(--accent-blue);
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .toggle-icon {
