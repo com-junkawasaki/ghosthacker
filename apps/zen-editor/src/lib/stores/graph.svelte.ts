@@ -12,6 +12,12 @@ export interface Node {
   x?: number;
   y?: number;
   children?: string[]; // IDs of children
+  
+  // 3D properties for Assembler
+  position3d?: [number, number, number];
+  rotation3d?: [number, number, number];
+  scale3d?: [number, number, number];
+  gltfPath?: string;
 }
 
 export interface Edge {
@@ -35,6 +41,7 @@ class GraphStore {
     { id: 'hub:content', label: 'Timeline', type: 'chronological', description: 'Story progression' },
     { id: 'hub:entity', label: 'Characters', type: 'relationship', description: 'Social graph' },
     { id: 'hub:environment', label: 'World', type: 'atmospheric', description: 'Physical spaces' },
+    { id: 'hub:assembler', label: '3D Assembler', type: 'assembler', description: 'Scene composition' },
     { id: 'hub:emotion', label: 'Emotions', type: 'heatmap', description: 'Emotional resonance' },
     { id: 'hub:meta', label: 'Meta', type: 'overview', description: 'System architecture' }
   ]);
@@ -211,6 +218,18 @@ class GraphStore {
       if (node && node.type === 'gh:Manuscript' && (!node.children || node.children.length === 0)) {
         this.fetchBlocks(nodeId);
       }
+    }
+  }
+
+  updateNode3d(id: string, updates: Partial<{
+    position3d: [number, number, number];
+    rotation3d: [number, number, number];
+    scale3d: [number, number, number];
+  }>) {
+    const node = this.nodes.get(id);
+    if (node) {
+      Object.assign(node, updates);
+      this.nodes = new Map(this.nodes); // Trigger reactivity
     }
   }
 

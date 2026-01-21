@@ -3,6 +3,7 @@
   import Topology from '../components/Topology/TopologyView.svelte';
   import Storyboard from '../components/Storyboard.svelte';
   import HistoryPanel from '../components/HistoryPanel.svelte';
+  import AssemblerControls from '../components/AssemblerControls.svelte';
   import ConnectionSuggester from '../components/ConnectionSuggester.svelte';
   import EntityProfile from '../components/EntityProfile.svelte';
   import TranslationViewer from '../components/TranslationViewer.svelte';
@@ -11,7 +12,15 @@
   import { graphStore } from '../lib/stores/graph.svelte';
 
   let selectedNode = $state<any>(null);
-  let rightPaneMode = $state<"storyboard" | "editor" | "connection-suggester" | "entity" | "relation" | "asset" | "translation">("storyboard");
+  let rightPaneMode = $state<"storyboard" | "editor" | "connection-suggester" | "entity" | "relation" | "asset" | "translation" | "assembler">("storyboard");
+
+  // Sync rightPaneMode with assembler viewpoint
+  $effect(() => {
+    if (graphStore.currentViewpointId === 'hub:assembler') {
+      rightPaneMode = "assembler";
+    }
+  });
+
   let projectId = $state("251022"); // Default project
   let isSidebarOpen = $state(false);
   let isChatOpen = $state(false);
@@ -161,7 +170,7 @@
     </div>
 
     <div class="right-section">
-      <a href="/assembler" class="icon-btn" title="3D Assembler" style="text-decoration: none; margin-right: 0.5rem;">🧊</a>
+      <button class="icon-btn" title="3D Assembler" onclick={() => graphStore.setViewpoint('hub:assembler')}>🧊</button>
       <button class="icon-btn" onclick={() => isHistoryOpen = !isHistoryOpen} class:active={isHistoryOpen}>📜</button>
       <button class="icon-btn" onclick={toggleChat}>💬</button>
       <button class="icon-btn">⚙️</button>
@@ -270,6 +279,8 @@
               <div class="asset-viewer">
                 <img src={`/data/${projectId}/${selectedNode?.id}`} alt={selectedNode?.label} />
               </div>
+            {:else if rightPaneMode === 'assembler'}
+              <AssemblerControls />
             {:else}
               <Storyboard bind:this={storyboardRef} {projectId} />
             {/if}

@@ -3,6 +3,7 @@
   import { Canvas } from '@threlte/core';
   import NodeTree from './Sidebar/NodeTree.svelte';
   import ThrelteEngine from './Graph/ThrelteEngine.svelte';
+  import AssemblerEngine from './Graph/AssemblerEngine.svelte';
   import { graphStore } from '../../lib/stores/graph.svelte';
 
   let { 
@@ -16,9 +17,12 @@
   }>();
 
   let engineRef: any = $state(null);
+  let assemblerRef: any = $state(null);
   let currentTransform = $state({ x: 0, y: 0, k: 1 });
   let containerWidth = $state(0);
   let containerHeight = $state(0);
+
+  let isAssemblerMode = $derived(graphStore.currentViewpointId === 'hub:assembler');
 
   onMount(() => {
     graphStore.fetchTopology(projectId);
@@ -39,8 +43,6 @@
     const k = currentTransform.k;
     const tx = currentTransform.x;
     const ty = currentTransform.y;
-    // cosmos.gl/graph (0,0) is center. d3-zoom tx, ty are offsets from center?
-    // Usually it's (worldX * k) + tx + width/2
     const x = (node.x || 0) * k + tx + containerWidth / 2;
     const y = (node.y || 0) * k + ty + containerHeight / 2;
     return { x, y };
@@ -74,25 +76,34 @@
 
   <main class="graph-main">
     <Canvas>
-      <ThrelteEngine 
-        bind:this={engineRef} 
-        bind:currentTransform={currentTransform}
-        onNodeClick={handleNodeClick} 
-      />
+      {#if isAssemblerMode}
+        <AssemblerEngine 
+          bind:this={assemblerRef}
+          onNodeClick={handleNodeClick}
+        />
+      {:else}
+        <ThrelteEngine 
+          bind:this={engineRef} 
+          bind:currentTransform={currentTransform}
+          onNodeClick={handleNodeClick} 
+        />
+      {/if}
     </Canvas>
 
-    <!-- Labels Overlay -->
-    <div class="labels-overlay">
-      {#each visibleLabels as n (n.id)}
-        {@const coords = getScreenCoords(n)}
-        <div 
-          class="label-tag {n.group}"
-          style="left: {coords.x}px; top: {coords.y + 12}px; font-size: {Math.max(8, 12 * currentTransform.k)}px;"
-        >
-          {n.label}
-        </div>
-      {/each}
-    </div>
+    <!-- Labels Overlay (Only in topology mode) -->
+    {#if !isAssemblerMode}
+      <div class="labels-overlay">
+        {#each visibleLabels as n (n.id)}
+          {@const coords = getScreenCoords(n)}
+          <div 
+            class="label-tag {n.group}"
+            style="left: {coords.x}px; top: {coords.y + 12}px; font-size: {Math.max(8, 12 * currentTransform.k)}px;"
+          >
+            {n.label}
+          </div>
+        {/each}
+      </div>
+    {/if}
 
     <div class="controls">
       <div class="viewpoint-selector">

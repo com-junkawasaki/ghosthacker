@@ -29,7 +29,7 @@
       "Redundant storyboard and draft files deleted to simplify project structure",
       ".cursor/rules/runway_manga_generation.mdc created to codify Runway-specific Manga generation rules",
       "251121/props/ directory created to define specific furniture and items (Okamura Cruise & Atlas, USM Haller, etc.) for consistent visual property across prompts",
-      "apps/zen-editor: 3D Scene Assembler implemented using Threlte (Svelte 5) at /assembler route, allowing for character/prop placement and camera angle setup"
+      "apps/zen-editor: 3D Scene Assembler integrated into the Graph Topology view, managed as a specific viewpoint (hub:assembler). Scene data is now part of the graph nodes' properties (position3d, rotation3d, etc.)."
     ]
   },
   "gh:artifacts": [
@@ -63,9 +63,9 @@
     {
       "@id": "gh:artifact/zen-editor-3d-assembler",
       "@type": "gh:Artifact",
-      "schema:name": "Zen Editor: 3D Assembler",
-      "schema:description": "Threlte-based 3D workspace for scene composition.",
-      "schema:filePath": "apps/zen-editor/src/routes/assembler/"
+      "schema:name": "Zen Editor: 3D Assembler (Integrated)",
+      "schema:description": "Threlte-based 3D workspace integrated into graph topology.",
+      "schema:filePath": "apps/zen-editor/src/components/Topology/Graph/AssemblerEngine.svelte"
     }
   ],
   "gh:milestones": [
@@ -86,7 +86,7 @@
       "gh:status": "Completed"
     },
     {
-      "gh:name": "3D Scene Assembler Implementation",
+      "gh:name": "3D Scene Assembler Integration into Graph",
       "gh:status": "Completed"
     }
   ]

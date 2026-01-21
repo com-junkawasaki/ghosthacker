@@ -213,6 +213,12 @@ message Node {
   map<string, string> localized_content = 9; // "ja" -> "...", "en" -> "..."
   string view_type = 10; // Explicit view hint: "storyboard", "editor", "translation", "entity", "asset"
   repeated string children = 11; // Child node IDs for hierarchical display
+
+  // 3D properties for Assembler
+  repeated float position3d = 12; // [x, y, z]
+  repeated float rotation3d = 13; // [x, y, z]
+  repeated float scale3d = 14;    // [x, y, z]
+  string gltf_path = 15;
 }
 
 message Edge {
