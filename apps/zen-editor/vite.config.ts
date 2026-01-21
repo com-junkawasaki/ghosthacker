@@ -23,7 +23,7 @@ export default defineConfig({
   resolve: {
     conditions: ['browser', 'development']
   },
-  // Tauri expects a fixed port when developing
+  // Browser settings
   server: {
     port: 1420,
     strictPort: true,
@@ -40,16 +40,11 @@ export default defineConfig({
       '@connectrpc/connect-web'
     ]
   },
-  // to make use of `TAURI_DEBUG` and other env variables
-  // https://tauri.app/v1/api/config#buildconfig.beforedevcommand
-  envPrefix: ['VITE_', 'TAURI_'],
+  envPrefix: ['VITE_'],
   build: {
-    // browser support target
     target: 'esnext',
-    // don't minify for debug builds
-    minify: process.env.TAURI_DEBUG === undefined ? 'esbuild' : false,
-    // produce sourcemaps for debug builds
-    sourcemap: !!process.env.TAURI_DEBUG,
+    minify: 'esbuild',
+    sourcemap: true,
     rollupOptions: {
       onwarn(warning, warn) {
         if (warning.code === 'MISSING_EXPORT') {

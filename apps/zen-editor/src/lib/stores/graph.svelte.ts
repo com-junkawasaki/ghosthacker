@@ -36,6 +36,7 @@ class GraphStore {
   selectedNodeId = $state<string | null>(null);
   currentViewpointId = $state<string | null>(null);
   isLoading = $state(false);
+  projectMetadata = $state<any>(null);
 
   viewpoints = $derived([
     { id: 'hub:content', label: 'Timeline', type: 'chronological', description: 'Story progression' },
@@ -105,6 +106,31 @@ class GraphStore {
     } finally {
       this.isLoading = false;
     }
+  }
+
+  async fetchProjectMetadata(projectId: string) {
+    try {
+      const client = await getClient();
+      if (!client) return;
+      const resp = await client.getProjectMetadata({ projectId });
+      this.projectMetadata = resp;
+    } catch (err) {
+      console.error("Failed to fetch project metadata:", err);
+    }
+  }
+
+  async openFile(path: string): Promise<string> {
+    const client = await getClient();
+    if (!client) return "";
+    const resp = await client.openFile({ path });
+    return resp.content || "";
+  }
+
+  async saveFile(path: string, content: string): Promise<boolean> {
+    const client = await getClient();
+    if (!client) return false;
+    const resp = await client.saveFile({ path, content });
+    return resp.success;
   }
 
   async fetchBlocks(manuscriptId: string) {

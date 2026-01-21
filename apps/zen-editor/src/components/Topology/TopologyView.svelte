@@ -9,11 +9,13 @@
   let { 
     projectId = "251121",
     onSelect = () => {},
-    selectedId = undefined
+    selectedId = undefined,
+    hideSidebar = false
   } = $props<{
     projectId?: string;
     onSelect?: (node: any, nodes: any[]) => void;
     selectedId?: string;
+    hideSidebar?: boolean;
   }>();
 
   let engineRef: any = $state(null);
@@ -66,13 +68,15 @@
 </script>
 
 <div class="topology-view" bind:clientWidth={containerWidth} bind:clientHeight={containerHeight}>
-  <aside class="sidebar">
-    <div class="sidebar-header">
-      <span>Nodes ({graphStore.nodes.size})</span>
-      <button onclick={() => graphStore.fetchTopology(projectId)}>🔄</button>
-    </div>
-    <NodeTree onNodeClick={handleNodeClick} />
-  </aside>
+  {#if !hideSidebar}
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <span>Nodes ({graphStore.nodes.size})</span>
+        <button onclick={() => graphStore.fetchTopology(projectId)}>🔄</button>
+      </div>
+      <NodeTree onNodeClick={handleNodeClick} />
+    </aside>
+  {/if}
 
   <main class="graph-main">
     <Canvas>

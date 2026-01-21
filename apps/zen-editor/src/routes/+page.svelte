@@ -1,6 +1,7 @@
 <script lang="ts">
   import Editor from '../components/Editor.svelte';
   import Topology from '../components/Topology/TopologyView.svelte';
+  import FileExplorer from '../components/FileExplorer.svelte';
   import Storyboard from '../components/Storyboard.svelte';
   import HistoryPanel from '../components/HistoryPanel.svelte';
   import AssemblerControls from '../components/AssemblerControls.svelte';
@@ -29,6 +30,7 @@
   let currentFileContent = $state("");
   let projectTitle = $state("GhostHacker Zen Editor");
   let activeView = $state<"graph" | "storyboard" | "dual">("dual");
+  let sidebarMode = $state<"nodes" | "files">("graph");
   let leftPaneWidth = $state(40); // Initial width for graph
   let isGraphCollapsed = $state(false);
   let isStoryboardCollapsed = $state(false);
@@ -96,32 +98,27 @@
     }
   }
 
-  async function handleEditorSave(content: string) {
-    if (!selectedNode) return;
-    
-    if (selectedNode.type === 'gh:Manuscript' || selectedNode.id.startsWith('manuscript:')) {
-      await graphStore.saveManuscript(selectedNode.id, content);
-    } else {
-      // Handle legacy or single block save
-      try {
-        const client = await getClient();
-        if (!client) return;
+  async function handleFileSelect(path: string) {
+    currentFilePath = path;
+    const content = await graphStore.openFile(path);
+    currentFileContent = content;
+    rightPaneMode = "editor";
+    if (isStoryboardCollapsed) isStoryboardCollapsed = false;
+  }
 
-        await client.commitHistory({
-          projectId: "251022",
-          type: "node_edit",
-          stateJson: JSON.stringify({
-            nodeId: selectedNode.id,
-            content: content
-          }),
-          message: `Edit node: ${selectedNode.label}`,
-          branchName: "main"
-        });
-        
-        selectedNode.content = content;
-        alert("Changes saved to history!");
-      } catch (err) {
-        console.error("Failed to save editor content:", err);
+  async function handleEditorSave(content: string) {
+    if (selectedNode) {
+      if (selectedNode.type === 'gh:Manuscript' || selectedNode.id.startsWith('manuscript:')) {
+        await graphStore.saveManuscript(selectedNode.id, content);
+      } else {
+        // ... (existing saveNode logic)
+      }
+    } else if (currentFilePath) {
+      const success = await graphStore.saveFile(currentFilePath, content);
+      if (success) {
+        alert(`File ${currentFilePath} saved successfully!`);
+      } else {
+        alert(`Failed to save ${currentFilePath}`);
       }
     }
   }
@@ -182,17 +179,27 @@
       {#if (activeView === "graph" || activeView === "dual") && !isGraphCollapsed}
         <div class="pane graph-pane" style={activeView === "dual" ? `width: ${leftPaneWidth}%` : "width: 100%"}>
           <div class="pane-header">
-            <span>Graph Explorer</span>
+            <div class="mode-switch">
+              <button class:active={sidebarMode === 'graph'} onclick={() => sidebarMode = 'graph'}>Graph</button>
+              <button class:active={sidebarMode === 'files'} onclick={() => sidebarMode = 'files'}>Files</button>
+            </div>
             {#if activeView === "dual"}
               <button class="collapse-btn" onclick={() => isGraphCollapsed = true}>◀</button>
             {/if}
           </div>
-          <Topology 
-            bind:this={topologyRef} 
-            {projectId}
-            onSelect={handleNodeSelect} 
-            selectedId={selectedNode?.id} 
-          />
+          
+          <div class="pane-content dual-sidebar">
+            {#if sidebarMode === 'files'}
+              <FileExplorer {projectId} onSelectFile={handleFileSelect} />
+            {/if}
+            <Topology 
+              bind:this={topologyRef} 
+              {projectId}
+              hideSidebar={sidebarMode === 'files'}
+              onSelect={handleNodeSelect} 
+              selectedId={selectedNode?.id} 
+            />
+          </div>
         </div>
       {:else if activeView === "dual" && isGraphCollapsed}
         <div 
@@ -355,6 +362,29 @@
     letter-spacing: 0.05em;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
+
+  .mode-switch {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .mode-switch button {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: #444;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .mode-switch button.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+
+  .dual-sidebar {
+    display: flex;
+    height: 100%;
+  }
+
   .collapse-btn {
     background: transparent;
     border: none;

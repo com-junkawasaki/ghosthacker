@@ -7,17 +7,11 @@
     "dev:worker": "cd backend && go run cmd/worker/main.go",
     "dev:web": "deno task dev:vite",
     "build:web": "deno run -A npm:vite build",
-    "build:sidecar": "cd backend && go build -o ../src-tauri/binaries/backend-server-aarch64-apple-darwin cmd/server/main.go",
-    "build": "deno task build:sidecar && deno task check && deno run -A npm:vite build",
+    "build": "deno task check && deno run -A npm:vite build",
     "preview": "deno run -A npm:vite@latest preview",
     "check": "deno run -A npm:@sveltejs/kit sync && deno run -A npm:svelte-check --threshold error",
     "check:watch": "deno run -A npm:@sveltejs/kit@latest sync && deno run -A npm:svelte-check@latest --watch",
-    "tauri": "deno run -A npm:@tauri-apps/cli@latest",
-    "sync:force": "rm -rf node_modules .svelte-kit build deno.lock && deno cache --reload src/lib/api.ts && deno run -A npm:@sveltejs/kit sync",
-    "test": "deno task test:unit && deno task test:e2e",
-    "test:unit": "deno test --allow-all",
-    "test:e2e": "deno task bddgen && deno run -A npm:playwright test",
-    "bddgen": "deno run -A npm:playwright-bdd"
+    "sync:force": "rm -rf node_modules .svelte-kit build deno.lock && deno cache --reload src/lib/api.ts && deno run -A npm:@sveltejs/kit sync"
   },
   "nodeModulesDir": "auto",
   "compilerOptions": {
