@@ -8,9 +8,9 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "dct": "http://purl.org/dc/terms/"
   },
-  "@id": "gh:profiles/episode01-characters-v2",
+  "@id": "gh:profiles/episode01-characters-v3",
   "@type": "gh:CharacterProfiles",
-  "dct:title": "Ghost Hacker Episode 1: Updated Character Profiles (Photorealistic Edition)",
+  "dct:title": "Ghost Hacker Episode 1: Character Profiles (Monochrome Manga Edition)",
   "gh:characters": [
     {
       "@id": "character:Shouta",
@@ -20,15 +20,15 @@
       "schema:jobTitle": "社長室長 / 次期社長候補",
       "gh:personality": "Rational, Slightly Arrogant but Responsible",
       "gh:appearance": {
-        "gh:face": "26歳。エリート然とした整った顔立ちだが、現場監督時代のタフさが残る。理性的で鋭い目つき。疲労と決意が混在したリアルな日本人の表情。",
-        "gh:hair": "短めのビジネスカット。整えられているが、激務で少し乱れている。黒髪。",
-        "gh:build": "中肉中背、引き締まった体格。現場の実務的な強さを感じさせるシルエット。",
-      "gh:style": "Photorealistic, cinematic lighting, sharp focus, business elite aesthetic.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 35mm lens, f/1.8, masterpiece, a 26-year-old Japanese businessman, fit and athletic build, sharp eyes, short clean-cut black hair, wearing a navy blue three-piece suit, white shirt with top button undone, slightly loosened silk tie, dramatic office lighting, natural Japanese skin tone."
-    },
-    "gh:clothing": {
-        "gh:daily": "上質なカシミアニットポロに、スリムなスラックス。高級レザースニーカー。ラグジュアリー・スポーツスタイル。",
-        "gh:work": "ダークネイビーのスリーピース・オーダースーツ。細身でシャープ。白いワイシャツにシルクのタイ。戦うためのビジネスアーマー。"
+        "gh:face": "26歳。理性的で鋭い目つき。疲労と決意が混在したリアルな表情。",
+        "gh:hair": "短めのビジネスカット。黒髪。",
+        "gh:build": "中肉中背、引き締まった体格。",
+        "gh:style": "Professional monochrome manga art, high-contrast black and white, crisp line art, heavy screentone shading, halftone dot texture, modern seinen manga aesthetic.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, a 26-year-old Japanese businessman, sharp eyes, short clean-cut black hair, wearing a navy blue suit, slightly loosened tie, dramatic office lighting, crisp line art, detailed eyes, heavy screentone shading."
+      },
+      "gh:clothing": {
+        "gh:daily": "上質なカシミアニットポロに、スリムなスラックス。高級レザースニーカー。",
+        "gh:work": "ダークネイビーのスリーピース・オーダースーツ。細身でシャープ。戦うためのビジネスアーマー、モノクロームトーン。"
       }
     },
     {
@@ -38,15 +38,15 @@
       "schema:age": 62,
       "gh:personality": "Emotional, Traditional, Trusting",
       "gh:appearance": {
-        "gh:face": "62歳。皺の深い、経験豊かな日本人の老年の顔立ち。温かみと威厳。日焼けした肌、節くれ立った手。",
-        "gh:hair": "短く刈り込まれた白髪交じりの髪。現場の粉塵を感じさせる質感。",
-        "gh:build": "がっしりとした、年齢を感じさせない頑強な体格。叩き上げの職人の体つき。",
-      "gh:style": "Photorealistic, weathered texture, dramatic shadows, authentic Japanese elder.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 35mm lens, f/1.8, masterpiece, a 62-year-old Japanese man, sturdy build, deep facial wrinkles, weathered skin, kind but firm eyes, short salt-and-pepper hair, wearing a navy blue work jacket with a high-visibility safety vest, realistic skin pores, natural Japanese skin tone."
-    },
-    "gh:clothing": {
-        "gh:daily": "シンプルなポロシャツにチノパン。または紺の作務衣。飾り気のない質実剛健なスタイル。",
-        "gh:work": "社名の入ったブルーの作業服（ドカジャン）に安全ベスト、安全靴。常に現場に立てる現役の装い。"
+        "gh:face": "62歳。皺の深い、経験豊かな老年の顔立ち。温かみと威厳。",
+        "gh:hair": "短く刈り込まれた白髪交じりの髪。",
+        "gh:build": "がっしりとした頑強な体格。",
+        "gh:style": "Professional monochrome manga art, high-contrast black and white, detailed wrinkles, weathered texture.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, a 62-year-old Japanese man, sturdy build, deep facial wrinkles, kind but firm eyes, short salt-and-pepper hair, wearing a work jacket, realistic ink shading, dense screentone texture, clear line work."
+      },
+      "gh:clothing": {
+        "gh:daily": "シンプルなポロシャツにチノパン。または紺の作務衣。",
+        "gh:work": "社名の入った作業服に安全ベスト、安全靴。常に現場に立てる現役の装い、モノクロームトーン。"
       }
     },
     {
@@ -56,15 +56,15 @@
       "schema:age": 52,
       "gh:personality": "Insecure, Defensive, Secretive",
       "gh:appearance": {
-        "gh:face": "52歳。不安と焦燥が滲み出た、やや脂ぎった顔立ち。泳ぐ視線。額の汗や肌のテクスチャがリアルに表現される。",
-        "gh:hair": "乱れた七三分けの白髪交じり。パニックでさらに乱れている。",
-        "gh:build": "運動不足気味のやや太めな体型。猫背気味で、自信のなさが姿勢に表れている。",
-      "gh:style": "Photorealistic, oily skin texture, nervous expression, harsh fluorescent lighting.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 35mm lens, f/1.8, masterpiece, a 52-year-old Japanese man, slightly overweight, oily skin, anxious and defensive expression, darting eyes, messy receding salt-and-pepper hair, wearing a rumpled gray business suit, white shirt with sweat stains, loosened tie, harsh office fluorescent lighting."
-    },
-    "gh:clothing": {
-        "gh:daily": "くたびれたポロシャツにスラックス。休日も仕事の不安を引きずっているような覇気のない服装。",
-        "gh:work": "皺の寄ったグレーのビジネススーツ。緩んだネクタイ、襟元の汗染み。だらしなく見えるフォーマルスタイル。"
+        "gh:face": "52歳。不安と焦燥が滲み出た顔立ち。泳ぐ視線。額の汗や肌のテクスチャが繊細な線で表現される。",
+        "gh:hair": "乱れた七三分けの白髪交じり。",
+        "gh:build": "運動不足気味のやや太めな体型。",
+        "gh:style": "Professional monochrome manga art, oily texture, nervous expression, high contrast shadows.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, a 52-year-old Japanese man, slightly overweight, anxious and defensive expression, darting eyes, messy receding hair, wearing a rumpled suit, white shirt with sweat stains, heavy ink shading, halftone dot textures."
+      },
+      "gh:clothing": {
+        "gh:daily": "くたびれたポロシャツにスラックス。",
+        "gh:work": "皺の寄ったビジネススーツ。緩んだネクタイ、襟元の汗染み。モノクロームトーン。"
       }
     },
     {
@@ -74,15 +74,15 @@
       "schema:age": 58,
       "gh:personality": "Hysterical regarding IT, Strict with Money",
       "gh:appearance": {
-        "gh:face": "58歳。厳格で几帳面そうな顔立ち。パニック時は顔が赤潮を帯びる。眼鏡の奥の目は鋭い。",
-        "gh:hair": "短めのパーマをあてた黒髪。常に整えられている。",
+        "gh:face": "58歳。厳格で几帳面そうな顔立ち。眼鏡の奥の目は鋭い。",
+        "gh:hair": "短めのパーマをあてた黒髪。",
         "gh:build": "小柄だが背筋の伸びた、隙のない立ち姿。",
-      "gh:style": "Photorealistic, strict Japanese office lady, natural aging details.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 35mm lens, f/1.8, masterpiece, a 58-year-old Japanese woman, small build, strict expression, short permed black hair, wearing a beige blouse and dark skirt, reading glasses on a silver chain around her neck, realistic aging details on hands and face, cinematic office lighting."
-    },
-    "gh:clothing": {
+        "gh:style": "Professional monochrome manga art, strict Japanese office lady, detailed aging lines.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, a 58-year-old Japanese woman, small build, strict expression, short permed black hair, wearing a blouse and dark skirt, reading glasses on a silver chain, intricate line art, dense screentone shading."
+      },
+      "gh:clothing": {
         "gh:daily": "落ち着いた色のアンサンブルニットにロングスカート。",
-        "gh:work": "保守的なオフィスカジュアル（ブラウス、カーディガン）。首からチェーンで下げた老眼鏡がチャームポイント。"
+        "gh:work": "保守的なオフィスカジュアル。老眼鏡、モノクロームトーン。"
       }
     },
     {
@@ -91,15 +91,15 @@
       "schema:role": "IT Support (unofficial)",
       "schema:age": 24,
       "gh:appearance": {
-        "gh:face": "24歳。若々しいが、板挟みのストレスで疲弊した表情。困り眉。親しみやすいが少し気弱そうな顔立ち。",
-        "gh:hair": "無頓着に短くした黒髪。作業で時折乱れる。",
+        "gh:face": "24歳。若々しいが、疲弊した表情。困り眉。",
+        "gh:hair": "無頓着に短くした黒髪。",
         "gh:build": "細身。サーバーラックの裏に潜り込めるような身軽な体格。",
-      "gh:style": "Photorealistic, fatigued youth, realistic sweat and messy hair.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 35mm lens, f/1.8, masterpiece, a 24-year-old Japanese male, slim build, fatigued and worried expression, simple short black hair, wearing a light blue polo shirt and dark chinos, carrying LAN cables, realistic office lighting, natural Japanese skin tone."
-    },
-    "gh:clothing": {
-        "gh:daily": "Tシャツにチノパン、スニーカー。典型的な理系大学生の延長のような服装。",
-        "gh:work": "社名の入った作業用ベストを羽織ったカジュアルなシャツスタイル。ポケットには常にLANテスターやドライバーが入っている。"
+        "gh:style": "Professional monochrome manga art, fatigued youth, realistic sweat and messy hair.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, a 24-year-old Japanese male, slim build, fatigued and worried expression, simple short black hair, wearing a polo shirt, intricate ink lines, halftone dot texture."
+      },
+      "gh:clothing": {
+        "gh:daily": "Tシャツにチノパン、スニーカー。",
+        "gh:work": "作業用ベストを羽織ったカジュアルなシャツスタイル。モノクロームトーン。"
       }
     },
     {
@@ -109,15 +109,15 @@
       "gh:virtue": "Sloth (Efficiency)",
       "schema:age": 17,
       "gh:appearance": {
-        "gh:face": "17歳。K-POPアイドルのような耽美で整った顔立ち。陶器のような青白い肌。アンニュイで気だるげな半開きの目。圧倒的な透明感と色気。",
-        "gh:hair": "計算された無造作なボリュームを持つ、ウェーブがかった黒髪。シルキーで高彩度な質感。",
-        "gh:build": "非常に細身で華奢だが、優雅なシルエットを持つ。中性的な美しさ。",
-      "gh:style": "Photorealistic, K-pop idol aesthetic, flower boy style, melancholic lighting, high fashion photography.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 85mm lens, f/1.4, masterpiece, stunningly beautiful 17-year-old Japanese male, K-pop idol aesthetic, flower boy style, pale translucent porcelain skin, messy voluminous stylish raven black hair, melancholic half-lidded eyes, slender and graceful neck, wearing an oversized dark charcoal hoodie, high fashion photography, dramatic shadows."
-    },
-    "gh:clothing": {
-        "gh:daily": "オーバーサイズのダークチャコール・フーディー。ミニマルで装飾を排したデザイン。質感の良いスウェット素材。寝間着と外出着を兼ねた「効率的」な私服。",
-        "gh:work": "普段着のフーディーを深く被り、極薄のフレームレス・スマートグラスを装着。ハッカーモードへの切り替えを最小限の動作で行う。"
+        "gh:face": "17歳。耽美で整った顔立ち。白抜き表現された肌。アンニュイで気だるげな半開きの目。",
+        "gh:hair": "計算された無造作なボリュームを持つ、ウェーブがかった黒髪。鋭いインクのタッチ。",
+        "gh:build": "非常に細身で華奢だが、優雅なシルエット。",
+        "gh:style": "Professional monochrome manga art, high-contrast, voluminous messy ink-drawn hair, sharp half-lidded melancholic eyes.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, stunningly beautiful 17-year-old Japanese male, pale skin, voluminous messy stylish raven black hair with sharp ink strokes, sharp half-lidded melancholic eyes, slender neck, wearing an oversized dark charcoal hoodie, intricate line art, detailed eyes with long eyelashes, heavy screentone shading."
+      },
+      "gh:clothing": {
+        "gh:daily": "オーバーサイズのダークチャコール・フーディー。ミニマルで装飾を排したデザイン。質感の良いスウェット（網点トーン）。",
+        "gh:work": "普段着のフーディーを深く被り、極薄のフレームレス・スマートグラスを装着。モノクロームトーン。"
       }
     },
     {
@@ -126,15 +126,15 @@
       "schema:role": "AI Partner / Android",
       "schema:age": 16,
       "gh:appearance": {
-        "gh:face": "16歳の少女の姿をしたアンドロイド。K-POPアイドル的な洗練された美貌。分析的な輝きを放つ瞳。いたずらっぽさと理知的な表情が共存。",
-        "gh:hair": "プラチナブロンドのハイトーン・ボブカット。さらさらとした質感で切り揃えられた前髪。",
-        "gh:build": "細身で完璧なプロポーション。人間にはない完璧すぎる肌の質感（Porcelain skin）。",
-      "gh:style": "Photorealistic, high-end android, platinum blonde bob, chic and sharp aesthetic.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 50mm lens, f/2.0, masterpiece, stunningly beautiful 16-year-old Japanese female android, platinum blonde layered bob hair, analytical glowing iris, intelligent and mischievous sharp eyes, wearing a white long-sleeve blouse under a chic black sleeveless shift dress, perfect porcelain skin, cinematic soft lighting."
-    },
-    "gh:clothing": {
-        "gh:daily": "白いパフスリーブの長袖ブラウスに、黒のノースリーブ・ワンピースを重ねたレイヤードスタイル。都会的で洗練されたモノトーン。",
-        "gh:work": "普段着の上に、データ処理の冷却機能を備えたシースルーのテクニカル・ロングコートを羽織る。アンドロイドとしての機能を拡張するスタイル。"
+        "gh:face": "16歳の少女の姿をしたアンドロイド。洗練された美貌。分析的な輝きを放つ瞳。",
+        "gh:hair": "プラチナブロンドのハイトーン・ボブカット。細い線と白抜きで表現された質感。",
+        "gh:build": "細身で完璧なプロポーション。完璧すぎる肌（Porcelain skin）。",
+        "gh:style": "Professional monochrome manga art, high-end android, platinum blonde bob represented by negative space, large expressive eyes with dense screentone.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, stunningly beautiful 16-year-old Japanese female android, platinum blonde layered bob hair shown with fine lines and negative space, analytical glowing iris, intelligent mischievous eyes, white blouse under a chic dark dress, crisp line art, halftone dot shading."
+      },
+      "gh:clothing": {
+        "gh:daily": "白いパフスリーブの長袖ブラウスに、黒のノースリーブ・ワンピースを重ねたレイヤードスタイル。",
+        "gh:work": "シースルーのテクニカル・ロングコートを羽織る。モノクロームトーン。"
       }
     },
     {
@@ -145,15 +145,15 @@
       "gh:virtue": "Arrogance (Perfection)",
       "schema:age": 18,
       "gh:appearance": {
-        "gh:face": "18歳。彫刻のように完璧に整った、冷徹な美貌。常に余裕を感じさせる微かな微笑。他人を見下すような鋭い視線。",
-        "gh:hair": "完璧にスタイリングされたダークブラウンの髪。一筋の乱れもない。",
-        "gh:build": "モデルのような長身で細身の体型。立ち振る舞いの一つ一つが優雅。",
-      "gh:style": "Photorealistic, luxury elite, perfect symmetry, cold aesthetic.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 50mm lens, f/2.0, masterpiece, 18-year-old Japanese male, perfectly sculpted handsome face, stylishly set dark brown hair, arrogant eyes, cold aesthetic, wearing a perfectly tailored white suit and black tie, luxury elite vibe, sharp focus, high fashion photography."
-    },
-    "gh:clothing": {
-        "gh:daily": "真っ白な最高級シルクシャツに、ライトグレーのトラウザーズ。清潔感と気品を極めた私服。",
-        "gh:work": "純白のテーラード・タキシードスーツに黒のタイ。ガバナンス（支配）を象徴する、非の打ち所がない勝負服。"
+        "gh:face": "18歳。彫刻のように完璧に整った、冷徹な美貌。他人を見下すような鋭い視線。",
+        "gh:hair": "完璧にスタイリングされたダークブラウンの髪。一筋の乱れもない鋭い線。",
+        "gh:build": "モデルのような長身で細身の体型。",
+        "gh:style": "Professional monochrome manga art, luxury elite, perfect symmetry, cold aesthetic, sharp ink strokes.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 18-year-old Japanese male, perfectly sculpted handsome face, stylishly set dark hair, arrogant eyes, cold aesthetic, wearing a perfectly tailored suit and tie, crisp line art, detailed facial features, heavy screentone shading."
+      },
+      "gh:clothing": {
+        "gh:daily": "真っ白な最高級シルクシャツに、ライトグレーのトラウザーズ。",
+        "gh:work": "純白のテーラード・タキシードスーツに黒のタイ。モノクロームトーン。"
       }
     },
     {
@@ -164,15 +164,15 @@
       "gh:virtue": "Short-tempered (Instant Action)",
       "schema:age": 19,
       "gh:appearance": {
-        "gh:face": "19歳。常に苛立ちを隠さない、攻撃的な表情。端正だが野性味のある顔立ち。鋭く、獲物を狙うような目つき。",
-        "gh:hair": "乱れた黒髪にブリーチのメッシュ。手入れを拒絶したような荒々しい質感。",
-        "gh:build": "ストリートでの喧嘩で鍛えられた筋肉質でがっしりとした体格。爆発的なエネルギーを感じさせる。",
-      "gh:style": "Photorealistic, gritty street aesthetic, high contrast, aggressive energy.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 35mm lens, f/1.8, masterpiece, 19-year-old Japanese male, muscular build, aggressive expression, messy black hair with bleached highlights, wearing high-end streetwear, oversized graphic hoodie, gritty street aesthetic, high contrast, aggressive energy, cinematic film grain."
-    },
-    "gh:clothing": {
-        "gh:daily": "オーバーサイズのグラフィックTシャツに、激しく加工されたダメージジーンズ。衝動的で奔放なスタイル。",
-        "gh:work": "多機能なタクティカル・テックウェア。多数のストラップがついた黒のカーゴパンツ、高機能ナイロンフーディー。破壊工作のための実戦服。"
+        "gh:face": "19歳。常に苛立ちを隠さない、攻撃的な表情。鋭く、獲物を狙うような目つき。",
+        "gh:hair": "乱れた黒髪にブリーチのメッシュ（トーン抜き）。荒々しい質感。",
+        "gh:build": "筋肉質でがっしりとした体格。",
+        "gh:style": "Professional monochrome manga art, gritty street aesthetic, aggressive energy, high contrast black shading.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 19-year-old Japanese male, muscular build, aggressive expression, messy black hair with bleached highlights, wearing high-end streetwear, oversized graphic hoodie, gritty ink drawing, heavy screentone, dynamic shadows."
+      },
+      "gh:clothing": {
+        "gh:daily": "オーバーサイズのグラフィックTシャツに、ダメージジーンズ。",
+        "gh:work": "多機能なタクティカル・テックウェア。黒のカーゴパンツ、高機能ナイロンフーディー。モノクロームトーン。"
       }
     },
     {
@@ -182,15 +182,15 @@
       "gh:organization": "org:mpd-cyber",
       "schema:age": 42,
       "gh:appearance": {
-        "gh:face": "42歳。現場叩き上げの鋭い眼光を持つ日本人刑事。日々の捜査による疲労が見えるが、眼光は鋭く、真実を見逃さない。信頼感のある落ち着いた顔立ち。",
+        "gh:face": "42歳。現場叩き上げの鋭い眼光を持つ刑事。日々の捜査による疲労（トーンによる陰影）。",
         "gh:hair": "短く整えられた黒髪。少し白髪が混じり始めている。",
-        "gh:build": "平均的な身長だが、長年の現場活動で鍛えられた安定感のある体格。",
-      "gh:style": "Photorealistic, seasoned Japanese detective, weary but sharp eyes, cinematic natural lighting.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 35mm lens, f/2.0, masterpiece, 42-year-old Japanese male detective, sharp eyes, slightly graying short black hair, weary but focused expression, wearing a dark-colored business suit, police badge, natural cinematic lighting, seasoned investigator look."
-    },
-    "gh:clothing": {
-        "gh:daily": "シンプルなシャツとスラックス。目立たないことを優先した、どこにでもいる中年男性の装い。",
-        "gh:work": "実用的なダークカラーのビジネススーツ。安価だが手入れはされており、警察手帳や無線機を携帯するための機能性を重視。"
+        "gh:build": "平均的な身長だが、安定感のある体格。",
+        "gh:style": "Professional monochrome manga art, seasoned detective, weary but sharp eyes, intricate line shading.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 42-year-old Japanese male detective, sharp eyes, slightly graying short black hair, weary but focused expression, wearing a business suit, detailed ink lines, halftone texture."
+      },
+      "gh:clothing": {
+        "gh:daily": "シンプルなシャツとスラックス。",
+        "gh:work": "実用的なダークカラーのビジネススーツ。警察手帳、モノクロームトーン。"
       }
     },
     {
@@ -200,15 +200,15 @@
       "gh:organization": "org:npa-cyber",
       "schema:age": 45,
       "gh:appearance": {
-        "gh:face": "45歳。理性的で穏やかな表情の日本人エリート官僚。常に冷静沈着で、広範な情報を統合する知性を感じさせる。清潔感があり、信頼を勝ち取る顔立ち。",
-        "gh:hair": "几帳面に整えられた黒髪。短めで清潔感がある。",
+        "gh:face": "45歳。理性的で穏やかな表情のエリート官僚。清潔感のある顔立ち。",
+        "gh:hair": "几帳面に整えられた黒髪。",
         "gh:build": "細身で背筋が伸びた、洗練された体格。",
-      "gh:style": "Photorealistic, high-ranking Japanese official, calm and intelligent, soft cinematic lighting.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 50mm lens, f/2.4, masterpiece, 45-year-old Japanese male elite official, calm and intelligent expression, neatly groomed black hair, wearing a high-quality charcoal gray suit, soft cinematic lighting, clean and professional look."
-    },
-    "gh:clothing": {
-        "gh:daily": "質の良いポロシャツに高級なスラックス。シンプルだが育ちの良さを感じさせるカジュアルウェア。",
-        "gh:work": "高級な仕立てのダークグレーのスーツ。控えめだが質の高いネクタイ。組織間の調整役としての品格を重視。"
+        "gh:style": "Professional monochrome manga art, high-ranking official, calm and intelligent, clean professional look.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 45-year-old Japanese male official, calm and intelligent expression, neatly groomed black hair, wearing a high-quality gray suit, crisp line art, detailed facial features."
+      },
+      "gh:clothing": {
+        "gh:daily": "質の良いポロシャツに高級なスラックス。",
+        "gh:work": "高級な仕立てのスーツ。組織間の調整役、モノクロームトーン。"
       }
     },
     {
@@ -218,15 +218,15 @@
       "gh:organization": "org:jpcert",
       "schema:age": 29,
       "gh:appearance": {
-        "gh:face": "29歳。知性的でモダンな雰囲気の日本人女性アナリスト。大きな眼鏡が特徴で、技術的な細部への執着を感じさせる鋭い瞳。Neiとシンクロするような機敏な表情。",
-        "gh:hair": "手入れの行き届いた黒のミディアムボブ。モダンで洗練された印象。",
-        "gh:build": "細身でしなやか。キーボードを叩く指先が細く長い。",
-      "gh:style": "Photorealistic, smart modern Japanese woman, tech-literate beauty, bright office lighting.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 50mm lens, f/1.8, masterpiece, 29-year-old Japanese woman, intelligent expression, large glasses, medium black bob hair, wearing a white blouse and navy jacket, tech-literate beauty, bright office lighting, professional analyst vibe."
-    },
-    "gh:clothing": {
-        "gh:daily": "トレンドを取り入れたスタイリッシュなカジュアルウェア（タートルネックニットにワイドパンツなど）。",
-        "gh:work": "洗練されたオフィスカジュアル。白のブラウスにネイビーのジャケット。首には常にセキュリティIDカードが下がっている。"
+        "gh:face": "29歳。知性的でモダンな雰囲気。大きな眼鏡が特徴で、鋭い瞳。",
+        "gh:hair": "手入れの行き届いた黒のミディアムボブ。",
+        "gh:build": "細身でしなやか。キーボードを叩く指先。",
+        "gh:style": "Professional monochrome manga art, smart modern woman, tech-literate beauty, detailed eyes behind glasses.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 29-year-old Japanese woman, intelligent expression, large glasses, medium black bob hair, wearing a blouse and jacket, sharp line art, intricate details, dense screentone."
+      },
+      "gh:clothing": {
+        "gh:daily": "トレンドを取り入れたスタイリッシュなカジュアルウェア。",
+        "gh:work": "洗練されたオフィスカジュアル。白のブラウスにネイビーのジャケット。モノクロームトーン。"
       }
     },
     {
@@ -236,15 +236,15 @@
       "gh:organization": "org:sesc",
       "schema:age": 32,
       "gh:appearance": {
-        "gh:face": "32歳。冷徹でシャープな美貌を持つ日本人女性調査官。市場の歪みを嗅ぎ分ける鋭い視線。感情を表に出さないプロフェッショナルな顔立ち。",
-        "gh:hair": "タイトにまとめられた黒髪。一筋の乱れも許さない完璧なスタイリング。",
-        "gh:build": "長身で細身。無駄のない、引き締まったシルエット。",
-      "gh:style": "Photorealistic, cold beauty, professional market investigator, high contrast lighting.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 50mm lens, f/2.0, masterpiece, 32-year-old Japanese woman, sharp and cold beauty, sharp eyes, sleek black hair tied back, wearing a black pantsuit, professional market investigator, high contrast lighting, clinical and cool aesthetic."
-    },
-    "gh:clothing": {
-        "gh:daily": "ミニマルなブランドのワンピース。モノトーンで統一された都会的な装い。",
-        "gh:work": "完璧にアイロンがかけられた漆黒のパンツスーツ。機能的でありながら、相手を威圧するような鋭さを持つスタイル。"
+        "gh:face": "32歳。冷徹でシャープな美貌。市場の歪みを嗅ぎ分ける鋭い視線。",
+        "gh:hair": "タイトにまとめられた黒髪。完璧なスタイリング。",
+        "gh:build": "長身で細身。無駄のないシルエット。",
+        "gh:style": "Professional monochrome manga art, cold beauty, professional market investigator, high contrast ink strokes.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 32-year-old Japanese woman, sharp and cold beauty, sharp eyes, sleek black hair tied back, wearing a black pantsuit, crisp outlines, detailed eyes, heavy screentone shading."
+      },
+      "gh:clothing": {
+        "gh:daily": "ミニマルなブランドのワンピース。",
+        "gh:work": "完璧にアイロンがかけられた漆黒のパンツスーツ。モノクロームトーン。"
       }
     },
     {
@@ -254,15 +254,15 @@
       "gh:organization": "org:tse",
       "schema:age": 55,
       "gh:appearance": {
-        "gh:face": "55歳。威厳と重厚感のある日本人の男性。東京証券取引所の門番としての重責を感じさせる、落ち着いた表情。信頼と伝統を体現する顔立ち。",
+        "gh:face": "55歳。威厳と重厚感のある日本人の男性。市場の門番としての落ち着いた表情。",
         "gh:hair": "きれいに整えられたロマンスグレーの髪。",
-        "gh:build": "恰幅が良く、安定感のある体格。責任ある立場に相応しい存在感。",
-      "gh:style": "Photorealistic, dignified Japanese elder, market gatekeeper, dramatic interior lighting.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 35mm lens, f/1.8, masterpiece, 55-year-old Japanese man, dignified and heavy presence, romance gray hair, wearing a high-end heavy business suit, dramatic interior lighting, market gatekeeper look."
-    },
-    "gh:clothing": {
+        "gh:build": "恰幅が良く、安定感のある体格。",
+        "gh:style": "Professional monochrome manga art, dignified elder, market gatekeeper, dramatic ink shading.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 55-year-old Japanese man, dignified and heavy presence, romance gray hair, wearing a high-end business suit, intricate line work, dense halftone shading."
+      },
+      "gh:clothing": {
         "gh:daily": "上質なベストを合わせたクラシックなカジュアルスタイル。",
-        "gh:work": "最高級の重厚なビジネススーツ。落ち着いた色のレジメンタルタイ。市場の規律を守る象徴としての厳格な装い。"
+        "gh:work": "最高級の重厚なビジネススーツ。モノクロームトーン。"
       }
     },
     {
@@ -272,15 +272,15 @@
       "gh:organization": "org:interpol",
       "schema:age": 35,
       "gh:appearance": {
-        "gh:face": "35歳。南アジア系の血を引く、知性的でグローバルな雰囲気の女性。世界中を飛び回るタフさと、高度な外交スキルを感じさせる鋭い視線。",
-        "gh:hair": "洗練されたダークブラウンのロングヘア。仕事の邪魔にならないよう後ろでまとめられている。",
-        "gh:build": "平均的な体格だが、自信に満ちた堂々たる立ち振る舞い。",
-      "gh:style": "Photorealistic, global professional woman, sharp international look, natural world-traveler lighting.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 35mm lens, f/2.0, masterpiece, 35-year-old South Asian woman, sharp international look, dark brown hair in a bun, wearing a sophisticated business setup with a high-quality scarf, global professional woman, natural world-traveler lighting."
-    },
-    "gh:clothing": {
-        "gh:daily": "エスニックな要素をさりげなく取り入れたモダンなカジュアルウェア。",
-        "gh:work": "世界中のどこででも通用する、洗練された国際標準のビジネスウェア。ダークトーンのセットアップに上質なスカーフ。"
+        "gh:face": "35歳。南アジア系の血を引く、知性的でグローバルな雰囲気。鋭い視線。",
+        "gh:hair": "洗練されたダークブラウンのロングヘア。後ろでまとめられている。",
+        "gh:build": "平均的な体格だが、自信に満ちた立ち振る舞い。",
+        "gh:style": "Professional monochrome manga art, global professional woman, sharp international look, intricate ink rendering.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 35-year-old South Asian woman, sharp international features, dark hair in a bun, sophisticated business attire, crisp line art, detailed eyes, heavy screentone."
+      },
+      "gh:clothing": {
+        "gh:daily": "エスニックな要素を取り入れたモダンなカジュアルウェア。",
+        "gh:work": "洗練された国際標準のビジネスウェア。モノクロームトーン。"
       }
     },
     {
@@ -290,15 +290,15 @@
       "gh:organization": "org:fbi",
       "schema:age": 33,
       "gh:appearance": {
-        "gh:face": "33歳。清潔感のある白人男性（アメリカ人）。最新技術に精通したハイテク捜査官らしい、知的で若々しい顔立ち。自信に満ちた明るい瞳。",
-        "gh:hair": "短く完璧に整えられたブロンドの髪。",
-        "gh:build": "トレーニングで鍛えられたアスリートのような体格。",
-      "gh:style": "Photorealistic, sharp American agent, high-tech investigator vibe, bright clinical lighting.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 35mm lens, f/1.8, masterpiece, 33-year-old American male, sharp blond hair, athletic build, confident eyes, wearing an FBI-style suit, high-tech investigator vibe, bright clinical lighting."
-    },
-    "gh:clothing": {
-        "gh:daily": "カジュアルなスポーツウェアやデニム。活動的なスタイル。",
-        "gh:work": "FBIの標準的なスーツスタイル。機能的なホルスターやデバイスが見えないように工夫された、無駄のないシルエット。"
+        "gh:face": "33歳。清潔感のあるアメリカ人。最新技術に精通した知的な顔立ち。自信に満ちた瞳。",
+        "gh:hair": "短く完璧に整えられたブロンドの髪（白抜き表現）。",
+        "gh:build": "アスリートのような体格。",
+        "gh:style": "Professional monochrome manga art, sharp American agent, high-tech investigator vibe, crisp outlines.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 33-year-old American male, sharp short hair represented by fine lines, athletic build, confident eyes, wearing a suit, detailed line art, halftone shading."
+      },
+      "gh:clothing": {
+        "gh:daily": "カジュアルなスポーツウェアやデニム。",
+        "gh:work": "FBIの標準的なスーツスタイル。モノクロームトーン。"
       }
     },
     {
@@ -308,15 +308,15 @@
       "gh:organization": "org:europol-ec3",
       "schema:age": 39,
       "gh:appearance": {
-        "gh:face": "39歳。意志の強そうなドイツ系の女性。欧州全域のインフラを監視する、冷徹で徹底したプロフェッショナリズムを感じさせる顔立ち。",
-        "gh:hair": "短めのプラチナブロンド。実用性を重視したシャープなカット。",
-        "gh:build": "長身でしっかりとした骨格。威厳のある立ち姿。",
-      "gh:style": "Photorealistic, direct European investigator, cold clinical aesthetic, high resolution.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 50mm lens, f/2.0, masterpiece, 39-year-old German woman, platinum blond short cut, tall and strong build, wearing a dark gray tailored jacket, cold clinical aesthetic, direct European investigator, high resolution."
-    },
-    "gh:clothing": {
-        "gh:daily": "ミニマルな欧州ブランドのカジュアルウェア。実用的で質の高いもの。",
-        "gh:work": "洗練されたダークグレーのテーラードジャケット。無駄を一切省いた、プロフェッショナルとしての誇りを感じさせる装い。"
+        "gh:face": "39歳。意志の強そうなドイツ系の女性。冷徹で徹底したプロフェッショナリズム。",
+        "gh:hair": "短めのプラチナブロンド（白抜き表現）。シャープなカット。",
+        "gh:build": "長身でしっかりとした骨格。",
+        "gh:style": "Professional monochrome manga art, direct European investigator, cold clinical aesthetic, high resolution line work.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 39-year-old German woman, short cut hair shown with fine lines, strong build, wearing a tailored jacket, sharp outlines, detailed features, dense screentone."
+      },
+      "gh:clothing": {
+        "gh:daily": "ミニマルな欧州ブランドのカジュアルウェア。",
+        "gh:work": "洗練されたダークグレーのテーラードジャケット。モノクロームトーン。"
       }
     },
     {
@@ -326,15 +326,15 @@
       "gh:organization": "org:nca-nccu",
       "schema:age": 41,
       "gh:appearance": {
-        "gh:face": "41歳。英国紳士の風格を持つ男性。マネーロンダリングの複雑な迷路を読み解く、冷静で忍耐強い瞳。常に皮肉な微笑を絶やさない。",
+        "gh:face": "41歳。英国紳士の風格。冷静で忍耐強い瞳。皮肉な微笑。",
         "gh:hair": "落ち着いたブラウンの髪。クラシックなスタイル。",
         "gh:build": "細身で上品な立ち振る舞い。",
-      "gh:style": "Photorealistic, British officer, banking-literate look, soft classic lighting.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 50mm lens, f/2.2, masterpiece, 41-year-old British man, classic brown hair, slender and elegant, wearing a perfect British suit, ironic smile, banking-literate look, soft classic lighting."
-    },
-    "gh:clothing": {
-        "gh:daily": "伝統的な英国スタイルのツイードジャケットとチノパン。",
-        "gh:work": "サヴィル・ロウの仕立てを思わせる、完璧なブリティッシュスーツ。市場と犯罪の境界線を歩く者のための装い。"
+        "gh:style": "Professional monochrome manga art, British officer, banking-literate look, detailed line shading.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 41-year-old British man, classic hair style, slender and elegant, wearing a British suit, ironic smile, intricate ink drawing, dense halftone texture."
+      },
+      "gh:clothing": {
+        "gh:daily": "伝統的なツイードジャケットとチノパン。",
+        "gh:work": "サヴィル・ロウの仕立てを思わせるスーツ。モノクロームトーン。"
       }
     },
     {
@@ -345,15 +345,15 @@
       "gh:organization": "gh:actorTeam/seigi-hero",
       "schema:age": 30,
       "gh:appearance": {
-        "gh:face": "30歳。自称『正義の味方』。一見カリスマ性があるように見えるが、どこか薄っぺらで『痛い』印象を与える日本人男性。自信過剰な瞳の奥に、臆病さと承認欲求が透けて見える。海外拠点の強い日差しで焼けた肌。",
-        "gh:hair": "流行を取り入れた、少し派手なスタイリングの黒髪。自己主張が激しい。",
-        "gh:build": "平均的な体格だが、高級ブランドを身にまとうことで自分を大きく見せようとしている。",
-      "gh:style": "Photorealistic, 'charismatic' but shallow, painful villain aesthetic, tropical high-rise lighting, high fashion but tacky.",
-      "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 35mm lens, f/1.8, masterpiece, 30-year-old Japanese male, suntanned skin, stylish but slightly tacky black hair, arrogant but insecure eyes, wearing a flashy tactical jacket with many patches over a designer t-shirt, painful villain aesthetic, tropical high-rise lighting, high fashion but tacky vibe."
-    },
+        "gh:face": "30歳。自称『正義の味方』。薄っぺらで『痛い』印象の日本人男性。自信過剰な瞳の奥に臆病さが透ける。",
+        "gh:hair": "流行を取り入れた派手なスタイリングの黒髪。",
+        "gh:build": "平均的な体格だが、ブランド物で自分を大きく見せようとしている。",
+        "gh:style": "Professional monochrome manga art, 'charismatic' but shallow, painful villain aesthetic, high-contrast tacky fashion.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 30-year-old Japanese male, stylish but tacky hair, arrogant but insecure eyes, wearing a flashy tactical jacket with many patches, detailed line art, heavy screentone, intense shadows."
+      },
       "gh:clothing": {
-        "gh:daily": "派手なブランドロゴの入ったTシャツと短パン。海外のリゾート地を思わせる軽薄なスタイル。",
-        "gh:work": "動画配信などで使用する、シンボリックな『正義』を強調したタクティカル・ジャケット。派手なワッペンや装飾が多く、実用性よりも見栄えを重視。"
+        "gh:daily": "派手なブランドロゴの入ったTシャツと短パン。",
+        "gh:work": "シンボリックなタクティカル・ジャケット。派手なワッペン、モノクロームトーン。"
       }
     },
     {
@@ -363,17 +363,16 @@
       "gh:organization": "org:jinpu-mobility",
       "schema:age": 54,
       "gh:personality": "Short-tempered, Impatient, Process-obsessed",
-      "gh:context": "丁場運行（ジンプ・モビリティ）の運行管理部長。始業時刻と出庫の遅れを極端に嫌う。システムトラブル時、原因究明を待たずに独断で再起動を命じ、証拠を破壊しつつGhostを増幅させてしまった。",
       "gh:appearance": {
-        "gh:face": "54歳。常に苛立っているような険しい表情。目の下のクマが深く、慢性的な寝不足を感じさせる。常に腕時計を気にする仕草。",
-        "gh:hair": "短く切り揃えられた黒髪。少し薄くなり始めている。几帳面だが少し乱れている。",
-        "gh:build": "平均的な体格。常に早足で歩くため、落ち着きがない。",
-        "gh:style": "Photorealistic, high-stress manager, restless energy, dramatic logistics office lighting.",
-        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 35mm lens, f/1.8, masterpiece, 54-year-old Japanese male manager, stressed and angry expression, looking at wristwatch, short thinning black hair, wearing a white shirt and gray trousers, logistics center background, natural skin tone."
+        "gh:face": "54歳。苛立ちを隠さない険しい表情。目の下のクマ（トーンで強調）。",
+        "gh:hair": "短く切り揃えられた黒髪。少し薄くなり始めている。",
+        "gh:build": "平均的な体格。落ち着きのない動作。",
+        "gh:style": "Professional monochrome manga art, high-stress manager, restless energy, detailed ink lines.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 54-year-old Japanese male manager, stressed angry expression, looking at wristwatch, short thinning black hair, intricate line art, dense halftone dot shading."
       },
       "gh:clothing": {
         "gh:daily": "機能的なポロシャツとチノパン。",
-        "gh:work": "社名の入った青い作業用シャツ。袖を捲り上げ、胸ポケットには数本のペンと無線機。実務優先のスタイル。"
+        "gh:work": "作業用シャツ。無線機、モノクロームトーン。"
       }
     },
     {
@@ -383,17 +382,16 @@
       "gh:organization": "org:jinpu-mobility",
       "schema:age": 23,
       "gh:personality": "Naive, Obedient, Tech-native",
-      "gh:context": "丁場運行の新米ドライバー。SNSでの『効率的な小遣い稼ぎ』の誘い（闇バイト）に乗り、社内端末に不審なデバイスを接続してしまった。悪意はなかったが、エコシステムに利用された若者。",
       "gh:appearance": {
-        "gh:face": "23歳。どこにでもいる善良そうな若者の顔立ち。罪悪感と恐怖で青ざめた表情。瞳にはデジタルの光が反射している。",
-        "gh:hair": "流行のスタイルだが、仕事で帽子を被るため少し潰れている。",
+        "gh:face": "23歳。善良そうな若者の顔立ち。罪悪感と恐怖で青ざめた表情（トーン抜き）。",
+        "gh:hair": "流行のスタイル。帽子の跡。",
         "gh:build": "細身で現代的な若者の体格。",
-        "gh:style": "Photorealistic, anxious youth, digital native look, cool night-time lighting.",
-        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 50mm lens, f/1.4, masterpiece, 23-year-old Japanese male driver, pale and nervous expression, looking at smartphone screen, wearing a driver uniform cap, modern youthful features, natural skin tone."
+        "gh:style": "Professional monochrome manga art, anxious youth, digital native look, high contrast night lighting.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 23-year-old Japanese male driver, pale nervous expression, looking at smartphone, wearing a driver uniform cap, detailed facial lines, heavy screentone."
       },
       "gh:clothing": {
-        "gh:daily": "オーバーサイズのストリートウェア。ヘッドフォンを常に首にかけている。",
-        "gh:work": "清潔な配送用制服（ポロシャツ、カーゴパンツ）。社名の入った帽子。若手らしいキビキビした印象を装っているが、内面は揺れている。"
+        "gh:daily": "オーバーサイズのストリートウェア。",
+        "gh:work": "配送用制服（ポロシャツ、カーゴパンツ）。モノクロームトーン。"
       }
     },
     {
@@ -403,17 +401,16 @@
       "gh:organization": "org:byakudan-financial",
       "schema:age": 45,
       "gh:personality": "Arrogant, Perfectionist, Rigid",
-      "gh:context": "白檀フィナンシャルのコンプライアンス室長。ルールこそが正義であると信じて疑わない。現場の例外的な状況を『悪』として断罪し、ルールの硬直化を招いたことで、皮肉にも『正しい手続き』による不正を許してしまった。",
       "gh:appearance": {
-        "gh:face": "45歳。冷徹で完璧な美貌。他人を寄せ付けない威厳と、規程違反を許さない鋭い視線。一切の妥協を許さない鉄の女。",
-        "gh:hair": "完璧にセットされた夜会巻きの黒髪。一筋の乱れもない。",
+        "gh:face": "45歳。冷徹で完璧な美貌。威厳と鋭い視線。一切の妥協を許さない鉄の女。",
+        "gh:hair": "完璧にセットされた夜会巻きの黒髪。",
         "gh:build": "長身で姿勢が非常に良く、洗練されたシルエット。",
-        "gh:style": "Photorealistic, cold elite beauty, rigid presence, sharp professional lighting.",
-        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 85mm lens, f/1.8, masterpiece, 45-year-old elegant Japanese woman, cold and arrogant expression, sharp eyes, sleek updo black hair, wearing a luxury black suit, high fashion photography, dramatic lighting."
+        "gh:style": "Professional monochrome manga art, cold elite beauty, rigid presence, sharp ink strokes, detailed jewelry.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 45-year-old elegant Japanese woman, cold arrogant expression, sharp eyes, sleek updo black hair, wearing a luxury suit, intricate line art, dense halftone dot shading."
       },
       "gh:clothing": {
-        "gh:daily": "高級ブランドのシルクワンピース。宝石は最小限だが極めて上質なもの。",
-        "gh:work": "オーダーメイドの漆黒のパンツスーツ。機能美と権威を象徴する装い。足元はルブタンのような鋭いヒール。"
+        "gh:daily": "高級ブランドのシルクワンピース。",
+        "gh:work": "オーダーメイドの漆黒のパンツスーツ。モノクロームトーン。"
       }
     },
     {
@@ -423,17 +420,16 @@
       "gh:organization": "org:byakudan-financial",
       "schema:age": 34,
       "gh:personality": "Rational, Diligent, Timid",
-      "gh:context": "白檀フィナンシャルのクラウドインフラ担当。緊急対応のためにやむを得ず作った『設定の例外』を九条院に激しく糾弾され、精神的に追い詰められる。その『例外』こそが、Ghostの侵入経路となった。",
       "gh:appearance": {
-        "gh:face": "34歳。神経質そうな整った顔立ち。九条院の圧圧に耐えかね、常に怯えたような表情。眼鏡の奥の目は疲弊している。",
-        "gh:hair": "几帳面に整えられているが、心労で少しパサついた質感の黒髪。",
-        "gh:build": "細身で少し猫背気味。防御的な姿勢。",
-        "gh:style": "Photorealistic, nervous IT professional, trapped expression, clinical server room lighting.",
-        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, shot on 50mm lens, f/2.0, masterpiece, 34-year-old Japanese male IT engineer, thin and nervous face, looking down, wearing a simple blue shirt, server rack background, natural skin tone."
+        "gh:face": "34歳。神経質そうな整った顔立ち。怯えたような表情。眼鏡の奥の疲弊した目。",
+        "gh:hair": "几帳面に整えられているが、パサついた質感の黒髪。",
+        "gh:build": "細身で少し猫背気味。",
+        "gh:style": "Professional monochrome manga art, nervous IT professional, trapped expression, detailed server room background.",
+        "gh:generationPrompt": "Professional monochrome manga art, high-contrast black and white, 34-year-old Japanese male IT engineer, thin nervous face, wearing a shirt, detailed line art, heavy screentone, clinical office lighting."
       },
       "gh:clothing": {
-        "gh:daily": "無地のネルシャツにジーンズ。目立たないことを良しとする私服。",
-        "gh:work": "アイロンの効いた白いワイシャツに紺のネクタイ。会社の規程通りの地味なビジネスカジュアル。胸には常に二重のIDカード。"
+        "gh:daily": "無地のネルシャツにジーンズ。",
+        "gh:work": "白いワイシャツに紺のネクタイ。地味なビジネスカジュアル、モノクロームトーン。"
       }
     }
   ]

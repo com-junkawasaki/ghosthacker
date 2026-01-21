@@ -9,20 +9,24 @@
   "@type": ["gh:Project", "prov:Entity"],
   "dct:title": "Manga Ghost Hacker: Case Study Series",
   "dct:description": "A manga series designed to teach cybersecurity through case studies, using real-world terminology and frameworks (CISA, CISSP, CMMI).",
-  "gh:status": "Planning / Manga Panel (Cut) Storyboard Initialized",
+  "gh:status": "Planning / Monochrome Manga Storyboard Updated",
   "gh:currentSession": {
     "@type": "prov:Activity",
     "prov:startedAtTime": "2026-01-22T00:00:00Z",
     "gh:goals": [
       "Define 12-episode case study structure",
       "Update character profiles with real-world security credentials",
-      "Generate detailed panel-by-panel (cut) storyboard prompts for Manga production"
+      "Generate detailed panel-by-panel (cut) storyboard prompts for Manga production",
+      "Align prompts with Professional Monochrome Manga style and Runway constraints"
     ],
     "gh:results": [
       "Ren Numano: Sloth (Efficiency), MIT Dropout, CISSP Associate, CEH",
       "Kaname: Arrogance (Perfection), Stanford Grad, CISA, PMP, Registered InfoSec Specialist",
       "Takeru: Short-tempered (Instant Action), Self-taught, OSCP, GXPN",
-      "manga_panel_storyboard.jsonld created with cut-level prompts for Episode 1 based on Manga principles (Impression vs Rhythm)"
+      "manga_panel_storyboard.jsonld updated with cut-level cinematic prompts (no dialogue, max 3 entities)",
+      "character_profiles.jsonld updated with Monochrome Manga aesthetic descriptions and prompts",
+      ".cursor/rules/runway_manga_generation.mdc created to codify Runway-specific Manga generation rules",
+      "251121/environments/ directory created with environment-specific base prompts (Ren's Office, Daimon Office, Tokyo 2026, AR Vision)"
     ]
   },
   "gh:artifacts": [
@@ -32,6 +36,13 @@
       "schema:name": "Season 1 Bible (JSON-LD)",
       "schema:encodingFormat": "application/ld+json",
       "schema:filePath": "251121/season1_bible.jsonld"
+    },
+    {
+      "@id": "gh:artifact/environments-prompts-251121",
+      "@type": "gh:Artifact",
+      "schema:name": "Environment Base Prompts",
+      "schema:description": "Detailed environment-only prompts for consistent scene setup.",
+      "schema:filePath": "251121/environments/"
     }
   ],
   "gh:milestones": [
@@ -46,7 +57,10 @@
     {
       "gh:name": "12-Episode Structure",
       "gh:status": "Completed"
+    },
+    {
+      "gh:name": "Manga Panel Storyboard (Monochrome Edition)",
+      "gh:status": "Completed"
     }
   ]
 }
-

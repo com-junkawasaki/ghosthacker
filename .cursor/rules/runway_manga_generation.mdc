@@ -1,0 +1,40 @@
+---
+description: Rules for generating Manga panels using Runway Gen-2/Gen-3, ensuring consistent monochrome style, cinematic angles, and entity constraints.
+globs: 251121/manga_panel_storyboard.jsonld, 251121/runway_storyboard_prompts.jsonld
+---
+
+# Runway Manga Generation Standards
+
+This rule defines how to construct prompts for Runway to generate video clips that match the "Professional Monochrome Manga" aesthetic.
+
+## 1. Core Aesthetic (The Style)
+- **Style Keywords**: `Professional monochrome manga art`, `high-contrast black and white`, `crisp line art`, `heavy screentone shading`, `halftone dot texture`, `modern seinen manga aesthetic`.
+- **Character Rendering**: 
+  - **Ren**: `voluminous raven black hair with sharp ink strokes`, `sharp half-lidded melancholic eyes`.
+  - **Nei**: `bright white hair represented by fine lines`, `large expressive eyes with dense screentone`.
+- **Lighting**: Use `Harsh fluorescent lighting`, `Dramatic shadows`, `Glow from monitors (rim lighting)`.
+
+## 2. Prompt Constraints (Runway Optimization)
+- **Maximum 3 Entities**: Each prompt must mention a maximum of 3 key entities (characters, specific props, or identifiable objects) because Runway's `@` reference system is limited to 3 images.
+- **NO Dialogue**: Do not include speech or thought text in the prompt. Focus entirely on visual action and atmosphere.
+- **Cinematic Instructions**: Every prompt must include a camera/shot type:
+  - `Extreme Close-up (ECU)`: Focus on eyes or hands.
+  - `Close-up (CU)`: Focus on face and emotion.
+  - `Medium Shot (MS)`: Character from waist up, showing action.
+  - `Wide Shot (WS)`: Showing environment and context.
+  - `Low Angle / High Angle`: To show power dynamics.
+  - `Tracking Shot / Pan`: For movement.
+
+## 3. Structure of a Panel Prompt
+```text
+[Shot Type/Camera Angle], [Core Style], [Up to 3 Entities + Action], [Lighting/Atmosphere], [Manga Texture Details]
+```
+
+### ❌ Anti-Patterns
+- `Ren says "Sloth is my virtue"` (Dialog is forbidden).
+- `Ren, Nei, Shouta, Matsuda, and Sato in the office` (Too many entities, limit to 3).
+- `Photorealistic, raw photo` (Use Monochrome Manga Art instead).
+
+## 4. Runway Reference Images
+- When using Runway, map characters to their portrait IDs in `@character_profiles.jsonld`.
+- Use the `gh:generationPrompt` from the profiles as the base for character consistency.
