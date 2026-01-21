@@ -68,16 +68,6 @@
 </script>
 
 <div class="topology-view" bind:clientWidth={containerWidth} bind:clientHeight={containerHeight}>
-  {#if !hideSidebar}
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <span>Nodes ({graphStore.nodes.size})</span>
-        <button onclick={() => graphStore.fetchTopology(projectId)}>🔄</button>
-      </div>
-      <NodeTree onNodeClick={handleNodeClick} />
-    </aside>
-  {/if}
-
   <main class="graph-main">
     <Canvas>
       {#if isAssemblerMode}
@@ -141,27 +131,8 @@
     display: flex;
     width: 100%;
     height: 100%;
-    background: #05050a;
+    background: var(--system-background);
     overflow: hidden;
-  }
-
-  .sidebar {
-    width: 240px;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    flex-direction: column;
-    z-index: 10;
-  }
-
-  .sidebar-header {
-    padding: 0.8rem;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #666;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   .graph-main {
@@ -207,34 +178,36 @@
   }
 
   .viewpoint-selector {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(28, 28, 30, 0.8);
+    backdrop-filter: blur(20px);
     padding: 4px;
-    border-radius: 8px;
+    border-radius: 10px;
     display: flex;
     gap: 2px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--tertiary-label);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   }
 
   .viewpoint-selector button {
     background: transparent;
     border: none;
-    color: #666;
-    padding: 4px 10px;
-    font-size: 0.7rem;
+    color: var(--secondary-label);
+    padding: 4px 12px;
+    font-size: 0.75rem;
     font-weight: 600;
-    border-radius: 4px;
+    border-radius: 7px;
     cursor: pointer;
     transition: all 0.2s;
   }
 
   .viewpoint-selector button:hover {
-    color: #fff;
+    color: var(--system-label);
     background: rgba(255, 255, 255, 0.05);
   }
 
   .viewpoint-selector button.active {
-    background: #0071e3;
-    color: #fff;
+    background: #48484a;
+    color: var(--system-label);
   }
 
   .loader {

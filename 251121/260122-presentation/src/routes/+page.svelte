@@ -1,7 +1,5 @@
 <script lang="ts">
-  import { Canvas, T } from '@threlte/core';
-  import { OrbitControls, HTML, Grid } from '@threlte/extras';
-  import * as THREE from 'three';
+  import { onMount } from 'svelte';
   import * as d3 from 'd3-force';
   import { Shield, Terminal, Cpu, Network, Eye, Lock, Zap, Ghost, Pin, PinOff } from 'lucide-svelte';
 
@@ -32,11 +30,6 @@
     { id: 's4', title: 'Ocular Detail', pos: { x: -500, y: 300 }, desc: 'Extreme iris patterns representing soul sync.' }
   ];
 
-  const props = [
-    { id: 'p1', name: 'Digital Axe', type: 'Tool', desc: 'Ren\'s weapon to "delete" malicious ghosts.', pos: { x: -200, y: 100 } },
-    { id: 'p2', name: 'SIP Device', type: 'Hardware', desc: 'Secure Information Physicality device.', pos: { x: 200, y: 100 } }
-  ];
-
   let simulationNodes = $state<any[]>(characters.map(c => ({ 
     ...c, 
     x: (Math.random() - 0.5) * 800, 
@@ -44,13 +37,41 @@
     fx: null,
     fy: null
   })));
+  let simulationLinks = $state<any[]>(links.map(l => ({ ...l })));
+  let simulation: any;
 
-  // ... (links and scenes remain the same)
+  onMount(() => {
+    simulation = d3.forceSimulation(simulationNodes)
+      .force('link', d3.forceLink(simulationLinks).id((d: any) => d.id).distance(250))
+      .force('charge', d3.forceManyBody().strength(-3000))
+      .force('center', d3.forceCenter(0, 0))
+      .force('collision', d3.forceCollide().radius(150))
+      .on('tick', () => {
+        simulationNodes = [...simulationNodes];
+        simulationLinks = [...simulationLinks];
+      });
+
+    const updateSize = () => {
+      containerWidth = window.innerWidth;
+      containerHeight = window.innerHeight;
+    };
+    window.addEventListener('resize', updateSize);
+    updateSize();
+
+    return () => {
+      if (simulation) simulation.stop();
+      window.removeEventListener('resize', updateSize);
+    };
+  });
+
+  let containerWidth = $state(1414);
+  let containerHeight = $state(1000);
+  let scale = $derived(Math.min(containerWidth / 1414, containerHeight / 1000) * 0.95);
 
   let draggingNode = $state<any>(null);
 
   function handleDragStart(node: any, e: PointerEvent) {
-    if (e.button !== 0) return; // Left click only
+    if (e.button !== 0) return;
     draggingNode = node;
     node.fx = node.x;
     node.fy = node.y;
@@ -60,15 +81,8 @@
 
   function handleDragMove(node: any, e: PointerEvent) {
     if (draggingNode !== node) return;
-    
-    // We need to convert screen delta to world delta
-    // For simplicity in this fixed-scale view, we'll approximate
-    const dx = e.movementX / scale;
-    const dy = -e.movementY / scale; // Three.js Y is up, DOM Y is down
-    
-    node.fx += dx;
-    node.fy += dy;
-    
+    node.fx += e.movementX / scale;
+    node.fy += e.movementY / scale;
     if (simulation) simulation.alphaTarget(0.3).restart();
   }
 
@@ -77,9 +91,6 @@
     draggingNode = null;
     // @ts-ignore
     e.target.releasePointerCapture(e.pointerId);
-    
-    // If we want to "fix" it permanently as requested:
-    // node.fx and node.fy remain set.
     if (simulation) simulation.alphaTarget(0);
   }
 
@@ -93,175 +104,77 @@
     }
     if (simulation) simulation.alpha(0.3).restart();
   }
-
-  $effect(() => {
-    if (!simulation) {
-      simulation = d3.forceSimulation(simulationNodes)
-        .force('link', d3.forceLink(simulationLinks).id((d: any) => d.id).distance(250))
-        .force('charge', d3.forceManyBody().strength(-2000))
-        .force('center', d3.forceCenter(0, 0))
-        .force('collision', d3.forceCollide().radius(150))
-        .on('tick', () => {
-          simulationNodes = [...simulationNodes];
-          simulationLinks = [...simulationLinks];
-        });
-    }
-  });
-
-  let containerWidth = $state(0);
-  let containerHeight = $state(0);
-  let showGrid = $state(true);
-  let scale = $derived(Math.min(containerWidth / 1414, containerHeight / 1000) * 0.95);
-
-  function resetPositions() {
-    simulationNodes.forEach(n => {
-      n.fx = null;
-      n.fy = null;
-    });
-    if (simulation) simulation.alpha(1).restart();
-  }
 </script>
 
-<div class="wrapper" bind:clientWidth={containerWidth} bind:clientHeight={containerHeight}>
-  <div class="controls">
-    <button onclick={() => showGrid = !showGrid}>{showGrid ? 'Hide' : 'Show'} Grid</button>
-    <button onclick={resetPositions}>Reset All</button>
-  </div>
+<div class="wrapper">
   <div class="a3-page" style="transform: scale({scale})">
-    <div class="canvas-container">
-      <Canvas>
-        <T.PerspectiveCamera makeDefault position={[0, 0, 1000]} fov={40}>
-          <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
-        </T.PerspectiveCamera>
-
-        <T.AmbientLight intensity={0.5} />
-        <T.PointLight position={[0, 500, 500]} intensity={1.5} color="#0071e3" />
-
-        {#if showGrid}
-          <Grid
-            position.z={-10}
-            cellColor="#111122"
-            sectionColor="#0071e3"
-            sectionSize={100}
-            cellSize={20}
-            infiniteGrid
-            rotation.x={Math.PI / 2}
-            opacity={0.2}
+    <div class="bg-grid"></div>
+    
+    <svg class="links-layer">
+      {#each simulationLinks as link}
+        {#if link.source.x !== undefined && link.target.x !== undefined}
+          <line 
+            x1={707 + link.source.x} 
+            y1={500 + link.source.y} 
+            x2={707 + link.target.x} 
+            y2={500 + link.target.y} 
+            stroke="#0071e3" 
+            stroke-width="2" 
+            stroke-opacity="0.3"
           />
         {/if}
-
-        <!-- Edges -->
-        {#each simulationLinks as link}
-          {#if link.source.x !== undefined && link.target.x !== undefined}
-            <T.Line>
-              <T.BufferGeometry
-                oncreate={(ref) => {
-                  const points = [
-                    new THREE.Vector3(link.source.x, link.source.y, 0),
-                    new THREE.Vector3(link.target.x, link.target.y, 0)
-                  ];
-                  ref.setFromPoints(points);
-                }}
-              />
-              <T.LineBasicMaterial color="#0071e3" transparent opacity={0.3} linewidth={2} />
-            </T.Line>
-          {/if}
-        {/each}
-
-        <!-- Nodes (Characters) -->
-        {#each simulationNodes as node (node.id)}
-          <HTML position={[node.x, node.y, 10]} center>
-            <div 
-              class="char-card" 
-              class:fixed={node.fx !== null}
-              style="--accent: {node.color}"
-              onpointerdown={(e) => handleDragStart(node, e)}
-              onpointermove={(e) => handleDragMove(node, e)}
-              onpointerup={(e) => handleDragEnd(node, e)}
-            >
-              <button class="pin-btn" onclick={(e) => { e.stopPropagation(); toggleFix(node); }}>
-                {#if node.fx !== null}
-                  <Pin size={12} fill="currentColor" />
-                {:else}
-                  <PinOff size={12} />
-                {/if}
-              </button>
-              
-              {#if node.image}
-                <div class="image-box">
-                  <img src={node.image} alt={node.name} />
-                </div>
-              {/if}
-              
-              <div class="info">
-                <div class="name">{node.name}</div>
-                <div class="role">{node.role}</div>
-                <div class="creds">
-                  {#each node.credentials as cred}
-                    <span class="cred-tag">{cred}</span>
-                  {/each}
-                </div>
-                <div class="desc">{node.desc}</div>
-              </div>
-            </div>
-          </HTML>
-        {/each}
-
-        <!-- Scenes -->
-        {#each scenes as scene}
-          <HTML position={[scene.pos.x, scene.pos.y, 0]} center>
-            <div class="scene-node">
-              <div class="scene-title">{scene.title}</div>
-              <div class="scene-desc">{scene.desc}</div>
-            </div>
-          </HTML>
-        {/each}
-
-        <!-- Props -->
-        {#each props as prop}
-          <HTML position={[prop.pos.x, prop.pos.y, 0]} center>
-            <div class="prop-node">
-              <div class="prop-type">{prop.type}</div>
-              <div class="prop-name">{prop.name}</div>
-              <div class="prop-desc">{prop.desc}</div>
-            </div>
-          </HTML>
-        {/each}
-      </Canvas>
-    </div>
+      {/each}
+    </svg>
 
     <div class="overlay">
       <div class="header">
         <div class="title-main">GHOST HACKER</div>
         <div class="subtitle">サイバーセキュリティ・ケーススタディ漫画</div>
-        <div class="metadata">
-          <span><Terminal size={14} /> ARIA Cinematic Aesthetic</span>
-          <span><Shield size={14} /> Real-world InfoSec Frameworks</span>
-          <span><Cpu size={14} /> Tokyo 2026 Setting</span>
+        <div class="meta-row">
+          <span><Terminal size={14} /> ARIA Aesthetic</span>
+          <span><Shield size={14} /> CISSP / CISA</span>
+          <span><Cpu size={14} /> Tokyo 2026</span>
         </div>
+      </div>
+
+      <div class="nodes-container">
+        {#each simulationNodes as node (node.id)}
+          <div 
+            class="node-card" 
+            class:fixed={node.fx !== null}
+            style="left: {707 + node.x}px; top: {500 + node.y}px; --accent: {node.color}"
+            onpointerdown={(e) => handleDragStart(node, e)}
+            onpointermove={(e) => handleDragMove(node, e)}
+            onpointerup={(e) => handleDragEnd(node, e)}
+          >
+            <button class="pin-btn" onclick={(e) => { e.stopPropagation(); toggleFix(node); }}>
+              {#if node.fx !== null}<Pin size={12} fill="currentColor" />{:else}<PinOff size={12} />{/if}
+            </button>
+            {#if node.image}<div class="image-box"><img src={node.image} alt={node.name} /></div>{/if}
+            <div class="info">
+              <div class="name">{node.name}</div>
+              <div class="role">{node.role}</div>
+              <div class="creds">
+                {#each node.credentials as cred}
+                  <span class="cred-tag">{cred}</span>
+                {/each}
+              </div>
+              <div class="desc">{node.desc}</div>
+            </div>
+          </div>
+        {/each}
+
+        {#each scenes as scene}
+          <div class="scene-node" style="left: {707 + scene.pos.x}px; top: {500 + scene.pos.y}px;">
+            <div class="scene-title">{scene.title}</div>
+            <div class="scene-desc">{scene.desc}</div>
+          </div>
+        {/each}
       </div>
 
       <div class="concept-panel">
         <div class="section-title"><Zap size={18} /> CONCEPT</div>
-        <p>
-          「情報は物理量である」— ランダウアーの原理に基づき、
-          デジタル空間の歪みが「Ghost（質量を持った悪意）」として実体化する近未来。
-          CISSPやCISA等の実在する資格・技術を駆使し、
-          少年漫画の熱量でサイバー犯罪を「デリート」する。
-        </p>
-      </div>
-
-      <div class="tech-stack">
-        <div class="section-title"><Network size={18} /> SYSTEM ARCHITECTURE</div>
-        <div class="tech-grid">
-          <div class="tech-item"><Lock size={12} /> CISA / CMMI</div>
-          <div class="tech-item"><Eye size={12} /> ARIA Ocular Detail</div>
-          <div class="tech-item"><Ghost size={12} /> SIP Sequence</div>
-        </div>
-      </div>
-
-      <div class="footer">
-        PROJECT: MANGA-GHOST-HACKER-251121 | PRESENTATION BY GFTD
+        <p>「情報は物理量である」— デジタル空間の歪みが実体化する「Ghost」をデリートせよ。</p>
       </div>
     </div>
   </div>
@@ -273,292 +186,100 @@
     background: #000;
     color: #fff;
     font-family: 'Inter', sans-serif;
+    overflow: hidden;
   }
-
   .wrapper {
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    background: radial-gradient(circle at center, #111 0%, #000 100%);
-    position: relative;
+    background: #000;
   }
-
-  .controls {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 100;
-    display: flex;
-    gap: 10px;
-  }
-
-  .controls button {
-    background: rgba(0, 113, 227, 0.2);
-    border: 1px solid #0071e3;
-    color: #fff;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
-    backdrop-filter: blur(10px);
-  }
-
-  .controls button:hover {
-    background: #0071e3;
-  }
-
   .a3-page {
     width: 1414px;
     height: 1000px;
     background: #05050a;
     position: relative;
-    box-shadow: 0 0 100px rgba(0, 113, 227, 0.2);
     border: 1px solid #1a1a2e;
-    transform-origin: center center;
+    overflow: hidden;
   }
-
-  .canvas-container {
+  .bg-grid {
     position: absolute;
     inset: 0;
-    z-index: 1;
+    background-image: 
+      linear-gradient(rgba(0, 113, 227, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 113, 227, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
   }
-
+  .links-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
   .overlay {
     position: absolute;
     inset: 40px;
     pointer-events: none;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
   }
-
-  .header {
-    max-width: 600px;
-  }
-
+  .header { pointer-events: auto; }
   .title-main {
     font-size: 84px;
     font-weight: 900;
-    letter-spacing: -2px;
     background: linear-gradient(135deg, #fff 0%, #0071e3 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 1;
-    margin-bottom: 10px;
   }
-
-  .subtitle {
-    font-size: 24px;
-    color: #0071e3;
-    font-weight: 600;
-    margin-bottom: 20px;
-  }
-
-  .metadata {
-    display: flex;
-    gap: 20px;
-    color: #888;
-    font-size: 14px;
-  }
-
-  .metadata span {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .concept-panel {
+  .subtitle { font-size: 24px; color: #0071e3; font-weight: 600; margin-bottom: 10px; }
+  .meta-row { display: flex; gap: 20px; color: #666; font-size: 14px; }
+  .meta-row span { display: flex; align-items: center; gap: 6px; }
+  
+  .nodes-container { position: absolute; inset: 0; }
+  .node-card {
     position: absolute;
-    bottom: 100px;
-    left: 0;
-    width: 400px;
-    background: rgba(0, 113, 227, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 113, 227, 0.2);
-    padding: 24px;
-    border-radius: 4px;
-    pointer-events: auto;
-  }
-
-  .tech-stack {
-    position: absolute;
-    bottom: 100px;
-    right: 0;
-    width: 300px;
-    padding: 24px;
-    background: rgba(0, 0, 0, 0.5);
-    border-right: 4px solid #0071e3;
-  }
-
-  .section-title {
-    color: #0071e3;
-    font-weight: 800;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
-  }
-
-  .tech-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .tech-item {
-    font-size: 12px;
-    color: #aaa;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .footer {
-    font-size: 12px;
-    color: #444;
-    letter-spacing: 2px;
-    text-align: center;
-  }
-
-  /* Character Card Styles */
-  .char-card {
     width: 200px;
     background: rgba(10, 10, 20, 0.9);
     border-left: 3px solid var(--accent);
     padding: 12px;
+    transform: translate(-50%, -50%);
     pointer-events: auto;
     cursor: grab;
-    transition: transform 0.2s, background 0.2s;
-    position: relative;
-    user-select: none;
-    touch-action: none;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   }
+  .node-card.fixed { border-left-width: 6px; background: rgba(20, 20, 40, 0.95); }
+  .pin-btn { position: absolute; top: 5px; right: 5px; background: none; border: none; color: #444; cursor: pointer; }
+  .node-card.fixed .pin-btn { color: #0071e3; }
+  .image-box { width: 100%; height: 180px; background: #111; margin-bottom: 10px; overflow: hidden; }
+  .image-box img { width: 100%; height: 100%; object-fit: cover; }
+  .name { font-weight: 800; font-size: 16px; }
+  .role { font-size: 12px; color: var(--accent); margin-bottom: 6px; }
+  .creds { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+  .cred-tag { font-size: 9px; background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 2px; color: #aaa; }
+  .desc { font-size: 10px; color: #888; line-height: 1.4; }
 
-  .char-card.fixed {
-    border-left-style: double;
-    border-left-width: 6px;
-    background: rgba(20, 20, 40, 0.95);
-  }
-
-  .pin-btn {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: none;
-    border: none;
-    color: #444;
-    cursor: pointer;
-    padding: 4px;
-    border-radius: 50%;
-    z-index: 10;
-  }
-
-  .pin-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-  }
-
-  .char-card.fixed .pin-btn {
-    color: #0071e3;
-  }
-
-  .image-box {
-    width: 100%;
-    height: 200px;
-    background: #111;
-    margin-bottom: 10px;
-    overflow: hidden;
-  }
-
-  .image-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .info .name {
-    font-weight: 800;
-    font-size: 16px;
-    margin-bottom: 2px;
-  }
-
-  .info .role {
-    font-size: 12px;
-    color: var(--accent);
-    margin-bottom: 8px;
-  }
-
-  .creds {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin-bottom: 8px;
-  }
-
-  .cred-tag {
-    font-size: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 2px 6px;
-    border-radius: 2px;
-  }
-
-  .desc {
-    font-size: 11px;
-    color: #999;
-    line-height: 1.4;
-  }
-
-  /* Scene Styles */
   .scene-node {
+    position: absolute;
     background: rgba(0, 0, 0, 0.8);
     border: 1px dashed #333;
-    padding: 10px 15px;
-    width: 250px;
+    padding: 15px;
+    width: 220px;
+    transform: translate(-50%, -50%);
     pointer-events: auto;
   }
+  .scene-title { font-size: 14px; font-weight: 700; color: #aaa; margin-bottom: 4px; }
+  .scene-desc { font-size: 11px; color: #555; }
 
-  .scene-title {
-    font-size: 14px;
-    font-weight: 700;
-    color: #888;
-    margin-bottom: 4px;
-  }
-
-  .scene-desc {
-    font-size: 12px;
-    color: #555;
-  }
-
-  .prop-node {
-    background: rgba(0, 113, 227, 0.1);
-    border: 1px solid rgba(0, 113, 227, 0.3);
-    padding: 8px 12px;
-    border-radius: 20px;
+  .concept-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 400px;
+    background: rgba(0, 113, 227, 0.05);
+    padding: 24px;
+    border: 1px solid rgba(0, 113, 227, 0.2);
     pointer-events: auto;
-    backdrop-filter: blur(5px);
   }
-
-  .prop-type {
-    font-size: 9px;
-    text-transform: uppercase;
-    color: #0071e3;
-    letter-spacing: 1px;
-    margin-bottom: 2px;
-  }
-
-  .prop-name {
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 2px;
-  }
-
-  .prop-desc {
-    font-size: 10px;
-    color: #888;
-  }
+  .section-title { color: #0071e3; font-weight: 800; font-size: 18px; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
 </style>

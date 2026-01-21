@@ -53,34 +53,34 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    background: #1a1a1a;
-    color: #eee;
+    background: var(--system-background);
+    color: var(--system-label);
   }
 
   .manga-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background: #000;
-    border-bottom: 1px solid #333;
+    padding: 12px 20px;
+    background: rgba(0,0,0,0.5);
+    border-bottom: 1px solid var(--tertiary-label);
   }
 
   .manga-header h2 {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
   }
 
   .page-count {
     font-size: 0.8rem;
-    color: #888;
+    color: var(--secondary-label);
   }
 
   .save-btn {
-    background: #34c759;
+    background: var(--accent-green);
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 6px 14px;
     border-radius: 8px;
     font-size: 0.8rem;
     font-weight: 600;
@@ -89,21 +89,23 @@
   .manga-canvas {
     flex: 1;
     overflow-y: auto;
-    padding: 2rem;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
+    gap: 40px;
+    background: #000;
   }
 
   .manga-page {
     width: 100%;
-    max-width: 800px;
+    max-width: 600px;
+    aspect-ratio: 1 / 1.414;
     background: #fff;
     color: #000;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-    padding: 2rem;
-    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    padding: 40px;
+    border-radius: 2px;
   }
 
   .page-header {

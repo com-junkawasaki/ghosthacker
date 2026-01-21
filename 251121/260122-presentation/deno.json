@@ -2,7 +2,8 @@
   "tasks": {
     "dev": "deno run -A npm:vite dev",
     "build": "deno run -A npm:vite build",
-    "preview": "deno run -A npm:vite preview"
+    "preview": "deno run -A npm:vite preview",
+    "sync": "deno run -A npm:@sveltejs/kit sync"
   },
   "nodeModulesDir": "auto",
   "imports": {

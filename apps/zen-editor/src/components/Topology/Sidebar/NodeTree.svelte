@@ -71,19 +71,21 @@
   .node-tree {
     flex: 1;
     overflow-y: auto;
-    background: #000;
-    color: #ccc;
-    font-size: 0.75rem;
-    padding: 0.5rem 0;
+    background: transparent;
+    color: var(--secondary-label);
+    font-size: 0.8rem;
+    padding: 0;
   }
 
   .tree-item {
     display: flex;
     align-items: center;
-    height: 22px;
+    height: 28px;
     cursor: pointer;
     white-space: nowrap;
     user-select: none;
+    border-radius: 6px;
+    margin: 0 8px;
   }
 
   .tree-item:hover {
@@ -91,19 +93,21 @@
   }
 
   .tree-item.selected {
-    background: rgba(0, 113, 227, 0.2);
-    color: #fff;
+    background: rgba(0, 122, 255, 0.15);
+    color: var(--accent-blue);
+    font-weight: 500;
   }
 
   .toggle-icon {
-    font-size: 0.6rem;
-    width: 16px;
-    height: 16px;
+    font-size: 0.5rem;
+    width: 14px;
+    height: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.1s;
     opacity: 0.5;
+    margin-right: 4px;
   }
 
   .toggle-icon.expanded {

@@ -102,51 +102,54 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    background: #fff;
-    color: #1d1d1f;
+    background: var(--system-background);
+    color: var(--system-label);
   }
 
   .editor-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.8rem 1.5rem;
-    background: #f5f5f7;
-    border-bottom: 1px solid #d2d2d7;
+    padding: 12px 20px;
+    background: rgba(0,0,0,0.5);
+    border-bottom: 1px solid var(--tertiary-label);
   }
 
-  .file-info { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: #86868b; }
-  .path { font-family: monospace; }
+  .file-info { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--secondary-label); }
+  .path { font-family: "SF Mono", Menlo, monospace; }
 
-  .emotion-meter { display: flex; gap: 1rem; }
-  .header-right { display: flex; align-items: center; gap: 1.5rem; }
+  .emotion-meter { display: flex; gap: 12px; }
+  .header-right { display: flex; align-items: center; gap: 20px; }
   
   .save-btn {
-    background: #0071e3;
+    background: var(--accent-blue);
     color: white;
     border: none;
-    padding: 0.4rem 1rem;
-    border-radius: 6px;
-    font-size: 0.85rem;
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
   }
 
-  .save-btn:hover { background: #0077ed; }
+  .save-btn:hover { background: #0077ed; opacity: 0.9; }
   .save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-  .meter-item { display: flex; align-items: center; gap: 0.5rem; }
-  .meter-item .label { font-size: 0.7rem; font-weight: 600; color: #86868b; text-transform: uppercase; }
-  .bar-bg { width: 40px; height: 4px; background: #d2d2d7; border-radius: 2px; overflow: hidden; }
-  .bar { height: 100%; background: #0071e3; transition: width 0.3s; }
+  .meter-item { display: flex; align-items: center; gap: 6px; }
+  .meter-item .label { font-size: 0.6rem; font-weight: 700; color: var(--secondary-label); text-transform: uppercase; }
+  .bar-bg { width: 30px; height: 3px; background: var(--tertiary-label); border-radius: 2px; overflow: hidden; }
+  .bar { height: 100%; background: var(--accent-blue); transition: width 0.3s; }
 
   .prosemirror-wrapper {
     flex: 1;
     overflow-y: auto;
-    padding: 2rem 4rem;
-    font-size: 1.1rem;
-    line-height: 1.8;
+    padding: 40px 60px;
+    font-size: 1rem;
+    line-height: 1.6;
     outline: none;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
   }
 
   :global(.ProseMirror) {
