@@ -29,7 +29,9 @@
       "Every panel now contains gh:shotProperties and ARIA-style live-action Runway base prompt (no dialogue)",
       "character_profiles.jsonld restored and enhanced with detailed ocular (eye) descriptions for all 23 characters across Arcs A, B, C, and D",
       ".cursor/rules/runway_manga_generation.mdc updated with ARIA aesthetic and Ocular Detail rules",
-      "Added generator script scripts/generate_storyboard_full_aria.py to reproducibly rebuild the full storyboard"
+      "Added generator script scripts/generate_storyboard_full_aria.py to reproducibly rebuild the full storyboard",
+      "Created apps/zen-editor dataset from storyboard.jsonld with 562 scenes",
+      "Generated sample cut images (scene_1.png, scene_2.png, scene_3.png) using DALL-E 3 and updated zen-editor datastore"
     ]
   },
   "gh:artifacts": [

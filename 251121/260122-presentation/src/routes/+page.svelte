@@ -2,9 +2,8 @@
   import { Canvas, T } from '@threlte/core';
   import { OrbitControls, HTML, Grid } from '@threlte/extras';
   import * as THREE from 'three';
-  import { onMount } from 'svelte';
   import * as d3 from 'd3-force';
-  import { Shield, Terminal, Cpu, Network, Eye, Lock, Zap, Ghost } from 'lucide-svelte';
+  import { Shield, Terminal, Cpu, Network, Eye, Lock, Zap, Ghost, Pin, PinOff } from 'lucide-svelte';
 
   const characters = [
     { id: 'ren', name: '沼野 蓮 (Ren)', role: 'Ghost Hacker', age: 17, image: '/images/characters/ren.png', credentials: ['CISSP Associate', 'CEH'], color: '#0071e3', desc: 'Efficiency-obsessed genius. Hacks the "Ghost" behind info-distortions.' },
@@ -12,6 +11,8 @@
     { id: 'shouta', name: '大門 翔太 (Shouta)', role: 'Client', age: 26, image: '/images/characters/shouta.png', credentials: ['Daimon Construction', 'Successor'], color: '#ff3b30', desc: 'Struggling to modernize his father\'s company. First client in Ep.1.' },
     { id: 'takeru', name: '赤羽 猛 (Takeru)', role: 'Rival Hacker', age: 19, image: '/images/characters/takeru.png', credentials: ['OSCP', 'GXPN'], color: '#ff9500', desc: 'Aggressive self-taught hacker. Prefers destructive exploits.' },
     { id: 'kaname', name: '水城 要 (Kaname)', role: 'Rival Hacker', age: 18, image: '/images/characters/kaname.png', credentials: ['CISA', 'PMP'], color: '#af52de', desc: 'Arrogant perfectionist. Stanford grad. Views hacking as a management task.' },
+    { id: 'aria', name: 'ARIA Aesthetic', role: 'Visual Style', age: 0, image: '', credentials: ['Luminous', 'Soft Light'], color: '#ffffff', desc: 'Clean air, soft diffused lighting, and extreme ocular detail for Runway.' },
+    { id: 'ghost', name: 'The GHOST', role: 'Core Concept', age: 0, image: '', credentials: ['Physical Info'], color: '#ff2d55', desc: 'Information with mass. The physical manifestation of digital malice.' },
   ];
 
   const links = [
@@ -20,24 +21,81 @@
     { source: 'takeru', target: 'ren', label: 'Rival' },
     { source: 'kaname', target: 'ren', label: 'Rival' },
     { source: 'kaname', target: 'takeru', label: 'Collaboration' },
+    { source: 'aria', target: 'ren', label: 'Style' },
+    { source: 'ghost', target: 'aria', label: 'Contrast' },
   ];
 
   const scenes = [
-    { id: 's1', title: 'Ep.1: 牙を剥く内部の影', pos: { x: -400, y: -250 }, desc: 'Internal sabotage at Daimon Construction.' },
-    { id: 's2', title: 'Evolution & Tokyo 2026', pos: { x: 400, y: -250 }, desc: 'The history of "Ghost" from cave art to cyberspace.' },
-    { id: 's3', title: 'The Ghost Hack', pos: { x: 0, y: 300 }, desc: 'Converting digital malice into physical weight.' }
+    { id: 's1', title: 'Ep.1: 牙を剥く内部の影', pos: { x: -500, y: -300 }, desc: 'Daimon Construction internal sabotage case.' },
+    { id: 's2', title: 'Tokyo 2026', pos: { x: 500, y: -300 }, desc: 'A society where every "Ghost" is recorded.' },
+    { id: 's3', title: 'The Ghost Hack', pos: { x: 0, y: 400 }, desc: 'Physics meets Information Security.' },
+    { id: 's4', title: 'Ocular Detail', pos: { x: -500, y: 300 }, desc: 'Extreme iris patterns representing soul sync.' }
+  ];
+
+  const props = [
+    { id: 'p1', name: 'Digital Axe', type: 'Tool', desc: 'Ren\'s weapon to "delete" malicious ghosts.', pos: { x: -200, y: 100 } },
+    { id: 'p2', name: 'SIP Device', type: 'Hardware', desc: 'Secure Information Physicality device.', pos: { x: 200, y: 100 } }
   ];
 
   let simulationNodes = $state<any[]>(characters.map(c => ({ 
     ...c, 
     x: (Math.random() - 0.5) * 800, 
-    y: (Math.random() - 0.5) * 600 
+    y: (Math.random() - 0.5) * 600,
+    fx: null,
+    fy: null
   })));
-  let simulationLinks = $state<any[]>(links.map(l => ({ ...l })));
-  let simulation = $state<any>(null);
+
+  // ... (links and scenes remain the same)
+
+  let draggingNode = $state<any>(null);
+
+  function handleDragStart(node: any, e: PointerEvent) {
+    if (e.button !== 0) return; // Left click only
+    draggingNode = node;
+    node.fx = node.x;
+    node.fy = node.y;
+    // @ts-ignore
+    e.target.setPointerCapture(e.pointerId);
+  }
+
+  function handleDragMove(node: any, e: PointerEvent) {
+    if (draggingNode !== node) return;
+    
+    // We need to convert screen delta to world delta
+    // For simplicity in this fixed-scale view, we'll approximate
+    const dx = e.movementX / scale;
+    const dy = -e.movementY / scale; // Three.js Y is up, DOM Y is down
+    
+    node.fx += dx;
+    node.fy += dy;
+    
+    if (simulation) simulation.alphaTarget(0.3).restart();
+  }
+
+  function handleDragEnd(node: any, e: PointerEvent) {
+    if (draggingNode !== node) return;
+    draggingNode = null;
+    // @ts-ignore
+    e.target.releasePointerCapture(e.pointerId);
+    
+    // If we want to "fix" it permanently as requested:
+    // node.fx and node.fy remain set.
+    if (simulation) simulation.alphaTarget(0);
+  }
+
+  function toggleFix(node: any) {
+    if (node.fx !== null) {
+      node.fx = null;
+      node.fy = null;
+    } else {
+      node.fx = node.x;
+      node.fy = node.y;
+    }
+    if (simulation) simulation.alpha(0.3).restart();
+  }
 
   $effect(() => {
-    if (!simulation && simulationNodes.length > 0) {
+    if (!simulation) {
       simulation = d3.forceSimulation(simulationNodes)
         .force('link', d3.forceLink(simulationLinks).id((d: any) => d.id).distance(250))
         .force('charge', d3.forceManyBody().strength(-2000))
@@ -52,11 +110,23 @@
 
   let containerWidth = $state(0);
   let containerHeight = $state(0);
+  let showGrid = $state(true);
   let scale = $derived(Math.min(containerWidth / 1414, containerHeight / 1000) * 0.95);
 
+  function resetPositions() {
+    simulationNodes.forEach(n => {
+      n.fx = null;
+      n.fy = null;
+    });
+    if (simulation) simulation.alpha(1).restart();
+  }
 </script>
 
 <div class="wrapper" bind:clientWidth={containerWidth} bind:clientHeight={containerHeight}>
+  <div class="controls">
+    <button onclick={() => showGrid = !showGrid}>{showGrid ? 'Hide' : 'Show'} Grid</button>
+    <button onclick={resetPositions}>Reset All</button>
+  </div>
   <div class="a3-page" style="transform: scale({scale})">
     <div class="canvas-container">
       <Canvas>
@@ -67,16 +137,18 @@
         <T.AmbientLight intensity={0.5} />
         <T.PointLight position={[0, 500, 500]} intensity={1.5} color="#0071e3" />
 
-        <Grid
-          position.z={-10}
-          cellColor="#111122"
-          sectionColor="#0071e3"
-          sectionSize={100}
-          cellSize={20}
-          infiniteGrid
-          rotation.x={Math.PI / 2}
-          opacity={0.2}
-        />
+        {#if showGrid}
+          <Grid
+            position.z={-10}
+            cellColor="#111122"
+            sectionColor="#0071e3"
+            sectionSize={100}
+            cellSize={20}
+            infiniteGrid
+            rotation.x={Math.PI / 2}
+            opacity={0.2}
+          />
+        {/if}
 
         <!-- Edges -->
         {#each simulationLinks as link}
@@ -99,13 +171,31 @@
         <!-- Nodes (Characters) -->
         {#each simulationNodes as node (node.id)}
           <HTML position={[node.x, node.y, 10]} center>
-            <div class="char-card" style="--accent: {node.color}">
-              <div class="image-box">
-                <img src={node.image} alt={node.name} />
-              </div>
+            <div 
+              class="char-card" 
+              class:fixed={node.fx !== null}
+              style="--accent: {node.color}"
+              onpointerdown={(e) => handleDragStart(node, e)}
+              onpointermove={(e) => handleDragMove(node, e)}
+              onpointerup={(e) => handleDragEnd(node, e)}
+            >
+              <button class="pin-btn" onclick={(e) => { e.stopPropagation(); toggleFix(node); }}>
+                {#if node.fx !== null}
+                  <Pin size={12} fill="currentColor" />
+                {:else}
+                  <PinOff size={12} />
+                {/if}
+              </button>
+              
+              {#if node.image}
+                <div class="image-box">
+                  <img src={node.image} alt={node.name} />
+                </div>
+              {/if}
+              
               <div class="info">
                 <div class="name">{node.name}</div>
-                <div class="role">{node.role} / {node.age}歳</div>
+                <div class="role">{node.role}</div>
                 <div class="creds">
                   {#each node.credentials as cred}
                     <span class="cred-tag">{cred}</span>
@@ -123,6 +213,17 @@
             <div class="scene-node">
               <div class="scene-title">{scene.title}</div>
               <div class="scene-desc">{scene.desc}</div>
+            </div>
+          </HTML>
+        {/each}
+
+        <!-- Props -->
+        {#each props as prop}
+          <HTML position={[prop.pos.x, prop.pos.y, 0]} center>
+            <div class="prop-node">
+              <div class="prop-type">{prop.type}</div>
+              <div class="prop-name">{prop.name}</div>
+              <div class="prop-desc">{prop.desc}</div>
             </div>
           </HTML>
         {/each}
@@ -182,6 +283,31 @@
     align-items: center;
     overflow: hidden;
     background: radial-gradient(circle at center, #111 0%, #000 100%);
+    position: relative;
+  }
+
+  .controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    gap: 10px;
+  }
+
+  .controls button {
+    background: rgba(0, 113, 227, 0.2);
+    border: 1px solid #0071e3;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    backdrop-filter: blur(10px);
+  }
+
+  .controls button:hover {
+    background: #0071e3;
   }
 
   .a3-page {
@@ -307,12 +433,38 @@
     padding: 12px;
     pointer-events: auto;
     cursor: grab;
-    transition: transform 0.2s;
+    transition: transform 0.2s, background 0.2s;
+    position: relative;
+    user-select: none;
+    touch-action: none;
   }
 
-  .char-card:hover {
-    transform: scale(1.05);
-    background: rgba(15, 15, 30, 1);
+  .char-card.fixed {
+    border-left-style: double;
+    border-left-width: 6px;
+    background: rgba(20, 20, 40, 0.95);
+  }
+
+  .pin-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    color: #444;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    z-index: 10;
+  }
+
+  .pin-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+
+  .char-card.fixed .pin-btn {
+    color: #0071e3;
   }
 
   .image-box {
@@ -380,5 +532,33 @@
   .scene-desc {
     font-size: 12px;
     color: #555;
+  }
+
+  .prop-node {
+    background: rgba(0, 113, 227, 0.1);
+    border: 1px solid rgba(0, 113, 227, 0.3);
+    padding: 8px 12px;
+    border-radius: 20px;
+    pointer-events: auto;
+    backdrop-filter: blur(5px);
+  }
+
+  .prop-type {
+    font-size: 9px;
+    text-transform: uppercase;
+    color: #0071e3;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+  }
+
+  .prop-name {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .prop-desc {
+    font-size: 10px;
+    color: #888;
   }
 </style>
