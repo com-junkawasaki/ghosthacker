@@ -1,0 +1,169 @@
+{
+  "@context": {
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "schema": "http://schema.org/",
+    "dct": "http://purl.org/dc/terms/",
+    "prompt": "gh:runwayPrompt"
+  },
+  "@id": "gh:storyboard/season1-detailed-scene-prompts",
+  "@type": "gh:DetailedStoryboard",
+  "dct:title": "Ghost Hacker Season 1: Detailed Scene-by-Scene Storyboard Prompts",
+  "dct:description": "Detailed cinematic prompts for every major scene in Season 1, optimized for photorealistic AI video generation.",
+  "gh:globalStyle": "photorealistic, 8k, raw photo, cinematic lighting, dramatic shadows, high contrast, sharp focus, masterpiece.",
+  "gh:episodes": [
+    {
+      "gh:episode": 1,
+      "dct:title": "Arc A-1: 牙を剥く内部の影",
+      "gh:scenes": [
+        { "gh:page": 1, "gh:scene": "History of Spirit", "gh:prompt": "photorealistic, 8k. A historical montage: primitive humans around a fire, silhouettes of giant Buddha and totem poles superimposed on modern Tokyo skyscraper data streams. Cinematic, epic scale." },
+        { "gh:page": 2, "gh:scene": "Title Shot", "gh:prompt": "photorealistic, 8k, cyberpunk. (Ren: 17-year-old Japanese male, messy black hair) and (Nei: android, blonde bob) floating in a vortex of digital grids and city fragments. 'GHOST Hacker' title logo." },
+        { "gh:page": 4, "gh:scene": "Ren's Daily Life", "gh:prompt": "photorealistic, 8k. (Ren: 17-year-old male, hoodie) slouching lazily in a modern office chair. (Nei: android, blonde bob) nagging him with a tablet. Natural light, cluttered high-tech room." },
+        { "gh:page": 5, "gh:scene": "Shouta's Visit", "gh:prompt": "photorealistic, 8k. (Shouta: 26-year-old Japanese man, navy suit) at the office door, looking desperate. (Ren: 17-year-old male) looking annoyed. Intense eye contact." },
+        { "gh:page": 6, "gh:scene": "Daimon Construction Office", "gh:prompt": "photorealistic, 8k. Chaotic 1980s-style Japanese office. (Matsuda: 58-year-old woman) screaming on phone. (Sato: 24-year-old male) under a desk with cables. Dust in the air, harsh fluorescent lights." },
+        { "gh:page": 7, "gh:scene": "Yasumoto and Ghost Aura", "gh:prompt": "photorealistic, 8k. (Yasumoto: 52-year-old sweaty Japanese man) arguing. AR POV: a dark, shadowy figure of jealousy clinging to his back. Gritty, high contrast." },
+        { "gh:page": 8, "gh:scene": "Fast Hacking", "gh:prompt": "photorealistic, 8k. Close-up of (Ren: 17-year-old male) hands typing at blinding speed. Code reflecting in his sharp eyes. Blurred background of the busy office." },
+        { "gh:page": 9, "gh:scene": "Exposing the Insider", "gh:prompt": "photorealistic, 8k. (Ren: 17-year-old male) pointing at (Yasumoto: 52-year-old male). Office staff staring in shock. Dramatic lighting on Ren's accusatory face." },
+        { "gh:page": 10, "gh:scene": "Ghost Emergence", "gh:prompt": "photorealistic, 8k, horror. A monster made of LAN cables and paper documents tearing out of (Yasumoto: 52-year-old male)'s shadow. Glitchy air, screams." },
+        { "gh:page": 11, "gh:scene": "SIP Activation", "gh:prompt": "photorealistic, 8k, sci-fi. (Ren: 17-year-old male) holding a smartphone showing 'SIP: ON'. Blue digital grid spreading across the room, anchoring the Ghost." },
+        { "gh:page": 12, "gh:scene": "Axe Formation", "gh:prompt": "photorealistic, 8k, vfx. Glowing blue particles forming a massive digital axe in (Ren: 17-year-old male)'s hand. (Shouta: 26-year-old male) shielding (Matsuda: 58-year-old woman) in the background." },
+        { "gh:page": 13, "gh:scene": "The Final Chop", "gh:prompt": "photorealistic, 8k, action. (Ren: 17-year-old male) leaping mid-air, striking the Ghost's core with the digital axe. Explosion of data and light. Motion blur." },
+        { "gh:page": 14, "gh:scene": "Ghost Dissolution", "gh:prompt": "photorealistic, 8k. The cable monster turning into white ash and digital sparks. (Yasumoto: 52-year-old male) weeping on the floor. Office screens coming back to life." },
+        { "gh:page": 15, "gh:scene": "President's Return", "gh:prompt": "photorealistic, 8k. (President: 62-year-old Japanese man, work clothes) entering the messy office. (Shouta: 26-year-old male) making a heavy decision. Emotional scene." },
+        { "gh:page": 16, "gh:scene": "Recovery", "gh:prompt": "photorealistic, 8k. (Matsuda: 58-year-old woman) cheering at a bank screen. (Ren: 17-year-old male) walking away, looking at his phone. Relief." },
+        { "gh:page": 17, "gh:scene": "Epilogue", "gh:prompt": "photorealistic, 8k. (Ren: 17-year-old male) and (Nei: android, blonde bob) walking in Kamata at dusk. Neon signs, orange sunset. Ren smirking at his bank balance." }
+      ]
+    },
+    {
+      "gh:episode": 2,
+      "dct:title": "Arc A-2: 許しの毒",
+      "gh:scenes": [
+        { "gh:scene": "Morning After", "gh:prompt": "photorealistic, 8k. Quiet office, the team trying to work. (Shouta: 26-year-old male) looking at (Yasumoto: 52-year-old male) with mixed feelings. Soft morning light." },
+        { "gh:scene": "The Crash", "gh:prompt": "photorealistic, 8k. Every screen turning red simultaneously. Panic returns. (Shouta: 26-year-old male) slamming his fist on the desk. Dramatic red lighting." },
+        { "gh:scene": "Ren's Return", "gh:prompt": "photorealistic, 8k. (Ren: 17-year-old male) entering the office, looking even more tired. 'I told you forgiveness is negligence.' Cold, sharp look." },
+        { "gh:scene": "SBOM Analysis", "gh:prompt": "photorealistic, 8k. (Nei: android, blonde bob) projecting a complex 3D supply-chain map. 'The poison came from the vendor.' Glowing blue lines in a dark room." },
+        { "gh:scene": "The Confrontation", "gh:prompt": "photorealistic, 8k. (Ren: 17-year-old male) forcing (Shouta: 26-year-old male) to sign a strict security policy. Tension, weight of responsibility." },
+        { "gh:scene": "Vendor Link", "gh:prompt": "photorealistic, 8k. A dark server room at a mysterious external company. A single red light blinking. The next lead. Mysterious, cold." }
+      ]
+    },
+    {
+      "gh:episode": 3,
+      "dct:title": "Arc A-3: 善意の呪い",
+      "gh:scenes": [
+        { "gh:scene": "The Masked Ghost", "gh:prompt": "photorealistic, 8k, surreal. A giant smiling traditional Japanese mask floating in the office, made of 'goodwill' and 'trust' characters. It creates a thick, blinding fog." },
+        { "gh:scene": "Trio Gathering", "gh:prompt": "photorealistic, 8k. (Ren: 17-year-old male) standing between (Shouta: 26-year-old male) and (President: 62-year-old male). Breaking the old family myths. Dramatic three-way shot." },
+        { "gh:scene": "Digital Ritual", "gh:prompt": "photorealistic, 8k. (Ren: 17-year-old male) using a digital rope tool to bind the ghost. Blue energy threads weaving through the office air." },
+        { "gh:scene": "Final Battle", "gh:prompt": "photorealistic, 8k, action. Ren striking the mask ghost. The mask shatters like ceramic, revealing the hard technical truth underneath. Slow motion, high detail." },
+        { "gh:scene": "The New Daimon", "gh:prompt": "photorealistic, 8k. (Shouta: 26-year-old male) sitting in the president's chair, looking mature and firm. New digital monitors everywhere. Success." },
+        { "gh:scene": "The Ecosystem Shadow", "gh:prompt": "photorealistic, 8k. (Nei: android, blonde bob) looking at a world map. Multiple dots blinking. 'It's spreading.' Dark, ominous ending." }
+      ]
+    },
+    {
+      "gh:episode": 4,
+      "dct:title": "Arc B-1: 終わらぬ時計",
+      "gh:scenes": [
+        { "gh:scene": "Logistics Chaos", "gh:prompt": "photorealistic, 8k. A massive Japanese warehouse (Jinpu Mobility) at 4 AM. Trucks stuck, (Makoto Baba: 54-year-old stressed manager) screaming at a clock. Gritty, cold." },
+        { "gh:scene": "Takeru's Arrival", "gh:prompt": "photorealistic, 8k. (Takeru: 19-year-old male, techwear, bleached hair) jumping off a moving truck. Carrying a heavy crowbar. High energy, aggressive." },
+        { "gh:scene": "Forced Reboot", "gh:prompt": "photorealistic, 8k. (Makoto Baba: 54-year-old male) reaching for a master power switch. (Takeru: 19-year-old male) blocking him with the crowbar. Sparks of anger." },
+        { "gh:scene": "The Clock Ghost", "gh:prompt": "photorealistic, 8k, horror. A mechanical nightmare clock with bladed needles looming over the conveyor belts. Tick-tock sound visualized as soundwaves." },
+        { "gh:scene": "Dark Bait Discovery", "gh:prompt": "photorealistic, 8k. (Tsubasa: 23-year-old scared driver) holding a glowing malicious USB device. (Takeru: 19-year-old male) grabbing his wrist. Dramatic interrogation." },
+        { "gh:scene": "The Challenge", "gh:prompt": "photorealistic, 8k. (Takeru: 19-year-old male) looking at (Ren: 17-year-old male) via a video call. 'You're too slow, Ren.' Rivalry established." }
+      ]
+    },
+    {
+      "gh:episode": 5,
+      "dct:title": "Arc B-2: Doneがない地獄",
+      "gh:scenes": [
+        { "gh:scene": "Infinite Loop", "gh:prompt": "photorealistic, 8k. The same warehouse scene repeating, getting darker and more glitchy. Workers moving in mechanical, exhausted loops. Surreal." },
+        { "gh:scene": "Technical Fight", "gh:prompt": "photorealistic, 8k. (Takeru: 19-year-old male) using a digital hammer to smash 'incomplete' data packets. High contrast, neon lights in a dark industrial space." },
+        { "gh:scene": "Ren's Support", "gh:prompt": "photorealistic, 8k. (Ren: 17-year-old male) and (Nei: android, blonde bob) analyzing the 0-day vulnerability. 'Takeru is smashing, but we need the patch.' Calm, clinical focus." },
+        { "gh:scene": "The Stopwatch", "gh:prompt": "photorealistic, 8k. (Takeru: 19-year-old male) holding a glowing timer. '30 seconds to total shutdown.' Sweat on his brow, intense close-up." },
+        { "gh:scene": "Virtual Patching", "gh:prompt": "photorealistic, 8k. (Nei: android, blonde bob) sending a stream of blue code to Takeru's device. The data hammer glows brighter. Action VFX." },
+        { "gh:scene": "The Broker's Face", "gh:prompt": "photorealistic, 8k. A silhouette of a man in a tropical high-rise watching the warehouse on a screen. HERO's first teaser. Ominous." }
+      ]
+    },
+    {
+      "gh:episode": 6,
+      "dct:title": "Arc B-3: 終端刻印",
+      "gh:scenes": [
+        { "gh:scene": "Climax Raid", "gh:prompt": "photorealistic, 8k. (Takeru: 19-year-old male) and (Ren: 17-year-old male) working together. Takeru smashing physical obstacles, Ren clearing the logic paths. Dynamic duo." },
+        { "gh:scene": "Hammer of Done", "gh:prompt": "photorealistic, 8k, explosive action. (Takeru: 19-year-old male) delivering a massive overhead strike on the Clock Ghost's face. The clock shatters, time stops." },
+        { "gh:scene": "Saving the Witness", "gh:prompt": "photorealistic, 8k. (Takeru: 19-year-old male) patting (Tsubasa: 23-year-old driver) on the shoulder. 'Go home and sleep. It's over.' Unexpected kindness." },
+        { "gh:scene": "Done Protocol", "gh:prompt": "photorealistic, 8k. (Makoto Baba: 54-year-old male) looking at a simplified, clear recovery checklist. Silence in the warehouse. Peace." },
+        { "gh:scene": "The Link to Finance", "gh:prompt": "photorealistic, 8k. (Ren: 17-year-old male) finding a common vendor ID shared with a major bank. 'Arc C starts here.' Sharp transition." },
+        { "gh:scene": "The Arrogant Shadow", "gh:prompt": "photorealistic, 8k. (Kaname: 18-year-old male, white suit) seen from behind, walking into a high-end bank lobby. Cold beauty." }
+      ]
+    },
+    {
+      "gh:episode": 7,
+      "dct:title": "Arc C-1: 空の要塞の崩壊",
+      "gh:scenes": [
+        { "gh:scene": "Luxury Lobby", "gh:prompt": "photorealistic, 8k. Byakudan Financial's marble lobby. (Kaname: 18-year-old Japanese male, white suit) walking elegantly. Cold, sterile, high-end architecture." },
+        { "gh:scene": "Governance Audit", "gh:prompt": "photorealistic, 8k. (Reika Kujoin: 45-year-old elegant woman) glaring at (Toru Sasaki: 34-year-old male). 'This exception is a crime.' Intense psychological pressure." },
+        { "gh:scene": "Kaname's Wrench", "gh:prompt": "photorealistic, 8k. (Kaname: 18-year-old male) holding a chrome torque wrench. 'Your rules are ill-fitted.' Using it to 'tighten' a holographic server configuration." },
+        { "gh:scene": "Knight of Rules", "gh:prompt": "photorealistic, 8k, surreal. A ghost knight in paper armor appearing in the sterile server room. It attacks with a spear of frozen regulations." },
+        { "gh:scene": "The Leak", "gh:prompt": "photorealistic, 8k. Data leaking as golden liquid from a crack in a marble wall. (Kaname: 18-year-old male) watching it with a disappointed smile." },
+        { "gh:scene": "Arrogance Call", "gh:prompt": "photorealistic, 8k. (Kaname: 18-year-old male) calling (Ren: 17-year-old male). 'I'll handle this properly. You stay in your slums.' Arrogant rivalry." }
+      ]
+    },
+    {
+      "gh:episode": 8,
+      "dct:title": "Arc C-2: 消えた資産の足跡",
+      "gh:scenes": [
+        { "gh:scene": "Blockchain Void", "gh:prompt": "photorealistic, 8k, sci-fi. (Kaname: 18-year-old male) walking through a dark space of floating golden cubes (blockchain nodes). Identifying the laundered path." },
+        { "gh:scene": "The Inspector", "gh:prompt": "photorealistic, 8k. (Kurokawa Mio: 32-year-old sharp woman) meeting Kaname in a dark car. 'The market is moving before the attack.' Secret deal." },
+        { "gh:scene": "Toru's Despair", "gh:prompt": "photorealistic, 8k. (Toru Sasaki: 34-year-old male) sweating in a dark room, surrounded by monitors. (Reika Kujoin: 45-year-old woman) shadow looming over him." },
+        { "gh:scene": "Audit Hacking", "gh:prompt": "photorealistic, 8k. (Kaname: 18-year-old male) and (Nei: android, blonde bob) collaborating. 'You audit, I analyze.' Unexpected high-level technical synergy." },
+        { "gh:scene": "The Golden Ghost", "gh:prompt": "photorealistic, 8k. The rule knight turning into a golden dragon made of stolen currency. It flies through the financial district at night." },
+        { "gh:scene": "Short Selling", "gh:prompt": "photorealistic, 8k. Close-up of a stock ticker diving. (HERO: 30-year-old male) face reflecting in the red numbers. Smirking." }
+      ]
+    },
+    {
+      "gh:episode": 9,
+      "dct:title": "Arc C-3: それは傲慢ですね",
+      "gh:scenes": [
+        { "gh:scene": "Breaking the Spear", "gh:prompt": "photorealistic, 8k, action. (Kaname: 18-year-old male) catching the ghost's rule-spear with his bare hand (gloved). 'It's arrogant to think rules can control life.' Shattering it." },
+        { "gh:scene": "Rewriting Code", "gh:prompt": "photorealistic, 8k. (Kaname: 18-year-old male) using his torque wrench to 'turn' a massive holographic lock. The server room transforms from cold marble to warm light." },
+        { "gh:scene": "Reika's Fall", "gh:prompt": "photorealistic, 8k. (Reika Kujoin: 45-year-old woman) realization. Her paper armor falling off. She looks human and vulnerable for the first time. Soft lighting." },
+        { "gh:scene": "The Three Gathered", "gh:prompt": "photorealistic, 8k. (Ren: 17-year-old male), (Takeru: 19-year-old male), and (Kaname: 18-year-old male) standing in the bank lobby. The pilot arc complete. Epic formation." },
+        { "gh:scene": "SESC Raid", "gh:prompt": "photorealistic, 8k. (Kurokawa Mio: 32-year-old woman) and police officers entering a trading firm. 'Evidence secured.' Justice starting to move." },
+        { "gh:scene": "The Final Target", "gh:prompt": "photorealistic, 8k. (Ren: 17-year-old male) looking at a photo of HERO. 'Time to hunt the Hero.' Rain starting to fall in Tokyo." }
+      ]
+    },
+    {
+      "gh:episode": 10,
+      "dct:title": "Arc D-1: 群れのGhost",
+      "gh:scenes": [
+        { "gh:scene": "Rooftop Meeting", "gh:prompt": "photorealistic, 8k. Ren, Takeru, and Kaname on a rooftop in Shinjuku. Rain, neon reflections. Discussing the 'Ecosystem' of crime. Cinematic." },
+        { "gh:scene": "Global Panic", "gh:prompt": "photorealistic, 8k. Montage of news reports: A, B, and C victims all connected. SEIGI_HERO logo on every screen. Social unrest." },
+        { "gh:scene": "HERO's Stream", "gh:prompt": "photorealistic, 8k. (HERO: 30-year-old male) shouting into a mic. 'We are the true justice!' Over-saturated, tacky luxury background. Narcissistic energy." },
+        { "gh:scene": "Trace the Recruitment", "gh:prompt": "photorealistic, 8k. (Nei: android, blonde bob) analyzing X/LINE dark recruitment posts. Thousands of connections forming a web. 'The ghost is the crowd itself.'" },
+        { "gh:scene": "The Market Ghost", "gh:prompt": "photorealistic, 8k, surreal horror. A ghost made of stock market ticker tapes and screaming human faces swirling around Tokyo Tower." },
+        { "gh:scene": "Police Coordination", "gh:prompt": "photorealistic, 8k. (Hatori Koichi: 45-year-old elite) and (Isa Reiji: 42-year-old detective) staring at a giant screen at the NPA headquarters. Tense atmosphere." }
+      ]
+    },
+    {
+      "gh:episode": 11,
+      "dct:title": "Arc D-2: 崩壊する信頼",
+      "gh:scenes": [
+        { "gh:scene": "The Invisible War", "gh:prompt": "photorealistic, 8k. Ghost hackers working in a dark room, blue light on their focused faces. Nei projecting coordinates. High-tech investigation." },
+        { "gh:scene": "International Liaison", "gh:prompt": "photorealistic, 8k. (Maya Rahman: 35-year-old woman) at INTERPOL headquarters, handling multiple phones. 'We have the location.' Fast-paced diplomatic action." },
+        { "gh:scene": "The Bunker", "gh:prompt": "photorealistic, 8k. SEIGI_HERO's overseas base: a luxury villa in South East Asia. Armed guards, servers humming in the heat. Tropical night." },
+        { "gh:scene": "Breaking the Ego", "gh:prompt": "photorealistic, 8k. (Ren: 17-year-old male) confronting HERO in cyberspace. HERO's avatar is a giant golden statue, Ren is a small blue shadow. David vs Goliath." },
+        { "gh:scene": "The Parent Trap", "gh:prompt": "photorealistic, 8k. Ren revealing HERO's real past: (Hiroshi Sato: 30-year-old male) being scolded by strict parents. The root of the anger. Psychological break." },
+        { "gh:scene": "Zero Hour", "gh:prompt": "photorealistic, 8k. FBI and local police teams getting into position. Red laser sights on the villa walls. Silent countdown." }
+      ]
+    },
+    {
+      "gh:episode": 12,
+      "dct:title": "Arc D-3: 逮捕",
+      "gh:scenes": [
+        { "gh:scene": "The Penthouse Raid", "gh:prompt": "photorealistic, 8k, action. Glass shattering, flashbangs exploding. (HERO: 30-year-old man) hiding under a desk as police swarm the room. Chaos and noise." },
+        { "gh:scene": "Ren's Final Hack", "gh:prompt": "photorealistic, 8k. (Ren: 17-year-old male) in Tokyo, pressing 'DELETE ALL'. The SEIGI_HERO servers go black one by one across the world. Quiet victory." },
+        { "gh:scene": "Market Stabilization", "gh:prompt": "photorealistic, 8k. (Natsume Koichi: 55-year-old male) at the TSE, seeing the charts level out. A deep sigh of relief. The gate is safe." },
+        { "gh:scene": "The Arrestees", "gh:prompt": "photorealistic, 8k. HERO being led away in handcuffs, his 'Hero' jacket torn and dirty. He looks small and pitiful. No music, just rain." },
+        { "gh:scene": "The Trio's Path", "gh:prompt": "photorealistic, 8k. Ren, Takeru, and Kaname parting ways at dawn. 'Until the next bug.' They walk in three different directions. Cinematic sunrise." },
+        { "gh:scene": "Ending", "gh:prompt": "photorealistic, 8k. (Ren: 17-year-old male) sleeping in his chair. (Nei: android, blonde bob) smiling, cleaning the office. A new email notification sound. Fade to black." }
+      ]
+    }
+  ]
+}
