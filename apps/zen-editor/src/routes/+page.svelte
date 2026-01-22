@@ -15,14 +15,16 @@ import AssemblerControls from '../components/AssemblerControls.svelte';
 
   let projectId = $state("251121");
   let selectedNode = $state<any>(null);
-  let activeMainView = $derived.by(() => {
+  let activeMainView = $state<"dual" | "editor" | "topology">("dual");
+  let activeMainViewDerived = $derived.by(() => {
     const vpId = graphStore.currentViewpointId;
-    if (!vpId) return "dual";
+    if (!vpId) return activeMainView;
     if (vpId === 'hub:editor') return "editor";
     if (vpId === 'hub:storyboard') return "editor";
     if (vpId === 'hub:manga') return "editor";
     if (vpId === 'hub:assembler') return "topology";
-    return "dual";
+    if (vpId === 'hub:presentation') return "editor";
+    return activeMainView;
   });
   
   // Layout states
@@ -89,6 +91,10 @@ import AssemblerControls from '../components/AssemblerControls.svelte';
       editorMode = "assembler";
     } else if (id === 'hub:presentation') {
       editorMode = "presentation";
+      activeMainView = "editor";
+    } else {
+      // For other viewpoints, ensure we are in dual or topology mode
+      if (activeMainView === 'editor') activeMainView = 'dual';
     }
   }
 
@@ -96,7 +102,7 @@ import AssemblerControls from '../components/AssemblerControls.svelte';
     currentFilePath = path;
     currentFileContent = await graphStore.openFile(path);
     editorMode = "text";
-    if (activeMainView === 'topology') activeMainView = 'dual';
+    if (activeMainViewDerived === 'topology') activeMainView = 'dual';
   }
 
   async function handleEditorSave(content: string) {
@@ -187,9 +193,9 @@ import AssemblerControls from '../components/AssemblerControls.svelte';
 
     <!-- Main Content Area -->
     <main class="main-content">
-      <div class="content-wrapper" class:split={activeMainView === 'dual'}>
-        {#if activeMainView === 'topology' || activeMainView === 'dual'}
-          <section class="canvas-section" style={activeMainView === 'dual' ? `width: ${splitRatio}%` : 'width: 100%'}>
+      <div class="content-wrapper" class:split={activeMainViewDerived === 'dual'}>
+        {#if activeMainViewDerived === 'topology' || activeMainViewDerived === 'dual'}
+          <section class="canvas-section" style={activeMainViewDerived === 'dual' ? `width: ${splitRatio}%` : 'width: 100%'}>
             <Topology 
               bind:this={topologyRef} 
               {projectId}
@@ -203,8 +209,13 @@ import AssemblerControls from '../components/AssemblerControls.svelte';
           {/if}
         {/if}
 
-        {#if activeMainView === 'editor' || activeMainView === 'dual'}
-          <section class="editor-section" style={activeMainView === 'dual' ? `width: ${100 - splitRatio}%` : 'width: 100%'}>
+        {#if activeMainViewDerived === 'editor' || activeMainViewDerived === 'dual'}
+          <section class="editor-section" style={activeMainViewDerived === 'dual' ? `width: ${100 - splitRatio}%` : 'width: 100%'}>
+            {#if activeMainViewDerived === 'dual'}
+              <div class="pane-header">
+                <span class="pane-title">{editorMode.toUpperCase()}</span>
+              </div>
+            {/if}
             <div class="editor-container">
               {#if editorMode === 'storyboard'}
                 <Storyboard bind:this={storyboardRef} {projectId} />
@@ -270,7 +281,7 @@ import AssemblerControls from '../components/AssemblerControls.svelte';
 
   .toolbar {
     height: var(--toolbar-height);
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--tertiary-label);
     display: flex;
@@ -305,9 +316,9 @@ import AssemblerControls from '../components/AssemblerControls.svelte';
   }
 
   .segmented-control button.active {
-    background: #3a3a3c;
+    background: #e5e5ea;
     color: var(--system-label);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
   }
 
   .toolbar-right { display: flex; align-items: center; gap: 8px; min-width: 200px; justify-content: flex-end; }
@@ -403,6 +414,23 @@ import AssemblerControls from '../components/AssemblerControls.svelte';
     width: 100%;
     height: 100%;
     background: var(--system-background);
+    color: var(--system-label);
+  }
+
+  .pane-header {
+    height: 32px;
+    background: var(--secondary-background);
+    border-bottom: 1px solid var(--tertiary-label);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+  }
+
+  .pane-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--secondary-label);
+    letter-spacing: 1px;
   }
 
   .assembler-view {
@@ -430,7 +458,7 @@ import AssemblerControls from '../components/AssemblerControls.svelte';
     z-index: 90;
     display: flex;
     flex-direction: column;
-    box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+    box-shadow: -5px 0 20px rgba(0,0,0,0.1);
   }
 
   .drawer-header {

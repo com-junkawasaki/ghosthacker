@@ -6,20 +6,11 @@ import { resolve } from 'node:path';
 
 export const load: PageServerLoad = async () => {
 	try {
-		let board = await getBoard();
-		
-		if (board.nodes.length === 0) {
-			const jsonPath = resolve(process.cwd(), 'data/presentation.jsonld');
-			const text = await readFile(jsonPath, 'utf8');
-			const data = JSON.parse(text);
-			await initializeFromJSONLD(data);
-			board = await getBoard();
-		}
-
+		const board = await getBoard();
 		return { board };
 	} catch (e) {
 		console.error(e);
-		throw error(500, `Neo4j Error: ${String(e)}`);
+		throw error(500, `Data Load Error: ${String(e)}`);
 	}
 };
 

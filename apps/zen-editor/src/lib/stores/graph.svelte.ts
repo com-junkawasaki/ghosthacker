@@ -12,6 +12,8 @@ export interface Node {
   imagePath?: string; // Add this
   x?: number;
   y?: number;
+  scale?: number; // Add this
+  fixed?: boolean; // Add this
   children?: string[]; // IDs of children
   
   // 3D properties for Assembler
@@ -427,6 +429,27 @@ class GraphStore {
   }
 
   private projectId = "";
+
+  async updateNodeLayout(id: string, updates: Partial<{ x: number; y: number; scale: number; fixed: boolean }>) {
+    const node = this.nodes.get(id);
+    if (node) {
+      Object.assign(node, updates);
+      this.nodes = new Map(this.nodes);
+      
+      if (this.projectId) {
+        try {
+          const client = await getClient();
+          if (!client) return;
+          await client.saveNode({
+            projectId: this.projectId,
+            node: node as any
+          });
+        } catch (err) {
+          console.error("Failed to save node layout:", err);
+        }
+      }
+    }
+  }
 
   updateNodePositions(positions: Float32Array | number[]) {
     let changed = false;

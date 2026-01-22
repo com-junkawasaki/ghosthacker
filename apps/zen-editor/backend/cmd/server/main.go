@@ -905,16 +905,17 @@ func (s *EditorServer) CallTool(ctx context.Context, req *connect.Request[editor
 
 	// The arguments might already be a JSON string or an object depending on the client
 	var args mcp.CallToolRequest
-	args.Params.Arguments = make(map[string]interface{})
+	argsMap := make(map[string]interface{})
 	
 	argStr := req.Msg.ArgumentsJson
 	if argStr != "" {
-		if err := json.Unmarshal([]byte(argStr), &args.Params.Arguments); err != nil {
+		if err := json.Unmarshal([]byte(argStr), &argsMap); err != nil {
 			log.Printf("Warning: failed to unmarshal arguments: %v, string: %s", err, argStr)
 			// Fallback: try to wrap if it's not an object
-			args.Params.Arguments["raw"] = argStr
+			argsMap["raw"] = argStr
 		}
 	}
+	args.Params.Arguments = argsMap
 
 	result, err := handler(ctx, args)
 	if err != nil {
@@ -931,7 +932,8 @@ func (s *EditorServer) registerMCPTools() {
 	defer s.mu.Unlock()
 
 	s.ToolHandlers["analyze_links"] = func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
-		nodeIDs, _ := req.Params.Arguments["node_ids"].([]interface{})
+		argsMap, _ := req.Params.Arguments.(map[string]interface{})
+		nodeIDs, _ := argsMap["node_ids"].([]interface{})
 		if len(nodeIDs) == 0 {
 			return nil, fmt.Errorf("node_ids is required")
 		}
@@ -980,8 +982,8 @@ func (s *EditorServer) registerMCPTools() {
 		suggestionsJson, _ := json.Marshal(suggestions)
 		
 		return &mcp.CallToolResult{
-			Content: []mcp.TextContent{
-				{Type: "text", Text: string(suggestionsJson)},
+			Content: []mcp.Content{
+				mcp.TextContent{Type: "text", Text: string(suggestionsJson)},
 			},
 		}, nil
 	}

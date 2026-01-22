@@ -1,11 +1,11 @@
 :root {
-  --system-background: #000000;
-  --secondary-background: #1c1c1e;
-  --tertiary-background: #2c2c2e;
+  --system-background: #ffffff;
+  --secondary-background: #f2f2f7;
+  --tertiary-background: #e5e5ea;
   
-  --system-label: #ffffff;
+  --system-label: #000000;
   --secondary-label: #8e8e93;
-  --tertiary-label: #48484a;
+  --tertiary-label: #c7c7cc;
   
   --accent-blue: #007aff;
   --accent-red: #ff3b30;

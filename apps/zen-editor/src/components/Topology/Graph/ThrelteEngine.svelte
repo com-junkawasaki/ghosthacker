@@ -32,12 +32,14 @@
       case 'item': return '#ff9500';
       case 'emotion': return '#ff2d55';
       case 'meta': return '#af52de';
-      case 'episode': return '#5856d6'; // Purple
-      case 'page': return '#00c7be';    // Teal
-      case 'panel': return '#30b0c7';   // Cyan
+      case 'episode': return '#5856d6';
+      case 'page': return '#00c7be';
+      case 'panel': return '#30b0c7';
       default: return '#8e8e93';
     }
   }
+
+  export { getNodeColor };
 
   // Simulation state
   let simulation = $state<any>(null);
@@ -45,6 +47,9 @@
   // We need a stable array of nodes for d3-force
   let simulationNodes = $state<any[]>([]);
   let simulationLinks = $state<any[]>([]);
+
+  // Track if we are in a viewpoint that should disable force
+  let isForceDisabled = $derived(graphStore.currentViewpointId !== null);
 
   // Sync store nodes to simulation nodes
   $effect(() => {
@@ -80,10 +85,11 @@
       if (!simulation) {
         simulation = d3.forceSimulation(simulationNodes)
           .force('link', d3.forceLink(simulationLinks).id((d: any) => d.id).distance(150))
-          .force('charge', d3.forceManyBody().strength(-300))
+          .force('charge', d3.forceManyBody().strength((d: any) => d.fixed ? 0 : -300))
           .force('center', d3.forceCenter(0, 0))
           .force('collision', d3.forceCollide().radius(20))
           .on('tick', () => {
+            if (isForceDisabled) return;
             // Update store with new positions
             const positions = new Float32Array(simulationNodes.length * 2);
             simulationNodes.forEach((n, i) => {
@@ -95,7 +101,12 @@
       } else {
         simulation.nodes(simulationNodes);
         simulation.force('link').links(simulationLinks);
-        simulation.alpha(0.3).restart();
+        
+        if (isForceDisabled) {
+          simulation.stop();
+        } else {
+          simulation.alpha(0.3).restart();
+        }
       }
     }
   });

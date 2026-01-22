@@ -6,6 +6,7 @@ require (
 	connectrpc.com/connect v1.17.0
 	github.com/google/uuid v1.6.0
 	github.com/mark3labs/mcp-go v0.43.2
+	github.com/neo4j/neo4j-go-driver/v5 v5.28.4
 	go.temporal.io/sdk v1.29.1
 	golang.org/x/net v0.28.0
 	google.golang.org/protobuf v1.34.2
