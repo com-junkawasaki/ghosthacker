@@ -4,29 +4,24 @@
     "schema": "http://schema.org/",
     "id": "@id",
     "type": "@type",
-
     "name": "schema:name",
     "description": "schema:description",
     "image": "schema:image",
     "role": "gh:role",
     "credentials": "gh:credentials",
     "nodeType": "gh:nodeType",
-
     "x": "gh:x",
     "y": "gh:y",
     "fixed": "gh:fixed",
     "color": "gh:color",
-
     "source": "gh:source",
     "target": "gh:target",
     "label": "gh:label",
-
     "transform": "gh:transform",
     "nodes": "gh:nodes",
     "links": "gh:links",
     "scale": "gh:scale",
     "edgeNode": "gh:isEdgeNode",
-
     "meta": "gh:meta",
     "tags": "gh:tags",
     "oneLiner": "gh:oneLiner",
@@ -40,7 +35,7 @@
     "oneLiner": "AI時代の情報攻撃を“物理現象”として描く、ハッキング×心理×組織の少年漫画。",
     "hook": "情報が『質量』を持ったとき、嘘は『幽霊』になる。",
     "audience": "週刊少年ジャンプ編集部向け",
-    "tags": ["Cyber", "Thriller", "Shonen", "AI", "Corporate", "Ghost"]
+    "tags": ["Cyber", "Thriller", "Shonen", "AI", "Corporate", "Ghost", "CISSP", "CISA", "情報安全確保支援士"]
   },
   "transform": { "x": 640, "y": 420, "k": 0.75 },
   "nodes": [
@@ -113,6 +108,58 @@
     },
 
     {
+      "id": "gh:node/cissp",
+      "nodeType": "concept",
+      "name": "CISSP",
+      "color": "#0071e3",
+      "description": "情報セキュリティの国際標準。蓮の行動原理（Do Due Care/Diligence）の根源。",
+      "x": -400,
+      "y": -300,
+      "fixed": false
+    },
+    {
+      "id": "gh:node/cisa",
+      "nodeType": "concept",
+      "name": "CISA",
+      "color": "#af52de",
+      "description": "公認情報システム監査師。要の武器。組織のガバナンスとコントロールを突く。",
+      "x": 300,
+      "y": -400,
+      "fixed": false
+    },
+    {
+      "id": "gh:node/sc",
+      "nodeType": "concept",
+      "name": "情報安全確保支援士",
+      "color": "#00a0a0",
+      "description": "日本の国家資格。登録・更新義務がある“士業”。蓮が効率化のために利用する法的盾。",
+      "x": -200,
+      "y": -100,
+      "fixed": false
+    },
+
+    {
+      "id": "gh:node/ransomware",
+      "nodeType": "concept",
+      "name": "Ransomware",
+      "color": "#ff2d55",
+      "description": "身代金要求型ウイルス。Arc Aの脅威。対策: オフラインバックアップ、EDR。",
+      "x": 600,
+      "y": -600,
+      "fixed": false
+    },
+    {
+      "id": "gh:node/bec",
+      "nodeType": "concept",
+      "name": "BEC (ビジネスメール詐欺)",
+      "color": "#ff9500",
+      "description": "巧妙な偽装メール。Arc Cの脅威。対策: 二要素認証、送金プロセスの多重化。",
+      "x": 800,
+      "y": -200,
+      "fixed": false
+    },
+
+    {
       "id": "gh:node/ghost",
       "nodeType": "concept",
       "name": "The GHOST",
@@ -160,6 +207,11 @@
     { "id": "gh:node/ep12", "nodeType": "ep", "name": "Ep.12 逮捕と残響", "description": "Arc D | Final Deletion", "color": "#0071e3", "x": 940, "y": 20, "fixed": true }
   ],
   "links": [
+    { "source": "gh:node/ren", "target": "gh:node/cissp", "label": "principles", "color": "#0071e3" },
+    { "source": "gh:node/kaname", "target": "gh:node/cisa", "label": "weapon", "color": "#af52de" },
+    { "source": "gh:node/ep1", "target": "gh:node/ransomware", "label": "incident", "color": "#ff2d55" },
+    { "source": "gh:node/ep8", "target": "gh:node/bec", "label": "incident", "color": "#ff9500" },
+    { "source": "gh:node/ep2", "target": "gh:node/cissp", "label": "methodology", "color": "#0071e3" },
     { "source": "gh:node/ren", "target": "gh:node/nei", "label": "partners", "color": "#34c759" },
     { "source": "gh:node/ren", "target": "gh:node/shouta", "label": "client", "color": "#ff3b30" },
     { "source": "gh:node/ren", "target": "gh:node/takeru", "label": "rival", "color": "#ff9500" },
@@ -167,7 +219,6 @@
     { "source": "gh:node/ren", "target": "gh:node/ghost", "label": "targets", "color": "#ff2d55" },
     { "source": "gh:node/ren", "target": "gh:node/sip", "label": "tools", "color": "#00a0a0" },
     { "source": "gh:node/ren", "target": "gh:node/aria", "label": "visuals", "color": "#0071e3" },
-
     { "source": "gh:node/ep1", "target": "gh:node/ep2", "label": "next", "color": "#999999" },
     { "source": "gh:node/ep2", "target": "gh:node/ep3", "label": "next", "color": "#999999" },
     { "source": "gh:node/ep3", "target": "gh:node/ep4", "label": "next", "color": "#999999" },
@@ -181,4 +232,3 @@
     { "source": "gh:node/ep11", "target": "gh:node/ep12", "label": "next", "color": "#999999" }
   ]
 }
-

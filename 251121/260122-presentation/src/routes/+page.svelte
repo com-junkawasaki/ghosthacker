@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { enhance } from '$app/forms';
   import * as d3 from 'd3-force';
-  import { Eye, Ghost, Lock, Pin, PinOff, Save, RotateCcw, Download, FileJson, Bug, Share2 } from 'lucide-svelte';
+  import { Eye, Ghost, Lock, Pin, PinOff, Save, RotateCcw, Download, FileJson, Bug, Share2, Plus } from 'lucide-svelte';
 
   type ClientNode = {
     id: string;
@@ -42,40 +42,23 @@
     return typeof n === 'number' && Number.isFinite(n) ? n : fallback;
   }
 
-  function stripNodeId(id: string): string {
-    return id.startsWith('gh:node/') ? id.slice('gh:node/'.length) : id;
-  }
-
-  // --- Initial Data Processing (works for both SSR and Client) ---
+  // --- Initial Data ---
   const initialBaseNodes: ClientNode[] = (data.board.nodes ?? []).map((n: any) => {
     const x = ensureNumbers(n.x, 0);
     const y = ensureNumbers(n.y, 0);
-    return {
-      ...n,
-      x,
-      y,
-      scale: n.scale ?? 1,
-      fx: n.fixed ? x : null,
-      fy: n.fixed ? y : null
-    };
+    return { ...n, x, y, scale: n.scale ?? 1, fx: n.fixed ? x : null, fy: n.fixed ? y : null };
   });
 
-  const initialEdgeNodes: ClientNode[] = (data.board.links ?? []).map((l: any, i: number) => {
-    return {
-      id: `edge-${i}`,
-      nodeType: 'edge',
-      name: l.label,
-      color: l.color,
-      sourceId: l.source,
-      targetId: l.target,
-      x: 0, y: 0, scale: 0.8
-    };
-  });
+  const initialEdgeNodes: ClientNode[] = (data.board.links ?? []).map((l: any, i: number) => ({
+    id: `edge-${i}`, nodeType: 'edge', name: l.label, color: l.color, sourceId: l.source, targetId: l.target, x: 0, y: 0, scale: 0.8,
+    fixed: !!l.fixed, fx: l.fixed ? (l.x || 0) : null, fy: l.fixed ? (l.y || 0) : null
+  }));
 
   const initialLinks: any[] = [];
   (data.board.links ?? []).forEach((l: any, i: number) => {
-    initialLinks.push({ source: l.source, target: `edge-${i}`, color: l.color });
-    initialLinks.push({ source: `edge-${i}`, target: l.target, color: l.color });
+    const edgeId = `edge-${i}`;
+    initialLinks.push({ source: l.source, target: edgeId, color: l.color });
+    initialLinks.push({ source: edgeId, target: l.target, color: l.color });
   });
 
   // --- State ---
@@ -86,6 +69,8 @@
 
   let draggingNode = $state<ClientNode | null>(null);
   let resizingNode = $state<ClientNode | null>(null);
+  let linkingSource = $state<ClientNode | null>(null);
+  let linkingTargetPos = $state({ x: 0, y: 0 });
   let isDraggingCanvas = $state(false);
   let dragStartPointer = { x: 0, y: 0 };
   let dragStartNodePos = { x: 0, y: 0 };
@@ -94,44 +79,33 @@
   let showEditor = $state(false);
   let jsonDraft = $state('');
 
-  // --- Helpers ---
-  function getNodeByIdMap(nodes: ClientNode[]) {
-    const m = new Map<string, ClientNode>();
-    for (const n of nodes) m.set(n.id, n);
-    return m;
-  }
-
-  // In Svelte 5, $derived works best when used directly or in simple expressions.
-  // We'll use a normal function for lookups to avoid "not a function" errors if $derived proxying gets in the way during SSR.
   function asNode(v: string | ClientNode, nodes: ClientNode[]): ClientNode | undefined {
     if (typeof v !== 'string') return v;
     return nodes.find(n => n.id === v);
   }
 
   function makeClientLayout() {
-    const nodes = simulationNodes
-      .filter(n => n.nodeType !== 'edge')
-      .map((n) => ({
-        id: n.id,
-        nodeType: n.nodeType,
-        name: n.name,
-        description: n.description,
-        image: n.image,
-        role: n.role,
-        credentials: n.credentials ?? [],
-        color: n.color,
-        x: Math.round(n.x),
-        y: Math.round(n.y),
-        scale: n.scale ?? 1,
-        fixed: n.fx != null
-      }));
-
-    const links = data.board.links.map((l: any) => ({
-      source: typeof l.source === 'string' ? l.source : (l.source as any).id,
-      target: typeof l.target === 'string' ? l.target : (l.target as any).id,
-      label: l.label,
-      color: l.color
+    const nodes = simulationNodes.filter(n => n.nodeType !== 'edge').map((n) => ({
+      id: n.id, nodeType: n.nodeType, name: n.name, description: n.description, image: n.image,
+      role: n.role, credentials: n.credentials ?? [], color: n.color,
+      x: Math.round(n.x), y: Math.round(n.y), scale: n.scale ?? 1, fixed: n.fx != null
     }));
+
+    // Reconstruct original links from simulation links (A -> EdgeNode -> B)
+    const links: any[] = [];
+    simulationNodes.filter(n => n.nodeType === 'edge').forEach(en => {
+      if (en.sourceId && en.targetId) {
+        links.push({ 
+          source: en.sourceId, 
+          target: en.targetId, 
+          label: en.name, 
+          color: en.color,
+          x: Math.round(en.x),
+          y: Math.round(en.y),
+          fixed: en.fx != null
+        });
+      }
+    });
 
     return { transform, nodes, links };
   }
@@ -145,8 +119,7 @@
       transform.y = window.innerHeight / 2;
     }
 
-    simulation = d3
-      .forceSimulation(simulationNodes)
+    simulation = d3.forceSimulation(simulationNodes)
       .force('link', d3.forceLink(simulationLinks).id((d: any) => d.id).distance(100))
       .force('charge', d3.forceManyBody().strength((d: any) => d.nodeType === 'edge' ? -400 : -3000))
       .force('center', d3.forceCenter(0, 0))
@@ -165,7 +138,11 @@
     const resizeHandle = target.closest('.resize-handle');
     const card = target.closest('.node-card');
 
-    if (resizeHandle && card) {
+    if (e.shiftKey && card) {
+      const id = card.getAttribute('data-id');
+      linkingSource = simulationNodes.find(n => n.id === id) ?? null;
+      linkingTargetPos = { x: (e.clientX - transform.x) / transform.k, y: (e.clientY - transform.y) / transform.k };
+    } else if (resizeHandle && card) {
       const id = card.getAttribute('data-id');
       resizingNode = simulationNodes.find((n) => n.id === id) ?? null;
     } else if (card) {
@@ -177,6 +154,7 @@
       dragStartNodePos = { x: node.x, y: node.y };
       draggingNode.fx = node.x;
       draggingNode.fy = node.y;
+      simulation?.alphaTarget(0.3).restart();
     } else {
       isDraggingCanvas = true;
     }
@@ -184,7 +162,9 @@
   }
 
   function handlePointerMove(e: PointerEvent) {
-    if (resizingNode) {
+    if (linkingSource) {
+      linkingTargetPos = { x: (e.clientX - transform.x) / transform.k, y: (e.clientY - transform.y) / transform.k };
+    } else if (resizingNode) {
       const delta = (e.movementX + e.movementY) / 200;
       resizingNode.scale = Math.min(Math.max((resizingNode.scale ?? 1) + delta, 0.3), 3);
     } else if (draggingNode) {
@@ -192,7 +172,6 @@
       const dy = (e.clientY - dragStartPointer.y) / transform.k;
       draggingNode.fx = dragStartNodePos.x + dx;
       draggingNode.fy = dragStartNodePos.y + dy;
-      simulation?.alphaTarget(0.3).restart();
     } else if (isDraggingCanvas) {
       transform.x += e.movementX;
       transform.y += e.movementY;
@@ -200,15 +179,44 @@
   }
 
   function handlePointerUp(e: PointerEvent) {
-    if (draggingNode && !data.board.nodes.find((n: any) => stripNodeId(n.id) === draggingNode?.id)?.fixed) {
-      // If it wasn't originally fixed, unfix it after drag
-      // (Unless the user manually pinned it during the drag, which is handled by toggleFix)
-      // Actually, let's just keep it fixed if it was dragged, or use the 'fixed' property from data.
-      // Better: if it's not pinned, let it flow again.
+    if (linkingSource) {
+      const target = e.target as HTMLElement;
+      const card = target.closest('.node-card');
+      if (card) {
+        const targetId = card.getAttribute('data-id');
+        if (targetId && targetId !== linkingSource.id) {
+          const newIdx = simulationNodes.filter(n => n.nodeType === 'edge').length;
+          const edgeId = `edge-${newIdx}-${Date.now()}`;
+          const edgeNode: ClientNode = {
+            id: edgeId, nodeType: 'edge', name: 'new relation', color: '#999',
+            sourceId: linkingSource.id, targetId: targetId, x: linkingTargetPos.x, y: linkingTargetPos.y, scale: 0.8
+          };
+          simulationNodes = [...simulationNodes, edgeNode];
+          simulationLinks = [...simulationLinks, 
+            { source: linkingSource.id, target: edgeId, color: '#999' },
+            { source: edgeId, target: targetId, color: '#999' }
+          ];
+          simulation?.nodes(simulationNodes);
+          const linkForce = simulation?.force('link') as d3.ForceLink<any, any>;
+          linkForce.links(simulationLinks);
+          simulation?.alpha(0.3).restart();
+          
+          setTimeout(() => {
+            const form = document.querySelector('form');
+            if (form) form.requestSubmit();
+          }, 100);
+        }
+      }
+      linkingSource = null;
+    }
+
+    if (draggingNode) {
       if (!draggingNode.fixed) {
         draggingNode.fx = null;
         draggingNode.fy = null;
       }
+      const form = document.querySelector('form');
+      if (form) form.requestSubmit();
     }
     draggingNode = null;
     resizingNode = null;
@@ -233,14 +241,14 @@
 
   function toggleFix(node: ClientNode, e: Event) {
     e.stopPropagation();
-    if (node.fx != null) {
-      node.fx = null;
-      node.fy = null;
-    } else {
-      node.fx = node.x;
-      node.fy = node.y;
-    }
+    node.fixed = !node.fixed;
+    if (node.fixed) { node.fx = node.x; node.fy = node.y; }
+    else { node.fx = null; node.fy = null; }
     simulation?.alpha(0.2).restart();
+    setTimeout(() => {
+      const form = document.querySelector('form');
+      if (form) form.requestSubmit();
+    }, 100);
   }
 
   function resetFromDisk() { window.location.reload(); }
@@ -267,6 +275,9 @@
           <line x1={s.x} y1={s.y} x2={t.x} y2={t.y} stroke={link.color || '#999'} stroke-width="2" stroke-opacity="0.2" />
         {/if}
       {/each}
+      {#if linkingSource}
+        <line x1={linkingSource.x} y1={linkingSource.y} x2={linkingTargetPos.x} y2={linkingTargetPos.y} stroke="#0071e3" stroke-width="3" stroke-dasharray="5,5" />
+      {/if}
     </svg>
 
     <div class="nodes-layer">
@@ -334,6 +345,10 @@
     <button type="button" class:active={showDebug} onclick={() => (showDebug = !showDebug)} title="Debug"><Bug size={16} /></button>
   </div>
 
+  <div class="help-hint">
+    Shift + Drag: リンクを作成
+  </div>
+
   {#if showDebug}
     <div class="debug">
       <div>Nodes: {simulationNodes.length} | Zoom: {transform.k.toFixed(2)}</div>
@@ -398,4 +413,5 @@
   .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid #eee; }
   textarea { flex: 1; width: 100%; border: none; padding: 14px; font-family: monospace; font-size: 12px; outline: none; resize: none; }
   .modal-actions { display: flex; gap: 10px; justify-content: flex-end; padding: 12px 14px; border-top: 1px solid #eee; }
+  .help-hint { position: fixed; bottom: 20px; left: 20px; font-size: 12px; color: #999; font-weight: 700; background: rgba(255,255,255,0.8); padding: 5px 10px; border-radius: 4px; }
 </style>

@@ -1,126 +1,51 @@
 import type { Actions, PageServerLoad } from './$types';
 import { error, fail } from '@sveltejs/kit';
-import { readFile, writeFile } from 'node:fs/promises';
+import { getBoard, saveNode, syncLinks, initializeFromJSONLD } from '$lib/server/neo4j';
+import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-
-// Use repo-relative path so dev/prod behave the same.
-const BOARD_PATH = resolve(process.cwd(), 'data/presentation.jsonld');
-
-type BoardNode = {
-	id: string;
-	nodeType: 'char' | 'concept' | 'ep' | string;
-	name?: string;
-	description?: string;
-	image?: string;
-	role?: string;
-	credentials?: string[];
-	color?: string;
-	x?: number;
-	y?: number;
-	fixed?: boolean;
-};
-
-type BoardLink = {
-	source: string;
-	target: string;
-	label?: string;
-	color?: string;
-};
-
-type BoardFile = {
-	'@context'?: unknown;
-	id?: string;
-	type?: string;
-	name?: string;
-	transform?: { x: number; y: number; k: number };
-	nodes?: BoardNode[];
-	links?: BoardLink[];
-};
-
-function stripNodeId(id: string): string {
-	return id.startsWith('gh:node/') ? id.slice('gh:node/'.length) : id;
-}
-
-function prefixNodeId(id: string): string {
-	return id.startsWith('gh:node/') ? id : `gh:node/${id}`;
-}
-
-  function toClientBoard(board: BoardFile) {
-    const transform = board.transform ?? { x: 0, y: 0, k: 1 };
-    const nodes = (board.nodes ?? []).map((n) => ({ ...n, id: stripNodeId(n.id) }));
-    const rawLinks = board.links ?? [];
-
-    // Transform links to include their own node if they have a label or specific structure
-    const processedLinks = rawLinks.map((l, i) => {
-      const edgeNodeId = `edge-${i}`;
-      return {
-        ...l,
-        id: edgeNodeId,
-        source: stripNodeId(l.source),
-        target: stripNodeId(l.target)
-      };
-    });
-
-    return { transform, nodes, links: processedLinks };
-  }
-
-function toDiskBoard(client: { transform: { x: number; y: number; k: number }; nodes: BoardNode[]; links: BoardLink[] }, base: BoardFile): BoardFile {
-	return {
-		...base,
-		transform: client.transform,
-		nodes: client.nodes.map((n) => ({ ...n, id: prefixNodeId(n.id) })),
-		links: client.links.map((l) => ({ ...l, source: prefixNodeId(l.source), target: prefixNodeId(l.target) }))
-	};
-}
-
-async function readBoardFile(): Promise<BoardFile> {
-	const text = await readFile(BOARD_PATH, 'utf8');
-	return JSON.parse(text) as BoardFile;
-}
-
-async function writeBoardFile(board: BoardFile) {
-	const pretty = JSON.stringify(board, null, 2) + '\n';
-	await writeFile(BOARD_PATH, pretty, 'utf8');
-}
 
 export const load: PageServerLoad = async () => {
 	try {
-		const board = await readBoardFile();
-		return { board: toClientBoard(board) };
+		let board = await getBoard();
+		
+		if (board.nodes.length === 0) {
+			const jsonPath = resolve(process.cwd(), 'data/presentation.jsonld');
+			const text = await readFile(jsonPath, 'utf8');
+			const data = JSON.parse(text);
+			await initializeFromJSONLD(data);
+			board = await getBoard();
+		}
+
+		return { board };
 	} catch (e) {
-		throw error(500, `Failed to read board JSON-LD: ${String(e)}`);
+		console.error(e);
+		throw error(500, `Neo4j Error: ${String(e)}`);
 	}
 };
 
 export const actions: Actions = {
 	save: async ({ request }) => {
 		const form = await request.formData();
-		const layout = form.get('layout');
-		if (typeof layout !== 'string' || layout.trim().length === 0) {
-			return fail(400, { message: 'Missing layout' });
-		}
-
-		let parsed: unknown;
-		try {
-			parsed = JSON.parse(layout);
-		} catch {
-			return fail(400, { message: 'Invalid JSON' });
-		}
-
-		// Minimal structural validation
-		const candidate = parsed as any;
-		if (!candidate || typeof candidate !== 'object') return fail(400, { message: 'Invalid payload' });
-		if (!candidate.transform || typeof candidate.transform !== 'object') return fail(400, { message: 'Missing transform' });
-		if (!Array.isArray(candidate.nodes) || !Array.isArray(candidate.links)) return fail(400, { message: 'Missing nodes/links' });
+		const layoutStr = form.get('layout');
+		if (typeof layoutStr !== 'string') return fail(400);
 
 		try {
-			const base = await readBoardFile();
-			const disk = toDiskBoard(candidate, base);
-			await writeBoardFile(disk);
-			return { ok: true };
+			const layout = JSON.parse(layoutStr);
+			
+			// 1. ノードの保存
+			for (const node of layout.nodes) {
+				await saveNode(node.id, node.x, node.y, !!node.fixed, node.scale || 1);
+			}
+
+			// 2. リンクの同期
+			if (Array.isArray(layout.links)) {
+				await syncLinks(layout.links);
+			}
+
+			return { success: true };
 		} catch (e) {
-			throw error(500, `Failed to write board JSON-LD: ${String(e)}`);
+			console.error(e);
+			return fail(500, { message: String(e) });
 		}
 	}
 };
-
