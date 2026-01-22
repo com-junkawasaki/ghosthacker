@@ -142,6 +142,7 @@
       "nodeType": "char",
       "name": "HERO (佐藤 ヒロシ)",
       "role": "Main Antagonist",
+      "image": "/images/characters/hero/main.png",
       "color": "#ff2d55",
       "description": "SNS型投資詐欺の首謀者。正義を騙り、承認欲求のために社会を壊す。",
       "x": 400,
@@ -216,37 +217,40 @@
       "scale": 2.2
     },
     {
-      "id": "gh:node/case-handa",
+      "id": "gh:node/case-kadokawa",
       "nodeType": "case",
-      "name": "半田病院事件 (2021)",
+      "name": "KADOKAWA事件 (2024)",
+      "image": "/static/images/tmp/2024-06-20_22h48_38.png",
       "color": "#ffffff",
-      "description": "VPN脆弱性放置による全システム停止。管理の『怠惰』の象徴。",
-      "x": 100,
+      "description": "大規模ランサムウェア攻撃による事業停止。管理の『怠惰』の象徴。",
+      "x": 200,
       "y": -1200,
       "fixed": false,
-      "scale": 1.2
+      "scale": 1.5
     },
     {
       "id": "gh:node/case-kojima",
       "nodeType": "case",
       "name": "小島プレス事件 (2022)",
+      "image": "/static/images/tmp/202203011648305.jpg",
       "color": "#ffffff",
       "description": "サプライチェーン攻撃によるトヨタ全ライン停止。運用の『短気』の象徴。",
       "x": 1800,
       "y": -300,
       "fixed": false,
-      "scale": 1.2
+      "scale": 1.5
     },
     {
       "id": "gh:node/case-sbi",
       "nodeType": "case",
       "name": "SBI証券不正引出 (2020)",
+      "image": "/static/images/tmp/OIP (3).webp",
       "color": "#ffffff",
       "description": "仕様の穴を突かれた口座侵害。設計の『傲慢』の象徴。",
-      "x": -400,
+      "x": -600,
       "y": 300,
       "fixed": false,
-      "scale": 1.2
+      "scale": 1.5
     },
     {
       "id": "gh:node/case-sns-scam",
@@ -605,6 +609,42 @@
       "x": 28,
       "y": -5,
       "fixed": true
+    },
+    {
+      "source": "gh:node/ep1",
+      "target": "gh:node/case-kadokawa",
+      "label": "real-world model",
+      "color": "#ff3b30"
+    },
+    {
+      "source": "gh:node/ep4",
+      "target": "gh:node/case-kojima",
+      "label": "real-world model",
+      "color": "#ff9500"
+    },
+    {
+      "source": "gh:node/ep7",
+      "target": "gh:node/case-sbi",
+      "label": "real-world model",
+      "color": "#af52de"
+    },
+    {
+      "source": "gh:node/ep10",
+      "target": "gh:node/case-sns-scam",
+      "label": "real-world model",
+      "color": "#0071e3"
+    },
+    {
+      "source": "gh:node/hero",
+      "target": "gh:node/ep10",
+      "label": "mastermind",
+      "color": "#ff2d55"
+    },
+    {
+      "source": "gh:node/ren",
+      "target": "gh:node/hero",
+      "label": "nemesis",
+      "color": "#ff2d55"
     }
   ]
 }
