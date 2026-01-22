@@ -29,6 +29,14 @@ export const actions: Actions = {
 		const layoutStr = form.get('layout');
 		if (typeof layoutStr !== 'string') return fail(400);
 
+		if (layoutStr === 'RESET_DB') {
+			const jsonPath = resolve(process.cwd(), 'data/presentation.jsonld');
+			const text = await readFile(jsonPath, 'utf8');
+			const data = JSON.parse(text);
+			await initializeFromJSONLD(data);
+			return { success: true };
+		}
+
 		try {
 			const layout = JSON.parse(layoutStr);
 			

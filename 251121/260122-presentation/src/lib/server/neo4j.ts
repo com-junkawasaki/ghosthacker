@@ -10,7 +10,7 @@ export async function getBoard() {
 	try {
 		const result = await session.run(`
 			MATCH (n:Node)
-			OPTIONAL MATCH (n)-[r]->(m:Node)
+			OPTIONAL MATCH (n)-[r:RELATES_TO]->(m:Node)
 			RETURN n, collect({type: type(r), properties: properties(r), target: m.id}) as links
 		`);
 

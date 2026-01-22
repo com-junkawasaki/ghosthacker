@@ -152,8 +152,12 @@
       draggingNode = node;
       dragStartPointer = { x: e.clientX, y: e.clientY };
       dragStartNodePos = { x: node.x, y: node.y };
-      draggingNode.fx = node.x;
-      draggingNode.fy = node.y;
+      
+      // Force immediate fixed position
+      node.fx = node.x;
+      node.fy = node.y;
+      
+      // Restart simulation with alpha target to make it responsive
       simulation?.alphaTarget(0.3).restart();
     } else {
       isDraggingCanvas = true;
@@ -172,6 +176,10 @@
       const dy = (e.clientY - dragStartPointer.y) / transform.k;
       draggingNode.fx = dragStartNodePos.x + dx;
       draggingNode.fy = dragStartNodePos.y + dy;
+      // Force tick
+      simulation?.tick();
+      simulationNodes = [...simulationNodes];
+      simulationLinks = [...simulationLinks];
     } else if (isDraggingCanvas) {
       transform.x += e.movementX;
       transform.y += e.movementY;
@@ -215,6 +223,7 @@
         draggingNode.fx = null;
         draggingNode.fy = null;
       }
+      // Force final position update before submit
       const form = document.querySelector('form');
       if (form) form.requestSubmit();
     }

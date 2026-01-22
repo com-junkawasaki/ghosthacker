@@ -65,7 +65,7 @@ class GraphStore {
   projectMetadata = $state<any>(null);
   mangaPages = $state<MangaPage[]>([]);
 
-  let viewpoints = $derived([
+  viewpoints = $derived([
     { id: 'hub:content', label: 'Timeline', type: 'chronological', description: 'Story progression' },
     { id: 'hub:entity', label: 'Characters', type: 'relationship', description: 'Social graph' },
     { id: 'hub:environment', label: 'World', type: 'atmospheric', description: 'Physical spaces' },
@@ -74,7 +74,8 @@ class GraphStore {
     { id: 'hub:assembler', label: '3D Assembler', type: 'assembler', description: 'Scene composition' },
     { id: 'hub:editor', label: 'Editor', type: 'editor', description: 'Detailed manuscript editing' },
     { id: 'hub:emotion', label: 'Emotions', type: 'heatmap', description: 'Emotional resonance' },
-    { id: 'hub:meta', label: 'Meta', type: 'overview', description: 'System architecture' }
+    { id: 'hub:meta', label: 'Meta', type: 'overview', description: 'System architecture' },
+    { id: 'hub:presentation', label: 'Presentation', type: 'presentation', description: 'A3 Presentation Board' }
   ]);
 
   constructor() {}

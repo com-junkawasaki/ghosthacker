@@ -12,10 +12,15 @@
     "test:e2e": "playwright test"
   },
   "devDependencies": {
+    "@playwright/test": "^1.57.0",
     "@sveltejs/adapter-static": "^3.0.0",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^4.0.0",
+    "@types/d3-force": "^3.0.10",
+    "@types/node": "^25.0.10",
+    "@types/three": "^0.182.0",
     "@webgpu/types": "^0.1.44",
+    "playwright-bdd": "^8.4.2",
     "svelte": "^5.0.0",
     "svelte-check": "^4.0.0",
     "typescript": "^5.0.0",
