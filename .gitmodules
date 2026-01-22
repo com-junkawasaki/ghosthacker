@@ -1,0 +1,3 @@
+[submodule "apps/zen-editor-sub"]
+	path = apps/zen-editor-sub
+	url = /Users/junkawasaki/github/ghosthacker/apps/zen-editor

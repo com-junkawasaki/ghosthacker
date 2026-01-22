@@ -176,8 +176,13 @@
       const dy = (e.clientY - dragStartPointer.y) / transform.k;
       draggingNode.fx = dragStartNodePos.x + dx;
       draggingNode.fy = dragStartNodePos.y + dy;
-      // Force tick
-      simulation?.tick();
+      
+      // Update the node's current x, y immediately for visual feedback
+      draggingNode.x = draggingNode.fx;
+      draggingNode.y = draggingNode.fy;
+
+      // Force tick and simulation update
+      simulation?.alphaTarget(0.3).restart();
       simulationNodes = [...simulationNodes];
       simulationLinks = [...simulationLinks];
     } else if (isDraggingCanvas) {
@@ -289,7 +294,7 @@
         {@const s = asNode(link.source, simulationNodes)}
         {@const t = asNode(link.target, simulationNodes)}
         {#if s && t}
-          <line x1={s.x} y1={s.y} x2={t.x} y2={t.y} stroke={link.color || '#999'} stroke-width="2" stroke-opacity="0.2" />
+          <line x1={s.x} y1={s.y} x2={t.x} y2={t.y} stroke={link.color || '#999'} stroke-width="2" stroke-opacity="0.8" />
         {/if}
       {/each}
       {#if linkingSource}
