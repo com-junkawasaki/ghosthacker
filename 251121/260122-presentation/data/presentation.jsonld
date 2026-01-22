@@ -65,10 +65,10 @@
       "image": "/images/characters/ren/main.png",
       "color": "#0071e3",
       "description": "効率厨の天才。情報改竄の背後にいる『GHOST』を追う。",
-      "x": -433,
-      "y": -800,
+      "x": -405,
+      "y": -728,
       "fixed": true,
-      "scale": 1.2
+      "scale": 1.8349999999999995
     },
     {
       "id": "gh:node/nei",
@@ -82,10 +82,10 @@
       "image": "/images/characters/nei/main.png",
       "color": "#34c759",
       "description": "蓮の相棒。現場の物理レイヤ侵入と解析を担当。",
-      "x": -104,
-      "y": -787,
+      "x": 78,
+      "y": -632,
       "fixed": true,
-      "scale": 1.1
+      "scale": 1.5049999999999988
     },
     {
       "id": "gh:node/shouta",
@@ -132,10 +132,10 @@
       "image": "/images/characters/kaname/main.png",
       "color": "#af52de",
       "description": "完璧主義のエリート。監査・統治で相手を詰める。",
-      "x": -471,
-      "y": 12,
+      "x": -651,
+      "y": 45,
       "fixed": false,
-      "scale": 1
+      "scale": 1.5299999999999991
     },
     {
       "id": "gh:node/cissp",
