@@ -1,0 +1,12 @@
+{
+  "@id": "page:10:panel:2",
+  "@type": "gh:MangaPanel",
+  "dialogue": [
+    {
+      "speaker": "Ghost",
+      "text": "俺ノ居場所ヲ…奪ウナァァァ！！"
+    }
+  ],
+  "panel:id": 2,
+  "visual": "安本の体からGhostが分離し、巨大な怪物（古びた書類とケーブルの塊のような姿）になる。"
+}

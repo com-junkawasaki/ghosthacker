@@ -236,6 +236,7 @@ message Node {
   repeated float rotation3d = 13; // [x, y, z]
   repeated float scale3d = 14;    // [x, y, z]
   string gltf_path = 15;
+  string image_path = 16;
 }
 
 message Edge {

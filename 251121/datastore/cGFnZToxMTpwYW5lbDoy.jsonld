@@ -1,0 +1,12 @@
+{
+  "@id": "page:11:panel:2",
+  "@type": "gh:MangaPanel",
+  "dialogue": [
+    {
+      "speaker": "Nei",
+      "text": "承知いたしました。SIPシークエンスを開始します。"
+    }
+  ],
+  "panel:id": 2,
+  "visual": "空間がデジタルノイズに包まれ、Ghostの質量が増す。"
+}

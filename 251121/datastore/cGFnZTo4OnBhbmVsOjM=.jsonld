@@ -1,0 +1,12 @@
+{
+  "@id": "page:8:panel:3",
+  "@type": "gh:MangaPanel",
+  "dialogue": [
+    {
+      "speaker": "Yasumoto",
+      "text": "な、何をわけのわからんことを…！やめろ！接続を切るぞ！"
+    }
+  ],
+  "panel:id": 3,
+  "visual": "安本、顔色を変えて後ずさりする。"
+}

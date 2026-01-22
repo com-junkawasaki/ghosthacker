@@ -1,0 +1,16 @@
+{
+  "@id": "character:EthanCole",
+  "gh:appearance": {
+    "gh:build": "Athletic and toned, wearing a standard FBI suit.",
+    "gh:eyes": "Confident blue eyes, intricate iris patterns, bright clinical catchlights.",
+    "gh:face": "33-year-old American male, sharp blond features, high-tech investigator vibe.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 33-year-old American male, sharp blond hair, athletic build, confident blue eyes with intricate iris patterns, wearing FBI suit.",
+    "gh:hair": "Short neat blond hair.",
+    "gh:style": "Photorealistic, sharp American agent, bright clinical lighting, 8k."
+  },
+  "gh:imagePath": "/data/251121/characters/EthanCole/hf_20260121_195748_5b2eed29-47bd-4828-92ce-e6f8d148be82.png",
+  "gh:organization": "org:fbi",
+  "schema:age": 33,
+  "schema:name": "Ethan Cole",
+  "schema:role": "FBI Agent"
+}

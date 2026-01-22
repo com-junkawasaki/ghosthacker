@@ -1,0 +1,16 @@
+{
+  "@id": "page:10:panel:3",
+  "@type": "gh:MangaPanel",
+  "dialogue": [
+    {
+      "speaker": "Shouta",
+      "text": "なんだよこれ…VRか…？"
+    },
+    {
+      "speaker": "Ren",
+      "text": "現実だよ。あんたらの歪んだ情報が実体化した姿だ。"
+    }
+  ],
+  "panel:id": 3,
+  "visual": "松田と佐藤、腰を抜かす。翔太は呆然と立ち尽くす。"
+}

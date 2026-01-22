@@ -1,0 +1,46 @@
+{
+  "@id": "page:15",
+  "@type": "gh:MangaPage",
+  "gh:panels": [
+    {
+      "dialogue": [
+        {
+          "speaker": "President",
+          "text": "何があったんだ！？すごい音がしたが…"
+        }
+      ],
+      "panel:id": 1,
+      "visual": "社長（大門五郎）が戻ってくる。作業着姿。"
+    },
+    {
+      "dialogue": [
+        {
+          "speaker": "Shouta",
+          "text": "…親父。安本さんが、システムを直そうとして…怪我を。"
+        }
+      ],
+      "panel:id": 2,
+      "visual": "翔太、父と安本を見る。一瞬沈黙するが、決意した顔で。"
+    },
+    {
+      "dialogue": [
+        {
+          "speaker": "Shouta",
+          "text": "（横領の件は後でケジメつけさせます。でも今は…）"
+        }
+      ],
+      "panel:id": 3,
+      "visual": "安本、驚いて翔太を見る。"
+    },
+    {
+      "dialogue": [
+        {
+          "speaker": "President",
+          "text": "そうか…安本、無理させたな。"
+        }
+      ],
+      "panel:id": 4,
+      "visual": "社長、状況を察しつつも受け入れる。"
+    }
+  ]
+}

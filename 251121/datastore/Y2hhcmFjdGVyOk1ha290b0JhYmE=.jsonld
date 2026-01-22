@@ -1,0 +1,15 @@
+{
+  "@id": "character:MakotoBaba",
+  "gh:appearance": {
+    "gh:build": "Average build, wearing a white shirt and gray trousers.",
+    "gh:eyes": "Stressed angry eyes, deep iris patterns, sharp catchlights reflecting warehouse lights.",
+    "gh:face": "54-year-old Japanese male, stressed and angry expression, deep eye bags.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 54-year-old Japanese male, stressed angry expression, short thinning hair, white shirt, gray trousers, logistics center background.",
+    "gh:hair": "Short thinning black hair.",
+    "gh:style": "Photorealistic, high-stress manager, dramatic logistics lighting, 8k."
+  },
+  "gh:organization": "org:jinpu-mobility",
+  "schema:age": 54,
+  "schema:name": "馬場 誠 (Makoto Baba)",
+  "schema:role": "Dispatch Manager (Arc B)"
+}

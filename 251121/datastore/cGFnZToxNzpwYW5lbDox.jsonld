@@ -1,0 +1,12 @@
+{
+  "@id": "page:17:panel:1",
+  "@type": "gh:MangaPanel",
+  "dialogue": [
+    {
+      "speaker": "Ren",
+      "text": "いいよ。Ghostを溜め込むなよ、次期社長。"
+    }
+  ],
+  "panel:id": 1,
+  "visual": "Ren、背中で手を振る。"
+}

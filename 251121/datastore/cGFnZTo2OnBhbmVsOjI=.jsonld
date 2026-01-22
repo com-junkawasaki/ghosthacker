@@ -1,0 +1,12 @@
+{
+  "@id": "page:6:panel:2",
+  "@type": "gh:MangaPanel",
+  "dialogue": [
+    {
+      "speaker": "Matsuda",
+      "text": "ちょっと翔太くん！給与計算どうすんのよ！明日振込日なのよ！？画面真っ黒で動かないじゃない！"
+    }
+  ],
+  "panel:id": 2,
+  "visual": "経理の松田（おばちゃん）が叫んでいる。"
+}

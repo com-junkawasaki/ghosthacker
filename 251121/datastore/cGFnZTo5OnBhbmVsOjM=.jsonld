@@ -1,0 +1,16 @@
+{
+  "@id": "page:9:panel:3",
+  "@type": "gh:MangaPanel",
+  "dialogue": [
+    {
+      "speaker": "Matsuda",
+      "text": "えっ…安本さん、どういうこと？"
+    },
+    {
+      "speaker": "Shouta",
+      "text": "安本さん…まさか、自分の地位を守るために？"
+    }
+  ],
+  "panel:id": 3,
+  "visual": "社員一同、安本を見る。"
+}

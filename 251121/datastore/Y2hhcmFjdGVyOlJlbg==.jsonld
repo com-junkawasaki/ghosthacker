@@ -1,0 +1,15 @@
+{
+  "@id": "character:Ren",
+  "gh:appearance": {
+    "gh:build": "Slender and graceful, wearing an oversized dark charcoal hoodie.",
+    "gh:eyes": "Clear silver-grey crystalline iris, sharp sparkling catchlights, deep melancholic expression.",
+    "gh:face": "17-year-old stunningly beautiful Japanese male, pale translucent skin, melancholic half-lidded eyes with silver-grey crystalline irises.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, stunningly beautiful 17-year-old Japanese male, pale porcelain skin, messy voluminous raven black hair, melancholic half-lidded eyes with silver-grey crystalline irises and sharp catchlights, oversized dark charcoal hoodie.",
+    "gh:hair": "Messy voluminous stylish raven black hair.",
+    "gh:style": "Photorealistic, high fashion photography, dramatic shadows, 8k."
+  },
+  "gh:imagePath": "/data/251121/characters/Ren/eb47e600-fee9-43e4-bd44-9b56a4a297e1.png",
+  "schema:age": 17,
+  "schema:name": "沼野 蓮 (Ren Numano)",
+  "schema:role": "Ghost Hacker"
+}

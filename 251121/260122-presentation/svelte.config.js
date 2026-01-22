@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-node';
+import adapter from './node_modules/@sveltejs/adapter-node/index.js';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */

@@ -1,0 +1,12 @@
+{
+  "@id": "page:6:panel:4",
+  "@type": "gh:MangaPanel",
+  "dialogue": [
+    {
+      "speaker": "Ren",
+      "text": "（昭和の遺産と中途半端なDX…最悪の組み合わせだね）"
+    }
+  ],
+  "panel:id": 4,
+  "visual": "Ren、オフィスを見渡す。"
+}

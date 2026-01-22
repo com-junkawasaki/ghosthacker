@@ -1,0 +1,12 @@
+{
+  "@id": "page:9:panel:4",
+  "@type": "gh:MangaPanel",
+  "dialogue": [
+    {
+      "speaker": "Ren",
+      "text": "ついでに横領とカジノの履歴も全部出てるよ。その穴埋めのための犯行だろ。"
+    }
+  ],
+  "panel:id": 4,
+  "visual": "安本、震える。"
+}

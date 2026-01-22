@@ -11,7 +11,7 @@ local_resource(
 # Backend (Go Server)
 local_resource(
     'zen-backend-server',
-    cmd='export WORKSPACE_ROOT=../data && export PORT=8080 && pnpm run dev:backend',
+    cmd='cd backend && export WORKSPACE_ROOT=../../.. && export PORT=8080 && go run cmd/server/main.go',
     deps=['backend/cmd/server', 'backend/internal', 'backend/proto', 'backend/go.mod', 'backend/go.sum'],
     links=['http://localhost:8080/health']
 )
@@ -19,6 +19,6 @@ local_resource(
 # Backend (Go Worker)
 local_resource(
     'zen-backend-worker',
-    cmd='export WORKSPACE_ROOT=../data && pnpm run dev:worker',
+    cmd='cd backend && export WORKSPACE_ROOT=../../.. && go run cmd/worker/main.go',
     deps=['backend/cmd/worker', 'backend/internal', 'backend/proto', 'backend/go.mod', 'backend/go.sum']
 )

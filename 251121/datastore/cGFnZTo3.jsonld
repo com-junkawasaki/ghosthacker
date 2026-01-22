@@ -1,0 +1,46 @@
+{
+  "@id": "page:7",
+  "@type": "gh:MangaPage",
+  "gh:panels": [
+    {
+      "dialogue": [
+        {
+          "speaker": "Yasumoto",
+          "text": "翔太くん！部外者を勝手に入れるな！システムは私がなんとかする！"
+        }
+      ],
+      "panel:id": 1,
+      "visual": "安本部長が登場。汗だくで挙動不審。翔太を睨む。"
+    },
+    {
+      "dialogue": [
+        {
+          "speaker": "Shouta",
+          "text": "安本さん！あんたの管理でこうなったんだろ！専門家に任せてください！"
+        }
+      ],
+      "panel:id": 2,
+      "visual": "翔太、強い口調で言い返す。"
+    },
+    {
+      "dialogue": [
+        {
+          "speaker": "Ren",
+          "text": "（…ビンゴ。システム障害の原因はマルウェアじゃない）"
+        }
+      ],
+      "panel:id": 3,
+      "visual": "Ren、安本を凝視。AR視点で安本の背後にへばりつく「黒い影（嫉妬と恐怖のGhost）」を見る。"
+    },
+    {
+      "dialogue": [
+        {
+          "speaker": "Ren",
+          "text": "Nei、ポート開放。物理レイヤーから侵入して。"
+        }
+      ],
+      "panel:id": 4,
+      "visual": "Ren、勝手に空いている席に座り、自分のノートPCを開く。"
+    }
+  ]
+}

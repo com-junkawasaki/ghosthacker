@@ -1,0 +1,15 @@
+{
+  "@id": "character:Nei",
+  "gh:appearance": {
+    "gh:build": "Slender, wearing a white long-sleeve blouse and black sleeveless dress.",
+    "gh:eyes": "Intelligent glowing blue irises with complex mechanical-like patterns, bright crystalline catchlights.",
+    "gh:face": "16-year-old stunningly beautiful Japanese female android, intelligent and mischievous sharp eyes with glowing blue intricate iris patterns.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, beautiful 16-year-old Japanese female android, platinum blonde layered bob, glowing blue irises with intricate mechanical patterns and sharp catchlights, white blouse, black dress.",
+    "gh:hair": "Platinum blonde layered bob hair.",
+    "gh:style": "Photorealistic, cinematic soft lighting, high-end android aesthetic, 8k."
+  },
+  "gh:imagePath": "/data/251121/characters/Nei/hf_20260121_194736_35d5486f-f234-45b0-bf25-30b9cac15f7a.png",
+  "schema:age": 16,
+  "schema:name": "Nei",
+  "schema:role": "AI Partner / Android"
+}

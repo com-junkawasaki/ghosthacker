@@ -1,0 +1,15 @@
+{
+  "@id": "character:TsubasaKobayashi",
+  "gh:appearance": {
+    "gh:build": "Thin and fragile build.",
+    "gh:eyes": "Nervous eyes reflecting smartphone glow, soft iris detail, crystalline catchlights.",
+    "gh:face": "23-year-old Japanese male, pale and nervous expression, modern youthful features.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 23-year-old Japanese male, pale nervous expression, wearing driver cap, looking at smartphone, cool night lighting.",
+    "gh:hair": "Driver uniform cap over messy hair.",
+    "gh:style": "Photorealistic, anxious youth, digital native look, cool night lighting, 8k."
+  },
+  "gh:organization": "org:jinpu-mobility",
+  "schema:age": 23,
+  "schema:name": "小林 翼 (Tsubasa Kobayashi)",
+  "schema:role": "Young Driver (Arc B)"
+}

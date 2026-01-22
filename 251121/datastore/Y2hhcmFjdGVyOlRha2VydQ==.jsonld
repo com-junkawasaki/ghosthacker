@@ -1,0 +1,15 @@
+{
+  "@id": "character:Takeru",
+  "gh:appearance": {
+    "gh:build": "Muscular, wearing high-end techwear/streetwear.",
+    "gh:eyes": "Piercing amber irises, high contrast iris texture, intense sharp catchlights.",
+    "gh:face": "19-year-old Japanese male, muscular build, aggressive and intense expression, piercing amber eyes.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 19-year-old Japanese male, aggressive expression, piercing amber eyes with high contrast iris textures, messy black hair with bleached highlights, techwear.",
+    "gh:hair": "Messy black hair with bleached highlights.",
+    "gh:style": "Photorealistic, gritty street aesthetic, high contrast, 8k."
+  },
+  "gh:imagePath": "/data/251121/characters/Takeru/hf_20260121_194220_f49ccf96-e45b-4753-b83b-017738db3bf6.png",
+  "schema:age": 19,
+  "schema:name": "赤羽 猛 (Takeru Akabane)",
+  "schema:role": "Rival Hacker"
+}

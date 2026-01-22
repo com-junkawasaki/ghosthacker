@@ -1,0 +1,50 @@
+{
+  "@id": "page:9",
+  "@type": "gh:MangaPage",
+  "gh:panels": [
+    {
+      "dialogue": [
+        {
+          "speaker": "Nei",
+          "text": "特定いたしました、マスター。アクセス元は…社内。総務部長の端末からです。"
+        }
+      ],
+      "panel:id": 1,
+      "visual": "Neiが画面に大きく表示される。「FOUND!!」"
+    },
+    {
+      "dialogue": [
+        {
+          "speaker": "Ren",
+          "text": "あんただね。翔太さんが導入しようとした新システムを妨害しようとして、闇サイトで拾ったウィルスを自爆させた。"
+        }
+      ],
+      "panel:id": 2,
+      "visual": "Ren、振り返って安本を指差す。"
+    },
+    {
+      "dialogue": [
+        {
+          "speaker": "Matsuda",
+          "text": "えっ…安本さん、どういうこと？"
+        },
+        {
+          "speaker": "Shouta",
+          "text": "安本さん…まさか、自分の地位を守るために？"
+        }
+      ],
+      "panel:id": 3,
+      "visual": "社員一同、安本を見る。"
+    },
+    {
+      "dialogue": [
+        {
+          "speaker": "Ren",
+          "text": "ついでに横領とカジノの履歴も全部出てるよ。その穴埋めのための犯行だろ。"
+        }
+      ],
+      "panel:id": 4,
+      "visual": "安本、震える。"
+    }
+  ]
+}

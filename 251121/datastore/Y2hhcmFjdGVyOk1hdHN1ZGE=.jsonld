@@ -1,0 +1,15 @@
+{
+  "@id": "character:Matsuda",
+  "gh:appearance": {
+    "gh:build": "Small build, wearing a beige blouse and dark skirt, reading glasses on a silver chain.",
+    "gh:eyes": "Sharp strict eyes behind reading glasses, realistic iris patterns, precise catchlights.",
+    "gh:face": "58-year-old Japanese woman, strict expression, realistic aging details.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 58-year-old Japanese woman, small build, strict expression, short permed black hair, beige blouse, reading glasses on chain, cinematic office lighting, sharp eyes with precise catchlights.",
+    "gh:hair": "Short permed black hair.",
+    "gh:style": "Photorealistic, strict Japanese office lady, 8k."
+  },
+  "gh:imagePath": "/data/251121/characters/Matsuda/hf_20260121_193746_0452be76-3034-487f-8df3-1f0d83294e84.png",
+  "schema:age": 58,
+  "schema:name": "松田 ヨシ子 (Yoshiko Matsuda)",
+  "schema:role": "Accounting Manager"
+}

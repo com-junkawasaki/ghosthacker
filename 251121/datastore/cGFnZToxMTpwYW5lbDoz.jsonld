@@ -1,0 +1,12 @@
+{
+  "@id": "page:11:panel:3",
+  "@type": "gh:MangaPanel",
+  "dialogue": [
+    {
+      "speaker": "Ghost",
+      "text": "消エロオォォ！！"
+    }
+  ],
+  "panel:id": 3,
+  "visual": "Ghostが暴れ、棚をなぎ倒す。物理的な破壊力があることを示す。"
+}

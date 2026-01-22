@@ -1,0 +1,16 @@
+{
+  "@id": "character:NatsumeKoichi",
+  "gh:appearance": {
+    "gh:build": "Broad shoulders, wearing a formal black suit.",
+    "gh:eyes": "Stoic authoritative eyes, heavy iris texture, sharp catchlights.",
+    "gh:face": "45-year-old Japanese male, stoic and authoritative face, heavy presence.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 45-year-old Japanese male, stoic authoritative face, neat salt-and-pepper hair, formal black suit, heavy iris texture and sharp catchlights.",
+    "gh:hair": "Neat salt-and-pepper hair.",
+    "gh:style": "Photorealistic, stoic authority, dramatic office lighting, 8k."
+  },
+  "gh:imagePath": "/data/251121/characters/NatsumeKoichi/hf_20260121_195701_ddd724c6-8d99-4e25-8ed6-41f450bec109.png",
+  "gh:organization": "org:tse",
+  "schema:age": 45,
+  "schema:name": "夏目 恒一 (Koichi Natsume)",
+  "schema:role": "Market Guard"
+}

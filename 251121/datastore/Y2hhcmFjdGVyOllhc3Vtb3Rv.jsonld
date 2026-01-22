@@ -1,0 +1,15 @@
+{
+  "@id": "character:Yasumoto",
+  "gh:appearance": {
+    "gh:build": "Slightly overweight, wearing a rumpled gray business suit.",
+    "gh:eyes": "Anxious darting eyes, oily texture on eyelids, sharp catchlights from fluorescent lights.",
+    "gh:face": "52-year-old Japanese man, oily skin, anxious and defensive expression, darting eyes.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, a 52-year-old Japanese man, slightly overweight, anxious expression, messy receding hair, rumpled gray suit, sweat stains, harsh fluorescent lighting, anxious eyes with sharp catchlights.",
+    "gh:hair": "Messy receding salt-and-pepper hair.",
+    "gh:style": "Photorealistic, harsh office lighting, oily skin texture, 8k."
+  },
+  "gh:imagePath": "/data/251121/characters/Yasumoto/hf_20260121_193730_da2470f3-6bc7-4da6-a736-23c1f64ba1aa (1).png",
+  "schema:age": 52,
+  "schema:name": "安本 健治 (Kenji Yasumoto)",
+  "schema:role": "Antagonist / Victim"
+}

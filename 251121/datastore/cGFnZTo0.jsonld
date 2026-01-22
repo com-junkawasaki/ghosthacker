@@ -1,0 +1,50 @@
+{
+  "@id": "page:4",
+  "@type": "gh:MangaPage",
+  "gh:panels": [
+    {
+      "dialogue": [
+        {
+          "speaker": "Ren",
+          "text": "あー、だりーなー。"
+        }
+      ],
+      "panel:id": 1,
+      "visual": "コンクリート打ちっぱなしの壁とウッドフローリングの清潔なオフィス。Renはモダンなデスクチェアに仰向けでダラけている。"
+    },
+    {
+      "dialogue": [
+        {
+          "speaker": "Ren",
+          "text": "Neiちゃん、何してんの？"
+        },
+        {
+          "speaker": "Nei",
+          "text": "お仕事を探しておりました。当然です、マスター。"
+        }
+      ],
+      "panel:id": 2,
+      "visual": "部屋の隅でタブレットを操作しているNei。呆れた表情。"
+    },
+    {
+      "dialogue": [
+        {
+          "speaker": "Nei",
+          "text": "サーバー及びクラウド費用が非常に逼迫しております。マスターがもう少し稼働くだされば…"
+        }
+      ],
+      "panel:id": 3,
+      "visual": "Renの椅子に近づき、呆れた顔で覗き込むNei。"
+    },
+    {
+      "dialogue": [
+        {
+          "speaker": "Ren",
+          "text": "怠惰こそ美徳。効率化の母だよ。"
+        }
+      ],
+      "panel:id": 4,
+      "visual": "Ren、耳をほじりながら。"
+    }
+  ]
+}

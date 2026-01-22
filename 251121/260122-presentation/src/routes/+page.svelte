@@ -1,94 +1,125 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { enhance } from '$app/forms';
   import * as d3 from 'd3-force';
-  import { Shield, Terminal, Cpu, Network, Eye, Lock, Zap, Ghost, Pin, PinOff, Calendar, Save, RotateCcw, Download, Bug } from 'lucide-svelte';
+  import type { PageData } from './$types';
+  import { Eye, Ghost, Lock, Pin, PinOff, Save, RotateCcw, Download, FileJson, Bug } from 'lucide-svelte';
 
-  const characters = [
-    { id: 'ren', type: 'char', name: '沼野 蓮 (Ren)', role: 'Ghost Hacker', age: 17, image: '/images/characters/ren.png', credentials: ['CISSP Associate', 'CEH'], color: '#0071e3', desc: 'Efficiency-obsessed genius. Hacks the "Ghost" behind info-distortions.' },
-    { id: 'nei', type: 'char', name: 'Nei', role: 'AI Partner', age: 16, image: '/images/characters/nei.png', credentials: ['Android AI', 'SIP Manager'], color: '#34c759', desc: 'Ren\'s partner. Manages physical layer intrusions and data analysis.' },
-    { id: 'shouta', type: 'char', name: '大門 翔太 (Shouta)', role: 'The Client', age: 26, image: '/images/characters/shouta.png', credentials: ['Daimon Construction'], color: '#ff3b30', desc: 'Successor struggling with legacy systems.' },
-    { id: 'takeru', type: 'char', name: '赤羽 猛 (Takeru)', role: 'Rival: Short-tempered', age: 19, image: '/images/characters/takeru.png', credentials: ['OSCP', 'GXPN'], color: '#ff9500', desc: 'Aggressive self-taught hacker.' },
-    { id: 'kaname', type: 'char', name: '水城 要 (Kaname)', role: 'Rival: Arrogant', age: 18, image: '/images/characters/kaname.png', credentials: ['CISA', 'PMP'], color: '#af52de', desc: 'Perfectionist elite. Management specialist.' },
-  ];
+  type ClientNode = {
+    id: string;
+    nodeType: 'char' | 'concept' | 'ep' | string;
+    name?: string;
+    description?: string;
+    image?: string;
+    role?: string;
+    credentials?: string[];
+    color?: string;
+    x?: number;
+    y?: number;
+    fixed?: boolean;
+    // d3 runtime fields
+    fx?: number | null;
+    fy?: number | null;
+  };
 
-  const concepts = [
-    { id: 'aria', type: 'concept', name: 'ARIA Aesthetic', color: '#0071e3', icon: Eye, desc: 'Luminous air, soft light, extreme ocular detail.' },
-    { id: 'ghost', type: 'concept', name: 'The GHOST', color: '#ff2d55', icon: Ghost, desc: 'Information with mass. The physical manifestation of digital malice.' },
-    { id: 'sip', type: 'concept', name: 'SIP Sequence', color: '#00a0a0', icon: Lock, desc: 'Secure Information Physicality.' },
-  ];
+  type ClientLink = {
+    source: string | ClientNode;
+    target: string | ClientNode;
+    label?: string;
+    color?: string;
+  };
 
-  const episodes = [
-    { id: 'ep1', type: 'ep', arc: 'A', num: 1, title: '牙を剥く内部の影', theme: 'Internal Sabotage' },
-    { id: 'ep2', type: 'ep', arc: 'A', num: 2, title: '許しの毒', theme: 'CISSP Methodology' },
-    { id: 'ep3', type: 'ep', arc: 'A', num: 3, title: '善意の呪い', theme: 'Corporate Culture' },
-    { id: 'ep4', type: 'ep', arc: 'B', num: 4, title: '終わらぬ時計', theme: 'Takeru Appears' },
-    { id: 'ep5', type: 'ep', arc: 'B', num: 5, title: 'Doneがない地獄', theme: 'Design Failure' },
-    { id: 'ep6', type: 'ep', arc: 'B', num: 6, title: '終端刻印', theme: 'Salvation' },
-    { id: 'ep7', type: 'ep', arc: 'C', num: 7, title: '空の要塞の崩壊', theme: 'Kaname Appears' },
-    { id: 'ep8', type: 'ep', arc: 'C', num: 8, title: '消えた資産の足跡', theme: 'Audit Attack' },
-    { id: 'ep9', type: 'ep', arc: 'C', num: 9, title: 'それは傲慢ですね', theme: 'Rule Killing' },
-    { id: 'ep10', type: 'ep', arc: 'D', num: 10, title: '群れのGhost', theme: 'Ecosystem Risk' },
-    { id: 'ep11', type: 'ep', arc: 'D', num: 11, title: '崩壊する信頼', theme: 'Investigation' },
-    { id: 'ep12', type: 'ep', arc: 'D', num: 12, title: '逮捕と残響', theme: 'Final Deletion' },
-  ];
+  const { data } = $props<{ data: PageData }>();
 
-  const rawLinks = [
-    { source: 'ren', target: 'nei', label: 'Partners', color: '#34c759' },
-    { source: 'ren', target: 'shouta', label: 'Client', color: '#ff3b30' },
-    { source: 'ren', target: 'takeru', label: 'Rival', color: '#ff9500' },
-    { source: 'ren', target: 'kaname', label: 'Rival', color: '#af52de' },
-    { source: 'ren', target: 'ghost', label: 'Targets', color: '#ff2d55' },
-    { source: 'ren', target: 'sip', label: 'Tools', color: '#00a0a0' },
-    { source: 'ren', target: 'aria', label: 'Visuals', color: '#0071e3' },
-  ];
+  const conceptIconById: Record<string, any> = {
+    aria: Eye,
+    ghost: Ghost,
+    sip: Lock
+  };
 
-  let simulationNodes = $state<any[]>([]);
-  let simulationLinks = $state<any[]>([]);
-  let transform = $state({ x: 500, y: 400, k: 0.8 });
-  let simulation: any;
-  let isMounted = $state(false);
+  let transform = $state(structuredClone(data.board.transform));
+  let simulationNodes = $state<ClientNode[]>([]);
+  let simulationLinks = $state<ClientLink[]>([]);
+  let simulation: d3.Simulation<ClientNode, undefined> | null = null;
+
+  let draggingNode = $state<ClientNode | null>(null);
+  let isDraggingCanvas = $state(false);
+
+  let showDebug = $state(false);
+  let showEditor = $state(false);
+  let jsonDraft = $state('');
+
+  function ensureNumbers(n: number | undefined, fallback: number) {
+    return typeof n === 'number' && Number.isFinite(n) ? n : fallback;
+  }
+
+  function makeClientLayout() {
+    const nodes = simulationNodes.map((n) => ({
+      id: n.id,
+      nodeType: n.nodeType,
+      name: n.name,
+      description: n.description,
+      image: n.image,
+      role: n.role,
+      credentials: n.credentials ?? [],
+      color: n.color,
+      x: Math.round(ensureNumbers(n.x, 0)),
+      y: Math.round(ensureNumbers(n.y, 0)),
+      fixed: n.fx != null
+    }));
+
+    const links = data.board.links.map((l) => ({
+      source: typeof l.source === 'string' ? l.source : (l.source as any).id,
+      target: typeof l.target === 'string' ? l.target : (l.target as any).id,
+      label: l.label,
+      color: l.color
+    }));
+
+    return {
+      transform,
+      nodes,
+      links
+    };
+  }
+
+  const layoutToSave = $derived(JSON.stringify(makeClientLayout()));
+  const layoutPretty = $derived(JSON.stringify(makeClientLayout(), null, 2));
 
   onMount(() => {
-    // If we can get window size, center it properly
-    if (typeof window !== 'undefined') {
+    // If transform is not set, center roughly
+    if ((transform?.x ?? 0) === 0 && (transform?.y ?? 0) === 0) {
       transform.x = window.innerWidth / 2;
       transform.y = window.innerHeight / 2;
     }
 
-    const saved = localStorage.getItem('gh-presentation-layout');
-    let savedLayout: any = null;
-    if (saved) {
-      try { savedLayout = JSON.parse(saved); } catch (e) {}
-    }
-
-    const allBaseNodes = [...characters, ...concepts, ...episodes];
-    simulationNodes = allBaseNodes.map(n => {
-      const savedNode = savedLayout?.["gh:nodes"]?.find((sn: any) => sn["@id"] === `gh:node/${n.id}`);
-      if (savedNode) {
-        return { ...n, x: savedNode.x, y: savedNode.y, fx: savedNode.fixed ? savedNode.x : null, fy: savedNode.fixed ? savedNode.y : null };
-      }
-      return { ...n, x: (Math.random() - 0.5) * 600, y: (Math.random() - 0.5) * 600, fx: null, fy: null };
+    simulationNodes = data.board.nodes.map((n: any) => {
+      const x = ensureNumbers(n.x, (Math.random() - 0.5) * 900);
+      const y = ensureNumbers(n.y, (Math.random() - 0.5) * 900);
+      const fixed = !!n.fixed;
+      return {
+        ...n,
+        x,
+        y,
+        fx: fixed ? x : null,
+        fy: fixed ? y : null
+      } satisfies ClientNode;
     });
 
-    simulationLinks = rawLinks.map(l => ({ ...l }));
+    simulationLinks = data.board.links.map((l: any) => ({ ...l })) as ClientLink[];
 
-    simulation = d3.forceSimulation(simulationNodes)
-      .force('link', d3.forceLink(simulationLinks).id((d: any) => d.id).distance(300))
-      .force('charge', d3.forceManyBody().strength(-2000))
+    simulation = d3
+      .forceSimulation(simulationNodes)
+      .force('link', d3.forceLink(simulationLinks as any).id((d: any) => d.id).distance(260))
+      .force('charge', d3.forceManyBody().strength(-2200))
       .force('center', d3.forceCenter(0, 0))
-      .force('collision', d3.forceCollide().radius(150))
+      .force('collision', d3.forceCollide().radius((d: any) => (d.nodeType === 'ep' ? 110 : 160)))
       .on('tick', () => {
         simulationNodes = [...simulationNodes];
         simulationLinks = [...simulationLinks];
       });
 
-    if (savedLayout?.transform) transform = savedLayout.transform;
-    isMounted = true;
     return () => simulation?.stop();
   });
-
-  let draggingNode = $state<any>(null);
-  let isDraggingCanvas = $state(false);
 
   function handlePointerDown(e: PointerEvent) {
     if (e.button !== 0) return;
@@ -96,20 +127,23 @@
     const card = target.closest('.node-card');
     if (card) {
       const id = card.getAttribute('data-id');
-      draggingNode = simulationNodes.find(n => n.id === id);
-      if (draggingNode) { draggingNode.fx = draggingNode.x; draggingNode.fy = draggingNode.y; }
+      const node = simulationNodes.find((n) => n.id === id);
+      if (!node) return;
+      draggingNode = node;
+      draggingNode.fx = ensureNumbers(draggingNode.x, 0);
+      draggingNode.fy = ensureNumbers(draggingNode.y, 0);
     } else {
       isDraggingCanvas = true;
     }
     // @ts-ignore
-    e.currentTarget.setPointerCapture(e.pointerId);
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   }
 
   function handlePointerMove(e: PointerEvent) {
     if (draggingNode) {
-      draggingNode.fx += e.movementX / transform.k;
-      draggingNode.fy += e.movementY / transform.k;
-      simulation.alphaTarget(0.3).restart();
+      draggingNode.fx = ensureNumbers(draggingNode.fx ?? draggingNode.x, 0) + e.movementX / transform.k;
+      draggingNode.fy = ensureNumbers(draggingNode.fy ?? draggingNode.y, 0) + e.movementY / transform.k;
+      simulation?.alphaTarget(0.3).restart();
     } else if (isDraggingCanvas) {
       transform.x += e.movementX;
       transform.y += e.movementY;
@@ -119,9 +153,9 @@
   function handlePointerUp(e: PointerEvent) {
     draggingNode = null;
     isDraggingCanvas = false;
-    simulation.alphaTarget(0);
+    simulation?.alphaTarget(0);
     // @ts-ignore
-    e.currentTarget.releasePointerCapture(e.pointerId);
+    (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
   }
 
   function handleWheel(e: WheelEvent) {
@@ -138,35 +172,35 @@
     transform.y = mouseY - worldY * transform.k;
   }
 
-  function toggleFix(node: any, e: Event) {
+  function toggleFix(node: ClientNode, e: Event) {
     e.stopPropagation();
-    if (node.fx !== null) { node.fx = null; node.fy = null; }
-    else { node.fx = node.x; node.fy = node.y; }
-    simulation.alpha(0.3).restart();
+    if (node.fx != null) {
+      node.fx = null;
+      node.fy = null;
+    } else {
+      node.fx = ensureNumbers(node.x, 0);
+      node.fy = ensureNumbers(node.y, 0);
+    }
+    simulation?.alpha(0.25).restart();
   }
 
-  function saveLayout() {
-    const layoutData = {
-      "@context": { "gh": "https://ghosthacker.gftd.ai/ns/", "schema": "http://schema.org/", "x": "schema:positionX", "y": "schema:positionY", "fixed": "gh:isFixed" },
-      "@type": "gh:PresentationLayout",
-      "transform": transform,
-      "gh:nodes": simulationNodes.map(n => ({ "@id": `gh:node/${n.id}`, "x": Math.round(n.x), "y": Math.round(n.y), "fixed": n.fx !== null }))
-    };
-    const blob = new Blob([JSON.stringify(layoutData, null, 2)], { type: 'application/ld+json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = 'ghosthacker-layout.jsonld'; a.click();
-    URL.revokeObjectURL(url);
-    localStorage.setItem('gh-presentation-layout', JSON.stringify(layoutData));
-  }
-
-  function resetAll() {
-    localStorage.removeItem('gh-presentation-layout');
+  function resetFromDisk() {
     window.location.reload();
+  }
+
+  function openEditor() {
+    jsonDraft = layoutPretty;
+    showEditor = true;
   }
 </script>
 
-<div class="viewport" onpointerdown={handlePointerDown} onpointermove={handlePointerMove} onpointerup={handlePointerUp} onwheel={handleWheel}>
+<div
+  class="viewport"
+  on:pointerdown={handlePointerDown}
+  on:pointermove={handlePointerMove}
+  on:pointerup={handlePointerUp}
+  on:wheel={handleWheel}
+>
   <div class="hud">
     <div class="glitch-container">
       <div class="glitch-logo" data-text="GHOST">GHOST</div>
@@ -177,12 +211,33 @@
 
   <div class="canvas" style="transform: translate({transform.x}px, {transform.y}px) scale({transform.k})">
     <div class="bg-grid"></div>
+
     <svg class="links-layer">
       {#each simulationLinks as link}
-        {#if link.source && link.target && typeof link.source === 'object'}
+        {#if link.source && link.target && typeof link.source === 'object' && typeof link.target === 'object'}
           <g>
-            <line x1={link.source.x} y1={link.source.y} x2={link.target.x} y2={link.target.y} stroke={link.color || '#999'} stroke-width="2" stroke-opacity="0.2" />
-            <text x={(link.source.x + link.target.x) / 2} y={(link.source.y + link.target.y) / 2} fill={link.color || '#999'} font-size="12" text-anchor="middle" dy="-10" class="link-label">{link.label}</text>
+            <line
+              x1={link.source.x}
+              y1={link.source.y}
+              x2={link.target.x}
+              y2={link.target.y}
+              stroke={link.color || '#999'}
+              stroke-width="2"
+              stroke-opacity="0.25"
+            />
+            {#if link.label}
+              <text
+                x={(link.source.x + link.target.x) / 2}
+                y={(link.source.y + link.target.y) / 2}
+                fill={link.color || '#999'}
+                font-size="12"
+                text-anchor="middle"
+                dy="-10"
+                class="link-label"
+              >
+                {link.label}
+              </text>
+            {/if}
           </g>
         {/if}
       {/each}
@@ -190,28 +245,55 @@
 
     <div class="nodes-layer">
       {#each simulationNodes as node (node.id)}
-        <div class="node-card {node.type}-card" class:fixed={node.fx !== null} style="left: {node.x}px; top: {node.y}px; --accent: {node.color}" data-id={node.id}>
-          <button class="pin-btn" onclick={(e) => toggleFix(node, e)}>
-            {#if node.fx !== null}<Pin size={14} fill="currentColor" />{:else}<PinOff size={14} />{/if}
+        <div
+          class="node-card {node.nodeType}-card"
+          class:fixed={node.fx != null}
+          style="left: {node.x}px; top: {node.y}px; --accent: {node.color}"
+          data-id={node.id}
+        >
+          <button class="pin-btn" on:click={(e) => toggleFix(node, e)} title="Pin">
+            {#if node.fx != null}
+              <Pin size={14} fill="currentColor" />
+            {:else}
+              <PinOff size={14} />
+            {/if}
           </button>
-          {#if node.type === 'char'}
-            {#if node.image}<div class="image-box"><img src={node.image} alt={node.name} /></div>{/if}
+
+          {#if node.nodeType === 'char'}
+            {#if node.image}
+              <div class="image-box"><img src={node.image} alt={node.name} /></div>
+            {/if}
             <div class="info">
               <div class="name">{node.name}</div>
               <div class="role">{node.role}</div>
-              <div class="creds">{#each node.credentials as cred}<span class="cred-tag">{cred}</span>{/each}</div>
-              <p class="desc">{node.desc}</p>
+              <div class="creds">
+                {#each node.credentials ?? [] as cred}<span class="cred-tag">{cred}</span>{/each}
+              </div>
+              <p class="desc">{node.description}</p>
             </div>
-          {:else if node.type === 'concept'}
+          {:else if node.nodeType === 'concept'}
             <div class="concept-content">
-              <div class="concept-icon"><node.icon size={32} color={node.color} /></div>
-              <div class="info"><div class="name" style="color: {node.color}">{node.name}</div><p class="desc">{node.desc}</p></div>
+              <div class="concept-icon">
+                {#if conceptIconById[node.id]}
+                  <svelte:component this={conceptIconById[node.id]} size={32} color={node.color} />
+                {:else}
+                  <Ghost size={32} color={node.color} />
+                {/if}
+              </div>
+              <div class="info">
+                <div class="name" style="color: {node.color}">{node.name}</div>
+                <p class="desc">{node.description}</p>
+              </div>
             </div>
-          {:else if node.type === 'ep'}
+          {:else if node.nodeType === 'ep'}
             <div class="ep-content">
-              <div class="ep-meta">Arc {node.arc} | Ep.{node.num}</div>
-              <div class="ep-title">{node.title}</div>
-              <div class="ep-theme">{node.theme}</div>
+              <div class="ep-title">{node.name}</div>
+              <div class="ep-theme">{node.description}</div>
+            </div>
+          {:else}
+            <div class="info">
+              <div class="name">{node.name}</div>
+              <p class="desc">{node.description}</p>
             </div>
           {/if}
         </div>
@@ -220,41 +302,156 @@
   </div>
 
   <div class="controls">
-    <button onclick={saveLayout}><Save size={16} /> Save</button>
-    <button onclick={resetAll}><RotateCcw size={16} /> Reset</button>
+    <form method="POST" action="?/save" use:enhance>
+      <input type="hidden" name="layout" value={layoutToSave} />
+      <button type="submit"><Save size={16} /> Save</button>
+    </form>
+
+    <a class="btn" href="/board.jsonld"><Download size={16} /> Download</a>
+
+    <button type="button" on:click={openEditor}><FileJson size={16} /> JSON-LD</button>
+    <button type="button" on:click={resetFromDisk}><RotateCcw size={16} /> Reload</button>
+    <button type="button" class:active={showDebug} on:click={() => (showDebug = !showDebug)} title="Debug">
+      <Bug size={16} />
+    </button>
   </div>
+
+  {#if showDebug}
+    <div class="debug">
+      <div>Nodes: {simulationNodes.length}</div>
+      <div>Links: {simulationLinks.length}</div>
+      <div>Zoom: {transform.k.toFixed(2)}</div>
+    </div>
+  {/if}
+
+  {#if showEditor}
+    <div class="modal-backdrop" on:click={() => (showEditor = false)} />
+    <div class="modal" role="dialog" aria-label="JSON-LD editor">
+      <div class="modal-head">
+        <div class="modal-title">`data/ghosthacker-board.jsonld` を編集して保存</div>
+        <button class="icon-btn" type="button" on:click={() => (showEditor = false)}>×</button>
+      </div>
+
+      <form method="POST" action="?/save" use:enhance>
+        <textarea name="layout" bind:value={jsonDraft} spellcheck="false" />
+        <div class="modal-actions">
+          <button type="submit"><Save size={16} /> Save JSON</button>
+          <button type="button" on:click={() => (jsonDraft = layoutPretty)}><RotateCcw size={16} /> Reset draft</button>
+        </div>
+      </form>
+    </div>
+  {/if}
 </div>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&family=Noto+Sans+JP:wght@400;700;900&family=Poppins:wght@400;700;900&display=swap');
-  :global(body) { margin: 0; background: #fff; color: #333; font-family: 'Poppins', 'Noto Sans JP', sans-serif; overflow: hidden; touch-action: none; }
+
+  :global(body) { margin: 0; background: #fff; color: #333; font-family: 'Poppins', 'Noto Sans JP', sans-serif; overflow: hidden; }
+
   .viewport { width: 100vw; height: 100vh; position: relative; overflow: hidden; background: #fff; }
-  .canvas { position: absolute; transform-origin: 0 0; }
-  .bg-grid { position: absolute; width: 20000px; height: 20000px; top: -10000px; left: -10000px; background-image: radial-gradient(circle, #eee 1px, transparent 1px); background-size: 50px 50px; pointer-events: none; }
+  .canvas { position: absolute; transform-origin: 0 0; will-change: transform; }
+
+  .bg-grid {
+    position: absolute;
+    width: 20000px;
+    height: 20000px;
+    top: -10000px;
+    left: -10000px;
+    background-image: radial-gradient(circle, #eee 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+  }
+
   .links-layer { position: absolute; width: 20000px; height: 20000px; top: -10000px; left: -10000px; pointer-events: none; }
   .link-label { font-weight: 700; paint-order: stroke; stroke: #fff; stroke-width: 4px; pointer-events: none; }
-  .node-card { position: absolute; transform: translate(-50%, -50%); background: #fff; padding: 15px; border: 1px solid #ddd; box-shadow: 0 10px 30px rgba(0,0,0,0.05); user-select: none; pointer-events: auto; }
+
+  .node-card {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    user-select: none;
+    pointer-events: auto;
+  }
   .node-card.fixed { border-color: var(--accent); border-width: 2px; }
+
   .char-card { width: 240px; border-top: 4px solid var(--accent); }
   .image-box { width: 100%; height: 240px; background: #f0f0f0; margin-bottom: 10px; overflow: hidden; }
   .image-box img { width: 100%; height: 100%; object-fit: cover; }
+
   .name { font-weight: 900; font-size: 18px; }
   .role { font-size: 12px; color: var(--accent); font-weight: 800; margin-bottom: 8px; }
   .cred-tag { font-size: 9px; background: #f5f5f5; padding: 2px 6px; border-radius: 3px; margin-right: 4px; font-weight: 700; color: #666; }
-  .desc { font-size: 11px; color: #888; margin-top: 8px; line-height: 1.4; }
-  .concept-card { width: 300px; border-radius: 60px; display: flex; align-items: center; gap: 15px; padding: 20px 30px; border: 2px solid var(--accent); }
-  .ep-card { width: 160px; text-align: center; border-radius: 8px; border-bottom: 3px solid #ddd; background: #fafafa; }
-  .ep-meta { font-size: 10px; color: #999; font-weight: 900; }
-  .ep-title { font-size: 14px; font-weight: 900; }
-  .pin-btn { position: absolute; top: 10px; right: 10px; background: none; border: none; color: #eee; cursor: pointer; }
+  .desc { font-size: 11px; color: #666; margin-top: 8px; line-height: 1.4; }
+
+  .concept-card { width: 320px; border-radius: 60px; display: flex; align-items: center; gap: 15px; padding: 20px 26px; border: 2px solid var(--accent); }
+  .concept-content { display: flex; align-items: center; gap: 15px; }
+
+  .ep-card { width: 220px; text-align: center; border-radius: 10px; border-bottom: 3px solid #ddd; background: #fafafa; }
+  .ep-title { font-size: 13px; font-weight: 900; color: #111; }
+  .ep-theme { font-size: 11px; color: #777; margin-top: 6px; }
+
+  .pin-btn { position: absolute; top: 10px; right: 10px; background: none; border: none; color: #ddd; cursor: pointer; }
   .fixed .pin-btn { color: var(--accent); }
-  .hud { position: fixed; top: 40px; left: 40px; pointer-events: none; }
+
+  .hud { position: fixed; top: 40px; left: 40px; pointer-events: none; z-index: 10; }
   .glitch-container { display: flex; flex-direction: column; }
   .glitch-logo { position: relative; font-family: 'Courier Prime', monospace; font-size: 80px; font-weight: 700; line-height: 0.85; color: #111; text-transform: uppercase; letter-spacing: -2px; }
   .glitch-logo::before, .glitch-logo::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
   .glitch-logo::before { left: 4px; text-shadow: -3px 0 #ff00ff; color: transparent; opacity: 0.7; }
   .glitch-logo::after { left: -4px; text-shadow: 3px 0 #00ffff; color: transparent; opacity: 0.7; }
   .subtitle { font-size: 18px; color: #999; font-weight: 700; margin-top: 10px; letter-spacing: 5px; }
-  .controls { position: fixed; top: 20px; right: 20px; display: flex; gap: 10px; }
-  .controls button { background: #fff; border: 1px solid #ddd; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: 700; font-size: 12px; display: flex; align-items: center; gap: 5px; }
+
+  .controls { position: fixed; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 20; }
+  .controls button, .btn {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #333;
+    text-decoration: none;
+  }
+  .controls button:hover, .btn:hover { border-color: #111; }
+  .controls button.active { border-color: #111; }
+
+  .debug { position: fixed; bottom: 18px; right: 18px; background: #000; color: #0f0; padding: 10px; font-size: 11px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; z-index: 30; }
+
+  .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.35); z-index: 40; }
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(920px, 92vw);
+    height: min(620px, 86vh);
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+  }
+  .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid #eee; }
+  .modal-title { font-weight: 900; font-size: 12px; color: #333; }
+  .icon-btn { border: 1px solid #ddd; background: #fff; border-radius: 8px; padding: 4px 10px; cursor: pointer; }
+  textarea {
+    flex: 1;
+    width: 100%;
+    border: none;
+    padding: 14px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-size: 12px;
+    outline: none;
+    resize: none;
+  }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; padding: 12px 14px; border-top: 1px solid #eee; }
 </style>

@@ -1,0 +1,12 @@
+{
+  "@id": "page:15:panel:3",
+  "@type": "gh:MangaPanel",
+  "dialogue": [
+    {
+      "speaker": "Shouta",
+      "text": "（横領の件は後でケジメつけさせます。でも今は…）"
+    }
+  ],
+  "panel:id": 3,
+  "visual": "安本、驚いて翔太を見る。"
+}

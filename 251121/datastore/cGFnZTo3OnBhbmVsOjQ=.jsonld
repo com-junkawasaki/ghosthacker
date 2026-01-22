@@ -1,0 +1,12 @@
+{
+  "@id": "page:7:panel:4",
+  "@type": "gh:MangaPanel",
+  "dialogue": [
+    {
+      "speaker": "Ren",
+      "text": "Nei、ポート開放。物理レイヤーから侵入して。"
+    }
+  ],
+  "panel:id": 4,
+  "visual": "Ren、勝手に空いている席に座り、自分のノートPCを開く。"
+}

@@ -1,0 +1,12 @@
+{
+  "@id": "page:4:panel:4",
+  "@type": "gh:MangaPanel",
+  "dialogue": [
+    {
+      "speaker": "Ren",
+      "text": "怠惰こそ美徳。効率化の母だよ。"
+    }
+  ],
+  "panel:id": 4,
+  "visual": "Ren、耳をほじりながら。"
+}

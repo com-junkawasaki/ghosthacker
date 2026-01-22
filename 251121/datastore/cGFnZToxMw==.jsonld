@@ -1,0 +1,36 @@
+{
+  "@id": "page:13",
+  "@type": "gh:MangaPage",
+  "gh:panels": [
+    {
+      "dialogue": [
+        {
+          "speaker": "Nei",
+          "text": "マスター、右30度！パケットロス率、上昇！"
+        }
+      ],
+      "panel:id": 1,
+      "visual": "Ghostの触手（LANケーブル）攻撃をRenがかわす。"
+    },
+    {
+      "dialogue": [
+        {
+          "speaker": "Ren",
+          "text": "/\u003e /dev/null chop --force"
+        }
+      ],
+      "panel:id": 2,
+      "visual": "Ren、空中で斧を構える。コマンドエフェクト。"
+    },
+    {
+      "dialogue": [
+        {
+          "speaker": "SE",
+          "text": "ZBAAAAAN!!"
+        }
+      ],
+      "panel:id": 3,
+      "visual": "大ゴマ。一閃。Ghostの核（安本のコンプレックスの象徴）を両断する。"
+    }
+  ]
+}

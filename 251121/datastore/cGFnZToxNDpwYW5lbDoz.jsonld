@@ -1,0 +1,12 @@
+{
+  "@id": "page:14:panel:3",
+  "@type": "gh:MangaPanel",
+  "dialogue": [
+    {
+      "speaker": "Yasumoto",
+      "text": "うう…すまん…すまん…"
+    }
+  ],
+  "panel:id": 3,
+  "visual": "安本、床に座り込んで泣く。"
+}

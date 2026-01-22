@@ -1,0 +1,12 @@
+{
+  "@id": "page:16:panel:1",
+  "@type": "gh:MangaPanel",
+  "dialogue": [
+    {
+      "speaker": "Ren",
+      "text": "データは戻ったし、ついでに安本さんが溶かした金も、隠し口座ハックして戻しといたよ。手数料は引いといたけど。"
+    }
+  ],
+  "panel:id": 1,
+  "visual": "Ren、USBを抜いて立ち去ろうとする。"
+}

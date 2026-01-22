@@ -1,0 +1,15 @@
+{
+  "@id": "character:ToruSasaki",
+  "gh:appearance": {
+    "gh:build": "Thin build, wearing a simple blue shirt.",
+    "gh:eyes": "Nervous trapped eyes, detailed iris patterns, soft catchlights reflecting server racks.",
+    "gh:face": "34-year-old Japanese male, thin and nervous face, trapped expression.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 34-year-old Japanese male, nervous face, looking down, blue shirt, server rack background.",
+    "gh:hair": "Simple black hair, slightly unkempt.",
+    "gh:style": "Photorealistic, nervous IT professional, clinical server lighting, 8k."
+  },
+  "gh:organization": "org:byakudan-financial",
+  "schema:age": 34,
+  "schema:name": "佐々木 徹 (Toru Sasaki)",
+  "schema:role": "Cloud Administrator (Arc C)"
+}

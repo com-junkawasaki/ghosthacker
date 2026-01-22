@@ -1,0 +1,12 @@
+{
+  "@id": "page:12:panel:3",
+  "@type": "gh:MangaPanel",
+  "dialogue": [
+    {
+      "speaker": "Ren",
+      "text": "デリートしてやる。"
+    }
+  ],
+  "panel:id": 3,
+  "visual": "Ren、踏み込む。"
+}

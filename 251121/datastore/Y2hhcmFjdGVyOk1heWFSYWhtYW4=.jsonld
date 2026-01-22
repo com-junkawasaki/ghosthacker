@@ -1,0 +1,16 @@
+{
+  "@id": "character:MayaRahman",
+  "gh:appearance": {
+    "gh:build": "Confident posture, wearing a sophisticated business setup with a scarf.",
+    "gh:eyes": "Sharp international eyes, deep amber iris patterns, bright crystalline catchlights.",
+    "gh:face": "35-year-old South Asian female, global professional, sharp international look.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 35-year-old South Asian woman, sharp international look, dark brown bun, sophisticated business suit with scarf, deep amber iris patterns and bright catchlights.",
+    "gh:hair": "Dark brown hair in a neat bun.",
+    "gh:style": "Photorealistic, global professional woman, natural world-traveler lighting, 8k."
+  },
+  "gh:imagePath": "/data/251121/characters/MayaRahman/hf_20260121_195606_016bd903-8aaa-4456-b37d-195498978700.png",
+  "gh:organization": "org:interpol",
+  "schema:age": 35,
+  "schema:name": "Maya Rahman",
+  "schema:role": "Interpol Liaison"
+}

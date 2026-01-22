@@ -1,0 +1,12 @@
+{
+  "@id": "page:15:panel:4",
+  "@type": "gh:MangaPanel",
+  "dialogue": [
+    {
+      "speaker": "President",
+      "text": "そうか…安本、無理させたな。"
+    }
+  ],
+  "panel:id": 4,
+  "visual": "社長、状況を察しつつも受け入れる。"
+}

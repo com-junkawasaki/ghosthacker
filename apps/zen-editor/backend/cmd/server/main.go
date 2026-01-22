@@ -788,6 +788,9 @@ func main() {
 		workspaceRoot = "data" // Default to relative data directory
 	}
 	
+	absRoot, _ := filepath.Abs(workspaceRoot)
+	log.Printf("Workspace Root: %s (abs: %s)", workspaceRoot, absRoot)
+	
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
@@ -810,6 +813,9 @@ func main() {
 		mux.ServeHTTP(w, r)
 	}))
 	
-	log.Printf("Starting server on :%s (workspace: %s)", port, workspaceRoot)
-	http.ListenAndServe(":"+port, h2c.NewHandler(handlerWithCORS, &http2.Server{}))
+	log.Printf("Starting server on 0.0.0.0:%s (workspace: %s)", port, workspaceRoot)
+	err := http.ListenAndServe("0.0.0.0:"+port, h2c.NewHandler(handlerWithCORS, &http2.Server{}))
+	if err != nil {
+		log.Fatalf("Server failed: %v", err)
+	}
 }
