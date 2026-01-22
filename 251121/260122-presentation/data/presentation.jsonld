@@ -58,12 +58,15 @@
       "nodeType": "char",
       "name": "沼野 蓮 (Ren)",
       "role": "Ghost Hacker",
-      "credentials": ["CISSP Associate", "CEH"],
+      "credentials": [
+        "CISSP Associate",
+        "CEH"
+      ],
       "image": "/images/characters/ren/main.png",
       "color": "#0071e3",
       "description": "効率厨の天才。情報改竄の背後にいる『GHOST』を追う。",
-      "x": -360,
-      "y": -120,
+      "x": -443,
+      "y": 36,
       "fixed": true,
       "scale": 1.2
     },
@@ -72,12 +75,15 @@
       "nodeType": "char",
       "name": "Nei",
       "role": "AI Partner",
-      "credentials": ["Android AI", "SIP Manager"],
+      "credentials": [
+        "Android AI",
+        "SIP Manager"
+      ],
       "image": "/images/characters/nei/main.png",
       "color": "#34c759",
       "description": "蓮の相棒。現場の物理レイヤ侵入と解析を担当。",
-      "x": -620,
-      "y": 80,
+      "x": -779,
+      "y": 327,
       "fixed": true,
       "scale": 1.1
     },
@@ -86,12 +92,14 @@
       "nodeType": "char",
       "name": "大門 翔太 (Shouta)",
       "role": "The Client",
-      "credentials": ["Daimon Construction"],
+      "credentials": [
+        "Daimon Construction"
+      ],
       "image": "/images/characters/shouta/main.png",
       "color": "#ff3b30",
       "description": "巨大企業の後継者。レガシーと組織の歪みで追い詰められる。",
-      "x": -40,
-      "y": 140,
+      "x": 172,
+      "y": 389,
       "fixed": true,
       "scale": 1
     },
@@ -100,12 +108,15 @@
       "nodeType": "char",
       "name": "赤羽 猛 (Takeru)",
       "role": "Rival: Short-tempered",
-      "credentials": ["OSCP", "GXPN"],
+      "credentials": [
+        "OSCP",
+        "GXPN"
+      ],
       "image": "/images/characters/takeru/main.png",
       "color": "#ff9500",
       "description": "短気な天才。力押しで突破するタイプのライバル。",
-      "x": -140,
-      "y": -360,
+      "x": -259,
+      "y": -534,
       "fixed": false,
       "scale": 1
     },
@@ -114,7 +125,10 @@
       "nodeType": "char",
       "name": "水城 要 (Kaname)",
       "role": "Rival: Arrogant",
-      "credentials": ["CISA", "PMP"],
+      "credentials": [
+        "CISA",
+        "PMP"
+      ],
       "image": "/images/characters/kaname/main.png",
       "color": "#af52de",
       "description": "完璧主義のエリート。監査・統治で相手を詰める。",
@@ -129,8 +143,8 @@
       "name": "CISSP",
       "color": "#0071e3",
       "description": "情報セキュリティの国際標準。蓮の行動原理（Do Due Care/Diligence）の根源。",
-      "x": -400,
-      "y": -300,
+      "x": -654,
+      "y": -642,
       "fixed": false,
       "scale": 1
     },
@@ -151,8 +165,8 @@
       "name": "情報安全確保支援士",
       "color": "#00a0a0",
       "description": "日本の国家資格。登録・更新義務がある“士業”。蓮が効率化のために利用する法的盾。",
-      "x": -200,
-      "y": -100,
+      "x": 4,
+      "y": 251,
       "fixed": false,
       "scale": 1
     },
@@ -162,8 +176,8 @@
       "name": "Ransomware",
       "color": "#ff2d55",
       "description": "身代金要求型ウイルス。Arc Aの脅威。対策: オフラインバックアップ、EDR。",
-      "x": 600,
-      "y": -600,
+      "x": 461,
+      "y": -715,
       "fixed": false,
       "scale": 1
     },
@@ -195,8 +209,8 @@
       "name": "SIP Sequence",
       "color": "#00a0a0",
       "description": "Secure Information Physicality。情報の“物理層”を締める手順。",
-      "x": -520,
-      "y": 340,
+      "x": -271,
+      "y": 510,
       "fixed": true,
       "scale": 1
     },
@@ -345,28 +359,212 @@
     }
   ],
   "links": [
-    { "source": "gh:node/ep1", "target": "gh:node/shouta", "label": "victim", "color": "#ff3b30" },
-    { "source": "gh:node/ep1", "target": "gh:node/ransomware", "label": "incident", "color": "#ff2d55" },
-    { "source": "gh:node/ep2", "target": "gh:node/ren", "label": "investigation", "color": "#0071e3" },
-    { "source": "gh:node/ep2", "target": "gh:node/cissp", "label": "methodology", "color": "#0071e3" },
-    { "source": "gh:node/ep4", "target": "gh:node/takeru", "label": "antagonist", "color": "#ff9500" },
-    { "source": "gh:node/ep7", "target": "gh:node/kaname", "label": "antagonist", "color": "#af52de" },
-    { "source": "gh:node/ep8", "target": "gh:node/bec", "label": "incident", "color": "#ff9500" },
-    { "source": "gh:node/ep10", "target": "gh:node/ghost", "label": "true_enemy", "color": "#ff2d55" },
-    { "source": "gh:node/ren", "target": "gh:node/nei", "label": "partners", "color": "#34c759" },
-    { "source": "gh:node/ren", "target": "gh:node/shouta", "label": "client", "color": "#ff3b30" },
-    { "source": "gh:node/ren", "target": "gh:node/takeru", "label": "rival", "color": "#ff9500" },
-    { "source": "gh:node/ren", "target": "gh:node/kaname", "label": "rival", "color": "#af52de" },
-    { "source": "gh:node/ep1", "target": "gh:node/ep2", "label": "next", "color": "#999999" },
-    { "source": "gh:node/ep2", "target": "gh:node/ep3", "label": "next", "color": "#999999" },
-    { "source": "gh:node/ep3", "target": "gh:node/ep4", "label": "next", "color": "#999999" },
-    { "source": "gh:node/ep4", "target": "gh:node/ep5", "label": "next", "color": "#999999" },
-    { "source": "gh:node/ep5", "target": "gh:node/ep6", "label": "next", "color": "#999999" },
-    { "source": "gh:node/ep6", "target": "gh:node/ep7", "label": "next", "color": "#999999" },
-    { "source": "gh:node/ep7", "target": "gh:node/ep8", "label": "next", "color": "#999999" },
-    { "source": "gh:node/ep8", "target": "gh:node/ep9", "label": "next", "color": "#999999" },
-    { "source": "gh:node/ep9", "target": "gh:node/ep10", "label": "next", "color": "#999999" },
-    { "source": "gh:node/ep10", "target": "gh:node/ep11", "label": "next", "color": "#999999" },
-    { "source": "gh:node/ep11", "target": "gh:node/ep12", "label": "next", "color": "#999999" }
+    {
+      "source": "gh:node/ep1",
+      "target": "gh:node/shouta",
+      "label": "victim",
+      "color": "#ff3b30",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep1",
+      "target": "gh:node/ransomware",
+      "label": "incident",
+      "color": "#ff2d55",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep2",
+      "target": "gh:node/ren",
+      "label": "investigation",
+      "color": "#0071e3",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep2",
+      "target": "gh:node/cissp",
+      "label": "methodology",
+      "color": "#0071e3",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep4",
+      "target": "gh:node/takeru",
+      "label": "antagonist",
+      "color": "#ff9500",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep7",
+      "target": "gh:node/kaname",
+      "label": "antagonist",
+      "color": "#af52de",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep8",
+      "target": "gh:node/bec",
+      "label": "incident",
+      "color": "#ff9500",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep10",
+      "target": "gh:node/ghost",
+      "label": "true_enemy",
+      "color": "#ff2d55",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ren",
+      "target": "gh:node/nei",
+      "label": "partners",
+      "color": "#34c759",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ren",
+      "target": "gh:node/shouta",
+      "label": "client",
+      "color": "#ff3b30",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ren",
+      "target": "gh:node/takeru",
+      "label": "rival",
+      "color": "#ff9500",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ren",
+      "target": "gh:node/kaname",
+      "label": "rival",
+      "color": "#af52de",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep1",
+      "target": "gh:node/ep2",
+      "label": "next",
+      "color": "#999999",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep2",
+      "target": "gh:node/ep3",
+      "label": "next",
+      "color": "#999999",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep3",
+      "target": "gh:node/ep4",
+      "label": "next",
+      "color": "#999999",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep4",
+      "target": "gh:node/ep5",
+      "label": "next",
+      "color": "#999999",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep5",
+      "target": "gh:node/ep6",
+      "label": "next",
+      "color": "#999999",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep6",
+      "target": "gh:node/ep7",
+      "label": "next",
+      "color": "#999999",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep7",
+      "target": "gh:node/ep8",
+      "label": "next",
+      "color": "#999999",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep8",
+      "target": "gh:node/ep9",
+      "label": "next",
+      "color": "#999999",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep9",
+      "target": "gh:node/ep10",
+      "label": "next",
+      "color": "#999999",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep10",
+      "target": "gh:node/ep11",
+      "label": "next",
+      "color": "#999999",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    },
+    {
+      "source": "gh:node/ep11",
+      "target": "gh:node/ep12",
+      "label": "next",
+      "color": "#999999",
+      "x": 0,
+      "y": 0,
+      "fixed": false
+    }
   ]
 }
