@@ -65,8 +65,8 @@
       "image": "/images/characters/ren/main.png",
       "color": "#0071e3",
       "description": "効率厨の天才。情報改竄の背後にいる『GHOST』を追う。",
-      "x": -406,
-      "y": -728,
+      "x": -508,
+      "y": -848,
       "fixed": true,
       "scale": 1.8349999999999995
     },
@@ -82,8 +82,8 @@
       "image": "/images/characters/nei/main.png",
       "color": "#34c759",
       "description": "蓮の相棒。現場の物理レイヤ侵入と解析を担当。",
-      "x": 71,
-      "y": -662,
+      "x": -56,
+      "y": -717,
       "fixed": true,
       "scale": 1.5049999999999988
     },
@@ -98,8 +98,8 @@
       "image": "/images/characters/shouta/main.png",
       "color": "#ff3b30",
       "description": "巨大企業の後継者。レガシーと組織の歪みで追い詰められる。",
-      "x": 1092,
-      "y": -895,
+      "x": 1311,
+      "y": -963,
       "fixed": true,
       "scale": 1
     },
@@ -115,10 +115,10 @@
       "image": "/images/characters/takeru/main.png",
       "color": "#ff9500",
       "description": "短気な天才。力押しで突破するタイプのライバル。",
-      "x": 1044,
-      "y": -64,
+      "x": 967,
+      "y": -90,
       "fixed": false,
-      "scale": 1.6099999999999994
+      "scale": 2.1099999999999985
     },
     {
       "id": "gh:node/kaname",
@@ -127,15 +127,27 @@
       "role": "Rival: Arrogant",
       "credentials": [
         "CISA",
-        "PMP"
+        "情報処理安全確保支援士"
       ],
       "image": "/images/characters/kaname/main.png",
       "color": "#af52de",
       "description": "完璧主義のエリート。監査・統治で相手を詰める。",
-      "x": -508,
-      "y": 54,
+      "x": -713,
+      "y": 37,
       "fixed": false,
-      "scale": 1.5299999999999991
+      "scale": 1.9999999999999982
+    },
+    {
+      "id": "gh:node/hero",
+      "nodeType": "char",
+      "name": "HERO (佐藤 ヒロシ)",
+      "role": "Main Antagonist",
+      "color": "#ff2d55",
+      "description": "SNS型投資詐欺の首謀者。正義を騙り、承認欲求のために社会を壊す。",
+      "x": 400,
+      "y": 800,
+      "fixed": true,
+      "scale": 1.8
     },
     {
       "id": "gh:node/cissp",
@@ -143,10 +155,10 @@
       "name": "CISSP",
       "color": "#0071e3",
       "description": "情報セキュリティの国際標準。蓮の行動原理（Do Due Care/Diligence）の根源。",
-      "x": 389,
-      "y": 457,
+      "x": 218,
+      "y": 339,
       "fixed": false,
-      "scale": 1
+      "scale": 1.3349999999999993
     },
     {
       "id": "gh:node/cisa",
@@ -154,8 +166,8 @@
       "name": "CISA",
       "color": "#af52de",
       "description": "公認情報システム監査師。要の武器。組織のガバナンスとコントロールを突く。",
-      "x": -86,
-      "y": -177,
+      "x": -196,
+      "y": -252,
       "fixed": false,
       "scale": 1
     },
@@ -165,8 +177,8 @@
       "name": "情報安全確保支援士",
       "color": "#00a0a0",
       "description": "日本の国家資格。登録・更新義務がある“士業”。蓮が効率化のために利用する法的盾。",
-      "x": -894,
-      "y": 319,
+      "x": -1033,
+      "y": 261,
       "fixed": false,
       "scale": 1
     },
@@ -176,8 +188,8 @@
       "name": "Ransomware",
       "color": "#ff2d55",
       "description": "身代金要求型ウイルス。Arc Aの脅威。対策: オフラインバックアップ、EDR。",
-      "x": 358,
-      "y": -1113,
+      "x": 328,
+      "y": -1076,
       "fixed": false,
       "scale": 2.0549999999999975
     },
@@ -187,10 +199,65 @@
       "name": "BEC (ビジネスメール詐欺)",
       "color": "#ff9500",
       "description": "巧妙な偽装メール。Arc Cの脅威。対策: 二要素認証、送金プロセスの多重化。",
-      "x": 1485,
-      "y": -509,
+      "x": 1469,
+      "y": -597,
       "fixed": false,
       "scale": 2.064999999999998
+    },
+    {
+      "id": "gh:node/invest-scam",
+      "nodeType": "concept",
+      "name": "SNS型投資詐欺",
+      "color": "#ff2d55",
+      "description": "著名人なりすまし・偽広告による詐欺。Arc Dの脅威。対策: 情報リテラシー、公式認証確認。",
+      "x": 1000,
+      "y": 800,
+      "fixed": false,
+      "scale": 2.2
+    },
+    {
+      "id": "gh:node/case-handa",
+      "nodeType": "case",
+      "name": "半田病院事件 (2021)",
+      "color": "#ffffff",
+      "description": "VPN脆弱性放置による全システム停止。管理の『怠惰』の象徴。",
+      "x": 100,
+      "y": -1200,
+      "fixed": false,
+      "scale": 1.2
+    },
+    {
+      "id": "gh:node/case-kojima",
+      "nodeType": "case",
+      "name": "小島プレス事件 (2022)",
+      "color": "#ffffff",
+      "description": "サプライチェーン攻撃によるトヨタ全ライン停止。運用の『短気』の象徴。",
+      "x": 1800,
+      "y": -300,
+      "fixed": false,
+      "scale": 1.2
+    },
+    {
+      "id": "gh:node/case-sbi",
+      "nodeType": "case",
+      "name": "SBI証券不正引出 (2020)",
+      "color": "#ffffff",
+      "description": "仕様の穴を突かれた口座侵害。設計の『傲慢』の象徴。",
+      "x": -400,
+      "y": 300,
+      "fixed": false,
+      "scale": 1.2
+    },
+    {
+      "id": "gh:node/case-sns-scam",
+      "nodeType": "case",
+      "name": "著名人なりすまし詐欺 (2024)",
+      "color": "#ffffff",
+      "description": "SNS広告を悪用した大規模詐欺。社会の『虚飾』の象徴。",
+      "x": 1300,
+      "y": 900,
+      "fixed": false,
+      "scale": 1.2
     },
     {
       "id": "gh:node/ghost",
@@ -198,10 +265,10 @@
       "name": "The GHOST",
       "color": "#ff2d55",
       "description": "情報が物理現象化した“悪意”。見えない攻撃が見える敵になる。",
-      "x": 412,
-      "y": -857,
+      "x": 429,
+      "y": -615,
       "fixed": false,
-      "scale": 1
+      "scale": 1.509999999999999
     },
     {
       "id": "gh:node/sip",
@@ -209,8 +276,8 @@
       "name": "SIP Sequence",
       "color": "#00a0a0",
       "description": "Secure Information Physicality。情報の“物理層”を締める手順。",
-      "x": -871,
-      "y": 58,
+      "x": -993,
+      "y": 108,
       "fixed": true,
       "scale": 1
     },
@@ -220,8 +287,8 @@
       "name": "ARIA Aesthetic",
       "color": "#0071e3",
       "description": "柔らかな光と眼のディテール. 静謐×不穏の対比で引き込む。",
-      "x": -867,
-      "y": -339,
+      "x": -883,
+      "y": -518,
       "fixed": true,
       "scale": 1
     },
@@ -231,10 +298,10 @@
       "name": "Ep.1 牙を剥く内部の影",
       "description": "Arc A | Internal Sabotage",
       "color": "#ff3b30",
-      "x": 773,
-      "y": -962,
+      "x": 761,
+      "y": -1135,
       "fixed": true,
-      "scale": 1
+      "scale": 1.6299999999999992
     },
     {
       "id": "gh:node/ep2",
@@ -242,10 +309,10 @@
       "name": "Ep.2 許しの毒",
       "description": "Arc A | CISSP Methodology",
       "color": "#ff3b30",
-      "x": 783,
-      "y": -845,
+      "x": 770,
+      "y": -962,
       "fixed": true,
-      "scale": 1
+      "scale": 1.7199999999999978
     },
     {
       "id": "gh:node/ep3",
@@ -253,10 +320,10 @@
       "name": "Ep.3 善意の呪い",
       "description": "Arc A | Corporate Culture",
       "color": "#ff3b30",
-      "x": 809,
-      "y": -727,
+      "x": 764,
+      "y": -807,
       "fixed": true,
-      "scale": 1
+      "scale": 1.5549999999999982
     },
     {
       "id": "gh:node/ep4",
@@ -264,10 +331,10 @@
       "name": "Ep.4 終わらぬ時計",
       "description": "Arc B | Takeru Appears",
       "color": "#ff9500",
-      "x": 1524,
-      "y": -239,
+      "x": 1402,
+      "y": -327,
       "fixed": true,
-      "scale": 1
+      "scale": 1.4349999999999996
     },
     {
       "id": "gh:node/ep5",
@@ -275,10 +342,10 @@
       "name": "Ep.5 Doneがない地獄",
       "description": "Arc B | Design Failure",
       "color": "#ff9500",
-      "x": 1565,
-      "y": -2,
+      "x": 1388,
+      "y": -36,
       "fixed": true,
-      "scale": 1
+      "scale": 1.3699999999999994
     },
     {
       "id": "gh:node/ep6",
@@ -286,10 +353,10 @@
       "name": "Ep.6 終端刻印",
       "description": "Arc B | Salvation",
       "color": "#ff9500",
-      "x": 1554,
-      "y": -136,
+      "x": 1381,
+      "y": -188,
       "fixed": true,
-      "scale": 1
+      "scale": 1.3299999999999992
     },
     {
       "id": "gh:node/ep7",
@@ -297,10 +364,10 @@
       "name": "Ep.7 空の要塞の崩壊",
       "description": "Arc C | Kaname Appears",
       "color": "#af52de",
-      "x": -132,
-      "y": -23,
+      "x": -274,
+      "y": -77,
       "fixed": true,
-      "scale": 1
+      "scale": 1.4199999999999986
     },
     {
       "id": "gh:node/ep8",
@@ -308,10 +375,10 @@
       "name": "Ep.8 消えた資産の足跡",
       "description": "Arc C | Audit Attack",
       "color": "#af52de",
-      "x": -121,
-      "y": 191,
+      "x": -285,
+      "y": 201,
       "fixed": true,
-      "scale": 1
+      "scale": 1.4149999999999987
     },
     {
       "id": "gh:node/ep9",
@@ -319,10 +386,10 @@
       "name": "Ep.9 それは傲慢ですね",
       "description": "Arc C | Rule Killing",
       "color": "#af52de",
-      "x": -146,
-      "y": 88,
+      "x": -268,
+      "y": 63,
       "fixed": true,
-      "scale": 1
+      "scale": 1.4749999999999983
     },
     {
       "id": "gh:node/ep10",
@@ -330,8 +397,8 @@
       "name": "Ep.10 群れのGhost",
       "description": "Arc D | Ecosystem Risk",
       "color": "#0071e3",
-      "x": 761,
-      "y": 387,
+      "x": 563,
+      "y": 268,
       "fixed": true,
       "scale": 1
     },
@@ -341,8 +408,8 @@
       "name": "Ep.11 崩壊する信頼",
       "description": "Arc D | Investigation",
       "color": "#0071e3",
-      "x": 757,
-      "y": 614,
+      "x": 567,
+      "y": 475,
       "fixed": true,
       "scale": 1
     },
@@ -352,8 +419,8 @@
       "name": "Ep.12 逮捕と残響",
       "description": "Arc D | Final Deletion",
       "color": "#0071e3",
-      "x": 760,
-      "y": 492,
+      "x": 589,
+      "y": 364,
       "fixed": true,
       "scale": 1
     }

@@ -69,6 +69,7 @@
 
   let draggingNode = $state<ClientNode | null>(null);
   let resizingNode = $state<ClientNode | null>(null);
+  let editingNode = $state<ClientNode | null>(null);
   let linkingSource = $state<ClientNode | null>(null);
   let linkingTargetPos = $state({ x: 0, y: 0 });
   let isDraggingCanvas = $state(false);
@@ -159,21 +160,31 @@
       const id = card.getAttribute('data-id');
       resizingNode = simulationNodes.find((n) => n.id === id) ?? null;
     } else if (card) {
-      const id = card.getAttribute('data-id');
-      const node = simulationNodes.find((n) => n.id === id);
-      if (!node) return;
-      draggingNode = node;
-      dragStartPointer = { x: e.clientX, y: e.clientY };
-      dragStartNodePos = { x: node.x, y: node.y };
-      
-      // Force immediate fixed position
-      node.fx = node.x;
-      node.fy = node.y;
-      
-      // Restart simulation with alpha target to make it responsive
-      simulation?.alphaTarget(0.3).restart();
+      // ... existing code ...
     } else {
-      isDraggingCanvas = true;
+      // Check for double click on canvas to add text node
+      if (e.detail === 2) {
+        const x = (e.clientX - transform.x) / transform.k;
+        const y = (e.clientY - transform.y) / transform.k;
+        const newNode: ClientNode = {
+          id: `text-${Date.now()}`,
+          nodeType: 'text',
+          name: 'New Text',
+          description: '',
+          x,
+          y,
+          scale: 1,
+          color: '#333'
+        };
+        simulationNodes = [...simulationNodes, newNode];
+        if (simulation) {
+          simulation.nodes(simulationNodes);
+          simulation.alpha(0.3).restart();
+        }
+        editingNode = newNode;
+      } else {
+        isDraggingCanvas = true;
+      }
     }
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   }
@@ -292,6 +303,12 @@
 
   function resetFromDisk() { window.location.reload(); }
   function openEditor() { jsonDraft = layoutPretty; showEditor = true; }
+
+  function autofocus(node: HTMLTextAreaElement) {
+    node.focus();
+    node.style.height = 'auto';
+    node.style.height = node.scrollHeight + 'px';
+  }
 </script>
 
 <div class="viewport" onpointerdown={handlePointerDown} onpointermove={handlePointerMove} onpointerup={handlePointerUp} onwheel={handleWheel}>
@@ -406,6 +423,44 @@
                 placeholder="relation..."
               />
             </div>
+          {:else if node.nodeType === 'text'}
+            <div class="text-node-content">
+              {#if editingNode?.id === node.id}
+                <textarea
+                  class="text-node-input"
+                  bind:value={node.name}
+                  onblur={() => {
+                    editingNode = null;
+                    const form = document.querySelector('form');
+                    if (form) form.requestSubmit();
+                  }}
+                  oninput={(e) => {
+                    const target = e.target as HTMLTextAreaElement;
+                    target.style.height = 'auto';
+                    target.style.height = target.scrollHeight + 'px';
+                  }}
+                  onkeydown={(ev) => {
+                    if (ev.key === 'Enter' && !ev.shiftKey) {
+                      ev.preventDefault();
+                      (ev.target as HTMLTextAreaElement).blur();
+                    }
+                  }}
+                  use:autofocus
+                ></textarea>
+              {:else}
+                <div 
+                  role="button"
+                  tabindex="0"
+                  class="text-display" 
+                  ondblclick={(e) => {
+                    e.stopPropagation();
+                    editingNode = node;
+                  }}
+                >
+                  {node.name || 'Click to edit...'}
+                </div>
+              {/if}
+            </div>
           {/if}
         </div>
       {/each}
@@ -476,6 +531,10 @@
   .edge-node-content { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: #000; white-space: nowrap; }
   .edge-label-input { border: none; background: transparent; font-size: 11px; font-weight: 800; color: #000; width: 90px; outline: none; padding: 0; text-align: center; }
   .edge-label-input::placeholder { color: #bbb; font-weight: 400; }
+  .text-card { min-width: 100px; max-width: 300px; border-radius: 4px; padding: 10px; background: rgba(255,255,255,0.9); border: 1px dashed #ccc; }
+  .text-node-content { width: 100%; }
+  .text-node-input { width: 100%; border: none; background: transparent; font-family: inherit; font-size: 14px; padding: 0; outline: none; resize: none; min-height: 1.2em; overflow: hidden; }
+  .text-display { font-size: 14px; line-height: 1.4; white-space: pre-wrap; cursor: text; min-height: 1.2em; }
   .pin-btn { position: absolute; top: 10px; right: 10px; background: none; border: none; color: #ddd; cursor: pointer; }
   .connect-handle { position: absolute; bottom: 10px; right: 10px; background: #fff; border: 1px solid #ddd; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: #999; cursor: crosshair; transition: all 0.2s; z-index: 20; }
   .connect-handle:hover { border-color: var(--accent); color: var(--accent); transform: scale(1.1); }

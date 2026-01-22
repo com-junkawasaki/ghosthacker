@@ -34,7 +34,7 @@ export async function getBoard() {
 	};
 }
 
-export async function saveNode(id: string, x: number, y: number, fixed: boolean, scale: number) {
+export async function saveNode(id: string, x: number, y: number, fixed: boolean, scale: number, name?: string, nodeType?: string) {
 	const data = await readData();
 	const fullId = id.startsWith('gh:node/') ? id : `gh:node/${id}`;
 	
@@ -45,7 +45,8 @@ export async function saveNode(id: string, x: number, y: number, fixed: boolean,
 			x,
 			y,
 			fixed,
-			scale
+			scale,
+			...(name !== undefined ? { name } : {})
 		};
 	} else {
 		data.nodes.push({
@@ -54,7 +55,8 @@ export async function saveNode(id: string, x: number, y: number, fixed: boolean,
 			y,
 			fixed,
 			scale,
-			nodeType: 'edge'
+			name: name || '',
+			nodeType: nodeType || 'text'
 		});
 	}
 	await writeData(data);

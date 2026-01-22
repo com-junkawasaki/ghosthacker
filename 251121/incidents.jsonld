@@ -1,0 +1,58 @@
+{
+  "@context": {
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "schema": "http://schema.org/",
+    "dct": "http://purl.org/dc/terms/",
+    "incident": "gh:incident/",
+    "character": "gh:character/",
+    "nist": "gh:nist_csf_2/"
+  },
+  "@id": "gh:data/incident-master-plan-final",
+  "@type": "gh:IncidentKnowledgeBase",
+  "gh:episodes": [
+    {
+      "gh:arc": "Arc A",
+      "gh:episodes": [1, 2, 3],
+      "gh:industry": "Construction (建設)",
+      "gh:mainCharacter": "character:Ren",
+      "gh:credentials": ["CISSP", "CEH"],
+      "gh:realCase": "Handa Hospital Ransomware (2021) / Iseto (2024)",
+      "gh:sinContrast": "Passive Sloth (Vulnerability Neglect) vs. Active Sloth (Hyper-Efficiency)",
+      "gh:nistFocus": ["PR.IP (Backup Protection)", "GV.PO (Vulnerability Policy)"],
+      "gh:description": "『動いているからいい』とパッチ適用をサボった『怠惰』が全業務を止めた。RenはCISSPの知見で、暗号化の嵐から生き残った微細なデータを繋ぎ合わせ、一瞬でシステムを再起動する。"
+    },
+    {
+      "gh:arc": "Arc B",
+      "gh:episodes": [4, 5, 6],
+      "gh:industry": "Manufacturing (製造)",
+      "gh:mainCharacter": "character:Takeru",
+      "gh:credentials": ["OSCP", "GXPN"],
+      "gh:realCase": "Kojima Press / Toyota Supply Chain (2022)",
+      "gh:sinContrast": "Impulsive Wrath (Calculation Failure) vs. Calculated Wrath (Optimization)",
+      "gh:nistFocus": ["PR.IR-04 (Network Segmentation)", "RS.MA-01 (Containment)"],
+      "gh:description": "リスク計算を放棄し、場当たり的にVPNを繋いだ『短気』が物流を止めた。TakeruはGXPNの精密な計算で感染パケットを仕分け、汚染区画を切り離してラインを再起動させる。"
+    },
+    {
+      "gh:arc": "Arc C",
+      "gh:episodes": [7, 8, 9],
+      "gh:industry": "Finance (金融)",
+      "gh:mainCharacter": "character:Kaname",
+      "gh:credentials": ["CISA", "情報処理安全確保支援士"],
+      "gh:realCase": "SBI Securities Account Fraud (2020)",
+      "gh:sinContrast": "Passive Pride (Rule Blindness) vs. Active Pride (Rule Definition)",
+      "gh:nistFocus": ["PR.AA-01 (Identity/Access)", "ID.RA-01 (Risk Assessment)"],
+      "gh:description": "『仕様書通りだから安全だ』という『傲慢』が資産を盗ませた。KanameはCISAの監査眼でその欺瞞を暴き、支援士の設計力で『新・絶対ルール（ゼロトラスト）』を敷く。"
+    },
+    {
+      "gh:arc": "Arc D",
+      "gh:episodes": [10, 11, 12],
+      "gh:industry": "Cross-Industry (複合)",
+      "gh:mainCharacter": "character:Ren",
+      "gh:supportingCharacters": ["character:Takeru", "character:Kaname"],
+      "gh:realCase": "SNS Investment Scam / Celebrity Impersonation (2024)",
+      "gh:sinContrast": "Vainglory (虚飾の正義) vs. Truth (静かなる真実)",
+      "gh:nistFocus": ["ID.RA (Risk Assessment)", "PR.AA (Identity Management)", "RS.MA (Mitigation)"],
+      "gh:description": "SNS型投資詐欺。Renの逆探知、Takeruの資金経路解析、Kanameの法的凍結が結集し、HEROの虚飾を剥ぎ取る。"
+    }
+  ]
+}
