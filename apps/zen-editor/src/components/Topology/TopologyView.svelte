@@ -41,6 +41,7 @@
     } else {
       draggingNodeId = node.id;
       nodeStartPos = { x: node.x || 0, y: node.y || 0 };
+      // When dragging in a specific viewpoint, we always fix the position for that viewpoint
       graphStore.updateNodeLayout(node.id, { fixed: true });
     }
     
@@ -133,10 +134,12 @@
     <div class="node-card-container">
       {#each visibleLabels as n (n.id)}
         {@const coords = getScreenCoords(n)}
-        {#if n.group !== 'meta' && currentTransform.k > 0.5}
+        {#if n.group !== 'meta' && (currentTransform.k > 0.5 || graphStore.currentViewpointId === 'hub:presentation')}
           <div 
             class="node-card"
+            data-id={n.id}
             class:fixed={n.fixed}
+            class:presentation-mode={graphStore.currentViewpointId === 'hub:presentation'}
             style="left: {coords.x}px; top: {coords.y}px; transform: translate(-50%, -50%) scale({(n.scale || 1) * currentTransform.k}); --accent: {getNodeColor(n.group)}"
             onpointerdown={(e) => handleCardPointerDown(e, n)}
           >
@@ -159,6 +162,10 @@
                 <p class="desc">{n.content}</p>
               {/if}
             </div>
+
+            {#if n.id === 'ghost'}
+              <div class="ghost-bubble-tail"></div>
+            {/if}
             
             <div class="resize-handle"></div>
           </div>
@@ -216,10 +223,23 @@
         {/each}
       </div>
       <button onclick={() => engineRef?.fitView()}>🔍</button>
+      {#if graphStore.currentViewpointId}
+        <button onclick={() => graphStore.fetchTopology(projectId)} title="Reset Layout">🔄</button>
+      {/if}
     </div>
 
     {#if graphStore.isLoading}
       <div class="loader">Syncing world...</div>
+    {/if}
+
+    {#if graphStore.currentViewpointId === 'hub:presentation'}
+      <div class="hud">
+        <div class="glitch-container">
+          <div class="glitch-logo" data-text="GHOST">GHOST</div>
+          <div class="glitch-logo" data-text="HACKER">HACKER</div>
+        </div>
+        <div class="subtitle">STRATEGIC MASTER PLAN</div>
+      </div>
     {/if}
   </main>
 </div>
@@ -269,10 +289,39 @@
     transition: transform 0.1s ease-out, box-shadow 0.2s ease;
   }
 
+  .node-card.presentation-mode {
+    min-width: 220px;
+    max-width: 300px;
+    padding: 16px;
+  }
+
   .node-card.fixed {
     border-color: var(--accent);
     border-width: 3px;
     box-shadow: 0 0 0 4px rgba(0,0,0,0.05), 0 12px 32px rgba(0,0,0,0.1);
+  }
+
+  /* Special Card Styles */
+  .node-card[data-id="ghost"] {
+    border-radius: 20px;
+    border: 2px solid #ff3b30;
+    padding: 20px;
+  }
+  .ghost-bubble-tail {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 12px solid #ff3b30;
+  }
+
+  .node-card[data-id="sip"] {
+    border-radius: 40px;
+    border: 2px solid #0071e3;
+    padding: 24px 32px;
   }
 
   .node-card:hover {
@@ -453,6 +502,43 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: #fff;
+  }
+
+  /* HUD Styles from Presentation View */
+  .hud { 
+    position: absolute; 
+    top: 40px; 
+    left: 40px; 
+    pointer-events: none; 
+    z-index: 10; 
+    background: rgba(255,255,255,0.8); 
+    padding: 20px; 
+    border-radius: 8px; 
+    backdrop-filter: blur(4px); 
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+  .glitch-container { display: flex; flex-direction: column; }
+  .glitch-logo { 
+    position: relative; 
+    font-family: 'Courier Prime', monospace; 
+    font-size: 60px; 
+    font-weight: 700; 
+    line-height: 0.85; 
+    color: #111; 
+    text-transform: uppercase; 
+    letter-spacing: -2px; 
+  }
+  .glitch-logo::before, .glitch-logo::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+  .glitch-logo::before { left: 4px; text-shadow: -3px 0 #ff00ff; color: transparent; opacity: 0.7; }
+  .glitch-logo::after { left: -4px; text-shadow: 3px 0 #00ffff; color: transparent; opacity: 0.7; }
+  .subtitle { 
+    font-size: 14px; 
+    color: #999; 
+    font-weight: 700; 
+    margin-top: 10px; 
+    letter-spacing: 4px; 
+    border-top: 1px solid #eee; 
+    padding-top: 10px; 
   }
 </style>
 

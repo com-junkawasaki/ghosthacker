@@ -23,7 +23,7 @@ import AssemblerControls from '../components/AssemblerControls.svelte';
     if (vpId === 'hub:storyboard') return "editor";
     if (vpId === 'hub:manga') return "editor";
     if (vpId === 'hub:assembler') return "topology";
-    if (vpId === 'hub:presentation') return "editor";
+    if (vpId === 'hub:presentation') return "topology";
     return activeMainView;
   });
   
@@ -90,8 +90,8 @@ import AssemblerControls from '../components/AssemblerControls.svelte';
     } else if (id === 'hub:assembler') {
       editorMode = "assembler";
     } else if (id === 'hub:presentation') {
-      editorMode = "presentation";
-      activeMainView = "editor";
+      // Presentation is now handled within TopologyView for per-viewpoint layout recording
+      activeMainView = "topology";
     } else {
       // For other viewpoints, ensure we are in dual or topology mode
       if (activeMainView === 'editor') activeMainView = 'dual';

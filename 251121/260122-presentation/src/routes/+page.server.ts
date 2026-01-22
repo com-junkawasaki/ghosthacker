@@ -1,6 +1,6 @@
 import type { Actions, PageServerLoad } from './$types';
 import { error, fail } from '@sveltejs/kit';
-import { getBoard, saveNode, syncLinks, initializeFromJSONLD } from '$lib/server/neo4j';
+import { getBoard, saveNode, syncLinks, initializeFromJSONLD } from '$lib/server/jsonld';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 

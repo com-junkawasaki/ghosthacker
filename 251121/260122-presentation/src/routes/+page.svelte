@@ -197,7 +197,8 @@
           const edgeId = `edge-${newIdx}-${Date.now()}`;
           const edgeNode: ClientNode = {
             id: edgeId, nodeType: 'edge', name: 'new relation', color: '#999',
-            sourceId: linkingSource.id, targetId: targetId, x: linkingTargetPos.x, y: linkingTargetPos.y, scale: 0.8
+            sourceId: linkingSource.id, targetId: targetId, x: linkingTargetPos.x, y: linkingTargetPos.y, scale: 0.8,
+            fixed: true, fx: linkingTargetPos.x, fy: linkingTargetPos.y
           };
           simulationNodes = [...simulationNodes, edgeNode];
           simulationLinks = [...simulationLinks, 
@@ -219,13 +220,20 @@
     }
 
     if (draggingNode) {
+      // Ensure the node's current x/y are captured
+      draggingNode.x = draggingNode.fx ?? draggingNode.x;
+      draggingNode.y = draggingNode.fy ?? draggingNode.y;
+
       if (!draggingNode.fixed) {
         draggingNode.fx = null;
         draggingNode.fy = null;
       }
+      
       // Force final position update before submit
-      const form = document.querySelector('form');
-      if (form) form.requestSubmit();
+      setTimeout(() => {
+        const form = document.querySelector('form');
+        if (form) form.requestSubmit();
+      }, 0);
     }
     draggingNode = null;
     resizingNode = null;

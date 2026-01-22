@@ -14,6 +14,7 @@ export interface Node {
   y?: number;
   scale?: number; // Add this
   fixed?: boolean; // Add this
+  viewpointLayouts?: Record<string, { x: number; y: number; scale: number; fixed: boolean }>; // Per-viewpoint layouts
   children?: string[]; // IDs of children
   
   // 3D properties for Assembler
@@ -84,13 +85,22 @@ class GraphStore {
 
   setViewpoint(id: string | null) {
     this.currentViewpointId = id;
+    
+    // Apply viewpoint-specific layouts to top-level properties
+    const vpId = id || 'default';
+    this.nodes.forEach(node => {
+      if (node.viewpointLayouts && node.viewpointLayouts[vpId]) {
+        const layout = node.viewpointLayouts[vpId];
+        node.x = layout.x;
+        node.y = layout.y;
+        node.scale = layout.scale;
+        node.fixed = layout.fixed;
+      }
+    });
+    this.nodes = new Map(this.nodes); // Trigger reactivity
+
     if (id) {
       this.selectedNodeId = id; // Also select the hub
-      
-      // Update viewpoint metadata or trigger layout changes if needed
-      if (id === 'hub:editor') {
-        // Handle explicit editor viewpoint
-      }
     }
   }
 
@@ -433,7 +443,24 @@ class GraphStore {
   async updateNodeLayout(id: string, updates: Partial<{ x: number; y: number; scale: number; fixed: boolean }>) {
     const node = this.nodes.get(id);
     if (node) {
+      const vpId = this.currentViewpointId || 'default';
+      
+      // Initialize layouts map if needed
+      if (!node.viewpointLayouts) node.viewpointLayouts = {};
+      
+      // Update current viewpoint layout
+      const currentLayout = node.viewpointLayouts[vpId] || { 
+        x: node.x || 0, 
+        y: node.y || 0, 
+        scale: node.scale || 1, 
+        fixed: node.fixed || false 
+      };
+      
+      node.viewpointLayouts[vpId] = { ...currentLayout, ...updates };
+      
+      // Also update top-level properties for the current view's immediate feedback
       Object.assign(node, updates);
+      
       this.nodes = new Map(this.nodes);
       
       if (this.projectId) {
