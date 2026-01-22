@@ -65,7 +65,7 @@
       "image": "/images/characters/ren/main.png",
       "color": "#0071e3",
       "description": "効率厨の天才。情報改竄の背後にいる『GHOST』を追う。",
-      "x": -405,
+      "x": -406,
       "y": -728,
       "fixed": true,
       "scale": 1.8349999999999995
@@ -82,8 +82,8 @@
       "image": "/images/characters/nei/main.png",
       "color": "#34c759",
       "description": "蓮の相棒。現場の物理レイヤ侵入と解析を担当。",
-      "x": 78,
-      "y": -632,
+      "x": 71,
+      "y": -662,
       "fixed": true,
       "scale": 1.5049999999999988
     },
@@ -98,8 +98,8 @@
       "image": "/images/characters/shouta/main.png",
       "color": "#ff3b30",
       "description": "巨大企業の後継者。レガシーと組織の歪みで追い詰められる。",
-      "x": 1126,
-      "y": -836,
+      "x": 1092,
+      "y": -895,
       "fixed": true,
       "scale": 1
     },
@@ -115,10 +115,10 @@
       "image": "/images/characters/takeru/main.png",
       "color": "#ff9500",
       "description": "短気な天才。力押しで突破するタイプのライバル。",
-      "x": 831,
-      "y": -56,
+      "x": 1044,
+      "y": -64,
       "fixed": false,
-      "scale": 1
+      "scale": 1.6099999999999994
     },
     {
       "id": "gh:node/kaname",
@@ -132,8 +132,8 @@
       "image": "/images/characters/kaname/main.png",
       "color": "#af52de",
       "description": "完璧主義のエリート。監査・統治で相手を詰める。",
-      "x": -651,
-      "y": 45,
+      "x": -508,
+      "y": 54,
       "fixed": false,
       "scale": 1.5299999999999991
     },
@@ -165,8 +165,8 @@
       "name": "情報安全確保支援士",
       "color": "#00a0a0",
       "description": "日本の国家資格。登録・更新義務がある“士業”。蓮が効率化のために利用する法的盾。",
-      "x": 1262,
-      "y": 296,
+      "x": -894,
+      "y": 319,
       "fixed": false,
       "scale": 1
     },
@@ -176,10 +176,10 @@
       "name": "Ransomware",
       "color": "#ff2d55",
       "description": "身代金要求型ウイルス。Arc Aの脅威。対策: オフラインバックアップ、EDR。",
-      "x": 422,
-      "y": -966,
+      "x": 358,
+      "y": -1113,
       "fixed": false,
-      "scale": 1
+      "scale": 2.0549999999999975
     },
     {
       "id": "gh:node/bec",
@@ -187,10 +187,10 @@
       "name": "BEC (ビジネスメール詐欺)",
       "color": "#ff9500",
       "description": "巧妙な偽装メール。Arc Cの脅威。対策: 二要素認証、送金プロセスの多重化。",
-      "x": 1506,
-      "y": -280,
+      "x": 1485,
+      "y": -509,
       "fixed": false,
-      "scale": 1
+      "scale": 2.064999999999998
     },
     {
       "id": "gh:node/ghost",
@@ -198,8 +198,8 @@
       "name": "The GHOST",
       "color": "#ff2d55",
       "description": "情報が物理現象化した“悪意”。見えない攻撃が見える敵になる。",
-      "x": 420,
-      "y": -787,
+      "x": 412,
+      "y": -857,
       "fixed": false,
       "scale": 1
     },
@@ -209,8 +209,8 @@
       "name": "SIP Sequence",
       "color": "#00a0a0",
       "description": "Secure Information Physicality。情報の“物理層”を締める手順。",
-      "x": -357,
-      "y": 481,
+      "x": -871,
+      "y": 58,
       "fixed": true,
       "scale": 1
     },
@@ -220,8 +220,8 @@
       "name": "ARIA Aesthetic",
       "color": "#0071e3",
       "description": "柔らかな光と眼のディテール. 静謐×不穏の対比で引き込む。",
-      "x": -802,
-      "y": -426,
+      "x": -867,
+      "y": -339,
       "fixed": true,
       "scale": 1
     },
@@ -253,8 +253,8 @@
       "name": "Ep.3 善意の呪い",
       "description": "Arc A | Corporate Culture",
       "color": "#ff3b30",
-      "x": 771,
-      "y": -720,
+      "x": 809,
+      "y": -727,
       "fixed": true,
       "scale": 1
     },
@@ -264,8 +264,8 @@
       "name": "Ep.4 終わらぬ時計",
       "description": "Arc B | Takeru Appears",
       "color": "#ff9500",
-      "x": 1152,
-      "y": -268,
+      "x": 1524,
+      "y": -239,
       "fixed": true,
       "scale": 1
     },
@@ -275,8 +275,8 @@
       "name": "Ep.5 Doneがない地獄",
       "description": "Arc B | Design Failure",
       "color": "#ff9500",
-      "x": 1139,
-      "y": -28,
+      "x": 1565,
+      "y": -2,
       "fixed": true,
       "scale": 1
     },
@@ -286,8 +286,8 @@
       "name": "Ep.6 終端刻印",
       "description": "Arc B | Salvation",
       "color": "#ff9500",
-      "x": 1153,
-      "y": -145,
+      "x": 1554,
+      "y": -136,
       "fixed": true,
       "scale": 1
     },
@@ -297,8 +297,8 @@
       "name": "Ep.7 空の要塞の崩壊",
       "description": "Arc C | Kaname Appears",
       "color": "#af52de",
-      "x": -112,
-      "y": -18,
+      "x": -132,
+      "y": -23,
       "fixed": true,
       "scale": 1
     },
@@ -308,8 +308,8 @@
       "name": "Ep.8 消えた資産の足跡",
       "description": "Arc C | Audit Attack",
       "color": "#af52de",
-      "x": -91,
-      "y": 204,
+      "x": -121,
+      "y": 191,
       "fixed": true,
       "scale": 1
     },
@@ -319,8 +319,8 @@
       "name": "Ep.9 それは傲慢ですね",
       "description": "Arc C | Rule Killing",
       "color": "#af52de",
-      "x": -107,
-      "y": 94,
+      "x": -146,
+      "y": 88,
       "fixed": true,
       "scale": 1
     },
@@ -529,6 +529,15 @@
       "x": 0,
       "y": 0,
       "fixed": false
+    },
+    {
+      "source": "gh:node/ep7",
+      "target": "gh:node/edge-18",
+      "label": "",
+      "color": "#999",
+      "x": 28,
+      "y": -5,
+      "fixed": true
     }
   ]
 }
