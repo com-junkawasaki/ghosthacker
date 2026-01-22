@@ -32,6 +32,9 @@
       case 'item': return '#ff9500';
       case 'emotion': return '#ff2d55';
       case 'meta': return '#af52de';
+      case 'episode': return '#5856d6'; // Purple
+      case 'page': return '#00c7be';    // Teal
+      case 'panel': return '#30b0c7';   // Cyan
       default: return '#8e8e93';
     }
   }

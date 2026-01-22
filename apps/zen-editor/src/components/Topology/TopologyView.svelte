@@ -167,6 +167,9 @@
   .label-tag.item { border-color: #ff9500; color: #ff9500; }
   .label-tag.emotion { border-color: #ff2d55; color: #ff2d55; }
   .label-tag.meta { border-color: #af52de; color: #af52de; font-weight: bold; }
+  .label-tag.episode { border-color: #5856d6; color: #5856d6; }
+  .label-tag.page { border-color: #00c7be; color: #00c7be; }
+  .label-tag.panel { border-color: #30b0c7; color: #30b0c7; }
 
   .controls {
     position: absolute;

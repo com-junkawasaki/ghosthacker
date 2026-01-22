@@ -37,8 +37,21 @@
   };
 
   let transform = $state(structuredClone(data.board.transform));
-  let simulationNodes = $state<ClientNode[]>([]);
-  let simulationLinks = $state<ClientLink[]>([]);
+  let simulationNodes = $state<ClientNode[]>(
+    (data.board.nodes ?? []).map((n: any) => {
+      const x = ensureNumbers(n.x, 0);
+      const y = ensureNumbers(n.y, 0);
+      const fixed = !!n.fixed;
+      return {
+        ...n,
+        x,
+        y,
+        fx: fixed ? x : null,
+        fy: fixed ? y : null
+      } satisfies ClientNode;
+    })
+  );
+  let simulationLinks = $state<ClientLink[]>((data.board.links ?? []).map((l: any) => ({ ...l })));
   let simulation: d3.Simulation<ClientNode, undefined> | null = null;
 
   let draggingNode = $state<ClientNode | null>(null);
@@ -67,7 +80,7 @@
       fixed: n.fx != null
     }));
 
-    const links = data.board.links.map((l: any) => ({
+    const links = simulationLinks.map((l: any) => ({
       source: typeof l.source === 'string' ? l.source : (l.source as any).id,
       target: typeof l.target === 'string' ? l.target : (l.target as any).id,
       label: l.label,
@@ -90,21 +103,6 @@
       transform.x = window.innerWidth / 2;
       transform.y = window.innerHeight / 2;
     }
-
-    simulationNodes = data.board.nodes.map((n: any) => {
-      const x = ensureNumbers(n.x, (Math.random() - 0.5) * 900);
-      const y = ensureNumbers(n.y, (Math.random() - 0.5) * 900);
-      const fixed = !!n.fixed;
-      return {
-        ...n,
-        x,
-        y,
-        fx: fixed ? x : null,
-        fy: fixed ? y : null
-      } satisfies ClientNode;
-    });
-
-    simulationLinks = data.board.links.map((l: any) => ({ ...l })) as ClientLink[];
 
     simulation = d3
       .forceSimulation(simulationNodes)
@@ -191,6 +189,13 @@
     jsonDraft = layoutPretty;
     showEditor = true;
   }
+
+  const nodeById = $derived(new Map(simulationNodes.map((n) => [n.id, n] as const)));
+
+  function asNode(v: string | ClientNode): ClientNode | undefined {
+    if (typeof v === 'string') return nodeById.get(v);
+    return v;
+  }
 </script>
 
 <div
@@ -213,21 +218,23 @@
 
     <svg class="links-layer">
       {#each simulationLinks as link}
-        {#if link.source && link.target && typeof link.source === 'object' && typeof link.target === 'object'}
+        {@const s = asNode(link.source)}
+        {@const t = asNode(link.target)}
+        {#if s && t}
           <g>
             <line
-              x1={link.source.x}
-              y1={link.source.y}
-              x2={link.target.x}
-              y2={link.target.y}
+              x1={s.x}
+              y1={s.y}
+              x2={t.x}
+              y2={t.y}
               stroke={link.color || '#999'}
               stroke-width="2"
               stroke-opacity="0.25"
             />
             {#if link.label}
               <text
-                x={(link.source.x + link.target.x) / 2}
-                y={(link.source.y + link.target.y) / 2}
+                x={(s.x + t.x) / 2}
+                y={(s.y + t.y) / 2}
                 fill={link.color || '#999'}
                 font-size="12"
                 text-anchor="middle"
@@ -349,7 +356,7 @@
   :global(body) { margin: 0; background: #fff; color: #333; font-family: 'Poppins', 'Noto Sans JP', sans-serif; overflow: hidden; }
 
   .viewport { width: 100vw; height: 100vh; position: relative; overflow: hidden; background: #fff; }
-  .canvas { position: absolute; transform-origin: 0 0; will-change: transform; }
+  .canvas { position: absolute; top: 0; left: 0; transform-origin: 0 0; will-change: transform; }
 
   .bg-grid {
     position: absolute;

@@ -48,12 +48,12 @@
     console.log("[Page] Selected:", { id, type, viewType, group });
 
     // Switch editor mode based on selection
-    if (viewType === 'editor' || type === 'gh:Manuscript' || id.startsWith('manuscript:') || group === 'entity' || group === 'content' || type === 'gh:Document') {
+    if (viewType === 'editor' || type === 'gh:Manuscript' || id.startsWith('manuscript:') || group === 'entity' || group === 'content' || type === 'gh:Document' || group === 'episode' || group === 'page' || group === 'panel') {
       editorMode = "text";
       currentFilePath = node.label || id;
       
       // If it's a character or something with structured data, show its JSON or content
-      if (group === 'entity') {
+      if (group === 'entity' || group === 'episode' || group === 'page' || group === 'panel') {
         currentFileContent = node.content || JSON.stringify(node, null, 2);
       } else if (type === 'gh:Manuscript' || id.startsWith('manuscript:')) {
         await graphStore.fetchBlocks(id);
@@ -72,11 +72,6 @@
       editorMode = "manga";
     } else if (id === 'hub:assembler') {
       editorMode = "assembler";
-    }
-
-    // Auto-switch to dual or editor if something is selected and we are in topology only
-    if (activeMainView === 'topology') {
-      activeMainView = 'dual';
     }
   }
 

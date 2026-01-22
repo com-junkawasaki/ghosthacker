@@ -91,11 +91,13 @@ func (s *EditorServer) syncToNeo4j(ctx context.Context) error {
 
 		// 2. Create/Update Edges
 		for _, edge := range s.EdgeCache {
+			relName := strings.ReplaceAll(strings.TrimPrefix(edge.Relation, "gh:"), ":", "_")
+			if relName == "" { relName = "RELATED_TO" }
 			query := fmt.Sprintf(`
 				MATCH (a {id: $from}), (b {id: $to})
 				MERGE (a)-[r:%s]->(b)
 				SET r.relation = $rel, r.group = $group
-			`, strings.ReplaceAll(strings.Title(strings.TrimPrefix(edge.Relation, "gh:")), ":", "_"))
+			`, strings.ToUpper(relName))
 			
 			_, err := tx.Run(ctx, query, map[string]interface{}{
 				"from":  edge.FromId,
@@ -567,19 +569,33 @@ func (s *EditorServer) postProcessTopology(resp *editorpb.GetTopologyResponse) *
 
 	finalNodes := []*editorpb.Node{}
 	for _, node := range resp.Nodes {
+		// Filter out blocks and other noise for the high-level topology
 		if node.Type == "gh:Block" || strings.HasPrefix(node.Id, "block:") {
 			continue
 		}
 		
+		// Map specific types to specialized circles
+		if node.Type == "gh:EpisodeHub" {
+			node.Type = "gh:ClusterHub"
+			node.Group = "episode"
+		} else if node.Type == "gh:PageHub" {
+			node.Type = "gh:ClusterHub"
+			node.Group = "page"
+		} else if node.Type == "gh:Cut" || node.Type == "gh:MangaPanel" {
+			node.Group = "panel"
+		}
+		
 		group := node.Group
-		if !connected[node.Id] {
+		if !connected[node.Id] && group != "episode" && group != "page" && group != "panel" {
 			group = "unlinked"
 			node.Group = "unlinked"
 		}
 		
 		finalNodes = append(finalNodes, node)
 		
-		if !hasParent[node.Id] && group != "" && group != "meta" && group != "link-node" {
+		// Only create group hubs for nodes that don't have an explicit parent
+		// and are not already hubs themselves or panels
+		if !hasParent[node.Id] && group != "" && group != "meta" && group != "link-node" && group != "episode" && group != "page" && group != "panel" {
 			hubID := "hub:" + group
 			if _, ok := hubs[hubID]; !ok {
 				hLabel := strings.Title(group) + " Circle"
@@ -602,16 +618,17 @@ func (s *EditorServer) postProcessTopology(resp *editorpb.GetTopologyResponse) *
 	nodeMap := make(map[string]*editorpb.Node)
 	for _, n := range resp.Nodes { nodeMap[n.Id] = n }
 
+	// Build hierarchy for group hubs
 	for _, node := range resp.Nodes {
-		if !hasParent[node.Id] && node.Group != "" && node.Group != "meta" && node.Group != "link-node" {
+		if !hasParent[node.Id] && node.Group != "" && node.Group != "meta" && node.Group != "link-node" && node.Group != "episode" {
 			hubID := "hub:" + node.Group
 			if hub, ok := nodeMap[hubID]; ok {
 				hub.Children = append(hub.Children, node.Id)
-				// Don't add structural edges here, they are virtual for UI
 			}
 		}
 	}
 
+	// Build hierarchy from explicit edges
 	for _, edge := range resp.Edges {
 		if from, ok := nodeMap[edge.FromId]; ok {
 			if _, ok := nodeMap[edge.ToId]; ok {
@@ -886,14 +903,22 @@ func (s *EditorServer) CallTool(ctx context.Context, req *connect.Request[editor
 		}), nil
 	}
 
+	// The arguments might already be a JSON string or an object depending on the client
 	var args mcp.CallToolRequest
 	args.Params.Arguments = make(map[string]interface{})
-	if err := json.Unmarshal([]byte(req.Msg.ArgumentsJson), &args.Params.Arguments); err != nil {
-		return nil, connect.NewError(connect.CodeInvalidArgument, err)
+	
+	argStr := req.Msg.ArgumentsJson
+	if argStr != "" {
+		if err := json.Unmarshal([]byte(argStr), &args.Params.Arguments); err != nil {
+			log.Printf("Warning: failed to unmarshal arguments: %v, string: %s", err, argStr)
+			// Fallback: try to wrap if it's not an object
+			args.Params.Arguments["raw"] = argStr
+		}
 	}
 
 	result, err := handler(ctx, args)
 	if err != nil {
+		log.Printf("Error in tool handler: %v", err)
 		return connect.NewResponse(&editorpb.CallToolResponse{IsError: true, ResultJson: err.Error()}), nil
 	}
 

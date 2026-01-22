@@ -1657,7 +1657,7 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of the aftermath in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner, debris settling, people breathing again. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot: the corridor wall now shows a clean 'RE-ENTRY CONDITIONS' sheet and a responsibility matrix posted beside the framed rule; paper dust has settled; the office breathes again without pretending it’s over. shot on 35mm, f/2.8, cinematic live-action."
             },
             {
               "panel": 2,
@@ -1688,7 +1688,7 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of a relieved face with detailed eyes and soft catchlights, calm trust in the air. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Shouta:1.2) eyes: relief mixed with responsibility; soft catchlights steady as he holds the evidence handoff folder. shot on 85mm prime, f/1.2, cinematic live-action."
             }
           ]
         },

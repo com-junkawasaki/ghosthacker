@@ -71,6 +71,8 @@ class GraphStore {
     { id: 'hub:environment', label: 'World', type: 'atmospheric', description: 'Physical spaces' },
     { id: 'hub:manga', label: 'Manga View', type: 'manga', description: 'Manga layout & lettering' },
     { id: 'hub:assembler', label: '3D Assembler', type: 'assembler', description: 'Scene composition' },
+    { id: 'hub:editor', label: 'Editor', type: 'editor', description: 'Detailed manuscript editing' },
+    { id: 'hub:storyboard', label: 'Storyboard', type: 'storyboard', description: 'Visual continuity' },
     { id: 'hub:emotion', label: 'Emotions', type: 'heatmap', description: 'Emotional resonance' },
     { id: 'hub:meta', label: 'Meta', type: 'overview', description: 'System architecture' }
   ]);
