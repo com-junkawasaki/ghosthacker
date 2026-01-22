@@ -132,8 +132,8 @@
       "image": "/images/characters/kaname/main.png",
       "color": "#af52de",
       "description": "完璧主義のエリート。監査・統治で相手を詰める。",
-      "x": 159,
-      "y": -259,
+      "x": 23,
+      "y": -211,
       "fixed": false,
       "scale": 1
     },
@@ -154,8 +154,8 @@
       "name": "CISA",
       "color": "#af52de",
       "description": "公認情報システム監査師。要の武器。組織のガバナンスとコントロールを突く。",
-      "x": 300,
-      "y": -400,
+      "x": 610,
+      "y": -206,
       "fixed": false,
       "scale": 1
     },
@@ -198,8 +198,8 @@
       "name": "The GHOST",
       "color": "#ff2d55",
       "description": "情報が物理現象化した“悪意”。見えない攻撃が見える敵になる。",
-      "x": 80,
-      "y": -80,
+      "x": 359,
+      "y": 6,
       "fixed": false,
       "scale": 1
     },
@@ -308,8 +308,8 @@
       "name": "Ep.8 消えた資産の足跡",
       "description": "Arc C | Audit Attack",
       "color": "#af52de",
-      "x": 700,
-      "y": -160,
+      "x": 632,
+      "y": -112,
       "fixed": true,
       "scale": 1
     },
