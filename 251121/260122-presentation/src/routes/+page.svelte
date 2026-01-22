@@ -79,9 +79,16 @@
   let showEditor = $state(false);
   let jsonDraft = $state('');
 
-  function asNode(v: string | ClientNode, nodes: ClientNode[]): ClientNode | undefined {
-    if (typeof v !== 'string') return v;
-    return nodes.find(n => n.id === v);
+  function asNode(v: any, nodes: ClientNode[]): ClientNode | undefined {
+    if (!v) return undefined;
+    if (typeof v === 'object' && v.id) {
+      // If it's already an object, find the latest state from simulationNodes
+      return nodes.find(n => n.id === v.id);
+    }
+    if (typeof v === 'string') {
+      return nodes.find(n => n.id === v);
+    }
+    return undefined;
   }
 
   function makeClientLayout() {
@@ -122,7 +129,8 @@
     simulation = d3.forceSimulation(simulationNodes)
       .force('link', d3.forceLink(simulationLinks).id((d: any) => d.id).distance(100))
       .force('charge', d3.forceManyBody().strength((d: any) => d.nodeType === 'edge' ? -400 : -3000))
-      .force('center', d3.forceCenter(0, 0))
+      .force('x', d3.forceX(0).strength(0.01))
+      .force('y', d3.forceY(0).strength(0.01))
       .force('collision', d3.forceCollide().radius((d: any) => (d.nodeType === 'edge' ? 50 : 180)))
       .on('tick', () => {
         simulationNodes = [...simulationNodes];
@@ -136,9 +144,14 @@
     if (e.button !== 0) return;
     const target = e.target as HTMLElement;
     const resizeHandle = target.closest('.resize-handle');
+    const connectHandle = target.closest('.connect-handle');
     const card = target.closest('.node-card');
 
     if (e.shiftKey && card) {
+      const id = card.getAttribute('data-id');
+      linkingSource = simulationNodes.find(n => n.id === id) ?? null;
+      linkingTargetPos = { x: (e.clientX - transform.x) / transform.k, y: (e.clientY - transform.y) / transform.k };
+    } else if (connectHandle && card) {
       const id = card.getAttribute('data-id');
       linkingSource = simulationNodes.find(n => n.id === id) ?? null;
       linkingTargetPos = { x: (e.clientX - transform.x) / transform.k, y: (e.clientY - transform.y) / transform.k };
@@ -167,7 +180,12 @@
 
   function handlePointerMove(e: PointerEvent) {
     if (linkingSource) {
-      linkingTargetPos = { x: (e.clientX - transform.x) / transform.k, y: (e.clientY - transform.y) / transform.k };
+      linkingTargetPos = { 
+        x: (e.clientX - transform.x) / transform.k, 
+        y: (e.clientY - transform.y) / transform.k 
+      };
+      // Force UI update for the drag line
+      simulationNodes = [...simulationNodes];
     } else if (resizingNode) {
       const delta = (e.movementX + e.movementY) / 200;
       resizingNode.scale = Math.min(Math.max((resizingNode.scale ?? 1) + delta, 0.3), 3);
@@ -193,15 +211,14 @@
 
   function handlePointerUp(e: PointerEvent) {
     if (linkingSource) {
-      const target = e.target as HTMLElement;
-      const card = target.closest('.node-card');
+      const targetElement = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement;
+      const card = targetElement?.closest('.node-card');
       if (card) {
         const targetId = card.getAttribute('data-id');
         if (targetId && targetId !== linkingSource.id) {
-          const newIdx = simulationNodes.filter(n => n.nodeType === 'edge').length;
-          const edgeId = `edge-${newIdx}-${Date.now()}`;
+          const edgeId = `edge-${Date.now()}`;
           const edgeNode: ClientNode = {
-            id: edgeId, nodeType: 'edge', name: 'new relation', color: '#999',
+            id: edgeId, nodeType: 'edge', name: '', color: '#999',
             sourceId: linkingSource.id, targetId: targetId, x: linkingTargetPos.x, y: linkingTargetPos.y, scale: 0.8,
             fixed: true, fx: linkingTargetPos.x, fy: linkingTargetPos.y
           };
@@ -210,10 +227,12 @@
             { source: linkingSource.id, target: edgeId, color: '#999' },
             { source: edgeId, target: targetId, color: '#999' }
           ];
-          simulation?.nodes(simulationNodes);
-          const linkForce = simulation?.force('link') as d3.ForceLink<any, any>;
-          linkForce.links(simulationLinks);
-          simulation?.alpha(0.3).restart();
+          
+          if (simulation) {
+            simulation.nodes(simulationNodes);
+            (simulation.force('link') as d3.ForceLink<any, any>).links(simulationLinks);
+            simulation.alpha(0.3).restart();
+          }
           
           setTimeout(() => {
             const form = document.querySelector('form');
@@ -225,7 +244,6 @@
     }
 
     if (draggingNode) {
-      // Ensure the node's current x/y are captured
       draggingNode.x = draggingNode.fx ?? draggingNode.x;
       draggingNode.y = draggingNode.fy ?? draggingNode.y;
 
@@ -234,7 +252,6 @@
         draggingNode.fy = null;
       }
       
-      // Force final position update before submit
       setTimeout(() => {
         const form = document.querySelector('form');
         if (form) form.requestSubmit();
@@ -290,15 +307,36 @@
     <div class="bg-grid"></div>
 
     <svg class="links-layer">
+      <defs>
+        <marker id="arrowhead" viewBox="0 0 10 10" refX="25" refY="5"
+          markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#333" />
+        </marker>
+        <marker id="arrowhead-active" viewBox="0 0 10 10" refX="25" refY="5"
+          markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#0071e3" />
+        </marker>
+      </defs>
       {#each simulationLinks as link}
         {@const s = asNode(link.source, simulationNodes)}
         {@const t = asNode(link.target, simulationNodes)}
         {#if s && t}
-          <line x1={s.x} y1={s.y} x2={t.x} y2={t.y} stroke={link.color || '#999'} stroke-width="2" stroke-opacity="0.8" />
+          <line 
+            x1={s.x} y1={s.y} x2={t.x} y2={t.y} 
+            stroke={link.color || '#333'} 
+            stroke-width="4" 
+            stroke-opacity="1" 
+            marker-end={t.nodeType !== 'edge' ? "url(#arrowhead)" : ""}
+          />
         {/if}
       {/each}
       {#if linkingSource}
-        <line x1={linkingSource.x} y1={linkingSource.y} x2={linkingTargetPos.x} y2={linkingTargetPos.y} stroke="#0071e3" stroke-width="3" stroke-dasharray="5,5" />
+        <line 
+          x1={linkingSource.x} y1={linkingSource.y} 
+          x2={linkingTargetPos.x} y2={linkingTargetPos.y} 
+          stroke="#0071e3" stroke-width="6" stroke-dasharray="10,5" 
+          marker-end="url(#arrowhead-active)"
+        />
       {/if}
     </svg>
 
@@ -314,6 +352,15 @@
             <div class="resize-handle"></div>
             <button class="pin-btn" onclick={(e) => toggleFix(node, e)} title="Pin">
               {#if node.fx != null}<Pin size={14} fill="currentColor" />{:else}<PinOff size={14} />{/if}
+            </button>
+            <button
+              class="connect-handle"
+              onpointerdown={(e) => {
+                // Handled by handlePointerDown
+              }}
+              title="Connect"
+            >
+              <Plus size={14} />
             </button>
           {/if}
 
@@ -347,8 +394,17 @@
             </div>
           {:else if node.nodeType === 'edge'}
             <div class="edge-node-content">
-              <Share2 size={16} color={node.color || '#999'} />
-              <span>{node.name || ''}</span>
+              <Share2 size={14} color={node.color || '#999'} />
+              <input
+                type="text"
+                class="edge-label-input"
+                bind:value={node.name}
+                onchange={() => {
+                  const form = document.querySelector('form');
+                  if (form) form.requestSubmit();
+                }}
+                placeholder="relation..."
+              />
             </div>
           {/if}
         </div>
@@ -399,10 +455,11 @@
   @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&family=Noto+Sans+JP:wght@400;700;900&family=Poppins:wght@400;700;900&display=swap');
   :global(body) { margin: 0; background: #fff; color: #333; font-family: 'Poppins', 'Noto Sans JP', sans-serif; overflow: hidden; }
   .viewport { width: 100vw; height: 100vh; position: relative; overflow: hidden; background: #fff; }
-  .canvas { position: absolute; top: 0; left: 0; transform-origin: 0 0; will-change: transform; }
-  .bg-grid { position: absolute; width: 20000px; height: 20000px; top: -10000px; left: -10000px; background-image: radial-gradient(circle, #eee 1px, transparent 1px); background-size: 50px 50px; pointer-events: none; }
-  .links-layer { position: absolute; width: 20000px; height: 20000px; top: -10000px; left: -10000px; pointer-events: none; }
-  .node-card { position: absolute; background: #fff; padding: 15px; border: 1px solid #ddd; box-shadow: 0 10px 30px rgba(0,0,0,0.05); user-select: none; pointer-events: auto; transform-origin: center center; }
+  .canvas { position: absolute; top: 0; left: 0; transform-origin: 0 0; will-change: transform; z-index: 1; }
+  .bg-grid { position: absolute; width: 40000px; height: 40000px; top: -20000px; left: -20000px; background-image: radial-gradient(circle, #eee 1px, transparent 1px); background-size: 50px 50px; pointer-events: none; z-index: -1; }
+  .links-layer { position: absolute; width: 40000px; height: 40000px; top: -20000px; left: -20000px; pointer-events: none; z-index: 0; overflow: visible; }
+  .nodes-layer { position: absolute; top: 0; left: 0; z-index: 10; pointer-events: none; }
+  .node-card { position: absolute; background: #fff; padding: 15px; border: 1px solid #ddd; box-shadow: 0 10px 30px rgba(0,0,0,0.05); user-select: none; pointer-events: auto; transform-origin: center center; z-index: 11; }
   .node-card.fixed { border-color: var(--accent); border-width: 2px; }
   .resize-handle { position: absolute; right: 0; bottom: 0; width: 20px; height: 20px; cursor: nwse-resize; background: linear-gradient(135deg, transparent 50%, #ccc 50%); opacity: 0; transition: opacity 0.2s; }
   .node-card:hover .resize-handle { opacity: 1; }
@@ -415,9 +472,13 @@
   .desc { font-size: 11px; color: #666; margin-top: 8px; line-height: 1.4; }
   .concept-card { width: 320px; border-radius: 60px; display: flex; align-items: center; gap: 15px; padding: 20px 26px; border: 2px solid var(--accent); }
   .ep-card { width: 220px; text-align: center; border-radius: 10px; border-bottom: 3px solid #ddd; background: #fafafa; }
-  .edge-card { padding: 8px 15px; border-radius: 20px; background: #fff; border: 1px solid #eee; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-  .edge-node-content { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; color: #666; white-space: nowrap; }
+  .edge-card { padding: 6px 12px; border-radius: 20px; background: #fff; border: 2px solid #333; box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 5; }
+  .edge-node-content { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: #000; white-space: nowrap; }
+  .edge-label-input { border: none; background: transparent; font-size: 11px; font-weight: 800; color: #000; width: 90px; outline: none; padding: 0; text-align: center; }
+  .edge-label-input::placeholder { color: #bbb; font-weight: 400; }
   .pin-btn { position: absolute; top: 10px; right: 10px; background: none; border: none; color: #ddd; cursor: pointer; }
+  .connect-handle { position: absolute; bottom: 10px; right: 10px; background: #fff; border: 1px solid #ddd; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: #999; cursor: crosshair; transition: all 0.2s; z-index: 20; }
+  .connect-handle:hover { border-color: var(--accent); color: var(--accent); transform: scale(1.1); }
   .fixed .pin-btn { color: var(--accent); }
   .hud { position: fixed; top: 40px; left: 40px; pointer-events: none; z-index: 10; }
   .glitch-container { display: flex; flex-direction: column; }
