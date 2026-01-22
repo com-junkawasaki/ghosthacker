@@ -5,8 +5,9 @@
   import Topology from '../components/Topology/TopologyView.svelte';
   import Storyboard from '../components/Storyboard.svelte';
   import Editor from '../components/Editor.svelte';
-  import MangaView from '../components/Manga/MangaView.svelte';
-  import AssemblerControls from '../components/AssemblerControls.svelte';
+import MangaView from '../components/Manga/MangaView.svelte';
+import PresentationView from '../components/PresentationView.svelte';
+import AssemblerControls from '../components/AssemblerControls.svelte';
   import HistoryPanel from '../components/HistoryPanel.svelte';
   import TranslationViewer from '../components/TranslationViewer.svelte';
   
@@ -34,7 +35,7 @@
   let resizingMode = $state<"nav" | "inspector" | "split" | null>(null);
   
   // Right pane sub-mode
-  let editorMode = $state<"storyboard" | "text" | "manga" | "assembler" | "translation">("storyboard");
+  let editorMode = $state<"storyboard" | "text" | "manga" | "assembler" | "translation" | "presentation">("storyboard");
   
   let isHistoryOpen = $state(false);
   let isChatOpen = $state(false);
@@ -86,6 +87,8 @@
       editorMode = "manga";
     } else if (id === 'hub:assembler') {
       editorMode = "assembler";
+    } else if (id === 'hub:presentation') {
+      editorMode = "presentation";
     }
   }
 
@@ -223,6 +226,8 @@
                   manuscriptId={selectedNode?.id} 
                   {projectId} 
                 />
+              {:else if editorMode === 'presentation'}
+                <PresentationView {projectId} />
               {/if}
             </div>
           </section>

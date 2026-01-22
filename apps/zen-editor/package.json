@@ -34,6 +34,7 @@
     "@threlte/core": "^8.0.0",
     "@threlte/extras": "^9.0.0",
     "d3-force": "^3.0.0",
+    "lucide-svelte": "^0.562.0",
     "prosemirror-commands": "^1.5.2",
     "prosemirror-history": "^1.4.0",
     "prosemirror-keymap": "^1.2.2",

@@ -1,27 +1,30 @@
 # Tiltfile for Zen Editor
 
-# Frontend (SvelteKit + pnpm)
-local_resource(
-    'zen-frontend',
-    cmd='pnpm run dev',
-    deps=['src', 'vite.config.ts', 'svelte.config.js', 'package.json'],
-    links=['http://localhost:1420']
-)
+# 1. Neo4j Database (Infrastructure)
+docker_compose('docker-compose.yaml')
 
-# Backend (Go Server)
+# 2. Backend (Go Server)
 local_resource(
     'zen-backend-server',
     cmd='cd backend && export WORKSPACE_ROOT=../../.. && export PORT=8080 && go run cmd/server/main.go',
     deps=['backend/cmd/server', 'backend/internal', 'backend/proto', 'backend/go.mod', 'backend/go.sum'],
-    links=['http://localhost:8080/health']
+    links=['http://localhost:8080/health'],
+    resource_deps=['neo4j']
 )
 
-# Backend (Go Worker)
+# 3. Backend (Go Worker)
 local_resource(
     'zen-backend-worker',
     cmd='cd backend && export WORKSPACE_ROOT=../../.. && go run cmd/worker/main.go',
-    deps=['backend/cmd/worker', 'backend/internal', 'backend/proto', 'backend/go.mod', 'backend/go.sum']
+    deps=['backend/cmd/worker', 'backend/internal', 'backend/proto', 'backend/go.mod', 'backend/go.sum'],
+    resource_deps=['neo4j']
 )
 
-# Neo4j Database
-docker_compose('docker-compose.yaml')
+# 4. Frontend (SvelteKit + pnpm)
+local_resource(
+    'zen-frontend',
+    cmd='pnpm run dev',
+    deps=['src', 'vite.config.ts', 'svelte.config.js', 'package.json'],
+    links=['http://localhost:1420'],
+    resource_deps=['zen-backend-server']
+)
