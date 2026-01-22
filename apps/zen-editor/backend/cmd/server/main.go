@@ -23,6 +23,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
+	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 
 	"github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/internal/git"
 	editorpb "github.com/gftd-ai/ghost-hacker/apps/zen-editor/backend/proto"
@@ -36,6 +37,7 @@ type EditorServer struct {
 	ToolHandlers  map[string]func(context.Context, mcp.CallToolRequest) (*mcp.CallToolResult, error)
 	DB            *sql.DB
 	Git           *git.GitService
+	Neo4jDriver   neo4j.DriverWithContext
 
 	// Memory Store for fast access
 	mu               sync.RWMutex
@@ -53,6 +55,60 @@ func (s *EditorServer) filenameToId(filename string) string {
 	base := strings.TrimSuffix(filename, ".jsonld")
 	decoded, _ := base64.URLEncoding.DecodeString(base)
 	return string(decoded)
+}
+
+func (s *EditorServer) syncToNeo4j(ctx context.Context) error {
+	if s.Neo4jDriver == nil {
+		return fmt.Errorf("neo4j driver not initialized")
+	}
+
+	session := s.Neo4jDriver.NewSession(ctx, neo4j.SessionConfig{AccessMode: neo4j.AccessModeWrite})
+	defer session.Close(ctx)
+
+	_, err := session.ExecuteWrite(ctx, func(tx neo4j.ManagedTransaction) (interface{}, error) {
+		// 1. Create/Update Nodes
+		for _, node := range s.NodeCache {
+			props := map[string]interface{}{
+				"id":      node.Id,
+				"label":   node.Label,
+				"type":    node.Type,
+				"group":   node.Group,
+				"content": node.Content,
+			}
+			if node.ImagePath != "" { props["image_path"] = node.ImagePath }
+			
+			query := `MERGE (n:Node {id: $id}) SET n += $props`
+			if node.Group != "" {
+				query = fmt.Sprintf("MERGE (n:%s {id: $id}) SET n += $props", strings.Title(node.Group))
+			}
+			
+			_, err := tx.Run(ctx, query, map[string]interface{}{
+				"id":    node.Id,
+				"props": props,
+			})
+			if err != nil { return nil, err }
+		}
+
+		// 2. Create/Update Edges
+		for _, edge := range s.EdgeCache {
+			query := fmt.Sprintf(`
+				MATCH (a {id: $from}), (b {id: $to})
+				MERGE (a)-[r:%s]->(b)
+				SET r.relation = $rel, r.group = $group
+			`, strings.ReplaceAll(strings.Title(strings.TrimPrefix(edge.Relation, "gh:")), ":", "_"))
+			
+			_, err := tx.Run(ctx, query, map[string]interface{}{
+				"from":  edge.FromId,
+				"to":    edge.ToId,
+				"rel":   edge.Relation,
+				"group": edge.Group,
+			})
+			if err != nil { return nil, err }
+		}
+		return nil, nil
+	})
+
+	return err
 }
 
 func (s *EditorServer) LoadDatastore(projectID string) {
@@ -258,6 +314,15 @@ func (s *EditorServer) LoadDatastore(projectID string) {
 	}
 
 	log.Printf("Loaded %d nodes and %d edges from datastore for %s", len(s.NodeCache), len(s.EdgeCache), projectID)
+
+	// Sync to Neo4j in background
+	go func() {
+		if err := s.syncToNeo4j(context.Background()); err != nil {
+			log.Printf("Warning: failed to sync to Neo4j: %v", err)
+		} else {
+			log.Printf("Successfully synced %d nodes to Neo4j", len(s.NodeCache))
+		}
+	}()
 }
 
 func (s *EditorServer) DeepFlattenDatastore(projectID string) {
@@ -353,6 +418,25 @@ func NewEditorServer(dataRoot string) *EditorServer {
 	db, _ := sql.Open("sqlite", dbPath)
 	db.Exec(`CREATE TABLE IF NOT EXISTS history (id TEXT PRIMARY KEY, project_id TEXT, parent_id TEXT, branch_name TEXT, type TEXT, state_json TEXT, message TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)`)
 
+	// Neo4j Setup
+	neo4jUri := os.Getenv("NEO4J_URI")
+	if neo4jUri == "" {
+		neo4jUri = "bolt://localhost:7687"
+	}
+	neo4jUser := os.Getenv("NEO4J_USER")
+	if neo4jUser == "" {
+		neo4jUser = "neo4j"
+	}
+	neo4jPassword := os.Getenv("NEO4J_PASSWORD")
+	if neo4jPassword == "" {
+		neo4jPassword = "password"
+	}
+
+	driver, err := neo4j.NewDriverWithContext(neo4jUri, neo4j.BasicAuth(neo4jUser, neo4jPassword, ""))
+	if err != nil {
+		log.Printf("Warning: failed to connect to Neo4j: %v", err)
+	}
+
 	s := &EditorServer{
 		WorkspaceRoot: dataRoot,
 		MCPServer:     server.NewMCPServer("GhostHackerEditor", "1.0.0"),
@@ -360,6 +444,7 @@ func NewEditorServer(dataRoot string) *EditorServer {
 		ToolHandlers:  make(map[string]func(context.Context, mcp.CallToolRequest) (*mcp.CallToolResult, error)),
 		DB:            db,
 		Git:           git.NewGitService(dataRoot),
+		Neo4jDriver:   driver,
 		NodeCache:     make(map[string]*editorpb.Node),
 	}
 	s.registerMCPTools()
@@ -779,6 +864,19 @@ func (s *EditorServer) SaveNode(ctx context.Context, req *connect.Request[editor
 	}
 
 	s.LoadDatastore(req.Msg.ProjectId)
+
+	// Update individual node in Neo4j
+	if s.Neo4jDriver != nil {
+		go func() {
+			ctx := context.Background()
+			session := s.Neo4jDriver.NewSession(ctx, neo4j.SessionConfig{AccessMode: neo4j.AccessModeWrite})
+			defer session.Close(ctx)
+			session.Run(ctx, `MATCH (n {id: $id}) SET n.content = $content`, map[string]interface{}{
+				"id": node.Id, "content": node.Content,
+			})
+		}()
+	}
+
 	return connect.NewResponse(&editorpb.SaveNodeResponse{Success: true, Message: "Node saved to Datastore"}), nil
 }
 

@@ -43,9 +43,9 @@
       return;
     }
     selectedNode = node;
-    const { id, type, viewType } = node;
+    const { id, type, viewType, group } = node;
 
-    console.log("[Page] Selected:", { id, type, viewType });
+    console.log("[Page] Selected:", { id, type, viewType, group });
 
     // Switch editor mode based on selection
     if (viewType === 'editor' || type === 'gh:Manuscript' || id.startsWith('manuscript:') || group === 'entity' || group === 'content' || type === 'gh:Document') {

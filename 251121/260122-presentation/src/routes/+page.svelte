@@ -2,7 +2,6 @@
   import { onMount } from 'svelte';
   import { enhance } from '$app/forms';
   import * as d3 from 'd3-force';
-  import type { PageData } from './$types';
   import { Eye, Ghost, Lock, Pin, PinOff, Save, RotateCcw, Download, FileJson, Bug } from 'lucide-svelte';
 
   type ClientNode = {
@@ -14,8 +13,8 @@
     role?: string;
     credentials?: string[];
     color?: string;
-    x?: number;
-    y?: number;
+    x: number;
+    y: number;
     fixed?: boolean;
     // d3 runtime fields
     fx?: number | null;
@@ -29,7 +28,7 @@
     color?: string;
   };
 
-  const { data } = $props<{ data: PageData }>();
+  const { data } = $props<{ data: any }>();
 
   const conceptIconById: Record<string, any> = {
     aria: Eye,
@@ -63,12 +62,12 @@
       role: n.role,
       credentials: n.credentials ?? [],
       color: n.color,
-      x: Math.round(ensureNumbers(n.x, 0)),
-      y: Math.round(ensureNumbers(n.y, 0)),
+      x: Math.round(n.x),
+      y: Math.round(n.y),
       fixed: n.fx != null
     }));
 
-    const links = data.board.links.map((l) => ({
+    const links = data.board.links.map((l: any) => ({
       source: typeof l.source === 'string' ? l.source : (l.source as any).id,
       target: typeof l.target === 'string' ? l.target : (l.target as any).id,
       label: l.label,
@@ -196,10 +195,10 @@
 
 <div
   class="viewport"
-  on:pointerdown={handlePointerDown}
-  on:pointermove={handlePointerMove}
-  on:pointerup={handlePointerUp}
-  on:wheel={handleWheel}
+  onpointerdown={handlePointerDown}
+  onpointermove={handlePointerMove}
+  onpointerup={handlePointerUp}
+  onwheel={handleWheel}
 >
   <div class="hud">
     <div class="glitch-container">
@@ -251,7 +250,7 @@
           style="left: {node.x}px; top: {node.y}px; --accent: {node.color}"
           data-id={node.id}
         >
-          <button class="pin-btn" on:click={(e) => toggleFix(node, e)} title="Pin">
+          <button class="pin-btn" onclick={(e) => toggleFix(node, e)} title="Pin">
             {#if node.fx != null}
               <Pin size={14} fill="currentColor" />
             {:else}
@@ -275,9 +274,10 @@
             <div class="concept-content">
               <div class="concept-icon">
                 {#if conceptIconById[node.id]}
-                  <svelte:component this={conceptIconById[node.id]} size={32} color={node.color} />
+                  {@const Icon = conceptIconById[node.id]}
+                  <Icon size={32} color={node.color ?? '#111'} />
                 {:else}
-                  <Ghost size={32} color={node.color} />
+                  <Ghost size={32} color={node.color ?? '#111'} />
                 {/if}
               </div>
               <div class="info">
@@ -309,9 +309,9 @@
 
     <a class="btn" href="/board.jsonld"><Download size={16} /> Download</a>
 
-    <button type="button" on:click={openEditor}><FileJson size={16} /> JSON-LD</button>
-    <button type="button" on:click={resetFromDisk}><RotateCcw size={16} /> Reload</button>
-    <button type="button" class:active={showDebug} on:click={() => (showDebug = !showDebug)} title="Debug">
+    <button type="button" onclick={openEditor}><FileJson size={16} /> JSON-LD</button>
+    <button type="button" onclick={resetFromDisk}><RotateCcw size={16} /> Reload</button>
+    <button type="button" class:active={showDebug} onclick={() => (showDebug = !showDebug)} title="Debug">
       <Bug size={16} />
     </button>
   </div>
@@ -325,18 +325,18 @@
   {/if}
 
   {#if showEditor}
-    <div class="modal-backdrop" on:click={() => (showEditor = false)} />
+    <button class="modal-backdrop" type="button" aria-label="Close editor" onclick={() => (showEditor = false)}></button>
     <div class="modal" role="dialog" aria-label="JSON-LD editor">
       <div class="modal-head">
         <div class="modal-title">`data/ghosthacker-board.jsonld` を編集して保存</div>
-        <button class="icon-btn" type="button" on:click={() => (showEditor = false)}>×</button>
+        <button class="icon-btn" type="button" onclick={() => (showEditor = false)}>×</button>
       </div>
 
       <form method="POST" action="?/save" use:enhance>
-        <textarea name="layout" bind:value={jsonDraft} spellcheck="false" />
+        <textarea name="layout" bind:value={jsonDraft} spellcheck="false"></textarea>
         <div class="modal-actions">
           <button type="submit"><Save size={16} /> Save JSON</button>
-          <button type="button" on:click={() => (jsonDraft = layoutPretty)}><RotateCcw size={16} /> Reset draft</button>
+          <button type="button" onclick={() => (jsonDraft = layoutPretty)}><RotateCcw size={16} /> Reset draft</button>
         </div>
       </form>
     </div>

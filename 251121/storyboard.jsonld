@@ -1079,7 +1079,7 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of teams pausing operations as containment begins. 再発防止の条件：権限剥奪・職務分掌・ログ保全・バックアップの棚卸し. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot: a temporary governance audit corner in the old office. Accounts are being reviewed, admin access is being revoked, and remote support is being paused under supervision. shot on 35mm, f/2.8, cinematic live-action."
             },
             {
               "panel": 2,
@@ -1094,7 +1094,7 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a checklist / runbook page titled 'CONTAINMENT' with timestamps and boxes checked. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a role matrix and backup inventory sheet: columns for approve/deploy/backup access, owners and dates filled in, missing rows highlighted. shot on 50mm, f/2.0, cinematic live-action."
             },
             {
               "panel": 3,
@@ -1109,7 +1109,7 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) raises a hand to stop a panicked restart in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. gentle but firm gesture. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Nei:1.2) calmly points at the updated responsibility chart on her tablet while Ren watches off-frame; the blue screen glow reflects in her eyes. shot on 50mm, f/1.8, cinematic live-action."
             }
           ]
         },
@@ -1129,7 +1129,7 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of teams pausing operations as containment begins. 再発防止の条件：権限剥奪・職務分掌・ログ保全・バックアップの棚卸し. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot: a controlled recovery checkpoint. Workstations are labeled, remote support is disabled by procedure, and a 're-entry conditions' sheet is taped beside the server rack. shot on 35mm, f/2.8, cinematic live-action."
             },
             {
               "panel": 2,
@@ -1144,7 +1144,7 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a checklist / runbook page titled 'CONTAINMENT' with timestamps and boxes checked. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a signed emergency procedure: 'remote support re-enable conditions', monitoring steps, owner name, escalation phone number. shot on 50mm, f/2.0, cinematic live-action."
             },
             {
               "panel": 3,
@@ -1159,7 +1159,7 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) raises a hand to stop a panicked restart in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. gentle but firm gesture. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Shouta:1.2) stands under the old framed company rule, reading the new procedure sheet slowly; he looks shaken but accepts the redesign. shot on 50mm, f/1.8, cinematic live-action."
             }
           ]
         },
