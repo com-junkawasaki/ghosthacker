@@ -15,7 +15,6 @@ async function writeData(data: any) {
 export async function getBoard() {
 	const data = await readData();
 	
-	// Neo4j 版の getBoard が返していた形式に合わせる
 	const nodes = data.nodes.map((node: any) => ({
 		...node,
 		id: node.id.replace('gh:node/', ''),
@@ -49,14 +48,13 @@ export async function saveNode(id: string, x: number, y: number, fixed: boolean,
 			scale
 		};
 	} else {
-		// ノードが見つからない場合は新規追加（エッジノードなど）
 		data.nodes.push({
 			id: fullId,
 			x,
 			y,
 			fixed,
 			scale,
-			nodeType: 'edge' // デフォルト
+			nodeType: 'edge'
 		});
 	}
 	await writeData(data);
@@ -79,6 +77,5 @@ export async function syncLinks(links: {source: string, target: string, label?: 
 }
 
 export async function initializeFromJSONLD(newData: any) {
-	// そのまま上書き保存
 	await writeData(newData);
 }
