@@ -48,11 +48,14 @@
     console.log("[Page] Selected:", { id, type, viewType });
 
     // Switch editor mode based on selection
-    if (viewType === 'editor' || type === 'gh:Manuscript' || id.startsWith('manuscript:')) {
+    if (viewType === 'editor' || type === 'gh:Manuscript' || id.startsWith('manuscript:') || group === 'entity' || group === 'content' || type === 'gh:Document') {
       editorMode = "text";
       currentFilePath = node.label || id;
-      // Fetch blocks if manuscript
-      if (type === 'gh:Manuscript' || id.startsWith('manuscript:')) {
+      
+      // If it's a character or something with structured data, show its JSON or content
+      if (group === 'entity') {
+        currentFileContent = node.content || JSON.stringify(node, null, 2);
+      } else if (type === 'gh:Manuscript' || id.startsWith('manuscript:')) {
         await graphStore.fetchBlocks(id);
         const manuscript = graphStore.nodes.get(id);
         currentFileContent = manuscript?.children
@@ -85,8 +88,13 @@
   }
 
   async function handleEditorSave(content: string) {
-    if (selectedNode && (selectedNode.type === 'gh:Manuscript' || selectedNode.id.startsWith('manuscript:'))) {
-      await graphStore.saveManuscript(selectedNode.id, content);
+    if (selectedNode) {
+      if (selectedNode.type === 'gh:Manuscript' || selectedNode.id.startsWith('manuscript:')) {
+        await graphStore.saveManuscript(selectedNode.id, content);
+      } else {
+        // General node save
+        await graphStore.updateNodeContent(selectedNode.id, content);
+      }
     } else if (currentFilePath) {
       await graphStore.saveFile(currentFilePath, content);
     }

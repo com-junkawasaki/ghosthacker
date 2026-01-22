@@ -62,7 +62,11 @@
       >
         ▶
       </span>
-      <span class="node-icon {item.group}"></span>
+      {#if item.node.imagePath}
+        <img src={item.node.imagePath} alt="" class="node-thumbnail" />
+      {:else}
+        <span class="node-icon {item.group}"></span>
+      {/if}
       <span class="label">{item.label}</span>
     </div>
   {/each}
@@ -133,6 +137,16 @@
     border-radius: 50%;
     margin-right: 8px;
     flex-shrink: 0;
+  }
+
+  .node-thumbnail {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    margin-right: 8px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border: 1px solid var(--tertiary-label);
   }
 
   .node-icon.content { background: #0071e3; }

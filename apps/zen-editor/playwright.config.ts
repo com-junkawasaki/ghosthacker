@@ -19,7 +19,7 @@ export default defineConfig({
   ],
   // We assume backend is already running via Tilt or manual start for local TDD
   webServer: {
-    command: 'export VITE_API_URL=http://127.0.0.1:8080 && deno task dev:web',
+    command: 'export VITE_API_URL=http://127.0.0.1:8080 && pnpm run dev',
     url: 'http://127.0.0.1:1420',
     reuseExistingServer: true,
   },

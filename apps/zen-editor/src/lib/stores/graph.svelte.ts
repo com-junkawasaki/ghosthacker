@@ -8,7 +8,8 @@ export interface Node {
   group: string;
   content?: string;
   localizedContent?: Record<string, string>;
-  viewType?: string; // Add this
+  viewType?: string;
+  imagePath?: string; // Add this
   x?: number;
   y?: number;
   children?: string[]; // IDs of children
@@ -358,6 +359,27 @@ class GraphStore {
       const node = this.nodes.get(nodeId);
       if (node && node.type === 'gh:Manuscript' && (!node.children || node.children.length === 0)) {
         this.fetchBlocks(nodeId);
+      }
+    }
+  }
+
+  async updateNodeContent(id: string, content: string) {
+    const node = this.nodes.get(id);
+    if (node) {
+      node.content = content;
+      this.nodes = new Map(this.nodes);
+      
+      if (this.projectId) {
+        try {
+          const client = await getClient();
+          if (!client) return;
+          await client.saveNode({
+            projectId: this.projectId,
+            node: node as any
+          });
+        } catch (err) {
+          console.error("Failed to save node content:", err);
+        }
       }
     }
   }

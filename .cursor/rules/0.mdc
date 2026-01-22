@@ -86,25 +86,25 @@ alwaysApply: true
 
 ### 技術スタック
 - **Frontend**: SvelteKit 5 + Tauri 2
-- **Runtime**: Deno (npm互換機能を使用)
+- **Runtime**: Node.js (pnpmを使用)
 - **Backend**: Go (gRPC Connect)
 - **Visualization**: @cosmos.gl/graph (WebGPU)
 
 ### 開発コマンド
-- **開発サーバー起動**: `cd apps/zen-editor && deno task dev:vite`
-- **バックエンド起動**: `cd apps/zen-editor && deno task dev:backend`
-- **Tauri開発**: `cd apps/zen-editor && export PATH="$HOME/.cargo/bin:$PATH" && deno task tauri dev`
-- **ビルド**: `cd apps/zen-editor && deno task build`
+- **依存関係インストール**: `cd apps/zen-editor && pnpm install`
+- **開発サーバー起動**: `cd apps/zen-editor && pnpm run dev`
+- **バックエンド起動**: `cd apps/zen-editor && pnpm run dev:backend`
+- **Tauri開発**: `cd apps/zen-editor && export PATH="$HOME/.cargo/bin:$PATH" && pnpm run tauri dev`
+- **ビルド**: `cd apps/zen-editor && pnpm run build`
 
-### Deno設定
-- `deno.json` のタスクは `deno run -A npm:` を使用（pnpm/npm は使わない）
-- `-A` フラグで全ての権限を許可（開発環境）
-- `nodeModulesDir: "auto"` で自動管理
+### パッケージ管理設定
+- `package.json` のスクリプトを使用（deno は使わない）
+- Node.js エコシステムに準拠
 
 ### Tauri設定
-- `beforeDevCommand`: `deno task dev` (vite を起動)
+- `beforeDevCommand`: `pnpm run dev` (vite を起動)
 - `devUrl`: `http://localhost:1420`
-- `beforeBuildCommand`: `deno task build`
+- `beforeBuildCommand`: `pnpm run build`
 
 ### SvelteKit設定
 - `@sveltejs/adapter-static` を使用（Tauri推奨）

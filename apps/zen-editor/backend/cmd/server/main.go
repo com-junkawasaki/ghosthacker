@@ -118,6 +118,9 @@ func (s *EditorServer) LoadDatastore(projectID string) {
 			if gltf, ok := nodeData["gh:gltfPath"].(string); ok {
 				node.GltfPath = gltf
 			}
+			if img, ok := nodeData["gh:imagePath"].(string); ok {
+				node.ImagePath = img
+			}
 			if pos, ok := nodeData["gh:position3d"].([]interface{}); ok && len(pos) == 3 {
 				node.Position3D = []float32{float32(pos[0].(float64)), float32(pos[1].(float64)), float32(pos[2].(float64))}
 			}
@@ -245,6 +248,15 @@ func (s *EditorServer) LoadDatastore(projectID string) {
 	loadFromDir(filepath.Join(s.WorkspaceRoot, projectID, "props"))
 	loadFromDir(filepath.Join(s.WorkspaceRoot, projectID, "environments"))
 
+	// Load README.md as a node
+	readmePath := filepath.Join(s.WorkspaceRoot, projectID, "README.md")
+	if data, err := os.ReadFile(readmePath); err == nil {
+		id := "doc:readme"
+		s.NodeCache[id] = &editorpb.Node{
+			Id: id, Label: "README.md", Type: "gh:Document", Group: "meta", Content: string(data), ViewType: "editor",
+		}
+	}
+
 	log.Printf("Loaded %d nodes and %d edges from datastore for %s", len(s.NodeCache), len(s.EdgeCache), projectID)
 }
 
@@ -262,14 +274,56 @@ func (s *EditorServer) DeepFlattenDatastore(projectID string) {
 		os.WriteFile(path, jsonData, 0644)
 	}
 
-	// 1. Migrate ghost-hacker.jsonld (World Graph)
-	ghPath := filepath.Join(s.WorkspaceRoot, projectID, "ghost-hacker.jsonld")
-	if data, err := os.ReadFile(ghPath); err == nil {
-		var g struct { Graph []map[string]interface{} `json:"@graph"` }
-		json.Unmarshal(data, &g)
-		for _, item := range g.Graph {
-			if id, ok := item["@id"].(string); ok {
-				saveNode(id, item)
+	// 1. Migrate root JSON-LD files
+	rootFiles, _ := os.ReadDir(filepath.Join(s.WorkspaceRoot, projectID))
+	for _, f := range rootFiles {
+		if !f.IsDir() && strings.HasSuffix(f.Name(), ".jsonld") {
+			path := filepath.Join(s.WorkspaceRoot, projectID, f.Name())
+			if data, err := os.ReadFile(path); err == nil {
+				// If it's character_profiles, expand it
+				if f.Name() == "character_profiles.jsonld" {
+					var cp struct { Characters []map[string]interface{} `json:"gh:characters"` }
+					json.Unmarshal(data, &cp)
+					for _, char := range cp.Characters {
+						if id, ok := char["@id"].(string); ok {
+							// Link to image if exists
+							nameParts := strings.Split(id, ":")
+							if len(nameParts) > 1 {
+								charDir := filepath.Join(s.WorkspaceRoot, projectID, "characters", nameParts[1])
+								if imgs, err := os.ReadDir(charDir); err == nil && len(imgs) > 0 {
+									char["gh:imagePath"] = fmt.Sprintf("/data/%s/characters/%s/%s", projectID, nameParts[1], imgs[0].Name())
+								}
+							}
+							saveNode(id, char)
+						}
+					}
+				} else if f.Name() == "manga_script.jsonld" {
+					var ms struct { Pages []map[string]interface{} `json:"gh:pages"` }
+					json.Unmarshal(data, &ms)
+					for _, pg := range ms.Pages {
+						if id, ok := pg["@id"].(string); ok {
+							pg["@type"] = "gh:MangaPage"
+							saveNode(id, pg)
+							if panels, ok := pg["gh:panels"].([]interface{}); ok {
+								for _, pVal := range panels {
+									if pData, ok := pVal.(map[string]interface{}); ok {
+										pID := fmt.Sprintf("%s:panel:%v", id, pData["panel:id"])
+										pData["@id"] = pID
+										pData["@type"] = "gh:MangaPanel"
+										saveNode(pID, pData)
+									}
+								}
+							}
+						}
+					}
+				} else {
+					var nodeData map[string]interface{}
+					if err := json.Unmarshal(data, &nodeData); err == nil {
+						if id, ok := nodeData["@id"].(string); ok {
+							saveNode(id, nodeData)
+						}
+					}
+				}
 			}
 		}
 	}
