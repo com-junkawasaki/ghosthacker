@@ -160,7 +160,15 @@
       const id = card.getAttribute('data-id');
       resizingNode = simulationNodes.find((n) => n.id === id) ?? null;
     } else if (card) {
-      // ... existing code ...
+      const id = card.getAttribute('data-id');
+      draggingNode = simulationNodes.find((n) => n.id === id) ?? null;
+      if (draggingNode) {
+        dragStartPointer = { x: e.clientX, y: e.clientY };
+        dragStartNodePos = { x: draggingNode.x, y: draggingNode.y };
+        draggingNode.fx = draggingNode.x;
+        draggingNode.fy = draggingNode.y;
+        simulation?.alphaTarget(0.3).restart();
+      }
     } else {
       // Check for double click on canvas to add text node
       if (e.detail === 2) {

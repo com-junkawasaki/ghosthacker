@@ -64,11 +64,11 @@
       ],
       "image": "/images/characters/ren/main.png",
       "color": "#0071e3",
-      "description": "効率厨の天才。情報改竄の背後にいる『GHOST』を追う。",
+      "description": "効率厨の天才。情報の『怠惰』をハックする。",
       "x": -508,
       "y": -848,
-      "fixed": true,
-      "scale": 1.8349999999999995
+      "fixed": false,
+      "scale": 1.835
     },
     {
       "id": "gh:node/nei",
@@ -84,8 +84,8 @@
       "description": "蓮の相棒。現場の物理レイヤ侵入と解析を担当。",
       "x": -56,
       "y": -717,
-      "fixed": true,
-      "scale": 1.5049999999999988
+      "fixed": false,
+      "scale": 1.505
     },
     {
       "id": "gh:node/shouta",
@@ -100,7 +100,7 @@
       "description": "巨大企業の後継者。レガシーと組織の歪みで追い詰められる。",
       "x": 1311,
       "y": -963,
-      "fixed": true,
+      "fixed": false,
       "scale": 1
     },
     {
@@ -115,10 +115,10 @@
       "image": "/images/characters/takeru/main.png",
       "color": "#ff9500",
       "description": "短気な天才。力押しで突破するタイプのライバル。",
-      "x": 967,
-      "y": -90,
+      "x": 919,
+      "y": -51,
       "fixed": false,
-      "scale": 2.1099999999999985
+      "scale": 2.11
     },
     {
       "id": "gh:node/kaname",
@@ -131,11 +131,11 @@
       ],
       "image": "/images/characters/kaname/main.png",
       "color": "#af52de",
-      "description": "完璧主義のエリート。監査・統治で相手を詰める。",
+      "description": "金融業界のエリート。支配的傲慢さで『新・絶対ルール』を定義する。",
       "x": -713,
       "y": 37,
       "fixed": false,
-      "scale": 1.9999999999999982
+      "scale": 2
     },
     {
       "id": "gh:node/hero",
@@ -147,26 +147,74 @@
       "description": "SNS型投資詐欺の首謀者。正義を騙り、承認欲求のために社会を壊す。",
       "x": 400,
       "y": 800,
-      "fixed": true,
+      "fixed": false,
       "scale": 1.8
+    },
+    {
+      "id": "gh:node/case-kadokawa",
+      "nodeType": "char",
+      "name": "KADOKAWA事件 (2024)",
+      "image": "/images/tmp/2024-06-20_22h48_38.png",
+      "color": "#ffffff",
+      "description": "大規模ランサムウェア攻撃による事業停止。管理の『怠惰』の象徴。",
+      "x": 961,
+      "y": -1135,
+      "fixed": false,
+      "scale": 1.5
+    },
+    {
+      "id": "gh:node/case-kojima",
+      "nodeType": "char",
+      "name": "小島プレス事件 (2022)",
+      "image": "/images/tmp/202203011648305.jpg",
+      "color": "#ffffff",
+      "description": "サプライチェーン攻撃によるトヨタ全ライン停止。",
+      "x": 1602,
+      "y": -327,
+      "fixed": false,
+      "scale": 1.5
+    },
+    {
+      "id": "gh:node/case-sbi",
+      "nodeType": "char",
+      "name": "SBI証券不正引出 (2020)",
+      "image": "/images/tmp/OIP (3).webp",
+      "color": "#ffffff",
+      "description": "仕様の穴を突かれた口座侵害。",
+      "x": -474,
+      "y": -77,
+      "fixed": false,
+      "scale": 1.5
+    },
+    {
+      "id": "gh:node/case-sns-scam",
+      "nodeType": "char",
+      "name": "著名人なりすまし詐欺 (2024)",
+      "image": "/images/tmp/main.png",
+      "color": "#ffffff",
+      "description": "SNS広告を悪用した大規模詐欺。",
+      "x": 917,
+      "y": 361,
+      "fixed": false,
+      "scale": 1.2
     },
     {
       "id": "gh:node/cissp",
       "nodeType": "concept",
       "name": "CISSP",
       "color": "#0071e3",
-      "description": "情報セキュリティの国際標準。蓮の行動原理（Do Due Care/Diligence）の根源。",
+      "description": "情報セキュリティの国際標準。",
       "x": 218,
       "y": 339,
       "fixed": false,
-      "scale": 1.3349999999999993
+      "scale": 1.335
     },
     {
       "id": "gh:node/cisa",
       "nodeType": "concept",
       "name": "CISA",
       "color": "#af52de",
-      "description": "公認情報システム監査師。要の武器。組織のガバナンスとコントロールを突く。",
+      "description": "公認情報システム監査師。",
       "x": -196,
       "y": -252,
       "fixed": false,
@@ -177,7 +225,7 @@
       "nodeType": "concept",
       "name": "情報安全確保支援士",
       "color": "#00a0a0",
-      "description": "日本の国家資格。登録・更新義務がある“士業”。蓮が効率化のために利用する法的盾。",
+      "description": "日本の国家資格。",
       "x": -1033,
       "y": 261,
       "fixed": false,
@@ -188,101 +236,54 @@
       "nodeType": "concept",
       "name": "Ransomware",
       "color": "#ff2d55",
-      "description": "身代金要求型ウイルス。Arc Aの脅威。対策: オフラインバックアップ、EDR。",
+      "description": "身代金要求型ウイルス。",
       "x": 328,
       "y": -1076,
       "fixed": false,
-      "scale": 2.0549999999999975
+      "scale": 2.055
     },
     {
       "id": "gh:node/bec",
       "nodeType": "concept",
       "name": "BEC (ビジネスメール詐欺)",
       "color": "#ff9500",
-      "description": "巧妙な偽装メール。Arc Cの脅威。対策: 二要素認証、送金プロセスの多重化。",
+      "description": "巧妙な偽装メール。",
       "x": 1469,
       "y": -597,
       "fixed": false,
-      "scale": 2.064999999999998
+      "scale": 2.065
     },
     {
       "id": "gh:node/invest-scam",
       "nodeType": "concept",
       "name": "SNS型投資詐欺",
       "color": "#ff2d55",
-      "description": "著名人なりすまし・偽広告による詐欺。Arc Dの脅威。対策: 情報リテラシー、公式認証確認。",
+      "description": "著名人なりすまし詐欺。",
       "x": 1000,
       "y": 800,
       "fixed": false,
       "scale": 2.2
     },
     {
-      "id": "gh:node/case-kadokawa",
-      "nodeType": "case",
-      "name": "KADOKAWA事件 (2024)",
-      "image": "/static/images/tmp/2024-06-20_22h48_38.png",
-      "color": "#ffffff",
-      "description": "大規模ランサムウェア攻撃による事業停止。管理の『怠惰』の象徴。",
-      "x": 200,
-      "y": -1200,
-      "fixed": false,
-      "scale": 1.5
-    },
-    {
-      "id": "gh:node/case-kojima",
-      "nodeType": "case",
-      "name": "小島プレス事件 (2022)",
-      "image": "/static/images/tmp/202203011648305.jpg",
-      "color": "#ffffff",
-      "description": "サプライチェーン攻撃によるトヨタ全ライン停止。運用の『短気』の象徴。",
-      "x": 1800,
-      "y": -300,
-      "fixed": false,
-      "scale": 1.5
-    },
-    {
-      "id": "gh:node/case-sbi",
-      "nodeType": "case",
-      "name": "SBI証券不正引出 (2020)",
-      "image": "/static/images/tmp/OIP (3).webp",
-      "color": "#ffffff",
-      "description": "仕様の穴を突かれた口座侵害。設計の『傲慢』の象徴。",
-      "x": -600,
-      "y": 300,
-      "fixed": false,
-      "scale": 1.5
-    },
-    {
-      "id": "gh:node/case-sns-scam",
-      "nodeType": "case",
-      "name": "著名人なりすまし詐欺 (2024)",
-      "color": "#ffffff",
-      "description": "SNS広告を悪用した大規模詐欺。社会の『虚飾』の象徴。",
-      "x": 1300,
-      "y": 900,
-      "fixed": false,
-      "scale": 1.2
-    },
-    {
       "id": "gh:node/ghost",
       "nodeType": "concept",
       "name": "The GHOST",
       "color": "#ff2d55",
-      "description": "情報が物理現象化した“悪意”。見えない攻撃が見える敵になる。",
+      "description": "情報が物理現象化した“悪意”。",
       "x": 429,
       "y": -615,
       "fixed": false,
-      "scale": 1.509999999999999
+      "scale": 1.51
     },
     {
       "id": "gh:node/sip",
       "nodeType": "concept",
       "name": "SIP Sequence",
       "color": "#00a0a0",
-      "description": "Secure Information Physicality。情報の“物理層”を締める手順。",
+      "description": "Secure Information Physicality。",
       "x": -993,
       "y": 108,
-      "fixed": true,
+      "fixed": false,
       "scale": 1
     },
     {
@@ -290,10 +291,10 @@
       "nodeType": "concept",
       "name": "ARIA Aesthetic",
       "color": "#0071e3",
-      "description": "柔らかな光と眼のディテール. 静謐×不穏の対比で引き込む。",
+      "description": "柔らかな光と眼のディテール。",
       "x": -883,
       "y": -518,
-      "fixed": true,
+      "fixed": false,
       "scale": 1
     },
     {
@@ -304,8 +305,8 @@
       "color": "#ff3b30",
       "x": 761,
       "y": -1135,
-      "fixed": true,
-      "scale": 1.6299999999999992
+      "fixed": false,
+      "scale": 1.63
     },
     {
       "id": "gh:node/ep2",
@@ -315,8 +316,8 @@
       "color": "#ff3b30",
       "x": 770,
       "y": -962,
-      "fixed": true,
-      "scale": 1.7199999999999978
+      "fixed": false,
+      "scale": 1.72
     },
     {
       "id": "gh:node/ep3",
@@ -326,8 +327,8 @@
       "color": "#ff3b30",
       "x": 764,
       "y": -807,
-      "fixed": true,
-      "scale": 1.5549999999999982
+      "fixed": false,
+      "scale": 1.555
     },
     {
       "id": "gh:node/ep4",
@@ -337,8 +338,8 @@
       "color": "#ff9500",
       "x": 1402,
       "y": -327,
-      "fixed": true,
-      "scale": 1.4349999999999996
+      "fixed": false,
+      "scale": 1.435
     },
     {
       "id": "gh:node/ep5",
@@ -348,8 +349,8 @@
       "color": "#ff9500",
       "x": 1388,
       "y": -36,
-      "fixed": true,
-      "scale": 1.3699999999999994
+      "fixed": false,
+      "scale": 1.37
     },
     {
       "id": "gh:node/ep6",
@@ -359,8 +360,8 @@
       "color": "#ff9500",
       "x": 1381,
       "y": -188,
-      "fixed": true,
-      "scale": 1.3299999999999992
+      "fixed": false,
+      "scale": 1.33
     },
     {
       "id": "gh:node/ep7",
@@ -370,8 +371,8 @@
       "color": "#af52de",
       "x": -274,
       "y": -77,
-      "fixed": true,
-      "scale": 1.4199999999999986
+      "fixed": false,
+      "scale": 1.42
     },
     {
       "id": "gh:node/ep8",
@@ -381,8 +382,8 @@
       "color": "#af52de",
       "x": -285,
       "y": 201,
-      "fixed": true,
-      "scale": 1.4149999999999987
+      "fixed": false,
+      "scale": 1.415
     },
     {
       "id": "gh:node/ep9",
@@ -392,8 +393,8 @@
       "color": "#af52de",
       "x": -268,
       "y": 63,
-      "fixed": true,
-      "scale": 1.4749999999999983
+      "fixed": false,
+      "scale": 1.475
     },
     {
       "id": "gh:node/ep10",
@@ -403,7 +404,7 @@
       "color": "#0071e3",
       "x": 563,
       "y": 268,
-      "fixed": true,
+      "fixed": false,
       "scale": 1
     },
     {
@@ -414,7 +415,7 @@
       "color": "#0071e3",
       "x": 567,
       "y": 475,
-      "fixed": true,
+      "fixed": false,
       "scale": 1
     },
     {
@@ -425,226 +426,9 @@
       "color": "#0071e3",
       "x": 589,
       "y": 364,
-      "fixed": true,
+      "fixed": false,
       "scale": 1
     }
   ],
-  "links": [
-    {
-      "source": "gh:node/ep1",
-      "target": "gh:node/shouta",
-      "label": "victim",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ep1",
-      "target": "gh:node/ransomware",
-      "label": "incident",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ep2",
-      "target": "gh:node/ren",
-      "label": "investigation",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ep2",
-      "target": "gh:node/cissp",
-      "label": "methodology",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ren",
-      "target": "gh:node/nei",
-      "label": "partners",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ren",
-      "target": "gh:node/shouta",
-      "label": "client",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ren",
-      "target": "gh:node/takeru",
-      "label": "rival",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ren",
-      "target": "gh:node/kaname",
-      "label": "rival",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ep1",
-      "target": "gh:node/ep2",
-      "label": "next",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ep2",
-      "target": "gh:node/ep3",
-      "label": "next",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ep3",
-      "target": "gh:node/ep4",
-      "label": "next",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ep4",
-      "target": "gh:node/ep5",
-      "label": "next",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ep5",
-      "target": "gh:node/ep6",
-      "label": "next",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ep6",
-      "target": "gh:node/ep7",
-      "label": "next",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ep7",
-      "target": "gh:node/ep8",
-      "label": "next",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ep8",
-      "target": "gh:node/ep9",
-      "label": "next",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ep9",
-      "target": "gh:node/ep10",
-      "label": "next",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ep10",
-      "target": "gh:node/ep11",
-      "label": "next",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ep11",
-      "target": "gh:node/ep12",
-      "label": "next",
-      "color": "#999",
-      "x": 0,
-      "y": 0,
-      "fixed": false
-    },
-    {
-      "source": "gh:node/ep7",
-      "target": "gh:node/edge-18",
-      "label": "",
-      "color": "#999",
-      "x": 28,
-      "y": -5,
-      "fixed": true
-    },
-    {
-      "source": "gh:node/ep1",
-      "target": "gh:node/case-kadokawa",
-      "label": "real-world model",
-      "color": "#ff3b30"
-    },
-    {
-      "source": "gh:node/ep4",
-      "target": "gh:node/case-kojima",
-      "label": "real-world model",
-      "color": "#ff9500"
-    },
-    {
-      "source": "gh:node/ep7",
-      "target": "gh:node/case-sbi",
-      "label": "real-world model",
-      "color": "#af52de"
-    },
-    {
-      "source": "gh:node/ep10",
-      "target": "gh:node/case-sns-scam",
-      "label": "real-world model",
-      "color": "#0071e3"
-    },
-    {
-      "source": "gh:node/hero",
-      "target": "gh:node/ep10",
-      "label": "mastermind",
-      "color": "#ff2d55"
-    },
-    {
-      "source": "gh:node/ren",
-      "target": "gh:node/hero",
-      "label": "nemesis",
-      "color": "#ff2d55"
-    }
-  ]
+  "links": []
 }
