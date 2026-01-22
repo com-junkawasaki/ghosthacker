@@ -44,6 +44,10 @@
       dispatchTransaction(transaction) {
         const newState = view!.state.apply(transaction);
         view!.updateState(newState);
+        
+        // Auto-save on every transaction (debounced via effect if needed, but let's do direct for now)
+        const content = newState.doc.textContent;
+        onSave(content);
       }
     });
   });
@@ -57,6 +61,12 @@
       const newState = createEditorState(initialContent);
       view.updateState(newState);
     }
+  });
+
+  // Auto-save logic
+  $effect(() => {
+    // We can't directly watch ProseMirror state here easily without a store or plugin
+    // But we can hook into the dispatchTransaction if we want real-time
   });
 
   async function handleSave() {
@@ -88,7 +98,7 @@
           </div>
         {/each}
       </div>
-      <button class="save-btn" onclick={handleSave} disabled={isSaving}>
+      <button class="save-btn" onclick={handleSave} disabled={isSaving} style="display: none;">
         {isSaving ? "Saving..." : "Save"}
       </button>
     </div>

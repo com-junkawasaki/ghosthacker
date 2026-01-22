@@ -24,6 +24,8 @@
     "transform": "gh:transform",
     "nodes": "gh:nodes",
     "links": "gh:links",
+    "scale": "gh:scale",
+    "edgeNode": "gh:isEdgeNode",
 
     "meta": "gh:meta",
     "tags": "gh:tags",
@@ -53,7 +55,8 @@
       "description": "効率厨の天才。情報改竄の背後にいる『GHOST』を追う。",
       "x": -360,
       "y": -120,
-      "fixed": true
+      "fixed": true,
+      "scale": 1.2
     },
     {
       "id": "gh:node/nei",
@@ -66,7 +69,8 @@
       "description": "蓮の相棒。現場の物理レイヤ侵入と解析を担当。",
       "x": -620,
       "y": 80,
-      "fixed": true
+      "fixed": true,
+      "scale": 1.1
     },
     {
       "id": "gh:node/shouta",

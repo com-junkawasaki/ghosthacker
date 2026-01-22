@@ -45,16 +45,24 @@ function prefixNodeId(id: string): string {
 	return id.startsWith('gh:node/') ? id : `gh:node/${id}`;
 }
 
-function toClientBoard(board: BoardFile) {
-	const transform = board.transform ?? { x: 0, y: 0, k: 1 };
-	const nodes = (board.nodes ?? []).map((n) => ({ ...n, id: stripNodeId(n.id) }));
-	const links = (board.links ?? []).map((l) => ({
-		...l,
-		source: stripNodeId(l.source),
-		target: stripNodeId(l.target)
-	}));
-	return { transform, nodes, links };
-}
+  function toClientBoard(board: BoardFile) {
+    const transform = board.transform ?? { x: 0, y: 0, k: 1 };
+    const nodes = (board.nodes ?? []).map((n) => ({ ...n, id: stripNodeId(n.id) }));
+    const rawLinks = board.links ?? [];
+
+    // Transform links to include their own node if they have a label or specific structure
+    const processedLinks = rawLinks.map((l, i) => {
+      const edgeNodeId = `edge-${i}`;
+      return {
+        ...l,
+        id: edgeNodeId,
+        source: stripNodeId(l.source),
+        target: stripNodeId(l.target)
+      };
+    });
+
+    return { transform, nodes, links: processedLinks };
+  }
 
 function toDiskBoard(client: { transform: { x: number; y: number; k: number }; nodes: BoardNode[]; links: BoardLink[] }, base: BoardFile): BoardFile {
 	return {

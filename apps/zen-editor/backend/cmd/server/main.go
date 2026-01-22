@@ -703,9 +703,9 @@ func (s *EditorServer) determineViewType(id, nodeType, group string) string {
 	case strings.Contains(nodeType, "Person") || strings.Contains(nodeType, "Character") || strings.Contains(nodeType, "Place"): return "entity"
 	case nodeType == "gh:RelationEvent": return "relation"
 	case strings.Contains(nodeType, "Image") || strings.Contains(nodeType, "Asset"): return "asset"
-	case nodeType == "gh:Storyboard": return "storyboard"
+	case nodeType == "gh:Storyboard" || nodeType == "gh:EpisodeHub" || nodeType == "gh:PageHub": return "storyboard"
 	}
-	return "storyboard"
+	return "editor"
 }
 
 func (s *EditorServer) categorizeNode(t string) string {

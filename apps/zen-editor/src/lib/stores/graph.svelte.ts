@@ -65,14 +65,14 @@ class GraphStore {
   projectMetadata = $state<any>(null);
   mangaPages = $state<MangaPage[]>([]);
 
-  viewpoints = $derived([
+  let viewpoints = $derived([
     { id: 'hub:content', label: 'Timeline', type: 'chronological', description: 'Story progression' },
     { id: 'hub:entity', label: 'Characters', type: 'relationship', description: 'Social graph' },
     { id: 'hub:environment', label: 'World', type: 'atmospheric', description: 'Physical spaces' },
+    { id: 'hub:storyboard', label: 'Storyboard', type: 'storyboard', description: 'Visual sequence & continuity' },
     { id: 'hub:manga', label: 'Manga View', type: 'manga', description: 'Manga layout & lettering' },
     { id: 'hub:assembler', label: '3D Assembler', type: 'assembler', description: 'Scene composition' },
     { id: 'hub:editor', label: 'Editor', type: 'editor', description: 'Detailed manuscript editing' },
-    { id: 'hub:storyboard', label: 'Storyboard', type: 'storyboard', description: 'Visual continuity' },
     { id: 'hub:emotion', label: 'Emotions', type: 'heatmap', description: 'Emotional resonance' },
     { id: 'hub:meta', label: 'Meta', type: 'overview', description: 'System architecture' }
   ]);
@@ -83,6 +83,11 @@ class GraphStore {
     this.currentViewpointId = id;
     if (id) {
       this.selectedNodeId = id; // Also select the hub
+      
+      // Update viewpoint metadata or trigger layout changes if needed
+      if (id === 'hub:editor') {
+        // Handle explicit editor viewpoint
+      }
     }
   }
 

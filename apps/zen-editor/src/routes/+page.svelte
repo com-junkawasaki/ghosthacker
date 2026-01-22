@@ -14,7 +14,15 @@
 
   let projectId = $state("251121");
   let selectedNode = $state<any>(null);
-  let activeMainView = $state<"topology" | "editor" | "dual">("dual");
+  let activeMainView = $derived.by(() => {
+    const vpId = graphStore.currentViewpointId;
+    if (!vpId) return "dual";
+    if (vpId === 'hub:editor') return "editor";
+    if (vpId === 'hub:storyboard') return "editor";
+    if (vpId === 'hub:manga') return "editor";
+    if (vpId === 'hub:assembler') return "topology";
+    return "dual";
+  });
   
   // Layout states
   let navWidth = $state(260);
@@ -49,7 +57,13 @@
 
     // Switch editor mode based on selection
     if (viewType === 'editor' || type === 'gh:Manuscript' || id.startsWith('manuscript:') || group === 'entity' || group === 'content' || type === 'gh:Document' || group === 'episode' || group === 'page' || group === 'panel') {
-      editorMode = "text";
+      // For specific storyboard-like nodes, prefer storyboard view if they are part of that hierarchy
+      if (group === 'episode' || group === 'page' || group === 'panel') {
+        editorMode = "storyboard";
+      } else {
+        editorMode = "text";
+      }
+      
       currentFilePath = node.label || id;
       
       // If it's a character or something with structured data, show its JSON or content
@@ -87,7 +101,6 @@
       if (selectedNode.type === 'gh:Manuscript' || selectedNode.id.startsWith('manuscript:')) {
         await graphStore.saveManuscript(selectedNode.id, content);
       } else {
-        // General node save
         await graphStore.updateNodeContent(selectedNode.id, content);
       }
     } else if (currentFilePath) {
@@ -139,17 +152,7 @@
     </div>
 
     <div class="toolbar-center">
-      <div class="segmented-control main-view-switch">
-        <button class:active={activeMainView === 'topology'} onclick={() => activeMainView = 'topology'}>
-          Topology
-        </button>
-        <button class:active={activeMainView === 'dual'} onclick={() => activeMainView = 'dual'}>
-          Dual
-        </button>
-        <button class:active={activeMainView === 'editor'} onclick={() => activeMainView = 'editor'}>
-          Editor
-        </button>
-      </div>
+      <!-- Viewpoints take control of the main view via graphStore.currentViewpointId -->
     </div>
 
     <div class="toolbar-right">

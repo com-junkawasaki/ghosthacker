@@ -19,7 +19,7 @@
 
   let { 
     scenes: initialScenes = [],
-    projectId = "251022"
+    projectId = "251121"
   } = $props<{ 
     scenes?: Scene[],
     projectId?: string
@@ -27,12 +27,18 @@
 
   let scenes = $state<Scene[]>(initialScenes);
   let isGenerating = $state(false);
-  let isSaving = $state(false);
-  let prompt = $state("Generate a high-tension confrontation scene between Kaede and the antagonist in an abandoned server room.");
+  let prompt = $state("");
 
-  export function setScenes(newScenes: Scene[]) {
-    scenes = newScenes;
-  }
+  // Auto-save logic
+  $effect(() => {
+    // This effect runs whenever 'scenes' changes
+    const timeout = setTimeout(() => {
+      if (scenes.length > 0) {
+        saveStoryboard();
+      }
+    }, 1000); // Debounce save by 1 second
+    return () => clearTimeout(timeout);
+  });
 
   onMount(async () => {
     if (scenes.length === 0) {
@@ -40,14 +46,18 @@
     }
   });
 
+  $effect(() => {
+    if (projectId) {
+      loadStoryboard();
+    }
+  });
+
   async function saveStoryboard() {
-    console.log("saveStoryboard called");
-    isSaving = true;
+    console.log("saveStoryboard (auto-save)");
     try {
       const client = await getClient();
       if (!client) return;
       
-      // Method A: Direct gRPC
       await client.saveStoryboard({
         projectId,
         scenes: scenes.map(s => ({
@@ -63,22 +73,8 @@
           emotions: s.emotions
         }))
       });
-
-      // Method B: MCP Tool (as requested "mcp 経由で")
-      const result = await client.callTool({
-        name: "save_storyboard",
-        argumentsJson: JSON.stringify({
-          project_id: "251022",
-          scenes_json: JSON.stringify(scenes)
-        })
-      });
-      console.log("MCP Save result:", result);
-
-      console.log("Storyboard saved successfully");
     } catch (err) {
-      console.error("Failed to save storyboard:", err);
-    } finally {
-      isSaving = false;
+      console.error("Failed to auto-save storyboard:", err);
     }
   }
 
@@ -231,18 +227,6 @@
 </script>
 
 <div class="storyboard-container">
-  <div class="storyboard-controls">
-    <div class="prompt-box">
-      <input type="text" bind:value={prompt} placeholder="Enter story prompt..." />
-      <button class="ai-gen-btn" onclick={generateWithAI} disabled={isGenerating}>
-        {isGenerating ? "Generating..." : "Generate with AI"}
-      </button>
-      <button class="save-btn" onclick={saveStoryboard} disabled={isSaving}>
-        {isSaving ? "Saving..." : "Save to DB"}
-      </button>
-    </div>
-  </div>
-
   <div class="storyboard-view">
     <div class="storyboard-header">
       <div class="col-no">No.</div>
