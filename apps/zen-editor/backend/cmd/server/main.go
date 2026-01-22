@@ -461,7 +461,7 @@ func NewEditorServer(dataRoot string) *EditorServer {
 }
 
 func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[editorpb.GetTopologyRequest]) (*connect.Response[editorpb.GetTopologyResponse], error) {
-	log.Printf("RPC: GetTopology (MemoryStore) called for: %s", req.Msg.ProjectId)
+	log.Printf("RPC: GetTopology called for project: %s", req.Msg.ProjectId)
 	
 	s.mu.RLock()
 	needsLoad := s.currentProjectID != req.Msg.ProjectId || len(s.NodeCache) == 0
@@ -470,17 +470,94 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 	if needsLoad {
 		s.LoadDatastore(req.Msg.ProjectId)
 	}
+
+	// Try reading from Neo4j if available
+	if s.Neo4jDriver != nil {
+		session := s.Neo4jDriver.NewSession(ctx, neo4j.SessionConfig{AccessMode: neo4j.AccessModeRead})
+		defer session.Close(ctx)
+		
+		res, err := session.ExecuteRead(ctx, func(tx neo4j.ManagedTransaction) (interface{}, error) {
+			// Get Nodes
+			nodeRes, err := tx.Run(ctx, `MATCH (n:Node) RETURN n`, nil)
+			if err != nil { return nil, err }
+			
+			var nodes []*editorpb.Node
+			for nodeRes.Next(ctx) {
+				record := nodeRes.Record()
+				n, _ := record.Get("n")
+				node := n.(neo4j.Node)
+				
+				pbNode := &editorpb.Node{
+					Id:    node.Props["id"].(string),
+					Label: node.Props["label"].(string),
+					Type:  node.Props["type"].(string),
+					Group: node.Props["group"].(string),
+				}
+				if c, ok := node.Props["content"].(string); ok { pbNode.Content = c }
+				if img, ok := node.Props["image_path"].(string); ok { pbNode.ImagePath = img }
+				pbNode.ViewType = s.determineViewType(pbNode.Id, pbNode.Type, pbNode.Group)
+				nodes = append(nodes, pbNode)
+			}
+
+			// Get Edges
+			edgeRes, err := tx.Run(ctx, `MATCH (a)-[r]->(b) RETURN a.id as from, b.id as to, type(r) as rel, r.group as group`, nil)
+			if err != nil { return nil, err }
+			
+			var edges []*editorpb.Edge
+			for edgeRes.Next(ctx) {
+				rec := edgeRes.Record()
+				from, _ := rec.Get("from")
+				to, _ := rec.Get("to")
+				rel, _ := rec.Get("rel")
+				group, _ := rec.Get("group")
+				
+				edges = append(edges, &editorpb.Edge{
+					FromId: from.(string),
+					ToId:   to.(string),
+					Relation: "gh:" + strings.ToLower(rel.(string)),
+					Group: group.(string),
+				})
+			}
+			return &editorpb.GetTopologyResponse{Nodes: nodes, Edges: edges}, nil
+		})
+
+		if err == nil && res != nil {
+			resp := res.(*editorpb.GetTopologyResponse)
+			if len(resp.Nodes) > 0 {
+				log.Printf("GetTopology: Returning %d nodes from Neo4j", len(resp.Nodes))
+				// Post-process hubs and hierarchy (same logic as before)
+				return s.postProcessTopology(resp), nil
+			}
+		}
+		log.Printf("GetTopology: Neo4j returned no data or failed (%v), falling back to cache", err)
+	}
 	
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 
 	resp := &editorpb.GetTopologyResponse{}
+	for _, n := range s.NodeCache {
+		nCopy := *n
+		nCopy.Children = nil
+		resp.Nodes = append(resp.Nodes, &nCopy)
+	}
+	
+	// Copy edges
+	for _, e := range s.EdgeCache {
+		eCopy := *e
+		resp.Edges = append(resp.Edges, &eCopy)
+	}
+
+	return s.postProcessTopology(resp), nil
+}
+
+func (s *EditorServer) postProcessTopology(resp *editorpb.GetTopologyResponse) *connect.Response[editorpb.GetTopologyResponse] {
 	hubs := make(map[string]*editorpb.Node)
 	connected := make(map[string]bool)
 	hasParent := make(map[string]bool)
 
 	// Pre-identify connected nodes and children
-	for _, edge := range s.EdgeCache {
+	for _, edge := range resp.Edges {
 		connected[edge.FromId] = true
 		connected[edge.ToId] = true
 		if edge.Relation == "gh:contains" || edge.Relation == "gh:partOf" || edge.Relation == "gh:memberOf" {
@@ -488,28 +565,21 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 		}
 	}
 
-	// First pass: Add regular nodes and identify needed hubs
-	for _, node := range s.NodeCache {
-		// Filter out blocks and other noise for the high-level topology
+	finalNodes := []*editorpb.Node{}
+	for _, node := range resp.Nodes {
 		if node.Type == "gh:Block" || strings.HasPrefix(node.Id, "block:") {
 			continue
 		}
 		
-		nodeCopy := *node
-		nodeCopy.Children = nil // Reset children for response
-		
-		group := nodeCopy.Group
-		
-		// If not connected to anything else, put in unlinked
-		if !connected[nodeCopy.Id] {
+		group := node.Group
+		if !connected[node.Id] {
 			group = "unlinked"
-			nodeCopy.Group = "unlinked"
+			node.Group = "unlinked"
 		}
 		
-		resp.Nodes = append(resp.Nodes, &nodeCopy)
+		finalNodes = append(finalNodes, node)
 		
-		// Only create group hubs for nodes that don't have an explicit parent
-		if !hasParent[nodeCopy.Id] && group != "" && group != "meta" && group != "link-node" {
+		if !hasParent[node.Id] && group != "" && group != "meta" && group != "link-node" {
 			hubID := "hub:" + group
 			if _, ok := hubs[hubID]; !ok {
 				hLabel := strings.Title(group) + " Circle"
@@ -523,35 +593,28 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 			}
 		}
 	}
-	
-	// Add hubs to response
+
 	for _, hub := range hubs {
-		resp.Nodes = append(resp.Nodes, hub)
+		finalNodes = append(finalNodes, hub)
 	}
 
-	// Create a map for quick access during edge/children building
+	resp.Nodes = finalNodes
 	nodeMap := make(map[string]*editorpb.Node)
 	for _, n := range resp.Nodes { nodeMap[n.Id] = n }
 
-	// Build containment edges and populate children for group hubs
 	for _, node := range resp.Nodes {
 		if !hasParent[node.Id] && node.Group != "" && node.Group != "meta" && node.Group != "link-node" {
 			hubID := "hub:" + node.Group
 			if hub, ok := nodeMap[hubID]; ok {
 				hub.Children = append(hub.Children, node.Id)
-				resp.Edges = append(resp.Edges, &editorpb.Edge{
-					FromId: hubID, ToId: node.Id, Relation: "gh:memberOf", Group: "structural",
-				})
+				// Don't add structural edges here, they are virtual for UI
 			}
 		}
 	}
 
-	// Add semantic edges from cache and populate children for other relations
-	for _, edge := range s.EdgeCache {
+	for _, edge := range resp.Edges {
 		if from, ok := nodeMap[edge.FromId]; ok {
 			if _, ok := nodeMap[edge.ToId]; ok {
-				resp.Edges = append(resp.Edges, edge)
-				// Use specific relations to build hierarchy in the sidebar
 				if edge.Relation == "gh:contains" || edge.Relation == "gh:partOf" || edge.Relation == "gh:memberOf" {
 					found := false
 					for _, c := range from.Children {
@@ -565,8 +628,7 @@ func (s *EditorServer) GetTopology(ctx context.Context, req *connect.Request[edi
 		}
 	}
 
-	log.Printf("RPC: GetTopology returning %d nodes and %d edges", len(resp.Nodes), len(resp.Edges))
-	return connect.NewResponse(resp), nil
+	return connect.NewResponse(resp)
 }
 
 func (s *EditorServer) GetBlocks(ctx context.Context, req *connect.Request[editorpb.GetBlocksRequest]) (*connect.Response[editorpb.GetBlocksResponse], error) {
@@ -811,10 +873,94 @@ func (s *EditorServer) CheckoutHistory(ctx context.Context, req *connect.Request
 }
 
 func (s *EditorServer) CallTool(ctx context.Context, req *connect.Request[editorpb.CallToolRequest]) (*connect.Response[editorpb.CallToolResponse], error) {
-		return connect.NewResponse(&editorpb.CallToolResponse{IsError: true, ResultJson: `{"error": "tool not found"}`}), nil
+	log.Printf("RPC: CallTool called for: %s", req.Msg.Name)
+	
+	s.mu.RLock()
+	handler, ok := s.ToolHandlers[req.Msg.Name]
+	s.mu.RUnlock()
+
+	if !ok {
+		return connect.NewResponse(&editorpb.CallToolResponse{
+			IsError: true, 
+			ResultJson: fmt.Sprintf(`{"error": "tool %s not found"}`, req.Msg.Name),
+		}), nil
 	}
 
-func (s *EditorServer) registerMCPTools() {}
+	var args mcp.CallToolRequest
+	args.Params.Arguments = make(map[string]interface{})
+	if err := json.Unmarshal([]byte(req.Msg.ArgumentsJson), &args.Params.Arguments); err != nil {
+		return nil, connect.NewError(connect.CodeInvalidArgument, err)
+	}
+
+	result, err := handler(ctx, args)
+	if err != nil {
+		return connect.NewResponse(&editorpb.CallToolResponse{IsError: true, ResultJson: err.Error()}), nil
+	}
+
+	resultJson, _ := json.Marshal(result)
+	return connect.NewResponse(&editorpb.CallToolResponse{IsError: false, ResultJson: string(resultJson)}), nil
+}
+
+func (s *EditorServer) registerMCPTools() {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	s.ToolHandlers["analyze_links"] = func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+		nodeIDs, _ := req.Params.Arguments["node_ids"].([]interface{})
+		if len(nodeIDs) == 0 {
+			return nil, fmt.Errorf("node_ids is required")
+		}
+		
+		targetID := nodeIDs[0].(string)
+		
+		// Use Neo4j to find potential links
+		if s.Neo4jDriver == nil {
+			return nil, fmt.Errorf("neo4j not connected")
+		}
+		
+		session := s.Neo4jDriver.NewSession(ctx, neo4j.SessionConfig{AccessMode: neo4j.AccessModeRead})
+		defer session.Close(ctx)
+		
+		// Simple logic: find nodes with similar groups or types
+		result, err := session.ExecuteRead(ctx, func(tx neo4j.ManagedTransaction) (interface{}, error) {
+			query := `
+				MATCH (target {id: $id})
+				MATCH (other:Node)
+				WHERE target.id <> other.id AND (target.group = other.group OR target.type = other.type)
+				RETURN other.id as id, other.label as label, other.type as type, other.group as group
+				LIMIT 5
+			`
+			res, err := tx.Run(ctx, query, map[string]interface{}{"id": targetID})
+			if err != nil { return nil, err }
+			
+			var suggestions []map[string]interface{}
+			for res.Next(ctx) {
+				record := res.Record()
+				id, _ := record.Get("id")
+				label, _ := record.Get("label")
+				
+				suggestions = append(suggestions, map[string]interface{}{
+					"from": targetID,
+					"to": id,
+					"relation": "gh:relatesTo",
+					"description": fmt.Sprintf("Suggested connection to %s based on similar category.", label),
+				})
+			}
+			return suggestions, nil
+		})
+		
+		if err != nil { return nil, err }
+		
+		suggestions := result.([]map[string]interface{})
+		suggestionsJson, _ := json.Marshal(suggestions)
+		
+		return &mcp.CallToolResult{
+			Content: []mcp.TextContent{
+				{Type: "text", Text: string(suggestionsJson)},
+			},
+		}, nil
+	}
+}
 
 func withCORS(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

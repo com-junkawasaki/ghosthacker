@@ -1179,7 +1179,7 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) moves decisively, pointing at a manual process board in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. “許す”を設計へ：条件付き復帰、監査可能性、責任境界の確定. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) kneels beside a workstation, photographing the screen for evidence with steady hands; he gestures for silence—no one touches the keyboard. shot on 50mm, f/1.8, cinematic live-action."
             },
             {
               "panel": 2,
@@ -1194,7 +1194,7 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a stopwatch / DONE watch showing elapsed minutes, urgent but controlled. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a tamper-evident evidence bag labeled with date/time; inside: a forensic USB key and printed hash values. shot on 50mm, f/2.0, cinematic live-action."
             },
             {
               "panel": 3,
@@ -1210,7 +1210,7 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes, intense focus, crisp catchlights. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Nei:1.2) eyes: blue iris patterns reflecting a branching vendor-session list, sharp catchlights. shot on 85mm prime, f/1.2, cinematic live-action."
             }
           ]
         },
@@ -1230,7 +1230,7 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) moves decisively, pointing at a manual process board in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. “許す”を設計へ：条件付き復帰、監査可能性、責任境界の確定. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Nei:1.2) stands at a desk corner with a tablet, compiling an auditable evidence bundle; Ren stays off-frame, keeping the room from touching anything prematurely. shot on 50mm, f/1.8, cinematic live-action."
             },
             {
               "panel": 2,
@@ -1245,7 +1245,7 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a stopwatch / DONE watch showing elapsed minutes, urgent but controlled. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a vendor remote session list exported to a file: client ID, IP address, timestamps, and hash values displayed clearly. shot on 50mm, f/2.0, cinematic live-action."
             },
             {
               "panel": 3,
@@ -1261,7 +1261,7 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes, intense focus, crisp catchlights. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Shouta:1.2) eyes: guilt and resolve as he realizes 'forgiveness' must become written controls. shot on 85mm prime, f/1.2, cinematic live-action."
             }
           ]
         },
@@ -1281,7 +1281,7 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of a tense meeting space in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. 『家族みたいな会社』という価値観 vs 再発の確率。情が“怠惰”に変わる瞬間をRenが暴く。 shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot: father and son face each other beneath the old framed company rule; on the table are evidence bags, a role matrix, and a freshly printed 're-entry conditions' procedure. shot on 35mm, f/2.8, cinematic live-action."
             },
             {
               "panel": 2,
@@ -1296,7 +1296,7 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) sits calmly while others argue off-screen in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. stillness against tension. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (President:1.2) gestures softly as if to 'forgive and move on', but his hand hovers over the evidence bags; the conflict is visible in his posture. shot on 50mm, f/1.8, cinematic live-action."
             },
             {
               "panel": 3,
@@ -1312,7 +1312,7 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up on (Ren:1.2) eyes, reflective, evaluating human motives. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Shouta:1.2) eyes: he swallows fear and chooses written controls over forgiveness; crisp catchlights lock in. shot on 85mm prime, f/1.2, cinematic live-action."
             }
           ]
         },
@@ -1332,7 +1332,7 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of a tense meeting space in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. 『家族みたいな会社』という価値観 vs 再発の確率。情が“怠惰”に変わる瞬間をRenが暴く。 shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot: the framed rule corridor. Sticky notes reading 'we'll forgive it' cluster beneath the frame; the air shimmers faintly as paper edges lift. shot on 35mm, f/2.8, cinematic live-action."
             },
             {
               "panel": 2,
@@ -1347,7 +1347,7 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) sits calmly while others argue off-screen in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. stillness against tension. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) tears down the forgiveness sticky notes and replaces them with a clean checklist titled 'RE-ENTRY CONDITIONS'; his movement is fast but controlled. shot on 50mm, f/1.8, cinematic live-action."
             },
             {
               "panel": 3,
@@ -1363,7 +1363,7 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up on (Ren:1.2) eyes, reflective, evaluating human motives. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes: silver-grey crystalline irises reflect the framed rule like a wound; sharp catchlights show refusal to 'end it by kindness'. shot on 85mm prime, f/1.2, cinematic live-action."
             }
           ]
         },
@@ -1383,7 +1383,7 @@
                 "gh:focus": "subject focus",
                 "gh:angle": "first-person POV"
               },
-              "gh:runwayPrompt": "POV Shot, first-person POV, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. POV shot with subtle AR overlay: faint shadow patterns clinging to a workstation, hinting at a Ghost. 先代の額縁から文字が滲み、笑顔の仮面になって人を黙らせる. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "POV Shot, first-person POV, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. POV AR overlay from (Ren:1.2): the framed rule bleeds ink into the air, forming a smiling paper mask that gently presses down on people's mouths, silencing them without violence. shot on 35mm, f/2.8, cinematic live-action."
             },
             {
               "panel": 2,
@@ -1398,7 +1398,7 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot as the environment subtly distorts—papers flutter, cables twitch, air shimmers. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot: the corridor under the framed rule. Paper approvals flutter; ink-stained dust motes drift; a remote support laptop on a side desk glows faintly, as if being watched. shot on 35mm, f/2.8, cinematic live-action."
             },
             {
               "panel": 3,
@@ -1413,7 +1413,7 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a SIP device / analysis rig indicator switching from OFF to ON. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot: a vendor remote session export file open on screen, a single suspicious IP highlighted; beside it, the SIP device status flips to ON. shot on 50mm, f/2.0, cinematic live-action."
             }
           ]
         },
@@ -1433,7 +1433,7 @@
                 "gh:focus": "subject focus",
                 "gh:angle": "first-person POV"
               },
-              "gh:runwayPrompt": "POV Shot, first-person POV, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. POV shot with subtle AR overlay: faint shadow patterns clinging to a workstation, hinting at a Ghost. 先代の額縁から文字が滲み、笑顔の仮面になって人を黙らせる. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "POV Shot, first-person POV, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. POV AR overlay from (Nei:1.2): the smiling paper mask Ghost wraps the framed rule like a seal; thin ink threads extend toward a remote support laptop. shot on 35mm, f/2.8, cinematic live-action."
             },
             {
               "panel": 2,
@@ -1448,7 +1448,7 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot as the environment subtly distorts—papers flutter, cables twitch, air shimmers. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot: the corridor warps subtly—paper approvals flutter like moths; the framed rule seems to bleed letters into the air; a soft shimmer crawls along the network cable path. shot on 35mm, f/2.8, cinematic live-action."
             },
             {
               "panel": 3,
@@ -1463,7 +1463,7 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a SIP device / analysis rig indicator switching from OFF to ON. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot: SIP device status reads 'LOCK PHYSICAL LAYER' beside a vendor remote-support console export file; a clean ring icon pins the threat. shot on 50mm, f/2.0, cinematic live-action."
             }
           ]
         },
@@ -1483,7 +1483,7 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of the Ghost fully manifesting: 先代の額縁から文字が滲み、笑顔の仮面になって人を黙らせる. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot: the framed company rule in the corridor. Ink bleeds from the frame and forms a smiling paper mask that silences people gently; a vendor remote-support laptop glows faintly on a side desk. shot on 35mm, f/2.8, cinematic live-action."
             },
             {
               "panel": 2,
@@ -1498,7 +1498,7 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) and (Nei:1.2) steps forward, coordinating silently in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. turning point: Renは個人を裁かず、環境を変える“最小の設計”を強制する. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Nei:1.2) raises her tablet and pins the mask with a clean light grid; beside the frame, a signed 'remote support re-enable conditions' sheet is posted like a seal. shot on 50mm, f/1.8, cinematic live-action."
             },
             {
               "panel": 3,
@@ -1514,7 +1514,7 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes reflecting moving light patterns from the Ghost. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Nei:1.2) eyes: intricate blue iris patterns reflect hash values and a branching session list; sharp catchlights remain steady. shot on 85mm prime, f/1.2, cinematic live-action."
             }
           ]
         },
@@ -1534,7 +1534,7 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of the Ghost fully manifesting: 先代の額縁から文字が滲み、笑顔の仮面になって人を黙らせる. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot: the smiling paper mask Ghost fractures as the 're-entry conditions' sheet is posted beside the framed rule; paper dust floats like petals in the air. shot on 35mm, f/2.8, cinematic live-action."
             },
             {
               "panel": 2,
@@ -1549,7 +1549,7 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) and (Nei:1.2) steps forward, coordinating silently in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. turning point: Renは個人を裁かず、環境を変える“最小の設計”を強制する. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) calmly tapes the signed emergency procedure beside the framed rule while (Nei:1.2) verifies checksums on a tablet; their movements are precise and quiet. shot on 50mm, f/1.8, cinematic live-action."
             },
             {
               "panel": 3,
@@ -1565,7 +1565,7 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes reflecting moving light patterns from the Ghost. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Nei:1.2) eyes: blue iris patterns reflect hash values and an IP address string; sharp catchlights stay steady. shot on 85mm prime, f/1.2, cinematic live-action."
             }
           ]
         },
@@ -1586,7 +1586,7 @@
                 "gh:angle": "dynamic tracking",
                 "gh:movement": "handheld or tracking shot, subtle motion blur"
               },
-              "gh:runwayPrompt": "Action Shot, dynamic tracking, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) launches into action, cutting through swirling debris in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. motion blur, controlled choreography. shot on 35mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Action Shot, dynamic tracking, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Nei:1.2) swipes her tablet rapidly; a luminous supply-chain line graph expands outward from the vendor console, branching to other client IDs. motion blur, controlled gesture. shot on 35mm, f/2.0, cinematic live-action."
             },
             {
               "panel": 2,
@@ -1601,7 +1601,7 @@
                 "gh:focus": "deep focus with emphasized subject",
                 "gh:angle": "dynamic angle"
               },
-              "gh:runwayPrompt": "Full Page Splash, dynamic angle, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Full page splash: the Ghost core fractures into luminous particles, air clears, quiet returns. shot on 28mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Full Page Splash, dynamic angle, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Full page splash: a glowing network map and vendor remote-support graph fills the space; one branch is tagged 'transport / logistics' and pulses softly like a heartbeat. shot on 28mm, f/2.8, cinematic live-action."
             }
           ]
         },
@@ -1622,7 +1622,7 @@
                 "gh:angle": "dynamic tracking",
                 "gh:movement": "handheld or tracking shot, subtle motion blur"
               },
-              "gh:runwayPrompt": "Action Shot, dynamic tracking, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) launches into action, cutting through swirling debris in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. motion blur, controlled choreography. shot on 35mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Action Shot, dynamic tracking, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) seals the evidence bundle and stamps it with date/time; he slides it into a tamper-evident bag with a decisive motion. motion blur, controlled hands. shot on 35mm, f/2.0, cinematic live-action."
             },
             {
               "panel": 2,
@@ -1637,7 +1637,7 @@
                 "gh:focus": "deep focus with emphasized subject",
                 "gh:angle": "dynamic angle"
               },
-              "gh:runwayPrompt": "Full Page Splash, dynamic angle, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Full page splash: the Ghost core fractures into luminous particles, air clears, quiet returns. shot on 28mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Full Page Splash, dynamic angle, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Full page splash: a wide Tokyo map with a single glowing line leading from the vendor console to a distant logistics yard; the line bends like a river toward the next case. shot on 28mm, f/2.8, cinematic live-action."
             }
           ]
         },

@@ -1,0 +1,180 @@
+{
+  "@context": {
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "schema": "http://schema.org/",
+    "id": "@id",
+    "type": "@type",
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "image": "schema:image",
+    "role": "gh:role",
+    "credentials": "gh:credentials",
+    "nodeType": "gh:nodeType",
+
+    "x": "gh:x",
+    "y": "gh:y",
+    "fixed": "gh:fixed",
+    "color": "gh:color",
+
+    "source": "gh:source",
+    "target": "gh:target",
+    "label": "gh:label",
+
+    "transform": "gh:transform",
+    "nodes": "gh:nodes",
+    "links": "gh:links",
+
+    "meta": "gh:meta",
+    "tags": "gh:tags",
+    "oneLiner": "gh:oneLiner",
+    "hook": "gh:hook",
+    "audience": "gh:audience"
+  },
+  "id": "gh:presentation/ghosthacker-a3",
+  "type": "gh:PresentationBoard",
+  "name": "GHOST HACKER — A3 Presentation Board",
+  "meta": {
+    "oneLiner": "AI時代の情報攻撃を“物理現象”として描く、ハッキング×心理×組織の少年漫画。",
+    "hook": "情報が『質量』を持ったとき、嘘は『幽霊』になる。",
+    "audience": "週刊少年ジャンプ編集部向け",
+    "tags": ["Cyber", "Thriller", "Shonen", "AI", "Corporate", "Ghost"]
+  },
+  "transform": { "x": 640, "y": 420, "k": 0.75 },
+  "nodes": [
+    {
+      "id": "gh:node/ren",
+      "nodeType": "char",
+      "name": "沼野 蓮 (Ren)",
+      "role": "Ghost Hacker",
+      "credentials": ["CISSP Associate", "CEH"],
+      "image": "/images/characters/ren.png",
+      "color": "#0071e3",
+      "description": "効率厨の天才。情報改竄の背後にいる『GHOST』を追う。",
+      "x": -360,
+      "y": -120,
+      "fixed": true
+    },
+    {
+      "id": "gh:node/nei",
+      "nodeType": "char",
+      "name": "Nei",
+      "role": "AI Partner",
+      "credentials": ["Android AI", "SIP Manager"],
+      "image": "/images/characters/nei.png",
+      "color": "#34c759",
+      "description": "蓮の相棒。現場の物理レイヤ侵入と解析を担当。",
+      "x": -620,
+      "y": 80,
+      "fixed": true
+    },
+    {
+      "id": "gh:node/shouta",
+      "nodeType": "char",
+      "name": "大門 翔太 (Shouta)",
+      "role": "The Client",
+      "credentials": ["Daimon Construction"],
+      "image": "/images/characters/shouta.png",
+      "color": "#ff3b30",
+      "description": "巨大企業の後継者。レガシーと組織の歪みで追い詰められる。",
+      "x": -40,
+      "y": 140,
+      "fixed": true
+    },
+    {
+      "id": "gh:node/takeru",
+      "nodeType": "char",
+      "name": "赤羽 猛 (Takeru)",
+      "role": "Rival: Short-tempered",
+      "credentials": ["OSCP", "GXPN"],
+      "image": "/images/characters/takeru.png",
+      "color": "#ff9500",
+      "description": "短気な天才。力押しで突破するタイプのライバル。",
+      "x": -140,
+      "y": -360,
+      "fixed": false
+    },
+    {
+      "id": "gh:node/kaname",
+      "nodeType": "char",
+      "name": "水城 要 (Kaname)",
+      "role": "Rival: Arrogant",
+      "credentials": ["CISA", "PMP"],
+      "image": "/images/characters/kaname.png",
+      "color": "#af52de",
+      "description": "完璧主義のエリート。監査・統治で相手を詰める。",
+      "x": 260,
+      "y": -260,
+      "fixed": false
+    },
+
+    {
+      "id": "gh:node/ghost",
+      "nodeType": "concept",
+      "name": "The GHOST",
+      "color": "#ff2d55",
+      "description": "情報が物理現象化した“悪意”。見えない攻撃が見える敵になる。",
+      "x": 80,
+      "y": -80,
+      "fixed": false
+    },
+    {
+      "id": "gh:node/sip",
+      "nodeType": "concept",
+      "name": "SIP Sequence",
+      "color": "#00a0a0",
+      "description": "Secure Information Physicality。情報の“物理層”を締める手順。",
+      "x": -520,
+      "y": 340,
+      "fixed": false
+    },
+    {
+      "id": "gh:node/aria",
+      "nodeType": "concept",
+      "name": "ARIA Aesthetic",
+      "color": "#0071e3",
+      "description": "柔らかな光と眼のディテール。静謐×不穏の対比で引き込む。",
+      "x": -820,
+      "y": -300,
+      "fixed": true
+    },
+
+    { "id": "gh:node/ep1", "nodeType": "ep", "name": "Ep.1 牙を剥く内部の影", "description": "Arc A | Internal Sabotage", "color": "#ff3b30", "x": 460, "y": -520, "fixed": true },
+    { "id": "gh:node/ep2", "nodeType": "ep", "name": "Ep.2 許しの毒", "description": "Arc A | CISSP Methodology", "color": "#ff3b30", "x": 700, "y": -520, "fixed": true },
+    { "id": "gh:node/ep3", "nodeType": "ep", "name": "Ep.3 善意の呪い", "description": "Arc A | Corporate Culture", "color": "#ff3b30", "x": 940, "y": -520, "fixed": true },
+
+    { "id": "gh:node/ep4", "nodeType": "ep", "name": "Ep.4 終わらぬ時計", "description": "Arc B | Takeru Appears", "color": "#ff9500", "x": 460, "y": -340, "fixed": true },
+    { "id": "gh:node/ep5", "nodeType": "ep", "name": "Ep.5 Doneがない地獄", "description": "Arc B | Design Failure", "color": "#ff9500", "x": 700, "y": -340, "fixed": true },
+    { "id": "gh:node/ep6", "nodeType": "ep", "name": "Ep.6 終端刻印", "description": "Arc B | Salvation", "color": "#ff9500", "x": 940, "y": -340, "fixed": true },
+
+    { "id": "gh:node/ep7", "nodeType": "ep", "name": "Ep.7 空の要塞の崩壊", "description": "Arc C | Kaname Appears", "color": "#af52de", "x": 460, "y": -160, "fixed": true },
+    { "id": "gh:node/ep8", "nodeType": "ep", "name": "Ep.8 消えた資産の足跡", "description": "Arc C | Audit Attack", "color": "#af52de", "x": 700, "y": -160, "fixed": true },
+    { "id": "gh:node/ep9", "nodeType": "ep", "name": "Ep.9 それは傲慢ですね", "description": "Arc C | Rule Killing", "color": "#af52de", "x": 940, "y": -160, "fixed": true },
+
+    { "id": "gh:node/ep10", "nodeType": "ep", "name": "Ep.10 群れのGhost", "description": "Arc D | Ecosystem Risk", "color": "#0071e3", "x": 460, "y": 20, "fixed": true },
+    { "id": "gh:node/ep11", "nodeType": "ep", "name": "Ep.11 崩壊する信頼", "description": "Arc D | Investigation", "color": "#0071e3", "x": 700, "y": 20, "fixed": true },
+    { "id": "gh:node/ep12", "nodeType": "ep", "name": "Ep.12 逮捕と残響", "description": "Arc D | Final Deletion", "color": "#0071e3", "x": 940, "y": 20, "fixed": true }
+  ],
+  "links": [
+    { "source": "gh:node/ren", "target": "gh:node/nei", "label": "partners", "color": "#34c759" },
+    { "source": "gh:node/ren", "target": "gh:node/shouta", "label": "client", "color": "#ff3b30" },
+    { "source": "gh:node/ren", "target": "gh:node/takeru", "label": "rival", "color": "#ff9500" },
+    { "source": "gh:node/ren", "target": "gh:node/kaname", "label": "rival", "color": "#af52de" },
+    { "source": "gh:node/ren", "target": "gh:node/ghost", "label": "targets", "color": "#ff2d55" },
+    { "source": "gh:node/ren", "target": "gh:node/sip", "label": "tools", "color": "#00a0a0" },
+    { "source": "gh:node/ren", "target": "gh:node/aria", "label": "visuals", "color": "#0071e3" },
+
+    { "source": "gh:node/ep1", "target": "gh:node/ep2", "label": "next", "color": "#999999" },
+    { "source": "gh:node/ep2", "target": "gh:node/ep3", "label": "next", "color": "#999999" },
+    { "source": "gh:node/ep3", "target": "gh:node/ep4", "label": "next", "color": "#999999" },
+    { "source": "gh:node/ep4", "target": "gh:node/ep5", "label": "next", "color": "#999999" },
+    { "source": "gh:node/ep5", "target": "gh:node/ep6", "label": "next", "color": "#999999" },
+    { "source": "gh:node/ep6", "target": "gh:node/ep7", "label": "next", "color": "#999999" },
+    { "source": "gh:node/ep7", "target": "gh:node/ep8", "label": "next", "color": "#999999" },
+    { "source": "gh:node/ep8", "target": "gh:node/ep9", "label": "next", "color": "#999999" },
+    { "source": "gh:node/ep9", "target": "gh:node/ep10", "label": "next", "color": "#999999" },
+    { "source": "gh:node/ep10", "target": "gh:node/ep11", "label": "next", "color": "#999999" },
+    { "source": "gh:node/ep11", "target": "gh:node/ep12", "label": "next", "color": "#999999" }
+  ]
+}
+

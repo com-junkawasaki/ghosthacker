@@ -22,3 +22,6 @@ local_resource(
     cmd='cd backend && export WORKSPACE_ROOT=../../.. && go run cmd/worker/main.go',
     deps=['backend/cmd/worker', 'backend/internal', 'backend/proto', 'backend/go.mod', 'backend/go.sum']
 )
+
+# Neo4j Database
+docker_compose('docker-compose.yaml')

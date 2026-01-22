@@ -1,8 +1,8 @@
 import { readFile } from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 import type { RequestHandler } from './$types';
 
-const BOARD_PATH = fileURLToPath(new URL('../../../data/ghosthacker-board.jsonld', import.meta.url));
+const BOARD_PATH = resolve(process.cwd(), 'data/presentation.jsonld');
 
 export const GET: RequestHandler = async () => {
 	const jsonld = await readFile(BOARD_PATH, 'utf8');

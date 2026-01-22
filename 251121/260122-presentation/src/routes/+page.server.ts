@@ -1,9 +1,10 @@
 import type { Actions, PageServerLoad } from './$types';
 import { error, fail } from '@sveltejs/kit';
 import { readFile, writeFile } from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 
-const BOARD_PATH = fileURLToPath(new URL('../../data/ghosthacker-board.jsonld', import.meta.url));
+// Use repo-relative path so dev/prod behave the same.
+const BOARD_PATH = resolve(process.cwd(), 'data/presentation.jsonld');
 
 type BoardNode = {
 	id: string;
