@@ -1,9 +1,0 @@
-{
-  "@id": "style:writing",
-  "@type": "Intangible",
-  "description": "Wattpadで最も支持される文体。一人称視点、現在形時制、口語的・会話的トーン。",
-  "gh:writingStyle": "一人称現在形の口語的・会話的文体",
-  "gh:x": 9210.55076496016,
-  "gh:y": -1824.8598837315858,
-  "name": "Writing Style"
-}

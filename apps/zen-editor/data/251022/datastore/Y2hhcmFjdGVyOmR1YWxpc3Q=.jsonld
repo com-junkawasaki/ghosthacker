@@ -1,9 +1,0 @@
-{
-  "@id": "character:dualist",
-  "@type": "Person",
-  "description": "自己と世界を分離して考え、無限に続く輪廻（自己の永続）を苦痛として恐れるクライアント。",
-  "gh:role": "Client",
-  "gh:x": 8302.295841010215,
-  "gh:y": 4537.803801188189,
-  "name": "Dualist Client"
-}

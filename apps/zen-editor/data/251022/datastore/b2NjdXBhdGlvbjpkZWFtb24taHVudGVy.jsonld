@@ -1,8 +1,0 @@
-{
-  "@id": "occupation:deamon-hunter",
-  "@type": "Intangible",
-  "description": "他者のリソースを束縛し、過剰に消費するghostであるDeamonを狩る職業。",
-  "gh:x": 7692.709878199678,
-  "gh:y": 5857.000604288366,
-  "name": "Deamon Hunter"
-}

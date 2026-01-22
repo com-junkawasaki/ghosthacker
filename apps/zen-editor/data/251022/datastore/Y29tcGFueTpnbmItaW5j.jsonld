@@ -1,9 +1,0 @@
-{
-  "@id": "company:gnb-inc",
-  "@type": "Organization",
-  "description": "問題を引き起こすことで知られるGhost Hacking会社。",
-  "gh:companyType": "Ghost Hacking Competitor",
-  "gh:x": 8640.04369472124,
-  "gh:y": -3272.044746193738,
-  "name": "GnB Inc. (Good and Bad)"
-}
