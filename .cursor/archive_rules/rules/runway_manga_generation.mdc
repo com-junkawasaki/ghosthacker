@@ -1,0 +1,48 @@
+---
+description: Rules for generating base video clips using Runway Gen-2/Gen-3. Focuses on realistic cinematic descriptions with ARIA-style aesthetic (clean air, soft light, detailed eyes).
+globs: 251121/storyboard.jsonld, 251121/character_profiles.jsonld
+---
+
+# Runway Base Video Generation Standards (ARIA Cinematic Base)
+
+This rule defines how to construct prompts for Runway to generate high-quality, realistic video clips that serve as the base for later style transfer. It emphasizes the "ARIA aesthetic": pristine air, soft diffused lighting, and extreme ocular detail.
+
+## 1. Core Instruction: Live-Action Realism
+- **NO Style Keywords**: Do not use "manga", "anime", "illustration", "art", or "monochrome".
+- **Real-World Description**: Describe scenes as if they are being filmed on a high-end cinema camera.
+- **Cinematic Keywords**: Use `Cinematic lighting`, `8k`, `High detail`, `Photorealistic`, `Shallow depth of field`, `Motion blur`, `Shot on 35mm lens`.
+
+## 2. The ARIA Aesthetic (Atmosphere & Light)
+- **Atmosphere**: Use keywords like `Soft diffused natural light`, `Aerial perspective`, `Luminous atmosphere`, `Pristine environment`. The air should feel "visible" and clean.
+- **Lighting**: Prefer `Golden hour`, `Soft morning glow`, or `High-key lighting` with gentle shadows. Avoid harsh, gritty, or overly dark noir lighting unless specified.
+
+## 3. Ocular Detail (The Eyes)
+- **Critical Requirement**: Every close-up or medium shot must emphasize the eyes:
+  - `Highly detailed expressive eyes`
+  - `Intricate iris patterns`
+  - `Sharp sparkling catchlights (reflections in the eyes)`
+  - `Clear crystalline ocular texture`
+- **Camera Tech**: Use `Large format camera`, `85mm prime lens` (for portraits/eyes), `f/1.2 for creamy bokeh`.
+
+## 4. Prompt Constraints (Runway Optimization)
+- **Maximum 3 Entities**: Each prompt must mention a maximum of 3 key entities (characters, specific props, or identifiable objects) to ensure `@` reference accuracy.
+- **NO Dialogue**: Do not include speech or thought text. Focus entirely on visual action, movement, and atmosphere.
+- **Cinematic Instructions**: Every prompt must include a camera/shot type:
+  - `Extreme Close-up (ECU)`: Focus on eyes or hands.
+  - `Close-up (CU)`: Focus on face and emotion.
+  - `Medium Shot (MS)`: Character from waist up, showing action.
+  - `Wide Shot (WS)`: Showing environment and context.
+  - `Tracking Shot / Pan`: For movement.
+
+## 5. Structure of a Base Prompt
+```text
+[Shot Type/Camera Angle], [ARIA Aesthetic Keywords], [Realistic Environment Description], [Up to 3 Entities + Realistic Action], [Ocular Detail (if applicable)], [Lighting/Technicals]
+```
+
+### ✅ Example (Correct)
+`Wide Shot, Back View, Eye Level. ARIA-style: Luminous atmosphere, soft diffused light from right window, clean air. (Ren:1.2) sitting at a minimalist white ergonomic desk, back to camera. One-point perspective, 35mm wide lens, 8k photorealistic.`
+
+### ❌ Anti-Patterns
+- `Professional monochrome manga art` (Style is forbidden in base prompt).
+- `Ren says "Hello"` (Dialogue is forbidden).
+- `Ren, Nei, and Shouta in the office` (Limit to 3 entities).

@@ -196,7 +196,10 @@ func (s *StoryboardService) UpdatePanel(
 					}
 
 					// Handle generated images history
-					if len(req.Msg.PanelData.GeneratedImages) > 0 {
+					// Always save generatedImages if provided (even if empty, to clear history)
+					log.Printf("UpdatePanel: Received GeneratedImages: len=%d, episode=%s page=%d panel=%d", 
+						len(req.Msg.PanelData.GeneratedImages), req.Msg.EpisodeId, req.Msg.PageNumber, req.Msg.Panel)
+					if req.Msg.PanelData.GeneratedImages != nil && len(req.Msg.PanelData.GeneratedImages) > 0 {
 						generatedImages := make([]interface{}, len(req.Msg.PanelData.GeneratedImages))
 						for j, img := range req.Msg.PanelData.GeneratedImages {
 							generatedImages[j] = map[string]interface{}{
@@ -205,13 +208,23 @@ func (s *StoryboardService) UpdatePanel(
 								"gh:generatedAt": img.GeneratedAt,
 								"gh:model":      img.Model,
 							}
+							log.Printf("UpdatePanel: Image %d: url=%s, prompt=%s", j, img.ImageUrl, img.ImagePrompt)
 						}
 						panel["gh:generatedImages"] = generatedImages
+						log.Printf("UpdatePanel: Saved %d generated images for episode=%s page=%d panel=%d", 
+							len(generatedImages), req.Msg.EpisodeId, req.Msg.PageNumber, req.Msg.Panel)
+					} else {
+						log.Printf("UpdatePanel: No generated images to save (nil=%v, len=%d)", 
+							req.Msg.PanelData.GeneratedImages == nil, 
+							func() int { if req.Msg.PanelData.GeneratedImages != nil { return len(req.Msg.PanelData.GeneratedImages) }; return 0 }())
 					}
 
 					// Handle current image index
 					if req.Msg.PanelData.CurrentImageIndex >= 0 {
 						panel["gh:currentImageIndex"] = req.Msg.PanelData.CurrentImageIndex
+					} else if req.Msg.PanelData.GeneratedImages != nil && len(req.Msg.PanelData.GeneratedImages) > 0 {
+						// Default to last image if index not set
+						panel["gh:currentImageIndex"] = len(req.Msg.PanelData.GeneratedImages) - 1
 					}
 
 					if req.Msg.PanelData.CameraDirection != "" {

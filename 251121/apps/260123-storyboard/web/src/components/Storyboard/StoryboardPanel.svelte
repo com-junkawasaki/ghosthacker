@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import type { Panel, Dialogue, GeneratedImage, PanelData } from '$lib/gen/proto/storyboard_pb';
-	import { PanelDataSchema, DialogueSchema } from '$lib/gen/proto/storyboard_pb';
+	import { PanelDataSchema, DialogueSchema, GeneratedImageSchema } from '$lib/gen/proto/storyboard_pb';
 	import { create } from '@bufbuild/protobuf';
 	import { generatePanelImage } from '$lib/client/storyboard-client';
 
@@ -48,6 +48,28 @@
 	}
 
 	function saveEdit() {
+		console.log('[StoryboardPanel] saveEdit: saving data', {
+			generatedImages,
+			currentImageIndex,
+			panelNumber: panel.panel,
+			pageNumber: panel.pageNumber,
+			generatedImagesCount: generatedImages.length
+		});
+		
+		// Ensure all GeneratedImage objects are properly created with schema
+		const serializedImages = generatedImages.map(img => {
+			// If already a GeneratedImage type, use as is, otherwise create from schema
+			if (img && typeof img === 'object' && 'imageUrl' in img) {
+				return create(GeneratedImageSchema, {
+					imageUrl: img.imageUrl || '',
+					imagePrompt: img.imagePrompt || '',
+					generatedAt: typeof img.generatedAt === 'bigint' ? img.generatedAt : BigInt(img.generatedAt || Date.now()),
+					model: img.model || 'google/gemini-3-pro-image-preview'
+				});
+			}
+			return img;
+		});
+		
 		const updatedData = create(PanelDataSchema, {
 			characters: characters,
 			dialogue: dialogues,
@@ -58,10 +80,14 @@
 			cutNumber: cutNumber,
 			shot: shot,
 			runwayPrompt: runwayPrompt,
-			generatedImages: generatedImages,
+			generatedImages: serializedImages,
 			currentImageIndex: currentImageIndex,
 		});
 
+		console.log('[StoryboardPanel] saveEdit: created PanelData', {
+			...updatedData,
+			generatedImagesCount: updatedData.generatedImages?.length || 0
+		});
 		dispatch('update', updatedData);
 		editing = false;
 	}
@@ -113,10 +139,22 @@
 			);
 
 			if (result.success && result.generatedImage) {
+				// Create GeneratedImage using schema to ensure proper serialization
+				const newImage = create(GeneratedImageSchema, {
+					imageUrl: result.generatedImage.imageUrl || '',
+					imagePrompt: result.generatedImage.imagePrompt || '',
+					generatedAt: BigInt(result.generatedImage.generatedAt || Date.now()),
+					model: result.generatedImage.model || 'google/gemini-3-pro-image-preview'
+				});
+				
 				// Add new image to history
-				generatedImages = [...generatedImages, result.generatedImage];
+				generatedImages = [...generatedImages, newImage];
 				currentImageIndex = generatedImages.length - 1;
-				console.log('[StoryboardPanel] Image generated successfully');
+				console.log('[StoryboardPanel] Image generated successfully', {
+					generatedImage: newImage,
+					allImages: generatedImages,
+					currentIndex: currentImageIndex
+				});
 				// Auto-save after generation
 				saveEdit();
 			} else {
