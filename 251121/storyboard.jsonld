@@ -18,7 +18,10 @@
     "dialogue": "gh:dialogue",
     "speaker": "gh:speaker",
     "text": "gh:text",
-    "visual": "gh:visual"
+    "visual": "gh:visual",
+    "env": "gh:environment/",
+    "environment": "gh:environment",
+    "environments": "gh:environments"
   },
   "@id": "gh:storyboard/master-season1",
   "@type": [
@@ -50,6 +53,24 @@
       "情報安全確保支援士"
     ]
   },
+  "gh:environments": [
+    { "@id": "env:evolution-nature", "dct:title": "Evolution nature backdrop", "dct:description": "猿からヒトへの進化図が置かれる荒々しい自然背景。" },
+    { "@id": "env:historical-montage", "dct:title": "Historical montage", "dct:description": "洞窟の火と壁画、巨大仏・トーテム・儀式が薄く重なる歴史モンタージュ。" },
+    { "@id": "env:tokyo-2026-aerial", "dct:title": "Tokyo 2026 cityscape", "dct:description": "2026年の東京。高層ビル、電子データ、サーバーファーム、ドローン物流。" },
+    { "@id": "env:cyberspace-title", "dct:title": "Cyberspace title page", "dct:description": "デジタルグリッドと都市片が融合・崩壊・再構築するサイバー空間。縦長タイトルロゴ。" },
+    { "@id": "env:ren-office", "dct:title": "Ren office", "dct:description": "コンクリート壁と木床の清潔なオフィス（Ren/Neiの拠点）。" },
+    { "@id": "env:kamata-daimon-office", "dct:title": "Daimon Construction office (Kamata)", "dct:description": "蒲田の大門建設オフィス。古びたビル内、電話が鳴り止まない修羅場。" },
+    { "@id": "env:intertitle-black", "dct:title": "Intertitle (black)", "dct:description": "黒背景のタイトルカード（白文字）。" },
+    { "@id": "env:kamata-street-evening", "dct:title": "Kamata street (evening)", "dct:description": "夕暮れの蒲田の雑踏。事件後の余韻。" }
+  ],
+  "gh:characters": [
+    { "@id": "character:Shouta", "schema:name": "Daimon Shouta", "dct:description": "大門建設の若手（スーツ姿）。依頼者。焦燥しているが目は鋭い。" },
+    { "@id": "character:Matsuda", "schema:name": "Matsuda", "dct:description": "経理の松田（おばちゃん）。給与計算に追われ叫ぶ。" },
+    { "@id": "character:Sato", "schema:name": "Sato", "dct:description": "若手社員の佐藤。PC裏でケーブルをいじり混乱している。" },
+    { "@id": "character:Yasumoto", "schema:name": "Yasumoto", "dct:description": "総務部長の安本。汗だくで挙動不審。嫉妬と恐怖のGhostを抱える。" },
+    { "@id": "character:President", "schema:name": "Daimon Goro", "dct:description": "大門建設 社長（大門五郎）。作業着姿で戻ってくる。" },
+    { "@id": "character:GhostYasumoto", "schema:name": "Ghost (Yasumoto)", "dct:description": "安本から分離したGhost。古い書類とケーブルの塊の怪物。" }
+  ],
   "gh:panelScripts": {
     "episode:260123-cschool-privacy": [
       { "gh:pageNumber": 1, "panel": 1, "gh:characters": ["character:Yuto"], "gh:dialogue": [ { "gh:speaker": "Yuto", "gh:text": "……知らない番号、また。" } ] },
@@ -1160,6 +1181,8 @@
               },
               "gh:runwayPrompt": "Wide Angle, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Evolution chart from ape to man, against a backdrop of wild, rugged nature. shot on 24mm, f/2.8, cinematic live-action.",
               "visual": "猿からヒトへの進化図。背景には荒々しい自然。",
+              "environment": "env:evolution-nature",
+              "characters": [],
               "dialogue": [
                 { "speaker": "Narration", "text": "霊長類。人は「霊」に特質性があり、霊によって進化した存在である。" }
               ]
@@ -1179,6 +1202,8 @@
               },
               "gh:runwayPrompt": "Wide Angle, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Historical montage: Early humans huddle around a fire in a cave, one is drawing on the wall. Faintly superimposed are images of a giant Buddha statue, totem poles, and shamanistic rituals. shot on 24mm, f/2.8, cinematic live-action.",
               "visual": "洞窟の中で火を囲む人類と壁画を描く人物、その背後に巨大な大仏やトーテムポール、シャーマンの儀式のイメージが薄く重なって見える歴史モンタージュ。",
+              "environment": "env:historical-montage",
+              "characters": [],
               "dialogue": [
                 { "speaker": "Narration", "text": "古来より霊は、炎や像、儀式と共に様々な形で現れ、人と共にあった。" }
               ]
@@ -1198,6 +1223,8 @@
               },
               "gh:runwayPrompt": "Bird's Eye View, top-down, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Modern cityscape of Tokyo in 2026. Towering skyscrapers, streams of electronic data, server farms, and delivery drones fill the scene. shot on 35mm, f/2.8, cinematic live-action.",
               "visual": "現代の都市風景（2026年の東京）。高層ビル、飛び交う電子データ、サーバーファーム、ドローン物流。",
+              "environment": "env:tokyo-2026-aerial",
+              "characters": [],
               "dialogue": [
                 { "speaker": "Narration", "text": "2026年。高度情報化社会において、人知れず「霊」をHackする者たちがいた。" }
               ]
@@ -1222,6 +1249,8 @@
               },
               "gh:runwayPrompt": "Full Page Vertical, vertical framing, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Full page vertical title shot. A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, collapse, and reconstruct. At the center, (Ren: 17-year-old male, K-pop idol aesthetic, pale skin, messy voluminous wavy black hair, sharp half-lidded eyes) and (Nei: 17-year-old female high school student, platinum blonde bob, white blouse and black sleeveless dress) float weightlessly. Ren types furiously on a translucent holographic keyboard, his gaze fixed on a distant data structure. Nei stands beside him, arms crossed, floating vigilantly, her eyes tracking data overlays. Behind them, through a distortion in space, the giant vertical title logo 'GHOST Hacker' emerges. shot on 24mm, f/4, cinematic live-action.",
               "visual": "【1ページ全体】デジタルグリッドと物理的な都市の破片（ビル、道路標識）が融合・崩壊・再構築を繰り返す混沌としたサイバー空間。その中心に、重力に逆らって浮かぶRenとNei。Renは空中に投影された半透明のキーボードを高速でタイピングし、その視線は遠くのデータ構造を見つめている。Neiは彼の隣に立ち、腕を組んで周囲を警戒するように浮遊。彼女の瞳には解析データが流れている。二人の背後、空間の歪みの向こうに『GHOST Hacker』の巨大なタイトルロゴが縦長レイアウトで浮かび上がる。",
+              "environment": "env:cyberspace-title",
+              "characters": ["character:Ren", "character:Nei"],
               "dialogue": [
                 { "speaker": "Ren (Monologue)", "text": "世界はバグだらけだ。" },
                 { "speaker": "Narration", "text": "Ren - Ghost Hacker。17歳。世界的な腕前を持つコンピューターハッカー。だが、彼はGhostもハックできる。" }
@@ -1297,6 +1326,8 @@
               },
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. A clean office with concrete walls and wood flooring. (Ren: 17-year-old male, K-pop idol aesthetic, messy voluminous wavy black hair, skinny build, dark gray hoodie, jeans), slouches lazily backward in a modern desk chair, looking bored. shot on 50mm, f/1.8, cinematic live-action.",
               "visual": "コンクリート打ちっぱなしの壁とウッドフローリングの清潔なオフィス。Renはモダンなデスクチェアに仰向けでダラけている。",
+              "environment": "env:ren-office",
+              "characters": ["character:Ren"],
               "dialogue": [
                 { "speaker": "Ren", "text": "あー、だりーなー。" }
               ]
@@ -1316,6 +1347,8 @@
               },
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. In a corner of the room, (Nei: 17-year-old female high school student, platinum blonde bob, white blouse and black sleeveless dress) operates a tablet with an exasperated expression. shot on 50mm, f/1.8, cinematic live-action.",
               "visual": "部屋の隅でタブレットを操作しているNei。呆れた表情。",
+              "environment": "env:ren-office",
+              "characters": ["character:Ren", "character:Nei"],
               "dialogue": [
                 { "speaker": "Ren", "text": "Neiちゃん、何してんの？" },
                 { "speaker": "Nei", "text": "お仕事を探しておりました。当然です、マスター。" }
@@ -1336,6 +1369,8 @@
               },
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Nei: 17-year-old female high school student, platinum blonde bob, white blouse and black sleeveless dress) approaches Ren's chair, leaning in with an annoyed look on her face. shot on 50mm, f/1.8, cinematic live-action.",
               "visual": "Renの椅子に近づき、呆れた顔で覗き込むNei。",
+              "environment": "env:ren-office",
+              "characters": ["character:Nei"],
               "dialogue": [
                 { "speaker": "Nei", "text": "サーバー及びクラウド費用が非常に逼迫しております。マスターがもう少し稼働くだされば…" }
               ]
@@ -1356,6 +1391,8 @@
               },
               "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren: 17-year-old male, K-pop idol aesthetic, pale skin, messy voluminous wavy black hair, sharp half-lidded eyes) picking his ear, looking utterly bored. shot on 85mm prime, f/1.2, cinematic live-action.",
               "visual": "Ren、耳をほじりながら。",
+              "environment": "env:ren-office",
+              "characters": ["character:Ren"],
               "dialogue": [
                 { "speaker": "Ren", "text": "怠惰こそ美徳。効率化の母だよ。" }
               ]
@@ -1380,6 +1417,8 @@
               },
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. A doorbell chimes. A monitor shows a visitor: a young man in a suit (Shouta). shot on 50mm, f/1.8, cinematic live-action.",
               "visual": "ドアのチャイムが鳴る。モニターに訪問者の映像（スーツ姿の若い男＝翔太）。",
+              "environment": "env:ren-office",
+              "characters": ["character:Nei", "character:Shouta"],
               "dialogue": [
                 { "speaker": "SE", "text": "ピンポーン" },
                 { "speaker": "Nei", "text": "あ！ご予約のお客様です！ウェブサイトからご連絡のあった大門様です！" }
@@ -1400,6 +1439,8 @@
               },
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren: 17-year-old male, K-pop idol aesthetic, messy voluminous wavy black hair, skinny build, dark gray hoodie, jeans) gets up reluctantly, annoyed. shot on 50mm, f/1.8, cinematic live-action.",
               "visual": "Ren、嫌そうに起き上がる。",
+              "environment": "env:ren-office",
+              "characters": ["character:Ren"],
               "dialogue": [
                 { "speaker": "Ren", "text": "げ。本当に来たの。面倒くさいなぁ…" }
               ]
@@ -1419,6 +1460,8 @@
               },
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Shouta: 26-year-old male, fit build, sharp eyes, navy suit) enters the office. His expression is frayed and desperate, but his eyes are sharp. shot on 50mm, f/1.8, cinematic live-action.",
               "visual": "翔太が入ってくる。焦燥しきった表情だが、目は鋭い。",
+              "environment": "env:ren-office",
+              "characters": ["character:Shouta"],
               "dialogue": [
                 { "speaker": "Shouta", "text": "あなたがRenさんですか？大門建設の大門翔太です。話はメールで送った通りです。" }
               ]
@@ -1438,6 +1481,8 @@
               },
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren: 17-year-old male, sharp half-lidded eyes) sizes up Shouta coolly. shot on 50mm, f/1.8, cinematic live-action.",
               "visual": "Ren、翔太を見定める。",
+              "environment": "env:ren-office",
+              "characters": ["character:Ren", "character:Shouta"],
               "dialogue": [
                 { "speaker": "Ren", "text": "システム全停止。警察は証拠保全で手一杯。復旧の目処なし…だっけ？" }
               ]
@@ -1462,6 +1507,8 @@
               },
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. The Daimon Construction office in Kamata. An old building in complete chaos. Phones are ringing off the hook. shot on 50mm, f/1.8, cinematic live-action.",
               "visual": "大門建設のオフィス（蒲田）。古びたビルだが中は修羅場。電話が鳴り止まない。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:Shouta"],
               "dialogue": [
                 { "speaker": "Shouta", "text": "父…社長は現場への対応で手一杯で。僕の独断で依頼しました。とにかく急いでるんです。" }
               ]
@@ -1481,6 +1528,8 @@
               },
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. The accountant (Matsuda: 58-year-old female, short permed hair, conservative blouse) is screaming into the phone, her face flushed with panic. shot on 50mm, f/1.8, cinematic live-action.",
               "visual": "経理の松田（おばちゃん）が叫んでいる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Matsuda", "character:Shouta"],
               "dialogue": [
                 { "speaker": "Matsuda", "text": "ちょっと翔太くん！給与計算どうすんのよ！明日振込日なのよ！？画面真っ黒で動かないじゃない！" }
               ]
@@ -1500,6 +1549,8 @@
               },
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. A young employee, (Sato: 24-year-old male, slim build, polo shirt), is crouched behind a PC, fumbling with cables. shot on 50mm, f/1.8, cinematic live-action.",
               "visual": "若手社員の佐藤がPCの裏に潜り込んでいる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Sato", "character:Matsuda"],
               "dialogue": [
                 { "speaker": "Sato", "text": "松田さん、叩いても直りませんって！サーバーへのアクセス権限もロックされてて…" }
               ]
@@ -1519,6 +1570,8 @@
               },
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren: 17-year-old male, messy voluminous wavy black hair, dark gray hoodie) surveys the chaotic office with a detached expression. shot on 50mm, f/1.8, cinematic live-action.",
               "visual": "Ren、オフィスを見渡す。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren"],
               "dialogue": [
                 { "speaker": "Ren", "text": "（昭和の遺産と中途半端なDX…最悪の組み合わせだね）" }
               ]
@@ -1543,6 +1596,8 @@
               },
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Department head (Yasumoto: 52-year-old male, overweight, anxious face, rumpled gray suit) appears, sweating and agitated. He glares at Shouta. shot on 50mm, f/1.8, cinematic live-action.",
               "visual": "安本部長が登場。汗だくで挙動不審。翔太を睨む。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Yasumoto", "character:Shouta"],
               "dialogue": [
                 { "speaker": "Yasumoto", "text": "翔太くん！部外者を勝手に入れるな！システムは私がなんとかする！" }
               ]
@@ -1562,6 +1617,8 @@
               },
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Shouta: 26-year-old male, sharp eyes, navy suit) retorts forcefully to Yasumoto. shot on 50mm, f/1.8, cinematic live-action.",
               "visual": "翔太、強い口調で言い返す。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Shouta", "character:Yasumoto"],
               "dialogue": [
                 { "speaker": "Shouta", "text": "安本さん！あんたの管理でこうなったんだろ！専門家に任せてください！" }
               ]
@@ -1581,6 +1638,8 @@
               },
               "gh:runwayPrompt": "POV Shot, first-person POV, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Ren's POV with AR vision. He stares at (Yasumoto: 52-year-old male) and sees a dark, shadowy figure of jealousy and fear clinging to his back. shot on 35mm, f/2.8, cinematic live-action.",
               "visual": "Ren、安本を凝視。AR視点で安本の背後にへばりつく「黒い影（嫉妬と恐怖のGhost）」を見る。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:Yasumoto", "character:GhostYasumoto"],
               "dialogue": [
                 { "speaker": "Ren", "text": "（…ビンゴ。システム障害の原因はマルウェアじゃない）" }
               ]
@@ -1600,6 +1659,8 @@
               },
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren: 17-year-old male, messy voluminous wavy black hair, dark gray hoodie) casually sits down at a vacant desk and opens his own laptop. shot on 50mm, f/1.8, cinematic live-action.",
               "visual": "Ren、勝手に空いている席に座り、自分のノートPCを開く。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren"],
               "dialogue": [
                 { "speaker": "Ren", "text": "Nei、ポート開放。物理レイヤーから侵入して。" }
               ]
@@ -1624,6 +1685,8 @@
               },
               "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Ren's hands fly across the keyboard at incredible speed. (Shouta: 26-year-old male) and (Sato: 24-year-old male) watch from behind, amazed. shot on 50mm, f/2.0, cinematic live-action.",
               "visual": "Renの超高速タイピング。翔太と佐藤が後ろで驚く。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:Shouta", "character:Sato"],
               "dialogue": [
                 { "speaker": "Sato", "text": "す、すごい…暗号化されたシェルをリアルタイムで解読してる…？" },
                 { "speaker": "Shouta", "text": "これが、Ghost Hacker…" }
@@ -1645,6 +1708,8 @@
               },
               "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up on (Ren: 17-year-old male, sharp half-lidded eyes), who speaks without looking away from his screen, his expression grim. shot on 85mm prime, f/1.2, cinematic live-action.",
               "visual": "Ren、画面を見ずに話す。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren"],
               "dialogue": [
                 { "speaker": "Ren", "text": "「情報は物理量である」。ランダウアーの原理。この攻撃はただのデータ改竄じゃない。質量を持った悪意だ。" }
               ]
@@ -1664,6 +1729,8 @@
               },
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Yasumoto: 52-year-old male, anxious face) recoils, his face paling with fear. shot on 50mm, f/1.8, cinematic live-action.",
               "visual": "安本、顔色を変えて後ずさりする。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Yasumoto"],
               "dialogue": [
                 { "speaker": "Yasumoto", "text": "な、何をわけのわからんことを…！やめろ！接続を切るぞ！" }
               ]
@@ -1686,7 +1753,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. A large 'FOUND!!' message on a screen, displayed by (Nei: 17-year-old female high school student, platinum blonde bob, white blouse and black sleeveless dress). The screen shows the access originated from the department head's terminal. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. A large 'FOUND!!' message on a screen, displayed by (Nei: 17-year-old female high school student, platinum blonde bob, white blouse and black sleeveless dress). The screen shows the access originated from the department head's terminal. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "Neiが画面に大きく表示される。「FOUND!!」",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Nei", "character:Yasumoto"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "特定いたしました、マスター。アクセス元は…社内。総務部長の端末からです。" }
+              ]
             },
             {
               "panel": 2,
@@ -1701,7 +1774,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren: 17-year-old male, sharp half-lidded eyes) swivels in his chair and points an accusatory finger at Yasumoto. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren: 17-year-old male, sharp half-lidded eyes) swivels in his chair and points an accusatory finger at Yasumoto. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Ren、振り返って安本を指差す。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:Yasumoto"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "あんただね。翔太さんが導入しようとした新システムを妨害しようとして、闇サイトで拾ったウィルスを自爆させた。" }
+              ]
             },
             {
               "panel": 3,
@@ -1716,7 +1795,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. The other employees, including (Matsuda: 58-year-old female) and (Shouta: 26-year-old male), turn to look at Yasumoto in shock. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. The other employees, including (Matsuda: 58-year-old female) and (Shouta: 26-year-old male), turn to look at Yasumoto in shock. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "社員一同、安本を見る。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Matsuda", "character:Shouta", "character:Yasumoto", "character:Sato"],
+              "dialogue": [
+                { "speaker": "Matsuda", "text": "えっ…安本さん、どういうこと？" },
+                { "speaker": "Shouta", "text": "安本さん…まさか、自分の地位を守るために？" }
+              ]
             },
             {
               "panel": 4,
@@ -1731,7 +1817,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Yasumoto: 52-year-old male, anxious face) trembles as Ren reveals his embezzlement and gambling history as the motive. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Yasumoto: 52-year-old male, anxious face) trembles as Ren reveals his embezzlement and gambling history as the motive. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "安本、震える。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Yasumoto", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "ついでに横領とカジノの履歴も全部出てるよ。その穴埋めのための犯行だろ。" }
+              ]
             }
           ]
         },
@@ -1751,7 +1843,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Yasumoto: 52-year-old male, contorted face) screams in denial, and the dark shadow behind him swells, engulfing the office. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Yasumoto: 52-year-old male, contorted face) screams in denial, and the dark shadow behind him swells, engulfing the office. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "安本、絶叫。背後の影が膨張し、オフィスを覆い尽くす。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Yasumoto", "character:GhostYasumoto"],
+              "dialogue": [
+                { "speaker": "Yasumoto", "text": "うるさいうるさいうるさい！！若造が何を知っている！俺はこの会社に30年尽くしてきたんだ！！" }
+              ]
             },
             {
               "panel": 2,
@@ -1766,7 +1864,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. A monstrous Ghost, made of old documents and tangled cables, separates from Yasumoto's body. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. A monstrous Ghost, made of old documents and tangled cables, separates from Yasumoto's body. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "安本の体からGhostが分離し、巨大な怪物（古びた書類とケーブルの塊のような姿）になる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:GhostYasumoto", "character:Yasumoto"],
+              "dialogue": [
+                { "speaker": "Ghost", "text": "俺ノ居場所ヲ…奪ウナァァァ！！" }
+              ]
             },
             {
               "panel": 3,
@@ -1781,7 +1885,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Matsuda: 58-year-old female) and (Sato: 24-year-old male) collapse in fear. (Shouta: 26-year-old male) stands frozen in disbelief. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Matsuda: 58-year-old female) and (Sato: 24-year-old male) collapse in fear. (Shouta: 26-year-old male) stands frozen in disbelief. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "松田と佐藤、腰を抜かす。翔太は呆然と立ち尽くす。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Matsuda", "character:Sato", "character:Shouta", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Shouta", "text": "なんだよこれ…VRか…？" },
+                { "speaker": "Ren", "text": "現実だよ。あんたらの歪んだ情報が実体化した姿だ。" }
+              ]
             }
           ]
         },
@@ -1802,7 +1913,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up on Ren's smartphone screen: 'SIP Device: ON'. (Ren: 17-year-old male, calm, focused). shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up on Ren's smartphone screen: 'SIP Device: ON'. (Ren: 17-year-old male, calm, focused). shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Ren、スマホを操作。「SIP Device: ON」",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "Nei、SIP起動。こいつを物理レイヤーに固定する。" }
+              ]
             },
             {
               "panel": 2,
@@ -1817,7 +1934,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. The space fills with digital noise and glitches as the Ghost gains tangible mass. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. The space fills with digital noise and glitches as the Ghost gains tangible mass. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "空間がデジタルノイズに包まれ、Ghostの質量が増す。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:GhostYasumoto"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "承知いたしました。SIPシークエンスを開始します。" }
+              ]
             },
             {
               "panel": 3,
@@ -1832,7 +1955,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. The now-physical Ghost smashes a shelf, demonstrating its destructive power. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. The now-physical Ghost smashes a shelf, demonstrating its destructive power. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Ghostが暴れ、棚をなぎ倒す。物理的な破壊力があることを示す。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:GhostYasumoto"],
+              "dialogue": [
+                { "speaker": "Ghost", "text": "消エロオォォ！！" }
+              ]
             }
           ]
         },
@@ -1852,7 +1981,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Shouta: 26-year-old male, fit build, navy suit) instinctively shields (Matsuda: 58-year-old female) from falling debris. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Shouta: 26-year-old male, fit build, navy suit) instinctively shields (Matsuda: 58-year-old female) from falling debris. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "翔太、とっさに松田を庇う。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Shouta", "character:Matsuda"],
+              "dialogue": [
+                { "speaker": "Shouta", "text": "くそっ！松田さん、下がって！" }
+              ]
             },
             {
               "panel": 2,
@@ -1867,7 +2002,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Particles of data and light converge in (Ren: 17-year-old male)'s hand, forming a glowing Digital Axe. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Particles of data and light converge in (Ren: 17-year-old male)'s hand, forming a glowing Digital Axe. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renの手元にデータの光が集まり、斧（Digital Axe）を形成する。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "その「自分が一番」っていうエゴ。ノイズが多すぎるんだよ。" }
+              ]
             },
             {
               "panel": 3,
@@ -1882,7 +2023,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren: 17-year-old male, dark gray hoodie) steps forward, axe in hand, ready to fight. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren: 17-year-old male, dark gray hoodie) steps forward, axe in hand, ready to fight. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Ren、踏み込む。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "デリートしてやる。" }
+              ]
             }
           ]
         },
@@ -1902,7 +2049,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren: 17-year-old male, skinny build, messy voluminous wavy black hair) dodges attacking tentacles made of LAN cables. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren: 17-year-old male, skinny build, messy voluminous wavy black hair) dodges attacking tentacles made of LAN cables. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Ghostの触手（LANケーブル）攻撃をRenがかわす。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:GhostYasumoto", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "マスター、右30度！パケットロス率、上昇！" }
+              ]
             },
             {
               "panel": 2,
@@ -1917,7 +2070,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren: 17-year-old male) leaps into the air, Digital Axe held high, with command-line text effects swirling around him. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren: 17-year-old male) leaps into the air, Digital Axe held high, with command-line text effects swirling around him. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Ren、空中で斧を構える。コマンドエフェクト。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "/> /dev/null chop --force" }
+              ]
             },
             {
               "panel": 3,
@@ -1932,7 +2091,13 @@
                 "gh:focus": "deep focus with emphasized subject",
                 "gh:angle": "dynamic angle"
               },
-              "gh:runwayPrompt": "Full Page Splash, dynamic angle, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Splash panel. Ren's axe strikes the Ghost's core (a symbol of Yasumoto's insecurities), causing a massive explosion of light and data. shot on 28mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Full Page Splash, dynamic angle, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Splash panel. Ren's axe strikes the Ghost's core (a symbol of Yasumoto's insecurities), causing a massive explosion of light and data. shot on 28mm, f/2.8, cinematic live-action.",
+              "visual": "大ゴマ。一閃。Ghostの核（安本のコンプレックスの象徴）を両断する。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:GhostYasumoto", "character:Yasumoto"],
+              "dialogue": [
+                { "speaker": "SE", "text": "ZBAAAAAN!!" }
+              ]
             }
           ]
         },
@@ -1952,7 +2117,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. The Ghost dissipates into particles of light as (Yasumoto: 52-year-old male, overweight, rumpled suit) collapses to the floor, defeated. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. The Ghost dissipates into particles of light as (Yasumoto: 52-year-old male, overweight, rumpled suit) collapses to the floor, defeated. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Ghostが霧散し、安本が崩れ落ちる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:GhostYasumoto", "character:Yasumoto"],
+              "dialogue": [
+                { "speaker": "Ghost", "text": "俺ハ…タダ…認メテ…欲シカッ……" }
+              ]
             },
             {
               "panel": 2,
@@ -1967,7 +2138,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Silence returns to the office. A computer monitor's lock screen vanishes, revealing the normal desktop. (Sato: 24-year-old male) looks relieved. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Silence returns to the office. A computer monitor's lock screen vanishes, revealing the normal desktop. (Sato: 24-year-old male) looks relieved. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "オフィスに静寂が戻る。モニターのロック画面が消え、デスクトップが表示される。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Sato"],
+              "dialogue": [
+                { "speaker": "Sato", "text": "あ…！画面が戻った！サーバーも認識してます！" }
+              ]
             },
             {
               "panel": 3,
@@ -1982,7 +2159,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Yasumoto: 52-year-old male) sobs on the floor, broken. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Yasumoto: 52-year-old male) sobs on the floor, broken. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "安本、床に座り込んで泣く。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Yasumoto"],
+              "dialogue": [
+                { "speaker": "Yasumoto", "text": "うう…すまん…すまん…" }
+              ]
             }
           ]
         },
@@ -2002,7 +2185,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. The president, (Goro Daimon: 62-year-old male, sturdy build, work clothes), returns to the chaotic office, shocked. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. The president, (Goro Daimon: 62-year-old male, sturdy build, work clothes), returns to the chaotic office, shocked. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "社長（大門五郎）が戻ってくる。作業着姿。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:President"],
+              "dialogue": [
+                { "speaker": "President", "text": "何があったんだ！？すごい音がしたが…" }
+              ]
             },
             {
               "panel": 2,
@@ -2017,7 +2206,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Shouta: 26-year-old male, fit build, navy suit) looks at his father and then at the weeping Yasumoto, his face set with determination. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Shouta: 26-year-old male, fit build, navy suit) looks at his father and then at the weeping Yasumoto, his face set with determination. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "翔太、父と安本を見る。一瞬沈黙するが、決意した顔で。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Shouta", "character:President", "character:Yasumoto"],
+              "dialogue": [
+                { "speaker": "Shouta", "text": "…親父。安本さんが、システムを直そうとして…怪我を。" }
+              ]
             },
             {
               "panel": 3,
@@ -2032,7 +2227,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Yasumoto: 52-year-old male) looks up at Shouta in surprise. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Yasumoto: 52-year-old male) looks up at Shouta in surprise. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "安本、驚いて翔太を見る。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Yasumoto", "character:Shouta"],
+              "dialogue": [
+                { "speaker": "Shouta", "text": "（横領の件は後でケジメつけさせます。でも今は…）" }
+              ]
             },
             {
               "panel": 4,
@@ -2047,7 +2248,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Goro Daimon: 62-year-old male, weathered face) understands the situation and accepts it with a nod. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Goro Daimon: 62-year-old male, weathered face) understands the situation and accepts it with a nod. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "社長、状況を察しつつも受け入れる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:President"],
+              "dialogue": [
+                { "speaker": "President", "text": "そうか…安本、無理させたな。" }
+              ]
             }
           ]
         },
@@ -2067,7 +2274,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren: 17-year-old male, dark gray hoodie) unplugs his USB drive, preparing to leave. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren: 17-year-old male, dark gray hoodie) unplugs his USB drive, preparing to leave. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Ren、USBを抜いて立ち去ろうとする。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "データは戻ったし、ついでに安本さんが溶かした金も、隠し口座ハックして戻しといたよ。手数料は引いといたけど。" }
+              ]
             },
             {
               "panel": 2,
@@ -2082,7 +2295,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Matsuda: 58-year-old female, short permed hair) looks at her screen (an online banking page) with joy and disbelief. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Matsuda: 58-year-old female, short permed hair) looks at her screen (an online banking page) with joy and disbelief. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "松田、通帳（ネットバンク画面）を見て歓喜。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Matsuda"],
+              "dialogue": [
+                { "speaker": "Matsuda", "text": "あらやだ！給料払えるどころか、ちょっと増えてるじゃない！" }
+              ]
             },
             {
               "panel": 3,
@@ -2097,7 +2316,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Shouta: 26-year-old male, navy suit) calls out to Ren as he's leaving. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Shouta: 26-year-old male, navy suit) calls out to Ren as he's leaving. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "翔太、Renを呼び止める。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Shouta", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Shouta", "text": "Renさん！…ありがとう。あんたのおかげで、俺も目が覚めました。" }
+              ]
             }
           ]
         },
@@ -2117,7 +2342,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren: 17-year-old male, dark gray hoodie) gives a wave over his shoulder as he leaves, not looking back. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren: 17-year-old male, dark gray hoodie) gives a wave over his shoulder as he leaves, not looking back. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Ren、背中で手を振る。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "いいよ。Ghostを溜め込むなよ、次期社長。" }
+              ]
             },
             {
               "panel": 2,
@@ -2132,7 +2363,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Ren and (Nei: 17-year-old female high school student, platinum blonde bob, white blouse and black sleeveless dress) walk through the crowded, neon-lit streets of Kamata at dusk. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Ren and (Nei: 17-year-old female high school student, platinum blonde bob, white blouse and black sleeveless dress) walk through the crowded, neon-lit streets of Kamata at dusk. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "夕暮れの蒲田の雑踏。RenとNei。",
+              "environment": "env:kamata-street-evening",
+              "characters": ["character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "マスター、お見事でした。しかし、手数料をいただきすぎではありませんか？" }
+              ]
             },
             {
               "panel": 3,
@@ -2148,7 +2385,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren: 17-year-old male, pale skin, sharp half-lidded eyes) looking at his smartphone with a sly smirk, checking his payment. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren: 17-year-old male, pale skin, sharp half-lidded eyes) looking at his smartphone with a sly smirk, checking his payment. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Ren、スマホで残高を見てニヤリ。",
+              "environment": "env:kamata-street-evening",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "技術料だよ。これでしばらくは、平和に寝て暮らせる…" }
+              ]
             },
             {
               "panel": 4,
@@ -2163,7 +2406,11 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Title Card: 'Ghost Hacker - Episode 1 End' in clean white font on a black background. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Title Card: 'Ghost Hacker - Episode 1 End' in clean white font on a black background. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "『Ghost Hacker - Episode 1 End』",
+              "environment": "env:intertitle-black",
+              "characters": [],
+              "dialogue": []
             }
           ]
         }
