@@ -42,7 +42,7 @@ chmod +x k8s/setup.sh
 
 ### 2. Paketo Buildpacksでビルド
 
-**重要**: Paketo Buildpacksは`BP_GO_TARGETS`でパッケージパス（ディレクトリ）を指定する必要があります。
+**重要**: Paketo Buildpacksは1つのターゲットしかサポートしていないため、serverとworkerを**別々のイメージ**としてビルドします。
 
 ```bash
 cd backend
@@ -50,13 +50,21 @@ cd backend
 # 事前にprotoファイルを生成（bufが必要）
 buf generate
 
-# Backendをビルド
-pack build storyboard-editor/backend \
+# Serverイメージをビルド
+pack build storyboard-editor/server \
   --builder paketobuildpacks/builder-jammy-base \
-  --env BP_GO_TARGETS="./cmd/server:server,./cmd/worker:worker"
+  --env BP_GO_TARGETS="./cmd/server"
+
+# Workerイメージをビルド
+pack build storyboard-editor/worker \
+  --builder paketobuildpacks/builder-jammy-base \
+  --env BP_GO_TARGETS="./cmd/worker"
 ```
 
-**注意**: Paketo Buildpacksのビルド環境には`buf`がインストールされていないため、事前に`buf generate`を実行してprotoファイルを生成する必要があります。または、生成されたprotoファイルをコミットしておくことを推奨します。
+**注意**: 
+- Paketo Buildpacksのビルド環境には`buf`がインストールされていないため、事前に`buf generate`を実行してprotoファイルを生成する必要があります。
+- または、生成されたprotoファイルをコミットしておくことを推奨します。
+- Skaffoldを使用する場合、`project-server.toml`と`project-worker.toml`が自動的に`project.toml`としてコピーされます。
 
 ### 3. Skaffoldでデプロイ
 
@@ -67,18 +75,29 @@ skaffold dev --profile dev
 
 ## Paketo Buildpacks設定
 
-### `backend/project.toml`
+### `backend/project-server.toml` / `backend/project-worker.toml`
 
-Paketo Buildpacksの設定ファイル:
+Paketo Buildpacksの設定ファイル。serverとworkerで別々の設定ファイルを使用します:
 
+**project-server.toml**:
 ```toml
 [build]
   [[build.env]]
     name = "BP_GO_TARGETS"
-    value = "./cmd/server:server,./cmd/worker:worker"
+    value = "./cmd/server"
 ```
 
-**重要**: `BP_GO_TARGETS`はパッケージパス（ディレクトリ）を指定する必要があります。`./cmd/server/main.go`ではなく`./cmd/server`を使用してください。
+**project-worker.toml**:
+```toml
+[build]
+  [[build.env]]
+    name = "BP_GO_TARGETS"
+    value = "./cmd/worker"
+```
+
+**重要**: 
+- `BP_GO_TARGETS`はパッケージパス（ディレクトリ）を指定する必要があります。`./cmd/server/main.go`ではなく`./cmd/server`を使用してください。
+- Paketo Buildpacksは1つのターゲットしかサポートしていないため、複数のバイナリをビルドするには別々のイメージとしてビルドする必要があります。
 
 ### ビルドオプション
 
@@ -112,10 +131,12 @@ temporalClient, err := client.Dial(client.Options{
 
 Skaffoldが自動的に以下をフォワードします:
 
-- **Backend**: `localhost:8081`
+- **Server**: `localhost:8081`
 - **Frontend**: `localhost:1421`
 - **Temporal UI**: `localhost:8080`
 - **Temporal Frontend**: `localhost:7233`
+
+**注意**: Workerはバックグラウンドで実行されるため、ポートフォワードは不要です。
 
 ## 手動でのアクセス
 

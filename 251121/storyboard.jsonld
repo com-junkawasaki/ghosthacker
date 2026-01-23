@@ -193,7 +193,7 @@
               "environment": "env:cschool-classroom",
               "characters": ["character:Ren", "character:Nei"],
               "dialogue": [
-                { "speaker": "Narration", "text": "Ghost Hacker。" }
+                { "speaker": "Narration", "text": "Ghost Hacker——静けさの中で、通知は牙をむく。" }
               ]
             }
           ]
@@ -241,7 +241,7 @@
               "environment": "env:cschool-classroom",
               "characters": ["character:Ren", "character:Nei"],
               "dialogue": [
-                { "speaker": "Nei", "text": "C高校、静かすぎて余計に目立つね。" }
+                { "speaker": "Nei", "text": "C高校、静かすぎて…ね、聞こえる？" }
               ]
             }
           ]
@@ -289,7 +289,7 @@
               "environment": "env:cschool-classroom",
               "characters": ["character:Ren"],
               "dialogue": [
-                { "speaker": "Ren", "text": "困ってるなら、言えばいい。黙るほど長引く。" }
+                { "speaker": "Ren", "text": "困ってるなら、言えばいい。…もう始まってるだろ？" }
               ]
             }
           ]
@@ -336,7 +336,7 @@
               "environment": "env:cschool-classroom",
               "characters": ["character:Yuto"],
               "dialogue": [
-                { "speaker": "Yuto", "text": "変なサイト登録しただけで…こんなに来るの？" }
+                { "speaker": "Yuto", "text": "変なサイト登録しただけで…これ、どこまで来るの？" }
               ]
             }
           ]
@@ -380,10 +380,10 @@
               },
               "gh:runwayPrompt": "Insert Shot, top-down, ARIA-style. Phone screen: dozens of missed calls from unknown numbers, spam SMS, and emails titled 'urgent' and 'verification' (no readable long text). shot on 50mm, f/2.0, cinematic live-action.",
               "visual": "スマホ画面。知らない番号の不在着信が並び、迷惑SMSと迷惑メール通知が止まらない。",
-              "environment": "env:smartphone-screen",
+              "environment": "env:sns-timeline",
               "characters": ["character:Yuto"],
               "dialogue": [
-                { "speaker": "Yuto", "text": "通知が怖い…ずっと見られてる気がする。" }
+                { "speaker": "Yuto", "text": "通知が怖い…どこまで見られてるんだよ。" }
               ]
             }
           ]
@@ -431,7 +431,7 @@
               "environment": "env:cschool-classroom",
               "characters": ["character:Nei", "character:Ren", "character:Yuto"],
               "dialogue": [
-                { "speaker": "Nei", "text": "一人で抱えたら潰れるよ。" }
+                { "speaker": "Nei", "text": "一人で抱えたら潰れる。放課後、話そ。" }
               ]
             }
           ]
@@ -527,7 +527,7 @@
               "environment": "env:cschool-hallway",
               "characters": ["character:Yuto", "character:Ren", "character:Nei"],
               "dialogue": [
-                { "speaker": "Yuto", "text": "無料クーポン…メアドと電話、入れた。" }
+                { "speaker": "Yuto", "text": "無料クーポン…メアドと電話、入れた。…やばい？" }
               ]
             }
           ]
@@ -601,6 +601,27 @@
             },
             {
               "panel": 4,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, top-down, ARIA-style. Yuto's email is typed into the breach-check field; a finger hovers over the confirm/search button (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "Yutoのメールを入力。指が確定ボタンの上で止まる。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Yuto"],
+              "dialogue": [
+                { "speaker": "Yuto", "text": "……押すよ？" }
+              ]
+            },
+            {
+              "panel": 5,
               "shot": "Insert Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -690,6 +711,28 @@
             },
             {
               "panel": 4,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Yuto's eyes flick to Ren: 'does that mean they can get in now?'. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "YutoがRenを見る。今この瞬間も、という怖さが浮く。",
+              "environment": "env:cschool-hallway",
+              "characters": ["character:Yuto", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Yuto", "text": "じゃあ…今も入られてる？" }
+              ]
+            },
+            {
+              "panel": 5,
               "shot": "Close-up",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -792,12 +835,34 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren answers immediately: 'first, split the keys'; Nei nods, supportive. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renが即答する。Neiが肯定する。",
+              "environment": "env:cschool-hallway",
+              "characters": ["character:Ren", "character:Nei", "character:Yuto"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "終わりじゃない。鍵を分ける。" },
+                { "speaker": "Nei", "text": "“ここから”だよ。" }
+              ]
+            },
+            {
+              "panel": 5,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Yuto admits he reused the same password across sites, ashamed. shot on 50mm, f/1.8, cinematic live-action.",
               "visual": "俯くYuto。小声で打ち明ける。",
               "environment": "env:cschool-hallway",
               "characters": ["character:Yuto"],
               "dialogue": [
-                { "speaker": "Yuto", "text": "パスワード…同じの、ずっと。" }
+                { "speaker": "Yuto", "text": "パスワード…同じの、ずっと。…どうすればいい？" }
               ]
             }
           ]
@@ -870,6 +935,28 @@
             },
             {
               "panel": 4,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Yuto freezes at the alert; his breath catches. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "警告を見て、Yutoの呼吸が止まる。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Yuto"],
+              "dialogue": [
+                { "speaker": "Yuto", "text": "……来てる。" }
+              ]
+            },
+            {
+              "panel": 5,
               "shot": "Insert Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -960,6 +1047,28 @@
             },
             {
               "panel": 4,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Yuto watches the generated password appear; awe replaces shame. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "長い文字列が出て、Yutoが目を丸くする。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Yuto"],
+              "dialogue": [
+                { "speaker": "Yuto", "text": "こんなの…覚えなくていいの？" }
+              ]
+            },
+            {
+              "panel": 5,
               "shot": "Insert Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -1050,6 +1159,27 @@
             },
             {
               "panel": 4,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Yuto exhales: 'I can do steps'; Ren nods and points to the next one. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Yutoが息を吐く。Renが次の画面へ促す。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Yuto", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Yuto", "text": "手順なら…できる。" }
+              ]
+            },
+            {
+              "panel": 5,
               "shot": "Insert Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -1066,7 +1196,7 @@
               "environment": "env:smartphone-screen",
               "characters": ["character:Ren"],
               "dialogue": [
-                { "speaker": "Ren", "text": "二段階。バックアップコードも確保。" }
+                { "speaker": "Ren", "text": "二段階。バックアップコードも確保。…次はメールだ。" }
               ]
             }
           ]
@@ -1139,6 +1269,49 @@
             },
             {
               "panel": 4,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused natural light, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Yuto's face tightens at the word 'forwarding'; fear turns into urgency. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "『転送』の言葉で、Yutoの顔が固まる。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Yuto"],
+              "dialogue": [
+                { "speaker": "Yuto", "text": "転送…って、勝手に…？" }
+              ]
+            },
+            {
+              "panel": 5,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused natural light, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Sign-in history list shows an unfamiliar device/location highlighted (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "ログイン履歴に、見覚えのない端末/場所が混じっている。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "ここ。心当たりないなら、切る。" }
+              ]
+            },
+            {
+              "panel": 6,
               "shot": "Insert Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -1229,6 +1402,49 @@
             },
             {
               "panel": 4,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused natural light, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Yuto's finger hesitates over the final toggle; he chooses to protect himself. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "最後の設定を押す指が止まる。でも、押す。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Yuto"],
+              "dialogue": [
+                { "speaker": "Yuto", "text": "……もう、怖がるのやめる。" }
+              ]
+            },
+            {
+              "panel": 5,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused natural light, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Unknown callers silenced; spam identification enabled; confirmation icons only (no text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "未知の番号は消音。迷惑判定はON。盾のアイコンだけが残る。",
+              "environment": "env:smartphone-screen",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Narration", "text": "入口が、閉じる。" }
+              ]
+            },
+            {
+              "panel": 6,
               "shot": "Insert Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -1277,6 +1493,27 @@
             },
             {
               "panel": 2,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A password manager vault icon and a short checklist of steps (icons only, no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "保管庫のアイコンと、短い手順のチェック。やることが“形”になる。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Yuto"],
+              "dialogue": [
+                { "speaker": "Narration", "text": "怖さは、手順に変えられる。" }
+              ]
+            },
+            {
+              "panel": 3,
               "shot": "Medium Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -1326,6 +1563,28 @@
             },
             {
               "panel": 2,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Yuto asks: 'which address leaked?'; Ren answers: 'assume it did and swap per site'. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Yutoが不安を言葉にする。Renは運用で返す。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Yuto", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Yuto", "text": "どのメアドが漏れたの…？" },
+                { "speaker": "Ren", "text": "漏れた前提で貼り替える。サイトごとに。" }
+              ]
+            },
+            {
+              "panel": 3,
               "shot": "Insert Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -1342,7 +1601,7 @@
               "environment": "env:smartphone-screen",
               "characters": ["character:Nei"],
               "dialogue": [
-                { "speaker": "Nei", "text": "メアドも分ける。漏れても“そのサイトだけ”で止まる。" }
+                { "speaker": "Nei", "text": "メアドも分ける。漏れても“そのサイトだけ”で止まる。…今から貼り替える？" }
               ]
             }
           ]
@@ -1373,6 +1632,28 @@
             },
             {
               "panel": 2,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Yuto stares at the checklist, overwhelmed; Nei taps the first step gently. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Yutoが紙を見て固まる。Neiが一番上を指で叩く。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Yuto", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Yuto", "text": "多すぎ…無理…" },
+                { "speaker": "Nei", "text": "一個ずつ。最初だけ一緒に。" }
+              ]
+            },
+            {
+              "panel": 3,
               "shot": "Wide Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -1389,7 +1670,7 @@
               "environment": "env:quiet-room",
               "characters": ["character:Ren", "character:Nei", "character:Yuto"],
               "dialogue": [
-                { "speaker": "Nei", "text": "悪いのは“仕組み”を悪用する側。対処を知ればいい。" }
+                { "speaker": "Nei", "text": "悪いのは“仕組み”を悪用する側。対処を知ればいい。…次、全部洗い出そ。" }
               ]
             }
           ]
@@ -1421,6 +1702,27 @@
             },
             {
               "panel": 2,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A list of app icons grouped by category: email, social, shopping, games (no text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "アプリがカテゴリ別に並ぶ。メール、SNS、買い物、ゲーム…。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "まず“入口”。メールとSNSから。" }
+              ]
+            },
+            {
+              "panel": 3,
               "shot": "Insert Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -1517,6 +1819,27 @@
             },
             {
               "panel": 2,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Phone screen stays dark; no notifications; the silence feels suspicious. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "画面が暗いまま。静かすぎて、逆に怖い。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Yuto"],
+              "dialogue": [
+                { "speaker": "Yuto", "text": "……静かすぎる。" }
+              ]
+            },
+            {
+              "panel": 3,
               "shot": "Wide Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -1565,6 +1888,27 @@
             },
             {
               "panel": 2,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Yuto braces for impact, then realizes the phone didn't ring—only a silent banner. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "身構えるYuto。でも音が鳴らないことに気づく。",
+              "environment": "env:home-desk",
+              "characters": ["character:Yuto"],
+              "dialogue": [
+                { "speaker": "Yuto", "text": "……鳴ってない？" }
+              ]
+            },
+            {
+              "panel": 3,
               "shot": "Insert Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -1581,7 +1925,7 @@
               "environment": "env:smartphone-screen",
               "characters": ["character:Yuto"],
               "dialogue": [
-                { "speaker": "Yuto", "text": "…止まった。" }
+                { "speaker": "Yuto", "text": "…止まった。…これで、終わり？" }
               ]
             }
           ]
@@ -1629,7 +1973,7 @@
               "environment": "env:cschool-hallway",
               "characters": ["character:Yuto"],
               "dialogue": [
-                { "speaker": "Yuto", "text": "ありがとう。…助かった。" }
+                { "speaker": "Yuto", "text": "ありがとう。…助かった。…でも、他の人も同じ目に遭う？" }
               ]
             }
           ]
@@ -1661,6 +2005,27 @@
             },
             {
               "panel": 2,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, top-down, ARIA-style. A minimalist forum post draft: a few bullet icons and checkmarks, no readable text. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "投稿の下書き。箇条書きの点とチェックだけ。言葉は短く、順番だけを残す。",
+              "environment": "env:news-hacker-board",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "凍結→分離→入口を塞ぐ。順番だけ書く。" }
+              ]
+            },
+            {
+              "panel": 3,
               "shot": "Wide Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -1677,8 +2042,8 @@
               "environment": "env:news-hacker-board",
               "characters": ["character:Ren", "character:Nei"],
               "dialogue": [
-                { "speaker": "Nei", "text": "また誰かが困るよ。" },
-                { "speaker": "Ren", "text": "だから書く。" }
+                { "speaker": "Nei", "text": "…返事、来るかな。" },
+                { "speaker": "Ren", "text": "来る。速い人がいる。" }
               ]
             }
           ]
@@ -1720,6 +2085,27 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A forum post gets submitted; a small 'posted' checkmark icon appears (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "投稿が送信される。小さなチェックが点いて、戻れなくなる。",
+              "environment": "env:news-hacker-board",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Narration", "text": "押した瞬間、世界に出る。" }
+              ]
+            },
+            {
+              "panel": 3,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
               "gh:runwayPrompt": "Insert Shot, ARIA-style. Forum thread UI: only short usernames visible. 'null_pencil_axe' posts a checklist (no readable text), replies from 'aka_chise1' and '3pa11er3apiv0t' appear. shot on 50mm, f/2.0, cinematic live-action.",
               "visual": "掲示板スレ。短いHNだけが並び、チェックリストと短い返信が続く。",
               "environment": "env:news-hacker-board",
@@ -1728,6 +2114,28 @@
                 { "speaker": "NewsHacker", "text": "（null_pencil_axe）まず凍結、次に分離。使い回しは全部死ぬ。" },
                 { "speaker": "NewsHacker", "text": "（aka_chise1）“電話”は心理。設定で黙らせろ。" },
                 { "speaker": "NewsHacker", "text": "（3pa11er3apiv0t）漏えいは前提。運用で負けない。" }
+              ]
+            },
+            {
+              "panel": 4,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei leans in, startled by the rapid replies; Ren stays calm. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "返信が一気に増えて、Neiが思わず身を乗り出す。Renは静か。",
+              "environment": "env:ren-office",
+              "characters": ["character:Nei", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "速っ…この人たち、何者？" },
+                { "speaker": "Ren", "text": "知らない。HNだけ。" }
               ]
             }
           ]
@@ -1759,6 +2167,27 @@
             },
             {
               "panel": 2,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. The thread scrolls; two short handles are highlighted as helpful replies (no readable long text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "スレが流れる。目立つHNが二つ、蛍光みたいに浮かぶ。",
+              "environment": "env:news-hacker-board",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Narration", "text": "顔は見えない。でも、手順は本物。" }
+              ]
+            },
+            {
+              "panel": 3,
               "shot": "Close-up",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -1776,7 +2205,7 @@
               "environment": "env:ren-office",
               "characters": ["character:Ren"],
               "dialogue": [
-                { "speaker": "Ren", "text": "反応が速い…いい。" }
+                { "speaker": "Ren", "text": "反応が速い…この場所は、使える。" }
               ]
             }
           ]
@@ -1807,6 +2236,28 @@
             },
             {
               "panel": 2,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Ren's eyes reflect the forum glow; calm resolve: 'we can't erase the past, only change behavior'. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "掲示板の光が、Renの瞳に映る。消せないなら、負け方を変える。",
+              "environment": "env:ren-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "消せないなら、負けない癖にする。" }
+              ]
+            },
+            {
+              "panel": 3,
               "shot": "Wide Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -1823,7 +2274,7 @@
               "environment": "env:news-hacker-board",
               "characters": [],
               "dialogue": [
-                { "speaker": "Narration", "text": "Ghostは、個人の弱さじゃなく“社会の癖”から生まれる。" }
+                { "speaker": "Narration", "text": "Ghostは、個人の弱さじゃなく“社会の癖”から生まれる。…そして翌日。" }
               ]
             }
           ]
@@ -1854,6 +2305,28 @@
             },
             {
               "panel": 2,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Yuto speaks quietly: he wants to clean the rest of his accounts too. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Yutoが、少しだけ胸を張る。次を自分から言う。",
+              "environment": "env:cschool-hallway",
+              "characters": ["character:Yuto", "character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Yuto", "text": "他のアカウントも…全部、片付けたい。" }
+              ]
+            },
+            {
+              "panel": 3,
               "shot": "Medium Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -1871,7 +2344,7 @@
               "characters": ["character:Yuto", "character:Ren", "character:Nei"],
               "dialogue": [
                 { "speaker": "Yuto", "text": "次、誰か困ってたら…俺も言う。" },
-                { "speaker": "Ren", "text": "それでいい。" }
+                { "speaker": "Ren", "text": "それでいい。次は“続け方”だ。" }
               ]
             }
           ]
@@ -1902,6 +2375,49 @@
             },
             {
               "panel": 2,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused natural light, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei suggests splitting email addresses per service; Yuto looks surprised; Ren nods. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Neiが“メアドも分けよう”と言う。Yutoが目を丸くする。",
+              "environment": "env:cschool-hallway",
+              "characters": ["character:Nei", "character:Yuto", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "メアドもサイトごとに分けよ。漏れてもそこで止まる。" },
+                { "speaker": "Yuto", "text": "メアドも…？" }
+              ]
+            },
+            {
+              "panel": 3,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused natural light, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. An email alias feature generates a per-site address; simple icons only, no readable text. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "メール別名を作る。サイトごとに“別の入口”が生まれる。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Nei"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "入口を分ける。静かさを守るために。" }
+              ]
+            },
+            {
+              "panel": 4,
               "shot": "Insert Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -1913,12 +2429,12 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A password manager 'security recommendations' screen shows 'reused passwords: 0' after cleanup. shot on 50mm, f/2.0, cinematic live-action.",
-              "visual": "パスワードマネジャーの推奨表示。使い回しがゼロになっている。",
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A password manager 'security recommendations' screen shows 'reused passwords: 0' after cleanup (no readable long text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "推奨表示。使い回しがゼロ。小さな“勝ち”が数字になる。",
               "environment": "env:smartphone-screen",
               "characters": ["character:Ren"],
               "dialogue": [
-                { "speaker": "Ren", "text": "追跡も減らす。余計な情報は渡さない。" }
+                { "speaker": "Ren", "text": "最後は“習慣”。勝ち方を、毎日に落とす。" }
               ]
             }
           ]
@@ -1949,6 +2465,27 @@
             },
             {
               "panel": 2,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A simple weekly security habit checklist with icons (vault, mail alias, shield, passkey) and checkmarks, no readable text. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "週一の点検メモ。保管庫、別名、盾、パスキー。アイコンで“癖”にする。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "週に一回だけ点検する。入口と鍵と復旧先。" }
+              ]
+            },
+            {
+              "panel": 3,
               "shot": "Wide Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -1965,7 +2502,8 @@
               "environment": "env:cschool-hallway",
               "characters": ["character:Ren", "character:Nei"],
               "dialogue": [
-                { "speaker": "Nei", "text": "小さい勝ち、でも本物。" }
+                { "speaker": "Nei", "text": "…その癖、誰に教わったの？" },
+                { "speaker": "Ren", "text": "ネット。顔も名前も知らない人たち。" }
               ]
             }
           ]
@@ -1997,6 +2535,49 @@
             },
             {
               "panel": 2,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei speaks with a calm teacher tone; behind her, a faint portrait of Rolf Landauer appears like an AR poster overlay (no readable text). shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Neiの背後に、ランダウアーの肖像がぼんやり浮かぶ（ARみたいに）。",
+              "environment": "env:cschool-hallway",
+              "characters": ["character:Nei", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "ランダウアーの言葉。『情報は物質』。" },
+                { "speaker": "Nei", "text": "だから“通話の情報”も、必ずどこかで熱や電荷として動く。" }
+              ]
+            },
+            {
+              "panel": 3,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A smartphone shows a VoIP/SIP analysis indicator switching on; a ghost-like ripple emerges from call signal graphs (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "SIPデバイスの画面。通話の波形から、Ghostみたいな“揺れ”が浮き上がる。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "SIPデバイスで“出現”させられる。情報を物理に固定できるから。" }
+              ]
+            },
+            {
+              "panel": 4,
               "shot": "Close-up",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -2061,7 +2642,29 @@
               "environment": "env:ren-office",
               "characters": ["character:Nei", "character:Ren"],
               "dialogue": [
-                { "speaker": "Nei", "text": "Ren、君…ネットだと別の顔だね。" }
+                { "speaker": "Nei", "text": "Ren、君…ネットだと別の顔だね。…誰なの？" }
+              ]
+            },
+            {
+              "panel": 3,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Ren pauses mid-typing; his expression is gentle but guarded, refusing to reveal his handle. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Renの指が止まる。優しい顔のまま、線を引く。",
+              "environment": "env:ren-office",
+              "characters": ["character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "名前は言わない。でも、困ってる人には届くように書く。" }
               ]
             }
           ]
@@ -2087,8 +2690,8 @@
               "environment": "env:ren-office",
               "characters": ["character:Nei", "character:Ren"],
               "dialogue": [
-                { "speaker": "Nei", "text": "反応、増えてる。" },
-                { "speaker": "Ren", "text": "必要な人がいる。" }
+                { "speaker": "Nei", "text": "……名前、言わないんだ。" },
+                { "speaker": "Ren", "text": "言わない。必要なのは“手順”だけ。" }
               ]
             },
             {
@@ -2110,6 +2713,27 @@
               "characters": ["character:Ren"],
               "dialogue": [
                 { "speaker": "Ren", "text": "匿名の方が、届く言葉がある。" }
+              ]
+            },
+            {
+              "panel": 3,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Ren's room at night: laptop glow, quiet phone, city lights at the window—calm after the storm. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "夜の部屋。窓の街明かり、机の薄い光。スマホは静か。",
+              "environment": "env:ren-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "…今夜も、静かでいてくれ。" }
               ]
             }
           ]
@@ -2157,6 +2781,27 @@
               "characters": ["character:Ren"],
               "dialogue": [
                 { "speaker": "Ren", "text": "静かだ。こういう夜が増えればいい。" }
+              ]
+            },
+            {
+              "panel": 3,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused natural light, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A phone screen shows a single new message request / notification badge (no readable text). The quiet is broken by one small red dot. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "静かな画面に、小さな赤い点がひとつだけ灯る。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Narration", "text": "静けさの裏で、次の“相談”が芽を出す。" }
               ]
             }
           ]
@@ -2253,6 +2898,28 @@
               "characters": [],
               "dialogue": [
                 { "speaker": "Narration", "text": "鍵は、人間の頭じゃなく“箱”に預ける。" }
+              ]
+            },
+            {
+              "panel": 3,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused natural light, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A smartphone SNS timeline scrolls: blurred posts and reaction icons, one harsh-looking post highlighted but unreadable. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "SNSのタイムライン。文字は読めないのに、悪意だけは伝わる。",
+              "environment": "env:sns-timeline",
+              "characters": ["character:Nei", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "…ねえ、これ…学校の話じゃない？" },
+                { "speaker": "Ren", "text": "明日、確認する。静かじゃない“入口”だ。" }
               ]
             }
           ]

@@ -1,13 +1,7 @@
 [build]
-  [[build.env]]
-    name = "BP_GO_BUILD_FLAGS"
-    value = "-ldflags=-s -w"
-
-  # Paketo Buildpacks requires package paths (directories), not file paths
-  [[build.env]]
-    name = "BP_GO_TARGETS"
-    value = "./cmd/server:server,./cmd/worker:worker"
-
+  # Use custom build script for multiple binaries
+  # BP_GO_TARGETS is removed - Paketo doesn't support multiple targets directly
+  # Instead, we'll use a build script approach
 
 [metadata]
   include-files = ["server", "worker"]

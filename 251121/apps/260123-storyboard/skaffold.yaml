@@ -7,23 +7,32 @@ build:
   local:
     push: false
   artifacts:
-    - image: storyboard-editor/backend
+    - image: storyboard-editor/server
       context: ./backend
-      buildpacks:
-        builder: paketobuildpacks/builder-jammy-base
-        buildpacks:
-          - paketo-buildpacks/go-dist
-          - paketo-buildpacks/go-build
-        env:
-          - BP_GO_TARGETS=./cmd/server:server,./cmd/worker:worker
+      docker:
+        dockerfile: Dockerfile.server
+        target: production
       sync:
         manual:
           - src: "**/*.go"
-            dest: /workspace
+            dest: /app
           - src: "**/*.mod"
-            dest: /workspace
+            dest: /app
           - src: "**/*.sum"
-            dest: /workspace
+            dest: /app
+    - image: storyboard-editor/worker
+      context: ./backend
+      docker:
+        dockerfile: Dockerfile.worker
+        target: production
+      sync:
+        manual:
+          - src: "**/*.go"
+            dest: /app
+          - src: "**/*.mod"
+            dest: /app
+          - src: "**/*.sum"
+            dest: /app
     - image: storyboard-editor/frontend
       context: .
       docker:
@@ -46,14 +55,15 @@ deploy:
       - k8s/postgresql.yaml
       - k8s/scaffold-install.yaml
       - k8s/temporal-cluster.yaml
-      - k8s/backend-deployment.yaml
-      - k8s/backend-service.yaml
+      - k8s/server-deployment.yaml
+      - k8s/server-service.yaml
+      - k8s/worker-deployment.yaml
       - k8s/frontend-deployment.yaml
       - k8s/frontend-service.yaml
 
 portForward:
   - resourceType: service
-    resourceName: storyboard-backend
+    resourceName: storyboard-server
     namespace: storyboard-editor
     port: 8081
     localPort: 8081
@@ -79,23 +89,32 @@ profiles:
       local:
         push: false
       artifacts:
-        - image: storyboard-editor/backend
+        - image: storyboard-editor/server
           context: ./backend
-          buildpacks:
-            builder: paketobuildpacks/builder-jammy-base
-            buildpacks:
-              - paketo-buildpacks/go-dist
-              - paketo-buildpacks/go-build
-            env:
-              - BP_GO_TARGETS=./cmd/server/main.go:server,./cmd/worker/main.go:worker
+          docker:
+            dockerfile: Dockerfile.server
+            target: development
           sync:
             manual:
               - src: "**/*.go"
-                dest: /workspace
+                dest: /app
               - src: "**/*.mod"
-                dest: /workspace
+                dest: /app
               - src: "**/*.sum"
-                dest: /workspace
+                dest: /app
+        - image: storyboard-editor/worker
+          context: ./backend
+          docker:
+            dockerfile: Dockerfile.worker
+            target: development
+          sync:
+            manual:
+              - src: "**/*.go"
+                dest: /app
+              - src: "**/*.mod"
+                dest: /app
+              - src: "**/*.sum"
+                dest: /app
         - image: storyboard-editor/frontend
           context: .
           docker:
@@ -118,8 +137,9 @@ profiles:
           - k8s/postgresql.yaml
           - k8s/scaffold-install.yaml
           - k8s/temporal-cluster.yaml
-          - k8s/backend-deployment.yaml
-          - k8s/backend-service.yaml
+          - k8s/server-deployment.yaml
+          - k8s/server-service.yaml
+          - k8s/worker-deployment.yaml
           - k8s/frontend-deployment.yaml
           - k8s/frontend-service.yaml
         flags:

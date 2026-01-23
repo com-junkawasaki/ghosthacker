@@ -1,0 +1,12 @@
+[build]
+  [[build.env]]
+    name = "BP_GO_BUILD_FLAGS"
+    value = "-ldflags=-s -w"
+
+  # Paketo Buildpacks: single target for worker binary
+  [[build.env]]
+    name = "BP_GO_TARGETS"
+    value = "./cmd/worker"
+
+[metadata]
+  include-files = ["worker"]
