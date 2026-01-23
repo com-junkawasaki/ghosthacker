@@ -190,9 +190,10 @@ func (s *StoryboardService) saveImage(filePath, episodeID string, pageNumber, pa
 
 	log.Printf("Saved image to: %s", imagePath)
 
-	// Return relative path from workspace root for URL
-	relPath := filepath.Join("251121", "images", "episodes", episodeID, "pages", fmt.Sprintf("%d", pageNumber), filename)
-	return relPath, nil
+	// Return URL path for accessing the image via HTTP
+	// Format: /images/episodes/{episode_id}/pages/{page_number}/panel_{panel}_{timestamp}.png
+	urlPath := fmt.Sprintf("/images/episodes/%s/pages/%d/%s", episodeID, pageNumber, filename)
+	return urlPath, nil
 }
 
 func (s *StoryboardService) buildImagePrompt(panelData *storyboardpb.PanelData, storyboardPath string) (string, error) {

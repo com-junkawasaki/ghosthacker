@@ -83,3 +83,32 @@ export async function getEpisodePanels(
 	
 	return response.panels;
 }
+
+/**
+ * Generate image for a panel using backend API
+ */
+export async function generatePanelImage(
+	filePath: string,
+	episodeId: string,
+	pageNumber: number,
+	panel: number,
+	panelData: any
+) {
+	const response = await storyboardClient.generatePanelImage({
+		filePath,
+		episodeId,
+		pageNumber,
+		panel,
+		panelData
+	});
+
+	if (!response || typeof response !== 'object') {
+		throw new Error('Invalid response: response is not an object');
+	}
+
+	if (!response.success) {
+		throw new Error(response.message || 'Failed to generate image');
+	}
+
+	return response;
+}

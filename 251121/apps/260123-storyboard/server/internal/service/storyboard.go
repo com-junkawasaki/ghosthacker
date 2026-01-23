@@ -192,7 +192,26 @@ func (s *StoryboardService) UpdatePanel(
 					}
 
 					if req.Msg.PanelData.ImagePrompt != "" {
-						panel["imagePrompt"] = req.Msg.PanelData.ImagePrompt
+						panel["gh:imagePrompt"] = req.Msg.PanelData.ImagePrompt
+					}
+
+					// Handle generated images history
+					if len(req.Msg.PanelData.GeneratedImages) > 0 {
+						generatedImages := make([]interface{}, len(req.Msg.PanelData.GeneratedImages))
+						for j, img := range req.Msg.PanelData.GeneratedImages {
+							generatedImages[j] = map[string]interface{}{
+								"gh:imageUrl":   img.ImageUrl,
+								"gh:imagePrompt": img.ImagePrompt,
+								"gh:generatedAt": img.GeneratedAt,
+								"gh:model":      img.Model,
+							}
+						}
+						panel["gh:generatedImages"] = generatedImages
+					}
+
+					// Handle current image index
+					if req.Msg.PanelData.CurrentImageIndex >= 0 {
+						panel["gh:currentImageIndex"] = req.Msg.PanelData.CurrentImageIndex
 					}
 
 					if req.Msg.PanelData.CameraDirection != "" {
@@ -470,6 +489,44 @@ func (s *StoryboardService) GetEpisodePanels(
 
 			if imagePrompt, ok := panel["gh:imagePrompt"].(string); ok {
 				panelData.ImagePrompt = imagePrompt
+			}
+
+			// Load generated images history
+			if generatedImages, ok := panel["gh:generatedImages"].([]interface{}); ok {
+				panelData.GeneratedImages = make([]*storyboardpb.GeneratedImage, 0, len(generatedImages))
+				for _, img := range generatedImages {
+					imgMap, ok := img.(map[string]interface{})
+					if !ok {
+						continue
+					}
+					generatedImg := &storyboardpb.GeneratedImage{}
+					if url, ok := imgMap["gh:imageUrl"].(string); ok {
+						generatedImg.ImageUrl = url
+					}
+					if prompt, ok := imgMap["gh:imagePrompt"].(string); ok {
+						generatedImg.ImagePrompt = prompt
+					}
+					if timestamp, ok := imgMap["gh:generatedAt"].(float64); ok {
+						generatedImg.GeneratedAt = int64(timestamp)
+					}
+					if model, ok := imgMap["gh:model"].(string); ok {
+						generatedImg.Model = model
+					}
+					panelData.GeneratedImages = append(panelData.GeneratedImages, generatedImg)
+				}
+			}
+
+			// Load current image index
+			if idx, ok := panel["gh:currentImageIndex"].(float64); ok {
+				panelData.CurrentImageIndex = int32(idx)
+			} else if len(panelData.GeneratedImages) > 0 {
+				// Default to last image if index not set
+				panelData.CurrentImageIndex = int32(len(panelData.GeneratedImages) - 1)
+			}
+
+			// Set current image URL from history if available
+			if len(panelData.GeneratedImages) > 0 && panelData.CurrentImageIndex >= 0 && int(panelData.CurrentImageIndex) < len(panelData.GeneratedImages) {
+				panelData.GeneratedImageUrl = panelData.GeneratedImages[panelData.CurrentImageIndex].ImageUrl
 			}
 
 			panels = append(panels, &storyboardpb.Panel{

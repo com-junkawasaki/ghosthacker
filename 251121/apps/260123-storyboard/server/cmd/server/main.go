@@ -33,6 +33,13 @@ func main() {
 	path, handler := storyboardpbconnect.NewStoryboardServiceHandler(storyboardService)
 	mux.Handle(path, handler)
 
+	// Serve static images
+	imagesDir := filepath.Join(workspaceRoot, "251121", "images")
+	if _, err := os.Stat(imagesDir); !os.IsNotExist(err) {
+		mux.Handle("/images/", http.StripPrefix("/images/", http.FileServer(http.Dir(imagesDir))))
+		log.Printf("Serving images from: %s", imagesDir)
+	}
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8081"

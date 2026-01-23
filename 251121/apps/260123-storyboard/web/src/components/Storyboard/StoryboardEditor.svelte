@@ -188,6 +188,8 @@
 		<StoryboardPage
 			{panels}
 			{currentPage}
+			episodeId={selectedEpisode}
+			storyboardPath={storyboardPath}
 			on:update={({ detail }) =>
 				handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
 		/>

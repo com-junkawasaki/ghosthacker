@@ -5,6 +5,8 @@
 
 	export let panels: Panel[] = [];
 	export let currentPage: number = 1;
+	export let episodeId: string = '';
+	export let storyboardPath: string = '';
 
 	const dispatch = createEventDispatcher();
 
@@ -39,6 +41,8 @@
 			{#each pagePanels as panel (panel.panel)}
 				<StoryboardPanel
 					{panel}
+					episodeId={episodeId}
+					storyboardPath={storyboardPath}
 					on:update={(e) => handlePanelUpdate(panel.panel, e.detail)}
 				/>
 			{/each}

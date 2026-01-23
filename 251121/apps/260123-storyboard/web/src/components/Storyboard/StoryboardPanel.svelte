@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import type { Panel, Dialogue } from '$lib/gen/proto/storyboard_pb';
+	import type { Panel, Dialogue, GeneratedImage, PanelData } from '$lib/gen/proto/storyboard_pb';
 	import { PanelDataSchema, DialogueSchema } from '$lib/gen/proto/storyboard_pb';
 	import { create } from '@bufbuild/protobuf';
-	import { generateImage, buildImagePrompt } from '$lib/ai/openrouter-image';
+	import { generatePanelImage } from '$lib/client/storyboard-client';
 
 	export let panel: Panel;
+	export let episodeId: string = '';
+	export let storyboardPath: string = '';
 
 	const dispatch = createEventDispatcher();
 
@@ -19,10 +21,27 @@
 	let environment = panel.data?.environment ?? '';
 	let shot = panel.data?.shot ?? '';
 	let runwayPrompt = panel.data?.runwayPrompt ?? '';
-	let generatedImageUrl = panel.data?.generatedImageUrl ?? '';
-	let imagePrompt = panel.data?.imagePrompt ?? '';
+	let generatedImages: GeneratedImage[] = panel.data?.generatedImages ?? [];
+	let currentImageIndex = panel.data?.currentImageIndex ?? (generatedImages.length > 0 ? generatedImages.length - 1 : -1);
 	let generatingImage = false;
 	let imageError = '';
+
+	// Computed: current image URL (convert relative path to full URL)
+	$: currentImageUrl = currentImageIndex >= 0 && currentImageIndex < generatedImages.length 
+		? (() => {
+			const url = generatedImages[currentImageIndex]?.imageUrl ?? '';
+			if (!url) return '';
+			// If it's already a full URL (data URL or http), return as is
+			if (url.startsWith('http') || url.startsWith('data:')) {
+				return url;
+			}
+			// Otherwise, prepend backend base URL
+			const baseUrl = typeof window !== 'undefined' 
+				? (window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin)
+				: 'http://localhost:8081';
+			return baseUrl + url;
+		})()
+		: '';
 
 	function startEdit() {
 		editing = true;
@@ -39,8 +58,8 @@
 			cutNumber: cutNumber,
 			shot: shot,
 			runwayPrompt: runwayPrompt,
-			generatedImageUrl: generatedImageUrl,
-			imagePrompt: imagePrompt,
+			generatedImages: generatedImages,
+			currentImageIndex: currentImageIndex,
 		});
 
 		dispatch('update', updatedData);
@@ -59,49 +78,49 @@
 		environment = panel.data?.environment ?? '';
 		shot = panel.data?.shot ?? '';
 		runwayPrompt = panel.data?.runwayPrompt ?? '';
-		generatedImageUrl = panel.data?.generatedImageUrl ?? '';
-		imagePrompt = panel.data?.imagePrompt ?? '';
+		generatedImages = panel.data?.generatedImages ?? [];
+		currentImageIndex = panel.data?.currentImageIndex ?? (generatedImages.length > 0 ? generatedImages.length - 1 : -1);
 		imageError = '';
 	}
 
 	async function handleGenerateImage() {
-		if (generatingImage) return;
+		if (generatingImage || !episodeId) return;
 
 		generatingImage = true;
 		imageError = '';
 
 		try {
-			// Build prompt from visual note and content
-			const prompt = buildImagePrompt(visualNote, {
-				characters,
-				environment,
-				shot,
+			const panelData = create(PanelDataSchema, {
+				characters: characters,
 				dialogue: dialogues,
-				cameraDirection,
+				environment: environment,
+				visualNote: visualNote,
+				cameraDirection: cameraDirection,
+				durationSeconds: durationSeconds,
+				cutNumber: cutNumber,
+				shot: shot,
+				runwayPrompt: runwayPrompt,
 			});
 
-			if (!prompt.trim()) {
-				imageError = 'Please add a visual note or content to generate an image';
-				return;
-			}
+			console.log('[StoryboardPanel] Generating image via backend API');
 
-			imagePrompt = prompt;
-			console.log('[StoryboardPanel] Generating image with prompt:', prompt);
+			const result = await generatePanelImage(
+				storyboardPath,
+				episodeId,
+				panel.pageNumber,
+				panel.panel,
+				panelData
+			);
 
-			const result = await generateImage({
-				prompt,
-				model: 'google/gemini-3-pro-image-preview',
-				aspectRatio: '16:9',
-				imageSize: '1024x1024',
-			});
-
-			if (result.success && result.imageUrl) {
-				generatedImageUrl = result.imageUrl;
+			if (result.success && result.generatedImage) {
+				// Add new image to history
+				generatedImages = [...generatedImages, result.generatedImage];
+				currentImageIndex = generatedImages.length - 1;
 				console.log('[StoryboardPanel] Image generated successfully');
 				// Auto-save after generation
 				saveEdit();
 			} else {
-				imageError = result.error || 'Failed to generate image';
+				imageError = result.message || 'Failed to generate image';
 				console.error('[StoryboardPanel] Image generation failed:', imageError);
 			}
 		} catch (err) {
@@ -110,6 +129,17 @@
 		} finally {
 			generatingImage = false;
 		}
+	}
+
+	function navigateImage(direction: 'prev' | 'next') {
+		if (generatedImages.length === 0) return;
+
+		if (direction === 'prev') {
+			currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : generatedImages.length - 1;
+		} else {
+			currentImageIndex = currentImageIndex < generatedImages.length - 1 ? currentImageIndex + 1 : 0;
+		}
+		saveEdit();
 	}
 
 	function addDialogue() {
@@ -188,15 +218,35 @@
 					{#if imageError}
 						<div class="image-error">{imageError}</div>
 					{/if}
-					{#if imagePrompt}
-						<div class="image-prompt-preview">
-							<small>Prompt: {imagePrompt}</small>
+				</div>
+			{/if}
+			{#if currentImageUrl}
+				<div class="generated-image-container">
+					{#if generatedImages.length > 1}
+						<button
+							type="button"
+							on:click={() => navigateImage('prev')}
+							class="image-nav-btn image-nav-prev"
+							title="Previous image"
+						>
+							←
+						</button>
+					{/if}
+					<img src={currentImageUrl} alt="Generated image" class="generated-image" />
+					{#if generatedImages.length > 1}
+						<button
+							type="button"
+							on:click={() => navigateImage('next')}
+							class="image-nav-btn image-nav-next"
+							title="Next image"
+						>
+							→
+						</button>
+						<div class="image-counter">
+							{currentImageIndex + 1} / {generatedImages.length}
 						</div>
 					{/if}
 				</div>
-			{/if}
-			{#if generatedImageUrl}
-				<img src={generatedImageUrl} alt="Generated image" class="generated-image" />
 			{:else}
 				<div class="visual-placeholder">
 					<div class="placeholder-text">生成画</div>
@@ -491,14 +541,63 @@
 		font-size: 0.75rem;
 	}
 
-	.image-prompt-preview {
-		margin-top: 0.5rem;
-		padding: 0.5rem;
-		background: #f0f0f0;
+	.generated-image-container {
+		position: relative;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.generated-image {
+		width: 100%;
+		height: auto;
+		border-radius: 4px;
+		object-fit: contain;
+		max-height: 300px;
+	}
+
+	.image-nav-btn {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		background: rgba(0, 0, 0, 0.6);
+		color: white;
+		border: none;
+		border-radius: 50%;
+		width: 32px;
+		height: 32px;
+		cursor: pointer;
+		font-size: 1.2rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 10;
+		transition: background 0.2s;
+	}
+
+	.image-nav-btn:hover {
+		background: rgba(0, 0, 0, 0.8);
+	}
+
+	.image-nav-prev {
+		left: 8px;
+	}
+
+	.image-nav-next {
+		right: 8px;
+	}
+
+	.image-counter {
+		position: absolute;
+		bottom: 8px;
+		right: 8px;
+		background: rgba(0, 0, 0, 0.6);
+		color: white;
+		padding: 4px 8px;
 		border-radius: 4px;
 		font-size: 0.75rem;
-		color: #666;
-		word-break: break-word;
+		z-index: 10;
 	}
 
 	/* 内容列 */
