@@ -5892,7 +5892,14 @@
                 "gh:angle": "dynamic tracking",
                 "gh:movement": "handheld or tracking shot, subtle motion blur"
               },
-              "gh:runwayPrompt": "Action Shot, dynamic tracking, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Nei:1.2) swipes her tablet rapidly; a luminous supply-chain line graph expands outward from the vendor console, branching to other client IDs. motion blur, controlled gesture. shot on 35mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Action Shot, dynamic tracking, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Nei:1.2) swipes her tablet rapidly; a luminous supply-chain line graph expands outward from the vendor console, branching to other client IDs. motion blur, controlled gesture. shot on 35mm, f/2.0, cinematic live-action.",
+              "visual": "Neiが指を走らせると、委託先の線が枝分かれしていく。仮面（社長Ghost）の糸が“外”へも伸びているのが見える。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Nei", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "委託先の線、分岐してる。" },
+                { "speaker": "Ren", "text": "善意の穴は、外まで繋がる。" }
+              ]
             },
             {
               "panel": 2,
@@ -5907,7 +5914,13 @@
                 "gh:focus": "deep focus with emphasized subject",
                 "gh:angle": "dynamic angle"
               },
-              "gh:runwayPrompt": "Full Page Splash, dynamic angle, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Full page splash: a glowing network map and vendor remote-support graph fills the space; one branch is tagged 'transport / logistics' and pulses softly like a heartbeat. shot on 28mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Full Page Splash, dynamic angle, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Full page splash: a glowing network map and vendor remote-support graph fills the space; one branch is tagged 'transport / logistics' and pulses softly like a heartbeat. shot on 28mm, f/2.8, cinematic live-action.",
+              "visual": "大ゴマ。光るネットワーク地図。『transport / logistics』の枝が脈打つ。“次の入口”の予感。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "…波及先、見えた。" }
+              ]
             }
           ]
         },
@@ -5928,7 +5941,13 @@
                 "gh:angle": "dynamic tracking",
                 "gh:movement": "handheld or tracking shot, subtle motion blur"
               },
-              "gh:runwayPrompt": "Action Shot, dynamic tracking, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) seals the evidence bundle and stamps it with date/time; he slides it into a tamper-evident bag with a decisive motion. motion blur, controlled hands. shot on 35mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Action Shot, dynamic tracking, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) seals the evidence bundle and stamps it with date/time; he slides it into a tamper-evident bag with a decisive motion. motion blur, controlled hands. shot on 35mm, f/2.0, cinematic live-action.",
+              "visual": "Renが証跡を封緘。社長の“許し”で溶ける前に、事実を固める。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "まず証拠。次に設計。" }
+              ]
             },
             {
               "panel": 2,
@@ -5943,7 +5962,13 @@
                 "gh:focus": "deep focus with emphasized subject",
                 "gh:angle": "dynamic angle"
               },
-              "gh:runwayPrompt": "Full Page Splash, dynamic angle, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Full page splash: a wide Tokyo map with a single glowing line leading from the vendor console to a distant logistics yard; the line bends like a river toward the next case. shot on 28mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Full Page Splash, dynamic angle, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Full page splash: a wide Tokyo map with a single glowing line leading from the vendor console to a distant logistics yard; the line bends like a river toward the next case. shot on 28mm, f/2.8, cinematic live-action.",
+              "visual": "大ゴマ。東京地図に一本の光の川。委託先から、遠いヤードへ。まだ終わってない。",
+              "environment": "env:tokyo-2026-aerial",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Narration", "text": "“許し”が作った穴は、会社の外へも伸びる。" }
+              ]
             }
           ]
         },
@@ -5963,7 +5988,14 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot: the corridor wall now shows a clean 'RE-ENTRY CONDITIONS' sheet and a responsibility matrix posted beside the framed rule; paper dust has settled; the office breathes again without pretending it’s over. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot: the corridor wall now shows a clean 'RE-ENTRY CONDITIONS' sheet and a responsibility matrix posted beside the framed rule; paper dust has settled; the office breathes again without pretending it’s over. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "廊下の壁。『復職条件』と責任分界表が貼られ、紙の粉が落ち着く。空気が“嘘なく”軽くなる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Shouta", "character:President"],
+              "dialogue": [
+                { "speaker": "President", "text": "…ここまで書くのか。" },
+                { "speaker": "Shouta", "text": "書きます。じゃないと、また穴が開く。" }
+              ]
             },
             {
               "panel": 2,
@@ -5978,7 +6010,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of evidence package: logs, timeline, and screenshots neatly organized for handoff. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of evidence package: logs, timeline, and screenshots neatly organized for handoff. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "証跡の束。『いつ・誰が・何を承認したか』が一本の線で残っている。",
+              "environment": "env:kamata-daimon-office",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Ren", "text": "承認ログ、残せ。" }
+              ]
             },
             {
               "panel": 3,
@@ -5994,7 +6032,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Shouta:1.2) eyes: relief mixed with responsibility; soft catchlights steady as he holds the evidence handoff folder. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Shouta:1.2) eyes: relief mixed with responsibility; soft catchlights steady as he holds the evidence handoff folder. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "翔太の目。助かった安堵と、背負う覚悟が同居する。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Shouta"],
+              "dialogue": [
+                { "speaker": "Shouta", "text": "…これが、俺の仕事だ。" }
+              ]
             }
           ]
         },
@@ -6014,7 +6058,14 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot, calm but unresolved. Neiが検知：外部から“委託先経由”の足跡。『供給網に匂いがあります』. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot, calm but unresolved. Neiが検知：外部から“委託先経由”の足跡。『供給網に匂いがあります』. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "静かになったオフィスに、外部経由の痕跡が残る。社内だけの話じゃない。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Nei", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "供給網に匂いがある。" },
+                { "speaker": "Ren", "text": "…次の現場だね。" }
+              ]
             },
             {
               "panel": 2,
@@ -6029,7 +6080,11 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) and (Nei:1.2) walks away into soft dusk light in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. luminous air, gentle wind. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) and (Nei:1.2) walks away into soft dusk light in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. luminous air, gentle wind. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "RenとNeiが出ていく。社長は背後で、貼られた『復職条件』を見つめる。",
+              "environment": "env:kamata-street-evening",
+              "characters": ["character:Ren", "character:Nei"],
+              "dialogue": []
             },
             {
               "panel": 3,
@@ -6045,7 +6100,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes, a small reflective glint hinting at the next case. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes, a small reflective glint hinting at the next case. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Renの目。次の入口をもう見ている。",
+              "environment": "env:kamata-street-evening",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren (Monologue)", "text": "（終わったことにしない）" }
+              ]
             }
           ]
         }
@@ -6812,7 +6873,14 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of the Ghost fully manifesting: 『許し』『絆』『家族』の文字が笑顔の仮面になって貼り付く。仮面の裏で責任が消えていく。 shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of the Ghost fully manifesting: 『許し』『絆』『家族』の文字が笑顔の仮面になって貼り付く。仮面の裏で責任が消えていく。 shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "先代Ghostが“最後の圧”をかける。笑顔の仮面が増殖し、社判の赤が空気に滲む。社長の背中が少しだけ小さく見える。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:GhostPreviousPresident", "character:President", "character:Shouta"],
+              "dialogue": [
+                { "speaker": "President", "text": "……親父…" },
+                { "speaker": "Shouta", "text": "親父の名前で、逃げるな。" }
+              ]
             },
             {
               "panel": 2,
@@ -6827,7 +6895,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) and (Nei:1.2) steps forward, coordinating silently in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. turning point: NeiがSIPで“善意の仮面”を固定。Renは断麻斧で“曖昧さの結び目”を切り、ロープで新しい境界を結ぶ。 shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) and (Nei:1.2) steps forward, coordinating silently in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. turning point: NeiがSIPで“善意の仮面”を固定。Renは断麻斧で“曖昧さの結び目”を切り、ロープで新しい境界を結ぶ。 shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Neiが固定する光の格子が、社判の“圧”を止める。Renは結び目（慣習）だけを狙って切る。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:Nei", "character:GhostPreviousPresident"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "固定。核、ここ。" },
+                { "speaker": "Ren", "text": "じゃ、切る。" }
+              ]
             },
             {
               "panel": 3,
@@ -6843,7 +6918,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes reflecting moving light patterns from the Ghost. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes reflecting moving light patterns from the Ghost. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Renの目。仮面の光が走る中で、“線”だけを拾う。優しさの言葉に、境界線を引く目。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "…境界、結ぶ。" }
+              ]
             }
           ]
         },
@@ -6864,7 +6945,14 @@
                 "gh:angle": "dynamic tracking",
                 "gh:movement": "handheld or tracking shot, subtle motion blur"
               },
-              "gh:runwayPrompt": "Action Shot, dynamic tracking, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) launches into action, cutting through swirling debris in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. motion blur, controlled choreography. shot on 35mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Action Shot, dynamic tracking, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) launches into action, cutting through swirling debris in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. motion blur, controlled choreography. shot on 35mm, f/2.0, cinematic live-action.",
+              "visual": "Renが一閃。切るのは“情”じゃない。曖昧さの結び目だけ。紙の鎧がほどけて舞う。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:GhostPreviousPresident"],
+              "dialogue": [
+                { "speaker": "SE", "text": "SHAAK!!" },
+                { "speaker": "Ren", "text": "…切るのは、穴。" }
+              ]
             },
             {
               "panel": 2,
@@ -6879,7 +6967,13 @@
                 "gh:focus": "deep focus with emphasized subject",
                 "gh:angle": "dynamic angle"
               },
-              "gh:runwayPrompt": "Full Page Splash, dynamic angle, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Full page splash: the Ghost core fractures into luminous particles, air clears, quiet returns. shot on 28mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Full Page Splash, dynamic angle, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Full page splash: the Ghost core fractures into luminous particles, air clears, quiet returns. shot on 28mm, f/2.8, cinematic live-action.",
+              "visual": "大ゴマ。核（社判の赤）が砕け、紙仮面が光の粒にほどける。空気が一段澄む。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:GhostPreviousPresident", "character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "SE", "text": "…PASHAAA…" }
+              ]
             }
           ]
         },
@@ -6900,7 +6994,13 @@
                 "gh:angle": "dynamic tracking",
                 "gh:movement": "handheld or tracking shot, subtle motion blur"
               },
-              "gh:runwayPrompt": "Action Shot, dynamic tracking, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) launches into action, cutting through swirling debris in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. motion blur, controlled choreography. shot on 35mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Action Shot, dynamic tracking, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (President: 62-year-old male, work clothes) reaches up and carefully takes down the old framed company rule; dust motes float as if a spell is breaking. shot on 35mm, f/2.0, cinematic live-action.",
+              "visual": "社長が自分の手で、古い社訓フレームを外す。重い。けど、外す。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:President"],
+              "dialogue": [
+                { "speaker": "President", "text": "…親父の言葉で、楽をしてた。" }
+              ]
             },
             {
               "panel": 2,
@@ -6915,7 +7015,14 @@
                 "gh:focus": "deep focus with emphasized subject",
                 "gh:angle": "dynamic angle"
               },
-              "gh:runwayPrompt": "Full Page Splash, dynamic angle, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Full page splash: the Ghost core fractures into luminous particles, air clears, quiet returns. shot on 28mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Full Page Splash, dynamic angle, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Full page splash: a clean wall where the framed rule used to be; now a signed 'RE-ENTRY CONDITIONS' sheet and a responsibility matrix are posted, paper dust settling like petals. shot on 28mm, f/2.8, cinematic live-action.",
+              "visual": "大ゴマ。社訓フレームの跡に、署名入りの『復職条件』と責任分界表が貼られる。紙の粉が花びらみたいに落ちて、終わる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Shouta", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Shouta", "text": "…俺が、条件を書く。" },
+                { "speaker": "Ren", "text": "それでいい。" }
+              ]
             }
           ]
         },
@@ -6935,7 +7042,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of the aftermath in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner, debris settling, people breathing again. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of the aftermath in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner, debris settling, people breathing again. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "修羅場が“整列”し始める。まだ忙しい。でも、誰が何をやるかが見える。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Matsuda", "character:Sato", "character:Shouta"],
+              "dialogue": [
+                { "speaker": "Matsuda", "text": "…助かった。今度は手順、残すわよ。" }
+              ]
             },
             {
               "panel": 2,
@@ -6950,7 +7063,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of evidence package: logs, timeline, and screenshots neatly organized for handoff. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of evidence package: logs, timeline, and screenshots neatly organized for handoff. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "証跡パック（ログ/タイムライン/スクショ）がきれいに束ねられる。“優しさ”じゃなく“証拠”で守る。",
+              "environment": "env:kamata-daimon-office",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Ren", "text": "証拠、残した。次は設計。" }
+              ]
             },
             {
               "panel": 3,
@@ -6966,7 +7085,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of a relieved face with detailed eyes and soft catchlights, calm trust in the air. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of a relieved face with detailed eyes and soft catchlights, calm trust in the air. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "翔太の目。怖さは残ってる。でも、逃げない光が入る。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Shouta"],
+              "dialogue": [
+                { "speaker": "Shouta", "text": "…もう“いい話”で終わらせない。" }
+              ]
             }
           ]
         },
@@ -6986,7 +7111,14 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot, calm but unresolved. 委託先の遠隔管理基盤に、同型の痕跡。Nei『供給網から次の会社へ波及します』→Arc Bへ。 shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot, calm but unresolved. 委託先の遠隔管理基盤に、同型の痕跡。Nei『供給網から次の会社へ波及します』→Arc Bへ。 shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "落ち着いたのに、終わってない。委託先の遠隔管理基盤に“同型”の痕跡が残り、線が別の業種へ伸びる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Nei", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "供給網。次の会社に波及する。" },
+                { "speaker": "Ren", "text": "…また、入口。" }
+              ]
             },
             {
               "panel": 2,
@@ -7001,7 +7133,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) and (Nei:1.2) walks away into soft dusk light in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. luminous air, gentle wind. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) and (Nei:1.2) walks away into soft dusk light in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. luminous air, gentle wind. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "RenとNeiが歩き出す。Renは欠伸しそうな顔で、でも足は迷わない。",
+              "environment": "env:kamata-street-evening",
+              "characters": ["character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "…来月のご飯代、少しは戻りましたね。" },
+                { "speaker": "Ren", "text": "寝る。" }
+              ]
             },
             {
               "panel": 3,
@@ -7017,7 +7156,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes, a small reflective glint hinting at the next case. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes, a small reflective glint hinting at the next case. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Renの目。次の“線”がもう見えている。",
+              "environment": "env:kamata-street-evening",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren (Monologue)", "text": "（切れないなら、切る場所を変える）" }
+              ]
             }
           ]
         }
