@@ -156,7 +156,16 @@
               "characters": ["character:Yuto"],
               "dialogue": [
                 { "speaker": "Yuto", "text": "……知らない番号、また。" }
-              ]
+              ],
+              "gh:generatedImages": [
+                {
+                  "gh:imageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/1/panel_2_20260123_144122.png",
+                  "gh:imagePrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Early morning desk: a student bag, notebook, and a smartphone vibrating nonstop with unknown calls and spam notifications. shot on 35mm, f/2.8, cinematic live-action.",
+                  "gh:generatedAt": 1769146882,
+                  "gh:model": "google/gemini-3-pro-image-preview"
+                }
+              ],
+              "gh:currentImageIndex": 0
             }
           ]
         },

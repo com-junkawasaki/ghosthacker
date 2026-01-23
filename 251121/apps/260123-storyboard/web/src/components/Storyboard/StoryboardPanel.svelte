@@ -49,7 +49,12 @@
 
 	function saveEdit() {
 		console.log('[StoryboardPanel] saveEdit: saving data', {
-			generatedImages,
+			generatedImages: generatedImages.map(img => ({
+				imageUrl: img.imageUrl,
+				imagePrompt: img.imagePrompt,
+				generatedAt: img.generatedAt?.toString(),
+				model: img.model
+			})),
 			currentImageIndex,
 			panelNumber: panel.panel,
 			pageNumber: panel.pageNumber,
@@ -57,16 +62,24 @@
 		});
 		
 		// Ensure all GeneratedImage objects are properly created with schema
-		const serializedImages = generatedImages.map(img => {
+		const serializedImages = generatedImages.map((img, idx) => {
 			// If already a GeneratedImage type, use as is, otherwise create from schema
 			if (img && typeof img === 'object' && 'imageUrl' in img) {
-				return create(GeneratedImageSchema, {
+				const serialized = create(GeneratedImageSchema, {
 					imageUrl: img.imageUrl || '',
 					imagePrompt: img.imagePrompt || '',
 					generatedAt: typeof img.generatedAt === 'bigint' ? img.generatedAt : BigInt(img.generatedAt || Date.now()),
 					model: img.model || 'google/gemini-3-pro-image-preview'
 				});
+				console.log(`[StoryboardPanel] saveEdit: serialized image ${idx}`, {
+					imageUrl: serialized.imageUrl,
+					imagePrompt: serialized.imagePrompt,
+					generatedAt: serialized.generatedAt?.toString(),
+					model: serialized.model
+				});
+				return serialized;
 			}
+			console.warn(`[StoryboardPanel] saveEdit: image ${idx} is not a valid GeneratedImage`, img);
 			return img;
 		});
 		
@@ -85,8 +98,14 @@
 		});
 
 		console.log('[StoryboardPanel] saveEdit: created PanelData', {
-			...updatedData,
-			generatedImagesCount: updatedData.generatedImages?.length || 0
+			generatedImagesCount: updatedData.generatedImages?.length || 0,
+			currentImageIndex: updatedData.currentImageIndex,
+			generatedImages: updatedData.generatedImages?.map(img => ({
+				imageUrl: img.imageUrl,
+				imagePrompt: img.imagePrompt?.substring(0, 50) + '...',
+				generatedAt: img.generatedAt?.toString(),
+				model: img.model
+			}))
 		});
 		dispatch('update', updatedData);
 		editing = false;

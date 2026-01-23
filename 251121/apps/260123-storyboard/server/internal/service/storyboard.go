@@ -199,24 +199,31 @@ func (s *StoryboardService) UpdatePanel(
 					// Always save generatedImages if provided (even if empty, to clear history)
 					log.Printf("UpdatePanel: Received GeneratedImages: len=%d, episode=%s page=%d panel=%d", 
 						len(req.Msg.PanelData.GeneratedImages), req.Msg.EpisodeId, req.Msg.PageNumber, req.Msg.Panel)
-					if req.Msg.PanelData.GeneratedImages != nil && len(req.Msg.PanelData.GeneratedImages) > 0 {
-						generatedImages := make([]interface{}, len(req.Msg.PanelData.GeneratedImages))
-						for j, img := range req.Msg.PanelData.GeneratedImages {
-							generatedImages[j] = map[string]interface{}{
-								"gh:imageUrl":   img.ImageUrl,
-								"gh:imagePrompt": img.ImagePrompt,
-								"gh:generatedAt": img.GeneratedAt,
-								"gh:model":      img.Model,
+					if req.Msg.PanelData.GeneratedImages != nil {
+						if len(req.Msg.PanelData.GeneratedImages) > 0 {
+							generatedImages := make([]interface{}, len(req.Msg.PanelData.GeneratedImages))
+							for j, img := range req.Msg.PanelData.GeneratedImages {
+								generatedImages[j] = map[string]interface{}{
+									"gh:imageUrl":   img.ImageUrl,
+									"gh:imagePrompt": img.ImagePrompt,
+									"gh:generatedAt": img.GeneratedAt,
+									"gh:model":      img.Model,
+								}
+								log.Printf("UpdatePanel: Image %d: url=%s, prompt=%s, generatedAt=%d, model=%s", 
+									j, img.ImageUrl, img.ImagePrompt, img.GeneratedAt, img.Model)
 							}
-							log.Printf("UpdatePanel: Image %d: url=%s, prompt=%s", j, img.ImageUrl, img.ImagePrompt)
+							panel["gh:generatedImages"] = generatedImages
+							log.Printf("UpdatePanel: Saved %d generated images for episode=%s page=%d panel=%d", 
+								len(generatedImages), req.Msg.EpisodeId, req.Msg.PageNumber, req.Msg.Panel)
+						} else {
+							// Save empty array to clear history
+							panel["gh:generatedImages"] = []interface{}{}
+							log.Printf("UpdatePanel: Saved empty generatedImages array (clearing history) for episode=%s page=%d panel=%d", 
+								req.Msg.EpisodeId, req.Msg.PageNumber, req.Msg.Panel)
 						}
-						panel["gh:generatedImages"] = generatedImages
-						log.Printf("UpdatePanel: Saved %d generated images for episode=%s page=%d panel=%d", 
-							len(generatedImages), req.Msg.EpisodeId, req.Msg.PageNumber, req.Msg.Panel)
 					} else {
-						log.Printf("UpdatePanel: No generated images to save (nil=%v, len=%d)", 
-							req.Msg.PanelData.GeneratedImages == nil, 
-							func() int { if req.Msg.PanelData.GeneratedImages != nil { return len(req.Msg.PanelData.GeneratedImages) }; return 0 }())
+						log.Printf("UpdatePanel: GeneratedImages is nil (not updating) for episode=%s page=%d panel=%d", 
+							req.Msg.EpisodeId, req.Msg.PageNumber, req.Msg.Panel)
 					}
 
 					// Handle current image index
