@@ -68,8 +68,11 @@ services:
       context: ./web
       dockerfile: ../Dockerfile.frontend
       target: development
+    env_file:
+      - .env
     environment:
       - VITE_API_BASE_URL=http://localhost:8081
+      - VITE_OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-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}
     ports:
       - "1421:1421"
     volumes:

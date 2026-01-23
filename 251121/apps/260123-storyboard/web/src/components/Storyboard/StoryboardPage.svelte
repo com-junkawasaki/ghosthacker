@@ -26,10 +26,11 @@
 	</div>
 
 	<div class="storyboard-grid">
-		<!-- Ghibli-style 4-column layout: カット | 画 | 内容 | 秒 -->
+		<!-- Ghibli-style 5-column layout: カット | 画 | 生成画 | 内容 | 秒 -->
 		<div class="grid-header">
 			<div class="col-cut">カット</div>
 			<div class="col-picture">画</div>
+			<div class="col-picture-generated">生成画</div>
 			<div class="col-content">内容</div>
 			<div class="col-seconds">秒</div>
 		</div>
@@ -75,7 +76,7 @@
 
 	.grid-header {
 		display: grid;
-		grid-template-columns: 80px 1fr 400px 60px;
+		grid-template-columns: 80px 1fr 1fr 400px 60px;
 		background: #e8e6e0;
 		border-bottom: 2px solid #ccc;
 		font-weight: 600;
@@ -85,6 +86,7 @@
 
 	.col-cut,
 	.col-picture,
+	.col-picture-generated,
 	.col-content,
 	.col-seconds {
 		padding: 0.75rem 1rem;
@@ -94,6 +96,7 @@
 
 	.col-cut:last-child,
 	.col-picture:last-child,
+	.col-picture-generated:last-child,
 	.col-content:last-child,
 	.col-seconds:last-child {
 		border-right: none;

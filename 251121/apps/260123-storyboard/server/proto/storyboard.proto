@@ -58,6 +58,8 @@ message PanelData {
   string cut_number = 7; // Cut number (e.g., "76", "77", "つづき")
   string shot = 8; // Shot type (e.g., "Close-up", "Wide Shot")
   string runway_prompt = 9; // Runway base prompt
+  string generated_image_url = 10; // Generated image URL (base64 data URL or URL)
+  string image_prompt = 11; // Prompt used for image generation
 }
 
 message Dialogue {

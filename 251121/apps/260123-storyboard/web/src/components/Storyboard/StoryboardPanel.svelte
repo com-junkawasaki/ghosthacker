@@ -3,6 +3,7 @@
 	import type { Panel, Dialogue } from '$lib/gen/proto/storyboard_pb';
 	import { PanelDataSchema, DialogueSchema } from '$lib/gen/proto/storyboard_pb';
 	import { create } from '@bufbuild/protobuf';
+	import { generateImage, buildImagePrompt } from '$lib/ai/openrouter-image';
 
 	export let panel: Panel;
 
@@ -18,6 +19,10 @@
 	let environment = panel.data?.environment ?? '';
 	let shot = panel.data?.shot ?? '';
 	let runwayPrompt = panel.data?.runwayPrompt ?? '';
+	let generatedImageUrl = panel.data?.generatedImageUrl ?? '';
+	let imagePrompt = panel.data?.imagePrompt ?? '';
+	let generatingImage = false;
+	let imageError = '';
 
 	function startEdit() {
 		editing = true;
@@ -34,6 +39,8 @@
 			cutNumber: cutNumber,
 			shot: shot,
 			runwayPrompt: runwayPrompt,
+			generatedImageUrl: generatedImageUrl,
+			imagePrompt: imagePrompt,
 		});
 
 		dispatch('update', updatedData);
@@ -52,6 +59,57 @@
 		environment = panel.data?.environment ?? '';
 		shot = panel.data?.shot ?? '';
 		runwayPrompt = panel.data?.runwayPrompt ?? '';
+		generatedImageUrl = panel.data?.generatedImageUrl ?? '';
+		imagePrompt = panel.data?.imagePrompt ?? '';
+		imageError = '';
+	}
+
+	async function handleGenerateImage() {
+		if (generatingImage) return;
+
+		generatingImage = true;
+		imageError = '';
+
+		try {
+			// Build prompt from visual note and content
+			const prompt = buildImagePrompt(visualNote, {
+				characters,
+				environment,
+				shot,
+				dialogue: dialogues,
+				cameraDirection,
+			});
+
+			if (!prompt.trim()) {
+				imageError = 'Please add a visual note or content to generate an image';
+				return;
+			}
+
+			imagePrompt = prompt;
+			console.log('[StoryboardPanel] Generating image with prompt:', prompt);
+
+			const result = await generateImage({
+				prompt,
+				model: 'google/gemini-3-pro-image-preview',
+				aspectRatio: '16:9',
+				imageSize: '1024x1024',
+			});
+
+			if (result.success && result.imageUrl) {
+				generatedImageUrl = result.imageUrl;
+				console.log('[StoryboardPanel] Image generated successfully');
+				// Auto-save after generation
+				saveEdit();
+			} else {
+				imageError = result.error || 'Failed to generate image';
+				console.error('[StoryboardPanel] Image generation failed:', imageError);
+			}
+		} catch (err) {
+			imageError = err instanceof Error ? err.message : 'Unknown error';
+			console.error('[StoryboardPanel] Error generating image:', err);
+		} finally {
+			generatingImage = false;
+		}
 	}
 
 	function addDialogue() {
@@ -81,7 +139,7 @@
 		{/if}
 	</div>
 
-	<!-- 画列 -->
+	<!-- 画列（元の画） -->
 	<div class="col-picture">
 		<div class="picture-frame">
 			{#if editing}
@@ -109,6 +167,39 @@
 					{#if cameraDirection}
 						<div class="camera-note">{cameraDirection}</div>
 					{/if}
+				</div>
+			{/if}
+		</div>
+	</div>
+
+	<!-- 画列（生成画像） -->
+	<div class="col-picture-generated">
+		<div class="picture-frame">
+			{#if editing}
+				<div class="image-generation-controls">
+					<button
+						type="button"
+						on:click={handleGenerateImage}
+						disabled={generatingImage}
+						class="generate-btn"
+					>
+						{generatingImage ? 'Generating...' : 'Generate Image'}
+					</button>
+					{#if imageError}
+						<div class="image-error">{imageError}</div>
+					{/if}
+					{#if imagePrompt}
+						<div class="image-prompt-preview">
+							<small>Prompt: {imagePrompt}</small>
+						</div>
+					{/if}
+				</div>
+			{/if}
+			{#if generatedImageUrl}
+				<img src={generatedImageUrl} alt="Generated image" class="generated-image" />
+			{:else}
+				<div class="visual-placeholder">
+					<div class="placeholder-text">生成画</div>
 				</div>
 			{/if}
 		</div>
@@ -241,7 +332,7 @@
 <style>
 	.storyboard-panel-row {
 		display: grid;
-		grid-template-columns: 80px 1fr 400px 60px;
+		grid-template-columns: 80px 1fr 1fr 400px 60px;
 		border-bottom: 1px solid #e0e0e0;
 		min-height: 200px;
 	}
@@ -252,6 +343,7 @@
 
 	.col-cut,
 	.col-picture,
+	.col-picture-generated,
 	.col-content,
 	.col-seconds {
 		padding: 1rem;
@@ -262,6 +354,7 @@
 
 	.col-cut:last-child,
 	.col-picture:last-child,
+	.col-picture-generated:last-child,
 	.col-content:last-child,
 	.col-seconds:last-child {
 		border-right: none;
@@ -347,6 +440,65 @@
 		border: 1px solid #ccc;
 		border-radius: 4px;
 		font-size: 0.85rem;
+	}
+
+	/* 生成画像列 */
+	.col-picture-generated {
+		position: relative;
+	}
+
+	.generated-image {
+		width: 100%;
+		height: auto;
+		border-radius: 4px;
+		object-fit: contain;
+		max-height: 300px;
+	}
+
+	.image-generation-controls {
+		width: 100%;
+		margin-bottom: 0.5rem;
+	}
+
+	.generate-btn {
+		width: 100%;
+		padding: 0.5rem;
+		background: #4caf50;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 0.85rem;
+		font-weight: 600;
+	}
+
+	.generate-btn:hover:not(:disabled) {
+		background: #45a049;
+	}
+
+	.generate-btn:disabled {
+		background: #ccc;
+		cursor: not-allowed;
+	}
+
+	.image-error {
+		margin-top: 0.5rem;
+		padding: 0.5rem;
+		background: #fee;
+		color: #c00;
+		border: 1px solid #fcc;
+		border-radius: 4px;
+		font-size: 0.75rem;
+	}
+
+	.image-prompt-preview {
+		margin-top: 0.5rem;
+		padding: 0.5rem;
+		background: #f0f0f0;
+		border-radius: 4px;
+		font-size: 0.75rem;
+		color: #666;
+		word-break: break-word;
 	}
 
 	/* 内容列 */

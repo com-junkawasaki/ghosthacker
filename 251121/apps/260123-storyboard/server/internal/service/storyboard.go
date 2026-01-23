@@ -168,6 +168,34 @@ func (s *StoryboardService) UpdatePanel(
 					}
 
 					if req.Msg.PanelData.CameraDirection != "" {
+						panel["cameraDirection"] = req.Msg.PanelData.CameraDirection
+					}
+
+					if req.Msg.PanelData.DurationSeconds > 0 {
+						panel["durationSeconds"] = req.Msg.PanelData.DurationSeconds
+					}
+
+					if req.Msg.PanelData.CutNumber != "" {
+						panel["cutNumber"] = req.Msg.PanelData.CutNumber
+					}
+
+					if req.Msg.PanelData.Shot != "" {
+						panel["shot"] = req.Msg.PanelData.Shot
+					}
+
+					if req.Msg.PanelData.RunwayPrompt != "" {
+						panel["runwayPrompt"] = req.Msg.PanelData.RunwayPrompt
+					}
+
+					if req.Msg.PanelData.GeneratedImageUrl != "" {
+						panel["generatedImageUrl"] = req.Msg.PanelData.GeneratedImageUrl
+					}
+
+					if req.Msg.PanelData.ImagePrompt != "" {
+						panel["imagePrompt"] = req.Msg.PanelData.ImagePrompt
+					}
+
+					if req.Msg.PanelData.CameraDirection != "" {
 						panel["gh:cameraDirection"] = req.Msg.PanelData.CameraDirection
 					}
 
@@ -185,6 +213,14 @@ func (s *StoryboardService) UpdatePanel(
 
 					if req.Msg.PanelData.RunwayPrompt != "" {
 						panel["gh:runwayPrompt"] = req.Msg.PanelData.RunwayPrompt
+					}
+
+					if req.Msg.PanelData.GeneratedImageUrl != "" {
+						panel["gh:generatedImageUrl"] = req.Msg.PanelData.GeneratedImageUrl
+					}
+
+					if req.Msg.PanelData.ImagePrompt != "" {
+						panel["gh:imagePrompt"] = req.Msg.PanelData.ImagePrompt
 					}
 
 					panels[i] = panel
@@ -426,6 +462,14 @@ func (s *StoryboardService) GetEpisodePanels(
 
 			if runwayPrompt, ok := panel["gh:runwayPrompt"].(string); ok {
 				panelData.RunwayPrompt = runwayPrompt
+			}
+
+			if generatedImageUrl, ok := panel["gh:generatedImageUrl"].(string); ok {
+				panelData.GeneratedImageUrl = generatedImageUrl
+			}
+
+			if imagePrompt, ok := panel["gh:imagePrompt"].(string); ok {
+				panelData.ImagePrompt = imagePrompt
 			}
 
 			panels = append(panels, &storyboardpb.Panel{
