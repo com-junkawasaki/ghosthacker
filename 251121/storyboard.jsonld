@@ -140,7 +140,7 @@
       "gh:episode": 1,
       "gh:episodeIndex": 1,
       "gh:episodeId": "episode:260123-cschool-privacy",
-      "dct:title": "Arc 0-1: 晒された連絡先",
+      "dct:title": "パスワードは覚えるな",
       "gh:presentationTagline": "Arc 0 | High School & Privacy",
       "gh:arc": "Arc 0",
       "gh:industry": "Student life (高校生)",
@@ -149,7 +149,7 @@
       "gh:realCase": "Credential stuffing / personal data leak → spam calls & spam email",
       "gh:sinContrast": "Careless Reuse (Convenience) vs. Trust (Password Manager + Aliases)",
       "gh:nistFocus": ["PR.AA (Identity Management)", "PR.AC (Access Control)", "PR.DS (Data Security)"],
-      "gh:incidentDescription": "C高校の友達のメールアドレスと電話番号が流出し、迷惑メール・迷惑電話が止まらない。RenとNeiが“漏れた入口”を特定し、パスワードマネジャーとメールエイリアス運用で再発を止める。News Hacker では hn: null_pencil_axe が匿名で助言し、別の常連 aka_chise1 / 3pa11er3apiv0t も書き込むが、互いの素性は知らない。",
+      "gh:incidentDescription": "C高校で二つの被害が連鎖する。Yutoは連絡先流出と使い回しで迷惑連絡に追い詰められ、Kentaは誹謗中傷の拡散に刺される。RenとNeiは「情報は消せない」という現実（ランダウアーの定理＝消去には熱が出る）を前提に、Ghost（情報霊）が具現化する“繋がり”を見える化し、AXEで鎖を断って沈静化させる。最後に残るのは、誰でも再現できる手順――読者の“入口”にも効く勝ち方だ。",
       "gh:pages": [
         {
           "gh:pageNumber": 1,
@@ -1597,7 +1597,7 @@
               "environment": "env:quiet-room",
               "characters": ["character:Ren", "character:Yuto"],
               "dialogue": [
-                { "speaker": "Ren", "text": "覚えるな。信用できる箱に任せろ。" },
+                { "speaker": "Ren", "text": "パスワードは覚えるな。信用できる箱に任せろ。" },
                 { "speaker": "Yuto", "text": "…信用、できるかな。" }
               ]
             }
@@ -3150,8 +3150,8 @@
               "environment": "env:ren-office",
               "characters": ["character:Ren", "character:Nei"],
               "dialogue": [
-                { "speaker": "Ren", "text": "忘れる前提で、残す。" },
-                { "speaker": "Nei", "text": "まず証拠。スクショ、URL、時刻。" }
+                { "speaker": "Ren", "text": "…消すほど、熱が出る。ランダウアー。だから、残す。" },
+                { "speaker": "Nei", "text": "結論。証拠。スクショ、URL、時刻。" }
               ]
             },
             {
@@ -3172,7 +3172,7 @@
               "environment": "env:ren-office",
               "characters": ["character:Ren"],
               "dialogue": [
-                { "speaker": "Narration", "text": "消える前に、残す。" }
+                { "speaker": "Narration", "text": "消す前に残す。消すほど増える“熱”が、Ghostを太らせる。" }
               ]
             },
             {
@@ -3188,12 +3188,12 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A phone screen shows a gallery/folder with blurred screenshot thumbnails and a save icon (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
-              "visual": "スクショが保存されていく。小さな四角が“証拠”になる。",
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A phone screen shows a folder of saved evidence: blurred screenshot thumbnails, URL link icon, timestamp icon, and a subtle heat-wave overlay implying cost of deletion (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "スクショが保存されていく。小さな四角が“証拠”になる。消去の熱は、ここでは出さない。",
               "environment": "env:smartphone-screen",
               "characters": ["character:Ren"],
               "dialogue": [
-                { "speaker": "Ren", "text": "残せた。…次、通報。" }
+                { "speaker": "Ren", "text": "残せた。…次、鎖を切る。" }
               ]
             }
           ]
@@ -3214,12 +3214,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. City data haze begins to ripple subtly, like a breath before a wave; faint notification dots blink in the haze (no text). shot on 50mm, f/2.0, cinematic live-action.",
-              "visual": "街のデータの霞が、呼吸みたいに揺れる。点滅する小さな通知が混じる。",
-              "environment": "env:tokyo-2026-aerial",
-              "characters": [],
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A smartphone timeline shows a 'delete' gesture starting; a heat-wave ripple blooms and a ghost-like shadow thickens behind the UI (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "消そうとして指が動く。その瞬間、熱の波みたいな揺れが立つ。影が濃くなる。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Kenta"],
               "dialogue": [
-                { "speaker": "Narration", "text": "静かすぎるときほど、次が来る。" }
+                { "speaker": "Kenta", "text": "やば…消したい…でも、消しても増える…" },
+                { "speaker": "Narration", "text": "消去はタダじゃない。熱が出る。――ランダウアー。" }
               ]
             },
             {
@@ -3235,12 +3236,12 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A smartphone SNS timeline overlays the city haze; blurred posts cascade, one sharp-looking post casts a ghost-like shadow (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
-              "visual": "街の霞に、SNSの流れが重なる。言葉の影が、ゴーストみたいに残る。",
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A timeline feed cascades; repost/quote icons multiply like a chain, and a word-shaped ghost silhouette forms from the links (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "拡散のアイコンが鎖みたいに増える。鎖が重なって、“言葉のGhost”が形になる。",
               "environment": "env:sns-timeline",
-              "characters": [],
+              "characters": ["character:Kenta"],
               "dialogue": [
-                { "speaker": "Narration", "text": "言葉のGhostは、拡散で増える。" }
+                { "speaker": "Narration", "text": "言葉のGhostは、拡散で増える。消そうとするほど、熱で太る。" }
               ]
             }
             ,
@@ -3257,12 +3258,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A subtle 'Ghost' ripple passes through the city data haze, now tinted by social media glow—systemic and hard to pin down. shot on 35mm, f/2.8, cinematic live-action.",
-              "visual": "街のデータの霞に、薄い波紋みたいな“Ghost”が走る。今度はSNSの色が混じる。",
-              "environment": "env:tokyo-2026-aerial",
-              "characters": [],
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. In Ren's office at night, Ren holds a compact matte-black device labeled 'AXE' (no readable small text), while Nei watches a network-like chain visualization on a screen. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "夜のRenオフィス。Renの手に黒いデバイス――AXE。画面には拡散の鎖が浮く。",
+              "environment": "env:ren-office",
+              "characters": ["character:Ren", "character:Nei"],
               "dialogue": [
-                { "speaker": "Narration", "text": "終わりじゃない。形を変えて戻る。" }
+                { "speaker": "Nei", "text": "鎖、見えた。拡散の経路。" },
+                { "speaker": "Ren", "text": "…切る。消すんじゃない。" }
               ]
             }
           ]
@@ -3283,12 +3285,12 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school virtual campus: floating UI panels and avatar silhouettes; a rumor-like thread bubbles above someone (no readable text). shot on 35mm, f/2.8, cinematic live-action.",
-              "visual": "C高校のバーチャル校舎。アバターの影と、頭上に浮かぶ“噂”みたいな吹き出し。",
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school virtual campus: floating UI panels and avatar silhouettes; a rumor bubble swells into a word-shaped ghost silhouette made of chain-link icons (no readable text). shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "C高校のバーチャル校舎。“噂”の吹き出しが膨らみ、鎖の集合みたいなGhostになる。",
               "environment": "env:cschool-virtual-campus",
               "characters": ["character:Ren", "character:Nei", "character:Kenta"],
               "dialogue": [
-                { "speaker": "Narration", "text": "現実だけじゃない。仮想校舎にも入口がある。" }
+                { "speaker": "Narration", "text": "現実だけじゃない。仮想校舎にも入口がある。…言葉のGhostが育つ場所。" }
               ]
             },
             {
@@ -3310,7 +3312,7 @@
               "characters": ["character:Ren", "character:Kenta"],
               "dialogue": [
                 { "speaker": "Ren", "text": "…君のこと？タイムラインのやつ。" },
-                { "speaker": "Kenta", "text": "……ちがう。俺じゃない。" }
+                { "speaker": "Kenta", "text": "……ちがう。マジで、俺じゃない。" }
               ]
             }
             ,
@@ -3333,7 +3335,7 @@
               "environment": "env:cschool-virtual-campus",
               "characters": ["character:Kenta"],
               "dialogue": [
-                { "speaker": "Kenta", "text": "…でも、止まらない。消しても増える。" }
+                { "speaker": "Kenta", "text": "…でも、止まんない。消しても増える…なんで？" }
               ]
             },
             {
@@ -3349,13 +3351,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei steps in gently: 'first we preserve evidence'; Ren nods: 'then we stop the spread'. shot on 50mm, f/1.8, cinematic live-action.",
-              "visual": "Neiが間に入る。Renが短く頷く。Kentaの足が一歩だけ前に出る。",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren raises the compact AXE device (no readable text), calm and slightly lethargic; Nei stands beside him, composed. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "RenがAXEを持ち上げる。Neiは冷静。Kentaが一歩だけ前に出る。",
               "environment": "env:cschool-virtual-campus",
               "characters": ["character:Nei", "character:Ren", "character:Kenta"],
               "dialogue": [
-                { "speaker": "Nei", "text": "最初は証拠。消す前に残す。" },
-                { "speaker": "Ren", "text": "それから止める。…話、聞く。" }
+                { "speaker": "Nei", "text": "結論。証拠。消す前に残す。" },
+                { "speaker": "Ren", "text": "…鎖を切る。AXEで。" }
               ]
             }
           ]
@@ -3376,12 +3378,12 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Night: Yuto sits at his desk, breathing normally again, phone face-down, no fear posture. shot on 50mm, f/1.8, cinematic live-action.",
-              "visual": "夜。Yutoが机の前で深呼吸する。スマホは伏せても怖くない。",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Night: Kenta sits at his desk, hands shaking; his phone is open to an evidence folder and report screen icons (no readable text). shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "夜。Kentaの指が震える。画面は“証拠フォルダ”と“通報”のアイコン。",
               "environment": "env:home-desk",
-              "characters": ["character:Yuto"],
+              "characters": ["character:Kenta"],
               "dialogue": [
-                { "speaker": "Yuto", "text": "…明日、ちゃんと行けそう。" }
+                { "speaker": "Kenta", "text": "これ…撮った。送った。…俺、これでいい？" }
               ]
             },
             {
@@ -3397,12 +3399,12 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A smartphone SNS timeline shows a harsh-looking post highlighted (unreadable text), reaction icons climbing. shot on 50mm, f/2.0, cinematic live-action.",
-              "visual": "別のスマホ。SNSの画面に、悪意の温度だけが残る。反応が増えていく。",
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A chain of repost/quote icons is severed by a sharp diagonal 'cut' effect; the word-ghost silhouette fractures and thins (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "拡散の鎖が、斜めの一閃で切れる。言葉のGhostが割れて薄くなる。",
               "environment": "env:sns-timeline",
-              "characters": ["character:Kenta"],
+              "characters": [],
               "dialogue": [
-                { "speaker": "Narration", "text": "同じ夜でも、静かじゃない机がある。" }
+                { "speaker": "Narration", "text": "AXEは“拡散”を切る。消すんじゃない。孤立させて、餓えさせる。" }
               ]
             },
             {
@@ -3419,12 +3421,12 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Kenta's face in dim light; he reads the screen and forces himself not to reply. shot on 85mm prime, f/1.2, cinematic live-action.",
-              "visual": "Kentaが画面を見つめて、指を止める。返したら負けるのに、返したくなる。",
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Kenta's face in dim light; the urge to reply fades as the feed quiets, relief in his eyes. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Kentaが指を止める。返したくなる衝動が、少しだけ引く。",
               "environment": "env:home-desk",
               "characters": ["character:Kenta"],
               "dialogue": [
-                { "speaker": "Kenta", "text": "……やめて…" }
+                { "speaker": "Kenta", "text": "……止まった？…マジで？" }
               ]
             }
           ]
@@ -3445,13 +3447,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren and Nei stand in the hallway, serious now—next case is not spam but words. shot on 50mm, f/1.8, cinematic live-action.",
-              "visual": "RenとNeiが前を見る。次の相手は“電話”じゃなく、“言葉”。",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. In the hallway, Ren and Nei face Kenta; Kenta looks exhausted but standing, the crisis stabilized. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "廊下。Kentaが立っている。まだ怖いけど、折れてない。",
               "environment": "env:cschool-hallway",
-              "characters": ["character:Ren", "character:Nei"],
+              "characters": ["character:Ren", "character:Nei", "character:Kenta"],
               "dialogue": [
-                { "speaker": "Nei", "text": "次は、誹謗中傷だね。" },
-                { "speaker": "Ren", "text": "うん。まず証拠。次に止める。" }
+                { "speaker": "Kenta", "text": "…ありがと。俺、もう…返さない。" },
+                { "speaker": "Nei", "text": "正解。証拠は残した。止血できた。" },
+                { "speaker": "Ren", "text": "…消せない。だから、切る。手順にすれば勝てる。" }
               ]
             },
             {
@@ -3467,11 +3470,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Title card: 'Ghost Hacker - Episode 1 End' in clean white font on a black background. shot on 50mm, f/1.8, cinematic live-action.",
-              "visual": "Episode 1 End",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Title card: 'GHOST Hacker - ONE-SHOT END' in clean white font on a black background. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "ONE-SHOT END",
               "environment": "env:intertitle-black",
               "characters": [],
-              "dialogue": []
+              "dialogue": [
+                { "speaker": "Narration", "text": "消せないなら、切れ。次に守るのは――たぶん、あなたの入口だ。" }
+              ]
             }
           ]
         }
@@ -3603,7 +3608,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of a quiet Tokyo residential street in early morning, soft light and long shadows, a calm prelude before the case begins. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of a quiet Tokyo residential street in early morning, soft light and long shadows, a calm prelude before the case begins. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "早朝の東京・住宅街。人影は少なく、路面に長い影。静かすぎて、これから始まる“修羅場”だけが不自然に浮く。",
+              "environment": "env:street-day",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Narration", "text": "静かな朝ほど、壊れる音はよく聞こえる。" }
+              ]
             },
             {
               "panel": 2,
@@ -3618,7 +3629,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Medium shot of Ren's minimal apartment-office interior, clean concrete walls and warm wood floor, a serene stillness. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Medium shot of Ren's minimal apartment-office interior, clean concrete walls and warm wood floor, a serene stillness. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renの拠点。コンクリ壁と木床、無駄のない机。静寂の中で、機械の呼吸（ファン音）だけが薄く続く。",
+              "environment": "env:ren-office",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "SE", "text": "（PCファンの低い音）" }
+              ]
             },
             {
               "panel": 3,
@@ -3633,7 +3650,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a phone notification with a new client inquiry, subtle vibration on a desk. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a phone notification with a new client inquiry, subtle vibration on a desk. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "机の上のスマホが小刻みに震える。通知バナーに『新規相談』――相手の名が読めた瞬間、空気が変わる（ミニ引き）。",
+              "environment": "env:smartphone-screen",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "SE", "text": "ブブッ" },
+                { "speaker": "UI", "text": "【新規相談】大門建設（至急）…『システム全停止』" }
+              ]
             }
           ]
         },
