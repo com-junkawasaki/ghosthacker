@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io/fs"
 	"os"
-	"path/filepath"
 
 	"connectrpc.com/connect"
 	"storyboard-editor/backend/proto"
@@ -24,8 +23,8 @@ func NewStoryboardService(storyboardPath string) *StoryboardService {
 
 func (s *StoryboardService) LoadStoryboard(
 	ctx context.Context,
-	req *connect.Request[proto.LoadStoryboardRequest],
-) (*connect.Response[proto.LoadStoryboardResponse], error) {
+	req *connect.Request[storyboardpb.LoadStoryboardRequest],
+) (*connect.Response[storyboardpb.LoadStoryboardResponse], error) {
 	filePath := req.Msg.FilePath
 	if filePath == "" {
 		filePath = s.storyboardPath
@@ -43,7 +42,7 @@ func (s *StoryboardService) LoadStoryboard(
 
 	metadata := s.extractMetadata(storyboard)
 
-	return connect.NewResponse(&proto.LoadStoryboardResponse{
+	return connect.NewResponse(&storyboardpb.LoadStoryboardResponse{
 		JsonldContent: string(content),
 		Metadata:      metadata,
 	}), nil
@@ -51,8 +50,8 @@ func (s *StoryboardService) LoadStoryboard(
 
 func (s *StoryboardService) UpdatePanel(
 	ctx context.Context,
-	req *connect.Request[proto.UpdatePanelRequest],
-) (*connect.Response[proto.UpdatePanelResponse], error) {
+	req *connect.Request[storyboardpb.UpdatePanelRequest],
+) (*connect.Response[storyboardpb.UpdatePanelResponse], error) {
 	filePath := req.Msg.FilePath
 	if filePath == "" {
 		filePath = s.storyboardPath
@@ -100,7 +99,7 @@ func (s *StoryboardService) UpdatePanel(
 				panel["gh:characters"] = charRefs
 			}
 
-	if req.Msg.PanelData.Dialogue != nil {
+			if req.Msg.PanelData.Dialogue != nil {
 				dialogue := make([]interface{}, len(req.Msg.PanelData.Dialogue))
 				for j, d := range req.Msg.PanelData.Dialogue {
 					dialogue[j] = map[string]interface{}{
@@ -151,7 +150,7 @@ func (s *StoryboardService) UpdatePanel(
 		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to save storyboard: %w", err))
 	}
 
-	return connect.NewResponse(&proto.UpdatePanelResponse{
+	return connect.NewResponse(&storyboardpb.UpdatePanelResponse{
 		Success: true,
 		Message: "Panel updated successfully",
 	}), nil
@@ -159,9 +158,9 @@ func (s *StoryboardService) UpdatePanel(
 
 func (s *StoryboardService) SaveStoryboard(
 	ctx context.Context,
-	req *connect.Request[proto.SaveStoryboardRequest],
-) (*connect.Response[proto.SaveStoryboardResponse], error) {
-	filePath := req.FilePath
+	req *connect.Request[storyboardpb.SaveStoryboardRequest],
+) (*connect.Response[storyboardpb.SaveStoryboardResponse], error) {
+	filePath := req.Msg.FilePath
 	if filePath == "" {
 		filePath = s.storyboardPath
 	}
@@ -176,7 +175,7 @@ func (s *StoryboardService) SaveStoryboard(
 		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to save storyboard: %w", err))
 	}
 
-	return connect.NewResponse(&proto.SaveStoryboardResponse{
+	return connect.NewResponse(&storyboardpb.SaveStoryboardResponse{
 		Success: true,
 		Message: "Storyboard saved successfully",
 	}), nil
@@ -184,8 +183,8 @@ func (s *StoryboardService) SaveStoryboard(
 
 func (s *StoryboardService) GetEpisodes(
 	ctx context.Context,
-	req *connect.Request[proto.GetEpisodesRequest],
-) (*connect.Response[proto.GetEpisodesResponse], error) {
+	req *connect.Request[storyboardpb.GetEpisodesRequest],
+) (*connect.Response[storyboardpb.GetEpisodesResponse], error) {
 	filePath := req.Msg.FilePath
 	if filePath == "" {
 		filePath = s.storyboardPath
@@ -203,12 +202,12 @@ func (s *StoryboardService) GetEpisodes(
 
 	panelScripts, ok := storyboard["gh:panelScripts"].(map[string]interface{})
 	if !ok {
-		return connect.NewResponse(&proto.GetEpisodesResponse{
-			Episodes: []*proto.Episode{},
+		return connect.NewResponse(&storyboardpb.GetEpisodesResponse{
+			Episodes: []*storyboardpb.Episode{},
 		}), nil
 	}
 
-	episodes := make([]*proto.Episode, 0, len(panelScripts))
+	episodes := make([]*storyboardpb.Episode, 0, len(panelScripts))
 	for episodeID, panels := range panelScripts {
 		panelList, ok := panels.([]interface{})
 		if !ok {
@@ -228,14 +227,14 @@ func (s *StoryboardService) GetEpisodes(
 			}
 		}
 
-		episodes = append(episodes, &proto.Episode{
+		episodes = append(episodes, &storyboardpb.Episode{
 			Id:         episodeID,
 			Title:      episodeID, // TODO: Extract title from metadata if available
 			TotalPages: maxPage,
 		})
 	}
 
-	return connect.NewResponse(&proto.GetEpisodesResponse{
+	return connect.NewResponse(&storyboardpb.GetEpisodesResponse{
 		Episodes: episodes,
 	}), nil
 }
@@ -261,19 +260,19 @@ func (s *StoryboardService) GetEpisodePanels(
 
 	panelScripts, ok := storyboard["gh:panelScripts"].(map[string]interface{})
 	if !ok {
-		return connect.NewResponse(&proto.GetEpisodePanelsResponse{
-			Panels: []*proto.Panel{},
+		return connect.NewResponse(&storyboardpb.GetEpisodePanelsResponse{
+			Panels: []*storyboardpb.Panel{},
 		}), nil
 	}
 
 	episodePanels, ok := panelScripts[req.Msg.EpisodeId].([]interface{})
 	if !ok {
-		return connect.NewResponse(&proto.GetEpisodePanelsResponse{
-			Panels: []*proto.Panel{},
+		return connect.NewResponse(&storyboardpb.GetEpisodePanelsResponse{
+			Panels: []*storyboardpb.Panel{},
 		}), nil
 	}
 
-	panels := make([]*proto.Panel, 0)
+	panels := make([]*storyboardpb.Panel, 0)
 	for _, p := range episodePanels {
 		panel, ok := p.(map[string]interface{})
 		if !ok {
@@ -287,7 +286,7 @@ func (s *StoryboardService) GetEpisodePanels(
 			continue
 		}
 
-		panelData := &proto.PanelData{}
+		panelData := &storyboardpb.PanelData{}
 
 		// Extract characters
 		if chars, ok := panel["gh:characters"].([]interface{}); ok {
@@ -301,7 +300,7 @@ func (s *StoryboardService) GetEpisodePanels(
 
 		// Extract dialogue
 		if dialogues, ok := panel["gh:dialogue"].([]interface{}); ok {
-			panelData.Dialogue = make([]*proto.Dialogue, 0, len(dialogues))
+			panelData.Dialogue = make([]*storyboardpb.Dialogue, 0, len(dialogues))
 			for _, d := range dialogues {
 				dialogue, ok := d.(map[string]interface{})
 				if !ok {
@@ -309,7 +308,7 @@ func (s *StoryboardService) GetEpisodePanels(
 				}
 				speaker, _ := dialogue["gh:speaker"].(string)
 				text, _ := dialogue["gh:text"].(string)
-				panelData.Dialogue = append(panelData.Dialogue, &proto.Dialogue{
+				panelData.Dialogue = append(panelData.Dialogue, &storyboardpb.Dialogue{
 					Speaker: speaker,
 					Text:    text,
 				})
@@ -341,7 +340,7 @@ func (s *StoryboardService) GetEpisodePanels(
 			panelData.CameraDirection = cameraDir
 		}
 
-		panels = append(panels, &proto.Panel{
+		panels = append(panels, &storyboardpb.Panel{
 			PageNumber: int32(pageNum),
 			Panel:      int32(panelNum),
 			CutNumber:  panelData.CutNumber,
@@ -349,23 +348,23 @@ func (s *StoryboardService) GetEpisodePanels(
 		})
 	}
 
-	return connect.NewResponse(&proto.GetEpisodePanelsResponse{
+	return connect.NewResponse(&storyboardpb.GetEpisodePanelsResponse{
 		Panels: panels,
 	}), nil
 }
 
 func (s *StoryboardService) StreamUpdates(
 	ctx context.Context,
-	req *connect.Request[proto.StreamUpdatesRequest],
-	stream *connect.ServerStream[proto.StreamUpdatesResponse],
+	req *connect.Request[storyboardpb.StreamUpdatesRequest],
+	stream *connect.ServerStream[storyboardpb.StreamUpdatesResponse],
 ) error {
 	// TODO: Implement real-time streaming for collaboration
 	// For now, return unimplemented
 	return connect.NewError(connect.CodeUnimplemented, fmt.Errorf("streaming not yet implemented"))
 }
 
-func (s *StoryboardService) extractMetadata(storyboard map[string]interface{}) *proto.StoryboardMetadata {
-	metadata := &proto.StoryboardMetadata{}
+func (s *StoryboardService) extractMetadata(storyboard map[string]interface{}) *storyboardpb.StoryboardMetadata {
+	metadata := &storyboardpb.StoryboardMetadata{}
 
 	if title, ok := storyboard["dct:title"].(string); ok {
 		metadata.Title = title

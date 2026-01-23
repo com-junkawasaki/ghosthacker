@@ -3,9 +3,6 @@ plugins:
   - remote: buf.build/bufbuild/es:v2.10.2
     out: ../web/src/lib/gen
     opt: target=ts
-  - remote: buf.build/connectrpc/es:v1.5.0
-    out: ../web/src/lib/gen
-    opt: target=ts
   - remote: buf.build/protocolbuffers/go:v1.34.2
     out: .
     opt: paths=source_relative

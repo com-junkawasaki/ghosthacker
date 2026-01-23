@@ -1,6 +1,6 @@
 import { createClient } from '@connectrpc/connect';
 import { createConnectTransport } from '@connectrpc/connect-web';
-import { StoryboardService } from '$lib/gen/proto/storyboard_connect';
+import { StoryboardService } from '$lib/gen/proto/storyboard_pb';
 
 const transport = createConnectTransport({
 	baseUrl: window.location.origin.replace(':1421', ':8081'),
