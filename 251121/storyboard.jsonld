@@ -126,7 +126,16 @@
               "characters": ["character:Yuto"],
               "dialogue": [
                 { "speaker": "Yuto", "text": "……やめて。" }
-              ]
+              ],
+              "gh:generatedImages": [
+                {
+                  "gh:imageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/1/panel_1_20260123_143336.png",
+                  "gh:imagePrompt": "Close-up, frontal, ARIA-style. Yuto's anxious eyes and trembling hand reaching toward a vibrating phone on his desk in soft morning light. shot on 85mm prime, f/1.2, cinematic live-action.",
+                  "gh:generatedAt": 1769146416,
+                  "gh:model": "google/gemini-3-pro-image-preview"
+                }
+              ],
+              "gh:currentImageIndex": 0
             },
             {
               "panel": 2,
