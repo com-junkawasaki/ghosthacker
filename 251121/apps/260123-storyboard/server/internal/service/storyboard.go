@@ -10,7 +10,6 @@ import (
 
 	"connectrpc.com/connect"
 	"storyboard-editor/backend/proto"
-	"storyboard-editor/backend/proto/storyboardpbconnect"
 )
 
 type StoryboardService struct {
