@@ -1,5 +1,5 @@
 # Build stage
-FROM golang:1.24-alpine AS builder
+FROM golang:1.23-alpine AS builder
 
 WORKDIR /app
 
@@ -22,14 +22,14 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /app/server ./cmd/server/main.go
 RUN CGO_ENABLED=0 GOOS=linux go build -o /app/worker ./cmd/worker/main.go
 
 # Development stage
-FROM golang:1.24-alpine AS development
+FROM golang:1.23-alpine AS development
 
 WORKDIR /app
 
 RUN apk add --no-cache git ca-certificates
 
-# Install air for hot reload
-RUN go install github.com/cosmtrek/air@latest
+# Install air for hot reload (use compatible version)
+RUN go install github.com/cosmtrek/air@v1.51.0
 
 COPY --from=builder /app/server /app/server
 COPY --from=builder /app/worker /app/worker

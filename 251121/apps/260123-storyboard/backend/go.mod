@@ -1,6 +1,6 @@
 module storyboard-editor/backend
 
-go 1.24.0
+go 1.23
 
 require (
 	connectrpc.com/connect v1.17.0
