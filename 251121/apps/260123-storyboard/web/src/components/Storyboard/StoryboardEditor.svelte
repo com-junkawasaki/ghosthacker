@@ -14,7 +14,12 @@
 	const storyboardPath = '';
 
 	onMount(async () => {
-		await loadEpisodes();
+		console.log('[StoryboardEditor] onMount: component mounted, loading episodes');
+		try {
+			await loadEpisodes();
+		} catch (err) {
+			console.error('[StoryboardEditor] onMount: error loading episodes', err);
+		}
 	});
 
 	async function loadEpisodes() {
@@ -117,11 +122,15 @@
 		}
 	}
 
-	$: if (selectedEpisode) {
+	// Only load panels when an episode is selected (not empty string)
+	$: if (selectedEpisode && selectedEpisode.trim() !== '') {
+		console.log('[StoryboardEditor] Reactive: selectedEpisode changed, loading panels', selectedEpisode);
 		loadPanels();
 	}
 
-	$: if (currentPage) {
+	// Only reload panels when page changes and an episode is selected
+	$: if (currentPage && selectedEpisode && selectedEpisode.trim() !== '') {
+		console.log('[StoryboardEditor] Reactive: currentPage changed, reloading panels', currentPage);
 		loadPanels();
 	}
 </script>
@@ -182,6 +191,11 @@
 			on:update={({ detail }) =>
 				handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
 		/>
+	{:else if episodes.length === 0 && !loading}
+		<div class="empty-state">
+			<p>No episodes available. Check console for details.</p>
+			<button on:click={loadEpisodes}>Retry</button>
+		</div>
 	{/if}
 </div>
 
@@ -260,5 +274,24 @@
 		padding: 2rem;
 		text-align: center;
 		color: #666;
+	}
+
+	.empty-state {
+		padding: 2rem;
+		text-align: center;
+		color: #666;
+	}
+
+	.empty-state button {
+		margin-top: 1rem;
+		padding: 0.5rem 1rem;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		background: #fff;
+		cursor: pointer;
+	}
+
+	.empty-state button:hover {
+		background: #f5f5f5;
 	}
 </style>

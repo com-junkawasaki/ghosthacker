@@ -26,22 +26,32 @@ export const storyboardClient = createClient(StoryboardService, transport);
  * Type-safe wrapper for getEpisodes with runtime validation
  */
 export async function getEpisodes(filePath: string = ''): Promise<GetEpisodesResponse['episodes']> {
-	const response = await storyboardClient.getEpisodes({ filePath });
+	console.log('[storyboard-client] getEpisodes: calling API', { filePath, baseUrl: getApiBaseUrl() });
 	
-	// Runtime validation
-	if (!response || typeof response !== 'object') {
-		throw new Error('Invalid response: response is not an object');
+	try {
+		const response = await storyboardClient.getEpisodes({ filePath });
+		console.log('[storyboard-client] getEpisodes: raw response', response);
+		
+		// Runtime validation
+		if (!response || typeof response !== 'object') {
+			throw new Error(`Invalid response: response is not an object, got ${typeof response}`);
+		}
+		
+		if (!('episodes' in response)) {
+			console.error('[storyboard-client] getEpisodes: response keys', Object.keys(response));
+			throw new Error('Invalid response: missing episodes field');
+		}
+		
+		if (!Array.isArray(response.episodes)) {
+			throw new Error(`Invalid response: episodes is not an array, got ${typeof response.episodes}, value: ${JSON.stringify(response.episodes)}`);
+		}
+		
+		console.log('[storyboard-client] getEpisodes: validation passed', { count: response.episodes.length });
+		return response.episodes;
+	} catch (err) {
+		console.error('[storyboard-client] getEpisodes: error', err);
+		throw err;
 	}
-	
-	if (!('episodes' in response)) {
-		throw new Error('Invalid response: missing episodes field');
-	}
-	
-	if (!Array.isArray(response.episodes)) {
-		throw new Error(`Invalid response: episodes is not an array, got ${typeof response.episodes}`);
-	}
-	
-	return response.episodes;
 }
 
 /**
