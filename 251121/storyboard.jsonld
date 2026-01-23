@@ -827,12 +827,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Yuto's eyes widen as he hears 'private photos'—shock hits. shot on 85mm prime, f/1.2, cinematic live-action.",
-              "visual": "『プライベートな写真が公開』の言葉で、Yutoの目が泳ぐ。",
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Yuto's eyes widen as he hears that someone's private account and hateful posts were exposed; shock hits. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "『鍵垢の中身』と『悪口の公開』の言葉で、Yutoの目が泳ぐ。",
               "environment": "env:cschool-classroom",
               "characters": ["character:Yuto"],
               "dialogue": [
-                { "speaker": "Ryo", "text": "プライベートな写真も公開されたんだけど！あんたのせいだよ。" }
+                { "speaker": "Ryo", "text": "Sakiの鍵垢、勝手に開いて晒されたんだけど！" },
+                { "speaker": "Ryo", "text": "しかも…妬んで書いてた悪口まで公開された。お前のアカウントからだよ。全部、お前のせい。" }
               ]
             },
             {
@@ -853,7 +854,9 @@
               "environment": "env:cschool-classroom",
               "characters": ["character:Yuto", "character:Mei", "character:Saki", "character:Ryo"],
               "dialogue": [
-                { "speaker": "Narration", "text": "（責められる声が、重なっていく）" }
+                { "speaker": "Saki", "text": "……私のこと、裏で笑ってたんだ。" },
+                { "speaker": "Mei", "text": "ちが…ちがう、私は…" },
+                { "speaker": "Narration", "text": "（妬み→悪口→公開→責任。関係が、崩れる音。）" }
               ]
             }
           ]
