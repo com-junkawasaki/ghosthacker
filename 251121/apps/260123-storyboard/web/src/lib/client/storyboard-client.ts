@@ -6,5 +6,4 @@ const transport = createConnectTransport({
 	baseUrl: window.location.origin.replace(':1421', ':8081'),
 });
 
-// @ts-ignore - ConnectRPC type definitions
 export const storyboardClient = createClient(StoryboardService, transport);

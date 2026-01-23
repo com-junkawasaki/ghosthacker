@@ -16,6 +16,8 @@
 	let dialogues: Dialogue[] = panel.data?.dialogue ?? [];
 	let characters = panel.data?.characters ?? [];
 	let environment = panel.data?.environment ?? '';
+	let shot = panel.data?.shot ?? '';
+	let runwayPrompt = panel.data?.runwayPrompt ?? '';
 
 	function startEdit() {
 		editing = true;
@@ -30,6 +32,8 @@
 			cameraDirection: cameraDirection,
 			durationSeconds: durationSeconds,
 			cutNumber: cutNumber,
+			shot: shot,
+			runwayPrompt: runwayPrompt,
 		});
 
 		dispatch('update', updatedData);
@@ -46,6 +50,8 @@
 		dialogues = panel.data?.dialogue ?? [];
 		characters = panel.data?.characters ?? [];
 		environment = panel.data?.environment ?? '';
+		shot = panel.data?.shot ?? '';
+		runwayPrompt = panel.data?.runwayPrompt ?? '';
 	}
 
 	function addDialogue() {
@@ -134,6 +140,22 @@
 						placeholder="env:ren-office"
 					/>
 				</div>
+				<div class="shot-section">
+					<label>Shot Type:</label>
+					<input
+						type="text"
+						bind:value={shot}
+						placeholder="Close-up, Wide Shot, etc."
+					/>
+				</div>
+				<div class="prompt-section">
+					<label>Runway Prompt:</label>
+					<textarea
+						bind:value={runwayPrompt}
+						placeholder="Runway base prompt..."
+						class="prompt-input"
+					></textarea>
+				</div>
 				<div class="dialogue-section">
 					<label>Dialogue:</label>
 					{#each dialogues as dialogue, index}
@@ -175,6 +197,12 @@
 				{/if}
 				{#if environment}
 					<div class="environment">Env: {environment}</div>
+				{/if}
+				{#if shot}
+					<div class="shot">Shot: {shot}</div>
+				{/if}
+				{#if runwayPrompt}
+					<div class="runway-prompt">Prompt: {runwayPrompt}</div>
 				{/if}
 				{#if dialogues.length > 0}
 					<div class="dialogue">
@@ -347,6 +375,23 @@
 		margin-bottom: 0.5rem;
 	}
 
+	.shot {
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: #444;
+		margin-bottom: 0.5rem;
+	}
+
+	.runway-prompt {
+		font-size: 0.8rem;
+		color: #666;
+		background: #f0f0f0;
+		padding: 0.5rem;
+		border-radius: 4px;
+		margin-top: 0.5rem;
+		word-break: break-all;
+	}
+
 	.dialogue {
 		margin-top: 0.5rem;
 	}
@@ -381,13 +426,20 @@
 		color: #555;
 	}
 
-	.content-editor input[type='text'] {
+	.content-editor input[type='text'],
+	.content-editor textarea {
 		width: 100%;
 		padding: 0.5rem;
 		border: 1px solid #ccc;
 		border-radius: 4px;
 		font-size: 0.9rem;
 		margin-bottom: 0.5rem;
+		font-family: inherit;
+	}
+
+	.content-editor textarea {
+		min-height: 80px;
+		resize: vertical;
 	}
 
 	.dialogue-item {

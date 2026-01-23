@@ -11,7 +11,7 @@
 	let loading = false;
 	let error = '';
 
-	const storyboardPath = '../../storyboard.jsonld';
+	const storyboardPath = '';
 
 	onMount(async () => {
 		await loadEpisodes();
@@ -19,17 +19,19 @@
 
 	async function loadEpisodes() {
 		try {
+			console.log('loadEpisodes: starting fetch from', storyboardPath);
 			loading = true;
 			error = '';
-			// @ts-ignore
-			const response = await storyboardClient.getEpisodes(
-				{ filePath: storyboardPath }
-			);
-			episodes = response.episodes.map((e: { id: string; title: string; totalPages: number }) => ({
+			const response = await storyboardClient.getEpisodes({
+				filePath: storyboardPath
+			});
+			console.log('loadEpisodes: response received', response);
+			episodes = response.episodes.map((e) => ({
 				id: e.id,
 				title: e.title,
 				totalPages: e.totalPages,
 			}));
+			console.log('loadEpisodes: parsed episodes', episodes);
 			if (episodes.length > 0 && !selectedEpisode) {
 				const firstEpisode = episodes[0];
 				if (firstEpisode) {
@@ -50,10 +52,11 @@
 		try {
 			loading = true;
 			error = '';
-			// @ts-ignore
-			const response = await storyboardClient.getEpisodePanels(
-				{ filePath: storyboardPath, episodeId: selectedEpisode, pageNumber: currentPage }
-			);
+			const response = await storyboardClient.getEpisodePanels({
+				filePath: storyboardPath,
+				episodeId: selectedEpisode,
+				pageNumber: currentPage
+			});
 			panels = response.panels;
 		} catch (err) {
 			error = err instanceof Error ? err.message : 'Failed to load panels';
@@ -70,10 +73,13 @@
 	) {
 		if (!selectedEpisode) return;
 		try {
-			// @ts-ignore
-			await storyboardClient.updatePanel(
-				{ filePath: storyboardPath, episodeId: selectedEpisode, pageNumber, panel, panelData: data }
-			);
+			await storyboardClient.updatePanel({
+				filePath: storyboardPath,
+				episodeId: selectedEpisode,
+				pageNumber,
+				panel,
+				panelData: data
+			});
 			await loadPanels(); // Reload to reflect changes
 		} catch (err) {
 			error = err instanceof Error ? err.message : 'Failed to update panel';

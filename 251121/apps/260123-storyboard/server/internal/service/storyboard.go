@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/fs"
+	"log"
 	"os"
 
 	"connectrpc.com/connect"
@@ -67,71 +68,109 @@ func (s *StoryboardService) UpdatePanel(
 		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("invalid JSON-LD: %w", err))
 	}
 
-	// Update panel in panelScripts
-	panelScripts, ok := storyboard["gh:panelScripts"].(map[string]interface{})
+	episodes, ok := storyboard["gh:episodes"].([]interface{})
 	if !ok {
-		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("panelScripts not found"))
+		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("gh:episodes not found"))
 	}
 
-	episodePanels, ok := panelScripts[req.Msg.EpisodeId].([]interface{})
-	if !ok {
-		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("episode %s not found", req.Msg.EpisodeId))
-	}
-
-	// Find and update the panel
 	found := false
-	for i, p := range episodePanels {
-		panel, ok := p.(map[string]interface{})
+	for _, e := range episodes {
+		episode, ok := e.(map[string]interface{})
 		if !ok {
 			continue
 		}
 
-		pageNum, _ := panel["gh:pageNumber"].(float64)
-		panelNum, _ := panel["panel"].(float64)
+		if episode["gh:episodeId"] != req.Msg.EpisodeId {
+			continue
+		}
 
-		if int32(pageNum) == req.Msg.PageNumber && int32(panelNum) == req.Msg.Panel {
-			// Update panel data
-			if req.Msg.PanelData.Characters != nil {
-				charRefs := make([]interface{}, len(req.Msg.PanelData.Characters))
-				for j, charID := range req.Msg.PanelData.Characters {
-					charRefs[j] = charID
-				}
-				panel["gh:characters"] = charRefs
+		pages, ok := episode["gh:pages"].([]interface{})
+		if !ok {
+			continue
+		}
+
+		for _, pg := range pages {
+			page, ok := pg.(map[string]interface{})
+			if !ok {
+				continue
 			}
 
-			if req.Msg.PanelData.Dialogue != nil {
-				dialogue := make([]interface{}, len(req.Msg.PanelData.Dialogue))
-				for j, d := range req.Msg.PanelData.Dialogue {
-					dialogue[j] = map[string]interface{}{
-						"gh:speaker": d.Speaker,
-						"gh:text":    d.Text,
+			pageNum, _ := page["gh:pageNumber"].(float64)
+			if int32(pageNum) != req.Msg.PageNumber {
+				continue
+			}
+
+			panels, ok := page["gh:panels"].([]interface{})
+			if !ok {
+				continue
+			}
+
+			for i, p := range panels {
+				panel, ok := p.(map[string]interface{})
+				if !ok {
+					continue
+				}
+
+				panelIndex, _ := panel["panel"].(float64)
+				if int32(panelIndex) == req.Msg.Panel {
+					// Update panel data
+					if req.Msg.PanelData.Characters != nil {
+						charRefs := make([]interface{}, len(req.Msg.PanelData.Characters))
+						for j, charID := range req.Msg.PanelData.Characters {
+							charRefs[j] = charID
+						}
+						panel["characters"] = charRefs
 					}
+
+					if req.Msg.PanelData.Dialogue != nil {
+						dialogue := make([]interface{}, len(req.Msg.PanelData.Dialogue))
+						for j, d := range req.Msg.PanelData.Dialogue {
+							dialogue[j] = map[string]interface{}{
+								"speaker": d.Speaker,
+								"text":    d.Text,
+							}
+						}
+						panel["dialogue"] = dialogue
+					}
+
+					if req.Msg.PanelData.Environment != "" {
+						panel["environment"] = req.Msg.PanelData.Environment
+					}
+
+					if req.Msg.PanelData.VisualNote != "" {
+						panel["visual"] = req.Msg.PanelData.VisualNote
+					}
+
+					if req.Msg.PanelData.CameraDirection != "" {
+						panel["gh:cameraDirection"] = req.Msg.PanelData.CameraDirection
+					}
+
+					if req.Msg.PanelData.DurationSeconds > 0 {
+						panel["gh:durationSeconds"] = req.Msg.PanelData.DurationSeconds
+					}
+
+					if req.Msg.PanelData.CutNumber != "" {
+						panel["gh:cutNumber"] = req.Msg.PanelData.CutNumber
+					}
+
+					if req.Msg.PanelData.Shot != "" {
+						panel["shot"] = req.Msg.PanelData.Shot
+					}
+
+					if req.Msg.PanelData.RunwayPrompt != "" {
+						panel["gh:runwayPrompt"] = req.Msg.PanelData.RunwayPrompt
+					}
+
+					panels[i] = panel
+					found = true
+					break
 				}
-				panel["gh:dialogue"] = dialogue
 			}
-
-			if req.Msg.PanelData.Environment != "" {
-				panel["environment"] = req.Msg.PanelData.Environment
+			if found {
+				break
 			}
-
-			if req.Msg.PanelData.CutNumber != "" {
-				panel["gh:cutNumber"] = req.Msg.PanelData.CutNumber
-			}
-
-			if req.Msg.PanelData.DurationSeconds > 0 {
-				panel["gh:durationSeconds"] = req.Msg.PanelData.DurationSeconds
-			}
-
-			if req.Msg.PanelData.VisualNote != "" {
-				panel["gh:visualNote"] = req.Msg.PanelData.VisualNote
-			}
-
-			if req.Msg.PanelData.CameraDirection != "" {
-				panel["gh:cameraDirection"] = req.Msg.PanelData.CameraDirection
-			}
-
-			episodePanels[i] = panel
-			found = true
+		}
+		if found {
 			break
 		}
 	}
@@ -200,37 +239,42 @@ func (s *StoryboardService) GetEpisodes(
 		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("invalid JSON-LD: %w", err))
 	}
 
-	panelScripts, ok := storyboard["gh:panelScripts"].(map[string]interface{})
+	log.Printf("GetEpisodes: storyboard loaded, keys: %v", getKeys(storyboard))
+	if val, ok := storyboard["gh:episodes"]; ok {
+		log.Printf("GetEpisodes: gh:episodes type: %T", val)
+	} else {
+		log.Printf("GetEpisodes: gh:episodes NOT FOUND")
+	}
+
+	episodeList, ok := storyboard["gh:episodes"].([]interface{})
 	if !ok {
+		log.Printf("GetEpisodes: gh:episodes not found or not a list")
 		return connect.NewResponse(&storyboardpb.GetEpisodesResponse{
 			Episodes: []*storyboardpb.Episode{},
 		}), nil
 	}
 
-	episodes := make([]*storyboardpb.Episode, 0, len(panelScripts))
-	for episodeID, panels := range panelScripts {
-		panelList, ok := panels.([]interface{})
+	log.Printf("GetEpisodes: found %d episodes", len(episodeList))
+
+	episodes := make([]*storyboardpb.Episode, 0, len(episodeList))
+	for _, e := range episodeList {
+		episode, ok := e.(map[string]interface{})
 		if !ok {
 			continue
 		}
 
-		maxPage := int32(0)
-		for _, p := range panelList {
-			panel, ok := p.(map[string]interface{})
-			if !ok {
-				continue
-			}
-			if pageNum, ok := panel["gh:pageNumber"].(float64); ok {
-				if int32(pageNum) > maxPage {
-					maxPage = int32(pageNum)
-				}
-			}
+		id, _ := episode["gh:episodeId"].(string)
+		title, _ := episode["dct:title"].(string)
+		
+		totalPages := int32(0)
+		if pages, ok := episode["gh:pages"].([]interface{}); ok {
+			totalPages = int32(len(pages))
 		}
 
 		episodes = append(episodes, &storyboardpb.Episode{
-			Id:         episodeID,
-			Title:      episodeID, // TODO: Extract title from metadata if available
-			TotalPages: maxPage,
+			Id:         id,
+			Title:      title,
+			TotalPages: totalPages,
 		})
 	}
 
@@ -258,14 +302,32 @@ func (s *StoryboardService) GetEpisodePanels(
 		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("invalid JSON-LD: %w", err))
 	}
 
-	panelScripts, ok := storyboard["gh:panelScripts"].(map[string]interface{})
+	episodeList, ok := storyboard["gh:episodes"].([]interface{})
 	if !ok {
 		return connect.NewResponse(&storyboardpb.GetEpisodePanelsResponse{
 			Panels: []*storyboardpb.Panel{},
 		}), nil
 	}
 
-	episodePanels, ok := panelScripts[req.Msg.EpisodeId].([]interface{})
+	var targetEpisode map[string]interface{}
+	for _, e := range episodeList {
+		episode, ok := e.(map[string]interface{})
+		if !ok {
+			continue
+		}
+		if episode["gh:episodeId"] == req.Msg.EpisodeId {
+			targetEpisode = episode
+			break
+		}
+	}
+
+	if targetEpisode == nil {
+		return connect.NewResponse(&storyboardpb.GetEpisodePanelsResponse{
+			Panels: []*storyboardpb.Panel{},
+		}), nil
+	}
+
+	pages, ok := targetEpisode["gh:pages"].([]interface{})
 	if !ok {
 		return connect.NewResponse(&storyboardpb.GetEpisodePanelsResponse{
 			Panels: []*storyboardpb.Panel{},
@@ -273,79 +335,99 @@ func (s *StoryboardService) GetEpisodePanels(
 	}
 
 	panels := make([]*storyboardpb.Panel, 0)
-	for _, p := range episodePanels {
-		panel, ok := p.(map[string]interface{})
+	for _, pg := range pages {
+		page, ok := pg.(map[string]interface{})
 		if !ok {
 			continue
 		}
 
-		pageNum, _ := panel["gh:pageNumber"].(float64)
-		panelNum, _ := panel["panel"].(float64)
-
+		pageNum, _ := page["gh:pageNumber"].(float64)
 		if req.Msg.PageNumber > 0 && int32(pageNum) != req.Msg.PageNumber {
 			continue
 		}
 
-		panelData := &storyboardpb.PanelData{}
+		pagePanels, ok := page["gh:panels"].([]interface{})
+		if !ok {
+			continue
+		}
 
-		// Extract characters
-		if chars, ok := panel["gh:characters"].([]interface{}); ok {
-			panelData.Characters = make([]string, len(chars))
-			for i, c := range chars {
-				if charID, ok := c.(string); ok {
-					panelData.Characters[i] = charID
+		for _, p := range pagePanels {
+			panel, ok := p.(map[string]interface{})
+			if !ok {
+				continue
+			}
+
+			panelIndex, _ := panel["panel"].(float64)
+			
+			panelData := &storyboardpb.PanelData{}
+
+			// Extract characters
+			if chars, ok := panel["characters"].([]interface{}); ok {
+				panelData.Characters = make([]string, len(chars))
+				for i, c := range chars {
+					if charID, ok := c.(string); ok {
+						panelData.Characters[i] = charID
+					}
 				}
 			}
-		}
 
-		// Extract dialogue
-		if dialogues, ok := panel["gh:dialogue"].([]interface{}); ok {
-			panelData.Dialogue = make([]*storyboardpb.Dialogue, 0, len(dialogues))
-			for _, d := range dialogues {
-				dialogue, ok := d.(map[string]interface{})
-				if !ok {
-					continue
+			// Extract dialogue
+			if dialogues, ok := panel["dialogue"].([]interface{}); ok {
+				panelData.Dialogue = make([]*storyboardpb.Dialogue, 0, len(dialogues))
+				for _, d := range dialogues {
+					dialogue, ok := d.(map[string]interface{})
+					if !ok {
+						continue
+					}
+					speaker, _ := dialogue["speaker"].(string)
+					text, _ := dialogue["text"].(string)
+					panelData.Dialogue = append(panelData.Dialogue, &storyboardpb.Dialogue{
+						Speaker: speaker,
+						Text:    text,
+					})
 				}
-				speaker, _ := dialogue["gh:speaker"].(string)
-				text, _ := dialogue["gh:text"].(string)
-				panelData.Dialogue = append(panelData.Dialogue, &storyboardpb.Dialogue{
-					Speaker: speaker,
-					Text:    text,
-				})
 			}
-		}
 
-		// Extract environment
-		if env, ok := panel["environment"].(string); ok {
-			panelData.Environment = env
-		}
+			// Extract environment
+			if env, ok := panel["environment"].(string); ok {
+				panelData.Environment = env
+			}
 
-		// Extract cut number
-		if cutNum, ok := panel["gh:cutNumber"].(string); ok {
-			panelData.CutNumber = cutNum
-		}
+			// Extract visual note
+			if visual, ok := panel["visual"].(string); ok {
+				panelData.VisualNote = visual
+			}
 
-		// Extract duration
-		if duration, ok := panel["gh:durationSeconds"].(float64); ok {
-			panelData.DurationSeconds = float32(duration)
-		}
+			// Extract camera direction
+			if cameraDir, ok := panel["gh:cameraDirection"].(string); ok {
+				panelData.CameraDirection = cameraDir
+			}
 
-		// Extract visual note
-		if visualNote, ok := panel["gh:visualNote"].(string); ok {
-			panelData.VisualNote = visualNote
-		}
+			// Extract duration
+			if duration, ok := panel["gh:durationSeconds"].(float64); ok {
+				panelData.DurationSeconds = float32(duration)
+			}
 
-		// Extract camera direction
-		if cameraDir, ok := panel["gh:cameraDirection"].(string); ok {
-			panelData.CameraDirection = cameraDir
-		}
+			// Extract cut number
+			if cutNum, ok := panel["gh:cutNumber"].(string); ok {
+				panelData.CutNumber = cutNum
+			}
 
-		panels = append(panels, &storyboardpb.Panel{
-			PageNumber: int32(pageNum),
-			Panel:      int32(panelNum),
-			CutNumber:  panelData.CutNumber,
-			Data:       panelData,
-		})
+			if shot, ok := panel["shot"].(string); ok {
+				panelData.Shot = shot
+			}
+
+			if runwayPrompt, ok := panel["gh:runwayPrompt"].(string); ok {
+				panelData.RunwayPrompt = runwayPrompt
+			}
+
+			panels = append(panels, &storyboardpb.Panel{
+				PageNumber: int32(pageNum),
+				Panel:      int32(panelIndex),
+				CutNumber:  panelData.CutNumber,
+				Data:       panelData,
+			})
+		}
 	}
 
 	return connect.NewResponse(&storyboardpb.GetEpisodePanelsResponse{
@@ -358,8 +440,6 @@ func (s *StoryboardService) StreamUpdates(
 	req *connect.Request[storyboardpb.StreamUpdatesRequest],
 	stream *connect.ServerStream[storyboardpb.StreamUpdatesResponse],
 ) error {
-	// TODO: Implement real-time streaming for collaboration
-	// For now, return unimplemented
 	return connect.NewError(connect.CodeUnimplemented, fmt.Errorf("streaming not yet implemented"))
 }
 
@@ -374,13 +454,25 @@ func (s *StoryboardService) extractMetadata(storyboard map[string]interface{}) *
 		metadata.Description = desc
 	}
 
-	if panelScripts, ok := storyboard["gh:panelScripts"].(map[string]interface{}); ok {
-		episodes := make([]string, 0, len(panelScripts))
-		for episodeID := range panelScripts {
-			episodes = append(episodes, episodeID)
+	if episodes, ok := storyboard["gh:episodes"].([]interface{}); ok {
+		episodeIDs := make([]string, 0, len(episodes))
+		for _, e := range episodes {
+			if ep, ok := e.(map[string]interface{}); ok {
+				if id, ok := ep["gh:episodeId"].(string); ok {
+					episodeIDs = append(episodeIDs, id)
+				}
+			}
 		}
-		metadata.Episodes = episodes
+		metadata.Episodes = episodeIDs
 	}
 
 	return metadata
+}
+
+func getKeys(m map[string]interface{}) []string {
+	keys := make([]string, 0, len(m))
+	for k := range m {
+		keys = append(keys, k)
+	}
+	return keys
 }

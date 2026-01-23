@@ -10,6 +10,7 @@ import (
 
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
+	"github.com/rs/cors"
 
 	"storyboard-editor/backend/internal/service"
 	"storyboard-editor/backend/proto/storyboardpbconnect"
@@ -40,9 +41,16 @@ func main() {
 	log.Printf("Storyboard server starting on :%s", port)
 	log.Printf("Storyboard file: %s", storyboardPath)
 
+	c := cors.New(cors.Options{
+		AllowedOrigins: []string{"*"},
+		AllowedMethods: []string{"GET", "POST", "OPTIONS"},
+		AllowedHeaders: []string{"*"},
+		ExposedHeaders: []string{"*"},
+	})
+
 	server := &http.Server{
 		Addr:    ":" + port,
-		Handler: h2c.NewHandler(mux, &http2.Server{}),
+		Handler: h2c.NewHandler(c.Handler(mux), &http2.Server{}),
 	}
 
 	if err := server.ListenAndServe(); err != nil {
