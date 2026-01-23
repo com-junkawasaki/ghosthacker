@@ -121,12 +121,70 @@
     { "@id": "character:GhostPresident", "schema:name": "Ghost (President)", "dct:description": "社長の“善意”から生まれるGhost。『許し』『絆』『家族』の笑顔の紙仮面が、口と責任を静かに塞ぐ。" },
     { "@id": "character:GhostPreviousPresident", "schema:name": "Ghost (Previous President)", "dct:description": "先代の“文化”から生まれるGhost。古い社訓フレームと社判（ハンコ）を核に、善意の言葉で権限の穴を増殖させる。" },
     { "@id": "character:GhostClock", "schema:name": "Ghost (Clock)", "dct:description": "『始業の鐘』だけが鳴り続け、針が刃になるGhost。締切と焦りが“終端（Done）”を奪い、現場の首元に迫る。" },
-    { "@id": "character:Yuto", "schema:name": "Yuto", "dct:description": "C高校の友人。限定ブランドへの憧れからSNS上の格安販売に手を出し、迷惑連絡と乗っ取り被害に怯える。" },
-    { "@id": "character:Akira", "schema:name": "Akira", "dct:description": "Yutoのクラスメイト。流行に敏感で“限定ドロップ”を自慢したがる。口は軽いが悪気は薄い。" },
-    { "@id": "character:Saki", "schema:name": "Saki", "dct:description": "Yutoのクラスメイト。観察眼が鋭く、空気を読む。羨望と警戒のバランスが取れている。" },
-    { "@id": "character:Ryo", "schema:name": "Ryo", "dct:description": "Yutoのクラスメイト。ノリで拡散しがち。被害が出ると怒りが先に出るタイプ。" },
-    { "@id": "character:Mei", "schema:name": "Mei", "dct:description": "Yutoのクラスメイト。会話の中心にいるムードメーカー。友だち思いだが、SNSでの距離感が近い。" },
-    { "@id": "character:Kota", "schema:name": "Kota", "dct:description": "Yutoのクラスメイト。ガジェット好きで“便利”優先。『大手なら安全』と信じやすい。" },
+    {
+      "@id": "character:Yuto",
+      "schema:name": "Sato Yuto",
+      "schema:givenName": "Yuto",
+      "schema:familyName": "Sato",
+      "schema:alternateName": ["Yuto"],
+      "dct:description": "C高校の友人。限定ブランドへの憧れからSNS上の格安販売に手を出し、迷惑連絡と乗っ取り被害に怯える。"
+    },
+    {
+      "@id": "character:YutoMother",
+      "schema:name": "Sato Keiko",
+      "schema:givenName": "Keiko",
+      "schema:familyName": "Sato",
+      "schema:alternateName": ["Keiko", "Mom", "ママ"],
+      "dct:description": "Yutoの母。家計と生活を回しつつ、異変に最初に気づく。"
+    },
+    {
+      "@id": "character:YutoFather",
+      "schema:name": "Sato Daichi",
+      "schema:givenName": "Daichi",
+      "schema:familyName": "Sato",
+      "schema:alternateName": ["Daichi", "Dad", "パパ"],
+      "dct:description": "Yutoの父。冷静だが、請求の現実を前に声が固くなる。"
+    },
+    {
+      "@id": "character:Akira",
+      "schema:name": "Kurokawa Akira",
+      "schema:givenName": "Akira",
+      "schema:familyName": "Kurokawa",
+      "schema:alternateName": ["Akira", "Aki", "アキ"],
+      "dct:description": "Yutoのクラスメイト。流行に敏感で“限定ドロップ”を自慢したがる。口は軽いが悪気は薄い。"
+    },
+    {
+      "@id": "character:Saki",
+      "schema:name": "Mizuno Saki",
+      "schema:givenName": "Saki",
+      "schema:familyName": "Mizuno",
+      "schema:alternateName": ["Saki", "Saki-chan", "サキ"],
+      "dct:description": "Yutoのクラスメイト。観察眼が鋭く、空気を読む。羨望と警戒のバランスが取れている。"
+    },
+    {
+      "@id": "character:Ryo",
+      "schema:name": "Tachibana Ryo",
+      "schema:givenName": "Ryo",
+      "schema:familyName": "Tachibana",
+      "schema:alternateName": ["Ryo", "Ryo-chi", "リョウ"],
+      "dct:description": "Yutoのクラスメイト。ノリで拡散しがち。被害が出ると怒りが先に出るタイプ。"
+    },
+    {
+      "@id": "character:Mei",
+      "schema:name": "Sakuraba Mei",
+      "schema:givenName": "Mei",
+      "schema:familyName": "Sakuraba",
+      "schema:alternateName": ["Mei", "Mei-chan", "メイ"],
+      "dct:description": "Yutoのクラスメイト。会話の中心にいるムードメーカー。友だち思いだが、SNSでの距離感が近い。"
+    },
+    {
+      "@id": "character:Kota",
+      "schema:name": "Hiramatsu Kota",
+      "schema:givenName": "Kota",
+      "schema:familyName": "Hiramatsu",
+      "schema:alternateName": ["Kota", "Ko-ta", "コータ"],
+      "dct:description": "Yutoのクラスメイト。ガジェット好きで“便利”優先。『大手なら安全』と信じやすい。"
+    },
     {
       "@id": "character:Kenta",
       "schema:name": "Kenta",
@@ -296,7 +354,7 @@
               "environment": "env:cschool-classroom",
               "characters": ["character:Yuto", "character:Akira", "character:Mei", "character:Saki", "character:Kota"],
               "dialogue": [
-                { "speaker": "Mei", "text": "今日さ、体育ないの神〜。" },
+                { "speaker": "Sakuraba Mei (Mei-chan)", "text": "今日さ、体育ないの神〜。" },
                 { "speaker": "Yuto", "text": "わかる。昼まで生きれる。" }
               ]
             },
@@ -318,7 +376,7 @@
               "environment": "env:cschool-classroom",
               "characters": [],
               "dialogue": [
-                { "speaker": "Akira", "text": "見て。NEON ARCの限定ドロップ。" }
+                { "speaker": "Kurokawa Akira (Aki)", "text": "見て。NEON ARCの限定ドロップ。" }
               ]
             },
             {
@@ -339,7 +397,7 @@
               "environment": "env:cschool-classroom",
               "characters": ["character:Yuto", "character:Akira", "character:Saki"],
               "dialogue": [
-                { "speaker": "Saki", "text": "いいな…それ、もう売ってないやつ？" },
+                { "speaker": "Mizuno Saki (Saki-chan)", "text": "いいな…それ、もう売ってないやつ？" },
                 { "speaker": "Yuto", "text": "いいなぁー……。" }
               ]
             },
@@ -361,7 +419,7 @@
               "environment": "env:cschool-classroom",
               "characters": ["character:Ren", "character:Nei", "character:Yuto", "character:Akira"],
               "dialogue": [
-                { "speaker": "Akira", "text": "これ、限定販売なんだぜ。もう手に入らない。" }
+                { "speaker": "Kurokawa Akira (Aki)", "text": "これ、限定販売なんだぜ。もう手に入らない。" }
               ]
             }
           ]
@@ -498,7 +556,7 @@
               "environment": "env:cschool-classroom",
               "characters": ["character:Yuto", "character:Akira", "character:Mei", "character:Saki"],
               "dialogue": [
-                { "speaker": "Akira", "text": "マジで、手に入らないからな？" }
+                { "speaker": "Kurokawa Akira (Aki)", "text": "マジで、手に入らないからな？" }
               ]
             },
             {
@@ -675,7 +733,8 @@
               "environment": "env:home-desk",
               "characters": ["character:Yuto"],
               "dialogue": [
-                { "speaker": "Parent", "text": "カード止まった。身に覚えある？" }
+                { "speaker": "Keiko (Mom)", "text": "ねぇ、Yuto、カードが止まったんだけど、身に覚えある？" },
+                { "speaker": "Yuto", "text": "いや、知らないけど。" }
               ]
             },
             {
@@ -697,7 +756,7 @@
               "environment": "env:home-desk",
               "characters": ["character:Yuto"],
               "dialogue": [
-                { "speaker": "Parent", "text": "……この請求、なに？" },
+                { "speaker": "Daichi (Dad)", "text": "ねぇ、Yuto。この請求…なに？" },
                 { "speaker": "Yuto", "text": "え…俺、そんな…" }
               ]
             },
@@ -767,7 +826,7 @@
               "environment": "env:cschool-classroom",
               "characters": ["character:Yuto", "character:Ryo", "character:Mei", "character:Saki"],
               "dialogue": [
-                { "speaker": "Ryo", "text": "昨日のメッセージ何ー？" }
+                { "speaker": "Tachibana Ryo (Ryo-chi)", "text": "昨日のメッセージ何ー？" }
               ]
             },
             {
@@ -810,7 +869,7 @@
               "characters": ["character:Ryo", "character:Yuto"],
               "dialogue": [
                 { "speaker": "Yuto", "text": "え…俺、送ってない…" },
-                { "speaker": "Ryo", "text": "クリックしたら乗っ取られたんだけど！" }
+                { "speaker": "Tachibana Ryo (Ryo-chi)", "text": "クリックしたら乗っ取られたんだけど！" }
               ]
             },
             {
@@ -832,8 +891,8 @@
               "environment": "env:cschool-classroom",
               "characters": ["character:Yuto"],
               "dialogue": [
-                { "speaker": "Ryo", "text": "Sakiの鍵垢、勝手に開いて晒されたんだけど！" },
-                { "speaker": "Ryo", "text": "しかも…妬んで書いてた悪口まで公開された。お前のアカウントからだよ。全部、お前のせい。" }
+                { "speaker": "Tachibana Ryo (Ryo-chi)", "text": "Mizunoの鍵垢、勝手に開いて晒されたんだけど！" },
+                { "speaker": "Tachibana Ryo (Ryo-chi)", "text": "しかも…妬んで書いてた悪口まで公開された。お前のアカウントからだよ。全部、お前のせい。" }
               ]
             },
             {
@@ -854,8 +913,8 @@
               "environment": "env:cschool-classroom",
               "characters": ["character:Yuto", "character:Mei", "character:Saki", "character:Ryo"],
               "dialogue": [
-                { "speaker": "Saki", "text": "……私のこと、裏で笑ってたんだ。" },
-                { "speaker": "Mei", "text": "ちが…ちがう、私は…" },
+                { "speaker": "Mizuno Saki (Saki-chan)", "text": "……私のこと、裏で笑ってたんだ。" },
+                { "speaker": "Sakuraba Mei (Mei-chan)", "text": "ちが…ちがう、私は…" },
                 { "speaker": "Narration", "text": "（妬み→悪口→公開→責任。関係が、崩れる音。）" }
               ]
             }
