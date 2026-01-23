@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import type { Panel, PanelData, Dialogue } from '$lib/gen/proto/storyboard_pb';
-	import { create, PanelDataSchema, DialogueSchema } from '$lib/gen/proto/storyboard_pb';
+	import type { Panel, Dialogue } from '$lib/gen/proto/storyboard_pb';
+	import { PanelDataSchema, DialogueSchema } from '$lib/gen/proto/storyboard_pb';
+	import { create } from '@bufbuild/protobuf';
 
 	export let panel: Panel;
 
@@ -9,12 +10,12 @@
 
 	let editing = false;
 	let cutNumber = panel.cutNumber || '';
-	let visualNote = panel.data?.visualNote || '';
-	let cameraDirection = panel.data?.cameraDirection || '';
-	let durationSeconds = panel.data?.durationSeconds || 0;
-	let dialogues: Dialogue[] = panel.data?.dialogue || [];
-	let characters = panel.data?.characters || [];
-	let environment = panel.data?.environment || '';
+	let visualNote = panel.data?.visualNote ?? '';
+	let cameraDirection = panel.data?.cameraDirection ?? '';
+	let durationSeconds = panel.data?.durationSeconds ?? 0;
+	let dialogues: Dialogue[] = panel.data?.dialogue ?? [];
+	let characters = panel.data?.characters ?? [];
+	let environment = panel.data?.environment ?? '';
 
 	function startEdit() {
 		editing = true;
@@ -38,13 +39,13 @@
 	function cancelEdit() {
 		editing = false;
 		// Reset to original values
-		cutNumber = panel.cutNumber || '';
-		visualNote = panel.data?.visualNote || '';
-		cameraDirection = panel.data?.cameraDirection || '';
-		durationSeconds = panel.data?.durationSeconds || 0;
-		dialogues = panel.data?.dialogue || [];
-		characters = panel.data?.characters || [];
-		environment = panel.data?.environment || '';
+		cutNumber = panel.cutNumber ?? '';
+		visualNote = panel.data?.visualNote ?? '';
+		cameraDirection = panel.data?.cameraDirection ?? '';
+		durationSeconds = panel.data?.durationSeconds ?? 0;
+		dialogues = panel.data?.dialogue ?? [];
+		characters = panel.data?.characters ?? [];
+		environment = panel.data?.environment ?? '';
 	}
 
 	function addDialogue() {
