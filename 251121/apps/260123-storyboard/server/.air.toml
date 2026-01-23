@@ -25,6 +25,10 @@ tmp_dir = "tmp"
   send_interrupt = false
   stop_on_error = false
 
+[env]
+  # Pass environment variables to the running process
+  # Air will inherit all environment variables from the container
+
 [color]
   app = ""
   build = "yellow"

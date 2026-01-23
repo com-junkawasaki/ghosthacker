@@ -107,7 +107,7 @@ func (s *StoryboardService) callOpenRouterAPI(ctx context.Context, apiKey, promp
 		"modalities": []string{"text", "image"},
 		"image_config": map[string]string{
 			"aspect_ratio": "16:9",
-			"image_size":   "1024x1024",
+			"image_size":   "2K", // OpenRouter accepts: "1K", "2K", "4K"
 		},
 		"stream": false,
 	}
