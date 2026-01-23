@@ -1,5 +1,5 @@
 # Build stage
-FROM golang:1.23-alpine AS builder
+FROM golang:1.25-alpine AS builder
 
 WORKDIR /app
 
@@ -20,8 +20,8 @@ RUN go mod download
 COPY proto/ ./proto/
 COPY buf.yaml buf.gen.yaml ./
 
-# Generate proto files using buf (run from proto directory)
-RUN cd proto && buf generate
+# Generate proto files using buf (run from project root)
+RUN buf generate --path proto
 
 # Copy source code
 COPY . .
@@ -30,7 +30,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -o /app/worker ./cmd/worker/main.go
 
 # Development stage
-FROM golang:1.23-alpine AS development
+FROM golang:1.25-alpine AS development
 
 WORKDIR /app
 
@@ -42,8 +42,8 @@ ENV PATH=$PATH:/root/go/bin
 RUN go install github.com/bufbuild/buf/cmd/buf@latest && \
     buf --version
 
-# Install air for hot reload
-RUN go install github.com/cosmtrek/air@v1.51.0
+# Install air for hot reload (use latest version compatible with Go 1.25)
+RUN go install github.com/air-verse/air@latest
 
 COPY go.mod go.sum ./
 RUN go mod download
@@ -52,8 +52,8 @@ RUN go mod download
 COPY proto/ ./proto/
 COPY buf.yaml buf.gen.yaml ./
 
-# Generate proto files (run from proto directory)
-RUN cd proto && buf generate
+# Generate proto files (run from project root)
+RUN buf generate --path proto
 
 # Copy source for hot reload
 COPY . .

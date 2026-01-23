@@ -1352,10 +1352,11 @@
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Yuto admits the calls scare him; Ren answers: 'we close the door'. shot on 50mm, f/1.8, cinematic live-action.",
               "visual": "Yutoが小さく頷く。Renは短い言葉で返す。",
               "environment": "env:quiet-room",
-              "characters": ["character:Yuto", "character:Ren"],
+              "characters": ["character:Yuto", "character:Ren", "character:Nei"],
               "dialogue": [
                 { "speaker": "Yuto", "text": "電話…怖い。" },
-                { "speaker": "Ren", "text": "入口を塞ぐ。" }
+                { "speaker": "Ren", "text": "入口を塞ぐ。" },
+                { "speaker": "Nei", "text": "情報は物質。だから“入口”は現実にある。塞げる。" }
               ]
             },
             {
@@ -2940,17 +2941,38 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei says quietly: 'someone else will need this'; Ren agrees. shot on 50mm, f/1.8, cinematic live-action.",
-              "visual": "Neiが小さく言う。Renが頷く。",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei shows Ren the SNS timeline from earlier; Ren's expression tightens slightly—this is about someone at school. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Neiが、さっきのタイムラインをもう一度見せる。Renの表情が少しだけ硬くなる。",
               "environment": "env:ren-office",
               "characters": ["character:Nei", "character:Ren"],
               "dialogue": [
-                { "speaker": "Nei", "text": "次は、別の誰かだね。" },
-                { "speaker": "Ren", "text": "だから残す。" }
+                { "speaker": "Nei", "text": "これ…誰かが“刺されてる”よね。" },
+                { "speaker": "Ren", "text": "学校の話なら、止める。" }
               ]
             },
             {
               "panel": 2,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Smartphone SNS timeline: blurred posts and reaction icons; a single post is being quoted/reshared rapidly (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "SNSのタイムライン。拡散のアイコンが増えていく。言葉は読めないのに、悪意だけが増える。",
+              "environment": "env:sns-timeline",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Narration", "text": "消すより先に、広がる。" }
+              ]
+            },
+            {
+              "panel": 3,
               "shot": "Close-up",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -2963,12 +2985,12 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Nei's eyes: relief, but also resolve—she knows this will happen again to someone else. shot on 85mm prime, f/1.2, cinematic live-action.",
-              "visual": "Neiの瞳。安堵と、次に備える決意が混じる。",
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Ren looks up from the screen: calm, but with urgency—he decides to go see the real person behind the post. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Renが画面から目を上げる。静かだけど、急いでいる顔。",
               "environment": "env:ren-office",
-              "characters": ["character:Nei"],
+              "characters": ["character:Ren"],
               "dialogue": [
-                { "speaker": "Nei", "text": "助け方、覚えた。" }
+                { "speaker": "Ren", "text": "明日じゃない。今夜、証拠を残す。" }
               ]
             }
           ]
@@ -2989,16 +3011,37 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren and Nei walk out of C-school at dusk; their pace is calm after the storm. shot on 50mm, f/1.8, cinematic live-action.",
-              "visual": "夕方。RenとNeiが校舎を出る。足取りは落ち着いている。",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Dusk outside C-school: Ren and Nei walk faster than usual—quiet urgency. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "夕方。RenとNeiが少し早足で校舎を出る。静かな焦り。",
               "environment": "env:cschool-exterior-dusk",
               "characters": ["character:Ren", "character:Nei"],
               "dialogue": [
-                { "speaker": "Nei", "text": "今日のやり方、残しておこう。" }
+                { "speaker": "Nei", "text": "“静かじゃない入口”。今夜のうちに見よう。" }
               ]
             },
             {
               "panel": 2,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Smartphone shows a message request: an anonymous student asks for help about a harmful post (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "匿名のメッセージ。「助けて」の気配だけが伝わる。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Narration", "text": "相談は、もう来ている。" }
+              ]
+            },
+            {
+              "panel": 3,
               "shot": "Wide Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -3010,12 +3053,12 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school building exterior at dusk, soft light, students leaving. shot on 35mm, f/2.8, cinematic live-action.",
-              "visual": "夕方のC高校。生徒が静かに帰っていく。",
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school building exterior at dusk; students leave, but Ren and Nei stop under the light, deciding the next move. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "夕方のC高校。帰り道の流れの中で、RenとNeiだけが立ち止まる。",
               "environment": "env:cschool-exterior-dusk",
               "characters": ["character:Ren", "character:Nei"],
               "dialogue": [
-                { "speaker": "Ren", "text": "また来る。" }
+                { "speaker": "Ren", "text": "消す前に、残す。…今から動く。" }
               ]
             }
           ]
@@ -3041,7 +3084,8 @@
               "environment": "env:ren-office",
               "characters": ["character:Ren", "character:Nei"],
               "dialogue": [
-                { "speaker": "Ren", "text": "忘れる前提で、残す。" }
+                { "speaker": "Ren", "text": "忘れる前提で、残す。" },
+                { "speaker": "Nei", "text": "まず証拠。スクショ、URL、時刻。" }
               ]
             },
             {
@@ -3057,12 +3101,33 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A sticky note shows only symbols/icons: a key, a vault, and an email alias arrow (no text). shot on 50mm, f/2.0, cinematic live-action.",
-              "visual": "付箋には、鍵・保管庫・メール別名の矢印だけ。言葉じゃなく、手順。",
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A sticky note shows only symbols/icons: a camera, a link chain, a clock, and a shield (no text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "付箋には、カメラ・リンク・時計・盾のアイコンだけ。言葉じゃなく、手順。",
               "environment": "env:ren-office",
               "characters": ["character:Ren"],
               "dialogue": [
-                { "speaker": "Narration", "text": "忘れない形にする。" }
+                { "speaker": "Narration", "text": "消える前に、残す。" }
+              ]
+            },
+            {
+              "panel": 3,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A phone screen shows a gallery/folder with blurred screenshot thumbnails and a save icon (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "スクショが保存されていく。小さな四角が“証拠”になる。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "残せた。…次、通報。" }
               ]
             }
           ]
@@ -3083,8 +3148,8 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. City data haze begins to ripple subtly, like a breath before a wave. shot on 50mm, f/2.0, cinematic live-action.",
-              "visual": "街のデータの霞が、呼吸みたいに揺れる。",
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. City data haze begins to ripple subtly, like a breath before a wave; faint notification dots blink in the haze (no text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "街のデータの霞が、呼吸みたいに揺れる。点滅する小さな通知が混じる。",
               "environment": "env:tokyo-2026-aerial",
               "characters": [],
               "dialogue": [
@@ -3093,6 +3158,28 @@
             },
             {
               "panel": 2,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A smartphone SNS timeline overlays the city haze; blurred posts cascade, one sharp-looking post casts a ghost-like shadow (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "街の霞に、SNSの流れが重なる。言葉の影が、ゴーストみたいに残る。",
+              "environment": "env:sns-timeline",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Narration", "text": "言葉のGhostは、拡散で増える。" }
+              ]
+            }
+            ,
+            {
+              "panel": 3,
               "shot": "Wide Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -3104,8 +3191,8 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A subtle 'Ghost' ripple passes through the city data haze, hinting the threat is systemic. shot on 35mm, f/2.8, cinematic live-action.",
-              "visual": "街のデータの霞に、薄い波紋みたいな“Ghost”が走る。",
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A subtle 'Ghost' ripple passes through the city data haze, now tinted by social media glow—systemic and hard to pin down. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "街のデータの霞に、薄い波紋みたいな“Ghost”が走る。今度はSNSの色が混じる。",
               "environment": "env:tokyo-2026-aerial",
               "characters": [],
               "dialogue": [
@@ -3119,24 +3206,23 @@
           "gh:panels": [
             {
               "panel": 1,
-              "shot": "Close-up",
+              "shot": "Wide Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
                 "gh:composition": "clean composition, clear subject separation",
                 "gh:lighting": "soft diffused daylight, gentle shadows",
-                "gh:distance": "Close-up",
-                "gh:lens": "85mm prime",
-                "gh:aperture": "f/1.2",
-                "gh:focus": "shallow depth of field, creamy bokeh",
-                "gh:angle": "frontal",
-                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Ren and Nei share a small, silent nod—mutual understanding. shot on 85mm prime, f/1.2, cinematic live-action.",
-              "visual": "言葉のない頷き。二人の間で“やり方”が共有される。",
-              "environment": "env:cschool-hallway",
-              "characters": ["character:Ren", "character:Nei"],
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school virtual campus: floating UI panels and avatar silhouettes; a rumor-like thread bubbles above someone (no readable text). shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "C高校のバーチャル校舎。アバターの影と、頭上に浮かぶ“噂”みたいな吹き出し。",
+              "environment": "env:cschool-virtual-campus",
+              "characters": ["character:Ren", "character:Nei", "character:Kenta"],
               "dialogue": [
-                { "speaker": "Narration", "text": "小さい勝ちは、繰り返して強くなる。" }
+                { "speaker": "Narration", "text": "現実だけじゃない。仮想校舎にも入口がある。" }
               ]
             },
             {
@@ -3152,13 +3238,58 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren and Nei share a quiet look: they did something small, but real. shot on 50mm, f/1.8, cinematic live-action.",
-              "visual": "RenとNeiが目を合わせる。小さいけど、本物の勝ち。",
-              "environment": "env:cschool-hallway",
-              "characters": ["character:Ren", "character:Nei"],
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. In the virtual campus, Ren approaches a student avatar hesitating at the edge of the crowd. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renが、群れの端で立ち尽くす生徒（Kenta）に近づく。",
+              "environment": "env:cschool-virtual-campus",
+              "characters": ["character:Ren", "character:Kenta"],
               "dialogue": [
-                { "speaker": "Nei", "text": "小さい勝ち、でも本物。" },
-                { "speaker": "Ren", "text": "今日はな。" }
+                { "speaker": "Ren", "text": "…君のこと？タイムラインのやつ。" },
+                { "speaker": "Kenta", "text": "……ちがう。俺じゃない。" }
+              ]
+            }
+            ,
+            {
+              "panel": 3,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Kenta's eyes: he tries to deny it, but fear leaks through. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Kentaの目。否定しながら、怖さが滲む。",
+              "environment": "env:cschool-virtual-campus",
+              "characters": ["character:Kenta"],
+              "dialogue": [
+                { "speaker": "Kenta", "text": "…でも、止まらない。消しても増える。" }
+              ]
+            },
+            {
+              "panel": 4,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei steps in gently: 'first we preserve evidence'; Ren nods: 'then we stop the spread'. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Neiが間に入る。Renが短く頷く。Kentaの足が一歩だけ前に出る。",
+              "environment": "env:cschool-virtual-campus",
+              "characters": ["character:Nei", "character:Ren", "character:Kenta"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "最初は証拠。消す前に残す。" },
+                { "speaker": "Ren", "text": "それから止める。…話、聞く。" }
               ]
             }
           ]
@@ -3189,6 +3320,27 @@
             },
             {
               "panel": 2,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A smartphone SNS timeline shows a harsh-looking post highlighted (unreadable text), reaction icons climbing. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "別のスマホ。SNSの画面に、悪意の温度だけが残る。反応が増えていく。",
+              "environment": "env:sns-timeline",
+              "characters": ["character:Kenta"],
+              "dialogue": [
+                { "speaker": "Narration", "text": "同じ夜でも、静かじゃない机がある。" }
+              ]
+            },
+            {
+              "panel": 3,
               "shot": "Close-up",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -3201,12 +3353,12 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Yuto's phone rests silent on the desk; a faint glow from the lock screen fades. shot on 85mm prime, f/1.2, cinematic live-action.",
-              "visual": "Yutoのスマホ。もう鳴らない。画面の光が薄れていく。",
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Kenta's face in dim light; he reads the screen and forces himself not to reply. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Kentaが画面を見つめて、指を止める。返したら負けるのに、返したくなる。",
               "environment": "env:home-desk",
-              "characters": ["character:Yuto"],
+              "characters": ["character:Kenta"],
               "dialogue": [
-                { "speaker": "Yuto", "text": "……鳴らない。" }
+                { "speaker": "Kenta", "text": "……やめて…" }
               ]
             }
           ]
@@ -3227,12 +3379,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren and Nei look forward quietly, as if sensing the next case. shot on 50mm, f/1.8, cinematic live-action.",
-              "visual": "RenとNeiが前を見る。次の“困りごと”が近い気配。",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren and Nei stand in the hallway, serious now—next case is not spam but words. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "RenとNeiが前を見る。次の相手は“電話”じゃなく、“言葉”。",
               "environment": "env:cschool-hallway",
               "characters": ["character:Ren", "character:Nei"],
               "dialogue": [
-                { "speaker": "Ren", "text": "次も、助ける。" }
+                { "speaker": "Nei", "text": "次は、誹謗中傷だね。" },
+                { "speaker": "Ren", "text": "うん。まず証拠。次に止める。" }
               ]
             },
             {
@@ -6954,21 +7107,16 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school hallway: a student alone, hunched posture, phone in hand, surrounded by blurred students. shot on 35mm, f/2.8, cinematic live-action.",
-              "visual": "C高校の廊下。Kentaがスマホを握りしめ、うつむいて立ち尽くす。",
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school hallway: one student stands alone, phone clenched, while the crowd blurs past like a current. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "C高校の廊下。人の流れの中で、Kentaだけが止まっている。スマホを握りつぶしそう。",
               "environment": "env:cschool-hallway",
               "characters": ["character:Kenta"],
               "dialogue": [
-                { "speaker": "Kenta", "text": "学校、行きたくない…" }
+                { "speaker": "Narration", "text": "刺さる言葉は、声じゃなく画面から来る。" }
               ]
-            }
-          ]
-        },
-        {
-          "gh:pageNumber": 2,
-          "gh:panels": [
+            },
             {
-              "panel": 1,
+              "panel": 2,
               "shot": "Insert Shot",
               "gh:shotProperties": {
                 "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
@@ -6980,12 +7128,103 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. Smartphone screen: anonymous insults on a school-related feed (no readable long text). shot on 50mm, f/2.0, cinematic live-action.",
-              "visual": "匿名の悪口が流れる画面。見れば見るほど胸が詰まる。",
-              "environment": "env:smartphone-screen",
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Smartphone SNS timeline: blurred posts and reaction icons; one harsh-looking post is highlighted but unreadable. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "SNSのタイムライン。文字は読めないのに、悪意だけが伝わる。反応が増えていく。",
+              "environment": "env:sns-timeline",
               "characters": ["character:Kenta"],
               "dialogue": [
-                { "speaker": "Kenta", "text": "消えない…誰が…。" }
+                { "speaker": "Narration", "text": "消すより先に、広がる。" }
+              ]
+            },
+            {
+              "panel": 3,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren and Nei stop in the hallway and notice the isolated student; Ren speaks gently first. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "RenとNeiが足を止める。Renが先に声をかける。Kentaは反射でスマホを隠す。",
+              "environment": "env:cschool-hallway",
+              "characters": ["character:Ren", "character:Nei", "character:Kenta"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "……大丈夫？" },
+                { "speaker": "Kenta", "text": "……助けて。これ、止まらない。" }
+              ]
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 2,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. In a small consultation space at school, Ren sets the tone: 'we do steps'. Kenta can barely look up; Nei stays calm. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "小さな相談スペース。Renが席を示す。Kentaは目を合わせられない。Neiが隣で落ち着かせる。",
+              "environment": "env:cschool-consult",
+              "characters": ["character:Ren", "character:Nei", "character:Kenta"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "話すのは後でいい。先に“残す”。" },
+                { "speaker": "Kenta", "text": "……消しても、また出る。" }
+              ]
+            },
+            {
+              "panel": 2,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Phone screen: screenshot action and a note field for URL/time (no readable long text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "スクショを撮って、URLと時刻をメモする。消える前に形にする。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "恥じゃない。残すのが一番強い。" }
+              ]
+            },
+            {
+              "panel": 3,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. SNS timeline post options: report/block/mute icons only, no readable text. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "通報・ブロック・ミュートのアイコン。押す前に、もう一枚“証拠”を足す。",
+              "environment": "env:sns-timeline",
+              "characters": ["character:Kenta"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "最後に通報。…でもその前に、誰が見ても分かる形にする。" }
               ]
             }
           ]
@@ -7006,14 +7245,56 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. (Ren: 17-year-old male) and (Nei: 17-year-old female high school student) listen to the victim student (Kenta: 16-year-old male), who looks terrified and ashamed. shot on 50mm, f/1.8, cinematic live-action.",
-              "visual": "相談スペース。RenとNeiの前で、Kentaが震える声で話し始める。",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. In the consultation space, Ren keeps it simple: 'steps'; Kenta tries to speak but stalls; Nei gives him time. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "相談スペース。Kentaが言いかけて止まる。Renが急がせない。",
               "environment": "env:cschool-consult",
               "characters": ["character:Ren", "character:Nei", "character:Kenta"],
               "dialogue": [
-                { "speaker": "Kenta", "text": "昨日から…ずっと、書かれてて…" },
-                { "speaker": "Nei", "text": "大丈夫。手順があるよ。" },
-                { "speaker": "Ren", "text": "まず証拠。消える前に残す。" }
+                { "speaker": "Ren", "text": "今は“誰が”より“何が起きたか”。画面、見せて。" },
+                { "speaker": "Kenta", "text": "……見せたくない。見たら、また…" }
+              ]
+            },
+            {
+              "panel": 2,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Nei's eyes: steady, practical kindness; she tells Kenta he won't be judged. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Neiの目。責めない、と約束する目。",
+              "environment": "env:cschool-consult",
+              "characters": ["character:Nei", "character:Kenta"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "見なくていい。私たちが見る。君は呼吸して。" }
+              ]
+            },
+            {
+              "panel": 3,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A screenshot is taken; a simple note logs time and URL (icons only, no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "スクショが一枚増える。時刻とURLが添えられる。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "残せた。…次、誰が見ても言い逃れできない形にする。" }
               ]
             }
           ]
@@ -7041,6 +7322,28 @@
               "dialogue": [
                 { "speaker": "Ren", "text": "怖いのは“未知”。順番に潰す。" }
               ]
+            },
+            {
+              "panel": 2,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Kenta's eyes: fear mixed with tiny hope as he sees there is a path. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Kentaの目。怖いけど、道があると知って少しだけ光る。",
+              "environment": "env:cschool-consult",
+              "characters": ["character:Kenta"],
+              "dialogue": [
+                { "speaker": "Kenta", "text": "…本当に、止められる？" }
+              ]
             }
           ]
         },
@@ -7066,6 +7369,27 @@
               "characters": [],
               "dialogue": [
                 { "speaker": "Narration", "text": "疑いは、簡単に矢印になる。" }
+              ]
+            },
+            {
+              "panel": 2,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren quietly blocks the rumor flow with a simple line: 'don't point yet'; Nei watches the crowd. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renが、噂の流れに短い言葉でブレーキをかける。Neiが周りを見る。",
+              "environment": "env:cschool-hallway",
+              "characters": ["character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "犯人探しは後。今は止める。" }
               ]
             }
           ]
@@ -7093,6 +7417,27 @@
               "dialogue": [
                 { "speaker": "Narration", "text": "“タケルじゃないか”――声にならない声が飛ぶ。" }
               ]
+            },
+            {
+              "panel": 2,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. SNS timeline: blurred posts, one arrow-like highlight points toward a suspect silhouette (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "SNSの矢印が、勝手に“誰か”を指す。根拠はないのに。",
+              "environment": "env:sns-timeline",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Nei", "text": "疑いも拡散する。…止めないと。" }
+              ]
             }
           ]
         },
@@ -7119,6 +7464,27 @@
               "dialogue": [
                 { "speaker": "Ren", "text": "スクショだけじゃ足りない。時刻とURLも。" }
               ]
+            },
+            {
+              "panel": 2,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A notes app logs URL/time and a short tag 'school case' (no readable long text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "メモにURLと時刻が並ぶ。タグで束ねる。証拠が“整理”される。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "順番どおり。残す→整理→相談。" }
+              ]
             }
           ]
         },
@@ -7144,6 +7510,29 @@
               "characters": ["character:Nei"],
               "dialogue": [
                 { "speaker": "Nei", "text": "一人で抱えない。大人も巻き込む。" }
+              ]
+            },
+            {
+              "panel": 2,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Kenta hesitates: fear of telling adults. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Kentaが口を開きかけて閉じる。大人に言うのが怖い。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Kenta", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Kenta", "text": "親に…言えない。" },
+                { "speaker": "Nei", "text": "言う順番も手順。君が壊れない順番にする。" }
               ]
             }
           ]
@@ -7172,6 +7561,27 @@
                 { "speaker": "Kenta", "text": "裁判とか…無理だよ。" },
                 { "speaker": "Ren", "text": "無理に戦わない。手続きを使う。" }
               ]
+            },
+            {
+              "panel": 2,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A simple timeline/calendar with steps: preserve → consult → request → response (icons only, no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "カレンダーに手順が並ぶ。時間は敵じゃなく、道になる。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "時間は味方にできる。先に“残す”と決めれば。" }
+              ]
             }
           ]
         },
@@ -7197,6 +7607,27 @@
               "characters": [],
               "dialogue": [
                 { "speaker": "NewsHacker", "text": "（aka_chise1）消す前に保存。ログは裏切らない。" }
+              ]
+            },
+            {
+              "panel": 2,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren reads the reply; his face tightens—this advice is sharp and practical. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renが返信を読む。短い文なのに、強い。",
+              "environment": "env:ren-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "…やっぱり速い。aka_chise1。" }
               ]
             }
           ]
@@ -7224,6 +7655,28 @@
               "dialogue": [
                 { "speaker": "Ren", "text": "…aka_chise1。" }
               ]
+            },
+            {
+              "panel": 2,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei asks if Ren knows the handle; Ren answers: 'HN only'. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Neiが横から覗く。Renは目を上げない。",
+              "environment": "env:ren-office",
+              "characters": ["character:Nei", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "知り合い？" },
+                { "speaker": "Ren", "text": "HNだけ。顔も名前も知らない。" }
+              ]
             }
           ]
         },
@@ -7249,6 +7702,27 @@
               "characters": ["character:Kenta"],
               "dialogue": [
                 { "speaker": "Narration", "text": "支えが増えると、怖さは減る。" }
+              ]
+            },
+            {
+              "panel": 2,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Kenta sits with support nearby; he nods slightly—he is not alone now. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Kentaが小さく頷く。支えが増えると、怖さは減る。",
+              "environment": "env:cschool-consult",
+              "characters": ["character:Kenta", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "一人じゃない。ここからは手続きが味方だ。" }
               ]
             }
           ]
@@ -7276,6 +7750,27 @@
               "dialogue": [
                 { "speaker": "Narration", "text": "沈黙は、加害者の味方になる。" }
               ]
+            },
+            {
+              "panel": 2,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. SNS timeline: blurred posts keep coming; an arrow-like highlight points to a rumored suspect (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "また流れる。矢印が勝手に“誰か”を指す。",
+              "environment": "env:sns-timeline",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Ren", "text": "矢印を止める。噂は二次加害になる。" }
+              ]
             }
           ]
         },
@@ -7302,6 +7797,27 @@
               "dialogue": [
                 { "speaker": "Ren", "text": "来た。線が出る。" }
               ]
+            },
+            {
+              "panel": 2,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A simple map pin / provider response package gets linked to the disclosure request step (icons only, no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "線が“次の手続き”に繋がる。点が、道になる。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "ここから開示請求。逃げ道を塞ぐ。" }
+              ]
             }
           ]
         },
@@ -7327,6 +7843,28 @@
               "characters": ["character:Kenta"],
               "dialogue": [
                 { "speaker": "Narration", "text": "犯人は、別だった。" }
+              ]
+            },
+            {
+              "panel": 2,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Kenta's face: relief mixed with guilt—he remembers the rumor arrow. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Kentaの顔。安堵と、胸の痛み。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Kenta"],
+              "dialogue": [
+                { "speaker": "Kenta", "text": "…疑った。俺も。" }
               ]
             }
           ]
@@ -7355,6 +7893,28 @@
                 { "speaker": "Kenta", "text": "…息できる。" },
                 { "speaker": "Ren", "text": "手順は裏切らない。" }
               ]
+            },
+            {
+              "panel": 2,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Dusk outside school: a bench in the distance—someone is waiting, half in shadow. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "夕方。校舎の外、ベンチに影がある。待っているみたいに。",
+              "environment": "env:cschool-exterior-dusk",
+              "characters": ["character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "…あそこ。" },
+                { "speaker": "Ren", "text": "噂の人？" }
+              ]
             }
           ]
         },
@@ -7381,6 +7941,27 @@
               "dialogue": [
                 { "speaker": "Takeru", "text": "ここまでやるとはな。" },
                 { "speaker": "Ren", "text": "…あなたが、aka_chise1？" }
+              ]
+            },
+            {
+              "panel": 2,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused natural light, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Takeru answers with a half-smirk; a second girl figure (Nei) stays just behind Ren, alert. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "タケルが小さく笑う。Neiは距離を保ったまま。",
+              "environment": "env:cschool-exterior-dusk",
+              "characters": ["character:Takeru", "character:Nei", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Takeru", "text": "HNは便利だろ。" }
               ]
             }
           ]
@@ -7409,6 +7990,27 @@
               "dialogue": [
                 { "speaker": "Takeru", "text": "…そう。" }
               ]
+            },
+            {
+              "panel": 2,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused natural light, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren holds his ground; Nei steps closer to keep it calm. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renが一歩も引かない。Neiが間に入って空気を落とす。",
+              "environment": "env:cschool-exterior-dusk",
+              "characters": ["character:Ren", "character:Nei", "character:Takeru"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "今日は“味方か敵か”じゃない。手順の話。" }
+              ]
             }
           ]
         },
@@ -7434,6 +8036,28 @@
               "characters": [],
               "dialogue": [
                 { "speaker": "NewsHacker", "text": "（aka_chise1）公開を恐れるな。対処は覚えろ。" }
+              ]
+            },
+            {
+              "panel": 2,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused natural light, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren looks at Takeru: 'you said that'; Takeru doesn't deny it. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renがタケルを見る。タケルは否定しない。",
+              "environment": "env:cschool-exterior-dusk",
+              "characters": ["character:Ren", "character:Takeru"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "その言い方…あの時の。" },
+                { "speaker": "Takeru", "text": "忘れるなってことだ。" }
               ]
             }
           ]
@@ -7462,6 +8086,28 @@
                 { "speaker": "Ren", "text": "タケル…？" },
                 { "speaker": "Takeru", "text": "本名で呼ぶな。まだ。" },
                 { "speaker": "Nei", "text": "二人とも、落ち着いて。" }
+              ]
+            },
+            {
+              "panel": 2,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Ren's eyes: he chooses procedure over emotion—online allies, real-life strangers. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Renの目。HNの“味方”が、現実では“他人”だったと知る。",
+              "environment": "env:cschool-exterior-dusk",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "…HNはHN。現実は現実。手順で繋ぐ。" }
               ]
             }
           ]
