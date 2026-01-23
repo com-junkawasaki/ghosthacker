@@ -1,0 +1,123 @@
+syntax = "proto3";
+
+package gftd.ghosthacker.storyboard.v1;
+
+option go_package = "storyboard-editor/backend/proto;storyboardpb";
+
+// StoryboardService provides operations for editing and managing storyboard JSON-LD files
+service StoryboardService {
+  // Load storyboard JSON-LD from file
+  rpc LoadStoryboard(LoadStoryboardRequest) returns (LoadStoryboardResponse);
+  
+  // Update a specific panel/cut in the storyboard
+  rpc UpdatePanel(UpdatePanelRequest) returns (UpdatePanelResponse);
+  
+  // Save storyboard JSON-LD to file
+  rpc SaveStoryboard(SaveStoryboardRequest) returns (SaveStoryboardResponse);
+  
+  // Get episode list from storyboard
+  rpc GetEpisodes(GetEpisodesRequest) returns (GetEpisodesResponse);
+  
+  // Get panels for a specific episode
+  rpc GetEpisodePanels(GetEpisodePanelsRequest) returns (GetEpisodePanelsResponse);
+  
+  // Stream updates for real-time collaboration (optional)
+  rpc StreamUpdates(StreamUpdatesRequest) returns (stream StreamUpdatesResponse);
+}
+
+message LoadStoryboardRequest {
+  string file_path = 1; // Path to storyboard.jsonld file
+}
+
+message LoadStoryboardResponse {
+  string jsonld_content = 1; // Full JSON-LD content
+  StoryboardMetadata metadata = 2;
+}
+
+message StoryboardMetadata {
+  string title = 1;
+  string description = 2;
+  repeated string episodes = 3; // Episode IDs
+}
+
+message UpdatePanelRequest {
+  string file_path = 1;
+  string episode_id = 2;
+  int32 page_number = 3;
+  int32 panel = 4;
+  PanelData panel_data = 5;
+}
+
+message PanelData {
+  repeated string characters = 1; // Character IDs
+  repeated Dialogue dialogue = 2;
+  string environment = 3; // Environment ID
+  string visual_note = 4; // Visual description/note
+  string camera_direction = 5; // Camera instructions (e.g., "Followカメラ", "PAN スライド")
+  float duration_seconds = 6; // Duration in seconds
+  string cut_number = 7; // Cut number (e.g., "76", "77", "つづき")
+}
+
+message Dialogue {
+  string speaker = 1;
+  string text = 2;
+}
+
+message UpdatePanelResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message SaveStoryboardRequest {
+  string file_path = 1;
+  string jsonld_content = 2;
+}
+
+message SaveStoryboardResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message GetEpisodesRequest {
+  string file_path = 1;
+}
+
+message GetEpisodesResponse {
+  repeated Episode episodes = 1;
+}
+
+message Episode {
+  string id = 1;
+  string title = 2;
+  int32 total_pages = 3;
+}
+
+message GetEpisodePanelsRequest {
+  string file_path = 1;
+  string episode_id = 2;
+  int32 page_number = 3; // Optional: filter by page
+}
+
+message GetEpisodePanelsResponse {
+  repeated Panel panels = 1;
+}
+
+message Panel {
+  int32 page_number = 1;
+  int32 panel = 2;
+  string cut_number = 3;
+  PanelData data = 4;
+}
+
+message StreamUpdatesRequest {
+  string file_path = 1;
+  string session_id = 2;
+}
+
+message StreamUpdatesResponse {
+  string update_type = 1; // "panel_updated", "episode_added", etc.
+  string episode_id = 2;
+  int32 page_number = 3;
+  int32 panel = 4;
+  string jsonld_patch = 5; // JSON Patch format
+}

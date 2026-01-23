@@ -82,13 +82,22 @@ alwaysApply: true
 説明ページ: 4〜6コマ（会話・状況説明・フラグ回収用）。
 各ページのラストコマは、スマホスクロールで次ページをめくりたくなるような ミニ引き（疑問・表情変化・カット終わり） を意識します。
 
-## Zen Editor (apps/zen-editor) 開発ルール
+## Zen Editor (apps/zen-editor) 開発・アーキテクチャルール
 
 ### 技術スタック
 - **Frontend**: SvelteKit 5 + Tauri 2
 - **Runtime**: Node.js (pnpmを使用)
-- **Backend**: Go (gRPC Connect)
+- **Backend**: Go (Temporal + ConnectRPC + MCP)
 - **Visualization**: @cosmos.gl/graph (WebGPU)
+
+### アーキテクチャ原則
+- **Backend Implementation**: 全てのバックエンド処理は **Temporal Workflow & Activity** をベースに実装する。
+  - 長時間実行されるタスクや外部API呼び出し（LLM等）は必ず Workflow として定義する。
+  - RPCハンドラーは Workflow の開始または状態取得のトリガーとして機能させる。
+- **Communication**: 通信規格は **ConnectRPC (gRPC Connect Web)** を使用する。
+  - `.proto` 定義から生成された型安全なクライアント/ハンドラーを使用する。
+- **Interface**: 外部ツールや AI エージェントとのインターフェイスには **MCP (Model Context Protocol)** を使用する。
+  - `CallTool` RPC を通じて MCP ツールを公開し、AI による機能実行を可能にする。
 
 ### 開発コマンド
 - **依存関係インストール**: `cd apps/zen-editor && pnpm install`

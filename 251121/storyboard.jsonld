@@ -164,9 +164,487 @@
       { "gh:pageNumber": 20, "panel": 1, "gh:characters": [], "gh:dialogue": [ { "gh:speaker": "Narration", "gh:text": "Episode 10 End" } ] }
     ],
     "episode:251121-arcA-1": [
-      { "gh:pageNumber": 1, "panel": 1, "gh:characters": [], "gh:dialogue": [ { "gh:speaker": "Narration", "gh:text": "人類は“祈り”で世界を守ってきた。" } ] },
-      { "gh:pageNumber": 1, "panel": 2, "gh:characters": [], "gh:dialogue": [ { "gh:speaker": "Narration", "gh:text": "次に守るのは、火でも神でもなく“情報”だ。" } ] },
-      { "gh:pageNumber": 1, "panel": 3, "gh:characters": [], "gh:dialogue": [ { "gh:speaker": "Narration", "gh:text": "2026年、東京。見えないものが、重くなった。" } ] }
+      {
+        "gh:pageNumber": 1,
+        "panel": 1,
+        "environment": "env:evolution-nature",
+        "gh:characters": [],
+        "gh:dialogue": [
+          { "gh:speaker": "Narration", "gh:text": "霊長類。人は「霊」に特質性があり、霊によって進化した存在である。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 1,
+        "panel": 2,
+        "environment": "env:historical-montage",
+        "gh:characters": [],
+        "gh:dialogue": [
+          { "gh:speaker": "Narration", "gh:text": "古来より霊は、炎や像、儀式と共に様々な形で現れ、人と共にあった。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 1,
+        "panel": 3,
+        "environment": "env:tokyo-2026-aerial",
+        "gh:characters": [],
+        "gh:dialogue": [
+          { "gh:speaker": "Narration", "gh:text": "2026年。高度情報化社会において、人知れず「霊」をHackする者たちがいた。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 2,
+        "panel": 1,
+        "environment": "env:cyberspace-title",
+        "gh:characters": ["character:Ren", "character:Nei"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren (Monologue)", "gh:text": "世界はバグだらけだ。" },
+          { "gh:speaker": "Narration", "gh:text": "Ren - Ghost Hacker。17歳。世界的な腕前を持つコンピューターハッカー。だが、彼はGhostもハックできる。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 4,
+        "panel": 1,
+        "environment": "env:ren-office",
+        "gh:characters": ["character:Ren"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "あー、だりーなー。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 4,
+        "panel": 2,
+        "environment": "env:ren-office",
+        "gh:characters": ["character:Ren", "character:Nei"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "Neiちゃん、何してんの？" },
+          { "gh:speaker": "Nei", "gh:text": "お仕事を探しておりました。当然です、マスター。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 4,
+        "panel": 3,
+        "environment": "env:ren-office",
+        "gh:characters": ["character:Nei"],
+        "gh:dialogue": [
+          { "gh:speaker": "Nei", "gh:text": "サーバー及びクラウド費用が非常に逼迫しております。マスターがもう少し稼働くだされば…" }
+        ]
+      },
+      {
+        "gh:pageNumber": 4,
+        "panel": 4,
+        "environment": "env:ren-office",
+        "gh:characters": ["character:Ren"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "怠惰こそ美徳。効率化の母だよ。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 5,
+        "panel": 1,
+        "environment": "env:ren-office",
+        "gh:characters": ["character:Nei", "character:Shouta"],
+        "gh:dialogue": [
+          { "gh:speaker": "SE", "gh:text": "ピンポーン" },
+          { "gh:speaker": "Nei", "gh:text": "あ！ご予約のお客様です！ウェブサイトからご連絡のあった大門様です！" }
+        ]
+      },
+      {
+        "gh:pageNumber": 5,
+        "panel": 2,
+        "environment": "env:ren-office",
+        "gh:characters": ["character:Ren"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "げ。本当に来たの。面倒くさいなぁ…" }
+        ]
+      },
+      {
+        "gh:pageNumber": 5,
+        "panel": 3,
+        "environment": "env:ren-office",
+        "gh:characters": ["character:Shouta"],
+        "gh:dialogue": [
+          { "gh:speaker": "Shouta", "gh:text": "あなたがRenさんですか？大門建設の大門翔太です。話はメールで送った通りです。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 5,
+        "panel": 4,
+        "environment": "env:ren-office",
+        "gh:characters": ["character:Ren", "character:Shouta"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "システム全停止。警察は証拠保全で手一杯。復旧の目処なし…だっけ？" }
+        ]
+      },
+      {
+        "gh:pageNumber": 6,
+        "panel": 1,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Ren", "character:Shouta"],
+        "gh:dialogue": [
+          { "gh:speaker": "Shouta", "gh:text": "父…社長は現場への対応で手一杯で。僕の独断で依頼しました。とにかく急いでるんです。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 6,
+        "panel": 2,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Matsuda", "character:Shouta"],
+        "gh:dialogue": [
+          { "gh:speaker": "Matsuda", "gh:text": "ちょっと翔太くん！給与計算どうすんのよ！明日振込日なのよ！？画面真っ黒で動かないじゃない！" }
+        ]
+      },
+      {
+        "gh:pageNumber": 6,
+        "panel": 3,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Sato", "character:Matsuda"],
+        "gh:dialogue": [
+          { "gh:speaker": "Sato", "gh:text": "松田さん、叩いても直りませんって！サーバーへのアクセス権限もロックされてて…" }
+        ]
+      },
+      {
+        "gh:pageNumber": 6,
+        "panel": 4,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Ren"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "（昭和の遺産と中途半端なDX…最悪の組み合わせだね）" }
+        ]
+      },
+      {
+        "gh:pageNumber": 7,
+        "panel": 1,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Yasumoto", "character:Shouta"],
+        "gh:dialogue": [
+          { "gh:speaker": "Yasumoto", "gh:text": "翔太くん！部外者を勝手に入れるな！システムは私がなんとかする！" }
+        ]
+      },
+      {
+        "gh:pageNumber": 7,
+        "panel": 2,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Shouta", "character:Yasumoto"],
+        "gh:dialogue": [
+          { "gh:speaker": "Shouta", "gh:text": "安本さん！あんたの管理でこうなったんだろ！専門家に任せてください！" }
+        ]
+      },
+      {
+        "gh:pageNumber": 7,
+        "panel": 3,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Ren", "character:Yasumoto", "character:GhostYasumoto"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "（…ビンゴ。システム障害の原因はマルウェアじゃない）" }
+        ]
+      },
+      {
+        "gh:pageNumber": 7,
+        "panel": 4,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Ren"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "Nei、ポート開放。物理レイヤーから侵入して。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 8,
+        "panel": 1,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Ren", "character:Shouta", "character:Sato"],
+        "gh:dialogue": [
+          { "gh:speaker": "Sato", "gh:text": "す、すごい…暗号化されたシェルをリアルタイムで解読してる…？" },
+          { "gh:speaker": "Shouta", "gh:text": "これが、Ghost Hacker…" }
+        ]
+      },
+      {
+        "gh:pageNumber": 8,
+        "panel": 2,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Ren"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "「情報は物理量である」。ランダウアーの原理。この攻撃はただのデータ改竄じゃない。質量を持った悪意だ。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 8,
+        "panel": 3,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Yasumoto"],
+        "gh:dialogue": [
+          { "gh:speaker": "Yasumoto", "gh:text": "な、何をわけのわからんことを…！やめろ！接続を切るぞ！" }
+        ]
+      },
+      {
+        "gh:pageNumber": 9,
+        "panel": 1,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Nei", "character:Yasumoto"],
+        "gh:dialogue": [
+          { "gh:speaker": "Nei", "gh:text": "特定いたしました、マスター。アクセス元は…社内。総務部長の端末からです。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 9,
+        "panel": 2,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Ren", "character:Yasumoto"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "あんただね。翔太さんが導入しようとした新システムを妨害しようとして、闇サイトで拾ったウィルスを自爆させた。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 9,
+        "panel": 3,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Matsuda", "character:Shouta", "character:Yasumoto", "character:Sato"],
+        "gh:dialogue": [
+          { "gh:speaker": "Matsuda", "gh:text": "えっ…安本さん、どういうこと？" },
+          { "gh:speaker": "Shouta", "gh:text": "安本さん…まさか、自分の地位を守るために？" }
+        ]
+      },
+      {
+        "gh:pageNumber": 9,
+        "panel": 4,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Yasumoto", "character:Ren"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "ついでに横領とカジノの履歴も全部出てるよ。その穴埋めのための犯行だろ。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 10,
+        "panel": 1,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Yasumoto", "character:GhostYasumoto"],
+        "gh:dialogue": [
+          { "gh:speaker": "Yasumoto", "gh:text": "うるさいうるさいうるさい！！若造が何を知っている！俺はこの会社に30年尽くしてきたんだ！！" }
+        ]
+      },
+      {
+        "gh:pageNumber": 10,
+        "panel": 2,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:GhostYasumoto", "character:Yasumoto"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ghost", "gh:text": "俺ノ居場所ヲ…奪ウナァァァ！！" }
+        ]
+      },
+      {
+        "gh:pageNumber": 10,
+        "panel": 3,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Matsuda", "character:Sato", "character:Shouta", "character:Ren"],
+        "gh:dialogue": [
+          { "gh:speaker": "Shouta", "gh:text": "なんだよこれ…VRか…？" },
+          { "gh:speaker": "Ren", "gh:text": "現実だよ。あんたらの歪んだ情報が実体化した姿だ。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 11,
+        "panel": 1,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Ren"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "Nei、SIP起動。こいつを物理レイヤーに固定する。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 11,
+        "panel": 2,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:GhostYasumoto"],
+        "gh:dialogue": [
+          { "gh:speaker": "Nei", "gh:text": "承知いたしました。SIPシークエンスを開始します。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 11,
+        "panel": 3,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:GhostYasumoto"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ghost", "gh:text": "消エロオォォ！！" }
+        ]
+      },
+      {
+        "gh:pageNumber": 12,
+        "panel": 1,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Shouta", "character:Matsuda"],
+        "gh:dialogue": [
+          { "gh:speaker": "Shouta", "gh:text": "くそっ！松田さん、下がって！" }
+        ]
+      },
+      {
+        "gh:pageNumber": 12,
+        "panel": 2,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Ren"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "その「自分が一番」っていうエゴ。ノイズが多すぎるんだよ。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 12,
+        "panel": 3,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Ren"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "デリートしてやる。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 13,
+        "panel": 1,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Ren", "character:GhostYasumoto", "character:Nei"],
+        "gh:dialogue": [
+          { "gh:speaker": "Nei", "gh:text": "マスター、右30度！パケットロス率、上昇！" }
+        ]
+      },
+      {
+        "gh:pageNumber": 13,
+        "panel": 2,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Ren"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "/> /dev/null chop --force" }
+        ]
+      },
+      {
+        "gh:pageNumber": 13,
+        "panel": 3,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Ren", "character:GhostYasumoto", "character:Yasumoto"],
+        "gh:dialogue": [
+          { "gh:speaker": "SE", "gh:text": "ZBAAAAAN!!" }
+        ]
+      },
+      {
+        "gh:pageNumber": 14,
+        "panel": 1,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:GhostYasumoto", "character:Yasumoto"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ghost", "gh:text": "俺ハ…タダ…認メテ…欲シカッ……" }
+        ]
+      },
+      {
+        "gh:pageNumber": 14,
+        "panel": 2,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Sato"],
+        "gh:dialogue": [
+          { "gh:speaker": "Sato", "gh:text": "あ…！画面が戻った！サーバーも認識してます！" }
+        ]
+      },
+      {
+        "gh:pageNumber": 14,
+        "panel": 3,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Yasumoto"],
+        "gh:dialogue": [
+          { "gh:speaker": "Yasumoto", "gh:text": "うう…すまん…すまん…" }
+        ]
+      },
+      {
+        "gh:pageNumber": 15,
+        "panel": 1,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:President"],
+        "gh:dialogue": [
+          { "gh:speaker": "President", "gh:text": "何があったんだ！？すごい音がしたが…" }
+        ]
+      },
+      {
+        "gh:pageNumber": 15,
+        "panel": 2,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Shouta", "character:President", "character:Yasumoto"],
+        "gh:dialogue": [
+          { "gh:speaker": "Shouta", "gh:text": "…親父。安本さんが、システムを直そうとして…怪我を。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 15,
+        "panel": 3,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Yasumoto", "character:Shouta"],
+        "gh:dialogue": [
+          { "gh:speaker": "Shouta", "gh:text": "（横領の件は後でケジメつけさせます。でも今は…）" }
+        ]
+      },
+      {
+        "gh:pageNumber": 15,
+        "panel": 4,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:President"],
+        "gh:dialogue": [
+          { "gh:speaker": "President", "gh:text": "そうか…安本、無理させたな。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 16,
+        "panel": 1,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Ren"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "データは戻ったし、ついでに安本さんが溶かした金も、隠し口座ハックして戻しといたよ。手数料は引いといたけど。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 16,
+        "panel": 2,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Matsuda"],
+        "gh:dialogue": [
+          { "gh:speaker": "Matsuda", "gh:text": "あらやだ！給料払えるどころか、ちょっと増えてるじゃない！" }
+        ]
+      },
+      {
+        "gh:pageNumber": 16,
+        "panel": 3,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Shouta", "character:Ren"],
+        "gh:dialogue": [
+          { "gh:speaker": "Shouta", "gh:text": "Renさん！…ありがとう。あんたのおかげで、俺も目が覚めました。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 17,
+        "panel": 1,
+        "environment": "env:kamata-daimon-office",
+        "gh:characters": ["character:Ren"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "いいよ。Ghostを溜め込むなよ、次期社長。" }
+        ]
+      },
+      {
+        "gh:pageNumber": 17,
+        "panel": 2,
+        "environment": "env:kamata-street-evening",
+        "gh:characters": ["character:Ren", "character:Nei"],
+        "gh:dialogue": [
+          { "gh:speaker": "Nei", "gh:text": "マスター、お見事でした。しかし、手数料をいただきすぎではありませんか？" }
+        ]
+      },
+      {
+        "gh:pageNumber": 17,
+        "panel": 3,
+        "environment": "env:kamata-street-evening",
+        "gh:characters": ["character:Ren"],
+        "gh:dialogue": [
+          { "gh:speaker": "Ren", "gh:text": "技術料だよ。これでしばらくは、平和に寝て暮らせる…" }
+        ]
+      },
+      {
+        "gh:pageNumber": 17,
+        "panel": 4,
+        "environment": "env:intertitle-black",
+        "gh:characters": [],
+        "gh:dialogue": []
+      }
     ],
     "episode:251121-arcA-2": [
       { "gh:pageNumber": 1, "panel": 1, "gh:characters": [], "gh:dialogue": [ { "gh:speaker": "Narration", "gh:text": "復旧直後の“安心”が、次の穴になる。" } ] },
