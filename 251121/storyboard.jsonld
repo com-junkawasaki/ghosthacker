@@ -4870,7 +4870,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a phone notification / incident alert dashboard, minimal UI, urgent timestamp. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a phone notification / incident alert dashboard, minimal UI, urgent timestamp. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "社内の通知（簡素なインシデント掲示板）。『復職申請：承認待ち』『権限変更：未実施』『ログ保存：期限24h』が同じ画面に並ぶ。",
+              "environment": "env:smartphone-screen",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "UI", "text": "復職申請：安本（承認待ち） / 権限変更：未実施 / ログ保存：期限 24h" }
+              ]
             },
             {
               "panel": 2,
@@ -4885,7 +4891,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) and (Nei:1.2) leaning toward a screen, analyzing fast in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. soft blue screen glow. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) and (Nei:1.2) leaning toward a screen, analyzing fast in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. soft blue screen glow. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "RenとNeiが同じ画面を覗き込む。復旧の達成感の代わりに、未処理タスクの赤バッジが増えていく。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "うわ…『復職申請』もう動いてる。早っ。" },
+                { "speaker": "Ren", "text": "善意は速い。だから危ない。" }
+              ]
             },
             {
               "panel": 3,
@@ -4901,7 +4914,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Nei:1.2) eyes with intricate iris patterns and sharp catchlights. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Nei:1.2) eyes with intricate iris patterns and sharp catchlights. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Neiの目が細くなる。画面の『承認待ち』の文字が、笑顔の仮面みたいに見える（ミニ引き）。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "…これ、また来る。" }
+              ]
             }
           ]
         },
@@ -5618,7 +5637,14 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. 復旧が“できた”のに、誰も安心できない。原因はマルウェアではなく、情で責任が溶ける“善意の運用”が残っていること。. Establishing shot: outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. 復旧が“できた”のに、誰も安心できない。原因はマルウェアではなく、情で責任が溶ける“善意の運用”が残っていること。. Establishing shot: outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "復旧後の大門建設。電話と紙と怒号は止まらないのに、会議だけは“いい話”で締めようとする空気。安本の席に『復職』の札が置かれそうになっている。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:President", "character:Shouta", "character:Yasumoto"],
+              "dialogue": [
+                { "speaker": "President", "text": "安本も反省してる。会社は家族だ。戻ってもらう。" },
+                { "speaker": "Shouta", "text": "親父…それ、また同じ入口になる。" }
+              ]
             },
             {
               "panel": 2,
@@ -5633,7 +5659,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) stands still, scanning the scene calmly in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. icon: Okamura Cruise & Atlas workstation / USM Haller (Ren office cutaways). shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) stands still, scanning the scene calmly in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. icon: Okamura Cruise & Atlas workstation / USM Haller (Ren office cutaways). shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renが紙束（前話の“最初のスプリント”）の見出しを指でトントン叩く。『復職条件』『権限の見直し』『職務分掌』『承認フロー』。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:President", "character:Shouta"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "“許す”のは勝手。でも“任せる”のは設計だよ。" },
+                { "speaker": "Ren", "text": "元の権限に戻したら、次はもっと静かに壊れる。" }
+              ]
             },
             {
               "panel": 3,
@@ -5649,7 +5682,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes, calm but alert, catching soft window reflections. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes, calm but alert, catching soft window reflections. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Renの目のアップ。優しい言葉の裏にある“穴”を見抜く目。机上の復職札が、鎖みたいに見える。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "社長。善意で設計をサボるな。" }
+              ]
             }
           ]
         },
@@ -5720,7 +5759,14 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of teams pausing operations as containment begins. 復旧の終端（Done）を定義：復旧＝起動ではなく、検知・復元・再発防止まで. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of teams pausing operations as containment begins. 復旧の終端（Done）を定義：復旧＝起動ではなく、検知・復元・再発防止まで. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "現場を止める号令。誰かが『とりあえず再起動！』と言いかけて、空気がざわつく。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Shouta", "character:Sato", "character:Matsuda"],
+              "dialogue": [
+                { "speaker": "Sato", "text": "起動したし、現場回しましょう！" },
+                { "speaker": "Shouta", "text": "待て。今は“止血”だ。" }
+              ]
             },
             {
               "panel": 2,
@@ -5735,7 +5781,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a checklist / runbook page titled 'CONTAINMENT' with timestamps and boxes checked. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a checklist / runbook page titled 'CONTAINMENT' with timestamps and boxes checked. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "紙の手順書（runbook）にチェックが入っていく。『隔離』『証跡保全』『権限停止』『連絡系統』。",
+              "environment": "env:kamata-daimon-office",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "UI", "text": "RUNBOOK: CONTAINMENT / 1) isolate  2) preserve logs  3) revoke access  4) comms" }
+              ]
             },
             {
               "panel": 3,
@@ -5750,7 +5802,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) raises a hand to stop a panicked restart in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. gentle but firm gesture. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) raises a hand to stop a panicked restart in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. gentle but firm gesture. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renが手のひらで“停止”を作る。焦りの手が電源に伸びるのを、静かに止める。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:Shouta"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "起動は復旧じゃない。" },
+                { "speaker": "Ren", "text": "先に権限。ログ。境界。" }
+              ]
             }
           ]
         },
@@ -5770,7 +5829,14 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of teams pausing operations as containment begins. 復旧の終端（Done）を定義：復旧＝起動ではなく、検知・復元・再発防止まで. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of teams pausing operations as containment begins. 復旧の終端（Done）を定義：復旧＝起動ではなく、検知・復元・再発防止まで. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "“現場を止める”ことに社内が反発する。社長は情で丸く収めたい。翔太は板挟みで拳を握る。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:President", "character:Shouta", "character:Matsuda"],
+              "dialogue": [
+                { "speaker": "President", "text": "もう十分だろ。動かさないと現場が死ぬ。" },
+                { "speaker": "Shouta", "text": "動かすなら、“終端”を決めてからだ。" }
+              ]
             },
             {
               "panel": 2,
@@ -5785,7 +5851,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a checklist / runbook page titled 'CONTAINMENT' with timestamps and boxes checked. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a checklist / runbook page titled 'CONTAINMENT' with timestamps and boxes checked. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "チェック欄の横に赤字メモ。『復職＝権限復活ではない』『職務分掌』『承認は二名』『例外は期限付き』。",
+              "environment": "env:kamata-daimon-office",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "UI", "text": "NOTE: reinstatement != restore privileges / 2-person approval / time-bound exceptions" }
+              ]
             },
             {
               "panel": 3,
@@ -5800,7 +5872,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) raises a hand to stop a panicked restart in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. gentle but firm gesture. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) raises a hand to stop a panicked restart in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. gentle but firm gesture. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renが社長の前で手を上げて止める。言葉は静かだが、引かない。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:President", "character:Shouta"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "“いい話”にして、責任を溶かすな。" },
+                { "speaker": "Ren", "text": "社長が許すなら、社長が条件を書く。" }
+              ]
             }
           ]
         },
