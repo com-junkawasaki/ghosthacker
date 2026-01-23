@@ -1,0 +1,13 @@
+[build]
+  [[build.env]]
+    name = "BP_GO_BUILD_FLAGS"
+    value = "-ldflags=-s -w"
+
+  # Paketo Buildpacks requires package paths (directories), not file paths
+  [[build.env]]
+    name = "BP_GO_TARGETS"
+    value = "./cmd/server:server,./cmd/worker:worker"
+
+
+[metadata]
+  include-files = ["server", "worker"]

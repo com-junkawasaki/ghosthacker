@@ -27,6 +27,8 @@ spec:
               value: "/workspace"
             - name: PORT
               value: "8081"
+            - name: TEMPORAL_ADDRESS
+              value: "storyboard-temporal-frontend.temporal-system.svc.cluster.local:7233"
           volumeMounts:
             - name: workspace
               mountPath: /workspace

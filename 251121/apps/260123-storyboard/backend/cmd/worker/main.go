@@ -1,3 +1,5 @@
+//go:generate buf generate
+
 package main
 
 import (

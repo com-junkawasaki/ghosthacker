@@ -1,19 +1,19 @@
+//go:generate buf generate
+
 package main
 
 import (
 	"context"
-	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 
-	"connectrpc.com/connect"
-	"storyboard-editor/backend/internal/service"
-	"storyboard-editor/backend/proto/storyboardpbconnect"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
+
+	"storyboard-editor/backend/internal/service"
+	"storyboard-editor/backend/proto/storyboardpbconnect"
 )
 
 func main() {
