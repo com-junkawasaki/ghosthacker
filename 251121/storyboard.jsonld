@@ -77,6 +77,38 @@
     { "@id": "env:sns-timeline", "dct:title": "Smartphone SNS timeline", "dct:description": "スマホのSNSタイムライン（投稿・リプ・いいね・リポストが流れる）。誹謗中傷や拡散の温度が伝わる。" }
   ],
   "gh:characters": [
+    {
+      "@id": "character:Ren",
+      "schema:name": "Ren",
+      "dct:description": "17歳。スマートだが少し気怠げ。論理と手順で状況を切り分け、AXEでGhostの“繋がり”を断つ。",
+      "gh:voice": {
+        "gh:style": "smart, slightly lethargic, low-energy confidence",
+        "gh:sentenceTraits": ["short clauses", "ellipses", "no shouting"],
+        "gh:favorites": ["入口", "鍵", "鎖", "切る", "見える化", "熱"],
+        "gh:taboos": ["熱血長台詞", "過剰な敬語"],
+        "gh:sampleLines": [
+          "…まず入口。",
+          "消せない。だから、切る。",
+          "怖さは手順に変えられる。"
+        ]
+      }
+    },
+    {
+      "@id": "character:Nei",
+      "schema:name": "Nei",
+      "dct:description": "17歳。端的で冷静。結論を先に出し、証拠化と手順化でチームを前に進める。",
+      "gh:voice": {
+        "gh:style": "concise, calm, clinical",
+        "gh:sentenceTraits": ["conclusion-first", "imperatives", "minimal emotion words"],
+        "gh:favorites": ["結論", "証拠", "止血", "手順", "分離"],
+        "gh:taboos": ["長い比喩", "回りくどい前置き"],
+        "gh:sampleLines": [
+          "結論。証拠。",
+          "今は止血。あとで整理。",
+          "慌てない。順番。"
+        ]
+      }
+    },
     { "@id": "character:Shouta", "schema:name": "Daimon Shouta", "dct:description": "大門建設の若手（スーツ姿）。依頼者。焦燥しているが目は鋭い。" },
     { "@id": "character:Matsuda", "schema:name": "Matsuda", "dct:description": "経理の松田（おばちゃん）。給与計算に追われ叫ぶ。" },
     { "@id": "character:Sato", "schema:name": "Sato", "dct:description": "若手社員の佐藤。PC裏でケーブルをいじり混乱している。" },
@@ -84,7 +116,23 @@
     { "@id": "character:President", "schema:name": "Daimon Goro", "dct:description": "大門建設 社長（大門五郎）。作業着姿で戻ってくる。" },
     { "@id": "character:GhostYasumoto", "schema:name": "Ghost (Yasumoto)", "dct:description": "安本から分離したGhost。古い書類とケーブルの塊の怪物。" },
     { "@id": "character:Yuto", "schema:name": "Yuto", "dct:description": "C高校の友人。漏えい由来の迷惑連絡に怯える。" },
-    { "@id": "character:Kenta", "schema:name": "Kenta", "dct:description": "C高校の生徒。誹謗中傷被害の相談者。" },
+    {
+      "@id": "character:Kenta",
+      "schema:name": "Kenta",
+      "schema:alternateName": ["Kento"],
+      "dct:description": "C高校の生徒。誹謗中傷被害の相談者。高校生っぽい口語で揺れながらも、最後は手順で踏みとどまる。",
+      "gh:voice": {
+        "gh:style": "teen, anxious, reactive",
+        "gh:sentenceTraits": ["slang", "hesitation", "short bursts"],
+        "gh:favorites": ["マジ", "やばい", "無理", "なんで"],
+        "gh:taboos": ["難解な専門用語を自分から使う"],
+        "gh:sampleLines": [
+          "え、マジ…？",
+          "無理…でも、消しても増える…なんで？",
+          "俺じゃないって言ってんのに…"
+        ]
+      }
+    },
     { "@id": "character:Mina", "schema:name": "Mina", "dct:description": "闇バイトに巻き込まれた学生。口座/番号の売買で追い詰められる。" }
   ],
   "gh:episodes": [
