@@ -114,7 +114,10 @@
     { "@id": "character:Sato", "schema:name": "Sato", "dct:description": "若手社員の佐藤。PC裏でケーブルをいじり混乱している。" },
     { "@id": "character:Yasumoto", "schema:name": "Yasumoto", "dct:description": "総務部長の安本。汗だくで挙動不審。嫉妬と恐怖のGhostを抱える。" },
     { "@id": "character:President", "schema:name": "Daimon Goro", "dct:description": "大門建設 社長（大門五郎）。作業着姿で戻ってくる。" },
+    { "@id": "character:PreviousPresident", "schema:name": "Daimon Ichiro", "dct:description": "大門建設の先代社長（故人）。『家族』『情』『現場第一』で回してきた時代の象徴。" },
     { "@id": "character:GhostYasumoto", "schema:name": "Ghost (Yasumoto)", "dct:description": "安本から分離したGhost。古い書類とケーブルの塊の怪物。" },
+    { "@id": "character:GhostPresident", "schema:name": "Ghost (President)", "dct:description": "社長の“善意”から生まれるGhost。『許し』『絆』『家族』の笑顔の紙仮面が、口と責任を静かに塞ぐ。" },
+    { "@id": "character:GhostPreviousPresident", "schema:name": "Ghost (Previous President)", "dct:description": "先代の“文化”から生まれるGhost。古い社訓フレームと社判（ハンコ）を核に、善意の言葉で権限の穴を増殖させる。" },
     { "@id": "character:Yuto", "schema:name": "Yuto", "dct:description": "C高校の友人。漏えい由来の迷惑連絡に怯える。" },
     {
       "@id": "character:Kenta",
