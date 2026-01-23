@@ -971,7 +971,9 @@
               "visual": "ギスギスした空気の中、Yutoが一人で座っている。",
               "environment": "env:cschool-hallway",
               "characters": ["character:Yuto"],
-              "dialogue": []
+              "dialogue": [
+                { "speaker": "Yuto (Monologue)", "text": "（誰にも言えない…でも、もう無理…）" }
+              ]
             },
             {
               "panel": 2,
@@ -9333,7 +9335,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. 復旧のたびに再発。『直った』と言うたびに、現場がさらに遅くなる。原因は“終端”がないこと。. Establishing shot: large logistics warehouse, trucks and conveyors, industrial control room monitors, dawn mist. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. 復旧のたびに再発。『直った』と言うたびに、現場がさらに遅くなる。原因は“終端”がないこと。. Establishing shot: large logistics warehouse, trucks and conveyors, industrial control room monitors, dawn mist. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "物流倉庫。止めて→動かして→また止まる。『直った』のたびに、現場の顔が削れていく。",
+              "environment": "env:logistics-warehouse",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Narration", "text": "『直った』は、終わりじゃない。" }
+              ]
             },
             {
               "panel": 2,
@@ -9348,7 +9356,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) stands still, scanning the scene calmly in large logistics warehouse, trucks and conveyors, industrial control room monitors, dawn mist. icon: crowbar / stopwatch / DONE stamp. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Takeru:1.2) stands still, scanning the scene calmly in large logistics warehouse, trucks and conveyors, industrial control room monitors, dawn mist. icon: crowbar / stopwatch / DONE stamp. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "猛が止まったラインを見渡す。バールじゃない。ストップウォッチと“DONE”の印だけが先に出る。",
+              "environment": "env:logistics-warehouse",
+              "characters": ["character:Takeru"],
+              "dialogue": [
+                { "speaker": "Takeru", "text": "“動いた”で終わりにすんな。" }
+              ]
             },
             {
               "panel": 3,
@@ -9364,7 +9378,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes, calm but alert, catching soft window reflections. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Takeru:1.2) eyes, calm but alert, catching soft window reflections. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "猛の目。怒りはある。でも先に“定義”を探している目。",
+              "environment": "env:logistics-warehouse",
+              "characters": ["character:Takeru"],
+              "dialogue": [
+                { "speaker": "Takeru (Monologue)", "text": "（終端がない。だから地獄が続く）" }
+              ]
             }
           ]
         },
@@ -9384,7 +9404,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a phone notification / incident alert dashboard, minimal UI, urgent timestamp. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a phone notification / incident alert dashboard, minimal UI, urgent timestamp. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "アラートがまた鳴る。“復旧済み”のはずの案件が、同じ症状で戻ってくる。",
+              "environment": "env:logistics-warehouse",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "UI", "text": "INCIDENT: REOPENED / recurrence detected" }
+              ]
             },
             {
               "panel": 2,
@@ -9399,7 +9425,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) and (Nei:1.2) leaning toward a screen, analyzing fast in large logistics warehouse, trucks and conveyors, industrial control room monitors, dawn mist. soft blue screen glow. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Takeru:1.2) and (Nei:1.2) leaning toward a screen, analyzing fast in large logistics warehouse, trucks and conveyors, industrial control room monitors, dawn mist. soft blue screen glow. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "猛とNeiがログを覗き込む。『直った』の直後に、同じ場所がまた咳き込む。",
+              "environment": "env:logistics-warehouse",
+              "characters": ["character:Takeru", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "同じパターン。…“直った”って言った直後。" },
+                { "speaker": "Takeru", "text": "直ってない。終わってない。" }
+              ]
             },
             {
               "panel": 3,
@@ -9415,7 +9448,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Nei:1.2) eyes with intricate iris patterns and sharp catchlights. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Nei:1.2) eyes with intricate iris patterns and sharp catchlights. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Neiの目が細くなる。原因は技術じゃなく“言葉の定義”にあると気づく。",
+              "environment": "env:logistics-warehouse",
+              "characters": ["character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "『復旧』の定義が、ない。" }
+              ]
             }
           ]
         },
@@ -9435,7 +9474,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of teams pausing operations as containment begins. 封じ込め：影響範囲を切り分け、再起動・復旧を勝手にさせない. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of teams pausing operations as containment begins. 封じ込め：影響範囲を切り分け、再起動・復旧を勝手にさせない. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "現場が止まる。止めるのはラインじゃなく、“勝手な復旧”だ。",
+              "environment": "env:logistics-warehouse",
+              "characters": ["character:Takeru"],
+              "dialogue": [
+                { "speaker": "Takeru", "text": "全員、再起動禁止。勝手に触るな。" }
+              ]
             },
             {
               "panel": 2,
@@ -9450,7 +9495,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a checklist / runbook page titled 'CONTAINMENT' with timestamps and boxes checked. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a checklist / runbook page titled 'CONTAINMENT' with timestamps and boxes checked. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "封じ込めのチェックリスト。時刻だけが増えて、最後の欄に“DONE”が存在しない。",
+              "environment": "env:logistics-warehouse",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "UI", "text": "RUNBOOK: CONTAINMENT / steps checked / DONE: —" }
+              ]
             },
             {
               "panel": 3,
@@ -9465,7 +9516,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) raises a hand to stop a panicked restart in large logistics warehouse, trucks and conveyors, industrial control room monitors, dawn mist. gentle but firm gesture. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Takeru:1.2) raises a hand to stop a panicked restart in large logistics warehouse, trucks and conveyors, industrial control room monitors, dawn mist. gentle but firm gesture. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "誰かが『とりあえず起動』へ手を伸ばす。猛が手のひらで止める。",
+              "environment": "env:logistics-warehouse",
+              "characters": ["character:Takeru"],
+              "dialogue": [
+                { "speaker": "Offscreen", "text": "起動すれば戻るだろ！" },
+                { "speaker": "Takeru", "text": "戻らねぇ。繰り返す。" }
+              ]
             }
           ]
         },
@@ -9485,7 +9543,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of teams pausing operations as containment begins. 封じ込め：影響範囲を切り分け、再起動・復旧を勝手にさせない. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of teams pausing operations as containment begins. 封じ込め：影響範囲を切り分け、再起動・復旧を勝手にさせない. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "封じ込めが始まると、別部署から『こっちは動かしていい？』が飛んでくる。現場がまた分裂する。",
+              "environment": "env:logistics-warehouse",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Offscreen", "text": "こっちのラインだけ再起動していい？" }
+              ]
             },
             {
               "panel": 2,
@@ -9500,7 +9564,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a checklist / runbook page titled 'CONTAINMENT' with timestamps and boxes checked. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a checklist / runbook page titled 'CONTAINMENT' with timestamps and boxes checked. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "チェックは増える。でも“止めていい範囲”も“再開していい条件”も書かれていない。",
+              "environment": "env:logistics-warehouse",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Narration", "text": "終端がないと、止め方も決まらない。" }
+              ]
             },
             {
               "panel": 3,
@@ -9515,7 +9585,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) raises a hand to stop a panicked restart in large logistics warehouse, trucks and conveyors, industrial control room monitors, dawn mist. gentle but firm gesture. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Takeru:1.2) raises a hand to stop a panicked restart in large logistics warehouse, trucks and conveyors, industrial control room monitors, dawn mist. gentle but firm gesture. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "猛が短く言い切る。『再開条件がない限り、再開しない』。",
+              "environment": "env:logistics-warehouse",
+              "characters": ["character:Takeru"],
+              "dialogue": [
+                { "speaker": "Takeru", "text": "再開条件。書け。書けないなら動かすな。" }
+              ]
             }
           ]
         },
@@ -9535,7 +9611,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Takeru:1.2) moves decisively, pointing at a manual process board in large logistics warehouse, trucks and conveyors, industrial control room monitors, dawn mist. 計測：猛のストップウォッチで“復旧の定義”と“締切”を刻む. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Takeru:1.2) moves decisively, pointing at a manual process board in large logistics warehouse, trucks and conveyors, industrial control room monitors, dawn mist. 計測：猛のストップウォッチで“復旧の定義”と“締切”を刻む. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "猛がホワイトボードに“復旧の定義”を書き始める。『動く』じゃなく『終わる』を決める。",
+              "environment": "env:logistics-warehouse",
+              "characters": ["character:Takeru"],
+              "dialogue": [
+                { "speaker": "Takeru", "text": "復旧＝出庫が回る、再発が止まる、証拠が揃う。" }
+              ]
             },
             {
               "panel": 2,
@@ -9550,7 +9632,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a stopwatch / DONE watch showing elapsed minutes, urgent but controlled. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a stopwatch / DONE watch showing elapsed minutes, urgent but controlled. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "ストップウォッチ。焦りを“数”に落として、刃にしない。",
+              "environment": "env:logistics-warehouse",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Takeru (Offscreen)", "text": "時間は敵じゃない。曖昧さが敵だ。" }
+              ]
             },
             {
               "panel": 3,
@@ -9566,7 +9654,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Takeru:1.2) eyes, intense focus, crisp catchlights. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Takeru:1.2) eyes, intense focus, crisp catchlights. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "猛の目が“Done”に焦点を合わせる。",
+              "environment": "env:logistics-warehouse",
+              "characters": ["character:Takeru"],
+              "dialogue": [
+                { "speaker": "Takeru", "text": "Doneを刻む。" }
+              ]
             }
           ]
         },
@@ -9586,7 +9680,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Takeru:1.2) moves decisively, pointing at a manual process board in large logistics warehouse, trucks and conveyors, industrial control room monitors, dawn mist. 計測：猛のストップウォッチで“復旧の定義”と“締切”を刻む. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Takeru:1.2) moves decisively, pointing at a manual process board in large logistics warehouse, trucks and conveyors, industrial control room monitors, dawn mist. 計測：猛のストップウォッチで“復旧の定義”と“締切”を刻む. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "猛が“DONE条件”の欄を太線で囲む。ここが空欄の限り、地獄は終わらない。",
+              "environment": "env:logistics-warehouse",
+              "characters": ["character:Takeru", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "空欄だった所、埋めた。" },
+                { "speaker": "Takeru", "text": "…これで、終わる。" }
+              ]
             },
             {
               "panel": 2,
@@ -9601,7 +9702,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a stopwatch / DONE watch showing elapsed minutes, urgent but controlled. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a stopwatch / DONE watch showing elapsed minutes, urgent but controlled. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "時計の横に、チェックボックスと『DONE』のスタンプが置かれる。",
+              "environment": "env:logistics-warehouse",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "SE", "text": "ペタッ（スタンプ）" }
+              ]
             },
             {
               "panel": 3,
@@ -9617,7 +9724,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Takeru:1.2) eyes, intense focus, crisp catchlights. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Takeru:1.2) eyes, intense focus, crisp catchlights. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "猛の瞳に、回り続けていた針が“止まる”イメージが映る（ミニ引き）。",
+              "environment": "env:logistics-warehouse",
+              "characters": ["character:Takeru"],
+              "dialogue": [
+                { "speaker": "Takeru (Monologue)", "text": "（止まれ）" }
+              ]
             }
           ]
         },
