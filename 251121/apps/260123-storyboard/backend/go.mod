@@ -1,10 +1,10 @@
 module storyboard-editor/backend
 
-go 1.23
+go 1.23.0
 
 require (
 	connectrpc.com/connect v1.17.0
-	go.temporal.io/sdk v1.29.1
+	go.temporal.io/sdk v1.28.1
 	golang.org/x/net v0.28.0
 	google.golang.org/protobuf v1.34.2
 )
@@ -23,10 +23,9 @@ require (
 	github.com/robfig/cron v1.2.0 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/stretchr/testify v1.9.0 // indirect
-	go.temporal.io/api v1.38.0 // indirect
+	go.temporal.io/api v1.37.0 // indirect
 	golang.org/x/exp v0.0.0-20250620022241-b7579e27df2b // indirect
-	golang.org/x/sync v0.16.0 // indirect
-	golang.org/x/sys v0.36.0 // indirect
+	golang.org/x/sys v0.23.0 // indirect
 	golang.org/x/text v0.17.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20240822170219-fc7c04adadcd // indirect

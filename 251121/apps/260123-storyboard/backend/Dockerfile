@@ -14,8 +14,9 @@ RUN go mod download
 COPY . .
 
 # Generate proto files (if needed)
+# Use versions compatible with Go 1.23
 RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-RUN go install connectrpc.com/connect/cmd/protoc-gen-connect-go@latest
+RUN go install connectrpc.com/connect/cmd/protoc-gen-connect-go@v1.17.0
 
 # Build
 RUN CGO_ENABLED=0 GOOS=linux go build -o /app/server ./cmd/server/main.go

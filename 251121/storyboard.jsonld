@@ -68,7 +68,8 @@
     { "@id": "env:smartphone-screen", "dct:title": "Smartphone screen", "dct:description": "スマホの画面（通知・設定・チャット等のインサート）。" },
     { "@id": "env:news-hacker-board", "dct:title": "News Hacker board", "dct:description": "掲示板 News Hacker。HNで助言が飛び交う。" },
     { "@id": "env:quiet-room", "dct:title": "Quiet room", "dct:description": "落ち着いて説明できる小部屋（支援・相談の場）。" },
-    { "@id": "env:station-night-street", "dct:title": "Station night street", "dct:description": "駅近の夜道。ネオン、緊張、スマホの光。" }
+    { "@id": "env:station-night-street", "dct:title": "Station night street", "dct:description": "駅近の夜道。ネオン、緊張、スマホの光。" },
+    { "@id": "env:cschool-exterior-dusk", "dct:title": "C-school exterior (dusk)", "dct:description": "C高校の外観。夕方の柔らかい光、帰る生徒。" }
   ],
   "gh:characters": [
     { "@id": "character:Shouta", "schema:name": "Daimon Shouta", "dct:description": "大門建設の若手（スーツ姿）。依頼者。焦燥しているが目は鋭い。" },
@@ -635,7 +636,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A checklist of accounts gets checked off: email, social, shopping, gaming. Each gets a unique password and passkey where available. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A checklist of accounts gets checked off: email, social, shopping, gaming. Each gets a unique password and passkey where available. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "チェックリストが次々と埋まっていく。メール、SNS、買い物、ゲーム。全部、別の鍵。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Ren", "character:Nei", "character:Yuto"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "（チェック）分離、分離、分離。" }
+              ]
             }
           ]
         },
@@ -656,7 +663,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Nei's eyes: steady practical kindness. She signals Yuto should not feel shame for asking for help. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Nei's eyes: steady practical kindness. She signals Yuto should not feel shame for asking for help. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Neiの目。責めない、置いていかない、という強い優しさ。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Nei", "character:Yuto"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "言えた時点で勝ち。恥じゃないよ。" }
+              ]
             }
           ]
         },
@@ -676,7 +689,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Night: Yuto returns home; the phone is finally quiet. The earlier chaos feels like a receding wave. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Night: Yuto returns home; the phone is finally quiet. The earlier chaos feels like a receding wave. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "夜、帰宅したYuto。机の上のスマホが、静かに眠っている。",
+              "environment": "env:home-desk",
+              "characters": ["character:Yuto"],
+              "dialogue": [
+                { "speaker": "Yuto", "text": "家に帰っても…鳴らない。" }
+              ]
             }
           ]
         },
@@ -696,7 +715,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A new unknown call comes in; it is automatically silenced and sent to voicemail. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A new unknown call comes in; it is automatically silenced and sent to voicemail. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "また知らない番号。でも、勝手に消音されて留守電に落ちる。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Yuto"],
+              "dialogue": [
+                { "speaker": "Yuto", "text": "…止まった。" }
+              ]
             }
           ]
         },
@@ -716,7 +741,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Yuto smiles for the first time, a tiny victory. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Yuto smiles for the first time, a tiny victory. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Yutoが、初めて笑う。小さいけど確かな勝ち。",
+              "environment": "env:cschool-hallway",
+              "characters": ["character:Yuto"],
+              "dialogue": [
+                { "speaker": "Yuto", "text": "ありがとう。…助かった。" }
+              ]
             }
           ]
         },
@@ -736,7 +767,14 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Late night: Ren and Nei at Ren's desk, browsing a minimalist forum UI labeled 'News Hacker' (generic). shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Late night: Ren and Nei at Ren's desk, browsing a minimalist forum UI labeled 'News Hacker' (generic). shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "深夜。Renの机で、Neiと一緒に掲示板『News Hacker』を開く。",
+              "environment": "env:news-hacker-board",
+              "characters": ["character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "また誰かが困るよ。" },
+                { "speaker": "Ren", "text": "だから書く。" }
+              ]
             }
           ]
         },
@@ -756,7 +794,15 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. Forum thread UI: only short usernames visible. 'null_pencil_axe' posts a checklist (no readable text), replies from 'aka_chise1' and '3pa11er3apiv0t' appear. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Forum thread UI: only short usernames visible. 'null_pencil_axe' posts a checklist (no readable text), replies from 'aka_chise1' and '3pa11er3apiv0t' appear. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "掲示板スレ。短いHNだけが並び、チェックリストと短い返信が続く。",
+              "environment": "env:news-hacker-board",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "NewsHacker", "text": "（null_pencil_axe）まず凍結、次に分離。使い回しは全部死ぬ。" },
+                { "speaker": "NewsHacker", "text": "（aka_chise1）“電話”は心理。設定で黙らせろ。" },
+                { "speaker": "NewsHacker", "text": "（3pa11er3apiv0t）漏えいは前提。運用で負けない。" }
+              ]
             }
           ]
         },
@@ -777,7 +823,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Ren smirks slightly at the thread, satisfied, but remains anonymous. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Ren smirks slightly at the thread, satisfied, but remains anonymous. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Renが小さく笑う。正体は伏せたまま。",
+              "environment": "env:ren-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "反応が速い…いい。" }
+              ]
             }
           ]
         },
@@ -797,7 +849,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. An abstract 'Ghost' silhouette made of leaked email addresses and phone numbers dissolves behind the forum screen, defeated. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. An abstract 'Ghost' silhouette made of leaked email addresses and phone numbers dissolves behind the forum screen, defeated. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "漏えいデータでできた影が、掲示板の光の裏で溶けていく。",
+              "environment": "env:news-hacker-board",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Narration", "text": "Ghostは、個人の弱さじゃなく“社会の癖”から生まれる。" }
+              ]
             }
           ]
         },
@@ -817,7 +875,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Next day at C-school: Yuto quietly thanks Ren and Nei, looking lighter. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Next day at C-school: Yuto quietly thanks Ren and Nei, looking lighter. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "翌日。Yutoが軽くなった顔で、RenとNeiに頭を下げる。",
+              "environment": "env:cschool-hallway",
+              "characters": ["character:Yuto", "character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Yuto", "text": "次、誰か困ってたら…俺も言う。" },
+                { "speaker": "Ren", "text": "それでいい。" }
+              ]
             }
           ]
         },
@@ -837,7 +902,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A password manager 'security recommendations' screen shows 'reused passwords: 0' after cleanup. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A password manager 'security recommendations' screen shows 'reused passwords: 0' after cleanup. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "パスワードマネジャーの推奨表示。使い回しがゼロになっている。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "追跡も減らす。余計な情報は渡さない。" }
+              ]
             }
           ]
         },
@@ -857,7 +928,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school corridor: Ren and Nei walk side by side; a calm pause after the storm. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school corridor: Ren and Nei walk side by side; a calm pause after the storm. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "C高校の廊下。RenとNeiが並んで歩く。嵐のあとみたいに静か。",
+              "environment": "env:cschool-hallway",
+              "characters": ["character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "小さい勝ち、でも本物。" }
+              ]
             }
           ]
         },
@@ -878,7 +955,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Ren's eyes: a tiny reflective glint hinting at bigger 'Ghosts' ahead. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Ren's eyes: a tiny reflective glint hinting at bigger 'Ghosts' ahead. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Renの瞳。小さな光が“次”を映している。",
+              "environment": "env:cschool-hallway",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "また来る。次はもっと大きい。" }
+              ]
             }
           ]
         },
@@ -898,7 +981,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei watches Ren type on a small laptop; she looks curious about his online life. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei watches Ren type on a small laptop; she looks curious about his online life. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "NeiがRenの手元を見る。小さなノートPCに、迷いなく指が走る。",
+              "environment": "env:ren-office",
+              "characters": ["character:Nei", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "Ren、君…ネットだと別の顔だね。" }
+              ]
             }
           ]
         },
@@ -918,7 +1007,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A forum notification shows multiple replies to a thread about leaked data cleanup (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A forum notification shows multiple replies to a thread about leaked data cleanup (no readable long text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "掲示板の通知が増える。掃除の手順に反応が返ってくる。",
+              "environment": "env:news-hacker-board",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "匿名の方が、届く言葉がある。" }
+              ]
             }
           ]
         },
@@ -938,7 +1033,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A calm night city window reflection; Ren's room is minimal and tidy. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A calm night city window reflection; Ren's room is minimal and tidy. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "夜の窓。街の光が反射して、部屋は静かに整っている。",
+              "environment": "env:ren-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "静かだ。こういう夜が増えればいい。" }
+              ]
             }
           ]
         },
@@ -958,7 +1059,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren closes his laptop. On the desk: school materials and a phone, now silent. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren closes his laptop. On the desk: school materials and a phone, now silent. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "RenがノートPCを閉じる。机には教材と、静かなスマホ。",
+              "environment": "env:ren-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Narration", "text": "明日も学校。現実も守らないと。" }
+              ]
             }
           ]
         },
@@ -978,7 +1085,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A password manager vault icon locks shut with a subtle glow. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A password manager vault icon locks shut with a subtle glow. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "保管庫のアイコンが、静かに閉じる。鍵は“箱”の中。",
+              "environment": "env:smartphone-screen",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Narration", "text": "鍵は、人間の頭じゃなく“箱”に預ける。" }
+              ]
             }
           ]
         },
@@ -999,7 +1112,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Nei's eyes: relief, but also resolve—she knows this will happen again to someone else. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Nei's eyes: relief, but also resolve—she knows this will happen again to someone else. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Neiの瞳。安堵と、次に備える決意が混じる。",
+              "environment": "env:ren-office",
+              "characters": ["character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "助け方、覚えた。" }
+              ]
             }
           ]
         },
@@ -1019,7 +1138,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school building exterior at dusk, soft light, students leaving. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school building exterior at dusk, soft light, students leaving. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "夕方のC高校。生徒が静かに帰っていく。",
+              "environment": "env:cschool-exterior-dusk",
+              "characters": ["character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "また来る。" }
+              ]
             }
           ]
         },
@@ -1039,7 +1164,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A sticky note shows only symbols/icons: a key, a vault, and an email alias arrow (no text). shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A sticky note shows only symbols/icons: a key, a vault, and an email alias arrow (no text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "付箋には、鍵・保管庫・メール別名の矢印だけ。言葉じゃなく、手順。",
+              "environment": "env:ren-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Narration", "text": "忘れない形にする。" }
+              ]
             }
           ]
         },
@@ -1059,7 +1190,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A subtle 'Ghost' ripple passes through the city data haze, hinting the threat is systemic. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A subtle 'Ghost' ripple passes through the city data haze, hinting the threat is systemic. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "街のデータの霞に、薄い波紋みたいな“Ghost”が走る。",
+              "environment": "env:tokyo-2026-aerial",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Narration", "text": "終わりじゃない。形を変えて戻る。" }
+              ]
             }
           ]
         },
@@ -1079,7 +1216,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren and Nei share a quiet look: they did something small, but real. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren and Nei share a quiet look: they did something small, but real. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "RenとNeiが目を合わせる。小さいけど、本物の勝ち。",
+              "environment": "env:cschool-hallway",
+              "characters": ["character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "小さい勝ち、でも本物。" },
+                { "speaker": "Ren", "text": "今日はな。" }
+              ]
             }
           ]
         },
@@ -1100,7 +1244,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Yuto's phone rests silent on the desk; a faint glow from the lock screen fades. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Yuto's phone rests silent on the desk; a faint glow from the lock screen fades. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Yutoのスマホ。もう鳴らない。画面の光が薄れていく。",
+              "environment": "env:home-desk",
+              "characters": ["character:Yuto"],
+              "dialogue": [
+                { "speaker": "Yuto", "text": "……鳴らない。" }
+              ]
             }
           ]
         },
@@ -1120,7 +1270,11 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Title card: 'Ghost Hacker - Episode 1 End' in clean white font on a black background. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Title card: 'Ghost Hacker - Episode 1 End' in clean white font on a black background. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Episode 1 End",
+              "environment": "env:intertitle-black",
+              "characters": [],
+              "dialogue": []
             }
           ]
         }
