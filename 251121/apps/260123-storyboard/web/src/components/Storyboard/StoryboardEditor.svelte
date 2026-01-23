@@ -6,7 +6,6 @@
 
 	let episodes: Array<{ id: string; title: string; totalPages: number }> = [];
 	let selectedEpisode = '';
-	let currentPage = 1;
 	let panels: Panel[] = [];
 	let loading = false;
 	let error = '';
@@ -78,15 +77,14 @@
 			loading = true;
 			error = '';
 			
-			// Use type-safe wrapper with runtime validation
+			// Load all pages by passing pageNumber = 0
 			const panelsList = await getEpisodePanels(
 				storyboardPath,
 				selectedEpisode,
-				currentPage
+				0 // 0 means all pages
 			);
 			
-			console.log('[StoryboardEditor] loadPanels: panels received', panelsList);
-			console.log('[StoryboardEditor] loadPanels: panels count', panelsList.length);
+			console.log('[StoryboardEditor] loadPanels: all panels loaded', panelsList.length);
 			
 			panels = panelsList;
 		} catch (err) {
@@ -124,13 +122,7 @@
 
 	// Only load panels when an episode is selected (not empty string)
 	$: if (selectedEpisode && selectedEpisode.trim() !== '') {
-		console.log('[StoryboardEditor] Reactive: selectedEpisode changed, loading panels', selectedEpisode);
-		loadPanels();
-	}
-
-	// Only reload panels when page changes and an episode is selected
-	$: if (currentPage && selectedEpisode && selectedEpisode.trim() !== '') {
-		console.log('[StoryboardEditor] Reactive: currentPage changed, reloading panels', currentPage);
+		console.log('[StoryboardEditor] Reactive: selectedEpisode changed, loading all panels', selectedEpisode);
 		loadPanels();
 	}
 </script>
@@ -142,9 +134,6 @@
 			<select
 				id="episode-select"
 				bind:value={selectedEpisode}
-				on:change={() => {
-					currentPage = 1;
-				}}
 			>
 				{#if episodes.length === 0}
 					<option value="" disabled>No episodes available</option>
@@ -158,23 +147,13 @@
 				<span class="debug-info" title="Debug: episodes array is empty">⚠️</span>
 			{/if}
 		</div>
-		<div class="page-controls">
-			<button
-				on:click={() => {
-					if (currentPage > 1) currentPage--;
-				}}
-				disabled={currentPage <= 1}
-			>
-				← Prev
-			</button>
-			<span>Page {currentPage}</span>
-			<button
-				on:click={() => {
-					currentPage++;
-				}}
-			>
-				Next →
-			</button>
+		<div class="episode-info">
+			{#if selectedEpisode && episodes.length > 0}
+				{@const episode = episodes.find((e) => e.id === selectedEpisode)}
+				{#if episode}
+					<span class="total-pages">{episode.totalPages} pages</span>
+				{/if}
+			{/if}
 		</div>
 	</header>
 
@@ -187,7 +166,6 @@
 	{:else if panels.length > 0}
 		<StoryboardPage
 			{panels}
-			{currentPage}
 			episodeId={selectedEpisode}
 			storyboardPath={storyboardPath}
 			on:update={({ detail }) =>
@@ -244,23 +222,16 @@
 		cursor: help;
 	}
 
-	.page-controls {
+	.episode-info {
 		display: flex;
 		align-items: center;
 		gap: 1rem;
+		color: #666;
+		font-size: 0.9rem;
 	}
 
-	.page-controls button {
-		padding: 0.5rem 1rem;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		background: #fff;
-		cursor: pointer;
-	}
-
-	.page-controls button:disabled {
-		opacity: 0.5;
-		cursor: not-allowed;
+	.total-pages {
+		font-weight: 500;
 	}
 
 	.error {

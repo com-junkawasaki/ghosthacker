@@ -404,6 +404,8 @@ func (s *StoryboardService) GetEpisodePanels(
 		}
 
 		pageNum, _ := page["gh:pageNumber"].(float64)
+		// If PageNumber is 0 or not specified, return all pages
+		// Otherwise, filter by the specified page number
 		if req.Msg.PageNumber > 0 && int32(pageNum) != req.Msg.PageNumber {
 			continue
 		}

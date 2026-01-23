@@ -4,18 +4,29 @@
 	import type { Panel, PanelData } from '$lib/gen/proto/storyboard_pb';
 
 	export let panels: Panel[] = [];
-	export let currentPage: number = 1;
 	export let episodeId: string = '';
 	export let storyboardPath: string = '';
 
 	const dispatch = createEventDispatcher();
 
-	// Filter panels for current page
-	$: pagePanels = panels.filter((p) => p.pageNumber === currentPage);
+	// Group panels by page number
+	$: pagesMap = panels.reduce((acc, panel) => {
+		const pageNum = panel.pageNumber;
+		if (!acc[pageNum]) {
+			acc[pageNum] = [];
+		}
+		acc[pageNum].push(panel);
+		return acc;
+	}, {} as Record<number, Panel[]>);
 
-	function handlePanelUpdate(panel: number, data: PanelData) {
+	// Get sorted page numbers
+	$: pageNumbers = Object.keys(pagesMap)
+		.map(Number)
+		.sort((a, b) => a - b);
+
+	function handlePanelUpdate(pageNumber: number, panel: number, data: PanelData) {
 		dispatch('update', {
-			pageNumber: currentPage,
+			pageNumber,
 			panel,
 			data,
 		});
@@ -23,11 +34,7 @@
 </script>
 
 <div class="storyboard-page">
-	<div class="page-header">
-		<div class="page-number">Page {currentPage}</div>
-	</div>
-
-	<div class="storyboard-grid">
+	<div class="storyboard-container">
 		<!-- Ghibli-style 5-column layout: カット | 画 | 生成画 | 内容 | 秒 -->
 		<div class="grid-header">
 			<div class="col-cut">カット</div>
@@ -37,16 +44,28 @@
 			<div class="col-seconds">秒</div>
 		</div>
 
-		<div class="panels-container">
-			{#each pagePanels as panel (panel.panel)}
-				<StoryboardPanel
-					{panel}
-					episodeId={episodeId}
-					storyboardPath={storyboardPath}
-					on:update={(e) => handlePanelUpdate(panel.panel, e.detail)}
-				/>
-			{/each}
-		</div>
+		{#each pageNumbers as pageNum}
+			<div class="page-section">
+				<div class="page-header">
+					<div class="page-number">Page {pageNum}</div>
+				</div>
+				
+				<div class="panels-container">
+					{#each pagesMap[pageNum] as panel (panel.panel)}
+						<StoryboardPanel
+							{panel}
+							episodeId={episodeId}
+							storyboardPath={storyboardPath}
+							on:update={(e) => handlePanelUpdate(panel.pageNumber, panel.panel, e.detail)}
+						/>
+					{/each}
+				</div>
+
+				{#if pageNum < pageNumbers[pageNumbers.length - 1]}
+					<hr class="page-divider" />
+				{/if}
+			</div>
+		{/each}
 	</div>
 </div>
 
@@ -58,24 +77,39 @@
 		background: #faf9f5;
 	}
 
-	.page-header {
-		margin-bottom: 1.5rem;
-		text-align: center;
-	}
-
-	.page-number {
-		font-size: 1.5rem;
-		font-weight: 600;
-		color: #333;
-	}
-
-	.storyboard-grid {
+	.storyboard-container {
 		max-width: 1400px;
 		margin: 0 auto;
 		background: #fff;
 		border: 2px solid #ddd;
 		border-radius: 8px;
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	}
+
+	.page-section {
+		position: relative;
+	}
+
+	.page-header {
+		padding: 1.5rem 2rem;
+		text-align: center;
+		background: #f5f5f0;
+		border-bottom: 1px solid #ddd;
+	}
+
+	.page-number {
+		font-size: 1.25rem;
+		font-weight: 600;
+		color: #333;
+	}
+
+	.page-divider {
+		margin: 0;
+		border: none;
+		border-top: 3px solid #ccc;
+		height: 0;
+		margin-top: 2rem;
+		margin-bottom: 2rem;
 	}
 
 	.grid-header {
@@ -109,5 +143,12 @@
 	.panels-container {
 		display: flex;
 		flex-direction: column;
+	}
+
+	/* Ensure grid header stays at top on scroll */
+	.grid-header {
+		position: sticky;
+		top: 0;
+		z-index: 10;
 	}
 </style>
