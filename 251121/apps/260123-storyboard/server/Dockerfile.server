@@ -63,7 +63,7 @@ EXPOSE 8081
 CMD ["air", "-c", ".air.toml"]
 
 # Production stage
-FROM alpine:latest AS production
+FROM alpine:3.21 AS production
 
 WORKDIR /app
 

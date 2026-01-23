@@ -8,7 +8,7 @@ build:
     push: false
   artifacts:
     - image: storyboard-editor/server
-      context: ./backend
+      context: ./server
       docker:
         dockerfile: Dockerfile.server
         target: production
@@ -21,7 +21,7 @@ build:
           - src: "**/*.sum"
             dest: /app
     - image: storyboard-editor/worker
-      context: ./backend
+      context: ./server
       docker:
         dockerfile: Dockerfile.worker
         target: production
@@ -34,7 +34,7 @@ build:
           - src: "**/*.sum"
             dest: /app
     - image: storyboard-editor/frontend
-      context: .
+      context: ./web
       docker:
         dockerfile: Dockerfile.frontend
       sync:
@@ -90,7 +90,7 @@ profiles:
         push: false
       artifacts:
         - image: storyboard-editor/server
-          context: ./backend
+          context: ./server
           docker:
             dockerfile: Dockerfile.server
             target: development
@@ -103,7 +103,7 @@ profiles:
               - src: "**/*.sum"
                 dest: /app
         - image: storyboard-editor/worker
-          context: ./backend
+          context: ./server
           docker:
             dockerfile: Dockerfile.worker
             target: development
@@ -116,7 +116,7 @@ profiles:
               - src: "**/*.sum"
                 dest: /app
         - image: storyboard-editor/frontend
-          context: .
+          context: ./web
           docker:
             dockerfile: Dockerfile.frontend
             target: development

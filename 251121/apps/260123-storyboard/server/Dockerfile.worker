@@ -61,7 +61,7 @@ COPY . .
 CMD ["air", "-c", ".air.worker.toml"]
 
 # Production stage
-FROM alpine:latest AS production
+FROM alpine:3.21 AS production
 
 WORKDIR /app
 
