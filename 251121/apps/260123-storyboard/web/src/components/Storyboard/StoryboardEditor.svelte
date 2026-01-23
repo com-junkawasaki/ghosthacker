@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { storyboardClient } from '$lib/client/storyboard-client';
+	import { getEpisodes, getEpisodePanels, storyboardClient } from '$lib/client/storyboard-client';
 	import StoryboardPage from './StoryboardPage.svelte';
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
 
@@ -23,28 +23,23 @@
 			loading = true;
 			error = '';
 			
-			const request = { filePath: storyboardPath };
-			console.log('[StoryboardEditor] loadEpisodes: request', request);
+			// Use type-safe wrapper with runtime validation
+			const episodesList = await getEpisodes(storyboardPath);
+			console.log('[StoryboardEditor] loadEpisodes: episodes received', episodesList);
+			console.log('[StoryboardEditor] loadEpisodes: episodes count', episodesList.length);
 			
-			const response = await storyboardClient.getEpisodes(request);
-			console.log('[StoryboardEditor] loadEpisodes: response received', response);
-			console.log('[StoryboardEditor] loadEpisodes: response.episodes', response.episodes);
-			console.log('[StoryboardEditor] loadEpisodes: response.episodes type', typeof response.episodes, Array.isArray(response.episodes));
-			
-			if (!response.episodes || !Array.isArray(response.episodes)) {
-				console.error('[StoryboardEditor] loadEpisodes: episodes is not an array', response);
-				episodes = [];
-				return;
-			}
-			
-			episodes = response.episodes.map((e) => {
-				console.log('[StoryboardEditor] loadEpisodes: mapping episode', e);
-				return {
-					id: e.id || '',
-					title: e.title || '',
-					totalPages: e.totalPages || 0,
+			// TypeScript ensures episodesList is an array at compile time
+			// Runtime validation in getEpisodes ensures it's an array at runtime
+			episodes = episodesList.map((e) => {
+				const episode = {
+					id: e.id ?? '',
+					title: e.title ?? '',
+					totalPages: e.totalPages ?? 0,
 				};
+				console.log('[StoryboardEditor] loadEpisodes: mapped episode', episode);
+				return episode;
 			});
+			
 			console.log('[StoryboardEditor] loadEpisodes: parsed episodes', episodes);
 			
 			if (episodes.length > 0 && !selectedEpisode) {
@@ -53,6 +48,9 @@
 					selectedEpisode = firstEpisode.id;
 					await loadPanels();
 				}
+			} else if (episodes.length === 0) {
+				console.warn('[StoryboardEditor] loadEpisodes: No episodes found');
+				error = 'No episodes found in storyboard';
 			}
 		} catch (err) {
 			error = err instanceof Error ? err.message : 'Failed to load episodes';
@@ -60,25 +58,39 @@
 			if (err instanceof Error) {
 				console.error('[StoryboardEditor] Error stack:', err.stack);
 			}
+			episodes = [];
 		} finally {
 			loading = false;
 		}
 	}
 
 	async function loadPanels() {
-		if (!selectedEpisode) return;
+		if (!selectedEpisode) {
+			console.warn('[StoryboardEditor] loadPanels: No episode selected');
+			return;
+		}
 		try {
 			loading = true;
 			error = '';
-			const response = await storyboardClient.getEpisodePanels({
-				filePath: storyboardPath,
-				episodeId: selectedEpisode,
-				pageNumber: currentPage
-			});
-			panels = response.panels;
+			
+			// Use type-safe wrapper with runtime validation
+			const panelsList = await getEpisodePanels(
+				storyboardPath,
+				selectedEpisode,
+				currentPage
+			);
+			
+			console.log('[StoryboardEditor] loadPanels: panels received', panelsList);
+			console.log('[StoryboardEditor] loadPanels: panels count', panelsList.length);
+			
+			panels = panelsList;
 		} catch (err) {
 			error = err instanceof Error ? err.message : 'Failed to load panels';
-			console.error('Failed to load panels:', err);
+			console.error('[StoryboardEditor] Failed to load panels:', err);
+			if (err instanceof Error) {
+				console.error('[StoryboardEditor] Error stack:', err.stack);
+			}
+			panels = [];
 		} finally {
 			loading = false;
 		}
@@ -125,10 +137,17 @@
 					currentPage = 1;
 				}}
 			>
-				{#each episodes as episode}
-					<option value={episode.id}>{episode.title}</option>
-				{/each}
+				{#if episodes.length === 0}
+					<option value="" disabled>No episodes available</option>
+				{:else}
+					{#each episodes as episode}
+						<option value={episode.id}>{episode.title}</option>
+					{/each}
+				{/if}
 			</select>
+			{#if episodes.length === 0 && !loading}
+				<span class="debug-info" title="Debug: episodes array is empty">⚠️</span>
+			{/if}
 		</div>
 		<div class="page-controls">
 			<button
@@ -200,6 +219,13 @@
 		border: 1px solid #ccc;
 		border-radius: 4px;
 		font-size: 1rem;
+	}
+
+	.debug-info {
+		margin-left: 0.5rem;
+		color: #f90;
+		font-size: 1.2rem;
+		cursor: help;
 	}
 
 	.page-controls {

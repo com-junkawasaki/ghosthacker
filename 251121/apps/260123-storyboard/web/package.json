@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "pnpm run typecheck && vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --threshold error",
+    "typecheck": "tsc --noEmit && svelte-kit sync && svelte-check --threshold error",
     "dev:backend": "export WORKSPACE_ROOT=../../.. && export PORT=8081 && cd backend && go run cmd/server/main.go",
     "dev:worker": "export WORKSPACE_ROOT=../../.. && cd backend && go run cmd/worker/main.go",
     "buf:generate": "cd backend && buf generate"

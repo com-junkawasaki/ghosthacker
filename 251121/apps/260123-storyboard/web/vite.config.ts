@@ -1,8 +1,12 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
+import { validateApiClient } from './vite-plugin-validate-api';
 
 export default defineConfig({
-	plugins: [sveltekit()],
+	plugins: [
+		sveltekit(),
+		validateApiClient()
+	],
 	server: {
 		port: 1421,
 		strictPort: true,
@@ -20,6 +24,15 @@ export default defineConfig({
 	build: {
 		target: 'esnext',
 		minify: 'esbuild',
-		sourcemap: true
+		sourcemap: true,
+		rollupOptions: {
+			onwarn(warning, warn) {
+				// Treat API client warnings as errors during build
+				if (warning.message.includes('storyboardClient') || warning.message.includes('response.episodes')) {
+					throw new Error(`Build error: ${warning.message}`);
+				}
+				warn(warning);
+			}
+		}
 	}
 });
