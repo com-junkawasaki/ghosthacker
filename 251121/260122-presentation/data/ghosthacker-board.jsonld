@@ -132,21 +132,25 @@
       "fixed": false
     },
 
-    { "id": "gh:node/ep1", "nodeType": "ep", "name": "Ep.1 牙を剥く内部の影", "description": "Arc A | Internal Sabotage", "color": "#ff3b30", "x": 460, "y": -520, "fixed": true },
-    { "id": "gh:node/ep2", "nodeType": "ep", "name": "Ep.2 許しの毒", "description": "Arc A | CISSP Methodology", "color": "#ff3b30", "x": 700, "y": -520, "fixed": true },
-    { "id": "gh:node/ep3", "nodeType": "ep", "name": "Ep.3 善意の呪い", "description": "Arc A | Corporate Culture", "color": "#ff3b30", "x": 940, "y": -520, "fixed": true },
+    { "id": "gh:node/ep1", "nodeType": "ep", "name": "Ep.1 晒された連絡先", "description": "Arc 0 | High School & Privacy", "color": "#34c759", "x": 460, "y": -520, "fixed": true },
+    { "id": "gh:node/ep2", "nodeType": "ep", "name": "Ep.2 牙を剥く内部の影", "description": "Arc A | Construction & Sloth", "color": "#ff3b30", "x": 700, "y": -520, "fixed": true },
+    { "id": "gh:node/ep3", "nodeType": "ep", "name": "Ep.3 許しの毒", "description": "Arc A | CISSP Methodology", "color": "#ff3b30", "x": 940, "y": -520, "fixed": true },
 
-    { "id": "gh:node/ep4", "nodeType": "ep", "name": "Ep.4 終わらぬ時計", "description": "Arc B | Takeru Appears", "color": "#ff9500", "x": 460, "y": -340, "fixed": true },
-    { "id": "gh:node/ep5", "nodeType": "ep", "name": "Ep.5 Doneがない地獄", "description": "Arc B | Design Failure", "color": "#ff9500", "x": 700, "y": -340, "fixed": true },
-    { "id": "gh:node/ep6", "nodeType": "ep", "name": "Ep.6 終端刻印", "description": "Arc B | Salvation", "color": "#ff9500", "x": 940, "y": -340, "fixed": true },
+    { "id": "gh:node/ep4", "nodeType": "ep", "name": "Ep.4 善意の呪い", "description": "Arc A | Corporate Culture", "color": "#ff3b30", "x": 460, "y": -340, "fixed": true },
+    { "id": "gh:node/ep5", "nodeType": "ep", "name": "Ep.5 終わらぬ時計", "description": "Arc B | Manufacturing & Wrath", "color": "#ff9500", "x": 700, "y": -340, "fixed": true },
+    { "id": "gh:node/ep6", "nodeType": "ep", "name": "Ep.6 名前のない加害者", "description": "Arc 0 | Defamation & Disclosure", "color": "#34c759", "x": 940, "y": -340, "fixed": true },
 
-    { "id": "gh:node/ep7", "nodeType": "ep", "name": "Ep.7 空の要塞の崩壊", "description": "Arc C | Kaname Appears", "color": "#af52de", "x": 460, "y": -160, "fixed": true },
-    { "id": "gh:node/ep8", "nodeType": "ep", "name": "Ep.8 消えた資産の足跡", "description": "Arc C | Audit Attack", "color": "#af52de", "x": 700, "y": -160, "fixed": true },
-    { "id": "gh:node/ep9", "nodeType": "ep", "name": "Ep.9 それは傲慢ですね", "description": "Arc C | Rule Killing", "color": "#af52de", "x": 940, "y": -160, "fixed": true },
+    { "id": "gh:node/ep7", "nodeType": "ep", "name": "Ep.7 Doneがない地獄", "description": "Arc B | Design Failure", "color": "#ff9500", "x": 460, "y": -160, "fixed": true },
+    { "id": "gh:node/ep8", "nodeType": "ep", "name": "Ep.8 終端刻印", "description": "Arc B | Salvation", "color": "#ff9500", "x": 700, "y": -160, "fixed": true },
+    { "id": "gh:node/ep9", "nodeType": "ep", "name": "Ep.9 空の要塞の崩壊", "description": "Arc C | Finance & Pride", "color": "#af52de", "x": 940, "y": -160, "fixed": true },
 
-    { "id": "gh:node/ep10", "nodeType": "ep", "name": "Ep.10 群れのGhost", "description": "Arc D | Ecosystem Risk", "color": "#0071e3", "x": 460, "y": 20, "fixed": true },
-    { "id": "gh:node/ep11", "nodeType": "ep", "name": "Ep.11 崩壊する信頼", "description": "Arc D | Investigation", "color": "#0071e3", "x": 700, "y": 20, "fixed": true },
-    { "id": "gh:node/ep12", "nodeType": "ep", "name": "Ep.12 逮捕と残響", "description": "Arc D | Final Deletion", "color": "#0071e3", "x": 940, "y": 20, "fixed": true }
+    { "id": "gh:node/ep10", "nodeType": "ep", "name": "Ep.10 代償のSIM", "description": "Arc 0 | Yami-baito & Support", "color": "#34c759", "x": 460, "y": 20, "fixed": true },
+    { "id": "gh:node/ep11", "nodeType": "ep", "name": "Ep.11 消えた資産の足跡", "description": "Arc C | Audit Attack", "color": "#af52de", "x": 700, "y": 20, "fixed": true },
+    { "id": "gh:node/ep12", "nodeType": "ep", "name": "Ep.12 それは傲慢ですね", "description": "Arc C | Rule Killing", "color": "#af52de", "x": 940, "y": 20, "fixed": true },
+
+    { "id": "gh:node/ep13", "nodeType": "ep", "name": "Ep.13 群れのGhost", "description": "Arc D | Social Scam & Vainglory", "color": "#0071e3", "x": 460, "y": 200, "fixed": true },
+    { "id": "gh:node/ep14", "nodeType": "ep", "name": "Ep.14 崩壊する信頼", "description": "Arc D | Investigation", "color": "#0071e3", "x": 700, "y": 200, "fixed": true },
+    { "id": "gh:node/ep15", "nodeType": "ep", "name": "Ep.15 逮捕と残響", "description": "Arc D | Final Deletion", "color": "#0071e3", "x": 940, "y": 200, "fixed": true }
   ],
   "links": [
     { "source": "gh:node/ren", "target": "gh:node/nei", "label": "partners", "color": "#34c759" },
@@ -167,6 +171,9 @@
     { "source": "gh:node/ep8", "target": "gh:node/ep9", "label": "next", "color": "#999999" },
     { "source": "gh:node/ep9", "target": "gh:node/ep10", "label": "next", "color": "#999999" },
     { "source": "gh:node/ep10", "target": "gh:node/ep11", "label": "next", "color": "#999999" },
-    { "source": "gh:node/ep11", "target": "gh:node/ep12", "label": "next", "color": "#999999" }
+    { "source": "gh:node/ep11", "target": "gh:node/ep12", "label": "next", "color": "#999999" },
+    { "source": "gh:node/ep12", "target": "gh:node/ep13", "label": "next", "color": "#999999" },
+    { "source": "gh:node/ep13", "target": "gh:node/ep14", "label": "next", "color": "#999999" },
+    { "source": "gh:node/ep14", "target": "gh:node/ep15", "label": "next", "color": "#999999" }
   ]
 }

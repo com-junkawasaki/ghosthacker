@@ -10,7 +10,9 @@
     "purpose": "gh:narrativePurpose",
     "shot": "gh:shotType",
     "prompt": "gh:runwayPrompt",
-    "properties": "gh:shotProperties"
+    "properties": "gh:shotProperties",
+    "episodeId": "gh:episodeId",
+    "episodeIndex": "gh:episodeIndex"
   },
   "@id": "gh:storyboard/master-season1",
   "@type": [
@@ -18,7 +20,7 @@
     "prov:Entity"
   ],
   "dct:title": "Ghost Hacker Season 1: Master Storyboard (ARIA Cinematic Base - FULL)",
-  "dct:description": "Full Season 1 storyboard: 12 episodes, all pages and panels. Realistic live-action Runway base prompts with ARIA aesthetic (clean luminous air, soft light) and structured shot properties.",
+  "dct:description": "Full Season 1 storyboard: episodes are ordered by gh:episodeIndex and identified by date-based gh:episodeId (stable). Realistic live-action Runway base prompts with ARIA aesthetic (clean luminous air, soft light) and structured shot properties.",
   "gh:globalStyle": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Emphasize detailed expressive eyes with intricate iris patterns and sharp catchlights.",
   "gh:runwayConstraints": "Max 3 key entities per prompt (2 characters + 1 prop/ghost), no dialogue text, stable shot schema via gh:shotProperties.",
   "prov:wasDerivedFrom": [
@@ -45,6 +47,931 @@
   "gh:episodes": [
     {
       "gh:episode": 1,
+      "gh:episodeIndex": 1,
+      "gh:episodeId": "episode:260123-cschool-privacy",
+      "dct:title": "Arc 0-1: 晒された連絡先",
+      "gh:presentationTagline": "Arc 0 | High School & Privacy",
+      "gh:arc": "Arc 0",
+      "gh:industry": "Student life (高校生)",
+      "gh:mainCharacter": "character:Ren",
+      "gh:supportingCharacters": ["character:Nei"],
+      "gh:realCase": "Credential stuffing / personal data leak → spam calls & spam email",
+      "gh:sinContrast": "Careless Reuse (Convenience) vs. Trust (Password Manager + Aliases)",
+      "gh:nistFocus": ["PR.AA (Identity Management)", "PR.AC (Access Control)", "PR.DS (Data Security)"],
+      "gh:incidentDescription": "C高校の友達のメールアドレスと電話番号が流出し、迷惑メール・迷惑電話が止まらない。RenとNeiが“漏れた入口”を特定し、パスワードマネジャーとメールエイリアス運用で再発を止める。News Hacker では hn: null_pencil_axe が匿名で助言し、別の常連 aka_chise1 / 3pa11er3apiv0t も書き込むが、互いの素性は知らない。",
+      "gh:pages": [
+        {
+          "gh:pageNumber": 1,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Early morning desk: a student bag, notebook, and a smartphone vibrating nonstop with unknown calls and spam notifications. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 2,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Full Page Vertical",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "strong vertical composition, centered subject",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "24mm",
+                "gh:aperture": "f/4",
+                "gh:focus": "deep focus",
+                "gh:angle": "vertical framing"
+              },
+              "gh:runwayPrompt": "Full Page Vertical, vertical framing, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Title shot: (Ren: 17-year-old male, slim build, messy wavy black hair, sharp half-lidded eyes) and (Nei: 17-year-old female high school student, platinum blonde bob) in a quiet correspondence high school classroom. Behind them, translucent overlays: password manager vault, email aliases, and a dark marketplace listing. The vertical title 'GHOST Hacker'. shot on 24mm, f/4, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 3,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school classroom: individual study booths and laptops, quiet lesson atmosphere. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 4,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. (Ren: 17-year-old male) at a booth during class, half-lidded eyes, typing notes with calm efficiency. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 5,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. A nearby student (Yuto: 16-year-old male, anxious eyes, neat hair) flinches as his phone lights up with unknown calls during class. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 6,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, top-down, ARIA-style. Phone screen: dozens of missed calls from unknown numbers, spam SMS, and emails titled 'urgent' and 'verification' (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 7,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. (Nei: 17-year-old female high school student) notices Yuto's panic and looks at Ren with a 'this is serious' expression. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 8,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. After class hallway: Ren and Nei talk with Yuto away from others. Yuto shows his phone, embarrassed. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 9,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Yuto gestures: he signed up for a 'free coupon' site, then everything started. Ren listens, expression flat; Nei looks worried. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 10,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, top-down, ARIA-style. Ren opens a breach-check style page and types Yuto's email; warning indicators and leak dates appear (no real brands). shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 11,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Ren's eyes reflect a list of breached services and dates. shot on 85mm prime, f/1.2, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 12,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Yuto admits he reused the same password across sites, ashamed. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 13,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A login attempt alert on Yuto's email account: multiple countries, many failed tries. shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 14,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A password manager screen shows a strong generated password and a prompt to update per-site credentials. shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 15,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Two-factor authentication enabled screen; backup codes saved securely. shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 16,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused natural light, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Email settings: suspicious forwarding rule removed; security settings reviewed. shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 17,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused natural light, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Phone settings: silence unknown callers and spam identification toggles are enabled. shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 18,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren gestures 'do not memorize passwords' (no text), calm certainty in his face. Yuto listens. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 19,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. 'Hide My Email' style feature creates a new per-site alias; the alias is labeled per service. shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 20,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. After school café: Ren, Nei, and Yuto with laptops and phones, step-by-step cleanup checklist on paper. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 21,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A checklist of accounts gets checked off: email, social, shopping, gaming. Each gets a unique password and passkey where available. shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 22,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Nei's eyes: steady practical kindness. She signals Yuto should not feel shame for asking for help. shot on 85mm prime, f/1.2, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 23,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Night: Yuto returns home; the phone is finally quiet. The earlier chaos feels like a receding wave. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 24,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A new unknown call comes in; it is automatically silenced and sent to voicemail. shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 25,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Yuto smiles for the first time, a tiny victory. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 26,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Late night: Ren and Nei at Ren's desk, browsing a minimalist forum UI labeled 'News Hacker' (generic). shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 27,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Forum thread UI: only short usernames visible. 'null_pencil_axe' posts a checklist (no readable text), replies from 'aka_chise1' and '3pa11er3apiv0t' appear. shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 28,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Ren smirks slightly at the thread, satisfied, but remains anonymous. shot on 85mm prime, f/1.2, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 29,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. An abstract 'Ghost' silhouette made of leaked email addresses and phone numbers dissolves behind the forum screen, defeated. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 30,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Next day at C-school: Yuto quietly thanks Ren and Nei, looking lighter. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 31,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A password manager 'security recommendations' screen shows 'reused passwords: 0' after cleanup. shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 32,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school corridor: Ren and Nei walk side by side; a calm pause after the storm. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 33,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Ren's eyes: a tiny reflective glint hinting at bigger 'Ghosts' ahead. shot on 85mm prime, f/1.2, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 34,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei watches Ren type on a small laptop; she looks curious about his online life. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 35,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A forum notification shows multiple replies to a thread about leaked data cleanup (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 36,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A calm night city window reflection; Ren's room is minimal and tidy. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 37,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren closes his laptop. On the desk: school materials and a phone, now silent. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 38,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A password manager vault icon locks shut with a subtle glow. shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 39,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Nei's eyes: relief, but also resolve—she knows this will happen again to someone else. shot on 85mm prime, f/1.2, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 40,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school building exterior at dusk, soft light, students leaving. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 41,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A sticky note shows only symbols/icons: a key, a vault, and an email alias arrow (no text). shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 42,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A subtle 'Ghost' ripple passes through the city data haze, hinting the threat is systemic. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 43,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren and Nei share a quiet look: they did something small, but real. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 44,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Yuto's phone rests silent on the desk; a faint glow from the lock screen fades. shot on 85mm prime, f/1.2, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 45,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Title card: 'Ghost Hacker - Episode 1 End' in clean white font on a black background. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:episode": 2,
+      "gh:episodeIndex": 2,
+      "gh:episodeId": "episode:251121-arcA-1",
       "dct:title": "Arc A-1: 牙を剥く内部の影",
       "gh:presentationTagline": "Arc A | Construction & Sloth",
       "gh:arc": "Arc A",
@@ -988,7 +1915,9 @@
       ]
     },
     {
-      "gh:episode": 2,
+      "gh:episode": 3,
+      "gh:episodeIndex": 3,
+      "gh:episodeId": "episode:251121-arcA-2",
       "dct:title": "Arc A-2: 許しの毒",
       "gh:presentationTagline": "Arc A | CISSP Methodology",
       "gh:arc": "Arc A",
@@ -1785,7 +2714,9 @@
       ]
     },
     {
-      "gh:episode": 3,
+      "gh:episode": 4,
+      "gh:episodeIndex": 4,
+      "gh:episodeId": "episode:251121-arcA-3",
       "dct:title": "Arc A-3: 善意の呪い",
       "gh:presentationTagline": "Arc A | Corporate Culture",
       "gh:arc": "Arc A",
@@ -2582,7 +3513,9 @@
       ]
     },
     {
-      "gh:episode": 4,
+      "gh:episode": 5,
+      "gh:episodeIndex": 5,
+      "gh:episodeId": "episode:251121-arcB-1",
       "dct:title": "Arc B-1: 終わらぬ時計",
       "gh:presentationTagline": "Arc B | Manufacturing & Wrath",
       "gh:arc": "Arc B",
@@ -3379,7 +4312,427 @@
       ]
     },
     {
-      "gh:episode": 5,
+      "gh:episode": 6,
+      "gh:episodeIndex": 6,
+      "gh:episodeId": "episode:260123-cschool-defamation",
+      "dct:title": "Arc 0-2: 名前のない加害者",
+      "gh:presentationTagline": "Arc 0 | Defamation & Disclosure",
+      "gh:arc": "Arc 0",
+      "gh:industry": "Student life (高校生)",
+      "gh:mainCharacter": "character:Ren",
+      "gh:supportingCharacters": ["character:Nei", "character:Takeru"],
+      "gh:realCase": "Online defamation / disclosure request (発信者情報開示請求) → settlement/court",
+      "gh:sinContrast": "Fear (Staying silent) vs. Procedure (Knowing what to do)",
+      "gh:nistFocus": ["GV (Governance)", "PR.AA (Identity/Access)"],
+      "gh:incidentDescription": "C高校で誹謗中傷を受けた少年が相談に来る。Renが手続きを組み立てる中、周囲はタケルが犯人ではと疑う。だが解決の決め手を握ったのはHN: aka_chise1――タケル本人だった。ここでRenとTakeruが初めて対面する。",
+      "gh:pages": [
+        {
+          "gh:pageNumber": 1,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school hallway: a student alone, hunched posture, phone in hand, surrounded by blurred students. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 2,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Smartphone screen: anonymous insults on a school-related feed (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 3,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. (Ren: 17-year-old male) and (Nei: 17-year-old female high school student) listen to the victim student (Kenta: 16-year-old male), who looks terrified and ashamed. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 4,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A simple flowchart on paper: preserve evidence → consult guardian/support → disclosure request → possible court. No readable text. shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 5,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. A tense glance from another student points toward a distant figure silhouette, implying suspicion. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 6,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Outside the school: a boy in a hoodie walks away alone (Takeru silhouette), rumor-like tension in the air. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 7,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Ren collects evidence: screenshots, timestamps, URLs, and device info laid out neatly (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 8,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A legal-looking document stack: disclosure request forms and certified mail envelope (no readable text). shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 9,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A courtroom corridor or consultation room vibe: neutral walls, quiet intensity. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 10,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A forum UI labeled 'News Hacker' shows a short reply from user 'aka_chise1' with a technical hint (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 11,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren's expression tightens: he realizes someone strong is helping from the shadows. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 12,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. The victim student meets a guardian/support counselor; a hand on shoulder suggests support and procedure. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 13,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Rumor pressure peaks: classmates whisper, eyes turning toward Ren and the victim. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 14,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Provider response: a redacted IP/metadata package arrives (no readable text). shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 15,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A small meeting room: the accused student (not Takeru) looks stunned as the truth emerges. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 16,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren exhales: procedure worked. The victim student looks like he can breathe again. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 17,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Ren walks out of school; on a bench sits (Takeru: 17-year-old male, intense eyes, restless posture). First real face reveal. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 18,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Takeru's eyes: sharp, irritated, but honest. shot on 85mm prime, f/1.2, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 19,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A phone screen shows the News Hacker username 'aka_chise1' next to a short reply bubble (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 20,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren and Takeru stand face to face for the first time, tension like a wire; Nei watches carefully. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:episode": 7,
+      "gh:episodeIndex": 7,
+      "gh:episodeId": "episode:251121-arcB-2",
       "dct:title": "Arc B-2: Doneがない地獄",
       "gh:presentationTagline": "Arc B | Design Failure",
       "gh:arc": "Arc B",
@@ -4176,7 +5529,9 @@
       ]
     },
     {
-      "gh:episode": 6,
+      "gh:episode": 8,
+      "gh:episodeIndex": 8,
+      "gh:episodeId": "episode:251121-arcB-3",
       "dct:title": "Arc B-3: 終端刻印",
       "gh:presentationTagline": "Arc B | Salvation",
       "gh:arc": "Arc B",
@@ -4973,7 +6328,9 @@
       ]
     },
     {
-      "gh:episode": 7,
+      "gh:episode": 9,
+      "gh:episodeIndex": 9,
+      "gh:episodeId": "episode:251121-arcC-1",
       "dct:title": "Arc C-1: 空の要塞の崩壊",
       "gh:presentationTagline": "Arc C | Finance & Pride",
       "gh:arc": "Arc C",
@@ -5770,7 +7127,427 @@
       ]
     },
     {
-      "gh:episode": 8,
+      "gh:episode": 10,
+      "gh:episodeIndex": 10,
+      "gh:episodeId": "episode:260123-cschool-yami-baito",
+      "dct:title": "Arc 0-3: 代償のSIM",
+      "gh:presentationTagline": "Arc 0 | Yami-baito & Support",
+      "gh:arc": "Arc 0",
+      "gh:industry": "Student life (高校生)",
+      "gh:mainCharacter": "character:Ren",
+      "gh:supportingCharacters": ["character:Nei", "character:Kaname"],
+      "gh:realCase": "Yami-baito / account & phone number resale → recovery and reporting",
+      "gh:sinContrast": "Easy Money (Short-term) vs. Support (Long-term)",
+      "gh:nistFocus": ["PR.AA (Identity/Access)", "ID.RA (Risk Assessment)"],
+      "gh:incidentDescription": "親に内緒で闇バイトに巻き込まれ、口座や携帯番号を売ってしまった学生。Renが相談を受け、適切な支援機関と手順（凍結・再発防止・相談窓口）を示す中、要の学校の生徒が斡旋に関わっていると判明。RenとKanameが協力し、HN: 3pa11er3apiv0t としての彼に出会う。",
+      "gh:pages": [
+        {
+          "gh:pageNumber": 1,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Night street near a station: a student alone, tense, checking messages under neon light. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 2,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Smartphone chat: vague 'easy job' messages, pressure, and threats implied (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 3,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. The student (Mina: 16-year-old female, exhausted eyes) sits with Ren and Nei in a quiet room, hands trembling. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 4,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Items laid out: bank card, SIM package, ID, and a contract-like paper; the sense of 'sold identity'. shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 5,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A step list icon-only: call bank → freeze account → contact carrier → block SIM → report. No readable text. shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 6,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren calmly points to the phone: immediate actions first, no blame. Nei supports Mina with water and tissues. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 7,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Bank hotline call screen and an account freeze confirmation (no readable text). shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 8,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Carrier support chat: SIM suspension and number change option (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 9,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A support desk environment: posters about fraud prevention and youth consultation (no readable text). shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 10,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A web page shows 'youth support' and 'crime victim support' style icons and phone symbols (no readable text). shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 11,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Mina breaks down, scared to tell parents. Nei holds her hand; Ren stays calm, focused on safety. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 12,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A thread on 'News Hacker' about yami-baito damage control; username '3pa11er3apiv0t' appears as a sharp comment (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 13,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A prestigious school campus: sleek architecture, entrepreneurial vibe, students in smart uniforms. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 14,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. (Kaname: 17-year-old male, sharp composed eyes, elite aura) looks at a report with irritation—his school is implicated. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 15,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Kaname meets Ren in a neutral meeting place; tension of status difference, both calm but sharp. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 16,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Close-up",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Close-up",
+                "gh:lens": "85mm prime",
+                "gh:aperture": "f/1.2",
+                "gh:focus": "shallow depth of field, creamy bokeh",
+                "gh:angle": "frontal",
+                "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
+              },
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Kaname's eyes: disdain for sloppy crime, but also responsibility. shot on 85mm prime, f/1.2, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 17,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Insert Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Insert",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/2.0",
+                "gh:focus": "sharp focus on object/screen",
+                "gh:angle": "over-shoulder or top-down insert"
+              },
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A phone shows the News Hacker username '3pa11er3apiv0t' on screen beside a short reply bubble (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 18,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren and Kaname stand side by side, uneasy allies. Nei watches the power balance carefully. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 19,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Wide Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Wide Shot",
+                "gh:lens": "35mm",
+                "gh:aperture": "f/2.8",
+                "gh:focus": "deep focus",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Mina walks out into daylight, lighter. A 'Ghost' silhouette of debt and fear fades behind her. shot on 35mm, f/2.8, cinematic live-action."
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 20,
+          "gh:panels": [
+            {
+              "panel": 1,
+              "shot": "Medium Shot",
+              "gh:shotProperties": {
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:lighting": "soft diffused daylight, gentle shadows",
+                "gh:distance": "Medium Shot",
+                "gh:lens": "50mm",
+                "gh:aperture": "f/1.8",
+                "gh:focus": "subject focus, soft background",
+                "gh:angle": "eye level"
+              },
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Title card: 'Ghost Hacker - Episode 10 End' in clean white font on a black background. shot on 50mm, f/1.8, cinematic live-action."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:episode": 11,
+      "gh:episodeIndex": 11,
+      "gh:episodeId": "episode:251121-arcC-2",
       "dct:title": "Arc C-2: 消えた資産の足跡",
       "gh:presentationTagline": "Arc C | Audit Attack",
       "gh:arc": "Arc C",
@@ -6567,7 +8344,9 @@
       ]
     },
     {
-      "gh:episode": 9,
+      "gh:episode": 12,
+      "gh:episodeIndex": 12,
+      "gh:episodeId": "episode:251121-arcC-3",
       "dct:title": "Arc C-3: それは傲慢ですね",
       "gh:presentationTagline": "Arc C | Rule Killing",
       "gh:arc": "Arc C",
@@ -7364,7 +9143,9 @@
       ]
     },
     {
-      "gh:episode": 10,
+      "gh:episode": 13,
+      "gh:episodeIndex": 13,
+      "gh:episodeId": "episode:251121-arcD-1",
       "dct:title": "Arc D-1: 群れのGhost",
       "gh:presentationTagline": "Arc D | Social Scam & Vainglory",
       "gh:arc": "Arc D",
@@ -8161,7 +9942,9 @@
       ]
     },
     {
-      "gh:episode": 11,
+      "gh:episode": 14,
+      "gh:episodeIndex": 14,
+      "gh:episodeId": "episode:251121-arcD-2",
       "dct:title": "Arc D-2: 崩壊する信頼",
       "gh:presentationTagline": "Arc D | Investigation",
       "gh:arc": "Arc D",
@@ -8958,7 +10741,9 @@
       ]
     },
     {
-      "gh:episode": 12,
+      "gh:episode": 15,
+      "gh:episodeIndex": 15,
+      "gh:episodeId": "episode:251121-arcD-3",
       "dct:title": "Arc D-3: 逮捕と残響",
       "gh:presentationTagline": "Arc D | Final Deletion",
       "gh:arc": "Arc D",
