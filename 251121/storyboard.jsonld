@@ -5899,7 +5899,15 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) moves decisively, pointing at a manual process board in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. 二度やらない：バックアップ方針、権限境界、ログ、台帳化（誰が何を持つか）. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) moves decisively, pointing at a manual process board in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. 二度やらない：バックアップ方針、権限境界、ログ、台帳化（誰が何を持つか）. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "壁のホワイトボードが“戦場”になる。Renが指差すのは『誰が何を持つか』の台帳欄。人の善意で、鍵が増えていった跡。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:Shouta", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "台帳。鍵。権限。例外。" },
+                { "speaker": "Ren", "text": "“誰でもできるように”は、だいたい誰の責任でもない。" },
+                { "speaker": "Shouta", "text": "…やります。" }
+              ]
             },
             {
               "panel": 2,
@@ -5914,7 +5922,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a stopwatch / DONE watch showing elapsed minutes, urgent but controlled. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a stopwatch / DONE watch showing elapsed minutes, urgent but controlled. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "“DONE”のタイマーが回る。『隔離→証跡→権限→復元→再発防止』の順番が、時間に刻まれる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "UI", "text": "DONE TIMER  00:42:18  /  containment > evidence > access > restore" }
+              ]
             },
             {
               "panel": 3,
@@ -5930,7 +5944,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes, intense focus, crisp catchlights. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes, intense focus, crisp catchlights. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Renの目。眠そうな顔のまま、手順だけは一切ズレない。口元がほんの少しだけ歪む（怠惰の笑い）。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "二度やらない。だから今やる。" }
+              ]
             }
           ]
         },
@@ -5950,7 +5970,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) moves decisively, pointing at a manual process board in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. 二度やらない：バックアップ方針、権限境界、ログ、台帳化（誰が何を持つか）. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) moves decisively, pointing at a manual process board in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. 二度やらない：バックアップ方針、権限境界、ログ、台帳化（誰が何を持つか）. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "台帳の“例外”欄に赤線。『期限』『承認者2名』『監査ログ』が太字で追加される。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:Shouta", "character:President"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "例外は、期限付き。" },
+                { "speaker": "Ren", "text": "承認は二名。ログは残す。ここだけはサボるな。" }
+              ]
             },
             {
               "panel": 2,
@@ -5965,7 +5992,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a stopwatch / DONE watch showing elapsed minutes, urgent but controlled. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a stopwatch / DONE watch showing elapsed minutes, urgent but controlled. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "タイマーの横に“承認”の通知が割り込む。『復職：社長 承認済み（単独）』。",
+              "environment": "env:smartphone-screen",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "UI", "text": "復職：安本 / 承認：社長（単独） / 権限：復活予定" }
+              ]
             },
             {
               "panel": 3,
@@ -5981,7 +6014,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes, intense focus, crisp catchlights. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes, intense focus, crisp catchlights. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Renの目が冷える。善意の承認が、鍵穴を増やす音がする（ミニ引き）。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "…ほら。もう穴が開いた。" }
+              ]
             }
           ]
         },
@@ -6001,7 +6040,14 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of a tense meeting space in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. 社長は“情”で守ろうとし、翔太は改革の痛みを恐れる。Renは『善意で設計をサボるな』と突きつける。 shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of a tense meeting space in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. 社長は“情”で守ろうとし、翔太は改革の痛みを恐れる。Renは『善意で設計をサボるな』と突きつける。 shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "会議スペース。社長の“情”が、全員の肩にのしかかる。翔太は改革を言い出した当事者なのに、痛みを想像して言葉が詰まる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:President", "character:Shouta", "character:Ren"],
+              "dialogue": [
+                { "speaker": "President", "text": "会社は人で回ってる。あいつを潰したら終わりだ。" },
+                { "speaker": "Ren", "text": "潰すんじゃない。境界を引く。" }
+              ]
             },
             {
               "panel": 2,
@@ -6016,7 +6062,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) sits calmly while others argue off-screen in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. stillness against tension. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) sits calmly while others argue off-screen in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. stillness against tension. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renは椅子に座ったまま、紙束を一枚ずつめくる。怒号の中で、手だけが淡々と“設計”を進める。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:Shouta"],
+              "dialogue": [
+                { "speaker": "Shouta", "text": "…俺がやります。条件、俺が書く。" },
+                { "speaker": "Ren", "text": "いい。書ける人が書く。" }
+              ]
             },
             {
               "panel": 3,
@@ -6032,7 +6085,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up on (Ren:1.2) eyes, reflective, evaluating human motives. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up on (Ren:1.2) eyes, reflective, evaluating human motives. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Renの目。社長の善意と、翔太の覚悟と、安本の恐怖。その“混ざり”が一番危ないと見ている。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren (Monologue)", "text": "（善意が混ざると、責任は薄まる）" }
+              ]
             }
           ]
         },
@@ -6052,7 +6111,14 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of a tense meeting space in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. 社長は“情”で守ろうとし、翔太は改革の痛みを恐れる。Renは『善意で設計をサボるな』と突きつける。 shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of a tense meeting space in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. 社長は“情”で守ろうとし、翔太は改革の痛みを恐れる。Renは『善意で設計をサボるな』と突きつける。 shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "同じ会議室、同じ空気。でも“承認通知”が出たことで、善意が既成事実になりかける。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:President", "character:Shouta", "character:Ren"],
+              "dialogue": [
+                { "speaker": "President", "text": "もう承認した。やり直しはできん。" },
+                { "speaker": "Ren", "text": "できる。条件を書き直すだけ。" }
+              ]
             },
             {
               "panel": 2,
@@ -6067,7 +6133,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) sits calmly while others argue off-screen in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. stillness against tension. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) sits calmly while others argue off-screen in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. stillness against tension. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renは紙束を“半分”に分ける。片方に『情』、片方に『設計』。置き方が露骨。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:Shouta"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "情は残していい。権限は残すな。" },
+                { "speaker": "Shouta", "text": "…わかった。" }
+              ]
             },
             {
               "panel": 3,
@@ -6083,7 +6156,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up on (Ren:1.2) eyes, reflective, evaluating human motives. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up on (Ren:1.2) eyes, reflective, evaluating human motives. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Renの目の奥に、笑顔の仮面がチラつく。次のGhostが“善意”から育つ予感（ミニ引き）。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren (Monologue)", "text": "（来るな。…来る）" }
+              ]
             }
           ]
         },
