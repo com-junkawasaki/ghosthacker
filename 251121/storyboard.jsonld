@@ -122,7 +122,7 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "vertical framing"
               },
-              "gh:runwayPrompt": "Full Page Vertical, vertical framing, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Full page vertical title shot. A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, collapse, and reconstruct. At the center, (Ren: 17-year-old male, K-pop idol aesthetic, pale skin, messy voluminous wavy black hair, sharp half-lidded eyes) and (Nei: 16-year-old female android, platinum blonde bob, white blouse and black sleeveless dress) float weightlessly. Ren types furiously on a translucent holographic keyboard, his gaze fixed on a distant data structure. Nei stands beside him, arms crossed, floating vigilantly, her eyes streaming analytical data. Behind them, through a distortion in space, the giant vertical title logo 'GHOST Hacker' emerges. shot on 24mm, f/4, cinematic live-action."
+              "gh:runwayPrompt": "Full Page Vertical, vertical framing, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Full page vertical title shot. A chaotic cyberspace where digital grids and fragments of a physical city (buildings, road signs) merge, collapse, and reconstruct. At the center, (Ren: 17-year-old male, K-pop idol aesthetic, pale skin, messy voluminous wavy black hair, sharp half-lidded eyes) and (Nei: 17-year-old female high school student, platinum blonde bob, white blouse and black sleeveless dress) float weightlessly. Ren types furiously on a translucent holographic keyboard, his gaze fixed on a distant data structure. Nei stands beside him, arms crossed, floating vigilantly, her eyes tracking data overlays. Behind them, through a distortion in space, the giant vertical title logo 'GHOST Hacker' emerges. shot on 24mm, f/4, cinematic live-action."
             }
           ]
         },
@@ -207,7 +207,7 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. In a corner of the room, (Nei: 16-year-old female android, platinum blonde bob, white blouse and black sleeveless dress) operates a tablet with an exasperated expression. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. In a corner of the room, (Nei: 17-year-old female high school student, platinum blonde bob, white blouse and black sleeveless dress) operates a tablet with an exasperated expression. shot on 50mm, f/1.8, cinematic live-action."
             },
             {
               "panel": 3,
@@ -222,7 +222,7 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Nei: 16-year-old female android, platinum blonde bob, white blouse and black sleeveless dress) approaches Ren's chair, leaning in with an annoyed look on her face. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Nei: 17-year-old female high school student, platinum blonde bob, white blouse and black sleeveless dress) approaches Ren's chair, leaning in with an annoyed look on her face. shot on 50mm, f/1.8, cinematic live-action."
             },
             {
               "panel": 4,
@@ -504,7 +504,7 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. A large 'FOUND!!' message on a screen, displayed by (Nei: 16-year-old female android, platinum blonde bob, white blouse and black sleeveless dress). The screen shows the access originated from the department head's terminal. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. A large 'FOUND!!' message on a screen, displayed by (Nei: 17-year-old female high school student, platinum blonde bob, white blouse and black sleeveless dress). The screen shows the access originated from the department head's terminal. shot on 50mm, f/2.0, cinematic live-action."
             },
             {
               "panel": 2,
@@ -950,7 +950,7 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Ren and (Nei: 16-year-old female android, platinum blonde bob, white blouse and black sleeveless dress) walk through the crowded, neon-lit streets of Kamata at dusk. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Ren and (Nei: 17-year-old female high school student, platinum blonde bob, white blouse and black sleeveless dress) walk through the crowded, neon-lit streets of Kamata at dusk. shot on 50mm, f/1.8, cinematic live-action."
             },
             {
               "panel": 3,

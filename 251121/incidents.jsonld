@@ -11,8 +11,26 @@
   "@type": "gh:IncidentKnowledgeBase",
   "gh:episodes": [
     {
+      "gh:arc": "Arc 0",
+      "gh:episodes": [1, 6, 10],
+      "gh:episodeIds": [
+        "episode:260123-cschool-privacy",
+        "episode:260123-cschool-defamation",
+        "episode:260123-cschool-yami-baito"
+      ],
+      "gh:industry": "Student life (高校生)",
+      "gh:mainCharacter": "character:Ren",
+      "gh:supportingCharacters": ["character:Nei", "character:Takeru", "character:Kaname"],
+      "gh:description": "高校生にも身の覚えのある“個人”のトラブル（漏えい→迷惑連絡、誹謗中傷、闇バイト）を入口にして、具体的な対処法と支援導線を示す。Ren/Takeru/KanameはNews Hackerで互いのHNだけを知り、素性は知らない。"
+    },
+    {
       "gh:arc": "Arc A",
-      "gh:episodes": [1, 2, 3],
+      "gh:episodes": [2, 3, 4],
+      "gh:episodeIds": [
+        "episode:251121-arcA-1",
+        "episode:251121-arcA-2",
+        "episode:251121-arcA-3"
+      ],
       "gh:industry": "Construction (建設)",
       "gh:mainCharacter": "character:Ren",
       "gh:credentials": ["CISSP", "CEH"],
@@ -23,7 +41,12 @@
     },
     {
       "gh:arc": "Arc B",
-      "gh:episodes": [4, 5, 6],
+      "gh:episodes": [5, 7, 8],
+      "gh:episodeIds": [
+        "episode:251121-arcB-1",
+        "episode:251121-arcB-2",
+        "episode:251121-arcB-3"
+      ],
       "gh:industry": "Manufacturing (製造)",
       "gh:mainCharacter": "character:Takeru",
       "gh:credentials": ["OSCP", "GXPN"],
@@ -34,7 +57,12 @@
     },
     {
       "gh:arc": "Arc C",
-      "gh:episodes": [7, 8, 9],
+      "gh:episodes": [9, 11, 12],
+      "gh:episodeIds": [
+        "episode:251121-arcC-1",
+        "episode:251121-arcC-2",
+        "episode:251121-arcC-3"
+      ],
       "gh:industry": "Finance (金融)",
       "gh:mainCharacter": "character:Kaname",
       "gh:credentials": ["CISA", "情報処理安全確保支援士"],
@@ -45,7 +73,12 @@
     },
     {
       "gh:arc": "Arc D",
-      "gh:episodes": [10, 11, 12],
+      "gh:episodes": [13, 14, 15],
+      "gh:episodeIds": [
+        "episode:251121-arcD-1",
+        "episode:251121-arcD-2",
+        "episode:251121-arcD-3"
+      ],
       "gh:industry": "Cross-Industry (複合)",
       "gh:mainCharacter": "character:Ren",
       "gh:supportingCharacters": ["character:Takeru", "character:Kaname"],
