@@ -3486,7 +3486,7 @@
       "gh:episode": 2,
       "gh:episodeIndex": 2,
       "gh:episodeId": "episode:251121-arcA-1",
-      "dct:title": "Arc A-1: 牙を剥く内部の影",
+      "dct:title": "Arc A-1: あんた、怠惰だな",
       "gh:presentationTagline": "Arc A | Construction & Sloth",
       "gh:arc": "Arc A",
       "gh:industry": "Construction (建設)",
@@ -3703,8 +3703,9 @@
               "environment": "env:ren-office",
               "characters": ["character:Ren", "character:Nei"],
               "dialogue": [
-                { "speaker": "Ren", "text": "Neiちゃん、何してんの？" },
-                { "speaker": "Nei", "text": "お仕事を探しておりました。当然です、マスター。" }
+                { "speaker": "Ren", "text": "Nei、なにしてんの？" },
+                { "speaker": "Nei", "text": "来月のご飯代、もうないんですよ！" },
+                { "speaker": "Ren (Monologue)", "text": "（お前がバカ喰いするからだろ…）" }
               ]
             },
             {
@@ -3725,7 +3726,7 @@
               "environment": "env:ren-office",
               "characters": ["character:Nei"],
               "dialogue": [
-                { "speaker": "Nei", "text": "サーバー及びクラウド費用が非常に逼迫しております。マスターがもう少し稼働くだされば…" }
+                { "speaker": "Nei", "text": "それとサーバー代とクラウド代。マジでピンチ。レン、ちょっとは働いて？" }
               ]
             },
             {
@@ -4111,7 +4112,7 @@
               "environment": "env:kamata-daimon-office",
               "characters": ["character:Nei", "character:Yasumoto"],
               "dialogue": [
-                { "speaker": "Nei", "text": "特定いたしました、マスター。アクセス元は…社内。総務部長の端末からです。" }
+                { "speaker": "Nei", "text": "見つけた。アクセス元、社内。総務部長の端末から。" }
               ]
             },
             {
@@ -4407,7 +4408,7 @@
               "environment": "env:kamata-daimon-office",
               "characters": ["character:Ren", "character:GhostYasumoto", "character:Nei"],
               "dialogue": [
-                { "speaker": "Nei", "text": "マスター、右30度！パケットロス率、上昇！" }
+                { "speaker": "Nei", "text": "レン、右30度！パケロス上がってる！" }
               ]
             },
             {
@@ -4606,7 +4607,7 @@
               "environment": "env:kamata-daimon-office",
               "characters": ["character:President"],
               "dialogue": [
-                { "speaker": "President", "text": "そうか…安本、無理させたな。" }
+                { "speaker": "President", "text": "そうか…安本、もういい。今回のことは水に流す。元の持ち場に戻って、これまで通り任せる。" }
               ]
             }
           ]
@@ -4700,7 +4701,7 @@
               "environment": "env:kamata-daimon-office",
               "characters": ["character:Ren"],
               "dialogue": [
-                { "speaker": "Ren", "text": "いいよ。Ghostを溜め込むなよ、次期社長。" }
+                { "speaker": "Ren", "text": "…社長。あんた、怠惰だな。" }
               ]
             },
             {
@@ -4720,9 +4721,7 @@
               "visual": "夕暮れの蒲田の雑踏。RenとNei。",
               "environment": "env:kamata-street-evening",
               "characters": ["character:Ren", "character:Nei"],
-              "dialogue": [
-                { "speaker": "Nei", "text": "マスター、お見事でした。しかし、手数料をいただきすぎではありませんか？" }
-              ]
+              "dialogue": []
             },
             {
               "panel": 3,
@@ -4742,9 +4741,7 @@
               "visual": "Ren、スマホで残高を見てニヤリ。",
               "environment": "env:kamata-street-evening",
               "characters": ["character:Ren"],
-              "dialogue": [
-                { "speaker": "Ren", "text": "技術料だよ。これでしばらくは、平和に寝て暮らせる…" }
-              ]
+              "dialogue": []
             },
             {
               "panel": 4,
@@ -4800,7 +4797,15 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. 復旧直後、再侵害の兆候。『終わったことにした』ツケが襲う。. Establishing shot: outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. 復旧直後、再侵害の兆候。『終わったことにした』ツケが襲う。. Establishing shot: outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "復旧直後の大門建設オフィス。電話は鳴り続け、紙が積まれ、誰も“終わった顔”をしていない。徹夜明けの翔太が、バックアップ表とログを机に広げている。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Shouta", "character:President"],
+              "dialogue": [
+                { "speaker": "Narration", "text": "『許したから、戻せ』――その一言が、次の入口になる。" },
+                { "speaker": "Shouta", "text": "…徹夜で、ログとバックアップの手順、組み直しました。今度は“戻せる”ように。" },
+                { "speaker": "President", "text": "……安本は、戻す。だが、もう二度と止めるな。" }
+              ]
             },
             {
               "panel": 2,
@@ -4815,7 +4820,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) stands still, scanning the scene calmly in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. icon: Okamura Cruise & Atlas workstation / USM Haller (Ren office cutaways). shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) stands still, scanning the scene calmly in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. icon: Okamura Cruise & Atlas workstation / USM Haller (Ren office cutaways). shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renが無言で状況を見渡し、机にドサッと分厚い紙束を置く。プリントアウトの束はざっくり100枚。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:Shouta"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "これが最初のスプリントだよ。" }
+              ]
             },
             {
               "panel": 3,
@@ -4831,7 +4842,15 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes, calm but alert, catching soft window reflections. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes, calm but alert, catching soft window reflections. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Renの目。眠そうに見えるのに、焦点は外れない。紙束の一枚目に『責任分界』『権限』『復職条件』と見出しがある。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:Shouta", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Shouta", "text": "Renさん…めちゃくちゃ働いてるじゃないっすか。。。" },
+                { "speaker": "Nei", "text": "レンの怠惰という美徳は、同じことを二度やらないための怠惰。効率化を惜しまない。“正しい怠惰”です。" },
+                { "speaker": "Ren", "text": "…しゃべってないで、読んで。" }
+              ]
             }
           ]
         },
