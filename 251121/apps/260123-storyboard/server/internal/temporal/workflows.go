@@ -20,7 +20,7 @@ type StoryboardUpdateResult struct {
 // StoryboardUpdateWorkflow handles async storyboard updates
 func StoryboardUpdateWorkflow(ctx workflow.Context, params StoryboardUpdateParams) (StoryboardUpdateResult, error) {
 	options := workflow.ActivityOptions{
-		StartToCloseTimeout: workflow.DefaultActivityOptions.StartToCloseTimeout,
+		StartToCloseTimeout: 10 * 60 * 1e9, // 10 minutes
 	}
 
 	ctx = workflow.WithActivityOptions(ctx, options)
