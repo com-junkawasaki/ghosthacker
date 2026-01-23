@@ -74,6 +74,7 @@
     { "@id": "env:meeting-neutral", "dct:title": "Neutral meeting place", "dct:description": "立場の違う人物が落ち着いて話す中立的な場所。" },
     { "@id": "env:street-day", "dct:title": "Street (daytime)", "dct:description": "昼の街。息がしやすい光、再出発の気配。" },
     { "@id": "env:logistics-warehouse", "dct:title": "Logistics warehouse", "dct:description": "大規模物流倉庫。トラック、コンベヤ、管制室モニタ、夜明けの靄。『急げ』の圧が満ちる現場。" },
+    { "@id": "env:finance-hq", "dct:title": "Financial HQ", "dct:description": "金融機関の本社フロア。大理石ロビー、ガラス会議室、無機質なサーバールーム。明るい昼光の下で“規程”と“監査”が空気を支配する。" },
     { "@id": "env:cschool-virtual-campus", "dct:title": "C-school virtual campus", "dct:description": "C高校のバーチャル空間（仮想校舎）。アバター、浮遊UI、授業の出欠や課題が見える。" },
     { "@id": "env:sns-timeline", "dct:title": "Smartphone SNS timeline", "dct:description": "スマホのSNSタイムライン（投稿・リプ・いいね・リポストが流れる）。誹謗中傷や拡散の温度が伝わる。" }
   ],
@@ -111,6 +112,22 @@
       }
     },
     { "@id": "character:Takeru", "schema:name": "Takeru", "dct:description": "17歳。短気で即断即決。現場の“遅さ”が許せず、計測と切り分けで『終端（Done）』を作る。OSCP/GXPN。" },
+    {
+      "@id": "character:Kaname",
+      "schema:name": "Kaname",
+      "dct:description": "17歳。学生起業のエリート。『最低ライン遵守』を免罪符にするのを嫌い、国内規制だけでなく国際的な統制要求まで含めて“絶対ルール”として設計し直す。CISA/情報処理安全確保支援士。",
+      "gh:voice": {
+        "gh:style": "cold, exacting, rule-driven, confident",
+        "gh:sentenceTraits": ["short", "verdict-first", "no hedging"],
+        "gh:favorites": ["監査", "統制", "証跡", "例外なし", "最低ライン", "絶対ルール"],
+        "gh:taboos": ["情に流される慰め", "曖昧な約束"],
+        "gh:sampleLines": [
+          "監査不合格。",
+          "それは傲慢ですね。",
+          "規程は免罪符じゃない。"
+        ]
+      }
+    },
     { "@id": "character:Shouta", "schema:name": "Daimon Shouta", "dct:description": "大門建設の若手（スーツ姿）。依頼者。焦燥しているが目は鋭い。" },
     { "@id": "character:Matsuda", "schema:name": "Matsuda", "dct:description": "経理の松田（おばちゃん）。給与計算に追われ叫ぶ。" },
     { "@id": "character:Sato", "schema:name": "Sato", "dct:description": "若手社員の佐藤。PC裏でケーブルをいじり混乱している。" },
@@ -6332,7 +6349,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a phone notification / incident alert dashboard, minimal UI, urgent timestamp. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a phone notification / incident alert dashboard, minimal UI, urgent timestamp. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "インシデントダッシュボード。『新規端末ログイン』『受取口座追加』『出金要求』が短時間に重なっている（危険な並び）。",
+              "environment": "env:finance-hq",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "UI", "text": "ALERT: new device + payee change + withdrawal" }
+              ]
             },
             {
               "panel": 2,
@@ -11136,7 +11159,7 @@
       "gh:realCase": "SBI Securities Account Fraud (2020)",
       "gh:sinContrast": "Passive Pride (Rule Blindness) vs. Active Pride (Rule Definition)",
       "gh:nistFocus": ["PR.AA-01 (Identity/Access)", "ID.RA-01 (Risk Assessment)"],
-      "gh:incidentDescription": "『金融庁ルールに沿っているから大丈夫』という『傲慢』が資産を盗ませた。国内規制の“最低ライン”しか見ず、国際規制（例: AML/CFTや国際的な統制要求）まで含めた運用・監査設計が追いついていなかった。KanameはCISAの監査眼でその欺瞞を暴き、支援士の設計力で『新・絶対ルール（ゼロトラスト）』を敷く。",
+      "gh:incidentDescription": "『金融庁ガイドラインの項目を満たしているから大丈夫』という『傲慢』が資産を盗ませた。ログインだけの対策で満足し、重要操作（受取口座の追加/変更・出金）への強制MFA、異常検知によるステップアップ、変更の冷却期間、ログの一元収集と24/7監視、委託先も含む統制テストが甘かった。国内規制の“最低ライン”しか見ず、国際的な統制要求（例: AML/CFT系の不正取引監視・統制要求）まで含めた運用・監査設計が追いついていなかった。KanameはCISAの監査眼でその欺瞞を暴き、支援士の設計力で『新・絶対ルール（ゼロトラスト）』を敷く。",
       "gh:pages": [
         {
           "gh:pageNumber": 1,
@@ -11154,7 +11177,14 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. 漏えい疑惑。会議は稟議で停止。そこに要『監査不合格。会議も不合格』. Establishing shot: luxury financial HQ, marble lobby, glass meeting rooms, sterile server room, bright daylight. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. 漏えい疑惑。会議は稟議で停止。そこに要『監査不合格。会議も不合格』. Establishing shot: luxury financial HQ, marble lobby, glass meeting rooms, sterile server room, bright daylight. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "金融本社フロア。大理石のロビーの向こうで、ガラス会議室だけが白く光る。『漏えい疑惑』の一言で稟議が止まり、現場が凍る。",
+              "environment": "env:finance-hq",
+              "characters": ["character:Kaname"],
+              "dialogue": [
+                { "speaker": "Narration", "text": "規程は守った。…でも、守った“だけ”だった。" },
+                { "speaker": "Kaname (Offscreen)", "text": "監査不合格。会議も不合格。" }
+              ]
             },
             {
               "panel": 2,
@@ -11169,7 +11199,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) stands still, scanning the scene calmly in luxury financial HQ, marble lobby, glass meeting rooms, sterile server room, bright daylight. icon: torque wrench / compliance papers / audit logs. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) stands still, scanning the scene calmly in luxury financial HQ, marble lobby, glass meeting rooms, sterile server room, bright daylight. icon: torque wrench / compliance papers / audit logs. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renは騒がしさの中心から少し外で、紙とログの束を見比べる。規程文書が盾になって、逆に判断が遅れている。",
+              "environment": "env:finance-hq",
+              "characters": ["character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "金融は“規程”が強い。逆に、止血が遅い。" },
+                { "speaker": "Ren", "text": "…規程は盾。穴は、盾の外。" }
+              ]
             },
             {
               "panel": 3,
@@ -11185,7 +11222,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes, calm but alert, catching soft window reflections. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Ren:1.2) eyes, calm but alert, catching soft window reflections. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Renの瞳。『最低ライン』という言葉が、刃に見える。",
+              "environment": "env:finance-hq",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren (Monologue)", "text": "（最低ラインは、“外”があるって意味だ）" }
+              ]
             }
           ]
         },
@@ -11220,7 +11263,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) and (Nei:1.2) leaning toward a screen, analyzing fast in luxury financial HQ, marble lobby, glass meeting rooms, sterile server room, bright daylight. soft blue screen glow. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) and (Nei:1.2) leaning toward a screen, analyzing fast in luxury financial HQ, marble lobby, glass meeting rooms, sterile server room, bright daylight. soft blue screen glow. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "RenとNeiが画面を覗き込む。ログはある。でも“相関”してない。気づきが点のまま残る。",
+              "environment": "env:finance-hq",
+              "characters": ["character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "ログはある。…でも見てない。" },
+                { "speaker": "Ren", "text": "見てないなら、ないのと同じ。" }
+              ]
             },
             {
               "panel": 3,
@@ -11236,7 +11286,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Nei:1.2) eyes with intricate iris patterns and sharp catchlights. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Nei:1.2) eyes with intricate iris patterns and sharp catchlights. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Neiの目が冷える。『監視』が“書類”になっている。",
+              "environment": "env:finance-hq",
+              "characters": ["character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "MFA…ログインだけ？重要操作は？" }
+              ]
             }
           ]
         },
@@ -11356,7 +11412,15 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Kaname:1.2) moves decisively, pointing at a manual process board in luxury financial HQ, marble lobby, glass meeting rooms, sterile server room, bright daylight. 監査ログ/設定の棚卸し（IaC/権限/監査証跡）. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Kaname:1.2) moves decisively, pointing at a manual process board in luxury financial HQ, marble lobby, glass meeting rooms, sterile server room, bright daylight. 監査ログ/設定の棚卸し（IaC/権限/監査証跡）. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Kanameがホワイトボードに“規程→実装→監視”の順で線を引く。次に赤で『重要操作MFA』『異常検知』『冷却期間』『ログ相関/24-7』『委託先』と書き足す。",
+              "environment": "env:finance-hq",
+              "characters": ["character:Kaname", "character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Kaname", "text": "金融庁ガイドラインは最低ライン。満たした“だけ”で安心するな。" },
+                { "speaker": "Kaname", "text": "ログインMFA？当然。…重要操作は？受取口座の追加/変更、出金。" },
+                { "speaker": "Kaname", "text": "新規受取先は冷却。異常ならステップアップ。ログは相関して24/7で見る。" }
+              ]
             },
             {
               "panel": 2,
@@ -11371,7 +11435,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a stopwatch / DONE watch showing elapsed minutes, urgent but controlled. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a stopwatch / DONE watch showing elapsed minutes, urgent but controlled. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "“監視の空白”の時間だけが増えていくタイマー。アラートは出ていたのに、誰も見ていなかった。",
+              "environment": "env:finance-hq",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Narration", "text": "見ていない監視は、監視じゃない。" }
+              ]
             },
             {
               "panel": 3,
@@ -11387,7 +11457,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Kaname:1.2) eyes, intense focus, crisp catchlights. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Close-up of (Kaname:1.2) eyes, intense focus, crisp catchlights. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "Kanameの目。ルールを“人の盾”にしない目。",
+              "environment": "env:finance-hq",
+              "characters": ["character:Kaname"],
+              "dialogue": [
+                { "speaker": "Kaname", "text": "規程は免罪符じゃない。" }
+              ]
             }
           ]
         },
@@ -12478,7 +12554,7 @@
       "gh:realCase": "SBI Securities Account Fraud (2020)",
       "gh:sinContrast": "Passive Pride (Rule Blindness) vs. Active Pride (Rule Definition)",
       "gh:nistFocus": ["PR.AA-01 (Identity/Access)", "ID.RA-01 (Risk Assessment)"],
-      "gh:incidentDescription": "『金融庁ルールに沿っているから大丈夫』という『傲慢』が資産を盗ませた。国内規制の“最低ライン”しか見ず、国際規制（例: AML/CFTや国際的な統制要求）まで含めた運用・監査設計が追いついていなかった。KanameはCISAの監査眼でその欺瞞を暴き、支援士の設計力で『新・絶対ルール（ゼロトラスト）』を敷く。",
+      "gh:incidentDescription": "『金融庁ガイドラインの項目を満たしているから大丈夫』という『傲慢』が資産を盗ませた。ログインだけの対策で満足し、重要操作（受取口座の追加/変更・出金）への強制MFA、異常検知によるステップアップ、変更の冷却期間、ログの一元収集と24/7監視、委託先も含む統制テストが甘かった。国内規制の“最低ライン”しか見ず、国際的な統制要求（例: AML/CFT系の不正取引監視・統制要求）まで含めた運用・監査設計が追いついていなかった。KanameはCISAの監査眼でその欺瞞を暴き、支援士の設計力で『新・絶対ルール（ゼロトラスト）』を敷く。",
       "gh:pages": [
         {
           "gh:pageNumber": 1,
@@ -13277,7 +13353,7 @@
       "gh:realCase": "SBI Securities Account Fraud (2020)",
       "gh:sinContrast": "Passive Pride (Rule Blindness) vs. Active Pride (Rule Definition)",
       "gh:nistFocus": ["PR.AA-01 (Identity/Access)", "ID.RA-01 (Risk Assessment)"],
-      "gh:incidentDescription": "『金融庁ルールに沿っているから大丈夫』という『傲慢』が資産を盗ませた。国内規制の“最低ライン”しか見ず、国際規制（例: AML/CFTや国際的な統制要求）まで含めた運用・監査設計が追いついていなかった。KanameはCISAの監査眼でその欺瞞を暴き、支援士の設計力で『新・絶対ルール（ゼロトラスト）』を敷く。",
+      "gh:incidentDescription": "『金融庁ガイドラインの項目を満たしているから大丈夫』という『傲慢』が資産を盗ませた。ログインだけの対策で満足し、重要操作（受取口座の追加/変更・出金）への強制MFA、異常検知によるステップアップ、変更の冷却期間、ログの一元収集と24/7監視、委託先も含む統制テストが甘かった。国内規制の“最低ライン”しか見ず、国際的な統制要求（例: AML/CFT系の不正取引監視・統制要求）まで含めた運用・監査設計が追いついていなかった。KanameはCISAの監査眼でその欺瞞を暴き、支援士の設計力で『新・絶対ルール（ゼロトラスト）』を敷く。",
       "gh:pages": [
         {
           "gh:pageNumber": 1,
