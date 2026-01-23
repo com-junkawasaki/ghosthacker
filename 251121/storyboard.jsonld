@@ -21,10 +21,40 @@
   "dct:description": "Full Season 1 storyboard: 12 episodes, all pages and panels. Realistic live-action Runway base prompts with ARIA aesthetic (clean luminous air, soft light) and structured shot properties.",
   "gh:globalStyle": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Emphasize detailed expressive eyes with intricate iris patterns and sharp catchlights.",
   "gh:runwayConstraints": "Max 3 key entities per prompt (2 characters + 1 prop/ghost), no dialogue text, stable shot schema via gh:shotProperties.",
+  "prov:wasDerivedFrom": [
+    { "@id": "gh:presentation/ghosthacker-a3" },
+    { "@id": "gh:board/ghosthacker" },
+    { "@id": "gh:data/incident-master-plan-final" }
+  ],
+  "gh:meta": {
+    "gh:oneLiner": "AI時代の情報攻撃を“物理現象”として描く、ハッキング×心理×組織の少年漫画。",
+    "gh:hook": "情報が『質量』を持ったとき、嘘は『幽霊』になる。",
+    "gh:audience": "週刊少年ジャンプ編集部向け",
+    "gh:tags": [
+      "Cyber",
+      "Thriller",
+      "Shonen",
+      "AI",
+      "Corporate",
+      "Ghost",
+      "CISSP",
+      "CISA",
+      "情報安全確保支援士"
+    ]
+  },
   "gh:episodes": [
     {
       "gh:episode": 1,
       "dct:title": "Arc A-1: 牙を剥く内部の影",
+      "gh:presentationTagline": "Arc A | Construction & Sloth",
+      "gh:arc": "Arc A",
+      "gh:industry": "Construction (建設)",
+      "gh:mainCharacter": "character:Ren",
+      "gh:credentials": ["CISSP", "CEH"],
+      "gh:realCase": "Handa Hospital Ransomware (2021) / Iseto (2024)",
+      "gh:sinContrast": "Passive Sloth (Vulnerability Neglect) vs. Active Sloth (Hyper-Efficiency)",
+      "gh:nistFocus": ["PR.IP (Backup Protection)", "GV.PO (Vulnerability Policy)"],
+      "gh:incidentDescription": "『動いているからいい』とパッチ適用をサボった『怠惰』が全業務を止めた。RenはCISSPの知見で、暗号化の嵐から生き残った微細なデータを繋ぎ合わせ、一瞬でシステムを再起動する。",
       "gh:pages": [
         {
           "gh:pageNumber": 1,
@@ -959,7 +989,16 @@
     },
     {
       "gh:episode": 2,
-      "dct:title": "Arc A-2: 許しの毒（CISSPで殴る）",
+      "dct:title": "Arc A-2: 許しの毒",
+      "gh:presentationTagline": "Arc A | CISSP Methodology",
+      "gh:arc": "Arc A",
+      "gh:industry": "Construction (建設)",
+      "gh:mainCharacter": "character:Ren",
+      "gh:credentials": ["CISSP", "CEH"],
+      "gh:realCase": "Handa Hospital Ransomware (2021) / Iseto (2024)",
+      "gh:sinContrast": "Passive Sloth (Vulnerability Neglect) vs. Active Sloth (Hyper-Efficiency)",
+      "gh:nistFocus": ["PR.IP (Backup Protection)", "GV.PO (Vulnerability Policy)"],
+      "gh:incidentDescription": "『動いているからいい』とパッチ適用をサボった『怠惰』が全業務を止めた。RenはCISSPの知見で、暗号化の嵐から生き残った微細なデータを繋ぎ合わせ、一瞬でシステムを再起動する。",
       "gh:pages": [
         {
           "gh:pageNumber": 1,
@@ -1747,7 +1786,16 @@
     },
     {
       "gh:episode": 3,
-      "dct:title": "Arc A-3: 善意の呪い（会社のGhostを殴る）",
+      "dct:title": "Arc A-3: 善意の呪い",
+      "gh:presentationTagline": "Arc A | Corporate Culture",
+      "gh:arc": "Arc A",
+      "gh:industry": "Construction (建設)",
+      "gh:mainCharacter": "character:Ren",
+      "gh:credentials": ["CISSP", "CEH"],
+      "gh:realCase": "Handa Hospital Ransomware (2021) / Iseto (2024)",
+      "gh:sinContrast": "Passive Sloth (Vulnerability Neglect) vs. Active Sloth (Hyper-Efficiency)",
+      "gh:nistFocus": ["PR.IP (Backup Protection)", "GV.PO (Vulnerability Policy)"],
+      "gh:incidentDescription": "『動いているからいい』とパッチ適用をサボった『怠惰』が全業務を止めた。RenはCISSPの知見で、暗号化の嵐から生き残った微細なデータを繋ぎ合わせ、一瞬でシステムを再起動する。",
       "gh:pages": [
         {
           "gh:pageNumber": 1,
@@ -2535,7 +2583,16 @@
     },
     {
       "gh:episode": 4,
-      "dct:title": "Arc B-1: 終わらぬ時計（猛 登場）",
+      "dct:title": "Arc B-1: 終わらぬ時計",
+      "gh:presentationTagline": "Arc B | Manufacturing & Wrath",
+      "gh:arc": "Arc B",
+      "gh:industry": "Manufacturing (製造)",
+      "gh:mainCharacter": "character:Takeru",
+      "gh:credentials": ["OSCP", "GXPN"],
+      "gh:realCase": "Kojima Press / Toyota Supply Chain (2022)",
+      "gh:sinContrast": "Impulsive Wrath (Calculation Failure) vs. Calculated Wrath (Optimization)",
+      "gh:nistFocus": ["PR.IR-04 (Network Segmentation)", "RS.MA-01 (Containment)"],
+      "gh:incidentDescription": "リスク計算を放棄し、場当たり的にVPNを繋いだ『短気』が物流を止めた。TakeruはGXPNの精密な計算で感染パケットを仕分け、汚染区画を切り離してラインを再起動させる。",
       "gh:pages": [
         {
           "gh:pageNumber": 1,
@@ -3323,7 +3380,16 @@
     },
     {
       "gh:episode": 5,
-      "dct:title": "Arc B-2: Doneがない地獄（終わりの設計）",
+      "dct:title": "Arc B-2: Doneがない地獄",
+      "gh:presentationTagline": "Arc B | Design Failure",
+      "gh:arc": "Arc B",
+      "gh:industry": "Manufacturing (製造)",
+      "gh:mainCharacter": "character:Takeru",
+      "gh:credentials": ["OSCP", "GXPN"],
+      "gh:realCase": "Kojima Press / Toyota Supply Chain (2022)",
+      "gh:sinContrast": "Impulsive Wrath (Calculation Failure) vs. Calculated Wrath (Optimization)",
+      "gh:nistFocus": ["PR.IR-04 (Network Segmentation)", "RS.MA-01 (Containment)"],
+      "gh:incidentDescription": "リスク計算を放棄し、場当たり的にVPNを繋いだ『短気』が物流を止めた。TakeruはGXPNの精密な計算で感染パケットを仕分け、汚染区画を切り離してラインを再起動させる。",
       "gh:pages": [
         {
           "gh:pageNumber": 1,
@@ -4111,7 +4177,16 @@
     },
     {
       "gh:episode": 6,
-      "dct:title": "Arc B-3: 終端刻印（短気を救済に戻す）",
+      "dct:title": "Arc B-3: 終端刻印",
+      "gh:presentationTagline": "Arc B | Salvation",
+      "gh:arc": "Arc B",
+      "gh:industry": "Manufacturing (製造)",
+      "gh:mainCharacter": "character:Takeru",
+      "gh:credentials": ["OSCP", "GXPN"],
+      "gh:realCase": "Kojima Press / Toyota Supply Chain (2022)",
+      "gh:sinContrast": "Impulsive Wrath (Calculation Failure) vs. Calculated Wrath (Optimization)",
+      "gh:nistFocus": ["PR.IR-04 (Network Segmentation)", "RS.MA-01 (Containment)"],
+      "gh:incidentDescription": "リスク計算を放棄し、場当たり的にVPNを繋いだ『短気』が物流を止めた。TakeruはGXPNの精密な計算で感染パケットを仕分け、汚染区画を切り離してラインを再起動させる。",
       "gh:pages": [
         {
           "gh:pageNumber": 1,
@@ -4899,7 +4974,16 @@
     },
     {
       "gh:episode": 7,
-      "dct:title": "Arc C-1: 空の要塞の崩壊（要 登場）",
+      "dct:title": "Arc C-1: 空の要塞の崩壊",
+      "gh:presentationTagline": "Arc C | Finance & Pride",
+      "gh:arc": "Arc C",
+      "gh:industry": "Finance (金融)",
+      "gh:mainCharacter": "character:Kaname",
+      "gh:credentials": ["CISA", "情報処理安全確保支援士"],
+      "gh:realCase": "SBI Securities Account Fraud (2020)",
+      "gh:sinContrast": "Passive Pride (Rule Blindness) vs. Active Pride (Rule Definition)",
+      "gh:nistFocus": ["PR.AA-01 (Identity/Access)", "ID.RA-01 (Risk Assessment)"],
+      "gh:incidentDescription": "『仕様書通りだから安全だ』という『傲慢』が資産を盗ませた。KanameはCISAの監査眼でその欺瞞を暴き、支援士の設計力で『新・絶対ルール（ゼロトラスト）』を敷く。",
       "gh:pages": [
         {
           "gh:pageNumber": 1,
@@ -5687,7 +5771,16 @@
     },
     {
       "gh:episode": 8,
-      "dct:title": "Arc C-2: 消えた資産の足跡（監査で殴る）",
+      "dct:title": "Arc C-2: 消えた資産の足跡",
+      "gh:presentationTagline": "Arc C | Audit Attack",
+      "gh:arc": "Arc C",
+      "gh:industry": "Finance (金融)",
+      "gh:mainCharacter": "character:Kaname",
+      "gh:credentials": ["CISA", "情報処理安全確保支援士"],
+      "gh:realCase": "SBI Securities Account Fraud (2020)",
+      "gh:sinContrast": "Passive Pride (Rule Blindness) vs. Active Pride (Rule Definition)",
+      "gh:nistFocus": ["PR.AA-01 (Identity/Access)", "ID.RA-01 (Risk Assessment)"],
+      "gh:incidentDescription": "『仕様書通りだから安全だ』という『傲慢』が資産を盗ませた。KanameはCISAの監査眼でその欺瞞を暴き、支援士の設計力で『新・絶対ルール（ゼロトラスト）』を敷く。",
       "gh:pages": [
         {
           "gh:pageNumber": 1,
@@ -6475,7 +6568,16 @@
     },
     {
       "gh:episode": 9,
-      "dct:title": "Arc C-3: それは傲慢ですね（ルールを殺す）",
+      "dct:title": "Arc C-3: それは傲慢ですね",
+      "gh:presentationTagline": "Arc C | Rule Killing",
+      "gh:arc": "Arc C",
+      "gh:industry": "Finance (金融)",
+      "gh:mainCharacter": "character:Kaname",
+      "gh:credentials": ["CISA", "情報処理安全確保支援士"],
+      "gh:realCase": "SBI Securities Account Fraud (2020)",
+      "gh:sinContrast": "Passive Pride (Rule Blindness) vs. Active Pride (Rule Definition)",
+      "gh:nistFocus": ["PR.AA-01 (Identity/Access)", "ID.RA-01 (Risk Assessment)"],
+      "gh:incidentDescription": "『仕様書通りだから安全だ』という『傲慢』が資産を盗ませた。KanameはCISAの監査眼でその欺瞞を暴き、支援士の設計力で『新・絶対ルール（ゼロトラスト）』を敷く。",
       "gh:pages": [
         {
           "gh:pageNumber": 1,
@@ -7263,7 +7365,16 @@
     },
     {
       "gh:episode": 10,
-      "dct:title": "Arc D-1: 群れのGhost（エコシステムが笑う）",
+      "dct:title": "Arc D-1: 群れのGhost",
+      "gh:presentationTagline": "Arc D | Social Scam & Vainglory",
+      "gh:arc": "Arc D",
+      "gh:industry": "Cross-Industry (複合)",
+      "gh:mainCharacter": "character:Ren",
+      "gh:supportingCharacters": ["character:Takeru", "character:Kaname"],
+      "gh:realCase": "SNS Investment Scam / Celebrity Impersonation (2024)",
+      "gh:sinContrast": "Vainglory (虚飾の正義) vs. Truth (静かなる真実)",
+      "gh:nistFocus": ["ID.RA (Risk Assessment)", "PR.AA (Identity Management)", "RS.MA (Mitigation)"],
+      "gh:incidentDescription": "SNS型投資詐欺。Renの逆探知、Takeruの資金経路解析、Kanameの法的凍結が結集し、HEROの虚飾を剥ぎ取る。",
       "gh:pages": [
         {
           "gh:pageNumber": 1,
@@ -8051,7 +8162,16 @@
     },
     {
       "gh:episode": 11,
-      "dct:title": "Arc D-2: 崩壊する信頼（捜査が線になる）",
+      "dct:title": "Arc D-2: 崩壊する信頼",
+      "gh:presentationTagline": "Arc D | Investigation",
+      "gh:arc": "Arc D",
+      "gh:industry": "Cross-Industry (複合)",
+      "gh:mainCharacter": "character:Ren",
+      "gh:supportingCharacters": ["character:Takeru", "character:Kaname"],
+      "gh:realCase": "SNS Investment Scam / Celebrity Impersonation (2024)",
+      "gh:sinContrast": "Vainglory (虚飾の正義) vs. Truth (静かなる真実)",
+      "gh:nistFocus": ["ID.RA (Risk Assessment)", "PR.AA (Identity Management)", "RS.MA (Mitigation)"],
+      "gh:incidentDescription": "SNS型投資詐欺。Renの逆探知、Takeruの資金経路解析、Kanameの法的凍結が結集し、HEROの虚飾を剥ぎ取る。",
       "gh:pages": [
         {
           "gh:pageNumber": 1,
@@ -8839,7 +8959,16 @@
     },
     {
       "gh:episode": 12,
-      "dct:title": "Arc D-3: 逮捕（でもGhostは残る）",
+      "dct:title": "Arc D-3: 逮捕と残響",
+      "gh:presentationTagline": "Arc D | Final Deletion",
+      "gh:arc": "Arc D",
+      "gh:industry": "Cross-Industry (複合)",
+      "gh:mainCharacter": "character:Ren",
+      "gh:supportingCharacters": ["character:Takeru", "character:Kaname"],
+      "gh:realCase": "SNS Investment Scam / Celebrity Impersonation (2024)",
+      "gh:sinContrast": "Vainglory (虚飾の正義) vs. Truth (静かなる真実)",
+      "gh:nistFocus": ["ID.RA (Risk Assessment)", "PR.AA (Identity Management)", "RS.MA (Mitigation)"],
+      "gh:incidentDescription": "SNS型投資詐欺。Renの逆探知、Takeruの資金経路解析、Kanameの法的凍結が結集し、HEROの虚飾を剥ぎ取る。",
       "gh:pages": [
         {
           "gh:pageNumber": 1,

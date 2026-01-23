@@ -436,8 +436,8 @@
       "target": "gh:node/sc",
       "label": "",
       "color": "#999",
-      "x": -914,
-      "y": 257,
+      "x": 0,
+      "y": 0,
       "fixed": true
     }
   ]
