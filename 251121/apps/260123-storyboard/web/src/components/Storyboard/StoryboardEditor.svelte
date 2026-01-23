@@ -19,19 +19,34 @@
 
 	async function loadEpisodes() {
 		try {
-			console.log('loadEpisodes: starting fetch from', storyboardPath);
+			console.log('[StoryboardEditor] loadEpisodes: starting', { storyboardPath });
 			loading = true;
 			error = '';
-			const response = await storyboardClient.getEpisodes({
-				filePath: storyboardPath
+			
+			const request = { filePath: storyboardPath };
+			console.log('[StoryboardEditor] loadEpisodes: request', request);
+			
+			const response = await storyboardClient.getEpisodes(request);
+			console.log('[StoryboardEditor] loadEpisodes: response received', response);
+			console.log('[StoryboardEditor] loadEpisodes: response.episodes', response.episodes);
+			console.log('[StoryboardEditor] loadEpisodes: response.episodes type', typeof response.episodes, Array.isArray(response.episodes));
+			
+			if (!response.episodes || !Array.isArray(response.episodes)) {
+				console.error('[StoryboardEditor] loadEpisodes: episodes is not an array', response);
+				episodes = [];
+				return;
+			}
+			
+			episodes = response.episodes.map((e) => {
+				console.log('[StoryboardEditor] loadEpisodes: mapping episode', e);
+				return {
+					id: e.id || '',
+					title: e.title || '',
+					totalPages: e.totalPages || 0,
+				};
 			});
-			console.log('loadEpisodes: response received', response);
-			episodes = response.episodes.map((e) => ({
-				id: e.id,
-				title: e.title,
-				totalPages: e.totalPages,
-			}));
-			console.log('loadEpisodes: parsed episodes', episodes);
+			console.log('[StoryboardEditor] loadEpisodes: parsed episodes', episodes);
+			
 			if (episodes.length > 0 && !selectedEpisode) {
 				const firstEpisode = episodes[0];
 				if (firstEpisode) {
@@ -41,7 +56,10 @@
 			}
 		} catch (err) {
 			error = err instanceof Error ? err.message : 'Failed to load episodes';
-			console.error('Failed to load episodes:', err);
+			console.error('[StoryboardEditor] Failed to load episodes:', err);
+			if (err instanceof Error) {
+				console.error('[StoryboardEditor] Error stack:', err.stack);
+			}
 		} finally {
 			loading = false;
 		}

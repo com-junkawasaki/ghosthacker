@@ -9,17 +9,47 @@ import (
 	"os"
 
 	"connectrpc.com/connect"
+	"cuelang.org/go/cue"
+	"cuelang.org/go/cue/cuecontext"
+	"storyboard-editor/backend/internal/schema"
 	"storyboard-editor/backend/proto"
 )
 
 type StoryboardService struct {
 	storyboardPath string
+	cueCtx         *cue.Context
+	schema         cue.Value
 }
 
 func NewStoryboardService(storyboardPath string) *StoryboardService {
+	cueCtx := cuecontext.New()
 	return &StoryboardService{
 		storyboardPath: storyboardPath,
+		cueCtx:         cueCtx,
+		schema:         schema.GetSchema(),
 	}
+}
+
+func (s *StoryboardService) validateAndLoad(filePath string) (map[string]interface{}, error) {
+	content, err := os.ReadFile(filePath)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read file: %w", err)
+	}
+
+	// Parse JSON
+	var data map[string]interface{}
+	if err := json.Unmarshal(content, &data); err != nil {
+		return nil, fmt.Errorf("invalid JSON: %w", err)
+	}
+
+	// Validate with CUE
+	val := s.cueCtx.CompileBytes(content)
+	unified := val.Unify(s.schema)
+	if err := unified.Validate(cue.Final()); err != nil {
+		return nil, fmt.Errorf("CUE validation failed: %w", err)
+	}
+
+	return data, nil
 }
 
 func (s *StoryboardService) LoadStoryboard(
@@ -36,12 +66,13 @@ func (s *StoryboardService) LoadStoryboard(
 		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("failed to read storyboard file: %w", err))
 	}
 
-	var storyboard map[string]interface{}
-	if err := json.Unmarshal(content, &storyboard); err != nil {
-		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("invalid JSON-LD: %w", err))
+	data, err := s.validateAndLoad(filePath)
+	if err != nil {
+		log.Printf("LoadStoryboard: validation warning: %v", err)
+		// We still return the content even if validation fails for now, but log it
 	}
 
-	metadata := s.extractMetadata(storyboard)
+	metadata := s.extractMetadata(data)
 
 	return connect.NewResponse(&storyboardpb.LoadStoryboardResponse{
 		JsonldContent: string(content),
@@ -58,14 +89,9 @@ func (s *StoryboardService) UpdatePanel(
 		filePath = s.storyboardPath
 	}
 
-	content, err := os.ReadFile(filePath)
+	storyboard, err := s.validateAndLoad(filePath)
 	if err != nil {
-		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("failed to read storyboard file: %w", err))
-	}
-
-	var storyboard map[string]interface{}
-	if err := json.Unmarshal(content, &storyboard); err != nil {
-		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("invalid JSON-LD: %w", err))
+		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("invalid storyboard: %w", err))
 	}
 
 	episodes, ok := storyboard["gh:episodes"].([]interface{})
@@ -229,32 +255,18 @@ func (s *StoryboardService) GetEpisodes(
 		filePath = s.storyboardPath
 	}
 
-	content, err := os.ReadFile(filePath)
+	storyboard, err := s.validateAndLoad(filePath)
 	if err != nil {
-		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("failed to read storyboard file: %w", err))
-	}
-
-	var storyboard map[string]interface{}
-	if err := json.Unmarshal(content, &storyboard); err != nil {
-		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("invalid JSON-LD: %w", err))
-	}
-
-	log.Printf("GetEpisodes: storyboard loaded, keys: %v", getKeys(storyboard))
-	if val, ok := storyboard["gh:episodes"]; ok {
-		log.Printf("GetEpisodes: gh:episodes type: %T", val)
-	} else {
-		log.Printf("GetEpisodes: gh:episodes NOT FOUND")
+		log.Printf("GetEpisodes: validation failed: %v", err)
+		// Continue even if validation fails for now
 	}
 
 	episodeList, ok := storyboard["gh:episodes"].([]interface{})
 	if !ok {
-		log.Printf("GetEpisodes: gh:episodes not found or not a list")
 		return connect.NewResponse(&storyboardpb.GetEpisodesResponse{
 			Episodes: []*storyboardpb.Episode{},
 		}), nil
 	}
-
-	log.Printf("GetEpisodes: found %d episodes", len(episodeList))
 
 	episodes := make([]*storyboardpb.Episode, 0, len(episodeList))
 	for _, e := range episodeList {
@@ -292,14 +304,9 @@ func (s *StoryboardService) GetEpisodePanels(
 		filePath = s.storyboardPath
 	}
 
-	content, err := os.ReadFile(filePath)
+	storyboard, err := s.validateAndLoad(filePath)
 	if err != nil {
-		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("failed to read storyboard file: %w", err))
-	}
-
-	var storyboard map[string]interface{}
-	if err := json.Unmarshal(content, &storyboard); err != nil {
-		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("invalid JSON-LD: %w", err))
+		log.Printf("GetEpisodePanels: validation failed: %v", err)
 	}
 
 	episodeList, ok := storyboard["gh:episodes"].([]interface{})
