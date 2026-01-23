@@ -69,7 +69,10 @@
     { "@id": "env:news-hacker-board", "dct:title": "News Hacker board", "dct:description": "掲示板 News Hacker。HNで助言が飛び交う。" },
     { "@id": "env:quiet-room", "dct:title": "Quiet room", "dct:description": "落ち着いて説明できる小部屋（支援・相談の場）。" },
     { "@id": "env:station-night-street", "dct:title": "Station night street", "dct:description": "駅近の夜道。ネオン、緊張、スマホの光。" },
-    { "@id": "env:cschool-exterior-dusk", "dct:title": "C-school exterior (dusk)", "dct:description": "C高校の外観。夕方の柔らかい光、帰る生徒。" }
+    { "@id": "env:cschool-exterior-dusk", "dct:title": "C-school exterior (dusk)", "dct:description": "C高校の外観。夕方の柔らかい光、帰る生徒。" },
+    { "@id": "env:elite-school-campus", "dct:title": "Elite school campus", "dct:description": "都内有名校のキャンパス。洗練された建築、起業家気質の空気。" },
+    { "@id": "env:meeting-neutral", "dct:title": "Neutral meeting place", "dct:description": "立場の違う人物が落ち着いて話す中立的な場所。" },
+    { "@id": "env:street-day", "dct:title": "Street (daytime)", "dct:description": "昼の街。息がしやすい光、再出発の気配。" }
   ],
   "gh:characters": [
     { "@id": "character:Shouta", "schema:name": "Daimon Shouta", "dct:description": "大門建設の若手（スーツ姿）。依頼者。焦燥しているが目は鋭い。" },
@@ -4976,7 +4979,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school hallway: a student alone, hunched posture, phone in hand, surrounded by blurred students. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school hallway: a student alone, hunched posture, phone in hand, surrounded by blurred students. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "C高校の廊下。Kentaがスマホを握りしめ、うつむいて立ち尽くす。",
+              "environment": "env:cschool-hallway",
+              "characters": ["character:Kenta"],
+              "dialogue": [
+                { "speaker": "Kenta", "text": "学校、行きたくない…" }
+              ]
             }
           ]
         },
@@ -4996,7 +5005,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. Smartphone screen: anonymous insults on a school-related feed (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Smartphone screen: anonymous insults on a school-related feed (no readable long text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "匿名の悪口が流れる画面。見れば見るほど胸が詰まる。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Kenta"],
+              "dialogue": [
+                { "speaker": "Kenta", "text": "消えない…誰が…。" }
+              ]
             }
           ]
         },
@@ -5016,7 +5031,15 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. (Ren: 17-year-old male) and (Nei: 17-year-old female high school student) listen to the victim student (Kenta: 16-year-old male), who looks terrified and ashamed. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. (Ren: 17-year-old male) and (Nei: 17-year-old female high school student) listen to the victim student (Kenta: 16-year-old male), who looks terrified and ashamed. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "相談スペース。RenとNeiの前で、Kentaが震える声で話し始める。",
+              "environment": "env:cschool-consult",
+              "characters": ["character:Ren", "character:Nei", "character:Kenta"],
+              "dialogue": [
+                { "speaker": "Kenta", "text": "昨日から…ずっと、書かれてて…" },
+                { "speaker": "Nei", "text": "大丈夫。手順があるよ。" },
+                { "speaker": "Ren", "text": "まず証拠。消える前に残す。" }
+              ]
             }
           ]
         },
@@ -5036,7 +5059,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A simple flowchart on paper: preserve evidence → consult guardian/support → disclosure request → possible court. No readable text. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A simple flowchart on paper: preserve evidence → consult guardian/support → disclosure request → possible court. No readable text. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "紙のフロー。証拠→相談→開示→必要なら裁判。道が一本に繋がっている。",
+              "environment": "env:cschool-consult",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "怖いのは“未知”。順番に潰す。" }
+              ]
             }
           ]
         },
@@ -5056,7 +5085,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. A tense glance from another student points toward a distant figure silhouette, implying suspicion. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. A tense glance from another student points toward a distant figure silhouette, implying suspicion. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "周りの視線が、遠くの影を指す。噂は簡単に“犯人”を作る。",
+              "environment": "env:cschool-hallway",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Narration", "text": "疑いは、簡単に矢印になる。" }
+              ]
             }
           ]
         },
@@ -5076,7 +5111,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Outside the school: a boy in a hoodie walks away alone (Takeru silhouette), rumor-like tension in the air. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Outside the school: a boy in a hoodie walks away alone (Takeru silhouette), rumor-like tension in the air. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "校門の外。フードの少年が一人で去っていく。背中に噂がまとわりつく。",
+              "environment": "env:cschool-exterior-dusk",
+              "characters": ["character:Takeru"],
+              "dialogue": [
+                { "speaker": "Narration", "text": "“タケルじゃないか”――声にならない声が飛ぶ。" }
+              ]
             }
           ]
         },
@@ -5096,7 +5137,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. Ren collects evidence: screenshots, timestamps, URLs, and device info laid out neatly (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Ren collects evidence: screenshots, timestamps, URLs, and device info laid out neatly (no readable long text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "スクショ、時刻、URL、端末情報。Renが“証拠”を整える。",
+              "environment": "env:cschool-consult",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "スクショだけじゃ足りない。時刻とURLも。" }
+              ]
             }
           ]
         },
@@ -5116,7 +5163,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A legal-looking document stack: disclosure request forms and certified mail envelope (no readable text). shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A legal-looking document stack: disclosure request forms and certified mail envelope (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "開示請求の書類と、内容証明の封筒。現実の手続きが積み上がる。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "一人で抱えない。大人も巻き込む。" }
+              ]
             }
           ]
         },
@@ -5136,7 +5189,14 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A courtroom corridor or consultation room vibe: neutral walls, quiet intensity. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A courtroom corridor or consultation room vibe: neutral walls, quiet intensity. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "静かな廊下。手続きの重さだけが、音のない圧で残る。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Kenta", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Kenta", "text": "裁判とか…無理だよ。" },
+                { "speaker": "Ren", "text": "無理に戦わない。手続きを使う。" }
+              ]
             }
           ]
         },
@@ -5156,7 +5216,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A forum UI labeled 'News Hacker' shows a short reply from user 'aka_chise1' with a technical hint (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A forum UI labeled 'News Hacker' shows a short reply from user 'aka_chise1' with a technical hint (no readable long text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "掲示板『News Hacker』。HN「aka_chise1」から短い助言が届く。",
+              "environment": "env:news-hacker-board",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "NewsHacker", "text": "（aka_chise1）消す前に保存。ログは裏切らない。" }
+              ]
             }
           ]
         },
@@ -5176,7 +5242,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren's expression tightens: he realizes someone strong is helping from the shadows. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren's expression tightens: he realizes someone strong is helping from the shadows. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renの表情が少し締まる。見えない場所から、強い手が動いている。",
+              "environment": "env:ren-office",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "…aka_chise1。" }
+              ]
             }
           ]
         },
@@ -5196,7 +5268,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. The victim student meets a guardian/support counselor; a hand on shoulder suggests support and procedure. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. The victim student meets a guardian/support counselor; a hand on shoulder suggests support and procedure. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "Kentaの肩に手が置かれる。支援と、手続きが味方になる。",
+              "environment": "env:cschool-consult",
+              "characters": ["character:Kenta"],
+              "dialogue": [
+                { "speaker": "Narration", "text": "支えが増えると、怖さは減る。" }
+              ]
             }
           ]
         },
@@ -5216,7 +5294,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Rumor pressure peaks: classmates whisper, eyes turning toward Ren and the victim. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Rumor pressure peaks: classmates whisper, eyes turning toward Ren and the victim. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "ささやきが増える。視線が刺さる。沈黙が重くなる。",
+              "environment": "env:cschool-hallway",
+              "characters": ["character:Ren", "character:Kenta"],
+              "dialogue": [
+                { "speaker": "Narration", "text": "沈黙は、加害者の味方になる。" }
+              ]
             }
           ]
         },
@@ -5236,7 +5320,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. Provider response: a redacted IP/metadata package arrives (no readable text). shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Provider response: a redacted IP/metadata package arrives (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "黒塗りの情報が届く。IPやメタデータが、輪郭を作り始める。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "来た。線が出る。" }
+              ]
             }
           ]
         },
@@ -5256,7 +5346,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A small meeting room: the accused student (not Takeru) looks stunned as the truth emerges. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A small meeting room: the accused student (not Takeru) looks stunned as the truth emerges. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "小さな部屋。別の生徒が青ざめる。噂の矢印が、外れる。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Kenta"],
+              "dialogue": [
+                { "speaker": "Narration", "text": "犯人は、別だった。" }
+              ]
             }
           ]
         },
@@ -5276,7 +5372,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren exhales: procedure worked. The victim student looks like he can breathe again. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren exhales: procedure worked. The victim student looks like he can breathe again. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renが息を吐く。Kentaの肩から力が抜ける。",
+              "environment": "env:cschool-consult",
+              "characters": ["character:Ren", "character:Kenta"],
+              "dialogue": [
+                { "speaker": "Kenta", "text": "…息できる。" },
+                { "speaker": "Ren", "text": "手順は裏切らない。" }
+              ]
             }
           ]
         },
@@ -5296,7 +5399,14 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Ren walks out of school; on a bench sits (Takeru: 17-year-old male, intense eyes, restless posture). First real face reveal. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Ren walks out of school; on a bench sits (Takeru: 17-year-old male, intense eyes, restless posture). First real face reveal. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "放課後。Renが外に出ると、ベンチにタケルが座っている。初めての“顔”。",
+              "environment": "env:cschool-exterior-dusk",
+              "characters": ["character:Ren", "character:Takeru"],
+              "dialogue": [
+                { "speaker": "Takeru", "text": "ここまでやるとはな。" },
+                { "speaker": "Ren", "text": "…あなたが、aka_chise1？" }
+              ]
             }
           ]
         },
@@ -5317,7 +5427,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Takeru's eyes: sharp, irritated, but honest. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Takeru's eyes: sharp, irritated, but honest. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "タケルの瞳。刺すように鋭いのに、嘘がない。",
+              "environment": "env:cschool-exterior-dusk",
+              "characters": ["character:Takeru"],
+              "dialogue": [
+                { "speaker": "Takeru", "text": "…そう。" }
+              ]
             }
           ]
         },
@@ -5337,7 +5453,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A phone screen shows the News Hacker username 'aka_chise1' next to a short reply bubble (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A phone screen shows the News Hacker username 'aka_chise1' next to a short reply bubble (no readable long text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "スマホ画面。HN「aka_chise1」の返信が、現実の人物と繋がる。",
+              "environment": "env:smartphone-screen",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "NewsHacker", "text": "（aka_chise1）公開を恐れるな。対処は覚えろ。" }
+              ]
             }
           ]
         },
@@ -5357,7 +5479,15 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren and Takeru stand face to face for the first time, tension like a wire; Nei watches carefully. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren and Takeru stand face to face for the first time, tension like a wire; Nei watches carefully. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renとタケルが向き合う。張りつめた糸みたいな空気。Neiが目を離さない。",
+              "environment": "env:cschool-exterior-dusk",
+              "characters": ["character:Ren", "character:Takeru", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "タケル…？" },
+                { "speaker": "Takeru", "text": "本名で呼ぶな。まだ。" },
+                { "speaker": "Nei", "text": "二人とも、落ち着いて。" }
+              ]
             }
           ]
         }
@@ -7791,7 +7921,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Night street near a station: a student alone, tense, checking messages under neon light. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Night street near a station: a student alone, tense, checking messages under neon light. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "駅近の夜道。Minaがネオンの下でメッセージを確認して、肩をすくめる。",
+              "environment": "env:station-night-street",
+              "characters": ["character:Mina"],
+              "dialogue": [
+                { "speaker": "Mina", "text": "やめたい…でも、怖い。" }
+              ]
             }
           ]
         },
@@ -7811,7 +7947,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. Smartphone chat: vague 'easy job' messages, pressure, and threats implied (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Smartphone chat: vague 'easy job' messages, pressure, and threats implied (no readable long text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "“簡単な仕事”のはずだったチャットが、圧と脅しに変わっている。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Mina"],
+              "dialogue": [
+                { "speaker": "Mina", "text": "…もう無理。" }
+              ]
             }
           ]
         },
@@ -7831,7 +7973,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. The student (Mina: 16-year-old female, exhausted eyes) sits with Ren and Nei in a quiet room, hands trembling. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. The student (Mina: 16-year-old female, exhausted eyes) sits with Ren and Nei in a quiet room, hands trembling. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "静かな部屋。Minaの手が震えている。RenとNeiが正面で受け止める。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Mina", "character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Mina", "text": "親に…バレたら終わる…" },
+                { "speaker": "Nei", "text": "終わらない。今は安全。" }
+              ]
             }
           ]
         },
@@ -7851,7 +8000,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. Items laid out: bank card, SIM package, ID, and a contract-like paper; the sense of 'sold identity'. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Items laid out: bank card, SIM package, ID, and a contract-like paper; the sense of 'sold identity'. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "銀行カード、SIM、身分証、紙切れ。売られたのは“自分の一部”。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Ren", "character:Mina"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "口座と番号は、最優先で止める。" }
+              ]
             }
           ]
         },
@@ -7871,7 +8026,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A step list icon-only: call bank → freeze account → contact carrier → block SIM → report. No readable text. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A step list icon-only: call bank → freeze account → contact carrier → block SIM → report. No readable text. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "アイコンだけの手順。銀行、凍結、回線、SIM停止、相談・通報。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "順番が命。今は“止める”だけ。" }
+              ]
             }
           ]
         },
@@ -7891,7 +8052,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren calmly points to the phone: immediate actions first, no blame. Nei supports Mina with water and tissues. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren calmly points to the phone: immediate actions first, no blame. Nei supports Mina with water and tissues. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renは責めない。Neiは水とティッシュを差し出す。今すぐの安全が最優先。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Ren", "character:Nei", "character:Mina"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "責めない。今すぐ止める。" },
+                { "speaker": "Nei", "text": "水、飲んで。" }
+              ]
             }
           ]
         },
@@ -7911,7 +8079,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. Bank hotline call screen and an account freeze confirmation (no readable text). shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Bank hotline call screen and an account freeze confirmation (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "銀行に連絡。凍結の確認が出る。",
+              "environment": "env:smartphone-screen",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Narration", "text": "凍結。動かせなくする。" }
+              ]
             }
           ]
         },
@@ -7931,7 +8105,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. Carrier support chat: SIM suspension and number change option (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. Carrier support chat: SIM suspension and number change option (no readable long text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "回線のサポート。SIM停止と番号変更の選択肢。",
+              "environment": "env:smartphone-screen",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Narration", "text": "SIM停止。必要なら番号も変える。" }
+              ]
             }
           ]
         },
@@ -7951,7 +8131,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A support desk environment: posters about fraud prevention and youth consultation (no readable text). shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A support desk environment: posters about fraud prevention and youth consultation (no readable text). shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "支援の窓口。詐欺防止や相談のポスターが並ぶ。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "支援窓口がある。ここまで来れば大丈夫。" }
+              ]
             }
           ]
         },
@@ -7971,7 +8157,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A web page shows 'youth support' and 'crime victim support' style icons and phone symbols (no readable text). shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A web page shows 'youth support' and 'crime victim support' style icons and phone symbols (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "支援機関の案内ページ。電話のアイコンが並ぶ。",
+              "environment": "env:smartphone-screen",
+              "characters": ["character:Ren"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "一人で行かない。繋げる。" }
+              ]
             }
           ]
         },
@@ -7991,7 +8183,15 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Mina breaks down, scared to tell parents. Nei holds her hand; Ren stays calm, focused on safety. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Mina breaks down, scared to tell parents. Nei holds her hand; Ren stays calm, focused on safety. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Minaが泣き崩れる。Neiが手を握り、Renは落ち着いて“安全”だけを見る。",
+              "environment": "env:quiet-room",
+              "characters": ["character:Mina", "character:Nei", "character:Ren"],
+              "dialogue": [
+                { "speaker": "Mina", "text": "親に言えない…殺される…" },
+                { "speaker": "Nei", "text": "言うのは一緒に。" },
+                { "speaker": "Ren", "text": "まず安全。次に支援。" }
+              ]
             }
           ]
         },
@@ -8011,7 +8211,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A thread on 'News Hacker' about yami-baito damage control; username '3pa11er3apiv0t' appears as a sharp comment (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A thread on 'News Hacker' about yami-baito damage control; username '3pa11er3apiv0t' appears as a sharp comment (no readable long text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "掲示板『News Hacker』。闇バイト被害の対処スレに鋭い返信が刺さる。",
+              "environment": "env:news-hacker-board",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "NewsHacker", "text": "（3pa11er3apiv0t）口座は即凍結。番号は変更。放置が一番高くつく。" }
+              ]
             }
           ]
         },
@@ -8031,7 +8237,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A prestigious school campus: sleek architecture, entrepreneurial vibe, students in smart uniforms. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. A prestigious school campus: sleek architecture, entrepreneurial vibe, students in smart uniforms. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "都内有名校のキャンパス。洗練された空気が流れる。",
+              "environment": "env:elite-school-campus",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "Narration", "text": "同じ高校生でも、世界が違う。" }
+              ]
             }
           ]
         },
@@ -8051,7 +8263,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. (Kaname: 17-year-old male, sharp composed eyes, elite aura) looks at a report with irritation—his school is implicated. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. (Kaname: 17-year-old male, sharp composed eyes, elite aura) looks at a report with irritation—his school is implicated. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "要が報告を読む。苛立ちが一瞬だけ顔に出る。",
+              "environment": "env:elite-school-campus",
+              "characters": ["character:Kaname"],
+              "dialogue": [
+                { "speaker": "Kaname", "text": "うちが関わってる？…ふざけるな。" }
+              ]
             }
           ]
         },
@@ -8071,7 +8289,14 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Kaname meets Ren in a neutral meeting place; tension of status difference, both calm but sharp. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Kaname meets Ren in a neutral meeting place; tension of status difference, both calm but sharp. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "中立の場所で、Renと要が向き合う。立場の差が空気を硬くする。",
+              "environment": "env:meeting-neutral",
+              "characters": ["character:Ren", "character:Kaname"],
+              "dialogue": [
+                { "speaker": "Kaname", "text": "条件は一つ。被害者を守る。" },
+                { "speaker": "Ren", "text": "同意する。" }
+              ]
             }
           ]
         },
@@ -8092,7 +8317,13 @@
                 "gh:angle": "frontal",
                 "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture"
               },
-              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Kaname's eyes: disdain for sloppy crime, but also responsibility. shot on 85mm prime, f/1.2, cinematic live-action."
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Kaname's eyes: disdain for sloppy crime, but also responsibility. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "visual": "要の目。雑な犯罪への嫌悪と、責任の重さ。",
+              "environment": "env:meeting-neutral",
+              "characters": ["character:Kaname"],
+              "dialogue": [
+                { "speaker": "Kaname", "text": "雑な犯罪は嫌いだ。" }
+              ]
             }
           ]
         },
@@ -8112,7 +8343,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, ARIA-style. A phone shows the News Hacker username '3pa11er3apiv0t' on screen beside a short reply bubble (no readable long text). shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A phone shows the News Hacker username '3pa11er3apiv0t' on screen beside a short reply bubble (no readable long text). shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "スマホ画面。HN「3pa11er3apiv0t」の文字が光る。",
+              "environment": "env:smartphone-screen",
+              "characters": [],
+              "dialogue": [
+                { "speaker": "NewsHacker", "text": "（3pa11er3apiv0t）支援に繋げ。親も。" }
+              ]
             }
           ]
         },
@@ -8132,7 +8369,15 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren and Kaname stand side by side, uneasy allies. Nei watches the power balance carefully. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren and Kaname stand side by side, uneasy allies. Nei watches the power balance carefully. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renと要が並ぶ。味方なのに、緊張が残る。Neiがバランスを測る。",
+              "environment": "env:meeting-neutral",
+              "characters": ["character:Ren", "character:Kaname", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "バランス、崩れそう。" },
+                { "speaker": "Ren", "text": "でも必要だ。" },
+                { "speaker": "Kaname", "text": "早く終わらせる。" }
+              ]
             }
           ]
         },
@@ -8152,7 +8397,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Mina walks out into daylight, lighter. A 'Ghost' silhouette of debt and fear fades behind her. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Mina walks out into daylight, lighter. A 'Ghost' silhouette of debt and fear fades behind her. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "昼の街へ出るMina。背中に貼り付いていた影が、薄れていく。",
+              "environment": "env:street-day",
+              "characters": ["character:Mina"],
+              "dialogue": [
+                { "speaker": "Mina", "text": "…まだ怖い。でも、戻れる。" }
+              ]
             }
           ]
         },
@@ -8172,7 +8423,11 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Title card: 'Ghost Hacker - Episode 10 End' in clean white font on a black background. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Title card: 'Ghost Hacker - Episode 10 End' in clean white font on a black background. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Episode 10 End",
+              "environment": "env:intertitle-black",
+              "characters": [],
+              "dialogue": []
             }
           ]
         }
