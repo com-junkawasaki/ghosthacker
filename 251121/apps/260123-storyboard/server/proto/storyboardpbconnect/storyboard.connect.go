@@ -51,17 +51,21 @@ const (
 	// StoryboardServiceStreamUpdatesProcedure is the fully-qualified name of the StoryboardService's
 	// StreamUpdates RPC.
 	StoryboardServiceStreamUpdatesProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/StreamUpdates"
+	// StoryboardServiceGeneratePanelImageProcedure is the fully-qualified name of the
+	// StoryboardService's GeneratePanelImage RPC.
+	StoryboardServiceGeneratePanelImageProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/GeneratePanelImage"
 )
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
 var (
-	storyboardServiceServiceDescriptor                = proto.File_proto_storyboard_proto.Services().ByName("StoryboardService")
-	storyboardServiceLoadStoryboardMethodDescriptor   = storyboardServiceServiceDescriptor.Methods().ByName("LoadStoryboard")
-	storyboardServiceUpdatePanelMethodDescriptor      = storyboardServiceServiceDescriptor.Methods().ByName("UpdatePanel")
-	storyboardServiceSaveStoryboardMethodDescriptor   = storyboardServiceServiceDescriptor.Methods().ByName("SaveStoryboard")
-	storyboardServiceGetEpisodesMethodDescriptor      = storyboardServiceServiceDescriptor.Methods().ByName("GetEpisodes")
-	storyboardServiceGetEpisodePanelsMethodDescriptor = storyboardServiceServiceDescriptor.Methods().ByName("GetEpisodePanels")
-	storyboardServiceStreamUpdatesMethodDescriptor    = storyboardServiceServiceDescriptor.Methods().ByName("StreamUpdates")
+	storyboardServiceServiceDescriptor                  = proto.File_proto_storyboard_proto.Services().ByName("StoryboardService")
+	storyboardServiceLoadStoryboardMethodDescriptor     = storyboardServiceServiceDescriptor.Methods().ByName("LoadStoryboard")
+	storyboardServiceUpdatePanelMethodDescriptor        = storyboardServiceServiceDescriptor.Methods().ByName("UpdatePanel")
+	storyboardServiceSaveStoryboardMethodDescriptor     = storyboardServiceServiceDescriptor.Methods().ByName("SaveStoryboard")
+	storyboardServiceGetEpisodesMethodDescriptor        = storyboardServiceServiceDescriptor.Methods().ByName("GetEpisodes")
+	storyboardServiceGetEpisodePanelsMethodDescriptor   = storyboardServiceServiceDescriptor.Methods().ByName("GetEpisodePanels")
+	storyboardServiceStreamUpdatesMethodDescriptor      = storyboardServiceServiceDescriptor.Methods().ByName("StreamUpdates")
+	storyboardServiceGeneratePanelImageMethodDescriptor = storyboardServiceServiceDescriptor.Methods().ByName("GeneratePanelImage")
 )
 
 // StoryboardServiceClient is a client for the gftd.ghosthacker.storyboard.v1.StoryboardService
@@ -79,6 +83,8 @@ type StoryboardServiceClient interface {
 	GetEpisodePanels(context.Context, *connect.Request[proto.GetEpisodePanelsRequest]) (*connect.Response[proto.GetEpisodePanelsResponse], error)
 	// Stream updates for real-time collaboration (optional)
 	StreamUpdates(context.Context, *connect.Request[proto.StreamUpdatesRequest]) (*connect.ServerStreamForClient[proto.StreamUpdatesResponse], error)
+	// Generate image for a panel using OpenRouter AI
+	GeneratePanelImage(context.Context, *connect.Request[proto.GeneratePanelImageRequest]) (*connect.Response[proto.GeneratePanelImageResponse], error)
 }
 
 // NewStoryboardServiceClient constructs a client for the
@@ -128,17 +134,24 @@ func NewStoryboardServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			connect.WithSchema(storyboardServiceStreamUpdatesMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
+		generatePanelImage: connect.NewClient[proto.GeneratePanelImageRequest, proto.GeneratePanelImageResponse](
+			httpClient,
+			baseURL+StoryboardServiceGeneratePanelImageProcedure,
+			connect.WithSchema(storyboardServiceGeneratePanelImageMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // storyboardServiceClient implements StoryboardServiceClient.
 type storyboardServiceClient struct {
-	loadStoryboard   *connect.Client[proto.LoadStoryboardRequest, proto.LoadStoryboardResponse]
-	updatePanel      *connect.Client[proto.UpdatePanelRequest, proto.UpdatePanelResponse]
-	saveStoryboard   *connect.Client[proto.SaveStoryboardRequest, proto.SaveStoryboardResponse]
-	getEpisodes      *connect.Client[proto.GetEpisodesRequest, proto.GetEpisodesResponse]
-	getEpisodePanels *connect.Client[proto.GetEpisodePanelsRequest, proto.GetEpisodePanelsResponse]
-	streamUpdates    *connect.Client[proto.StreamUpdatesRequest, proto.StreamUpdatesResponse]
+	loadStoryboard     *connect.Client[proto.LoadStoryboardRequest, proto.LoadStoryboardResponse]
+	updatePanel        *connect.Client[proto.UpdatePanelRequest, proto.UpdatePanelResponse]
+	saveStoryboard     *connect.Client[proto.SaveStoryboardRequest, proto.SaveStoryboardResponse]
+	getEpisodes        *connect.Client[proto.GetEpisodesRequest, proto.GetEpisodesResponse]
+	getEpisodePanels   *connect.Client[proto.GetEpisodePanelsRequest, proto.GetEpisodePanelsResponse]
+	streamUpdates      *connect.Client[proto.StreamUpdatesRequest, proto.StreamUpdatesResponse]
+	generatePanelImage *connect.Client[proto.GeneratePanelImageRequest, proto.GeneratePanelImageResponse]
 }
 
 // LoadStoryboard calls gftd.ghosthacker.storyboard.v1.StoryboardService.LoadStoryboard.
@@ -171,6 +184,11 @@ func (c *storyboardServiceClient) StreamUpdates(ctx context.Context, req *connec
 	return c.streamUpdates.CallServerStream(ctx, req)
 }
 
+// GeneratePanelImage calls gftd.ghosthacker.storyboard.v1.StoryboardService.GeneratePanelImage.
+func (c *storyboardServiceClient) GeneratePanelImage(ctx context.Context, req *connect.Request[proto.GeneratePanelImageRequest]) (*connect.Response[proto.GeneratePanelImageResponse], error) {
+	return c.generatePanelImage.CallUnary(ctx, req)
+}
+
 // StoryboardServiceHandler is an implementation of the
 // gftd.ghosthacker.storyboard.v1.StoryboardService service.
 type StoryboardServiceHandler interface {
@@ -186,6 +204,8 @@ type StoryboardServiceHandler interface {
 	GetEpisodePanels(context.Context, *connect.Request[proto.GetEpisodePanelsRequest]) (*connect.Response[proto.GetEpisodePanelsResponse], error)
 	// Stream updates for real-time collaboration (optional)
 	StreamUpdates(context.Context, *connect.Request[proto.StreamUpdatesRequest], *connect.ServerStream[proto.StreamUpdatesResponse]) error
+	// Generate image for a panel using OpenRouter AI
+	GeneratePanelImage(context.Context, *connect.Request[proto.GeneratePanelImageRequest]) (*connect.Response[proto.GeneratePanelImageResponse], error)
 }
 
 // NewStoryboardServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -230,6 +250,12 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 		connect.WithSchema(storyboardServiceStreamUpdatesMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
+	storyboardServiceGeneratePanelImageHandler := connect.NewUnaryHandler(
+		StoryboardServiceGeneratePanelImageProcedure,
+		svc.GeneratePanelImage,
+		connect.WithSchema(storyboardServiceGeneratePanelImageMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/gftd.ghosthacker.storyboard.v1.StoryboardService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case StoryboardServiceLoadStoryboardProcedure:
@@ -244,6 +270,8 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 			storyboardServiceGetEpisodePanelsHandler.ServeHTTP(w, r)
 		case StoryboardServiceStreamUpdatesProcedure:
 			storyboardServiceStreamUpdatesHandler.ServeHTTP(w, r)
+		case StoryboardServiceGeneratePanelImageProcedure:
+			storyboardServiceGeneratePanelImageHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -275,4 +303,8 @@ func (UnimplementedStoryboardServiceHandler) GetEpisodePanels(context.Context, *
 
 func (UnimplementedStoryboardServiceHandler) StreamUpdates(context.Context, *connect.Request[proto.StreamUpdatesRequest], *connect.ServerStream[proto.StreamUpdatesResponse]) error {
 	return connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.StreamUpdates is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GeneratePanelImage(context.Context, *connect.Request[proto.GeneratePanelImageRequest]) (*connect.Response[proto.GeneratePanelImageResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.GeneratePanelImage is not implemented"))
 }

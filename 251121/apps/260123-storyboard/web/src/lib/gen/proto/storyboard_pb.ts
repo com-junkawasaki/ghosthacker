@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/storyboard.proto.
  */
 export const file_proto_storyboard: GenFile = /*@__PURE__*/
-  fileDesc("ChZwcm90by9zdG9yeWJvYXJkLnByb3RvEh5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEiKgoVTG9hZFN0b3J5Ym9hcmRSZXF1ZXN0EhEKCWZpbGVfcGF0aBgBIAEoCSJ2ChZMb2FkU3Rvcnlib2FyZFJlc3BvbnNlEhYKDmpzb25sZF9jb250ZW50GAEgASgJEkQKCG1ldGFkYXRhGAIgASgLMjIuZ2Z0ZC5naG9zdGhhY2tlci5zdG9yeWJvYXJkLnYxLlN0b3J5Ym9hcmRNZXRhZGF0YSJKChJTdG9yeWJvYXJkTWV0YWRhdGESDQoFdGl0bGUYASABKAkSEwoLZGVzY3JpcHRpb24YAiABKAkSEAoIZXBpc29kZXMYAyADKAkingEKElVwZGF0ZVBhbmVsUmVxdWVzdBIRCglmaWxlX3BhdGgYASABKAkSEgoKZXBpc29kZV9pZBgCIAEoCRITCgtwYWdlX251bWJlchgDIAEoBRINCgVwYW5lbBgEIAEoBRI9CgpwYW5lbF9kYXRhGAUgASgLMikuZ2Z0ZC5naG9zdGhhY2tlci5zdG9yeWJvYXJkLnYxLlBhbmVsRGF0YSKlAgoJUGFuZWxEYXRhEhIKCmNoYXJhY3RlcnMYASADKAkSOgoIZGlhbG9ndWUYAiADKAsyKC5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuRGlhbG9ndWUSEwoLZW52aXJvbm1lbnQYAyABKAkSEwoLdmlzdWFsX25vdGUYBCABKAkSGAoQY2FtZXJhX2RpcmVjdGlvbhgFIAEoCRIYChBkdXJhdGlvbl9zZWNvbmRzGAYgASgCEhIKCmN1dF9udW1iZXIYByABKAkSDAoEc2hvdBgIIAEoCRIVCg1ydW53YXlfcHJvbXB0GAkgASgJEhsKE2dlbmVyYXRlZF9pbWFnZV91cmwYCiABKAkSFAoMaW1hZ2VfcHJvbXB0GAsgASgJIikKCERpYWxvZ3VlEg8KB3NwZWFrZXIYASABKAkSDAoEdGV4dBgCIAEoCSI3ChNVcGRhdGVQYW5lbFJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgSDwoHbWVzc2FnZRgCIAEoCSJCChVTYXZlU3Rvcnlib2FyZFJlcXVlc3QSEQoJZmlsZV9wYXRoGAEgASgJEhYKDmpzb25sZF9jb250ZW50GAIgASgJIjoKFlNhdmVTdG9yeWJvYXJkUmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCBIPCgdtZXNzYWdlGAIgASgJIicKEkdldEVwaXNvZGVzUmVxdWVzdBIRCglmaWxlX3BhdGgYASABKAkiUAoTR2V0RXBpc29kZXNSZXNwb25zZRI5CghlcGlzb2RlcxgBIAMoCzInLmdmdGQuZ2hvc3RoYWNrZXIuc3Rvcnlib2FyZC52MS5FcGlzb2RlIjkKB0VwaXNvZGUSCgoCaWQYASABKAkSDQoFdGl0bGUYAiABKAkSEwoLdG90YWxfcGFnZXMYAyABKAUiVQoXR2V0RXBpc29kZVBhbmVsc1JlcXVlc3QSEQoJZmlsZV9wYXRoGAEgASgJEhIKCmVwaXNvZGVfaWQYAiABKAkSEwoLcGFnZV9udW1iZXIYAyABKAUiUQoYR2V0RXBpc29kZVBhbmVsc1Jlc3BvbnNlEjUKBnBhbmVscxgBIAMoCzIlLmdmdGQuZ2hvc3RoYWNrZXIuc3Rvcnlib2FyZC52MS5QYW5lbCJ4CgVQYW5lbBITCgtwYWdlX251bWJlchgBIAEoBRINCgVwYW5lbBgCIAEoBRISCgpjdXRfbnVtYmVyGAMgASgJEjcKBGRhdGEYBCABKAsyKS5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuUGFuZWxEYXRhIj0KFFN0cmVhbVVwZGF0ZXNSZXF1ZXN0EhEKCWZpbGVfcGF0aBgBIAEoCRISCgpzZXNzaW9uX2lkGAIgASgJInoKFVN0cmVhbVVwZGF0ZXNSZXNwb25zZRITCgt1cGRhdGVfdHlwZRgBIAEoCRISCgplcGlzb2RlX2lkGAIgASgJEhMKC3BhZ2VfbnVtYmVyGAMgASgFEg0KBXBhbmVsGAQgASgFEhQKDGpzb25sZF9wYXRjaBgFIAEoCTKNBgoRU3Rvcnlib2FyZFNlcnZpY2USfwoOTG9hZFN0b3J5Ym9hcmQSNS5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuTG9hZFN0b3J5Ym9hcmRSZXF1ZXN0GjYuZ2Z0ZC5naG9zdGhhY2tlci5zdG9yeWJvYXJkLnYxLkxvYWRTdG9yeWJvYXJkUmVzcG9uc2USdgoLVXBkYXRlUGFuZWwSMi5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuVXBkYXRlUGFuZWxSZXF1ZXN0GjMuZ2Z0ZC5naG9zdGhhY2tlci5zdG9yeWJvYXJkLnYxLlVwZGF0ZVBhbmVsUmVzcG9uc2USfwoOU2F2ZVN0b3J5Ym9hcmQSNS5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuU2F2ZVN0b3J5Ym9hcmRSZXF1ZXN0GjYuZ2Z0ZC5naG9zdGhhY2tlci5zdG9yeWJvYXJkLnYxLlNhdmVTdG9yeWJvYXJkUmVzcG9uc2USdgoLR2V0RXBpc29kZXMSMi5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuR2V0RXBpc29kZXNSZXF1ZXN0GjMuZ2Z0ZC5naG9zdGhhY2tlci5zdG9yeWJvYXJkLnYxLkdldEVwaXNvZGVzUmVzcG9uc2UShQEKEEdldEVwaXNvZGVQYW5lbHMSNy5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuR2V0RXBpc29kZVBhbmVsc1JlcXVlc3QaOC5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuR2V0RXBpc29kZVBhbmVsc1Jlc3BvbnNlEn4KDVN0cmVhbVVwZGF0ZXMSNC5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuU3RyZWFtVXBkYXRlc1JlcXVlc3QaNS5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuU3RyZWFtVXBkYXRlc1Jlc3BvbnNlMAFCLlosc3Rvcnlib2FyZC1lZGl0b3IvYmFja2VuZC9wcm90bztzdG9yeWJvYXJkcGJiBnByb3RvMw");
+  fileDesc("ChZwcm90by9zdG9yeWJvYXJkLnByb3RvEh5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEiKgoVTG9hZFN0b3J5Ym9hcmRSZXF1ZXN0EhEKCWZpbGVfcGF0aBgBIAEoCSJ2ChZMb2FkU3Rvcnlib2FyZFJlc3BvbnNlEhYKDmpzb25sZF9jb250ZW50GAEgASgJEkQKCG1ldGFkYXRhGAIgASgLMjIuZ2Z0ZC5naG9zdGhhY2tlci5zdG9yeWJvYXJkLnYxLlN0b3J5Ym9hcmRNZXRhZGF0YSJKChJTdG9yeWJvYXJkTWV0YWRhdGESDQoFdGl0bGUYASABKAkSEwoLZGVzY3JpcHRpb24YAiABKAkSEAoIZXBpc29kZXMYAyADKAkingEKElVwZGF0ZVBhbmVsUmVxdWVzdBIRCglmaWxlX3BhdGgYASABKAkSEgoKZXBpc29kZV9pZBgCIAEoCRITCgtwYWdlX251bWJlchgDIAEoBRINCgVwYW5lbBgEIAEoBRI9CgpwYW5lbF9kYXRhGAUgASgLMikuZ2Z0ZC5naG9zdGhhY2tlci5zdG9yeWJvYXJkLnYxLlBhbmVsRGF0YSKMAwoJUGFuZWxEYXRhEhIKCmNoYXJhY3RlcnMYASADKAkSOgoIZGlhbG9ndWUYAiADKAsyKC5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuRGlhbG9ndWUSEwoLZW52aXJvbm1lbnQYAyABKAkSEwoLdmlzdWFsX25vdGUYBCABKAkSGAoQY2FtZXJhX2RpcmVjdGlvbhgFIAEoCRIYChBkdXJhdGlvbl9zZWNvbmRzGAYgASgCEhIKCmN1dF9udW1iZXIYByABKAkSDAoEc2hvdBgIIAEoCRIVCg1ydW53YXlfcHJvbXB0GAkgASgJEhsKE2dlbmVyYXRlZF9pbWFnZV91cmwYCiABKAkSFAoMaW1hZ2VfcHJvbXB0GAsgASgJEkgKEGdlbmVyYXRlZF9pbWFnZXMYDCADKAsyLi5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuR2VuZXJhdGVkSW1hZ2USGwoTY3VycmVudF9pbWFnZV9pbmRleBgNIAEoBSJeCg5HZW5lcmF0ZWRJbWFnZRIRCglpbWFnZV91cmwYASABKAkSFAoMaW1hZ2VfcHJvbXB0GAIgASgJEhQKDGdlbmVyYXRlZF9hdBgDIAEoAxINCgVtb2RlbBgEIAEoCSIpCghEaWFsb2d1ZRIPCgdzcGVha2VyGAEgASgJEgwKBHRleHQYAiABKAkiNwoTVXBkYXRlUGFuZWxSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIEg8KB21lc3NhZ2UYAiABKAkiQgoVU2F2ZVN0b3J5Ym9hcmRSZXF1ZXN0EhEKCWZpbGVfcGF0aBgBIAEoCRIWCg5qc29ubGRfY29udGVudBgCIAEoCSI6ChZTYXZlU3Rvcnlib2FyZFJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgSDwoHbWVzc2FnZRgCIAEoCSInChJHZXRFcGlzb2Rlc1JlcXVlc3QSEQoJZmlsZV9wYXRoGAEgASgJIlAKE0dldEVwaXNvZGVzUmVzcG9uc2USOQoIZXBpc29kZXMYASADKAsyJy5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuRXBpc29kZSI5CgdFcGlzb2RlEgoKAmlkGAEgASgJEg0KBXRpdGxlGAIgASgJEhMKC3RvdGFsX3BhZ2VzGAMgASgFIlUKF0dldEVwaXNvZGVQYW5lbHNSZXF1ZXN0EhEKCWZpbGVfcGF0aBgBIAEoCRISCgplcGlzb2RlX2lkGAIgASgJEhMKC3BhZ2VfbnVtYmVyGAMgASgFIlEKGEdldEVwaXNvZGVQYW5lbHNSZXNwb25zZRI1CgZwYW5lbHMYASADKAsyJS5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuUGFuZWwieAoFUGFuZWwSEwoLcGFnZV9udW1iZXIYASABKAUSDQoFcGFuZWwYAiABKAUSEgoKY3V0X251bWJlchgDIAEoCRI3CgRkYXRhGAQgASgLMikuZ2Z0ZC5naG9zdGhhY2tlci5zdG9yeWJvYXJkLnYxLlBhbmVsRGF0YSI9ChRTdHJlYW1VcGRhdGVzUmVxdWVzdBIRCglmaWxlX3BhdGgYASABKAkSEgoKc2Vzc2lvbl9pZBgCIAEoCSJ6ChVTdHJlYW1VcGRhdGVzUmVzcG9uc2USEwoLdXBkYXRlX3R5cGUYASABKAkSEgoKZXBpc29kZV9pZBgCIAEoCRITCgtwYWdlX251bWJlchgDIAEoBRINCgVwYW5lbBgEIAEoBRIUCgxqc29ubGRfcGF0Y2gYBSABKAkipQEKGUdlbmVyYXRlUGFuZWxJbWFnZVJlcXVlc3QSEQoJZmlsZV9wYXRoGAEgASgJEhIKCmVwaXNvZGVfaWQYAiABKAkSEwoLcGFnZV9udW1iZXIYAyABKAUSDQoFcGFuZWwYBCABKAUSPQoKcGFuZWxfZGF0YRgFIAEoCzIpLmdmdGQuZ2hvc3RoYWNrZXIuc3Rvcnlib2FyZC52MS5QYW5lbERhdGEimgEKGkdlbmVyYXRlUGFuZWxJbWFnZVJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgSDwoHbWVzc2FnZRgCIAEoCRJHCg9nZW5lcmF0ZWRfaW1hZ2UYAyABKAsyLi5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuR2VuZXJhdGVkSW1hZ2USEQoJaW1hZ2VfdXJsGAQgASgJMpsHChFTdG9yeWJvYXJkU2VydmljZRJ/Cg5Mb2FkU3Rvcnlib2FyZBI1LmdmdGQuZ2hvc3RoYWNrZXIuc3Rvcnlib2FyZC52MS5Mb2FkU3Rvcnlib2FyZFJlcXVlc3QaNi5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuTG9hZFN0b3J5Ym9hcmRSZXNwb25zZRJ2CgtVcGRhdGVQYW5lbBIyLmdmdGQuZ2hvc3RoYWNrZXIuc3Rvcnlib2FyZC52MS5VcGRhdGVQYW5lbFJlcXVlc3QaMy5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuVXBkYXRlUGFuZWxSZXNwb25zZRJ/Cg5TYXZlU3Rvcnlib2FyZBI1LmdmdGQuZ2hvc3RoYWNrZXIuc3Rvcnlib2FyZC52MS5TYXZlU3Rvcnlib2FyZFJlcXVlc3QaNi5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuU2F2ZVN0b3J5Ym9hcmRSZXNwb25zZRJ2CgtHZXRFcGlzb2RlcxIyLmdmdGQuZ2hvc3RoYWNrZXIuc3Rvcnlib2FyZC52MS5HZXRFcGlzb2Rlc1JlcXVlc3QaMy5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuR2V0RXBpc29kZXNSZXNwb25zZRKFAQoQR2V0RXBpc29kZVBhbmVscxI3LmdmdGQuZ2hvc3RoYWNrZXIuc3Rvcnlib2FyZC52MS5HZXRFcGlzb2RlUGFuZWxzUmVxdWVzdBo4LmdmdGQuZ2hvc3RoYWNrZXIuc3Rvcnlib2FyZC52MS5HZXRFcGlzb2RlUGFuZWxzUmVzcG9uc2USfgoNU3RyZWFtVXBkYXRlcxI0LmdmdGQuZ2hvc3RoYWNrZXIuc3Rvcnlib2FyZC52MS5TdHJlYW1VcGRhdGVzUmVxdWVzdBo1LmdmdGQuZ2hvc3RoYWNrZXIuc3Rvcnlib2FyZC52MS5TdHJlYW1VcGRhdGVzUmVzcG9uc2UwARKLAQoSR2VuZXJhdGVQYW5lbEltYWdlEjkuZ2Z0ZC5naG9zdGhhY2tlci5zdG9yeWJvYXJkLnYxLkdlbmVyYXRlUGFuZWxJbWFnZVJlcXVlc3QaOi5nZnRkLmdob3N0aGFja2VyLnN0b3J5Ym9hcmQudjEuR2VuZXJhdGVQYW5lbEltYWdlUmVzcG9uc2VCLlosc3Rvcnlib2FyZC1lZGl0b3IvYmFja2VuZC9wcm90bztzdG9yeWJvYXJkcGJiBnByb3RvMw");
 
 /**
  * @generated from message gftd.ghosthacker.storyboard.v1.LoadStoryboardRequest
@@ -199,6 +199,20 @@ export type PanelData = Message<"gftd.ghosthacker.storyboard.v1.PanelData"> & {
    * @generated from field: string image_prompt = 11;
    */
   imagePrompt: string;
+
+  /**
+   * History of generated images
+   *
+   * @generated from field: repeated gftd.ghosthacker.storyboard.v1.GeneratedImage generated_images = 12;
+   */
+  generatedImages: GeneratedImage[];
+
+  /**
+   * Current image index in history
+   *
+   * @generated from field: int32 current_image_index = 13;
+   */
+  currentImageIndex: number;
 };
 
 /**
@@ -207,6 +221,46 @@ export type PanelData = Message<"gftd.ghosthacker.storyboard.v1.PanelData"> & {
  */
 export const PanelDataSchema: GenMessage<PanelData> = /*@__PURE__*/
   messageDesc(file_proto_storyboard, 4);
+
+/**
+ * @generated from message gftd.ghosthacker.storyboard.v1.GeneratedImage
+ */
+export type GeneratedImage = Message<"gftd.ghosthacker.storyboard.v1.GeneratedImage"> & {
+  /**
+   * Image URL or path
+   *
+   * @generated from field: string image_url = 1;
+   */
+  imageUrl: string;
+
+  /**
+   * Prompt used for generation
+   *
+   * @generated from field: string image_prompt = 2;
+   */
+  imagePrompt: string;
+
+  /**
+   * Unix timestamp
+   *
+   * @generated from field: int64 generated_at = 3;
+   */
+  generatedAt: bigint;
+
+  /**
+   * Model used for generation
+   *
+   * @generated from field: string model = 4;
+   */
+  model: string;
+};
+
+/**
+ * Describes the message gftd.ghosthacker.storyboard.v1.GeneratedImage.
+ * Use `create(GeneratedImageSchema)` to create a new message.
+ */
+export const GeneratedImageSchema: GenMessage<GeneratedImage> = /*@__PURE__*/
+  messageDesc(file_proto_storyboard, 5);
 
 /**
  * @generated from message gftd.ghosthacker.storyboard.v1.Dialogue
@@ -228,7 +282,7 @@ export type Dialogue = Message<"gftd.ghosthacker.storyboard.v1.Dialogue"> & {
  * Use `create(DialogueSchema)` to create a new message.
  */
 export const DialogueSchema: GenMessage<Dialogue> = /*@__PURE__*/
-  messageDesc(file_proto_storyboard, 5);
+  messageDesc(file_proto_storyboard, 6);
 
 /**
  * @generated from message gftd.ghosthacker.storyboard.v1.UpdatePanelResponse
@@ -250,7 +304,7 @@ export type UpdatePanelResponse = Message<"gftd.ghosthacker.storyboard.v1.Update
  * Use `create(UpdatePanelResponseSchema)` to create a new message.
  */
 export const UpdatePanelResponseSchema: GenMessage<UpdatePanelResponse> = /*@__PURE__*/
-  messageDesc(file_proto_storyboard, 6);
+  messageDesc(file_proto_storyboard, 7);
 
 /**
  * @generated from message gftd.ghosthacker.storyboard.v1.SaveStoryboardRequest
@@ -272,7 +326,7 @@ export type SaveStoryboardRequest = Message<"gftd.ghosthacker.storyboard.v1.Save
  * Use `create(SaveStoryboardRequestSchema)` to create a new message.
  */
 export const SaveStoryboardRequestSchema: GenMessage<SaveStoryboardRequest> = /*@__PURE__*/
-  messageDesc(file_proto_storyboard, 7);
+  messageDesc(file_proto_storyboard, 8);
 
 /**
  * @generated from message gftd.ghosthacker.storyboard.v1.SaveStoryboardResponse
@@ -294,7 +348,7 @@ export type SaveStoryboardResponse = Message<"gftd.ghosthacker.storyboard.v1.Sav
  * Use `create(SaveStoryboardResponseSchema)` to create a new message.
  */
 export const SaveStoryboardResponseSchema: GenMessage<SaveStoryboardResponse> = /*@__PURE__*/
-  messageDesc(file_proto_storyboard, 8);
+  messageDesc(file_proto_storyboard, 9);
 
 /**
  * @generated from message gftd.ghosthacker.storyboard.v1.GetEpisodesRequest
@@ -311,7 +365,7 @@ export type GetEpisodesRequest = Message<"gftd.ghosthacker.storyboard.v1.GetEpis
  * Use `create(GetEpisodesRequestSchema)` to create a new message.
  */
 export const GetEpisodesRequestSchema: GenMessage<GetEpisodesRequest> = /*@__PURE__*/
-  messageDesc(file_proto_storyboard, 9);
+  messageDesc(file_proto_storyboard, 10);
 
 /**
  * @generated from message gftd.ghosthacker.storyboard.v1.GetEpisodesResponse
@@ -328,7 +382,7 @@ export type GetEpisodesResponse = Message<"gftd.ghosthacker.storyboard.v1.GetEpi
  * Use `create(GetEpisodesResponseSchema)` to create a new message.
  */
 export const GetEpisodesResponseSchema: GenMessage<GetEpisodesResponse> = /*@__PURE__*/
-  messageDesc(file_proto_storyboard, 10);
+  messageDesc(file_proto_storyboard, 11);
 
 /**
  * @generated from message gftd.ghosthacker.storyboard.v1.Episode
@@ -355,7 +409,7 @@ export type Episode = Message<"gftd.ghosthacker.storyboard.v1.Episode"> & {
  * Use `create(EpisodeSchema)` to create a new message.
  */
 export const EpisodeSchema: GenMessage<Episode> = /*@__PURE__*/
-  messageDesc(file_proto_storyboard, 11);
+  messageDesc(file_proto_storyboard, 12);
 
 /**
  * @generated from message gftd.ghosthacker.storyboard.v1.GetEpisodePanelsRequest
@@ -384,7 +438,7 @@ export type GetEpisodePanelsRequest = Message<"gftd.ghosthacker.storyboard.v1.Ge
  * Use `create(GetEpisodePanelsRequestSchema)` to create a new message.
  */
 export const GetEpisodePanelsRequestSchema: GenMessage<GetEpisodePanelsRequest> = /*@__PURE__*/
-  messageDesc(file_proto_storyboard, 12);
+  messageDesc(file_proto_storyboard, 13);
 
 /**
  * @generated from message gftd.ghosthacker.storyboard.v1.GetEpisodePanelsResponse
@@ -401,7 +455,7 @@ export type GetEpisodePanelsResponse = Message<"gftd.ghosthacker.storyboard.v1.G
  * Use `create(GetEpisodePanelsResponseSchema)` to create a new message.
  */
 export const GetEpisodePanelsResponseSchema: GenMessage<GetEpisodePanelsResponse> = /*@__PURE__*/
-  messageDesc(file_proto_storyboard, 13);
+  messageDesc(file_proto_storyboard, 14);
 
 /**
  * @generated from message gftd.ghosthacker.storyboard.v1.Panel
@@ -433,7 +487,7 @@ export type Panel = Message<"gftd.ghosthacker.storyboard.v1.Panel"> & {
  * Use `create(PanelSchema)` to create a new message.
  */
 export const PanelSchema: GenMessage<Panel> = /*@__PURE__*/
-  messageDesc(file_proto_storyboard, 14);
+  messageDesc(file_proto_storyboard, 15);
 
 /**
  * @generated from message gftd.ghosthacker.storyboard.v1.StreamUpdatesRequest
@@ -455,7 +509,7 @@ export type StreamUpdatesRequest = Message<"gftd.ghosthacker.storyboard.v1.Strea
  * Use `create(StreamUpdatesRequestSchema)` to create a new message.
  */
 export const StreamUpdatesRequestSchema: GenMessage<StreamUpdatesRequest> = /*@__PURE__*/
-  messageDesc(file_proto_storyboard, 15);
+  messageDesc(file_proto_storyboard, 16);
 
 /**
  * @generated from message gftd.ghosthacker.storyboard.v1.StreamUpdatesResponse
@@ -496,7 +550,80 @@ export type StreamUpdatesResponse = Message<"gftd.ghosthacker.storyboard.v1.Stre
  * Use `create(StreamUpdatesResponseSchema)` to create a new message.
  */
 export const StreamUpdatesResponseSchema: GenMessage<StreamUpdatesResponse> = /*@__PURE__*/
-  messageDesc(file_proto_storyboard, 16);
+  messageDesc(file_proto_storyboard, 17);
+
+/**
+ * @generated from message gftd.ghosthacker.storyboard.v1.GeneratePanelImageRequest
+ */
+export type GeneratePanelImageRequest = Message<"gftd.ghosthacker.storyboard.v1.GeneratePanelImageRequest"> & {
+  /**
+   * @generated from field: string file_path = 1;
+   */
+  filePath: string;
+
+  /**
+   * @generated from field: string episode_id = 2;
+   */
+  episodeId: string;
+
+  /**
+   * @generated from field: int32 page_number = 3;
+   */
+  pageNumber: number;
+
+  /**
+   * @generated from field: int32 panel = 4;
+   */
+  panel: number;
+
+  /**
+   * Panel data for prompt generation
+   *
+   * @generated from field: gftd.ghosthacker.storyboard.v1.PanelData panel_data = 5;
+   */
+  panelData?: PanelData;
+};
+
+/**
+ * Describes the message gftd.ghosthacker.storyboard.v1.GeneratePanelImageRequest.
+ * Use `create(GeneratePanelImageRequestSchema)` to create a new message.
+ */
+export const GeneratePanelImageRequestSchema: GenMessage<GeneratePanelImageRequest> = /*@__PURE__*/
+  messageDesc(file_proto_storyboard, 18);
+
+/**
+ * @generated from message gftd.ghosthacker.storyboard.v1.GeneratePanelImageResponse
+ */
+export type GeneratePanelImageResponse = Message<"gftd.ghosthacker.storyboard.v1.GeneratePanelImageResponse"> & {
+  /**
+   * @generated from field: bool success = 1;
+   */
+  success: boolean;
+
+  /**
+   * @generated from field: string message = 2;
+   */
+  message: string;
+
+  /**
+   * @generated from field: gftd.ghosthacker.storyboard.v1.GeneratedImage generated_image = 3;
+   */
+  generatedImage?: GeneratedImage;
+
+  /**
+   * URL to access the saved image
+   *
+   * @generated from field: string image_url = 4;
+   */
+  imageUrl: string;
+};
+
+/**
+ * Describes the message gftd.ghosthacker.storyboard.v1.GeneratePanelImageResponse.
+ * Use `create(GeneratePanelImageResponseSchema)` to create a new message.
+ */
+export const GeneratePanelImageResponseSchema: GenMessage<GeneratePanelImageResponse> = /*@__PURE__*/
+  messageDesc(file_proto_storyboard, 19);
 
 /**
  * StoryboardService provides operations for editing and managing storyboard JSON-LD files
@@ -563,6 +690,16 @@ export const StoryboardService: GenService<{
     methodKind: "server_streaming";
     input: typeof StreamUpdatesRequestSchema;
     output: typeof StreamUpdatesResponseSchema;
+  },
+  /**
+   * Generate image for a panel using OpenRouter AI
+   *
+   * @generated from rpc gftd.ghosthacker.storyboard.v1.StoryboardService.GeneratePanelImage
+   */
+  generatePanelImage: {
+    methodKind: "unary";
+    input: typeof GeneratePanelImageRequestSchema;
+    output: typeof GeneratePanelImageResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_proto_storyboard, 0);

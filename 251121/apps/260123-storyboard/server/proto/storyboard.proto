@@ -23,6 +23,9 @@ service StoryboardService {
   
   // Stream updates for real-time collaboration (optional)
   rpc StreamUpdates(StreamUpdatesRequest) returns (stream StreamUpdatesResponse);
+  
+  // Generate image for a panel using OpenRouter AI
+  rpc GeneratePanelImage(GeneratePanelImageRequest) returns (GeneratePanelImageResponse);
 }
 
 message LoadStoryboardRequest {
@@ -60,6 +63,15 @@ message PanelData {
   string runway_prompt = 9; // Runway base prompt
   string generated_image_url = 10; // Generated image URL (base64 data URL or URL)
   string image_prompt = 11; // Prompt used for image generation
+  repeated GeneratedImage generated_images = 12; // History of generated images
+  int32 current_image_index = 13; // Current image index in history
+}
+
+message GeneratedImage {
+  string image_url = 1; // Image URL or path
+  string image_prompt = 2; // Prompt used for generation
+  int64 generated_at = 3; // Unix timestamp
+  string model = 4; // Model used for generation
 }
 
 message Dialogue {
@@ -124,4 +136,19 @@ message StreamUpdatesResponse {
   int32 page_number = 3;
   int32 panel = 4;
   string jsonld_patch = 5; // JSON Patch format
+}
+
+message GeneratePanelImageRequest {
+  string file_path = 1;
+  string episode_id = 2;
+  int32 page_number = 3;
+  int32 panel = 4;
+  PanelData panel_data = 5; // Panel data for prompt generation
+}
+
+message GeneratePanelImageResponse {
+  bool success = 1;
+  string message = 2;
+  GeneratedImage generated_image = 3;
+  string image_url = 4; // URL to access the saved image
 }
