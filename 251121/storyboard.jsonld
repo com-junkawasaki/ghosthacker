@@ -5247,7 +5247,14 @@
                 "gh:focus": "subject focus",
                 "gh:angle": "first-person POV"
               },
-              "gh:runwayPrompt": "POV Shot, first-person POV, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. POV AR overlay from (Ren:1.2): the framed rule bleeds ink into the air, forming a smiling paper mask that gently presses down on people's mouths, silencing them without violence. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "POV Shot, first-person POV, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. POV AR overlay from (Ren:1.2): the framed rule bleeds ink into the air, forming a smiling paper mask that gently presses down on people's mouths, silencing them without violence. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "Ren視点のAR。社長の“家族だから戻す”が、笑顔の紙仮面になって人の口を塞ぐ。反論が出る前に、優しく黙らされる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:GhostPresident", "character:President"],
+              "dialogue": [
+                { "speaker": "GhostPresident", "text": "（許し）" },
+                { "speaker": "GhostPresident", "text": "（家族）" }
+              ]
             },
             {
               "panel": 2,
@@ -5262,7 +5269,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot: the corridor under the framed rule. Paper approvals flutter; ink-stained dust motes drift; a remote support laptop on a side desk glows faintly, as if being watched. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot: the corridor under the framed rule. Paper approvals flutter; ink-stained dust motes drift; a remote support laptop on a side desk glows faintly, as if being watched. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "廊下の社訓フレーム下。承認書類が蛾のように舞う。優しさの言葉だけが残って、責任の輪郭が消える。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:President", "character:Shouta", "character:GhostPresident"],
+              "dialogue": [
+                { "speaker": "Shouta", "text": "…誰か止めてくれ。これ、また繰り返す。" }
+              ]
             },
             {
               "panel": 3,
@@ -5277,7 +5290,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot: a vendor remote session export file open on screen, a single suspicious IP highlighted; beside it, the SIP device status flips to ON. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot: a vendor remote session export file open on screen, a single suspicious IP highlighted; beside it, the SIP device status flips to ON. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "委託先のリモート操作ログ。怪しいIPが一つ。SIPがONになり、“善意の仮面”の縫い目が見える。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "ログ、出た。入口は外にもある。" }
+              ]
             }
           ]
         },
@@ -5297,7 +5316,13 @@
                 "gh:focus": "subject focus",
                 "gh:angle": "first-person POV"
               },
-              "gh:runwayPrompt": "POV Shot, first-person POV, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. POV AR overlay from (Nei:1.2): the smiling paper mask Ghost wraps the framed rule like a seal; thin ink threads extend toward a remote support laptop. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "POV Shot, first-person POV, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. POV AR overlay from (Nei:1.2): the smiling paper mask Ghost wraps the framed rule like a seal; thin ink threads extend toward a remote support laptop. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "Nei視点。笑顔の紙仮面（社長Ghost）が“承認印”みたいにフレームへ貼り付き、細いインク糸が委託先PCへ伸びる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Nei", "character:GhostPresident"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "これ、社長の善意が核だ。" }
+              ]
             },
             {
               "panel": 2,
@@ -5327,7 +5352,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot: SIP device status reads 'LOCK PHYSICAL LAYER' beside a vendor remote-support console export file; a clean ring icon pins the threat. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot: SIP device status reads 'LOCK PHYSICAL LAYER' beside a vendor remote-support console export file; a clean ring icon pins the threat. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "SIPが“固定”をかける。優しさだけを残して、糸（権限の穴）を見える化する。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "固定。逃がさない。" }
+              ]
             }
           ]
         },
@@ -5347,7 +5378,14 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot: the framed company rule in the corridor. Ink bleeds from the frame and forms a smiling paper mask that silences people gently; a vendor remote-support laptop glows faintly on a side desk. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot: the framed company rule in the corridor. Ink bleeds from the frame and forms a smiling paper mask that silences people gently; a vendor remote-support laptop glows faintly on a side desk. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "社長Ghost（紙仮面）が完全に姿を取る。暴力じゃない。優しさで、全員を黙らせる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:GhostPresident", "character:President", "character:Shouta"],
+              "dialogue": [
+                { "speaker": "President", "text": "……守りたいだけだ。" },
+                { "speaker": "GhostPresident", "text": "（許し）" }
+              ]
             },
             {
               "panel": 2,
@@ -5362,7 +5400,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Nei:1.2) raises her tablet and pins the mask with a clean light grid; beside the frame, a signed 'remote support re-enable conditions' sheet is posted like a seal. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Nei:1.2) raises her tablet and pins the mask with a clean light grid; beside the frame, a signed 'remote support re-enable conditions' sheet is posted like a seal. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Neiが仮面を光の格子で“固定”。その横に『復職条件』『委託先リモート再開条件』が貼られる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Nei", "character:GhostPresident"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "条件。例外。期限。" }
+              ]
             },
             {
               "panel": 3,
@@ -5398,7 +5442,13 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot: the smiling paper mask Ghost fractures as the 're-entry conditions' sheet is posted beside the framed rule; paper dust floats like petals in the air. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot: the smiling paper mask Ghost fractures as the 're-entry conditions' sheet is posted beside the framed rule; paper dust floats like petals in the air. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "“善意の仮面”がヒビ割れる。笑顔は残る。でも、責任の線が戻ってくる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:GhostPresident", "character:Ren", "character:Nei"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "許すなら、条件を添えろ。" }
+              ]
             },
             {
               "panel": 2,
@@ -5413,7 +5463,13 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) calmly tapes the signed emergency procedure beside the framed rule while (Nei:1.2) verifies checksums on a tablet; their movements are precise and quiet. shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) calmly tapes the signed emergency procedure beside the framed rule while (Nei:1.2) verifies checksums on a tablet; their movements are precise and quiet. shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Renが貼る。Neiが検証する。翔太が署名する。善意を“運用”に落とす。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:Nei", "character:Shouta"],
+              "dialogue": [
+                { "speaker": "Shouta", "text": "…俺が条件を書く。俺が責任を持つ。" }
+              ]
             },
             {
               "panel": 3,
@@ -6185,7 +6241,14 @@
                 "gh:focus": "subject focus",
                 "gh:angle": "first-person POV"
               },
-              "gh:runwayPrompt": "POV Shot, first-person POV, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. POV shot with subtle AR overlay: faint shadow patterns clinging to a workstation, hinting at a Ghost. 『許し』『絆』『家族』の文字が笑顔の仮面になって貼り付く。仮面の裏で責任が消えていく。 shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "POV Shot, first-person POV, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. POV shot with subtle AR overlay: faint shadow patterns clinging to a workstation, hinting at a Ghost. 『許し』『絆』『家族』の文字が笑顔の仮面になって貼り付く。仮面の裏で責任が消えていく。 shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "Ren視点のAR。笑顔の仮面の奥に、古い社判（ハンコ）の圧が見える。『先代のやり方』が“正しさ”として貼り付いて、責任だけが薄れる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:GhostPreviousPresident", "character:PreviousPresident"],
+              "dialogue": [
+                { "speaker": "GhostPreviousPresident", "text": "（家族）" },
+                { "speaker": "GhostPreviousPresident", "text": "（現場）" }
+              ]
             },
             {
               "panel": 2,
@@ -6200,7 +6263,14 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot as the environment subtly distorts—papers flutter, cables twitch, air shimmers. shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot as the environment subtly distorts—papers flutter, cables twitch, air shimmers. shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "紙が舞い、空気が揺れる。机の隅に“古い社訓フレーム”が影を落とし、その影がゆっくり伸びる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:GhostPreviousPresident", "character:President", "character:Shouta"],
+              "dialogue": [
+                { "speaker": "President", "text": "…親父の頃は、これで回ってた。" },
+                { "speaker": "Shouta", "text": "だから今、詰んでる。" }
+              ]
             },
             {
               "panel": 3,
@@ -6215,7 +6285,13 @@
                 "gh:focus": "sharp focus on object/screen",
                 "gh:angle": "over-shoulder or top-down insert"
               },
-              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a SIP device / analysis rig indicator switching from OFF to ON. shot on 50mm, f/2.0, cinematic live-action."
+              "gh:runwayPrompt": "Insert Shot, over-shoulder or top-down insert, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Insert shot of a SIP device / analysis rig indicator switching from OFF to ON. shot on 50mm, f/2.0, cinematic live-action.",
+              "visual": "SIPがON。先代Ghostの“社判の圧”を、輪郭ごと固定する準備。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Nei"],
+              "dialogue": [
+                { "speaker": "Nei", "text": "固定いける。逃げ道、塞ぐ。" }
+              ]
             }
           ]
         },
@@ -6285,7 +6361,14 @@
                 "gh:focus": "deep focus",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of the Ghost fully manifesting: 『許し』『絆』『家族』の文字が笑顔の仮面になって貼り付く。仮面の裏で責任が消えていく。 shot on 35mm, f/2.8, cinematic live-action."
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Wide shot of the Ghost fully manifesting: 『許し』『絆』『家族』の文字が笑顔の仮面になって貼り付く。仮面の裏で責任が消えていく。 shot on 35mm, f/2.8, cinematic live-action.",
+              "visual": "先代Ghostが完全に立ち上がる。紙仮面の笑顔の中心に社判の赤が滲み、フレーム化した社訓が鎧になる。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:GhostPreviousPresident", "character:President", "character:Ren"],
+              "dialogue": [
+                { "speaker": "GhostPreviousPresident", "text": "（絆）" },
+                { "speaker": "Ren", "text": "その絆、穴だらけ。" }
+              ]
             },
             {
               "panel": 2,
@@ -6300,7 +6383,14 @@
                 "gh:focus": "subject focus, soft background",
                 "gh:angle": "eye level"
               },
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) and (Nei:1.2) steps forward, coordinating silently in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. turning point: NeiがSIPで“善意の仮面”を固定。Renは断麻斧で“曖昧さの結び目”を切り、ロープで新しい境界を結ぶ。 shot on 50mm, f/1.8, cinematic live-action."
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) and (Nei:1.2) steps forward, coordinating silently in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. turning point: NeiがSIPで“善意の仮面”を固定。Renは断麻斧で“曖昧さの結び目”を切り、ロープで新しい境界を結ぶ。 shot on 50mm, f/1.8, cinematic live-action.",
+              "visual": "Neiが固定、Renが切る。先代の“慣習”を、境界線で分解していく。",
+              "environment": "env:kamata-daimon-office",
+              "characters": ["character:Ren", "character:Nei", "character:GhostPreviousPresident"],
+              "dialogue": [
+                { "speaker": "Ren", "text": "曖昧さ、切る。" },
+                { "speaker": "Nei", "text": "固定。今。" }
+              ]
             },
             {
               "panel": 3,
