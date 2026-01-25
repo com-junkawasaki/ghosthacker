@@ -26,6 +26,72 @@ service StoryboardService {
   
   // Generate image for a panel using OpenRouter AI
   rpc GeneratePanelImage(GeneratePanelImageRequest) returns (GeneratePanelImageResponse);
+
+  // Generate dialogue for a panel using OpenRouter (text)
+  rpc GenerateDialogue(GenerateDialogueRequest) returns (GenerateDialogueResponse);
+
+  // --- Multi-Agent Generation ---
+
+  // Generate high-level scenario/plot beats
+  rpc GenerateScenario(GenerateScenarioRequest) returns (GenerateScenarioResponse);
+
+  // Generate detailed episode scenes and dialogue
+  rpc GenerateEpisode(GenerateEpisodeRequest) returns (GenerateEpisodeResponse);
+
+  // Refine character emotional states and consistency
+  rpc RefineCharacters(RefineCharactersRequest) returns (RefineCharactersResponse);
+
+  // Generate cinematic sketches and visual prompts
+  rpc GenerateCinematicSketch(GenerateCinematicSketchRequest) returns (GenerateCinematicSketchResponse);
+}
+
+message GenerateScenarioRequest {
+  string file_path = 1;
+  string prompt = 2;
+  string context_jsonld = 3; // Optional additional context
+}
+
+message GenerateScenarioResponse {
+  bool success = 1;
+  string message = 2;
+  string workflow_id = 3;
+}
+
+message GenerateEpisodeRequest {
+  string file_path = 1;
+  string episode_id = 2;
+  string scenario_context = 3;
+}
+
+message GenerateEpisodeResponse {
+  bool success = 1;
+  string message = 2;
+  string workflow_id = 3;
+}
+
+message RefineCharactersRequest {
+  string file_path = 1;
+  string episode_id = 2;
+  repeated string character_ids = 3;
+}
+
+message RefineCharactersResponse {
+  bool success = 1;
+  string message = 2;
+  string workflow_id = 3;
+}
+
+message GenerateCinematicSketchRequest {
+  string file_path = 1;
+  string episode_id = 2;
+  int32 page_number = 3;
+  int32 panel = 4;
+}
+
+message GenerateCinematicSketchResponse {
+  bool success = 1;
+  string message = 2;
+  string workflow_id = 3;
 }
 
 message LoadStoryboardRequest {
@@ -107,6 +173,30 @@ message Dialogue {
   string speaker = 1;
   string text = 2;
   MangaText manga_layout = 3;
+  // --- Optional directing / acting metadata (stored as gh:* fields in JSON-LD) ---
+  string delivery = 4; // how to say it (actor direction)
+  string subtext = 5; // what they really mean
+  string emotion = 6; // coarse emotion label
+  int32 pause_before_ms = 7;
+  int32 pause_after_ms = 8;
+}
+
+message GenerateDialogueRequest {
+  string file_path = 1;
+  string episode_id = 2;
+  int32 page_number = 3;
+  int32 panel = 4;
+  PanelData panel_data = 5; // current panel data (seed)
+  int32 max_lines = 6; // optional hint (0 = auto)
+  string style = 7; // e.g. "cinematic drama, Japanese"
+  bool strict_known_facts = 8; // disallow new facts not in prior context
+}
+
+message GenerateDialogueResponse {
+  bool success = 1;
+  string message = 2;
+  repeated Dialogue dialogue = 3;
+  string model = 4;
 }
 
 message UpdatePanelResponse {

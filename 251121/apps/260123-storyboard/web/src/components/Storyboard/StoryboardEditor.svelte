@@ -3,6 +3,11 @@
 	import { getEpisodes, getEpisodePanels, storyboardClient, streamUpdates } from '$lib/client/storyboard-client';
 	import StoryboardPage from './StoryboardPage.svelte';
 	import MangaEditor from './MangaEditor.svelte';
+	import ScenarioAgent from './Agents/ScenarioAgent.svelte';
+	import EpisodeAgent from './Agents/EpisodeAgent.svelte';
+	import CharacterAgent from './Agents/CharacterAgent.svelte';
+	import CinematicAgent from './Agents/CinematicAgent.svelte';
+	import DialogueAgent from './Agents/DialogueAgent.svelte';
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
 
 	let episodes: Array<{ id: string; title: string; totalPages: number }> = $state([]);
@@ -11,6 +16,9 @@
 	let loading = $state(false);
 	let error = $state('');
 	let selectedPage = $state(1);
+	let selectedPanelIndex = $state(1);
+	let selectedPanelData = $state<PanelData | undefined>(undefined);
+	let activeAgent = $state<'scenario' | 'episode' | 'character' | 'cinematic' | 'dialogue'>('scenario');
 	
 	const sessionId = Math.random().toString(36).substring(2, 15);
 
@@ -219,6 +227,60 @@
 		<div class="loading">Loading...</div>
 	{:else if panels.length > 0}
 		<div class="editor-content">
+			<aside class="agent-sidebar">
+				<div class="agent-tabs">
+					<button 
+						class:active={activeAgent === 'scenario'} 
+						onclick={() => activeAgent = 'scenario'}
+					>Scenario</button>
+					<button 
+						class:active={activeAgent === 'episode'} 
+						onclick={() => activeAgent = 'episode'}
+					>Episode</button>
+					<button 
+						class:active={activeAgent === 'character'} 
+						onclick={() => activeAgent = 'character'}
+					>Character</button>
+					<button 
+						class:active={activeAgent === 'cinematic'} 
+						onclick={() => activeAgent = 'cinematic'}
+					>Cinematic</button>
+					<button 
+						class:active={activeAgent === 'dialogue'} 
+						onclick={() => activeAgent = 'dialogue'}
+					>Dialogue</button>
+				</div>
+				<div class="agent-panel-container">
+					{#if activeAgent === 'scenario'}
+						<ScenarioAgent {selectedEpisode} {storyboardPath} />
+					{:else if activeAgent === 'episode'}
+						<EpisodeAgent {selectedEpisode} {storyboardPath} />
+					{:else if activeAgent === 'character'}
+						<CharacterAgent {selectedEpisode} {storyboardPath} />
+					{:else if activeAgent === 'cinematic'}
+						<CinematicAgent 
+							{selectedEpisode} 
+							{storyboardPath} 
+							pageNumber={selectedPage} 
+							panelIndex={selectedPanelIndex} 
+						/>
+					{:else if activeAgent === 'dialogue'}
+						<DialogueAgent 
+							{selectedEpisode} 
+							{storyboardPath} 
+							pageNumber={selectedPage} 
+							panelIndex={selectedPanelIndex}
+							panelData={selectedPanelData}
+							on:generated={(e) => {
+								if (selectedPanelData) {
+									const newData = { ...selectedPanelData, dialogue: e.detail.dialogue };
+									handlePanelUpdate(selectedPage, selectedPanelIndex, newData);
+								}
+							}}
+						/>
+					{/if}
+				</div>
+			</aside>
 			<div class="storyboard-view">
 				<StoryboardPage
 					{panels}
@@ -229,6 +291,10 @@
 					on:pageChange={({ detail }) => {
 						console.log('[StoryboardEditor] pageChange event received:', detail);
 						selectedPage = detail;
+					}}
+					on:panelSelect={({ detail }) => {
+						selectedPanelIndex = detail.panel;
+						selectedPanelData = detail.data;
 					}}
 				/>
 			</div>
@@ -246,7 +312,7 @@
 	{:else if episodes.length === 0 && !loading}
 		<div class="empty-state">
 			<p>No episodes available. Check console for details.</p>
-			<button on:click={loadEpisodes}>Retry</button>
+			<button onclick={loadEpisodes}>Retry</button>
 		</div>
 	{/if}
 </div>
@@ -264,6 +330,44 @@
 		display: flex;
 		flex: 1;
 		overflow: hidden;
+	}
+
+	.agent-sidebar {
+		width: 300px;
+		background: #f9f9f9;
+		border-right: 1px solid #ddd;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.agent-tabs {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		background: #eee;
+		border-bottom: 1px solid #ddd;
+	}
+
+	.agent-tabs button {
+		padding: 0.5rem;
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: #666;
+		border-bottom: 2px solid transparent;
+	}
+
+	.agent-tabs button.active {
+		background: #fff;
+		color: #4a90e2;
+		border-bottom: 2px solid #4a90e2;
+	}
+
+	.agent-panel-container {
+		flex: 1;
+		overflow-y: auto;
+		padding: 0.5rem;
 	}
 
 	.storyboard-view {

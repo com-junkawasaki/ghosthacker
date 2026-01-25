@@ -4,13 +4,14 @@ go 1.25.0
 
 require (
 	connectrpc.com/connect v1.17.0
+	cuelang.org/go v0.15.3
+	github.com/rs/cors v1.11.1
 	go.temporal.io/sdk v1.28.1
 	golang.org/x/net v0.46.0
 	google.golang.org/protobuf v1.34.2
 )
 
 require (
-	cuelang.org/go v0.15.3 // indirect
 	github.com/cockroachdb/apd/v3 v3.2.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/emicklei/proto v1.14.2 // indirect
@@ -27,7 +28,6 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/protocolbuffers/txtpbfmt v0.0.0-20251016062345-16587c79cd91 // indirect
 	github.com/robfig/cron v1.2.0 // indirect
-	github.com/rs/cors v1.11.1 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/stretchr/testify v1.9.0 // indirect
 	go.temporal.io/api v1.37.0 // indirect

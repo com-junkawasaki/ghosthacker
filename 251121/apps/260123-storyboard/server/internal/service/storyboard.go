@@ -160,6 +160,21 @@ func (s *StoryboardService) UpdatePanel(
 								"speaker": d.Speaker,
 								"text":    d.Text,
 							}
+							if d.Delivery != "" {
+								dMap["gh:delivery"] = d.Delivery
+							}
+							if d.Subtext != "" {
+								dMap["gh:subtext"] = d.Subtext
+							}
+							if d.Emotion != "" {
+								dMap["gh:emotion"] = d.Emotion
+							}
+							if d.PauseBeforeMs > 0 {
+								dMap["gh:pauseBeforeMs"] = d.PauseBeforeMs
+							}
+							if d.PauseAfterMs > 0 {
+								dMap["gh:pauseAfterMs"] = d.PauseAfterMs
+							}
 							if d.MangaLayout != nil {
 								dMap["gh:mangaLayout"] = map[string]interface{}{
 									"text":     d.MangaLayout.Text,
@@ -531,6 +546,21 @@ func (s *StoryboardService) GetEpisodePanels(
 					dObj := &storyboardpb.Dialogue{
 						Speaker: speaker,
 						Text:    text,
+					}
+					if v, ok := dialogue["gh:delivery"].(string); ok {
+						dObj.Delivery = v
+					}
+					if v, ok := dialogue["gh:subtext"].(string); ok {
+						dObj.Subtext = v
+					}
+					if v, ok := dialogue["gh:emotion"].(string); ok {
+						dObj.Emotion = v
+					}
+					if v, ok := dialogue["gh:pauseBeforeMs"].(float64); ok {
+						dObj.PauseBeforeMs = int32(v)
+					}
+					if v, ok := dialogue["gh:pauseAfterMs"].(float64); ok {
+						dObj.PauseAfterMs = int32(v)
 					}
 					if ml, ok := dialogue["gh:mangaLayout"].(map[string]interface{}); ok {
 						mt := &storyboardpb.MangaText{}

@@ -54,18 +54,38 @@ const (
 	// StoryboardServiceGeneratePanelImageProcedure is the fully-qualified name of the
 	// StoryboardService's GeneratePanelImage RPC.
 	StoryboardServiceGeneratePanelImageProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/GeneratePanelImage"
+	// StoryboardServiceGenerateDialogueProcedure is the fully-qualified name of the StoryboardService's
+	// GenerateDialogue RPC.
+	StoryboardServiceGenerateDialogueProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/GenerateDialogue"
+	// StoryboardServiceGenerateScenarioProcedure is the fully-qualified name of the StoryboardService's
+	// GenerateScenario RPC.
+	StoryboardServiceGenerateScenarioProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/GenerateScenario"
+	// StoryboardServiceGenerateEpisodeProcedure is the fully-qualified name of the StoryboardService's
+	// GenerateEpisode RPC.
+	StoryboardServiceGenerateEpisodeProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/GenerateEpisode"
+	// StoryboardServiceRefineCharactersProcedure is the fully-qualified name of the StoryboardService's
+	// RefineCharacters RPC.
+	StoryboardServiceRefineCharactersProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/RefineCharacters"
+	// StoryboardServiceGenerateCinematicSketchProcedure is the fully-qualified name of the
+	// StoryboardService's GenerateCinematicSketch RPC.
+	StoryboardServiceGenerateCinematicSketchProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/GenerateCinematicSketch"
 )
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
 var (
-	storyboardServiceServiceDescriptor                  = proto.File_proto_storyboard_proto.Services().ByName("StoryboardService")
-	storyboardServiceLoadStoryboardMethodDescriptor     = storyboardServiceServiceDescriptor.Methods().ByName("LoadStoryboard")
-	storyboardServiceUpdatePanelMethodDescriptor        = storyboardServiceServiceDescriptor.Methods().ByName("UpdatePanel")
-	storyboardServiceSaveStoryboardMethodDescriptor     = storyboardServiceServiceDescriptor.Methods().ByName("SaveStoryboard")
-	storyboardServiceGetEpisodesMethodDescriptor        = storyboardServiceServiceDescriptor.Methods().ByName("GetEpisodes")
-	storyboardServiceGetEpisodePanelsMethodDescriptor   = storyboardServiceServiceDescriptor.Methods().ByName("GetEpisodePanels")
-	storyboardServiceStreamUpdatesMethodDescriptor      = storyboardServiceServiceDescriptor.Methods().ByName("StreamUpdates")
-	storyboardServiceGeneratePanelImageMethodDescriptor = storyboardServiceServiceDescriptor.Methods().ByName("GeneratePanelImage")
+	storyboardServiceServiceDescriptor                       = proto.File_proto_storyboard_proto.Services().ByName("StoryboardService")
+	storyboardServiceLoadStoryboardMethodDescriptor          = storyboardServiceServiceDescriptor.Methods().ByName("LoadStoryboard")
+	storyboardServiceUpdatePanelMethodDescriptor             = storyboardServiceServiceDescriptor.Methods().ByName("UpdatePanel")
+	storyboardServiceSaveStoryboardMethodDescriptor          = storyboardServiceServiceDescriptor.Methods().ByName("SaveStoryboard")
+	storyboardServiceGetEpisodesMethodDescriptor             = storyboardServiceServiceDescriptor.Methods().ByName("GetEpisodes")
+	storyboardServiceGetEpisodePanelsMethodDescriptor        = storyboardServiceServiceDescriptor.Methods().ByName("GetEpisodePanels")
+	storyboardServiceStreamUpdatesMethodDescriptor           = storyboardServiceServiceDescriptor.Methods().ByName("StreamUpdates")
+	storyboardServiceGeneratePanelImageMethodDescriptor      = storyboardServiceServiceDescriptor.Methods().ByName("GeneratePanelImage")
+	storyboardServiceGenerateDialogueMethodDescriptor        = storyboardServiceServiceDescriptor.Methods().ByName("GenerateDialogue")
+	storyboardServiceGenerateScenarioMethodDescriptor        = storyboardServiceServiceDescriptor.Methods().ByName("GenerateScenario")
+	storyboardServiceGenerateEpisodeMethodDescriptor         = storyboardServiceServiceDescriptor.Methods().ByName("GenerateEpisode")
+	storyboardServiceRefineCharactersMethodDescriptor        = storyboardServiceServiceDescriptor.Methods().ByName("RefineCharacters")
+	storyboardServiceGenerateCinematicSketchMethodDescriptor = storyboardServiceServiceDescriptor.Methods().ByName("GenerateCinematicSketch")
 )
 
 // StoryboardServiceClient is a client for the gftd.ghosthacker.storyboard.v1.StoryboardService
@@ -85,6 +105,16 @@ type StoryboardServiceClient interface {
 	StreamUpdates(context.Context, *connect.Request[proto.StreamUpdatesRequest]) (*connect.ServerStreamForClient[proto.StreamUpdatesResponse], error)
 	// Generate image for a panel using OpenRouter AI
 	GeneratePanelImage(context.Context, *connect.Request[proto.GeneratePanelImageRequest]) (*connect.Response[proto.GeneratePanelImageResponse], error)
+	// Generate dialogue for a panel using OpenRouter (text)
+	GenerateDialogue(context.Context, *connect.Request[proto.GenerateDialogueRequest]) (*connect.Response[proto.GenerateDialogueResponse], error)
+	// Generate high-level scenario/plot beats
+	GenerateScenario(context.Context, *connect.Request[proto.GenerateScenarioRequest]) (*connect.Response[proto.GenerateScenarioResponse], error)
+	// Generate detailed episode scenes and dialogue
+	GenerateEpisode(context.Context, *connect.Request[proto.GenerateEpisodeRequest]) (*connect.Response[proto.GenerateEpisodeResponse], error)
+	// Refine character emotional states and consistency
+	RefineCharacters(context.Context, *connect.Request[proto.RefineCharactersRequest]) (*connect.Response[proto.RefineCharactersResponse], error)
+	// Generate cinematic sketches and visual prompts
+	GenerateCinematicSketch(context.Context, *connect.Request[proto.GenerateCinematicSketchRequest]) (*connect.Response[proto.GenerateCinematicSketchResponse], error)
 }
 
 // NewStoryboardServiceClient constructs a client for the
@@ -140,18 +170,53 @@ func NewStoryboardServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			connect.WithSchema(storyboardServiceGeneratePanelImageMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
+		generateDialogue: connect.NewClient[proto.GenerateDialogueRequest, proto.GenerateDialogueResponse](
+			httpClient,
+			baseURL+StoryboardServiceGenerateDialogueProcedure,
+			connect.WithSchema(storyboardServiceGenerateDialogueMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
+		generateScenario: connect.NewClient[proto.GenerateScenarioRequest, proto.GenerateScenarioResponse](
+			httpClient,
+			baseURL+StoryboardServiceGenerateScenarioProcedure,
+			connect.WithSchema(storyboardServiceGenerateScenarioMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
+		generateEpisode: connect.NewClient[proto.GenerateEpisodeRequest, proto.GenerateEpisodeResponse](
+			httpClient,
+			baseURL+StoryboardServiceGenerateEpisodeProcedure,
+			connect.WithSchema(storyboardServiceGenerateEpisodeMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
+		refineCharacters: connect.NewClient[proto.RefineCharactersRequest, proto.RefineCharactersResponse](
+			httpClient,
+			baseURL+StoryboardServiceRefineCharactersProcedure,
+			connect.WithSchema(storyboardServiceRefineCharactersMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
+		generateCinematicSketch: connect.NewClient[proto.GenerateCinematicSketchRequest, proto.GenerateCinematicSketchResponse](
+			httpClient,
+			baseURL+StoryboardServiceGenerateCinematicSketchProcedure,
+			connect.WithSchema(storyboardServiceGenerateCinematicSketchMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // storyboardServiceClient implements StoryboardServiceClient.
 type storyboardServiceClient struct {
-	loadStoryboard     *connect.Client[proto.LoadStoryboardRequest, proto.LoadStoryboardResponse]
-	updatePanel        *connect.Client[proto.UpdatePanelRequest, proto.UpdatePanelResponse]
-	saveStoryboard     *connect.Client[proto.SaveStoryboardRequest, proto.SaveStoryboardResponse]
-	getEpisodes        *connect.Client[proto.GetEpisodesRequest, proto.GetEpisodesResponse]
-	getEpisodePanels   *connect.Client[proto.GetEpisodePanelsRequest, proto.GetEpisodePanelsResponse]
-	streamUpdates      *connect.Client[proto.StreamUpdatesRequest, proto.StreamUpdatesResponse]
-	generatePanelImage *connect.Client[proto.GeneratePanelImageRequest, proto.GeneratePanelImageResponse]
+	loadStoryboard          *connect.Client[proto.LoadStoryboardRequest, proto.LoadStoryboardResponse]
+	updatePanel             *connect.Client[proto.UpdatePanelRequest, proto.UpdatePanelResponse]
+	saveStoryboard          *connect.Client[proto.SaveStoryboardRequest, proto.SaveStoryboardResponse]
+	getEpisodes             *connect.Client[proto.GetEpisodesRequest, proto.GetEpisodesResponse]
+	getEpisodePanels        *connect.Client[proto.GetEpisodePanelsRequest, proto.GetEpisodePanelsResponse]
+	streamUpdates           *connect.Client[proto.StreamUpdatesRequest, proto.StreamUpdatesResponse]
+	generatePanelImage      *connect.Client[proto.GeneratePanelImageRequest, proto.GeneratePanelImageResponse]
+	generateDialogue        *connect.Client[proto.GenerateDialogueRequest, proto.GenerateDialogueResponse]
+	generateScenario        *connect.Client[proto.GenerateScenarioRequest, proto.GenerateScenarioResponse]
+	generateEpisode         *connect.Client[proto.GenerateEpisodeRequest, proto.GenerateEpisodeResponse]
+	refineCharacters        *connect.Client[proto.RefineCharactersRequest, proto.RefineCharactersResponse]
+	generateCinematicSketch *connect.Client[proto.GenerateCinematicSketchRequest, proto.GenerateCinematicSketchResponse]
 }
 
 // LoadStoryboard calls gftd.ghosthacker.storyboard.v1.StoryboardService.LoadStoryboard.
@@ -189,6 +254,32 @@ func (c *storyboardServiceClient) GeneratePanelImage(ctx context.Context, req *c
 	return c.generatePanelImage.CallUnary(ctx, req)
 }
 
+// GenerateDialogue calls gftd.ghosthacker.storyboard.v1.StoryboardService.GenerateDialogue.
+func (c *storyboardServiceClient) GenerateDialogue(ctx context.Context, req *connect.Request[proto.GenerateDialogueRequest]) (*connect.Response[proto.GenerateDialogueResponse], error) {
+	return c.generateDialogue.CallUnary(ctx, req)
+}
+
+// GenerateScenario calls gftd.ghosthacker.storyboard.v1.StoryboardService.GenerateScenario.
+func (c *storyboardServiceClient) GenerateScenario(ctx context.Context, req *connect.Request[proto.GenerateScenarioRequest]) (*connect.Response[proto.GenerateScenarioResponse], error) {
+	return c.generateScenario.CallUnary(ctx, req)
+}
+
+// GenerateEpisode calls gftd.ghosthacker.storyboard.v1.StoryboardService.GenerateEpisode.
+func (c *storyboardServiceClient) GenerateEpisode(ctx context.Context, req *connect.Request[proto.GenerateEpisodeRequest]) (*connect.Response[proto.GenerateEpisodeResponse], error) {
+	return c.generateEpisode.CallUnary(ctx, req)
+}
+
+// RefineCharacters calls gftd.ghosthacker.storyboard.v1.StoryboardService.RefineCharacters.
+func (c *storyboardServiceClient) RefineCharacters(ctx context.Context, req *connect.Request[proto.RefineCharactersRequest]) (*connect.Response[proto.RefineCharactersResponse], error) {
+	return c.refineCharacters.CallUnary(ctx, req)
+}
+
+// GenerateCinematicSketch calls
+// gftd.ghosthacker.storyboard.v1.StoryboardService.GenerateCinematicSketch.
+func (c *storyboardServiceClient) GenerateCinematicSketch(ctx context.Context, req *connect.Request[proto.GenerateCinematicSketchRequest]) (*connect.Response[proto.GenerateCinematicSketchResponse], error) {
+	return c.generateCinematicSketch.CallUnary(ctx, req)
+}
+
 // StoryboardServiceHandler is an implementation of the
 // gftd.ghosthacker.storyboard.v1.StoryboardService service.
 type StoryboardServiceHandler interface {
@@ -206,6 +297,16 @@ type StoryboardServiceHandler interface {
 	StreamUpdates(context.Context, *connect.Request[proto.StreamUpdatesRequest], *connect.ServerStream[proto.StreamUpdatesResponse]) error
 	// Generate image for a panel using OpenRouter AI
 	GeneratePanelImage(context.Context, *connect.Request[proto.GeneratePanelImageRequest]) (*connect.Response[proto.GeneratePanelImageResponse], error)
+	// Generate dialogue for a panel using OpenRouter (text)
+	GenerateDialogue(context.Context, *connect.Request[proto.GenerateDialogueRequest]) (*connect.Response[proto.GenerateDialogueResponse], error)
+	// Generate high-level scenario/plot beats
+	GenerateScenario(context.Context, *connect.Request[proto.GenerateScenarioRequest]) (*connect.Response[proto.GenerateScenarioResponse], error)
+	// Generate detailed episode scenes and dialogue
+	GenerateEpisode(context.Context, *connect.Request[proto.GenerateEpisodeRequest]) (*connect.Response[proto.GenerateEpisodeResponse], error)
+	// Refine character emotional states and consistency
+	RefineCharacters(context.Context, *connect.Request[proto.RefineCharactersRequest]) (*connect.Response[proto.RefineCharactersResponse], error)
+	// Generate cinematic sketches and visual prompts
+	GenerateCinematicSketch(context.Context, *connect.Request[proto.GenerateCinematicSketchRequest]) (*connect.Response[proto.GenerateCinematicSketchResponse], error)
 }
 
 // NewStoryboardServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -256,6 +357,36 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 		connect.WithSchema(storyboardServiceGeneratePanelImageMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
+	storyboardServiceGenerateDialogueHandler := connect.NewUnaryHandler(
+		StoryboardServiceGenerateDialogueProcedure,
+		svc.GenerateDialogue,
+		connect.WithSchema(storyboardServiceGenerateDialogueMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGenerateScenarioHandler := connect.NewUnaryHandler(
+		StoryboardServiceGenerateScenarioProcedure,
+		svc.GenerateScenario,
+		connect.WithSchema(storyboardServiceGenerateScenarioMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGenerateEpisodeHandler := connect.NewUnaryHandler(
+		StoryboardServiceGenerateEpisodeProcedure,
+		svc.GenerateEpisode,
+		connect.WithSchema(storyboardServiceGenerateEpisodeMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceRefineCharactersHandler := connect.NewUnaryHandler(
+		StoryboardServiceRefineCharactersProcedure,
+		svc.RefineCharacters,
+		connect.WithSchema(storyboardServiceRefineCharactersMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGenerateCinematicSketchHandler := connect.NewUnaryHandler(
+		StoryboardServiceGenerateCinematicSketchProcedure,
+		svc.GenerateCinematicSketch,
+		connect.WithSchema(storyboardServiceGenerateCinematicSketchMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/gftd.ghosthacker.storyboard.v1.StoryboardService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case StoryboardServiceLoadStoryboardProcedure:
@@ -272,6 +403,16 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 			storyboardServiceStreamUpdatesHandler.ServeHTTP(w, r)
 		case StoryboardServiceGeneratePanelImageProcedure:
 			storyboardServiceGeneratePanelImageHandler.ServeHTTP(w, r)
+		case StoryboardServiceGenerateDialogueProcedure:
+			storyboardServiceGenerateDialogueHandler.ServeHTTP(w, r)
+		case StoryboardServiceGenerateScenarioProcedure:
+			storyboardServiceGenerateScenarioHandler.ServeHTTP(w, r)
+		case StoryboardServiceGenerateEpisodeProcedure:
+			storyboardServiceGenerateEpisodeHandler.ServeHTTP(w, r)
+		case StoryboardServiceRefineCharactersProcedure:
+			storyboardServiceRefineCharactersHandler.ServeHTTP(w, r)
+		case StoryboardServiceGenerateCinematicSketchProcedure:
+			storyboardServiceGenerateCinematicSketchHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -307,4 +448,24 @@ func (UnimplementedStoryboardServiceHandler) StreamUpdates(context.Context, *con
 
 func (UnimplementedStoryboardServiceHandler) GeneratePanelImage(context.Context, *connect.Request[proto.GeneratePanelImageRequest]) (*connect.Response[proto.GeneratePanelImageResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.GeneratePanelImage is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GenerateDialogue(context.Context, *connect.Request[proto.GenerateDialogueRequest]) (*connect.Response[proto.GenerateDialogueResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.GenerateDialogue is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GenerateScenario(context.Context, *connect.Request[proto.GenerateScenarioRequest]) (*connect.Response[proto.GenerateScenarioResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.GenerateScenario is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GenerateEpisode(context.Context, *connect.Request[proto.GenerateEpisodeRequest]) (*connect.Response[proto.GenerateEpisodeResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.GenerateEpisode is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) RefineCharacters(context.Context, *connect.Request[proto.RefineCharactersRequest]) (*connect.Response[proto.RefineCharactersResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.RefineCharacters is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GenerateCinematicSketch(context.Context, *connect.Request[proto.GenerateCinematicSketchRequest]) (*connect.Response[proto.GenerateCinematicSketchResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.GenerateCinematicSketch is not implemented"))
 }

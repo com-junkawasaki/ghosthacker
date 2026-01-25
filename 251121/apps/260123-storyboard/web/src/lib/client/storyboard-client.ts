@@ -114,6 +114,43 @@ export async function generatePanelImage(
 }
 
 /**
+ * Generate dialogue for a panel using backend (OpenRouter text)
+ */
+export async function generatePanelDialogue(
+	filePath: string,
+	episodeId: string,
+	pageNumber: number,
+	panel: number,
+	panelData: any,
+	options?: {
+		maxLines?: number;
+		style?: string;
+		strictKnownFacts?: boolean;
+	}
+) {
+	const response = await storyboardClient.generateDialogue({
+		filePath,
+		episodeId,
+		pageNumber,
+		panel,
+		panelData,
+		maxLines: options?.maxLines ?? 0,
+		style: options?.style ?? '',
+		strictKnownFacts: options?.strictKnownFacts ?? true,
+	});
+
+	if (!response || typeof response !== 'object') {
+		throw new Error('Invalid response: response is not an object');
+	}
+
+	if (!response.success) {
+		throw new Error(response.message || 'Failed to generate dialogue');
+	}
+
+	return response;
+}
+
+/**
  * Subscribe to real-time updates from the server
  */
 export function streamUpdates(

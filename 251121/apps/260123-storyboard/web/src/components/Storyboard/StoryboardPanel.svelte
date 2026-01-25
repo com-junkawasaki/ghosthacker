@@ -3,7 +3,7 @@
 	import type { Panel, Dialogue, GeneratedImage } from '$lib/gen/proto/storyboard_pb';
 	import { PanelDataSchema, DialogueSchema, GeneratedImageSchema } from '$lib/gen/proto/storyboard_pb';
 	import { create } from '@bufbuild/protobuf';
-	import { generatePanelImage } from '$lib/client/storyboard-client';
+	import { generatePanelDialogue, generatePanelImage } from '$lib/client/storyboard-client';
 
 	export let panel: Panel;
 	export let episodeId: string = '';
@@ -25,6 +25,8 @@
 	let currentImageIndex = panel.data?.currentImageIndex ?? (generatedImages.length > 0 ? generatedImages.length - 1 : -1);
 	let generatingImage = false;
 	let imageError = '';
+	let generatingDialogue = false;
+	let dialogueError = '';
 
 	// Computed: current image URL (convert relative path to full URL)
 	$: currentImageUrl = currentImageIndex >= 0 && currentImageIndex < generatedImages.length 
@@ -126,6 +128,59 @@
 		generatedImages = panel.data?.generatedImages ?? [];
 		currentImageIndex = panel.data?.currentImageIndex ?? (generatedImages.length > 0 ? generatedImages.length - 1 : -1);
 		imageError = '';
+		dialogueError = '';
+	}
+
+	async function handleGenerateDialogue() {
+		if (generatingDialogue || !episodeId) return;
+
+		generatingDialogue = true;
+		dialogueError = '';
+
+		try {
+			const panelData = create(PanelDataSchema, {
+				characters: characters,
+				dialogue: dialogues,
+				environment: environment,
+				visualNote: visualNote,
+				cameraDirection: cameraDirection,
+				durationSeconds: durationSeconds,
+				cutNumber: cutNumber,
+				shot: shot,
+				runwayPrompt: runwayPrompt,
+			});
+
+			const result = await generatePanelDialogue(storyboardPath, episodeId, panel.pageNumber, panel.panel, panelData, {
+				// "dialogue に対して生成" を優先、短いドラマ調
+				maxLines: dialogues.length > 0 ? dialogues.length : 0,
+				style: 'cinematic drama, Japanese, short lines, actor-friendly delivery',
+				strictKnownFacts: true,
+			});
+
+			if (result.success && result.dialogue) {
+				// Replace dialogue lines with generated ones (keep schema)
+				dialogues = result.dialogue.map((d) =>
+					create(DialogueSchema, {
+						speaker: d.speaker ?? '',
+						text: d.text ?? '',
+						delivery: d.delivery ?? '',
+						subtext: d.subtext ?? '',
+						emotion: d.emotion ?? '',
+						pauseBeforeMs: d.pauseBeforeMs ?? 0,
+						pauseAfterMs: d.pauseAfterMs ?? 0,
+					})
+				);
+				// Auto-save after generation
+				saveEdit();
+			} else {
+				dialogueError = result.message || 'Failed to generate dialogue';
+			}
+		} catch (err) {
+			dialogueError = err instanceof Error ? err.message : 'Unknown error';
+			console.error('[StoryboardPanel] Error generating dialogue:', err);
+		} finally {
+			generatingDialogue = false;
+		}
 	}
 
 	async function handleGenerateImage() {
@@ -356,6 +411,19 @@
 				</div>
 				<div class="dialogue-section">
 					<label>Dialogue:</label>
+					<div class="dialogue-generation-controls">
+						<button
+							type="button"
+							on:click={handleGenerateDialogue}
+							disabled={generatingDialogue}
+							class="generate-dialogue-btn"
+						>
+							{generatingDialogue ? 'Generating...' : 'Generate Dialogue'}
+						</button>
+						{#if dialogueError}
+							<div class="dialogue-error">{dialogueError}</div>
+						{/if}
+					</div>
 					{#each dialogues as dialogue, index}
 						<div class="dialogue-item">
 							<input
@@ -823,5 +891,42 @@
 		border-radius: 4px;
 		font-size: 1rem;
 		text-align: center;
+	}
+
+	.dialogue-generation-controls {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.generate-dialogue-btn {
+		width: 100%;
+		padding: 0.5rem;
+		background: #1976d2;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 0.85rem;
+		font-weight: 600;
+	}
+
+	.generate-dialogue-btn:hover:not(:disabled) {
+		background: #1565c0;
+	}
+
+	.generate-dialogue-btn:disabled {
+		background: #ccc;
+		cursor: not-allowed;
+	}
+
+	.dialogue-error {
+		padding: 0.5rem;
+		background: #fee;
+		color: #c00;
+		border: 1px solid #fcc;
+		border-radius: 4px;
+		font-size: 0.75rem;
 	}
 </style>

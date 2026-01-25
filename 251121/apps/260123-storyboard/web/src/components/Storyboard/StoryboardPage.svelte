@@ -83,12 +83,20 @@
 				
 				<div class="panels-container">
 					{#each pagesMap[pageNum] as panel (panel.panel)}
-						<StoryboardPanel
-							{panel}
-							episodeId={episodeId}
-							storyboardPath={storyboardPath}
-							on:update={(e) => handlePanelUpdate(panel.pageNumber, panel.panel, e.detail)}
-						/>
+						<div 
+							class="panel-wrapper" 
+							onclick={() => dispatch('panelSelect', panel)}
+							onkeydown={(e) => e.key === 'Enter' && dispatch('panelSelect', panel)}
+							role="button"
+							tabindex="0"
+						>
+							<StoryboardPanel
+								{panel}
+								episodeId={episodeId}
+								storyboardPath={storyboardPath}
+								on:update={(e) => handlePanelUpdate(panel.pageNumber, panel.panel, e.detail)}
+							/>
+						</div>
 					{/each}
 				</div>
 
@@ -180,6 +188,20 @@
 	.panels-container {
 		display: flex;
 		flex-direction: column;
+	}
+
+	.panel-wrapper {
+		cursor: pointer;
+		transition: background 0.2s;
+	}
+
+	.panel-wrapper:hover {
+		background: #f0f7ff;
+	}
+
+	.panel-wrapper:focus {
+		outline: 2px solid #4a90e2;
+		outline-offset: -2px;
 	}
 
 	/* Ensure grid header stays at top on scroll */

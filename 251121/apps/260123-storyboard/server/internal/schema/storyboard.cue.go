@@ -34,6 +34,12 @@ const StoryboardSchema = `
 #Dialogue: {
 	speaker: string
 	text:    string
+	"gh:delivery"?: string
+	"gh:subtext"?: string
+	"gh:emotion"?: string
+	"gh:pauseBeforeMs"?: int
+	"gh:pauseAfterMs"?: int
+	...
 }
 
 #ShotProperties: {
@@ -60,11 +66,24 @@ const StoryboardSchema = `
 	"gh:durationSeconds"?: float
 	"gh:cutNumber"?: string
 	"gh:cameraDirection"?: string
+	"generatedImageUrl"?: string
+	"gh:generatedImageUrl"?: string
+	"gh:imagePrompt"?: string
+	"gh:generatedImages"?: [...{
+		"gh:imageUrl": string
+		"gh:imagePrompt": string
+		"gh:generatedAt": number
+		"gh:model": string
+		...
+	}]
+	"gh:currentImageIndex"?: int
+	...
 }
 
 #Page: {
 	"gh:pageNumber": int
 	"gh:panels": [...#Panel]
+	...
 }
 
 #Episode: {
@@ -82,6 +101,7 @@ const StoryboardSchema = `
 	"gh:nistFocus": [...string]
 	"gh:incidentDescription": string
 	"gh:pages": [...#Page]
+	...
 }
 
 #Storyboard: {
@@ -93,23 +113,29 @@ const StoryboardSchema = `
 	"gh:globalStyle": string
 	"gh:runwayConstraints": string
 	"prov:wasDerivedFrom": [...{ "@id": string }]
+	"gh:directingGuide"?: _
 	"gh:meta": {
 		"gh:oneLiner": string
 		"gh:hook": string
 		"gh:audience": string
 		"gh:tags": [...string]
+		...
 	}
 	"gh:environments": [...{
 		"@id": string
 		"dct:title": string
 		"dct:description": string
+		...
 	}]
 	"gh:characters": [...{
 		"@id": string
 		"schema:name": string
 		"dct:description": string
+		"gh:voice"?: _
+		...
 	}]
 	"gh:episodes": [...#Episode]
+	...
 }
 
 root: #Storyboard
