@@ -24,6 +24,8 @@ import (
 	goimage "image"
 	"image/jpeg"
 	"image/png"
+	// Import for side effects - registers decoders
+	_ "golang.org/x/image/webp"
 
 	"github.com/johnfercher/maroto/v2"
 	"github.com/johnfercher/maroto/v2/pkg/components/col"
@@ -1425,27 +1427,80 @@ func (s *StoryboardService) ExportPdf(
 	// Render each manga page
 	for _, pageNum := range pageNums {
 		pagePanels := groups[pageNum]
+		panelCount := len(pagePanels)
 		
-		// Add page break and header
-		m.AddRows(row.New(8).Add(col.New(12).Add(text.New(fmt.Sprintf("Page %d", pageNum), props.Text{Style: fontstyle.Bold, Size: 12}))))
+		// Add page header
+		m.AddRows(row.New(6).Add(col.New(12).Add(text.New(fmt.Sprintf("Page %d", pageNum), props.Text{Style: fontstyle.Bold, Size: 10, Align: align.Center}))))
 
-		// Render panels with images
-		for i := 0; i < len(pagePanels); i += 2 {
-			// Row with two panels side by side
-			r := row.New(80)
-			
-			// Panel 1
-			p1 := pagePanels[i]
-			r.Add(s.buildPanelColWithImage(p1, workspaceRoot))
-
-			// Panel 2 (if exists)
-			if i+1 < len(pagePanels) {
-				p2 := pagePanels[i+1]
-				r.Add(s.buildPanelColWithImage(p2, workspaceRoot))
-			} else {
-				r.Add(col.New(6))
-			}
+		// Render panels based on count - mimicking manga layout patterns
+		switch {
+		case panelCount == 1:
+			// Single full-width panel
+			r := row.New(200)
+			r.Add(s.buildPanelColWithImage(pagePanels[0], workspaceRoot))
 			m.AddRows(r)
+			
+		case panelCount == 2:
+			// Two panels stacked vertically
+			for _, p := range pagePanels {
+				r := row.New(95)
+				r.Add(s.buildPanelColFull(p, workspaceRoot))
+				m.AddRows(r)
+			}
+			
+		case panelCount == 3:
+			// Top panel full width, bottom two side by side
+			r1 := row.New(90)
+			r1.Add(s.buildPanelColFull(pagePanels[0], workspaceRoot))
+			m.AddRows(r1)
+			
+			r2 := row.New(90)
+			r2.Add(s.buildPanelColWithImage(pagePanels[1], workspaceRoot))
+			r2.Add(s.buildPanelColWithImage(pagePanels[2], workspaceRoot))
+			m.AddRows(r2)
+			
+		case panelCount == 4:
+			// 2x2 grid
+			for i := 0; i < 4; i += 2 {
+				r := row.New(95)
+				r.Add(s.buildPanelColWithImage(pagePanels[i], workspaceRoot))
+				if i+1 < panelCount {
+					r.Add(s.buildPanelColWithImage(pagePanels[i+1], workspaceRoot))
+				}
+				m.AddRows(r)
+			}
+			
+		case panelCount >= 5 && panelCount <= 6:
+			// First panel large, rest in 2-column grid
+			r1 := row.New(70)
+			r1.Add(s.buildPanelColFull(pagePanels[0], workspaceRoot))
+			m.AddRows(r1)
+			
+			for i := 1; i < panelCount; i += 2 {
+				r := row.New(55)
+				r.Add(s.buildPanelColWithImage(pagePanels[i], workspaceRoot))
+				if i+1 < panelCount {
+					r.Add(s.buildPanelColWithImage(pagePanels[i+1], workspaceRoot))
+				} else {
+					r.Add(col.New(6))
+				}
+				m.AddRows(r)
+			}
+			
+		default:
+			// Many panels - 3-column grid
+			for i := 0; i < panelCount; i += 3 {
+				r := row.New(60)
+				for j := 0; j < 3 && i+j < panelCount; j++ {
+					r.Add(s.buildPanelColThird(pagePanels[i+j], workspaceRoot))
+				}
+				// Fill remaining columns
+				remaining := 3 - min(3, panelCount-i)
+				for k := 0; k < remaining; k++ {
+					r.Add(col.New(4))
+				}
+				m.AddRows(r)
+			}
 		}
 	}
 
@@ -1465,9 +1520,24 @@ func (s *StoryboardService) ExportPdf(
 	}), nil
 }
 
-// buildPanelColWithImage creates a column with panel image and text overlay
+// buildPanelColFull creates a full-width column (12 grid units) with panel image
+func (s *StoryboardService) buildPanelColFull(p *storyboardpb.Panel, workspaceRoot string) core.Col {
+	return s.buildPanelColSize(p, workspaceRoot, 12, 600, 400)
+}
+
+// buildPanelColThird creates a 1/3 width column (4 grid units) with panel image
+func (s *StoryboardService) buildPanelColThird(p *storyboardpb.Panel, workspaceRoot string) core.Col {
+	return s.buildPanelColSize(p, workspaceRoot, 4, 300, 200)
+}
+
+// buildPanelColWithImage creates a half-width column (6 grid units) with panel image
 func (s *StoryboardService) buildPanelColWithImage(p *storyboardpb.Panel, workspaceRoot string) core.Col {
-	c := col.New(6)
+	return s.buildPanelColSize(p, workspaceRoot, 6, 400, 300)
+}
+
+// buildPanelColSize creates a column with specified size and panel image
+func (s *StoryboardService) buildPanelColSize(p *storyboardpb.Panel, workspaceRoot string, gridSize, maxWidth, maxHeight int) core.Col {
+	c := col.New(gridSize)
 	
 	// Try to add image if available
 	imageAdded := false
@@ -1487,7 +1557,7 @@ func (s *StoryboardService) buildPanelColWithImage(p *storyboardpb.Panel, worksp
 			imgPath := filepath.Join(workspaceRoot, "260123-jump", "resources", cleanURL)
 			
 			// Read and resize image for PDF
-			resizedData, err := resizeImageForPDF(imgPath, 400, 300)
+			resizedData, err := resizeImageForPDF(imgPath, maxWidth, maxHeight)
 			if err == nil {
 				c.Add(image.NewFromBytes(resizedData, extension.Jpg, props.Rect{
 					Center:  true,
@@ -1576,23 +1646,34 @@ func (s *StoryboardService) buildPanelCol(p *storyboardpb.Panel) core.Col {
 
 // resizeImageForPDF reads an image file, resizes it to fit within maxWidth x maxHeight, and returns JPEG bytes
 func resizeImageForPDF(imgPath string, maxWidth, maxHeight int) ([]byte, error) {
-	// Open the image file
-	file, err := os.Open(imgPath)
+	// Read the entire file to detect format
+	data, err := os.ReadFile(imgPath)
 	if err != nil {
-		return nil, fmt.Errorf("failed to open image: %w", err)
+		return nil, fmt.Errorf("failed to read image: %w", err)
 	}
-	defer file.Close()
 
-	// Decode the image
-	var img goimage.Image
-	if strings.HasSuffix(strings.ToLower(imgPath), ".png") {
-		img, err = png.Decode(file)
-	} else {
-		img, err = jpeg.Decode(file)
-	}
+	// Detect actual image format using magic bytes
+	reader := bytes.NewReader(data)
+	
+	// Try to decode using Go's generic image decoder which auto-detects format
+	img, format, err := goimage.Decode(reader)
 	if err != nil {
-		return nil, fmt.Errorf("failed to decode image: %w", err)
+		// If generic decode fails, try specific decoders
+		reader.Seek(0, 0)
+		img, err = png.Decode(reader)
+		if err != nil {
+			reader.Seek(0, 0)
+			img, err = jpeg.Decode(reader)
+			if err != nil {
+				return nil, fmt.Errorf("failed to decode image (tried png, jpeg): %w", err)
+			}
+			format = "jpeg"
+		} else {
+			format = "png"
+		}
 	}
+	
+	log.Printf("Image %s decoded as %s format", filepath.Base(imgPath), format)
 
 	// Calculate new dimensions while maintaining aspect ratio
 	bounds := img.Bounds()

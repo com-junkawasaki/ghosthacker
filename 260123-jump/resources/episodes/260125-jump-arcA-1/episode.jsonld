@@ -7,31 +7,21 @@
     "dialogue": "gh:dialogue",
     "env": "gh:environment/",
     "environment": "gh:environment",
-    "environments": "gh:environments",
-    "episodeId": "gh:episodeId",
-    "episodeIndex": "gh:episodeIndex",
     "gh": "https://ghosthacker.gftd.ai/ns/",
     "panel": "gh:panelIndex",
-    "prompt": "gh:runwayPrompt",
-    "properties": "gh:shotProperties",
-    "prov": "http://www.w3.org/ns/prov#",
-    "purpose": "gh:narrativePurpose",
     "schema": "http://schema.org/",
     "shot": "gh:shotType",
     "speaker": "gh:speaker",
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "dct:title": "Arc A-1: 「あんた、怠惰だな」",
+  "dct:title": "Arc A-1: 「俺の居場所を奪うな」",
   "gh:arc": "Arc A",
-  "gh:credentials": ["CISSP", "CEH"],
   "gh:episode": 2,
   "gh:episodeId": "episode:260125-jump-arcA-1",
   "gh:episodeIndex": 2,
-  "gh:incidentDescription": "建設会社・大門建設が突然のシステム全停止。内部犯行か外部攻撃か。Renは現場に乗り込み、『怠惰』の正体を暴く。",
   "gh:industry": "Construction (建設)",
   "gh:mainCharacter": "character:Ren",
-  "gh:nistFocus": ["PR.IP (Backup Protection)", "GV.PO (Vulnerability Policy)"],
   "gh:pages": [
     {
       "gh:pageNumber": 1,
@@ -39,45 +29,23 @@
         {
           "characters": [],
           "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "東京・蒲田。古くから町工場と中小企業が軒を連ねる、下町の一角。"
-            }
+            {"speaker": "Narration", "text": "東京・蒲田。下町の中小企業が軒を連ねる街。"}
           ],
           "environment": "env:kamata-morning",
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "早朝の蒲田。古いビルと新しいビルが混在する街並み。遠くに羽田空港へ向かう飛行機。"
+          "visual": "早朝の蒲田。古いビルと新しいビルが混在。遠くに羽田空港へ向かう飛行機。"
         },
         {
           "characters": [],
           "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "その日、大門建設は『死んだ』。"
-            }
-          ],
-          "environment": "env:kamata-daimon-exterior",
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "「大門建設株式会社」の看板。昭和から続く老舗感。しかし窓の向こうは混乱している。"
-        },
-        {
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "SE",
-              "text": "リリリリリ！！リリリリリ！！"
-            },
-            {
-              "speaker": "Narration",
-              "text": "電話が鳴り止まない。それは会社の『悲鳴』だった。"
-            }
+            {"speaker": "SE", "text": "リリリリリ！！リリリリリ！！"},
+            {"speaker": "Narration", "text": "その日――大門建設は『死んだ』。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "panel": 3,
+          "panel": 2,
           "shot": "Wide Shot",
-          "visual": "オフィス内。複数の電話が同時に鳴っている。社員たちが慌てふためいている。PCの画面は全て真っ黒。"
+          "visual": "オフィス内。複数の電話が同時に鳴り響く。PC画面は全て真っ黒。社員たちがパニック状態。"
         }
       ]
     },
@@ -87,53 +55,36 @@
         {
           "characters": ["character:Matsuda"],
           "dialogue": [
-            {
-              "speaker": "Matsuda",
-              "text": "ちょっとぉ！！何なのよこれ！！パソコン全部動かないじゃない！！"
-            },
-            {
-              "speaker": "Matsuda",
-              "text": "明日給料日なのよ！？従業員50人分の給与振込、どうすんのよ！！"
-            }
+            {"speaker": "Matsuda", "text": "ちょっとぉ！！何なのよこれ！！"},
+            {"speaker": "Matsuda", "text": "パソコン全部動かないじゃない！！明日給料日なのよ！？"},
+            {"speaker": "Matsuda", "text": "50人分の給与振込、どうすんのよ！！"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 1,
           "shot": "Medium Shot",
-          "visual": "経理の松田（50代女性）が電話を2本抱えながら叫んでいる。机の上には紙の山。"
+          "visual": "経理部長・松田（50代女性）が電話を2本抱えながら叫んでいる。"
         },
         {
           "characters": ["character:Sato"],
           "dialogue": [
-            {
-              "speaker": "Sato",
-              "text": "松田さん！叩いても蹴っても無駄っす！サーバーごとやられてます！"
-            },
-            {
-              "speaker": "Sato",
-              "text": "ファイル全部暗号化されてて…身代金要求の画面が出てます…！"
-            }
+            {"speaker": "Sato", "text": "松田部長！叩いても蹴っても無駄っす！サーバーごと全滅です！"},
+            {"speaker": "Sato", "text": "画面見てください…！身代金要求が出てます…！"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "若手社員・佐藤がPCの裏に潜り込みながら青ざめた顔。画面には英語の脅迫文。"
+          "visual": "若手社員・佐藤がPCの画面を指差す。英語の脅迫文が表示されている。"
         },
         {
-          "characters": ["character:Matsuda", "character:Sato"],
+          "characters": ["character:Matsuda"],
           "dialogue": [
-            {
-              "speaker": "Matsuda",
-              "text": "み、身代金…！？何それ、ドラマじゃないのよ！！"
-            },
-            {
-              "speaker": "Sato",
-              "text": "ランサムウェアってやつです…！うちみたいな中小企業が一番狙われやすいって…！"
-            }
+            {"speaker": "Matsuda", "text": "身代金ァ！？うちみたいな会社狙ってどうすんのよ！！"},
+            {"speaker": "Matsuda", "text": "安本さんは！？システム担当の安本さんはどこ！？"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 3,
-          "shot": "Two Shot",
-          "visual": "松田と佐藤が絶望的な表情で顔を見合わせる。"
+          "shot": "Close-up",
+          "visual": "松田の焦りに満ちた表情。"
         }
       ]
     },
@@ -143,57 +94,36 @@
         {
           "characters": ["character:Shouta"],
           "dialogue": [
-            {
-              "speaker": "Shouta",
-              "text": "落ち着いてください！！今、専門家を呼んでます！！"
-            }
+            {"speaker": "Shouta", "text": "落ち着いてください！！"},
+            {"speaker": "Shouta", "text": "今、専門家を呼んでます！俺が何とかします！"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 1,
           "shot": "Medium Shot",
-          "visual": "大門翔太（26歳）がオフィスに駆け込んでくる。スーツは乱れ、明らかに寝ていない顔。"
+          "visual": "大門翔太（26歳）が駆け込んでくる。スーツは乱れ、明らかに寝ていない。"
         },
         {
           "characters": ["character:Matsuda", "character:Shouta"],
           "dialogue": [
-            {
-              "speaker": "Matsuda",
-              "text": "翔太くん！社長は！？お父さんはどこなの！？"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "親父は現場に出てます！連絡は取ったけど戻るまで2時間…！"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "それまで俺がなんとかします！警察にも通報しました！"
-            }
+            {"speaker": "Matsuda", "text": "翔太くん！社長は！？お父さんは！？"},
+            {"speaker": "Shouta", "text": "親父は現場です！戻るまで2時間かかる！"},
+            {"speaker": "Shouta", "text": "警察にも通報しました！でも証拠保全で手一杯らしくて…！"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "翔太がスマホを握りしめながら指示を出している。額には汗。"
+          "shot": "Two Shot",
+          "visual": "翔太と松田。緊迫した空気。"
         },
         {
           "characters": ["character:Shouta"],
           "dialogue": [
-            {
-              "speaker": "Shouta (Monologue)",
-              "text": "（くそっ…！なんでこのタイミングで…！！）"
-            },
-            {
-              "speaker": "Shouta (Monologue)",
-              "text": "（来週の入札に向けて、全データをまとめてたのに…！）"
-            },
-            {
-              "speaker": "Shouta (Monologue)",
-              "text": "（30年分の施工実績、顧客データ、全部…！！）"
-            }
+            {"speaker": "Shouta (Monologue)", "text": "（くそっ…！来週の入札に向けて、全データまとめてたのに…！）"},
+            {"speaker": "Shouta (Monologue)", "text": "（30年分の施工実績、顧客情報、全部…！！）"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 3,
           "shot": "Close-up",
-          "visual": "翔太の目のアップ。焦燥と怒りが入り混じる。"
+          "visual": "翔太の目。焦燥と怒りが入り混じる。"
         }
       ]
     },
@@ -203,53 +133,35 @@
         {
           "characters": [],
           "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "――同時刻。東京・世田谷区。"
-            }
+            {"speaker": "Narration", "text": "――同時刻。東京・世田谷区。"}
           ],
           "environment": "env:ren-office-exterior",
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "閑静な住宅街の一角。コンクリート打ちっぱなしのモダンな建物。"
+          "visual": "閑静な住宅街。コンクリート打ちっぱなしのモダンな建物。"
         },
         {
           "characters": ["character:Ren"],
           "dialogue": [
-            {
-              "speaker": "SE",
-              "text": "zzz...zzz..."
-            }
+            {"speaker": "SE", "text": "zzz...zzz..."}
           ],
           "environment": "env:ren-office",
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "薄暗い部屋。複数のモニターが並ぶ。その前のチェアでRenが完全に眠っている。"
+          "visual": "薄暗い部屋。複数のモニター。チェアでRenが完全に眠っている。"
         },
         {
           "characters": ["character:Nei", "character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "レン。レン。起きてください。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "んー…あと5時間…"
-            },
-            {
-              "speaker": "Nei",
-              "text": "5分の間違いでは？"
-            },
-            {
-              "speaker": "Ren",
-              "text": "5時間。俺の体内時計は正確だから。"
-            }
+            {"speaker": "Nei", "text": "レン。起きてください。緊急です。"},
+            {"speaker": "Ren", "text": "んー…あと5時間…"},
+            {"speaker": "Nei", "text": "報酬、前払いで100万来てます。"},
+            {"speaker": "Ren", "text": "…………起きた。"}
           ],
           "environment": "env:ren-office",
           "panel": 3,
           "shot": "Two Shot",
-          "visual": "Neiが呆れた顔でRenを見下ろしている。Renは目も開けずに答える。"
+          "visual": "Neiが呆れ顔。Renの片目がうっすら開く。"
         }
       ]
     },
@@ -257,71 +169,39 @@
       "gh:pageNumber": 5,
       "gh:panels": [
         {
-          "characters": ["character:Nei"],
+          "characters": ["character:Nei", "character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "緊急依頼です。報酬は前払い。しかも…"
-            },
-            {
-              "speaker": "Nei",
-              "text": "これ、見てください。"
-            }
+            {"speaker": "Nei", "text": "大門建設。蒲田の中堅ゼネコン。創業60年。"},
+            {"speaker": "Nei", "text": "今朝、全システムがランサムウェアでダウン。"},
+            {"speaker": "Ren", "text": "ふーん。で、なんで俺ら？普通のセキュリティ会社で十分でしょ。"}
           ],
           "environment": "env:ren-office",
           "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Neiがタブレットをレンの顔の前に突き出す。画面には銀行振込の通知。"
+          "shot": "Two Shot",
+          "visual": "Neiがタブレットで説明。Renはコーヒーを淹れている。"
         },
         {
-          "characters": ["character:Ren"],
+          "characters": ["character:Nei"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "…………"
-            },
-            {
-              "speaker": "Ren",
-              "text": "…これ、ゼロ何個ある？"
-            },
-            {
-              "speaker": "Nei",
-              "text": "6個です。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "……100万？"
-            }
+            {"speaker": "Nei", "text": "依頼者曰く、『内部に犯人がいるかもしれない』。"},
+            {"speaker": "Nei", "text": "『表沙汰にせず、犯人も特定してほしい』と。"}
           ],
           "environment": "env:ren-office",
           "panel": 2,
           "shot": "Close-up",
-          "visual": "Renの片目がうっすら開く。"
+          "visual": "Neiの真剣な表情。"
         },
         {
-          "characters": ["character:Nei", "character:Ren"],
+          "characters": ["character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "しかもこれ、『着手金』だそうです。成功報酬は別。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "…………"
-            },
-            {
-              "speaker": "Ren",
-              "text": "…起きた。"
-            },
-            {
-              "speaker": "Nei",
-              "text": "現金ですね、相変わらず。"
-            }
+            {"speaker": "Ren", "text": "あー…身内の恥は晒したくない。でも放っておけない。"},
+            {"speaker": "Ren", "text": "だから『闇医者』を呼んだってわけだ。"},
+            {"speaker": "Ren", "text": "…だりー。でも100万は捨てがたい。行くか。"}
           ],
           "environment": "env:ren-office",
           "panel": 3,
-          "shot": "Two Shot",
-          "visual": "Renがのそりと起き上がる。Neiはため息混じりの笑顔。"
+          "shot": "Medium Shot",
+          "visual": "Renがフードを被る。眠そうだが、目は鋭い。"
         }
       ]
     },
@@ -329,63 +209,41 @@
       "gh:pageNumber": 6,
       "gh:panels": [
         {
-          "characters": ["character:Ren", "character:Nei"],
+          "characters": ["character:Shouta", "character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "で、どこのどいつがこんな金出すわけ？"
-            },
-            {
-              "speaker": "Nei",
-              "text": "大門建設。蒲田の中堅ゼネコンです。創業60年。"
-            },
-            {
-              "speaker": "Nei",
-              "text": "今朝方、全システムがランサムウェアにやられました。"
-            }
+            {"speaker": "Narration", "text": "――1時間後。大門建設。"},
+            {"speaker": "Shouta", "text": "あなたがRenさん…！？"},
+            {"speaker": "Shouta", "text": "え…その…高校生…？"}
           ],
-          "environment": "env:ren-office",
+          "environment": "env:kamata-daimon-office",
           "panel": 1,
-          "shot": "Two Shot",
-          "visual": "Renがモニターを見ながら、Neiが説明している。"
-        },
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "ランサム？…ふーん。で、警察は？"
-            },
-            {
-              "speaker": "Nei",
-              "text": "通報済み。でも証拠保全で手一杯で、復旧の目処は立ってないそうです。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "まあ、そうなるよね。"
-            }
-          ],
-          "environment": "env:ren-office",
-          "panel": 2,
           "shot": "Medium Shot",
-          "visual": "Renがコーヒーを淹れながら話している。まだ眠そう。"
+          "visual": "オフィス入り口。翔太が目を見開く。フード姿のRen。"
+        },
+        {
+          "characters": ["character:Ren", "character:Shouta"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "17歳。高2。年齢で仕事選ぶなら他当たれば？"},
+            {"speaker": "Shouta", "text": "待ってください！！"},
+            {"speaker": "Shouta", "text": "すみません…！藁にもすがる思いなんです…！"},
+            {"speaker": "Shouta", "text": "お願いします…！うちを助けてください…！！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Two Shot",
+          "visual": "翔太が深々と頭を下げる。Renは無表情で見下ろす。"
         },
         {
           "characters": ["character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "でもさー…ランサムの復旧なんて、普通のセキュリティ会社でもできるでしょ。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "なんで俺らに？"
-            }
+            {"speaker": "Ren (Monologue)", "text": "（…本気の目だな）"},
+            {"speaker": "Ren", "text": "頭上げなよ。みっともない。"},
+            {"speaker": "Ren", "text": "Nei、機材。"}
           ],
-          "environment": "env:ren-office",
+          "environment": "env:kamata-daimon-office",
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Renの目が少し鋭くなる。"
+          "visual": "Renの目が一瞬だけ柔らかくなる。"
         }
       ]
     },
@@ -393,353 +251,23 @@
       "gh:pageNumber": 7,
       "gh:panels": [
         {
-          "characters": ["character:Nei"],
+          "characters": ["character:Ren", "character:Sato"],
           "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "依頼者曰く、『内部に犯人がいるかもしれない』と。"
-            },
-            {
-              "speaker": "Nei",
-              "text": "『表沙汰にせず、犯人も特定してほしい』。"
-            }
+            {"speaker": "Ren", "text": "状況。手短に。"},
+            {"speaker": "Sato", "text": "は、はい！今朝6時、全端末が起動不能に！"},
+            {"speaker": "Sato", "text": "サーバーもアクセス不能！身代金要求の画面だけが…！"}
           ],
-          "environment": "env:ren-office",
+          "environment": "env:kamata-daimon-office",
           "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Neiがメッセージを読み上げている。"
-        },
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "あー…なるほどね。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "身内の恥は晒したくない。でも放っておけない。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "だから『闇医者』を呼んだってわけだ。"
-            }
-          ],
-          "environment": "env:ren-office",
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "Renがコーヒーを一口。表情は読めない。"
-        },
-        {
-          "characters": ["character:Nei", "character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "受けますか？"
-            },
-            {
-              "speaker": "Ren",
-              "text": "………だりー。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "でも100万は捨てがたい。行くか。"
-            },
-            {
-              "speaker": "Nei",
-              "text": "やる気のない返事ありがとうございます。"
-            }
-          ],
-          "environment": "env:ren-office",
-          "panel": 3,
           "shot": "Two Shot",
-          "visual": "Renが立ち上がり、フードを被る。Neiは苦笑。"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 8,
-      "gh:panels": [
-        {
-          "characters": ["character:Ren", "character:Shouta"],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "――1時間後。大門建設。"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "あなたがRenさん…！？"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "オフィスの入り口。翔太が目を見開いている。そこには高校生にしか見えないRen。"
+          "visual": "Renが空いた席に座りノートPCを開く。佐藤が説明。"
         },
         {
-          "characters": ["character:Shouta"],
+          "characters": ["character:Ren", "character:Sato"],
           "dialogue": [
-            {
-              "speaker": "Shouta",
-              "text": "え…いや、その…失礼ですけど…"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "お若い…というか…高校生…？"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "翔太が困惑した表情。"
-        },
-        {
-          "characters": ["character:Ren", "character:Shouta"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "17歳。高2。"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "…………は？"
-            },
-            {
-              "speaker": "Ren",
-              "text": "年齢で仕事選ぶなら、他当たれば？100万返すよ。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 3,
-          "shot": "Two Shot",
-          "visual": "Renが背を向けかける。翔太が慌てる。"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 9,
-      "gh:panels": [
-        {
-          "characters": ["character:Shouta"],
-          "dialogue": [
-            {
-              "speaker": "Shouta",
-              "text": "待ってください！！"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "すみません…！今は藁にもすがる思いなんです…！"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "お願いします…！うちを…うちの会社を、助けてください…！！"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "翔太が深々と頭を下げる。"
-        },
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "…………"
-            },
-            {
-              "speaker": "Ren (Monologue)",
-              "text": "（…本気の目だな、こいつ）"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "Renが翔太を見下ろしている。その目は冷静に相手を観察している。"
-        },
-        {
-          "characters": ["character:Ren", "character:Nei"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "…頭上げなよ。みっともない。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "Nei、機材。"
-            },
-            {
-              "speaker": "Nei",
-              "text": "はい。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "RenがオフィスにNeiと共に入っていく。翔太がホッとした表情で顔を上げる。"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 10,
-      "gh:panels": [
-        {
-          "characters": ["character:Matsuda", "character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Matsuda",
-              "text": "ちょっと翔太くん！！この子誰！？不審者じゃないの！？"
-            },
-            {
-              "speaker": "Ren",
-              "text": "不審者って言われるの、今日2回目。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "松田がRenを指差して叫んでいる。Renは無表情。"
-        },
-        {
-          "characters": ["character:Shouta", "character:Matsuda"],
-          "dialogue": [
-            {
-              "speaker": "Shouta",
-              "text": "松田さん、この人がセキュリティの専門家です！俺が呼びました！"
-            },
-            {
-              "speaker": "Matsuda",
-              "text": "専門家ァ！？こんな子供が！？"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "見た目で判断しないでください！ネットじゃ『Ghost Hacker』って呼ばれてる凄腕なんです！"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "翔太が必死で説明。松田は半信半疑。"
-        },
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "…勝手に二つ名広めないで。恥ずかしいから。"
-            },
-            {
-              "speaker": "Ren (Monologue)",
-              "text": "（さて…）"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "Renが周囲を見渡す。その目が一瞬、鋭く光る。"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 11,
-      "gh:panels": [
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "状況説明。手短に。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Renが空いている席に座り、ノートPCを開く。動作に無駄がない。"
-        },
-        {
-          "characters": ["character:Sato"],
-          "dialogue": [
-            {
-              "speaker": "Sato",
-              "text": "は、はい！今朝6時頃、出社した警備員が異常に気づきました！"
-            },
-            {
-              "speaker": "Sato",
-              "text": "全端末が起動せず、サーバーにもアクセス不能！"
-            },
-            {
-              "speaker": "Sato",
-              "text": "唯一動いてるPCには、身代金要求の画面が…！"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "佐藤が早口で説明。額に汗。"
-        },
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "バックアップは？"
-            },
-            {
-              "speaker": "Sato",
-              "text": "…そ、それが…最後のバックアップが3ヶ月前で…"
-            },
-            {
-              "speaker": "Ren",
-              "text": "3ヶ月。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "Renの表情が一瞬曇る。"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 12,
-      "gh:panels": [
-        {
-          "characters": ["character:Ren", "character:Sato", "character:Shouta"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "…なんで3ヶ月も放置してたの？"
-            },
-            {
-              "speaker": "Sato",
-              "text": "い、いや…システム担当の安本部長が『動いてるから大丈夫』って…"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "俺も何度も言ったんです！バックアップ体制を見直そうって！"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "でもあの人、いつも『忙しい』『予算がない』『今のままでいい』って…！"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "翔太が悔しそうに拳を握る。"
-        },
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "その安本って人、今どこ？"
-            },
-            {
-              "speaker": "Sato",
-              "text": "そ、それが…今朝から連絡つかなくて…"
-            }
+            {"speaker": "Ren", "text": "バックアップは？"},
+            {"speaker": "Sato", "text": "…最後が3ヶ月前で…"},
+            {"speaker": "Ren", "text": "3ヶ月。なんで？"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 2,
@@ -747,21 +275,214 @@
           "visual": "Renの目が細くなる。"
         },
         {
+          "characters": ["character:Sato", "character:Shouta"],
+          "dialogue": [
+            {"speaker": "Sato", "text": "安本さんが…システム担当の安本部長が、『動いてるから大丈夫』って…"},
+            {"speaker": "Shouta", "text": "俺も何度も言ったんです！見直そうって！"},
+            {"speaker": "Shouta", "text": "でもあの人、いつも『忙しい』『予算がない』って…！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Two Shot",
+          "visual": "翔太が悔しそうに拳を握る。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 8,
+      "gh:panels": [
+        {
+          "characters": ["character:Yasumoto"],
+          "dialogue": [
+            {"speaker": "SE", "text": "ガチャッ"},
+            {"speaker": "Yasumoto", "text": "な…何やってるんだ！！"},
+            {"speaker": "Yasumoto", "text": "部外者を勝手に入れるな！！私がなんとかする！！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "安本部長（50代男性）がオフィスに飛び込む。スーツは乱れ、顔は青白い。"
+        },
+        {
+          "characters": ["character:Shouta", "character:Yasumoto"],
+          "dialogue": [
+            {"speaker": "Shouta", "text": "安本さん！今までどこに…！何度電話しても…！"},
+            {"speaker": "Yasumoto", "text": "う、うるさい！私は30年この会社にいるんだ！"},
+            {"speaker": "Yasumoto", "text": "部外者に触らせる権限なんて誰にもない！！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Two Shot",
+          "visual": "安本が翔太を睨む。額に汗。"
+        },
+        {
           "characters": ["character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Ren (Monologue)",
-              "text": "（…なるほど。）"
-            },
-            {
-              "speaker": "Ren (Monologue)",
-              "text": "（これ、外部からの攻撃じゃない。臭うな…）"
-            }
+            {"speaker": "Ren", "text": "…ふーん。"},
+            {"speaker": "Ren (Monologue)", "text": "（この人…何かを隠してる）"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Renがキーボードを叩き始める。画面にコードが流れる。"
+          "visual": "Renが安本を観察している。その目は鋭い。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 9,
+      "gh:panels": [
+        {
+          "characters": ["character:Ren", "character:Yasumoto"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "パッチは2年放置。ファイアウォール設定は初期値のまま。"},
+            {"speaker": "Ren", "text": "バックアップは3ヶ月前。アクセス権限の管理もザル。"},
+            {"speaker": "Ren", "text": "…30年いて、これ？"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Two Shot",
+          "visual": "Renが画面を見ながら淡々と言う。安本の顔がこわばる。"
+        },
+        {
+          "characters": ["character:Yasumoto"],
+          "dialogue": [
+            {"speaker": "Yasumoto", "text": "だ、黙れ…！お前に何がわかる…！"},
+            {"speaker": "Yasumoto", "text": "毎日毎日、予算削減だ人員削減だと言われて…！"},
+            {"speaker": "Yasumoto", "text": "一人で全部やってるんだぞ…！誰も手伝わないのに…！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "安本が声を荒げる。その目には怒りと…哀しみ。"
+        },
+        {
+          "characters": ["character:Nei", "character:Ren"],
+          "dialogue": [
+            {"speaker": "Nei", "text": "レン。見つけました。侵入経路。"},
+            {"speaker": "Ren", "text": "…どこから？"},
+            {"speaker": "Nei", "text": "総務部長の端末。安本さんのPCです。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Two Shot",
+          "visual": "Neiがタブレットを見せる。Renの目が細くなる。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 10,
+      "gh:panels": [
+        {
+          "characters": ["character:Ren", "character:Yasumoto"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "…あんたの端末から、ランサムウェアがダウンロードされてる。"},
+            {"speaker": "Yasumoto", "text": "っ…！！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Two Shot",
+          "visual": "安本の顔が凍りつく。"
+        },
+        {
+          "characters": ["character:Matsuda", "character:Sato", "character:Shouta"],
+          "dialogue": [
+            {"speaker": "Matsuda", "text": "え…？安本さんが犯人ってこと…！？"},
+            {"speaker": "Sato", "text": "う、嘘でしょ…！？"},
+            {"speaker": "Shouta", "text": "安本さん…！なんで…！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Wide Shot",
+          "visual": "全員が安本を見つめる。オフィスが凍りつく。"
+        },
+        {
+          "characters": ["character:Yasumoto"],
+          "dialogue": [
+            {"speaker": "Yasumoto", "text": "…………"},
+            {"speaker": "Yasumoto", "text": "…そうだよ。俺がやった。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "安本が俯く。その声は震えている。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 11,
+      "gh:panels": [
+        {
+          "characters": ["character:Shouta", "character:Yasumoto"],
+          "dialogue": [
+            {"speaker": "Shouta", "text": "なんでだよ…！！なんでこんなこと…！！"},
+            {"speaker": "Yasumoto", "text": "…お前にはわからないだろうな、大門の息子には…！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Two Shot",
+          "visual": "翔太が詰め寄る。安本が睨み返す。"
+        },
+        {
+          "characters": ["character:Yasumoto"],
+          "dialogue": [
+            {"speaker": "Yasumoto", "text": "30年だぞ…！30年、この会社のシステムを俺一人で守ってきたんだ！"},
+            {"speaker": "Yasumoto", "text": "なのにお前が来て、『システム刷新だ』『効率化だ』って…！"},
+            {"speaker": "Yasumoto", "text": "俺の…俺の居場所を奪おうとしやがって…！！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "安本が絶叫。目に涙が浮かんでいる。"
+        },
+        {
+          "characters": ["character:Yasumoto"],
+          "dialogue": [
+            {"speaker": "Yasumoto", "text": "予算もない！人もいない！評価もされない！"},
+            {"speaker": "Yasumoto", "text": "それでも『動いてるから大丈夫だろ』って…！"},
+            {"speaker": "Yasumoto", "text": "誰も俺のことなんか見てなかった…！！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "安本の顔が歪む。怒りと哀しみと絶望が混在。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 12,
+      "gh:panels": [
+        {
+          "characters": ["character:Ren", "character:GhostYasumoto"],
+          "dialogue": [
+            {"speaker": "Ren (Monologue)", "text": "（…来た）"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "POV Shot",
+          "visual": "Renの視界が変わる。安本の背後に黒い靄が立ち上り、人型の影が浮かぶ。"
+        },
+        {
+          "characters": ["character:GhostYasumoto"],
+          "dialogue": [
+            {"speaker": "GhostYasumoto", "text": "俺ノ…居場所ヲ…"},
+            {"speaker": "GhostYasumoto", "text": "奪ウナアアア！！！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Wide Shot",
+          "visual": "安本の体からGhostが分離。古い書類とケーブルが絡まった異形。巨大化していく。"
+        },
+        {
+          "characters": ["character:Shouta", "character:Matsuda", "character:Sato"],
+          "dialogue": [
+            {"speaker": "Shouta", "text": "な…なんだこれ…！！"},
+            {"speaker": "Matsuda", "text": "きゃあああ！！"},
+            {"speaker": "Sato", "text": "う、嘘だろ…！？"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Wide Shot",
+          "visual": "社員たちがパニック。Ghostが天井に届くほど巨大化。"
         }
       ]
     },
@@ -769,55 +490,37 @@
       "gh:pageNumber": 13,
       "gh:panels": [
         {
-          "characters": ["character:Yasumoto"],
+          "characters": ["character:Ren", "character:Nei"],
           "dialogue": [
-            {
-              "speaker": "SE",
-              "text": "ガチャッ"
-            },
-            {
-              "speaker": "Yasumoto",
-              "text": "お、おい…！何やってるんだ！！勝手にシステムを触るな！！"
-            }
+            {"speaker": "Nei", "text": "レン！SIP起動しますか！？"},
+            {"speaker": "Ren", "text": "やるしかないでしょ。"},
+            {"speaker": "Ren", "text": "Nei、SIP起動。物理レイヤーに固定。"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "安本部長（50代男性）がオフィスに飛び込んでくる。スーツは乱れ、顔は青白い。"
+          "shot": "Two Shot",
+          "visual": "RenとNei。周囲は混乱だが、二人だけが冷静。"
         },
         {
-          "characters": ["character:Shouta", "character:Yasumoto"],
+          "characters": ["character:GhostYasumoto", "character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Shouta",
-              "text": "安本さん！今までどこに…！？何度も電話したのに！"
-            },
-            {
-              "speaker": "Yasumoto",
-              "text": "う、うるさい！私は部長だぞ！部外者を入れる権限は誰にもない！"
-            }
+            {"speaker": "GhostYasumoto", "text": "消エロオオオ！！！"},
+            {"speaker": "SE", "text": "ドゴォォン！！"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 2,
-          "shot": "Two Shot",
-          "visual": "安本が翔太を睨む。翔太も引かない。"
+          "shot": "Action Shot",
+          "visual": "GhostがLANケーブルの触手を振り回し、机を吹き飛ばす。"
         },
         {
-          "characters": ["character:Ren", "character:Yasumoto"],
+          "characters": ["character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "部外者ね。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "じゃあ聞くけど、『部内者』のあんたは何してたの？"
-            }
+            {"speaker": "Ren", "text": "…遅い。"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 3,
-          "shot": "Close-up",
-          "visual": "Renが振り向かずに言う。その声は静かだが、鋭い。"
+          "shot": "Action Shot",
+          "visual": "Renが軽やかにかわす。手にデジタルな光が集まる。"
         }
       ]
     },
@@ -825,63 +528,38 @@
       "gh:pageNumber": 14,
       "gh:panels": [
         {
-          "characters": ["character:Yasumoto", "character:Ren"],
+          "characters": ["character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Yasumoto",
-              "text": "な…！生意気な…！私は30年この会社に…！"
-            },
-            {
-              "speaker": "Ren",
-              "text": "30年いて、バックアップも取れないの？"
-            },
-            {
-              "speaker": "Yasumoto",
-              "text": "っ…！！"
-            }
+            {"speaker": "Ren", "text": "あんたの気持ちはわかる。"},
+            {"speaker": "Ren", "text": "30年、一人で頑張ってきた。誰にも評価されなかった。"},
+            {"speaker": "Ren", "text": "…でもさ。"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 1,
-          "shot": "Two Shot",
-          "visual": "安本の顔が歪む。Renは淡々と画面を見ている。"
+          "shot": "Medium Shot",
+          "visual": "Renの手に巨大なデジタルの斧が形成される。"
         },
         {
           "characters": ["character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "パッチは2年前から放置。ファイアウォールの設定は初期値のまま。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "これ、『怠惰』って言うんだよ。知ってる？"
-            }
+            {"speaker": "Ren", "text": "だからって、他の50人を巻き込んでいい理由にはならない。"},
+            {"speaker": "Ren", "text": "あんたの『居場所』を守るために、会社を壊すのは違う。"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 2,
           "shot": "Close-up",
-          "visual": "Renの画面にセキュリティ診断の結果が表示されている。ほぼ全項目が赤。"
+          "visual": "Renの目は鋭いが、どこか哀しげ。"
         },
         {
-          "characters": ["character:Yasumoto"],
+          "characters": ["character:Nei", "character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Yasumoto",
-              "text": "だ、黙れ…！お前に何がわかる…！！"
-            },
-            {
-              "speaker": "Yasumoto",
-              "text": "毎日毎日、予算削減だ、人員削減だ言われて…！"
-            },
-            {
-              "speaker": "Yasumoto",
-              "text": "私一人でどうしろって言うんだ…！！"
-            }
+            {"speaker": "Nei", "text": "レン！核、見えます！胸部中央！"},
+            {"speaker": "Ren", "text": "了解。…終わらせる。"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 3,
-          "shot": "Close-up",
-          "visual": "安本が声を荒げる。その目には恐怖と怒りが混在。"
+          "shot": "Action Shot",
+          "visual": "Renが跳躍。Ghostに向かって突進。"
         }
       ]
     },
@@ -889,59 +567,15 @@
       "gh:pageNumber": 15,
       "gh:panels": [
         {
-          "characters": ["character:Ren", "character:Nei"],
+          "characters": ["character:Ren", "character:GhostYasumoto"],
           "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "レン。見つけました。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "…どこから？"
-            },
-            {
-              "speaker": "Nei",
-              "text": "総務部長の端末。つまり…"
-            }
+            {"speaker": "Ren", "text": "Kill。切る。"},
+            {"speaker": "SE", "text": "ZBAAAAAAAN！！！！"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 1,
-          "shot": "Two Shot",
-          "visual": "Neiがタブレットを見せる。画面には侵入経路のログ。"
-        },
-        {
-          "characters": ["character:Ren", "character:Yasumoto"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "…あんたの端末だね。安本さん。"
-            },
-            {
-              "speaker": "Yasumoto",
-              "text": "……っ！！"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "安本の顔が凍りつく。"
-        },
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "外部からの攻撃じゃない。内側から鍵を開けた奴がいる。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "ランサムウェア、自分でダウンロードしたでしょ？"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "Renが振り返り、安本を真っ直ぐ見る。"
+          "shot": "Full Page Splash",
+          "visual": "大ゴマ。一閃。Renの斧がGhostの核を両断。光の爆発。"
         }
       ]
     },
@@ -949,59 +583,35 @@
       "gh:pageNumber": 16,
       "gh:panels": [
         {
-          "characters": ["character:Matsuda", "character:Sato", "character:Shouta"],
+          "characters": ["character:GhostYasumoto"],
           "dialogue": [
-            {
-              "speaker": "Matsuda",
-              "text": "え…？ちょ、ちょっと待って…安本さんが犯人ってこと…！？"
-            },
-            {
-              "speaker": "Sato",
-              "text": "う、嘘でしょ…！？なんで…！？"
-            }
+            {"speaker": "GhostYasumoto", "text": "俺ハ…タダ…認メテ…欲シカッ…タダケ…ダ…"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "オフィスが凍りつく。全員が安本を見ている。"
+          "shot": "Medium Shot",
+          "visual": "Ghostが霧散。その表情は苦悶と哀しみ。"
         },
         {
-          "characters": ["character:Shouta", "character:Yasumoto"],
+          "characters": ["character:Yasumoto"],
           "dialogue": [
-            {
-              "speaker": "Shouta",
-              "text": "安本さん…！まさか…俺が提案した新システムの導入を潰すため…！？"
-            },
-            {
-              "speaker": "Yasumoto",
-              "text": "ち、違う…！私は…！"
-            }
+            {"speaker": "Yasumoto", "text": "う…ううう…"},
+            {"speaker": "Yasumoto", "text": "すまん…すまん…みんな…すまん…"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 2,
-          "shot": "Two Shot",
-          "visual": "翔太が詰め寄る。安本が後ずさる。"
+          "shot": "Medium Shot",
+          "visual": "安本が崩れ落ち、涙を流しながら謝る。"
         },
         {
-          "characters": ["character:Ren"],
+          "characters": ["character:Sato"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "違わないよ。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "ログ見たら全部わかる。闇サイトで買ったウイルスを自社サーバーに仕込んだ。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "…でも、使い方を間違えた。自爆したんだ、これ。"
-            }
+            {"speaker": "Sato", "text": "あ…！画面が戻った！！サーバーも復活してます！！"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "Renが立ち上がり、画面を指差す。"
+          "shot": "Insert Shot",
+          "visual": "PCの画面が正常に。社員たちがどよめく。"
         }
       ]
     },
@@ -1009,344 +619,21 @@
       "gh:pageNumber": 17,
       "gh:panels": [
         {
-          "characters": ["character:Yasumoto"],
+          "characters": ["character:President"],
           "dialogue": [
-            {
-              "speaker": "Yasumoto",
-              "text": "う…うるさいうるさいうるさい！！"
-            },
-            {
-              "speaker": "Yasumoto",
-              "text": "お前らに何がわかる！！30年だぞ！！30年この会社に尽くしてきたんだ！！"
-            },
-            {
-              "speaker": "Yasumoto",
-              "text": "なのにあの若造が来て、『システム刷新だ』『効率化だ』って…！！"
-            },
-            {
-              "speaker": "Yasumoto",
-              "text": "俺の…俺の居場所を奪おうとしやがって…！！！"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "安本が絶叫。その目は狂気じみている。顔は汗だく。"
-        },
-        {
-          "characters": ["character:Ren", "character:Yasumoto", "character:GhostYasumoto"],
-          "dialogue": [
-            {
-              "speaker": "Ren (Monologue)",
-              "text": "（…来た）"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 2,
-          "shot": "POV Shot",
-          "visual": "Renの視界が変わる。安本の背後に黒い靄が立ち上り、人型の影が浮かび上がる。"
-        },
-        {
-          "characters": ["character:GhostYasumoto"],
-          "dialogue": [
-            {
-              "speaker": "GhostYasumoto",
-              "text": "俺ノ…居場所ヲ…奪ウナ…"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 3,
-          "shot": "Wide Shot",
-          "visual": "安本の体から『Ghost』が分離し始める。古い書類やケーブルが絡まった異形の姿。"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 18,
-      "gh:panels": [
-        {
-          "characters": ["character:Shouta", "character:Matsuda", "character:Sato"],
-          "dialogue": [
-            {
-              "speaker": "Shouta",
-              "text": "な…なんだこれ…！！"
-            },
-            {
-              "speaker": "Matsuda",
-              "text": "きゃあああ！！"
-            },
-            {
-              "speaker": "Sato",
-              "text": "う、嘘だろ…！？VR…？AR…！？"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "社員たちがパニックで逃げ惑う。Ghostが膨張し、天井に届きそうなほど巨大化。"
-        },
-        {
-          "characters": ["character:Ren", "character:Nei"],
-          "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "レン！SIP、起動しますか！？"
-            },
-            {
-              "speaker": "Ren",
-              "text": "…やるしかないでしょ。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 2,
-          "shot": "Two Shot",
-          "visual": "RenとNeiが冷静に立っている。周囲は混乱。"
-        },
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "Nei、SIP起動。物理レイヤーに固定。"
-            },
-            {
-              "speaker": "Nei",
-              "text": "了解。SIPシークエンス、開始します。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "Renがスマホを操作。画面に「SIP ACTIVE」の文字。"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 19,
-      "gh:panels": [
-        {
-          "characters": ["character:Ren", "character:GhostYasumoto"],
-          "dialogue": [
-            {
-              "speaker": "GhostYasumoto",
-              "text": "消エロオオオ！！！"
-            },
-            {
-              "speaker": "SE",
-              "text": "ドゴォォン！！"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 1,
-          "shot": "Action Shot",
-          "visual": "GhostがLANケーブルの触手を振り回し、机や椅子を吹き飛ばす。"
-        },
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "…遅い。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 2,
-          "shot": "Action Shot",
-          "visual": "Renが軽やかに触手をかわす。その動きは無駄がない。"
-        },
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "あんたの『怠惰』は、ただのサボりだ。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "楽したいだけで、何も考えてない。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "…俺の『怠惰』とは違う。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "Renの目が鋭く光る。その手にデジタルな光が集まり始める。"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 20,
-      "gh:panels": [
-        {
-          "characters": ["character:Shouta"],
-          "dialogue": [
-            {
-              "speaker": "Shouta",
-              "text": "『怠惰』が違う…？どういうことだ…！？"
-            }
+            {"speaker": "President", "text": "何があったんだ！！"},
+            {"speaker": "SE", "text": "ガチャッ"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 1,
           "shot": "Medium Shot",
-          "visual": "翔太が物陰から見ている。"
-        },
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "俺の怠惰は、二度同じことをしないため。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "一回で終わらせるために、最初に全力を出す。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "それが『正しい怠惰』ってやつだ。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Renの手に巨大なデジタルの斧が形成される。光の粒子が舞う。"
-        },
-        {
-          "characters": ["character:Nei", "character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "レン！核、見えます！胸部中央！"
-            },
-            {
-              "speaker": "Ren",
-              "text": "了解。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 3,
-          "shot": "Action Shot",
-          "visual": "Renが跳躍。Ghostに向かって突進する。"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 21,
-      "gh:panels": [
-        {
-          "characters": ["character:Ren", "character:GhostYasumoto"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "あんたのエゴ、ノイズが多すぎる。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "…Kill。切る。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 1,
-          "shot": "Action Shot",
-          "visual": "Renが斧を構える。空気が震える。"
-        },
-        {
-          "characters": ["character:Ren", "character:GhostYasumoto"],
-          "dialogue": [
-            {
-              "speaker": "SE",
-              "text": "ZBAAAAAAAN！！！！"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 2,
-          "shot": "Full Page Splash",
-          "visual": "大ゴマ。一閃。Renの斧がGhostの核を両断する。光の爆発。"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 22,
-      "gh:panels": [
-        {
-          "characters": ["character:GhostYasumoto"],
-          "dialogue": [
-            {
-              "speaker": "GhostYasumoto",
-              "text": "俺ハ…タダ…認メテ…欲シカッ…"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Ghostが霧散していく。その表情は苦悶と哀しみに満ちている。"
-        },
-        {
-          "characters": ["character:Yasumoto"],
-          "dialogue": [
-            {
-              "speaker": "Yasumoto",
-              "text": "う…ううう…"
-            },
-            {
-              "speaker": "Yasumoto",
-              "text": "すまん…すまん…みんな…すまん…"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "安本が崩れ落ちる。涙を流しながら謝り続ける。"
-        },
-        {
-          "characters": ["character:Sato"],
-          "dialogue": [
-            {
-              "speaker": "Sato",
-              "text": "あ…！画面が戻った！！サーバーも認識してます！！"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 3,
-          "shot": "Insert Shot",
-          "visual": "PCの画面が正常に表示されている。"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 23,
-      "gh:panels": [
-        {
-          "characters": ["character:President", "character:Shouta"],
-          "dialogue": [
-            {
-              "speaker": "President",
-              "text": "何があったんだ！！"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "親父…！"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "社長・大門五郎（60代）が作業着姿で駆け込んでくる。"
+          "visual": "社長・大門五郎（60代）が作業着姿で駆け込む。"
         },
         {
           "characters": ["character:President", "character:Yasumoto"],
           "dialogue": [
-            {
-              "speaker": "President",
-              "text": "安本…！お前、どうしたんだ…！"
-            },
-            {
-              "speaker": "Yasumoto",
-              "text": "社長…私は…私は…"
-            }
+            {"speaker": "President", "text": "安本！！どうしたんだお前…！"},
+            {"speaker": "Yasumoto", "text": "社長…私は…私は…"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 2,
@@ -1354,21 +641,250 @@
           "visual": "社長が安本に駆け寄る。"
         },
         {
+          "characters": ["character:Shouta", "character:President"],
+          "dialogue": [
+            {"speaker": "Shouta", "text": "…親父。落ち着いて聞いてくれ。"},
+            {"speaker": "Shouta", "text": "今回のシステム障害…安本さんが起こしたんだ。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Two Shot",
+          "visual": "翔太が苦渋の表情で説明。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 18,
+      "gh:panels": [
+        {
+          "characters": ["character:President"],
+          "dialogue": [
+            {"speaker": "President", "text": "…何だと…？"},
+            {"speaker": "President", "text": "安本…お前が…？30年の付き合いだぞ…！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Close-up",
+          "visual": "社長の顔。信じられないという表情。"
+        },
+        {
+          "characters": ["character:Yasumoto"],
+          "dialogue": [
+            {"speaker": "Yasumoto", "text": "…すみません、社長…"},
+            {"speaker": "Yasumoto", "text": "でも…でも俺は…限界だったんです…"},
+            {"speaker": "Yasumoto", "text": "誰も…誰も俺の話を聞いてくれなかった…"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "安本が涙ながらに訴える。"
+        },
+        {
+          "characters": ["character:President"],
+          "dialogue": [
+            {"speaker": "President", "text": "…………"},
+            {"speaker": "President", "text": "…安本。今回のことは…水に流す。"},
+            {"speaker": "President", "text": "お前は家族だ。これからも一緒にやっていこう。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Two Shot",
+          "visual": "社長が安本の肩に手を置く。優しい表情。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 19,
+      "gh:panels": [
+        {
+          "characters": ["character:Matsuda", "character:Sato"],
+          "dialogue": [
+            {"speaker": "Matsuda", "text": "よかった…さすが社長…"},
+            {"speaker": "Sato", "text": "丸く収まったっすね…"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "社員たちが安堵の表情。"
+        },
+        {
           "characters": ["character:Shouta"],
           "dialogue": [
-            {
-              "speaker": "Shouta",
-              "text": "…親父。安本さんが、システムを復旧しようとして…倒れたんだ。"
-            },
-            {
-              "speaker": "Shouta (Monologue)",
-              "text": "（…何を言ってるんだ、俺は）"
-            }
+            {"speaker": "Shouta", "text": "親父…それでいいのか…？"},
+            {"speaker": "Shouta (Monologue)", "text": "（こんな…こんな終わり方で…）"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "翔太が複雑な表情。納得できない顔。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "…………"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 3,
           "shot": "Close-up",
-          "visual": "翔太が言葉を選びながら言う。複雑な表情。"
+          "visual": "Renの目が冷たく光る。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 20,
+      "gh:panels": [
+        {
+          "characters": ["character:Ren", "character:President"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "…ちょっと待てよ。"},
+            {"speaker": "President", "text": "ん？君は…？"},
+            {"speaker": "Shouta", "text": "親父、この人がシステムを復旧してくれた専門家で…"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Renが立ち上がり、社長に近づく。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "社長さん。一つ聞いていい？"},
+            {"speaker": "Ren", "text": "安本さんに、いくら予算出してた？"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Two Shot",
+          "visual": "Renと社長が向き合う。空気が変わる。"
+        },
+        {
+          "characters": ["character:President"],
+          "dialogue": [
+            {"speaker": "President", "text": "予算…？そりゃあ、必要な分は…"},
+            {"speaker": "Ren", "text": "具体的に。年間いくら？"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "社長が言葉に詰まる。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 21,
+      "gh:panels": [
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "答えられないよね。『必要な分』なんて出してないから。"},
+            {"speaker": "Ren", "text": "経理見た。IT関連予算、5年前から毎年削減されてる。"},
+            {"speaker": "Ren", "text": "去年なんてゼロだ。備品購入費すらない。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Renが淡々と事実を突きつける。"
+        },
+        {
+          "characters": ["character:President"],
+          "dialogue": [
+            {"speaker": "President", "text": "そ、それは…景気が厳しくて…"},
+            {"speaker": "Ren", "text": "じゃあ人員は？安本さん以外にシステム担当いた？"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Two Shot",
+          "visual": "社長が言葉を失う。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "いない。30年間、安本さん一人。"},
+            {"speaker": "Ren", "text": "引き継ぎもない。マニュアルもない。評価制度もない。"},
+            {"speaker": "Ren", "text": "全部、『安本に任せとけ』で済ませてきた。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "Renの目が鋭く光る。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 22,
+      "gh:panels": [
+        {
+          "characters": ["character:Ren", "character:President"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "社長さん。あんたが今やったこと、わかってる？"},
+            {"speaker": "Ren", "text": "『水に流す』『家族だ』…聞こえはいいけどさ。"},
+            {"speaker": "Ren", "text": "それって、『原因を考えない』ってことだよ。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Two Shot",
+          "visual": "Renが社長を見据える。周囲が息を呑む。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "安本さんは限界だった。"},
+            {"speaker": "Ren", "text": "予算もない、人もいない、評価もない。"},
+            {"speaker": "Ren", "text": "そんな環境で30年。誰だって壊れる。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "Renの表情に怒りが滲む。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "なのにあんたは、『家族だから許す』？"},
+            {"speaker": "Ren", "text": "…違うだろ。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "Renの目がギラリと光る。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 23,
+      "gh:panels": [
+        {
+          "characters": ["character:Ren", "character:President"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "本当に『家族』だと思ってたなら、なんで見なかった？"},
+            {"speaker": "Ren", "text": "なんで安本さんが一人で苦しんでることに気づかなかった？"},
+            {"speaker": "Ren", "text": "『動いてるから大丈夫』って、考えることを放棄してただけだろ。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Two Shot",
+          "visual": "Renが一歩踏み出す。社長が後ずさる。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "安本さんを追い詰めたのは、あんただ。"},
+            {"speaker": "Ren", "text": "この会社のシステムがボロボロなのも、あんたのせいだ。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "Renの顔に明確な怒り。"
+        },
+        {
+          "characters": ["character:Ren", "character:President"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "社長。"},
+            {"speaker": "Ren", "text": "あんたが一番…"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "Renが社長を真っ直ぐ見据える。"
         }
       ]
     },
@@ -1376,59 +892,14 @@
       "gh:pageNumber": 24,
       "gh:panels": [
         {
-          "characters": ["character:Ren", "character:Shouta"],
+          "characters": ["character:Ren", "character:President"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "…庇うんだ。"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "っ…！"
-            }
+            {"speaker": "Ren", "text": "怠惰だ。"}
           ],
           "environment": "env:kamata-daimon-office",
           "panel": 1,
-          "shot": "Two Shot",
-          "visual": "Renが翔太の横を通りすぎながら言う。"
-        },
-        {
-          "characters": ["character:Shouta"],
-          "dialogue": [
-            {
-              "speaker": "Shouta",
-              "text": "…今、警察沙汰にしたら、会社が持たない。"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "来週の入札に間に合わなくなる。取引先も…"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "でも、このままじゃダメだってのはわかってる…！"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "翔太が苦悩の表情で拳を握る。"
-        },
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "…ふーん。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "じゃあ、取引しない？"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "Renが少しだけ笑う。意味ありげな表情。"
+          "shot": "Full Page Splash",
+          "visual": "大ゴマ。Renの決定的な一言。社長の顔が凍りつく。周囲も息を呑む。"
         }
       ]
     },
@@ -1436,308 +907,40 @@
       "gh:pageNumber": 25,
       "gh:panels": [
         {
-          "characters": ["character:Ren", "character:Shouta"],
-          "dialogue": [
-            {
-              "speaker": "Shouta",
-              "text": "取引…？"
-            },
-            {
-              "speaker": "Ren",
-              "text": "データは復旧した。ついでに、安本さんが横領してた金も、隠し口座ハックして戻しておいた。"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "横領…！？"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 1,
-          "shot": "Two Shot",
-          "visual": "翔太が驚愕。"
-        },
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "カジノで溶かした穴埋めに、経理をいじってた。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "新システム入れたら、それがバレる。だから抵抗してた。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "…全部繋がってるんだよ。『怠惰』は。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "Renが淡々と説明。"
-        },
-        {
-          "characters": ["character:Shouta"],
-          "dialogue": [
-            {
-              "speaker": "Shouta",
-              "text": "…………"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "…Renさん。あんたは一体…"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "翔太がRenを見つめる。畏怖と感謝が入り混じる目。"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 26,
-      "gh:panels": [
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "Ghost Hacker。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "…人間の歪んだ情報が、化け物になることがある。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "俺はそいつを『切る』。それだけ。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Renが背を向けながら言う。"
-        },
-        {
-          "characters": ["character:Ren", "character:Shouta"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "あとは自分で考えな。安本さんをどうするか、会社をどうするか。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "俺の仕事はここまで。"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "待ってくれ！"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 2,
-          "shot": "Two Shot",
-          "visual": "Renが出口に向かう。翔太が呼び止める。"
-        },
-        {
-          "characters": ["character:Shouta"],
-          "dialogue": [
-            {
-              "speaker": "Shouta",
-              "text": "…ありがとう。あんたのおかげで、俺も目が覚めた。"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "これからは…俺がちゃんとやる。会社も、システムも。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "翔太の目に決意の光。"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 27,
-      "gh:panels": [
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "…そ。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "でも一つだけ言っとく。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Renが振り返る。"
-        },
-        {
-          "characters": ["character:Ren", "character:Shouta"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "社長さんも、あんたも、安本さんも…"
-            },
-            {
-              "speaker": "Ren",
-              "text": "みんな『怠惰』だったんだよ。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "『動いてるから大丈夫』って、考えることをサボってた。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "Renの目が鋭い。"
-        },
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "次は、俺がいなくても自分で考えな。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "あんた、怠惰だな。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "Renがニヤリと笑う。挑発的だが、どこか温かみがある。"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 28,
-      "gh:panels": [
-        {
-          "characters": ["character:Ren", "character:Nei"],
-          "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "お疲れ様でした。今回の報酬、かなりの額ですね。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "だりー…帰って寝る…"
-            }
-          ],
-          "environment": "env:kamata-street-evening",
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "夕暮れの蒲田。RenとNeiが歩いている。"
-        },
-        {
-          "characters": ["character:Nei", "character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "でも、今回の件…気になることがあります。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "…何？"
-            },
-            {
-              "speaker": "Nei",
-              "text": "安本さんがダウンロードしたマルウェア。出所を追ったら…"
-            },
-            {
-              "speaker": "Nei",
-              "text": "もっと大きな組織に繋がってました。"
-            }
-          ],
-          "environment": "env:kamata-street-evening",
-          "panel": 2,
-          "shot": "Two Shot",
-          "visual": "Neiがタブレットを見せる。Renの目が少し鋭くなる。"
-        },
-        {
-          "characters": ["character:Ren"],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "…ふーん。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "まあいいや。今日は寝る。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "…明日考える。"
-            }
-          ],
-          "environment": "env:kamata-street-evening",
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "Renが欠伸しながら言う。だが、その目は次の『入口』を見据えている。"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 29,
-      "gh:panels": [
-        {
           "characters": [],
           "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "Ghost Hacker ―― 人の心が生み出す『Ghost』を断つ者。"
-            }
+            {"speaker": "Narration", "text": "その言葉は、オフィス中に響いた。"}
           ],
-          "environment": "env:tokyo-skyline-evening",
+          "environment": "env:kamata-daimon-office",
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "東京の夕景。ビル群のシルエット。"
+          "visual": "静まり返るオフィス。誰も動けない。"
+        },
+        {
+          "characters": ["character:President"],
+          "dialogue": [
+            {"speaker": "President", "text": "…………"},
+            {"speaker": "President", "text": "……君は…"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "社長の顔。怒りか、衝撃か、わからない表情。"
         },
         {
           "characters": [],
           "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "この世界には、まだ無数の『歪み』が潜んでいる。"
-            }
-          ],
-          "environment": "env:tokyo-skyline-evening",
-          "panel": 2,
-          "shot": "Wide Shot",
-          "visual": "街のあちこちで光るデジタルサイネージ。その向こうに蠢く影の気配。"
-        },
-        {
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "Arc A-1「あんた、怠惰だな」――End"
-            },
-            {
-              "speaker": "Narration",
-              "text": "Next: Arc A-2「任せるのは設計だよ」"
-            }
+            {"speaker": "Narration", "text": "Arc A-1「俺の居場所を奪うな」――End"},
+            {"speaker": "Narration", "text": "Next: Arc A-2「あんたが怠惰だ」"}
           ],
           "environment": "env:intertitle-black",
           "panel": 3,
           "shot": "Insert Shot",
-          "visual": "黒背景にタイトルロゴ。"
+          "visual": "黒背景にタイトル。強い引き。"
         }
       ]
     }
   ],
   "gh:presentationTagline": "Arc A | Construction & Sloth",
-  "gh:realCase": "Handa Hospital Ransomware (2021) / Iseto (2024)",
-  "gh:sinContrast": "Passive Sloth (Vulnerability Neglect) vs. Active Sloth (Hyper-Efficiency)"
+  "gh:sinContrast": "Who is truly 'slothful'?"
 }
