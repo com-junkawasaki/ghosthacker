@@ -58,14 +58,19 @@ func (s *StoryboardService) GeneratePanelImage(
 		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("failed to build prompt: %w", err))
 	}
 
-	// Apply Mai Yoneyama and High-End Webtoon Aesthetic for cinematic sketching
-	stylePrefix := "Professional cinematic storyboard sketch, Mai Yoneyama illustrator style, High-End Webtoon Aesthetic, Fine Line Art with Screen Tones, Modern Bishonen Manga Style. "
+	// Apply different styles based on purpose:
+	// - Cinematic sketch: Rough compositional guide for animators/artists (faces intentionally simplified)
+	// - Character avatar: Detailed portrait for character reference
+	var stylePrefix, styleSuffix string
 	if strings.HasPrefix(req.Msg.PanelData.VisualNote, "CHARACTER_AVATAR:") {
+		// Character avatar: detailed portrait for reference
 		stylePrefix = "Professional character portrait, headshot, Mai Yoneyama illustrator style, High-End Webtoon Aesthetic, Fine Line Art, Modern Manga Style, clean background. "
-	}
-	styleSuffix := ". High contrast monochrome, sharp focus on expressive eyes, intricate iris detail, consistent facial features, slender male youth, atmospheric lighting, cinematic composition, 85mm lens."
-	if strings.HasPrefix(req.Msg.PanelData.VisualNote, "CHARACTER_AVATAR:") {
 		styleSuffix = ". Sharp focus on face and expressive eyes, intricate iris detail, consistent facial features, clean white background, high resolution, 8k."
+	} else {
+		// Cinematic storyboard sketch: rough compositional guide for animators
+		// Faces are intentionally simplified to allow artists freedom in final design
+		stylePrefix = "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. "
+		styleSuffix = ". Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition."
 	}
 	fullPrompt := stylePrefix + prompt + styleSuffix
 

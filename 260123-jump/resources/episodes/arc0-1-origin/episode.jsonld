@@ -338,19 +338,19 @@
       "gh:act": "act:1-daily-temptation",
       "gh:pageNumber": 3,
       "gh:pageTitle": "教室 - 日常会話",
-      "gh:panelCount": 6,
+      "gh:panelCount": 7,
       "gh:panels": [
         {
           "characters": [
             "character:Yuto",
             "character:Mei",
+            "character:Saki",
             "character:Akira",
-            "character:Classmate_A",
-            "character:Classmate_B"
+            "character:Classmate_A"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Middle school classroom during break. Japanese students in navy blazer uniforms gathered around desks. Soft window light. luminous atmosphere. shot on 24mm, f/4, cinematic live-action.",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Middle school classroom during break. Japanese students in navy blazer uniforms gathered around desks. Two girls (Mei and Saki) sitting close together, clearly best friends. Soft window light. luminous atmosphere. shot on 24mm, f/4, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "slightly high",
             "gh:aperture": "f/4",
@@ -361,11 +361,12 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "休憩時間の教室全景。生徒たちが机を囲んで和やかに話している。窓から柔らかい光。"
+          "visual": "休憩時間の教室全景。生徒たちが机を囲んで和やかに話している。MeiとSakiが隣同士で仲良さそう。窓から柔らかい光。"
         },
         {
           "characters": [
-            "character:Mei"
+            "character:Mei",
+            "character:Saki"
           ],
           "dialogue": [
             {
@@ -373,10 +374,15 @@
               "gh:emotion": "relief",
               "speaker": "Mei",
               "text": "今日さ、体育ないの神〜"
+            },
+            {
+              "gh:emotion": "cheerful",
+              "speaker": "Saki",
+              "text": "わかる〜！Meiとお喋りできる時間増えるじゃん"
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese middle school girl stretching lazily in chair. Relaxed, happy expression. Navy blazer uniform. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Medium Shot. Two Japanese middle school girls sitting together. One stretching lazily (Mei), the other smiling at her (Saki). Best friends vibe. Navy blazer uniforms. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -385,7 +391,34 @@
           },
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "Meiが椅子にだらっともたれ、伸びをしている。"
+          "visual": "MeiとSakiが並んで座っている。Meiが伸びをし、Sakiが笑顔で返す。親友の雰囲気。"
+        },
+        {
+          "characters": [
+            "character:Mei",
+            "character:Saki"
+          ],
+          "dialogue": [
+            {
+              "gh:emotion": "playful",
+              "speaker": "Mei",
+              "text": "ねぇSaki、週末どこ行く？"
+            },
+            {
+              "gh:emotion": "excited",
+              "speaker": "Saki",
+              "text": "新しくできたカフェ行こ！インスタ映えするって話題のとこ"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "gh:imagePrompt": "Close Up. Two girls' faces close together, chatting excitedly. Planning weekend together. Best friends. shot on 85mm, f/2, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:distance": "Close Up"
+          },
+          "panel": 3,
+          "shot": "Close Up",
+          "visual": "MeiとSakiが顔を寄せ合って、週末の予定を相談。楽しそうな親友。"
         },
         {
           "characters": [
@@ -407,7 +440,7 @@
             "gh:distance": "Medium Shot",
             "gh:lens": "50mm"
           },
-          "panel": 3,
+          "panel": 4,
           "shot": "Medium Shot",
           "visual": "Akiraが得意げにスニーカーを見せびらかす。"
         },
