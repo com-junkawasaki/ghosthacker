@@ -100,6 +100,14 @@ message InteractWithAIResponse {
   string message = 2;
   string ai_response = 3;
   repeated JSONPatch patches = 4; // Optional patches to apply to the storyboard
+  ContextScope context_scope = 5; // For A2A mode: which context was loaded
+}
+
+message ContextScope {
+  repeated string episodes = 1;
+  repeated int32 pages = 2;
+  repeated int32 panels = 3;
+  repeated string characters = 4;
 }
 
 message JSONPatch {

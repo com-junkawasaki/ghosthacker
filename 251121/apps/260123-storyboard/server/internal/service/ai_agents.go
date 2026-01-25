@@ -143,6 +143,7 @@ Available Tools:
 1. "scenario_writer": For high-level plot, beats, and narrative structure.
 2. "cinematic_sketcher": For visual composition, camera work, and image prompts.
 3. "character_specialist": For character consistency, emotional state, and motives. (Requires "character_id")
+4. "get_character_profile": Retrieve detailed profile and voice guide for a specific character. (Requires "character_id")
 
 You must return a JSON object with the following fields:
 1. "response": A text message to the user explaining what you did or answering their question.
@@ -195,6 +196,17 @@ MODE: Dialogue Coach.
 Task: Focus on natural speech, delivery, and subtext.
 Context Strategy: Provide recent dialogue history and character sentence traits.
 `
+	case "a2a":
+		agentInstruction = `
+MODE: A2A Orchestrator.
+Task: Coordinate multiple agents to advance the story.
+Context Strategy: 
+1. If the user's goal is broad, FIRST identify which parts of the storyboard (pages, panels, characters) are relevant.
+2. Return a "context_scope" object to inform the user which data you are focusing on.
+3. Then, proceed to call specialized tools or suggest a plan.
+
+Your response MUST include a "context_scope" if you are narrowing down the focus.
+`
 	}
 
 	userPrompt := fmt.Sprintf("Context:\n%s\n%s\n\nUser Message: %s", contextStr.String(), agentInstruction, req.Msg.Message)
@@ -206,8 +218,14 @@ Context Strategy: Provide recent dialogue history and character sentence traits.
 
 	// Parse AI response
 	type aiInteractionResult struct {
-		Response string `json:"response"`
-		Patches  []struct {
+		Response     string `json:"response"`
+		ContextScope *struct {
+			Episodes   []string `json:"episodes"`
+			Pages      []int32  `json:"pages"`
+			Panels     []int32  `json:"panels"`
+			Characters []string `json:"characters"`
+		} `json:"context_scope"`
+		Patches []struct {
 			Op    string `json:"op"`
 			Path  string `json:"path"`
 			Value string `json:"value"`
@@ -287,11 +305,22 @@ Context Strategy: Provide recent dialogue history and character sentence traits.
 		}
 	}
 
+	var protoContextScope *storyboardpb.ContextScope
+	if result.ContextScope != nil {
+		protoContextScope = &storyboardpb.ContextScope{
+			Episodes:   result.ContextScope.Episodes,
+			Pages:      result.ContextScope.Pages,
+			Panels:     result.ContextScope.Panels,
+			Characters: result.ContextScope.Characters,
+		}
+	}
+
 	return connect.NewResponse(&storyboardpb.InteractWithAIResponse{
-		Success:    true,
-		Message:    "Interaction successful",
-		AiResponse: result.Response,
-		Patches:    protoPatches,
+		Success:      true,
+		Message:      "Interaction successful",
+		AiResponse:   result.Response,
+		Patches:      protoPatches,
+		ContextScope: protoContextScope,
 	}), nil
 }
 

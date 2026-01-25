@@ -7,11 +7,11 @@
 		onApplyPatches?: (patches: any[]) => void;
 	}>();
 
-	let messages = $state<{ role: 'user' | 'assistant', content: string, context?: any, agent?: string, patches?: any[] }[]>([]);
+	let messages = $state<{ role: 'user' | 'assistant', content: string, context?: any, agent?: string, patches?: any[], contextScope?: any }[]>([]);
 	let inputValue = $state('');
 	let loading = $state(false);
 	let dropContext = $state<any[]>([]);
-	let currentAgentMode = $state<'general' | 'scenario' | 'episode' | 'character' | 'cinematic' | 'dialogue'>('general');
+	let currentAgentMode = $state<'general' | 'scenario' | 'episode' | 'character' | 'cinematic' | 'dialogue' | 'a2a'>('general');
 	let isAutoPilot = $state(false);
 
 	// Expose a method to trigger agent commands from outside
@@ -67,7 +67,8 @@
 				messages = [...messages, { 
 					role: 'assistant', 
 					content: res.aiResponse,
-					patches: res.patches
+					patches: res.patches,
+					contextScope: res.contextScope
 				}];
 				
 				if (res.patches && res.patches.length > 0) {
@@ -157,34 +158,6 @@
 			isAutoPilot = false;
 		}
 	}
-
-	function simulateAgentCollaboration() {
-		const agents = [
-			{ name: 'scenario', msg: 'Planning the next narrative beats based on the goal...' },
-			{ name: 'episode', msg: 'Generating detailed scenes and dialogue exchanges...' },
-			{ name: 'character', msg: 'Verifying character voices and emotional consistency...' },
-			{ name: 'cinematic', msg: 'Finalizing visual composition and camera directions.' }
-		];
-
-		let delay = 2000;
-		agents.forEach((agent, i) => {
-			setTimeout(() => {
-				messages = [...messages, { 
-					role: 'assistant', 
-					agent: agent.name,
-					content: agent.msg 
-				}];
-				if (i === agents.length - 1) {
-					isAutoPilot = false;
-					messages = [...messages, { 
-						role: 'assistant', 
-						content: 'Autonomous generation complete. You can review the changes in the Story Editor.' 
-					}];
-				}
-			}, delay);
-			delay += 3000;
-		});
-	}
 </script>
 
 <div class="chat-panel">
@@ -231,6 +204,11 @@
 				class:active={currentAgentMode === 'dialogue'} 
 				onclick={() => currentAgentMode = 'dialogue'}
 			>Dialogue</button>
+			<button 
+				class="mode-btn a2a" 
+				class:active={currentAgentMode === 'a2a'} 
+				onclick={() => currentAgentMode = 'a2a'}
+			>A2A</button>
 		</div>
 	</div>
 	
@@ -256,6 +234,23 @@
 					</div>
 				{/if}
 				<div class="message-content">{msg.content}</div>
+				{#if msg.contextScope}
+					<div class="context-scope-display">
+						<span class="scope-label">LOADED CONTEXT:</span>
+						{#if msg.contextScope.episodes?.length > 0}
+							<span class="scope-item">📁 {msg.contextScope.episodes.join(', ')}</span>
+						{/if}
+						{#if msg.contextScope.pages?.length > 0}
+							<span class="scope-item">📄 Pages: {msg.contextScope.pages.join(', ')}</span>
+						{/if}
+						{#if msg.contextScope.panels?.length > 0}
+							<span class="scope-item">🎞️ Panels: {msg.contextScope.panels.join(', ')}</span>
+						{/if}
+						{#if msg.contextScope.characters?.length > 0}
+							<span class="scope-item">👤 {msg.contextScope.characters.join(', ')}</span>
+						{/if}
+					</div>
+				{/if}
 				{#if msg.patches && msg.patches.length > 0}
 					<div class="patch-actions">
 						<button class="apply-btn" onclick={() => applyPatches(msg.patches!)}>
@@ -395,6 +390,7 @@
 	.mode-btn.active.character { background: #9b59b6; }
 	.mode-btn.active.cinematic { background: #e67e22; }
 	.mode-btn.active.dialogue { background: #e74c3c; }
+	.mode-btn.active.a2a { background: #f1c40f; color: #000; }
 
 	.chat-messages {
 		flex: 1;
@@ -480,6 +476,33 @@
 		padding: 0;
 		font-size: 0.9rem;
 		line-height: 1;
+	}
+
+	.message-content {
+		word-break: break-word;
+	}
+
+	.context-scope-display {
+		margin-top: 0.75rem;
+		padding: 0.5rem;
+		background: rgba(0, 0, 0, 0.2);
+		border-radius: 4px;
+		font-size: 0.75rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		border-left: 3px solid #f1c40f;
+	}
+
+	.scope-label {
+		font-weight: bold;
+		color: #f1c40f;
+		font-size: 0.65rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.scope-item {
+		color: #aaa;
 	}
 
 	.patch-actions {

@@ -130,7 +130,7 @@ func ScenarioAgentActivity(ctx context.Context, params AutonomousGenerationParam
 	logger := activity.GetLogger(ctx)
 	logger.Info("Scenario Agent working", "goal", params.Goal)
 
-	systemPrompt := "You are a professional Scenario Writer for Ghost Hacker, a cinematic webtoon. Plan the next narrative beats."
+	systemPrompt := "You are a professional Scenario Writer for Ghost Hacker, a cinematic webtoon. Plan the next narrative beats. Return a concise plot summary."
 	userPrompt := fmt.Sprintf("Goal: %s\nContext: %v", params.Goal, params.InitialContext)
 
 	return callOpenRouter(ctx, "anthropic/claude-3.5-sonnet", systemPrompt, userPrompt)
@@ -141,7 +141,7 @@ func EpisodeAgentActivity(ctx context.Context, scenarioOutput string) (string, e
 	logger := activity.GetLogger(ctx)
 	logger.Info("Episode Agent working", "input", scenarioOutput)
 
-	systemPrompt := "You are a professional Episode Generator. Create detailed scenes and dialogue based on the scenario plan."
+	systemPrompt := "You are a professional Episode Generator. Create detailed scenes and dialogue based on the scenario plan. Return a structured scene description."
 	userPrompt := fmt.Sprintf("Scenario Plan: %s", scenarioOutput)
 
 	return callOpenRouter(ctx, "anthropic/claude-3.5-sonnet", systemPrompt, userPrompt)
@@ -152,7 +152,7 @@ func CharacterAgentActivity(ctx context.Context, draft episodeDraft) (string, er
 	logger := activity.GetLogger(ctx)
 	logger.Info("Character Agent working", "content", draft.Content)
 
-	systemPrompt := "You are a Character Specialist. Ensure all dialogue and actions are consistent with character profiles."
+	systemPrompt := "You are a Character Specialist. Ensure all dialogue and actions are consistent with character profiles. Return a verification report or refined text."
 	userPrompt := fmt.Sprintf("Draft Content: %s\nContext: %v", draft.Content, draft.Params.InitialContext)
 
 	return callOpenRouter(ctx, "google/gemini-3-pro", systemPrompt, userPrompt)
@@ -163,7 +163,7 @@ func CinematicAgentActivity(ctx context.Context, episodeOutput string) (string, 
 	logger := activity.GetLogger(ctx)
 	logger.Info("Cinematic Agent working", "input", episodeOutput)
 
-	systemPrompt := "You are a Cinematic Sketcher. Provide visual composition, camera work, and image prompts for each panel."
+	systemPrompt := "You are a Cinematic Sketcher. Provide visual composition, camera work, and image prompts for each panel based on the episode content."
 	userPrompt := fmt.Sprintf("Episode Content: %s", episodeOutput)
 
 	return callOpenRouter(ctx, "openai/gpt-4o", systemPrompt, userPrompt)
