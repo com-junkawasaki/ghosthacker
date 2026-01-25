@@ -738,10 +738,21 @@
               "dialogue": [
                 {
                   "speaker": "Kurokawa Akira (Aki)",
-                  "text": "見て。NEON ARCの限定ドロップ。"
+                  "text": "見て。NEON ARC의限定ドロップ。"
                 }
               ],
               "environment": "env:cschool-classroom",
+              "gh:currentImageIndex": 0,
+              "gh:generatedImages": [
+                {
+                  "gh:generatedAt": 1769286011,
+                  "gh:imagePrompt": "Insert Shot, top-down, ARIA-style. A trendy streetwear item on a desk: a limited-drop hoodie with a bold geometric logo patch and a small 'limited' tag (no readable brand text). shot on 50mm, f/2.0, cinematic live-action.",
+                  "gh:imageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/3/panel_2_20260125_042011.png",
+                  "gh:model": "google/gemini-3-pro-image-preview"
+                }
+              ],
+              "gh:generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/3/panel_2_20260125_042011.png",
+              "generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/3/panel_2_20260125_042011.png",
               "gh:runwayPrompt": "Insert Shot, top-down, ARIA-style. A trendy streetwear item on a desk: a limited-drop hoodie with a bold geometric logo patch and a small 'limited' tag (no readable brand text). shot on 50mm, f/2.0, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "top-down insert",
@@ -946,6 +957,17 @@
                 }
               ],
               "environment": "env:smartphone-screen",
+              "gh:currentImageIndex": 0,
+              "gh:generatedImages": [
+                {
+                  "gh:generatedAt": 1769289798,
+                  "gh:imagePrompt": "Insert Shot, top-down, ARIA-style. Phone payment screen: login ID field, long password dots, and a credit card payment option icon (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
+                  "gh:imageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/4/panel_4_20260125_052318.png",
+                  "gh:model": "google/gemini-3-pro-image-preview"
+                }
+              ],
+              "gh:generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/4/panel_4_20260125_052318.png",
+              "generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/4/panel_4_20260125_052318.png",
               "gh:runwayPrompt": "Insert Shot, top-down, ARIA-style. Phone payment screen: login ID field, long password dots, and a credit card payment option icon (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "top-down insert",
