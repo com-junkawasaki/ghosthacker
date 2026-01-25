@@ -322,7 +322,7 @@
 				<div class="cinematic-generation-controls">
 					<button
 						type="button"
-						on:click={handleGenerateCinematic}
+						onclick={handleGenerateCinematic}
 						disabled={generatingCinematic}
 						class="generate-cinematic-btn"
 						title="Generate cinematic sketch and visual prompts"
@@ -369,7 +369,7 @@
 				<div class="image-generation-controls">
 					<button
 						type="button"
-						on:click={handleGenerateImage}
+						onclick={handleGenerateImage}
 						disabled={generatingImage}
 						class="generate-btn"
 					>
@@ -385,7 +385,7 @@
 					{#if generatedImages.length > 1}
 						<button
 							type="button"
-							on:click={() => navigateImage('prev')}
+							onclick={() => navigateImage('prev')}
 							class="image-nav-btn image-nav-prev"
 							title="Previous image"
 						>
@@ -396,7 +396,7 @@
 					{#if generatedImages.length > 1}
 						<button
 							type="button"
-							on:click={() => navigateImage('next')}
+							onclick={() => navigateImage('next')}
 							class="image-nav-btn image-nav-next"
 							title="Next image"
 						>
@@ -424,8 +424,8 @@
 					<input
 						type="text"
 						value={characters.join(', ')}
-						on:input={(e) => {
-							characters = (e.target as HTMLInputElement).value
+						oninput={(e) => {
+							characters = (e.currentTarget as HTMLInputElement).value
 								.split(',')
 								.map((s) => s.trim())
 								.filter((s) => s);
@@ -462,7 +462,7 @@
 					<div class="dialogue-generation-controls">
 						<button
 							type="button"
-							on:click={() => dispatch('agentTrigger', { agent: 'dialogue' })}
+							onclick={() => dispatch('agentTrigger', { agent: 'dialogue' })}
 							class="generate-dialogue-btn"
 							title="Open Dialogue Agent"
 						>
@@ -470,7 +470,7 @@
 						</button>
 						<button
 							type="button"
-							on:click={handleGenerateDialogue}
+							onclick={handleGenerateDialogue}
 							disabled={generatingDialogue}
 							class="generate-dialogue-btn-legacy"
 						>
@@ -494,24 +494,24 @@
 							/>
 							<button
 								type="button"
-								on:click={() => removeDialogue(index)}
+								onclick={() => removeDialogue(index)}
 								class="remove-btn"
 							>
 								×
 							</button>
 						</div>
 					{/each}
-					<button type="button" on:click={addDialogue} class="add-btn">
+					<button type="button" onclick={addDialogue} class="add-btn">
 						+ Add Dialogue
 					</button>
 				</div>
 				<div class="actions">
-					<button on:click={saveEdit} class="save-btn">Save</button>
-					<button on:click={cancelEdit} class="cancel-btn">Cancel</button>
+					<button onclick={saveEdit} class="save-btn">Save</button>
+					<button onclick={cancelEdit} class="cancel-btn">Cancel</button>
 				</div>
 			</div>
 		{:else}
-			<div class="content-display" on:dblclick={startEdit}>
+			<div class="content-display" ondblclick={startEdit} role="button" tabindex="0">
 				{#if characters.length > 0}
 					<div class="characters">
 						Characters: {characters.join(', ')}
@@ -561,7 +561,7 @@
 				class="duration-input"
 			/>
 		{:else}
-			<div class="duration" on:click={startEdit}>
+			<div class="duration" onclick={startEdit} onkeydown={(e) => e.key === 'Enter' && startEdit()} role="button" tabindex="0">
 				{durationSeconds > 0 ? durationSeconds.toFixed(1) : '-'}
 			</div>
 		{/if}

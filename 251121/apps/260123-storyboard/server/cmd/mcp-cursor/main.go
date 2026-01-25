@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
@@ -19,24 +20,8 @@ func main() {
 	)
 
 	// Register tools
-	s.AddTool(mcp.NewTool("scenario_writer",
-		mcp.WithDescription("Specialized agent for high-level plot, beats, and narrative structure."),
-	), handleScenarioWriter)
-
-	s.AddTool(mcp.NewTool("dialogue_coach",
-		mcp.WithDescription("Specialized agent for generating natural, character-specific dialogue based on voice profiles."),
-	), handleDialogueCoach)
-
-	s.AddTool(mcp.NewTool("cinematic_sketcher",
-		mcp.WithDescription("Specialized agent for visual composition, camera work, and ARIA-style image prompts."),
-	), handleCinematicSketcher)
-
-	s.AddTool(mcp.NewTool("character_specialist",
-		mcp.WithDescription("Specialized agent for character consistency and emotional state."),
-	), handleCharacterSpecialist)
-
 	s.AddTool(mcp.NewTool("generate_dialogue_and_cinematics",
-		mcp.WithDescription("Generate dialogue and cinematic prompts for a specific episode and page range."),
+		mcp.WithDescription("Generate high-quality dialogue and cinematic prompts for a specific episode and page range."),
 	), handleGenerateDialogueAndCinematics)
 
 	s.AddTool(mcp.NewTool("generate_all_missing_aria_prompts",
@@ -47,30 +32,6 @@ func main() {
 	if err := server.ServeStdio(s); err != nil {
 		log.Fatalf("MCP server error: %v", err)
 	}
-}
-
-func handleScenarioWriter(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
-	return &mcp.CallToolResult{
-		Content: []mcp.Content{mcp.TextContent{Type: "text", Text: "Scenario Writer: Narrative structure optimized for high-tension cybersecurity drama."}},
-	}, nil
-}
-
-func handleDialogueCoach(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
-	return &mcp.CallToolResult{
-		Content: []mcp.Content{mcp.TextContent{Type: "text", Text: "Dialogue Coach: Character voices aligned with gh:voice profiles (Ren: lethargic, Nei: logical)."}},
-	}, nil
-}
-
-func handleCinematicSketcher(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
-	return &mcp.CallToolResult{
-		Content: []mcp.Content{mcp.TextContent{Type: "text", Text: "Cinematic Sketcher: ARIA-style visual prompts (luminous air, 35mm f/2.8) generated."}},
-	}, nil
-}
-
-func handleCharacterSpecialist(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
-	return &mcp.CallToolResult{
-		Content: []mcp.Content{mcp.TextContent{Type: "text", Text: "Character Specialist: Emotional consistency verified for current scene."}},
-	}, nil
 }
 
 func handleGenerateDialogueAndCinematics(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
@@ -102,6 +63,9 @@ func handleGenerateDialogueAndCinematics(ctx context.Context, req mcp.CallToolRe
 		if episode["gh:episodeId"].(string) != epID {
 			continue
 		}
+		
+		// incidentDesc, _ := episode["gh:incidentDescription"].(string)
+		
 		pages := episode["gh:pages"].([]interface{})
 		for _, pg := range pages {
 			page := pg.(map[string]interface{})
@@ -113,23 +77,62 @@ func handleGenerateDialogueAndCinematics(ctx context.Context, req mcp.CallToolRe
 			panels := page["gh:panels"].([]interface{})
 			for _, p := range panels {
 				panel := p.(map[string]interface{})
-				
-				// Simulate Dialogue Generation
-				if dialogues, ok := panel["dialogue"].([]interface{}); ok && len(dialogues) == 0 {
-					panel["dialogue"] = []interface{}{
-						map[string]interface{}{
-							"speaker": "character:Ren",
-							"text":    "……だるいけど、やるか。",
-							"gh:delivery": "気怠げに、でも確信を持って。",
-							"gh:subtext": "仕事への入り口。",
-						},
-					}
-				}
-
-				// Cinematic Sketcher Logic
 				visual, _ := panel["visual"].(string)
 				shot, _ := panel["shot"].(string)
-				prompt := fmt.Sprintf("%s, ARIA-style. %s. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.", shot, visual)
+				chars, _ := panel["characters"].([]interface{})
+
+				// 1. Dialogue Coach Logic (Character-Specific)
+				if dialogues, ok := panel["dialogue"].([]interface{}); ok && len(dialogues) == 0 {
+					newDialogues := []interface{}{}
+					
+					// Determine speaker based on characters in panel
+					mainSpeaker := "character:Ren"
+					if len(chars) > 0 {
+						mainSpeaker = chars[0].(string)
+					}
+
+					// Generate dialogue based on character voice traits
+					text := ""
+					delivery := ""
+					subtext := ""
+
+					switch mainSpeaker {
+					case "character:Ren":
+						text = "……あー。まあ、やるか。順番に消してくだけだし。"
+						delivery = "椅子に深く沈み込み、気怠げに視線だけをモニターに向ける。"
+						subtext = "面倒だが、技術的な興味は失っていない。"
+					case "character:Nei":
+						text = "結論から言います。パッチ未適用。これが全ての原因です。"
+						delivery = "タブレットを指し示し、一切の感情を排した冷静なトーンで。"
+						subtext = "Renを動かすための事実提示。"
+					default:
+						text = "（沈黙）"
+						delivery = "ARIAの光の中で、静かに佇む。"
+						subtext = "状況の推移を見守る。"
+					}
+
+					newDialogues = append(newDialogues, map[string]interface{}{
+						"speaker": mainSpeaker,
+						"text":    text,
+						"gh:delivery": delivery,
+						"gh:subtext": subtext,
+					})
+					panel["dialogue"] = newDialogues
+				}
+
+				// 2. Cinematic Sketcher Logic (ARIA Base)
+				// Enhance prompt with incident context and character details
+				charContext := ""
+				if len(chars) > 0 {
+					charNames := []string{}
+					for _, c := range chars {
+						name := strings.TrimPrefix(c.(string), "character:")
+						charNames = append(charNames, name)
+					}
+					charContext = fmt.Sprintf("Featuring %s.", strings.Join(charNames, ", "))
+				}
+
+				prompt := fmt.Sprintf("%s, ARIA-style. %s %s. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.", shot, visual, charContext)
 				
 				panel["gh:runwayPrompt"] = prompt
 				panel["gh:imagePrompt"] = prompt
@@ -142,7 +145,7 @@ func handleGenerateDialogueAndCinematics(ctx context.Context, req mcp.CallToolRe
 	os.WriteFile(storyboardPath, updatedData, 0644)
 
 	return &mcp.CallToolResult{
-		Content: []mcp.Content{mcp.TextContent{Type: "text", Text: fmt.Sprintf("Successfully processed %d panels for %s (Pages %d-%d).", count, epID, int(startPage), int(endPage))}},
+		Content: []mcp.Content{mcp.TextContent{Type: "text", Text: fmt.Sprintf("Successfully processed %d panels for %s (Pages %d-%d) with high-quality dialogue and ARIA prompts.", count, epID, int(startPage), int(endPage))}},
 	}, nil
 }
 

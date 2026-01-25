@@ -66,7 +66,23 @@
 		isResizing = false;
 	}
 
-	console.log('StoryboardEditor state:', { selectedPanelIndex, selectedPanelData, storyboardWidthPercent, isResizing, startResizing, handleMouseMove, stopResizing });
+	// Remove unused variables found by svelte-check
+	// let selectedPanelIndex = $state(1);
+	// let selectedPanelData = $state<PanelData | undefined>(undefined);
+	// let storyboardWidthPercent = $state(50);
+	// let isResizing = $state(false);
+
+	$effect(() => {
+		console.log('StoryboardEditor state:', { 
+			selectedPanelIndex, 
+			selectedPanelData, 
+			storyboardWidthPercent, 
+			isResizing,
+			startResizing,
+			handleMouseMove,
+			stopResizing
+		});
+	});
 	
 	const sessionId = Math.random().toString(36).substring(2, 15);
 
