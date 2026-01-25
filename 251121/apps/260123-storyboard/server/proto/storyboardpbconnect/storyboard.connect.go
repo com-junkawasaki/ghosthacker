@@ -81,6 +81,12 @@ const (
 	// StoryboardServiceInternalBroadcastChatMessageProcedure is the fully-qualified name of the
 	// StoryboardService's InternalBroadcastChatMessage RPC.
 	StoryboardServiceInternalBroadcastChatMessageProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/InternalBroadcastChatMessage"
+	// StoryboardServiceSaveChatSessionProcedure is the fully-qualified name of the StoryboardService's
+	// SaveChatSession RPC.
+	StoryboardServiceSaveChatSessionProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/SaveChatSession"
+	// StoryboardServiceGetChatSessionsProcedure is the fully-qualified name of the StoryboardService's
+	// GetChatSessions RPC.
+	StoryboardServiceGetChatSessionsProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/GetChatSessions"
 )
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
@@ -102,6 +108,8 @@ var (
 	storyboardServiceStartAutonomousGenerationMethodDescriptor     = storyboardServiceServiceDescriptor.Methods().ByName("StartAutonomousGeneration")
 	storyboardServiceTerminateAutonomousGenerationMethodDescriptor = storyboardServiceServiceDescriptor.Methods().ByName("TerminateAutonomousGeneration")
 	storyboardServiceInternalBroadcastChatMessageMethodDescriptor  = storyboardServiceServiceDescriptor.Methods().ByName("InternalBroadcastChatMessage")
+	storyboardServiceSaveChatSessionMethodDescriptor               = storyboardServiceServiceDescriptor.Methods().ByName("SaveChatSession")
+	storyboardServiceGetChatSessionsMethodDescriptor               = storyboardServiceServiceDescriptor.Methods().ByName("GetChatSessions")
 )
 
 // StoryboardServiceClient is a client for the gftd.ghosthacker.storyboard.v1.StoryboardService
@@ -139,6 +147,10 @@ type StoryboardServiceClient interface {
 	TerminateAutonomousGeneration(context.Context, *connect.Request[proto.TerminateAutonomousGenerationRequest]) (*connect.Response[proto.TerminateAutonomousGenerationResponse], error)
 	// Internal: Broadcast a chat message to all connected clients (used by workers)
 	InternalBroadcastChatMessage(context.Context, *connect.Request[proto.InternalBroadcastChatMessageRequest]) (*connect.Response[proto.InternalBroadcastChatMessageResponse], error)
+	// Persistence: Save chat session
+	SaveChatSession(context.Context, *connect.Request[proto.SaveChatSessionRequest]) (*connect.Response[proto.SaveChatSessionResponse], error)
+	// Persistence: Get all chat sessions
+	GetChatSessions(context.Context, *connect.Request[proto.GetChatSessionsRequest]) (*connect.Response[proto.GetChatSessionsResponse], error)
 }
 
 // NewStoryboardServiceClient constructs a client for the
@@ -248,6 +260,18 @@ func NewStoryboardServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			connect.WithSchema(storyboardServiceInternalBroadcastChatMessageMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
+		saveChatSession: connect.NewClient[proto.SaveChatSessionRequest, proto.SaveChatSessionResponse](
+			httpClient,
+			baseURL+StoryboardServiceSaveChatSessionProcedure,
+			connect.WithSchema(storyboardServiceSaveChatSessionMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
+		getChatSessions: connect.NewClient[proto.GetChatSessionsRequest, proto.GetChatSessionsResponse](
+			httpClient,
+			baseURL+StoryboardServiceGetChatSessionsProcedure,
+			connect.WithSchema(storyboardServiceGetChatSessionsMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -269,6 +293,8 @@ type storyboardServiceClient struct {
 	startAutonomousGeneration     *connect.Client[proto.StartAutonomousGenerationRequest, proto.StartAutonomousGenerationResponse]
 	terminateAutonomousGeneration *connect.Client[proto.TerminateAutonomousGenerationRequest, proto.TerminateAutonomousGenerationResponse]
 	internalBroadcastChatMessage  *connect.Client[proto.InternalBroadcastChatMessageRequest, proto.InternalBroadcastChatMessageResponse]
+	saveChatSession               *connect.Client[proto.SaveChatSessionRequest, proto.SaveChatSessionResponse]
+	getChatSessions               *connect.Client[proto.GetChatSessionsRequest, proto.GetChatSessionsResponse]
 }
 
 // LoadStoryboard calls gftd.ghosthacker.storyboard.v1.StoryboardService.LoadStoryboard.
@@ -355,6 +381,16 @@ func (c *storyboardServiceClient) InternalBroadcastChatMessage(ctx context.Conte
 	return c.internalBroadcastChatMessage.CallUnary(ctx, req)
 }
 
+// SaveChatSession calls gftd.ghosthacker.storyboard.v1.StoryboardService.SaveChatSession.
+func (c *storyboardServiceClient) SaveChatSession(ctx context.Context, req *connect.Request[proto.SaveChatSessionRequest]) (*connect.Response[proto.SaveChatSessionResponse], error) {
+	return c.saveChatSession.CallUnary(ctx, req)
+}
+
+// GetChatSessions calls gftd.ghosthacker.storyboard.v1.StoryboardService.GetChatSessions.
+func (c *storyboardServiceClient) GetChatSessions(ctx context.Context, req *connect.Request[proto.GetChatSessionsRequest]) (*connect.Response[proto.GetChatSessionsResponse], error) {
+	return c.getChatSessions.CallUnary(ctx, req)
+}
+
 // StoryboardServiceHandler is an implementation of the
 // gftd.ghosthacker.storyboard.v1.StoryboardService service.
 type StoryboardServiceHandler interface {
@@ -390,6 +426,10 @@ type StoryboardServiceHandler interface {
 	TerminateAutonomousGeneration(context.Context, *connect.Request[proto.TerminateAutonomousGenerationRequest]) (*connect.Response[proto.TerminateAutonomousGenerationResponse], error)
 	// Internal: Broadcast a chat message to all connected clients (used by workers)
 	InternalBroadcastChatMessage(context.Context, *connect.Request[proto.InternalBroadcastChatMessageRequest]) (*connect.Response[proto.InternalBroadcastChatMessageResponse], error)
+	// Persistence: Save chat session
+	SaveChatSession(context.Context, *connect.Request[proto.SaveChatSessionRequest]) (*connect.Response[proto.SaveChatSessionResponse], error)
+	// Persistence: Get all chat sessions
+	GetChatSessions(context.Context, *connect.Request[proto.GetChatSessionsRequest]) (*connect.Response[proto.GetChatSessionsResponse], error)
 }
 
 // NewStoryboardServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -494,6 +534,18 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 		connect.WithSchema(storyboardServiceInternalBroadcastChatMessageMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
+	storyboardServiceSaveChatSessionHandler := connect.NewUnaryHandler(
+		StoryboardServiceSaveChatSessionProcedure,
+		svc.SaveChatSession,
+		connect.WithSchema(storyboardServiceSaveChatSessionMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetChatSessionsHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetChatSessionsProcedure,
+		svc.GetChatSessions,
+		connect.WithSchema(storyboardServiceGetChatSessionsMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/gftd.ghosthacker.storyboard.v1.StoryboardService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case StoryboardServiceLoadStoryboardProcedure:
@@ -528,6 +580,10 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 			storyboardServiceTerminateAutonomousGenerationHandler.ServeHTTP(w, r)
 		case StoryboardServiceInternalBroadcastChatMessageProcedure:
 			storyboardServiceInternalBroadcastChatMessageHandler.ServeHTTP(w, r)
+		case StoryboardServiceSaveChatSessionProcedure:
+			storyboardServiceSaveChatSessionHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetChatSessionsProcedure:
+			storyboardServiceGetChatSessionsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -599,4 +655,12 @@ func (UnimplementedStoryboardServiceHandler) TerminateAutonomousGeneration(conte
 
 func (UnimplementedStoryboardServiceHandler) InternalBroadcastChatMessage(context.Context, *connect.Request[proto.InternalBroadcastChatMessageRequest]) (*connect.Response[proto.InternalBroadcastChatMessageResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.InternalBroadcastChatMessage is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) SaveChatSession(context.Context, *connect.Request[proto.SaveChatSessionRequest]) (*connect.Response[proto.SaveChatSessionResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.SaveChatSession is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetChatSessions(context.Context, *connect.Request[proto.GetChatSessionsRequest]) (*connect.Response[proto.GetChatSessionsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.GetChatSessions is not implemented"))
 }

@@ -1,10 +1,11 @@
 <script lang="ts">
 	import type { Panel } from '$lib/gen/proto/storyboard_pb';
 
-	let { panels = [], selectedEpisode = '', onSelect } = $props<{
+	let { panels = [], selectedEpisode = '', onSelect, onContextAdd } = $props<{
 		panels: Panel[];
 		selectedEpisode: string;
 		onSelect?: (panel: Panel) => void;
+		onContextAdd?: (type: string, data: any) => void;
 	}>();
 
 	// Group panels by page
@@ -37,6 +38,7 @@
 				class="node-label episode" 
 				draggable="true"
 				ondragstart={(e) => handleDragStart(e, 'episode', { id: selectedEpisode })}
+				onclick={() => onContextAdd?.('episode', { id: selectedEpisode })}
 			>
 				📁 {selectedEpisode || 'No Episode'}
 			</div>
@@ -48,6 +50,7 @@
 							class="node-label page"
 							draggable="true"
 							ondragstart={(e) => handleDragStart(e, 'page', { episodeId: selectedEpisode, pageNumber: pageNum })}
+							onclick={() => onContextAdd?.('page', { episodeId: selectedEpisode, pageNumber: pageNum })}
 						>
 							📄 Page {pageNum}
 						</div>
@@ -62,7 +65,15 @@
 										panel: panel.panel,
 										data: panel.data 
 									})}
-									onclick={() => onSelect?.(panel)}
+									onclick={() => {
+										onSelect?.(panel);
+										onContextAdd?.('panel', { 
+											episodeId: selectedEpisode, 
+											pageNumber: pageNum, 
+											panel: panel.panel,
+											data: panel.data 
+										});
+									}}
 								>
 									🎞️ Panel {panel.panel}
 									{#if panel.data?.characters && panel.data.characters.length > 0}

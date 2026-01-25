@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { storyboardClient } from '$lib/client/storyboard-client';
+	import { onMount } from 'svelte';
 
 	let { selectedEpisode, storyboardPath, onApplyPatches } = $props<{
 		selectedEpisode: string;
@@ -14,6 +15,60 @@
 	let currentSessionId = $state<string>(Math.random().toString(36).substring(2, 15));
 	let messages = $state<Message[]>([]);
 	let showHistory = $state(false);
+
+	onMount(async () => {
+		await loadAllSessions();
+	});
+
+	async function loadAllSessions() {
+		try {
+			const res = await storyboardClient.getChatSessions({});
+			if (res.sessions) {
+				sessions = res.sessions.map(s => ({
+					id: s.id,
+					title: s.title,
+					messages: s.messages.map(m => ({
+						role: m.role as any,
+						agent: m.agentMode,
+						content: m.content,
+						context: m.contextJson ? JSON.parse(m.contextJson) : undefined,
+						context_json: m.contextJson
+					})),
+					timestamp: Number(s.timestamp)
+				}));
+				
+				// Load the most recent session if messages are empty
+				if (sessions.length > 0 && messages.length === 0) {
+					loadSession(sessions[0].id);
+				}
+			}
+		} catch (err) {
+			console.error('Failed to load chat sessions:', err);
+		}
+	}
+
+	async function saveCurrentSession() {
+		const session = sessions.find(s => s.id === currentSessionId);
+		if (!session) return;
+
+		try {
+			await storyboardClient.saveChatSession({
+				session: {
+					id: session.id,
+					title: session.title,
+					timestamp: BigInt(session.timestamp),
+					messages: messages.map(m => ({
+						role: m.role,
+						agentMode: m.agent ?? '',
+						content: m.content,
+						contextJson: m.context ? JSON.stringify(m.context) : (m.context_json ?? '')
+					}))
+				}
+			});
+		} catch (err) {
+			console.error('Failed to save chat session:', err);
+		}
+	}
 
 	let inputValue = $state('');
 	let loading = $state(false);
@@ -66,7 +121,10 @@
 		const session = sessions.find(s => s.id === id);
 		if (session) {
 			currentSessionId = id;
-			messages = session.messages;
+			messages = session.messages.map(m => ({
+				...m,
+				context: m.context_json ? JSON.parse(m.context_json) : m.context
+			}));
 			showHistory = false;
 		}
 	}
@@ -85,8 +143,16 @@
 	// Expose a method to add messages from outside (e.g. from stream)
 	export function addMessage(msg: { role: 'user' | 'assistant', content: string, agent?: string }) {
 		messages = [...messages, msg];
-		// If it's a real agent message, stop the simulation if any
-		// (In a real app, simulation wouldn't be needed)
+		saveCurrentSession();
+	}
+
+	// Expose a method to add context items programmatically
+	export function addContext(type: string, data: any) {
+		const item = { type, ...data };
+		if (!dropContext.find(existing => JSON.stringify(existing) === JSON.stringify(item))) {
+			dropContext = [...dropContext, item];
+			console.log('[ChatPanel] Context added programmatically:', item);
+		}
 	}
 
 	async function sendMessage() {
@@ -100,6 +166,8 @@
 		inputValue = '';
 		dropContext = [];
 		loading = true;
+
+		await saveCurrentSession();
 
 		console.log('[ChatPanel] Sending message to AI...', { userMessage, contextCount: currentContext.length, agentMode });
 
@@ -131,6 +199,8 @@
 				if (res.patches && res.patches.length > 0) {
 					console.log('[ChatPanel] AI suggested patches:', res.patches);
 				}
+				
+				await saveCurrentSession();
 			} else {
 				messages = [...messages, { role: 'assistant', content: `AI Error: ${res.message}` }];
 			}
@@ -184,6 +254,8 @@
 			content: `[AUTO-PILOT START] Goal: ${goal}`,
 			context: [...dropContext]
 		}];
+
+		await saveCurrentSession();
 
 		try {
 			const res = await storyboardClient.startAutonomousGeneration({

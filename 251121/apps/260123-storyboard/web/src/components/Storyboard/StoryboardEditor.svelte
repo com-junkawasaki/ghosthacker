@@ -27,6 +27,12 @@
 			chatPanel.triggerAgent(agent, prompt);
 		}
 	}
+
+	function addContextToChat(type: string, data: any) {
+		if (chatPanel) {
+			chatPanel.addContext(type, data);
+		}
+	}
 	
 	// Resizable split view state
 	let storyboardWidthPercent = $state(50);
@@ -322,6 +328,7 @@
 						selectedPanelIndex = panel.panel;
 						selectedPanelData = panel.data;
 					}}
+					onContextAdd={(type, data) => addContextToChat(type, data)}
 				/>
 			</aside>
 

@@ -55,6 +55,12 @@ service StoryboardService {
 
   // Internal: Broadcast a chat message to all connected clients (used by workers)
   rpc InternalBroadcastChatMessage(InternalBroadcastChatMessageRequest) returns (InternalBroadcastChatMessageResponse);
+
+  // Persistence: Save chat session
+  rpc SaveChatSession(SaveChatSessionRequest) returns (SaveChatSessionResponse);
+
+  // Persistence: Get all chat sessions
+  rpc GetChatSessions(GetChatSessionsRequest) returns (GetChatSessionsResponse);
 }
 
 message InternalBroadcastChatMessageRequest {
@@ -349,6 +355,32 @@ message ChatMessage {
   string role = 1; // "user", "assistant"
   string agent_mode = 2; // "scenario", "episode", etc.
   string content = 3;
+  string context_json = 4; // Serialized context items
+}
+
+message SaveChatSessionRequest {
+  string file_path = 1;
+  ChatSessionData session = 2;
+}
+
+message SaveChatSessionResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message GetChatSessionsRequest {
+  string file_path = 1;
+}
+
+message GetChatSessionsResponse {
+  repeated ChatSessionData sessions = 1;
+}
+
+message ChatSessionData {
+  string id = 1;
+  string title = 2;
+  int64 timestamp = 3;
+  repeated ChatMessage messages = 4;
 }
 
 message GeneratePanelImageRequest {
