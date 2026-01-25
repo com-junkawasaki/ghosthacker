@@ -45,9 +45,15 @@ const (
 	// StoryboardServiceGetEpisodesProcedure is the fully-qualified name of the StoryboardService's
 	// GetEpisodes RPC.
 	StoryboardServiceGetEpisodesProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/GetEpisodes"
+	// StoryboardServiceGetArcsProcedure is the fully-qualified name of the StoryboardService's GetArcs
+	// RPC.
+	StoryboardServiceGetArcsProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/GetArcs"
 	// StoryboardServiceGetEpisodePanelsProcedure is the fully-qualified name of the StoryboardService's
 	// GetEpisodePanels RPC.
 	StoryboardServiceGetEpisodePanelsProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/GetEpisodePanels"
+	// StoryboardServiceGetArcPanelsProcedure is the fully-qualified name of the StoryboardService's
+	// GetArcPanels RPC.
+	StoryboardServiceGetArcPanelsProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/GetArcPanels"
 	// StoryboardServiceStreamUpdatesProcedure is the fully-qualified name of the StoryboardService's
 	// StreamUpdates RPC.
 	StoryboardServiceStreamUpdatesProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/StreamUpdates"
@@ -99,7 +105,9 @@ var (
 	storyboardServiceUpdatePanelMethodDescriptor                   = storyboardServiceServiceDescriptor.Methods().ByName("UpdatePanel")
 	storyboardServiceSaveStoryboardMethodDescriptor                = storyboardServiceServiceDescriptor.Methods().ByName("SaveStoryboard")
 	storyboardServiceGetEpisodesMethodDescriptor                   = storyboardServiceServiceDescriptor.Methods().ByName("GetEpisodes")
+	storyboardServiceGetArcsMethodDescriptor                       = storyboardServiceServiceDescriptor.Methods().ByName("GetArcs")
 	storyboardServiceGetEpisodePanelsMethodDescriptor              = storyboardServiceServiceDescriptor.Methods().ByName("GetEpisodePanels")
+	storyboardServiceGetArcPanelsMethodDescriptor                  = storyboardServiceServiceDescriptor.Methods().ByName("GetArcPanels")
 	storyboardServiceStreamUpdatesMethodDescriptor                 = storyboardServiceServiceDescriptor.Methods().ByName("StreamUpdates")
 	storyboardServiceGeneratePanelImageMethodDescriptor            = storyboardServiceServiceDescriptor.Methods().ByName("GeneratePanelImage")
 	storyboardServiceGenerateDialogueMethodDescriptor              = storyboardServiceServiceDescriptor.Methods().ByName("GenerateDialogue")
@@ -127,8 +135,12 @@ type StoryboardServiceClient interface {
 	SaveStoryboard(context.Context, *connect.Request[proto.SaveStoryboardRequest]) (*connect.Response[proto.SaveStoryboardResponse], error)
 	// Get episode list from storyboard
 	GetEpisodes(context.Context, *connect.Request[proto.GetEpisodesRequest]) (*connect.Response[proto.GetEpisodesResponse], error)
+	// Get arc list from storyboard
+	GetArcs(context.Context, *connect.Request[proto.GetArcsRequest]) (*connect.Response[proto.GetArcsResponse], error)
 	// Get panels for a specific episode
 	GetEpisodePanels(context.Context, *connect.Request[proto.GetEpisodePanelsRequest]) (*connect.Response[proto.GetEpisodePanelsResponse], error)
+	// Get panels for a specific arc
+	GetArcPanels(context.Context, *connect.Request[proto.GetArcPanelsRequest]) (*connect.Response[proto.GetArcPanelsResponse], error)
 	// Stream updates for real-time collaboration (optional)
 	StreamUpdates(context.Context, *connect.Request[proto.StreamUpdatesRequest]) (*connect.ServerStreamForClient[proto.StreamUpdatesResponse], error)
 	// Generate image for a panel using OpenRouter AI
@@ -194,10 +206,22 @@ func NewStoryboardServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			connect.WithSchema(storyboardServiceGetEpisodesMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
+		getArcs: connect.NewClient[proto.GetArcsRequest, proto.GetArcsResponse](
+			httpClient,
+			baseURL+StoryboardServiceGetArcsProcedure,
+			connect.WithSchema(storyboardServiceGetArcsMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
 		getEpisodePanels: connect.NewClient[proto.GetEpisodePanelsRequest, proto.GetEpisodePanelsResponse](
 			httpClient,
 			baseURL+StoryboardServiceGetEpisodePanelsProcedure,
 			connect.WithSchema(storyboardServiceGetEpisodePanelsMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
+		getArcPanels: connect.NewClient[proto.GetArcPanelsRequest, proto.GetArcPanelsResponse](
+			httpClient,
+			baseURL+StoryboardServiceGetArcPanelsProcedure,
+			connect.WithSchema(storyboardServiceGetArcPanelsMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
 		streamUpdates: connect.NewClient[proto.StreamUpdatesRequest, proto.StreamUpdatesResponse](
@@ -293,7 +317,9 @@ type storyboardServiceClient struct {
 	updatePanel                   *connect.Client[proto.UpdatePanelRequest, proto.UpdatePanelResponse]
 	saveStoryboard                *connect.Client[proto.SaveStoryboardRequest, proto.SaveStoryboardResponse]
 	getEpisodes                   *connect.Client[proto.GetEpisodesRequest, proto.GetEpisodesResponse]
+	getArcs                       *connect.Client[proto.GetArcsRequest, proto.GetArcsResponse]
 	getEpisodePanels              *connect.Client[proto.GetEpisodePanelsRequest, proto.GetEpisodePanelsResponse]
+	getArcPanels                  *connect.Client[proto.GetArcPanelsRequest, proto.GetArcPanelsResponse]
 	streamUpdates                 *connect.Client[proto.StreamUpdatesRequest, proto.StreamUpdatesResponse]
 	generatePanelImage            *connect.Client[proto.GeneratePanelImageRequest, proto.GeneratePanelImageResponse]
 	generateDialogue              *connect.Client[proto.GenerateDialogueRequest, proto.GenerateDialogueResponse]
@@ -330,9 +356,19 @@ func (c *storyboardServiceClient) GetEpisodes(ctx context.Context, req *connect.
 	return c.getEpisodes.CallUnary(ctx, req)
 }
 
+// GetArcs calls gftd.ghosthacker.storyboard.v1.StoryboardService.GetArcs.
+func (c *storyboardServiceClient) GetArcs(ctx context.Context, req *connect.Request[proto.GetArcsRequest]) (*connect.Response[proto.GetArcsResponse], error) {
+	return c.getArcs.CallUnary(ctx, req)
+}
+
 // GetEpisodePanels calls gftd.ghosthacker.storyboard.v1.StoryboardService.GetEpisodePanels.
 func (c *storyboardServiceClient) GetEpisodePanels(ctx context.Context, req *connect.Request[proto.GetEpisodePanelsRequest]) (*connect.Response[proto.GetEpisodePanelsResponse], error) {
 	return c.getEpisodePanels.CallUnary(ctx, req)
+}
+
+// GetArcPanels calls gftd.ghosthacker.storyboard.v1.StoryboardService.GetArcPanels.
+func (c *storyboardServiceClient) GetArcPanels(ctx context.Context, req *connect.Request[proto.GetArcPanelsRequest]) (*connect.Response[proto.GetArcPanelsResponse], error) {
+	return c.getArcPanels.CallUnary(ctx, req)
 }
 
 // StreamUpdates calls gftd.ghosthacker.storyboard.v1.StoryboardService.StreamUpdates.
@@ -420,8 +456,12 @@ type StoryboardServiceHandler interface {
 	SaveStoryboard(context.Context, *connect.Request[proto.SaveStoryboardRequest]) (*connect.Response[proto.SaveStoryboardResponse], error)
 	// Get episode list from storyboard
 	GetEpisodes(context.Context, *connect.Request[proto.GetEpisodesRequest]) (*connect.Response[proto.GetEpisodesResponse], error)
+	// Get arc list from storyboard
+	GetArcs(context.Context, *connect.Request[proto.GetArcsRequest]) (*connect.Response[proto.GetArcsResponse], error)
 	// Get panels for a specific episode
 	GetEpisodePanels(context.Context, *connect.Request[proto.GetEpisodePanelsRequest]) (*connect.Response[proto.GetEpisodePanelsResponse], error)
+	// Get panels for a specific arc
+	GetArcPanels(context.Context, *connect.Request[proto.GetArcPanelsRequest]) (*connect.Response[proto.GetArcPanelsResponse], error)
 	// Stream updates for real-time collaboration (optional)
 	StreamUpdates(context.Context, *connect.Request[proto.StreamUpdatesRequest], *connect.ServerStream[proto.StreamUpdatesResponse]) error
 	// Generate image for a panel using OpenRouter AI
@@ -482,10 +522,22 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 		connect.WithSchema(storyboardServiceGetEpisodesMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
+	storyboardServiceGetArcsHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetArcsProcedure,
+		svc.GetArcs,
+		connect.WithSchema(storyboardServiceGetArcsMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
 	storyboardServiceGetEpisodePanelsHandler := connect.NewUnaryHandler(
 		StoryboardServiceGetEpisodePanelsProcedure,
 		svc.GetEpisodePanels,
 		connect.WithSchema(storyboardServiceGetEpisodePanelsMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceGetArcPanelsHandler := connect.NewUnaryHandler(
+		StoryboardServiceGetArcPanelsProcedure,
+		svc.GetArcPanels,
+		connect.WithSchema(storyboardServiceGetArcPanelsMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
 	storyboardServiceStreamUpdatesHandler := connect.NewServerStreamHandler(
@@ -582,8 +634,12 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 			storyboardServiceSaveStoryboardHandler.ServeHTTP(w, r)
 		case StoryboardServiceGetEpisodesProcedure:
 			storyboardServiceGetEpisodesHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetArcsProcedure:
+			storyboardServiceGetArcsHandler.ServeHTTP(w, r)
 		case StoryboardServiceGetEpisodePanelsProcedure:
 			storyboardServiceGetEpisodePanelsHandler.ServeHTTP(w, r)
+		case StoryboardServiceGetArcPanelsProcedure:
+			storyboardServiceGetArcPanelsHandler.ServeHTTP(w, r)
 		case StoryboardServiceStreamUpdatesProcedure:
 			storyboardServiceStreamUpdatesHandler.ServeHTTP(w, r)
 		case StoryboardServiceGeneratePanelImageProcedure:
@@ -637,8 +693,16 @@ func (UnimplementedStoryboardServiceHandler) GetEpisodes(context.Context, *conne
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.GetEpisodes is not implemented"))
 }
 
+func (UnimplementedStoryboardServiceHandler) GetArcs(context.Context, *connect.Request[proto.GetArcsRequest]) (*connect.Response[proto.GetArcsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.GetArcs is not implemented"))
+}
+
 func (UnimplementedStoryboardServiceHandler) GetEpisodePanels(context.Context, *connect.Request[proto.GetEpisodePanelsRequest]) (*connect.Response[proto.GetEpisodePanelsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.GetEpisodePanels is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) GetArcPanels(context.Context, *connect.Request[proto.GetArcPanelsRequest]) (*connect.Response[proto.GetArcPanelsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.GetArcPanels is not implemented"))
 }
 
 func (UnimplementedStoryboardServiceHandler) StreamUpdates(context.Context, *connect.Request[proto.StreamUpdatesRequest], *connect.ServerStream[proto.StreamUpdatesResponse]) error {

@@ -18,8 +18,14 @@ service StoryboardService {
   // Get episode list from storyboard
   rpc GetEpisodes(GetEpisodesRequest) returns (GetEpisodesResponse);
   
+  // Get arc list from storyboard
+  rpc GetArcs(GetArcsRequest) returns (GetArcsResponse);
+  
   // Get panels for a specific episode
   rpc GetEpisodePanels(GetEpisodePanelsRequest) returns (GetEpisodePanelsResponse);
+  
+  // Get panels for a specific arc
+  rpc GetArcPanels(GetArcPanelsRequest) returns (GetArcPanelsResponse);
   
   // Stream updates for real-time collaboration (optional)
   rpc StreamUpdates(StreamUpdatesRequest) returns (stream StreamUpdatesResponse);
@@ -337,6 +343,21 @@ message GetEpisodesResponse {
   repeated Episode episodes = 1;
 }
 
+message GetArcsRequest {
+  string file_path = 1;
+}
+
+message GetArcsResponse {
+  repeated Arc arcs = 1;
+}
+
+message Arc {
+  string id = 1;
+  string title = 2;
+  repeated string episode_ids = 3;
+  string description = 4;
+}
+
 message Episode {
   string id = 1;
   string title = 2;
@@ -350,6 +371,15 @@ message GetEpisodePanelsRequest {
 }
 
 message GetEpisodePanelsResponse {
+  repeated Panel panels = 1;
+}
+
+message GetArcPanelsRequest {
+  string file_path = 1;
+  string arc_id = 2;
+}
+
+message GetArcPanelsResponse {
   repeated Panel panels = 1;
 }
 

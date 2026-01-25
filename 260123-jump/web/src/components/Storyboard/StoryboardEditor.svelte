@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { getEpisodes, getEpisodePanels, storyboardClient, streamUpdates } from '$lib/client/storyboard-client';
+	import { getEpisodes, getEpisodePanels, getArcs, getArcPanels, storyboardClient, streamUpdates } from '$lib/client/storyboard-client';
 	import StoryboardPage from './StoryboardPage.svelte';
 	import MangaEditor from './MangaEditor.svelte';
 	import ScriptView from './ScriptView.svelte';
@@ -10,7 +10,10 @@
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
 
 	let episodes: Array<{ id: string; title: string; totalPages: number }> = $state([]);
+	let arcs: Array<{ id: string; title: string; description: string; episodeIds: string[] }> = $state([]);
 	let selectedEpisode = $state('');
+	let selectedArc = $state('');
+	let editMode = $state<'episode' | 'arc'>('episode');
 	let panels: Panel[] = $state([]);
 	let loading = $state(false);
 	let error = $state('');
@@ -89,18 +92,19 @@
 	const storyboardPath = '';
 
 	onMount(async () => {
-		console.log('[StoryboardEditor] onMount: component mounted, loading episodes, sessionId:', sessionId);
+		console.log('[StoryboardEditor] onMount: component mounted, loading episodes and arcs, sessionId:', sessionId);
 		try {
-			await loadEpisodes();
+			await Promise.all([loadEpisodes(), loadArcs()]);
 		} catch (err) {
-			console.error('[StoryboardEditor] onMount: error loading episodes', err);
+			console.error('[StoryboardEditor] onMount: error loading initial data', err);
 		}
 	});
 
 	$effect(() => {
-		if (!selectedEpisode) return;
+		const currentId = editMode === 'episode' ? selectedEpisode : selectedArc;
+		if (!currentId) return;
 
-		console.log('[StoryboardEditor] Effect: setting up stream for', selectedEpisode);
+		console.log('[StoryboardEditor] Effect: setting up stream for', currentId);
 		let unsubscribe: (() => void) | undefined;
 		
 		// Use a small timeout to avoid rapid re-connections during state transitions
@@ -110,7 +114,12 @@
 				sessionId,
 				(update) => {
 					console.log('[StoryboardEditor] Stream update received:', update);
-					if (update.updateType === 'panel_updated' && update.episodeId === selectedEpisode) {
+					const currentId = editMode === 'episode' ? selectedEpisode : selectedArc;
+					const isRelevant = editMode === 'episode' 
+						? update.episodeId === selectedEpisode 
+						: arcs.find(a => a.id === selectedArc)?.episodeIds.includes(update.episodeId);
+
+					if (update.updateType === 'panel_updated' && isRelevant) {
 						// Update panel in local state
 						panels = panels.map(p => {
 							if (p.pageNumber === update.pageNumber && p.panel === update.panel) {
@@ -156,69 +165,79 @@
 			// Use type-safe wrapper with runtime validation
 			const episodesList = await getEpisodes(storyboardPath);
 			console.log('[StoryboardEditor] loadEpisodes: episodes received', episodesList);
-			console.log('[StoryboardEditor] loadEpisodes: episodes count', episodesList.length);
 			
-			// TypeScript ensures episodesList is an array at compile time
-			// Runtime validation in getEpisodes ensures it's an array at runtime
-			episodes = episodesList.map((e) => {
-				const episode = {
-					id: e.id ?? '',
-					title: e.title ?? '',
-					totalPages: e.totalPages ?? 0,
-				};
-				console.log('[StoryboardEditor] loadEpisodes: mapped episode', episode);
-				return episode;
-			});
+			episodes = episodesList.map((e) => ({
+				id: e.id ?? '',
+				title: e.title ?? '',
+				totalPages: e.totalPages ?? 0,
+			}));
 			
-			console.log('[StoryboardEditor] loadEpisodes: parsed episodes', episodes);
-			
-			if (episodes.length > 0 && !selectedEpisode) {
-				const firstEpisode = episodes[0];
-				if (firstEpisode) {
-					selectedEpisode = firstEpisode.id;
-					await loadPanels();
-				}
-			} else if (episodes.length === 0) {
-				console.warn('[StoryboardEditor] loadEpisodes: No episodes found');
-				error = 'No episodes found in storyboard';
+			if (episodes.length > 0 && !selectedEpisode && editMode === 'episode') {
+				selectedEpisode = episodes[0].id;
+				await loadPanels();
 			}
 		} catch (err) {
 			error = err instanceof Error ? err.message : 'Failed to load episodes';
 			console.error('[StoryboardEditor] Failed to load episodes:', err);
-			if (err instanceof Error) {
-				console.error('[StoryboardEditor] Error stack:', err.stack);
-			}
 			episodes = [];
 		} finally {
 			loading = false;
 		}
 	}
 
-	async function loadPanels() {
-		if (!selectedEpisode) {
-			console.warn('[StoryboardEditor] loadPanels: No episode selected');
-			return;
-		}
+	async function loadArcs() {
 		try {
+			console.log('[StoryboardEditor] loadArcs: starting', { storyboardPath });
 			loading = true;
 			error = '';
 			
-			// Load all pages by passing pageNumber = 0
-			const panelsList = await getEpisodePanels(
-				storyboardPath,
-				selectedEpisode,
-				0 // 0 means all pages
-			);
+			const arcsList = await getArcs(storyboardPath);
+			console.log('[StoryboardEditor] loadArcs: arcs received', arcsList);
 			
-			console.log('[StoryboardEditor] loadPanels: all panels loaded', panelsList.length);
+			arcs = arcsList.map((a) => ({
+				id: a.id ?? '',
+				title: a.title ?? '',
+				description: a.description ?? '',
+				episodeIds: a.episodeIds ?? [],
+			}));
 			
+			if (arcs.length > 0 && !selectedArc && editMode === 'arc') {
+				selectedArc = arcs[0].id;
+				await loadArcPanelsData();
+			}
+		} catch (err) {
+			error = err instanceof Error ? err.message : 'Failed to load arcs';
+			console.error('[StoryboardEditor] Failed to load arcs:', err);
+			arcs = [];
+		} finally {
+			loading = false;
+		}
+	}
+
+	async function loadPanels() {
+		if (!selectedEpisode) return;
+		try {
+			loading = true;
+			error = '';
+			const panelsList = await getEpisodePanels(storyboardPath, selectedEpisode, 0);
 			panels = panelsList;
 		} catch (err) {
 			error = err instanceof Error ? err.message : 'Failed to load panels';
-			console.error('[StoryboardEditor] Failed to load panels:', err);
-			if (err instanceof Error) {
-				console.error('[StoryboardEditor] Error stack:', err.stack);
-			}
+			panels = [];
+		} finally {
+			loading = false;
+		}
+	}
+
+	async function loadArcPanelsData() {
+		if (!selectedArc) return;
+		try {
+			loading = true;
+			error = '';
+			const panelsList = await getArcPanels(storyboardPath, selectedArc);
+			panels = panelsList;
+		} catch (err) {
+			error = err instanceof Error ? err.message : 'Failed to load arc panels';
 			panels = [];
 		} finally {
 			loading = false;
@@ -230,7 +249,8 @@
 		panel: number,
 		data: PanelData
 	) {
-		if (!selectedEpisode) return;
+		const episodeId = editMode === 'episode' ? selectedEpisode : (data as any).gh_episodeId || selectedEpisode;
+		if (!episodeId) return;
 		
 		// Optimistic local update
 		panels = panels.map(p => {
@@ -243,7 +263,7 @@
 		try {
 			await storyboardClient.updatePanel({
 				filePath: storyboardPath,
-				episodeId: selectedEpisode,
+				episodeId: episodeId,
 				pageNumber,
 				panel,
 				panelData: data,
@@ -253,7 +273,11 @@
 		} catch (err) {
 			error = err instanceof Error ? err.message : 'Failed to update panel';
 			console.error('Failed to update panel:', err);
-			await loadPanels(); // Reload on error to ensure consistency
+			if (editMode === 'episode') {
+				await loadPanels();
+			} else {
+				await loadArcPanelsData();
+			}
 		}
 	}
 
@@ -269,33 +293,68 @@
 		alert(`AI suggested ${patches.length} changes. Patch application logic is being developed.`);
 	}
 
-	// Only load panels when an episode is selected (not empty string)
+	// Only load panels when an episode or arc is selected
 	$effect(() => {
-		if (selectedEpisode && selectedEpisode.trim() !== '') {
+		if (editMode === 'episode' && selectedEpisode && selectedEpisode.trim() !== '') {
 			console.log('[StoryboardEditor] Effect: selectedEpisode changed, loading all panels', selectedEpisode);
 			loadPanels();
+		} else if (editMode === 'arc' && selectedArc && selectedArc.trim() !== '') {
+			console.log('[StoryboardEditor] Effect: selectedArc changed, loading arc panels', selectedArc);
+			loadArcPanelsData();
+		} else if (editMode === 'episode' && !selectedEpisode && episodes.length > 0) {
+			selectedEpisode = episodes[0].id;
+		} else if (editMode === 'arc' && !selectedArc && arcs.length > 0) {
+			selectedArc = arcs[0].id;
 		}
 	});
 </script>
 
 <div class="storyboard-editor">
 	<header class="editor-header">
-		<div class="episode-selector">
-			<label for="episode-select">Episode:</label>
-			<select
-				id="episode-select"
-				bind:value={selectedEpisode}
-			>
-				{#if episodes.length === 0}
-					<option value="" disabled>No episodes available</option>
-				{:else}
-					{#each episodes as episode}
-						<option value={episode.id}>{episode.title}</option>
-					{/each}
-				{/if}
-			</select>
-			{#if episodes.length === 0 && !loading}
-				<span class="debug-info" title="Debug: episodes array is empty">⚠️</span>
+		<div class="edit-mode-selector">
+			<button 
+				class:active={editMode === 'episode'} 
+				onclick={() => editMode = 'episode'}
+			>By Episode</button>
+			<button 
+				class:active={editMode === 'arc'} 
+				onclick={() => editMode = 'arc'}
+			>By Arc</button>
+		</div>
+
+		<div class="selection-controls">
+			{#if editMode === 'episode'}
+				<div class="episode-selector">
+					<label for="episode-select">Episode:</label>
+					<select
+						id="episode-select"
+						bind:value={selectedEpisode}
+					>
+						{#if episodes.length === 0}
+							<option value="" disabled>No episodes available</option>
+						{:else}
+							{#each episodes as episode}
+								<option value={episode.id}>{episode.title}</option>
+							{/each}
+						{/if}
+					</select>
+				</div>
+			{:else}
+				<div class="arc-selector">
+					<label for="arc-select">Arc:</label>
+					<select
+						id="arc-select"
+						bind:value={selectedArc}
+					>
+						{#if arcs.length === 0}
+							<option value="" disabled>No arcs available</option>
+						{:else}
+							{#each arcs as arc}
+								<option value={arc.id}>{arc.title}</option>
+							{/each}
+						{/if}
+					</select>
+				</div>
 			{/if}
 		</div>
 
@@ -341,7 +400,7 @@
 			<aside class="left-sidebar">
 				<NodeTree 
 					{panels} 
-					{selectedEpisode} 
+					selectedId={editMode === 'episode' ? selectedEpisode : selectedArc} 
 					onSelect={(panel) => {
 						selectedPanelIndex = panel.panel;
 						selectedPanelData = panel.data;
@@ -355,7 +414,7 @@
 					{#if viewMode === 'storyboard'}
 						<StoryboardPage
 							{panels}
-							episodeId={selectedEpisode}
+							episodeId={editMode === 'episode' ? selectedEpisode : selectedArc}
 							storyboardPath={storyboardPath}
 							on:update={({ detail }) =>
 								handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
@@ -373,7 +432,7 @@
 					{:else if viewMode === 'manga'}
 						<MangaEditor
 							{panels}
-							episodeId={selectedEpisode}
+							episodeId={editMode === 'episode' ? selectedEpisode : selectedArc}
 							{storyboardPath}
 							bind:selectedPage
 							on:update={({ detail }) =>
@@ -382,7 +441,7 @@
 					{:else if viewMode === 'script'}
 						<ScriptView 
 							{panels} 
-							episodeId={selectedEpisode} 
+							episodeId={editMode === 'episode' ? selectedEpisode : selectedArc} 
 							{storyboardPath}
 							on:update={({ detail }) =>
 								handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
@@ -390,7 +449,7 @@
 					{:else if viewMode === 'shooting'}
 						<ShootingView 
 							{panels} 
-							episodeId={selectedEpisode} 
+							episodeId={editMode === 'episode' ? selectedEpisode : selectedArc} 
 							{storyboardPath}
 						/>
 					{/if}
@@ -400,7 +459,7 @@
 			<aside class="right-sidebar">
 				<ChatPanel 
 					bind:this={chatPanel} 
-					{selectedEpisode} 
+					selectedEpisode={editMode === 'episode' ? selectedEpisode : selectedArc} 
 					{storyboardPath} 
 					onApplyPatches={handleApplyPatches}
 				/>
@@ -481,27 +540,61 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 1rem 2rem;
+		padding: 0.5rem 1.5rem;
 		background: #fff;
 		border-bottom: 2px solid #ddd;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		gap: 1rem;
 	}
 
-	.episode-selector {
+	.edit-mode-selector {
+		display: flex;
+		background: #f0f0f0;
+		padding: 3px;
+		border-radius: 6px;
+	}
+
+	.edit-mode-selector button {
+		padding: 0.3rem 0.8rem;
+		border: none;
+		background: transparent;
+		border-radius: 4px;
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: #666;
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+
+	.edit-mode-selector button.active {
+		background: #fff;
+		color: #4a90e2;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	}
+
+	.selection-controls {
+		display: flex;
+		align-items: center;
+		flex: 1;
+	}
+
+	.episode-selector, .arc-selector {
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
 	}
 
-	.episode-selector label {
+	.episode-selector label, .arc-selector label {
 		font-weight: 600;
+		font-size: 0.9rem;
 	}
 
-	.episode-selector select {
-		padding: 0.5rem 1rem;
+	.episode-selector select, .arc-selector select {
+		padding: 0.4rem 0.8rem;
 		border: 1px solid #ccc;
 		border-radius: 4px;
-		font-size: 1rem;
+		font-size: 0.9rem;
+		min-width: 150px;
 	}
 
 	.view-switcher {

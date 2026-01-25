@@ -323,10 +323,15 @@ func (s *StoryboardMCPServer) handleQueryLore(ctx context.Context, req mcp.CallT
 		workspaceRoot = "../../../.."
 	}
 
-	loreFile := filepath.Join(workspaceRoot, "251022", "ghost-hacker.jsonld")
+	loreFile := filepath.Join(workspaceRoot, "260123-jump", "resources", "storyboard.jsonld")
 	data, err := os.ReadFile(loreFile)
 	if err != nil {
-		return nil, fmt.Errorf("lore file not found: %w", err)
+		// Try fallback to root if resources is not found
+		loreFile = filepath.Join(workspaceRoot, "storyboard.jsonld")
+		data, err = os.ReadFile(loreFile)
+		if err != nil {
+			return nil, fmt.Errorf("lore file not found: %w", err)
+		}
 	}
 
 	return &mcp.CallToolResult{

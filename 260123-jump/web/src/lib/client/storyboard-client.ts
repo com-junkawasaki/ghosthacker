@@ -1,7 +1,7 @@
 import { createClient } from '@connectrpc/connect';
 import { createConnectTransport } from '@connectrpc/connect-web';
 import { StoryboardService } from '$lib/gen/proto/storyboard_pb';
-import type { GetEpisodesResponse, GetEpisodePanelsResponse, StreamUpdatesResponse } from '$lib/gen/proto/storyboard_pb';
+import type { GetEpisodesResponse, GetEpisodePanelsResponse, StreamUpdatesResponse, GetArcsResponse, GetArcPanelsResponse } from '$lib/gen/proto/storyboard_pb';
 
 // Determine API base URL
 const getApiBaseUrl = (): string => {
@@ -55,6 +55,35 @@ export async function getEpisodes(filePath: string = ''): Promise<GetEpisodesRes
 }
 
 /**
+ * Type-safe wrapper for getArcs with runtime validation
+ */
+export async function getArcs(filePath: string = ''): Promise<GetArcsResponse['arcs']> {
+	console.log('[storyboard-client] getArcs: calling API', { filePath, baseUrl: getApiBaseUrl() });
+	
+	try {
+		const response = await storyboardClient.getArcs({ filePath });
+		console.log('[storyboard-client] getArcs: raw response', response);
+		
+		if (!response || typeof response !== 'object') {
+			throw new Error('Invalid response: response is not an object');
+		}
+		
+		if (!('arcs' in response)) {
+			throw new Error('Invalid response: missing arcs field');
+		}
+		
+		if (!Array.isArray(response.arcs)) {
+			throw new Error(`Invalid response: arcs is not an array, got ${typeof response.arcs}`);
+		}
+		
+		return response.arcs;
+	} catch (err) {
+		console.error('[storyboard-client] getArcs: error', err);
+		throw err;
+	}
+}
+
+/**
  * Type-safe wrapper for getEpisodePanels with runtime validation
  */
 export async function getEpisodePanels(
@@ -69,6 +98,33 @@ export async function getEpisodePanels(
 	});
 	
 	// Runtime validation
+	if (!response || typeof response !== 'object') {
+		throw new Error('Invalid response: response is not an object');
+	}
+	
+	if (!('panels' in response)) {
+		throw new Error('Invalid response: missing panels field');
+	}
+	
+	if (!Array.isArray(response.panels)) {
+		throw new Error(`Invalid response: panels is not an array, got ${typeof response.panels}`);
+	}
+	
+	return response.panels;
+}
+
+/**
+ * Type-safe wrapper for getArcPanels with runtime validation
+ */
+export async function getArcPanels(
+	filePath: string,
+	arcId: string
+): Promise<GetArcPanelsResponse['panels']> {
+	const response = await storyboardClient.getArcPanels({
+		filePath,
+		arcId
+	});
+	
 	if (!response || typeof response !== 'object') {
 		throw new Error('Invalid response: response is not an object');
 	}
