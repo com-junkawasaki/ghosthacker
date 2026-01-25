@@ -84,14 +84,33 @@
       "schema:name": "Ren",
       "dct:description": "17歳。スマートだが少し気怠げ。論理と手順で状況を切り分け、AXEでGhostの“繋がり”を断つ。",
       "gh:voice": {
-        "gh:style": "smart, slightly lethargic, low-energy confidence",
-        "gh:sentenceTraits": ["short clauses", "ellipses", "no shouting"],
-        "gh:favorites": ["入口", "鍵", "鎖", "切る", "見える化", "熱"],
-        "gh:taboos": ["熱血長台詞", "過剰な敬語"],
+        "gh:style": "smart, lethargic teen; speaks casually but precise when needed",
+        "gh:sentenceTraits": [
+          "conversational",
+          "short-to-medium sentences",
+          "ellipses and fillers (\"あー\", \"んー\")",
+          "thinks fast when addressed",
+          "no shouting"
+        ],
+        "gh:favorites": [
+          "あー",
+          "そうだな",
+          "とりあえず",
+          "先に",
+          "スクショ",
+          "ログイン",
+          "パス",
+          "二段階",
+          "パスキー",
+          "切る",
+          "コマンド"
+        ],
+        "gh:taboos": ["熱血長台詞", "過剰な敬語", "名詞だけの命令を連発しすぎる"],
         "gh:sampleLines": [
-          "…まず入口。",
-          "消せない。だから、切る。",
-          "怖さは手順に変えられる。"
+          "あー。そうだな、やるか。",
+          "先にスクショ撮る。そのあとで消す。",
+          "まずパス変える。二段階はそのあと。",
+          "めんどいけど…順番だけは守る。"
         ]
       }
     },
@@ -2632,7 +2651,7 @@
               "environment": "env:news-hacker-board",
               "characters": ["character:Ren"],
               "dialogue": [
-                { "speaker": "Ren", "text": "凍結→分離→入口を塞ぐ。順番だけ書く。" }
+                { "speaker": "Ren", "text": "あー…順番だけ書く。まず止める。次、分ける。最後、入口ふさぐ。" }
               ]
             },
             {
@@ -4926,7 +4945,7 @@
               "environment": "env:kamata-daimon-office",
               "characters": ["character:Ren"],
               "dialogue": [
-                { "speaker": "Ren", "text": "デリートしてやる。" }
+                { "speaker": "Ren", "text": "…Kill。切る。" }
               ]
             }
           ]
@@ -17140,7 +17159,7 @@
                         "dialogue": [
                             {
                                 "speaker": "Ren",
-                                "text": "\"Ugh... what a pain. But... fine. Let's do it.\""
+                                "text": "あー。そうだな、やるか。"
                             }
                         ]
                     }

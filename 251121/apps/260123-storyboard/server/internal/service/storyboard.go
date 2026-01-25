@@ -195,6 +195,39 @@ func (s *StoryboardService) UpdatePanel(
 						panel["gh:imagePrompt"] = req.Msg.PanelData.ImagePrompt
 					}
 
+					if req.Msg.PanelData.MangaLayout != nil {
+						mangaLayout := map[string]interface{}{}
+						if req.Msg.PanelData.MangaLayout.Panels != nil {
+							mangaPanels := make([]interface{}, len(req.Msg.PanelData.MangaLayout.Panels))
+							for j, p := range req.Msg.PanelData.MangaLayout.Panels {
+								mangaPanels[j] = map[string]interface{}{
+									"panelIndex": p.PanelIndex,
+									"x":          p.X,
+									"y":          p.Y,
+									"width":      p.Width,
+									"height":     p.Height,
+									"shape":      p.Shape,
+								}
+							}
+							mangaLayout["panels"] = mangaPanels
+						}
+						if req.Msg.PanelData.MangaLayout.Texts != nil {
+							mangaTexts := make([]interface{}, len(req.Msg.PanelData.MangaLayout.Texts))
+							for j, t := range req.Msg.PanelData.MangaLayout.Texts {
+								mangaTexts[j] = map[string]interface{}{
+									"text":     t.Text,
+									"type":     t.Type,
+									"x":        t.X,
+									"y":        t.Y,
+									"fontSize": t.FontSize,
+									"style":    t.Style,
+								}
+							}
+							mangaLayout["texts"] = mangaTexts
+						}
+						panel["gh:mangaLayout"] = mangaLayout
+					}
+
 					// Handle generated images history
 					// Always save generatedImages if provided (even if empty, to clear history)
 					log.Printf("UpdatePanel: Received GeneratedImages: len=%d, episode=%s page=%d panel=%d", 
@@ -511,6 +544,66 @@ func (s *StoryboardService) GetEpisodePanels(
 
 			if imagePrompt, ok := panel["gh:imagePrompt"].(string); ok {
 				panelData.ImagePrompt = imagePrompt
+			}
+
+			// Extract manga layout
+			if ml, ok := panel["gh:mangaLayout"].(map[string]interface{}); ok {
+				mangaLayout := &storyboardpb.MangaLayout{}
+				if panels, ok := ml["panels"].([]interface{}); ok {
+					mangaLayout.Panels = make([]*storyboardpb.MangaPanelLayout, 0, len(panels))
+					for _, p := range panels {
+						if pMap, ok := p.(map[string]interface{}); ok {
+							mpl := &storyboardpb.MangaPanelLayout{}
+							if val, ok := pMap["panelIndex"].(float64); ok {
+								mpl.PanelIndex = int32(val)
+							}
+							if val, ok := pMap["x"].(float64); ok {
+								mpl.X = float32(val)
+							}
+							if val, ok := pMap["y"].(float64); ok {
+								mpl.Y = float32(val)
+							}
+							if val, ok := pMap["width"].(float64); ok {
+								mpl.Width = float32(val)
+							}
+							if val, ok := pMap["height"].(float64); ok {
+								mpl.Height = float32(val)
+							}
+							if val, ok := pMap["shape"].(string); ok {
+								mpl.Shape = val
+							}
+							mangaLayout.Panels = append(mangaLayout.Panels, mpl)
+						}
+					}
+				}
+				if texts, ok := ml["texts"].([]interface{}); ok {
+					mangaLayout.Texts = make([]*storyboardpb.MangaText, 0, len(texts))
+					for _, t := range texts {
+						if tMap, ok := t.(map[string]interface{}); ok {
+							mt := &storyboardpb.MangaText{}
+							if val, ok := tMap["text"].(string); ok {
+								mt.Text = val
+							}
+							if val, ok := tMap["type"].(string); ok {
+								mt.Type = val
+							}
+							if val, ok := tMap["x"].(float64); ok {
+								mt.X = float32(val)
+							}
+							if val, ok := tMap["y"].(float64); ok {
+								mt.Y = float32(val)
+							}
+							if val, ok := tMap["fontSize"].(float64); ok {
+								mt.FontSize = float32(val)
+							}
+							if val, ok := tMap["style"].(string); ok {
+								mt.Style = val
+							}
+							mangaLayout.Texts = append(mangaLayout.Texts, mt)
+						}
+					}
+				}
+				panelData.MangaLayout = mangaLayout
 			}
 
 			// Load generated images history

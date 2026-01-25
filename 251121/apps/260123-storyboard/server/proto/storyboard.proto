@@ -65,6 +65,30 @@ message PanelData {
   string image_prompt = 11; // Prompt used for image generation
   repeated GeneratedImage generated_images = 12; // History of generated images
   int32 current_image_index = 13; // Current image index in history
+  MangaLayout manga_layout = 14; // Manga layout information
+}
+
+message MangaLayout {
+  repeated MangaPanelLayout panels = 1;
+  repeated MangaText texts = 2; // Dialogue bubbles, SFX, etc.
+}
+
+message MangaPanelLayout {
+  int32 panel_index = 1;
+  float x = 2;
+  float y = 3;
+  float width = 4;
+  float height = 5;
+  string shape = 6; // "rectangle", "trapezoid", etc.
+}
+
+message MangaText {
+  string text = 1;
+  string type = 2; // "dialogue", "sfx", "thought", "narration"
+  float x = 3;
+  float y = 4;
+  float font_size = 5;
+  string style = 6; // "vertical", "horizontal", "bold", etc.
 }
 
 message GeneratedImage {

@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { getEpisodes, getEpisodePanels, storyboardClient } from '$lib/client/storyboard-client';
 	import StoryboardPage from './StoryboardPage.svelte';
+	import MangaEditor from './MangaEditor.svelte';
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
 
 	let episodes: Array<{ id: string; title: string; totalPages: number }> = [];
@@ -9,6 +10,7 @@
 	let panels: Panel[] = [];
 	let loading = false;
 	let error = '';
+	let selectedPage = 1;
 
 	const storyboardPath = '';
 
@@ -164,13 +166,25 @@
 	{#if loading}
 		<div class="loading">Loading...</div>
 	{:else if panels.length > 0}
-		<StoryboardPage
-			{panels}
-			episodeId={selectedEpisode}
-			storyboardPath={storyboardPath}
-			on:update={({ detail }) =>
-				handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
-		/>
+		<div class="editor-content">
+			<div class="storyboard-view">
+				<StoryboardPage
+					{panels}
+					episodeId={selectedEpisode}
+					storyboardPath={storyboardPath}
+					on:update={({ detail }) =>
+						handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
+				/>
+			</div>
+			<div class="manga-view">
+				<MangaEditor
+					{panels}
+					episodeId={selectedEpisode}
+					{storyboardPath}
+					bind:selectedPage
+				/>
+			</div>
+		</div>
 	{:else if episodes.length === 0 && !loading}
 		<div class="empty-state">
 			<p>No episodes available. Check console for details.</p>
@@ -186,6 +200,27 @@
 		height: 100vh;
 		background: #f5f5f0;
 		font-family: 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+	}
+
+	.editor-content {
+		display: flex;
+		flex: 1;
+		overflow: hidden;
+	}
+
+	.storyboard-view {
+		flex: 1;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		border-right: 1px solid #ddd;
+	}
+
+	.manga-view {
+		flex: 1;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.editor-header {
