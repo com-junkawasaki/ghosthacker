@@ -129,6 +129,8 @@ func (s *StoryboardService) GetChatSessions(
 					Content:     mMap["content"].(string),
 					ContextJson: mMap["context_json"].(string),
 					ResolvedIds: resolvedIDsFromMap(mMap["resolved_ids"]),
+					Patches:     patchesFromMap(mMap["patches"]),
+					ContextScope: contextScopeFromMap(mMap["context_scope"]),
 				})
 			}
 		}
@@ -164,4 +166,60 @@ func resolvedIDsFromMap(val interface{}) []string {
 		res[i] = v.(string)
 	}
 	return res
+}
+
+func patchesFromMap(val interface{}) []*storyboardpb.JSONPatch {
+	if val == nil {
+		return nil
+	}
+	list, ok := val.([]interface{})
+	if !ok {
+		return nil
+	}
+	res := make([]*storyboardpb.JSONPatch, len(list))
+	for i, v := range list {
+		m, ok := v.(map[string]interface{})
+		if !ok {
+			continue
+		}
+		res[i] = &storyboardpb.JSONPatch{
+			Op:    m["op"].(string),
+			Path:  m["path"].(string),
+			Value: m["value"].(string),
+		}
+	}
+	return res
+}
+
+func contextScopeFromMap(val interface{}) *storyboardpb.ContextScope {
+	if val == nil {
+		return nil
+	}
+	m, ok := val.(map[string]interface{})
+	if !ok {
+		return nil
+	}
+	
+	scope := &storyboardpb.ContextScope{}
+	if eps, ok := m["episodes"].([]interface{}); ok {
+		for _, e := range eps {
+			scope.Episodes = append(scope.Episodes, e.(string))
+		}
+	}
+	if pgs, ok := m["pages"].([]interface{}); ok {
+		for _, p := range pgs {
+			scope.Pages = append(scope.Pages, int32(p.(float64)))
+		}
+	}
+	if pns, ok := m["panels"].([]interface{}); ok {
+		for _, p := range pns {
+			scope.Panels = append(scope.Panels, int32(p.(float64)))
+		}
+	}
+	if chars, ok := m["characters"].([]interface{}); ok {
+		for _, c := range chars {
+			scope.Characters = append(scope.Characters, c.(string))
+		}
+	}
+	return scope
 }

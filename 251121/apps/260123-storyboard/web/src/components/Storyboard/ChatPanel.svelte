@@ -9,7 +9,16 @@
 		onApplyPatches?: (patches: any[]) => void;
 	}>();
 
-	type Message = { role: 'user' | 'assistant', content: string, context?: any, agent?: string, patches?: any[], contextScope?: any, context_json?: string, resolvedIds?: string[] };
+	type Message = { 
+		role: 'user' | 'assistant' | 'system' | 'debug' | 'error', 
+		content: string, 
+		context?: any, 
+		agent?: string, 
+		patches?: any[], 
+		contextScope?: any, 
+		context_json?: string, 
+		resolvedIds?: string[] 
+	};
 	type ChatSession = { id: string, title: string, messages: Message[], timestamp: number };
 
 	let sessions = $state<ChatSession[]>([]);
@@ -43,7 +52,9 @@
 							content: m.content,
 							context: context,
 							context_json: m.contextJson,
-							resolvedIds: m.resolvedIds
+							resolvedIds: m.resolvedIds,
+							patches: m.patches,
+							contextScope: m.contextScope
 						};
 					}),
 					timestamp: Number(s.timestamp)
@@ -77,7 +88,9 @@
 						agentMode: m.agent ?? '',
 						content: m.content,
 						contextJson: m.context ? JSON.stringify(m.context) : (m.context_json ?? ''),
-						resolvedIds: m.resolvedIds ?? []
+						resolvedIds: m.resolvedIds ?? [],
+						patches: m.patches ?? [],
+						contextScope: m.contextScope
 					}))
 				}
 			});
@@ -127,12 +140,10 @@
 		const session = sessions.find(s => s.id === currentSessionId);
 		if (session && messages.length > 0) {
 			session.messages = messages;
-			if (session.title === 'New Conversation' || session.title === '') {
-				const firstMsg = messages[0];
-				if (firstMsg) {
-					session.title = firstMsg.content.substring(0, 30) + (firstMsg.content.length > 30 ? '...' : '');
-					saveCurrentSession();
-				}
+			const firstMsg = messages[0];
+			if (firstMsg && (session.title === 'New Conversation' || session.title === '')) {
+				session.title = firstMsg.content.substring(0, 30) + (firstMsg.content.length > 30 ? '...' : '');
+				saveCurrentSession();
 			}
 		}
 	});
@@ -167,10 +178,16 @@
 						console.error('Failed to parse context JSON:', e);
 					}
 				}
-				return {
-					...m,
-					context: context || m.context
+				const msg: Message = {
+					role: m.role as any,
+					content: m.content,
+					agent: m.agent ?? 'general',
+					context: context || m.context,
+					patches: m.patches ?? [],
+					contextScope: m.contextScope,
+					resolvedIds: m.resolvedIds ?? []
 				};
+				return msg;
 			});
 			showHistory = false;
 			console.log('[ChatPanel] Loaded session:', id, 'messages:', messages.length);

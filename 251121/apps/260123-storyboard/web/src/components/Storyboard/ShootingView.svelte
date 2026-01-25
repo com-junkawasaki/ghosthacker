@@ -1,14 +1,11 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import type { Panel } from '$lib/gen/proto/storyboard_pb';
 
-	let { panels = [], episodeId = '', storyboardPath = '' } = $props<{
+	let { panels = [], episodeId = '' } = $props<{
 		panels: Panel[];
 		episodeId?: string;
 		storyboardPath?: string;
 	}>();
-
-	const dispatch = createEventDispatcher();
 
 	function getAvatarUrl(speaker: string) {
 		if (!speaker || speaker === 'Narration' || speaker === 'NewsHacker') return '';

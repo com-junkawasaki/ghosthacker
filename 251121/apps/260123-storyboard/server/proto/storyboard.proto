@@ -381,6 +381,8 @@ message ChatMessage {
   string content = 3;
   string context_json = 4; // Serialized context items
   repeated string resolved_ids = 5; // IDs resolved via MCP
+  repeated JSONPatch patches = 6; // Patches suggested in this message
+  ContextScope context_scope = 7; // Context scope identified in this message
 }
 
 message SaveChatSessionRequest {
