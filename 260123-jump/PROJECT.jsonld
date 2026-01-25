@@ -40,40 +40,27 @@
       "@type": "gh:Artifact",
       "schema:name": "Master Storyboard (JSON-LD)",
       "schema:encodingFormat": "application/ld+json",
-      "schema:filePath": "260123-jump/resources/storyboard.jsonld"
+      "schema:filePath": "resources/storyboard.jsonld"
     },
     {
       "@id": "gh:artifact/character-profiles-260123-jump",
       "@type": "gh:Artifact",
       "schema:name": "Character Profiles",
-      "schema:filePath": "260123-jump/resources/characters/"
+      "schema:filePath": "resources/characters/"
     },
     {
       "@id": "gh:artifact/environments-prompts-260123-jump",
       "@type": "gh:Artifact",
       "schema:name": "Environment Base Prompts",
       "schema:description": "Detailed environment-only prompts for consistent scene setup.",
-      "schema:filePath": "260123-jump/resources/environments/"
+      "schema:filePath": "resources/environments/"
     },
     {
       "@id": "gh:artifact/props-definition-260123-jump",
       "@type": "gh:Artifact",
       "schema:name": "Prop & Furniture Definitions",
       "schema:description": "Specific brand and model names for consistent object generation.",
-      "schema:filePath": "260123-jump/resources/props/"
-    },
-    {
-      "@id": "gh:artifact/zen-editor-data-260123-jump",
-      "@type": "gh:Artifact",
-      "schema:name": "Zen Editor Data",
-      "schema:filePath": "apps/zen-editor/data/260123-jump/"
-    },
-    {
-      "@id": "gh:artifact/zen-editor-3d-assembler",
-      "@type": "gh:Artifact",
-      "schema:name": "Zen Editor: 3D Assembler (Integrated)",
-      "schema:description": "Threlte-based 3D workspace integrated into graph topology.",
-      "schema:filePath": "apps/zen-editor/src/components/Topology/Graph/AssemblerEngine.svelte"
+      "schema:filePath": "resources/props/"
     }
   ],
   "gh:milestones": [
