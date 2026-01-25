@@ -742,7 +742,9 @@
                 }
               ],
               "environment": "env:cschool-classroom",
+              "generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/3/panel_2_20260125_042011.png",
               "gh:currentImageIndex": 0,
+              "gh:generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/3/panel_2_20260125_042011.png",
               "gh:generatedImages": [
                 {
                   "gh:generatedAt": 1769286011,
@@ -751,8 +753,6 @@
                   "gh:model": "google/gemini-3-pro-image-preview"
                 }
               ],
-              "gh:generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/3/panel_2_20260125_042011.png",
-              "generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/3/panel_2_20260125_042011.png",
               "gh:runwayPrompt": "Insert Shot, top-down, ARIA-style. A trendy streetwear item on a desk: a limited-drop hoodie with a bold geometric logo patch and a small 'limited' tag (no readable brand text). shot on 50mm, f/2.0, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "top-down insert",
@@ -785,6 +785,18 @@
                 }
               ],
               "environment": "env:cschool-classroom",
+              "generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/3/panel_3_20260125_053838.png",
+              "gh:currentImageIndex": 0,
+              "gh:generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/3/panel_3_20260125_053838.png",
+              "gh:generatedImages": [
+                {
+                  "gh:generatedAt": 1769319611,
+                  "gh:imagePrompt": "Yutoが目を輝かせる。Akiraが自慢げに掲げる。. Shot type: Medium Shot. Dialogue: Mizuno Saki (Saki-chan): いいな…それ、もう売ってないやつ？. Yuto: いいなぁー……。.",
+                  "gh:imageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/3/panel_3_20260125_053838.png",
+                  "gh:model": "google/gemini-3-pro-image-preview"
+                }
+              ],
+              "gh:imagePrompt": "Yutoが目を輝かせる。Akiraが自慢げに掲げる。. Shot type: Medium Shot. Dialogue: Mizuno Saki (Saki-chan): いいな…それ、もう売ってないやつ？. Yuto: いいなぁー……。.",
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Yuto leans in, eyes bright; a classmate holds up the trendy item with a smug grin. shot on 50mm, f/1.8, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "eye level",
@@ -957,7 +969,9 @@
                 }
               ],
               "environment": "env:smartphone-screen",
+              "generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/4/panel_4_20260125_052318.png",
               "gh:currentImageIndex": 0,
+              "gh:generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/4/panel_4_20260125_052318.png",
               "gh:generatedImages": [
                 {
                   "gh:generatedAt": 1769289798,
@@ -966,8 +980,6 @@
                   "gh:model": "google/gemini-3-pro-image-preview"
                 }
               ],
-              "gh:generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/4/panel_4_20260125_052318.png",
-              "generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/4/panel_4_20260125_052318.png",
               "gh:runwayPrompt": "Insert Shot, top-down, ARIA-style. Phone payment screen: login ID field, long password dots, and a credit card payment option icon (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "top-down insert",

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import type { Panel, Dialogue } from '$lib/gen/proto/storyboard_pb';
-	import { MangaTextSchema, PanelDataSchema, DialogueSchema } from '$lib/gen/proto/storyboard_pb';
+	import { MangaTextSchema, PanelDataSchema, DialogueSchema, MangaLayoutSchema } from '$lib/gen/proto/storyboard_pb';
 	import { create } from '@bufbuild/protobuf';
 
 	export let panel: Panel;
@@ -87,6 +87,7 @@
 	}
 
 	function handlePointerUp(event: PointerEvent) {
+		console.log('[MangaPanel] handlePointerUp: draggingElement', draggingElement);
 		if (draggingElement) {
 			// Final save to backend
 			saveCurrentState();
@@ -94,6 +95,16 @@
 		draggingElement = null;
 		window.removeEventListener('pointermove', handlePointerMove);
 		window.removeEventListener('pointerup', handlePointerUp);
+		
+		// Release pointer capture
+		try {
+			const target = event.target as HTMLElement;
+			if (target && target.releasePointerCapture) {
+				target.releasePointerCapture(event.pointerId);
+			}
+		} catch (e) {
+			console.warn('[MangaPanel] Failed to release pointer capture', e);
+		}
 	}
 
 	// Local state updates for smooth dragging
@@ -105,7 +116,15 @@
 			}
 			return p;
 		});
-		panel.data = create(PanelDataSchema, { ...panel.data, mangaLayout: { ...mangaLayout, panels: newPanels } });
+		
+		// Create new PanelData to trigger reactivity
+		panel.data = create(PanelDataSchema, { 
+			...panel.data, 
+			mangaLayout: create(MangaLayoutSchema, {
+				...mangaLayout, 
+				panels: newPanels 
+			})
+		});
 	}
 
 	function updateDialoguePositionLocal(index: number, x: number, y: number) {
@@ -122,7 +141,21 @@
 				})
 			});
 		}
-		panel.data = create(PanelDataSchema, { ...panel.data, dialogue: newDialogues });
+		
+		// Create new PanelData to trigger reactivity and ensure update is dispatched
+		const updatedData = create(PanelDataSchema, { 
+			...panel.data, 
+			dialogue: newDialogues 
+		});
+		panel.data = updatedData;
+		// Force local dialogues update to ensure visual consistency during drag
+		dialogues = newDialogues;
+		console.log('[MangaPanel] updateDialoguePositionLocal: updated', index, x, y);
+		
+		// IMPORTANT: Also update mangaLayout if it's based on panel.data
+		if (panel.data.mangaLayout) {
+			mangaLayout = create(MangaLayoutSchema, { ...panel.data.mangaLayout }); // trigger reactivity
+		}
 	}
 
 	function updateSFXPositionLocal(index: number, x: number, y: number) {
@@ -134,10 +167,17 @@
 				x: Math.max(0, Math.min(100, x)), y: Math.max(0, Math.min(100, y))
 			});
 		}
-		panel.data = create(PanelDataSchema, { ...panel.data, mangaLayout: { ...mangaLayout, texts: newTexts } });
+		panel.data = create(PanelDataSchema, { 
+			...panel.data, 
+			mangaLayout: create(MangaLayoutSchema, {
+				...mangaLayout, 
+				texts: newTexts 
+			})
+		});
 	}
 
 	function saveCurrentState() {
+		console.log('[MangaPanel] saveCurrentState: dispatching update', panel.data);
 		dispatch('update', panel.data);
 	}
 
