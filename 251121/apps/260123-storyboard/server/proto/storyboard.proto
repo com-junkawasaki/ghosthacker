@@ -49,6 +49,7 @@ message UpdatePanelRequest {
   int32 page_number = 3;
   int32 panel = 4;
   PanelData panel_data = 5;
+  string session_id = 6; // Current client session ID
 }
 
 message PanelData {
@@ -164,7 +165,9 @@ message StreamUpdatesResponse {
   string episode_id = 2;
   int32 page_number = 3;
   int32 panel = 4;
-  string jsonld_patch = 5; // JSON Patch format
+  string jsonld_patch = 5; // JSON Patch format (optional)
+  PanelData panel_data = 6; // Full panel data for direct update
+  string sender_session_id = 7; // ID of the client who made the change
 }
 
 message GeneratePanelImageRequest {

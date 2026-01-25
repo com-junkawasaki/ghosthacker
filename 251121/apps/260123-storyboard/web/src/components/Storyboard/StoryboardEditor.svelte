@@ -1,26 +1,65 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { getEpisodes, getEpisodePanels, storyboardClient } from '$lib/client/storyboard-client';
+	import { getEpisodes, getEpisodePanels, storyboardClient, streamUpdates } from '$lib/client/storyboard-client';
 	import StoryboardPage from './StoryboardPage.svelte';
 	import MangaEditor from './MangaEditor.svelte';
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
 
-	let episodes: Array<{ id: string; title: string; totalPages: number }> = [];
-	let selectedEpisode = '';
-	let panels: Panel[] = [];
-	let loading = false;
-	let error = '';
-	let selectedPage = 1;
+	let episodes: Array<{ id: string; title: string; totalPages: number }> = $state([]);
+	let selectedEpisode = $state('');
+	let panels: Panel[] = $state([]);
+	let loading = $state(false);
+	let error = $state('');
+	let selectedPage = $state(1);
+	
+	const sessionId = Math.random().toString(36).substring(2, 15);
 
 	const storyboardPath = '';
 
 	onMount(async () => {
-		console.log('[StoryboardEditor] onMount: component mounted, loading episodes');
+		console.log('[StoryboardEditor] onMount: component mounted, loading episodes, sessionId:', sessionId);
 		try {
 			await loadEpisodes();
 		} catch (err) {
 			console.error('[StoryboardEditor] onMount: error loading episodes', err);
 		}
+	});
+
+	$effect(() => {
+		if (!selectedEpisode) return;
+
+		console.log('[StoryboardEditor] Effect: setting up stream for', selectedEpisode);
+		const unsubscribe = streamUpdates(
+			storyboardPath,
+			sessionId,
+			(update) => {
+				console.log('[StoryboardEditor] Stream update received:', update);
+				if (update.updateType === 'panel_updated' && update.episodeId === selectedEpisode) {
+					// Update panel in local state
+					panels = panels.map(p => {
+						if (p.pageNumber === update.pageNumber && p.panel === update.panel) {
+							// Use the panel's data directly from the update
+							const newPanel = { ...p };
+							if (update.panelData) {
+								newPanel.data = update.panelData;
+							}
+							return newPanel;
+						}
+						return p;
+					});
+				}
+			},
+			(err) => {
+				console.error('[StoryboardEditor] Stream error:', err);
+				// Retry logic could be added here if needed, 
+				// but $effect will re-run if dependencies change
+			}
+		);
+
+		return () => {
+			console.log('[StoryboardEditor] Effect cleanup: unsubscribing stream');
+			unsubscribe();
+		};
 	});
 
 	async function loadEpisodes() {
@@ -122,7 +161,8 @@
 				episodeId: selectedEpisode,
 				pageNumber,
 				panel,
-				panelData: data
+				panelData: data,
+				sessionId: sessionId
 			});
 			// No need to reload everything if we updated local state correctly
 		} catch (err) {
@@ -133,10 +173,12 @@
 	}
 
 	// Only load panels when an episode is selected (not empty string)
-	$: if (selectedEpisode && selectedEpisode.trim() !== '') {
-		console.log('[StoryboardEditor] Reactive: selectedEpisode changed, loading all panels', selectedEpisode);
-		loadPanels();
-	}
+	$effect(() => {
+		if (selectedEpisode && selectedEpisode.trim() !== '') {
+			console.log('[StoryboardEditor] Effect: selectedEpisode changed, loading all panels', selectedEpisode);
+			loadPanels();
+		}
+	});
 </script>
 
 <div class="storyboard-editor">

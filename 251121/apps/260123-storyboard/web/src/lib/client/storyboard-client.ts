@@ -1,7 +1,7 @@
 import { createClient } from '@connectrpc/connect';
 import { createConnectTransport } from '@connectrpc/connect-web';
 import { StoryboardService } from '$lib/gen/proto/storyboard_pb';
-import type { GetEpisodesResponse, GetEpisodePanelsResponse } from '$lib/gen/proto/storyboard_pb';
+import type { GetEpisodesResponse, GetEpisodePanelsResponse, StreamUpdatesResponse } from '$lib/gen/proto/storyboard_pb';
 
 // Determine API base URL
 const getApiBaseUrl = (): string => {
@@ -111,4 +111,38 @@ export async function generatePanelImage(
 	}
 
 	return response;
+}
+
+/**
+ * Subscribe to real-time updates from the server
+ */
+export function streamUpdates(
+	filePath: string,
+	sessionId: string,
+	onUpdate: (update: StreamUpdatesResponse) => void,
+	onError: (err: any) => void
+) {
+	const abortController = new AbortController();
+
+	(async () => {
+		try {
+			const stream = storyboardClient.streamUpdates(
+				{ filePath, sessionId },
+				{ signal: abortController.signal }
+			);
+
+			for await (const update of stream) {
+				onUpdate(update);
+			}
+		} catch (err) {
+			if (err instanceof Error && err.name === 'AbortError') {
+				console.log('[storyboard-client] streamUpdates: connection closed');
+				return;
+			}
+			console.error('[storyboard-client] streamUpdates: error', err);
+			onError(err);
+		}
+	})();
+
+	return () => abortController.abort();
 }

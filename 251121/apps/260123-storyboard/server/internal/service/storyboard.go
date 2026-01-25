@@ -7,6 +7,7 @@ import (
 	"io/fs"
 	"log"
 	"os"
+	"sync"
 
 	"connectrpc.com/connect"
 	"cuelang.org/go/cue"
@@ -19,6 +20,9 @@ type StoryboardService struct {
 	storyboardPath string
 	cueCtx         *cue.Context
 	schema         cue.Value
+	
+	mu          sync.RWMutex
+	subscribers map[string]chan *storyboardpb.StreamUpdatesResponse
 }
 
 func NewStoryboardService(storyboardPath string) *StoryboardService {
@@ -27,6 +31,7 @@ func NewStoryboardService(storyboardPath string) *StoryboardService {
 		storyboardPath: storyboardPath,
 		cueCtx:         cueCtx,
 		schema:         schema.GetSchema(),
+		subscribers:    make(map[string]chan *storyboardpb.StreamUpdatesResponse),
 	}
 }
 
@@ -337,6 +342,16 @@ func (s *StoryboardService) UpdatePanel(
 	if err := os.WriteFile(filePath, updatedContent, fs.FileMode(0644)); err != nil {
 		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to save storyboard: %w", err))
 	}
+
+	// Broadcast update to other clients
+	s.broadcastUpdate(&storyboardpb.StreamUpdatesResponse{
+		UpdateType:      "panel_updated",
+		EpisodeId:       req.Msg.EpisodeId,
+		PageNumber:      req.Msg.PageNumber,
+		Panel:           req.Msg.Panel,
+		PanelData:       req.Msg.PanelData,
+		SenderSessionId: req.Msg.SessionId,
+	})
 
 	return connect.NewResponse(&storyboardpb.UpdatePanelResponse{
 		Success: true,
@@ -713,7 +728,56 @@ func (s *StoryboardService) StreamUpdates(
 	req *connect.Request[storyboardpb.StreamUpdatesRequest],
 	stream *connect.ServerStream[storyboardpb.StreamUpdatesResponse],
 ) error {
-	return connect.NewError(connect.CodeUnimplemented, fmt.Errorf("streaming not yet implemented"))
+	sessionID := req.Msg.SessionId
+	if sessionID == "" {
+		return connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("session_id is required"))
+	}
+
+	updateChan := make(chan *storyboardpb.StreamUpdatesResponse, 10)
+	
+	s.mu.Lock()
+	s.subscribers[sessionID] = updateChan
+	s.mu.Unlock()
+
+	log.Printf("StreamUpdates: client connected: %s", sessionID)
+
+	defer func() {
+		s.mu.Lock()
+		delete(s.subscribers, sessionID)
+		s.mu.Unlock()
+		close(updateChan)
+		log.Printf("StreamUpdates: client disconnected: %s", sessionID)
+	}()
+
+	for {
+		select {
+		case <-ctx.Done():
+			return ctx.Err()
+		case update := <-updateChan:
+			if err := stream.Send(update); err != nil {
+				return err
+			}
+		}
+	}
+}
+
+func (s *StoryboardService) broadcastUpdate(update *storyboardpb.StreamUpdatesResponse) {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
+	for sessionID, ch := range s.subscribers {
+		// Don't send back to the sender
+		if sessionID == update.SenderSessionId {
+			continue
+		}
+		
+		select {
+		case ch <- update:
+			// Sent successfully
+		default:
+			log.Printf("broadcastUpdate: skipping slow subscriber: %s", sessionID)
+		}
+	}
 }
 
 func (s *StoryboardService) extractMetadata(storyboard map[string]interface{}) *storyboardpb.StoryboardMetadata {
