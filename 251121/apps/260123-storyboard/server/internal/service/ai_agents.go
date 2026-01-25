@@ -443,7 +443,12 @@ func (s *StoryboardService) StartAutonomousGeneration(
 		SessionID:      req.Msg.SessionId,
 	}
 
-	we, err := c.ExecuteWorkflow(ctx, workflowOptions, "AutonomousGenerationWorkflow", params)
+	workflowName := "AutonomousGenerationWorkflow"
+	if strings.Contains(strings.ToLower(req.Msg.Goal), "エピソード全体") || strings.Contains(strings.ToLower(req.Msg.Goal), "master") {
+		workflowName = "EpisodeMasterWorkflow"
+	}
+
+	we, err := c.ExecuteWorkflow(ctx, workflowOptions, workflowName, params)
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to start workflow: %w", err))
 	}

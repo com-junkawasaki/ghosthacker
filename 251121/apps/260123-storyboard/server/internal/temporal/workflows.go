@@ -110,7 +110,17 @@ func AutonomousGenerationWorkflow(ctx workflow.Context, params AutonomousGenerat
 	}
 	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "cinematic", Role: "assistant", Content: "✅ Visual direction finalized."})
 
-	// 5. Vision Agent: Multimodal Feedback (Concept)
+	// 5. Evaluation Agent: Final QA
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "evaluation", Role: "system", Content: "📊 Performing final Quality Assurance and Episode Evaluation..."})
+	var evaluationReport string
+	err = workflow.ExecuteActivity(ctx, EvaluationAgentActivity, episodeOutput).Get(ctx, &evaluationReport)
+	if err != nil {
+		workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "evaluation", Role: "error", Content: "Evaluation Agent failed: " + err.Error()})
+		return AutonomousGenerationResult{Success: false, Message: "Evaluation Agent failed: " + err.Error()}, err
+	}
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "evaluation", Role: "assistant", Content: "🏆 Final Evaluation Report:\n" + evaluationReport})
+
+	// 6. Vision Agent: Multimodal Feedback (Concept)
 	var visionFeedback string
 	// In a real loop, we'd pass the generated image URL here
 	err = workflow.ExecuteActivity(ctx, VisionAnalysisActivity, "placeholder_image_url").Get(ctx, &visionFeedback)
@@ -124,6 +134,24 @@ func AutonomousGenerationWorkflow(ctx workflow.Context, params AutonomousGenerat
 		Success: true,
 		Message: "Autonomous generation completed successfully",
 	}, nil
+}
+
+// EpisodeMasterWorkflow is an iterative loop for full episode completion
+func EpisodeMasterWorkflow(ctx workflow.Context, params AutonomousGenerationParams) (AutonomousGenerationResult, error) {
+	options := workflow.ActivityOptions{
+		StartToCloseTimeout: 30 * 60 * 1e9, // 30 minutes for master loop
+	}
+	ctx = workflow.WithActivityOptions(ctx, options)
+
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "general", Role: "system", Content: "👑 Starting Episode Master A2A Loop..."})
+
+	// Run the standard autonomous generation
+	result, err := AutonomousGenerationWorkflow(ctx, params)
+	if err != nil {
+		return result, err
+	}
+
+	return result, nil
 }
 
 type episodeDraft struct {
@@ -204,6 +232,22 @@ func ReviewerAgentWorkflow(ctx workflow.Context, params AutonomousGenerationPara
 
 	var output string
 	err := workflow.ExecuteActivity(ctx, ReviewerAgentActivity, params.Goal).Get(ctx, &output)
+	if err != nil {
+		return AutonomousGenerationResult{Success: false, Message: err.Error()}, err
+	}
+
+	return AutonomousGenerationResult{Success: true, Message: output}, nil
+}
+
+// EvaluationAgentWorkflow handles independent evaluation tasks
+func EvaluationAgentWorkflow(ctx workflow.Context, params AutonomousGenerationParams) (AutonomousGenerationResult, error) {
+	options := workflow.ActivityOptions{
+		StartToCloseTimeout: 10 * 60 * 1e9,
+	}
+	ctx = workflow.WithActivityOptions(ctx, options)
+
+	var output string
+	err := workflow.ExecuteActivity(ctx, EvaluationAgentActivity, params.Goal).Get(ctx, &output)
 	if err != nil {
 		return AutonomousGenerationResult{Success: false, Message: err.Error()}, err
 	}

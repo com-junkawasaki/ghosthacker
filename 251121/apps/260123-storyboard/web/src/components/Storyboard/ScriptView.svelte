@@ -76,7 +76,7 @@
 
 	function getAvatarUrl(speaker: string) {
 		if (!speaker || speaker === 'Narration' || speaker === 'NewsHacker') return '';
-		const id = speaker;
+		const id = speaker.replace('character:', '');
 		const baseUrl = typeof window !== 'undefined' 
 			? (window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin)
 			: 'http://localhost:8081';
@@ -239,17 +239,22 @@
 
 	.character-name {
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		gap: 0.5rem;
-		margin-bottom: 0.2rem;
-		font-weight: normal;
+		margin-bottom: 0.5rem;
+		font-weight: bold;
+		position: relative;
 	}
 
 	.mini-avatar {
-		width: 20px;
-		height: 20px;
+		width: 60px;
+		height: 60px;
 		border-radius: 50%;
 		object-fit: cover;
+		border: 2px solid #eee;
+		background: #f9f9f9;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 	}
 
 	.parenthetical {

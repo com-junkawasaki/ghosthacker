@@ -39,6 +39,8 @@ func main() {
 	w.RegisterWorkflow(temporal.CharacterRefinementWorkflow)
 	w.RegisterWorkflow(temporal.CinematicSketchWorkflow)
 	w.RegisterWorkflow(temporal.ReviewerAgentWorkflow)
+	w.RegisterWorkflow(temporal.EvaluationAgentWorkflow)
+	w.RegisterWorkflow(temporal.EpisodeMasterWorkflow)
 
 	w.RegisterActivity(temporal.SaveStoryboardActivity)
 	w.RegisterActivity(temporal.ScenarioAgentActivity)
@@ -46,6 +48,7 @@ func main() {
 	w.RegisterActivity(temporal.CharacterAgentActivity)
 	w.RegisterActivity(temporal.CinematicAgentActivity)
 	w.RegisterActivity(temporal.ReviewerAgentActivity)
+	w.RegisterActivity(temporal.EvaluationAgentActivity)
 	w.RegisterActivity(temporal.BroadcastAgentMessageActivity)
 	w.RegisterActivity(temporal.VisionAnalysisActivity)
 

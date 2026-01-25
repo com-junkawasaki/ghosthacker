@@ -59,7 +59,13 @@ func (s *StoryboardService) GeneratePanelImage(
 
 	// Apply Mai Yoneyama and High-End Webtoon Aesthetic for cinematic sketching
 	stylePrefix := "Professional cinematic storyboard sketch, Mai Yoneyama illustrator style, High-End Webtoon Aesthetic, Fine Line Art with Screen Tones, Modern Bishonen Manga Style. "
+	if strings.HasPrefix(req.Msg.PanelData.VisualNote, "CHARACTER_AVATAR:") {
+		stylePrefix = "Professional character portrait, headshot, Mai Yoneyama illustrator style, High-End Webtoon Aesthetic, Fine Line Art, Modern Manga Style, clean background. "
+	}
 	styleSuffix := ". High contrast monochrome, sharp focus on expressive eyes, intricate iris detail, consistent facial features, slender male youth, atmospheric lighting, cinematic composition, 85mm lens."
+	if strings.HasPrefix(req.Msg.PanelData.VisualNote, "CHARACTER_AVATAR:") {
+		styleSuffix = ". Sharp focus on face and expressive eyes, intricate iris detail, consistent facial features, clean white background, high resolution, 8k."
+	}
 	fullPrompt := stylePrefix + prompt + styleSuffix
 
 	log.Printf("Generating image with prompt: %s", fullPrompt)
@@ -90,6 +96,8 @@ func (s *StoryboardService) GeneratePanelImage(
 	// Call OpenRouter API
 	imageDataURL, err := s.callOpenRouterAPI(ctx, apiKey, fullPrompt)
 	if err != nil {
+		// If it's a character avatar request, we might want to use a different model or settings
+		// but for now we just log and return error
 		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to generate image: %w", err))
 	}
 
@@ -111,6 +119,16 @@ func (s *StoryboardService) GeneratePanelImage(
 	}
 
 	log.Printf("Saved image to: %s", imagePath)
+
+	// If this was a character avatar generation, also save it to characters directory
+	if strings.HasPrefix(req.Msg.PanelData.VisualNote, "CHARACTER_AVATAR:") {
+		charID := strings.TrimPrefix(req.Msg.PanelData.VisualNote, "CHARACTER_AVATAR:")
+		charAvatarDir := filepath.Join(workspaceRoot, "251121", "images", "characters")
+		os.MkdirAll(charAvatarDir, 0755)
+		charAvatarPath := filepath.Join(charAvatarDir, charID+".png")
+		os.WriteFile(charAvatarPath, imageBytes, 0644)
+		log.Printf("Saved character avatar to: %s", charAvatarPath)
+	}
 
 	// Create GeneratedImage
 	generatedImage := &storyboardpb.GeneratedImage{

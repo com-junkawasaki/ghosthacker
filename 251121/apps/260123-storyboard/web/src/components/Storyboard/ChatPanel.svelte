@@ -226,6 +226,39 @@
 		const userMessage = inputValue;
 		const currentContext = [...dropContext];
 		const agentMode = currentAgentMode;
+
+		// Check for avatar generation command
+		if (userMessage.startsWith('/avatar ')) {
+			const charId = userMessage.replace('/avatar ', '').trim();
+			if (charId) {
+				messages = [...messages, { role: 'user', content: userMessage, context: currentContext, agent: agentMode }];
+				inputValue = '';
+				loading = true;
+				try {
+					const res = await storyboardClient.generatePanelImage({
+						filePath: storyboardPath,
+						episodeId: selectedEpisode || 'system',
+						pageNumber: 0,
+						panel: 0,
+						panelData: {
+							visualNote: `CHARACTER_AVATAR:${charId}`,
+							characters: [charId.startsWith('character:') ? charId : `character:${charId}`]
+						}
+					});
+					if (res.success) {
+						messages = [...messages, { role: 'assistant', content: `Avatar for ${charId} generated and saved. Please refresh to see it.` }];
+					} else {
+						messages = [...messages, { role: 'assistant', content: `Failed to generate avatar: ${res.message}` }];
+					}
+				} catch (err) {
+					messages = [...messages, { role: 'assistant', content: `Error: ${err instanceof Error ? err.message : String(err)}` }];
+				} finally {
+					loading = false;
+					await saveCurrentSession();
+				}
+				return;
+			}
+		}
 		
 		messages = [...messages, { role: 'user', content: userMessage, context: currentContext, agent: agentMode }];
 		inputValue = '';
@@ -383,7 +416,7 @@
 		}
 	}
 
-	function triggerA2APattern(pattern: 'polish' | 'consistency' | 'visuals') {
+	function triggerA2APattern(pattern: 'polish' | 'consistency' | 'visuals' | 'master') {
 		currentAgentMode = 'a2a';
 		let goal = "";
 		switch (pattern) {
@@ -395,6 +428,9 @@
 				break;
 			case 'visuals':
 				goal = "シネマティックスケッチが生成されていないパネルを特定し、ARIA Cinematic Baseに基づいて生成してください。";
+				break;
+			case 'master':
+				goal = "エピソード全体の構成、台詞、演出を統合的に評価し、完成度を極限まで高めるための A2A 共同作業を開始してください。";
 				break;
 		}
 		inputValue = goal;
@@ -446,9 +482,10 @@
 			</div>
 		{/if}
 		<div class="a2a-quick-actions">
-			<button class="quick-action-btn" onclick={() => triggerA2APattern('polish')} disabled={isAutoPilot}>✨ Story Polish</button>
-			<button class="quick-action-btn" onclick={() => triggerA2APattern('consistency')} disabled={isAutoPilot}>🔍 Check Consistency</button>
-			<button class="quick-action-btn" onclick={() => triggerA2APattern('visuals')} disabled={isAutoPilot}>🎨 Gen Visuals</button>
+			<button class="quick-action-btn master-btn" onclick={() => triggerA2APattern('master')} disabled={isAutoPilot}>👑 Episode Master</button>
+			<button class="quick-action-btn" onclick={() => triggerA2APattern('polish')} disabled={isAutoPilot}>✨ Polish</button>
+			<button class="quick-action-btn" onclick={() => triggerA2APattern('consistency')} disabled={isAutoPilot}>🔍 Consistency</button>
+			<button class="quick-action-btn" onclick={() => triggerA2APattern('visuals')} disabled={isAutoPilot}>🎨 Visuals</button>
 			<button class="quick-action-btn metrics-btn" onclick={runAnalysis} disabled={isAutoPilot}>📊 Metrics</button>
 		</div>
 		{#if metrics}
@@ -609,7 +646,7 @@
 		<div class="input-wrapper">
 			<textarea 
 				bind:value={inputValue} 
-				placeholder="Ask AI to edit... (Drop nodes here)"
+				placeholder="Ask AI to edit... (Drop nodes here, or use /avatar CharacterID)"
 				onkeydown={(e) => e.key === 'Enter' && !e.shiftKey && (e.preventDefault(), sendMessage())}
 			></textarea>
 			<button class="send-btn" onclick={sendMessage} disabled={loading || (!inputValue && dropContext.length === 0)}>
@@ -783,6 +820,16 @@
 		background: #3d3d3d;
 		color: white;
 		border-color: #666;
+	}
+
+	.quick-action-btn.master-btn {
+		background: #f39c12;
+		color: #000;
+		border-color: #e67e22;
+	}
+
+	.quick-action-btn.master-btn:hover:not(:disabled) {
+		background: #e67e22;
 	}
 
 	.quick-action-btn:disabled {

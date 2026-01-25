@@ -212,6 +212,26 @@ Return a critique and suggested refinements.`
 	return callOpenRouter(ctx, "reviewer", "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
 }
 
+// EvaluationAgentActivity provides a final quality and completion score for the episode
+func EvaluationAgentActivity(ctx context.Context, episodeData string) (string, error) {
+	logger := activity.GetLogger(ctx)
+	logger.Info("Evaluation Agent working")
+
+	systemPrompt := `You are the Final Quality Assurance Agent for Ghost Hacker.
+Your task is to evaluate the entire episode and provide a detailed "Production Readiness Report".
+You must output a Markdown report with:
+1. **Completion Score** (0-100%)
+2. **Narrative Flow & Pacing** (Review the beats and scene transitions)
+3. **Character Integrity** (Do Ren, Nei, etc., sound like themselves?)
+4. **Visual Production Readiness** (Are the cinematic prompts detailed enough for image generation?)
+5. **Technical Compliance** (Check against SHACL principles: RU count, dialogue ratio)
+
+Be critical but constructive. If the score is below 80%, suggest specific panels that need another A2A pass.`
+	userPrompt := fmt.Sprintf("Episode Data (JSON-LD): %s", episodeData)
+
+	return callOpenRouter(ctx, "evaluation", "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
+}
+
 // VisionAnalysisActivity analyzes generated images to extract context
 func VisionAnalysisActivity(ctx context.Context, imageURL string) (string, error) {
 	logger := activity.GetLogger(ctx)
