@@ -30,6 +30,7 @@
 	
 	/**
 	 * Generate Jump manga-style default layout based on panel count
+	 * Japanese manga reading order: RIGHT to LEFT, TOP to BOTTOM
 	 * All layouts include small gaps between panels for authentic manga look
 	 */
 	function generateDefaultLayout(panelCount: number): { panels: PanelLayoutInfo[] } {
@@ -41,59 +42,73 @@
 			],
 			3: [
 				{ x: 0, y: 0, width: 100, height: 44 },
-				{ x: 0, y: 45, width: 54, height: 55 },
-				{ x: 55, y: 45, width: 45, height: 55 }
+				// Row 2: P2 on RIGHT, P3 on LEFT (right-to-left reading)
+				{ x: 46, y: 45, width: 54, height: 55 },
+				{ x: 0, y: 45, width: 45, height: 55 }
 			],
 			4: [
 				{ x: 0, y: 0, width: 100, height: 49 },
-				{ x: 0, y: 50, width: 33, height: 50 },
+				// Row 2: P2 RIGHT, P3 CENTER, P4 LEFT (right-to-left reading)
+				{ x: 68, y: 50, width: 32, height: 50 },
 				{ x: 34, y: 50, width: 33, height: 50 },
-				{ x: 68, y: 50, width: 32, height: 50 }
+				{ x: 0, y: 50, width: 33, height: 50 }
 			],
 			5: [
 				{ x: 0, y: 0, width: 100, height: 40 },
-				{ x: 0, y: 41, width: 49, height: 29 },
-				{ x: 50, y: 41, width: 50, height: 29 },
-				{ x: 0, y: 71, width: 59, height: 29 },
-				{ x: 60, y: 71, width: 40, height: 29 }
+				// Row 2: P2 RIGHT, P3 LEFT
+				{ x: 51, y: 41, width: 49, height: 29 },
+				{ x: 0, y: 41, width: 50, height: 29 },
+				// Row 3: P4 RIGHT, P5 LEFT
+				{ x: 41, y: 71, width: 59, height: 29 },
+				{ x: 0, y: 71, width: 40, height: 29 }
 			],
 			6: [
 				{ x: 0, y: 0, width: 100, height: 36 },
-				{ x: 0, y: 37, width: 49, height: 31 },
-				{ x: 50, y: 37, width: 50, height: 31 },
-				{ x: 0, y: 69, width: 32, height: 31 },
+				// Row 2: P2 RIGHT, P3 LEFT
+				{ x: 51, y: 37, width: 49, height: 31 },
+				{ x: 0, y: 37, width: 50, height: 31 },
+				// Row 3: P4 RIGHT, P5 CENTER, P6 LEFT
+				{ x: 68, y: 69, width: 32, height: 31 },
 				{ x: 33, y: 69, width: 34, height: 31 },
-				{ x: 68, y: 69, width: 32, height: 31 }
+				{ x: 0, y: 69, width: 32, height: 31 }
 			],
 			7: [
 				{ x: 0, y: 0, width: 100, height: 33 },
-				{ x: 0, y: 34, width: 39, height: 24 },
-				{ x: 40, y: 34, width: 29, height: 24 },
+				// Row 2: P2 RIGHT, P3 CENTER, P4 LEFT (right-to-left reading)
 				{ x: 70, y: 34, width: 30, height: 24 },
-				{ x: 0, y: 59, width: 49, height: 20 },
-				{ x: 50, y: 59, width: 50, height: 20 },
+				{ x: 40, y: 34, width: 29, height: 24 },
+				{ x: 0, y: 34, width: 39, height: 24 },
+				// Row 3: P5 RIGHT, P6 LEFT
+				{ x: 51, y: 59, width: 49, height: 20 },
+				{ x: 0, y: 59, width: 50, height: 20 },
 				{ x: 0, y: 80, width: 100, height: 20 }
 			],
 			8: [
+				// Row 1: P1 LEFT (big), P2 RIGHT-TOP, P3 RIGHT-BOTTOM
 				{ x: 0, y: 0, width: 59, height: 29 },
 				{ x: 60, y: 0, width: 40, height: 14 },
 				{ x: 60, y: 15, width: 40, height: 14 },
-				{ x: 0, y: 30, width: 49, height: 24 },
-				{ x: 50, y: 30, width: 50, height: 24 },
-				{ x: 0, y: 55, width: 32, height: 22 },
+				// Row 2: P4 RIGHT, P5 LEFT
+				{ x: 51, y: 30, width: 49, height: 24 },
+				{ x: 0, y: 30, width: 50, height: 24 },
+				// Row 3: P6 RIGHT, P7 CENTER, P8 LEFT
+				{ x: 68, y: 55, width: 32, height: 22 },
 				{ x: 33, y: 55, width: 34, height: 22 },
-				{ x: 68, y: 55, width: 32, height: 22 }
+				{ x: 0, y: 55, width: 32, height: 22 }
 			],
 			9: [
 				{ x: 0, y: 0, width: 100, height: 28 },
-				{ x: 0, y: 29, width: 32, height: 22 },
-				{ x: 33, y: 29, width: 34, height: 22 },
+				// Row 2: P2 RIGHT, P3 CENTER, P4 LEFT
 				{ x: 68, y: 29, width: 32, height: 22 },
-				{ x: 0, y: 52, width: 49, height: 23 },
-				{ x: 50, y: 52, width: 50, height: 23 },
-				{ x: 0, y: 76, width: 32, height: 24 },
+				{ x: 33, y: 29, width: 34, height: 22 },
+				{ x: 0, y: 29, width: 32, height: 22 },
+				// Row 3: P5 RIGHT, P6 LEFT
+				{ x: 51, y: 52, width: 49, height: 23 },
+				{ x: 0, y: 52, width: 50, height: 23 },
+				// Row 4: P7 RIGHT, P8 CENTER, P9 LEFT
+				{ x: 68, y: 76, width: 32, height: 24 },
 				{ x: 33, y: 76, width: 34, height: 24 },
-				{ x: 68, y: 76, width: 32, height: 24 }
+				{ x: 0, y: 76, width: 32, height: 24 }
 			]
 		};
 		
