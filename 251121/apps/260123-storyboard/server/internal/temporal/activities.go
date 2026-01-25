@@ -169,6 +169,35 @@ func CinematicAgentActivity(ctx context.Context, episodeOutput string) (string, 
 	return callOpenRouter(ctx, "openai/gpt-4o", systemPrompt, userPrompt)
 }
 
+// ReviewerAgentActivity critiques and refines agent proposals
+func ReviewerAgentActivity(ctx context.Context, input string) (string, error) {
+	logger := activity.GetLogger(ctx)
+	logger.Info("Reviewer Agent working", "input", input)
+
+	systemPrompt := `You are a professional Story Editor and Critic for Ghost Hacker.
+Your task is to review the proposed story content and provide constructive feedback.
+Focus on:
+1. Narrative tension and pacing.
+2. Character consistency and voice.
+3. Adherence to the Ghost Hacker lore.
+4. Visual impact.
+
+Return a critique and suggested refinements.`
+	userPrompt := fmt.Sprintf("Proposed Content: %s", input)
+
+	return callOpenRouter(ctx, "anthropic/claude-3.5-sonnet", systemPrompt, userPrompt)
+}
+
+// VisionAnalysisActivity analyzes generated images to extract context
+func VisionAnalysisActivity(ctx context.Context, imageURL string) (string, error) {
+	logger := activity.GetLogger(ctx)
+	logger.Info("Vision Analysis working", "imageURL", imageURL)
+
+	// Placeholder for Vision LLM call (e.g. Gemini 1.5 Pro Vision)
+	// In a real implementation, this would fetch the image and send it to the LLM.
+	return "Vision Analysis: Detected Ren in a dark room, standing near a server rack with glowing blue lights.", nil
+}
+
 type BroadcastParams struct {
 	AgentMode string
 	Content   string

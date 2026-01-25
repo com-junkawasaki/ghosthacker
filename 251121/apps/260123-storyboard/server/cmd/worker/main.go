@@ -38,13 +38,16 @@ func main() {
 	w.RegisterWorkflow(temporal.EpisodeGenerationWorkflow)
 	w.RegisterWorkflow(temporal.CharacterRefinementWorkflow)
 	w.RegisterWorkflow(temporal.CinematicSketchWorkflow)
+	w.RegisterWorkflow(temporal.ReviewerAgentWorkflow)
 
 	w.RegisterActivity(temporal.SaveStoryboardActivity)
 	w.RegisterActivity(temporal.ScenarioAgentActivity)
 	w.RegisterActivity(temporal.EpisodeAgentActivity)
 	w.RegisterActivity(temporal.CharacterAgentActivity)
 	w.RegisterActivity(temporal.CinematicAgentActivity)
+	w.RegisterActivity(temporal.ReviewerAgentActivity)
 	w.RegisterActivity(temporal.BroadcastAgentMessageActivity)
+	w.RegisterActivity(temporal.VisionAnalysisActivity)
 
 	err = w.Run(worker.InterruptCh())
 	if err != nil {

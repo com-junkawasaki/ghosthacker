@@ -8,7 +8,7 @@
 		onApplyPatches?: (patches: any[]) => void;
 	}>();
 
-	type Message = { role: 'user' | 'assistant', content: string, context?: any, agent?: string, patches?: any[], contextScope?: any };
+	type Message = { role: 'user' | 'assistant', content: string, context?: any, agent?: string, patches?: any[], contextScope?: any, context_json?: string };
 	type ChatSession = { id: string, title: string, messages: Message[], timestamp: number };
 
 	let sessions = $state<ChatSession[]>([]);
@@ -27,13 +27,23 @@
 				sessions = res.sessions.map(s => ({
 					id: s.id,
 					title: s.title,
-					messages: s.messages.map(m => ({
-						role: m.role as any,
-						agent: m.agentMode,
-						content: m.content,
-						context: m.contextJson ? JSON.parse(m.contextJson) : undefined,
-						context_json: m.contextJson
-					})),
+					messages: s.messages.map(m => {
+						let context = undefined;
+						if (m.contextJson) {
+							try {
+								context = JSON.parse(m.contextJson);
+							} catch (e) {
+								console.error('Failed to parse context JSON from history:', e);
+							}
+						}
+						return {
+							role: m.role as any,
+							agent: m.agentMode,
+							content: m.content,
+							context: context,
+							context_json: m.contextJson
+						};
+					}),
 					timestamp: Number(s.timestamp)
 				}));
 				
@@ -95,13 +105,14 @@
 		const session = sessions.find(s => s.id === currentSessionId);
 		if (session) {
 			session.messages = messages;
-			if (messages.length > 0 && session.title === 'New Conversation') {
+			if (messages.length > 0 && (session.title === 'New Conversation' || session.title === '')) {
 				session.title = messages[0].content.substring(0, 30) + (messages[0].content.length > 30 ? '...' : '');
+				saveCurrentSession();
 			}
 		}
 	});
 
-	function createNewSession() {
+	async function createNewSession() {
 		const newId = Math.random().toString(36).substring(2, 15);
 		const newSession: ChatSession = {
 			id: newId,
@@ -115,17 +126,29 @@
 		currentAgentMode = 'general';
 		isAutoPilot = false;
 		showHistory = false;
+		await saveCurrentSession();
 	}
 
 	function loadSession(id: string) {
 		const session = sessions.find(s => s.id === id);
 		if (session) {
 			currentSessionId = id;
-			messages = session.messages.map(m => ({
-				...m,
-				context: m.context_json ? JSON.parse(m.context_json) : m.context
-			}));
+			messages = session.messages.map(m => {
+				let context = undefined;
+				if (m.context_json) {
+					try {
+						context = JSON.parse(m.context_json);
+					} catch (e) {
+						console.error('Failed to parse context JSON:', e);
+					}
+				}
+				return {
+					...m,
+					context: context || m.context
+				};
+			});
 			showHistory = false;
+			console.log('[ChatPanel] Loaded session:', id, 'messages:', messages.length);
 		}
 	}
 
@@ -141,9 +164,9 @@
 	}
 
 	// Expose a method to add messages from outside (e.g. from stream)
-	export function addMessage(msg: { role: 'user' | 'assistant', content: string, agent?: string }) {
+	export async function addMessage(msg: { role: 'user' | 'assistant', content: string, agent?: string }) {
 		messages = [...messages, msg];
-		saveCurrentSession();
+		await saveCurrentSession();
 	}
 
 	// Expose a method to add context items programmatically

@@ -56,6 +56,9 @@ service StoryboardService {
   // Internal: Broadcast a chat message to all connected clients (used by workers)
   rpc InternalBroadcastChatMessage(InternalBroadcastChatMessageRequest) returns (InternalBroadcastChatMessageResponse);
 
+  // Analyze the structure of an episode based on SHACL constraints
+  rpc AnalyzeStructure(AnalyzeStructureRequest) returns (AnalyzeStructureResponse);
+
   // Persistence: Save chat session
   rpc SaveChatSession(SaveChatSessionRequest) returns (SaveChatSessionResponse);
 
@@ -70,6 +73,25 @@ message InternalBroadcastChatMessageRequest {
 
 message InternalBroadcastChatMessageResponse {
   bool success = 1;
+}
+
+message AnalyzeStructureRequest {
+  string file_path = 1;
+  string episode_id = 2;
+}
+
+message AnalyzeStructureResponse {
+  bool success = 1;
+  string message = 2;
+  StructuralMetrics metrics = 3;
+}
+
+message StructuralMetrics {
+  int32 reading_units = 1;
+  float dialogue_ratio = 2;
+  int32 beat_count = 3;
+  int32 panel_count = 4;
+  repeated string validation_errors = 5;
 }
 
 message StartAutonomousGenerationRequest {

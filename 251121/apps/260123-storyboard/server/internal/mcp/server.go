@@ -48,6 +48,11 @@ func (s *StoryboardMCPServer) registerTools() {
 	s.server.AddTool(mcp.NewTool("get_character_profile",
 		mcp.WithDescription("Retrieve detailed profile and voice guide for a specific character."),
 	), s.handleGetCharacterProfile)
+
+	// Lore Keeper Tool
+	s.server.AddTool(mcp.NewTool("query_lore",
+		mcp.WithDescription("Query the Ghost Hacker world lore (tech, organizations, risks)."),
+	), s.handleQueryLore)
 }
 
 func (s *StoryboardMCPServer) handleScenarioWriter(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
@@ -139,6 +144,30 @@ func (s *StoryboardMCPServer) handleGetCharacterProfile(ctx context.Context, req
 	}, nil
 }
 
+func (s *StoryboardMCPServer) handleQueryLore(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	log.Printf("[MCP] Querying Lore")
+
+	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
+	if workspaceRoot == "" {
+		workspaceRoot = "../../../.."
+	}
+
+	loreFile := filepath.Join(workspaceRoot, "251022", "ghost-hacker.jsonld")
+	data, err := os.ReadFile(loreFile)
+	if err != nil {
+		return nil, fmt.Errorf("lore file not found: %w", err)
+	}
+
+	return &mcp.CallToolResult{
+		Content: []mcp.Content{
+			mcp.TextContent{
+				Type: "text",
+				Text: string(data),
+			},
+		},
+	}, nil
+}
+
 func (s *StoryboardMCPServer) CallTool(ctx context.Context, name string, args map[string]interface{}) (*mcp.CallToolResult, error) {
 	req := mcp.CallToolRequest{
 		Params: mcp.CallToolParams{
@@ -156,6 +185,8 @@ func (s *StoryboardMCPServer) CallTool(ctx context.Context, name string, args ma
 		return s.handleCharacterSpecialist(ctx, req)
 	case "get_character_profile":
 		return s.handleGetCharacterProfile(ctx, req)
+	case "query_lore":
+		return s.handleQueryLore(ctx, req)
 	default:
 		return nil, fmt.Errorf("tool not found: %s", name)
 	}

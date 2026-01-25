@@ -81,6 +81,14 @@ func AutonomousGenerationWorkflow(ctx workflow.Context, params AutonomousGenerat
 	}
 	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "character", Content: characterFeedback})
 
+	// 3.5 Reviewer Agent: Critique the draft
+	var reviewerCritique string
+	err = workflow.ExecuteActivity(ctx, ReviewerAgentActivity, characterFeedback).Get(ctx, &reviewerCritique)
+	if err != nil {
+		return AutonomousGenerationResult{Success: false, Message: "Reviewer Agent failed: " + err.Error()}, err
+	}
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "reviewer", Content: reviewerCritique})
+
 	// 4. Cinematic Agent: Finalize visual direction
 	var finalResult string
 	err = workflow.ExecuteActivity(ctx, CinematicAgentActivity, episodeOutput).Get(ctx, &finalResult)
@@ -157,6 +165,22 @@ func CinematicSketchWorkflow(ctx workflow.Context, params AutonomousGenerationPa
 
 	var output string
 	err := workflow.ExecuteActivity(ctx, CinematicAgentActivity, params.Goal).Get(ctx, &output)
+	if err != nil {
+		return AutonomousGenerationResult{Success: false, Message: err.Error()}, err
+	}
+
+	return AutonomousGenerationResult{Success: true, Message: output}, nil
+}
+
+// ReviewerAgentWorkflow handles independent review tasks
+func ReviewerAgentWorkflow(ctx workflow.Context, params AutonomousGenerationParams) (AutonomousGenerationResult, error) {
+	options := workflow.ActivityOptions{
+		StartToCloseTimeout: 10 * 60 * 1e9,
+	}
+	ctx = workflow.WithActivityOptions(ctx, options)
+
+	var output string
+	err := workflow.ExecuteActivity(ctx, ReviewerAgentActivity, params.Goal).Get(ctx, &output)
 	if err != nil {
 		return AutonomousGenerationResult{Success: false, Message: err.Error()}, err
 	}

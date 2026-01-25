@@ -37,7 +37,7 @@ func (s *StoryboardService) SaveChatSession(
 
 	// Prepare JSON-LD structure
 	data := map[string]interface{}{
-		"@context": {
+		"@context": map[string]interface{}{
 			"gh":     "https://ghosthacker.gftd.ai/ns/",
 			"schema": "http://schema.org/",
 			"dct":    "http://purl.org/dc/terms/",
