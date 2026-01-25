@@ -13,3 +13,4 @@ backend/proto/*.pb.go
 backend/proto/*_connect.go
 backend/proto/*_pb.ts
 src/lib/gen
+

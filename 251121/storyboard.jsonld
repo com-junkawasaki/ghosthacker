@@ -31,331 +31,285 @@
   "dct:title": "Ghost Hacker Season 1: Master Storyboard (ARIA Cinematic Base - FULL)",
   "gh:characters": [
     {
-      "@id": "character:Ren",
-      "dct:description": "17歳。スマートだが少し気怠げ。論理と手順で状況を切り分け、AXEでGhostの“繋がり”を断つ。",
-      "gh:voice": {
-        "gh:favorites": [
-          "あー",
-          "そうだな",
-          "とりあえず",
-          "先に",
-          "スクショ",
-          "ログイン",
-          "パス",
-          "二段階",
-          "パスキー",
-          "切る",
-          "コマンド"
-        ],
-        "gh:sampleLines": [
-          "あー。そうだな、やるか。",
-          "先にスクショ撮る。そのあとで消す。",
-          "まずパス変える。二段階はそのあと。",
-          "めんどいけど…順番だけは守る。"
-        ],
-        "gh:sentenceTraits": [
-          "conversational",
-          "short-to-medium sentences",
-          "ellipses and fillers (\"あー\", \"んー\")",
-          "thinks fast when addressed",
-          "no shouting"
-        ],
-        "gh:style": "smart, lethargic teen; speaks casually but precise when needed",
-        "gh:taboos": [
-          "熱血長台詞",
-          "過剰な敬語",
-          "名詞だけの命令を連発しすぎる"
-        ]
-      },
-      "schema:name": "Ren"
-    },
-    {
-      "@id": "character:Nei",
-      "dct:description": "17歳。端的で冷静。結論を先に出し、証拠化と手順化でチームを前に進める。",
-      "gh:voice": {
-        "gh:favorites": [
-          "まず",
-          "落ち着いて",
-          "順番",
-          "スクショ",
-          "リンク",
-          "ログイン",
-          "二段階",
-          "ブロック",
-          "通報",
-          "別アカ"
-        ],
-        "gh:sampleLines": [
-          "まず落ち着こ。順番でいける。",
-          "スクショ撮って。消される前に。",
-          "リンクは踏まない。今はそれだけで勝ち。",
-          "別アカで一言だけ出す。『踏まないで』って。",
-          "二段階、入れよ。できるとこから。"
-        ],
-        "gh:sentenceTraits": [
-          "conclusion-first",
-          "short",
-          "calm",
-          "practical",
-          "no drama"
-        ],
-        "gh:style": "cool, plain, teen; concise and practical",
-        "gh:taboos": [
-          "医療っぽい言い回し",
-          "法律/監査っぽい単語連発",
-          "長い比喩",
-          "回りくどい前置き"
-        ]
-      },
-      "schema:name": "Nei"
-    },
-    {
       "@id": "character:NeiPuni",
-      "dct:description": "『NEIちゃんのアドバイス』用のメタUIマスコット。読者にだけ見える案内役。短く、やさしく、冷静に。",
-      "gh:voice": {
-        "gh:favorites": [
-          "ここ！",
-          "これだけ",
-          "まず",
-          "スクショ",
-          "設定",
-          "OK"
-        ],
-        "gh:sampleLines": [
-          "NEIちゃんのアドバイス！",
-          "まずこれ。いったん止めよ。",
-          "次。スクショ。",
-          "設定いこ。画面みて。",
-          "OK。次いこ。"
-        ],
-        "gh:sentenceTraits": [
-          "very short",
-          "friendly",
-          "simple words",
-          "one-action-per-line"
-        ],
-        "gh:style": "meta UI mascot; super concise, cute but not sugary",
-        "gh:taboos": [
-          "説教",
-          "専門用語の連打",
-          "長文"
-        ]
-      },
-      "schema:name": "Nei (Puni)"
+      "schema:name": "Nei (Puni)",
+      "schema:role": "Meta UI Mascot",
+      "gh:appearance": {
+        "gh:face": "Palm-sized cute mascot figure inspired by Nei, simplified round face, tiny nose and mouth, bright expressive eyes.",
+        "gh:hair": "Platinum blonde bob, simplified chunky strands like a toy figure.",
+        "gh:build": "Small round 'puni' body, soft vinyl / plush-like texture, wearing a tiny white blouse and black dress motif.",
+        "gh:eyes": "Large glowing blue eyes with sparkling catchlights, toy-like iris detail.",
+        "gh:style": "Photorealistic macro product shot, clean studio lighting, 8k, shallow depth of field.",
+        "gh:generationPrompt": "photorealistic, 8k, macro product photo, highly detailed cute soft vinyl mascot figure, palm-sized, round chibi proportions, platinum blonde bob, large glowing blue eyes with sparkling catchlights, tiny white blouse and black dress motif, clean studio lighting, shallow depth of field, pristine background"
+      }
     },
     {
-      "@id": "character:Takeru",
-      "dct:description": "17歳。短気で即断即決。現場の“遅さ”が許せず、計測と切り分けで『終端（Done）』を作る。OSCP/GXPN。",
-      "schema:name": "Takeru"
+      "@id": "character:Ren",
+      "schema:name": "沼野 蓮 (Ren Numano)",
+      "schema:role": "Ghost Hacker",
+      "schema:age": 17,
+      "gh:appearance": {
+        "gh:face": "17-year-old stunningly beautiful Japanese male, pale translucent skin, melancholic half-lidded eyes with silver-grey crystalline irises.",
+        "gh:hair": "Messy voluminous stylish raven black hair.",
+        "gh:build": "Slender and graceful, wearing an oversized dark charcoal hoodie.",
+        "gh:eyes": "Clear silver-grey crystalline iris, sharp sparkling catchlights, deep melancholic expression.",
+        "gh:style": "Photorealistic, high fashion photography, dramatic shadows, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, stunningly beautiful 17-year-old Japanese male, pale porcelain skin, messy voluminous raven black hair, melancholic half-lidded eyes with silver-grey crystalline irises and sharp catchlights, oversized dark charcoal hoodie."
+      }
     },
     {
-      "@id": "character:Kaname",
-      "dct:description": "17歳。学生起業のエリート。『最低ライン遵守』を免罪符にするのを嫌い、国内規制だけでなく国際的な統制要求まで含めて“絶対ルール”として設計し直す。CISA/情報処理安全確保支援士。",
-      "gh:voice": {
-        "gh:favorites": [
-          "監査",
-          "統制",
-          "証跡",
-          "例外なし",
-          "最低ライン",
-          "絶対ルール"
-        ],
-        "gh:sampleLines": [
-          "監査不合格。",
-          "それは傲慢ですね。",
-          "規程は免罪符じゃない。"
-        ],
-        "gh:sentenceTraits": [
-          "short",
-          "verdict-first",
-          "no hedging"
-        ],
-        "gh:style": "cold, exacting, rule-driven, confident",
-        "gh:taboos": [
-          "情に流される慰め",
-          "曖昧な約束"
-        ]
-      },
-      "schema:name": "Kaname"
-    },
-    {
-      "@id": "character:Shouta",
-      "dct:description": "大門建設の若手（スーツ姿）。依頼者。焦燥しているが目は鋭い。",
-      "schema:name": "Daimon Shouta"
-    },
-    {
-      "@id": "character:Matsuda",
-      "dct:description": "経理の松田（おばちゃん）。給与計算に追われ叫ぶ。",
-      "schema:name": "Matsuda"
-    },
-    {
-      "@id": "character:Sato",
-      "dct:description": "若手社員の佐藤。PC裏でケーブルをいじり混乱している。",
-      "schema:name": "Sato"
+      "@id": "character:Classmate_A",
+      "schema:name": "田中 健 (Ken Tanaka)",
+      "schema:role": "Student / Athlete",
+      "schema:age": 16,
+      "gh:appearance": {
+        "gh:face": "16-year-old Japanese male student, athletic and tanned skin, energetic expression.",
+        "gh:hair": "Short cropped black hair.",
+        "gh:build": "Muscular and athletic build.",
+        "gh:eyes": "Energetic dark eyes, bright catchlights.",
+        "gh:style": "Photorealistic, 8k, high-end webtoon aesthetic.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 16-year-old Japanese high school boy, athletic build, tanned skin, short cropped black hair, energetic expression, school uniform."
+      }
     },
     {
       "@id": "character:Yasumoto",
-      "dct:description": "総務部長の安本。汗だくで挙動不審。嫉妬と恐怖のGhostを抱える。",
-      "schema:name": "Yasumoto"
+      "schema:name": "安本 健治 (Kenji Yasumoto)",
+      "schema:role": "Antagonist / Victim",
+      "schema:age": 52,
+      "gh:appearance": {
+        "gh:face": "52-year-old Japanese man, oily skin, anxious and defensive expression, darting eyes.",
+        "gh:hair": "Messy receding salt-and-pepper hair.",
+        "gh:build": "Slightly overweight, wearing a rumpled gray business suit.",
+        "gh:eyes": "Anxious darting eyes, oily texture on eyelids, sharp catchlights from fluorescent lights.",
+        "gh:style": "Photorealistic, harsh office lighting, oily skin texture, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, a 52-year-old Japanese man, slightly overweight, anxious expression, messy receding hair, rumpled gray suit, sweat stains, harsh fluorescent lighting, anxious eyes with sharp catchlights."
+      }
     },
     {
-      "@id": "character:President",
-      "dct:description": "大門建設 社長（大門五郎）。作業着姿で戻ってくる。",
-      "schema:name": "Daimon Goro"
-    },
-    {
-      "@id": "character:PreviousPresident",
-      "dct:description": "大門建設の先代社長（故人）。『家族』『情』『現場第一』で回してきた時代の象徴。",
-      "schema:name": "Daimon Ichiro"
-    },
-    {
-      "@id": "character:GhostYasumoto",
-      "dct:description": "安本から分離したGhost。古い書類とケーブルの塊の怪物。",
-      "schema:name": "Ghost (Yasumoto)"
-    },
-    {
-      "@id": "character:GhostPresident",
-      "dct:description": "社長の“善意”から生まれるGhost。『許し』『絆』『家族』の笑顔の紙仮面が、口と責任を静かに塞ぐ。",
-      "schema:name": "Ghost (President)"
-    },
-    {
-      "@id": "character:GhostPreviousPresident",
-      "dct:description": "先代の“文化”から生まれるGhost。古い社訓フレームと社判（ハンコ）を核に、善意の言葉で権限の穴を増殖させる。",
-      "schema:name": "Ghost (Previous President)"
-    },
-    {
-      "@id": "character:GhostClock",
-      "dct:description": "『始業の鐘』だけが鳴り続け、針が刃になるGhost。締切と焦りが“終端（Done）”を奪い、現場の首元に迫る。",
-      "schema:name": "Ghost (Clock)"
-    },
-    {
-      "@id": "character:Yuto",
-      "dct:description": "C高校の友人。限定ブランドへの憧れからSNS上の格安販売に手を出し、迷惑連絡と乗っ取り被害に怯える。",
-      "schema:alternateName": [
-        "Yuto"
-      ],
-      "schema:familyName": "Sato",
-      "schema:givenName": "Yuto",
-      "schema:name": "Sato Yuto"
-    },
-    {
-      "@id": "character:YutoMother",
-      "dct:description": "Yutoの母。家計と生活を回しつつ、異変に最初に気づく。",
-      "schema:alternateName": [
-        "Keiko",
-        "Mom",
-        "ママ"
-      ],
-      "schema:familyName": "Sato",
-      "schema:givenName": "Keiko",
-      "schema:name": "Sato Keiko"
-    },
-    {
-      "@id": "character:YutoFather",
-      "dct:description": "Yutoの父。冷静だが、請求の現実を前に声が固くなる。",
-      "schema:alternateName": [
-        "Daichi",
-        "Dad",
-        "パパ"
-      ],
-      "schema:familyName": "Sato",
-      "schema:givenName": "Daichi",
-      "schema:name": "Sato Daichi"
+      "@id": "character:HomeroomTeacher",
+      "schema:name": "高橋 先生 (Mr. Takahashi)",
+      "schema:role": "Teacher / Homeroom",
+      "schema:age": 35,
+      "gh:appearance": {
+        "gh:face": "35-year-old Japanese male teacher, kind but tired expression, professional look.",
+        "gh:hair": "Neatly combed short black hair.",
+        "gh:build": "Average build, wearing a white shirt and a gray tie.",
+        "gh:eyes": "Kind tired eyes, realistic iris patterns, soft catchlights.",
+        "gh:style": "Photorealistic, cinematic lighting, 8k, high-end webtoon aesthetic.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 35-year-old Japanese male teacher, neatly combed short black hair, kind but slightly tired expression, wearing a white shirt and gray tie, classroom background."
+      }
     },
     {
       "@id": "character:Akira",
-      "dct:description": "Yutoのクラスメイト。流行に敏感で“限定ドロップ”を自慢したがる。口は軽いが悪気は薄い。",
-      "schema:alternateName": [
-        "Akira",
-        "Aki",
-        "アキ"
-      ],
-      "schema:familyName": "Kurokawa",
-      "schema:givenName": "Akira",
-      "schema:name": "Kurokawa Akira"
+      "schema:name": "黒川 亮 (Akira Kurokawa)",
+      "schema:role": "Student / Trendsetter",
+      "schema:age": 16,
+      "gh:appearance": {
+        "gh:face": "16-year-old Japanese male student, confident and smug expression, stylish features.",
+        "gh:hair": "Stylishly messy black hair with subtle brown highlights.",
+        "gh:build": "Slim build, wearing a school uniform with a trendy designer accessory.",
+        "gh:eyes": "Confident dark eyes, sharp catchlights, slightly arrogant look.",
+        "gh:style": "Photorealistic, cinematic lighting, 8k, high-end webtoon aesthetic.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 16-year-old Japanese high school boy, stylishly messy black hair with brown highlights, confident smug expression, dark eyes with sharp catchlights, wearing a school uniform with a designer watch."
+      }
     },
     {
-      "@id": "character:Saki",
-      "dct:description": "Yutoのクラスメイト。観察眼が鋭く、空気を読む。羨望と警戒のバランスが取れている。",
-      "schema:alternateName": [
-        "Saki",
-        "Saki-chan",
-        "サキ"
-      ],
-      "schema:familyName": "Mizuno",
-      "schema:givenName": "Saki",
-      "schema:name": "Mizuno Saki"
+      "@id": "character:Nei",
+      "schema:name": "Nei",
+      "schema:role": "AI Partner / Android",
+      "schema:age": 16,
+      "gh:appearance": {
+        "gh:face": "16-year-old stunningly beautiful Japanese female android, intelligent and mischievous sharp eyes with glowing blue intricate iris patterns.",
+        "gh:hair": "Platinum blonde layered bob hair.",
+        "gh:build": "Slender, wearing a white long-sleeve blouse and black sleeveless dress.",
+        "gh:eyes": "Intelligent glowing blue irises with complex mechanical-like patterns, bright crystalline catchlights.",
+        "gh:style": "Photorealistic, cinematic soft lighting, high-end android aesthetic, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, beautiful 16-year-old Japanese female android, platinum blonde layered bob, glowing blue irises with intricate mechanical patterns and sharp catchlights, white blouse, black dress."
+      }
     },
     {
-      "@id": "character:Ryo",
-      "dct:description": "Yutoのクラスメイト。ノリで拡散しがち。被害が出ると怒りが先に出るタイプ。",
-      "schema:alternateName": [
-        "Ryo",
-        "Ryo-chi",
-        "リョウ"
-      ],
-      "schema:familyName": "Tachibana",
-      "schema:givenName": "Ryo",
-      "schema:name": "Tachibana Ryo"
+      "@id": "character:Yuto",
+      "schema:name": "佐藤 勇人 (Yuto Sato)",
+      "schema:role": "Student / Victim",
+      "schema:age": 16,
+      "gh:appearance": {
+        "gh:face": "16-year-old Japanese male student, expressive eyes, slightly anxious but friendly expression.",
+        "gh:hair": "Neat black schoolboy hair.",
+        "gh:build": "Average build, wearing a standard Japanese high school uniform.",
+        "gh:eyes": "Bright expressive brown eyes, realistic iris patterns, sharp catchlights.",
+        "gh:style": "Photorealistic, cinematic lighting, 8k, high-end webtoon aesthetic.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 16-year-old Japanese high school boy, expressive brown eyes with sharp catchlights, neat black hair, wearing a black school gakuran uniform, friendly but slightly anxious expression."
+      }
+    },
+    {
+      "@id": "character:Takeru",
+      "schema:name": "赤羽 猛 (Takeru Akabane)",
+      "schema:role": "Rival Hacker",
+      "schema:age": 19,
+      "gh:appearance": {
+        "gh:face": "19-year-old Japanese male, muscular build, aggressive and intense expression, piercing amber eyes.",
+        "gh:hair": "Messy black hair with bleached highlights.",
+        "gh:build": "Muscular, wearing high-end techwear/streetwear.",
+        "gh:eyes": "Piercing amber irises, high contrast iris texture, intense sharp catchlights.",
+        "gh:style": "Photorealistic, gritty street aesthetic, high contrast, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 19-year-old Japanese male, aggressive expression, piercing amber eyes with high contrast iris textures, messy black hair with bleached highlights, techwear."
+      }
+    },
+    {
+      "@id": "character:President",
+      "schema:name": "大門 五郎 (Goro Daimon)",
+      "schema:role": "President / Spiritual Pillar",
+      "schema:age": 62,
+      "gh:appearance": {
+        "gh:face": "62-year-old Japanese man, sturdy build, deep facial wrinkles, weathered skin, kind but firm eyes.",
+        "gh:hair": "Short salt-and-pepper hair.",
+        "gh:build": "Sturdy, wearing a navy blue work jacket with a high-visibility safety vest.",
+        "gh:eyes": "Kind but firm weathered eyes, subtle iris detail, soft catchlights.",
+        "gh:style": "Photorealistic, weathered texture, authentic Japanese elder, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 62-year-old Japanese man, sturdy build, deep facial wrinkles, weathered skin, kind firm eyes with subtle iris detail and soft catchlights, short salt-and-pepper hair, wearing a navy blue work jacket, natural skin tone."
+      }
     },
     {
       "@id": "character:Mei",
-      "dct:description": "Yutoのクラスメイト。会話の中心にいるムードメーカー。友だち思いだが、SNSでの距離感が近い。",
-      "schema:alternateName": [
-        "Mei",
-        "Mei-chan",
-        "メイ"
-      ],
-      "schema:familyName": "Sakuraba",
-      "schema:givenName": "Mei",
-      "schema:name": "Sakuraba Mei"
+      "schema:name": "桜庭 メイ (Mei Sakuraba)",
+      "schema:role": "Student / Mood Maker",
+      "schema:age": 16,
+      "gh:appearance": {
+        "gh:face": "16-year-old Japanese female student, cheerful and energetic expression, bright smile.",
+        "gh:hair": "Shoulder-length black hair with a cute hair clip.",
+        "gh:build": "Average build, wearing a school uniform with a colorful cardigan.",
+        "gh:eyes": "Bright energetic eyes, sparkling catchlights, friendly iris patterns.",
+        "gh:style": "Photorealistic, cinematic lighting, 8k, high-end webtoon aesthetic.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 16-year-old Japanese high school girl, shoulder-length black hair with a small hair clip, cheerful energetic expression, bright eyes with sparkling catchlights, wearing a school uniform with a yellow cardigan."
+      }
+    },
+    {
+      "@id": "character:Classmate_C",
+      "schema:name": "鈴木 翼 (Tsubasa Suzuki)",
+      "schema:role": "Student / Gamer",
+      "schema:age": 16,
+      "gh:appearance": {
+        "gh:face": "16-year-old Japanese male student, slightly pale skin, focused expression.",
+        "gh:hair": "Messy black hair with long bangs.",
+        "gh:build": "Slim build, slightly slouched posture.",
+        "gh:eyes": "Focused eyes, catchlights reflecting monitor glow.",
+        "gh:style": "Photorealistic, 8k, high-end webtoon aesthetic.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 16-year-old Japanese high school boy, messy black hair with bangs, focused expression, school uniform, slouched posture."
+      }
+    },
+    {
+      "@id": "character:Classmate_B",
+      "schema:name": "佐藤 莉子 (Riko Sato)",
+      "schema:role": "Student / Bookworm",
+      "schema:age": 16,
+      "gh:appearance": {
+        "gh:face": "16-year-old Japanese female student, quiet and thoughtful expression.",
+        "gh:hair": "Black hair in twin braids.",
+        "gh:build": "Small and slender build.",
+        "gh:eyes": "Quiet thoughtful eyes, soft catchlights.",
+        "gh:style": "Photorealistic, 8k, high-end webtoon aesthetic.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 16-year-old Japanese high school girl, twin braids, quiet expression, school uniform, holding a book."
+      }
     },
     {
       "@id": "character:Kota",
-      "dct:description": "Yutoのクラスメイト。ガジェット好きで“便利”優先。『大手なら安全』と信じやすい。",
-      "schema:alternateName": [
-        "Kota",
-        "Ko-ta",
-        "コータ"
-      ],
-      "schema:familyName": "Hiramatsu",
-      "schema:givenName": "Kota",
-      "schema:name": "Hiramatsu Kota"
+      "schema:name": "平松 コータ (Kota Hiramatsu)",
+      "schema:role": "Student / Tech Enthusiast",
+      "schema:age": 16,
+      "gh:appearance": {
+        "gh:face": "16-year-old Japanese male student, intellectual and curious expression, wearing glasses.",
+        "gh:hair": "Short black hair, slightly unkempt.",
+        "gh:build": "Slim build, wearing a school uniform, often carrying a tablet or gadget.",
+        "gh:eyes": "Curious eyes behind glasses, detailed iris patterns, catchlights reflecting screen glow.",
+        "gh:style": "Photorealistic, cinematic lighting, 8k, high-end webtoon aesthetic.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 16-year-old Japanese high school boy, short black hair, wearing glasses, curious intellectual expression, eyes with catchlights reflecting a screen, wearing a school uniform."
+      }
     },
     {
-      "@id": "character:Kenta",
-      "dct:description": "C高校の生徒。誹謗中傷被害の相談者。高校生っぽい口語で揺れながらも、最後は手順で踏みとどまる。",
-      "gh:voice": {
-        "gh:favorites": [
-          "マジ",
-          "やばい",
-          "無理",
-          "なんで"
-        ],
-        "gh:sampleLines": [
-          "え、マジ…？",
-          "無理…でも、消しても増える…なんで？",
-          "俺じゃないって言ってんのに…"
-        ],
-        "gh:sentenceTraits": [
-          "slang",
-          "hesitation",
-          "short bursts"
-        ],
-        "gh:style": "teen, anxious, reactive",
-        "gh:taboos": [
-          "難解な専門用語を自分から使う"
-        ]
+      "@id": "character:Sato",
+      "schema:name": "佐藤 健太 (Kenta Sato)",
+      "schema:role": "IT Support",
+      "schema:age": 24,
+      "gh:appearance": {
+        "gh:face": "24-year-old Japanese male, fatigued and worried expression.",
+        "gh:hair": "Simple short black hair, slightly messy.",
+        "gh:build": "Slim build, wearing a light blue polo shirt and dark chinos.",
+        "gh:eyes": "Fatigued worried eyes, soft iris detail, crystalline catchlights reflecting monitor glow.",
+        "gh:style": "Photorealistic, fatigued youth, realistic sweat, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 24-year-old Japanese male, slim build, fatigued expression, short black hair, light blue polo shirt, carrying cables, realistic office lighting, worried eyes with crystalline catchlights."
+      }
+    },
+    {
+      "@id": "character:Shouta",
+      "schema:name": "大門 翔太 (Shouta Daimon)",
+      "schema:role": "Client / Successor",
+      "schema:age": 26,
+      "gh:appearance": {
+        "gh:face": "26-year-old Japanese male, sharp eyes with deep brown iris patterns, slightly fatigued but determined expression.",
+        "gh:hair": "Short clean-cut black hair, business style.",
+        "gh:build": "Fit and athletic build, wearing a navy blue three-piece suit.",
+        "gh:eyes": "Intricate dark brown iris, sharp catchlights, reflecting office light.",
+        "gh:style": "Photorealistic, cinematic lighting, 8k, highly detailed skin texture.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 26-year-old Japanese businessman, sharp eyes with intricate deep brown iris patterns and sparkling catchlights, short clean-cut black hair, wearing a navy blue three-piece suit, natural skin tone."
+      }
+    },
+    {
+      "@id": "character:HERO",
+      "gh:appearance": {
+        "gh:build": "Average build, wearing a flashy tactical jacket with many patches.",
+        "gh:eyes": "Arrogant insecure eyes, shallow iris detail, bright catchlights from high-rise sun.",
+        "gh:face": "30-year-old Japanese male, suntanned skin, arrogant but insecure expression, 'charismatic' but shallow.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 30-year-old Japanese male, suntanned skin, tacky black hair, arrogant insecure eyes with shallow iris detail, flashy tactical jacket, designer t-shirt.",
+        "gh:hair": "Stylish but slightly tacky black hair.",
+        "gh:style": "Photorealistic, tacky villain aesthetic, tropical high-rise lighting, 8k."
       },
-      "schema:alternateName": [
-        "Kento"
-      ],
-      "schema:name": "Kenta"
+      "gh:imagePath": "/data/251121/characters/HERO/hf_20260121_195847_0e769f45-ab4b-4a93-afd2-b78049079620.png",
+      "gh:organization": "gh:actorTeam/seigi-hero",
+      "schema:age": 30,
+      "schema:name": "佐藤 ヒロシ (Hiroshi Sato)",
+      "schema:role": "Main Antagonist (Arc D)"
     },
     {
-      "@id": "character:Mina",
-      "dct:description": "闇バイトに巻き込まれた学生。口座/番号の売買で追い詰められる。",
-      "schema:name": "Mina"
+      "@id": "character:Kaname",
+      "schema:name": "水城 要 (Kaname Mizuki)",
+      "schema:role": "Rival Hacker",
+      "schema:age": 18,
+      "gh:appearance": {
+        "gh:face": "18-year-old Japanese male, perfectly sculpted handsome face, arrogant and cold eyes with obsidian-like dark irises.",
+        "gh:hair": "Stylishly set dark brown hair.",
+        "gh:build": "Model-like tall and slender, wearing a perfectly tailored white suit.",
+        "gh:eyes": "Cold obsidian-like dark irises, sharp mirror-like catchlights, arrogant expression.",
+        "gh:style": "Photorealistic, luxury elite vibe, sharp focus, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 18-year-old Japanese male, perfectly sculpted face, arrogant cold eyes with obsidian-like dark irises and sharp catchlights, white suit, luxury aesthetic."
+      }
+    },
+    {
+      "@id": "character:Saki",
+      "schema:name": "水野 サキ (Saki Mizuno)",
+      "schema:role": "Student / Observer",
+      "schema:age": 16,
+      "gh:appearance": {
+        "gh:face": "16-year-old Japanese female student, calm and analytical expression, sharp features.",
+        "gh:hair": "Long straight black hair.",
+        "gh:build": "Slender build, wearing a school uniform neatly.",
+        "gh:eyes": "Calm analytical dark eyes, precise iris patterns, clear catchlights.",
+        "gh:style": "Photorealistic, cinematic lighting, 8k, high-end webtoon aesthetic.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 16-year-old Japanese high school girl, long straight black hair, calm analytical expression, sharp dark eyes with clear catchlights, wearing a neat school uniform."
+      }
+    },
+    {
+      "@id": "character:Matsuda",
+      "schema:name": "松田 ヨシ子 (Yoshiko Matsuda)",
+      "schema:role": "Accounting Manager",
+      "schema:age": 58,
+      "gh:appearance": {
+        "gh:face": "58-year-old Japanese woman, strict expression, realistic aging details.",
+        "gh:hair": "Short permed black hair.",
+        "gh:build": "Small build, wearing a beige blouse and dark skirt, reading glasses on a silver chain.",
+        "gh:eyes": "Sharp strict eyes behind reading glasses, realistic iris patterns, precise catchlights.",
+        "gh:style": "Photorealistic, strict Japanese office lady, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 58-year-old Japanese woman, small build, strict expression, short permed black hair, beige blouse, reading glasses on chain, cinematic office lighting, sharp eyes with precise catchlights."
+      }
     }
   ],
   "gh:directingGuide": {
@@ -6101,8 +6055,8 @@
           ]
         }
       ],
-      "gh:presentationTagline": "Arc 0 | High School \u0026 Privacy",
-      "gh:realCase": "Credential stuffing / personal data leak → spam calls \u0026 spam email",
+      "gh:presentationTagline": "Arc 0 | High School & Privacy",
+      "gh:realCase": "Credential stuffing / personal data leak → spam calls & spam email",
       "gh:sinContrast": "Careless Reuse (Convenience) vs. Trust (Password Manager + Aliases)",
       "gh:supportingCharacters": [
         "character:Nei"
@@ -7326,7 +7280,7 @@
               "dialogue": [
                 {
                   "speaker": "Ren",
-                  "text": "/\u003e /dev/null chop --force"
+                  "text": "/> /dev/null chop --force"
                 }
               ],
               "environment": "env:kamata-daimon-office",
@@ -7787,7 +7741,7 @@
           ]
         }
       ],
-      "gh:presentationTagline": "Arc A | Construction \u0026 Sloth",
+      "gh:presentationTagline": "Arc A | Construction & Sloth",
       "gh:realCase": "Handa Hospital Ransomware (2021) / Iseto (2024)",
       "gh:sinContrast": "Passive Sloth (Vulnerability Neglect) vs. Active Sloth (Hyper-Efficiency)"
     },
@@ -9390,7 +9344,7 @@
               "dialogue": [
                 {
                   "speaker": "UI",
-                  "text": "DONE TIMER  00:42:18  /  containment \u003e evidence \u003e access \u003e restore"
+                  "text": "DONE TIMER  00:42:18  /  containment > evidence > access > restore"
                 }
               ],
               "environment": "env:kamata-daimon-office",
@@ -10797,7 +10751,7 @@
               "dialogue": [
                 {
                   "speaker": "UI",
-                  "text": "DONE TIMER 00:03:12 / define \u003e measure \u003e restore"
+                  "text": "DONE TIMER 00:03:12 / define > measure > restore"
                 }
               ],
               "environment": "env:logistics-warehouse",
@@ -11803,7 +11757,7 @@
           ]
         }
       ],
-      "gh:presentationTagline": "Arc B | Manufacturing \u0026 Wrath",
+      "gh:presentationTagline": "Arc B | Manufacturing & Wrath",
       "gh:realCase": "Kojima Press / Toyota Supply Chain (2022)",
       "gh:sinContrast": "Impulsive Wrath (Calculation Failure) vs. Calculated Wrath (Optimization)"
     },
@@ -13150,7 +13104,7 @@
           ]
         }
       ],
-      "gh:presentationTagline": "Arc 0 | Defamation \u0026 Disclosure",
+      "gh:presentationTagline": "Arc 0 | Defamation & Disclosure",
       "gh:realCase": "Online defamation / disclosure request (発信者情報開示請求) → settlement/court",
       "gh:sinContrast": "Fear (Staying silent) vs. Procedure (Knowing what to do)",
       "gh:supportingCharacters": [
@@ -16015,7 +15969,7 @@
           ]
         }
       ],
-      "gh:presentationTagline": "Arc C | Finance \u0026 Pride",
+      "gh:presentationTagline": "Arc C | Finance & Pride",
       "gh:realCase": "SBI Securities Account Fraud (2020)",
       "gh:sinContrast": "Passive Pride (Rule Blindness) vs. Active Pride (Rule Definition)"
     },
@@ -16696,8 +16650,8 @@
           ]
         }
       ],
-      "gh:presentationTagline": "Arc 0 | Yami-baito \u0026 Support",
-      "gh:realCase": "Yami-baito / account \u0026 phone number resale → recovery and reporting",
+      "gh:presentationTagline": "Arc 0 | Yami-baito & Support",
+      "gh:realCase": "Yami-baito / account & phone number resale → recovery and reporting",
       "gh:sinContrast": "Easy Money (Short-term) vs. Support (Long-term)",
       "gh:supportingCharacters": [
         "character:Nei",
@@ -19250,7 +19204,7 @@
           ]
         }
       ],
-      "gh:presentationTagline": "Arc D | Social Scam \u0026 Vainglory",
+      "gh:presentationTagline": "Arc D | Social Scam & Vainglory",
       "gh:realCase": "SNS Investment Scam / Celebrity Impersonation (2024)",
       "gh:sinContrast": "Vainglory (虚飾の正義) vs. Truth (静かなる真実)",
       "gh:supportingCharacters": [
@@ -21414,8 +21368,8 @@
               "characters": [],
               "dialogue": [],
               "environment": "env:cschool-classroom",
-              "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto trying to login. \"Incorrect Password.\" \"Reset Password.\" -\u003e \"Email not found.\" Beat: Complete lockout.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-              "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto trying to login. \"Incorrect Password.\" \"Reset Password.\" -\u003e \"Email not found.\" Beat: Complete lockout.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+              "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto trying to login. \"Incorrect Password.\" \"Reset Password.\" -> \"Email not found.\" Beat: Complete lockout.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+              "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto trying to login. \"Incorrect Password.\" \"Reset Password.\" -> \"Email not found.\" Beat: Complete lockout.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "eye level",
                 "gh:aperture": "f/2.8",
@@ -21428,7 +21382,7 @@
               },
               "panel": 1,
               "shot": "Wide Shot",
-              "visual": "Yuto trying to login. \"Incorrect Password.\" \"Reset Password.\" -\u003e \"Email not found.\" Beat: Complete lockout."
+              "visual": "Yuto trying to login. \"Incorrect Password.\" \"Reset Password.\" -> \"Email not found.\" Beat: Complete lockout."
             }
           ]
         },

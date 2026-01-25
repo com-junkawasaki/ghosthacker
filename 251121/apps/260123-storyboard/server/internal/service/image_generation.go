@@ -427,39 +427,50 @@ func (s *StoryboardService) buildImagePrompt(panelData *storyboardpb.PanelData, 
 }
 
 func (s *StoryboardService) loadCharacterDetails(characterIDs []string, storyboardPath string) (string, error) {
+	// Try to load from the master storyboard first
+	storyboard, err := s.validateAndLoad(storyboardPath)
+	if err != nil {
+		log.Printf("loadCharacterDetails: failed to load master storyboard: %v", err)
+	}
+
 	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
 	if workspaceRoot == "" {
 		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(storyboardPath))))
 	}
 
 	charDir := filepath.Join(workspaceRoot, "251121", "characters")
-	datastoreDir := filepath.Join(workspaceRoot, "251121", "datastore")
 	details := []string{}
 
 	for _, charID := range characterIDs {
-		// Try characters/ directory first (new design: characters/ID/profile.jsonld)
-		id := strings.TrimPrefix(charID, "character:")
-		charFile := filepath.Join(charDir, id, "profile.jsonld")
+		var charData map[string]interface{}
+		found := false
 
-		data, err := os.ReadFile(charFile)
-		if err != nil {
-			// Try characters/ID.jsonld (intermediate design)
-			charFile = filepath.Join(charDir, id+".jsonld")
-			data, err = os.ReadFile(charFile)
-			
-			if err != nil {
-				// Fallback to datastore/ directory (old design)
-				encodedID := base64.URLEncoding.EncodeToString([]byte(charID))
-				charFile = filepath.Join(datastoreDir, encodedID+".jsonld")
-				data, err = os.ReadFile(charFile)
-				if err != nil {
-					continue // Skip if file not found
+		// 1. Try master storyboard
+		if storyboard != nil {
+			if chars, ok := storyboard["gh:characters"].([]interface{}); ok {
+				for _, c := range chars {
+					if m, ok := c.(map[string]interface{}); ok && m["@id"] == charID {
+						charData = m
+						found = true
+						break
+					}
 				}
 			}
 		}
 
-		var charData map[string]interface{}
-		if err := json.Unmarshal(data, &charData); err != nil {
+		// 2. Try characters/ directory (new design: characters/ID/profile.jsonld)
+		if !found {
+			id := strings.TrimPrefix(charID, "character:")
+			charFile := filepath.Join(charDir, id, "profile.jsonld")
+			data, err := os.ReadFile(charFile)
+			if err == nil {
+				if err := json.Unmarshal(data, &charData); err == nil {
+					found = true
+				}
+			}
+		}
+
+		if !found {
 			continue
 		}
 
@@ -502,6 +513,41 @@ func (s *StoryboardService) loadCharacterDetails(characterIDs []string, storyboa
 }
 
 func (s *StoryboardService) loadEnvironmentDetails(environmentID string, storyboardPath string) (string, error) {
+	// Try to load from the master storyboard first
+	storyboard, err := s.validateAndLoad(storyboardPath)
+	if err != nil {
+		log.Printf("loadEnvironmentDetails: failed to load master storyboard: %v", err)
+	}
+
+	if storyboard != nil {
+		if envs, ok := storyboard["gh:environments"].([]interface{}); ok {
+			for _, e := range envs {
+				if m, ok := e.(map[string]interface{}); ok && m["@id"] == environmentID {
+					name := ""
+					if n, ok := m["schema:name"].(string); ok {
+						name = n
+					} else if n, ok := m["dct:title"].(string); ok {
+						name = n
+					}
+
+					description := ""
+					if d, ok := m["schema:description"].(string); ok {
+						description = d
+					} else if d, ok := m["dct:description"].(string); ok {
+						description = d
+					}
+
+					result := name
+					if description != "" {
+						result += " (" + description + ")"
+					}
+					return result, nil
+				}
+			}
+		}
+	}
+
+	// Fallback to datastore (legacy)
 	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
 	if workspaceRoot == "" {
 		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(storyboardPath))))

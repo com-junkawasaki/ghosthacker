@@ -3,10 +3,12 @@ package mcp
 import (
 	"context"
 	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
@@ -128,11 +130,38 @@ func (s *StoryboardMCPServer) fetchCharacterProfile(charID string) (string, erro
 		workspaceRoot = "../../../.."
 	}
 
-	datastoreDir := filepath.Join(workspaceRoot, "251121", "datastore")
-	encodedID := base64.URLEncoding.EncodeToString([]byte(charID))
-	charFile := filepath.Join(datastoreDir, encodedID+".jsonld")
+	charDir := filepath.Join(workspaceRoot, "251121", "characters")
+	id := strings.TrimPrefix(charID, "character:")
+	charFile := filepath.Join(charDir, id, "profile.jsonld")
 
 	data, err := os.ReadFile(charFile)
+	if err == nil {
+		return string(data), nil
+	}
+
+	// Fallback to master storyboard
+	storyboardPath := filepath.Join(workspaceRoot, "251121", "storyboard.jsonld")
+	storyboardData, err := os.ReadFile(storyboardPath)
+	if err == nil {
+		var storyboard map[string]interface{}
+		if err := json.Unmarshal(storyboardData, &storyboard); err == nil {
+			if chars, ok := storyboard["gh:characters"].([]interface{}); ok {
+				for _, c := range chars {
+					if m, ok := c.(map[string]interface{}); ok && m["@id"] == charID {
+						charJSON, _ := json.MarshalIndent(m, "", "  ")
+						return string(charJSON), nil
+					}
+				}
+			}
+		}
+	}
+
+	// Last fallback to datastore (legacy)
+	datastoreDir := filepath.Join(workspaceRoot, "251121", "datastore")
+	encodedID := base64.URLEncoding.EncodeToString([]byte(charID))
+	charFile = filepath.Join(datastoreDir, encodedID+".jsonld")
+
+	data, err = os.ReadFile(charFile)
 	if err != nil {
 		return "", err
 	}
