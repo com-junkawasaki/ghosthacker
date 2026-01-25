@@ -128,6 +128,7 @@ func (s *StoryboardService) GetChatSessions(
 					AgentMode:   mMap["agent_mode"].(string),
 					Content:     mMap["content"].(string),
 					ContextJson: mMap["context_json"].(string),
+					ResolvedIds: resolvedIDsFromMap(mMap["resolved_ids"]),
 				})
 			}
 		}
@@ -148,4 +149,19 @@ func (s *StoryboardService) GetChatSessions(
 	return connect.NewResponse(&storyboardpb.GetChatSessionsResponse{
 		Sessions: sessions,
 	}), nil
+}
+
+func resolvedIDsFromMap(val interface{}) []string {
+	if val == nil {
+		return []string{}
+	}
+	list, ok := val.([]interface{})
+	if !ok {
+		return []string{}
+	}
+	res := make([]string, len(list))
+	for i, v := range list {
+		res[i] = v.(string)
+	}
+	return res
 }

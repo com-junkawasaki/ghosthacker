@@ -211,6 +211,45 @@ Your response MUST include a "context_scope" if you are narrowing down the focus
 
 	userPrompt := fmt.Sprintf("Context:\n%s\n%s\n\nUser Message: %s", contextStr.String(), agentInstruction, req.Msg.Message)
 
+	// Auto-resolve IDs found in message or context
+	idRegex := regexp.MustCompile(`(character|env|episode):[a-zA-Z0-9-]+`)
+	foundIDs := idRegex.FindAllString(userPrompt, -1)
+	var resolvedIDs []string
+	if len(foundIDs) > 0 {
+		log.Printf("[InteractWithAI] Auto-resolving IDs: %v", foundIDs)
+		for _, id := range foundIDs {
+			// Skip if already in context
+			alreadyInContext := false
+			for _, c := range req.Msg.Context {
+				if c.Id == id {
+					alreadyInContext = true
+					break
+				}
+			}
+			if alreadyInContext {
+				continue
+			}
+
+			// Call appropriate MCP tool
+			var toolName string
+			if strings.HasPrefix(id, "character:") {
+				toolName = "get_character_profile"
+			} else {
+				toolName = "query_lore"
+			}
+
+			toolResult, err := s.mcpServer.CallTool(ctx, toolName, map[string]interface{}{"character_id": id})
+			if err == nil && len(toolResult.Content) > 0 {
+				if textContent, ok := toolResult.Content[0].(mcp.TextContent); ok {
+					contextStr.WriteString(fmt.Sprintf("\n--- Auto-Resolved Context: %s ---\n%s\n", id, textContent.Text))
+					resolvedIDs = append(resolvedIDs, id)
+				}
+			}
+		}
+		// Re-construct user prompt with added lore
+		userPrompt = fmt.Sprintf("Context:\n%s\n%s\n\nUser Message: %s", contextStr.String(), agentInstruction, req.Msg.Message)
+	}
+
 	content, err := s.callOpenRouterText(ctx, apiKey, model, systemPrompt, userPrompt)
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("openrouter call failed: %w", err))
@@ -337,6 +376,7 @@ Your response MUST include a "context_scope" if you are narrowing down the focus
 		AiResponse:   result.Response,
 		Patches:      protoPatches,
 		ContextScope: protoContextScope,
+		ResolvedIds:  resolvedIDs,
 	}), nil
 }
 

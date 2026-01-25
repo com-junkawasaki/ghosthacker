@@ -143,6 +143,7 @@ message InteractWithAIResponse {
   string ai_response = 3;
   repeated JSONPatch patches = 4; // Optional patches to apply to the storyboard
   ContextScope context_scope = 5; // For A2A mode: which context was loaded
+  repeated string resolved_ids = 6; // IDs that were automatically resolved via MCP
 }
 
 message ContextScope {
@@ -379,6 +380,7 @@ message ChatMessage {
   string agent_mode = 2; // "scenario", "episode", etc.
   string content = 3;
   string context_json = 4; // Serialized context items
+  repeated string resolved_ids = 5; // IDs resolved via MCP
 }
 
 message SaveChatSessionRequest {

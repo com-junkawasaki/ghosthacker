@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { storyboardClient } from '$lib/client/storyboard-client';
 	import { onMount } from 'svelte';
+	import { marked } from 'marked';
 
 	let { selectedEpisode, storyboardPath, onApplyPatches } = $props<{
 		selectedEpisode: string;
@@ -8,7 +9,7 @@
 		onApplyPatches?: (patches: any[]) => void;
 	}>();
 
-	type Message = { role: 'user' | 'assistant', content: string, context?: any, agent?: string, patches?: any[], contextScope?: any, context_json?: string };
+	type Message = { role: 'user' | 'assistant', content: string, context?: any, agent?: string, patches?: any[], contextScope?: any, context_json?: string, resolvedIds?: string[] };
 	type ChatSession = { id: string, title: string, messages: Message[], timestamp: number };
 
 	let sessions = $state<ChatSession[]>([]);
@@ -41,7 +42,8 @@
 							agent: m.agentMode,
 							content: m.content,
 							context: context,
-							context_json: m.contextJson
+							context_json: m.contextJson,
+							resolvedIds: m.resolvedIds
 						};
 					}),
 					timestamp: Number(s.timestamp)
@@ -74,7 +76,8 @@
 						role: m.role,
 						agentMode: m.agent ?? '',
 						content: m.content,
-						contextJson: m.context ? JSON.stringify(m.context) : (m.context_json ?? '')
+						contextJson: m.context ? JSON.stringify(m.context) : (m.context_json ?? ''),
+						resolvedIds: m.resolvedIds ?? []
 					}))
 				}
 			});
@@ -238,7 +241,8 @@
 					role: 'assistant', 
 					content: res.aiResponse,
 					patches: res.patches,
-					contextScope: res.contextScope
+					contextScope: res.contextScope,
+					resolvedIds: res.resolvedIds
 				}];
 				
 				if (res.patches && res.patches.length > 0) {
@@ -505,7 +509,7 @@
 					{#if msg.role === 'debug'}
 						<pre>{msg.content}</pre>
 					{:else}
-						{msg.content}
+						{@html marked.parse(msg.content)}
 					{/if}
 				</div>
 				{#if msg.contextScope}
@@ -523,6 +527,16 @@
 						{#if msg.contextScope.characters?.length > 0}
 							<span class="scope-item">👤 {msg.contextScope.characters.join(', ')}</span>
 						{/if}
+					</div>
+				{/if}
+				{#if msg.resolvedIds && msg.resolvedIds.length > 0}
+					<div class="resolved-ids-display">
+						<span class="scope-label">AUTO-RESOLVED LORE:</span>
+						<div class="resolved-tags">
+							{#each msg.resolvedIds as id}
+								<span class="resolved-tag">🔍 {id}</span>
+							{/each}
+						</div>
 					</div>
 				{/if}
 				{#if msg.patches && msg.patches.length > 0}
@@ -934,6 +948,35 @@
 		word-break: break-word;
 	}
 
+	.message-content :global(p) { margin: 0 0 0.5rem 0; }
+	.message-content :global(p:last-child) { margin-bottom: 0; }
+	.message-content :global(h1), .message-content :global(h2), .message-content :global(h3) { 
+		margin: 1rem 0 0.5rem 0; 
+		font-size: 1rem;
+		color: #fff;
+	}
+	.message-content :global(ul), .message-content :global(ol) {
+		margin: 0.5rem 0;
+		padding-left: 1.25rem;
+	}
+	.message-content :global(code) {
+		background: rgba(255,255,255,0.1);
+		padding: 2px 4px;
+		border-radius: 3px;
+		font-family: 'Courier New', monospace;
+	}
+	.message-content :global(pre) {
+		background: #000;
+		padding: 0.75rem;
+		border-radius: 4px;
+		overflow-x: auto;
+		margin: 0.5rem 0;
+	}
+	.message-content :global(pre code) {
+		background: transparent;
+		padding: 0;
+	}
+
 	.message-content pre {
 		margin: 0;
 		white-space: pre-wrap;
@@ -950,6 +993,30 @@
 		flex-direction: column;
 		gap: 0.25rem;
 		border-left: 3px solid #f1c40f;
+	}
+
+	.resolved-ids-display {
+		margin-top: 0.5rem;
+		padding: 0.5rem;
+		background: rgba(0, 0, 0, 0.1);
+		border-radius: 4px;
+		font-size: 0.7rem;
+		border-left: 3px solid #3498db;
+	}
+
+	.resolved-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem;
+		margin-top: 0.25rem;
+	}
+
+	.resolved-tag {
+		background: rgba(52, 152, 219, 0.2);
+		color: #3498db;
+		padding: 1px 6px;
+		border-radius: 10px;
+		font-size: 0.6rem;
 	}
 
 	.scope-label {
