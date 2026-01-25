@@ -1,0 +1,711 @@
+{
+  "@context": {
+    "arc": "gh:arc/",
+    "character": "gh:character/",
+    "characters": "gh:characters",
+    "dct": "http://purl.org/dc/terms/",
+    "dialogue": "gh:dialogue",
+    "env": "gh:environment/",
+    "environment": "gh:environment",
+    "environments": "gh:environments",
+    "episodeId": "gh:episodeId",
+    "episodeIndex": "gh:episodeIndex",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "panel": "gh:panelIndex",
+    "prompt": "gh:runwayPrompt",
+    "properties": "gh:shotProperties",
+    "prov": "http://www.w3.org/ns/prov#",
+    "purpose": "gh:narrativePurpose",
+    "schema": "http://schema.org/",
+    "shot": "gh:shotType",
+    "speaker": "gh:speaker",
+    "text": "gh:text",
+    "visual": "gh:visual"
+  },
+  "dct:title": "家族で守る - スマホ安全設定ガイド",
+  "dct:description": "子供のスマートフォンを安全に設定するための親御さん向けガイドエピソード。YouTube、iOS、Android、SNSの各種設定を具体的に解説。",
+  "gh:arc": "Arc P (Parent Guide)",
+  "gh:episode": 1,
+  "gh:episodeId": "episode:260125-parent-smartphone-safety",
+  "gh:episodeIndex": 1,
+  "gh:totalPages": 32,
+  "gh:targetAudience": "Parents with children aged 10-16",
+  "gh:industry": "Family / Digital Parenting",
+  "gh:mainCharacter": "character:Nei",
+  "gh:organization": "org:KounanMiddleSchool",
+  "gh:timeframe": "Yuto事件後（2026年春）",
+  "gh:setting": "Neiの自宅 / オンライン相談室",
+  "gh:incidentDescription": "Yutoの事件後、心配になったYutoの母親・美咲（Misaki）がNeiに相談。『子供のスマホをどう設定すればいいのか分からない』という悩みに、Neiが具体的なプラットフォーム別設定を教える。",
+  "gh:realCase": "Parental Controls / Content Filtering / Screen Time Management",
+  "gh:nistFocus": [
+    "PR.AA (Identity Management)",
+    "PR.AC (Access Control)",
+    "DE.CM (Continuous Monitoring)"
+  ],
+  "gh:themeMessage": "設定は万能ではない。でも、子供を守る『最初の一歩』になる。大切なのは、設定を入り口にして、子供と一緒にデジタルの世界を話し合うこと。",
+  "gh:characters": [
+    {
+      "@id": "character:Misaki",
+      "gh:name": "美咲（Misaki）",
+      "gh:nameEn": "Misaki",
+      "gh:role": "Yutoの母親",
+      "gh:age": 42,
+      "gh:description": "Yutoの事件をきっかけに、子供のデジタル安全について真剣に考え始めた母親。ITには詳しくないが、子供を守りたいという強い思いを持つ。",
+      "gh:visualDescription": "42歳の日本人女性。優しい雰囲気だが、心配そうな表情。カジュアルな服装。"
+    },
+    {
+      "@id": "character:Yuto",
+      "gh:role": "美咲の息子、元被害者",
+      "gh:description": "詐欺被害から立ち直り、今度は自分の経験を活かして母と一緒に安全設定を学ぶ。"
+    },
+    {
+      "@id": "character:Nei",
+      "gh:role": "ガイド役",
+      "gh:description": "優しく分かりやすく設定方法を説明。技術的なことを親御さんにも理解しやすく伝える。"
+    },
+    {
+      "@id": "character:Ren",
+      "gh:role": "技術補足役",
+      "gh:description": "技術的なポイントや注意点を補足。「なぜ」その設定が必要かを説明。"
+    }
+  ],
+  "gh:actStructure": [
+    {
+      "@id": "act:1-parents-anxiety",
+      "gh:actNumber": 1,
+      "gh:actTitle": "親の不安",
+      "gh:actTitleEn": "Parent's Anxiety",
+      "gh:pageRange": [1, 4],
+      "gh:pageCount": 4,
+      "gh:emotionalArc": "不安 → 相談 → 希望",
+      "gh:narrativePurpose": "読者（親御さん）の共感を得る。事件後の美咲の不安と、Neiへの相談",
+      "gh:keyBeat": "hook"
+    },
+    {
+      "@id": "act:2-three-pillars",
+      "gh:actNumber": 2,
+      "gh:actTitle": "設定の3本柱",
+      "gh:actTitleEn": "Three Pillars of Safety",
+      "gh:pageRange": [5, 6],
+      "gh:pageCount": 2,
+      "gh:emotionalArc": "混乱 → 理解",
+      "gh:narrativePurpose": "全体像を把握させる。コンテンツ制限・時間管理・課金制御の3本柱",
+      "gh:keyBeat": "framework",
+      "gh:pillars": [
+        {"gh:name": "コンテンツ制限", "gh:nameEn": "Content Filtering", "gh:description": "何を見せるか・見せないか"},
+        {"gh:name": "時間管理", "gh:nameEn": "Screen Time", "gh:description": "いつ・どれくらい使うか"},
+        {"gh:name": "課金制御", "gh:nameEn": "Purchase Control", "gh:description": "お金の使い方を管理"}
+      ]
+    },
+    {
+      "@id": "act:3-youtube-settings",
+      "gh:actNumber": 3,
+      "gh:actTitle": "YouTube設定",
+      "gh:actTitleEn": "YouTube Settings",
+      "gh:pageRange": [7, 10],
+      "gh:pageCount": 4,
+      "gh:emotionalArc": "学習 → 実践",
+      "gh:narrativePurpose": "YouTubeの年齢制限・フィルタリング設定を具体的に説明",
+      "gh:keyBeat": "education",
+      "gh:platform": "YouTube",
+      "gh:settings": [
+        {
+          "gh:name": "制限付きモード（Restricted Mode）",
+          "gh:importance": "必須",
+          "gh:path": [
+            "1. YouTubeアプリを開く",
+            "2. 右上のプロフィールアイコンをタップ",
+            "3. 「設定」を選択",
+            "4. 「全般」をタップ",
+            "5. 「制限付きモード」をオンにする"
+          ],
+          "gh:effect": "成人向けコンテンツ、暴力的・過激なコンテンツをフィルタリング",
+          "gh:note": "完璧ではないが、明らかに不適切なコンテンツの多くをブロック"
+        },
+        {
+          "gh:name": "YouTube Kids",
+          "gh:importance": "13歳未満に推奨",
+          "gh:description": "子供向けに特化した別アプリ",
+          "gh:features": [
+            "年齢に合わせたコンテンツのみ表示（未就学児/小学1-2年/小学3-6年）",
+            "タイマー機能（視聴時間制限）",
+            "検索機能のオン/オフ",
+            "コンテンツの個別ブロック",
+            "視聴履歴の確認"
+          ],
+          "gh:setup": [
+            "1. App Store/Google PlayからYouTube Kidsをダウンロード",
+            "2. 保護者のGoogleアカウントでログイン",
+            "3. 子供のプロフィールを作成",
+            "4. 年齢に合わせたコンテンツレベルを選択",
+            "5. 検索のオン/オフを設定"
+          ]
+        },
+        {
+          "gh:name": "ファミリーリンク連携",
+          "gh:description": "Googleファミリーリンクと連携して一元管理",
+          "gh:benefits": [
+            "子供のYouTube視聴履歴を確認",
+            "視聴時間の制限を設定",
+            "特定のチャンネル/動画をブロック"
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "act:4-ios-settings",
+      "gh:actNumber": 4,
+      "gh:actTitle": "iOS設定（iPhone/iPad）",
+      "gh:actTitleEn": "iOS Settings",
+      "gh:pageRange": [11, 16],
+      "gh:pageCount": 6,
+      "gh:emotionalArc": "学習 → 実践 → 達成感",
+      "gh:narrativePurpose": "iOSのスクリーンタイム、ファミリー共有、コンテンツ制限を詳細に説明",
+      "gh:keyBeat": "education",
+      "gh:platform": "iOS",
+      "gh:settings": [
+        {
+          "gh:name": "スクリーンタイム",
+          "gh:importance": "必須",
+          "gh:path": "設定 → スクリーンタイム",
+          "gh:features": [
+            {
+              "gh:featureName": "休止時間",
+              "gh:description": "スマホを使えない時間帯を設定",
+              "gh:recommended": "就寝1時間前〜起床まで（例：21:00-7:00）",
+              "gh:setup": [
+                "1. スクリーンタイム → 休止時間",
+                "2. 「休止時間」をオン",
+                "3. 開始時間と終了時間を設定",
+                "4. 「休止時間中にブロック」をオン"
+              ]
+            },
+            {
+              "gh:featureName": "App使用時間の制限",
+              "gh:description": "カテゴリまたは個別アプリの使用時間を制限",
+              "gh:recommended": "SNS/ゲーム: 1-2時間/日",
+              "gh:setup": [
+                "1. スクリーンタイム → App使用時間の制限",
+                "2. 「制限を追加」をタップ",
+                "3. カテゴリ（SNS、ゲームなど）または個別アプリを選択",
+                "4. 1日の使用時間を設定"
+              ]
+            },
+            {
+              "gh:featureName": "コンテンツとプライバシーの制限",
+              "gh:description": "年齢制限、Webフィルタリング、位置情報などを制御",
+              "gh:setup": [
+                "1. スクリーンタイム → コンテンツとプライバシーの制限",
+                "2. 「コンテンツとプライバシーの制限」をオン",
+                "3. 各項目を設定（詳細は下記）"
+              ],
+              "gh:subSettings": [
+                {
+                  "gh:item": "iTunes および App Store での購入",
+                  "gh:recommended": "インストール: 許可しない / App内課金: 許可しない"
+                },
+                {
+                  "gh:item": "許可されたApp",
+                  "gh:recommended": "Safari、カメラなど必要に応じてオン/オフ"
+                },
+                {
+                  "gh:item": "コンテンツ制限",
+                  "gh:details": {
+                    "App": "12+（12歳以上向け）または9+",
+                    "映画": "G または PG-12",
+                    "TV番組": "全年齢向け",
+                    "Webコンテンツ": "成人向けWebサイトを制限"
+                  }
+                }
+              ]
+            },
+            {
+              "gh:featureName": "常に許可",
+              "gh:description": "休止時間中でも使えるアプリを指定",
+              "gh:recommended": "電話、メッセージ、マップなど緊急時に必要なアプリのみ"
+            }
+          ]
+        },
+        {
+          "gh:name": "ファミリー共有",
+          "gh:importance": "強く推奨",
+          "gh:path": "設定 → [自分の名前] → ファミリー共有",
+          "gh:description": "家族のApple IDをグループ化して管理",
+          "gh:features": [
+            {
+              "gh:featureName": "購入の承認リクエスト（Ask to Buy）",
+              "gh:importance": "必須",
+              "gh:description": "子供がアプリを購入/ダウンロードする前に親の承認が必要",
+              "gh:setup": [
+                "1. ファミリー共有で子供を追加",
+                "2. 子供の名前をタップ",
+                "3. 「承認と購入のリクエスト」をオン"
+              ]
+            },
+            {
+              "gh:featureName": "位置情報の共有",
+              "gh:description": "子供の端末の位置を確認できる",
+              "gh:note": "信頼関係のもとで使用。監視ではなく安全確認として"
+            },
+            {
+              "gh:featureName": "スクリーンタイムの管理",
+              "gh:description": "親の端末から子供のスクリーンタイムを設定・確認"
+            }
+          ]
+        },
+        {
+          "gh:name": "スクリーンタイム・パスコード",
+          "gh:importance": "必須",
+          "gh:description": "設定を子供が変更できないようにロック",
+          "gh:setup": [
+            "1. スクリーンタイム → スクリーンタイム・パスコードを使用",
+            "2. 4桁のパスコードを設定（子供に教えない）",
+            "3. Apple IDで復元設定（パスコードを忘れた場合用）"
+          ],
+          "gh:warning": "パスコードは子供の誕生日など推測しやすいものにしない"
+        }
+      ]
+    },
+    {
+      "@id": "act:5-android-settings",
+      "gh:actNumber": 5,
+      "gh:actTitle": "Android設定",
+      "gh:actTitleEn": "Android Settings",
+      "gh:pageRange": [17, 22],
+      "gh:pageCount": 6,
+      "gh:emotionalArc": "学習 → 実践 → 達成感",
+      "gh:narrativePurpose": "Googleファミリーリンク、Google Play設定、Chromeセーフサーチを詳細に説明",
+      "gh:keyBeat": "education",
+      "gh:platform": "Android",
+      "gh:settings": [
+        {
+          "gh:name": "Googleファミリーリンク",
+          "gh:importance": "必須",
+          "gh:description": "13歳未満の子供のAndroid端末を包括的に管理するアプリ",
+          "gh:setup": [
+            "1. 親の端末に「Google ファミリーリンク（保護者向け）」をインストール",
+            "2. 子供の端末に「Google ファミリーリンク（お子様向け）」をインストール",
+            "3. 親のGoogleアカウントでログイン",
+            "4. 子供用のGoogleアカウントを作成または追加",
+            "5. 子供の端末とペアリング"
+          ],
+          "gh:features": [
+            {
+              "gh:featureName": "アプリの管理",
+              "gh:description": "インストール済みアプリの確認、新規インストールの承認/拒否、アプリのブロック",
+              "gh:path": "ファミリーリンク → 子供の名前 → アプリのアクティビティ"
+            },
+            {
+              "gh:featureName": "利用時間の管理",
+              "gh:description": "1日の使用時間上限、おやすみ時間、アプリごとの制限",
+              "gh:path": "ファミリーリンク → 子供の名前 → 1日の利用時間の上限",
+              "gh:recommended": "平日2時間、休日3時間程度"
+            },
+            {
+              "gh:featureName": "位置情報",
+              "gh:description": "子供の端末の現在地をマップで確認",
+              "gh:path": "ファミリーリンク → 子供の名前 → 位置情報",
+              "gh:note": "信頼関係を前提に。監視ツールとしてではなく安全確認として使用"
+            },
+            {
+              "gh:featureName": "アクティビティレポート",
+              "gh:description": "週次・月次のアプリ使用状況レポート",
+              "gh:benefit": "どのアプリをどれくらい使っているか把握できる"
+            }
+          ]
+        },
+        {
+          "gh:name": "Google Play設定",
+          "gh:importance": "必須",
+          "gh:path": "Play ストア → 右上プロフィール → 設定 → ファミリー",
+          "gh:settings": [
+            {
+              "gh:item": "保護者による使用制限",
+              "gh:description": "コンテンツの年齢レーティングを設定",
+              "gh:setup": [
+                "1. Play ストア → 設定 → ファミリー → 保護者による使用制限",
+                "2. 「保護者による使用制限」をオン",
+                "3. PINを設定",
+                "4. アプリ・ゲーム: 12歳以上 または 7歳以上",
+                "5. 映画: G または PG-12",
+                "6. 音楽: 露骨な表現を含む音楽を制限"
+              ]
+            },
+            {
+              "gh:item": "購入時の認証",
+              "gh:description": "すべての購入でGoogle認証を要求",
+              "gh:setup": [
+                "1. Play ストア → 設定 → 認証",
+                "2. 「購入時には認証を必要とする」を選択",
+                "3. 「このデバイスでGoogle Playから購入するときは常に」を選択"
+              ]
+            }
+          ]
+        },
+        {
+          "gh:name": "Chrome セーフサーチ",
+          "gh:importance": "推奨",
+          "gh:description": "Google検索で不適切なコンテンツをフィルタリング",
+          "gh:setup": [
+            "1. ファミリーリンク → 子供の名前 → 管理 → Google Chrome",
+            "2. 「サイトの管理」を選択",
+            "3. 「露骨なサイトをブロックする」を選択",
+            "または",
+            "4. 「承認済みのサイトのみ許可」でホワイトリスト方式"
+          ],
+          "gh:note": "セーフサーチは完璧ではない。定期的な確認と会話が重要"
+        },
+        {
+          "gh:name": "Digital Wellbeing",
+          "gh:description": "Android標準の使用時間管理機能",
+          "gh:path": "設定 → Digital Wellbeingと保護者による使用制限",
+          "gh:features": [
+            "アプリタイマー: 個別アプリの使用時間制限",
+            "おやすみ時間モード: 就寝時に画面をグレースケールに",
+            "集中モード: 気が散るアプリを一時的に非表示"
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "act:6-sns-settings",
+      "gh:actNumber": 6,
+      "gh:actTitle": "SNS設定",
+      "gh:actTitleEn": "SNS Settings",
+      "gh:pageRange": [23, 26],
+      "gh:pageCount": 4,
+      "gh:emotionalArc": "注意 → 理解 → 設定完了",
+      "gh:narrativePurpose": "主要SNS（Instagram、TikTok、LINE）の年齢・プライバシー設定を説明",
+      "gh:keyBeat": "education",
+      "gh:platforms": [
+        {
+          "gh:name": "Instagram",
+          "gh:ageRequirement": "13歳以上",
+          "gh:settings": [
+            {
+              "gh:settingName": "アカウントを非公開に",
+              "gh:importance": "必須",
+              "gh:path": "プロフィール → メニュー → 設定とプライバシー → アカウントのプライバシー → 非公開アカウント",
+              "gh:effect": "承認した人だけが投稿を見られる"
+            },
+            {
+              "gh:settingName": "コンテンツコントロール",
+              "gh:path": "設定 → おすすめコンテンツ → 不適切なコンテンツ管理",
+              "gh:recommended": "「減らす」または「さらに減らす」を選択"
+            },
+            {
+              "gh:settingName": "メッセージ制限",
+              "gh:path": "設定 → メッセージとストーリーズへの返信",
+              "gh:recommended": "「フォロー中の人のみ」または「メッセージリクエストを許可しない」"
+            },
+            {
+              "gh:settingName": "アクティビティステータス",
+              "gh:path": "設定 → アクティビティステータスを表示 → オフ",
+              "gh:effect": "オンライン状態を他人に見せない"
+            },
+            {
+              "gh:settingName": "監督機能（Supervision）",
+              "gh:description": "親が子供のInstagramアクティビティを確認できる",
+              "gh:features": [
+                "利用時間の確認",
+                "フォロー/フォロワーの確認",
+                "使用時間の制限設定"
+              ]
+            }
+          ]
+        },
+        {
+          "gh:name": "TikTok",
+          "gh:ageRequirement": "13歳以上（一部機能は16歳以上/18歳以上）",
+          "gh:settings": [
+            {
+              "gh:settingName": "ペアレンタルコントロール（ファミリーペアリング）",
+              "gh:importance": "強く推奨",
+              "gh:path": "プロフィール → メニュー → 設定とプライバシー → ファミリーペアリング",
+              "gh:setup": [
+                "1. 親の端末でTikTokをインストール",
+                "2. 設定 → ファミリーペアリング → 保護者として続ける",
+                "3. QRコードを表示",
+                "4. 子供の端末で「ティーンとして続ける」を選択してスキャン"
+              ],
+              "gh:features": [
+                "1日の視聴時間制限",
+                "制限付きモードのオン/オフ",
+                "ダイレクトメッセージの制限",
+                "検索制限"
+              ]
+            },
+            {
+              "gh:settingName": "制限付きモード",
+              "gh:path": "設定 → コンテンツ設定 → 制限付きモード → オン",
+              "gh:effect": "不適切なコンテンツをフィルタリング"
+            },
+            {
+              "gh:settingName": "アカウントプライバシー",
+              "gh:path": "設定 → プライバシー → 非公開アカウント → オン",
+              "gh:effect": "承認した人だけが動画を見られる"
+            },
+            {
+              "gh:settingName": "スクリーンタイム管理",
+              "gh:path": "設定 → スクリーンタイム",
+              "gh:features": [
+                "1日の視聴時間制限（40/60/90/120分）",
+                "スクリーンタイム休憩（一定時間ごとに休憩通知）",
+                "おやすみ時間（通知をミュート）"
+              ]
+            }
+          ]
+        },
+        {
+          "gh:name": "LINE",
+          "gh:ageRequirement": "なし（ただし12歳未満は保護者の同意が必要）",
+          "gh:settings": [
+            {
+              "gh:settingName": "ID検索をオフ",
+              "gh:importance": "必須",
+              "gh:path": "設定 → プライバシー管理 → IDによる友だち追加を許可 → オフ",
+              "gh:effect": "知らない人からのID検索を防ぐ"
+            },
+            {
+              "gh:settingName": "友だち追加の制限",
+              "gh:path": "設定 → 友だち → 友だち自動追加 → オフ",
+              "gh:also": "設定 → 友だち → 友だちへの追加を許可 → オフ",
+              "gh:effect": "電話番号からの自動追加を防ぐ"
+            },
+            {
+              "gh:settingName": "メッセージ受信拒否",
+              "gh:path": "設定 → プライバシー管理 → メッセージ受信拒否 → オン",
+              "gh:effect": "友だち以外からのメッセージをブロック"
+            },
+            {
+              "gh:settingName": "Letter Sealing",
+              "gh:path": "設定 → プライバシー管理 → Letter Sealing → オン",
+              "gh:effect": "メッセージの暗号化（デフォルトでオン）"
+            },
+            {
+              "gh:settingName": "タイムラインの公開範囲",
+              "gh:path": "設定 → タイムライン → 公開範囲設定",
+              "gh:recommended": "「友だち」または「自分のみ」"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "act:7-purchase-settings",
+      "gh:actNumber": 7,
+      "gh:actTitle": "課金・購入管理",
+      "gh:actTitleEn": "Purchase & Payment Control",
+      "gh:pageRange": [27, 30],
+      "gh:pageCount": 4,
+      "gh:emotionalArc": "警戒 → 理解 → 安心",
+      "gh:narrativePurpose": "アプリ購入、ゲーム内課金の管理方法を具体的に説明",
+      "gh:keyBeat": "education",
+      "gh:countermeasures": [
+        {
+          "gh:platform": "iOS App Store",
+          "gh:settings": [
+            {
+              "gh:settingName": "Ask to Buy（購入の承認リクエスト）",
+              "gh:importance": "必須",
+              "gh:description": "子供がアプリや課金をしようとすると、親に通知が届き承認/拒否できる",
+              "gh:setup": "ファミリー共有で設定（Act 4参照）"
+            },
+            {
+              "gh:settingName": "App内課金を無効化",
+              "gh:importance": "強く推奨",
+              "gh:path": "設定 → スクリーンタイム → コンテンツとプライバシーの制限 → iTunesおよびApp Storeでの購入 → App内課金 → 許可しない"
+            },
+            {
+              "gh:settingName": "購入時のパスワード要求",
+              "gh:path": "設定 → [自分の名前] → メディアと購入 → パスワードの設定",
+              "gh:recommended": "「常に要求」を選択"
+            }
+          ]
+        },
+        {
+          "gh:platform": "Google Play",
+          "gh:settings": [
+            {
+              "gh:settingName": "購入時の認証",
+              "gh:importance": "必須",
+              "gh:path": "Play ストア → 設定 → 認証 → 購入時には認証を必要とする → すべての購入",
+              "gh:effect": "課金のたびにパスワードまたは生体認証が必要"
+            },
+            {
+              "gh:settingName": "ファミリーリンクでの承認",
+              "gh:description": "13歳未満の子供は自動的に親の承認が必要",
+              "gh:note": "13歳以上でもファミリーリンクで管理可能"
+            },
+            {
+              "gh:settingName": "予算管理機能",
+              "gh:description": "Google Playの予算を設定",
+              "gh:path": "Play ストア → 設定 → 予算と履歴 → 予算を設定"
+            }
+          ]
+        },
+        {
+          "gh:platform": "ゲーム内課金（共通）",
+          "gh:advice": [
+            {
+              "gh:tip": "クレジットカード情報を端末に保存しない",
+              "gh:reason": "子供が誤って（または意図的に）課金するリスクを減らす"
+            },
+            {
+              "gh:tip": "プリペイドカード方式を採用",
+              "gh:description": "App Store/Google Playカードを購入し、上限を設けて管理",
+              "gh:benefit": "「今月はここまで」という明確な境界ができる"
+            },
+            {
+              "gh:tip": "課金履歴を定期的に確認",
+              "gh:path_ios": "設定 → [自分の名前] → メディアと購入 → アカウントを表示 → 購入履歴",
+              "gh:path_android": "Play ストア → 設定 → 予算と履歴"
+            },
+            {
+              "gh:tip": "ゲームごとの設定を確認",
+              "gh:description": "多くのゲームには独自の課金制限設定がある。ゲーム内設定も確認"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "act:8-dialogue-importance",
+      "gh:actNumber": 8,
+      "gh:actTitle": "対話の重要性",
+      "gh:actTitleEn": "The Importance of Dialogue",
+      "gh:pageRange": [31, 32],
+      "gh:pageCount": 2,
+      "gh:emotionalArc": "気づき → 決意 → 希望",
+      "gh:narrativePurpose": "技術的設定だけでなく、親子の対話が最も重要であることを伝える",
+      "gh:keyBeat": "resolution",
+      "gh:keyMessages": [
+        {
+          "gh:speaker": "Nei",
+          "gh:message": "設定は『鍵』のようなもの。家に鍵をかけるのは大切だけど、それだけで家族を守れるわけじゃない。"
+        },
+        {
+          "gh:speaker": "Ren",
+          "gh:message": "大事なのは、なぜその設定が必要か、一緒に考えること。監視じゃなくて、信頼の上に立った約束。"
+        },
+        {
+          "gh:speaker": "Nei",
+          "gh:message": "子供は成長する。設定も、関係も、アップデートが必要。定期的に話し合ってね。"
+        }
+      ],
+      "gh:practicalAdvice": [
+        {
+          "gh:title": "デジタル家族会議",
+          "gh:description": "月に1回、スマホの使い方について話し合う時間を設ける",
+          "gh:topics": [
+            "最近見た面白い動画/不快だった動画",
+            "新しく使いたいアプリ",
+            "困ったこと・相談したいこと",
+            "設定の見直し"
+          ]
+        },
+        {
+          "gh:title": "家族のスマホルール",
+          "gh:description": "紙に書いて見える場所に貼る",
+          "gh:examples": [
+            "食事中はスマホを触らない",
+            "21時以降は充電場所に置く",
+            "知らない人からのメッセージは必ず相談する",
+            "課金する前は必ず相談する",
+            "困ったことがあったら怒らないから話して"
+          ]
+        },
+        {
+          "gh:title": "親も学ぶ姿勢",
+          "gh:description": "子供が使っているアプリを親も体験してみる",
+          "gh:benefit": "共通の話題ができ、リスクも理解しやすくなる"
+        }
+      ],
+      "gh:finalMessage": {
+        "gh:speaker": "美咲",
+        "gh:message": "設定のことばかり考えてたけど…一番大切なのは、Yutoと話すことなんですね。",
+        "gh:response": {
+          "gh:speaker": "Yuto",
+          "gh:message": "…僕も、もっと早く相談すればよかった。これからは、ちゃんと話すよ。"
+        }
+      }
+    }
+  ],
+  "gh:quickReferenceGuide": {
+    "gh:title": "すぐに設定！チェックリスト",
+    "gh:description": "このエピソードで紹介した設定の要約。プリントして使えるチェックリスト形式",
+    "gh:checklist": [
+      {
+        "gh:category": "YouTube",
+        "gh:items": [
+          "□ 制限付きモードをオン",
+          "□ YouTube Kidsをインストール（13歳未満）",
+          "□ ファミリーリンクと連携"
+        ]
+      },
+      {
+        "gh:category": "iOS（iPhone/iPad）",
+        "gh:items": [
+          "□ スクリーンタイムを設定",
+          "□ 休止時間を設定（就寝時間）",
+          "□ App使用時間の制限を設定",
+          "□ コンテンツ制限（年齢レーティング）を設定",
+          "□ ファミリー共有に追加",
+          "□ Ask to Buyをオン",
+          "□ App内課金を無効化",
+          "□ スクリーンタイム・パスコードを設定"
+        ]
+      },
+      {
+        "gh:category": "Android",
+        "gh:items": [
+          "□ Googleファミリーリンクを設定",
+          "□ アプリのインストール承認をオン",
+          "□ 利用時間の上限を設定",
+          "□ Google Playの保護者による使用制限をオン",
+          "□ 購入時の認証を「常に」に設定",
+          "□ Chromeのセーフサーチをオン"
+        ]
+      },
+      {
+        "gh:category": "SNS共通",
+        "gh:items": [
+          "□ アカウントを非公開に設定",
+          "□ メッセージ受信を制限",
+          "□ 位置情報の共有をオフ",
+          "□ ペアレンタルコントロールを設定（あれば）"
+        ]
+      },
+      {
+        "gh:category": "家族のルール",
+        "gh:items": [
+          "□ スマホルールを紙に書く",
+          "□ 月1回のデジタル家族会議を設定",
+          "□ 「困ったら相談」の約束をする"
+        ]
+      }
+    ]
+  },
+  "gh:additionalResources": [
+    {
+      "gh:name": "総務省 - 安心ネットづくり促進協議会",
+      "gh:url": "https://www.good-net.jp/",
+      "gh:description": "青少年のインターネット利用に関する情報"
+    },
+    {
+      "gh:name": "Apple - ファミリー共有",
+      "gh:url": "https://support.apple.com/ja-jp/HT201088",
+      "gh:description": "Apple公式のファミリー共有ガイド"
+    },
+    {
+      "gh:name": "Google ファミリーリンク",
+      "gh:url": "https://families.google.com/familylink/",
+      "gh:description": "Google公式のファミリーリンクガイド"
+    },
+    {
+      "gh:name": "文部科学省 - 情報モラル教育",
+      "gh:url": "https://www.mext.go.jp/",
+      "gh:description": "学校での情報モラル教育に関する資料"
+    }
+  ]
+}
