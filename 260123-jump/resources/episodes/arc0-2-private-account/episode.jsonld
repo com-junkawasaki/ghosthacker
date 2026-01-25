@@ -1,0 +1,1729 @@
+{
+  "@context": {
+    "arc": "gh:arc/",
+    "character": "gh:character/",
+    "characters": "gh:characters",
+    "dct": "http://purl.org/dc/terms/",
+    "dialogue": "gh:dialogue",
+    "env": "gh:environment/",
+    "environment": "gh:environment",
+    "environments": "gh:environments",
+    "episodeId": "gh:episodeId",
+    "episodeIndex": "gh:episodeIndex",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "panel": "gh:panelIndex",
+    "prompt": "gh:runwayPrompt",
+    "properties": "gh:shotProperties",
+    "prov": "http://www.w3.org/ns/prov#",
+    "purpose": "gh:narrativePurpose",
+    "schema": "http://schema.org/",
+    "shot": "gh:shotType",
+    "speaker": "gh:speaker",
+    "text": "gh:text",
+    "visual": "gh:visual"
+  },
+  "dct:title": "Arc 0-2: 「鍵垢は鍵じゃない」",
+  "gh:actStructure": [
+    {
+      "@id": "act:0-pretitle",
+      "gh:actNumber": 0,
+      "gh:actTitle": "プレタイトル",
+      "gh:actTitleEn": "Pre-title Hook",
+      "gh:emotionalArc": "緊張 → 恐怖",
+      "gh:keyBeat": "hook",
+      "gh:narrativePurpose": "Sakiの裏の顔と不安を示唆し、読者を引き込む",
+      "gh:pageRange": [0, 0]
+    },
+    {
+      "@id": "act:1-daily-friendship",
+      "gh:actNumber": 1,
+      "gh:actTitle": "偽りの日常",
+      "gh:actTitleEn": "False Normalcy",
+      "gh:emotionalArc": "幸せ → 羨望 → 苛立ち → 我慢",
+      "gh:keyBeat": "setup",
+      "gh:narrativePurpose": "MeiとSakiの友情を描きつつ、Sakiの内面の葛藤を見せる",
+      "gh:pageCount": 8,
+      "gh:pageRange": [1, 8]
+    },
+    {
+      "@id": "act:2-temptation",
+      "gh:actNumber": 2,
+      "gh:actTitle": "誘惑の罠",
+      "gh:actTitleEn": "The Trap",
+      "gh:emotionalArc": "好奇心 → 軽率 → 後悔",
+      "gh:keyBeat": "inciting",
+      "gh:narrativePurpose": "Sakiが不用意にリンクをクリックし、鍵垢がハッキングされる",
+      "gh:pageCount": 6,
+      "gh:pageRange": [9, 14]
+    },
+    {
+      "@id": "act:3-exposure",
+      "gh:actNumber": 3,
+      "gh:actTitle": "暴露",
+      "gh:actTitleEn": "Exposure",
+      "gh:emotionalArc": "困惑 → ショック → パニック",
+      "gh:keyBeat": "midpoint",
+      "gh:narrativePurpose": "鍵垢の投稿がクラス全員に拡散される",
+      "gh:pageCount": 7,
+      "gh:pageRange": [15, 21]
+    },
+    {
+      "@id": "act:4-collapse",
+      "gh:actNumber": 4,
+      "gh:actTitle": "友情崩壊",
+      "gh:actTitleEn": "Friendship Collapse",
+      "gh:emotionalArc": "裏切り → 怒り → 孤立 → 絶望",
+      "gh:keyBeat": "crisis",
+      "gh:narrativePurpose": "Meiの悲しみとSakiの孤立を描く",
+      "gh:pageCount": 6,
+      "gh:pageRange": [22, 27]
+    },
+    {
+      "@id": "act:5-rescue",
+      "gh:actNumber": 5,
+      "gh:actTitle": "救いの手",
+      "gh:actTitleEn": "Helping Hand",
+      "gh:emotionalArc": "孤立 → 接触 → 希望",
+      "gh:keyBeat": "turn",
+      "gh:narrativePurpose": "RenとNeiの介入、真相究明の開始",
+      "gh:pageCount": 4,
+      "gh:pageRange": [28, 31]
+    },
+    {
+      "@id": "act:6-countermeasures",
+      "gh:actNumber": 6,
+      "gh:actTitle": "対策",
+      "gh:actTitleEn": "Countermeasures",
+      "gh:countermeasures": [
+        {
+          "gh:pages": [32, 33],
+          "gh:step": 1,
+          "gh:title": "アカウント設定の確認",
+          "gh:titleEn": "Account Settings Check"
+        },
+        {
+          "gh:pages": [34, 35],
+          "gh:step": 2,
+          "gh:title": "二要素認証の設定",
+          "gh:titleEn": "Two-Factor Authentication"
+        },
+        {
+          "gh:pages": [36, 37],
+          "gh:step": 3,
+          "gh:title": "連携アプリの整理",
+          "gh:titleEn": "Connected Apps Cleanup"
+        },
+        {
+          "gh:pages": [38, 39],
+          "gh:step": 4,
+          "gh:title": "デジタル足跡の理解",
+          "gh:titleEn": "Digital Footprint"
+        }
+      ],
+      "gh:emotionalArc": "混乱 → 理解 → 達成感",
+      "gh:keyBeat": "education",
+      "gh:narrativePurpose": "具体的なセキュリティ対策を読者に伝える",
+      "gh:pageCount": 8,
+      "gh:pageRange": [32, 39]
+    },
+    {
+      "@id": "act:7-ghost-battle",
+      "gh:actNumber": 7,
+      "gh:actTitle": "Ghostバトル - 裏の顔",
+      "gh:actTitleEn": "Ghost Battle - Hidden Face",
+      "gh:emotionalArc": "対峙 → 驚愕 → 戦闘",
+      "gh:keyBeat": "revelation",
+      "gh:narrativePurpose": "「裏の顔」のGhostと対峙し、情報の二面性を示す",
+      "gh:pageCount": 6,
+      "gh:pageRange": [40, 45]
+    },
+    {
+      "@id": "act:8-daemon-battle",
+      "gh:actNumber": 8,
+      "gh:actTitle": "Daemonバトル - 嫉妬の影",
+      "gh:actTitleEn": "Daemon Battle - Shadow of Envy",
+      "gh:emotionalArc": "葛藤 → 告白 → 断絶 → 和解の芽生え",
+      "gh:keyBeat": "climax",
+      "gh:narrativePurpose": "Sakiの内面の葛藤を実体化し、感情を解放させる",
+      "gh:pageCount": 6,
+      "gh:pageRange": [46, 51]
+    },
+    {
+      "@id": "act:9-resolution",
+      "gh:actNumber": 9,
+      "gh:actTitle": "終幕：新しい始まり",
+      "gh:actTitleEn": "Resolution",
+      "gh:emotionalArc": "和解 → 反省 → 再出発",
+      "gh:keyBeat": "resolution",
+      "gh:narrativePurpose": "MeiとSakiの関係再構築への布石、次章への伏線",
+      "gh:pageCount": 4,
+      "gh:pageRange": [52, 55]
+    }
+  ],
+  "gh:arc": "Arc 0",
+  "gh:episode": 2,
+  "gh:episodeId": "episode:arc0-2-private-account",
+  "gh:episodeIndex": 2,
+  "gh:incidentDescription": "Sakiの鍵垢（プライベートアカウント）がフィッシングによってハッキングされ、友人への本音が全てクラスに暴露される。RenとNeiがSIP Project Mapを使って「裏の顔」のGhostを可視化し、真の敵が誰かを暴く。",
+  "gh:industry": "Education / Middle School",
+  "gh:mainCharacter": "character:Saki",
+  "gh:nistFocus": [
+    "PR.AA (Identity Management)",
+    "PR.DS (Data Security)",
+    "PR.PT (Protective Technology)",
+    "DE.CM (Security Continuous Monitoring)"
+  ],
+  "gh:organization": "org:KounanMiddleSchool",
+  "gh:pages": [
+    {
+      "gh:act": "act:0-pretitle",
+      "gh:pageLayout": {
+        "gh:category": "tension",
+        "gh:layoutNote": "不安と秘密を強調するレイアウト。暗い部屋でスマホを見るSaki",
+        "gh:templateName": "Secret Tension"
+      },
+      "gh:pageNote": "深夜。Sakiが自室で鍵垢に投稿している。友達への愚痴、本音。罪悪感と解放感が入り混じる。",
+      "gh:pageNumber": 0,
+      "gh:pageTitle": "プレタイトル - 秘密の吐露",
+      "gh:panelCount": 5,
+      "gh:panels": [
+        {
+          "@id": "panel:p0n1-dark-bedroom",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:saki-bedroom",
+          "panel": 1,
+          "shot": "Establishing Shot",
+          "visual": "深夜。Sakiの部屋。カーテンの隙間から月明かりが漏れる。ベッドの上でスマホの光だけが青白く光っている。",
+          "gh:shotProperties": {
+            "gh:angle": "high angle",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "秘密、孤独、罪悪感",
+            "gh:distance": "Establishing Shot",
+            "gh:lens": "35mm",
+            "gh:lighting": "スマホの青白い光のみ、月明かり"
+          },
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch. 深夜のSakiの部屋。暗闘の中でスマホだけが光る。ベッドに座る人影。秘密めいた雰囲気。. Shot type: Establishing Shot."
+        },
+        {
+          "@id": "panel:p0n2-saki-typing",
+          "characters": ["character:Saki"],
+          "dialogue": [],
+          "environment": "env:saki-bedroom",
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "Sakiがスマホを両手で持ち、何かを打ち込んでいる。表情は複雑 - 苛立ちと解放感。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:distance": "Medium Shot",
+            "gh:lens": "50mm",
+            "gh:lighting": "スマホのバックライトが顔を照らす"
+          },
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch. Sakiがベッドでスマホをタイプしている。スマホの光が顔を青白く照らす。複雑な表情。. Shot type: Medium Shot."
+        },
+        {
+          "@id": "panel:p0n3-private-account-screen",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "スマホ画面。鍵マークの付いたアカウント「@saki_private」。投稿入力欄に「Meiってマジうざい、いつも自慢ばっか…」と打ち込まれている。",
+          "gh:shotProperties": {
+            "gh:angle": "flat",
+            "gh:distance": "Insert"
+          },
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch. スマホ画面アップ。SNSアプリ、鍵マークのついたプライベートアカウント。投稿入力欄にネガティブな文章。. Shot type: Insert."
+        },
+        {
+          "@id": "panel:p0n4-hesitation",
+          "characters": ["character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "conflicted",
+              "gh:isThought": true,
+              "speaker": "Saki",
+              "text": "（…誰も見てないし。鍵垢だし。）"
+            }
+          ],
+          "environment": "env:saki-bedroom",
+          "panel": 4,
+          "shot": "Close Up",
+          "visual": "Sakiの手元アップ。投稿ボタンの上で親指が一瞬躊躇う。",
+          "gh:shotProperties": {
+            "gh:angle": "high angle",
+            "gh:aperture": "f/2.0",
+            "gh:distance": "Close Up",
+            "gh:lens": "85mm",
+            "gh:lighting": "スマホの光"
+          },
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch. Sakiの手元クローズアップ。スマホの投稿ボタンの上で親指が躊躇う瞬間。. Shot type: Close Up. Dialogue: Saki (thought): （…誰も見てないし。鍵垢だし。）"
+        },
+        {
+          "@id": "panel:p0n5-post-sent",
+          "characters": ["character:Saki"],
+          "dialogue": [],
+          "environment": "env:saki-bedroom",
+          "panel": 5,
+          "shot": "Extreme Close Up",
+          "visual": "Sakiの目だけ。投稿を送信した後の複雑な表情。少しの罪悪感と、どこか安堵した目。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.4",
+            "gh:distance": "Extreme Close Up",
+            "gh:lens": "100mm macro",
+            "gh:lighting": "スマホの反射光が瞳に映る"
+          },
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch. Sakiの目だけのアップ。複雑な感情 - 罪悪感と安堵が混在。スマホの光が瞳に反射。. Shot type: Extreme Close Up."
+        }
+      ]
+    },
+    {
+      "gh:act": "act:1-daily-friendship",
+      "gh:isSpread": true,
+      "gh:pageLayout": {
+        "gh:category": "impact",
+        "gh:layoutNote": "タイトル見開き左ページ。MeiとSakiの「親友」としての姿",
+        "gh:templateName": "Full Page Impact"
+      },
+      "gh:pageNumber": 1,
+      "gh:pageTitle": "タイトルスプレッド（左）",
+      "gh:panels": [
+        {
+          "@id": "panel:title-spread-left",
+          "characters": ["character:Saki", "character:Mei"],
+          "dialogue": [],
+          "environment": "env:school-hallway",
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "学校の廊下。MeiとSakiが腕を組んで歩いている。明るい表情のMei、微笑むSaki。タイトル「鍵垢は鍵じゃない」が入る。",
+          "gh:shotProperties": {
+            "gh:angle": "slightly low looking up",
+            "gh:aperture": "f/4",
+            "gh:atmosphere": "明るい、友情",
+            "gh:distance": "Wide Shot",
+            "gh:lens": "35mm",
+            "gh:lighting": "自然光、窓からの光"
+          },
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch. 学校の廊下でMeiとSakiが腕を組んで歩く。明るい友情のシーン。タイトル「鍵垢は鍵じゃない」。. Shot type: Wide Shot."
+        }
+      ],
+      "gh:spreadWith": 2
+    },
+    {
+      "gh:act": "act:1-daily-friendship",
+      "gh:isSpread": true,
+      "gh:pageLayout": {
+        "gh:category": "impact",
+        "gh:layoutNote": "タイトル見開き右ページ。しかしSakiの影が二重になっている不穏な演出",
+        "gh:templateName": "Full Page Impact"
+      },
+      "gh:pageNumber": 2,
+      "gh:pageTitle": "タイトルスプレッド（右）",
+      "gh:panels": [
+        {
+          "@id": "panel:title-spread-right",
+          "characters": ["character:Saki", "character:Mei"],
+          "dialogue": [],
+          "environment": "env:school-hallway",
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "見開き続き。二人の後ろ姿。Sakiの影だけが微妙に二重になっている（二面性の暗示）。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/4",
+            "gh:atmosphere": "友情の裏の不穏さ",
+            "gh:distance": "Wide Shot",
+            "gh:lens": "35mm",
+            "gh:lighting": "自然光、影に注目"
+          },
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch. MeiとSakiの後ろ姿。Sakiの影だけが二重になっている不穏な演出。. Shot type: Wide Shot."
+        }
+      ],
+      "gh:spreadWith": 1
+    },
+    {
+      "gh:act": "act:1-daily-friendship",
+      "gh:pageLayout": {
+        "gh:category": "establishing",
+        "gh:layoutNote": "Meiの人気を見せつつ、Sakiの内心を描写",
+        "gh:templateName": "Contrast Scene"
+      },
+      "gh:pageNumber": 3,
+      "gh:pageTitle": "教室 - Meiの人気",
+      "gh:panelCount": 6,
+      "gh:panels": [
+        {
+          "@id": "panel:p3n1-classroom-morning",
+          "characters": ["character:Mei", "character:Saki", "character:Akira"],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "panel": 1,
+          "shot": "Establishing Shot",
+          "visual": "朝の教室。Meiの周りにクラスメイトが集まっている。Sakiはその隣で控えめに立っている。",
+          "gh:shotProperties": {
+            "gh:angle": "slightly high",
+            "gh:aperture": "f/5.6",
+            "gh:atmosphere": "明るい朝、賑やか",
+            "gh:distance": "Establishing Shot",
+            "gh:lens": "24mm",
+            "gh:lighting": "朝の自然光"
+          }
+        },
+        {
+          "@id": "panel:p3n2-mei-laughing",
+          "characters": ["character:Mei"],
+          "dialogue": [
+            {
+              "gh:emotion": "joyful",
+              "speaker": "Mei",
+              "text": "えー！まじでー！？ウケるー！"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "Meiが楽しそうに笑っている。周囲の視線を集めている。キラキラしたオーラ。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:distance": "Medium Shot",
+            "gh:lens": "50mm",
+            "gh:lighting": "明るい、生き生きとした"
+          }
+        },
+        {
+          "@id": "panel:p3n3-akira-shows-sneakers",
+          "characters": ["character:Akira"],
+          "dialogue": [
+            {
+              "gh:emotion": "proud",
+              "speaker": "Akira",
+              "text": "このスニーカー、限定のやつ！"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 3,
+          "shot": "Medium Shot",
+          "visual": "Akiraが自慢げに新しいスニーカーを見せている。",
+          "gh:shotProperties": {
+            "gh:angle": "low angle",
+            "gh:aperture": "f/4",
+            "gh:distance": "Medium Shot",
+            "gh:lens": "35mm"
+          }
+        },
+        {
+          "@id": "panel:p3n4-saki-watching",
+          "characters": ["character:Saki"],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "panel": 4,
+          "shot": "Close Up",
+          "visual": "Sakiがその様子を見ている。表情は微笑んでいるが、目が笑っていない。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.0",
+            "gh:distance": "Close Up",
+            "gh:lens": "85mm",
+            "gh:lighting": "光と影が半分ずつ顔にかかる"
+          }
+        },
+        {
+          "@id": "panel:p3n5-saki-thought",
+          "characters": ["character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "irritated",
+              "gh:isThought": true,
+              "speaker": "Saki",
+              "text": "（また自慢…Meiも調子乗りすぎ…）"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 5,
+          "shot": "Extreme Close Up",
+          "visual": "Sakiの目だけ。表向きの笑顔の裏にある苛立ちが見える。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.4",
+            "gh:distance": "Extreme Close Up",
+            "gh:lens": "100mm macro"
+          }
+        },
+        {
+          "@id": "panel:p3n6-mei-calls-saki",
+          "characters": ["character:Mei", "character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "cheerful",
+              "speaker": "Mei",
+              "text": "Sakiー！週末、一緒にショッピング行こー！"
+            },
+            {
+              "gh:emotion": "forced cheerful",
+              "speaker": "Saki",
+              "text": "うん、いいよー"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 6,
+          "shot": "Two Shot",
+          "visual": "MeiがSakiの腕を取る。Sakiは笑顔で応えるが、心からではない。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:distance": "Two Shot",
+            "gh:lens": "50mm"
+          }
+        }
+      ]
+    },
+    {
+      "gh:act": "act:1-daily-friendship",
+      "gh:pageLayout": {
+        "gh:category": "character",
+        "gh:layoutNote": "休み時間のSakiの内面描写。トイレでの一人の時間",
+        "gh:templateName": "Internal Conflict"
+      },
+      "gh:pageNumber": 4,
+      "gh:pageTitle": "休み時間 - Sakiの本音",
+      "gh:panelCount": 5,
+      "gh:panels": [
+        {
+          "@id": "panel:p4n1-bathroom-exterior",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:school-bathroom",
+          "panel": 1,
+          "shot": "Establishing Shot",
+          "visual": "女子トイレの入り口。「休み時間」のテロップ。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:distance": "Establishing Shot",
+            "gh:lens": "35mm"
+          }
+        },
+        {
+          "@id": "panel:p4n2-saki-in-stall",
+          "characters": ["character:Saki"],
+          "dialogue": [],
+          "environment": "env:school-bathroom",
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "個室の中でスマホを見るSaki。鍵垢を開いている。",
+          "gh:shotProperties": {
+            "gh:angle": "high angle",
+            "gh:aperture": "f/2.8",
+            "gh:distance": "Medium Shot",
+            "gh:lens": "35mm",
+            "gh:lighting": "蛍光灯の白い光"
+          }
+        },
+        {
+          "@id": "panel:p4n3-private-post",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "鍵垢の投稿画面。「Akiraってスニーカーで調子乗りすぎw」「Meiにまた合わせなきゃいけないの疲れる」などの過去投稿が見える。",
+          "gh:shotProperties": {
+            "gh:angle": "flat",
+            "gh:distance": "Insert"
+          }
+        },
+        {
+          "@id": "panel:p4n4-saki-typing-new",
+          "characters": ["character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "venting",
+              "gh:isThought": true,
+              "speaker": "Saki",
+              "text": "（ここでしか本音言えない…）"
+            }
+          ],
+          "environment": "env:school-bathroom",
+          "panel": 4,
+          "shot": "Close Up",
+          "visual": "新しい投稿を打ち込むSaki。「親友のフリ疲れた」",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.0",
+            "gh:distance": "Close Up",
+            "gh:lens": "50mm"
+          }
+        },
+        {
+          "@id": "panel:p4n5-relief",
+          "characters": ["character:Saki"],
+          "dialogue": [],
+          "environment": "env:school-bathroom",
+          "panel": 5,
+          "shot": "Medium Shot",
+          "visual": "投稿して少しだけ表情が緩むSaki。でも心の底からの解放ではない。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:distance": "Medium Shot",
+            "gh:lens": "50mm"
+          }
+        }
+      ]
+    },
+    {
+      "gh:act": "act:1-daily-friendship",
+      "gh:pageLayout": {
+        "gh:category": "establishing",
+        "gh:layoutNote": "Ren/Neiのクラスの様子。Arc0-1後の日常",
+        "gh:templateName": "New Normal"
+      },
+      "gh:pageNumber": 5,
+      "gh:pageTitle": "Ren/Neiのクラス",
+      "gh:panelCount": 5,
+      "gh:panels": [
+        {
+          "@id": "panel:p5n1-classroom-ren",
+          "characters": ["character:RenMiddleSchool"],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "窓際の席でいつも通り眠そうなRen。ほおづえをついている。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:distance": "Medium Shot",
+            "gh:lens": "50mm",
+            "gh:lighting": "午後の光"
+          }
+        },
+        {
+          "@id": "panel:p5n2-nei-reading",
+          "characters": ["character:NeiMiddleSchool"],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "隣の席でタブレットを操作するNei。何かを分析している様子。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:distance": "Medium Shot",
+            "gh:lens": "50mm"
+          }
+        },
+        {
+          "@id": "panel:p5n3-yuto-grateful",
+          "characters": ["character:Yuto", "character:RenMiddleSchool"],
+          "dialogue": [
+            {
+              "gh:emotion": "grateful",
+              "speaker": "Yuto",
+              "text": "Ren、この前はほんとにありがとう！"
+            },
+            {
+              "gh:emotion": "lazy",
+              "speaker": "Ren",
+              "text": "…おう。"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 3,
+          "shot": "Two Shot",
+          "visual": "YutoがRenに感謝を伝えている。Renは面倒くさそうだが悪い気はしていない。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:distance": "Two Shot",
+            "gh:lens": "50mm"
+          }
+        },
+        {
+          "@id": "panel:p5n4-nei-notices",
+          "characters": ["character:NeiMiddleSchool"],
+          "dialogue": [
+            {
+              "gh:emotion": "observing",
+              "gh:isThought": true,
+              "speaker": "Nei",
+              "text": "（また何か起きそうな気配…）"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 4,
+          "shot": "Close Up",
+          "visual": "Neiがタブレットを見つめながら何かを感じ取っている。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.0",
+            "gh:distance": "Close Up",
+            "gh:lens": "85mm"
+          }
+        },
+        {
+          "@id": "panel:p5n5-saki-mei-pass",
+          "characters": ["character:Saki", "character:Mei"],
+          "dialogue": [],
+          "environment": "env:school-hallway",
+          "panel": 5,
+          "shot": "Long Shot",
+          "visual": "廊下を通り過ぎるSakiとMei。Neiがふと視線を向ける。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:distance": "Long Shot",
+            "gh:lens": "50mm"
+          }
+        }
+      ]
+    },
+    {
+      "gh:act": "act:1-daily-friendship",
+      "gh:pageLayout": {
+        "gh:category": "establishing",
+        "gh:layoutNote": "放課後、MeiとSakiの帰り道。友情シーンだが不穏な影",
+        "gh:templateName": "After School"
+      },
+      "gh:pageNumber": 6,
+      "gh:pageTitle": "放課後 - 帰り道",
+      "gh:panelCount": 5,
+      "gh:panels": [
+        {
+          "@id": "panel:p6n1-school-gate",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:middle-school-exterior",
+          "panel": 1,
+          "shot": "Establishing Shot",
+          "visual": "放課後の校門。夕方の光。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:distance": "Establishing Shot",
+            "gh:lens": "24mm",
+            "gh:lighting": "ゴールデンアワー"
+          }
+        },
+        {
+          "@id": "panel:p6n2-mei-saki-walking",
+          "characters": ["character:Mei", "character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "excited",
+              "speaker": "Mei",
+              "text": "ねぇねぇ、週末のこと！新しくできたカフェ行きたい！"
+            }
+          ],
+          "environment": "env:street",
+          "panel": 2,
+          "shot": "Wide Shot",
+          "visual": "帰り道を歩く二人。Meiが楽しそうに話しかける。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:distance": "Wide Shot",
+            "gh:lens": "35mm",
+            "gh:lighting": "夕日のバックライト"
+          }
+        },
+        {
+          "@id": "panel:p6n3-saki-agrees",
+          "characters": ["character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "fake enthusiasm",
+              "speaker": "Saki",
+              "text": "いいね！写真映えしそう！"
+            }
+          ],
+          "environment": "env:street",
+          "panel": 3,
+          "shot": "Close Up",
+          "visual": "笑顔で答えるSaki。でも目の奥に疲れが見える。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.0",
+            "gh:distance": "Close Up",
+            "gh:lens": "85mm"
+          }
+        },
+        {
+          "@id": "panel:p6n4-mei-happy",
+          "characters": ["character:Mei"],
+          "dialogue": [
+            {
+              "gh:emotion": "happy",
+              "speaker": "Mei",
+              "text": "やった！Sakiといると楽しい！大好きー！"
+            }
+          ],
+          "environment": "env:street",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "Meiが純粋に喜んでSakiの腕にすがりつく。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:distance": "Medium Shot",
+            "gh:lens": "50mm"
+          }
+        },
+        {
+          "@id": "panel:p6n5-saki-shadow",
+          "characters": ["character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "guilt",
+              "gh:isThought": true,
+              "speaker": "Saki",
+              "text": "（…ごめんね、Mei。）"
+            }
+          ],
+          "environment": "env:street",
+          "panel": 5,
+          "shot": "Close Up",
+          "visual": "Sakiの横顔。罪悪感が一瞬よぎる。彼女の影が長く伸びている。",
+          "gh:shotProperties": {
+            "gh:angle": "side angle",
+            "gh:aperture": "f/2.0",
+            "gh:distance": "Close Up",
+            "gh:lens": "85mm",
+            "gh:lighting": "夕日が逆光"
+          }
+        }
+      ]
+    },
+    {
+      "gh:act": "act:1-daily-friendship",
+      "gh:pageLayout": {
+        "gh:category": "character",
+        "gh:layoutNote": "夜のSakiの部屋。鍵垢での発散と罪悪感のループ",
+        "gh:templateName": "Night Confession"
+      },
+      "gh:pageNumber": 7,
+      "gh:pageTitle": "夜 - 鍵垢の世界",
+      "gh:panelCount": 6,
+      "gh:panels": [
+        {
+          "@id": "panel:p7n1-night-room",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:saki-bedroom",
+          "panel": 1,
+          "shot": "Establishing Shot",
+          "visual": "夜。Sakiの部屋の窓。カーテン越しに見える街灯。",
+          "gh:shotProperties": {
+            "gh:distance": "Establishing Shot",
+            "gh:lens": "35mm"
+          }
+        },
+        {
+          "@id": "panel:p7n2-saki-bed",
+          "characters": ["character:Saki"],
+          "dialogue": [],
+          "environment": "env:saki-bedroom",
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "ベッドでスマホを見るSaki。鍵垢を開いている。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:distance": "Medium Shot",
+            "gh:lens": "50mm",
+            "gh:lighting": "スマホの光のみ"
+          }
+        },
+        {
+          "@id": "panel:p7n3-private-timeline",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "鍵垢のタイムライン。フォロワー数「3」。「今日もMeiに合わせた」「親友のフリ疲れた」「なんで私がいつも合わせなきゃいけないの」などの過去投稿。",
+          "gh:shotProperties": {
+            "gh:distance": "Insert"
+          }
+        },
+        {
+          "@id": "panel:p7n4-new-post",
+          "characters": ["character:Saki"],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "panel": 4,
+          "shot": "Insert",
+          "visual": "新しい投稿を打ち込む画面。「週末のカフェとか正直行きたくない」",
+          "gh:shotProperties": {
+            "gh:distance": "Insert"
+          }
+        },
+        {
+          "@id": "panel:p7n5-conflict",
+          "characters": ["character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "conflicted",
+              "gh:isThought": true,
+              "speaker": "Saki",
+              "text": "（Meiは悪い子じゃない…でも…）"
+            }
+          ],
+          "environment": "env:saki-bedroom",
+          "panel": 5,
+          "shot": "Close Up",
+          "visual": "葛藤するSakiの表情。眉間に皺が寄る。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:distance": "Close Up",
+            "gh:lens": "85mm"
+          }
+        },
+        {
+          "@id": "panel:p7n6-post-button",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "panel": 6,
+          "shot": "Extreme Close Up",
+          "visual": "「投稿」ボタンが押される瞬間。",
+          "gh:shotProperties": {
+            "gh:distance": "Extreme Close Up"
+          }
+        }
+      ]
+    },
+    {
+      "gh:act": "act:1-daily-friendship",
+      "gh:pageLayout": {
+        "gh:category": "tension",
+        "gh:layoutNote": "第1幕終わり。不穏な通知",
+        "gh:templateName": "Act End Hook"
+      },
+      "gh:pageNumber": 8,
+      "gh:pageTitle": "不穏な予兆",
+      "gh:panelCount": 5,
+      "gh:panels": [
+        {
+          "@id": "panel:p8n1-school-next-day",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:middle-school-exterior",
+          "panel": 1,
+          "shot": "Establishing Shot",
+          "visual": "翌朝。学校の外観。",
+          "gh:shotProperties": {
+            "gh:distance": "Establishing Shot",
+            "gh:lens": "24mm",
+            "gh:lighting": "朝の光"
+          }
+        },
+        {
+          "@id": "panel:p8n2-saki-phone-buzz",
+          "characters": ["character:Saki"],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "授業中、Sakiの鞄の中でスマホが震える。机の下で気になる様子。",
+          "gh:shotProperties": {
+            "gh:angle": "low angle",
+            "gh:distance": "Medium Shot",
+            "gh:lens": "50mm"
+          }
+        },
+        {
+          "@id": "panel:p8n3-dm-notification",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "スマホ画面。知らないアカウントからのDM通知。「あなたの鍵垢、見つけちゃいましたよ〜」",
+          "gh:shotProperties": {
+            "gh:distance": "Insert"
+          }
+        },
+        {
+          "@id": "panel:p8n4-saki-shock",
+          "characters": ["character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "shock",
+              "gh:isThought": true,
+              "speaker": "Saki",
+              "text": "（…え？）"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 4,
+          "shot": "Close Up",
+          "visual": "Sakiの顔色が青ざめる。血の気が引く表現。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.0",
+            "gh:distance": "Close Up",
+            "gh:lens": "85mm"
+          }
+        },
+        {
+          "@id": "panel:p8n5-ominous-link",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "panel": 5,
+          "shot": "Insert",
+          "visual": "DMの続き。「ここをクリックして確認してね」と怪しげなリンク。",
+          "gh:shotProperties": {
+            "gh:distance": "Insert"
+          }
+        }
+      ]
+    },
+    {
+      "gh:act": "act:2-temptation",
+      "gh:pageLayout": {
+        "gh:category": "tension",
+        "gh:layoutNote": "Sakiが罠にかかる過程",
+        "gh:templateName": "Trap Sprung"
+      },
+      "gh:pageNumber": 9,
+      "gh:pageTitle": "罠 - クリックの誘惑",
+      "gh:panelCount": 6,
+      "gh:panels": [
+        {
+          "@id": "panel:p9n1-break-time",
+          "characters": ["character:Saki"],
+          "dialogue": [],
+          "environment": "env:school-bathroom",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "休み時間。トイレの個室に駆け込むSaki。",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:lens": "35mm"
+          }
+        },
+        {
+          "@id": "panel:p9n2-dm-screen",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "DMを開く。「あなたの秘密のアカウント、面白い投稿多いですね〜」「みんなに見せたら驚くかな？」",
+          "gh:shotProperties": {
+            "gh:distance": "Insert"
+          }
+        },
+        {
+          "@id": "panel:p9n3-saki-panic",
+          "characters": ["character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "panic",
+              "gh:isThought": true,
+              "speaker": "Saki",
+              "text": "（嘘…なんでバレた…!?）"
+            }
+          ],
+          "environment": "env:school-bathroom",
+          "panel": 3,
+          "shot": "Close Up",
+          "visual": "パニックになるSaki。手が震えている。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:distance": "Close Up",
+            "gh:lens": "85mm"
+          }
+        },
+        {
+          "@id": "panel:p9n4-link-temptation",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "panel": 4,
+          "shot": "Insert",
+          "visual": "「詳細を確認するにはこちら」というリンク。青く光っている。",
+          "gh:shotProperties": {
+            "gh:distance": "Insert"
+          }
+        },
+        {
+          "@id": "panel:p9n5-hesitation",
+          "characters": ["character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "desperate",
+              "gh:isThought": true,
+              "speaker": "Saki",
+              "text": "（何が漏れてるか確認しなきゃ…）"
+            }
+          ],
+          "environment": "env:school-bathroom",
+          "panel": 5,
+          "shot": "Extreme Close Up",
+          "visual": "リンクの上に親指がかかる。躊躇いながらも押そうとしている。",
+          "gh:shotProperties": {
+            "gh:distance": "Extreme Close Up"
+          }
+        },
+        {
+          "@id": "panel:p9n6-click",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "panel": 6,
+          "shot": "Insert",
+          "visual": "リンクがクリックされた。画面が一瞬フラッシュする。",
+          "gh:shotProperties": {
+            "gh:distance": "Insert"
+          }
+        }
+      ]
+    },
+    {
+      "gh:act": "act:2-temptation",
+      "gh:pageLayout": {
+        "gh:category": "technical",
+        "gh:layoutNote": "フィッシングの仕組みを視覚的に説明",
+        "gh:templateName": "Technical Breakdown"
+      },
+      "gh:pageNumber": 10,
+      "gh:pageTitle": "罠の仕組み",
+      "gh:panelCount": 5,
+      "gh:panels": [
+        {
+          "@id": "panel:p10n1-fake-login",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "panel": 1,
+          "shot": "Insert",
+          "visual": "偽のログイン画面。本物そっくりだが、URLが微妙に違う。",
+          "gh:shotProperties": {
+            "gh:distance": "Insert"
+          }
+        },
+        {
+          "@id": "panel:p10n2-saki-enters",
+          "characters": ["character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "anxious",
+              "gh:isThought": true,
+              "speaker": "Saki",
+              "text": "（セッション切れたのかな…）"
+            }
+          ],
+          "environment": "env:school-bathroom",
+          "panel": 2,
+          "shot": "Close Up",
+          "visual": "何も疑わずパスワードを入力するSaki。",
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:lens": "85mm"
+          }
+        },
+        {
+          "@id": "panel:p10n3-data-stolen",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:digital-space",
+          "panel": 3,
+          "shot": "Abstract",
+          "visual": "データが吸い取られていくイメージ。Sakiのパスワードが電子的な線となって闇に流れていく。",
+          "gh:shotProperties": {
+            "gh:distance": "Abstract",
+            "gh:atmosphere": "デジタル、不穏"
+          }
+        },
+        {
+          "@id": "panel:p10n4-nothing-happens",
+          "characters": ["character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "confused",
+              "speaker": "Saki",
+              "text": "あれ…？何も表示されない…"
+            }
+          ],
+          "environment": "env:school-bathroom",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "画面がエラーを表示。首をかしげるSaki。",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:lens": "50mm"
+          }
+        },
+        {
+          "@id": "panel:p10n5-relief-wrong",
+          "characters": ["character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "dismissive",
+              "gh:isThought": true,
+              "speaker": "Saki",
+              "text": "（なんだ、変なサイトだっただけか…）"
+            }
+          ],
+          "environment": "env:school-bathroom",
+          "panel": 5,
+          "shot": "Medium Shot",
+          "visual": "安心して個室を出るSaki。しかし、見えないところで災いは進行している。",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:lens": "35mm"
+          }
+        }
+      ]
+    },
+    {
+      "gh:act": "act:2-temptation",
+      "gh:pageLayout": {
+        "gh:category": "tension",
+        "gh:layoutNote": "何事もなかったかのように過ぎる数日",
+        "gh:templateName": "Calm Before Storm"
+      },
+      "gh:pageNumber": 11,
+      "gh:pageTitle": "嵐の前の静けさ",
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:p11n1-days-passing",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:middle-school-exterior",
+          "panel": 1,
+          "shot": "Establishing Shot",
+          "visual": "「数日後」のテロップ。学校の外観。天気は曇り気味。",
+          "gh:shotProperties": {
+            "gh:distance": "Establishing Shot",
+            "gh:lens": "24mm"
+          }
+        },
+        {
+          "@id": "panel:p11n2-normal-class",
+          "characters": ["character:Mei", "character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "cheerful",
+              "speaker": "Mei",
+              "text": "週末楽しかったね！また行こ！"
+            },
+            {
+              "gh:emotion": "relieved",
+              "speaker": "Saki",
+              "text": "うん！"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 2,
+          "shot": "Two Shot",
+          "visual": "普通に会話するMeiとSaki。Sakiは変なDMのことを忘れかけている。",
+          "gh:shotProperties": {
+            "gh:distance": "Two Shot",
+            "gh:lens": "50mm"
+          }
+        },
+        {
+          "@id": "panel:p11n3-saki-phone-quiet",
+          "characters": ["character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "relieved",
+              "gh:isThought": true,
+              "speaker": "Saki",
+              "text": "（あのDM、いたずらだったのかな…）"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 3,
+          "shot": "Medium Shot",
+          "visual": "スマホを見るSaki。鍵垢は普通に動いている。特に変化なし。",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:lens": "50mm"
+          }
+        },
+        {
+          "@id": "panel:p11n4-dark-cloud",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:middle-school-exterior",
+          "panel": 4,
+          "shot": "Wide Shot",
+          "visual": "窓の外。徐々に暗くなる空。嵐を暗示する雲。",
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:lens": "35mm",
+            "gh:atmosphere": "不穏、嵐の予兆"
+          }
+        }
+      ]
+    },
+    {
+      "gh:act": "act:2-temptation",
+      "gh:pageLayout": {
+        "gh:category": "tension",
+        "gh:layoutNote": "運命の瞬間",
+        "gh:templateName": "Moment of Truth"
+      },
+      "gh:pageNumber": 12,
+      "gh:pageTitle": "通知の嵐",
+      "gh:panelCount": 6,
+      "gh:panels": [
+        {
+          "@id": "panel:p12n1-lunch-break",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "panel": 1,
+          "shot": "Establishing Shot",
+          "visual": "昼休み。教室。",
+          "gh:shotProperties": {
+            "gh:distance": "Establishing Shot",
+            "gh:lens": "24mm"
+          }
+        },
+        {
+          "@id": "panel:p12n2-multiple-phones",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "panel": 2,
+          "shot": "Wide Shot",
+          "visual": "クラス中のスマホが一斉に震え始める。ブーブーという音。",
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:lens": "35mm"
+          }
+        },
+        {
+          "@id": "panel:p12n3-akira-looks",
+          "characters": ["character:Akira"],
+          "dialogue": [
+            {
+              "gh:emotion": "surprised",
+              "speaker": "Akira",
+              "text": "なんか来た…え、これ…"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 3,
+          "shot": "Close Up",
+          "visual": "スマホを見て目を見開くAkira。",
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:lens": "85mm"
+          }
+        },
+        {
+          "@id": "panel:p12n4-mei-looks",
+          "characters": ["character:Mei"],
+          "dialogue": [
+            {
+              "gh:emotion": "confused",
+              "speaker": "Mei",
+              "text": "え…？私のこと…？"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 4,
+          "shot": "Close Up",
+          "visual": "スマホを見て困惑するMei。",
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:lens": "85mm"
+          }
+        },
+        {
+          "@id": "panel:p12n5-classmates-murmur",
+          "characters": [],
+          "dialogue": [
+            {
+              "gh:emotion": "shocked",
+              "speaker": "Classmate_A",
+              "text": "これSakiの裏垢じゃん…"
+            },
+            {
+              "gh:emotion": "shocked",
+              "speaker": "Classmate_B",
+              "text": "Meiの悪口書いてる…"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 5,
+          "shot": "Wide Shot",
+          "visual": "ざわつくクラスメイトたち。みんながスマホを見ながらヒソヒソ話す。",
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:lens": "35mm"
+          }
+        },
+        {
+          "@id": "panel:p12n6-saki-frozen",
+          "characters": ["character:Saki"],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "panel": 6,
+          "shot": "Close Up",
+          "visual": "凍りつくSaki。血の気が引いた顔。世界が止まったような表現。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.4",
+            "gh:distance": "Close Up",
+            "gh:lens": "100mm",
+            "gh:lighting": "顔に影が落ちる"
+          }
+        }
+      ]
+    },
+    {
+      "gh:act": "act:2-temptation",
+      "gh:pageLayout": {
+        "gh:category": "impact",
+        "gh:layoutNote": "暴露された投稿の内容",
+        "gh:templateName": "Evidence Reveal"
+      },
+      "gh:pageNumber": 13,
+      "gh:pageTitle": "暴かれた本音",
+      "gh:panelCount": 5,
+      "gh:panels": [
+        {
+          "@id": "panel:p13n1-screenshot1",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "panel": 1,
+          "shot": "Insert",
+          "visual": "拡散されたスクショ。「Meiってマジうざい、いつも自慢ばっか」という投稿。",
+          "gh:shotProperties": {
+            "gh:distance": "Insert"
+          }
+        },
+        {
+          "@id": "panel:p13n2-screenshot2",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "別のスクショ。「親友のフリ疲れた」「Akiraってスニーカーで調子乗りすぎw」",
+          "gh:shotProperties": {
+            "gh:distance": "Insert"
+          }
+        },
+        {
+          "@id": "panel:p13n3-screenshot3",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "さらに別のスクショ。「なんで私がいつも合わせなきゃいけないの」",
+          "gh:shotProperties": {
+            "gh:distance": "Insert"
+          }
+        },
+        {
+          "@id": "panel:p13n4-mei-hurt",
+          "characters": ["character:Mei"],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "panel": 4,
+          "shot": "Close Up",
+          "visual": "画面を見て固まるMei。目に涙が浮かび始める。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:distance": "Close Up",
+            "gh:lens": "85mm"
+          }
+        },
+        {
+          "@id": "panel:p13n5-stares-at-saki",
+          "characters": ["character:Mei", "character:Saki"],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "panel": 5,
+          "shot": "Two Shot",
+          "visual": "MeiがSakiを見る。Sakiは視線を合わせられない。クラス全員の視線がSakiに集中。",
+          "gh:shotProperties": {
+            "gh:distance": "Two Shot",
+            "gh:lens": "50mm",
+            "gh:atmosphere": "緊迫、沈黙"
+          }
+        }
+      ]
+    },
+    {
+      "gh:act": "act:2-temptation",
+      "gh:pageLayout": {
+        "gh:category": "emotional",
+        "gh:layoutNote": "対峙の瞬間",
+        "gh:templateName": "Confrontation"
+      },
+      "gh:pageNumber": 14,
+      "gh:pageTitle": "対峙",
+      "gh:panelCount": 6,
+      "gh:panels": [
+        {
+          "@id": "panel:p14n1-mei-stands",
+          "characters": ["character:Mei"],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "席を立つMei。手が震えている。",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:lens": "50mm"
+          }
+        },
+        {
+          "@id": "panel:p14n2-mei-approaches",
+          "characters": ["character:Mei", "character:Saki"],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "panel": 2,
+          "shot": "Wide Shot",
+          "visual": "Sakiに近づくMei。クラスメイトが道を開ける。",
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:lens": "35mm"
+          }
+        },
+        {
+          "@id": "panel:p14n3-mei-asks",
+          "characters": ["character:Mei"],
+          "dialogue": [
+            {
+              "gh:emotion": "hurt",
+              "gh:delivery": "声が震えている",
+              "speaker": "Mei",
+              "text": "Saki…これ…本当に…あなたが書いたの…？"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 3,
+          "shot": "Close Up",
+          "visual": "Meiの目。涙をこらえている。希望と恐怖が混在。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:distance": "Close Up",
+            "gh:lens": "85mm"
+          }
+        },
+        {
+          "@id": "panel:p14n4-saki-cant-speak",
+          "characters": ["character:Saki"],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "panel": 4,
+          "shot": "Close Up",
+          "visual": "何も言えないSaki。口を開こうとするが声が出ない。",
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:lens": "85mm"
+          }
+        },
+        {
+          "@id": "panel:p14n5-saki-excuses",
+          "characters": ["character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "desperate",
+              "gh:delivery": "必死に弁解しようとして",
+              "speaker": "Saki",
+              "text": "ちがっ…！あれは愚痴で…本気じゃなくて…！"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 5,
+          "shot": "Medium Shot",
+          "visual": "必死で弁解しようとするSaki。しかし言葉が空回りしている。",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:lens": "50mm"
+          }
+        },
+        {
+          "@id": "panel:p14n6-mei-tears",
+          "characters": ["character:Mei"],
+          "dialogue": [
+            {
+              "gh:emotion": "betrayed",
+              "gh:delivery": "涙をこぼしながら",
+              "speaker": "Mei",
+              "text": "…親友だと思ってたのに…"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 6,
+          "shot": "Close Up",
+          "visual": "涙をこぼすMei。裏切りのショックで崩れ落ちそうな表情。",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.4",
+            "gh:distance": "Close Up",
+            "gh:lens": "100mm"
+          }
+        }
+      ]
+    },
+    {
+      "gh:act": "act:3-exposure",
+      "gh:pageLayout": {
+        "gh:category": "emotional",
+        "gh:layoutNote": "教室が騒然となる",
+        "gh:templateName": "Chaos Erupts"
+      },
+      "gh:pageNumber": 15,
+      "gh:pageTitle": "騒然",
+      "gh:panelCount": 6,
+      "gh:panels": [
+        {
+          "@id": "panel:p15n1-class-erupts",
+          "characters": [],
+          "dialogue": [
+            {
+              "gh:emotion": "angry",
+              "speaker": "Classmate_A",
+              "text": "最低じゃん、Saki"
+            },
+            {
+              "gh:emotion": "shocked",
+              "speaker": "Classmate_B",
+              "text": "俺のことも書いてあった…"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "教室中が騒然となる。あちこちから声が上がる。",
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:lens": "24mm"
+          }
+        },
+        {
+          "@id": "panel:p15n2-akira-angry",
+          "characters": ["character:Akira"],
+          "dialogue": [
+            {
+              "gh:emotion": "angry",
+              "speaker": "Akira",
+              "text": "俺の悪口書いてたのかよ！？"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "怒りを露わにするAkira。",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:lens": "50mm"
+          }
+        },
+        {
+          "@id": "panel:p15n3-saki-surrounded",
+          "characters": ["character:Saki"],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "panel": 3,
+          "shot": "Wide Shot",
+          "visual": "周囲から責められるSaki。四方八方から矢印のような視線。",
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:lens": "24mm",
+            "gh:angle": "high angle"
+          }
+        },
+        {
+          "@id": "panel:p15n4-mei-runs",
+          "characters": ["character:Mei"],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "泣きながら教室を飛び出すMei。",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:lens": "35mm"
+          }
+        },
+        {
+          "@id": "panel:p15n5-saki-calls",
+          "characters": ["character:Saki"],
+          "dialogue": [
+            {
+              "gh:emotion": "desperate",
+              "speaker": "Saki",
+              "text": "Mei！待って…！"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "panel": 5,
+          "shot": "Medium Shot",
+          "visual": "Meiを追おうとするSaki。しかしクラスメイトに阻まれる。",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:lens": "50mm"
+          }
+        },
+        {
+          "@id": "panel:p15n6-door-slams",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "panel": 6,
+          "shot": "Insert",
+          "visual": "バタンと閉まるドア。残響。",
+          "gh:shotProperties": {
+            "gh:distance": "Insert"
+          }
+        }
+      ]
+    }
+  ],
+  "gh:presentationTagline": "Arc 0-2 | 鍵垢は鍵じゃない",
+  "gh:realCase": "Private Account Hack / Social Engineering",
+  "gh:setting": "港南第一中学校 2年B組",
+  "gh:supportingCharacters": [
+    "character:RenMiddleSchool",
+    "character:NeiMiddleSchool",
+    "character:Mei",
+    "character:Akira",
+    "character:Yuto",
+    "character:Ken",
+    "character:Shota",
+    "character:Tsubasa"
+  ],
+  "gh:timeframe": "3年前（2023年春）Arc 0-1の数週間後",
+  "gh:totalPages": 55,
+  "gh:thematicElements": {
+    "gh:mainTheme": "プライバシーの幻想 - 「鍵垢」は安全ではない",
+    "gh:subThemes": [
+      "オンライン上の二面性",
+      "デジタルフットプリントの永続性",
+      "友情とSNSの関係",
+      "嫉妬と自己表現の葛藤"
+    ],
+    "gh:educationalMessage": "プライベートアカウントは完全に安全ではない。インターネットに投稿したものは永遠に残る可能性がある。"
+  },
+  "gh:ghostDescription": {
+    "gh:name": "裏の顔 (Hidden Face)",
+    "gh:visualForm": "仮面を何枚も重ねた人型の影。剥がしても剥がしても新しい顔が現れる。",
+    "gh:ability": "人の隠された本音を暴き、それを武器として使う。プライバシーの壁を破壊する。",
+    "gh:weakness": "本音を認めて受け入れた時、力を失う"
+  },
+  "gh:daemonDescription": {
+    "gh:host": "character:Saki",
+    "gh:name": "嫉妬の影 (Shadow of Envy)",
+    "gh:visualForm": "Sakiの影から生まれた、もう一人のSaki。顔が常に歪んでいる。",
+    "gh:origin": "Meiへの嫉妬と、自分を偽り続けたストレスから生まれた",
+    "gh:resolution": "Sakiが自分の嫉妬を認め、Meiに正直に話すことで浄化される"
+  }
+}
