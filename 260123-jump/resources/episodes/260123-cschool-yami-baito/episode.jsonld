@@ -35,8 +35,8 @@
   "gh:supportingCharacters": [
     "character:SoraAoyama",
     "character:RikaShirakawa",
-    "character:KenjiOhara",
-    "character:TakashiNomura",
+    "character:Ren",
+    "character:Nei",
     "character:MizukiShinji"
   ],
   "gh:nistFocus": [
@@ -47,663 +47,1568 @@
   "gh:pages": [
     {
       "gh:pageNumber": 1,
+      "gh:pageTitle": "特待生の孤独",
+      "gh:narrativePurpose": "星蘭学院の華やかな日常と、ソラが抱える経済的プレッシャーを描く",
       "gh:panels": [
         {
-          "characters": [
-            "character:Mina"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Mina",
-              "text": "やめたい…でも、怖い。"
-            }
-          ],
-          "environment": "env:station-night-street",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 駅近の夜道。Minaがネオンの下でメッセージを確認して、肩をすくめる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 駅近の夜道。Minaがネオンの下でメッセージを確認して、肩をすくめる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "駅近の夜道。Minaがネオンの下でメッセージを確認して、肩をすくめる。"
+          "characters": [],
+          "environment": "env:seiran-academy-campus",
+          "visual": "星蘭学院の壮麗なキャンパス。緑豊かな庭園と近代的な校舎。制服姿の生徒たちが歩いている。",
+          "dialogue": [
+            {
+              "speaker": "Narration",
+              "text": "都内屈指の名門校、星蘭学院。"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Prestigious private school campus with beautiful gardens and modern architecture. Students in elegant uniforms walking. luminous atmosphere, soft diffused natural light. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "35mm",
+            "gh:aperture": "f/2.8",
+            "gh:focus": "deep focus",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air"
+          }
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:seiran-academy-campus",
+          "visual": "青山ソラ（17歳）が図書館へ歩く。周囲の生徒が高級ブランドのバッグを持っている中、彼女のカバンは質素。",
+          "dialogue": [
+            {
+              "speaker": "Narration",
+              "text": "学業特待生、青山ソラ。成績はトップクラス。"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. 17-year-old Japanese female student (Sora Aoyama) with long black ponytail hair, walking toward library. Her bag is modest compared to other students' luxury brands. subtle anxiety in her eyes. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8",
+            "gh:focus": "subject focus, soft background"
+          }
+        },
+        {
+          "panel": 3,
+          "shot": "Close-up",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:seiran-academy-campus",
+          "visual": "ソラの表情。周囲との「違い」を意識しながら、それを隠そうとする強がり。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "（…大丈夫。ここにいる資格はある）"
+            }
+          ],
+          "gh:imagePrompt": "Close-up, ARIA-style. Sora's face showing hidden anxiety behind determination. Dark brown intelligent eyes with suppressed worry. shot on 85mm, f/1.2, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Close-up",
+            "gh:angle": "frontal",
+            "gh:lens": "85mm prime",
+            "gh:aperture": "f/1.2",
+            "gh:focus": "shallow depth of field",
+            "gh:eyeDetail": "highly detailed expressive eyes"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 2,
+      "gh:pageTitle": "家庭の事情",
+      "gh:narrativePurpose": "ソラの家庭環境と経済的負担を明らかにする",
       "gh:panels": [
         {
-          "characters": [
-            "character:Mina"
-          ],
+          "panel": 1,
+          "shot": "Wide Shot",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:sora-apartment",
+          "visual": "ソラの自宅マンション。清潔だが小さく、質素な家具。ソラが勉強机に向かっている。",
           "dialogue": [
             {
-              "speaker": "Mina",
-              "text": "…もう無理。"
+              "speaker": "Narration",
+              "text": "母子家庭。母は製薬会社の研究員。"
             }
           ],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert Shot, ARIA-style. “簡単な仕事”のはずだったチャットが、圧と脅しに変わっている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. “簡単な仕事”のはずだったチャットが、圧と脅しに変わっている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Small but clean apartment. Sora studying at modest desk. Simple furniture. Evening light through small window. shot on 35mm, f/2.8, cinematic.",
           "gh:shotProperties": {
-            "gh:angle": "over-shoulder or top-down insert",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Insert",
-            "gh:focus": "sharp focus on object/screen",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "35mm",
+            "gh:aperture": "f/2.8"
+          }
+        },
+        {
+          "panel": 2,
           "shot": "Insert Shot",
-          "visual": "“簡単な仕事”のはずだったチャットが、圧と脅しに変わっている。"
+          "characters": [],
+          "environment": "env:sora-desk",
+          "visual": "机の上に「塾費用のお知らせ」と書かれた紙。金額が赤く囲まれている。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "（また…値上がりしてる…）"
+            }
+          ],
+          "gh:imagePrompt": "Insert Shot, ARIA-style. Paper on desk showing 'Cram school fee notice' with highlighted amount. Worn edges suggest repeated handling. shot on 50mm, f/2.0, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "top-down insert",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.0"
+          }
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Shot",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:sora-apartment",
+          "visual": "ソラがスマートフォンを手に取り、何かを検索し始める。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "お母さんに…これ以上負担かけたくない。"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Sora picking up smartphone with determined expression. Evening light casting soft shadows. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
+        },
+        {
+          "panel": 4,
+          "shot": "Insert Shot",
+          "characters": [],
+          "environment": "env:smartphone-screen",
+          "visual": "スマートフォン画面。「高校生OK！簡単な情報収集で高時給」というSNS広告。",
+          "dialogue": [
+            {
+              "speaker": "Narration",
+              "text": "『簡単な仕事で、高収入。』"
+            }
+          ],
+          "gh:imagePrompt": "Insert Shot, ARIA-style. Smartphone screen showing suspicious SNS ad: 'High school students welcome! Easy information gathering, high pay!' Attractive design hiding danger. shot on 50mm, f/2.0, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "over-shoulder",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.0"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 3,
+      "gh:pageTitle": "最初の一歩",
+      "gh:narrativePurpose": "ソラが闇バイトに応募し、最初の成功体験を得る",
       "gh:panels": [
         {
-          "characters": [
-            "character:Mina",
-            "character:Ren",
-            "character:Nei"
-          ],
+          "panel": 1,
+          "shot": "Insert Shot",
+          "characters": [],
+          "environment": "env:smartphone-screen",
+          "visual": "DMのやり取り画面。「簡単なアンケートに答えるだけ。報酬は3000円。」",
           "dialogue": [
             {
-              "speaker": "Mina",
-              "text": "親に…バレたら終わる…"
-            },
-            {
-              "speaker": "Nei",
-              "text": "終わらない。今は安全。"
+              "speaker": "Unknown",
+              "text": "アンケートに答えるだけ。30分で3000円♪"
             }
           ],
-          "environment": "env:quiet-room",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. 静かな部屋。Minaの手が震えている。RenとNeiが正面で受け止める。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. 静かな部屋。Minaの手が震えている。RenとNeiが正面で受け止める。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. DM chat interface showing friendly message about easy survey work for 3000 yen. Cute emojis and casual tone. shot on 50mm, f/2.0, cinematic.",
           "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/1.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Medium Shot",
-            "gh:focus": "subject focus, soft background",
+            "gh:distance": "Insert",
+            "gh:angle": "top-down",
             "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
+            "gh:aperture": "f/2.0"
+          }
+        },
+        {
+          "panel": 2,
+          "shot": "Close-up",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:sora-apartment",
+          "visual": "ソラの迷う表情。指がスマホ画面の上で止まっている。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "（…怪しい？でも、アンケートだけなら…）"
+            }
+          ],
+          "gh:imagePrompt": "Close-up, ARIA-style. Sora's hesitant expression. Finger hovering over smartphone screen. Internal conflict visible in her eyes. shot on 85mm, f/1.2, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Close-up",
+            "gh:angle": "frontal",
+            "gh:lens": "85mm prime",
+            "gh:aperture": "f/1.2"
+          }
+        },
+        {
+          "panel": 3,
+          "shot": "Insert Shot",
+          "characters": [],
+          "environment": "env:smartphone-screen",
+          "visual": "「送金完了」の通知画面。口座に3000円が振り込まれている。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "（…本当に入った。これなら…）"
+            }
+          ],
+          "gh:imagePrompt": "Insert Shot, ARIA-style. Banking app notification showing 3000 yen deposit. 'Transfer completed' message glowing on screen. shot on 50mm, f/2.0, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "top-down",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.0"
+          }
+        },
+        {
+          "panel": 4,
           "shot": "Medium Shot",
-          "visual": "静かな部屋。Minaの手が震えている。RenとNeiが正面で受け止める。"
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:sora-apartment",
+          "visual": "少し明るい表情のソラ。希望が見えた瞬間。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "自分でも…できる。"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Sora with slightly brighter expression. Relief and hope visible. This moment of false security. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 4,
+      "gh:pageTitle": "エスカレーション",
+      "gh:narrativePurpose": "要求がエスカレートし、ソラが深みにはまっていく",
       "gh:panels": [
         {
-          "characters": [
-            "character:Ren",
-            "character:Mina"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "口座と番号は、最優先で止める。"
-            }
-          ],
-          "environment": "env:quiet-room",
-          "gh:imagePrompt": "Insert Shot, ARIA-style. 銀行カード、SIM、身分証、紙切れ。売られたのは“自分の一部”。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. 銀行カード、SIM、身分証、紙切れ。売られたのは“自分の一部”。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "over-shoulder or top-down insert",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Insert",
-            "gh:focus": "sharp focus on object/screen",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
           "shot": "Insert Shot",
-          "visual": "銀行カード、SIM、身分証、紙切れ。売られたのは“自分の一部”。"
+          "characters": [],
+          "environment": "env:smartphone-screen",
+          "visual": "DMの履歴。報酬が5000円→1万円→3万円と上がっていく。",
+          "dialogue": [
+            {
+              "speaker": "Unknown",
+              "text": "次は商品レビューで1万円。もっと稼げる仕事もあるよ。"
+            }
+          ],
+          "gh:imagePrompt": "Insert Shot, ARIA-style. Chat history showing escalating payments: 5000 yen, 10000 yen, 30000 yen. Messages becoming more demanding. shot on 50mm, f/2.0, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "top-down",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.0"
+          }
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:seiran-academy-classroom",
+          "visual": "教室でスマホを気にするソラ。授業に集中できていない。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "（次の仕事、内容がよく分からない…でも報酬が…）"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Sora in classroom distracted, glancing at phone under desk. Other students focused on class. Anxiety building. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
+        },
+        {
+          "panel": 3,
+          "shot": "Insert Shot",
+          "characters": [],
+          "environment": "env:smartphone-screen",
+          "visual": "新しいメッセージ。「お母さんの会社の資料、ちょっと見せてもらえない？」",
+          "dialogue": [
+            {
+              "speaker": "Unknown",
+              "text": "今度は特別な仕事。5万円。お母さんの仕事の資料、少しだけ見せて。"
+            }
+          ],
+          "gh:imagePrompt": "Insert Shot, ARIA-style. Ominous message asking for mother's work documents. 50000 yen offer. The tone shifting from friendly to manipulative. shot on 50mm, f/2.0, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "top-down",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.0"
+          }
+        },
+        {
+          "panel": 4,
+          "shot": "Close-up",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:seiran-academy-classroom",
+          "visual": "ソラの顔に恐怖が浮かぶ。何かがおかしいと気づき始める。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "（これは…ダメだ。やめよう）"
+            }
+          ],
+          "gh:imagePrompt": "Close-up, ARIA-style. Fear crossing Sora's face. Realization dawning. Eyes showing alarm and regret. shot on 85mm, f/1.2, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Close-up",
+            "gh:angle": "frontal",
+            "gh:lens": "85mm prime",
+            "gh:aperture": "f/1.2"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 5,
+      "gh:pageTitle": "脅迫",
+      "gh:narrativePurpose": "ソラが断ろうとするが、脅迫を受け追い詰められる",
       "gh:panels": [
         {
-          "characters": [
-            "character:Ren"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "順番が命。今は“止める”だけ。"
-            }
-          ],
-          "environment": "env:quiet-room",
-          "gh:imagePrompt": "Insert Shot, ARIA-style. アイコンだけの手順。銀行、凍結、回線、SIM停止、相談・通報。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. アイコンだけの手順。銀行、凍結、回線、SIM停止、相談・通報。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "over-shoulder or top-down insert",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Insert",
-            "gh:focus": "sharp focus on object/screen",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
           "shot": "Insert Shot",
-          "visual": "アイコンだけの手順。銀行、凍結、回線、SIM停止、相談・通報。"
+          "characters": [],
+          "environment": "env:smartphone-screen",
+          "visual": "ソラが送った断りのメッセージ。「すみません。この仕事はできません。」",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "すみません。これ以上は…できません。"
+            }
+          ],
+          "gh:imagePrompt": "Insert Shot, ARIA-style. Sora's message refusing the job. Polite but firm rejection. The typing indicator appears from the other side. shot on 50mm, f/2.0, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "top-down",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.0"
+          }
+        },
+        {
+          "panel": 2,
+          "shot": "Insert Shot",
+          "characters": [],
+          "environment": "env:smartphone-screen",
+          "visual": "相手からの返信。「今までの記録、全部あるんだよ」「学校に送ろうか？親に見せようか？」",
+          "dialogue": [
+            {
+              "speaker": "Unknown",
+              "text": "今までの記録、全部残ってるよ。学校にバラす？親にも送ろうか？"
+            }
+          ],
+          "gh:imagePrompt": "Insert Shot, ARIA-style. Threatening messages appearing. 'We have all records.' 'Should we send to your school? To your mother?' Dark, intimidating tone. shot on 50mm, f/2.0, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "top-down",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.0"
+          }
+        },
+        {
+          "panel": 3,
+          "shot": "Close-up",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:station-night-street",
+          "visual": "夜の駅前。ソラの震える手。顔は青ざめ、恐怖で固まっている。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "やめたい…でも、怖い…"
+            }
+          ],
+          "gh:imagePrompt": "Close-up, ARIA-style. Sora's trembling hands holding phone. Face pale with terror. Night street lights reflecting on her tearful eyes. shot on 85mm, f/1.2, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Close-up",
+            "gh:angle": "frontal",
+            "gh:lens": "85mm prime",
+            "gh:aperture": "f/1.2"
+          }
+        },
+        {
+          "panel": 4,
+          "shot": "Wide Shot",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:station-night-street",
+          "visual": "夜の街を一人で歩くソラ。周囲のネオンが冷たく光る。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "（どうしよう…誰にも言えない…）"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Sora walking alone on night street. Neon signs casting cold light. Isolation and despair. shot on 35mm, f/2.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "35mm",
+            "gh:aperture": "f/2.8"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 6,
+      "gh:pageTitle": "異変に気づく者",
+      "gh:narrativePurpose": "生徒会長・理香がソラの異変に気づき、Kanameに相談する",
       "gh:panels": [
         {
-          "characters": [
-            "character:Ren",
-            "character:Nei",
-            "character:Mina"
-          ],
+          "panel": 1,
+          "shot": "Wide Shot",
+          "characters": ["character:RikaShirakawa"],
+          "environment": "env:seiran-student-council",
+          "visual": "星蘭学院の生徒会室。優雅な内装。生徒会長の白川理香が窓辺に立っている。",
           "dialogue": [
             {
-              "speaker": "Ren",
-              "text": "責めない。今すぐ止める。"
-            },
-            {
-              "speaker": "Nei",
-              "text": "水、飲んで。"
+              "speaker": "Narration",
+              "text": "生徒会長・白川理香。法律事務所のパートナーを親に持つ。"
             }
           ],
-          "environment": "env:quiet-room",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. Renは責めない。Neiは水とティッシュを差し出す。今すぐの安全が最優先。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. Renは責めない。Neiは水とティッシュを差し出す。今すぐの安全が最優先。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Elegant student council room. Rika Shirakawa (female, long elegant hair) standing by window. Sophisticated atmosphere. shot on 35mm, f/2.8, cinematic.",
           "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
             "gh:angle": "eye level",
-            "gh:aperture": "f/1.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Medium Shot",
-            "gh:focus": "subject focus, soft background",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
+            "gh:lens": "35mm",
+            "gh:aperture": "f/2.8"
+          }
+        },
+        {
+          "panel": 2,
           "shot": "Medium Shot",
-          "visual": "Renは責めない。Neiは水とティッシュを差し出す。今すぐの安全が最優先。"
+          "characters": ["character:RikaShirakawa", "character:Kaname"],
+          "environment": "env:seiran-student-council",
+          "visual": "理香がKanameに話しかける。Kanameは白いスーツ姿で資料を見ている。",
+          "dialogue": [
+            {
+              "speaker": "Rika",
+              "text": "水城くん、ちょっと相談があるの。"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Rika approaching Kaname (18-year-old male in white suit, dark brown stylish hair, cold handsome face). Kaname looking at documents. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
+        },
+        {
+          "panel": 3,
+          "shot": "Close-up",
+          "characters": ["character:Kaname"],
+          "environment": "env:seiran-student-council",
+          "visual": "Kanameの冷静な表情。しかし目には鋭い関心が浮かぶ。",
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "青山さん？特待生の？"
+            }
+          ],
+          "gh:imagePrompt": "Close-up, ARIA-style. Kaname's cold obsidian-like eyes showing sharp interest. Perfect composure with subtle curiosity. shot on 85mm, f/1.2, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Close-up",
+            "gh:angle": "frontal",
+            "gh:lens": "85mm prime",
+            "gh:aperture": "f/1.2"
+          }
+        },
+        {
+          "panel": 4,
+          "shot": "Medium Shot",
+          "characters": ["character:RikaShirakawa"],
+          "environment": "env:seiran-student-council",
+          "visual": "心配そうな理香。ソラの状況を説明している。",
+          "dialogue": [
+            {
+              "speaker": "Rika",
+              "text": "最近様子がおかしいの。授業中もぼんやりして、顔色も悪い。何かあったんじゃないかって…"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Rika explaining with worried expression. Genuine concern for Sora visible. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 7,
+      "gh:pageTitle": "Kanameの調査",
+      "gh:narrativePurpose": "Kanameが独自に調査を開始し、闘バイトのパターンを見抜く",
       "gh:panels": [
         {
+          "panel": 1,
+          "shot": "Wide Shot",
+          "characters": ["character:Kaname"],
+          "environment": "env:kaname-study",
+          "visual": "Kanameの書斎。高級感のあるデスクで複数のモニターを見ている。",
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "（特待生が、急に金を持ち始めた…？）"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Kaname's elegant study. Multiple monitors showing data. Kaname analyzing with intense focus. Luxury aesthetic. shot on 35mm, f/2.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "35mm",
+            "gh:aperture": "f/2.8"
+          }
+        },
+        {
+          "panel": 2,
+          "shot": "Insert Shot",
           "characters": [],
+          "environment": "env:computer-screen",
+          "visual": "モニター画面。「闇バイト」「情報売買」「高校生ターゲット」などの検索結果。",
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "（最近増えている手口か…）"
+            }
+          ],
+          "gh:imagePrompt": "Insert Shot, ARIA-style. Monitor showing search results: 'dark part-time job', 'information trading', 'high school student targets'. News articles about similar cases. shot on 50mm, f/2.0, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "over-shoulder",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.0"
+          }
+        },
+        {
+          "panel": 3,
+          "shot": "Insert Shot",
+          "characters": [],
+          "environment": "env:news-hacker-board",
+          "visual": "掲示板『News Hacker』。闇バイト被害のスレッドで情報を集めている。",
           "dialogue": [
             {
               "speaker": "Narration",
-              "text": "凍結。動かせなくする。"
+              "text": "掲示板で被害パターンを分析。"
             }
           ],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert Shot, ARIA-style. 銀行に連絡。凍結の確認が出る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. 銀行に連絡。凍結の確認が出る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. 'News Hacker' anonymous board. Thread about dark job victims. Multiple posts describing similar patterns. shot on 50mm, f/2.0, cinematic.",
           "gh:shotProperties": {
-            "gh:angle": "over-shoulder or top-down insert",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
             "gh:distance": "Insert",
-            "gh:focus": "sharp focus on object/screen",
+            "gh:angle": "over-shoulder",
             "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Insert Shot",
-          "visual": "銀行に連絡。凍結の確認が出る。"
+            "gh:aperture": "f/2.0"
+          }
+        },
+        {
+          "panel": 4,
+          "shot": "Close-up",
+          "characters": ["character:Kaname"],
+          "environment": "env:kaname-study",
+          "visual": "Kanameの目。確信を得た表情。",
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "星蘭の特待生を狙っている。…うちの学校が関わっているのか？"
+            }
+          ],
+          "gh:imagePrompt": "Close-up, ARIA-style. Kaname's cold eyes showing determination. Realization of the scheme. Mirror-like catchlights reflecting screen. shot on 85mm, f/1.2, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Close-up",
+            "gh:angle": "frontal",
+            "gh:lens": "85mm prime",
+            "gh:aperture": "f/1.2"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 8,
+      "gh:pageTitle": "接触",
+      "gh:narrativePurpose": "Kanameがソラに声をかけ、最初は拒絶されるが信頼を得ていく",
       "gh:panels": [
         {
-          "characters": [],
+          "panel": 1,
+          "shot": "Wide Shot",
+          "characters": ["character:Kaname", "character:SoraAoyama"],
+          "environment": "env:seiran-academy-library",
+          "visual": "星蘭学院の図書館。Kanameがソラの席に近づく。",
           "dialogue": [
             {
-              "speaker": "Narration",
-              "text": "SIM停止。必要なら番号も変える。"
+              "speaker": "Kaname",
+              "text": "青山さん、少し話せる？"
             }
           ],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert Shot, ARIA-style. 回線のサポート。SIM停止と番号変更の選択肢。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. 回線のサポート。SIM停止と番号変更の選択肢。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Elegant school library. Kaname approaching Sora's study area. Sora startled. Tension in the air. shot on 35mm, f/2.8, cinematic.",
           "gh:shotProperties": {
-            "gh:angle": "over-shoulder or top-down insert",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Insert",
-            "gh:focus": "sharp focus on object/screen",
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "35mm",
+            "gh:aperture": "f/2.8"
+          }
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:seiran-academy-library",
+          "visual": "警戒するソラ。目が泳いでいる。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "何の用ですか、水城先輩。私、何もないですけど…"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Sora defensive, eyes avoiding contact. Body language closed off. Fear beneath forced composure. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
             "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Insert Shot",
-          "visual": "回線のサポート。SIM停止と番号変更の選択肢。"
+            "gh:aperture": "f/1.8"
+          }
+        },
+        {
+          "panel": 3,
+          "shot": "Close-up",
+          "characters": ["character:Kaname"],
+          "environment": "env:seiran-academy-library",
+          "visual": "Kanameの表情。いつもの冷たさが少し和らいでいる。",
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "…逃げ道は、必ずある。一人で抱え込まなくていい。"
+            }
+          ],
+          "gh:imagePrompt": "Close-up, ARIA-style. Kaname's usually cold face showing subtle warmth. Sincere concern breaking through his mask. shot on 85mm, f/1.2, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Close-up",
+            "gh:angle": "frontal",
+            "gh:lens": "85mm prime",
+            "gh:aperture": "f/1.2"
+          }
+        },
+        {
+          "panel": 4,
+          "shot": "Close-up",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:seiran-academy-library",
+          "visual": "ソラの目に涙がにじむ。壁が少し崩れ始める。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "…どうして、分かるんですか…"
+            }
+          ],
+          "gh:imagePrompt": "Close-up, ARIA-style. Tears forming in Sora's eyes. The wall of defense cracking. Mixture of fear and desperate hope. shot on 85mm, f/1.2, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Close-up",
+            "gh:angle": "frontal",
+            "gh:lens": "85mm prime",
+            "gh:aperture": "f/1.2"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 9,
+      "gh:pageTitle": "告白",
+      "gh:narrativePurpose": "ソラが全てを打ち明ける",
       "gh:panels": [
         {
-          "characters": [
-            "character:Nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "支援窓口がある。ここまで来れば大丈夫。"
-            }
-          ],
-          "environment": "env:quiet-room",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 支援の窓口。詐欺防止や相談のポスターが並ぶ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 支援の窓口。詐欺防止や相談のポスターが並ぶ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "支援の窓口。詐欺防止や相談のポスターが並ぶ。"
+          "characters": ["character:Kaname", "character:SoraAoyama"],
+          "environment": "env:quiet-room",
+          "visual": "人目のない部屋。ソラが座り、Kanameが向かいに座っている。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "…最初は、ただのアンケートだったんです。"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Private quiet room. Sora sitting, head down. Kaname sitting across, listening attentively. Soft light. shot on 35mm, f/2.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "35mm",
+            "gh:aperture": "f/2.8"
+          }
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:quiet-room",
+          "visual": "話し続けるソラ。声が震えている。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "でも、どんどん要求がエスカレートして…母の会社の資料を撮れって…"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Sora speaking with trembling voice. Hands clenched. Shame and fear visible. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Shot",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:quiet-room",
+          "visual": "ソラが崩れ始める。堰を切ったように言葉が溢れる。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "断ったら、今までの記録をバラすって…親にも学校にも…どうしよう…もう終わりだ…"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Sora breaking down, words pouring out. Tears streaming. Complete vulnerability. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
+        },
+        {
+          "panel": 4,
+          "shot": "Close-up",
+          "characters": ["character:Kaname"],
+          "environment": "env:quiet-room",
+          "visual": "Kanameの目。決意の色が浮かぶ。",
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "終わらない。今から対処する。"
+            }
+          ],
+          "gh:imagePrompt": "Close-up, ARIA-style. Kaname's eyes showing resolve. Cold determination mixed with genuine care. A protector's gaze. shot on 85mm, f/1.2, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Close-up",
+            "gh:angle": "frontal",
+            "gh:lens": "85mm prime",
+            "gh:aperture": "f/1.2"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 10,
+      "gh:pageTitle": "協力者",
+      "gh:narrativePurpose": "KanameがRenとNeiに協力を求める",
       "gh:panels": [
         {
-          "characters": [
-            "character:Ren"
+          "panel": 1,
+          "shot": "Insert Shot",
+          "characters": [],
+          "environment": "env:news-hacker-board",
+          "visual": "掲示板『News Hacker』。Kanameがスレッドに投稿している。HN「3pa11er3apiv0t」。",
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "（3pa11er3apiv0t）星蘭の特待生が狙われている。協力を求む。"
+            }
           ],
+          "gh:imagePrompt": "Insert Shot, ARIA-style. 'News Hacker' board. Post from '3pa11er3apiv0t' requesting collaboration. Anonymous hacker community interface. shot on 50mm, f/2.0, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "over-shoulder",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.0"
+          }
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "characters": ["character:Ren"],
+          "environment": "env:ren-room",
+          "visual": "自室でモニターを見るRen。気怠げだが、目は鋭い。",
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "一人で行かない。繋げる。"
+              "text": "…あのペンギンが助けを求めるとは。珍しい。"
             }
           ],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert Shot, ARIA-style. 支援機関の案内ページ。電話のアイコンが並ぶ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. 支援機関の案内ページ。電話のアイコンが並ぶ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Ren (17-year-old male, messy black hair, silver-grey eyes, dark hoodie) looking at monitor. Lazy posture but sharp gaze. shot on 50mm, f/1.8, cinematic.",
           "gh:shotProperties": {
-            "gh:angle": "over-shoulder or top-down insert",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Insert",
-            "gh:focus": "sharp focus on object/screen",
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
             "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Insert Shot",
-          "visual": "支援機関の案内ページ。電話のアイコンが並ぶ。"
+            "gh:aperture": "f/1.8"
+          }
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Shot",
+          "characters": ["character:Nei"],
+          "environment": "env:ren-room",
+          "visual": "Neiが画面を覗き込む。興味深そうな表情。",
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "闇バイト被害？…私たちの出番かも。"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Nei (16-year-old female, platinum blonde bob, blue eyes, white blouse) leaning in to see screen. Intelligent curiosity. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
+        },
+        {
+          "panel": 4,
+          "shot": "Medium Shot",
+          "characters": ["character:Ren", "character:Nei"],
+          "environment": "env:ren-room",
+          "visual": "RenとNeiが顔を見合わせる。阿吽の呼吸。",
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "…だるい。でも、放っておけない。"
+            },
+            {
+              "speaker": "Nei",
+              "text": "同感。"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Ren and Nei exchanging glances. Unspoken understanding between partners. Ready to act. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 11,
+      "gh:pageTitle": "対面",
+      "gh:narrativePurpose": "Kaname、Ren、Neiが初めて対面し、協力体制を築く",
       "gh:panels": [
         {
-          "characters": [
-            "character:Mina",
-            "character:Nei",
-            "character:Ren"
-          ],
+          "panel": 1,
+          "shot": "Wide Shot",
+          "characters": ["character:Kaname", "character:Ren", "character:Nei"],
+          "environment": "env:meeting-neutral",
+          "visual": "中立の場所（カフェの個室）。Kanameと、Ren・Neiが向かい合う。緊張感のある空気。",
           "dialogue": [
             {
-              "speaker": "Mina",
-              "text": "親に言えない…殺される…"
+              "speaker": "Kaname",
+              "text": "Ghost Hacker…直接会うのは初めてだな。"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Private cafe booth. Kaname in white suit facing Ren and Nei. Tension between different worlds. Neutral ground. shot on 35mm, f/2.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "35mm",
+            "gh:aperture": "f/2.8"
+          }
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "characters": ["character:Ren"],
+          "environment": "env:meeting-neutral",
+          "visual": "Renの気怠げな表情。しかし目は相手を測っている。",
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "…スーツ。似合ってんな。"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Ren's lazy posture but calculating eyes. Sizing up Kaname. Subtle tension. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
+        },
+        {
+          "panel": 3,
+          "shot": "Close-up",
+          "characters": ["character:Kaname"],
+          "environment": "env:meeting-neutral",
+          "visual": "Kanameの冷たい目。しかし敵意ではない。",
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "条件は一つ。被害者を守ることが最優先。"
+            }
+          ],
+          "gh:imagePrompt": "Close-up, ARIA-style. Kaname's cold obsidian eyes. Not hostile, but establishing terms. Protector's resolve. shot on 85mm, f/1.2, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Close-up",
+            "gh:angle": "frontal",
+            "gh:lens": "85mm prime",
+            "gh:aperture": "f/1.2"
+          }
+        },
+        {
+          "panel": 4,
+          "shot": "Medium Shot",
+          "characters": ["character:Ren", "character:Nei"],
+          "environment": "env:meeting-neutral",
+          "visual": "Renが小さく頷く。Neiが微笑む。",
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "…異論ない。"
             },
             {
               "speaker": "Nei",
-              "text": "言うのは一緒に。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "まず安全。次に支援。"
+              "text": "それなら、協力できる。"
             }
           ],
-          "environment": "env:quiet-room",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. Minaが泣き崩れる。Neiが手を握り、Renは落ち着いて“安全”だけを見る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. Minaが泣き崩れる。Neiが手を握り、Renは落ち着いて“安全”だけを見る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Ren nodding slightly. Nei with small smile. Agreement reached between rivals. shot on 50mm, f/1.8, cinematic.",
           "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/1.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
             "gh:distance": "Medium Shot",
-            "gh:focus": "subject focus, soft background",
+            "gh:angle": "eye level",
             "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Minaが泣き崩れる。Neiが手を握り、Renは落ち着いて“安全”だけを見る。"
+            "gh:aperture": "f/1.8"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 12,
+      "gh:pageTitle": "対処開始",
+      "gh:narrativePurpose": "具体的な対処手順を実行していく",
       "gh:panels": [
         {
-          "characters": [],
+          "panel": 1,
+          "shot": "Medium Shot",
+          "characters": ["character:SoraAoyama", "character:Kaname", "character:Nei"],
+          "environment": "env:quiet-room",
+          "visual": "ソラの前にKanameとNeiが座っている。ソラの表情はまだ怯えている。",
           "dialogue": [
             {
-              "speaker": "NewsHacker",
-              "text": "（3pa11er3apiv0t）口座は即凍結。番号は変更。放置が一番高くつく。"
+              "speaker": "Kaname",
+              "text": "まず、口座を凍結する。これで向こうは何もできなくなる。"
             }
           ],
-          "environment": "env:news-hacker-board",
-          "gh:imagePrompt": "Insert Shot, ARIA-style. 掲示板『News Hacker』。闇バイト被害の対処スレに鋭い返信が刺さる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. 掲示板『News Hacker』。闇バイト被害の対処スレに鋭い返信が刺さる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Sora sitting with Kaname and Nei. Kaname explaining calmly. Nei supportive presence. Sora still fearful but listening. shot on 50mm, f/1.8, cinematic.",
           "gh:shotProperties": {
-            "gh:angle": "over-shoulder or top-down insert",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Insert",
-            "gh:focus": "sharp focus on object/screen",
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
             "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
+            "gh:aperture": "f/1.8"
+          }
+        },
+        {
+          "panel": 2,
           "shot": "Insert Shot",
-          "visual": "掲示板『News Hacker』。闇バイト被害の対処スレに鋭い返信が刺さる。"
+          "characters": [],
+          "environment": "env:smartphone-screen",
+          "visual": "銀行アプリの画面。「口座凍結手続き完了」のメッセージ。",
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "凍結完了。もう動かせない。"
+            }
+          ],
+          "gh:imagePrompt": "Insert Shot, ARIA-style. Banking app showing 'Account freeze completed' message. Relief in this small victory. shot on 50mm, f/2.0, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "top-down",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.0"
+          }
+        },
+        {
+          "panel": 3,
+          "shot": "Insert Shot",
+          "characters": [],
+          "environment": "env:smartphone-screen",
+          "visual": "携帯キャリアの画面。「SIM停止・番号変更申請」。",
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "次、SIM停止。番号も変える。"
+            }
+          ],
+          "gh:imagePrompt": "Insert Shot, ARIA-style. Mobile carrier app showing SIM deactivation and number change request. Systematic protection. shot on 50mm, f/2.0, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "top-down",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.0"
+          }
+        },
+        {
+          "panel": 4,
+          "shot": "Medium Shot",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:quiet-room",
+          "visual": "ソラの表情に少し安堵が浮かぶ。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "これで…連絡は来なくなる？"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Sora's face showing slight relief. First glimmer of hope. Still fragile but breathing easier. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 13,
+      "gh:pageTitle": "証拠保全",
+      "gh:narrativePurpose": "脅迫の証拠を保全し、法的対処の準備をする",
       "gh:panels": [
         {
-          "characters": [],
+          "panel": 1,
+          "shot": "Medium Shot",
+          "characters": ["character:Ren"],
+          "environment": "env:quiet-room",
+          "visual": "Renがノートパソコンを操作している。",
           "dialogue": [
             {
-              "speaker": "Narration",
-              "text": "同じ高校生でも、世界が違う。"
+              "speaker": "Ren",
+              "text": "脅迫メッセージ、全部スクショ撮った？"
             }
           ],
-          "environment": "env:elite-school-campus",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 都内有名校のキャンパス。洗練された空気が流れる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 都内有名校のキャンパス。洗練された空気が流れる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Ren working on laptop. Professional focus despite casual demeanor. shot on 50mm, f/1.8, cinematic.",
           "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
             "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "都内有名校のキャンパス。洗練された空気が流れる。"
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
+        },
+        {
+          "panel": 2,
+          "shot": "Insert Shot",
+          "characters": [],
+          "environment": "env:smartphone-screen",
+          "visual": "脅迫メッセージのスクリーンショット。日時とアカウント名がはっきり映っている。",
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "証拠は全て保存。これがあれば警察も動ける。"
+            }
+          ],
+          "gh:imagePrompt": "Insert Shot, ARIA-style. Screenshots of threatening messages. Clear timestamps and account names. Evidence being preserved. shot on 50mm, f/2.0, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "top-down",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.0"
+          }
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Shot",
+          "characters": ["character:Kaname"],
+          "environment": "env:quiet-room",
+          "visual": "Kanameがスマートフォンで通話している。",
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "叔父さん、相談があるんですけど…星蘭の生徒が闘バイトに巻き込まれていて…"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Kaname on phone call with uncle. Seeking adult support. Professional approach. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
+        },
+        {
+          "panel": 4,
+          "shot": "Insert Shot",
+          "characters": [],
+          "environment": "env:document",
+          "visual": "支援機関のリスト。警察相談ダイヤル #9110、消費者ホットライン 188 などが並ぶ。",
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "支援に繋げる。ここからは大人の出番だ。"
+            }
+          ],
+          "gh:imagePrompt": "Insert Shot, ARIA-style. Document showing support resources: Police consultation #9110, Consumer hotline 188, Legal support. Professional support network. shot on 50mm, f/2.0, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "top-down",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.0"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 14,
+      "gh:pageTitle": "黒幕の特定",
+      "gh:narrativePurpose": "Renの調査により黒幕が星蘭の卒業生であることが判明",
       "gh:panels": [
         {
-          "characters": [
-            "character:Kaname"
+          "panel": 1,
+          "shot": "Medium Shot",
+          "characters": ["character:Ren"],
+          "environment": "env:ren-room",
+          "visual": "自室でキーボードを叩くRen。複数のウィンドウが開いている。",
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "（通信パターン追跡…この送金先は…）"
+            }
           ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Ren typing intensely. Multiple windows open. Digital investigation in progress. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
+        },
+        {
+          "panel": 2,
+          "shot": "Insert Shot",
+          "characters": [],
+          "environment": "env:computer-screen",
+          "visual": "モニター画面に浮かび上がる情報。「野村隆」「星蘭学院 2018年卒」。",
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "見つけた。野村隆。星蘭の卒業生だ。"
+            }
+          ],
+          "gh:imagePrompt": "Insert Shot, ARIA-style. Monitor showing investigation results: 'Takashi Nomura, Seiran Academy Class of 2018'. Connection revealed. shot on 50mm, f/2.0, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "over-shoulder",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.0"
+          }
+        },
+        {
+          "panel": 3,
+          "shot": "Close-up",
+          "characters": ["character:Kaname"],
+          "environment": "env:meeting-neutral",
+          "visual": "報告を受けるKanameの表情。苛立ちが一瞬だけ顔に出る。",
           "dialogue": [
             {
               "speaker": "Kaname",
-              "text": "うちが関わってる？…ふざけるな。"
+              "text": "卒業生が…後輩を食い物にしていたのか。"
             }
           ],
-          "environment": "env:elite-school-campus",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. 要が報告を読む。苛立ちが一瞬だけ顔に出る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. 要が報告を読む。苛立ちが一瞬だけ顔に出る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Close-up, ARIA-style. Kaname's face showing flash of anger. Betrayal by alumni. Cold fury in obsidian eyes. shot on 85mm, f/1.2, cinematic.",
           "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/1.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Medium Shot",
-            "gh:focus": "subject focus, soft background",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
+            "gh:distance": "Close-up",
+            "gh:angle": "frontal",
+            "gh:lens": "85mm prime",
+            "gh:aperture": "f/1.2"
+          }
+        },
+        {
+          "panel": 4,
           "shot": "Medium Shot",
-          "visual": "要が報告を読む。苛立ちが一瞬だけ顔に出る。"
+          "characters": ["character:Kaname"],
+          "environment": "env:meeting-neutral",
+          "visual": "決意を固めるKaname。",
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "雑な犯罪は嫌いだ。…叔父に報告する。法的に追い詰める。"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Kaname with cold determination. Ready to pursue justice through proper channels. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 15,
+      "gh:pageTitle": "母への告白",
+      "gh:narrativePurpose": "ソラが母に全てを打ち明ける",
       "gh:panels": [
         {
-          "characters": [
-            "character:Ren",
-            "character:Kaname"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaname",
-              "text": "条件は一つ。被害者を守る。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "同意する。"
-            }
-          ],
-          "environment": "env:meeting-neutral",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 中立の場所で、Renと要が向き合う。立場の差が空気を硬くする。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 中立の場所で、Renと要が向き合う。立場の差が空気を硬くする。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "中立の場所で、Renと要が向き合う。立場の差が空気を硬くする。"
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:sora-apartment",
+          "visual": "ソラの自宅。リビングでソラが母と向かい合っている。Neiが隣にいる。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "お母さん…話があるの。"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Sora's living room. Sora facing her mother (kind-looking woman in simple clothes). Nei sitting supportively nearby. Tense atmosphere. shot on 35mm, f/2.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "35mm",
+            "gh:aperture": "f/2.8"
+          }
+        },
+        {
+          "panel": 2,
+          "shot": "Close-up",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:sora-apartment",
+          "visual": "涙を流しながら話すソラ。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "私…バカなことをして…ごめんなさい…"
+            }
+          ],
+          "gh:imagePrompt": "Close-up, ARIA-style. Sora crying while confessing. Tears streaming. Voice breaking. shot on 85mm, f/1.2, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Close-up",
+            "gh:angle": "frontal",
+            "gh:lens": "85mm prime",
+            "gh:aperture": "f/1.2"
+          }
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Shot",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:sora-apartment",
+          "visual": "母がソラを抱きしめる。ソラの肩が震えている。",
+          "dialogue": [
+            {
+              "speaker": "Mother",
+              "text": "…言ってくれてありがとう。一人で抱え込んでたのね…"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Mother embracing crying Sora. Shoulders shaking with sobs. Unconditional love. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
+        },
+        {
+          "panel": 4,
+          "shot": "Medium Shot",
+          "characters": ["character:Nei"],
+          "environment": "env:sora-apartment",
+          "visual": "少し離れた場所で見守るNei。穏やかな表情。",
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "（言えた。…大丈夫）"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Nei watching from slight distance. Gentle supportive expression. Mission accomplished. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 16,
+      "gh:pageTitle": "解決",
+      "gh:narrativePurpose": "事件の法的解決と、ソラの回復の始まり",
       "gh:panels": [
         {
-          "characters": [
-            "character:Kaname"
-          ],
+          "panel": 1,
+          "shot": "Wide Shot",
+          "characters": [],
+          "environment": "env:police-station",
+          "visual": "警察署の外観。ソラと母が中へ入っていく後ろ姿。",
           "dialogue": [
             {
-              "speaker": "Kaname",
-              "text": "雑な犯罪は嫌いだ。"
+              "speaker": "Narration",
+              "text": "被害届を提出。支援機関とも連携。"
             }
           ],
-          "environment": "env:meeting-neutral",
-          "gh:imagePrompt": "Close-up, ARIA-style. 要の目。雑な犯罪への嫌悪と、責任の重さ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. 要の目。雑な犯罪への嫌悪と、責任の重さ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Police station exterior. Sora and mother walking in together. Back view. Taking proper action. shot on 35mm, f/2.8, cinematic.",
           "gh:shotProperties": {
-            "gh:angle": "frontal",
-            "gh:aperture": "f/1.2",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Close-up",
-            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
-            "gh:focus": "shallow depth of field, creamy bokeh",
-            "gh:lens": "85mm prime",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "要の目。雑な犯罪への嫌悪と、責任の重さ。"
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "35mm",
+            "gh:aperture": "f/2.8"
+          }
+        },
+        {
+          "panel": 2,
+          "shot": "Insert Shot",
+          "characters": [],
+          "environment": "env:news-article",
+          "visual": "ニュース記事の見出し。「高校生を狙った闘バイト斡旋 逮捕」。",
+          "dialogue": [
+            {
+              "speaker": "Narration",
+              "text": "野村隆、詐欺および脅迫の容疑で逮捕。"
+            }
+          ],
+          "gh:imagePrompt": "Insert Shot, ARIA-style. News headline: 'Arrest in dark job recruitment targeting high school students'. Justice served. shot on 50mm, f/2.0, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "top-down",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.0"
+          }
+        },
+        {
+          "panel": 3,
+          "shot": "Insert Shot",
+          "characters": [],
+          "environment": "env:news-hacker-board",
+          "visual": "掲示板『News Hacker』。「3pa11er3apiv0t」の投稿。「解決。被害者は保護された。」",
+          "dialogue": [
+            {
+              "speaker": "NewsHacker",
+              "text": "（3pa11er3apiv0t）解決。被害者は保護された。"
+            }
+          ],
+          "gh:imagePrompt": "Insert Shot, ARIA-style. News Hacker board. Post from '3pa11er3apiv0t': 'Resolved. Victim protected.' Understated victory. shot on 50mm, f/2.0, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "over-shoulder",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.0"
+          }
+        },
+        {
+          "panel": 4,
+          "shot": "Insert Shot",
+          "characters": [],
+          "environment": "env:news-hacker-board",
+          "visual": "別のユーザーからの返信。「GJ」「ながふくろうとながねこも参戦してたな」。",
+          "dialogue": [
+            {
+              "speaker": "NewsHacker",
+              "text": "GJ。Ghost Hackerも動いてたみたいだな。"
+            }
+          ],
+          "gh:imagePrompt": "Insert Shot, ARIA-style. Reply posts on News Hacker: 'GJ', 'Heard Ghost Hackers were involved too'. Community acknowledgment. shot on 50mm, f/2.0, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "over-shoulder",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.0"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 17,
+      "gh:pageTitle": "再生",
+      "gh:narrativePurpose": "ソラの回復と前向きな一歩",
       "gh:panels": [
         {
-          "characters": [],
+          "panel": 1,
+          "shot": "Wide Shot",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:seiran-academy-campus",
+          "visual": "星蘭学院のキャンパス。朝日の中を歩くソラ。",
           "dialogue": [
             {
-              "speaker": "NewsHacker",
-              "text": "（3pa11er3apiv0t）支援に繋げ。親も。"
+              "speaker": "Narration",
+              "text": "数週間後。"
             }
           ],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert Shot, ARIA-style. スマホ画面。HN「3pa11er3apiv0t」の文字が光る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. スマホ画面。HN「3pa11er3apiv0t」の文字が光る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Seiran Academy campus in morning light. Sora walking with lighter steps. New beginning. shot on 35mm, f/2.8, cinematic.",
           "gh:shotProperties": {
-            "gh:angle": "over-shoulder or top-down insert",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Insert",
-            "gh:focus": "sharp focus on object/screen",
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "35mm",
+            "gh:aperture": "f/2.8"
+          }
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "characters": ["character:SoraAoyama", "character:Kaname"],
+          "environment": "env:seiran-academy-campus",
+          "visual": "ソラがKanameに会釈する。Kanameが軽く頷く。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "水城先輩…あの時は、ありがとうございました。"
+            },
+            {
+              "speaker": "Kaname",
+              "text": "…助けてって言えた。それが一番大事なことだ。"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Sora bowing slightly to Kaname. Kaname nodding. Mutual respect. Distance but connection. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
             "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Insert Shot",
-          "visual": "スマホ画面。HN「3pa11er3apiv0t」の文字が光る。"
+            "gh:aperture": "f/1.8"
+          }
+        },
+        {
+          "panel": 3,
+          "shot": "Close-up",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:seiran-academy-campus",
+          "visual": "ソラの表情。まだ完全ではないが、希望を取り戻した目。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "まだ怖いことも、恥ずかしいこともある。でも…一人じゃないって、分かったから。"
+            }
+          ],
+          "gh:imagePrompt": "Close-up, ARIA-style. Sora's face showing recovery. Not fully healed but hopeful. Strength returning to her eyes. shot on 85mm, f/1.2, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Close-up",
+            "gh:angle": "frontal",
+            "gh:lens": "85mm prime",
+            "gh:aperture": "f/1.2"
+          }
+        },
+        {
+          "panel": 4,
+          "shot": "Wide Shot",
+          "characters": ["character:SoraAoyama"],
+          "environment": "env:seiran-academy-campus",
+          "visual": "校舎へ向かうソラの後ろ姿。背中に貼り付いていた影が薄れていく。",
+          "dialogue": [
+            {
+              "speaker": "Sora",
+              "text": "（戻れる。ここから、やり直せる）"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Sora walking toward school building. Back view. Shadow lifting from her shoulders. New chapter beginning. shot on 35mm, f/2.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "35mm",
+            "gh:aperture": "f/2.8"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 18,
+      "gh:pageTitle": "次なる道へ",
+      "gh:narrativePurpose": "Kanameの内面の変化と、次のArcへの伏線",
       "gh:panels": [
         {
-          "characters": [
-            "character:Ren",
-            "character:Kaname",
-            "character:Nei"
-          ],
+          "panel": 1,
+          "shot": "Medium Shot",
+          "characters": ["character:Kaname"],
+          "environment": "env:seiran-student-council",
+          "visual": "生徒会室の窓辺に立つKaname。夕日が差し込んでいる。",
           "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "バランス、崩れそう。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "でも必要だ。"
-            },
             {
               "speaker": "Kaname",
-              "text": "早く終わらせる。"
+              "text": "（感情で動くことは、弱さじゃない…か）"
             }
           ],
-          "environment": "env:meeting-neutral",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. Renと要が並ぶ。味方なのに、緊張が残る。Neiがバランスを測る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. Renと要が並ぶ。味方なのに、緊張が残る。Neiがバランスを測る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Kaname standing by window in student council room. Sunset light. Contemplative. Internal change happening. shot on 50mm, f/1.8, cinematic.",
           "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/1.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
             "gh:distance": "Medium Shot",
-            "gh:focus": "subject focus, soft background",
+            "gh:angle": "eye level",
             "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Renと要が並ぶ。味方なのに、緊張が残る。Neiがバランスを測る。"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 19,
-      "gh:panels": [
+            "gh:aperture": "f/1.8"
+          }
+        },
         {
-          "characters": [
-            "character:Mina"
-          ],
+          "panel": 2,
+          "shot": "Close-up",
+          "characters": ["character:Kaname"],
+          "environment": "env:seiran-student-council",
+          "visual": "Kanameの目。いつもの冷たさに、何か新しいものが混じっている。",
           "dialogue": [
             {
-              "speaker": "Mina",
-              "text": "…まだ怖い。でも、戻れる。"
+              "speaker": "Kaname",
+              "text": "（Ren…お前の直感は認める。今回は）"
             }
           ],
-          "environment": "env:street-day",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 昼の街へ出るMina。背中に貼り付いていた影が、薄れていく。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 昼の街へ出るMina。背中に貼り付いていた影が、薄れていく。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Close-up, ARIA-style. Kaname's obsidian eyes. Something new mixing with his usual coldness. Growth. Acknowledgment of others. shot on 85mm, f/1.2, cinematic.",
           "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "昼の街へ出るMina。背中に貼り付いていた影が、薄れていく。"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 20,
-      "gh:panels": [
+            "gh:distance": "Close-up",
+            "gh:angle": "frontal",
+            "gh:lens": "85mm prime",
+            "gh:aperture": "f/1.2"
+          }
+        },
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:intertitle-black",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. Episode 10 End. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. Episode 10 End. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "panel": 3,
+          "shot": "Wide Shot",
+          "characters": ["character:Kaname"],
+          "environment": "env:street-day",
+          "visual": "学校を出て歩き出すKaname。どこかへ向かっている。",
+          "dialogue": [
+            {
+              "speaker": "Narration",
+              "text": "一人で抱え込まなくていい。逃げ道は、必ずある。"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Kaname leaving school, walking purposefully. Heading somewhere. Next chapter approaching. shot on 35mm, f/2.8, cinematic.",
           "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
             "gh:angle": "eye level",
-            "gh:aperture": "f/1.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Medium Shot",
-            "gh:focus": "subject focus, soft background",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
+            "gh:lens": "35mm",
+            "gh:aperture": "f/2.8"
+          }
+        },
+        {
+          "panel": 4,
           "shot": "Medium Shot",
-          "visual": "Episode 10 End"
+          "characters": [],
+          "environment": "env:intertitle-black",
+          "visual": "黒背景に白文字。「Arc 0-3 - End」「To be continued...」",
+          "dialogue": [],
+          "gh:endCard": {
+            "gh:episodeTitle": "やめたい…でも、怖い",
+            "gh:message": "闇バイトは一度始めると抜け出しにくい。でも、被害者として助けを求めれば必ず道はある。",
+            "gh:resources": [
+              "警察相談ダイヤル #9110",
+              "消費者ホットライン 188",
+              "ヤング・テレホン（各都道府県警察）"
+            ]
+          },
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Black background with white text: 'Arc 0-3 - End', 'To be continued...' Support information displayed below. shot on 50mm, f/1.8, cinematic.",
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "frontal",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          }
         }
       ]
     }
@@ -711,8 +1616,28 @@
   "gh:presentationTagline": "Arc 0 | Yami-baito & Support",
   "gh:realCase": "Yami-baito / account & phone number resale → recovery and reporting",
   "gh:sinContrast": "Easy Money (Short-term) vs. Support (Long-term)",
-  "gh:supportingCharacters": [
-    "character:Nei",
-    "character:Kaname"
-  ]
+  "gh:educationalContent": {
+    "gh:mainMessage": "闇バイトは一度始めると抜け出しにくい。でも、被害者として助けを求めれば必ず道はある。",
+    "gh:keyTakeaways": [
+      "『簡単に稼げる』仕事には裏がある",
+      "一度でも応じると、脅迫材料にされる",
+      "脅されても、相談すれば助けてもらえる",
+      "被害者は罪に問われないことが多い（早期相談が重要）",
+      "口座や携帯を売ると、犯罪に使われて自分が加害者扱いされるリスク"
+    ],
+    "gh:warningSignsOfDarkJob": [
+      "高すぎる報酬（時給1万円以上など）",
+      "仕事内容が曖昧",
+      "身分証や口座情報を要求される",
+      "秘密厳守を強調される",
+      "最初は簡単な仕事から始まる"
+    ],
+    "gh:resources": [
+      "警察相談ダイヤル #9110",
+      "消費者ホットライン 188",
+      "法テラス（日本司法支援センター）",
+      "ヤング・テレホン（各都道府県警察）",
+      "金融庁「詐欺的な投資勧誘」注意喚起"
+    ]
+  }
 }

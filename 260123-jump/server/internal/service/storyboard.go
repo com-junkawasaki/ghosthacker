@@ -1600,6 +1600,7 @@ type panelLayoutDef struct {
 }
 
 // getJumpMangaLayout returns Jump-style manga layouts based on panel count
+// Japanese manga reading order: RIGHT to LEFT, TOP to BOTTOM
 func getJumpMangaLayout(panelCount int) []panelLayoutDef {
 	switch panelCount {
 	case 1:
@@ -1612,48 +1613,51 @@ func getJumpMangaLayout(panelCount int) []panelLayoutDef {
 			{0, 55, 100, 45},
 		}
 	case 3:
+		// Top full width, bottom 2 panels RIGHT to LEFT
 		return []panelLayoutDef{
 			{0, 0, 100, 50},
-			{0, 50, 55, 50},
-			{55, 50, 45, 50},
+			{55, 50, 45, 50},  // Panel 2: RIGHT
+			{0, 50, 55, 50},   // Panel 3: LEFT
 		}
 	case 4:
-		// Jump Impact - L Shape (Top wide + 3 bottom)
+		// Jump Impact - L Shape (Top wide + 3 bottom RIGHT to LEFT)
 		return []panelLayoutDef{
-			{0, 0, 100, 55},
-			{0, 55, 35, 45},
-			{35, 55, 35, 45},
-			{70, 55, 30, 45},
+			{0, 0, 100, 55},       // Panel 1: TOP full width
+			{70, 55, 30, 45},      // Panel 2: RIGHT
+			{35, 55, 35, 45},      // Panel 3: CENTER
+			{0, 55, 35, 45},       // Panel 4: LEFT
 		}
 	case 5:
+		// Top full, 2 middle (R to L), 2 bottom (R to L)
 		return []panelLayoutDef{
 			{0, 0, 100, 40},
-			{0, 40, 50, 30},
-			{50, 40, 50, 30},
-			{0, 70, 60, 30},
-			{60, 70, 40, 30},
+			{50, 40, 50, 30},     // Panel 2: RIGHT
+			{0, 40, 50, 30},      // Panel 3: LEFT
+			{40, 70, 60, 30},     // Panel 4: RIGHT
+			{0, 70, 40, 30},      // Panel 5: LEFT
 		}
 	case 6:
+		// Top full, 2 middle (R to L), 3 bottom (R to L)
 		return []panelLayoutDef{
 			{0, 0, 100, 35},
-			{0, 35, 50, 32},
-			{50, 35, 50, 32},
-			{0, 67, 33, 33},
-			{33, 67, 34, 33},
-			{67, 67, 33, 33},
+			{50, 35, 50, 32},     // Panel 2: RIGHT
+			{0, 35, 50, 32},      // Panel 3: LEFT
+			{67, 67, 33, 33},     // Panel 4: RIGHT
+			{33, 67, 34, 33},     // Panel 5: CENTER
+			{0, 67, 33, 33},      // Panel 6: LEFT
 		}
 	case 7:
 		return []panelLayoutDef{
 			{0, 0, 100, 30},
-			{0, 30, 50, 25},
-			{50, 30, 50, 25},
-			{0, 55, 33, 22},
-			{33, 55, 34, 22},
-			{67, 55, 33, 22},
+			{50, 30, 50, 25},     // Panel 2: RIGHT
+			{0, 30, 50, 25},      // Panel 3: LEFT
+			{67, 55, 33, 22},     // Panel 4: RIGHT
+			{33, 55, 34, 22},     // Panel 5: CENTER
+			{0, 55, 33, 22},      // Panel 6: LEFT
 			{0, 77, 100, 23},
 		}
 	default:
-		// Grid layout for 8+ panels
+		// Grid layout for 8+ panels (RIGHT to LEFT within each row)
 		cols := 3
 		rows := (panelCount + cols - 1) / cols
 		layouts := make([]panelLayoutDef, panelCount)
@@ -1662,8 +1666,10 @@ func getJumpMangaLayout(panelCount int) []panelLayoutDef {
 		for i := 0; i < panelCount; i++ {
 			col := i % cols
 			row := i / cols
+			// Reverse column order for R-to-L reading
+			colReversed := (cols - 1) - col
 			layouts[i] = panelLayoutDef{
-				x:      float64(col) * w,
+				x:      float64(colReversed) * w,
 				y:      float64(row) * h,
 				width:  w,
 				height: h,
@@ -1776,6 +1782,11 @@ func (s *StoryboardService) createMangaPageImage(panels []*storyboardpb.Panel, w
 				
 				// Draw panel border
 				drawPanelBorder(canvas, destX, destY, destW, destH)
+				
+				// Draw dialogue bubbles on top
+				if p.Data != nil && len(p.Data.Dialogue) > 0 {
+					drawDialogues(canvas, p.Data.Dialogue, destX, destY, destW, destH)
+				}
 			} else {
 				drawPanelPlaceholder(canvas, destX, destY, destW, destH, p.Panel)
 			}
@@ -1899,6 +1910,140 @@ func drawPanelBorder(canvas *goimage.RGBA, x, y, w, h int) {
 	for i := 0; i < borderWidth; i++ {
 		for py := y; py < y+h; py++ {
 			canvas.Set(x+w-1-i, py, black)
+		}
+	}
+}
+
+// drawDialogues draws dialogue bubbles on a panel
+func drawDialogues(canvas *goimage.RGBA, dialogues []*storyboardpb.Dialogue, panelX, panelY, panelW, panelH int) {
+	if len(dialogues) == 0 {
+		return
+	}
+	
+	// Calculate bubble positions - spread them across the panel
+	bubbleMargin := 10
+	bubbleSpacing := panelH / (len(dialogues) + 1)
+	
+	for i, d := range dialogues {
+		if d == nil || d.Text == "" {
+			continue
+		}
+		
+		// Position bubble - default position or use manga layout if available
+		var bubbleX, bubbleY int
+		if d.MangaLayout != nil && (d.MangaLayout.X > 0 || d.MangaLayout.Y > 0) {
+			// Use stored position (percentage)
+			bubbleX = panelX + int(float64(panelW)*float64(d.MangaLayout.X)/100)
+			bubbleY = panelY + int(float64(panelH)*float64(d.MangaLayout.Y)/100)
+		} else {
+			// Default position: top-right area for Japanese manga, staggered vertically
+			bubbleX = panelX + panelW - bubbleMargin - 80
+			bubbleY = panelY + bubbleMargin + (i * bubbleSpacing)
+		}
+		
+		// Draw dialogue bubble
+		text := d.Text
+		speaker := d.Speaker
+		
+		// Truncate long text
+		maxChars := 20
+		if len([]rune(text)) > maxChars {
+			text = string([]rune(text)[:maxChars]) + "…"
+		}
+		
+		// Calculate bubble size (approximate for Japanese vertical text)
+		charHeight := 14
+		charWidth := 16
+		textHeight := len([]rune(text)) * charHeight
+		bubbleWidth := charWidth + 20
+		bubbleHeight := textHeight + 30
+		
+		// Add speaker name height if present
+		if speaker != "" {
+			bubbleHeight += 15
+		}
+		
+		// Ensure bubble fits within panel
+		if bubbleX + bubbleWidth > panelX + panelW - bubbleMargin {
+			bubbleX = panelX + panelW - bubbleWidth - bubbleMargin
+		}
+		if bubbleY + bubbleHeight > panelY + panelH - bubbleMargin {
+			bubbleY = panelY + panelH - bubbleHeight - bubbleMargin
+		}
+		if bubbleX < panelX + bubbleMargin {
+			bubbleX = panelX + bubbleMargin
+		}
+		if bubbleY < panelY + bubbleMargin {
+			bubbleY = panelY + bubbleMargin
+		}
+		
+		// Draw white bubble background with rounded corners (simplified as rectangle)
+		white := color.RGBA{R: 255, G: 255, B: 255, A: 240}
+		for py := bubbleY; py < bubbleY+bubbleHeight; py++ {
+			for px := bubbleX; px < bubbleX+bubbleWidth; px++ {
+				canvas.Set(px, py, white)
+			}
+		}
+		
+		// Draw bubble border
+		black := color.RGBA{R: 0, G: 0, B: 0, A: 255}
+		borderWidth := 2
+		// Top
+		for i := 0; i < borderWidth; i++ {
+			for px := bubbleX; px < bubbleX+bubbleWidth; px++ {
+				canvas.Set(px, bubbleY+i, black)
+			}
+		}
+		// Bottom
+		for i := 0; i < borderWidth; i++ {
+			for px := bubbleX; px < bubbleX+bubbleWidth; px++ {
+				canvas.Set(px, bubbleY+bubbleHeight-1-i, black)
+			}
+		}
+		// Left
+		for i := 0; i < borderWidth; i++ {
+			for py := bubbleY; py < bubbleY+bubbleHeight; py++ {
+				canvas.Set(bubbleX+i, py, black)
+			}
+		}
+		// Right
+		for i := 0; i < borderWidth; i++ {
+			for py := bubbleY; py < bubbleY+bubbleHeight; py++ {
+				canvas.Set(bubbleX+bubbleWidth-1-i, py, black)
+			}
+		}
+		
+		// Draw text indicator (vertical line pattern to show text position)
+		// Note: Full Japanese text rendering would require a font library like freetype
+		textStartY := bubbleY + 10
+		if speaker != "" {
+			// Draw speaker indicator (small horizontal line)
+			for px := bubbleX + 5; px < bubbleX + bubbleWidth - 5; px++ {
+				canvas.Set(px, textStartY + 10, black)
+			}
+			textStartY += 20
+		}
+		
+		// Draw vertical text representation (simplified - shows as vertical dots)
+		textCenterX := bubbleX + bubbleWidth/2
+		for j, r := range []rune(text) {
+			if j >= maxChars {
+				break
+			}
+			// Draw small block for each character
+			charY := textStartY + j*charHeight
+			if charY+charHeight > bubbleY+bubbleHeight-5 {
+				break
+			}
+			// Simple character representation
+			for cy := 0; cy < 10; cy++ {
+				for cx := 0; cx < 10; cx++ {
+					// Create a dot pattern based on character
+					if (r+rune(cx)+rune(cy))%3 == 0 {
+						canvas.Set(textCenterX-5+cx, charY+cy, black)
+					}
+				}
+			}
 		}
 	}
 }
