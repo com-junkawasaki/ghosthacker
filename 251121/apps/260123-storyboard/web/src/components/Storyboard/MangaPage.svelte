@@ -3,11 +3,18 @@
 	import MangaPanel from './MangaPanel.svelte';
 	import { createEventDispatcher } from 'svelte';
 
-	let { panels = [], pageNumber = 1, episodeId = '', storyboardPath = '' } = $props<{
+	let { 
+		panels = [], 
+		pageNumber = 1, 
+		episodeId = '', 
+		storyboardPath = '',
+		selectedPanel = null
+	} = $props<{
 		panels: Panel[];
 		pageNumber: number;
 		episodeId?: string;
 		storyboardPath?: string;
+		selectedPanel?: { pageNumber: number, panel: number } | null;
 	}>();
 
 	const dispatch = createEventDispatcher();
@@ -76,7 +83,9 @@
 							{panel}
 							{episodeId}
 							{storyboardPath}
+							selected={selectedPanel?.pageNumber === panel.pageNumber && selectedPanel?.panel === panel.panel}
 							on:update={(e) => handleUpdate(panel.panel, e.detail)}
+							on:selectPanel={(e) => dispatch('selectPanel', e.detail)}
 						/>
 						<div class="resize-handle" onmousedown={(e) => {
 							const startX = e.clientX;
@@ -103,7 +112,9 @@
 						{panel}
 						{episodeId}
 						{storyboardPath}
+						selected={selectedPanel?.pageNumber === panel.pageNumber && selectedPanel?.panel === panel.panel}
 						on:update={(e) => handleUpdate(panel.panel, e.detail)}
+						on:selectPanel={(e) => dispatch('selectPanel', e.detail)}
 					/>
 				{/each}
 			</div>

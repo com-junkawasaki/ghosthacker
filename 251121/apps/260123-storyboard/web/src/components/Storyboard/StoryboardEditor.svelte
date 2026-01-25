@@ -3,6 +3,10 @@
 	import { getEpisodes, getEpisodePanels, storyboardClient, streamUpdates } from '$lib/client/storyboard-client';
 	import StoryboardPage from './StoryboardPage.svelte';
 	import MangaEditor from './MangaEditor.svelte';
+	import MangaSidebar from './MangaSidebar.svelte';
+	import { MANGA_TEMPLATES, applyTemplate } from '$lib/manga-layouts';
+	import { PanelDataSchema, MangaLayoutSchema } from '$lib/gen/proto/storyboard_pb';
+	import { create } from '@bufbuild/protobuf';
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
 
 	let episodes: Array<{ id: string; title: string; totalPages: number }> = $state([]);
@@ -11,6 +15,7 @@
 	let loading = $state(false);
 	let error = $state('');
 	let selectedPage = $state(1);
+	let selectedPanel = $state<{ pageNumber: number, panel: number } | null>(null);
 	
 	const sessionId = Math.random().toString(36).substring(2, 15);
 
@@ -179,6 +184,28 @@
 			loadPanels();
 		}
 	});
+
+	let currentPagePanels = $derived(panels.filter(p => p.pageNumber === selectedPage));
+	let templates = $derived(MANGA_TEMPLATES[currentPagePanels.length] || []);
+
+	async function handleApplyTemplate(template: any) {
+		if (currentPagePanels.length === 0) return;
+
+		const newPanelLayouts = applyTemplate(currentPagePanels, template);
+		
+		const firstPanel = currentPagePanels[0];
+		if (!firstPanel) return;
+
+		const updatedData = create(PanelDataSchema, {
+			...firstPanel.data,
+			mangaLayout: create(MangaLayoutSchema, {
+				panels: newPanelLayouts as any[],
+				texts: firstPanel.data?.mangaLayout?.texts || []
+			})
+		} as any);
+
+		await handlePanelUpdate(firstPanel.pageNumber, firstPanel.panel, updatedData);
+	}
 </script>
 
 <div class="storyboard-editor">
@@ -224,11 +251,15 @@
 					{panels}
 					episodeId={selectedEpisode}
 					storyboardPath={storyboardPath}
+					{selectedPanel}
 					on:update={({ detail }) =>
 						handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
 					on:pageChange={({ detail }) => {
 						console.log('[StoryboardEditor] pageChange event received:', detail);
 						selectedPage = detail;
+					}}
+					on:selectPanel={({ detail }) => {
+						selectedPanel = detail;
 					}}
 				/>
 			</div>
@@ -238,8 +269,21 @@
 					episodeId={selectedEpisode}
 					{storyboardPath}
 					bind:selectedPage
+					{selectedPanel}
 					on:update={({ detail }) =>
 						handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
+					on:selectPanel={({ detail }) => {
+						selectedPanel = detail;
+					}}
+				/>
+			</div>
+			<div class="sidebar-view">
+				<MangaSidebar 
+					{templates} 
+					{selectedPanel}
+					{panels}
+					onAccept={handleApplyTemplate}
+					onUpdatePanel={(page, panel, data) => handlePanelUpdate(page, panel, data)}
 				/>
 			</div>
 		</div>
@@ -275,10 +319,18 @@
 	}
 
 	.manga-view {
-		flex: 1;
+		flex: 2; /* Give more space to the canvas */
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
+	}
+
+	.sidebar-view {
+		width: 300px;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		border-left: 1px solid #ddd;
 	}
 
 	.editor-header {
