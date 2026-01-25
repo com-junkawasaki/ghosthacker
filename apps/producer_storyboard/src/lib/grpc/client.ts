@@ -1,11 +1,11 @@
 /**
- * Connect-Web gRPC Client for Novel Service
- * Client for calling novel grpc-go service via Connect protocol
+ * Connect-Web gRPC Client
+ * Client for calling grpc-go service via Connect protocol
  */
 import { browser } from '$app/environment';
 import { createClient } from '@connectrpc/connect';
 import { createConnectTransport } from '@connectrpc/connect-web';
-import { NovelService } from '../grpc/generated/novel/v1/novel_service_pb';
+import { StoryboardService } from './generated/storyboard/v1/storyboard_service_pb';
 
 // Get gRPC API URL
 const grpcApiUrl = browser
@@ -57,4 +57,5 @@ function extractOrgIdFromPath(): string | null {
 }
 
 // Create client
-export const novelClient = createClient(NovelService, transport);
+export const grpcClient = createClient(StoryboardService, transport);
+

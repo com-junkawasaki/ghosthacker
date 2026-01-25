@@ -8,6 +8,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
@@ -27,6 +28,14 @@ func main() {
 	s.AddTool(mcp.NewTool("generate_all_missing_aria_prompts",
 		mcp.WithDescription("Generate ARIA Cinematic Base prompts for all panels missing sketches in the storyboard."),
 	), handleGenerateAllMissingAriaPrompts)
+
+	s.AddTool(mcp.NewTool("register_generated_image",
+		mcp.WithDescription("Register a generated image to a specific panel and move it to the correct directory."),
+	), handleRegisterGeneratedImage)
+
+	s.AddTool(mcp.NewTool("sync_storyboard_data",
+		mcp.WithDescription("Sync and validate the entire storyboard JSON-LD and its referenced episode files."),
+	), handleSyncStoryboardData)
 
 	// Run as stdio server
 	if err := server.ServeStdio(s); err != nil {
@@ -226,5 +235,143 @@ func handleGenerateAllMissingAriaPrompts(ctx context.Context, req mcp.CallToolRe
 
 	return &mcp.CallToolResult{
 		Content: []mcp.Content{mcp.TextContent{Type: "text", Text: fmt.Sprintf("Successfully generated and saved %d missing prompts using ARIA Cinematic Base.", count)}},
+	}, nil
+}
+
+func handleRegisterGeneratedImage(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	args := req.Params.Arguments.(map[string]interface{})
+	epID, _ := args["episode_id"].(string)
+	pageNum, _ := args["page_number"].(float64)
+	panelIdx, _ := args["panel_index"].(float64)
+	tempPath, _ := args["temp_image_path"].(string)
+
+	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
+	if workspaceRoot == "" {
+		workspaceRoot = "../../../.."
+	}
+
+	// 1. Determine target path
+	now := time.Now()
+	timestamp := now.Format("20060102_150405")
+	
+	targetDir := filepath.Join(workspaceRoot, "251121/images/episodes", epID, "pages", fmt.Sprintf("%d", int(pageNum)))
+	if err := os.MkdirAll(targetDir, 0755); err != nil {
+		return nil, fmt.Errorf("failed to create target directory: %w", err)
+	}
+
+	fileName := fmt.Sprintf("panel_%d_%s.png", int(panelIdx)+1, timestamp)
+	targetPath := filepath.Join(targetDir, fileName)
+
+	// 2. Move image
+	if err := os.Rename(tempPath, targetPath); err != nil {
+		// Try copy if rename fails (e.g. across filesystems)
+		input, err := os.ReadFile(tempPath)
+		if err != nil {
+			return nil, fmt.Errorf("failed to read temp image: %w", err)
+		}
+		if err := os.WriteFile(targetPath, input, 0644); err != nil {
+			return nil, fmt.Errorf("failed to write target image: %w", err)
+		}
+		os.Remove(tempPath)
+	}
+
+	// 3. Update JSON-LD (Episode file)
+	// First find the episode source file from storyboard.jsonld
+	storyboardPath := filepath.Join(workspaceRoot, "251121/storyboard.jsonld")
+	sbData, _ := os.ReadFile(storyboardPath)
+	var storyboard map[string]interface{}
+	json.Unmarshal(sbData, &storyboard)
+
+	episodes := storyboard["gh:episodes"].([]interface{})
+	var sourceFile string
+	for _, e := range episodes {
+		ep := e.(map[string]interface{})
+		if ep["gh:episodeId"].(string) == epID {
+			sourceFile, _ = ep["gh:sourceFile"].(string)
+			break
+		}
+	}
+
+	if sourceFile == "" {
+		return nil, fmt.Errorf("episode %s not found in storyboard", epID)
+	}
+
+	epPath := filepath.Join(workspaceRoot, "251121", sourceFile)
+	epData, err := os.ReadFile(epPath)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read episode file: %w", err)
+	}
+
+	var episode map[string]interface{}
+	json.Unmarshal(epData, &episode)
+
+	pages := episode["gh:pages"].([]interface{})
+	for _, pg := range pages {
+		page := pg.(map[string]interface{})
+		if int(page["gh:pageNumber"].(float64)) == int(pageNum) {
+			panels := page["gh:panels"].([]interface{})
+			if int(panelIdx) < len(panels) {
+				panel := panels[int(panelIdx)].(map[string]interface{})
+				relPath := fmt.Sprintf("/images/episodes/%s/pages/%d/%s", epID, int(pageNum), fileName)
+				panel["gh:generatedImageUrl"] = relPath
+				panel["gh:imageUrl"] = relPath
+			}
+			break
+		}
+	}
+
+	updatedEpData, _ := json.MarshalIndent(episode, "", "  ")
+	os.WriteFile(epPath, updatedEpData, 0644)
+
+	return &mcp.CallToolResult{
+		Content: []mcp.Content{mcp.TextContent{Type: "text", Text: fmt.Sprintf("Successfully registered image to %s Page %d Panel %d. Path: %s", epID, int(pageNum), int(panelIdx), targetPath)}},
+	}, nil
+}
+
+func handleSyncStoryboardData(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
+	if workspaceRoot == "" {
+		workspaceRoot = "../../../.."
+	}
+
+	storyboardPath := filepath.Join(workspaceRoot, "251121/storyboard.jsonld")
+	sbData, err := os.ReadFile(storyboardPath)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read storyboard: %w", err)
+	}
+
+	var storyboard map[string]interface{}
+	if err := json.Unmarshal(sbData, &storyboard); err != nil {
+		return nil, fmt.Errorf("failed to parse storyboard: %w", err)
+	}
+
+	episodes := storyboard["gh:episodes"].([]interface{})
+	report := []string{"Storyboard Integrity Report:"}
+
+	for _, e := range episodes {
+		epRef := e.(map[string]interface{})
+		epID := epRef["gh:episodeId"].(string)
+		sourceFile := epRef["gh:sourceFile"].(string)
+		epPath := filepath.Join(workspaceRoot, "251121", sourceFile)
+
+		if _, err := os.Stat(epPath); os.IsNotExist(err) {
+			report = append(report, fmt.Sprintf("❌ %s: Source file missing at %s", epID, sourceFile))
+			continue
+		}
+
+		epData, _ := os.ReadFile(epPath)
+		var episode map[string]interface{}
+		if err := json.Unmarshal(epData, &episode); err != nil {
+			report = append(report, fmt.Sprintf("❌ %s: Failed to parse JSON-LD", epID))
+			continue
+		}
+
+		// Basic validation
+		pages := episode["gh:pages"].([]interface{})
+		report = append(report, fmt.Sprintf("✅ %s: %d pages found", epID, len(pages)))
+	}
+
+	return &mcp.CallToolResult{
+		Content: []mcp.Content{mcp.TextContent{Type: "text", Text: strings.Join(report, "\n")}},
 	}, nil
 }

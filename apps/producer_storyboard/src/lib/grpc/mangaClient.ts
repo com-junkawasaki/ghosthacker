@@ -5,7 +5,7 @@
 import { browser } from '$app/environment';
 import { createClient } from '@connectrpc/connect';
 import { createConnectTransport } from '@connectrpc/connect-web';
-import { MangaService } from '../grpc/generated/manga/v1/manga_service_pb';
+import { MangaService } from './generated/manga/v1/manga_service_pb';
 
 // Get gRPC API URL
 const grpcApiUrl = browser
