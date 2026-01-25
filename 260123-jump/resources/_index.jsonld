@@ -1,0 +1,1185 @@
+{
+  "@context": {
+    "gh": "https://ghosthacker.gftd.ai/ns/"
+  },
+  "@id": "gh:resourceIndex",
+  "@type": [
+    "gh:Index"
+  ],
+  "gh:byId": {
+    "act:2-signs": "episodes/260123-cschool-privacy/acts/act-2-signs.jsonld",
+    "act:3-collapse": "episodes/260123-cschool-privacy/acts/act-3-collapse.jsonld",
+    "act:4-rescue": "episodes/260123-cschool-privacy/acts/act-4-rescue.jsonld",
+    "act:5-countermeasures": "episodes/260123-cschool-privacy/acts/act-5-countermeasures.jsonld",
+    "act:6-ghost-battle": "episodes/260123-cschool-privacy/acts/act-6-ghost-battle.jsonld",
+    "act:7-daemon-battle": "episodes/260123-cschool-privacy/acts/act-7-daemon-battle.jsonld",
+    "act:8-resolution": "episodes/260123-cschool-privacy/acts/act-8-resolution.jsonld",
+    "character:Akira": "characters/Akira/profile.jsonld",
+    "character:AokiReina": "characters/AokiReina/profile.jsonld",
+    "character:Classmate_A": "characters/Classmate_A/profile.jsonld",
+    "character:Classmate_B": "characters/Classmate_B/profile.jsonld",
+    "character:Classmate_C": "characters/Classmate_C/profile.jsonld",
+    "character:EndoRisa": "characters/EndoRisa/profile.jsonld",
+    "character:HERO": "characters/HERO/profile.jsonld",
+    "character:HomeroomTeacher": "characters/HomeroomTeacher/profile.jsonld",
+    "character:Kaname": "characters/Kaname/profile.jsonld",
+    "character:Kota": "characters/Kota/profile.jsonld",
+    "character:KurodaMasahiko": "characters/KurodaMasahiko/profile.jsonld",
+    "character:Matsuda": "characters/Matsuda/profile.jsonld",
+    "character:Mei": "characters/Mei/profile.jsonld",
+    "character:MizukiShinji": "characters/MizukiShinji/profile.jsonld",
+    "character:NakamuraShunsuke": "characters/NakamuraShunsuke/profile.jsonld",
+    "character:Nei": "characters/Nei/profile.jsonld",
+    "character:NeiMiddleSchool": "characters/NeiMiddleSchool/profile.jsonld",
+    "character:NeiPuni": "characters/NeiPuni/profile.jsonld",
+    "character:President": "characters/President/profile.jsonld",
+    "character:Ren": "characters/Ren/profile.jsonld",
+    "character:RenMiddleSchool": "characters/RenMiddleSchool/profile.jsonld",
+    "character:Saki": "characters/Saki/profile.jsonld",
+    "character:SasakiKenta": "characters/SasakiKenta/profile.jsonld",
+    "character:Sato": "characters/Sato/profile.jsonld",
+    "character:ShiraishiYuko": "characters/ShiraishiYuko/profile.jsonld",
+    "character:Shouta": "characters/Shouta/profile.jsonld",
+    "character:Takeru": "characters/Takeru/profile.jsonld",
+    "character:TamuraSeiichi": "characters/TamuraSeiichi/profile.jsonld",
+    "character:YamashitaTsuyoshi": "characters/YamashitaTsuyoshi/profile.jsonld",
+    "character:Yasumoto": "characters/Yasumoto/profile.jsonld",
+    "character:Yuto": "characters/Yuto/profile.jsonld",
+    "chat:18k7zdx5rvl": "chat_history/session_18k7zdx5rvl.jsonld",
+    "chat:1hbkpop8y89": "chat_history/session_1hbkpop8y89.jsonld",
+    "chat:1xqqknfqf3i": "chat_history/session_1xqqknfqf3i.jsonld",
+    "chat:2im8ueez1i7": "chat_history/session_2im8ueez1i7.jsonld",
+    "chat:2jxez2p21oo": "chat_history/session_2jxez2p21oo.jsonld",
+    "chat:2yu6843426s": "chat_history/session_2yu6843426s.jsonld",
+    "chat:3q61g47yp6a": "chat_history/session_3q61g47yp6a.jsonld",
+    "chat:5hjpsrpduju": "chat_history/session_5hjpsrpduju.jsonld",
+    "chat:5lpudv37dyd": "chat_history/session_5lpudv37dyd.jsonld",
+    "chat:8wuxym7nic": "chat_history/session_8wuxym7nic.jsonld",
+    "chat:gl2u4uw8ab": "chat_history/session_gl2u4uw8ab.jsonld",
+    "chat:iex31j3ptd": "chat_history/session_iex31j3ptd.jsonld",
+    "chat:jboxr5chv2": "chat_history/session_jboxr5chv2.jsonld",
+    "chat:juxfomj4b1": "chat_history/session_juxfomj4b1.jsonld",
+    "chat:k28ciyviyk": "chat_history/session_k28ciyviyk.jsonld",
+    "chat:mx34fvkjmnp": "chat_history/session_mx34fvkjmnp.jsonld",
+    "chat:o373zz51wki": "chat_history/session_o373zz51wki.jsonld",
+    "chat:ra1ka8ewhs": "chat_history/session_ra1ka8ewhs.jsonld",
+    "chat:s70yhgy4brm": "chat_history/session_s70yhgy4brm.jsonld",
+    "chat:ssw1ajhc6kg": "chat_history/session_ssw1ajhc6kg.jsonld",
+    "chat:vvmggu9gr1": "chat_history/session_vvmggu9gr1.jsonld",
+    "company:DaimonConstruction": "organizations/DaimonConstruction/profile.jsonld",
+    "company:KojimaLogistics": "organizations/KojimaLogistics/profile.jsonld",
+    "company:TokaiSecurities": "organizations/TokaiSecurities/profile.jsonld",
+    "env:cschool-classroom": "environments/cschool-classroom/profile.jsonld",
+    "env:cschool-consult": "environments/cschool-consult/profile.jsonld",
+    "env:cschool-exterior-dusk": "environments/cschool-exterior-dusk/profile.jsonld",
+    "env:cschool-hallway": "environments/cschool-hallway/profile.jsonld",
+    "env:cschool-virtual-campus": "environments/cschool-virtual-campus/profile.jsonld",
+    "env:cyberspace-title": "environments/cyberspace-title/profile.jsonld",
+    "env:elite-school-campus": "environments/elite-school-campus/profile.jsonld",
+    "env:evolution-nature": "environments/evolution-nature/profile.jsonld",
+    "env:finance-hq": "environments/finance-hq/profile.jsonld",
+    "env:historical-montage": "environments/historical-montage/profile.jsonld",
+    "env:home-desk": "environments/home-desk/profile.jsonld",
+    "env:intertitle-black": "environments/intertitle-black/profile.jsonld",
+    "env:kamata-daimon-office": "environments/kamata-daimon-office/profile.jsonld",
+    "env:kamata-street-evening": "environments/kamata-street-evening/profile.jsonld",
+    "env:logistics-warehouse": "environments/logistics-warehouse/profile.jsonld",
+    "env:meeting-neutral": "environments/meeting-neutral/profile.jsonld",
+    "env:middle-school-classroom": "environments/middle-school-classroom/profile.jsonld",
+    "env:middle-school-rooftop": "environments/middle-school-rooftop/profile.jsonld",
+    "env:news-hacker-board": "environments/news-hacker-board/profile.jsonld",
+    "env:quiet-room": "environments/quiet-room/profile.jsonld",
+    "env:ren-office": "environments/ren-office/profile.jsonld",
+    "env:smartphone-screen": "environments/smartphone-screen/profile.jsonld",
+    "env:sns-timeline": "environments/sns-timeline/profile.jsonld",
+    "env:station-night-street": "environments/station-night-street/profile.jsonld",
+    "env:street-day": "environments/street-day/profile.jsonld",
+    "env:tokyo-2026-aerial": "environments/tokyo-2026-aerial/profile.jsonld",
+    "family:Mizuki": "organizations/MizukiFamily/profile.jsonld",
+    "gh:environment/ar-vision": "environments/ar_vision.jsonld",
+    "gh:environment/daimon-office": "environments/daimon_office.jsonld",
+    "gh:environment/rens-office": "environments/rens_office.jsonld",
+    "gh:environment/tokyo-2026": "environments/tokyo_2026.jsonld",
+    "gh:generationPrompts/episode01": "generation_prompts.jsonld",
+    "gh:org/Cschool": "organizations/Cschool/profile.jsonld",
+    "gh:props/furniture": "props/furniture.jsonld",
+    "gh:script/episode01-v3": "manga_script.jsonld",
+    "gh:storyboard/master-season1": "storyboard.jsonld",
+    "org:KounanMiddleSchool": "organizations/KounanMiddleSchool/profile.jsonld",
+    "org:TokyoTechHighSchool": "organizations/TokyoTechHighSchool/profile.jsonld"
+  },
+  "gh:byNumber": {
+    "act:260123-cschool-privacy:2": "act:2-signs",
+    "act:260123-cschool-privacy:3": "act:3-collapse",
+    "act:260123-cschool-privacy:4": "act:4-rescue",
+    "act:260123-cschool-privacy:5": "act:5-countermeasures",
+    "act:260123-cschool-privacy:6": "act:6-ghost-battle",
+    "act:260123-cschool-privacy:7": "act:7-daemon-battle",
+    "act:260123-cschool-privacy:8": "act:8-resolution"
+  },
+  "gh:bySlug": {},
+  "gh:metadata": {
+    "act:2-signs": {
+      "@id": "act:2-signs",
+      "@type": [
+        "gh:Act",
+        "prov:Entity"
+      ],
+      "title": "異変の兆候",
+      "number": 2,
+      "parentId": "260123-cschool-privacy",
+      "references": [
+        "act:2-signs",
+        "gh:Act",
+        "prov:Entity",
+        "gh:speaker",
+        "gh:environment"
+      ]
+    },
+    "act:3-collapse": {
+      "@id": "act:3-collapse",
+      "@type": [
+        "gh:Act",
+        "prov:Entity"
+      ],
+      "title": "崩壊",
+      "number": 3,
+      "parentId": "260123-cschool-privacy",
+      "references": [
+        "act:3-collapse",
+        "gh:speaker",
+        "gh:environment",
+        "gh:Act",
+        "prov:Entity"
+      ]
+    },
+    "act:4-rescue": {
+      "@id": "act:4-rescue",
+      "@type": [
+        "gh:Act",
+        "prov:Entity"
+      ],
+      "title": "救いの手",
+      "number": 4,
+      "parentId": "260123-cschool-privacy",
+      "references": [
+        "act:4-rescue",
+        "gh:Act",
+        "prov:Entity",
+        "gh:speaker",
+        "gh:environment"
+      ]
+    },
+    "act:5-countermeasures": {
+      "@id": "act:5-countermeasures",
+      "@type": [
+        "gh:Act",
+        "prov:Entity"
+      ],
+      "title": "対策",
+      "number": 5,
+      "parentId": "260123-cschool-privacy",
+      "references": [
+        "act:5-countermeasures",
+        "gh:environment",
+        "gh:speaker",
+        "gh:Act",
+        "prov:Entity"
+      ]
+    },
+    "act:6-ghost-battle": {
+      "@id": "act:6-ghost-battle",
+      "@type": [
+        "gh:Act",
+        "prov:Entity"
+      ],
+      "title": "Ghost説明＋バトル",
+      "number": 6,
+      "parentId": "260123-cschool-privacy",
+      "references": [
+        "act:6-ghost-battle",
+        "gh:Act",
+        "prov:Entity",
+        "gh:environment",
+        "gh:speaker"
+      ]
+    },
+    "act:7-daemon-battle": {
+      "@id": "act:7-daemon-battle",
+      "@type": [
+        "gh:Act",
+        "prov:Entity"
+      ],
+      "title": "Daemonバトル",
+      "number": 7,
+      "parentId": "260123-cschool-privacy",
+      "references": [
+        "act:7-daemon-battle",
+        "gh:environment",
+        "gh:speaker",
+        "gh:Act",
+        "prov:Entity"
+      ]
+    },
+    "act:8-resolution": {
+      "@id": "act:8-resolution",
+      "@type": [
+        "gh:Act",
+        "prov:Entity"
+      ],
+      "title": "決意",
+      "number": 8,
+      "parentId": "260123-cschool-privacy",
+      "references": [
+        "act:8-resolution",
+        "gh:speaker",
+        "gh:environment",
+        "gh:Act",
+        "prov:Entity"
+      ]
+    },
+    "character:Akira": {
+      "@id": "character:Akira",
+      "title": "黒川 亮 (Akira Kurokawa)",
+      "references": [
+        "character:Akira"
+      ]
+    },
+    "character:AokiReina": {
+      "@id": "character:AokiReina",
+      "title": "青木 玲奈 (Reina Aoki)",
+      "references": [
+        "character:AokiReina",
+        "company:TokaiSecurities",
+        "gh:Character"
+      ]
+    },
+    "character:Classmate_A": {
+      "@id": "character:Classmate_A",
+      "title": "田中 健 (Ken Tanaka)",
+      "references": [
+        "character:Classmate_A"
+      ]
+    },
+    "character:Classmate_B": {
+      "@id": "character:Classmate_B",
+      "title": "佐藤 莉子 (Riko Sato)",
+      "references": [
+        "character:Classmate_B"
+      ]
+    },
+    "character:Classmate_C": {
+      "@id": "character:Classmate_C",
+      "title": "鈴木 翼 (Tsubasa Suzuki)",
+      "references": [
+        "character:Classmate_C"
+      ]
+    },
+    "character:EndoRisa": {
+      "@id": "character:EndoRisa",
+      "title": "遠藤 理沙 (Risa Endo)",
+      "references": [
+        "character:EndoRisa",
+        "gh:Character",
+        "company:KojimaLogistics"
+      ]
+    },
+    "character:HERO": {
+      "@id": "character:HERO",
+      "title": "佐藤 ヒロシ (Hiroshi Sato)",
+      "references": [
+        "character:HERO",
+        "gh:actorTeam/seigi-hero"
+      ]
+    },
+    "character:HomeroomTeacher": {
+      "@id": "character:HomeroomTeacher",
+      "title": "高橋 先生 (Mr. Takahashi)",
+      "references": [
+        "character:HomeroomTeacher"
+      ]
+    },
+    "character:Kaname": {
+      "@id": "character:Kaname",
+      "title": "水城 要 (Kaname Mizuki)",
+      "references": [
+        "character:Kaname"
+      ]
+    },
+    "character:Kota": {
+      "@id": "character:Kota",
+      "title": "平松 コータ (Kota Hiramatsu)",
+      "references": [
+        "character:Kota"
+      ]
+    },
+    "character:KurodaMasahiko": {
+      "@id": "character:KurodaMasahiko",
+      "title": "黒田 雅彦 (Masahiko Kuroda)",
+      "references": [
+        "character:KurodaMasahiko",
+        "gh:Character",
+        "company:TokaiSecurities"
+      ]
+    },
+    "character:Matsuda": {
+      "@id": "character:Matsuda",
+      "title": "松田 ヨシ子 (Yoshiko Matsuda)",
+      "references": [
+        "character:Matsuda"
+      ]
+    },
+    "character:Mei": {
+      "@id": "character:Mei",
+      "title": "桜庭 メイ (Mei Sakuraba)",
+      "references": [
+        "character:Mei"
+      ]
+    },
+    "character:MizukiShinji": {
+      "@id": "character:MizukiShinji",
+      "title": "水城 慎司 (Shinji Mizuki)",
+      "references": [
+        "character:MizukiShinji",
+        "gh:Character"
+      ]
+    },
+    "character:NakamuraShunsuke": {
+      "@id": "character:NakamuraShunsuke",
+      "title": "中村 俊介 (Shunsuke Nakamura)",
+      "references": [
+        "character:NakamuraShunsuke",
+        "gh:Character",
+        "company:TokaiSecurities"
+      ]
+    },
+    "character:Nei": {
+      "@id": "character:Nei",
+      "title": "Nei",
+      "references": [
+        "character:Nei"
+      ]
+    },
+    "character:NeiMiddleSchool": {
+      "@id": "character:NeiMiddleSchool",
+      "title": "Nei - 中学時代",
+      "references": [
+        "character:NeiMiddleSchool"
+      ]
+    },
+    "character:NeiPuni": {
+      "@id": "character:NeiPuni",
+      "title": "Nei (Puni)",
+      "references": [
+        "character:NeiPuni"
+      ]
+    },
+    "character:President": {
+      "@id": "character:President",
+      "title": "大門 五郎 (Goro Daimon)",
+      "references": [
+        "character:President"
+      ]
+    },
+    "character:Ren": {
+      "@id": "character:Ren",
+      "title": "沼野 蓮 (Ren Numano)",
+      "references": [
+        "character:Ren"
+      ]
+    },
+    "character:RenMiddleSchool": {
+      "@id": "character:RenMiddleSchool",
+      "title": "沼野 蓮 (Ren Numano) - 中学時代",
+      "references": [
+        "character:RenMiddleSchool"
+      ]
+    },
+    "character:Saki": {
+      "@id": "character:Saki",
+      "title": "水野 サキ (Saki Mizuno)",
+      "references": [
+        "character:Saki"
+      ]
+    },
+    "character:SasakiKenta": {
+      "@id": "character:SasakiKenta",
+      "title": "佐々木 健太 (Kenta Sasaki)",
+      "references": [
+        "character:SasakiKenta",
+        "gh:Character",
+        "company:KojimaLogistics"
+      ]
+    },
+    "character:Sato": {
+      "@id": "character:Sato",
+      "title": "佐藤 健太 (Kenta Sato)",
+      "references": [
+        "character:Sato"
+      ]
+    },
+    "character:ShiraishiYuko": {
+      "@id": "character:ShiraishiYuko",
+      "title": "白石 悠子 (Yuko Shiraishi)",
+      "references": [
+        "character:ShiraishiYuko",
+        "gh:Character",
+        "company:TokaiSecurities"
+      ]
+    },
+    "character:Shouta": {
+      "@id": "character:Shouta",
+      "title": "大門 翔太 (Shouta Daimon)",
+      "references": [
+        "character:Shouta"
+      ]
+    },
+    "character:Takeru": {
+      "@id": "character:Takeru",
+      "title": "赤羽 猛 (Takeru Akabane)",
+      "references": [
+        "character:Takeru"
+      ]
+    },
+    "character:TamuraSeiichi": {
+      "@id": "character:TamuraSeiichi",
+      "title": "田村 誠一 (Seiichi Tamura)",
+      "references": [
+        "character:TamuraSeiichi",
+        "gh:Character",
+        "company:KojimaLogistics"
+      ]
+    },
+    "character:YamashitaTsuyoshi": {
+      "@id": "character:YamashitaTsuyoshi",
+      "title": "山下 剛 (Tsuyoshi Yamashita)",
+      "references": [
+        "character:YamashitaTsuyoshi",
+        "company:KojimaLogistics",
+        "gh:Character"
+      ]
+    },
+    "character:Yasumoto": {
+      "@id": "character:Yasumoto",
+      "title": "安本 健治 (Kenji Yasumoto)",
+      "references": [
+        "character:Yasumoto"
+      ]
+    },
+    "character:Yuto": {
+      "@id": "character:Yuto",
+      "title": "佐藤 勇人 (Yuto Sato)",
+      "references": [
+        "character:Yuto"
+      ]
+    },
+    "chat:18k7zdx5rvl": {
+      "@id": "chat:18k7zdx5rvl",
+      "title": "[AUTO-PILOT START] Goal: エピソード...",
+      "references": [
+        "chat:18k7zdx5rvl",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:1hbkpop8y89": {
+      "@id": "chat:1hbkpop8y89",
+      "title": "[AUTO-PILOT START] Goal: 今のストー...",
+      "references": [
+        "chat:1hbkpop8y89",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:1xqqknfqf3i": {
+      "@id": "chat:1xqqknfqf3i",
+      "title": "[AUTO-PILOT START] Goal: エピソード...",
+      "references": [
+        "chat:1xqqknfqf3i",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:2im8ueez1i7": {
+      "@id": "chat:2im8ueez1i7",
+      "title": "✅ Response received in 1m5.748...",
+      "references": [
+        "chat:2im8ueez1i7",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:2jxez2p21oo": {
+      "@id": "chat:2jxez2p21oo",
+      "title": "[AUTO-PILOT START] Goal: エピソード...",
+      "references": [
+        "chat:2jxez2p21oo",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:2yu6843426s": {
+      "@id": "chat:2yu6843426s",
+      "title": "[AUTO-PILOT START] Goal: エピソード...",
+      "references": [
+        "chat:2yu6843426s",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:3q61g47yp6a": {
+      "@id": "chat:3q61g47yp6a",
+      "title": "[AUTO-PILOT START] Goal: 今のストー...",
+      "references": [
+        "chat:3q61g47yp6a",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:5hjpsrpduju": {
+      "@id": "chat:5hjpsrpduju",
+      "title": "[AUTO-PILOT START] Goal: 今のストー...",
+      "references": [
+        "chat:5hjpsrpduju",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:5lpudv37dyd": {
+      "@id": "chat:5lpudv37dyd",
+      "title": "New Conversation",
+      "references": [
+        "chat:5lpudv37dyd",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:8wuxym7nic": {
+      "@id": "chat:8wuxym7nic",
+      "title": "🚀 Requesting OpenRouter\nModel...",
+      "references": [
+        "chat:8wuxym7nic",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:gl2u4uw8ab": {
+      "@id": "chat:gl2u4uw8ab",
+      "title": "New Conversation",
+      "references": [
+        "chat:gl2u4uw8ab",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:iex31j3ptd": {
+      "@id": "chat:iex31j3ptd",
+      "title": "[AUTO-PILOT START] Goal: シネマティ...",
+      "references": [
+        "chat:iex31j3ptd",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:jboxr5chv2": {
+      "@id": "chat:jboxr5chv2",
+      "title": "New Conversation",
+      "references": [
+        "chat:jboxr5chv2",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:juxfomj4b1": {
+      "@id": "chat:juxfomj4b1",
+      "title": "[AUTO-PILOT START] Goal: 今のストー...",
+      "references": [
+        "chat:juxfomj4b1",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:k28ciyviyk": {
+      "@id": "chat:k28ciyviyk",
+      "title": "✅ Response received in 52.012s...",
+      "references": [
+        "chat:k28ciyviyk",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:mx34fvkjmnp": {
+      "@id": "chat:mx34fvkjmnp",
+      "title": "[AUTO-PILOT START] Goal: 今のストー...",
+      "references": [
+        "chat:mx34fvkjmnp",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:o373zz51wki": {
+      "@id": "chat:o373zz51wki",
+      "title": "[AUTO-PILOT START] Goal: エピソード...",
+      "references": [
+        "chat:o373zz51wki",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:ra1ka8ewhs": {
+      "@id": "chat:ra1ka8ewhs",
+      "title": "[AUTO-PILOT START] Goal: 今のストー...",
+      "references": [
+        "chat:ra1ka8ewhs",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:s70yhgy4brm": {
+      "@id": "chat:s70yhgy4brm",
+      "title": "[AUTO-PILOT START] Goal: エピソード...",
+      "references": [
+        "chat:s70yhgy4brm",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:ssw1ajhc6kg": {
+      "@id": "chat:ssw1ajhc6kg",
+      "title": "🚀 Requesting OpenRouter\nModel...",
+      "references": [
+        "chat:ssw1ajhc6kg",
+        "gh:ChatSession"
+      ]
+    },
+    "chat:vvmggu9gr1": {
+      "@id": "chat:vvmggu9gr1",
+      "title": "[AUTO-PILOT START] Goal: エピソード...",
+      "references": [
+        "chat:vvmggu9gr1",
+        "gh:ChatSession"
+      ]
+    },
+    "company:DaimonConstruction": {
+      "@id": "company:DaimonConstruction",
+      "title": "株式会社 大門建設 (Daimon Construction Co., Ltd.)",
+      "references": [
+        "company:DaimonConstruction",
+        "gh:CompanyProfile",
+        "character:President",
+        "character:Shouta",
+        "character:Yasumoto",
+        "character:Matsuda",
+        "character:Sato",
+        "incident:260125-jump-Ransomware"
+      ]
+    },
+    "company:KojimaLogistics": {
+      "@id": "company:KojimaLogistics",
+      "title": "小島ロジスティクス株式会社 (Kojima Logistics Co., Ltd.)",
+      "references": [
+        "company:KojimaLogistics",
+        "incident:260125-jump-SupplyChain",
+        "character:KojimaYuzo",
+        "character:MiuraMasato",
+        "character:YamashitaTsuyoshi",
+        "character:TamuraSeiichi",
+        "character:SasakiKenta",
+        "character:EndoRisa",
+        "gh:CompanyProfile"
+      ]
+    },
+    "company:TokaiSecurities": {
+      "@id": "company:TokaiSecurities",
+      "title": "東海証券株式会社 (Tokai Securities Co., Ltd.)",
+      "references": [
+        "company:TokaiSecurities",
+        "character:TokaiShotaro",
+        "character:KurodaMasahiko",
+        "character:ShiraishiYuko",
+        "character:NakamuraShunsuke",
+        "character:HashimotoDaisuke",
+        "character:AokiReina",
+        "character:KimuraSho",
+        "incident:260125-jump-AccountFraud",
+        "gh:CompanyProfile"
+      ]
+    },
+    "env:cschool-classroom": {
+      "@id": "env:cschool-classroom",
+      "title": "C-school classroom",
+      "references": [
+        "env:cschool-classroom",
+        "gh:speaker",
+        "gh:environment",
+        "gh:characters"
+      ]
+    },
+    "env:cschool-consult": {
+      "@id": "env:cschool-consult",
+      "title": "C-school consultation room",
+      "references": [
+        "env:cschool-consult",
+        "gh:characters",
+        "gh:environment",
+        "gh:speaker"
+      ]
+    },
+    "env:cschool-exterior-dusk": {
+      "@id": "env:cschool-exterior-dusk",
+      "title": "C-school exterior (dusk)",
+      "references": [
+        "env:cschool-exterior-dusk",
+        "gh:speaker",
+        "gh:environment",
+        "gh:characters"
+      ]
+    },
+    "env:cschool-hallway": {
+      "@id": "env:cschool-hallway",
+      "title": "C-school hallway",
+      "references": [
+        "env:cschool-hallway",
+        "gh:speaker",
+        "gh:environment",
+        "gh:characters"
+      ]
+    },
+    "env:cschool-virtual-campus": {
+      "@id": "env:cschool-virtual-campus",
+      "title": "C-school virtual campus",
+      "references": [
+        "env:cschool-virtual-campus",
+        "gh:characters",
+        "gh:environment",
+        "gh:speaker"
+      ]
+    },
+    "env:cyberspace-title": {
+      "@id": "env:cyberspace-title",
+      "title": "Cyberspace title page",
+      "references": [
+        "env:cyberspace-title",
+        "gh:environment",
+        "gh:speaker",
+        "gh:characters"
+      ]
+    },
+    "env:elite-school-campus": {
+      "@id": "env:elite-school-campus",
+      "title": "Elite school campus",
+      "references": [
+        "env:elite-school-campus",
+        "gh:speaker",
+        "gh:characters",
+        "gh:environment"
+      ]
+    },
+    "env:evolution-nature": {
+      "@id": "env:evolution-nature",
+      "title": "Evolution nature backdrop",
+      "references": [
+        "env:evolution-nature",
+        "gh:environment",
+        "gh:speaker",
+        "gh:characters"
+      ]
+    },
+    "env:finance-hq": {
+      "@id": "env:finance-hq",
+      "title": "Financial HQ",
+      "references": [
+        "env:finance-hq",
+        "gh:environment",
+        "gh:speaker",
+        "gh:characters"
+      ]
+    },
+    "env:historical-montage": {
+      "@id": "env:historical-montage",
+      "title": "Historical montage",
+      "references": [
+        "env:historical-montage",
+        "gh:speaker",
+        "gh:characters",
+        "gh:environment"
+      ]
+    },
+    "env:home-desk": {
+      "@id": "env:home-desk",
+      "title": "Home desk",
+      "references": [
+        "env:home-desk",
+        "gh:environment",
+        "gh:characters",
+        "gh:speaker"
+      ]
+    },
+    "env:intertitle-black": {
+      "@id": "env:intertitle-black",
+      "title": "Intertitle (black)",
+      "references": [
+        "env:intertitle-black",
+        "gh:characters",
+        "gh:environment",
+        "gh:speaker"
+      ]
+    },
+    "env:kamata-daimon-office": {
+      "@id": "env:kamata-daimon-office",
+      "title": "Daimon Construction office (Kamata)",
+      "references": [
+        "env:kamata-daimon-office",
+        "gh:speaker",
+        "gh:characters",
+        "gh:environment"
+      ]
+    },
+    "env:kamata-street-evening": {
+      "@id": "env:kamata-street-evening",
+      "title": "Kamata street (evening)",
+      "references": [
+        "env:kamata-street-evening",
+        "gh:speaker",
+        "gh:characters",
+        "gh:environment"
+      ]
+    },
+    "env:logistics-warehouse": {
+      "@id": "env:logistics-warehouse",
+      "title": "Logistics warehouse",
+      "references": [
+        "env:logistics-warehouse",
+        "gh:characters",
+        "gh:speaker",
+        "gh:environment"
+      ]
+    },
+    "env:meeting-neutral": {
+      "@id": "env:meeting-neutral",
+      "title": "Neutral meeting place",
+      "references": [
+        "env:meeting-neutral",
+        "gh:environment",
+        "gh:speaker",
+        "gh:characters"
+      ]
+    },
+    "env:middle-school-classroom": {
+      "@id": "env:middle-school-classroom",
+      "title": "港南第一中学校 2年B組 教室",
+      "references": [
+        "env:middle-school-classroom",
+        "photorealistic, 8k, cinematic lighting, Japanese public middle school classroom, spring afternoon, cherry blossom petals floating through open window, warm sunlight, navy blazer school uniforms, clean and orderly desks, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air"
+      ]
+    },
+    "env:middle-school-rooftop": {
+      "@id": "env:middle-school-rooftop",
+      "title": "港南第一中学校 屋上",
+      "references": [
+        "env:middle-school-rooftop",
+        "photorealistic, 8k, cinematic lighting, Japanese school rooftop, chain-link fence, Tokyo skyline in background, sunset golden hour, spring breeze, cherry blossoms floating, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air"
+      ]
+    },
+    "env:news-hacker-board": {
+      "@id": "env:news-hacker-board",
+      "title": "News Hacker board",
+      "references": [
+        "env:news-hacker-board",
+        "gh:environment",
+        "gh:speaker",
+        "gh:characters"
+      ]
+    },
+    "env:quiet-room": {
+      "@id": "env:quiet-room",
+      "title": "Quiet room",
+      "references": [
+        "env:quiet-room",
+        "gh:characters",
+        "gh:environment",
+        "gh:speaker"
+      ]
+    },
+    "env:ren-office": {
+      "@id": "env:ren-office",
+      "title": "Ren office",
+      "references": [
+        "env:ren-office",
+        "gh:speaker",
+        "gh:characters",
+        "gh:environment"
+      ]
+    },
+    "env:smartphone-screen": {
+      "@id": "env:smartphone-screen",
+      "title": "Smartphone screen",
+      "references": [
+        "env:smartphone-screen",
+        "gh:characters",
+        "gh:environment",
+        "gh:speaker"
+      ]
+    },
+    "env:sns-timeline": {
+      "@id": "env:sns-timeline",
+      "title": "Smartphone SNS timeline",
+      "references": [
+        "env:sns-timeline",
+        "gh:speaker",
+        "gh:environment",
+        "gh:characters"
+      ]
+    },
+    "env:station-night-street": {
+      "@id": "env:station-night-street",
+      "title": "Station night street",
+      "references": [
+        "env:station-night-street",
+        "gh:characters",
+        "gh:environment",
+        "gh:speaker"
+      ]
+    },
+    "env:street-day": {
+      "@id": "env:street-day",
+      "title": "Street (daytime)",
+      "references": [
+        "env:street-day",
+        "gh:speaker",
+        "gh:characters",
+        "gh:environment"
+      ]
+    },
+    "env:tokyo-2026-aerial": {
+      "@id": "env:tokyo-2026-aerial",
+      "title": "Tokyo 2026 cityscape",
+      "references": [
+        "env:tokyo-2026-aerial",
+        "gh:characters",
+        "gh:environment",
+        "gh:speaker"
+      ]
+    },
+    "family:Mizuki": {
+      "@id": "family:Mizuki",
+      "title": "水城家 - 金融界の影の実力者",
+      "references": [
+        "family:Mizuki",
+        "character:MizukiShinji",
+        "character:Kaname",
+        "gh:FamilyProfile"
+      ]
+    },
+    "gh:environment/ar-vision": {
+      "@id": "gh:environment/ar-vision",
+      "title": "AR Vision / Ghost Realm (ARビジョン/ゴースト領域)",
+      "references": [
+        "gh:environment/ar-vision",
+        "gh:EnvironmentPrompt"
+      ]
+    },
+    "gh:environment/daimon-office": {
+      "@id": "gh:environment/daimon-office",
+      "title": "Daimon Construction Office (大門建設オフィス)",
+      "references": [
+        "gh:environment/daimon-office",
+        "gh:EnvironmentPrompt"
+      ]
+    },
+    "gh:environment/rens-office": {
+      "@id": "gh:environment/rens-office",
+      "title": "Ren's Office (レンのオフィス)",
+      "references": [
+        "gh:environment/rens-office",
+        "gh:EnvironmentPrompt"
+      ]
+    },
+    "gh:environment/tokyo-2026": {
+      "@id": "gh:environment/tokyo-2026",
+      "title": "Tokyo 2026 (東京 2026)",
+      "references": [
+        "gh:environment/tokyo-2026",
+        "gh:EnvironmentPrompt"
+      ]
+    },
+    "gh:generationPrompts/episode01": {
+      "@id": "gh:generationPrompts/episode01",
+      "references": [
+        "gh:generationPrompts/episode01",
+        "gh:pagePrompt/page:1",
+        "gh:pagePrompt/page:2",
+        "gh:pagePrompt/page:4",
+        "gh:pagePrompt/page:5",
+        "gh:pagePrompt/page:6",
+        "gh:pagePrompt/page:7",
+        "gh:pagePrompt/page:8",
+        "gh:pagePrompt/page:9",
+        "gh:pagePrompt/page:10",
+        "gh:pagePrompt/page:11",
+        "gh:pagePrompt/page:12",
+        "gh:pagePrompt/page:13",
+        "gh:pagePrompt/page:14",
+        "gh:pagePrompt/page:15",
+        "gh:pagePrompt/page:16",
+        "gh:pagePrompt/page:17",
+        "gh:GenerationPrompts"
+      ]
+    },
+    "gh:org/Cschool": {
+      "@id": "gh:org/Cschool",
+      "@type": [
+        "gh:OrganizationProfile",
+        "schema:EducationalOrganization"
+      ],
+      "title": "C高校 (C-School)",
+      "references": [
+        "gh:org/Cschool",
+        "character:HomeroomTeacher",
+        "character:Yuto",
+        "character:Akira",
+        "character:Mei",
+        "character:Saki",
+        "character:Kota",
+        "gh:OrganizationProfile",
+        "schema:EducationalOrganization"
+      ]
+    },
+    "gh:props/furniture": {
+      "@id": "gh:props/furniture",
+      "title": "Manga Props: Furniture \u0026 Major Items",
+      "references": [
+        "gh:props/furniture",
+        "gh:PropCollection",
+        "gh:prop/okamura-cruise-atlas",
+        "gh:prop/usm-haller",
+        "gh:prop/gray-steel-desk-1980s",
+        "gh:prop/fax-machine-vintage"
+      ]
+    },
+    "gh:script/episode01-v3": {
+      "@id": "gh:script/episode01-v3",
+      "references": [
+        "gh:script/episode01-v3",
+        "gh:MangaScript",
+        "Ghost Hacker: Episode 1 (v3)",
+        "page:1",
+        "page:2",
+        "gh:TitlePage",
+        "page:4",
+        "page:5",
+        "page:6",
+        "page:7",
+        "page:8",
+        "page:9",
+        "page:10",
+        "page:11",
+        "page:12",
+        "page:13",
+        "page:14",
+        "page:15",
+        "page:16",
+        "page:17"
+      ]
+    },
+    "gh:storyboard/master-season1": {
+      "@id": "gh:storyboard/master-season1",
+      "@type": [
+        "gh:MasterStoryboard",
+        "prov:Entity"
+      ],
+      "title": "Ghost Hacker Season 1: Master Storyboard",
+      "references": [
+        "gh:storyboard/master-season1",
+        "company:DaimonConstruction",
+        "company:KojimaLogistics",
+        "company:TokaiSecurities",
+        "family:Mizuki",
+        "gh:org/Cschool",
+        "env:quiet-room",
+        "env:news-hacker-board",
+        "env:cschool-consult",
+        "env:finance-hq",
+        "env:street-day",
+        "env:logistics-warehouse",
+        "env:sns-timeline",
+        "env:home-desk",
+        "env:kamata-daimon-office",
+        "env:tokyo-2026-aerial",
+        "env:intertitle-black",
+        "env:cschool-exterior-dusk",
+        "env:cschool-hallway",
+        "env:elite-school-campus",
+        "env:meeting-neutral",
+        "env:ren-office",
+        "env:cschool-virtual-campus",
+        "env:cyberspace-title",
+        "env:evolution-nature",
+        "env:kamata-street-evening",
+        "env:station-night-street",
+        "env:smartphone-screen",
+        "env:historical-montage",
+        "env:cschool-classroom",
+        "episode:arc0-1-origin",
+        "episode:260123-cschool-privacy",
+        "episode:260123-cschool-defamation",
+        "episode:260123-cschool-yami-baito",
+        "episode:260125-jump-arcA-1",
+        "episode:260125-jump-arcA-2",
+        "episode:260125-jump-arcA-3",
+        "episode:260125-jump-arcB-1",
+        "episode:260125-jump-arcB-2",
+        "episode:260125-jump-arcB-3",
+        "episode:260125-jump-arcC-1",
+        "episode:260125-jump-arcC-2",
+        "episode:260125-jump-arcC-3",
+        "episode:260125-jump-arcD-1",
+        "episode:260125-jump-arcD-2",
+        "episode:260125-jump-arcD-3",
+        "character:Ren",
+        "character:Nei",
+        "character:NeiPuni",
+        "character:Takeru",
+        "character:Kaname",
+        "character:HERO",
+        "character:Shouta",
+        "character:President",
+        "character:Yasumoto",
+        "character:Matsuda",
+        "character:Sato",
+        "character:MizukiShinji",
+        "character:YamashitaTsuyoshi",
+        "character:TamuraSeiichi",
+        "character:SasakiKenta",
+        "character:EndoRisa",
+        "character:KurodaMasahiko",
+        "character:ShiraishiYuko",
+        "character:NakamuraShunsuke",
+        "character:AokiReina",
+        "character:Yuto",
+        "character:Akira",
+        "character:Mei",
+        "character:Saki",
+        "character:Kota",
+        "character:HomeroomTeacher",
+        "character:Classmate_A",
+        "character:Classmate_B",
+        "character:Classmate_C",
+        "gh:MasterStoryboard",
+        "prov:Entity",
+        "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Emphasize detailed expressive eyes with intricate iris patterns and sharp catchlights.",
+        "Max 3 key entities per prompt (2 characters + 1 prop/ghost), no dialogue text, stable shot schema via gh:shotProperties."
+      ]
+    },
+    "org:KounanMiddleSchool": {
+      "@id": "org:KounanMiddleSchool",
+      "title": "港南第一中学校 (Kounan Daiichi Junior High School)",
+      "references": [
+        "org:KounanMiddleSchool",
+        "character:Ren",
+        "character:Nei",
+        "character:HiroshiTanaka",
+        "character:MisakiAoyama"
+      ]
+    },
+    "org:TokyoTechHighSchool": {
+      "@id": "org:TokyoTechHighSchool",
+      "@type": [
+        "gh:OrganizationProfile",
+        "schema:EducationalOrganization"
+      ],
+      "title": "都立工科高等学校 (Tokyo Metropolitan Technical High School)",
+      "references": [
+        "org:TokyoTechHighSchool",
+        "gh:OrganizationProfile",
+        "schema:EducationalOrganization",
+        "character:Takeru",
+        "character:RyoKuroda",
+        "character:ShotaHayashi",
+        "character:YuiTanaka",
+        "character:DaichiMori"
+      ]
+    }
+  }
+}
