@@ -7,6 +7,7 @@
 	import ShootingView from './ShootingView.svelte';
 	import NodeTree from './NodeTree.svelte';
 	import ChatPanel from './ChatPanel.svelte';
+	import { exportToPdf, type ExportMode } from '$lib/pdf-export';
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
 
 	let episodes: Array<{ id: string; title: string; totalPages: number }> = $state([]);
@@ -114,7 +115,6 @@
 				sessionId,
 				(update) => {
 					console.log('[StoryboardEditor] Stream update received:', update);
-					const currentId = editMode === 'episode' ? selectedEpisode : selectedArc;
 					const isRelevant = editMode === 'episode' 
 						? update.episodeId === selectedEpisode 
 						: arcs.find(a => a.id === selectedArc)?.episodeIds.includes(update.episodeId);
@@ -173,8 +173,11 @@
 			}));
 			
 			if (episodes.length > 0 && !selectedEpisode && editMode === 'episode') {
-				selectedEpisode = episodes[0].id;
-				await loadPanels();
+				const firstEpisode = episodes[0];
+				if (firstEpisode) {
+					selectedEpisode = firstEpisode.id;
+					await loadPanels();
+				}
 			}
 		} catch (err) {
 			error = err instanceof Error ? err.message : 'Failed to load episodes';
@@ -202,8 +205,11 @@
 			}));
 			
 			if (arcs.length > 0 && !selectedArc && editMode === 'arc') {
-				selectedArc = arcs[0].id;
-				await loadArcPanelsData();
+				const firstArc = arcs[0];
+				if (firstArc) {
+					selectedArc = firstArc.id;
+					await loadArcPanelsData();
+				}
 			}
 		} catch (err) {
 			error = err instanceof Error ? err.message : 'Failed to load arcs';
@@ -317,11 +323,44 @@
 	// Handle initial selection
 	$effect(() => {
 		if (editMode === 'episode' && !selectedEpisode && episodes.length > 0) {
-			selectedEpisode = episodes[0].id;
+			const firstEpisode = episodes[0];
+			if (firstEpisode) {
+				selectedEpisode = firstEpisode.id;
+			}
 		} else if (editMode === 'arc' && !selectedArc && arcs.length > 0) {
-			selectedArc = arcs[0].id;
+			const firstArc = arcs[0];
+			if (firstArc) {
+				selectedArc = firstArc.id;
+			}
 		}
 	});
+
+	// PDF Export state
+	let isExporting = $state(false);
+
+	async function handleExportPdf() {
+		if (isExporting || panels.length === 0) return;
+		
+		isExporting = true;
+		try {
+			const currentId = editMode === 'episode' ? selectedEpisode : selectedArc;
+			const currentTitle = editMode === 'episode' 
+				? episodes.find(e => e.id === currentId)?.title || currentId
+				: arcs.find(a => a.id === currentId)?.title || currentId;
+			
+			await exportToPdf({
+				panels,
+				episodeId: currentId,
+				episodeTitle: currentTitle,
+				mode: viewMode as ExportMode
+			});
+		} catch (err) {
+			console.error('PDF export failed:', err);
+			error = err instanceof Error ? err.message : 'PDF export failed';
+		} finally {
+			isExporting = false;
+		}
+	}
 </script>
 
 <div class="storyboard-editor">
@@ -399,6 +438,28 @@
 					<span class="total-pages">{episode.totalPages} pages</span>
 				{/if}
 			{/if}
+		</div>
+
+		<div class="export-controls">
+			<button 
+				class="export-btn"
+				onclick={handleExportPdf}
+				disabled={isExporting || panels.length === 0}
+				title={`Export ${viewMode} as PDF`}
+			>
+				{#if isExporting}
+					<span class="spinner"></span>
+					Exporting...
+				{:else}
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+						<polyline points="14 2 14 8 20 8"></polyline>
+						<line x1="12" y1="18" x2="12" y2="12"></line>
+						<line x1="9" y1="15" x2="15" y2="15"></line>
+					</svg>
+					PDF ({viewMode})
+				{/if}
+			</button>
 		</div>
 	</header>
 
@@ -710,5 +771,55 @@
 
 	.empty-state button:hover {
 		background: #f5f5f5;
+	}
+
+	.export-controls {
+		display: flex;
+		align-items: center;
+	}
+
+	.export-btn {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		padding: 0.4rem 0.8rem;
+		border: 1px solid #4a90e2;
+		border-radius: 4px;
+		background: #4a90e2;
+		color: white;
+		font-size: 0.85rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+
+	.export-btn:hover:not(:disabled) {
+		background: #357abd;
+		border-color: #357abd;
+	}
+
+	.export-btn:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+
+	.export-btn svg {
+		flex-shrink: 0;
+	}
+
+	.spinner {
+		display: inline-block;
+		width: 14px;
+		height: 14px;
+		border: 2px solid #ffffff;
+		border-radius: 50%;
+		border-top-color: transparent;
+		animation: spin 0.8s linear infinite;
+	}
+
+	@keyframes spin {
+		to {
+			transform: rotate(360deg);
+		}
 	}
 </style>

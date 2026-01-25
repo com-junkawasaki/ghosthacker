@@ -12,13 +12,27 @@
   "gh:appearance": {
     "gh:build": "Small and slender build.",
     "gh:eyes": "Quiet thoughtful eyes, soft catchlights.",
-    "gh:face": "16-year-old Japanese female student, quiet and thoughtful expression.",
-    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 16-year-old Japanese high school girl, twin braids, quiet expression, school uniform, holding a book.",
-    "gh:hair": "Black hair in twin braids.",
+    "gh:face": "14-year-old Japanese male student, quiet and thoughtful expression.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 14-year-old Japanese middle school boy, slim build, slightly messy hair, quiet expression, navy blazer school uniform.",
+    "gh:hair": "Slightly messy black hair.",
     "gh:style": "Photorealistic, 8k, high-end webtoon aesthetic."
   },
   "gh:slug": "Classmate_B",
-  "schema:age": 16,
-  "schema:name": "佐藤 莉子 (Riko Sato)",
-  "schema:role": "Student / Bookworm"
+  "gh:alias": "Shota",
+  "schema:age": 14,
+  "schema:name": "山本 翔太 (Shota Yamamoto)",
+  "schema:role": "Student / Quiet Observer",
+  "gh:personality": {
+    "gh:traits": ["内向的", "慎重", "観察力がある", "言葉少な"],
+    "gh:description": "普段は目立たないが、周りをよく見ている。Yutoとは席が近く、挨拶程度の仲。乗っ取り事件ではリンクを踏んでしまい、被害者でもある。"
+  },
+  "gh:arc01Role": {
+    "gh:function": "被害の連鎖を示す役。自分もリンクを踏んで被害に遭ったことを告白",
+    "gh:keyDialogue": "俺もリンク踏んだら、変なサイトに飛ばされた…",
+    "gh:emotionalArc": "不安 → 告白 → 静かな怒り"
+  },
+  "gh:relationships": [
+    {"character": "character:Yuto", "type": "席が近いクラスメイト"},
+    {"character": "character:Classmate_C", "type": "ゲーム仲間", "note": "オンラインゲームで一緒に遊ぶ"}
+  ]
 }

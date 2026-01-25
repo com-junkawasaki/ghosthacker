@@ -12,13 +12,31 @@
   "gh:appearance": {
     "gh:build": "Slim build, slightly slouched posture.",
     "gh:eyes": "Focused eyes, catchlights reflecting monitor glow.",
-    "gh:face": "16-year-old Japanese male student, slightly pale skin, focused expression.",
-    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 16-year-old Japanese high school boy, messy black hair with bangs, focused expression, school uniform, slouched posture.",
-    "gh:hair": "Messy black hair with long bangs.",
+    "gh:face": "14-year-old Japanese male student, slightly pale skin, focused expression.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 14-year-old Japanese middle school boy, messy black hair with bangs covering eyes, focused expression, navy blazer school uniform, slouched posture.",
+    "gh:hair": "Messy black hair with long bangs covering one eye.",
     "gh:style": "Photorealistic, 8k, high-end webtoon aesthetic."
   },
   "gh:slug": "Classmate_C",
-  "schema:age": 16,
+  "gh:alias": "Tsubasa",
+  "schema:age": 14,
   "schema:name": "鈴木 翼 (Tsubasa Suzuki)",
-  "schema:role": "Student / Gamer"
+  "schema:role": "Student / Gamer",
+  "gh:personality": {
+    "gh:traits": ["ゲーマー", "テック好き", "マイペース", "ネットリテラシー高め"],
+    "gh:description": "ゲームとPC が得意で、クラスの中ではネットに詳しい方。普段はマイペースだが、今回の事件では自分のアカウントまで被害を受けて動揺。実はフィッシングに気づくべきだったと自分を責めている。"
+  },
+  "gh:arc01Role": {
+    "gh:function": "被害の連鎖の深刻さを示す。ネットに詳しいはずの彼ですら引っかかった",
+    "gh:keyDialogue": "俺のアカウントもなんかおかしくなった…",
+    "gh:emotionalArc": "油断 → 被害 → 自己嫌悪"
+  },
+  "gh:relationships": [
+    {"character": "character:Yuto", "type": "ゲーム仲間", "note": "オンラインで一緒に遊んでいた"},
+    {"character": "character:Classmate_B", "type": "ゲーム仲間"}
+  ],
+  "gh:techProfile": {
+    "gh:skills": ["ゲーム", "PC操作", "動画編集"],
+    "gh:irony": "ネットに詳しいはずなのに、友達からのDMだったので疑わずにリンクを踏んでしまった"
+  }
 }

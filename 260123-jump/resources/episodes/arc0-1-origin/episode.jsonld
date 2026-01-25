@@ -2100,7 +2100,7 @@
       "gh:act": "act:3-collapse",
       "gh:pageNumber": 18,
       "gh:pageTitle": "悪口公開 - 友情崩壊",
-      "gh:panelCount": 8,
+      "gh:panelCount": 9,
       "gh:panels": [
         {
           "characters": [
@@ -2174,6 +2174,21 @@
         },
         {
           "characters": [
+            "character:Akira"
+          ],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "gh:imagePrompt": "Close Up. Japanese boy (Akira) looking hurt. Just read that Saki called him 'show-off with sneakers'. His confident expression crumbles. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:distance": "Close Up"
+          },
+          "panel": 5,
+          "shot": "Close Up",
+          "visual": "Akiraの傷ついた表情。Sakiに「スニーカーで調子乗りすぎ」と言われていたことを知り、いつもの自信が崩れる。"
+        },
+        {
+          "characters": [
             "character:Classmate_A"
           ],
           "dialogue": [
@@ -2184,14 +2199,14 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Male classmate pointing at Yuto angrily. 'This is all YOUR fault! You sent that weird link!' shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Medium Shot. Male classmate (Ken) pointing at Yuto angrily. 'This is all YOUR fault! You sent that weird link!' shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
           },
-          "panel": 5,
+          "panel": 6,
           "shot": "Medium Shot",
-          "visual": "クラスメイトAがYutoを指差して罵倒。Yutoの乗っ取られたアカウントが発端だと責める。"
+          "visual": "Ken（田中健）がYutoを指差して罵倒。Yutoの乗っ取られたアカウントが発端だと責める。"
         },
         {
           "characters": [
@@ -2204,7 +2219,7 @@
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
           },
-          "panel": 6,
+          "panel": 7,
           "shot": "Close Up",
           "visual": "言葉を失うYuto。自分が起点になった連鎖に反論できない。"
         },
@@ -2220,7 +2235,7 @@
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
           },
-          "panel": 7,
+          "panel": 8,
           "shot": "Medium Shot",
           "visual": "さっきまで仲良しだったMeiとSaki。今は顔を背け合う。壊れた友情。"
         },
@@ -2243,7 +2258,7 @@
             "gh:atmosphere": "氷のような冷たさ、罪悪感",
             "gh:distance": "Wide Shot"
           },
-          "panel": 8,
+          "panel": 9,
           "shot": "Wide Shot",
           "visual": "孤立するYuto。クラスが分断され、ギスギスした空気。全ての起点となった自分を責める。"
         },
