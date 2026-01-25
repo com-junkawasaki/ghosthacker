@@ -50,6 +50,9 @@ service StoryboardService {
   // Start autonomous agent-to-agent generation workflow
   rpc StartAutonomousGeneration(StartAutonomousGenerationRequest) returns (StartAutonomousGenerationResponse);
 
+  // Terminate a running autonomous generation workflow
+  rpc TerminateAutonomousGeneration(TerminateAutonomousGenerationRequest) returns (TerminateAutonomousGenerationResponse);
+
   // Internal: Broadcast a chat message to all connected clients (used by workers)
   rpc InternalBroadcastChatMessage(InternalBroadcastChatMessageRequest) returns (InternalBroadcastChatMessageResponse);
 }
@@ -76,6 +79,16 @@ message StartAutonomousGenerationResponse {
   string message = 2;
   string workflow_id = 3;
   string run_id = 4;
+}
+
+message TerminateAutonomousGenerationRequest {
+  string workflow_id = 1;
+  string reason = 2;
+}
+
+message TerminateAutonomousGenerationResponse {
+  bool success = 1;
+  string message = 2;
 }
 
 message InteractWithAIRequest {

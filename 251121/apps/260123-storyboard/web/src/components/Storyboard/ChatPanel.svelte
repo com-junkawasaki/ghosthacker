@@ -13,6 +13,7 @@
 	let dropContext = $state<any[]>([]);
 	let currentAgentMode = $state<'general' | 'scenario' | 'episode' | 'character' | 'cinematic' | 'dialogue' | 'a2a'>('general');
 	let isAutoPilot = $state(false);
+	let activeWorkflowId = $state<string | null>(null);
 
 	// Expose a method to trigger agent commands from outside
 	export function triggerAgent(agent: typeof currentAgentMode, initialPrompt?: string) {
@@ -143,6 +144,7 @@
 			});
 
 			if (res.success) {
+				activeWorkflowId = res.workflowId;
 				messages = [...messages, { 
 					role: 'assistant', 
 					content: `Autonomous generation started. Workflow ID: ${res.workflowId}. Agents are now collaborating...` 
@@ -158,20 +160,67 @@
 			isAutoPilot = false;
 		}
 	}
+
+	async function stopAutoPilot() {
+		if (!activeWorkflowId) return;
+		try {
+			const res = await storyboardClient.terminateAutonomousGeneration({
+				workflowId: activeWorkflowId,
+				reason: "User terminated from UI"
+			});
+			if (res.success) {
+				isAutoPilot = false;
+				activeWorkflowId = null;
+			}
+		} catch (err) {
+			console.error('Failed to terminate workflow:', err);
+		}
+	}
+
+	function triggerA2APattern(pattern: 'polish' | 'consistency' | 'visuals') {
+		currentAgentMode = 'a2a';
+		let goal = "";
+		switch (pattern) {
+			case 'polish':
+				goal = "今のストーリーの完成度を評価して、ブラッシュアップ案を提示・適用してください。";
+				break;
+			case 'consistency':
+				goal = "設定やキャラクターの性格に矛盾がないかを評価し、修正が必要な箇所を特定・修正してください。";
+				break;
+			case 'visuals':
+				goal = "シネマティックスケッチが生成されていないパネルを特定し、ARIA Cinematic Baseに基づいて生成してください。";
+				break;
+		}
+		inputValue = goal;
+		startAutoPilot();
+	}
 </script>
 
 <div class="chat-panel">
 	<div class="chat-header">
 		<div class="header-top">
 			<span>AI STORY ASSISTANT (LIVE)</span>
-			<button 
-				class="autopilot-btn" 
-				class:active={isAutoPilot}
-				onclick={startAutoPilot}
-				disabled={isAutoPilot || !selectedEpisode}
-			>
-				{isAutoPilot ? 'AUTO-PILOT ON' : 'START AUTO-PILOT'}
-			</button>
+			{#if isAutoPilot}
+				<button 
+					class="autopilot-btn active" 
+					onclick={stopAutoPilot}
+				>
+					STOP A2A
+				</button>
+			{:else}
+				<button 
+					class="autopilot-btn" 
+					onclick={startAutoPilot}
+					disabled={!selectedEpisode}
+				>
+					START AUTO-PILOT
+				</button>
+			{/if}
+		</div>
+		<div class="a2a-quick-actions">
+			<button class="quick-action-btn" onclick={() => triggerA2APattern('polish')} disabled={isAutoPilot}>✨ Story Polish</button>
+			<button class="quick-action-btn" onclick={() => triggerA2APattern('consistency')} disabled={isAutoPilot}>🔍 Check Consistency</button>
+			<button class="quick-action-btn" onclick={() => triggerA2APattern('visuals')} disabled={isAutoPilot}>🎨 Gen Visuals</button>
 		</div>
 		<div class="agent-mode-selector">
 			<button 
@@ -348,6 +397,36 @@
 		color: white;
 		border-color: transparent;
 		animation: pulse 2s infinite;
+	}
+
+	.a2a-quick-actions {
+		display: flex;
+		gap: 0.4rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.quick-action-btn {
+		flex: 1;
+		background: #2d2d2d;
+		color: #ccc;
+		border: 1px solid #444;
+		padding: 4px 2px;
+		border-radius: 4px;
+		font-size: 0.55rem;
+		cursor: pointer;
+		transition: all 0.2s;
+		white-space: nowrap;
+	}
+
+	.quick-action-btn:hover:not(:disabled) {
+		background: #3d3d3d;
+		color: white;
+		border-color: #666;
+	}
+
+	.quick-action-btn:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
 	}
 
 	@keyframes pulse {

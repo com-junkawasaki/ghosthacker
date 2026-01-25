@@ -385,4 +385,41 @@ func (s *StoryboardService) StartAutonomousGeneration(
 	}), nil
 }
 
+// TerminateAutonomousGeneration terminates a running Temporal workflow
+func (s *StoryboardService) TerminateAutonomousGeneration(
+	ctx context.Context,
+	req *connect.Request[storyboardpb.TerminateAutonomousGenerationRequest],
+) (*connect.Response[storyboardpb.TerminateAutonomousGenerationResponse], error) {
+	log.Printf("TerminateAutonomousGeneration: workflow_id=%s", req.Msg.WorkflowId)
+
+	temporalHost := os.Getenv("TEMPORAL_HOST")
+	if temporalHost == "" {
+		return nil, connect.NewError(connect.CodeFailedPrecondition, fmt.Errorf("TEMPORAL_HOST is not set"))
+	}
+
+	c, err := client.Dial(client.Options{
+		HostPort: temporalHost,
+	})
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to dial temporal: %w", err))
+	}
+	defer c.Close()
+
+	err = c.TerminateWorkflow(ctx, req.Msg.WorkflowId, "", req.Msg.Reason)
+	if err != nil {
+		return connect.NewResponse(&storyboardpb.TerminateAutonomousGenerationResponse{
+			Success: false,
+			Message: fmt.Sprintf("Failed to terminate workflow: %v", err),
+		}), nil
+	}
+
+	// Broadcast termination to chat
+	s.BroadcastChatMessage("general", "⚠️ Autonomous generation was terminated by the user.")
+
+	return connect.NewResponse(&storyboardpb.TerminateAutonomousGenerationResponse{
+		Success: true,
+		Message: "Workflow terminated successfully",
+	}), nil
+}
+
 // GenerateDialogue is implemented in dialogue_generation.go
