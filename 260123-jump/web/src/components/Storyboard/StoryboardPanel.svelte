@@ -30,6 +30,12 @@
 	let generatingCinematic = false;
 	let cinematicError = '';
 
+	// Reactive: update when panel prop changes (important for initial data load)
+	$: if (panel.data?.generatedImages) {
+		generatedImages = panel.data.generatedImages;
+		currentImageIndex = panel.data.currentImageIndex ?? (generatedImages.length > 0 ? generatedImages.length - 1 : -1);
+	}
+
 	// Computed: current image URL (convert relative path to full URL)
 	$: currentImageUrl = currentImageIndex >= 0 && currentImageIndex < generatedImages.length 
 		? (() => {

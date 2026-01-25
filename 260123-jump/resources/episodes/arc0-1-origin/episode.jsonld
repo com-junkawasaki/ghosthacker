@@ -2898,33 +2898,59 @@
       "gh:countermeasure": 3,
       "gh:pageNumber": 26,
       "gh:pageTitle": "対策③ パスワード管理（説明）",
+      "gh:panelCount": 6,
       "gh:panels": [
         {
-          "characters": [
-            "character:NeiMiddleSchool"
-          ],
+          "panel": 1,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "ぷにNEIのアドバイスカード。「#3 パスワード管理」",
           "dialogue": [
             {
               "gh:isGuideCard": true,
               "speaker": "NeiPuni",
               "text": "【NEIちゃんのアドバイス #3】"
-            },
+            }
+          ],
+          "gh:imagePrompt": "Insert shot. Cute mascot advice card: '#3 Password Management'. Educational guidance. Japanese text."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが核心を伝える。強調するような表情。",
+          "dialogue": [
             {
               "gh:emotion": "emphatic",
               "speaker": "Nei",
-              "text": "パスワードは覚えるな。作って、預けるんだ。"
+              "text": "パスワードは覚えるな。"
             }
           ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese girl making key point. 'Don't memorize passwords - generate and store them.' Emphasis on this line.",
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Neiが核心を伝える。エピソードタイトル「パスワードは覚えるな」のキービジュアル。"
+          "gh:imagePrompt": "Medium Close Up. Japanese girl making key point. 'Don't memorize passwords.' Emphatic expression. shot on 50mm, f/2, cinematic live-action."
         },
         {
-          "characters": [
-            "character:Yuto"
+          "panel": 3,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiがさらに続ける。エピソードタイトルのキービジュアル。",
+          "dialogue": [
+            {
+              "gh:emotion": "emphatic",
+              "speaker": "Nei",
+              "text": "作って、預けるんだ。"
+            }
           ],
+          "gh:imagePrompt": "Close Up. Japanese girl continuing. 'Generate and store them.' Episode title key visual. shot on 85mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 4,
+          "shot": "Medium Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "困惑するYuto。",
           "dialogue": [
             {
               "gh:emotion": "confused",
@@ -2932,11 +2958,31 @@
               "text": "覚えないって…どうやって…？"
             }
           ],
+          "gh:imagePrompt": "Medium Close Up. Japanese boy looking confused. 'Not memorize... how?' shot on 50mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 5,
+          "shot": "Medium Shot",
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy looking confused. Processing the advice.",
-          "panel": 2,
-          "shot": "Close Up",
-          "visual": "困惑するYuto。"
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiがスマホを取り出す。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. Japanese girl taking out smartphone. About to demonstrate. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 6,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "パスワードマネージャーアプリのアイコン。",
+          "dialogue": [
+            {
+              "gh:emotion": "instructive",
+              "speaker": "Nei",
+              "text": "これ。"
+            }
+          ],
+          "gh:imagePrompt": "Insert shot. Password manager app icon on smartphone screen. About to open."
         }
       ]
     },
@@ -2945,24 +2991,53 @@
       "gh:countermeasure": 3,
       "gh:pageNumber": 27,
       "gh:pageTitle": "対策③ パスワード管理（実行）",
+      "gh:panelCount": 6,
       "gh:panels": [
         {
+          "panel": 1,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
           "characters": [],
+          "visual": "パスワードマネージャーアプリの画面。金庫のようなUI。",
           "dialogue": [
             {
               "gh:emotion": "instructive",
               "speaker": "Nei",
-              "text": "パスワードマネージャー。サイトごとに別の鍵を作る。"
+              "text": "パスワードマネージャー。"
             }
           ],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Password manager app showing unique random passwords for different sites. Secure vault UI.",
-          "panel": 1,
-          "shot": "Insert",
-          "visual": "パスワードマネージャーアプリの画面。サイトごとに異なるランダムパスワードが生成されている。"
+          "gh:imagePrompt": "Insert shot. Password manager app. Vault-like UI. Secure appearance."
         },
         {
+          "panel": 2,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
           "characters": [],
+          "visual": "サイトごとに異なるランダムパスワードが生成されている画面。「x7$kL9!mQ2」のようなパスワード。",
+          "dialogue": [
+            {
+              "gh:emotion": "instructive",
+              "speaker": "Nei",
+              "text": "サイトごとに別の鍵を作る。"
+            }
+          ],
+          "gh:imagePrompt": "Insert shot. Password manager showing unique random passwords for different sites. Complex passwords like 'x7$kL9!mQ2'."
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "画面を見ながら頷くYuto。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Close Up. Japanese boy nodding while looking at screen. Understanding. shot on 50mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 4,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "二段階認証の設定画面。認証コード入力。",
           "dialogue": [
             {
               "gh:emotion": "instructive",
@@ -2970,16 +3045,23 @@
               "text": "あと、二段階認証。パスだけじゃ突破される。"
             }
           ],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Two-factor authentication setup screen. Security code prompt.",
-          "panel": 2,
-          "shot": "Insert",
-          "visual": "二段階認証の設定画面。"
+          "gh:imagePrompt": "Insert shot. Two-factor authentication setup screen. Security code prompt. '2FA' enabled."
         },
         {
-          "characters": [
-            "character:Yuto"
-          ],
+          "panel": 5,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "設定を進めるYuto。真剣な表情。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. Japanese boy working through security setup. Serious expression. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 6,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "設定完了。少し安堵の表情。",
           "dialogue": [
             {
               "gh:emotion": "accomplished",
@@ -2987,11 +3069,7 @@
               "text": "…できた。"
             }
           ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy completing security setup. Small sense of accomplishment.",
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "設定を進めるYuto。"
+          "gh:imagePrompt": "Close Up. Japanese boy completing security setup. 'Done.' Small sense of accomplishment. shot on 85mm, f/1.8, cinematic live-action."
         }
       ]
     },
@@ -3000,50 +3078,76 @@
       "gh:countermeasure": 4,
       "gh:pageNumber": 28,
       "gh:pageTitle": "対策④ 注意喚起（説明）",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
-          "characters": [
-            "character:NeiMiddleSchool"
-          ],
+          "panel": 1,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "ぷにNEIのアドバイスカード。「#4 注意喚起」",
           "dialogue": [
             {
               "gh:isGuideCard": true,
               "speaker": "NeiPuni",
               "text": "【NEIちゃんのアドバイス #4】"
-            },
+            }
+          ],
+          "gh:imagePrompt": "Insert shot. Cute mascot advice card: '#4 Alert Friends'. Educational guidance. Japanese text."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが被害拡大防止を説明。",
+          "dialogue": [
             {
               "gh:emotion": "instructive",
               "speaker": "Nei",
               "text": "別の窓口から友達に連絡。「リンク踏むな」って。"
             }
           ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese girl explaining damage control. 'Puuni Nei' advice card visible.",
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Neiが被害拡大防止を説明。"
+          "gh:imagePrompt": "Medium Close Up. Japanese girl explaining damage control. 'Contact friends through different channels. Tell them not to click links.' shot on 50mm, f/2, cinematic live-action."
         },
         {
-          "characters": [
-            "character:Yuto"
-          ],
+          "panel": 3,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "躊躇するYuto。怯えた表情。",
           "dialogue": [
             {
               "gh:emotion": "hesitant",
               "speaker": "Yuto",
               "text": "でも…みんな怒ってる…"
-            },
+            }
+          ],
+          "gh:imagePrompt": "Close Up. Japanese boy hesitating. Scared expression. 'But... everyone's angry...' shot on 85mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 4,
+          "shot": "Medium Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが毅然と返す。",
+          "dialogue": [
             {
               "gh:emotion": "firm",
               "speaker": "Nei",
               "text": "言わないと、もっと増える。"
             }
           ],
+          "gh:imagePrompt": "Medium Close Up. Japanese girl responding firmly. 'If you don't tell them, it'll spread more.' shot on 50mm, f/2, cinematic live-action."
+        },
+        {
+          "panel": 5,
+          "shot": "Close Up",
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese boy hesitating. Fear of confrontation. Girl encouraging him.",
-          "panel": 2,
-          "shot": "Medium Close Up",
-          "visual": "躊躇するYuto。"
+          "characters": ["character:Yuto"],
+          "visual": "決意を固めるYuto。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Japanese boy steeling himself. Making decision. shot on 85mm, f/1.8, cinematic live-action."
         }
       ]
     },
@@ -3052,9 +3156,32 @@
       "gh:countermeasure": 4,
       "gh:pageNumber": 29,
       "gh:pageTitle": "対策④ 注意喚起（実行）",
+      "gh:panelCount": 6,
       "gh:panels": [
         {
+          "panel": 1,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "勇気を出してスマホを構えるYuto。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. Japanese boy mustering courage, holding phone. About to send warning. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 2,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
           "characters": [],
+          "visual": "メッセージ作成画面。警告文を打つ。",
+          "dialogue": [],
+          "gh:imagePrompt": "Insert shot. Message composition screen. Typing warning message."
+        },
+        {
+          "panel": 3,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "送信されるメッセージ。「俺のアカウント乗っ取られた。リンク踏まないで。通報して。」",
           "dialogue": [
             {
               "gh:via": "sms",
@@ -3062,16 +3189,23 @@
               "text": "俺のアカウント乗っ取られた。リンク踏まないで。通報して。"
             }
           ],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Close Up. SMS message being sent. Warning friends about hacked account. Japanese text.",
-          "panel": 1,
-          "shot": "Close Up",
-          "visual": "SMS/電話で友人に警告を送るYuto。"
+          "gh:imagePrompt": "Insert shot. SMS message being sent. 'My account was hacked. Don't click links. Please report.' Japanese text."
         },
         {
-          "characters": [
-            "character:Yuto"
-          ],
+          "panel": 4,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "送信完了。複数人への一斉送信。",
+          "dialogue": [],
+          "gh:imagePrompt": "Insert shot. Messages sent to multiple contacts. Delivery confirmation."
+        },
+        {
+          "panel": 5,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "スマホを下ろすYuto。疲れた表情だが、やり遂げた。",
           "dialogue": [
             {
               "gh:emotion": "exhausted",
@@ -3079,11 +3213,22 @@
               "text": "…送った。"
             }
           ],
+          "gh:imagePrompt": "Medium Shot. Japanese boy lowering phone. Exhausted expression but task done. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 6,
+          "shot": "Wide Shot",
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy lowering phone. Exhausted but task done. Small relief.",
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "メッセージを送り終え、一段落。"
+          "characters": ["character:Yuto", "character:NeiMiddleSchool", "character:RenMiddleSchool"],
+          "visual": "対策完了。3人が一息つく。しかし窓の外は暗くなってきた。",
+          "dialogue": [
+            {
+              "gh:emotion": "calm",
+              "speaker": "Nei",
+              "text": "一段落。"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot. Three students taking a breath. Countermeasures complete. But darkness gathering outside window. shot on 35mm, f/2.8, cinematic live-action."
         }
       ]
     },
@@ -3091,29 +3236,79 @@
       "gh:act": "act:6-ghost-battle",
       "gh:pageNumber": 30,
       "gh:pageTitle": "クラスメイトの罵倒",
+      "gh:panelCount": 6,
       "gh:panels": [
         {
-          "characters": [
-            "character:Yuto",
-            "character:Classmate_A"
-          ],
+          "panel": 1,
+          "shot": "Wide Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto", "character:NeiMiddleSchool", "character:RenMiddleSchool"],
+          "visual": "対策完了後の教室。Yutoが少しほっとした表情。",
+          "dialogue": [],
+          "gh:imagePrompt": "Wide Shot. Classroom after countermeasures complete. Japanese boy slightly relieved. shot on 35mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Classmate_A", "character:Classmate_B"],
+          "visual": "クラスメイトたちが戻ってくる。険しい表情。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. Classmates returning. Harsh expressions. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Classmate_A"],
+          "visual": "クラスメイトAが嘲笑う。",
           "dialogue": [
             {
               "gh:emotion": "mocking",
               "speaker": "Classmate_A",
               "text": "今更やっても意味なくね？"
-            },
+            }
+          ],
+          "gh:imagePrompt": "Medium Close Up. Classmate mocking. 'Isn't it too late now?' shot on 50mm, f/2, cinematic live-action."
+        },
+        {
+          "panel": 4,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Classmate_A"],
+          "visual": "クラスメイトAがYutoを指差す。",
+          "dialogue": [
             {
               "gh:emotion": "accusatory",
               "speaker": "Classmate_A",
               "text": "もう俺らの情報漏れてんだよ。お前のせいで。"
             }
           ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot. Classmates confronting Japanese boy aggressively. Mocking and accusatory. Tense classroom atmosphere.",
-          "panel": 1,
+          "gh:imagePrompt": "Medium Shot. Classmate pointing accusingly. 'Our info is already leaked. Because of you.' shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 5,
           "shot": "Wide Shot",
-          "visual": "対策完了後。クラスメイトがYutoに詰め寄る。"
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto", "character:Classmate_A", "character:Classmate_B", "character:Classmate_C"],
+          "visual": "他のクラスメイトも同調する。Yutoを囲む。",
+          "dialogue": [
+            {
+              "gh:emotion": "accusatory",
+              "speaker": "Classmate_B",
+              "text": "ほんとだよ。俺のアカウントもおかしくなった。"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot. Other classmates joining in. Surrounding Yuto. Mob mentality. shot on 24mm, f/4, cinematic live-action."
+        },
+        {
+          "panel": 6,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "言葉を浴びせられるYuto。傷つく表情。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Japanese boy receiving verbal attacks. Hurt expression. shot on 85mm, f/1.8, cinematic live-action."
         }
       ]
     },
@@ -3121,12 +3316,24 @@
       "gh:act": "act:6-ghost-battle",
       "gh:pageNumber": 31,
       "gh:pageTitle": "幻肢痛",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
+          "panel": 1,
+          "shot": "Wide Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto", "character:Classmate_A"],
+          "visual": "クラスメイトの言葉がYutoに突き刺さる。空気が歪む。",
+          "dialogue": [],
+          "gh:imagePrompt": "Wide Shot. Words visually striking Yuto. Air distorting around him. Emotional impact visualized."
+        },
+        {
           "@id": "panel:p31n1arc0orig",
-          "characters": [
-            "character:Yuto"
-          ],
+          "panel": 2,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "Yutoが胸を押さえる。言葉が刺さる痛み。",
           "dialogue": [
             {
               "gh:emotion": "pain",
@@ -3135,7 +3342,6 @@
               "text": "（痛い…）"
             }
           ],
-          "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/31/p31n1arc0orig_v1.png",
           "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/31/p31n1arc0orig_v1.png",
@@ -3147,17 +3353,24 @@
               "gh:model": "unknown"
             }
           ],
-          "gh:imagePrompt": "Close Up. Japanese boy clutching chest in pain. Words hurting like physical wounds. Anguished expression.",
-          "panel": 1,
-          "shot": "Close Up",
-          "visual": "Yutoが胸を押さえる。言葉が刺さる痛み。"
+          "gh:imagePrompt": "Close Up. Japanese boy clutching chest in pain. Words hurting like physical wounds. Anguished expression."
+        },
+        {
+          "panel": 3,
+          "shot": "Extreme Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "Yutoの胸を押さえる手。痛みが走る。",
+          "dialogue": [],
+          "gh:imagePrompt": "Extreme Close Up. Hand clutching chest. Physical pain from emotional wounds."
         },
         {
           "@id": "panel:p31n2arc0orig",
-          "characters": [
-            "character:NeiMiddleSchool",
-            "character:RenMiddleSchool"
-          ],
+          "panel": 4,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool", "character:RenMiddleSchool"],
+          "visual": "Neiが空気を読む。Renに問いかける。",
           "dialogue": [
             {
               "gh:emotion": "analytical",
@@ -3170,7 +3383,6 @@
               "text": "たおす？"
             }
           ],
-          "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/31/p31n2arc0orig_v1.png",
           "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/31/p31n2arc0orig_v1.png",
@@ -3182,10 +3394,16 @@
               "gh:model": "unknown"
             }
           ],
-          "gh:imagePrompt": "Medium Shot. Japanese girl (Nei) looking at the air analytically. Asking boy (Ren) a question. Calm amidst chaos.",
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Neiが空気を読む。Renに問いかける。"
+          "gh:imagePrompt": "Medium Shot. Japanese girl (Nei) looking at the air analytically. Asking boy (Ren) a question. Calm amidst chaos."
+        },
+        {
+          "panel": 5,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "Renの目がわずかに動く。やる気になった瞬間。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Ren's eyes slightly moving. Moment of decision. Ready to act."
         }
       ]
     },
@@ -3193,12 +3411,24 @@
       "gh:act": "act:6-ghost-battle",
       "gh:pageNumber": 32,
       "gh:pageTitle": "SIP Project Map起動",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
+          "panel": 1,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiがポケットから何かを取り出す。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. Japanese girl reaching into pocket. About to reveal something."
+        },
+        {
           "@id": "panel:p32n1arc0orig",
-          "characters": [
-            "character:NeiMiddleSchool"
-          ],
+          "panel": 2,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが謎のデバイス（キューブ型）を取り出す。",
           "dialogue": [
             {
               "gh:emotion": "commanding",
@@ -3206,7 +3436,6 @@
               "text": "SIP Project Map: ON"
             }
           ],
-          "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/32/p32n1arc0orig_v1.png",
           "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/32/p32n1arc0orig_v1.png",
@@ -3218,16 +3447,25 @@
               "gh:model": "unknown"
             }
           ],
-          "gh:imagePrompt": "Close Up. Japanese girl holding mysterious cube device. Glowing interface. 'SIP Project Map: ON' text.",
-          "panel": 1,
-          "shot": "Close Up",
-          "visual": "Neiが謎のデバイス（キューブ型）を取り出す。"
+          "gh:imagePrompt": "Close Up. Japanese girl holding mysterious cube device. Glowing interface. 'SIP Project Map: ON' text."
+        },
+        {
+          "panel": 3,
+          "shot": "Insert",
+          "environment": "env:middle-school-classroom",
+          "characters": [],
+          "visual": "キューブが光を放つ。パルス波。",
+          "dialogue": [],
+          "gh:imagePrompt": "Insert shot. Cube device emitting light. Pulse wave expanding."
         },
         {
           "@id": "panel:p32n2arc0orig",
-          "characters": [],
-          "dialogue": [],
+          "panel": 4,
+          "shot": "Wide Shot",
           "environment": "env:middle-school-classroom",
+          "characters": [],
+          "visual": "波動が教室をスキャン。現実にワイヤーフレームがオーバーレイされていく。",
+          "dialogue": [],
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/32/p32n2arc0orig_v1.png",
           "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/32/p32n2arc0orig_v1.png",
@@ -3239,10 +3477,16 @@
               "gh:model": "unknown"
             }
           ],
-          "gh:imagePrompt": "Wide Shot. Scanning wave spreading across classroom. Wireframe overlay on reality. Digital transformation beginning.",
-          "panel": 2,
-          "shot": "Wide Shot",
-          "visual": "波動が教室をスキャン。現実にワイヤーフレームがオーバーレイされていく。"
+          "gh:imagePrompt": "Wide Shot. Scanning wave spreading across classroom. Wireframe overlay on reality. Digital transformation beginning."
+        },
+        {
+          "panel": 5,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto", "character:Classmate_A"],
+          "visual": "驚くクラスメイトたち。世界が変わっていく。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. Shocked classmates. World transforming around them."
         }
       ]
     },
@@ -3250,10 +3494,15 @@
       "gh:act": "act:6-ghost-battle",
       "gh:pageNumber": 33,
       "gh:pageTitle": "情報場の可視化",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
           "@id": "panel:p33n1arc0orig",
+          "panel": 1,
+          "shot": "Wide Shot",
+          "environment": "env:information-field",
           "characters": [],
+          "visual": "「情報場」が可視化される。教室がデジタル空間に変容。Ghost（悪意のデータ実体）が現れる。",
           "dialogue": [
             {
               "gh:emotion": "shock",
@@ -3261,7 +3510,6 @@
               "text": "なっ…!? VR!? なにこれ!?"
             }
           ],
-          "environment": "env:information-field",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/33/p33n1arc0orig_v1.png",
           "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/33/p33n1arc0orig_v1.png",
@@ -3273,16 +3521,33 @@
               "gh:model": "unknown"
             }
           ],
-          "gh:imagePrompt": "Wide Shot. Classroom transformed into 'Information Field'. Digital wireframes. Grotesque Ghost entities visible. Students shocked.",
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "「情報場」が可視化される。教室がデジタル空間に変容。Ghost（悪意のデータ実体）が現れる。"
+          "gh:imagePrompt": "Wide Shot. Classroom transformed into 'Information Field'. Digital wireframes. Grotesque Ghost entities visible. Students shocked."
+        },
+        {
+          "panel": 2,
+          "shot": "Close Up",
+          "environment": "env:information-field",
+          "characters": ["character:Classmate_A"],
+          "visual": "驚愕する生徒の顔。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Shocked student face. Seeing the impossible."
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Shot",
+          "environment": "env:information-field",
+          "characters": [],
+          "visual": "Ghost（悪意の実体）が空中に浮かんでいる。グロテスクな形状。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. Ghost entities floating in air. Grotesque digital shapes."
         },
         {
           "@id": "panel:p33n2arc0orig",
-          "characters": [
-            "character:NeiMiddleSchool"
-          ],
+          "panel": 4,
+          "shot": "Medium Shot",
+          "environment": "env:information-field",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが説明する。",
           "dialogue": [
             {
               "gh:emotion": "explanatory",
@@ -3290,7 +3555,6 @@
               "text": "これが情報場。イメージが質量に変換された世界。"
             }
           ],
-          "environment": "env:information-field",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/33/p33n2arc0orig_v1.png",
           "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/33/p33n2arc0orig_v1.png",
@@ -3302,10 +3566,16 @@
               "gh:model": "unknown"
             }
           ],
-          "gh:imagePrompt": "Medium Shot. Japanese girl explaining calmly amidst digital chaos. 'Information Field - where images become mass.'",
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Neiが説明する。"
+          "gh:imagePrompt": "Medium Shot. Japanese girl explaining calmly amidst digital chaos. 'Information Field - where images become mass.'"
+        },
+        {
+          "panel": 5,
+          "shot": "Close Up",
+          "environment": "env:information-field",
+          "characters": ["character:Yuto"],
+          "visual": "情報場を見つめるYuto。驚きと恐怖が入り混じった表情。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Yuto staring at Information Field. Mix of awe and fear."
         }
       ]
     },
@@ -3313,28 +3583,61 @@
       "gh:act": "act:6-ghost-battle",
       "gh:pageNumber": 34,
       "gh:pageTitle": "ランダウアーの原理",
+      "gh:panelCount": 4,
       "gh:panels": [
         {
-          "characters": [
-            "character:NeiMiddleSchool"
-          ],
+          "panel": 1,
+          "shot": "Medium Close Up",
+          "environment": "env:information-field",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが説明を続ける。指を立てて。",
           "dialogue": [
             {
               "gh:emotion": "lecturing",
               "speaker": "Nei",
-              "text": "情報は物理だ。1ビットを消すだけで熱が出る。"
-            },
+              "text": "情報は物理だ。"
+            }
+          ],
+          "gh:imagePrompt": "Medium Close Up. Japanese girl lecturing. Holding up finger. 'Information is physics.'"
+        },
+        {
+          "panel": 2,
+          "shot": "Insert",
+          "environment": "env:information-field",
+          "characters": [],
+          "visual": "テキストオーバーレイ：「Landauer's Principle」。1ビットを消すと熱が発生する図。",
+          "dialogue": [
+            {
+              "gh:emotion": "lecturing",
+              "speaker": "Nei",
+              "text": "1ビットを消すだけで熱が出る。"
+            }
+          ],
+          "gh:imagePrompt": "Insert shot. Text overlay: 'LANDAUER'S PRINCIPLE'. Diagram showing bit deletion generating heat."
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Shot",
+          "environment": "env:information-field",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが真剣な表情でGhostを指す。",
+          "dialogue": [
             {
               "gh:emotion": "serious",
               "speaker": "Nei",
               "text": "悪意は重さになる。それがGhost。"
             }
           ],
+          "gh:imagePrompt": "Medium Shot. Japanese girl pointing at Ghost seriously. 'Malice becomes weight. That's a Ghost.'"
+        },
+        {
+          "panel": 4,
+          "shot": "Wide Shot",
           "environment": "env:information-field",
-          "gh:imagePrompt": "Full Page. Text overlay: 'LANDAUER'S PRINCIPLE' and 'INFORMATION IS PHYSICS'. Japanese girl explaining. Digital physics visualization.",
-          "panel": 1,
-          "shot": "Full Page",
-          "visual": "テキストオーバーレイ：「Landauer's Principle」「Information is physics」"
+          "characters": [],
+          "visual": "テキストオーバーレイ：「INFORMATION IS PHYSICS」。情報場全体を見渡す。",
+          "dialogue": [],
+          "gh:imagePrompt": "Wide Shot. Text overlay: 'INFORMATION IS PHYSICS'. Overview of entire Information Field."
         }
       ]
     },
@@ -3342,11 +3645,23 @@
       "gh:act": "act:6-ghost-battle",
       "gh:pageNumber": 35,
       "gh:pageTitle": "Ghost攻撃 / NULL AXE召喚",
+      "gh:panelCount": 6,
       "gh:panels": [
         {
-          "characters": [
-            "character:Classmate_A"
-          ],
+          "panel": 1,
+          "shot": "Wide Shot",
+          "environment": "env:information-field",
+          "characters": ["character:Classmate_A"],
+          "visual": "Ghostがクラスメイトに襲いかかる。",
+          "dialogue": [],
+          "gh:imagePrompt": "Wide Shot. Ghost entity lunging at student. Digital horror approaching."
+        },
+        {
+          "panel": 2,
+          "shot": "Close Up",
+          "environment": "env:information-field",
+          "characters": ["character:Classmate_A"],
+          "visual": "幻肢痛で苦しむクラスメイト。胸を押さえる。",
           "dialogue": [
             {
               "gh:emotion": "pain",
@@ -3354,16 +3669,23 @@
               "text": "痛っ！なんで！？"
             }
           ],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Wide Shot. Ghost entity attacking student. Student feeling phantom pain. Digital horror.",
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Ghostがクラスメイトに襲いかかる。幻肢痛で苦しむクラスメイト。"
+          "gh:imagePrompt": "Close Up. Student feeling phantom pain. Clutching chest. 'Ow! Why!?'"
         },
         {
-          "characters": [
-            "character:RenMiddleSchool"
-          ],
+          "panel": 3,
+          "shot": "Medium Shot",
+          "environment": "env:information-field",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "Renが前に出る。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. Japanese boy (Ren) stepping forward. Determined posture."
+        },
+        {
+          "panel": 4,
+          "shot": "Close Up",
+          "environment": "env:information-field",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "Renが手を伸ばす。決意の表情。",
           "dialogue": [
             {
               "gh:emotion": "determined",
@@ -3371,11 +3693,25 @@
               "text": "ゴーストハックの時間だ。"
             }
           ],
+          "gh:imagePrompt": "Close Up. Ren reaching out hand. Determined expression. 'Time for Ghost Hack.'"
+        },
+        {
+          "panel": 5,
+          "shot": "Insert",
           "environment": "env:information-field",
-          "gh:imagePrompt": "Medium Shot. Japanese boy (Ren) stepping forward. Digital axe 'NULL AXE' materializing in hand. Determined expression.",
-          "panel": 2,
+          "characters": [],
+          "visual": "デジタルの粒子が集まり、斧の形を成していく。",
+          "dialogue": [],
+          "gh:imagePrompt": "Insert shot. Digital particles gathering. Forming shape of axe."
+        },
+        {
+          "panel": 6,
           "shot": "Medium Shot",
-          "visual": "Renが前に出る。手を伸ばすと、デジタルの斧「NULL AXE」が実体化する。"
+          "environment": "env:information-field",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "「NULL AXE」が実体化。Renの手に巨大なデジタル斧。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. 'NULL AXE' materializing fully. Massive digital axe in Ren's hand."
         }
       ]
     },
@@ -3383,17 +3719,52 @@
       "gh:act": "act:7-daemon-battle",
       "gh:pageNumber": 36,
       "gh:pageTitle": "Ren vs Ghost",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
-          "characters": [
-            "character:RenMiddleSchool"
-          ],
-          "dialogue": [],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Full Page, dynamic action. Japanese boy slashing through Ghost entity with digital axe. Motion blur. Sparks of data.",
           "panel": 1,
-          "shot": "Full Page",
-          "visual": "RenがNULL AXEでGhostを切り裂く。ダイナミックなアクション。"
+          "shot": "Medium Shot",
+          "environment": "env:information-field",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "Renが構える。NULL AXEを掲げる。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. Ren taking stance. Raising NULL AXE."
+        },
+        {
+          "panel": 2,
+          "shot": "Close Up",
+          "environment": "env:information-field",
+          "characters": [],
+          "visual": "Ghostが迫る。不気味な形状。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Ghost approaching. Grotesque digital form."
+        },
+        {
+          "panel": 3,
+          "shot": "Wide Shot",
+          "environment": "env:information-field",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "RenがNULL AXEでGhostを切り裂く。ダイナミックなアクション。",
+          "dialogue": [],
+          "gh:imagePrompt": "Wide Shot, dynamic action. Ren slashing through Ghost with NULL AXE. Motion blur. Sparks of data."
+        },
+        {
+          "panel": 4,
+          "shot": "Insert",
+          "environment": "env:information-field",
+          "characters": [],
+          "visual": "斬撃の瞬間。データの火花が散る。",
+          "dialogue": [],
+          "gh:imagePrompt": "Insert shot. Moment of slash. Data sparks scattering."
+        },
+        {
+          "panel": 5,
+          "shot": "Medium Shot",
+          "environment": "env:information-field",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "斬撃後のRen。連続攻撃の構え。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. Ren after slash. Ready for follow-up attack."
         }
       ]
     },
@@ -3401,17 +3772,52 @@
       "gh:act": "act:7-daemon-battle",
       "gh:pageNumber": 37,
       "gh:pageTitle": "Daemon出現",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
-          "characters": [
-            "character:Yuto"
-          ],
-          "dialogue": [],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Wide Shot. Massive dark shadow erupting from Japanese boy. His guilt and conflict manifesting as giant Daemon entity.",
           "panel": 1,
+          "shot": "Close Up",
+          "environment": "env:information-field",
+          "characters": ["character:Yuto"],
+          "visual": "Yutoが胸を押さえる。内なる痛みが膨れ上がる。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Yuto clutching chest. Inner pain swelling."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "environment": "env:information-field",
+          "characters": ["character:Yuto"],
+          "visual": "Yutoの体から黒い影が漏れ出す。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. Dark shadow leaking from Yuto's body."
+        },
+        {
+          "panel": 3,
+          "shot": "Close Up",
+          "environment": "env:information-field",
+          "characters": ["character:Yuto"],
+          "visual": "叫ぶYuto。罪悪感と自責の念。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Yuto screaming. Guilt and self-blame erupting."
+        },
+        {
+          "panel": 4,
           "shot": "Wide Shot",
-          "visual": "Yutoが叫ぶ。彼の葛藤が巨大なDaemonとして実体化する。"
+          "environment": "env:information-field",
+          "characters": ["character:Yuto"],
+          "visual": "彼の葛藤が巨大なDaemonとして実体化する。",
+          "dialogue": [],
+          "gh:imagePrompt": "Wide Shot. Massive dark shadow erupting from Yuto. Guilt manifesting as giant Daemon entity."
+        },
+        {
+          "panel": 5,
+          "shot": "Wide Shot",
+          "environment": "env:information-field",
+          "characters": [],
+          "visual": "Daemon全貌。巨大で不定形な悪意の塊。",
+          "dialogue": [],
+          "gh:imagePrompt": "Wide Shot. Full view of Daemon. Massive, amorphous mass of malice."
         }
       ]
     },
@@ -3419,26 +3825,64 @@
       "gh:act": "act:7-daemon-battle",
       "gh:pageNumber": 38,
       "gh:pageTitle": "Daemonの呪い",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
+          "panel": 1,
+          "shot": "Close Up",
+          "environment": "env:information-field",
           "characters": [],
+          "visual": "Daemonの顔（あれば）、または核部分。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Daemon's core. Malevolent presence."
+        },
+        {
+          "panel": 2,
+          "shot": "Wide Shot",
+          "environment": "env:information-field",
+          "characters": [],
+          "visual": "Daemonが呪いの言葉を叫ぶ。",
           "dialogue": [
             {
               "gh:emotion": "rage",
               "speaker": "Daemon",
               "text": "全部あんたのせいだ！"
-            },
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot. Daemon screaming curse. 'IT'S ALL YOUR FAULT!' Text as visual weapon."
+        },
+        {
+          "panel": 3,
+          "shot": "Insert",
+          "environment": "env:information-field",
+          "characters": [],
+          "visual": "「全部あんたのせいだ」の文字が弾丸のように飛ぶ。",
+          "dialogue": [],
+          "gh:imagePrompt": "Insert shot. Text 'IT'S ALL YOUR FAULT' flying like bullets."
+        },
+        {
+          "panel": 4,
+          "shot": "Medium Shot",
+          "environment": "env:information-field",
+          "characters": [],
+          "visual": "さらなる呪いの言葉。",
+          "dialogue": [
             {
               "gh:emotion": "condemnation",
               "speaker": "Daemon",
               "text": "取り返しがつかない！許されない！"
             }
           ],
+          "gh:imagePrompt": "Medium Shot. More curse words. 'IT'S IRREVERSIBLE! UNFORGIVABLE!' Text weapons."
+        },
+        {
+          "panel": 5,
+          "shot": "Close Up",
           "environment": "env:information-field",
-          "gh:imagePrompt": "Full Page. Giant Daemon screaming curse words. Text visualized as attack vectors. 'IT'S ALL YOUR FAULT!' Japanese text weapons.",
-          "panel": 1,
-          "shot": "Full Page",
-          "visual": "Daemonが呪いの言葉を叫ぶ。言葉が文字として可視化され、攻撃となる。"
+          "characters": ["character:Yuto"],
+          "visual": "呪いの言葉に苦しむYuto。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Yuto suffering under curse words. Pain from his own guilt."
         }
       ]
     },
@@ -3446,11 +3890,32 @@
       "gh:act": "act:7-daemon-battle",
       "gh:pageNumber": 39,
       "gh:pageTitle": "/dev/null SLASH!!",
+      "gh:panelCount": 4,
       "gh:panels": [
         {
-          "characters": [
-            "character:RenMiddleSchool"
-          ],
+          "panel": 1,
+          "shot": "Medium Shot",
+          "environment": "env:information-field",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "Renが走り出す。Daemonに向かって。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. Ren charging. Running toward Daemon."
+        },
+        {
+          "panel": 2,
+          "shot": "Close Up",
+          "environment": "env:information-field",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "Renの決意の表情。NULL AXEを振りかぶる。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Ren's determined face. Raising NULL AXE."
+        },
+        {
+          "panel": 3,
+          "shot": "Full Page",
+          "environment": "env:information-field",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "必殺技発動。「/dev/null SLASH!!」",
           "dialogue": [
             {
               "gh:emotion": "battle cry",
@@ -3458,11 +3923,16 @@
               "text": "/dev/null SLASH!!"
             }
           ],
+          "gh:imagePrompt": "Full Page, epic action. Ren executing special attack. '/dev/null SLASH!!' text effect. Breaking through curse."
+        },
+        {
+          "panel": 4,
+          "shot": "Insert",
           "environment": "env:information-field",
-          "gh:imagePrompt": "Full Page, epic action. Japanese boy executing special attack with digital axe. '/dev/null SLASH!!' text effect. Breaking through curse.",
-          "panel": 1,
-          "shot": "Full Page",
-          "visual": "RenがNULL AXEを振り上げ、必殺技を放つ。"
+          "characters": [],
+          "visual": "斬撃がDaemonを両断する瞬間。",
+          "dialogue": [],
+          "gh:imagePrompt": "Insert shot. Slash cutting through Daemon. Moment of impact."
         }
       ]
     },
@@ -3470,24 +3940,52 @@
       "gh:act": "act:7-daemon-battle",
       "gh:pageNumber": 40,
       "gh:pageTitle": "Daemon消滅",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Wide Shot. Daemon dissolving into digital particles. Curse words shattering. Light breaking through darkness.",
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "Daemonが粒子となって消滅していく。呪いの言葉が断たれる。"
+          "environment": "env:information-field",
+          "characters": [],
+          "visual": "Daemonが粒子となって消滅していく。",
+          "dialogue": [],
+          "gh:imagePrompt": "Wide Shot. Daemon dissolving into digital particles."
         },
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot. Information Field fading. Classroom returning to normal. Calm after storm.",
           "panel": 2,
+          "shot": "Insert",
+          "environment": "env:information-field",
+          "characters": [],
+          "visual": "呪いの言葉が砕け散る。文字が光の粒子に。",
+          "dialogue": [],
+          "gh:imagePrompt": "Insert shot. Curse words shattering. Text becoming light particles."
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Shot",
+          "environment": "env:information-field",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "斬撃後のRen。静かに立つ。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. Ren after the attack. Standing quietly."
+        },
+        {
+          "panel": 4,
           "shot": "Wide Shot",
-          "visual": "情報場が静まり、教室が元に戻っていく。"
+          "environment": "env:middle-school-classroom",
+          "characters": [],
+          "visual": "情報場が静まり、教室が元に戻っていく。",
+          "dialogue": [],
+          "gh:imagePrompt": "Wide Shot. Information Field fading. Classroom returning to normal."
+        },
+        {
+          "panel": 5,
+          "shot": "Wide Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto", "character:NeiMiddleSchool", "character:RenMiddleSchool"],
+          "visual": "通常に戻った教室。3人が立っている。",
+          "dialogue": [],
+          "gh:imagePrompt": "Wide Shot. Normal classroom restored. Three students standing. Calm after storm."
         }
       ]
     },
@@ -3495,12 +3993,14 @@
       "gh:act": "act:7-daemon-battle",
       "gh:pageNumber": 41,
       "gh:pageTitle": "和解の空気",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
-          "characters": [
-            "character:Classmate_A",
-            "character:Classmate_B"
-          ],
+          "panel": 1,
+          "shot": "Wide Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Classmate_A", "character:Classmate_B", "character:Classmate_C"],
+          "visual": "クラスメイトたちが呆然としている。幻肢痛が消えた。",
           "dialogue": [
             {
               "gh:emotion": "dazed",
@@ -3508,22 +4008,43 @@
               "text": "なんだったんだ…"
             }
           ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot. Classmates looking dazed. Phantom pain gone. Confused but calmer atmosphere.",
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "クラスメイトの幻肢痛が消える。呆然とした空気。"
+          "gh:imagePrompt": "Wide Shot. Classmates looking dazed. Phantom pain gone. Confused atmosphere."
         },
         {
-          "characters": [
-            "character:Yuto"
-          ],
-          "dialogue": [],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy on knees. Relief and exhaustion. Weight lifted.",
           "panel": 2,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Classmate_A"],
+          "visual": "胸を確認するクラスメイト。痛みが消えている。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Classmate checking chest. Pain is gone."
+        },
+        {
+          "panel": 3,
           "shot": "Medium Shot",
-          "visual": "膝をつくYuto。解放感と疲労。"
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "膝をつくYuto。解放感と疲労。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. Yuto on his knees. Relief and exhaustion."
+        },
+        {
+          "panel": 4,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Classmate_A", "character:Classmate_B"],
+          "visual": "クラスメイトたちの表情が少し和らぐ。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. Classmates' expressions softening slightly."
+        },
+        {
+          "panel": 5,
+          "shot": "Wide Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto", "character:NeiMiddleSchool", "character:RenMiddleSchool"],
+          "visual": "和解の空気が漂う教室。夕暮れの光。",
+          "dialogue": [],
+          "gh:imagePrompt": "Wide Shot. Atmosphere of reconciliation in classroom. Sunset light."
         }
       ]
     },
@@ -3531,11 +4052,23 @@
       "gh:act": "act:8-resolution",
       "gh:pageNumber": 42,
       "gh:pageTitle": "Yutoの謝罪",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
-          "characters": [
-            "character:Yuto"
-          ],
+          "panel": 1,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "Yutoがクラスメイトに向き合う。勇気を振り絞って。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. Yuto facing classmates. Gathering courage."
+        },
+        {
+          "panel": 2,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "Yutoが頭を下げる。謝罪。",
           "dialogue": [
             {
               "gh:emotion": "apologetic",
@@ -3543,28 +4076,46 @@
               "text": "ごめん…俺…"
             }
           ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy facing classmates. Sincere apology. Vulnerable but brave.",
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Yutoがクラスメイトに向き合う。"
+          "gh:imagePrompt": "Close Up. Yuto bowing head. 'I'm sorry... I...' Sincere apology."
         },
         {
-          "characters": [
-            "character:NeiMiddleSchool"
-          ],
+          "panel": 3,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが静かに言う。",
           "dialogue": [
             {
               "gh:emotion": "supportive",
               "speaker": "Nei",
-              "text": "言えた時点で勝ち。恥じゃない。"
+              "text": "言えた時点で勝ち。"
             }
           ],
+          "gh:imagePrompt": "Medium Shot. Nei speaking quietly. 'Saying it means you've already won.'"
+        },
+        {
+          "panel": 4,
+          "shot": "Close Up",
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese girl (Nei) speaking supportively. 'Admitting it is winning. It's not shame.'",
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Neiが静かに言う。"
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが続ける。優しい表情。",
+          "dialogue": [
+            {
+              "gh:emotion": "supportive",
+              "speaker": "Nei",
+              "text": "恥じゃない。"
+            }
+          ],
+          "gh:imagePrompt": "Close Up. Nei continuing. Gentle expression. 'It's not shameful.'"
+        },
+        {
+          "panel": 5,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "Yutoの目に涙が滲む。救われた表情。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Yuto's eyes welling with tears. Expression of being saved."
         }
       ]
     },
@@ -3572,31 +4123,53 @@
       "gh:act": "act:8-resolution",
       "gh:pageNumber": 43,
       "gh:pageTitle": "真の敵",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
-          "characters": [
-            "character:RenMiddleSchool"
-          ],
+          "panel": 1,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "Renが腕を組んで立つ。真実を告げる。",
           "dialogue": [
             {
               "gh:emotion": "matter-of-fact",
               "speaker": "Ren",
               "text": "悪いのはお前じゃない。"
-            },
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot. Ren with arms crossed. 'The bad guy isn't you.'"
+        },
+        {
+          "panel": 2,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "Renの真剣な表情。",
+          "dialogue": [
             {
               "gh:emotion": "serious",
               "speaker": "Ren",
               "text": "仕組みを悪用した「アクター」だ。"
             }
           ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy (Ren) making important point. 'The bad guy isn't you. It's the Actor who exploited the system.'",
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Renが真実を告げる。"
+          "gh:imagePrompt": "Close Up. Ren's serious expression. 'It's the Actor who exploited the system.'"
         },
         {
+          "panel": 3,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
           "characters": [],
+          "visual": "消えた偽サイト「ワクワク電気」のスクリーンショット。",
+          "dialogue": [],
+          "gh:imagePrompt": "Insert shot. Screenshot of disappeared fake site 'Wakuwaku Denki'."
+        },
+        {
+          "panel": 4,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "Renがスマホを見せる。",
           "dialogue": [
             {
               "gh:emotion": "determined",
@@ -3604,11 +4177,16 @@
               "text": "偽サイト「ワクワク電気」。そいつがまだどこかにいる。"
             }
           ],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Screenshot of fake site 'Wakuwaku Denki' now gone. The real enemy is still out there.",
-          "panel": 2,
-          "shot": "Insert",
-          "visual": "消えた偽サイト「ワクワク電気」のスクリーンショット。"
+          "gh:imagePrompt": "Medium Shot. Ren showing smartphone. 'Fake site Wakuwaku Denki. They're still out there somewhere.'"
+        },
+        {
+          "panel": 5,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "Yutoの目に決意の光。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Light of determination in Yuto's eyes."
         }
       ]
     },
@@ -3617,12 +4195,34 @@
       "gh:isSpread": true,
       "gh:pageNumber": 44,
       "gh:pageTitle": "東京を見下ろす（左）",
+      "gh:isSpread": true,
+      "gh:spreadWith": 45,
+      "gh:panelCount": 3,
       "gh:panels": [
         {
-          "characters": [
-            "character:RenMiddleSchool",
-            "character:NeiMiddleSchool"
-          ],
+          "panel": 1,
+          "shot": "Wide Shot",
+          "environment": "env:tokyo-skyline",
+          "characters": [],
+          "visual": "東京の街並み全景。夕暮れの空。ビル群のシルエット。",
+          "dialogue": [],
+          "gh:imagePrompt": "Wide Shot. Tokyo skyline panorama. Sunset sky. Building silhouettes."
+        },
+        {
+          "panel": 2,
+          "shot": "Extreme Wide Shot",
+          "environment": "env:tokyo-skyline",
+          "characters": ["character:RenMiddleSchool", "character:NeiMiddleSchool"],
+          "visual": "東京の街並みを見下ろすRenとNei。ビルの屋上。夕暮れ。",
+          "dialogue": [],
+          "gh:imagePrompt": "Extreme Wide Shot. Two teenagers on rooftop overlooking Tokyo skyline at sunset. Silhouettes against orange sky."
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Shot",
+          "environment": "env:tokyo-skyline",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "Renが横を向く。決意の表情。",
           "dialogue": [
             {
               "gh:emotion": "determined",
@@ -3630,46 +4230,58 @@
               "text": "いくかぁ"
             }
           ],
-          "environment": "env:tokyo-skyline",
-          "gh:imagePrompt": "Extreme Wide Shot. Two teenagers on rooftop overlooking Tokyo skyline at sunset. Silhouettes against orange sky.",
-          "panel": 1,
-          "shot": "Extreme Wide Shot",
-          "visual": "東京の街並みを見下ろすRenとNei。夕暮れ。"
+          "gh:imagePrompt": "Medium Shot. Ren turning sideways. Determined expression. 'Let's go.'"
         }
-      ],
-      "gh:spreadWith": 45
+      ]
     },
     {
       "gh:act": "act:8-resolution",
       "gh:isSpread": true,
       "gh:pageNumber": 45,
       "gh:pageTitle": "決意（右）",
+      "gh:spreadWith": 44,
+      "gh:panelCount": 3,
       "gh:panels": [
         {
-          "characters": [
-            "character:RenMiddleSchool",
-            "character:NeiMiddleSchool"
-          ],
+          "panel": 1,
+          "shot": "Medium Shot",
+          "environment": "env:tokyo-skyline",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが頷く。静かな決意。",
           "dialogue": [
             {
               "gh:emotion": "calm",
               "speaker": "Nei",
               "text": "うん。"
-            },
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot. Nei nodding. Quiet determination. 'Yeah.'"
+        },
+        {
+          "panel": 2,
+          "shot": "Close Up",
+          "environment": "env:tokyo-skyline",
+          "characters": ["character:RenMiddleSchool", "character:NeiMiddleSchool"],
+          "visual": "二人の横顔。夕日に照らされる。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Two profiles. Illuminated by sunset."
+        },
+        {
+          "panel": 3,
+          "shot": "Extreme Wide Shot",
+          "environment": "env:tokyo-skyline",
+          "characters": ["character:RenMiddleSchool", "character:NeiMiddleSchool"],
+          "visual": "見開き続き。二人の決意の表情。東京タワーを背景に。「ゴーストをハックする。」",
+          "dialogue": [
             {
               "gh:emotion": "determined",
               "speaker": "Both",
               "text": "ゴーストをハックする。"
             }
           ],
-          "environment": "env:tokyo-skyline",
-          "gh:imagePrompt": "Extreme Wide Shot continuation. Close on two teenagers' determined faces. Tokyo Tower in background. 'We hack the Ghost.' End title card.",
-          "panel": 1,
-          "shot": "Extreme Wide Shot",
-          "visual": "見開き続き。二人の決意の表情。"
+          "gh:imagePrompt": "Extreme Wide Shot. Two teenagers' determined faces. Tokyo Tower in background. 'We hack the Ghost.' End title card."
         }
-      ],
-      "gh:spreadWith": 44
+      ]
     }
   ],
   "gh:presentationTagline": "Arc 0-1 | パスワードは覚えるな",
