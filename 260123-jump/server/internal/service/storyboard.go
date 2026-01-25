@@ -22,10 +22,12 @@ import (
 
 	"github.com/johnfercher/maroto/v2"
 	"github.com/johnfercher/maroto/v2/pkg/components/col"
+	"github.com/johnfercher/maroto/v2/pkg/components/image"
 	"github.com/johnfercher/maroto/v2/pkg/components/row"
 	"github.com/johnfercher/maroto/v2/pkg/components/text"
 	"github.com/johnfercher/maroto/v2/pkg/config"
 	"github.com/johnfercher/maroto/v2/pkg/consts/align"
+	"github.com/johnfercher/maroto/v2/pkg/consts/extension"
 	"github.com/johnfercher/maroto/v2/pkg/consts/fontstyle"
 	"github.com/johnfercher/maroto/v2/pkg/core"
 	"github.com/johnfercher/maroto/v2/pkg/props"
@@ -1309,7 +1311,7 @@ func (s *StoryboardService) extractMetadata(storyboard map[string]interface{}) *
 	return metadata
 }
 
-// ExportPdf exports the storyboard to a PDF file
+// ExportPdf exports the storyboard to a PDF file with images
 func (s *StoryboardService) ExportPdf(
 	ctx context.Context,
 	req *connect.Request[storyboardpb.ExportPdfRequest],
@@ -1317,6 +1319,12 @@ func (s *StoryboardService) ExportPdf(
 	filePath := req.Msg.FilePath
 	if filePath == "" {
 		filePath = s.storyboardPath
+	}
+
+	// Determine workspace root for image paths
+	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
+	if workspaceRoot == "" {
+		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(filePath))))
 	}
 
 	var panels []*storyboardpb.Panel
@@ -1350,37 +1358,42 @@ func (s *StoryboardService) ExportPdf(
 		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("no panels found to export"))
 	}
 
-	// Generate PDF
+	// Generate PDF with manga page size (B5 portrait: 176mm x 250mm)
 	cfg := config.NewBuilder().
 		WithPageNumber().
+		WithDimensions(176, 250).
+		WithLeftMargin(5).
+		WithTopMargin(5).
+		WithRightMargin(5).
+		WithBottomMargin(10).
 		Build()
 
 	m := maroto.New(cfg)
 
 	// Title Page
 	m.AddRows(
-		row.New(40).Add(
+		row.New(30).Add(
 			col.New(12).Add(
 				text.New(fmt.Sprintf("Storyboard: %s", title), props.Text{
 					Top:   10,
-					Size:  20,
+					Size:  16,
 					Style: fontstyle.Bold,
 					Align: align.Center,
 				}),
 			),
 		),
-		row.New(20).Add(
+		row.New(15).Add(
 			col.New(12).Add(
 				text.New(fmt.Sprintf("Mode: %s", req.Msg.Mode), props.Text{
-					Size:  12,
+					Size:  10,
 					Align: align.Center,
 				}),
 			),
 		),
-		row.New(20).Add(
+		row.New(15).Add(
 			col.New(12).Add(
 				text.New(fmt.Sprintf("Generated at: %s", time.Now().Format("2006-01-02 15:04:05")), props.Text{
-					Size:  10,
+					Size:  8,
 					Align: align.Center,
 				}),
 			),
@@ -1402,20 +1415,26 @@ func (s *StoryboardService) ExportPdf(
 		return pageNums[i] < pageNums[j]
 	})
 
+	// Render each manga page
 	for _, pageNum := range pageNums {
-		m.AddRows(row.New(10).Add(col.New(12).Add(text.New(fmt.Sprintf("Page %d", pageNum), props.Text{Style: fontstyle.Bold, Size: 14}))))
-
 		pagePanels := groups[pageNum]
+		
+		// Add page break and header
+		m.AddRows(row.New(8).Add(col.New(12).Add(text.New(fmt.Sprintf("Page %d", pageNum), props.Text{Style: fontstyle.Bold, Size: 12}))))
+
+		// Render panels with images
 		for i := 0; i < len(pagePanels); i += 2 {
-			r := row.New(60)
+			// Row with two panels side by side
+			r := row.New(80)
+			
 			// Panel 1
 			p1 := pagePanels[i]
-			r.Add(s.buildPanelCol(p1))
+			r.Add(s.buildPanelColWithImage(p1, workspaceRoot))
 
-			// Panel 2
+			// Panel 2 (if exists)
 			if i+1 < len(pagePanels) {
 				p2 := pagePanels[i+1]
-				r.Add(s.buildPanelCol(p2))
+				r.Add(s.buildPanelColWithImage(p2, workspaceRoot))
 			} else {
 				r.Add(col.New(6))
 			}
@@ -1439,6 +1458,96 @@ func (s *StoryboardService) ExportPdf(
 	}), nil
 }
 
+// buildPanelColWithImage creates a column with panel image and text overlay
+func (s *StoryboardService) buildPanelColWithImage(p *storyboardpb.Panel, workspaceRoot string) core.Col {
+	c := col.New(6)
+	
+	// Try to add image if available
+	imageAdded := false
+	if p.Data != nil && len(p.Data.GeneratedImages) > 0 {
+		// Get the current or latest image
+		imgIdx := int(p.Data.CurrentImageIndex)
+		if imgIdx < 0 || imgIdx >= len(p.Data.GeneratedImages) {
+			imgIdx = len(p.Data.GeneratedImages) - 1
+		}
+		
+		imgURL := p.Data.GeneratedImages[imgIdx].ImageUrl
+		if imgURL != "" {
+			// Convert URL path to file path
+			// imgURL is like "/images/episodes/episode:arc0-1-origin/pages/0/p0n1-dark-room_v2.png"
+			// Remove leading slash and join with resources path
+			cleanURL := strings.TrimPrefix(imgURL, "/")
+			imgPath := filepath.Join(workspaceRoot, "260123-jump", "resources", cleanURL)
+			
+			// Read image file
+			imgData, err := os.ReadFile(imgPath)
+			if err == nil {
+				// Determine image extension
+				ext := extension.Png
+				if strings.HasSuffix(strings.ToLower(imgPath), ".jpg") || strings.HasSuffix(strings.ToLower(imgPath), ".jpeg") {
+					ext = extension.Jpg
+				}
+				
+				c.Add(image.NewFromBytes(imgData, ext, props.Rect{
+					Center:  true,
+					Percent: 95,
+				}))
+				imageAdded = true
+			} else {
+				log.Printf("Warning: could not read image %s: %v", imgPath, err)
+			}
+		}
+	}
+	
+	// Add panel number
+	c.Add(text.New(fmt.Sprintf("Panel %d", p.Panel), props.Text{
+		Style: fontstyle.Bold,
+		Size:  8,
+		Top:   0,
+	}))
+	
+	// Add visual note if no image
+	if !imageAdded && p.Data != nil && p.Data.VisualNote != "" {
+		visual := p.Data.VisualNote
+		if len(visual) > 80 {
+			visual = visual[:77] + "..."
+		}
+		c.Add(text.New(visual, props.Text{
+			Top:  10,
+			Size: 7,
+		}))
+	}
+
+	// Add dialogue summary
+	if p.Data != nil && len(p.Data.Dialogue) > 0 {
+		var dialogueLines []string
+		for _, d := range p.Data.Dialogue {
+			line := fmt.Sprintf("%s: %s", d.Speaker, d.Text)
+			if len(line) > 40 {
+				line = line[:37] + "..."
+			}
+			dialogueLines = append(dialogueLines, line)
+			if len(dialogueLines) >= 2 {
+				break
+			}
+		}
+		dialogueText := strings.Join(dialogueLines, " / ")
+		
+		topOffset := float64(60)
+		if imageAdded {
+			topOffset = 65
+		}
+		c.Add(text.New(dialogueText, props.Text{
+			Top:   topOffset,
+			Size:  6,
+			Color: &props.Color{Red: 0, Green: 80, Blue: 0},
+		}))
+	}
+
+	return c
+}
+
+// buildPanelCol creates a simple text-only column (for backwards compatibility)
 func (s *StoryboardService) buildPanelCol(p *storyboardpb.Panel) core.Col {
 	visual := "-"
 	if p.Data != nil && p.Data.VisualNote != "" {
