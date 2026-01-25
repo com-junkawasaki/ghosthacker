@@ -25,6 +25,13 @@
 		if (textarea) textarea.focus();
 	}
 
+	// Expose a method to add messages from outside (e.g. from stream)
+	export function addMessage(msg: { role: 'user' | 'assistant', content: string, agent?: string }) {
+		messages = [...messages, msg];
+		// If it's a real agent message, stop the simulation if any
+		// (In a real app, simulation wouldn't be needed)
+	}
+
 	async function sendMessage() {
 		if (!inputValue && dropContext.length === 0) return;
 
@@ -140,9 +147,7 @@
 					content: `Autonomous generation started. Workflow ID: ${res.workflowId}. Agents are now collaborating...` 
 				}];
 				
-				// Start polling for workflow status or listen to stream updates
-				// For now, we'll simulate the agent collaboration in the chat
-				simulateAgentCollaboration();
+				// No longer simulating, real updates will come via the stream
 			} else {
 				messages = [...messages, { role: 'assistant', content: `Failed to start Auto-Pilot: ${res.message}` }];
 				isAutoPilot = false;

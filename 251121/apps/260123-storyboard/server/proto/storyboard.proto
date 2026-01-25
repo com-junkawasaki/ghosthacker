@@ -49,6 +49,18 @@ service StoryboardService {
 
   // Start autonomous agent-to-agent generation workflow
   rpc StartAutonomousGeneration(StartAutonomousGenerationRequest) returns (StartAutonomousGenerationResponse);
+
+  // Internal: Broadcast a chat message to all connected clients (used by workers)
+  rpc InternalBroadcastChatMessage(InternalBroadcastChatMessageRequest) returns (InternalBroadcastChatMessageResponse);
+}
+
+message InternalBroadcastChatMessageRequest {
+  string agent_mode = 1;
+  string content = 2;
+}
+
+message InternalBroadcastChatMessageResponse {
+  bool success = 1;
 }
 
 message StartAutonomousGenerationRequest {
@@ -302,13 +314,20 @@ message StreamUpdatesRequest {
 }
 
 message StreamUpdatesResponse {
-  string update_type = 1; // "panel_updated", "episode_added", etc.
+  string update_type = 1; // "panel_updated", "episode_added", "chat_message"
   string episode_id = 2;
   int32 page_number = 3;
   int32 panel = 4;
   string jsonld_patch = 5; // JSON Patch format (optional)
   PanelData panel_data = 6; // Full panel data for direct update
   string sender_session_id = 7; // ID of the client who made the change
+  ChatMessage chat_message = 8; // For A2A conversation display
+}
+
+message ChatMessage {
+  string role = 1; // "user", "assistant"
+  string agent_mode = 2; // "scenario", "episode", etc.
+  string content = 3;
 }
 
 message GeneratePanelImageRequest {

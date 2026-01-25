@@ -799,8 +799,8 @@ func (s *StoryboardService) broadcastUpdate(update *storyboardpb.StreamUpdatesRe
 	defer s.mu.RUnlock()
 
 	for sessionID, ch := range s.subscribers {
-		// Don't send back to the sender
-		if sessionID == update.SenderSessionId {
+		// Don't send back to the sender if it's a panel update
+		if update.UpdateType == "panel_updated" && sessionID == update.SenderSessionId {
 			continue
 		}
 		
@@ -811,6 +811,29 @@ func (s *StoryboardService) broadcastUpdate(update *storyboardpb.StreamUpdatesRe
 			log.Printf("broadcastUpdate: skipping slow subscriber: %s", sessionID)
 		}
 	}
+}
+
+// BroadcastChatMessage allows external components (like Temporal workers) to send messages to the chat
+func (s *StoryboardService) BroadcastChatMessage(agentMode, content string) {
+	s.broadcastUpdate(&storyboardpb.StreamUpdatesResponse{
+		UpdateType: "chat_message",
+		ChatMessage: &storyboardpb.ChatMessage{
+			Role:      "assistant",
+			AgentMode: agentMode,
+			Content:   content,
+		},
+	})
+}
+
+// InternalBroadcastChatMessage is the RPC version of BroadcastChatMessage
+func (s *StoryboardService) InternalBroadcastChatMessage(
+	ctx context.Context,
+	req *connect.Request[storyboardpb.InternalBroadcastChatMessageRequest],
+) (*connect.Response[storyboardpb.InternalBroadcastChatMessageResponse], error) {
+	s.BroadcastChatMessage(req.Msg.AgentMode, req.Msg.Content)
+	return connect.NewResponse(&storyboardpb.InternalBroadcastChatMessageResponse{
+		Success: true,
+	}), nil
 }
 
 func (s *StoryboardService) extractMetadata(storyboard map[string]interface{}) *storyboardpb.StoryboardMetadata {

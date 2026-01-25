@@ -98,6 +98,15 @@
 							}
 							return p;
 						});
+					} else if (update.updateType === 'chat_message') {
+						// Forward to chat panel
+						if (chatPanel && update.chatMessage) {
+							chatPanel.addMessage({
+								role: update.chatMessage.role,
+								agent: update.chatMessage.agentMode,
+								content: update.chatMessage.content
+							});
+						}
 					}
 				},
 				(err) => {

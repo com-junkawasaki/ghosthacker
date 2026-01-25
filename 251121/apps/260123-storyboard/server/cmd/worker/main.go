@@ -33,7 +33,18 @@ func main() {
 
 	// Register workflows and activities
 	w.RegisterWorkflow(temporal.StoryboardUpdateWorkflow)
+	w.RegisterWorkflow(temporal.AutonomousGenerationWorkflow)
+	w.RegisterWorkflow(temporal.ScenarioGenerationWorkflow)
+	w.RegisterWorkflow(temporal.EpisodeGenerationWorkflow)
+	w.RegisterWorkflow(temporal.CharacterRefinementWorkflow)
+	w.RegisterWorkflow(temporal.CinematicSketchWorkflow)
+
 	w.RegisterActivity(temporal.SaveStoryboardActivity)
+	w.RegisterActivity(temporal.ScenarioAgentActivity)
+	w.RegisterActivity(temporal.EpisodeAgentActivity)
+	w.RegisterActivity(temporal.CharacterAgentActivity)
+	w.RegisterActivity(temporal.CinematicAgentActivity)
+	w.RegisterActivity(temporal.BroadcastAgentMessageActivity)
 
 	err = w.Run(worker.InterruptCh())
 	if err != nil {

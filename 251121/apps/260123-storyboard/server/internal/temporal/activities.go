@@ -6,11 +6,15 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
+	"log"
 	"net/http"
 	"os"
 	"strings"
 	"time"
 
+	"connectrpc.com/connect"
+	"storyboard-editor/backend/proto/storyboardpbconnect"
+	storyboardpb "storyboard-editor/backend/proto"
 	"go.temporal.io/sdk/activity"
 )
 
@@ -163,4 +167,31 @@ func CinematicAgentActivity(ctx context.Context, episodeOutput string) (string, 
 	userPrompt := fmt.Sprintf("Episode Content: %s", episodeOutput)
 
 	return callOpenRouter(ctx, "openai/gpt-4o", systemPrompt, userPrompt)
+}
+
+type BroadcastParams struct {
+	AgentMode string
+	Content   string
+}
+
+// BroadcastAgentMessageActivity sends an agent's message to the frontend chat
+func BroadcastAgentMessageActivity(ctx context.Context, params BroadcastParams) error {
+	log.Printf("[A2A BROADCAST] %s: %s", params.AgentMode, params.Content)
+
+	serverURL := os.Getenv("SERVER_URL")
+	if serverURL == "" {
+		serverURL = "http://server:8081" // Default in docker-compose
+	}
+
+	client := storyboardpbconnect.NewStoryboardServiceClient(
+		http.DefaultClient,
+		serverURL,
+	)
+
+	_, err := client.InternalBroadcastChatMessage(ctx, connect.NewRequest(&storyboardpb.InternalBroadcastChatMessageRequest{
+		AgentMode: params.AgentMode,
+		Content:   params.Content,
+	}))
+
+	return err
 }

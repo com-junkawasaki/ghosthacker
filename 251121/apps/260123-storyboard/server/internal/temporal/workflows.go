@@ -63,6 +63,7 @@ func AutonomousGenerationWorkflow(ctx workflow.Context, params AutonomousGenerat
 	if err != nil {
 		return AutonomousGenerationResult{Success: false, Message: "Scenario Agent failed: " + err.Error()}, err
 	}
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "scenario", Content: scenarioOutput})
 
 	// 2. Episode Agent: Generate detailed content
 	var episodeOutput string
@@ -70,6 +71,7 @@ func AutonomousGenerationWorkflow(ctx workflow.Context, params AutonomousGenerat
 	if err != nil {
 		return AutonomousGenerationResult{Success: false, Message: "Episode Agent failed: " + err.Error()}, err
 	}
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "episode", Content: episodeOutput})
 
 	// 3. Character Agent: Verify and Refine
 	var characterFeedback string
@@ -77,6 +79,7 @@ func AutonomousGenerationWorkflow(ctx workflow.Context, params AutonomousGenerat
 	if err != nil {
 		return AutonomousGenerationResult{Success: false, Message: "Character Agent failed: " + err.Error()}, err
 	}
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "character", Content: characterFeedback})
 
 	// 4. Cinematic Agent: Finalize visual direction
 	var finalResult string
@@ -84,6 +87,7 @@ func AutonomousGenerationWorkflow(ctx workflow.Context, params AutonomousGenerat
 	if err != nil {
 		return AutonomousGenerationResult{Success: false, Message: "Cinematic Agent failed: " + err.Error()}, err
 	}
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "cinematic", Content: finalResult})
 
 	return AutonomousGenerationResult{
 		Success: true,
