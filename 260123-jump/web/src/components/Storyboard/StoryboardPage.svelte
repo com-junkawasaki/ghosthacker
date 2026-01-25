@@ -81,7 +81,10 @@
 
 		{#each pageNumbers as pageNum}
 			<div class="page-section" data-page={pageNum}>
-				<div class="page-header" onclick={() => dispatch('pageChange', pageNum)}>
+				<div class="page-header" onclick={() => {
+					dispatch('pageChange', pageNum);
+					dispatch('contextAdd', { type: 'page', data: { pageNumber: pageNum } });
+				}}>
 					<div class="page-number">Page {pageNum}</div>
 				</div>
 				
@@ -89,7 +92,10 @@
 					{#each pagesMap[pageNum] as panel (panel.panel)}
 						<div 
 							class="panel-wrapper" 
-							onclick={() => dispatch('panelSelect', panel)}
+							onclick={() => {
+								dispatch('panelSelect', panel);
+								dispatch('contextAdd', { type: 'panel', data: panel });
+							}}
 							onkeydown={(e) => e.key === 'Enter' && dispatch('panelSelect', panel)}
 							role="button"
 							tabindex="0"
@@ -98,7 +104,7 @@
 								{panel}
 								episodeId={episodeId}
 								storyboardPath={storyboardPath}
-								on:update={(e) => handlePanelUpdate(panel.pageNumber, panel.panel, e.detail)}
+								on:update={(e) => handlePanelUpdate(e.detail.pageNumber, e.detail.panel, e.detail.data)}
 								on:agentTrigger={(e) => handleAgentTrigger(e.detail.agent)}
 							/>
 						</div>

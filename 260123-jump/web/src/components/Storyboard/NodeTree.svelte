@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { Panel } from '$lib/gen/proto/storyboard_pb';
 
-	let { panels = [], selectedEpisode = '', onSelect, onContextAdd } = $props<{
+	let { panels = [], selectedId = '', onSelect, onContextAdd } = $props<{
 		panels: Panel[];
-		selectedEpisode: string;
+		selectedId: string;
 		onSelect?: (panel: Panel) => void;
 		onContextAdd?: (type: string, data: any) => void;
 	}>();
@@ -37,10 +37,10 @@
 			<div 
 				class="node-label episode" 
 				draggable="true"
-				ondragstart={(e) => handleDragStart(e, 'episode', { id: selectedEpisode })}
-				onclick={() => onContextAdd?.('episode', { id: selectedEpisode })}
+				ondragstart={(e) => handleDragStart(e, 'episode', { id: selectedId })}
+				onclick={() => onContextAdd?.('episode', { id: selectedId })}
 			>
-				📁 {selectedEpisode || 'No Episode'}
+				📁 {selectedId || 'No Selection'}
 			</div>
 			
 			<div class="children">
@@ -49,8 +49,8 @@
 						<div 
 							class="node-label page"
 							draggable="true"
-							ondragstart={(e) => handleDragStart(e, 'page', { episodeId: selectedEpisode, pageNumber: pageNum })}
-							onclick={() => onContextAdd?.('page', { episodeId: selectedEpisode, pageNumber: pageNum })}
+							ondragstart={(e) => handleDragStart(e, 'page', { episodeId: selectedId, pageNumber: pageNum })}
+							onclick={() => onContextAdd?.('page', { episodeId: selectedId, pageNumber: pageNum })}
 						>
 							📄 Page {pageNum}
 						</div>
@@ -60,7 +60,7 @@
 									class="node-label panel"
 									draggable="true"
 									ondragstart={(e) => handleDragStart(e, 'panel', { 
-										episodeId: selectedEpisode, 
+										episodeId: selectedId, 
 										pageNumber: pageNum, 
 										panel: panel.panel,
 										data: panel.data 
@@ -68,7 +68,7 @@
 									onclick={() => {
 										onSelect?.(panel);
 										onContextAdd?.('panel', { 
-											episodeId: selectedEpisode, 
+											episodeId: selectedId, 
 											pageNumber: pageNum, 
 											panel: panel.panel,
 											data: panel.data 

@@ -33,6 +33,8 @@
 	function startEditing(panel: Panel) {
 		editingPanelId = `${panel.pageNumber}-${panel.panel}`;
 		editBuffer = create(PanelDataSchema, panel.data ?? {});
+		dispatch('panelSelect', panel);
+		dispatch('contextAdd', { type: 'panel', data: panel });
 	}
 
 	function saveAndStopEditing(panel: Panel) {

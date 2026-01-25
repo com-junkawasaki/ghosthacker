@@ -9,7 +9,7 @@
   "@type": ["gh:Project", "prov:Entity"],
   "dct:title": "Manga Ghost Hacker: Case Study Series (260123-jump)",
   "dct:description": "A manga series designed to teach cybersecurity through case studies, using real-world terminology and frameworks (CISA, CISSP, CMMI).",
-  "gh:status": "Planning / Master Storyboard (ARIA Cinematic Base - FULL 12 Episodes) Completed / A2A Workflow Resource Updates Fixed",
+  "gh:status": "Arc-based editing support implemented",
   "gh:currentSession": {
     "@type": "prov:Activity",
     "prov:startedAtTime": "2026-01-25T11:53:00Z",
@@ -19,23 +19,24 @@
       "Generate detailed panel-by-panel (cut) storyboard prompts for Runway base generation",
       "Convert prompts to realistic live-action base (style transfer applied later)",
       "Consolidate all story assets into a single master storyboard",
-      "Implement ARIA-style aesthetic (clean air, soft light, detailed eyes) for Runway base generation"
+      "Implement ARIA-style aesthetic (clean air, soft light, detailed eyes) for Runway base generation",
+      "Implement Arc-based editing mode in the storyboard editor"
     ],
     "gh:results": [
       "Ren Numano: Sloth (Efficiency), MIT Dropout, CISSP Associate, CEH",
       "Kaname: Arrogance (Perfection), Stanford Grad, CISA, PMP, Registered InfoSec Specialist",
       "Takeru: Short-tempered (Instant Action), Self-taught, OSCP, GXPN",
-      "storyboard.jsonld regenerated to include all 12 episodes with full pages and panels (E1: 17 pages, E2–E12: 16 pages each)",
-      "Every panel now contains gh:shotProperties and ARIA-style live-action Runway base prompt (no dialogue)",
-      "character_profiles.jsonld restored and enhanced with detailed ocular (eye) descriptions for all 23 characters across Arcs A, B, C, and D",
-      ".cursor/rules/runway_manga_generation.mdc updated with ARIA aesthetic and Ocular Detail rules",
-      "Added generator script scripts/generate_storyboard_full_aria.py to reproducibly rebuild the full storyboard",
-      "Created apps/zen-editor dataset from storyboard.jsonld with 562 scenes",
-      "Generated sample cut images (scene_1.png, scene_2.png, scene_3.png) using DALL-E 3 and updated zen-editor datastore",
-      "Fixed A2A workflow: Added ApplyEpisodeUpdatesActivity and GeneratePanelImagesActivity to persist agent outputs to JSON-LD files and generate images",
-      "Updated EpisodeAgentActivity and CinematicAgentActivity to output structured JSON for parsing",
-      "Modified AutonomousGenerationWorkflow to call update activities after Episode Agent and Cinematic Agent",
-      "A2A workflow now properly updates resources/episodes/, resources/characters/, and resources/images/ directories"
+      "storyboard.jsonld regenerated to include all 12 episodes with full pages and panels",
+      "character_profiles.jsonld restored and enhanced with detailed ocular (eye) descriptions",
+      ".cursor/rules/runway_manga_generation.mdc updated with ARIA aesthetic",
+      "Added generator script scripts/generate_storyboard_full_aria.py",
+      "Created apps/zen-editor dataset from storyboard.jsonld",
+      "Fixed A2A workflow: Added ApplyEpisodeUpdatesActivity and GeneratePanelImagesActivity",
+      "A2A workflow now properly updates resources/ directories",
+      "Implemented Arc-based editing: added GetArcs and GetArcPanels RPCs to storyboard.proto",
+      "Updated StoryboardService in Go to handle Arc-based data aggregation and retrieval",
+      "Enhanced Svelte frontend with 'By Episode' and 'By Arc' mode switching",
+      "Updated NodeTree component to support dynamic selection IDs for better context dragging"
     ]
   },
   "gh:artifacts": [
@@ -56,14 +57,12 @@
       "@id": "gh:artifact/environments-prompts-260123-jump",
       "@type": "gh:Artifact",
       "schema:name": "Environment Base Prompts",
-      "schema:description": "Detailed environment-only prompts for consistent scene setup.",
       "schema:filePath": "resources/environments/"
     },
     {
       "@id": "gh:artifact/props-definition-260123-jump",
       "@type": "gh:Artifact",
       "schema:name": "Prop & Furniture Definitions",
-      "schema:description": "Specific brand and model names for consistent object generation.",
       "schema:filePath": "resources/props/"
     }
   ],
@@ -86,6 +85,10 @@
     },
     {
       "gh:name": "3D Scene Assembler Integration into Graph",
+      "gh:status": "Completed"
+    },
+    {
+      "gh:name": "Arc-based Editing Support",
       "gh:status": "Completed"
     }
   ]

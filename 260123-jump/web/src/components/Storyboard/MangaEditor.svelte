@@ -57,6 +57,11 @@
 		});
 	}
 
+	function handlePanelSelect(panel: Panel) {
+		dispatch('panelSelect', panel);
+		dispatch('contextAdd', { type: 'panel', data: panel });
+	}
+
 	function handlePanelUpdate(
 		pageNumber: number,
 		panel: number,
@@ -74,7 +79,7 @@
 	<div class="manga-toolbar">
 		<div class="page-nav">
 			<label for="manga-page-select">Page:</label>
-			<select id="manga-page-select" bind:value={selectedPage}>
+			<select id="manga-page-select" bind:value={selectedPage} onchange={() => dispatch('contextAdd', { type: 'page', data: { pageNumber: selectedPage } })}>
 				{#each pageNumbers as pageNum}
 					<option value={pageNum}>Page {pageNum}</option>
 				{/each}
@@ -102,6 +107,7 @@
 				{episodeId}
 				{storyboardPath}
 				on:update={(e) => handlePanelUpdate(e.detail.pageNumber, e.detail.panel, e.detail.data)}
+				on:panelSelect={(e) => handlePanelSelect(e.detail)}
 			/>
 		{:else}
 			<div class="empty-page">No panels for this page</div>

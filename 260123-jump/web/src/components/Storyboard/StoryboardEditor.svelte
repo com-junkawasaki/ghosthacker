@@ -293,14 +293,15 @@
 		alert(`AI suggested ${patches.length} changes. Patch application logic is being developed.`);
 	}
 
-	// Only load panels when an episode or arc is selected
 	$effect(() => {
 		if (editMode === 'episode' && selectedEpisode && selectedEpisode.trim() !== '') {
 			console.log('[StoryboardEditor] Effect: selectedEpisode changed, loading all panels', selectedEpisode);
 			loadPanels();
+			addContextToChat('episode', { id: selectedEpisode });
 		} else if (editMode === 'arc' && selectedArc && selectedArc.trim() !== '') {
 			console.log('[StoryboardEditor] Effect: selectedArc changed, loading arc panels', selectedArc);
 			loadArcPanelsData();
+			addContextToChat('arc', { id: selectedArc });
 		} else if (editMode === 'episode' && !selectedEpisode && episodes.length > 0) {
 			selectedEpisode = episodes[0].id;
 		} else if (editMode === 'arc' && !selectedArc && arcs.length > 0) {
@@ -404,6 +405,7 @@
 					onSelect={(panel) => {
 						selectedPanelIndex = panel.panel;
 						selectedPanelData = panel.data;
+						addContextToChat('panel', panel);
 					}}
 					onContextAdd={(type, data) => addContextToChat(type, data)}
 				/>
@@ -424,6 +426,10 @@
 							on:panelSelect={({ detail }) => {
 								selectedPanelIndex = detail.panel;
 								selectedPanelData = detail.data;
+								addContextToChat('panel', detail);
+							}}
+							on:contextAdd={({ detail }) => {
+								addContextToChat(detail.type, detail.data);
 							}}
 					on:agentTrigger={({ detail }) => {
 						openChatWithAgent(detail.agent);
@@ -437,6 +443,14 @@
 							bind:selectedPage
 							on:update={({ detail }) =>
 								handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
+							on:panelSelect={({ detail }) => {
+								selectedPanelIndex = detail.panel;
+								selectedPanelData = detail.data;
+								addContextToChat('panel', detail);
+							}}
+							on:contextAdd={({ detail }) => {
+								addContextToChat(detail.type, detail.data);
+							}}
 						/>
 					{:else if viewMode === 'script'}
 						<ScriptView 
@@ -445,6 +459,14 @@
 							{storyboardPath}
 							on:update={({ detail }) =>
 								handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
+							on:panelSelect={({ detail }) => {
+								selectedPanelIndex = detail.panel;
+								selectedPanelData = detail.data;
+								addContextToChat('panel', detail);
+							}}
+							on:contextAdd={({ detail }) => {
+								addContextToChat(detail.type, detail.data);
+							}}
 						/>
 					{:else if viewMode === 'shooting'}
 						<ShootingView 
