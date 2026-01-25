@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import type { Panel, Dialogue, GeneratedImage, PanelData } from '$lib/gen/proto/storyboard_pb';
+	import type { Panel, Dialogue, GeneratedImage } from '$lib/gen/proto/storyboard_pb';
 	import { PanelDataSchema, DialogueSchema, GeneratedImageSchema } from '$lib/gen/proto/storyboard_pb';
 	import { create } from '@bufbuild/protobuf';
 	import { generatePanelImage } from '$lib/client/storyboard-client';

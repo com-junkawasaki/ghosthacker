@@ -3,28 +3,29 @@
 	import StoryboardPanel from './StoryboardPanel.svelte';
 	import type { Panel, PanelData } from '$lib/gen/proto/storyboard_pb';
 
-	export let panels: Panel[] = [];
-	export let episodeId: string = '';
-	export let storyboardPath: string = '';
+	let { panels = [], episodeId = '', storyboardPath = '' } = $props<{
+		panels: Panel[];
+		episodeId?: string;
+		storyboardPath?: string;
+	}>();
 
 	const dispatch = createEventDispatcher();
 
-	let container: HTMLElement;
+	let container = $state<HTMLElement | null>(null);
 
-	// Group panels by page number
-	$: pagesMap = panels.reduce((acc, panel) => {
+	// Derived states
+	let pagesMap = $derived(panels.reduce((acc: Record<number, Panel[]>, panel: Panel) => {
 		const pageNum = panel.pageNumber;
 		if (!acc[pageNum]) {
 			acc[pageNum] = [];
 		}
 		acc[pageNum].push(panel);
 		return acc;
-	}, {} as Record<number, Panel[]>);
+	}, {} as Record<number, Panel[]>));
 
-	// Get sorted page numbers
-	$: pageNumbers = Object.keys(pagesMap)
+	let pageNumbers = $derived(Object.keys(pagesMap)
 		.map(Number)
-		.sort((a, b) => a - b);
+		.sort((a, b) => a - b));
 
 	function handlePanelUpdate(pageNumber: number, panel: number, data: PanelData) {
 		dispatch('update', {
@@ -44,15 +45,12 @@
 
 		for (const section of sections) {
 			const rect = section.getBoundingClientRect();
-			// If the top of the section has passed the threshold, or if it's the first section
-			// we check if it's currently occupying the main view area.
 			if (rect.top <= threshold) {
 				const pageNumAttr = section.getAttribute('data-page');
 				if (pageNumAttr) {
 					currentVisiblePage = Number(pageNumAttr);
 				}
 			} else {
-				// Since sections are in order, we can stop once we find one below the threshold
 				break;
 			}
 		}
@@ -63,10 +61,10 @@
 		}
 	}
 
-	let lastDispatchedPage = 1;
+	let lastDispatchedPage = $state(1);
 </script>
 
-<div class="storyboard-page" bind:this={container} on:scroll={handleScroll}>
+<div class="storyboard-page" bind:this={container} onscroll={handleScroll}>
 	<div class="storyboard-container">
 		<!-- Ghibli-style 5-column layout: カット | 画 | 生成画 | 内容 | 秒 -->
 		<div class="grid-header">
@@ -79,7 +77,7 @@
 
 		{#each pageNumbers as pageNum}
 			<div class="page-section" data-page={pageNum}>
-				<div class="page-header" on:click={() => dispatch('pageChange', pageNum)}>
+				<div class="page-header" onclick={() => dispatch('pageChange', pageNum)}>
 					<div class="page-number">Page {pageNum}</div>
 				</div>
 				
@@ -94,7 +92,7 @@
 					{/each}
 				</div>
 
-				{#if pageNum < pageNumbers[pageNumbers.length - 1]}
+				{#if pageNum < (pageNumbers[pageNumbers.length - 1] ?? 0)}
 					<hr class="page-divider" />
 				{/if}
 			</div>

@@ -3,17 +3,18 @@
 	import MangaPanel from './MangaPanel.svelte';
 	import { createEventDispatcher } from 'svelte';
 
-	export let panels: Panel[] = [];
-	export let pageNumber: number = 1;
-	export let episodeId: string = '';
-	export let storyboardPath: string = '';
+	let { panels = [], pageNumber = 1, episodeId = '', storyboardPath = '' } = $props<{
+		panels: Panel[];
+		pageNumber: number;
+		episodeId?: string;
+		storyboardPath?: string;
+	}>();
 
 	const dispatch = createEventDispatcher();
 
-	// Simple grid layout for now, can be customized later with MangaLayout
-	$: sortedPanels = [...panels].sort((a, b) => a.panel - b.panel);
-
-	$: pageLayout = panels[0]?.data?.mangaLayout;
+	// Derived states
+	let sortedPanels = $derived([...panels].sort((a, b) => a.panel - b.panel));
+	let pageLayout = $derived(panels[0]?.data?.mangaLayout);
 
 	function handleUpdate(panelNumber: number, data: PanelData) {
 		dispatch('update', {
@@ -26,7 +27,7 @@
 	function handlePanelResize(panelIndex: number, delta: { x: number, y: number, w: number, h: number }) {
 		if (!pageLayout) return;
 
-		const newPanels = pageLayout.panels.map((p, i) => {
+		const newPanels = pageLayout.panels.map((p: any, i: number) => {
 			if (i === panelIndex) {
 				return {
 					...p,
@@ -77,7 +78,7 @@
 							{storyboardPath}
 							on:update={(e) => handleUpdate(panel.panel, e.detail)}
 						/>
-						<div class="resize-handle" on:mousedown={(e) => {
+						<div class="resize-handle" onmousedown={(e) => {
 							const startX = e.clientX;
 							const startY = e.clientY;
 							const onMouseMove = (moveEvent: MouseEvent) => {
@@ -157,7 +158,7 @@
 		display: block;
 	}
 
-	.layout-wrapper:hover {
+	.layout-wrapper:hover .resize-handle {
 		border-color: #007bff;
 	}
 

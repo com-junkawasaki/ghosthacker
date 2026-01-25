@@ -7,33 +7,31 @@
 	import { create } from '@bufbuild/protobuf';
 	import { createEventDispatcher } from 'svelte';
 
-	export let panels: Panel[] = [];
-	export let episodeId: string = '';
-	export let storyboardPath: string = '';
-	export let selectedPage: number = 1;
+	let { panels = [], episodeId = '', storyboardPath = '', selectedPage = $bindable(1) } = $props<{
+		panels: Panel[];
+		episodeId?: string;
+		storyboardPath?: string;
+		selectedPage: number;
+	}>();
 
 	const dispatch = createEventDispatcher();
 
-	$: {
-		console.log('[MangaEditor] selectedPage prop updated:', selectedPage);
-	}
-
-	$: pagesMap = panels.reduce((acc, panel) => {
+	// Derived states
+	let pagesMap = $derived(panels.reduce((acc: Record<number, Panel[]>, panel: Panel) => {
 		const pageNum = panel.pageNumber;
 		if (!acc[pageNum]) {
 			acc[pageNum] = [];
 		}
 		acc[pageNum].push(panel);
 		return acc;
-	}, {} as Record<number, Panel[]>);
+	}, {} as Record<number, Panel[]>));
 
-	// Get sorted page numbers
-	$: pageNumbers = Object.keys(pagesMap)
+	let pageNumbers = $derived(Object.keys(pagesMap)
 		.map(Number)
-		.sort((a, b) => a - b);
+		.sort((a, b) => a - b));
 
-	$: currentPagePanels = pagesMap[selectedPage] || [];
-	$: templates = MANGA_TEMPLATES[currentPagePanels.length] || [];
+	let currentPagePanels = $derived(pagesMap[selectedPage] || []);
+	let templates = $derived(MANGA_TEMPLATES[currentPagePanels.length] || []);
 
 	async function handleApplyTemplate(template: LayoutTemplate) {
 		if (currentPagePanels.length === 0) return;
@@ -47,10 +45,10 @@
 		const updatedData = create(PanelDataSchema, {
 			...firstPanel.data,
 			mangaLayout: create(MangaLayoutSchema, {
-				panels: newPanelLayouts,
+				panels: newPanelLayouts as any[],
 				texts: firstPanel.data?.mangaLayout?.texts || []
 			})
-		});
+		} as any);
 
 		dispatch('update', {
 			pageNumber: firstPanel.pageNumber,
@@ -87,7 +85,7 @@
 				<div class="template-selector">
 					<span>Layout:</span>
 					{#each templates as template}
-						<button class="tool-btn" on:click={() => handleApplyTemplate(template)}>
+						<button class="tool-btn" onclick={() => handleApplyTemplate(template)}>
 							{template.name}
 						</button>
 					{/each}
