@@ -6,35 +6,53 @@
 		storyboardPath: string;
 	}>();
 
-	let messages = $state<{ role: 'user' | 'assistant', content: string, context?: any }[]>([]);
+	let messages = $state<{ role: 'user' | 'assistant', content: string, context?: any, agent?: string }[]>([]);
 	let inputValue = $state('');
 	let loading = $state(false);
 	let dropContext = $state<any[]>([]);
+	let currentAgentMode = $state<'general' | 'scenario' | 'episode' | 'character' | 'cinematic' | 'dialogue'>('general');
+
+	// Expose a method to trigger agent commands from outside
+	export function triggerAgent(agent: typeof currentAgentMode, initialPrompt?: string) {
+		currentAgentMode = agent;
+		if (initialPrompt) {
+			inputValue = initialPrompt;
+		}
+		// Focus the textarea
+		const textarea = document.querySelector('.chat-input-area textarea') as HTMLTextAreaElement;
+		if (textarea) textarea.focus();
+	}
 
 	async function sendMessage() {
 		if (!inputValue && dropContext.length === 0) return;
 
 		const userMessage = inputValue;
 		const currentContext = [...dropContext];
+		const agentMode = currentAgentMode;
 		
-		messages = [...messages, { role: 'user', content: userMessage, context: currentContext }];
+		messages = [...messages, { role: 'user', content: userMessage, context: currentContext, agent: agentMode }];
 		inputValue = '';
 		dropContext = [];
 		loading = true;
+
+		console.log('[ChatPanel] Sending message to AI...', { userMessage, contextCount: currentContext.length, agentMode });
 
 		try {
 			const res = await storyboardClient.interactWithAI({
 				filePath: storyboardPath,
 				episodeId: selectedEpisode,
 				message: userMessage,
+				agentMode: agentMode,
 				context: currentContext.map(ctx => ({
 					type: ctx.type,
-					id: ctx.id || '',
-					pageNumber: ctx.pageNumber || 0,
-					panel: ctx.panel || 0,
-					jsonContent: ctx.data ? JSON.stringify(ctx.data) : ''
+					id: String(ctx.id || ''),
+					pageNumber: Number(ctx.pageNumber || 0),
+					panel: Number(ctx.panel || 0),
+					jsonContent: ctx.data ? JSON.stringify(ctx.data) : (ctx.type === 'page' ? '{"info": "page context"}' : '')
 				}))
 			});
+
+			console.log('[ChatPanel] AI Response received:', res);
 
 			if (res.success) {
 				messages = [...messages, { 
@@ -42,16 +60,16 @@
 					content: res.aiResponse 
 				}];
 				
-				// Handle patches if any
 				if (res.patches && res.patches.length > 0) {
-					console.log('[ChatPanel] Received patches:', res.patches);
-					// TODO: Apply patches to the storyboard
+					console.log('[ChatPanel] AI suggested patches:', res.patches);
+					// TODO: Implement patch application logic
 				}
 			} else {
-				messages = [...messages, { role: 'assistant', content: `Error: ${res.message}` }];
+				messages = [...messages, { role: 'assistant', content: `AI Error: ${res.message}` }];
 			}
 		} catch (err) {
-			messages = [...messages, { role: 'assistant', content: `Error: ${err instanceof Error ? err.message : String(err)}` }];
+			console.error('[ChatPanel] RPC Error:', err);
+			messages = [...messages, { role: 'assistant', content: `Connection Error: ${err instanceof Error ? err.message : String(err)}` }];
 		} finally {
 			loading = false;
 		}
@@ -61,9 +79,14 @@
 		e.preventDefault();
 		const data = e.dataTransfer?.getData('application/json');
 		if (data) {
-			const parsed = JSON.parse(data);
-			if (!dropContext.find(item => JSON.stringify(item) === JSON.stringify(parsed))) {
-				dropContext = [...dropContext, parsed];
+			try {
+				const parsed = JSON.parse(data);
+				console.log('[ChatPanel] Node dropped:', parsed);
+				if (!dropContext.find(item => JSON.stringify(item) === JSON.stringify(parsed))) {
+					dropContext = [...dropContext, parsed];
+				}
+			} catch (err) {
+				console.error('[ChatPanel] Failed to parse dropped data:', err);
 			}
 		}
 	}
@@ -79,17 +102,58 @@
 </script>
 
 <div class="chat-panel">
-	<div class="chat-header">AI STORY ASSISTANT</div>
+	<div class="chat-header">
+		<div class="header-top">
+			<span>AI STORY ASSISTANT (LIVE)</span>
+		</div>
+		<div class="agent-mode-selector">
+			<button 
+				class="mode-btn general" 
+				class:active={currentAgentMode === 'general'} 
+				onclick={() => currentAgentMode = 'general'}
+			>General</button>
+			<button 
+				class="mode-btn scenario" 
+				class:active={currentAgentMode === 'scenario'} 
+				onclick={() => currentAgentMode = 'scenario'}
+			>Scenario</button>
+			<button 
+				class="mode-btn episode" 
+				class:active={currentAgentMode === 'episode'} 
+				onclick={() => currentAgentMode = 'episode'}
+			>Episode</button>
+			<button 
+				class="mode-btn character" 
+				class:active={currentAgentMode === 'character'} 
+				onclick={() => currentAgentMode = 'character'}
+			>Character</button>
+			<button 
+				class="mode-btn cinematic" 
+				class:active={currentAgentMode === 'cinematic'} 
+				onclick={() => currentAgentMode = 'cinematic'}
+			>Cinematic</button>
+			<button 
+				class="mode-btn dialogue" 
+				class:active={currentAgentMode === 'dialogue'} 
+				onclick={() => currentAgentMode = 'dialogue'}
+			>Dialogue</button>
+		</div>
+	</div>
 	
 	<div class="chat-messages">
 		{#if messages.length === 0}
 			<div class="empty-state">
-				<p>Drag nodes from the left tree here to add them to context, then ask me to edit or generate content.</p>
+				<p>Drag nodes (Episodes, Pages, Panels) from the left tree here to add them to context.</p>
+				<p>Then ask me to rewrite dialogue, suggest visual notes, or update the story structure.</p>
 			</div>
 		{/if}
 		{#each messages as msg}
 			<div class="message" class:user={msg.role === 'user'}>
-				<div class="message-content">{msg.content}</div>
+				{#if msg.agent && msg.agent !== 'general'}
+					<span class="message-agent-tag" class:scenario={msg.agent === 'scenario'} class:episode={msg.agent === 'episode'} class:character={msg.agent === 'character'} class:cinematic={msg.agent === 'cinematic'} class:dialogue={msg.agent === 'dialogue'}>
+						{msg.agent.toUpperCase()}
+					</span>
+				{/if}
 				{#if msg.context && msg.context.length > 0}
 					<div class="message-context">
 						{#each msg.context as ctx}
@@ -97,10 +161,13 @@
 						{/each}
 					</div>
 				{/if}
+				<div class="message-content">{msg.content}</div>
 			</div>
 		{/each}
 		{#if loading}
-			<div class="message assistant loading">Thinking...</div>
+			<div class="message assistant loading">
+				<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
+			</div>
 		{/if}
 	</div>
 
@@ -123,11 +190,11 @@
 		<div class="input-wrapper">
 			<textarea 
 				bind:value={inputValue} 
-				placeholder="Ask AI to edit JSON-LD... (Drop nodes here)"
+				placeholder="Ask AI to edit... (Drop nodes here)"
 				onkeydown={(e) => e.key === 'Enter' && !e.shiftKey && (e.preventDefault(), sendMessage())}
 			></textarea>
-			<button onclick={sendMessage} disabled={loading || (!inputValue && dropContext.length === 0)}>
-				Send
+			<button class="send-btn" onclick={sendMessage} disabled={loading || (!inputValue && dropContext.length === 0)}>
+				{loading ? '...' : 'Send'}
 			</button>
 		</div>
 	</div>
@@ -144,14 +211,59 @@
 	}
 
 	.chat-header {
-		padding: 0.75rem 1rem;
+		padding: 0.5rem 1rem;
 		font-size: 0.7rem;
 		font-weight: bold;
-		color: #888;
+		color: #aaa;
 		letter-spacing: 0.1em;
 		background: #252526;
 		border-bottom: 1px solid #333;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 	}
+
+	.header-top {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+	}
+
+	.agent-mode-selector {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem;
+		width: 100%;
+	}
+
+	.mode-btn {
+		padding: 2px 6px;
+		border-radius: 3px;
+		font-size: 0.6rem;
+		background: #333;
+		color: #888;
+		border: 1px solid #444;
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+
+	.mode-btn:hover {
+		background: #444;
+		color: #ccc;
+	}
+
+	.mode-btn.active {
+		color: white;
+		border-color: transparent;
+	}
+
+	.mode-btn.active.general { background: #555; }
+	.mode-btn.active.scenario { background: #4a90e2; }
+	.mode-btn.active.episode { background: #2ecc71; }
+	.mode-btn.active.character { background: #9b59b6; }
+	.mode-btn.active.cinematic { background: #e67e22; }
+	.mode-btn.active.dialogue { background: #e74c3c; }
 
 	.chat-messages {
 		flex: 1;
@@ -159,61 +271,84 @@
 		padding: 1rem;
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 1.25rem;
 	}
 
 	.empty-state {
 		text-align: center;
 		color: #666;
-		font-size: 0.8rem;
-		margin-top: 2rem;
+		font-size: 0.85rem;
+		margin-top: 3rem;
+		padding: 0 1rem;
+		line-height: 1.5;
 	}
 
 	.message {
-		padding: 0.75rem;
-		border-radius: 6px;
+		padding: 0.8rem 1rem;
+		border-radius: 8px;
 		max-width: 90%;
 		font-size: 0.9rem;
-		line-height: 1.4;
+		line-height: 1.5;
+		position: relative;
 	}
 
 	.message.user {
 		align-self: flex-end;
 		background: #007acc;
 		color: white;
+		border-bottom-right-radius: 2px;
 	}
 
 	.message.assistant {
 		align-self: flex-start;
 		background: #2d2d2d;
 		border: 1px solid #444;
+		border-bottom-left-radius: 2px;
 	}
 
+	.message-agent-tag {
+		font-size: 0.55rem;
+		font-weight: bold;
+		padding: 1px 4px;
+		border-radius: 3px;
+		margin-bottom: 0.25rem;
+		display: inline-block;
+		color: white;
+	}
+
+	.message-agent-tag.scenario { background: #4a90e2; }
+	.message-agent-tag.episode { background: #2ecc71; }
+	.message-agent-tag.character { background: #9b59b6; }
+	.message-agent-tag.cinematic { background: #e67e22; }
+	.message-agent-tag.dialogue { background: #e74c3c; }
+
 	.message-context {
-		margin-top: 0.5rem;
+		margin-bottom: 0.5rem;
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.25rem;
+		gap: 0.3rem;
 	}
 
 	.context-tag {
-		font-size: 0.7rem;
+		font-size: 0.65rem;
 		background: rgba(255,255,255,0.1);
-		padding: 2px 6px;
-		border-radius: 3px;
-		color: #aaa;
+		padding: 2px 8px;
+		border-radius: 10px;
+		color: #bbb;
 		display: flex;
 		align-items: center;
 		gap: 4px;
+		border: 1px solid rgba(255,255,255,0.05);
 	}
 
 	.context-tag button {
 		background: none;
 		border: none;
-		color: #f44;
+		color: #ff5f56;
 		cursor: pointer;
 		padding: 0;
-		font-size: 0.8rem;
+		font-size: 0.9rem;
+		line-height: 1;
 	}
 
 	.chat-input-area {
@@ -225,18 +360,19 @@
 	.drop-context-preview {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.5rem;
-		margin-bottom: 0.5rem;
+		gap: 0.4rem;
+		margin-bottom: 0.75rem;
 		padding: 0.5rem;
 		background: #1e1e1e;
-		border: 1px dashed #444;
-		border-radius: 4px;
-		min-height: 2rem;
+		border: 1px dashed #555;
+		border-radius: 6px;
+		min-height: 2.5rem;
 	}
 
 	.input-wrapper {
 		display: flex;
-		gap: 0.5rem;
+		gap: 0.75rem;
+		align-items: flex-end;
 	}
 
 	textarea {
@@ -244,26 +380,52 @@
 		background: #3c3c3c;
 		color: white;
 		border: 1px solid #555;
-		border-radius: 4px;
-		padding: 0.5rem;
+		border-radius: 6px;
+		padding: 0.6rem;
 		font-size: 0.9rem;
 		resize: none;
-		height: 60px;
+		height: 80px;
+		outline: none;
 	}
 
-	button {
+	textarea:focus {
+		border-color: #007acc;
+	}
+
+	.send-btn {
 		background: #007acc;
 		color: white;
 		border: none;
-		border-radius: 4px;
-		padding: 0 1rem;
+		border-radius: 6px;
+		padding: 0.6rem 1.2rem;
 		cursor: pointer;
 		font-weight: bold;
+		height: 40px;
+		transition: background 0.2s;
 	}
 
-	button:disabled {
+	.send-btn:hover:not(:disabled) {
+		background: #0062a3;
+	}
+
+	.send-btn:disabled {
 		background: #444;
 		color: #888;
 		cursor: not-allowed;
+	}
+
+	.loading .dot {
+		animation: blink 1.4s infinite both;
+		font-size: 1.5rem;
+		line-height: 0;
+	}
+
+	.loading .dot:nth-child(2) { animation-delay: 0.2s; }
+	.loading .dot:nth-child(3) { animation-delay: 0.4s; }
+
+	@keyframes blink {
+		0% { opacity: .2; }
+		20% { opacity: 1; }
+		100% { opacity: .2; }
 	}
 </style>

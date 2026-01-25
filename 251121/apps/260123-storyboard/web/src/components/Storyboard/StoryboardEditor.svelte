@@ -3,11 +3,6 @@
 	import { getEpisodes, getEpisodePanels, storyboardClient, streamUpdates } from '$lib/client/storyboard-client';
 	import StoryboardPage from './StoryboardPage.svelte';
 	import MangaEditor from './MangaEditor.svelte';
-	import ScenarioAgent from './Agents/ScenarioAgent.svelte';
-	import EpisodeAgent from './Agents/EpisodeAgent.svelte';
-	import CharacterAgent from './Agents/CharacterAgent.svelte';
-	import CinematicAgent from './Agents/CinematicAgent.svelte';
-	import DialogueAgent from './Agents/DialogueAgent.svelte';
 	import StoryEditorView from './StoryEditorView.svelte';
 	import NodeTree from './NodeTree.svelte';
 	import ChatPanel from './ChatPanel.svelte';
@@ -21,8 +16,16 @@
 	let selectedPage = $state(1);
 	let selectedPanelIndex = $state(1);
 	let selectedPanelData = $state<PanelData | undefined>(undefined);
-	let activeAgent = $state<'scenario' | 'episode' | 'character' | 'cinematic' | 'dialogue' | undefined>(undefined);
 	let viewMode = $state<'storyboard' | 'manga' | 'story'>('storyboard');
+	
+	// Chat Panel reference
+	let chatPanel = $state<any>(undefined);
+
+	function openChatWithAgent(agent: any, prompt?: string) {
+		if (chatPanel) {
+			chatPanel.triggerAgent(agent, prompt);
+		}
+	}
 	
 	// Resizable split view state
 	let storyboardWidthPercent = $state(50);
@@ -248,30 +251,6 @@
 			{#if episodes.length === 0 && !loading}
 				<span class="debug-info" title="Debug: episodes array is empty">⚠️</span>
 			{/if}
-			
-			<div class="episode-agent-controls">
-				<button 
-					class="agent-btn scenario-btn" 
-					onclick={() => activeAgent = 'scenario'}
-					title="Scenario Writer AI"
-				>
-					Scenario AI
-				</button>
-				<button 
-					class="agent-btn episode-btn" 
-					onclick={() => activeAgent = 'episode'}
-					title="Episode Generator AI"
-				>
-					Episode AI
-				</button>
-				<button 
-					class="agent-btn character-btn" 
-					onclick={() => activeAgent = 'character'}
-					title="Character Refinement AI"
-				>
-					Character AI
-				</button>
-			</div>
 		</div>
 
 		<div class="view-switcher">
@@ -321,45 +300,6 @@
 			</aside>
 
 			<main class="main-content">
-				{#if activeAgent}
-					<aside class="agent-sidebar">
-						<div class="agent-sidebar-header">
-							<span class="agent-title">{activeAgent.toUpperCase()} AGENT</span>
-							<button class="close-sidebar" onclick={() => activeAgent = undefined}>×</button>
-						</div>
-						<div class="agent-panel-container">
-							{#if activeAgent === 'scenario'}
-								<ScenarioAgent {storyboardPath} />
-							{:else if activeAgent === 'episode'}
-								<EpisodeAgent {selectedEpisode} {storyboardPath} />
-							{:else if activeAgent === 'character'}
-								<CharacterAgent {selectedEpisode} {storyboardPath} />
-							{:else if activeAgent === 'cinematic'}
-								<CinematicAgent 
-									{selectedEpisode} 
-									{storyboardPath} 
-									pageNumber={selectedPage} 
-									panelIndex={selectedPanelIndex} 
-								/>
-							{:else if activeAgent === 'dialogue'}
-								<DialogueAgent 
-									{selectedEpisode} 
-									{storyboardPath} 
-									pageNumber={selectedPage} 
-									panelIndex={selectedPanelIndex}
-									panelData={selectedPanelData}
-									on:generated={(e) => {
-										if (selectedPanelData) {
-											const newData = { ...selectedPanelData, dialogue: e.detail.dialogue };
-											handlePanelUpdate(selectedPage, selectedPanelIndex, newData);
-										}
-									}}
-								/>
-							{/if}
-						</div>
-					</aside>
-				{/if}
-
 				<div class="active-view">
 					{#if viewMode === 'storyboard'}
 						<StoryboardPage
@@ -375,9 +315,9 @@
 								selectedPanelIndex = detail.panel;
 								selectedPanelData = detail.data;
 							}}
-							on:agentTrigger={({ detail }) => {
-								activeAgent = detail.agent;
-							}}
+					on:agentTrigger={({ detail }) => {
+						openChatWithAgent(detail.agent);
+					}}
 						/>
 					{:else if viewMode === 'manga'}
 						<MangaEditor
@@ -395,13 +335,16 @@
 							{storyboardPath}
 							on:update={({ detail }) =>
 								handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
+							on:agentTrigger={({ detail }) => {
+								openChatWithAgent(detail.agent);
+							}}
 						/>
 					{/if}
 				</div>
 			</main>
 
 			<aside class="right-sidebar">
-				<ChatPanel {selectedEpisode} {storyboardPath} />
+				<ChatPanel bind:this={chatPanel} {selectedEpisode} {storyboardPath} />
 			</aside>
 		</div>
 	{:else if episodes.length === 0 && !loading}
@@ -460,46 +403,6 @@
 		flex-direction: column;
 	}
 
-	.agent-sidebar {
-		width: 300px;
-		background: #f9f9f9;
-		border-right: 1px solid #ddd;
-		display: flex;
-		flex-direction: column;
-		box-shadow: 2px 0 5px rgba(0,0,0,0.05);
-		z-index: 30;
-	}
-
-	.agent-sidebar-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 0.75rem 1rem;
-		background: #eee;
-		border-bottom: 1px solid #ddd;
-	}
-
-	.agent-title {
-		font-size: 0.75rem;
-		font-weight: 800;
-		color: #555;
-		letter-spacing: 0.05em;
-	}
-
-	.close-sidebar {
-		background: none;
-		border: none;
-		font-size: 1.2rem;
-		cursor: pointer;
-		color: #888;
-	}
-
-	.agent-panel-container {
-		flex: 1;
-		overflow-y: auto;
-		padding: 0.5rem;
-	}
-
 	.storyboard-view {
 		flex: 1;
 		overflow: hidden;
@@ -542,27 +445,6 @@
 		font-size: 1rem;
 	}
 
-	.episode-agent-controls {
-		display: flex;
-		gap: 0.5rem;
-		margin-left: 1rem;
-	}
-
-	.agent-btn {
-		padding: 0.4rem 0.8rem;
-		border: none;
-		border-radius: 4px;
-		font-size: 0.8rem;
-		font-weight: 600;
-		cursor: pointer;
-		color: white;
-		transition: opacity 0.2s;
-	}
-
-	.agent-btn:hover {
-		opacity: 0.9;
-	}
-
 	.view-switcher {
 		display: flex;
 		background: #eee;
@@ -588,10 +470,6 @@
 		color: #4a90e2;
 		box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 	}
-
-	.scenario-btn { background: #4a90e2; }
-	.episode-btn { background: #2ecc71; }
-	.character-btn { background: #9b59b6; }
 
 	.debug-info {
 		margin-left: 0.5rem;

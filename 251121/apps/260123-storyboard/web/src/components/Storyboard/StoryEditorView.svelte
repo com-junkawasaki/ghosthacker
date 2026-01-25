@@ -100,7 +100,10 @@
 								{#if isEditing && editBuffer}
 									<div class="edit-form">
 										<div class="field">
-											<label>Visual Note / Action</label>
+											<div class="label-with-ai">
+												<label>Visual Note / Action</label>
+												<button class="ai-trigger-btn cinematic" onclick={() => dispatch('agentTrigger', { agent: 'cinematic' })}>Sketch AI</button>
+											</div>
 											<textarea 
 												value={editBuffer.visualNote ?? ''} 
 												oninput={(e) => handleBufferUpdate('visualNote', e.currentTarget.value)}
@@ -108,7 +111,10 @@
 										</div>
 										
 										<div class="dialogue-editor">
-											<label>Dialogues</label>
+											<div class="label-with-ai">
+												<label>Dialogues</label>
+												<button class="ai-trigger-btn dialogue" onclick={() => dispatch('agentTrigger', { agent: 'dialogue' })}>Dialogue AI</button>
+											</div>
 											{#each editBuffer.dialogue ?? [] as d, i}
 												<div class="dialogue-edit-row">
 													<input 
@@ -328,6 +334,36 @@
 		margin-bottom: 0.5rem;
 		text-transform: uppercase;
 	}
+
+	.label-with-ai {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.5rem;
+	}
+
+	.label-with-ai label {
+		margin-bottom: 0;
+	}
+
+	.ai-trigger-btn {
+		padding: 2px 8px;
+		border-radius: 4px;
+		font-size: 0.65rem;
+		font-weight: bold;
+		border: none;
+		cursor: pointer;
+		color: white;
+		opacity: 0.8;
+		transition: opacity 0.2s;
+	}
+
+	.ai-trigger-btn:hover {
+		opacity: 1;
+	}
+
+	.ai-trigger-btn.cinematic { background: #e67e22; }
+	.ai-trigger-btn.dialogue { background: #e74c3c; }
 
 	textarea, input {
 		width: 100%;
