@@ -7230,15 +7230,15 @@
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769356443,
-              "gh:imagePrompt": "MeiとYutoの情報場の繋がり。「全部あんたのせいだ」という言葉が二人を縛る鎖のように見える。. Shot type: Insert",
+              "gh:imagePrompt": "SakiとYutoの情報場の繋がり。「全部あんたのせいだ」という言葉が二人を縛る鎖のように見える。. Shot type: Insert",
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/39/JSGZb5P0ZJ8b_v1.png",
               "gh:model": "bytedance-seed/seedream-4.5"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. MeiとYutoの情報場の繋がり。「全部あんたのせいだ」という言葉が二人を縛る鎖のように見える。. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. SakiとYutoの情報場の繋がり。「全部あんたのせいだ」という言葉が二人を縛る鎖のように見える。. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "panel": 3,
           "shot": "Insert",
-          "visual": "MeiとYutoの情報場の繋がり。「全部あんたのせいだ」という言葉が二人を縛る鎖のように見える。"
+          "visual": "SakiとYutoの情報場の繋がり。「全部あんたのせいだ」という言葉が二人を縛る鎖のように見える。"
         },
         {
           "@id": "panel:GbxUAh9UkgWv",
@@ -7281,15 +7281,15 @@
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769356448,
-              "gh:imagePrompt": "呪いの言葉が砕け散る。MeiとYutoの間の鎖が断ち切られる。Daemonが消え始める。. Shot type: Wide Shot",
+              "gh:imagePrompt": "呪いの言葉が砕け散る。SakiとYutoの間の鎖が断ち切られる。Daemonが消え始める。. Shot type: Wide Shot",
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/39/P6E79CzB-iWo_v1.png",
               "gh:model": "bytedance-seed/seedream-4.5"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 呪いの言葉が砕け散る。MeiとYutoの間の鎖が断ち切られる。Daemonが消え始める。. Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 呪いの言葉が砕け散る。SakiとYutoの間の鎖が断ち切られる。Daemonが消え始める。. Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "panel": 5,
           "shot": "Wide Shot",
-          "visual": "呪いの言葉が砕け散る。MeiとYutoの間の鎖が断ち切られる。Daemonが消え始める。"
+          "visual": "呪いの言葉が砕け散る。SakiとYutoの間の鎖が断ち切られる。Daemonが消え始める。"
         }
       ]
     },
@@ -7455,7 +7455,7 @@
       "gh:act": "act:7-daemon-battle",
       "gh:pageLayout": {
         "gh:category": "dialogue",
-        "gh:layoutNote": "和解と対立。Yutoの成長とMeiの逃走",
+        "gh:layoutNote": "和解と対立。Yutoの成長とSakiの逃走",
         "gh:templateName": "Dialogue Rhythm"
       },
       "gh:pageNumber": 41,
@@ -7715,7 +7715,7 @@
             {
               "gh:emotion": "matter-of-fact",
               "speaker": "Ren",
-              "text": "違うな。悪いのはMeiじゃない。"
+              "text": "違うな。悪いのはSakiじゃない。"
             }
           ],
           "environment": "env:middle-school-classroom",
@@ -7725,15 +7725,15 @@
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769356492,
-              "gh:imagePrompt": "Renが割って入る。「違うな。悪いのはMeiじゃない。」. Characters: 沼野 蓮 (Ren Numano) - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese male student, pale porcelain skin, messy raven black hair, sleepy half-lidded eyes with silver-grey crystalline irises, navy blazer school uniform slightly disheveled, white shirt with top button open.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Dialogue: Ren: 違うな。悪いのはMeiじゃない。.",
+              "gh:imagePrompt": "Renが割って入る。「違うな。悪いのはSakiじゃない。」. Characters: 沼野 蓮 (Ren Numano) - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese male student, pale porcelain skin, messy raven black hair, sleepy half-lidded eyes with silver-grey crystalline irises, navy blazer school uniform slightly disheveled, white shirt with top button open.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Dialogue: Ren: 違うな。悪いのはSakiじゃない。.",
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/42/qSU6KdfdzWyO_v1.png",
               "gh:model": "bytedance-seed/seedream-4.5"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Renが割って入る。「違うな。悪いのはMeiじゃない。」. Characters: 沼野 蓮 (Ren Numano) - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese male student, pale porcelain skin, messy raven black hair, sleepy half-lidded eyes with silver-grey crystalline irises, navy blazer school uniform slightly disheveled, white shirt with top button open.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Dialogue: Ren: 違うな。悪いのはMeiじゃない。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Renが割って入る。「違うな。悪いのはSakiじゃない。」. Characters: 沼野 蓮 (Ren Numano) - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese male student, pale porcelain skin, messy raven black hair, sleepy half-lidded eyes with silver-grey crystalline irises, navy blazer school uniform slightly disheveled, white shirt with top button open.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Dialogue: Ren: 違うな。悪いのはSakiじゃない。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "panel": 3,
           "shot": "Medium Shot",
-          "visual": "Renが割って入る。「違うな。悪いのはMeiじゃない。」"
+          "visual": "Renが割って入る。「違うな。悪いのはSakiじゃない。」"
         },
         {
           "@id": "panel:5RnJxzri1fWP",
@@ -8008,7 +8008,16 @@
           ],
           "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/43/pz9A68Vv9tVN_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/43/pz9A68Vv9tVN_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769357086,
+              "gh:imagePrompt": "片付けしながらNeiにデバイスについて聞くSaki。Neiが端的に答える。. Characters: Nei - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese female student, doll-like beauty, platinum blonde layered bob, striking blue irises with sharp catchlights, navy blazer school uniform worn neatly, white blouse, grey checkered skirt.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Dialogue: Saki: あのデバイスなんなのー！？どこで買えるのー！？. Nei: ネットで買ったけど、もうサイトが見つからない。.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/43/pz9A68Vv9tVN_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 片付けしながらNeiにデバイスについて聞くSaki。Neiが端的に答える。. Characters: Nei - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese female student, doll-like beauty, platinum blonde layered bob, striking blue irises with sharp catchlights, navy blazer school uniform worn neatly, white blouse, grey checkered skirt.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Dialogue: Saki: あのデバイスなんなのー！？どこで買えるのー！？. Nei: ネットで買ったけど、もうサイトが見つからない。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "panel": 6,
           "shot": "Medium Shot",
@@ -8084,7 +8093,16 @@
           "dialogue": [],
           "environment": "env:tokyo-skyline",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/44/2mrA5tJNiAzQ_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/44/2mrA5tJNiAzQ_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769357081,
+              "gh:imagePrompt": "東京の街並みを見下ろすRenとNei。ビルの屋上。夕暮れ。. Characters: 沼野 蓮 (Ren Numano) - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese male student, pale porcelain skin, messy raven black hair, sleepy half-lidded eyes with silver-grey crystalline irises, navy blazer school uniform slightly disheveled, white shirt with top button open., Nei - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese female student, doll-like beauty, platinum blonde layered bob, striking blue irises with sharp catchlights, navy blazer school uniform worn neatly, white blouse, grey checkered skirt.. Shot type: Extreme Wide Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/44/2mrA5tJNiAzQ_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 東京の街並みを見下ろすRenとNei。ビルの屋上。夕暮れ。. Characters: 沼野 蓮 (Ren Numano) - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese male student, pale porcelain skin, messy raven black hair, sleepy half-lidded eyes with silver-grey crystalline irises, navy blazer school uniform slightly disheveled, white shirt with top button open., Nei - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese female student, doll-like beauty, platinum blonde layered bob, striking blue irises with sharp catchlights, navy blazer school uniform worn neatly, white blouse, grey checkered skirt.. Shot type: Extreme Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "panel": 2,
           "shot": "Extreme Wide Shot",
@@ -8139,7 +8157,16 @@
           ],
           "environment": "env:tokyo-skyline",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/45/4TxJkFZ_kY3r_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/45/4TxJkFZ_kY3r_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769357089,
+              "gh:imagePrompt": "Neiが頷く。静かな決意。. Characters: Nei - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese female student, doll-like beauty, platinum blonde layered bob, striking blue irises with sharp catchlights, navy blazer school uniform worn neatly, white blouse, grey checkered skirt.. Shot type: Medium Shot. Dialogue: Nei: うん。.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/45/4TxJkFZ_kY3r_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Neiが頷く。静かな決意。. Characters: Nei - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese female student, doll-like beauty, platinum blonde layered bob, striking blue irises with sharp catchlights, navy blazer school uniform worn neatly, white blouse, grey checkered skirt.. Shot type: Medium Shot. Dialogue: Nei: うん。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "panel": 1,
           "shot": "Medium Shot",
