@@ -125,8 +125,11 @@
 		if (session && messages.length > 0) {
 			session.messages = messages;
 			if (session.title === 'New Conversation' || session.title === '') {
-				session.title = messages[0].content.substring(0, 30) + (messages[0].content.length > 30 ? '...' : '');
-				saveCurrentSession();
+				const firstMsg = messages[0];
+				if (firstMsg) {
+					session.title = firstMsg.content.substring(0, 30) + (firstMsg.content.length > 30 ? '...' : '');
+					saveCurrentSession();
+				}
 			}
 		}
 	});

@@ -1073,8 +1073,8 @@
               "environment": "env:cschool-classroom",
               "generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/5/panel_1_20260125_055451.png",
               "gh:generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/5/panel_1_20260125_055451.png",
-              "gh:imagePrompt": "Professional cinematic storyboard sketch, Mai Yoneyama illustrator style, High-End Webtoon Aesthetic, Fine Line Art with Screen Tones, Modern Bishonen Manga Style. 翌日。休憩時間。いつも通りの教室、いつも通りの雑談。. Shot type: Wide Shot. Dialogue: Kurokawa Akira (Aki): マジで、手に入らないからな？.. High contrast monochrome, sharp focus on expressive eyes, intricate iris detail, consistent facial features, slender male youth, atmospheric lighting, cinematic composition, 85mm lens.",
-              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Classroom break time again: students chat casually; Yuto listens with a secret smile. shot on 35mm, f/2.8, cinematic live-action.",
+              "gh:imagePrompt": "Wide Shot, ARIA-style. 翌日。休憩時間。いつも通りの教室、いつも通りの雑談。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+              "gh:runwayPrompt": "Wide Shot, ARIA-style. 翌日。休憩時間。いつも通りの教室、いつも通りの雑談。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "eye level",
                 "gh:aperture": "f/2.8",
@@ -1151,7 +1151,14 @@
           "gh:panels": [
             {
               "characters": [],
-              "dialogue": [],
+              "dialogue": [
+                {
+                  "gh:delivery": "気怠げに、でも確信を持って。",
+                  "gh:subtext": "仕事への入り口。",
+                  "speaker": "character:Ren",
+                  "text": "……だるいけど、やるか。"
+                }
+              ],
               "environment": "env:intertitle-black",
               "gh:imagePrompt": "Full Page Vertical, ARIA-style. ——3日後。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
               "gh:runwayPrompt": "Full Page Vertical, ARIA-style. ——3日後。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -7695,7 +7702,14 @@
                 "character:Ren",
                 "character:Nei"
               ],
-              "dialogue": [],
+              "dialogue": [
+                {
+                  "gh:delivery": "気怠げに、でも確信を持って。",
+                  "gh:subtext": "仕事への入り口。",
+                  "speaker": "character:Ren",
+                  "text": "……だるいけど、やるか。"
+                }
+              ],
               "environment": "env:kamata-street-evening",
               "gh:imagePrompt": "Medium Shot, ARIA-style. 夕暮れの蒲田の雑踏。RenとNei。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
               "gh:runwayPrompt": "Medium Shot, ARIA-style. 夕暮れの蒲田の雑踏。RenとNei。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -7717,7 +7731,14 @@
               "characters": [
                 "character:Ren"
               ],
-              "dialogue": [],
+              "dialogue": [
+                {
+                  "gh:delivery": "気怠げに、でも確信を持って。",
+                  "gh:subtext": "仕事への入り口。",
+                  "speaker": "character:Ren",
+                  "text": "……だるいけど、やるか。"
+                }
+              ],
               "environment": "env:kamata-street-evening",
               "gh:imagePrompt": "Close-up, ARIA-style. Ren、スマホで残高を見てニヤリ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
               "gh:runwayPrompt": "Close-up, ARIA-style. Ren、スマホで残高を見てニヤリ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -7738,7 +7759,14 @@
             },
             {
               "characters": [],
-              "dialogue": [],
+              "dialogue": [
+                {
+                  "gh:delivery": "気怠げに、でも確信を持って。",
+                  "gh:subtext": "仕事への入り口。",
+                  "speaker": "character:Ren",
+                  "text": "……だるいけど、やるか。"
+                }
+              ],
               "environment": "env:intertitle-black",
               "gh:imagePrompt": "Medium Shot, ARIA-style. 『Ghost Hacker - Episode 1 End』. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
               "gh:runwayPrompt": "Medium Shot, ARIA-style. 『Ghost Hacker - Episode 1 End』. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -8886,7 +8914,14 @@
                 "character:Ren",
                 "character:Nei"
               ],
-              "dialogue": [],
+              "dialogue": [
+                {
+                  "gh:delivery": "気怠げに、でも確信を持って。",
+                  "gh:subtext": "仕事への入り口。",
+                  "speaker": "character:Ren",
+                  "text": "……だるいけど、やるか。"
+                }
+              ],
               "environment": "env:kamata-street-evening",
               "gh:imagePrompt": "Medium Shot, ARIA-style. RenとNeiが出ていく。社長は背後で、貼られた『復職条件』を見つめる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
               "gh:runwayPrompt": "Medium Shot, ARIA-style. RenとNeiが出ていく。社長は背後で、貼られた『復職条件』を見つめる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",

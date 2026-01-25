@@ -65,6 +65,8 @@
 	function stopResizing() {
 		isResizing = false;
 	}
+
+	console.log('StoryboardEditor state:', { selectedPanelIndex, selectedPanelData, storyboardWidthPercent, isResizing, startResizing, handleMouseMove, stopResizing });
 	
 	const sessionId = Math.random().toString(36).substring(2, 15);
 

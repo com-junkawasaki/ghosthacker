@@ -185,6 +185,17 @@
 		}
 	}
 
+	function getAvatarUrl(speaker: string) {
+		if (!speaker || speaker === 'Narration' || speaker === 'NewsHacker') return '';
+		
+		// Map speaker names to IDs if necessary
+		const id = speaker;
+		const baseUrl = typeof window !== 'undefined' 
+			? (window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin)
+			: 'http://localhost:8081';
+		return `${baseUrl}/images/characters/${id}.png`;
+	}
+
 	async function handleGenerateImage() {
 		if (generatingImage || !episodeId) return;
 
@@ -298,7 +309,7 @@
 				class="cut-input"
 			/>
 		{:else}
-			<div class="cut-number" on:click={startEdit}>
+			<div class="cut-number" onclick={startEdit} onkeydown={(e) => e.key === 'Enter' && startEdit()} role="button" tabindex="0">
 				{cutNumber || panel.panel}
 			</div>
 		{/if}

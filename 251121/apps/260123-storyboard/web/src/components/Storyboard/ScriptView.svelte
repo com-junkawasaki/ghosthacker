@@ -4,7 +4,7 @@
 	import { PanelDataSchema, DialogueSchema } from '$lib/gen/proto/storyboard_pb';
 	import { create } from '@bufbuild/protobuf';
 
-	let { panels = [], episodeId = '', storyboardPath = '' } = $props<{
+	let { panels = [] } = $props<{
 		panels: Panel[];
 		episodeId?: string;
 		storyboardPath?: string;
@@ -58,7 +58,7 @@
 		const currentDialogue = newDialogues[index];
 		if (!currentDialogue) return;
 
-		newDialogues[index] = create(DialogueSchema, {
+		const dialogueInit: any = {
 			speaker: currentDialogue.speaker,
 			text: currentDialogue.text,
 			delivery: currentDialogue.delivery,
@@ -67,8 +67,10 @@
 			pauseBeforeMs: currentDialogue.pauseBeforeMs,
 			pauseAfterMs: currentDialogue.pauseAfterMs,
 			mangaLayout: currentDialogue.mangaLayout,
-			[field]: value
-		});
+		};
+		dialogueInit[field] = value;
+
+		newDialogues[index] = create(DialogueSchema, dialogueInit);
 		editBuffer.dialogue = newDialogues;
 	}
 
@@ -142,7 +144,7 @@
 								<div class="dialogue-block">
 									<div class="character-name">
 										{#if getAvatarUrl(d.speaker)}
-											<img src={getAvatarUrl(d.speaker)} alt={d.speaker} class="mini-avatar" />
+											<img src={getAvatarUrl(d.speaker)} alt={d.speaker} class="mini-avatar" onerror={(e) => (e.currentTarget as HTMLImageElement).style.display='none'} />
 										{/if}
 										{d.speaker.toUpperCase()}
 									</div>
