@@ -40,22 +40,30 @@
 		const sections = container.querySelectorAll('.page-section');
 		let currentVisiblePage = 1;
 		const containerRect = container.getBoundingClientRect();
+		const threshold = containerRect.top + containerRect.height / 3;
 
 		for (const section of sections) {
 			const rect = section.getBoundingClientRect();
-			// If the top of the section is within the top half of the container, consider it the current page
-			if (rect.top < containerRect.top + containerRect.height / 3) {
+			// If the top of the section has passed the threshold, or if it's the first section
+			// we check if it's currently occupying the main view area.
+			if (rect.top <= threshold) {
 				const pageNumAttr = section.getAttribute('data-page');
 				if (pageNumAttr) {
 					currentVisiblePage = Number(pageNumAttr);
 				}
 			} else {
+				// Since sections are in order, we can stop once we find one below the threshold
 				break;
 			}
 		}
 
-		dispatch('pageChange', currentVisiblePage);
+		if (currentVisiblePage !== lastDispatchedPage) {
+			lastDispatchedPage = currentVisiblePage;
+			dispatch('pageChange', currentVisiblePage);
+		}
 	}
+
+	let lastDispatchedPage = 1;
 </script>
 
 <div class="storyboard-page" bind:this={container} on:scroll={handleScroll}>
@@ -71,7 +79,7 @@
 
 		{#each pageNumbers as pageNum}
 			<div class="page-section" data-page={pageNum}>
-				<div class="page-header">
+				<div class="page-header" on:click={() => dispatch('pageChange', pageNum)}>
 					<div class="page-number">Page {pageNum}</div>
 				</div>
 				
@@ -120,6 +128,12 @@
 		text-align: center;
 		background: #f5f5f0;
 		border-bottom: 1px solid #ddd;
+		cursor: pointer;
+		transition: background 0.2s;
+	}
+
+	.page-header:hover {
+		background: #e8e8e0;
 	}
 
 	.page-number {

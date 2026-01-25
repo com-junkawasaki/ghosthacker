@@ -20,7 +20,7 @@ import (
 
 const (
 	openRouterAPIURL = "https://openrouter.ai/api/v1/chat/completions"
-	defaultModel      = "google/gemini-2.0-flash-001"
+	defaultModel      = "google/gemini-3-pro-image-preview"
 )
 
 type OpenRouterImageResponse struct {
@@ -56,11 +56,10 @@ func (s *StoryboardService) GeneratePanelImage(
 		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("failed to build prompt: %w", err))
 	}
 
-	finalPrompt := fmt.Sprintf("Generate an image based on the following description: %s", prompt)
-	log.Printf("Generating image with prompt: %s", finalPrompt)
+	log.Printf("Generating image with prompt: %s", prompt)
 
 	// Call OpenRouter API
-	imageDataURL, err := s.callOpenRouterAPI(ctx, apiKey, finalPrompt)
+	imageDataURL, err := s.callOpenRouterAPI(ctx, apiKey, prompt)
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to generate image: %w", err))
 	}
@@ -105,6 +104,11 @@ func (s *StoryboardService) callOpenRouterAPI(ctx context.Context, apiKey, promp
 		"messages": []map[string]string{
 			{"role": "user", "content": prompt},
 		},
+		"modalities": []string{"text", "image"},
+		"image_config": map[string]string{
+			"aspect_ratio": "16:9",
+			"image_size":   "2K", // OpenRouter accepts: "1K", "2K", "4K"
+		},
 		"stream": false,
 	}
 
@@ -135,50 +139,18 @@ func (s *StoryboardService) callOpenRouterAPI(ctx context.Context, apiKey, promp
 		return "", fmt.Errorf("OpenRouter API error (%d): %s", resp.StatusCode, string(body))
 	}
 
-	var result struct {
-		Choices []struct {
-			Message struct {
-				Content string `json:"content"`
-				Images  []struct {
-					ImageURL struct {
-						URL string `json:"url"`
-					} `json:"image_url"`
-				} `json:"images"`
-			} `json:"message"`
-		} `json:"choices"`
-	}
+	var result OpenRouterImageResponse
 	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
 		return "", fmt.Errorf("failed to decode response: %w", err)
 	}
 
-	if len(result.Choices) == 0 {
-		return "", fmt.Errorf("no choices in response")
+	if len(result.Choices) == 0 || len(result.Choices[0].Message.Images) == 0 {
+		return "", fmt.Errorf("no image in response")
 	}
 
-	imageURL := ""
-	if len(result.Choices[0].Message.Images) > 0 {
-		imageURL = result.Choices[0].Message.Images[0].ImageURL.URL
-	}
-
-	if imageURL == "" && result.Choices[0].Message.Content != "" {
-		// Try to extract from content (data URL or markdown)
-		content := result.Choices[0].Message.Content
-		if strings.Contains(content, "data:image/") {
-			start := strings.Index(content, "data:image/")
-			// Find end of data URL (space, newline, or closing paren/quote)
-			end := len(content)
-			for i, char := range content[start:] {
-				if char == ' ' || char == '\n' || char == ')' || char == '"' || char == '\'' {
-					end = start + i
-					break
-				}
-			}
-			imageURL = content[start:end]
-		}
-	}
-
+	imageURL := result.Choices[0].Message.Images[0].ImageURL.URL
 	if imageURL == "" {
-		return "", fmt.Errorf("no image in response content: %s", result.Choices[0].Message.Content)
+		return "", fmt.Errorf("empty image URL in response")
 	}
 
 	return imageURL, nil

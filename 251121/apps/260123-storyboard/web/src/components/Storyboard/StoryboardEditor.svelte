@@ -175,6 +175,7 @@
 					on:update={({ detail }) =>
 						handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
 					on:pageChange={({ detail }) => {
+						console.log('[StoryboardEditor] pageChange event received:', detail);
 						selectedPage = detail;
 					}}
 				/>

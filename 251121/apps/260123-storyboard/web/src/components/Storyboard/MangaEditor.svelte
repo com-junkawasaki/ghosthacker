@@ -9,6 +9,10 @@
 	export let storyboardPath: string = '';
 	export let selectedPage: number = 1;
 
+	$: {
+		console.log('[MangaEditor] selectedPage prop updated:', selectedPage);
+	}
+
 	async function handlePanelUpdate(
 		pageNumber: number,
 		panel: number,
