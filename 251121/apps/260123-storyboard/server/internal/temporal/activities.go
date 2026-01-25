@@ -133,7 +133,7 @@ func ScenarioAgentActivity(ctx context.Context, params AutonomousGenerationParam
 	systemPrompt := "You are a professional Scenario Writer for Ghost Hacker, a cinematic webtoon. Plan the next narrative beats. Return a concise plot summary."
 	userPrompt := fmt.Sprintf("Goal: %s\nContext: %v", params.Goal, params.InitialContext)
 
-	return callOpenRouter(ctx, "anthropic/claude-3.5-sonnet", systemPrompt, userPrompt)
+	return callOpenRouter(ctx, "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
 }
 
 // EpisodeAgentActivity handles detailed content generation in A2A
@@ -144,7 +144,7 @@ func EpisodeAgentActivity(ctx context.Context, scenarioOutput string) (string, e
 	systemPrompt := "You are a professional Episode Generator. Create detailed scenes and dialogue based on the scenario plan. Return a structured scene description."
 	userPrompt := fmt.Sprintf("Scenario Plan: %s", scenarioOutput)
 
-	return callOpenRouter(ctx, "anthropic/claude-3.5-sonnet", systemPrompt, userPrompt)
+	return callOpenRouter(ctx, "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
 }
 
 // CharacterAgentActivity handles character consistency in A2A
@@ -155,7 +155,7 @@ func CharacterAgentActivity(ctx context.Context, draft episodeDraft) (string, er
 	systemPrompt := "You are a Character Specialist. Ensure all dialogue and actions are consistent with character profiles. Return a verification report or refined text."
 	userPrompt := fmt.Sprintf("Draft Content: %s\nContext: %v", draft.Content, draft.Params.InitialContext)
 
-	return callOpenRouter(ctx, "google/gemini-3-pro", systemPrompt, userPrompt)
+	return callOpenRouter(ctx, "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
 }
 
 // CinematicAgentActivity handles visual direction in A2A
@@ -185,7 +185,7 @@ Focus on:
 Return a critique and suggested refinements.`
 	userPrompt := fmt.Sprintf("Proposed Content: %s", input)
 
-	return callOpenRouter(ctx, "anthropic/claude-3.5-sonnet", systemPrompt, userPrompt)
+	return callOpenRouter(ctx, "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
 }
 
 // VisionAnalysisActivity analyzes generated images to extract context

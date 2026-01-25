@@ -17,15 +17,15 @@ import (
 )
 
 const (
-	openRouterTextModelDefault = "anthropic/claude-4.5-sonnet" // Fallback to latest available
+	openRouterTextModelDefault = "anthropic/claude-sonnet-4.5" 
 )
 
 const (
-	modelScenarioWriter    = "anthropic/claude-4.5"
-	modelEpisodeGenerator  = "anthropic/claude-4.5"
-	modelCharacterSpecialist = "google/gemini-3-pro"
-	modelCinematicSketcher = "openai/gpt-5.2"
-	modelDialogueCoach     = "anthropic/claude-4.5-haiku"
+	modelScenarioWriter    = "anthropic/claude-sonnet-4.5"
+	modelEpisodeGenerator  = "anthropic/claude-sonnet-4.5"
+	modelCharacterSpecialist = "anthropic/claude-sonnet-4.5"
+	modelCinematicSketcher = "openai/gpt-4o"
+	modelDialogueCoach     = "anthropic/claude-sonnet-4.5"
 )
 
 type openRouterTextResponse struct {

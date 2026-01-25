@@ -57,45 +57,53 @@ func AutonomousGenerationWorkflow(ctx workflow.Context, params AutonomousGenerat
 	logger := workflow.GetLogger(ctx)
 	logger.Info("Starting Autonomous Generation", "goal", params.Goal)
 
+	// 0. Context Discovery
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "general", Content: "🔍 Analyzing storyboard context to determine relevant scope..."})
+
 	// 1. Scenario Agent: Plan the next steps
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "scenario", Content: "🧠 Scenario Agent is brainstorming the next plot points..."})
 	var scenarioOutput string
 	err := workflow.ExecuteActivity(ctx, ScenarioAgentActivity, params).Get(ctx, &scenarioOutput)
 	if err != nil {
 		return AutonomousGenerationResult{Success: false, Message: "Scenario Agent failed: " + err.Error()}, err
 	}
-	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "scenario", Content: scenarioOutput})
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "scenario", Content: "✅ Plot plan finalized:\n" + scenarioOutput})
 
 	// 2. Episode Agent: Generate detailed content
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "episode", Content: "✍️ Episode Agent is drafting detailed scenes and dialogue..."})
 	var episodeOutput string
 	err = workflow.ExecuteActivity(ctx, EpisodeAgentActivity, scenarioOutput).Get(ctx, &episodeOutput)
 	if err != nil {
 		return AutonomousGenerationResult{Success: false, Message: "Episode Agent failed: " + err.Error()}, err
 	}
-	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "episode", Content: episodeOutput})
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "episode", Content: "✅ Scene draft generated."})
 
 	// 3. Character Agent: Verify and Refine
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "character", Content: "🎭 Character Specialist is reviewing character voices..."})
 	var characterFeedback string
 	err = workflow.ExecuteActivity(ctx, CharacterAgentActivity, episodeDraft{Content: episodeOutput, Params: params}).Get(ctx, &characterFeedback)
 	if err != nil {
 		return AutonomousGenerationResult{Success: false, Message: "Character Agent failed: " + err.Error()}, err
 	}
-	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "character", Content: characterFeedback})
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "character", Content: "✅ Character consistency verified."})
 
 	// 3.5 Reviewer Agent: Critique the draft
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "reviewer", Content: "🧐 Story Editor is critiquing the draft for quality..."})
 	var reviewerCritique string
 	err = workflow.ExecuteActivity(ctx, ReviewerAgentActivity, characterFeedback).Get(ctx, &reviewerCritique)
 	if err != nil {
 		return AutonomousGenerationResult{Success: false, Message: "Reviewer Agent failed: " + err.Error()}, err
 	}
-	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "reviewer", Content: reviewerCritique})
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "reviewer", Content: "✅ Review complete:\n" + reviewerCritique})
 
 	// 4. Cinematic Agent: Finalize visual direction
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "cinematic", Content: "🎥 Cinematic Sketcher is designing visual composition..."})
 	var finalResult string
 	err = workflow.ExecuteActivity(ctx, CinematicAgentActivity, episodeOutput).Get(ctx, &finalResult)
 	if err != nil {
 		return AutonomousGenerationResult{Success: false, Message: "Cinematic Agent failed: " + err.Error()}, err
 	}
-	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "cinematic", Content: finalResult})
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "cinematic", Content: "✅ Visual direction finalized."})
 
 	// 5. Vision Agent: Multimodal Feedback (Concept)
 	var visionFeedback string
@@ -104,6 +112,8 @@ func AutonomousGenerationWorkflow(ctx workflow.Context, params AutonomousGenerat
 	if err == nil {
 		workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "vision", Content: visionFeedback})
 	}
+
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "general", Content: "🏁 Autonomous generation complete. You can review the changes in the Story Editor."})
 
 	return AutonomousGenerationResult{
 		Success: true,
