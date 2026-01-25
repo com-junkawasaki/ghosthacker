@@ -1,7 +1,6 @@
 ---
-alwaysApply: true
+alwaysApply: false
 ---
-
 ## Wattpad構成・検証・感情分析ループ（常時適用ルール）
 
 - 構造要件（各 part）

@@ -77,72 +77,61 @@ func (s *StoryboardService) aggregateMaster(filePath string) (map[string]interfa
 		return nil, err
 	}
 
-	// 1. Aggregate Characters
-	charDir := filepath.Join(workspaceRoot, "251121", "characters")
-	if entries, err := os.ReadDir(charDir); err == nil {
-		var characters []interface{}
-		for _, entry := range entries {
-			if entry.IsDir() {
-				profilePath := filepath.Join(charDir, entry.Name(), "profile.jsonld")
-				if data, err := os.ReadFile(profilePath); err == nil {
-					var char map[string]interface{}
-					if err := json.Unmarshal(data, &char); err == nil {
-						delete(char, "@context")
-						characters = append(characters, char)
-					}
-				}
+	// Helper to resolve source files
+	resolveLinks := func(key string) {
+		items, ok := master[key].([]interface{})
+		if !ok {
+			return
+		}
+
+		var resolvedItems []interface{}
+		for _, item := range items {
+			m, ok := item.(map[string]interface{})
+			if !ok {
+				continue
 			}
+
+			sourceFile, ok := m["gh:sourceFile"].(string)
+			if !ok {
+				// If no sourceFile, keep as is
+				resolvedItems = append(resolvedItems, item)
+				continue
+			}
+
+			fullPath := filepath.Join(workspaceRoot, "251121", sourceFile)
+			data, err := os.ReadFile(fullPath)
+			if err != nil {
+				log.Printf("Warning: failed to read source file %s: %v", fullPath, err)
+				resolvedItems = append(resolvedItems, item)
+				continue
+			}
+
+			var resolvedData map[string]interface{}
+			if err := json.Unmarshal(data, &resolvedData); err != nil {
+				log.Printf("Warning: failed to parse source file %s: %v", fullPath, err)
+				resolvedItems = append(resolvedItems, item)
+				continue
+			}
+
+			// Merge: original item (with @id or gh:episodeId) + resolved data
+			// Remove context from resolved data to avoid duplication
+			delete(resolvedData, "@context")
+			for k, v := range resolvedData {
+				m[k] = v
+			}
+			resolvedItems = append(resolvedItems, m)
 		}
-		if len(characters) > 0 {
-			master["gh:characters"] = characters
-		}
+		master[key] = resolvedItems
 	}
 
-	// 2. Aggregate Environments
-	envDir := filepath.Join(workspaceRoot, "251121", "environments")
-	if entries, err := os.ReadDir(envDir); err == nil {
-		var environments []interface{}
-		for _, entry := range entries {
-			if entry.IsDir() {
-				profilePath := filepath.Join(envDir, entry.Name(), "profile.jsonld")
-				if data, err := os.ReadFile(profilePath); err == nil {
-					var env map[string]interface{}
-					if err := json.Unmarshal(data, &env); err == nil {
-						delete(env, "@context")
-						environments = append(environments, env)
-					}
-				}
-			}
-		}
-		if len(environments) > 0 {
-			master["gh:environments"] = environments
-		}
-	}
+	// 1. Resolve Characters
+	resolveLinks("gh:characters")
 
-	// 3. Aggregate Episodes
-	epDir := filepath.Join(workspaceRoot, "251121", "episodes")
-	if entries, err := os.ReadDir(epDir); err == nil {
-		var episodes []interface{}
-		for _, entry := range entries {
-			if entry.IsDir() {
-				epPath := filepath.Join(epDir, entry.Name(), "episode.jsonld")
-				if data, err := os.ReadFile(epPath); err == nil {
-					var ep map[string]interface{}
-					if err := json.Unmarshal(data, &ep); err == nil {
-						delete(ep, "@context")
-						episodes = append(episodes, ep)
-					}
-				}
-			}
-		}
-		if len(episodes) > 0 {
-			master["gh:episodes"] = episodes
-		}
-	}
+	// 2. Resolve Environments
+	resolveLinks("gh:environments")
 
-	// Save aggregated master
-	updatedContent, _ := json.MarshalIndent(master, "", "  ")
-	os.WriteFile(filePath, updatedContent, 0644)
+	// 3. Resolve Episodes
+	resolveLinks("gh:episodes")
 
 	return master, nil
 }
@@ -461,22 +450,19 @@ func (s *StoryboardService) UpdatePanel(
 			"@context": storyboard["@context"],
 		}
 		for k, v := range targetEpisode {
-			epToSave[k] = v
+			// Don't save the sourceFile link inside the individual file itself
+			if k != "gh:sourceFile" {
+				epToSave[k] = v
+			}
 		}
 		epContent, _ := json.MarshalIndent(epToSave, "", "  ")
 		os.WriteFile(epPath, epContent, 0644)
 		log.Printf("UpdatePanel: Saved individual episode file: %s", epPath)
 	}
 
-	// Save updated master storyboard
-	updatedContent, err := json.MarshalIndent(storyboard, "", "  ")
-	if err != nil {
-		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to marshal JSON-LD: %w", err))
-	}
-
-	if err := os.WriteFile(filePath, updatedContent, fs.FileMode(0644)); err != nil {
-		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to save storyboard: %w", err))
-	}
+	// NOTE: We do NOT save the aggregated 'storyboard' map back to filePath (storyboard.jsonld)
+	// because storyboard.jsonld should only contain the Linked Data references (links).
+	// The individual files are the source of truth for the data.
 
 	// Broadcast update to other clients
 	s.broadcastUpdate(&storyboardpb.StreamUpdatesResponse{

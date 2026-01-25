@@ -74,17 +74,58 @@ func (s *StoryboardMCPServer) registerTools() {
 
 func (s *StoryboardMCPServer) handleScenarioWriter(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 	args := req.Params.Arguments.(map[string]interface{})
+	epID, _ := args["episode_id"].(string)
 	instruction, _ := args["instruction"].(string)
-	log.Printf("[MCP] Scenario Writer called with: %s", instruction)
+	log.Printf("[MCP] Scenario Writer called for %s: %s", epID, instruction)
 	
+	profile, err := s.fetchEpisodeProfile(epID)
+	if err != nil {
+		return nil, fmt.Errorf("failed to isolate episode profile for %s: %w", epID, err)
+	}
+
 	return &mcp.CallToolResult{
 		Content: []mcp.Content{
 			mcp.TextContent{
 				Type: "text",
-				Text: fmt.Sprintf("Scenario Agent processed: %s. (Logic pending)", instruction),
+				Text: fmt.Sprintf("Scenario Agent for %s processed: %s.\nIsolated Context: %s", epID, instruction, profile),
 			},
 		},
 	}, nil
+}
+
+func (s *StoryboardMCPServer) fetchEpisodeProfile(epID string) (string, error) {
+	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
+	if workspaceRoot == "" {
+		workspaceRoot = "../../../.."
+	}
+
+	epDir := filepath.Join(workspaceRoot, "251121", "episodes")
+	id := strings.TrimPrefix(epID, "episode:")
+	epFile := filepath.Join(epDir, id, "episode.jsonld")
+
+	data, err := os.ReadFile(epFile)
+	if err == nil {
+		return string(data), nil
+	}
+
+	// Fallback to master storyboard
+	storyboardPath := filepath.Join(workspaceRoot, "251121", "storyboard.jsonld")
+	storyboardData, err := os.ReadFile(storyboardPath)
+	if err == nil {
+		var storyboard map[string]interface{}
+		if err := json.Unmarshal(storyboardData, &storyboard); err == nil {
+			if eps, ok := storyboard["gh:episodes"].([]interface{}); ok {
+				for _, e := range eps {
+					if m, ok := e.(map[string]interface{}); ok && m["gh:episodeId"] == epID {
+						epJSON, _ := json.MarshalIndent(m, "", "  ")
+						return string(epJSON), nil
+					}
+				}
+			}
+		}
+	}
+
+	return "", fmt.Errorf("episode profile not found: %s", epID)
 }
 
 func (s *StoryboardMCPServer) handleCinematicSketcher(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
@@ -190,17 +231,58 @@ func (s *StoryboardMCPServer) handleGetCharacterProfile(ctx context.Context, req
 
 func (s *StoryboardMCPServer) handleEnvironmentSpecialist(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 	args := req.Params.Arguments.(map[string]interface{})
+	envID, _ := args["environment_id"].(string)
 	instruction, _ := args["instruction"].(string)
-	log.Printf("[MCP] Environment Specialist called with: %s", instruction)
+	log.Printf("[MCP] Environment Specialist called for %s: %s", envID, instruction)
 	
+	profile, err := s.fetchEnvironmentProfile(envID)
+	if err != nil {
+		return nil, fmt.Errorf("failed to isolate environment profile for %s: %w", envID, err)
+	}
+
 	return &mcp.CallToolResult{
 		Content: []mcp.Content{
 			mcp.TextContent{
 				Type: "text",
-				Text: fmt.Sprintf("Environment Agent processed: %s. (Setting up location context...)", instruction),
+				Text: fmt.Sprintf("Environment Agent for %s processed: %s.\nIsolated Context: %s", envID, instruction, profile),
 			},
 		},
 	}, nil
+}
+
+func (s *StoryboardMCPServer) fetchEnvironmentProfile(envID string) (string, error) {
+	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
+	if workspaceRoot == "" {
+		workspaceRoot = "../../../.."
+	}
+
+	envDir := filepath.Join(workspaceRoot, "251121", "environments")
+	id := strings.TrimPrefix(envID, "env:")
+	envFile := filepath.Join(envDir, id, "profile.jsonld")
+
+	data, err := os.ReadFile(envFile)
+	if err == nil {
+		return string(data), nil
+	}
+
+	// Fallback to master storyboard
+	storyboardPath := filepath.Join(workspaceRoot, "251121", "storyboard.jsonld")
+	storyboardData, err := os.ReadFile(storyboardPath)
+	if err == nil {
+		var storyboard map[string]interface{}
+		if err := json.Unmarshal(storyboardData, &storyboard); err == nil {
+			if envs, ok := storyboard["gh:environments"].([]interface{}); ok {
+				for _, e := range envs {
+					if m, ok := e.(map[string]interface{}); ok && m["@id"] == envID {
+						envJSON, _ := json.MarshalIndent(m, "", "  ")
+						return string(envJSON), nil
+					}
+				}
+			}
+		}
+	}
+
+	return "", fmt.Errorf("environment profile not found: %s", envID)
 }
 
 func (s *StoryboardMCPServer) handlePropSpecialist(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {

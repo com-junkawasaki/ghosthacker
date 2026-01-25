@@ -519,40 +519,62 @@ func (s *StoryboardService) loadEnvironmentDetails(environmentID string, storybo
 		log.Printf("loadEnvironmentDetails: failed to load master storyboard: %v", err)
 	}
 
+	var envData map[string]interface{}
+	found := false
+
 	if storyboard != nil {
 		if envs, ok := storyboard["gh:environments"].([]interface{}); ok {
 			for _, e := range envs {
 				if m, ok := e.(map[string]interface{}); ok && m["@id"] == environmentID {
-					name := ""
-					if n, ok := m["schema:name"].(string); ok {
-						name = n
-					} else if n, ok := m["dct:title"].(string); ok {
-						name = n
-					}
-
-					description := ""
-					if d, ok := m["schema:description"].(string); ok {
-						description = d
-					} else if d, ok := m["dct:description"].(string); ok {
-						description = d
-					}
-
-					result := name
-					if description != "" {
-						result += " (" + description + ")"
-					}
-					return result, nil
+					envData = m
+					found = true
+					break
 				}
 			}
 		}
 	}
 
-	// Fallback to datastore (legacy)
 	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
 	if workspaceRoot == "" {
 		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(storyboardPath))))
 	}
 
+	if !found {
+		// Try environments/ directory (new design: environments/ID/profile.jsonld)
+		envDir := filepath.Join(workspaceRoot, "251121", "environments")
+		id := strings.TrimPrefix(environmentID, "env:")
+		envFile := filepath.Join(envDir, id, "profile.jsonld")
+		data, err := os.ReadFile(envFile)
+		if err == nil {
+			if err := json.Unmarshal(data, &envData); err == nil {
+				found = true
+			}
+		}
+	}
+
+	if found {
+		name := ""
+		if n, ok := envData["schema:name"].(string); ok {
+			name = n
+		} else if n, ok := envData["dct:title"].(string); ok {
+			name = n
+		}
+
+		description := ""
+		if d, ok := envData["schema:description"].(string); ok {
+			description = d
+		} else if d, ok := envData["dct:description"].(string); ok {
+			description = d
+		}
+
+		result := name
+		if description != "" {
+			result += " (" + description + ")"
+		}
+		return result, nil
+	}
+
+	// Fallback to datastore (legacy)
 	datastoreDir := filepath.Join(workspaceRoot, "251121", "datastore")
 	encodedID := base64.URLEncoding.EncodeToString([]byte(environmentID))
 	envFile := filepath.Join(datastoreDir, encodedID+".jsonld")
@@ -562,7 +584,6 @@ func (s *StoryboardService) loadEnvironmentDetails(environmentID string, storybo
 		return "", err
 	}
 
-	var envData map[string]interface{}
 	if err := json.Unmarshal(data, &envData); err != nil {
 		return "", err
 	}
