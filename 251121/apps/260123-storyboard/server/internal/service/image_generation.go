@@ -20,7 +20,7 @@ import (
 
 const (
 	openRouterAPIURL = "https://openrouter.ai/api/v1/chat/completions"
-	defaultModel      = "google/gemini-3-pro-image-preview"
+	defaultModel      = "google/gemini-2.0-flash-001"
 )
 
 type OpenRouterImageResponse struct {

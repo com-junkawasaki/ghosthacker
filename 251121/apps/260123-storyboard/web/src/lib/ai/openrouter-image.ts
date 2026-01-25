@@ -34,7 +34,7 @@ export async function generateImage(
 
 	const {
 		prompt,
-		model = 'google/gemini-3-pro-image-preview',
+		model = 'google/gemini-2.0-flash-001',
 		aspectRatio = '16:9',
 		imageSize = '1024x1024',
 	} = options;

@@ -100,14 +100,34 @@
       "schema:name": "Nei",
       "dct:description": "17歳。端的で冷静。結論を先に出し、証拠化と手順化でチームを前に進める。",
       "gh:voice": {
-        "gh:style": "concise, calm, clinical",
-        "gh:sentenceTraits": ["conclusion-first", "imperatives", "minimal emotion words"],
-        "gh:favorites": ["結論", "証拠", "止血", "手順", "分離"],
-        "gh:taboos": ["長い比喩", "回りくどい前置き"],
+        "gh:style": "cool, plain, teen; concise and practical",
+        "gh:sentenceTraits": ["conclusion-first", "short", "calm", "practical", "no drama"],
+        "gh:favorites": ["まず", "落ち着いて", "順番", "スクショ", "リンク", "ログイン", "二段階", "ブロック", "通報", "別アカ"],
+        "gh:taboos": ["医療っぽい言い回し", "法律/監査っぽい単語連発", "長い比喩", "回りくどい前置き"],
         "gh:sampleLines": [
-          "結論。証拠。",
-          "今は止血。あとで整理。",
-          "慌てない。順番。"
+          "まず落ち着こ。順番でいける。",
+          "スクショ撮って。消される前に。",
+          "リンクは踏まない。今はそれだけで勝ち。",
+          "別アカで一言だけ出す。『踏まないで』って。",
+          "二段階、入れよ。できるとこから。"
+        ]
+      }
+    },
+    {
+      "@id": "character:NeiPuni",
+      "schema:name": "Nei (Puni)",
+      "dct:description": "『NEIちゃんのアドバイス』用のメタUIマスコット。読者にだけ見える案内役。短く、やさしく、冷静に。",
+      "gh:voice": {
+        "gh:style": "meta UI mascot; super concise, cute but not sugary",
+        "gh:sentenceTraits": ["very short", "friendly", "simple words", "one-action-per-line"],
+        "gh:favorites": ["ここ！", "これだけ", "まず", "スクショ", "設定", "OK"],
+        "gh:taboos": ["説教", "専門用語の連打", "長文"],
+        "gh:sampleLines": [
+          "NEIちゃんのアドバイス！",
+          "まずこれ。いったん止めよ。",
+          "次。スクショ。",
+          "設定いこ。画面みて。",
+          "OK。次いこ。"
         ]
       }
     },
