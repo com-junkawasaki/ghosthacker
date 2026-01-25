@@ -1,6 +1,6 @@
 /**
  * OpenRouter AI Image Generation Client
- * Uses Gemini 3 Pro Image Preview via OpenRouter
+ * Uses Seedream 4.5 via OpenRouter
  */
 
 const OPENROUTER_API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY || '';
@@ -34,7 +34,7 @@ export async function generateImage(
 
 	const {
 		prompt,
-		model = 'google/gemini-3-pro-image-preview',
+		model = 'bytedance-seed/seedream-4.5',
 		aspectRatio = '16:9',
 		imageSize = '1024x1024',
 	} = options;

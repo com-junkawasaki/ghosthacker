@@ -2339,7 +2339,7 @@
         "gh:layoutNote": "異変の始まり。カード停止の衝撃を中央大パネルで",
         "gh:templateName": "Tension Build"
       },
-      "gh:pageNumber": 13,
+      "gh:pageNumber": 16,
       "gh:pageTitle": "カードが止まる",
       "gh:panelCount": 6,
       "gh:panels": [
@@ -2594,15 +2594,21 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:yuto-home-living",
-          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/-P3DxROvzFYP_v1.png",
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/-P3DxROvzFYP_v1.png",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/yTE-IgefJ8FG_v1.png",
+          "gh:currentImageIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/yTE-IgefJ8FG_v1.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769355348,
               "gh:imagePrompt": "合計金額。¥523,000。赤い数字。. Shot type: Insert",
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/-P3DxROvzFYP_v1.png",
               "gh:model": "google/gemini-3-pro-image-preview"
+            },
+            {
+              "gh:generatedAt": 1769356013,
+              "gh:imagePrompt": "ブラウザ読み込み中…. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/yTE-IgefJ8FG_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 合計金額。¥523,000。赤い数字。. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
@@ -2654,15 +2660,21 @@
             }
           ],
           "environment": "env:yuto-home-living",
-          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/6qrehMtL2koX_v1.png",
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/6qrehMtL2koX_v1.png",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/XwKeBPFzaOy7_v1.png",
+          "gh:currentImageIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/XwKeBPFzaOy7_v1.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769355447,
               "gh:imagePrompt": "母親が説明を求める。指で明細を指している。. Shot type: Medium Shot. Dialogue: YutoMother: これ、全部ギフトカード購入になってる。知らない店ばっかり。.",
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/6qrehMtL2koX_v1.png",
               "gh:model": "google/gemini-3-pro-image-preview"
+            },
+            {
+              "gh:generatedAt": 1769356026,
+              "gh:imagePrompt": "目が見開き、恐怖に震えるYuto。. Shot type: Close Up. Dialogue: Yuto: サイトが…消えてる…？.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/XwKeBPFzaOy7_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 母親が説明を求める。指で明細を指している。. Shot type: Medium Shot. Dialogue: YutoMother: これ、全部ギフトカード購入になってる。知らない店ばっかり。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
@@ -2687,15 +2699,21 @@
             }
           ],
           "environment": "env:yuto-home-living",
-          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/VDz7Y-SZGjsD_v1.png",
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/VDz7Y-SZGjsD_v1.png",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/T_hrhxR8CpNw_v1.png",
+          "gh:currentImageIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/T_hrhxR8CpNw_v1.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769355380,
               "gh:imagePrompt": "パニック状態のYuto。必死に否定。. Shot type: Medium Close Up. Dialogue: Yuto: 俺、そんなの買ってない…！.",
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/VDz7Y-SZGjsD_v1.png",
               "gh:model": "google/gemini-3-pro-image-preview"
+            },
+            {
+              "gh:generatedAt": 1769356016,
+              "gh:imagePrompt": "全てを理解してしまったYuto。不安の頂点。暗い部屋に一人。. Shot type: Medium Close Up. Dialogue: Yuto: もしかして…騙された…？.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/T_hrhxR8CpNw_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. パニック状態のYuto。必死に否定。. Shot type: Medium Close Up. Dialogue: Yuto: 俺、そんなの買ってない…！.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
@@ -2775,10 +2793,13 @@
           "visual": "焦ってスマホを操作するYuto。履歴から「アクター通販」を探す。"
         },
         {
+          "@id": "panel:yTE-IgefJ8FG",
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Browser loading... Spinning indicator. Tension building.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/yTE-IgefJ8FG_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/yTE-IgefJ8FG_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. ブラウザ読み込み中…. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -2788,10 +2809,13 @@
           "visual": "ブラウザ読み込み中…"
         },
         {
+          "@id": "panel:-g8Jn2ZDUeO3",
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Error screen: '404 Not Found' 'This page does not exist'. 'Wakuwaku Denki' site completely gone. Japanese text.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/-g8Jn2ZDUeO3_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/-g8Jn2ZDUeO3_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. エラー画面。「404 Not Found」「このページは存在しません」. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -2801,6 +2825,7 @@
           "visual": "エラー画面。「404 Not Found」「このページは存在しません」"
         },
         {
+          "@id": "panel:XwKeBPFzaOy7",
           "characters": [
             "character:Yuto"
           ],
@@ -2812,7 +2837,9 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy's eyes wide with terror. 'The site... is gone...?' Trembling. shot on 85mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/XwKeBPFzaOy7_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/XwKeBPFzaOy7_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 目が見開き、恐怖に震えるYuto。. Shot type: Close Up. Dialogue: Yuto: サイトが…消えてる…？.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -2822,6 +2849,7 @@
           "visual": "目が見開き、恐怖に震えるYuto。"
         },
         {
+          "@id": "panel:T_hrhxR8CpNw",
           "characters": [
             "character:Yuto"
           ],
@@ -2833,7 +2861,9 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy's face as horrible realization dawns. 'Was I... scammed...?' Dark room, shadows on face. Peak of anxiety. shot on 85mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/T_hrhxR8CpNw_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/T_hrhxR8CpNw_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 全てを理解してしまったYuto。不安の頂点。暗い部屋に一人。. Shot type: Medium Close Up. Dialogue: Yuto: もしかして…騙された…？.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:atmosphere": "不安の頂点",
@@ -2853,17 +2883,29 @@
         "gh:layoutNote": "友人たちからの詰問。上部大パネルで対立の緊張感、密度の高いパネルで圧迫感",
         "gh:templateName": "Jump Dense Action"
       },
-      "gh:pageNumber": 14,
+      "gh:pageNumber": 13,
       "gh:pageTitle": "学校 - 詰め寄られる",
       "gh:panelCount": 7,
       "gh:panels": [
         {
+          "@id": "panel:IRgUorxud4sZ",
           "characters": [
             "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Wide Shot. Middle school classroom entrance. Japanese boy standing at door, heavy footsteps. Ominous atmosphere. shot on 35mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/IRgUorxud4sZ_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/IRgUorxud4sZ_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355944,
+              "gh:imagePrompt": "翌日。教室入口に立つYuto。重い足取り。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Wide Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/IRgUorxud4sZ_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 翌日。教室入口に立つYuto。重い足取り。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:atmosphere": "重い空気",
@@ -2993,7 +3035,7 @@
         "gh:layoutNote": "アカウント乗っ取りの衝撃。上部インパクトパネル後、大量のパネルで混乱を表現",
         "gh:templateName": "Maximum Impact"
       },
-      "gh:pageNumber": 15,
+      "gh:pageNumber": 14,
       "gh:pageTitle": "乗っ取り発覚",
       "gh:panelCount": 9,
       "gh:panels": [
@@ -3167,7 +3209,7 @@
         "gh:layoutNote": "DM悪口公開の惨事。混沌としたレイアウトで友情崩壊のカオスを表現",
         "gh:templateName": "Chaos Battle"
       },
-      "gh:pageNumber": 16,
+      "gh:pageNumber": 15,
       "gh:pageTitle": "悪口公開 - 友情崩壊",
       "gh:panelCount": 9,
       "gh:panels": [
@@ -3968,8 +4010,17 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/b9Cdz4YCIaxp_v1.png",
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/b9Cdz4YCIaxp_v1.png",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/b9Cdz4YCIaxp_v2.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/b9Cdz4YCIaxp_v2.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356099,
+              "gh:imagePrompt": "ぷにNEIのアドバイスカード。「#1 漏えいチェック」. Shot type: Insert. Dialogue: NeiPuni: 【NEIちゃんのアドバイス #1】.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/b9Cdz4YCIaxp_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. ぷにNEIのアドバイスカード。「#1 漏えいチェック」. Shot type: Insert. Dialogue: NeiPuni: 【NEIちゃんのアドバイス #1】.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",

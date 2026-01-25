@@ -22,7 +22,7 @@ import (
 
 const (
 	openRouterAPIURL = "https://openrouter.ai/api/v1/chat/completions"
-	defaultModel      = "google/gemini-3-pro-image-preview"
+	defaultModel     = "bytedance-seed/seedream-4.5"
 )
 
 type OpenRouterImageResponse struct {
