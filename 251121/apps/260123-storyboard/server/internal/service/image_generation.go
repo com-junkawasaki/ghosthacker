@@ -123,10 +123,16 @@ func (s *StoryboardService) GeneratePanelImage(
 	// If this was a character avatar generation, also save it to characters directory
 	if strings.HasPrefix(req.Msg.PanelData.VisualNote, "CHARACTER_AVATAR:") {
 		charID := strings.TrimPrefix(req.Msg.PanelData.VisualNote, "CHARACTER_AVATAR:")
-		charAvatarDir := filepath.Join(workspaceRoot, "251121", "images", "characters")
+		charAvatarDir := filepath.Join(workspaceRoot, "251121", "characters", charID)
 		os.MkdirAll(charAvatarDir, 0755)
-		charAvatarPath := filepath.Join(charAvatarDir, charID+".png")
+		charAvatarPath := filepath.Join(charAvatarDir, "avatar.png")
 		os.WriteFile(charAvatarPath, imageBytes, 0644)
+		
+		// Also save as ID.png for backward compatibility in ScriptView
+		legacyAvatarDir := filepath.Join(workspaceRoot, "251121", "images", "characters")
+		os.MkdirAll(legacyAvatarDir, 0755)
+		os.WriteFile(filepath.Join(legacyAvatarDir, charID+".png"), imageBytes, 0644)
+		
 		log.Printf("Saved character avatar to: %s", charAvatarPath)
 	}
 
@@ -426,17 +432,30 @@ func (s *StoryboardService) loadCharacterDetails(characterIDs []string, storyboa
 		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(storyboardPath))))
 	}
 
+	charDir := filepath.Join(workspaceRoot, "251121", "characters")
 	datastoreDir := filepath.Join(workspaceRoot, "251121", "datastore")
 	details := []string{}
 
 	for _, charID := range characterIDs {
-		// Character IDs are like "character:Ren", need to encode to base64
-		encodedID := base64.URLEncoding.EncodeToString([]byte(charID))
-		charFile := filepath.Join(datastoreDir, encodedID+".jsonld")
+		// Try characters/ directory first (new design: characters/ID/profile.jsonld)
+		id := strings.TrimPrefix(charID, "character:")
+		charFile := filepath.Join(charDir, id, "profile.jsonld")
 
 		data, err := os.ReadFile(charFile)
 		if err != nil {
-			continue // Skip if file not found
+			// Try characters/ID.jsonld (intermediate design)
+			charFile = filepath.Join(charDir, id+".jsonld")
+			data, err = os.ReadFile(charFile)
+			
+			if err != nil {
+				// Fallback to datastore/ directory (old design)
+				encodedID := base64.URLEncoding.EncodeToString([]byte(charID))
+				charFile = filepath.Join(datastoreDir, encodedID+".jsonld")
+				data, err = os.ReadFile(charFile)
+				if err != nil {
+					continue // Skip if file not found
+				}
+			}
 		}
 
 		var charData map[string]interface{}
@@ -459,10 +478,21 @@ func (s *StoryboardService) loadCharacterDetails(characterIDs []string, storyboa
 			description = d
 		}
 
+		// Extract appearance if available
+		appearance := ""
+		if app, ok := charData["gh:appearance"].(map[string]interface{}); ok {
+			if prompt, ok := app["gh:generationPrompt"].(string); ok {
+				appearance = prompt
+			}
+		}
+
 		if name != "" {
 			charDetail := name
 			if description != "" {
 				charDetail += " (" + description + ")"
+			}
+			if appearance != "" {
+				charDetail += " Appearance: " + appearance
 			}
 			details = append(details, charDetail)
 		}

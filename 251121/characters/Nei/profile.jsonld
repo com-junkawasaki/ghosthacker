@@ -1,0 +1,23 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "character": "gh:character/",
+    "history": "gh:history/",
+    "context": "gh:context/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dct": "http://purl.org/dc/terms/"
+  },
+  "@id": "character:Nei",
+  "schema:name": "Nei",
+  "schema:role": "AI Partner / Android",
+  "schema:age": 16,
+  "gh:appearance": {
+    "gh:face": "16-year-old stunningly beautiful Japanese female android, intelligent and mischievous sharp eyes with glowing blue intricate iris patterns.",
+    "gh:hair": "Platinum blonde layered bob hair.",
+    "gh:build": "Slender, wearing a white long-sleeve blouse and black sleeveless dress.",
+    "gh:eyes": "Intelligent glowing blue irises with complex mechanical-like patterns, bright crystalline catchlights.",
+    "gh:style": "Photorealistic, cinematic soft lighting, high-end android aesthetic, 8k.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, beautiful 16-year-old Japanese female android, platinum blonde layered bob, glowing blue irises with intricate mechanical patterns and sharp catchlights, white blouse, black dress."
+  }
+}

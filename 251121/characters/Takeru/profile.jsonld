@@ -1,0 +1,23 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "character": "gh:character/",
+    "history": "gh:history/",
+    "context": "gh:context/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dct": "http://purl.org/dc/terms/"
+  },
+  "@id": "character:Takeru",
+  "schema:name": "赤羽 猛 (Takeru Akabane)",
+  "schema:role": "Rival Hacker",
+  "schema:age": 19,
+  "gh:appearance": {
+    "gh:face": "19-year-old Japanese male, muscular build, aggressive and intense expression, piercing amber eyes.",
+    "gh:hair": "Messy black hair with bleached highlights.",
+    "gh:build": "Muscular, wearing high-end techwear/streetwear.",
+    "gh:eyes": "Piercing amber irises, high contrast iris texture, intense sharp catchlights.",
+    "gh:style": "Photorealistic, gritty street aesthetic, high contrast, 8k.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 19-year-old Japanese male, aggressive expression, piercing amber eyes with high contrast iris textures, messy black hair with bleached highlights, techwear."
+  }
+}

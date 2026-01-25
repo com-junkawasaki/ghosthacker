@@ -547,6 +547,21 @@
 				class:active={currentAgentMode === 'a2a'} 
 				onclick={() => currentAgentMode = 'a2a'}
 			>A2A</button>
+			<button 
+				class="mode-btn environment" 
+				class:active={currentAgentMode === 'environment'} 
+				onclick={() => currentAgentMode = 'environment'}
+			>Env</button>
+			<button 
+				class="mode-btn prop" 
+				class:active={currentAgentMode === 'prop'} 
+				onclick={() => currentAgentMode = 'prop'}
+			>Prop</button>
+			<button 
+				class="mode-btn ghost" 
+				class:active={currentAgentMode === 'ghost'} 
+				onclick={() => currentAgentMode = 'ghost'}
+			>Ghost</button>
 		</div>
 	</div>
 	
@@ -911,6 +926,9 @@
 	.mode-btn.active.cinematic { background: #e67e22; }
 	.mode-btn.active.dialogue { background: #e74c3c; }
 	.mode-btn.active.a2a { background: #f1c40f; color: #000; }
+	.mode-btn.active.environment { background: #16a085; }
+	.mode-btn.active.prop { background: #7f8c8d; }
+	.mode-btn.active.ghost { background: #8e44ad; }
 
 	.chat-messages {
 		flex: 1;
@@ -996,6 +1014,10 @@
 	.message-agent-tag.cinematic { background: #e67e22; }
 	.message-agent-tag.dialogue { background: #e74c3c; }
 	.message-agent-tag.reviewer { background: #34495e; }
+	.message-agent-tag.environment { background: #16a085; }
+	.message-agent-tag.prop { background: #7f8c8d; }
+	.message-agent-tag.ghost { background: #8e44ad; }
+	.message-agent-tag.evaluation { background: #27ae60; }
 
 	.message-context {
 		margin-bottom: 0.5rem;

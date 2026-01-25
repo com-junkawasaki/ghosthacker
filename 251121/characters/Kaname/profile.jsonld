@@ -1,0 +1,23 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "character": "gh:character/",
+    "history": "gh:history/",
+    "context": "gh:context/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dct": "http://purl.org/dc/terms/"
+  },
+  "@id": "character:Kaname",
+  "schema:name": "水城 要 (Kaname Mizuki)",
+  "schema:role": "Rival Hacker",
+  "schema:age": 18,
+  "gh:appearance": {
+    "gh:face": "18-year-old Japanese male, perfectly sculpted handsome face, arrogant and cold eyes with obsidian-like dark irises.",
+    "gh:hair": "Stylishly set dark brown hair.",
+    "gh:build": "Model-like tall and slender, wearing a perfectly tailored white suit.",
+    "gh:eyes": "Cold obsidian-like dark irises, sharp mirror-like catchlights, arrogant expression.",
+    "gh:style": "Photorealistic, luxury elite vibe, sharp focus, 8k.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 18-year-old Japanese male, perfectly sculpted face, arrogant cold eyes with obsidian-like dark irises and sharp catchlights, white suit, luxury aesthetic."
+  }
+}

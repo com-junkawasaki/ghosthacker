@@ -1,0 +1,23 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "character": "gh:character/",
+    "history": "gh:history/",
+    "context": "gh:context/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dct": "http://purl.org/dc/terms/"
+  },
+  "@id": "character:Akira",
+  "schema:name": "黒川 亮 (Akira Kurokawa)",
+  "schema:role": "Student / Trendsetter",
+  "schema:age": 16,
+  "gh:appearance": {
+    "gh:face": "16-year-old Japanese male student, confident and smug expression, stylish features.",
+    "gh:hair": "Stylishly messy black hair with subtle brown highlights.",
+    "gh:build": "Slim build, wearing a school uniform with a trendy designer accessory.",
+    "gh:eyes": "Confident dark eyes, sharp catchlights, slightly arrogant look.",
+    "gh:style": "Photorealistic, cinematic lighting, 8k, high-end webtoon aesthetic.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 16-year-old Japanese high school boy, stylishly messy black hair with brown highlights, confident smug expression, dark eyes with sharp catchlights, wearing a school uniform with a designer watch."
+  }
+}

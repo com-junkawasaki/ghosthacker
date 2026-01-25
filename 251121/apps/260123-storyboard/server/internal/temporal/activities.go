@@ -182,6 +182,39 @@ func CharacterAgentActivity(ctx context.Context, draft episodeDraft) (string, er
 	return callOpenRouter(ctx, "character", "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
 }
 
+// EnvironmentAgentActivity handles location and atmosphere details in A2A
+func EnvironmentAgentActivity(ctx context.Context, input string) (string, error) {
+	logger := activity.GetLogger(ctx)
+	logger.Info("Environment Agent working")
+
+	systemPrompt := "You are an Environment Specialist. Focus on location settings, atmosphere, and architectural details for the given scene."
+	userPrompt := fmt.Sprintf("Scene Content: %s", input)
+
+	return callOpenRouter(ctx, "environment", "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
+}
+
+// PropAgentActivity handles tools and gadgets in A2A
+func PropAgentActivity(ctx context.Context, input string) (string, error) {
+	logger := activity.GetLogger(ctx)
+	logger.Info("Prop Agent working")
+
+	systemPrompt := "You are a Prop Specialist. Focus on identifying and detailing tools, hacker gadgets, and small objects in the scene."
+	userPrompt := fmt.Sprintf("Scene Content: %s", input)
+
+	return callOpenRouter(ctx, "prop", "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
+}
+
+// GhostAgentActivity handles digital glitches and supernatural effects in A2A
+func GhostAgentActivity(ctx context.Context, input string) (string, error) {
+	logger := activity.GetLogger(ctx)
+	logger.Info("Ghost Agent working")
+
+	systemPrompt := "You are a Ghost Specialist. Focus on designing digital glitches, supernatural effects, and AXE-related visual phenomena."
+	userPrompt := fmt.Sprintf("Scene Content: %s", input)
+
+	return callOpenRouter(ctx, "ghost", "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
+}
+
 // CinematicAgentActivity handles visual direction in A2A
 func CinematicAgentActivity(ctx context.Context, episodeOutput string) (string, error) {
 	logger := activity.GetLogger(ctx)

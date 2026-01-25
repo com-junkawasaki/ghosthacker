@@ -110,6 +110,30 @@ func AutonomousGenerationWorkflow(ctx workflow.Context, params AutonomousGenerat
 	}
 	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "cinematic", Role: "assistant", Content: "✅ Visual direction finalized."})
 
+	// 4.1 Environment Agent: Refine location details
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "environment", Role: "system", Content: "🏙️ Environment Specialist is refining location details..."})
+	var envOutput string
+	err = workflow.ExecuteActivity(ctx, EnvironmentAgentActivity, finalResult).Get(ctx, &envOutput)
+	if err == nil {
+		workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "environment", Role: "assistant", Content: "✅ Environment details refined:\n" + envOutput})
+	}
+
+	// 4.2 Prop Agent: Identify gadgets and objects
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "prop", Role: "system", Content: "🛠️ Prop Specialist is identifying gadgets and objects..."})
+	var propOutput string
+	err = workflow.ExecuteActivity(ctx, PropAgentActivity, finalResult).Get(ctx, &propOutput)
+	if err == nil {
+		workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "prop", Role: "assistant", Content: "✅ Props and gadgets identified:\n" + propOutput})
+	}
+
+	// 4.3 Ghost Agent: Design glitch and supernatural effects
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "ghost", Role: "system", Content: "👻 Ghost Specialist is designing glitch effects..."})
+	var ghostOutput string
+	err = workflow.ExecuteActivity(ctx, GhostAgentActivity, finalResult).Get(ctx, &ghostOutput)
+	if err == nil {
+		workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "ghost", Role: "assistant", Content: "✅ Digital ghost effects designed:\n" + ghostOutput})
+	}
+
 	// 5. Evaluation Agent: Final QA
 	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "evaluation", Role: "system", Content: "📊 Performing final Quality Assurance and Episode Evaluation..."})
 	var evaluationReport string

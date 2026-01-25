@@ -1,0 +1,23 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "character": "gh:character/",
+    "history": "gh:history/",
+    "context": "gh:context/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dct": "http://purl.org/dc/terms/"
+  },
+  "@id": "character:Yasumoto",
+  "schema:name": "安本 健治 (Kenji Yasumoto)",
+  "schema:role": "Antagonist / Victim",
+  "schema:age": 52,
+  "gh:appearance": {
+    "gh:face": "52-year-old Japanese man, oily skin, anxious and defensive expression, darting eyes.",
+    "gh:hair": "Messy receding salt-and-pepper hair.",
+    "gh:build": "Slightly overweight, wearing a rumpled gray business suit.",
+    "gh:eyes": "Anxious darting eyes, oily texture on eyelids, sharp catchlights from fluorescent lights.",
+    "gh:style": "Photorealistic, harsh office lighting, oily skin texture, 8k.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, a 52-year-old Japanese man, slightly overweight, anxious expression, messy receding hair, rumpled gray suit, sweat stains, harsh fluorescent lighting, anxious eyes with sharp catchlights."
+  }
+}

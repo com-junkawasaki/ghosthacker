@@ -1,0 +1,23 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "character": "gh:character/",
+    "history": "gh:history/",
+    "context": "gh:context/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dct": "http://purl.org/dc/terms/"
+  },
+  "@id": "character:Saki",
+  "schema:name": "水野 サキ (Saki Mizuno)",
+  "schema:role": "Student / Observer",
+  "schema:age": 16,
+  "gh:appearance": {
+    "gh:face": "16-year-old Japanese female student, calm and analytical expression, sharp features.",
+    "gh:hair": "Long straight black hair.",
+    "gh:build": "Slender build, wearing a school uniform neatly.",
+    "gh:eyes": "Calm analytical dark eyes, precise iris patterns, clear catchlights.",
+    "gh:style": "Photorealistic, cinematic lighting, 8k, high-end webtoon aesthetic.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 16-year-old Japanese high school girl, long straight black hair, calm analytical expression, sharp dark eyes with clear catchlights, wearing a neat school uniform."
+  }
+}

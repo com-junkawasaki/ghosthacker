@@ -51,6 +51,9 @@ func main() {
 	w.RegisterActivity(temporal.EvaluationAgentActivity)
 	w.RegisterActivity(temporal.BroadcastAgentMessageActivity)
 	w.RegisterActivity(temporal.VisionAnalysisActivity)
+	w.RegisterActivity(temporal.EnvironmentAgentActivity)
+	w.RegisterActivity(temporal.PropAgentActivity)
+	w.RegisterActivity(temporal.GhostAgentActivity)
 
 	err = w.Run(worker.InterruptCh())
 	if err != nil {
