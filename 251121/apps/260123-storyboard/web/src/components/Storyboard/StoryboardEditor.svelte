@@ -9,6 +9,8 @@
 	import CinematicAgent from './Agents/CinematicAgent.svelte';
 	import DialogueAgent from './Agents/DialogueAgent.svelte';
 	import StoryEditorView from './StoryEditorView.svelte';
+	import NodeTree from './NodeTree.svelte';
+	import ChatPanel from './ChatPanel.svelte';
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
 
 	let episodes: Array<{ id: string; title: string; totalPages: number }> = $state([]);
@@ -20,7 +22,7 @@
 	let selectedPanelIndex = $state(1);
 	let selectedPanelData = $state<PanelData | undefined>(undefined);
 	let activeAgent = $state<'scenario' | 'episode' | 'character' | 'cinematic' | 'dialogue' | undefined>(undefined);
-	let viewMode = $state<'manga' | 'story'>('manga');
+	let viewMode = $state<'storyboard' | 'manga' | 'story'>('storyboard');
 	
 	// Resizable split view state
 	let storyboardWidthPercent = $state(50);
@@ -274,13 +276,17 @@
 
 		<div class="view-switcher">
 			<button 
+				class:active={viewMode === 'storyboard'} 
+				onclick={() => viewMode = 'storyboard'}
+			>Storyboard</button>
+			<button 
 				class:active={viewMode === 'manga'} 
 				onclick={() => viewMode = 'manga'}
-			>Manga View</button>
+			>Manga</button>
 			<button 
 				class:active={viewMode === 'story'} 
 				onclick={() => viewMode = 'story'}
-			>Story Editor</button>
+			>Story</button>
 		</div>
 
 		<div class="episode-info">
@@ -302,101 +308,101 @@
 	{:else if panels.length > 0}
 		<div 
 			class="editor-content" 
-			class:resizing={isResizing}
-			onmousemove={handleMouseMove}
-			onmouseup={stopResizing}
-			onmouseleave={stopResizing}
 		>
-			{#if activeAgent}
-				<aside class="agent-sidebar">
-					<div class="agent-sidebar-header">
-						<span class="agent-title">{activeAgent.toUpperCase()} AGENT</span>
-						<button class="close-sidebar" onclick={() => activeAgent = undefined}>×</button>
-					</div>
-					<div class="agent-panel-container">
-						{#if activeAgent === 'scenario'}
-							<ScenarioAgent {storyboardPath} />
-						{:else if activeAgent === 'episode'}
-							<EpisodeAgent {selectedEpisode} {storyboardPath} />
-						{:else if activeAgent === 'character'}
-							<CharacterAgent {selectedEpisode} {storyboardPath} />
-						{:else if activeAgent === 'cinematic'}
-							<CinematicAgent 
-								{selectedEpisode} 
-								{storyboardPath} 
-								pageNumber={selectedPage} 
-								panelIndex={selectedPanelIndex} 
-							/>
-						{:else if activeAgent === 'dialogue'}
-							<DialogueAgent 
-								{selectedEpisode} 
-								{storyboardPath} 
-								pageNumber={selectedPage} 
-								panelIndex={selectedPanelIndex}
-								panelData={selectedPanelData}
-								on:generated={(e) => {
-									if (selectedPanelData) {
-										const newData = { ...selectedPanelData, dialogue: e.detail.dialogue };
-										handlePanelUpdate(selectedPage, selectedPanelIndex, newData);
-									}
-								}}
-							/>
-						{/if}
-					</div>
-				</aside>
-			{/if}
-			
-			{#if viewMode === 'manga'}
-				<div class="storyboard-view" style="width: {storyboardWidthPercent}%">
-					<StoryboardPage
-						{panels}
-						episodeId={selectedEpisode}
-						storyboardPath={storyboardPath}
-						on:update={({ detail }) =>
-							handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
-						on:pageChange={({ detail }) => {
-							console.log('[StoryboardEditor] pageChange event received:', detail);
-							selectedPage = detail;
-						}}
-						on:panelSelect={({ detail }) => {
-							selectedPanelIndex = detail.panel;
-							selectedPanelData = detail.data;
-						}}
-						on:agentTrigger={({ detail }) => {
-							activeAgent = detail.agent;
-						}}
-					/>
-				</div>
-
-				<div 
-					class="resizer" 
-					onmousedown={startResizing}
-					role="separator"
-					aria-valuenow={storyboardWidthPercent}
-					aria-valuemin="20"
-					aria-valuemax="80"
-					tabindex="0"
-				></div>
-
-				<div class="manga-view" style="width: {100 - storyboardWidthPercent}%">
-					<MangaEditor
-						{panels}
-						episodeId={selectedEpisode}
-						{storyboardPath}
-						bind:selectedPage
-						on:update={({ detail }) =>
-							handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
-					/>
-				</div>
-			{:else}
-				<StoryEditorView 
+			<aside class="left-sidebar">
+				<NodeTree 
 					{panels} 
-					episodeId={selectedEpisode} 
-					{storyboardPath}
-					on:update={({ detail }) =>
-						handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
+					{selectedEpisode} 
+					onSelect={(panel) => {
+						selectedPanelIndex = panel.panel;
+						selectedPanelData = panel.data;
+					}}
 				/>
-			{/if}
+			</aside>
+
+			<main class="main-content">
+				{#if activeAgent}
+					<aside class="agent-sidebar">
+						<div class="agent-sidebar-header">
+							<span class="agent-title">{activeAgent.toUpperCase()} AGENT</span>
+							<button class="close-sidebar" onclick={() => activeAgent = undefined}>×</button>
+						</div>
+						<div class="agent-panel-container">
+							{#if activeAgent === 'scenario'}
+								<ScenarioAgent {storyboardPath} />
+							{:else if activeAgent === 'episode'}
+								<EpisodeAgent {selectedEpisode} {storyboardPath} />
+							{:else if activeAgent === 'character'}
+								<CharacterAgent {selectedEpisode} {storyboardPath} />
+							{:else if activeAgent === 'cinematic'}
+								<CinematicAgent 
+									{selectedEpisode} 
+									{storyboardPath} 
+									pageNumber={selectedPage} 
+									panelIndex={selectedPanelIndex} 
+								/>
+							{:else if activeAgent === 'dialogue'}
+								<DialogueAgent 
+									{selectedEpisode} 
+									{storyboardPath} 
+									pageNumber={selectedPage} 
+									panelIndex={selectedPanelIndex}
+									panelData={selectedPanelData}
+									on:generated={(e) => {
+										if (selectedPanelData) {
+											const newData = { ...selectedPanelData, dialogue: e.detail.dialogue };
+											handlePanelUpdate(selectedPage, selectedPanelIndex, newData);
+										}
+									}}
+								/>
+							{/if}
+						</div>
+					</aside>
+				{/if}
+
+				<div class="active-view">
+					{#if viewMode === 'storyboard'}
+						<StoryboardPage
+							{panels}
+							episodeId={selectedEpisode}
+							storyboardPath={storyboardPath}
+							on:update={({ detail }) =>
+								handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
+							on:pageChange={({ detail }) => {
+								selectedPage = detail;
+							}}
+							on:panelSelect={({ detail }) => {
+								selectedPanelIndex = detail.panel;
+								selectedPanelData = detail.data;
+							}}
+							on:agentTrigger={({ detail }) => {
+								activeAgent = detail.agent;
+							}}
+						/>
+					{:else if viewMode === 'manga'}
+						<MangaEditor
+							{panels}
+							episodeId={selectedEpisode}
+							{storyboardPath}
+							bind:selectedPage
+							on:update={({ detail }) =>
+								handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
+						/>
+					{:else if viewMode === 'story'}
+						<StoryEditorView 
+							{panels} 
+							episodeId={selectedEpisode} 
+							{storyboardPath}
+							on:update={({ detail }) =>
+								handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
+						/>
+					{/if}
+				</div>
+			</main>
+
+			<aside class="right-sidebar">
+				<ChatPanel {selectedEpisode} {storyboardPath} />
+			</aside>
 		</div>
 	{:else if episodes.length === 0 && !loading}
 		<div class="empty-state">
@@ -420,11 +426,38 @@
 		flex: 1;
 		overflow: hidden;
 		position: relative;
+		background: #1e1e1e;
 	}
 
-	.editor-content.resizing {
-		cursor: col-resize;
-		user-select: none;
+	.left-sidebar {
+		width: 260px;
+		flex-shrink: 0;
+		border-right: 1px solid #333;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.right-sidebar {
+		width: 350px;
+		flex-shrink: 0;
+		border-left: 1px solid #333;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.main-content {
+		flex: 1;
+		display: flex;
+		position: relative;
+		overflow: hidden;
+		background: #fff;
+	}
+
+	.active-view {
+		flex: 1;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.agent-sidebar {
@@ -434,6 +467,7 @@
 		display: flex;
 		flex-direction: column;
 		box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+		z-index: 30;
 	}
 
 	.agent-sidebar-header {
@@ -467,36 +501,15 @@
 	}
 
 	.storyboard-view {
+		flex: 1;
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
 		border-right: 1px solid #ddd;
 	}
 
-	.resizer {
-		width: 8px;
-		background: #eee;
-		cursor: col-resize;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		transition: background 0.2s;
-		z-index: 20;
-		border-left: 1px solid #ddd;
-		border-right: 1px solid #ddd;
-	}
-
-	.resizer:hover, .editor-content.resizing .resizer {
-		background: #4a90e2;
-	}
-
-	.resizer::after {
-		content: '⋮';
-		color: #888;
-		font-weight: bold;
-	}
-
 	.manga-view {
+		flex: 1;
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;

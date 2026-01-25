@@ -43,6 +43,38 @@ service StoryboardService {
 
   // Generate cinematic sketches and visual prompts
   rpc GenerateCinematicSketch(GenerateCinematicSketchRequest) returns (GenerateCinematicSketchResponse);
+
+  // Interact with AI assistant for chat-based editing and generation
+  rpc InteractWithAI(InteractWithAIRequest) returns (InteractWithAIResponse);
+}
+
+message InteractWithAIRequest {
+  string file_path = 1;
+  string episode_id = 2;
+  string message = 3;
+  repeated AIContext context = 4;
+  string session_id = 5;
+}
+
+message AIContext {
+  string type = 1; // "episode", "page", "panel", "character"
+  string id = 2;
+  int32 page_number = 3;
+  int32 panel = 4;
+  string json_content = 5; // Serialized data for the context item
+}
+
+message InteractWithAIResponse {
+  bool success = 1;
+  string message = 2;
+  string ai_response = 3;
+  repeated JSONPatch patches = 4; // Optional patches to apply to the storyboard
+}
+
+message JSONPatch {
+  string op = 1; // "add", "remove", "replace"
+  string path = 2;
+  string value = 3; // JSON string value
 }
 
 message GenerateScenarioRequest {

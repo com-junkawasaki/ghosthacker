@@ -69,6 +69,9 @@ const (
 	// StoryboardServiceGenerateCinematicSketchProcedure is the fully-qualified name of the
 	// StoryboardService's GenerateCinematicSketch RPC.
 	StoryboardServiceGenerateCinematicSketchProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/GenerateCinematicSketch"
+	// StoryboardServiceInteractWithAIProcedure is the fully-qualified name of the StoryboardService's
+	// InteractWithAI RPC.
+	StoryboardServiceInteractWithAIProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/InteractWithAI"
 )
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
@@ -86,6 +89,7 @@ var (
 	storyboardServiceGenerateEpisodeMethodDescriptor         = storyboardServiceServiceDescriptor.Methods().ByName("GenerateEpisode")
 	storyboardServiceRefineCharactersMethodDescriptor        = storyboardServiceServiceDescriptor.Methods().ByName("RefineCharacters")
 	storyboardServiceGenerateCinematicSketchMethodDescriptor = storyboardServiceServiceDescriptor.Methods().ByName("GenerateCinematicSketch")
+	storyboardServiceInteractWithAIMethodDescriptor          = storyboardServiceServiceDescriptor.Methods().ByName("InteractWithAI")
 )
 
 // StoryboardServiceClient is a client for the gftd.ghosthacker.storyboard.v1.StoryboardService
@@ -115,6 +119,8 @@ type StoryboardServiceClient interface {
 	RefineCharacters(context.Context, *connect.Request[proto.RefineCharactersRequest]) (*connect.Response[proto.RefineCharactersResponse], error)
 	// Generate cinematic sketches and visual prompts
 	GenerateCinematicSketch(context.Context, *connect.Request[proto.GenerateCinematicSketchRequest]) (*connect.Response[proto.GenerateCinematicSketchResponse], error)
+	// Interact with AI assistant for chat-based editing and generation
+	InteractWithAI(context.Context, *connect.Request[proto.InteractWithAIRequest]) (*connect.Response[proto.InteractWithAIResponse], error)
 }
 
 // NewStoryboardServiceClient constructs a client for the
@@ -200,6 +206,12 @@ func NewStoryboardServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			connect.WithSchema(storyboardServiceGenerateCinematicSketchMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
+		interactWithAI: connect.NewClient[proto.InteractWithAIRequest, proto.InteractWithAIResponse](
+			httpClient,
+			baseURL+StoryboardServiceInteractWithAIProcedure,
+			connect.WithSchema(storyboardServiceInteractWithAIMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -217,6 +229,7 @@ type storyboardServiceClient struct {
 	generateEpisode         *connect.Client[proto.GenerateEpisodeRequest, proto.GenerateEpisodeResponse]
 	refineCharacters        *connect.Client[proto.RefineCharactersRequest, proto.RefineCharactersResponse]
 	generateCinematicSketch *connect.Client[proto.GenerateCinematicSketchRequest, proto.GenerateCinematicSketchResponse]
+	interactWithAI          *connect.Client[proto.InteractWithAIRequest, proto.InteractWithAIResponse]
 }
 
 // LoadStoryboard calls gftd.ghosthacker.storyboard.v1.StoryboardService.LoadStoryboard.
@@ -280,6 +293,11 @@ func (c *storyboardServiceClient) GenerateCinematicSketch(ctx context.Context, r
 	return c.generateCinematicSketch.CallUnary(ctx, req)
 }
 
+// InteractWithAI calls gftd.ghosthacker.storyboard.v1.StoryboardService.InteractWithAI.
+func (c *storyboardServiceClient) InteractWithAI(ctx context.Context, req *connect.Request[proto.InteractWithAIRequest]) (*connect.Response[proto.InteractWithAIResponse], error) {
+	return c.interactWithAI.CallUnary(ctx, req)
+}
+
 // StoryboardServiceHandler is an implementation of the
 // gftd.ghosthacker.storyboard.v1.StoryboardService service.
 type StoryboardServiceHandler interface {
@@ -307,6 +325,8 @@ type StoryboardServiceHandler interface {
 	RefineCharacters(context.Context, *connect.Request[proto.RefineCharactersRequest]) (*connect.Response[proto.RefineCharactersResponse], error)
 	// Generate cinematic sketches and visual prompts
 	GenerateCinematicSketch(context.Context, *connect.Request[proto.GenerateCinematicSketchRequest]) (*connect.Response[proto.GenerateCinematicSketchResponse], error)
+	// Interact with AI assistant for chat-based editing and generation
+	InteractWithAI(context.Context, *connect.Request[proto.InteractWithAIRequest]) (*connect.Response[proto.InteractWithAIResponse], error)
 }
 
 // NewStoryboardServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -387,6 +407,12 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 		connect.WithSchema(storyboardServiceGenerateCinematicSketchMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
+	storyboardServiceInteractWithAIHandler := connect.NewUnaryHandler(
+		StoryboardServiceInteractWithAIProcedure,
+		svc.InteractWithAI,
+		connect.WithSchema(storyboardServiceInteractWithAIMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/gftd.ghosthacker.storyboard.v1.StoryboardService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case StoryboardServiceLoadStoryboardProcedure:
@@ -413,6 +439,8 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 			storyboardServiceRefineCharactersHandler.ServeHTTP(w, r)
 		case StoryboardServiceGenerateCinematicSketchProcedure:
 			storyboardServiceGenerateCinematicSketchHandler.ServeHTTP(w, r)
+		case StoryboardServiceInteractWithAIProcedure:
+			storyboardServiceInteractWithAIHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -468,4 +496,8 @@ func (UnimplementedStoryboardServiceHandler) RefineCharacters(context.Context, *
 
 func (UnimplementedStoryboardServiceHandler) GenerateCinematicSketch(context.Context, *connect.Request[proto.GenerateCinematicSketchRequest]) (*connect.Response[proto.GenerateCinematicSketchResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.GenerateCinematicSketch is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) InteractWithAI(context.Context, *connect.Request[proto.InteractWithAIRequest]) (*connect.Response[proto.InteractWithAIResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.InteractWithAI is not implemented"))
 }

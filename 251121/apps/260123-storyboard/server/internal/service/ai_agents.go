@@ -82,4 +82,32 @@ func (s *StoryboardService) GenerateCinematicSketch(
 	}), nil
 }
 
+// InteractWithAI handles chat-based editing and generation
+func (s *StoryboardService) InteractWithAI(
+	ctx context.Context,
+	req *connect.Request[storyboardpb.InteractWithAIRequest],
+) (*connect.Response[storyboardpb.InteractWithAIResponse], error) {
+	log.Printf("InteractWithAI: message=%s, context_count=%d", req.Msg.Message, len(req.Msg.Context))
+
+	apiKey := os.Getenv("OPENROUTER_API_KEY")
+	if apiKey == "" {
+		return nil, connect.NewError(connect.CodeFailedPrecondition, fmt.Errorf("OPENROUTER_API_KEY is not set"))
+	}
+
+	// In a real implementation, this would:
+	// 1. Construct a prompt with the context (JSON-LD fragments)
+	// 2. Call OpenRouter (Gemini 3 Pro)
+	// 3. Parse the response for both chat text and JSON patches
+	
+	// Placeholder response
+	aiResponse := fmt.Sprintf("I've analyzed your request regarding %d context items. I can help you modify the storyboard structure or content.", len(req.Msg.Context))
+	
+	return connect.NewResponse(&storyboardpb.InteractWithAIResponse{
+		Success:    true,
+		Message:    "Interaction successful",
+		AiResponse: aiResponse,
+		Patches:    []*storyboardpb.JSONPatch{}, // No patches in placeholder
+	}), nil
+}
+
 // GenerateDialogue is implemented in dialogue_generation.go
