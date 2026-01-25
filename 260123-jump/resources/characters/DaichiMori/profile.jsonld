@@ -19,7 +19,7 @@
   "gh:background": {
     "gh:current": "フリーター。SNSマーケティング系の怪しい仕事をしている噂。",
     "gh:family": "裕福な家庭だが、両親は仕事で不在がち。",
-    "gh:school": "都立工科高等学校 3年（退学済み）。かつてはTakeruと仲が良かった。"
+    "gh:school": "都立工科高等学校 3年（退学済み）。かつてはChiseと仲が良かった。"
   },
   "gh:personality": {
     "gh:complexity": "悪人ではないが、善人でもない。状況次第でどちらにも転ぶ。",
@@ -27,16 +27,16 @@
     "gh:surface": "人当たりは良い。誰にでも愛想を振りまく。"
   },
   "gh:relationships": {
-    "gh:takeru": {
+    "gh:chise": {
       "gh:current": "互いに避けているが、情報は持っている。",
       "gh:history": "中学からの友人だったが、高2の時に金銭トラブルで疎遠に。"
     }
   },
   "gh:slug": "DaichiMori",
   "gh:storyFunction": {
-    "gh:contribution": "裏社会の情報を持っている。Takeruに犯人特定のヒントを与える。",
+    "gh:contribution": "裏社会の情報を持っている。Chiseに犯人特定のヒントを与える。",
     "gh:future": "後のアークで再登場の可能性。",
-    "gh:moral": "『使える情報は使う』がTakeruの流儀だが、代償も伴う。",
+    "gh:moral": "『使える情報は使う』がChiseの流儀だが、代償も伴う。",
     "gh:role": "情報提供者 / グレーな存在"
   },
   "schema:age": 19,

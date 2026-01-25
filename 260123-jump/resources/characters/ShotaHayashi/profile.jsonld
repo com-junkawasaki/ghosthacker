@@ -19,20 +19,20 @@
   "gh:background": {
     "gh:family": "実家はラーメン屋。3人兄弟の末っ子。",
     "gh:job": "放課後は実家のラーメン屋を手伝っている。",
-    "gh:school": "都立工科高等学校 3年（機械科）。Takeruの数少ない友人。"
+    "gh:school": "都立工科高等学校 3年（機械科）。Chiseの数少ない友人。"
   },
   "gh:personality": {
-    "gh:hidden": "Takeruのことを心配している。『あいつ、いつか線を越えるんじゃないか』と。",
-    "gh:role": "Takeruのストッパー役。暴走しそうな時に止める。",
+    "gh:hidden": "Chiseのことを心配している。『あいつ、いつか線を越えるんじゃないか』と。",
+    "gh:role": "Chiseのストッパー役。暴走しそうな時に止める。",
     "gh:surface": "お調子者。ムードメーカー。誰とでもすぐ仲良くなれる。"
   },
   "gh:slug": "ShotaHayashi",
   "gh:storyFunction": {
-    "gh:contribution": "Ryoを Takeruに紹介する。二人の間を取り持つ。",
+    "gh:contribution": "Ryoを Chiseに紹介する。二人の間を取り持つ。",
     "gh:message": "困った時に頼れる友人の存在の大切さ。",
     "gh:role": "橋渡し役 / コメディリリーフ"
   },
   "schema:age": 19,
   "schema:name": "林 翔太 (Shota Hayashi)",
-  "schema:role": "Takeru's Best Friend"
+  "schema:role": "Chise's Best Friend"
 }

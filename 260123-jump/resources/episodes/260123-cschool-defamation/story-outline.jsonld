@@ -50,12 +50,12 @@
       "gh:actTitleEn": "Encounter",
       "gh:emotionalArc": "孤立 → 接触 → 微かな希望",
       "gh:keyScenes": [
-        "ShotaがRyoをTakeruに紹介",
-        "Takeruが状況をヒアリング",
+        "ShotaがRyoをChiseに紹介",
+        "Chiseが状況をヒアリング",
         "「消すな。残せ。それが一番強い武器になる」",
         "証拠保全の重要性を説明"
       ],
-      "gh:narrativePurpose": "TakeruがRyoと出会い、状況を把握する",
+      "gh:narrativePurpose": "ChiseがRyoと出会い、状況を把握する",
       "gh:pageRange": [
         13,
         18
@@ -123,7 +123,7 @@
         "犯人グループの足跡を発見",
         "元配信仲間の嫉妬が動機と判明"
       ],
-      "gh:narrativePurpose": "Takeruのスキルを見せながら、犯人特定への道筋を描く",
+      "gh:narrativePurpose": "Chiseのスキルを見せながら、犯人特定への道筋を描く",
       "gh:pageRange": [
         29,
         35
@@ -138,7 +138,7 @@
       "gh:keyScenes": [
         "証拠を揃えて警察へ",
         "開示請求が通り、犯人が特定される",
-        "Takeruの言葉「やられたらやり返すんじゃない。正しく終わらせるんだ」"
+        "Chiseの言葉「やられたらやり返すんじゃない。正しく終わらせるんだ」"
       ],
       "gh:narrativePurpose": "犯人との対峙と、法的解決への道",
       "gh:pageRange": [
@@ -156,9 +156,9 @@
         "Ryoが配信を再開",
         "視聴者からの応援メッセージ",
         "「恥じゃない。声を上げることが一番強い」",
-        "Takeruがどこかへ歩き出す（次のArcへの伏線）"
+        "Chiseがどこかへ歩き出す（次のArcへの伏線）"
       ],
-      "gh:narrativePurpose": "被害からの回復と、Takeruの成長",
+      "gh:narrativePurpose": "被害からの回復と、Chiseの成長",
       "gh:pageRange": [
         41,
         45
@@ -168,8 +168,8 @@
   "gh:arc": "Arc 0",
   "gh:castOfCharacters": [
     {
-      "@id": "character:Takeru",
-      "gh:description": "都立工科高校の3年生（休学中）。元eスポーツ部エース。フリーランスのセキュリティコンサルタント。HN: aka_chise1。",
+      "@id": "character:Chise",
+      "gh:description": "都立工科高校の3年生（休学中）。元eスポーツ部エース。赤羽八幡神社の宮司の孫娘。HN: aka_chise1。",
       "gh:role": "主人公 / 問題解決者"
     },
     {
@@ -179,8 +179,8 @@
     },
     {
       "@id": "character:ShotaHayashi",
-      "gh:description": "3年生。実家はラーメン屋。RyoをTakeruに紹介する。",
-      "gh:role": "Takeruの親友 / 橋渡し役"
+      "gh:description": "3年生。実家はラーメン屋。RyoをChiseに紹介する。",
+      "gh:role": "Chiseの親友 / 橋渡し役"
     },
     {
       "@id": "character:YuiTanaka",
@@ -189,7 +189,7 @@
     },
     {
       "@id": "character:DaichiMori",
-      "gh:description": "Takeruの元友人。裏社会の情報を持つ。",
+      "gh:description": "Chiseの元友人。裏社会の情報を持つ。",
       "gh:role": "情報提供者（グレー）"
     }
   ],
@@ -220,10 +220,10 @@
     "gh:type": "オンライン誹謗中傷・ドクシング（個人情報特定・公開）",
     "gh:victim": "character:RyoKuroda"
   },
-  "gh:mainCharacter": "character:Takeru",
+  "gh:mainCharacter": "character:Chise",
   "gh:mainLocation": "org:TokyoTechHighSchool",
-  "gh:slug": "arc-0-2-takeru",
-  "gh:subtitle": "Takeru's Story - Doxing \u0026 Online Defamation",
+  "gh:slug": "arc-0-2-chise",
+  "gh:subtitle": "Chise's Story - Doxing \u0026 Online Defamation",
   "gh:tagline": "消すな。残せ。それが一番強い武器になる。",
   "gh:theme": "ネット上の誹謗中傷・ドクシングに対する正しい対処法"
 }

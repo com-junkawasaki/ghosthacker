@@ -16,10 +16,10 @@
   "gh:atmosphere": "実践重視の技術教育。生徒は手に職をつける意識が強い。部活より放課後のバイトやゲームが多い。教師との距離は近いが、SNS上のトラブルには対応が遅れがち。",
   "gh:keyCharacters": [
     {
-      "@id": "character:Takeru",
+      "@id": "character:Chise",
       "gh:role": "主人公 / 問題解決者",
       "gh:roleAtOrg": "3年生 / 元eスポーツ部",
-      "gh:sourceFile": "characters/Takeru/profile.jsonld"
+      "gh:sourceFile": "characters/Chise/profile.jsonld"
     },
     {
       "@id": "character:RyoKuroda",
@@ -30,7 +30,7 @@
     {
       "@id": "character:ShotaHayashi",
       "gh:role": "ムードメーカー / 橋渡し役",
-      "gh:roleAtOrg": "3年生 / Takeruの友人",
+      "gh:roleAtOrg": "3年生 / Chiseの友人",
       "gh:sourceFile": "characters/ShotaHayashi/profile.jsonld"
     },
     {
@@ -63,7 +63,7 @@
       "『犯罪予告』を装った脅迫メッセージ",
       "学校・自宅への嫌がらせ（ピザの大量注文等）"
     ],
-    "gh:solution": "Takeruが証拠保存の手順を教え、開示請求と警察相談の流れを組み立てる。最終的に加害者の特定につながる。",
+    "gh:solution": "Chiseが証拠保存の手順を教え、開示請求と警察相談の流れを組み立てる。最終的に加害者の特定につながる。",
     "gh:summary": "人気ゲーム配信者の2年生・黒田涼（Ryo）が、匿名掲示板で住所・本名を晒され、誹謗中傷が拡散。学校にも嫌がらせ電話が来るようになる。",
     "gh:type": "オンライン誹謗中傷・ドクシング"
   },
