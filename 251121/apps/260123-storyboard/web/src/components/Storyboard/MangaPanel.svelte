@@ -28,6 +28,7 @@
 		: '';
 
 	$: dialogues = panel.data?.dialogue ?? [];
+	$: visualNote = panel.data?.visualNote ?? '';
 	$: mangaLayout = panel.data?.mangaLayout;
 	$: panelLayout = mangaLayout?.panels?.find(p => p.panelIndex === panel.panel);
 
@@ -237,6 +238,12 @@
 	{/if}
 
 	<div class="panel-overlay">
+		{#if visualNote}
+			<div class="visual-note-overlay">
+				{visualNote}
+			</div>
+		{/if}
+
 		{#each dialogues as dialogue, i}
 			<div 
 				class="dialogue-bubble"
@@ -248,6 +255,9 @@
 				"
 				on:pointerdown={(e) => handlePointerDown(e, 'dialogue', i)}
 			>
+				{#if dialogue.speaker}
+					<div class="speaker-name">{dialogue.speaker}</div>
+				{/if}
 				{dialogue.text}
 			</div>
 		{/each}
@@ -313,20 +323,48 @@
 		pointer-events: none;
 	}
 
+	.visual-note-overlay {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: rgba(0, 0, 0, 0.6);
+		color: #fff;
+		padding: 6px 10px;
+		font-size: 0.75rem;
+		pointer-events: none;
+		z-index: 5;
+		max-height: 40%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		line-height: 1.4;
+		border-top: 1px solid rgba(255, 255, 255, 0.2);
+	}
+
 	.dialogue-bubble {
 		position: absolute;
 		background: #fff;
 		border: 2px solid #000;
-		border-radius: 50%;
-		padding: 10px;
-		font-size: 0.8rem;
+		border-radius: 12px;
+		padding: 10px 14px;
+		font-size: 0.9rem;
 		color: #000;
 		max-width: 80%;
 		pointer-events: auto;
 		cursor: grab;
 		outline: 2px dashed #28a745;
-		z-index: 10;
+		z-index: 20;
 		user-select: none;
+		box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+	}
+
+	.speaker-name {
+		font-size: 0.65rem;
+		color: #666;
+		margin-bottom: 4px;
+		font-weight: bold;
+		border-bottom: 1px solid #eee;
+		padding-bottom: 2px;
 	}
 
 	.dialogue-bubble.active {
