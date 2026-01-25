@@ -2533,7 +2533,7 @@
         "gh:layoutNote": "不正請求の発覚。絶望へ向かう緊張感を段階的に",
         "gh:templateName": "Tension Build"
       },
-      "gh:pageNumber": 14,
+      "gh:pageNumber": 17,
       "gh:pageTitle": "不正請求発覚",
       "gh:panelCount": 6,
       "gh:panels": [
@@ -2716,7 +2716,7 @@
         "gh:layoutNote": "詐欺サイト消失。希望の崩壊をカスケード状に表現",
         "gh:templateName": "Emotional Cascade"
       },
-      "gh:pageNumber": 15,
+      "gh:pageNumber": 18,
       "gh:pageTitle": "サイト消失",
       "gh:panelCount": 6,
       "gh:panels": [
@@ -2853,7 +2853,7 @@
         "gh:layoutNote": "友人たちからの詰問。上部大パネルで対立の緊張感、密度の高いパネルで圧迫感",
         "gh:templateName": "Jump Dense Action"
       },
-      "gh:pageNumber": 16,
+      "gh:pageNumber": 14,
       "gh:pageTitle": "学校 - 詰め寄られる",
       "gh:panelCount": 7,
       "gh:panels": [
@@ -2993,7 +2993,7 @@
         "gh:layoutNote": "アカウント乗っ取りの衝撃。上部インパクトパネル後、大量のパネルで混乱を表現",
         "gh:templateName": "Maximum Impact"
       },
-      "gh:pageNumber": 17,
+      "gh:pageNumber": 15,
       "gh:pageTitle": "乗っ取り発覚",
       "gh:panelCount": 9,
       "gh:panels": [
@@ -3167,7 +3167,7 @@
         "gh:layoutNote": "DM悪口公開の惨事。混沌としたレイアウトで友情崩壊のカオスを表現",
         "gh:templateName": "Chaos Battle"
       },
-      "gh:pageNumber": 18,
+      "gh:pageNumber": 16,
       "gh:pageTitle": "悪口公開 - 友情崩壊",
       "gh:panelCount": 9,
       "gh:panels": [
@@ -3419,10 +3419,22 @@
           "visual": "ログイン画面。パスワード入力。"
         },
         {
+          "@id": "panel:mcbsvmrPo1iY",
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Error message: 'Incorrect password'. Red warning. Japanese text.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/mcbsvmrPo1iY_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/mcbsvmrPo1iY_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355601,
+              "gh:imagePrompt": "エラー表示。「パスワードが正しくありません」. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/mcbsvmrPo1iY_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. エラー表示。「パスワードが正しくありません」. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -3432,10 +3444,22 @@
           "visual": "エラー表示。「パスワードが正しくありません」"
         },
         {
+          "@id": "panel:ZLdl0Fs_5fEw",
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Password reset attempt. 'This email address is not registered'. Complete lockout. Japanese text.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/ZLdl0Fs_5fEw_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/ZLdl0Fs_5fEw_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355603,
+              "gh:imagePrompt": "パスワードリセット画面。「このメールアドレスは登録されていません」. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/ZLdl0Fs_5fEw_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. パスワードリセット画面。「このメールアドレスは登録されていません」. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -3445,6 +3469,7 @@
           "visual": "パスワードリセット画面。「このメールアドレスは登録されていません」"
         },
         {
+          "@id": "panel:3hEMtPGR1gWH",
           "characters": [
             "character:Yuto"
           ],
@@ -3456,7 +3481,18 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy's face in complete despair. 'I can't get in... I can't do anything anymore...' shot on 85mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/3hEMtPGR1gWH_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/3hEMtPGR1gWH_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355600,
+              "gh:imagePrompt": "絶望するYuto。全てを失った表情。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up. Dialogue: Yuto: 入れない…もう何もできない….",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/3hEMtPGR1gWH_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 絶望するYuto。全てを失った表情。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up. Dialogue: Yuto: 入れない…もう何もできない….. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -3466,12 +3502,24 @@
           "visual": "絶望するYuto。全てを失った表情。"
         },
         {
+          "@id": "panel:mwpakEOJcf91",
           "characters": [
             "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Wide Shot, high angle. Japanese boy sitting alone in corner of classroom. Classmates walking around avoiding him. Complete isolation. Dark atmosphere. shot on 24mm, f/4, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/mwpakEOJcf91_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/mwpakEOJcf91_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355603,
+              "gh:imagePrompt": "教室の隅で一人座るYuto。周囲は彼を避けて通る。完全な孤立。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Wide Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/mwpakEOJcf91_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 教室の隅で一人座るYuto。周囲は彼を避けて通る。完全な孤立。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "high angle",
             "gh:atmosphere": "孤立、絶望",
@@ -3881,6 +3929,7 @@
       "gh:panelCount": 5,
       "gh:panels": [
         {
+          "@id": "panel:pBvz4HwvBB23",
           "characters": [
             "character:NeiMiddleSchool",
             "character:RenMiddleSchool",
@@ -3888,7 +3937,18 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Wide Shot. Three students gathered around desk. Japanese girl operating smartphone. Boy observing. Collaborative atmosphere. shot on 35mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/pBvz4HwvBB23_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/pBvz4HwvBB23_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355623,
+              "gh:imagePrompt": "3人が机を囲んでいる。Neiがスマホを操作。Renは傍観。. Characters: Nei - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese female student, doll-like beauty, platinum blonde layered bob, striking blue irises with sharp catchlights, navy blazer school uniform worn neatly, white blouse, grey checkered skirt., 沼野 蓮 (Ren Numano) - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese male student, pale porcelain skin, messy raven black hair, sleepy half-lidded eyes with silver-grey crystalline irises, navy blazer school uniform slightly disheveled, white shirt with top button open.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Wide Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/pBvz4HwvBB23_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 3人が机を囲んでいる。Neiがスマホを操作。Renは傍観。. Characters: Nei - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese female student, doll-like beauty, platinum blonde layered bob, striking blue irises with sharp catchlights, navy blazer school uniform worn neatly, white blouse, grey checkered skirt., 沼野 蓮 (Ren Numano) - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese male student, pale porcelain skin, messy raven black hair, sleepy half-lidded eyes with silver-grey crystalline irises, navy blazer school uniform slightly disheveled, white shirt with top button open.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Wide Shot"
@@ -3898,6 +3958,7 @@
           "visual": "3人が机を囲んでいる。Neiがスマホを操作。Renは傍観。"
         },
         {
+          "@id": "panel:b9Cdz4YCIaxp",
           "characters": [],
           "dialogue": [
             {
@@ -3907,7 +3968,9 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Cute mascot advice card: '#1 Breach Check'. Educational guidance. Japanese text.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/b9Cdz4YCIaxp_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/b9Cdz4YCIaxp_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. ぷにNEIのアドバイスカード。「#1 漏えいチェック」. Shot type: Insert. Dialogue: NeiPuni: 【NEIちゃんのアドバイス #1】.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
