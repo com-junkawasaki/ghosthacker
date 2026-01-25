@@ -89,7 +89,7 @@
 				</div>
 				
 				<div class="panels-container">
-					{#each pagesMap[pageNum] as panel (panel.panel)}
+					{#each pagesMap[pageNum] as panel, i (panel.panel + '-' + i)}
 						<div 
 							class="panel-wrapper" 
 							onclick={() => {

@@ -91,7 +91,7 @@
 		{#each pageNumbers as pageNum}
 			<div class="page-break-marker">PAGE {pageNum}</div>
 			
-			{#each pagesMap[pageNum] as panel (panel.panel)}
+			{#each pagesMap[pageNum] as panel, i (panel.panel + '-' + i)}
 				{@const isEditing = editingPanelId === `${panel.pageNumber}-${panel.panel}`}
 				
 				<div 

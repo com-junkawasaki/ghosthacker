@@ -58,7 +58,7 @@
 <div class="manga-page">
 	<div class="manga-page-content">
 		{#if pageLayout && pageLayout.panels && pageLayout.panels.length > 0}
-			{#each sortedPanels as panel, i (panel.panel)}
+			{#each sortedPanels as panel, i (panel.panel + '-' + i)}
 				{@const layout = pageLayout.panels[i]}
 				{#if layout}
 					<div 
@@ -98,7 +98,7 @@
 			{/each}
 		{:else}
 			<div class="default-grid">
-				{#each sortedPanels as panel (panel.panel)}
+				{#each sortedPanels as panel, i (panel.panel + '-' + i)}
 					<MangaPanel
 						{panel}
 						{episodeId}
