@@ -225,7 +225,7 @@
               "gh:model": "google/gemini-3-pro-image-preview"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators. 夜。Yutoの部屋全景。暗い部屋でYutoが毛布を被って丸まっている。窓からわずかな街灯の光。重苦しい雰囲気。. Shot type: Wide Shot. Rough sketch aesthetic with emphasis on oppressive atmosphere, isolation, and fear. Director's visual notes style, monochrome with screen tones.",
+          "gh:imagePrompt": "Single illustration, cinematic manga sketch style. 夜。Yutoの部屋全景。暗い部屋でYutoが毛布を被って丸まっている。窓からわずかな街灯の光。重苦しい雰囲気。. Shot type: Wide Shot. Monochrome with screen tones, emphasis on oppressive atmosphere, isolation, and fear.",
           "gh:shotProperties": {
             "gh:angle": "high angle",
             "gh:aperture": "f/2.8",
@@ -245,7 +245,18 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Medium Shot. 14-year-old Japanese boy hugging knees in bed, looking at smartphone with fearful expression. Dark bags under eyes from sleepless nights. Face lit by cold smartphone light. shot on 50mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n2-fearful-yuto_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n2-fearful-yuto_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769353386,
+              "gh:imagePrompt": "ベッドで膝を抱えるYuto。恐怖の表情でスマホを見つめる。眠れない夜が続き、目の下にクマ。. Shot type: Medium Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n2-fearful-yuto_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Single illustration, cinematic manga sketch style. ベッドで膝を抱えるYuto。恐怖の表情でスマホを見つめる。眠れない夜が続き、目の下にクマ。. Shot type: Medium Shot. Monochrome with screen tones, emphasis on lighting direction and silhouette shapes, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/1.8",
@@ -262,7 +273,18 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Smartphone screen close-up. Multiple angry notification badges. SNS DM notifications showing partial messages: '許さない', 'なんで俺まで', '最低'. Red notification icons glowing ominously.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n3-angry-notifications_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n3-angry-notifications_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769353373,
+              "gh:imagePrompt": "スマホ画面のアップ。大量の通知バッジ。SNSのDM通知「許さない」「なんで俺まで」「最低」の文字が見える。赤い通知アイコンが不吉に光る。. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n3-angry-notifications_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Single illustration, cinematic manga sketch style. スマホ画面のアップ。大量の通知バッジ。SNSのDM通知「許さない」「なんで俺まで」「最低」の文字が見える。赤い通知アイコンが不吉に光る。. Shot type: Insert. Monochrome with screen tones, emphasis on lighting direction and silhouette shapes, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -285,7 +307,18 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Extreme Close Up. Japanese boy's eyes only. Wide with terror at notification sound. Smartphone light reflecting in dilated pupils. Cold sweat on forehead. shot on 100mm macro, f/1.4, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n4-terror-eyes_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n4-terror-eyes_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769353391,
+              "gh:imagePrompt": "Yutoの目だけのアップ。通知音に怯え、瞳孔が開いている。額に冷や汗。恐怖に支配された目。. Shot type: Extreme Close Up. Dialogue: Yuto: （また…通知…）.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n4-terror-eyes_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Single illustration, cinematic manga sketch style. Yutoの目だけのアップ。通知音に怯え、瞳孔が開いている。額に冷や汗。恐怖に支配された目。. Shot type: Extreme Close Up. Dialogue: Yuto: （また…通知…）. Monochrome with screen tones, emphasis on lighting direction and silhouette shapes, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/1.4",
@@ -312,7 +345,7 @@
           ],
           "dialogue": [],
           "environment": "env:tokyo-skyline",
-          "gh:imagePrompt": "Extreme Wide Shot, dynamic action. Two teenagers (Ren and Nei in middle school uniforms) leaping above Tokyo skyline at sunset. Title 'Ghost Hacker' in bold typography. Silhouette against orange sky. shot on 24mm, f/8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Extreme Wide Shot, dynamic action. Two teenagers (Ren and Nei in middle school uniforms) leaping above Tokyo skyline at sunset. Title 'Ghost Hacker' in bold typography. Silhouette against orange sky. shot on 24mm, f/8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "low angle looking up",
             "gh:aperture": "f/8",
@@ -341,7 +374,7 @@
           ],
           "dialogue": [],
           "environment": "env:tokyo-skyline",
-          "gh:imagePrompt": "Extreme Wide Shot continuation. Tokyo Tower and skyscrapers in background. Dynamic landing pose. Golden hour lighting. shot on 24mm, f/8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Extreme Wide Shot continuation. Tokyo Tower and skyscrapers in background. Dynamic landing pose. Golden hour lighting. shot on 24mm, f/8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/8",
@@ -367,7 +400,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:middle-school-exterior",
-          "gh:imagePrompt": "Establishing Shot, ARIA-style. Japanese middle school entrance gate. Cherry blossom trees (or seasonal green). Students in navy blazer uniforms walking through the gate. Morning sunlight. Warm, inviting atmosphere. School name plate visible. shot on 24mm, f/5.6, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Establishing Shot, ARIA-style. Japanese middle school entrance gate. Cherry blossom trees (or seasonal green). Students in navy blazer uniforms walking through the gate. Morning sunlight. Warm, inviting atmosphere. School name plate visible. shot on 24mm, f/5.6, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "slightly low looking up",
             "gh:aperture": "f/5.6",
@@ -386,7 +419,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-exterior",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Japanese middle school main building exterior. Three-story concrete building with large windows. Students walking on pathway towards entrance. One boy (Yuto) among them. Blue sky background. shot on 35mm, f/4, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot, ARIA-style. Japanese middle school main building exterior. Three-story concrete building with large windows. Students walking on pathway towards entrance. One boy (Yuto) among them. Blue sky background. shot on 35mm, f/4, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/4",
@@ -408,7 +441,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Middle school classroom during break. Japanese students in navy blazer uniforms gathered around desks. Two girls (Mei and Saki) sitting close together, clearly best friends. Soft window light. luminous atmosphere. shot on 24mm, f/4, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot, ARIA-style. Middle school classroom during break. Japanese students in navy blazer uniforms gathered around desks. Two girls (Mei and Saki) sitting close together, clearly best friends. Soft window light. luminous atmosphere. shot on 24mm, f/4, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "slightly high",
             "gh:aperture": "f/4",
@@ -440,7 +473,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Two Japanese middle school girls sitting together. One stretching lazily (Mei), the other smiling at her (Saki). Best friends vibe. Navy blazer uniforms. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Two Japanese middle school girls sitting together. One stretching lazily (Mei), the other smiling at her (Saki). Best friends vibe. Navy blazer uniforms. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -464,7 +497,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese middle school boy proudly showing off limited edition sneakers. Smug expression. Navy blazer uniform. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese middle school boy proudly showing off limited edition sneakers. Smug expression. Navy blazer uniform. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -485,7 +518,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Insert shot. Close-up of limited edition sneakers. Brand logo shining. Premium quality visible.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Close-up of limited edition sneakers. Brand logo shining. Premium quality visible.",
           "gh:shotProperties": {
             "gh:angle": "low angle",
             "gh:distance": "Insert"
@@ -507,7 +540,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese middle school boy looking enviously at classmate's sneakers from slight distance. Longing expression. Isolated feeling. shot on 85mm, f/2, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese middle school boy looking enviously at classmate's sneakers from slight distance. Longing expression. Isolated feeling. shot on 85mm, f/2, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2",
@@ -533,7 +566,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Corner of middle school classroom. One boy (Ren) slumped lazily on desk. One girl (Nei) reading by window. Separate from the noisy group. Quiet bubble. luminous atmosphere. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot, ARIA-style. Corner of middle school classroom. One boy (Ren) slumped lazily on desk. One girl (Nei) reading by window. Separate from the noisy group. Quiet bubble. luminous atmosphere. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -552,7 +585,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot, low angle from desk level. Japanese middle school boy slumped on desk, only eyes visible, half-open. Lazy posture. Navy blazer uniform. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot, low angle from desk level. Japanese middle school boy slumped on desk, only eyes visible, half-open. Lazy posture. Navy blazer uniform. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "low angle from desk level",
             "gh:distance": "Medium Shot"
@@ -567,7 +600,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese middle school girl reading book by window. Backlit by soft window light. Serene expression. Navy blazer uniform. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese middle school girl reading book by window. Backlit by soft window light. Serene expression. Navy blazer uniform. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot",
@@ -590,7 +623,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese middle school boy yawning widely. Bored expression. shot on 85mm, f/2, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese middle school boy yawning widely. Bored expression. shot on 85mm, f/2, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -603,7 +636,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Insert shot. View through classroom window. Blue sky and white clouds. Symbol of peaceful everyday life.",
+          "gh:imagePrompt": "Single illustration. Insert shot. View through classroom window. Blue sky and white clouds. Symbol of peaceful everyday life.",
           "gh:shotProperties": {
             "gh:angle": "looking up",
             "gh:distance": "Insert"
@@ -626,7 +659,7 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Wide Shot, high angle. Dark bedroom at night. Japanese boy lying in bed, only smartphone light illuminating the room. Solitude. shot on 24mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot, high angle. Dark bedroom at night. Japanese boy lying in bed, only smartphone light illuminating the room. Solitude. shot on 24mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "high angle",
             "gh:aperture": "f/2.8",
@@ -645,7 +678,7 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Close Up, over shoulder. Finger scrolling smartphone screen. Blue light reflecting on Japanese boy's face. Night bedroom. shot on 50mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up, over shoulder. Finger scrolling smartphone screen. Blue light reflecting on Japanese boy's face. Night bedroom. shot on 50mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "over shoulder",
             "gh:aperture": "f/1.8",
@@ -660,7 +693,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. SNS timeline scrolling. Ad banner appearing: 'Emergency Stock!' Attention-grabbing design. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. SNS timeline scrolling. Ad banner appearing: 'Emergency Stock!' Attention-grabbing design. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -681,7 +714,7 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Close Up. Japanese boy's face, eyes widening in surprise. Smartphone light on face. Excited discovery. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy's face, eyes widening in surprise. Smartphone light on face. Excited discovery. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/1.8",
@@ -696,7 +729,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Fake shopping site 'Wakuwaku Denki' product page. Same limited edition sneakers. '80% OFF!' Price too good to be true. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Fake shopping site 'Wakuwaku Denki' product page. Same limited edition sneakers. '80% OFF!' Price too good to be true. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -723,7 +756,7 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese boy staring at phone screen. Mix of desire and urgency on face. Night bedroom. shot on 50mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy staring at phone screen. Mix of desire and urgency on face. Night bedroom. shot on 50mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -752,7 +785,7 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese boy's face showing suspicion. Biting lip. Night bedroom lighting. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy's face showing suspicion. Biting lip. Night bedroom lighting. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/1.8",
@@ -773,7 +806,7 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Fake site logo. Professional-looking design. 'Reliable Customer Support' text. Deceptively legitimate appearance. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Fake site logo. Professional-looking design. 'Reliable Customer Support' text. Deceptively legitimate appearance. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -786,7 +819,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Fake 5-star reviews scrolling. 'Amazing!' 'Fast delivery!' 'Authentic!' All fabricated. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Fake 5-star reviews scrolling. 'Amazing!' 'Fast delivery!' 'Authentic!' All fabricated. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -807,7 +840,7 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Close Up. Japanese boy convincing himself. Eyes scanning reviews. Self-rationalization visible on face. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy convincing himself. Eyes scanning reviews. Self-rationalization visible on face. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -829,7 +862,7 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Extreme Close Up. Finger hovering over smartphone screen. Moment of decision. About to tap. shot on 100mm macro, f/1.4, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Extreme Close Up. Finger hovering over smartphone screen. Moment of decision. About to tap. shot on 100mm macro, f/1.4, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "from below",
             "gh:distance": "Extreme Close Up"
@@ -852,7 +885,7 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy getting up from bed, heading to dark hallway. Sneaking movement. Night atmosphere. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy getting up from bed, heading to dark hallway. Sneaking movement. Night atmosphere. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -865,7 +898,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Close Up. Parent's bag on table. Wallet visible inside. Dark living room. Temptation.",
+          "gh:imagePrompt": "Single illustration. Close Up. Parent's bag on table. Wallet visible inside. Dark living room. Temptation.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -886,7 +919,7 @@
             }
           ],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Close Up, high angle. Hand pulling credit card from wallet. Slight trembling. Guilt. Night lighting.",
+          "gh:imagePrompt": "Single illustration. Close Up, high angle. Hand pulling credit card from wallet. Slight trembling. Guilt. Night lighting.",
           "gh:shotProperties": {
             "gh:angle": "high angle",
             "gh:distance": "Close Up"
@@ -901,7 +934,7 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese boy back in bedroom, holding credit card, looking at smartphone. Serious expression. shot on 50mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy back in bedroom, holding credit card, looking at smartphone. Serious expression. shot on 50mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -914,7 +947,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Credit card payment form. Card number being typed digit by digit. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Credit card payment form. Card number being typed digit by digit. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -927,7 +960,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Extreme Close Up. Security code field. Last 3 digits being entered. Point of no return approaching.",
+          "gh:imagePrompt": "Single illustration. Extreme Close Up. Security code field. Last 3 digits being entered. Point of no return approaching.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Extreme Close Up"
@@ -946,7 +979,7 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. 'Purchase' button. Finger touching at exact moment. Dramatic instant. Point of no return.",
+          "gh:imagePrompt": "Single illustration. Insert shot. 'Purchase' button. Finger touching at exact moment. Dramatic instant. Point of no return.",
           "gh:shotProperties": {
             "gh:angle": "slight angle",
             "gh:distance": "Insert"
@@ -967,7 +1000,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. 'Purchase Complete!' popup with confetti animation effect. Celebratory design. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. 'Purchase Complete!' popup with confetti animation effect. Celebratory design. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -980,7 +1013,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. 'Shipping tomorrow' 'Expected delivery: Next day' confirmation screen. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. 'Shipping tomorrow' 'Expected delivery: Next day' confirmation screen. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1001,7 +1034,7 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese boy exhaling with relief. Tension releasing. Excited smile. Night bedroom. shot on 50mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy exhaling with relief. Tension releasing. Excited smile. Night bedroom. shot on 50mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -1022,7 +1055,7 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Medium Shot, high angle. Japanese boy falling back onto bed, clutching smartphone to chest. Satisfied smile. Dreaming of showing off. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot, high angle. Japanese boy falling back onto bed, clutching smartphone to chest. Satisfied smile. Dreaming of showing off. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "high angle",
             "gh:distance": "Medium Shot"
@@ -1037,7 +1070,7 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Wide Shot, high angle. Dark bedroom at night. Japanese boy falling asleep happily. Ominous calm. Darkness outside window. Calm before the storm. shot on 24mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot, high angle. Dark bedroom at night. Japanese boy falling asleep happily. Ominous calm. Darkness outside window. Calm before the storm. shot on 24mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "high angle",
             "gh:atmosphere": "不穏な静けさ、嵐の前の静寂",
@@ -1063,7 +1096,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Middle school classroom during lesson. Teacher at blackboard, students listening. Normal school day. shot on 24mm, f/4, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot, ARIA-style. Middle school classroom during lesson. Teacher at blackboard, students listening. Normal school day. shot on 24mm, f/4, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "slightly high",
             "gh:aperture": "f/4",
@@ -1080,7 +1113,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy sitting at desk, restless. Fidgeting. Can't concentrate. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy sitting at desk, restless. Fidgeting. Can't concentrate. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -1095,7 +1128,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy glancing at wall clock. Impatient expression. shot on 85mm, f/2, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy glancing at wall clock. Impatient expression. shot on 85mm, f/2, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -1108,7 +1141,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Insert shot. Wall clock showing 2:45. Hands moving slowly. Time dragging.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Wall clock showing 2:45. Hands moving slowly. Time dragging.",
           "gh:shotProperties": {
             "gh:angle": "straight on",
             "gh:distance": "Insert"
@@ -1130,7 +1163,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese boy impatient to go home. Mix of anticipation and urgency. shot on 50mm, f/2, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy impatient to go home. Mix of anticipation and urgency. shot on 50mm, f/2, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -1151,7 +1184,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:yuto-home-exterior",
-          "gh:imagePrompt": "Wide Shot. Title card '3 DAYS LATER'. Overcast sky. Japanese residential house exterior. Ominous mood. shot on 24mm, f/4, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Title card '3 DAYS LATER'. Overcast sky. Japanese residential house exterior. Ominous mood. shot on 24mm, f/4, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:atmosphere": "不穏",
@@ -1168,7 +1201,7 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-home-exterior",
-          "gh:imagePrompt": "Medium Shot. Japanese boy checking mailbox. Hopeful expression. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy checking mailbox. Hopeful expression. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -1181,7 +1214,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:yuto-home-exterior",
-          "gh:imagePrompt": "Insert shot, POV. Empty mailbox interior. Nothing inside. Disappointment.",
+          "gh:imagePrompt": "Single illustration. Insert shot, POV. Empty mailbox interior. Nothing inside. Disappointment.",
           "gh:shotProperties": {
             "gh:angle": "POV",
             "gh:distance": "Insert"
@@ -1196,7 +1229,7 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-home-exterior",
-          "gh:imagePrompt": "Close Up. Japanese boy's disappointed face. Hope fading. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy's disappointed face. Hope fading. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -1211,7 +1244,7 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy in bedroom checking phone. Delivery tracking. Worried expression. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy in bedroom checking phone. Delivery tracking. Worried expression. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -1230,7 +1263,7 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Delivery tracking screen. 'Preparing for shipment' status unchanged for 3 days. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Delivery tracking screen. 'Preparing for shipment' status unchanged for 3 days. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1253,7 +1286,7 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy typing message on smartphone. Serious expression. Bedroom. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy typing message on smartphone. Serious expression. Bedroom. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -1272,7 +1305,7 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Messaging app. Yuto's message: 'It still hasn't arrived...' Sent. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Messaging app. Yuto's message: 'It still hasn't arrived...' Sent. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1285,7 +1318,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Messaging app showing '...' typing indicator. Waiting for reply. Tension.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Messaging app showing '...' typing indicator. Waiting for reply. Tension.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1304,7 +1337,7 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Reply message: 'There's a shipping problem. Please provide your phone number for verification.' Suspicious request. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Reply message: 'There's a shipping problem. Please provide your phone number for verification.' Suspicious request. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1325,7 +1358,7 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Close Up. Japanese boy looking confused at phone screen. 'Phone number...?' shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy looking confused at phone screen. 'Phone number...?' shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -1354,7 +1387,7 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese boy hesitating. Finger hovering over phone screen. Uncertain expression. shot on 50mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy hesitating. Finger hovering over phone screen. Uncertain expression. shot on 50mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -1367,7 +1400,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Phone number being typed into message field. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Phone number being typed into message field. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1380,7 +1413,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Send button pressed. 'Message sent' notification.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Send button pressed. 'Message sent' notification.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1395,7 +1428,7 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Wide Shot. Time passage. Japanese boy sitting on bed. Window showing it's gotten darker. Time has passed.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Time passage. Japanese boy sitting on bed. Window showing it's gotten darker. Time has passed.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:atmosphere": "時間経過",
@@ -1409,7 +1442,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Smartphone screen flooded with notifications. Spam emails arriving one after another. Notification badges piling up.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Smartphone screen flooded with notifications. Spam emails arriving one after another. Notification badges piling up.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1422,7 +1455,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Incoming call from unknown number. Silent call. Ominous.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Incoming call from unknown number. Silent call. Ominous.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1443,7 +1476,7 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Close Up. Japanese boy looking alarmed at phone. Something is wrong. Fear creeping in. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy looking alarmed at phone. Something is wrong. Fear creeping in. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -1466,7 +1499,7 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Wide Shot. Japanese living room. Mother on phone call. Serious expression. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Japanese living room. Mother on phone call. Serious expression. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Wide Shot"
@@ -1481,7 +1514,7 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Medium Shot. Japanese mother hanging up phone. Suppressed anger on face. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese mother hanging up phone. Suppressed anger on face. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -1496,7 +1529,7 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Medium Shot. Japanese boy entering living room. Noticing something is wrong with mother. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy entering living room. Noticing something is wrong with mother. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -1517,7 +1550,7 @@
             }
           ],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Medium Close Up. Japanese mother looking at son with stern eyes. Calling his name. shot on 50mm, f/2, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese mother looking at son with stern eyes. Calling his name. shot on 50mm, f/2, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -1538,7 +1571,7 @@
             }
           ],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Medium Shot, low angle. Japanese mother confronting, looking down at camera/Yuto's POV. Angry expression. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot, low angle. Japanese mother confronting, looking down at camera/Yuto's POV. Angry expression. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "low angle from Yuto's POV",
             "gh:distance": "Medium Shot"
@@ -1559,7 +1592,7 @@
             }
           ],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Close Up. Japanese boy's face turning pale. Blood draining from face. Shock and fear. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy's face turning pale. Blood draining from face. Shock and fear. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up",
@@ -1583,7 +1616,7 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Medium Shot. Japanese mother unfolding credit card statement. Stern expression. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese mother unfolding credit card statement. Stern expression. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -1596,7 +1629,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Insert shot. Credit card statement close-up. Multiple charges: 'Amazon Gift Card', 'iTunes Gift Card'... Fraudulent purchases.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Credit card statement close-up. Multiple charges: 'Amazon Gift Card', 'iTunes Gift Card'... Fraudulent purchases.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1609,7 +1642,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Insert shot. Total amount: ¥523,000. Red numbers. Shocking amount.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Total amount: ¥523,000. Red numbers. Shocking amount.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1624,7 +1657,7 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Close Up. Japanese boy's eyes widening seeing the statement. Shock. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy's eyes widening seeing the statement. Shock. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -1645,7 +1678,7 @@
             }
           ],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Medium Shot. Japanese mother pointing at statement, demanding explanation. Stern expression. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese mother pointing at statement, demanding explanation. Stern expression. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -1666,7 +1699,7 @@
             }
           ],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Medium Close Up. Japanese boy in panic, desperately denying. 'I didn't buy any of that!' shot on 50mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy in panic, desperately denying. 'I didn't buy any of that!' shot on 50mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -1689,7 +1722,7 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy retreating to bedroom. Pulling out smartphone. Desperate to check something. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy retreating to bedroom. Pulling out smartphone. Desperate to check something. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -1704,7 +1737,7 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Close Up, over shoulder. Japanese boy frantically searching browser history. Looking for 'Wakuwaku Denki'. shot on 50mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up, over shoulder. Japanese boy frantically searching browser history. Looking for 'Wakuwaku Denki'. shot on 50mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "over shoulder",
             "gh:distance": "Close Up"
@@ -1717,7 +1750,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Browser loading... Spinning indicator. Tension building.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Browser loading... Spinning indicator. Tension building.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1730,7 +1763,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Error screen: '404 Not Found' 'This page does not exist'. 'Wakuwaku Denki' site completely gone. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Error screen: '404 Not Found' 'This page does not exist'. 'Wakuwaku Denki' site completely gone. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1751,7 +1784,7 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Close Up. Japanese boy's eyes wide with terror. 'The site... is gone...?' Trembling. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy's eyes wide with terror. 'The site... is gone...?' Trembling. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -1772,7 +1805,7 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese boy's face as horrible realization dawns. 'Was I... scammed...?' Dark room, shadows on face. Peak of anxiety. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy's face as horrible realization dawns. 'Was I... scammed...?' Dark room, shadows on face. Peak of anxiety. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:atmosphere": "不安の頂点",
@@ -1797,7 +1830,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot. Middle school classroom entrance. Japanese boy standing at door, heavy footsteps. Ominous atmosphere. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Middle school classroom entrance. Japanese boy standing at door, heavy footsteps. Ominous atmosphere. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:atmosphere": "重い空気",
@@ -1811,7 +1844,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Inside classroom. Classmates' gazes turning toward Yuto. Murmuring stops. Tense silence. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Inside classroom. Classmates' gazes turning toward Yuto. Murmuring stops. Tense silence. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -1826,7 +1859,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy sensing something is wrong. Anxious expression. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy sensing something is wrong. Anxious expression. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -1841,7 +1874,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Classmate standing up and approaching Yuto. Angry expression. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Classmate standing up and approaching Yuto. Angry expression. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -1862,7 +1895,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Classmate confronting Yuto angrily. 'Hey, what was that message last night?' shot on 50mm, f/2, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Classmate confronting Yuto angrily. 'Hey, what was that message last night?' shot on 50mm, f/2, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -1883,7 +1916,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy confused. 'Message...?' shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy confused. 'Message...?' shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -1901,7 +1934,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, high angle. Japanese boy surrounded by hostile classmates. Feeling of being cornered. shot on 24mm, f/4, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot, high angle. Japanese boy surrounded by hostile classmates. Feeling of being cornered. shot on 24mm, f/4, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "high angle looking down",
             "gh:atmosphere": "包囲、敵意",
@@ -1931,7 +1964,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Classmate thrusting smartphone toward camera/Yuto. Accusatory. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Classmate thrusting smartphone toward camera/Yuto. Accusatory. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -1944,7 +1977,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Smartphone screen showing DM from Yuto's account. 'Check this out! Amazing!' with suspicious link. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Smartphone screen showing DM from Yuto's account. 'Check this out! Amazing!' with suspicious link. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1957,7 +1990,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Another DM: 'Actually I always thought you were annoying lol' Insulting message. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Another DM: 'Actually I always thought you were annoying lol' Insulting message. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1972,7 +2005,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy's face, devastated. Eyes wide with shock. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy's face, devastated. Eyes wide with shock. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -1993,7 +2026,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese boy desperately denying. 'I didn't send that!' shot on 50mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy desperately denying. 'I didn't send that!' shot on 50mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -2014,7 +2047,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Male classmate upset. 'I clicked the link and got sent to a weird site...' shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Male classmate upset. 'I clicked the link and got sent to a weird site...' shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2035,7 +2068,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese girl (Saki) looking worried. 'I clicked it too... something weird popped up...' shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese girl (Saki) looking worried. 'I clicked it too... something weird popped up...' shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2056,7 +2089,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Third classmate looking worried. 'Something's wrong with my account too...' Chain of damage. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Third classmate looking worried. 'Something's wrong with my account too...' Chain of damage. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2071,7 +2104,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, high angle. Japanese boy being blamed from all sides. Becoming isolated. shot on 24mm, f/4, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot, high angle. Japanese boy being blamed from all sides. Becoming isolated. shot on 24mm, f/4, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "high angle",
             "gh:distance": "Wide Shot"
@@ -2094,7 +2127,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese girl (Mei) looking at smartphone, shocked and hurt expression. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese girl (Mei) looking at smartphone, shocked and hurt expression. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2107,7 +2140,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Saki's PRIVATE account posts now PUBLIC. Multiple complaints: 'Mei is so annoying, always showing off' 'Akira thinks he's so cool with his sneakers lol' 'I'm tired of pretending'. Japanese text. Account name shows @saki_private.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Saki's PRIVATE account posts now PUBLIC. Multiple complaints: 'Mei is so annoying, always showing off' 'Akira thinks he's so cool with his sneakers lol' 'I'm tired of pretending'. Japanese text. Account name shows @saki_private.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -2128,7 +2161,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese girl (Mei) with tears welling up. Feeling of betrayal by best friend. 'Saki... I thought we were best friends...' shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese girl (Mei) with tears welling up. Feeling of betrayal by best friend. 'Saki... I thought we were best friends...' shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -2149,7 +2182,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese girl (Saki) panicking, trying to explain. 'That's not...! It was just venting... I didn't mean it!' shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese girl (Saki) panicking, trying to explain. 'That's not...! It was just venting... I didn't mean it!' shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2164,7 +2197,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy (Akira) looking hurt. Just read that Saki called him 'show-off with sneakers'. His confident expression crumbles. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy (Akira) looking hurt. Just read that Saki called him 'show-off with sneakers'. His confident expression crumbles. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -2185,7 +2218,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Male classmate (Ken) pointing at Yuto angrily. 'This is all YOUR fault! You sent that weird link!' shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Male classmate (Ken) pointing at Yuto angrily. 'This is all YOUR fault! You sent that weird link!' shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2200,7 +2233,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy (Yuto) lost for words. Can't defend himself. Blamed for the chain of events. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy (Yuto) lost for words. Can't defend himself. Blamed for the chain of events. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -2216,7 +2249,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Two girls (Mei and Saki) who were best friends, now looking away from each other. Friendship destroyed. Cold distance between them. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Two girls (Mei and Saki) who were best friends, now looking away from each other. Friendship destroyed. Cold distance between them. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2238,7 +2271,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot. Yuto standing alone. Classroom fractured into hostile groups. All because of him. Icy atmosphere. shot on 24mm, f/4, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Yuto standing alone. Classroom fractured into hostile groups. All because of him. Icy atmosphere. shot on 24mm, f/4, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "high angle",
             "gh:atmosphere": "氷のような冷たさ、罪悪感",
@@ -2261,7 +2294,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy clutching chest. Can't breathe. Suffocating from social pressure. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy clutching chest. Can't breathe. Suffocating from social pressure. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -2296,7 +2329,7 @@
               "gh:model": "google/gemini-3-pro-image-preview"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 必死にスマホを操作するYuto。ログインを試みる。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Single illustration, cinematic manga sketch style. 必死にスマホを操作するYuto。ログインを試みる。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Monochrome with screen tones, gestural figures with simplified facial features, emphasis on lighting direction and silhouette shapes, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2321,7 +2354,7 @@
               "gh:model": "google/gemini-3-pro-image-preview"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. ログイン画面。パスワード入力。. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Single illustration, cinematic manga sketch style. ログイン画面。パスワード入力。. Shot type: Insert. Monochrome with screen tones, emphasis on lighting direction and silhouette shapes, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -2334,7 +2367,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Error message: 'Incorrect password'. Red warning. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Error message: 'Incorrect password'. Red warning. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -2347,7 +2380,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Password reset attempt. 'This email address is not registered'. Complete lockout. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Password reset attempt. 'This email address is not registered'. Complete lockout. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -2368,7 +2401,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy's face in complete despair. 'I can't get in... I can't do anything anymore...' shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy's face in complete despair. 'I can't get in... I can't do anything anymore...' shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -2383,7 +2416,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, high angle. Japanese boy sitting alone in corner of classroom. Classmates walking around avoiding him. Complete isolation. Dark atmosphere. shot on 24mm, f/4, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot, high angle. Japanese boy sitting alone in corner of classroom. Classmates walking around avoiding him. Complete isolation. Dark atmosphere. shot on 24mm, f/4, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "high angle",
             "gh:atmosphere": "孤立、絶望",
@@ -2407,7 +2440,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot. After school classroom. Sunset through windows. Japanese boy slumped over desk, alone. Solitude and silence. shot on 24mm, f/4, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. After school classroom. Sunset through windows. Japanese boy slumped over desk, alone. Solitude and silence. shot on 24mm, f/4, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:atmosphere": "孤独、静寂",
@@ -2431,7 +2464,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy with face buried in arms on desk. Shoulders slightly trembling. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy with face buried in arms on desk. Shoulders slightly trembling. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -2446,7 +2479,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese girl (Nei) standing at classroom entrance. Quietly observing Yuto. Calm expression. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese girl (Nei) standing at classroom entrance. Quietly observing Yuto. Calm expression. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2461,7 +2494,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot, low angle. Japanese girl walking quietly toward camera. Footsteps echoing. Approaching. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot, low angle. Japanese girl walking quietly toward camera. Footsteps echoing. Approaching. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "low angle",
             "gh:distance": "Medium Shot"
@@ -2483,7 +2516,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese girl standing next to slumped boy. Gentle voice: 'Are you okay?' shot on 50mm, f/2, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese girl standing next to slumped boy. Gentle voice: 'Are you okay?' shot on 50mm, f/2, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -2504,7 +2537,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy looking up with tears in eyes. Words spilling out: 'I didn't do it... but I clicked...' Vulnerable. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy looking up with tears in eyes. Words spilling out: 'I didn't do it... but I clicked...' Vulnerable. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -2528,7 +2561,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese girl (Nei) quietly listening to boy's story. Understanding expression. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese girl (Nei) quietly listening to boy's story. Understanding expression. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2543,7 +2576,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese girl nodding, turning to look toward corner of classroom. shot on 50mm, f/2, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese girl nodding, turning to look toward corner of classroom. shot on 50mm, f/2, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -2558,7 +2591,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy (Ren) slumped on desk by window. Half-open eyes watching the two. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy (Ren) slumped on desk by window. Half-open eyes watching the two. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2579,7 +2612,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese girl asking quietly. 'Ghost. What do we do?' Calm, businesslike. shot on 50mm, f/2, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese girl asking quietly. 'Ghost. What do we do?' Calm, businesslike. shot on 50mm, f/2, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -2594,7 +2627,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy slowly sitting up. Stretching. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy slowly sitting up. Stretching. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2615,7 +2648,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese boy looking reluctant but ready. 'Ugh. It's a pain, but... let's do it.' Lazy but determined. shot on 50mm, f/2, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy looking reluctant but ready. 'Ugh. It's a pain, but... let's do it.' Lazy but determined. shot on 50mm, f/2, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -2641,7 +2674,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot. Three students gathered around desk. Japanese girl operating smartphone. Boy observing. Collaborative atmosphere. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Three students gathered around desk. Japanese girl operating smartphone. Boy observing. Collaborative atmosphere. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Wide Shot"
@@ -2660,7 +2693,7 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Cute mascot advice card: '#1 Breach Check'. Educational guidance. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Cute mascot advice card: '#1 Breach Check'. Educational guidance. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -2681,7 +2714,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese girl explaining, holding up one finger. 'First, make it visible. Check where the leak came from.' shot on 50mm, f/2, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese girl explaining, holding up one finger. 'First, make it visible. Check where the leak came from.' shot on 50mm, f/2, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -2694,7 +2727,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Breach check website input screen. Email address field. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Breach check website input screen. Email address field. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -2709,7 +2742,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy watching screen anxiously. Worried about results. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy watching screen anxiously. Worried about results. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -2731,7 +2764,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Results screen. Red warning: '5 breaches found'. Alarming display. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Results screen. Red warning: '5 breaches found'. Alarming display. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -2750,7 +2783,7 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. List of breached services: SNS, game site, shopping site, etc. Multiple compromised accounts. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. List of breached services: SNS, game site, shopping site, etc. Multiple compromised accounts. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -2771,7 +2804,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese boy shocked. 'This many...' Realizing extent of damage. shot on 50mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy shocked. 'This many...' Realizing extent of damage. shot on 50mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -2792,7 +2825,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese girl asking calmly. 'Were you reusing the same password?' shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese girl asking calmly. 'Were you reusing the same password?' shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2813,7 +2846,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy nodding guiltily. 'Yeah...' Realizing his mistake. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy nodding guiltily. 'Yeah...' Realizing his mistake. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -2841,7 +2874,7 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Cute mascot advice card: '#2 Card Suspension'. Educational guidance. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Cute mascot advice card: '#2 Card Suspension'. Educational guidance. Japanese text.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -2862,7 +2895,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese girl speaking urgently. Serious expression. 'Contact the card company immediately.' shot on 50mm, f/2, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese girl speaking urgently. Serious expression. 'Contact the card company immediately.' shot on 50mm, f/2, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -2883,7 +2916,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese girl waving finger for emphasis. 'If you don't stop it, the damage will spread.' shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese girl waving finger for emphasis. 'If you don't stop it, the damage will spread.' shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2898,7 +2931,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy nodding. Determined expression. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy nodding. Determined expression. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -2913,7 +2946,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy taking out phone. Preparing to make a call. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy taking out phone. Preparing to make a call. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2937,7 +2970,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy making phone call. Tense expression. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy making phone call. Tense expression. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2958,7 +2991,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy apologizing on phone. 'Mom... I'm sorry. We need to stop the card!' shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy apologizing on phone. 'Mom... I'm sorry. We need to stop the card!' shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -2977,7 +3010,7 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Phone screen showing 'Mom' and call in progress. Mother's voice: 'What? ...Okay, I'll do it right away.'",
+          "gh:imagePrompt": "Single illustration. Insert shot. Phone screen showing 'Mom' and call in progress. Mother's voice: 'What? ...Okay, I'll do it right away.'",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -2992,7 +3025,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy ending call, sighing with relief. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy ending call, sighing with relief. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -3013,7 +3046,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy slightly relieved. 'It's stopped...' Small step forward. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy slightly relieved. 'It's stopped...' Small step forward. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -3034,7 +3067,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese girl nodding. 'Good. Next.' Moving to next step. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese girl nodding. 'Good. Next.' Moving to next step. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -3062,7 +3095,7 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Cute mascot advice card: '#3 Password Management'. Educational guidance. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Cute mascot advice card: '#3 Password Management'. Educational guidance. Japanese text.",
           "panel": 1,
           "shot": "Insert",
           "visual": "ぷにNEIのアドバイスカード。「#3 パスワード管理」"
@@ -3079,7 +3112,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese girl making key point. 'Don't memorize passwords.' Emphatic expression. shot on 50mm, f/2, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese girl making key point. 'Don't memorize passwords.' Emphatic expression. shot on 50mm, f/2, cinematic live-action.",
           "panel": 2,
           "shot": "Medium Close Up",
           "visual": "Neiが核心を伝える。強調するような表情。"
@@ -3096,7 +3129,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese girl continuing. 'Generate and store them.' Episode title key visual. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese girl continuing. 'Generate and store them.' Episode title key visual. shot on 85mm, f/1.8, cinematic live-action.",
           "panel": 3,
           "shot": "Close Up",
           "visual": "Neiがさらに続ける。エピソードタイトルのキービジュアル。"
@@ -3113,7 +3146,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese boy looking confused. 'Not memorize... how?' shot on 50mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy looking confused. 'Not memorize... how?' shot on 50mm, f/1.8, cinematic live-action.",
           "panel": 4,
           "shot": "Medium Close Up",
           "visual": "困惑するYuto。"
@@ -3124,7 +3157,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese girl taking out smartphone. About to demonstrate. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese girl taking out smartphone. About to demonstrate. shot on 50mm, f/2.8, cinematic live-action.",
           "panel": 5,
           "shot": "Medium Shot",
           "visual": "Neiがスマホを取り出す。"
@@ -3139,7 +3172,7 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Password manager app icon on smartphone screen. About to open.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Password manager app icon on smartphone screen. About to open.",
           "panel": 6,
           "shot": "Insert",
           "visual": "パスワードマネージャーアプリのアイコン。"
@@ -3163,7 +3196,7 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Password manager app. Vault-like UI. Secure appearance.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Password manager app. Vault-like UI. Secure appearance.",
           "panel": 1,
           "shot": "Insert",
           "visual": "パスワードマネージャーアプリの画面。金庫のようなUI。"
@@ -3178,7 +3211,7 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Password manager showing unique random passwords for different sites. Complex passwords like 'x7$kL9!mQ2'.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Password manager showing unique random passwords for different sites. Complex passwords like 'x7$kL9!mQ2'.",
           "panel": 2,
           "shot": "Insert",
           "visual": "サイトごとに異なるランダムパスワードが生成されている画面。「x7$kL9!mQ2」のようなパスワード。"
@@ -3189,7 +3222,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese boy nodding while looking at screen. Understanding. shot on 50mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy nodding while looking at screen. Understanding. shot on 50mm, f/1.8, cinematic live-action.",
           "panel": 3,
           "shot": "Medium Close Up",
           "visual": "画面を見ながら頷くYuto。"
@@ -3204,7 +3237,7 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Two-factor authentication setup screen. Security code prompt. '2FA' enabled.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Two-factor authentication setup screen. Security code prompt. '2FA' enabled.",
           "panel": 4,
           "shot": "Insert",
           "visual": "二段階認証の設定画面。認証コード入力。"
@@ -3215,7 +3248,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy working through security setup. Serious expression. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy working through security setup. Serious expression. shot on 50mm, f/2.8, cinematic live-action.",
           "panel": 5,
           "shot": "Medium Shot",
           "visual": "設定を進めるYuto。真剣な表情。"
@@ -3232,7 +3265,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy completing security setup. 'Done.' Small sense of accomplishment. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy completing security setup. 'Done.' Small sense of accomplishment. shot on 85mm, f/1.8, cinematic live-action.",
           "panel": 6,
           "shot": "Close Up",
           "visual": "設定完了。少し安堵の表情。"
@@ -3256,7 +3289,7 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Cute mascot advice card: '#4 Alert Friends'. Educational guidance. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Cute mascot advice card: '#4 Alert Friends'. Educational guidance. Japanese text.",
           "panel": 1,
           "shot": "Insert",
           "visual": "ぷにNEIのアドバイスカード。「#4 注意喚起」"
@@ -3273,7 +3306,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese girl explaining damage control. 'Contact friends through different channels. Tell them not to click links.' shot on 50mm, f/2, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese girl explaining damage control. 'Contact friends through different channels. Tell them not to click links.' shot on 50mm, f/2, cinematic live-action.",
           "panel": 2,
           "shot": "Medium Close Up",
           "visual": "Neiが被害拡大防止を説明。"
@@ -3290,7 +3323,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy hesitating. Scared expression. 'But... everyone's angry...' shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy hesitating. Scared expression. 'But... everyone's angry...' shot on 85mm, f/1.8, cinematic live-action.",
           "panel": 3,
           "shot": "Close Up",
           "visual": "躊躇するYuto。怯えた表情。"
@@ -3307,7 +3340,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Japanese girl responding firmly. 'If you don't tell them, it'll spread more.' shot on 50mm, f/2, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese girl responding firmly. 'If you don't tell them, it'll spread more.' shot on 50mm, f/2, cinematic live-action.",
           "panel": 4,
           "shot": "Medium Close Up",
           "visual": "Neiが毅然と返す。"
@@ -3318,7 +3351,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy steeling himself. Making decision. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy steeling himself. Making decision. shot on 85mm, f/1.8, cinematic live-action.",
           "panel": 5,
           "shot": "Close Up",
           "visual": "決意を固めるYuto。"
@@ -3338,7 +3371,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy mustering courage, holding phone. About to send warning. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy mustering courage, holding phone. About to send warning. shot on 50mm, f/2.8, cinematic live-action.",
           "panel": 1,
           "shot": "Medium Shot",
           "visual": "勇気を出してスマホを構えるYuto。"
@@ -3347,7 +3380,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Message composition screen. Typing warning message.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Message composition screen. Typing warning message.",
           "panel": 2,
           "shot": "Insert",
           "visual": "メッセージ作成画面。警告文を打つ。"
@@ -3362,7 +3395,7 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. SMS message being sent. 'My account was hacked. Don't click links. Please report.' Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. SMS message being sent. 'My account was hacked. Don't click links. Please report.' Japanese text.",
           "panel": 3,
           "shot": "Insert",
           "visual": "送信されるメッセージ。「俺のアカウント乗っ取られた。リンク踏まないで。通報して。」"
@@ -3371,7 +3404,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Messages sent to multiple contacts. Delivery confirmation.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Messages sent to multiple contacts. Delivery confirmation.",
           "panel": 4,
           "shot": "Insert",
           "visual": "送信完了。複数人への一斉送信。"
@@ -3388,7 +3421,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese boy lowering phone. Exhausted expression but task done. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy lowering phone. Exhausted expression but task done. shot on 50mm, f/2.8, cinematic live-action.",
           "panel": 5,
           "shot": "Medium Shot",
           "visual": "スマホを下ろすYuto。疲れた表情だが、やり遂げた。"
@@ -3407,7 +3440,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot. Three students taking a breath. Countermeasures complete. But darkness gathering outside window. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Three students taking a breath. Countermeasures complete. But darkness gathering outside window. shot on 35mm, f/2.8, cinematic live-action.",
           "panel": 6,
           "shot": "Wide Shot",
           "visual": "対策完了。3人が一息つく。しかし窓の外は暗くなってきた。"
@@ -3428,7 +3461,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot. Classroom after countermeasures complete. Japanese boy slightly relieved. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Classroom after countermeasures complete. Japanese boy slightly relieved. shot on 35mm, f/2.8, cinematic live-action.",
           "panel": 1,
           "shot": "Wide Shot",
           "visual": "対策完了後の教室。Yutoが少しほっとした表情。"
@@ -3440,7 +3473,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Classmates returning. Harsh expressions. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Classmates returning. Harsh expressions. shot on 50mm, f/2.8, cinematic live-action.",
           "panel": 2,
           "shot": "Medium Shot",
           "visual": "クラスメイトたちが戻ってくる。険しい表情。"
@@ -3457,7 +3490,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Close Up. Classmate mocking. 'Isn't it too late now?' shot on 50mm, f/2, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Classmate mocking. 'Isn't it too late now?' shot on 50mm, f/2, cinematic live-action.",
           "panel": 3,
           "shot": "Medium Close Up",
           "visual": "クラスメイトAが嘲笑う。"
@@ -3474,7 +3507,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Classmate pointing accusingly. 'Our info is already leaked. Because of you.' shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Classmate pointing accusingly. 'Our info is already leaked. Because of you.' shot on 50mm, f/2.8, cinematic live-action.",
           "panel": 4,
           "shot": "Medium Shot",
           "visual": "クラスメイトAがYutoを指差す。"
@@ -3494,7 +3527,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot. Other classmates joining in. Surrounding Yuto. Mob mentality. shot on 24mm, f/4, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Other classmates joining in. Surrounding Yuto. Mob mentality. shot on 24mm, f/4, cinematic live-action.",
           "panel": 5,
           "shot": "Wide Shot",
           "visual": "他のクラスメイトも同調する。Yutoを囲む。"
@@ -3505,7 +3538,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Japanese boy receiving verbal attacks. Hurt expression. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy receiving verbal attacks. Hurt expression. shot on 85mm, f/1.8, cinematic live-action.",
           "panel": 6,
           "shot": "Close Up",
           "visual": "言葉を浴びせられるYuto。傷つく表情。"
@@ -3525,7 +3558,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot. Words visually striking Yuto. Air distorting around him. Emotional impact visualized.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Words visually striking Yuto. Air distorting around him. Emotional impact visualized.",
           "panel": 1,
           "shot": "Wide Shot",
           "visual": "クラスメイトの言葉がYutoに突き刺さる。空気が歪む。"
@@ -3555,7 +3588,7 @@
               "gh:model": "unknown"
             }
           ],
-          "gh:imagePrompt": "Close Up. Japanese boy clutching chest in pain. Words hurting like physical wounds. Anguished expression.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy clutching chest in pain. Words hurting like physical wounds. Anguished expression.",
           "panel": 2,
           "shot": "Close Up",
           "visual": "Yutoが胸を押さえる。言葉が刺さる痛み。"
@@ -3566,7 +3599,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Extreme Close Up. Hand clutching chest. Physical pain from emotional wounds.",
+          "gh:imagePrompt": "Single illustration. Extreme Close Up. Hand clutching chest. Physical pain from emotional wounds.",
           "panel": 3,
           "shot": "Extreme Close Up",
           "visual": "Yutoの胸を押さえる手。痛みが走る。"
@@ -3601,7 +3634,7 @@
               "gh:model": "unknown"
             }
           ],
-          "gh:imagePrompt": "Medium Shot. Japanese girl (Nei) looking at the air analytically. Asking boy (Ren) a question. Calm amidst chaos.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese girl (Nei) looking at the air analytically. Asking boy (Ren) a question. Calm amidst chaos.",
           "panel": 4,
           "shot": "Medium Shot",
           "visual": "Neiが空気を読む。Renに問いかける。"
@@ -3612,7 +3645,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Ren's eyes slightly moving. Moment of decision. Ready to act.",
+          "gh:imagePrompt": "Single illustration. Close Up. Ren's eyes slightly moving. Moment of decision. Ready to act.",
           "panel": 5,
           "shot": "Close Up",
           "visual": "Renの目がわずかに動く。やる気になった瞬間。"
@@ -3631,7 +3664,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese girl reaching into pocket. About to reveal something.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese girl reaching into pocket. About to reveal something.",
           "panel": 1,
           "shot": "Medium Shot",
           "visual": "Neiがポケットから何かを取り出す。"
@@ -3660,7 +3693,7 @@
               "gh:model": "unknown"
             }
           ],
-          "gh:imagePrompt": "Close Up. Japanese girl holding mysterious cube device. Glowing interface. 'SIP Project Map: ON' text.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese girl holding mysterious cube device. Glowing interface. 'SIP Project Map: ON' text.",
           "panel": 2,
           "shot": "Close Up",
           "visual": "Neiが謎のデバイス（キューブ型）を取り出す。"
@@ -3669,7 +3702,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Insert shot. Cube device emitting light. Pulse wave expanding.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Cube device emitting light. Pulse wave expanding.",
           "panel": 3,
           "shot": "Insert",
           "visual": "キューブが光を放つ。パルス波。"
@@ -3690,7 +3723,7 @@
               "gh:model": "unknown"
             }
           ],
-          "gh:imagePrompt": "Wide Shot. Scanning wave spreading across classroom. Wireframe overlay on reality. Digital transformation beginning.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Scanning wave spreading across classroom. Wireframe overlay on reality. Digital transformation beginning.",
           "panel": 4,
           "shot": "Wide Shot",
           "visual": "波動が教室をスキャン。現実にワイヤーフレームがオーバーレイされていく。"
@@ -3702,7 +3735,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Shocked classmates. World transforming around them.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Shocked classmates. World transforming around them.",
           "panel": 5,
           "shot": "Medium Shot",
           "visual": "驚くクラスメイトたち。世界が変わっていく。"
@@ -3737,7 +3770,7 @@
               "gh:model": "unknown"
             }
           ],
-          "gh:imagePrompt": "Wide Shot. Classroom transformed into 'Information Field'. Digital wireframes. Grotesque Ghost entities visible. Students shocked.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Classroom transformed into 'Information Field'. Digital wireframes. Grotesque Ghost entities visible. Students shocked.",
           "panel": 1,
           "shot": "Wide Shot",
           "visual": "「情報場」が可視化される。教室がデジタル空間に変容。Ghost（悪意のデータ実体）が現れる。"
@@ -3748,7 +3781,7 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Close Up. Shocked student face. Seeing the impossible.",
+          "gh:imagePrompt": "Single illustration. Close Up. Shocked student face. Seeing the impossible.",
           "panel": 2,
           "shot": "Close Up",
           "visual": "驚愕する生徒の顔。"
@@ -3757,7 +3790,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Medium Shot. Ghost entities floating in air. Grotesque digital shapes.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Ghost entities floating in air. Grotesque digital shapes.",
           "panel": 3,
           "shot": "Medium Shot",
           "visual": "Ghost（悪意の実体）が空中に浮かんでいる。グロテスクな形状。"
@@ -3786,7 +3819,7 @@
               "gh:model": "unknown"
             }
           ],
-          "gh:imagePrompt": "Medium Shot. Japanese girl explaining calmly amidst digital chaos. 'Information Field - where images become mass.'",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese girl explaining calmly amidst digital chaos. 'Information Field - where images become mass.'",
           "panel": 4,
           "shot": "Medium Shot",
           "visual": "Neiが説明する。"
@@ -3797,7 +3830,7 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Close Up. Yuto staring at Information Field. Mix of awe and fear.",
+          "gh:imagePrompt": "Single illustration. Close Up. Yuto staring at Information Field. Mix of awe and fear.",
           "panel": 5,
           "shot": "Close Up",
           "visual": "情報場を見つめるYuto。驚きと恐怖が入り混じった表情。"
@@ -3822,7 +3855,7 @@
             }
           ],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Medium Close Up. Japanese girl lecturing. Holding up finger. 'Information is physics.'",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese girl lecturing. Holding up finger. 'Information is physics.'",
           "panel": 1,
           "shot": "Medium Close Up",
           "visual": "Neiが説明を続ける。指を立てて。"
@@ -3837,7 +3870,7 @@
             }
           ],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Insert shot. Text overlay: 'LANDAUER'S PRINCIPLE'. Diagram showing bit deletion generating heat.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Text overlay: 'LANDAUER'S PRINCIPLE'. Diagram showing bit deletion generating heat.",
           "panel": 2,
           "shot": "Insert",
           "visual": "テキストオーバーレイ：「Landauer's Principle」。1ビットを消すと熱が発生する図。"
@@ -3854,7 +3887,7 @@
             }
           ],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Medium Shot. Japanese girl pointing at Ghost seriously. 'Malice becomes weight. That's a Ghost.'",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese girl pointing at Ghost seriously. 'Malice becomes weight. That's a Ghost.'",
           "panel": 3,
           "shot": "Medium Shot",
           "visual": "Neiが真剣な表情でGhostを指す。"
@@ -3863,7 +3896,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Wide Shot. Text overlay: 'INFORMATION IS PHYSICS'. Overview of entire Information Field.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Text overlay: 'INFORMATION IS PHYSICS'. Overview of entire Information Field.",
           "panel": 4,
           "shot": "Wide Shot",
           "visual": "テキストオーバーレイ：「INFORMATION IS PHYSICS」。情報場全体を見渡す。"
@@ -3882,7 +3915,7 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Wide Shot. Ghost entity lunging at student. Digital horror approaching.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Ghost entity lunging at student. Digital horror approaching.",
           "panel": 1,
           "shot": "Wide Shot",
           "visual": "Ghostがクラスメイトに襲いかかる。"
@@ -3899,7 +3932,7 @@
             }
           ],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Close Up. Student feeling phantom pain. Clutching chest. 'Ow! Why!?'",
+          "gh:imagePrompt": "Single illustration. Close Up. Student feeling phantom pain. Clutching chest. 'Ow! Why!?'",
           "panel": 2,
           "shot": "Close Up",
           "visual": "幻肢痛で苦しむクラスメイト。胸を押さえる。"
@@ -3910,7 +3943,7 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Medium Shot. Japanese boy (Ren) stepping forward. Determined posture.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy (Ren) stepping forward. Determined posture.",
           "panel": 3,
           "shot": "Medium Shot",
           "visual": "Renが前に出る。"
@@ -3927,7 +3960,7 @@
             }
           ],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Close Up. Ren reaching out hand. Determined expression. 'Time for Ghost Hack.'",
+          "gh:imagePrompt": "Single illustration. Close Up. Ren reaching out hand. Determined expression. 'Time for Ghost Hack.'",
           "panel": 4,
           "shot": "Close Up",
           "visual": "Renが手を伸ばす。決意の表情。"
@@ -3936,7 +3969,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Insert shot. Digital particles gathering. Forming shape of axe.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Digital particles gathering. Forming shape of axe.",
           "panel": 5,
           "shot": "Insert",
           "visual": "デジタルの粒子が集まり、斧の形を成していく。"
@@ -3947,7 +3980,7 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Medium Shot. 'NULL AXE' materializing fully. Massive digital axe in Ren's hand.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. 'NULL AXE' materializing fully. Massive digital axe in Ren's hand.",
           "panel": 6,
           "shot": "Medium Shot",
           "visual": "「NULL AXE」が実体化。Renの手に巨大なデジタル斧。"
@@ -3966,7 +3999,7 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Medium Shot. Ren taking stance. Raising NULL AXE.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Ren taking stance. Raising NULL AXE.",
           "panel": 1,
           "shot": "Medium Shot",
           "visual": "Renが構える。NULL AXEを掲げる。"
@@ -3975,7 +4008,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Close Up. Ghost approaching. Grotesque digital form.",
+          "gh:imagePrompt": "Single illustration. Close Up. Ghost approaching. Grotesque digital form.",
           "panel": 2,
           "shot": "Close Up",
           "visual": "Ghostが迫る。不気味な形状。"
@@ -3986,7 +4019,7 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Wide Shot, dynamic action. Ren slashing through Ghost with NULL AXE. Motion blur. Sparks of data.",
+          "gh:imagePrompt": "Single illustration. Wide Shot, dynamic action. Ren slashing through Ghost with NULL AXE. Motion blur. Sparks of data.",
           "panel": 3,
           "shot": "Wide Shot",
           "visual": "RenがNULL AXEでGhostを切り裂く。ダイナミックなアクション。"
@@ -3995,7 +4028,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Insert shot. Moment of slash. Data sparks scattering.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Moment of slash. Data sparks scattering.",
           "panel": 4,
           "shot": "Insert",
           "visual": "斬撃の瞬間。データの火花が散る。"
@@ -4006,7 +4039,7 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Medium Shot. Ren after slash. Ready for follow-up attack.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Ren after slash. Ready for follow-up attack.",
           "panel": 5,
           "shot": "Medium Shot",
           "visual": "斬撃後のRen。連続攻撃の構え。"
@@ -4025,7 +4058,7 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Close Up. Yuto clutching chest. Inner pain swelling.",
+          "gh:imagePrompt": "Single illustration. Close Up. Yuto clutching chest. Inner pain swelling.",
           "panel": 1,
           "shot": "Close Up",
           "visual": "Yutoが胸を押さえる。内なる痛みが膨れ上がる。"
@@ -4036,7 +4069,7 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Medium Shot. Dark shadow leaking from Yuto's body.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Dark shadow leaking from Yuto's body.",
           "panel": 2,
           "shot": "Medium Shot",
           "visual": "Yutoの体から黒い影が漏れ出す。"
@@ -4047,7 +4080,7 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Close Up. Yuto screaming. Guilt and self-blame erupting.",
+          "gh:imagePrompt": "Single illustration. Close Up. Yuto screaming. Guilt and self-blame erupting.",
           "panel": 3,
           "shot": "Close Up",
           "visual": "叫ぶYuto。罪悪感と自責の念。"
@@ -4058,7 +4091,7 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Wide Shot. Massive dark shadow erupting from Yuto. Guilt manifesting as giant Daemon entity.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Massive dark shadow erupting from Yuto. Guilt manifesting as giant Daemon entity.",
           "panel": 4,
           "shot": "Wide Shot",
           "visual": "彼の葛藤が巨大なDaemonとして実体化する。"
@@ -4067,7 +4100,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Wide Shot. Full view of Daemon. Massive, amorphous mass of malice.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Full view of Daemon. Massive, amorphous mass of malice.",
           "panel": 5,
           "shot": "Wide Shot",
           "visual": "Daemon全貌。巨大で不定形な悪意の塊。"
@@ -4084,7 +4117,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Close Up. Daemon's core. Malevolent presence.",
+          "gh:imagePrompt": "Single illustration. Close Up. Daemon's core. Malevolent presence.",
           "panel": 1,
           "shot": "Close Up",
           "visual": "Daemonの顔（あれば）、または核部分。"
@@ -4099,7 +4132,7 @@
             }
           ],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Wide Shot. Daemon screaming curse. 'IT'S ALL YOUR FAULT!' Text as visual weapon.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Daemon screaming curse. 'IT'S ALL YOUR FAULT!' Text as visual weapon.",
           "panel": 2,
           "shot": "Wide Shot",
           "visual": "Daemonが呪いの言葉を叫ぶ。"
@@ -4108,7 +4141,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Insert shot. Text 'IT'S ALL YOUR FAULT' flying like bullets.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Text 'IT'S ALL YOUR FAULT' flying like bullets.",
           "panel": 3,
           "shot": "Insert",
           "visual": "「全部あんたのせいだ」の文字が弾丸のように飛ぶ。"
@@ -4123,7 +4156,7 @@
             }
           ],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Medium Shot. More curse words. 'IT'S IRREVERSIBLE! UNFORGIVABLE!' Text weapons.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. More curse words. 'IT'S IRREVERSIBLE! UNFORGIVABLE!' Text weapons.",
           "panel": 4,
           "shot": "Medium Shot",
           "visual": "さらなる呪いの言葉。"
@@ -4134,7 +4167,7 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Close Up. Yuto suffering under curse words. Pain from his own guilt.",
+          "gh:imagePrompt": "Single illustration. Close Up. Yuto suffering under curse words. Pain from his own guilt.",
           "panel": 5,
           "shot": "Close Up",
           "visual": "呪いの言葉に苦しむYuto。"
@@ -4153,7 +4186,7 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Medium Shot. Ren charging. Running toward Daemon.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Ren charging. Running toward Daemon.",
           "panel": 1,
           "shot": "Medium Shot",
           "visual": "Renが走り出す。Daemonに向かって。"
@@ -4164,7 +4197,7 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Close Up. Ren's determined face. Raising NULL AXE.",
+          "gh:imagePrompt": "Single illustration. Close Up. Ren's determined face. Raising NULL AXE.",
           "panel": 2,
           "shot": "Close Up",
           "visual": "Renの決意の表情。NULL AXEを振りかぶる。"
@@ -4181,7 +4214,7 @@
             }
           ],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Full Page, epic action. Ren executing special attack. '/dev/null SLASH!!' text effect. Breaking through curse.",
+          "gh:imagePrompt": "Single illustration. Full Page, epic action. Ren executing special attack. '/dev/null SLASH!!' text effect. Breaking through curse.",
           "panel": 3,
           "shot": "Full Page",
           "visual": "必殺技発動。「/dev/null SLASH!!」"
@@ -4190,7 +4223,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Insert shot. Slash cutting through Daemon. Moment of impact.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Slash cutting through Daemon. Moment of impact.",
           "panel": 4,
           "shot": "Insert",
           "visual": "斬撃がDaemonを両断する瞬間。"
@@ -4207,7 +4240,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Wide Shot. Daemon dissolving into digital particles.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Daemon dissolving into digital particles.",
           "panel": 1,
           "shot": "Wide Shot",
           "visual": "Daemonが粒子となって消滅していく。"
@@ -4216,7 +4249,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Insert shot. Curse words shattering. Text becoming light particles.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Curse words shattering. Text becoming light particles.",
           "panel": 2,
           "shot": "Insert",
           "visual": "呪いの言葉が砕け散る。文字が光の粒子に。"
@@ -4227,7 +4260,7 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Medium Shot. Ren after the attack. Standing quietly.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Ren after the attack. Standing quietly.",
           "panel": 3,
           "shot": "Medium Shot",
           "visual": "斬撃後のRen。静かに立つ。"
@@ -4236,7 +4269,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot. Information Field fading. Classroom returning to normal.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Information Field fading. Classroom returning to normal.",
           "panel": 4,
           "shot": "Wide Shot",
           "visual": "情報場が静まり、教室が元に戻っていく。"
@@ -4249,7 +4282,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot. Normal classroom restored. Three students standing. Calm after storm.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Normal classroom restored. Three students standing. Calm after storm.",
           "panel": 5,
           "shot": "Wide Shot",
           "visual": "通常に戻った教室。3人が立っている。"
@@ -4276,7 +4309,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot. Classmates looking dazed. Phantom pain gone. Confused atmosphere.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Classmates looking dazed. Phantom pain gone. Confused atmosphere.",
           "panel": 1,
           "shot": "Wide Shot",
           "visual": "クラスメイトたちが呆然としている。幻肢痛が消えた。"
@@ -4287,7 +4320,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Classmate checking chest. Pain is gone.",
+          "gh:imagePrompt": "Single illustration. Close Up. Classmate checking chest. Pain is gone.",
           "panel": 2,
           "shot": "Close Up",
           "visual": "胸を確認するクラスメイト。痛みが消えている。"
@@ -4298,7 +4331,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Yuto on his knees. Relief and exhaustion.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Yuto on his knees. Relief and exhaustion.",
           "panel": 3,
           "shot": "Medium Shot",
           "visual": "膝をつくYuto。解放感と疲労。"
@@ -4310,7 +4343,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Classmates' expressions softening slightly.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Classmates' expressions softening slightly.",
           "panel": 4,
           "shot": "Medium Shot",
           "visual": "クラスメイトたちの表情が少し和らぐ。"
@@ -4323,7 +4356,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot. Atmosphere of reconciliation in classroom. Sunset light.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Atmosphere of reconciliation in classroom. Sunset light.",
           "panel": 5,
           "shot": "Wide Shot",
           "visual": "和解の空気が漂う教室。夕暮れの光。"
@@ -4342,7 +4375,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Yuto facing classmates. Gathering courage.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Yuto facing classmates. Gathering courage.",
           "panel": 1,
           "shot": "Medium Shot",
           "visual": "Yutoがクラスメイトに向き合う。勇気を振り絞って。"
@@ -4359,7 +4392,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Yuto bowing head. 'I'm sorry... I...' Sincere apology.",
+          "gh:imagePrompt": "Single illustration. Close Up. Yuto bowing head. 'I'm sorry... I...' Sincere apology.",
           "panel": 2,
           "shot": "Close Up",
           "visual": "Yutoが頭を下げる。謝罪。"
@@ -4376,7 +4409,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Nei speaking quietly. 'Saying it means you've already won.'",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Nei speaking quietly. 'Saying it means you've already won.'",
           "panel": 3,
           "shot": "Medium Shot",
           "visual": "Neiが静かに言う。"
@@ -4393,7 +4426,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Nei continuing. Gentle expression. 'It's not shameful.'",
+          "gh:imagePrompt": "Single illustration. Close Up. Nei continuing. Gentle expression. 'It's not shameful.'",
           "panel": 4,
           "shot": "Close Up",
           "visual": "Neiが続ける。優しい表情。"
@@ -4404,7 +4437,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Yuto's eyes welling with tears. Expression of being saved.",
+          "gh:imagePrompt": "Single illustration. Close Up. Yuto's eyes welling with tears. Expression of being saved.",
           "panel": 5,
           "shot": "Close Up",
           "visual": "Yutoの目に涙が滲む。救われた表情。"
@@ -4429,7 +4462,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Ren with arms crossed. 'The bad guy isn't you.'",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Ren with arms crossed. 'The bad guy isn't you.'",
           "panel": 1,
           "shot": "Medium Shot",
           "visual": "Renが腕を組んで立つ。真実を告げる。"
@@ -4446,7 +4479,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Ren's serious expression. 'It's the Actor who exploited the system.'",
+          "gh:imagePrompt": "Single illustration. Close Up. Ren's serious expression. 'It's the Actor who exploited the system.'",
           "panel": 2,
           "shot": "Close Up",
           "visual": "Renの真剣な表情。"
@@ -4455,7 +4488,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert shot. Screenshot of disappeared fake site 'Wakuwaku Denki'.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Screenshot of disappeared fake site 'Wakuwaku Denki'.",
           "panel": 3,
           "shot": "Insert",
           "visual": "消えた偽サイト「ワクワク電気」のスクリーンショット。"
@@ -4472,7 +4505,7 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Ren showing smartphone. 'Fake site Wakuwaku Denki. They're still out there somewhere.'",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Ren showing smartphone. 'Fake site Wakuwaku Denki. They're still out there somewhere.'",
           "panel": 4,
           "shot": "Medium Shot",
           "visual": "Renがスマホを見せる。"
@@ -4483,7 +4516,7 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Light of determination in Yuto's eyes.",
+          "gh:imagePrompt": "Single illustration. Close Up. Light of determination in Yuto's eyes.",
           "panel": 5,
           "shot": "Close Up",
           "visual": "Yutoの目に決意の光。"
@@ -4501,7 +4534,7 @@
           "characters": [],
           "dialogue": [],
           "environment": "env:tokyo-skyline",
-          "gh:imagePrompt": "Wide Shot. Tokyo skyline panorama. Sunset sky. Building silhouettes.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Tokyo skyline panorama. Sunset sky. Building silhouettes.",
           "panel": 1,
           "shot": "Wide Shot",
           "visual": "東京の街並み全景。夕暮れの空。ビル群のシルエット。"
@@ -4513,7 +4546,7 @@
           ],
           "dialogue": [],
           "environment": "env:tokyo-skyline",
-          "gh:imagePrompt": "Extreme Wide Shot. Two teenagers on rooftop overlooking Tokyo skyline at sunset. Silhouettes against orange sky.",
+          "gh:imagePrompt": "Single illustration. Extreme Wide Shot. Two teenagers on rooftop overlooking Tokyo skyline at sunset. Silhouettes against orange sky.",
           "panel": 2,
           "shot": "Extreme Wide Shot",
           "visual": "東京の街並みを見下ろすRenとNei。ビルの屋上。夕暮れ。"
@@ -4530,7 +4563,7 @@
             }
           ],
           "environment": "env:tokyo-skyline",
-          "gh:imagePrompt": "Medium Shot. Ren turning sideways. Determined expression. 'Let's go.'",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Ren turning sideways. Determined expression. 'Let's go.'",
           "panel": 3,
           "shot": "Medium Shot",
           "visual": "Renが横を向く。決意の表情。"
@@ -4557,7 +4590,7 @@
             }
           ],
           "environment": "env:tokyo-skyline",
-          "gh:imagePrompt": "Medium Shot. Nei nodding. Quiet determination. 'Yeah.'",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Nei nodding. Quiet determination. 'Yeah.'",
           "panel": 1,
           "shot": "Medium Shot",
           "visual": "Neiが頷く。静かな決意。"
@@ -4569,7 +4602,7 @@
           ],
           "dialogue": [],
           "environment": "env:tokyo-skyline",
-          "gh:imagePrompt": "Close Up. Two profiles. Illuminated by sunset.",
+          "gh:imagePrompt": "Single illustration. Close Up. Two profiles. Illuminated by sunset.",
           "panel": 2,
           "shot": "Close Up",
           "visual": "二人の横顔。夕日に照らされる。"
@@ -4587,7 +4620,7 @@
             }
           ],
           "environment": "env:tokyo-skyline",
-          "gh:imagePrompt": "Extreme Wide Shot. Two teenagers' determined faces. Tokyo Tower in background. 'We hack the Ghost.' End title card.",
+          "gh:imagePrompt": "Single illustration. Extreme Wide Shot. Two teenagers' determined faces. Tokyo Tower in background. 'We hack the Ghost.' End title card.",
           "panel": 3,
           "shot": "Extreme Wide Shot",
           "visual": "見開き続き。二人の決意の表情。東京タワーを背景に。「ゴーストをハックする。」"
