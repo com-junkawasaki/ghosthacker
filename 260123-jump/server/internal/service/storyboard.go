@@ -20,6 +20,11 @@ import (
 	"storyboard-editor/backend/internal/schema"
 	"storyboard-editor/backend/proto"
 
+	"bytes"
+	goimage "image"
+	"image/jpeg"
+	"image/png"
+
 	"github.com/johnfercher/maroto/v2"
 	"github.com/johnfercher/maroto/v2/pkg/components/col"
 	"github.com/johnfercher/maroto/v2/pkg/components/image"
@@ -31,6 +36,8 @@ import (
 	"github.com/johnfercher/maroto/v2/pkg/consts/fontstyle"
 	"github.com/johnfercher/maroto/v2/pkg/core"
 	"github.com/johnfercher/maroto/v2/pkg/props"
+
+	"golang.org/x/image/draw"
 )
 
 type StoryboardService struct {
@@ -1479,22 +1486,16 @@ func (s *StoryboardService) buildPanelColWithImage(p *storyboardpb.Panel, worksp
 			cleanURL := strings.TrimPrefix(imgURL, "/")
 			imgPath := filepath.Join(workspaceRoot, "260123-jump", "resources", cleanURL)
 			
-			// Read image file
-			imgData, err := os.ReadFile(imgPath)
+			// Read and resize image for PDF
+			resizedData, err := resizeImageForPDF(imgPath, 400, 300)
 			if err == nil {
-				// Determine image extension
-				ext := extension.Png
-				if strings.HasSuffix(strings.ToLower(imgPath), ".jpg") || strings.HasSuffix(strings.ToLower(imgPath), ".jpeg") {
-					ext = extension.Jpg
-				}
-				
-				c.Add(image.NewFromBytes(imgData, ext, props.Rect{
+				c.Add(image.NewFromBytes(resizedData, extension.Jpg, props.Rect{
 					Center:  true,
 					Percent: 95,
 				}))
 				imageAdded = true
 			} else {
-				log.Printf("Warning: could not read image %s: %v", imgPath, err)
+				log.Printf("Warning: could not process image %s: %v", imgPath, err)
 			}
 		}
 	}
@@ -1571,6 +1572,60 @@ func (s *StoryboardService) buildPanelCol(p *storyboardpb.Panel) core.Col {
 		text.New(visual, props.Text{Top: 5, Size: 8}),
 		text.New(dialogue, props.Text{Top: 25, Size: 8, Color: &props.Color{Red: 0, Green: 100, Blue: 0}}),
 	)
+}
+
+// resizeImageForPDF reads an image file, resizes it to fit within maxWidth x maxHeight, and returns JPEG bytes
+func resizeImageForPDF(imgPath string, maxWidth, maxHeight int) ([]byte, error) {
+	// Open the image file
+	file, err := os.Open(imgPath)
+	if err != nil {
+		return nil, fmt.Errorf("failed to open image: %w", err)
+	}
+	defer file.Close()
+
+	// Decode the image
+	var img goimage.Image
+	if strings.HasSuffix(strings.ToLower(imgPath), ".png") {
+		img, err = png.Decode(file)
+	} else {
+		img, err = jpeg.Decode(file)
+	}
+	if err != nil {
+		return nil, fmt.Errorf("failed to decode image: %w", err)
+	}
+
+	// Calculate new dimensions while maintaining aspect ratio
+	bounds := img.Bounds()
+	origWidth := bounds.Dx()
+	origHeight := bounds.Dy()
+	
+	newWidth := origWidth
+	newHeight := origHeight
+	
+	// Scale down if larger than max dimensions
+	if origWidth > maxWidth || origHeight > maxHeight {
+		widthRatio := float64(maxWidth) / float64(origWidth)
+		heightRatio := float64(maxHeight) / float64(origHeight)
+		ratio := widthRatio
+		if heightRatio < widthRatio {
+			ratio = heightRatio
+		}
+		newWidth = int(float64(origWidth) * ratio)
+		newHeight = int(float64(origHeight) * ratio)
+	}
+
+	// Create resized image
+	resized := goimage.NewRGBA(goimage.Rect(0, 0, newWidth, newHeight))
+	draw.CatmullRom.Scale(resized, resized.Bounds(), img, bounds, draw.Over, nil)
+
+	// Encode as JPEG
+	var buf bytes.Buffer
+	err = jpeg.Encode(&buf, resized, &jpeg.Options{Quality: 85})
+	if err != nil {
+		return nil, fmt.Errorf("failed to encode image: %w", err)
+	}
+
+	return buf.Bytes(), nil
 }
 
 func getKeys(m map[string]interface{}) []string {
