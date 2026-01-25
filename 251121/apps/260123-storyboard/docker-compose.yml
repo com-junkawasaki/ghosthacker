@@ -58,7 +58,9 @@ services:
     environment:
       - DB_URL=postgres://postgres:password@db:5432/storyboard?sslmode=disable
       - TEMPORAL_HOST=temporal:7233
+      - SERVER_URL=http://server:8081
       - WORKSPACE_ROOT=/workspace
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-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}
     volumes:
       - ./server:/app
       - ../../../251121:/workspace/251121

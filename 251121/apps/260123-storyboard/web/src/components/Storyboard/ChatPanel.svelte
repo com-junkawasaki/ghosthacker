@@ -7,13 +7,69 @@
 		onApplyPatches?: (patches: any[]) => void;
 	}>();
 
-	let messages = $state<{ role: 'user' | 'assistant', content: string, context?: any, agent?: string, patches?: any[], contextScope?: any }[]>([]);
+	type Message = { role: 'user' | 'assistant', content: string, context?: any, agent?: string, patches?: any[], contextScope?: any };
+	type ChatSession = { id: string, title: string, messages: Message[], timestamp: number };
+
+	let sessions = $state<ChatSession[]>([]);
+	let currentSessionId = $state<string>(Math.random().toString(36).substring(2, 15));
+	let messages = $state<Message[]>([]);
+	let showHistory = $state(false);
+
 	let inputValue = $state('');
 	let loading = $state(false);
 	let dropContext = $state<any[]>([]);
 	let currentAgentMode = $state<'general' | 'scenario' | 'episode' | 'character' | 'cinematic' | 'dialogue' | 'a2a'>('general');
 	let isAutoPilot = $state(false);
 	let activeWorkflowId = $state<string | null>(null);
+
+	// Initialize with first session
+	$effect(() => {
+		if (sessions.length === 0) {
+			const initialSession: ChatSession = {
+				id: currentSessionId,
+				title: 'New Conversation',
+				messages: [],
+				timestamp: Date.now()
+			};
+			sessions = [initialSession];
+		}
+	});
+
+	// Sync current messages with sessions
+	$effect(() => {
+		const session = sessions.find(s => s.id === currentSessionId);
+		if (session) {
+			session.messages = messages;
+			if (messages.length > 0 && session.title === 'New Conversation') {
+				session.title = messages[0].content.substring(0, 30) + (messages[0].content.length > 30 ? '...' : '');
+			}
+		}
+	});
+
+	function createNewSession() {
+		const newId = Math.random().toString(36).substring(2, 15);
+		const newSession: ChatSession = {
+			id: newId,
+			title: 'New Conversation',
+			messages: [],
+			timestamp: Date.now()
+		};
+		sessions = [newSession, ...sessions];
+		currentSessionId = newId;
+		messages = [];
+		currentAgentMode = 'general';
+		isAutoPilot = false;
+		showHistory = false;
+	}
+
+	function loadSession(id: string) {
+		const session = sessions.find(s => s.id === id);
+		if (session) {
+			currentSessionId = id;
+			messages = session.messages;
+			showHistory = false;
+		}
+	}
 
 	// Expose a method to trigger agent commands from outside
 	export function triggerAgent(agent: typeof currentAgentMode, initialPrompt?: string) {
@@ -199,24 +255,46 @@
 <div class="chat-panel">
 	<div class="chat-header">
 		<div class="header-top">
-			<span>AI STORY ASSISTANT (LIVE)</span>
-			{#if isAutoPilot}
-				<button 
-					class="autopilot-btn active" 
-					onclick={stopAutoPilot}
-				>
-					STOP A2A
+			<div class="header-left">
+				<span>AI STORY ASSISTANT</span>
+				<button class="history-toggle" onclick={() => showHistory = !showHistory} title="Conversation History">
+					{showHistory ? '✕' : '📜'}
 				</button>
-			{:else}
-				<button 
-					class="autopilot-btn" 
-					onclick={startAutoPilot}
-					disabled={!selectedEpisode}
-				>
-					START AUTO-PILOT
-				</button>
-			{/if}
+			</div>
+			<div class="header-actions">
+				<button class="new-chat-btn" onclick={createNewSession} title="Start New Conversation">+</button>
+				{#if isAutoPilot}
+					<button 
+						class="autopilot-btn active" 
+						onclick={stopAutoPilot}
+					>
+						STOP A2A
+					</button>
+				{:else}
+					<button 
+						class="autopilot-btn" 
+						onclick={startAutoPilot}
+						disabled={!selectedEpisode}
+					>
+						START AUTO-PILOT
+					</button>
+				{/if}
+			</div>
 		</div>
+		{#if showHistory}
+			<div class="history-list">
+				{#each sessions as session}
+					<button 
+						class="history-item" 
+						class:active={session.id === currentSessionId}
+						onclick={() => loadSession(session.id)}
+					>
+						<span class="history-title">{session.title}</span>
+						<span class="history-date">{new Date(session.timestamp).toLocaleTimeString()}</span>
+					</button>
+				{/each}
+			</div>
+		{/if}
 		<div class="a2a-quick-actions">
 			<button class="quick-action-btn" onclick={() => triggerA2APattern('polish')} disabled={isAutoPilot}>✨ Story Polish</button>
 			<button class="quick-action-btn" onclick={() => triggerA2APattern('consistency')} disabled={isAutoPilot}>🔍 Check Consistency</button>
@@ -373,6 +451,93 @@
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
+	}
+
+	.header-left {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.header-actions {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+	}
+
+	.history-toggle, .new-chat-btn {
+		background: #333;
+		color: #aaa;
+		border: 1px solid #444;
+		padding: 2px 6px;
+		border-radius: 4px;
+		font-size: 0.7rem;
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+
+	.history-toggle:hover, .new-chat-btn:hover {
+		background: #444;
+		color: white;
+	}
+
+	.new-chat-btn {
+		font-weight: bold;
+		font-size: 0.9rem;
+		width: 24px;
+		height: 24px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.history-list {
+		margin-top: 0.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		max-height: 200px;
+		overflow-y: auto;
+		background: #1e1e1e;
+		border: 1px solid #333;
+		border-radius: 4px;
+	}
+
+	.history-item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0.5rem;
+		background: transparent;
+		border: none;
+		color: #888;
+		cursor: pointer;
+		text-align: left;
+		font-size: 0.7rem;
+	}
+
+	.history-item:hover {
+		background: #2d2d2d;
+		color: #ccc;
+	}
+
+	.history-item.active {
+		background: #37373d;
+		color: #fff;
+		border-left: 2px solid #007acc;
+	}
+
+	.history-title {
+		flex: 1;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.history-date {
+		font-size: 0.6rem;
+		opacity: 0.5;
+		margin-left: 0.5rem;
 	}
 
 	.autopilot-btn {
