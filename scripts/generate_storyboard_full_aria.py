@@ -9,11 +9,11 @@ Generate a full Season 1 storyboard with:
 - Max ~3 key entities mentioned per prompt (2 characters + 1 prop/ghost)
 
 Inputs:
-- apps/zen-editor/data/251121/season1_bible.jsonld  (beats for episodes 1–12)
-- 251121/generation_prompts.jsonld                 (detailed Episode 1 panel prompts)
+- apps/zen-editor/data/260125-jump/season1_bible.jsonld  (beats for episodes 1–12)
+- 260125-jump/generation_prompts.jsonld                 (detailed Episode 1 panel prompts)
 
 Output:
-- 251121/storyboard.jsonld
+- 260125-jump/storyboard.jsonld
 """
 
 from __future__ import annotations
@@ -26,9 +26,9 @@ from typing import Any, Dict, List, Optional, Tuple
 
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-SEASON1_BIBLE = os.path.join(ROOT, "apps", "zen-editor", "data", "251121", "season1_bible.jsonld")
-GEN_EP1 = os.path.join(ROOT, "251121", "generation_prompts.jsonld")
-OUT = os.path.join(ROOT, "251121", "storyboard.jsonld")
+SEASON1_BIBLE = os.path.join(ROOT, "apps", "zen-editor", "data", "260125-jump", "season1_bible.jsonld")
+GEN_EP1 = os.path.join(ROOT, "260125-jump", "generation_prompts.jsonld")
+OUT = os.path.join(ROOT, "260125-jump", "storyboard.jsonld")
 
 
 ARIA_ATMOSPHERE = "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air"
