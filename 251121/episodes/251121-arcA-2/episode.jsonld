@@ -1,0 +1,1206 @@
+{
+  "@context": {
+    "arc": "gh:arc/",
+    "character": "gh:character/",
+    "characters": "gh:characters",
+    "dct": "http://purl.org/dc/terms/",
+    "dialogue": "gh:dialogue",
+    "env": "gh:environment/",
+    "environment": "gh:environment",
+    "environments": "gh:environments",
+    "episodeId": "gh:episodeId",
+    "episodeIndex": "gh:episodeIndex",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "panel": "gh:panelIndex",
+    "prompt": "gh:runwayPrompt",
+    "properties": "gh:shotProperties",
+    "prov": "http://www.w3.org/ns/prov#",
+    "purpose": "gh:narrativePurpose",
+    "schema": "http://schema.org/",
+    "shot": "gh:shotType",
+    "speaker": "gh:speaker",
+    "text": "gh:text",
+    "visual": "gh:visual"
+  },
+  "dct:title": "Arc A-2: 「任せるのは設計だよ」",
+  "gh:arc": "Arc A",
+  "gh:credentials": [
+    "CISSP",
+    "CEH"
+  ],
+  "gh:episode": 3,
+  "gh:episodeId": "episode:251121-arcA-2",
+  "gh:episodeIndex": 3,
+  "gh:incidentDescription": "『動いているからいい』とパッチ適用をサボった『怠惰』が全業務を止めた。RenはCISSPの知見で、暗号化の嵐から生き残った微細なデータを繋ぎ合わせ、一瞬でシステムを再起動する。",
+  "gh:industry": "Construction (建設)",
+  "gh:mainCharacter": "character:Ren",
+  "gh:nistFocus": [
+    "PR.IP (Backup Protection)",
+    "GV.PO (Vulnerability Policy)"
+  ],
+  "gh:pages": [
+    {
+      "gh:pageNumber": 1,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Shouta",
+            "character:President"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Narration",
+              "text": "『許したから、戻せ』――その一言が、次の入口になる。"
+            },
+            {
+              "speaker": "Shouta",
+              "text": "…徹夜で、ログとバックアップの手順、組み直しました。今度は“戻せる”ように。"
+            },
+            {
+              "speaker": "President",
+              "text": "……安本は、戻す。だが、もう二度と止めるな。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 復旧直後の大門建設オフィス。電話は鳴り続け、紙が積まれ、誰も“終わった顔”をしていない。徹夜明けの翔太が、バックアップ表とログを机に広げている。 Featuring Shouta, President.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 復旧直後の大門建設オフィス。電話は鳴り続け、紙が積まれ、誰も“終わった顔”をしていない。徹夜明けの翔太が、バックアップ表とログを机に広げている。 Featuring Shouta, President.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "復旧直後の大門建設オフィス。電話は鳴り続け、紙が積まれ、誰も“終わった顔”をしていない。徹夜明けの翔太が、バックアップ表とログを机に広げている。"
+        },
+        {
+          "characters": [
+            "character:Ren",
+            "character:Shouta"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "これが最初のスプリントだよ。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Renが無言で状況を見渡し、机にドサッと分厚い紙束を置く。プリントアウトの束はざっくり100枚。 Featuring Ren, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. Renが無言で状況を見渡し、机にドサッと分厚い紙束を置く。プリントアウトの束はざっくり100枚。 Featuring Ren, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "Renが無言で状況を見渡し、机にドサッと分厚い紙束を置く。プリントアウトの束はざっくり100枚。"
+        },
+        {
+          "characters": [
+            "character:Ren",
+            "character:Shouta",
+            "character:Nei"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Shouta",
+              "text": "Renさん…めちゃくちゃ働いてるじゃないっすか。。。"
+            },
+            {
+              "speaker": "Nei",
+              "text": "レンの怠惰という美徳は、同じことを二度やらないための怠惰。効率化を惜しまない。“正しい怠惰”です。"
+            },
+            {
+              "speaker": "Ren",
+              "text": "…しゃべってないで、読んで。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Close-up, ARIA-style. Renの目。眠そうに見えるのに、焦点は外れない。紙束の一枚目に『責任分界』『権限』『復職条件』と見出しがある。 Featuring Ren, Shouta, Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style. Renの目。眠そうに見えるのに、焦点は外れない。紙束の一枚目に『責任分界』『権限』『復職条件』と見出しがある。 Featuring Ren, Shouta, Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "frontal",
+            "gh:aperture": "f/1.2",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Close-up",
+            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
+            "gh:focus": "shallow depth of field, creamy bokeh",
+            "gh:lens": "85mm prime",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "Renの目。眠そうに見えるのに、焦点は外れない。紙束の一枚目に『責任分界』『権限』『復職条件』と見出しがある。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 2,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "UI",
+              "text": "復職申請：安本（承認待ち） / 権限変更：未実施 / ログ保存：期限 24h"
+            }
+          ],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. 社内の通知（簡素なインシデント掲示板）。『復職申請：承認待ち』『権限変更：未実施』『ログ保存：期限24h』が同じ画面に並ぶ。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. 社内の通知（簡素なインシデント掲示板）。『復職申請：承認待ち』『権限変更：未実施』『ログ保存：期限24h』が同じ画面に並ぶ。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "over-shoulder or top-down insert",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Insert",
+            "gh:focus": "sharp focus on object/screen",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Insert Shot",
+          "visual": "社内の通知（簡素なインシデント掲示板）。『復職申請：承認待ち』『権限変更：未実施』『ログ保存：期限24h』が同じ画面に並ぶ。"
+        },
+        {
+          "characters": [
+            "character:Ren",
+            "character:Nei"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "うわ…『復職申請』もう動いてる。早っ。"
+            },
+            {
+              "speaker": "Ren",
+              "text": "善意は速い。だから危ない。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. RenとNeiが同じ画面を覗き込む。復旧の達成感の代わりに、未処理タスクの赤バッジが増えていく。 Featuring Ren, Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. RenとNeiが同じ画面を覗き込む。復旧の達成感の代わりに、未処理タスクの赤バッジが増えていく。 Featuring Ren, Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "RenとNeiが同じ画面を覗き込む。復旧の達成感の代わりに、未処理タスクの赤バッジが増えていく。"
+        },
+        {
+          "characters": [
+            "character:Nei"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "…これ、また来る。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Close-up, ARIA-style. Neiの目が細くなる。画面の『承認待ち』の文字が、笑顔の仮面みたいに見える（ミニ引き）。 Featuring Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style. Neiの目が細くなる。画面の『承認待ち』の文字が、笑顔の仮面みたいに見える（ミニ引き）。 Featuring Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "frontal",
+            "gh:aperture": "f/1.2",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Close-up",
+            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
+            "gh:focus": "shallow depth of field, creamy bokeh",
+            "gh:lens": "85mm prime",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "Neiの目が細くなる。画面の『承認待ち』の文字が、笑顔の仮面みたいに見える（ミニ引き）。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 3,
+      "gh:panels": [
+        {
+          "gh:imagePrompt": "Wide Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot"
+        },
+        {
+          "gh:imagePrompt": "Insert Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "over-shoulder or top-down insert",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Insert",
+            "gh:focus": "sharp focus on object/screen",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 2,
+          "shot": "Insert Shot"
+        },
+        {
+          "gh:imagePrompt": "Medium Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 3,
+          "shot": "Medium Shot"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 4,
+      "gh:panels": [
+        {
+          "gh:imagePrompt": "Wide Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot"
+        },
+        {
+          "gh:imagePrompt": "Insert Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "over-shoulder or top-down insert",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Insert",
+            "gh:focus": "sharp focus on object/screen",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 2,
+          "shot": "Insert Shot"
+        },
+        {
+          "gh:imagePrompt": "Medium Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 3,
+          "shot": "Medium Shot"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 5,
+      "gh:panels": [
+        {
+          "gh:imagePrompt": "Medium Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Medium Shot"
+        },
+        {
+          "gh:imagePrompt": "Insert Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "over-shoulder or top-down insert",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Insert",
+            "gh:focus": "sharp focus on object/screen",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 2,
+          "shot": "Insert Shot"
+        },
+        {
+          "gh:imagePrompt": "Close-up, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "frontal",
+            "gh:aperture": "f/1.2",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Close-up",
+            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
+            "gh:focus": "shallow depth of field, creamy bokeh",
+            "gh:lens": "85mm prime",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 3,
+          "shot": "Close-up"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 6,
+      "gh:panels": [
+        {
+          "gh:imagePrompt": "Medium Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Medium Shot"
+        },
+        {
+          "gh:imagePrompt": "Insert Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "over-shoulder or top-down insert",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Insert",
+            "gh:focus": "sharp focus on object/screen",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 2,
+          "shot": "Insert Shot"
+        },
+        {
+          "gh:imagePrompt": "Close-up, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "frontal",
+            "gh:aperture": "f/1.2",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Close-up",
+            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
+            "gh:focus": "shallow depth of field, creamy bokeh",
+            "gh:lens": "85mm prime",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 3,
+          "shot": "Close-up"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 7,
+      "gh:panels": [
+        {
+          "gh:imagePrompt": "Wide Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot"
+        },
+        {
+          "gh:imagePrompt": "Medium Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 2,
+          "shot": "Medium Shot"
+        },
+        {
+          "gh:imagePrompt": "Close-up, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "frontal",
+            "gh:aperture": "f/1.2",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Close-up",
+            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
+            "gh:focus": "shallow depth of field, creamy bokeh",
+            "gh:lens": "85mm prime",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 3,
+          "shot": "Close-up"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 8,
+      "gh:panels": [
+        {
+          "gh:imagePrompt": "Wide Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot"
+        },
+        {
+          "gh:imagePrompt": "Medium Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 2,
+          "shot": "Medium Shot"
+        },
+        {
+          "gh:imagePrompt": "Close-up, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "frontal",
+            "gh:aperture": "f/1.2",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Close-up",
+            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
+            "gh:focus": "shallow depth of field, creamy bokeh",
+            "gh:lens": "85mm prime",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 3,
+          "shot": "Close-up"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 9,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Ren",
+            "character:GhostPresident",
+            "character:President"
+          ],
+          "dialogue": [
+            {
+              "speaker": "GhostPresident",
+              "text": "（許し）"
+            },
+            {
+              "speaker": "GhostPresident",
+              "text": "（家族）"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "POV Shot, ARIA-style. Ren視点のAR。社長の“家族だから戻す”が、笑顔の紙仮面になって人の口を塞ぐ。反論が出る前に、優しく黙らされる。 Featuring Ren, GhostPresident, President.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "POV Shot, ARIA-style. Ren視点のAR。社長の“家族だから戻す”が、笑顔の紙仮面になって人の口を塞ぐ。反論が出る前に、優しく黙らされる。 Featuring Ren, GhostPresident, President.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "first-person POV",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "POV",
+            "gh:focus": "subject focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "POV Shot",
+          "visual": "Ren視点のAR。社長の“家族だから戻す”が、笑顔の紙仮面になって人の口を塞ぐ。反論が出る前に、優しく黙らされる。"
+        },
+        {
+          "characters": [
+            "character:President",
+            "character:Shouta",
+            "character:GhostPresident"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Shouta",
+              "text": "…誰か止めてくれ。これ、また繰り返す。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 廊下の社訓フレーム下。承認書類が蛾のように舞う。優しさの言葉だけが残って、責任の輪郭が消える。 Featuring President, Shouta, GhostPresident.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 廊下の社訓フレーム下。承認書類が蛾のように舞う。優しさの言葉だけが残って、責任の輪郭が消える。 Featuring President, Shouta, GhostPresident.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 2,
+          "shot": "Wide Shot",
+          "visual": "廊下の社訓フレーム下。承認書類が蛾のように舞う。優しさの言葉だけが残って、責任の輪郭が消える。"
+        },
+        {
+          "characters": [
+            "character:Nei"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "ログ、出た。入口は外にもある。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. 委託先のリモート操作ログ。怪しいIPが一つ。SIPがONになり、“善意の仮面”の縫い目が見える。 Featuring Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. 委託先のリモート操作ログ。怪しいIPが一つ。SIPがONになり、“善意の仮面”の縫い目が見える。 Featuring Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "over-shoulder or top-down insert",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Insert",
+            "gh:focus": "sharp focus on object/screen",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 3,
+          "shot": "Insert Shot",
+          "visual": "委託先のリモート操作ログ。怪しいIPが一つ。SIPがONになり、“善意の仮面”の縫い目が見える。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 10,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Nei",
+            "character:GhostPresident"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "これ、社長の善意が核だ。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "POV Shot, ARIA-style. Nei視点。笑顔の紙仮面（社長Ghost）が“承認印”みたいにフレームへ貼り付き、細いインク糸が委託先PCへ伸びる。 Featuring Nei, GhostPresident.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "POV Shot, ARIA-style. Nei視点。笑顔の紙仮面（社長Ghost）が“承認印”みたいにフレームへ貼り付き、細いインク糸が委託先PCへ伸びる。 Featuring Nei, GhostPresident.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "first-person POV",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "POV",
+            "gh:focus": "subject focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "POV Shot",
+          "visual": "Nei視点。笑顔の紙仮面（社長Ghost）が“承認印”みたいにフレームへ貼り付き、細いインク糸が委託先PCへ伸びる。"
+        },
+        {
+          "gh:imagePrompt": "Wide Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 2,
+          "shot": "Wide Shot"
+        },
+        {
+          "characters": [
+            "character:Nei"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "固定。逃がさない。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. SIPが“固定”をかける。優しさだけを残して、糸（権限の穴）を見える化する。 Featuring Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. SIPが“固定”をかける。優しさだけを残して、糸（権限の穴）を見える化する。 Featuring Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "over-shoulder or top-down insert",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Insert",
+            "gh:focus": "sharp focus on object/screen",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 3,
+          "shot": "Insert Shot",
+          "visual": "SIPが“固定”をかける。優しさだけを残して、糸（権限の穴）を見える化する。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 11,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:GhostPresident",
+            "character:President",
+            "character:Shouta"
+          ],
+          "dialogue": [
+            {
+              "speaker": "President",
+              "text": "……守りたいだけだ。"
+            },
+            {
+              "speaker": "GhostPresident",
+              "text": "（許し）"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 社長Ghost（紙仮面）が完全に姿を取る。暴力じゃない。優しさで、全員を黙らせる。 Featuring GhostPresident, President, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 社長Ghost（紙仮面）が完全に姿を取る。暴力じゃない。優しさで、全員を黙らせる。 Featuring GhostPresident, President, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "社長Ghost（紙仮面）が完全に姿を取る。暴力じゃない。優しさで、全員を黙らせる。"
+        },
+        {
+          "characters": [
+            "character:Nei",
+            "character:GhostPresident"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "条件。例外。期限。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Neiが仮面を光の格子で“固定”。その横に『復職条件』『委託先リモート再開条件』が貼られる。 Featuring Nei, GhostPresident.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. Neiが仮面を光の格子で“固定”。その横に『復職条件』『委託先リモート再開条件』が貼られる。 Featuring Nei, GhostPresident.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "Neiが仮面を光の格子で“固定”。その横に『復職条件』『委託先リモート再開条件』が貼られる。"
+        },
+        {
+          "gh:imagePrompt": "Close-up, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "frontal",
+            "gh:aperture": "f/1.2",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Close-up",
+            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
+            "gh:focus": "shallow depth of field, creamy bokeh",
+            "gh:lens": "85mm prime",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 3,
+          "shot": "Close-up"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 12,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:GhostPresident",
+            "character:Ren",
+            "character:Nei"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "許すなら、条件を添えろ。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. “善意の仮面”がヒビ割れる。笑顔は残る。でも、責任の線が戻ってくる。 Featuring GhostPresident, Ren, Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. “善意の仮面”がヒビ割れる。笑顔は残る。でも、責任の線が戻ってくる。 Featuring GhostPresident, Ren, Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "“善意の仮面”がヒビ割れる。笑顔は残る。でも、責任の線が戻ってくる。"
+        },
+        {
+          "characters": [
+            "character:Ren",
+            "character:Nei",
+            "character:Shouta"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Shouta",
+              "text": "…俺が条件を書く。俺が責任を持つ。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Renが貼る。Neiが検証する。翔太が署名する。善意を“運用”に落とす。 Featuring Ren, Nei, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. Renが貼る。Neiが検証する。翔太が署名する。善意を“運用”に落とす。 Featuring Ren, Nei, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "Renが貼る。Neiが検証する。翔太が署名する。善意を“運用”に落とす。"
+        },
+        {
+          "gh:imagePrompt": "Close-up, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "frontal",
+            "gh:aperture": "f/1.2",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Close-up",
+            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
+            "gh:focus": "shallow depth of field, creamy bokeh",
+            "gh:lens": "85mm prime",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 3,
+          "shot": "Close-up"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 13,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Nei",
+            "character:Ren"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "委託先の線、分岐してる。"
+            },
+            {
+              "speaker": "Ren",
+              "text": "善意の穴は、外まで繋がる。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Action Shot, ARIA-style. Neiが指を走らせると、委託先の線が枝分かれしていく。仮面（社長Ghost）の糸が“外”へも伸びているのが見える。 Featuring Nei, Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Action Shot, ARIA-style. Neiが指を走らせると、委託先の線が枝分かれしていく。仮面（社長Ghost）の糸が“外”へも伸びているのが見える。 Featuring Nei, Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "dynamic tracking",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject tracking focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows",
+            "gh:movement": "handheld or tracking shot, subtle motion blur"
+          },
+          "panel": 1,
+          "shot": "Action Shot",
+          "visual": "Neiが指を走らせると、委託先の線が枝分かれしていく。仮面（社長Ghost）の糸が“外”へも伸びているのが見える。"
+        },
+        {
+          "characters": [
+            "character:Nei"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "…波及先、見えた。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Full Page Splash, ARIA-style. 大ゴマ。光るネットワーク地図。『transport / logistics』の枝が脈打つ。“次の入口”の予感。 Featuring Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Full Page Splash, ARIA-style. 大ゴマ。光るネットワーク地図。『transport / logistics』の枝が脈打つ。“次の入口”の予感。 Featuring Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "dynamic angle",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "impact composition, clear silhouette and motion lines",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus with emphasized subject",
+            "gh:lens": "28mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 2,
+          "shot": "Full Page Splash",
+          "visual": "大ゴマ。光るネットワーク地図。『transport / logistics』の枝が脈打つ。“次の入口”の予感。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 14,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Ren"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "まず証拠。次に設計。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Action Shot, ARIA-style. Renが証跡を封緘。社長の“許し”で溶ける前に、事実を固める。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Action Shot, ARIA-style. Renが証跡を封緘。社長の“許し”で溶ける前に、事実を固める。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "dynamic tracking",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject tracking focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows",
+            "gh:movement": "handheld or tracking shot, subtle motion blur"
+          },
+          "panel": 1,
+          "shot": "Action Shot",
+          "visual": "Renが証跡を封緘。社長の“許し”で溶ける前に、事実を固める。"
+        },
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Narration",
+              "text": "“許し”が作った穴は、会社の外へも伸びる。"
+            }
+          ],
+          "environment": "env:tokyo-2026-aerial",
+          "gh:imagePrompt": "Full Page Splash, ARIA-style. 大ゴマ。東京地図に一本の光の川。委託先から、遠いヤードへ。まだ終わってない。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Full Page Splash, ARIA-style. 大ゴマ。東京地図に一本の光の川。委託先から、遠いヤードへ。まだ終わってない。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "dynamic angle",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "impact composition, clear silhouette and motion lines",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus with emphasized subject",
+            "gh:lens": "28mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 2,
+          "shot": "Full Page Splash",
+          "visual": "大ゴマ。東京地図に一本の光の川。委託先から、遠いヤードへ。まだ終わってない。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 15,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Shouta",
+            "character:President"
+          ],
+          "dialogue": [
+            {
+              "speaker": "President",
+              "text": "…ここまで書くのか。"
+            },
+            {
+              "speaker": "Shouta",
+              "text": "書きます。じゃないと、また穴が開く。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 廊下の壁。『復職条件』と責任分界表が貼られ、紙の粉が落ち着く。空気が“嘘なく”軽くなる。 Featuring Shouta, President.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 廊下の壁。『復職条件』と責任分界表が貼られ、紙の粉が落ち着く。空気が“嘘なく”軽くなる。 Featuring Shouta, President.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "廊下の壁。『復職条件』と責任分界表が貼られ、紙の粉が落ち着く。空気が“嘘なく”軽くなる。"
+        },
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "承認ログ、残せ。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. 証跡の束。『いつ・誰が・何を承認したか』が一本の線で残っている。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. 証跡の束。『いつ・誰が・何を承認したか』が一本の線で残っている。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "over-shoulder or top-down insert",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Insert",
+            "gh:focus": "sharp focus on object/screen",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 2,
+          "shot": "Insert Shot",
+          "visual": "証跡の束。『いつ・誰が・何を承認したか』が一本の線で残っている。"
+        },
+        {
+          "characters": [
+            "character:Shouta"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Shouta",
+              "text": "…これが、俺の仕事だ。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Close-up, ARIA-style. 翔太の目。助かった安堵と、背負う覚悟が同居する。 Featuring Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style. 翔太の目。助かった安堵と、背負う覚悟が同居する。 Featuring Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "frontal",
+            "gh:aperture": "f/1.2",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Close-up",
+            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
+            "gh:focus": "shallow depth of field, creamy bokeh",
+            "gh:lens": "85mm prime",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "翔太の目。助かった安堵と、背負う覚悟が同居する。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 16,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Nei",
+            "character:Ren"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "供給網に匂いがある。"
+            },
+            {
+              "speaker": "Ren",
+              "text": "…次の現場だね。"
+            }
+          ],
+          "environment": "env:kamata-daimon-office",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 静かになったオフィスに、外部経由の痕跡が残る。社内だけの話じゃない。 Featuring Nei, Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 静かになったオフィスに、外部経由の痕跡が残る。社内だけの話じゃない。 Featuring Nei, Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "静かになったオフィスに、外部経由の痕跡が残る。社内だけの話じゃない。"
+        },
+        {
+          "characters": [
+            "character:Ren",
+            "character:Nei"
+          ],
+          "dialogue": [
+            {
+              "gh:delivery": "気怠げに、でも確信を持って。",
+              "gh:subtext": "仕事への入り口。",
+              "speaker": "character:Ren",
+              "text": "……だるいけど、やるか。"
+            }
+          ],
+          "environment": "env:kamata-street-evening",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. RenとNeiが出ていく。社長は背後で、貼られた『復職条件』を見つめる。 Featuring Ren, Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. RenとNeiが出ていく。社長は背後で、貼られた『復職条件』を見つめる。 Featuring Ren, Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "RenとNeiが出ていく。社長は背後で、貼られた『復職条件』を見つめる。"
+        },
+        {
+          "characters": [
+            "character:Ren"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Ren (Monologue)",
+              "text": "（終わったことにしない）"
+            }
+          ],
+          "environment": "env:kamata-street-evening",
+          "gh:imagePrompt": "Close-up, ARIA-style. Renの目。次の入口をもう見ている。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style. Renの目。次の入口をもう見ている。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "frontal",
+            "gh:aperture": "f/1.2",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Close-up",
+            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
+            "gh:focus": "shallow depth of field, creamy bokeh",
+            "gh:lens": "85mm prime",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "Renの目。次の入口をもう見ている。"
+        }
+      ]
+    }
+  ],
+  "gh:presentationTagline": "Arc A | CISSP Methodology",
+  "gh:realCase": "Handa Hospital Ransomware (2021) / Iseto (2024)",
+  "gh:sinContrast": "Passive Sloth (Vulnerability Neglect) vs. Active Sloth (Hyper-Efficiency)"
+}

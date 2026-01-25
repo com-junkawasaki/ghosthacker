@@ -7,6 +7,7 @@ import (
 	"io/fs"
 	"log"
 	"os"
+	"strings"
 	"sync"
 
 	"connectrpc.com/connect"
@@ -60,6 +61,92 @@ func (s *StoryboardService) validateAndLoad(filePath string) (map[string]interfa
 	return data, nil
 }
 
+func (s *StoryboardService) aggregateMaster(filePath string) (map[string]interface{}, error) {
+	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
+	if workspaceRoot == "" {
+		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(filePath))))
+	}
+
+	// Load base storyboard for context and metadata
+	content, err := os.ReadFile(filePath)
+	if err != nil {
+		return nil, err
+	}
+	var master map[string]interface{}
+	if err := json.Unmarshal(content, &master); err != nil {
+		return nil, err
+	}
+
+	// 1. Aggregate Characters
+	charDir := filepath.Join(workspaceRoot, "251121", "characters")
+	if entries, err := os.ReadDir(charDir); err == nil {
+		var characters []interface{}
+		for _, entry := range entries {
+			if entry.IsDir() {
+				profilePath := filepath.Join(charDir, entry.Name(), "profile.jsonld")
+				if data, err := os.ReadFile(profilePath); err == nil {
+					var char map[string]interface{}
+					if err := json.Unmarshal(data, &char); err == nil {
+						delete(char, "@context")
+						characters = append(characters, char)
+					}
+				}
+			}
+		}
+		if len(characters) > 0 {
+			master["gh:characters"] = characters
+		}
+	}
+
+	// 2. Aggregate Environments
+	envDir := filepath.Join(workspaceRoot, "251121", "environments")
+	if entries, err := os.ReadDir(envDir); err == nil {
+		var environments []interface{}
+		for _, entry := range entries {
+			if entry.IsDir() {
+				profilePath := filepath.Join(envDir, entry.Name(), "profile.jsonld")
+				if data, err := os.ReadFile(profilePath); err == nil {
+					var env map[string]interface{}
+					if err := json.Unmarshal(data, &env); err == nil {
+						delete(env, "@context")
+						environments = append(environments, env)
+					}
+				}
+			}
+		}
+		if len(environments) > 0 {
+			master["gh:environments"] = environments
+		}
+	}
+
+	// 3. Aggregate Episodes
+	epDir := filepath.Join(workspaceRoot, "251121", "episodes")
+	if entries, err := os.ReadDir(epDir); err == nil {
+		var episodes []interface{}
+		for _, entry := range entries {
+			if entry.IsDir() {
+				epPath := filepath.Join(epDir, entry.Name(), "episode.jsonld")
+				if data, err := os.ReadFile(epPath); err == nil {
+					var ep map[string]interface{}
+					if err := json.Unmarshal(data, &ep); err == nil {
+						delete(ep, "@context")
+						episodes = append(episodes, ep)
+					}
+				}
+			}
+		}
+		if len(episodes) > 0 {
+			master["gh:episodes"] = episodes
+		}
+	}
+
+	// Save aggregated master
+	updatedContent, _ := json.MarshalIndent(master, "", "  ")
+	os.WriteFile(filePath, updatedContent, 0644)
+
+	return master, nil
+}
+
 func (s *StoryboardService) LoadStoryboard(
 	ctx context.Context,
 	req *connect.Request[storyboardpb.LoadStoryboardRequest],
@@ -69,18 +156,18 @@ func (s *StoryboardService) LoadStoryboard(
 		filePath = s.storyboardPath
 	}
 
-	content, err := os.ReadFile(filePath)
+	data, err := s.aggregateMaster(filePath)
 	if err != nil {
-		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("failed to read storyboard file: %w", err))
-	}
-
-	data, err := s.validateAndLoad(filePath)
-	if err != nil {
-		log.Printf("LoadStoryboard: validation warning: %v", err)
-		// We still return the content even if validation fails for now, but log it
+		log.Printf("LoadStoryboard: aggregation failed: %v", err)
+		// Fallback to direct load
+		data, err = s.validateAndLoad(filePath)
+		if err != nil {
+			return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("failed to read storyboard file: %w", err))
+		}
 	}
 
 	metadata := s.extractMetadata(data)
+	content, _ := json.MarshalIndent(data, "", "  ")
 
 	return connect.NewResponse(&storyboardpb.LoadStoryboardResponse{
 		JsonldContent: string(content),
@@ -351,7 +438,37 @@ func (s *StoryboardService) UpdatePanel(
 		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("panel not found"))
 	}
 
-	// Save updated storyboard
+	// Save specific episode file (Pattern 2)
+	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
+	if workspaceRoot == "" {
+		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(filePath))))
+	}
+	epID := strings.TrimPrefix(req.Msg.EpisodeId, "episode:")
+	epPath := filepath.Join(workspaceRoot, "251121", "episodes", epID, "episode.jsonld")
+	
+	// Find the episode data in the master map to save it individually
+	var targetEpisode map[string]interface{}
+	for _, e := range episodes {
+		if episode, ok := e.(map[string]interface{}); ok && episode["gh:episodeId"] == req.Msg.EpisodeId {
+			targetEpisode = episode
+			break
+		}
+	}
+	
+	if targetEpisode != nil {
+		// Add context back for individual file
+		epToSave := map[string]interface{}{
+			"@context": storyboard["@context"],
+		}
+		for k, v := range targetEpisode {
+			epToSave[k] = v
+		}
+		epContent, _ := json.MarshalIndent(epToSave, "", "  ")
+		os.WriteFile(epPath, epContent, 0644)
+		log.Printf("UpdatePanel: Saved individual episode file: %s", epPath)
+	}
+
+	// Save updated master storyboard
 	updatedContent, err := json.MarshalIndent(storyboard, "", "  ")
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to marshal JSON-LD: %w", err))

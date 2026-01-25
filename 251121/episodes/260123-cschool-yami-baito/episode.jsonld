@@ -1,0 +1,708 @@
+{
+  "@context": {
+    "arc": "gh:arc/",
+    "character": "gh:character/",
+    "characters": "gh:characters",
+    "dct": "http://purl.org/dc/terms/",
+    "dialogue": "gh:dialogue",
+    "env": "gh:environment/",
+    "environment": "gh:environment",
+    "environments": "gh:environments",
+    "episodeId": "gh:episodeId",
+    "episodeIndex": "gh:episodeIndex",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "panel": "gh:panelIndex",
+    "prompt": "gh:runwayPrompt",
+    "properties": "gh:shotProperties",
+    "prov": "http://www.w3.org/ns/prov#",
+    "purpose": "gh:narrativePurpose",
+    "schema": "http://schema.org/",
+    "shot": "gh:shotType",
+    "speaker": "gh:speaker",
+    "text": "gh:text",
+    "visual": "gh:visual"
+  },
+  "dct:title": "Arc 0-3: 「やめたい…でも、怖い」",
+  "gh:arc": "Arc 0",
+  "gh:episode": 10,
+  "gh:episodeId": "episode:260123-cschool-yami-baito",
+  "gh:episodeIndex": 10,
+  "gh:incidentDescription": "親に内緒で闇バイトに巻き込まれ、口座や携帯番号を売ってしまった学生。Renが相談を受け、適切な支援機関と手順（凍結・再発防止・相談窓口）を示す中、要の学校の生徒が斡旋に関わっていると判明。RenとKanameが協力し、HN: 3pa11er3apiv0t としての彼に出会う。",
+  "gh:industry": "Student life (高校生)",
+  "gh:mainCharacter": "character:Ren",
+  "gh:nistFocus": [
+    "PR.AA (Identity/Access)",
+    "ID.RA (Risk Assessment)"
+  ],
+  "gh:pages": [
+    {
+      "gh:pageNumber": 1,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Mina"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Mina",
+              "text": "やめたい…でも、怖い。"
+            }
+          ],
+          "environment": "env:station-night-street",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 駅近の夜道。Minaがネオンの下でメッセージを確認して、肩をすくめる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 駅近の夜道。Minaがネオンの下でメッセージを確認して、肩をすくめる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "駅近の夜道。Minaがネオンの下でメッセージを確認して、肩をすくめる。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 2,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Mina"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Mina",
+              "text": "…もう無理。"
+            }
+          ],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. “簡単な仕事”のはずだったチャットが、圧と脅しに変わっている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. “簡単な仕事”のはずだったチャットが、圧と脅しに変わっている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "over-shoulder or top-down insert",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Insert",
+            "gh:focus": "sharp focus on object/screen",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Insert Shot",
+          "visual": "“簡単な仕事”のはずだったチャットが、圧と脅しに変わっている。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 3,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Mina",
+            "character:Ren",
+            "character:Nei"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Mina",
+              "text": "親に…バレたら終わる…"
+            },
+            {
+              "speaker": "Nei",
+              "text": "終わらない。今は安全。"
+            }
+          ],
+          "environment": "env:quiet-room",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. 静かな部屋。Minaの手が震えている。RenとNeiが正面で受け止める。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. 静かな部屋。Minaの手が震えている。RenとNeiが正面で受け止める。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "静かな部屋。Minaの手が震えている。RenとNeiが正面で受け止める。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 4,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Ren",
+            "character:Mina"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "口座と番号は、最優先で止める。"
+            }
+          ],
+          "environment": "env:quiet-room",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. 銀行カード、SIM、身分証、紙切れ。売られたのは“自分の一部”。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. 銀行カード、SIM、身分証、紙切れ。売られたのは“自分の一部”。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "over-shoulder or top-down insert",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Insert",
+            "gh:focus": "sharp focus on object/screen",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Insert Shot",
+          "visual": "銀行カード、SIM、身分証、紙切れ。売られたのは“自分の一部”。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 5,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Ren"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "順番が命。今は“止める”だけ。"
+            }
+          ],
+          "environment": "env:quiet-room",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. アイコンだけの手順。銀行、凍結、回線、SIM停止、相談・通報。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. アイコンだけの手順。銀行、凍結、回線、SIM停止、相談・通報。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "over-shoulder or top-down insert",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Insert",
+            "gh:focus": "sharp focus on object/screen",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Insert Shot",
+          "visual": "アイコンだけの手順。銀行、凍結、回線、SIM停止、相談・通報。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 6,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Ren",
+            "character:Nei",
+            "character:Mina"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "責めない。今すぐ止める。"
+            },
+            {
+              "speaker": "Nei",
+              "text": "水、飲んで。"
+            }
+          ],
+          "environment": "env:quiet-room",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Renは責めない。Neiは水とティッシュを差し出す。今すぐの安全が最優先。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. Renは責めない。Neiは水とティッシュを差し出す。今すぐの安全が最優先。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Renは責めない。Neiは水とティッシュを差し出す。今すぐの安全が最優先。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 7,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Narration",
+              "text": "凍結。動かせなくする。"
+            }
+          ],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. 銀行に連絡。凍結の確認が出る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. 銀行に連絡。凍結の確認が出る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "over-shoulder or top-down insert",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Insert",
+            "gh:focus": "sharp focus on object/screen",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Insert Shot",
+          "visual": "銀行に連絡。凍結の確認が出る。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 8,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Narration",
+              "text": "SIM停止。必要なら番号も変える。"
+            }
+          ],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. 回線のサポート。SIM停止と番号変更の選択肢。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. 回線のサポート。SIM停止と番号変更の選択肢。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "over-shoulder or top-down insert",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Insert",
+            "gh:focus": "sharp focus on object/screen",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Insert Shot",
+          "visual": "回線のサポート。SIM停止と番号変更の選択肢。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 9,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Nei"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "支援窓口がある。ここまで来れば大丈夫。"
+            }
+          ],
+          "environment": "env:quiet-room",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 支援の窓口。詐欺防止や相談のポスターが並ぶ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 支援の窓口。詐欺防止や相談のポスターが並ぶ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "支援の窓口。詐欺防止や相談のポスターが並ぶ。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 10,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Ren"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "一人で行かない。繋げる。"
+            }
+          ],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. 支援機関の案内ページ。電話のアイコンが並ぶ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. 支援機関の案内ページ。電話のアイコンが並ぶ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "over-shoulder or top-down insert",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Insert",
+            "gh:focus": "sharp focus on object/screen",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Insert Shot",
+          "visual": "支援機関の案内ページ。電話のアイコンが並ぶ。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 11,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Mina",
+            "character:Nei",
+            "character:Ren"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Mina",
+              "text": "親に言えない…殺される…"
+            },
+            {
+              "speaker": "Nei",
+              "text": "言うのは一緒に。"
+            },
+            {
+              "speaker": "Ren",
+              "text": "まず安全。次に支援。"
+            }
+          ],
+          "environment": "env:quiet-room",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Minaが泣き崩れる。Neiが手を握り、Renは落ち着いて“安全”だけを見る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. Minaが泣き崩れる。Neiが手を握り、Renは落ち着いて“安全”だけを見る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Minaが泣き崩れる。Neiが手を握り、Renは落ち着いて“安全”だけを見る。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 12,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "NewsHacker",
+              "text": "（3pa11er3apiv0t）口座は即凍結。番号は変更。放置が一番高くつく。"
+            }
+          ],
+          "environment": "env:news-hacker-board",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. 掲示板『News Hacker』。闇バイト被害の対処スレに鋭い返信が刺さる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. 掲示板『News Hacker』。闇バイト被害の対処スレに鋭い返信が刺さる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "over-shoulder or top-down insert",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Insert",
+            "gh:focus": "sharp focus on object/screen",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Insert Shot",
+          "visual": "掲示板『News Hacker』。闇バイト被害の対処スレに鋭い返信が刺さる。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 13,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Narration",
+              "text": "同じ高校生でも、世界が違う。"
+            }
+          ],
+          "environment": "env:elite-school-campus",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 都内有名校のキャンパス。洗練された空気が流れる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 都内有名校のキャンパス。洗練された空気が流れる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "都内有名校のキャンパス。洗練された空気が流れる。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 14,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Kaname"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "うちが関わってる？…ふざけるな。"
+            }
+          ],
+          "environment": "env:elite-school-campus",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. 要が報告を読む。苛立ちが一瞬だけ顔に出る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. 要が報告を読む。苛立ちが一瞬だけ顔に出る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "要が報告を読む。苛立ちが一瞬だけ顔に出る。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 15,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Ren",
+            "character:Kaname"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "条件は一つ。被害者を守る。"
+            },
+            {
+              "speaker": "Ren",
+              "text": "同意する。"
+            }
+          ],
+          "environment": "env:meeting-neutral",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 中立の場所で、Renと要が向き合う。立場の差が空気を硬くする。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 中立の場所で、Renと要が向き合う。立場の差が空気を硬くする。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "中立の場所で、Renと要が向き合う。立場の差が空気を硬くする。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 16,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Kaname"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "雑な犯罪は嫌いだ。"
+            }
+          ],
+          "environment": "env:meeting-neutral",
+          "gh:imagePrompt": "Close-up, ARIA-style. 要の目。雑な犯罪への嫌悪と、責任の重さ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style. 要の目。雑な犯罪への嫌悪と、責任の重さ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "frontal",
+            "gh:aperture": "f/1.2",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Close-up",
+            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
+            "gh:focus": "shallow depth of field, creamy bokeh",
+            "gh:lens": "85mm prime",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Close-up",
+          "visual": "要の目。雑な犯罪への嫌悪と、責任の重さ。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 17,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "NewsHacker",
+              "text": "（3pa11er3apiv0t）支援に繋げ。親も。"
+            }
+          ],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. スマホ画面。HN「3pa11er3apiv0t」の文字が光る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. スマホ画面。HN「3pa11er3apiv0t」の文字が光る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "over-shoulder or top-down insert",
+            "gh:aperture": "f/2.0",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Insert",
+            "gh:focus": "sharp focus on object/screen",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Insert Shot",
+          "visual": "スマホ画面。HN「3pa11er3apiv0t」の文字が光る。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 18,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Ren",
+            "character:Kaname",
+            "character:Nei"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "バランス、崩れそう。"
+            },
+            {
+              "speaker": "Ren",
+              "text": "でも必要だ。"
+            },
+            {
+              "speaker": "Kaname",
+              "text": "早く終わらせる。"
+            }
+          ],
+          "environment": "env:meeting-neutral",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Renと要が並ぶ。味方なのに、緊張が残る。Neiがバランスを測る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. Renと要が並ぶ。味方なのに、緊張が残る。Neiがバランスを測る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Renと要が並ぶ。味方なのに、緊張が残る。Neiがバランスを測る。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 19,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Mina"
+          ],
+          "dialogue": [
+            {
+              "speaker": "Mina",
+              "text": "…まだ怖い。でも、戻れる。"
+            }
+          ],
+          "environment": "env:street-day",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 昼の街へ出るMina。背中に貼り付いていた影が、薄れていく。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 昼の街へ出るMina。背中に貼り付いていた影が、薄れていく。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "昼の街へ出るMina。背中に貼り付いていた影が、薄れていく。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 20,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:intertitle-black",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Episode 10 End. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. Episode 10 End. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Episode 10 End"
+        }
+      ]
+    }
+  ],
+  "gh:presentationTagline": "Arc 0 | Yami-baito & Support",
+  "gh:realCase": "Yami-baito / account & phone number resale → recovery and reporting",
+  "gh:sinContrast": "Easy Money (Short-term) vs. Support (Long-term)",
+  "gh:supportingCharacters": [
+    "character:Nei",
+    "character:Kaname"
+  ]
+}

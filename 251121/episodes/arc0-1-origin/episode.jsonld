@@ -1,0 +1,1721 @@
+{
+  "@context": {
+    "arc": "gh:arc/",
+    "character": "gh:character/",
+    "characters": "gh:characters",
+    "dct": "http://purl.org/dc/terms/",
+    "dialogue": "gh:dialogue",
+    "env": "gh:environment/",
+    "environment": "gh:environment",
+    "environments": "gh:environments",
+    "episodeId": "gh:episodeId",
+    "episodeIndex": "gh:episodeIndex",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "panel": "gh:panelIndex",
+    "prompt": "gh:runwayPrompt",
+    "properties": "gh:shotProperties",
+    "prov": "http://www.w3.org/ns/prov#",
+    "purpose": "gh:narrativePurpose",
+    "schema": "http://schema.org/",
+    "shot": "gh:shotType",
+    "speaker": "gh:speaker",
+    "text": "gh:text",
+    "visual": "gh:visual"
+  },
+  "dct:title": "Ghost Hacker Origin (The Phantom Purchase)",
+  "gh:arc": "Arc 0",
+  "gh:episode": 2,
+  "gh:episodeId": "episode:arc0-1-origin",
+  "gh:episodeIndex": 2,
+  "gh:incidentDescription": "Yuto falls for a limited-time offer scam, leading to account hijacking. Ren and Nei intervene using the SIP Project Map to visualize the malice (ghosts) and sever the connection with the NULL AXE.",
+  "gh:industry": "School / Consumer Electronics",
+  "gh:mainCharacter": "character:Ren",
+  "gh:pages": [
+    {
+      "gh:pageNumber": 1,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto looking at a group of popular students (mixed gender) chatting. Ren is sleeping at his desk in the background. Nei is reading a book quietly.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto looking at a group of popular students (mixed gender) chatting. Ren is sleeping at his desk in the background. Nei is reading a book quietly.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Yuto looking at a group of popular students (mixed gender) chatting. Ren is sleeping at his desk in the background. Nei is reading a book quietly."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 2,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Unknown",
+              "text": "\"Got the limited drop! Sold out in seconds.\""
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Classmate A (Popular guy) shows off a \"Brand X\" limited edition item (sneakers or accessory). Action: Friends admire it. Yuto thinks, \"I want that too...\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Classmate A (Popular guy) shows off a \"Brand X\" limited edition item (sneakers or accessory). Action: Friends admire it. Yuto thinks, \"I want that too...\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Classmate A (Popular guy) shows off a \"Brand X\" limited edition item (sneakers or accessory). Action: Friends admire it. Yuto thinks, \"I want that too...\""
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 3,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto asking where he got it. Classmate A: \"You can't get it anymore. Resale is 3x the price.\" Beat: Yuto's envy grows.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto asking where he got it. Classmate A: \"You can't get it anymore. Resale is 3x the price.\" Beat: Yuto's envy grows.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Yuto asking where he got it. Classmate A: \"You can't get it anymore. Resale is 3x the price.\" Beat: Yuto's envy grows."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 4,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:home-desk",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto lying in bed, smartphone light on his face. Scrolling SNS. Action: \"Damn, it's so expensive...\" suddenly, an Ad appears. \"Emergency Stock! 80% OFF! Time Limited!\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto lying in bed, smartphone light on his face. Scrolling SNS. Action: \"Damn, it's so expensive...\" suddenly, an Ad appears. \"Emergency Stock! 80% OFF! Time Limited!\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Yuto lying in bed, smartphone light on his face. Scrolling SNS. Action: \"Damn, it's so expensive...\" suddenly, an Ad appears. \"Emergency Stock! 80% OFF! Time Limited!\""
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 5,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. The fake site \"Wakuwaku Denki\" (or similar generic name). It looks legitimate *enough*.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. The fake site \"Wakuwaku Denki\" (or similar generic name). It looks legitimate *enough*.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "The fake site \"Wakuwaku Denki\" (or similar generic name). It looks legitimate *enough*."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 6,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:home-desk",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto hesitating, then running to get his parent's wallet (or his own card). Action: Typing in details. Credit Card Number. Expiry.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto hesitating, then running to get his parent's wallet (or his own card). Action: Typing in details. Credit Card Number. Expiry.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Yuto hesitating, then running to get his parent's wallet (or his own card). Action: Typing in details. Credit Card Number. Expiry."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 7,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. The form asks for more than usual. \"ID for verification.\" \"Password (create a new one).\" Action: Yuto uses his standard password (the one he uses for everything). \"Just this once.\" *CLICK*.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. The form asks for more than usual. \"ID for verification.\" \"Password (create a new one).\" Action: Yuto uses his standard password (the one he uses for everything). \"Just this once.\" *CLICK*.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "The form asks for more than usual. \"ID for verification.\" \"Password (create a new one).\" Action: Yuto uses his standard password (the one he uses for everything). \"Just this once.\" *CLICK*."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 8,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:home-desk",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. \"Purchase Complete!\" \"We will ship tomorrow!\" 5-star reviews shown. Beat: Yuto sighs in relief. \"I got it!\" He sleeps happily.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. \"Purchase Complete!\" \"We will ship tomorrow!\" 5-star reviews shown. Beat: Yuto sighs in relief. \"I got it!\" He sleeps happily.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "\"Purchase Complete!\" \"We will ship tomorrow!\" 5-star reviews shown. Beat: Yuto sighs in relief. \"I got it!\" He sleeps happily."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 9,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto smiling, looking at Classmate A.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto smiling, looking at Classmate A.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Yuto smiling, looking at Classmate A."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 10,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:home-desk",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Checking the mailbox. Empty. Action: Checking the tracking. \"Preparing for shipment.\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Checking the mailbox. Empty. Action: Checking the tracking. \"Preparing for shipment.\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Checking the mailbox. Empty. Action: Checking the tracking. \"Preparing for shipment.\""
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 11,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Email from \"Support\". \"Shipping trouble. Please confirm your details via this link.\" Action: Yuto, anxious, clicks and enters info again. (Phishing Step 2).. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Email from \"Support\". \"Shipping trouble. Please confirm your details via this link.\" Action: Yuto, anxious, clicks and enters info again. (Phishing Step 2).. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Email from \"Support\". \"Shipping trouble. Please confirm your details via this link.\" Action: Yuto, anxious, clicks and enters info again. (Phishing Step 2)."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 12,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 2-3 days pass. Weird things happen. Spam emails increase. Strange phone calls (silent). Beat: The creeping sense of wrongness.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 2-3 days pass. Weird things happen. Spam emails increase. Strange phone calls (silent). Beat: The creeping sense of wrongness.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "2-3 days pass. Weird things happen. Spam emails increase. Strange phone calls (silent). Beat: The creeping sense of wrongness."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 13,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:home-desk",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Mother/Father angry. \"The credit card was stopped! Someone tried to buy $5000 worth of gift cards!\" Action: Yuto turns pale. \"What?\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Mother/Father angry. \"The credit card was stopped! Someone tried to buy $5000 worth of gift cards!\" Action: Yuto turns pale. \"What?\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Mother/Father angry. \"The credit card was stopped! Someone tried to buy $5000 worth of gift cards!\" Action: Yuto turns pale. \"What?\""
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 14,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:home-desk",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto rushes to the site.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto rushes to the site.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Yuto rushes to the site."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 15,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto walks in. The atmosphere is heavy. Everyone looks at him. Action: Classmate A approaches. \"Hey. What's with that message last night?\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto walks in. The atmosphere is heavy. Everyone looks at him. Action: Classmate A approaches. \"Hey. What's with that message last night?\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Yuto walks in. The atmosphere is heavy. Everyone looks at him. Action: Classmate A approaches. \"Hey. What's with that message last night?\""
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 16,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Friend shows phone. Yuto's account sent: \"Click this link! It's awesome!\" and \"You're actually annoying lol.\" Action: Yuto: \"I didn't send this!\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Friend shows phone. Yuto's account sent: \"Click this link! It's awesome!\" and \"You're actually annoying lol.\" Action: Yuto: \"I didn't send this!\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Friend shows phone. Yuto's account sent: \"Click this link! It's awesome!\" and \"You're actually annoying lol.\" Action: Yuto: \"I didn't send this!\""
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 17,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Unknown",
+              "text": "\"You were the only one I told! Traitor!\""
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Another girl screams. \"My private photos! Why are they on your timeline!?\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Another girl screams. \"My private photos! Why are they on your timeline!?\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Another girl screams. \"My private photos! Why are they on your timeline!?\""
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 18,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto trying to login. \"Incorrect Password.\" \"Reset Password.\" -> \"Email not found.\" Beat: Complete lockout.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto trying to login. \"Incorrect Password.\" \"Reset Password.\" -> \"Email not found.\" Beat: Complete lockout.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Yuto trying to login. \"Incorrect Password.\" \"Reset Password.\" -> \"Email not found.\" Beat: Complete lockout."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 19,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. The class surrounds him. \"Die.\" \"Creep.\" \"Scammer.\" Action: Yuto curling up. The malice is palpable (visualized as dark static).. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. The class surrounds him. \"Die.\" \"Creep.\" \"Scammer.\" Action: Yuto curling up. The malice is palpable (visualized as dark static).. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "The class surrounds him. \"Die.\" \"Creep.\" \"Scammer.\" Action: Yuto curling up. The malice is palpable (visualized as dark static)."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 20,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto alone at his desk, head down. Beat: Total despair. \"It's all my fault...\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto alone at his desk, head down. Beat: Total despair. \"It's all my fault...\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Yuto alone at his desk, head down. Beat: Total despair. \"It's all my fault...\""
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 21,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "\"Are you okay?\""
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. The air is heavy/spiky. Nei walks over calmly.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. The air is heavy/spiky. Nei walks over calmly.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "The air is heavy/spiky. Nei walks over calmly."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 22,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto looks up, tears in eyes. Explains briefly. \"I didn't do it... but I did click...\" Action: Nei listens, then turns. \"Ren. Ghost. What do we do?\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto looks up, tears in eyes. Explains briefly. \"I didn't do it... but I did click...\" Action: Nei listens, then turns. \"Ren. Ghost. What do we do?\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Yuto looks up, tears in eyes. Explains briefly. \"I didn't do it... but I did click...\" Action: Nei listens, then turns. \"Ren. Ghost. What do we do?\""
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 23,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "あー。そうだな、やるか。"
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Ren stretches, looking bored.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Ren stretches, looking bored.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Ren stretches, looking bored."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 24,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Ren",
+            "character:Nei",
+            "character:Yuto"
+          ],
+          "dialogue": [
+            {
+              "speaker": "NeiPuni",
+              "text": "NEIちゃんのアドバイス #1　まず、カード。"
+            },
+            {
+              "speaker": "Nei",
+              "text": "親に言って、カード止めよ。いま。"
+            },
+            {
+              "speaker": "Ren",
+              "text": "…増える前に。いったん止める。"
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #1】（案内）空気がギスギスの教室。Yutoの手が震えてる。画面端に“ぷにNEI”の案内カード。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #1】（案内）空気がギスギスの教室。Yutoの手が震えてる。画面端に“ぷにNEI”の案内カード。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "【NEIちゃんのアドバイス #1】（案内）空気がギスギスの教室。Yutoの手が震えてる。画面端に“ぷにNEI”の案内カード。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 25,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Yuto",
+            "character:YutoMother"
+          ],
+          "dialogue": [
+            {
+              "speaker": "NeiPuni",
+              "text": "設定ページ。電話して、止める。"
+            },
+            {
+              "speaker": "Yuto",
+              "text": "ママ…ごめん。カード、止めたほうがいい…！"
+            },
+            {
+              "speaker": "YutoMother",
+              "text": "え、なに？…わかった、すぐやる。"
+            },
+            {
+              "speaker": "Classmates",
+              "text": "今さらやっても意味なくね？"
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #1】（設定）Yutoが親に電話。カード停止の手続きに入る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #1】（設定）Yutoが親に電話。カード停止の手続きに入る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "【NEIちゃんのアドバイス #1】（設定）Yutoが親に電話。カード停止の手続きに入る。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 26,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Nei",
+            "character:Ren",
+            "character:Yuto"
+          ],
+          "dialogue": [
+            {
+              "speaker": "NeiPuni",
+              "text": "NEIちゃんのアドバイス #2　スクショ。"
+            },
+            {
+              "speaker": "Nei",
+              "text": "消される前に、スクショ。URLと時間も。短くでいい。"
+            },
+            {
+              "speaker": "Yuto",
+              "text": "…見るの、キツい…"
+            },
+            {
+              "speaker": "Nei",
+              "text": "見なくていい。撮るだけ。"
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #2】（案内）消される前に“残す”。スクショとメモ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #2】（案内）消される前に“残す”。スクショとメモ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "【NEIちゃんのアドバイス #2】（案内）消される前に“残す”。スクショとメモ。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 27,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Yuto",
+            "character:Ren"
+          ],
+          "dialogue": [
+            {
+              "speaker": "NeiPuni",
+              "text": "設定ページ。スクショ→URL→時間。"
+            },
+            {
+              "speaker": "Ren",
+              "text": "スクショ。あと、リンク。…貼っとけ。"
+            },
+            {
+              "speaker": "Yuto",
+              "text": "…うん。"
+            },
+            {
+              "speaker": "Classmates",
+              "text": "証拠とかさ、もう遅いって。"
+            }
+          ],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #2】（設定）スクショ→URL→時間。最低3点セット。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #2】（設定）スクショ→URL→時間。最低3点セット。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "【NEIちゃんのアドバイス #2】（設定）スクショ→URL→時間。最低3点セット。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 28,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Nei",
+            "character:Yuto",
+            "character:Ren"
+          ],
+          "dialogue": [
+            {
+              "speaker": "NeiPuni",
+              "text": "NEIちゃんのアドバイス #3　そのリンク、触らない。"
+            },
+            {
+              "speaker": "Nei",
+              "text": "いま触ると、またやられる。確認したい気持ち、わかるけど。"
+            },
+            {
+              "speaker": "Ren",
+              "text": "触るなら…別の端末で。"
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #3】（案内）そのリンク、触らない。焦りで二回刺さる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #3】（案内）そのリンク、触らない。焦りで二回刺さる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "【NEIちゃんのアドバイス #3】（案内）そのリンク、触らない。焦りで二回刺さる。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 29,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Yuto",
+            "character:Nei"
+          ],
+          "dialogue": [
+            {
+              "speaker": "NeiPuni",
+              "text": "設定ページ。別の端末で確認。"
+            },
+            {
+              "speaker": "Nei",
+              "text": "そのスマホ、いったん伏せて。ここで見る。"
+            },
+            {
+              "speaker": "Yuto",
+              "text": "…わかった。"
+            },
+            {
+              "speaker": "Classmates",
+              "text": "やってる感すご。もう終わってんのに。"
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #3】（設定）別端末で確認。いまのスマホは伏せる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #3】（設定）別端末で確認。いまのスマホは伏せる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "【NEIちゃんのアドバイス #3】（設定）別端末で確認。いまのスマホは伏せる。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 30,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Nei",
+            "character:Yuto"
+          ],
+          "dialogue": [
+            {
+              "speaker": "NeiPuni",
+              "text": "NEIちゃんのアドバイス #4　別アカで一言。"
+            },
+            {
+              "speaker": "Nei",
+              "text": "別アカ作って。“リンク踏まないで”だけでいい。"
+            },
+            {
+              "speaker": "Yuto",
+              "text": "…言ったら、もっと怒られそう…"
+            },
+            {
+              "speaker": "Nei",
+              "text": "言わないと、もっと増える。"
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #4】（案内）連絡線を作る。“踏まないで”だけ伝える。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #4】（案内）連絡線を作る。“踏まないで”だけ伝える。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "【NEIちゃんのアドバイス #4】（案内）連絡線を作る。“踏まないで”だけ伝える。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 31,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Yuto"
+          ],
+          "dialogue": [
+            {
+              "speaker": "NeiPuni",
+              "text": "設定ページ。『踏まないで』って送る。"
+            },
+            {
+              "speaker": "Yuto",
+              "text": "俺の本垢…乗っ取られた。リンク踏まないで。通報して…"
+            },
+            {
+              "speaker": "Unknown",
+              "text": "今さら言われても…もう出てるし。"
+            },
+            {
+              "speaker": "Yuto",
+              "text": "…ごめん。でも、これ以上は増やしたくない。"
+            }
+          ],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #4】（設定）別アカで告知。友だちからの反発も来る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #4】（設定）別アカで告知。友だちからの反発も来る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "【NEIちゃんのアドバイス #4】（設定）別アカで告知。友だちからの反発も来る。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 32,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Nei",
+            "character:Yuto",
+            "character:Ren"
+          ],
+          "dialogue": [
+            {
+              "speaker": "NeiPuni",
+              "text": "NEIちゃんのアドバイス #5　パス、全部変える。"
+            },
+            {
+              "speaker": "Nei",
+              "text": "同じパス、使わない。メールも同じの使わない。"
+            },
+            {
+              "speaker": "Yuto",
+              "text": "…覚えらんない…"
+            },
+            {
+              "speaker": "Ren",
+              "text": "覚えなくていい。保存するやつ使え。"
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #5】（案内）パスは全部別。メールも同じの使わない。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #5】（案内）パスは全部別。メールも同じの使わない。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "【NEIちゃんのアドバイス #5】（案内）パスは全部別。メールも同じの使わない。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 33,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Yuto",
+            "character:Nei"
+          ],
+          "dialogue": [
+            {
+              "speaker": "NeiPuni",
+              "text": "設定ページ。自動で作って、保存。"
+            },
+            {
+              "speaker": "Yuto",
+              "text": "…同じの、全部使ってた…"
+            },
+            {
+              "speaker": "Nei",
+              "text": "今から変えればいい。ここから。"
+            }
+          ],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #5】（設定）自動で作って保存。『全部ちがう』を作る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #5】（設定）自動で作って保存。『全部ちがう』を作る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "【NEIちゃんのアドバイス #5】（設定）自動で作って保存。『全部ちがう』を作る。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 34,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Nei",
+            "character:Yuto"
+          ],
+          "dialogue": [
+            {
+              "speaker": "NeiPuni",
+              "text": "NEIちゃんのアドバイス #6　二段階、入れよ。"
+            },
+            {
+              "speaker": "Nei",
+              "text": "パスだけじゃ止まらない。二段階、入れる。"
+            },
+            {
+              "speaker": "Yuto",
+              "text": "でも…俺、もうログインできない…"
+            },
+            {
+              "speaker": "Nei",
+              "text": "できるやつから。できないのは、運営に申請。"
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #6】（案内）二段階、入れよ。できるとこから。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #6】（案内）二段階、入れよ。できるとこから。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "【NEIちゃんのアドバイス #6】（案内）二段階、入れよ。できるとこから。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 35,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Yuto",
+            "character:Nei",
+            "character:Ren"
+          ],
+          "dialogue": [
+            {
+              "speaker": "NeiPuni",
+              "text": "設定ページ。二段階オン。"
+            },
+            {
+              "speaker": "Unknown",
+              "text": "今さらやっても、もう遅いし。"
+            },
+            {
+              "speaker": "Yuto",
+              "text": "…ごめん…でも…"
+            },
+            {
+              "speaker": "Nei",
+              "text": "ghost、幻肢痛だ。"
+            }
+          ],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #6】（設定）二段階の設定。なのに、クラスの言葉が刺さっていく。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #6】（設定）二段階の設定。なのに、クラスの言葉が刺さっていく。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "【NEIちゃんのアドバイス #6】（設定）二段階の設定。なのに、クラスの言葉が刺さっていく。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 36,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "\"Ren。たおす？\""
+            },
+            {
+              "speaker": "Ren",
+              "text": "\"…うん。\""
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Nei looks at the air. Action: Ren nods silently.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Nei looks at the air. Action: Ren nods silently.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Nei looks at the air. Action: Ren nods silently."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 37,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "\"SIP Project Map: ON.\""
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Nei pulls out a strange device (cube/sphere).. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Nei pulls out a strange device (cube/sphere).. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Nei pulls out a strange device (cube/sphere)."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 38,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. A wave scans the room. The classroom texture changes. Wireframes overlay reality. Beat: The \"Information Field\" is revealed.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. A wave scans the room. The classroom texture changes. Wireframes overlay reality. Beat: The \"Information Field\" is revealed.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "A wave scans the room. The classroom texture changes. Wireframes overlay reality. Beat: The \"Information Field\" is revealed."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 39,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Classmates",
+              "text": "\"What the?! VR?! Ghosts?!\""
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. The \"static\" and \"malice\" take shape. Grotesque, glitchy ghosts clinging to the classmates and binding Yuto.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. The \"static\" and \"malice\" take shape. Grotesque, glitchy ghosts clinging to the classmates and binding Yuto.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "The \"static\" and \"malice\" take shape. Grotesque, glitchy ghosts clinging to the classmates and binding Yuto."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 40,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "\"This is the Information Field. Images converted to mass.\""
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Nei stands amidst the chaos.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Nei stands amidst the chaos.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Nei stands amidst the chaos."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 41,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "\"Information is physics. Deleting a bit generates heat. Malice generates weight.\""
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Text overlay: **Landauer's Principle**.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Text overlay: **Landauer's Principle**.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Text overlay: **Landauer's Principle**."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 42,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Unknown",
+              "text": "\"It hurts! Why!?\""
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. The ghosts (the classmates' own anger) attack them. Action: A ghost scratches a student. The student bleeds/feels pain.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. The ghosts (the classmates' own anger) attack them. Action: A ghost scratches a student. The student bleeds/feels pain.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "The ghosts (the classmates' own anger) attack them. Action: A ghost scratches a student. The student bleeds/feels pain."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 43,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "\"Ghosts cause Phantom Pain. No physical wound, but the brain feels it.\""
+            },
+            {
+              "speaker": "Nei",
+              "text": "\"I can't. This is *your* malice visualized. I just turned on the light.\""
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style.  Action: Classmates scream. \"Stop this device!\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style.  Action: Classmates scream. \"Stop this device!\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": " Action: Classmates scream. \"Stop this device!\""
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 44,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. A ghost lunges at the group. Action: Ren steps in. \"Ghost Hack time.\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. A ghost lunges at the group. Action: Ren steps in. \"Ghost Hack time.\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "A ghost lunges at the group. Action: Ren steps in. \"Ghost Hack time.\""
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 45,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Ren pulls a massive, digital axe out of thin air. **NULL AXE**. Action: SLASH. The ghost is deleted instantly.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Ren pulls a massive, digital axe out of thin air. **NULL AXE**. Action: SLASH. The ghost is deleted instantly.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Ren pulls a massive, digital axe out of thin air. **NULL AXE**. Action: SLASH. The ghost is deleted instantly."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 46,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto screams. A massive, dark shadow erupts from him.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto screams. A massive, dark shadow erupts from him.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Yuto screams. A massive, dark shadow erupts from him."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 47,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Daemon (Yuto's voice)",
+              "text": "\"Too late! Can't be fixed! Unforgivable!\""
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. The Daemon attacks Ren. Heavy impact. Action: Ren blocks, slides back. \"Heavy...\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. The Daemon attacks Ren. Heavy impact. Action: Ren blocks, slides back. \"Heavy...\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "The Daemon attacks Ren. Heavy impact. Action: Ren blocks, slides back. \"Heavy...\""
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 48,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "\"Yeah. You can't undo the leak. You can't undo the click.\""
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Ren stands up, dusting off. Beat: Ren looks at Yuto.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Ren stands up, dusting off. Beat: Ren looks at Yuto.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Ren stands up, dusting off. Beat: Ren looks at Yuto."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 49,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "\"But... the one who wrote the insults wasn't you. The one who stole the money wasn't you.\""
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Ren raises the axe. Action: **\"/dev/null SLASH!!\"**. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Ren raises the axe. Action: **\"/dev/null SLASH!!\"**. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Ren raises the axe. Action: **\"/dev/null SLASH!!\"**"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 50,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. The Daemon dissolves into particles. The ghosts fade. The room returns to normal (mostly). Action: Yuto falls to his knees.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. The Daemon dissolves into particles. The ghosts fade. The room returns to normal (mostly). Action: Yuto falls to his knees.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "The Daemon dissolves into particles. The ghosts fade. The room returns to normal (mostly). Action: Yuto falls to his knees."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 51,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "\"I'm sorry. I was careless. I hurt you.\""
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto looks at the classmates. Beat: He owns his mistake, but sheds the guilt of the *crime*.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto looks at the classmates. Beat: He owns his mistake, but sheds the guilt of the *crime*.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Yuto looks at the classmates. Beat: He owns his mistake, but sheds the guilt of the *crime*."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 52,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "\"I hate people who make work for me. The guy who made 'Wakuwaku Denki'.\""
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Ren glares at the void (breaking the 4th wall slightly). Action: Ren interrupts. \"Wrong. The bad guy is the 'Actor' (Hacker).\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Ren glares at the void (breaking the 4th wall slightly). Action: Ren interrupts. \"Wrong. The bad guy is the 'Actor' (Hacker).\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Ren glares at the void (breaking the 4th wall slightly). Action: Ren interrupts. \"Wrong. The bad guy is the 'Actor' (Hacker).\""
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 53,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "\"Internet. Site's gone though.\""
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Classmates swarm Nei. \"What was that device?!\" \"Where do I buy it?!\" Action: Ren yawns. \"Done. Going home to sleep.\" Nei: \"Clean up first.\" Ren: \"Geh.\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Classmates swarm Nei. \"What was that device?!\" \"Where do I buy it?!\" Action: Ren yawns. \"Done. Going home to sleep.\" Nei: \"Clean up first.\" Ren: \"Geh.\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Classmates swarm Nei. \"What was that device?!\" \"Where do I buy it?!\" Action: Ren yawns. \"Done. Going home to sleep.\" Nei: \"Clean up first.\" Ren: \"Geh.\""
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 54,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "\"Let's go.\" Nei: \"Yeah.\""
+            }
+          ],
+          "environment": "env:cschool-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Ren and Nei on a roof/high place overlooking Tokyo.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Ren and Nei on a roof/high place overlooking Tokyo.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Wide Shot",
+            "gh:focus": "deep focus",
+            "gh:lens": "35mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "Ren and Nei on a roof/high place overlooking Tokyo."
+        }
+      ]
+    }
+  ],
+  "gh:presentationTagline": "Arc 0-1 | Origin Story",
+  "gh:realCase": "Phishing / Account Takeover",
+  "gh:supportingCharacters": [
+    "character:Nei",
+    "character:Yuto"
+  ]
+}
