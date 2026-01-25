@@ -28,71 +28,76 @@
 	// Generate fallback layout based on panel count if no stored layout
 	let pageLayout = $derived(storedLayout?.panels?.length > 0 ? storedLayout : generateDefaultLayout(sortedPanels.length));
 	
+	// Gap between panels (in percentage)
+	const PANEL_GAP = 1;
+
 	/**
 	 * Generate Jump manga-style default layout based on panel count
+	 * All layouts include small gaps between panels for authentic manga look
 	 */
 	function generateDefaultLayout(panelCount: number): { panels: PanelLayoutInfo[] } {
+		const g = PANEL_GAP; // shorthand for gap
 		const layouts: Record<number, PanelLayoutInfo[]> = {
 			1: [{ x: 0, y: 0, width: 100, height: 100 }],
 			2: [
-				{ x: 0, y: 0, width: 100, height: 60 },
-				{ x: 0, y: 60, width: 100, height: 40 }
+				{ x: 0, y: 0, width: 100, height: 58 },
+				{ x: 0, y: 59, width: 100, height: 41 }
 			],
 			3: [
-				{ x: 0, y: 0, width: 100, height: 45 },
-				{ x: 0, y: 45, width: 55, height: 55 },
+				{ x: 0, y: 0, width: 100, height: 44 },
+				{ x: 0, y: 45, width: 54, height: 55 },
 				{ x: 55, y: 45, width: 45, height: 55 }
 			],
 			4: [
-				{ x: 0, y: 0, width: 100, height: 50 },
-				{ x: 0, y: 50, width: 35, height: 50 },
-				{ x: 35, y: 50, width: 35, height: 50 },
-				{ x: 70, y: 50, width: 30, height: 50 }
+				{ x: 0, y: 0, width: 100, height: 49 },
+				{ x: 0, y: 50, width: 33, height: 50 },
+				{ x: 34, y: 50, width: 33, height: 50 },
+				{ x: 68, y: 50, width: 32, height: 50 }
 			],
 			5: [
-				{ x: 0, y: 0, width: 100, height: 42 },
-				{ x: 0, y: 42, width: 50, height: 30 },
-				{ x: 50, y: 42, width: 50, height: 30 },
-				{ x: 0, y: 72, width: 60, height: 28 },
-				{ x: 60, y: 72, width: 40, height: 28 }
+				{ x: 0, y: 0, width: 100, height: 40 },
+				{ x: 0, y: 41, width: 49, height: 29 },
+				{ x: 50, y: 41, width: 50, height: 29 },
+				{ x: 0, y: 71, width: 59, height: 29 },
+				{ x: 60, y: 71, width: 40, height: 29 }
 			],
 			6: [
-				{ x: 0, y: 0, width: 100, height: 38 },
-				{ x: 0, y: 38, width: 50, height: 32 },
-				{ x: 50, y: 38, width: 50, height: 32 },
-				{ x: 0, y: 70, width: 33, height: 30 },
-				{ x: 33, y: 70, width: 34, height: 30 },
-				{ x: 67, y: 70, width: 33, height: 30 }
+				{ x: 0, y: 0, width: 100, height: 36 },
+				{ x: 0, y: 37, width: 49, height: 31 },
+				{ x: 50, y: 37, width: 50, height: 31 },
+				{ x: 0, y: 69, width: 32, height: 31 },
+				{ x: 33, y: 69, width: 34, height: 31 },
+				{ x: 68, y: 69, width: 32, height: 31 }
 			],
 			7: [
-				{ x: 0, y: 0, width: 100, height: 35 },
-				{ x: 0, y: 35, width: 40, height: 25 },
-				{ x: 40, y: 35, width: 30, height: 25 },
-				{ x: 70, y: 35, width: 30, height: 25 },
-				{ x: 0, y: 60, width: 50, height: 20 },
-				{ x: 50, y: 60, width: 50, height: 20 },
+				{ x: 0, y: 0, width: 100, height: 33 },
+				{ x: 0, y: 34, width: 39, height: 24 },
+				{ x: 40, y: 34, width: 29, height: 24 },
+				{ x: 70, y: 34, width: 30, height: 24 },
+				{ x: 0, y: 59, width: 49, height: 20 },
+				{ x: 50, y: 59, width: 50, height: 20 },
 				{ x: 0, y: 80, width: 100, height: 20 }
 			],
 			8: [
-				{ x: 0, y: 0, width: 60, height: 30 },
-				{ x: 60, y: 0, width: 40, height: 15 },
-				{ x: 60, y: 15, width: 40, height: 15 },
-				{ x: 0, y: 30, width: 50, height: 25 },
-				{ x: 50, y: 30, width: 50, height: 25 },
-				{ x: 0, y: 55, width: 33, height: 22 },
+				{ x: 0, y: 0, width: 59, height: 29 },
+				{ x: 60, y: 0, width: 40, height: 14 },
+				{ x: 60, y: 15, width: 40, height: 14 },
+				{ x: 0, y: 30, width: 49, height: 24 },
+				{ x: 50, y: 30, width: 50, height: 24 },
+				{ x: 0, y: 55, width: 32, height: 22 },
 				{ x: 33, y: 55, width: 34, height: 22 },
-				{ x: 67, y: 55, width: 33, height: 22 }
+				{ x: 68, y: 55, width: 32, height: 22 }
 			],
 			9: [
-				{ x: 0, y: 0, width: 100, height: 30 },
-				{ x: 0, y: 30, width: 33, height: 23 },
-				{ x: 33, y: 30, width: 34, height: 23 },
-				{ x: 67, y: 30, width: 33, height: 23 },
-				{ x: 0, y: 53, width: 50, height: 24 },
-				{ x: 50, y: 53, width: 50, height: 24 },
-				{ x: 0, y: 77, width: 33, height: 23 },
-				{ x: 33, y: 77, width: 34, height: 23 },
-				{ x: 67, y: 77, width: 33, height: 23 }
+				{ x: 0, y: 0, width: 100, height: 28 },
+				{ x: 0, y: 29, width: 32, height: 22 },
+				{ x: 33, y: 29, width: 34, height: 22 },
+				{ x: 68, y: 29, width: 32, height: 22 },
+				{ x: 0, y: 52, width: 49, height: 23 },
+				{ x: 50, y: 52, width: 50, height: 23 },
+				{ x: 0, y: 76, width: 32, height: 24 },
+				{ x: 33, y: 76, width: 34, height: 24 },
+				{ x: 68, y: 76, width: 32, height: 24 }
 			]
 		};
 		
@@ -233,6 +238,7 @@
 		border: 1px solid transparent;
 		transition: border-color 0.2s, box-shadow 0.2s;
 		padding: 2px;
+		box-sizing: border-box;
 	}
 
 	.layout-wrapper:hover {
