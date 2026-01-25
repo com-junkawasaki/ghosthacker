@@ -165,6 +165,11 @@
       "@id": "character:Classmate_C",
       "gh:role": "Arc 0 - Student / Gamer",
       "gh:sourceFile": "characters/Classmate_C/profile.jsonld"
+    },
+    {
+      "@id": "character:Misaki",
+      "gh:role": "Arc P - Yuto's Mother / Parent Guide Protagonist",
+      "gh:sourceFile": "characters/Misaki/profile.jsonld"
     }
   ],
   "gh:directingGuide": {
@@ -344,13 +349,18 @@
       "gh:arc": "Arc D",
       "gh:episodeId": "episode:260125-jump-arcD-3",
       "gh:sourceFile": "episodes/260125-jump-arcD-3/episode.jsonld"
+    },
+    {
+      "gh:arc": "Arc P (Parent Guide)",
+      "gh:episodeId": "episode:260125-parent-smartphone-safety",
+      "gh:sourceFile": "episodes/260125-parent-smartphone-safety/episode.jsonld"
     }
   ],
   "gh:globalStyle": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Emphasize detailed expressive eyes with intricate iris patterns and sharp catchlights.",
   "gh:meta": {
     "gh:audience": "?????????????",
     "gh:hook": "????????????????????????",
-    "gh:oneLiner": "AI????????\"????\"???????????�??�????????",
+    "gh:oneLiner": "AI????????\"????\"???????????????????????",
     "gh:tags": [
       "Cyber",
       "Thriller",
