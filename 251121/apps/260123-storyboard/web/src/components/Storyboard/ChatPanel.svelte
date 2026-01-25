@@ -488,9 +488,9 @@
 			</div>
 		{/if}
 		{#each messages as msg}
-			<div class="message" class:user={msg.role === 'user'}>
+			<div class="message" class:user={msg.role === 'user'} class:debug={msg.role === 'debug'} class:error={msg.role === 'error'} class:system={msg.role === 'system'}>
 				{#if msg.agent && msg.agent !== 'general'}
-					<span class="message-agent-tag" class:scenario={msg.agent === 'scenario'} class:episode={msg.agent === 'episode'} class:character={msg.agent === 'character'} class:cinematic={msg.agent === 'cinematic'} class:dialogue={msg.agent === 'dialogue'}>
+					<span class="message-agent-tag" class:scenario={msg.agent === 'scenario'} class:episode={msg.agent === 'episode'} class:character={msg.agent === 'character'} class:cinematic={msg.agent === 'cinematic'} class:dialogue={msg.agent === 'dialogue'} class:reviewer={msg.agent === 'reviewer'}>
 						{msg.agent.toUpperCase()}
 					</span>
 				{/if}
@@ -501,7 +501,13 @@
 						{/each}
 					</div>
 				{/if}
-				<div class="message-content">{msg.content}</div>
+				<div class="message-content">
+					{#if msg.role === 'debug'}
+						<pre>{msg.content}</pre>
+					{:else}
+						{msg.content}
+					{/if}
+				</div>
 				{#if msg.contextScope}
 					<div class="context-scope-display">
 						<span class="scope-label">LOADED CONTEXT:</span>
@@ -851,6 +857,33 @@
 		border-bottom-left-radius: 2px;
 	}
 
+	.message.debug {
+		align-self: flex-start;
+		background: #1a1a1a;
+		border: 1px dashed #333;
+		color: #888;
+		font-family: 'Courier New', monospace;
+		font-size: 0.75rem;
+		opacity: 0.8;
+	}
+
+	.message.error {
+		align-self: center;
+		background: #3a1a1a;
+		border: 1px solid #633;
+		color: #f88;
+		font-weight: bold;
+	}
+
+	.message.system {
+		align-self: center;
+		background: transparent;
+		border: 1px solid #333;
+		color: #666;
+		font-size: 0.75rem;
+		font-style: italic;
+	}
+
 	.message-agent-tag {
 		font-size: 0.55rem;
 		font-weight: bold;
@@ -866,6 +899,7 @@
 	.message-agent-tag.character { background: #9b59b6; }
 	.message-agent-tag.cinematic { background: #e67e22; }
 	.message-agent-tag.dialogue { background: #e74c3c; }
+	.message-agent-tag.reviewer { background: #34495e; }
 
 	.message-context {
 		margin-bottom: 0.5rem;
@@ -898,6 +932,12 @@
 
 	.message-content {
 		word-break: break-word;
+	}
+
+	.message-content pre {
+		margin: 0;
+		white-space: pre-wrap;
+		font-size: 0.7rem;
 	}
 
 	.context-scope-display {

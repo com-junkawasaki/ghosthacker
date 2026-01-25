@@ -430,7 +430,7 @@ func (s *StoryboardService) TerminateAutonomousGeneration(
 	}
 
 	// Broadcast termination to chat
-	s.BroadcastChatMessage("general", "⚠️ Autonomous generation was terminated by the user.")
+	s.BroadcastChatMessage("general", "system", "⚠️ Autonomous generation was terminated by the user.")
 
 	return connect.NewResponse(&storyboardpb.TerminateAutonomousGenerationResponse{
 		Success: true,

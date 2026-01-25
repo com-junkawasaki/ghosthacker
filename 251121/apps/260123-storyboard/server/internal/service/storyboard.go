@@ -814,11 +814,11 @@ func (s *StoryboardService) broadcastUpdate(update *storyboardpb.StreamUpdatesRe
 }
 
 // BroadcastChatMessage allows external components (like Temporal workers) to send messages to the chat
-func (s *StoryboardService) BroadcastChatMessage(agentMode, content string) {
+func (s *StoryboardService) BroadcastChatMessage(role, agentMode, content string) {
 	s.broadcastUpdate(&storyboardpb.StreamUpdatesResponse{
 		UpdateType: "chat_message",
 		ChatMessage: &storyboardpb.ChatMessage{
-			Role:      "assistant",
+			Role:      role,
 			AgentMode: agentMode,
 			Content:   content,
 		},
@@ -830,7 +830,11 @@ func (s *StoryboardService) InternalBroadcastChatMessage(
 	ctx context.Context,
 	req *connect.Request[storyboardpb.InternalBroadcastChatMessageRequest],
 ) (*connect.Response[storyboardpb.InternalBroadcastChatMessageResponse], error) {
-	s.BroadcastChatMessage(req.Msg.AgentMode, req.Msg.Content)
+	role := req.Msg.Role
+	if role == "" {
+		role = "assistant"
+	}
+	s.BroadcastChatMessage(role, req.Msg.AgentMode, req.Msg.Content)
 	return connect.NewResponse(&storyboardpb.InternalBroadcastChatMessageResponse{
 		Success: true,
 	}), nil

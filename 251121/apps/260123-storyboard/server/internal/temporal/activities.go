@@ -64,12 +64,22 @@ func SaveStoryboardActivity(ctx context.Context, params StoryboardUpdateParams) 
 	}, nil
 }
 
-func callOpenRouter(ctx context.Context, model, systemPrompt, userPrompt string) (string, error) {
+func callOpenRouter(ctx context.Context, agentMode, model, systemPrompt, userPrompt string) (string, error) {
+	// Broadcast request info
+	BroadcastAgentMessageActivity(ctx, BroadcastParams{
+		AgentMode: agentMode,
+		Role:      "debug",
+		Content:   fmt.Sprintf("🚀 Requesting OpenRouter\nModel: %s\nPrompt Length: %d chars", model, len(systemPrompt)+len(userPrompt)),
+	})
+
 	apiKey := os.Getenv("OPENROUTER_API_KEY")
 	if apiKey == "" {
-		return "", fmt.Errorf("OPENROUTER_API_KEY is not set")
+		err := fmt.Errorf("OPENROUTER_API_KEY is not set")
+		BroadcastAgentMessageActivity(ctx, BroadcastParams{AgentMode: agentMode, Role: "error", Content: err.Error()})
+		return "", err
 	}
 
+	startTime := time.Now()
 	requestBody := map[string]interface{}{
 		"model": model,
 		"messages": []map[string]string{
@@ -94,16 +104,19 @@ func callOpenRouter(ctx context.Context, model, systemPrompt, userPrompt string)
 	req.Header.Set("HTTP-Referer", "https://ghosthacker.gftd.ai")
 	req.Header.Set("X-Title", "ghosthacker-storyboard-worker")
 
-	client := &http.Client{Timeout: 90 * time.Second}
+	client := &http.Client{Timeout: 120 * time.Second}
 	resp, err := client.Do(req)
 	if err != nil {
+		BroadcastAgentMessageActivity(ctx, BroadcastParams{AgentMode: agentMode, Role: "error", Content: fmt.Sprintf("Fetch failed: %v", err)})
 		return "", err
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
 		body, _ := io.ReadAll(resp.Body)
-		return "", fmt.Errorf("OpenRouter API error (%d): %s", resp.StatusCode, string(body))
+		err := fmt.Errorf("OpenRouter API error (%d): %s", resp.StatusCode, string(body))
+		BroadcastAgentMessageActivity(ctx, BroadcastParams{AgentMode: agentMode, Role: "error", Content: err.Error()})
+		return "", err
 	}
 
 	var result struct {
@@ -119,10 +132,21 @@ func callOpenRouter(ctx context.Context, model, systemPrompt, userPrompt string)
 	}
 
 	if len(result.Choices) == 0 {
-		return "", fmt.Errorf("no choices in response")
+		err := fmt.Errorf("no choices in response")
+		BroadcastAgentMessageActivity(ctx, BroadcastParams{AgentMode: agentMode, Role: "error", Content: err.Error()})
+		return "", err
 	}
 
-	return strings.TrimSpace(result.Choices[0].Message.Content), nil
+	duration := time.Since(startTime)
+	content := strings.TrimSpace(result.Choices[0].Message.Content)
+	
+	BroadcastAgentMessageActivity(ctx, BroadcastParams{
+		AgentMode: agentMode,
+		Role:      "debug",
+		Content:   fmt.Sprintf("✅ Response received in %v\nResponse Length: %d chars", duration.Round(time.Millisecond), len(content)),
+	})
+
+	return content, nil
 }
 
 // ScenarioAgentActivity handles high-level plot planning in A2A
@@ -133,7 +157,7 @@ func ScenarioAgentActivity(ctx context.Context, params AutonomousGenerationParam
 	systemPrompt := "You are a professional Scenario Writer for Ghost Hacker, a cinematic webtoon. Plan the next narrative beats. Return a concise plot summary."
 	userPrompt := fmt.Sprintf("Goal: %s\nContext: %v", params.Goal, params.InitialContext)
 
-	return callOpenRouter(ctx, "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
+	return callOpenRouter(ctx, "scenario", "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
 }
 
 // EpisodeAgentActivity handles detailed content generation in A2A
@@ -144,7 +168,7 @@ func EpisodeAgentActivity(ctx context.Context, scenarioOutput string) (string, e
 	systemPrompt := "You are a professional Episode Generator. Create detailed scenes and dialogue based on the scenario plan. Return a structured scene description."
 	userPrompt := fmt.Sprintf("Scenario Plan: %s", scenarioOutput)
 
-	return callOpenRouter(ctx, "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
+	return callOpenRouter(ctx, "episode", "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
 }
 
 // CharacterAgentActivity handles character consistency in A2A
@@ -155,7 +179,7 @@ func CharacterAgentActivity(ctx context.Context, draft episodeDraft) (string, er
 	systemPrompt := "You are a Character Specialist. Ensure all dialogue and actions are consistent with character profiles. Return a verification report or refined text."
 	userPrompt := fmt.Sprintf("Draft Content: %s\nContext: %v", draft.Content, draft.Params.InitialContext)
 
-	return callOpenRouter(ctx, "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
+	return callOpenRouter(ctx, "character", "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
 }
 
 // CinematicAgentActivity handles visual direction in A2A
@@ -166,7 +190,7 @@ func CinematicAgentActivity(ctx context.Context, episodeOutput string) (string, 
 	systemPrompt := "You are a Cinematic Sketcher. Provide visual composition, camera work, and image prompts for each panel based on the episode content."
 	userPrompt := fmt.Sprintf("Episode Content: %s", episodeOutput)
 
-	return callOpenRouter(ctx, "openai/gpt-4o", systemPrompt, userPrompt)
+	return callOpenRouter(ctx, "cinematic", "openai/gpt-4o", systemPrompt, userPrompt)
 }
 
 // ReviewerAgentActivity critiques and refines agent proposals
@@ -185,7 +209,7 @@ Focus on:
 Return a critique and suggested refinements.`
 	userPrompt := fmt.Sprintf("Proposed Content: %s", input)
 
-	return callOpenRouter(ctx, "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
+	return callOpenRouter(ctx, "reviewer", "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
 }
 
 // VisionAnalysisActivity analyzes generated images to extract context
@@ -201,11 +225,12 @@ func VisionAnalysisActivity(ctx context.Context, imageURL string) (string, error
 type BroadcastParams struct {
 	AgentMode string
 	Content   string
+	Role      string // "user", "assistant", "system", "debug", "error"
 }
 
 // BroadcastAgentMessageActivity sends an agent's message to the frontend chat
 func BroadcastAgentMessageActivity(ctx context.Context, params BroadcastParams) error {
-	log.Printf("[A2A BROADCAST] %s: %s", params.AgentMode, params.Content)
+	log.Printf("[A2A BROADCAST] [%s] %s: %s", params.Role, params.AgentMode, params.Content)
 
 	serverURL := os.Getenv("SERVER_URL")
 	if serverURL == "" {
@@ -220,6 +245,7 @@ func BroadcastAgentMessageActivity(ctx context.Context, params BroadcastParams) 
 	_, err := client.InternalBroadcastChatMessage(ctx, connect.NewRequest(&storyboardpb.InternalBroadcastChatMessageRequest{
 		AgentMode: params.AgentMode,
 		Content:   params.Content,
+		Role:      params.Role,
 	}))
 
 	return err

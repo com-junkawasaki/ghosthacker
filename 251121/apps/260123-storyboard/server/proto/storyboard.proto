@@ -69,6 +69,7 @@ service StoryboardService {
 message InternalBroadcastChatMessageRequest {
   string agent_mode = 1;
   string content = 2;
+  string role = 3; // "user", "assistant", "system", "debug", "error"
 }
 
 message InternalBroadcastChatMessageResponse {
@@ -374,7 +375,7 @@ message StreamUpdatesResponse {
 }
 
 message ChatMessage {
-  string role = 1; // "user", "assistant"
+  string role = 1; // "user", "assistant", "system", "debug", "error"
   string agent_mode = 2; // "scenario", "episode", etc.
   string content = 3;
   string context_json = 4; // Serialized context items
