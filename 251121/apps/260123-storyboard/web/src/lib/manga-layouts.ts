@@ -42,14 +42,6 @@ export const MANGA_TEMPLATES: Record<number, LayoutTemplate[]> = {
 				{ x: 0, y: 33.3, width: 100, height: 33.3 },
 				{ x: 0, y: 66.6, width: 100, height: 33.4 }
 			]
-		},
-		{
-			name: 'Top 1, Bottom 2',
-			panels: [
-				{ x: 0, y: 0, width: 100, height: 50 },
-				{ x: 0, y: 50, width: 50, height: 50 },
-				{ x: 50, y: 50, width: 50, height: 50 }
-			]
 		}
 	],
 	4: [
@@ -69,15 +61,6 @@ export const MANGA_TEMPLATES: Record<number, LayoutTemplate[]> = {
 				{ x: 50, y: 0, width: 50, height: 50 },
 				{ x: 0, y: 50, width: 50, height: 50 },
 				{ x: 50, y: 50, width: 50, height: 50 }
-			]
-		},
-		{
-			name: 'Vertical 4',
-			panels: [
-				{ x: 0, y: 0, width: 100, height: 25 },
-				{ x: 0, y: 25, width: 100, height: 25 },
-				{ x: 0, y: 50, width: 100, height: 25 },
-				{ x: 0, y: 75, width: 100, height: 25 }
 			]
 		}
 	],

@@ -3,16 +3,10 @@
 	import StoryboardPanel from './StoryboardPanel.svelte';
 	import type { Panel, PanelData } from '$lib/gen/proto/storyboard_pb';
 
-	let { 
-		panels = [], 
-		episodeId = '', 
-		storyboardPath = '',
-		selectedPanel = null
-	} = $props<{
+	let { panels = [], episodeId = '', storyboardPath = '' } = $props<{
 		panels: Panel[];
 		episodeId?: string;
 		storyboardPath?: string;
-		selectedPanel?: { pageNumber: number, panel: number } | null;
 	}>();
 
 	const dispatch = createEventDispatcher();
@@ -89,18 +83,12 @@
 				
 				<div class="panels-container">
 					{#each pagesMap[pageNum] as panel (panel.panel)}
-						<div 
-							class="panel-row-wrapper" 
-							class:selected={selectedPanel?.pageNumber === panel.pageNumber && selectedPanel?.panel === panel.panel}
-							onclick={() => dispatch('selectPanel', { pageNumber: panel.pageNumber, panel: panel.panel })}
-						>
-							<StoryboardPanel
-								{panel}
-								episodeId={episodeId}
-								storyboardPath={storyboardPath}
-								on:update={(e) => handlePanelUpdate(panel.pageNumber, panel.panel, e.detail)}
-							/>
-						</div>
+						<StoryboardPanel
+							{panel}
+							episodeId={episodeId}
+							storyboardPath={storyboardPath}
+							on:update={(e) => handlePanelUpdate(panel.pageNumber, panel.panel, e.detail)}
+						/>
 					{/each}
 				</div>
 
@@ -116,16 +104,17 @@
 	.storyboard-page {
 		flex: 1;
 		overflow-y: auto;
-		padding: 1rem;
+		padding: 2rem;
 		background: #faf9f5;
 	}
 
 	.storyboard-container {
-		width: 100%;
+		max-width: 1400px;
+		margin: 0 auto;
 		background: #fff;
-		border: 1px solid #ddd;
-		border-radius: 4px;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+		border: 2px solid #ddd;
+		border-radius: 8px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	}
 
 	.page-section {
@@ -133,8 +122,8 @@
 	}
 
 	.page-header {
-		padding: 0.75rem 1rem;
-		text-align: left;
+		padding: 1.5rem 2rem;
+		text-align: center;
 		background: #f5f5f0;
 		border-bottom: 1px solid #ddd;
 		cursor: pointer;
@@ -146,24 +135,27 @@
 	}
 
 	.page-number {
-		font-size: 0.9rem;
-		font-weight: 700;
-		color: #666;
+		font-size: 1.25rem;
+		font-weight: 600;
+		color: #333;
 	}
 
 	.page-divider {
 		margin: 0;
 		border: none;
-		border-top: 2px solid #eee;
+		border-top: 3px solid #ccc;
+		height: 0;
+		margin-top: 2rem;
+		margin-bottom: 2rem;
 	}
 
 	.grid-header {
 		display: grid;
-		grid-template-columns: 60px 120px 120px 1fr 50px;
+		grid-template-columns: 80px 1fr 1fr 400px 60px;
 		background: #e8e6e0;
-		border-bottom: 1px solid #ccc;
+		border-bottom: 2px solid #ccc;
 		font-weight: 600;
-		font-size: 0.75rem;
+		font-size: 0.9rem;
 		color: #555;
 	}
 
@@ -172,7 +164,7 @@
 	.col-picture-generated,
 	.col-content,
 	.col-seconds {
-		padding: 0.5rem;
+		padding: 0.75rem 1rem;
 		border-right: 1px solid #ccc;
 		text-align: center;
 	}
@@ -188,22 +180,6 @@
 	.panels-container {
 		display: flex;
 		flex-direction: column;
-	}
-
-	.panel-row-wrapper {
-		cursor: pointer;
-		transition: background 0.2s;
-	}
-
-	.panel-row-wrapper:hover {
-		background: #f9f9f9;
-	}
-
-	.panel-row-wrapper.selected {
-		background: #f0f7ff;
-		outline: 2px solid #007bff;
-		outline-offset: -2px;
-		z-index: 5;
 	}
 
 	/* Ensure grid header stays at top on scroll */

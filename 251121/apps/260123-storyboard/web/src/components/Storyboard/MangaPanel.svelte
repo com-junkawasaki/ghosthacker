@@ -5,11 +5,10 @@
 	import { create } from '@bufbuild/protobuf';
 
 	// Svelte 5 props
-	let { panel, selected = false } = $props<{
+	let { panel } = $props<{
 		panel: Panel;
 		episodeId?: string;
 		storyboardPath?: string;
-		selected?: boolean;
 	}>();
 
 	const dispatch = createEventDispatcher();
@@ -50,9 +49,6 @@
 		const target = event.currentTarget as HTMLElement;
 		containerRect = target.closest('.manga-panel')?.getBoundingClientRect() || null;
 		if (!containerRect) return;
-
-		// Dispatch selection event
-		dispatch('selectPanel', { pageNumber: panel.pageNumber, panel: panel.panel });
 
 		if (type !== 'image') {
 			event.stopPropagation();
@@ -227,7 +223,6 @@
 <div 
 	class="manga-panel" 
 	class:dragging={draggingElement?.type === 'image'}
-	class:selected={selected}
 	onpointerdown={(e) => handlePointerDown(e, 'image')}
 	onwheel={handleZoom}
 >
@@ -302,12 +297,6 @@
 
 	.manga-panel.dragging {
 		cursor: move;
-	}
-
-	.manga-panel.selected {
-		outline: 3px solid #7c3aed;
-		outline-offset: 2px;
-		z-index: 50;
 	}
 
 	.panel-image {
