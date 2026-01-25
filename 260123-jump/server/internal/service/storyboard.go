@@ -1771,20 +1771,7 @@ func (s *StoryboardService) createMangaPageImage(panels []*storyboardpb.Panel, w
 					continue
 				}
 				
-				// Get image offset and scale from layout
-				var imgX, imgY float64 = 50, 50
-				var imgScale float64 = 1.0
-				if layout != nil {
-					if layout.ImageX != 0 || layout.ImageY != 0 {
-						imgX = float64(layout.ImageX)
-						imgY = float64(layout.ImageY)
-					}
-					if layout.ImageScale > 0 {
-						imgScale = float64(layout.ImageScale)
-					}
-				}
-				
-				// Draw panel image with proper scaling and positioning
+				// Draw panel image with proper scaling and positioning (using imgX, imgY, imgScale from layout)
 				drawPanelImage(canvas, panelImg, destX, destY, destW, destH, imgX, imgY, imgScale)
 				
 				// Draw panel border
