@@ -242,6 +242,15 @@
 				episodeId: selectedEpisode,
 				message: userMessage,
 				agentMode: agentMode,
+				history: messages.slice(0, -1).map(m => ({
+					role: m.role,
+					agentMode: m.agent ?? '',
+					content: m.content,
+					contextJson: m.context ? JSON.stringify(m.context) : (m.context_json ?? ''),
+					resolvedIds: m.resolvedIds ?? [],
+					patches: m.patches ?? [],
+					contextScope: m.contextScope
+				})),
 				context: currentContext.map(ctx => ({
 					type: ctx.type,
 					id: String(ctx.id || ''),
@@ -265,6 +274,9 @@
 				if (res.patches && res.patches.length > 0) {
 					console.log('[ChatPanel] AI suggested patches:', res.patches);
 				}
+				
+				// Keep context persistent for the session (don't clear it here)
+				// dropContext = []; // Removed clearing
 				
 				await saveCurrentSession();
 			} else {
@@ -579,12 +591,18 @@
 	>
 		{#if dropContext.length > 0}
 			<div class="drop-context-preview">
-				{#each dropContext as ctx, i}
-					<span class="context-tag">
-						{ctx.type}: {ctx.panel ?? ctx.pageNumber ?? ctx.id}
-						<button onclick={() => removeContext(i)}>×</button>
-					</span>
-				{/each}
+				<div class="context-header">
+					<span>ACTIVE CONTEXT ({dropContext.length})</span>
+					<button class="clear-context-btn" onclick={() => dropContext = []}>Clear All</button>
+				</div>
+				<div class="context-tags-scroll">
+					{#each dropContext as ctx, i}
+						<span class="context-tag">
+							{ctx.type}: {ctx.panel ?? ctx.pageNumber ?? ctx.id}
+							<button onclick={() => removeContext(i)}>×</button>
+						</span>
+					{/each}
+				</div>
 			</div>
 		{/if}
 		
@@ -1077,7 +1095,7 @@
 
 	.drop-context-preview {
 		display: flex;
-		flex-wrap: wrap;
+		flex-direction: column;
 		gap: 0.4rem;
 		margin-bottom: 0.75rem;
 		padding: 0.5rem;
@@ -1085,6 +1103,32 @@
 		border: 1px dashed #555;
 		border-radius: 6px;
 		min-height: 2.5rem;
+	}
+
+	.context-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 0.6rem;
+		font-weight: bold;
+		color: #888;
+		margin-bottom: 0.25rem;
+	}
+
+	.clear-context-btn {
+		background: none;
+		border: none;
+		color: #555;
+		cursor: pointer;
+		text-decoration: underline;
+	}
+
+	.clear-context-btn:hover { color: #888; }
+
+	.context-tags-scroll {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
 	}
 
 	.input-wrapper {

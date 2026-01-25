@@ -127,6 +127,7 @@ message InteractWithAIRequest {
   repeated AIContext context = 4;
   string session_id = 5;
   string agent_mode = 6; // "general", "scenario", "episode", "character", "cinematic", "dialogue"
+  repeated ChatMessage history = 7; // Previous messages in the conversation
 }
 
 message AIContext {

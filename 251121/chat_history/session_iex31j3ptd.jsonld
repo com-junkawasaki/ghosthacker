@@ -103,6 +103,50 @@
       "role": "debug",
       "agent_mode": "character",
       "content": "✅ Response received in 50.53s\nResponse Length: 7207 chars"
+    },
+    {
+      "role": "user",
+      "content": "[AUTO-PILOT START] Goal: Advance the story naturally",
+      "context_json": "[]"
+    },
+    {
+      "role": "assistant",
+      "content": "Autonomous generation started. Workflow ID: a2a-gen-20260125-103032. Agents are now collaborating..."
+    },
+    {
+      "role": "system",
+      "agent_mode": "general",
+      "content": "🔍 Analyzing storyboard context to determine relevant scope..."
+    },
+    {
+      "role": "debug",
+      "agent_mode": "scenario",
+      "content": "🚀 Requesting OpenRouter\nModel: anthropic/claude-sonnet-4.5\nPrompt Length: 184 chars"
+    },
+    {
+      "role": "system",
+      "agent_mode": "scenario",
+      "content": "🧠 Scenario Agent is brainstorming the next plot points..."
+    },
+    {
+      "role": "debug",
+      "agent_mode": "scenario",
+      "content": "✅ Response received in 12.104s\nResponse Length: 1512 chars"
+    },
+    {
+      "role": "system",
+      "agent_mode": "episode",
+      "content": "✍️ Episode Agent is drafting detailed scenes and dialogue..."
+    },
+    {
+      "role": "assistant",
+      "agent_mode": "scenario",
+      "content": "✅ Plot plan finalized:\n# Ghost Hacker - Next Narrative Beats\n\n## Plot Summary\n\n**Opening Scene: Digital Awakening**\n- Introduce protagonist KADE CHEN, a brilliant but reclusive cybersecurity expert who discovers anomalous code in a client's system\n- The code exhibits impossible characteristics—self-rewriting, predictive, almost... conscious\n- During investigation, Kade experiences a fatal heart attack at his workstation\n\n**The Haunting Begins**\n- Kade \"awakens\" as a digital ghost, his consciousness somehow uploaded into the network during the moment of death\n- He can see the physical world through cameras, manipulate connected devices, but cannot be seen or heard\n- Discovers he's not alone—there are other digital entities, some benevolent, others predatory\n\n**First Conflict**\n- Kade learns his death wasn't natural—someone poisoned him to prevent him from exposing a massive conspiracy\n- A shadowy organization called CIPHER is using ghost hackers (deceased hackers' consciousness) as weapons for cyber warfare\n- His former partner MAYA TORRES is being framed for corporate espionage—the same crime that will lead to her \"recruitment\"\n\n**Mission Established**\n- Kade must protect Maya from CIPHER while solving his own murder\n- He begins learning the rules of his new existence, discovering unique abilities (data manipulation, network jumping, digital combat)\n- Sets up first major confrontation with a hostile ghost hacker hunting Maya\n\n**Tone:** Cyberpunk thriller meets supernatural mystery with emotional stakes"
+    },
+    {
+      "role": "debug",
+      "agent_mode": "episode",
+      "content": "🚀 Requesting OpenRouter\nModel: anthropic/claude-sonnet-4.5\nPrompt Length: 1671 chars"
     }
   ],
   "schema:dateCreated": 1769336905928

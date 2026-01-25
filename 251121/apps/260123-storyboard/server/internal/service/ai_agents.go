@@ -164,6 +164,21 @@ Important:
 		contextStr.WriteString(fmt.Sprintf("\n--- Context: %s (%s) ---\n%s\n", c.Type, c.Id, c.JsonContent))
 	}
 
+	// Add history to the prompt
+	var historyStr strings.Builder
+	if len(req.Msg.History) > 0 {
+		historyStr.WriteString("\n## Previous Conversation History:\n")
+		for _, h := range req.Msg.History {
+			if h.Role == "debug" || h.Role == "system" {
+				continue // Skip technical logs
+			}
+			historyStr.WriteString(fmt.Sprintf("[%s] (%s): %s\n", h.Role, h.AgentMode, h.Content))
+			if h.ContextJson != "" {
+				historyStr.WriteString(fmt.Sprintf("  Context used: %s\n", h.ContextJson))
+			}
+		}
+	}
+
 	agentInstruction := ""
 	switch req.Msg.AgentMode {
 	case "scenario":
@@ -209,7 +224,7 @@ Your response MUST include a "context_scope" if you are narrowing down the focus
 `
 	}
 
-	userPrompt := fmt.Sprintf("Context:\n%s\n%s\n\nUser Message: %s", contextStr.String(), agentInstruction, req.Msg.Message)
+	userPrompt := fmt.Sprintf("Context:%s\n%s\n%s\n\nUser Message: %s", contextStr.String(), historyStr.String(), agentInstruction, req.Msg.Message)
 
 	// Auto-resolve IDs found in message or context
 	idRegex := regexp.MustCompile(`(character|env|episode):[a-zA-Z0-9-]+`)
