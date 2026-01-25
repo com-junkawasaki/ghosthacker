@@ -28,9 +28,9 @@
   "gh:episodeId": "episode:260123-cschool-defamation",
   "gh:episodeIndex": 2,
   "gh:storyOutline": "story-outline.jsonld",
-  "gh:incidentDescription": "都立工科高校の人気ゲーム配信者・黒田涼（2年）がドクシング被害に遭う。住所を特定され、誹謗中傷が拡散、自宅や学校に嫌がらせが届く。元eスポーツ部エースで休学中のTakeru（HN: aka_chise1）が後輩の危機に立ち上がり、証拠保全から法的対処までを指揮する。『消すな。残せ。それが一番強い武器になる』。",
+  "gh:incidentDescription": "都立工科高校の人気ゲーム配信者・黒田涼（2年）がドクシング被害に遭う。住所を特定され、誹謗中傷が拡散、自宅や学校に嫌がらせが届く。元eスポーツ部エースで休学中の赤羽千世（HN: aka_chise1）が後輩の危機に立ち上がり、証拠保全から法的対処までを指揮する。『消すな。残せ。それが一番強い武器になる』。",
   "gh:industry": "Student life (高校生)",
-  "gh:mainCharacter": "character:Takeru",
+  "gh:mainCharacter": "character:Chise",
   "gh:mainLocation": "org:TokyoTechHighSchool",
   "gh:supportingCharacters": [
     "character:RyoKuroda",

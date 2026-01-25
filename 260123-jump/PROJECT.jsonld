@@ -9,32 +9,31 @@
   "@type": ["gh:Project", "prov:Entity"],
   "dct:title": "Manga Ghost Hacker: Case Study Series (260123-jump)",
   "dct:description": "A manga series designed to teach cybersecurity through case studies, using real-world terminology and frameworks (CISA, CISSP, CMMI).",
-  "gh:status": "Arc 0-2/0-3 restructured with Takeru and Kaname as main characters",
+  "gh:status": "Arc 0-2/0-3 restructured - Chise (female) and Kaname as main characters",
   "gh:currentSession": {
     "@type": "prov:Activity",
-    "prov:startedAtTime": "2026-01-25T19:00:00Z",
+    "prov:startedAtTime": "2026-01-25T20:00:00Z",
     "gh:goals": [
-      "Restructure Arc 0-2 with Takeru as main character",
-      "Restructure Arc 0-3 with Kaname as main character",
-      "Create school/organization profiles for each arc",
-      "Create classmate and supporting character profiles",
-      "Design base incidents and story outlines"
+      "Transform Takeru (male) to Chise (female) - shrine maiden background",
+      "Create Akabane Hachiman Shrine organization profile",
+      "Update all references from Takeru to Chise"
     ],
     "gh:results": [
-      "Arc 0-2 (Takeru): Created TokyoTechHighSchool organization profile",
-      "Arc 0-2 (Takeru): Created characters - RyoKuroda (victim/streamer), ShotaHayashi (friend), YuiTanaka (tech support), DaichiMori (gray character)",
-      "Arc 0-2 (Takeru): Incident - Doxing/online defamation of game streamer Ryo",
-      "Arc 0-2 (Takeru): Theme - '恥じゃない。残すのが一番強い' (Evidence preservation & legal action)",
-      "Arc 0-3 (Kaname): Created SeiranAcademy organization profile (elite private school)",
-      "Arc 0-3 (Kaname): Created characters - SoraAoyama (victim/scholarship student), RikaShirakawa (student council president), KenjiOhara (friend), TakashiNomura (antagonist/recruiter)",
-      "Arc 0-3 (Kaname): Incident - Dark part-time job targeting elite students for information trading",
-      "Arc 0-3 (Kaname): Theme - 'やめたい…でも、怖い' (Escape from exploitation & early consultation)",
-      "Updated Takeru profile with detailed background and relationships",
-      "Updated Kaname profile with detailed background and relationships",
-      "Created story-outline.jsonld for both episodes with 7-act structure",
-      "Updated episode.jsonld metadata for both arcs"
+      "Transformed Takeru → Chise (赤羽千世): 19-year-old female street hacker",
+      "New background: Grew up at Akabane Hachiman Shrine as granddaughter of the priest",
+      "Name origin: 'Chise' (千世) was given by grandmother meaning 'thousand generations'",
+      "HN aka_chise1 now connects to real name: aka (赤/Akabane) + chise (千世/real name) + 1",
+      "Created AkabaneHachimanShrine organization profile",
+      "Street culture came from diverse people visiting the shrine at night",
+      "Updated all character references and relationships"
     ]
   },
+  "gh:previousSessions": [
+    {
+      "@type": "prov:Activity",
+      "prov:endedAtTime": "2026-01-25T19:30:00Z",
+      "gh:summary": "Arc 0-2/0-3 restructuring with Takeru and Kaname as protagonists"
+    },
   "gh:previousSessions": [
     {
       "@type": "prov:Activity",
@@ -97,7 +96,12 @@
     {
       "gh:name": "Arc 0-2/0-3 Character-Centric Restructuring",
       "gh:status": "Completed",
-      "gh:description": "Takeru (Arc 0-2) and Kaname (Arc 0-3) as main protagonists with dedicated schools, classmates, and incidents"
+      "gh:description": "Chise (Arc 0-2) and Kaname (Arc 0-3) as main protagonists with dedicated schools, classmates, and incidents"
+    },
+    {
+      "gh:name": "Takeru → Chise Gender/Character Transformation",
+      "gh:status": "Completed",
+      "gh:description": "赤羽千世 (Chise Akabane): Female street hacker raised at Akabane Hachiman Shrine. HN: aka_chise1 connects to real name."
     }
   ]
 }
