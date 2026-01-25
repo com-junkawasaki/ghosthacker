@@ -53,6 +53,21 @@ func (s *StoryboardMCPServer) registerTools() {
 	s.server.AddTool(mcp.NewTool("query_lore",
 		mcp.WithDescription("Query the Ghost Hacker world lore (tech, organizations, risks)."),
 	), s.handleQueryLore)
+
+	// Environment Agent Tool
+	s.server.AddTool(mcp.NewTool("environment_specialist",
+		mcp.WithDescription("Specialized agent for location settings, atmosphere, and architectural details."),
+	), s.handleEnvironmentSpecialist)
+
+	// Prop Agent Tool
+	s.server.AddTool(mcp.NewTool("prop_specialist",
+		mcp.WithDescription("Specialized agent for tools, hacker gadgets, and small objects."),
+	), s.handlePropSpecialist)
+
+	// Ghost Agent Tool
+	s.server.AddTool(mcp.NewTool("ghost_specialist",
+		mcp.WithDescription("Specialized agent for supernatural glitches, digital ghosts, and AXE effects."),
+	), s.handleGhostSpecialist)
 }
 
 func (s *StoryboardMCPServer) handleScenarioWriter(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
@@ -144,6 +159,51 @@ func (s *StoryboardMCPServer) handleGetCharacterProfile(ctx context.Context, req
 	}, nil
 }
 
+func (s *StoryboardMCPServer) handleEnvironmentSpecialist(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	args := req.Params.Arguments.(map[string]interface{})
+	instruction, _ := args["instruction"].(string)
+	log.Printf("[MCP] Environment Specialist called with: %s", instruction)
+	
+	return &mcp.CallToolResult{
+		Content: []mcp.Content{
+			mcp.TextContent{
+				Type: "text",
+				Text: fmt.Sprintf("Environment Agent processed: %s. (Setting up location context...)", instruction),
+			},
+		},
+	}, nil
+}
+
+func (s *StoryboardMCPServer) handlePropSpecialist(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	args := req.Params.Arguments.(map[string]interface{})
+	instruction, _ := args["instruction"].(string)
+	log.Printf("[MCP] Prop Specialist called with: %s", instruction)
+	
+	return &mcp.CallToolResult{
+		Content: []mcp.Content{
+			mcp.TextContent{
+				Type: "text",
+				Text: fmt.Sprintf("Prop Agent processed: %s. (Identifying hacker gadgets...)", instruction),
+			},
+		},
+	}, nil
+}
+
+func (s *StoryboardMCPServer) handleGhostSpecialist(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	args := req.Params.Arguments.(map[string]interface{})
+	instruction, _ := args["instruction"].(string)
+	log.Printf("[MCP] Ghost Specialist called with: %s", instruction)
+	
+	return &mcp.CallToolResult{
+		Content: []mcp.Content{
+			mcp.TextContent{
+				Type: "text",
+				Text: fmt.Sprintf("Ghost Agent processed: %s. (Designing digital glitch effects...)", instruction),
+			},
+		},
+	}, nil
+}
+
 func (s *StoryboardMCPServer) handleQueryLore(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 	log.Printf("[MCP] Querying Lore")
 
@@ -187,6 +247,12 @@ func (s *StoryboardMCPServer) CallTool(ctx context.Context, name string, args ma
 		return s.handleGetCharacterProfile(ctx, req)
 	case "query_lore":
 		return s.handleQueryLore(ctx, req)
+	case "environment_specialist":
+		return s.handleEnvironmentSpecialist(ctx, req)
+	case "prop_specialist":
+		return s.handlePropSpecialist(ctx, req)
+	case "ghost_specialist":
+		return s.handleGhostSpecialist(ctx, req)
 	default:
 		return nil, fmt.Errorf("tool not found: %s", name)
 	}

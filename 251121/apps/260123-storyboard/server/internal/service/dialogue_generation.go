@@ -26,6 +26,9 @@ const (
 	modelCharacterSpecialist = "anthropic/claude-sonnet-4.5"
 	modelCinematicSketcher = "openai/gpt-4o"
 	modelDialogueCoach     = "anthropic/claude-sonnet-4.5"
+	modelEnvironmentAgent  = "anthropic/claude-sonnet-4.5"
+	modelPropAgent         = "anthropic/claude-sonnet-4.5"
+	modelGhostAgent        = "anthropic/claude-sonnet-4.5"
 )
 
 type openRouterTextResponse struct {

@@ -597,7 +597,7 @@ type InteractWithAIRequest struct {
 	Message   string         `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
 	Context   []*AIContext   `protobuf:"bytes,4,rep,name=context,proto3" json:"context,omitempty"`
 	SessionId string         `protobuf:"bytes,5,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
-	AgentMode string         `protobuf:"bytes,6,opt,name=agent_mode,json=agentMode,proto3" json:"agent_mode,omitempty"` // "general", "scenario", "episode", "character", "cinematic", "dialogue"
+	AgentMode string         `protobuf:"bytes,6,opt,name=agent_mode,json=agentMode,proto3" json:"agent_mode,omitempty"` // "general", "scenario", "episode", "character", "cinematic", "dialogue", "environment", "prop", "ghost"
 	History   []*ChatMessage `protobuf:"bytes,7,rep,name=history,proto3" json:"history,omitempty"`                      // Previous messages in the conversation
 }
 

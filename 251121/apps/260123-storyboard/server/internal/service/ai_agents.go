@@ -125,6 +125,12 @@ func (s *StoryboardService) InteractWithAI(
 			model = modelCinematicSketcher
 		case "dialogue":
 			model = modelDialogueCoach
+		case "environment":
+			model = modelEnvironmentAgent
+		case "prop":
+			model = modelPropAgent
+		case "ghost":
+			model = modelGhostAgent
 		default:
 			model = openRouterTextModelDefault
 		}
@@ -210,6 +216,24 @@ Context Strategy: Provide ARIA Cinematic Base settings and shot properties.
 MODE: Dialogue Coach.
 Task: Focus on natural speech, delivery, and subtext.
 Context Strategy: Provide recent dialogue history and character sentence traits.
+`
+	case "environment":
+		agentInstruction = `
+MODE: Environment Specialist.
+Task: Focus on location settings, atmosphere, and architectural details.
+Context Strategy: Provide environment definitions and visual mood boards.
+`
+	case "prop":
+		agentInstruction = `
+MODE: Prop Specialist.
+Task: Focus on tools, hacker gadgets, and small objects.
+Context Strategy: Provide technical gadget specs and item lists.
+`
+	case "ghost":
+		agentInstruction = `
+MODE: Ghost Specialist.
+Task: Focus on supernatural glitches, digital ghosts, and AXE effects.
+Context Strategy: Provide ASC control zone rules and glitch effect descriptions.
 `
 	case "a2a":
 		agentInstruction = `

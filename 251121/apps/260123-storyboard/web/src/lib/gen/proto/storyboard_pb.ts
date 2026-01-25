@@ -289,7 +289,7 @@ export type InteractWithAIRequest = Message<"gftd.ghosthacker.storyboard.v1.Inte
   sessionId: string;
 
   /**
-   * "general", "scenario", "episode", "character", "cinematic", "dialogue"
+   * "general", "scenario", "episode", "character", "cinematic", "dialogue", "environment", "prop", "ghost"
    *
    * @generated from field: string agent_mode = 6;
    */
