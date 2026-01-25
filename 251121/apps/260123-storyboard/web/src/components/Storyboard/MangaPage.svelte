@@ -154,11 +154,11 @@
 		height: 15px;
 		background: rgba(0, 123, 255, 0.5);
 		cursor: nwse-resize;
-		display: none;
+		display: block;
 	}
 
-	.layout-wrapper:hover .resize-handle {
-		display: block;
+	.layout-wrapper:hover {
+		border-color: #007bff;
 	}
 
 	.page-footer {

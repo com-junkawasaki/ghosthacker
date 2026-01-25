@@ -304,11 +304,21 @@
 		background: #eee;
 		aspect-ratio: 3 / 4;
 		cursor: default;
+		transition: border-color 0.2s;
 	}
 
-	.manga-panel.moving-image {
+	.manga-panel.mode-image {
 		cursor: move;
 		border-color: #007bff;
+		box-shadow: inset 0 0 10px rgba(0, 123, 255, 0.3);
+	}
+
+	.manga-panel.mode-text {
+		border-color: #28a745;
+	}
+
+	.manga-panel.mode-panel {
+		border-color: #6c757d;
 	}
 
 	.panel-image {
@@ -316,6 +326,7 @@
 		height: 100%;
 		object-fit: cover;
 		transition: transform 0.1s ease-out;
+		pointer-events: none;
 	}
 
 	.panel-placeholder {
@@ -350,6 +361,13 @@
 		/* Default position for now */
 		top: 20%;
 		left: 10%;
+		cursor: grab;
+	}
+
+	.dialogue-bubble,
+	.manga-text {
+		cursor: grab;
+		outline: 2px dashed #28a745;
 	}
 
 	.manga-text {
@@ -369,31 +387,42 @@
 		bottom: 5px;
 		right: 5px;
 		display: flex;
-		gap: 2px;
-		opacity: 0;
-		transition: opacity 0.2s;
+		flex-direction: column;
+		gap: 5px;
+		opacity: 1;
+		z-index: 100;
 	}
 
-	.manga-panel:hover .panel-tools {
-		opacity: 1;
+	.mode-selector, .action-buttons {
+		display: flex;
+		gap: 2px;
+		background: rgba(0, 0, 0, 0.6);
+		padding: 3px;
+		border-radius: 4px;
 	}
 
 	.panel-tools button {
-		background: rgba(0, 0, 0, 0.5);
+		background: rgba(255, 255, 255, 0.2);
 		color: #fff;
-		border: none;
+		border: 1px solid rgba(255, 255, 255, 0.3);
 		border-radius: 2px;
-		padding: 2px 5px;
+		padding: 2px 6px;
 		font-size: 0.7rem;
 		cursor: pointer;
+		transition: all 0.2s;
 	}
 
 	.panel-tools button:hover {
-		background: rgba(0, 0, 0, 0.8);
+		background: rgba(255, 255, 255, 0.4);
 	}
 
 	.panel-tools button.active {
-		background: #007bff;
-		color: #fff;
+		background: #fff;
+		color: #000;
+		font-weight: bold;
 	}
+
+	.mode-selector button.active[title*="Panel"] { background: #6c757d; color: white; }
+	.mode-selector button.active[title*="Image"] { background: #007bff; color: white; }
+	.mode-selector button.active[title*="Text"] { background: #28a745; color: white; }
 </style>
