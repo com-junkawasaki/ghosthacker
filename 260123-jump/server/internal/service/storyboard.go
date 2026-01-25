@@ -98,13 +98,14 @@ func (s *StoryboardService) aggregateMaster(filePath string) (map[string]interfa
 				continue
 			}
 
-			fullPath := filepath.Join(workspaceRoot, "260123-jump/resources", sourceFile)
-			data, err := os.ReadFile(fullPath)
-			if err != nil {
-				log.Printf("Warning: failed to read source file %s: %v", fullPath, err)
-				resolvedItems = append(resolvedItems, item)
-				continue
-			}
+		fullPath := filepath.Join(workspaceRoot, "260123-jump/resources", sourceFile)
+		log.Printf("aggregateMaster: resolving %s -> %s", sourceFile, fullPath)
+		data, err := os.ReadFile(fullPath)
+		if err != nil {
+			log.Printf("Warning: failed to read source file %s (workspaceRoot: %s): %v", fullPath, workspaceRoot, err)
+			resolvedItems = append(resolvedItems, item)
+			continue
+		}
 
 			var resolvedData map[string]interface{}
 			if err := json.Unmarshal(data, &resolvedData); err != nil {

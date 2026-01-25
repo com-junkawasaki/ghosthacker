@@ -102,7 +102,7 @@
 	let inputValue = $state('');
 	let loading = $state(false);
 	let dropContext = $state<any[]>([]);
-	let currentAgentMode = $state<'general' | 'scenario' | 'episode' | 'character' | 'cinematic' | 'dialogue' | 'a2a'>('general');
+	let currentAgentMode = $state<'general' | 'scenario' | 'episode' | 'character' | 'cinematic' | 'dialogue' | 'a2a' | 'environment' | 'prop' | 'ghost'>('general');
 	let isAutoPilot = $state(false);
 	let activeWorkflowId = $state<string | null>(null);
 	let metrics = $state<any | null>(null);
