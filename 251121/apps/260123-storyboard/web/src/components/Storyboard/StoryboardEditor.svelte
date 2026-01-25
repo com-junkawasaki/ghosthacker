@@ -8,6 +8,7 @@
 	import CharacterAgent from './Agents/CharacterAgent.svelte';
 	import CinematicAgent from './Agents/CinematicAgent.svelte';
 	import DialogueAgent from './Agents/DialogueAgent.svelte';
+	import StoryEditorView from './StoryEditorView.svelte';
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
 
 	let episodes: Array<{ id: string; title: string; totalPages: number }> = $state([]);
@@ -19,6 +20,7 @@
 	let selectedPanelIndex = $state(1);
 	let selectedPanelData = $state<PanelData | undefined>(undefined);
 	let activeAgent = $state<'scenario' | 'episode' | 'character' | 'cinematic' | 'dialogue' | undefined>(undefined);
+	let viewMode = $state<'manga' | 'story'>('manga');
 	
 	// Resizable split view state
 	let storyboardWidthPercent = $state(50);
@@ -269,6 +271,18 @@
 				</button>
 			</div>
 		</div>
+
+		<div class="view-switcher">
+			<button 
+				class:active={viewMode === 'manga'} 
+				onclick={() => viewMode = 'manga'}
+			>Manga View</button>
+			<button 
+				class:active={viewMode === 'story'} 
+				onclick={() => viewMode = 'story'}
+			>Story Editor</button>
+		</div>
+
 		<div class="episode-info">
 			{#if selectedEpisode && episodes.length > 0}
 				{@const episode = episodes.find((e) => e.id === selectedEpisode)}
@@ -331,47 +345,58 @@
 					</div>
 				</aside>
 			{/if}
-			<div class="storyboard-view" style="width: {storyboardWidthPercent}%">
-				<StoryboardPage
-					{panels}
-					episodeId={selectedEpisode}
-					storyboardPath={storyboardPath}
-					on:update={({ detail }) =>
-						handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
-					on:pageChange={({ detail }) => {
-						console.log('[StoryboardEditor] pageChange event received:', detail);
-						selectedPage = detail;
-					}}
-					on:panelSelect={({ detail }) => {
-						selectedPanelIndex = detail.panel;
-						selectedPanelData = detail.data;
-					}}
-					on:agentTrigger={({ detail }) => {
-						activeAgent = detail.agent;
-					}}
-				/>
-			</div>
+			
+			{#if viewMode === 'manga'}
+				<div class="storyboard-view" style="width: {storyboardWidthPercent}%">
+					<StoryboardPage
+						{panels}
+						episodeId={selectedEpisode}
+						storyboardPath={storyboardPath}
+						on:update={({ detail }) =>
+							handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
+						on:pageChange={({ detail }) => {
+							console.log('[StoryboardEditor] pageChange event received:', detail);
+							selectedPage = detail;
+						}}
+						on:panelSelect={({ detail }) => {
+							selectedPanelIndex = detail.panel;
+							selectedPanelData = detail.data;
+						}}
+						on:agentTrigger={({ detail }) => {
+							activeAgent = detail.agent;
+						}}
+					/>
+				</div>
 
-			<div 
-				class="resizer" 
-				onmousedown={startResizing}
-				role="separator"
-				aria-valuenow={storyboardWidthPercent}
-				aria-valuemin="20"
-				aria-valuemax="80"
-				tabindex="0"
-			></div>
+				<div 
+					class="resizer" 
+					onmousedown={startResizing}
+					role="separator"
+					aria-valuenow={storyboardWidthPercent}
+					aria-valuemin="20"
+					aria-valuemax="80"
+					tabindex="0"
+				></div>
 
-			<div class="manga-view" style="width: {100 - storyboardWidthPercent}%">
-				<MangaEditor
-					{panels}
-					episodeId={selectedEpisode}
+				<div class="manga-view" style="width: {100 - storyboardWidthPercent}%">
+					<MangaEditor
+						{panels}
+						episodeId={selectedEpisode}
+						{storyboardPath}
+						bind:selectedPage
+						on:update={({ detail }) =>
+							handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
+					/>
+				</div>
+			{:else}
+				<StoryEditorView 
+					{panels} 
+					episodeId={selectedEpisode} 
 					{storyboardPath}
-					bind:selectedPage
 					on:update={({ detail }) =>
 						handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
 				/>
-			</div>
+			{/if}
 		</div>
 	{:else if episodes.length === 0 && !loading}
 		<div class="empty-state">
@@ -523,6 +548,32 @@
 
 	.agent-btn:hover {
 		opacity: 0.9;
+	}
+
+	.view-switcher {
+		display: flex;
+		background: #eee;
+		padding: 3px;
+		border-radius: 6px;
+		margin: 0 1rem;
+	}
+
+	.view-switcher button {
+		padding: 0.4rem 1rem;
+		border: none;
+		background: transparent;
+		border-radius: 4px;
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: #666;
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+
+	.view-switcher button.active {
+		background: #fff;
+		color: #4a90e2;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 	}
 
 	.scenario-btn { background: #4a90e2; }
