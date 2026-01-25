@@ -37,9 +37,9 @@ const CHARACTER_SLUGS = [
   'Saki',
   'Akira',
   'Kota',
-  'Classmate_A',  // Ken
-  'Classmate_B',  // Shota
-  'Classmate_C',  // Tsubasa
+  'Ken',
+  'Shota',
+  'Tsubasa',
 ];
 
 async function loadCharacterProfile(slug: string): Promise<CharacterProfile | null> {

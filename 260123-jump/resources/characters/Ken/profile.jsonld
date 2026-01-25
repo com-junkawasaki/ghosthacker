@@ -17,8 +17,7 @@
     "gh:hair": "Short cropped black hair.",
     "gh:style": "Photorealistic, 8k, high-end webtoon aesthetic."
   },
-  "gh:slug": "Classmate_A",
-  "gh:alias": "Ken",
+  "gh:slug": "Ken",
   "schema:age": 14,
   "schema:name": "田中 健 (Ken Tanaka)",
   "schema:role": "Student / Athlete",

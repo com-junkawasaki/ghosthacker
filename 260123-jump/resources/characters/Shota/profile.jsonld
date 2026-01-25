@@ -17,8 +17,7 @@
     "gh:hair": "Slightly messy black hair.",
     "gh:style": "Photorealistic, 8k, high-end webtoon aesthetic."
   },
-  "gh:slug": "Classmate_B",
-  "gh:alias": "Shota",
+  "gh:slug": "Shota",
   "schema:age": 14,
   "schema:name": "山本 翔太 (Shota Yamamoto)",
   "schema:role": "Student / Quiet Observer",
@@ -33,6 +32,6 @@
   },
   "gh:relationships": [
     {"character": "character:Yuto", "type": "席が近いクラスメイト"},
-    {"character": "character:Classmate_C", "type": "ゲーム仲間", "note": "オンラインゲームで一緒に遊ぶ"}
+    {"character": "character:Tsubasa", "type": "ゲーム仲間", "note": "オンラインゲームで一緒に遊ぶ"}
   ]
 }

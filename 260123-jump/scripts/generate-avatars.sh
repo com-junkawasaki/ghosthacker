@@ -100,11 +100,11 @@ declare -a CHARACTERS=(
     
     "Kota|平松 コータ|Professional manga character portrait, High-quality black and white manga illustration, Clean line art with screen tones, Shounen Jump style, Upper body portrait, 3/4 view, White background. 16-year-old Japanese male student, intellectual and curious expression, wearing glasses, short black hair slightly unkempt, wearing a school uniform. Eyes with catchlights reflecting screen glow behind glasses, clean professional manga illustration, no text or speech bubbles, monochrome manga style"
     
-    "Classmate_A|田中 健 (Ken)|Professional manga character portrait, High-quality black and white manga illustration, Clean line art with screen tones, Shounen Jump style, Upper body portrait, 3/4 view, White background. 14-year-old Japanese male student, athletic build, tanned skin, energetic expression, short cropped black hair, wearing a navy blazer school uniform. Energetic dark eyes with bright catchlights, clean professional manga illustration, no text or speech bubbles, monochrome manga style"
+    "Ken|田中 健|Professional manga character portrait, High-quality black and white manga illustration, Clean line art with screen tones, Shounen Jump style, Upper body portrait, 3/4 view, White background. 14-year-old Japanese male student, athletic build, tanned skin, energetic expression, short cropped black hair, wearing a navy blazer school uniform. Energetic dark eyes with bright catchlights, clean professional manga illustration, no text or speech bubbles, monochrome manga style"
     
-    "Classmate_B|山本 翔太 (Shota)|Professional manga character portrait, High-quality black and white manga illustration, Clean line art with screen tones, Shounen Jump style, Upper body portrait, 3/4 view, White background. 14-year-old Japanese male student, quiet and thoughtful expression, slim build, slightly messy black hair, wearing a navy blazer school uniform. Quiet thoughtful eyes with soft catchlights, clean professional manga illustration, no text or speech bubbles, monochrome manga style"
+    "Shota|山本 翔太|Professional manga character portrait, High-quality black and white manga illustration, Clean line art with screen tones, Shounen Jump style, Upper body portrait, 3/4 view, White background. 14-year-old Japanese male student, quiet and thoughtful expression, slim build, slightly messy black hair, wearing a navy blazer school uniform. Quiet thoughtful eyes with soft catchlights, clean professional manga illustration, no text or speech bubbles, monochrome manga style"
     
-    "Classmate_C|鈴木 翼 (Tsubasa)|Professional manga character portrait, High-quality black and white manga illustration, Clean line art with screen tones, Shounen Jump style, Upper body portrait, 3/4 view, White background. 14-year-old Japanese male student, focused gamer expression, slightly pale skin, messy black hair with long bangs covering one eye, slouched posture, wearing a navy blazer school uniform. Focused eyes with catchlights reflecting monitor glow, clean professional manga illustration, no text or speech bubbles, monochrome manga style"
+    "Tsubasa|鈴木 翼|Professional manga character portrait, High-quality black and white manga illustration, Clean line art with screen tones, Shounen Jump style, Upper body portrait, 3/4 view, White background. 14-year-old Japanese male student, focused gamer expression, slightly pale skin, messy black hair with long bangs covering one eye, slouched posture, wearing a navy blazer school uniform. Focused eyes with catchlights reflecting monitor glow, clean professional manga illustration, no text or speech bubbles, monochrome manga style"
 )
 
 success_count=0
@@ -118,7 +118,7 @@ for char_entry in "${CHARACTERS[@]}"; do
     fi
     
     # Wait between API calls to avoid rate limiting
-    if [ "$slug" != "Classmate_C" ]; then
+    if [ "$slug" != "Tsubasa" ]; then
         echo "Waiting 3 seconds before next generation..."
         sleep 3
     fi

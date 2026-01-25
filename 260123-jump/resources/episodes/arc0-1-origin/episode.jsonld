@@ -544,7 +544,8 @@
           "@id": "panel:VjC4xWjN3zXh",
           "characters": [
             "character:Mei",
-            "character:Saki"
+            "character:Saki",
+            "character:Akira"
           ],
           "dialogue": [
             {
@@ -557,6 +558,12 @@
               "gh:emotion": "cheerful",
               "speaker": "Saki",
               "text": "わかる〜！Meiとお喋りできる時間増えるじゃん"
+            },
+            {
+              "gh:delivery": "椅子にもたれながら",
+              "gh:emotion": "relaxed",
+              "speaker": "Akira",
+              "text": "俺は体育あった方がいいけどな〜、座りっぱなしダルいし"
             }
           ],
           "environment": "env:middle-school-classroom",
@@ -625,12 +632,31 @@
           "visual": "Akiraが得意げにスニーカーを見せびらかす。"
         },
         {
-          "characters": [],
+          "characters": [
+            "character:Akira"
+          ],
           "dialogue": [
             {
               "gh:emotion": "impressed",
               "speaker": "Classmate_A",
               "text": "うわ、マジ？それ即完売だったやつじゃん！"
+            },
+            {
+              "gh:delivery": "ニヤリと笑いながら",
+              "gh:emotion": "smug",
+              "speaker": "Akira",
+              "text": "発売30秒で勝負ついたわ。指の速さがモノを言う"
+            },
+            {
+              "gh:emotion": "curious",
+              "speaker": "Mei",
+              "text": "えー、いくらしたの？"
+            },
+            {
+              "gh:delivery": "得意げに",
+              "gh:emotion": "proud",
+              "speaker": "Akira",
+              "text": "定価で2万5千。転売だと5万超えてたからな"
             }
           ],
           "environment": "env:middle-school-classroom",
@@ -646,14 +672,26 @@
         {
           "@id": "panel:qNP1CbxYU9iR",
           "characters": [
-            "character:Yuto"
+            "character:Yuto",
+            "character:Akira"
           ],
           "dialogue": [
+            {
+              "gh:emotion": "teasing",
+              "speaker": "Akira",
+              "text": "Yutoも欲しいんだろ？顔に書いてあるぞ"
+            },
+            {
+              "gh:delivery": "照れながら",
+              "gh:emotion": "embarrassed",
+              "speaker": "Yuto",
+              "text": "えっ、いや、まぁ…カッコいいなって"
+            },
             {
               "gh:emotion": "envy",
               "gh:isThought": true,
               "speaker": "Yuto",
-              "text": "（いいなぁ…俺も欲しい…）"
+              "text": "（2万5千か…お年玉貯めれば…）"
             }
           ],
           "environment": "env:middle-school-classroom",
@@ -832,16 +870,7 @@
           "dialogue": [],
           "environment": "env:yuto-bedroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/VogWvAuFVTrx_v1.png",
-          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/VogWvAuFVTrx_v1.png",
-          "gh:generatedImages": [
-            {
-              "gh:generatedAt": 1769354497,
-              "gh:imagePrompt": "夜。暗いYutoの部屋全景。ベッドに寝転がるYuto、スマホの光だけが部屋を照らす。. Shot type: Wide Shot",
-              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/VogWvAuFVTrx_v1.png",
-              "gh:model": "google/gemini-3-pro-image-preview"
-            }
-          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 夜。暗いYutoの部屋全景。ベッドに寝転がるYuto、スマホの光だけが部屋を照らす。. Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "high angle",
@@ -928,7 +957,7 @@
           },
           "panel": 5,
           "shot": "Insert",
-          "visual": "「ワクワク電気」偽サイトの商品ページ。Akiraが見せたのと同じスニーカー。80%OFF。"
+          "visual": "「アクター通販」偽サイトの商品ページ。Akiraが見せたのと同じスニーカー。80%OFF。"
         },
         {
           "characters": [
@@ -1097,10 +1126,13 @@
           "visual": "Yutoがベッドから起き上がり、リビングへ向かう。薄暗い廊下。"
         },
         {
+          "@id": "panel:rhfOaxIBg52a",
           "characters": [],
           "dialogue": [],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Single illustration. Close Up. Parent's bag on table. Wallet visible inside. Dark living room. Temptation.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/rhfOaxIBg52a_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/rhfOaxIBg52a_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 親のバッグ。財布が見える。. Shot type: Close Up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -1986,7 +2018,7 @@
           },
           "panel": 2,
           "shot": "Close Up",
-          "visual": "焦ってスマホを操作するYuto。履歴から「ワクワク電気」を探す。"
+          "visual": "焦ってスマホを操作するYuto。履歴から「アクター通販」を探す。"
         },
         {
           "characters": [],
@@ -4244,77 +4276,30 @@
       "gh:act": "act:6-ghost-battle",
       "gh:pageLayout": {
         "gh:category": "action",
-        "gh:layoutNote": "Ghost攻撃とNULL AXE召喚。バトル開始のダイナミズム",
+        "gh:layoutNote": "NULL AXE召喚とゴースト撃破。左下からRenを見上げるカッコイイシーン",
         "gh:templateName": "Jump Standard - Hero Top"
       },
       "gh:pageNumber": 35,
-      "gh:pageTitle": "Ghost攻撃 / NULL AXE召喚",
-      "gh:panelCount": 6,
+      "gh:pageTitle": "ゴーストハックの時間だ",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
           "characters": [
-            "character:Classmate_A"
-          ],
-          "dialogue": [],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Wide Shot. Ghost entity lunging at student. Digital horror approaching.",
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Ghostがクラスメイトに襲いかかる。"
-        },
-        {
-          "characters": [
-            "character:Classmate_A"
-          ],
-          "dialogue": [
-            {
-              "gh:emotion": "pain",
-              "speaker": "Classmate_A",
-              "text": "痛っ！なんで！？"
-            }
-          ],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Close Up. Student feeling phantom pain. Clutching chest. 'Ow! Why!?'",
-          "panel": 2,
-          "shot": "Close Up",
-          "visual": "幻肢痛で苦しむクラスメイト。胸を押さえる。"
-        },
-        {
-          "characters": [
-            "character:RenMiddleSchool"
-          ],
-          "dialogue": [],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy (Ren) stepping forward. Determined posture.",
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "Renが前に出る。"
-        },
-        {
-          "characters": [
             "character:RenMiddleSchool"
           ],
           "dialogue": [
             {
+              "gh:delivery": "静かに、しかし力強く",
               "gh:emotion": "determined",
               "speaker": "Ren",
               "text": "ゴーストハックの時間だ。"
             }
           ],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Close Up. Ren reaching out hand. Determined expression. 'Time for Ghost Hack.'",
-          "panel": 4,
+          "gh:imagePrompt": "Single illustration. Close Up. Ren's determined face. Hand reaching out. 'Time for Ghost Hack.' Confident expression.",
+          "panel": 1,
           "shot": "Close Up",
-          "visual": "Renが手を伸ばす。決意の表情。"
-        },
-        {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Insert shot. Digital particles gathering. Forming shape of axe.",
-          "panel": 5,
-          "shot": "Insert",
-          "visual": "デジタルの粒子が集まり、斧の形を成していく。"
+          "visual": "Renの決意の表情。手を伸ばす。「ゴーストハックの時間だ。」"
         },
         {
           "characters": [
@@ -4322,19 +4307,72 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Medium Shot. 'NULL AXE' materializing fully. Massive digital axe in Ren's hand.",
-          "panel": 6,
+          "gh:imagePrompt": "Single illustration. Wide Shot, dynamic action. Ren slashing through multiple Ghosts in an instant. NULL AXE glowing. Motion blur. Data sparks flying.",
+          "panel": 2,
+          "shot": "Wide Shot",
+          "visual": "Renがゴーストを瞬く間に切り裂く。NULL AXEが光る。データの火花が散る。"
+        },
+        {
+          "characters": [
+            "character:RenMiddleSchool"
+          ],
+          "dialogue": [],
+          "environment": "env:information-field",
+          "gh:imagePrompt": "Single illustration. Extreme Low Angle, Full Body. Epic hero shot of Ren from below. NULL AXE materialized in hand. Looking down at camera with cool expression. Dramatic lighting from above. Imposing silhouette against glowing information field.",
+          "gh:shotProperties": {
+            "gh:angle": "extreme low angle looking up",
+            "gh:aperture": "f/2.8",
+            "gh:atmosphere": "ダイナミック、ヒーロー登場",
+            "gh:distance": "Full Shot",
+            "gh:lens": "16mm wide",
+            "gh:lighting": "上からの逆光、シルエット効果"
+          },
+          "panel": 3,
+          "shot": "Full Shot",
+          "visual": "左下から全身を見上げるカッコイイシーン。NULL AXEを構えたRen。威圧感のあるシルエット。"
+        },
+        {
+          "characters": [
+            "character:Saki"
+          ],
+          "dialogue": [
+            {
+              "gh:emotion": "shock",
+              "speaker": "Saki",
+              "text": "れ、REN？"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Female classmate (Saki) in shock. Eyes wide. Mouth open. 'R-REN!?'",
+          "panel": 4,
           "shot": "Medium Shot",
-          "visual": "「NULL AXE」が実体化。Renの手に巨大なデジタル斧。"
+          "visual": "驚愕するクラスメイト（Saki）。目を見開いている。"
+        },
+        {
+          "characters": [
+            "character:Akira"
+          ],
+          "dialogue": [
+            {
+              "gh:emotion": "panic",
+              "speaker": "Akira",
+              "text": "というか、斧！？どこから！？あぶなくね！？"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "gh:imagePrompt": "Single illustration. Close Up. Male classmate (Akira) freaking out. Pointing at axe. 'Wait, an AXE!? Where did that come from!? Isn't that dangerous!?'",
+          "panel": 5,
+          "shot": "Close Up",
+          "visual": "パニックのクラスメイト（Akira）。斧を指さして驚く。"
         }
       ]
     },
     {
-      "gh:act": "act:7-daemon-battle",
+      "gh:act": "act:6-ghost-battle",
       "gh:pageLayout": {
         "gh:category": "action",
-        "gh:layoutNote": "Ren vs Ghost。アクションの流れをダイナミックに",
-        "gh:templateName": "Action Sequence Flow"
+        "gh:layoutNote": "NEIの説明と安全確保。隔離準備のシーン",
+        "gh:templateName": "Action Setup"
       },
       "gh:pageNumber": 36,
       "gh:pageTitle": "Ren vs Ghost",
@@ -4873,7 +4911,7 @@
           "gh:imagePrompt": "Single illustration. Insert shot. Screenshot of disappeared fake site 'Wakuwaku Denki'.",
           "panel": 3,
           "shot": "Insert",
-          "visual": "消えた偽サイト「ワクワク電気」のスクリーンショット。"
+          "visual": "消えた偽サイト「アクター通販」のスクリーンショット。"
         },
         {
           "characters": [
@@ -4883,7 +4921,7 @@
             {
               "gh:emotion": "determined",
               "speaker": "Ren",
-              "text": "偽サイト「ワクワク電気」。そいつがまだどこかにいる。"
+              "text": "偽サイト「アクター通販」。そいつがまだどこかにいる。"
             }
           ],
           "environment": "env:middle-school-classroom",

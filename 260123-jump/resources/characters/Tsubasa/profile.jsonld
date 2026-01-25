@@ -17,8 +17,7 @@
     "gh:hair": "Messy black hair with long bangs covering one eye.",
     "gh:style": "Photorealistic, 8k, high-end webtoon aesthetic."
   },
-  "gh:slug": "Classmate_C",
-  "gh:alias": "Tsubasa",
+  "gh:slug": "Tsubasa",
   "schema:age": 14,
   "schema:name": "鈴木 翼 (Tsubasa Suzuki)",
   "schema:role": "Student / Gamer",
@@ -33,7 +32,7 @@
   },
   "gh:relationships": [
     {"character": "character:Yuto", "type": "ゲーム仲間", "note": "オンラインで一緒に遊んでいた"},
-    {"character": "character:Classmate_B", "type": "ゲーム仲間"}
+    {"character": "character:Shota", "type": "ゲーム仲間"}
   ],
   "gh:techProfile": {
     "gh:skills": ["ゲーム", "PC操作", "動画編集"],
